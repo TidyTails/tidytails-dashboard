@@ -96,6 +96,16 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - **MCP:** google-workspace (authenticated)
 - **Send command:** `mcporter call google-workspace gmail.send --args '{"to": "...", "subject": "...", "body": "..."}'`
 
+## Standard Processes
+
+### Social Media Ad Copy Delivery
+**ALWAYS when creating social media ad copy:**
+1. Save to dashboard (PDF for dashboard, markdown source)
+2. **Email markdown file to TJ** (cartervhomes@gmail.com) so he can copy/paste directly
+3. Log in memory
+
+TJ needs the raw markdown to copy/paste into Facebook, not just PDFs.
+
 ## Organized Memory Structure
 - `memory/contacts.md` — TJ, Jamie, key contacts
 - `memory/tuffshed.md` — TuffShed job details, pipeline, promos
@@ -119,6 +129,34 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - **PDF Workflow:** HTML → Browser render → PDF export
 - **Check nightly** — add tools, resources, improvements
 - **Commit + push after changes** to sync to GitHub Pages
+
+## Nas - The Copywriter Sub-Agent
+
+**Name:** Nas
+**Role:** Dedicated copywriter for all TJ's ventures
+**Skill:** `skills/nas-copywriter/`
+
+**Workflow:**
+1. Franklin receives copywriting request
+2. Franklin delegates to Nas via sessions_spawn
+3. Nas generates 3-4 variations using the skill
+4. Nas returns to Franklin
+5. Franklin reviews, picks best, presents to TJ
+
+**Nas Handles:**
+- Social media ad copy (Facebook, Instagram, Marketplace)
+- Landing page copy
+- Website copy
+- Email campaigns
+- Commercial outreach copy
+- Any persuasive writing for any industry
+
+**Skill Contents:**
+- SKILL.md — Core identity, process, quality checklist
+- references/copywriting-masters.md — 10 master copywriters' techniques
+- references/positioning-angles.md — Positioning framework
+- references/templates.md — Headline formulas, body frameworks, email/social templates
+- references/source-*.pdf — Original training PDFs from TJ
 
 ## Content Sources
 - TJ's Facebook Marketplace: https://www.facebook.com/marketplace/profile/100018737295677/
