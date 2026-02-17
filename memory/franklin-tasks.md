@@ -16,6 +16,32 @@ Tracks all tasks Franklin executes independently (hourly + self-directed).
 
 ## 2026-02-17
 
+### 17:00 - AI Agency Package & Pricing Research
+**Type:** Hourly
+**Goal:** $300K/month agency vision (consulting arm)
+**What I Did:** 
+- Researched AI marketing agency pricing (2025-2026 market data)
+- Found market rates: $1,500-$15,000/mo for SEO, $2K-$10K lead gen, $8K-$30K full-service
+- Designed 3 accessible tiers for TJ's agency:
+  - Starter: $497/mo (GBP + 16 posts + 2 ads)
+  - Growth: $997/mo (landing page + 8 ads + automation)
+  - Scale: $1,997/mo (chatbot + email + 15 ads + weekly calls)
+- Created pitch one-pager for cold outreach
+- Mapped economics: 10 clients = $10K/mo, 20 clients = $20K/mo
+- Outlined launch checklist and validation plan
+**Result:** Complete agency package structure with market-validated pricing. TJ can now pitch services to other local business owners.
+**Files:** 
+- dashboard/docs/AI_AGENCY_PACKAGES.md (full strategy doc, 8KB)
+- dashboard/docs/AGENCY_PITCH_ONEPAGER.md (ready-to-send pitch)
+
+**Why This Matters:**
+This is the first step toward TJ's bigger vision: an AI marketing agency that scales beyond Tidy Tails and sheds. The packages are priced for accessibility ($497-$1,997 vs industry $5K-$30K) while maintaining solid margins. The "I'm a business owner who solved my own marketing problem" angle is authentic and compelling.
+
+**Key Insight from Research:**
+AI agencies can deliver at **60-75% cost reduction** vs traditional agencies while maintaining quality. TJ's packages are positioned at the bottom of the market intentionally — hook small businesses, build case studies, then raise prices.
+
+---
+
 ### 16:00 - TuffShed Use-Case Ad Variations
 **Type:** Hourly
 **Goal:** TuffShed pipeline growth (diversify ad angles)
