@@ -86,6 +86,7 @@ Before writing, determine the positioning angle:
 | **Price/Value** | Economics dominate choice |
 
 For full positioning framework, see: `references/positioning-angles.md`
+For complete source document, see: `references/source-positioning-full.md`
 
 ## Copy Creation Process
 
