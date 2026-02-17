@@ -164,6 +164,10 @@ TJ needs the raw markdown to copy/paste into Facebook, not just PDFs.
 - TuffShed Promos: https://www.tuffshed.com/special-offers/
 - **TJ Ad Style Guide:** `memory/tj-ad-style-guide.md` (MUST READ before writing ads)
 - **Reference Images:** `memory/ad-references/` (7 screenshots of TJ's actual ads)
+- **Before/After Photos:** `assets/tidy-tails/before-after/` (3 real job sets + 1 graphic)
+  - job1: Patio/fence cleanup
+  - job2: Pool area deep clean
+  - job3: Backyard perimeter
 
 ## Competitors to Watch
 **Dog Waste:** Any pet waste removal services in St. Louis (research for tactics, pricing, weaknesses)

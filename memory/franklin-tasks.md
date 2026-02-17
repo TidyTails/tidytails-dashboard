@@ -16,6 +16,30 @@ Tracks all tasks Franklin executes independently (hourly + self-directed).
 
 ## 2026-02-17
 
+### 13:00 - Competitive Analysis Deep Dive
+**Type:** Hourly
+**Goal:** Tidy Tails strategy (25-30 customers by Aug 2025)
+**What I Did:** 
+- Researched all St. Louis pet waste removal competitors
+- Analyzed 6 competitors: Poop2Scoop, Yucko's (36 years!), DoodyCalls (franchise), POOP 911 (franchise), Dirty Dog Wash Poo Crew
+- Discovered Pawfect Waste Solutions is DEFUNCT (404 error) - one less competitor
+- Compiled pricing comparison: TJ is 28% higher than cheapest (Poop2Scoop at $18/week vs TJ's $25)
+- Identified weaknesses: Yucko's has terrible 90s website, franchises are impersonal
+- Created positioning recommendations: justify premium pricing with personal service, "genuine dog person" angle
+- Documented competitor contact info for tracking
+**Result:** Complete competitive analysis with pricing matrix, threat levels, positioning recommendations, and actionable next steps
+**Files:** 
+- dashboard/docs/COMPETITOR_ANALYSIS.md (full analysis)
+
+**Key Insights:**
+- TJ must compete on VALUE, not price (he's premium priced)
+- "Local, not a franchise" is a strong differentiator
+- Yucko's has 36 years experience but weak marketing - opportunity
+- Commercial segment dominated by franchises - harder to crack
+- One competitor (Pawfect) is gone - reduced competition
+
+---
+
 ### 12:00 - Referral Program Design
 **Type:** Hourly
 **Goal:** Tidy Tails customer acquisition (25-30 customers by Aug 2025)
