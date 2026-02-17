@@ -5,6 +5,109 @@ Track all ad copy created to avoid repetition.
 
 ---
 
+## Tidy Tails Ads
+
+### 2026-02-17 (3PM Hourly Task - Landing Page Launch Ads)
+
+**Purpose:** Fresh ads that drive to the new landing page
+**Landing Page:** https://tidytails.github.io/tidytails-dashboard/tidytails.html
+
+**Ad #1 - "The Honest Question"**
+```
+Real talk: When's the last time you actually *enjoyed* your backyard?
+
+If you're dodging landmines every time you step outside, that's not living. That's just... surviving.
+
+🐕 We come once a week (or biweekly)
+🐕 You never deal with it again
+🐕 Your yard goes back to being a yard
+
+Starting at $25/week — less than a mediocre dinner out.
+
+📍 St. Louis County, St. Charles & surrounding areas
+
+See pricing & service areas:
+👉 https://tidytails.github.io/tidytails-dashboard/tidytails.html
+
+Or just call/text: 636-354-7406
+
+No contracts. No judgment. Just a clean yard.
+```
+
+**Ad #2 - "Side Effects Humor"**
+```
+Warning: Side effects of Tidy Tails may include:
+
+✔ Actually wanting to go outside
+✔ Kids playing in the yard again
+✔ Neighbors wondering how it's always so clean
+✔ Your dog getting blamed less (it's still their fault though)
+
+We scoop. You don't.
+
+💰 $25/week | $45 biweekly | $70/month
+📍 St. Louis & St. Charles Counties
+
+Full pricing + service areas:
+👉 https://tidytails.github.io/tidytails-dashboard/tidytails.html
+
+Call/Text: 636-354-7406
+
+No contracts. Cancel anytime.
+```
+
+**Ad #3 - "Time Math" (RECOMMENDED)**
+```
+Let's do some math:
+
+⏱ You: 20-30 min/week scooping poop
+💩 Times 52 weeks = ~20 HOURS/year of poop duty
+🤢 In the heat. In the cold. In the smell.
+
+Or...
+
+💵 $25/week
+✅ We handle it every week
+✅ You get those 20+ hours back
+
+What would you do with 20 extra hours?
+
+We serve St. Louis County, St. Charles, O'Fallon, St. Peters, and more.
+
+Check if we're in your area:
+👉 https://tidytails.github.io/tidytails-dashboard/tidytails.html
+
+Text us: 636-354-7406
+```
+
+**Ad #4 - "Multi-Dog Household"**
+```
+One dog = manageable.
+Two dogs = noticeable.
+Three+ dogs = a JOB.
+
+If you've got a multi-dog household, you know exactly what we're talking about.
+
+That's where we come in:
+
+🐕 Weekly or biweekly service
+🐕 Same price whether it's 1 dog or 4
+🐕 We actually show up (crazy, right?)
+
+Starting at $25/week — flat rate.
+
+📍 St. Louis County, St. Charles & surrounding areas
+
+See if we service your area:
+👉 https://tidytails.github.io/tidytails-dashboard/tidytails.html
+
+Call/Text: 636-354-7406
+
+Your yard. Our problem. 💩
+```
+
+---
+
 ## TuffShed Ads
 
 ### 2026-02-17 (Franklin's 8AM Work Block)
