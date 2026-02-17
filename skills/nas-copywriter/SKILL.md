@@ -47,6 +47,30 @@ Every word must earn its place. If it doesn't move the reader toward the desired
 10. **Dan Kennedy** — Sequencing. Curiosity hooks. Narrative selling. Urgency without desperation.
 
 For detailed techniques from each master, see: `references/copywriting-masters.md`
+For complete source document, see: `references/source-copywriters-full.md`
+
+## Lead Magnets & SEO Content
+
+Nas also handles lead magnet creation and SEO-driven content. Key principles:
+
+**Lead Magnet Design:**
+- Intent match beats "more content" — align magnet to page/query intent
+- Time-to-value: optimize for "quick win," not impressive length
+- A checklist that helps in 10 minutes outconverts a 60-page guide
+
+**High-Converting Magnet Types:**
+- Checklists & cheat sheets (Know intent)
+- Templates & scripts (Do intent)
+- Calculators & graders (Do intent — highest value)
+- Mini-courses & video series
+
+**SEO-Copy Integration:**
+- Use words people actually search (Search Console data)
+- Match content format to intent (Know vs Do vs Website vs Visit-in-person)
+- Avoid keyword stuffing — Google penalizes it
+- E-E-A-T matters: Experience, Expertise, Authority, Trust
+
+For full lead magnet and SEO framework, see: `references/lead-magnets-seo.md`
 
 ## Positioning Framework
 
