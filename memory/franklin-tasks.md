@@ -16,6 +16,33 @@ Tracks all tasks Franklin executes independently (hourly + self-directed).
 
 ## 2026-02-17
 
+### 16:00 - TuffShed Use-Case Ad Variations
+**Type:** Hourly
+**Goal:** TuffShed pipeline growth (diversify ad angles)
+**What I Did:** 
+- Checked current promos (0% for 6 months, 9.99% APR for 10 years, rent-to-own no credit check)
+- Identified gaps: existing 7 ads focus on storage/garage/financing, missing use-case angles
+- Created 7 new ads covering:
+  - Home Gym (February resolution revival)
+  - Home Office (WFH/side hustle space)
+  - She Shed (women's personal retreat)
+  - Workshop (DIY/hobby crowd)
+  - "This Weekend" (urgency push)
+  - Neighbor Envy (social proof/FOMO)
+  - Presidents Day Math (timely financing)
+- Generated branded PDF (288KB)
+**Result:** TuffShed ad library now has 14 total ads with diverse angles. New use-case ads can target different audiences: fitness crowd, entrepreneurs, women's groups, DIY communities.
+**Files:** 
+- dashboard/pdfs/shed-ads-feb17-4pm.pdf
+- dashboard/pdfs/shed-ads-feb17-4pm.md
+- dashboard/pdfs/shed-ads-feb17-4pm.html
+- memory/ad-copy-archive.md (7 new ads added, #8-14)
+
+**Why This Matters:**
+Balancing the workload — we did 9 Tidy Tails tasks today, only 1 Systems. This fills the Sheds gap and gives TJ fresh angles to test. Different use cases appeal to different buyers who might not respond to "storage" messaging.
+
+---
+
 ### 15:00 - Tidy Tails Landing Page Launch Ads
 **Type:** Hourly
 **Goal:** Tidy Tails customer acquisition (give the landing page traffic)

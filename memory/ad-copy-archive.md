@@ -110,6 +110,198 @@ Your yard. Our problem. 💩
 
 ## TuffShed Ads
 
+### 2026-02-17 (Franklin's 4PM Hourly Task)
+
+**Purpose:** Fresh use-case angles to complement existing inventory
+**PDF:** dashboard/pdfs/shed-ads-feb17-4pm.pdf
+
+**Ad #8 - "New Year's Resolution Revival" (Home Gym)**
+```
+Remember that New Year's resolution?
+
+The one about getting in shape?
+
+February hit different. The gym's crowded. The commute's annoying. And that motivation? Fading fast.
+
+Here's the move:
+
+Build a home gym in your backyard.
+
+🏋️ No monthly fees
+🏋️ No waiting for equipment
+🏋️ Open 24/7 (because it's YOURS)
+
+A 10x12 shed = perfect home gym setup.
+Way cheaper than that gym membership you're not using.
+
+✅ Financing & rent-to-own
+✅ FREE delivery & setup
+✅ No credit check options
+
+Text Darius: 636-354-7406
+IG: @reddshedredemption
+```
+
+**Ad #9 - "Side Hustle Space" (Home Office)**
+```
+Working from home?
+
+Let me guess:
+- "Office" = kitchen table
+- "Conference calls" = bathroom with door locked
+- "Focus time" = doesn't exist
+
+You don't need a home addition.
+You need a shed office.
+
+🖥️ 100 feet from the house = actual separation
+🖥️ Climate control options available
+🖥️ Write it off (ask your accountant)
+
+Way cheaper than commercial rent.
+Way better than the dining room.
+
+✅ Custom sizes — from compact to full-size
+✅ Rent-to-own available
+✅ FREE delivery
+
+Dozens in stock. Come design yours.
+
+Darius: 636-354-7406
+```
+
+**Ad #10 - "She Shed" (Personal Retreat)**
+```
+Unpopular opinion:
+
+Everyone in the house has "their space"...
+
+Kids have their rooms.
+Partner has the garage.
+Dog has the entire couch.
+
+Where's YOUR space?
+
+Enter: The She Shed.
+
+✨ Craft room
+✨ Reading nook  
+✨ Wine + book club HQ
+✨ Place to just... breathe
+
+Doesn't have to be fancy. Just has to be YOURS.
+
+💥 FREE delivery & setup
+🤑 Financing & rent-to-own available
+
+Let's design your escape.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #11 - "Workshop Dreams" (Hobby/DIY)**
+```
+There's sawdust in the living room, isn't there?
+
+I'm not judging. I get it.
+
+Your projects outgrew the garage three years ago. Now everything's everywhere, and "quick project" means moving 17 things first.
+
+A real workshop changes everything:
+
+🔧 Dedicated space = dedicated tools = dedicated time
+🔧 Make noise without "Can you keep it down?"
+🔧 Leave projects out overnight (revolutionary, I know)
+
+Sheds start smaller than you think.
+Monthly payments start lower than you think.
+
+✅ Rent-to-own (no credit check)
+✅ FREE delivery
+✅ Dozens to see in person
+
+Let's build your dream shop.
+
+Darius: 636-354-7406
+```
+
+**Ad #12 - "This Weekend" Urgency Push**
+```
+This weekend:
+
+✅ Weather's cooperating
+✅ Dozens of sheds on the lot
+✅ FREE delivery slots available
+✅ I'm here if you want to see 'em
+
+No pressure.
+
+Just options, expertise, and probably the best deal you'll find.
+
+Financing available.
+Rent-to-own available.
+Cash works too.
+
+Come by, kick some tires, ask questions.
+
+📍 Text me for lot address
+📞 Darius: 636-354-7406
+IG: @reddshedredemption
+```
+
+**Ad #13 - "Neighbor Envy" Social Proof**
+```
+Ever notice when ONE person on the street gets a shed...
+
+...suddenly everyone's asking about it?
+
+"Where'd you get that?"
+"How much was it?"
+"Can I see inside?"
+
+Your shed becomes the neighborhood talking point.
+
+And honestly? It should be. These things are nice.
+
+✅ Financing & rent-to-own
+✅ FREE delivery & setup  
+✅ Custom colors to match your house
+✅ Dozens of styles in stock
+
+Be the house that starts the trend.
+
+No pressure. Just options.
+
+Darius: 636-354-7406
+```
+
+**Ad #14 - "Presidents Day Math" (Financing)**
+```
+Presidents Day Math:
+
+6 months at 0% interest = pay it off with your tax refund.
+No interest charged. Seriously.
+
+OR
+
+10-year financing = $66/month for a $5,000 shed.
+That's Netflix + Spotify + gym membership you don't use.
+
+Either way, you win.
+
+🏠 Dozens of sheds on the lot
+🏠 FREE delivery & setup
+🏠 See 'em in person before you decide
+
+Everyone's got a budget. We've got options that fit.
+
+Darius: 636-354-7406
+@reddshedredemption
+```
+
+---
+
 ### 2026-02-17 (Franklin's 8AM Work Block)
 
 **Ad #1 - "February Reality Check"**

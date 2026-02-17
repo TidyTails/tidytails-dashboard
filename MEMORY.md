@@ -130,6 +130,14 @@ TJ needs the raw markdown to copy/paste into Facebook, not just PDFs.
 - **Check nightly** — add tools, resources, improvements
 - **Commit + push after changes** to sync to GitHub Pages
 
+## Hourly Task Process (MANDATORY)
+After EVERY hourly task:
+1. Update `dashboard/index.html` (Franklin's Work section)
+2. Update `docs/FRANKLINS_WORK_LOG.md`
+3. Check `memory/hourly-task-rotation.md` for balance across business areas
+4. Git push to sync dashboard
+**Rotation areas:** 🐕 Tidy Tails | 🏠 Sheds | 🤖 Consulting | 🎬 Content | ⚙️ Systems
+
 ## Nas - The Copywriter Sub-Agent
 
 **Name:** Nas
