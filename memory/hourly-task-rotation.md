@@ -72,11 +72,13 @@
 | 02:00 | 🐕 Tidy Tails | Landing page |
 | 03:00 | 🐕 Tidy Tails | Launch ads |
 | 04:00 | 🏠 Sheds | Use-case ad variations (7 new ads) |
+| 04:30 | ⚙️ Systems | Nas skill + workflow setup |
+| 05:00 | ⚙️ Systems | **Dashboard rebrand → Command Center (multi-industry)** |
 
 ---
 
 ## Imbalance Check
 
-Looking at today: **9 Tidy Tails, 1 Systems, 1 Sheds, 0 Consulting, 0 Content**
+Looking at today: **9 Tidy Tails, 2 Systems, 1 Sheds, 0 Consulting, 0 Content**
 
-**Action:** Next 2-3 tasks should hit Consulting and Content to balance.
+**Action:** Dashboard rebrand at 5PM, then hit Consulting/Content.

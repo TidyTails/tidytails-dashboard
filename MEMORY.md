@@ -106,6 +106,18 @@ Pet waste removal service in St. Louis County and surrounding areas.
 
 TJ needs the raw markdown to copy/paste into Facebook, not just PDFs.
 
+### Nas Copywriter Output Delivery (MANDATORY)
+**After EVERY Nas copywriting task:**
+1. **Email markdown** to TJ (cartervhomes@gmail.com) for easy copy/paste
+2. **Save to dashboard** at `dashboard/campaigns/[business]/YYYY-MM-DD-[type].md`
+3. **Generate PDF** for dashboard viewing (branded)
+4. Log in memory
+
+**Campaign folder structure:**
+- `dashboard/campaigns/tidy-tails/` — Dog waste ads
+- `dashboard/campaigns/tuffshed/` — Shed ads  
+- `dashboard/campaigns/consulting/` — AI consulting ads
+
 ## Organized Memory Structure
 - `memory/contacts.md` — TJ, Jamie, key contacts
 - `memory/tuffshed.md` — TuffShed job details, pipeline, promos
