@@ -74,7 +74,33 @@ When reviewing ANY ad creative (images, videos, Remotion outputs), Chief MUST ap
 - Git repo in sync (no unpushed changes)
 - File sizes valid (>100KB for PDFs)
 
-### 2. Websites
+### 2. Delivery Verification (CRITICAL)
+**Every deliverable must be in BOTH places. Chief verifies:**
+
+#### Telegram → Dashboard Sync
+- Check `memory/telegram-deliveries.md` for what was sent to TJ
+- Cross-reference against `dashboard/index.html` links
+- Flag anything sent via Telegram that's NOT on dashboard
+- Track: briefings, PDFs, reports, ad copy, anything substantive
+
+#### Hourly Updates → Dashboard
+- Verify `dashboard/index.html` Franklin's Work section updated
+- Check `docs/FRANKLINS_WORK_LOG.md` has matching entries
+- Compare timestamps — hourly work should appear within 1 hour
+- Flag gaps: "Work logged in memory but not on dashboard"
+
+#### Notion Sync
+- For Jamie/shared content: verify pushed to Notion
+- Check `memory/notion-uploads.md` for upload log
+- Cross-reference Notion folders vs dashboard content
+- Flag: "On dashboard but NOT in Notion" or vice versa
+
+**Delivery Tracking Files:**
+- `memory/telegram-deliveries.md` — Log of substantive Telegram sends
+- `memory/notion-uploads.md` — Log of Notion pushes
+- `memory/delivery-audit.md` — Chief's verification log
+
+### 3. Websites
 - tidytails.html loads correctly
 - consulting.html loads correctly
 - All links functional
@@ -108,11 +134,32 @@ When reviewing ANY ad creative (images, videos, Remotion outputs), Chief MUST ap
   "issuesFound": 3,
   "issuesFixed": 2,
   "issuesPending": 1,
+  "deliveryVerification": {
+    "telegramToDashboard": {
+      "status": "pass|fail",
+      "sent": 5,
+      "onDashboard": 5,
+      "missing": []
+    },
+    "hourlyUpdates": {
+      "status": "pass|fail",
+      "expectedSinceLastCheck": 2,
+      "foundOnDashboard": 2,
+      "gaps": []
+    },
+    "notionSync": {
+      "status": "pass|fail",
+      "dashboardItems": 43,
+      "notionItems": 43,
+      "missingFromNotion": [],
+      "missingFromDashboard": []
+    }
+  },
   "issues": [
     {
       "id": "issue-001",
       "severity": "high|medium|low",
-      "category": "dashboard|website|content|system",
+      "category": "dashboard|website|content|system|delivery",
       "description": "PDF link broken: COMPETITOR_ANALYSIS.pdf",
       "assignedTo": "franklin",
       "status": "found|working|fixed",
@@ -158,6 +205,30 @@ for link in $(grep -oP 'href="[^"]+\.(pdf|mp4)"' index.html | cut -d'"' -f2); do
   [ -f "$link" ] || echo "BROKEN: $link"
 done
 ```
+
+### Delivery Verification Checks (MANDATORY)
+```bash
+# 1. Check Telegram deliveries vs dashboard
+# Read memory/telegram-deliveries.md
+# For each item sent today, verify it appears in dashboard/index.html
+# Flag any Telegram sends NOT on dashboard
+
+# 2. Check hourly updates logged
+# Compare memory/daily-logs/YYYY-MM-DD.md entries
+# Against dashboard/index.html Franklin's Work section
+# Flag work done but not on dashboard
+
+# 3. Check Notion sync
+# Read memory/notion-uploads.md
+# Compare against dashboard PDFs
+# Flag anything on dashboard but NOT uploaded to Notion
+```
+
+**If any delivery verification fails:**
+- Severity: HIGH
+- Assigned to: Franklin
+- Action: Upload missing item immediately
+- Rule: Nothing leaves Telegram without hitting BOTH Notion AND dashboard
 
 ### Website Checks
 - Load tidytails.html, check for errors

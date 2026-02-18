@@ -125,16 +125,20 @@ Pet waste removal service in St. Louis County and surrounding areas.
 | 📋 Operations & Guides | Weekly plans, setup guides |
 | 🐕 Jamie's Outreach Hub | Scripts + leads for Jamie |
 
-### Delivery Workflow (UPDATED)
+### Delivery Workflow (UPDATED Feb 18, 2026)
 **For Jamie/shared content:**
 1. Push directly to Notion (appropriate folder)
 2. Save backup to dashboard
-3. Log in memory
+3. Log in `memory/notion-uploads.md`
+4. Log in `memory/telegram-deliveries.md` if also sent via Telegram
 
 **For TJ only (briefings/summaries):**
 1. Telegram message
 2. Email to cartervhomes@gmail.com
 3. PDF to dashboard
+4. **Log in `memory/telegram-deliveries.md`** ← Chief verifies this
+
+**⚠️ CRITICAL: Chief now verifies ALL of these. Every Telegram send MUST appear on dashboard AND Notion (if applicable). Track everything in the delivery logs.**
 
 ### Nas Copywriter Output Delivery (MANDATORY)
 **After EVERY Nas copywriting task:**
@@ -161,6 +165,23 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - **URL:** https://tidytails.github.io/tidytails-dashboard/
 - **Repo:** `~/.openclaw/workspace/dashboard/`
 - **Status:** `dashboard/status.json` (idle/working/thinking)
+
+### ⚠️ STATUS UPDATE PROCESS (MANDATORY)
+**TJ wants to see red glowing eyes when I'm working!**
+
+At START of every task:
+```bash
+echo '{"state":"working","currentTask":"[TASK NAME]","lastUpdate":"[ISO TIME]"}' > dashboard/status.json
+git add status.json && git commit -m "Status: working" && git push
+```
+
+At END of every task:
+```bash
+echo '{"state":"idle","currentTask":"[LAST TASK]","lastUpdate":"[ISO TIME]"}' > dashboard/status.json
+git add status.json && git commit -m "Status: idle" && git push
+```
+
+Dashboard polls every 30 seconds. Red eyes = working. Normal = idle.
 - **Templates:** `dashboard/templates/` (HTML templates for PDFs)
 - **PDFs:** `dashboard/pdfs/` (all deliverables as branded PDFs)
 - **Videos:** `dashboard/videos/` (Remotion-generated videos)
@@ -213,10 +234,35 @@ After EVERY hourly task:
 - Monitors content freshness (flags >7 days old)
 - Routes issues to appropriate agent (Franklin, Nas)
 - Alerts TJ on critical issues
+- **🆕 Verifies delivery sync (Telegram → Dashboard → Notion)**
+
+### Delivery Verification (MANDATORY)
+Chief now verifies that ALL deliverables hit both Notion AND dashboard:
+
+1. **Telegram → Dashboard Sync**
+   - Reads `memory/telegram-deliveries.md`
+   - Cross-references against `dashboard/index.html`
+   - Flags anything sent via Telegram but NOT on dashboard
+
+2. **Hourly Updates → Dashboard**
+   - Verifies Franklin's Work section updated
+   - Compares to `docs/FRANKLINS_WORK_LOG.md`
+   - Flags work logged but not on dashboard
+
+3. **Notion Sync**
+   - Reads `memory/notion-uploads.md`
+   - Verifies all dashboard content pushed to Notion
+   - Flags gaps in either direction
+
+**Tracking Files:**
+- `memory/telegram-deliveries.md` — Log of Telegram sends
+- `memory/notion-uploads.md` — Log of Notion pushes
+- `memory/delivery-audit.md` — Chief's verification log
 
 **Status File:** `dashboard/chief-status.json`
 - Updated after each check
 - Shows: health status, issues found/fixed/pending
+- **NEW:** `deliveryVerification` section with sync status
 - Displayed on dashboard in real-time
 
 **Cron Job ID:** c0125ba3-72b2-46db-b64d-ed9645672efb

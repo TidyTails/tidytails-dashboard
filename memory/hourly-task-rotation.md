@@ -96,5 +96,17 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 | Time | Area | Task |
 |------|------|------|
+| 02:00 | ⚙️ Systems | **Marketing Metrics & Lead Pipeline System (lead tracking, funnel stages, goal progress, channel ROI)** |
+| 01:00 | 🐕 Tidy Tails | **Facebook Ads Manager Guide (complete setup, campaign structure, $7/day budget, pixel setup, 7-day launch plan)** |
+| 12:00 | 🐕 Tidy Tails | **Customer Retention & Upsell System (one-time→recurring scripts, win-back campaigns, 15+ templates)** |
+| 11:00 | 🏠 Sheds | **Showroom Scripts & Qualifying (5 buyer scripts, floor objection handlers, closing checklist)** |
+| 10:00 | 🤖 Consulting | **Prospecting Kit (25 prospects, 5 email templates, call scripts, objection handlers)** |
+| 09:04 | 🏠 Sheds | **TuffShed Sales Follow-Up System (5-touch, 15+ templates, objection handlers)**
+| 08:04 | 🐕 Tidy Tails | **Jamie's Call Sheet (5 leads + scripts + tracking + 735KB PDF)**
+| 07:00 | 🐕 Tidy Tails | **Neighborhood Targeting Guide (16 suburbs, ZIP codes, dog park hotspots)**
+| 06:00 | 🎬 Content | **Social Media Content Batch (14 posts for Feb 18-24)**
+| 05:00 | 🤖 Consulting | **AI Consulting Landing Page (full site live)**
+| 04:00 | 🐕 Tidy Tails | **Dog Park Lead Research (10 leads across 3 tiers)**
+| 03:00 | 🏠 Sheds | **Spring Shed Campaign Pack (8 seasonal ads + timeline)**
 | 02:00 | 🐕 Tidy Tails | **Review Generation Strategy (3-touch system + templates)**
 | 01:00 | ⚙️ Systems | **Quick Start Guide (navigation map for 27+ docs)**
