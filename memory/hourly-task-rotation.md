@@ -74,11 +74,12 @@
 | 04:00 | 🏠 Sheds | Use-case ad variations (7 new ads) |
 | 04:30 | ⚙️ Systems | Nas skill + workflow setup |
 | 05:00 | 🤖 Consulting | **AI Agency Packages + Pricing Research** |
+| 06:00 | 🎬 Content | **Content Strategy + Video Scripts** |
 
 ---
 
 ## Imbalance Check
 
-Looking at today: **9 Tidy Tails, 2 Systems, 1 Sheds, 1 Consulting, 0 Content**
+Looking at today: **9 Tidy Tails, 2 Systems, 1 Sheds, 1 Consulting, 1 Content**
 
-**Action:** Finally hit Consulting! Next up: Content.
+**Status:** All areas now covered! Great rotation balance.

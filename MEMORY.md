@@ -133,6 +133,7 @@ TJ needs the raw markdown to copy/paste into Facebook, not just PDFs.
 - **Status:** `dashboard/status.json` (idle/working/thinking)
 - **Templates:** `dashboard/templates/` (HTML templates for PDFs)
 - **PDFs:** `dashboard/pdfs/` (all deliverables as branded PDFs)
+- **Videos:** `dashboard/videos/` (Remotion-generated videos)
 - **All deliverables must be:**
   - Clean, branded PDFs (not markdown)
   - Color-coded by category
@@ -141,6 +142,14 @@ TJ needs the raw markdown to copy/paste into Facebook, not just PDFs.
 - **PDF Workflow:** HTML → Browser render → PDF export
 - **Check nightly** — add tools, resources, improvements
 - **Commit + push after changes** to sync to GitHub Pages
+
+### ⚠️ DASHBOARD RULE (MANDATORY)
+**When adding ANY new asset (PDF, video, document):**
+1. Add the file to the appropriate folder
+2. **ALSO add a link in `dashboard/index.html`** so TJ can see it
+3. Then commit + push
+
+Never just push files without updating the UI. If it's not linked, it doesn't exist.
 
 ## Hourly Task Process (MANDATORY)
 After EVERY hourly task:
@@ -155,6 +164,7 @@ After EVERY hourly task:
 **Name:** Nas
 **Role:** Dedicated copywriter for all TJ's ventures
 **Skill:** `skills/nas-copywriter/`
+**Avatar:** `skills/nas-copywriter/assets/nas-avatar.jpg` (anime/comic style, backwards cap, confident vibe)
 
 **Workflow:**
 1. Franklin receives copywriting request

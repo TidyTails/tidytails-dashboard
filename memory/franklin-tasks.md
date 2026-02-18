@@ -16,6 +16,42 @@ Tracks all tasks Franklin executes independently (hourly + self-directed).
 
 ## 2026-02-17
 
+### 18:00 - Content Strategy + Video Scripts
+**Type:** Hourly
+**Goal:** Tidy Tails visibility + consulting credibility + personal brand
+**What I Did:** 
+- Created comprehensive content strategy document (11KB)
+- Defined 5 content pillars: Service Grind, AI + Business, Money Talk, Multi-Business, Lessons
+- Built 2-week content calendar with platform-specific posts
+- Wrote 5 complete video scripts (TikTok/Reels/Shorts ready):
+  1. "I Hired an AI to Run My Marketing" (45-60 sec)
+  2. "Day in the Life: Dog Waste Removal" (30-45 sec)
+  3. "The Real Numbers" (45-60 sec)
+  4. "I Sell Sheds AND Scoop Poop" (30-45 sec)
+  5. "Things AI Can Actually Do for Small Business" (60-90 sec)
+- Created post templates for Facebook Groups, Instagram, TikTok
+- Built ideas bank with 15+ future video concepts
+- Added shooting tips (equipment, editing workflow, posting process)
+- Generated branded PDF (697KB)
+**Result:** TJ now has everything needed to start documenting his journey. Content supports all three goals: Tidy Tails awareness, consulting credibility through proof-of-concept, and personal brand building.
+**Files:** 
+- dashboard/docs/CONTENT_STRATEGY.md (full strategy, 11KB)
+- dashboard/pdfs/content-strategy-feb17-6pm.pdf (branded PDF, 697KB)
+- dashboard/templates/content-strategy.html (template source)
+
+**Why This Matters:**
+This was the missing piece. Today we built:
+- Marketing collateral (ads, landing page)
+- Sales infrastructure (referral program, outreach scripts)
+- Strategic docs (competitor analysis, agency packages)
+
+But we hadn't touched *content* — the thing that builds long-term audience and credibility. Now TJ has a complete playbook: what to post, when, where, and actual scripts he can shoot tomorrow.
+
+**Key Insight:**
+The angle "regular guy uses AI to scale small businesses" is unique and authentic. Most AI content is corporate or tech-bro. TJ's story — poop scooper + shed salesman using AI to level up — is relatable and interesting.
+
+---
+
 ### 17:00 - AI Agency Package & Pricing Research
 **Type:** Hourly
 **Goal:** $300K/month agency vision (consulting arm)
