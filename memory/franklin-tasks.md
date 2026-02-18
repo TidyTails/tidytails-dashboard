@@ -16,6 +16,110 @@ Tracks all tasks Franklin executes independently (hourly + self-directed).
 
 ## 2026-02-17
 
+### 22:00 - Shed Financing Calculator + Comparison Guide
+**Type:** Hourly
+**Goal:** TuffShed pipeline growth (sales tool for day job)
+**What I Did:** 
+- Researched rent-to-own pricing (1.4-2x markup, hidden 25-40% APR)
+- Created comprehensive financing comparison guide (5.8KB markdown)
+- Built interactive calculator TJ can use on his phone with customers
+- Calculator shows TuffShed 0% and 9.99% vs competitor RTO side-by-side
+- Included objection handlers for "no credit check", "lower payment", "cheaper online"
+- Added quick reference tables for 9.99% APR monthly payments
+- Created "30-second close" pitch script
+- Generated branded PDF (200KB)
+**Result:** TJ now has a practical sales tool for tomorrow at work. Pull up the calculator on his phone, enter the customer's shed price, and show them exactly how much they save vs rent-to-own.
+**Files:** 
+- dashboard/docs/SHED_FINANCING_COMPARISON.md (full guide)
+- dashboard/financing-calculator.html (interactive tool)
+- dashboard/pdfs/SHED_FINANCING_COMPARISON.pdf (branded PDF)
+- dashboard/templates/financing-comparison.html (PDF source)
+
+**Why This Matters:**
+This is for TJ's day job income. He sells sheds 9-5 M-F at TuffShed. When a customer says "I'm looking at rent-to-own down the street," TJ can now pull out his phone and show them exactly how much more they'd pay. Visual, interactive, and closes the deal.
+
+**Key Insight:**
+Rent-to-own hides a 25-40% APR in the monthly payments. TuffShed's 0% and 9.99% are transparently better math. The calculator makes this impossible to argue with.
+
+---
+
+### 21:00 - Day 1 Case Study (Consulting Proof)
+**Type:** Hourly
+**Goal:** $300K/month agency vision (proof collateral)
+**What I Did:** 
+- Created comprehensive case study documenting everything built for Tidy Tails today
+- Quantified deliverables: 23 documents, 21 ads, 20+ PDFs, 8 commercial leads
+- Calculated traditional agency equivalent cost: $8,500-$15,000
+- Built time savings analysis: 25-52 hours saved in Day 1
+- Created before/after comparison showing transformation
+- Identified 4 key success factors (deep discovery, systematic execution, owner-ready deliverables, parallel business support)
+- Included testimonial placeholder for TJ
+- Designed professional PDF template with stats grid, cost comparison, success factors
+- Generated branded PDF (339KB)
+**Result:** Complete case study that serves as proof for the AI consulting business. When TJ pitches "I can do this for your business," he has documented evidence of Day 1 results.
+**Files:** 
+- dashboard/docs/CASE_STUDY_TIDY_TAILS_DAY1.md (full case study, 8.5KB)
+- dashboard/pdfs/CASE_STUDY_TIDY_TAILS_DAY1.pdf (branded PDF, 339KB)
+- dashboard/templates/case-study.html (PDF template)
+
+**Why This Matters:**
+The consulting packages ($497-$1,997/mo) need proof. This case study shows a skeptical business owner exactly what they'd get: specific deliverables, quantified value, before/after transformation. It's the "show, don't tell" that makes the pitch credible.
+
+**Key Insight:**
+Today's work wasn't just about Tidy Tails — it was building the portfolio for TJ's consulting business. Every ad, every doc, every PDF is evidence that the system works.
+
+---
+
+### 20:00 - Weekly Action Plan (Feb 17-23)
+**Type:** Hourly
+**Goal:** Tidy Tails customer acquisition (execution framework)
+**What I Did:** 
+- Identified gap: tons of assets built today but no clear execution roadmap
+- Created day-by-day action plan for Feb 17-23
+- Connected all deliverables (landing page, ads, referral program, GMB guide, scripts) to specific daily actions
+- Built printable checklist format with checkboxes
+- Added weekly success metrics (ads posted, leads generated, etc.)
+- Highlighted "3 highest-impact actions" (referral texts, GMB claim, FB group posts)
+- Included Jamie's commercial outreach tasks (14 calls across the week)
+- Created branded PDF (229KB) with visual design
+**Result:** TJ now has a concrete roadmap for this week. All the marketing collateral becomes actionable instead of sitting in docs.
+**Files:** 
+- dashboard/docs/WEEKLY_ACTION_PLAN_FEB17-23.md (full plan, 6KB)
+- dashboard/pdfs/WEEKLY_ACTION_PLAN_FEB17-23.pdf (branded printable, 229KB)
+- dashboard/templates/weekly-action-plan.html (PDF template)
+
+**Key Insight:**
+Building assets is useless without execution plans. This bridges the gap between "here are 10 ads" and "here's exactly what to do with them this week."
+
+---
+
+### 19:00 - Shed Competitor Intelligence
+**Type:** Hourly
+**Goal:** TuffShed pipeline growth (competitive sales intel)
+**What I Did:** 
+- Researched 8 shed competitors in St. Louis market (non-TuffShed/WoodMaster)
+- Analyzed: 5-Star Buildings, Cardinal Buildings, Cook Portable, Classic Buildings, A-1 Outdoor, Barrett Buildings, STL Shed Guy, ShedMafia
+- Pulled market data: $7,773 median price, $36/sq ft, 180 days avg time to sell
+- Created threat assessments (High: 5-Star, Cardinal | Medium: Cook, Classic | Low: A-1, Barrett)
+- Built pricing comparison matrix with competitor prices
+- Documented competitor tactics: RTO, factory-direct, local/family-owned angles
+- Wrote objection handlers for 4 common scenarios
+- Created TuffShed advantages to emphasize (financing, warranty, showroom, engineering)
+- Generated branded PDF (409KB)
+**Result:** Complete competitive playbook TJ can use tomorrow at work. Knows exactly what competitors offer and how to counter.
+**Files:** 
+- dashboard/docs/SHED_COMPETITOR_ANALYSIS.md (full analysis, 10KB)
+- dashboard/pdfs/SHED_COMPETITOR_ANALYSIS.pdf (branded PDF, 409KB)
+- dashboard/templates/shed-competitor-analysis.html (PDF template)
+
+**Key Insights:**
+- 5-Star and Cardinal are biggest threats (quality + marketing)
+- Most competitors push rent-to-own; TJ's 0% financing is stronger on math
+- 180 day average sale time = customers shop extensively, TJ's closing skills matter
+- Cardinal's marketing voice is excellent ("Built Like a Tank. Delivered Like Pizza") — worth studying
+
+---
+
 ### 18:00 - Content Strategy + Video Scripts
 **Type:** Hourly
 **Goal:** Tidy Tails visibility + consulting credibility + personal brand

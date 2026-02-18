@@ -75,11 +75,15 @@
 | 04:30 | ⚙️ Systems | Nas skill + workflow setup |
 | 05:00 | 🤖 Consulting | **AI Agency Packages + Pricing Research** |
 | 06:00 | 🎬 Content | **Content Strategy + Video Scripts** |
+| 07:00 | 🏠 Sheds | **Competitor Intelligence (8 competitors analyzed)** |
+| 08:00 | ⚙️ Systems | **Weekly Action Plan (Feb 17-23)** |
+| 09:00 | 🤖 Consulting | **Day 1 Case Study (proof collateral for agency)** |
+| 10:00 | 🏠 Sheds | **Financing Calculator + Comparison Guide** |
 
 ---
 
 ## Imbalance Check
 
-Looking at today: **9 Tidy Tails, 2 Systems, 1 Sheds, 1 Consulting, 1 Content**
+Looking at today: **9 Tidy Tails, 3 Systems, 3 Sheds, 2 Consulting, 1 Content**
 
-**Status:** All areas now covered! Great rotation balance.
+**Status:** Better balance! Sheds now at 3 tasks. All areas covered.
