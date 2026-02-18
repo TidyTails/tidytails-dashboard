@@ -50,12 +50,14 @@ St. Louis County and surrounding:
 
 ## Lead Output Format
 
+⚠️ **PHONE NUMBER IS MANDATORY** — Do not add a lead without a valid phone number. Jamie cannot call "see website" — research the actual number before adding.
+
 ```markdown
 ### [Business Name]
 - **Type:** Property Management / Apartment / HOA / Vet / etc.
 - **Address:** Full address
 - **Contact:** Name, Title
-- **Phone:** 
+- **Phone:** (XXX) XXX-XXXX ← REQUIRED! Research this!
 - **Email:** 
 - **Website:** 
 - **Why Good Fit:** [2-3 sentences on qualification]
@@ -63,6 +65,15 @@ St. Louis County and surrounding:
 - **Found:** [date]
 - **Status:** New
 ```
+
+### How to Find Phone Numbers
+1. Check company website (contact page, footer)
+2. Search Yelp: "[Business Name] St. Louis phone"
+3. Search Google: "[Business Name] St. Louis contact number"
+4. Check Google Maps listing
+5. Check LinkedIn company page
+
+**If you cannot find a phone number after researching, do NOT add the lead. It's useless without a phone number.**
 
 ## Qualification Criteria
 

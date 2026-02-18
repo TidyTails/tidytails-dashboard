@@ -110,7 +110,7 @@ export const TidyTailsBrand: React.FC = () => {
               fontSize: 36,
               color: colors.amber,
             }}>
-              636-354-7406
+              314-850-7140
             </div>
           </div>
         </AbsoluteFill>

@@ -17,6 +17,9 @@
 ### What It Is
 Pet waste removal service in St. Louis County and surrounding areas.
 
+### Contact
+- **Phone:** 314-850-7140 (NOT the shed number!)
+
 ### Pricing
 - $25/week | $45 biweekly | $70/month | $100 one-time deep clean
 - Average customer value: ~$100/month
@@ -45,6 +48,16 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - 1-2 national franchises
 - Several local players
 - Fragmented market = opportunity
+
+## ⚠️ PHONE NUMBERS (CRITICAL - DO NOT MIX UP)
+
+| Business | Phone | Use For |
+|----------|-------|---------|
+| **Tidy Tails** (Dog Waste) | **314-850-7140** | All dog waste ads, landing pages, commercial outreach |
+| **TuffShed/WoodMaster** (Sheds) | **636-354-7406** | All shed ads, Darius contact |
+| **AI Consulting** | **636-354-7406** | Same as sheds (TJ's main) |
+
+**NEVER use 636-354-7406 for Tidy Tails content!**
 
 ## TJ's Schedule & Availability
 - **Day job:** Full-time at Tuffshed (shed/garage dealer), 9-5 M-F
@@ -98,17 +111,34 @@ Pet waste removal service in St. Louis County and surrounding areas.
 
 ## Standard Processes
 
-### Social Media Ad Copy Delivery
-**ALWAYS when creating social media ad copy:**
-1. Save to dashboard (PDF for dashboard, markdown source)
-2. **Email markdown file to TJ** (cartervhomes@gmail.com) so he can copy/paste directly
+### 📌 NOTION IS PRIMARY (as of Feb 17, 2026)
+**All deliverables go to Notion, NOT email.**
+
+**Notion Workspace:** Darius Williams's Space
+**Bot Name:** Franksaint
+
+| Folder | Purpose |
+|--------|---------|
+| 🐕 Tidy Tails Resources | Ads, leads, guides |
+| 🏠 Shed Sales Resources | Competitor intel, ads |
+| 🤖 AI Consulting | Packages, pitch materials |
+| 📋 Operations & Guides | Weekly plans, setup guides |
+| 🐕 Jamie's Outreach Hub | Scripts + leads for Jamie |
+
+### Delivery Workflow (UPDATED)
+**For Jamie/shared content:**
+1. Push directly to Notion (appropriate folder)
+2. Save backup to dashboard
 3. Log in memory
 
-TJ needs the raw markdown to copy/paste into Facebook, not just PDFs.
+**For TJ only (briefings/summaries):**
+1. Telegram message
+2. Email to cartervhomes@gmail.com
+3. PDF to dashboard
 
 ### Nas Copywriter Output Delivery (MANDATORY)
 **After EVERY Nas copywriting task:**
-1. **Email markdown** to TJ (cartervhomes@gmail.com) for easy copy/paste
+1. **Push to Notion** (appropriate category folder)
 2. **Save to dashboard** at `dashboard/campaigns/[business]/YYYY-MM-DD-[type].md`
 3. **Generate PDF** for dashboard viewing (branded)
 4. Log in memory
@@ -151,6 +181,15 @@ TJ needs the raw markdown to copy/paste into Facebook, not just PDFs.
 
 Never just push files without updating the UI. If it's not linked, it doesn't exist.
 
+### 🔄 GIT PUSH VERIFICATION (MANDATORY)
+**After EVERY dashboard change, run:**
+```bash
+cd dashboard && git add -A && git commit -m "[description]" && git push
+```
+**Then verify with:** `git status` (should say "nothing to commit, working tree clean")
+
+If `git push` fails, diagnose and fix immediately. TJ can only see what's pushed to GitHub Pages.
+
 ## Hourly Task Process (MANDATORY)
 After EVERY hourly task:
 1. Update `dashboard/index.html` (Franklin's Work section)
@@ -158,6 +197,31 @@ After EVERY hourly task:
 3. Check `memory/hourly-task-rotation.md` for balance across business areas
 4. Git push to sync dashboard
 **Rotation areas:** 🐕 Tidy Tails | 🏠 Sheds | 🤖 Consulting | 🎬 Content | ⚙️ Systems
+
+## Chief - The Oversight Agent
+
+**Name:** Chief
+**Role:** CEO/QA oversight for all systems, agents, and content
+**Skill:** `skills/chief-oversight/`
+**Emoji:** 👔
+**Schedule:** Every 2 hours via cron
+
+**What Chief Does:**
+- Reviews dashboard for broken links, unpushed changes
+- Verifies all PDFs exist and are >100KB
+- Checks websites load properly
+- Monitors content freshness (flags >7 days old)
+- Routes issues to appropriate agent (Franklin, Nas)
+- Alerts TJ on critical issues
+
+**Status File:** `dashboard/chief-status.json`
+- Updated after each check
+- Shows: health status, issues found/fixed/pending
+- Displayed on dashboard in real-time
+
+**Cron Job ID:** c0125ba3-72b2-46db-b64d-ed9645672efb
+
+---
 
 ## Nas - The Copywriter Sub-Agent
 
