@@ -334,7 +334,7 @@ sessions_spawn:
 - references/templates.md — Headline formulas, body frameworks, email/social templates
 - references/source-*.pdf — Original training PDFs from TJ
 
-## New Skills (Built Feb 18, 2026)
+## New Skills (Built Feb 18-19, 2026)
 
 ### auto-notion-sync
 - **Purpose:** Auto-push content to Notion after PDF creation
@@ -353,6 +353,13 @@ sessions_spawn:
 - **Location:** `skills/customer-tracker/`
 - **Database:** `memory/customers/database.json`
 - **Use:** Track customers, health scores, follow-ups
+
+### consulting-discovery (Built Feb 19, 2026)
+- **Purpose:** Validate AI consulting prospects using Mom Test principles
+- **Location:** `skills/consulting-discovery/`
+- **Log:** `memory/consulting/discovery-log.md`
+- **Use:** Discovery call scripts, prospect scoring, false positive detection
+- **Based on:** Rico's Eisenmann/Mom Test research
 
 ## Content Sources
 - TJ's Facebook Marketplace: https://www.facebook.com/marketplace/profile/100018737295677/
