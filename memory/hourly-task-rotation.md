@@ -129,6 +129,7 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 | Time | Area | Task |
 |------|------|------|
+| 07:00 AM | 🐕 Tidy Tails | **Review Generation Campaign (4 text scripts, 5-day plan, GBP link setup, customer tracker, get 5 reviews THIS WEEK)** |
 | 06:00 AM | 🐕 Tidy Tails | **Commercial Lead Enrichment (10 leads with REAL phone numbers, Happy Tails/Dogtopia/Watering Bowl/6 vets, custom pitches, call sheet ready)** |
 | 05:00 AM | 🏠 Sheds | **Copy-Paste Ready Campaign System (19 files, zero-friction execution, dashboard updated)** |
 | 04:00 AM | ⚙️ Systems | **Today's Actions Dashboard Widget (interactive checkboxes, progress ring, gamified execution)** |
