@@ -363,3 +363,83 @@ TJ sees Tidy Tails as a **training ground** for:
 ## Key Dates
 - 2025-01-30: Day one, got connected via Telegram
 - 2026-02-16: Major brain dump session, learned full TJ profile and vision
+- 2026-02-17: Day 1 output — 18 tasks, 27 docs, 21 ads, 24 commercial leads
+- 2026-02-18: Day 2 output — 22+ tasks, 3 new skills, full customer lifecycle coverage
+
+---
+
+## 📊 Day 2 Learnings (Feb 18, 2026)
+
+### Asset Inventory (Current Totals)
+| Category | Count |
+|----------|-------|
+| PDFs Generated | 45+ |
+| Commercial Leads | 34 (property mgmt, daycares, vet clinics, dog parks) |
+| Tidy Tails Ads | 20+ |
+| Shed Ads | 25+ |
+| Skills Built | 14 (6 built, 8 available) |
+| Video Scripts | 20+ |
+
+### Key Insight: Build → Execute Shift
+**Day 1** was pure arsenal building. **Day 2** started shifting to execution-ready assets:
+- Jamie's call sheets (print-and-go)
+- Quick Start Guide (5 things to do first)
+- Customer onboarding scripts (copy-paste ready)
+- Tax refund campaign (post immediately)
+
+### Seasonal Timing Matters
+**February-April = Tax Refund Season** for sheds
+- People have "found money" ($2K-$8K) that feels easier to spend
+- Rent-to-own + tax refund down payment = killer combo
+- Created 10 tax refund themed ads ready to deploy NOW
+
+**Spring = Shed Season (Q2)**
+- 8 seasonal ads covering March-June hooks
+- Graduation, Mother's Day, Father's Day, Memorial Day angles
+
+### Customer Lifecycle is Complete
+Built the full customer journey for Tidy Tails:
+1. **Acquisition:** Ads, landing page, referral program, commercial outreach
+2. **Conversion:** Proposal templates, quote calculator, pricing guide
+3. **Onboarding:** Welcome scripts, 30-day journey, access collection
+4. **Retention:** Check-in scripts, upsell opportunities, health scoring
+5. **Recovery:** Win-back campaigns, rescue scripts for issues
+6. **Referral:** Day 30 referral ask (timed after value proven)
+
+### Consulting Sales Funnel Complete
+1. ✅ Packages defined (Starter/Growth/Scale $497-$1,997)
+2. ✅ Prospects identified (25 leads)
+3. ✅ Case study for proof (Day 1 Tidy Tails)
+4. ✅ Landing page for credibility
+5. ✅ **Proposal template to close** (added 9 PM Feb 18)
+
+### Competitor Intelligence
+**Dog Waste:**
+- Yucko's (36 years, bad website) = weak marketing, strong reputation
+- Franchises (DoodyCalls, POOP 911) = impersonal, opportunity to differentiate
+- TJ's pricing ($25/week) is 28% higher than cheapest — must compete on VALUE
+
+**Sheds:**
+- 5-Star Buildings and Cardinal are biggest threats
+- Most competitors push rent-to-own (hidden 25-40% APR)
+- TJ's 0% and 9.99% financing is mathematically stronger
+
+### What's Working
+- **Hourly autonomous tasks** — consistent output without hand-holding
+- **Dashboard status updates** — TJ can see when I'm working (red eyes)
+- **Notion sync** — content going to both dashboard AND Notion
+- **Chief oversight** — catching gaps, verifying delivery sync
+- **PDF generation workflow** — HTML → browser → PDF working reliably
+
+### What Needs Attention
+- **Execution tracking** — lots of assets, need to track what TJ actually uses
+- **Lead follow-up** — Jamie has 34 leads but no tracking of call outcomes yet
+- **Review generation** — TJ needs to text his 4-5 customers for Google reviews
+- **Google Business Profile** — still not claimed (highest ROI quick win)
+- **Facebook Ads** — landing page exists but no paid traffic yet
+
+### Process Notes
+- **Late night = systems work** (memory updates, dashboard fixes, planning)
+- **Morning = briefings + execution assets** (call sheets, post batches)
+- **Afternoon = creative work** (ad copy, campaigns, content)
+- **Evening = documentation** (EOD summaries, memory consolidation)
