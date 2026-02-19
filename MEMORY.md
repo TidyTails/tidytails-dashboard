@@ -298,6 +298,26 @@ Chief now verifies that ALL deliverables hit both Notion AND dashboard:
 - references/templates.md — Headline formulas, body frameworks, email/social templates
 - references/source-*.pdf — Original training PDFs from TJ
 
+## New Skills (Built Feb 18, 2026)
+
+### auto-notion-sync
+- **Purpose:** Auto-push content to Notion after PDF creation
+- **Location:** `skills/auto-notion-sync/`
+- **Use:** After every deliverable, run sync to Notion
+- **Folder IDs:** Stored in skill file
+
+### lead-enricher  
+- **Purpose:** Turn business names into fully actionable leads
+- **Location:** `skills/lead-enricher/`
+- **Use:** When finding commercial leads for Jamie
+- **Output:** Phone, email, decision maker, pitch angle
+
+### customer-tracker
+- **Purpose:** Structured CRM for all customers and leads
+- **Location:** `skills/customer-tracker/`
+- **Database:** `memory/customers/database.json`
+- **Use:** Track customers, health scores, follow-ups
+
 ## Content Sources
 - TJ's Facebook Marketplace: https://www.facebook.com/marketplace/profile/100018737295677/
 - Tidy Tails Facebook: https://www.facebook.com/share/18FWk4b3gu/
