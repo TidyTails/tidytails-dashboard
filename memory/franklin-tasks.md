@@ -4,6 +4,296 @@
 
 ---
 
+### 02:00 PM (Feb 19) — FB Marketplace Listing Templates 🏠📱
+**Type:** Hourly
+**Goal:** Sheds (drive weekend showroom traffic)
+
+**What I Did:**
+- Identified gap: We had AD COPY but not **Marketplace-specific listings**
+- Marketplace has unique format (title, price strategy, truncated preview)
+- Created 10 ready-to-post listings with different buyer personas
+
+**Deliverables:**
+1. **Marketplace Strategy Guide** — Title formulas, price strategy ($1 vs $99), first-2-lines rule
+2. **10 Listing Templates:**
+   - #1 Lead Magnet (general)
+   - #2 Tax Refund Hook (urgent Feb-April)
+   - #3 Garage Overflow (pain point)
+   - #4 Home Office/WFH
+   - #5 She-Shed/Man Cave
+   - #6 Workshop/Tools
+   - #7 Budget/Rent-to-Own
+   - #8 Premium/High-End
+   - #9 Spring Seasonal
+   - #10 Pool House
+3. **Photo Pairing Guide** — Which shed photos work for each listing type
+4. **Weekly Posting Schedule** — Rotate listings Mon-Sun
+5. **Quick Post Checklist** — Pre-publish verification
+
+**Files Created:**
+- `dashboard/docs/sheds/marketplace-listings-pack.md` (10KB guide)
+- `dashboard/templates/marketplace-listings.html` (23KB HTML)
+- `dashboard/pdfs/marketplace-listings-pack.pdf` (737KB branded PDF)
+
+**Why This Matters:**
+- Marketplace = FREE leads from buyers actively searching
+- Thursday afternoon post → Weekend showroom traffic
+- Copy-paste ready = TJ can post in 5 minutes
+- 10 angles means we never run dry on content
+- Tax refund listing is URGENT (Feb-April window)
+
+**Impact:** ~$0 → 10+ ready Marketplace posts (value: $50-100 in ad agency time each)
+
+---
+
+### 01:00 PM (Feb 19) — LinkedIn Launch Strategy 🎬💼
+**Type:** Hourly
+**Goal:** AI Consulting (position TJ as the St. Louis AI Marketing Expert)
+
+**What I Did:**
+- Identified gap: We have 25 consulting prospects, cold outreach system ready, but ZERO LinkedIn presence
+- LinkedIn is THE platform for B2B services
+- Cold email + LinkedIn content = 2x response rate (15-25% vs 5-10%)
+- Created comprehensive LinkedIn Launch Strategy
+
+**Deliverables:**
+1. **Profile Optimization** — Headline formula, About section (copy-paste ready)
+2. **Content Pillars** — 40% results, 30% relatable, 20% hot takes, 10% behind scenes
+3. **2-Week Content Calendar** — 14 ready-to-post LinkedIn posts
+4. **Connection Strategy** — Connect with all 25 prospects BEFORE cold email
+5. **LinkedIn → Cold Email Sequence** — Warm the outreach
+6. **Quick-Start Checklist** — 20 minutes today gets it started
+
+**Sample Post (Day 1 - The Hook):**
+"I created 27 marketing documents in 16 hours. Not by grinding. By building a system..."
+
+**The Math:**
+- Connect with prospect on LinkedIn (Day 1)
+- They see your content for 3-5 days
+- Cold email lands → "Oh, I've seen this guy"
+- Response rate doubles
+
+**Files Created:**
+- `dashboard/docs/consulting/linkedin-launch-strategy.md` (14KB guide)
+- `dashboard/pdfs/linkedin-launch-strategy.pdf` (676KB branded PDF)
+
+**Why This Matters:**
+- Consulting revenue >> dog waste ($497-1,997/mo vs $100/mo)
+- LinkedIn builds credibility BEFORE asking for money
+- 25 prospects will see content organically
+- Warms cold outreach significantly
+- TJ can start TODAY with 20-minute profile setup
+
+---
+
+### 12:00 PM (Feb 19) — Consulting Cold Outreach Execution System 🤖📧
+**Type:** Hourly
+**Goal:** AI Consulting (turn 25 prospects into paying clients)
+
+**What I Did:**
+- Identified gap: Consulting funnel complete (packages, prospects, proposal) but ZERO outreach sent
+- Today is first day consulting hasn't been touched → imbalance in rotation
+- Created comprehensive outreach EXECUTION system (not just templates)
+
+**System Includes:**
+1. **2-Week Day-by-Day Calendar** — Who to contact each day, Feb 19 - Mar 5
+   - Week 1: Initial contact (5 prospects/day)
+   - Week 2: Follow-up + close
+2. **Email Templates** — Personalized versions for different situations
+   - Template 1: "Fellow Business Owner" (primary)
+   - Follow-up Day 3-4 (bump it)
+   - Follow-up Day 7-8 (different angle)
+   - Final nudge Day 12-14 (last one)
+3. **Response Handling Scripts** — What to say when they reply
+   - "Tell me more" → book a call
+   - "I do my own marketing" → offer to share what's working
+   - "I have an agency" → offer second opinion
+   - "Not right now" → give free tip, check back later
+   - "What would it cost?" → package breakdown
+4. **Discovery Call Framework** — 15-20 min structure
+   - Opening questions
+   - Qualifying questions (5 key questions)
+   - The close ("Let's try it for a month")
+   - Objection handlers (think about it, too expensive, been burned before, guarantee?)
+5. **Tracking System** — Spreadsheet structure for logging every contact
+6. **Quick Action Guide** — What to do TODAY in 30 minutes
+
+**The Math:**
+- 25 prospects contacted
+- 20% response rate (personalized outreach) = 5 responses
+- 60% book a call = 3 discovery calls
+- 33% close rate = 1 client
+- 1 client at $497-997/mo = **$6-12K/year from 2 weeks of 30-min daily work**
+
+**Why This Matters:**
+- Consulting revenue >> dog waste revenue ($497-1,997/mo vs $100/mo)
+- We have 25 identified prospects sitting idle
+- Zero outreach has been sent
+- TJ can start TODAY — first 5 emails take 30 minutes
+- The case study proof (Day 1 output) is ready to reference
+
+**Output:**
+- `dashboard/docs/CONSULTING_OUTREACH_SYSTEM.md` (12.6KB)
+- `dashboard/templates/consulting-outreach-system.html` (14.9KB)
+- `dashboard/pdfs/CONSULTING_OUTREACH_SYSTEM.pdf` (609KB)
+- Dashboard index.html updated (Consulting docs + Franklin's Work)
+- Rotation log updated (balances to 🤖 Consulting today)
+
+**Day 1 Action for TJ:**
+1. Research 5 electricians (15 min) — RJP Electric, Spark Daddy, Albrecht, Reinhold, +1
+2. Send 5 personalized emails using Template 1 (15 min)
+3. Log in tracking sheet
+4. Set reminder: Follow up Saturday if no response
+
+**Expected Outcomes from This System:**
+- Week 1: 1-2 discovery calls booked
+- Week 2: 3-5 total calls, 1 proposal sent
+- Month 1: 1 paying client ($497-997/mo)
+
+---
+
+### 11:00 AM (Feb 19) — Craigslist Domination Guide 🎬
+**Type:** Hourly
+**Goal:** Fill gap in marketing channels — Craigslist is a free, low-effort lead source that competitors aren't using
+
+**What I Did:**
+- Identified gap: FB Groups, Nextdoor, GMB covered... but ZERO Craigslist presence
+- Researched successful pet waste removal Craigslist posts in other markets
+- Built complete guide with ready-to-post templates
+
+**Guide Covers:**
+1. **Where to Post** — Best categories (Household Services primary, Community Pets secondary)
+2. **Post Rules** — Dos and don'ts to avoid getting flagged (48hr spacing, unique text, no caps)
+3. **5 Ready Templates** — Each optimized for different angles:
+   - General household services (primary)
+   - Pet owners community (warmth angle)
+   - One-time deep clean (entry offer)
+   - Seasonal/spring cleanup (timely hook)
+   - Multi-dog households (niche focus)
+4. **Posting Schedule** — Week-by-week rotation plan
+5. **Image Guidelines** — What photos to include
+6. **Renewal Strategy** — How to stay at top of listings
+7. **If Flagged** — Troubleshooting and recovery
+8. **Quick Start Checklist** — 10 minutes today, weekly ongoing
+
+**Why It Matters:**
+- FREE (unlike Facebook Ads)
+- Low effort (post once, renew weekly)
+- Warm leads (people actively searching)
+- Low competition (most pet waste companies ignore it)
+- St. Louis has active Craigslist traffic
+
+**Output:**
+- `dashboard/docs/CRAIGSLIST_DOMINATION_GUIDE.md` (8.9KB)
+- Dashboard index.html updated with new entry
+- Rotation log updated
+
+**Next Actions for TJ/Wife:**
+1. Go to stlouis.craigslist.org
+2. Create account (if needed)
+3. Post Template 1 in Services > Household (10 min)
+4. Set reminder to renew in 7 days
+
+---
+
+### 10:00 AM (Feb 19) — Nextdoor Complete Playbook 🐕
+**Type:** Hourly
+**Goal:** Fill gap in marketing channels — Nextdoor is THE platform for local service recommendations but we had ZERO coverage
+
+**What I Did:**
+- Identified gap: FB Groups covered, Google covered, but Nextdoor untouched
+- Nextdoor = 1 in 3 US households, 88% recommend businesses to neighbors
+- Built complete playbook for Tidy Tails to dominate this channel
+
+**Playbook Covers:**
+1. **Business Page Setup** — Step-by-step claim process, all 12+ ZIP codes to select, description copy-paste ready
+2. **Recommendation Strategy** — How to ask customers, text scripts, goal of 5-10 recommendations month 1
+3. **Monitoring Recommendations** — Hot leads asking "who do you use?" — response templates ready
+4. **Posting Strategy** — Introduction post, seasonal posts, value posts, frequency limits (don't get flagged)
+5. **Dos and Don'ts** — What works, what gets businesses banned
+6. **Response Templates** — Copy-paste replies for every scenario
+7. **Quick-Start Checklist** — 15 minutes today, ongoing weekly tasks
+
+**Why It Matters:**
+- Nextdoor leads are WARM (neighbor trust factor)
+- Free channel (unlike FB ads)
+- Low time investment (weekly check vs daily FB posts)
+- Target demo (homeowners with dogs) = core Nextdoor users
+- St. Louis has heavy Nextdoor usage
+
+**Output:**
+- `dashboard/docs/NEXTDOOR_COMPLETE_PLAYBOOK.md` (9.6KB)
+- Dashboard index.html updated with new entry
+- Rotation log updated
+
+**Next Actions for TJ/Wife:**
+1. Go to business.nextdoor.com (15 min)
+2. Claim Tidy Tails business page
+3. Text 2-3 customers asking for recommendations
+4. Set up notifications for pet waste mentions
+
+---
+
+### 09:05 AM (Feb 19) — No Sale? No Problem (Pocket Closer) 🏠
+**Type:** Hourly
+**Goal:** Help TJ close deals TODAY at TuffShed showroom (no active promo running)
+**What I Did:**
+- Checked TuffShed promos: No active sale (Feb $1K off ended 2/11)
+- Identified gap: TJ needs to sell on VALUE when there's no flashy discount
+- Built mobile-friendly pocket objection handler
+
+**Objections Covered:**
+1. "I'll wait for a sale" → 0% financing beats most sales (math proof)
+2. "That's more than I wanted to spend" → $79/month on $6K building
+3. "Let me think about it" → Get the quote out
+4. "Cheaper at [competitor]" → Quality comparison (warranty, materials)
+5. "Can you match price?" → Value differentiation, not apples to oranges
+
+**Tools Created:**
+- `dashboard/sheds/no-sale-closer.html` — Full objection handler (phone-optimized)
+- `dashboard/sheds/payment-cheat-sheet.html` — Quick payment lookup by price
+
+**Why It Matters:**
+- TJ is AT WORK right now (9-5 M-F)
+- No active promo = harder to close
+- This gives him ammunition on his phone
+- Math-backed responses beat winging it
+
+**Output:**
+- 2 phone-friendly HTML tools
+- Dashboard updated with highlighted links
+- Financing quick-calc: ~$13/month per $1,000 financed
+
+---
+
+### 08:00 AM (Feb 19) — Today's 3 Actions (Morning Execution Guide) 🎯
+**Type:** Hourly
+**Goal:** Bridge build→deploy gap, get TJ executing TODAY
+**What I Did:**
+- Identified core problem: 45+ assets built, execution lagging
+- Created dead-simple "3 actions before 9 AM" guide
+
+**The 3 Actions (10 min total):**
+1. ✅ Text 1 customer for Google review (script provided, 3 min)
+2. ✅ Post in 1 Facebook group (copy-paste ad, 3 min)
+3. ✅ Forward Jamie 1 lead to call (Happy Tails with phone number, 2 min)
+
+**Why It Works:**
+- Zero decisions required
+- No PDFs to read
+- Copy-paste everything
+- 10 minutes of action beats 2 hours of planning
+
+**Output:**
+- `dashboard/today/feb-19-morning-actions.md` (raw)
+- `dashboard/today/feb-19-morning-actions.html` (styled, interactive)
+- Dashboard updated with highlighted new task
+- Golden border + pulse animation to catch attention
+
+**Philosophy Shift:** We have 45+ assets. Time to EXECUTE, not build more. This morning guide forces action.
+
+---
+
 ### 07:00 AM (Feb 19) — Google Review Generation Campaign 🐕⭐
 **Type:** Hourly
 **Goal:** Tidy Tails (customer acquisition foundation)

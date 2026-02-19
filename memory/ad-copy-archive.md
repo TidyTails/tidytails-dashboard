@@ -288,6 +288,130 @@ Darius: 636-354-7406
 
 ---
 
+---
+
+### 2026-02-19 (9AM Daily Task)
+
+**Purpose:** Side hustle/inventory, riding mower, WFH office, kid toys
+**PDF:** dashboard/pdfs/SHED_ADS_2026-02-19.pdf
+
+**Ad #27 - "Side Hustle Storage" (eBay/Etsy Sellers)**
+```
+Running a side hustle from home?
+
+Inventory piling up:
+📦 In the spare bedroom
+📦 In the garage
+📦 In the hallway closet
+📦 Under the bed (we've all been there)
+
+You're making money — your house is paying the price.
+
+A shed = your own mini warehouse.
+Right in the backyard.
+Tax-deductible business space.
+
+✅ Climate control options (protect that inventory)
+✅ Shelving & organization
+✅ Financing & rent-to-own
+✅ FREE delivery & setup
+
+Your side hustle deserves its own HQ.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #28 - "The Riding Mower Problem" (Garage Space)**
+```
+Real talk:
+
+Your riding mower takes up HOW much of the garage?
+
+Half? More than half?
+
+Add the push mower, the weed eater, the leaf blower, the fertilizer spreader...
+
+And suddenly your "2-car garage" is a 0-car garage.
+
+Here's the math:
+🚗 Car outside = weather damage
+🚗 Weather damage = lower resale
+🚗 Lower resale = money lost
+
+A shed that fits ALL your lawn equipment:
+💥 Starting around $3,000
+💥 FREE delivery
+💥 Financing available
+
+That's way cheaper than the depreciation hit.
+
+Darius: 636-354-7406
+```
+
+**Ad #29 - "The Zoom Cave" (WFH Office)**
+```
+Working from home sounds great until:
+
+🏠 Kids burst into your Zoom call
+🏠 The dog barks at every delivery
+🏠 You're "at work" but also somehow "available"
+🏠 Your office is the kitchen table
+
+What if your commute was... 30 steps to the backyard?
+
+A backyard office shed:
+✔ Real separation from home life
+✔ Quiet. Private. YOURS.
+✔ Climate controlled
+✔ No commute. No pants required.
+
+Work from home, but make it work FOR you.
+
+✅ Custom layouts for your workflow
+✅ Insulation & HVAC options
+✅ Financing available
+✅ FREE delivery & setup
+
+Build your Zoom cave.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #30 - "The Toy Explosion" (Parents/Kids Stuff)**
+```
+Parents, let's be honest:
+
+When did your living room become a toy store?
+
+🎮 Video game stuff
+🚴 Bikes (somehow always inside)
+⚽ Sports gear
+🎨 Art supplies
+🧸 Toys. So. Many. Toys.
+🎄 Holiday decorations (still in the garage from December)
+
+The house isn't getting bigger.
+The kids' stuff isn't getting smaller.
+
+A shed buys you SPACE.
+
+Outdoor toy storage = living room back
+Sports gear organized = no more tripping
+Holiday stuff contained = sanity restored
+
+✅ Rent-to-own (no credit check options)
+✅ Financing available
+✅ FREE delivery
+
+Take your house back.
+
+Text Darius: 636-354-7406
+```
+
+---
+
 ## Style Notes
 
 ### TJ's Voice (from Facebook Marketplace)

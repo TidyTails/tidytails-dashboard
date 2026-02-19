@@ -195,14 +195,16 @@ Each lead entry:
 **Segment Focus:** Veterinary Clinics (untapped)
 **Why Vet Clinics:** High foot traffic, outdoor relief areas need cleaning, professional image matters, recurring need
 
-### 15. City Paws Veterinary Clinic
+### 15. City Paws Veterinary Clinic ⭐ ENRICHED
 - **Type:** Veterinary Clinic
 - **Contact:** Dr. Nicole Mattes (Owner)
-- **Phone:** (314) 644-0404
+- **Phone:** (314) 644-0404 ✅
 - **Address:** 2200 S. Vandeventer Ave, St. Louis, MO 63110
 - **Website:** https://www.citypawsvet.com/
-- **Status:** New
+- **Hours:** M-W-F 9-6, Thu 11-8
+- **Status:** New - READY TO CALL
 - **Date Added:** 2026-02-17
+- **Date Enriched:** 2026-02-19
 - **Notes:** Local independent vet, South City Shaw neighborhood. Small practice = owner makes decisions. Great reviews, cares about patient experience. Outdoor area likely needs service.
 - **Pitch Angle:** "Keep your outdoor relief area spotless so pet parents see professionalism before they even walk in."
 - **Assigned To:** Jamie
@@ -219,14 +221,17 @@ Each lead entry:
 - **Pitch Angle:** "You've been serving South County for 45+ years — let us help maintain that professional reputation outside."
 - **Assigned To:** Jamie
 
-### 17. Big Bend Veterinary Clinic
+### 17. Big Bend Veterinary Clinic ⭐ ENRICHED
 - **Type:** Veterinary Clinic
 - **Contact:** Dr. Gavin Hooks
-- **Phone:** (314) 781-6121
+- **Phone:** (314) 781-6121 ✅
+- **Email:** bigbendvetclinic@gmail.com
 - **Address:** 2224 S Big Bend Blvd, St. Louis, MO 63117
 - **Website:** https://www.bigbendvet.com/
-- **Status:** New
+- **Hours:** M 8-5, Tu 8-7, W 8-5, Th 8-7, F 8-4, Sat 8-1
+- **Status:** New - READY TO CALL
 - **Date Added:** 2026-02-17
+- **Date Enriched:** 2026-02-19
 - **Notes:** In business since 1976. Richmond Heights/Maplewood/Clayton area. Full-service including emergency. Dr. Hooks specializes in diagnostics. 50 years = established, likely cares about reputation.
 - **Pitch Angle:** "After 50 years serving the community, your outdoor areas should look as professional as your care."
 - **Assigned To:** Jamie
@@ -633,6 +638,103 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 - Board-and-train facilities have 24/7 dog presence
 - Outdoor training areas see heavy use
 - Franchises have vendor budgets built in
+
+---
+
+---
+
+## NEW LEADS - Round 5 (Added 2026-02-19 9:00 AM)
+
+**Segments Focus:** Luxury Apartments, Pet-Amenity Communities
+**Why These Segments:** Actively investing in pet residents, have budgets, recurring need
+
+### 44. The Waterways of Lake Saint Louis ⭐ HIGH PRIORITY
+- **Type:** Luxury Apartment Community
+- **Contact:** Leasing Office
+- **Phone:** See website
+- **Address:** Lake Saint Louis, MO (St. Charles County)
+- **Website:** https://www.waterwaysapartments.com/
+- **Size:** 80 ACRES (park-like community)
+- **Pet Amenities:** Nature trails, two 4-acre lakes, outdoor walking spaces
+- **Status:** New - WHALE ACCOUNT
+- **Date Added:** 2026-02-19
+- **Notes:** MASSIVE 80-acre pet-friendly property. Running Valentine's specials now = active leasing = good management. Luxury community with trails and lakes. This is a potential whale account for recurring service.
+- **Pitch Angle:** "You have 80 acres of trails and lakefront for residents and their pets. That's a lot of ground to keep pristine. We specialize in keeping large pet-friendly communities spotless."
+- **Assigned To:** Jamie
+
+### 45. Park Forest Apartments ⭐ HIGH PRIORITY
+- **Type:** Apartment Community (Pet-Focused)
+- **Contact:** Property Manager
+- **Phone:** See website
+- **Address:** St. Louis, MO
+- **Website:** https://www.parkforestapts.com/
+- **Pet Amenities:** Bark Park, Free Pet Treats, Pet Waste Stations, Yappy Hours!
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-19
+- **Notes:** Already INVESTING in pet amenities — bark park, treats, waste stations, even "Yappy Hours" events. They get it. They're already paying for waste stations but likely maintaining them in-house. Natural value-add pitch.
+- **Pitch Angle:** "Love that you host Yappy Hours and have a bark park! You clearly care about pet residents. We can take waste management off your team's plate so they can focus on the fun stuff."
+- **Assigned To:** Jamie
+
+### 46. The Rail Apartments ⭐ HIGH PRIORITY
+- **Type:** Urban Luxury Apartments
+- **Contact:** Leasing Office
+- **Phone:** See website
+- **Address:** The Grove, St. Louis, MO
+- **Website:** https://www.therail-stl.com/
+- **Amenities:** Golf simulator, game lounge, recreation room, pet-friendly
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-19
+- **Notes:** Urban luxury in trendy Grove neighborhood. Younger demographic with dogs. Modern amenities = property that invests in experience. Urban pet-friendly = high dog density in concentrated area.
+- **Pitch Angle:** "Urban pet-friendly living means high dog density. You're creating an amazing resident experience with your amenities — let us make sure outdoor areas match that standard."
+- **Assigned To:** Jamie
+
+### 47. Arbor Pointe Apartments
+- **Type:** Apartment Community
+- **Contact:** Property Manager
+- **Address:** South County, St. Louis
+- **Website:** Research via Apartments.com
+- **Status:** New
+- **Date Added:** 2026-02-19
+- **Notes:** South County location (TJ's service area). Pet-friendly. Standard discovery call to learn about current waste management.
+- **Assigned To:** Jamie
+
+### 48. Lakewood Apartments
+- **Type:** Apartment Community
+- **Contact:** Property Management Office
+- **Address:** Maryland Heights, MO
+- **Website:** Research via Apartments.com
+- **Status:** New
+- **Date Added:** 2026-02-19
+- **Notes:** Maryland Heights = direct service area. Multiple complexes in area. Entry point to expand to neighboring properties.
+- **Assigned To:** Jamie
+
+### 49. Villages of General De Gaulle
+- **Type:** Apartment Complex (Large)
+- **Contact:** Property Manager
+- **Address:** North County (Florissant/Ferguson area)
+- **Website:** Research required
+- **Status:** New
+- **Date Added:** 2026-02-19
+- **Notes:** Large multi-building complex in North County. More buildings = more common areas = more waste. In TJ's service area.
+- **Assigned To:** Jamie
+
+### 50. Four Seasons at Creve Coeur
+- **Type:** Luxury Condos / HOA
+- **Contact:** HOA Management
+- **Address:** Creve Coeur, MO (West County)
+- **Website:** Research HOA contacts
+- **Status:** New
+- **Date Added:** 2026-02-19
+- **Notes:** Affluent Creve Coeur area. HOAs have vendor budgets and care about appearance. Shared walking areas = recurring need.
+- **Assigned To:** Jamie
+
+---
+
+## Round 5 Notes (2026-02-19)
+- **The Waterways** is a potential whale — 80 acres!
+- **Park Forest** already invests in pet amenities — easy pitch
+- **The Rail** targets young urban dog owners — high density
+- Total leads now: 50 active
 
 ---
 
