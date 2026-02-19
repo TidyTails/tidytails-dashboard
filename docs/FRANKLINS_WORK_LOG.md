@@ -6,6 +6,27 @@
 
 ## Feb 19, 2026
 
+### 4:00 PM — ⚙️ Systems
+**Weekend Deployment Sprint (Feb 21-23)**
+- Identified the real problem: 45+ PDFs, 50+ ads, 34 leads built — minimal deployed
+- Created dead-simple, PRINTABLE 3-day execution plan
+- Friday (30 min): Claim GBP + Spring Ad #1 + FB Group + Send Jamie leads
+- Saturday (45 min): Review request + Craigslist + Spring Ad #2 + Shed ad + Jamie 3 calls
+- Sunday (20 min): 2 more reviews + Spring Ad #3 + Craigslist renew + Instagram + Jamie 2 calls
+- Copy-paste ads included in PDF (Winter Thaw, BBQ Test, Tax Refund Combo)
+- Success = 6 things LIVE by Sunday: GBP, 3 ads, Craigslist, 5 commercial calls, reviews requested
+- Dashboard: pdfs/WEEKEND_DEPLOYMENT_SPRINT.pdf (633KB, 4 pages)
+- Docs: docs/WEEKEND_DEPLOYMENT_SPRINT.md (5.7KB)
+- **This is the BUILD → DEPLOY shift we need**
+
+### 3:00 PM — 🐕 Tidy Tails
+**Spring Cleaning Blitz Campaign**
+- 10 spring-themed ads (winter thaw, BBQ test, tax refund, kids outside, multi-dog, etc.)
+- 10-week posting schedule (Feb 19 - Apr 30)
+- 3 spring promotions (deep clean bundle, refer-a-friend, multi-dog deal)
+- Hashtags, Instagram story ideas, response scripts
+- Dashboard: pdfs/SPRING_CLEANING_CAMPAIGN.pdf (742KB)
+
 ### 2:00 PM — 🏠 Sheds
 **FB Marketplace Listing Templates**
 - Identified gap: Had AD COPY but not Marketplace-specific listings
