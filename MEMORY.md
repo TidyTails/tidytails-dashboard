@@ -269,6 +269,39 @@ Chief now verifies that ALL deliverables hit both Notion AND dashboard:
 
 ---
 
+## Rico - The Research Agent
+
+**Name:** Rico
+**Role:** Deep research, intelligence gathering, source verification
+**Skill:** `skills/rico-research/`
+**Emoji:** 🔍
+**Spawned via:** `sessions_spawn` with label "rico-research"
+
+**What Rico Does:**
+- Crawls webpages, reads PDFs, processes any links given
+- Verifies sources (multi-source triangulation)
+- Steelmans arguments (presents strongest countercase)
+- Delivers structured findings to Franklin
+- Suggests skills to implement based on research
+
+**Research Archive:** `memory/research/[topic]-[date].md`
+
+**Workflow:**
+1. TJ or Franklin spawns Rico with a research task
+2. Rico researches thoroughly, verifies, steelmans
+3. Rico delivers structured report to Franklin
+4. Franklin extracts actionable items and builds skills
+5. Franklin decides when/where to implement
+
+**Spawn Example:**
+```
+sessions_spawn:
+  task: "You are Rico... RESEARCH TASK: [topic]"
+  label: "rico-research"
+```
+
+---
+
 ## Nas - The Copywriter Sub-Agent
 
 **Name:** Nas
