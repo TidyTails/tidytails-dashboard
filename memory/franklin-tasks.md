@@ -4,6 +4,48 @@
 
 ---
 
+### 11:00 PM — Jamie's Call Outcome Tracking System 🐕📞
+**Type:** Hourly
+**Goal:** Tidy Tails (commercial pipeline execution)
+**What I Did:**
+- Built complete call tracking system for Jamie's commercial outreach
+- Created JSON database with all 43 leads pre-populated (`memory/jamie-call-log.json`)
+- Organized leads by priority tier:
+  - TIER 1: Whale accounts (3 private dog parks) — TJ calls these
+  - TIER 2: Property managers + daycares (14 leads) — Jamie priority
+  - TIER 3: Vet clinics, senior living, rescues (19 leads)
+  - TIER 4: Municipal inquiries (4 leads) — longer cycle
+- Created comprehensive call tracking guide for Jamie (`docs/guides/jamie-call-tracking-guide.md`)
+  - Outcome codes explained
+  - How to log calls
+  - Best times to call each segment
+  - Objection handlers
+  - Daily call goals
+- Built visual dashboard (`dashboard/call-tracker.html`)
+  - Live stats (total leads, calls made, DM convos, meetings, wins)
+  - Conversion funnel visualization
+  - Leads by type breakdown
+  - Tier 1 and 2 priority leads highlighted
+- Added call tracker link to main dashboard
+
+**Result:** Jamie now has a system to track every call attempt and outcome. We'll know conversion rates, which segments perform best, and what objections we need to address. No more lost data.
+
+**Files:**
+- memory/jamie-call-log.json (43 leads, full tracking structure)
+- docs/guides/jamie-call-tracking-guide.md (Jamie's reference)
+- dashboard/call-tracker.html (visual tracking dashboard)
+- dashboard/index.html (added call tracker link + work log entry)
+
+**Why This Matters:**
+We had 43 leads but no way to track what happens when Jamie starts calling. Without tracking:
+- We don't know if property managers or daycares convert better
+- We can't identify which objections need better responses
+- We lose visibility into the pipeline
+
+Now every call gets logged. Over time we'll see patterns and optimize.
+
+---
+
 ### 10:00 PM — Memory Consolidation + Day 2 Learnings ⚙️🧠
 **Type:** Hourly
 **Goal:** Systems (long-term memory maintenance)
