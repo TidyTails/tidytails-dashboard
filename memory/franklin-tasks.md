@@ -4,6 +4,55 @@
 
 ---
 
+### 02:00 AM (Feb 19) — Google Marketing Strategy Research ⚙️🔍
+**Type:** Hourly
+**Goal:** Systems (research to prevent wasted effort)
+**What I Did:**
+- Researched Google Local Services Ads (LSA) eligibility for pet waste removal
+- Discovered LSA is NOT available for pet waste removal category
+- Analyzed Google's 100+ eligible LSA categories:
+  - ✅ Pet grooming, Pet boarding, Pet training, Veterinarian
+  - ✅ Lawn care, Landscaping, Pool cleaner, Junk removal
+  - ❌ Pet waste removal (not listed)
+- This research SAVED TJ from a dead-end:
+  - Would have spent hours trying to set up LSAs
+  - Would have hit eligibility checker rejection
+  - Now he knows to focus on what WORKS
+- Created comprehensive Google Marketing Strategy guide:
+  - Why LSA doesn't work (critical to know)
+  - GBP is #1 priority (free, high-impact, 20 minutes)
+  - Step-by-step GBP claim process
+  - Profile optimization checklist
+  - Review generation strategy (3-touch system)
+  - Google Ads (PPC) considerations for later
+  - Expected costs ($3-7/click, $30-150/customer)
+  - Action plan: This week → Next 2-4 weeks → Future
+- Built branded PDF (1.08MB) with professional design
+
+**Result:** Complete Google marketing strategy with clear priorities. TJ now knows:
+1. Don't waste time on LSAs (ineligible)
+2. GBP = do this NOW (free, shows in Maps, enables reviews)
+3. Reviews = currency (20+ at 4.5+ stars = trust)
+4. Google Ads = later (after foundation solid)
+
+**Files:** 
+- dashboard/docs/GOOGLE_MARKETING_STRATEGY.md (8KB)
+- dashboard/templates/google-marketing-strategy.html (16KB)
+- dashboard/pdfs/GOOGLE_MARKETING_STRATEGY.pdf (1.08MB)
+- dashboard/index.html (updated docs + work log)
+- memory/hourly-task-rotation.md (updated)
+
+**Why This Matters:**
+Research that prevents wasted effort is HIGH VALUE. TJ might have spent 2-3 hours trying to set up LSAs, only to be rejected. This research:
+- Eliminated a dead-end channel in 45 minutes
+- Redirected focus to GBP (the actual #1 priority)
+- Provided clear next actions
+
+**Key Insight:**
+Not all Google channels work for all businesses. LSAs are powerful for HVAC, plumbing, lawn care — but pet waste removal doesn't qualify. The free GBP channel will outperform chasing the wrong paid channel. Focus on: GBP → Reviews → Maps visibility → Organic leads (free).
+
+---
+
 ### 01:00 AM (Feb 19) — 7-Day Posting Calendar 🐕📅
 **Type:** Hourly
 **Goal:** Tidy Tails (bridge build → execute gap)

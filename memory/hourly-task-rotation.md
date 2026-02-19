@@ -129,4 +129,5 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 | Time | Area | Task |
 |------|------|------|
+| 02:00 AM | ⚙️ Systems | **Google Marketing Strategy Research (LSA eligibility ❌, GBP priority guide, PPC later, saved TJ from dead-end channel)** |
 | 01:00 AM | 🐕 Tidy Tails | **7-Day Posting Calendar (copy-paste ready, 7 groups, 7 hook styles, just execute)** |
