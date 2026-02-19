@@ -129,6 +129,9 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 | Time | Area | Task |
 |------|------|------|
+| 06:00 AM | 🐕 Tidy Tails | **Commercial Lead Enrichment (10 leads with REAL phone numbers, Happy Tails/Dogtopia/Watering Bowl/6 vets, custom pitches, call sheet ready)** |
+| 05:00 AM | 🏠 Sheds | **Copy-Paste Ready Campaign System (19 files, zero-friction execution, dashboard updated)** |
+| 04:00 AM | ⚙️ Systems | **Today's Actions Dashboard Widget (interactive checkboxes, progress ring, gamified execution)** |
 | 03:00 AM | ⚙️ Systems | **Execution Sprint: Feb 19-23 (10 actions, 2.5h total, shift from BUILD to DEPLOY mode)** |
 | 02:00 AM | ⚙️ Systems | **Google Marketing Strategy Research (LSA eligibility ❌, GBP priority guide, PPC later, saved TJ from dead-end channel)** |
 | 01:00 AM | 🐕 Tidy Tails | **7-Day Posting Calendar (copy-paste ready, 7 groups, 7 hook styles, just execute)** |

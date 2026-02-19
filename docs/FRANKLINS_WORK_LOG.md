@@ -6,6 +6,17 @@
 
 ## Feb 19, 2026
 
+### 7:00 AM — 🐕 Tidy Tails
+**Google Review Generation Campaign**
+- Identified gap: 4-5 customers, ZERO Google reviews
+- Created 4 copy-paste text scripts TJ can send TODAY
+- 5-day campaign plan with daily actions
+- GBP review link setup instructions
+- Printable customer tracker
+- Response templates for reviews
+- Best practices + Google TOS warnings
+- Dashboard: pdfs/REVIEW_GENERATION_CAMPAIGN.pdf (407KB)
+
 ### 3:00 AM — ⚙️ Systems
 **Execution Sprint: Feb 19-23**
 - Analyzed gap: 57 assets created, only 3 deployed

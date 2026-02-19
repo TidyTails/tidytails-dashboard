@@ -62,34 +62,55 @@ Each lead entry:
 - **Website:** https://www.noleashneeded.com/
 - **Status:** New
 - **Date Added:** 2026-02-17
-- **Notes:** EIGHT locations in greater St. Louis! High-volume dog facility. Daily waste generation. Could be big recurring contract.
+- **Notes:** EIGHT locations in greater St. Louis! High-volume dog facility. Daily waste generation. Could be big recurring contract. Angie's List Super Service Award 5 years in a row, A+ BBB rating.
 - **Assigned To:** Jamie
 
-### 6. Happy Tails Inc
+### 6. Happy Tails Inc ⭐ ENRICHED
 - **Type:** Dog Daycare / Boarding
-- **Contact:** See website
+- **Contact:** Front Desk
+- **Phone:** (314) 291-3647
+- **Email:** info@happytailsinc.com
+- **Address:** 2920 N Lindbergh Blvd, St. Ann, MO 63074
 - **Website:** https://www.happytailsinc.com/
-- **Status:** New
+- **Hours:** 24/7/365
+- **Service Area:** St. Louis County, St. Ann, Maryland Heights, Overland, Bridgeton, Creve Coeur
+- **Status:** New - READY TO CALL
 - **Date Added:** 2026-02-17
-- **Notes:** Operating since 2000. 24/7/365 care. High volume = lots of waste.
+- **Date Enriched:** 2026-02-19
+- **Notes:** Operating since 2000. 24/7/365 care = constant traffic. High volume = lots of waste. Offers free orientation (values relationships).
+- **Pitch:** "24/7 operation = constant waste. Let us handle the outdoor areas so you can focus on care."
 - **Assigned To:** Jamie
 
-### 7. The Watering Bowl
+### 7. The Watering Bowl - St. Peters ⭐ ENRICHED
 - **Type:** Dog Daycare
-- **Contact:** See website
+- **Contact:** Location Manager
+- **Phone:** (636) 486-2606
+- **Email:** STP@BESTFRIENDS.NET
+- **Address:** 1409 Harvestowne Industrial Dr, St. Peters, MO 63304
 - **Website:** https://thewateringbowl.com/
-- **Status:** New
+- **Facility:** 9,750 sq ft indoor, 4,000 sq ft outdoor play area
+- **Service Area:** St. Charles County — O'Fallon, Cottleville, Lake St. Louis, Wentzville
+- **Parent Company:** Best Friends Pet Care
+- **Status:** New - READY TO CALL
 - **Date Added:** 2026-02-17
-- **Notes:** Multiple locations. Dog daycare and training. Good partnership opportunity.
+- **Date Enriched:** 2026-02-19
+- **Notes:** 3 STL locations (Brentwood, Dog Grove, St. Peters). Part of larger company = potential multi-site deal.
+- **Pitch:** "4,000 sq ft of outdoor play area needs professional maintenance. We keep it pristine."
 - **Assigned To:** Jamie
 
-### 8. Dogtopia Rock Hill / Lake St. Louis
-- **Type:** Dog Daycare (Franchise)
-- **Contact:** See website
+### 8. Dogtopia Rock Hill ⭐ ENRICHED
+- **Type:** Dog Daycare (Franchise - Owner Operated)
+- **Contact:** Nick Losciuto (Owner)
+- **Phone:** (314) 230-8181
+- **Address:** 9745 Manchester Rd, St. Louis, MO 63119
 - **Website:** https://www.dogtopia.com/rockhill-stlouis/
-- **Status:** New
+- **Hours:** M-F 6:30am-7pm, Sat 9am-5pm, Sun 9am-2pm
+- **Facility:** 7,000 sq ft total, 5,000 sq ft play space
+- **Status:** New - READY TO CALL - HIGH PRIORITY
 - **Date Added:** 2026-02-17
-- **Notes:** National franchise, local locations. May have corporate policies about vendors but worth asking.
+- **Date Enriched:** 2026-02-19
+- **Notes:** Nick also owns Ellisville location = 2-site deal potential! Owner makes decisions (no corporate hoops). High standards brand focused on transparency and safety.
+- **Pitch:** "High standards facility = high standards grounds. Two locations, one vendor."
 - **Assigned To:** Jamie
 
 ### 9. West End Management & Leasing
