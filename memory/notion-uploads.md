@@ -53,3 +53,4 @@ Chief uses this to verify sync with dashboard.
 - Cross-reference with dashboard path
 - Chief verifies both locations have the file
 - Use mcporter to create pages in appropriate folders
+| 23:00 | Jamie's Call Outcome Tracker | 🐕 Jamie's Hub | call-tracker.html | ✅ |
