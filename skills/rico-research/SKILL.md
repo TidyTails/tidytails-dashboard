@@ -206,6 +206,117 @@ Rico's research must meet these bars:
 
 ---
 
+## ⚠️ CHECKPOINT PROTOCOL (MANDATORY)
+
+**Why:** Large research tasks can crash from token limits. Checkpoints ensure nothing is lost.
+
+### Phase 1: SCOUT (Stay Shallow)
+```
+Goal: Find sources WITHOUT fetching full content
+```
+1. Run 3-5 search queries from different angles
+2. Collect 10-15 promising URLs with titles/snippets
+3. **DO NOT fetch full documents yet**
+4. Save immediately:
+```bash
+# CHECKPOINT 1 - Source List
+Write to: memory/research/[topic]-sources.md
+
+Contents:
+- Search queries used
+- All URLs found with 1-line descriptions
+- Initial relevance ranking (1-5)
+```
+
+### Phase 2: TRIAGE (Prioritize)
+```
+Goal: Decide what's worth deep-diving
+```
+1. Review source list from Checkpoint 1
+2. Rank by: credibility, relevance, recency
+3. Select TOP 5 sources max for deep extraction
+4. Note what question each source should answer
+5. Save immediately:
+```bash
+# CHECKPOINT 2 - Research Plan
+Append to: memory/research/[topic]-sources.md
+
+Contents:
+- Final 5 sources selected
+- Why each was chosen
+- Specific questions to answer from each
+```
+
+### Phase 3: EXTRACT (Surgical, One at a Time)
+```
+Goal: Pull key content WITHOUT bloating context
+```
+For EACH source (one at a time):
+1. Fetch with `maxChars: 15000` limit (not full doc)
+2. Extract only: key quotes, data points, frameworks
+3. **Write findings IMMEDIATELY** before fetching next:
+```bash
+# CHECKPOINT 3+ - Incremental Findings
+Append to: memory/research/[topic]-findings.md
+
+Format per source:
+## Source: [URL]
+### Key Findings
+- Finding 1
+- Finding 2
+### Notable Quotes
+> "Quote here"
+### Data Points
+- Stat 1
+- Stat 2
+```
+4. Repeat for each source (save after EACH one)
+
+### Phase 4: SYNTHESIZE (Fresh Context)
+```
+Goal: Combine findings into final report
+```
+**Option A:** If context is still manageable
+- Read checkpoint files
+- Write final synthesis
+
+**Option B:** If context is large
+- End current session
+- Franklin spawns NEW Rico session with just:
+  - The checkpoint files (sources + findings)
+  - Task: "Synthesize these findings into final report"
+
+Final output:
+```bash
+# FINAL REPORT
+Write to: memory/research/[topic]-[YYYY-MM-DD].md
+Update: dashboard/rico-research.json
+Push: dashboard to git
+```
+
+### Checkpoint File Structure
+```
+memory/research/
+├── [topic]-sources.md      # Phase 1-2: URLs + plan
+├── [topic]-findings.md     # Phase 3: Extracted content
+└── [topic]-[date].md       # Phase 4: Final report
+```
+
+### Recovery Protocol
+If Rico crashes mid-research:
+1. Check `memory/research/` for checkpoint files
+2. See which phase was completed
+3. Resume from last checkpoint (don't restart from scratch)
+4. Franklin can spawn new Rico session with checkpoint context
+
+### Token Budget Rules
+- Never fetch more than 15,000 chars per source
+- Never have more than 3 fetched documents in context at once
+- Save findings to file BEFORE fetching next source
+- If approaching 100K tokens, checkpoint and spawn fresh session
+
+---
+
 ## Integration with Franklin
 
 1. **TJ requests research** → Franklin spawns Rico
@@ -214,6 +325,52 @@ Rico's research must meet these bars:
 4. **Franklin builds skill** → Based on Rico's findings
 5. **Franklin implements** → Decides when/where to deploy
 6. **Rico's report archived** → `memory/research/[topic]-[date].md`
+
+---
+
+## Dashboard Integration (MANDATORY)
+
+After completing research, Rico (or Franklin) MUST:
+
+### 1. Save the full report
+```bash
+# Save to memory/research/
+memory/research/[topic]-[YYYY-MM-DD].md
+```
+
+### 2. Add to dashboard JSON
+Read `dashboard/rico-research.json`, append new entry:
+
+```json
+{
+  "id": "research-[timestamp]",
+  "title": "[Research Title]",
+  "category": "dog-waste|sheds|consulting|general",
+  "date": "YYYY-MM-DD",
+  "summary": "[2-3 sentence summary]",
+  "highlights": [
+    "Key finding 1",
+    "Key finding 2",
+    "Key finding 3"
+  ],
+  "sources": [
+    "Source 1",
+    "Source 2"
+  ],
+  "docPath": "memory/research/[topic]-[date].md"
+}
+```
+
+### 3. Push to dashboard
+```bash
+cd dashboard && git add -A && git commit -m "Rico: [topic] research" && git push
+```
+
+This makes all research visible on the **Research Archive** page at `dashboard/research.html` where TJ can:
+- Browse all research by category
+- Bookmark important findings (⭐)
+- See key insights at a glance
+- Access full reports
 
 ---
 

@@ -129,6 +129,7 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 | Time | Area | Task |
 |------|------|------|
+| 03:00 PM | 🐕 Tidy Tails | **Spring Cleaning Blitz Campaign (10 spring-themed ads, 10-week posting schedule, 3 promo options, hashtags, winter thaw + tax refund + kids outside angles, 742KB PDF)** |
 | 02:00 PM | 🏠 Sheds | **FB Marketplace Listing Templates (10 ready-to-post listings, title formulas, price strategy, photo pairing guide, weekly schedule, 737KB PDF)** |
 | 01:00 PM | 🎬 Content | **LinkedIn Launch Strategy (position TJ as AI expert, profile optimization, 2-week content calendar, 14 ready-to-post posts, connection strategy, LinkedIn+cold email = 2x response rate)** |
 | 12:00 PM | 🤖 Consulting | **Consulting Cold Outreach Execution System (2-week calendar, 25 prospects, email templates, follow-up sequences, response handlers, discovery call scripts, objection handlers, $6-12K potential revenue)** |

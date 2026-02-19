@@ -4,6 +4,70 @@
 
 ---
 
+### 03:00 PM (Feb 19) — Spring Cleaning Blitz Campaign 🐕🌸
+**Type:** Hourly
+**Goal:** Tidy Tails customer acquisition (seasonal campaign)
+
+**What I Did:**
+- Identified gap: No dedicated spring campaign for Tidy Tails (sheds had spring + tax refund campaigns, but dog waste didn't)
+- Perfect timing: Late February = winter thaw starting, spring cleaning mindset beginning
+- Created comprehensive 10-week campaign with multiple angles
+
+**Deliverables:**
+1. **10 Spring-Themed Ads:**
+   - #1 Winter Thaw Reality (frozen poop thawing)
+   - #2 BBQ Test (would you host a cookout?)
+   - #3 Tax Refund + Spring Clean Combo
+   - #4 Neighborhood Walk (neighbors seeing your yard)
+   - #5 Kids Are Coming Outside (safety angle)
+   - #6 Honest Numbers - Spring Edition (275 lbs/year + winter accumulation)
+   - #7 Spring Cleaning List (check off the yard)
+   - #8 Multi-Dog Household Special (2x, 3x accumulation)
+   - #9 Before Easter Push (egg hunts, family photos)
+   - #10 "I Don't Wanna" Humor (rather sit in 270 traffic)
+2. **10-Week Posting Schedule** — Feb 19 - Apr 30 with platform rotations
+3. **3 Spring Promotions:**
+   - Deep Clean Bundle (deep clean + weekly = first week free)
+   - Refer-a-Friend Spring Special ($25 credit / 50% off)
+   - Multi-Dog Spring Deal (volume discount)
+4. **Hashtag Sets** — Primary, seasonal, local, niche
+5. **Instagram Story Ideas** — Before/after, POV, tips, testimonials
+6. **Response Script** — How to reply to spring inquiries
+7. **Quick Launch Checklist** — What to do TODAY
+
+**Files Created:**
+- `dashboard/docs/SPRING_CLEANING_CAMPAIGN.md` (8.5KB strategy doc)
+- `dashboard/templates/spring-cleaning-campaign.html` (22.9KB branded template)
+- `dashboard/pdfs/SPRING_CLEANING_CAMPAIGN.pdf` (742KB, 8-page branded PDF)
+
+**Dashboard Updates:**
+- Added "Spring Cleaning Campaign (NEW)" to Dog Waste Ad Copy section (highlighted green)
+- Added to Franklin's Work section (top entry, pulsing)
+- Updated item count 6 → 7
+
+**Why This Matters:**
+Spring is THE season for pet waste removal services:
+- 3-4 months of frozen waste now becoming visible
+- Outdoor activities resuming (kids, BBQs, entertaining)
+- Tax refunds hitting = extra money available
+- Spring cleaning mindset = people actively looking to improve
+
+**Ad Angles Used:**
+- **Fear/Disgust:** Winter thaw reality (frozen poop unfreezing)
+- **Social proof:** Neighbors seeing your yard, hosting BBQ
+- **Logic/Math:** 275 lbs/year, winter accumulation compounding
+- **Family safety:** Kids playing barefoot, egg hunts
+- **Permission:** Tax refund = earned money to spend on quality of life
+- **Humor:** In-laws explaining Facebook, 270 traffic
+
+**Impact:**
+- 10 new ads ready to post (immediate deployment)
+- 10-week schedule = content through end of April
+- Easter hook (April 20) gives late-season urgency
+- Fills seasonal gap — Tidy Tails now has spring content like sheds do
+
+---
+
 ### 02:00 PM (Feb 19) — FB Marketplace Listing Templates 🏠📱
 **Type:** Hourly
 **Goal:** Sheds (drive weekend showroom traffic)

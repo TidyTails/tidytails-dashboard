@@ -275,6 +275,9 @@ Chief now verifies that ALL deliverables hit both Notion AND dashboard:
 **Role:** Deep research, intelligence gathering, source verification
 **Skill:** `skills/rico-research/`
 **Emoji:** 🔍
+**Avatar:** `dashboard/assets/rico-avatar.jpg` (anime/comic style, gold chain, RICO graffiti shirt, intense look)
+**Dashboard:** `dashboard/research.html` — Research Archive page
+**Data:** `dashboard/rico-research.json` — Research entries (bookmarkable)
 **Spawned via:** `sessions_spawn` with label "rico-research"
 
 **What Rico Does:**
