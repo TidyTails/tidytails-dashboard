@@ -96,6 +96,10 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 | Time | Area | Task |
 |------|------|------|
+| 06:00 | 🐕 Tidy Tails | **Residential Customer Acquisition Playbook (7 channels, partner scripts, Nextdoor/FB strategy, dog park networking)** |
+| 05:00 | 🏠 Sheds | **Instagram Content Strategy & Post Pack (15 feed posts, 10 stories, 10 Reels, hashtags, schedule)** |
+| 04:00 | 🐕 Tidy Tails | **Commercial Proposal & Agreement Kit (proposal template, contract, pricing guide, quote calculator)** |
+| 03:00 | 🎬 Content | **Video Script Pack - 15 TikTok/Reels/Facebook scripts (before/after, day in life, objection busters, seasonal)** |
 | 02:00 | ⚙️ Systems | **Marketing Metrics & Lead Pipeline System (lead tracking, funnel stages, goal progress, channel ROI)** |
 | 01:00 | 🐕 Tidy Tails | **Facebook Ads Manager Guide (complete setup, campaign structure, $7/day budget, pixel setup, 7-day launch plan)** |
 | 12:00 | 🐕 Tidy Tails | **Customer Retention & Upsell System (one-time→recurring scripts, win-back campaigns, 15+ templates)** |
