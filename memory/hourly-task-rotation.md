@@ -114,3 +114,5 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 | 03:00 | 🏠 Sheds | **Spring Shed Campaign Pack (8 seasonal ads + timeline)**
 | 02:00 | 🐕 Tidy Tails | **Review Generation Strategy (3-touch system + templates)**
 | 01:00 | ⚙️ Systems | **Quick Start Guide (navigation map for 27+ docs)**
+| 08:00 PM | 🐕 Tidy Tails | **Customer Onboarding & Welcome System (30-day journey, scripts, health scoring)**
+| 07:00 PM | 🏠 Sheds | **Tax Refund Shed Campaign (10 ads, Feb-April timing)**

@@ -2,6 +2,79 @@
 
 *Archived 715 older entries to archive/2026-02/*
 
+---
+
+### 08:00 PM — Customer Onboarding & Welcome System 🐕👋
+**Type:** Hourly
+**Goal:** Tidy Tails customer retention (keep the customers we get)
+**What I Did:** 
+- Identified gap: tons of acquisition content but nothing for AFTER someone becomes a customer
+- Created complete 30-day customer journey framework
+- Wrote all key touchpoint scripts:
+  - Day 0: Welcome text + access info collection form
+  - Day 1: Service reminder + post-service update (3 versions)
+  - Day 3-4: First check-in script
+  - Day 14: Two-week check-in + upsell opportunity
+  - Day 30: Referral ask (timed perfectly after they've seen value)
+- Created Customer Health Scoring system (+points for engagement, -points for issues)
+- Wrote "rescue scripts" for when things go wrong (missed service, complaints, access issues, payment)
+- Built printable quick reference card for beside the phone
+- Created new customer checklist (10 items)
+- Documented key timing benchmarks (<1hr response, same-day updates, etc.)
+- Future automation roadmap (60-day check-ins, seasonal offers, anniversary)
+- Generated branded PDF (503KB)
+
+**Result:** Complete system to turn new customers into loyal champions. Every touchpoint scripted, every scenario covered. TJ never loses customers due to service quality — now he won't lose them due to communication gaps either.
+
+**Files:** 
+- dashboard/docs/CUSTOMER_ONBOARDING_SYSTEM.md (full system, 8.9KB)
+- dashboard/docs/ONBOARDING_QUICK_REFERENCE.md (print-ready, 2.5KB)
+- dashboard/templates/onboarding-system.html (PDF source, 14.4KB)
+- dashboard/pdfs/CUSTOMER_ONBOARDING_SYSTEM.pdf (branded PDF, 503KB)
+- dashboard/index.html (updated work log + resources)
+
+**Why This Matters:**
+Building acquisition is great, but keeping customers is cheaper than getting new ones. TJ said he never loses customers due to service issues — that's gold. But he could lose them to feeling ignored or forgotten. This system keeps him present without being annoying, and times referral asks perfectly.
+
+**Key Insight:**
+The 30-day referral timing is critical. Ask too early = pushy. Ask too late = they've forgotten the improvement. Day 30 = they've experienced consistent value and are primed to share.
+
+---
+
+### 07:00 PM — Tax Refund Shed Campaign 🏠💰
+**Type:** Hourly
+**Goal:** Sheds (balancing rotation — heavy on Tidy Tails today)
+**What I Did:** 
+- Created 10 complete, ready-to-post tax refund themed ads
+- Targeted Feb-April refund season timing (PERFECT timing — refunds hitting now)
+- Multiple psychological angles:
+  - Direct hook ("Tax refund just hit?")
+  - Smart money investment angle
+  - Urgency ("3-week life expectancy")
+  - Value comparison ("What $3K actually buys")
+  - Permission angle ("You earned it")
+  - Problem-focused (garage full, need space)
+  - Rent-to-own combo play
+  - Use-case specific (workshop, gym, she shed)
+- Included 5 Marketplace titles with pricing
+- Built 10-day posting schedule (Feb 19 - Mar 5)
+- Added response scripts for leads
+- Created branded PDF (30KB)
+**Result:** Complete tax refund campaign ready to deploy. TJ can start posting these TOMORROW — refunds are hitting people's accounts right now.
+**Files:** 
+- dashboard/docs/TAX_REFUND_SHED_CAMPAIGN.md (full strategy, 7.2KB)
+- dashboard/templates/tax-refund-campaign.html (PDF source, 13.6KB)
+- dashboard/pdfs/TAX_REFUND_SHED_CAMPAIGN.pdf (branded PDF, 30KB)
+- dashboard/index.html (updated work log + shed resources)
+
+**Why This Matters:**
+February-April is TAX REFUND SEASON. People have $2K-8K in "found money" that feels easier to spend. The psychology is perfect for shed purchases. These ads hit multiple angles — urgency, investment, permission, use-cases. Post one every 2-3 days for consistent visibility.
+
+**Key Insight:**
+Tax refund + rent-to-own is a killer combo. Use refund as down payment, payments become incredibly low. "Payments lower than a gym membership."
+
+---
+
 - Each review = $100-500 marketing equivalent value
 - Created comprehensive 3-touch review request system:
   - Touch 1: Same-day ask after service
