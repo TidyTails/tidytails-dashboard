@@ -129,6 +129,13 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 | Time | Area | Task |
 |------|------|------|
+| 10:00 PM | ⚙️ Systems | **Execution Tracker Dashboard (85 built vs 0 deployed reality check, real-time tracking, Notion sync cleared 4 items, north star visibility, NO MORE VANITY METRICS)** |
+| 09:00 PM | 🐕 Tidy Tails | **Competitor Intelligence Report (7 competitors analyzed, pricing landscape, social media audit, dead competitor Pawfect=404, strategic recommendations, TJ can dominate this weak market)** |
+| 08:00 PM | 🐕 Tidy Tails | **Whale Leads Enriched (13 phone numbers, Mills Properties, No Leash Needed 8 locations, Canine Country 223 acres, call-ready)** |
+| 07:00 PM | 🐕 Tidy Tails | **Lead Acquisition Platforms Guide (GBP=118 calls FREE, FB Ads=10K leads, FB Groups free, Angi works, SKIP Thumbtack/TaskRabbit no category, 4-week roadmap, ROI calc)** |
+| 06:00 PM | 🤖 Consulting | **Day 1 Prospect Research — 5 Electricians (Tez started 2024, RECON website typos, Southwestern 78yrs broken site, STL competing on price, Streib stretch — pre-written personalized emails ready)** |
+| 05:00 PM | 🎬 Content | **Weekend Sprint Phone Cards (3 phone-sized visual cards, screenshot-ready, all ad copy inline, Jamie's 5 leads with numbers, no file hunting, 653KB PDF)** |
+| 04:00 PM | ⚙️ Systems | **Weekend Deployment Sprint (Fri-Sun execution plan, printable checklist, 6 actions, 2.5h total, force BUILD→DEPLOY shift, 633KB PDF)** |
 | 03:00 PM | 🐕 Tidy Tails | **Spring Cleaning Blitz Campaign (10 spring-themed ads, 10-week posting schedule, 3 promo options, hashtags, winter thaw + tax refund + kids outside angles, 742KB PDF)** |
 | 02:00 PM | 🏠 Sheds | **FB Marketplace Listing Templates (10 ready-to-post listings, title formulas, price strategy, photo pairing guide, weekly schedule, 737KB PDF)** |
 | 01:00 PM | 🎬 Content | **LinkedIn Launch Strategy (position TJ as AI expert, profile optimization, 2-week content calendar, 14 ready-to-post posts, connection strategy, LinkedIn+cold email = 2x response rate)** |

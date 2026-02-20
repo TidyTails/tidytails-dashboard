@@ -16,16 +16,20 @@ Each lead entry:
 
 ## Active Leads
 
-### 1. Mills Properties
-- **Type:** Property Management
+### 1. Mills Properties ⭐ ENRICHED - WHALE ACCOUNT
+- **Type:** Property Management (40+ years, multi-family housing leader)
 - **Contact:** Corporate Office
-- **Phone:** See website
-- **Address:** 12777 Olive Boulevard, Suite C, Saint Louis, MO 63141
+- **Phone:** (314) 721-8000 ✅
+- **Address:** 2650 South Hanley Rd, Saint Louis, MO 63144
 - **Website:** https://www.millsapartments.com/
-- **Status:** New
+- **Service Areas:** St. Louis + Columbia, MO
+- **Properties:** 15+ communities (Citrine, Metropolitan Flats, View at Forest Park, NEO Vantage Point, etc.)
+- **Status:** New - READY TO CALL - WHALE ACCOUNT
 - **Date Added:** 2026-02-17
-- **Notes:** HUGE opportunity. Most awarded property management company in St. Louis (SLAA Management Company of Year 2024). Majority of communities are pet-friendly, many have dog parks. Multi-family focus. Multiple properties = recurring contracts. HIGH PRIORITY.
-- **Assigned To:** Jamie
+- **Date Enriched:** 2026-02-19
+- **Notes:** HUGE opportunity. Most awarded property management company in St. Louis (SLAA Management Company of Year 2024). **"Majority of communities are PET FRIENDLY and many offer DOG PARKS with off-leash play."** - Perfect fit! Multi-family focus. Multiple properties = recurring contracts. 40 years in business.
+- **Pitch Angle:** "You're the most awarded property manager in St. Louis — and most of your communities are pet-friendly with dog parks. Let us help maintain those pet areas so residents and their dogs love living with Mills."
+- **Assigned To:** Jamie (HIGH PRIORITY)
 
 ### 2. Deca Property Management
 - **Type:** Property Management (Residential + Commercial + HOA)
@@ -56,14 +60,27 @@ Each lead entry:
 - **Notes:** Property Management Inc (PMI) franchise. Local STL office. Research contact info.
 - **Assigned To:** Jamie
 
-### 5. No Leash Needed (8 locations)
-- **Type:** Dog Daycare / Boarding
-- **Contact:** See website
+### 5. No Leash Needed (8 locations) ⭐ ENRICHED - WHALE ACCOUNT
+- **Type:** Dog Daycare / Boarding / Training / Grooming
 - **Website:** https://www.noleashneeded.com/
-- **Status:** New
+- **Locations & Phones:**
+  | Location | Phone | Address |
+  |----------|-------|---------|
+  | St. Charles | (636) 923-4153 | 3591 Harry S Truman Blvd, St. Charles 63301 |
+  | Hampton | (314) 476-1854 | 2649 Hampton Ave, St. Louis 63139 |
+  | West County | (314) 944-8474 | 10 North Elam Ave, Valley Park 63088 |
+  | Rock Hill | (314) 476-1817 | 9710 Manchester Rd, St. Louis 63119 |
+  | Kirkwood | (314) 238-8541 | 902 S Kirkwood, Kirkwood 63122 |
+  | O'Fallon IL | (618) 607-4902 | 1130 Merchants Way, O'Fallon IL 62269 |
+  | Lake St. Louis | (636) 324-2415 | 8031 Hawk Ridge Trail, Lake St. Louis 63367 |
+  | Ellisville | (636) 251-6987 | 15599 Manchester Road, Ellisville 63011 |
+- **Status:** New - READY TO CALL - MULTI-SITE DEAL
 - **Date Added:** 2026-02-17
-- **Notes:** EIGHT locations in greater St. Louis! High-volume dog facility. Daily waste generation. Could be big recurring contract. Angie's List Super Service Award 5 years in a row, A+ BBB rating.
-- **Assigned To:** Jamie
+- **Date Enriched:** 2026-02-19
+- **Notes:** EIGHT locations across greater St. Louis! High-volume dog facility. Offers $99 unlimited daycare first 30 days promo. Angie's List Super Service Award 5 years, A+ BBB rating. Each location has outdoor play yards.
+- **Pitch Angle:** "8 locations means 8 outdoor play yards that need professional maintenance. Let's discuss a multi-site contract that simplifies your vendor management."
+- **Best Contact Strategy:** Start with ONE location (Kirkwood or Rock Hill in TJ's service area), prove value, then expand to others.
+- **Assigned To:** Jamie (HIGH PRIORITY - start with one location)
 
 ### 6. Happy Tails Inc ⭐ ENRICHED
 - **Type:** Dog Daycare / Boarding
@@ -284,16 +301,20 @@ Each lead entry:
 - **Pitch Angle:** "You focus on stress reduction inside — we'll keep the outdoor areas clean so patients aren't stepping in surprises."
 - **Assigned To:** Jamie
 
-### 22. St. Louis Animal Emergency Clinic (2 Locations)
-- **Type:** Emergency Veterinary Hospital
-- **Contact:** Corporate/Management
-- **Phone:** See website
-- **Address:** Kirkwood location + O'Fallon location
+### 22. St. Louis Animal Emergency Clinic (2 Locations) ⭐ ENRICHED
+- **Type:** Emergency Veterinary Hospital (24/7)
 - **Website:** https://www.stlouisanimalemergencyclinic.org/
-- **Status:** New
+- **Locations & Phones:**
+  | Location | Phone | Address |
+  |----------|-------|---------|
+  | Kirkwood | (314) 822-7600 ✅ | 9937 Big Bend Road, Kirkwood, MO 63122 |
+  | O'Fallon | (636) 240-5496 ✅ | 334 Fort Zumwalt Square, O'Fallon, MO 63366 |
+- **Years in Business:** Nearly 40 years
+- **Status:** New - READY TO CALL
 - **Date Added:** 2026-02-17
-- **Notes:** Emergency + specialist services. TWO LOCATIONS (Kirkwood = St. Louis County, O'Fallon = St. Charles County). 24/7 operation = constant traffic. High volume emergency = stressed pets, lots of outdoor "accidents."
-- **Pitch Angle:** "24/7 emergency care means nonstop traffic. We'll handle the outdoor cleanup so your team can focus on saving lives."
+- **Date Enriched:** 2026-02-19
+- **Notes:** Emergency + specialist services. TWO LOCATIONS covering St. Louis County AND St. Charles County. 24/7 operation = constant traffic. Stressed pets arriving = lots of outdoor "accidents." Nearly 40 years serving the community.
+- **Pitch Angle:** "24/7 emergency care means nonstop traffic and stressed pets. We'll keep your outdoor relief areas spotless so pet parents see professionalism the moment they arrive — even at 3am."
 - **Assigned To:** Jamie
 
 ### 23. Chesterfield Veterinary Center
@@ -329,52 +350,62 @@ Each lead entry:
 **Segment Focus:** Dog Parks (untapped goldmine)
 **Why Dog Parks:** Literal accumulation of dog waste daily. Either private businesses (need professional image) or municipal (contract vendors for maintenance). St. Louis has 40+ dog parks.
 
-### 25. Treecourt Unleashed Dog Adventure Park
+### 25. Treecourt Unleashed Dog Adventure Park ⭐ ENRICHED - PREMIUM
 - **Type:** Private Dog Park (Commercial Business)
 - **Contact:** Wayne Hubb (Owner)
-- **Phone:** Call to schedule visit
-- **Address:** 2499 Marshall Road, St. Louis, MO 63122
+- **Phone:** (314) 930-5753 ✅
+- **Address:** 2499 Marshall Road, St. Louis, MO 63122 (near Valley Park)
 - **Website:** https://treecourtunleasheddogadventureparks.com/
-- **Status:** New
+- **Membership:** $360/year or $40/month
+- **Features:** 11 acres, Horseshoe Trail walking path, mineral water cooling areas, mobile app for members
+- **Status:** New - READY TO CALL - PREMIUM ACCOUNT
 - **Date Added:** 2026-02-18
-- **Notes:** 11 acres of premium dog park. $360/year or $40/month membership. Near Valley Park. High standards - every dog gets temperament test. Walking trails, shade trees, open areas. Owner is a real dog person who cares about the space. PREMIUM business that would pay for premium service.
-- **Pitch Angle:** "You charge premium rates because you maintain premium standards. Let us handle the waste so you can focus on creating the best dog experience in St. Louis."
+- **Date Enriched:** 2026-02-19
+- **Notes:** Premium operation - every dog gets temperament test. Real app for members. Walking trails, shade trees, open areas. Owner is a real dog person who cares about the space. PREMIUM business that would pay for premium service.
+- **Pitch Angle:** "You've built the best dog experience in St. Louis — 11 acres of pure adventure. Let us handle the waste management so every inch of Treecourt stays as pristine as your reputation."
 - **Assigned To:** TJ (high-value, owner-to-owner conversation)
 
-### 26. Happy Hounds Playground
-- **Type:** Private Dog Park (Commercial Business)
-- **Contact:** Owner/Manager
-- **Phone:** See website
-- **Address:** 2448 Pond Road, Grover, MO 63040
+### 26. Happy Hounds Playground ❌ CLOSED
+- **Type:** Private Dog Park (CLOSED FOR BUSINESS)
+- **Contact:** N/A
+- **Phone:** (314) 456-8358 (was)
+- **Address:** 2448 Pond Road, Wildwood, MO 63040
 - **Website:** https://happyhoundsplayground.wildapricot.org/
-- **Status:** New
+- **Status:** CLOSED - No longer accepting memberships
 - **Date Added:** 2026-02-18
-- **Notes:** 10-acre membership park in Wildwood. Swimming pond with dock diving, splash pads, nature trail, paw washing stations. Family-owned business. They explicitly mention being "committed to clean" in their messaging. Perfect fit!
-- **Pitch Angle:** "You're committed to giving dogs a clean and happy gathering place. We specialize in the 'clean' part — let us help you keep that promise."
-- **Assigned To:** TJ (high-value)
+- **Date Verified:** 2026-02-19
+- **Notes:** Website says "CLOSED FOR BUSINESS - No membership sign ups at this time." Remove from active prospect list.
+- **Assigned To:** N/A
 
-### 27. Canine Country Kennel and Farm
+### 27. Canine Country Kennel and Farm ⭐ ENRICHED - WHALE ACCOUNT
 - **Type:** Private Dog Park + Kennel (Premium)
 - **Contact:** Dr. William Dierberg (Owner, retired vet)
-- **Phone:** See website
+- **Phone:** (636) 398-8558 ✅
+- **Email:** caninecountrykennelandfarm@gmail.com ✅
 - **Address:** 10102 Highway DD, Wentzville, MO 63385
-- **Website:** http://www.caninecountrykennel.com
-- **Status:** New
+- **Hours:** 8:00 AM - 5:00 PM
+- **Website:** Domain expired, but business still operating
+- **BBB:** Listed with Better Business Bureau
+- **Status:** New - READY TO CALL - WHALE ACCOUNT
 - **Date Added:** 2026-02-18
-- **Notes:** MASSIVE - 223 acres with three 20-acre enclosed meadows! 3-acre lake, dock diving, Dardenne Creek access. Run by a retired veterinarian. Ultimate premium dog paradise. Owner says they're "different, not better" - cares about quality. WHALE account if won.
-- **Pitch Angle:** "223 acres of dog paradise. That's a lot of ground to keep pristine. Let us partner with you on regular waste management so your clients get the full premium experience."
+- **Date Enriched:** 2026-02-19
+- **Notes:** MASSIVE - 223 acres with three 20-acre enclosed meadows! 3-acre lake, dock diving, Dardenne Creek access. Run by a retired veterinarian. Private membership park + boarding. Domain expired but business is active (confirmed via BBB, Yelp, Nextdoor). WHALE account if won.
+- **Pitch Angle:** "223 acres of dog paradise means 223 acres worth of waste. With your retired-vet standards, you need a partner who understands quality. Let's discuss a regular maintenance program."
 - **Assigned To:** TJ (whale account, owner-to-owner)
 
-### 28. The Doghaus Dog Park Bar
-- **Type:** Dog Bar + Dog Park (Commercial)
+### 28. The Doghaus Dog Park Bar ⭐ ENRICHED
+- **Type:** Dog Bar + Dog Park (Sports Bar + Off-Leash Area)
 - **Contact:** Management
-- **Phone:** See website
-- **Address:** 1800 South 10th Street, St. Louis, MO 63104 (Soulard)
+- **Phone:** (314) 620-0848 ✅
+- **Address:** 1800 S. 10th Street, Soulard, MO 63104
 - **Website:** https://www.thedoghaussoulard.com/
-- **Status:** New
+- **Hours:** Mon: Closed, Tue-Fri: 4pm-1:30am, Sat: 11am-1:30am, Sun: 11am-12am
+- **Features:** Full bar, rotating beer list, 63" TVs, off-leash dog area, memberships + day passes, upstairs event space
+- **Status:** New - READY TO CALL
 - **Date Added:** 2026-02-18
-- **Notes:** Dog-themed bar with off-leash dog area in Soulard. Memberships + day passes. Patio + indoor + outdoor dog area. High traffic = high waste. Bar/restaurant clientele = image matters A LOT.
-- **Pitch Angle:** "Your customers come for craft cocktails and canine companionship. Nobody wants dog waste killing the vibe. Let us keep your outdoor area spotless."
+- **Date Enriched:** 2026-02-19
+- **Notes:** St. Louis' 1st Dog Park Sports Bar! Soulard location = high foot traffic. Hosts events (Superbowl, Mardi Gras Pet Parade). Bar/restaurant clientele = image matters A LOT. Weekend brunch hours mean families with dogs.
+- **Pitch Angle:** "People come to The Doghaus for craft cocktails and canine companionship. Nothing kills that vibe like stepping in something. Let us keep your outdoor dog area spotless so every visit is 5-star."
 - **Assigned To:** Jamie
 
 ### 29. City of St. Louis Parks Department

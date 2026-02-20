@@ -4,6 +4,273 @@
 
 ---
 
+### 10:00 PM (Feb 19) — Execution Tracker Dashboard ⚙️🎯
+**Type:** Hourly (⚙️ Systems)
+**Goal:** Create visibility into what ACTUALLY gets deployed vs what gets built (close the vanity-to-real gap Chief identified)
+
+**Chief's Reality Check:**
+- 85+ assets built
+- 0 confirmed deployments
+- 0 confirmed new customers
+- This is the core problem: great arsenal, no execution tracking
+
+**Deliverables:**
+1. **execution-tracker.json** — Real-time tracking data
+   - Categories: Ads Posted, Leads Called, Reviews Requested, Customers Added, GBP Setup
+   - Weekly progress by day
+   - North Star tracking (25-30 customers by Aug 2025, currently at 5 = 17%)
+   - Pending items for each category
+
+2. **execution.html** — Visual dashboard page
+   - "Reality Check" banner (85 built vs 0 deployed)
+   - Progress bar toward north star goal
+   - Category cards with deployed/pending counts
+   - Weekly activity grid (Mon-Sun)
+   - CTA with quick actions and time estimates
+
+3. **Notion Sync Complete** — Cleared Chief's 4 pending items
+   - 7-Day Posting Calendar ✅
+   - EOD Summary Feb 19 ✅
+   - Lead Platforms Guide ✅
+   - Win-Back Scripts ✅
+
+**How It Works:**
+- TJ tells Franklin what he did ("Posted 2 ads to Florissant group")
+- Franklin updates execution-tracker.json
+- Dashboard reflects real-time progress
+- Chief can verify actual deployment rate
+
+**Impact:**
+- No more hiding behind vanity metrics
+- Clear visibility into build→deploy gap
+- Weekly progress creates accountability
+- North Star always visible
+
+**Files:**
+- `dashboard/execution-tracker.json`
+- `dashboard/execution.html`
+- `dashboard/index.html` (Quick Links + Franklin's Work updated)
+- `memory/notion-uploads.md` (4 syncs logged)
+
+---
+
+### 08:00 PM (Feb 19) — Commercial Lead Enrichment Batch 🐕💰
+**Type:** Hourly (🐕 Tidy Tails - Commercial Sales)
+**Goal:** Enrich high-priority commercial leads with phone numbers, emails, and pitch angles so Jamie can actually CALL them
+
+**Leads Enriched (7 total, 1 marked closed):**
+
+| # | Business | Phone | Type | Priority |
+|---|----------|-------|------|----------|
+| 1 | Mills Properties | (314) 721-8000 | Property Mgmt - 40 yrs, pet-friendly, dog parks | 🐋 WHALE |
+| 5 | No Leash Needed | 8 phones (all locations) | Dog Daycare - 8 STL locations | 🐋 WHALE |
+| 22 | STL Animal Emergency | (314) 822-7600 / (636) 240-5496 | 24/7 Vet - 2 locations | Ready |
+| 25 | Treecourt Unleashed | (314) 930-5753 | Premium Dog Park - 11 acres | 💎 PREMIUM |
+| 27 | Canine Country Kennel | (636) 398-8558 | Premium Park - 223 ACRES | 🐋 WHALE |
+| 28 | The Doghaus | (314) 620-0848 | Dog Bar/Park - Soulard | Ready |
+| 26 | Happy Hounds | N/A | ❌ CLOSED FOR BUSINESS | Remove |
+
+**Key Findings:**
+- **Mills Properties** explicitly states "majority of communities are PET FRIENDLY and many offer DOG PARKS" - perfect fit
+- **No Leash Needed** has 8 separate locations with outdoor play yards - multi-site contract opportunity
+- **Canine Country Kennel** still operating (223 acres!) despite domain expiring - found via Yelp/BBB/Nextdoor
+- **Happy Hounds Playground** CLOSED - website confirms "Closed for Business, no memberships"
+
+**Impact:**
+- 6 leads now have actionable phone numbers (7 if counting all No Leash locations = 13 phone numbers)
+- Jamie can start calling tomorrow AM
+- Whale accounts identified for TJ's personal outreach
+
+**Files Updated:**
+- `memory/leads-commercial.md` - All enrichment data added with ⭐ ENRICHED tags
+
+---
+
+### 07:00 PM (Feb 19) — Lead Acquisition Platforms Guide 🎯
+**Type:** Hourly (🐕 Tidy Tails)
+**Goal:** Research WHERE pet waste customers actually come from and which platforms are worth TJ's time
+
+**The Problem:**
+TJ could waste hours signing up for lead platforms that don't even have pet waste removal as a category. Needed research to separate winners from time-wasters.
+
+**Research Findings:**
+
+| Platform | Status | Verdict |
+|----------|--------|---------|
+| **Google Business Profile** | ✅ WORKS | 118 calls/month FREE - CRITICAL |
+| **Facebook Ads** | ✅ WORKS | 10,000+ leads possible, #1 paid channel |
+| **Facebook Groups** | ✅ WORKS | Free, 2-3 posts/week, still works for 7-figure businesses |
+| **Angi/HomeAdvisor** | ✅ WORKS | Has pet waste category, pay per lead |
+| **Google Ads** | ✅ WORKS | Captures intent, use after GBP set up |
+| **Nextdoor** | ✅ WORKS | Free, warm neighborhood leads |
+| **Thumbtack** | ❌ SKIP | No pet waste category (404 on search) |
+| **TaskRabbit** | ❌ SKIP | Task-based, not recurring services |
+| **Care.com** | ❌ SKIP | Pet sitting only, no waste removal |
+
+**Key Stat from Competitor Research:**
+Swoop Scoop (7-figure pet waste business) generated:
+- 10,000+ leads from Facebook ads alone
+- 487 new customers in ONE MONTH
+- 118 phone calls/month from optimized GBP
+
+**Deliverables:**
+1. `dashboard/docs/LEAD_PLATFORMS_GUIDE.md` — Full research doc (10KB)
+2. `dashboard/templates/lead-platforms-guide.html` — Branded template (20KB)
+3. `dashboard/pdfs/LEAD_PLATFORMS_GUIDE.pdf` — Print-ready PDF (796KB)
+
+**What TJ Saves:**
+- Hours not wasted on Thumbtack/TaskRabbit signups
+- Clear priority order (GBP first, FB groups second, paid ads third)
+- ROI math already done ($100/mo customer = $1,200 LTV)
+- 4-week implementation roadmap
+
+**Source:** ScoopStart.com (Poop Scoop Millionaire community), Swoop Scoop case study
+
+---
+
+### 06:00 PM (Feb 19) — Consulting Prospect Research: Day 1 Electricians ⚡
+**Type:** Hourly (🤖 Consulting)
+**Goal:** Research Day 1 outreach targets so TJ can just send
+
+**Problem Solved:**
+The outreach system had 5 prospects listed but no actual research done. TJ would have to spend 25+ minutes researching each one before sending. Now it's done.
+
+**Prospects Researched:**
+
+| # | Business | Fit | Key Insight |
+|---|----------|-----|-------------|
+| ⭐1 | Tez The Electrician | 10/10 | Started 2024, solo, needs EVERYTHING |
+| ⭐2 | RECON Electric | 9/10 | Family-owned 2002, website has typos ("causal" vs "casual"), great reviews not leveraged |
+| 🟡3 | Southwestern Electric | 8/10 | Since 1948, website has broken template sections ("Nature's Symphony"), dated |
+| 🟡4 | STL Electrical Solutions | 8/10 | Small family, but competing on "affordable" = race to bottom |
+| 🟠5 | Streib Company | 6/10 | Tom Streib owner, 5 divisions, might be too sophisticated |
+
+**Deliverables:**
+1. Full markdown research doc: `dashboard/docs/CONSULTING_PROSPECT_RESEARCH_DAY1.md`
+2. Branded HTML template: `dashboard/templates/consulting-prospect-research-day1.html`
+3. Pre-written personalized email for EACH prospect
+4. Key pain points and hooks identified
+5. Quick reference table with contact info
+
+**Time for TJ to send all 5:** ~15 minutes (just customize and send)
+
+**Best Prospect:** Tez The Electrician — started 2024, building his own name, needs everything marketing-wise. This is TJ's ideal client.
+
+**Files:**
+- `dashboard/docs/CONSULTING_PROSPECT_RESEARCH_DAY1.md`
+- `dashboard/templates/consulting-prospect-research-day1.html`
+- Dashboard updated with link
+
+---
+
+### 05:00 PM (Feb 19) — Weekend Sprint PHONE CARDS 📱
+**Type:** Hourly (🎬 Content)
+**Goal:** Make weekend execution FRICTIONLESS — everything on TJ's phone
+
+**The Problem:**
+- Weekend Sprint PDF is great but requires TJ to have it open on a computer
+- References multiple files (SPRING_CLEANING_CAMPAIGN.pdf, CRAIGSLIST_GUIDE.pdf, etc.)
+- In the real world, TJ is on his phone while posting to FB/Craigslist
+
+**The Solution:**
+Created 3 phone-optimized cards (one per day) that TJ can screenshot and have ON HIS PHONE all weekend:
+
+**Friday Card (Setup Day):**
+- Claim GBP instructions
+- Spring Ad #1 copy (ready to paste)
+- FB Group post reminder
+- Jamie's Top 5 leads WITH PHONE NUMBERS:
+  - Dogtopia (Nick): (314) 230-8181
+  - Happy Tails Inc: (314) 291-3647
+  - Watering Bowl: (636) 486-2606
+  - City Paws Vet: (314) 644-0404
+  - Big Bend Vet: (314) 781-6121
+
+**Saturday Card (Momentum Day):**
+- Review request script (copy-paste)
+- Craigslist ad copy inline
+- Spring Ad #2 copy (BBQ Test)
+- Shed ad copy for Marketplace
+- Jamie 3 calls reminder with tracking checkboxes
+
+**Sunday Card (Victory Day):**
+- Review text #2 and #3
+- Spring Ad #3 (tax refund)
+- Craigslist renew reminder
+- Shed IG story template
+- Weekend success checklist
+
+**Design:**
+- Phone-sized (375px) cards with rounded corners
+- Color-coded: Blue (Friday), Orange (Saturday), Green (Sunday)
+- Large checkboxes for finger-tapping
+- All ad copy INLINE — no hunting for other files
+- Progress dots showing day 1/2/3 of weekend
+
+**Files Created:**
+- `dashboard/templates/weekend-phone-cards.html` (19KB)
+- `dashboard/pdfs/WEEKEND_SPRINT_PHONE_CARDS.pdf` (653KB)
+
+**Dashboard:** Added to top of Franklin's Work with pulsing gold highlight
+
+**Why This Matters:**
+The Weekend Sprint is a great PLAN. These phone cards make it an EXECUTION TOOL that fits in TJ's pocket. No computer needed. No file hunting. Just screenshot → check boxes → done.
+
+---
+
+### 04:00 PM (Feb 19) — Weekend Deployment Sprint 🚀⚡
+**Type:** Hourly
+**Goal:** Force execution — convert 57+ assets into ACTION
+
+**What I Did:**
+- Identified the real problem: We have 45+ PDFs, 50+ ads, 34 leads... but minimal deployment
+- Created a dead-simple, PRINTABLE 3-day execution plan for this weekend (Feb 21-23)
+- Built with checkboxes so TJ can literally print it and check off items
+
+**The Plan:**
+| Day | Time | Key Actions |
+|-----|------|-------------|
+| **Friday** | 30 min | Claim GBP + Post Spring Ad #1 + FB Group post + Send Jamie 5 leads |
+| **Saturday** | 45 min | Text 1 customer for review + Craigslist + Spring Ad #2 + Shed ad + Jamie makes 3 calls |
+| **Sunday** | 20 min | Text 2 more for reviews + Spring Ad #3 + Renew Craigslist + Shed Instagram + Jamie finishes 5 calls |
+
+**Weekend Success Metrics:**
+- [ ] Google Business Profile CLAIMED
+- [ ] 3 Spring ads posted (Week 1 of campaign started)
+- [ ] 3 reviews requested (target: 1-2 in)
+- [ ] 5 commercial calls made (Jamie's first outreach)
+- [ ] Craigslist listing live (free channel)
+- [ ] 1 shed ad on Marketplace
+
+**Copy-Paste Ads Included:**
+1. Winter Thaw Reality — "All that frozen dog poop? It's thawing."
+2. BBQ Test — "Would you host a cookout in your backyard RIGHT NOW?"
+3. Tax Refund Combo — "Got your tax refund? Skip the shoes. Fix your yard."
+
+**Files Created:**
+- `dashboard/docs/WEEKEND_DEPLOYMENT_SPRINT.md` (5.7KB)
+- `dashboard/templates/weekend-sprint.html` (19.2KB)
+- `dashboard/pdfs/WEEKEND_DEPLOYMENT_SPRINT.pdf` (633KB, 4 pages)
+
+**Dashboard Updates:**
+- Added to Franklin's Work section (TOP entry, pulsing gold, marked as NEW)
+- 2.5 hours total commitment across 3 days
+- $0 cost, 6 lead-generating actions
+
+**Why This Matters:**
+We've been building for 3 days straight. Incredible arsenal. But TJ has deployed maybe 3 of the 57 assets. This weekend is about FORCING execution with a "just follow this" guide. No more "what should I do?" — the answer is: **this checklist, these 3 days, 2.5 hours total.**
+
+**Impact:** If TJ follows this sprint:
+- GBP goes live → Free lead source forever
+- 3+ ads posted → Spring campaign rolling
+- 5 commercial calls → Potential $500+/mo accounts
+- 2+ reviews requested → Social proof building
+- Craigslist live → New free channel
+
+This is the difference between "having a marketing plan" and "doing marketing."
+
+---
+
 ### 03:00 PM (Feb 19) — Spring Cleaning Blitz Campaign 🐕🌸
 **Type:** Hourly
 **Goal:** Tidy Tails customer acquisition (seasonal campaign)
@@ -1359,3 +1626,70 @@ Until now, ads had nowhere to send people. Now every ad can include a link to a 
 - dashboard/docs/JAMIE_ENRICHED_LEADS_FEB19.md
 - memory/leads-commercial.md (updated with enriched data)
 
+
+---
+
+### 09:00 PM (Feb 19) — Competitor Intelligence Report 🎯🕵️
+**Type:** Hourly (🐕 Tidy Tails)
+**Goal:** Know the competition. Beat the competition.
+
+**What I Did:**
+- Deep-dived on 7 St. Louis pet waste removal competitors
+- Analyzed pricing, websites, social media, positioning
+- Created comprehensive intelligence report
+
+**Competitors Analyzed:**
+
+| Competitor | Type | Threat | Key Insight |
+|------------|------|--------|-------------|
+| Poop 2 Scoop | Local | 🟡 MEDIUM | $18/week (28% cheaper than TJ), decent website, 32 FB likes |
+| Yucko's | Local | 🟢 LOW | 36 years in business, but 1995 website, commercial focus |
+| Poopy Paws | Local | 🟡 MEDIUM | 358 FB likes (social "leader"), weak website |
+| Dirty Dog Wash | Local | 🟢 LOW | Bundled with grooming, $95/mo (similar to TJ), niche |
+| Pawfect Waste | Local | ☠️ DEAD | 404 ERROR - website down, out of business |
+| DoodyCalls | Franchise | 🟡 MEDIUM | National brand, impersonal, quote-based |
+| POOP 911 | Franchise | 🟡 MEDIUM | National franchise, good SEO, impersonal |
+
+**Key Findings:**
+
+1. **TJ is PREMIUM priced** — $25/week vs $18/week (Poop 2 Scoop)
+   - Must compete on VALUE, not price
+   - Position as personal touch, reliability, quality
+
+2. **Social media is WEAK across ALL competitors**
+   - "Leader" has only 358 FB likes
+   - TJ can dominate this space with consistent posting
+
+3. **One competitor is DEAD**
+   - Pawfect Waste Solutions website = 404 error
+   - Their customers are orphaned and searching
+   - Free market share to capture
+
+4. **Websites are mostly terrible**
+   - Yucko's looks like 1995
+   - Modern website = instant credibility advantage
+
+5. **Franchises are impersonal**
+   - DoodyCalls and POOP 911 are corporate
+   - TJ can out-personalize them
+
+**Strategic Recommendations:**
+1. Own social media (3x/week posting, before/afters)
+2. Don't compete on price — compete on VALUE
+3. Steal Pawfect's orphaned customers
+4. Claim Google Business Profile (weak competitor presence)
+5. Beat franchises with personality
+
+**Files Created:**
+- `dashboard/docs/COMPETITOR_INTELLIGENCE_STLOUIS.md` (8.7KB strategy doc)
+- `dashboard/templates/competitor-intelligence.html` (20.2KB branded template)
+- Dashboard updated with link (top of Franklin's Work)
+
+**Why This Matters:**
+We've been building blind. Now we know:
+- Who we're competing against
+- Their pricing (TJ is premium)
+- Their weaknesses (social, websites, personalization)
+- Where to attack (dead competitor, weak social presence)
+
+TJ can DOMINATE this market with consistent execution. The competition is weak.

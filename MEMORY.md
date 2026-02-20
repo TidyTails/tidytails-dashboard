@@ -103,6 +103,7 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - **Fix first, report after** — don't ask if I should fix something obvious
 - **Security updates** — implement overnight without asking (OpenClaw, Anthropic, OpenAI news)
 - **Use the token budget** — work hard, don't coast
+- **Skill implementation** — don't ask "where should this go?" → map to goals, pick highest ROI application, implement it, explain reasoning after
 
 ## Franklin's Email
 - **Address:** agentfranklin74@gmail.com
@@ -213,10 +214,15 @@ If `git push` fails, diagnose and fix immediately. TJ can only see what's pushed
 
 ## Hourly Task Process (MANDATORY)
 After EVERY hourly task:
-1. Update `dashboard/index.html` (Franklin's Work section)
-2. Update `docs/FRANKLINS_WORK_LOG.md`
-3. Check `memory/hourly-task-rotation.md` for balance across business areas
-4. Git push to sync dashboard
+1. **Add to PROPER document section** in `dashboard/index.html` (e.g., Consulting docs go in Consulting section, NOT just Franklin's Work)
+2. Update Franklin's Work section with link
+3. Update `docs/FRANKLINS_WORK_LOG.md`
+4. Check `memory/hourly-task-rotation.md` for balance across business areas
+5. Sync to Notion (use auto-notion-sync skill)
+6. Git push to sync dashboard
+
+**⚠️ CRITICAL: Every hourly output MUST appear in the appropriate industry section with a working link. Franklin's Work is a LOG, not the primary location. If TJ clicks on Consulting → Sales Tools, the latest tools should BE THERE.**
+
 **Rotation areas:** 🐕 Tidy Tails | 🏠 Sheds | 🤖 Consulting | 🎬 Content | ⚙️ Systems
 
 ## Chief - The Oversight Agent
