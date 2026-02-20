@@ -4,6 +4,49 @@
 
 ---
 
+## Feb 20, 2026
+
+### 01:00 AM — 🐕 Tidy Tails
+**Friday Whale Hunt — Top 5 Commercial Accounts Call Sheet**
+- Created fresh call sheet for Feb 20 with the 5 biggest whale accounts
+- All have phone numbers ready:
+  1. Canine Country Kennel — 223 ACRES! (636) 398-8558 (Dr. William Dierberg)
+  2. Mills Properties — 15+ pet-friendly communities (314) 721-8000
+  3. Treecourt Unleashed — 11-acre premium dog park (314) 930-5753 (Wayne Hubb)
+  4. No Leash Needed — 8 locations starting with Rock Hill (314) 476-1817
+  5. Dogtopia Rock Hill — 2 locations same owner Nick Losciuto (314) 230-8181
+- Each lead has:
+  - Direct phone number
+  - Contact name when available
+  - Custom opening script
+  - Objection handlers
+  - "Why This Is Huge" context
+- Call tracking table for Jamie to mark results
+- Value reminder: ONE whale = $6K-38K/year potential
+- Dashboard: pdfs/JAMIE_CALL_SHEET_FEB20.pdf (617KB)
+- Updated Today's Actions section with new link
+- **One closed whale = 10+ residential customers. Go hunt.**
+
+---
+
+### 12:00 AM — ⚙️ Systems
+**Morning Briefing (Day 4) — EXECUTE OR IT'S ALL THEATER**
+- Created Friday Morning Briefing with hard truth: 85 built vs 0 deployed
+- Included:
+  - Reality check stats table
+  - 3 Friday action options (3-15 min each)
+  - Whale leads with phone numbers (Mills Properties, No Leash Needed, Canine Country)
+  - TuffShed financing promos (9.99% APR, 6-month same-as-cash)
+  - News: Small Business AI Training Act of 2026 reintroduced
+  - 2 business ideas (pet waste stations, shed organization consulting)
+  - Weekend Sprint preview (2.5 hours total)
+- Theme: Pick ONE thing, do it today
+- Branded PDF: 21MB
+- Dashboard: pdfs/MORNING_BRIEFING_2026-02-20.pdf
+- **This is the inflection point — assets don't work unless deployed**
+
+---
+
 ## Feb 19, 2026
 
 ### 6:00 PM — 🤖 Consulting

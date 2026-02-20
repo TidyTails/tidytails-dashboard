@@ -367,6 +367,14 @@ sessions_spawn:
 - **Use:** Discovery call scripts, prospect scoring, false positive detection
 - **Based on:** Rico's Eisenmann/Mom Test research
 
+### pitcher (Built Feb 20, 2026)
+- **Purpose:** Create investor pitch decks using Sequoia Capital 10-slide framework
+- **Location:** `skills/pitcher/`
+- **Output:** `dashboard/pitch-decks/`
+- **Use:** Pitch decks, investor presentations, business plan summaries
+- **Slides:** Company Purpose → Problem → Solution → Why Now → Market Size → Competition → Product → Business Model → Team → Financials
+- **First Use:** Tidy Tails pitch deck (687KB PDF)
+
 ## Content Sources
 - TJ's Facebook Marketplace: https://www.facebook.com/marketplace/profile/100018737295677/
 - Tidy Tails Facebook: https://www.facebook.com/share/18FWk4b3gu/
@@ -414,6 +422,7 @@ TJ sees Tidy Tails as a **training ground** for:
 - 2026-02-16: Major brain dump session, learned full TJ profile and vision
 - 2026-02-17: Day 1 output — 18 tasks, 27 docs, 21 ads, 24 commercial leads
 - 2026-02-18: Day 2 output — 22+ tasks, 3 new skills, full customer lifecycle coverage
+- 2026-02-19: Day 3 output — 22+ tasks, Execution Tracker, Competitor Intel, 6 whale leads enriched
 
 ---
 
@@ -492,3 +501,82 @@ Built the full customer journey for Tidy Tails:
 - **Morning = briefings + execution assets** (call sheets, post batches)
 - **Afternoon = creative work** (ad copy, campaigns, content)
 - **Evening = documentation** (EOD summaries, memory consolidation)
+
+---
+
+## 📊 Day 3 Learnings (Feb 19, 2026)
+
+### The Hard Truth: Build vs Deploy Gap
+**Day 3 forced an honest reckoning:**
+- 85+ assets built across 3 days
+- 0 confirmed customer-facing deployments
+- 5 customers → still 5 customers
+
+This isn't a content problem anymore. It's an execution problem.
+
+### New Systems Built
+
+**Execution Tracker Dashboard** (`dashboard/execution.html`)
+- Shows build vs deploy gap clearly: "85 built, 0 deployed"
+- Tracks: Ads Posted, Leads Called, Reviews Requested, Customers Added, GBP Status
+- Weekly grid shows actual activity by day
+- North Star always visible: "17% of goal (5/30 customers)"
+
+**Competitor Intelligence Report** (9 PM)
+- Deep-dived 7 St. Louis pet waste competitors
+- Found **Pawfect Waste Solutions is DEAD** (404 website) — opportunity to capture
+- TJ is premium priced ($25/week vs $18-22 average)
+- Social media presence WEAK across all competitors
+- Strategic recommendations: own social, don't compete on price, target dead competitor's customers
+
+### Commercial Leads Enriched (8 PM)
+7 leads now have actionable phone numbers:
+
+| Lead | Phone | Why Priority |
+|------|-------|--------------|
+| Mills Properties | (314) 721-8000 | 🐋 WHALE — 40 yrs, pet-friendly properties |
+| No Leash Needed | 8 locations | 🐋 WHALE — 8 outdoor play yards |
+| Canine Country Kennel | (636) 398-8558 | 🐋 WHALE — 223 ACRES |
+| Treecourt Unleashed | (314) 930-5753 | 💎 Premium — 11 acre dog park |
+| STL Animal Emergency | (314) 822-7600 | Ready — 24/7 vet, 2 locations |
+| The Doghaus | (314) 620-0848 | Ready — dog bar in Soulard |
+
+**Happy Hounds confirmed CLOSED** — removed from list.
+
+### Asset Inventory (Day 3 End)
+| Category | Count |
+|----------|-------|
+| PDFs Generated | 60+ |
+| Commercial Leads | 40+ (6 whale accounts phone-ready) |
+| Tidy Tails Ads | 35+ |
+| Shed Ads | 35+ |
+| Skills Built | 14 |
+| Video Scripts | 20+ |
+| Chief Checks | 24 (100/100 health) |
+
+### Dashboard Improvements
+- **Collapsible sections** by business area (TJ requested — things were scattered)
+- **Today's Actions** expanded, reference material collapsed
+- **Execution.html** added to track deployments
+- Structure: Action items → Categories → Archive
+
+### What Day 3 Taught Me
+1. **Arsenal is complete.** Stop building, start deploying.
+2. **Vanity metrics feel good but don't pay.** "85 assets" means nothing if none are live.
+3. **Execution Tracker forces honesty.** Can't hide behind productivity theater.
+4. **Weekend Sprint is ready.** 21 minutes of TJ's time could start the flywheel:
+   - Post 1 ad to FB group (3 min)
+   - Call 1 whale lead (15 min)
+   - Text 1 customer for review (3 min)
+
+### What Needs to Happen Now
+**Human execution required:**
+- [ ] TJ: Post 1 Spring Cleaning ad to FB group
+- [ ] TJ: Claim Google Business Profile
+- [ ] TJ: Text existing customers for reviews
+- [ ] Jamie: Call 1 enriched whale lead
+
+**Systems are ready. Humans need to pull the trigger.**
+
+### Key Dates Updated
+- 2026-02-19: Day 3 — 22+ tasks, Execution Tracker, Competitor Intel, Lead Enrichment, reality check on build vs deploy gap

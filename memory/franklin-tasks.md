@@ -4,6 +4,155 @@
 
 ---
 
+### 01:00 AM (Feb 20) — Friday Whale Hunt 🐕🐋
+**Type:** Hourly (🐕 Tidy Tails)
+**Goal:** Create call sheet focused on highest-value commercial accounts
+
+**The Work:**
+Created Friday Whale Hunt call sheet targeting the 5 biggest commercial accounts:
+
+1. **CANINE COUNTRY KENNEL** — 223 ACRES!!! 🐋🐋🐋
+   - Phone: (636) 398-8558
+   - Contact: Dr. William Dierberg (retired vet owner)
+   - Potential: $500-1000/month
+
+2. **MILLS PROPERTIES** — 15+ pet-friendly communities 🐋🐋
+   - Phone: (314) 721-8000
+   - Management Company of the Year 2024
+   - Multi-property contract potential
+
+3. **TREECOURT UNLEASHED** — 11-acre premium park 🐋
+   - Phone: (314) 930-5753
+   - Contact: Wayne Hubb (Owner)
+   - $360/year memberships, owner cares about quality
+
+4. **NO LEASH NEEDED** — 8 locations! 🐋
+   - Start with Rock Hill: (314) 476-1817
+   - Prove value at one → expand to all 8
+   - $200-400/site/month potential
+
+5. **DOGTOPIA ROCK HILL** — 2 locations same owner 🐋
+   - Phone: (314) 230-8181
+   - Contact: Nick Losciuto (Owner)
+   - Owner makes decisions, no corporate
+
+**Each Lead Has:**
+- Direct phone number
+- Custom opening script
+- Objection handlers
+- "Why This Is Huge" context
+- Call tracking table
+
+**Value Reminder:**
+- ONE whale = 10+ residential customers
+- Large dog park: $6K-12K/year
+- Multi-site daycare: $19K-38K/year
+
+**Impact:**
+- Uses newly enriched data from Feb 19 8PM task
+- Highest-revenue leads ready for Jamie to call TODAY
+- One closed deal could hit 20% of annual goal
+
+**Files Created:**
+- `dashboard/docs/JAMIE_CALL_SHEET_FEB20.md`
+- `dashboard/pdfs/JAMIE_CALL_SHEET_FEB20.html`
+- `dashboard/pdfs/JAMIE_CALL_SHEET_FEB20.pdf` (617KB)
+- Updated `dashboard/index.html` (Today's Actions + Franklin's Work + quickAction)
+- Updated `docs/FRANKLINS_WORK_LOG.md`
+
+---
+
+### 12:00 AM (Feb 20) — Morning Briefing (Day 4) ⚙️☀️
+**Type:** Hourly (⚙️ Systems)
+**Goal:** Create Friday Morning Briefing to drive weekend execution
+
+**The Work:**
+Created comprehensive Day 4 briefing with theme "EXECUTE OR IT'S ALL THEATER"
+
+1. **Reality Check Section** — Hard truth stats
+   - 85+ assets built vs 0 deployed
+   - 5 customers (17% of goal)
+   - 25 customers needed in 5 months
+
+2. **Friday Action Options** (pick ONE, do it today)
+   - Option A: Post 1 ad to FB group (3 min)
+   - Option B: Text 1 customer for review (3 min)
+   - Option C: Have Jamie call 1 whale lead (15 min)
+
+3. **Whale Leads Phone-Ready**
+   - Mills Properties: (314) 721-8000 — 40 years, pet-friendly
+   - No Leash Needed: 8 locations with outdoor play
+   - Canine Country Kennel: (636) 398-8558 — 223 ACRES
+
+4. **TuffShed Promos** — Financing angles for Friday follow-ups
+   - 9.99% APR for 120 months
+   - 6-month same-as-cash
+   - RTO National no credit check
+
+5. **News** — Small Business AI Training Act of 2026 reintroduced
+   - Government validation of AI for SMBs
+   - TJ's consulting offer ahead of curve
+
+6. **Business Ideas**
+   - Pet waste station installation (add-on revenue)
+   - Shed organization consulting (pure margin upsell)
+
+7. **Weekend Sprint Preview** — 2.5 hours total
+   - Post 3 FB ads, text 5 customers, claim GBP, call 2 whales, post 1 Reel
+
+**Impact:**
+- TJ wakes up to clear, actionable briefing
+- No decision paralysis — just pick one thing
+- Weekend Sprint fully laid out
+
+**Files Created:**
+- `dashboard/docs/MORNING_BRIEFING_2026-02-20.md`
+- `dashboard/pdfs/MORNING_BRIEFING_2026-02-20.pdf` (21MB)
+- Updated `dashboard/index.html` with link
+- Updated `docs/FRANKLINS_WORK_LOG.md`
+
+---
+
+### 11:00 PM (Feb 19) — Day 3 Memory Consolidation ⚙️📝
+**Type:** Hourly (⚙️ Systems)
+**Goal:** Consolidate Day 3 learnings into long-term memory, prepare clean state for Day 4
+
+**The Work:**
+Reviewed all 22+ tasks from Day 3, extracted key learnings, and updated MEMORY.md with:
+
+1. **The Hard Truth Section** — Build vs Deploy gap documented
+   - 85+ assets built, 0 deployed
+   - This is the core insight: execution, not content, is the bottleneck
+
+2. **New Systems Documented**
+   - Execution Tracker Dashboard
+   - Competitor Intelligence findings (7 competitors, 1 dead)
+   - Commercial leads enriched (6 whale accounts with phone numbers)
+
+3. **Asset Inventory Updated**
+   - 60+ PDFs, 40+ leads, 35+ ads each vertical
+   - 14 skills built, 24 Chief checks completed
+
+4. **What Day 3 Taught Me**
+   - Arsenal is complete. Stop building, start deploying.
+   - Vanity metrics don't pay bills.
+   - Weekend Sprint could start flywheel (21 min of TJ time)
+
+5. **Key Dates Updated**
+   - Added Feb 19 entry to Key Dates section
+
+**Impact:**
+- Future sessions start with clear context
+- Day 3 insights preserved for long-term
+- Clean state for Day 4
+
+**Files Updated:**
+- `MEMORY.md` — Day 3 Learnings section added
+- `memory/2026-02-19.md` — 11 PM entry added
+- `memory/franklin-tasks.md` — This entry
+
+---
+
 ### 10:00 PM (Feb 19) — Execution Tracker Dashboard ⚙️🎯
 **Type:** Hourly (⚙️ Systems)
 **Goal:** Create visibility into what ACTUALLY gets deployed vs what gets built (close the vanity-to-real gap Chief identified)

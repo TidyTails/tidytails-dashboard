@@ -85,3 +85,4 @@ Chief uses this to verify sync with dashboard.
 - **Notion Page ID:** 30dccdb3-7d1f-81f1-8c35-e7000ed7f719
 - **Dashboard:** docs/jamie-call-sheet-feb19-8pm.md
 - **Content:** 7 enriched commercial leads with whale accounts tagged
+| 11:55 PM | 🎯 Tidy Tails Investor Pitch Deck | 🐕 Tidy Tails Resources | pdfs/TIDY_TAILS_PITCH_DECK_2026-02-20.pdf | ✅ |
