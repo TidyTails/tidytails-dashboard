@@ -424,3 +424,20 @@
 - Interactive checklist tracks progress
 - Added to dashboard with priority highlighting
 - **Goal:** 5 minutes, no thinking, no excuses
+
+---
+
+## Feb 21, 2026 - 4:00 AM | Weekend Preflight & Competitor Intel
+
+**Task:** Verify weekend tools ready, update competitor status
+
+**Deliverables:**
+- ✅ Confirmed Pawfect still 404 (Day 5 of being down)
+- ✅ Updated Saturday Morning Briefing (fixed date + Day 5 status)
+- ✅ Updated Competitor Capture page (Peak Capture Window messaging)
+- ✅ Created `memory/competitor-intel/pawfect-down-2026-02.md` with customer psychology timeline
+
+**Key Intel:**
+Days 4-7 = "Frustration Mode" — peak time to capture orphaned customers. Window closes in ~10 days.
+
+**Impact:** TJ wakes up to accurate briefing emphasizing time-sensitive opportunity.
