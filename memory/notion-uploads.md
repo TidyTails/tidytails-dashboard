@@ -86,3 +86,8 @@ Chief uses this to verify sync with dashboard.
 - **Dashboard:** docs/jamie-call-sheet-feb19-8pm.md
 - **Content:** 7 enriched commercial leads with whale accounts tagged
 | 11:55 PM | 🎯 Tidy Tails Investor Pitch Deck | 🐕 Tidy Tails Resources | pdfs/TIDY_TAILS_PITCH_DECK_2026-02-20.pdf | ✅ |
+
+| 01:06 AM | 🐋 Friday Whale Hunt — Feb 20, 2026 | 🐕 Jamie's Hub | pdfs/JAMIE_CALL_SHEET_FEB20.pdf | ✅ |
+| 04:04 AM | 🚀 3-Day AI Challenge Case Study | 🤖 AI Consulting | pdfs/3-DAY-AI-CHALLENGE-CASE-STUDY.pdf | ✅ |
+- 07:00 AM - Weekend Sprint Plan → Notion Operations ✅ (ID: 30dccdb3-7d1f-81c3-80fe-cafce1e4ba69)
+| 11:05 AM | 🎤 10-Slide AI Consulting Pitch Deck | 🤖 AI Consulting | pdfs/consulting/AI-CONSULTING-PITCH-DECK-2026-02-20.pdf | ✅ |

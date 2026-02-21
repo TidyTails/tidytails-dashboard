@@ -290,6 +290,141 @@ Darius: 636-354-7406
 
 ---
 
+### 2026-02-20 (9AM Daily Task)
+
+**Purpose:** Spring rush, shed upgrades, hunting/fishing gear, weather protection
+**PDF:** dashboard/pdfs/SHED_ADS_2026-02-20.pdf
+
+**Ad #31 - "March is Coming" (Spring Rush)**
+```
+March is 8 days away.
+
+Here's what happens in March:
+🌱 Everyone starts their spring projects
+🌱 Everyone realizes they need storage
+🌱 Everyone starts calling about sheds
+🌱 Delivery times go from 2 weeks to 6+
+
+You can be ahead of the rush.
+Or you can be IN the rush.
+
+Right now:
+✅ Delivery slots wide open
+✅ Full inventory — see dozens in stock
+✅ 0% financing if paid in 6 months
+
+Order in February → delivered before St. Patrick's Day.
+Order in April → delivered Memorial Day... maybe.
+
+Your call.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #32 - "The Upgrade" (Outgrown Shed)**
+```
+Real talk:
+
+That 8x10 shed you bought 5 years ago?
+It's full.
+
+You know it.
+You've been playing Tetris just to get the lawn mower out.
+
+Here's what people don't realize:
+Upgrading to a bigger shed doesn't mean losing the small one.
+
+Turn your small shed into:
+✔ Garden tool storage
+✔ Potting shed
+✔ Seasonal decorations only
+✔ "Overflow" for stuff that doesn't fit the new one
+
+Then get a REAL shed for the big stuff.
+
+We have 10x16, 10x20, 12x16, 12x20...
+All in stock. All with FREE delivery.
+
+🤑 Financing & rent-to-own available
+💥 No credit check options
+
+Stop playing Tetris. Get more space.
+
+Text Darius: 636-354-7406
+```
+
+**Ad #33 - "Fishing/Hunting Gear" (Sportsmen)**
+```
+Sportsmen, let's talk storage.
+
+You've got:
+🎣 Rods, reels, tackle boxes (so many tackle boxes)
+🦌 Hunting gear — camo, blinds, decoys
+🛶 Kayak or canoe taking up half the garage
+🏕️ Camping equipment (tent, coolers, chairs)
+🔫 Cleaning station you can't set up inside
+
+And it's ALL scattered:
+Some in the garage.
+Some in the basement.
+Some in the back of a closet.
+Some... you're not sure where.
+
+A dedicated gear shed:
+✔ Everything in one place
+✔ Proper ventilation for drying waders
+✔ Hooks and shelving for organized access
+✔ Space for a cleaning station
+
+Hunt season ready. Fish season ready. Always.
+
+✅ Financing & rent-to-own
+✅ FREE delivery
+✅ Dozens in stock
+
+Build your gear room.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #34 - "Weather Protection" (Investment Protection)**
+```
+Quick question:
+
+How much did you spend on your:
+🚗 Car sitting in the driveway?
+🚜 Riding mower?
+🏍️ Motorcycle?
+🛵 ATV or UTV?
+🚤 Boat?
+
+Now... how much of that is sitting outside right now?
+
+Sun. Rain. Snow. Hail. Bird "gifts."
+Every day = depreciation you can't get back.
+
+A shed protects your investment.
+
+The math:
+💰 Shed: few thousand, lasts decades
+💸 Weather damage to equipment: thousands per year
+💸 Resale value loss: even more
+
+Which makes more sense?
+
+✅ FREE delivery & setup
+✅ 0% financing available (pay in 6 months!)
+✅ Custom sizes to fit what you've got
+
+Protect your stuff. Save money long-term.
+
+Text Darius: 636-354-7406
+```
+
+---
+
 ### 2026-02-19 (9AM Daily Task)
 
 **Purpose:** Side hustle/inventory, riding mower, WFH office, kid toys
@@ -408,6 +543,119 @@ Holiday stuff contained = sanity restored
 Take your house back.
 
 Text Darius: 636-354-7406
+```
+
+---
+
+---
+
+### 2026-02-20 (2PM Hourly Task)
+
+**Purpose:** Saturday Marketplace posting pack — 5 fresh listings for Feb 22
+**HTML:** dashboard/shed-saturday-pack.html
+
+**Ad #35 - "Saturday Morning Decision" (Weekend Energy)**
+```
+Saturday morning.
+
+You've got two options:
+
+OPTION A:
+☕ Scroll Marketplace
+📱 Think about it
+🤷 "Maybe next weekend"
+📅 Repeat forever
+
+OPTION B:
+☕ Scroll Marketplace
+📞 Text me for a quote
+✅ Problem solved before lunch
+
+That garage isn't getting any bigger.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #36 - "The 12x16 Workshop" (Specific Product Focus)**
+```
+The 12x16 hits different.
+
+192 square feet of YOUR space.
+
+What fits in 12x16:
+🔧 Full workbench + tool wall
+🪑 Seating area (man cave mode activated)
+🏋️ Home gym setup
+🎨 Art studio / hobby room
+💻 Backyard office (Zoom cave)
+
+💰 $245/mo with financing
+💰 0% interest if paid in 6 months
+
+Text Darius for the walkthrough: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #37 - "Neighbor Envy" (Social Proof)**
+```
+Drive through any nice neighborhood.
+
+Count the sheds.
+
+They're everywhere.
+
+A matching shed in the backyard says:
+"This person has their life together."
+"They plan ahead."
+
+Your neighbor made the call.
+Maybe it's your turn.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #38 - "Before Mowing Season" (Urgency + Timing)**
+```
+First mow is about 6 weeks away.
+
+Right now, your lawn equipment is:
+🚜 Taking up half the garage
+🔧 Mixed in with everything else
+⛽ Gas cans "somewhere"
+
+Order in February:
+✔ Delivered in 2-3 weeks
+✔ Set up and organized
+✔ First mow = smooth operation
+
+Beat the rush. Get it done.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #39 - "Free Quote Today" (Low Commitment CTA)**
+```
+Just need a number?
+
+No problem.
+
+📏 Tell me your size needs
+📍 Tell me your location  
+💬 I give you a quote
+
+That's it.
+
+No sales pitch. No pressure.
+Just a straight answer.
+
+Text your questions to Darius: 636-354-7406
+
+I respond fast. Even on weekends.
+
+@reddshedredemption
 ```
 
 ---

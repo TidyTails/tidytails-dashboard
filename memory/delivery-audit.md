@@ -4,6 +4,22 @@ Chief records delivery verification results here during each oversight check.
 
 ## Audit History
 
+### 2026-02-20 06:03 Check (#28)
+- **Telegram → Dashboard:** ✅ All synced
+- **Hourly Updates:** ✅ 10 PDFs created Feb 20, all logged (5:04 AM Closing Scripts, 4:03 AM Case Study, etc.)
+- **Notion Sync:** ⚠️ 2 PDFs pending (LOW)
+  - MORNING_BRIEFING_2026-02-20.pdf (6+ hours old)
+  - WEEKEND_SHED_PUSH_FEB22-23.pdf (3+ hours old)
+- **Issues Found:** 2 (LOW severity)
+- **Action:** Franklin to batch-sync at next convenient window
+- **Note:** Both are internal/planning docs — low priority
+
+### 2026-02-20 04:05 Check (#27)
+- **Telegram → Dashboard:** ✅ All synced
+- **Hourly Updates:** ✅ 6 PDFs created since midnight, all logged
+- **Notion Sync:** ⚠️ 2 PDFs pending (LOW)
+- **Issues Found:** 2 (LOW severity)
+
 ### 2026-02-20 00:04 Check (#25)
 - **Telegram → Dashboard:** ✅ All synced
 - **Hourly Updates:** ✅ Morning Briefing Feb 20 added at 12:03 AM

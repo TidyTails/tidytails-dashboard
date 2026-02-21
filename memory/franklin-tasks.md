@@ -6,6 +6,48 @@
 
 ## February 20, 2026
 
+### 09:00 PM — 🐕 Tidy Tails (Strategic)
+**Task:** Competitor Capture Campaign  
+**Result:** STRATEGIC INTELLIGENCE + EXECUTION KIT. Confirmed competitor is DEAD — opportunity to capture orphaned customers.
+
+**Intelligence Gathered:**
+- **Pawfect Waste Solutions** (pooperscooperstl.com) → **CONFIRMED 404 ERROR**
+- Their Google/search listings still cached = people hitting dead ends
+- Window of opportunity: 30-60 days before orphaned customers lock in elsewhere
+
+**Competitive Landscape Updated:**
+| Competitor | Price | Status |
+|------------|-------|--------|
+| Poop 2 Scoop | $18/week | Active |
+| DoodyCalls | ~$20-25 | Active (franchise) |
+| POOP 911 | ~$20 | Active (franchise) |
+| **Pawfect Waste** | N/A | **☠️ DEAD** |
+| Happy Hounds | N/A | ☠️ DEAD |
+
+**Key Insight:** Poop 2 Scoop undercuts TJ ($18 vs $25/week). TJ's differentiation = reliability, same tech every time, personal service. "We don't disappear."
+
+**Deliverables:**
+- `dashboard/competitor-capture.html` — Interactive capture campaign tool
+- `dashboard/docs/COMPETITOR-CAPTURE-CAMPAIGN-2026-02-20.md` — Full strategic document
+
+**What's Included:**
+- 2 copy-paste Facebook posts targeting orphaned customers
+- Instagram story sequence (3 stories)
+- Updated competitor table with pricing
+- Weekend action checklist with progress tracking
+- Copy buttons on everything
+
+**Expected Impact:** 2-4 new customers = $200-400/month recurring revenue
+
+**Dashboard Updated:**
+- Added to Today's Actions (glowing red, pulsing)
+- Added to Franklin's Work section (top item)
+
+**Why This Matters:**
+This is actionable competitive intelligence, not just research. A dead competitor = immediate pipeline of customers actively searching for a replacement. Execute the capture campaign THIS WEEKEND while the window is open.
+
+---
+
 ### 06:00 PM — 🐕 Tidy Tails (Execution)
 **Task:** Weekend Sprint Playbook  
 **Result:** EXECUTION BIBLE CREATED. We have 85+ assets built and 0 deployed. This playbook gives TJ everything he needs to actually SHIP this weekend.
@@ -314,3 +356,40 @@
 - 🎬 Content: 1 task
 
 **Total:** 11 hourly tasks completed
+
+### 07:00 PM — 🐕 Tidy Tails
+**Task:** Weekend Sprint Kit
+**Result:** Dead-simple 21-minute execution kit — 3 copy-paste actions (review texts, FB ad, whale call)
+
+## 2026-02-20 @ 8:00 PM — Weekend Sprint Action Plan
+
+**Task:** Create focused Weekend Sprint for Feb 21-22 with copy-paste ready ads and actions.
+
+**Deliverables:**
+- `dashboard/pdfs/WEEKEND_SPRINT_2026-02-21.pdf` (429KB) — Full action plan
+- `dashboard/pdfs/WEEKEND_SPRINT_2026-02-21.html` — Source HTML
+- `dashboard/pdfs/WEEKEND_SPRINT_2026-02-21.md` — Markdown version
+
+**What It Contains:**
+- Saturday Morning (6 min): Post 1 FB ad + Text 1 customer for review
+- Saturday Afternoon (15 min): Jamie calls Mills Properties whale
+- Sunday (3 min): Post 2nd FB ad in different group
+- Copy-paste ready ads (tested Spring Cleaning angle)
+- Whale lead phone numbers with pitch scripts
+- Weekend Scorecard tracker
+- "If you only have 5 minutes" → Claim GBP
+
+**Why This Task:**
+Friday 8 PM is perfect timing to prep weekend execution. We have 85+ assets but 0 deployments. This Sprint synthesizes everything into 21 minutes of concrete action.
+
+**Dashboard Updated:**
+- Added prominent Weekend Sprint link to Today's Actions (top position)
+- Added entry to Franklin's Work log
+
+**Result:** Ready for TJ/Jamie to execute this weekend. NO thinking required, just copy-paste-send.
+
+## Feb 20, 2026 — 10:00 PM
+**Task:** GBP No-Excuses Setup Kit
+**Result:** Created `dashboard/guides/gbp-setup-kit.html` — interactive guide with copy buttons for every step. Pre-filled: business name, description (SEO-optimized), service areas, phone number, website, hours, services/prices, and review request templates. Added to dashboard with glowing highlight. Goal: Remove ALL friction so TJ can claim GBP in 5 minutes this weekend.
+**Impact:** Highest ROI quick win finally made frictionless. Every excuse eliminated.
+**Files:** `dashboard/guides/gbp-setup-kit.html`, `dashboard/index.html`

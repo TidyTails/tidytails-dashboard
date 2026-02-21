@@ -53,3 +53,4 @@
 - **Dashboard Link:** pdfs/WEEKEND_SPRINT_PLAYBOOK_2026-02-20.pdf ✅
 - **Notion:** Pending (will sync next)
 - **Purpose:** 45-minute execution plan for TJ to deploy assets this weekend
+- 2026-02-20 7:00 PM: EOD Summary Feb 20 → cartervhomes@gmail.com (emailed + PDF on dashboard)

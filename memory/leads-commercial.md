@@ -115,7 +115,7 @@ Each lead entry:
 - **Pitch:** "4,000 sq ft of outdoor play area needs professional maintenance. We keep it pristine."
 - **Assigned To:** Jamie
 
-### 8. Dogtopia Rock Hill ⭐ ENRICHED
+### 8. Dogtopia Rock Hill ⭐ ENRICHED — CALLBACK NEEDED
 - **Type:** Dog Daycare (Franchise - Owner Operated)
 - **Contact:** Nick Losciuto (Owner)
 - **Phone:** (314) 230-8181
@@ -123,9 +123,11 @@ Each lead entry:
 - **Website:** https://www.dogtopia.com/rockhill-stlouis/
 - **Hours:** M-F 6:30am-7pm, Sat 9am-5pm, Sun 9am-2pm
 - **Facility:** 7,000 sq ft total, 5,000 sq ft play space
-- **Status:** New - READY TO CALL - HIGH PRIORITY
+- **Status:** CALLBACK - Nick wasn't in on Feb 19
 - **Date Added:** 2026-02-17
 - **Date Enriched:** 2026-02-19
+- **Last Contact:** 2026-02-19 - Nick (owner) not available, need callback
+- **Next Action:** Call back Friday Feb 20 after 10 AM
 - **Notes:** Nick also owns Ellisville location = 2-site deal potential! Owner makes decisions (no corporate hoops). High standards brand focused on transparency and safety.
 - **Pitch:** "High standards facility = high standards grounds. Two locations, one vendor."
 - **Assigned To:** Jamie
@@ -766,6 +768,126 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 - **Park Forest** already invests in pet amenities — easy pitch
 - **The Rail** targets young urban dog owners — high density
 - Total leads now: 50 active
+
+---
+
+## NEW LEADS - Round 6 (Added 2026-02-20 9:00 AM)
+
+**Segments Focus:** Dog-Friendly Breweries
+**Why This Segment:** Outdoor patios with heavy dog traffic, image-conscious premium businesses, weekend crowds = lots of outdoor messes, trendy businesses that invest in experience
+
+### 51. Civil Life Brewing Company ⭐ READY TO CALL
+- **Type:** Dog-Friendly Brewery (Large Outdoor Patio)
+- **Contact:** Front of House Manager
+- **Phone:** (314) 772-4155 ✅
+- **Address:** 3714 Holt Ave, St. Louis, MO 63116 (Tower Grove South)
+- **Website:** https://www.thecivillife.com/
+- **Hours:** Tue-Sat 4pm-10pm, Sun 12pm-8pm
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-20
+- **Notes:** Listed on BringFido as pet-friendly. Large outdoor patio in hip Tower Grove South neighborhood. Local brewery = owner makes decisions.
+- **Pitch Angle:** "Your patio is one of the most dog-friendly spots in Tower Grove. But dogs + beer garden = a lot of outdoor cleanup. We can take that off your team's plate."
+- **Assigned To:** Jamie
+
+### 52. Schlafly Tap Room ⭐ READY TO CALL
+- **Type:** Dog-Friendly Brewery (ICONIC St. Louis)
+- **Contact:** Operations Manager
+- **Phone:** (314) 241-2337 ✅
+- **Address:** 2100 Locust St, St. Louis, MO 63103 (Downtown West)
+- **Website:** https://www.schlafly.com/tap-room/
+- **Hours:** Mon-Thu 11am-9pm, Fri-Sat 11am-10pm, Sun 11am-8pm
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-20
+- **Notes:** St. Louis ICON since 1991. Large outdoor patio with regular dog visitors. High visibility location. Professional operation with vendor budgets.
+- **Pitch Angle:** "Schlafly's been a St. Louis institution for 35 years. Your outdoor patio is a destination for dog owners. Let us keep it spotless."
+- **Assigned To:** Jamie
+
+### 53. Rockwell Beer Company ⭐ READY TO CALL
+- **Type:** Dog-Friendly Brewery (LARGE Biergarten)
+- **Contact:** General Manager
+- **Phone:** (314) 449-1070 ✅
+- **Address:** 1320 S Vandeventer Ave, St. Louis, MO 63110 (Forest Park Southeast)
+- **Website:** https://www.rockwellbeer.com/
+- **Hours:** Tue-Thu 4pm-10pm, Fri 3pm-11pm, Sat 12pm-11pm, Sun 12pm-8pm
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-20
+- **Notes:** One of the LARGEST outdoor patios in St. Louis. Top dog-friendly brewery on Yelp. Regular weekend crowds with dogs. Biergarten = lots of ground to maintain.
+- **Pitch Angle:** "Your biergarten is massive. That's a lot of ground, and a lot of dogs visiting. We specialize in keeping large outdoor areas clean."
+- **Assigned To:** Jamie
+
+### 54. Side Project Brewing ⭐ DOGS INSIDE!
+- **Type:** Dog-Friendly Brewery (Dogs Allowed INSIDE - Rare!)
+- **Contact:** Operations
+- **Phone:** (314) 224-5211 ✅
+- **Address:** 7458 Manchester Rd, Maplewood, MO 63143
+- **Website:** https://www.sideprojectbrewing.com/
+- **Hours:** Thu-Sat 12pm-9pm, Sun 12pm-6pm
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-20
+- **Notes:** One of the few breweries that lets dogs INSIDE. Maplewood trendy area. Nationally recognized premium brewery. Very dog-forward business.
+- **Pitch Angle:** "You're one of the few breweries that lets dogs come inside — you clearly care about dog owners. Let us handle outdoor maintenance so every part matches that standard."
+- **Assigned To:** Jamie
+
+### 55. Perennial Artisan Ales ⭐ READY TO CALL
+- **Type:** Dog-Friendly Brewery (Award-Winning)
+- **Contact:** Taproom Manager
+- **Phone:** (314) 631-7300 ✅
+- **Address:** 3000 Lockwood Ave, St. Louis, MO 63143 (Webster Groves area)
+- **Website:** https://www.perennialbeer.com/
+- **Hours:** Thu-Fri 3pm-8pm, Sat 12pm-8pm, Sun 12pm-6pm
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-20
+- **Notes:** Nationally recognized award-winning craft brewery. Large outdoor patio. Quality-focused business = quality-focused grounds.
+- **Pitch Angle:** "Perennial has national recognition for quality beer. Your outdoor space should match that reputation."
+- **Assigned To:** Jamie
+
+### 56. 4 Hands Brewing Company ⭐ HIGH TRAFFIC
+- **Type:** Dog-Friendly Brewery (Popular/High Volume)
+- **Contact:** Front of House
+- **Phone:** (314) 436-1559 ✅
+- **Address:** 1220 S 8th St, St. Louis, MO 63104 (LaSalle Park)
+- **Website:** https://www.4handsbrewery.com/
+- **Hours:** Mon-Thu 12pm-9pm, Fri-Sat 12pm-10pm, Sun 12pm-7pm
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-20
+- **Notes:** One of STL's most popular breweries. High volume traffic = high dog volume. Near downtown = image-conscious. Professional operation.
+- **Pitch Angle:** "4 Hands is one of the busiest breweries in St. Louis. High traffic means lots of dogs coming through. We can keep outdoor areas pristine."
+- **Assigned To:** Jamie
+
+### 57. Urban Chestnut Brewing Company (2 LOCATIONS) ⭐ MULTI-SITE DEAL
+- **Type:** Dog-Friendly Brewery (German Bierhall - 2 Sites!)
+- **Contact:** Operations Manager
+- **Phone:** (314) 222-0143 ✅
+- **Locations:**
+  | Location | Address |
+  |----------|---------|
+  | Midtown | 3229 Washington Ave, St. Louis, MO 63103 |
+  | Grove | 4465 Manchester Ave |
+- **Website:** https://www.urbanchestnut.com/
+- **Status:** New - READY TO CALL - MULTI-SITE
+- **Date Added:** 2026-02-20
+- **Notes:** TWO locations = potential 2-site contract. German bierhall style = large outdoor areas. High weekend traffic with families and dogs. Established professional brand.
+- **Pitch Angle:** "Urban Chestnut has two locations with outdoor bierhalls — that's a lot of outdoor space to maintain. We'd love to discuss a contract covering both properties."
+- **Assigned To:** Jamie
+
+---
+
+## Dog-Friendly Brewery Notes (Added 2026-02-20)
+
+### Why This Segment Is GOLD:
+1. **Outdoor patios = dog traffic** — Weekend crowds bring their dogs
+2. **Image-conscious** — Craft breweries care about experience
+3. **Premium businesses** — Have budgets for services
+4. **Easy conversation** — "Love that you're dog-friendly!"
+5. **Nobody else pitching them** — Competitors focus on apartments/HOAs
+
+### Best Times to Call:
+- Weekday mornings BEFORE they open
+- Tuesday-Wednesday (slowest days)
+- Avoid Friday evening and weekends
+
+### Opening Script:
+"Hi, this is Jamie with Tidy Tails — we're a local pet waste removal service. I noticed you're a dog-friendly brewery, which is awesome. I was wondering if you'd ever considered having someone handle the outdoor patio cleanup? A lot of breweries are finding it's one less thing for their staff to worry about."
 
 ---
 
