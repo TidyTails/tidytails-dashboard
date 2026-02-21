@@ -129,6 +129,13 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 | Time | Area | Task |
 |------|------|------|
+| 03:00 PM | 🏠 Sheds | **Friday 4PM Floor Closer — Phone-sized objection handler for late Friday showroom browsers (Spouse, Think About It, Price, Just Looking, Install Timing), psychology tips, Weekend Commitment Close, Monday follow-up text, financing promos, monthly payment quick reference, success counter, USE ON THE FLOOR RIGHT NOW** |
+| 12:00 PM | 🎬 Content | **Weekend Instagram Story Blitz — 8 stories for Sat/Sun (Gearing Up, The Problem, Transformation, Lifestyle, On The Job, Proof of Work, Social Proof, The Ask), copy-paste captions, visual prompts, hashtags, progress tracker, interactive HTML with copy buttons, FORCES CONSISTENT WEEKEND CONTENT** |
+| 11:00 AM | 🤖 Consulting | **10-Slide Pitch Deck — Sequoia Capital framework for client meetings (Purpose → Problem → Solution → Why Now → Market → Competition → Product → Business Model → Team → Financials, 3 packages $997-$5,997, 166:1 LTV:CAC, Year 1 $100K projection, USE IN REAL MEETINGS, 682KB PDF)** |
+| 10:00 AM | 🐕 Tidy Tails | **Brewery Blitz Call Sheet — 7 dog-friendly breweries with phone numbers and tailored scripts (Civil Life, Schlafly, Rockwell, Side Project, Perennial, 4 Hands, Urban Chestnut — Friday morning perfect timing, new untapped segment, 605KB PDF)** |
+| 09:07 AM | 🐕 Tidy Tails | **Friday Action Pack — Zero-friction execution kit (3 copy-paste FB ads, Mills Properties whale script, review text template, interactive checklist with localStorage, copy buttons on everything, dashboard updated, 21 min total time for TJ)** |
+| 04:00 AM | 🤖 Consulting | **3-Day AI Challenge Case Study — Visual proof document (280+ assets, $29K-$94K agency value, day-by-day breakdown, ROI projection, use in outreach/LinkedIn/proposals, 682KB PDF)** |
+| 03:00 AM | 🏠 Sheds | **Weekend Shed Push (Feb 22-23) — Marketplace posting guide for Sat/Sun (Tax Refund listing, Workshop listing, Spring Install bump, financing reference, response templates, 855KB PDF)** |
 | 01:00 AM | 🐕 Tidy Tails | **Friday Whale Hunt — Top 5 commercial accounts call sheet (Canine Country 223 acres, Mills Properties 15+ communities, Treecourt 11 acres, No Leash Needed 8 sites, Dogtopia 2 sites — all phone-ready, scripts included, 617KB PDF)** |
 | 12:00 AM | ⚙️ Systems | **Morning Briefing (Day 4) — EXECUTE OR IT'S ALL THEATER (85 vs 0 reality check, whale leads phone-ready, weekend sprint preview, 21MB PDF)** |
 
@@ -161,3 +168,8 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 | 03:00 AM | ⚙️ Systems | **Execution Sprint: Feb 19-23 (10 actions, 2.5h total, shift from BUILD to DEPLOY mode)** |
 | 02:00 AM | ⚙️ Systems | **Google Marketing Strategy Research (LSA eligibility ❌, GBP priority guide, PPC later, saved TJ from dead-end channel)** |
 | 01:00 AM | 🐕 Tidy Tails | **7-Day Posting Calendar (copy-paste ready, 7 groups, 7 hook styles, just execute)** |
+
+### Feb 20, 2026 — 6:00 PM
+**Area:** 🐕 Tidy Tails (Execution)
+**Task:** Weekend Sprint Playbook
+**Result:** 605KB PDF + HTML + Markdown. Copy-paste ads, phone scripts for 3 whale leads, review request templates, GBP setup steps. 45 min total execution time for TJ across Sat+Sun.
