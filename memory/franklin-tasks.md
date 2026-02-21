@@ -6,6 +6,127 @@
 
 ## February 21, 2026 (Saturday — Execution Weekend Day 1)
 
+### 03:00 PM — 📱 LEAD RESPONSE TOOLKIT — CONVERT LEADS INTO CUSTOMERS
+**Task:** Create instant-response templates for converting leads once they reply to ads  
+**Result:** `dashboard/lead-response-toolkit.html` deployed — The missing piece in our funnel.
+
+**The Gap I Found:**
+- We have 100+ ads for GENERATING leads
+- We had ZERO templates for CONVERTING them
+- Speed to respond = 9x more likely to convert (industry stat)
+
+**What's In The Tool:**
+- **12 Copy-Paste Responses** covering:
+  - 💰 "How much do you charge?" → Full pricing breakdown
+  - 🐕🐕🐕 "I have 3+ dogs" → Multi-dog pricing, enthusiasm
+  - 🏡 "My yard is really big/messy" → No extra charge angle
+  - 📍 "What areas do you cover?" → Full service area list
+  - 📅 "When can you start?" → Lock in your spot urgency
+  - 🧹 "Do you do one-time cleanups?" → $100 flat + upsell to recurring
+  - 🤔 "I need to think about it" → Leave door open, no pressure
+  - 💸 "That's more than I expected" → Reframe to daily cost
+  - 👤 "My old service disappeared" → Competitor capture (Pawfect!)
+  - ✅ "Yes, let's do it!" → Onboarding checklist
+  - 📅 Scheduling confirmation template
+
+**Features:**
+- Copy buttons on everything (phone-optimized)
+- Pro tips for each response (psychology behind it)
+- Quick pricing reference at top ($25/$45/$70)
+- Conversion tracker (responded → quoted → scheduled → converted)
+- Phone number reminder (314-850-7140)
+- LocalStorage saves tracking between visits
+
+**Why This Matters:**
+We've been building OUTBOUND tools all week. This is the first INBOUND tool. When a lead responds "how much?" — TJ can tap copy, paste, and respond in under 30 seconds. That speed wins deals.
+
+**Dashboard Updated:**
+- Added prominent purple banner with link
+- Added to Franklin's Work section (top position)
+
+**Files Created:**
+- `dashboard/lead-response-toolkit.html` — Interactive tool
+
+---
+
+### 02:00 PM — 🎯 GBP COMPETITIVE ANALYSIS — KNOW ENEMY, BEAT ENEMY
+**Task:** Research competitor GBP profiles, pricing, and weaknesses to help TJ beat them when he claims his profile  
+**Result:** `dashboard/gbp-competitive-analysis.html` deployed — Full competitive intel with actionable positioning.
+
+**What Was Researched:**
+- **Poop 2 Scoop:** Veteran-owned, APAWS member
+  - Weekly: $18 BUT +$4/extra dog, +$4 large yard = $26+ actual
+  - Phone: 314-449-9447
+  - WEAKNESS: Nickel-and-dimes customers
+  
+- **DoodyCalls:** National franchise, 25+ years
+  - Weekly: ~$22 (quote-based)
+  - Phone: (314) 230-8082
+  - WEAKNESS: Corporate, impersonal, different tech every time
+  
+- **3 Competitors DEAD:** Pawfect (404), Poopy Paws (DNS), Fresh Paws (expired)
+  - 10-30 orphaned customers available
+  - Day 7 of capture window
+
+**Tidy Tails Advantages Identified:**
+- $25 flat = beats Poop 2 Scoop's $26+ actual cost
+- No add-on fees (2 dogs, large yard = same price)
+- Same tech every visit (beats franchise rotation)
+- $70/mo beats $72-104/mo competitors
+
+**What's In The Tool:**
+- Full competitor cards with pricing and weaknesses
+- Price comparison table (real-world scenarios)
+- SEO-optimized GBP description (copy-paste ready)
+- Keyword list for ranking
+- Review strategy (5 reviews = top 3 in local)
+- Action checklist with localStorage progress
+
+**Deliverables:**
+- `dashboard/gbp-competitive-analysis.html` — Interactive intel tool
+- `dashboard/research/gbp-competitor-intel-2026-02-21.md` — Full markdown report
+
+**Dashboard Updated:** Today's Actions + Franklin's Work section  
+**GitHub:** Pushing...
+
+---
+
+### 01:00 PM — 🔥 WEEKEND FLASH CAMPAIGN — TIME-SENSITIVE URGENCY ADS
+**Task:** Create time-sensitive ads with real deadlines that create FOMO and force decisions NOW  
+**Result:** `dashboard/tools/weekend-flash-feb21.html` deployed — 4 urgency ads with countdown timer, expires Sunday midnight.
+
+**Why This Matters:**
+- **All previous ads were evergreen** — "Call anytime" has no urgency
+- **Time-sensitive = forces decision NOW** — Can't "do it later"
+- **Saturday 1 PM = PRIME scrolling time** — People home, on phones, looking at messy yards
+- **FOMO drives action** — "Expires Sunday midnight" makes people move
+- **Keyword tracking** — Text keywords tell TJ which ads work
+
+**What's In The Tool:**
+- **4 Urgency Ad Variations:**
+  - **The Deadline Deal** — "$15 off first cleanup, expires Sunday"
+  - **The Guilt Trip** — Humor: "POV: You're STILL avoiding the backyard"
+  - **Monday Dread** — Sunday evening angle: "Start week with one thing checked off"
+  - **Weather Window** — For nice days: "Finally nice. Your yard... isn't."
+- **TEXT KEYWORDS** — WEEKEND, SATURDAY RESCUE, MONDAY PREP, FINALLY (tracks which ad worked)
+- **Live Countdown Timer** — Shows hours:minutes:seconds until Sunday midnight
+- **Copy Buttons** — One tap to copy any ad
+- **Instagram Caption** — Ready with hashtags
+- **Execution Checklist** — Progress saves to localStorage
+- **Mobile-Optimized** — Designed for phone posting
+
+**Key Insight:**
+Evergreen content is valuable but doesn't create urgency. This campaign EXPIRES. If TJ doesn't post by Sunday, the content is useless. That's the point — it forces action. And the "$15 off expires Sunday" hook forces prospects to decide NOW instead of scrolling past.
+
+**Files Created:**
+- `dashboard/tools/weekend-flash-feb21.html` — Interactive tool
+- `dashboard/campaigns/tidy-tails/2026-02-21-weekend-flash.md` — Reference doc
+
+**Dashboard Updated:** Today's Actions + Franklin's Work section  
+**GitHub:** Pushed ✅
+
+---
+
 ### 12:00 PM — 📱 REVIEW TEXT BLITZ — SOCIAL PROOF BUILDER
 **Task:** Create interactive tool for TJ to text all 5 customers asking for Google reviews  
 **Result:** `dashboard/review-text-blitz.html` deployed — 3-minute action yields 5 reviews.
