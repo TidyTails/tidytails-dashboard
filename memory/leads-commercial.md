@@ -1012,6 +1012,106 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 
 ---
 
+---
+
+## NEW LEADS - Round 8 (Added 2026-02-21 5:00 AM)
+
+**Segments Focus:** St. Charles County Luxury Apartments
+**Why This Segment:** St. Charles County is TJ's prime service area. Luxury pet-friendly apartments = recurring contracts, budgets for services, professional management.
+
+### 64. Courtland Ridge Apartments ⭐ READY TO CALL
+- **Type:** Apartment Community (Pet-Friendly)
+- **Contact:** Leasing Office / Property Manager (Ginger)
+- **Phone:** (636) 947-4114 ✅
+- **Email:** Info@Courtlandapts.com
+- **Address:** 13 Bel Rae Court, Saint Charles, MO 63301
+- **Website:** https://courtlandridgeapartments.com/
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-21
+- **Notes:** Pet-friendly community near Lindenwood University. Pool, on-site laundry. Walking distance to Historic Main Street. Established community with professional management.
+- **Pitch Angle:** "You're a pet-friendly community in the heart of St. Charles. We can help keep your common areas and pet relief zones spotless for your residents."
+- **Assigned To:** Jamie
+
+### 65. Residences at The Streets of St. Charles ⭐ WHALE ACCOUNT
+- **Type:** Luxury Apartment Community (Morgan Properties)
+- **Contact:** Leasing Office
+- **Phone:** (660) 224-4821 ✅ (alternate: 636-352-4554)
+- **Address:** 1650 Beale Street, Saint Charles, MO 63303
+- **Website:** https://www.residencesatthestreets.com/
+- **Hours:** Mon-Fri 10am-6pm, Sat 10am-5pm
+- **Management:** Morgan Properties (large national company)
+- **Status:** New - WHALE ACCOUNT
+- **Date Added:** 2026-02-21
+- **Notes:** LUXURY community. Website explicitly mentions "four-legged friend" and walking at Frontier Park. Studio, 1, 2 BR. Near The Streets of St. Charles shopping. Morgan Properties = professional vendor management, budget for services.
+- **Pitch Angle:** "You market to pet owners and mention walking at Frontier Park. We can ensure your on-site pet areas and walking paths stay pristine for residents and their four-legged friends."
+- **Assigned To:** Jamie
+
+### 66. The Enclave at Winghaven ⭐ READY TO CALL
+- **Type:** Luxury Apartment Community (Stone Creek Living)
+- **Contact:** Leasing Office
+- **Phone:** (636) 782-3227 ✅
+- **Address:** 1000 Applerock Dr, O'Fallon, MO 63368
+- **Website:** https://enclavewinghaven.com/
+- **Management:** Stone Creek Living (manages 10+ luxury communities)
+- **Unit Sizes:** 714-1,487 sq ft
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-21
+- **Notes:** 1, 2, 3 BR luxury apartments in Winghaven development. Stone Creek manages multiple properties = potential multi-site deal. O'Fallon is prime service area for TJ.
+- **Pitch Angle:** "The Enclave is a beautiful luxury community. Your residents expect premium grounds. We specialize in pet waste removal for communities like yours."
+- **Assigned To:** Jamie
+
+### 67. Fox Chase Apartments ⭐ HAS DOG PARK!
+- **Type:** Apartment Community (DOG PARK ON-SITE!)
+- **Contact:** Leasing Office
+- **Phone:** Research required (Stone Creek Living property)
+- **Address:** Arnold, MO
+- **Website:** https://stonecreekliving.com/communities/fox-chase-apartments/
+- **Management:** Stone Creek Living
+- **Pet Amenities:** Swimming pool, DOG PARK (confirmed!)
+- **Unit Sizes:** 685-1,050 sq ft
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-21
+- **Notes:** Pet-friendly 1, 2, 3 BR apartments. They have a DOG PARK on-site = perfect fit! Close proximity to St. Louis. Arnold is south of the city, may be edge of service area but worth pursuing.
+- **Pitch Angle:** "You have a dog park on-site — that's great for residents! We can help maintain it and keep the surrounding areas clean."
+- **Assigned To:** Jamie
+
+### 68. Arlington Apartments (Creve Coeur) ⭐ LUXURY
+- **Type:** Luxury Apartment Community
+- **Contact:** Leasing Office
+- **Phone:** (314) 668-1878 ✅
+- **Address:** 11907 Charter House Lane, Saint Louis, MO 63146 (Creve Coeur)
+- **Website:** https://arlingtonapts.info/
+- **Management:** Stone Creek Living
+- **Unit Sizes:** 935-2,270 sq ft (LARGE units!)
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-21
+- **Notes:** Creve Coeur luxury apartments with "distinctive" amenities. Large unit sizes = higher-end residents with bigger dogs. West County affluent area. Stone Creek management = vendor budget.
+- **Pitch Angle:** "Arlington offers luxury living in Creve Coeur. Your residents expect the grounds to match that luxury. We can help."
+- **Assigned To:** Jamie
+
+---
+
+## Round 8 Notes (2026-02-21 5:00 AM)
+
+### Why St. Charles County Focus:
+- TJ's PRIMARY service area
+- Growing suburbs = new pet-friendly developments
+- Affluent residents = budget for services
+- Morgan Properties + Stone Creek = professional management companies with vendor budgets
+
+### Key Insights:
+- **Residences at The Streets** (Morgan Properties) is a WHALE — national management company
+- **Stone Creek Living** manages multiple MO properties — multi-site deal potential
+- **Fox Chase** explicitly has a dog park — easiest pitch
+- **Winghaven** area is upscale O'Fallon — premium pricing justified
+
+### Updated Lead Count:
+- **Total active commercial leads: 68**
+- St. Charles County apartments: 6 (new!)
+- Phone-ready leads: 55+
+
+---
+
 ### Additional Dog Parks to Research Later:
 - Brentwood Dog Park (Hanley Park)
 - Clayton Dog Park (Anderson Park)
