@@ -16,6 +16,14 @@ Chief uses this to verify sync with dashboard.
 | 📋 Operations & Guides | 30bccdb3-7d1f-8135-85b6-db48b6cd377c | Weekly plans, setup guides |
 | 🐕 Jamie's Outreach Hub | 30bccdb3-7d1f-8119-9470-e538c5e709dc | Scripts + leads for Jamie |
 
+## Upload Log — Feb 21, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 02:04 | 🔍 Competitor Intel (Feb 21) - 3 Competitors DOWN | 🐕 Tidy Tails | research/competitor-intel-2026-02-21.md | ✅ |
+
+---
+
 ## Upload Log — Feb 19, 2026
 
 | Time | File | Notion Folder | Dashboard Path | Status |

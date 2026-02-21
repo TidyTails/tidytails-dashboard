@@ -891,6 +891,127 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 
 ---
 
+## NEW LEADS - Round 7 (Added 2026-02-21 1:00 AM)
+
+**Segments Focus:** Expanded Brewery Segment + Dog-Focused Venues
+**Why Expanded:** 7 new dog-friendly establishments discovered. Dog events at Alpha Brewing = perfect fit. 9 Mile Garden = massive green space. Dogtown breweries = high dog traffic.
+
+### 58. Heavy Riff Brewing Company ⭐ READY TO CALL
+- **Type:** Dog-Friendly Brewery (Rock-and-Roll Theme + BBQ)
+- **Contact:** General Manager
+- **Phone:** (888) 783-1936 ✅
+- **Address:** 6413 Clayton Ave, St. Louis, MO 63139 (DOGTOWN!)
+- **Website:** https://www.heavyriffbrewing.com/
+- **Hours:** Mon-Thu 4pm-10pm, Fri-Sat 11am-11pm, Sun 11am-8pm
+- **Facility:** Large outdoor patio, house-smoked BBQ, 15 rotating house ales
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-21
+- **Notes:** Dogtown's ORIGINAL rock-and-roll brewery. Located literally IN DOGTOWN = obviously dog-friendly neighborhood. Large outdoor patio listed by Reddit users as "popular with dogs." Rock theme = fun, casual vibe.
+- **Pitch Angle:** "You're Dogtown's original brewery — literally in the dog neighborhood! Your patio sees a lot of four-legged visitors. Let us keep it clean so your staff can focus on the beer and BBQ."
+- **Assigned To:** Jamie
+
+### 59. Bluewood Brewing ⭐ READY TO CALL
+- **Type:** Dog-Friendly Brewery (Cherokee Street)
+- **Contact:** Taproom Manager
+- **Phone:** (314) 261-4079 ✅
+- **Address:** 1821 Cherokee St, St. Louis, MO 63118
+- **Website:** https://www.bluewoodbrewing.com/
+- **Hours:** Mon 3pm-9pm, Wed-Thu 3pm-9pm, Fri-Sat 11:30am-10pm, Sun 11:30am-8pm
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-21
+- **Notes:** Cherokee Street craft brewery — Yelp updated Feb 2026 confirms still operating. Fills the void left by Earthbound Beer closing in Dec 2024. Cherokee Street is walkable/dog-friendly corridor.
+- **Pitch Angle:** "Cherokee Street draws a lot of foot traffic — and their dogs. We can keep your outdoor areas spotless."
+- **Assigned To:** Jamie
+
+### 60. Alpha Brewing Company ⭐⭐ HIGH PRIORITY - HAS DOG EVENTS!
+- **Type:** Dog-Friendly Brewery (HOSTS DOG EVENTS!)
+- **Contact:** Events Manager
+- **Phone:** (314) 621-2337 ✅
+- **Address:** 4310 Fyler Ave, St. Louis, MO 63116 (Tower Grove South)
+- **Website:** https://alphabrewingcompany.com/
+- **Hours:** Mon 4pm-10pm, Thu-Fri 4pm-10pm, Sat 12pm-10pm, Sun 12pm-8pm
+- **Dog Events:** "Bring Your Dog, Get Free Beer Day" (hosted Aug 2024)
+- **Awards:** Green Dining Alliance certified
+- **Status:** New - READY TO CALL - TOP PRIORITY
+- **Date Added:** 2026-02-21
+- **Notes:** THIS ONE HOSTS DOG EVENTS! "Bring Your Dog, Get Free Beer Day" = they actively market to dog owners. Tower Grove South neighborhood (trendy, walkable). Perfect fit for recurring service since they're already dog-focused.
+- **Pitch Angle:** "I saw you host 'Bring Your Dog, Get Free Beer Day' — love that! Since you're already marketing to dog owners, we'd love to help keep your outdoor areas spotless before, during, and after those events."
+- **Assigned To:** Jamie (TOP PRIORITY - already dog-focused!)
+
+### 61. 2nd Shift Brewing ⭐ DOGS INSIDE AND OUT!
+- **Type:** Dog-Friendly Brewery (Dogs Welcome INSIDE - Rare!)
+- **Contact:** Taproom Manager
+- **Phone:** (314) 669-9013 ✅
+- **Address:** 1601 Sublette Ave, St. Louis, MO 63110 (The Hill)
+- **Website:** https://www.2ndshiftbrewing.com/
+- **Hours:** Tue-Thu 12pm-10pm, Fri-Sat 12pm-11pm, Sun 11am-7pm
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-21
+- **Notes:** Reddit users confirm: "dog friendly inside AND out" — one of the few! Located on The Hill (established Italian neighborhood). Very dog-forward business like Side Project.
+- **Pitch Angle:** "You're one of the rare breweries that lets dogs inside AND outside. That's awesome, and it means a lot of pups visiting. We can handle the outdoor cleanup."
+- **Assigned To:** Jamie
+
+### 62. Zoomies Pet Cafe ⭐⭐ HIGH PRIORITY - DOG CAFE!
+- **Type:** Dog-Focused Cafe & Boutique (Made for Dog Owners!)
+- **Contact:** Owner/Manager
+- **Phone:** (314) 696-2003 ✅
+- **Email:** info@zoomiespetcafe.com
+- **Address:** 5838 Macklind Ave, St. Louis, MO 63109 (Macklind Business District)
+- **Website:** https://www.zoomiespetcafe.com/
+- **Instagram:** @zoomiescafestl
+- **Hours:** Mon-Sat 8am-3pm (Thu 8am-4pm), Sun 8am-4pm
+- **Status:** New - READY TO CALL - TOP PRIORITY
+- **Date Added:** 2026-02-21
+- **Notes:** Formerly Wagamama. This is a COFFEE HOUSE + BOUTIQUE curated for pet owners! They ONLY cater to dog people. Local artists, pet-themed goods, cafe. Perfect alignment with our brand. High foot traffic from dog owners = lots of outdoor visits.
+- **Pitch Angle:** "Zoomies is literally made for dog people — love the concept! With all those pet owners coming through, we'd love to help keep your outdoor areas clean so every visit is as great as your coffee."
+- **Assigned To:** Jamie (TOP PRIORITY - 100% our target customer!)
+
+### 63. 9 Mile Garden ⭐⭐ WHALE ACCOUNT - MASSIVE GREEN SPACE!
+- **Type:** Food Truck Garden (Missouri's FIRST!)
+- **Contact:** Events Manager
+- **Phone:** (314) 390-2806 ✅
+- **Email:** events@9milegarden.com
+- **Address:** 9375 Gravois Rd, Affton, MO 63123
+- **Website:** https://9milegarden.com/
+- **Hours:** Thu-Sat 3pm-10pm, Sun 11am-8pm
+- **Features:** Extensive green space, outdoor event center, kid-friendly, DOG-FRIENDLY
+- **Status:** New - READY TO CALL - WHALE ACCOUNT
+- **Date Added:** 2026-02-21
+- **Notes:** Missouri's FIRST food truck garden! "Bring your friends, kids, dogs, and out-of-town guests" — they literally market to dog owners. Extensive green space = lots of ground to cover. Weekend crowds with families and dogs. Affton location (South County).
+- **Pitch Angle:** "You've built something amazing — Missouri's first food truck garden with that incredible green space. And you welcome dogs, which brings even more traffic. We specialize in keeping large outdoor areas clean for businesses like yours."
+- **Assigned To:** Jamie (WHALE - large property, premium pricing)
+
+---
+
+## Round 7 Notes (Added 2026-02-21 1:00 AM)
+
+### Key Insights:
+- **Alpha Brewing hosts dog events** = TOP PRIORITY (they already market to dog owners!)
+- **Zoomies is literally a dog cafe** = perfect brand alignment
+- **9 Mile Garden** = whale account potential (massive green space)
+- **Heavy Riff is IN Dogtown** = neighborhood branding opportunity
+- **2nd Shift lets dogs inside** = very dog-forward operation
+
+### What Closed (Don't Contact):
+- ❌ **Earthbound Beer** — CLOSED December 2024
+- ❌ **Wellspent Brewing** — CLOSED June 2025
+
+### Updated Lead Count:
+- Total active commercial leads: 63
+- Breweries/Dog-Friendly Patios: 13
+- Dog-Focused Venues (cafes, parks, bars): 5
+- Phone-ready leads: 50+
+
+### Priority Order for Jamie (Saturday Calls):
+1. **Alpha Brewing** — Hosts dog events, perfect pitch
+2. **Zoomies Pet Cafe** — Dog cafe, 100% alignment
+3. **9 Mile Garden** — Whale account, large green space
+4. **Heavy Riff Brewing** — In Dogtown, obvious fit
+5. **2nd Shift Brewing** — Dogs inside AND out
+6. **Bluewood Brewing** — Cherokee Street, new-ish
+
+---
+
 ### Additional Dog Parks to Research Later:
 - Brentwood Dog Park (Hanley Park)
 - Clayton Dog Park (Anderson Park)
