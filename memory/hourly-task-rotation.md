@@ -125,6 +125,14 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 ---
 
+## Feb 21 Rotation Log (WEEKEND EXECUTION)
+
+| Time | Area | Task |
+|------|------|------|
+| 01:00 PM | 🐕 Tidy Tails | **Weekend Flash Campaign — Time-sensitive $15 off ads with urgency angles, expires Sunday midnight, 4 ads with keyword tracking, copy buttons, live countdown, interactive HTML tool** |
+
+---
+
 ## Feb 20 Rotation Log
 
 | Time | Area | Task |

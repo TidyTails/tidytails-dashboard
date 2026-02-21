@@ -4,7 +4,26 @@
 
 ---
 
-## Feb 22, 2026 (Saturday — Execution Weekend)
+## Feb 21, 2026 (Saturday — Execution Weekend)
+
+### 01:00 PM — 🐕 Tidy Tails (HOURLY TASK)
+**Weekend Flash Campaign — Time-Sensitive Urgency Ads**
+- Created `tools/weekend-flash-feb21.html` — interactive tool with copy buttons
+- 4 urgency-based ad variations:
+  - **The Deadline Deal** — "$15 off, expires Sunday midnight"
+  - **The Guilt Trip** — Humor-based "you're STILL avoiding the backyard"
+  - **Monday Dread** — Sunday evening angle, "start week knowing one thing is done"
+  - **Weather Window** — For nice weather days, "finally enjoy spring"
+- TEXT KEYWORDS for tracking which ads work: WEEKEND, SATURDAY RESCUE, MONDAY PREP, FINALLY
+- Live countdown timer to Sunday @ midnight
+- Instagram caption with hashtags ready
+- Execution checklist with localStorage progress saving
+- Copy buttons for instant posting
+- **WHY THIS WORKS:** Creates FOMO and urgency that evergreen content lacks. Time-sensitive = forces decision NOW instead of "I'll do it later"
+- Dashboard: Today's Actions section + Franklin's Work
+- Files: `tools/weekend-flash-feb21.html`, `campaigns/tidy-tails/2026-02-21-weekend-flash.md`
+- **THIS IS DIFFERENT FROM PREVIOUS ADS:** Expires Sunday. Use it or lose it.
+- GitHub: Pushed ✅
 
 ### 06:00 AM — 🐕 Tidy Tails
 **Saturday Blitz — Competitor Capture Package**
@@ -19,7 +38,7 @@
 
 ---
 
-## Feb 21, 2026 (Friday)
+## Feb 21, 2026 (Friday Overnight)
 
 ### 05:00 AM — 🏢 Commercial Leads
 **St. Charles County Apartment Lead Mining**
