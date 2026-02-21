@@ -1112,6 +1112,68 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 
 ---
 
+---
+
+## NEW LEADS - Round 9 (Added 2026-02-21 8:00 AM)
+
+**Segments Focus:** Pet Grooming Facilities + Luxury Apartments with Dog Parks
+**Why This Segment:** Grooming facilities have outdoor relief areas; luxury apartments with dog parks = premium pricing justified.
+
+### 69. Steelyard Apartments ⭐ HAS DOG PARK + WASH STATION
+- **Type:** Luxury Apartment Community (Mission Rock Residential)
+- **Contact:** Leasing Office
+- **Phone:** Research required
+- **Address:** St. Louis, MO (Forest Park Southeast)
+- **Website:** https://www.missionrockresidential.com/apartments/mo/st-louis/steelyard/
+- **Pet Amenities:** On-site dog wash station, ENCLOSED DOG PARK
+- **Management:** Mission Rock Residential (national company)
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-21
+- **Notes:** Luxury community with BOTH a dog wash station AND enclosed dog park. They understand pet owners are important. National management = vendor budgets. Forest Park Southeast is trendy area.
+- **Pitch Angle:** "You've invested in a dog park and dog wash for your residents — that's awesome. We can keep the grounds around those amenities spotless."
+- **Assigned To:** Jamie
+
+### 70. Silver Maple Pet Center ⭐ GROOMING FACILITY
+- **Type:** Pet Grooming / Daycare
+- **Contact:** Front Desk / Owner
+- **Phone:** Research via website
+- **Address:** St. Louis, MO (South City area)
+- **Website:** https://www.silvermaplepetcenter.com/
+- **Services:** Full-service grooming, low-noise equipment, cat and dog
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-21
+- **Notes:** Professional grooming facility. Dogs wait outside before/after grooming. Relief area needed. Cares about pet comfort (low-noise dryers = attention to detail).
+- **Pitch Angle:** "Dogs coming for grooming need outdoor relief areas. We can keep yours spotless so pets and owners have a great experience."
+- **Assigned To:** Jamie
+
+### 71. The Healthy Pet House ⭐ GROOMING + RETAIL
+- **Type:** Pet Supply Store + Grooming Salon
+- **Contact:** Owner/Manager
+- **Phone:** Research via website
+- **Address:** Ladue/Town & Country area
+- **Website:** https://thehealthypethouse.com/
+- **Service Areas:** Ladue, Town and Country, Clayton, Chesterfield, Sunset Hills, Creve Coeur, Kirkwood, Richmond Heights, Brentwood, Glendale
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-21
+- **Notes:** High-end pet supplies + grooming. West County affluent customer base. Outdoor areas see constant dog traffic from grooming and retail customers. Multiple West County locations in their service area.
+- **Pitch Angle:** "Your grooming customers and retail shoppers bring their dogs — that's a lot of outdoor traffic. We can help maintain clean outdoor areas."
+- **Assigned To:** Jamie
+
+---
+
+## Round 9 Notes (2026-02-21 8:00 AM)
+
+### Key Insights:
+- **Steelyard** has both dog wash AND enclosed dog park = already invested in pet amenities
+- **Grooming facilities** are underexplored — dogs need relief before/after appointments
+- **West County pet stores** serve affluent clientele with budgets
+
+### Updated Lead Count:
+- **Total active commercial leads: 71** ⬆️ (+3 from Round 9)
+- Phone-ready leads: 57+
+
+---
+
 ### Additional Dog Parks to Research Later:
 - Brentwood Dog Park (Hanley Park)
 - Clayton Dog Park (Anderson Park)
