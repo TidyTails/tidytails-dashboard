@@ -4,6 +4,37 @@
 
 ---
 
+## Feb 22, 2026 (Saturday — Execution Weekend)
+
+### 06:00 AM — 🐕 Tidy Tails
+**Saturday Blitz — Competitor Capture Package**
+- Verified Pawfect Waste Solutions STILL showing 404 error
+- Created `saturday-blitz.html` — mobile-friendly, copy-paste ready action kit
+- 4 ready-to-post items: Competitor capture FB post, Spring cleaning Marketplace post, Customer review text template, Instagram story scripts
+- Added prominent red "SATURDAY BLITZ" banner to dashboard homepage
+- Total TJ time required: ~13 minutes for all 4 actions
+- **TIME SENSITIVE:** Their customers are searching NOW. First-mover window is 30-60 days.
+- Dashboard: saturday-blitz.html + homepage banner
+- GitHub: Pushed ✅
+
+---
+
+## Feb 21, 2026 (Friday)
+
+### 05:00 AM — 🏢 Commercial Leads
+**St. Charles County Apartment Lead Mining**
+- 5 new luxury apartment leads with verified phone numbers
+- Stone Creek Living (10+ communities), Morgan Properties (national), Fox Chase (has dog park)
+- Total active commercial leads: 68
+
+### 02:00 AM — 🔍 Competitor Intel
+**3 Competitors DOWN — Time-Sensitive Capture**
+- Pawfect Waste Solutions = 404
+- Additional dead competitors identified
+- Capture campaigns staged
+
+---
+
 ## Feb 20, 2026
 
 ### 04:00 PM — 🚀 Execution
