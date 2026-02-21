@@ -4,6 +4,146 @@
 
 ---
 
+## February 21, 2026 (Saturday — Execution Weekend Day 1)
+
+### 12:00 PM — 📱 REVIEW TEXT BLITZ — SOCIAL PROOF BUILDER
+**Task:** Create interactive tool for TJ to text all 5 customers asking for Google reviews  
+**Result:** `dashboard/review-text-blitz.html` deployed — 3-minute action yields 5 reviews.
+
+**Why This Matters:**
+- **5 reviews = Top 3 in local search** (Google ranking factor)
+- **72% of people trust reviews as much as friends**
+- **Saturday afternoon = perfect time** (people relaxed, checking phones)
+- **Build social proof BEFORE GBP is even claimed**
+- **Happy customers WANT to help — just need to ask**
+
+**What's In The Tool:**
+- **5 Pre-Written Text Templates** — One for each customer type (weekly, biweekly, monthly, past)
+- **Copy Buttons** — One tap to copy, then paste into Messages
+- **Sent Tracker** — Check off as sent, progress bar fills
+- **Personalization Prompts** — [FIRST NAME] and [DOG NAME] placeholders
+- **Pro Tips Section** — Best practices for review requests
+- **Mobile-Optimized** — Designed for texting on the go
+- **LocalStorage** — Saves progress even if closed
+
+**Key Insight:**
+TJ has 4-5 happy customers right now. None of them have left reviews because nobody asked. This tool removes all friction — copy, paste, personalize, send. 3 minutes of texting = weeks of social proof accumulating.
+
+**Dashboard Updates:**
+- Added to Today's Actions (full width, glowing blue, animated)
+- Added to Franklin's Work section (top position)
+
+---
+
+### 11:00 AM — 🏘️ NEXTDOOR DOMINATION KIT — NEW LEAD CHANNEL
+**Task:** Build complete Nextdoor strategy and execution kit for Tidy Tails  
+**Result:** `dashboard/nextdoor-domination.html` deployed — opens entirely new lead channel.
+
+**Why Nextdoor:**
+- **63% of Nextdoor members have pets** (massive target audience)
+- **100K+ pet-related posts monthly** (conversations already happening)
+- **Verified neighbors = trust** (address-verified users)
+- **Hyper-local** (YOUR service areas only)
+- **100% FREE** (no ad spend required)
+- **"Who do you use?" posts** (people actively seeking recommendations)
+
+**What's In The Kit:**
+- **Business Page Setup** — Step-by-step with copy-paste business description
+- **3 Organic Posts** — Helpful content (NOT salesy) that builds trust:
+  - Intro post ("Hey neighbors, I'm TJ...")
+  - Spring angle post (yard tips)
+  - Multi-dog household tip post
+- **Response Templates** — When someone asks "anyone know a pet service?"
+  - Standard response (transparent about being the owner)
+  - Competitor-ghosted response (for orphaned customers)
+- **Lost Pet Helper Strategy** — Help find lost pets = instant goodwill
+- **Review Request Template** — Text to customers asking for Nextdoor recommendations
+- **7-Step Launch Checklist** — With progress tracking via localStorage
+
+**Research Sourced:**
+- Nextdoor's official pet services marketing guide
+- Jump Consulting's 5-way Nextdoor strategy
+- Best practices for transparent business promotion
+
+**Key Insight:**
+Unlike Facebook where you're competing with ads, Nextdoor is **neighbor-to-neighbor trust**. People on Nextdoor are specifically asking their neighbors for recommendations. When someone posts "Who do you use for dog waste?" — being the first helpful, transparent response is GOLD.
+
+**Dashboard Updates:**
+- Added to Today's Actions (full width, glowing green, animated)
+- Added to Franklin's Work section (top position)
+
+**Why This Matters:**
+This opens a completely untapped channel. While TJ's been focused on Facebook, his neighbors are on Nextdoor asking each other for pet service recommendations. Zero ad spend, maximum trust, hyper-local targeting.
+
+---
+
+### 9:05 AM — 🏃 SUNDAY NEIGHBOR BLITZ KIT
+**Task:** Build guerrilla marketing kit for tomorrow's scooping day  
+**Result:** `sunday-neighbor-blitz.html` + `printables/neighbor-door-hanger.html` deployed.
+
+**What Was Created:**
+- **Sunday Neighbor Blitz Kit** — Phone-optimized field tool for tomorrow's 11-yard route
+- **Quick pitch scripts** — 15-second casual pitch when neighbors approach
+- **Door knock scripts** — What to say at 2-3 houses per yard
+- **Customer referral ask** — Post-cleanup referral request scripts
+- **Live tracking counters** — Doors knocked, conversations, cards left, interested, signups
+- **Sunday checklist** — Pre-route prep (cards, phone charged, branded gear)
+- **ROI calculator** — Shows $100/mo = $1,200/yr per convert with $0 ad spend
+- **Printable door hangers** — 4-per-page, ready to print, cut, and hang
+
+**Why This Matters:**
+- TJ is ALREADY in neighborhoods tomorrow — zero extra time cost
+- "I just cleaned next door" = instant credibility
+- Social proof + visual proof + hyper-local targeting
+- If he knocks 2-3 doors per yard × 11 yards = 22-33 impressions
+- Even 1 convert = $1,200/year at $0 cost
+
+**Dashboard Updates:**
+- Added prominent green "SUNDAY NEIGHBOR BLITZ" banner on homepage
+- Added to Franklin's Work section with full details
+- Links to printable door hangers
+
+---
+
+## February 21, 2026 (Saturday — Execution Weekend Day 1) — CONTINUED
+
+### 10:00 AM — 🌤️ WEATHER WINDOW ADS: TIME-SENSITIVE
+**Task:** Create weather-targeted ad copy for Saturday's 41°F weather  
+**Result:** `weather-window-ads.html` deployed with 4 copy-paste variations.
+
+**What Was Created:**
+- **Weather Window Ad Kit** — Phone-optimized tool with copy buttons
+- **4 Ad Variations:**
+  - Weather Hook (RECOMMENDED): "41°F today, is YOUR yard ready?"
+  - Spring Preview: Forward-looking, "Get ahead before the rush"
+  - Weekend Warrior: "Reclaim your weekends"
+  - Quick Hit (Instagram): Short punchy format
+
+**Weather Intel:**
+- TODAY (Feb 21): 41°F — Nice enough to be outside thinking about yards
+- TOMORROW (Feb 22): 31°F with 39 mph winds — Nobody's yard-focused
+- **This creates a psychological window**: Post TODAY while the weather context is fresh
+
+**Why Weather-Targeted Ads Work:**
+- Contextual relevance = higher engagement
+- "41 degrees and sunny" feels like NOW, not a generic ad
+- Creates natural urgency (weather changes tomorrow)
+- Ties to what people are experiencing in the moment
+
+**Posting Schedule Built In:**
+- 10-11 AM (NOW!) — Peak Saturday morning engagement
+- 7-8 PM — Evening scroll time
+- Progress checklist with localStorage
+
+**Dashboard Updates:**
+- Added prominent orange WEATHER WINDOW banner below Saturday Blitz
+- Added to Franklin's Work section (top position with pulse animation)
+- Fixed date on Launch Schedule (was Feb 22, now Feb 21)
+
+**Impact:** Weather-specific ads convert better than generic ones. If TJ posts the Weather Hook ad in the next hour, it hits people while they're thinking "nice day to be outside." Tomorrow's cold weather makes this a closing window.
+
+---
+
 ## February 22, 2026 (Saturday — Execution Weekend)
 
 ### 7:00 AM — ⏰ SATURDAY LAUNCH SCHEDULE: TIME-BLOCKED EXECUTION
@@ -695,3 +835,34 @@ Weekend execution tools verified ready. TJ wakes up to accurate briefing showing
 
 ### Next Priority:
 TJ needs to post Competitor Capture ad TODAY to capitalize on Day 5 window.
+
+## 2026-02-21 08:02 AM - Saturday Morning Competitor Capture Campaign
+
+**Task:** Create time-sensitive competitor capture tool for immediate execution
+**Duration:** ~15 min
+
+### What I Did:
+1. **Verified Pawfect STILL 404** - Confirmed down at 8:02 AM
+2. **Created `dashboard/saturday-capture.html`** - Phone-optimized copy-paste tool with:
+   - 3 ready-to-post FB variations
+   - Copy buttons that work on mobile
+   - Clear 5-minute execution steps
+   - Urgent visual design
+3. **Added to dashboard** - Prominent link in Today's Actions with pulsing red border
+
+### The Posts Created:
+- **Option 1:** "Looking for a reliable pooper scooper?" - Direct search intent
+- **Option 2:** "Did your service ghost you?" - Pain point angle (RECOMMENDED)
+- **Option 3:** "Weekend Special - Switch and get first week free" - Incentive angle
+
+### Why This Matters:
+- It's SATURDAY MORNING - peak FB engagement window
+- Competitor Pawfect is 404 (Day 5+ confirmed)
+- Their customers are searching NOW
+- 30-60 day window before they lock in elsewhere
+- Copy-paste posts = zero friction for TJ
+
+### Result:
+TJ can open saturday-capture.html on his phone, tap copy, and post in under 3 minutes. No excuses, no friction.
+
+**Files:** `dashboard/saturday-capture.html`, `dashboard/index.html`

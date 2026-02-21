@@ -1004,6 +1004,111 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 
 ### Priority Order for Jamie (Saturday Calls):
 1. **Alpha Brewing** — Hosts dog events, perfect pitch
+
+---
+
+## NEW LEADS - Round 8 (Added 2026-02-21 9:00 AM)
+
+**Segments Focus:** RV Parks, Pet Resorts, Property Management
+**Why These Segments:** RV parks have on-site dog areas, pet resorts are high-volume premium accounts, property mgmt = multi-property contracts
+
+### 64. St. Louis West / Historic Route 66 KOA Holiday ⭐⭐ WHALE ACCOUNT
+- **Type:** RV Park & Campground (KOA Franchise)
+- **Contact:** Park Management
+- **Phone:** (636) 938-5925 ✅
+- **Address:** 18475 Old US Highway 66, Eureka, MO 63025
+- **Website:** https://koa.com/campgrounds/st-louis-west/
+- **Dog Amenities:** KampK9® Dog Park ON-SITE!
+- **Status:** New - READY TO CALL - WHALE ACCOUNT
+- **Date Added:** 2026-02-21
+- **Notes:** KOA franchise = professional standards + vendor budgets. Has dedicated KampK9 dog park on property — PERFECT fit. High seasonal traffic (Route 66 tourism). Pool, hayrides, gem mining — family destination with lots of dogs visiting.
+- **Pitch Angle:** "You've got the KampK9 dog park right on site — that's awesome for guests! But dog parks mean waste. We specialize in keeping commercial dog areas spotless. Let us handle it so your team can focus on hospitality."
+- **Assigned To:** Jamie
+
+### 65. St. Louis RV Park
+- **Type:** RV Park
+- **Contact:** Park Office
+- **Phone:** (314) 241-3330
+- **Address:** 900 N Jefferson Ave, St. Louis, MO 63106
+- **Website:** TripAdvisor listing
+- **Dog Policy:** Dogs walked outside gate (per reviews)
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-21
+- **Notes:** Pool open all night (good reviews). No shade, all gravel = easy service. Dogs walked along perimeter = concentrated waste zone. Clean + well-kept reputation they want to maintain.
+- **Pitch Angle:** "Reviews mention guests walk dogs outside the gate. That perimeter area accumulates waste fast. We can keep that entry zone clean and professional for arriving guests."
+- **Assigned To:** Jamie
+
+### 66. Sundermeier RV Park
+- **Type:** RV Park & Conference Center
+- **Contact:** Park Management
+- **Phone:** (636) 940-0111
+- **Address:** 111 Transit St, St. Charles, MO 63301
+- **Website:** sundermeierrvpark.com
+- **Service Area:** St. Charles County ✅ (TJ territory)
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-21
+- **Notes:** Conference center on-site = professional image important. St. Charles location = TJ's service area. Established park with repeat visitors. Dual business model = higher standards.
+- **Pitch Angle:** "RV travelers love bringing their dogs. With your conference center bringing professional visitors too, clean grounds matter. Let us handle pet waste so your property looks sharp for everyone."
+- **Assigned To:** Jamie
+
+### 67. Pooch Hotel St. Louis ⭐⭐ WHALE ACCOUNT
+- **Type:** Luxury Pet Resort (National Brand)
+- **Contact:** Facility Manager
+- **Phone:** (314) 590-0400 ✅
+- **Address:** 11601 Olive Blvd, Creve Coeur, MO 63141
+- **Website:** poochhotel.com
+- **Tier:** LUXURY - Premium pricing justified
+- **Status:** New - READY TO CALL - WHALE ACCOUNT
+- **Date Added:** 2026-02-21
+- **Notes:** LUXURY brand = premium budgets. West County location (affluent area). High daily dog volume = high waste volume. National brand cares about consistency. Perfect whale account.
+- **Pitch Angle:** "Pooch Hotel is the premium standard in pet boarding. Your outdoor play areas see constant traffic. Let us maintain that luxury image by keeping every inch spotless."
+- **Assigned To:** Jamie
+
+### 68. Camp Bow Wow St. Louis (Multi-Location)
+- **Type:** Dog Daycare & Boarding (Franchise)
+- **Contact:** Franchise Owner
+- **Phone (Kirkwood):** (314) 394-7970
+- **Locations:** Kirkwood, Chesterfield
+- **Website:** campbowwow.com/st-louis
+- **Structure:** Franchise - Owner makes decisions
+- **Status:** New - READY TO CALL - MULTI-SITE
+- **Date Added:** 2026-02-21
+- **Notes:** National franchise = brand standards. Multiple STL locations = multi-site deal potential. Franchise owner makes local decisions (easier than corporate). High volume = recurring need.
+- **Pitch Angle:** "Camp Bow Wow runs a high-volume operation. Multiple locations means multiple outdoor play yards. We'd love to discuss a contract covering all your St. Louis sites."
+- **Assigned To:** Jamie
+
+### 69. Gershman Properties
+- **Type:** Property Management (Commercial + Residential)
+- **Contact:** Property Management Office
+- **Phone:** (314) 725-8484
+- **Address:** 8000 Maryland Ave #1450, Clayton, MO 63105
+- **Website:** gershmanproperties.com
+- **Portfolio:** Multi-family residential
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-21
+- **Notes:** Clayton HQ = professional operation. Multi-family focus = dog-owning residents. Been in business since 1974. Large portfolio = potential multi-property contract.
+- **Pitch Angle:** "Gershman manages multi-family properties across St. Louis. Pet-friendly communities need pet waste management. We can service multiple properties under one contract."
+- **Assigned To:** Jamie
+
+---
+
+## Round 8 Notes (2026-02-21)
+
+### New Segments Opened:
+1. **RV Parks/Campgrounds** — On-site dog areas, KampK9 parks, perimeter walking zones
+2. **Pet Resorts** — Premium boarding facilities with high standards
+
+### Key Insights:
+- **KOA has dedicated KampK9 dog parks** — built-in need!
+- **Pooch Hotel is luxury tier** — premium pricing justified
+- **Camp Bow Wow multi-site** — 2+ location contract potential
+- **Sundermeier has conference center** — extra professional image pressure
+
+### Updated Lead Count:
+- Total active commercial leads: 69
+- RV Parks: 3 (new segment)
+- Pet Resorts: 2 (new segment)
+- Phone-ready whale accounts: 10+
 2. **Zoomies Pet Cafe** — Dog cafe, 100% alignment
 3. **9 Mile Garden** — Whale account, large green space
 4. **Heavy Riff Brewing** — In Dogtown, obvious fit

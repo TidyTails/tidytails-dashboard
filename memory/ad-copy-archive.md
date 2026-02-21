@@ -660,6 +660,147 @@ I respond fast. Even on weekends.
 
 ---
 
+### 2026-02-21 (9AM Daily Task)
+
+**Purpose:** Weekend motivation, winter damage, hybrid space, month-end urgency
+**PDF:** dashboard/pdfs/SHED_ADS_2026-02-21.pdf
+
+**Ad #40 - "Saturday Morning Clarity" (Weekend Motivation)**
+```
+Saturday morning.
+
+Coffee's hot.
+To-do list is long.
+You've been "meaning to deal with the garage" for... how long now?
+
+Here's the thing:
+The garage isn't the problem.
+The STUFF is the problem.
+And it's not going anywhere.
+
+Unless you give it somewhere to go.
+
+A shed = instant breathing room.
+Garage becomes a garage again.
+You stop tripping over things.
+Wife stops mentioning it.
+
+✅ See dozens in stock today
+✅ 0% financing if paid in 6 months
+✅ FREE delivery & setup
+
+Make this the Saturday you actually do something about it.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #41 - "Winter Damage Check" (Post-Winter Upgrade)**
+```
+Quick checklist for your current shed:
+
+☐ Roof holding up?
+☐ Any leaks from the freeze/thaw?
+☐ Door still closing right?
+☐ Floor soft in spots?
+☐ That "musty" smell getting worse?
+
+If you checked more than one... 
+You're not maintaining a shed.
+You're babysitting a problem.
+
+Winter's hard on cheap sheds.
+Quality shows up when it matters.
+
+Our buildings:
+✔ Built tough (not big box junk)
+✔ Proper foundations
+✔ Doors that actually close
+✔ 50-year siding warranty
+
+Upgrade before spring projects hit.
+
+✅ Trade up — use the old one for garden stuff
+✅ Financing & rent-to-own available
+✅ FREE delivery on all models
+
+Stop babysitting. Start storing.
+
+Text Darius: 636-354-7406
+```
+
+**Ad #42 - "The Hybrid Space" (Multi-Use Value)**
+```
+Here's a secret:
+
+The best sheds do double duty.
+
+Half workshop + half storage.
+Office by day + hobby room by night.
+Home gym on one side + gear storage on the other.
+
+You don't need two buildings.
+You need one SMART building.
+
+What we can do:
+🔧 Custom interior layouts
+🔧 Workbench + shelving combos
+🔧 Windows for light (or none for privacy)
+🔧 Electrical rough-ins for power
+🔧 Size it to fit your actual needs
+
+Stop thinking "storage shed."
+Start thinking "multi-use space."
+
+Way cheaper than adding onto your house.
+Way more flexible than a finished basement.
+
+✅ Design yours — we'll walk you through options
+✅ Financing & rent-to-own
+✅ FREE delivery
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #43 - "February's Almost Over" (Month-End Urgency)**
+```
+February's almost over.
+
+Another month where you:
+🤷 Thought about getting a shed
+🤷 Looked at a few online
+🤷 Said "maybe next month"
+🤷 Kept squeezing past the boxes in the garage
+
+March is gonna be the same.
+Unless you do something different.
+
+Here's what "different" looks like:
+
+TODAY:
+📞 Text me your questions
+📏 Tell me what size you're thinking
+💬 Get a straight answer (no pressure)
+
+THIS WEEK:
+✅ Come see what's in stock
+✅ Pick the one that works
+✅ Lock in 0% financing
+
+NEXT WEEK:
+🚚 Delivered
+🔧 Set up
+✅ Done
+
+Or... keep thinking about it.
+Your call.
+
+Text Darius: 636-354-7406
+```
+
+---
+
 ## Style Notes
 
 ### TJ's Voice (from Facebook Marketplace)
