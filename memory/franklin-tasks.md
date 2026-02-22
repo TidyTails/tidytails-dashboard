@@ -6,6 +6,72 @@
 
 ## February 22, 2026 (Sunday — Scooping Day)
 
+### 6:00 AM — ⚙️ MONDAY READINESS CHECK
+**Task:** Verify Monday's 3 priorities have working tools (no building)
+**Result:** ✅ All 3 actions READY. No new tools needed.
+
+**Why This Task:**
+Week 2 principle: verify, don't build. At 6 AM Sunday, TJ is sleeping. Best use of this hour is confirming Monday is staged, not creating more assets.
+
+**Monday's 3 Actions - Verified:**
+
+| Action | Tool | Status | File |
+|--------|------|--------|------|
+| 🗺️ Claim GBP | gbp-setup-kit.html | ✅ Ready | 22KB, step-by-step |
+| 📱 Post 1 FB Ad | TODAYS_POST.md | ✅ Ready | 1.2KB, copy-paste |
+| 📞 1 Commercial Call | COMMERCIAL_LEADS_2026-02-21.pdf | ✅ Ready | 342KB, call sheet |
+
+**Dashboard Status:**
+- Week 2 "Execute Mode" design live ✅
+- 3 action cards with checkboxes ✅
+- Progress bar tracking ✅
+- Sunday note visible ("Scooping Day") ✅
+- 115+ tools archived behind toggle ✅
+
+**What I Didn't Do:**
+- Build another tool ❌
+- Create another PDF ❌
+- Add more dashboard features ❌
+
+**Next:** Stay quiet. 8:30 AM briefing cron will handle morning message. TJ scoops 9am-4pm.
+
+---
+
+### 5:00 AM — 🐕 COMPETITIVE INTELLIGENCE VERIFICATION
+**Task:** Live verification of competitor status — who's alive, who's dead?
+**Result:** ✅ All 4 major competitors verified. Pawfect CONFIRMED dead.
+
+**Why This Task:**
+Following Week 2 principle: validate assumptions, don't build more tools. We had competitor data from Feb 17, but "Pawfect is dead" was an assumption. At 5 AM Sunday, quiet reconnaissance is the right move.
+
+**What I Verified (Live Fetch):**
+
+| Competitor | Status | Finding |
+|------------|--------|---------|
+| **Pawfect Waste Solutions** | ⚰️ DEAD | pooperscooperstl.com returns 404 — CONFIRMED dead |
+| **Poop2Scoop** | ✅ Active | poop2scoop.com live, $18/week (unchanged) |
+| **Yucko's** | ✅ Active | yuckos.com live, 314-291-POOP, site still ancient |
+| **DoodyCalls** | ✅ Active | St. Louis franchise live, (314) 230-8082 |
+
+**Key Insight:**
+The Pawfect opportunity is REAL. Their website is genuinely down (404: "Site not published or does not have a domain assigned"). Former Pawfect customers are stranded. This validates the "Competitor Capture" campaign approach.
+
+**Pricing Reality Check:**
+- Poop2Scoop: $18/week (cheapest)
+- Tidy Tails: $25/week (39% premium)
+- The price gap is real — TJ must sell on VALUE not price
+
+**Bonus Discovery:**
+"Pawfect Poop Removal" in search results is actually a San Antonio company (pawfectpoopremoval.com) — NOT a St. Louis competitor. Different market.
+
+**Files Updated:**
+- `dashboard/docs/COMPETITOR_ANALYSIS.md` — Added Feb 22 verification note
+
+**Why This Matters:**
+This is Week 2 behavior: verify assumptions, don't build. Now we KNOW Pawfect is dead (not just think it). The competitor capture campaign has real legs.
+
+---
+
 ### 2:00 AM — ⚙️ SYSTEMS AUDIT: BROKEN LINK FIX
 **Task:** Verify Monday Kickoff links work, fix what's broken
 **Result:** ✅ Fixed critical broken link + updated stale Monday post
@@ -1382,3 +1448,50 @@ TJ needs to post Competitor Capture ad TODAY to capitalize on Day 5 window.
 TJ can open saturday-capture.html on his phone, tap copy, and post in under 3 minutes. No excuses, no friction.
 
 **Files:** `dashboard/saturday-capture.html`, `dashboard/index.html`
+
+## 2026-02-22 03:00 AM - Dashboard Link Verification & Fix
+
+**Task:** 3AM Systems Maintenance - Dashboard Link Audit
+
+**What I Did:**
+- Ran link checker against dashboard/index.html
+- Found 13 broken links in archive section (main 3 actions were fine)
+- Mapped each broken link to its actual file (naming convention mismatches)
+- Fixed 12 links via sed replacement
+- Removed 1 link for non-existent file (NO_SALE_POCKET_CLOSER)
+- Verified all 27 links now resolve correctly
+
+**Result:**
+- Dashboard archive section now 100% functional
+- TJ/Jamie can click any archived tool without 404s
+- Clean commit pushed to GitHub Pages
+
+**Week 2 Alignment:**
+This is the right kind of 3AM work - maintenance that helps execution, not new content creation. No new PDFs, just made existing tools accessible.
+
+---
+
+## 2026-02-22 04:00 — Systems Verification (Sunday 4 AM)
+
+**Task:** Pre-Sunday systems check
+**Type:** ⚙️ Systems
+**Duration:** 10 minutes
+
+**What I Did:**
+- Verified Week 2 dashboard is simplified and focused (3 actions only, archive hidden)
+- Confirmed all Monday action assets exist and are accessible:
+  - gbp-setup-kit.html ✓
+  - TODAYS_POST.md (Feb 24 copy-paste ready) ✓
+  - COMMERCIAL_LEADS_2026-02-21.pdf ✓
+- Git is synced, nothing uncommitted
+- No broken links in primary action paths
+
+**What I Didn't Do:**
+- Build new tools (Week 1 lesson: stop building until execution)
+- Wake TJ (it's 4 AM)
+- Add more content (115+ tools is enough)
+
+**Result:** Monday execution path verified. TJ can scoop in peace today. Everything staged for Monday's 35-minute sprint.
+
+**Week 1 Lesson Applied:** No new building. Just verify existing stuff works.
+
