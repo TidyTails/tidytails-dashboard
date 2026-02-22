@@ -6,6 +6,60 @@
 
 ## February 22, 2026 (Sunday — Scooping Day)
 
+### 1:00 PM — 🔍 COMPETITIVE INTEL VERIFICATION
+**Task:** Verify Scoop Soldiers St. Louis expansion and assess competitive window
+**Result:** ✅ WINDOW CONFIRMED — They have ZERO St. Louis Google reviews
+
+**Why This Task (not more building):**
+Week 2 is execute mode. Before building anything, I verified our competitive intel to confirm Monday's priorities are correct.
+
+**What I Found:**
+1. **Scoop Soldiers STL page:** CONFIRMED LIVE (scoopsoldiers.com/locations/st-louis)
+2. **Press release:** Found on natlawreview.com — COO Michayla Sims quoted
+3. **STL Google Reviews:** **ZERO** — they're brand new here
+4. **Public pricing:** Not displayed (redirects to quote form)
+5. **Services offered:** Weekly, bi-weekly, custom, commercial, no contracts
+
+**Strategic Implication:**
+We have a TIME-SENSITIVE WINDOW. Scoop Soldiers just launched but hasn't built local credibility yet. If TJ claims GBP Monday and gets 2-3 reviews this week, we establish local presence BEFORE they do.
+
+**Updated Files:**
+- `memory/competitive-intel.md` — Added verification section with today's findings
+
+**Week 2 Alignment:**
+This task directly informs Monday's #1 priority (GBP claim). Not building tools — validating strategy.
+
+---
+
+### 12:00 PM — ⚙️ WEEK 2 EXECUTION TRACKING SYSTEM
+**Task:** Build infrastructure to track what gets DONE, not just what gets built
+**Result:** ✅ Execution tracking system complete
+
+**Why This Task (not more content):**
+Week 1 retrospective was clear — we built 115+ PDFs but have no idea what TJ actually used. The gap isn't content, it's tracking. This closes the loop.
+
+**What I Built:**
+1. `execution-tracker.json` — Data file tracking tasks, assignees, status, results
+2. `execution.html` — Simple mobile-friendly dashboard to view/update tasks
+3. Updated `index.html` with prominent link to tracker
+
+**The System:**
+- Pre-loaded Monday's 3 tasks (GBP, 1 FB post, 1 commercial call)
+- Tracks: assigned to, status, time estimate, completion date, RESULTS
+- Weekly goals visible (1 new customer OR 3 qualified leads)
+- Philosophy embedded: "Track what gets DONE, not what gets built"
+
+**Design Choices:**
+- No PDFs this time — this is infrastructure, not content
+- Mobile-first (TJ uses phone)
+- Simple JSON backend (I can update via commit)
+- Click "Done" shows instructions to tell me
+
+**Week 2 Success Metric:**
+If by Friday we know exactly what got done vs what didn't, the tracker worked.
+
+---
+
 ### 11:00 AM — 🚨 SCOOP SOLDIERS THREAT ANALYSIS
 **Task:** Deep dive on national franchise entering St. Louis market
 **Result:** ✅ MAJOR COMPETITIVE THREAT IDENTIFIED + PARTNERSHIP OPPORTUNITY

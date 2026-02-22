@@ -1,6 +1,6 @@
 # Competitive Intelligence - St. Louis Pet Waste Removal
 
-## Last Updated: 2026-02-22
+## Last Updated: 2026-02-22 @ 1:00 PM (Verified by Franklin)
 
 ---
 
@@ -9,6 +9,15 @@
 **Status:** ACTIVE IN ST. LOUIS (dedicated landing page live)
 **Type:** National franchise
 **Website:** scoopsoldiers.com/locations/st-louis
+**Press Release:** natlawreview.com - COO Michayla Sims quoted on STL expansion
+
+### ⚠️ VERIFICATION (Feb 22, 2026)
+- **STL Landing Page:** CONFIRMED LIVE, fully operational
+- **St. Louis Google Reviews:** **NONE YET** - they're brand new here
+- **Public Pricing:** NOT DISPLAYED (redirects to quote form)
+- **Window of Opportunity:** YES - they haven't built local credibility
+
+**IMPLICATION:** Monday's GBP claim is CRITICAL. First to get STL reviews wins local trust.
 
 ### What They Are
 - Founded 2019, rapid national expansion

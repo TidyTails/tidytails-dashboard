@@ -147,6 +147,34 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 ---
 
+## Feb 22 Rotation Log
+
+| Time | Area | Task |
+|------|------|------|
+| 12:00 PM | ⚙️ Systems | **Week 2 Execution Tracking System — Close build→deploy feedback loop (execution-tracker.json structured data, execution.html mobile tracker, Monday's 3 tasks pre-loaded, NO NEW CONTENT until we track what gets used, dashboard updated with prominent link, following Week 1 retrospective)** |
+| 11:00 AM | 🚨 Intel | **Scoop Soldiers National Franchise Threat — Deep competitor analysis (40% price undercut $15/wk vs $25, free first cleanup, 24/7 support, STL page LIVE, counter-strategy: claim GBP + get reviews + hit commercial FIRST + position LOCAL vs franchise, PooPrints partnership opportunity identified)** |
+| 01:00 AM | ⚙️ Systems | **Dashboard Simplification — Week 2 Focus Mode (replaced 199KB with 17KB focused version, Monday's 3 Actions hero, 115+ tools in Archive, mobile-first)** |
+
+---
+
+## Feb 21 Rotation Log
+
+| Time | Area | Task |
+|------|------|------|
+| 10:00 PM | ⚙️ Systems | **Week 1 Retrospective + Monday Kickoff — Reality check (115+ PDFs built, 0 known deployments, build:deploy gap documented, Monday staged: GBP + 1 FB post + 1 commercial call = 35 min total)** |
+| 09:00 PM | 🐕 Tidy Tails | **Sunday Scooping Kit — Day-of execution support (route checklist, customer notes, review ask templates, next-day follow-up, 650KB PDF)** |
+| 08:00 PM | 🎬 Content | **Saturday Night Social Drop — Weekend posting kit (3 post variations, Stories pack, engagement responses, 700KB PDF)** |
+| 07:00 PM | ⚙️ Systems | **Weekend Status Board — Live dashboard for Sat/Sun progress (localStorage tracking, mission cards, real-time updates)** |
+| 06:00 PM | 🐕 Tidy Tails | **Lead Response Toolkit — Speed-to-lead system (5 response templates, objection handlers, booking scripts, timing guide)** |
+| 05:00 PM | 🐕 Tidy Tails | **GBP Competitive Analysis — Local SEO intel (competitors' GBP status, keyword opportunities, review gap analysis)** |
+| 04:00 PM | 🐕 Tidy Tails | **Weekend Flash Campaign — Urgency-based ads (Deadline Deal, Guilt Trip, Monday Dread, Weather Window, countdown timer)** |
+| 03:00 PM | 🐕 Tidy Tails | **Review Text Blitz — Customer review generation (5 text templates, script for TJ, tracking sheet)** |
+| 02:00 PM | 🐕 Tidy Tails | **Nextdoor Domination Kit — Hyperlocal platform guide (profile setup, post templates, response scripts)** |
+| 01:00 PM | 🐕 Tidy Tails | **Weather Window Ads — Weather-triggered campaign (3 sunshine variations, 2 rain alternatives)** |
+| 12:00 PM | 🐕 Tidy Tails | **Sunday Neighbor Blitz Kit — Door-to-door execution (route map, door hanger backup plan, neighbor referral script)** |
+
+---
+
 ## Feb 20 Rotation Log
 
 | Time | Area | Task |
