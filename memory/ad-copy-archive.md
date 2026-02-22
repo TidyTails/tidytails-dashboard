@@ -961,3 +961,136 @@ Make it count this year.
 - Reliable, on-time
 - Detail-oriented
 - Frame as relationship, not transaction
+
+---
+
+### 2026-02-22 (9AM Daily Task)
+
+**Purpose:** Sunday morning clarity, February urgency, cost of waiting, garage takeover
+**PDF:** dashboard/pdfs/SHED_ADS_2026-02-22.md
+
+**Ad #44 - "Sunday Morning Clarity"**
+```
+Sunday morning.
+
+Coffee's good. House is quiet.
+And you're scrolling Marketplace... again.
+
+Thinking about that garage situation?
+The one you've been "meaning to deal with"?
+
+Here's the thing:
+
+Spring's gonna hit in a few weeks.
+You're either gonna be organized...
+Or you're gonna be scrambling.
+
+A shed makes that decision easy.
+
+Right now:
+✅ 0% interest if paid in 6 months
+✅ Fast delivery — before March madness
+✅ See dozens in stock today
+
+No pressure. Just a thought over coffee.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #45 - "February's Last Full Week"**
+```
+February's almost done.
+
+That means:
+🌱 March starts Saturday
+🌱 Spring projects are coming
+🌱 Everyone else is gonna be ordering sheds
+
+You can beat the rush.
+Or you can wait in line.
+
+What "beat the rush" looks like:
+
+📞 Text me today
+📏 Pick your size
+🚚 Delivered in 2-3 weeks
+✅ Done before spring hits
+
+What "wait" looks like:
+
+🤷 6+ week delivery times
+😤 "They don't have my size"
+📅 Still waiting in May
+
+Lock it in now. Thank yourself later.
+
+🤑 0% financing if paid in 6 months
+💥 No credit check options available
+
+Text Darius: 636-354-7406
+```
+
+**Ad #46 - "The Real Cost of Waiting"**
+```
+Quick math:
+
+That stuff sitting in your driveway/garage?
+It's depreciating.
+
+🚗 Car parked outside = weather damage
+🚜 Mower in the corner = no room to work
+🛠️ Tools scattered = lost time finding them
+
+The cost of NOT having a shed:
+❌ Lower resale on your car
+❌ Frustration every time you need something
+❌ "Someday I'll organize" turning into "never"
+
+The cost of a shed:
+✅ Few thousand, once
+✅ FREE delivery included
+✅ Financing options = low monthly
+
+One of these costs you money every day.
+One solves the problem permanently.
+
+Which makes more sense?
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #47 - "Garage Takeover Reversal"**
+```
+Remember when you could park in your garage?
+
+Yeah... me neither.
+
+Somewhere along the way:
+📦 Boxes multiplied
+🎄 Holiday stuff got permanent spots
+🛠️ Tools claimed their territory
+🏋️ That workout equipment you used twice
+
+Now your car lives outside.
+And your garage is a storage unit you pay the mortgage on.
+
+Here's the fix:
+
+Get a shed.
+Move the overflow.
+Take your garage back.
+
+✅ FREE delivery & setup
+✅ 0% financing available
+✅ Rent-to-own (no credit check)
+
+Your garage deserves better.
+So does your car.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+---

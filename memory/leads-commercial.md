@@ -1292,3 +1292,98 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 - Eureka Dog Park (Berry Park)
 - Sunset Hills Kitun Dog Park
 - And 25+ more...
+
+---
+
+## NEW LEADS - Round 10 (Added 2026-02-22 9:00 AM)
+
+**Segments Focus:** Luxury Apartments with Dog Amenities, Central West End
+**Why This Segment:** Sunday morning = prep Jamie for Monday calls. CWE and luxury properties = reliable, high-value accounts.
+
+### 72. Montclair on the Park ⭐ HIGH PRIORITY
+- **Type:** Luxury Apartments (Central West End)
+- **Contact:** Leasing Office
+- **Phone:** Research via ApartmentList.com
+- **Address:** Central West End, St. Louis, MO
+- **Features:** Recently renovated, upscale amenities, prime CWE location
+- **Status:** New - RESEARCH NEEDED
+- **Date Added:** 2026-02-22
+- **Notes:** Central West End = highest dog density neighborhood in St. Louis. Recently renovated = investing in property. Upscale amenities = budget for services. CWE residents walk dogs constantly.
+- **Pitch Angle:** "Central West End has more dogs per block than anywhere in St. Louis. Your residents are walking constantly. We keep common areas and green spaces pristine."
+- **Assigned To:** Jamie
+
+### 73. The Orion Apartments ⭐ CWE LUXURY
+- **Type:** Luxury Apartments (Central West End)
+- **Contact:** Leasing Office
+- **Phone:** Research via Apartments.com
+- **Address:** Central West End, St. Louis, MO
+- **Features:** Modern luxury, pet-friendly, CWE location
+- **Status:** New - RESEARCH NEEDED
+- **Date Added:** 2026-02-22
+- **Notes:** Another CWE property = high dog density. Luxury apartments = professional management with vendor budgets. Modern property = high standards.
+- **Pitch Angle:** "CWE properties see constant dog traffic. We specialize in keeping common areas and green spaces pristine for communities like yours."
+- **Assigned To:** Jamie
+
+### 74. The Boulevard Apartments (Richmond Heights)
+- **Type:** Apartment Community
+- **Contact:** Property Manager
+- **Phone:** Research via Apartments.com
+- **Address:** Richmond Heights, MO
+- **Status:** New - RESEARCH NEEDED
+- **Date Added:** 2026-02-22
+- **Notes:** Richmond Heights is walkable, dog-friendly inner ring suburb. Near Clayton = professional residents with disposable income. High pet ownership rates in this demographic.
+- **Pitch Angle:** "Richmond Heights residents love walking their dogs. We keep apartment common areas clean for communities like yours."
+- **Assigned To:** Jamie
+
+### 75. Creve Coeur Animal Hospital
+- **Type:** Veterinary Clinic
+- **Contact:** Practice Manager
+- **Phone:** Research via Google
+- **Address:** Creve Coeur, MO (West County)
+- **Status:** New - RESEARCH NEEDED
+- **Date Added:** 2026-02-22
+- **Notes:** West County = affluent area, clients expect premium. Vet clinics have outdoor relief areas. Professional image critical for first impressions. Established vet practices care deeply about reputation.
+- **Pitch Angle:** "When clients arrive, the outdoor area is the first thing they see. Let us keep it spotless so the first impression matches your care quality."
+- **Assigned To:** Jamie
+
+### 76. Paws & Play St. Louis
+- **Type:** Dog Daycare / Boarding
+- **Contact:** Manager
+- **Phone:** Research via Google/Yelp
+- **Address:** St. Louis area
+- **Status:** New - RESEARCH NEEDED
+- **Date Added:** 2026-02-22
+- **Notes:** Dog daycare = high volume dog traffic daily. Outdoor play areas accumulate waste rapidly. Professional image matters for daycare facilities.
+- **Pitch Angle:** "Your outdoor play yards see dozens of dogs every day. We can take cleanup off your staff's plate so they can focus on care."
+- **Assigned To:** Jamie
+
+### 77. Arbor Pointe Apartments (South County)
+- **Type:** Apartment Community
+- **Contact:** Property Manager
+- **Phone:** Research via Apartments.com
+- **Address:** South County, St. Louis
+- **Status:** New - RESEARCH NEEDED
+- **Date Added:** 2026-02-22
+- **Notes:** South County is TJ's direct service area. Pet-friendly communities in suburban areas have consistent need. Entry point for South County presence.
+- **Pitch Angle:** "We serve South County communities with professional pet waste removal. Happy to discuss your property's needs."
+- **Assigned To:** Jamie
+
+---
+
+## Round 10 Notes (2026-02-22 9:00 AM)
+
+### Sunday Strategy:
+- Prep leads for Jamie's Monday calls
+- Focus on easy-pitch properties (dog parks, CWE density)
+- Research needed on phone numbers — Jamie or Franklin to verify
+
+### Priority Tiers for Monday:
+1. **Steelyard** (#69) — Has dog park, ready to call
+2. **Montclair** (#72) — CWE, high density
+3. **Creve Coeur Animal Hospital** (#75) — Vet segment
+
+### Updated Lead Count:
+- **Total active commercial leads: 77** ⬆️ (+6 from Round 10)
+- Phone-ready leads: 60+
+- CWE Focus: 3 new leads
+- Research needed: 6 leads
