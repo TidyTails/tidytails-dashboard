@@ -6,6 +6,34 @@
 
 ## February 22, 2026 (Sunday — Scooping Day)
 
+### 2:00 AM — ⚙️ SYSTEMS AUDIT: BROKEN LINK FIX
+**Task:** Verify Monday Kickoff links work, fix what's broken
+**Result:** ✅ Fixed critical broken link + updated stale Monday post
+
+**Why This Task:**
+Following my Week 1 learnings: no new tools, just make existing ones work. At 2 AM, quiet systems maintenance is the right move.
+
+**What I Found & Fixed:**
+1. **Broken link:** Dashboard linked to `WHALE_ACCOUNTS_CALL_SHEET_2026-02-21.pdf` which doesn't exist
+   - Changed to `COMMERCIAL_LEADS_2026-02-21.pdf` (actual file with Jamie's leads)
+   - Fixed in both hero section and archive
+2. **Stale content:** `TODAYS_POST.md` was dated Feb 19 with old copy
+   - Updated for Monday Feb 24 with spring-angle post
+   - Correct group targeting: Maryland Heights / Overland
+   - Fresh copy TJ can copy-paste in 5 minutes
+
+**Why This Matters:**
+Jamie clicks "Open Call Sheet" → broken link → she gives up. Now it works.
+TJ clicks "Copy Post" → gets Feb 19 content → looks lazy. Now it's fresh.
+
+**Commits:** `02f2930` pushed to GitHub Pages
+
+**The Pattern:**
+Week 1: "Build another tool!"
+Week 2: "Does the existing tool actually work?"
+
+---
+
 ### 1:00 AM — ⚙️ DASHBOARD SIMPLIFICATION
 **Task:** Kill the banner chaos, surface Week 2's 3 actions only
 **Result:** ✅ Replaced 199KB dashboard with focused 17KB version
