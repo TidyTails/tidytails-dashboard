@@ -129,6 +129,12 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 | Time | Area | Task |
 |------|------|------|
+| 09:00 PM | ⚙️ Systems | **Week 1 Retrospective + Monday Kickoff — Honest assessment (115 built, 0 confirmed deployed), 3-action Monday plan (GBP + FB Post + Commercial Call = 35 min), build hiatus until deployment confirmed** |
+| 06:00 PM | 🎬 Content | **Sunday Scooping Kit — Mobile content creation for tomorrow's 11 yards, IG Story captions, before/after prompts, yard tracker, hashtag sets, DM responses, use WHILE WORKING** |
+| 05:00 PM | 🏠 Sheds | **Saturday Evening Shed Blitz — 5 fresh Marketplace listings for 5-9 PM prime scrolling window** |
+| 04:00 PM | ⚙️ Systems | **Weekend Status Board — 7-mission accountability tracker, TJ 5 missions, Jamie 2 missions, tap to complete** |
+| 03:00 PM | 🐕 Tidy Tails | **Lead Response Toolkit — 12 copy-paste responses for converting leads into customers** |
+| 02:00 PM | 🐕 Tidy Tails | **GBP Competitive Analysis — Enemy pricing intel, Pawfect 404, position Tidy Tails as best value** |
 | 01:00 PM | 🐕 Tidy Tails | **Weekend Flash Campaign — Time-sensitive $15 off ads with urgency angles, expires Sunday midnight, 4 ads with keyword tracking, copy buttons, live countdown, interactive HTML tool** |
 
 ---

@@ -801,6 +801,152 @@ Text Darius: 636-354-7406
 
 ---
 
+## Saturday Evening Blitz — Feb 21, 2026 (5 PM)
+
+**Ad #SEB-1 - "Saturday Night Scrolling" (Meta/Self-Aware)**
+```
+You're scrolling Marketplace on a Saturday night.
+
+I get it. Me too.
+
+You're probably thinking about that garage situation. The one where you "really need to clean it out this spring."
+
+Here's a thought: What if you didn't have to?
+
+What if you just... got a shed?
+
+✅ All that garage overflow = gone
+✅ Actually park inside again
+✅ No more "I'll deal with it later"
+
+We've got:
+• Multiple sizes in stock
+• Rent-to-own (no credit check)
+• Traditional financing (9.99% APR)
+• FREE delivery to your yard
+
+No pressure. Just an option.
+
+📞 Darius: 636-354-7406
+```
+
+**Ad #SEB-2 - "Sunday Project Dreaming" (Workshop)**
+```
+What are you building tomorrow?
+
+Sunday's wide open. The weather's supposed to be decent.
+You've got a project in your head.
+
+But where's it going to happen?
+
+The garage is full.
+The basement is... "organized chaos."
+Outside is too cold until like April.
+
+A workshop shed solves all of that.
+
+✔ Dedicated workspace (not shared with the car)
+✔ Leave your tools OUT (nobody touching them)
+✔ Work on YOUR schedule, not the weather's
+
+We've got 10x12s, 10x16s, 12x20s — whatever fits your yard and your projects.
+
+• Rent-to-own available (no credit check)
+• 9.99% financing up to 120 months
+• FREE delivery
+
+You're already thinking about it. Let's make it happen.
+
+📞 Text Darius: 636-354-7406
+```
+
+**Ad #SEB-3 - "Spring Countdown" (Urgency)**
+```
+🗓️ March is 7 days away.
+
+Every year it's the same:
+1. Spring hits
+2. Everyone wants a shed at once
+3. Wait times go from days to weeks
+4. You're stuck waiting until May
+
+Not this year.
+
+Right now:
+✅ Multiple sizes in stock
+✅ Fast delivery available
+✅ Beat the rush by weeks
+
+Financing options:
+• 0% if paid in 6 months
+• 9.99% APR for up to 10 years
+• Rent-to-own (no credit check)
+
+Get ahead of spring. Call or text today.
+
+📞 Darius: 636-354-7406
+```
+
+**Ad #SEB-4 - "She-Shed / Studio Space" (Women/Creative)**
+```
+You deserve your own space.
+
+Not a corner of the bedroom.
+Not the "home office" (which is also the guest room, laundry sorting area, and Zoom background).
+
+An actual room that's YOURS.
+
+She-sheds are a thing — and they're way more affordable than you'd think.
+
+Transform it into:
+✨ Art studio
+✨ Yoga space  
+✨ Craft room
+✨ Reading nook
+✨ Work-from-home office
+
+We handle delivery. You handle the Pinterest board.
+
+• Financing as low as 9.99% APR
+• Rent-to-own available
+• FREE delivery and setup
+
+Your space is waiting.
+
+📞 Darius: 636-354-7406
+```
+
+**Ad #SEB-5 - "Tax Refund Season" (Financial)**
+```
+Tax refund coming?
+
+Here's an idea that's NOT:
+❌ A weekend trip you'll forget
+❌ Stuff you'll throw away in 6 months
+❌ A "treat yourself" that doesn't last
+
+A shed is an investment.
+
+It adds value to your property.
+It solves your storage problem permanently.
+It's still there 10 years from now.
+
+Put that refund to work:
+✅ Storage shed = clean garage
+✅ Workshop = your own space
+✅ She-shed = sanity
+
+• Pay with refund + finance the rest
+• Rent-to-own (no credit check)
+• 0% interest if paid in 6 months
+
+Make it count this year.
+
+📞 Darius: 636-354-7406
+```
+
+---
+
 ## Style Notes
 
 ### TJ's Voice (from Facebook Marketplace)

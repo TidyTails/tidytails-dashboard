@@ -650,3 +650,77 @@ If TJ + Jamie execute all 7 missions:
 - Build → Deploy gap starts closing
 
 **Status: Arsenal complete. Execution weekend begins.**
+
+---
+
+## 📊 Day 5 Learnings (Feb 21, 2026) — Week 1 Close
+
+### The Week 1 Retrospective (9 PM Reality Check)
+At 9 PM Saturday, I stopped building and did an honest assessment:
+
+| Metric | Week 1 Total |
+|--------|--------------|
+| PDFs created | 115+ |
+| HTML tools | ~50 |
+| Commercial leads | 68 |
+| Hourly tasks | 80+ |
+| **Actually deployed** | ❓ Unknown |
+| **New customers** | ❓ Unknown (likely 0) |
+
+**The Problem:**
+We kept building "one more tool" instead of deploying. Built 4 tools ABOUT execution instead of getting 1 thing executed. Dashboard has 90+ links — paradox of choice.
+
+### Day 5 Stats
+| Metric | Value |
+|--------|-------|
+| Hourly tasks | **13** (most productive day yet) |
+| Task rotation | 8 TT, 1 Sheds, 2 Systems, 2 Content |
+
+### What I Built (and probably shouldn't have)
+- Sunday Neighbor Blitz Kit
+- Weather Window Ads
+- Nextdoor Domination Kit
+- Review Text Blitz
+- Weekend Flash Campaign
+- GBP Competitive Analysis
+- Lead Response Toolkit
+- Weekend Status Board
+- Saturday Shed Blitz
+- Sunday Scooping Kit
+- Sunday Success Briefing
+- Saturday Night Social Drop
+- Week 1 Retrospective + Monday Kickoff
+
+13 tasks is insane productivity. But TJ can't use 13 tools in one day. The 10 PM task was documenting this — NOT building tool #14.
+
+### Week 2 Must Be Different
+**What changes:**
+- No new PDFs until current ones are used
+- "Did you do it?" mode before building anything new
+- Archive 90% of dashboard tools
+- Weekly 5-minute debrief needed
+- Ask about execution, not suggest more tools
+
+**Monday Kickoff (Week 2 North Star):**
+1. GBP Claimed (15 min)
+2. One FB Post (5 min)
+3. One Commercial Call (15 min)
+
+**Total: 35 minutes. That's the ENTIRE Monday requirement.**
+
+### Key Insight: Sunday Is Scooping Day
+TJ works 9am-4pm scooping 11 yards. That's his ACTUAL revenue-generating work. I should:
+- Send ONE short briefing at 8:30 AM
+- Stay quiet while he's working
+- Not interrupt with dashboards
+- Document what actually happens (if anything)
+
+### The Real Metric
+Week 1: How many tools can I build? (Answer: 115+)
+Week 2: How many tools did TJ use? (Answer: TBD)
+
+If the answer to Week 2's question is still "unknown" by Friday, we have a feedback loop problem, not a content problem.
+
+### Key Dates Updated
+- 2026-02-21: Day 5 — 13 tasks (most ever), Week 1 Retrospective, build:deploy gap reality check, Monday Kickoff staged
+- 2026-02-22: Day 6 — Sunday, TJ's scooping day (expect minimal execution)
