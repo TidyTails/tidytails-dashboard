@@ -44,23 +44,30 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - Missing: Website, Google Business Profile
 - Main challenge: Customer acquisition at scale
 
-### Competition (Updated Feb 22, 2026)
+### Competition (VERIFIED Feb 22, 2026 10 PM)
 
-**Market Window:** 3 local competitors are DOWN (404s):
-- Pawfect Waste Solutions — dead
-- Scoop Soldiers STL — dead
-- Fresh Paws — Squarespace expired
+**Market Window:** 4 local competitors are DEAD:
+- Pawfect Waste Solutions (pawfectwastesolutions.com) — DNS dead
+- Pawfect alt domain (pooperscooperstl.com) — 404
+- Scoop Soldiers STL (scoopsoldiersstl.com) — DNS dead
+- Fresh Paws (freshpawsstl.com) — DNS dead
 
-**Active Local Competitor:** Poop 2 Scoop
-- Website: poop2scoop.com (LIVE, professional)
-- Phone: 314-449-9447
-- **Pricing: $18/week** (vs TJ's $25/week = 28% cheaper)
-- Family business, similar positioning
+**Active Local Competitors:**
+
+| Competitor | Weekly Price | Notes |
+|------------|--------------|-------|
+| **Poop 2 Scoop** | $18/wk | 28% cheaper than TJ, family biz, 314-449-9447 |
+| **Yucko's** | Call for quote | Since 1990 (36 yrs!), 314-291-POOP, commercial focus |
+| **Dirty Dog Poo Crew** | ~$24/wk | Dog wash hybrid, limited to 1/4 acre, 10-mi radius |
+
+**National franchises:** DoodyCalls, POOP 911 (quote-based, usually expensive)
 
 **Strategic Implication:**
-TJ needs to justify premium pricing OR consider price adjustment. Commercial accounts may be less price-sensitive — good target for Jamie.
+TJ should NOT compete on price. Poop2Scoop has the low-price lane.
+Commercial accounts = path forward (less price sensitive, bigger revenue per account).
+4 dead competitors = orphaned customers actively looking for new service.
 
-**National franchises:** DoodyCalls, POOP 911 (more expensive than TJ — easy differentiation)
+**Full intel:** `memory/2026-02-22-competitor-intel.md`
 
 ## ⚠️ PHONE NUMBERS (CRITICAL - DO NOT MIX UP)
 
