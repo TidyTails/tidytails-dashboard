@@ -1,166 +1,143 @@
-# Competitor Intelligence Report — Feb 22, 2026
-
-## Executive Summary
-**The St. Louis pet waste market is CONSOLIDATING.** 4 local competitors are completely offline. Only 3 active local/regional players remain. This is a time-sensitive market opportunity.
-
----
-
-## Dead Competitors (Confirmed 10 PM Sunday)
-
-| Business | Domain | Status | Opportunity |
-|----------|--------|--------|-------------|
-| Pawfect Waste Solutions | pawfectwastesolutions.com | ⚰️ DNS DEAD | Their customers need a new provider |
-| Pawfect (alt domain) | pooperscooperstl.com | ⚰️ 404 ERROR | Same |
-| Scoop Soldiers STL | scoopsoldiersstl.com | ⚰️ DNS DEAD | Their customers need a new provider |
-| Fresh Paws | freshpawsstl.com | ⚰️ DNS DEAD | Their customers need a new provider |
-
-**What this means:** These customers are orphaned. They're actively looking for a new service provider RIGHT NOW.
-
-**How to find them:**
-- Facebook groups: Search "Pawfect" or "Scoop Soldiers" mentions
-- Nextdoor: Search for pet waste removal recommendations
-- Google reviews: Their reviews may still exist with customer names
+# Competitor Intelligence Report
+**Date:** February 22, 2026 11:00 PM
+**Author:** Franklin
+**Purpose:** Fresh verification of St. Louis pet waste removal competitive landscape
 
 ---
 
-## Active Local Competition
+## VERIFIED DEAD COMPETITORS (Still Dead as of 11 PM)
 
-### 1. Poop 2 Scoop (Main Competitor)
-- **Website:** poop2scoop.com ✅ LIVE
+| Company | Domain | Status | Last Verified |
+|---------|--------|--------|---------------|
+| Pawfect Waste Solutions | pooperscooperstl.com | 404 - "Site not found" | Feb 22, 2026 11:00 PM |
+| Fresh Paws | wearefreshpaws.com | Squarespace expired | Feb 22, 2026 11:00 PM |
+| Pawfect (alt domain) | pawfectwastesolutions.com | DNS dead | Feb 22, 2026 (prev check) |
+| Scoop Soldiers STL | scoopsoldiersstl.com | DNS dead | Feb 22, 2026 (prev check) |
+
+**Opportunity:** These 4 dead competitors have orphaned customers actively looking for new service.
+
+---
+
+## ACTIVE LOCAL COMPETITORS (Updated Pricing)
+
+### 1. Poop 2 Scoop
+- **Website:** poop2scoop.com (LIVE)
 - **Phone:** 314-449-9447
-- **Positioning:** "Local, family-run business"
-- **Service:** Residential + Commercial + Deck deodorizing
+- **Type:** Local family business
+- **Pricing:**
+  - Weekly: **$18/week** (1 dog, regular yard)
+  - Twice weekly: $16/week
+  - Every other week: $25/visit
+  - Add-ons: +$4/additional dog, +$4 large yard, +$4 deck deodorize
+- **Services:** Residential, commercial, apartments, dog parks
+- **Contracts:** None required
+- **Position:** PRICE LEADER (28% cheaper than TJ on weekly)
 
-**Pricing:**
-| Service | Price | vs TJ |
-|---------|-------|-------|
-| Weekly (1 dog) | $18/week | **28% cheaper** |
-| Twice weekly | $16/week | — |
-| Every other week | $25/visit | Same as TJ weekly |
-| Additional dog | +$4 | — |
-| Large yard | +$4 | — |
-| Deodorize deck | +$4 | — |
+### 2. Dirty Dog Wash Poo Crew
+- **Website:** dirtydogwashstl.com/poocrew (LIVE)
+- **Phone:** (on site)
+- **Type:** Dog wash hybrid business
+- **Pricing (MONTHLY):**
+  - 1-2 dogs weekly: $95/month (~$23.75/week)
+  - 1-2 dogs bi-weekly: $80/month
+  - 3 dogs weekly: $100/month
+  - 4 dogs weekly: $105/month
+- **Limitations:** 
+  - Max 1/4 acre yards
+  - 10 mile radius from shop (trip charge outside)
+- **Position:** Premium pricing, limited service area
 
-**Strengths:**
-- Lower prices
-- Family business angle
-- Professional website
-- 100% satisfaction guarantee
-
-**Weaknesses:**
-- Generic positioning
-- No personality/differentiation
-- No obvious reviews visible
-
----
-
-### 2. Yucko's Pooper Scooper Service (Established Player)
-- **Website:** yuckos.com ✅ LIVE
-- **Phone:** 314-291-7667 (314-291-POOP)
-- **Founded:** 1990 (36 years!)
-- **Hours:** M-F 8AM-3PM
-- **Service Areas:** St Louis County, City, St Charles
-
-**Positioning:** "The Professionals in Turd-Herding"
-
-**Pricing:** Call for estimate (not published)
-
-**Strengths:**
-- 36 years = maximum trust/credibility
-- Memorable phone number
-- Commercial focus (HOAs, apartments, parks)
-
-**Weaknesses:**
-- Dated website (looks 1990s)
-- Weekday-only hours (no weekend service?)
-- No online booking
+### 3. Yucko's Pooper-Scooper Service
+- **Phone:** 314-291-POOP
+- **Type:** Established local (since 1990 - 36 years!)
+- **Focus:** Commercial accounts
+- **Pricing:** Call for quote
+- **Position:** Commercial veteran
 
 ---
 
-### 3. Dirty Dog Wash Poo Crew (Hybrid Service)
-- **Website:** dirtydogwashstl.com/poocrew ✅ LIVE
-- **Primary Business:** Dog wash/grooming
-- **Side Business:** Pet waste removal
+## 🆕 NEW COMPETITOR DISCOVERED
 
-**Pricing:**
-| Dogs | Weekly | Bi-Weekly |
-|------|--------|-----------|
-| 1-2 | $95/mo (~$24/wk) | $80/mo |
-| 3 | $100/mo (~$25/wk) | $95/mo |
-| 4 | $105/mo (~$26/wk) | $100/mo |
+### Little Stinkers of MO
+- **Website:** littlestinkersofmo.com (LIVE)
+- **Phone:** 636-887-6626
+- **Service Areas:** 
+  - Lincoln County
+  - Warren County  
+  - St. Charles County (OVERLAPS with TJ!)
+- **Pricing:** Based on number of dogs (not published)
+- **Schedule:** Weekly or bi-weekly
+- **Unique Selling Points:**
+  - Check waste for abnormalities (health monitoring angle)
+  - Leave a treat for the dog
+- **Payment:** Cash, card (Google Pay), check
+- **Position:** Newer entrant, western counties focus
 
-- Limited to 1/4 acre or smaller
-- 10-mile radius from shop
-- Trip charge for further
-
-**Strengths:**
-- Cross-sell opportunity (wash + waste)
-- Existing customer base
-
-**Weaknesses:**
-- Waste removal is clearly secondary focus
-- Geographic limits
-- Higher prices than Poop2Scoop
+**THREAT LEVEL:** Medium - overlaps St. Charles County but focused on rural western areas
 
 ---
 
-### 4. National Franchises
+## NATIONAL FRANCHISES
 
-**DoodyCalls of St. Louis**
-- National brand, professional
-- Quote-based pricing (usually higher)
-- Good for commercial/HOA
-
-**POOP 911 - St. Louis**
-- Another national franchise
-- Quote-based
-- Commercial focus
+| Franchise | Website | Pricing | Notes |
+|-----------|---------|---------|-------|
+| DoodyCalls of St. Louis | doodycalls.com/st-louis | Quote-based | Full service, stations |
+| POOP 911 St. Louis | poop911.com | Quote-based | National brand, local operators |
 
 ---
 
-## Pricing Strategy Implications
+## PRICING COMPARISON vs TIDY TAILS
 
-**The Reality:**
-TJ's $25/week is 28% higher than Poop2Scoop's $18/week.
+| Competitor | Weekly (1 dog) | Monthly | vs TJ Weekly | vs TJ Monthly |
+|------------|----------------|---------|--------------|---------------|
+| **Tidy Tails (TJ)** | $25 | $70 | — | — |
+| Poop 2 Scoop | $18 | ~$72 | -28% | +3% |
+| Dirty Dog Poo Crew | ~$24 | $95 | -4% | +36% |
+| Little Stinkers | Quote | Quote | ? | ? |
 
-**Options:**
-1. **Lower prices** — Match at $18-20/week (race to bottom)
-2. **Justify premium** — Better service, reliability, personality
-3. **Target commercial** — Less price-sensitive, recurring revenue
+### Strategic Implications:
 
-**Recommended: Option 3 (Commercial Focus)**
-- HOAs, apartment complexes, dog parks care about reliability over $7/week
-- One commercial account = 5-10 residential in revenue
-- Jamie already has scripts + leads ready
-- TJ can still service residential at $25/week for quality-focused customers
-
----
-
-## Week 2 Action Items (Based on Intel)
-
-**For Jamie (Commercial Sales):**
-- Dead competitor orphans may include commercial accounts
-- Yucko's has been doing commercial for 36 years — there ARE accounts to win
-- Lead with reliability + flexibility (weekend service)
-
-**For TJ (Residential):**
-- Don't compete on price with Poop2Scoop
-- Compete on personality + service quality
-- Consider: "No contracts, cancel anytime" messaging (match competitors)
-- Consider: Deck/patio deodorizing add-on like competitors
-
-**For Marketing:**
-- "Unlike those other guys, we're still here" angle
-- Local St. Louis family angle (counter national franchises)
-- Quality > cheap positioning
+1. **DON'T compete on weekly price** - Poop 2 Scoop owns cheap lane
+2. **TJ's monthly rate ($70) beats Dirty Dog ($95) by 26%** - push monthly!
+3. **Biweekly value:** TJ $45/month vs Poop2Scoop $50/month - TJ wins!
+4. **Commercial = differentiator** - Yucko's is only real competitor here
+5. **St. Charles = contested** - Little Stinkers emerging, but focused west
 
 ---
 
-## Sources
-- Direct website checks: Feb 22, 2026, 10:00 PM CT
-- Google search: "pet waste removal St Louis MO"
-- All pricing current as of check date
+## OPPORTUNITIES
+
+### 1. Dead Competitor Customers
+4 businesses died = customers need new service. Target:
+- Their old service areas
+- "Looking for new pet waste service?" messaging
+- Possibly bid on their abandoned domains
+
+### 2. Monthly Rate Positioning
+TJ's $70/month is cheaper than Dirty Dog's $95. Market as:
+- "Best monthly value in St. Louis"
+- Push monthly contracts over weekly
+
+### 3. Commercial Accounts
+Only Yucko's (36 yrs old) really owns commercial. TJ should:
+- Target apartments, property managers, HOAs
+- Undercut or match Yucko's
+- Position as modern/responsive vs "established"
+
+### 4. St. Louis County Core
+Little Stinkers is west-focused (Lincoln, Warren). 
+TJ should own St. Louis County core (Ferguson, Florissant, Maryland Heights, etc.)
 
 ---
 
-*Intel gathered by Franklin | No PDF created | Research only*
+## INTEL GAPS (Future Research)
+
+- [ ] Yucko's commercial pricing
+- [ ] DoodyCalls and POOP 911 actual quotes
+- [ ] Little Stinkers exact pricing
+- [ ] Petworks.com marketplace presence
+- [ ] Google Business Profile rankings for "pet waste removal St. Louis"
+
+---
+
+*This is actionable intelligence, not another PDF. Use for positioning and sales conversations.*

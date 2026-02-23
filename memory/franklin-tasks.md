@@ -6,6 +6,41 @@
 
 ## February 22, 2026 (Sunday — Scooping Day)
 
+### 11:00 PM — 🔍 LATE NIGHT COMPETITOR VERIFICATION + NEW PLAYER FOUND
+**Task:** Re-verify dead competitors, check for new market entrants
+**Result:** ✅ Dead competitors still dead. NEW competitor discovered.
+
+**What Changed:**
+- Pawfect Waste Solutions (pooperscooperstl.com) — STILL 404
+- Fresh Paws (wearefreshpaws.com) — STILL Squarespace expired
+- **🆕 Little Stinkers of MO discovered** — serves St. Charles/Lincoln/Warren counties
+
+**New Competitor Profile:**
+| Field | Value |
+|-------|-------|
+| Name | Little Stinkers of MO |
+| Phone | 636-887-6626 |
+| Website | littlestinkersofmo.com |
+| Service Areas | Lincoln, Warren, St. Charles County |
+| Unique Angle | Checks waste for abnormalities, leaves treats |
+
+**Fresh Pricing Verification:**
+- Poop 2 Scoop: $18/wk (weekly), $25/visit (biweekly), $72~/month
+- Dirty Dog: $95/month (1-2 dogs), limited to 1/4 acre
+- TJ: $25/wk or $70/month — **TJ's monthly beats Dirty Dog by 26%!**
+
+**Strategic Update:**
+Little Stinkers is focused on western counties (Lincoln, Warren) — TJ should own St. Louis County core.
+
+**Files Created:**
+- `memory/2026-02-22-competitor-intel.md` — Full 4.8KB intel report with all pricing
+
+**What I Did NOT Do:**
+- ❌ Build any PDFs (Week 2 rule: no new tools until old ones used)
+- ❌ Bug TJ at 11 PM Sunday night
+
+---
+
 ### 10:00 PM — 🔍 DEEP COMPETITOR VERIFICATION (Week 2 Final Intel)
 **Task:** Verify ALL competitor domains, complete pricing analysis, document market consolidation
 **Result:** ✅ FOUR dead competitors confirmed (not just one). Full pricing landscape mapped.

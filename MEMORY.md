@@ -44,13 +44,13 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - Missing: Website, Google Business Profile
 - Main challenge: Customer acquisition at scale
 
-### Competition (VERIFIED Feb 22, 2026 10 PM)
+### Competition (VERIFIED Feb 22, 2026 11 PM)
 
 **Market Window:** 4 local competitors are DEAD:
 - Pawfect Waste Solutions (pawfectwastesolutions.com) — DNS dead
-- Pawfect alt domain (pooperscooperstl.com) — 404
+- Pawfect alt domain (pooperscooperstl.com) — 404 confirmed
 - Scoop Soldiers STL (scoopsoldiersstl.com) — DNS dead
-- Fresh Paws (freshpawsstl.com) — DNS dead
+- Fresh Paws (wearefreshpaws.com) — Squarespace expired confirmed
 
 **Active Local Competitors:**
 
@@ -58,14 +58,18 @@ Pet waste removal service in St. Louis County and surrounding areas.
 |------------|--------------|-------|
 | **Poop 2 Scoop** | $18/wk | 28% cheaper than TJ, family biz, 314-449-9447 |
 | **Yucko's** | Call for quote | Since 1990 (36 yrs!), 314-291-POOP, commercial focus |
-| **Dirty Dog Poo Crew** | ~$24/wk | Dog wash hybrid, limited to 1/4 acre, 10-mi radius |
+| **Dirty Dog Poo Crew** | $95/mo (~$24/wk) | Dog wash hybrid, limited to 1/4 acre, 10-mi radius |
+| **Little Stinkers of MO** | Quote | 🆕 NEW! 636-887-6626, serves St. Charles/Lincoln/Warren |
 
 **National franchises:** DoodyCalls, POOP 911 (quote-based, usually expensive)
 
-**Strategic Implication:**
-TJ should NOT compete on price. Poop2Scoop has the low-price lane.
-Commercial accounts = path forward (less price sensitive, bigger revenue per account).
-4 dead competitors = orphaned customers actively looking for new service.
+**Strategic Implications:**
+1. **DON'T compete on weekly price** - Poop2Scoop owns cheap lane at $18/wk
+2. **TJ's monthly ($70) beats Dirty Dog ($95) by 26%** - push monthly!
+3. **TJ's biweekly ($45) beats Poop2Scoop ($50)** - value positioning
+4. **Commercial = wide open** - only Yucko's (36 yrs) really owns it
+5. **Little Stinkers = new threat** in St. Charles (but focused west)
+6. **4 dead competitors = orphaned customers** actively looking
 
 **Full intel:** `memory/2026-02-22-competitor-intel.md`
 
