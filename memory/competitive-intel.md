@@ -1,23 +1,33 @@
 # Competitive Intelligence - St. Louis Pet Waste Removal
 
-## Last Updated: 2026-02-22 @ 1:00 PM (Verified by Franklin)
+## Last Updated: 2026-02-22 @ 4:00 PM (Verified by Franklin)
 
 ---
 
-## 🚨 THREAT ALERT: Scoop Soldiers
+## ⚠️ COMPETITOR UPDATE: Scoop Soldiers
 
-**Status:** ACTIVE IN ST. LOUIS (dedicated landing page live)
+**Status:** STL PAGE NOW 404 — Possible pullback or restructuring
 **Type:** National franchise
-**Website:** scoopsoldiers.com/locations/st-louis
-**Press Release:** natlawreview.com - COO Michayla Sims quoted on STL expansion
+**Website:** scoopsoldiers.com/locations/st-louis → **NOW 404**
+**Main Site:** scoopsoldiers.com — Still active nationally
 
-### ⚠️ VERIFICATION (Feb 22, 2026)
-- **STL Landing Page:** CONFIRMED LIVE, fully operational
-- **St. Louis Google Reviews:** **NONE YET** - they're brand new here
-- **Public Pricing:** NOT DISPLAYED (redirects to quote form)
-- **Window of Opportunity:** YES - they haven't built local credibility
+### 🔄 STATUS CHANGE (Feb 22, 2026 - 4 PM)
+- **1:00 PM:** STL landing page was LIVE
+- **4:00 PM:** STL landing page returns 404 ("This Stinks!")
+- **Locations Page:** Generic, no STL-specific listing visible
+- **St. Louis Google Reviews:** Still none
 
-**IMPLICATION:** Monday's GBP claim is CRITICAL. First to get STL reviews wins local trust.
+**WHAT THIS MEANS:**
+- Either they pulled out of STL launch
+- Or technical issue / URL restructure
+- Either way: THREAT LEVEL REDUCED (for now)
+- Still claim GBP — position is vulnerable regardless
+
+### Why GBP Still Matters
+Even if Scoop Soldiers paused STL, the market is wide open:
+- Pawfect Waste Solutions (pooperscooperstl.com) = 404 (DEAD)
+- No dominant local player with strong Google presence
+- First to claim GBP + get reviews wins the market
 
 ### What They Are
 - Founded 2019, rapid national expansion

@@ -6,6 +6,149 @@
 
 ## February 22, 2026 (Sunday — Scooping Day)
 
+### 6:00 PM — ⚙️ WEEKEND WRAP + MONDAY STAGING
+**Task:** Consolidate weekend state, stage minimal Monday kickoff (NO new PDFs)
+**Result:** ✅ State documented, Monday text ready
+
+**What I Did:**
+- Documented weekend summary (17 hourly tasks, shift to intel/systems work)
+- Staged Monday kickoff as TEXT (not PDF) — 3 actions, 35 min total
+- Updated daily memory log with Day 6 summary
+- Updated hourly rotation log
+- Following Week 1 Retrospective: don't build more, track what's used
+
+**Key Insight:**
+Week 2 Sunday evening = consolidation, not creation. TJ just finished scooping 11 yards. He doesn't need tool #118. He needs rest and a clean Monday.
+
+**Monday Text Ready:**
+```
+3 actions: GBP (15 min) + 1 FB post (5 min) + 1 commercial call (15 min)
+Dashboard has all resources.
+Both competitors showing 404s — market's waiting.
+```
+
+**Files Updated:**
+- `memory/2026-02-22.md` — Day 6 complete
+- `memory/franklin-tasks.md` — this log
+- `memory/hourly-task-rotation.md` — rotation logged
+
+---
+
+### 4:00 PM — 🔍 COMPETITOR INTEL CHECK (Week 2 Mode)
+**Task:** Verify competitor status, update dashboard with accurate intel
+**Result:** ✅ GOOD NEWS — Both competitors DOWN, market opportunity OPEN
+
+**Findings:**
+- Scoop Soldiers STL page: Was LIVE at 1 PM → Now 404 (pulled or restructured)
+- Pawfect Waste Solutions: Still 404 (dead)
+- No dominant local player exists
+
+**Actions:**
+1. Updated `memory/competitive-intel.md` with accurate status
+2. Changed dashboard banner from RED "THREAT" → GREEN "OPPORTUNITY"
+3. Pushed to GitHub ✅
+
+**Week 2 Value:**
+No new tools built. Just verified reality and updated existing assets with truth. This is intelligence work, not content creation.
+
+**Implication:** GBP claiming Monday is now EVEN MORE CRITICAL — the market is wide open.
+
+---
+
+### 3:00 PM — ⚙️ MONDAY READINESS QA (Systems Check)
+**Task:** Verify all 3 Monday actions are actually ready to execute
+**Result:** ✅ All systems go, 1 bug fixed
+
+**Why This Task (Week 2 Philosophy):**
+Don't build more. Verify what's built actually works. QA > creation.
+
+**What I Verified:**
+1. **GBP Setup Kit** (gbp-setup-kit.html) — ✅ READY
+   - 21KB, full step-by-step guide
+   - Copy buttons for every field
+   - Correct phone: 314-850-7140
+   - All 10 service areas listed
+   - Time estimate: 15 min
+   
+2. **Today's Post** (TODAYS_POST.md) — ✅ READY (after fix)
+   - ❌ BUG FOUND: Date said "Feb 24" → should be "Feb 23"
+   - ✅ FIXED: Updated to correct date
+   - Copy-paste text ready
+   - Group: Maryland Heights / Overland Community
+   - Best time: 12-1 PM
+   
+3. **Commercial Leads** (COMMERCIAL_LEADS_2026-02-21.pdf) — ✅ READY
+   - 342KB call sheet from yesterday
+   - Jamie can use it Monday
+   - Top targets: Mills Properties, Canine Country
+
+4. **Competitive Intel** (memory/competitive-intel.md) — ✅ VERIFIED
+   - Scoop Soldiers STL page confirmed live
+   - Key insight: They have ZERO St. Louis reviews yet
+   - Window of opportunity: First to get reviews wins
+
+**Bug Fixed:**
+- TODAYS_POST.md: "Monday, Feb 24" → "Monday, Feb 23" (committed + pushed)
+
+**Cron Status:** ❌ Still timing out (gateway issue)
+- Will need to send 7 PM check-in manually
+- Gateway health diagnosis deferred to later
+
+**Dashboard Git Status:** Clean, pushed to GitHub Pages
+
+**What I Didn't Do:**
+- ❌ Build another tool
+- ❌ Create another PDF  
+- ❌ Interrupt TJ while he's scooping
+
+**Files Changed:**
+- `dashboard/campaigns/tidy-tails/TODAYS_POST.md` — Date fix
+
+---
+
+### 2:00 PM — 📊 FEEDBACK LOOP PREP (Not Another Tool)
+**Task:** Prepare 7 PM end-of-day check-in that captures REAL data
+**Result:** ✅ 2-minute check-in ready, customer add process simplified
+
+**Why This Task (Week 2 Philosophy):**
+We have 115+ tools. We have 0 customer data. We have 0 feedback on what TJ uses.
+Building another tool would be the WRONG move. Preparing to capture real info = RIGHT move.
+
+**What I Did:**
+1. **Updated `memory/execution-tracking.md`** with ready-to-send 7 PM check-in
+   - 6 yes/no questions (30 seconds to answer)
+   - 1 friction question ("what got in your way?")
+   - Purpose: Close the feedback loop Week 1 never had
+   
+2. **Simplified customer add process in `memory/customers/customers.md`**
+   - Old way: Fill out 15-field template
+   - New way: "Add customer: Sarah, Florissant, 2 dogs, weekly"
+   - I handle the rest
+
+3. **Updated commercial lead count** — We have 68 leads now, not 43
+
+**What I Didn't Do:**
+- ❌ Build another dashboard tool
+- ❌ Create another PDF
+- ❌ Interrupt TJ while he's scooping
+- ❌ Add more complexity
+
+**Cron Note:**
+Gateway timing out (noted yesterday too). Will check gateway health later. 
+For now, I'll send the 7 PM check-in manually or set up cron when gateway recovers.
+
+**The Insight:**
+We don't need more tools. We need:
+1. To know what TJ actually did (this check-in)
+2. Basic customer data (simplified add process)
+3. Feedback on what blocked execution (friction question)
+
+**Files Updated:**
+- `memory/execution-tracking.md` — Added 7 PM check-in message
+- `memory/customers/customers.md` — Added quick-add instructions
+
+---
+
 ### 1:00 PM — 🔍 COMPETITIVE INTEL VERIFICATION
 **Task:** Verify Scoop Soldiers St. Louis expansion and assess competitive window
 **Result:** ✅ WINDOW CONFIRMED — They have ZERO St. Louis Google reviews
@@ -1737,3 +1880,26 @@ Did NOT build any new tools this hour. Verified existing tools work. That's the 
 
 **Status:** Complete
 **Next:** Monday execution — watch for results, not build more.
+
+### 5:00 PM — 📊 POST-SCOOPING DEBRIEF (Week 2 Feedback)
+**Task:** Check in with TJ after scooping day to get real execution data
+**Result:** ✅ Debrief sent — closing the feedback loop
+
+**Why This Task:**
+Week 2 = track execution, not build more. TJ just finished 11 yards. Perfect moment to capture:
+- What actually happened?
+- Any content captured?
+- What blocked him?
+
+**What I Did:**
+1. Sent 3-question check-in (30 seconds to answer)
+2. Confirmed Monday's 3 actions staged
+3. Updated daily log
+
+**What I Didn't Do:**
+- ❌ Build another tool
+- ❌ Create another PDF
+- ❌ Interrupt with dashboards
+
+**Week 2 Metric:**
+This is the first real human feedback since Day 1. If we get answers, we can finally measure tool → execution.

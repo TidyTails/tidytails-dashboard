@@ -7,18 +7,40 @@
 | Metric | Value |
 |--------|-------|
 | Active Customers | ~5 |
-| Commercial Leads | 43 |
+| Commercial Leads | 68 |
 | Goal | 25-30 by Aug 2025 |
 | Current Progress | ~17% |
 
+## ⚡ Quick Customer Add (30 seconds)
+
+**TJ:** Just message me: "Add customer: [Name], [Area], [dogs], [frequency]"
+Example: "Add customer: Sarah M, Florissant, 2 dogs (Max & Bella), weekly"
+
+I'll handle the rest. Don't need perfect info — just basics.
+
+---
+
 ## Active Customers
 
-> **Note:** TJ needs to provide actual customer details to populate this list.
-> For now, we know:
-> - 4-5 recurring customers
-> - All Sundays, 9am-4pm
+> **Status:** Waiting for TJ to share customer basics
+> 
+> **What we know:**
+> - 4-5 recurring (all Sundays)
+> - 11 yards total on route
 > - Zero service-related churn
-> - All love TJ as a person
+> - All love TJ as a person first
+
+### Current Route (Feb 22, 2026)
+| # | Customer | Area | Dogs | Freq | Notes |
+|---|----------|------|------|------|-------|
+| 1 | TBD | | | | |
+| 2 | TBD | | | | |
+| 3 | TBD | | | | |
+| 4 | TBD | | | | |
+| 5 | TBD | | | | |
+| 6-11 | (additional yards?) | | | | |
+
+---
 
 ### Template for Adding Customers
 

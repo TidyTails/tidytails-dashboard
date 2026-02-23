@@ -51,6 +51,57 @@ Log responses here.
 
 ---
 
+## 7 PM Check-In Message (Ready to Send)
+
+**Purpose:** Quick capture of what actually happened today.
+**Time:** 2 minutes max. Yes/no answers.
+
+```
+Hey TJ! Quick end-of-day check-in (2 min):
+
+Scooping done? 
+1. All 11 yards done? (Y/N)
+2. Any customer conversations worth noting?
+
+Content captured?
+3. Take any before/after photos? (Y/N)
+4. Post anything on social today? (Y/N)
+
+Quick wins?
+5. Ask anyone for a review? (Y/N)
+6. Talk to any neighbors? (Y/N)
+
+The ONE thing that would help me most:
+What's the #1 thing that got in your way today? (Or "nothing" if smooth)
+
+That's it! Have a good rest of Sunday. 🐕
+```
+
+**Why These Questions:**
+- Q1-2: Confirms the core work happened
+- Q3-4: Tracks content creation (our weakness)
+- Q5-6: Tracks growth actions
+- Final Q: Identifies friction for next week
+
+**Expected Response Time:** 30-60 seconds via Telegram
+
+---
+
+## Week 2 Reality Check
+
+**What we built Week 1:** 115+ PDFs, 50+ HTML tools
+**What we need Week 2:** 
+- GBP claimed (1 action)
+- 1 FB post per day (5 actions)
+- 1 commercial call (Jamie)
+- Actual customer data
+
+**The Feedback Loop:**
+Without knowing what TJ actually did, we can't improve.
+This 2-minute check-in closes that gap.
+
+---
+
 ## Key Insight
 If TJ doesn't use the tools, it's not because we didn't build enough.
 It's because:
