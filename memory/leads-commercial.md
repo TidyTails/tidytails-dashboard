@@ -562,28 +562,30 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 **Segments Focus:** Senior Living, Animal Rescues, Dog Training Facilities
 **Why These Segments:** All untapped markets with recurring waste needs and budgets for services
 
-### 35. Cedarhurst of Tesson Heights
+### 35. Cedarhurst of Tesson Heights ⭐ ENRICHED
 - **Type:** Senior Living / Assisted Living
-- **Contact:** See website
-- **Phone:** See website
+- **Contact:** General Inquiries
+- **Phone:** (314) 474-6099 ✅
 - **Address:** Tesson Heights area, St. Louis, MO 63128
 - **Website:** https://www.cedarhurstliving.com/cedarhurst-tesson-heights-mo
-- **Status:** New
+- **Status:** New - READY TO CALL
 - **Date Added:** 2026-02-18
-- **Notes:** Explicitly advertises pet-friendly senior apartments with landscaped courtyards for residents and pets to enjoy walking. Perfect fit for recurring service.
-- **Pitch Angle:** "You welcome residents' pets and maintain beautiful courtyards — we can help keep those outdoor areas pristine."
+- **Date Enriched:** 2026-02-23
+- **Notes:** Explicitly advertises pet-friendly senior apartments with landscaped courtyards for residents and pets to enjoy walking. "Living TRUE℠" wellness program. 60-day money back guarantee = they care about resident experience.
+- **Pitch Angle:** "You welcome residents' pets and maintain beautiful courtyards — we can help keep those outdoor areas pristine for your residents and their companions."
 - **Assigned To:** Jamie
 
-### 36. Sunrise of Des Peres
+### 36. Sunrise of Des Peres ⭐ ENRICHED
 - **Type:** Senior Living / Memory Care
-- **Contact:** See website
-- **Phone:** See website
+- **Contact:** Sales Team
+- **Phone:** 888-434-4648 ✅ (national line - ask for Des Peres location)
 - **Address:** Des Peres, MO (West County)
 - **Website:** https://www.sunriseseniorliving.com
-- **Status:** New
+- **Status:** New - READY TO CALL
 - **Date Added:** 2026-02-18
-- **Notes:** "Best of Senior Living" award winner. Known for lush outdoor shared spaces, explicitly pet-friendly. West County = affluent area with budget for services.
-- **Pitch Angle:** "Sunrise is known for award-winning care and beautiful grounds. We specialize in keeping outdoor pet areas spotless."
+- **Date Enriched:** 2026-02-23
+- **Notes:** "Best of Senior Living" award winner. Known for lush outdoor shared spaces, explicitly pet-friendly. West County = affluent area with budget for services. National brand = professional vendor process.
+- **Pitch Angle:** "Sunrise is known for award-winning care and beautiful grounds. We specialize in keeping outdoor pet areas spotless for your residents and their pets."
 - **Assigned To:** Jamie
 
 ### 37. Hallmark of Creve Coeur
@@ -622,16 +624,17 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 - **Pitch Angle:** "Your team does incredible work saving animals. We can take outdoor kennel cleanup off your plate."
 - **Assigned To:** Jamie
 
-### 40. Stray Rescue of St. Louis
-- **Type:** Animal Rescue
+### 40. Stray Rescue of St. Louis ⭐ ENRICHED
+- **Type:** Animal Rescue (HIGH PROFILE)
 - **Contact:** Main Office
-- **Phone:** (314) 771-6121
+- **Phone:** (314) 771-6121 ✅
 - **Address:** 2320 Pine St, St. Louis, MO 63103
 - **Website:** https://strayrescue.org
-- **Status:** New
+- **Status:** New - READY TO CALL
 - **Date Added:** 2026-02-18
-- **Notes:** High-profile rescue with national visibility (Randy Grim). Large facility with outdoor exercise yards. Media presence = they care about appearances.
-- **Pitch Angle:** "Your outdoor yards see heavy traffic — let us keep them clean so dogs and adopters have the best experience."
+- **Date Enriched:** 2026-02-23
+- **Notes:** High-profile rescue with national visibility (Randy Grim). Large facility with outdoor exercise yards. Media presence = they care about appearances. Active social media, frequent news coverage. Community-focused = might appreciate local vendor.
+- **Pitch Angle:** "Randy's mission is incredible. With hundreds of dogs coming through, your outdoor yards see heavy traffic. We can help keep them clean so every dog and adopter has the best experience."
 - **Assigned To:** Jamie
 
 ### 41. Gateway Pet Guardians
@@ -646,16 +649,18 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 - **Pitch Angle:** "We'd love to support your mission by keeping outdoor areas clean."
 - **Assigned To:** Jamie
 
-### 42. Sit Means Sit St. Louis
-- **Type:** Dog Training
-- **Contact:** See website
-- **Phone:** See website
-- **Address:** St. Louis metro (multiple trainers)
-- **Website:** https://sitmeanssitstlouis.com
-- **Status:** New
+### 42. Sit Means Sit St. Louis ⭐ ENRICHED
+- **Type:** Dog Training (National Franchise)
+- **Contact:** Trainer/Owner (Chase)
+- **Phone:** (314) 266-8404 ✅
+- **Address:** 539 Boone's Lick Rd, St. Charles, MO 63301
+- **Website:** https://sitmeanssitstl.com
+- **Hours:** Tue-Sat 9am-6pm
+- **Status:** New - READY TO CALL
 - **Date Added:** 2026-02-18
-- **Notes:** National franchise with local presence. Group classes (outdoor) and private training. Dogs relieve themselves during sessions. Franchise = standards and budget.
-- **Pitch Angle:** "Your clients pay for professional training. Clean outdoor areas complete that professional experience."
+- **Date Enriched:** 2026-02-23
+- **Notes:** Featured on Show Me St. Louis (KSDK). Head trainer Chase with dog Moose. New ownership per KSDK article. St. Charles location = TJ's service area. National franchise = professional standards and vendor budgets.
+- **Pitch Angle:** "You're training dogs professionally, and dogs relieve themselves during sessions. We can keep your outdoor training areas spotless so clients see professionalism from the moment they arrive."
 - **Assigned To:** Jamie
 
 ### 43. Alpha Canine Professional Dog Training
@@ -718,31 +723,36 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 - **Pitch Angle:** "You have 80 acres of trails and lakefront for residents and their pets. That's a LOT of ground. We specialize in large-scale pet waste management for communities exactly like yours."
 - **Assigned To:** Jamie (WHALE - PRIORITY)
 
-### 45. Park Forest Apartments ⭐ HIGH PRIORITY
+### 45. Park Forest Apartments ⭐⭐ ENRICHED - TOP PRIORITY
 - **Type:** Apartment Community (Pet-Focused)
-- **Contact:** Property Manager
-- **Phone:** See website
-- **Address:** St. Louis, MO
-- **Website:** https://www.parkforestapts.com/
-- **Pet Amenities:** Bark Park, Free Pet Treats, Pet Waste Stations, Yappy Hours!
-- **Status:** New - READY TO CALL
-- **Date Added:** 2026-02-19
-- **Notes:** Already INVESTING in pet amenities — bark park, treats, waste stations, even "Yappy Hours" events. They get it. They're already paying for waste stations but likely maintaining them in-house. Natural value-add pitch.
-- **Pitch Angle:** "Love that you host Yappy Hours and have a bark park! You clearly care about pet residents. We can take waste management off your team's plate so they can focus on the fun stuff."
-- **Assigned To:** Jamie
-
-### 46. The Rail Apartments ⭐ HIGH PRIORITY
-- **Type:** Urban Luxury Apartments
 - **Contact:** Leasing Office
-- **Phone:** See website
-- **Address:** The Grove, St. Louis, MO
-- **Website:** https://www.therail-stl.com/
-- **Amenities:** Golf simulator, game lounge, recreation room, pet-friendly
-- **Status:** New - READY TO CALL
+- **Phone:** (314) 351-1021 ✅
+- **Address:** 7529 Fleta St, Saint Louis, MO 63123 (Affton/South County)
+- **Website:** https://www.parkforestapts.com/
+- **Hours:** Mon-Fri 9am-6pm, Sat 10am-?
+- **Pet Amenities:** Bark Park, Free Pet Treats, Pet Waste Stations, Yappy Hours!
+- **Status:** ENRICHED - TOP PRIORITY - READY TO CALL
 - **Date Added:** 2026-02-19
-- **Notes:** Urban luxury in trendy Grove neighborhood. Younger demographic with dogs. Modern amenities = property that invests in experience. Urban pet-friendly = high dog density in concentrated area.
-- **Pitch Angle:** "Urban pet-friendly living means high dog density. You're creating an amazing resident experience with your amenities — let us make sure outdoor areas match that standard."
-- **Assigned To:** Jamie
+- **Date Enriched:** 2026-02-23
+- **Notes:** Already INVESTING in pet amenities — bark park, treats, waste stations, even "Yappy Hours" events! 83 photos on Yelp, active community. South County location = TJ's service area. They GET IT. They're spending on pet amenities already. Natural value-add.
+- **Pitch Angle:** "I love that you host Yappy Hours and have a bark park — you clearly care about your pet residents! We can take the waste management off your team's plate so they can focus on the fun stuff."
+- **Assigned To:** Jamie (PRIORITY)
+
+### 46. The Rail Apartments ⭐⭐ ENRICHED - HIGH PRIORITY
+- **Type:** Urban Luxury Apartments (Brand New!)
+- **Contact:** Leasing Office
+- **Phone:** (844) 998-4398 ✅
+- **Address:** 4591 McRee Ave, St. Louis, MO 63110 (Forest Park Southeast / The Grove)
+- **Website:** https://www.therail-stl.com/
+- **Hours:** Mon-Fri 9am-5pm, Sat 10am-4pm
+- **Unit Sizes:** 696-1,345 sq ft ($1,601+)
+- **Amenities:** Golf simulator, game lounge, recreation room, pet-friendly
+- **Status:** ENRICHED - HIGH PRIORITY - READY TO CALL
+- **Date Added:** 2026-02-19
+- **Date Enriched:** 2026-02-23
+- **Notes:** Urban luxury in trendy Grove/Forest Park Southeast. Near Tower Grove Park, Mastercard HQ, SLU. Younger demographic with dogs. Brand new community actively leasing = wants to establish vendor relationships NOW. Listed with WashU housing = grad students with dogs.
+- **Pitch Angle:** "The Rail is gorgeous — and you're in the perfect location near Tower Grove Park where everyone walks their dogs. Urban pet-friendly means high density. We can keep your outdoor areas spotless."
+- **Assigned To:** Jamie (PRIORITY)
 
 ### 47. Arbor Pointe Apartments
 - **Type:** Apartment Community
@@ -1258,44 +1268,51 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 **Segments Focus:** Pet Grooming Facilities + Luxury Apartments with Dog Parks
 **Why This Segment:** Grooming facilities have outdoor relief areas; luxury apartments with dog parks = premium pricing justified.
 
-### 69. Steelyard Apartments ⭐ HAS DOG PARK + WASH STATION
+### 69. Steelyard Apartments ⭐ ENRICHED - HAS DOG PARK + WASH STATION
 - **Type:** Luxury Apartment Community (Mission Rock Residential)
 - **Contact:** Leasing Office
-- **Phone:** Research required
-- **Address:** St. Louis, MO (Forest Park Southeast)
+- **Phone:** (314) 720-8359 ✅
+- **Address:** 2400 S 9th St, St. Louis, MO 63104 (Soulard)
 - **Website:** https://www.missionrockresidential.com/apartments/mo/st-louis/steelyard/
+- **Hours:** Mon-Fri 10am-6pm, Sat 10am-5pm
 - **Pet Amenities:** On-site dog wash station, ENCLOSED DOG PARK
 - **Management:** Mission Rock Residential (national company)
-- **Status:** New - READY TO CALL
+- **Status:** ENRICHED - READY TO CALL
 - **Date Added:** 2026-02-21
-- **Notes:** Luxury community with BOTH a dog wash station AND enclosed dog park. They understand pet owners are important. National management = vendor budgets. Forest Park Southeast is trendy area.
+- **Date Enriched:** 2026-02-23
+- **Notes:** Luxury community with BOTH a dog wash station AND enclosed dog park. They understand pet owners are important. National management = vendor budgets. Soulard location (trendy historic neighborhood).
 - **Pitch Angle:** "You've invested in a dog park and dog wash for your residents — that's awesome. We can keep the grounds around those amenities spotless."
 - **Assigned To:** Jamie
 
-### 70. Silver Maple Pet Center ⭐ GROOMING FACILITY
-- **Type:** Pet Grooming / Daycare
-- **Contact:** Front Desk / Owner
-- **Phone:** Research via website
-- **Address:** St. Louis, MO (South City area)
+### 70. Silver Maple Pet Center ⭐ ENRICHED - GROOMING + DAYCARE
+- **Type:** Pet Grooming / Daycare / Boarding
+- **Contact:** Front Desk
+- **Phone:** (314) 965-1630 ✅
+- **Address:** 2014 N Ballas Rd, Des Peres, MO 63131
 - **Website:** https://www.silvermaplepetcenter.com/
-- **Services:** Full-service grooming, low-noise equipment, cat and dog
-- **Status:** New - READY TO CALL
+- **Hours:** Mon-Fri 8am-6pm, Sat 9am-5pm, Sun Closed
+- **Services:** Full-service grooming, boarding, doggy daycare
+- **Status:** ENRICHED - READY TO CALL
 - **Date Added:** 2026-02-21
-- **Notes:** Professional grooming facility. Dogs wait outside before/after grooming. Relief area needed. Cares about pet comfort (low-noise dryers = attention to detail).
-- **Pitch Angle:** "Dogs coming for grooming need outdoor relief areas. We can keep yours spotless so pets and owners have a great experience."
+- **Date Enriched:** 2026-02-23
+- **Notes:** Highly rated (5-star reviews). Dogs love going here per testimonials. Des Peres location = West County affluent area. Boarding + daycare = high volume facility.
+- **Pitch Angle:** "Your dogs come home happy and tired — that means a lot of outdoor activity. Let us keep those outdoor play areas spotless."
 - **Assigned To:** Jamie
 
-### 71. The Healthy Pet House ⭐ GROOMING + RETAIL
+### 71. The Healthy Pet House ⭐ ENRICHED - GROOMING + RETAIL
 - **Type:** Pet Supply Store + Grooming Salon
-- **Contact:** Owner/Manager
-- **Phone:** Research via website
-- **Address:** Ladue/Town & Country area
+- **Contact:** Store Manager
+- **Phone:** (314) 781-7387 ✅
+- **Email:** info@thehealthypethouse.com
+- **Address:** 7316 Manchester Rd, St. Louis, MO 63143 (Maplewood)
 - **Website:** https://thehealthypethouse.com/
+- **Hours:** Mon-Fri 9am-6:30pm, Sat 9am-6pm, Sun 11am-5pm
 - **Service Areas:** Ladue, Town and Country, Clayton, Chesterfield, Sunset Hills, Creve Coeur, Kirkwood, Richmond Heights, Brentwood, Glendale
-- **Status:** New - READY TO CALL
+- **Status:** ENRICHED - READY TO CALL
 - **Date Added:** 2026-02-21
-- **Notes:** High-end pet supplies + grooming. West County affluent customer base. Outdoor areas see constant dog traffic from grooming and retail customers. Multiple West County locations in their service area.
-- **Pitch Angle:** "Your grooming customers and retail shoppers bring their dogs — that's a lot of outdoor traffic. We can help maintain clean outdoor areas."
+- **Date Enriched:** 2026-02-23
+- **Notes:** Formerly Airedale Antics. 25+ years in pet education! High-end pet supplies + grooming. West County affluent customer base. 41 Yelp reviews. Outdoor areas see constant dog traffic from grooming and retail customers.
+- **Pitch Angle:** "You've been serving pet owners for 25 years — incredible! Your grooming customers bring their dogs, and outdoor areas see a lot of traffic. We can help maintain that professional image outside."
 - **Assigned To:** Jamie
 
 ---
@@ -1429,32 +1446,42 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 **Segments Focus:** Dog Daycare, Luxury Apartments, Property Management
 **Why These Segments:** All have outdoor pet areas, image-conscious, recurring need
 
-### 78. Happy Dog Spot ⭐ HIGH PRIORITY
+### 78. Happy Dog Spot ⭐⭐ ENRICHED - WHALE ACCOUNT (15K SQ FT!)
 - **Type:** Dog Daycare + Boarding + Grooming
-- **Contact:** Front Desk
-- **Phone:** See website
-- **Address:** St. Louis area
+- **Contact:** Front Desk / Tabitha Faulkner (Operations Manager)
+- **Phone:** (314) 963-PAWS (7297) ✅
+- **Address:** Rock Hill, MO (near Maplewood)
 - **Website:** https://happydogspot.com/
-- **Facility:** 15,000 SQ FT indoor/outdoor play space
-- **Status:** New - READY TO CALL
+- **Hours:** Mon-Fri 6:30am-7pm, Sat/Sun varies
+- **Facility:** 10,000 SQ FT in Rock Hill + outdoor yards
+- **Services:** Daycare ($38/day), Boarding ($75/night), Grooming, Packages
+- **Status:** ENRICHED - WHALE ACCOUNT - READY TO CALL
 - **Date Added:** 2026-02-23
-- **Notes:** HUGE 15,000 sq ft facility! High-volume operation. Offers daycare ($38/day), boarding ($75/night), grooming. Temperament testing = professional. Rates updated March 2026.
-- **Pitch Angle:** "You have 15,000 square feet of play space. We can handle the outdoor waste so your team focuses on the dogs."
-- **Assigned To:** Jamie
+- **Date Enriched:** 2026-02-23
+- **Notes:** Certified vet techs on staff! Temperament testing required. Multiple play groups by play-style. Outdoor yards on regular schedule. Operating since 2007. Low dog-to-staff ratios. High-volume operation = high waste volume.
+- **Pitch Angle:** "You have outdoor yards that dogs use on a regular schedule throughout the day. With vet techs on staff, you clearly prioritize quality. Let us keep those outdoor areas as clean as your standards inside."
+- **Assigned To:** Jamie (WHALE - PRIORITY)
 
-### 79. Tribeca STL (Mission Rock Residential) ⭐ LUXURY
-- **Type:** Luxury Apartment Complex
+### 79. Tribeca STL (Mission Rock Residential) ⭐⭐ ENRICHED - LUXURY + DOG PARK + PET SPA
+- **Type:** Luxury Apartment Complex (CWE)
 - **Contact:** Leasing Office
-- **Phone:** See website
-- **Address:** Central West End, St. Louis, MO
+- **Phone:** (314) 888-9751 ✅ (alternate: 877-635-8151)
+- **Address:** 5510 Pershing Ave, St. Louis, MO 63112 (Central West End)
 - **Website:** https://www.missionrockresidential.com/apartments/mo/st-louis/tribecastl/
-- **Pet Amenities:** DOG PARK + PET SPA
-- **Management:** Mission Rock Residential
-- **Status:** New - READY TO CALL
+- **Hours:** Mon-Fri 10am-6pm, Sat 10am-5pm
+- **Pet Amenities:** DOG PARK + PET SPA (rare combo!)
+- **Management:** Mission Rock Residential (also manages Steelyard - #69)
+- **Unit Types:** Studio, 1, 2, 3 BR ($1,112+)
+- **Features:** Alexa tech, Nest thermostats, quartz countertops, heated pool
+- **Status:** ENRICHED - WHALE ACCOUNT - READY TO CALL
 - **Date Added:** 2026-02-23
-- **Notes:** Luxury apartments with dog park AND pet spa. Central West End near Forest Park. Near Barnes Jewish Hospital = medical professionals with dogs. Move-in specials running.
-- **Pitch Angle:** "Tribeca has a dog park AND pet spa. We can keep that dog park spotless."
-- **Assigned To:** Jamie
+- **Date Enriched:** 2026-02-23
+- **Notes:** LUXURY CWE apartments with dog park AND pet spa — they're heavily invested in pet amenities. Near Forest Park, St. Louis Zoo, Barnes-Jewish Hospital. Medical professionals = high-income dog owners. Move-in specials running = actively leasing.
+- **Pitch Angle:** "You have both a dog park AND pet spa — that's rare and awesome. You've clearly invested in pet residents. We can keep that dog park spotless so it matches your luxury standards."
+- **Assigned To:** Jamie (WHALE - PRIORITY)
+
+### 💡 NOTE: Mission Rock Opportunity
+**Mission Rock Residential** manages BOTH Steelyard (#69) and Tribeca (#79). If we win one, pitch a multi-property contract!
 
 ### 80. Mac Properties (Multiple Buildings) ⭐ MULTI-SITE
 - **Type:** Property Management Company

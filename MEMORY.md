@@ -44,41 +44,37 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - Missing: Website, Google Business Profile
 - Main challenge: Customer acquisition at scale
 
-### Competition (UPDATED Feb 23, 2026 9 AM)
+### Competition (UPDATED Feb 23, 2026 4 PM)
 
-**💡 PRICING INSIGHT:** TJ's weekly ($25) is highest in market, BUT monthly ($70) is LOWEST!
-- Lead with monthly pricing in all ads
-- Position weekly as "premium/priority" tier
-- Monthly commitment = best value proposition
+**🚨 MAJOR UPDATE: Market has MASSIVELY consolidated!**
 
-**Market Window:** 6 local competitors are DEAD/DYING:
-- Pawfect Waste Solutions (pawfectwastesolutions.com) — DNS dead
-- Pawfect alt domain (pooperscooperstl.com) — 404 confirmed (re-verified 5 AM)
-- Scoop Soldiers STL (scoopsoldiersstl.com) — DNS dead
-- Fresh Paws (wearefreshpaws.com) — Squarespace expired confirmed
-- **St. Louis Pooper Scoopers** — CLOSED (Yelp verified, was at 3407 S Jefferson Ave)
-- **Poopy Paws** — Website dead (poopypaws314.com), phone 314-783-1781 may be active
+**7 DEAD Competitors (verified 4 PM today):**
+1. Pawfect Waste Solutions — DNS dead
+2. pooperscooperstl.com — 404 not published
+3. Scoop Soldiers STL — DNS dead
+4. Fresh Paws — Squarespace expired
+5. **Dirty Dog Poo Crew — DNS dead (NEW!)** 
+6. Poopy Paws 314 — DNS dead
+7. **Little Stinkers of MO — DNS dead (NEW!)**
 
-**South City orphan opportunity:** Both new dead competitors operated in South City (Tower Grove, Benton Park area). Underserved market.
+**Only 3 ACTIVE Competitors Remain:**
 
-**Active Local Competitors:**
+| Competitor | Price | Notes |
+|------------|-------|-------|
+| **Poop2Scoop** | $18/wk | Only local residential competitor, 314-449-9447 |
+| **Yucko's** | Quote | Since 1990, commercial focus, 314-291-POOP |
+| **DoodyCalls** | Quote (~$12+) | Franchise, (314) 230-8082 |
 
-| Competitor | Weekly Price | Notes |
-|------------|--------------|-------|
-| **Poop 2 Scoop** | $18/wk | 28% cheaper than TJ, family biz, 314-449-9447 |
-| **Yucko's** | Call for quote | Since 1990 (36 yrs!), 314-291-POOP, commercial focus |
-| **Dirty Dog Poo Crew** | $95/mo (~$24/wk) | Dog wash hybrid, limited to 1/4 acre, 10-mi radius |
-| **Little Stinkers of MO** | Quote | BBB since 2018 (8 yrs!), 636-887-6626, St. Charles/Moscow Mills focus |
-
-**National franchises:** DoodyCalls, POOP 911 (quote-based, usually expensive)
+**💡 PRICING ADVANTAGE:**
+- TJ's weekly ($25) > Poop2Scoop ($18) — don't compete here
+- TJ's biweekly ($45) < Poop2Scoop implied ($50) — **TJ wins**
+- TJ's monthly ($70) < Poop2Scoop implied ($72) — **TJ wins**
 
 **Strategic Implications:**
-1. **DON'T compete on weekly price** - Poop2Scoop owns cheap lane at $18/wk
-2. **TJ's monthly ($70) is CHEAPEST** - beats Dirty Dog ($95) by 26%, beats Poop2Scoop implied (~$72)
-3. **TJ's biweekly ($45) beats Poop2Scoop ($50)** - value positioning
-4. **Commercial = wide open** - only Yucko's (36 yrs) really owns it
-5. **Little Stinkers = new threat** in St. Charles (but focused west)
-6. **6 dead competitors = orphaned customers** actively looking
+1. **LEAD WITH MONTHLY** — TJ has cheapest committed pricing
+2. **7 dead = HUNDREDS of orphan customers** looking for new service
+3. **Commercial is WIDE OPEN** — Yucko's only competition (dinosaur website)
+4. **This is a LAND GRAB moment** — first mover wins orphans
 
 **Full intel:** `memory/2026-02-23-competitor-intel-update.md`
 

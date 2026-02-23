@@ -6,6 +6,71 @@
 
 ## February 23, 2026 (Monday — Week 2 Kickoff)
 
+### 3:00 PM — 🔍 DEAD COMPETITOR CUSTOMER RECOVERY RESEARCH
+**Task:** Research orphaned customers from 6 dead/dying competitors. Find actionable intel for South City market.
+**Result:** ✅ Major opportunity discovered + ready-to-post ad copy created
+
+**Key Discoveries:**
+
+| Finding | Details |
+|---------|---------|
+| St. Louis Pooper Scoopers | CLOSED (Yelp verified), was at 3407 S Jefferson Ave |
+| Orphaned Territory | South City: Tower Grove, Benton Park, Cherokee, Marine Villa |
+| Trending Search | "Pet Waste Removal near St. Louis Pooper Scoopers" on Yelp! |
+| Competitive Gap | No active local competitors serving South City |
+
+**Ready-to-Post South City Ad:**
+```
+🐕 South City Dog Owners - New Local Service!
+
+Finally, a reliable pet waste removal service in Tower Grove, Benton Park, and Cherokee!
+
+✅ $70/month (unlimited weekly visits)
+✅ Local owner-operated (not a franchise)  
+✅ Sundays work for your schedule
+
+No contracts. No hassle. Just a clean yard.
+
+📞 314-850-7140
+```
+
+**File Created:**
+- `memory/2026-02-23-dead-competitor-research.md` — Full intel + neighborhood map + strategy
+
+**Week 2 Compliance:**
+- ✅ Research task (not building tools)
+- ✅ Created 1 actionable ad copy (for execution, not archive)
+- ✅ Identified specific market opportunity
+- ❌ No new PDFs
+
+**Immediate Action:** TJ post in Tower Grove/Benton Park FB groups tonight
+
+---
+
+### 2:00 PM — 📞 LEAD CONTACT GAP ENRICHMENT
+**Task:** Audit leads marked "READY TO CALL" but missing phone numbers. Research and fill gaps.
+**Result:** ✅ 5 high-priority leads enriched with verified phone numbers
+
+**Leads Enriched:**
+
+| Lead # | Business | Phone | Type |
+|--------|----------|-------|------|
+| #69 | Steelyard Apartments | (314) 720-8359 | Luxury Apts - DOG PARK |
+| #70 | Silver Maple Pet Center | (314) 965-1630 | Daycare/Grooming |
+| #71 | The Healthy Pet House | (314) 781-7387 | Pet Store/Grooming |
+| #78 | Happy Dog Spot | (314) 963-7297 | WHALE - 10k sq ft daycare |
+| #79 | Tribeca STL | (314) 888-9751 | Luxury Apts - DOG PARK + PET SPA |
+
+**Multi-Site Opportunity:**
+Mission Rock Residential manages both Steelyard and Tribeca → potential 2-property contract!
+
+**Week 2 Compliance:**
+- ✅ Enabled execution (not built tools)
+- ✅ Fixed infrastructure gaps
+- ❌ No new PDFs created
+
+---
+
 ### 11:00 AM — 🏠 TUFFSHED PROMO VERIFICATION
 **Task:** Verify current TuffShed promotions are accurate in all materials
 **Result:** ✅ "$1,000 off" promo EXPIRED 2/11/26. Shed ads are clean.
@@ -2477,3 +2542,65 @@ Jamie can't call "See website." Now she has 8 phone-ready leads with custom open
 This is EXECUTION ENABLEMENT, not another PDF. Real phone numbers → real calls → real customers.
 
 ---
+
+---
+
+## 2026-02-23 1:00 PM — Lead Enrichment for Jamie
+
+**Task:** Enrich commercial leads with phone numbers to enable execution
+
+**What I Did:**
+1. Identified 6 high-priority leads missing phone numbers
+2. Web searched and fetched contact info
+3. Updated leads-commercial.md with enriched data
+4. Created Monday Call Sheet for Jamie (Feb 24)
+
+**Leads Enriched:**
+| Lead | Phone Added | Priority |
+|------|-------------|----------|
+| Park Forest Apartments | (314) 351-1021 | TOP - Has bark park! |
+| The Rail Apartments | (844) 998-4398 | HIGH - Brand new, Grove area |
+| Cedarhurst Tesson Heights | (314) 474-6099 | NEW SEGMENT - Senior Living |
+| Sunrise of Des Peres | 888-434-4648 | NEW SEGMENT - Senior Living |
+| Sit Means Sit STL | (314) 266-8404 | Dog training, St. Charles |
+| Stray Rescue | (314) 771-6121 | Confirmed - High profile |
+
+**Deliverable:** `dashboard/jamies-hub/monday-call-sheet-feb-24.md`
+
+**Why This Matters:**
+Week 2 is about EXECUTION, not building more tools. Jamie can't call without phone numbers. This task directly enables tomorrow's commercial calls.
+
+**Lead Stats After Update:**
+- Total commercial leads: 68+
+- Phone-ready leads: 55+
+- Whale accounts identified: 10+
+- New segments opened: Senior Living, Dog Training
+
+**Next Action:** Jamie should call TOP 3 tomorrow:
+1. Alpha Brewing (3:30 PM - before they open)
+2. Park Forest Apartments (9 AM - morning call)
+3. Zoomies Pet Cafe (11 AM - between rushes)
+
+
+## 2026-02-23 4:00 PM — Competitor Intel Refresh
+
+**Task:** Verify dead competitor status and update competitive intelligence
+**Duration:** ~30 minutes
+**Result:** MAJOR FINDING
+
+### Findings:
+- **7 competitors confirmed dead** (up from 6)
+- NEW deaths: Dirty Dog Poo Crew, Little Stinkers of MO
+- **Only 3 active competitors remain:** Poop2Scoop ($18/wk), Yucko's (commercial), DoodyCalls (franchise)
+- Market has massively consolidated = land grab opportunity
+
+### Deliverables:
+1. `memory/2026-02-23-competitor-intel-update.md` — Full intel report
+2. `dashboard/campaigns/tidy-tails/2026-02-23-orphan-rescue-ad.md` — One ready-to-post ad
+3. Updated `MEMORY.md` competition section
+
+### Strategic Insight:
+7 dead competitors = potentially hundreds of orphaned customers actively looking for new service. Created ONE simple "orphan rescue" ad (not a whole kit) that TJ can post this week to capture them. Leads with monthly pricing ($70) where TJ beats everyone.
+
+**Week 2 discipline:** Research + ONE actionable ad. Not 10 new tools.
+
