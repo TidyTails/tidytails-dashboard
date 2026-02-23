@@ -6,6 +6,47 @@
 
 ## February 23, 2026 (Monday — Week 2 Kickoff)
 
+### 9:00 AM — 🔍 COMPETITOR INTEL VERIFICATION + PRICING DISCOVERY
+**Task:** Live verification of competitor status and current pricing analysis
+**Result:** ✅ All dead competitors still dead. MAJOR pricing insight discovered.
+
+**What I Verified (Live Fetch):**
+
+| Competitor | Domain | Status |
+|------------|--------|--------|
+| Pawfect Waste Solutions | pawfectwastesolutions.com | ⚰️ DNS DEAD |
+| Pawfect alt (Pooper Scooper STL) | pooperscooperstl.com | ⚰️ 404 ERROR |
+| Poopy Paws | poopypaws314.com | ⚰️ DNS DEAD |
+
+**Poopy Paws ZOMBIE Status:**
+- Website dead BUT social presence active
+- Yelp, Nextdoor, MapQuest listings still show $20/week
+- Phone: 314-783-1781 (may or may not answer)
+- **ACTION:** Call to verify if truly dead or just website-less
+
+**Active Competitor Pricing (Feb 23, 2026):**
+
+| Competitor | Weekly | Biweekly | Monthly |
+|------------|--------|----------|---------|
+| **Poop 2 Scoop** | $18 | $25 EOW | ~$72 |
+| **Poopy Paws** (if active) | $20 | ? | ? |
+| **Tidy Tails (TJ)** | $25 | $45 | $70 |
+| **DoodyCalls** | Quote | Quote | Quote |
+| **Yucko's** | Quote | Quote | Quote |
+
+**💡 KEY INSIGHT:**
+TJ's weekly ($25) is HIGHEST in market. BUT TJ's monthly ($70) is LOWEST!
+- Beats Poop 2 Scoop 4-week implied: ~$72
+- Beats Dirty Dog: $95/month
+- **STRATEGY: Lead with monthly pricing in all ads!**
+
+**Files Created:**
+- `memory/2026-02-23-competitor-intel-monday-update.md` — Full intel report
+
+**Week 2 Compliance:** ✅ Research task, validated existing intel, found actionable pricing insight
+
+---
+
 ### 6:00 AM — 🎯 CUSTOMER RESCUE CAMPAIGN
 **Task:** Create ready-to-post ad copy for capturing orphaned customers from dead competitors
 **Result:** ✅ 3 ad variations + Nextdoor post ready for Wildwood/West County
@@ -60,6 +101,47 @@ Fresh Paws was based in **Wildwood, MO** and served St. Louis + St. Charles. The
 Post VERSION A or B to Wildwood/Chesterfield Facebook groups TODAY. These are warm leads from a dead competitor's service area.
 
 **Week 2 Compliance:** ✅ Actionable copy, not another PDF
+
+---
+
+### 8:00 AM — 🔍 DECISION MAKER INTEL ENRICHMENT
+**Task:** Research decision-maker names, call times, and conversation hooks for Jamie's 3 priority calls
+**Result:** ✅ Created enriched call brief with names, scripts, and hooks
+
+**Why This Task:**
+- 7 AM task gave Jamie phone numbers
+- But Jamie calling "Alpha Brewing" is less effective than calling "Derrick at Alpha Brewing"
+- Week 2 = enable execution, not just stage resources
+
+**What I Found:**
+
+| Business | Decision Maker | Best Call Time | Key Intel |
+|----------|----------------|----------------|-----------|
+| **Alpha Brewing** | **Derrick Langeneckert** (owner) | 3:30 PM Mon | Hosts "Bring Your Dog, Get Free Beer Day", Green Dining Alliance, science background |
+| **Zoomies Pet Cafe** | Owner (researching) | 11 AM | Cafe curated FOR pet owners, Macklind District, active Instagram |
+| **Civil Life** | **Jake Hafner** (founder) | ❌ CLOSED MONDAYS | 15 years in Tower Grove South, doubled patio during pandemic, sustainability values |
+
+**Critical Discovery:**
+**Civil Life is CLOSED ON MONDAYS.** Jamie should NOT call them today — Tuesday instead.
+
+**Call Order Updated:**
+1. **11 AM** → Zoomies (between rushes)
+2. **3:30 PM** → Alpha Brewing (before they open at 4)
+3. **Tuesday** → Civil Life (closed Mondays)
+
+**Files Created:**
+- `dashboard/MONDAY_CALLS_BRIEF.md` — Enriched call brief (decision makers, scripts, hooks, best times)
+
+**Files Updated:**
+- `dashboard/index.html` — Added enriched brief link, updated action card with names
+
+**Week 2 Compliance:**
+- ✅ Enriched existing data (leads → actionable intel)
+- ✅ Enabled execution (names > phone numbers)
+- ❌ Did NOT create another PDF
+
+**Impact:**
+Jamie now knows WHO to ask for, WHEN to call, and WHAT to say. That's the difference between "Hi, I'm calling about dog waste removal" and "Hi, is Derrick available? I saw you host Bring Your Dog Day..."
 
 ---
 

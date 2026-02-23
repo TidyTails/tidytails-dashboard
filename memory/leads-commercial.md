@@ -776,18 +776,22 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 **Segments Focus:** Dog-Friendly Breweries
 **Why This Segment:** Outdoor patios with heavy dog traffic, image-conscious premium businesses, weekend crowds = lots of outdoor messes, trendy businesses that invest in experience
 
-### 51. Civil Life Brewing Company ⭐ READY TO CALL
+### 51. Civil Life Brewing Company ⭐ ENRICHED - PRIORITY
 - **Type:** Dog-Friendly Brewery (Large Outdoor Patio)
-- **Contact:** Front of House Manager
+- **Contact:** **Jake Hafner** (Founder/Owner)
+- **Other Founders:** Dylan Mosley, Mike Bianco
 - **Phone:** (314) 772-4155 ✅
 - **Address:** 3714 Holt Ave, St. Louis, MO 63116 (Tower Grove South)
 - **Website:** https://www.thecivillife.com/
 - **Hours:** Tue-Sat 4pm-10pm, Sun 12pm-8pm
-- **Status:** New - READY TO CALL
+- **⚠️ CLOSED MONDAYS** — Call Tuesday!
+- **Status:** ENRICHED - PRIORITY CALL (Tuesday)
 - **Date Added:** 2026-02-20
-- **Notes:** Listed on BringFido as pet-friendly. Large outdoor patio in hip Tower Grove South neighborhood. Local brewery = owner makes decisions.
-- **Pitch Angle:** "Your patio is one of the most dog-friendly spots in Tower Grove. But dogs + beer garden = a lot of outdoor cleanup. We can take that off your team's plate."
-- **Assigned To:** Jamie
+- **Date Enriched:** 2026-02-23
+- **Notes:** 15 YEARS in Tower Grove South (since 2011). DOUBLED their patio during pandemic = more outdoor dog space. Sustainable practices (solar panels, native landscaping). Jake mentioned "decreasing sales" = budget-conscious, sell VALUE. Award-winning: Rye Pale won Gold at GABF 2014.
+- **Pitch Angle:** "You've been a Tower Grove institution for 15 years, and I know you doubled your patio during the pandemic. More outdoor space, more dog visitors. We can help maintain that reputation outside too."
+- **Ask For:** "Hi, is Jake available?"
+- **Assigned To:** Jamie (CALL TUESDAY)
 
 ### 52. Schlafly Tap Room ⭐ READY TO CALL
 - **Type:** Dog-Friendly Brewery (ICONIC St. Louis)
@@ -923,20 +927,25 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 - **Pitch Angle:** "Cherokee Street draws a lot of foot traffic — and their dogs. We can keep your outdoor areas spotless."
 - **Assigned To:** Jamie
 
-### 60. Alpha Brewing Company ⭐⭐ HIGH PRIORITY - HAS DOG EVENTS!
+### 60. Alpha Brewing Company ⭐⭐ ENRICHED - TOP PRIORITY - HAS DOG EVENTS!
 - **Type:** Dog-Friendly Brewery (HOSTS DOG EVENTS!)
-- **Contact:** Events Manager
+- **Contact:** **Derrick Langeneckert** (Owner)
 - **Phone:** (314) 621-2337 ✅
 - **Address:** 4310 Fyler Ave, St. Louis, MO 63116 (Tower Grove South)
 - **Website:** https://alphabrewingcompany.com/
 - **Hours:** Mon 4pm-10pm, Thu-Fri 4pm-10pm, Sat 12pm-10pm, Sun 12pm-8pm
+- **⚠️ CLOSED Tue-Wed**
+- **Best Call Time:** Monday 3:30 PM (before they open)
 - **Dog Events:** "Bring Your Dog, Get Free Beer Day" (hosted Aug 2024)
 - **Awards:** Green Dining Alliance certified
-- **Status:** New - READY TO CALL - TOP PRIORITY
+- **Background:** Derrick has a science background, started brewing at Square One Brewery before opening Alpha
+- **Status:** ENRICHED - MONDAY #1 PRIORITY
 - **Date Added:** 2026-02-21
-- **Notes:** THIS ONE HOSTS DOG EVENTS! "Bring Your Dog, Get Free Beer Day" = they actively market to dog owners. Tower Grove South neighborhood (trendy, walkable). Perfect fit for recurring service since they're already dog-focused.
-- **Pitch Angle:** "I saw you host 'Bring Your Dog, Get Free Beer Day' — love that! Since you're already marketing to dog owners, we'd love to help keep your outdoor areas spotless before, during, and after those events."
-- **Assigned To:** Jamie (TOP PRIORITY - already dog-focused!)
+- **Date Enriched:** 2026-02-23
+- **Notes:** THIS ONE HOSTS DOG EVENTS! "Bring Your Dog, Get Free Beer Day" = they actively market to dog owners. Tower Grove South neighborhood (trendy, walkable). Green Dining Alliance = environmentally conscious (sustainability angle). Owner Derrick is a real craft person, not corporate.
+- **Pitch Angle:** "Hi, is Derrick available? I saw you host 'Bring Your Dog, Get Free Beer Day' — love that! Since you're already marketing to dog owners, we'd love to help keep your outdoor areas spotless."
+- **Ask For:** "Hi, is Derrick available?"
+- **Assigned To:** Jamie (CALL TODAY 3:30 PM)
 
 ### 61. 2nd Shift Brewing ⭐ DOGS INSIDE AND OUT!
 - **Type:** Dog-Friendly Brewery (Dogs Welcome INSIDE - Rare!)
@@ -951,20 +960,22 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 - **Pitch Angle:** "You're one of the rare breweries that lets dogs inside AND outside. That's awesome, and it means a lot of pups visiting. We can handle the outdoor cleanup."
 - **Assigned To:** Jamie
 
-### 62. Zoomies Pet Cafe ⭐⭐ HIGH PRIORITY - DOG CAFE!
+### 62. Zoomies Pet Cafe ⭐⭐ ENRICHED - TOP PRIORITY - DOG CAFE!
 - **Type:** Dog-Focused Cafe & Boutique (Made for Dog Owners!)
-- **Contact:** Owner/Manager
+- **Contact:** Owner/Manager (researching name)
 - **Phone:** (314) 696-2003 ✅
 - **Email:** info@zoomiespetcafe.com
 - **Address:** 5838 Macklind Ave, St. Louis, MO 63109 (Macklind Business District)
 - **Website:** https://www.zoomiespetcafe.com/
 - **Instagram:** @zoomiescafestl
 - **Hours:** Mon-Sat 8am-3pm (Thu 8am-4pm), Sun 8am-4pm
-- **Status:** New - READY TO CALL - TOP PRIORITY
+- **Best Call Time:** Monday 11 AM (between breakfast and lunch rush)
+- **Status:** ENRICHED - MONDAY #2 PRIORITY
 - **Date Added:** 2026-02-21
-- **Notes:** Formerly Wagamama. This is a COFFEE HOUSE + BOUTIQUE curated for pet owners! They ONLY cater to dog people. Local artists, pet-themed goods, cafe. Perfect alignment with our brand. High foot traffic from dog owners = lots of outdoor visits.
-- **Pitch Angle:** "Zoomies is literally made for dog people — love the concept! With all those pet owners coming through, we'd love to help keep your outdoor areas clean so every visit is as great as your coffee."
-- **Assigned To:** Jamie (TOP PRIORITY - 100% our target customer!)
+- **Date Enriched:** 2026-02-23
+- **Notes:** Formerly Wagamama (they rebranded = growth-minded). COFFEE HOUSE + BOUTIQUE curated FOR pet owners. Local artists, pet-themed goods. Active on Instagram. Perfect brand alignment — they ONLY cater to dog people. High foot traffic from dog owners = outdoor area gets traffic.
+- **Pitch Angle:** "I just discovered Zoomies and I love what you're doing — a coffee house curated for pet owners is brilliant. With all those dog people coming through, have you ever thought about outdoor waste service?"
+- **Assigned To:** Jamie (CALL TODAY 11 AM)
 
 ### 63. 9 Mile Garden ⭐⭐ WHALE ACCOUNT - MASSIVE GREEN SPACE!
 - **Type:** Food Truck Garden (Missouri's FIRST!)
@@ -1387,3 +1398,99 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 - Phone-ready leads: 60+
 - CWE Focus: 3 new leads
 - Research needed: 6 leads
+
+---
+
+## NEW LEADS - Round 11 (Added 2026-02-23 9:00 AM)
+
+**Segments Focus:** Dog Daycare, Luxury Apartments, Property Management
+**Why These Segments:** All have outdoor pet areas, image-conscious, recurring need
+
+### 78. Happy Dog Spot ⭐ HIGH PRIORITY
+- **Type:** Dog Daycare + Boarding + Grooming
+- **Contact:** Front Desk
+- **Phone:** See website
+- **Address:** St. Louis area
+- **Website:** https://happydogspot.com/
+- **Facility:** 15,000 SQ FT indoor/outdoor play space
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-23
+- **Notes:** HUGE 15,000 sq ft facility! High-volume operation. Offers daycare ($38/day), boarding ($75/night), grooming. Temperament testing = professional. Rates updated March 2026.
+- **Pitch Angle:** "You have 15,000 square feet of play space. We can handle the outdoor waste so your team focuses on the dogs."
+- **Assigned To:** Jamie
+
+### 79. Tribeca STL (Mission Rock Residential) ⭐ LUXURY
+- **Type:** Luxury Apartment Complex
+- **Contact:** Leasing Office
+- **Phone:** See website
+- **Address:** Central West End, St. Louis, MO
+- **Website:** https://www.missionrockresidential.com/apartments/mo/st-louis/tribecastl/
+- **Pet Amenities:** DOG PARK + PET SPA
+- **Management:** Mission Rock Residential
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-23
+- **Notes:** Luxury apartments with dog park AND pet spa. Central West End near Forest Park. Near Barnes Jewish Hospital = medical professionals with dogs. Move-in specials running.
+- **Pitch Angle:** "Tribeca has a dog park AND pet spa. We can keep that dog park spotless."
+- **Assigned To:** Jamie
+
+### 80. Mac Properties (Multiple Buildings) ⭐ MULTI-SITE
+- **Type:** Property Management Company
+- **Contact:** Corporate Office
+- **Phone:** See website
+- **Address:** Multiple St. Louis properties
+- **Website:** https://www.macapartments.com/
+- **Known Properties:** Dorchester, + others
+- **Status:** New - MULTI-SITE POTENTIAL
+- **Date Added:** 2026-02-23
+- **Notes:** Property management with MULTIPLE pet-friendly buildings across St. Louis. One contract = multiple properties. Professional operation.
+- **Pitch Angle:** "You manage multiple pet-friendly communities. We'd love to discuss a portfolio-wide program."
+- **Assigned To:** Jamie
+
+### 81. Lucky Dog Barks and Recreation
+- **Type:** Dog Daycare + Boarding
+- **Contact:** Front Desk
+- **Phone:** Research required
+- **Address:** St. Louis area
+- **Website:** Research required
+- **Status:** New
+- **Date Added:** 2026-02-23
+- **Notes:** Top 10 Yelp dog daycare in St. Louis 2026. Loyal 4+ year customers. High Yelp ranking = cares about reputation.
+- **Pitch Angle:** "You're top-rated on Yelp. Spotless outdoor areas help maintain those 5-star reviews."
+- **Assigned To:** Jamie
+
+### 82. Extended Arms Pet Care
+- **Type:** Pet Care Services
+- **Contact:** Owner/Manager
+- **Phone:** Research required
+- **Address:** St. Louis area
+- **Website:** Research required
+- **Status:** New
+- **Date Added:** 2026-02-23
+- **Notes:** Yelp top 10 dog daycare results for St. Louis 2026. Local operation with good reviews.
+- **Assigned To:** Jamie
+
+### 83. Country Acres Pet Resort
+- **Type:** Pet Resort / Boarding
+- **Contact:** Office
+- **Phone:** Research required
+- **Address:** Greater St. Louis area
+- **Website:** Research required
+- **Status:** New
+- **Date Added:** 2026-02-23
+- **Notes:** "Resort" = premium positioning. Listed in Yelp top results. Resorts typically have extensive outdoor grounds.
+- **Assigned To:** Jamie
+
+---
+
+## Round 11 Notes (2026-02-23 9:00 AM)
+
+### Monday Strategy:
+- Happy Dog Spot (78) = 15k sq ft facility, HIGH priority
+- Tribeca STL (79) = Luxury + pet spa, easy pitch
+- Mac Properties (80) = Multi-site potential
+
+### Updated Lead Count:
+- **Total active commercial leads: 83** ⬆️ (+6 from Round 11)
+- Phone-ready leads: 65+
+- Multi-site potential: Mac Properties, No Leash Needed (8 sites)
+- Research needed: 6 leads (phone numbers)

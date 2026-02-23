@@ -1094,3 +1094,123 @@ Text Darius: 636-354-7406
 ```
 
 ---
+
+### 2026-02-23 (9AM Daily Task)
+
+**Purpose:** Monday momentum, spring urgency, value logic, direct close
+**PDF:** dashboard/pdfs/SHED_ADS_2026-02-23.md
+
+**Ad #48 - "Monday Momentum"**
+```
+Monday.
+
+New week. Fresh energy.
+Time to cross something OFF that list instead of adding to it.
+
+That garage situation?
+The one you keep walking past, shaking your head?
+It's been on your list for... how long now?
+
+Here's what "done" looks like:
+
+📞 Text me today
+📏 I give you a straight quote
+🚚 Delivered in 2-3 weeks
+✅ Problem solved by March
+
+Or you can add it to next week's list.
+And the week after that.
+
+Your call.
+
+✅ 0% financing if paid in 6 months
+✅ No credit check options available
+✅ FREE delivery & setup
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #49 - "Spring's Knocking"**
+```
+🌱 March is THIS SATURDAY.
+
+Which means:
+- Spring projects wake up
+- Everyone realizes they need storage
+- Delivery times go from weeks to months
+
+You've got 5 days of February left.
+
+Lock it in NOW:
+✅ Fast delivery (2-3 weeks)
+✅ Beat the spring rush
+✅ 0% interest if paid in 6 months
+
+Wait until March:
+🤷 6+ week delivery times
+😤 Limited selection
+📅 Still waiting in May
+
+Same shed. Same price.
+Different experience.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #50 - "The Numbers"**
+```
+Quick math:
+
+You're already paying for storage.
+
+Maybe not in dollars, but:
+💸 Depreciation on your car (sits outside in weather)
+💸 Frustration (can't find anything in the garage)
+💸 Time (digging through piles every weekend)
+💸 Stress (wife mentioning it... again)
+
+A shed costs a few thousand ONCE.
+That other stuff costs you every single day.
+
+Plus:
+• As low as $150/mo with financing
+• 0% interest if paid in 6 months
+• No credit check option available
+• FREE delivery and setup
+
+The math is simple.
+
+Text Darius: 636-354-7406
+```
+
+**Ad #51 - "You Already Know"**
+```
+You already know you need a shed.
+
+You've looked at a few online.
+You've walked past the garage and thought about it.
+You've said "we really need to deal with this."
+
+So... let's deal with it.
+
+Here's what happens:
+1. Text me your questions
+2. I give you a straight answer
+3. No pressure, no games
+
+If it works, great.
+If not, no hard feelings.
+
+But the garage isn't organizing itself.
+And spring is coming fast.
+
+Dozens in stock. Financing available.
+FREE delivery on everything.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+---

@@ -1,19 +1,11 @@
 # Telegram Deliveries Log
 
-## 2026-02-22
-
-### 08:32 AM — Morning Briefing (Sunday)
+## 2026-02-23 8:33 AM — Morning Briefing (Week 2 Day 1)
 - **Type:** Morning Briefing
-- **PDF:** dashboard/pdfs/MORNING_BRIEFING_2026-02-22.pdf (14MB) ✅
-- **Email:** Sent to cartervhomes@gmail.com ✅
-- **Dashboard:** Link added to index.html ✅
 - **Telegram:** Summary sent ✅
+- **Email:** cartervhomes@gmail.com ✅ (id: 19c8aeae0931b3c1)
+- **Dashboard:** templates/morning-briefing-2026-02-23.html ✅
+- **PDF:** pdfs/MORNING_BRIEFING_2026-02-23.pdf ✅
+- **Git:** Pushed ✅
 
 ---
-
-## 2026-02-22 7:00 PM — End of Day Summary (Week 2 Day 1)
-- **Sent via:** Email to cartervhomes@gmail.com ✅
-- **Dashboard:** status.json updated with todayCompleted
-- **HTML:** dashboard/pdfs/EOD_SUMMARY_2026-02-22.html
-- **Git:** Pushed to GitHub Pages ✅
-- **Key content:** 11 yards scooped, 6 new leads (#72-77), 4 shed ads, both competitors 404, dashboard simplified

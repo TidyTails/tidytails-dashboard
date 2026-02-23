@@ -44,7 +44,12 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - Missing: Website, Google Business Profile
 - Main challenge: Customer acquisition at scale
 
-### Competition (UPDATED Feb 23, 2026 5 AM)
+### Competition (UPDATED Feb 23, 2026 9 AM)
+
+**💡 PRICING INSIGHT:** TJ's weekly ($25) is highest in market, BUT monthly ($70) is LOWEST!
+- Lead with monthly pricing in all ads
+- Position weekly as "premium/priority" tier
+- Monthly commitment = best value proposition
 
 **Market Window:** 6 local competitors are DEAD/DYING:
 - Pawfect Waste Solutions (pawfectwastesolutions.com) — DNS dead
