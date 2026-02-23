@@ -1,6 +1,50 @@
 # Competitive Intelligence - St. Louis Pet Waste Removal
 
-## Last Updated: 2026-02-22 @ 4:00 PM (Verified by Franklin)
+## Last Updated: 2026-02-22 @ 7:05 PM (Verified by Franklin)
+
+---
+
+## 🚨 MARKET WINDOW: 3 LOCAL COMPETITORS NOW DOWN
+
+| Competitor | Status | Verified |
+|------------|--------|----------|
+| **Pawfect Waste Solutions** | 404 - DEAD | Feb 22, 7 PM |
+| **Scoop Soldiers STL** | 404 - Page gone | Feb 22, 7 PM |
+| **Fresh Paws** | Squarespace EXPIRED | Feb 22, 7 PM |
+
+**THE OPPORTUNITY:**
+Three local competitors have exited or failed. Only active local competition is **Poop 2 Scoop**. National franchises (DoodyCalls, POOP 911) are more expensive and less personal.
+
+---
+
+## ⚠️ ACTIVE COMPETITOR: Poop 2 Scoop
+
+**Website:** poop2scoop.com (LIVE, professional)
+**Phone:** 314-449-9447
+**Type:** Local family business (direct competitor)
+
+### Pricing Comparison (IMPORTANT)
+| Service | Poop 2 Scoop | Tidy Tails | Gap |
+|---------|--------------|------------|-----|
+| Weekly (1 dog) | **$18** | $25 | -28% cheaper |
+| Every other week | **$25** | $45 | -44% cheaper |
+| Extra dog | $4 | ? | -- |
+| Large yard | $4 | ? | -- |
+
+### What They Offer
+- Residential & Commercial
+- No contracts (same as TJ)
+- Deck/yard deodorizing
+- 100% satisfaction guarantee
+- Family-run, local
+
+### How TJ Can Compete
+1. **Personal touch** — TJ is the owner, P2S is a crew
+2. **Reliability** — Emphasize never missed, always on time
+3. **Commercial focus** — P2S lists commercial but may not pursue it
+4. **Price justification** — $7/week more = premium service
+
+---
 
 ---
 

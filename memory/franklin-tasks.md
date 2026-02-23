@@ -6,6 +6,33 @@
 
 ## February 22, 2026 (Sunday — Scooping Day)
 
+### 7:00 PM — 🔍 COMPETITIVE INTEL REFRESH
+**Task:** Verify competitive landscape heading into Monday (Week 2 Day 1)
+**Result:** ✅ MAJOR UPDATE — 3 local competitors now DOWN + active competitor pricing discovered
+
+**What I Found:**
+1. **Fresh Paws** (wearefreshpaws.com) — DEAD! Squarespace expired. Previously served western STL & St. Charles.
+2. **Pawfect Waste** — Still 404 (confirmed)
+3. **Scoop Soldiers STL** — Still 404 (confirmed)
+4. **Poop 2 Scoop** — ALIVE at $18/week (vs TJ's $25/week) — direct local competitor
+
+**Why This Matters:**
+- 3 local competitors have exited = massive market opportunity
+- Only active local competitor (Poop 2 Scoop) is cheaper — TJ needs to justify premium or consider price match
+- National franchises (DoodyCalls, POOP 911) are more expensive = easy differentiation
+
+**Strategic Implications:**
+- GBP claim Monday is CRITICAL — market has vacuum
+- TJ's $25/week pricing needs justification vs $18 competitor
+- Commercial accounts may be less price-sensitive (good target for Jamie)
+
+**Files Updated:**
+- memory/competitive-intel.md (new pricing section, 3-competitor-down summary)
+- dashboard/index.html (update competitive intel card)
+- franklin-tasks.md (this entry)
+
+---
+
 ### 6:00 PM — ⚙️ WEEKEND WRAP + MONDAY STAGING
 **Task:** Consolidate weekend state, stage minimal Monday kickoff (NO new PDFs)
 **Result:** ✅ State documented, Monday text ready
