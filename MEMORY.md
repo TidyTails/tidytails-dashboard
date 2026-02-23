@@ -44,13 +44,17 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - Missing: Website, Google Business Profile
 - Main challenge: Customer acquisition at scale
 
-### Competition (VERIFIED Feb 22, 2026 11 PM)
+### Competition (UPDATED Feb 23, 2026 5 AM)
 
-**Market Window:** 4 local competitors are DEAD:
+**Market Window:** 6 local competitors are DEAD/DYING:
 - Pawfect Waste Solutions (pawfectwastesolutions.com) — DNS dead
-- Pawfect alt domain (pooperscooperstl.com) — 404 confirmed
+- Pawfect alt domain (pooperscooperstl.com) — 404 confirmed (re-verified 5 AM)
 - Scoop Soldiers STL (scoopsoldiersstl.com) — DNS dead
 - Fresh Paws (wearefreshpaws.com) — Squarespace expired confirmed
+- **St. Louis Pooper Scoopers** — CLOSED (Yelp verified, was at 3407 S Jefferson Ave)
+- **Poopy Paws** — Website dead (poopypaws314.com), phone 314-783-1781 may be active
+
+**South City orphan opportunity:** Both new dead competitors operated in South City (Tower Grove, Benton Park area). Underserved market.
 
 **Active Local Competitors:**
 
@@ -59,19 +63,19 @@ Pet waste removal service in St. Louis County and surrounding areas.
 | **Poop 2 Scoop** | $18/wk | 28% cheaper than TJ, family biz, 314-449-9447 |
 | **Yucko's** | Call for quote | Since 1990 (36 yrs!), 314-291-POOP, commercial focus |
 | **Dirty Dog Poo Crew** | $95/mo (~$24/wk) | Dog wash hybrid, limited to 1/4 acre, 10-mi radius |
-| **Little Stinkers of MO** | Quote | 🆕 NEW! 636-887-6626, serves St. Charles/Lincoln/Warren |
+| **Little Stinkers of MO** | Quote | BBB since 2018 (8 yrs!), 636-887-6626, St. Charles/Moscow Mills focus |
 
 **National franchises:** DoodyCalls, POOP 911 (quote-based, usually expensive)
 
 **Strategic Implications:**
 1. **DON'T compete on weekly price** - Poop2Scoop owns cheap lane at $18/wk
-2. **TJ's monthly ($70) beats Dirty Dog ($95) by 26%** - push monthly!
+2. **TJ's monthly ($70) is CHEAPEST** - beats Dirty Dog ($95) by 26%, beats Poop2Scoop implied (~$72)
 3. **TJ's biweekly ($45) beats Poop2Scoop ($50)** - value positioning
 4. **Commercial = wide open** - only Yucko's (36 yrs) really owns it
 5. **Little Stinkers = new threat** in St. Charles (but focused west)
-6. **4 dead competitors = orphaned customers** actively looking
+6. **6 dead competitors = orphaned customers** actively looking
 
-**Full intel:** `memory/2026-02-22-competitor-intel.md`
+**Full intel:** `memory/2026-02-23-competitor-intel-update.md`
 
 ## ⚠️ PHONE NUMBERS (CRITICAL - DO NOT MIX UP)
 

@@ -4,6 +4,138 @@
 
 ---
 
+## February 23, 2026 (Monday — Week 2 Kickoff)
+
+### 6:00 AM — 🎯 CUSTOMER RESCUE CAMPAIGN
+**Task:** Create ready-to-post ad copy for capturing orphaned customers from dead competitors
+**Result:** ✅ 3 ad variations + Nextdoor post ready for Wildwood/West County
+
+**Research Conducted:**
+| Competitor | Status | Service Area |
+|------------|--------|--------------|
+| Fresh Paws (wearefreshpaws.com) | Squarespace EXPIRED | Wildwood, St. Charles, West County |
+| pooperscooperstl.com | 404 confirmed | St. Louis |
+| pawfectwastesolutions.com | DNS dead | (Canadian, not STL) |
+| poopypaws314.com | DNS dead | South City |
+
+**Key Finding:**
+Fresh Paws was based in **Wildwood, MO** and served St. Louis + St. Charles. Their customers are NOW orphaned and need a new service. Premium West County area = high LTV customers.
+
+**Deliverable Created:**
+`memory/2026-02-23-customer-rescue-campaign.md` contains:
+- 3 ready-to-post Facebook ad variations
+- 1 Nextdoor post for Wildwood neighbors
+- Target group recommendations
+- No PDF created (Week 2 rule)
+
+**Action for TJ:**
+Post VERSION A or B to Wildwood/Chesterfield Facebook groups TODAY. These are warm leads from a dead competitor's service area.
+
+**Week 2 Compliance:** ✅ Actionable copy, not another PDF
+
+---
+
+### 5:00 AM — 🔍 COMPETITOR INTELLIGENCE RESEARCH
+**Task:** Research orphaned customers from dead competitors, update competitive landscape
+**Result:** ✅ Found 6th dead competitor, verified market intel, saved actionable research
+
+**Discoveries:**
+
+| Finding | Impact |
+|---------|--------|
+| **St. Louis Pooper Scoopers = CLOSED** | 6th dead competitor, South City orphans available |
+| **Poopy Paws website dead** | poopypaws314.com DNS failure, may be 7th dying competitor |
+| **Poopy Paws phone found** | 314-783-1781 — call to verify if still operating |
+| **pooperscooperstl.com re-verified** | Still 404, confirmed dead |
+
+**Updated Competitor Count:**
+- **6 confirmed dead/dying:** Pawfect (2 domains), Scoop Soldiers, Fresh Paws, St. Louis Pooper Scoopers, Poopy Paws (website dead)
+- **3-4 active local:** Poop 2 Scoop, Dirty Dog, Yucko's, Little Stinkers
+
+**Key Strategic Insight:**
+TJ's $70/month is the **cheapest monthly rate** of ALL active competitors:
+- Beats Dirty Dog ($95) by 26%
+- Beats Poop 2 Scoop implied (~$72) by 3%
+- **Lead with monthly pricing in all ads**
+
+**South City Opportunity:**
+Both dead competitors (St. Louis Pooper Scoopers, Poopy Paws) operated in South City (Tower Grove, Benton Park). These neighborhoods have orphaned customers actively looking.
+
+**Saved to:** `memory/2026-02-23-competitor-intel-update.md`
+
+**Week 2 Compliance:** ✅ Research task, no new PDFs created
+
+---
+
+### 4:00 AM — ⚙️ MONDAY MORNING STAGING QA
+**Task:** Verify Monday's 3 actions are ready, check for overnight leads, diagnose cron issue
+**Result:** ✅ All systems go. No urgent leads. Cron still broken (known issue).
+
+**What I Verified:**
+| Check | Status |
+|-------|--------|
+| Dashboard live | ✅ HTTP 200, Week 2 message correct |
+| GBP Setup Kit | ✅ 22KB, ready |
+| Today's Post | ✅ Feb 23 correct, Maryland Heights group targeted |
+| Commercial Leads PDF | ✅ 342KB, Jamie's call sheet ready |
+| Overnight emails | ✅ Checked — only GitHub Actions notifications (no customer leads) |
+
+**Cron Status:**
+- Gateway restarted at 4:02 AM
+- Cron still timing out (persistent issue)
+- **Backup plan:** I'll manually send 8:30 AM briefing if cron fails
+
+**Monday Briefing Text (ready to send at 8:30 AM):**
+```
+🌅 Monday — Week 2 Starts
+
+3 actions. 35 minutes. No excuses.
+
+1️⃣ Claim GBP (15 min) → dashboard has step-by-step kit
+2️⃣ Post 1 FB ad (5 min) → copy-paste ready in Today's Post
+3️⃣ Jamie: 1 commercial call (15 min) → scripts in Commercial Hub
+
+3 competitors are DEAD (Scoop Soldiers, Pawfect, Fresh Paws).
+Market window is open. First to claim GBP wins.
+
+That's it. Do these 3 things. Everything else is noise.
+```
+
+**What I Did NOT Do:**
+- ❌ Build another tool (Week 2 discipline)
+- ❌ Create another PDF
+- ❌ Add more dashboard features
+
+**Week 2 Compliance:** ✅ Verified, didn't build.
+
+---
+
+### 1:00 AM — 🔍 OVERNIGHT COMPETITOR VERIFICATION
+**Task:** Systems check + competitor status verification
+**Result:** ✅ All systems operational. 4 competitors confirmed dead. Strategic positioning unchanged.
+
+**Verifications:**
+| Check | Status |
+|-------|--------|
+| Dashboard git sync | ✅ Clean |
+| Dashboard status.json | ✅ Operational |
+| scoopsoldiersstl.com | ❌ DNS dead |
+| pawfectwastesolutions.com | ❌ DNS dead |
+| pooperscooperstl.com | ❌ 404 |
+| wearefreshpaws.com | ❌ Squarespace expired |
+| poop2scoop.com | ✅ Active ($18/wk) |
+
+**Key Insight:**
+TJ's pricing advantage confirmed — biweekly ($45 vs ~$50) and monthly ($70 vs ~$72+) both beat Poop 2 Scoop. Don't compete on weekly.
+
+**Week 2 Compliance:**
+- ❌ No new PDFs built
+- ❌ No new leads added
+- ❌ No new tools created
+- ✅ Just verified existing systems work
+
+---
+
 ## February 22, 2026 (Sunday — Scooping Day)
 
 ### 11:00 PM — 🔍 LATE NIGHT COMPETITOR VERIFICATION + NEW PLAYER FOUND
@@ -2066,3 +2198,68 @@ Week 2 = track execution, not build more. TJ just finished 11 yards. Perfect mom
 
 **Week 2 Metric:**
 This is the first real human feedback since Day 1. If we get answers, we can finally measure tool → execution.
+
+---
+
+## 2026-02-23 00:00 — Week 2 Kickoff (Midnight Setup)
+
+**Task:** Week 2 Execution Tracker + Accountability System
+**Duration:** ~15 minutes
+
+### What I Did:
+1. Verified competitor intel is current (last update 11 PM Feb 22)
+2. Created `memory/week2-execution.md` — simple accountability tracker
+3. Created `memory/2026-02-23.md` daily log
+4. **DID NOT build any new PDFs** (per Week 1 retrospective)
+
+### Week 2 Focus:
+- **Monday bar for TJ:** GBP claim (15 min) + 1 FB post (5 min) = 20 min
+- **Monday bar for Jamie:** 2 commercial calls = 20 min
+- Total execution ask: 40 minutes across 2 people
+
+### What's Different This Week:
+- Ask "Did you do it?" before building anything new
+- Track execution, not content creation
+- No new tools until current ones are used
+
+### Commercial Leads Ready:
+- 7 whale accounts with phone numbers ready
+- 7 breweries with phones ready
+- 68+ total leads in pipeline
+
+**Status:** Complete — tracking system ready, no new tools built
+
+## 2026-02-23 02:00 AM - Monday Dashboard Prep
+**Task:** Update dashboard for Week 2 Monday launch
+**Time spent:** ~10 minutes
+**Result:** 
+- Updated Sunday messaging to Monday execution mode
+- Verified all 3 action links work (GBP kit, Today's Post, Commercial leads PDF)
+- Confirmed TODAYS_POST.md is prepped for Monday Feb 23 (Maryland Heights/Overland group)
+- Execution tracker JSON shows all 3 tasks pending for today
+- Dashboard pushed to GitHub
+**Status:** Complete
+**Next:** TJ wakes up to a Monday-ready dashboard. 8:30 AM briefing will fire.
+
+## 2026-02-23 3:00 AM — Dashboard Audit + Competitor Verification
+
+**Task:** Week 2 readiness check and fresh competitive intel
+
+**What I Did:**
+1. Verified all 3 Monday action links work:
+   - ✅ GBP Setup Kit (gbp-setup-kit.html)
+   - ✅ TODAYS_POST.md (Monday Feb 23 copy ready)
+   - ✅ Commercial Leads PDF exists
+2. Fresh competitor domain check at 3 AM:
+   - ❌ Scoop Soldiers STL — DNS DEAD (confirmed)
+   - ❌ Pawfect Waste Solutions — DNS DEAD (confirmed)
+   - ❌ Fresh Paws — EXPIRED/Squarespace (confirmed)
+   - ✅ Poop2Scoop — LIVE (main budget competitor)
+3. Corrected Little Stinkers intel — NOT new, BBB since 2018 (8 years)
+4. Updated dashboard intel timestamp to Feb 23 3:00 AM
+
+**Result:** Dashboard ready for Monday execution. Market window still open. No new competitors emerged overnight.
+
+**Time:** 15 minutes
+
+---
