@@ -42,22 +42,34 @@ Each lead entry:
 - **Notes:** 35 years in St. Louis. Manages HOAs, residential AND commercial properties. Could be multi-property account. Mention their HOA clients specifically.
 - **Assigned To:** Jamie
 
-### 3. St. Louis Luxury Apartments
-- **Type:** Property Management
-- **Contact:** See website
+### 3. St. Louis Luxury Apartments ⭐ ENRICHED - MULTI-PROPERTY
+- **Type:** Property Management (Luxury Urban Apartments)
+- **Contact:** Leasing Offices
+- **Phone (Main):** 1-844-478-5589 ✅
+- **Phone (Midtown):** 314-534-1323 ✅
+- **Email:** galleryleasing@stlluxury.com
 - **Website:** https://www.stlluxury.com/petfriendly
-- **Status:** New
+- **Locations:** Downtown (Gallery 400), Midtown (Gallery 4140), Near SLU (B on Lindell), Gallery 1014
+- **Status:** New - READY TO CALL
 - **Date Added:** 2026-02-17
-- **Notes:** Luxury pet-friendly apartments. Higher-end clientele = budget for services.
+- **Date Enriched:** 2026-02-23
+- **Notes:** Luxury pet-friendly apartments. Multiple downtown/midtown locations. Higher-end clientele = budget for services. Explicitly market pet-friendly living on website.
+- **Pitch Angle:** "You manage luxury pet-friendly apartments across downtown and midtown. Premium residents expect premium grounds. We specialize in keeping outdoor pet areas spotless."
 - **Assigned To:** Jamie
 
-### 4. PMI STL Metro
-- **Type:** Property Management
-- **Contact:** See website
+### 4. PMI STL Metro ⭐ ENRICHED
+- **Type:** Property Management (National Franchise - Local Office)
+- **Contact:** Zach (Owner/Manager)
+- **Phone:** 314-246-0002 ✅
+- **Email:** zach@pmistlmetro.com
+- **Address:** 17209 Chesterfield Airport Rd, Ste 210, Chesterfield, MO 63005
 - **Website:** https://www.stlouispropertymanagementinc.com/
-- **Status:** New
+- **Hours:** Mon-Fri 8:30am-5pm
+- **Status:** New - READY TO CALL
 - **Date Added:** 2026-02-17
-- **Notes:** Property Management Inc (PMI) franchise. Local STL office. Research contact info.
+- **Date Enriched:** 2026-02-23
+- **Notes:** PMI national franchise with local Chesterfield office. Zach runs it. Manages rental properties across St. Louis area. Franchise = professional standards, vendor budgets.
+- **Pitch Angle:** "Hey Zach, we're a local pet waste removal service. A lot of property managers are adding us as a vendor option for pet-friendly rentals. Quick way to keep tenants happy without adding to your workload."
 - **Assigned To:** Jamie
 
 ### 5. No Leash Needed (8 locations) ⭐ ENRICHED - WHALE ACCOUNT
@@ -143,15 +155,17 @@ Each lead entry:
 - **Notes:** Full-service property management. Emphasizes curated solutions and transparency. Manages residential properties across STL.
 - **Assigned To:** Jamie
 
-### 10. Amoso Properties
+### 10. Amoso Properties ⚠️ STATUS UNCLEAR
 - **Type:** Property Management + HOA
-- **Contact:** See website
-- **Address:** St. Louis, MO
-- **Website:** Research via ipropertymanagement.com
-- **Status:** New
+- **Contact:** Joe (Owner - per testimonials)
+- **Phone:** TBD - original Soulard location CLOSED per Yelp
+- **Address:** Possibly moved to 1221 Locust St, St. Louis, MO 63103
+- **Website:** https://amosoproperties.net/ (still active)
+- **Status:** DEPRIORITIZE - Business status unclear
 - **Date Added:** 2026-02-17
-- **Notes:** Manages both investment properties AND HOAs. HOAs = common areas that need service. Double opportunity.
-- **Assigned To:** Jamie
+- **Date Verified:** 2026-02-23
+- **Notes:** Original 1533 S 8th St (Soulard) location marked CLOSED on Yelp July 2025. Website still active. May have moved or merged. BBB also notes "appears to be no longer in business." Skip until confirmed active.
+- **Assigned To:** HOLD
 
 ### 11. Smart Rentals STL
 - **Type:** Property Management
@@ -173,14 +187,18 @@ Each lead entry:
 - **Notes:** Newer local company, may be open to vendor partnerships.
 - **Assigned To:** Jamie
 
-### 13. Emerald Crossing Apartments
-- **Type:** Apartment Complex
-- **Contact:** See website
-- **Address:** St. Louis, MO
+### 13. Emerald Crossing Apartments ⭐ ENRICHED
+- **Type:** Apartment Complex (Pet-Friendly - NO BREED RESTRICTIONS!)
+- **Contact:** Leasing Office
+- **Phone:** 314-426-0000 ✅ (also 24hr emergency line)
+- **Address:** 10501 Emerald Ridge Ave, St. Louis, MO 63114
 - **Website:** https://www.emeraldcrossingapts.com/
-- **Status:** New
+- **Unit Types:** 1-2 BR apartments, 2-3 BR townhomes
+- **Status:** New - READY TO CALL
 - **Date Added:** 2026-02-17
-- **Notes:** Explicitly PET-FRIENDLY with pet amenities. Already investing in pet owners. Natural fit.
+- **Date Enriched:** 2026-02-23
+- **Notes:** Explicitly PET-FRIENDLY with NO BREED RESTRICTIONS (rare!). Townhomes have yards. Reviews mention friendly staff. Already investing in pet owners = natural fit for waste service.
+- **Pitch Angle:** "I love that you have no breed restrictions — that's rare and awesome. With more pet residents than most complexes, outdoor maintenance can add up. We can handle that for you."
 - **Assigned To:** Jamie
 
 ### 14. Nico Terrace Apartments
@@ -291,16 +309,19 @@ Each lead entry:
 - **Pitch Angle:** "You already reward referrals — imagine what clients will say when your outdoor areas are spotless too."
 - **Assigned To:** Jamie
 
-### 21. Animal Medical Center of Mid-America (AMCMA)
-- **Type:** Veterinary Clinic (Large Practice)
-- **Contact:** See website
-- **Phone:** See website
-- **Address:** St. Louis metro (multiple locations possible)
+### 21. Animal Medical Center of Mid-America (AMCMA) ⭐ ENRICHED - 90+ YEARS!
+- **Type:** Veterinary Clinic (Large Practice - Historic!)
+- **Contact:** Front Office
+- **Phone:** (314) 951-1534 ✅
+- **Address:** 1201 Macklind Ave, St. Louis, MO 63110 (St. Louis City)
 - **Website:** https://amcma.org/
-- **Status:** New
+- **Hours:** Mon-Fri 8am-6pm, Sat 8am-4pm
+- **Locations:** St. Louis City (Macklind) + Maryland Heights
+- **Status:** New - READY TO CALL
 - **Date Added:** 2026-02-17
-- **Notes:** Emphasizes stress reduction and individualized care. Likely larger practice with multiple vets. "Wealth of knowledge and personal service." LARGER facility = more outdoor area, more waste.
-- **Pitch Angle:** "You focus on stress reduction inside — we'll keep the outdoor areas clean so patients aren't stepping in surprises."
+- **Date Enriched:** 2026-02-23
+- **Notes:** OVER 90 YEARS serving St. Louis! One of the oldest vet practices in the area. Multiple locations (Macklind + Maryland Heights). Offers laser therapy, digital radiography, in-house lab. Long-standing reputation = they care about image.
+- **Pitch Angle:** "You've been caring for St. Louis pets for 90+ years — incredible legacy. We'd love to help maintain that professional image outside by keeping your relief areas spotless."
 - **Assigned To:** Jamie
 
 ### 22. St. Louis Animal Emergency Clinic (2 Locations) ⭐ ENRICHED
@@ -681,19 +702,21 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 **Segments Focus:** Luxury Apartments, Pet-Amenity Communities
 **Why These Segments:** Actively investing in pet residents, have budgets, recurring need
 
-### 44. The Waterways of Lake Saint Louis ⭐ HIGH PRIORITY
-- **Type:** Luxury Apartment Community
+### 44. The Waterways of Lake Saint Louis ⭐⭐ ENRICHED - WHALE ACCOUNT (80 ACRES!)
+- **Type:** Luxury Apartment Community (MASSIVE Property)
 - **Contact:** Leasing Office
-- **Phone:** See website
-- **Address:** Lake Saint Louis, MO (St. Charles County)
+- **Phone:** (636) 561-8013 ✅
+- **Address:** Lake Saint Louis, MO 63367 (St. Charles County)
 - **Website:** https://www.waterwaysapartments.com/
-- **Size:** 80 ACRES (park-like community)
-- **Pet Amenities:** Nature trails, two 4-acre lakes, outdoor walking spaces
-- **Status:** New - WHALE ACCOUNT
+- **Hours:** Mon-Fri 9am-6pm, Sat 10am-4pm
+- **Size:** 80 ACRES (park-like community!)
+- **Pet Amenities:** Nature trails, TWO 4-acre lakes, outdoor walking spaces
+- **Status:** New - READY TO CALL - WHALE ACCOUNT
 - **Date Added:** 2026-02-19
-- **Notes:** MASSIVE 80-acre pet-friendly property. Running Valentine's specials now = active leasing = good management. Luxury community with trails and lakes. This is a potential whale account for recurring service.
-- **Pitch Angle:** "You have 80 acres of trails and lakefront for residents and their pets. That's a lot of ground to keep pristine. We specialize in keeping large pet-friendly communities spotless."
-- **Assigned To:** Jamie
+- **Date Enriched:** 2026-02-23
+- **Notes:** MASSIVE 80-acre pet-friendly luxury property. Two 4-acre lakes. Nature trails. Active leasing (running specials). This is the BIGGEST potential account on our list. If we win this, it's a game-changer.
+- **Pitch Angle:** "You have 80 acres of trails and lakefront for residents and their pets. That's a LOT of ground. We specialize in large-scale pet waste management for communities exactly like yours."
+- **Assigned To:** Jamie (WHALE - PRIORITY)
 
 ### 45. Park Forest Apartments ⭐ HIGH PRIORITY
 - **Type:** Apartment Community (Pet-Focused)

@@ -6,6 +6,38 @@
 
 ## February 23, 2026 (Monday — Week 2 Kickoff)
 
+### 11:00 AM — 🏠 TUFFSHED PROMO VERIFICATION
+**Task:** Verify current TuffShed promotions are accurate in all materials
+**Result:** ✅ "$1,000 off" promo EXPIRED 2/11/26. Shed ads are clean.
+
+**What I Found:**
+
+| Promo | Status |
+|-------|--------|
+| "$1,000 off Sundance Series" | ⚠️ EXPIRED 2/11/26 |
+| 0% for 6 months | ✅ ACTIVE |
+| 9.99% 10-year financing | ✅ ACTIVE |
+| RTO no credit check | ✅ ACTIVE |
+
+**Verification:**
+- Checked tuffshed.com/special-offers/ (live fetch)
+- Checked 888tuffshed.com (live fetch)
+- Reviewed Feb 21 shed ads → Clean (no expired promo references)
+- Reviewed shed-ad-generator skill → Correct process (scrapes promos)
+
+**File Created:**
+- `memory/2026-02-23-tuffshed-promo-status.md` — Quick reference for TJ/Darius
+
+**Week 2 Compliance:**
+- ✅ Research/verification task
+- ✅ Updated existing knowledge
+- ❌ Did NOT create new PDF/tool
+- ✅ Rotation balance: Sheds had 0 tasks today before this
+
+**Next Promo Likely:** Memorial Day (late May 2026)
+
+---
+
 ### 10:00 AM — 💰 PRICING STRATEGY IMPLEMENTATION
 **Task:** Apply pricing insight (lead with $70/month) across all existing ad copy
 **Result:** ✅ All active ad templates updated. No new content created.
@@ -2407,5 +2439,41 @@ This is the first real human feedback since Day 1. If we get answers, we can fin
 **Result:** Dashboard ready for Monday execution. Market window still open. No new competitors emerged overnight.
 
 **Time:** 15 minutes
+
+---
+
+## 2026-02-23 12:00 PM — Lead Enrichment (Monday Noon)
+
+**Task:** Enrich commercial leads with phone numbers for Jamie's Monday calls
+**Duration:** ~15 minutes
+**Category:** 🐕 Tidy Tails
+
+### What I Did:
+1. Enriched 6 leads with verified phone numbers:
+   - St. Louis Luxury Apartments: 1-844-478-5589 + 314-534-1323
+   - PMI STL Metro: 314-246-0002 (Contact: Zach)
+   - Emerald Crossing Apartments: 314-426-0000
+   - Animal Medical Center of Mid-America: (314) 951-1534
+   - The Waterways (80-acre WHALE): (636) 561-8013
+   - Amoso Properties: DEPRIORITIZED (business status unclear, original location closed)
+
+2. Updated leads-commercial.md with enriched data, pitch angles, and statuses
+
+3. Created Jamie's Monday Call Sheet with 8 priority leads:
+   - Alpha Brewing (hosts dog events!)
+   - Zoomies Pet Cafe (dog-focused business!)
+   - The Waterways (80-acre whale account)
+   - PMI STL Metro, STL Luxury Apts, Emerald Crossing, AMCMA
+   - Civil Life (marked for Tuesday - closed Mondays)
+
+### Output:
+- `dashboard/call-sheets/2026-02-23-monday-calls.md`
+- `memory/leads-commercial.md` (6 leads enriched)
+
+### Why This Matters:
+Jamie can't call "See website." Now she has 8 phone-ready leads with custom openers. The Waterways alone is an 80-acre property that could be our biggest contract.
+
+### Week 2 Alignment:
+This is EXECUTION ENABLEMENT, not another PDF. Real phone numbers → real calls → real customers.
 
 ---
