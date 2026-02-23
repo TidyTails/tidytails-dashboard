@@ -44,10 +44,23 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - Missing: Website, Google Business Profile
 - Main challenge: Customer acquisition at scale
 
-### Competition
-- 1-2 national franchises
-- Several local players
-- Fragmented market = opportunity
+### Competition (Updated Feb 22, 2026)
+
+**Market Window:** 3 local competitors are DOWN (404s):
+- Pawfect Waste Solutions — dead
+- Scoop Soldiers STL — dead
+- Fresh Paws — Squarespace expired
+
+**Active Local Competitor:** Poop 2 Scoop
+- Website: poop2scoop.com (LIVE, professional)
+- Phone: 314-449-9447
+- **Pricing: $18/week** (vs TJ's $25/week = 28% cheaper)
+- Family business, similar positioning
+
+**Strategic Implication:**
+TJ needs to justify premium pricing OR consider price adjustment. Commercial accounts may be less price-sensitive — good target for Jamie.
+
+**National franchises:** DoodyCalls, POOP 911 (more expensive than TJ — easy differentiation)
 
 ## ⚠️ PHONE NUMBERS (CRITICAL - DO NOT MIX UP)
 

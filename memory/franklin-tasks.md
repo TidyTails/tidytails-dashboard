@@ -6,6 +6,34 @@
 
 ## February 22, 2026 (Sunday — Scooping Day)
 
+### 8:00 PM — ⚙️ WEEK 2 CLOSE + MONDAY STAGING
+**Task:** Final Sunday check — update long-term memory, verify systems, stage Monday
+**Result:** ✅ MEMORY.md updated with competitive pricing intel, cron issue noted
+
+**What I Did:**
+1. Updated MEMORY.md with Poop 2 Scoop pricing discovery ($18/week vs TJ's $25)
+2. Verified dashboard is clean and pushed
+3. Found cron service timing out (gateway restarted at 8:01 PM — may need time)
+4. Did NOT build another tool (Week 2 discipline holding)
+
+**Cron Issue:**
+Gateway restarted at 8:01 PM. Cron list command timing out. Not critical — briefing text is ready in daily log, can send manually if needed.
+
+**Monday Ready State:**
+- 3 actions staged: GBP (15 min) + 1 FB post (5 min) + 1 commercial call (15 min)
+- Dashboard simplified (17KB)
+- Competitive intel current (3 competitors down, P2S pricing discovered)
+- Execution tracker active
+
+**Week 2 Day 1 (Monday) Priority:**
+Close the build → deploy gap. 35 minutes of execution > 10 hours of building.
+
+**Files Updated:**
+- MEMORY.md — added competitive pricing section
+- memory/franklin-tasks.md — this entry
+
+---
+
 ### 7:00 PM — 🔍 COMPETITIVE INTEL REFRESH
 **Task:** Verify competitive landscape heading into Monday (Week 2 Day 1)
 **Result:** ✅ MAJOR UPDATE — 3 local competitors now DOWN + active competitor pricing discovered
