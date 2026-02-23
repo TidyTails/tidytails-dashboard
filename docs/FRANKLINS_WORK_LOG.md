@@ -4,6 +4,30 @@
 
 ---
 
+## Feb 23, 2026 (Monday — Week 2 Kickoff)
+
+### 7:00 AM — ⚙️ Systems (HOURLY TASK)
+**Monday Systems Check + Call Prioritization**
+- Checked Franklin email for leads → None (all GitHub Actions)
+- Verified dashboard loads correctly → ✅ Live, Week 2 messaging showing
+- Verified commercial leads PDF → ✅ 342KB exists
+- **Created:** `dashboard/MONDAY_CALLS.md` — Jamie's 3 priority calls
+- Priority: Alpha Brewing (hosts dog events!), Zoomies (dog cafe), Civil Life
+- Updated dashboard with quick access link to Monday Calls
+- **Week 2 Compliance:** Curated existing data, didn't build new tools
+- Files: `MONDAY_CALLS.md`, `index.html` updated
+- GitHub: Pushed ✅
+
+### 6:00 AM — 🎯 Tidy Tails (HOURLY TASK)
+**Customer Rescue Campaign (Dead Competitor Intel)**
+- Re-verified Fresh Paws = Squarespace EXPIRED (was Wildwood, MO)
+- Created 3 ad variations for capturing orphaned West County customers
+- Created Nextdoor post for Wildwood neighbors
+- File: `memory/2026-02-23-customer-rescue-campaign.md`
+- **Week 2 Compliance:** Ready-to-post copy, no new PDF
+
+---
+
 ## Feb 22, 2026 (Sunday — Scooping Day)
 
 ### 12:00 PM — ⚙️ Systems (HOURLY TASK)

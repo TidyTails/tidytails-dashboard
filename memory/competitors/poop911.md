@@ -1,20 +1,19 @@
 # Poop 911 — Competitor Intel
 
 **URL:** https://www.poop911.com/
-**Captured:** 2026-02-17
-**Threat Level:** 🟡 MEDIUM (national brand but **NO STL LOCATION PAGE**)
+**Last Captured:** 2026-02-23
+**Threat Level:** 🔴 HIGH (national brand, NOW ACTIVE IN STL!)
 
 ---
 
-## Key Finding: St. Louis Page is 404!
+## 🚨 UPDATE Feb 23, 2026: ST. LOUIS PAGE NOW LIVE!
 
-Their `/locations/missouri/st-louis/` page returns a 404 error.
-This likely means:
-- They don't currently serve St. Louis
-- OR they pulled out of the market
-- OR they're restructuring
+Their old URL (`/locations/missouri/st-louis/`) is still 404, BUT they've restructured:
+- **NEW ACTIVE URL:** `/service-area/missouri-pet-waste-removal/saint-louis-dog-poop-clean-up`
+- Also added: West Saint Louis service page
+- This represents a reactivation/expansion in the St. Louis market
 
-**Opportunity:** National competitor may not be active locally.
+**Implication:** National competitor is now actively marketing in our territory.
 
 ---
 

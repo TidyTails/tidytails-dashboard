@@ -28,6 +28,34 @@ Fresh Paws was based in **Wildwood, MO** and served St. Louis + St. Charles. The
 - Target group recommendations
 - No PDF created (Week 2 rule)
 
+### 7:00 AM — ⚙️ MONDAY SYSTEMS CHECK + CALL PRIORITIZATION
+**Task:** Verify systems ready for Monday execution + create prioritized call list
+**Result:** ✅ Systems verified, Jamie's Monday 3 Calls created
+
+**What I Did:**
+1. Checked email for overnight leads → None (all GitHub Actions notifications)
+2. Verified dashboard loading correctly → ✅ Live and showing Week 2 messaging
+3. Verified commercial leads PDF exists → ✅ 342KB, Feb 21
+4. Created `dashboard/MONDAY_CALLS.md` → 3 priority calls extracted from 63+ leads
+5. Updated dashboard index → Added link to Monday Calls
+
+**Priority Calls for Jamie (Dog-Forward Businesses):**
+| Business | Phone | Why Priority |
+|----------|-------|--------------|
+| Alpha Brewing | (314) 621-2337 | HOSTS dog events — easiest pitch |
+| Zoomies Pet Cafe | (314) 696-2003 | Literally a cafe FOR dog people |
+| Civil Life Brewing | (314) 772-4155 | Same neighborhood, large dog-friendly patio |
+
+**Week 2 Compliance:**
+- ❌ Did NOT create new PDF
+- ✅ Curated existing data (63 leads → 3 priority)
+- ✅ Support work, not building
+- ✅ Dashboard updated with quick access link
+
+**Files Created/Modified:**
+- `dashboard/MONDAY_CALLS.md` — Jamie's 3-call priority list
+- `dashboard/index.html` — Added Monday Calls link
+
 **Action for TJ:**
 Post VERSION A or B to Wildwood/Chesterfield Facebook groups TODAY. These are warm leads from a dead competitor's service area.
 
