@@ -6,6 +6,43 @@
 
 ## February 22, 2026 (Sunday — Scooping Day)
 
+### 9:00 PM — 🔍 COMPETITIVE LANDSCAPE SWEEP (Week 2 Intel)
+**Task:** Full competitive analysis — verify dead competitors, document active pricing
+**Result:** ✅ Actionable intel gathered. NO new tools built.
+
+**What I Found:**
+
+| Competitor | Status | Key Intel |
+|------------|--------|-----------|
+| **Pawfect Waste Solutions** | ⚰️ DEAD | pooperscooperstl.com = 404 CONFIRMED |
+| **Poop 2 Scoop** | ✅ Active | $18/week (vs TJ's $25 = 39% cheaper), family biz |
+| **Yucko's** | ✅ Active | Since 1990 (36 years!), 314-291-POOP |
+| **DoodyCalls** | ✅ Active | National franchise, quote-based (expensive) |
+
+**Price Reality Check:**
+- TJ: $25/week
+- Poop 2 Scoop: $18/week
+- Gap: 39% premium
+
+**Strategic Implications:**
+1. TJ needs to justify premium pricing OR consider price adjustment
+2. Commercial accounts less price-sensitive (good Jamie target)
+3. Dead competitor (Pawfect) = orphaned customers
+4. Yucko's 36-year tenure = relationship-based business, not marketing-based
+
+**What I Did NOT Do:**
+- ❌ Build another tool
+- ❌ Create another PDF
+- ❌ Send TJ anything at 9 PM Sunday
+
+**Files Created:**
+- `memory/2026-02-22-competitor-intel.md` — Full intel report
+
+**Week 2 Value:**
+This is RESEARCH, not production. Informs strategy without adding to the pile.
+
+---
+
 ### 8:00 PM — ⚙️ WEEK 2 CLOSE + MONDAY STAGING
 **Task:** Final Sunday check — update long-term memory, verify systems, stage Monday
 **Result:** ✅ MEMORY.md updated with competitive pricing intel, cron issue noted
