@@ -26,42 +26,43 @@ Fresh Paws customers are NOW WITHOUT A SERVICE. They're actively looking or sett
 
 ---
 
-### VERSION A: Direct Rescue (Softened)
+### VERSION A: Direct Rescue (Monthly-Led)
 
-**Post Title:** Looking for a new poop scooper?
+**Post Title:** $70/month for a clean yard — accepting new customers
 
 If you used to have a pet waste service that stopped operating, we're here to help.
 
-Tidy Tails is local to St. Louis County and we're accepting new customers in:
+**Tidy Tails** is local to St. Louis County and we're accepting new customers in:
 ✅ Wildwood
 ✅ Chesterfield  
 ✅ Ellisville
 ✅ Valley Park
 ✅ Ballwin
 
-**Pricing:**
-- Weekly: $25
-- Biweekly: $45
-- Monthly: $70
-- One-time deep clean: $100
+**$70/month** = clean yard year-round.
+No contracts. No hassle. Cancel anytime.
 
-No contracts. No hassle. Just a clean yard.
+*Also available: $45/biweekly | $25/week priority service*
 
 📱 Text or call: **314-850-7140**
 
 ---
 
-### VERSION B: Problem-Aware
+### VERSION B: Problem-Aware (Monthly-Led)
 
-**Post Title:** Need dog poop cleanup in West County?
+**Post Title:** $70/month. Never scoop again.
 
 We know some pet waste services in the area have closed down recently. If you're back to scooping yourself (and hating it), let us take over.
 
+**$70/month** — that's less than most streaming bundles.
+
 Tidy Tails serves Wildwood, Chesterfield, Ellisville, and surrounding areas.
 
-🐕 $25/week | $45/biweekly | $70/month
+First pickup can be this Sunday. 
 
-First pickup can be this Sunday. Text TJ: **314-850-7140**
+📱 Text TJ: **314-850-7140**
+
+*Also: $45/biweekly | $25/week priority*
 
 ---
 
@@ -81,7 +82,7 @@ Text or call: **314-850-7140**
 
 ## NEXTDOOR POST (Wildwood-specific)
 
-**Title:** New Pet Waste Service for Wildwood! 🐕
+**Title:** $70/month for a clean yard year-round 🐕
 
 Hi neighbors! I'm TJ, owner of Tidy Tails Pet Waste Removal.
 
@@ -89,12 +90,10 @@ I know some pet waste services in our area have stopped operating recently. If y
 
 I serve Wildwood, Valley Park, Chesterfield, and surrounding areas.
 
-**Pricing is simple:**
-- $25/week
-- $45 every two weeks  
-- $70/month
+**Just $70/month** — less than most people pay for streaming services.
+No contracts. Cancel anytime.
 
-No contracts, no hassle. Just a reliably clean yard.
+*Need more frequent service? $45/biweekly or $25/week also available.*
 
 Feel free to message me or text: **314-850-7140**
 
