@@ -6,6 +6,31 @@
 
 ## February 24, 2026 (Tuesday — Week 2 Day 2)
 
+### 5:00 AM — 📋 MONDAY EXECUTION DATA CAPTURE
+**Task:** Add Monday's tasks to tracker, prep morning check-in to close feedback loop
+**Result:** ✅ Tracker updated with 7 items, morning check-in staged
+
+**What I Did:**
+1. Updated `execution-tracking.md` with specific Monday + Tuesday tasks
+2. All marked "⏳ Pending" — we have ZERO data on Monday's execution
+3. Prepared 8:30 AM check-in (casual, 10-second read)
+
+**The Key Question:**
+Did Monday's 3 things actually happen?
+- GBP claimed? ❓
+- FB post? ❓
+- Jamie call? ❓
+
+Without this data, we're flying blind like Week 1.
+
+**Week 2 Compliance:**
+- ✅ Tracking infrastructure (not building)
+- ✅ Closes feedback loop
+- ✅ 5 AM quiet work
+- ✅ Zero new PDFs
+
+---
+
 ### 4:00 AM — ⚙️ TUESDAY SYSTEMS VERIFICATION
 **Task:** Quick systems check to confirm Tuesday execution is fully staged
 **Result:** ✅ All systems verified, nothing broken

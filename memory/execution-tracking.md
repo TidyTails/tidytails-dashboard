@@ -9,7 +9,13 @@
 
 | Date | What Was Asked | TJ's Response | Insight |
 |------|----------------|---------------|---------|
-| (to be filled) | | | |
+| Mon 2/23 | Claim GBP (15 min) | ⏳ Pending | Asked to claim, step-by-step kit ready |
+| Mon 2/23 | Post 1 FB ad (5 min) | ⏳ Pending | Maryland Heights group, copy-paste ready |
+| Mon 2/23 | Jamie: 1 commercial call (15 min) | ⏳ Pending | Alpha Brewing, Zoomies scripts ready |
+| Tue 2/24 | Post in O'Fallon FB groups | ⏳ Pending | 2 direct group links in TUESDAYS_POST |
+| Tue 2/24 | Jamie: Call Civil Life | ⏳ Pending | OPEN TODAY (was closed Monday) |
+| Tue 2/24 | 1 IG story | ⏳ Pending | Copy in INSTAGRAM_WEEK_FEB24.md |
+| Tue 2/24 | Text 1 customer for review | ⏳ Pending | Template ready |
 
 ---
 
