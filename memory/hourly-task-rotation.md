@@ -125,6 +125,42 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 ---
 
+## Feb 23 Rotation Log (MONDAY — WEEK 2 DAY 1)
+
+| Time | Area | Task |
+|------|------|------|
+| 01:00 AM | 🔍 Intel | **Overnight Competitor Verification — Dead competitors still dead, active confirmed, pricing intel validated** |
+| 04:00 AM | ⚙️ Systems | **Monday Morning Staging QA — Dashboard verified, tools ready, cron still broken, manual backup ready** |
+| 05:00 AM | 🔍 Intel | **Competitor Intel Research — 6th dead competitor found (STLPS), Poopy Paws zombie status** |
+| 06:00 AM | 🐕 Tidy Tails | **Customer Rescue Campaign — 3 ad variations for Wildwood orphans** |
+| 07:00 AM | ⚙️ Systems | **Systems Check + Call Prioritization — MONDAY_CALLS.md created** |
+| 08:00 AM | 🐕 Tidy Tails | **Decision Maker Intel Enrichment — Derrick (Alpha), Jake (Civil Life), call times** |
+| 09:00 AM | 🔍 Intel | **Competitor Verification + Pricing Discovery — Lead with $70/month insight** |
+| 10:00 AM | 🐕 Tidy Tails | **Pricing Strategy Implementation — Updated all ads to lead with $70/month** |
+| 11:00 AM | 🏠 Sheds | **TuffShed Promo Verification — "$1K off" EXPIRED, current promos documented** |
+| 02:00 PM | 🐕 Tidy Tails | **Lead Contact Gap Enrichment — 5 leads got phone numbers** |
+| 03:00 PM | 🔍 Intel | **Dead Competitor Customer Recovery — South City opportunity mapped** |
+| 05:00 PM | 🚨 Intel | **CRITICAL CORRECTION — Little Stinkers + Dirty Dog ALIVE, not dead!** |
+| 06:00 PM | 🔍 Intel | **Little Stinkers Deep Dive — Full competitive profile, counter-strategy** |
+| 07:00 PM | 🐕 Tidy Tails | **Territory Defense Strategy — FB groups, copy-paste posts for Tue/Wed** |
+| 08:00 PM | 📱 Content | **Instagram Story Pack (Feb 24-28) — 5 days of copy-paste IG captions** |
+
+**Day 1 Total: 15 tasks**
+- 6 Tidy Tails execution prep
+- 6 Intel/research
+- 2 Systems
+- 1 Sheds
+- 1 Content (Instagram)
+
+**Key Outcomes:**
+- Competitive landscape CORRECTED (5 active, 6 dead)
+- Territory defense strategy deployed
+- Tuesday + Wednesday FB posts ready
+- Instagram Week pack ready
+- $70/month pricing strategy implemented
+
+---
+
 ## Feb 22 Rotation Log (SCOOPING DAY — EXECUTION FOCUS)
 
 | Time | Area | Task |
