@@ -6,6 +6,68 @@
 
 ## February 23, 2026 (Monday — Week 2 Kickoff)
 
+### 11:00 PM — ⚙️ EXECUTION GAP FIX (Direct FB Group Links)
+**Task:** Verify Tuesday's execution is ACTUALLY zero-friction, not just "built"
+**Result:** ✅ Found and fixed execution gap — posts said "search for groups" instead of having direct links
+
+**What I Fixed:**
+
+| File | Before | After |
+|------|--------|-------|
+| `TUESDAYS_POST.md` | "Search Facebook for O'Fallon..." | **Direct links to 2 groups** |
+| `WEDNESDAYS_POST.md` | "Search Facebook for St. Peters..." | **Direct links to 3 groups** |
+| `FB_GROUPS_MASTER_LIST.md` | Search terms only | **Direct links + join-now reminder** |
+
+**Groups Found:**
+
+**O'Fallon (Tuesday):**
+- What's Happening in O'Fallon Missouri? → facebook.com/groups/829221844452244/
+- What's Going on, O'Fallon Missouri → facebook.com/groups/2843095859077290/
+
+**St. Peters (Wednesday):**  
+- What's going on, St Peters Missouri → facebook.com/groups/879557423904162/
+- What's Going on in St. Peters, MO → facebook.com/groups/1108457326400709/
+- Growing Up In St. Peters, MO → facebook.com/groups/199331396790283/
+
+**Why This Matters:**
+Old way: TJ opens file → searches Facebook → finds groups → requests to join → waits → comes back later
+New way: TJ clicks link → joins → posts when approved
+
+**Week 2 Compliance:**
+- ✅ Fixed existing asset (didn't build new tool)
+- ✅ Verified → found gap → fixed gap
+- ✅ Zero new PDFs
+- ✅ Directly enables Tuesday execution
+
+**Commits:** `a8e3134` pushed to GitHub Pages
+
+---
+
+### 10:00 PM — 🔍 FB GROUPS RECON (Free Marketing Intel)
+**Task:** Research actual FB groups where TJ can post for free marketing
+**Result:** ✅ Master list created with 10+ groups, prioritized by value
+
+**What I Created:**
+- `dashboard/campaigns/tidy-tails/FB_GROUPS_MASTER_LIST.md`
+- Priority Tier: Yard sale groups, Mom's groups (dog owners + busy = perfect targets)
+- Pet groups for engagement (not direct selling)
+- Nextdoor setup instructions
+- Territory-specific search terms for O'Fallon/St. Peters
+- Tracking table for execution
+
+**Key Intel:**
+- South County Moms (508K+ members) — ideal target
+- Mom Walk Collective has St. Charles chapter — TJ's territory
+- Nextdoor requires signup/verification (24-48 hrs) — start NOW
+
+**Week 2 Compliance:**
+- ✅ Recon, not building
+- ✅ Enables FREE marketing execution
+- ✅ No PDF (just actionable markdown)
+- ✅ WHERE to post, not more WHAT to post
+
+---
+
 ### 8:00 PM — 📱 INSTAGRAM STORY PACK (Feb 24-28)
 **Task:** Create this week's IG Story captions for FREE marketing execution
 **Result:** ✅ 5-day story calendar with copy-paste captions

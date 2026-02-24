@@ -2,6 +2,13 @@
 
 ## Status: PARKED — Return when ready
 
+## Founder
+**Adonis Williams**
+- Deputy Functional Chief Engineer, Boeing
+- Engineering Manager, Boeing Research & Technology
+- Education: Missouri University of Science and Technology
+- Location: Seattle, Washington
+
 ## The Idea
 
 **MOTRA** = Mobile autonomy maintenance platform
