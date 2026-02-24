@@ -9,3 +9,10 @@
 - **Git:** Pushed ✅
 
 ---
+
+## Feb 23, 2026 — 7:00 PM
+**Type:** EOD Summary
+**Files:** pdfs/EOD_SUMMARY_2026-02-23.pdf, pdfs/EOD_SUMMARY_2026-02-23.html
+**Dashboard:** ✅ Added to Dog Waste archive (top link)
+**Email:** ✅ Sent to cartervhomes@gmail.com (thread: 19c8d2b2f4e70ea8)
+

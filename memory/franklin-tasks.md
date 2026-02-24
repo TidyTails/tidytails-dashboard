@@ -6,6 +6,133 @@
 
 ## February 23, 2026 (Monday — Week 2 Kickoff)
 
+### 7:00 PM — 🎯 TERRITORY DEFENSE STRATEGY
+**Task:** Create actionable battle plan to counter Little Stinkers in TJ's core territory
+**Result:** ✅ Full strategy with FB groups, copy-paste posts, and weekly execution calendar
+
+**Deliverables Created:**
+
+| File | Purpose |
+|------|---------|
+| `memory/2026-02-23-territory-defense-strategy.md` | Master strategy (territory map, counter-positioning, success metrics) |
+| `dashboard/campaigns/tidy-tails/TUESDAYS_POST.md` | O'Fallon territory post — copy-paste ready |
+| `dashboard/campaigns/tidy-tails/WEDNESDAYS_POST.md` | St. Peters territory post — copy-paste ready |
+
+**Strategic Framework:**
+
+| Territory | Action | Reason |
+|-----------|--------|--------|
+| 🔴 Troy/Moscow Mills | Concede | Little Stinkers home turf (5 miles away) |
+| 🟢 O'Fallon (91K) | OWN | TJ is 25 miles closer |
+| 🟢 St. Peters (59K) | OWN | TJ is local |
+| 🟢 Lake St. Louis | OWN | Affluent, good LTV |
+| 🔵 St. Louis County | Dominate | They don't serve it — zero competition |
+
+**Counter-Positioning Copy Ready:**
+1. "Based right here in O'Fallon, not driving 30 miles"
+2. "No quote games — our prices are on our page"
+3. "Only monthly service in St. Charles County"
+4. "You'll always get me, not whoever's available"
+
+**This Week's Execution Plan:**
+- **Tuesday:** O'Fallon FB group (copy ready)
+- **Wednesday:** St. Peters FB group (copy ready)  
+- **Thursday:** St. Louis County group (blue ocean)
+- **Friday:** Lake St. Louis group (affluent)
+
+**Week 2 Compliance:**
+- ✅ Strategy informs execution (not random building)
+- ✅ Copy-paste posts ready (no friction for TJ)
+- ✅ Responds to TODAY's 5-6 PM competitive intel
+- ✅ No PDFs created
+
+---
+
+### 6:00 PM — 🔍 LITTLE STINKERS DEEP COMPETITIVE DIVE
+**Task:** Deep competitor analysis on Little Stinkers of MO — TJ's #1 direct competitor discovered at 5 PM.
+**Result:** ✅ Full competitive profile with actionable strategy
+
+**Key Intel Extracted:**
+
+| Finding | Details |
+|---------|---------|
+| **Owner** | Michael Kuznecoff |
+| **Years in Business** | 10+ (started by son Blake) |
+| **Base** | Moscow Mills, MO (far north St. Charles County) |
+| **Territory** | Lincoln, Warren, St. Charles Counties |
+| **Pricing** | QUOTE-BASED (not transparent) |
+| **Monthly Option** | ❌ None — only weekly/biweekly |
+| **Facebook** | 881 likes (established presence) |
+| **BBB** | Accredited |
+
+**TJ's Competitive Advantages:**
+
+| Advantage | Why It Matters |
+|-----------|----------------|
+| **$70/month unique** | Only monthly option in St. Charles County |
+| **Transparent pricing** | No quote friction vs their hidden prices |
+| **Geographic position** | TJ is LOCAL to O'Fallon/St. Peters — they're 25+ miles away |
+| **Owner-operated** | "Same person every time" vs their "technicians" |
+| **St. Louis County** | They don't serve it — TJ owns this territory alone |
+
+**Strategic Recommendations:**
+1. Lead with $70/month in all ads (unique offering)
+2. Emphasize transparent pricing (no quote needed)
+3. Focus on O'Fallon/St. Peters (their weak zone — far from their HQ)
+4. Avoid Troy/Moscow Mills (their home court)
+5. Own St. Louis County (they're not there at all)
+
+**Files Created:**
+- `memory/2026-02-23-little-stinkers-deep-dive.md` — Full competitive profile
+
+**Week 2 Compliance:**
+- ✅ Research task (competitor intel)
+- ✅ Builds on 5 PM discovery
+- ✅ Actionable strategy output
+- ❌ No PDFs or tools created
+
+---
+
+### 5:00 PM — 🚨 CRITICAL COMPETITOR INTEL CORRECTION
+**Task:** Verify "7 dead competitors" claim from 4 PM. Live fetch all competitor websites.
+**Result:** ⚠️ MAJOR CORRECTION — 2 "dead" competitors are VERY ALIVE!
+
+**What I Found:**
+
+| Competitor | 4 PM Status | 5 PM Reality |
+|------------|-------------|--------------|
+| **Dirty Dog Poo Crew** | "DNS dead" | ✅ ALIVE at $95/mo weekly |
+| **Little Stinkers of MO** | "DNS dead" | ✅ ALIVE — serves O'Fallon, St. Peters, St. Charles! |
+
+**⚠️ CRITICAL DISCOVERY:**
+Little Stinkers of MO actively markets in TJ's EXACT territory:
+- O'Fallon ← TJ's area
+- St. Peters ← TJ's area  
+- St. Charles ← TJ's area
+- 636-887-6626
+
+**Pricing Reality Check:**
+
+| Service | TJ | Poop2Scoop | Market Position |
+|---------|-----|------------|-----------------|
+| Weekly | $100/mo | $72/mo | TJ is 39% MORE expensive |
+| Biweekly | $90/mo | $50/mo | TJ is 80% MORE expensive |
+| Monthly | $70/mo | N/A | TJ is ONLY option |
+
+**Strategic Implication:**
+TJ should STOP leading with $25/week and START leading with $70/month — that's his unique competitive advantage.
+
+**Files Updated:**
+- `memory/2026-02-23-competitor-intel-CORRECTED.md` — Full corrected intel
+- `MEMORY.md` — Competition section completely rewritten
+
+**Week 2 Compliance:**
+- ✅ Research task (verified existing claims)
+- ✅ Corrected misinformation before TJ acted on it
+- ❌ No new PDFs or tools built
+
+---
+
 ### 3:00 PM — 🔍 DEAD COMPETITOR CUSTOMER RECOVERY RESEARCH
 **Task:** Research orphaned customers from 6 dead/dying competitors. Find actionable intel for South City market.
 **Result:** ✅ Major opportunity discovered + ready-to-post ad copy created

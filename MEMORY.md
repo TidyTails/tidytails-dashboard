@@ -44,39 +44,39 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - Missing: Website, Google Business Profile
 - Main challenge: Customer acquisition at scale
 
-### Competition (UPDATED Feb 23, 2026 4 PM)
+### Competition (CORRECTED Feb 23, 2026 5 PM)
 
-**🚨 MAJOR UPDATE: Market has MASSIVELY consolidated!**
+**🚨 5 PM CORRECTION: Earlier "7 dead" intel was WRONG!**
 
-**7 DEAD Competitors (verified 4 PM today):**
-1. Pawfect Waste Solutions — DNS dead
-2. pooperscooperstl.com — 404 not published
-3. Scoop Soldiers STL — DNS dead
-4. Fresh Paws — Squarespace expired
-5. **Dirty Dog Poo Crew — DNS dead (NEW!)** 
-6. Poopy Paws 314 — DNS dead
-7. **Little Stinkers of MO — DNS dead (NEW!)**
+**5 ACTIVE Competitors (verified via live site fetches):**
 
-**Only 3 ACTIVE Competitors Remain:**
+| Competitor | Territory | Weekly | Biweekly | Notes |
+|------------|-----------|--------|----------|-------|
+| **Poop2Scoop** | St. Louis area | $18/wk ($72/mo) | $25/EOW ($50/mo) | CHEAPEST, 314-449-9447 |
+| **Little Stinkers** | **St. Charles, O'Fallon, St. Peters** | Quote | Quote | ⚠️ DIRECT OVERLAP! 636-887-6626 |
+| **Dirty Dog Poo Crew** | Chesterfield 10mi radius | $95/mo | $80/mo | Part of grooming business |
+| **DoodyCalls** | St. Louis | Quote (~$12+) | Quote | Franchise, (314) 230-8082 |
+| **Yucko's** | St. Louis | Quote | Quote | Commercial focus, 314-291-POOP |
 
-| Competitor | Price | Notes |
-|------------|-------|-------|
-| **Poop2Scoop** | $18/wk | Only local residential competitor, 314-449-9447 |
-| **Yucko's** | Quote | Since 1990, commercial focus, 314-291-POOP |
-| **DoodyCalls** | Quote (~$12+) | Franchise, (314) 230-8082 |
+**⚠️ CRITICAL: Little Stinkers actively serves O'Fallon, St. Peters, St. Charles — TJ's EXACT territory!**
 
-**💡 PRICING ADVANTAGE:**
-- TJ's weekly ($25) > Poop2Scoop ($18) — don't compete here
-- TJ's biweekly ($45) < Poop2Scoop implied ($50) — **TJ wins**
-- TJ's monthly ($70) < Poop2Scoop implied ($72) — **TJ wins**
+**DEAD Competitors (verified):**
+- Fresh Paws — Squarespace expired (Wildwood territory)
+- St. Louis Pooper Scoopers — Yelp shows CLOSED (South City)
+- Pawfect Waste Solutions, pooperscooperstl.com, Scoop Soldiers STL, Poopy Paws 314 — DNS dead/404
+
+**💡 PRICING REALITY:**
+- TJ's weekly ($25) > Poop2Scoop ($18) — **TJ is 39% more expensive**
+- TJ's biweekly ($45) > Poop2Scoop ($25) — **TJ is 80% more expensive**
+- TJ's monthly ($70) = **UNIQUE** — no competitor offers this
 
 **Strategic Implications:**
-1. **LEAD WITH MONTHLY** — TJ has cheapest committed pricing
-2. **7 dead = HUNDREDS of orphan customers** looking for new service
-3. **Commercial is WIDE OPEN** — Yucko's only competition (dinosaur website)
-4. **This is a LAND GRAB moment** — first mover wins orphans
+1. **STOP leading with $25/week** — that's the weak spot
+2. **LEAD WITH $70/month** — only option in market
+3. **Differentiate on service** — transparent pricing, local personal service
+4. **Watch Little Stinkers** — they're actively marketing in TJ's territory
 
-**Full intel:** `memory/2026-02-23-competitor-intel-update.md`
+**Full intel:** `memory/2026-02-23-competitor-intel-CORRECTED.md`
 
 ## ⚠️ PHONE NUMBERS (CRITICAL - DO NOT MIX UP)
 
@@ -98,6 +98,30 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - **Customer acquisition** — most time spent outside actual scooping
 - **Ad creative and copy** — tedious, needs to be tracked and performing
 - **Consistent lead gen** — when he's on it he hits it hard, but needs consistency
+
+## 🎯 Current Focus (Updated Feb 23, 2026 7:23 PM)
+
+**STRATEGIC PIVOT — TJ Direction:**
+
+| STOP | START |
+|------|-------|
+| Commercial property lead hunting | Free marketing execution |
+| Jamie call sheets | Paid ad campaign prep |
+| Building more tools | Posting in FB groups |
+
+**Role Change:**
+- **Lead calling = TJ's task** (not Jamie)
+- Jamie is NOT doing outbound calls
+
+**Current Priority Stack:**
+1. **FREE marketing** — FB group posts, Instagram, Nextdoor
+2. **Paid ad prep** — creative, targeting, landing page (NOT spending yet)
+3. **GBP completion** — TJ started claiming today!
+
+**What Franklin Should Focus On:**
+- Copy-paste posts ready for TJ to execute
+- Ad campaign structure + creative
+- Tracking what actually gets posted vs what's built
 
 ## Why Customers Love Tidy Tails
 - Love TJ as a **person first**
