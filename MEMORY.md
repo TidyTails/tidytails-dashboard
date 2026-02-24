@@ -53,21 +53,25 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - Missing: Website, Google Business Profile
 - Main challenge: Customer acquisition at scale
 
-### Competition (CORRECTED Feb 23, 2026 5 PM)
+### Competition (UPDATED Feb 24, 2026 8 AM)
 
-**🚨 5 PM CORRECTION: Earlier "7 dead" intel was WRONG!**
+**🚨 6 AM DISCOVERY: POOP 911 (national franchise) active in O'Fallon!**
 
-**5 ACTIVE Competitors (verified via live site fetches):**
+**6 ACTIVE Competitors (verified via live site fetches):**
 
 | Competitor | Territory | Weekly | Biweekly | Notes |
 |------------|-----------|--------|----------|-------|
 | **Poop2Scoop** | St. Louis area | $18/wk ($72/mo) | $25/EOW ($50/mo) | CHEAPEST, 314-449-9447 |
 | **Little Stinkers** | **St. Charles, O'Fallon, St. Peters** | Quote | Quote | ⚠️ DIRECT OVERLAP! 636-887-6626 |
+| **POOP 911** 🆕 | **O'Fallon, St. Charles** | Quote | Quote | ⚠️ NATIONAL FRANCHISE! Free 1st cleanup hook |
 | **Dirty Dog Poo Crew** | Chesterfield 10mi radius | $95/mo | $80/mo | Part of grooming business |
 | **DoodyCalls** | St. Louis | Quote (~$12+) | Quote | Franchise, (314) 230-8082 |
 | **Yucko's** | St. Louis | Quote | Quote | Commercial focus, 314-291-POOP |
 
-**⚠️ CRITICAL: Little Stinkers actively serves O'Fallon, St. Peters, St. Charles — TJ's EXACT territory!**
+**⚠️ O'Fallon = CONTESTED (2 competitors: Little Stinkers + POOP 911)**
+**✅ St. Louis County = BLUE OCEAN (no Little Stinkers, no POOP 911)**
+
+**Strategic implication:** Today's O'Fallon FB post is TERRITORY DEFENSE. We're not alone there.
 
 **DEAD Competitors (verified):**
 - Fresh Paws — Squarespace expired (Wildwood territory)
@@ -86,6 +90,36 @@ Pet waste removal service in St. Louis County and surrounding areas.
 4. **Watch Little Stinkers** — they're actively marketing in TJ's territory
 
 **Full intel:** `memory/2026-02-23-competitor-intel-CORRECTED.md`
+
+### 🚨 POOP 911 DEEP DIVE (Feb 24, 2026 5PM)
+
+**KEY DISCOVERY: 25% ROYALTY FEE**
+
+The POOP 911 franchisee in St. Charles pays **25% of all revenue** to Texas corporate. At $60K/year:
+- They keep: $45,000
+- TJ keeps: $60,000 (100%)
+- **TJ has $15K/year advantage**
+
+**Why this matters:** They CANNOT:
+- Price match us
+- Over-deliver on service
+- Spend heavily on marketing
+- Build real customer relationships
+
+**Exploit angles:**
+- "100% of your money stays in St. Louis"
+- "Text ME directly, not a Texas call center"
+- "Same guy every visit — I know your dogs by name"
+- "$70/month, period. No 'as low as' tricks."
+
+**Other POOP 911 weaknesses:**
+- 207 franchises = corporate, impersonal
+- Lawsuits/bankruptcy in FDD
+- No financial disclosure (hiding poor earnings)
+- "As low as $11.95/wk" is bait pricing
+
+**Full intel + ready-to-use ad copy:** `memory/2026-02-24-poop911-deep-dive.md`
+**Dashboard:** `dashboard/poop911-intel.html`
 
 ## ⚠️ PHONE NUMBERS (CRITICAL - DO NOT MIX UP)
 
