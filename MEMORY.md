@@ -12,6 +12,15 @@
 - Wants autonomy given to me, but I check before external actions
 - Appreciates directness and colorful language
 
+## 💡 Parked Business Ideas
+
+### MOTRA (Parked Feb 23, 2026)
+**What:** Gig economy platform for servicing autonomous vehicles (cleaning, maintenance)
+**Why it's good:** $500M+ TAM, blue ocean, Waymo doing 400K rides/week
+**Assets:** Landing page live at tidytails.github.io/motra-landing, pitch deck ready
+**Full details:** `memory/motra-business-idea.md`
+**To resume:** "Let's pick up MOTRA"
+
 ## Tidy Tails - The Business
 
 ### What It Is
