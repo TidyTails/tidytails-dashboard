@@ -91,35 +91,35 @@ Pet waste removal service in St. Louis County and surrounding areas.
 
 **Full intel:** `memory/2026-02-23-competitor-intel-CORRECTED.md`
 
-### 🚨 POOP 911 DEEP DIVE (Feb 24, 2026 5PM)
+### 🚨 COMPETITOR UPDATE (Feb 25, 2026 7AM) — MAJOR REVISION
 
-**KEY DISCOVERY: 25% ROYALTY FEE**
+**POOP 911 ST. CHARLES IS DEAD**
 
-The POOP 911 franchisee in St. Charles pays **25% of all revenue** to Texas corporate. At $60K/year:
-- They keep: $45,000
-- TJ keeps: $60,000 (100%)
-- **TJ has $15K/year advantage**
+| What We Thought (Feb 24) | Reality (Feb 25) |
+|-------------------------|------------------|
+| POOP 911 active in O'Fallon | **404 PAGE — GONE** |
+| O'Fallon = 2 competitors | O'Fallon = **1 or 0** competitors |
+| "Territory defense" needed | **May be defending against ghosts** |
 
-**Why this matters:** They CANNOT:
-- Price match us
-- Over-deliver on service
-- Spend heavily on marketing
-- Build real customer relationships
+**Evidence:**
+- https://www.poop911.com/locations/missouri/st-charles-mo/ → 404 "Oh Poop, Page Not Found"
+- POOP 911 Missouri page → Only shows Kansas City
+- Little Stinkers website → DNS ENOTFOUND (possibly defunct)
 
-**Exploit angles:**
-- "100% of your money stays in St. Louis"
-- "Text ME directly, not a Texas call center"
-- "Same guy every visit — I know your dogs by name"
-- "$70/month, period. No 'as low as' tricks."
+**What This Means:**
+- The national franchise FAILED in St. Louis metro
+- Their 25% royalty model couldn't sustain here
+- O'Fallon may have ZERO active competitors with web presence
+- We prepared for a battle that might not exist
 
-**Other POOP 911 weaknesses:**
-- 207 franchises = corporate, impersonal
-- Lawsuits/bankruptcy in FDD
-- No financial disclosure (hiding poor earnings)
-- "As low as $11.95/wk" is bait pricing
+**Action Required:**
+TJ call Little Stinkers (636-887-6626) to verify if still operating.
+If dead → O'Fallon is **WIDE OPEN**.
 
-**Full intel + ready-to-use ad copy:** `memory/2026-02-24-poop911-deep-dive.md`
-**Dashboard:** `dashboard/poop911-intel.html`
+**Previous POOP 911 intel (kept for reference):**
+- 25% royalty fee to Texas HQ
+- "As low as $11.95/wk" = bait pricing
+- Full details: `memory/2026-02-24-poop911-deep-dive.md`
 
 ## ⚠️ PHONE NUMBERS (CRITICAL - DO NOT MIX UP)
 

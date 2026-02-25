@@ -281,4 +281,7 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 | Time | Area | Task |
 |------|------|------|
+| 6 AM | ⚙️ Systems | **Feedback Infrastructure — Week 2 Checkpoint System (3-question format for 8:30 AM, tracks GBP/FB execution + blockers, no new content, addresses 0% feedback rate)** |
+| 5 AM | ⚙️ Systems | Systems Health + Execution Gap Analysis (Wed post ready, 0% completion rate identified — no feedback loop) |
+| 4 AM | 📝 Content | Anti-Franchise Ad Copy (one FB post using POOP 911 intel, local vs corporate angle) |
 | 2 AM | ⚙️ Systems + 🐕 TT | Competitor Intel Check + Dashboard Maintenance (POOP 911 hiding prices, stale banner fixed, Week 2 compliant — no building) |
