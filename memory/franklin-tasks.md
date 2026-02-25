@@ -6,6 +6,150 @@
 
 ## February 24, 2026 (Tuesday — Week 2 Day 2)
 
+### 11:00 PM — 🔍 FB GROUP TARGET RESEARCH (Marketing Research)
+**Task:** Research actual Facebook groups where TJ can post tomorrow
+**Result:** ✅ Created `memory/fb-groups-target-list.md`
+
+**Why This Task:**
+- 11 PM = late night, research task is appropriate
+- Week 2 focus: FREE marketing execution
+- Realized we talk about "post in FB groups" but hadn't identified WHICH groups
+- This enables tomorrow's execution without more decision-making
+
+**What Was Found:**
+- 5 pet-focused groups (Saving St. Louis Pets, St. Louis Disc Dogs, etc.)
+- 1 moms/community group (St. Charles Moms — ideal territory)
+- 2 buy/sell/trade groups (Lake St Louis, St Louis Yard Sales)
+- 2 big pages to engage with (Stray Rescue 567K, Senior Dog Project 15K)
+
+**Actionable Output:**
+- Priority posting order: St. Charles Moms → Lake St Louis BST → Disc Dogs
+- Sample post included (copy-paste ready)
+- Strategy: 1-2 posts per day, don't spam
+
+**Week 2 Compliant:** ✅
+- Research that enables execution (not another tool)
+- Groups listed = TJ can join/post tomorrow
+- No PDF — just practical reference file
+
+---
+
+### 10:00 PM — 📝 WEDNESDAY CONTENT DROP (Content)
+**Task:** Create 3 copy-paste ready posts for Wednesday leveraging POOP 911 intel
+**Result:** ✅ Created `dashboard/content-drops/2026-02-25-wednesday-drop.md`
+
+**Why This Task:**
+- 10 PM = prep for tomorrow, not build new tools
+- Today's 5 PM deep dive on POOP 911 revealed the 25% royalty weakness
+- TJ's priority is FREE marketing (FB groups, Instagram, Nextdoor)
+- Best use of time: translate intel into ready-to-post content
+
+**What Was Created:**
+- 3 platform-specific posts:
+  1. **FB Group** — "Local vs Corporate" angle (mentions 25% to Texas)
+  2. **Instagram** — $70/month lead hook (unique in market)
+  3. **Nextdoor** — Soft, neighborly intro (no aggressive sales)
+- Posting schedule included (7:30 AM, 12:00 PM, 5:30 PM)
+- Total TJ time: ~10 minutes copy-paste
+
+**Dashboard Update:**
+- Added highlighted link in Campaigns & Content section
+- Green border to indicate fresh content
+
+**Week 2 Compliant:** ✅
+- NOT a new tool — actual content TJ can use tomorrow
+- Leveraged TODAY's intel (POOP 911 deep dive)
+- Execution-focused: copy, paste, done
+
+---
+
+### 9:00 PM — ⚙️ FB GROUP TRACKER + CLEANUP (Systems)
+**Task:** Create posting rotation tracker + fix duplicates from earlier tasks
+**Result:** ✅ Created `dashboard/fb-group-tracker.md`, fixed 5PM-ACTION date, removed duplicate posts
+
+**Why This Task:**
+- Started to create "local vs franchise" FB posts, realized 6 PM task already did this
+- Week 2 rule: don't build what already exists
+- Pivoted to SYSTEMS improvement: a tracker showing posting rotation status
+- Fixed date bug in 5PM-ACTION.md (said Feb 26, should be Feb 25)
+
+**What Was Created:**
+- `fb-group-tracker.md` — Visual rotation tracker with:
+  - Priority groups by member count
+  - This week's posting schedule
+  - Blue ocean vs contested territory notes
+  - Weekly summary metrics
+- Added to dashboard index.html as highlighted link
+
+**What Was Removed:**
+- `dashboard/ready-to-post/2026-02-25-local-vs-franchise-posts.md` — duplicate of 6 PM's work
+
+**Week 2 Compliant:** ✅
+- Caught myself duplicating, stopped, pivoted
+- Systems > content
+- Helps TJ see what's done vs what's next
+
+---
+
+### 8:00 PM — ⚙️ WEDNESDAY EXECUTION PREP (Maintenance)
+**Task:** Update 5PM-ACTION.md for tomorrow — Oakville FB group (20.1K members)
+**Result:** ✅ Wednesday's ONE THING staged: Oakville Buy Sell Trade post
+
+**Why This Task:**
+- Week 2 philosophy: prep execution, don't build more tools
+- Tuesday's Kirkwood post was staged → Wednesday needs Oakville
+- Oakville = 20.1K members, blue ocean territory (no competitors)
+- Slight copy variation to avoid spam detection
+
+**What Changed:**
+- `5PM-ACTION.md` → Updated from Kirkwood to Oakville
+- New copy variation: Spring/flip-flop angle instead of "snow melting"
+- Money-back guarantee added to build trust
+- Thursday target mentioned (Missouri Marketplace 54K)
+
+**Dashboard:**
+- Pushed to GitHub (commit f5e3b56)
+- Status cycling working → idle
+
+**Week 2 Compliant:** ✅
+- Maintenance task, not new tool
+- Supports execution momentum (Tue → Wed → Thu chain)
+- No PDF, no HTML, just prepping tomorrow's 5-minute action
+
+---
+
+### 6:00 PM — 🐕 WEDNESDAY FB BLITZ PACK (Execution Ready)
+**Task:** Convert today's POOP 911 intel into copy-paste FB posts for tomorrow
+**Result:** ✅ 5 ready-to-post FB group posts with anti-franchise positioning
+
+**Why This Task:**
+Today was intel-heavy (POOP 911 deep dive at 5 PM, FB group research at 2 PM). Time to convert research into action. These posts exploit the weaknesses we discovered without naming competitors directly.
+
+**Posts Created:**
+
+| # | Angle | Key Message |
+|---|-------|-------------|
+| 1 | 100% Local | "When you pay me, 100% stays in St. Louis" |
+| 2 | No Surprises | "$70/month. Period. No 'as low as' tricks." |
+| 3 | Text Me Directly | "You're texting TJ, not a call center" |
+| 4 | Same Guy Every Time | Dogs notice rotating crews — I'm it every visit |
+| 5 | Soft/Helpful | Spring melt revealing backlog? Deep clean $100 |
+
+**Files Created:**
+- `dashboard/campaigns/tidy-tails/2026-02-25-wednesday-fb-blitz.md`
+
+**Dashboard Updated:**
+- Added to Campaigns & Content section with highlight badge
+- Ready for TJ to click → copy → paste tomorrow morning
+
+**Week 2 Compliant:**
+- NOT a PDF or tool
+- IS copy-paste ready text TJ can use in 5 minutes
+- Tied directly to today's research (POOP 911 weaknesses)
+- Includes tracking table for results
+
+---
+
 ### 5:00 PM — 🎯 POOP 911 COMPETITIVE DEEP DIVE (Strategic Intel)
 **Task:** Research POOP 911 franchise (discovered in O'Fallon this morning) — find weaknesses and positioning strategy
 **Result:** ✅ Complete competitive intelligence dossier with actionable counter-positioning
@@ -3500,3 +3644,44 @@ Today was all Tidy Tails (3 tasks). Rotated to Sheds per rotation rules.
 
 **Phone Number Verification:** All ads use 636-354-7406 (Sheds/Darius) ✅
 
+
+
+### 7:00 PM — ⚔️ ANTI-FRANCHISE FB POSTS (Competitive Counter-Attack)
+**Task:** Create ready-to-post FB group content exploiting POOP 911's 25% franchise royalty weakness
+**Result:** ✅ 3 copy-paste posts created + dashboard updated
+
+**Why This Hour:**
+- POOP 911 intel dropped at 5 PM today (25% royalty fee = MASSIVE weakness)
+- Strategic pivot says FREE marketing execution is priority
+- FB group posts are free, high-impact, and immediately usable
+
+**What I Created:**
+
+| Post | Angle | Best For |
+|------|-------|----------|
+| "Local vs Corporate" | Direct comparison, no names | General pet groups |
+| "Getting to Know Your Scooper" | Soft personal intro | Nextdoor, neighborhood |
+| "O'Fallon/St. Charles Specific" | Territory defense | O'Fallon groups (contested) |
+
+**Key Messaging Exploits:**
+- 100% of money stays local (vs 25% to Texas HQ)
+- Same person every visit (vs rotating franchise crews)
+- Direct text to TJ (vs 1-800 call center)
+- $70/month flat (no "as low as" bait pricing)
+
+**File Created:** `dashboard/campaigns/tidy-tails/2026-02-24-anti-franchise-fb-posts.md`
+- 3 complete posts ready to copy-paste
+- Posting instructions included
+- 3-day rotation schedule
+- All phone numbers verified (314-850-7140 ✅)
+
+**Dashboard Update:**
+- Added to Campaigns & Content section (highlighted, top of list)
+
+**Week 2 Compliance:**
+- ✅ Execution enablement (copy-paste ready)
+- ✅ Leverages today's intel immediately
+- ✅ FREE marketing (no ad spend)
+- ✅ Zero new PDFs or HTML tools
+
+**Git:** Pushed to GitHub Pages
