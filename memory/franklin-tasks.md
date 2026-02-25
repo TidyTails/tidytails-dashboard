@@ -6,6 +6,77 @@
 
 ## February 25, 2026 (Wednesday — Week 2 Day 3)
 
+### 3:00 PM — 🐕 STL COUNTY FB BLITZ PACK (Tidy Tails/Execution)
+**Task:** Create ready-to-post FB group content targeting STL County blue ocean territory
+**Result:** ✅ Actionable posting pack with 3 copy-paste posts
+
+**Strategic Context:**
+- This morning's intel confirmed: STL County = BLUE OCEAN
+- POOP 911 is dead, Little Stinkers only serves St. Charles
+- Our existing FB group list was weighted toward St. Charles (competitor territory)
+- PIVOT: Focus marketing firepower on uncontested STL County
+
+**What I Created:**
+- 3 ready-to-paste posts for different group types (community, buy/sell, moms)
+- Group search terms for STL County neighborhoods
+- Clear 10-minute action plan (join 2-3 groups, post 1 today)
+- Anti-spam guidelines (don't flood, wait to post)
+
+**Key Posts:**
+1. "Honest Local Guy" — for community groups
+2. "Spring Is Coming" — for buy/sell groups  
+3. "Dog Mom Special" — for moms/pet groups
+
+**Location:** `memory/2026-02-25-stl-county-fb-blitz.md`
+
+**Week 2 Compliant:** ✅
+- Not a PDF or fancy tool — just copy-paste text
+- Enables immediate execution (10 min action)
+- Territory-aligned with today's competitive intel
+- Simple enough TJ can do it during work break
+
+---
+
+### 2:00 PM — 🐕 COMPETITOR PRICING & REVIEW INTEL (Tidy Tails/Research)
+**Task:** Research competitor reviews and pricing to inform messaging strategy
+**Result:** ✅ Fresh competitive intel with actionable pricing strategy
+
+**What I Found:**
+
+Live research on Poop2Scoop (main competitor) revealed:
+
+| TJ's Price | Competitor | Difference |
+|------------|------------|------------|
+| $25/week | $18/week | TJ is 39% MORE expensive ❌ |
+| $45/biweekly | $25/biweekly | TJ is 80% MORE expensive ❌ |
+| **$70/month** | $72/month (4x weekly) | **TJ WINS by $2** ✅ |
+| $100 deep clean | Not offered | **UNIQUE** ✅ |
+
+**Key Insight:** TJ should ALWAYS lead with $70/month pricing. That's where he's competitive.
+
+**Competitor Differentiators Found:**
+- Poop2Scoop = "Veteran-owned" (strong emotional hook)
+- "First cleaning FREE" offer
+- Deodorizing service (+$4 add-on)
+- 100% satisfaction guarantee
+- Active on Nextdoor with promos
+
+**Actionable Recommendations:**
+1. Change all ads to lead with $70/month
+2. Add "First cleanup FREE" to match competitor
+3. Consider deodorizing add-on service
+4. Define TJ's unique angle (not veteran - what?)
+
+**Location:** `dashboard/campaigns/tidy-tails/2026-02-25-competitor-review-intel.md`
+
+**Week 2 Compliant:** ✅
+- Not another PDF or posting template
+- Real intel from live competitor research
+- Changes messaging strategy (action: lead with monthly)
+- Directly impacts ad copy and positioning
+
+---
+
 ### 1:00 PM — 🚨 CRITICAL: WEBSITE SSL EXPIRED (Systems/Urgent)
 **Task:** Verify Tidy Tails website is working (flagged as "may have issues" in 11 AM audit)
 **Result:** 🚨 CRITICAL ISSUE - SSL certificate is EXPIRED, site shows security warnings
