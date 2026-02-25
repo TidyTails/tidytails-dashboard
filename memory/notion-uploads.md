@@ -99,3 +99,13 @@ Chief uses this to verify sync with dashboard.
 | 04:04 AM | 🚀 3-Day AI Challenge Case Study | 🤖 AI Consulting | pdfs/3-DAY-AI-CHALLENGE-CASE-STUDY.pdf | ✅ |
 - 07:00 AM - Weekend Sprint Plan → Notion Operations ✅ (ID: 30dccdb3-7d1f-81c3-80fe-cafce1e4ba69)
 | 11:05 AM | 🎤 10-Slide AI Consulting Pitch Deck | 🤖 AI Consulting | pdfs/consulting/AI-CONSULTING-PITCH-DECK-2026-02-20.pdf | ✅ |
+
+## Feb 25, 2026 - BATCH SYNC (Chief Fix)
+| Time | Item | Folder | Path | Status |
+|------|------|--------|------|--------|
+| 06:05 | Morning Briefing Feb 21 | 📋 Operations | MORNING_BRIEFING_2026-02-21.pdf | ✅ |
+| 06:05 | Shed Ads Feb 21 | 🏠 Shed Sales | SHED_ADS_2026-02-21.pdf | ✅ |
+| 06:05 | Commercial Leads Feb 21 | 🐕 Jamie's Hub | COMMERCIAL_LEADS_2026-02-21.pdf | ✅ |
+| 06:05 | EOD Summaries Feb 21-24 | 📋 Operations | EOD_SUMMARY_2026-02-*.pdf | ✅ |
+| 06:05 | Morning Briefings Feb 22-24 | 📋 Operations | MORNING_BRIEFING_2026-02-2*.pdf | ✅ |
+| 06:05 | AI Consulting Pitch Deck | 📋 Operations | AI_CONSULTING_PITCH_DECK_2026-02-24.pdf | ✅ |
