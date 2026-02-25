@@ -18,6 +18,7 @@
 | Tue 2/24 | 1 IG story | ⏳ Pending | Copy in INSTAGRAM_WEEK_FEB24.md |
 | Tue 2/24 | Text 1 customer for review | ⏳ Pending | Template ready |
 | **Wed 2/25** | **Post in St. Charles Moms FB** | ⏳ Pending | **ONE THING: 5 min, copy-paste ready in `week2-execution.md`** |
+| **Wed 2/25** | **🔄 CHECKPOINT: Get Mon/Tue status** | ⏳ 8:30 AM | **FEEDBACK FIRST — don't build until we know what happened** |
 
 ---
 
