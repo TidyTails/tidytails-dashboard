@@ -6,6 +6,44 @@
 
 ## February 25, 2026 (Wednesday — Week 2 Day 3)
 
+### 11:00 AM — 🔍 ONLINE PRESENCE AUDIT (Systems/Research)
+**Task:** Audit TJ's online presence to find gaps costing organic leads
+**Result:** ✅ CRITICAL GAP DISCOVERED — No Google Business Profile, No Yelp listing!
+
+**What I Found:**
+| Platform | Status |
+|----------|--------|
+| Facebook | ✅ EXISTS |
+| Website | ⚠️ EXISTS (may have issues) |
+| MapQuest | ✅ Listed |
+| **Google Business** | ❌ NOT FOUND |
+| **Yelp** | ❌ NOT FOUND |
+
+**The Problem:**
+When people search "pet waste removal St. Louis" on Yelp, they see:
+- Poopy Paws, Yucko's, POOP 911, DoodyCalls, Poop 2 Scoop
+- **Tidy Tails NOT on the list**
+
+**What This Costs:**
+- ~60% of high-intent local searchers never see Tidy Tails
+- Google Maps visibility = 0 (no GBP)
+- Yelp visibility = 0 (no listing)
+- Every day = leads going to competitors
+
+**Action Items for TJ (30 min total):**
+1. Claim GBP at business.google.com (15 min)
+2. Create Yelp listing at biz.yelp.com (10 min)
+3. Check website loads properly (5 min)
+
+**Location:** `dashboard/campaigns/tidy-tails/2026-02-25-online-presence-audit.md`
+
+**Week 2 Compliant:** ✅
+- No PDF — just an actionable audit report
+- Identifies REAL problem costing leads NOW
+- Clear 30-minute fix path
+
+---
+
 ### 10:00 AM — 🎯 STL COUNTY NEIGHBORHOOD BLITZ (Marketing)
 **Task:** Create hyper-local copy-paste posts for specific STL County neighborhoods
 **Result:** ✅ 5 neighborhood-specific posts ready

@@ -161,6 +161,18 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 ---
 
+## Feb 25 Rotation Log (WEDNESDAY — BLUE OCEAN DAY)
+
+| Time | Area | Task |
+|------|------|------|
+| 11:00 | 🔍 Research | **Online Presence Audit — CRITICAL: No GBP, no Yelp. TJ invisible in local searches. 30-min fix path documented.** |
+| 10:00 | 🐕 Tidy Tails | **STL County Neighborhood Blitz — 5 hyper-local posts for Florissant, Ferguson, Maryland Heights, Oakville, Affton** |
+| 09:00 | 🏠 Sheds + 🐕 TT | **Shed Ads #56-59 + Commercial Leads Round 13 (hotels + daycares)** |
+| 08:00 | 🐕 Tidy Tails | **FB Group Targeting — Applied blue ocean strategy to group recommendations** |
+| 07:00 | 🔍 Intel | **Competitor Verification — POOP 911 dead (404), Little Stinkers alive but St. Charles only** |
+
+---
+
 ## Feb 22 Rotation Log (SCOOPING DAY — EXECUTION FOCUS)
 
 | Time | Area | Task |
