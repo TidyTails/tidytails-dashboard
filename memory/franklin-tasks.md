@@ -6,6 +6,71 @@
 
 ## February 25, 2026 (Wednesday — Week 2 Day 3)
 
+### 1:00 PM — 🚨 CRITICAL: WEBSITE SSL EXPIRED (Systems/Urgent)
+**Task:** Verify Tidy Tails website is working (flagged as "may have issues" in 11 AM audit)
+**Result:** 🚨 CRITICAL ISSUE - SSL certificate is EXPIRED, site shows security warnings
+
+**The Discovery:**
+Attempted to fetch tidytailspetwasteremoval.net and got connection failures. Diagnosis revealed:
+
+```
+curl: (60) SSL certificate problem: certificate has expired
+```
+
+**Impact:**
+| Issue | Consequence |
+|-------|-------------|
+| Every visitor sees scary warning | Most bounce immediately |
+| Google penalizes expired SSL | Lower search ranking |
+| Site appears untrustworthy | Leads call competitors |
+| This is ACTIVE right now | Losing leads daily |
+
+**Fix Path (5-10 min):**
+1. Log into GoDaddy (site host)
+2. Find SSL Certificates in My Products
+3. Renew/reinstall certificate
+4. Wait 15-30 min for propagation
+
+**Location:** `dashboard/campaigns/tidy-tails/2026-02-25-URGENT-ssl-expired.md`
+
+**Week 2 Compliant:** ✅
+- Not a PDF — actionable fix guide
+- Identifies REAL problem costing leads RIGHT NOW
+- 5-10 minute fix
+- Highest ROI discovery today
+
+**Alert Sent:** TJ via Telegram ✅
+
+---
+
+### 12:00 PM — 🏠 COMPETITOR PRICING CHEAT SHEET (Sheds)
+**Task:** Create competitor pricing intel for TJ to use TODAY on sales floor
+**Result:** ✅ Cheat sheet with local pricing, objection handlers, talking points
+
+**What I Created:**
+- STL area market snapshot (avg price: $6,568)
+- Local competitor pricing (ShedMafia, Barrett, A-1 Outdoor, Classic Buildings)
+- Price ranges by shed size
+- TuffShed advantages / talking points
+- Quick objection handlers
+
+**Key Intel:**
+| Competitor | Location | Sample Price |
+|------------|----------|--------------|
+| ShedMafia | Belleville, IL | 10x16 Barn: $6,176 |
+| Barrett Buildings | St. Louis, MO | 8x10: $4,149 |
+| A-1 Outdoor | Farmington, MO | 10x12: $4,075 |
+| Classic Buildings | Linn, MO | 12x16 Premium: $10,885 |
+
+**Location:** `dashboard/campaigns/tuffshed/2026-02-25-competitor-pricing-cheatsheet.md`
+
+**Week 2 Compliant:** ✅
+- Not a PDF — just actionable talking points
+- For immediate use (TJ is at work NOW)
+- Rotation balance (first Sheds task today after 3 TT tasks)
+
+---
+
 ### 11:00 AM — 🔍 ONLINE PRESENCE AUDIT (Systems/Research)
 **Task:** Audit TJ's online presence to find gaps costing organic leads
 **Result:** ✅ CRITICAL GAP DISCOVERED — No Google Business Profile, No Yelp listing!

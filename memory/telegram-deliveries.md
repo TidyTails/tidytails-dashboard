@@ -1,5 +1,18 @@
 # Telegram Deliveries Log
 
+## Feb 25, 2026 — 1:00 PM URGENT ALERT
+- **Type:** Critical Security Alert
+- **Recipient:** cartervhomes@gmail.com
+- **Subject:** URGENT: Tidy Tails Website SSL Expired
+- **Email ID:** 19c962ea9a521d3f ✅
+- **Issue:** SSL certificate expired on tidytailspetwasteremoval.net
+- **Impact:** All visitors see security warning, losing leads daily
+- **Fix Guide:** dashboard/campaigns/tidy-tails/2026-02-25-URGENT-ssl-expired.md
+- **Dashboard:** ✅ Alert banner added + Research section link
+- **Status:** ✅ CRITICAL - Requires immediate action
+
+---
+
 ## 2026-02-23 8:33 AM — Morning Briefing (Week 2 Day 1)
 - **Type:** Morning Briefing
 - **Telegram:** Summary sent ✅

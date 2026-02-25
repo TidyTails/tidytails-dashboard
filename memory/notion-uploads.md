@@ -109,3 +109,4 @@ Chief uses this to verify sync with dashboard.
 | 06:05 | EOD Summaries Feb 21-24 | 📋 Operations | EOD_SUMMARY_2026-02-*.pdf | ✅ |
 | 06:05 | Morning Briefings Feb 22-24 | 📋 Operations | MORNING_BRIEFING_2026-02-2*.pdf | ✅ |
 | 06:05 | AI Consulting Pitch Deck | 📋 Operations | AI_CONSULTING_PITCH_DECK_2026-02-24.pdf | ✅ |
+| 12:04 | Morning Briefing Feb 25 | 📋 Operations | MORNING_BRIEFING_2026-02-25.pdf | ✅ |
