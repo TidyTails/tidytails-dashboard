@@ -91,35 +91,33 @@ Pet waste removal service in St. Louis County and surrounding areas.
 
 **Full intel:** `memory/2026-02-23-competitor-intel-CORRECTED.md`
 
-### 🚨 COMPETITOR UPDATE (Feb 25, 2026 7AM) — MAJOR REVISION
+### 🚨 COMPETITOR UPDATE (Feb 25, 2026 8AM) — CORRECTED
 
-**POOP 911 ST. CHARLES IS DEAD**
+**POOP 911 = DEAD | Little Stinkers = ALIVE**
 
-| What We Thought (Feb 24) | Reality (Feb 25) |
-|-------------------------|------------------|
-| POOP 911 active in O'Fallon | **404 PAGE — GONE** |
-| O'Fallon = 2 competitors | O'Fallon = **1 or 0** competitors |
-| "Territory defense" needed | **May be defending against ghosts** |
+| Competitor | Status | Territory |
+|------------|--------|-----------|
+| **POOP 911** | ❌ 404 PAGE — GONE | No STL metro presence (KC only) |
+| **Little Stinkers of MO** | ✅ ACTIVE | St. Charles, Lincoln, Warren Counties |
 
-**Evidence:**
-- https://www.poop911.com/locations/missouri/st-charles-mo/ → 404 "Oh Poop, Page Not Found"
-- POOP 911 Missouri page → Only shows Kansas City
-- Little Stinkers website → DNS ENOTFOUND (possibly defunct)
+**7 AM Error Corrected:** Checked wrong domain (littlestinkersmo.com vs littlestinkersofmo.com)
+
+**Little Stinkers Reality:**
+- Website: https://www.littlestinkersofmo.com (LIVE)
+- Phone: 636-887-6626
+- Cities: O'Fallon, St. Peters, St. Charles, Wentzville, Dardenne Prairie
+- **Does NOT serve St. Louis County**
 
 **What This Means:**
-- The national franchise FAILED in St. Louis metro
-- Their 25% royalty model couldn't sustain here
-- O'Fallon may have ZERO active competitors with web presence
-- We prepared for a battle that might not exist
+| Territory | Status |
+|-----------|--------|
+| **St. Louis County** | 🟢 BLUE OCEAN — No Little Stinkers, no POOP 911 |
+| **St. Charles County** | 🟡 Little Stinkers active (local family biz) |
+| **O'Fallon** | 🟡 Little Stinkers only (franchise failed) |
 
-**Action Required:**
-TJ call Little Stinkers (636-887-6626) to verify if still operating.
-If dead → O'Fallon is **WIDE OPEN**.
+**Strategic Implication:** STL County remains priority. Today's Oakville post = right move.
 
-**Previous POOP 911 intel (kept for reference):**
-- 25% royalty fee to Texas HQ
-- "As low as $11.95/wk" = bait pricing
-- Full details: `memory/2026-02-24-poop911-deep-dive.md`
+**Full correction:** `memory/2026-02-25-competitor-CORRECTION.md`
 
 ## ⚠️ PHONE NUMBERS (CRITICAL - DO NOT MIX UP)
 

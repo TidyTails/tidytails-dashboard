@@ -1622,6 +1622,125 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 
 ---
 
+## NEW LEADS - Round 13 (Added 2026-02-25 9:00 AM)
+
+**Segments Focus:** Pet-Friendly Hotels & New Pet Care Facilities
+**Why This Segment:** Hotels have grounds, outdoor relief areas, and pay for professional services. Guest experience is EVERYTHING.
+
+### 91. The Moonrise Hotel ⭐ ENRICHED - BOUTIQUE HOTEL
+- **Type:** Pet-Friendly Boutique Hotel (Delmar Loop)
+- **Contact:** Front Desk / General Manager
+- **Phone:** (314) 721-1111 ✅
+- **Address:** 6177 Delmar Blvd, St. Louis, MO 63112
+- **Website:** https://moonrisehotel.com/the-hotel/pet-friendly/
+- **Pet Policy:** $50 one-time cleaning fee, dogs AND cats welcome, dedicated pet floor
+- **Amenities:** Dog/cat beds, food bowls provided
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-25
+- **Notes:** BOUTIQUE hotel in the trendy Delmar Loop. "We understand your pet is part of the family." Entire floor dedicated to pet guests. High-end clientele = expects spotless grounds. Relief areas outside need constant maintenance with high dog turnover.
+- **Pitch Angle:** "You have an entire floor dedicated to pet guests — that's a LOT of dogs coming and going. Your outdoor relief areas probably see heavy traffic. We can keep them spotless so every guest's first impression is perfect."
+- **Assigned To:** Jamie
+
+### 92. Four Seasons Hotel St. Louis ⭐⭐ WHALE ACCOUNT - LUXURY
+- **Type:** Pet-Friendly Luxury Hotel (Downtown)
+- **Contact:** Concierge / Property Manager
+- **Phone:** (314) 881-5800 ✅
+- **Address:** 999 N 2nd St, St. Louis, MO 63102
+- **Website:** https://www.fourseasons.com/stlouis/
+- **Pet Policy:** Dog-friendly with pet amenities
+- **Status:** New - READY TO CALL - PREMIUM
+- **Date Added:** 2026-02-25
+- **Notes:** FIVE-STAR luxury hotel. Guests pay $500+ per night. Pet guests bring dogs to the riverfront grounds. Four Seasons brand = immaculate standards. They WILL pay premium for premium service.
+- **Pitch Angle:** "Four Seasons guests expect perfection. Your riverfront grounds are beautiful — we can ensure the pet relief areas match that Five-Star standard every day."
+- **Assigned To:** Jamie (PREMIUM ACCOUNT)
+
+### 93. Drury Inn & Suites St. Louis (Multiple Locations) ⭐ MULTI-SITE DEAL
+- **Type:** Pet-Friendly Hotel Chain (LOCAL HQ!)
+- **Contact:** Corporate Vendor Relations
+- **Phone:** (314) 429-0120 ✅ (St. Louis Airport location)
+- **Locations:** St. Louis Airport, Creve Coeur, Fairview Heights, Forest Park
+- **Website:** https://www.druryhotels.com/
+- **Pet Policy:** Dogs welcome at most locations
+- **Status:** New - READY TO CALL - MULTI-SITE
+- **Date Added:** 2026-02-25
+- **Notes:** DRURY IS HEADQUARTERED IN ST. LOUIS! Family-owned, 150+ hotels. If we get ONE location, we could potentially expand to corporate contract. They understand local vendor relationships.
+- **Pitch Angle:** "Drury's a St. Louis company — we're a St. Louis company. Your pet-friendly locations see a lot of dog traffic. Let's talk about keeping those outdoor areas clean across your local properties."
+- **Assigned To:** Jamie (START WITH ONE, PITCH MULTI-SITE)
+
+### 94. Paw Pad Pet Resort ⭐ ENRICHED
+- **Type:** Dog Boarding & Daycare
+- **Contact:** Front Desk
+- **Phone:** (636) 447-7297 ✅
+- **Address:** 1010 Waterford Crossing Dr, O'Fallon, MO 63368
+- **Website:** https://pawpadpetresort.com/
+- **Hours:** Mon-Fri 6:30am-6:30pm, Sat 8am-4pm, Sun 4pm-6pm (pickup only)
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-25
+- **Notes:** O'Fallon location = TJ's service area! Offers boarding, daycare, grooming. Extended hours suggest high volume. Pet resorts have large outdoor play areas.
+- **Pitch Angle:** "You've got dogs coming in at 6:30 AM — that's a lot of outdoor yard time before most businesses even open. We can handle the early morning cleanup so your team focuses on care."
+- **Assigned To:** Jamie
+
+### 95. Camp Bow Wow St. Peters ⭐ FRANCHISE - PROFESSIONAL
+- **Type:** Dog Daycare & Boarding (National Franchise)
+- **Contact:** Camp Counselor / Manager
+- **Phone:** (636) 922-9663 ✅
+- **Address:** 2939 Technology Dr, St. Peters, MO 63376
+- **Website:** https://www.campbowwow.com/st-peters/
+- **Hours:** Extended (6am-10pm based on franchise model)
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-25
+- **Notes:** National franchise with professional standards. St. Peters = TJ's service area. Camp Bow Wow camps have large indoor/outdoor play yards. Franchise model = vendor budgets built in.
+- **Pitch Angle:** "Camp Bow Wow has high standards — your outdoor play yards should match. We specialize in keeping commercial pet facilities spotless."
+- **Assigned To:** Jamie
+
+### 96. Best Friends Pet Hotel (PetSmart) - Chesterfield ⭐ CORPORATE
+- **Type:** Pet Hotel (Inside PetSmart)
+- **Contact:** Hotel Manager
+- **Phone:** (636) 536-3647 ✅
+- **Address:** 1688 Clarkson Rd, Chesterfield, MO 63017
+- **Website:** https://www.petsmart.com/services/petshotel/
+- **Hours:** 7am-7pm daily
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-25
+- **Notes:** PetSmart's hotel brand. Corporate = professional vendor process. High volume dog facility with outdoor relief areas. Chesterfield = affluent West County.
+- **Pitch Angle:** "PetSmart Hotels see constant dog traffic. Your outdoor relief areas take a beating. We can keep them pristine for guests and their owners."
+- **Assigned To:** Jamie
+
+### 97. Barks & Brews Tavern ⭐ DOG BAR - HIGH TRAFFIC
+- **Type:** Dog Bar (Dogs Inside + Outdoor Patio)
+- **Contact:** Bar Manager
+- **Phone:** (314) 665-7005 ✅
+- **Address:** 4121 Manchester Ave, St. Louis, MO 63110 (The Grove)
+- **Website:** barksandbrewstavern.com
+- **Hours:** Daily 4pm-1:30am
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-25
+- **Notes:** Dog bar in The Grove — dogs allowed INSIDE. Open until 1:30am = late night dog traffic. Bar + dogs = image-critical. Weekend crowds + dogs = lots of outdoor messes.
+- **Pitch Angle:** "A dog bar that stays open til 1:30 AM sees A LOT of dogs. Your outdoor patio needs to be clean before the next crowd arrives. We can handle that."
+- **Assigned To:** Jamie
+
+---
+
+## Round 13 Notes (2026-02-25 9:00 AM)
+
+### NEW SEGMENT: Pet-Friendly Hotels
+Hotels are underserved! They have:
+- Outdoor relief areas that see constant use
+- Professional vendor budgets
+- Guest experience = everything (dirty grounds = bad reviews)
+- National brands understand vendor contracts
+
+### Whale Accounts Added:
+- **Four Seasons** — Five-star, premium pricing expected
+- **Drury Inn (HQ in STL)** — Multi-site potential, local company
+
+### Updated Lead Count:
+- **Total active commercial leads: 97** ⬆️ (+7 from Round 13)
+- Phone-ready leads: 75+
+- Hotel segment: NEW — 3 leads added
+
+---
+
 ## Round 12 Notes (2026-02-24 9:00 AM)
 
 ### NEW SEGMENTS TESTED:

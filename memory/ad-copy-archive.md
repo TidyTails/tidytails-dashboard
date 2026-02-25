@@ -1087,6 +1087,141 @@ Text Darius: 636-354-7406
 
 ---
 
+### 2026-02-25 (9AM Daily Task)
+
+**Purpose:** Midweek momentum, March countdown, spring cleaning prep
+**PDF:** dashboard/pdfs/SHED_ADS_2026-02-25.pdf
+
+**Ad #56 - "Wednesday Wake-Up Call" (Midweek Motivation)**
+```
+Wednesday.
+
+Half the week's gone.
+Weekend's coming.
+And that garage situation?
+
+Still there.
+Still full.
+Still annoying every time you walk past it.
+
+Here's the thing:
+By Friday, you could have a plan.
+By next week, you could have a shed coming.
+By March, you could have your garage back.
+
+OR...
+
+Same garage. Same boxes. Same shuffle.
+Your call.
+
+✅ 0% interest if paid in 6 months
+✅ Rent-to-own (no credit check)
+✅ FREE delivery & setup
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #57 - "March is SATURDAY" (3-Day Warning)**
+```
+🗓️ March hits SATURDAY.
+
+3 days.
+
+You know what happens March 1st?
+Spring projects wake up.
+Everyone and their neighbor wants a shed.
+Delivery times stretch from weeks to months.
+
+Right now:
+✅ Inventory in stock
+✅ Delivery slots open
+✅ 0% interest if paid in 6 months
+
+March 15th:
+🤷 "When can you deliver?"
+🤷 "We're backed up 6 weeks"
+🤷 "Should've called in February"
+
+Lock it in while you can.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #58 - "The Double-Park Problem" (Two-Car Garage Irony)**
+```
+Quick question:
+
+Do you have a two-car garage?
+
+How many cars are actually parked IN it?
+
+If the answer is "zero" or "one... sometimes"...
+
+You don't have a parking problem.
+You have a storage problem.
+
+Here's what I see every week:
+🚗 Cars outside getting rained on
+📦 Garage full of "stuff we might need"
+🏠 Homeowners frustrated but stuck
+
+A shed fixes this.
+Move the overflow. Park inside.
+Like your garage was designed for.
+
+✅ As low as $150/mo
+✅ 0% interest if paid in 6 months
+✅ No credit check options available
+✅ FREE delivery & setup
+
+Your cars deserve better.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #59 - "Spring Cleaning Starts Now" (Prep Angle)**
+```
+Spring cleaning is coming.
+
+You know the drill:
+🧹 Clear out the closets
+🧹 Organize the basement
+🧹 "Finally deal with the garage"
+
+But here's the problem:
+
+Where does all that stuff GO?
+
+You're not throwing it out.
+You're just... shuffling it.
+From one pile to another.
+
+Unless...
+
+You have somewhere for it TO go.
+
+A shed turns "organize" into "actually organized."
+A place for everything.
+Everything in its place.
+And your house finally breathes.
+
+✅ 10-year financing available (9.99% APR)
+✅ 0% if paid in 6 months
+✅ Rent-to-own (no credit check)
+✅ FREE delivery
+
+Get the shed BEFORE spring cleaning.
+Trust me.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+---
+
 ## Style Notes
 
 ### TJ's Voice (from Facebook Marketplace)
