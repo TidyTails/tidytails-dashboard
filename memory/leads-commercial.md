@@ -1539,8 +1539,105 @@ St. Louis has **40+ dog parks**. This is just the first 10 leads. There's a huge
 - Tribeca STL (79) = Luxury + pet spa, easy pitch
 - Mac Properties (80) = Multi-site potential
 
+---
+
+## NEW LEADS - Round 12 (Added 2026-02-24 9:00 AM)
+
+**Segments Focus:** Mobile Home Parks, HOAs, Corporate Campuses
+**Why These Segments:** Mobile home parks have pet areas with compliance issues, HOAs have budgets for grounds, corporate campuses (dog-friendly ones) = huge contracts
+
+### 84. Belleville RV & Mobile Home Park
+- **Type:** Mobile Home Park / RV Park
+- **Contact:** Park Office
+- **Phone:** Research required
+- **Address:** Belleville, IL (25 min from downtown St. Louis)
+- **Website:** https://bellevillemobilehome.com/
+- **Status:** New
+- **Date Added:** 2026-02-24
+- **Notes:** Pet-friendly with dedicated pet field areas. Park rules state owners required to pick up — but compliance varies. Monthly rates $775-800.
+- **Pitch Angle:** "You've got dedicated pet areas. We can handle the cleanup professionally so every resident enjoys clean grounds."
+- **Assigned To:** Jamie
+
+### 85. Lakeside Mobile Home Community ⭐ READY TO CALL
+- **Type:** Mobile Home Community
+- **Contact:** Property Management
+- **Phone:** (314) 842-3600 ✅
+- **Address:** 9501 Lakewood Dr, St. Louis, MO 63126 (Crestwood/South County)
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-24
+- **Notes:** South County location — TJ's service area. Common green spaces where residents walk pets.
+- **Pitch Angle:** "Mobile home communities have shared green spaces. We handle cleanup so management doesn't chase compliance."
+- **Assigned To:** Jamie
+
+### 86. Suson Park Mobile Home Community
+- **Type:** Mobile Home Community
+- **Contact:** Park Office
+- **Phone:** Research required
+- **Address:** Near Suson Park, South County
+- **Status:** New
+- **Date Added:** 2026-02-24
+- **Notes:** Near Suson Park in South County. Parks near green spaces tend to have more pet owners.
+- **Assigned To:** Jamie
+
+### 87. Villas at Carriage Hill HOA
+- **Type:** HOA / Condo Community
+- **Contact:** HOA Property Manager
+- **Phone:** Research via HOA management company
+- **Address:** Des Peres / West County area
+- **Status:** New
+- **Date Added:** 2026-02-24
+- **Notes:** Upscale West County community. Townhome/condo communities with shared walking paths = heavy pet traffic.
+- **Pitch Angle:** "HOA communities with walking paths and pet areas benefit from professional cleanup."
+- **Assigned To:** Jamie
+
+### 88. The Enclave at Creve Coeur HOA
+- **Type:** HOA / Luxury Community
+- **Contact:** Community Management
+- **Address:** Creve Coeur, MO
+- **Status:** New
+- **Date Added:** 2026-02-24
+- **Notes:** Luxury community = higher standards for grounds. HOA board meetings = vendor presentations possible.
+- **Assigned To:** Jamie
+
+### 89. Purina Farms / Nestlé Purina HQ ⭐⭐ WHALE ACCOUNT
+- **Type:** Corporate HQ (PET COMPANY!)
+- **Contact:** Facilities Management
+- **Phone:** (314) 982-1000
+- **Address:** Checkerboard Square, St. Louis, MO 63164 + Gray Summit visitor center
+- **Website:** https://www.purina.com/
+- **Status:** New - RESEARCH FACILITIES CONTACT
+- **Date Added:** 2026-02-24
+- **Notes:** PURINA = THE pet company! Campus + Purina Farms (300+ acres). Flagship account if won.
+- **Pitch Angle:** "Purina is THE pet company. Your campus sees more dogs than almost anywhere in Missouri."
+- **Assigned To:** TJ (whale account - owner-to-owner)
+
+### 90. Chewy Fulfillment Center
+- **Type:** Pet E-Commerce (Distribution Center)
+- **Contact:** Facilities
+- **Address:** Check for STL-area locations
+- **Status:** New - NEEDS LOCATION VERIFICATION
+- **Date Added:** 2026-02-24
+- **Notes:** Chewy has Midwest fulfillment centers. Dog-friendly workplace policies + outdoor break areas = opportunity.
+- **Assigned To:** Jamie
+
+---
+
+## Round 12 Notes (2026-02-24 9:00 AM)
+
+### NEW SEGMENTS TESTED:
+1. **Mobile Home Parks** — Untapped market with pet compliance issues
+2. **HOAs** — Have budgets, shared pet walking areas
+3. **Corporate Campuses** — Purina is the holy grail
+
+### Priority Calls Today (Tuesday Feb 24):
+1. **Park Forest Apartments** (314) 351-1021 — Already invested in pet amenities
+2. **The Rail Apartments** (844) 998-4398 — Urban luxury, actively leasing
+3. **Civil Life Brewing** (314) 772-4155 — Was closed Monday, call TODAY!
+4. **Lakeside Mobile Home** (314) 842-3600 — New segment test
+5. **The Waterways** (636) 561-8013 — 80-acre whale account
+
 ### Updated Lead Count:
-- **Total active commercial leads: 83** ⬆️ (+6 from Round 11)
-- Phone-ready leads: 65+
-- Multi-site potential: Mac Properties, No Leash Needed (8 sites)
-- Research needed: 6 leads (phone numbers)
+- **Total active commercial leads: 90** ⬆️ (+7 from Round 12)
+- Phone-ready leads: 68+
+- Whale accounts: Purina HQ, The Waterways, No Leash Needed (8 sites)
+- New segments: Mobile home parks, HOAs, corporate campuses

@@ -947,6 +947,146 @@ Make it count this year.
 
 ---
 
+---
+
+### 2026-02-24 (9AM Daily Task)
+
+**Purpose:** Midweek reality check, spring countdown, trade-up strategy, humor angle
+**PDF:** dashboard/pdfs/SHED_ADS_2026-02-24.pdf
+
+**Ad #52 - "Tuesday Truth" (Midweek Reality Check)**
+```
+Tuesday.
+
+Middle of the week.
+You're already thinking about the weekend.
+
+And you KNOW what's gonna happen:
+🏠 You'll walk past the garage
+🤦 You'll shake your head
+📱 You'll scroll Marketplace
+📅 And then... "next weekend"
+
+What if THIS was the week you actually did it?
+
+Here's all it takes:
+📞 Text me
+📏 Tell me what you need
+💬 I give you a straight quote
+
+That's it. No games.
+
+Then by next weekend, you've got a shed coming — not "maybe next week."
+
+✅ 0% interest if paid in 6 months
+✅ Financing & rent-to-own
+✅ FREE delivery
+
+Your future self will thank you.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #53 - "March Hits Saturday" (5-Day Warning)**
+```
+🗓️ March hits SATURDAY.
+
+5 days.
+
+That means:
+🌱 Spring project season starts
+🌱 Everyone wakes up and wants a shed
+🌱 Wait times go from 2 weeks to 6+
+
+You've got two choices:
+
+CHOICE A: Order now
+✅ Delivered before St. Patrick's Day
+✅ Beat the rush
+✅ 0% interest if paid in 6 months
+
+CHOICE B: Wait
+🤷 6-8 week delivery times
+😤 "They don't have my size in stock"
+📅 Still waiting when Memorial Day hits
+
+Same shed. Same price.
+VERY different experience.
+
+Lock it in while you can.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #54 - "The Trade-Up" (Outgrown Shed Strategy)**
+```
+Be honest.
+
+That shed you bought 5 years ago?
+Full.
+
+You can barely get the lawn mower out without playing Tetris.
+
+Here's what nobody tells you:
+
+You don't have to lose the old one.
+
+Trade-up strategy:
+📦 Old shed → seasonal stuff only (decorations, camping gear)
+🏠 NEW shed → the real storage (mower, tools, workshop)
+
+Two sheds = double the space.
+And the new one actually has ROOM to work.
+
+We've got:
+• 10x12, 10x16, 12x20 — all in stock
+• 0% financing if paid in 6 months
+• Rent-to-own (no credit check)
+• FREE delivery on everything
+
+Stop squeezing. Start storing.
+
+Text Darius: 636-354-7406
+```
+
+**Ad #55 - "Your Wife Wants Her Garage Back" (Humor + Real Talk)**
+```
+Your wife wants the garage back.
+
+She hasn't said it today, but she's thinking it.
+
+Every time she walks past:
+📦 The boxes stacked to the ceiling
+🛠️ The tools "organized" in piles
+🎄 The Christmas decorations from 2 years ago
+🚗 The car... sitting in the driveway
+
+You've been "meaning to deal with it."
+For how long now?
+
+Here's the peace treaty:
+
+🏠 A shed.
+📦 Everything gets a new home.
+🚗 Car goes INSIDE.
+😊 Wife = happy.
+
+Worth it? Yeah.
+
+✅ 0% financing available
+✅ Rent-to-own (no credit check)
+✅ FREE delivery & setup
+
+Make peace. Get a shed.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+---
+
 ## Style Notes
 
 ### TJ's Voice (from Facebook Marketplace)
@@ -1212,5 +1352,63 @@ FREE delivery on everything.
 Text Darius: 636-354-7406
 @reddshedredemption
 ```
+
+---
+
+---
+
+## February 24, 2026 - Shed Ads (Financing Focus)
+
+**Ad: Tax Refund Season**
+Hook: Tax refund timing
+Darius: 636-354-7406
+Created: 2026-02-24 4:00 PM
+
+**Ad: No Credit Check**
+Hook: RTO Flex Lease - no credit needed
+Darius: 636-354-7406
+Created: 2026-02-24 4:00 PM
+
+**Ad: 10-Year Financing**
+Hook: Long-term = low monthly payments
+Darius: 636-354-7406
+Created: 2026-02-24 4:00 PM
+
+**Ad: Spring Garage Clean**
+Hook: Seasonal timing
+Darius: 636-354-7406
+Created: 2026-02-24 4:00 PM
+
+**Ad: 6-Month Interest Free**
+Hook: Short-term promo urgency
+Darius: 636-354-7406
+Created: 2026-02-24 4:00 PM
+
+**Ad: Workshop Dream**
+Hook: DIY/maker angle
+Darius: 636-354-7406
+Created: 2026-02-24 4:00 PM
+
+---
+
+### 2026-02-24 (10PM Hourly Task)
+
+**Purpose:** Wednesday Content Drop — leverage POOP 911 intel for anti-franchise positioning
+**Location:** dashboard/content-drops/2026-02-25-wednesday-drop.md
+
+**Post #WCD-1 - "Local vs Corporate" (Facebook Groups)**
+- Hook: National franchises taking 25% to Texas
+- CTA: Text TJ directly at 314-850-7140
+- Angle: Same guy every visit, knows your dogs by name, $70/month flat
+
+**Post #WCD-2 - "$70/month" (Instagram)**
+- Hook: Simple pricing, no "as low as" tricks
+- CTA: DM or text 314-850-7140
+- Angle: Monthly pricing unique in market
+
+**Post #WCD-3 - "Hey neighbors" (Nextdoor)**
+- Hook: Soft intro, not aggressive
+- CTA: Text or call 314-850-7140
+- Angle: Neighborly, low pressure
 
 ---

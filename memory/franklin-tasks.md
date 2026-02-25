@@ -4,6 +4,84 @@
 
 ---
 
+## February 25, 2026 (Wednesday — Week 2 Day 3)
+
+### 3:00 AM — 🔍 COMPETITIVE INTEL UPDATE (Research)
+**Task:** Overnight competitive intelligence gathering on POOP 911
+**Result:** ✅ Found new "Free First Cleanup" promotion intel
+
+**What Was Done:**
+- Fetched POOP 911's St. Louis service page (live data)
+- Discovered they're offering "FREE FIRST CLEANUP with recurring service"
+- Updated `memory/2026-02-24-poop911-deep-dive.md` with new intel
+- Added counter-messaging options for TJ
+- NO new PDFs created — intel update only
+
+**Key Finding:**
+POOP 911 is using loss-leader tactics ("free first cleanup") to acquire customers. TJ can either:
+1. Match it (costs 30 min labor per new customer)
+2. Counter it with "no gimmicks" messaging
+3. Match AND beat ("free first + no franchise cut")
+
+**Week 2 Compliant:** ✅
+- Research/intel gathering, not content creation
+- 3 AM = appropriate for background competitive monitoring
+- Adds to existing intel doc instead of creating new one
+
+---
+
+### 1:00 AM — ⚙️ DASHBOARD HEALTH AUDIT (Systems)
+**Task:** Quick systems verification + broken reference fix
+**Result:** ✅ Dashboard healthy, fixed broken content-drops reference
+
+**What Was Done:**
+- Verified dashboard git status = clean (no uncommitted changes)
+- Verified status.json working (shows idle state)
+- Confirmed 130+ PDFs exist
+- Confirmed Wednesday FB post copy IS ready in week2-execution.md
+- Found broken reference: `content-drops/2026-02-25-wednesday-drop.md` doesn't exist
+- Fixed reference to point to actual `instagram-story-blitz.html` in dashboard
+- No new content created — maintenance only
+
+**Week 2 Compliant:** ✅
+- Systems maintenance, not content creation
+- Fixed broken links instead of adding new ones
+- 1 AM = appropriate time for background maintenance
+
+---
+
+### 12:00 AM — ⚙️ MIDNIGHT EXECUTION PREP (Systems)
+**Task:** Update Week 2 execution tracker with clear Wednesday action
+**Result:** ✅ Updated `memory/week2-execution.md` and `memory/execution-tracking.md`
+
+**Why This Task:**
+- Midnight = no web research (rate limits hit), pivot to systems work
+- Week 2 lesson: execution > building
+- Execution tracker had blank Wednesday — now has ONE clear task
+- Verified dashboard is pushed and clean
+
+**What Was Done:**
+- Updated Wed 2/25 in `week2-execution.md` with:
+  - ONE THING: Post in St. Charles Moms FB (5 min)
+  - Copy-paste ready text included
+  - Why this group explained (service-friendly, TJ's territory)
+- Updated `execution-tracking.md` with Wednesday item
+- Verified dashboard git status = clean
+- Wednesday content drop already ready (from 10 PM task)
+
+**Competitor Intel Note:**
+- POOP 911 now has TWO Yelp pages: "POOP 911 West St. Louis" (Dec 2024) + main page
+- Still claiming "5-star reviews" but blocked from seeing actual count
+- Service area expanded: St. Louis City + County + Jefferson County
+
+**Week 2 Compliant:** ✅
+- No new tools built
+- Updated existing trackers
+- Simplified tomorrow's task to ONE thing
+- Systems maintenance, not content creation
+
+---
+
 ## February 24, 2026 (Tuesday — Week 2 Day 2)
 
 ### 11:00 PM — 🔍 FB GROUP TARGET RESEARCH (Marketing Research)
@@ -3685,3 +3763,35 @@ Today was all Tidy Tails (3 tasks). Rotated to Sheds per rotation rules.
 - ✅ Zero new PDFs or HTML tools
 
 **Git:** Pushed to GitHub Pages
+
+---
+
+### Feb 25, 2026 — 2:00 AM
+**Area:** ⚙️ Systems (Maintenance) + 🐕 Tidy Tails (Intel)
+**Task:** Competitor Intel Check + Dashboard Maintenance
+**Result:** ✅ POOP 911 pricing behavior change documented, stale dashboard banner fixed
+
+**Why This Hour:**
+- 2 AM = quiet time for surveillance + maintenance
+- Week 2 rule: no building, focus on execution tracking
+- Dashboard had stale "5 PM" banner from yesterday
+
+**What I Did:**
+1. **Competitor surveillance** — Fetched POOP 911 St. Charles page
+2. **Intel update** — They're hiding prices on local pages (only "as low as" on homepage)
+3. **Dashboard fix** — Removed stale 5 PM banner, updated to simple Wednesday focus
+4. **Memory logged** — 2026-02-25.md updated with intel
+
+**Key Finding:**
+POOP 911 hiding specific pricing = exploitable. TJ's transparent $70/month messaging stands out. Their "as low as $11.95/wk" is bait they can't deliver in practice.
+
+**What I Did NOT Do:**
+- ❌ Build new PDFs or tools (Week 2 compliant)
+- ❌ Create new content
+- ✅ Maintenance and surveillance only
+
+**Week 2 Status:**
+- All execution metrics still at 0
+- Wednesday content staged and ready
+- TJ just needs to post 1 thing
+

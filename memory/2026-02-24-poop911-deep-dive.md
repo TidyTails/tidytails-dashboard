@@ -74,6 +74,37 @@ That $11.95/wk is likely:
 
 ---
 
+## 🆕 NEW INTEL (Feb 25, 2026 — 3 AM)
+
+### "FREE FIRST CLEANUP" Promotion Discovered
+
+From their St. Louis service page (poop911.com/locations/saint-louis-missouri-pet-waste-cleanup):
+
+> "The first cleanup is free when signing up with a recurring service."
+
+**What This Means:**
+- They're using loss-leader tactics to acquire customers
+- The "free first" hook removes price friction on trial
+- Indicates they're actively trying to grow in this market
+
+**TJ's Options:**
+1. **Match it:** "First visit free" for new recurring customers (cost: 30 min labor)
+2. **Counter it:** "No gimmicks, just great service from day one"
+3. **Reframe it:** "Why do they need to give away free work? Because they can't keep customers."
+
+**Marketing copy to counter:**
+> "Some companies offer 'free first cleanup' to hook you. I don't play games. Same fair price every time: $70/month. Text me directly — 314-850-7140."
+
+**Or match and beat:**
+> "Free first visit + no franchise taking a cut = better service, better price. Try Tidy Tails risk-free."
+
+### Other Fresh Observations
+- Heavy SEO copy mentions Gateway Arch, Forest Park, Tower Grove, Clayton, Kirkwood, Washington University
+- "Locally owned and operated" claim (we know: 25% goes to Texas corporate)
+- Three service pages with near-identical copy (low-effort marketing)
+
+---
+
 ## 🎯 POOP 911 WEAKNESSES (Exploit These)
 
 ### 1. **Franchisee Financial Pressure**

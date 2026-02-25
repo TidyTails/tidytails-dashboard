@@ -267,3 +267,18 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 **Area:** ⚙️ Systems (Accountability)
 **Task:** Week 2 Execution Tracker Setup
 **Result:** Created `memory/week2-execution.md` — simple accountability tracker for the week. NO new PDFs built per Week 1 retrospective. Focus: track what TJ + Jamie actually do, not build more tools.
+
+## Feb 24, 2026
+
+| Time | Area | Task |
+|------|------|------|
+| 12 PM | 🐕 TT | POOP 911 Marketing Audit |
+| 1 PM | 🐕 TT | Spring Cleanup Posts |
+| 2 PM | 🐕 TT | FB Groups With Links |
+| 4 PM | 🏠 Sheds | Shed Ads Copy-Paste Pack (6 ads) |
+
+## Feb 25, 2026
+
+| Time | Area | Task |
+|------|------|------|
+| 2 AM | ⚙️ Systems + 🐕 TT | Competitor Intel Check + Dashboard Maintenance (POOP 911 hiding prices, stale banner fixed, Week 2 compliant — no building) |

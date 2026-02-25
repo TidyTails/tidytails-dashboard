@@ -57,15 +57,33 @@ Three things. 35 minutes total. That's the bar.
 
 ## Wednesday Feb 25
 
+### TJ's ONE THING (5 min)
+**Post in St. Charles Moms Facebook group**
+
+```
+Hey moms! 👋 Quick question — who else has a backyard that's become a minefield? 😅
+
+I'm TJ, local guy running Tidy Tails — pet waste removal for St. Charles & St. Louis County.
+
+$70/month = clean yard every week. First cleanup included.
+
+Text me: 314-850-7140
+
+🐕 Local. Reliable. One less thing on your plate.
+```
+
+**Why this group:** Service-friendly, moms = busy dog owners, St. Charles = TJ's territory
+
 ### TJ's Tasks
 | Task | Done? | Time | Notes |
 |------|-------|------|-------|
-| | ⬜ | | |
+| Post in St. Charles Moms FB | ⬜ | 5 min | Copy-paste above, DONE |
+| (Optional) IG story | ⬜ | 3 min | Use dashboard `instagram-story-blitz.html` |
 
 ### Jamie's Tasks
 | Task | Done? | Time | Notes |
 |------|-------|------|-------|
-| | ⬜ | | |
+| *No calls today unless TJ directs* | — | — | Focus on TJ's free marketing first |
 
 ### Metrics
 - Ads posted: 0
