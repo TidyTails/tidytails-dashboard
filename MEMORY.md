@@ -815,6 +815,39 @@ Week 2: How many tools did TJ use? (Answer: TBD)
 
 If the answer to Week 2's question is still "unknown" by Friday, we have a feedback loop problem, not a content problem.
 
+---
+
+## 📊 Day 8 Learnings (Feb 25, 2026) — Week 2 Day 3
+
+### The Productivity Explosion
+**17 hourly tasks in one day.** Most productive day ever. Output included:
+- 5 AM: Feedback infrastructure (checkpoint system)
+- 7 AM: POOP 911 confirmed DEAD (404), Little Stinkers only in St. Charles
+- 11 AM: Online presence audit → No GBP, No Yelp (critical gap)
+- 1 PM: SSL EXPIRED discovery (site showed security warnings for 6 days!)
+- 6-10 PM: Thursday + Friday FB posts staged, Consulting DM script, Week 2 tracker
+
+### The Critical Discoveries
+| Discovery | Impact |
+|-----------|--------|
+| **SSL Expired** | Website was scaring visitors for 6 days — losing leads daily |
+| **No GBP** | Invisible on Google Maps — 60%+ of local searches miss us |
+| **POOP 911 = Dead** | O'Fallon only has Little Stinkers now (easier territory) |
+| **STL County = Blue Ocean** | ZERO competitors with active presence |
+
+### Memory Consolidation (11 PM)
+Realized memory files were ballooning:
+- franklin-tasks.md: 4,405 lines → 1,955 lines (Week 2 only)
+- 12 fragmented competitor intel files → archived
+- 58 memory files → 36 (cleaner)
+
+**Week 1 archived to:** `memory/archive/franklin-tasks-week1.md`
+**Competitor intel history:** `memory/archive/competitor-intel-history/`
+
+### Key Insight
+17 tasks is insane output. But the REAL question: Did TJ fix the SSL and claim GBP? Those 2 things matter more than all 17 tasks combined.
+
 ### Key Dates Updated
-- 2026-02-21: Day 5 — 13 tasks (most ever), Week 1 Retrospective, build:deploy gap reality check, Monday Kickoff staged
-- 2026-02-22: Day 6 — Sunday, TJ's scooping day (expect minimal execution)
+- 2026-02-21: Day 5 — 13 tasks, Week 1 Retrospective
+- 2026-02-22: Day 6 — Sunday scooping day
+- 2026-02-25: Day 8 — **17 tasks** (record), SSL/GBP critical discoveries, memory consolidation

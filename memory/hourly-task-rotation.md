@@ -165,11 +165,23 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 | Time | Area | Task |
 |------|------|------|
+| 21:00 | 🐕 Tidy Tails | **Friday FB Posts — 3 copy-paste posts (weekend-ready hook, dog-deserves-it emotional, North County geography), 2-day posting momentum staged** |
+| 20:00 | 🐕 Tidy Tails | **Thursday FB Posts — 3 copy-paste posts (procrastinating, what-hate-most, South County), green banner on dashboard** |
+| 19:00 | 🤖 Consulting | **LinkedIn DM Outreach Script — 3-step sequence for St. Louis service business owners, copy-paste ready** |
+| 18:00 | 🏠 Sheds | **Thursday Shed Post — "No Credit Check" RTO angle, different from standard financing posts** |
+| 16:00 | ⚙️ Systems | **Evening Mission + SSL Verification — SSL confirmed working, staged night/morning execution plan** |
 | 11:00 | 🔍 Research | **Online Presence Audit — CRITICAL: No GBP, no Yelp. TJ invisible in local searches. 30-min fix path documented.** |
 | 10:00 | 🐕 Tidy Tails | **STL County Neighborhood Blitz — 5 hyper-local posts for Florissant, Ferguson, Maryland Heights, Oakville, Affton** |
 | 09:00 | 🏠 Sheds + 🐕 TT | **Shed Ads #56-59 + Commercial Leads Round 13 (hotels + daycares)** |
 | 08:00 | 🐕 Tidy Tails | **FB Group Targeting — Applied blue ocean strategy to group recommendations** |
 | 07:00 | 🔍 Intel | **Competitor Verification — POOP 911 dead (404), Little Stinkers alive but St. Charles only** |
+
+**Feb 25 Balance Check:**
+- Tidy Tails: 5 tasks (neighborhood blitz, FB targeting, Thu+Fri posts, commercial leads overlap)
+- Sheds: 2 tasks (ads + Thursday post)
+- Consulting: 1 task (DM outreach)
+- Systems: 1 task (SSL/evening)
+- Research: 2 tasks (audit + competitor check)
 
 ---
 
@@ -297,3 +309,11 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 | 5 AM | ⚙️ Systems | Systems Health + Execution Gap Analysis (Wed post ready, 0% completion rate identified — no feedback loop) |
 | 4 AM | 📝 Content | Anti-Franchise Ad Copy (one FB post using POOP 911 intel, local vs corporate angle) |
 | 2 AM | ⚙️ Systems + 🐕 TT | Competitor Intel Check + Dashboard Maintenance (POOP 911 hiding prices, stale banner fixed, Week 2 compliant — no building) |
+| 6 PM | 🏠 Sheds | Thursday Shed Post (copy-paste Marketplace listing ready) |
+| 7 PM | 🤖 Consulting | LinkedIn DM Outreach Script (3-step script for service business owners) |
+| 8 PM | 🐕 Tidy Tails | Thursday FB Posts (3 targeted posts: general group, pet group, South County) |
+| 9 PM | 🐕 Tidy Tails | Friday FB Posts (3 posts: urgency, emotional, North County geography) |
+| 10 PM | ⚙️ Systems | **Week 2 Execution Tracker (interactive checklist, built vs done visibility, execution rate %, localStorage persistence, dashboard updated)** |
+
+**Day 3 Balance: 2 TT, 1 Sheds, 1 Consulting, 1 Systems (evening shift)**
+**Day 3 Focus:** Staged Thursday + Friday content (6 FB posts ready), created execution tracking infrastructure
