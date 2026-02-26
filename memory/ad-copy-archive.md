@@ -1547,3 +1547,31 @@ Created: 2026-02-24 4:00 PM
 - Angle: Neighborly, low pressure
 
 ---
+
+---
+
+## February 26, 2026 — Marketplace Refresh (4 ads)
+
+**Ad #21 - "Tax Refund Drop" (Timely - February)**
+- Hook: Tax refund timing
+- Angle: Better than random Target spending
+- Financing: 0% for 6 months, RTO no credit check
+
+**Ad #22 - "No Credit Check Focus" (RTO Angle)**
+- Hook: Credit concerns? No problem.
+- Angle: Rent-to-own, no judgment
+- Financing: RTO no credit check
+
+**Ad #23 - "Zero Interest Hook" (6-Month Promo)**
+- Hook: Math people, listen up
+- Angle: Pay in 6 months = zero interest
+- Financing: Service Finance 6-month promo
+
+**Ad #24 - "Spring Project Space" (Workshop)**
+- Hook: Project list not happening in garage
+- Angle: Dedicated workshop space
+- Financing: 9.99% APR, RTO available
+
+*All use Darius contact: 636-354-7406*
+*Archive updated: 2026-02-26 1:00 AM*
+
