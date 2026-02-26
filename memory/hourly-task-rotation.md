@@ -165,6 +165,12 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 | Time | Area | Task |
 |------|------|------|
+| 17:00 | ⚙️ Systems | **Tonight's 3 Actions Banner — Dashboard updated with prominent action section. Not another PDF — directs attention to EXISTING tools (Review Blitz, GBP Checklist, Thursday Posts). 30 min total, numbered, clickable, achievable.** |
+| 16:00 | 🐕 Tidy Tails | **Review Text Blitz — 10-min system to text 5 customers for reviews TONIGHT. GBP claimed today, reviews are #1 priority for ranking. Simple template + customer checklist.** |
+| 15:00 | 🔍 Intel | **Search Visibility Snapshot — Real search position check (TJ NOT in top 10), Week 2 tracker updated with GBP win, Thursday/Friday simple actions staged, 30-day visibility roadmap created** |
+| 12:00 | 🐕 Tidy Tails | **Saturday FB Post Pack — 5 weekend posts: "Saturday Morning Reality" (coffee + yard), "Kids Playing Outside" (family safety), "Honest Confession" (dog person voice), "Neighbor Notice" (Nextdoor), "Weather Window" (outdoor urgency). $70/month + local owner angles. Copy-paste ready.** |
+| 11:00 | 🏠 Sheds | **Shed Ad Sprint — 3 fresh Marketplace ads: "Refund Landed Yet?" (tax season), "Last 4 Days of Feb" (urgency), "Be Honest" (garage reality). Copy-paste ready.** |
+| 09:07 | 🤖 Consulting | **Prospect Finder Guide — How to identify good consulting leads (profile, where to find, qualification script, weekly challenge)** |
 | 08:02 | 🔍 Intel | **Competitive Intel Verification — Fresh search analysis. Confirmed: Pawfect+Fresh Paws still DEAD, Poop2Scoop $18/wk (39% cheaper than TJ), POOP 911 STL shell page only, Little Stinkers St. Charles ONLY. Blue ocean strategy validated.** |
 | 08:00 | ⚙️ Systems | **Self-Directed Session — Website verified live, dashboard updated, Thursday posts confirmed ready** |
 | 06:00 | 🚨 Critical | **Website Was DOWN (404) — GitHub Pages wasn't enabled. Fixed via API. Site now live.** |
