@@ -6,7 +6,7 @@
 
 ## The Week 2 North Star
 Three things. 35 minutes total. That's the bar.
-1. GBP Claimed (15 min)
+1. ✅ GBP Claimed (15 min) — **DONE FEB 26!**
 2. One FB Post (5 min)
 3. One Commercial Call (15 min)
 
@@ -17,15 +17,8 @@ Three things. 35 minutes total. That's the bar.
 ### TJ's Tasks
 | Task | Done? | Time | Notes |
 |------|-------|------|-------|
-| Claim GBP | ⬜ | 15 min | Kit ready in dashboard |
+| Claim GBP | ⬜ | 15 min | Pushed to later in week |
 | Post 1 FB ad | ⬜ | 5 min | Copy in dashboard |
-| (Optional) Text customer for review | ⬜ | 2 min | Templates ready |
-
-### Jamie's Tasks
-| Task | Done? | Time | Notes |
-|------|-------|------|-------|
-| Call Mills Properties | ⬜ | 10 min | Script ready, (314) 721-8000 |
-| Call No Leash Needed (1 location) | ⬜ | 10 min | Start with Kirkwood |
 
 ### Metrics
 - Ads posted: 0
@@ -42,94 +35,91 @@ Three things. 35 minutes total. That's the bar.
 |------|-------|------|-------|
 | | ⬜ | | |
 
-### Jamie's Tasks
-| Task | Done? | Time | Notes |
-|------|-------|------|-------|
-| | ⬜ | | |
-
 ### Metrics
 - Ads posted: 0
 - Calls made: 0
-- Leads generated: 0
-- New customers: 0
 
 ---
 
 ## Wednesday Feb 25
 
 ### TJ's ONE THING (5 min)
-**Post in St. Charles Moms Facebook group**
-
-```
-Hey moms! 👋 Quick question — who else has a backyard that's become a minefield? 😅
-
-I'm TJ, local guy running Tidy Tails — pet waste removal for St. Charles & St. Louis County.
-
-$70/month = clean yard every week. First cleanup included.
-
-Text me: 314-850-7140
-
-🐕 Local. Reliable. One less thing on your plate.
-```
-
-**Why this group:** Service-friendly, moms = busy dog owners, St. Charles = TJ's territory
-
-### TJ's Tasks
-| Task | Done? | Time | Notes |
-|------|-------|------|-------|
-| Post in St. Charles Moms FB | ⬜ | 5 min | Copy-paste above, DONE |
-| (Optional) IG story | ⬜ | 3 min | Use dashboard `instagram-story-blitz.html` |
-
-### Jamie's Tasks
-| Task | Done? | Time | Notes |
-|------|-------|------|-------|
-| *No calls today unless TJ directs* | — | — | Focus on TJ's free marketing first |
+**Post in St. Charles Moms Facebook group** ← STATUS UNKNOWN
 
 ### Metrics
-- Ads posted: 0
+- Ads posted: ?
 - Calls made: 0
-- Leads generated: 0
-- New customers: 0
 
 ---
 
-## Thursday Feb 26
+## Thursday Feb 26 🎉
+
+### 🏆 BIG WIN: GBP CLAIMED!
+TJ claimed the Google Business Profile today. This is the #1 foundational piece for local visibility.
 
 ### TJ's Tasks
 | Task | Done? | Time | Notes |
 |------|-------|------|-------|
-| | ⬜ | | |
+| Claim GBP | ✅ | — | **DONE!** Now needs profile completion |
+| **🔥 TEXT CUSTOMERS FOR REVIEWS** | ⬜ | 10 min | **HIGHEST PRIORITY** — GBP won't rank without reviews! |
+| Complete GBP profile | ⬜ | 15 min | Use checklist from dashboard |
+| Thursday night FB post | ⬜ | 5 min | Copy below 👇 |
 
-### Jamie's Tasks
-| Task | Done? | Time | Notes |
-|------|-------|------|-------|
-| | ⬜ | | |
+### Tonight's Copy-Paste FB Post (5 min)
+**For: Any St. Louis pet/community FB group**
+
+```
+Quick Thursday thought: 🐕
+
+Your dog's already made weekend plans.
+They involve the backyard.
+And leaving you... gifts.
+
+$70/month = I handle all of it. Every week.
+
+Text 314-850-7140 - TJ, local guy, not a franchise.
+
+tidytailsstl.com
+```
 
 ### Metrics
+- GBP Claimed: ✅ **YES!**
 - Ads posted: 0
-- Calls made: 0
-- Leads generated: 0
-- New customers: 0
+- Profile completion: 0%
 
 ---
 
 ## Friday Feb 27
 
+### TJ's ONE THING
+**One FB post before noon** (copy below 👇)
+
+### Friday Morning Post (5 min)
+**For: St. Louis County community groups**
+
+```
+Friday check-in:
+
+Who's staring at a backyard that needs work this weekend? 🙋‍♂️
+
+I'm TJ from Tidy Tails - I clean up after dogs so you don't have to think about it.
+
+$70/month. First cleanup included. St. Louis County area.
+
+Text 314-850-7140 or tidytailsstl.com
+
+Enjoy your weekend. Seriously.
+```
+
 ### TJ's Tasks
 | Task | Done? | Time | Notes |
 |------|-------|------|-------|
-| 5 min debrief with Franklin | ⬜ | 5 min | What worked? What didn't? |
-
-### Jamie's Tasks
-| Task | Done? | Time | Notes |
-|------|-------|------|-------|
-| | ⬜ | | |
+| Post Friday AM ad | ⬜ | 5 min | Copy-paste above |
+| 5 min debrief with Franklin | ⬜ | 5 min | What worked this week? |
 
 ### Metrics
 - Ads posted: 0
 - Calls made: 0
-- Leads generated: 0
-- New customers: 0
 
 ---
 
@@ -137,7 +127,7 @@ Text me: 314-850-7140
 
 | Metric | Target | Actual |
 |--------|--------|--------|
-| GBP Claimed | 1 | 0 |
+| GBP Claimed | 1 | ✅ **1** |
 | FB Posts | 3 | 0 |
 | Commercial Calls | 5 | 0 |
 | Leads Generated | 2 | 0 |
@@ -145,8 +135,19 @@ Text me: 314-850-7140
 
 ---
 
+## GBP Next Steps (Post-Claim Checklist)
+1. ⬜ Add business description (750 chars ready in dashboard)
+2. ⬜ Add services with prices (all 4)
+3. ⬜ Add service areas (11 cities)
+4. ⬜ Upload 4+ photos (truck, before/after, happy dog)
+5. ⬜ Make first Google post
+6. ⬜ Ask 2 current customers for reviews via text
+
+---
+
 ## Lessons Learned (Friday update)
-*(To be filled end of week)*
+- GBP took until Thursday to claim (4 days into week)
+- *(More lessons after Friday debrief)*
 
 ---
 

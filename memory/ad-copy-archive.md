@@ -2,6 +2,27 @@
 
 *Archived 745 older entries to archive/2026-02/*
 
+---
+
+## Feb 26, 2026 — Thursday Shed Ads (11 AM Task)
+
+**Ad #23 - "Refund Landed Yet?" (Tax Season)**
+- Hook: Tax refund decision point
+- Key: Property value angle, "before spring prices"
+- Used: TBD
+
+**Ad #24 - "Last 4 Days of February" (Urgency)**  
+- Hook: February ending, March chaos coming
+- Key: Pre-season pricing, delivery slots
+- Used: TBD
+
+**Ad #25 - "Be Honest" (Garage Reality Check)**
+- Hook: When did you last park in your garage?
+- Key: Under $200/mo, no credit check RTO
+- Used: TBD
+
+---
+
 ✅ See dozens in stock
 
 No more annual garage shuffle.
@@ -1574,4 +1595,144 @@ Created: 2026-02-24 4:00 PM
 
 *All use Darius contact: 636-354-7406*
 *Archive updated: 2026-02-26 1:00 AM*
+
+---
+
+### 2026-02-26 (9AM Daily Task)
+
+**Purpose:** Thursday reality check, end-of-February urgency, weekend warrior, garage purpose
+**PDF:** dashboard/pdfs/SHED_ADS_2026-02-26.pdf
+
+**Ad #60 - "Thursday Reality Check" (Midweek Motivation)**
+```
+Thursday.
+
+Weekend's almost here.
+You know what's gonna happen?
+
+Saturday morning you'll walk past the garage.
+Shake your head.
+Think "I really should do something about this."
+And then... nothing.
+
+Same story every weekend.
+
+What if this weekend was different?
+
+📞 Text me TODAY
+📏 Get a quote TONIGHT
+🚚 Have a delivery date by MONDAY
+
+Then next Saturday? You've got a plan. Not a wish.
+
+✅ 0% interest if paid in 6 months
+✅ Rent-to-own (no credit check)
+✅ FREE delivery & setup
+
+Your future self is begging you.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #61 - "48 Hours of February Left" (End-of-Month Urgency)**
+```
+🗓️ 48 hours.
+
+That's all the February you've got left.
+
+Then it's March.
+Then it's "spring rush."
+Then it's 6-week wait times.
+Then it's "why didn't I do this sooner?"
+
+OR...
+
+You lock it in TODAY.
+Get it delivered in 2-3 weeks.
+Have your garage back before St. Patrick's Day.
+
+Current situation:
+✅ Delivery slots open
+✅ Full selection in stock
+✅ 0% financing if paid in 6 months
+
+March situation:
+🤷 "We're backed up"
+🤷 "Check back in April"
+
+48 hours to decide.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #62 - "The Weekend Warrior Setup" (DIY/Project Space)**
+```
+Weekend warriors, listen up.
+
+Your project list is getting longer:
+🔨 That deck repair you've been putting off
+🔧 The workbench you want to build
+🪴 Garden beds you're planning
+🚗 The car project that "needs a little work"
+
+But WHERE is it all gonna happen?
+
+Not in the garage — that's full.
+Not in the driveway — weather's unpredictable.
+Not "later" — later never comes.
+
+A workshop shed = YOUR space.
+Tools stay out. Projects stay in progress.
+No more setting up and breaking down every weekend.
+
+✅ Custom sizes for your projects
+✅ Financing & rent-to-own available
+✅ FREE delivery & setup
+
+Build the space. Then build the projects.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+**Ad #63 - "What Your Garage Was Built For" (Purpose Reclamation)**
+```
+Fun fact:
+
+Your garage was designed for cars.
+
+Not boxes.
+Not holiday decorations.
+Not that treadmill you used twice.
+Not "stuff we might need someday."
+
+Somewhere along the way, the garage became a storage unit.
+And your car? Parked outside.
+
+Here's the thing:
+🚗 Car outside = weather damage
+🚗 Weather damage = lower resale value
+🚗 Lower resale = real money lost
+
+A shed costs a few thousand, once.
+Depreciation costs you every single day.
+
+Take your garage back.
+
+✅ As low as $150/mo
+✅ 0% interest if paid in 6 months
+✅ No credit check options available
+✅ FREE delivery
+
+Your car deserves better.
+
+Text Darius: 636-354-7406
+@reddshedredemption
+```
+
+---
+
+*Archive updated: 2026-02-26 9:00 AM*
 

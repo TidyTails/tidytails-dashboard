@@ -165,6 +165,8 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 | Time | Area | Task |
 |------|------|------|
+| 19:00 | ⚙️ Systems | **DASHBOARD QA + FRIDAY STAGING VERIFICATION — Fixed 1 broken link (online-presence-audit.md → search-visibility-snapshot.md). Verified: Friday 3 posts ✅, Saturday 5 posts ✅, Review Blitz ✅, GBP Checklist ✅, Shed Weekend Blitz ✅. All systems go for Friday execution.** |
+| 18:00 | 🔍 Intel | **COMPETITIVE INTEL CORRECTION — POOP 911 ALIVE (local franchise), Poopy Paws = $20/wk (cheapest!), TJ is 25% more expensive than cheapest, 7+ active competitors. NOT blue ocean. $70/month still unique. MEMORY.md updated.** |
 | 17:00 | ⚙️ Systems | **Tonight's 3 Actions Banner — Dashboard updated with prominent action section. Not another PDF — directs attention to EXISTING tools (Review Blitz, GBP Checklist, Thursday Posts). 30 min total, numbered, clickable, achievable.** |
 | 16:00 | 🐕 Tidy Tails | **Review Text Blitz — 10-min system to text 5 customers for reviews TONIGHT. GBP claimed today, reviews are #1 priority for ranking. Simple template + customer checklist.** |
 | 15:00 | 🔍 Intel | **Search Visibility Snapshot — Real search position check (TJ NOT in top 10), Week 2 tracker updated with GBP win, Thursday/Friday simple actions staged, 30-day visibility roadmap created** |

@@ -6,6 +6,80 @@
 
 ## February 26, 2026 (Thursday — Week 2 Day 4)
 
+### 7:00 PM — ⚙️ DASHBOARD QA + FRIDAY STAGING VERIFICATION (Hourly Task)
+**Task:** Verify all staging is bulletproof for Friday/weekend execution — QA work, not building
+**Result:** ✅ Found and fixed 1 broken link. All critical content verified.
+
+**What I Checked:**
+1. **Friday Posts (Feb 27)** — ✅ 3 posts ready, copy-paste formatted
+2. **Saturday Posts (Feb 28)** — ✅ 5 posts ready, weekend hooks
+3. **Review Text Blitz** — ✅ Template ready, customer checklist included
+4. **GBP Optimization Checklist** — ✅ 15-min completion guide ready
+5. **Weekend Shed Blitz** — ✅ Sat/Sun ads + verified promos
+6. **Dashboard Links** — 🔧 Found 1 broken link, FIXED
+
+**Fix Applied:**
+- `2026-02-25-online-presence-audit.md` → Linked file didn't exist
+- **Fixed:** Updated to point to `2026-02-26-search-visibility-snapshot.md` (current, post-GBP claim)
+
+**Verified Content Summary:**
+| Asset | Status | TJ Action |
+|-------|--------|-----------|
+| Friday FB Posts | ✅ Ready | Copy-paste 3 posts @ 7-8 AM |
+| Saturday FB Posts | ✅ Ready | Copy-paste 5 posts |
+| Review Blitz | ✅ Ready | Text 5 customers TONIGHT |
+| GBP Checklist | ✅ Ready | 15 min to complete profile |
+| Shed Weekend Blitz | ✅ Ready | Sat/Sun Marketplace posts |
+
+**Week 2 Compliant:** ✅
+- No new content built
+- Pure QA/verification work
+- Fixed broken link (would have frustrated TJ)
+- Ensures Friday morning is smooth
+
+---
+
+### 6:00 PM — 🚨 COMPETITIVE INTEL CORRECTION (Hourly Task)
+**Task:** Verify GBP visibility + competitor status check — real intel work, not building
+**Result:** ✅ MAJOR corrections to competitive landscape discovered
+
+**Why This Matters:**
+- GBP claimed TODAY — checked if visible yet (not yet, 24-72hr window)
+- Competitor intel was WRONG — POOP 911 is ALIVE, Poopy Paws = $20/week
+
+**Key Findings:**
+1. **POOP 911 = ACTIVE** — Local franchise with "First cleanup FREE" hook
+   - Full page: poop911.com/locations/saint-louis-missouri-pet-waste-cleanup
+   - Mentions Forest Park, Clayton, Kirkwood, Tower Grove, STL Zoo
+   - NOT dead as previously reported
+2. **Poopy Paws = $20/week** (CHEAPEST in market!)
+   - Phone: 314-783-1781
+   - Owner: Charlie
+   - Website DNS dead but Yelp active with good reviews
+   - TJ is 25% MORE EXPENSIVE ($25 vs $20)
+3. **7+ Active Competitors** — NOT a blue ocean
+
+**Strategic Implications:**
+- ❌ Don't claim "competitive pricing" — we're mid-tier
+- ✅ $70/month is STILL unique — no competitor offers it
+- ✅ "TJ answers the phone" beats franchise call centers
+- ✅ No contracts beats "free first visit" (which requires signup)
+
+**Files Created:**
+- `memory/2026-02-26-POOP911-CORRECTION.md` — Detailed correction
+- `dashboard/campaigns/tidy-tails/2026-02-26-COMPETITIVE-INTEL-CORRECTION.md` — Full competitor matrix
+
+**Dashboard:** ✅ Added red-highlighted correction link in Research & Intel
+**MEMORY.md:** ✅ Updated competitor section with Feb 26 corrections
+
+**Week 2 Compliant:** ✅
+- No new PDFs created
+- Real intel/verification work
+- Corrects bad data that was guiding strategy
+- Highest-value hourly task: truth > comfort
+
+---
+
 ### 5:00 PM — 🌙 TONIGHT'S 3 ACTIONS BANNER (Hourly Task)
 **Task:** Make tonight's priorities CRYSTAL CLEAR on dashboard — not another PDF, direct attention to what exists
 **Result:** ✅ Dashboard updated with prominent "TONIGHT'S 3 ACTIONS" banner

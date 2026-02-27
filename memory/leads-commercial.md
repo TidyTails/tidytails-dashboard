@@ -1760,3 +1760,115 @@ Hotels are underserved! They have:
 - Phone-ready leads: 68+
 - Whale accounts: Purina HQ, The Waterways, No Leash Needed (8 sites)
 - New segments: Mobile home parks, HOAs, corporate campuses
+
+---
+
+## NEW LEADS - Round 14 (Added 2026-02-26 9:00 AM)
+
+**Segments Focus:** Premium Pet Hotels, Boarding Facilities, Luxury Apartments
+**Why These Segments:** High-volume dog facilities with large outdoor areas, premium businesses care about cleanliness, recurring need = recurring revenue
+
+### 98. Petropolis St. Charles ⭐⭐ WHALE ACCOUNT (35K SQ FT!)
+- **Type:** Full-Service Pet Resort (LARGEST OUTDOOR AREA!)
+- **Contact:** Front Desk
+- **Phone:** (636) 537-3634 ✅
+- **Address:** 3550 W Clay St., St. Charles, MO 63301
+- **Website:** https://www.petropolis.com/locations/st-charles/
+- **Hours:** Mon-Fri 7:30am-6pm, Sat-Sun 8am-5pm
+- **Facility:** **35,000 SQUARE FEET of outdoor play yard!** Rolling hills, tunnels, streams, trampoline
+- **Services:** Boarding, daycare, grooming, training
+- **Service Areas:** St. Charles, St. Peters, O'Fallon, Cottleville, Lake St. Louis, Wentzville
+- **Status:** New - WHALE ACCOUNT - READY TO CALL
+- **Date Added:** 2026-02-26
+- **Notes:** MASSIVE outdoor play area — record in St. Louis area. Premium pricing = premium expectations. Great reviews on quality of care.
+- **Pitch Angle:** "35,000 square feet of outdoor play space is incredible — but that's also 35,000 square feet of waste management. We specialize in keeping large outdoor dog facilities spotless. Let's talk about a maintenance program."
+- **Assigned To:** Jamie (WHALE - HIGH PRIORITY)
+
+### 99. Baxter's K9 Complex ⭐ FULL-SERVICE (15K SQ FT)
+- **Type:** Full-Service Dog Facility (Training Focus)
+- **Contact:** Front Desk
+- **Phone:** Check website/Yelp
+- **Address:** St. Peters, MO (St. Charles County)
+- **Website:** https://baxtersk9complex.com/
+- **Facebook:** facebook.com/baxters.k9.complex
+- **Facility:** **15,000 sq ft indoor/outdoor dog park**
+- **Services:** Boarding, daycare, training, grooming
+- **Recognition:** BBB Accredited
+- **Service Areas:** O'Fallon, St. Peters, St. Charles, Cottleville, Chesterfield, Creve Coeur, Wentzville, Weldon Springs, Lake St. Louis, Dardenne Prairie
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-26
+- **Notes:** Only full-service facility in both St. Louis AND St. Charles counties. Great reviews, expert staff, state-of-the-art facility.
+- **Pitch Angle:** "You're the only full-service facility in both counties — that's a lot of dogs. Your 15,000 sq ft play area sees heavy traffic. We can keep it pristine so you can focus on training and care."
+- **Assigned To:** Jamie
+
+### 100. Kennelwood Pet Resort South County ⭐ 47 YEARS!
+- **Type:** Full-Service Pet Hotel (Established!)
+- **Contact:** Front Desk
+- **Phone:** (314) 429-2100 ✅
+- **Address:** Oakville, MO (South County)
+- **Website:** https://www.kennelwood.com/about-us/locations/kennelwood-pet-resort-south-county/
+- **Hours:** Mon-Fri 7am-6pm, Sat 7am-5pm, Sun 10am-5pm
+- **History:** **47 years in business! 60,000+ families served!**
+- **Services:** 24/7 boarding, grooming, daycare
+- **Service Areas:** Fenton, Affton, Mehlville, Oakville
+- **Status:** New - READY TO CALL - DIRECT SERVICE AREA!
+- **Date Added:** 2026-02-26
+- **Notes:** One of 4 Kennelwood locations in St. Louis. 47 years of trust. South County = TJ's primary service area. Professional operation with established vendor relationships.
+- **Pitch Angle:** "47 years and 60,000 families — that's incredible trust. Your South County location is right in our primary service area. Let's discuss keeping your outdoor play areas as spotless as your reputation."
+- **Assigned To:** Jamie (PRIORITY - Direct service area!)
+
+### 101. Williamsburg Pet Hotel & Suites ⭐ ESTABLISHED 1962!
+- **Type:** Luxury Pet Boarding (St. Louis Institution!)
+- **Contact:** Front Desk
+- **Phone:** Check website
+- **Address:** Des Peres/Kirkwood area
+- **Website:** https://williamsburgpethotels.com/
+- **Facility:** **5 turf play yards**, multiple room tiers (Standard → Premiere)
+- **Features:** Premiere Suites include 24/7 webcam and DogTV
+- **Programs:** Stay-and-Play all-day outdoor program
+- **History:** **Founded 1962 — 64 years serving St. Louis!**
+- **Status:** New - READY TO CALL
+- **Date Added:** 2026-02-26
+- **Notes:** St. Louis institution since 1962. Premium operation with luxury suites. Five turf play yards = daily waste management need.
+- **Pitch Angle:** "You've been pampering St. Louis pets since 1962. Five turf play yards means daily waste management. We can keep those outdoor spaces looking as luxurious as your Premiere Suites."
+- **Assigned To:** Jamie
+
+### 102. Retreat at Seven Trails ⭐ NEW TERRITORY (Ballwin)
+- **Type:** Pet-Friendly Apartment Community
+- **Contact:** Leasing Office
+- **Phone:** (636) 875-1040 ✅
+- **Address:** 500 Seven Trails Dr, Ballwin, MO 63011
+- **Website:** https://www.retreatatseventrails.com/
+- **Unit Types:** 1, 2, and 3-bedroom apartments + townhomes
+- **Location:** On Danbury Lake, Rockwood School District
+- **Management:** Monarch Investment and Management Group
+- **Yelp:** 37 photos, 31 reviews
+- **Status:** New - READY TO CALL - EXPANDS INTO BALLWIN!
+- **Date Added:** 2026-02-26
+- **Notes:** Pet-friendly lakeside community. Beautiful setting with trails. Expands Tidy Tails into Ballwin market!
+- **Pitch Angle:** "You're a pet-friendly community on the lake — that's a beautiful setting. Pet owners love the trails and outdoor space. We can help maintain those common areas so every resident enjoys a clean environment."
+- **Assigned To:** Jamie (PRIORITY - New territory!)
+
+---
+
+## Round 14 Notes (2026-02-26 9:00 AM)
+
+### Focus: Premium Pet Hotels & Boarding Facilities
+- Large outdoor play areas = high waste volume
+- Premium operations care about cleanliness
+- Established businesses (40+ years) = stable, vendor-ready
+- Multiple service segments under one roof
+
+### Whale Accounts Added:
+- **Petropolis St. Charles** — 35,000 sq ft outdoor play area (LARGEST in STL!)
+- **Baxter's K9 Complex** — 15,000 sq ft, only full-service in both counties
+
+### Updated Lead Count:
+- **Total active commercial leads: 102** ⬆️ (+5 from Round 14)
+- Phone-ready leads: 78+
+- Whale accounts: Petropolis (35K sq ft), Purina HQ, The Waterways (80 acres), No Leash Needed (8 sites)
+
+### Today's TOP 3 Calls:
+1. **Kennelwood South County** (314) 429-2100 — Direct service area, 47 years
+2. **Petropolis St. Charles** (636) 537-3634 — 35K sq ft WHALE
+3. **Retreat at Seven Trails** (636) 875-1040 — New territory (Ballwin)

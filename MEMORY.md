@@ -28,6 +28,8 @@ Pet waste removal service in St. Louis County and surrounding areas.
 
 ### Contact
 - **Phone:** 314-850-7140 (NOT the shed number!)
+- **Website:** tidytailsstl.com ✅ (NOT .net)
+- **GBP:** CLAIMED ✅ (Feb 26, 2026) — DO NOT ASK AGAIN
 
 ### Pricing
 - $25/week | $45 biweekly | $70/month | $100 one-time deep clean
@@ -91,33 +93,38 @@ Pet waste removal service in St. Louis County and surrounding areas.
 
 **Full intel:** `memory/2026-02-23-competitor-intel-CORRECTED.md`
 
-### 🚨 COMPETITOR UPDATE (Feb 25, 2026 8AM) — CORRECTED
+### 🚨 COMPETITOR UPDATE (Feb 26, 2026 6PM) — MAJOR CORRECTION
 
-**POOP 911 = DEAD | Little Stinkers = ALIVE**
+**POOP 911 = ALIVE | Poopy Paws = $20/week (CHEAPEST!)**
 
-| Competitor | Status | Territory |
-|------------|--------|-----------|
-| **POOP 911** | ❌ 404 PAGE — GONE | No STL metro presence (KC only) |
-| **Little Stinkers of MO** | ✅ ACTIVE | St. Charles, Lincoln, Warren Counties |
+| Competitor | Status | Weekly Price | Territory |
+|------------|--------|--------------|-----------|
+| **Poopy Paws** | ✅ ACTIVE | **$20** | St. Louis (cheapest!) |
+| **Poop2Scoop** | ✅ ACTIVE | $18-25 | St. Louis |
+| **POOP 911** | ✅ ACTIVE | Quote (FREE 1st) | St. Louis metro |
+| **DoodyCalls** | ✅ ACTIVE | Quote | St. Louis |
+| **Little Stinkers** | ✅ ACTIVE | Quote | St. Charles only |
+| **Yucko's** | ✅ ACTIVE | Quote | Commercial focus |
+| **Dirty Dog Poo Crew** | ✅ ACTIVE | $80-95/mo | Chesterfield |
+| **Tidy Tails (TJ)** | 🎯 | **$25** | STL County |
 
-**7 AM Error Corrected:** Checked wrong domain (littlestinkersmo.com vs littlestinkersofmo.com)
+**Feb 26 Corrections:**
+1. **POOP 911 has a LOCAL FRANCHISE** — "Locally owned and operated" with "First cleanup FREE"
+2. **Poopy Paws = $20/week** (website down but Yelp active, owner Charlie)
+3. **TJ is 25% more expensive than Poopy Paws** ($25 vs $20)
 
-**Little Stinkers Reality:**
-- Website: https://www.littlestinkersofmo.com (LIVE)
-- Phone: 636-887-6626
-- Cities: O'Fallon, St. Peters, St. Charles, Wentzville, Dardenne Prairie
-- **Does NOT serve St. Louis County**
+**New Pricing Reality:**
+- Cheapest: Poop2Scoop ($18) or Poopy Paws ($20)
+- TJ: $25/week (mid-tier)
+- **TJ's $70/month = STILL UNIQUE** — no competitor offers this
 
-**What This Means:**
-| Territory | Status |
-|-----------|--------|
-| **St. Louis County** | 🟢 BLUE OCEAN — No Little Stinkers, no POOP 911 |
-| **St. Charles County** | 🟡 Little Stinkers active (local family biz) |
-| **O'Fallon** | 🟡 Little Stinkers only (franchise failed) |
+**Strategic Update:**
+- ❌ NOT a blue ocean — 7+ active competitors
+- ✅ $70/month remains unique differentiator
+- ✅ Local owner (TJ answers phone) still wins vs franchises
+- ❌ Don't claim "competitive pricing" — we're mid-tier
 
-**Strategic Implication:** STL County remains priority. Today's Oakville post = right move.
-
-**Full correction:** `memory/2026-02-25-competitor-CORRECTION.md`
+**Full correction:** `memory/2026-02-26-POOP911-CORRECTION.md`
 
 ## ⚠️ PHONE NUMBERS (CRITICAL - DO NOT MIX UP)
 

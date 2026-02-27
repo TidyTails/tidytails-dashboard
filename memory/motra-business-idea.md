@@ -57,3 +57,30 @@ Focus on Tidy Tails + TuffShed for now. MOTRA is a bigger swing that needs dedic
 ## To Resume
 
 Just say "Let's pick up MOTRA" and I'll pull this context.
+
+---
+
+## Feb 26, 2026 — Fresh Intel from Waymo Depot Video
+
+### Key Discovery: Waymo Already Outsources to Transdev
+- Business Insider confirmed Waymo uses **Transdev** and other third-party contractors
+- This validates the outsourcing model — they're already doing it
+
+### Scale Confirmed
+- ~1,000 robotaxis in SF Bay Area alone
+- Largest depot services hundreds/day
+- 40+ workers at one facility
+
+### User Hygiene Concerns Validated
+Forum user complained: "next customer would have been totally unaware of contaminated surfaces"
+→ This is EXACTLY what MOTRA solves
+
+### Depot Addresses Identified
+- 201 Toland St, San Francisco (largest)
+- 737 Harrison St, San Francisco (former Otto building)
+
+### Competition Alert
+"Some companies are building products dedicated to automating the servicing process"
+→ Window is closing, first-mover matters
+
+**Full intel:** `motra-dashboard/research/waymo-depot-intel-2026-02-26.md`

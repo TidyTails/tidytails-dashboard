@@ -1,5 +1,25 @@
 # Telegram Deliveries Log
 
+## Feb 26, 2026 — 10:01 AM Chief Check #102 (CRITICAL)
+- **Type:** Chief Oversight Alert
+- **Recipient:** TJ (8389026636)
+- **Telegram ID:** 1101 ✅
+- **Content:** SSL 7 days expired (domain FAILING), GBP 14 days unclaimed, 55/100 score
+- **Dashboard sync:** ✅ chief-status.json updated + pushed (commit f17fe5d)
+- **Severity:** CRITICAL — Day 2, Check 3
+
+---
+
+## Feb 26, 2026 — 8:07 AM Chief Check #101 (CRITICAL)
+- **Type:** Chief Oversight Alert
+- **Recipient:** TJ (8389026636)
+- **Telegram ID:** 1094 ✅
+- **Content:** SSL expired 7 days (domain fetch failing), No GBP, 55/100 score
+- **Dashboard sync:** ✅ chief-status.json updated + pushed
+- **Severity:** CRITICAL — Day 2 of alerts
+
+---
+
 ## Feb 26, 2026 — 8:05 AM Thursday Morning Update
 - **Type:** Morning Status Update
 - **Recipient:** TJ (8389026636)
@@ -56,3 +76,17 @@
 - **Dashboard:** status.json updated, git pushed ✅
 - **Theme:** POOP 911 Intel Day
 | 2026-02-25 19:02 | EOD Summary Feb 25 | cartervhomes@gmail.com | ✅ Email + Dashboard + PDF |
+
+## 2026-02-26 8:30 AM — Morning Briefing
+- **Type:** Daily Briefing
+- **PDF:** dashboard/pdfs/MORNING_BRIEFING_2026-02-26.pdf
+- **Dashboard:** ✅ Link added
+- **Email:** ✅ Sent to cartervhomes@gmail.com
+- **Telegram:** ✅ Summary sent
+
+## 2026-02-26 7:02 PM — EOD Summary
+- **Channel:** Email (cartervhomes@gmail.com)
+- **Subject:** End of Day Summary - Thursday, Feb 26, 2026 🎉 GBP CLAIMED!
+- **Dashboard:** ✅ EOD_SUMMARY_2026-02-26.pdf
+- **Git:** ✅ Pushed (e7a0e77)
+- **Status:** Delivered
