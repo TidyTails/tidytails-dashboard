@@ -126,3 +126,10 @@ Chief uses this to verify sync with dashboard.
 |------|------|---------------|----------------|--------|
 | 18:08 | MOTRA Pitch Deck v7 | 📋 Operations | MOTRA-Pitch-Deck-v7-Clean-2026-03-02.pptx | ✅ |
 | 18:08 | MOTRA Business Plan | 📋 Operations | MOTRA-Business-Plan-Updated-2026-03-02.pptx | ✅ |
+
+## Upload Log — Mar 3, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 00:07 | EOD Summary Mar 2 | 📋 Operations | EOD_SUMMARY_2026-03-02.pdf | ✅ |
+| 00:07 | MOTRA 5-Min Pitch | 📋 Operations | MOTRA-5MIN-PITCH-2026-03-02.pdf | ✅ |
