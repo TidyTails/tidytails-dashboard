@@ -14,6 +14,15 @@
 | Mar 6 | | |
 | Mar 7 | | |
 
+### Tuesday Mar 4 — Specific Targets
+- [ ] Post "Multi-Dog Angle" to 2 FB groups
+- [ ] Post Multi-Dog content to Instagram
+- [ ] (Bonus) Reply to any leads from Monday
+
+**Copy from:** `dashboard/campaigns/tidy-tails/2026-03-WEEK3-SOCIAL-CONTENT.md`
+
+**Time needed:** 5 minutes
+
 ---
 
 ## Known Executions (February)
