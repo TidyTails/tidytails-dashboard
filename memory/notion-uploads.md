@@ -119,3 +119,10 @@ Chief uses this to verify sync with dashboard.
 | 12:04 | Morning Briefing Feb 26 | 📋 Operations | MORNING_BRIEFING_2026-02-26.pdf | ✅ |
 | 12:04 | Shed Ads Feb 26 | 🏠 Shed Sales | SHED_ADS_2026-02-26.pdf | ✅ |
 | 12:04 | Commercial Leads Feb 26 | 🐕 Jamie's Hub | COMMERCIAL_LEADS_2026-02-26.pdf | ✅ |
+
+## Upload Log — Mar 2, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 18:08 | MOTRA Pitch Deck v7 | 📋 Operations | MOTRA-Pitch-Deck-v7-Clean-2026-03-02.pptx | ✅ |
+| 18:08 | MOTRA Business Plan | 📋 Operations | MOTRA-Business-Plan-Updated-2026-03-02.pptx | ✅ |

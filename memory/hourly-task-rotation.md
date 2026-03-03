@@ -165,6 +165,10 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 
 | Time | Area | Task |
 |------|------|------|
+| 23:00 | ⚙️ Systems | **DAY 4 WRAP + WEEKEND QA — Final verification: all weekend assets staged, dashboard footer updated, Day 4 summary created. 15 tasks total, GBP victory, weekend fully prepped.** |
+| 22:00 | ⚙️ Systems | **FRIDAY MORNING BRIEFING — Complete briefing for Day 5: GBP win summary, 3 priorities (25 min total), Week 2 midpoint, feedback request. TJ wakes up to clear actions.** |
+| 21:00 | 🎬 Content | **WEEKEND CONTENT CAPTURE — Turn Sunday's 11 yards into marketing content. Before/after shots, 15-sec videos, IG Story templates, copy-paste captions. Zero extra time — capture while working.** |
+| 20:00 | 🐕 Tidy Tails | **LOCAL vs FRANCHISE AD COPY — 4 counter-positioning ads against POOP 911's "Free First Cleanup" hook. Positions local ownership as advantage: no contracts, same guy, TJ answers phone, $70/mo flat rate. V3 "Free Trap" recommended for Nextdoor. Copy-paste ready.** |
 | 19:00 | ⚙️ Systems | **DASHBOARD QA + FRIDAY STAGING VERIFICATION — Fixed 1 broken link (online-presence-audit.md → search-visibility-snapshot.md). Verified: Friday 3 posts ✅, Saturday 5 posts ✅, Review Blitz ✅, GBP Checklist ✅, Shed Weekend Blitz ✅. All systems go for Friday execution.** |
 | 18:00 | 🔍 Intel | **COMPETITIVE INTEL CORRECTION — POOP 911 ALIVE (local franchise), Poopy Paws = $20/wk (cheapest!), TJ is 25% more expensive than cheapest, 7+ active competitors. NOT blue ocean. $70/month still unique. MEMORY.md updated.** |
 | 17:00 | ⚙️ Systems | **Tonight's 3 Actions Banner — Dashboard updated with prominent action section. Not another PDF — directs attention to EXISTING tools (Review Blitz, GBP Checklist, Thursday Posts). 30 min total, numbered, clickable, achievable.** |
@@ -339,3 +343,13 @@ Looking at Feb 17: **10 Tidy Tails, 4 Systems, 3 Sheds, 2 Consulting, 1 Content*
 **Day 3 Balance: 2 TT, 1 Sheds, 1 Consulting, 2 Systems (evening shift)**
 **Day 3 Tasks: 18** (new record — most productive day)
 **Day 3 Focus:** Staged Thursday + Friday content (6 FB posts ready), created execution tracking infrastructure, cleaned up memory for future efficiency
+
+---
+
+## March 2, 2026 (Monday — Week 3 Day 1)
+
+| Time | Area | Task |
+|------|------|------|
+| 6 PM | 🐕 Tidy Tails | **FB Ads Campaign Setup Guide — Complete launch instructions for $10/day test campaign (4 ad sets, targeting, budgets, success metrics, 30-min checklist)** |
+
+**Day 1 Status:** Crons re-enabled. Building on pain point research + 20 ad variations created earlier today. Next step = TJ launches ads using guide.

@@ -4,6 +4,35 @@
 
 ---
 
+## March 2, 2026 — March Marketplace Ads (7 PM Task)
+
+**Ad #26 - "Daylight Savings Warning" (Timely)**
+- Hook: DST March 9th → more outdoor time → need storage
+- Key: Pre-spring urgency, delivery slots filling
+- Used: TBD (Scheduled Wed 3/4)
+
+**Ad #27 - "March Madness (At Home)" (Sports Humor)**
+- Hook: Real madness = finding parking in garage
+- Key: Basketball bracket format, humor
+- Used: TBD (Scheduled Thu 3/5)
+
+**Ad #28 - "Real Talk: Spring Cleaning" (Direct)**
+- Hook: Spring cleaning fails without space
+- Key: Reframe cleaning → space problem
+- Used: TBD (Scheduled Tue 3/3)
+
+**Ad #29 - "St. Patrick's Luck" (Holiday)**
+- Hook: Lucky = planned ahead
+- Key: St. Pat's tie-in (March 17)
+- Used: TBD (Scheduled Sat 3/7)
+
+**Ad #30 - "Your Neighbor Got One" (Social Proof)**
+- Hook: You noticed neighbor's shed
+- Key: FOMO, non-pushy
+- Used: TBD (Scheduled Fri 3/6)
+
+---
+
 ## Feb 26, 2026 — Thursday Shed Ads (11 AM Task)
 
 **Ad #23 - "Refund Landed Yet?" (Tax Season)**

@@ -1,123 +1,40 @@
-# Execution Tracking — Week 2
+# Execution Tracking — March 2026
 
-**Purpose:** Track what TJ actually does vs. what we built for him.
-**Problem we're solving:** 115+ tools built, 0 confirmed usage.
-
----
-
-## Tracking Format
-
-| Date | What Was Asked | TJ's Response | Insight |
-|------|----------------|---------------|---------|
-| Mon 2/23 | Claim GBP (15 min) | ⏳ Pending | Asked to claim, step-by-step kit ready |
-| Mon 2/23 | Post 1 FB ad (5 min) | ⏳ Pending | Maryland Heights group, copy-paste ready |
-| Mon 2/23 | Jamie: 1 commercial call (15 min) | ⏳ Pending | Alpha Brewing, Zoomies scripts ready |
-| Tue 2/24 | Post in O'Fallon FB groups | ⏳ Pending | 2 direct group links in TUESDAYS_POST |
-| **Tue 2/24** | **🚨 POST IN STL COUNTY (Priority!)** | ⏳ Pending | **New: STL_COUNTY_URGENT.md — blue ocean before POOP 911 expands** |
-| Tue 2/24 | Jamie: Call Civil Life | ⏳ Pending | OPEN TODAY (was closed Monday) |
-| Tue 2/24 | 1 IG story | ⏳ Pending | Copy in INSTAGRAM_WEEK_FEB24.md |
-| Tue 2/24 | Text 1 customer for review | ⏳ Pending | Template ready |
-| **Wed 2/25** | **Post in St. Charles Moms FB** | ⏳ Pending | **ONE THING: 5 min, copy-paste ready in `week2-execution.md`** |
-| **Wed 2/25** | **🔄 CHECKPOINT: Get Mon/Tue status** | ⏳ 8:30 AM | **FEEDBACK FIRST — don't build until we know what happened** |
+*What TJ actually confirmed he did. Not what I built — what got USED.*
 
 ---
 
-## Week 2 Goals
+## Week 3 (Mar 3-7)
 
-### Tidy Tails (Dog Waste)
-- [ ] GBP claimed
-- [ ] At least 1 FB post made
-- [ ] At least 1 review requested
-- [ ] At least 1 commercial call (Jamie)
-
-### TuffShed (Sheds)
-- [ ] 1+ Marketplace listing posted
-
-### Core Metric
-**# of tools used ÷ # of tools built = Deployment Rate**
-- Week 1: ?/115+ = Unknown (no tracking)
-- Week 2: TBD
+| Date | What TJ Confirmed | Notes |
+|------|-------------------|-------|
+| Mar 3 | | |
+| Mar 4 | | |
+| Mar 5 | | |
+| Mar 6 | | |
+| Mar 7 | | |
 
 ---
 
-## Sunday, Feb 22 — Scooping Day
+## Known Executions (February)
 
-### What's Available to TJ Today
-- Sunday Scooping Kit (11-yard tracker + IG templates)
-- Dashboard with 3 Monday priorities
-- Everything from Week 1 arsenal
-
-### What We're Tracking
-After scooping (7 PM), ask TJ:
-1. Did you take any content photos during scooping?
-2. Did you post anything on social?
-3. Did you ask any customers for reviews?
-
-Log responses here.
-
-### TJ's Response (7 PM check-in)
-*(to be filled after check-in)*
+| Date | Action | Source |
+|------|--------|--------|
+| Feb 26 | GBP Claimed | TJ confirmed in chat |
+| Feb 25 | SSL/Site Fixed | Verified working |
+| Feb ?? | Website live | tidytailsstl.com accessible |
 
 ---
 
-## 7 PM Check-In Message (Ready to Send)
+## Pending Confirmations Needed
 
-**Purpose:** Quick capture of what actually happened today.
-**Time:** 2 minutes max. Yes/no answers.
-
-```
-Hey TJ! Quick end-of-day check-in (2 min):
-
-Scooping done? 
-1. All 11 yards done? (Y/N)
-2. Any customer conversations worth noting?
-
-Content captured?
-3. Take any before/after photos? (Y/N)
-4. Post anything on social today? (Y/N)
-
-Quick wins?
-5. Ask anyone for a review? (Y/N)
-6. Talk to any neighbors? (Y/N)
-
-The ONE thing that would help me most:
-What's the #1 thing that got in your way today? (Or "nothing" if smooth)
-
-That's it! Have a good rest of Sunday. 🐕
-```
-
-**Why These Questions:**
-- Q1-2: Confirms the core work happened
-- Q3-4: Tracks content creation (our weakness)
-- Q5-6: Tracks growth actions
-- Final Q: Identifies friction for next week
-
-**Expected Response Time:** 30-60 seconds via Telegram
+- [ ] How many FB posts were actually published in Feb?
+- [ ] Did Jamie make any commercial calls?
+- [ ] Any new customers from marketing efforts?
+- [ ] Customer review requests sent?
 
 ---
 
-## Week 2 Reality Check
+## How to Update This
 
-**What we built Week 1:** 115+ PDFs, 50+ HTML tools
-**What we need Week 2:** 
-- GBP claimed (1 action)
-- 1 FB post per day (5 actions)
-- 1 commercial call (Jamie)
-- Actual customer data
-
-**The Feedback Loop:**
-Without knowing what TJ actually did, we can't improve.
-This 2-minute check-in closes that gap.
-
----
-
-## Key Insight
-If TJ doesn't use the tools, it's not because we didn't build enough.
-It's because:
-- Too complicated to use while working
-- Not mobile-friendly
-- Takes too much time
-- He forgets they exist
-- Other priorities are more pressing
-
-This tracking tells us WHICH of these is the actual problem.
+When TJ mentions he did something, I add it here immediately. This is the source of truth for execution, not building.
