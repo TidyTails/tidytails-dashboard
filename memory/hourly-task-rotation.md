@@ -28,14 +28,14 @@
 - [ ] Case study development
 - [x] Outreach templates (Mar 3 2AM — March content pack!)
 - [x] Landing page optimization (Mar 3 12PM — NEW dark mode page with proof!)
-- [ ] Pricing strategy research
-- [ ] Target market research
+- [x] Pricing strategy research (Mar 3 7PM — included in target market!)
+- [x] Target market research (Mar 3 7PM — ICP + 8 niches + pricing + outreach!)
 
 ### 🎬 CONTENT (Journey/Brand)
-- [ ] Video script ideas
+- [x] Video script ideas (Mar 3 8PM — included in Brand Story Kit!)
 - [ ] Content calendar updates
 - [x] Social media post templates (Mar 3 4AM — Local vs Franchise content pack!)
-- [ ] Story angles for TJ's journey
+- [x] Story angles for TJ's journey (Mar 3 8PM — Brand Story Kit with origin story, bios, posts, video scripts!)
 - [ ] "AI + small business" thought pieces
 
 ### ⚙️ SYSTEMS (Tools/Ops)

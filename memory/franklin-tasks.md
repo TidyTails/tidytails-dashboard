@@ -6,6 +6,115 @@
 
 ## March 3, 2026 (Tuesday — Week 3 Day 2)
 
+### 8:00 PM — 🎬 TJ'S BRAND STORY KIT (Hourly Task)
+**Task:** Create comprehensive brand story content kit for Tidy Tails with copy-paste narratives
+**Result:** ✅ Complete kit with origin story, bios, social posts, video scripts, and Nextdoor intros
+
+**Why This Task:**
+- Rotation rule: different area than last task (was 🤖, now 🎬)
+- "Story angles for TJ's journey" was unchecked on rotation
+- Story content = unfair advantage (competitors can't copy TJ's journey)
+- Usable across ALL platforms (website, social, video, Nextdoor)
+
+**What I Created:**
+- `dashboard/tidy-tails/brand-story-kit.html` — Complete brand storytelling kit
+
+**Kit Contents:**
+| Section | What's In It |
+|---------|--------------|
+| Origin Story Framework | 5-step narrative arc for TJ's journey |
+| Website About Page | Full "Meet TJ" copy ready to paste |
+| Social Bios | Facebook, Instagram, Nextdoor, Google Business (char counts included) |
+| Story-Driven Posts | 4 templates: Origin story, Why I do this, Real person, Customer love |
+| Video Scripts | 15-sec, 30-sec, 60-sec scripts for TikTok/Reels/YouTube |
+| Nextdoor Templates | New neighbor intro + recommendation response |
+| Brand Voice Cheat Sheet | "Say this / Not this" phrases |
+| Action Steps | 4 immediate tasks for TJ |
+
+**Key Brand Phrases Defined:**
+- ✅ "I answer the phone myself"
+- ✅ "Local, not a franchise"
+- ✅ "Your yard, my problem"
+- ✅ "Real person, real service"
+- ✅ "I know your dog's name"
+- ❌ "Industry-leading solutions" (corporate BS)
+- ❌ "Best-in-class service" (empty claim)
+
+**Why This Matters:**
+Research shows storytelling builds trust where advertising fails. Customers are skeptical of ads but connect with genuine human stories. TJ's journey — real person, day job, building on Sundays — is more compelling than any feature list.
+
+**The One Thing:** TJ should update his Facebook About section with the new bio TODAY. Takes 2 minutes, stays forever.
+
+**Dashboard:** ✅ Added as #1 link in Tidy Tails Core Tools (cyan highlight)
+**Rotation:** 🎬 Content (Story angles for TJ's journey ✓)
+
+---
+
+### 7:00 PM — 🤖 AI CONSULTING TARGET MARKET RESEARCH (Hourly Task)
+**Task:** Research and document ideal customer profile for TJ's AI consulting services
+**Result:** ✅ Comprehensive ICP with 8 hot/warm niches, pricing validation, and outreach templates
+
+**Why This Task:**
+- Rotation rule: different area than last task (was 🐕, now 🤖)
+- "Target market research" was unchecked on rotation
+- Consulting = highest margin business (one client = 5+ dog waste customers)
+- Can't sell without knowing WHO to sell to
+
+**What I Created:**
+- `dashboard/consulting/target-market-research.html` — Full target market research document
+
+**Key Research Findings:**
+| Stat | Value | Source |
+|------|-------|--------|
+| Small biz using AI | 68% | U.S. Chamber of Commerce 2025 |
+| Have NO AI policy | 77% | Same survey |
+| Avg annual AI spend | $2,400 | Digital Applied Feb 2026 |
+| Actually seeing ROI | 15-20% | Industry estimates |
+
+**The Consulting Gap:**
+Most small businesses are in "exploration phase" — ChatGPT for ad-hoc tasks, no strategy, no measurement. Only 15-20% have moved to strategic integration where they see real ROI. TJ bridges that gap.
+
+**Ideal Customer Profile Defined:**
+- 5-50 employees, $500K-$5M revenue
+- Home services / local trades
+- Already using AI casually but "winging it"
+- Spending $200-500/mo on marketing already
+- St. Louis metro (local trust factor)
+
+**8 Target Niches Ranked:**
+| Niche | Temp | Why |
+|-------|------|-----|
+| HVAC Companies | 🔥 HOT | High competition, need constant leads |
+| Plumbing Companies | 🔥 HOT | Emergency-driven, hate marketing |
+| Landscaping/Lawn Care | 🔥 HOT | **TJ knows this world** — seasonal like dog waste |
+| Cleaning Services | 🔥 HOT | High churn, can't afford agencies |
+| Pest Control | 🌡️ WARM | Seasonal, recurring revenue model |
+| Roofing Companies | 🌡️ WARM | High ticket ($10K+), ROI obvious |
+| Auto Detailing | 🌡️ WARM | Visual business, Instagram-dependent |
+| Moving Companies | 🌡️ WARM | Review-driven, high volume needs |
+
+**Pricing Validated:**
+- Traditional agencies: $1,500-5,000/mo
+- TJ's positioning: $300-500/mo (70% cheaper)
+- This is 2x their current AI spend but actually strategic
+
+**Included in Deliverable:**
+- ICP grid with 6 qualification criteria
+- 8 niche cards with pain points and pitch angles
+- 5 pain points they'll pay to solve (with data)
+- 3 pricing tiers ($500 one-time, $300/mo, $500/mo)
+- 4 action steps for TJ
+- TJ's 4 unfair advantages
+- Copy-paste outreach message template
+
+**Key Insight:**
+Landscaping is the #1 target niche — TJ already understands seasonal service businesses intimately. Same problems (spring rush, lead gen, hate marketing), same customers (homeowners with yards). "I run a pet waste business" opens doors other consultants can't.
+
+**Dashboard:** ✅ Added as #1 highlighted link in AI Consulting section (cyan color)
+**Rotation:** 🤖 Consulting (Target market research + Pricing strategy research)
+
+---
+
 ### 6:00 PM — 🐕 SPRING 2026 CAMPAIGN CALENDAR (Hourly Task)
 **Task:** Create week-by-week seasonal campaign calendar for March-May with key dates and ready-to-use ad copy
 **Result:** ✅ 13-week calendar with copy-paste ads for every major spring hook
