@@ -4,7 +4,748 @@
 
 ---
 
+## March 4, 2026 (Wednesday — Week 3 Day 3)
+
+### 4:00 PM — 🏠 TUFFSHED QUOTE FOLLOW-UP BLITZ (Hourly Task)
+**Task:** Create comprehensive follow-up kit for TJ's ~12 quoted leads  
+**Result:** ✅ Complete blitz kit with text/email/call templates, objection handling, timing strategy
+
+**Verification:** Checked tidytailsstl.com SEO files — robots.txt & sitemap.xml STILL NOT DEPLOYED
+
+**What I Created:**
+- `dashboard/tuffshed/2026-03-04-QUOTE-FOLLOWUP-BLITZ.md` — Full follow-up kit
+  - 4 text templates (Day 3, Day 7, Day 14, Competition check)
+  - 2 email templates with subject lines
+  - 2 voicemail scripts
+  - Objection handling (price, spouse, competitors, "not now")
+  - Follow-up timing strategy
+  - March urgency angles
+  - 12-lead action plan
+
+**Key Insight:** 12 quoted leads × $5K avg = $60K pipeline. Close 3 = big month.
+
+**Dashboard:** ✅ Updated + link added
+**Rotation:** 🏠 Sheds (balancing today's TT-heavy rotation)
+
+---
+
+### 3:00 PM — 🏘️ NEXTDOOR DOMINATION KIT (Hourly Task)
+**Task:** Create platform-specific Nextdoor strategy with data-backed best practices + ready-to-post content
+**Result:** ✅ Complete kit with 8 posts, timing research, setup guide, reply templates
+
+**Why This Task:**
+- Nextdoor identified in 1 AM lead channels research but no SPECIFIC content yet
+- Needed to switch from Tidy Tails sales tools to Tidy Tails marketing execution
+- FREE channel (Priority #1 per TJ directive)
+- Hyperlocal = competitors CAN'T be in every neighborhood
+
+**Data-Backed Insights (from Nextdoor official blog):**
+- 5+ recommendations = 30% more engagement
+- Best posting time: 5-7 PM local
+- Best days: Thursday and Friday
+- Optimal frequency: Every 2 weeks
+- Photos = always include
+
+**What I Created:**
+- `dashboard/tidy-tails/2026-03-04-NEXTDOOR-DOMINATION-KIT.md` — Full strategy kit
+  - Quick start: 15-min setup guide (claim page, add photos, get 5 recs)
+  - 8 ready-to-post content templates:
+    1. Introduction post
+    2. Helpful neighbor tip
+    3. Social proof post
+    4. Recommendation request reply template
+    5. Spring seasonal hook
+    6. "Real talk" authenticity post
+    7. Community engagement (no sales)
+    8. Weather-based hook
+  - Reply templates for common questions
+  - Tracking checklist (Week 1 + Month 1 goals)
+  - Competitor analysis (why TJ beats franchises on Nextdoor)
+
+**Key Insight:**
+Nextdoor rewards being a NEIGHBOR, not being a business. TJ's local/personal angle is PERFECT for this platform. The franchises (POOP 911, DoodyCalls) can't claim "I'm your neighbor" — but TJ can.
+
+**Action Items for TJ:**
+1. Claim Nextdoor Business Page (5 min)
+2. Get 5 recommendations from existing customers
+3. Post introduction Thursday 5-7 PM
+
+**Dashboard:** ✅ Added with purple highlight + pulse animation
+**Rotation:** 🐕 Tidy Tails (Free Marketing ✓)
+
+---
+
+### 2:00 PM — 🐕 TESTIMONIAL & CASE STUDY KIT (Hourly Task)
+**Task:** Create social proof system for turning happy customers into marketing
+**Result:** ✅ Complete kit with text scripts, review asks, case study templates, platform-specific formats
+
+**Why This Task:**
+- 12 PM discovered 10+ active competitors — social proof is now critical
+- TJ has 4-5 recurring happy customers — untapped marketing resource
+- "Case studies from jobs" was unchecked in rotation
+- Reviews/testimonials work across ALL channels (Google, FB, Nextdoor, Yelp)
+- One authentic review beats $100 in ads
+
+**What I Created:**
+- `dashboard/tidy-tails/2026-03-04-TESTIMONIAL-CASE-STUDY-KIT.md` — Full social proof kit
+  - 3 text message scripts for requesting reviews
+  - Email template for formal customers
+  - Case study template with before/after structure
+  - Example case study (Sarah M., Florissant)
+  - 5 interview questions to ask happy customers
+  - Platform-specific formats (FB, IG, Nextdoor, GBP responses)
+  - Priority order: Google → Facebook → Nextdoor → Yelp
+  - Competitor review comparison table
+
+**Key Insight:**
+TJ's existing customers are the most underutilized marketing asset. With 10+ competitors, authentic social proof differentiates more than ads.
+
+**Action Items for TJ:**
+1. Text 2 longest-running customers this week
+2. Ask specifically for Google reviews (priority)
+3. Goal: 5 Google reviews by end of March
+
+**Dashboard:** ✅ Added with gold highlight + pulse animation
+**Rotation:** 🐕 Tidy Tails (Social Proof ✓)
+
+---
+
+### 1:00 PM — 🐕 WHY TIDY TAILS COMPARISON SHEET (Hourly Task)
+**Task:** Create sales tool that turns competitor intel into actionable objection handling
+**Result:** ✅ Complete comparison sheet with pricing counters, competitor weaknesses, closing scripts
+
+**Why This Task:**
+- 12 PM discovered 10+ active competitors — market is COMPETITIVE
+- Intel is useless if TJ can't USE it in sales conversations
+- "Why you over Poop2Scoop?" is a question that WILL come up
+- Turning research into revenue-generating sales tool
+
+**Competitor Intel Gathered:**
+
+| Competitor | Key Intel | TJ's Counter |
+|------------|-----------|--------------|
+| **Poop2Scoop** | $18/week, veteran-owned, FREE first clean | $70/month = $16.28/week (CHEAPER!) |
+| **POOP 911** | Franchise, FREE first clean | "I'd rather give you fair price always than bait-and-switch" |
+| **DoodyCalls** | National franchise, phone tree | "You'll talk to me, not a call center" |
+
+**What I Created:**
+- `dashboard/tidy-tails/2026-03-04-WHY-TIDY-TAILS-COMPARISON.md` — Full sales reference
+  - 30-second quick pitch
+  - Pricing comparison table (REAL data)
+  - 4 key advantages with exact scripts
+  - Honest "what competitors have that we don't"
+  - 4 common objections + responses
+  - Closing script
+  - Territory analysis (blue ocean areas)
+
+**Key Insight:**
+TJ's $70/month = $16.28/week, actually CHEAPER than Poop2Scoop's $18/week. But we've never framed it that way. This sheet reframes the value prop.
+
+**3 Differentiators to Lead With:**
+1. $70/month flat rate (unique in market)
+2. Owner-operated (TJ answers the phone)
+3. No contracts (start/stop anytime)
+
+**Dashboard:** ✅ Added with green highlight
+**Rotation:** 🐕 Tidy Tails (Sales Tools ✓)
+
+---
+
+### 12:00 PM — 🔍 COMPETITOR INTEL UPDATE (Hourly Task)
+**Task:** Research 4 new competitors discovered from Yelp + verify "dead" competitors
+**Result:** ✅ MAJOR CORRECTION — 10+ active competitors, Scoop Soldiers ALIVE!
+
+**Why This Task:**
+- 11 AM Yelp research found 4 competitors NOT in our intel
+- Need strategic picture update, not another tool
+
+**Key Discoveries:**
+
+| Competitor | Status | Threat | Key Intel |
+|------------|--------|--------|-----------|
+| **Dog Doody Defenders** | ✅ ACTIVE | 🟡 | **VETERAN-OWNED**, strong branding |
+| **The Pootector** | ✅ ACTIVE | 🔴 | APAWS certified, serves **St. Peters** |
+| **Scoop Soldiers** | ✅ **ALIVE** | 🔴 | WAS MARKED DEAD! Professional, commercial |
+| **The Poo Fighterz** | ✅ ACTIVE | 🟡 | Serves St. Louis AND Springfield IL |
+| **No 2 Crew** | ✅ ACTIVE | 🟢 | No web presence found |
+| **Pooanators** | ? | 🟢 | Yelp only |
+
+**Pricing Confirmation:**
+- Poop2Scoop: **$18/week** (cheapest, confirmed)
+- TJ: $25/week (39% higher)
+- TJ's $70/month: **STILL UNIQUE**
+
+**Market Reality Updated:**
+- Was: 7 active competitors
+- Now: **10+ active competitors**
+- NOT a blue ocean — competitive market
+
+**What I Created:**
+- `dashboard/intel/2026-03-04-COMPETITOR-UPDATE.md` — Full intel report
+- Updated `dashboard/index.html` — Added to Research section
+
+**Strategic Implications:**
+1. ❌ Scoop Soldiers is ALIVE (was marked dead)
+2. ❌ Doody Defenders = veteran angle we can't compete on
+3. ❌ The Pootector overlaps St. Peters territory
+4. ✅ $70/month still unique
+5. ✅ Transparent pricing still differentiates
+
+**Dashboard:** ✅ Updated with pulsing red alert
+**Rotation:** 🔍 Research (Competitor Intel ✓)
+
+---
+
+### 11:00 AM — 🐕 YELP BUSINESS CLAIM KIT (Hourly Task)
+**Task:** Create actionable Yelp setup guide for TJ to execute during lunch
+**Result:** ✅ Complete kit with copy-paste content, competitor intel update
+
+**Why This Task:**
+- 8 AM visibility audit showed Tidy Tails NOT on Yelp Top 10
+- Discovered 4 NEW competitors from Yelp search (Dog Doody Defenders, The Poo Fighterz, The Pootector, No 2 Crew)
+- Yelp = FREE visibility channel
+- 15-minute setup TJ can do at lunch (11:30 AM-12:00 PM)
+- Apple Maps pulls from Yelp (45% iPhone users in MO)
+
+**What I Created:**
+- `dashboard/tidy-tails/2026-03-04-YELP-CLAIM-KIT.md` — Full setup guide
+  - Step-by-step claim process
+  - Pre-written "From the Business" copy (copy-paste ready)
+  - Photo checklist
+  - Category recommendations
+  - Review strategy
+  - New competitor intel from Yelp search
+
+**Key Discovery — NEW Competitors:**
+| Competitor | Notes |
+|------------|-------|
+| Dog Doody Defenders | Not in previous intel! |
+| The Poo Fighterz | Creative branding |
+| The Pootector | Active Yelp presence |
+| No 2 Crew | Yelp listed |
+| POOP 911 West St. Louis | Franchise with photos |
+
+**Why This Matters:**
+Market is MORE competitive than we thought. Being on Yelp isn't optional — it's table stakes. TJ is currently invisible on Yelp while 10+ competitors are listed.
+
+**Dashboard:** ✅ Added with pulsing red (URGENT)
+**Rotation:** 🐕 Tidy Tails (Yelp setup ✓)
+
+---
+
+### 8:03 AM — 📄 MORNING BRIEFING PDF (Hourly Task)
+**Task:** Generate and deliver TJ's morning briefing with critical alerts + ready-to-post content
+**Result:** ✅ PDF briefing created, pushed to dashboard, ready for Telegram delivery
+
+**Why This Task:**
+- 8 AM is briefing time — TJ heading to work soon
+- Consolidates all overnight work into actionable format
+- Critical SEO alert needs to be front and center
+
+**What I Created:**
+- `dashboard/docs/MORNING_BRIEFING_2026-03-04.md` — Markdown version
+- `dashboard/pdfs/MORNING_BRIEFING_2026-03-04.pdf` — Branded PDF (dark theme)
+- Updated `dashboard/index.html` — Added briefing link in hero section
+
+**Key Content:**
+1. 🚨 **CRITICAL:** SEO fix needed (robots.txt + sitemap.xml missing)
+2. 🐕 Priority stack: SEO fix → 1 FB post → 1 review request
+3. 🏠 4 Marketplace ads ready for sheds
+4. 💡 News: AI tools helping small businesses scale
+5. ✅ Scorecard: Pick 2, win the day
+
+**Dashboard:** ✅ Updated + pushed
+**GitHub:** ✅ Pushed
+**Rotation:** 📄 Briefing (cross-category)
+
+---
+
+### 8:00 AM — 🔴 CRITICAL SEO FIX KIT (Self-Directed)
+**Task:** Self-directed work — discovered ROOT CAUSE of invisibility
+**Result:** ✅ Created 15-minute fix kit with ready-to-deploy files
+
+**Why This Task:**
+- 8 AM cron: Self-directed work to move toward goals
+- Checked current visibility status → ZERO search results
+- Diagnosed actual problem: robots.txt and sitemap.xml MISSING
+- This is THE blocker — all the FB posts in the world don't help if Google can't find the site
+
+**Critical Discovery:**
+| Check | Result |
+|-------|--------|
+| robots.txt | ❌ Returns homepage (SPA catch-all) |
+| sitemap.xml | ❌ Returns homepage (SPA catch-all) |
+| Brave search "Tidy Tails St Louis" | ❌ **ZERO results** |
+| Yelp "Best 10 St. Louis" | ❌ Not listed |
+| MapQuest | ✅ Listed in Olivette (GBP syncing) |
+
+**What I Created:**
+1. `dashboard/seo/DEPLOY-NOW-robots.txt` — Copy to website public folder
+2. `dashboard/seo/DEPLOY-NOW-sitemap.xml` — Copy to website public folder
+3. `dashboard/CRITICAL-SEO-FIX.md` — 15-minute fix guide with Google Search Console steps
+4. Updated `dashboard/index.html` — Added pulsing CRITICAL alert banner
+
+**Impact:**
+Without this fix, every marketing effort is wasted. Customers searching Google = can't find us. This is the 20% effort that unlocks 80% of visibility.
+
+**Dashboard:** ✅ Updated with critical 6-pixel red banner
+**GitHub:** ✅ Pushed
+
+---
+
+### 7:00 AM — 🏠 WEDNESDAY MARKETPLACE ADS (Hourly Task)
+**Task:** Create fresh Marketplace ads for TODAY — ready to post during TJ's workday
+**Result:** ✅ 4 copy-paste ads with current financing promos
+
+**Why This Task:**
+- Rotation rule: different area than last task (was ⚙️ Systems, now 🏠 Sheds)
+- Sheds area hasn't been touched in 28+ hours
+- TJ at TuffShed today — can post during lunch or downtime
+- Tax refund season + March = high shed demand
+
+**Current Promos (Verified via TuffShed.com):**
+- 6 months 0% interest (if paid in full)
+- 9.99% APR for 10 years (Service Finance)
+- RTO National: No credit check, flex lease
+
+**What I Created:**
+`dashboard/sheds/2026-03-04-WEDNESDAY-MARKETPLACE-ADS.md` — 4 ads:
+1. **Tax Refund + Spring Storage** — Best for morning posting
+2. **Home Office Angle** — Work from home Wednesday hook
+3. **Quick Hit Simple Storage** — Short, to the point
+4. **Garage Angle** — For car guys
+
+All include:
+- Phone: 636-354-7406 (correct shed number)
+- Current financing options
+- Posting time recommendations (11:30 AM-1 PM, 5:30-7 PM)
+- Group suggestions
+
+**Dashboard:** ✅ Added to Sheds section (pulsing amber — TODAY!)
+**Rotation:** 🏠 Sheds (Marketplace ads ✓)
+
+---
+
+### 6:00 AM — ⚙️ MARCH WEEK 1 EXECUTION TRACKER (Hourly Task)
+**Task:** Create focused execution tracker — no more tools, just the critical actions for this week
+**Result:** ✅ Interactive HTML tracker with research-backed priority on REVIEWS
+
+**Why This Task:**
+- Rotation rule: different area than last task (was 🐕 Tidy Tails, now ⚙️ Systems)
+- 5 AM revealed TJ is INVISIBLE in Google search despite GBP claim
+- Root cause: **0 reviews** — research shows 10 reviews = ranking threshold
+- Stop building more tools, start tracking execution
+
+**Research Done:**
+- Fetched 2026 Local SEO Ranking Factors from BrightLocal, LocalDominator
+- Key finding: **10 reviews triggers ranking algorithm boost** (proven by Sterlingsky study)
+- Reviews = 16% of local pack ranking factors
+- Profiles with photos get 42% more direction requests
+
+**What I Created:**
+`dashboard/systems/march-week1-execution-tracker.html` — Interactive tracker with:
+- Critical alert: ZERO reviews = #1 blocker (red pulsing)
+- Day-by-day tasks for Mar 3-9 (only 12 total!)
+- Copy-paste review request script
+- Progress tracking with local storage
+- Week success = 3 metrics: 5 reviews, 10 GBP photos, 3 FB posts
+- "NOT This Week" section — parked items to prevent scope creep
+
+**Key Insight:**
+We have 100+ tools in the dashboard. TJ has used maybe 5. The problem isn't lack of tools — it's lack of EXECUTION tracking. This tracker shows the 12 things that matter this week. Nothing else.
+
+**Dashboard:** ✅ Added to Quick Actions (pulsing red — critical!)
+**Rotation:** ⚙️ Systems (Execution tracking ✓)
+
+---
+
+### 5:00 AM — 🐕 LOCAL SEO REALITY CHECK (Hourly Task)
+**Task:** Verify if Tidy Tails is actually appearing in Google search results
+**Result:** ✅ Created Local SEO Action Checklist with 30-minute sprint
+
+**Why This Task:**
+- Rotation rule: different area than last task (was 🎬 Content, now 🐕 Tidy Tails)
+- GBP was claimed Feb 26 — it's been over a week, should be appearing in search
+- Did actual Google search: "pet waste removal St. Louis County MO"
+
+**Critical Discovery:**
+**Tidy Tails is NOT appearing in top 10 results!** Competitors dominating:
+- POOP 911 (alive, local franchise)
+- DoodyCalls
+- Poop2Scoop
+- Poopy Paws
+- Yucko's
+
+**Website status:** ✅ Live, SSL working, content good
+**Problem:** Zero visibility — no reviews, no Yelp, no directory citations
+
+**What I Created:**
+1. `dashboard/seo/local-seo-action-checklist.html` — Interactive checklist with:
+   - 15 specific tasks with time estimates
+   - Competitor comparison table (they all have reviews, we have 0)
+   - 30-minute sprint: GBP photos, services, text customers, claim Yelp
+   - Copy-paste GBP description ready to use
+
+2. `dashboard/seo/gbp-description-copy-paste.md` — Ready-to-paste:
+   - 750-word business description
+   - Photo list (10 types to take)
+   - Categories to select
+   - Services with prices
+   - Business hours
+
+**Key Insight:**
+Building 100+ marketing tools means nothing if people can't FIND Tidy Tails. This is the #1 blocker to growth. All the FB posts and ad copy are useless if someone searches "pet waste removal St. Louis" and TJ isn't there.
+
+**Dashboard:** ✅ Added to Tidy Tails section (pulsing red — critical!)
+**Rotation:** 🐕 Tidy Tails (SEO verification ✓)
+
+---
+
+### 4:00 AM — 🎬 WEDNESDAY READY-TO-POST CONTENT (Hourly Task)
+**Task:** Create actual copy-paste posts for TODAY (not another guide)
+**Result:** ✅ Wednesday posts ready - 10 minutes to execute
+
+**Why This Task:**
+- Rotation rule: different area than last task (was 🏠 Sheds, now 🎬 Content)
+- Week 2 lesson: build ≠ use
+- Instead of another "guide about posting," created THE ACTUAL POSTS
+- Brain-dead easy execution: copy, paste, post, done
+
+**What I Created:**
+- `dashboard/daily-posts/2026-03-04-WEDNESDAY-POSTS.md`
+
+**Post Content:**
+1. **Option A:** "Spring is coming" neighbor hook with deep clean offer
+2. **Option B:** Direct ask format for quick posting
+3. Instagram story idea
+4. Target groups: Ferguson/Florissant, Maryland Heights, O'Fallon (expansion)
+
+**Key Difference from Past Tasks:**
+NOT a "content strategy guide" or "social media playbook"
+JUST the actual words to copy-paste, the groups to post in, and a checkbox
+
+**Dashboard:** ✅ Updated date to Wednesday, linked new posts
+**Rotation:** 🎬 Content (Actual posts, not guides ✓)
+
+---
+
+### 3:00 AM — 🏠 SPRING SHED SELLING PLAYBOOK (Hourly Task)
+**Task:** Create seasonal selling strategy guide for the spring rush
+**Result:** ✅ Comprehensive playbook with timing psychology, objection handlers, and urgency scripts
+
+**Why This Task:**
+- Rotation rule: different area than last task (was ⚙️ Systems, now 🏠 Sheds)
+- March = Spring selling season is STARTING
+- TJ's day job = TuffShed sales — this directly impacts his income
+- Spring (Mar-May) is peak demand — timing is perfect
+
+**What I Created:**
+- `dashboard/sheds/spring-selling-playbook-2026.html` — Interactive strategy guide
+
+**Playbook Contents:**
+
+| Section | What It Covers |
+|---------|---------------|
+| Seasonal Calendar | Mar-May = peak, visual demand curve |
+| Urgency Talking Points | 5 spring-specific angles (timeline, weather, tax refund, summer prep, material costs) |
+| Power Phrases | 10 copy-paste phrases for conversations |
+| Objection Handlers | 5 spring-specific objections with full scripts |
+| Financing Ammunition | All 4 options with talking points (0%, 9.99%, RTO, Flex) |
+| Weekly Focus | March week-by-week themes |
+| Quick Reference Card | Pocket reference for sales floor |
+
+**Key Insight:**
+Spring buyers are SERIOUS — they've been thinking all winter. The job is helping them pull the trigger before summer heat makes them procrastinate. This playbook gives TJ the exact words to use.
+
+**Research Used:**
+- TuffShed.com current financing (verified: 9.99% APR, 0% for 6mo, RTO options)
+- Seasonal demand patterns for outdoor structures
+- Tax refund timing (Feb-April)
+
+**Dashboard:** ✅ Added as #1 primary link in Sheds section (pulsing green)
+**Rotation:** 🏠 Sheds (Seasonal selling strategy ✓)
+
+---
+
+### 2:00 AM — ⚙️ DASHBOARD QUICK START GUIDE (Hourly Task)
+**Task:** Create navigation guide for the 90+ tools we've built
+**Result:** ✅ Interactive Quick Start Guide with top 10 tools and when to use them
+
+**Why This Task:**
+- Rotation rule: different area than last task (was 🐕 Tidy Tails, now ⚙️ Systems)
+- 90+ tools built = paradox of choice
+- Week 2 retrospective identified this: "Archive 90% of dashboard tools"
+- TJ doesn't need MORE tools, he needs to know WHICH tools to use
+
+**The Problem:**
+We have:
+- 90+ dashboard links
+- 115+ PDFs created
+- 50+ HTML tools
+- Week 2 showed: build ≠ use
+
+**What I Created:**
+- `dashboard/quick-start-guide.html` — Interactive navigation guide
+
+**Guide Features:**
+
+| Section | What It Covers |
+|---------|---------------|
+| TL;DR | 3 things to do TODAY (post, GBP, follow up) |
+| 🐕 Tidy Tails Top 4 | Social posts, lead channels, review kit, route guide |
+| 🏠 Sheds Top 3 | Follow-up templates, promo ads, competitor intel |
+| 🤖 Consulting Top 2 | Packages page, landing page |
+| ⏰ Daily Rhythm | Morning/Lunch/After Work/Evening suggested actions |
+| 🙈 Ignore List | What TJ can safely skip (for now) |
+
+**Priority System:**
+- 🔴 P1 = Use Daily/This Week
+- 🟠 P2 = Use Regularly  
+- 🔵 P3 = Reference When Needed
+
+**Key Insight:**
+"We built 90+ tools. You don't need 90. You need the **same 5-10 tools used consistently**."
+
+**Dashboard:** ✅ Added as #1 primary Quick Action (replacing TODAY.md)
+**Rotation:** ⚙️ Systems (Process documentation ✓)
+
+---
+
+### 1:00 AM — 🐕 LOCAL LEAD CHANNELS DEEP DIVE (Hourly Task)
+**Task:** Research and document lead generation channels beyond Facebook groups
+**Result:** ✅ Comprehensive HTML guide covering 8 channels with action steps
+
+**Why This Task:**
+- Rotation rule: different area than last task (was 🤖 Consulting, now 🐕 Tidy Tails)
+- Lead gen is highest priority per rotation rules
+- FB groups alone won't get us to 25-30 customers
+- Competitors are mostly ignoring Nextdoor and Yelp in STL County
+
+**What I Researched:**
+- 2025 St. Louis Marketing Landscape Report (Seafoam Media)
+- Nextdoor Local Business Advertising Complete Guide 2026
+- 12 Top Sites Like Angie's List for Home Service Leads 2025
+- Thumbtack/HomeAdvisor/Angi comparison research
+
+**Key Findings:**
+| Channel | Priority | Cost | Why It Matters |
+|---------|----------|------|----------------|
+| Nextdoor | 🔥 HIGH | Free/$ | 94% trust neighbor recs, 44% close rate, 79% visit based on recommendation |
+| GBP | 🔥 HIGH | Free | ✅ Claimed! Now needs optimization (photos, reviews) |
+| Yelp | ⚡ HIGH | Free | Position #2 in Google results — competitors have it, we DON'T |
+| FB Groups | ✅ KEEP | Free | Already working — don't stop |
+| Thumbtack | ⏳ LATER | $/lead | Good for testing paid after free channels maxed |
+| Local Directories | 📋 BATCH | Free | NAP consistency helps SEO |
+| Community Boards | 🎁 BONUS | Free | Old school but works for pet services |
+
+**The Big Gap:**
+- Every STL competitor has Yelp listings
+- Tidy Tails does NOT have Yelp listing
+- Yelp = position #2 in local search results
+- This is low-hanging fruit TJ can claim in 10 minutes
+
+**What I Created:**
+- `dashboard/tidy-tails/local-lead-channels-2026.html` — Interactive guide
+
+**Guide Features:**
+- 8 channels with expandable detail cards
+- Priority matrix (what to do first)
+- Action steps for each channel (specific links, time estimates)
+- This-week plan (5-day channel setup)
+- Competitor Yelp status comparison
+- NAP consistency reference
+
+**Dashboard:** ✅ Added as #1 link in Tidy Tails Core Tools (pulsing green)
+**Rotation:** 🐕 Tidy Tails (Lead gen research ✓)
+
+---
+
+### 12:00 AM — 🤖 AI CONSULTING PACKAGES PAGE (Hourly Task)
+**Task:** Create professional consulting packages document that TJ can send to prospects
+**Result:** ✅ Interactive HTML page with 3 tiers, FAQ, timeline, and "Why TJ" section
+
+**Why This Task:**
+- Rotation rule: different area than last task (was 🎬 Content, now 🤖 Consulting)
+- "Package refinement" was unchecked on rotation
+- We have target market research but NO clear "here's what I offer" document
+- When prospects say "interested" — TJ needs something professional to send
+
+**What I Created:**
+- `dashboard/consulting/ai-consulting-packages.html` — Full packages page
+
+**Package Structure:**
+
+| Tier | Name | Price | Best For |
+|------|------|-------|----------|
+| 1 | AI Setup Sprint | $497 one-time | Getting started with AI marketing |
+| 2 | Growth Partner | $997/mo | Done-with-you AI system |
+| 3 | Full Autopilot | $2,497/mo | I run your marketing, you run your business |
+
+**What Each Package Includes:**
+- **Setup Sprint:** 90-min call, AI tool setup, 10 ad variations, templates, 30-day support
+- **Growth Partner:** Weekly calls, 20 ads/mo, AI agent setup, competitor monitoring, Slack support
+- **Full Autopilot:** Everything + dedicated managed agent, unlimited content, lead gen, landing pages
+
+**Page Features:**
+- Interactive FAQ (click to expand)
+- How It Works timeline (4 steps)
+- "Why TJ" section with real credentials
+- Proof stats (80+ ads, 2 businesses, 20+ hrs saved)
+- CTA with phone/text links (636-354-7406)
+- Mobile responsive + print-friendly
+
+**Why These Prices:**
+- Based on Mar 3 target market research
+- Entry point under $500 (low-risk trial)
+- Monthly tiers competitive with agencies but with more hands-on support
+- Premium tier comparable to fractional CMO value
+
+**Dashboard:** ✅ Added as #1 link in AI Consulting (purple highlight)
+**Rotation:** 🤖 Consulting (Package refinement ✓)
+
+---
+
 ## March 3, 2026 (Tuesday — Week 3 Day 2)
+
+### 11:00 PM — 🎬 MARCH CONTENT CALENDAR (Hourly Task)
+**Task:** Create full-month content calendar for March 2026 with optimal posting times
+**Result:** ✅ Interactive HTML calendar with 28 scheduled posts + copy-paste content for next 7 days
+
+**Why This Task:**
+- Rotation rule: different area than last task (was 🏠, now 🎬)
+- "Content calendar updates" was unchecked on rotation
+- Removes daily "what should I post?" decision fatigue
+- Based on fresh 2026 research: best times are Thu/Fri, 1-3 PM peak
+
+**What I Created:**
+- `dashboard/content/march-2026-content-calendar.html` — Full interactive calendar
+
+**Calendar Stats:**
+| Business | Posts | Focus Days |
+|----------|-------|------------|
+| 🐕 Tidy Tails | 14 | Tue, Thu, Sat, Sun |
+| 🏠 TuffShed | 10 | Thu, Sat, Mon |
+| 🤖 Consulting | 4 | Wed (LinkedIn) |
+| **TOTAL** | **28** | All month covered |
+
+**Optimal Timing Built In:**
+- Facebook: 1-3 PM peak, 9 AM - 6 PM good
+- Instagram: 11 AM - 1 PM peak
+- Nextdoor: 7-9 AM (locals checking) or 5-7 PM
+- FB Groups: Sat morning, Sun evening, weeknight 7-9 PM
+
+**Next 7 Days Ready-to-Copy:**
+- Mar 4 (Wed): AI Tool Tip for LinkedIn
+- Mar 5 (Thu): Tidy Tails Before/After + TuffShed Tax Refund
+- Mar 6 (Fri): Weekend Ready post
+- Mar 7 (Sat): TuffShed Marketplace + Nextdoor intro
+
+**Key Dates Highlighted:**
+- Mar 17: St. Patrick's Day (green themed posts)
+- Mar 19: First Day of Spring (seasonal push)
+- Mar 24: Tax deadline approaching (shed push)
+
+**Dashboard:** ✅ Added to Campaigns & Content section with green highlight
+**Rotation:** 🎬 Content (Content calendar updates ✓)
+
+---
+
+### 10:00 PM — 🏠 SHED COMPETITOR INTEL (Hourly Task)
+**Task:** Research and analyze St. Louis shed dealers competing with TuffShed
+**Result:** ✅ Comprehensive competitive intelligence report with 8 dealers analyzed
+
+**Why This Task:**
+- Rotation rule: different area than last task (was 🐕, now 🏠)
+- "Competitor shed dealers research" was unchecked on rotation
+- Direct impact on TuffShed pipeline growth (second goal in cron prompt)
+- Gives TJ intel to compete better starting tomorrow
+
+**What I Created:**
+- `dashboard/tuffshed/shed-competitor-intel.html` — Interactive threat matrix
+- `dashboard/tuffshed/2026-03-03-SHED-COMPETITOR-INTEL.md` — Full markdown report
+
+**Key Research Findings:**
+
+| Competitor | Threat Level | Key Differentiator | Counter Strategy |
+|------------|--------------|-------------------|------------------|
+| **STL Sheds** | 🔴 HIGH | Amish-built + 10-yr warranty | TuffShed builds ON-SITE |
+| **Cardinal Buildings** | 🔴 HIGH | NO CREDIT CHECK rent-to-own | TuffShed has financing too |
+| **Cook Warehouses** | 🟡 MEDIUM | Lifetime warranty + since 1984 | Read the fine print |
+| **5 Star Buildings** | 🟡 MEDIUM | Fenton location (same area!) | More options + national brand |
+| **Classic Buildings** | 🟡 MEDIUM | St. Charles + personal touch | Match service, win on brand |
+| **Backyard & Beyond** | 🟢 LOW | Free statewide MO delivery | They're rural; TuffShed is metro |
+
+**TJ's Competitive Advantages Documented:**
+1. On-site construction (not prefab)
+2. Engineering + permits + built to code
+3. National brand warranty backing
+4. More customization options
+5. Full garage capability
+6. THE TJ FACTOR — local guy who gives a shit
+
+**Action Items for TJ:**
+- Know competitor pricing cold
+- Practice counter-objections
+- Emphasize "permanent vs portable"
+- Follow up on quotes fast — these guys are hungry
+
+**Dashboard:** ✅ Added with red highlight in Sheds section
+**Rotation:** 🏠 Sheds (Competitor shed dealers research ✓)
+
+---
+
+### 9:00 PM — 🐕 ROUTE OPTIMIZATION GUIDE (Hourly Task)
+**Task:** Research and create comprehensive route optimization guide for scaling from 11 to 25+ yards
+**Result:** ✅ Complete guide with tool comparison, pricing, staged recommendations, and quick wins
+
+**Why This Task:**
+- Rotation rule: different area than last task (was 🎬, now 🐕)
+- "Route optimization research" was unchecked on rotation
+- Direct impact on scaling capacity (the math: 1.6 yards/hr → 4 yards/hr = 2.5x efficiency)
+- TJ's Sunday bottleneck is TIME, not willingness
+
+**What I Created:**
+- `dashboard/tidy-tails/route-optimization-guide.html` — Complete route optimization guide
+
+**Key Research Findings:**
+| Stat | Source |
+|------|--------|
+| Industry standard: 4-5 yards/hour | Upper blog |
+| Achievable: $96/hour optimized | YouTube industry data |
+| Market size: $1.29B (pet waste removal) | MetaTech Insights 2024 |
+| 15-25 customers/day possible | Upper route optimization |
+
+**Tool Comparison (1 solo operator):**
+| Tool | Price | Route Optimization | Invoicing | Verdict |
+|------|-------|-------------------|-----------|---------|
+| Google Maps | FREE | ❌ | ❌ | Current tool, fine for 4-5 customers |
+| Upper | $29/mo | ✅ | ❌ | Good for route-only needs |
+| **Sweep&Go** | $29-69/mo | ✅ | ✅ | **Industry standard**, built for scoopers |
+
+**Sweep&Go Promo Found:**
+- Code: `SPRINGRUSH2026` — 50% off for 6 months
+- $69/mo → $34.50/mo for new customers
+
+**Staged Recommendation:**
+1. **NOW (4-5 customers):** Stick with Google Maps — free, works
+2. **AT 10-15 customers:** Start Sweep&Go free trial, test time savings
+3. **AT 20+ customers:** Go full Sweep&Go — auto-billing, client portal, performance tracking
+
+**The Math That Matters:**
+- Current: 11 yards in 7 hours = 1.6 yards/hour
+- Optimized: 4 yards/hour = 25 yards in 6.25 hours
+- Time saved weekly: **9.4 hours** at goal scale
+- Effective hourly rate jumps: $40/hr → $100/hr
+
+**Quick Wins (FREE, TODAY):**
+1. Cluster customers by neighborhood
+2. Start farthest, work inward
+3. Target ONE subdivision for new customers (5 customers in 1 area = 5 stops in 15 min)
+
+**Dashboard:** ✅ Added as #1 link in Tidy Tails Core Tools (teal highlight)
+**Rotation:** 🐕 Tidy Tails (Route optimization research ✓)
+
+---
 
 ### 8:00 PM — 🎬 TJ'S BRAND STORY KIT (Hourly Task)
 **Task:** Create comprehensive brand story content kit for Tidy Tails with copy-paste narratives

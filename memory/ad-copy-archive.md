@@ -4,6 +4,142 @@
 
 ---
 
+## March 3, 2026 — March Week 1 Content Calendar (10 AM Task)
+
+**TT-Mar1 - "Testimonial Style" (FB Page)**
+- Hook: "I didn't realize how bad it had gotten until it was gone"
+- Key: Customer voice, relatable, service reveal
+- Used: TBD (FB Page Tue 3/3 Evening)
+
+**TT-Mar2 - "Neighborhood Minefield" (FB Groups)**
+- Hook: Backyard look like a minefield?
+- Key: Location-specific (Ferguson/Florissant), price anchoring
+- Used: TBD (FB Groups Wed 3/4 AM)
+
+**TT-Mar3 - "Dodge Dance POV" (Instagram)**
+- Hook: POV: You can finally let your dog out
+- Key: Relatable moment, before/after framing
+- Used: TBD (Instagram Thu 3/5 Noon)
+
+**TT-Mar4 - "Direct Marketplace" (FB Marketplace)**
+- Hook: Tired of stepping in it?
+- Key: Clear pricing, no contracts, service listing format
+- Used: TBD (Marketplace Fri 3/6 PM)
+
+**TT-Mar5 - "Nextdoor Intro" (Nextdoor)**
+- Hook: Hey neighbors — wanted to introduce myself
+- Key: Local, personal, neighborly tone
+- Used: TBD (Nextdoor Sat 3/7 AM)
+
+**TT-Mar6 - "Working Sunday Stories" (IG Stories)**
+- Hook: Sunday Scoop Day / 11 yards on schedule
+- Key: Behind-the-scenes, FOMO, urgency
+- Used: TBD (IG Stories Sun 3/8)
+
+**TT-Mar7 - "Spring Thaw" (FB Groups)**
+- Hook: March is here and the snow is melting...
+- Key: Seasonal urgency, winter waste reveal fear
+- Used: TBD (FB Groups Mon 3/9 AM)
+
+---
+
+## March 3, 2026 — Fresh Shed Angles (9 AM Task)
+
+**Ad #68 - "No Credit Check" (Flex Lease Focus)**
+- Hook: Most dealers won't tell you — you don't need perfect credit
+- Key: RTO Flex Lease, no judgment, compassionate angle
+- Used: TBD (FB Marketplace + Groups)
+
+**Ad #69 - "Home Office Math" (WFH Value)**
+- Hook: $35k addition vs $6k shed — same result
+- Key: Tax deduction mention, financial comparison
+- Used: TBD (Instagram, FB Groups)
+
+**Ad #70 - "The Addition Trap" (Story Format)**
+- Hook: Customer called after $35k quote... cried happy tears
+- Key: Emotional story, shows math naturally
+- Used: TBD (FB Marketplace, Nextdoor)
+
+**Ad #71 - "March Delivery Lock" (Urgency)**
+- Hook: March slots filling, spring rush coming
+- Key: FOMO without pushy, "real info" framing
+- Used: TBD (FB Marketplace TODAY)
+
+**IG #4 - "No Credit Check" (Short)**
+- Hook: Credit score shouldn't stop you
+- Key: Same-day approval, rent-to-own
+- Used: TBD (Instagram Wed)
+
+**IG #5 - "Home Office" (Short)**
+- Hook: $35k vs $6k, same result
+- Key: CPA write-off hint
+- Used: TBD (Instagram Thu)
+
+---
+
+## March 3, 2026 — Tuesday Shed Ads (9 AM Task)
+
+**Ad #64 - "The Tool Graveyard" (Disorganization Pain)**
+- Hook: Where are your tools right now?
+- Key: Pegboard wall, workbench, everything in ONE place
+- Used: TBD (Scheduled Wed 3/5)
+
+**Ad #65 - "Tuesday Text" (Short & Direct)**
+- Hook: You've been thinking about a shed since... when?
+- Key: No pressure, just text, straight quote
+- Used: TBD (Today PM)
+
+**Ad #66 - "The Resale Play" (Investment Angle)**
+- Hook: Shed adds value to your property
+- Key: Appraised value, smart money move
+- Used: TBD (Scheduled Thu 3/6)
+
+**Ad #67 - "March Delivery Guarantee" (Timing)**
+- Hook: Order this week → Delivered mid-March
+- Key: Delivery slots filling, spring rush coming
+- Used: TBD (Instagram today)
+
+---
+
+## March 3, 2026 — Spring 2026 Shed Campaign Pack (5 AM Task)
+
+**Ad #31 - "Tax Refund Hit?" (Tax Season)**
+- Hook: Tax refund → shed vs impulse buy
+- Key: Property value, declutter, park inside
+- Used: TBD (Spring campaign)
+
+**Ad #32 - "Spring Cleaning PSA" (Seasonal)**
+- Hook: Spring cleaning fails without space
+- Key: Garage sale you've planned for 3 years
+- Used: TBD (Spring campaign)
+
+**Ad #33 - "Car Deserves Better" (Garage)**
+- Hook: When did car go outside?
+- Key: Holiday bins, treadmill, misc boxes
+- Used: TBD (Spring campaign)
+
+**Ad #34 - "120 Extra Square Feet" (Use Cases)**
+- Hook: What would you do with space?
+- Key: Workshop, gym, office, man cave
+- Used: TBD (Spring campaign)
+
+**IG #1 - "Tax Refund Different" (Tax)**
+- Hook: Invest in space not impulse
+- Key: Property value, square footage, sanity
+- Used: TBD (Instagram)
+
+**IG #2 - "Spring Energy Real" (Seasonal)**
+- Hook: Where does stuff GO?
+- Key: Shed = home for stuff
+- Used: TBD (Instagram)
+
+**IG #3 - "Garage After Shed" (Before/After)**
+- Hook: POV after you get shed
+- Key: Car inside, tools organized, sanity restored
+- Used: TBD (Instagram)
+
+---
+
 ## March 2, 2026 — March Marketplace Ads (7 PM Task)
 
 **Ad #26 - "Daylight Savings Warning" (Timely)**
