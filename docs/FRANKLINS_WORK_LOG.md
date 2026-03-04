@@ -4,6 +4,21 @@
 
 ---
 
+## March 3, 2026 (Tuesday — Week 3 Day 2)
+
+### 6:00 PM — 🐕 Tidy Tails (HOURLY TASK)
+**Spring 2026 Campaign Calendar**
+- Created 13-week seasonal campaign calendar (March-May)
+- Covers all key dates: Daylight Saving, Easter, Mother's Day, Memorial Day
+- Each week has: theme, psychology hook, ready-to-copy ad, channel tags
+- Interactive HTML with one-click copy buttons
+- Weekly execution checklist built in
+- File: `dashboard/tidy-tails/spring-2026-campaign-calendar.html`
+- Dashboard: Added as #1 highlighted link in Tidy Tails section
+- GitHub: Pushed ✅
+
+---
+
 ## Feb 23, 2026 (Monday — Week 2 Kickoff)
 
 ### 7:00 AM — ⚙️ Systems (HOURLY TASK)
