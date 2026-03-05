@@ -4,6 +4,37 @@
 
 ---
 
+## March 4, 2026 (Wednesday — Week 3 Day 3)
+
+### 6:00 PM — 🐕 Tidy Tails (HOURLY TASK)
+**Dormant Customer Reactivation Kit**
+- Created complete win-back campaign for customers who stopped during winter
+- **Why:** Past customers = WARMEST leads. $0 acquisition cost. Spring is the window.
+- Includes: 4 text templates, 2 email templates, voicemail script
+- 5 objection handlers (budget, moved/lost dog, handling self, found someone, service issue)
+- 3-tier incentive strategy (free cleanup → 10% off → 2 weeks free)
+- Spring timing strategy with key dates (St. Patrick's, Easter, etc.)
+- Tracking table and action checklist
+- **Key insight:** Reactivating 5 customers = $500/mo = 20% of goal at $0 cost
+- File: `dashboard/tidy-tails/2026-03-04-DORMANT-CUSTOMER-REACTIVATION-KIT.md`
+- Dashboard: Added green highlight link in Sales Tools section
+- GitHub: Pushed ✅
+
+---
+
+### 12:00 AM — 🤖 Consulting (HOURLY TASK)
+**AI Consulting Packages Page**
+- Created professional 3-tier packages page for consulting prospects
+- **Packages:** AI Setup Sprint ($497), Growth Partner ($997/mo), Full Autopilot ($2,497/mo)
+- Includes: detailed deliverables, timeline, FAQ, "Why TJ" section, credentials
+- Interactive FAQ with toggle, responsive design, print-friendly
+- **Key feature:** This is the "send this when someone asks" document
+- File: `dashboard/consulting/ai-consulting-packages.html`
+- Dashboard: Added as #1 highlighted link in AI Consulting section (purple)
+- GitHub: Pushed ✅
+
+---
+
 ## March 3, 2026 (Tuesday — Week 3 Day 2)
 
 ### 6:00 PM — 🐕 Tidy Tails (HOURLY TASK)

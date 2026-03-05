@@ -6,6 +6,85 @@
 
 ## March 4, 2026 (Wednesday — Week 3 Day 3)
 
+### 6:00 PM — 🐕 DORMANT CUSTOMER REACTIVATION KIT (Hourly Task)
+**Task:** Create complete win-back campaign for customers who stopped during winter months
+**Result:** ✅ Full reactivation kit with text/email templates, objection handling, and spring cleanup hooks
+
+**Why This Task:**
+- MEMORY.md notes: "Lost some customers during winter months"
+- Past customers = WARMEST leads (already know and trust TJ)
+- $0 acquisition cost vs $50-100 for new customers
+- Spring is THE window (thawing poop, yard cleanup motivation)
+- NOT creating new tools — leveraging existing relationships
+
+**What I Created:**
+- `dashboard/tidy-tails/2026-03-04-DORMANT-CUSTOMER-REACTIVATION-KIT.md` — Full win-back campaign
+  - 4 text templates (check-in, direct offer, guilt-free, social proof)
+  - 2 email templates with subject lines
+  - Voicemail script
+  - Objection handling for 5 scenarios:
+    - "Budget/money issues"
+    - "We moved/dog passed"
+    - "Handling it ourselves"
+    - "Found someone else"
+    - "Service wasn't what I expected"
+  - 3-tier incentive options (free cleanup → 10% off → 2 weeks free)
+  - Process with tracking table
+  - Timing strategy (spring window, key dates, urgency angles)
+
+**Key Insight:**
+Reactivating 5 dormant customers = $500/month = 20% of the goal with ZERO marketing spend.
+One text can bring back someone who already knows TJ's quality.
+
+**Dashboard:** ✅ Added green highlight link
+**Rotation:** 🐕 Tidy Tails (Customer Recovery)
+
+---
+
+### 5:00 PM — 🐕 COMPETITOR BATTLE CARD (Hourly Task)
+**Task:** Create comprehensive sales battle card to beat 10+ competitors in conversations
+**Result:** ✅ Complete battle card with scripts, objection handling, and positioning for every competitor type
+
+**Why This Task:**
+- 12 PM discovered 10+ active competitors — more than we thought!
+- TJ needs clear talking points for sales conversations
+- Addresses "TJ is 39% more expensive" problem
+- Turns competitor intel into actionable sales weapons
+
+**What I Created:**
+- `dashboard/tidy-tails/2026-03-04-BATTLE-CARD-DIFFERENTIATION.md` — Full sales battle card
+  - 30-second pitch script
+  - Counter scripts for EACH competitor type:
+    - vs Poop2Scoop (cheapest @ $18)
+    - vs POOP 911 (free first cleanup hook)
+    - vs DoodyCalls (franchise brand)
+    - vs Dog Doody Defenders (veteran-owned)
+    - vs The Pootector (APAWS certified)
+    - vs Scoop Soldiers (commercial focus)
+    - vs Little Stinkers (St. Charles)
+    - vs Poopy Paws ($20/week)
+  - 5 objection handling scripts:
+    - "You're more expensive"
+    - "I need to think about it"
+    - "Let me check with spouse"
+    - "Already using someone"
+    - "What makes you different?"
+  - Complete call flow script
+  - $70/month pitch (secret weapon)
+  - Win messaging matrix by situation
+  - What to say / what not to say
+
+**Key Insight:**
+TJ can't compete on price ($18 vs $25), veteran status, or certifications. But he CAN win on:
+1. $70/month — UNIQUE offering nobody else has
+2. Owner answers phone — no call centers
+3. Transparent pricing — competitors hide behind quotes
+
+**Dashboard:** ✅ Updated with orange highlight + link
+**Rotation:** 🐕 Tidy Tails (Sales Enablement)
+
+---
+
 ### 4:00 PM — 🏠 TUFFSHED QUOTE FOLLOW-UP BLITZ (Hourly Task)
 **Task:** Create comprehensive follow-up kit for TJ's ~12 quoted leads  
 **Result:** ✅ Complete blitz kit with text/email/call templates, objection handling, timing strategy
