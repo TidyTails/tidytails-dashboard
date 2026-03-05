@@ -6,6 +6,48 @@
 
 ## March 5, 2026 (Thursday — Week 3 Day 4)
 
+### 8:00 AM — 📱 FB GROUP PLAYBOOK (Hourly Task)
+**Task:** Create comprehensive FB group targeting strategy for STL County
+**Result:** ✅ Complete playbook with group list, copy-paste posts, timing, and tracking
+
+**Why This Task:**
+- STL County = blue ocean (confirmed midnight scan)
+- FB groups = FREE marketing (aligned with TJ directive)
+- Commercial leads PAUSED → residential focus via FB groups
+- Need infrastructure to enable consistent posting
+
+**What I Created:**
+| Deliverable | Location |
+|-------------|----------|
+| FB Group Playbook | `dashboard/campaigns/tidy-tails/2026-03-05-FB-GROUP-PLAYBOOK.md` |
+
+**Playbook Contents:**
+1. **4 tiers of groups** prioritized by value:
+   - Tier 1: Dog park groups (Frenchtown, Tails & Trails, SW City, Shaw)
+   - Tier 2: Lost/found pet groups (50K+ members)
+   - Tier 3: Neighborhood groups (Ferguson, Florissant, Maryland Heights)
+   - Tier 4: Pet service recommendation groups
+
+2. **5 copy-paste posts** ready to use:
+   - Introduction post (joining new groups)
+   - Helpful tip post (builds trust)
+   - Spring seasonal post (timely!)
+   - Engagement question post (algorithm friendly)
+   - Neighborly offer post (community groups)
+
+3. **Best posting times** (Sunday 7-9 PM, Monday 7-8 AM, etc.)
+
+4. **This week's target:** Join 3 groups, post once in each by Sunday
+
+**Key Insight:**
+We keep building ONE-OFF content. This playbook is REPEATABLE infrastructure — TJ can use this same system every week. That's leverage.
+
+**TJ Action Required:** YES — join 3 groups today, post by Sunday
+
+**Rotation:** 🐕 Tidy Tails (FREE Marketing)
+
+---
+
 ### 7:00 AM — 🎯 THURSDAY ACTION CARD (Hourly Task)
 **Task:** Convert overnight discoveries into ONE actionable 15-minute checklist
 **Result:** ✅ Created single-page action card with 3 high-ROI tasks
