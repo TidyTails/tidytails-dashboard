@@ -6,6 +6,57 @@
 
 ## March 5, 2026 (Thursday — Week 3 Day 4)
 
+### 4:00 PM — 🏠 STL SHED COMPETITOR BATTLECARD + SPRING ADS (Hourly Task)
+**Task:** Research STL shed market competitors + create competitive positioning battlecard + 5 fresh spring Marketplace ads
+**Result:** ✅ Full competitor battlecard with objection handlers + 5 competitively-positioned spring ads
+
+**Why This Task:**
+- EVERY hourly task today was Tidy Tails — shed business was getting ZERO attention
+- TJ has 200+ Marketplace listings but no competitive intelligence for his shed game
+- Spring = peak shed buying season — need fresh copy NOW
+- Found 4+ active local competitors TJ faces on Marketplace
+
+**What I Found (Fresh Intel):**
+| Competitor | Type | Key Angle | Weakness |
+|------------|------|-----------|----------|
+| STL Sheds | Amish portable, 10yr warranty | "Amish quality" marketing | Portable only, no on-site install |
+| The STL Shed Guy | RTO, no credit, veteran-run | Easy financing entry | Small operation, thin website |
+| Cook Portable Buildings | 7 STL-area dealers, lifetime warranty | Trade-up option, established | ALL portable/pre-built, size-limited |
+| America's Classic Buildings | Local portable | Low prices | Low brand equity, no online presence |
+| Marten Portable Buildings | Local portable | Yelp presence | Same portable limitations |
+
+**Critical Insight:**
+EVERY competitor in STL is selling PORTABLE/PRE-BUILT sheds. TuffShed's on-site construction is the ONLY differentiator that matters. TJ should lead with "Built on your property — not dropped off a truck" in every ad.
+
+**What I Created:**
+| Deliverable | Location |
+|-------------|----------|
+| STL Shed Competitor Battlecard | `dashboard/campaigns/tuffshed/2026-03-05-STL-SHED-BATTLECARD.md` |
+| Spring Marketplace Ads (5) | `dashboard/campaigns/tuffshed/2026-03-05-SPRING-MARKETPLACE-ADS.md` |
+
+**Battlecard Contents:**
+1. 5 competitor breakdowns with claims, reality, and counter-talk
+2. Positioning matrix (on-site vs portable across all factors)
+3. 5 universal objection handlers (price, "just looking", DIY, competition)
+4. TJ's 5 unique edges to lean into
+5. Do/don't language guide for ads
+
+**Ad Contents (Shed-Mar81 through Mar85):**
+1. "Built, Not Dropped" — lead differentiator
+2. "Spring Project Season" — seasonal urgency
+3. "The $99/mo Question" — price anchor
+4. "What Do You Need Space For?" — engagement CTA
+5. "Permanent vs. Portable" — competitive killer (post when competitors are active)
+
+**Key Insight:**
+TJ has been writing great ads but NEVER positioning against the portable shed guys. Every single STL competitor sells pre-built drop-offs. TuffShed's on-site construction is a massive differentiator that's been completely unused in his copy. These 5 ads fix that.
+
+**TJ Action Required:** Post Shed-Mar81 on Marketplace Friday 3/7 AM. Review battlecard for objection responses.
+
+**Rotation:** 🏠 TuffShed (Competitive Intelligence + Marketing)
+
+---
+
 ### 3:00 PM — 🏘️ NEXTDOOR LAUNCH KIT (Hourly Task)
 **Task:** Research competitor Nextdoor presence + build complete launch kit for TJ
 **Result:** ✅ Full Nextdoor launch playbook with copy-paste posts, setup guide, and competitive intel
@@ -2503,3 +2554,36 @@ Today's research (12 PM discovery: 10+ competitors) becomes USABLE tomorrow. Whe
 **Rotation:** 🎯 Sales Enablement
 
 ---
+
+
+### 5:00 PM — 🎯 REFERRAL PROGRAM KIT — Highest ROI Growth Play (Hourly Task)
+**Task:** Build complete referral program for Tidy Tails
+**Result:** ✅ Full kit with copy-paste texts, scripts, tracking, and math
+
+**Why This Task:**
+- TJ has 5 happy customers who each know 3-5 dog owners
+- That's 15-25 warm leads sitting untapped
+- Referrals convert 4x higher than cold leads
+- Cost per acquisition: ~$25 vs $50-100+ for FB ads
+- Needed something TJ can ACT ON tonight in 5 minutes
+
+**What I Created:**
+- `dashboard/campaigns/tidy-tails/2026-03-05-REFERRAL-PROGRAM-KIT.md` (Markdown)
+- `dashboard/campaigns/tidy-tails/2026-03-05-REFERRAL-PROGRAM-KIT.html` (Visual HTML)
+
+**Kit Contents:**
+1. **The Offer:** $15 off for referrer, free first cleanup + $10 off for new customer
+2. **3 Text Templates:** Direct ask, grateful approach, spring seasonal hook
+3. **Shareable Forward Message:** Customer can copy-paste to friends
+4. **Response Scripts:** When referrals text, 48-hour follow-up, post-cleanup close
+5. **Tracking Sheet:** Referrer → Referred → Status → Converted
+6. **The Math:** 5 customers × 2 referrals = 10 leads → 5 customers → $4,200/year for $200 cost = 21x ROI
+7. **Seasonal Hooks:** Spring, Summer, Fall, Winter angles for quarterly pushes
+
+**Dashboard Updates:**
+- Added REFERRAL PROGRAM KIT as top link in Growth Tools (pulsing, prominent)
+
+**The Play:**
+5 texts tonight → 5 minutes → potentially 5 new customers this month. No ad spend. No waiting for SEO. Just leveraging existing relationships.
+
+**Rotation:** 🐕 Tidy Tails — Lead Generation

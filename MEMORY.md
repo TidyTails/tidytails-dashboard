@@ -18,6 +18,7 @@
 | **Bishop** 🎯 | bishop | Research, oversight, competitor intel | Juice | `sessions_spawn(agentId="bishop", task="...")` |
 | **Debo** 💪 | debo | Coding, building, dashboard, websites | Friday | `sessions_spawn(agentId="debo", task="...")` |
 | **Doeboy** ✍️ | doeboy | Copywriting, ads, social content | Boyz n the Hood | `sessions_spawn(agentId="doeboy", task="...")` |
+| **Basquiat** 🎨 | basquiat | AI ad creative, video generation, visual content | Jean-Michel Basquiat | `sessions_spawn(agentId="basquiat", task="...")` |
 
 **How to use:**
 1. When TJ asks for research/intel → spawn Bishop

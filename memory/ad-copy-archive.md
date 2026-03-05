@@ -4,6 +4,35 @@
 
 ---
 
+## March 5, 2026 — Spring Competitive Positioning Ads (4 PM Task)
+
+**Shed-Mar81 - "Built, Not Dropped" (FB Marketplace)**
+- Hook: There's a difference between built on your property and dropped off a truck
+- Key: On-site construction differentiator vs portable competitors
+- Used: TBD (Marketplace Fri 3/7 AM)
+
+**Shed-Mar82 - "Spring Project Season" (FB Marketplace)**
+- Hook: March = think about it, April = do it
+- Key: Seasonal urgency, full product line showcase
+- Used: TBD (Marketplace Sat 3/8)
+
+**Shed-Mar83 - "The $99/mo Question" (FB Marketplace + Groups)**
+- Hook: Here's what $99/mo gets you
+- Key: Price anchor, gym membership comparison
+- Used: TBD (Marketplace + Groups Mon 3/10)
+
+**Shed-Mar84 - "What Do You Need Space For?" (Marketplace + IG)**
+- Hook: Serious question: What would you do with extra space?
+- Key: Engagement CTA, use-case brainstorm
+- Used: TBD (Marketplace + Instagram Wed 3/12)
+
+**Shed-Mar85 - "Permanent vs. Portable" (FB Marketplace)**
+- Hook: Not all sheds are created equal — pre-fab vs on-site comparison
+- Key: Direct competitive positioning without naming names
+- Used: TBD (Marketplace Thu 3/13)
+
+---
+
 ## March 5, 2026 — Tax Refund Shed Campaign (4 AM Task)
 
 **Shed-Mar76 - "Smart Refund" (FB Marketplace)**
