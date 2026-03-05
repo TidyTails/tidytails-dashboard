@@ -96,6 +96,7 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - **Phone:** 314-850-7140 (NOT the shed number!)
 - **Website:** tidytailsstl.com ✅ (NOT .net)
 - **GBP:** CLAIMED + COMPLETED ✅ (Feb 26, 2026) — DONE, DO NOT ASK AGAIN
+- **Google Review Link:** https://g.page/r/Ce_hqIHanGLvEAE/review
 
 ### Pricing
 - $25/week | $45 biweekly | $70/month | $100 one-time deep clean
