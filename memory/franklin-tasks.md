@@ -6,6 +6,48 @@
 
 ## March 4, 2026 (Wednesday — Week 3 Day 3)
 
+### 7:00 PM — 🐕 THIS WEEK'S FB POSTS — COPY-PASTE READY (Hourly Task)
+**Task:** Create fresh, dated FB posts for Thu/Fri/Weekend with different hooks
+**Result:** ✅ 3 posts with unique angles + group links + tracking table
+
+**Why This Task:**
+- Copy-paste folder was stale (Feb 24)
+- Same post = diminishing returns / audience fatigue
+- Week 1/2 lesson: deployable > more kits
+- 7 PM = evening prep for tomorrow's execution
+
+**What I Created:**
+- `dashboard/copy-paste/THIS-WEEK-MARCH-3-7-2026.md` — Ready-to-post content:
+  - **Thursday "Lazy Partner"** hook — humor angle, relationship friction
+  - **Friday "Weekend Plans"** hook — weekend dread, anti-chore positioning
+  - **Saturday/Sunday "Spring Reality"** hook — winter backlog, seasonal urgency
+  - Direct FB group links for each day
+  - 5-minute execution plan per day
+  - Tracking table to log what actually gets posted
+
+**Hooks Used:**
+| Day | Hook | Target Groups | Total Reach |
+|-----|------|---------------|-------------|
+| Thu | "Lazy Partner" | Kirkwood + Missouri Marketplace | 67K |
+| Fri | "Weekend Plans" | Wentzville + St. Charles | 188K 🔥 |
+| Sat/Sun | "Spring Reality" | Oakville + Jefferson County | 74K |
+
+**Dashboard Update:**
+- ✅ Quick action now links to THIS-WEEK file (primary, pulsing)
+- ✅ "Today" section updated for Thursday March 5
+- Old Week 3 Posts link replaced with fresh content
+
+**Key Difference from Previous:**
+This is NOT another kit or guide. This is LITERAL copy-paste content with:
+- Text TJ copies directly
+- Links TJ clicks directly
+- Table TJ fills in directly
+No extra steps. No interpretation needed.
+
+**Rotation:** 🐕 Tidy Tails (Content Execution)
+
+---
+
 ### 6:00 PM — 🐕 DORMANT CUSTOMER REACTIVATION KIT (Hourly Task)
 **Task:** Create complete win-back campaign for customers who stopped during winter months
 **Result:** ✅ Full reactivation kit with text/email templates, objection handling, and spring cleanup hooks
