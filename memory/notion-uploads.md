@@ -158,3 +158,9 @@ Chief uses this to verify sync with dashboard.
 | 12:08 | Week 3 Social Content | 🐕 Tidy Tails | WEEK3_SOCIAL_CONTENT.pdf | ✅ |
 | 12:08 | St Charles Expansion Kit | 🐕 Tidy Tails | ST_CHARLES_EXPANSION_KIT.pdf | ✅ |
 | 12:05 | Morning Briefing Mar 4 | 📋 Operations | MORNING_BRIEFING_2026-03-04.pdf | ✅ |
+
+## Upload Log — Mar 5, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 00:07 | EOD Summary Mar 4 | 📋 Operations | EOD_SUMMARY_2026-03-04.html | ✅ |
