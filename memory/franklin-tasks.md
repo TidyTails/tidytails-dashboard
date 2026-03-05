@@ -6,6 +6,38 @@
 
 ## March 5, 2026 (Thursday — Week 3 Day 4)
 
+### 7:00 AM — 🎯 THURSDAY ACTION CARD (Hourly Task)
+**Task:** Convert overnight discoveries into ONE actionable 15-minute checklist
+**Result:** ✅ Created single-page action card with 3 high-ROI tasks
+
+**Why This Task:**
+- Overnight work produced 4 detailed strategies (competitor scan, reviews, SEO, ads)
+- TJ can't process 115+ PDFs — needs ONE clear marching order
+- 7 AM = prep for TJ's workday → actionable over strategic
+
+**What I Created:**
+| Deliverable | Location |
+|-------------|----------|
+| Thursday Action Card | `dashboard/campaigns/tidy-tails/2026-03-05-THURSDAY-ACTION-CARD.md` |
+
+**The 3 Actions:**
+| # | Action | Time | Why |
+|---|--------|------|-----|
+| 1 | Submit to Google Search Console | 5 min | Site has ZERO Google results |
+| 2 | Text 3 customers for reviews | 5 min | GBP has ZERO reviews |
+| 3 | Post in 1 FB group | 3 min | STL County = blue ocean (confirmed) |
+
+**Total: 13 minutes → High compound impact**
+
+**Key Insight:**
+We keep building tools ABOUT execution instead of making execution brain-dead simple. This card is the opposite: 3 things, 13 minutes, massive ROI.
+
+**TJ Action Required:** YES — just do the 3 things
+
+**Rotation:** 🐕 Tidy Tails (Execution)
+
+---
+
 ### 6:00 AM — 🔧 SEO EMERGENCY: SITE NOT INDEXED (Hourly Task)
 **Task:** Ops health check discovered tidytailsstl.com has ZERO Google results
 **Result:** ✅ Created 5-minute fix guide for Google Search Console submission
