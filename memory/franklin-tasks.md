@@ -4,6 +4,41 @@
 
 ---
 
+## March 5, 2026 (Thursday — Week 3 Day 4)
+
+### 12:00 AM — 🔍 MIDNIGHT COMPETITOR SCAN — STRATEGIC INTEL (Hourly Task)
+**Task:** Late-night competitor monitoring to catch spring campaign changes
+**Result:** ✅ MAJOR FINDINGS — STL County confirmed blue ocean
+
+**Why This Task:**
+- Midnight = perfect for research (no external actions needed)
+- Spring season ramping up, competitors might be launching campaigns
+- Previous intel from Mar 4 showed 10+ competitors — needed verification
+
+**What I Discovered:**
+
+| Finding | Impact |
+|---------|--------|
+| **Little Stinkers domain changed** | Old URL dead, new: littlestinkersofmo.com |
+| **Little Stinkers DOESN'T serve STL County** | ONLY Lincoln, Warren, St. Charles |
+| **POOP 911 STL page = 404** | Local franchise may be gone |
+| Poop2Scoop pricing unchanged | Still $18/week (cheapest) |
+
+**Strategic Implications:**
+1. **STL County = CONFIRMED BLUE OCEAN** — Neither Little Stinkers nor POOP 911 clearly active
+2. Main competition is Poop2Scoop (price leader at $18) and DoodyCalls
+3. St. Charles is contested (Little Stinkers primary player)
+4. Little Stinkers offers "health monitoring" (check waste for abnormalities) — potential upsell idea
+
+**New Differentiator Spotted:**
+Little Stinkers checks dog waste for health abnormalities. Low-effort value-add TJ could offer!
+
+**Intel Report:** `dashboard/intel/2026-03-05-MIDNIGHT-COMPETITOR-SCAN.md`
+
+**Rotation:** 🔍 Research/Intel
+
+---
+
 ## March 4, 2026 (Wednesday — Week 3 Day 3)
 
 ### 11:00 PM — 📚 MEMORY CONSOLIDATION — END OF DAY DOCUMENTATION (Hourly Task)

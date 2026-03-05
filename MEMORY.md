@@ -122,25 +122,26 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - Missing: Website, Google Business Profile
 - Main challenge: Customer acquisition at scale
 
-### Competition (UPDATED Feb 24, 2026 8 AM)
+### Competition (UPDATED Mar 5, 2026 12 AM)
 
-**🚨 6 AM DISCOVERY: POOP 911 (national franchise) active in O'Fallon!**
+**🎯 STL COUNTY = CONFIRMED BLUE OCEAN (verified midnight scan)**
 
-**6 ACTIVE Competitors (verified via live site fetches):**
+**ACTIVE Competitors (verified via live site fetches):**
 
-| Competitor | Territory | Weekly | Biweekly | Notes |
-|------------|-----------|--------|----------|-------|
-| **Poop2Scoop** | St. Louis area | $18/wk ($72/mo) | $25/EOW ($50/mo) | CHEAPEST, 314-449-9447 |
-| **Little Stinkers** | **St. Charles, O'Fallon, St. Peters** | Quote | Quote | ⚠️ DIRECT OVERLAP! 636-887-6626 |
-| **POOP 911** 🆕 | **O'Fallon, St. Charles** | Quote | Quote | ⚠️ NATIONAL FRANCHISE! Free 1st cleanup hook |
-| **Dirty Dog Poo Crew** | Chesterfield 10mi radius | $95/mo | $80/mo | Part of grooming business |
-| **DoodyCalls** | St. Louis | Quote (~$12+) | Quote | Franchise, (314) 230-8082 |
-| **Yucko's** | St. Louis | Quote | Quote | Commercial focus, 314-291-POOP |
+| Competitor | STL County | St. Charles | Weekly | Notes |
+|------------|------------|-------------|--------|-------|
+| **Poop2Scoop** | ✅ Yes | ❓ | $18 | CHEAPEST, 314-449-9447 |
+| **Little Stinkers** | ❌ **NO** | ✅ Primary | Quote | NEW domain: littlestinkersofmo.com |
+| **POOP 911** | ❓ 404 | ❓ | Quote | STL page 404 — status unclear |
+| **DoodyCalls** | ✅ Yes | ❓ | Quote | Franchise, (314) 230-8082 |
+| **Yucko's** | ✅ Yes | ❓ | Quote | Commercial focus, 314-291-POOP |
+| **Dirty Dog Poo Crew** | 🟡 Chesterfield only | ❌ | $95/mo | Part of grooming business |
 
-**⚠️ O'Fallon = CONTESTED (2 competitors: Little Stinkers + POOP 911)**
-**✅ St. Louis County = BLUE OCEAN (no Little Stinkers, no POOP 911)**
+**🔴 KEY UPDATE (Mar 5):** Little Stinkers ONLY serves Lincoln/Warren/St. Charles Counties — **NOT STL County**
 
-**Strategic implication:** Today's O'Fallon FB post is TERRITORY DEFENSE. We're not alone there.
+**Little Stinkers service cities:** O'Fallon, St. Peters, St. Charles, Dardenne Prairie, Wentzville, Moscow Mills, Troy, Wright City, Warrenton
+
+**Strategic implication:** Focus marketing on STL County where competition is thinner. St. Charles expansion means head-to-head with Little Stinkers.
 
 **DEAD Competitors (verified):**
 - Fresh Paws — Squarespace expired (Wildwood territory)
