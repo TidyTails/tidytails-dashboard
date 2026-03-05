@@ -1980,3 +1980,48 @@ CAMPAIGN: Tidy Tails Lead Gen
 
 ---
 
+
+### 9:00 PM — 🎯 COMPETITIVE BATTLE CARDS — SALES ENABLEMENT (Hourly Task)
+**Task:** Turn today's competitor intel into actionable sales scripts
+**Result:** ✅ Battle cards with specific talk tracks for every competitor
+
+**Why This Task:**
+- Today we discovered 10+ active competitors (12 PM + 8 PM research)
+- Intel is useless if TJ can't use it in actual conversations
+- When prospect says "I'm also talking to DoodyCalls" — TJ needs a ready response
+- Different from content creation (sales enablement vs marketing)
+
+**What I Created:**
+- `dashboard/sales/BATTLE-CARDS.md` — Markdown version:
+  - Win themes (use with ANY competitor)
+  - HIGH THREAT cards: Scoop Soldiers, Pootector, DoodyCalls, POOP 911, Little Stinkers
+  - MEDIUM THREAT: Doody Defenders, Poop2Scoop, Dirty Dog Poo Crew
+  - LOW THREAT: Quick responses for unknowns
+  - Objection handlers
+  - The closing move script
+  
+- `dashboard/sales/battle-cards.html` — Visual HTML version:
+  - Printable (save to phone)
+  - Color-coded by threat level
+  - Quick-scan format for mid-conversation reference
+
+**Key Scripts Created:**
+| Competitor | TJ's Response Theme |
+|------------|---------------------|
+| Scoop Soldiers | "Franchise from Texas, call center" → local owner |
+| The Pootector | "Good work, but quote-based" → transparent pricing |
+| DoodyCalls | "Virginia HQ, scheduling system" → same guy every week |
+| POOP 911 | "Free first = charge more later" → no games |
+| Poop2Scoop | "Cheapest, yes" → but value + consistency |
+
+**Dashboard Updates:**
+- Added `sales/battle-cards.html` link to Research & Intel section
+- Positioned as MOST PROMINENT battle card (red, pulsing)
+- Demoted general battle card to non-pulsing
+
+**Why This Matters:**
+Today's research (12 PM discovery: 10+ competitors) becomes USABLE tomorrow. When TJ gets on a call and prospect says "Scoop Soldiers quoted me $15" — he has a script. No more "uhhh let me think..."
+
+**Rotation:** 🎯 Sales Enablement
+
+---

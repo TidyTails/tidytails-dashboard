@@ -27,6 +27,51 @@
 
 **Key benefit:** Each sub-agent has its own context window. Doesn't overload main session.
 
+## 🏠 Shed Sales CRM (Built Mar 4, 2026)
+
+**URL:** https://tidytails.github.io/tidytails-dashboard/crm/
+
+Features: Pipeline board, screenshot upload, source tracking, smart alerts, playbooks, calendar, dark mode.
+
+## 📧 Email Automation Project (COMPLETE Mar 4, 2026)
+
+**Domain:** backyardbuildingsstl.com (Cloudflare)
+**Status:** ✅ FULLY OPERATIONAL
+
+**Email Setup:**
+- **Address:** darius@backyardbuildingsstl.com
+- **Receives:** Cloudflare routes → cartervhomes@gmail.com
+- **Sends:** Gmail "Send As" configured
+- **App Password:** Created 9:09 PM (stored in .env, gitignored)
+- **Script:** `scripts/send-email.js`
+
+**Usage:**
+```bash
+node scripts/send-email.js \
+  --to "lead@example.com" \
+  --from "Darius Williams <darius@backyardbuildingsstl.com>" \
+  --subject "Subject" \
+  --body "Body text"
+```
+
+**TJ's Requirements:**
+- Dedicated email (no existing numbers)
+- AI reaches out first to commercial leads
+- AI answers simple inbound questions
+- MUST sound human, not robotic
+- Email first → SMS later → Social future
+
+**Guide:** dashboard/guides/AI-HUMAN-VOICE-GUIDE.md
+
+## 🚫 ManyChat Decision (Mar 4, 2026)
+
+ManyChat won't work for TJ because:
+- His shed leads come from Marketplace personal DMs
+- ManyChat only works with Business Page inbox
+- Browser automation too risky (account ban)
+
+**Alternative:** Email automation with dedicated domain.
+
 ## Who TJ Is
 - Founder of Tidy Tails
 - Based in St. Louis area (America/Chicago timezone)

@@ -166,6 +166,39 @@ Apply the same framework:
 3. Find the right positioning angle
 4. Write in appropriate voice for the audience
 
+## MANDATORY STYLE RULES (TJ's Standards)
+
+These rules apply to ALL customer-facing copy. No exceptions.
+
+### 🚫 NO DASHES OR HYPHENS IN SENTENCES
+
+**NEVER use:**
+- Em dashes (—)
+- En dashes (–)  
+- Hyphens used as pauses (-)
+
+**Instead:** Use a period. Start a new sentence.
+
+❌ **Wrong:** "Quick question — where do you keep all the overflow?"
+✅ **Right:** "Quick question. Where do you keep all the overflow?"
+
+❌ **Wrong:** "Not trying to sell you anything — just thought I'd reach out."
+✅ **Right:** "Not trying to sell you anything. Just thought I'd reach out."
+
+❌ **Wrong:** "Got 23 buildings — everything from tool sheds to workshops."
+✅ **Right:** "Got 23 buildings. Everything from tool sheds to workshops."
+
+**Note:** Hyphens in compound words are fine (e.g., "rent-to-own", "12x24", "barn-style").
+
+### Other Mandatory Rules
+
+- Use contractions (I'm, we'll, don't)
+- No AI buzzwords (leverage, utilize, robust, comprehensive, delve, facilitate)
+- No corporate phrases ("I hope this finds you well", "Please don't hesitate to")
+- Keep it conversational. Read it out loud. If it sounds stiff, rewrite it.
+
+---
+
 ## Quality Checklist
 
 Before submitting copy, verify:
