@@ -6,6 +6,45 @@
 
 ## March 5, 2026 (Thursday — Week 3 Day 4)
 
+### 6:00 AM — 🔧 SEO EMERGENCY: SITE NOT INDEXED (Hourly Task)
+**Task:** Ops health check discovered tidytailsstl.com has ZERO Google results
+**Result:** ✅ Created 5-minute fix guide for Google Search Console submission
+
+**Why This Task:**
+- 6 AM = ops check instead of more content creation
+- Discovered: `site:tidytailsstl.com` returns ZERO results
+- robots.txt/sitemap.xml don't deploy to Carrd-style hosting
+- Real fix = Google Search Console, not file uploads
+
+**What I Found:**
+| Check | Status |
+|-------|--------|
+| tidytailsstl.com SSL | ✅ Valid |
+| Dashboard live | ✅ Working |
+| robots.txt deployed | ❌ Returns homepage |
+| sitemap.xml deployed | ❌ Returns homepage |
+| Google index | ❌ **ZERO RESULTS** |
+
+**What I Created:**
+| Deliverable | Location |
+|-------------|----------|
+| Get Indexed Guide | `dashboard/seo/2026-03-05-GET-INDEXED-NOW.md` |
+
+**The Fix:**
+1. Add site to Google Search Console (2 min)
+2. Verify via Cloudflare DNS or HTML tag (2 min)
+3. Request indexing (1 min)
+4. Wait 24-48 hours for crawl
+
+**Key Insight:**
+All the FB posts, ad copy, and landing pages mean nothing if Google can't find the site. This is a 5-minute task that unblocks organic discovery.
+
+**TJ Action Required:** YES — needs to submit to Search Console today
+
+**Rotation:** 🐕 Tidy Tails (Technical/SEO)
+
+---
+
 ### 5:00 AM — ⭐ GOOGLE REVIEWS ACQUISITION STRATEGY (Hourly Task)
 **Task:** Create practical review acquisition kit (GBP has 0 reviews)
 **Result:** ✅ Complete strategy + copy-paste scripts + tracking table
