@@ -6,6 +6,51 @@
 
 ## March 5, 2026 (Thursday — Week 3 Day 4)
 
+### 4:00 AM — 🏠 TAX REFUND SHED CAMPAIGN (Hourly Task)
+**Task:** Create fresh TuffShed ad copy with new angles not in archive
+**Result:** ✅ 5 new ads (#76-80) targeting tax refund season
+
+**Why This Task:**
+- Overnight tasks (12-3 AM) ALL focused on Tidy Tails
+- TuffShed pipeline has 12 quoted leads + 15 pre-quote leads
+- March = tax refund season = perfect timing
+- "6 Months Same-As-Cash" promo underutilized in recent ads
+
+**What I Created:**
+| Deliverable | Location |
+|-------------|----------|
+| Tax Refund Campaign | `dashboard/campaigns/tuffshed/2026-03-05-TAX-REFUND-SHED-ADS.md` |
+
+**The 5 Ads:**
+| # | Hook | Platform | Angle |
+|---|------|----------|-------|
+| 76 | "Smart Refund" | FB Marketplace | Value add framing |
+| 77 | "Refund Math" | FB Groups | $3,100 vs $3,000 comparison |
+| 78 | "Don't Do What Most People Do" | Instagram | Lifestyle contrast |
+| 79 | "Zero Interest Window" | Marketplace/Nextdoor | Promo awareness |
+| 80 | "Before Summer Rush" | FB Groups/Nextdoor | No-pressure urgency |
+
+**New Angles (Not in Archive):**
+- Tax refund timing (March-specific)
+- 6 months same-as-cash promo highlight
+- "Before summer rush" urgency without being pushy
+- Smart money/value mindset framing
+
+**Suggested Schedule:**
+| Day | Post |
+|-----|------|
+| Thu 3/6 AM | #76 Marketplace |
+| Thu 3/6 PM | #78 Instagram |
+| Fri 3/7 AM | #77 FB Groups |
+| Fri 3/7 PM | #79 Nextdoor |
+| Sat 3/8 AM | #80 FB Groups |
+
+**Archive Updated:** Added Shed-Mar76 through Shed-Mar80 to ad-copy-archive.md
+
+**Rotation:** 🏠 Sheds (finally — first shed task tonight!)
+
+---
+
 ### 3:00 AM — 📝 STL COUNTY READY-TO-POST FB CONTENT (Hourly Task)
 **Task:** Create copy-paste FB posts targeting STL County neighborhoods (our blue ocean)
 **Result:** ✅ 3 post variations + target group list + tracking table

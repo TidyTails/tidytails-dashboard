@@ -4,6 +4,35 @@
 
 ---
 
+## March 5, 2026 — Tax Refund Shed Campaign (4 AM Task)
+
+**Shed-Mar76 - "Smart Refund" (FB Marketplace)**
+- Hook: Tax refund burning a hole in your pocket?
+- Key: Value add framing, 6 months same-as-cash focus
+- Used: TBD (Marketplace Thu 3/6 AM)
+
+**Shed-Mar77 - "Refund Math" (FB Groups)**
+- Hook: Average refund ~$3,100, Average shed ~$3,000
+- Key: Quick math comparison, tacos closer
+- Used: TBD (FB Groups Fri 3/7 AM)
+
+**Shed-Mar78 - "Don't Do What Most People Do" (Instagram)**
+- Hook: What most people do vs what smart homeowners do
+- Key: Lifestyle contrast, @reddshedredemption
+- Used: TBD (Instagram Thu 3/6 PM)
+
+**Shed-Mar79 - "Zero Interest Window" (Short/Direct)**
+- Hook: Little-known promo: 6 MONTHS. ZERO INTEREST.
+- Key: Promo awareness, ownership framing
+- Used: TBD (Marketplace + Nextdoor Fri 3/7)
+
+**Shed-Mar80 - "Before Summer Rush" (Urgency)**
+- Hook: Real talk: April-June is chaos
+- Key: Neighborly warning, no-pressure urgency
+- Used: TBD (FB Groups + Nextdoor Sat 3/8)
+
+---
+
 ## March 4, 2026 — Shed Week Content (10 PM Task)
 
 **Shed-Mar72 - "No Credit? No Problem" (Thu)**
