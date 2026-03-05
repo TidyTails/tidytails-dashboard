@@ -6,6 +6,41 @@
 
 ## March 5, 2026 (Thursday — Week 3 Day 4)
 
+### 5:00 AM — ⭐ GOOGLE REVIEWS ACQUISITION STRATEGY (Hourly Task)
+**Task:** Create practical review acquisition kit (GBP has 0 reviews)
+**Result:** ✅ Complete strategy + copy-paste scripts + tracking table
+
+**Why This Task:**
+- GBP claimed Feb 26 — still has ZERO reviews
+- Reviews = #1 local search ranking factor
+- TJ has 4-5 happy customers ready to ask
+- FREE marketing that compounds over time
+- 7 minutes of texting could = 5 reviews this week
+
+**What I Created:**
+| Deliverable | Location |
+|-------------|----------|
+| Reviews Strategy | `dashboard/campaigns/tidy-tails/2026-03-05-GOOGLE-REVIEWS-STRATEGY.md` |
+
+**Contents:**
+- 3-phase strategy (founding customers → post-service → momentum)
+- 4 copy-paste text scripts (personalized by customer type)
+- Review response templates (5-star, 4-star, generic)
+- Tracking table for TJ to log who he asked
+- Success metrics (goal: 10 reviews by March 31)
+
+**Key Insight:**
+TJ's competitors have 10-50+ reviews. He has 0. The difference between invisible and visible in local pack is ~7 minutes of texting spread over 2 weeks.
+
+**Immediate Action for TJ:**
+1. Create bit.ly shortlink (2 min)
+2. Text 5 current customers (5 min)
+3. Wait for reviews to roll in
+
+**Rotation:** 🐕 Tidy Tails
+
+---
+
 ### 4:00 AM — 🏠 TAX REFUND SHED CAMPAIGN (Hourly Task)
 **Task:** Create fresh TuffShed ad copy with new angles not in archive
 **Result:** ✅ 5 new ads (#76-80) targeting tax refund season
