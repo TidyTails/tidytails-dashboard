@@ -6,6 +6,49 @@
 
 ## March 5, 2026 (Thursday — Week 3 Day 4)
 
+### 3:00 PM — 🏘️ NEXTDOOR LAUNCH KIT (Hourly Task)
+**Task:** Research competitor Nextdoor presence + build complete launch kit for TJ
+**Result:** ✅ Full Nextdoor launch playbook with copy-paste posts, setup guide, and competitive intel
+
+**Why This Task:**
+- All morning tasks were FB/content focused — Nextdoor was a BLIND SPOT
+- Live research confirmed: Poop2Scoop HAS a Nextdoor page. TJ does NOT.
+- 63% of Nextdoor members have pets, 79% act on neighbor recommendations
+- site:tidytailsstl.com STILL returns 0 results — need more discovery channels
+- Nextdoor = FREE, hyperlocal, and high-trust (80% find ads trustworthy, 2.4x vs other platforms)
+
+**What I Found (Fresh Intel):**
+| Finding | Impact |
+|---------|--------|
+| Poop2Scoop active on Nextdoor | 🔴 They're getting found, TJ isn't |
+| TJ's site still not indexed on Google | 🔴 Organic search = dead until indexed |
+| Poop2Scoop pricing unchanged ($18/wk) | 🟡 Still cheapest competitor |
+| DoodyCalls has only 4 Yelp reviews | 🟢 Low bar to beat on review count |
+| Need 1+ recommendations to be visible on Nextdoor | 🔴 Critical first step |
+
+**What I Created:**
+| Deliverable | Location |
+|-------------|----------|
+| Nextdoor Launch Kit | `dashboard/campaigns/tidy-tails/2026-03-05-NEXTDOOR-LAUNCH-KIT.md` |
+
+**Kit Contents:**
+1. Step-by-step page claim guide (10 min)
+2. Description pre-written for copy-paste
+3. How to get first recommendation (with text script)
+4. 3 ready-to-post Nextdoor posts (intro, helpful tip, engagement)
+5. Ongoing posting schedule and do's/don'ts
+6. Competitive breakdown vs Poop2Scoop's page
+7. ROI projection (1-4 new customers/month for $0)
+
+**Key Insight:**
+TJ's been focused on FB groups (good) but completely missing Nextdoor — the platform literally built for "recommend a local service." And his direct competitor already claimed their spot. 20 minutes of setup = another free customer acquisition channel.
+
+**TJ Action Required:** YES — claim Nextdoor page tonight (20 min)
+
+**Rotation:** 🐕 Tidy Tails (Platform Expansion)
+
+---
+
 ### 8:00 AM — 📱 FB GROUP PLAYBOOK (Hourly Task)
 **Task:** Create comprehensive FB group targeting strategy for STL County
 **Result:** ✅ Complete playbook with group list, copy-paste posts, timing, and tracking
