@@ -6,6 +6,57 @@
 
 ## March 4, 2026 (Wednesday — Week 3 Day 3)
 
+### 8:00 PM — 🔍 SCOOP SOLDIERS DEEP DIVE — COMPETITOR INTEL (Hourly Task)
+**Task:** Deep competitive analysis on Scoop Soldiers (marked DEAD but actually ALIVE)
+**Result:** ✅ Full intel report with pricing, franchise data, STL presence analysis, and battle plan
+
+**Why This Task:**
+- 12 PM discovery: Scoop Soldiers was marked DEAD but is actually ALIVE
+- National franchise = potential serious threat
+- Needed to understand pricing, presence, and positioning
+- Different from content creation (research vs build)
+
+**What I Discovered:**
+| Finding | Impact |
+|---------|--------|
+| **National Franchise** | 12+ markets, $100K-$1.1M per market |
+| **$15/week starting** | TJ is 67% more expensive ($25 vs $15) |
+| **Houston = $1.1M revenue** | This model works at scale |
+| **STL landing page exists** | BUT not on Missouri service list |
+| **KC only on MO page** | May be PLANNING expansion, not operating |
+
+**Key Strategic Insight:**
+Scoop Soldiers has a St. Louis landing page but is NOT listed on their Missouri service area page (which only shows Kansas City). They're likely **preparing for expansion** rather than actively operating in STL.
+
+**Window of Opportunity:** Lock in customers NOW before they launch.
+
+**What I Created:**
+- `dashboard/intel/2026-03-04-SCOOP-SOLDIERS-DEEP-DIVE.md` — Full report including:
+  - Company profile and franchise data
+  - Pricing comparison (they're cheaper on weekly)
+  - 2023 revenue data by market
+  - STL presence analysis (landing page vs active service)
+  - Their strengths/weaknesses
+  - TJ's battle plan and talking points
+  - Monitoring plan for launch signals
+
+**Pricing Reality Update:**
+| Service | Scoop Soldiers | Tidy Tails | Winner |
+|---------|----------------|------------|--------|
+| Weekly | $15 | $25 | ❌ They win |
+| Monthly | Quote-based | $70 | ✅ TJ unique |
+| Local | Franchise | Owner-operated | ✅ TJ wins |
+
+**Action Items for TJ:**
+1. Don't compete on $15 vs $25 weekly — lead with $70/month
+2. Emphasize local ownership vs franchise
+3. Lock in customers before they activate STL
+4. Monitor for launch signals weekly
+
+**Rotation:** 🔍 Research/Intel
+
+---
+
 ### 7:00 PM — 🐕 THIS WEEK'S FB POSTS — COPY-PASTE READY (Hourly Task)
 **Task:** Create fresh, dated FB posts for Thu/Fri/Weekend with different hooks
 **Result:** ✅ 3 posts with unique angles + group links + tracking table
