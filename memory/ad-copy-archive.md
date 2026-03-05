@@ -4,6 +4,30 @@
 
 ---
 
+## March 4, 2026 — Shed Week Content (10 PM Task)
+
+**Shed-Mar72 - "No Credit? No Problem" (Thu)**
+- Hook: Most places won't tell you this — you don't need perfect credit
+- Key: Flex Lease promo, same-day approval, removes biggest objection
+- Used: TBD (Marketplace + Groups Thu 3/6)
+
+**Shed-Mar73 - "Spring Projects" (Fri)**
+- Hook: Spring's here. Time to finally do that project.
+- Key: Pricing anchors ($99/mo, $250/mo), urgency on slots
+- Used: TBD (Marketplace + Instagram Fri 3/7)
+
+**Shed-Mar74 - "The Garage Reclaim" (Sat)**
+- Hook: If your car's been outside since... let's not say when
+- Key: Resale value angle, Nextdoor neighborly version
+- Used: TBD (FB Groups + Nextdoor Sat 3/8)
+
+**Shed-Mar75 - "Weekend Workshop Dream" (Sun)**
+- Hook: What would you do with 200 sq ft of YOUR space?
+- Key: Engagement CTA, lifestyle reframe (not just storage)
+- Used: TBD (Instagram Sun 3/9)
+
+---
+
 ## March 3, 2026 — March Week 1 Content Calendar (10 AM Task)
 
 **TT-Mar1 - "Testimonial Style" (FB Page)**

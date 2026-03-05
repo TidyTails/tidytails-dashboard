@@ -6,6 +6,46 @@
 
 ## March 4, 2026 (Wednesday — Week 3 Day 3)
 
+### 10:00 PM — 🏠 SHED ADS THIS WEEK — TUFFSHED PIPELINE GROWTH (Hourly Task)
+**Task:** Create copy-paste ready shed ads for Thu-Sun with current promo focus
+**Result:** ✅ 4 days of Marketplace + IG ads with NO CREDIT CHECK (Flex Lease) angle
+
+**Why This Task:**
+- TuffShed pipeline growth is a stated goal (not just Tidy Tails)
+- Commercial TT leads paused per Feb 23 directive
+- 10 PM = evening prep for tomorrow's execution
+- Shed side often overlooked in hourly tasks
+
+**What I Created:**
+- `dashboard/copy-paste/THIS-WEEK-SHEDS-MARCH-5-9-2026.html` — Full HTML with copy buttons
+- `dashboard/copy-paste/THIS-WEEK-SHEDS-MARCH-5-9-2026.md` — Markdown backup
+
+**4 Days of Content:**
+| Day | Hook | Platform |
+|-----|------|----------|
+| Thu 3/6 | "No Credit? No Problem" | Marketplace + FB Groups |
+| Fri 3/7 | "Spring Projects" | Marketplace + Instagram |
+| Sat 3/8 | "The Garage Reclaim" | FB Groups + Nextdoor |
+| Sun 3/9 | "Weekend Workshop Dream" | Instagram |
+
+**Key Promo Featured:**
+- **Flex Lease = NO CREDIT CHECK** (low deposit, same-day approval)
+- This removes the #1 objection: "I can't afford it / my credit's bad"
+- Verified on tuffshed.com/special-offers/ tonight
+
+**Price Anchors Used:**
+- Storage sheds: $99/mo
+- Premier garages: $250/mo
+- Custom builds: $149/mo+
+
+**Dashboard Updates:**
+- ✅ New primary link in Shed section (pulsing, top of list)
+- ✅ Ad archive updated (#72-75)
+
+**Rotation:** 🏠 TuffShed (Pipeline Growth)
+
+---
+
 ### 8:00 PM — 🔍 SCOOP SOLDIERS DEEP DIVE — COMPETITOR INTEL (Hourly Task)
 **Task:** Deep competitive analysis on Scoop Soldiers (marked DEAD but actually ALIVE)
 **Result:** ✅ Full intel report with pricing, franchise data, STL presence analysis, and battle plan
