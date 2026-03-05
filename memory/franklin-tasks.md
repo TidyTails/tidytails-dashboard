@@ -6,6 +6,54 @@
 
 ## March 5, 2026 (Thursday — Week 3 Day 4)
 
+### 2:00 AM — ✍️ $70/MONTH FLAT RATE CAMPAIGN — AD COPY (Hourly Task)
+**Task:** Apply midnight intel + 1 AM pricing strategy to create fresh FB/IG copy
+**Result:** ✅ 4 FB variations + 2 IG captions + 1 Nextdoor post (copy-paste ready)
+
+**Why This Task:**
+- Midnight found: NO competitor offers flat monthly pricing
+- 1 AM built: Premium value justification
+- 2 AM = Apply those insights with actual copy TJ can use
+
+**What I Created:**
+| Deliverable | Location |
+|-------------|----------|
+| Campaign Strategy Doc | `dashboard/campaigns/tidy-tails/2026-03-05-70-MONTH-FLAT-RATE-CAMPAIGN.md` |
+| Copy-Paste HTML Tool | `dashboard/copy-paste/70-MONTH-FLAT-RATE-POSTS.html` |
+
+**The Posts:**
+| # | Hook | Platform | Key Angle |
+|---|------|----------|-----------|
+| 1 | Math Hook | FB | "Less than dog food" price anchor |
+| 2 | Simplicity Hook | FB | "Done" — no contracts, no math |
+| 3 | Comparison Hook ⭐ | FB | Netflix comparison + "I pick up" |
+| 4 | Value-Add Hook | FB | Health monitoring, photo texts |
+| IG1 | Price-First | IG | $70/month. That's the whole price. |
+| IG2 | Expense List | IG | Monthly dog costs comparison |
+| ND1 | Neighbor Intro | Nextdoor | Local guy, simple offer |
+
+**Recommended Post:** Variation 3 (Comparison Hook)
+- Directly addresses competitive landscape
+- "Predictable like your Netflix bill" = relatable anchor
+- "I actually pick up" = anti-franchise positioning
+
+**Strategic Application:**
+- All posts LEAD with $70/month (not $25/week)
+- All emphasize LOCAL owner (vs franchise)
+- Health monitoring added as value-add (stolen from Little Stinkers, costs $0)
+
+**Suggested Schedule:**
+| Day | Group | Post |
+|-----|-------|------|
+| Thu 3/5 | Ferguson Moms & Pops | Variation 1 |
+| Fri 3/6 | Florissant Pets | Variation 2 |
+| Sat 3/7 | STL Dog Lovers | Variation 3 |
+| Sun 3/8 | Instagram | IG Version 1 |
+
+**Rotation:** ✍️ Content/Copy
+
+---
+
 ### 1:00 AM — 💰 PREMIUM VALUE JUSTIFICATION — PRICING STRATEGY (Hourly Task)
 **Task:** Build on midnight intel to create pricing defense scripts and value-add recommendations
 **Result:** ✅ Complete guide + HTML copy-paste tool for handling price objections
