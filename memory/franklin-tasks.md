@@ -6,6 +6,40 @@
 
 ## March 5, 2026 (Thursday — Week 3 Day 4)
 
+### 3:00 AM — 📝 STL COUNTY READY-TO-POST FB CONTENT (Hourly Task)
+**Task:** Create copy-paste FB posts targeting STL County neighborhoods (our blue ocean)
+**Result:** ✅ 3 post variations + target group list + tracking table
+
+**Why This Task:**
+- Midnight intel confirmed: STL County = thin competition (Little Stinkers NOT here)
+- 2 AM created strategy-focused copy, this is TACTICAL execution copy
+- TJ needs content he can literally copy-paste when he wakes up
+
+**What I Created:**
+| Deliverable | Location |
+|-------------|----------|
+| Ready-to-Post Content | `dashboard/campaigns/tidy-tails/2026-03-05-fb-stl-county-posts.md` |
+
+**The 3 Posts:**
+| # | Hook | Target |
+|---|------|--------|
+| 1 | Honest Neighbor | Local community groups |
+| 2 | Spring Cleanup | Any STL County group (seasonal urgency) |
+| 3 | Multi-Dog Owner | Pet-focused groups (high-value customers) |
+
+**Target Groups Identified:**
+Ferguson, Florissant, Maryland Heights, Overland, Bridgeton, Hazelwood, Berkeley, Jennings, Normandy
+
+**Key Differences from 2 AM Copy:**
+- These are casual/conversational (fit group vibes)
+- Include [NEIGHBORHOOD] placeholders for personalization
+- Built-in tracking table for TJ to log results
+- Specific group recommendations included
+
+**Complementary to 2 AM work:** 2 AM = strategic positioning, 3 AM = tactical execution templates.
+
+---
+
 ### 2:00 AM — ✍️ $70/MONTH FLAT RATE CAMPAIGN — AD COPY (Hourly Task)
 **Task:** Apply midnight intel + 1 AM pricing strategy to create fresh FB/IG copy
 **Result:** ✅ 4 FB variations + 2 IG captions + 1 Nextdoor post (copy-paste ready)
