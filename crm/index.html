@@ -845,6 +845,115 @@
             margin-left: 0.5rem;
         }
 
+        /* Multi-upload lead cards */
+        .lead-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 1rem;
+            align-items: start;
+            transition: all 0.2s;
+        }
+
+        .lead-card:hover {
+            border-color: var(--border-light);
+        }
+
+        .lead-card.processing {
+            opacity: 0.6;
+        }
+
+        .lead-card-thumb {
+            width: 120px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .lead-card-thumb:hover {
+            transform: scale(1.05);
+        }
+
+        .lead-card-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .lead-card-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .lead-card .form-input,
+        .lead-card .form-select,
+        .lead-card .form-textarea {
+            padding: 0.4rem 0.6rem;
+            font-size: 0.85rem;
+        }
+
+        .lead-card .form-label {
+            font-size: 0.7rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .lead-card .form-textarea {
+            min-height: 50px;
+            resize: vertical;
+        }
+
+        .lead-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.25rem;
+        }
+
+        .lead-card-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        .lead-card-remove {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.8rem;
+            padding: 0.2rem;
+        }
+
+        .lead-card-remove:hover {
+            color: var(--accent-red);
+        }
+
+        .lead-card-status {
+            font-size: 0.75rem;
+            color: var(--accent-green);
+        }
+
+        @media (max-width: 600px) {
+            .lead-card {
+                grid-template-columns: 80px 1fr;
+            }
+            .lead-card-thumb {
+                width: 80px;
+                height: 110px;
+            }
+            .lead-card-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Empty State */
         .empty-state {
             text-align: center;
@@ -1182,73 +1291,47 @@
         </div>
     </div>
 
-    <!-- Screenshot Upload Modal -->
+    <!-- Screenshot Upload Modal (Multi) -->
     <div class="modal-overlay" id="uploadModal">
-        <div class="modal">
+        <div class="modal" style="max-width: 800px;">
             <div class="modal-header">
-                <div class="modal-title">📸 Add from Screenshot</div>
-                <button class="btn btn-ghost" onclick="closeUploadModal()">✕</button>
+                <div class="modal-title">📸 Add from Screenshots</div>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <span id="uploadCounter" style="font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; display: none;">0/0 processed</span>
+                    <button class="btn btn-ghost" onclick="closeUploadModal()">✕</button>
+                </div>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                <!-- Drop zone -->
                 <div class="upload-zone" id="uploadZone">
                     <div class="upload-icon">📷</div>
-                    <div class="upload-text">Drop screenshot here or click to upload</div>
-                    <div class="upload-hint">Messenger conversations, Salesforce screens, etc.</div>
-                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                    <div class="upload-text">Drop screenshots here or click to upload</div>
+                    <div class="upload-hint">Select multiple — each screenshot becomes a lead</div>
+                    <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
                 </div>
-                <div id="uploadPreview" style="display: none;">
-                    <img id="previewImage" style="max-width: 100%; border-radius: 8px; margin-bottom: 1rem;">
-                    <div class="ocr-status" id="ocrStatus">
-                        <div class="ocr-spinner"></div>
-                        <div class="ocr-status-text" id="ocrStatusText">Reading screenshot...</div>
-                    </div>
-                    <p id="ocrResultText" style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; display: none;">
-                        ✅ Auto-filled from screenshot — verify and hit Add Lead:
-                    </p>
+
+                <!-- Global OCR progress -->
+                <div class="ocr-status" id="ocrGlobalStatus">
+                    <div class="ocr-spinner"></div>
+                    <div class="ocr-status-text" id="ocrGlobalText">Reading screenshots...</div>
                 </div>
-                <div id="uploadForm" style="display: none;">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Name <span class="auto-filled-badge" id="nameBadge" style="display:none;">🤖 auto-detected</span></label>
-                            <input type="text" class="form-input" id="uploadName">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Phone <span class="auto-filled-badge" id="phoneBadge" style="display:none;">🤖 auto-detected</span></label>
-                            <input type="tel" class="form-input" id="uploadPhone">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label">Source</label>
-                            <select class="form-select" id="uploadSource">
-                                <option value="marketplace">FB Marketplace</option>
-                                <option value="salesforce">Salesforce</option>
-                                <option value="walkin">Walk-in</option>
-                                <option value="referral">Referral</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Priority</label>
-                            <select class="form-select" id="uploadPriority">
-                                <option value="normal">Normal</option>
-                                <option value="high">High</option>
-                                <option value="urgent">Urgent</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">What they want</label>
-                        <input type="text" class="form-input" id="uploadProduct">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Conversation Notes</label>
-                        <textarea class="form-textarea" id="uploadNotes" placeholder="Paste or type the conversation..."></textarea>
+
+                <!-- Lead cards container -->
+                <div id="leadCards" style="display: none;"></div>
+
+                <!-- Add more zone (shows after first batch) -->
+                <div id="addMoreZone" style="display: none; margin-top: 1rem;">
+                    <div class="upload-zone" style="padding: 1rem; border-style: dotted;" onclick="document.getElementById('addMoreInput').click()">
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">➕ Add more screenshots</div>
+                        <input type="file" id="addMoreInput" accept="image/*" multiple style="display: none;">
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" onclick="closeUploadModal()">Cancel</button>
-                <button class="btn btn-primary" id="uploadSaveBtn" onclick="saveFromUpload()" style="display: none;">Add Lead</button>
+                <button class="btn btn-primary" id="uploadSaveAllBtn" onclick="saveAllFromUpload()" style="display: none;">
+                    Add All Leads (<span id="leadCount">0</span>)
+                </button>
             </div>
         </div>
     </div>
@@ -1564,36 +1647,37 @@
             closeAddModal();
         }
 
-        // Upload modal
+        // ===== MULTI-UPLOAD SYSTEM =====
+        let pendingLeads = []; // Array of {id, dataUrl, name, phone, source, priority, product, notes}
+        let ocrProcessed = 0;
+        let ocrTotal = 0;
+
         function openUploadModal() {
             document.getElementById('uploadModal').classList.add('active');
         }
 
         function closeUploadModal() {
             document.getElementById('uploadModal').classList.remove('active');
-            document.getElementById('uploadPreview').style.display = 'none';
-            document.getElementById('uploadForm').style.display = 'none';
-            document.getElementById('uploadSaveBtn').style.display = 'none';
+            // Reset everything
+            pendingLeads = [];
+            ocrProcessed = 0;
+            ocrTotal = 0;
             document.getElementById('uploadZone').style.display = 'block';
-            document.getElementById('ocrStatus').classList.remove('active');
-            document.getElementById('ocrResultText').style.display = 'none';
-            document.getElementById('nameBadge').style.display = 'none';
-            document.getElementById('phoneBadge').style.display = 'none';
-            // Clear form fields
-            document.getElementById('uploadName').value = '';
-            document.getElementById('uploadPhone').value = '';
-            document.getElementById('uploadNotes').value = '';
-            document.getElementById('uploadProduct').value = '';
-            document.getElementById('uploadName').classList.remove('auto-filled');
-            document.getElementById('uploadPhone').classList.remove('auto-filled');
+            document.getElementById('ocrGlobalStatus').classList.remove('active');
+            document.getElementById('leadCards').style.display = 'none';
+            document.getElementById('leadCards').innerHTML = '';
+            document.getElementById('addMoreZone').style.display = 'none';
+            document.getElementById('uploadSaveAllBtn').style.display = 'none';
+            document.getElementById('uploadCounter').style.display = 'none';
         }
 
         function setupUploadZone() {
             const zone = document.getElementById('uploadZone');
             const input = document.getElementById('fileInput');
+            const addMoreInput = document.getElementById('addMoreInput');
 
             zone.addEventListener('click', () => input.click());
-            
+
             zone.addEventListener('dragover', (e) => {
                 e.preventDefault();
                 zone.classList.add('dragover');
@@ -1607,110 +1691,247 @@
                 e.preventDefault();
                 zone.classList.remove('dragover');
                 if (e.dataTransfer.files.length) {
-                    handleFile(e.dataTransfer.files[0]);
+                    handleFiles(e.dataTransfer.files);
                 }
             });
 
             input.addEventListener('change', () => {
                 if (input.files.length) {
-                    handleFile(input.files[0]);
+                    handleFiles(input.files);
+                    input.value = ''; // Reset so same files can be re-selected
+                }
+            });
+
+            addMoreInput.addEventListener('change', () => {
+                if (addMoreInput.files.length) {
+                    handleFiles(addMoreInput.files);
+                    addMoreInput.value = '';
                 }
             });
         }
 
-        function handleFile(file) {
-            if (!file.type.startsWith('image/')) {
-                alert('Please upload an image');
+        function handleFiles(fileList) {
+            const files = Array.from(fileList).filter(f => f.type.startsWith('image/'));
+            if (files.length === 0) {
+                alert('Please upload images');
                 return;
             }
 
-            const reader = new FileReader();
-            reader.onload = async (e) => {
-                const dataUrl = e.target.result;
-                document.getElementById('previewImage').src = dataUrl;
-                document.getElementById('uploadZone').style.display = 'none';
-                document.getElementById('uploadPreview').style.display = 'block';
+            // Hide the initial drop zone, show progress
+            document.getElementById('uploadZone').style.display = 'none';
+            document.getElementById('ocrGlobalStatus').classList.add('active');
+            document.getElementById('uploadCounter').style.display = 'inline';
 
-                // Show OCR processing state
-                document.getElementById('ocrStatus').classList.add('active');
-                document.getElementById('ocrResultText').style.display = 'none';
-                document.getElementById('uploadForm').style.display = 'none';
-                document.getElementById('uploadSaveBtn').style.display = 'none';
+            ocrTotal += files.length;
+            updateOCRCounter();
 
-                // Reset badges
-                document.getElementById('nameBadge').style.display = 'none';
-                document.getElementById('phoneBadge').style.display = 'none';
+            // Process each file
+            files.forEach((file, idx) => {
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    const dataUrl = e.target.result;
+                    const cardId = 'card-' + Date.now() + '-' + idx;
 
-                try {
-                    await runOCR(dataUrl);
-                } catch (err) {
-                    console.error('OCR failed:', err);
-                    document.getElementById('ocrStatusText').textContent = '⚠️ OCR failed — fill in manually';
-                }
+                    // Create a pending lead entry
+                    const pending = {
+                        id: cardId,
+                        dataUrl,
+                        name: '',
+                        phone: '',
+                        source: 'marketplace',
+                        priority: 'normal',
+                        product: '',
+                        notes: ''
+                    };
+                    pendingLeads.push(pending);
 
-                // Show form regardless of OCR result
-                document.getElementById('ocrStatus').classList.remove('active');
-                document.getElementById('ocrResultText').style.display = 'block';
-                document.getElementById('uploadForm').style.display = 'block';
-                document.getElementById('uploadSaveBtn').style.display = 'block';
-            };
-            reader.readAsDataURL(file);
+                    // Run OCR
+                    try {
+                        const parsed = await runOCR(dataUrl);
+                        pending.name = parsed.name || '';
+                        pending.phone = parsed.phone || '';
+                        pending.notes = parsed.conversation || '';
+                    } catch (err) {
+                        console.error('OCR failed for file:', file.name, err);
+                    }
+
+                    ocrProcessed++;
+                    updateOCRCounter();
+
+                    // Render the card
+                    renderLeadCard(pending);
+
+                    // When all done, show the save button
+                    if (ocrProcessed >= ocrTotal) {
+                        document.getElementById('ocrGlobalStatus').classList.remove('active');
+                        document.getElementById('addMoreZone').style.display = 'block';
+                        document.getElementById('uploadSaveAllBtn').style.display = 'flex';
+                        updateLeadCount();
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function updateOCRCounter() {
+            document.getElementById('uploadCounter').textContent = `${ocrProcessed}/${ocrTotal} processed`;
+            document.getElementById('ocrGlobalText').textContent = `🔍 Reading screenshot ${ocrProcessed + 1} of ${ocrTotal}...`;
+        }
+
+        function updateLeadCount() {
+            const count = pendingLeads.length;
+            document.getElementById('leadCount').textContent = count;
+            document.getElementById('uploadSaveAllBtn').querySelector('span').textContent = count;
+        }
+
+        function renderLeadCard(pending) {
+            const container = document.getElementById('leadCards');
+            container.style.display = 'block';
+
+            const cardNum = pendingLeads.indexOf(pending) + 1;
+            const nameDetected = pending.name ? 'auto-filled' : '';
+            const phoneDetected = pending.phone ? 'auto-filled' : '';
+            const nameBadge = pending.name ? '<span class="auto-filled-badge">🤖</span>' : '';
+            const phoneBadge = pending.phone ? '<span class="auto-filled-badge">🤖</span>' : '';
+
+            const html = `
+                <div class="lead-card" id="${pending.id}">
+                    <img class="lead-card-thumb" src="${pending.dataUrl}" onclick="window.open(this.src)" title="Click to enlarge">
+                    <div class="lead-card-fields">
+                        <div class="lead-card-header">
+                            <span class="lead-card-num">#${cardNum}</span>
+                            <button class="lead-card-remove" onclick="removeLeadCard('${pending.id}')" title="Remove">✕ Remove</button>
+                        </div>
+                        <div class="lead-card-row">
+                            <div class="form-group">
+                                <label class="form-label">Name ${nameBadge}</label>
+                                <input type="text" class="form-input ${nameDetected}" value="${escapeAttr(pending.name)}" 
+                                    onchange="updatePending('${pending.id}', 'name', this.value)" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone ${phoneBadge}</label>
+                                <input type="tel" class="form-input ${phoneDetected}" value="${escapeAttr(pending.phone)}" 
+                                    onchange="updatePending('${pending.id}', 'phone', this.value)" placeholder="(314) 555-0123">
+                            </div>
+                        </div>
+                        <div class="lead-card-row">
+                            <div class="form-group">
+                                <label class="form-label">Source</label>
+                                <select class="form-select" onchange="updatePending('${pending.id}', 'source', this.value)">
+                                    <option value="marketplace" selected>FB Marketplace</option>
+                                    <option value="salesforce">Salesforce</option>
+                                    <option value="walkin">Walk-in</option>
+                                    <option value="referral">Referral</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Priority</label>
+                                <select class="form-select" onchange="updatePending('${pending.id}', 'priority', this.value)">
+                                    <option value="normal" selected>Normal</option>
+                                    <option value="high">High</option>
+                                    <option value="urgent">Urgent</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">What they want</label>
+                            <input type="text" class="form-input" value="${escapeAttr(pending.product)}" 
+                                onchange="updatePending('${pending.id}', 'product', this.value)" placeholder="10x12 shed...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Notes</label>
+                            <textarea class="form-textarea" onchange="updatePending('${pending.id}', 'notes', this.value)" 
+                                placeholder="Conversation notes...">${escapeHtml(pending.notes)}</textarea>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.insertAdjacentHTML('beforeend', html);
+        }
+
+        function updatePending(cardId, field, value) {
+            const p = pendingLeads.find(l => l.id === cardId);
+            if (p) p[field] = value;
+        }
+
+        function removeLeadCard(cardId) {
+            pendingLeads = pendingLeads.filter(l => l.id !== cardId);
+            const el = document.getElementById(cardId);
+            if (el) el.remove();
+            updateLeadCount();
+            // Renumber remaining cards
+            document.querySelectorAll('.lead-card-num').forEach((el, i) => {
+                el.textContent = '#' + (i + 1);
+            });
+            if (pendingLeads.length === 0) {
+                document.getElementById('uploadSaveAllBtn').style.display = 'none';
+                document.getElementById('addMoreZone').style.display = 'none';
+                document.getElementById('uploadZone').style.display = 'block';
+                document.getElementById('leadCards').style.display = 'none';
+            }
+        }
+
+        function saveAllFromUpload() {
+            // Validate — at least require names
+            const unnamed = pendingLeads.filter(p => !p.name.trim());
+            if (unnamed.length > 0) {
+                alert(`${unnamed.length} lead(s) still need a name. Fill them in or remove them.`);
+                return;
+            }
+
+            let added = 0;
+            pendingLeads.forEach((p, i) => {
+                const lead = {
+                    id: Date.now() + i,
+                    name: p.name.trim(),
+                    phone: p.phone.trim(),
+                    source: p.source,
+                    priority: p.priority,
+                    product: p.product.trim(),
+                    notes: p.notes.trim(),
+                    stage: 'new',
+                    created: new Date().toISOString(),
+                    followup: new Date().toISOString().split('T')[0],
+                    history: ['Added via screenshot upload']
+                };
+                leads.push(lead);
+                added++;
+            });
+
+            saveData();
+            renderPipeline();
+            updateStats();
+            checkAlerts();
+            closeUploadModal();
+
+            // Quick toast
+            showToast(`✅ ${added} lead${added > 1 ? 's' : ''} added from screenshots`);
+        }
+
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--accent-green);color:white;padding:0.75rem 1.5rem;border-radius:8px;font-weight:600;z-index:9999;font-family:Outfit,sans-serif;box-shadow:0 4px 12px rgba(0,0,0,0.3);';
+            toast.textContent = msg;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
         }
 
         async function runOCR(dataUrl) {
-            const statusText = document.getElementById('ocrStatusText');
-            statusText.textContent = '🔍 Reading screenshot...';
-
             // Run Tesseract OCR
             const result = await Tesseract.recognize(dataUrl, 'eng', {
                 logger: (m) => {
                     if (m.status === 'recognizing text') {
                         const pct = Math.round(m.progress * 100);
-                        statusText.textContent = `🔍 Reading screenshot... ${pct}%`;
+                        document.getElementById('ocrGlobalText').textContent = 
+                            `🔍 Reading screenshot ${ocrProcessed + 1} of ${ocrTotal}... ${pct}%`;
                     }
                 }
             });
 
             const fullText = result.data.text;
             console.log('OCR Full Text:', fullText);
-
-            // Parse the OCR output for FB Messenger format
-            const parsed = parseFBScreenshot(fullText, result.data);
-
-            // Auto-fill fields
-            if (parsed.name) {
-                const nameInput = document.getElementById('uploadName');
-                nameInput.value = parsed.name;
-                nameInput.classList.add('auto-filled');
-                document.getElementById('nameBadge').style.display = 'inline';
-                setTimeout(() => nameInput.classList.remove('auto-filled'), 3000);
-            }
-
-            if (parsed.phone) {
-                const phoneInput = document.getElementById('uploadPhone');
-                phoneInput.value = parsed.phone;
-                phoneInput.classList.add('auto-filled');
-                document.getElementById('phoneBadge').style.display = 'inline';
-                setTimeout(() => phoneInput.classList.remove('auto-filled'), 3000);
-            }
-
-            // Auto-set source to Marketplace
-            document.getElementById('uploadSource').value = 'marketplace';
-
-            // Put any conversation text into notes
-            if (parsed.conversation) {
-                document.getElementById('uploadNotes').value = parsed.conversation;
-            }
-
-            // Update result text based on what was found
-            const resultText = document.getElementById('ocrResultText');
-            if (parsed.name && parsed.phone) {
-                resultText.innerHTML = '✅ Found <strong>' + escapeHtml(parsed.name) + '</strong> and phone <strong>' + escapeHtml(parsed.phone) + '</strong> — verify and hit Add Lead:';
-            } else if (parsed.name) {
-                resultText.innerHTML = '✅ Found <strong>' + escapeHtml(parsed.name) + '</strong> — check for phone number below:';
-            } else {
-                resultText.innerHTML = '⚠️ Couldn\'t read the name clearly — fill in manually:';
-            }
+            return parseFBScreenshot(fullText, result.data);
         }
 
         function parseFBScreenshot(fullText, ocrData) {
@@ -1722,62 +1943,40 @@
             console.log('OCR Lines:', lines);
 
             // === EXTRACT NAME ===
-            // FB Messenger format: the contact name appears at the very top
-            // Usually in format: "Name · Listing title" or "Name - Listing title" or just "Name"
-            // It's typically in the first few lines of OCR output
-
-            // Strategy 1: Look for "Name · something" or "Name - New Shed" pattern
+            // FB Messenger: contact name at top, format: "Name · Listing title"
             for (let i = 0; i < Math.min(lines.length, 8); i++) {
                 const line = lines[i];
-
-                // Skip common UI elements
                 if (/^(view buyer|more options|marketplace|<|>|\d{1,2}:\d{2}|today|yesterday)/i.test(line)) continue;
-                if (/^\$[\d,]+/.test(line)) continue; // Price lines like "$1,999"
+                if (/^\$[\d,]+/.test(line)) continue;
                 if (/^(AM|PM|WED|THU|FRI|SAT|SUN|MON|TUE)$/i.test(line)) continue;
 
-                // Match "Name · Title" or "Name - Title" (FB Messenger header)
                 const headerMatch = line.match(/^([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s*[·\-\|•]\s*.+/);
-                if (headerMatch) {
-                    name = headerMatch[1].trim();
-                    break;
-                }
+                if (headerMatch) { name = headerMatch[1].trim(); break; }
 
-                // Match standalone name (capitalized word, possibly with last name initial)
-                // Must be short (names are 1-3 words) and not look like a sentence
                 if (/^[A-Z][a-z]+(\s+[A-Z]\.?)?(\s+[A-Z][a-z]+)?$/.test(line) && line.length < 30) {
-                    // Make sure it's not a common UI word
                     if (!/^(View|More|Send|Type|Search|Back|Home|Menu|Settings)$/i.test(line)) {
-                        name = line;
-                        break;
+                        name = line; break;
                     }
                 }
             }
 
-            // Strategy 2: If no name found from header, look for the name near navigation elements
             if (!name) {
                 for (let i = 0; i < Math.min(lines.length, 6); i++) {
-                    // Sometimes OCR reads "< Name" because of back arrow
                     const backArrow = lines[i].match(/^[<«‹]\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/);
-                    if (backArrow) {
-                        name = backArrow[1].trim();
-                        break;
-                    }
+                    if (backArrow) { name = backArrow[1].trim(); break; }
                 }
             }
 
             // === EXTRACT PHONE ===
-            // Look for phone numbers anywhere in the text
             const phonePatterns = [
-                /\((\d{3})\)\s*(\d{3})[-.\s](\d{4})/,     // (314) 308-5112
-                /(\d{3})[-.\s](\d{3})[-.\s](\d{4})/,       // 314-308-5112
-                /(\d{10})/,                                   // 3143085112
+                /\((\d{3})\)\s*(\d{3})[-.\s](\d{4})/,
+                /(\d{3})[-.\s](\d{3})[-.\s](\d{4})/,
+                /(\d{10})/,
             ];
-
             for (const line of lines) {
                 for (const pattern of phonePatterns) {
                     const match = line.match(pattern);
                     if (match) {
-                        // Reconstruct clean phone
                         const digits = match[0].replace(/\D/g, '');
                         if (digits.length === 10) {
                             phone = `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
@@ -1789,27 +1988,19 @@
             }
 
             // === EXTRACT CONVERSATION ===
-            // Skip the first few header lines, grab everything else as conversation
             const skipPatterns = /^(<|>|view buyer|more options|marketplace|\$[\d,]+|[·\-\|]|you can now rate)/i;
             let pastHeader = false;
             for (const line of lines) {
                 if (!pastHeader) {
-                    if (/^(the sheds|yes|are you|my number|i'll|what time|do you|how|can you|i'm|we)/i.test(line)) {
-                        pastHeader = true;
-                    } else if (line.length > 40) {
-                        pastHeader = true;
-                    }
+                    if (/^(the sheds|yes|are you|my number|i'll|what time|do you|how|can you|i'm|we)/i.test(line)) pastHeader = true;
+                    else if (line.length > 40) pastHeader = true;
                 }
                 if (pastHeader && !skipPatterns.test(line) && line.length > 2) {
                     conversationLines.push(line);
                 }
             }
 
-            return {
-                name,
-                phone,
-                conversation: conversationLines.join('\n')
-            };
+            return { name, phone, conversation: conversationLines.join('\n') };
         }
 
         function escapeHtml(text) {
@@ -1818,33 +2009,8 @@
             return div.innerHTML;
         }
 
-        function saveFromUpload() {
-            const name = document.getElementById('uploadName').value.trim();
-            if (!name) {
-                alert('Name is required');
-                return;
-            }
-
-            const lead = {
-                id: Date.now(),
-                name: name,
-                phone: document.getElementById('uploadPhone').value.trim(),
-                source: document.getElementById('uploadSource').value,
-                priority: document.getElementById('uploadPriority').value,
-                product: document.getElementById('uploadProduct').value.trim(),
-                notes: document.getElementById('uploadNotes').value.trim(),
-                stage: 'new',
-                created: new Date().toISOString(),
-                followup: new Date().toISOString().split('T')[0],
-                history: ['Added via screenshot']
-            };
-
-            leads.push(lead);
-            saveData();
-            renderPipeline();
-            updateStats();
-            checkAlerts();
-            closeUploadModal();
+        function escapeAttr(text) {
+            return (text || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
         }
 
         // Detail modal
