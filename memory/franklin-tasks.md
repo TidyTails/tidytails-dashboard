@@ -2931,3 +2931,44 @@ TJ: "Here's all our plans: [link] — most folks do the $70/month. Want me to se
 - FAQ handles top 5 objections before they're asked
 
 **Rotation:** 🐕 Tidy Tails — Sales Conversion
+
+---
+
+### 2:05 AM — 🔍 SPRING COMPETITOR INTEL — New Competitor Found + Battle Plan (Hourly Task)
+**Task:** Deep competitor pricing research + spring strategy for Tidy Tails
+**Result:** ✅ New competitor discovered, full pricing matrix built, 5-point action plan
+
+**Why This Task:**
+- Spring = peak season for pet waste removal signups
+- Last full scan was March 3 — needed refresh before spring push
+- Found a NEW competitor (Doggie Doodies) we didn't know about
+- TJ needs to know pricing position before launching spring campaigns
+
+**What I Found:**
+
+**🆕 NEW COMPETITOR: Doggie Doodies**
+- Website: doggiedoodies.com | Phone: (636) 633-3443
+- Territory: West County + St. Charles (OVERLAPS with TJ)
+- Starting at $72/month (above TJ's $70!)
+- Professional operation: customer portal, text notifications, gate photos, e-gift cards
+- LLC 2026 — brand new, still building customer base
+
+**Key Pricing Intel:**
+- TJ's $70/month = CHEAPEST monthly plan in all of STL
+- Per-visit pricing ($25) is above Poop2Scoop ($18) and POOP 911 ($11.95)
+- 3 competitors still dead (Little Stinkers, Fresh Paws, Pawfect Waste)
+- 6 active competitors total (up from 5 — Doggie Doodies is new)
+
+**What I Created:**
+- `dashboard/intel/2026-03-06-SPRING-COMPETITOR-INTEL.md` — Full report
+- `dashboard/intel/2026-03-06-SPRING-COMPETITOR-INTEL.html` — Dashboard visual
+- Updated dashboard index with new intel link (pulsing orange)
+
+**Top 5 Spring Actions Recommended:**
+1. Add "Free First Cleanup" — it's table stakes now
+2. Launch referral program (kit built Mar 5, not launched yet)
+3. Start sending gate photos + "done" texts after service
+4. Create e-gift cards for Mother's Day (May 11)
+5. "Spring Reset" one-time cleanup campaign
+
+**Rotation:** 🐕 Tidy Tails — Competitive Intelligence
