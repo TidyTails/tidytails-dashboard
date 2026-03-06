@@ -6,6 +6,42 @@
 
 ## March 6, 2026 (Friday)
 
+### 7:04 AM — 🚀 FREE PLATFORM LISTING BLITZ — Get Listed Where Competitors Are (Hourly Task)
+**Task:** Audit every free listing platform for pet waste removal in STL, identify where competitors are but Tidy Tails isn't, create copy-paste listings for each
+**Result:** ✅ Published to dashboard + GitHub (commit 6c7a790)
+
+**Why This Task:**
+- 20+ marketing kits exist but Spring Execution Playbook literally says "stop planning, start doing"
+- Instead of another kit, did LIVE RESEARCH on actual platforms competitors use
+- Found Tidy Tails is INVISIBLE on 6 free platforms where competitors ARE listed
+- Each platform = another fishing line in the water for zero dollars
+
+**What I Researched (Live, 7 AM):**
+1. **Craigslist STL** — Found 2 competitors: "Fido Turd Burglar" ($20/wk, Chesterfield, Mar 2 post, sketchy 269 area code) and "STL Pooping Pooches" (older listing). No Tidy Tails.
+2. **PetWorks.com** — Poop2Scoop listed for STL, Dr. Scoops in Manchester. No Tidy Tails. Free pro signup.
+3. **Thumbtack** — ZERO pet waste removal pros in STL. Total blue ocean. First mover.
+4. **Nextdoor Business** — Business pages are separate from personal posts. TJ needs one for search visibility.
+5. **Angi** — Only franchise brands (DoodyCalls). No independents. Easy local win.
+6. **FB Marketplace Services** — Separate from groups/pages. Most scoopers don't know about this.
+7. **Yelp** — ✅ Confirmed Tidy Tails IS showing in Clayton/STL area results. Working.
+8. **Google Business Profile** — ✅ Already claimed.
+
+**What I Created:**
+- `dashboard/tidy-tails/2026-03-06-FREE-PLATFORM-LISTING-BLITZ.html`
+  - Copy-paste listing text for all 6 platforms (each customized for platform style)
+  - One-click copy buttons
+  - Direct signup links (tested)
+  - Competitor intel per platform
+  - Execution checklist with time estimates
+  - Total time: ~55 minutes for all 6 platforms, $0 cost
+
+**Key Insight:**
+Every platform TJ ISN'T on = leads going to Poop2Scoop or DoodyCalls by default. Craigslist + PetWorks are the quickest wins. Thumbtack has ZERO competition — first mover advantage.
+
+**Rotation:** 📱 Marketing — Lead Source Infrastructure
+
+---
+
 ### 6:05 AM — 🤝 CUSTOMER REFERRAL PROGRAM v2 — Research-Backed Referral Kit (Hourly Task)
 **Task:** Research referral program best practices for pet waste/lawn care, benchmark competitors, build comprehensive v2 referral kit
 **Result:** ✅ Published to dashboard + GitHub (commit 0a25422)
