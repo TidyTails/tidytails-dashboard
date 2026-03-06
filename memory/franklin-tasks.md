@@ -6,6 +6,58 @@
 
 ## March 5, 2026 (Thursday — Week 3 Day 4)
 
+### 8:05 PM — 🔍 SEO CONTENT PACK: SERVICE AREA PAGES + BLOG POSTS (Hourly Task)
+**Task:** Build complete SEO content pack to get tidytailsstl.com indexed and ranking on Google
+**Result:** ✅ 6 service area pages + 3 blog posts + implementation guide + schema markup
+
+**Why This Task:**
+- Confirmed via live Google searches: tidytailsstl.com appears in ZERO search results
+- POOP 911 ranks for "pooper scooper florissant MO" because they have a dedicated city page
+- POOP 911 ranks for "pooper scooper ferguson MO" — same strategy, dedicated page
+- Poop2Scoop (TJ's cheapest competitor) has NO city pages — leapfrog opportunity
+- Every hourly task today was marketing copy/playbooks — but NONE addressed the foundational problem: you can't be found on Google
+- Google Search Console was just verified TODAY — perfect timing to add content
+
+**What I Researched:**
+- Live Google SERPs for "pet waste removal st louis" — TJ not present, competitors dominate
+- Live Google SERPs for city-specific searches (Florissant, Ferguson, Maryland Heights) — POOP 911 owns them all
+- POOP 911's city page structure — reverse-engineered their local SEO approach
+- TJ's current site structure — confirmed single-page site, no city pages, no blog
+- Local landmarks, parks, dog parks for each service area city (St. Ferdinand Park, Wayside Park Unleashed, Creve Coeur Lake, etc.)
+
+**What I Created:**
+| Deliverable | Location |
+|-------------|----------|
+| SEO Content Pack | `dashboard/campaigns/tidy-tails/2026-03-05-SEO-CONTENT-PACK.md` |
+
+**Pack Contents:**
+1. **6 Service Area Pages** (Florissant, Ferguson, Maryland Heights, Hazelwood, St. Ann, Bridgeton)
+   - Each with unique title tags, meta descriptions, H1s
+   - Local landmarks and neighborhood references for authenticity
+   - Pricing included on every page
+   - Strong CTAs with phone number
+2. **3 Blog Posts:**
+   - "How Much Does Pet Waste Removal Cost in St. Louis?" (pricing comparison)
+   - "Spring Yard Cleanup: Getting Your STL Backyard Ready After Winter" (seasonal)
+   - "Dog Waste and Your Lawn: What STL Homeowners Need to Know" (educational)
+3. **LocalBusiness Schema Markup** — ready to paste into each page
+4. **Implementation guide** with priority order and technical checklist
+5. **Competitive analysis** — POOP 911 vs Poop2Scoop vs Tidy Tails SEO presence
+
+**Key Insight:**
+Poop2Scoop is TJ's biggest price competitor ($18/wk vs TJ's $25/wk) but they have ZERO city pages and ZERO blog content. By implementing this pack, TJ leapfrogs Poop2Scoop in organic search. And at $0 cost — just needs someone to create the pages.
+
+**Expected Impact:**
+- 6 pages × ~2 leads/month = 12 organic inquiries/month once ranked (3-6 month ramp)
+- Blog posts build domain authority → helps ALL pages rank higher
+- This is the most scalable, free marketing channel TJ hasn't tapped
+
+**TJ Action Required:** YES — Either add pages himself or have someone (Debo?) build them into the site. Copy-paste ready.
+
+**Rotation:** 🐕 Tidy Tails (SEO / Organic Search Infrastructure)
+
+---
+
 ### 7:04 PM — 🔄 CUSTOMER REFERRAL PROGRAM KIT (Hourly Task)
 **Task:** Build complete double-sided referral program for Tidy Tails — turn 4-5 happy customers into lead generators
 **Result:** ✅ Full "Buddy System" referral kit with copy-paste texts, social posts, flyer copy, tracking system, and launch sequence

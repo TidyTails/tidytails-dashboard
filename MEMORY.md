@@ -24,7 +24,10 @@
 1. When TJ asks for research/intel → spawn Bishop
 2. When TJ needs ad copy/content → spawn Doeboy  
 3. When something needs building/coding → spawn Debo
-4. Franklin stays available for conversation
+4. When TJ needs ad creative/video/visuals → spawn Basquiat
+5. Franklin stays available for conversation
+
+**⚠️ Sub-agent gotcha:** They save to their OWN workspace (e.g. `~/.openclaw/workspace-debo/`). Always copy files to main workspace and push from there.
 
 **Key benefit:** Each sub-agent has its own context window. Doesn't overload main session.
 
@@ -256,6 +259,23 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - Copy-paste posts ready for TJ to execute
 - Ad campaign structure + creative
 - Tracking what actually gets posted vs what's built
+
+## 🎨 Ad Creative Pipeline (Mar 5, 2026)
+
+**Workflow:** Nano Banana 2 (start/end frames, $0.04) → Kling v3 Standard (5-sec video, ~$0.50) → Text overlay → Post
+
+**CRITICAL RULE:** Grass stays SAME COLOR in before/after. Only poop appears/disappears. Dead-to-green = landscaping confusion.
+
+**6 videos produced.** See `memory/2026-03-05.md` for URLs.
+
+**Remaining concepts:** Landmine Map, Bag Collection, Calendar X, Dog Stare, Excuse Pile, Split Screen Walk (TJ requested), Zoom Out
+
+## 📱 Jamie's Outreach Hub (Mar 5, 2026)
+
+**URL:** https://tidytails.github.io/tidytails-dashboard/jamie-outreach-hub.html
+
+All Tidy Tails scripts consolidated. 36 copy buttons. Mobile-friendly. Dark theme.
+**Jamie handles all outreach. Scripts say "Jamie" not "TJ".**
 
 ## Why Customers Love Tidy Tails
 - Love TJ as a **person first**
