@@ -21,6 +21,7 @@
 - [x] Battle card vs competitors (Mar 4 5PM — Scripts for beating ALL 10+ competitors in sales convos!)
 - [x] Dormant customer reactivation (Mar 4 6PM — Win back past customers! Text/email templates, spring hooks)
 - [x] Local pet business partnerships (Mar 5 6PM — 25+ vet/groomer/daycare targets, scripts, flyer copy, 3-week action plan!)
+- [x] Professional pricing page (Mar 5 9PM — Mobile-first, text-to-prospect, all 4 tiers, FAQ, SMS CTA!)
 
 ### 🏠 SHEDS (TuffShed/WoodMaster)
 - [x] New Marketplace ad copy (Mar 4 7AM — 4 Wednesday ads with current promos!)
