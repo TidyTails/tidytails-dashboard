@@ -6,6 +6,53 @@
 
 ## March 6, 2026 (Friday)
 
+### 8:04 AM — 🌐 CITY LANDING PAGES — SEO Infrastructure for Google Indexing (Hourly Task)
+**Task:** Build city-specific landing pages for TJ's 5 core service areas + update sitemap + push live
+**Result:** ✅ 5 pages live on tidytailsstl.com, sitemap updated from 1→6 URLs, pushed to GitHub (commit b27653a)
+
+**Why This Task:**
+- tidytailsstl.com STILL has **0 indexed pages on Google** (confirmed via live `site:` search at 8 AM)
+- The site had ONE page and ONE sitemap entry — impossible to rank for local terms
+- Competitor Doggie Doodies ranks on page 1 specifically because they have **city-specific landing pages** (Ballwin, Chesterfield, Des Peres, etc.)
+- This is the single biggest SEO bottleneck — no amount of GBP posts or ad spend fixes "invisible on Google"
+- Each city page = a new entry point Google can index + rank for that city's search terms
+
+**What I Built (ALL LIVE):**
+1. **tidytailsstl.com/ferguson.html** — Ferguson, MO (63135) with local neighborhoods (January-Wabash, Halls Ferry, etc.)
+2. **tidytailsstl.com/florissant.html** — Florissant, MO (63031/33/34) with Old Town, Paddock Hills, Cross Keys
+3. **tidytailsstl.com/maryland-heights.html** — Maryland Heights, MO (63043) with McKelvey, Westport, Fee Fee
+4. **tidytailsstl.com/ofallon.html** — O'Fallon, MO (63366/68) with Winghaven, Fort Zumwalt, Hawk Ridge
+5. **tidytailsstl.com/st-charles.html** — St. Charles, MO (63301/03/04) with Historic Main Street, New Town
+
+**Each page includes:**
+- Unique title tag + meta description targeting "[city] pet waste removal"
+- Schema.org LocalBusiness markup with city-specific address/zip
+- Full pricing section (highlighting $70/month advantage)
+- Local neighborhood tags for long-tail keywords
+- Click-to-call + click-to-text CTAs
+- Internal links to all other city pages (cross-linking)
+- Breadcrumb navigation back to homepage
+- Mobile-responsive design matching main site
+
+**Also updated:**
+- **sitemap.xml** — 1 URL → 6 URLs (homepage + 5 cities)
+- **index.html** — Service area tags now LINK to city pages (internal linking boost)
+
+**Strategic Impact:**
+- Site went from 1 indexable page → 6 indexable pages (6x more surface area for Google)
+- Each page targets different zip codes and city-specific long-tail keywords
+- Internal linking structure boosts homepage authority
+- Doggie Doodies does this for West County — TJ now does it for North County + St. Charles
+- When Google re-crawls (triggered by sitemap update), these pages should start appearing in 1-4 weeks
+
+**Why This Beats Another Kit:**
+Every marketing kit, ad campaign, and referral program we've built is useless if people searching Google for "pet waste removal Ferguson MO" can't find Tidy Tails. This is foundational infrastructure that makes everything else work.
+
+**GitHub (website repo):** Pushed to TidyTails/tidytails-website (commit b27653a)
+**Rotation:** 🌐 SEO — Local Search Infrastructure
+
+---
+
 ### 7:04 AM — 🚀 FREE PLATFORM LISTING BLITZ — Get Listed Where Competitors Are (Hourly Task)
 **Task:** Audit every free listing platform for pet waste removal in STL, identify where competitors are but Tidy Tails isn't, create copy-paste listings for each
 **Result:** ✅ Published to dashboard + GitHub (commit 6c7a790)
