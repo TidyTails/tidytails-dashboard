@@ -6,6 +6,50 @@
 
 ## March 6, 2026 (Friday)
 
+### 5:04 AM — 📘 FACEBOOK ADS CAMPAIGN BLUEPRINT v2 — Production-Ready $200/Mo Plan (Hourly Task)
+**Task:** Research 2026 Facebook Ads benchmarks and build a complete, step-by-step campaign blueprint for TJ's $200/month budget
+**Result:** ✅ Published to dashboard + GitHub (commit 90b2877)
+
+**Why This Task:**
+- TJ has $200/month ad budget but NO structured campaign plan
+- Previous blueprint (Mar 3) was basic — no lead form setup, no phase rollout, no ROI math
+- GBP Posting Kit (4 AM) + this = both free AND paid marketing channels covered
+- At 4-5 customers, free marketing alone won't hit 25-30 — paid ads needed for acceleration
+- Researched 2026 benchmarks: avg CPL ~$27.66 for lead ads, 7.72% conversion rate
+
+**What I Created:**
+- `dashboard/tidy-tails/fb-ads-campaign-blueprint.html` (replaced v1, v1 backed up)
+- `dashboard/campaigns/tidy-tails/2026-03-06-FACEBOOK-ADS-BLUEPRINT.html` (source copy)
+
+**Blueprint Contents:**
+1. **Executive Summary** — Budget reality check ($200 is tight, must be surgical)
+2. **Prerequisites Checklist** — Meta Pixel, Business Suite, payment method
+3. **Campaign Structure** — Lead Gen (not traffic), daily budget, bid strategy, CBO
+4. **Audience Targeting** — STL County zip codes by priority, age 28-65, dog owner interests, detailed targeting (NOT Advantage+ broad)
+5. **3 Ad Creatives** — $70/month hook (lead), pain point (Test A), video ad (Test B) with copy-paste text
+6. **Lead Form Setup** — Form type, fields (name/phone/email + # dogs + neighborhood), thank you screen
+7. **3-Phase Rollout Plan:**
+   - Phase 1 (Weeks 1-2): Test 3 ads, $100 budget, kill losers after Day 5-10
+   - Phase 2 (Weeks 3-4): Optimize winner, test new variation, $100 budget
+   - Phase 3 (Month 2+): Scale to $300-400 if CPL < $30, or pivot to boosted posts
+8. **Common Mistakes** — 8 budget-killers to avoid (changing ads too early, broad targeting, stock photos, etc.)
+9. **ROI Math** — Break-even at 1 customer ($840 LTV vs $200 spend). 6-month revenue projection.
+10. **Paid + Free Combo Strategy** — How FB groups, GBP, Nextdoor, reviews amplify paid ads 5-10x
+11. **Weekly Optimization Checklist** — 10-minute Monday morning review
+12. **30-Minute Quick-Start Guide** — Step-by-step launch instructions
+
+**Key Research Findings:**
+- $200/month = ~$6.50/day, recommended minimum for Tier 1 lead gen is $25/day
+- Must use Facebook Lead Forms (not website traffic) to maximize conversions at this budget
+- Expected 3-8 leads/month at $25-65 CPL, 1-2 conversions = break-even in 2-3 months
+- Advantage+ Audience (broad targeting) = waste at this budget level, must use Original Audiences
+- Lead follow-up within 5 minutes = 21x more likely to convert
+
+**Dashboard:** Updated existing link with v2 tag, blue highlight
+**GitHub:** Pushed (commit 90b2877)
+
+**Rotation:** 📱 Marketing — Paid Advertising
+
 ### 4:04 AM — 📍 GBP POSTING KIT — Full Month of Google Business Profile Content (Hourly Task)
 **Task:** Build a complete GBP posting kit with 8 copy-paste posts for March, addressing the critical gap of 0 Google indexed pages
 **Result:** ✅ Published to dashboard + GitHub

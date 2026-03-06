@@ -108,11 +108,13 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - $25/week | $45 biweekly | $70/month | $100 one-time deep clean
 - Average customer value: ~$100/month
 
-### Current State (as of Jan 2025)
-- 4-5 recurring customers
+### Current State (as of Mar 2026)
+- 4-5 recurring customers (unchanged since start)
 - Solo operation (TJ), wife does scheduling
-- Capacity: ~15 yards/week comfortably
+- Capacity: ~15 yards/week comfortably, does 11 on Sundays
 - Equipment: pickup truck, basic tools
+- GBP: CLAIMED ✅ | Yelp: CLAIMED ✅ | Google Search Console: VERIFIED ✅
+- Website: tidytailsstl.com live, SSL valid, but 0 Google indexed pages
 
 ### Service Areas
 - St. Louis County, St. Charles County
@@ -120,7 +122,7 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - Target: middle-class neighborhoods
 
 ### The Goal
-**25-30 recurring customers by August 2025** (5-6x growth)
+**25-30 recurring customers by August 2025** (5-6x growth) — ⚠️ OVERDUE, date was Aug 2025, now Mar 2026
 
 ### Marketing Situation
 - Budget: $200/month (can scale with results)
@@ -630,337 +632,58 @@ TJ sees Tidy Tails as a **training ground** for:
 - 2026-02-17: Day 1 output — 18 tasks, 27 docs, 21 ads, 24 commercial leads
 - 2026-02-18: Day 2 output — 22+ tasks, 3 new skills, full customer lifecycle coverage
 - 2026-02-19: Day 3 output — 22+ tasks, Execution Tracker, Competitor Intel, 6 whale leads enriched
+- 2026-02-20: Day 4 — Execution Arsenal, Weekend Command Center, Brewery Blitz
+- 2026-02-21: Day 5 — Week 1 close, 115+ PDFs, honest retrospective (build vs deploy gap)
+- 2026-02-25: Day 8 — 17 tasks (record), SSL/GBP discoveries, memory consolidation
+- 2026-02-26: GBP CLAIMED ✅, Yelp CLAIMED ✅, POOP 911 confirmed alive, Poopy Paws $20/week
+- 2026-03-02: Week 3 start — FB Ads prep, 20 ad variations, pain point research, crons re-enabled
+- 2026-03-03: 19 tasks (new record) — SEO audit (site not indexed!), St. Charles expansion kit
+- 2026-03-04: Sub-agent architecture deployed (Bishop/Debo/Doeboy/Basquiat), Shed CRM built, email automation complete
+- 2026-03-05: Ad creative pipeline (6 AI videos), Google Search Console verified, Yelp claimed, Jamie Outreach Hub, pricing page, partnership kit
+- 2026-03-06: Competitive sales cheat sheet, Spring execution playbook, customer onboarding kit
 
 ---
 
-## 📊 Day 2 Learnings (Feb 18, 2026)
+## 📊 Consolidated Learnings (Feb 17 - Mar 6, 2026)
 
-### Asset Inventory (Current Totals)
+### The Big Lesson: Build vs Deploy Gap
+- **Week 1 (Feb 17-23):** 115+ PDFs, 80+ hourly tasks, 68 commercial leads... 0 confirmed deployments
+- **Week 2 (Feb 24-28):** GBP claimed ✅, Yelp claimed ✅, SSL fixed, but still no new customers
+- **Week 3 (Mar 2-6):** Sub-agents deployed, 6 AI videos created, Google Search Console verified, site still 0 indexed pages
+- **Reality:** Arsenal is massive. Bottleneck is TJ's execution time, not more tools.
+
+### Asset Totals (as of Mar 6, 2026)
 | Category | Count |
 |----------|-------|
-| PDFs Generated | 45+ |
-| Commercial Leads | 34 (property mgmt, daycares, vet clinics, dog parks) |
-| Tidy Tails Ads | 20+ |
-| Shed Ads | 25+ |
-| Skills Built | 14 (6 built, 8 available) |
-| Video Scripts | 20+ |
+| PDFs/HTML tools | 200+ |
+| Commercial leads | 50+ (7 whale accounts, 7 breweries, paused per TJ) |
+| Tidy Tails ads | 85+ (almost none marked "Used") |
+| Shed ads | 35+ |
+| Skills built | 14+ |
+| AI video concepts | 6 produced, 7 remaining |
 
-### Key Insight: Build → Execute Shift
-**Day 1** was pure arsenal building. **Day 2** started shifting to execution-ready assets:
-- Jamie's call sheets (print-and-go)
-- Quick Start Guide (5 things to do first)
-- Customer onboarding scripts (copy-paste ready)
-- Tax refund campaign (post immediately)
+### Key Systems Built
+- **Customer lifecycle complete:** Acquisition → Conversion → Onboarding → Retention → Recovery → Referral
+- **Consulting funnel complete:** 3-tier packages ($497-$1,997), landing page, proposal template
+- **Email automation operational:** darius@backyardbuildingsstl.com sends via Gmail
+- **Sub-agent architecture:** Bishop (research), Debo (code), Doeboy (copy), Basquiat (creative)
+- **Dashboard:** tidytails.github.io/tidytails-dashboard with status.json red-eye indicator
 
-### Seasonal Timing Matters
-**February-April = Tax Refund Season** for sheds
-- People have "found money" ($2K-$8K) that feels easier to spend
-- Rent-to-own + tax refund down payment = killer combo
-- Created 10 tax refund themed ads ready to deploy NOW
+### Process Learnings
+- **Late night = systems/maintenance** (not content creation)
+- **Morning = briefings + execution assets**
+- **Don't build more tools** until existing ones are used
+- **Sunday = scooping day** — stay quiet, one briefing only
+- **Phone-sized design matters** — TJ and Jamie use mobile
+- **Copy buttons = no excuses** — reduce friction to zero
 
-**Spring = Shed Season (Q2)**
-- 8 seasonal ads covering March-June hooks
-- Graduation, Mother's Day, Father's Day, Memorial Day angles
+### What Still Needs Human Execution
+- [ ] Submit tidytailsstl.com to Google Search Console (5 min) — VERIFIED but 0 indexed pages
+- [ ] Text existing customers for Google reviews
+- [ ] Post FB group ads (copy-paste ready)
+- [ ] Launch $10/day FB Ads test (blueprint ready)
 
-### Customer Lifecycle is Complete
-Built the full customer journey for Tidy Tails:
-1. **Acquisition:** Ads, landing page, referral program, commercial outreach
-2. **Conversion:** Proposal templates, quote calculator, pricing guide
-3. **Onboarding:** Welcome scripts, 30-day journey, access collection
-4. **Retention:** Check-in scripts, upsell opportunities, health scoring
-5. **Recovery:** Win-back campaigns, rescue scripts for issues
-6. **Referral:** Day 30 referral ask (timed after value proven)
-
-### Consulting Sales Funnel Complete
-1. ✅ Packages defined (Starter/Growth/Scale $497-$1,997)
-2. ✅ Prospects identified (25 leads)
-3. ✅ Case study for proof (Day 1 Tidy Tails)
-4. ✅ Landing page for credibility
-5. ✅ **Proposal template to close** (added 9 PM Feb 18)
-
-### Competitor Intelligence
-**Dog Waste:**
-- Yucko's (36 years, bad website) = weak marketing, strong reputation
-- Franchises (DoodyCalls, POOP 911) = impersonal, opportunity to differentiate
-- TJ's pricing ($25/week) is 28% higher than cheapest — must compete on VALUE
-
-**Sheds:**
-- 5-Star Buildings and Cardinal are biggest threats
-- Most competitors push rent-to-own (hidden 25-40% APR)
-- TJ's 0% and 9.99% financing is mathematically stronger
-
-### What's Working
-- **Hourly autonomous tasks** — consistent output without hand-holding
-- **Dashboard status updates** — TJ can see when I'm working (red eyes)
-- **Notion sync** — content going to both dashboard AND Notion
-- **Chief oversight** — catching gaps, verifying delivery sync
-- **PDF generation workflow** — HTML → browser → PDF working reliably
-
-### What Needs Attention
-- **Execution tracking** — lots of assets, need to track what TJ actually uses
-- **Lead follow-up** — Jamie has 34 leads but no tracking of call outcomes yet
-- **Review generation** — TJ needs to text his 4-5 customers for Google reviews
-- **Google Business Profile** — still not claimed (highest ROI quick win)
-- **Facebook Ads** — landing page exists but no paid traffic yet
-
-### Process Notes
-- **Late night = systems work** (memory updates, dashboard fixes, planning)
-- **Morning = briefings + execution assets** (call sheets, post batches)
-- **Afternoon = creative work** (ad copy, campaigns, content)
-- **Evening = documentation** (EOD summaries, memory consolidation)
-
----
-
-## 📊 Day 3 Learnings (Feb 19, 2026)
-
-### The Hard Truth: Build vs Deploy Gap
-**Day 3 forced an honest reckoning:**
-- 85+ assets built across 3 days
-- 0 confirmed customer-facing deployments
-- 5 customers → still 5 customers
-
-This isn't a content problem anymore. It's an execution problem.
-
-### New Systems Built
-
-**Execution Tracker Dashboard** (`dashboard/execution.html`)
-- Shows build vs deploy gap clearly: "85 built, 0 deployed"
-- Tracks: Ads Posted, Leads Called, Reviews Requested, Customers Added, GBP Status
-- Weekly grid shows actual activity by day
-- North Star always visible: "17% of goal (5/30 customers)"
-
-**Competitor Intelligence Report** (9 PM)
-- Deep-dived 7 St. Louis pet waste competitors
-- Found **Pawfect Waste Solutions is DEAD** (404 website) — opportunity to capture
-- TJ is premium priced ($25/week vs $18-22 average)
-- Social media presence WEAK across all competitors
-- Strategic recommendations: own social, don't compete on price, target dead competitor's customers
-
-### Commercial Leads Enriched (8 PM)
-7 leads now have actionable phone numbers:
-
-| Lead | Phone | Why Priority |
-|------|-------|--------------|
-| Mills Properties | (314) 721-8000 | 🐋 WHALE — 40 yrs, pet-friendly properties |
-| No Leash Needed | 8 locations | 🐋 WHALE — 8 outdoor play yards |
-| Canine Country Kennel | (636) 398-8558 | 🐋 WHALE — 223 ACRES |
-| Treecourt Unleashed | (314) 930-5753 | 💎 Premium — 11 acre dog park |
-| STL Animal Emergency | (314) 822-7600 | Ready — 24/7 vet, 2 locations |
-| The Doghaus | (314) 620-0848 | Ready — dog bar in Soulard |
-
-**Happy Hounds confirmed CLOSED** — removed from list.
-
-### Asset Inventory (Day 3 End)
-| Category | Count |
-|----------|-------|
-| PDFs Generated | 60+ |
-| Commercial Leads | 40+ (6 whale accounts phone-ready) |
-| Tidy Tails Ads | 35+ |
-| Shed Ads | 35+ |
-| Skills Built | 14 |
-| Video Scripts | 20+ |
-| Chief Checks | 24 (100/100 health) |
-
-### Dashboard Improvements
-- **Collapsible sections** by business area (TJ requested — things were scattered)
-- **Today's Actions** expanded, reference material collapsed
-- **Execution.html** added to track deployments
-- Structure: Action items → Categories → Archive
-
-### What Day 3 Taught Me
-1. **Arsenal is complete.** Stop building, start deploying.
-2. **Vanity metrics feel good but don't pay.** "85 assets" means nothing if none are live.
-3. **Execution Tracker forces honesty.** Can't hide behind productivity theater.
-4. **Weekend Sprint is ready.** 21 minutes of TJ's time could start the flywheel:
-   - Post 1 ad to FB group (3 min)
-   - Call 1 whale lead (15 min)
-   - Text 1 customer for review (3 min)
-
-### What Needs to Happen Now
-**Human execution required:**
-- [ ] TJ: Post 1 Spring Cleaning ad to FB group
-- [ ] TJ: Claim Google Business Profile
-- [ ] TJ: Text existing customers for reviews
-- [ ] Jamie: Call 1 enriched whale lead
-
-**Systems are ready. Humans need to pull the trigger.**
-
-### Key Dates Updated
-- 2026-02-19: Day 3 — 22+ tasks, Execution Tracker, Competitor Intel, Lead Enrichment, reality check on build vs deploy gap
-- 2026-02-20: Day 4 — 18 tasks, Execution Arsenal complete, Weekend Command Center built, all tools staged for weekend
-
----
-
-## 📊 Day 4 Learnings (Feb 20, 2026)
-
-### The Shift: Build → Enable
-Day 3's "85 built, 0 deployed" reality check drove Day 4's strategy: **stop adding content, start removing friction.**
-
-### Execution Arsenal Created
-| Tool | Purpose |
-|------|---------|
-| Weekend Command Center | ONE page, 7 missions, all links |
-| Weekend Sprint Playbook | 5 sprints, 45 min total |
-| GBP No-Excuses Kit | Every field pre-filled, copy buttons |
-| Friday 4PM Floor Closer | Phone-sized objection handler |
-| Shed Saturday Domination | 5 fresh Marketplace listings |
-| Brewery Blitz | 7 breweries, new segment |
-| Competitor Capture | Pawfect 404 = our opportunity |
-
-### Key Intelligence: Competitor Down
-**Pawfect Waste Solutions (pooperscooperstl.com) = 404 Error**
-- Their customers are searching for alternatives NOW
-- 30-60 day window before they lock in elsewhere
-- Capture campaign created with ready-to-post ads
-
-### Brewery Segment Opened
-7 dog-friendly breweries with outdoor patios discovered:
-- Urban Chestnut (2 locations = multi-contract potential)
-- Rockwell Beer, 4 Hands, Side Project, Schlafly, Civil Life, Perennial
-- Perfect commercial accounts: recurring need, weekend foot traffic
-- Call sheet with custom pitches for each
-
-### Asset Totals (Day 4 End)
-| Category | Count |
-|----------|-------|
-| Total PDFs | 109 |
-| Total HTML Tools | 94 |
-| Commercial Leads | 43 (7 whale accounts phone-ready + 7 breweries) |
-| Hourly Tasks (Day 4) | 18 |
-
-### What's Staged for Weekend
-**TJ (45 min total):**
-- Claim GBP (15 min) → Kit ready
-- Text 3 customers for reviews (5 min) → Templates ready
-- Post 1 FB ad (3 min) → Copy-paste ready
-- Post 2 Instagram stories (10 min) → Blitz pack ready
-- Post 3 shed listings (15 min) → Shed Saturday ready
-
-**Jamie (35 min total):**
-- Call 2 whale accounts (20 min) → Scripts + phones ready
-- Call 2 breweries (15 min) → Brewery Blitz ready
-
-### Day 4 Lessons
-1. **Execution enablement > content.** We had enough content 3 days ago.
-2. **One page > many pages.** Command Center > scattered tools.
-3. **Phone-sized matters.** Jamie + TJ use mobile. Design for 375px.
-4. **Copy buttons = no excuses.** Every click saved is one less reason to stop.
-5. **Dead competitors = time-sensitive.** Move fast on Pawfect's customers.
-6. **Friday night = weekend staging.** The work we do now sets up Saturday success.
-
-### Weekend Success Metrics
-If TJ + Jamie execute all 7 missions:
-- GBP live (passive lead gen starts)
-- 1-3 Google reviews (social proof)
-- 2-4 ad responses (pipeline)
-- 2-4 commercial conversations (whale hunting)
-- Build → Deploy gap starts closing
-
-**Status: Arsenal complete. Execution weekend begins.**
-
----
-
-## 📊 Day 5 Learnings (Feb 21, 2026) — Week 1 Close
-
-### The Week 1 Retrospective (9 PM Reality Check)
-At 9 PM Saturday, I stopped building and did an honest assessment:
-
-| Metric | Week 1 Total |
-|--------|--------------|
-| PDFs created | 115+ |
-| HTML tools | ~50 |
-| Commercial leads | 68 |
-| Hourly tasks | 80+ |
-| **Actually deployed** | ❓ Unknown |
-| **New customers** | ❓ Unknown (likely 0) |
-
-**The Problem:**
-We kept building "one more tool" instead of deploying. Built 4 tools ABOUT execution instead of getting 1 thing executed. Dashboard has 90+ links — paradox of choice.
-
-### Day 5 Stats
-| Metric | Value |
-|--------|-------|
-| Hourly tasks | **13** (most productive day yet) |
-| Task rotation | 8 TT, 1 Sheds, 2 Systems, 2 Content |
-
-### What I Built (and probably shouldn't have)
-- Sunday Neighbor Blitz Kit
-- Weather Window Ads
-- Nextdoor Domination Kit
-- Review Text Blitz
-- Weekend Flash Campaign
-- GBP Competitive Analysis
-- Lead Response Toolkit
-- Weekend Status Board
-- Saturday Shed Blitz
-- Sunday Scooping Kit
-- Sunday Success Briefing
-- Saturday Night Social Drop
-- Week 1 Retrospective + Monday Kickoff
-
-13 tasks is insane productivity. But TJ can't use 13 tools in one day. The 10 PM task was documenting this — NOT building tool #14.
-
-### Week 2 Must Be Different
-**What changes:**
-- No new PDFs until current ones are used
-- "Did you do it?" mode before building anything new
-- Archive 90% of dashboard tools
-- Weekly 5-minute debrief needed
-- Ask about execution, not suggest more tools
-
-**Monday Kickoff (Week 2 North Star):**
-1. GBP Claimed (15 min)
-2. One FB Post (5 min)
-3. One Commercial Call (15 min)
-
-**Total: 35 minutes. That's the ENTIRE Monday requirement.**
-
-### Key Insight: Sunday Is Scooping Day
-TJ works 9am-4pm scooping 11 yards. That's his ACTUAL revenue-generating work. I should:
-- Send ONE short briefing at 8:30 AM
-- Stay quiet while he's working
-- Not interrupt with dashboards
-- Document what actually happens (if anything)
-
-### The Real Metric
-Week 1: How many tools can I build? (Answer: 115+)
-Week 2: How many tools did TJ use? (Answer: TBD)
-
-If the answer to Week 2's question is still "unknown" by Friday, we have a feedback loop problem, not a content problem.
-
----
-
-## 📊 Day 8 Learnings (Feb 25, 2026) — Week 2 Day 3
-
-### The Productivity Explosion
-**17 hourly tasks in one day.** Most productive day ever. Output included:
-- 5 AM: Feedback infrastructure (checkpoint system)
-- 7 AM: POOP 911 confirmed DEAD (404), Little Stinkers only in St. Charles
-- 11 AM: Online presence audit → No GBP, No Yelp (critical gap)
-- 1 PM: SSL EXPIRED discovery (site showed security warnings for 6 days!)
-- 6-10 PM: Thursday + Friday FB posts staged, Consulting DM script, Week 2 tracker
-
-### The Critical Discoveries
-| Discovery | Impact |
-|-----------|--------|
-| **SSL Expired** | Website was scaring visitors for 6 days — losing leads daily |
-| **No GBP** | Invisible on Google Maps — 60%+ of local searches miss us |
-| **POOP 911 = Dead** | O'Fallon only has Little Stinkers now (easier territory) |
-| **STL County = Blue Ocean** | ZERO competitors with active presence |
-
-### Memory Consolidation (11 PM)
-Realized memory files were ballooning:
-- franklin-tasks.md: 4,405 lines → 1,955 lines (Week 2 only)
-- 12 fragmented competitor intel files → archived
-- 58 memory files → 36 (cleaner)
-
-**Week 1 archived to:** `memory/archive/franklin-tasks-week1.md`
-**Competitor intel history:** `memory/archive/competitor-intel-history/`
-
-### Key Insight
-17 tasks is insane output. But the REAL question: Did TJ fix the SSL and claim GBP? Those 2 things matter more than all 17 tasks combined.
-
-### Key Dates Updated
-- 2026-02-21: Day 5 — 13 tasks, Week 1 Retrospective
-- 2026-02-22: Day 6 — Sunday scooping day
-- 2026-02-25: Day 8 — **17 tasks** (record), SSL/GBP critical discoveries, memory consolidation
+### Archives
+- `memory/archive/franklin-tasks-week1.md` — Week 1 hourly tasks
+- `memory/archive/franklin-tasks-week3-mar2-4.md` — Week 3 Mar 2-4 tasks
+- `memory/archive/competitor-intel-history/` — Historical competitor data
