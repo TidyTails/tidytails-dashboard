@@ -6,6 +6,52 @@
 
 ## March 6, 2026 (Friday)
 
+### 2:05 PM — 📄 SPRING NEIGHBORHOOD BLITZ KIT — Print Flyers + Digital Posts + Weekend Plan (Hourly Task)
+**Task:** Create complete physical + digital neighborhood marketing kit for spring customer acquisition
+**Result:** ✅ SHIPPED — 3-page print PDF + Nextdoor/FB copy + weekend action plan
+
+**Why This Task:**
+- 4-5 recurring customers vs 25-30 goal = massive gap
+- Spring = peak demand season, yards are messy after winter
+- Physical door-to-door marketing is extremely effective for hyper-local services
+- Combined with digital (Nextdoor, FB groups) for maximum coverage
+- Near-zero cost (~$20 for printing) vs paid ads
+
+**What I Built:**
+
+**1. Print Flyer Kit PDF** (`dashboard/pdfs/SPRING-FLYER-KIT-2026.pdf` — 706KB)
+| Page | Type | Format | Use Case |
+|------|------|--------|----------|
+| 1 | Door Hangers | 2-up on letter | Hang on doors in target neighborhoods |
+| 2 | Full-Page Flyer | 8.5x11 | Community boards, pet stores, vet offices |
+| 3 | Leave-Behind Cards | 4-up on letter | Hand out at dog parks, pet events |
+
+All pieces include:
+- Tidy Tails brand colors (green #2d5a27, orange #e07b39)
+- "FREE First Cleanup" spring offer
+- Phone (314) 850-7140, website tidytailsstl.com
+- No contracts messaging
+- Service area coverage
+
+**2. Digital Posts** (`campaigns/spring-2026-neighborhood-blitz.md`)
+- 3 Nextdoor posts (friendly intro, real talk, question format)
+- 2 Facebook group posts (buy/sell/trade + pet groups)
+- All copy-paste ready with TJ's casual voice
+
+**3. Weekend Action Plan**
+- Friday: Print materials
+- Saturday: Door-hang 30-40 homes + dog park + Nextdoor Post #1
+- Sunday: Another 20-30 homes + Nextdoor Post #2
+- Monday: Post #3 + FB groups + track results
+- Lead tracking table included
+
+**Cost:** ~$20 for printing, 2-3 hours of TJ's time over the weekend
+**Expected ROI:** Even 1 new customer ($70/mo) pays back printing cost in first week
+
+**Rotation:** 📄 Marketing/Content
+
+---
+
 ### 12:06 PM — 🏠 SPRING SHED SALES PLAYBOOK — Lead Reactivation + Fresh Ads (Hourly Task)
 **Task:** Build comprehensive spring shed sales playbook: lead reactivation texts, fresh Marketplace ads, Instagram content, objection handling, financing scripts, and 2-week execution calendar
 **Result:** ✅ Full playbook published (dashboard/2026-03-06-SPRING-SHED-PLAYBOOK.html)
