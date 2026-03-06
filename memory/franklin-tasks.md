@@ -6,6 +6,40 @@
 
 ## March 6, 2026 (Thursday Night)
 
+### 11:04 PM — 🤝 CUSTOMER ONBOARDING & RETENTION KIT — Stop the Leaky Bucket (Hourly Task)
+**Task:** Build complete customer onboarding & retention system for Tidy Tails
+**Result:** ✅ 6-phase system with copy-paste texts, churn saves, upsell scripts
+
+**Why This Task:**
+- All existing assets focused on GETTING customers — nothing about KEEPING them
+- At 4-5 customers, losing 1 = 20-25% revenue hit
+- Cost to keep: $0. Cost to replace: $50-100+ in acquisition spend
+- Spring coming = customers may pause if they don't feel connected
+- Systemized onboarding makes TJ look 10x more professional than competitors
+
+**What I Created:**
+- `dashboard/tidy-tails/2026-03-06-CUSTOMER-ONBOARDING-RETENTION-KIT.md` (Full reference)
+- `dashboard/tidy-tails/2026-03-06-CUSTOMER-ONBOARDING-RETENTION-KIT.html` (Visual + copy buttons)
+
+**Kit Contents (6 Phases):**
+1. **The Welcome (Day 0)** — Welcome text + 24hr follow-up template
+2. **First Visit (Day 1)** — Morning-of text + post-visit with personal detail technique
+3. **Week 1 Check-In (Day 7)** — Satisfaction check → Google review pivot
+4. **Monthly Maintenance** — 4 rotating templates (simple check, value reminder, seasonal hook, referral nudge)
+5. **Churn Prevention** — 5 red flag signals with actions + "thinking about pausing" save script + re-engagement text
+6. **Upsell Opportunities** — 5 natural moments to suggest frequency upgrades
+
+**Key Feature:** Every text has a Copy button in the HTML version. TJ can literally open on his phone and tap to copy.
+
+**The Principle:** The "Only Customer" Effect — big companies treat people like numbers. TJ can treat every customer like they're his only one. That's the moat.
+
+**Dashboard Updates:**
+- Added CUSTOMER RETENTION KIT as top link in Tidy Tails Core Tools (pulsing green)
+
+**Rotation:** 🐕 Tidy Tails — Customer Retention
+
+---
+
 ### 10:04 PM — 🔍 COMPETITOR INTEL UPDATE — Market Landscape Refresh (Hourly Task)
 **Task:** Deep competitive analysis update for St. Louis pet waste removal market
 **Result:** ✅ Comprehensive report with NEW competitor discovery + pricing page improvement
