@@ -6,6 +6,59 @@
 
 ## March 6, 2026 (Friday)
 
+### 10:05 AM — ⭐ GOOGLE REVIEW COLLECTION SYSTEM — From 0 to Map Pack (Hourly Task)
+**Task:** Build a complete Google review collection system — review landing page + 6 text templates + follow-up sequence + strategy guide
+**Result:** ✅ Review page live at tidytailsstl.com/review, full system published (research/2026-03-06-GOOGLE-REVIEW-SYSTEM.html)
+
+**Why This Task:**
+- TJ has **0 Google reviews** despite 4-5 happy recurring customers
+- Google reviews are the #1 ranking factor for local map pack (top 3 results)
+- Competitors: DoodyCalls ~15, Yucko's ~12, Poop2Scoop ~8, POOP 911 ~5
+- Just 3-5 reviews would make Tidy Tails visible in Google Maps searches
+- City landing pages built earlier today are useless if the GBP has zero social proof
+- This is the highest-ROI 1-hour task possible: costs $0, requires only texts from TJ
+
+**What I Built:**
+
+1. **Review Landing Page** (tidytailsstl.com/review)
+   - Mobile-first, clean design matching site branding
+   - Guides customers through leaving a review with prompts
+   - Direct link to Google review form
+   - noindex (for customers only, not SEO)
+   - LIVE: pushed to TidyTails/tidytails-website (commit 75ef395)
+
+2. **6 Text Message Templates** (copy-paste ready with 📋 buttons):
+   - Template 1: Direct Ask — best for close customers
+   - Template 2: Check-In First — natural conversation opener
+   - Template 3: Honest Story — most compelling, shares the journey
+   - Template 4: After Great Service — strike while the iron is hot
+   - Template 5: Double Ask — review + referral combo
+   - Template 6: Partner/Spouse — when they handle communication
+
+3. **7-Day Follow-Up Sequence:**
+   - Day 1 (Sunday): Send right after service
+   - Day 3-4 (Tue/Wed): Check-in style follow-up
+   - Day 7 (Next Sunday): In-person ask (highest conversion)
+   - After Day 7: Stop — never make it awkward
+
+4. **Review Response Templates** (for replying to reviews on Google)
+5. **Competitor Review Benchmarks** (what TJ needs to beat)
+6. **Review Milestone Strategy** (1→5→10→20 reviews and what each unlocks)
+7. **Ongoing New Customer Review Workflow** (ask after 3rd service, 1 month, quarterly)
+
+**Strategic Impact:**
+- 3 reviews this week = visible on Google Maps for "pet waste removal St. Louis"
+- 5 reviews = map pack eligible (top 3 results people actually click)
+- 10 reviews = competitive with DoodyCalls, Poop2Scoop
+- Each review also boosts the city landing pages' local authority
+- Cost: $0. Time for TJ: 5 minutes of texting.
+
+**Dashboard:** `research/2026-03-06-GOOGLE-REVIEW-SYSTEM.html`
+**Website:** `tidytailsstl.com/review`
+**Rotation:** 🐕 Tidy Tails — Customer Acquisition / Local SEO
+
+---
+
 ### 9:04 AM — 🔍 LIVE COMPETITOR INTELLIGENCE SWEEP — Full STL Market Analysis (Hourly Task)
 **Task:** Research every pet waste removal competitor in STL, analyze pricing, services, strengths, weaknesses, and geographic coverage
 **Result:** ✅ Comprehensive competitor intelligence report published (research/2026-03-06-STL-COMPETITOR-INTELLIGENCE.html)
