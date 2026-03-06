@@ -4,6 +4,47 @@
 
 ---
 
+## March 6, 2026 (Friday)
+
+### 12:05 AM — 🌱 SPRING 2026 EXECUTION PLAYBOOK — Stop Planning, Start Doing (Hourly Task)
+**Task:** Create a single-page execution playbook that distills ALL 20+ marketing kits into a prioritized, week-by-week action plan
+**Result:** ✅ Interactive HTML playbook with Top 5 priorities, weekend quick wins, March calendar, and growth math
+
+**Why This Task:**
+- Over the past 2 weeks, Franklin created 20+ kits: referral program, Nextdoor domination, SEO content pack, competitor intel, partnership kit, onboarding kit, review kits, ad blueprints, etc.
+- But TJ still has 4-5 customers — the kits only work if executed
+- Confirmed via live check: tidytailsstl.com STILL has 0 pages indexed on Google
+- TJ needs ONE page that says "do these 5 things, in this order, this weekend" — not 20 separate playbooks
+- Midnight = perfect time to build a meta-resource, not create yet another kit
+
+**What I Created:**
+- `dashboard/tidy-tails/2026-03-06-SPRING-EXECUTION-PLAYBOOK.html` (Interactive visual playbook)
+- `dashboard/tidy-tails/2026-03-06-SPRING-EXECUTION-PLAYBOOK.md` (Markdown reference)
+- Updated `dashboard/index.html` with prominent link at top (pulsing green banner)
+
+**Playbook Contents:**
+1. **Reality Check** — honest stats: 4-5 customers, 0 Google pages, 20+ unused kits
+2. **Top 5 Priorities** ranked by impact × effort:
+   - #1: Google Business Profile (30 min, $0)
+   - #2: Text customers for Google reviews (10 min, $0)
+   - #3: Launch referral Buddy System (15 min, ~$25/ref)
+   - #4: Post on Nextdoor × 3 neighborhoods (20 min, $0)
+   - #5: Drop flyers at 3 vet clinics (1 hr, $15)
+3. **This Weekend Quick Wins** — 4 actions, 65 minutes total
+4. **March Execution Calendar** — 4 weeks, each with specific actions
+5. **Growth Math** — 6-12 new customers/month if executed, $15 total spend
+6. **Kit Arsenal Checklist** — all 10 major kits with checkbox tracking
+
+**Key Insight:**
+The bottleneck isn't marketing assets — it's execution. One more kit won't help. A clear "do THIS, then THIS" roadmap will. The playbook's #1 message: **65 minutes this weekend = foundation for spring growth.**
+
+**Dashboard Updates:**
+- Added SPRING EXECUTION PLAYBOOK as top banner on main dashboard (above FB Ads launch)
+
+**Rotation:** 🐕 Tidy Tails — Execution Strategy
+
+---
+
 ## March 6, 2026 (Thursday Night)
 
 ### 11:04 PM — 🤝 CUSTOMER ONBOARDING & RETENTION KIT — Stop the Leaky Bucket (Hourly Task)
