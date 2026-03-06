@@ -6,6 +6,47 @@
 
 ## March 6, 2026 (Friday)
 
+### 11:04 AM — 🌱 SPRING REFERRAL BLITZ — Turn 5 Customers Into 15 (Hourly Task)
+**Task:** Build a complete referral program + multi-channel spring marketing content (text templates, Nextdoor posts, Instagram captions, FB group posts, 7-day execution plan)
+**Result:** ✅ Full system published to dashboard (2026-03-06-SPRING-REFERRAL-BLITZ.html)
+
+**Why This Task:**
+- Today's been SEO-heavy (city pages, competitor intel, review system) — time to shift to direct customer acquisition
+- TJ has 5 happy customers with ZERO service churn — untapped referral goldmine
+- Spring = perfect timing (snow melting reveals 3 months of poop, every dog owner is thinking about it)
+- TJ's #1 stated need is "copy-paste posts ready to execute" for free marketing channels
+- Referrals close at 3-5x the rate of cold leads — warmest pipeline available
+
+**What I Built:**
+1. **Referral Offer Structure** — $25 off for referrer, free first cleanup for new customer, expires March 31
+2. **5 Text Templates** (copy-paste with 📋 buttons) for texting existing customers:
+   - Casual Ask, Spring Hook, Direct Ask, Humor Approach, Neighborhood Share
+3. **3 Nextdoor Posts** — Introduction, Spring Special, Social Proof Ask
+   - Includes Nextdoor Business Page setup instructions
+4. **4 Instagram Captions** — Before/After, Real Talk, Referral Promo, Reel Script (15-sec)
+5. **2 Bonus FB Group Posts** — Tag-a-Friend, Neighborhood Hero
+6. **7-Day Execution Plan** — day-by-day, ~35 min total time commitment
+7. **Referral Tracker** — simple table for tracking who referred who
+8. **4 Objection Responses** — "don't know anyone," "how does credit work," etc.
+9. **What NOT To Do** — common mistakes to avoid
+
+**The Math:**
+- 5 customers × 2 referrals = 10 warm leads
+- 10 leads × 30% close = 3 new customers
+- 3 × $70/month = $210/month recurring revenue
+- Cost: $0 (or $125 in referral credits if all convert)
+
+**Strategic Impact:**
+- This is the FASTEST path to new customers — leverages existing trust, costs nothing
+- Nextdoor is the #1 channel TJ isn't using — huge for local services
+- 7-day plan requires only 5 min/day — fits TJ's schedule at work
+- Combined with today's review system + city pages = full spring marketing stack
+
+**Dashboard:** `dashboard/2026-03-06-SPRING-REFERRAL-BLITZ.html`
+**Rotation:** 🐕 Tidy Tails — Customer Acquisition / Referral Marketing
+
+---
+
 ### 10:05 AM — ⭐ GOOGLE REVIEW COLLECTION SYSTEM — From 0 to Map Pack (Hourly Task)
 **Task:** Build a complete Google review collection system — review landing page + 6 text templates + follow-up sequence + strategy guide
 **Result:** ✅ Review page live at tidytailsstl.com/review, full system published (research/2026-03-06-GOOGLE-REVIEW-SYSTEM.html)
