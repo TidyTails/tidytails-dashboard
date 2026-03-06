@@ -4,6 +4,30 @@
 
 ---
 
+## March 6, 2026 — Friday Fresh Angles (9 AM Task)
+
+**Shed-Mar86 - "Friday Night Garage Walk" (FB Marketplace)**
+- Hook: TGIF energy → weekend action, Friday night garage stare routine
+- Key: Relatable Friday habit, one-text-one-quote simplicity
+- Used: TBD (Marketplace + Groups Fri 3/6 PM)
+
+**Shed-Mar87 - "March Madness, Garage Edition" (FB Marketplace + Groups)**
+- Hook: NCAA bracket humor — clutter vs car tournament
+- Key: Seasonal tie-in, humor, bracket format
+- Used: TBD (Marketplace + Groups Sat 3/7 AM)
+
+**Shed-Mar88 - "The $5/Day Shed" (FB Marketplace + Nextdoor)**
+- Hook: Daily cost reframe — less than coffee
+- Key: $5/day anchor, cheapest square footage framing
+- Used: TBD (Marketplace + Nextdoor Sun 3/8 AM)
+
+**Shed-Mar89 - "Your Dog Has a Bed. Your Mower Doesn't." (FB Marketplace + IG)**
+- Hook: Absurd comparison — pets have homes, mower doesn't
+- Key: Humor, equipment protection, parking reclaim
+- Used: TBD (Marketplace + Instagram Mon 3/9)
+
+---
+
 ## March 5, 2026 — Spring Competitive Positioning Ads (4 PM Task)
 
 **Shed-Mar81 - "Built, Not Dropped" (FB Marketplace)**
