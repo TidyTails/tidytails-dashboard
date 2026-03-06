@@ -4,6 +4,31 @@
 
 ---
 
+## March 6, 2026 (Thursday Night)
+
+### 10:04 PM — 🔍 COMPETITOR INTEL UPDATE — Market Landscape Refresh (Hourly Task)
+**Task:** Deep competitive analysis update for St. Louis pet waste removal market
+**Result:** ✅ Comprehensive report with NEW competitor discovery + pricing page improvement
+
+**Why This Task:**
+- Previous competitor intel was from Feb 21 (2+ weeks old)
+- Spring 2026 = peak signup season, need to know who we're up against
+- Late night = perfect for research, no outreach needed
+
+**Key Findings:**
+1. **🚨 NEW COMPETITOR: Dog Doody Defenders** — Florissant/Chesterfield, weekly at $17, Yelp #3
+2. **Scoop Soldiers** — National franchise now has STL page (low threat)
+3. **Tidy Tails' $70/mo = $16.15/visit** — cheaper than every local competitor
+
+**Created:**
+- `dashboard/research/competitor-intel-2026-03-06.md` (full report)
+- `dashboard/research/competitor-intel-2026-03-06.html` (visual dashboard)
+- Updated `dashboard/tidy-tails/pricing.html` with per-visit breakdown callout
+
+**Rotation:** 🐕 Tidy Tails — Competitive Intelligence
+
+---
+
 ## March 5, 2026 (Thursday — Week 3 Day 4)
 
 ### 8:05 PM — 🔍 SEO CONTENT PACK: SERVICE AREA PAGES + BLOG POSTS (Hourly Task)
