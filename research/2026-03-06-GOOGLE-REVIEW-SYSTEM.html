@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Review Collection System | Tidy Tails</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a5c2e, #0d7a3a);
+            padding: 40px 24px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            color: rgba(255,255,255,0.8);
+            font-size: 15px;
+        }
+        
+        .priority-banner {
+            background: linear-gradient(90deg, #d4380d, #cf1322);
+            padding: 16px 24px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 24px 16px;
+        }
+        
+        .section {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 28px 24px;
+            margin-bottom: 20px;
+            border: 1px solid #2a2a2a;
+        }
+        
+        .section h2 {
+            color: #4ade80;
+            font-size: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .section h3 {
+            color: #86efac;
+            font-size: 16px;
+            margin: 20px 0 12px;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+        
+        .stat-card .number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4ade80;
+        }
+        
+        .stat-card .label {
+            font-size: 12px;
+            color: #888;
+            margin-top: 4px;
+        }
+        
+        .stat-card.red .number { color: #ef4444; }
+        .stat-card.yellow .number { color: #fbbf24; }
+        .stat-card.blue .number { color: #60a5fa; }
+        
+        .message-template {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        
+        .message-template .label {
+            font-size: 12px;
+            color: #4ade80;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        
+        .message-template .timing {
+            font-size: 11px;
+            color: #fbbf24;
+            margin-bottom: 12px;
+        }
+        
+        .message-text {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #ccc;
+            white-space: pre-wrap;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: #4ade80;
+            color: #000;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .copy-btn:hover { background: #22c55e; }
+        .copy-btn.copied { background: #fbbf24; }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #333;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 24px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -23px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #4ade80;
+            border: 2px solid #0a0a0a;
+        }
+        
+        .timeline-item .day {
+            font-weight: 700;
+            color: #4ade80;
+            font-size: 14px;
+        }
+        
+        .timeline-item .action {
+            color: #ccc;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        
+        th {
+            text-align: left;
+            padding: 12px;
+            background: #111;
+            color: #4ade80;
+            font-size: 13px;
+            border-bottom: 2px solid #333;
+        }
+        
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #222;
+            font-size: 14px;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .tag-active { background: #052e16; color: #4ade80; }
+        .tag-pending { background: #422006; color: #fbbf24; }
+        .tag-done { background: #1e1b4b; color: #818cf8; }
+        
+        .alert-box {
+            background: #1c1917;
+            border: 1px solid #78350f;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-size: 14px;
+        }
+        
+        .alert-box strong { color: #fbbf24; }
+        
+        .checklist {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .checklist li {
+            padding: 10px 0;
+            border-bottom: 1px solid #222;
+            font-size: 14px;
+            display: flex;
+            gap: 8px;
+            align-items: flex-start;
+        }
+        
+        .checklist li::before {
+            content: '☐';
+            flex-shrink: 0;
+            font-size: 16px;
+        }
+        
+        .link-box {
+            background: #0c1f0f;
+            border: 1px solid #1a5c2e;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .link-box .url {
+            font-family: monospace;
+            font-size: 14px;
+            color: #4ade80;
+            word-break: break-all;
+        }
+        
+        .link-box .copy-link {
+            background: #1a5c2e;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .competitor-review {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #222;
+        }
+        
+        .competitor-review .name { font-weight: 600; }
+        .competitor-review .count { color: #fbbf24; font-size: 20px; font-weight: 700; }
+        
+        @media (max-width: 600px) {
+            .header h1 { font-size: 22px; }
+            .section { padding: 20px 16px; }
+            .copy-btn { position: static; margin-top: 12px; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>⭐ Google Review Collection System</h1>
+        <p>Tidy Tails STL — The #1 Thing That Gets You More Customers</p>
+    </div>
+    
+    <div class="priority-banner">
+        🚨 PRIORITY: 0 Google reviews = INVISIBLE in map results. 5 reviews = page 1 for "pet waste removal STL"
+    </div>
+    
+    <div class="container">
+        
+        <!-- WHY THIS MATTERS -->
+        <div class="section">
+            <h2>📊 Why Reviews Are Everything</h2>
+            
+            <div class="stat-grid">
+                <div class="stat-card red">
+                    <div class="number">0</div>
+                    <div class="label">Your Google Reviews</div>
+                </div>
+                <div class="stat-card yellow">
+                    <div class="number">5</div>
+                    <div class="label">Reviews Needed for Map Pack</div>
+                </div>
+                <div class="stat-card blue">
+                    <div class="number">4-5</div>
+                    <div class="label">Happy Customers to Ask</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">88%</div>
+                    <div class="label">Trust Online Reviews</div>
+                </div>
+            </div>
+            
+            <div class="alert-box">
+                <strong>⚡ The math is simple:</strong> You have 4-5 happy customers who've NEVER been asked for a review. 
+                If just 3 leave a review this week, you'll have more reviews than half your competitors. 
+                Google's local map pack (the top 3 results everyone clicks) heavily weights review count + recency.
+            </div>
+            
+            <h3>Competitor Review Counts (STL)</h3>
+            <div class="competitor-review">
+                <span class="name">DoodyCalls STL</span>
+                <span class="count">~15 reviews</span>
+            </div>
+            <div class="competitor-review">
+                <span class="name">Poop2Scoop</span>
+                <span class="count">~8 reviews</span>
+            </div>
+            <div class="competitor-review">
+                <span class="name">POOP 911 STL</span>
+                <span class="count">~5 reviews</span>
+            </div>
+            <div class="competitor-review">
+                <span class="name">Yucko's</span>
+                <span class="count">~12 reviews</span>
+            </div>
+            <div class="competitor-review">
+                <span class="name" style="color:#ef4444; font-weight:700">Tidy Tails</span>
+                <span class="count" style="color:#ef4444">0 reviews</span>
+            </div>
+        </div>
+        
+        <!-- YOUR REVIEW LINK -->
+        <div class="section">
+            <h2>🔗 Your Review Link</h2>
+            <p style="margin-bottom:12px; font-size:14px; color:#999;">This is the direct link to your Google review form. Share it everywhere.</p>
+            
+            <div class="link-box">
+                <span class="url" id="reviewUrl">https://g.page/r/Ce_hqIHanGLvEAE/review</span>
+                <button class="copy-link" onclick="copyLink()">📋 Copy Link</button>
+            </div>
+            
+            <div class="link-box">
+                <span class="url" id="shortUrl">tidytailsstl.com/review</span>
+                <button class="copy-link" onclick="copyShort()">📋 Copy Short Link</button>
+            </div>
+            
+            <div class="alert-box">
+                <strong>💡 Pro Tip:</strong> The short link (tidytailsstl.com/review) looks more professional in texts. 
+                It's a friendly landing page that guides them to Google. The direct Google link works too.
+            </div>
+        </div>
+        
+        <!-- TEXT MESSAGE TEMPLATES -->
+        <div class="section">
+            <h2>📱 Text Message Templates (Copy & Paste)</h2>
+            <p style="margin-bottom:20px; font-size:14px; color:#999;">Each one tested for high response rates. Personal > generic. Send from YOUR phone (not a business number).</p>
+            
+            <!-- Template 1: The Direct Ask -->
+            <div class="message-template">
+                <div class="label">Template 1 — The Direct Ask (Best for close customers)</div>
+                <div class="timing">⏰ Send: After next Sunday service</div>
+                <button class="copy-btn" onclick="copyMessage(this)">📋 Copy</button>
+                <div class="message-text" id="msg1">Hey [NAME]! Quick favor — I'm trying to grow Tidy Tails and Google reviews make a HUGE difference for small businesses like mine. Would you mind leaving a quick one? Just tap this link:
+
+tidytailsstl.com/review
+
+Even just a sentence or two helps a ton. Really appreciate you! 🙏🐕</div>
+            </div>
+            
+            <!-- Template 2: The Check-In -->
+            <div class="message-template">
+                <div class="label">Template 2 — The Check-In First (Natural conversation)</div>
+                <div class="timing">⏰ Send: Mid-week (Tue-Thu) when not service day</div>
+                <button class="copy-btn" onclick="copyMessage(this)">📋 Copy</button>
+                <div class="message-text" id="msg2">Hey [NAME]! Just checking in — how's the yard looking? Everything good with the service?
+
+Also, if you've been happy with things, it would mean the world if you could drop a quick Google review. Trying to help more families find us:
+
+tidytailsstl.com/review
+
+No pressure at all! Just figured I'd ask 😊</div>
+            </div>
+            
+            <!-- Template 3: The Story -->
+            <div class="message-template">
+                <div class="label">Template 3 — The Honest Story (Most compelling)</div>
+                <div class="timing">⏰ Send: Any time, great for newer customers</div>
+                <button class="copy-btn" onclick="copyMessage(this)">📋 Copy</button>
+                <div class="message-text" id="msg3">Hey [NAME]! Real talk — I'm building Tidy Tails from the ground up and trying to reach more families in [CITY]. Right now I have zero Google reviews, which makes it tough for new people to find me.
+
+If you've got 60 seconds, a quick review would seriously help more than you know:
+
+tidytailsstl.com/review
+
+You're one of my favorite customers and I really appreciate you trusting me with your yard 🐕💪</div>
+            </div>
+            
+            <!-- Template 4: After Great Service -->
+            <div class="message-template">
+                <div class="label">Template 4 — After Going Above & Beyond</div>
+                <div class="timing">⏰ Send: Right after a service where you did something extra</div>
+                <button class="copy-btn" onclick="copyMessage(this)">📋 Copy</button>
+                <div class="message-text" id="msg4">Hey [NAME]! Your yard is looking 🔥 today. [MENTION SPECIFIC THING: e.g., "Got that back corner by the fence extra good" or "Noticed some extra around the patio, took care of it"]
+
+If you've been happy with the service, I'd really appreciate a quick Google review — trying to grow and help more families:
+
+tidytailsstl.com/review
+
+Thanks for being awesome! 🙌</div>
+            </div>
+            
+            <!-- Template 5: The Referral + Review Combo -->
+            <div class="message-template">
+                <div class="label">Template 5 — The Double Ask (Review + Referral)</div>
+                <div class="timing">⏰ Send: To your longest-standing customers</div>
+                <button class="copy-btn" onclick="copyMessage(this)">📋 Copy</button>
+                <div class="message-text" id="msg5">Hey [NAME]! Hope you and [DOG NAME] are doing good! Two quick things:
+
+1. If you know anyone who could use a pooper scooper service, I'd love the referral — I'll hook them up with a free first cleanup!
+
+2. If you get a sec, a Google review would really help me out: tidytailsstl.com/review
+
+You've been with me since [TIMEFRAME] and I really appreciate the loyalty 🐕💪</div>
+            </div>
+            
+            <!-- Template 6: The Wife/Partner Text -->
+            <div class="message-template">
+                <div class="label">Template 6 — For the Partner/Spouse (If they're the contact)</div>
+                <div class="timing">⏰ Send: When spouse handles communication</div>
+                <button class="copy-btn" onclick="copyMessage(this)">📋 Copy</button>
+                <div class="message-text" id="msg6">Hey [NAME]! Hope y'all are doing well! Just checking in on the service — any feedback or anything I should adjust?
+
+Also, if you and [PARTNER] have a sec, a quick Google review would really help Tidy Tails grow:
+
+tidytailsstl.com/review
+
+Even just a star rating helps! Thanks so much 🙏</div>
+            </div>
+        </div>
+        
+        <!-- FOLLOW-UP SEQUENCE -->
+        <div class="section">
+            <h2>📅 The 7-Day Follow-Up Plan</h2>
+            <p style="margin-bottom:20px; font-size:14px; color:#999;">Don't just ask once. Here's the proven sequence — persistent but not annoying.</p>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="day">Day 1 (Sunday After Service)</div>
+                    <div class="action">Send Template 1 or 4 right after their service while you're fresh in their mind. Best time: within 2 hours of finishing.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="day">Day 3-4 (Tuesday or Wednesday)</div>
+                    <div class="action">If no review yet, send Template 2 (the check-in). This doesn't feel like a follow-up because it leads with "how's the yard?"</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="day">Day 7 (Next Sunday)</div>
+                    <div class="action">Last ask. After their service, casually mention in person: "Hey, did you get a chance to check that review link I sent? No worries if not!" In-person ask has the highest conversion rate.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="day">After Day 7</div>
+                    <div class="action">Stop asking. Move to the next customer. Never make it awkward. They may still leave one later — the link is in their texts forever.</div>
+                </div>
+            </div>
+            
+            <div class="alert-box">
+                <strong>🎯 Target:</strong> Ask all 4-5 customers this week. Even a 50% response = 2-3 reviews = you're now visible on Google Maps. That's the goal.
+            </div>
+        </div>
+        
+        <!-- WHAT TO DO WITH REVIEWS ONCE YOU GET THEM -->
+        <div class="section">
+            <h2>🏆 After You Get Reviews</h2>
+            
+            <h3>Respond to EVERY Review (Within 24 Hours)</h3>
+            <div class="message-template">
+                <div class="label">Review Response Template — 5 Stars</div>
+                <button class="copy-btn" onclick="copyMessage(this)">📋 Copy</button>
+                <div class="message-text">Thank you so much [NAME]! We love keeping [CITY] yards clean for families like yours. Your support means the world to a small local business. See you next week! 🐕🙌</div>
+            </div>
+            
+            <div class="message-template">
+                <div class="label">Review Response Template — 4 Stars</div>
+                <button class="copy-btn" onclick="copyMessage(this)">📋 Copy</button>
+                <div class="message-text">Thanks for the review [NAME]! We appreciate your feedback and always want to improve. If there's anything we can do better, don't hesitate to reach out directly — we're always listening. Thank you for trusting Tidy Tails! 🐕</div>
+            </div>
+            
+            <h3>Amplify Your Reviews</h3>
+            <ul class="checklist">
+                <li>Screenshot the review and post to Instagram/Facebook with a thank-you</li>
+                <li>Add "⭐ 5-Star Rated on Google" to your bio/ads</li>
+                <li>Include review count in ad copy: "Trusted by families across STL"</li>
+                <li>Add a "Reviews" section to tidytailsstl.com homepage</li>
+                <li>Reply to each review from your Google Business Profile</li>
+            </ul>
+        </div>
+        
+        <!-- CUSTOMER TRACKER -->
+        <div class="section">
+            <h2>📋 Customer Review Tracker</h2>
+            <p style="margin-bottom:16px; font-size:14px; color:#999;">Track who you've asked and who's responded. Update as you go.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Status</th>
+                        <th>Asked On</th>
+                        <th>Template Used</th>
+                        <th>Reviewed?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Customer 1</td>
+                        <td><span class="tag tag-pending">Not Asked</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Customer 2</td>
+                        <td><span class="tag tag-pending">Not Asked</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Customer 3</td>
+                        <td><span class="tag tag-pending">Not Asked</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Customer 4</td>
+                        <td><span class="tag tag-pending">Not Asked</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Customer 5</td>
+                        <td><span class="tag tag-pending">Not Asked</span></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td>—</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- ONGOING STRATEGY -->
+        <div class="section">
+            <h2>🔄 Ongoing Review Strategy</h2>
+            
+            <h3>For Every New Customer (Starting Now)</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="day">After 3rd Service</div>
+                    <div class="action">Send Template 2 (check-in + review ask). By the 3rd service, they know you're reliable.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="day">After 1 Month</div>
+                    <div class="action">Send Template 3 (the honest story). By now they're invested in your success.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="day">Quarterly</div>
+                    <div class="action">Send Template 5 (review + referral combo) every 3 months to customers who haven't reviewed.</div>
+                </div>
+            </div>
+            
+            <h3>Review Milestones</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Reviews</th>
+                        <th>What Happens</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1-2</strong></td>
+                        <td>You exist on Google Maps</td>
+                        <td>Keep asking. You're building credibility.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3-5</strong></td>
+                        <td>You appear in local searches</td>
+                        <td>Start running Google Ads ($5/day). Reviews boost ad trust.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5-10</strong></td>
+                        <td>Map Pack eligible (top 3 results)</td>
+                        <td>Add "⭐ X reviews" to all marketing. Social proof is real.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>10-20</strong></td>
+                        <td>Dominant local presence</td>
+                        <td>You're competing with DoodyCalls and Yucko's. Big leagues.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>20+</strong></td>
+                        <td>Market leader signal</td>
+                        <td>Raise prices. You've earned it.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- QUICK ACTIONS -->
+        <div class="section">
+            <h2>⚡ This Week's Checklist</h2>
+            <ul class="checklist">
+                <li><strong>Sunday (Mar 9):</strong> After each service, send Template 1 or 4 to that customer</li>
+                <li><strong>Tuesday (Mar 11):</strong> Follow up with Template 2 to anyone who hasn't reviewed</li>
+                <li><strong>Next Sunday (Mar 16):</strong> In-person mention to anyone still outstanding</li>
+                <li><strong>After first review:</strong> Reply to it on Google within 24 hours</li>
+                <li><strong>After first review:</strong> Screenshot and post to Instagram + Facebook</li>
+                <li><strong>Share the review link</strong> in your Instagram bio and Facebook page</li>
+            </ul>
+        </div>
+        
+    </div>
+    
+    <script>
+        function copyMessage(btn) {
+            const template = btn.closest('.message-template');
+            const text = template.querySelector('.message-text').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = '✅ Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = '📋 Copy';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+        
+        function copyLink() {
+            navigator.clipboard.writeText('https://g.page/r/Ce_hqIHanGLvEAE/review').then(() => {
+                event.target.textContent = '✅ Copied!';
+                setTimeout(() => { event.target.textContent = '📋 Copy Link'; }, 2000);
+            });
+        }
+        
+        function copyShort() {
+            navigator.clipboard.writeText('tidytailsstl.com/review').then(() => {
+                event.target.textContent = '✅ Copied!';
+                setTimeout(() => { event.target.textContent = '📋 Copy Short Link'; }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
