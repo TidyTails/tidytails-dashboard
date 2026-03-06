@@ -6,6 +6,45 @@
 
 ## March 6, 2026 (Friday)
 
+### 3:05 PM — 🏠 SHED MARKETPLACE LISTING KIT — All 23 Units Ready-to-Post (Hourly Task)
+**Task:** Create copy-paste FB Marketplace listings for every shed in TJ's inventory
+**Result:** ✅ SHIPPED — 23 unit-specific listings with pricing, descriptions, and posting strategy
+
+**Why This Task:**
+- Spring = peak shed season, Marketplace is TJ's #1 lead source for sheds
+- Had 63 generic shed ads but ZERO unit-specific Marketplace listings
+- Each listing has exact size, color, price, monthly payment, and copy in TJ's voice
+- Identified 8 units missing photos TJ needs to shoot this weekend
+
+**What I Built:**
+
+| Section | Units | Price Range |
+|---------|-------|-------------|
+| 🔥 Clearance | 2 units | $3,509 - $4,409 |
+| 💰 Budget-Friendly | 6 units | $3,999 - $4,699 |
+| 🏡 Mid-Range | 7 units | $5,199 - $5,899 |
+| 🏠 Premium | 4 units | $5,999 - $6,899 |
+| 🔥 Large & Premium | 4 units | $7,199 - $11,299 |
+
+**Each Listing Includes:**
+- Marketplace-ready title with size + price + hook
+- Copy-paste description in TJ's voice (humor, checklists, soft CTAs)
+- Monthly payment estimate for financing pitch
+- Current TuffShed financing options (0% for 6mo, RTO, 9.99% APR)
+- Contact: Darius, 636-354-7406, @reddshedredemption
+
+**Also Included:**
+- Priority posting order (clearance first, then unique units)
+- Relisting strategy (every 5-7 days for algorithm boost)
+- Cross-posting recommendations (local FB groups)
+- List of 8 units needing photos for TJ to shoot this weekend
+
+**File:** `ready-to-post/shed-marketplace-listings-spring2026.md`
+
+**Rotation:** 🏠 Shed Sales
+
+---
+
 ### 2:05 PM — 📄 SPRING NEIGHBORHOOD BLITZ KIT — Print Flyers + Digital Posts + Weekend Plan (Hourly Task)
 **Task:** Create complete physical + digital neighborhood marketing kit for spring customer acquisition
 **Result:** ✅ SHIPPED — 3-page print PDF + Nextdoor/FB copy + weekend action plan

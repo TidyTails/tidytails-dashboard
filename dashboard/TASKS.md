@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-06 14:15 CST*
+*Last updated: 2026-03-06 15:05 CST*
 
 ---
 
@@ -28,6 +28,7 @@
 - [x] **Jamie's Outreach Hub** — 36 copy-paste scripts, live on dashboard ✅ (Mar 5)
 - [x] **Winter Reheat Scripts** — 4 text variations for dormant customers ✅ (Mar 5)
 - [x] **6 AI Video Ads** — Produced via Basquiat ✅ (Mar 5)
+- [x] **Shed Marketplace Kit** — 23 unit-specific FB Marketplace listings, ready to copy-paste ✅ (Mar 6)
 - [x] **Competitor Intel Update** — Doggie Doodies found, pricing matrix updated ✅ (Mar 6)
 - [x] **Spring Neighborhood Blitz Kit** — Print flyer PDF (3 pages: door hangers, flyer, leave-behind cards) + Nextdoor/FB posts + weekend action plan ✅ (Mar 6)
 - [x] **Customer Referral Program v2** — 7 scripts, ROI math, launch plan ✅ (Mar 5)
