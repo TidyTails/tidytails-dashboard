@@ -6,6 +6,50 @@
 
 ## March 5, 2026 (Thursday — Week 3 Day 4)
 
+### 6:05 PM — 🤝 LOCAL PET BUSINESS PARTNERSHIP KIT (Hourly Task)
+**Task:** Research local pet businesses in TJ's service area + build complete partnership outreach playbook
+**Result:** ✅ Full partnership kit with 25+ target businesses, 3 approach scripts, flyer copy, email templates, and 3-week action plan
+
+**Why This Task:**
+- Every hourly task so far has been DIGITAL marketing — FB, Nextdoor, Google, Instagram
+- ZERO boots-on-the-ground relationship strategy existed
+- Vet clinics, groomers, daycares see dozens of dog owners DAILY
+- A vet recommending Tidy Tails > any ad TJ could ever write
+- 3 partnerships × 2 referrals/month = $480/mo recurring for $15 in flyer costs
+
+**What I Found (Fresh Intel):**
+| Business Type | Count Found | Key Targets |
+|--------------|-------------|-------------|
+| Vet Clinics (Tier 1) | 7 | Howdershell, Cross Keys, Florissant Animal Hospital |
+| Dog Groomers (Tier 2) | 6 | Pet Planet, Amanda's, North County Pet Grooming |
+| Daycare/Boarding (Tier 3) | 5 | No Leash Needed, Happy Tails, Silver Maple |
+| Pet Stores (Tier 4) | 3+ | Pet Supplies Plus Florissant, PetSmart locations |
+
+**Critical Insight:**
+Cross Keys Animal Clinic explicitly serves "Florissant, Hazelwood, Black Jack, STL County and surrounding areas" — that's TJ's EXACT service territory. This should be partner #1.
+
+**What I Created:**
+| Deliverable | Location |
+|-------------|----------|
+| Partnership Kit | `dashboard/campaigns/tidy-tails/2026-03-05-PET-BUSINESS-PARTNERSHIP-KIT.md` |
+
+**Kit Contents:**
+1. 25+ target businesses organized by tier (vet > groomer > daycare > pet store)
+2. 3 partnership approaches: Flyer Drop (easy), Mutual Referral (best), Incentive Program (most powerful)
+3. Walk-in script for dropping off cards
+4. Formal partnership conversation script
+5. Print-ready flyer copy (quarter-sheet format)
+6. Email outreach template
+7. Social media DM template
+8. 3-week action plan with specific businesses to visit each week
+9. ROI projections ($160-320/mo by month 1, $800-1,600/mo by month 6)
+
+**TJ Action Required:** YES — Print 100 flyers ($15), visit Howdershell + Cross Keys + Florissant Animal Hospital this week
+
+**Rotation:** 🐕 Tidy Tails (Offline/Partnership Marketing)
+
+---
+
 ### 4:00 PM — 🏠 STL SHED COMPETITOR BATTLECARD + SPRING ADS (Hourly Task)
 **Task:** Research STL shed market competitors + create competitive positioning battlecard + 5 fresh spring Marketplace ads
 **Result:** ✅ Full competitor battlecard with objection handlers + 5 competitively-positioned spring ads
