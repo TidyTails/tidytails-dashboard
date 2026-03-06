@@ -6,6 +6,57 @@
 
 ## March 5, 2026 (Thursday — Week 3 Day 4)
 
+### 7:04 PM — 🔄 CUSTOMER REFERRAL PROGRAM KIT (Hourly Task)
+**Task:** Build complete double-sided referral program for Tidy Tails — turn 4-5 happy customers into lead generators
+**Result:** ✅ Full "Buddy System" referral kit with copy-paste texts, social posts, flyer copy, tracking system, and launch sequence
+
+**Why This Task:**
+- Today's 7 tasks were all OUTBOUND marketing (FB, Nextdoor, partnerships, SEO, ads)
+- ZERO system existed to leverage existing happy customers for inbound referrals
+- Industry data: referrals close at 75-85% — highest conversion of any channel
+- Poop2Scoop and DoodyCalls have NO visible referral programs in STL
+- 5 customers × 1 referral each = 5 new customers at ~$0 acquisition cost
+- This is the cheapest growth lever TJ hasn't pulled yet
+
+**What I Researched:**
+- Swoop Scoop (PNW) model: $25 off per referral — proven in pet waste
+- Green industry referral program benchmarks ($25-75 credits standard)
+- Poop2Scoop website: confirmed no referral program visible
+- Landscape Leadership industry survey: 75-85% close rate on referrals
+
+**What I Created:**
+| Deliverable | Location |
+|-------------|----------|
+| Referral Program Kit | `dashboard/campaigns/tidy-tails/2026-03-05-REFERRAL-PROGRAM-KIT.md` |
+
+**Kit Contents:**
+1. "Buddy System" double-sided program design (free week for referrer, free first cleanup for new customer)
+2. 4 copy-paste text message scripts for different customer types
+3. Facebook announcement post
+4. Instagram story template (5 slides)
+5. Nextdoor neighborhood post
+6. Business card / flyer copy (front + back)
+7. Simple tracking spreadsheet template
+8. Week 1 launch sequence checklist
+9. 6-month compound growth projections (15-18 customers from referrals alone)
+10. Competitive comparison (Tidy Tails vs Poop2Scoop vs DoodyCalls)
+11. Pro tips for maximizing referral success
+
+**Key Insight:**
+NEITHER STL competitor has a visible referral program. First mover advantage is real. And TJ's personal-touch style (he texts customers himself) is a massive advantage — referral programs work best when they feel personal, not corporate.
+
+**Financial Math:**
+- Cost per referral acquisition: ~$25 (1 free cleanup)
+- LTV of recurring customer: $80-100/month
+- ROI: 320-400% in month 1 alone
+- Conservative 6-month projection: 15-18 customers from referrals
+
+**TJ Action Required:** YES — Text 4-5 current customers using Script #3 (spring seasonal) on Friday. Post FB announcement. Takes 15 min total.
+
+**Rotation:** 🐕 Tidy Tails (Customer-Powered Growth)
+
+---
+
 ### 6:05 PM — 🤝 LOCAL PET BUSINESS PARTNERSHIP KIT (Hourly Task)
 **Task:** Research local pet businesses in TJ's service area + build complete partnership outreach playbook
 **Result:** ✅ Full partnership kit with 25+ target businesses, 3 approach scripts, flyer copy, email templates, and 3-week action plan
