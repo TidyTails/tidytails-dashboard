@@ -1198,3 +1198,53 @@ Little Stinkers checks dog waste for health abnormalities. Low-effort value-add 
 - **March 2-4, 2026:** `memory/archive/franklin-tasks-week3-mar2-4.md` (2221 lines)
 - **Week 2 (Feb 24-28):** `memory/archive/franklin-tasks-week2.md`
 - **Week 1 (Feb 17-23):** `memory/archive/franklin-tasks-week1.md`
+
+### 1:04 PM — 🌐 SEO SERVICE AREA EXPANSION — 6 New City Landing Pages (Hourly Task)
+**Task:** Double the website's service area pages to expand local SEO footprint
+**Result:** ✅ SHIPPED — 6 new pages live, sitemap updated, all pages cross-linked
+
+**Why This Task:**
+- Site has 0 Google indexed pages (still!)
+- Only had 5 service area pages covering a fraction of TJ's territory
+- More pages = more keyword targets = more chances to rank when indexing happens
+- Friday afternoon = perfect for shipping code, not outreach
+
+**What I Built:**
+
+| New Page | URL | Zip | County |
+|----------|-----|-----|--------|
+| St. Peters | tidytailsstl.com/st-peters | 63376 | St. Charles |
+| Chesterfield | tidytailsstl.com/chesterfield | 63017 | STL County |
+| Ballwin | tidytailsstl.com/ballwin | 63011 | STL County |
+| Creve Coeur | tidytailsstl.com/creve-coeur | 63141 | STL County |
+| Hazelwood | tidytailsstl.com/hazelwood | 63042 | STL County |
+| Bridgeton | tidytailsstl.com/bridgeton | 63044 | STL County |
+
+**Each Page Includes:**
+- Unique LocalBusiness JSON-LD structured data with correct zip codes
+- City-specific SEO meta tags (title, description, keywords, OG, geo)
+- Neighborhood-specific content (10 neighborhoods per city)
+- Unique intro copy tailored to each city
+- Pricing grid, benefits list, click-to-call + click-to-text CTAs
+- Cross-linked service area nav to all 11 city pages
+
+**Also Updated:**
+- `sitemap.xml`: 6 URLs → 12 URLs (doubled)
+- All 5 existing pages: Updated nav to include all 11 cities
+- `index.html`: Added 5 new cities to areaServed schema + service areas section
+- Homepage service area tags now link to all city pages (were plain spans before)
+
+**SEO Impact:**
+- 6 → 12 indexable service area URLs
+- 6 new keyword clusters: "pet waste removal [city] MO", "pooper scooper [city]", "dog poop cleanup [city]"
+- Each page targets a different zip code in structured data
+- Internal linking strengthened across all pages
+- When Google finally crawls, we have 2x the landing pages ready
+
+**Deployment:** GitHub Pages auto-deploy, all 6 pages verified live ✅
+
+**Commit:** `f81a25c` on `tidytails-website` repo
+
+**Rotation:** 🌐 Website/SEO
+
+---
