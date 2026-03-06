@@ -6,6 +6,49 @@
 
 ## March 6, 2026 (Friday)
 
+### 9:04 AM — 🔍 LIVE COMPETITOR INTELLIGENCE SWEEP — Full STL Market Analysis (Hourly Task)
+**Task:** Research every pet waste removal competitor in STL, analyze pricing, services, strengths, weaknesses, and geographic coverage
+**Result:** ✅ Comprehensive competitor intelligence report published (research/2026-03-06-STL-COMPETITOR-INTELLIGENCE.html)
+
+**Why This Task:**
+- 6 marketing kits built today (4-8 AM) but ZERO competitive intelligence — TJ needs to know who he's fighting
+- Pricing assumptions need validation against real market data
+- Geographic strategy needs confirmation — are we targeting the right areas?
+- Previous competitor research was scattered; needed a single consolidated view
+
+**What I Researched (Live, 9 AM):**
+- 12 competitors analyzed across STL market
+- Pricing scraped from Poop2Scoop, POOP 911, DoodyCalls, Scoop Soldiers, Poopy Paws
+- Yelp rankings, Google reviews, social media presence audited
+- Geographic coverage mapped by area
+- Website health checked (found Poopy Paws website is DOWN)
+- Brand name conflict discovered (3 other "Tidy Tails" businesses nationally)
+- Google indexing re-confirmed: tidytailsstl.com still has ZERO indexed pages
+
+**Key Findings:**
+1. **TJ's $70/mo is competitive** — Poop2Scoop $78/mo, Poopy Paws $86/mo. Only franchises undercut.
+2. **Ferguson/Florissant = ZERO competition** — No competitor specifically serves North County
+3. **Poopy Paws 314 appears dead** — website DNS failure. Their customers need a new service.
+4. **Yucko's (since 1990) has a 1998-era website** — TJ can outmarket the OG easily
+5. **Scoop Soldiers is new to STL** — national brand expanding, monitor this
+6. **POOP 911's "Free First Cleanup" is their best weapon** — TJ should match it
+7. **"Tidy Tails" brand name is NOT unique** — 3 other businesses nationally. Must lean into "STL" branding
+8. **$70 flat rate with no per-dog charges is the best value proposition** — Poop2Scoop charges +$4/dog
+
+**Report Includes:**
+- Pricing comparison table (7 competitors + TJ)
+- Individual competitor deep dives with threat levels
+- SWOT analysis for Tidy Tails vs. competition
+- Geographic market map (who's where)
+- Top 10 actionable items prioritized
+- Brand name conflict alert
+- Google indexing status alert
+
+**Dashboard:** `research/2026-03-06-STL-COMPETITOR-INTELLIGENCE.html`
+**Rotation:** 🔍 Research — Competitive Intelligence
+
+---
+
 ### 8:04 AM — 🌐 CITY LANDING PAGES — SEO Infrastructure for Google Indexing (Hourly Task)
 **Task:** Build city-specific landing pages for TJ's 5 core service areas + update sitemap + push live
 **Result:** ✅ 5 pages live on tidytailsstl.com, sitemap updated from 1→6 URLs, pushed to GitHub (commit b27653a)
