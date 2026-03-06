@@ -6,6 +6,40 @@
 
 ## March 6, 2026 (Friday)
 
+### 4:05 PM — 🎯 COMMERCIAL LEAD LIST — 27 High-Value Targets (Hourly Task)
+**Task:** Research and compile a call-ready commercial lead list for Tidy Tails
+**Result:** ✅ SHIPPED — 27 leads across 5 categories with pricing guide and action plan
+
+**Why This Task:**
+- Commercial accounts = 5-10x residential revenue ($390-$1,300/month each)
+- Spring is prime time — property managers dealing with winter waste buildup
+- STL has 100,000+ rental units and very few dedicated pet waste vendors
+- One medium apartment complex = 11 residential customers worth of revenue
+
+**What I Built:**
+
+| Category | Leads | Top Targets |
+|----------|-------|-------------|
+| Property Management Companies | 7 | Mills Properties (30+ communities), Millsap Properties (3 in TJ's area) |
+| HOA Management Companies | 4 | CPM Gateway (636-227-8688), CMA Managers (38+ years) |
+| Large Apartment Complexes | 9 | Retreat at Seven Trails (Ballwin), Magnolia (Chesterfield) |
+| Pet Business Partnerships | 6 | Dogtopia Chesterfield, Petropolis, Pets & Company |
+| Industry Association | 1 | SLAA — 147 mgmt companies, 100K+ units, vendor directory |
+
+**Key Findings:**
+- **SLAA (St. Louis Apartment Association)** = game changer — supplier membership = vendor directory listing
+- **Millsap Properties** has Leslie Apartments in BALLWIN (TJ's turf) + 2 in Hazelwood
+- **Mills Properties** = biggest fish — 30+ communities, ALL pet-friendly, dog parks
+- **GreenWay Waste** is the only pet station vendor on SLAA — barely any competition
+- Full commercial pricing guide: walk → time it → $60/hr → monthly formula
+- Revenue potential: 3 medium complexes = $28K/year additional revenue
+
+**Report:** `research/2026-03-06-COMMERCIAL-LEAD-LIST.md`
+
+**Rotation:** 🎯 Commercial Sales/Lead Gen
+
+---
+
 ### 3:05 PM — 🏠 SHED MARKETPLACE LISTING KIT — All 23 Units Ready-to-Post (Hourly Task)
 **Task:** Create copy-paste FB Marketplace listings for every shed in TJ's inventory
 **Result:** ✅ SHIPPED — 23 unit-specific listings with pricing, descriptions, and posting strategy
