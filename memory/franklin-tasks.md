@@ -6,6 +6,56 @@
 
 ## March 6, 2026 (Friday)
 
+### 6:05 AM — 🤝 CUSTOMER REFERRAL PROGRAM v2 — Research-Backed Referral Kit (Hourly Task)
+**Task:** Research referral program best practices for pet waste/lawn care, benchmark competitors, build comprehensive v2 referral kit
+**Result:** ✅ Published to dashboard + GitHub (commit 0a25422)
+
+**Why This Task:**
+- v1 existed from Mar 5 but was basic (10KB) — no competitor benchmarks, no tracking, limited scripts
+- Referrals close at 75-85% vs 10-20% for FB ads — cheapest, highest-converting lead source
+- TJ has 4-5 happy customers who've NEVER churned on service quality = untapped referral goldmine
+- Spring is peak timing for yard services — launch window is NOW (Sunday Mar 9)
+- With 4 customers each referring 1 person at 75% close = 3 new customers for ~$60 total cost
+
+**What I Created:**
+- `dashboard/tidy-tails/2026-03-06-CUSTOMER-REFERRAL-PROGRAM.html` (24KB, replaces v1 link)
+
+**Kit Contents:**
+1. **Industry research** — Close rates, cost per lead comparison (referral vs FB ads vs door hangers)
+2. **Program structure** — $15 credit for referrer + FREE first cleanup for new customer (right-sized for current scale)
+3. **Competitor benchmarking** — Swoop Scoop ($25), Green Sphere ($50), Crap Be Gone (discount) — TJ's $15 is appropriate for 4-5 customers
+4. **7 copy-paste scripts:**
+   - Script 1: Text to current customer (post-service)
+   - Script 2: In-person casual mention
+   - Script 3: Facebook/Instagram post
+   - Script 4: Facebook group post
+   - Script 5: Follow-up text to referred lead
+   - Script 6: Thank-you after successful referral
+   - Script 7: GBP post (Offer type)
+5. **Tracking sheet** — Date, referrer, referred person, status, credit applied
+6. **ROI projections** — 4 referrals = 3 new customers = +$210/month = $2,520/year for $60 cost
+7. **Referral snowball model** — Conservative: 5 → 8 → 12 → 17 customers over 3 months
+8. **Launch plan timeline** — Sunday Mar 9 through ongoing, with specific day-by-day actions
+9. **Advanced tactics:**
+   - Neighborhood cluster strategy ($20 bonus for same-street referrals = route efficiency)
+   - Referral leaderboard (at 10+ customers)
+   - Leave-behind cards (Vistaprint ~$15 for 250)
+   - Best times to ask for referrals (ranked by conversion)
+10. **Scaling tiers** — 4-10, 10-20, 20-30, 30+ customer incentive progression
+11. **Common mistakes** — 6 killers with fixes (only asking once, slow follow-up, no tracking, etc.)
+
+**Key Research Findings:**
+- Referred customers close at 75-85% (industry data from Landscape Leadership)
+- Leads contacted within 5 minutes = 21x more likely to convert
+- Most lawn/pet services offer $25-50 credit but TJ should start at $15 given current scale
+- "Just mention my name" > referral codes/QR/apps (less friction)
+- Post-service Sunday evening = peak ask timing
+
+**Dashboard:** Updated index link from v1 to v2 with new description
+**GitHub:** Pushed (commit 0a25422)
+
+**Rotation:** 📱 Marketing — Customer Acquisition
+
 ### 5:04 AM — 📘 FACEBOOK ADS CAMPAIGN BLUEPRINT v2 — Production-Ready $200/Mo Plan (Hourly Task)
 **Task:** Research 2026 Facebook Ads benchmarks and build a complete, step-by-step campaign blueprint for TJ's $200/month budget
 **Result:** ✅ Published to dashboard + GitHub (commit 90b2877)
