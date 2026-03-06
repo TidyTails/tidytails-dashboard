@@ -6,6 +6,51 @@
 
 ## March 6, 2026 (Friday)
 
+### 12:06 PM — 🏠 SPRING SHED SALES PLAYBOOK — Lead Reactivation + Fresh Ads (Hourly Task)
+**Task:** Build comprehensive spring shed sales playbook: lead reactivation texts, fresh Marketplace ads, Instagram content, objection handling, financing scripts, and 2-week execution calendar
+**Result:** ✅ Full playbook published (dashboard/2026-03-06-SPRING-SHED-PLAYBOOK.html)
+
+**Why This Task:**
+- Today's been ALL Tidy Tails (city pages, competitor intel, reviews, referral blitz) — time to switch to shed pipeline growth
+- TJ had ~12 quoted leads + ~15 pre-quote leads as of Feb 16 — many going cold after 3 weeks
+- Spring is PEAK shed season: tax refunds hitting, spring cleaning energy, outdoor project mood
+- Current TuffShed promos are strong: 0% for 6 months, 9.99% APR, RTO no credit check
+- Lead reactivation has highest ROI: these people already want a shed, just need a spring nudge
+
+**What I Built:**
+1. **6 Lead Reactivation Text Templates** (copy-paste with 📋 buttons):
+   - Spring Check-In, Tax Refund Nudge, New Inventory, Honest Follow-Up, Problem Reminder, Last Shot
+2. **Lead Reactivation Game Plan** — 8-day sequence: text 5 hottest → rest → follow up non-replies → final shot
+3. **6 Spring Selling Angles** with word-for-word scripts (tax refund, spring cleaning, delivery urgency, home value, 0% financing, outdoor season)
+4. **6 Fresh Marketplace Ads** — all new hooks:
+   - Winter Pile-Up, Tax Refund Power Move, Honest Spring Ad, What's Your Shed For?, Cheaper Than You Think, Weekend Warrior
+5. **3 Instagram Reel Scripts** with visual direction + captions:
+   - Garage Intervention (15 sec), How Much Does a Shed Cost? (15 sec), Spring Transformation (30 sec)
+6. **5 Static IG Post Ideas** with best posting days
+7. **6 Spring-Specific Objection Handlers:**
+   - "Wait till summer" → delivery times double
+   - "More than expected" → storage unit math
+   - "Home Depot is cheaper" → kit vs real structure
+   - "Need to ask spouse" → invite both to lot
+   - "HOA concerns" → spec sheet offer
+   - "What if I move?" → relocation or home value add
+8. **Financing Breakdown Table** — all 4 current TuffShed options with best-for profiles
+9. **Quick Monthly Payment Script** — conversational financing walkthrough
+10. **2-Week Execution Calendar** (Mar 7-20) — day-by-day with time estimates (~15 min/day)
+11. **Daily Shed Sales Checklist** — morning/lunch/afternoon/evening routine
+12. **Success Metrics** — expected 3-5 reactivated, 2-3 appointments, 1-2 sales, 10+ new Marketplace leads
+
+**The Math:**
+- 12 quoted leads × 20% reactivation = 2-3 sales
+- Average shed sale: $5K-8K
+- Potential revenue from reactivation alone: $10K-24K
+- Time investment: ~15 min/day for 2 weeks
+
+**Dashboard:** `dashboard/2026-03-06-SPRING-SHED-PLAYBOOK.html`
+**Rotation:** 🏠 Sheds — Pipeline Growth / Lead Reactivation
+
+---
+
 ### 11:04 AM — 🌱 SPRING REFERRAL BLITZ — Turn 5 Customers Into 15 (Hourly Task)
 **Task:** Build a complete referral program + multi-channel spring marketing content (text templates, Nextdoor posts, Instagram captions, FB group posts, 7-day execution plan)
 **Result:** ✅ Full system published to dashboard (2026-03-06-SPRING-REFERRAL-BLITZ.html)
