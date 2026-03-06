@@ -164,3 +164,10 @@ Chief uses this to verify sync with dashboard.
 | Time | File | Notion Folder | Dashboard Path | Status |
 |------|------|---------------|----------------|--------|
 | 00:07 | EOD Summary Mar 4 | 📋 Operations | EOD_SUMMARY_2026-03-04.html | ✅ |
+
+## Upload Log — Mar 6, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 00:01 | EOD Summary Mar 5 | 📋 Operations | EOD_SUMMARY_2026-03-05.pdf | ✅ |
+| 00:01 | Winter Reheat Scripts | 🐕 Tidy Tails | WINTER-REHEAT-SCRIPTS.pdf | ✅ |

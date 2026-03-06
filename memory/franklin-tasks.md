@@ -6,6 +6,56 @@
 
 ## March 6, 2026 (Friday)
 
+### 1:04 AM — 📱 TUFFSHED COMPETITIVE SALES CHEAT SHEET — Phone-Ready Battle Card (Hourly Task)
+**Task:** Research STL shed competitors + build a mobile-friendly cheat sheet TJ can pull up during sales conversations
+**Result:** ✅ Phone-optimized HTML with competitor breakdown, pricing comparisons, objection handlers, and updated promo status
+
+**Why This Task:**
+- TuffShed side has been NEGLECTED — last shed task was March 4, all recent work was Tidy Tails
+- 85+ ad entries in archive, almost NONE marked as "Used" — creating more ads = waste
+- The 12:05 AM task literally said "the bottleneck isn't assets, it's execution"
+- Commercial leads for Tidy Tails are PAUSED per TJ's directive
+- What TJ actually needs for sheds: SALES TOOLS, not more marketing content
+- A cheat sheet he can bookmark on his phone and pull up mid-conversation = immediate pipeline impact
+
+**What I Researched (Live):**
+1. **TuffShed.com/special-offers/** — confirmed NO cash discounts, financing only (0%, 9.99%, RTO, Flex Lease)
+2. **The Backyard & Beyond** — family-owned since 2015, portable buildings, free statewide delivery, 22 colors, LP SmartSide, 40-yr metal roof warranty
+3. **Classic Buildings** — St. Charles location, pre-built portables, RTO financing
+4. **STL Shedz** — Troy, MO, small operation, BBB since 2018, D.W. Kossman owner
+5. **The STL Shed Guy** — veteran-run, steel buildings, RTO with 1st month down
+6. **ShedHub.com STL market** — average price $6,568 for 209 sqft ($31.50/sqft), 6 dealers within 20 miles
+7. **Portable vs site-built research** — site-built lasts 30-50 yrs vs portable ~20 yrs, better foundation, adds property value
+8. **FOX 2 St. Louis** — TuffShed recently featured on FOX 2 (Home Builders & Remodelers Expo)
+
+**What I Created:**
+- `dashboard/tuffshed/2026-03-06-COMPETITIVE-CHEAT-SHEET.html` — Mobile-optimized dark theme, designed for phone viewing during sales calls
+
+**Cheat Sheet Contents:**
+1. **Current Promos** — Updated financing options with exact terms (verified 3/6)
+2. **5 STL Competitors** — Each with pricing, strengths, and TuffShed's specific advantage
+3. **Site-Built vs Portable** — Quick comparison stats (longevity, foundation, max size, resale value, insurance)
+4. **6 Objection Handlers** — Word-for-word responses to common pushbacks:
+   - "Portable shed is cheaper"
+   - "TuffShed is too expensive"
+   - "I'll build it myself"
+   - "No promos running?"
+   - "I need to think about it"
+   - "Metal shed from Lowe's/HD?"
+5. **Pricing Reference** — TuffShed vs portable competitor prices side by side
+6. **Spring 2026 Selling Angles** — 6 seasonal urgency points
+
+**Also Updated:**
+- `memory/2026-02-23-tuffshed-promo-status.md` — refreshed with 3/6 verification, added competitor promos
+- `dashboard/index.html` — added SALES CHEAT SHEET link in shed section
+
+**Key Insight:**
+TJ has 12 quoted leads and 15 pre-quote leads. He doesn't need more ads — he needs better SALES CONVERSATIONS. When a customer says "I saw a cheaper shed on Facebook," TJ needs to instantly pull up competitive pricing and fire back with data. That's what this tool does.
+
+**Rotation:** 🏗️ TuffShed — Sales Enablement
+
+---
+
 ### 12:05 AM — 🌱 SPRING 2026 EXECUTION PLAYBOOK — Stop Planning, Start Doing (Hourly Task)
 **Task:** Create a single-page execution playbook that distills ALL 20+ marketing kits into a prioritized, week-by-week action plan
 **Result:** ✅ Interactive HTML playbook with Top 5 priorities, weekend quick wins, March calendar, and growth math
