@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tidy Tails — Competitor Battle Cards</title>
+<link href="https://fonts.googleapis.com/css2?family=Anybody:wght@400;700;900&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --surface: #161b22;
+  --surface-2: #1c2333;
+  --border: #30363d;
+  --text: #e6edf3;
+  --text-dim: #8b949e;
+  --green: #3fb950;
+  --green-bg: rgba(63,185,80,0.1);
+  --red: #f85149;
+  --red-bg: rgba(248,81,73,0.1);
+  --yellow: #d29922;
+  --yellow-bg: rgba(210,153,34,0.1);
+  --blue: #58a6ff;
+  --blue-bg: rgba(88,166,255,0.1);
+  --purple: #bc8cff;
+  --orange: #f0883e;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:'DM Sans',sans-serif; min-height:100vh; }
+
+.header {
+  background: linear-gradient(135deg, #1a1f2e 0%, #0d1117 50%, #141d2b 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 2rem 1.5rem 1.5rem;
+  position: sticky; top: 0; z-index: 100;
+}
+.header h1 {
+  font-family: 'Anybody', sans-serif;
+  font-weight: 900;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--red) 0%, var(--orange) 50%, var(--yellow) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.header .subtitle {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+.header .meta {
+  display: flex; gap: 1rem; margin-top: 0.8rem; flex-wrap: wrap;
+}
+.header .meta span {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+
+.tabs {
+  display: flex; gap: 0; overflow-x: auto; padding: 0 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  -webkit-overflow-scrolling: touch;
+}
+.tab {
+  padding: 0.8rem 1.2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+  user-select: none;
+}
+.tab:hover { color: var(--text); background: var(--surface-2); }
+.tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+.content { padding: 1.5rem; max-width: 1200px; margin: 0 auto; }
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* Battle Card */
+.battle-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.battle-card:hover { border-color: var(--orange); }
+
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+}
+.card-header h3 {
+  font-family: 'Anybody', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.threat-badge {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.threat-high { background: var(--red-bg); color: var(--red); }
+.threat-med { background: var(--yellow-bg); color: var(--yellow); }
+.threat-low { background: var(--green-bg); color: var(--green); }
+
+.card-body { padding: 1.5rem; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.card-section h4 {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+.card-section ul {
+  list-style: none;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+.card-section li::before {
+  content: '→ ';
+  color: var(--text-dim);
+}
+.card-section li.pro::before { content: '✅ '; }
+.card-section li.con::before { content: '❌ '; }
+.card-section li.warn::before { content: '⚠️ '; }
+.card-section li.attack::before { content: '🎯 '; }
+
+.price-tag {
+  display: inline-block;
+  background: var(--blue-bg);
+  color: var(--blue);
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* Comparison Table */
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin: 1rem 0;
+}
+.comp-table th {
+  text-align: left;
+  padding: 0.6rem 0.8rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.comp-table td {
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  vertical-align: top;
+}
+.comp-table tr:hover td { background: var(--surface-2); }
+.comp-table .us { background: rgba(63,185,80,0.05); }
+.comp-table .us td:first-child { color: var(--green); font-weight: 700; }
+
+/* Scripts */
+.script-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+}
+.script-card h4 {
+  font-size: 0.85rem;
+  color: var(--orange);
+  margin-bottom: 0.6rem;
+}
+.script-card p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text);
+}
+.script-card .context {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+.copy-btn {
+  margin-top: 0.6rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.copy-btn:hover { color: var(--green); border-color: var(--green); }
+
+/* Opportunity Section */
+.opp-card {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--green);
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1rem;
+}
+.opp-card h4 { color: var(--green); font-size: 0.9rem; margin-bottom: 0.3rem; }
+.opp-card p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.5; }
+.opp-card .revenue {
+  display: inline-block;
+  background: var(--green-bg);
+  color: var(--green);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  margin-top: 0.4rem;
+}
+
+/* SWOT */
+.swot-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+.swot-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.swot-box h4 {
+  font-size: 0.8rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid var(--border);
+}
+.swot-box.s h4 { color: var(--green); }
+.swot-box.w h4 { color: var(--red); }
+.swot-box.o h4 { color: var(--blue); }
+.swot-box.t h4 { color: var(--yellow); }
+.swot-box ul { list-style: none; font-size: 0.8rem; line-height: 1.6; }
+.swot-box li { padding: 0.1rem 0; }
+
+.section-title {
+  font-family: 'Anybody', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+@media (max-width: 600px) {
+  .swot-grid { grid-template-columns: 1fr; }
+  .card-grid { grid-template-columns: 1fr; }
+  .comp-table { font-size: 0.7rem; }
+  .comp-table th, .comp-table td { padding: 0.4rem; }
+  .content { padding: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⚔️ Competitor Battle Cards</h1>
+  <div class="subtitle">Live intel for sales calls — know exactly how to beat every competitor</div>
+  <div class="meta">
+    <span>📅 Updated Mar 7, 2026</span>
+    <span>🎯 9 Competitors Profiled</span>
+    <span>💰 Pricing Intel Verified</span>
+    <span>📞 Use During Sales Calls</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" data-tab="overview">📊 Market Overview</div>
+  <div class="tab" data-tab="cards">⚔️ Battle Cards</div>
+  <div class="tab" data-tab="pricing">💰 Price Comparison</div>
+  <div class="tab" data-tab="scripts">💬 Kill Scripts</div>
+  <div class="tab" data-tab="gaps">🎯 Market Gaps</div>
+  <div class="tab" data-tab="swot">🔍 Our SWOT</div>
+</div>
+
+<div class="content">
+
+<!-- OVERVIEW -->
+<div class="panel active" id="overview">
+  <h3 class="section-title">St. Louis Pet Waste Removal Market — March 2026</h3>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem; margin-bottom:1.5rem;">
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center;">
+      <div style="font-size:2rem;font-weight:900;font-family:'Anybody';color:var(--orange);">9</div>
+      <div style="font-size:0.75rem;color:var(--text-dim);">Active Competitors</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center;">
+      <div style="font-size:2rem;font-weight:900;font-family:'Anybody';color:var(--green);">$15-$25</div>
+      <div style="font-size:0.75rem;color:var(--text-dim);">Market Rate / Week</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center;">
+      <div style="font-size:2rem;font-weight:900;font-family:'Anybody';color:var(--blue);">3</div>
+      <div style="font-size:0.75rem;color:var(--text-dim);">Serve North County</div>
+    </div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem;text-align:center;">
+      <div style="font-size:2rem;font-weight:900;font-family:'Anybody';color:var(--red);">0</div>
+      <div style="font-size:0.75rem;color:var(--text-dim);">Competitors on Craigslist</div>
+    </div>
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.2rem;margin-bottom:1rem;">
+    <h4 style="color:var(--orange);font-size:0.85rem;margin-bottom:0.5rem;">🗺️ Territory Map — Who's Where</h4>
+    <div style="font-size:0.85rem;line-height:1.8;">
+      <strong style="color:var(--green);">TJ's Territory (LOW competition):</strong> Florissant, Hazelwood, St. Charles, O'Fallon, St. Peters<br>
+      <strong style="color:var(--yellow);">Contested:</strong> Maryland Heights, Creve Coeur, Chesterfield, Ballwin<br>
+      <strong style="color:var(--red);">Crowded (avoid for now):</strong> South County (Sappington, Affton), Central City (Soulard, Lafayette Sq)
+    </div>
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1.2rem;">
+    <h4 style="color:var(--orange);font-size:0.85rem;margin-bottom:0.5rem;">📌 Key Market Findings</h4>
+    <ul style="list-style:none;font-size:0.85rem;line-height:1.8;">
+      <li>→ <strong>POOP 911 (franchise)</strong> has the most Google presence but covers South/Central — NOT North County or St. Charles</li>
+      <li>→ <strong>Yucko's</strong> has been around since 1990 but their website looks like it was built in 1990. Phone only. No online booking.</li>
+      <li>→ <strong>Pawfect Waste Solutions (pooperscooperstl.com)</strong> — website is DOWN as of today. Possible dead competitor.</li>
+      <li>→ <strong>Little Stinkers</strong> covers St. Charles County ONLY — doesn't touch St. Louis County at all</li>
+      <li>→ <strong>Poopy Paws</strong> — flat $20/week regardless of dogs. Lowest price in market. Small operation.</li>
+      <li>→ <strong>Dirty Dog Wash Poo Crew</strong> — pet grooming shop add-on. Prices by month ($80-$105). Limited range.</li>
+      <li>→ <strong>Craigslist STL</strong> has ZERO active pet waste removal ads — completely uncontested</li>
+      <li>→ <strong>Florissant/Hazelwood/North County</strong> is a desert — only POOP 911 even claims coverage, and they focus South</li>
+    </ul>
+  </div>
+</div>
+
+<!-- BATTLE CARDS -->
+<div class="panel" id="cards">
+  <h3 class="section-title">Individual Competitor Battle Cards</h3>
+
+  <!-- POOP 911 -->
+  <div class="battle-card">
+    <div class="card-header" onclick="this.parentElement.classList.toggle('expanded')">
+      <h3>💀 POOP 911 (National Franchise)</h3>
+      <span class="threat-badge threat-high">HIGH THREAT</span>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-section">
+          <h4>Profile</h4>
+          <ul>
+            <li>National franchise, local operator</li>
+            <li>Price: <span class="price-tag">$11.95+/wk</span> (advertised start)</li>
+            <li>Focus: South STL, Sappington, Affton, Wildwood</li>
+            <li>Has Florissant page but likely thin coverage there</li>
+            <li>Free first cleanup promo</li>
+            <li>No contracts, satisfaction guarantee</li>
+            <li>Uniformed technicians, door hangers</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Their Strengths</h4>
+          <ul>
+            <li class="pro">Best SEO — ranks #1 for many STL keywords</li>
+            <li class="pro">Professional brand + national reputation</li>
+            <li class="pro">Commercial services (stations, bags, etc.)</li>
+            <li class="pro">Free first cleanup = easy lead gen</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Their Weaknesses</h4>
+          <ul>
+            <li class="con">Franchise = impersonal, rotating staff</li>
+            <li class="con">Can't text/call owner directly</li>
+            <li class="con">$11.95 is base — real price higher after yard size</li>
+            <li class="con">Focused on South County, NOT North</li>
+            <li class="con">Corporate quotes = slower response time</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>How to Beat Them</h4>
+          <ul>
+            <li class="attack">Personal service — "Same guy every time, my name's TJ"</li>
+            <li class="attack">Text-first communication vs their call center</li>
+            <li class="attack">Emphasize LOCAL + owner-operated vs franchise</li>
+            <li class="attack">Match or beat their "$11.95" with transparent pricing</li>
+            <li class="attack">Spring promo: "First week FREE" matches their first cleanup</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DoodyCalls -->
+  <div class="battle-card">
+    <div class="card-header">
+      <h3>🏢 DoodyCalls of St. Louis (National Franchise)</h3>
+      <span class="threat-badge threat-high">HIGH THREAT</span>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-section">
+          <h4>Profile</h4>
+          <ul>
+            <li>Part of Authority Brands (massive franchise family)</li>
+            <li>Phone: (314) 230-8082</li>
+            <li>25+ years industry experience (national)</li>
+            <li>Residential + commercial + stations</li>
+            <li>Services: scooping, deodorizing, station install</li>
+            <li>Background-checked uniformed technicians</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Their Strengths</h4>
+          <ul>
+            <li class="pro">Strongest brand recognition nationally</li>
+            <li class="pro">Full commercial services (HOAs, apartments)</li>
+            <li class="pro">Professional website + online quoting</li>
+            <li class="pro">Satisfaction guarantee</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Their Weaknesses</h4>
+          <ul>
+            <li class="con">Corporate feel — hard to reach actual technician</li>
+            <li class="con">Pricing not transparent (quote-based)</li>
+            <li class="con">Rotating techs — your dog sees different people</li>
+            <li class="con">Franchise fees = higher prices passed to customer</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>How to Beat Them</h4>
+          <ul>
+            <li class="attack">"You'll never deal with a call center. You text me directly."</li>
+            <li class="attack">Transparent pricing vs their "get a quote" wall</li>
+            <li class="attack">Same person, same day, every week vs rotating techs</li>
+            <li class="attack">Lower overhead = lower prices, same quality</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Yucko's -->
+  <div class="battle-card">
+    <div class="card-header">
+      <h3>🦕 Yucko's Pooper-Scooper Service</h3>
+      <span class="threat-badge threat-med">MEDIUM THREAT</span>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-section">
+          <h4>Profile</h4>
+          <ul>
+            <li>Been scooping since <strong>1990</strong> — 36 years</li>
+            <li>Phone: 314-291-7667 (314-291-POOP)</li>
+            <li>Email: gotpoop@gotpoop.com 😂</li>
+            <li>St. Louis County + City + St. Charles</li>
+            <li>Fully insured</li>
+            <li>Mon-Fri 8AM-3PM only</li>
+            <li>Free estimates, no contracts</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Their Strengths</h4>
+          <ul>
+            <li class="pro">36 years = long reputation + referral base</li>
+            <li class="pro">Covers both STL County AND St. Charles</li>
+            <li class="pro">Memorable branding (POOP hotline, gotpoop.com)</li>
+            <li class="pro">Fully insured (many small ops aren't)</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Their Weaknesses</h4>
+          <ul>
+            <li class="con">Website looks like 1998 GeoCities page</li>
+            <li class="con">Phone-only booking — no online scheduling</li>
+            <li class="con">No social media presence visible</li>
+            <li class="con">M-F 8-3 only = not flexible for working people</li>
+            <li class="con">Pricing not listed anywhere online</li>
+            <li class="con">Likely aging out (36 years in business)</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>How to Beat Them</h4>
+          <ul>
+            <li class="attack">Modern communication: text, online booking</li>
+            <li class="attack">Flexible scheduling vs their M-F 8-3 window</li>
+            <li class="attack">Social media presence they completely lack</li>
+            <li class="attack">They could retire ANY time — position as the next gen</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Poop2Scoop -->
+  <div class="battle-card">
+    <div class="card-header">
+      <h3>🎖️ Poop 2 Scoop (Veteran-Owned)</h3>
+      <span class="threat-badge threat-med">MEDIUM THREAT</span>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-section">
+          <h4>Profile</h4>
+          <ul>
+            <li>Veteran-owned, family-run</li>
+            <li>St. Louis metro area</li>
+            <li>No contracts, start/stop anytime</li>
+            <li>Weekly pickup offered</li>
+            <li>Dedicated to pet waste only</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Their Strengths</h4>
+          <ul>
+            <li class="pro">Veteran-owned = great trust signal</li>
+            <li class="pro">Family-run = personal service angle</li>
+            <li class="pro">Clean, professional website</li>
+            <li class="pro">Listed on Yelp + PetWorks</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Their Weaknesses</h4>
+          <ul>
+            <li class="con">Pricing page exists but harder to find exact rates</li>
+            <li class="con">Smaller operation — limited capacity</li>
+            <li class="con">No visible commercial services push</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>How to Beat Them</h4>
+          <ul>
+            <li class="attack">Similar positioning (local, personal) — differentiate on territory</li>
+            <li class="attack">TJ's personality and direct texting beats generic "family run"</li>
+            <li class="attack">Match their trust signals with reviews and consistent service</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Poopy Paws -->
+  <div class="battle-card">
+    <div class="card-header">
+      <h3>🐾 Poopy Paws 314</h3>
+      <span class="threat-badge threat-low">LOW THREAT</span>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-section">
+          <h4>Profile</h4>
+          <ul>
+            <li>Small solo/duo operation</li>
+            <li>Flat rate: <span class="price-tag">$20/week</span> regardless of dogs</li>
+            <li>St. Louis + Illinois</li>
+            <li>358 Facebook likes</li>
+            <li>Weekly routes</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Their Strengths</h4>
+          <ul>
+            <li class="pro">Simplest pricing in market — $20 flat</li>
+            <li class="pro">Yelp listed (some reviews)</li>
+            <li class="pro">Covers IL side too (expands market)</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Their Weaknesses</h4>
+          <ul>
+            <li class="con">Very small — limited capacity</li>
+            <li class="con">Low social following (358 FB likes)</li>
+            <li class="con">No real website differentiation</li>
+            <li class="con">$20 flat = losing money on multi-dog/big yard homes</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>How to Beat Them</h4>
+          <ul>
+            <li class="attack">TJ's pricing ($17.50/wk weekly) undercuts them</li>
+            <li class="attack">More professional setup + online presence</li>
+            <li class="attack">They spread thin across IL — focus beats breadth</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dirty Dog Wash -->
+  <div class="battle-card">
+    <div class="card-header">
+      <h3>🛁 Dirty Dog Wash — Poo Crew</h3>
+      <span class="threat-badge threat-low">LOW THREAT</span>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-section">
+          <h4>Profile</h4>
+          <ul>
+            <li>Dog grooming shop with poop pickup add-on</li>
+            <li>Monthly pricing (NOT per visit):</li>
+            <li>1-2 dogs weekly: <span class="price-tag">$95/mo</span></li>
+            <li>1-2 dogs bi-weekly: <span class="price-tag">$80/mo</span></li>
+            <li>3 dogs weekly: <span class="price-tag">$100/mo</span></li>
+            <li>¼ acre max, trip charge for >10 miles</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Their Weaknesses</h4>
+          <ul>
+            <li class="con">Poop is a side hustle — not their core business</li>
+            <li class="con">$95/mo for 1-2 dogs weekly = $23.75/wk (higher than TJ)</li>
+            <li class="con">Limited to ¼ acre — refuses bigger yards</li>
+            <li class="con">Trip charge for distance = hidden cost</li>
+            <li class="con">Limited service area radius</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>How to Beat Them</h4>
+          <ul>
+            <li class="attack">Dedicated vs add-on — "This is ALL I do"</li>
+            <li class="attack">No yard size limits or trip charges</li>
+            <li class="attack">Lower price: TJ's $17.50/wk vs their $23.75/wk</li>
+            <li class="attack">Bundle suggestion: recommend them for grooming + TJ for waste</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Little Stinkers -->
+  <div class="battle-card">
+    <div class="card-header">
+      <h3>👃 Little Stinkers of MO</h3>
+      <span class="threat-badge threat-low">LOW THREAT</span>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-section">
+          <h4>Profile</h4>
+          <ul>
+            <li>Phone: 636-318-5766</li>
+            <li>Covers: St. Charles, Lincoln, Warren counties ONLY</li>
+            <li>Services: scooping, litter boxes, stations, deodorizing</li>
+            <li>Cities: O'Fallon, St. Peters, Wentzville, St. Charles, etc.</li>
+            <li>Check waste for health abnormalities (unique!)</li>
+            <li>Leave treats for dogs</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Their Strengths</h4>
+          <ul>
+            <li class="pro">Good niche: St. Charles County only = focused</li>
+            <li class="pro">Professional website + branding</li>
+            <li class="pro">Nice touches (health checks, treats)</li>
+            <li class="pro">Multiple services (litter, stations, deodorizing)</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Their Weaknesses</h4>
+          <ul>
+            <li class="con">Does NOT serve STL County at all</li>
+            <li class="con">Pricing not shown online (quote only)</li>
+            <li class="con">Limited to 3 counties — small footprint</li>
+            <li class="con">No pricing transparency</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Overlap With TJ</h4>
+          <ul>
+            <li class="warn">They cover O'Fallon + St. Peters where TJ has customers</li>
+            <li class="attack">TJ should match their treats + health check touches</li>
+            <li class="attack">TJ covers BOTH counties — broader appeal</li>
+            <li class="attack">Price transparency wins vs "get a quote"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- St Louis Critter Sitters -->
+  <div class="battle-card">
+    <div class="card-header">
+      <h3>🐱 St. Louis Critter Sitters (Poop Add-on)</h3>
+      <span class="threat-badge threat-low">LOW THREAT</span>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-section">
+          <h4>Verified Pricing</h4>
+          <ul>
+            <li>1 dog weekly: <span class="price-tag">$15/visit ($60/mo)</span></li>
+            <li>2 dogs weekly: <span class="price-tag">$18/visit ($72/mo)</span></li>
+            <li>3 dogs weekly: <span class="price-tag">$21/visit ($84/mo)</span></li>
+            <li>1 dog bi-weekly: <span class="price-tag">$21/visit ($42/mo)</span></li>
+            <li>2x weekly: $11-$17/visit depending on dogs</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Analysis</h4>
+          <ul>
+            <li class="warn">Cheapest verified pricing in market ($15/visit)</li>
+            <li class="con">Pet sitting is their core — poop is a sideline</li>
+            <li class="con">Likely limited capacity for poop routes</li>
+            <li class="attack">TJ's $17.50/wk is competitive with their 1-dog rate</li>
+            <li class="attack">Dedicated service beats sideline every time</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pawfect (Dead?) -->
+  <div class="battle-card">
+    <div class="card-header">
+      <h3>☠️ Pawfect Waste Solutions (pooperscooperstl.com)</h3>
+      <span class="threat-badge threat-low">DEAD?</span>
+    </div>
+    <div class="card-body">
+      <div class="card-grid">
+        <div class="card-section">
+          <h4>Status</h4>
+          <ul>
+            <li class="con">Website DOWN as of March 7, 2026</li>
+            <li>Claimed to cover: Creve Coeur, Richmond Heights, Maryland Heights, O'Fallon, St. Charles, Ballwin, Chesterfield</li>
+            <li>Monthly billing, weekly service</li>
+            <li class="warn">Still shows in Google search results</li>
+          </ul>
+        </div>
+        <div class="card-section">
+          <h4>Opportunity</h4>
+          <ul>
+            <li class="attack">Their customers are ORPHANED right now</li>
+            <li class="attack">Target their service areas: Maryland Heights, Creve Coeur, Chesterfield</li>
+            <li class="attack">Search "pooperscooperstl" and poach their online listings</li>
+            <li class="attack">Anyone Googling them sees a dead site → TJ should be the alternative</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING COMPARISON -->
+<div class="panel" id="pricing">
+  <h3 class="section-title">Price Comparison — Weekly Service, 1-2 Dogs</h3>
+
+  <table class="comp-table">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Weekly Rate</th>
+        <th>Monthly Cost</th>
+        <th>Contracts?</th>
+        <th>Territory</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="us">
+        <td>🐕💩 Tidy Tails</td>
+        <td>$17.50/wk</td>
+        <td>~$70/mo</td>
+        <td>No contracts</td>
+        <td>N. County + St. Charles</td>
+        <td>Local owner</td>
+      </tr>
+      <tr>
+        <td>POOP 911</td>
+        <td>$11.95+ (base)</td>
+        <td>~$48-80+</td>
+        <td>No contracts</td>
+        <td>South STL focus</td>
+        <td>Franchise</td>
+      </tr>
+      <tr>
+        <td>DoodyCalls</td>
+        <td>Quote-based</td>
+        <td>Quote-based</td>
+        <td>No contracts</td>
+        <td>Metro-wide</td>
+        <td>Franchise</td>
+      </tr>
+      <tr>
+        <td>Critter Sitters</td>
+        <td>$15/visit</td>
+        <td>$60/mo</td>
+        <td>No contracts</td>
+        <td>STL metro</td>
+        <td>Add-on service</td>
+      </tr>
+      <tr>
+        <td>Poopy Paws</td>
+        <td>$20 flat</td>
+        <td>~$80/mo</td>
+        <td>No contracts</td>
+        <td>STL + IL</td>
+        <td>Solo operator</td>
+      </tr>
+      <tr>
+        <td>Dirty Dog Wash</td>
+        <td>~$23.75</td>
+        <td>$95/mo</td>
+        <td>Unknown</td>
+        <td>Near shop only</td>
+        <td>Add-on service</td>
+      </tr>
+      <tr>
+        <td>Poop 2 Scoop</td>
+        <td>Quote-based</td>
+        <td>Quote-based</td>
+        <td>No contracts</td>
+        <td>STL metro</td>
+        <td>Veteran-owned</td>
+      </tr>
+      <tr>
+        <td>Little Stinkers</td>
+        <td>Quote-based</td>
+        <td>Quote-based</td>
+        <td>Unknown</td>
+        <td>St. Charles Co. only</td>
+        <td>Local operator</td>
+      </tr>
+      <tr>
+        <td>Yucko's</td>
+        <td>Quote-based</td>
+        <td>Quote-based</td>
+        <td>No contracts</td>
+        <td>STL + St. Charles</td>
+        <td>Local (since 1990)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--green);border-radius:8px;padding:1.2rem;margin-top:1.5rem;">
+    <h4 style="color:var(--green);font-size:0.9rem;margin-bottom:0.5rem;">💡 Pricing Strategy Insight</h4>
+    <ul style="list-style:none;font-size:0.85rem;line-height:1.8;">
+      <li>→ TJ at <strong>$17.50/wk ($70/mo)</strong> is competitively priced — lower than Poopy Paws ($80), Dirty Dog ($95), but higher than Critter Sitters ($60)</li>
+      <li>→ POOP 911's "$11.95" is bait pricing — real quotes come in $15-25/wk after yard assessment</li>
+      <li>→ Most competitors hide pricing behind "Get a Quote" — TJ's transparency is a real advantage</li>
+      <li>→ <strong>Recommendation:</strong> Keep $17.50/wk as standard. Offer "$15/wk if you refer a neighbor" to undercut Critter Sitters while growing through referrals</li>
+      <li>→ <strong>Spring Promo:</strong> "First week FREE" matches POOP 911 and removes risk for new customers</li>
+    </ul>
+  </div>
+</div>
+
+<!-- KILL SCRIPTS -->
+<div class="panel" id="scripts">
+  <h3 class="section-title">Objection Handling — When Prospects Mention Competitors</h3>
+
+  <div class="script-card">
+    <h4>🗣️ "I'm already using POOP 911 / DoodyCalls"</h4>
+    <div class="context">Customer has a franchise service</div>
+    <p>"Oh nice, they're a solid company. The main thing people tell me when they switch is they got tired of seeing a different person in their yard every week. With me, I'm the guy — same person, same day, every week. Your dog actually gets to know me. Plus you can text me directly instead of calling a 1-800 number. If you're ever not happy with them, I'll match their price and throw in the first week free."</p>
+    <button class="copy-btn" onclick="copyScript(this)">📋 Copy</button>
+  </div>
+
+  <div class="script-card">
+    <h4>🗣️ "I found someone cheaper" (Poopy Paws / Critter Sitters)</h4>
+    <div class="context">Price-sensitive prospect</div>
+    <p>"Totally get it — price matters. What I'd ask is: is it the same person every time? Do they text you when they're done? Do they actually check your dog's waste for anything weird? I do all of that at $17.50 a week. That's less than a Chipotle run. And if you refer a neighbor, I'll drop it to $15. Nobody does that."</p>
+    <button class="copy-btn" onclick="copyScript(this)">📋 Copy</button>
+  </div>
+
+  <div class="script-card">
+    <h4>🗣️ "Yucko's has been doing it for 30+ years"</h4>
+    <div class="context">Customer loyal to legacy provider</div>
+    <p>"Man, 36 years — that's impressive. You know what's funny though, have you tried to book with them online? It's phone-only, Monday through Friday 8 to 3. If you need to reach me, you text me at midnight and I'll get back to you in the morning. I respect what they've built, but I think you deserve someone who communicates the way you actually want to."</p>
+    <button class="copy-btn" onclick="copyScript(this)">📋 Copy</button>
+  </div>
+
+  <div class="script-card">
+    <h4>🗣️ "I'll just pick it up myself"</h4>
+    <div class="context">Not yet convinced they need a service</div>
+    <p>"Hey, I respect that. Most people say that until they realize they're spending 20-30 minutes every weekend doing it, and they've still got spots they missed. For less than $18 a week — that's like two coffees — you get your whole weekend back. I come on the same day every week, rain or shine. Most of my customers tell me the first month they're like 'why didn't I do this sooner.' No contract — try it for a month. If you don't love it, you're out nothing."</p>
+    <button class="copy-btn" onclick="copyScript(this)">📋 Copy</button>
+  </div>
+
+  <div class="script-card">
+    <h4>🗣️ "How do I know you'll actually show up?"</h4>
+    <div class="context">Trust / reliability concern</div>
+    <p>"Fair question. I text you a photo when I'm done every single visit. Same day, same time, every week. I've been doing this for over a year now and haven't missed a single service day. Google me — Tidy Tails. Check the reviews. And if I ever don't show? That week's free. I don't play games with people's trust."</p>
+    <button class="copy-btn" onclick="copyScript(this)">📋 Copy</button>
+  </div>
+
+  <div class="script-card">
+    <h4>🗣️ "Your website says you're in St. Charles but I'm in [other area]"</h4>
+    <div class="context">Service area question</div>
+    <p>"I cover a pretty big area — Florissant, Hazelwood, St. Charles, O'Fallon, St. Peters, Maryland Heights, all through North County. If you're within about 30 minutes of Florissant, I can get to you. Where exactly are you? Let me see if I can fit you on one of my existing route days — that way you get the best rate."</p>
+    <button class="copy-btn" onclick="copyScript(this)">📋 Copy</button>
+  </div>
+</div>
+
+<!-- MARKET GAPS -->
+<div class="panel" id="gaps">
+  <h3 class="section-title">Market Gaps & Opportunities</h3>
+
+  <div class="opp-card">
+    <h4>🏚️ Pawfect Waste Solutions is DOWN — Orphaned Customers</h4>
+    <p>Their website (pooperscooperstl.com) returns a "site not found" error. They claimed service in Creve Coeur, Richmond Heights, Maryland Heights, O'Fallon, St. Charles, Ballwin, and Chesterfield. These customers are currently looking for a replacement.</p>
+    <span class="revenue">Potential: 5-15 orphaned customers = $350-$1,050/mo</span>
+  </div>
+
+  <div class="opp-card">
+    <h4>📍 North County is a Desert</h4>
+    <p>Florissant, Hazelwood, Ferguson, Bridgeton, and North County have essentially ZERO dedicated pet waste services. POOP 911 has a Florissant page but focuses south. Yucko's is too old-school to market there. TJ owns this territory by default.</p>
+    <span class="revenue">Potential: First-mover advantage in 200K+ population area</span>
+  </div>
+
+  <div class="opp-card">
+    <h4>🖥️ Craigslist is Completely Empty</h4>
+    <p>Zero pet waste removal ads on St. Louis Craigslist. This is a free channel with 0 competition. Post weekly under services and community → pets.</p>
+    <span class="revenue">Potential: 2-5 leads/week at $0 cost</span>
+  </div>
+
+  <div class="opp-card">
+    <h4>🏢 Commercial Gap in North County</h4>
+    <p>No competitor actively targets apartment complexes and HOAs in North County / St. Charles for pet waste station services. DoodyCalls and POOP 911 focus on south/central for commercial work.</p>
+    <span class="revenue">Potential: 1 commercial account = $200-500/mo</span>
+  </div>
+
+  <div class="opp-card">
+    <h4>📱 Text-First Communication Gap</h4>
+    <p>Most competitors are phone-only (Yucko's) or quote-form-only (DoodyCalls, POOP 911). Nobody leads with "just text me." This is what younger homeowners (25-45) want.</p>
+    <span class="revenue">Differentiator that converts hesitant prospects</span>
+  </div>
+
+  <div class="opp-card">
+    <h4>🐱 Litter Box Service — Nobody Does It Well</h4>
+    <p>Little Stinkers advertises it but only in St. Charles County. No one offers dedicated indoor cat litter service in STL County. Cat owners are an untapped market.</p>
+    <span class="revenue">Potential: $30-50/wk add-on per client</span>
+  </div>
+</div>
+
+<!-- SWOT -->
+<div class="panel" id="swot">
+  <h3 class="section-title">Tidy Tails SWOT Analysis — March 2026</h3>
+
+  <div class="swot-grid">
+    <div class="swot-box s">
+      <h4>💪 STRENGTHS</h4>
+      <ul>
+        <li>→ Owner-operated = personal service, trust</li>
+        <li>→ Text-first communication (huge for under-45 demo)</li>
+        <li>→ Transparent pricing ($17.50/wk, no hidden fees)</li>
+        <li>→ Same person every visit — dogs know TJ</li>
+        <li>→ No contracts — easy to start</li>
+        <li>→ North County / St. Charles territory = low competition</li>
+        <li>→ Spring promo (first week free) matches franchises</li>
+        <li>→ Flexible scheduling vs M-F only competitors</li>
+        <li>→ Lower overhead than franchises = better margins at lower prices</li>
+      </ul>
+    </div>
+
+    <div class="swot-box w">
+      <h4>⚠️ WEAKNESSES</h4>
+      <ul>
+        <li>→ Website currently DOWN (tidytailspetwasteremoval.net)</li>
+        <li>→ Low Google review count vs established competitors</li>
+        <li>→ No Google Business Profile optimization yet</li>
+        <li>→ Solo operation = capacity ceiling</li>
+        <li>→ Brand awareness near zero outside existing customers</li>
+        <li>→ No commercial clients yet</li>
+        <li>→ Not listed on major directories (Yelp, Thumbtack, Angi)</li>
+      </ul>
+    </div>
+
+    <div class="swot-box o">
+      <h4>🎯 OPPORTUNITIES</h4>
+      <ul>
+        <li>→ Pawfect Waste Solutions dead — grab orphaned customers</li>
+        <li>→ Craigslist completely empty — free leads</li>
+        <li>→ North County has no dedicated service</li>
+        <li>→ Spring = peak signup season (March-May)</li>
+        <li>→ Commercial accounts (apartments, HOAs) untapped</li>
+        <li>→ Litter box service = new revenue stream</li>
+        <li>→ Yucko's (36 yrs) could retire → absorb their customers</li>
+        <li>→ Directory listings (Yelp, Nextdoor) = free visibility</li>
+      </ul>
+    </div>
+
+    <div class="swot-box t">
+      <h4>🔴 THREATS</h4>
+      <ul>
+        <li>→ POOP 911 has best SEO — hard to outrank</li>
+        <li>→ DoodyCalls has franchise marketing budget</li>
+        <li>→ New competitors can enter easily (low barrier)</li>
+        <li>→ Price war risk if market gets crowded</li>
+        <li>→ Solo capacity means turning away customers during growth</li>
+        <li>→ Seasonal slowdown in winter</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--orange);border-radius:8px;padding:1.2rem;margin-top:1.5rem;">
+    <h4 style="color:var(--orange);font-size:0.9rem;margin-bottom:0.5rem;">🎯 Top 3 Actions Based on This Analysis</h4>
+    <ol style="font-size:0.85rem;line-height:1.8;padding-left:1.2rem;">
+      <li><strong>Fix the website.</strong> TJ's main site is down. Use the GitHub Pages landing page as the primary URL. Update Google Business Profile to point there.</li>
+      <li><strong>Post on Craigslist this weekend.</strong> Zero competition. Free. Takes 10 minutes. Do it weekly.</li>
+      <li><strong>Target Pawfect's orphaned territory.</strong> Maryland Heights, Creve Coeur, Chesterfield — their customers are literally searching for an alternative right now.</li>
+    </ol>
+  </div>
+</div>
+
+</div>
+
+<script>
+// Tab switching
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+
+// Copy script
+function copyScript(btn) {
+  const text = btn.previousElementSibling.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = '📋 Copy', 2000);
+  });
+}
+</script>
+
+</body>
+</html>
