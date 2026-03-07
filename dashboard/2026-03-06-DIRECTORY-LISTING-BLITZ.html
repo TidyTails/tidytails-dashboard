@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌐 Directory Listing Blitz — Get Found Everywhere</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            padding: 60px 40px;
+            text-align: center;
+            border-bottom: 3px solid #e94560;
+        }
+        .hero h1 { font-size: 2.5em; color: #fff; margin-bottom: 10px; }
+        .hero .subtitle { font-size: 1.3em; color: #a0a0a0; }
+        .hero .alert {
+            background: rgba(233, 69, 96, 0.15);
+            border: 2px solid #e94560;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 700px;
+        }
+        .hero .alert h3 { color: #e94560; font-size: 1.3em; margin-bottom: 8px; }
+        .hero .alert p { color: #ccc; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+        
+        .why-box {
+            background: linear-gradient(135deg, #1a2a1a, #0d1f0d);
+            border: 2px solid #2d5a27;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        .why-box h2 { color: #4caf50; margin-bottom: 15px; }
+        .why-box ul { list-style: none; }
+        .why-box li { padding: 8px 0; padding-left: 25px; position: relative; }
+        .why-box li::before { content: "✅"; position: absolute; left: 0; }
+        
+        .priority-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .priority-card {
+            background: #141414;
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            border: 2px solid #333;
+        }
+        .priority-card.high { border-color: #e94560; }
+        .priority-card.medium { border-color: #f39c12; }
+        .priority-card.low { border-color: #3498db; }
+        .priority-card .emoji { font-size: 2.5em; margin-bottom: 10px; }
+        .priority-card h3 { color: #fff; margin-bottom: 5px; }
+        .priority-card p { color: #888; font-size: 0.9em; }
+        
+        .listing-section {
+            background: #141414;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            border: 1px solid #222;
+        }
+        .listing-header {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .listing-header.critical { background: linear-gradient(90deg, #2a0a0a, #141414); border-left: 4px solid #e94560; }
+        .listing-header.important { background: linear-gradient(90deg, #2a1a0a, #141414); border-left: 4px solid #f39c12; }
+        .listing-header.helpful { background: linear-gradient(90deg, #0a1a2a, #141414); border-left: 4px solid #3498db; }
+        .listing-header.bonus { background: linear-gradient(90deg, #1a0a2a, #141414); border-left: 4px solid #9b59b6; }
+        
+        .listing-header .platform-icon { font-size: 2em; }
+        .listing-header .platform-info { flex: 1; }
+        .listing-header .platform-info h3 { color: #fff; font-size: 1.2em; }
+        .listing-header .platform-info .meta { color: #888; font-size: 0.85em; }
+        .listing-header .badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        .badge.free { background: #0a2a0a; color: #4caf50; border: 1px solid #4caf50; }
+        .badge.paid { background: #2a1a0a; color: #f39c12; border: 1px solid #f39c12; }
+        .badge.time { background: #0a0a2a; color: #3498db; border: 1px solid #3498db; }
+        
+        .listing-body { padding: 0 25px 25px; }
+        .listing-body .step {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+        .listing-body .step h4 { color: #e94560; margin-bottom: 10px; }
+        
+        .copy-block {
+            background: #0d0d0d;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+            position: relative;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            color: #ccc;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #e94560;
+            color: #fff;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+        .copy-btn:hover { background: #c73652; }
+        .copy-btn.copied { background: #4caf50; }
+        
+        .checklist { list-style: none; margin: 15px 0; }
+        .checklist li {
+            padding: 10px 15px;
+            background: #1a1a1a;
+            border-radius: 8px;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .checklist input[type="checkbox"] { width: 20px; height: 20px; accent-color: #e94560; }
+        .checklist label { cursor: pointer; flex: 1; }
+        .checklist .time { color: #888; font-size: 0.85em; }
+        
+        .nap-box {
+            background: linear-gradient(135deg, #1a1a2e, #141414);
+            border: 2px solid #e94560;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        .nap-box h2 { color: #e94560; margin-bottom: 15px; }
+        .nap-box .nap-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        .nap-item {
+            background: #0d0d0d;
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .nap-item .label { color: #888; font-size: 0.85em; text-transform: uppercase; letter-spacing: 1px; }
+        .nap-item .value { color: #fff; font-size: 1.1em; font-weight: 600; margin-top: 5px; }
+        
+        .impact-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .impact-table th {
+            background: #1a1a1a;
+            color: #e94560;
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 2px solid #333;
+        }
+        .impact-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #222;
+        }
+        .impact-table tr:hover { background: #1a1a1a; }
+        
+        .progress-tracker {
+            background: #141414;
+            border-radius: 16px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 1px solid #222;
+        }
+        .progress-tracker h2 { color: #fff; margin-bottom: 20px; }
+        .progress-bar-container {
+            background: #0d0d0d;
+            border-radius: 10px;
+            height: 30px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-bar {
+            height: 100%;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.85em;
+            transition: width 0.5s;
+        }
+        .progress-bar.seo { background: linear-gradient(90deg, #e94560, #c73652); width: 0%; }
+        
+        .bottom-line {
+            background: linear-gradient(135deg, #0f3460, #1a1a2e);
+            border-radius: 16px;
+            padding: 30px;
+            margin-top: 40px;
+            text-align: center;
+            border: 2px solid #3498db;
+        }
+        .bottom-line h2 { color: #3498db; margin-bottom: 15px; }
+        .bottom-line .big-number { font-size: 3em; color: #fff; font-weight: 800; }
+        .bottom-line .big-label { color: #888; }
+        
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8em; }
+            .priority-grid { grid-template-columns: 1fr; }
+            .nap-box .nap-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <h1>🌐 Directory Listing Blitz</h1>
+    <p class="subtitle">Get Tidy Tails Found on Every Platform That Matters</p>
+    <div class="alert">
+        <h3>🚨 CRITICAL: Google Still Has ZERO Indexed Pages</h3>
+        <p>As of 8 PM on March 6, 2026 — <code>site:tidytailsstl.com</code> returns NOTHING. All 11+ pages are invisible. Directory listings create backlinks that FORCE Google to discover your site. This is the fastest fix.</p>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- NAP CONSISTENCY BOX -->
+    <div class="nap-box">
+        <h2>📋 Your NAP (Name, Address, Phone) — Use EXACTLY This Everywhere</h2>
+        <p style="color:#aaa;margin-bottom:15px;">Google checks that your business info matches across all platforms. Even small differences (St. vs Street, STL vs St. Louis) hurt your rankings. Copy-paste these EXACTLY.</p>
+        <div class="nap-grid">
+            <div class="nap-item">
+                <div class="label">Business Name</div>
+                <div class="value">Tidy Tails Pet Waste Removal</div>
+            </div>
+            <div class="nap-item">
+                <div class="label">Phone</div>
+                <div class="value">(314) 850-7140</div>
+            </div>
+            <div class="nap-item">
+                <div class="label">Website</div>
+                <div class="value">https://tidytailsstl.com</div>
+            </div>
+            <div class="nap-item">
+                <div class="label">Service Area</div>
+                <div class="value">St. Louis County, St. Charles County, MO</div>
+            </div>
+            <div class="nap-item">
+                <div class="label">Category</div>
+                <div class="value">Pet Waste Removal Service</div>
+            </div>
+            <div class="nap-item">
+                <div class="label">Hours</div>
+                <div class="value">Mon-Sat: 8:00 AM - 6:00 PM</div>
+            </div>
+            <div class="nap-item">
+                <div class="label">Email</div>
+                <div class="value">cartervhomes@gmail.com</div>
+            </div>
+            <div class="nap-item">
+                <div class="label">Owner</div>
+                <div class="value">TJ</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRIORITY OVERVIEW -->
+    <div class="priority-grid">
+        <div class="priority-card high">
+            <div class="emoji">🔴</div>
+            <h3>CRITICAL (Do First)</h3>
+            <p>Google Business Profile, Yelp, Apple Maps, Bing Places</p>
+            <p style="color:#e94560;margin-top:10px;font-weight:bold;">~45 min total</p>
+        </div>
+        <div class="priority-card medium">
+            <div class="emoji">🟡</div>
+            <h3>IMPORTANT (This Week)</h3>
+            <p>Thumbtack, Nextdoor Biz, Craigslist, Angi, BBB</p>
+            <p style="color:#f39c12;margin-top:10px;font-weight:bold;">~30 min total</p>
+        </div>
+        <div class="priority-card low">
+            <div class="emoji">🔵</div>
+            <h3>BONUS (When You Can)</h3>
+            <p>Facebook Page, Alignable, SLAA, PetWorks, Bark</p>
+            <p style="color:#3498db;margin-top:10px;font-weight:bold;">~20 min total</p>
+        </div>
+    </div>
+
+    <!-- WHY THIS MATTERS -->
+    <div class="why-box">
+        <h2>Why Directory Listings = More Customers</h2>
+        <ul>
+            <li><strong>Backlinks force Google to find you.</strong> Each listing = a link pointing to tidytailsstl.com. Google follows these links and indexes your site.</li>
+            <li><strong>NAP consistency boosts local rankings.</strong> Google trusts businesses that appear consistently across multiple platforms.</li>
+            <li><strong>Direct leads from platforms.</strong> People search Yelp, Thumbtack, Nextdoor directly. You need to be where they're looking.</li>
+            <li><strong>5+ other "Tidy Tails" companies nationally.</strong> You MUST establish your STL presence on every platform before they do.</li>
+            <li><strong>Competitors are already listed.</strong> DoodyCalls, Poop2Scoop, POOP 911 all have Yelp, Thumbtack, Angi profiles. You don't.</li>
+            <li><strong>Free marketing that works while you sleep.</strong> Set these up once, they generate leads for years.</li>
+        </ul>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LISTING 1: GOOGLE BUSINESS PROFILE -->
+    <!-- ============================================ -->
+    <div class="listing-section">
+        <div class="listing-header critical">
+            <span class="platform-icon">📍</span>
+            <div class="platform-info">
+                <h3>Google Business Profile (GBP)</h3>
+                <span class="meta">The #1 most important listing. Controls Google Maps + local search results.</span>
+            </div>
+            <span class="badge free">FREE</span>
+        </div>
+        <div class="listing-body">
+            <div class="step">
+                <h4>Step 1: Check If You Already Have One</h4>
+                <p>Go to <a href="https://business.google.com" style="color:#e94560;">business.google.com</a> and sign in with your Google account. If you already claimed your business, optimize it with the info below. If not, click "Add your business."</p>
+            </div>
+            <div class="step">
+                <h4>Step 2: Fill Out Your Profile (Use These EXACT Values)</h4>
+                <ul class="checklist">
+                    <li><input type="checkbox" id="gbp1"><label for="gbp1">Business name: <strong>Tidy Tails Pet Waste Removal</strong></label></li>
+                    <li><input type="checkbox" id="gbp2"><label for="gbp2">Category: <strong>Pet Waste Removal Service</strong> (primary)</label></li>
+                    <li><input type="checkbox" id="gbp2b"><label for="gbp2b">Additional categories: <strong>Pet Service</strong>, <strong>Cleaning Service</strong></label></li>
+                    <li><input type="checkbox" id="gbp3"><label for="gbp3">Service area business (NOT a storefront) — add all service cities</label></li>
+                    <li><input type="checkbox" id="gbp4"><label for="gbp4">Phone: <strong>(314) 850-7140</strong></label></li>
+                    <li><input type="checkbox" id="gbp5"><label for="gbp5">Website: <strong>https://tidytailsstl.com</strong></label></li>
+                    <li><input type="checkbox" id="gbp6"><label for="gbp6">Hours: <strong>Mon-Sat 8:00 AM - 6:00 PM</strong></label></li>
+                    <li><input type="checkbox" id="gbp7"><label for="gbp7">Service areas: Ferguson, Florissant, Maryland Heights, Ballwin, Chesterfield, O'Fallon, St. Charles, St. Peters, Creve Coeur, Hazelwood, Bridgeton</label></li>
+                </ul>
+            </div>
+            <div class="step">
+                <h4>Step 3: Business Description (Copy-Paste This)</h4>
+                <div class="copy-block" id="gbp-desc">Tidy Tails is St. Louis's locally owned pet waste removal service. We scoop so you don't have to. Weekly, bi-weekly, monthly, and one-time cleanups for residential yards across St. Louis County and St. Charles County. No contracts, no hidden fees, satisfaction guaranteed. Same friendly face every visit — just TJ, your local dog guy. Starting at $25/week. Call or text (314) 850-7140 for a free quote.</div>
+                <button class="copy-btn" onclick="copyText('gbp-desc', this)">📋 Copy</button>
+            </div>
+            <div class="step">
+                <h4>Step 4: GBP Posts (Do One Per Week)</h4>
+                <p>Google Business Posts show up in search results. Post at least weekly. Here are 4 ready to go:</p>
+                <div class="copy-block" id="gbp-post1">🐕 Spring is here and so is 3 months of backyard buildup! 
+
+Tidy Tails offers professional pet waste removal across St. Louis County and St. Charles. We show up weekly (same day, same time), clean every inch of your yard, and leave it spotless.
+
+✅ No contracts
+✅ Satisfaction guaranteed
+✅ Starting at $25/week
+
+Call or text (314) 850-7140 for your FREE first cleanup!
+
+#PetWasteRemoval #StLouis #PooperScooper #TidyTails</div>
+                <button class="copy-btn" onclick="copyText('gbp-post1', this)">📋 Copy</button>
+                
+                <div class="copy-block" id="gbp-post2">Tired of the backyard minefield? 💩
+
+I'm TJ, founder of Tidy Tails. I started this because I know what it's like — you love your dog but HATE the cleanup. Life's busy. The pile-up is real.
+
+Every week I show up on time, clean every corner, and you get your yard back. Simple as that.
+
+Serving Ferguson, Florissant, Ballwin, Chesterfield, O'Fallon, St. Charles & more.
+
+📞 (314) 850-7140 | tidytailsstl.com</div>
+                <button class="copy-btn" onclick="copyText('gbp-post2', this)">📋 Copy</button>
+            </div>
+            <div class="step">
+                <h4>Step 5: Request Indexing via Search Console</h4>
+                <p>This is CRITICAL. Go to <a href="https://search.google.com/search-console" style="color:#e94560;">Google Search Console</a>:</p>
+                <ol style="margin-left:20px;margin-top:10px;">
+                    <li>Add <strong>https://tidytailsstl.com</strong> as a property</li>
+                    <li>Verify ownership (HTML file, DNS, or Google Analytics method)</li>
+                    <li>Submit sitemap: <strong>https://tidytailsstl.com/sitemap.xml</strong></li>
+                    <li>Use URL Inspection → paste each city page URL → click "Request Indexing"</li>
+                    <li>Do this for ALL 11 pages in the sitemap</li>
+                </ol>
+                <p style="margin-top:10px;color:#e94560;font-weight:bold;">⚠️ This is the single most important step. Without it, Google may take weeks or months to find your site on its own.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LISTING 2: YELP -->
+    <!-- ============================================ -->
+    <div class="listing-section">
+        <div class="listing-header critical">
+            <span class="platform-icon">⭐</span>
+            <div class="platform-info">
+                <h3>Yelp</h3>
+                <span class="meta">2nd most important local directory. Competitors are already here. You need to be too.</span>
+            </div>
+            <span class="badge free">FREE</span>
+        </div>
+        <div class="listing-body">
+            <div class="step">
+                <h4>Why Yelp Matters</h4>
+                <p>There are already TWO other "Tidy Tails" pet waste businesses on Yelp (Highland, IL and Atlanta, GA). If someone searches "Tidy Tails pet waste removal" on Yelp, they find your competitors — not you. Fix this.</p>
+            </div>
+            <div class="step">
+                <h4>Setup: <a href="https://biz.yelp.com" style="color:#e94560;">biz.yelp.com</a></h4>
+                <ul class="checklist">
+                    <li><input type="checkbox" id="yelp1"><label for="yelp1">Go to biz.yelp.com → "Claim your business" or "Add your business"</label></li>
+                    <li><input type="checkbox" id="yelp2"><label for="yelp2">Business name: <strong>Tidy Tails Pet Waste Removal</strong></label></li>
+                    <li><input type="checkbox" id="yelp3"><label for="yelp3">Category: <strong>Pet Waste Removal</strong></label></li>
+                    <li><input type="checkbox" id="yelp4"><label for="yelp4">Set as service-area business (no storefront address)</label></li>
+                    <li><input type="checkbox" id="yelp5"><label for="yelp5">Add all service area cities</label></li>
+                    <li><input type="checkbox" id="yelp6"><label for="yelp6">Phone: (314) 850-7140</label></li>
+                    <li><input type="checkbox" id="yelp7"><label for="yelp7">Website: https://tidytailsstl.com</label></li>
+                </ul>
+            </div>
+            <div class="step">
+                <h4>Yelp Business Description</h4>
+                <div class="copy-block" id="yelp-desc">Tidy Tails is St. Louis's locally owned and operated pet waste removal service. Founded by TJ, a fellow dog lover who understands that life's too short to spend your weekends scooping poop.
+
+We offer weekly, bi-weekly, monthly, and one-time yard cleanups across St. Louis County and St. Charles County — including Ferguson, Florissant, Maryland Heights, Ballwin, Chesterfield, O'Fallon, St. Charles, and St. Peters.
+
+What makes us different:
+• No contracts — ever
+• Same person every visit (me!)
+• Satisfaction guaranteed
+• We bag it and take it with us
+• Starting at $25/week
+
+Your dogs don't stop, and neither do we — rain, snow, or shine, year-round service.
+
+Call or text (314) 850-7140 for a free quote, or visit tidytailsstl.com.</div>
+                <button class="copy-btn" onclick="copyText('yelp-desc', this)">📋 Copy</button>
+            </div>
+            <div class="step">
+                <h4>Yelp Specialties (fill in the "Specialties" field)</h4>
+                <div class="copy-block" id="yelp-spec">Weekly pet waste removal, bi-weekly yard cleanup, monthly poop scooping, one-time deep cleans, spring yard cleanups, residential pooper scooper service, dog waste removal</div>
+                <button class="copy-btn" onclick="copyText('yelp-spec', this)">📋 Copy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LISTING 3: APPLE MAPS -->
+    <!-- ============================================ -->
+    <div class="listing-section">
+        <div class="listing-header critical">
+            <span class="platform-icon">🍎</span>
+            <div class="platform-info">
+                <h3>Apple Maps (Apple Business Connect)</h3>
+                <span class="meta">Every iPhone user's default map. Often overlooked. Easy setup.</span>
+            </div>
+            <span class="badge free">FREE</span>
+        </div>
+        <div class="listing-body">
+            <div class="step">
+                <h4>Setup: <a href="https://businessconnect.apple.com" style="color:#e94560;">businessconnect.apple.com</a></h4>
+                <ul class="checklist">
+                    <li><input type="checkbox" id="apple1"><label for="apple1">Sign in with Apple ID</label></li>
+                    <li><input type="checkbox" id="apple2"><label for="apple2">Search for your business or add new</label></li>
+                    <li><input type="checkbox" id="apple3"><label for="apple3">Fill in same NAP info as Google (exact match!)</label></li>
+                    <li><input type="checkbox" id="apple4"><label for="apple4">Add photos of you working, clean yards, your truck</label></li>
+                    <li><input type="checkbox" id="apple5"><label for="apple5">Set up "Action Links" — call, website, text</label></li>
+                </ul>
+                <p style="margin-top:10px;color:#aaa;">Why: ~55% of US smartphone users have iPhones. When they search "pet waste removal near me" on their phone, Apple Maps results show first. If you're not on Apple Maps, you don't exist to half the market.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LISTING 4: BING PLACES -->
+    <!-- ============================================ -->
+    <div class="listing-section">
+        <div class="listing-header critical">
+            <span class="platform-icon">🔍</span>
+            <div class="platform-info">
+                <h3>Bing Places for Business</h3>
+                <span class="meta">Microsoft's search engine. Can import from Google directly. 2-minute setup.</span>
+            </div>
+            <span class="badge free">FREE</span>
+        </div>
+        <div class="listing-body">
+            <div class="step">
+                <h4>Setup: <a href="https://www.bingplaces.com" style="color:#e94560;">bingplaces.com</a></h4>
+                <ul class="checklist">
+                    <li><input type="checkbox" id="bing1"><label for="bing1">Go to bingplaces.com → "Get Started"</label></li>
+                    <li><input type="checkbox" id="bing2"><label for="bing2">Choose "Import from Google" if your GBP is set up (fastest!)</label></li>
+                    <li><input type="checkbox" id="bing3"><label for="bing3">Or manually enter same NAP info</label></li>
+                    <li><input type="checkbox" id="bing4"><label for="bing4">Verify via phone or postcard</label></li>
+                </ul>
+                <p style="margin-top:10px;color:#aaa;">Why: Bing powers Cortana, Alexa, Yahoo Search, DuckDuckGo, and ChatGPT search. One listing covers multiple search engines. Also creates another backlink to your site.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LISTING 5: THUMBTACK -->
+    <!-- ============================================ -->
+    <div class="listing-section">
+        <div class="listing-header important">
+            <span class="platform-icon">📌</span>
+            <div class="platform-info">
+                <h3>Thumbtack</h3>
+                <span class="meta">Lead generation platform. People actively searching for pet waste removal pros.</span>
+            </div>
+            <span class="badge paid">PAY PER LEAD</span>
+        </div>
+        <div class="listing-body">
+            <div class="step">
+                <h4>Setup: <a href="https://www.thumbtack.com/pro" style="color:#e94560;">thumbtack.com/pro</a></h4>
+                <p>Thumbtack sends you leads directly. You only pay when someone contacts you (~$5-15/lead for pet services). Profile is free to create.</p>
+                <ul class="checklist">
+                    <li><input type="checkbox" id="tt1"><label for="tt1">Create pro account → select "Pet Waste Removal"</label></li>
+                    <li><input type="checkbox" id="tt2"><label for="tt2">Set service area to St. Louis County + St. Charles County</label></li>
+                    <li><input type="checkbox" id="tt3"><label for="tt3">Set your budget (start with $50-100/month to test)</label></li>
+                    <li><input type="checkbox" id="tt4"><label for="tt4">Add photos and description below</label></li>
+                </ul>
+            </div>
+            <div class="step">
+                <h4>Thumbtack Bio</h4>
+                <div class="copy-block" id="tt-bio">Hey, I'm TJ — the guy behind Tidy Tails. I started this business because I'm a dog lover who knows the backyard struggle is real. Instead of dreading weekend cleanup duty, let me handle it.
+
+I show up weekly (same day, same time), clean every inch of your yard, bag it, and take it with me. You come home to a clean yard without lifting a finger.
+
+What you get with Tidy Tails:
+→ Same person every visit (me — not a random tech)
+→ No contracts or commitments
+→ 100% satisfaction guaranteed
+→ Year-round service, rain or shine
+→ Starting at $25/week
+
+Serving St. Louis County and St. Charles County. Call or text anytime — (314) 850-7140.</div>
+                <button class="copy-btn" onclick="copyText('tt-bio', this)">📋 Copy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LISTING 6: NEXTDOOR BUSINESS -->
+    <!-- ============================================ -->
+    <div class="listing-section">
+        <div class="listing-header important">
+            <span class="platform-icon">🏘️</span>
+            <div class="platform-info">
+                <h3>Nextdoor Business Page</h3>
+                <span class="meta">THE platform for local services. Neighbors recommending neighbors.</span>
+            </div>
+            <span class="badge free">FREE</span>
+        </div>
+        <div class="listing-body">
+            <div class="step">
+                <h4>Setup: <a href="https://business.nextdoor.com" style="color:#e94560;">business.nextdoor.com</a></h4>
+                <ul class="checklist">
+                    <li><input type="checkbox" id="nd1"><label for="nd1">Create a business page (separate from personal account)</label></li>
+                    <li><input type="checkbox" id="nd2"><label for="nd2">Category: Pet Services → Pet Waste Removal</label></li>
+                    <li><input type="checkbox" id="nd3"><label for="nd3">Add service area neighborhoods</label></li>
+                    <li><input type="checkbox" id="nd4"><label for="nd4">Add description and photos</label></li>
+                    <li><input type="checkbox" id="nd5"><label for="nd5">Post an introduction (use the Referral Blitz Nextdoor posts from earlier today!)</label></li>
+                </ul>
+                <p style="margin-top:10px;color:#aaa;">Why: Nextdoor recommendations carry massive weight. When someone asks "anyone know a good pooper scooper?" — you want YOUR business page to come up. 2 free business posts per month, paid local deal ads available.</p>
+            </div>
+            <div class="step">
+                <h4>Nextdoor Business Description</h4>
+                <div class="copy-block" id="nd-desc">Tidy Tails — your neighborhood's pet waste removal service. Locally owned by TJ, serving St. Louis County and St. Charles County.
+
+Weekly yard cleanups starting at $25/week. No contracts, same friendly face every visit, satisfaction guaranteed. We scoop so your family can enjoy the backyard again.
+
+📞 (314) 850-7140
+🌐 tidytailsstl.com</div>
+                <button class="copy-btn" onclick="copyText('nd-desc', this)">📋 Copy</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LISTING 7: CRAIGSLIST -->
+    <!-- ============================================ -->
+    <div class="listing-section">
+        <div class="listing-header important">
+            <span class="platform-icon">📝</span>
+            <div class="platform-info">
+                <h3>Craigslist St. Louis</h3>
+                <span class="meta">Your competitor "Fido Turd Burglar" is literally the only other listing. Free money.</span>
+            </div>
+            <span class="badge free">FREE</span>
+        </div>
+        <div class="listing-body">
+            <div class="step">
+                <h4>Post Under: Services → Household</h4>
+                <p>Repost every 48 hours for visibility. The Neighborhood Blitz Kit (built earlier today) has 3 CL-ready posts.</p>
+                <div class="copy-block" id="cl-title">🐕 Pet Waste Removal — Your Yard, Spotless. Starting at $25/week (St. Louis County)</div>
+                <button class="copy-btn" onclick="copyText('cl-title', this)">📋 Copy Title</button>
+                <div class="copy-block" id="cl-body">Tired of the backyard obstacle course? Let me handle it.
+
+I'm TJ, founder of Tidy Tails — St. Louis's pet waste removal service. Every week I show up (same day, same time), clean every corner of your yard, bag it, and take it with me. You come home to a clean yard. Simple.
+
+PRICING:
+• Weekly cleanup: $25/week
+• Bi-weekly: $45/visit
+• Monthly: $70/month
+• One-time deep clean: $100
+
+WHAT'S INCLUDED:
+✅ Full yard sweep — we don't miss spots
+✅ Waste bagged and removed (not left in your trash)
+✅ Text notification when we're done
+✅ 100% satisfaction guaranteed
+
+NO contracts. NO hidden fees. NO corporate franchise BS — just a local guy who does good work.
+
+Serving: Ferguson, Florissant, Maryland Heights, Ballwin, Chesterfield, O'Fallon, St. Charles, St. Peters, Creve Coeur, Hazelwood, Bridgeton, and surrounding areas.
+
+📞 Call or text: (314) 850-7140
+🌐 tidytailsstl.com
+
+Your dogs don't take weekends off. But YOU can.</div>
+                <button class="copy-btn" onclick="copyText('cl-body', this)">📋 Copy Body</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LISTING 8: ANGI (ANGIE'S LIST) -->
+    <!-- ============================================ -->
+    <div class="listing-section">
+        <div class="listing-header important">
+            <span class="platform-icon">🏠</span>
+            <div class="platform-info">
+                <h3>Angi (formerly Angie's List)</h3>
+                <span class="meta">Trusted home services platform. Free listing, paid leads available.</span>
+            </div>
+            <span class="badge free">FREE LISTING</span>
+        </div>
+        <div class="listing-body">
+            <div class="step">
+                <h4>Setup: <a href="https://www.angi.com/pro" style="color:#e94560;">angi.com/pro</a></h4>
+                <ul class="checklist">
+                    <li><input type="checkbox" id="angi1"><label for="angi1">Create a pro account</label></li>
+                    <li><input type="checkbox" id="angi2"><label for="angi2">Select "Pet Waste Removal" as service category</label></li>
+                    <li><input type="checkbox" id="angi3"><label for="angi3">Add same NAP info, description, photos</label></li>
+                    <li><input type="checkbox" id="angi4"><label for="angi4">Turn ON lead notifications (they'll text you when someone needs your service)</label></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LISTING 9: BBB -->
+    <!-- ============================================ -->
+    <div class="listing-section">
+        <div class="listing-header important">
+            <span class="platform-icon">🛡️</span>
+            <div class="platform-info">
+                <h3>Better Business Bureau (BBB)</h3>
+                <span class="meta">Trust signal + strong backlink. BBB.org has massive domain authority.</span>
+            </div>
+            <span class="badge free">FREE (basic)</span>
+        </div>
+        <div class="listing-body">
+            <div class="step">
+                <h4>Setup: <a href="https://www.bbb.org/get-listed" style="color:#e94560;">bbb.org/get-listed</a></h4>
+                <p>Free basic listing (non-accredited). Accreditation costs ~$400/year but is NOT necessary. The free listing alone gives you:</p>
+                <ul style="margin-left:20px;margin-top:10px;">
+                    <li>A backlink from BBB.org (Domain Authority 93 — extremely powerful for SEO)</li>
+                    <li>Trust badge you can reference in marketing</li>
+                    <li>Shows up in "pet waste removal near St. Louis" BBB searches</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LISTING 10: FACEBOOK BUSINESS PAGE -->
+    <!-- ============================================ -->
+    <div class="listing-section">
+        <div class="listing-header bonus">
+            <span class="platform-icon">📘</span>
+            <div class="platform-info">
+                <h3>Facebook Business Page</h3>
+                <span class="meta">May already exist. Ensure it's fully optimized with current info.</span>
+            </div>
+            <span class="badge free">FREE</span>
+        </div>
+        <div class="listing-body">
+            <div class="step">
+                <h4>Optimize Your Page</h4>
+                <ul class="checklist">
+                    <li><input type="checkbox" id="fb1"><label for="fb1">Business name: Tidy Tails Pet Waste Removal</label></li>
+                    <li><input type="checkbox" id="fb2"><label for="fb2">Category: Pet Waste Removal Service</label></li>
+                    <li><input type="checkbox" id="fb3"><label for="fb3">Add website: https://tidytailsstl.com</label></li>
+                    <li><input type="checkbox" id="fb4"><label for="fb4">Add phone: (314) 850-7140</label></li>
+                    <li><input type="checkbox" id="fb5"><label for="fb5">Add service area cities</label></li>
+                    <li><input type="checkbox" id="fb6"><label for="fb6">Enable messaging + "Get Quote" CTA button</label></li>
+                    <li><input type="checkbox" id="fb7"><label for="fb7">Add "About" description (use Yelp description above)</label></li>
+                    <li><input type="checkbox" id="fb8"><label for="fb8">Post before/after yard photos (even just 2-3)</label></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LISTING 11: ALIGNABLE -->
+    <!-- ============================================ -->
+    <div class="listing-section">
+        <div class="listing-header bonus">
+            <span class="platform-icon">🤝</span>
+            <div class="platform-info">
+                <h3>Alignable</h3>
+                <span class="meta">Small business networking. Connect with property managers, realtors, pet businesses.</span>
+            </div>
+            <span class="badge free">FREE</span>
+        </div>
+        <div class="listing-body">
+            <div class="step">
+                <h4>Setup: <a href="https://www.alignable.com" style="color:#e94560;">alignable.com</a></h4>
+                <p>Like LinkedIn for local small businesses. Create a profile and connect with property managers, real estate agents, and pet businesses in STL. Great for commercial lead networking. Another backlink for SEO.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- LISTING 12: BARK -->
+    <!-- ============================================ -->
+    <div class="listing-section">
+        <div class="listing-header bonus">
+            <span class="platform-icon">🐾</span>
+            <div class="platform-info">
+                <h3>Bark.com</h3>
+                <span class="meta">Service marketplace with pet waste removal category. Lead-based.</span>
+            </div>
+            <span class="badge paid">PAY PER LEAD</span>
+        </div>
+        <div class="listing-body">
+            <div class="step">
+                <h4>Setup: <a href="https://www.bark.com/en/us/pro/" style="color:#e94560;">bark.com/en/us/pro</a></h4>
+                <p>Similar to Thumbtack. Create a free profile, get matched with local leads. Pay only when you respond to a lead (~$5-10 each). Worth testing alongside Thumbtack to see which converts better.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- EXECUTION CHECKLIST -->
+    <!-- ============================================ -->
+    <div class="progress-tracker">
+        <h2>📋 Weekend Execution Order (Suggested)</h2>
+        <p style="color:#888;margin-bottom:20px;">Prioritized by SEO impact + lead generation potential. Do the top 4 Saturday morning before anything else.</p>
+        
+        <table class="impact-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Platform</th>
+                    <th>Time</th>
+                    <th>SEO Impact</th>
+                    <th>Lead Potential</th>
+                    <th>Priority</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>📍 Google Search Console (submit sitemap + request indexing)</td>
+                    <td>15 min</td>
+                    <td>🔴🔴🔴🔴🔴</td>
+                    <td>Unlocks everything</td>
+                    <td style="color:#e94560;font-weight:bold;">DO FIRST</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>📍 Google Business Profile (optimize or create)</td>
+                    <td>15 min</td>
+                    <td>🔴🔴🔴🔴🔴</td>
+                    <td>Map pack = #1 lead source</td>
+                    <td style="color:#e94560;font-weight:bold;">DO FIRST</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>⭐ Yelp</td>
+                    <td>10 min</td>
+                    <td>🔴🔴🔴🔴</td>
+                    <td>Direct searches + backlink</td>
+                    <td style="color:#e94560;font-weight:bold;">DO FIRST</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>🍎 Apple Maps</td>
+                    <td>5 min</td>
+                    <td>🔴🔴🔴</td>
+                    <td>55% of smartphone users</td>
+                    <td style="color:#e94560;font-weight:bold;">DO FIRST</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>🔍 Bing Places</td>
+                    <td>5 min</td>
+                    <td>🔴🔴🔴</td>
+                    <td>Covers Bing + Yahoo + Alexa</td>
+                    <td style="color:#f39c12;">Saturday</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>📝 Craigslist</td>
+                    <td>5 min</td>
+                    <td>🔴</td>
+                    <td>Almost zero competition</td>
+                    <td style="color:#f39c12;">Saturday</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>🏘️ Nextdoor Business</td>
+                    <td>10 min</td>
+                    <td>🔴🔴</td>
+                    <td>Best for local word-of-mouth</td>
+                    <td style="color:#f39c12;">Saturday</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>📌 Thumbtack</td>
+                    <td>10 min</td>
+                    <td>🔴🔴</td>
+                    <td>Active lead requests</td>
+                    <td style="color:#f39c12;">Sunday</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>🏠 Angi</td>
+                    <td>5 min</td>
+                    <td>🔴🔴</td>
+                    <td>Home services searches</td>
+                    <td style="color:#f39c12;">Sunday</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>🛡️ BBB</td>
+                    <td>5 min</td>
+                    <td>🔴🔴🔴🔴</td>
+                    <td>Trust + DA 93 backlink</td>
+                    <td style="color:#3498db;">This week</td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td>📘 Facebook Page (optimize)</td>
+                    <td>5 min</td>
+                    <td>🔴🔴</td>
+                    <td>Social proof</td>
+                    <td style="color:#3498db;">This week</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>🤝 Alignable</td>
+                    <td>5 min</td>
+                    <td>🔴</td>
+                    <td>B2B networking</td>
+                    <td style="color:#3498db;">This week</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- BOTTOM LINE -->
+    <div class="bottom-line">
+        <h2>The Math</h2>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:20px 0;">
+            <div>
+                <div class="big-number">12</div>
+                <div class="big-label">Directory Listings</div>
+            </div>
+            <div>
+                <div class="big-number">~95 min</div>
+                <div class="big-label">Total Setup Time</div>
+            </div>
+            <div>
+                <div class="big-number">12+</div>
+                <div class="big-label">Backlinks to Your Site</div>
+            </div>
+        </div>
+        <p style="color:#aaa;margin-top:20px;max-width:600px;margin-left:auto;margin-right:auto;">
+            Each listing creates a backlink that tells Google "this business exists." Combined with Search Console submission, this is how you go from 0 indexed pages to appearing in local search results. Most listings are one-time setup — do it once, benefit forever.
+        </p>
+        <p style="color:#e94560;font-weight:bold;margin-top:20px;font-size:1.1em;">
+            If you do NOTHING else this weekend: Set up Google Search Console + submit your sitemap. That one action unlocks everything.
+        </p>
+    </div>
+
+</div>
+
+<script>
+function copyText(id, btn) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✅ Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = '📋 Copy';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+}
+</script>
+
+</body>
+</html>

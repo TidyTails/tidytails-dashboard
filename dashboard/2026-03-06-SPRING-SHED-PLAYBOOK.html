@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏠 Spring 2026 Shed Sales Playbook — Darius/TJ</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg: #0d1117;
+            --card: #161b22;
+            --card-hover: #1c2333;
+            --border: #30363d;
+            --text: #e6edf3;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --green: #3fb950;
+            --orange: #d29922;
+            --red: #f85149;
+            --purple: #bc8cff;
+            --gold: #e3b341;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 { font-size: 2em; margin-bottom: 8px; }
+        h2 { font-size: 1.4em; margin: 32px 0 16px; color: var(--accent); border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        h3 { font-size: 1.15em; margin: 20px 0 10px; color: var(--gold); }
+        h4 { font-size: 1em; margin: 12px 0 6px; color: var(--green); }
+
+        .subtitle { color: var(--text-muted); margin-bottom: 24px; font-size: 1.05em; }
+        
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 12px 0;
+        }
+
+        .card:hover { background: var(--card-hover); }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+
+        .stat {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+
+        .stat .number { font-size: 2em; font-weight: 700; }
+        .stat .label { color: var(--text-muted); font-size: 0.85em; margin-top: 4px; }
+        .stat.green .number { color: var(--green); }
+        .stat.orange .number { color: var(--orange); }
+        .stat.accent .number { color: var(--accent); }
+        .stat.purple .number { color: var(--purple); }
+        .stat.gold .number { color: var(--gold); }
+        .stat.red .number { color: var(--red); }
+
+        .template-box {
+            background: #0d1117;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 16px;
+            margin: 10px 0;
+            position: relative;
+            white-space: pre-wrap;
+            font-size: 0.95em;
+            line-height: 1.7;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            padding: 4px 10px;
+            font-size: 0.8em;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .copy-btn:hover { opacity: 0.8; }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin: 2px 4px 2px 0;
+        }
+
+        .tag-hot { background: rgba(248,81,73,0.2); color: var(--red); }
+        .tag-warm { background: rgba(210,153,34,0.2); color: var(--orange); }
+        .tag-new { background: rgba(63,185,80,0.2); color: var(--green); }
+        .tag-ig { background: rgba(188,140,255,0.2); color: var(--purple); }
+        .tag-mp { background: rgba(88,166,255,0.2); color: var(--accent); }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.9em;
+        }
+
+        th, td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th { color: var(--text-muted); font-weight: 600; font-size: 0.85em; text-transform: uppercase; }
+        tr:hover td { background: rgba(88,166,255,0.05); }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin: 12px 0;
+        }
+
+        .cal-day {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 8px;
+            min-height: 80px;
+            font-size: 0.8em;
+        }
+
+        .cal-day .day-num { font-weight: 700; margin-bottom: 4px; color: var(--text-muted); }
+        .cal-day .task { 
+            background: rgba(88,166,255,0.1); 
+            border-radius: 3px; 
+            padding: 2px 6px; 
+            margin: 2px 0; 
+            font-size: 0.85em;
+        }
+
+        .cal-header { 
+            text-align: center; 
+            font-weight: 600; 
+            color: var(--text-muted); 
+            padding: 8px; 
+            font-size: 0.8em; 
+        }
+
+        .priority-high { border-left: 3px solid var(--red); }
+        .priority-med { border-left: 3px solid var(--orange); }
+        .priority-low { border-left: 3px solid var(--green); }
+
+        .checklist { list-style: none; padding: 0; }
+        .checklist li { 
+            padding: 8px 0; 
+            border-bottom: 1px solid var(--border); 
+            display: flex; 
+            align-items: center; 
+            gap: 8px;
+        }
+        .checklist li:last-child { border: none; }
+        .checklist input[type="checkbox"] { 
+            width: 18px; height: 18px; 
+            accent-color: var(--green); 
+        }
+
+        .objection {
+            background: rgba(248,81,73,0.05);
+            border-left: 3px solid var(--red);
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .response {
+            background: rgba(63,185,80,0.05);
+            border-left: 3px solid var(--green);
+            padding: 12px 16px;
+            margin: 8px 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .section-nav {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            margin: 16px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .section-nav a {
+            color: var(--accent);
+            text-decoration: none;
+            padding: 4px 12px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            font-size: 0.85em;
+        }
+
+        .section-nav a:hover { background: rgba(88,166,255,0.1); }
+
+        @media (max-width: 768px) {
+            body { padding: 12px; }
+            h1 { font-size: 1.5em; }
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
+            .calendar-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<h1>🏠 Spring 2026 Shed Sales Playbook</h1>
+<p class="subtitle">Lead Reactivation + Fresh Ads + Execution Calendar — Built for Darius (TJ)<br>
+<em>Generated: Friday, March 6, 2026 | Franklin 🐕💩</em></p>
+
+<div class="section-nav">
+    <a href="#pipeline">📊 Pipeline Status</a>
+    <a href="#reactivation">🔥 Lead Reactivation</a>
+    <a href="#spring-hooks">🌱 Spring Hooks</a>
+    <a href="#ads">📝 Fresh Marketplace Ads</a>
+    <a href="#ig">📸 Instagram Content</a>
+    <a href="#objections">🛡️ Objection Handling</a>
+    <a href="#financing">💰 Financing Scripts</a>
+    <a href="#calendar">📅 2-Week Calendar</a>
+    <a href="#checklist">✅ Daily Checklist</a>
+</div>
+
+<!-- PIPELINE STATUS -->
+<h2 id="pipeline">📊 Pipeline Snapshot</h2>
+<p style="color: var(--text-muted);">Based on last known numbers (Feb 16). Update these as you work through leads.</p>
+
+<div class="stat-grid">
+    <div class="stat orange">
+        <div class="number">~12</div>
+        <div class="label">Quoted Leads (Need Follow-Up)</div>
+    </div>
+    <div class="stat accent">
+        <div class="number">~15</div>
+        <div class="label">Pre-Quote Leads</div>
+    </div>
+    <div class="stat green">
+        <div class="number">$70K+</div>
+        <div class="label">Est. Pipeline Value</div>
+    </div>
+    <div class="stat purple">
+        <div class="number">Spring</div>
+        <div class="label">Peak Shed Season 🔥</div>
+    </div>
+</div>
+
+<div class="card">
+    <h3>⚡ Why RIGHT NOW Matters</h3>
+    <ul style="margin-top: 8px; padding-left: 20px; color: var(--text-muted);">
+        <li><strong style="color: var(--green);">Tax refunds are hitting NOW</strong> — people have cash burning a hole in their pocket</li>
+        <li><strong style="color: var(--green);">Spring cleaning = space problem awareness</strong> — garage is packed after winter</li>
+        <li><strong style="color: var(--green);">Warm weather = outdoor project energy</strong> — people are in "let's do this" mode</li>
+        <li><strong style="color: var(--green);">Pre-summer rush</strong> — buy now before everyone else does (delivery slots fill up)</li>
+        <li><strong style="color: var(--orange);">Current promos:</strong> 9.99% APR financing, 0% for 6 months, RTO no credit check</li>
+    </ul>
+</div>
+
+<!-- LEAD REACTIVATION -->
+<h2 id="reactivation">🔥 Lead Reactivation Texts — Wake Up Cold Leads</h2>
+<p style="color: var(--text-muted); margin-bottom: 16px;">These are for leads who got quotes or showed interest but went quiet. Spring is your excuse to re-engage. <strong>Send one per lead, then wait 2-3 days before following up.</strong></p>
+
+<h3>Text 1: The "Spring Check-In" <span class="tag tag-hot">Best Opener</span></h3>
+<div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>Hey [NAME]! It's Darius from TuffShed. Spring's here and figured I'd check in — still thinking about that shed? 
+
+Got some new financing deals going right now (0% for 6 months) and delivery is booking up fast for April/May.
+
+No rush at all. Just didn't want you to miss out if the timing's better now. 🏠</div>
+
+<h3>Text 2: The "Tax Refund" Nudge <span class="tag tag-warm">Financial Hook</span></h3>
+<div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>Hey [NAME]! Quick thought — a lot of folks are using their tax refunds on that shed they've been thinking about. Wanted to make sure you knew about our 0% interest for 6 months deal running right now.
+
+That quote I sent you? Still good. Just say the word and we can get you on the delivery schedule before spring rush hits.
+
+— Darius 636-354-7406</div>
+
+<h3>Text 3: The "New Inventory" Re-Engage <span class="tag tag-new">Fresh Angle</span></h3>
+<div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>Hey [NAME], Darius here. Got a fresh batch of buildings in stock — some models I didn't have when we talked last.
+
+Wanted to see if you'd wanna swing by and check them out in person? Way easier to picture it in your backyard when you can walk inside one.
+
+No pressure. Just wanted you to know they're here 👍</div>
+
+<h3>Text 4: The "Honest Follow-Up" <span class="tag tag-hot">Real Talk</span></h3>
+<div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>Hey [NAME] — being real with you, I'm reaching out to all my folks who were looking at sheds before winter. Spring's the busiest time and delivery slots are already starting to fill.
+
+If you're still interested, I'd love to help you lock something in. If not, totally cool — just let me know so I'm not bugging you 😄
+
+— Darius</div>
+
+<h3>Text 5: The "Problem Reminder" <span class="tag tag-warm">Pain Point</span></h3>
+<div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>Hey [NAME]! Spring cleaning season — bet the garage is looking packed after winter 😅
+
+That [SIZE] shed we talked about would solve that real quick. Still available and delivery is free.
+
+Want me to update your quote with the new spring promos? Some of the financing got even better.</div>
+
+<h3>Text 6: The "Last Shot" (Final Follow-Up) <span class="tag tag-hot">Closer</span></h3>
+<div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>Hey [NAME] — last time I'll bug you on this, promise 😄 
+
+Spring sale's running through the end of the month. After that, pricing goes back up and delivery times get longer (summer rush).
+
+If you want to move forward on that shed, now's the time. If not, no hard feelings at all. Just didn't want you to kick yourself later.
+
+— Darius 636-354-7406</div>
+
+<div class="card priority-high">
+    <h3>📋 Lead Reactivation Game Plan</h3>
+    <table>
+        <thead>
+            <tr><th>Day</th><th>Action</th><th>Template</th><th>Time</th></tr>
+        </thead>
+        <tbody>
+            <tr><td><strong>Day 1 (Today)</strong></td><td>Text top 5 hottest quoted leads</td><td>#1 or #2</td><td>~5 min</td></tr>
+            <tr><td><strong>Day 2</strong></td><td>Text remaining quoted leads</td><td>#1 or #3</td><td>~5 min</td></tr>
+            <tr><td><strong>Day 4</strong></td><td>Follow up with no-replies</td><td>#4 or #5</td><td>~3 min</td></tr>
+            <tr><td><strong>Day 7</strong></td><td>Final attempt on non-responders</td><td>#6</td><td>~3 min</td></tr>
+            <tr><td><strong>Day 8+</strong></td><td>Start on pre-quote leads with #1 or #3</td><td>Modify for first touch</td><td>~5 min</td></tr>
+        </tbody>
+    </table>
+    <p style="color: var(--green); margin-top: 8px;">⚡ <strong>Expected results:</strong> 12 quoted leads × 20% reactivation rate = 2-3 sales = $8K-15K revenue</p>
+</div>
+
+<!-- SPRING HOOKS -->
+<h2 id="spring-hooks">🌱 Spring Selling Angles</h2>
+
+<div class="stat-grid">
+    <div class="stat green">
+        <div class="number">💰</div>
+        <div class="label">Tax Refund Season (Through April)</div>
+    </div>
+    <div class="stat orange">
+        <div class="number">🧹</div>
+        <div class="label">Spring Cleaning Momentum</div>
+    </div>
+    <div class="stat accent">
+        <div class="number">☀️</div>
+        <div class="label">Outdoor Project Energy</div>
+    </div>
+    <div class="stat purple">
+        <div class="number">📅</div>
+        <div class="label">Pre-Summer Rush (Book Early)</div>
+    </div>
+    <div class="stat gold">
+        <div class="number">🏡</div>
+        <div class="label">Home Value / Curb Appeal</div>
+    </div>
+    <div class="stat red">
+        <div class="number">⏰</div>
+        <div class="label">Scarcity (Delivery Slots Filling)</div>
+    </div>
+</div>
+
+<div class="card">
+    <h3>🎯 Spring-Specific Talking Points</h3>
+    <table>
+        <thead>
+            <tr><th>Angle</th><th>Script Snippet</th><th>Best For</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Tax Refund</strong></td>
+                <td>"A lot of folks put their tax refund toward something they'll use every day — not just a vacation that's over in a week."</td>
+                <td>Budget-conscious buyers</td>
+            </tr>
+            <tr>
+                <td><strong>Spring Cleaning</strong></td>
+                <td>"You can spend 3 weekends organizing the garage... or you can just give everything a home in a shed."</td>
+                <td>Clutter-frustrated homeowners</td>
+            </tr>
+            <tr>
+                <td><strong>Delivery Urgency</strong></td>
+                <td>"Spring is our busiest season — delivery slots fill up fast. Buy now, get it in 2-3 weeks. Wait till May, you're looking at 6+."</td>
+                <td>Fence-sitters</td>
+            </tr>
+            <tr>
+                <td><strong>Home Value</strong></td>
+                <td>"A quality shed adds $3-5K to your home value. You're not spending money, you're investing it."</td>
+                <td>Financial thinkers</td>
+            </tr>
+            <tr>
+                <td><strong>0% Financing</strong></td>
+                <td>"No interest for 6 months — that's basically free money if you pay it off in time. Most people use their tax refund to knock it out."</td>
+                <td>Monthly payment buyers</td>
+            </tr>
+            <tr>
+                <td><strong>Outdoor Season</strong></td>
+                <td>"Weather's about to turn nice. Workshop, gym, she-shed — whatever you're building, now's the time to get it set up for summer."</td>
+                <td>Project-oriented buyers</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- FRESH MARKETPLACE ADS -->
+<h2 id="ads">📝 Fresh Facebook Marketplace Ads — Spring 2026</h2>
+<p style="color: var(--text-muted); margin-bottom: 16px;">Brand new hooks. None of these repeat earlier ad copy. All in TJ's voice as Darius.</p>
+
+<h3>Ad 1: "The Winter Pile-Up" <span class="tag tag-mp">Marketplace</span> <span class="tag tag-hot">Spring Timely</span></h3>
+<div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>Real talk: your garage got worse over winter. 
+
+Holiday decorations, salt bags, tools, that gym equipment from January... it all piles up.
+
+A TuffShed fixes that. Permanently.
+
+✅ FREE delivery & setup
+✅ 0% interest for 6 months  
+✅ Dozens in stock — come see them
+✅ Rent-to-own available (no credit check)
+
+Spring cleaning starts with more space.
+
+Text Darius: 636-354-7406</div>
+
+<h3>Ad 2: "Tax Refund Power Move" <span class="tag tag-mp">Marketplace</span> <span class="tag tag-warm">Financial</span></h3>
+<div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>Tax refund hits different when you invest it in something you'll use every single day.
+
+Skip the TV. Skip the vacation.
+
+Get a shed that:
+✓ Adds value to your home
+✓ Gives your garage back
+✓ Lasts 15-20 years
+✓ Pays for itself in organization alone
+
+Sizes from 8x10 to 12x24. Prices starting around $3,500.
+
+0% interest for 6 months if you move quick.
+
+Call/Text Darius: 636-354-7406 🏠</div>
+
+<h3>Ad 3: "The Honest Spring Ad" <span class="tag tag-mp">Marketplace</span> <span class="tag tag-new">Trust Builder</span></h3>
+<div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>I'll be honest — spring is when EVERYBODY wants a shed.
+
+Which means:
+→ Delivery times get longer
+→ Popular sizes sell out
+→ You end up waiting till July
+
+I've got 20+ buildings in stock RIGHT NOW. Come see them this weekend, get on the delivery schedule before the rush.
+
+Free delivery. Financing available. No pressure at all.
+
+Just don't come back in June saying "I should've done this in March" 😄
+
+— Darius 636-354-7406</div>
+
+<h3>Ad 4: "What's Your Shed For?" <span class="tag tag-mp">Marketplace</span> <span class="tag tag-ig">Engagement</span></h3>
+<div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>Everyone buys a shed for different reasons. Here's what my customers use theirs for:
+
+🔧 Woodworking shop
+🏋️ Home gym (goodbye gym membership)
+💻 Office / studio
+🎮 Man cave / game room
+🌿 She shed / reading nook
+🎄 Holiday storage
+🚗 Getting the car BACK in the garage
+
+What would YOU use yours for? Drop it in the comments 👇
+
+Sizes from 8x10 to 12x24
+Free delivery | Financing | Rent-to-own
+
+Text Darius: 636-354-7406</div>
+
+<h3>Ad 5: "Cheaper Than You Think" <span class="tag tag-mp">Marketplace</span> <span class="tag tag-warm">Price Anchor</span></h3>
+<div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>A TuffShed costs less than:
+- 1 year of a storage unit ($150/mo = $1,800/yr)
+- A home addition ($20K+)
+- Renting a workshop space
+- Moving to a bigger house 😅
+
+Starting around $3,500. Financing as low as $99/mo.
+0% interest for 6 months.
+FREE delivery and setup.
+
+You keep it forever. Try saying that about a storage unit.
+
+Text Darius: 636-354-7406</div>
+
+<h3>Ad 6: "The Weekend Warrior" <span class="tag tag-mp">Marketplace</span> <span class="tag tag-new">Lifestyle</span></h3>
+<div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>Saturday morning vision:
+
+☕ Coffee in hand
+🚪 Walk out to YOUR workshop
+🔨 No one telling you to clean up
+🎵 Your music, your tools, your space
+
+That's what a shed gives you. Not just storage — FREEDOM.
+
+Custom sizes. Professional grade. Delivered and set up free.
+
+Let's build yours.
+Text Darius: 636-354-7406</div>
+
+<!-- INSTAGRAM CONTENT -->
+<h2 id="ig">📸 Instagram Content — @reddshedredemption</h2>
+
+<h3>Reel Script 1: "Garage Intervention" (15-30 sec) <span class="tag tag-ig">Reel</span></h3>
+<div class="card">
+    <p><strong>Visual:</strong> Walk through a packed garage, point at the mess, then cut to a TuffShed</p>
+    <div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>HOOK (on screen): "POV: Your garage is crying for help"
+
+[Walk through cluttered garage]
+"This look familiar? Yeah... thought so."
+
+[Cut to shed on lot]
+"This is the solution. TuffShed. Free delivery. Financing available."
+
+[Walk inside empty shed]
+"Your garage gets its life back. Your stuff gets a real home."
+
+TEXT OVERLAY: Starting at $3,500 | Free Delivery | Text 636-354-7406
+
+CAPTION: Your garage didn't sign up for this 😅 Spring cleaning hits different when you actually have room. DM me or text 636-354-7406 to come check these out in person.
+
+#tuffshed #storage #homeimprovement #stlouis #springcleaning #sheshed #mancave #organization</div>
+</div>
+
+<h3>Reel Script 2: "How Much Does a Shed Cost?" (15 sec) <span class="tag tag-ig">Reel</span></h3>
+<div class="card">
+    <p><strong>Visual:</strong> Walk up to shed, text overlays popping up</p>
+    <div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>HOOK: "How much does a TuffShed actually cost?"
+
+[Text pops up as you talk]
+"8x10 → around $3,500"
+"10x12 → around $5,000" 
+"12x16 → around $7,000"
+"12x24 → around $10,000"
+
+"Free delivery. 0% interest for 6 months. Rent to own — no credit check."
+
+"Way less than you thought, right?"
+
+CAPTION: The question I get 10x a day 😄 Here's the real answer. Prices vary by model and options. Come see them in person — I've got 20+ on the lot. Text Darius 636-354-7406
+
+#tuffshed #pricing #shedprices #stlouis #homeimprovement</div>
+</div>
+
+<h3>Reel Script 3: "Spring Transformation" (30 sec) <span class="tag tag-ig">Reel</span></h3>
+<div class="card">
+    <p><strong>Visual:</strong> Before/after style — packed garage → clean garage + new shed</p>
+    <div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>HOOK: "Spring cleaning? Try spring SOLVING."
+
+[Show messy garage or yard]
+"Every spring, same problem. Too much stuff, not enough space."
+
+[Cut to shed being delivered / set up]
+"One delivery day. One setup. Done."
+
+[Show inside organized shed + clean garage]
+"Garage back. Yard clean. Neighbors jealous."
+
+"That's the TuffShed effect."
+
+CAPTION: Stop reorganizing the same mess every spring. Fix it permanently. 20+ buildings in stock, free delivery, financing available. Come see them this weekend 🏠 Text Darius 636-354-7406
+
+#beforeandafter #springcleaning #tuffshed #shedlife #stlouis</div>
+</div>
+
+<h3>Static Post Ideas</h3>
+<div class="card">
+    <table>
+        <thead>
+            <tr><th>Type</th><th>Content Idea</th><th>Best Day</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>📸 Carousel</td><td>5 Things You Didn't Know About TuffShed (build quality, warranty, customization)</td><td>Tuesday</td></tr>
+            <tr><td>📸 Photo</td><td>Customer delivery day — fresh shed on a clean pad with green grass</td><td>Thursday</td></tr>
+            <tr><td>📸 Carousel</td><td>Storage Unit vs. Shed: The Math (monthly cost comparison)</td><td>Saturday</td></tr>
+            <tr><td>📸 Photo</td><td>Inside a fully set up workshop/gym/office shed</td><td>Sunday</td></tr>
+            <tr><td>📹 Reel</td><td>"Come shed shopping with me" — walk the lot, show options</td><td>Friday</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- OBJECTION HANDLING -->
+<h2 id="objections">🛡️ Spring-Specific Objection Handling</h2>
+
+<div class="objection">
+    <strong>❌ "I'm gonna wait until summer"</strong>
+</div>
+<div class="response">
+    <strong>✅ Response:</strong> "Totally get it — but heads up, summer is our busiest time. Delivery goes from 2-3 weeks to 6-8 weeks. And prices typically go up. If you buy now, you'll have it set up and done before everyone else is still waiting in line. Plus the 0% interest deal might not be around then."
+</div>
+
+<div class="objection">
+    <strong>❌ "That's more than I expected"</strong>
+</div>
+<div class="response">
+    <strong>✅ Response:</strong> "I get that. But let me run the math real quick — a storage unit is $150/month. That's $1,800 a year for a space you don't own. A TuffShed at $99/month? After 3 years you OWN it. It's actually saving you money long-term. Plus it's in your backyard, not across town."
+</div>
+
+<div class="objection">
+    <strong>❌ "I can get a cheaper one at Home Depot / Lowe's"</strong>
+</div>
+<div class="response">
+    <strong>✅ Response:</strong> "You absolutely can — and if budget is the only factor, that might work. But here's what you're comparing: those are thin-walled kits you have to build yourself. No windows, no workbench, no real floor. A TuffShed is a permanent structure — pro-installed, 2x4 construction, rated for wind and snow. It's the difference between a toy and a tool. Plus we deliver and set it up for free."
+</div>
+
+<div class="objection">
+    <strong>❌ "I need to talk to my wife/husband"</strong>
+</div>
+<div class="response">
+    <strong>✅ Response:</strong> "100%. Why don't you both come check them out in person this weekend? Way easier to get on the same page when you can walk inside one. I'm here Saturday, no appointment needed. I'll have the pricing and financing options all laid out — zero pressure."
+</div>
+
+<div class="objection">
+    <strong>❌ "My HOA might not allow it"</strong>
+</div>
+<div class="response">
+    <strong>✅ Response:</strong> "Good thinking — that's actually more common than you'd think, and it's usually fine. Most HOAs just want it to match the house (color, placement, etc.). We do custom colors and can adjust the design. I can even give you a spec sheet to send to your HOA board. Most get approved in a week."
+</div>
+
+<div class="objection">
+    <strong>❌ "What if I move?"</strong>
+</div>
+<div class="response">
+    <strong>✅ Response:</strong> "Great question. Two options: we can relocate it to your new place (yes, they move). Or — and this is the smart part — a quality shed adds $3-5K to your home value. Some of my customers have actually made money on their shed when they sold. It's not a cost, it's an asset."
+</div>
+
+<!-- FINANCING SCRIPTS -->
+<h2 id="financing">💰 Financing Breakdown Scripts</h2>
+<p style="color: var(--text-muted); margin-bottom: 16px;">When leads ask about monthly payments or seem price-sensitive, use these breakdowns.</p>
+
+<div class="card">
+    <h3>Current TuffShed Financing Options (March 2026)</h3>
+    <table>
+        <thead>
+            <tr><th>Option</th><th>Details</th><th>Best For</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>0% Interest / 6 Months</strong><br>(Service Finance)</td>
+                <td>No interest if paid in full within 6 months. 10% down. Promo starts at install.</td>
+                <td>Tax refund buyers, people who can pay fast</td>
+            </tr>
+            <tr>
+                <td><strong>9.99% APR / 120 Months</strong><br>(Service Finance)</td>
+                <td>Fixed rate, up to $100K. 10% down. Can finance concrete/site work too.</td>
+                <td>Larger projects, garage builds</td>
+            </tr>
+            <tr>
+                <td><strong>RTO Traditional</strong><br>(RTO National)</td>
+                <td>As low as 9.99% APR, up to 60 months, up to $20K. 10% down.</td>
+                <td>Standard financing, moderate credit</td>
+            </tr>
+            <tr>
+                <td><strong>RTO Flex Lease</strong><br>(RTO National)</td>
+                <td><strong>NO CREDIT CHECK.</strong> Select models up to $20K. Low deposit.</td>
+                <td>Credit-challenged buyers, renters OK</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<h3>Quick Monthly Payment Script</h3>
+<div class="template-box">
+<button class="copy-btn" onclick="copyText(this)">📋 Copy</button>"Let me break this down real quick:
+
+A [SIZE] shed is about $[PRICE].
+
+Option 1: Put your tax refund down ($1,500-2,000), finance the rest at 0% for 6 months. You'd owe about $[REMAINING] over 6 months — that's $[MONTHLY]/month with zero interest.
+
+Option 2: Low deposit, rent-to-own, no credit check. About $[RTO_MONTHLY]/month.
+
+Option 3: Pay cash. Done. No payments, no interest.
+
+What sounds most comfortable for you?"</div>
+
+<!-- 2-WEEK CALENDAR -->
+<h2 id="calendar">📅 2-Week Execution Calendar (March 7-20)</h2>
+
+<div class="card">
+    <table>
+        <thead>
+            <tr><th>Date</th><th>Day</th><th>Action</th><th>Time Needed</th></tr>
+        </thead>
+        <tbody>
+            <tr class="priority-high">
+                <td><strong>Mar 7 (Sat)</strong></td>
+                <td>Saturday</td>
+                <td>🔥 Text top 5 quoted leads (Template #1 or #2). Post "Honest Spring Ad" on Marketplace.</td>
+                <td>15 min</td>
+            </tr>
+            <tr>
+                <td><strong>Mar 8 (Sun)</strong></td>
+                <td>Sunday</td>
+                <td>Post "Tax Refund Power Move" on Marketplace. Post IG Reel #2 (pricing).</td>
+                <td>20 min</td>
+            </tr>
+            <tr class="priority-high">
+                <td><strong>Mar 10 (Mon)</strong></td>
+                <td>Monday</td>
+                <td>🔥 Text remaining quoted leads (#1 or #3). Post "Winter Pile-Up" ad.</td>
+                <td>15 min</td>
+            </tr>
+            <tr>
+                <td><strong>Mar 11 (Tue)</strong></td>
+                <td>Tuesday</td>
+                <td>Post IG carousel: "5 Things About TuffShed." Post "What's Your Shed For?" ad.</td>
+                <td>15 min</td>
+            </tr>
+            <tr class="priority-med">
+                <td><strong>Mar 12 (Wed)</strong></td>
+                <td>Wednesday</td>
+                <td>⚡ Follow up with non-responders (Template #4 or #5). Post "Cheaper Than You Think."</td>
+                <td>10 min</td>
+            </tr>
+            <tr>
+                <td><strong>Mar 13 (Thu)</strong></td>
+                <td>Thursday</td>
+                <td>Post customer delivery photo on IG. Post "Weekend Warrior" ad.</td>
+                <td>10 min</td>
+            </tr>
+            <tr>
+                <td><strong>Mar 14 (Fri)</strong></td>
+                <td>Friday</td>
+                <td>Post IG Reel #1 (garage intervention). Repost best-performing Marketplace ad.</td>
+                <td>20 min</td>
+            </tr>
+            <tr class="priority-high">
+                <td><strong>Mar 15 (Sat)</strong></td>
+                <td>Saturday</td>
+                <td>🔥 Final follow-up on cold leads (Template #6). Start texting pre-quote leads.</td>
+                <td>15 min</td>
+            </tr>
+            <tr>
+                <td><strong>Mar 16 (Sun)</strong></td>
+                <td>Sunday</td>
+                <td>Post IG carousel: "Storage Unit vs Shed Math." Refresh top Marketplace listing.</td>
+                <td>15 min</td>
+            </tr>
+            <tr>
+                <td><strong>Mar 17 (Mon)</strong></td>
+                <td>Monday</td>
+                <td>Text pre-quote batch 2. Post new Marketplace ad (rotate from above).</td>
+                <td>10 min</td>
+            </tr>
+            <tr>
+                <td><strong>Mar 18 (Tue)</strong></td>
+                <td>Tuesday</td>
+                <td>Post IG Reel #3 (spring transformation). Mid-week Marketplace refresh.</td>
+                <td>15 min</td>
+            </tr>
+            <tr class="priority-med">
+                <td><strong>Mar 19 (Wed)</strong></td>
+                <td>Wednesday</td>
+                <td>⚡ Follow up pre-quote non-responders. Post "shed shopping with me" IG reel.</td>
+                <td>15 min</td>
+            </tr>
+            <tr>
+                <td><strong>Mar 20 (Thu)</strong></td>
+                <td>Thursday</td>
+                <td>📊 Review results: How many reactivated? Appointments booked? Adjust strategy.</td>
+                <td>10 min</td>
+            </tr>
+        </tbody>
+    </table>
+    <p style="color: var(--green); margin-top: 12px;"><strong>Total time commitment: ~15 min/day average</strong></p>
+</div>
+
+<!-- DAILY CHECKLIST -->
+<h2 id="checklist">✅ Daily Shed Sales Checklist</h2>
+
+<div class="card">
+    <ul class="checklist">
+        <li><input type="checkbox"> <strong>Morning (before 10 AM):</strong> Check Marketplace messages & respond to any overnight leads</li>
+        <li><input type="checkbox"> <strong>Lunch break:</strong> Post 1 Marketplace ad (rotate from playbook)</li>
+        <li><input type="checkbox"> <strong>Afternoon:</strong> Send 2-3 follow-up texts to leads (use templates above)</li>
+        <li><input type="checkbox"> <strong>Evening:</strong> Check for new Marketplace messages, respond within 1 hour</li>
+        <li><input type="checkbox"> <strong>Weekend (1x):</strong> Post 1 Instagram Reel or carousel</li>
+        <li><input type="checkbox"> <strong>Weekly:</strong> Review which ads got the most engagement, create more like those</li>
+    </ul>
+</div>
+
+<div class="card" style="border-color: var(--gold); margin-top: 24px;">
+    <h3>🏆 The Goal: What Success Looks Like in 2 Weeks</h3>
+    <div class="stat-grid">
+        <div class="stat green">
+            <div class="number">3-5</div>
+            <div class="label">Leads Reactivated</div>
+        </div>
+        <div class="stat accent">
+            <div class="number">2-3</div>
+            <div class="label">Appointments Booked</div>
+        </div>
+        <div class="stat gold">
+            <div class="number">1-2</div>
+            <div class="label">Sales Closed</div>
+        </div>
+        <div class="stat purple">
+            <div class="number">10+</div>
+            <div class="label">New Marketplace Leads</div>
+        </div>
+    </div>
+    <p style="color: var(--text-muted); margin-top: 8px;">Conservative estimates. The reactivation texts alone should convert 2-3 of those 12 quoted leads — they already want a shed, they just need a nudge. Spring timing is that nudge.</p>
+</div>
+
+<div style="text-align: center; margin-top: 32px; padding: 20px; color: var(--text-muted);">
+    <p>Built by Franklin 🐕💩 | March 6, 2026</p>
+    <p style="font-size: 0.85em;">Spring sells itself. You just have to show up.</p>
+</div>
+
+<script>
+function copyText(btn) {
+    const box = btn.parentElement;
+    const text = box.textContent.replace('📋 Copy', '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✅ Copied!';
+        setTimeout(() => btn.textContent = '📋 Copy', 2000);
+    });
+}
+</script>
+
+</body>
+</html>
