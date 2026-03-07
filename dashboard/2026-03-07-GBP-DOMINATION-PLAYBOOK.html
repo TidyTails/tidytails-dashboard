@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Business Profile Domination Playbook | Tidy Tails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+
+        .header {
+            background: linear-gradient(135deg, #1a0a00 0%, #0a0a0a 50%, #001a0a 100%);
+            border-bottom: 2px solid var(--orange);
+            padding: 2rem; text-align: center;
+        }
+        .header h1 { font-size: 1.8rem; font-weight: 800; }
+        .header h1 span { color: var(--orange); }
+        .header .subtitle { color: var(--text2); font-size: 0.9rem; margin-top: 0.5rem; }
+        .header .urgency {
+            display: inline-block; margin-top: 1rem; padding: 0.5rem 1rem;
+            background: rgba(239,68,68,0.15); color: var(--red);
+            border: 1px solid rgba(239,68,68,0.3); border-radius: 8px;
+            font-weight: 700; font-size: 0.85rem;
+        }
+        .back { display: inline-block; margin: 1rem 2rem; color: var(--text2); text-decoration: none; font-size: 0.85rem; }
+        .back:hover { color: var(--orange); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 3rem; }
+
+        .progress-bar {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 2rem;
+        }
+        .progress-bar h3 { font-size: 0.9rem; margin-bottom: 0.75rem; }
+        .progress-track { background: var(--bg4); border-radius: 6px; height: 12px; overflow: hidden; }
+        .progress-fill { background: linear-gradient(90deg, var(--orange), var(--green)); height: 100%; border-radius: 6px; transition: width 0.5s; }
+        .progress-stats { display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.75rem; color: var(--text2); }
+
+        .why-box {
+            background: var(--bg3); border-left: 4px solid var(--red);
+            padding: 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+            margin-bottom: 2rem;
+        }
+        .why-box h3 { color: var(--red); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .why-box p { color: var(--text2); font-size: 0.85rem; line-height: 1.5; }
+        .why-box .stat { color: var(--yellow); font-weight: 700; }
+
+        .phase {
+            background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+            margin-bottom: 1.5rem; overflow: hidden;
+        }
+        .phase-header {
+            padding: 1rem 1.25rem; cursor: pointer; display: flex; align-items: center; gap: 0.75rem;
+            border-bottom: 1px solid var(--border); transition: background 0.2s;
+        }
+        .phase-header:hover { background: var(--bg3); }
+        .phase-number {
+            width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 0.85rem; flex-shrink: 0;
+        }
+        .phase-1 .phase-number { background: rgba(239,68,68,0.2); color: var(--red); }
+        .phase-2 .phase-number { background: rgba(255,107,53,0.2); color: var(--orange); }
+        .phase-3 .phase-number { background: rgba(251,191,36,0.2); color: var(--yellow); }
+        .phase-4 .phase-number { background: rgba(16,185,129,0.2); color: var(--green); }
+        .phase-5 .phase-number { background: rgba(59,130,246,0.2); color: var(--blue); }
+        .phase-6 .phase-number { background: rgba(139,92,246,0.2); color: var(--purple); }
+        .phase-title { font-weight: 700; font-size: 0.95rem; flex: 1; }
+        .phase-time { font-size: 0.75rem; color: var(--text2); font-family: 'JetBrains Mono', monospace; }
+        .phase-arrow { color: var(--text3); transition: transform 0.3s; }
+        .phase.open .phase-arrow { transform: rotate(90deg); }
+
+        .phase-content { padding: 1.25rem; display: none; }
+        .phase.open .phase-content { display: block; }
+
+        .step {
+            display: flex; gap: 0.75rem; padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(42,42,42,0.5);
+        }
+        .step:last-child { border-bottom: none; }
+        .step-check {
+            width: 22px; height: 22px; border: 2px solid var(--border); border-radius: 6px;
+            flex-shrink: 0; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; margin-top: 2px;
+        }
+        .step-check:hover { border-color: var(--green); }
+        .step-check.done { background: var(--green); border-color: var(--green); }
+        .step-check.done::after { content: '✓'; color: white; font-size: 0.7rem; font-weight: 800; }
+        .step-body { flex: 1; }
+        .step-title { font-weight: 600; font-size: 0.85rem; margin-bottom: 0.25rem; }
+        .step.completed .step-title { text-decoration: line-through; color: var(--text3); }
+        .step-detail { color: var(--text2); font-size: 0.8rem; line-height: 1.5; }
+
+        .copy-block {
+            background: var(--bg4); border: 1px solid var(--border); border-radius: 8px;
+            padding: 0.75rem; margin: 0.5rem 0; position: relative; cursor: pointer;
+        }
+        .copy-block:hover { border-color: var(--orange); }
+        .copy-block pre {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem;
+            white-space: pre-wrap; word-break: break-word; color: var(--text);
+        }
+        .copy-btn {
+            position: absolute; top: 6px; right: 6px; background: var(--orange);
+            color: white; border: none; padding: 0.2rem 0.5rem; border-radius: 4px;
+            font-size: 0.65rem; font-weight: 700; cursor: pointer;
+        }
+        .copy-btn:hover { filter: brightness(1.2); }
+
+        .tip {
+            background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2);
+            border-radius: 8px; padding: 0.75rem; margin: 0.75rem 0;
+            font-size: 0.8rem; color: var(--blue);
+        }
+        .tip strong { color: var(--blue); }
+
+        .warning {
+            background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2);
+            border-radius: 8px; padding: 0.75rem; margin: 0.75rem 0;
+            font-size: 0.8rem; color: var(--yellow);
+        }
+
+        .competitor-table {
+            width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.8rem;
+        }
+        .competitor-table th {
+            text-align: left; padding: 0.5rem; border-bottom: 2px solid var(--border);
+            color: var(--text2); font-size: 0.7rem; text-transform: uppercase;
+        }
+        .competitor-table td { padding: 0.5rem; border-bottom: 1px solid var(--border); }
+        .competitor-table tr:hover td { background: var(--bg3); }
+
+        .weekly-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin: 0.75rem 0; }
+        @media (max-width: 600px) { .weekly-grid { grid-template-columns: 1fr; } }
+        .weekly-card {
+            background: var(--bg4); border: 1px solid var(--border); border-radius: 8px;
+            padding: 0.75rem;
+        }
+        .weekly-card h4 { font-size: 0.8rem; margin-bottom: 0.25rem; }
+        .weekly-card p { font-size: 0.75rem; color: var(--text2); }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(16,185,129,0.1));
+            border: 1px solid var(--orange); border-radius: var(--radius);
+            padding: 1.5rem; text-align: center; margin-top: 2rem;
+        }
+        .cta-box h3 { color: var(--orange); margin-bottom: 0.5rem; }
+        .cta-box p { color: var(--text2); font-size: 0.85rem; }
+        .cta-box a {
+            display: inline-block; margin-top: 0.75rem; padding: 0.5rem 1.5rem;
+            background: var(--orange); color: white; border-radius: 8px;
+            text-decoration: none; font-weight: 700; font-size: 0.85rem;
+        }
+
+        .footer { text-align: center; padding: 2rem; color: var(--text3); font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📍 Google Business Profile <span>Domination Playbook</span></h1>
+        <p class="subtitle">The #1 thing standing between TJ and 25+ customers</p>
+        <div class="urgency">🚨 RIGHT NOW: Tidy Tails is INVISIBLE in Google search. Every day = lost customers going to competitors.</div>
+    </div>
+    <a href="index.html" class="back">← Back to Dashboard</a>
+
+    <div class="container">
+
+        <!-- PROGRESS -->
+        <div class="progress-bar">
+            <h3>📊 Your GBP Optimization Progress</h3>
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+            <div class="progress-stats">
+                <span id="progressText">0 of 28 steps complete</span>
+                <span id="progressPct">0%</span>
+            </div>
+        </div>
+
+        <!-- WHY THIS MATTERS -->
+        <div class="why-box">
+            <h3>🔴 Why This Is Your #1 Priority</h3>
+            <p>
+                Our March 7 live search audit confirmed: <strong>Tidy Tails does NOT appear</strong> when people search
+                "pet waste removal st louis," "pooper scooper near me," or even "tidy tails pet waste removal st louis."
+                <br><br>
+                Meanwhile, <span class="stat">DoodyCalls, POOP 911, Poop2Scoop, and Dr. Scoops</span> dominate every result.
+                They're getting YOUR customers — for free — because their Google Business Profile is optimized and yours isn't.
+                <br><br>
+                <span class="stat">46% of all Google searches have local intent.</span> A properly optimized GBP can generate
+                <span class="stat">100+ calls per month</span> (one pooper scooper business reported 118 calls from GBP alone).
+                This is free lead generation — no ad spend needed.
+            </p>
+        </div>
+
+        <!-- PHASE 1: CLAIM & VERIFY -->
+        <div class="phase phase-1 open" data-phase="1">
+            <div class="phase-header" onclick="togglePhase(this)">
+                <div class="phase-number">1</div>
+                <div class="phase-title">Claim & Verify Your Profile</div>
+                <div class="phase-time">⏱️ 15 min</div>
+                <div class="phase-arrow">▶</div>
+            </div>
+            <div class="phase-content">
+                <div class="warning">
+                    ⚡ <strong>Do this FIRST.</strong> Verification can take 1-7 days. Everything else builds on this.
+                </div>
+
+                <div class="step" data-step="1">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Go to Google Business Profile Manager</div>
+                        <div class="step-detail">
+                            Visit <a href="https://business.google.com" target="_blank" style="color:var(--blue)">business.google.com</a>
+                            — sign in with the Google account you want managing the business (ideally a @gmail you check daily).
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="2">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Search for "Tidy Tails Pet Waste Removal"</div>
+                        <div class="step-detail">
+                            If it already exists (someone may have auto-created it), claim it. If not, click "Add your business to Google."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="3">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Set Business Name Exactly</div>
+                        <div class="step-detail">
+                            <strong>Use:</strong> "Tidy Tails Pet Waste Removal"<br>
+                            Don't stuff keywords like "Tidy Tails Pet Waste Removal Pooper Scooper St Louis" — Google penalizes that.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="4">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Select Service Area (NOT physical address)</div>
+                        <div class="step-detail">
+                            Since you go to customers, choose <strong>"I deliver goods and services to my customers"</strong> and set service areas:
+                            <br><br>
+                            <strong>Add ALL of these service areas:</strong><br>
+                            • Ferguson, MO<br>
+                            • Florissant, MO<br>
+                            • Maryland Heights, MO<br>
+                            • Chesterfield, MO<br>
+                            • Ballwin, MO<br>
+                            • Creve Coeur, MO<br>
+                            • Hazelwood, MO<br>
+                            • Bridgeton, MO<br>
+                            • O'Fallon, MO<br>
+                            • St. Peters, MO<br>
+                            • St. Charles, MO<br>
+                            • St. Louis County, MO
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="5">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Set Primary Category</div>
+                        <div class="step-detail">
+                            Google doesn't have a "Pet Waste Removal" category. Use:<br>
+                            <strong>Primary: "Waste Management Service"</strong><br>
+                            <strong>Secondary categories to add:</strong><br>
+                            • Pet Service<br>
+                            • Cleaning Service<br>
+                            • Lawn Care Service
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="6">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Verify via Phone or Postcard</div>
+                        <div class="step-detail">
+                            Use <strong>314-850-7140</strong> for phone verification (fastest — instant or within hours).
+                            If phone isn't available, request a postcard (takes 3-5 days).
+                            <br><br>
+                            <strong>⚠️ Don't skip this.</strong> Unverified profiles don't show up in Maps or local pack.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tip">
+                    💡 <strong>Pro tip:</strong> While waiting for verification, you can still fill out all the profile info below.
+                    Have it 100% ready so you launch fully optimized.
+                </div>
+            </div>
+        </div>
+
+        <!-- PHASE 2: PROFILE OPTIMIZATION -->
+        <div class="phase phase-2" data-phase="2">
+            <div class="phase-header" onclick="togglePhase(this)">
+                <div class="phase-number">2</div>
+                <div class="phase-title">Optimize Your Profile (Copy-Paste Ready)</div>
+                <div class="phase-time">⏱️ 20 min</div>
+                <div class="phase-arrow">▶</div>
+            </div>
+            <div class="phase-content">
+
+                <div class="step" data-step="7">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Add Business Description (copy this exactly)</div>
+                        <div class="step-detail">750 characters max. This is keyword-optimized for local search:</div>
+                        <div class="copy-block" onclick="copyText(this)">
+                            <button class="copy-btn">COPY</button>
+                            <pre>Tidy Tails is St. Louis's locally owned pet waste removal service, keeping yards clean and families healthy across St. Louis County, Chesterfield, Ballwin, Ferguson, Florissant, O'Fallon, and surrounding areas.
+
+We offer weekly, biweekly, and monthly pooper scooper service — plus one-time yard cleanups for those "oh no" moments. Our reliable service means you never have to scoop again.
+
+🐕 Weekly service starting at $25/week
+🐕 Biweekly service: $45/month
+🐕 Monthly service: $70/month
+🐕 One-time cleanups: $100+
+
+Family-owned. Dog-loving. Dependable. Text or call 314-850-7140 for a free quote — most customers are set up within 24 hours.</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="8">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Set Contact Info</div>
+                        <div class="step-detail">
+                            <strong>Phone:</strong> 314-850-7140<br>
+                            <strong>Website:</strong> https://tidytailsstl.com<br>
+                            <strong>Appointments URL:</strong> https://tidytailsstl.com (or a booking link if you have one)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="9">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Set Business Hours</div>
+                        <div class="step-detail">
+                            Set hours that show you're available. Suggested:<br>
+                            <strong>Mon-Fri:</strong> 8:00 AM – 6:00 PM<br>
+                            <strong>Saturday:</strong> 9:00 AM – 4:00 PM<br>
+                            <strong>Sunday:</strong> Closed<br>
+                            (Adjust to whatever TJ actually works — but having set hours looks professional)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="10">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Add Services with Prices</div>
+                        <div class="step-detail">
+                            In the "Services" tab, add each service individually:<br><br>
+                            <strong>Service 1:</strong> Weekly Pet Waste Removal — $25/week<br>
+                            <em>Description:</em> "Professional weekly yard cleanup. We remove all dog waste from your yard every week so you never have to scoop. Includes up to 2 dogs."<br><br>
+                            <strong>Service 2:</strong> Biweekly Pet Waste Removal — $45/month<br>
+                            <em>Description:</em> "Every-other-week yard cleanup service. Perfect for smaller yards or 1-dog households. All waste bagged and removed."<br><br>
+                            <strong>Service 3:</strong> Monthly Pet Waste Removal — $70/month<br>
+                            <em>Description:</em> "Once-a-month deep clean of your entire yard. We find it all. Ideal for dog owners who want a monthly reset."<br><br>
+                            <strong>Service 4:</strong> One-Time Yard Cleanup — From $100<br>
+                            <em>Description:</em> "Spring cleanup special! We'll clear weeks or months of accumulated pet waste. Perfect for move-ins, post-winter cleanup, or getting your yard guest-ready. Price based on yard size and accumulation."<br><br>
+                            <strong>Service 5:</strong> Commercial Pet Waste Removal — Custom quote<br>
+                            <em>Description:</em> "Pet waste removal for apartment complexes, HOAs, dog parks, and commercial properties. Custom schedules available. Call for a free property assessment."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="11">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Add Attributes</div>
+                        <div class="step-detail">
+                            Check every relevant attribute Google offers:<br>
+                            ✅ Locally owned<br>
+                            ✅ Veteran-led (if applicable)<br>
+                            ✅ Identifies as small business<br>
+                            ✅ Online estimates<br>
+                            ✅ Onsite services<br>
+                            These help with filtered searches and AI summaries.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="12">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Set Up Messaging</div>
+                        <div class="step-detail">
+                            Turn ON Google messaging. Customers can message you directly from your GBP listing.
+                            Set an auto-reply:
+                        </div>
+                        <div class="copy-block" onclick="copyText(this)">
+                            <button class="copy-btn">COPY</button>
+                            <pre>Thanks for reaching out to Tidy Tails! 🐕 We typically respond within an hour. If you need immediate help, text or call us at 314-850-7140. We'd love to get your yard cleaned up!</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHASE 3: PHOTOS & VISUAL CONTENT -->
+        <div class="phase phase-3" data-phase="3">
+            <div class="phase-header" onclick="togglePhase(this)">
+                <div class="phase-number">3</div>
+                <div class="phase-title">Photos & Visual Content (Ranking Boost)</div>
+                <div class="phase-time">⏱️ 30 min</div>
+                <div class="phase-arrow">▶</div>
+            </div>
+            <div class="phase-content">
+                <div class="tip">
+                    💡 <strong>Businesses with 100+ photos get 520% more calls</strong> than average.
+                    You don't need 100 on day one, but aim for 15-20 to start, then add 2-3 weekly.
+                </div>
+
+                <div class="step" data-step="13">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Upload a Professional Logo</div>
+                        <div class="step-detail">
+                            Your Tidy Tails logo as the profile photo. Square format, clear at small sizes.
+                            If you don't have a high-res logo, let's make one.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="14">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Upload a Cover Photo</div>
+                        <div class="step-detail">
+                            Best options (in order):<br>
+                            1. You with a happy dog in a clean yard<br>
+                            2. Before/after yard transformation<br>
+                            3. Your truck/equipment branded with Tidy Tails<br>
+                            <strong>Size:</strong> 1024x576 or wider (16:9 ratio)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="15">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Take & Upload These 15 Photos This Weekend</div>
+                        <div class="step-detail">
+                            📸 <strong>Photo checklist — snap these during your next service calls:</strong><br><br>
+                            <strong>Before/After (4 photos):</strong><br>
+                            □ Messy yard before cleanup<br>
+                            □ Same yard after cleanup<br>
+                            □ Another property before<br>
+                            □ Another property after<br><br>
+                            <strong>You at Work (4 photos):</strong><br>
+                            □ You scooping (action shot)<br>
+                            □ You carrying equipment to a yard<br>
+                            □ You with a satisfied customer's dog<br>
+                            □ Your vehicle with any branding<br><br>
+                            <strong>Equipment & Professional (3 photos):</strong><br>
+                            □ Your scooping equipment clean & organized<br>
+                            □ Bags/supplies ready to go<br>
+                            □ Branded shirt/hat if you have one<br><br>
+                            <strong>Neighborhoods (4 photos):</strong><br>
+                            □ Clean yard in Chesterfield area<br>
+                            □ Clean yard in Ferguson/Florissant area<br>
+                            □ Nice residential street you service<br>
+                            □ Happy dog in clean yard
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="16">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Geotag Your Photos (Free Ranking Boost)</div>
+                        <div class="step-detail">
+                            Geotagging tells Google WHERE you took the photo, reinforcing your service area.<br><br>
+                            <strong>Easiest method:</strong> Just make sure Location Services is ON in your phone camera settings
+                            before taking photos. iPhone/Android automatically embeds GPS coordinates.<br><br>
+                            <strong>For existing photos:</strong> Use <a href="https://tool.geoimgr.com/" target="_blank" style="color:var(--blue)">GeoImgr.com</a> (free)
+                            to add coordinates to any photo. Set them to addresses in your service areas.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="17">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Upload a 30-Second Video</div>
+                        <div class="step-detail">
+                            Film a quick video on your phone:<br>
+                            "Hey, I'm TJ with Tidy Tails. We handle pet waste removal across the St. Louis area so you
+                            never have to scoop your yard again. Starts at just 25 bucks a week. Text me at 314-850-7140."<br><br>
+                            <strong>Requirements:</strong> Under 30 seconds, under 75MB, 720p minimum.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHASE 4: REVIEWS -->
+        <div class="phase phase-4" data-phase="4">
+            <div class="phase-header" onclick="togglePhase(this)">
+                <div class="phase-number">4</div>
+                <div class="phase-title">Get Your First 5 Reviews (Critical Mass)</div>
+                <div class="phase-time">⏱️ This week</div>
+                <div class="phase-arrow">▶</div>
+            </div>
+            <div class="phase-content">
+                <div class="warning">
+                    ⚡ <strong>Google won't show you in the local 3-pack with less than ~5 reviews.</strong>
+                    Your competitors have 10-50+. This is the gap to close ASAP.
+                </div>
+
+                <div class="step" data-step="18">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Get Your Review Link</div>
+                        <div class="step-detail">
+                            Your review link format: <code style="color:var(--orange)">https://g.page/r/Ce_hqIHanGLvEAE/review</code><br>
+                            (Already in your dashboard header — this is TJ's link)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="19">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Text ALL Current Customers This Week</div>
+                        <div class="step-detail">Send this to every current customer (personalize the name):</div>
+                        <div class="copy-block" onclick="copyText(this)">
+                            <button class="copy-btn">COPY</button>
+                            <pre>Hey [Name]! Quick favor — would you mind leaving a Google review for Tidy Tails? It really helps small businesses like mine get found by new customers. Here's the link — takes 30 seconds: https://g.page/r/Ce_hqIHanGLvEAE/review
+
+Thanks so much! 🐕</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="20">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Ask Family & Friends Who've Seen Your Work</div>
+                        <div class="step-detail">
+                            Anyone who's seen you work or can vouch for you — ask them for a review.
+                            Even 4-5 reviews from real people makes a massive difference vs. zero.
+                            <br><br>
+                            <strong>⚠️ Don't:</strong> Buy fake reviews, use review services, or have people who've never used your service leave reviews.
+                            Google detects and penalizes this.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="21">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Respond to EVERY Review Within 24 Hours</div>
+                        <div class="step-detail">
+                            Google rewards businesses that engage. For each review, respond personally.
+                            Template for positive reviews:
+                        </div>
+                        <div class="copy-block" onclick="copyText(this)">
+                            <button class="copy-btn">COPY</button>
+                            <pre>Thank you so much, [Name]! It's a pleasure keeping your yard clean for [dog name]. We appreciate your trust in Tidy Tails! 🐕</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="22">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Set Up "After Service" Review Request Flow</div>
+                        <div class="step-detail">
+                            After every service visit, text the customer a quick update + review ask.
+                            Do this consistently and you'll hit 20+ reviews within 2-3 months.
+                        </div>
+                        <div class="copy-block" onclick="copyText(this)">
+                            <button class="copy-btn">COPY</button>
+                            <pre>Hey [Name], yard's all cleaned up! 🐕✨ If you have 30 seconds, a Google review would mean the world: https://g.page/r/Ce_hqIHanGLvEAE/review</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHASE 5: WEEKLY POSTS -->
+        <div class="phase phase-5" data-phase="5">
+            <div class="phase-header" onclick="togglePhase(this)">
+                <div class="phase-number">5</div>
+                <div class="phase-title">Weekly GBP Posts (Stay Active & Rank Higher)</div>
+                <div class="phase-time">⏱️ 5 min/week</div>
+                <div class="phase-arrow">▶</div>
+            </div>
+            <div class="phase-content">
+                <div class="tip">
+                    💡 <strong>GBP Posts appear directly in your listing</strong> and signal to Google that you're an active business.
+                    Post at least once a week. These are pre-written — just copy, paste, and post.
+                </div>
+
+                <div class="step" data-step="23">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Post Week 1: Spring Cleanup Offer</div>
+                        <div class="step-detail">Type: <strong>Offer</strong> • Add a photo of a clean yard</div>
+                        <div class="copy-block" onclick="copyText(this)">
+                            <button class="copy-btn">COPY</button>
+                            <pre>🌷 SPRING YARD CLEANUP SPECIAL
+
+Winter's over — but the mess it left behind isn't! Tidy Tails is offering spring cleanup specials for St. Louis area homeowners.
+
+We'll clear out ALL accumulated pet waste so your yard is fresh for spring.
+
+✅ One-time cleanups from $100
+✅ Sign up for weekly service and get your first cleanup FREE
+✅ Serving Chesterfield, Ballwin, Ferguson, Florissant & more
+
+Text 314-850-7140 for a free quote!</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="24">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Post Week 2: Social Proof / Why Us</div>
+                        <div class="step-detail">Type: <strong>Update</strong> • Photo of you working or with a dog</div>
+                        <div class="copy-block" onclick="copyText(this)">
+                            <button class="copy-btn">COPY</button>
+                            <pre>Why St. Louis families choose Tidy Tails:
+
+🐕 Locally owned — not a franchise, not a corporation
+💰 Most affordable in STL — weekly service from just $25/week
+📱 Easy booking — text 314-850-7140 and we're there
+🗓️ Consistent & reliable — same day, every week
+♻️ We bag it and haul it away — you never touch a thing
+
+Your neighbors are already using us. Ready to never scoop again?</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="25">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Post Week 3: Educational Content</div>
+                        <div class="step-detail">Type: <strong>Update</strong> • Builds trust and SEO authority</div>
+                        <div class="copy-block" onclick="copyText(this)">
+                            <button class="copy-btn">COPY</button>
+                            <pre>Did you know? 🤔
+
+A single gram of dog waste contains 23 MILLION bacteria — including E. coli, salmonella, and parasites that can survive in soil for years.
+
+If you have kids playing in the yard, regular pet waste removal isn't just convenience — it's a health issue.
+
+Tidy Tails keeps St. Louis yards safe and clean, starting at just $25/week.
+
+📞 314-850-7140 | tidytailsstl.com</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="26">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Post Week 4: Customer Spotlight or Before/After</div>
+                        <div class="step-detail">Type: <strong>Update</strong> • Use a before/after photo pair</div>
+                        <div class="copy-block" onclick="copyText(this)">
+                            <button class="copy-btn">COPY</button>
+                            <pre>Another yard rescued! 🐕💪
+
+This Chesterfield backyard hadn't been cleaned in 3 weeks. 45 minutes later? Spotless.
+
+That's what Tidy Tails does — we handle the dirty work so you can enjoy your yard worry-free.
+
+Book a one-time cleanup ($100) or set up weekly service ($25/wk) and never deal with it again.
+
+Text 314-850-7140 📱</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHASE 6: NAP + DIRECTORIES -->
+        <div class="phase phase-6" data-phase="6">
+            <div class="phase-header" onclick="togglePhase(this)">
+                <div class="phase-number">6</div>
+                <div class="phase-title">NAP Consistency & Directory Listings</div>
+                <div class="phase-time">⏱️ 45 min one-time</div>
+                <div class="phase-arrow">▶</div>
+            </div>
+            <div class="phase-content">
+                <div class="tip">
+                    💡 <strong>NAP = Name, Address, Phone.</strong> Google cross-references these across the internet.
+                    If your name/phone is different on Yelp vs Google vs your website, it hurts your ranking.
+                    Keep it EXACTLY the same everywhere.
+                </div>
+
+                <div class="step" data-step="27">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Ensure NAP Consistency</div>
+                        <div class="step-detail">
+                            Use this EXACT format everywhere:<br><br>
+                            <strong>Name:</strong> Tidy Tails Pet Waste Removal<br>
+                            <strong>Phone:</strong> (314) 850-7140<br>
+                            <strong>Website:</strong> https://tidytailsstl.com<br>
+                            <strong>Service Area:</strong> St. Louis, MO and surrounding areas<br><br>
+                            Check your website, Facebook, any directory listing — make sure they all match.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step" data-step="28">
+                    <div class="step-check" onclick="toggleStep(this)"></div>
+                    <div class="step-body">
+                        <div class="step-title">Claim These Free Directory Listings</div>
+                        <div class="step-detail">
+                            Each listing = a "citation" that boosts your GBP ranking. Do these in order of impact:<br><br>
+                            <strong>🔴 Critical (do this weekend):</strong><br>
+                            □ <a href="https://biz.yelp.com" target="_blank" style="color:var(--blue)">Yelp</a> — Claim or create listing<br>
+                            □ <a href="https://www.facebook.com/pages/create" target="_blank" style="color:var(--blue)">Facebook Business Page</a> — If not already done<br>
+                            □ <a href="https://nextdoor.com" target="_blank" style="color:var(--blue)">Nextdoor Business Page</a> — Free local exposure<br><br>
+                            <strong>🟡 Important (do this week):</strong><br>
+                            □ <a href="https://www.bbb.org/get-listed" target="_blank" style="color:var(--blue)">BBB</a> — Free basic listing<br>
+                            □ <a href="https://www.thumbtack.com" target="_blank" style="color:var(--blue)">Thumbtack</a> — Lead generation<br>
+                            □ <a href="https://www.angi.com/pro" target="_blank" style="color:var(--blue)">Angi (Angie's List)</a> — Homeowner trust<br>
+                            □ <a href="https://www.homeadvisor.com/pro" target="_blank" style="color:var(--blue)">HomeAdvisor</a> — Same network as Angi<br><br>
+                            <strong>🟢 Nice to have (next week):</strong><br>
+                            □ Apple Maps — via <a href="https://mapsconnect.apple.com" target="_blank" style="color:var(--blue)">Apple Maps Connect</a><br>
+                            □ Bing Places — via <a href="https://www.bingplaces.com" target="_blank" style="color:var(--blue)">Bing Places</a><br>
+                            □ <a href="https://www.petworks.com" target="_blank" style="color:var(--blue)">PetWorks</a> — Pet services directory<br>
+                            □ <a href="https://www.sweepandgo.com" target="_blank" style="color:var(--blue)">Sweep&Go Directory</a> — Industry-specific
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPETITOR COMPARISON -->
+        <div class="phase" style="border-color: var(--orange);">
+            <div class="phase-header" onclick="togglePhase(this)" style="border-bottom-color: var(--orange);">
+                <div class="phase-number" style="background:rgba(255,107,53,0.2);color:var(--orange);">📊</div>
+                <div class="phase-title">How You Stack Up vs. Competitors</div>
+                <div class="phase-arrow">▶</div>
+            </div>
+            <div class="phase-content">
+                <table class="competitor-table">
+                    <thead>
+                        <tr>
+                            <th>Factor</th>
+                            <th>Tidy Tails (Now)</th>
+                            <th>After This Playbook</th>
+                            <th>DoodyCalls STL</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>GBP Claimed</td>
+                            <td style="color:var(--red)">❌ No</td>
+                            <td style="color:var(--green)">✅ Yes</td>
+                            <td style="color:var(--green)">✅ Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Google Reviews</td>
+                            <td style="color:var(--red)">0</td>
+                            <td style="color:var(--yellow)">5-10</td>
+                            <td style="color:var(--green)">25+</td>
+                        </tr>
+                        <tr>
+                            <td>Photos</td>
+                            <td style="color:var(--red)">0</td>
+                            <td style="color:var(--green)">15-20</td>
+                            <td>10-15</td>
+                        </tr>
+                        <tr>
+                            <td>Services Listed</td>
+                            <td style="color:var(--red)">None</td>
+                            <td style="color:var(--green)">5 with prices</td>
+                            <td>Yes, no prices</td>
+                        </tr>
+                        <tr>
+                            <td>Weekly Posts</td>
+                            <td style="color:var(--red)">None</td>
+                            <td style="color:var(--green)">Weekly</td>
+                            <td>Monthly</td>
+                        </tr>
+                        <tr>
+                            <td>Directory Citations</td>
+                            <td style="color:var(--red)">~1</td>
+                            <td style="color:var(--green)">8-12</td>
+                            <td>50+ (franchise)</td>
+                        </tr>
+                        <tr>
+                            <td>Pricing Visible</td>
+                            <td style="color:var(--yellow)">Website only</td>
+                            <td style="color:var(--green)">GBP + Website</td>
+                            <td style="color:var(--red)">Quote only</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight:700">Search Visibility</td>
+                            <td style="color:var(--red);font-weight:700">INVISIBLE</td>
+                            <td style="color:var(--green);font-weight:700">Page 1 (2-4 wks)</td>
+                            <td style="color:var(--green)">Top 3</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="tip">
+                    💡 <strong>Your pricing advantage is a weapon.</strong> DoodyCalls doesn't show prices — they make people request quotes.
+                    You showing $25/week right on your GBP listing converts browsers who hate calling for quotes.
+                    This is a massive competitive edge.
+                </div>
+            </div>
+        </div>
+
+        <!-- TIMELINE -->
+        <div class="cta-box">
+            <h3>🗓️ Expected Timeline</h3>
+            <p>
+                <strong>Today:</strong> Claim profile, fill out all info (Phase 1-2)<br>
+                <strong>This weekend:</strong> Take photos, upload, ask for reviews (Phase 3-4)<br>
+                <strong>Week 1:</strong> First GBP post, claim Yelp + directories (Phase 5-6)<br>
+                <strong>Week 2-3:</strong> Verification complete, reviews coming in<br>
+                <strong>Week 3-4:</strong> Start appearing in local search results<br>
+                <strong>Month 2:</strong> Ranking in Google Maps 3-pack for "pet waste removal st louis"
+            </p>
+            <a href="https://business.google.com" target="_blank">🚀 Start Now → business.google.com</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        Built by Franklin 🐕💩 · March 7, 2026 · Based on live search audit data
+    </div>
+
+    <script>
+        // Toggle phases
+        function togglePhase(header) {
+            const phase = header.closest('.phase');
+            phase.classList.toggle('open');
+        }
+
+        // Toggle step completion
+        function toggleStep(check) {
+            check.classList.toggle('done');
+            check.closest('.step').classList.toggle('completed');
+            updateProgress();
+            saveState();
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const total = document.querySelectorAll('.step-check').length;
+            const done = document.querySelectorAll('.step-check.done').length;
+            const pct = Math.round((done / total) * 100);
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressText').textContent = done + ' of ' + total + ' steps complete';
+            document.getElementById('progressPct').textContent = pct + '%';
+        }
+
+        // Copy text
+        function copyText(block) {
+            const text = block.querySelector('pre').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = block.querySelector('.copy-btn');
+                btn.textContent = 'COPIED!';
+                btn.style.background = '#10b981';
+                setTimeout(() => { btn.textContent = 'COPY'; btn.style.background = ''; }, 2000);
+            });
+        }
+
+        // Persist state
+        function saveState() {
+            const state = {};
+            document.querySelectorAll('.step-check').forEach((check, i) => {
+                state[i] = check.classList.contains('done');
+            });
+            localStorage.setItem('gbp-playbook-state', JSON.stringify(state));
+        }
+
+        function loadState() {
+            const state = JSON.parse(localStorage.getItem('gbp-playbook-state') || '{}');
+            document.querySelectorAll('.step-check').forEach((check, i) => {
+                if (state[i]) {
+                    check.classList.add('done');
+                    check.closest('.step').classList.add('completed');
+                }
+            });
+            updateProgress();
+        }
+
+        loadState();
+    </script>
+</body>
+</html>
