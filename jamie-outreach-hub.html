@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jamie's Outreach Hub | Tidy Tails</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f0f0f;
+            --bg2: #1a1a1a;
+            --bg3: #242424;
+            --text: #f0f0f0;
+            --text2: #999;
+            --text3: #666;
+            --green: #22c55e;
+            --orange: #f97316;
+            --blue: #3b82f6;
+            --red: #ef4444;
+            --yellow: #eab308;
+            --purple: #a855f7;
+            --border: #2a2a2a;
+            --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+        
+        .header {
+            background: var(--bg2);
+            border-bottom: 1px solid var(--border);
+            padding: 1.25rem 1.5rem;
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-inner {
+            max-width: 900px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .header h1 { font-size: 1.25rem; font-weight: 700; }
+        .header h1 span { color: var(--green); }
+        .header-links { display: flex; gap: 0.75rem; }
+        .header-links a {
+            padding: 0.4rem 0.8rem; border-radius: 8px; font-size: 0.8rem;
+            background: var(--bg3); color: var(--text2); text-decoration: none;
+            transition: all 0.2s;
+        }
+        .header-links a:hover { color: var(--text); background: var(--border); }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+
+        /* Reference Banner */
+        .ref-banner {
+            background: linear-gradient(135deg, #1a2a1a, #1a1a2a);
+            border: 1px solid #2a3a2a;
+            border-radius: var(--radius);
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        .ref-banner h3 { grid-column: 1/-1; font-size: 0.85rem; color: var(--green); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+        .ref-item { font-size: 0.9rem; }
+        .ref-item .label { color: var(--text2); font-size: 0.75rem; display: block; }
+        .ref-item .value { font-weight: 600; }
+        .ref-item a { color: var(--blue); text-decoration: none; }
+        .ref-item a:hover { text-decoration: underline; }
+        .copy-btn {
+            display: inline-block; padding: 0.15rem 0.5rem; font-size: 0.7rem;
+            background: var(--bg3); border: 1px solid var(--border); color: var(--text2);
+            border-radius: 4px; cursor: pointer; margin-left: 0.5rem;
+            transition: all 0.15s;
+        }
+        .copy-btn:hover { background: var(--green); color: #000; border-color: var(--green); }
+        .copy-btn.copied { background: var(--green); color: #000; border-color: var(--green); }
+
+        /* Tabs */
+        .tabs {
+            display: flex; gap: 0.5rem; margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;
+            overflow-x: auto;
+        }
+        .tab {
+            padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;
+            font-size: 0.85rem; font-weight: 600; color: var(--text2);
+            background: transparent; border: none; white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .tab:hover { color: var(--text); background: var(--bg3); }
+        .tab.active { color: var(--green); background: var(--bg2); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Section cards */
+        .section { margin-bottom: 1.5rem; }
+        .section-title {
+            font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .card {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1rem; margin-bottom: 0.75rem;
+        }
+        .card-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 0.5rem; }
+
+        /* Script blocks */
+        .script {
+            background: var(--bg3); border-radius: 8px; padding: 1rem;
+            margin-bottom: 0.75rem; position: relative; font-size: 0.9rem;
+        }
+        .script-label {
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.08em; color: var(--orange); margin-bottom: 0.5rem;
+        }
+        .script-copy {
+            position: absolute; top: 0.75rem; right: 0.75rem;
+            padding: 0.25rem 0.6rem; font-size: 0.7rem;
+            background: var(--bg); border: 1px solid var(--border); color: var(--text2);
+            border-radius: 6px; cursor: pointer; transition: all 0.15s;
+        }
+        .script-copy:hover, .script-copy.copied { background: var(--green); color: #000; border-color: var(--green); }
+
+        /* Lead table */
+        .lead-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .lead-table th {
+            text-align: left; padding: 0.5rem 0.75rem; color: var(--text2);
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em;
+            border-bottom: 1px solid var(--border);
+        }
+        .lead-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+        .lead-table tr:hover { background: var(--bg3); }
+        .tier-badge {
+            display: inline-block; padding: 0.1rem 0.5rem; border-radius: 4px;
+            font-size: 0.7rem; font-weight: 700;
+        }
+        .tier-1 { background: rgba(234,179,8,0.15); color: var(--yellow); }
+        .tier-2 { background: rgba(249,115,22,0.15); color: var(--orange); }
+        .tier-3 { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .tier-4 { background: rgba(168,85,247,0.15); color: var(--purple); }
+
+        /* Objection table */
+        .obj-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+        .obj-table td { padding: 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+        .obj-table td:first-child { color: var(--red); font-weight: 600; width: 35%; }
+
+        /* Filter bar */
+        .filter-bar { display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .filter-btn {
+            padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.8rem;
+            background: var(--bg3); border: 1px solid var(--border); color: var(--text2);
+            cursor: pointer; transition: all 0.15s;
+        }
+        .filter-btn:hover, .filter-btn.active { background: var(--green); color: #000; border-color: var(--green); }
+
+        /* Stats bar */
+        .stats-bar { display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .stat { text-align: center; }
+        .stat-val { font-size: 1.5rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+        .stat-label { font-size: 0.7rem; color: var(--text2); text-transform: uppercase; }
+
+        /* Quick tips */
+        .tip { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; font-size: 0.85rem; }
+        .tip-icon { flex-shrink: 0; }
+
+        @media (max-width: 600px) {
+            .ref-banner { grid-template-columns: 1fr; }
+            .lead-table { font-size: 0.75rem; }
+            .lead-table th, .lead-table td { padding: 0.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-inner">
+            <h1>🐕 Jamie's <span>Outreach Hub</span></h1>
+            <div class="header-links">
+                <a href="https://tidytailsstl.com" target="_blank">Website</a>
+                <a href="https://g.page/r/Ce_hqIHanGLvEAE/review" target="_blank">⭐ Google Reviews</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- REFERENCE INFO BANNER -->
+        <div class="ref-banner">
+            <h3>📌 Quick Reference — Always Have These Ready</h3>
+            <div class="ref-item">
+                <span class="label">Business Name</span>
+                <span class="value">Tidy Tails Pet Waste Removal</span>
+                <button class="copy-btn" onclick="copyText('Tidy Tails Pet Waste Removal', this)">Copy</button>
+            </div>
+            <div class="ref-item">
+                <span class="label">Phone</span>
+                <span class="value">314-850-7140</span>
+                <button class="copy-btn" onclick="copyText('314-850-7140', this)">Copy</button>
+            </div>
+            <div class="ref-item">
+                <span class="label">Website</span>
+                <a href="https://tidytailsstl.com" target="_blank" class="value">tidytailsstl.com</a>
+                <button class="copy-btn" onclick="copyText('tidytailsstl.com', this)">Copy</button>
+            </div>
+            <div class="ref-item">
+                <span class="label">Google Reviews</span>
+                <a href="https://g.page/r/Ce_hqIHanGLvEAE/review" target="_blank" class="value">Leave a Review ⭐</a>
+                <button class="copy-btn" onclick="copyText('https://g.page/r/Ce_hqIHanGLvEAE/review', this)">Copy Link</button>
+            </div>
+            <div class="ref-item">
+                <span class="label">Service Area</span>
+                <span class="value">St. Louis County, St. Charles County & surrounding</span>
+            </div>
+            <div class="ref-item">
+                <span class="label">Pricing</span>
+                <span class="value">$25/wk · $45 biweekly · $70/mo · $100 one-time</span>
+                <button class="copy-btn" onclick="copyText('$25/week, $45 biweekly, $70/month, $100 one-time deep clean', this)">Copy</button>
+            </div>
+        </div>
+
+        <!-- TABS -->
+        <div class="tabs">
+            <button class="tab active" onclick="switchTab('scripts')">📝 Scripts</button>
+            <button class="tab" onclick="switchTab('leads')">📋 Lead List</button>
+            <button class="tab" onclick="switchTab('objections')">💬 Objections</button>
+            <button class="tab" onclick="switchTab('tips')">💡 Tips & Tracking</button>
+        </div>
+
+        <!-- ========== SCRIPTS TAB ========== -->
+        <div class="tab-content active" id="tab-scripts">
+
+            <div class="section">
+                <div class="section-title">📞 Cold Call Scripts</div>
+
+                <div class="script">
+                    <div class="script-label">Opening — Property Managers</div>
+                    <button class="script-copy" onclick="copyScript(this)">📋 Copy</button>
+                    <div class="script-text">Hi, this is Jamie from Tidy Tails Pet Waste Removal. I work with property managers in the St. Louis area who have pet-friendly communities. Do you currently have a solution for pet waste on the property?</div>
+                </div>
+
+                <div class="script">
+                    <div class="script-label">Opening — Dog Daycares</div>
+                    <button class="script-copy" onclick="copyScript(this)">📋 Copy</button>
+                    <div class="script-text">Hi, this is Jamie from Tidy Tails. We specialize in pet waste removal for businesses like yours. I know keeping the outdoor areas clean with that many dogs can be a full-time job. Do you handle that in-house right now, or do you use a service?</div>
+                </div>
+
+                <div class="script">
+                    <div class="script-label">Opening — Vet Clinics</div>
+                    <button class="script-copy" onclick="copyScript(this)">📋 Copy</button>
+                    <div class="script-text">Hi, this is Jamie from Tidy Tails Pet Waste Removal. We work with vet clinics in the area to keep outdoor spaces clean for patients and their owners. Do you have anyone handling waste cleanup outside right now?</div>
+                </div>
+
+                <div class="script">
+                    <div class="script-label">Opening — Senior Living</div>
+                    <button class="script-copy" onclick="copyScript(this)">📋 Copy</button>
+                    <div class="script-text">Hi, this is Jamie from Tidy Tails Pet Waste Removal. A lot of senior communities we work with have residents who love their dogs but need help keeping the common grounds clean. Is that something your community deals with?</div>
+                </div>
+
+                <div class="script">
+                    <div class="script-label">Opening — Dog Parks (Private)</div>
+                    <button class="script-copy" onclick="copyScript(this)">📋 Copy</button>
+                    <div class="script-text">Hi, this is Jamie from Tidy Tails. We service private dog parks in the St. Louis area — keeping things clean so your members have a great experience. Are you handling waste cleanup with your own crew right now?</div>
+                </div>
+
+                <div class="script">
+                    <div class="script-label">Asking for the Walkthrough</div>
+                    <button class="script-copy" onclick="copyScript(this)">📋 Copy</button>
+                    <div class="script-text">I'd love to stop by for just 10 minutes, walk the grounds, and give you a no-pressure quote. I can work around your schedule — what day this week or next works best for you?</div>
+                </div>
+
+                <div class="script">
+                    <div class="script-label">Voicemail Script</div>
+                    <button class="script-copy" onclick="copyScript(this)">📋 Copy</button>
+                    <div class="script-text">Hi, this is Jamie from Tidy Tails Pet Waste Removal. I work with businesses in the St. Louis area and wanted to see if you could use help with pet waste cleanup on your property. You can reach me at 314-850-7140 or check us out at tidytailsstl.com. Thanks!</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">💬 Text / DM Scripts</div>
+
+                <div class="script">
+                    <div class="script-label">Facebook Group Post — Residential</div>
+                    <button class="script-copy" onclick="copyScript(this)">📋 Copy</button>
+                    <div class="script-text">Hey neighbors! 👋 I'm Jamie from Tidy Tails — we scoop poop so you don't have to! Serving St. Louis County and surrounding areas. Weekly, biweekly, or monthly plans starting at $25/week. DM me or check us out at tidytailsstl.com 🐕💩</div>
+                </div>
+
+                <div class="script">
+                    <div class="script-label">Nextdoor Post</div>
+                    <button class="script-copy" onclick="copyScript(this)">📋 Copy</button>
+                    <div class="script-text">Hi! Just wanted to introduce Tidy Tails Pet Waste Removal — we're a local family business serving the area. If you've got dogs and hate cleaning up the yard, we've got you covered. Weekly ($25), biweekly ($45), or monthly ($70) plans available. We also do one-time deep cleans for $100. Check out our reviews: https://g.page/r/Ce_hqIHanGLvEAE/review 🐕</div>
+                </div>
+
+                <div class="script">
+                    <div class="script-label">Follow-Up Text (After Missed Call)</div>
+                    <button class="script-copy" onclick="copyScript(this)">📋 Copy</button>
+                    <div class="script-text">Hey, this is Jamie from Tidy Tails Pet Waste Removal! I tried giving you a call. We help property managers and businesses in St. Louis keep their grounds clean. Would love to chat when you have a minute — just text or call back at 314-850-7140!</div>
+                </div>
+
+                <div class="script">
+                    <div class="script-label">Email Outreach — Property Manager</div>
+                    <button class="script-copy" onclick="copyScript(this)">📋 Copy</button>
+                    <div class="script-text">Subject: Pet Waste Solution for Your Properties
+
+Hi [Name],
+
+I'm Jamie from Tidy Tails Pet Waste Removal. We work with property managers across St. Louis County to keep pet-friendly communities clean.
+
+If pet waste is something your residents (or your maintenance team) deal with, I'd love to stop by for a quick 10-minute walkthrough and give you a free quote.
+
+Most of our commercial clients are in the $200-400/month range, and we handle everything — scheduled pickups, stations, and compliance.
+
+Would any day this week work for a quick visit?
+
+Jamie
+Tidy Tails Pet Waste Removal
+314-850-7140 | tidytailsstl.com</div>
+                </div>
+
+                <div class="script">
+                    <div class="script-label">Ask for a Google Review (After Good Service)</div>
+                    <button class="script-copy" onclick="copyScript(this)">📋 Copy</button>
+                    <div class="script-text">Hey! Thanks so much for choosing Tidy Tails — really appreciate your business! If you've got 30 seconds, a quick Google review would mean the world to us. Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review ⭐ Thanks!</div>
+                </div>
+
+                <div class="script">
+                    <div class="script-label">Referral Ask</div>
+                    <button class="script-copy" onclick="copyScript(this)">📋 Copy</button>
+                    <div class="script-text">Hey! Quick question — do you know anyone else who could use help keeping their yard clean? We're offering a free cleanup for any referral that signs up. Just have them mention your name! 🐕</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== LEADS TAB ========== -->
+        <div class="tab-content" id="tab-leads">
+            <div class="stats-bar">
+                <div class="stat"><div class="stat-val" style="color:var(--orange)">43</div><div class="stat-label">Total Leads</div></div>
+                <div class="stat"><div class="stat-val" style="color:var(--yellow)">3</div><div class="stat-label">Tier 1 (TJ)</div></div>
+                <div class="stat"><div class="stat-val" style="color:var(--orange)">15</div><div class="stat-label">Tier 2</div></div>
+                <div class="stat"><div class="stat-val" style="color:var(--blue)">19</div><div class="stat-label">Tier 3</div></div>
+                <div class="stat"><div class="stat-val" style="color:var(--purple)">6</div><div class="stat-label">Tier 4</div></div>
+            </div>
+
+            <div class="filter-bar">
+                <button class="filter-btn active" onclick="filterLeads('all', this)">All</button>
+                <button class="filter-btn" onclick="filterLeads('TIER_1', this)">⭐ Tier 1 (TJ Calls)</button>
+                <button class="filter-btn" onclick="filterLeads('TIER_2', this)">🔥 Tier 2</button>
+                <button class="filter-btn" onclick="filterLeads('TIER_3', this)">Tier 3</button>
+                <button class="filter-btn" onclick="filterLeads('TIER_4', this)">Tier 4</button>
+            </div>
+
+            <div style="overflow-x:auto;">
+                <table class="lead-table" id="leadTable">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Business</th>
+                            <th>Type</th>
+                            <th>Tier</th>
+                            <th>Phone</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leadBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ========== OBJECTIONS TAB ========== -->
+        <div class="tab-content" id="tab-objections">
+            <div class="section">
+                <div class="section-title">💬 Common Objections & Responses</div>
+
+                <table class="obj-table">
+                    <tr>
+                        <td>"We have maintenance handle it"</td>
+                        <td>That makes sense. Quick question — how many hours a week does that take them? A lot of our property manager clients found their maintenance team was spending 5-10 hours on waste, time they could use for repairs and turnovers.</td>
+                    </tr>
+                    <tr>
+                        <td>"What does it cost?"</td>
+                        <td>It depends on the property size, but most of our commercial clients are in the $200-400/month range. Could I stop by for a quick walkthrough to give you an exact number?</td>
+                    </tr>
+                    <tr>
+                        <td>"Not in the budget"</td>
+                        <td>Totally understand. If you don't mind me asking — what are you spending now on labor for this? Sometimes we actually save money compared to having staff do it.</td>
+                    </tr>
+                    <tr>
+                        <td>"We're locked into a contract"</td>
+                        <td>No problem at all. When does that come up for renewal? I'd love to be on your radar for when you're shopping again.</td>
+                    </tr>
+                    <tr>
+                        <td>"We don't have a pet waste problem"</td>
+                        <td>That's great to hear! Would it be OK if I left a card? A lot of communities find the issue gets worse seasonally, and we're always just a call away.</td>
+                    </tr>
+                    <tr>
+                        <td>"I need to check with my boss"</td>
+                        <td>Absolutely. What's the best way to follow up — should I call you back, or would it help if I sent over some info they can review?</td>
+                    </tr>
+                    <tr>
+                        <td>"Send me some information"</td>
+                        <td>Happy to! What's the best email? I'll send over our services overview and some references from other properties in the area. And I'll follow up in a couple days to see if you have questions.</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <!-- ========== TIPS TAB ========== -->
+        <div class="tab-content" id="tab-tips">
+            <div class="section">
+                <div class="section-title">⏰ Best Times to Call</div>
+                <div class="card">
+                    <div class="tip"><span class="tip-icon">🏢</span> <strong>Property Managers:</strong> 9-11 AM or 2-4 PM (avoid lunch)</div>
+                    <div class="tip"><span class="tip-icon">🐕</span> <strong>Dog Daycares:</strong> Before 8 AM or after 6 PM (less chaos)</div>
+                    <div class="tip"><span class="tip-icon">🏥</span> <strong>Vet Clinics:</strong> Early morning before appointments start</div>
+                    <div class="tip"><span class="tip-icon">🏘️</span> <strong>HOAs:</strong> Try to get the community manager's direct line</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">🎯 Daily Call Goals</div>
+                <div class="card">
+                    <div class="tip"><span class="tip-icon">📊</span> <strong>Minimum:</strong> 5 calls per session</div>
+                    <div class="tip"><span class="tip-icon">👍</span> <strong>Good:</strong> 10 calls</div>
+                    <div class="tip"><span class="tip-icon">🔥</span> <strong>Crushing it:</strong> 15+ calls</div>
+                    <br>
+                    <div style="color:var(--text2); font-size:0.85rem;">
+                        The math: ~10-15 calls = 1 meeting. ~3 meetings = 1 client. Just keep dialing.
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">📱 How to Log a Call</div>
+                <div class="card">
+                    <div style="font-size:0.9rem;">
+                        After each call, text Franklin or TJ:
+                    </div>
+                    <div class="script" style="margin-top:0.75rem;">
+                        <div class="script-text" style="font-family:monospace; font-size:0.85rem;">
+Called [Business Name]<br>
+Result: [NO_ANSWER / VOICEMAIL / SPOKE_DM / SPOKE_OTHER / MEETING_SET / NOT_INTERESTED]<br>
+Notes: [what happened, who you talked to, next steps]
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">📋 Priority Order (Who to Call First)</div>
+                <div class="card">
+                    <div class="tip"><span class="tip-icon">1️⃣</span> <strong>CALLBACK_REQUESTED</strong> — They're expecting you!</div>
+                    <div class="tip"><span class="tip-icon">2️⃣</span> <strong>SPOKE_OTHER</strong> — You have momentum, follow up on that contact</div>
+                    <div class="tip"><span class="tip-icon">3️⃣</span> <strong>Property Managers</strong> — Multi-property = biggest deals</div>
+                    <div class="tip"><span class="tip-icon">4️⃣</span> <strong>Dog Daycares</strong> — High volume waste, good recurring</div>
+                    <div class="tip"><span class="tip-icon">5️⃣</span> <strong>Vet Clinics</strong> — Referral partnerships possible</div>
+                    <div class="tip"><span class="tip-icon">6️⃣</span> <strong>Dog Parks</strong> — Usually government, slower process</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">📌 Key Info to Always Have Ready</div>
+                <div class="card">
+                    <div class="tip"><span class="tip-icon">📞</span> <strong>Phone:</strong> 314-850-7140</div>
+                    <div class="tip"><span class="tip-icon">🌐</span> <strong>Website:</strong> tidytailsstl.com</div>
+                    <div class="tip"><span class="tip-icon">⭐</span> <strong>Google Reviews:</strong> <a href="https://g.page/r/Ce_hqIHanGLvEAE/review" target="_blank" style="color:var(--blue);">g.page/r/Ce_hqIHanGLvEAE/review</a></div>
+                    <div class="tip"><span class="tip-icon">💰</span> <strong>Residential:</strong> $25/wk · $45 biweekly · $70/mo · $100 one-time</div>
+                    <div class="tip"><span class="tip-icon">🏢</span> <strong>Commercial:</strong> $200-400/month (depends on property size)</div>
+                    <div class="tip"><span class="tip-icon">📍</span> <strong>Area:</strong> St. Louis County, St. Charles County & surrounding</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Lead data
+        const leads = [
+            {id:1, name:"Mills Properties", type:"Property Mgmt", tier:"TIER_2", phone:"See website", notes:""},
+            {id:2, name:"Deca Property Management", type:"Property Mgmt", tier:"TIER_2", phone:"(314) 631-3306", notes:""},
+            {id:3, name:"St. Louis Luxury Apartments", type:"Property Mgmt", tier:"TIER_2", phone:"See website", notes:""},
+            {id:4, name:"PMI STL Metro", type:"Property Mgmt", tier:"TIER_2", phone:"See website", notes:""},
+            {id:5, name:"No Leash Needed (8 locations)", type:"Dog Daycare", tier:"TIER_2", phone:"See website", notes:""},
+            {id:6, name:"Happy Tails Inc", type:"Dog Daycare", tier:"TIER_2", phone:"See website", notes:""},
+            {id:7, name:"The Watering Bowl", type:"Dog Daycare", tier:"TIER_2", phone:"See website", notes:""},
+            {id:8, name:"Dogtopia Rock Hill", type:"Dog Daycare", tier:"TIER_2", phone:"See website", notes:""},
+            {id:9, name:"West End Management & Leasing", type:"Property Mgmt", tier:"TIER_2", phone:"See website", notes:""},
+            {id:10, name:"Amoso Properties", type:"Property Mgmt + HOA", tier:"TIER_2", phone:"See website", notes:""},
+            {id:11, name:"Smart Rentals STL", type:"Property Mgmt", tier:"TIER_2", phone:"See website", notes:""},
+            {id:12, name:"SOTO Property Solutions", type:"Property Mgmt", tier:"TIER_2", phone:"See website", notes:""},
+            {id:13, name:"Emerald Crossing Apartments", type:"Apartment", tier:"TIER_2", phone:"See website", notes:""},
+            {id:14, name:"Nico Terrace Apartments", type:"Apartment", tier:"TIER_2", phone:"See website", notes:""},
+            {id:15, name:"City Paws Veterinary Clinic", type:"Vet Clinic", tier:"TIER_3", phone:"(314) 644-0404", notes:""},
+            {id:16, name:"Tesson Ferry Veterinary Hospital", type:"Vet Clinic", tier:"TIER_3", phone:"(314) 842-3377", notes:""},
+            {id:17, name:"Big Bend Veterinary Clinic", type:"Vet Clinic", tier:"TIER_3", phone:"(314) 781-6121", notes:""},
+            {id:18, name:"Grantview Animal Hospital", type:"Vet Clinic", tier:"TIER_3", phone:"(314) 842-0403", notes:""},
+            {id:19, name:"Jefferson Animal Hospital", type:"Vet Clinic", tier:"TIER_3", phone:"(314) 772-4438", notes:""},
+            {id:20, name:"St. Louis Veterinary Center", type:"Vet Clinic", tier:"TIER_3", phone:"See website", notes:""},
+            {id:21, name:"Animal Medical Center of Mid-America", type:"Vet Clinic", tier:"TIER_3", phone:"See website", notes:""},
+            {id:22, name:"St. Louis Animal Emergency Clinic (2 Loc)", type:"Vet Clinic", tier:"TIER_3", phone:"See website", notes:""},
+            {id:23, name:"Chesterfield Veterinary Center", type:"Vet Clinic", tier:"TIER_3", phone:"See website", notes:""},
+            {id:24, name:"VIP Petcare at PetsWay", type:"Vet Clinic", tier:"TIER_3", phone:"See website", notes:""},
+            {id:25, name:"Treecourt Unleashed Dog Adventure Park", type:"Dog Park (Private)", tier:"TIER_1", phone:"Call to schedule", notes:"11 acres, premium. TJ should call owner Wayne Hubb."},
+            {id:26, name:"Happy Hounds Playground", type:"Dog Park (Private)", tier:"TIER_1", phone:"See website", notes:"10 acres, 'committed to clean' messaging. TJ should call."},
+            {id:27, name:"Canine Country Kennel and Farm", type:"Dog Park (Private)", tier:"TIER_1", phone:"See website", notes:"WHALE — 223 acres! Owner is retired vet Dr. Dierberg. TJ calls."},
+            {id:28, name:"The Doghaus Dog Park Bar", type:"Dog Bar", tier:"TIER_2", phone:"See website", notes:""},
+            {id:29, name:"City of St. Louis Parks Department", type:"Municipal", tier:"TIER_4", phone:"(314) 289-5300", notes:"Ask about vendor RFP process for dog park maintenance."},
+            {id:30, name:"St. Louis County Parks & Recreation", type:"Municipal", tier:"TIER_4", phone:"See website", notes:"County vendor process may be formal."},
+            {id:31, name:"Florissant Parks & Recreation", type:"Municipal", tier:"TIER_4", phone:"(314) 921-4466", notes:"Duchesne Dog Park. Smaller city = easier."},
+            {id:32, name:"Maryland Heights Parks (Dogport)", type:"Municipal", tier:"TIER_4", phone:"See website", notes:"Direct service area. Hosts Bark and Brew events."},
+            {id:33, name:"Southwest City Dog Park", type:"Neighborhood Assoc", tier:"TIER_3", phone:"See website", notes:"Volunteer-run. May appreciate professional help."},
+            {id:34, name:"Frenchtown Dog Park", type:"Membership Park", tier:"TIER_3", phone:"See website", notes:""},
+            {id:35, name:"Cedarhurst of Tesson Heights", type:"Senior Living", tier:"TIER_3", phone:"See website", notes:""},
+            {id:36, name:"Sunrise of Des Peres", type:"Senior Living", tier:"TIER_3", phone:"See website", notes:""},
+            {id:37, name:"Hallmark of Creve Coeur", type:"Senior Living", tier:"TIER_3", phone:"See website", notes:""},
+            {id:38, name:"The Oasis at St. Louis", type:"Senior Living", tier:"TIER_3", phone:"See website", notes:""},
+            {id:39, name:"Humane Society of Missouri", type:"Animal Rescue", tier:"TIER_3", phone:"(314) 647-8800", notes:"HUGE — one of largest in Midwest."},
+            {id:40, name:"Stray Rescue of St. Louis", type:"Animal Rescue", tier:"TIER_3", phone:"(314) 771-6121", notes:"High-profile, national visibility."},
+            {id:41, name:"Gateway Pet Guardians", type:"Animal Rescue", tier:"TIER_3", phone:"(618) 857-7366", notes:""},
+            {id:42, name:"Sit Means Sit St. Louis", type:"Dog Training", tier:"TIER_3", phone:"See website", notes:""},
+            {id:43, name:"Alpha Canine Professional Dog Training", type:"Dog Training", tier:"TIER_3", phone:"See website", notes:""}
+        ];
+
+        // Render leads
+        function renderLeads(filter) {
+            const body = document.getElementById('leadBody');
+            const filtered = filter === 'all' ? leads : leads.filter(l => l.tier === filter);
+            body.innerHTML = filtered.map(l => {
+                const tierClass = l.tier.toLowerCase().replace('_','-');
+                const tierLabel = l.tier.replace('TIER_','T');
+                return `<tr data-tier="${l.tier}">
+                    <td>${l.id}</td>
+                    <td><strong>${l.name}</strong></td>
+                    <td>${l.type}</td>
+                    <td><span class="tier-badge ${tierClass}">${tierLabel}</span></td>
+                    <td>${l.phone}</td>
+                    <td style="color:var(--text2);font-size:0.8rem;">${l.notes}</td>
+                </tr>`;
+            }).join('');
+        }
+
+        function filterLeads(tier, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderLeads(tier);
+        }
+
+        // Tab switching
+        function switchTab(name) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            document.getElementById('tab-' + name).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Copy functions
+        function copyText(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = '✓';
+                btn.classList.add('copied');
+                setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+            });
+        }
+
+        function copyScript(btn) {
+            const text = btn.parentElement.querySelector('.script-text').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = '✓ Copied';
+                btn.classList.add('copied');
+                setTimeout(() => { btn.textContent = '📋 Copy'; btn.classList.remove('copied'); }, 1500);
+            });
+        }
+
+        // Init
+        renderLeads('all');
+    </script>
+</body>
+</html>
