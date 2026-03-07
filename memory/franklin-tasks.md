@@ -4,6 +4,52 @@
 
 ---
 
+### 1:04 AM — 🔍 SEO AUDIT REPORT — Why Nobody Can Find Tidy Tails (Hourly Task)
+**Task:** Full SEO audit of tidytailsstl.com with competitive analysis and action plan
+**Result:** ✅ SHIPPED — Interactive HTML audit report with 6-tab analysis
+
+**Why This Task:**
+- Previous hourly tasks built tools (CRM, content, reviews) but missed the fundamental problem
+- Searched "pet waste removal St Louis MO" — Tidy Tails NOT in top 50 results
+- Even "tidy tails pet waste removal st louis" shows 6 OTHER companies named "Tidy Tails" — not us
+- The best content/tools in the world don't matter if nobody can find the website
+
+**Key Findings:**
+| Category | Grade | Why |
+|----------|-------|-----|
+| On-Page SEO | B+ | Good title tags, schema markup, city pages |
+| Off-Page SEO | D | Zero/few backlinks, minimal directory citations |
+| Search Visibility | F | Not ranking for ANY target keywords |
+| Content Depth | C+ | Only 4 blog posts, all published same day |
+| Reviews/Trust | F | Zero or near-zero Google reviews |
+| Technical SEO | A- | Sitemap, robots.txt, responsive, canonical tags |
+
+**Biggest Problem:** Brand name collision — 6+ companies named "Tidy Tails" dilute brand searches. Must use "Tidy Tails STL" everywhere.
+
+**What I Built:**
+Interactive SEO Audit Report (`research/2026-03-07-SEO-AUDIT-REPORT.html`) with 6 tabs:
+1. **Findings** — 3 critical, 4 warnings, 6 positives
+2. **Action Plan** — 15 steps prioritized by timeline (weekend → 90 days), all free
+3. **Keywords** — 20+ target keywords with search volumes and difficulty ratings
+4. **Directories** — 17 free directory listings to submit (with click-to-track)
+5. **Competitors** — Side-by-side comparison of 6 STL competitors
+6. **Content Plan** — 8 blog post ideas with keywords, angles, and estimated traffic
+
+**Top 3 Actions for TJ:**
+1. Set up Google Search Console + submit sitemap (10 min, free)
+2. Text 3 customers for Google reviews this weekend (5 min)
+3. Submit to Yelp + Google Business Profile + Nextdoor (30 min, free)
+
+**Dashboard Integration:**
+- Added to Tools & CRMs section (now 6 tools)
+- Live at: https://tidytails.github.io/tidytails-dashboard/research/2026-03-07-SEO-AUDIT-REPORT.html
+
+**Commit:** `ac8aa02` on `tidytails-dashboard` repo
+
+**Rotation:** 🔍 SEO/Visibility
+
+---
+
 ## March 7, 2026 (Saturday)
 
 ### 11:04 PM (Mar 6) — 🔍 COMPETITOR DEEP DIVE — 19 Companies Mapped, Pricing Matrix, Direct Rival Found (Hourly Task)
