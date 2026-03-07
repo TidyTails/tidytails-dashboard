@@ -4,6 +4,56 @@
 
 ---
 
+### 7:04 AM — 🔍 LIVE COMPETITOR SCAN — Fresh Paws DEAD, Market Intel, Ready-to-Post Scripts (Hourly Task)
+**Task:** Real-time competitive intelligence scan of every active STL pet waste removal competitor — pricing, status, and actionable opportunities
+**Result:** ✅ SHIPPED — 6-tab interactive intel report with copy-paste marketing scripts
+
+**Why This Task:**
+- We've built 7+ dashboards today but none based on LIVE market research
+- Spring is THE season when competitors either thrive or die — needed current intel
+- Discovered a competitor just CLOSED (Fresh Paws) — immediate customer acquisition opportunity
+- Previous competitor analysis (earlier today) was strategy-focused; this is tactical/actionable
+
+**🚨 CRITICAL FINDING: Fresh Paws Dog Waste Removal is DEAD**
+- Website (wearefreshpaws.com) returns "Squarespace - Website Expired"
+- They served Wildwood, Ballwin, Chesterfield, Ellisville — ALL in TJ's service area
+- Facebook page (facebook.com/wearefreshpaws) appears inactive
+- Their customers are actively looking for a replacement RIGHT NOW
+- Also found: Poopy Paws 314 website DNS is failing (may be next to close)
+
+**Competitor Pricing Intel:**
+
+| Competitor | Weekly Rate | Status |
+|---|---|---|
+| Tidy Tails (us) | $25/wk | ✅ Active |
+| POOP 911 | From $11.95* | ✅ Active (franchise) |
+| Poopy Paws 314 | $20/wk flat | ⚠️ Website down |
+| Dirty Dog Wash | ~$23.75/wk | ✅ Active |
+| DoodyCalls STL | Quote only | ✅ Active (franchise) |
+| Fresh Paws | — | ❌ DEAD |
+
+**What I Built (6 tabs):**
+1. 📊 Overview — Market snapshot, key findings, competitor count
+2. 💰 Pricing — Side-by-side comparison of all known STL rates
+3. 🏢 Competitors — Deep dive on each: strengths, weaknesses, contact info
+4. 🎯 Opportunities — 3 ranked by impact (Fresh Paws grab, Poopy Paws watch, Free first offer)
+5. 💬 Scripts — 4 copy-paste posts: Nextdoor, Facebook, general spring, text to past leads
+6. 📈 Our Position — Where we win, where we need work
+
+**Top 3 Actions for TJ THIS WEEKEND:**
+1. Post on Nextdoor/Facebook in Wildwood/Ballwin about Fresh Paws closing (scripts included)
+2. Add "first week free" offer (matches POOP 911's hook, costs ~$25/new customer)
+3. Text 3 existing customers for Google reviews
+
+**Dashboard:** `dashboard/2026-03-07-COMPETITOR-LIVE-SCAN.html`
+**Live:** https://tidytails.github.io/tidytails-dashboard/dashboard/2026-03-07-COMPETITOR-LIVE-SCAN.html
+**Research:** `dashboard/research/2026-03-07-COMPETITOR-LIVE-SCAN.md`
+**Commit:** `73a688e` on `tidytails-dashboard` repo
+
+**Rotation:** 🔍 Competitive Intelligence — Live Market Scan
+
+---
+
 ### 6:04 AM — 🔄 LEAD FOLLOW-UP PIPELINE — 7-Touch Sequence, Objection Handling, Win-Back, Lead Tracker (Hourly Task)
 **Task:** Build a complete lead follow-up system with copy-paste text sequences for every stage of the sales funnel
 **Result:** ✅ SHIPPED — 6-tab interactive tool that turns "maybe" leads into paying customers

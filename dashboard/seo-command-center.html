@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Command Center — Tidy Tails</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; }
+        
+        .header {
+            background: linear-gradient(135deg, #1a0a2e 0%, #0d1b2a 50%, #1a0a2e 100%);
+            padding: 2rem;
+            border-bottom: 2px solid #ff4444;
+            text-align: center;
+        }
+        .header h1 { font-size: 2rem; color: #fff; margin-bottom: 0.5rem; }
+        .header .subtitle { color: #ff6b6b; font-size: 1.1rem; font-weight: 600; }
+        .header .context { color: #888; font-size: 0.9rem; margin-top: 0.5rem; }
+        
+        .alert-banner {
+            background: linear-gradient(90deg, #ff4444 0%, #cc0000 100%);
+            color: white;
+            padding: 1rem 2rem;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.85; }
+        }
+        
+        .score-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .score-card {
+            background: #141414;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .score-card .score {
+            font-size: 3rem;
+            font-weight: 800;
+        }
+        .score-card .label { color: #888; font-size: 0.85rem; margin-top: 0.5rem; }
+        .score-red { color: #ff4444; }
+        .score-yellow { color: #ffaa00; }
+        .score-green { color: #44ff44; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        
+        .tabs {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid #333;
+            margin-bottom: 2rem;
+            overflow-x: auto;
+        }
+        .tab {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            color: #888;
+            font-weight: 600;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .tab:hover { color: #ccc; }
+        .tab.active { color: #ff6b6b; border-bottom-color: #ff4444; }
+        
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* Checklist styles */
+        .checklist-section {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        .checklist-header {
+            padding: 1.2rem 1.5rem;
+            background: #1a1a1a;
+            border-bottom: 1px solid #222;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .checklist-header h3 { font-size: 1.1rem; color: #fff; }
+        .checklist-header .progress { color: #ff6b6b; font-weight: 600; }
+        .checklist-body { padding: 1rem 1.5rem; }
+        
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .check-item:last-child { border-bottom: none; }
+        .check-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            accent-color: #44ff44;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .check-item .info { flex: 1; }
+        .check-item .title { font-weight: 600; color: #e0e0e0; }
+        .check-item .desc { color: #888; font-size: 0.85rem; margin-top: 0.3rem; }
+        .check-item .link { 
+            display: inline-block;
+            margin-top: 0.4rem;
+            color: #6b9fff;
+            text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .check-item .link:hover { text-decoration: underline; }
+        .check-item .impact {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .impact-critical { background: #ff444433; color: #ff6b6b; }
+        .impact-high { background: #ffaa0033; color: #ffcc44; }
+        .impact-medium { background: #44ff4433; color: #66ff66; }
+        
+        .check-item.done .title { text-decoration: line-through; color: #555; }
+        .check-item.done .desc { color: #444; }
+        
+        /* Search results table */
+        .search-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        .search-table th {
+            background: #1a1a1a;
+            color: #888;
+            padding: 0.8rem 1rem;
+            text-align: left;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+        .search-table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .search-table tr:hover { background: #1a1a1a; }
+        .rank-bad { color: #ff4444; font-weight: 700; }
+        .rank-ok { color: #ffaa00; font-weight: 700; }
+        .rank-good { color: #44ff44; font-weight: 700; }
+        
+        /* City pages section */
+        .city-card {
+            background: #141414;
+            border: 1px solid #222;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        .city-card h3 { color: #ff6b6b; margin-bottom: 0.5rem; }
+        .city-card .reason { color: #ffcc44; font-size: 0.9rem; margin-bottom: 1rem; }
+        .city-card .meta-preview {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: monospace;
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 1rem;
+            overflow-x: auto;
+        }
+        .copy-btn {
+            background: #ff4444;
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .copy-btn:hover { background: #ff6666; }
+        .copy-btn.copied { background: #44ff44; color: #000; }
+        
+        /* Overall progress bar */
+        .overall-progress {
+            background: #141414;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .progress-bar-bg {
+            background: #222;
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+            margin-top: 0.8rem;
+        }
+        .progress-bar-fill {
+            background: linear-gradient(90deg, #ff4444, #ff6b6b);
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        
+        /* Action plan */
+        .action-step {
+            background: #141414;
+            border-left: 4px solid #ff4444;
+            padding: 1.2rem 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        .action-step .step-num {
+            color: #ff4444;
+            font-weight: 800;
+            font-size: 0.9rem;
+        }
+        .action-step .step-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 0.3rem 0;
+        }
+        .action-step .step-time { color: #888; font-size: 0.85rem; }
+        .action-step .step-desc { color: #bbb; margin-top: 0.5rem; }
+        
+        .tip-box {
+            background: #1a2a1a;
+            border: 1px solid #335533;
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        .tip-box .tip-label { color: #44ff44; font-weight: 700; }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 1.5rem; }
+            .score-section { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 1rem; }
+            .container { padding: 1rem; }
+            .tab { padding: 0.8rem 1rem; font-size: 0.85rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🔍 SEO Command Center</h1>
+    <div class="subtitle">Fix Your Search Visibility — Get Found by Customers</div>
+    <div class="context">Built March 7, 2026 — Based on live search audit data</div>
+</div>
+
+<div class="alert-banner">
+    🚨 CRITICAL: Tidy Tails does NOT appear in Google search results for ANY target keyword. Every potential customer goes to competitors.
+</div>
+
+<div class="score-section">
+    <div class="score-card">
+        <div class="score score-red" id="visibilityScore">12</div>
+        <div class="label">Search Visibility Score (out of 100)</div>
+    </div>
+    <div class="score-card">
+        <div class="score score-red">0/10</div>
+        <div class="label">Top-10 Rankings for Target Keywords</div>
+    </div>
+    <div class="score-card">
+        <div class="score score-yellow">3</div>
+        <div class="label">Directory Listings Found</div>
+    </div>
+    <div class="score-card">
+        <div class="score score-red" id="totalCompleted">0%</div>
+        <div class="label">SEO Checklist Complete</div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="overall-progress">
+        <strong>Overall SEO Fix Progress</strong>
+        <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+        <div class="progress-text">
+            <span id="progressLabel">0 of 32 tasks completed</span>
+            <span id="progressPercent">0%</span>
+        </div>
+    </div>
+
+    <div class="tabs">
+        <div class="tab active" data-tab="today">🎯 Today's Plan</div>
+        <div class="tab" data-tab="gbp">📍 Google Business</div>
+        <div class="tab" data-tab="directories">📂 Directories</div>
+        <div class="tab" data-tab="cities">🏘️ Missing Cities</div>
+        <div class="tab" data-tab="search">🔍 Search Audit</div>
+        <div class="tab" data-tab="content">✍️ Content Gaps</div>
+    </div>
+
+    <!-- TODAY'S PLAN -->
+    <div class="tab-content active" id="tab-today">
+        <h2 style="margin-bottom: 1.5rem;">Saturday Action Plan — Do These Today</h2>
+        <p style="color: #888; margin-bottom: 1.5rem;">It's Saturday. You've got time. Each step below takes 5-15 minutes. Do them while watching TV. By tonight, you'll go from invisible to showing up in 10+ places online.</p>
+        
+        <div class="action-step">
+            <div class="step-num">STEP 1 — HIGHEST IMPACT</div>
+            <div class="step-title">Optimize Your Google Business Profile</div>
+            <div class="step-time">⏱ 15-20 minutes</div>
+            <div class="step-desc">
+                Your GBP listing exists (MapQuest found it in Olivette) but it's not ranking. Go to the Google Business tab and complete every item. This single action has more impact than everything else combined.
+            </div>
+        </div>
+        
+        <div class="action-step">
+            <div class="step-num">STEP 2 — QUICK WINS</div>
+            <div class="step-title">Submit to 5 Free Directories</div>
+            <div class="step-time">⏱ 30 minutes</div>
+            <div class="step-desc">
+                Go to the Directories tab. Submit to Yelp, Nextdoor, Thumbtack, Angi, and HomeAdvisor. Each one takes ~5 minutes. These create "citations" — Google uses them to verify you're a real business.
+            </div>
+        </div>
+        
+        <div class="action-step">
+            <div class="step-num">STEP 3 — COMPETITOR TERRITORY</div>
+            <div class="step-title">Add 4 Missing City Pages to Website</div>
+            <div class="step-time">⏱ 10 minutes (copy-paste)</div>
+            <div class="step-desc">
+                Fresh Paws just died. Their customers in Wildwood, Ellisville, Manchester, and Valley Park are searching for a new provider. You need landing pages for these cities. Go to the Missing Cities tab — I wrote them. Just add to your site.
+            </div>
+        </div>
+        
+        <div class="action-step">
+            <div class="step-num">STEP 4 — ASK FOR REVIEWS</div>
+            <div class="step-title">Text Your 8 Customers for Google Reviews</div>
+            <div class="step-time">⏱ 5 minutes</div>
+            <div class="step-desc">
+                Google reviews are the #1 ranking factor for local businesses. You have 8 happy customers and likely 0 reviews. Text each one: "Hey [name]! Quick favor — could you leave me a Google review? Here's the link: <a href="https://g.page/r/Ce_hqIHanGLvEAE/review" style="color: #6b9fff;">g.page/r/Ce_hqIHanGLvEAE/review</a> — Means a lot! 🙏"
+            </div>
+        </div>
+        
+        <div class="tip-box">
+            <span class="tip-label">💡 WHY THIS MATTERS:</span> Right now, when someone in Ballwin Googles "pooper scooper near me," they find Dr. Scoops, Poop2Scoop, and Yuckos. They never find you. Completing today's plan won't fix that overnight — but in 2-4 weeks, you'll start appearing. Every day you wait is customers going to competitors.
+        </div>
+    </div>
+
+    <!-- GOOGLE BUSINESS PROFILE -->
+    <div class="tab-content" id="tab-gbp">
+        <h2 style="margin-bottom: 0.5rem;">Google Business Profile Optimization</h2>
+        <p style="color: #888; margin-bottom: 1.5rem;">This is the #1 factor for showing up in Google Maps and local search results. Log in at <a href="https://business.google.com" style="color: #6b9fff;" target="_blank">business.google.com</a></p>
+        
+        <div class="checklist-section" data-section="gbp">
+            <div class="checklist-header">
+                <h3>📍 Profile Basics</h3>
+                <span class="progress">0/6</span>
+            </div>
+            <div class="checklist-body">
+                <div class="check-item">
+                    <input type="checkbox" data-task="gbp-verify">
+                    <div class="info">
+                        <div class="title">Verify your business is claimed & verified</div>
+                        <div class="desc">If not claimed yet: Go to business.google.com → Add your business → Verify via postcard or phone</div>
+                        <a class="link" href="https://business.google.com" target="_blank">→ Go to Google Business Profile</a>
+                    </div>
+                    <span class="impact impact-critical">Critical</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="gbp-name">
+                    <div class="info">
+                        <div class="title">Business name: "Tidy Tails Pet Waste Removal"</div>
+                        <div class="desc">Use full name with service keyword. NOT just "Tidy Tails" — include "Pet Waste Removal"</div>
+                    </div>
+                    <span class="impact impact-critical">Critical</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="gbp-category">
+                    <div class="info">
+                        <div class="title">Primary category: "Pet Waste Removal Service"</div>
+                        <div class="desc">If that exact category isn't available, try "Cleaning Service" or "Pet Service." Add secondary categories too: "Dog Walker," "Lawn Care Service"</div>
+                    </div>
+                    <span class="impact impact-critical">Critical</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="gbp-phone">
+                    <div class="info">
+                        <div class="title">Phone: (314) 850-7140</div>
+                        <div class="desc">Must match exactly across all directory listings. Consistency = trust signal for Google.</div>
+                    </div>
+                    <span class="impact impact-high">High</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="gbp-website">
+                    <div class="info">
+                        <div class="title">Website: https://tidytailsstl.com</div>
+                        <div class="desc">Make sure it links to your actual site, not a Google Sites page</div>
+                    </div>
+                    <span class="impact impact-high">High</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="gbp-hours">
+                    <div class="info">
+                        <div class="title">Set business hours</div>
+                        <div class="desc">Mon-Sun 8AM-6PM (or whatever you prefer). Google penalizes listings without hours.</div>
+                    </div>
+                    <span class="impact impact-medium">Medium</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="checklist-section" data-section="gbp-content">
+            <div class="checklist-header">
+                <h3>📝 Profile Content</h3>
+                <span class="progress">0/6</span>
+            </div>
+            <div class="checklist-body">
+                <div class="check-item">
+                    <input type="checkbox" data-task="gbp-desc">
+                    <div class="info">
+                        <div class="title">Write your business description (750 chars)</div>
+                        <div class="desc">Copy this: "Tidy Tails is St. Louis's locally owned pet waste removal service. Founded by TJ, we provide reliable weekly, bi-weekly, and monthly pooper scooper service across St. Louis County, St. Charles, Chesterfield, Ballwin, Wildwood, and surrounding areas. No contracts ever. Same guy every week — not a franchise. Starting at $25/week. 100% satisfaction guaranteed. Call or text (314) 850-7140 for a free quote."</div>
+                    </div>
+                    <span class="impact impact-critical">Critical</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="gbp-photos">
+                    <div class="info">
+                        <div class="title">Upload 5+ photos</div>
+                        <div class="desc">Take photos of: your truck/vehicle with branding, you in a clean yard, your equipment, a before/after yard, and a happy dog. Businesses with photos get 42% more direction requests.</div>
+                    </div>
+                    <span class="impact impact-high">High</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="gbp-services">
+                    <div class="info">
+                        <div class="title">Add all services with prices</div>
+                        <div class="desc">Weekly Cleanup ($25/wk) • Bi-Weekly ($45/visit) • Monthly ($70/mo) • One-Time Deep Clean ($100) • Spring Cleanup ($100-150)</div>
+                    </div>
+                    <span class="impact impact-high">High</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="gbp-areas">
+                    <div class="info">
+                        <div class="title">Add ALL service areas</div>
+                        <div class="desc">Add every city you serve: St. Louis, Ferguson, Florissant, Maryland Heights, St. Ann, O'Fallon, St. Peters, St. Charles, Chesterfield, Ballwin, Creve Coeur, Hazelwood, Bridgeton, Wildwood, Ellisville, Manchester, Valley Park, Olivette, Ladue, Clayton, Webster Groves, Kirkwood</div>
+                    </div>
+                    <span class="impact impact-critical">Critical</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="gbp-post">
+                    <div class="info">
+                        <div class="title">Create your first Google Post</div>
+                        <div class="desc">"🌸 Spring Cleanup Special! Winter left your yard a mess? Book a one-time deep clean for $100. Serving all of St. Louis County. Call/text (314) 850-7140. No contracts ever!" — Post weekly for best results.</div>
+                    </div>
+                    <span class="impact impact-high">High</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="gbp-qa">
+                    <div class="info">
+                        <div class="title">Add Q&A to your listing</div>
+                        <div class="desc">You can ask AND answer your own questions. Add: "Do you require contracts?" (No, never!) / "What areas do you serve?" / "How much does it cost?" — This shows up in search results.</div>
+                    </div>
+                    <span class="impact impact-medium">Medium</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIRECTORIES -->
+    <div class="tab-content" id="tab-directories">
+        <h2 style="margin-bottom: 0.5rem;">Free Directory Submissions</h2>
+        <p style="color: #888; margin-bottom: 1rem;">Each listing creates a "citation" — Google uses these to verify you're legit. Use EXACT same info everywhere:</p>
+        
+        <div class="tip-box" style="margin-bottom: 1.5rem;">
+            <span class="tip-label">📋 COPY THIS INFO FOR EVERY LISTING:</span><br>
+            <strong>Name:</strong> Tidy Tails Pet Waste Removal<br>
+            <strong>Phone:</strong> (314) 850-7140<br>
+            <strong>Website:</strong> https://tidytailsstl.com<br>
+            <strong>Email:</strong> TJ@tidytailsstl.com<br>
+            <strong>Address:</strong> Olivette, MO (service area business)<br>
+            <strong>Category:</strong> Pet Waste Removal / Pet Services / Cleaning Service
+        </div>
+        
+        <div class="checklist-section" data-section="dir-critical">
+            <div class="checklist-header">
+                <h3>🔴 Critical Directories (Do First)</h3>
+                <span class="progress">0/5</span>
+            </div>
+            <div class="checklist-body">
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-yelp">
+                    <div class="info">
+                        <div class="title">Yelp</div>
+                        <div class="desc">The #2 review platform after Google. You're NOT listed on Yelp's STL pet waste removal page. Fix that today.</div>
+                        <a class="link" href="https://biz.yelp.com/signup" target="_blank">→ Claim/Create Yelp Business Page</a>
+                    </div>
+                    <span class="impact impact-critical">Critical</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-nextdoor">
+                    <div class="info">
+                        <div class="title">Nextdoor Business Page</div>
+                        <div class="desc">THE platform for local services. Every neighborhood in STL has a Nextdoor group. Free business page + you can post offers.</div>
+                        <a class="link" href="https://business.nextdoor.com" target="_blank">→ Create Nextdoor Business Page</a>
+                    </div>
+                    <span class="impact impact-critical">Critical</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-facebook">
+                    <div class="info">
+                        <div class="title">Facebook Business Page</div>
+                        <div class="desc">If you don't have one yet, create it. If you do, make sure it has correct NAP (name, address, phone), services listed, and link to website.</div>
+                        <a class="link" href="https://www.facebook.com/pages/creation/" target="_blank">→ Create/Edit Facebook Business Page</a>
+                    </div>
+                    <span class="impact impact-critical">Critical</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-thumbtack">
+                    <div class="info">
+                        <div class="title">Thumbtack</div>
+                        <div class="desc">People actively search Thumbtack for local services. You can get leads directly. Free to create a profile.</div>
+                        <a class="link" href="https://www.thumbtack.com/pro" target="_blank">→ Join Thumbtack as a Pro</a>
+                    </div>
+                    <span class="impact impact-high">High</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-angi">
+                    <div class="info">
+                        <div class="title">Angi (formerly Angie's List)</div>
+                        <div class="desc">Major home services platform. Free listing. Paid leads optional but the free listing alone helps SEO.</div>
+                        <a class="link" href="https://www.angi.com/pro/register" target="_blank">→ Register on Angi</a>
+                    </div>
+                    <span class="impact impact-high">High</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="checklist-section" data-section="dir-important">
+            <div class="checklist-header">
+                <h3>🟡 Important Directories (Do This Week)</h3>
+                <span class="progress">0/5</span>
+            </div>
+            <div class="checklist-body">
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-bbb">
+                    <div class="info">
+                        <div class="title">Better Business Bureau (BBB)</div>
+                        <div class="desc">Free listing builds massive trust. BBB pages rank high in Google.</div>
+                        <a class="link" href="https://www.bbb.org/get-listed" target="_blank">→ Get Listed on BBB</a>
+                    </div>
+                    <span class="impact impact-high">High</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-homeadvisor">
+                    <div class="info">
+                        <div class="title">HomeAdvisor</div>
+                        <div class="desc">Major home services marketplace. Free profile creation.</div>
+                        <a class="link" href="https://www.homeadvisor.com/pro/" target="_blank">→ Join HomeAdvisor</a>
+                    </div>
+                    <span class="impact impact-high">High</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-mapquest">
+                    <div class="info">
+                        <div class="title">MapQuest — Claim existing listing</div>
+                        <div class="desc">You already have a MapQuest listing in Olivette! Claim it and make sure info is correct.</div>
+                        <a class="link" href="https://www.mapquest.com/us/missouri/tidy-tails-pet-waste-removal-777064125" target="_blank">→ View/Claim MapQuest Listing</a>
+                    </div>
+                    <span class="impact impact-medium">Medium</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-apple">
+                    <div class="info">
+                        <div class="title">Apple Maps (Apple Business Connect)</div>
+                        <div class="desc">iPhone users use Apple Maps. Free listing through Apple Business Connect.</div>
+                        <a class="link" href="https://businessconnect.apple.com" target="_blank">→ Apple Business Connect</a>
+                    </div>
+                    <span class="impact impact-medium">Medium</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-bing">
+                    <div class="info">
+                        <div class="title">Bing Places</div>
+                        <div class="desc">Bing has ~10% search market share. Free listing, quick setup.</div>
+                        <a class="link" href="https://www.bingplaces.com" target="_blank">→ Bing Places for Business</a>
+                    </div>
+                    <span class="impact impact-medium">Medium</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="checklist-section" data-section="dir-bonus">
+            <div class="checklist-header">
+                <h3>🟢 Bonus Directories (Extra Credit)</h3>
+                <span class="progress">0/5</span>
+            </div>
+            <div class="checklist-body">
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-care">
+                    <div class="info">
+                        <div class="title">Care.com</div>
+                        <div class="desc">Pet care section — people search here for pet services.</div>
+                        <a class="link" href="https://www.care.com/enroll-business" target="_blank">→ Enroll on Care.com</a>
+                    </div>
+                    <span class="impact impact-medium">Medium</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-bark">
+                    <div class="info">
+                        <div class="title">Bark.com</div>
+                        <div class="desc">Service marketplace — customers request quotes, you respond. Free to join.</div>
+                        <a class="link" href="https://www.bark.com/en/us/company-registration/" target="_blank">→ Join Bark</a>
+                    </div>
+                    <span class="impact impact-medium">Medium</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-yellowpages">
+                    <div class="info">
+                        <div class="title">YellowPages / YP.com</div>
+                        <div class="desc">Still used by Google as a citation source. Free basic listing.</div>
+                        <a class="link" href="https://www.yellowpages.com" target="_blank">→ YellowPages</a>
+                    </div>
+                    <span class="impact impact-medium">Medium</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-chamber">
+                    <div class="info">
+                        <div class="title">St. Louis Regional Chamber</div>
+                        <div class="desc">Local chamber membership = strong local citation + networking. May have a fee.</div>
+                        <a class="link" href="https://www.stlregionalchamber.com" target="_blank">→ STL Regional Chamber</a>
+                    </div>
+                    <span class="impact impact-medium">Medium</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="dir-poop911check">
+                    <div class="info">
+                        <div class="title">Check Poop911.com local franchise page</div>
+                        <div class="desc">See how POOP 911 lists their STL franchise — model your descriptions after what ranks well.</div>
+                        <a class="link" href="https://www.poop911.com" target="_blank">→ Study POOP 911</a>
+                    </div>
+                    <span class="impact impact-medium">Medium</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MISSING CITY PAGES -->
+    <div class="tab-content" id="tab-cities">
+        <h2 style="margin-bottom: 0.5rem;">4 Missing City Landing Pages</h2>
+        <p style="color: #888; margin-bottom: 1.5rem;">Fresh Paws just died. Their customers in these cities are looking for a new provider. Dr. Scoops is already targeting them. You need pages for these cities NOW.</p>
+        
+        <div class="city-card">
+            <h3>🏘️ Wildwood, MO</h3>
+            <div class="reason">⚠️ PRIORITY: Fresh Paws served this area. Their site is dead. Dr. Scoops is targeting here.</div>
+            <div class="meta-preview" id="wildwood-meta">
+&lt;title&gt;Pet Waste Removal in Wildwood, MO | Tidy Tails Pooper Scooper&lt;/title&gt;
+&lt;meta name="description" content="Wildwood's trusted pet waste removal service. Weekly pooper scooper service from $25/week. No contracts, same guy every time. Locally owned. Call (314) 850-7140."&gt;
+&lt;h1&gt;Pet Waste Removal in Wildwood, MO&lt;/h1&gt;
+
+Suggested URL: tidytailsstl.com/wildwood
+
+Key content points:
+- Mention local landmarks: Wildwood Town Center, Al Foster Trail, Babler State Park
+- Reference neighborhoods: Grover, Pond, Centaur Road area, Manchester Road corridor  
+- Mention Fresh Paws closure: "Looking for a new pet waste removal provider in Wildwood?"
+- Include all pricing + CTA to call/text
+</div>
+            <button class="copy-btn" onclick="copyMeta('wildwood-meta', this)">📋 Copy Template</button>
+        </div>
+        
+        <div class="city-card">
+            <h3>🏘️ Ellisville, MO</h3>
+            <div class="reason">⚠️ PRIORITY: Fresh Paws territory. Between Ballwin (where you have a page) and Wildwood.</div>
+            <div class="meta-preview" id="ellisville-meta">
+&lt;title&gt;Pet Waste Removal in Ellisville, MO | Tidy Tails Pooper Scooper&lt;/title&gt;
+&lt;meta name="description" content="Ellisville pet waste removal you can count on. Professional pooper scooper service from $25/week. No contracts. Locally owned by TJ. Call (314) 850-7140."&gt;
+&lt;h1&gt;Pet Waste Removal in Ellisville, MO&lt;/h1&gt;
+
+Suggested URL: tidytailsstl.com/ellisville
+
+Key content points:
+- Mention: Bluebird Park, Kiefer Creek, Manchester Road, Clarkson Road
+- Neighborhoods: Ridgeview, Autumn Chase, Ellisville Downs
+- Connect to Ballwin page (sister city vibes)
+- "Serving Ellisville families since 2024"
+</div>
+            <button class="copy-btn" onclick="copyMeta('ellisville-meta', this)">📋 Copy Template</button>
+        </div>
+        
+        <div class="city-card">
+            <h3>🏘️ Manchester, MO</h3>
+            <div class="reason">Key corridor between your existing service areas. High dog ownership density.</div>
+            <div class="meta-preview" id="manchester-meta">
+&lt;title&gt;Pet Waste Removal in Manchester, MO | Tidy Tails Pooper Scooper&lt;/title&gt;
+&lt;meta name="description" content="Manchester MO pet waste removal. Weekly pooper scooper service from $25. No contracts, no franchise — just reliable service from TJ. Call (314) 850-7140."&gt;
+&lt;h1&gt;Pet Waste Removal in Manchester, MO&lt;/h1&gt;
+
+Suggested URL: tidytailsstl.com/manchester
+
+Key content points:
+- Manchester Road is THE main artery — mention it
+- Schroeder Park, Highlands, West County area
+- Close to Ballwin, Ellisville, Des Peres
+- Strong suburban dog-owning demographic
+</div>
+            <button class="copy-btn" onclick="copyMeta('manchester-meta', this)">📋 Copy Template</button>
+        </div>
+        
+        <div class="city-card">
+            <h3>🏘️ Valley Park, MO</h3>
+            <div class="reason">Underserved suburb. No competitor has a landing page targeting Valley Park specifically.</div>
+            <div class="meta-preview" id="valleypark-meta">
+&lt;title&gt;Pet Waste Removal in Valley Park, MO | Tidy Tails Pooper Scooper&lt;/title&gt;
+&lt;meta name="description" content="Valley Park pet waste removal service. Professional pooper scooper from $25/week. Locally owned, no contracts, 100% satisfaction guaranteed. (314) 850-7140."&gt;
+&lt;h1&gt;Pet Waste Removal in Valley Park, MO&lt;/h1&gt;
+
+Suggested URL: tidytailsstl.com/valley-park
+
+Key content points:
+- Small town feel: "Your Valley Park neighbor"
+- Mention: Valley Park Rec area, Meramec River, nearby Fenton
+- Affordable suburb = price-conscious → highlight $25/wk value
+- Easy add-on to Ballwin/Manchester route
+</div>
+            <button class="copy-btn" onclick="copyMeta('valleypark-meta', this)">📋 Copy Template</button>
+        </div>
+        
+        <div class="tip-box">
+            <span class="tip-label">📋 HOW TO ADD THESE:</span> Copy the format from your existing Ballwin page (tidytailsstl.com/ballwin). Replace the city name, neighborhoods, and landmarks. Each page should be 400+ words of unique content. Don't just swap city names — Google penalizes duplicate content. Each city page is a new keyword you can rank for.
+        </div>
+        
+        <div class="checklist-section" data-section="cities">
+            <div class="checklist-header">
+                <h3>📝 City Page Checklist</h3>
+                <span class="progress">0/5</span>
+            </div>
+            <div class="checklist-body">
+                <div class="check-item">
+                    <input type="checkbox" data-task="city-wildwood">
+                    <div class="info">
+                        <div class="title">Create Wildwood landing page</div>
+                        <div class="desc">Copy Ballwin page template, customize for Wildwood neighborhoods and landmarks</div>
+                    </div>
+                    <span class="impact impact-critical">Critical</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="city-ellisville">
+                    <div class="info">
+                        <div class="title">Create Ellisville landing page</div>
+                        <div class="desc">Focus on Clarkson Road corridor, connects to Ballwin page</div>
+                    </div>
+                    <span class="impact impact-high">High</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="city-manchester">
+                    <div class="info">
+                        <div class="title">Create Manchester landing page</div>
+                        <div class="desc">Manchester Road is a major corridor — lots of search volume</div>
+                    </div>
+                    <span class="impact impact-high">High</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="city-valleypark">
+                    <div class="info">
+                        <div class="title">Create Valley Park landing page</div>
+                        <div class="desc">No competitor targets Valley Park specifically — easy win</div>
+                    </div>
+                    <span class="impact impact-medium">Medium</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="city-sitemap">
+                    <div class="info">
+                        <div class="title">Update sitemap.xml with new pages</div>
+                        <div class="desc">Add all 4 new URLs to your sitemap so Google discovers them fast</div>
+                    </div>
+                    <span class="impact impact-high">High</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEARCH AUDIT -->
+    <div class="tab-content" id="tab-search">
+        <h2 style="margin-bottom: 0.5rem;">Live Search Audit Results</h2>
+        <p style="color: #888; margin-bottom: 1.5rem;">Where Tidy Tails ranks (or doesn't) for target keywords. Data from March 7, 2026.</p>
+        
+        <table class="search-table">
+            <thead>
+                <tr>
+                    <th>Search Query</th>
+                    <th>Your Rank</th>
+                    <th>Who Ranks #1</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>"pet waste removal st louis"</td>
+                    <td class="rank-bad">Not found</td>
+                    <td>Poop2Scoop</td>
+                    <td>Primary money keyword — must rank here</td>
+                </tr>
+                <tr>
+                    <td>"pooper scooper st louis"</td>
+                    <td class="rank-bad">Not found</td>
+                    <td>Yuckos</td>
+                    <td>Yuckos has been scooping since 1990 — strong domain authority</td>
+                </tr>
+                <tr>
+                    <td>"tidy tails pet waste removal st louis"</td>
+                    <td class="rank-bad">Not found</td>
+                    <td>Other "Tidy Tails" businesses</td>
+                    <td>🚨 Can't even rank for own brand name. Other Tidy Tails in Charleston, Atlanta dominate</td>
+                </tr>
+                <tr>
+                    <td>"pooper scooper chesterfield ballwin"</td>
+                    <td class="rank-bad">Not found</td>
+                    <td>Dr. Scoops / DoodyCalls</td>
+                    <td>Dr. Scoops is your direct competitor in Ballwin</td>
+                </tr>
+                <tr>
+                    <td>"pet waste removal near me" (STL)</td>
+                    <td class="rank-bad">Not found</td>
+                    <td>POOP 911 franchise</td>
+                    <td>Franchise SEO budget > yours, but local pages can compete</td>
+                </tr>
+                <tr>
+                    <td>"dog poop cleanup wildwood MO"</td>
+                    <td class="rank-bad">No page exists</td>
+                    <td>DoodyCalls / Poop2Scoop</td>
+                    <td>Need Wildwood landing page ASAP (Fresh Paws gap)</td>
+                </tr>
+                <tr>
+                    <td>"pet waste removal ballwin MO"</td>
+                    <td class="rank-ok">Page exists, not ranking yet</td>
+                    <td>Dr. Scoops</td>
+                    <td>Ballwin page is good — needs backlinks & reviews to rank</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="tip-box" style="margin-top: 1.5rem;">
+            <span class="tip-label">🎯 RANKING STRATEGY:</span> You can't outspend franchises like POOP 911. But you CAN out-local them. 
+            <br><br>
+            <strong>Win these battles:</strong>
+            <ul style="margin-top: 0.5rem; padding-left: 1.5rem; color: #ccc;">
+                <li>City-specific pages (Ballwin, Wildwood, etc.) rank for "[service] + [city]" searches</li>
+                <li>Google reviews are #1 ranking factor — 5 reviews > 0 reviews</li>
+                <li>Consistent NAP across 10+ directories = Google trusts you</li>
+                <li>Blog posts targeting "how to" queries bring traffic that converts later</li>
+                <li>Google Business Profile posts keep your listing fresh and active</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CONTENT GAPS -->
+    <div class="tab-content" id="tab-content">
+        <h2 style="margin-bottom: 0.5rem;">Content & Blog Gaps</h2>
+        <p style="color: #888; margin-bottom: 1.5rem;">You have 4 blog posts. Competitors have 20+. Each blog post is a new keyword opportunity. Here are the highest-value posts to write:</p>
+        
+        <div class="checklist-section" data-section="content">
+            <div class="checklist-header">
+                <h3>📝 High-Value Blog Posts to Write</h3>
+                <span class="progress">0/5</span>
+            </div>
+            <div class="checklist-body">
+                <div class="check-item">
+                    <input type="checkbox" data-task="blog-cost">
+                    <div class="info">
+                        <div class="title">"How Much Does Pooper Scooper Service Cost in St. Louis?" (2026 Guide)</div>
+                        <div class="desc">THE money keyword. People search this before buying. Include your pricing + competitor comparison. You already have the data.</div>
+                        <div class="desc" style="color: #ffcc44;">Target keywords: pooper scooper cost st louis, pet waste removal pricing, how much dog poop service</div>
+                    </div>
+                    <span class="impact impact-critical">Critical</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="blog-compare">
+                    <div class="info">
+                        <div class="title">"Best Pet Waste Removal Services in St. Louis" (Comparison)</div>
+                        <div class="desc">Write an honest comparison of local services. This ranks for "best pooper scooper st louis" — a high-intent keyword. Include yourself, obviously.</div>
+                        <div class="desc" style="color: #ffcc44;">Target keywords: best pooper scooper st louis, pet waste removal companies stl</div>
+                    </div>
+                    <span class="impact impact-critical">Critical</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="blog-diy">
+                    <div class="info">
+                        <div class="title">"Dog Poop in Your Yard: DIY vs Hiring a Service"</div>
+                        <div class="desc">Captures people on the fence. Show the math: time spent × hourly rate = more than $25/wk. Honest, helpful, converts browsers to buyers.</div>
+                    </div>
+                    <span class="impact impact-high">High</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="blog-apartment">
+                    <div class="info">
+                        <div class="title">"Pet Waste Solutions for Apartment Complexes & HOAs in St. Louis"</div>
+                        <div class="desc">Targets commercial clients — the big money. Property managers search this. Opens the door to $500+/mo contracts.</div>
+                    </div>
+                    <span class="impact impact-high">High</span>
+                </div>
+                <div class="check-item">
+                    <input type="checkbox" data-task="blog-multidog">
+                    <div class="info">
+                        <div class="title">"Multi-Dog Household? How to Keep Your Yard Clean"</div>
+                        <div class="desc">Multi-dog homes are your best customers — higher waste, more willing to pay. This post targets them directly.</div>
+                    </div>
+                    <span class="impact impact-medium">Medium</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    // Load saved state
+    const STORAGE_KEY = 'tidytails-seo-checklist';
+    let savedState = {};
+    try {
+        savedState = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    } catch(e) {}
+
+    // Apply saved state
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        const task = cb.dataset.task;
+        if (savedState[task]) {
+            cb.checked = true;
+            cb.closest('.check-item').classList.add('done');
+        }
+    });
+
+    // Checkbox handler
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', () => {
+            const task = cb.dataset.task;
+            savedState[task] = cb.checked;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(savedState));
+            
+            if (cb.checked) {
+                cb.closest('.check-item').classList.add('done');
+            } else {
+                cb.closest('.check-item').classList.remove('done');
+            }
+            updateProgress();
+        });
+    });
+
+    function updateProgress() {
+        const total = document.querySelectorAll('input[type="checkbox"]').length;
+        const checked = document.querySelectorAll('input[type="checkbox"]:checked').length;
+        const pct = Math.round((checked / total) * 100);
+        
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('progressLabel').textContent = checked + ' of ' + total + ' tasks completed';
+        document.getElementById('progressPercent').textContent = pct + '%';
+        document.getElementById('totalCompleted').textContent = pct + '%';
+        
+        // Update section progress
+        document.querySelectorAll('.checklist-section').forEach(section => {
+            const sectionChecks = section.querySelectorAll('input[type="checkbox"]');
+            const sectionChecked = section.querySelectorAll('input[type="checkbox"]:checked');
+            section.querySelector('.progress').textContent = sectionChecked.length + '/' + sectionChecks.length;
+        });
+        
+        // Update visibility score based on progress
+        const score = Math.min(100, 12 + Math.round(pct * 0.88));
+        document.getElementById('visibilityScore').textContent = score;
+        
+        if (pct > 50) {
+            document.getElementById('progressFill').style.background = 'linear-gradient(90deg, #ffaa00, #ffcc44)';
+        }
+        if (pct > 80) {
+            document.getElementById('progressFill').style.background = 'linear-gradient(90deg, #44ff44, #66ff66)';
+        }
+    }
+
+    // Copy function
+    function copyMeta(id, btn) {
+        const text = document.getElementById(id).textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            btn.textContent = '✅ Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.textContent = '📋 Copy Template';
+                btn.classList.remove('copied');
+            }, 2000);
+        });
+    }
+
+    // Initial progress update
+    updateProgress();
+</script>
+
+</body>
+</html>

@@ -1,20 +1,22 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-06 08:00 CST*
+*Last updated: 2026-03-07 08:00 CST*
 
 ---
 
 ## 🐕 DOG WASTE (Tidy Tails)
 
 ### 🔥 In Progress
-- [ ] **Google Indexing** — Site live, Search Console submitted (Mar 5), but 0 pages indexed yet
-  - Status: Waiting on Google to crawl. robots.txt + sitemap.xml confirmed correct.
-  - Owner: Google (nothing more we can do)
-  - Expected: 3-7 days for initial indexing
+- [ ] **Google Indexing** — Site live, Search Console submitted (Mar 5), STILL 0 pages indexed (Day 2)
+  - Status: Waiting on Google to crawl. robots.txt + sitemap.xml confirmed correct. Checked Mar 7 AM.
+  - Owner: Google (nothing more we can do — if still 0 by Mar 10, escalate with manual URL inspection)
+  - Expected: 3-7 days for initial indexing (Day 2 of 7)
 
 - [ ] **Spring Marketing Push** — FB group posts, spring-themed content
-  - Status: Friday posts ready (2026-03-06), weekend posts ready (2026-03-05)
-  - Owner: TJ (posting) + Franklin (content creation)
+  - Status: Saturday posts ready (2026-03-07), Friday posts ready (2026-03-06)
+  - NEW: Fresh Paws customer grab campaign created (Wildwood/Ballwin area)
+  - NEW: Door hanger/flyer text ready for print
+  - Owner: TJ (posting + printing) + Franklin (content creation)
 
 - [ ] **Ad Creative Pipeline** — AI video ads for social media
   - Status: 6 videos produced (Mar 5). fal.ai credits exhausted.
@@ -35,7 +37,12 @@
 - [x] **Email Automation** — darius@backyardbuildingsstl.com operational ✅
 
 ### 📝 To Do (TJ Action Required)
-- [ ] **Post FB group posts** — Friday posts ready at dashboard (3 min)
+- [ ] **🔥 Post Fresh Paws grab campaign** — Their customers are STRANDED. Post in Wildwood/Ballwin groups TODAY
+  - Campaign: `dashboard/campaigns/tidy-tails/2026-03-07-FRESH-PAWS-GRAB.md`
+- [ ] **Post Saturday FB group posts** — 5 fresh posts ready (3 min each)
+  - Posts: `dashboard/campaigns/tidy-tails/2026-03-07-SATURDAY-FB-POSTS.md`
+- [ ] **Print door hangers** — Leave on doors while scooping tomorrow (Sunday)
+  - Text: `dashboard/campaigns/tidy-tails/2026-03-07-DOOR-HANGER-TEXT.md`
 - [ ] **Text 3 customers for Google reviews** — GBP needs reviews for ranking
 - [ ] **Launch referral program** — Scripts ready, just needs announcement
 - [ ] **Top up fal.ai credits** — Need credits for remaining video ads
