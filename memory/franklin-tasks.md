@@ -2301,3 +2301,42 @@ Little Stinkers checks dog waste for health abnormalities. Low-effort value-add 
 **Commit:** `a4233fd` on `tidytails-dashboard` repo
 
 **Rotation:** 🔍 Research/Intel + 🛠️ Tools
+
+---
+### 5:04 PM — 🔧 CRITICAL FIX: Placeholder Phone Numbers + Missing PDF Links (Hourly Task)
+**Task:** Fix 24 placeholder phone numbers and 4 unlinked PDFs across customer-facing dashboard tools
+**Result:** ✅ SHIPPED — All placeholders replaced, all PDFs linked, all 35 links verified
+
+**Why This Task:**
+- Chief oversight flagged 23 placeholder "(314) XXX-XXXX" numbers across 4 tools — CRITICAL because TJ copies these directly into real ads/flyers
+- PDF linking gap flagged 7 CONSECUTIVE TIMES (issue-006) — TJ couldn't find today's deliverables from the dashboard
+- Both issues directly impact TJ's ability to use the tools we build him
+
+**What I Fixed:**
+
+**📞 Phone Number Fix (24 replacements):**
+- `READY-TO-POST-ADS.html` — 17 instances of `(314) XXX-XXXX` → `(314) 850-7140`
+- `PRINT-MARKETING-KIT.html` — 4 instances
+- `CANVASSING-PLANNER.html` — 3 instances (including instruction text)
+- `LEAD-FOLLOWUP-PIPELINE.html` — 1 instance of `314-XXX-XXXX`
+- Updated instruction callouts ("replace with your number" → "✅ Phone number included")
+
+**📄 PDF Dashboard Links (4 new, 6 total):**
+- Added: `MORNING_BRIEFING_2026-03-07.pdf` (378KB)
+- Added: `SHED_ADS_2026-03-07.pdf` (70KB)
+- Added: `SPRING-FLYER-KIT-2026.pdf` (706KB)
+- Added: `EOD_SUMMARY_2026-03-06.pdf` (706KB)
+- Updated PDF count: 2 → 6
+
+**🔗 Full Link Audit:**
+- Verified all 35 internal links in index.html — 35/35 passing ✅
+- No broken links found
+
+**Chief Status Updated:**
+- Issue #009 (critical phone numbers) → RESOLVED
+- Issue #006 (missing PDFs, 7x escalated) → RESOLVED
+- Issues remaining: 2 (SSL cert + undersized PDFs — lower priority)
+
+**Commit:** `55ed6f5` on `tidytails-dashboard` repo
+
+**Rotation:** 🔧 Maintenance/QA
