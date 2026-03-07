@@ -78,6 +78,23 @@ Features: 13 copy-paste scripts (cold calls, texts, emails, review asks), 43 com
 
 Central hub linking ALL tools, reports, videos, PDFs. ⚠️ NEVER let this go missing again — was flagged 7 times in one day before being built.
 
+## 🔍 Competitive Intelligence (Updated Mar 7, 2026)
+
+**19 competitors identified** in STL pet waste removal market. Key findings:
+
+**🔴 Doggie Doodies = TJ's #1 rival:**
+- Chesterfield-based LLC, serves EXACT same cities (Ballwin, Manchester, Ellisville, Wildwood, Chesterfield)
+- Pricing: $83/mo (1 dog), $88/mo (2 dogs), $100/mo (3 dogs), $121/mo (4 dogs)
+- Has: customer portal, text alerts, gate photos, rewards program, referral program, background checks, free first cleanup
+- Weaknesses: hotmail email, Wix site, no personality
+- Phone: 636-633-3443
+
+**TJ's pricing ($70 flat) is 18-26% below local competitors.** Multi-dog homes are being undercharged.
+
+**Dead competitor:** Pawfect Waste Solutions (pooperscooperstl.com) — site is DOWN. Domain may be available.
+
+**Dashboard:** `dashboard/2026-03-07-COMPETITOR-INTEL.html`
+
 ## 📧 Email Automation Project (COMPLETE Mar 4, 2026)
 
 **Domain:** backyardbuildingsstl.com (Cloudflare)
