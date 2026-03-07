@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-06 15:05 CST*
+*Last updated: 2026-03-07 14:10 CST*
 
 ---
 
@@ -22,6 +22,9 @@
   - Owner: Basquiat (needs fal.ai credits topped up)
 
 ### ✅ Recently Completed
+- [x] **Print Marketing Kit** — Door hangers, flyers, yard signs, biz cards, leave-behinds — all print-ready ✅ (Mar 7)
+- [x] **Competitor Battle Cards** — 9 competitors profiled with live data, kill scripts, pricing ✅ (Mar 7)
+- [x] **Commercial Leads Pack** — 40 leads with phone numbers across 4 categories ✅ (Mar 7)
 - [x] **Google Business Profile** — CLAIMED + COMPLETED ✅ (Feb 26)
 - [x] **Yelp Business Page** — CLAIMED + COMPLETED ✅ (Mar 5)
 - [x] **Google Search Console** — VERIFIED + SUBMITTED ✅ (Mar 5)
