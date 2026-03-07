@@ -4,6 +4,50 @@
 
 ---
 
+### 12:05 PM — 🏢 COMMERCIAL LEADS PACK — 40 Fresh Leads in TJ's Actual Service Area (Hourly Task)
+**Task:** Research and compile real commercial leads (apartment complexes, property managers, vet clinics, dog daycares) specifically in TJ's current service territory — NOT generic south county leads
+**Result:** ✅ SHIPPED — 40 leads across 4 categories with phone numbers, pitch angles, call scripts, and commercial pricing guide
+
+**Why This Task:**
+- We've built 10+ dashboards today but the REAL bottleneck is leads, not tools
+- Jamie's existing outreach hub had 24 leads but most were in SOUTH/WEST county — TJ's customers are in FLORISSANT, ST. CHARLES, and O'FALLON
+- Commercial accounts = $200-500/mo each — landing 3 commercial accounts would nearly DOUBLE current revenue ($750/mo → $1,450/mo)
+- NO competitor is actively targeting apartment complexes in North County/St. Charles for pet waste services
+- Spring = move-in season for apartments = property managers dealing with pet waste complaints RIGHT NOW
+
+**What I Built (6 tabs):**
+
+| Tab | Count | What's In It |
+|-----|-------|-------------|
+| 🏢 Apartments | 15 leads | Delrado, Altair Preserve, Cedar Trace, Courtland Ridge, plus more with phone numbers |
+| 🏘️ HOA/Prop Mgmt | 10 leads | Associa Smith, CPM Gateway, Sentry, TreeStone, Avaz Management — gatekeepers to dozens of communities |
+| 🏥 Vet Clinics | 8 leads | Howdershell, Paw Patch, Florissant Animal Hospital, Gateway City + groomer for referral partnerships |
+| 🐕 Daycares | 7 leads | Baxter's K9, Dogtopia St. Peters, Watering Bowl, Camp Bow Wow, Petropolis |
+| 💬 Call Scripts | 4 scripts | Cold call for apartments, HOA pitch, vet partnership, daycare cross-promo + follow-up email template |
+| 💰 Pricing Guide | — | Commercial pricing tiers ($200-500/mo), add-ons (stations, deodorizing), competitor price comparison |
+
+**Key Leads with Direct Phone Numbers:**
+- Delrado Apartments (Florissant): (314) 501-5599
+- Altair at the Preserve (O'Fallon): (636) 329-9400
+- Cedar Trace (Maryland Heights): (314) 786-3524
+- Howdershell Animal Clinic: (314) 838-3575
+- Paw Patch Animal Hospital: (314) 921-9989
+- Gateway City Animal Clinic: (314) 868-7387
+- North County Pet Grooming: (314) 741-1889
+- Avaz Management (corporate): 855-288-AVAZ
+
+**Revenue Impact:**
+- 1 small commercial ($200) + 1 medium ($350) + 2 stations ($150) = **+$700/mo**
+- Current $750/mo → $1,450/mo = **93% increase from 4 relationships**
+
+**Dashboard:** `dashboard/2026-03-07-COMMERCIAL-LEADS-PACK.html`
+**Live:** https://tidytails.github.io/tidytails-dashboard/dashboard/2026-03-07-COMMERCIAL-LEADS-PACK.html
+**Commit:** `0e237e9` on `tidytails-dashboard` repo
+
+**Rotation:** 🏢 Sales — Commercial Lead Generation
+
+---
+
 ### 11:04 AM — 🌐 PROFESSIONAL LANDING PAGE — SEO-Optimized Customer-Facing Website (Hourly Task)
 **Task:** Build and deploy a real, professional landing page for Tidy Tails since the actual website (tidytailspetwasteremoval.net) is DOWN
 **Result:** ✅ SHIPPED — Full landing page live on GitHub Pages with schema markup, mobile CTAs, and SEO optimization
