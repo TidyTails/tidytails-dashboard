@@ -4,6 +4,30 @@
 
 ---
 
+## March 7, 2026 — Saturday Weekend Pack (9 AM Task)
+
+**Shed-Mar90 - "Saturday Lot Walk" (FB Marketplace + Groups)**
+- Hook: Come see them in person — touch, walk inside, bring the spouse
+- Key: In-person experience differentiator, no appointment needed
+- Used: TBD (Marketplace + Groups Sat 3/7 AM)
+
+**Shed-Mar91 - "The 'We Should' Conversation" (FB Marketplace + Nextdoor)**
+- Hook: You've had the conversation 4 times — stop should-ing, start doing
+- Key: Couples decision humor, action CTA
+- Used: TBD (Marketplace + Nextdoor Sat 3/7 PM)
+
+**Shed-Mar92 - "What $200/mo Actually Gets You" (FB Marketplace + Groups)**
+- Hook: Phone plan vs shed — subscription vs investment
+- Key: Value comparison, payoff framing
+- Used: TBD (Marketplace + Groups Sun 3/8 AM)
+
+**Shed-Mar93 - "The 10-Minute Rule" (FB Marketplace + Instagram)**
+- Hook: How long do you spend looking for stuff? Time = money
+- Key: Efficiency/time-saving angle, organization benefits
+- Used: TBD (Marketplace + Instagram Mon 3/9 AM)
+
+---
+
 ## March 6, 2026 — Friday Fresh Angles (9 AM Task)
 
 **Shed-Mar86 - "Friday Night Garage Walk" (FB Marketplace)**
