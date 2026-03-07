@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🗺️ Weekend Canvassing Planner | Tidy Tails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+
+        .header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem; text-align: center;
+        }
+        .header h1 { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.03em; }
+        .header h1 span { color: var(--orange); }
+        .header p { color: var(--text2); font-size: 0.85rem; margin-top: 0.25rem; }
+        .back-link { display:inline-block; margin-top:0.75rem; color:var(--orange); text-decoration:none; font-size:0.8rem; font-weight:600; }
+
+        .tabs {
+            display: flex; gap: 0; border-bottom: 1px solid var(--border);
+            background: var(--bg2); overflow-x: auto; -webkit-overflow-scrolling: touch;
+        }
+        .tab {
+            padding: 0.75rem 1.25rem; font-size: 0.8rem; font-weight: 600;
+            cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent;
+            color: var(--text2); transition: all 0.2s; background: none; border-top: none; border-left: none; border-right: none;
+        }
+        .tab:hover { color: var(--text); background: var(--bg3); }
+        .tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+
+        .content { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+        .panel { display: none; }
+        .panel.active { display: block; }
+
+        .card {
+            background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 1rem;
+        }
+        .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .card h4 { font-size: 0.85rem; font-weight: 600; color: var(--orange); margin: 0.75rem 0 0.5rem; }
+        .card p, .card li { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
+        .card ul { padding-left: 1.25rem; }
+        .card li { margin-bottom: 0.25rem; }
+
+        .priority-badge {
+            display: inline-block; padding: 0.2rem 0.6rem; border-radius: 6px;
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-left: 0.5rem;
+        }
+        .p-hot { background: rgba(239,68,68,0.15); color: var(--red); }
+        .p-warm { background: rgba(251,191,36,0.15); color: var(--yellow); }
+        .p-cool { background: rgba(59,130,246,0.15); color: var(--blue); }
+
+        .score-bar {
+            height: 6px; border-radius: 3px; background: var(--bg4); margin: 0.5rem 0;
+        }
+        .score-fill {
+            height: 100%; border-radius: 3px; transition: width 0.5s;
+        }
+
+        .stat-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem; margin-bottom: 1rem;
+        }
+        .stat {
+            background: var(--bg3); border-radius: 8px; padding: 1rem; text-align: center;
+        }
+        .stat .num { font-size: 1.5rem; font-weight: 800; }
+        .stat .label { font-size: 0.7rem; color: var(--text2); text-transform: uppercase; margin-top: 0.25rem; }
+
+        .checklist-item {
+            display: flex; align-items: flex-start; gap: 0.75rem;
+            padding: 0.75rem; background: var(--bg3); border-radius: 8px; margin-bottom: 0.5rem;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .checklist-item:hover { background: var(--bg4); }
+        .checklist-item input[type="checkbox"] {
+            width: 18px; height: 18px; margin-top: 2px; accent-color: var(--green);
+            cursor: pointer; flex-shrink: 0;
+        }
+        .checklist-item.done { opacity: 0.5; }
+        .checklist-item.done .item-text { text-decoration: line-through; }
+        .item-text { font-size: 0.85rem; }
+        .item-time { font-size: 0.7rem; color: var(--text3); margin-top: 0.2rem; }
+
+        .copy-zone {
+            background: var(--bg3); border: 1px dashed var(--border); border-radius: 8px;
+            padding: 1rem; margin: 0.75rem 0; position: relative;
+        }
+        .copy-zone p { font-size: 0.85rem; line-height: 1.7; white-space: pre-wrap; }
+        .copy-btn {
+            position: absolute; top: 0.5rem; right: 0.5rem;
+            background: var(--orange); color: white; border: none; border-radius: 6px;
+            padding: 0.3rem 0.7rem; font-size: 0.7rem; font-weight: 600; cursor: pointer;
+        }
+        .copy-btn.copied { background: var(--green); }
+
+        .zone-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 0.75rem;
+        }
+        .zone-header h3 { margin: 0; }
+
+        .route-step {
+            display: flex; gap: 1rem; padding: 1rem; background: var(--bg3);
+            border-radius: 8px; margin-bottom: 0.75rem; align-items: flex-start;
+        }
+        .step-num {
+            width: 32px; height: 32px; border-radius: 50%; background: var(--orange);
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 0.85rem; flex-shrink: 0;
+        }
+        .step-info h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.25rem; color: var(--text); }
+        .step-info p { font-size: 0.8rem; color: var(--text2); }
+
+        .metric-input {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+            padding: 0.5rem 0.75rem; color: var(--text); font-size: 0.85rem;
+            width: 80px; text-align: center; font-family: 'Inter', sans-serif;
+        }
+        .metric-row {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.75rem; background: var(--bg3); border-radius: 8px; margin-bottom: 0.5rem;
+        }
+        .metric-label { font-size: 0.85rem; }
+
+        .tag {
+            display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px;
+            font-size: 0.65rem; font-weight: 600; margin-right: 0.25rem;
+        }
+        .tag-dog { background: rgba(255,107,53,0.15); color: var(--orange); }
+        .tag-yard { background: rgba(16,185,129,0.15); color: var(--green); }
+        .tag-family { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .tag-park { background: rgba(139,92,246,0.15); color: var(--purple); }
+
+        .guerrilla-card {
+            background: linear-gradient(135deg, var(--bg3) 0%, var(--bg2) 100%);
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 1rem;
+        }
+        .guerrilla-card h3 { color: var(--green); }
+
+        @media (max-width: 600px) {
+            .content { padding: 1rem; }
+            .stat-grid { grid-template-columns: repeat(2, 1fr); }
+            .tab { padding: 0.6rem 0.9rem; font-size: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🗺️ <span>Weekend Canvassing</span> Planner</h1>
+    <p>Where to drop flyers this weekend for maximum customer acquisition</p>
+    <a href="index.html" class="back-link">← Back to Dashboard</a>
+</div>
+
+<div class="tabs">
+    <button class="tab active" onclick="showTab('overview')">📊 Overview</button>
+    <button class="tab" onclick="showTab('neighborhoods')">🏘️ Neighborhoods</button>
+    <button class="tab" onclick="showTab('route')">🚗 Saturday Route</button>
+    <button class="tab" onclick="showTab('dogparks')">🐕 Dog Park Blitz</button>
+    <button class="tab" onclick="showTab('flyer')">📄 Door Hanger</button>
+    <button class="tab" onclick="showTab('tracker')">✅ Tracker</button>
+</div>
+
+<div class="content">
+
+<!-- OVERVIEW TAB -->
+<div id="overview" class="panel active">
+    <div class="stat-grid">
+        <div class="stat">
+            <div class="num" style="color:var(--orange)">12</div>
+            <div class="label">Target Neighborhoods</div>
+        </div>
+        <div class="stat">
+            <div class="num" style="color:var(--green)">200</div>
+            <div class="label">Flyers to Drop</div>
+        </div>
+        <div class="stat">
+            <div class="num" style="color:var(--blue)">3</div>
+            <div class="label">Dog Parks to Hit</div>
+        </div>
+        <div class="stat">
+            <div class="num" style="color:var(--yellow)">3-4 hrs</div>
+            <div class="label">Time to Canvas</div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>🎯 The Strategy</h3>
+        <p>Not all neighborhoods are equal. This plan targets streets where <strong>dog owners with yards</strong> live — the exact profile of a Tidy Tails customer. Ranked by:</p>
+        <ul>
+            <li><strong>Yard size</strong> — bigger yards = more poop = more need</li>
+            <li><strong>Dog park proximity</strong> — near Vlasis/Queeny/Conway = confirmed dog owners</li>
+            <li><strong>Family density</strong> — families with kids + dogs = "too busy to scoop" demographic</li>
+            <li><strong>Competitor gap</strong> — areas where Doggie Doodies and others DON'T advertise</li>
+            <li><strong>Route efficiency</strong> — clustered streets you can hit in one pass</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3>📈 Expected Results</h3>
+        <p>Industry data on door-to-door flyers for pet waste removal:</p>
+        <ul>
+            <li><strong>Response rate:</strong> 1-3% for generic flyers, 3-5% for targeted (dog-owner streets)</li>
+            <li><strong>200 flyers × 3% response = 6 inquiries</strong></li>
+            <li><strong>50% close rate = 3 new customers</strong></li>
+            <li><strong>3 × $95/mo avg = $285/mo recurring ($3,420/year)</strong></li>
+            <li>Cost: ~$30 for 200 flyers at FedEx/Staples + 3 hours of time</li>
+            <li><strong>ROI: 114x first year</strong></li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h3>⏰ When to Canvas</h3>
+        <p><strong>Best times (Saturday/Sunday):</strong></p>
+        <ul>
+            <li>🌅 <strong>9-11 AM</strong> — People are home, walking dogs, doing yard work. You'll SEE the dogs.</li>
+            <li>🌆 <strong>4-6 PM</strong> — Second dog walk of the day. Yards are visible.</li>
+            <li>❌ Avoid 12-2 PM (nobody answers doors at lunch)</li>
+            <li>💡 <strong>Pro tip:</strong> Look for houses with dog waste in the yard as you walk. Those are your hottest leads — they literally need you RIGHT NOW.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- NEIGHBORHOODS TAB -->
+<div id="neighborhoods" class="panel">
+    <div class="card">
+        <div class="zone-header">
+            <h3>🔴 Tier 1: Hit These First <span class="priority-badge p-hot">Highest Priority</span></h3>
+        </div>
+        <p style="margin-bottom:1rem">Within 5 min of Queeny/Vlasis dog parks. Maximum dog-owner density. Big yards.</p>
+    </div>
+
+    <!-- Neighborhood cards -->
+    <div class="card">
+        <h3>1. Woodsmill Subdivision <span class="priority-badge p-hot">HOT</span></h3>
+        <div>
+            <span class="tag tag-dog">🐕 High Dog Density</span>
+            <span class="tag tag-yard">🏡 1/3-1/2 Acre Lots</span>
+            <span class="tag tag-family">👨‍👩‍👧 Family Heavy</span>
+            <span class="tag tag-park">📍 Near Queeny Park</span>
+        </div>
+        <div class="score-bar"><div class="score-fill" style="width:95%;background:var(--red)"></div></div>
+        <p><strong>Why:</strong> Large lots with fenced backyards. Families with kids AND dogs. Adjacent to Queeny Park (biggest dog park in West County). Upper-middle income = can afford $95/mo without blinking.</p>
+        <h4>Key Streets to Hit:</h4>
+        <ul>
+            <li>Woodsmill Dr & connecting courts</li>
+            <li>Woodsmill Terrace Ct</li>
+            <li>Woodsmill Ridge Ct</li>
+            <li>Look for "Invisible Fence" signs, dog doors, dog toys in yards</li>
+        </ul>
+        <p><strong>Estimated doors:</strong> 40-50 homes | <strong>Time:</strong> 30-40 min</p>
+    </div>
+
+    <div class="card">
+        <h3>2. Wild Wood Subdivision (Plats 2-7) <span class="priority-badge p-hot">HOT</span></h3>
+        <div>
+            <span class="tag tag-dog">🐕 Very High Dog Count</span>
+            <span class="tag tag-yard">🏡 1/4-1/2 Acre</span>
+            <span class="tag tag-family">👨‍👩‍👧 Families + Retirees</span>
+        </div>
+        <div class="score-bar"><div class="score-fill" style="width:92%;background:var(--red)"></div></div>
+        <p><strong>Why:</strong> Tree-lined streets, classic ranch & colonial homes across Parkway West HS. Mix of longtime residents (retirees who can't scoop) and families with dogs. Active HOA = care about clean yards.</p>
+        <h4>Key Streets:</h4>
+        <ul>
+            <li>Wildwood Dr (the main artery — lots of visibility)</li>
+            <li>Greentrails Dr</li>
+            <li>All connecting cul-de-sacs off Wildwood</li>
+        </ul>
+        <p><strong>Estimated doors:</strong> 50-60 homes | <strong>Time:</strong> 40-50 min</p>
+    </div>
+
+    <div class="card">
+        <h3>3. Castle Pines <span class="priority-badge p-hot">HOT</span></h3>
+        <div>
+            <span class="tag tag-dog">🐕 High Dog Density</span>
+            <span class="tag tag-yard">🏡 1/3+ Acre</span>
+            <span class="tag tag-family">👨‍👩‍👧 Young Families</span>
+        </div>
+        <div class="score-bar"><div class="score-fill" style="width:90%;background:var(--red)"></div></div>
+        <p><strong>Why:</strong> Newer subdivision with active HOA. Young families = dogs + kids + no time to scoop. HOA means they MUST keep yards clean — you solve that problem. Has its own website which shows community engagement.</p>
+        <h4>Key Streets:</h4>
+        <ul>
+            <li>Castle Pines Dr</li>
+            <li>Castle Ridge Dr</li>
+            <li>All courts and cul-de-sacs (efficient canvassing)</li>
+        </ul>
+        <p><strong>Estimated doors:</strong> 35-45 homes | <strong>Time:</strong> 25-35 min</p>
+    </div>
+
+    <div class="card">
+        <div class="zone-header">
+            <h3>🟡 Tier 2: Strong Targets <span class="priority-badge p-warm">High Priority</span></h3>
+        </div>
+        <p style="margin-bottom:1rem">Slightly farther but still prime demographics. Hit these after Tier 1.</p>
+    </div>
+
+    <div class="card">
+        <h3>4. Claymont <span class="priority-badge p-warm">WARM</span></h3>
+        <div>
+            <span class="tag tag-dog">🐕 Moderate-High</span>
+            <span class="tag tag-yard">🏡 1/4 Acre+</span>
+            <span class="tag tag-family">👨‍👩‍👧 Established Families</span>
+        </div>
+        <div class="score-bar"><div class="score-fill" style="width:85%;background:var(--yellow)"></div></div>
+        <p><strong>Why:</strong> Established neighborhood with active HOA (has website). Mix of original owners and newer families. Yards are big enough that scooping is a real chore. Near Manchester Rd for visibility.</p>
+        <h4>Key Streets:</h4>
+        <ul>
+            <li>Claymont Dr & connecting streets</li>
+            <li>Focus on homes with fenced backyards (visible from street)</li>
+        </ul>
+        <p><strong>Estimated doors:</strong> 30-40 homes | <strong>Time:</strong> 25 min</p>
+    </div>
+
+    <div class="card">
+        <h3>5. Fox Creek <span class="priority-badge p-warm">WARM</span></h3>
+        <div>
+            <span class="tag tag-dog">🐕 Moderate-High</span>
+            <span class="tag tag-yard">🏡 1/4 Acre</span>
+            <span class="tag tag-park">📍 Near Vlasis Park</span>
+        </div>
+        <div class="score-bar"><div class="score-fill" style="width:82%;background:var(--yellow)"></div></div>
+        <p><strong>Why:</strong> Close to Vlasis Park dog area. Active community with a WordPress blog. Ranch homes with decent backyards. Dog walkers pass through regularly.</p>
+        <h4>Key Streets:</h4>
+        <ul>
+            <li>Fox Creek Rd and connecting courts</li>
+            <li>Focus on houses facing Vlasis Park trail system</li>
+        </ul>
+        <p><strong>Estimated doors:</strong> 25-30 homes | <strong>Time:</strong> 20 min</p>
+    </div>
+
+    <div class="card">
+        <h3>6. Country Creek <span class="priority-badge p-warm">WARM</span></h3>
+        <div>
+            <span class="tag tag-dog">🐕 Moderate</span>
+            <span class="tag tag-yard">🏡 1/4-1/3 Acre</span>
+            <span class="tag tag-family">👨‍👩‍👧 Mixed Demo</span>
+        </div>
+        <div class="score-bar"><div class="score-fill" style="width:78%;background:var(--yellow)"></div></div>
+        <p><strong>Why:</strong> Has its own community website (countrycreekballwin.org) indicating active residents. HOA means clean-yard pressure. Good density for efficient canvassing.</p>
+        <h4>Key Streets:</h4>
+        <ul>
+            <li>Country Creek Dr main loop</li>
+            <li>All cul-de-sacs off the loop</li>
+        </ul>
+        <p><strong>Estimated doors:</strong> 30-35 homes | <strong>Time:</strong> 20 min</p>
+    </div>
+
+    <div class="card">
+        <h3>7. Westglen Village & Woods <span class="priority-badge p-warm">WARM</span></h3>
+        <div>
+            <span class="tag tag-dog">🐕 Moderate-High</span>
+            <span class="tag tag-yard">🏡 1/4 Acre</span>
+        </div>
+        <div class="score-bar"><div class="score-fill" style="width:75%;background:var(--yellow)"></div></div>
+        <p><strong>Why:</strong> Two connected subdivisions with active Facebook group and separate website. Community engagement = word-of-mouth potential. One happy customer here could spread through both neighborhoods fast.</p>
+        <h4>Key Streets:</h4>
+        <ul>
+            <li>Westglen Village Dr</li>
+            <li>Westglen Woods Dr & courts</li>
+        </ul>
+        <p><strong>Estimated doors:</strong> 40-50 homes | <strong>Time:</strong> 30 min</p>
+    </div>
+
+    <div class="card">
+        <div class="zone-header">
+            <h3>🔵 Tier 3: Expansion Targets <span class="priority-badge p-cool">Future</span></h3>
+        </div>
+        <p style="margin-bottom:1rem">Hit these in week 2-3 or when Tier 1 & 2 are covered.</p>
+    </div>
+
+    <div class="card">
+        <h3>8-12: Expansion Neighborhoods</h3>
+        <ul>
+            <li><strong>Oakleigh Woods</strong> — Active community org, wooded lots, dog-friendly feel</li>
+            <li><strong>Danbury</strong> — NeighborhoodLink presence, ranch homes with yards</li>
+            <li><strong>Rolling Hills / The Meadows</strong> — Country club area, higher income, big properties</li>
+            <li><strong>Polo Lake (Ellisville)</strong> — Upscale, known for large lots and family orientation</li>
+            <li><strong>Manors of Castle Ridge (Ellisville)</strong> — Premium subdivision, HOA-managed</li>
+        </ul>
+        <p style="margin-top:0.75rem"><strong>Total Tier 3 doors:</strong> 100-150 homes across 5 neighborhoods</p>
+    </div>
+</div>
+
+<!-- SATURDAY ROUTE TAB -->
+<div id="route" class="panel">
+    <div class="card">
+        <h3>🚗 Optimized Saturday Morning Route</h3>
+        <p>Start at 9 AM, done by noon. Hits all Tier 1 neighborhoods in one efficient loop. Print 200 flyers before you start.</p>
+    </div>
+
+    <div class="route-step">
+        <div class="step-num">1</div>
+        <div class="step-info">
+            <h4>☕ 8:30 AM — Print & Prep</h4>
+            <p>Print 200 door hangers at FedEx Office (14856 Manchester Rd, Ballwin). Cost: ~$30 for B&W on cardstock, $50 for color. Grab a coffee. Load the car.</p>
+        </div>
+    </div>
+
+    <div class="route-step">
+        <div class="step-num">2</div>
+        <div class="step-info">
+            <h4>🐕 9:00 AM — Queeny Park Dog Park</h4>
+            <p><strong>Tails & Trails, 550 Weidman Rd.</strong> Spend 20 min chatting with dog owners. Leave flyers on the bulletin board (if allowed). Hand them out personally — "Hey, I'm TJ, I run Tidy Tails..." This is your #1 guerrilla marketing spot.</p>
+        </div>
+    </div>
+
+    <div class="route-step">
+        <div class="step-num">3</div>
+        <div class="step-info">
+            <h4>🏘️ 9:30 AM — Woodsmill Subdivision</h4>
+            <p>Start at Woodsmill Dr entrance. Work your way through all connecting courts. <strong>Look for dog signs:</strong> Invisible Fence signs, "Beware of Dog" stickers, dog toys, poop bags on porches, visible waste in yards. Mark those houses for follow-up text if they don't respond to flyer.</p>
+        </div>
+    </div>
+
+    <div class="route-step">
+        <div class="step-num">4</div>
+        <div class="step-info">
+            <h4>🏘️ 10:15 AM — Wild Wood Subdivision</h4>
+            <p>Drive to Wildwood Dr. Hit the main road first (highest visibility), then work cul-de-sacs. You'll cross near Parkway West HS. Focus on homes with visible backyards. Skip apartments/condos.</p>
+        </div>
+    </div>
+
+    <div class="route-step">
+        <div class="step-num">5</div>
+        <div class="step-info">
+            <h4>🏘️ 11:00 AM — Castle Pines</h4>
+            <p>Drive to Castle Pines Dr. This is a newer subdivision so the streets are shorter. Work efficiently through the cul-de-sacs. HOA-managed = these people CARE about clean yards. Your flyer should hit hard here.</p>
+        </div>
+    </div>
+
+    <div class="route-step">
+        <div class="step-num">6</div>
+        <div class="step-info">
+            <h4>🐕 11:30 AM — Vlasis Park Quick Stop</h4>
+            <p>Quick pass through Vlasis Park dog area. Leave flyers with anyone walking dogs. This catches the late-morning crowd. 10 min max.</p>
+        </div>
+    </div>
+
+    <div class="route-step">
+        <div class="step-num">7</div>
+        <div class="step-info">
+            <h4>🏁 11:45 AM — Done!</h4>
+            <p>Head home. Should have distributed 150-200 flyers across 3 neighborhoods + 2 dog parks. Track responses in the Tracker tab. Repeat with Tier 2 neighborhoods next weekend.</p>
+        </div>
+    </div>
+
+    <div class="card" style="border-left: 3px solid var(--green);">
+        <h3>💡 Pro Tips While Canvassing</h3>
+        <ul>
+            <li><strong>Wear a Tidy Tails shirt/hat</strong> if you have one. If not, just look presentable.</li>
+            <li><strong>Bring business cards</strong> for face-to-face conversations at dog parks.</li>
+            <li><strong>Take photos of dog waste</strong> you spot in yards (for your own reference, not to shame people). Houses with visible waste = hot leads.</li>
+            <li><strong>If someone answers the door:</strong> "Hey! I'm TJ, I run Tidy Tails — we scoop dog poop so you don't have to. Just leaving a flyer. Got dogs?" 15-second pitch, max.</li>
+            <li><strong>Note any "For Sale" signs</strong> — realtors recommend yard cleanup before showings. Potential one-time job leads.</li>
+            <li><strong>If you see someone walking a dog:</strong> that's a better lead than any flyer. Chat them up.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- DOG PARK BLITZ TAB -->
+<div id="dogparks" class="panel">
+    <div class="card">
+        <h3>🐕 Dog Park Guerrilla Marketing</h3>
+        <p>Dog parks are concentrated clusters of your <em>exact</em> target customer. Every person there has a dog AND a yard (apartment dwellers use sidewalks, not dog parks). Here's your attack plan.</p>
+    </div>
+
+    <div class="guerrilla-card">
+        <h3>🏆 Tails & Trails at Queeny Park (PRIMARY)</h3>
+        <p style="color:var(--text2);margin:0.5rem 0"><strong>📍 550 Weidman Rd, Ballwin, MO 63011</strong></p>
+        <h4>Why It's #1:</h4>
+        <ul>
+            <li>5-acre membership dog park = committed dog owners who SPEND money on their pets</li>
+            <li>Separate areas for large & small dogs = high capacity, lots of people</li>
+            <li>Has waste stations already = people are aware of the poop problem</li>
+            <li>Agility course, skill stations = engaged pet parents (premium customers)</li>
+        </ul>
+        <h4>Best Times to Visit:</h4>
+        <ul>
+            <li><strong>Saturday 9-10 AM</strong> — Peak morning crowd</li>
+            <li><strong>Saturday 4-5 PM</strong> — Evening rush</li>
+            <li><strong>Sunday 10-11 AM</strong> — Relaxed crowd, longer conversations</li>
+        </ul>
+        <h4>Tactics:</h4>
+        <ul>
+            <li>Stand near the entrance/exit — everyone passes through</li>
+            <li>Lead with their dog: "Great looking [breed]! How old?" → then transition to your pitch</li>
+            <li>Ask the park staff if you can leave a small stack of flyers or cards at the entrance</li>
+            <li>Offer a <strong>dog park special: "Mention Queeny Park for $20 off your first month"</strong></li>
+        </ul>
+    </div>
+
+    <div class="guerrilla-card">
+        <h3>🥈 Vlasis Park Dog Area</h3>
+        <p style="color:var(--text2);margin:0.5rem 0"><strong>📍 Vlasis Park, Ballwin, MO 63011</strong></p>
+        <h4>Why It Matters:</h4>
+        <ul>
+            <li>Fenced off-leash area — draws from surrounding Ballwin neighborhoods</li>
+            <li>More casual atmosphere = easier to start conversations</li>
+            <li>Adjacent to residential streets (Fox Creek, nearby subdivisions)</li>
+        </ul>
+        <h4>Best Times:</h4>
+        <ul>
+            <li><strong>Weekday evenings 5-7 PM</strong> — After-work crowd</li>
+            <li><strong>Weekend mornings 9-11 AM</strong></li>
+        </ul>
+    </div>
+
+    <div class="guerrilla-card">
+        <h3>🥉 Conway Park (Chesterfield)</h3>
+        <p style="color:var(--text2);margin:0.5rem 0"><strong>📍 Conway Park, Chesterfield, MO</strong></p>
+        <h4>Why It Matters:</h4>
+        <ul>
+            <li>Chesterfield = higher income = premium pricing tier</li>
+            <li>Direct competition with Doggie Doodies' territory — steal their potential customers</li>
+            <li>Newer park, growing community</li>
+        </ul>
+        <h4>Strategy:</h4>
+        <ul>
+            <li>Position as the local alternative: "We're not a franchise, we're your neighbor"</li>
+            <li>Chesterfield dog owners can support the $95-135/mo tiers</li>
+        </ul>
+    </div>
+
+    <div class="card" style="border-left: 3px solid var(--purple);">
+        <h3>🎯 Dog Park Conversation Script</h3>
+        <div class="copy-zone">
+            <button class="copy-btn" onclick="copyText(this)">Copy</button>
+            <p>[While petting their dog or watching dogs play]
+
+"Beautiful [breed]! How old is [he/she]?"
+[Let them talk — people LOVE talking about their dogs]
+
+"I bet [he/she] keeps you busy at home too, huh?"
+[If they mention yard/cleanup/mess — THAT'S your opening]
+
+"Ha, I actually started a business for exactly that — I'm TJ, I run Tidy Tails. We come once a week and scoop everything so you never have to think about it. Here's my card."
+
+[If they seem interested:]
+"We're running a spring special right now — $20 off your first month if you mention Queeny Park. And the first cleanup is free so you can see how it works."
+
+[If they're lukewarm:]
+"No pressure at all — just keep the card. When spring hits and that winter buildup thaws... you'll know who to call." [smile]</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>📍 Bonus: Pet Store & Vet Flyer Drops</h3>
+        <p>While you're out canvassing, stop by these places and ask to leave a small stack of business cards or flyers:</p>
+        <ul>
+            <li><strong>Petropolis (Chesterfield)</strong> — Pet boarding/daycare, customers already spend on pets</li>
+            <li><strong>Dogtopia (Ellisville)</strong> — Manchester Rd near Clarkson. Daycare clients = premium pet owners</li>
+            <li><strong>Williamsburg Pet Hotel (Chesterfield)</strong> — Boarding clients with disposable income</li>
+            <li><strong>Dog's Best Friend (13998 Manchester Rd, Ballwin)</strong> — Since 1962! Loyal customer base</li>
+            <li><strong>Local vet clinics</strong> — Ask to leave cards at the front desk. Vets get asked about poop A LOT.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- DOOR HANGER TAB -->
+<div id="flyer" class="panel">
+    <div class="card">
+        <h3>📄 Door Hanger Copy — Ready to Print</h3>
+        <p>Two versions below. Print on cardstock, cut to door hanger size (4.25" × 11" or 3.5" × 8.5"). FedEx Office or Staples can do this for ~$0.15-0.25 each.</p>
+    </div>
+
+    <div class="card">
+        <h3>Version A: "Life's Too Short" (Recommended)</h3>
+        <div class="copy-zone">
+            <button class="copy-btn" onclick="copyText(this)">Copy</button>
+            <p>═══════════════════════════════
+🐕💩 TIDY TAILS
+Pet Waste Removal
+═══════════════════════════════
+
+LIFE'S TOO SHORT TO SCOOP POOP.
+
+We come once a week.
+We clean your entire yard.
+You never think about it again.
+
+✅ Weekly service starting at $70/mo
+✅ First cleanup is FREE
+✅ Spring special: $20 OFF first month
+✅ Locally owned (your neighbor, not a franchise)
+
+🌱 SPRING CLEANUP SPECIAL 🌱
+That winter buildup won't clean itself.
+One-time deep clean: $99-$149
+
+📱 Call/Text TJ: (314) XXX-XXXX
+🌐 tidytailsstl.com
+📍 Serving Ballwin, Manchester, 
+   Ellisville, Chesterfield & more
+
+"I started Tidy Tails because nobody 
+should spend their weekend stepping 
+in dog poop." — TJ, Owner
+
+═══════════════════════════════</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h3>Version B: "Your Neighbors Already Know" (Social Proof)</h3>
+        <div class="copy-zone">
+            <button class="copy-btn" onclick="copyText(this)">Copy</button>
+            <p>═══════════════════════════════
+🐕💩 TIDY TAILS
+Pet Waste Removal
+═══════════════════════════════
+
+YOUR NEIGHBORS ALREADY KNOW.
+
+Some of the yards on this street are 
+spotless. Here's their secret:
+
+We scoop. They relax.
+
+Weekly service — we handle everything.
+You get your weekends back.
+
+Starting at $70/month
+FIRST CLEANUP FREE
+Spring Special: $20 OFF first month
+
+WHAT YOU GET:
+→ Full yard cleanup every week
+→ All waste bagged & removed  
+→ Text notification when we're done
+→ Satisfaction guaranteed
+
+SPRING THAW CLEANUP: $99-$149
+(Because 4 months of frozen poop 
+is about to become YOUR problem)
+
+📱 Text TJ: (314) XXX-XXXX
+🌐 tidytailsstl.com
+
+Locally owned. Not a franchise.
+Just a guy who scoops poop so 
+you don't have to.
+
+═══════════════════════════════</p>
+        </div>
+    </div>
+
+    <div class="card" style="border-left: 3px solid var(--yellow);">
+        <h3>⚠️ Before Printing</h3>
+        <ul>
+            <li><strong>Add your real phone number</strong> where it says (314) XXX-XXXX</li>
+            <li><strong>Consider a QR code</strong> linking to tidytailsstl.com (free at qr-code-generator.com)</li>
+            <li><strong>Cardstock > regular paper</strong> — feels more legit, doesn't blow away</li>
+            <li><strong>Color printing matters</strong> — even just the header in orange/green pops vs. full B&W</li>
+            <li><strong>Door hanger shape</strong> — ask FedEx for the die-cut template. Hangs on the doorknob = guaranteed seen (unlike mailbox stuffing which is technically illegal for non-USPS mail)</li>
+        </ul>
+    </div>
+</div>
+
+<!-- TRACKER TAB -->
+<div id="tracker" class="panel">
+    <div class="card">
+        <h3>✅ Weekend Canvassing Checklist</h3>
+        <p>Check off as you go. Progress saves automatically.</p>
+    </div>
+
+    <div id="checklist">
+        <div class="checklist-item" onclick="toggleCheck(this, 'prep1')">
+            <input type="checkbox" id="prep1">
+            <div>
+                <div class="item-text">Print 200 door hangers</div>
+                <div class="item-time">FedEx Office, 14856 Manchester Rd • ~$30-50</div>
+            </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this, 'prep2')">
+            <input type="checkbox" id="prep2">
+            <div>
+                <div class="item-text">Grab business cards (if you have them)</div>
+                <div class="item-time">For dog park conversations</div>
+            </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this, 'park1')">
+            <input type="checkbox" id="park1">
+            <div>
+                <div class="item-text">🐕 Queeny Park — Tails & Trails dog park</div>
+                <div class="item-time">550 Weidman Rd • 20 min networking</div>
+            </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this, 'hood1')">
+            <input type="checkbox" id="hood1">
+            <div>
+                <div class="item-text">🏘️ Woodsmill Subdivision (40-50 doors)</div>
+                <div class="item-time">30-40 min canvassing</div>
+            </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this, 'hood2')">
+            <input type="checkbox" id="hood2">
+            <div>
+                <div class="item-text">🏘️ Wild Wood Subdivision (50-60 doors)</div>
+                <div class="item-time">40-50 min canvassing</div>
+            </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this, 'hood3')">
+            <input type="checkbox" id="hood3">
+            <div>
+                <div class="item-text">🏘️ Castle Pines (35-45 doors)</div>
+                <div class="item-time">25-35 min canvassing</div>
+            </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this, 'park2')">
+            <input type="checkbox" id="park2">
+            <div>
+                <div class="item-text">🐕 Vlasis Park quick stop</div>
+                <div class="item-time">10 min flyer handouts</div>
+            </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this, 'bonus1')">
+            <input type="checkbox" id="bonus1">
+            <div>
+                <div class="item-text">📍 Drop flyers at pet stores/vets (bonus)</div>
+                <div class="item-time">Dogtopia, Dog's Best Friend, or local vet</div>
+            </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this, 'tier2a')">
+            <input type="checkbox" id="tier2a">
+            <div>
+                <div class="item-text">🏘️ Tier 2: Claymont (30-40 doors)</div>
+                <div class="item-time">Week 2 target</div>
+            </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this, 'tier2b')">
+            <input type="checkbox" id="tier2b">
+            <div>
+                <div class="item-text">🏘️ Tier 2: Fox Creek (25-30 doors)</div>
+                <div class="item-time">Week 2 target</div>
+            </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this, 'tier2c')">
+            <input type="checkbox" id="tier2c">
+            <div>
+                <div class="item-text">🏘️ Tier 2: Country Creek (30-35 doors)</div>
+                <div class="item-time">Week 2 target</div>
+            </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this, 'tier2d')">
+            <input type="checkbox" id="tier2d">
+            <div>
+                <div class="item-text">🏘️ Tier 2: Westglen Village & Woods (40-50 doors)</div>
+                <div class="item-time">Week 2 target</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" style="margin-top:1rem">
+        <h3>📊 Results Tracker</h3>
+        <p style="margin-bottom:0.75rem">Track your canvassing results here. Updates save automatically.</p>
+
+        <div class="metric-row">
+            <span class="metric-label">🚪 Doors Hit (flyers dropped)</span>
+            <input type="number" class="metric-input" id="metric-doors" value="0" onchange="saveMetrics()">
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">🗣️ Face-to-Face Conversations</span>
+            <input type="number" class="metric-input" id="metric-convos" value="0" onchange="saveMetrics()">
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">📱 Phone Numbers Collected</span>
+            <input type="number" class="metric-input" id="metric-phones" value="0" onchange="saveMetrics()">
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">📞 Calls/Texts Received</span>
+            <input type="number" class="metric-input" id="metric-responses" value="0" onchange="saveMetrics()">
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">📋 Quotes Sent</span>
+            <input type="number" class="metric-input" id="metric-quotes" value="0" onchange="saveMetrics()">
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">✅ New Customers Signed</span>
+            <input type="number" class="metric-input" id="metric-customers" value="0" onchange="saveMetrics()">
+        </div>
+        <div class="metric-row">
+            <span class="metric-label">🌱 Spring Cleanups Booked</span>
+            <input type="number" class="metric-input" id="metric-cleanups" value="0" onchange="saveMetrics()">
+        </div>
+
+        <div id="conversion-stats" style="margin-top:1rem; padding:1rem; background:var(--bg3); border-radius:8px;">
+            <p style="font-size:0.8rem; color:var(--text3)">Conversion stats will appear as you enter data</p>
+        </div>
+    </div>
+</div>
+
+</div><!-- end content -->
+
+<script>
+// Tab switching
+function showTab(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+}
+
+// Copy text
+function copyText(btn) {
+    const text = btn.parentElement.querySelector('p').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    });
+}
+
+// Checklist persistence
+function toggleCheck(item, id) {
+    const cb = item.querySelector('input[type="checkbox"]');
+    cb.checked = !cb.checked;
+    item.classList.toggle('done', cb.checked);
+    saveChecklist();
+}
+
+function saveChecklist() {
+    const state = {};
+    document.querySelectorAll('.checklist-item input[type="checkbox"]').forEach(cb => {
+        state[cb.id] = cb.checked;
+    });
+    localStorage.setItem('tt-canvass-checklist', JSON.stringify(state));
+}
+
+function loadChecklist() {
+    try {
+        const state = JSON.parse(localStorage.getItem('tt-canvass-checklist') || '{}');
+        Object.entries(state).forEach(([id, checked]) => {
+            const cb = document.getElementById(id);
+            if (cb) {
+                cb.checked = checked;
+                if (checked) cb.closest('.checklist-item').classList.add('done');
+            }
+        });
+    } catch(e) {}
+}
+
+// Metrics persistence
+function saveMetrics() {
+    const metrics = {};
+    document.querySelectorAll('.metric-input').forEach(input => {
+        metrics[input.id] = parseInt(input.value) || 0;
+    });
+    localStorage.setItem('tt-canvass-metrics', JSON.stringify(metrics));
+    updateConversionStats(metrics);
+}
+
+function loadMetrics() {
+    try {
+        const metrics = JSON.parse(localStorage.getItem('tt-canvass-metrics') || '{}');
+        Object.entries(metrics).forEach(([id, val]) => {
+            const el = document.getElementById(id);
+            if (el) el.value = val;
+        });
+        updateConversionStats(metrics);
+    } catch(e) {}
+}
+
+function updateConversionStats(m) {
+    const doors = m['metric-doors'] || 0;
+    const responses = m['metric-responses'] || 0;
+    const customers = m['metric-customers'] || 0;
+    const cleanups = m['metric-cleanups'] || 0;
+    const el = document.getElementById('conversion-stats');
+    
+    if (doors === 0) {
+        el.innerHTML = '<p style="font-size:0.8rem;color:var(--text3)">Conversion stats will appear as you enter data</p>';
+        return;
+    }
+
+    const responseRate = ((responses / doors) * 100).toFixed(1);
+    const closeRate = responses > 0 ? ((customers / responses) * 100).toFixed(1) : 0;
+    const monthlyRev = customers * 95;
+    const cleanupRev = cleanups * 149;
+    const annualRev = (monthlyRev * 12) + cleanupRev;
+
+    el.innerHTML = `
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem">
+            <div><span style="color:var(--text2);font-size:0.75rem">Response Rate</span><br><strong style="color:var(--orange)">${responseRate}%</strong></div>
+            <div><span style="color:var(--text2);font-size:0.75rem">Close Rate</span><br><strong style="color:var(--green)">${closeRate}%</strong></div>
+            <div><span style="color:var(--text2);font-size:0.75rem">New Monthly Rev</span><br><strong style="color:var(--blue)">$${monthlyRev}/mo</strong></div>
+            <div><span style="color:var(--text2);font-size:0.75rem">Proj. Annual Value</span><br><strong style="color:var(--yellow)">$${annualRev.toLocaleString()}</strong></div>
+        </div>
+    `;
+}
+
+// Init
+loadChecklist();
+loadMetrics();
+</script>
+
+</body>
+</html>
