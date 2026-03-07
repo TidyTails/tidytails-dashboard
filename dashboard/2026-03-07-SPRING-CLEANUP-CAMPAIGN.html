@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌱 Spring Cleanup Campaign Kit — Tidy Tails STL</title>
+<style>
+:root {
+  --bg: #0a0e17;
+  --surface: #131824;
+  --surface2: #1a2030;
+  --surface3: #212838;
+  --green: #34d399;
+  --green-dim: #059669;
+  --green-bg: rgba(52,211,153,0.08);
+  --yellow: #fbbf24;
+  --yellow-bg: rgba(251,191,36,0.08);
+  --orange: #fb923c;
+  --orange-bg: rgba(251,146,60,0.08);
+  --blue: #60a5fa;
+  --blue-bg: rgba(96,165,250,0.08);
+  --pink: #f472b6;
+  --pink-bg: rgba(244,114,182,0.08);
+  --red: #ef4444;
+  --text: #e2e8f0;
+  --text2: #94a3b8;
+  --text3: #64748b;
+  --border: #1e293b;
+  --border2: #334155;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; line-height: 1.6; }
+
+/* Header */
+.hero {
+  background: linear-gradient(135deg, #0a2e1a 0%, #0a0e17 40%, #0d1a2e 100%);
+  padding: 2.5rem 1.5rem 2rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(ellipse at 30% 50%, rgba(52,211,153,0.05) 0%, transparent 50%),
+              radial-gradient(ellipse at 70% 50%, rgba(96,165,250,0.04) 0%, transparent 50%);
+  animation: drift 20s ease-in-out infinite;
+}
+@keyframes drift { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-3%,2%); } }
+.hero h1 { font-size: 2rem; font-weight: 800; position: relative; z-index: 1; }
+.hero h1 .accent { color: var(--green); }
+.hero .sub { color: var(--text2); font-size: 1rem; margin-top: 0.5rem; position: relative; z-index: 1; }
+.hero .badge { display: inline-block; background: var(--green-bg); border: 1px solid var(--green-dim); color: var(--green); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-top: 0.8rem; position: relative; z-index: 1; }
+
+/* Nav Tabs */
+.tabs {
+  display: flex;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex: none;
+  padding: 0.8rem 1.2rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text3);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.2s;
+  user-select: none;
+}
+.tab:hover { color: var(--text2); background: var(--surface2); }
+.tab.active { color: var(--green); border-bottom-color: var(--green); }
+
+/* Panels */
+.panel { display: none; padding: 1.5rem; max-width: 900px; margin: 0 auto; }
+.panel.active { display: block; }
+.panel h2 { font-size: 1.3rem; margin-bottom: 0.3rem; }
+.panel h2 .emoji { margin-right: 0.3rem; }
+.panel .intro { color: var(--text2); font-size: 0.9rem; margin-bottom: 1.5rem; }
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.2s;
+}
+.card:hover { border-color: var(--border2); }
+.card h3 { font-size: 1rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+.card p, .card li { font-size: 0.9rem; color: var(--text2); }
+.card ul { padding-left: 1.2rem; }
+.card li { margin-bottom: 0.3rem; }
+
+/* Copy blocks */
+.copy-block {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0.8rem 0;
+  position: relative;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  color: var(--text);
+}
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  padding: 0.3rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.copy-btn:hover { background: var(--green-bg); color: var(--green); border-color: var(--green-dim); }
+.copy-btn.copied { background: var(--green-bg); color: var(--green); border-color: var(--green-dim); }
+
+/* Pricing table */
+.price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 1rem 0; }
+.price-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s;
+}
+.price-card:hover { border-color: var(--green-dim); transform: translateY(-2px); }
+.price-card.featured { border-color: var(--green); background: linear-gradient(180deg, rgba(52,211,153,0.06) 0%, var(--surface) 100%); }
+.price-card .tier { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text3); margin-bottom: 0.3rem; }
+.price-card .price { font-size: 2.2rem; font-weight: 800; color: var(--green); }
+.price-card .price span { font-size: 1rem; font-weight: 400; color: var(--text3); }
+.price-card .desc { color: var(--text2); font-size: 0.85rem; margin: 0.5rem 0 1rem; }
+.price-card ul { text-align: left; list-style: none; padding: 0; }
+.price-card li { padding: 0.3rem 0; font-size: 0.85rem; color: var(--text2); }
+.price-card li::before { content: '✓'; color: var(--green); font-weight: 700; margin-right: 0.5rem; }
+.price-card.featured .tier { color: var(--green); }
+.star-badge { display: inline-block; background: var(--green); color: #000; font-size: 0.7rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 10px; margin-left: 0.3rem; }
+
+/* Stats */
+.stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.8rem; margin: 1rem 0; }
+.stat {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+.stat .val { font-size: 1.6rem; font-weight: 800; }
+.stat .label { font-size: 0.75rem; color: var(--text3); margin-top: 0.15rem; }
+.stat.green .val { color: var(--green); }
+.stat.yellow .val { color: var(--yellow); }
+.stat.blue .val { color: var(--blue); }
+.stat.orange .val { color: var(--orange); }
+
+/* Tags */
+.tag { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600; margin: 0.15rem; }
+.tag-green { background: var(--green-bg); color: var(--green); }
+.tag-yellow { background: var(--yellow-bg); color: var(--yellow); }
+.tag-blue { background: var(--blue-bg); color: var(--blue); }
+.tag-orange { background: var(--orange-bg); color: var(--orange); }
+.tag-pink { background: var(--pink-bg); color: var(--pink); }
+
+/* Checklist */
+.checklist { list-style: none; padding: 0; }
+.checklist li {
+  display: flex; align-items: flex-start; gap: 0.6rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist input[type="checkbox"] {
+  margin-top: 0.2rem;
+  accent-color: var(--green);
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+.checklist .time { color: var(--text3); font-size: 0.78rem; margin-left: auto; white-space: nowrap; }
+
+/* Platform colors */
+.fb { color: #1877f2; }
+.nd { color: #8bc53f; }
+.ig { color: #e1306c; }
+.cl { color: #cc6633; }
+.txt { color: #34d399; }
+.em { color: #60a5fa; }
+
+/* Timeline */
+.timeline { position: relative; padding-left: 1.5rem; }
+.timeline::before { content: ''; position: absolute; left: 0.5rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: 1.5rem; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1.15rem;
+  top: 0.4rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--green);
+  border: 2px solid var(--bg);
+}
+.timeline-item.pending::before { background: var(--text3); }
+.timeline-item h4 { font-size: 0.9rem; margin-bottom: 0.2rem; }
+.timeline-item p { font-size: 0.85rem; color: var(--text2); }
+
+/* ROI calculator */
+.calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+.calc-input label { display: block; font-size: 0.8rem; color: var(--text3); margin-bottom: 0.3rem; }
+.calc-input input, .calc-input select {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.6rem;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+.calc-result {
+  background: var(--green-bg);
+  border: 1px solid var(--green-dim);
+  border-radius: 10px;
+  padding: 1.2rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+.calc-result .big { font-size: 2rem; font-weight: 800; color: var(--green); }
+.calc-result .desc { font-size: 0.85rem; color: var(--text2); }
+
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.5rem; }
+  .calc-grid { grid-template-columns: 1fr; }
+  .price-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🌱 <span class="accent">Spring Cleanup</span> Campaign Kit</h1>
+  <p class="sub">Everything TJ needs to sell spring cleanups this weekend</p>
+  <div class="badge">🎯 Goal: 10 Spring Cleanups → 3-4 New Recurring Customers</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" data-tab="overview">📊 Overview</div>
+  <div class="tab" data-tab="pricing">💰 Pricing</div>
+  <div class="tab" data-tab="social">📱 Social Posts</div>
+  <div class="tab" data-tab="texts">💬 Text Scripts</div>
+  <div class="tab" data-tab="nextdoor">🏘️ Nextdoor</div>
+  <div class="tab" data-tab="craigslist">📋 Craigslist</div>
+  <div class="tab" data-tab="flyer">📄 Door Flyer</div>
+  <div class="tab" data-tab="execute">✅ Execute</div>
+</div>
+
+<!-- ========== OVERVIEW ========== -->
+<div class="panel active" id="overview">
+  <h2><span class="emoji">📊</span> Campaign Overview</h2>
+  <p class="intro">Spring cleanup is the #1 entry point to recurring customers. 25-35% of one-time cleanup customers convert to weekly service. Here's the math and the plan.</p>
+
+  <div class="stat-row">
+    <div class="stat green"><div class="val">$149</div><div class="label">Per Cleanup</div></div>
+    <div class="stat yellow"><div class="val">10</div><div class="label">Target Cleanups</div></div>
+    <div class="stat blue"><div class="val">$1,490</div><div class="label">Spring Revenue</div></div>
+    <div class="stat orange"><div class="val">3-4</div><div class="label">New Recurring</div></div>
+  </div>
+
+  <div class="card">
+    <h3>🎯 Why This Campaign Matters</h3>
+    <ul>
+      <li><strong>Timing is perfect:</strong> 4-5 months of winter poop buildup in every yard in STL</li>
+      <li><strong>Low barrier entry:</strong> One-time cleanup is an easy yes vs. monthly commitment</li>
+      <li><strong>Conversion pipeline:</strong> 25-35% of spring cleanup customers become recurring (industry data)</li>
+      <li><strong>Revenue math:</strong> 10 cleanups = $1,490 now + 3 new recurring = $2,520/year ongoing</li>
+      <li><strong>Zero competition on Craigslist:</strong> Only "Fido Turd Burglar" is posting — you OWN this channel</li>
+      <li><strong>Nextdoor goldmine:</strong> Spring "who does yard cleanup?" posts are starting right now</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📅 Campaign Timeline</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>THIS WEEKEND (Mar 8-9)</h4>
+        <p>Post on FB, Nextdoor, Craigslist. Text existing customers for referrals. Door-to-door in target neighborhoods.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>WEEK 1 (Mar 10-14)</h4>
+        <p>Follow up on leads. Post in FB neighborhood groups. Schedule first spring cleanups. Ask for reviews after completion.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>WEEK 2-3 (Mar 15-28)</h4>
+        <p>Repost ads (refresh copy). Upsell completed cleanups to recurring. Nextdoor engagement blitz. Target 10 total cleanups.</p>
+      </div>
+      <div class="timeline-item pending">
+        <h4>APRIL+ (Ongoing)</h4>
+        <p>Convert spring customers to recurring. Ask every satisfied customer for a Google review. Referral incentives.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🧮 ROI Calculator</h3>
+    <div class="calc-grid">
+      <div class="calc-input">
+        <label>Number of Spring Cleanups</label>
+        <input type="number" id="calc-cleanups" value="10" min="1" max="50" oninput="calcROI()">
+      </div>
+      <div class="calc-input">
+        <label>Price Per Cleanup</label>
+        <input type="number" id="calc-price" value="149" min="50" max="300" oninput="calcROI()">
+      </div>
+      <div class="calc-input">
+        <label>Conversion Rate to Recurring</label>
+        <select id="calc-rate" onchange="calcROI()">
+          <option value="0.25">25% (Conservative)</option>
+          <option value="0.30" selected>30% (Average)</option>
+          <option value="0.35">35% (Aggressive)</option>
+        </select>
+      </div>
+      <div class="calc-input">
+        <label>Monthly Recurring Price</label>
+        <input type="number" id="calc-monthly" value="95" min="50" max="200" oninput="calcROI()">
+      </div>
+    </div>
+    <div class="calc-result">
+      <div class="big" id="calc-total">$4,910</div>
+      <div class="desc" id="calc-desc">$1,490 from cleanups + $3,420 first-year recurring revenue</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PRICING ========== -->
+<div class="panel" id="pricing">
+  <h2><span class="emoji">💰</span> Spring Cleanup Pricing</h2>
+  <p class="intro">Tiered by yard size and dog count. These prices are 10-20% below competitors but still profitable — the goal is conversion to recurring.</p>
+
+  <div class="price-grid">
+    <div class="price-card">
+      <div class="tier">Small Yard</div>
+      <div class="price">$99</div>
+      <div class="desc">Up to 1/4 acre • 1-2 dogs</div>
+      <ul>
+        <li>Full yard sweep</li>
+        <li>All waste bagged & removed</li>
+        <li>Spot deodorizer spray</li>
+        <li>~45 min service</li>
+      </ul>
+    </div>
+    <div class="price-card featured">
+      <div class="tier">Medium Yard <span class="star-badge">MOST COMMON</span></div>
+      <div class="price">$149</div>
+      <div class="desc">1/4 to 1/2 acre • 1-3 dogs</div>
+      <ul>
+        <li>Full property sweep</li>
+        <li>All waste bagged & removed</li>
+        <li>Full yard deodorizer</li>
+        <li>Before & after text photos</li>
+        <li>~75 min service</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <div class="tier">Large Yard</div>
+      <div class="price">$199</div>
+      <div class="desc">1/2+ acre • 3+ dogs • Heavy buildup</div>
+      <ul>
+        <li>Full property deep clean</li>
+        <li>All waste bagged & removed</li>
+        <li>Premium deodorizer treatment</li>
+        <li>Before & after text photos</li>
+        <li>Priority same-week scheduling</li>
+        <li>~2 hour service</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>💡 Pricing Psychology Tips</h3>
+    <ul>
+      <li><strong>Always quote the middle tier first</strong> — most people pick it (anchoring effect)</li>
+      <li><strong>"That includes removal of everything"</strong> — emphasize they don't touch anything</li>
+      <li><strong>Mention the recurring discount:</strong> "And if you want to keep it clean, weekly service starts at just $70/month"</li>
+      <li><strong>Spring urgency:</strong> "Slots are filling up — I've only got [X] openings left this week"</li>
+      <li><strong>Free deodorizer upgrade</strong> for customers who sign up for recurring on the spot</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🆚 How You Compare</h3>
+    <p>Spring cleanup pricing in STL market:</p>
+    <ul>
+      <li><strong>Doggie Doodies:</strong> Doesn't advertise one-time pricing (recurring only)</li>
+      <li><strong>POOP 911:</strong> ~$100-150 for initial cleanup</li>
+      <li><strong>DoodyCalls:</strong> ~$99-175 initial cleanup</li>
+      <li><strong>National average:</strong> $120-200 for spring cleanup</li>
+      <li><strong>You at $99-199:</strong> ✅ Competitive, room for profit, undercuts the big names</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== SOCIAL POSTS ========== -->
+<div class="panel" id="social">
+  <h2><span class="emoji">📱</span> Ready-to-Post Social Content</h2>
+  <p class="intro">Copy, paste, post. Each one is written in your voice. Rotate through these over the next 2-3 weeks.</p>
+
+  <div class="card">
+    <h3><span class="fb">📘</span> Facebook Post #1 — The Opener</h3>
+    <div class="copy-block" id="fb1">Your backyard survived winter. But did it survive your dog? 🐕💩
+
+5 months of frozen dog poop is now thawing. And it's about to get REAL.
+
+Tidy Tails is booking Spring Cleanups in West County — we come out, clean up every last landmine, bag it, haul it away. You just enjoy your yard again.
+
+🌱 Spring Cleanup — starting at $99
+📍 Ballwin, Manchester, Ellisville, Wildwood, Chesterfield
+📲 Text or call: 314-850-7140
+
+First 5 bookings get a free deodorizer treatment. Don't make your kids play in that. 😅
+
+tidytailsstl.com</div>
+    <button class="copy-btn" onclick="copyText('fb1', this)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3><span class="fb">📘</span> Facebook Post #2 — The Humor Play</h3>
+    <div class="copy-block" id="fb2">Spring to-do list:
+☑️ Open windows
+☑️ Plant flowers
+☐ Deal with 5 months of dog poop in the backyard
+
+Yeah... nobody wants to do that last one. That's literally why I started this business. 😂
+
+Tidy Tails Spring Cleanup:
+✅ We come out, find every single one
+✅ Bag it, haul it, gone forever
+✅ Deodorizer spray so it smells like a yard again
+✅ You never touch a thing
+
+Starting at $99. Text me: 314-850-7140
+
+Serving Ballwin, Manchester, Ellisville, Wildwood, Chesterfield & surrounding areas. 🐕
+
+tidytailsstl.com</div>
+    <button class="copy-btn" onclick="copyText('fb2', this)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3><span class="fb">📘</span> Facebook Post #3 — The Neighborly One</h3>
+    <div class="copy-block" id="fb3">Hey West County 👋
+
+Quick question — when's the last time you actually walked barefoot in your backyard?
+
+If your answer involves the words "before winter" and you have a dog... we should talk.
+
+I'm TJ with Tidy Tails. I do pet waste removal so you don't have to. Spring cleanups are available NOW — I'll get your yard back to zero.
+
+$99 small yards | $149 medium | $199 large
+
+📲 314-850-7140 (text is easiest)
+🌐 tidytailsstl.com
+
+Spots are limited — I'm one guy with a truck and an unreasonable tolerance for poop. 🤷‍♂️</div>
+    <button class="copy-btn" onclick="copyText('fb3', this)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3><span class="ig">📸</span> Instagram Caption — Visual Hook</h3>
+    <div class="copy-block" id="ig1">POV: You let your dog out all winter and pretended the backyard would take care of itself 😬
+
+It didn't. But I will.
+
+Spring Cleanup season is HERE.
+
+🐕 Every pile found & removed
+🗑️ Bagged, hauled, gone
+🌿 Deodorizer spray included
+📸 Before & after photos sent to you
+
+Starting at $99 | West County STL
+Text: 314-850-7140
+
+#springcleaning #dogmom #dogdad #stlouis #petwasteRemoval #westcounty #ballwin #chesterfield #tidytails #springcleanup #dogsofinstagram #yardcleanup #stl</div>
+    <button class="copy-btn" onclick="copyText('ig1', this)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3><span class="ig">📸</span> Instagram Caption — Testimonial Angle</h3>
+    <div class="copy-block" id="ig2">Real text I got from a customer:
+
+"I can finally let my kids play in the backyard again."
+
+That's what this job is about. Not glamorous, definitely not pretty — but damn, it feels good when someone gets their yard back.
+
+🌱 Spring cleanups booking now
+📍 Ballwin • Manchester • Ellisville • Wildwood • Chesterfield
+📲 314-850-7140
+
+One visit. Every pile. Gone. Starting at $99.
+
+#tidytails #stlouis #petwasteRemoval #springcleaning #backyard #dogowners #stlmom #chesterfieldmo #ballwinmo</div>
+    <button class="copy-btn" onclick="copyText('ig2', this)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3>💡 Posting Strategy</h3>
+    <ul>
+      <li><strong>Facebook:</strong> Post #1 TODAY. Post #2 on Monday. Post #3 next Friday. Then repeat with tweaks.</li>
+      <li><strong>Instagram:</strong> Post 1 visual + caption now. Second one mid-week. Use Stories for behind-the-scenes "cleaning a yard" content.</li>
+      <li><strong>FB Groups:</strong> Join Ballwin Community, Manchester MO, Ellisville/Wildwood, Chesterfield MO groups. Post the neighborly version (Post #3) — no hard selling in groups.</li>
+      <li><strong>Best times:</strong> Saturday 9-11 AM, Sunday 10 AM-12 PM, weekdays 7-8 PM</li>
+      <li><strong>Boost budget:</strong> $10/day on Facebook Post #1 for 3 days = ~2,000 local impressions. Target: dog owners within 15 miles.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== TEXT SCRIPTS ========== -->
+<div class="panel" id="texts">
+  <h2><span class="emoji">💬</span> Text Message Scripts</h2>
+  <p class="intro">Ready to send via text. Personalize the name, hit send. These are your highest-conversion channel — people read texts.</p>
+
+  <div class="card">
+    <h3><span class="txt">💬</span> To Existing Customers — Referral Ask</h3>
+    <div class="copy-block" id="txt1">Hey [NAME]! Quick heads up — I'm booking spring cleanups for yards that need a deep reset after winter. If you know anyone whose backyard is looking rough, send them my way? I'll knock $10 off your next month for any referral that books. Thanks! 🙏 - TJ, Tidy Tails</div>
+    <button class="copy-btn" onclick="copyText('txt1', this)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3><span class="txt">💬</span> To Past Quotes Who Didn't Book</h3>
+    <div class="copy-block" id="txt2">Hey [NAME], this is TJ from Tidy Tails. I know we talked a while back about poop scooping. Just wanted to let you know I'm running spring cleanups right now — one-time deep clean, starting at $99. No commitment, just a clean yard. Want me to come take a look this week?</div>
+    <button class="copy-btn" onclick="copyText('txt2', this)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3><span class="txt">💬</span> Cold Text to New Lead</h3>
+    <div class="copy-block" id="txt3">Hi [NAME]! I saw your post about [yard cleanup / pet waste / etc.]. I'm TJ with Tidy Tails — I do pet waste removal in [AREA]. I'm booking spring cleanups right now if you need your yard reset after winter. Starting at $99, I handle everything. Want me to swing by for a quick look?</div>
+    <button class="copy-btn" onclick="copyText('txt3', this)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3><span class="txt">💬</span> Follow-Up After No Response (3 days later)</h3>
+    <div class="copy-block" id="txt4">Hey [NAME], just bumping this up! Spring's here and slots are filling up. No pressure — just don't want you to miss out if you were thinking about it. Text me back whenever 👍 - TJ</div>
+    <button class="copy-btn" onclick="copyText('txt4', this)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3><span class="txt">💬</span> After Completing a Spring Cleanup — Upsell</h3>
+    <div class="copy-block" id="txt5">Hey [NAME]! Your yard is looking 🔥 right now. Hope you enjoy it this weekend! Quick thought — if you want to KEEP it like this, weekly service is just $70/month. I handle everything, you just enjoy a clean yard every week. Let me know if you want to try it out! - TJ</div>
+    <button class="copy-btn" onclick="copyText('txt5', this)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3><span class="txt">💬</span> Review Ask (After positive upsell response or good cleanup)</h3>
+    <div class="copy-block" id="txt6">Hey [NAME], really appreciate the kind words! Would you mind leaving me a quick Google review? It helps a ton as a small business. Here's the link: [GOOGLE_REVIEW_LINK] — even just a sentence or two means the world. Thanks! 🙏</div>
+    <button class="copy-btn" onclick="copyText('txt6', this)">📋 Copy</button>
+  </div>
+</div>
+
+<!-- ========== NEXTDOOR ========== -->
+<div class="panel" id="nextdoor">
+  <h2><span class="emoji">🏘️</span> Nextdoor Posts</h2>
+  <p class="intro">Nextdoor is GOLD for local services. Neighbors trust recommendations from neighbors. Be helpful first, salesy never.</p>
+
+  <div class="card">
+    <h3><span class="nd">🏘️</span> Nextdoor Post #1 — The Helpful Neighbor</h3>
+    <div class="copy-block" id="nd1">Spring yard tip for dog owners 🐕
+
+If you haven't cleaned your backyard since fall... the thaw is revealing some surprises out there. 😅
+
+I run a pet waste removal service here in the area (Tidy Tails) and I'm booking spring cleanups for anyone who wants to start fresh. I come out, find everything, bag it, haul it away. You don't touch a thing.
+
+One-time cleanups starting at $99. Happy to answer any questions!
+
+TJ — 314-850-7140 or tidytailsstl.com</div>
+    <button class="copy-btn" onclick="copyText('nd1', this)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3><span class="nd">🏘️</span> Nextdoor Post #2 — The Question Format</h3>
+    <div class="copy-block" id="nd2">Honest question for dog owners in the neighborhood:
+
+How bad is your backyard right now? 1-10?
+
+I'm TJ, I run Tidy Tails — basically I clean up what your dog leaves behind so you don't have to. Doing spring cleanups this month for anyone who wants a fresh start.
+
+No judgment, no shame — just a clean yard. 😄
+
+DM me or text 314-850-7140</div>
+    <button class="copy-btn" onclick="copyText('nd2', this)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3>💡 Nextdoor Tips</h3>
+    <ul>
+      <li><strong>Respond to EVERY comment</strong> — Nextdoor's algorithm boosts posts with engagement</li>
+      <li><strong>Search for "yard cleanup" and "dog" posts</strong> — comment helpfully on others' posts</li>
+      <li><strong>Post to multiple neighborhoods:</strong> Ballwin, Manchester, Ellisville, Chesterfield, Wildwood</li>
+      <li><strong>Best time:</strong> Saturday morning 8-10 AM (people are looking at their yards)</li>
+      <li><strong>Never argue with commenters</strong> — kill them with kindness, it makes you look professional</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== CRAIGSLIST ========== -->
+<div class="panel" id="craigslist">
+  <h2><span class="emoji">📋</span> Craigslist Ads</h2>
+  <p class="intro">Your only competitor on CL is "Fido Turd Burglar." This is basically free real estate. Post under Services > Household.</p>
+
+  <div class="card">
+    <h3><span class="cl">📋</span> Craigslist Ad #1 — Spring Cleanup Special</h3>
+    <div class="copy-block" id="cl1">🌱 SPRING YARD CLEANUP — Dog Waste Removal (West County STL)
+
+Winter's over. Your yard isn't pretty. Let's fix that.
+
+Tidy Tails does one-time spring cleanups for dog owners in West County:
+
+✅ Full yard sweep — we find EVERYTHING
+✅ All waste bagged and removed (we haul it away)
+✅ Deodorizer spray included
+✅ Before & after photos texted to you
+
+PRICING:
+• Small yard (up to 1/4 acre, 1-2 dogs): $99
+• Medium yard (1/4-1/2 acre, 1-3 dogs): $149
+• Large yard (1/2+ acre, 3+ dogs): $199
+
+AREAS SERVED:
+Ballwin, Manchester, Ellisville, Wildwood, Chesterfield, Kirkwood, Des Peres, Town & Country, Valley Park, Fenton
+
+Weekly service also available starting at $70/month.
+
+Text or call TJ: 314-850-7140
+Website: tidytailsstl.com
+
+Locally owned. Insured. Not a franchise — just a guy who takes this crappy job seriously. 💪🐕</div>
+    <button class="copy-btn" onclick="copyText('cl1', this)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3>💡 Craigslist Tips</h3>
+    <ul>
+      <li><strong>Post under:</strong> Services > Household</li>
+      <li><strong>Repost every 48 hours</strong> (CL allows it — delete old, post fresh)</li>
+      <li><strong>Add 2-3 photos</strong> if possible (clean yard, your truck/equipment, logo)</li>
+      <li><strong>Title format:</strong> "🌱 Spring Dog Poop Cleanup — $99 — West County STL"</li>
+      <li><strong>Use CL's map feature</strong> to pin your service area</li>
+      <li><strong>Check CL for "yard cleanup" posts</strong> and reply with your service</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== DOOR FLYER ========== -->
+<div class="panel" id="flyer">
+  <h2><span class="emoji">📄</span> Door Hanger / Flyer Copy</h2>
+  <p class="intro">Print these on colored paper (bright green or yellow). Hit 30-50 doors in your target neighborhoods this weekend.</p>
+
+  <div class="card">
+    <h3>📄 Front of Flyer</h3>
+    <div class="copy-block" id="flyer1">🐕 YOUR YARD'S DIRTY SECRET
+
+(We both know what's hiding back there)
+
+TIDY TAILS
+Pet Waste Removal — St. Louis
+
+🌱 SPRING CLEANUP SPECIAL 🌱
+
+We come to your yard.
+Find every pile from winter.
+Bag it. Haul it. Gone.
+
+You never touch a thing.
+
+Starting at $99
+
+📲 Text TJ: 314-850-7140
+🌐 tidytailsstl.com
+
+✅ One-time cleanups
+✅ Weekly service ($70/mo)
+✅ Deodorizer included
+✅ Locally owned & operated
+
+"I started this company because
+nobody should have to step in that." — TJ
+
+FIRST 5 NEIGHBORS TO BOOK
+GET FREE DEODORIZER UPGRADE! 🎉</div>
+    <button class="copy-btn" onclick="copyText('flyer1', this)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3>💡 Door-to-Door Tips</h3>
+    <ul>
+      <li><strong>Target:</strong> Houses with dogs visible (toys in yard, dog door, "beware of dog" sign, barking when you walk by)</li>
+      <li><strong>Best time:</strong> Saturday/Sunday 10 AM - 2 PM</li>
+      <li><strong>Hit neighborhoods you already service</strong> — you're already driving there</li>
+      <li><strong>Leave on door handle, NOT in mailbox</strong> (mailbox = federal offense, seriously)</li>
+      <li><strong>Priority neighborhoods:</strong> Ballwin subdivisions near current customers, Manchester near parks, Ellisville near dog parks</li>
+      <li><strong>Print on bright green or yellow paper</strong> — stands out against white/beige doors</li>
+      <li><strong>If someone answers the door:</strong> "Hey! I'm TJ, I do pet waste removal in the neighborhood. Just dropping off info about our spring cleanup. Have a good one!" — don't hard sell</li>
+      <li><strong>Track which streets you hit</strong> — note it in your phone so you don't overlap</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ========== EXECUTE ========== -->
+<div class="panel" id="execute">
+  <h2><span class="emoji">✅</span> Weekend Execution Checklist</h2>
+  <p class="intro">The plan is worthless without action. Here's your Saturday & Sunday — 2 hours total, maximum impact.</p>
+
+  <div class="card">
+    <h3>🌅 Saturday Morning (1 hour)</h3>
+    <ul class="checklist">
+      <li><input type="checkbox" onchange="saveChecklist()"> <div><strong>Post FB Post #1</strong> on personal page + Tidy Tails page</div> <span class="time">5 min</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"> <div><strong>Post in 2 FB neighborhood groups</strong> (use Post #3 — neighborly tone)</div> <span class="time">10 min</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"> <div><strong>Post Nextdoor #1</strong> in all available neighborhoods</div> <span class="time">5 min</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"> <div><strong>Post Craigslist ad</strong> under Services > Household</div> <span class="time">10 min</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"> <div><strong>Text 3 existing customers</strong> the referral ask script</div> <span class="time">5 min</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"> <div><strong>Text 3 past leads</strong> who didn't book (use "past quotes" script)</div> <span class="time">5 min</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"> <div><strong>Post Instagram caption #1</strong> with a yard photo or your truck</div> <span class="time">5 min</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🌤️ Saturday or Sunday Afternoon (1 hour)</h3>
+    <ul class="checklist">
+      <li><input type="checkbox" onchange="saveChecklist()"> <div><strong>Print 30 flyers</strong> on bright colored paper</div> <span class="time">15 min</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"> <div><strong>Door-to-door: 30 houses</strong> in Ballwin/Manchester neighborhoods</div> <span class="time">45 min</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📊 Week 1 Daily Tasks (15 min/day)</h3>
+    <ul class="checklist">
+      <li><input type="checkbox" onchange="saveChecklist()"> <div><strong>Monday:</strong> Follow up on any weekend leads. Post IG caption #2.</div> <span class="time">15 min</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"> <div><strong>Tuesday:</strong> Post FB Post #2. Check Nextdoor comments, reply to all.</div> <span class="time">15 min</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"> <div><strong>Wednesday:</strong> Repost Craigslist (delete old, post fresh). Text 2 more past leads.</div> <span class="time">15 min</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"> <div><strong>Thursday:</strong> Post Nextdoor #2. Check all DMs/texts.</div> <span class="time">15 min</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"> <div><strong>Friday:</strong> Post FB Post #3. Tally results. Plan Week 2.</div> <span class="time">15 min</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🎯 Success Metrics</h3>
+    <div class="stat-row">
+      <div class="stat green"><div class="val" id="metric-leads">0</div><div class="label">Leads Generated</div></div>
+      <div class="stat yellow"><div class="val" id="metric-booked">0</div><div class="label">Cleanups Booked</div></div>
+      <div class="stat blue"><div class="val" id="metric-done">0</div><div class="label">Cleanups Done</div></div>
+      <div class="stat orange"><div class="val" id="metric-convert">0</div><div class="label">Converted to Recurring</div></div>
+    </div>
+    <div style="margin-top: 0.8rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+      <button onclick="bumpMetric('leads')" style="background:var(--green-bg);color:var(--green);border:1px solid var(--green-dim);padding:0.4rem 0.8rem;border-radius:6px;cursor:pointer;font-size:0.85rem;">+ Lead</button>
+      <button onclick="bumpMetric('booked')" style="background:var(--yellow-bg);color:var(--yellow);border:1px solid rgba(251,191,36,0.3);padding:0.4rem 0.8rem;border-radius:6px;cursor:pointer;font-size:0.85rem;">+ Booked</button>
+      <button onclick="bumpMetric('done')" style="background:var(--blue-bg);color:var(--blue);border:1px solid rgba(96,165,250,0.3);padding:0.4rem 0.8rem;border-radius:6px;cursor:pointer;font-size:0.85rem;">+ Done</button>
+      <button onclick="bumpMetric('convert')" style="background:var(--orange-bg);color:var(--orange);border:1px solid rgba(251,146,60,0.3);padding:0.4rem 0.8rem;border-radius:6px;cursor:pointer;font-size:0.85rem;">+ Recurring</button>
+      <button onclick="resetMetrics()" style="background:var(--surface2);color:var(--text3);border:1px solid var(--border);padding:0.4rem 0.8rem;border-radius:6px;cursor:pointer;font-size:0.85rem;">Reset</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Tab navigation
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+
+// Copy function
+function copyText(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy'; btn.classList.remove('copied'); }, 2000);
+  }).catch(() => {
+    // Fallback
+    const range = document.createRange();
+    range.selectNode(document.getElementById(id));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    window.getSelection().removeAllRanges();
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// ROI Calculator
+function calcROI() {
+  const cleanups = parseInt(document.getElementById('calc-cleanups').value) || 0;
+  const price = parseInt(document.getElementById('calc-price').value) || 0;
+  const rate = parseFloat(document.getElementById('calc-rate').value) || 0;
+  const monthly = parseInt(document.getElementById('calc-monthly').value) || 0;
+  
+  const cleanupRev = cleanups * price;
+  const newRecurring = Math.round(cleanups * rate);
+  const recurringRev = newRecurring * monthly * 12;
+  const total = cleanupRev + recurringRev;
+  
+  document.getElementById('calc-total').textContent = '$' + total.toLocaleString();
+  document.getElementById('calc-desc').textContent = 
+    `$${cleanupRev.toLocaleString()} from cleanups + $${recurringRev.toLocaleString()} first-year recurring (${newRecurring} new customers × $${monthly}/mo)`;
+}
+
+// Checklist persistence
+function saveChecklist() {
+  const checks = [];
+  document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb, i) => {
+    checks[i] = cb.checked;
+  });
+  localStorage.setItem('spring-cleanup-checklist', JSON.stringify(checks));
+}
+
+function loadChecklist() {
+  try {
+    const checks = JSON.parse(localStorage.getItem('spring-cleanup-checklist') || '[]');
+    document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb, i) => {
+      if (checks[i]) cb.checked = true;
+    });
+  } catch(e) {}
+}
+
+// Metrics
+function bumpMetric(key) {
+  const metrics = JSON.parse(localStorage.getItem('spring-cleanup-metrics') || '{"leads":0,"booked":0,"done":0,"convert":0}');
+  metrics[key] = (metrics[key] || 0) + 1;
+  localStorage.setItem('spring-cleanup-metrics', JSON.stringify(metrics));
+  loadMetrics();
+}
+
+function resetMetrics() {
+  if (confirm('Reset all metrics to 0?')) {
+    localStorage.setItem('spring-cleanup-metrics', JSON.stringify({leads:0,booked:0,done:0,convert:0}));
+    loadMetrics();
+  }
+}
+
+function loadMetrics() {
+  const metrics = JSON.parse(localStorage.getItem('spring-cleanup-metrics') || '{"leads":0,"booked":0,"done":0,"convert":0}');
+  document.getElementById('metric-leads').textContent = metrics.leads;
+  document.getElementById('metric-booked').textContent = metrics.booked;
+  document.getElementById('metric-done').textContent = metrics.done;
+  document.getElementById('metric-convert').textContent = metrics.convert;
+}
+
+// Init
+loadChecklist();
+loadMetrics();
+calcROI();
+</script>
+
+</body>
+</html>
