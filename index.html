@@ -3,571 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tidy Tails HQ | Dashboard</title>
+    <title>TJ's Dashboard | Tidy Tails & Backyard Buildings</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0a0a;
-            --bg-secondary: #141414;
-            --bg-card: #1a1a1a;
-            --bg-hover: #242424;
-            --text-primary: #f5f5f5;
-            --text-secondary: #888;
-            --text-muted: #555;
-            --accent-orange: #ff6b35;
-            --accent-green: #10b981;
-            --accent-yellow: #fbbf24;
-            --accent-blue: #3b82f6;
-            --accent-purple: #8b5cf6;
-            --accent-red: #ef4444;
-            --border-color: #2a2a2a;
-            --shadow: 0 4px 24px rgba(0,0,0,0.4);
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
         }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            min-height: 100vh;
-            line-height: 1.5;
-        }
-
-        /* Header */
         .header {
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border-color);
-            padding: 1.5rem 2rem;
-            text-align: center;
+            background: var(--bg2); border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem; text-align: center;
         }
-        .header h1 {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.5px;
+        .header h1 { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.03em; }
+        .header h1 span { color: var(--orange); }
+        .header p { color: var(--text2); font-size: 0.85rem; margin-top: 0.25rem; }
+        .header-links { display: flex; justify-content: center; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap; }
+        .header-links a {
+            padding: 0.4rem 0.9rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600;
+            text-decoration: none; transition: all 0.2s;
         }
-        .header h1 span { color: var(--accent-orange); }
-        .header .subtitle {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-top: 0.25rem;
-        }
-        .header .updated {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            margin-top: 0.5rem;
-        }
+        .h-link-green { background: rgba(16,185,129,0.15); color: var(--green); }
+        .h-link-orange { background: rgba(255,107,53,0.15); color: var(--orange); }
+        .h-link-blue { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .header-links a:hover { transform: translateY(-1px); filter: brightness(1.2); }
 
-        /* Main */
-        .main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem 4rem;
-        }
+        .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
 
-        /* Section */
-        .section {
-            margin-bottom: 2.5rem;
-        }
+        .section { margin-bottom: 2rem; }
         .section-header {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-color);
+            display: flex; align-items: center; gap: 0.5rem;
+            margin-bottom: 1rem; padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
         }
-        .section-header .emoji { font-size: 1.4rem; }
-        .section-header h2 {
-            font-size: 1.25rem;
-            font-weight: 600;
-        }
+        .section-header h2 { font-size: 1.1rem; font-weight: 700; }
         .section-header .count {
-            background: var(--bg-card);
-            color: var(--text-secondary);
-            font-size: 0.75rem;
-            padding: 2px 8px;
-            border-radius: 10px;
-            margin-left: auto;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+            background: var(--bg4); color: var(--text2); padding: 0.15rem 0.5rem;
+            border-radius: 4px;
         }
 
-        /* Card Grid */
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1rem;
-        }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
 
         .card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 1.25rem;
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: all 0.2s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1rem; transition: all 0.2s; text-decoration: none; color: var(--text);
+            display: block;
         }
-        .card:hover {
-            background: var(--bg-hover);
-            border-color: var(--accent-orange);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-        .card .card-icon {
-            font-size: 1.5rem;
-        }
-        .card .card-title {
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        .card .card-desc {
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-        .card .card-badge {
-            display: inline-block;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            padding: 2px 8px;
-            border-radius: 4px;
-            width: fit-content;
-        }
-        .badge-tool { background: rgba(59,130,246,0.15); color: var(--accent-blue); }
-        .badge-report { background: rgba(255,107,53,0.15); color: var(--accent-orange); }
-        .badge-video { background: rgba(139,92,246,0.15); color: var(--accent-purple); }
-        .badge-pdf { background: rgba(16,185,129,0.15); color: var(--accent-green); }
-        .badge-site { background: rgba(251,191,36,0.15); color: var(--accent-yellow); }
-        .badge-research { background: rgba(239,68,68,0.15); color: var(--accent-red); }
-        .badge-ad { background: rgba(251,191,36,0.15); color: var(--accent-yellow); }
+        .card:hover { border-color: var(--orange); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(255,107,53,0.1); }
+        .card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.5rem; }
+        .card-desc { color: var(--text2); font-size: 0.8rem; line-height: 1.4; }
+        .card-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text3); margin-top: 0.5rem; }
 
-        /* Website cards */
-        .card-external::after {
-            content: '↗';
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            color: var(--text-muted);
-            font-size: 0.9rem;
+        .badge {
+            display: inline-block; padding: 0.1rem 0.4rem; border-radius: 4px;
+            font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
         }
-        .card-external { position: relative; }
+        .badge-tool { background: rgba(255,107,53,0.15); color: var(--orange); }
+        .badge-report { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .badge-video { background: rgba(168,85,247,0.15); color: var(--purple); }
+        .badge-pdf { background: rgba(239,68,68,0.15); color: var(--red); }
+        .badge-site { background: rgba(16,185,129,0.15); color: var(--green); }
+        .badge-new { background: rgba(251,191,36,0.15); color: var(--yellow); }
 
-        /* Quick Links Bar */
-        .quick-links {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            margin-bottom: 2rem;
-        }
-        .quick-link {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 0.6rem 1.2rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.2s;
-        }
-        .quick-link:hover {
-            background: var(--accent-orange);
-            border-color: var(--accent-orange);
-            color: #fff;
-        }
+        .divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
 
-        /* Two Column Layout for Tidy Tails + Sheds */
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-        @media (max-width: 768px) {
-            .two-col { grid-template-columns: 1fr; }
-            .card-grid { grid-template-columns: 1fr; }
-        }
+        .footer { text-align: center; padding: 2rem; color: var(--text3); font-size: 0.75rem; }
 
-        /* Divider */
-        .divider {
-            border: none;
-            border-top: 1px solid var(--border-color);
-            margin: 2rem 0;
+        @media (max-width: 600px) {
+            .grid { grid-template-columns: 1fr; }
+            .header h1 { font-size: 1.35rem; }
         }
     </style>
 </head>
 <body>
-
-<div class="header">
-    <h1>🐕 Tidy Tails <span>HQ</span></h1>
-    <div class="subtitle">Dashboard &amp; Deliverables Hub</div>
-    <div class="updated">Last updated: March 6, 2026</div>
-</div>
-
-<div class="main">
-
-    <!-- Quick Links -->
-    <div class="quick-links">
-        <a class="quick-link" href="#tools">🔧 Tools</a>
-        <a class="quick-link" href="#reports">📊 Reports</a>
-        <a class="quick-link" href="#research">🔬 Research</a>
-        <a class="quick-link" href="#videos">🎬 Videos</a>
-        <a class="quick-link" href="#ads">🎨 Ad Creative</a>
-        <a class="quick-link" href="#pdfs">📄 PDFs</a>
-        <a class="quick-link" href="#websites">🌐 Websites</a>
-    </div>
-
-    <!-- Tools & CRMs -->
-    <div class="section" id="tools">
-        <div class="section-header">
-            <span class="emoji">🔧</span>
-            <h2>Tools & CRMs</h2>
-            <span class="count">2</span>
-        </div>
-        <div class="card-grid">
-            <a class="card" href="crm/index.html">
-                <span class="card-badge badge-tool">CRM</span>
-                <span class="card-icon">📋</span>
-                <span class="card-title">Shed Sales CRM</span>
-                <span class="card-desc">TuffShed pipeline tracker — leads, follow-ups, and deal stages</span>
-            </a>
-            <a class="card" href="jamie-outreach-hub.html">
-                <span class="card-badge badge-tool">Hub</span>
-                <span class="card-icon">📞</span>
-                <span class="card-title">Jamie's Outreach Hub</span>
-                <span class="card-desc">Call scripts, lead lists, objection handling, and outreach tips</span>
-            </a>
+    <div class="header">
+        <h1>🏠 TJ's <span>Command Center</span></h1>
+        <p>Everything in one place — tools, reports, videos, ads</p>
+        <div class="header-links">
+            <a href="https://tidytailsstl.com" target="_blank" class="h-link-green">🐕 Tidy Tails Website</a>
+            <a href="https://backyardbuildingsstl.com" target="_blank" class="h-link-orange">🏠 Backyard Buildings</a>
+            <a href="https://g.page/r/Ce_hqIHanGLvEAE/review" target="_blank" class="h-link-blue">⭐ Google Reviews</a>
         </div>
     </div>
 
-    <!-- Reports & Briefings -->
-    <div class="section" id="reports">
-        <div class="section-header">
-            <span class="emoji">📊</span>
-            <h2>Reports & Briefings</h2>
-            <span class="count">7</span>
+    <div class="container">
+
+        <!-- TOOLS & CRMS -->
+        <div class="section">
+            <div class="section-header">
+                <h2>🔧 Tools & CRMs</h2>
+                <span class="count">2 tools</span>
+            </div>
+            <div class="grid">
+                <a href="crm/index.html" class="card">
+                    <div class="card-title"><span class="badge badge-tool">CRM</span> Shed Sales CRM</div>
+                    <div class="card-desc">Pipeline board, screenshot OCR upload, lead tracking, follow-up alerts, playbooks</div>
+                    <div class="card-meta">📸 Now with multi-screenshot OCR upload</div>
+                </a>
+                <a href="jamie-outreach-hub.html" class="card">
+                    <div class="card-title"><span class="badge badge-tool">HUB</span> Jamie's Outreach Hub</div>
+                    <div class="card-desc">43 commercial leads, cold call scripts, objection handling, tracking tips</div>
+                    <div class="card-meta">📞 314-850-7140 • Scripts ready to copy</div>
+                </a>
+            </div>
         </div>
-        <div class="card-grid">
-            <a class="card" href="docs/MORNING_BRIEFING_2026-03-06.html">
-                <span class="card-badge badge-report">Briefing</span>
-                <span class="card-icon">☀️</span>
-                <span class="card-title">Morning Briefing — Mar 6</span>
-                <span class="card-desc">Daily priorities, metrics, and action items</span>
-            </a>
-            <a class="card" href="docs/SHED_ADS_2026-03-06.html">
-                <span class="card-badge badge-report">Ads</span>
-                <span class="card-icon">🏠</span>
-                <span class="card-title">Shed Ads — Mar 6</span>
-                <span class="card-desc">Today's shed ad copy and creative briefs</span>
-            </a>
-            <a class="card" href="2026-03-06-SPRING-REFERRAL-BLITZ.html">
-                <span class="card-badge badge-report">Playbook</span>
-                <span class="card-icon">🚀</span>
-                <span class="card-title">Spring Referral Blitz</span>
-                <span class="card-desc">Referral campaign strategy for spring push</span>
-            </a>
-            <a class="card" href="2026-03-06-SPRING-SHED-PLAYBOOK.html">
-                <span class="card-badge badge-report">Playbook</span>
-                <span class="card-icon">📖</span>
-                <span class="card-title">Spring Shed Playbook</span>
-                <span class="card-desc">Complete shed sales playbook for spring season</span>
-            </a>
-            <a class="card" href="dashboard/2026-03-06-DIRECTORY-LISTING-BLITZ.html">
-                <span class="card-badge badge-report">Blitz</span>
-                <span class="card-icon">📍</span>
-                <span class="card-title">Directory Listing Blitz</span>
-                <span class="card-desc">Local directory submissions strategy</span>
-            </a>
-            <a class="card" href="dashboard/2026-03-07-WEEKEND-ACTION-PLAN.html">
-                <span class="card-badge badge-report">Plan</span>
-                <span class="card-icon">📅</span>
-                <span class="card-title">Weekend Action Plan — Mar 7</span>
-                <span class="card-desc">Weekend priorities and task list</span>
-            </a>
-            <a class="card" href="dashboard/docs/MORNING_BRIEFING_2026-03-06.html">
-                <span class="card-badge badge-report">Briefing</span>
-                <span class="card-icon">☀️</span>
-                <span class="card-title">Morning Briefing (Dashboard) — Mar 6</span>
-                <span class="card-desc">Dashboard copy of morning briefing</span>
-            </a>
+
+        <!-- REPORTS & PLAYBOOKS -->
+        <div class="section">
+            <div class="section-header">
+                <h2>📊 Reports & Playbooks</h2>
+                <span class="count">6 reports</span>
+            </div>
+            <div class="grid">
+                <a href="docs/MORNING_BRIEFING_2026-03-06.html" class="card">
+                    <div class="card-title"><span class="badge badge-report">BRIEFING</span> Morning Briefing</div>
+                    <div class="card-desc">Daily priorities, tasks, and business updates</div>
+                    <div class="card-meta">Mar 6, 2026</div>
+                </a>
+                <a href="docs/SHED_ADS_2026-03-06.html" class="card">
+                    <div class="card-title"><span class="badge badge-report">ADS</span> Shed Ad Copy</div>
+                    <div class="card-desc">Facebook Marketplace listings and Instagram captions for sheds</div>
+                    <div class="card-meta">Mar 6, 2026</div>
+                </a>
+                <a href="2026-03-06-SPRING-REFERRAL-BLITZ.html" class="card">
+                    <div class="card-title"><span class="badge badge-new">NEW</span> Spring Referral Blitz</div>
+                    <div class="card-desc">Complete referral campaign — texts, Nextdoor posts, Instagram, tracking</div>
+                    <div class="card-meta">Mar 6, 2026</div>
+                </a>
+                <a href="2026-03-06-SPRING-SHED-PLAYBOOK.html" class="card">
+                    <div class="card-title"><span class="badge badge-new">NEW</span> Spring Shed Playbook</div>
+                    <div class="card-desc">Seasonal shed sales strategy and promotion guide</div>
+                    <div class="card-meta">Mar 6, 2026</div>
+                </a>
+                <a href="research/2026-03-06-GOOGLE-REVIEW-SYSTEM.html" class="card">
+                    <div class="card-title"><span class="badge badge-report">SYSTEM</span> Google Review System</div>
+                    <div class="card-desc">Automated review request workflow and templates</div>
+                    <div class="card-meta">Mar 6, 2026</div>
+                </a>
+                <a href="research/2026-03-06-STL-COMPETITOR-INTELLIGENCE.html" class="card">
+                    <div class="card-title"><span class="badge badge-report">INTEL</span> STL Competitor Intelligence</div>
+                    <div class="card-desc">Full competitive landscape — pricing, territories, threats</div>
+                    <div class="card-meta">Mar 6, 2026</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- VIDEOS -->
+        <div class="section">
+            <div class="section-header">
+                <h2>🎬 Video Ads</h2>
+                <span class="count">16 videos</span>
+            </div>
+            <div class="grid">
+                <div style="grid-column:1/-1; padding:0.5rem 0;">
+                    <div style="color:var(--orange); font-weight:700; font-size:0.85rem; margin-bottom:0.5rem;">🐕 Tidy Tails Ads</div>
+                </div>
+                <a href="remotion-videos/out/tidy-tails-brand.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-video">VIDEO</span> Brand Story</div>
+                    <div class="card-desc">Tidy Tails brand intro motion graphics</div>
+                    <div class="card-meta">1.2MB • Remotion</div>
+                </a>
+                <a href="remotion-videos/out/tidy-tails-transformation.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-video">VIDEO</span> Before/After Transformation</div>
+                    <div class="card-desc">Before vs after yard cleanup animation</div>
+                    <div class="card-meta">670KB • Remotion</div>
+                </a>
+                <a href="remotion-videos/out/PoopTimeline.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-new">NEW</span> Poop Timeline</div>
+                    <div class="card-desc">"Which yard is yours?" — 7-day poop accumulation</div>
+                    <div class="card-meta">561KB • Remotion</div>
+                </a>
+                <a href="remotion-videos/out/CSIShot.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-new">NEW</span> CSI Shot</div>
+                    <div class="card-desc">Crime scene evidence markers on poop</div>
+                    <div class="card-meta">876KB • Remotion</div>
+                </a>
+                <a href="remotion-videos/out/SmellOVision.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-new">NEW</span> Smell-O-Vision</div>
+                    <div class="card-desc">Beautiful morning gone wrong — SQUISH</div>
+                    <div class="card-meta">562KB • Remotion</div>
+                </a>
+                <a href="remotion-videos/out/FakeTextThread.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-new">NEW</span> Fake Text Thread</div>
+                    <div class="card-desc">iMessage conversation about a messy backyard</div>
+                    <div class="card-meta">612KB • Remotion</div>
+                </a>
+                <a href="remotion-videos/out/GoogleMapZoom.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-new">NEW</span> Google Maps Zoom</div>
+                    <div class="card-desc">Satellite zoom into a messy yard — GPS pin drop</div>
+                    <div class="card-meta">611KB • Remotion</div>
+                </a>
+                <a href="remotion-videos/out/MathProblem.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-new">NEW</span> Math Problem</div>
+                    <div class="card-desc">Chalkboard math — 1 dog × 7 days = call Tidy Tails</div>
+                    <div class="card-meta">670KB • Remotion</div>
+                </a>
+                <a href="remotion-videos/out/DogReview.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-new">NEW</span> Dog Review</div>
+                    <div class="card-desc">5-star review from the dog's perspective</div>
+                    <div class="card-meta">829KB • Remotion</div>
+                </a>
+                <a href="remotion-videos/out/RealEstateAngle.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-new">NEW</span> Real Estate Angle</div>
+                    <div class="card-desc">Clean yard = higher home value</div>
+                    <div class="card-meta">709KB • Remotion</div>
+                </a>
+                <a href="remotion-videos/out/SixtySplitRace.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-new">NEW</span> 60-Second Race</div>
+                    <div class="card-desc">You vs the pro — split screen timer</div>
+                    <div class="card-meta">571KB • Remotion</div>
+                </a>
+                <a href="remotion-videos/out/UnboxingParody.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-new">NEW</span> Unboxing Parody</div>
+                    <div class="card-desc">Dramatic unboxing of poop scooping gear</div>
+                    <div class="card-meta">968KB • Remotion</div>
+                </a>
+
+                <div style="grid-column:1/-1; padding:0.5rem 0; margin-top:0.5rem;">
+                    <div style="color:var(--orange); font-weight:700; font-size:0.85rem; margin-bottom:0.5rem;">🏠 Shed & Consulting Ads</div>
+                </div>
+                <a href="remotion-videos/out/shed-math.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-video">VIDEO</span> Shed Math</div>
+                    <div class="card-desc">Cost breakdown — pennies a day for 20+ years</div>
+                    <div class="card-meta">825KB • Remotion</div>
+                </a>
+                <a href="remotion-videos/out/shed-spring.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-video">VIDEO</span> Spring Shed Sale</div>
+                    <div class="card-desc">Seasonal shed promotion</div>
+                    <div class="card-meta">718KB • Remotion</div>
+                </a>
+                <a href="remotion-videos/out/consulting-packages.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-video">VIDEO</span> Consulting Packages</div>
+                    <div class="card-desc">AI consulting service tiers</div>
+                    <div class="card-meta">1.6MB • Remotion</div>
+                </a>
+                <a href="remotion-videos/out/consulting-problem.mp4" class="card">
+                    <div class="card-title"><span class="badge badge-video">VIDEO</span> Consulting Problem</div>
+                    <div class="card-desc">The problem AI consulting solves</div>
+                    <div class="card-meta">716KB • Remotion</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- PDFs -->
+        <div class="section">
+            <div class="section-header">
+                <h2>📄 PDFs & Documents</h2>
+                <span class="count">2 PDFs</span>
+            </div>
+            <div class="grid">
+                <a href="pdfs/MORNING_BRIEFING_2026-03-06.pdf" class="card">
+                    <div class="card-title"><span class="badge badge-pdf">PDF</span> Morning Briefing</div>
+                    <div class="card-desc">Printable daily briefing</div>
+                    <div class="card-meta">Mar 6, 2026</div>
+                </a>
+                <a href="pdfs/SHED_ADS_2026-03-06.pdf" class="card">
+                    <div class="card-title"><span class="badge badge-pdf">PDF</span> Shed Ads</div>
+                    <div class="card-desc">Shed Marketplace ad copy bundle</div>
+                    <div class="card-meta">Mar 6, 2026 • 412KB</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- QUICK REFERENCE -->
+        <hr class="divider">
+        <div class="section">
+            <div class="section-header">
+                <h2>📌 Quick Reference</h2>
+            </div>
+            <div class="grid">
+                <div class="card" style="cursor:default;">
+                    <div class="card-title">🐕 Tidy Tails</div>
+                    <div class="card-desc">
+                        📞 <strong>314-850-7140</strong><br>
+                        🌐 <a href="https://tidytailsstl.com" target="_blank" style="color:var(--blue)">tidytailsstl.com</a><br>
+                        ⭐ <a href="https://g.page/r/Ce_hqIHanGLvEAE/review" target="_blank" style="color:var(--yellow)">Google Reviews</a><br>
+                        💰 $25/wk · $45 biweekly · $70/mo · $100 one-time
+                    </div>
+                </div>
+                <div class="card" style="cursor:default;">
+                    <div class="card-title">🏠 Backyard Buildings STL</div>
+                    <div class="card-desc">
+                        📞 <strong>636-354-7406</strong><br>
+                        🌐 <a href="https://backyardbuildingsstl.com" target="_blank" style="color:var(--blue)">backyardbuildingsstl.com</a><br>
+                        📧 darius@backyardbuildingsstl.com<br>
+                        🏗️ TuffShed / WoodMaster dealer
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Research -->
-    <div class="section" id="research">
-        <div class="section-header">
-            <span class="emoji">🔬</span>
-            <h2>Research</h2>
-            <span class="count">3</span>
-        </div>
-        <div class="card-grid">
-            <a class="card" href="research/2026-03-06-STL-COMPETITOR-INTELLIGENCE.html">
-                <span class="card-badge badge-research">Intel</span>
-                <span class="card-icon">🔍</span>
-                <span class="card-title">STL Competitor Intelligence</span>
-                <span class="card-desc">Deep dive on St. Louis pet waste removal competitors</span>
-            </a>
-            <a class="card" href="research/2026-03-06-GOOGLE-REVIEW-SYSTEM.html">
-                <span class="card-badge badge-research">System</span>
-                <span class="card-icon">⭐</span>
-                <span class="card-title">Google Review System</span>
-                <span class="card-desc">Strategy for getting and managing Google reviews</span>
-            </a>
-            <a class="card" href="research/2026-03-06-SPRING-REFERRAL-BLITZ.html">
-                <span class="card-badge badge-research">Research</span>
-                <span class="card-icon">📚</span>
-                <span class="card-title">Spring Referral Blitz Research</span>
-                <span class="card-desc">Research backing the referral blitz strategy</span>
-            </a>
-        </div>
+    <div class="footer">
+        Last updated: March 6, 2026 · Built by Franklin 🐕💩
     </div>
-
-    <!-- Videos -->
-    <div class="section" id="videos">
-        <div class="section-header">
-            <span class="emoji">🎬</span>
-            <h2>Videos</h2>
-            <span class="count">16</span>
-        </div>
-        <div class="card-grid">
-            <!-- Tidy Tails Videos -->
-            <a class="card" href="remotion-videos/out/tidy-tails-brand.mp4">
-                <span class="card-badge badge-video">🐕 Tidy Tails</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">Tidy Tails — Brand Video</span>
-                <span class="card-desc">Brand introduction motion graphic</span>
-            </a>
-            <a class="card" href="remotion-videos/out/tidy-tails-transformation.mp4">
-                <span class="card-badge badge-video">🐕 Tidy Tails</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">Tidy Tails — Transformation</span>
-                <span class="card-desc">Before/after yard transformation</span>
-            </a>
-            <a class="card" href="remotion-videos/out/PoopTimeline.mp4">
-                <span class="card-badge badge-video">🐕 Tidy Tails</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">Poop Timeline</span>
-                <span class="card-desc">How fast poop takes over your yard</span>
-            </a>
-            <a class="card" href="remotion-videos/out/CSIShot.mp4">
-                <span class="card-badge badge-video">🐕 Tidy Tails</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">CSI Shot</span>
-                <span class="card-desc">Crime scene investigation style reveal</span>
-            </a>
-            <a class="card" href="remotion-videos/out/SmellOVision.mp4">
-                <span class="card-badge badge-video">🐕 Tidy Tails</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">Smell-O-Vision</span>
-                <span class="card-desc">Humorous smell visualization ad</span>
-            </a>
-            <a class="card" href="remotion-videos/out/DogReview.mp4">
-                <span class="card-badge badge-video">🐕 Tidy Tails</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">Dog Review</span>
-                <span class="card-desc">Dog "reviews" the clean yard</span>
-            </a>
-            <a class="card" href="remotion-videos/out/FakeTextThread.mp4">
-                <span class="card-badge badge-video">🐕 Tidy Tails</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">Fake Text Thread</span>
-                <span class="card-desc">Funny text conversation about poop</span>
-            </a>
-            <a class="card" href="remotion-videos/out/GoogleMapZoom.mp4">
-                <span class="card-badge badge-video">🐕 Tidy Tails</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">Google Map Zoom</span>
-                <span class="card-desc">Zoom into STL service area</span>
-            </a>
-            <a class="card" href="remotion-videos/out/MathProblem.mp4">
-                <span class="card-badge badge-video">🐕 Tidy Tails</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">Math Problem</span>
-                <span class="card-desc">How much poop = why you need us</span>
-            </a>
-            <a class="card" href="remotion-videos/out/RealEstateAngle.mp4">
-                <span class="card-badge badge-video">🐕 Tidy Tails</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">Real Estate Angle</span>
-                <span class="card-desc">Selling homes? Clean the yard first</span>
-            </a>
-            <a class="card" href="remotion-videos/out/SixtySplitRace.mp4">
-                <span class="card-badge badge-video">🐕 Tidy Tails</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">60-Second Split Race</span>
-                <span class="card-desc">Speed comparison cleaning challenge</span>
-            </a>
-            <a class="card" href="remotion-videos/out/UnboxingParody.mp4">
-                <span class="card-badge badge-video">🐕 Tidy Tails</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">Unboxing Parody</span>
-                <span class="card-desc">Unboxing a clean yard experience</span>
-            </a>
-            <!-- Shed Videos -->
-            <a class="card" href="remotion-videos/out/shed-math.mp4">
-                <span class="card-badge badge-video">🏠 Sheds</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">Shed Math</span>
-                <span class="card-desc">Cost breakdown — why sheds make sense</span>
-            </a>
-            <a class="card" href="remotion-videos/out/shed-spring.mp4">
-                <span class="card-badge badge-video">🏠 Sheds</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">Shed Spring Promo</span>
-                <span class="card-desc">Spring sale motion graphic</span>
-            </a>
-            <!-- Consulting Videos -->
-            <a class="card" href="remotion-videos/out/consulting-packages.mp4">
-                <span class="card-badge badge-video">💼 Consulting</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">Consulting Packages</span>
-                <span class="card-desc">AI consulting service tiers overview</span>
-            </a>
-            <a class="card" href="remotion-videos/out/consulting-problem.mp4">
-                <span class="card-badge badge-video">💼 Consulting</span>
-                <span class="card-icon">🎥</span>
-                <span class="card-title">Consulting Problem</span>
-                <span class="card-desc">The problem AI consulting solves</span>
-            </a>
-        </div>
-    </div>
-
-    <!-- Ad Creative -->
-    <div class="section" id="ads">
-        <div class="section-header">
-            <span class="emoji">🎨</span>
-            <h2>Ad Creative</h2>
-            <span class="count">3</span>
-        </div>
-        <div class="card-grid">
-            <a class="card" href="ad-creative/basquiat-batch-mar6/01-poop-timeline.html">
-                <span class="card-badge badge-ad">AI Frame</span>
-                <span class="card-icon">🖼️</span>
-                <span class="card-title">Poop Timeline — Frame</span>
-                <span class="card-desc">AI-generated ad frame via Basquiat pipeline</span>
-            </a>
-            <a class="card" href="ad-creative/basquiat-batch-mar6/02-csi-shot.html">
-                <span class="card-badge badge-ad">AI Frame</span>
-                <span class="card-icon">🖼️</span>
-                <span class="card-title">CSI Shot — Frame</span>
-                <span class="card-desc">Crime scene investigation AI frame</span>
-            </a>
-            <a class="card" href="ad-creative/basquiat-batch-mar6/03-smell-o-vision.html">
-                <span class="card-badge badge-ad">AI Frame</span>
-                <span class="card-icon">🖼️</span>
-                <span class="card-title">Smell-O-Vision — Frame</span>
-                <span class="card-desc">Smell visualization AI frame</span>
-            </a>
-        </div>
-    </div>
-
-    <!-- PDFs -->
-    <div class="section" id="pdfs">
-        <div class="section-header">
-            <span class="emoji">📄</span>
-            <h2>PDFs</h2>
-            <span class="count">6</span>
-        </div>
-        <div class="card-grid">
-            <a class="card" href="pdfs/MORNING_BRIEFING_2026-03-06.pdf">
-                <span class="card-badge badge-pdf">PDF</span>
-                <span class="card-icon">☀️</span>
-                <span class="card-title">Morning Briefing — Mar 6</span>
-                <span class="card-desc">Printable morning briefing</span>
-            </a>
-            <a class="card" href="pdfs/SHED_ADS_2026-03-06.pdf">
-                <span class="card-badge badge-pdf">PDF</span>
-                <span class="card-icon">🏠</span>
-                <span class="card-title">Shed Ads — Mar 6</span>
-                <span class="card-desc">Printable shed ad copy</span>
-            </a>
-            <a class="card" href="dashboard/pdfs/MORNING_BRIEFING_2026-03-06.pdf">
-                <span class="card-badge badge-pdf">PDF</span>
-                <span class="card-icon">☀️</span>
-                <span class="card-title">Morning Briefing (Dashboard)</span>
-                <span class="card-desc">Dashboard copy</span>
-            </a>
-            <a class="card" href="dashboard/pdfs/SHED_ADS_2026-03-06.pdf">
-                <span class="card-badge badge-pdf">PDF</span>
-                <span class="card-icon">🏠</span>
-                <span class="card-title">Shed Ads (Dashboard)</span>
-                <span class="card-desc">Dashboard copy</span>
-            </a>
-            <a class="card" href="dashboard/pdfs/EOD_SUMMARY_2026-03-06.pdf">
-                <span class="card-badge badge-pdf">PDF</span>
-                <span class="card-icon">🌙</span>
-                <span class="card-title">End of Day Summary — Mar 6</span>
-                <span class="card-desc">Daily wrap-up and accomplishments</span>
-            </a>
-            <a class="card" href="dashboard/pdfs/SPRING-FLYER-KIT-2026.pdf">
-                <span class="card-badge badge-pdf">PDF</span>
-                <span class="card-icon">🌸</span>
-                <span class="card-title">Spring Flyer Kit 2026</span>
-                <span class="card-desc">Print-ready spring marketing flyers</span>
-            </a>
-        </div>
-    </div>
-
-    <!-- Websites -->
-    <div class="section" id="websites">
-        <div class="section-header">
-            <span class="emoji">🌐</span>
-            <h2>Websites</h2>
-            <span class="count">4</span>
-        </div>
-        <div class="card-grid">
-            <a class="card card-external" href="https://tidytailsstl.com" target="_blank">
-                <span class="card-badge badge-site">Live Site</span>
-                <span class="card-icon">🐕</span>
-                <span class="card-title">TidyTailsSTL.com</span>
-                <span class="card-desc">Main Tidy Tails website — pet waste removal</span>
-            </a>
-            <a class="card card-external" href="https://backyardbuildingsstl.com" target="_blank">
-                <span class="card-badge badge-site">Live Site</span>
-                <span class="card-icon">🏠</span>
-                <span class="card-title">BackyardBuildingsSTL.com</span>
-                <span class="card-desc">Backyard Buildings — shed sales site</span>
-            </a>
-            <a class="card" href="tidy-tails/website/index.html">
-                <span class="card-badge badge-site">Source</span>
-                <span class="card-icon">🐕</span>
-                <span class="card-title">Tidy Tails Website (Source)</span>
-                <span class="card-desc">Local copy — all pages, blog, and city landing pages</span>
-            </a>
-            <a class="card" href="backyard-buildings-stl/index.html">
-                <span class="card-badge badge-site">Source</span>
-                <span class="card-icon">🏠</span>
-                <span class="card-title">Backyard Buildings (Source)</span>
-                <span class="card-desc">Local copy of the shed sales website</span>
-            </a>
-        </div>
-    </div>
-
-    <hr class="divider">
-
-    <!-- MOTRA Section -->
-    <div class="section">
-        <div class="section-header">
-            <span class="emoji">🚗</span>
-            <h2>MOTRA Dashboard</h2>
-            <span class="count">Separate Project</span>
-        </div>
-        <div class="card-grid">
-            <a class="card" href="motra-dashboard/index.html">
-                <span class="card-badge badge-tool">Dashboard</span>
-                <span class="card-icon">📊</span>
-                <span class="card-title">MOTRA Dashboard</span>
-                <span class="card-desc">Full MOTRA project hub — pitch deck, research, financials</span>
-            </a>
-        </div>
-    </div>
-
-</div>
-
 </body>
 </html>
