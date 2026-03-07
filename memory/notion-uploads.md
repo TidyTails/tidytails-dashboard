@@ -174,3 +174,9 @@ Chief uses this to verify sync with dashboard.
 | 12:01 | Morning Briefing Mar 6 | 📋 Operations | MORNING_BRIEFING_2026-03-06.pdf | ✅ |
 | 12:02 | Shed Ads Mar 6 | 🏠 Shed Sales | SHED_ADS_2026-03-06.pdf | ✅ |
 | 18:01 | Spring Flyer Kit 2026 | 🐕 Tidy Tails | SPRING-FLYER-KIT-2026.pdf | ✅ |
+
+## Upload Log — Mar 7, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 00:01 | EOD Summary Mar 6 | 📋 Operations | EOD_SUMMARY_2026-03-06.pdf | ✅ |

@@ -1702,3 +1702,93 @@ Little Stinkers checks dog waste for health abnormalities. Low-effort value-add 
 
 **Rotation:** 📱 Marketing/Content
 
+
+---
+
+### 2:04 AM — 🔧 DASHBOARD INFRASTRUCTURE FIX — 13 Broken Links + 4 New Tools (Hourly Task)
+**Task:** Fix all broken links flagged by Chief oversight check, add missing tools, build prevention system
+**Result:** ✅ SHIPPED — Zero broken links, 4 new tools added, pre-commit hook installed
+
+**Why This Task:**
+- Chief oversight check flagged 12+ broken links STILL PERSISTENT (3rd check!)
+- CRM links, video links, path errors — dashboard was embarrassingly broken
+- Perfect 2 AM quiet systems work — no customer-facing risk
+
+**What I Fixed:**
+
+**13 Broken Links Resolved:**
+| Issue | Fix |
+|-------|-----|
+| `crm/index.html` missing | Copied shed CRM into dashboard/crm/ |
+| `jamie-outreach-hub.html` missing | Copied from workspace root |
+| `dashboard/2026-03-07-COMPETITOR-INTEL.html` wrong path | Removed `dashboard/` prefix |
+| 10 video cards (PoopTimeline, CSIShot, etc.) | Removed — files were never rendered |
+
+**4 New Tools Added to Dashboard:**
+| Tool | Type |
+|------|------|
+| Tidy Tails CRM | Customer management + route scheduler |
+| Google Review Generator | Review request templates + tracking |
+| Spring Content Command Center | 28 posts, 3 platforms, one-click copy |
+| SEO Audit & Action Plan | Full website audit + keyword targets |
+
+**Prevention System Built:**
+- `.githooks/pre-commit` script validates all internal hrefs before every commit
+- Auto-blocks commits with broken links
+- Runs in <1 second, zero dependencies
+
+**Dashboard Stats Updated:**
+- Tools: 2 → 6
+- Reports: 6 → 8
+- Videos: 16 → 6 (only real files now)
+- Broken links: 13 → 0
+
+**Commit:** `2cb4ddc` on `tidytails-dashboard` repo
+
+**Rotation:** ⚙️ Systems/Infrastructure
+
+
+
+---
+
+### 3:04 AM — 🔍 LIVE SEARCH AUDIT — TJ Is Invisible, 2 Competitors Dead, New Rival Found (Hourly Task)
+**Task:** Real-time search audit — who actually shows up when STL residents search for pet waste removal
+**Result:** ✅ SHIPPED — Live Search Audit report with actionable intel
+
+**Why This Task:**
+- Previous competitor reports used cached/old data
+- Needed to verify if TJ is actually findable online (spoiler: he's not)
+- 3 AM = no customer impact, pure research time
+
+**Key Findings:**
+
+**🚨 CRITICAL — TJ Is Invisible:**
+- "pet waste removal st louis MO" — Tidy Tails NOT in top 10
+- "tidy tails pet waste removal st louis" — TJ's site NOT appearing (other "Tidy Tails" businesses from Charleston, Atlanta, Florida dominate)
+- "pooper scooper chesterfield ballwin wildwood" — Also not appearing
+- Every potential customer searching goes to competitors
+
+**🆕 New Competitor — Dr. Scoops:**
+- Based in Ballwin, MO (TJ's exact territory)
+- Phone: (636) 299-0674
+- Serves: Ballwin, Manchester, Ellisville, Chesterfield, Wildwood, Valley Park
+- Already ranking page 1 for local searches
+- "Get a quote" pricing model (no public prices)
+- Professional site, strong local SEO
+
+**💀 2 Dead Competitors:**
+- Pawfect Waste Solutions (pooperscooperstl.com) — site not published
+- Fresh Paws (wearefreshpaws.com) — Squarespace expired
+- Their customers are up for grabs
+
+**💰 Pricing Intel (Confirmed):**
+- Dirty Dog Wash Poo Crew: $95/mo weekly (1-2 dogs), $80/mo biweekly
+- POOP 911: From $11.95/wk (~$48/mo) — likely base price
+- TJ's $70/mo beats Dirty Dog's $80/mo biweekly
+- TJ's biweekly $45 crushes everyone
+
+**Dashboard Updated:**
+- Added Live Search Audit to Reports section (now 9 reports)
+- Live at: https://tidytails.github.io/tidytails-dashboard/research/2026-03-07-LIVE-SEARCH-AUDIT.html
+
+**Rotation:** 🔍 Research/Intel
