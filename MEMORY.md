@@ -27,15 +27,56 @@
 4. When TJ needs ad creative/video/visuals → spawn Basquiat
 5. Franklin stays available for conversation
 
-**⚠️ Sub-agent gotcha:** They save to their OWN workspace (e.g. `~/.openclaw/workspace-debo/`). Always copy files to main workspace and push from there.
+**⚠️ Sub-agent gotchas:**
+- They save to their OWN workspace (e.g. `~/.openclaw/workspace-debo/`). Always copy files to main workspace and push from there.
+- **Debo times out on complex tasks.** For simple builds (index.html, single-page apps), Franklin should just build it directly instead of spawning Debo. Use Debo for multi-file coding projects.
+
+## 🎬 Basquiat Video Workflow (CRITICAL — DO NOT FORGET)
+
+**This is THE workflow for AI video ads. Also documented in TOOLS.md.**
+
+1. **Nano Banana 2** (fal.ai) → generates high-quality image frames from text prompts
+2. **Kling v3 Standard** (fal.ai) → animates frames into 5-second video clips
+3. **3 frames per concept** (beginning → middle → end) = better story arc than 2
+
+**Costs:**
+- Nano Banana frame: ~$0.08
+- Kling v3 clip: ~$0.50
+- Per finished ad: ~$1.50-2.50
+- 10 ads with revisions: ~$19-25
+
+**Key rules:**
+- ❌ Don't make grass change color (looks like landscaping ad)
+- ✅ Keep grass SAME — only poop disappears
+- ⚠️ Credits burn fast — check balance before batch runs
+- TJ can film real footage himself for non-AI styles (unboxing, POV, etc.)
+- Remotion = motion graphics/text animations (no fal.ai cost)
 
 **Key benefit:** Each sub-agent has its own context window. Doesn't overload main session.
 
-## 🏠 Shed Sales CRM (Built Mar 4, 2026)
+## 🐕 Tidy Tails CRM (Built Mar 6, 2026)
+
+**URL:** https://tidytails.github.io/tidytails-dashboard/tidy-tails-crm.html
+
+Features: Customer database (8 loaded), goal tracker (25 target), revenue dashboard ($750/mo), service area map, route scheduler with drag-drop reordering, one-click Google Maps route, service day checklist mode. All data in localStorage.
+
+## 🏠 Shed Sales CRM (Built Mar 4, 2026, Updated Mar 6)
 
 **URL:** https://tidytails.github.io/tidytails-dashboard/crm/
 
-Features: Pipeline board, screenshot upload, source tracking, smart alerts, playbooks, calendar, dark mode.
+Features: Pipeline board, **OCR screenshot upload** (Tesseract.js — auto-reads buyer name + phone from FB Messenger screenshots), multi-screenshot batch upload, source tracking, smart alerts, playbooks, calendar, dark mode.
+
+## 📱 Jamie's Outreach Hub (Built Mar 6, 2026)
+
+**URL:** https://tidytails.github.io/tidytails-dashboard/jamie-outreach-hub.html
+
+Features: 13 copy-paste scripts (cold calls, texts, emails, review asks), 43 commercial leads with tier filtering, 7 objection responses, tracking tips. Google review link included. Mobile-friendly.
+
+## 🏠 Main Dashboard (Built Mar 6, 2026)
+
+**URL:** https://tidytails.github.io/tidytails-dashboard/
+
+Central hub linking ALL tools, reports, videos, PDFs. ⚠️ NEVER let this go missing again — was flagged 7 times in one day before being built.
 
 ## 📧 Email Automation Project (COMPLETE Mar 4, 2026)
 
@@ -84,10 +125,13 @@ ManyChat won't work for TJ because:
 
 ## 💡 Parked Business Ideas
 
-### MOTRA (Parked Feb 23, 2026)
-**What:** Gig economy platform for servicing autonomous vehicles (cleaning, maintenance)
-**Why it's good:** $500M+ TAM, blue ocean, Waymo doing 400K rides/week
-**Assets:** Landing page live at tidytails.github.io/motra-landing, pitch deck ready
+### MOTRA (Parked Feb 23, updated Mar 6, 2026)
+**What:** Mobile fleet care replacing 40-50% of robotaxi depot operations
+**Positioning (Mar 6):** "MOTRA isn't a cleaning company. It's depot replacement."
+**Scope (TJ decision Mar 6):** Tier 1 (Turnaround) + Tier 2 (Mobile Maintenance) ONLY. NO Tier 3 (Remote Ops) or Tier 4 (Fleet OS Platform).
+**Key insight:** Each 100-vehicle fleet needs 80-120 depot staff. MOTRA addresses 40-55 of those roles mobile.
+**Why it's good:** $500M+ TAM, blue ocean, Waymo doing 400K rides/week, depot costs are #1 operational expense
+**Assets:** Landing page, pitch deck (v6), one-pager, depot analysis, market research — all updated Mar 6
 **Full details:** `memory/motra-business-idea.md`
 **To resume:** "Let's pick up MOTRA"
 
@@ -108,13 +152,30 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - $25/week | $45 biweekly | $70/month | $100 one-time deep clean
 - Average customer value: ~$100/month
 
-### Current State (as of Mar 2026)
-- 4-5 recurring customers (unchanged since start)
+### Current State (as of Mar 6, 2026)
+- **8 recurring customers** (updated Mar 6 with full list)
 - Solo operation (TJ), wife does scheduling
-- Capacity: ~15 yards/week comfortably, does 11 on Sundays
+- Capacity: ~15 yards/week comfortably
+- **Sunday scooping day** — all 8 customers on Sunday
+- Revenue: **$750/month, $175/week**
 - Equipment: pickup truck, basic tools
 - GBP: CLAIMED ✅ | Yelp: CLAIMED ✅ | Google Search Console: VERIFIED ✅
-- Website: tidytailsstl.com live, SSL valid, but 0 Google indexed pages
+- Website: tidytailsstl.com live, SSL valid
+
+### Active Customers (Mar 6, 2026)
+
+| # | Customer | City | Freq | Price/Visit | Monthly |
+|---|----------|------|------|-------------|---------|
+| 1 | Mrs. Candee | Saint Louis 63136 | Weekly | $15 | $60 |
+| 2 | Jody | Saint Louis 63114 | Biweekly | $45 | $90 |
+| 3 | Shannon Zamarripa | Florissant 63031 | Weekly | $35 | $140 |
+| 4 | Amanda Harris | Florissant 63031 | Weekly | $30 | $120 |
+| 5 | Lawrence | Saint Louis 63108 | Biweekly | $50 | $100 |
+| 6 | Greg | O'Fallon 63366 | Monthly | $50 | $50 |
+| 7 | Chastity | Florissant 63033 | Biweekly | $45 | $90 |
+| 8 | Preshus | Saint Charles 63303 | Weekly | $25 | $100 |
+
+**Full CRM:** https://tidytails.github.io/tidytails-dashboard/tidy-tails-crm.html
 
 ### Service Areas
 - St. Louis County, St. Charles County
