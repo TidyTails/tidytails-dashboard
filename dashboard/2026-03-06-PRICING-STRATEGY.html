@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💰 Pricing & Service Packages Strategy — Tidy Tails</title>
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card: #141428;
+            --card-hover: #1a1a35;
+            --accent: #00c853;
+            --accent2: #ffd600;
+            --orange: #ff6d00;
+            --red: #e94560;
+            --blue: #448aff;
+            --purple: #7c4dff;
+            --text: #e8e8e8;
+            --text-dim: #777;
+            --border: #252540;
+            --gold: #ffd700;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 6px;
+            background: linear-gradient(135deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle { color: var(--text-dim); margin-bottom: 24px; }
+        
+        /* Alert Banner */
+        .alert {
+            background: linear-gradient(135deg, #1a0a0a, #2a1520);
+            border: 1px solid var(--red);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .alert h2 { color: var(--red); font-size: 1.1rem; margin-bottom: 8px; }
+        .alert .big-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--red);
+            line-height: 1;
+        }
+        .alert .context { color: var(--text-dim); font-size: 0.9rem; margin-top: 4px; }
+        
+        /* Pricing Tiers */
+        .tiers {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        @media (max-width: 768px) {
+            .tiers { grid-template-columns: 1fr; }
+        }
+        .tier {
+            background: var(--card);
+            border-radius: 16px;
+            padding: 24px;
+            border: 2px solid var(--border);
+            position: relative;
+            transition: all 0.3s;
+        }
+        .tier:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .tier.popular {
+            border-color: var(--accent);
+            background: linear-gradient(180deg, #0a1a0f, var(--card));
+        }
+        .tier.popular::before {
+            content: "⭐ MOST PROFITABLE";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+        .tier-icon { font-size: 2rem; margin-bottom: 8px; }
+        .tier-name { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+        .tier-tagline { color: var(--text-dim); font-size: 0.85rem; margin-bottom: 16px; }
+        .tier-price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .tier-price span { font-size: 0.9rem; font-weight: 400; color: var(--text-dim); }
+        .tier-annual { color: var(--text-dim); font-size: 0.8rem; margin-bottom: 16px; }
+        .tier-features { list-style: none; padding: 0; }
+        .tier-features li {
+            padding: 6px 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .tier-features li::before { content: "✓ "; color: var(--accent); font-weight: 700; }
+        .tier-features li.extra::before { content: "★ "; color: var(--gold); }
+        .tier-margin {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+        .tier-margin .margin-num { color: var(--accent); font-weight: 700; font-size: 1rem; }
+        
+        /* One-time services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+        .service-card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+        .service-card h3 { font-size: 1rem; margin-bottom: 8px; }
+        .service-card .price { font-size: 1.5rem; font-weight: 700; color: var(--accent2); }
+        .service-card .desc { color: var(--text-dim); font-size: 0.85rem; margin-top: 8px; }
+        .conversion { color: var(--accent); font-size: 0.85rem; margin-top: 8px; font-weight: 600; }
+        
+        /* Revenue comparison */
+        .revenue-section { margin-bottom: 30px; }
+        .revenue-section h2 { font-size: 1.3rem; margin-bottom: 16px; }
+        .scenario {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .scenario.best {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, #0a1a0f, #141428);
+        }
+        .scenario-label { font-weight: 600; }
+        .scenario-detail { color: var(--text-dim); font-size: 0.85rem; }
+        .scenario-amount { font-size: 1.5rem; font-weight: 800; }
+        .scenario.best .scenario-amount { color: var(--accent); }
+        .scenario-lift { font-size: 0.85rem; color: var(--accent); font-weight: 600; }
+        
+        /* Bar chart */
+        .bar-chart { margin: 20px 0; }
+        .bar-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .bar-label { width: 120px; font-size: 0.85rem; color: var(--text-dim); }
+        .bar-track {
+            flex: 1;
+            height: 32px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+        .bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            padding-left: 12px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #000;
+            transition: width 1s ease;
+        }
+        
+        /* Add-ons */
+        .addon-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        .addon-table th {
+            text-align: left;
+            padding: 10px 12px;
+            background: var(--card);
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .addon-table td {
+            padding: 12px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        .addon-table .margin-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .margin-high { background: rgba(0,200,83,0.15); color: var(--accent); }
+        .margin-med { background: rgba(255,214,0,0.15); color: var(--accent2); }
+        
+        /* Competitor comparison */
+        .comp-row {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: var(--card);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid var(--border);
+        }
+        .comp-row.us { border-color: var(--accent); background: linear-gradient(135deg, #0a1a0f, #141428); }
+        .comp-name { width: 160px; font-weight: 600; }
+        .comp-price { width: 100px; font-size: 1.1rem; font-weight: 700; }
+        .comp-bar-track {
+            flex: 1;
+            height: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .comp-bar-fill { height: 100%; border-radius: 4px; }
+        
+        /* Roadmap */
+        .roadmap { margin-bottom: 30px; }
+        .phase {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--accent);
+        }
+        .phase.p2 { border-left-color: var(--blue); }
+        .phase.p3 { border-left-color: var(--purple); }
+        .phase.p4 { border-left-color: var(--gold); }
+        .phase h3 { font-size: 1rem; margin-bottom: 8px; }
+        .phase .timing { color: var(--text-dim); font-size: 0.8rem; margin-bottom: 8px; }
+        .phase ul { padding-left: 20px; }
+        .phase li { font-size: 0.9rem; padding: 3px 0; }
+        
+        /* Tactics */
+        .tactic {
+            background: var(--card);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border);
+        }
+        .tactic h4 { font-size: 0.95rem; margin-bottom: 6px; color: var(--accent2); }
+        .tactic p { font-size: 0.9rem; color: var(--text-dim); }
+        
+        .section { margin-bottom: 35px; }
+        .section > h2 { font-size: 1.3rem; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+        
+        .footer { text-align: center; color: var(--text-dim); font-size: 0.8rem; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border); }
+    </style>
+</head>
+<body>
+
+<h1>💰 Pricing & Service Packages Strategy</h1>
+<p class="subtitle">Revenue optimization playbook for Tidy Tails — March 2026</p>
+
+<!-- Alert Banner -->
+<div class="alert">
+    <h2>⚠️ YOU'RE LEAVING MONEY ON THE TABLE</h2>
+    <div style="display:flex;align-items:baseline;gap:8px;margin-top:8px;">
+        <div class="big-number">18-26%</div>
+        <div style="color:var(--text);">below industry average</div>
+    </div>
+    <div class="context">
+        TJ's $70/month vs. national average $86-$95/month (Poop Scoop Millionaire survey of 200+ companies).
+        Swoop Scoop, a 7-figure company, charges $96-$105/month and raises 10% annually.
+        <strong>$70 is strategic for now — but tiered pricing changes everything.</strong>
+    </div>
+</div>
+
+<!-- Service Tiers -->
+<div class="section">
+    <h2>📦 Recommended Service Tiers</h2>
+    <div class="tiers">
+        <!-- Basic -->
+        <div class="tier">
+            <div class="tier-icon">🥉</div>
+            <div class="tier-name">BASIC</div>
+            <div class="tier-tagline">"The Essentials"</div>
+            <div class="tier-price">$70<span>/month</span></div>
+            <div class="tier-annual">$840/year per customer</div>
+            <ul class="tier-features">
+                <li>1x weekly cleanup</li>
+                <li>1 dog included</li>
+                <li>Standard scoop & haul</li>
+                <li>+$10/mo per extra dog</li>
+            </ul>
+            <div class="tier-margin">
+                Your competitive weapon for customer acquisition. Keep this as the entry point.
+            </div>
+        </div>
+        
+        <!-- Standard (Popular) -->
+        <div class="tier popular">
+            <div class="tier-icon">🥈</div>
+            <div class="tier-name">STANDARD</div>
+            <div class="tier-tagline">"The Clean Yard"</div>
+            <div class="tier-price">$95<span>/month</span></div>
+            <div class="tier-annual">$1,140/year per customer</div>
+            <ul class="tier-features">
+                <li>1x weekly cleanup</li>
+                <li>Up to 2 dogs included</li>
+                <li class="extra">Monthly deodorizer spray</li>
+                <li class="extra">Priority scheduling</li>
+                <li class="extra">Service completion text</li>
+                <li>+$10/mo per extra dog</li>
+            </ul>
+            <div class="tier-margin">
+                Extra revenue: <span class="margin-num">+$25/mo</span><br>
+                Deodorizer costs ~$3. Text costs $0. Nearly pure margin.
+            </div>
+        </div>
+        
+        <!-- Premium -->
+        <div class="tier">
+            <div class="tier-icon">🥇</div>
+            <div class="tier-name">PREMIUM</div>
+            <div class="tier-tagline">"The VIP Yard"</div>
+            <div class="tier-price">$135<span>/month</span></div>
+            <div class="tier-annual">$1,620/year per customer</div>
+            <ul class="tier-features">
+                <li>2x weekly cleanup</li>
+                <li>Up to 3 dogs included</li>
+                <li class="extra">Bi-weekly deodorizer spray</li>
+                <li class="extra">Priority scheduling</li>
+                <li class="extra">Completion text + photo</li>
+                <li class="extra">Spring & fall deep clean included</li>
+                <li>+$10/mo per extra dog</li>
+            </ul>
+            <div class="tier-margin">
+                Extra revenue: <span class="margin-num">+$65/mo</span><br>
+                2nd visit = 20 min on a route you're already driving.
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- One-Time Services -->
+<div class="section">
+    <h2>🌱 One-Time Services (Lead Generators)</h2>
+    <div class="services-grid">
+        <div class="service-card">
+            <h3>🌱 Spring Cleanup</h3>
+            <div class="price">$99 – $149</div>
+            <div class="desc">Full yard cleanup of winter waste accumulation + deodorizer. Based on yard size. The #1 gateway to recurring service.</div>
+            <div class="conversion">→ 25-35% convert to monthly recurring</div>
+        </div>
+        <div class="service-card">
+            <h3>🏡 Standard One-Time</h3>
+            <div class="price">$75 – $125</div>
+            <div class="desc">Small yard $75 · Medium $99 · Large $125. Multi-dog surcharge +$25 for 3+ dogs. Perfect for real estate showings or catch-up cleanups.</div>
+            <div class="conversion">→ Offer $25 off first month to convert</div>
+        </div>
+        <div class="service-card">
+            <h3>🎉 Event Prep</h3>
+            <div class="price">$125 flat</div>
+            <div class="desc">Same-day or next-day service. BBQs, graduations, open houses. Complete sweep + deodorizer. Premium pricing for urgency.</div>
+            <div class="conversion">→ Upsell: "Want this EVERY week?"</div>
+        </div>
+    </div>
+</div>
+
+<!-- Revenue Projections -->
+<div class="section revenue-section">
+    <h2>📊 Revenue Projections — 25 Customers</h2>
+    
+    <div class="bar-chart">
+        <div class="bar-row">
+            <div class="bar-label">All Basic</div>
+            <div class="bar-track">
+                <div class="bar-fill" style="width:46%;background:linear-gradient(90deg,#444,#666);">$1,750/mo</div>
+            </div>
+        </div>
+        <div class="bar-row">
+            <div class="bar-label">Tiered Mix</div>
+            <div class="bar-track">
+                <div class="bar-fill" style="width:60%;background:linear-gradient(90deg,var(--blue),var(--purple));">$2,285/mo</div>
+            </div>
+        </div>
+        <div class="bar-row">
+            <div class="bar-label">Tiered + Comm.</div>
+            <div class="bar-track">
+                <div class="bar-fill" style="width:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));">$3,785/mo</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="scenario">
+        <div>
+            <div class="scenario-label">Scenario A: All Basic ($70)</div>
+            <div class="scenario-detail">25 customers × $70 flat</div>
+        </div>
+        <div style="text-align:right;">
+            <div class="scenario-amount" style="color:var(--text-dim);">$1,750</div>
+        </div>
+    </div>
+    <div class="scenario">
+        <div>
+            <div class="scenario-label">Scenario B: Tiered Mix</div>
+            <div class="scenario-detail">40% Basic · 45% Standard · 15% Premium</div>
+        </div>
+        <div style="text-align:right;">
+            <div class="scenario-amount" style="color:var(--blue);">$2,285</div>
+            <div class="scenario-lift">+30% vs all-Basic</div>
+        </div>
+    </div>
+    <div class="scenario best">
+        <div>
+            <div class="scenario-label">Scenario C: Tiered + Commercial + Add-ons</div>
+            <div class="scenario-detail">25 residential + 3 commercial + add-on revenue</div>
+        </div>
+        <div style="text-align:right;">
+            <div class="scenario-amount">$3,785</div>
+            <div class="scenario-lift">+116% vs all-Basic 🚀</div>
+        </div>
+    </div>
+</div>
+
+<!-- Add-on Services -->
+<div class="section">
+    <h2>🔧 Add-On Services (Nearly Pure Margin)</h2>
+    <table class="addon-table">
+        <thead>
+            <tr>
+                <th>Add-On</th>
+                <th>Price</th>
+                <th>Your Cost</th>
+                <th>Margin</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Yard deodorizer spray</td>
+                <td>$15/visit</td>
+                <td>$2-3</td>
+                <td><span class="margin-badge margin-high">80%+</span></td>
+            </tr>
+            <tr>
+                <td>2nd weekly visit</td>
+                <td>+$45/month</td>
+                <td>~20 min labor</td>
+                <td><span class="margin-badge margin-high">70%+</span></td>
+            </tr>
+            <tr>
+                <td>Pet waste station install</td>
+                <td>$149 one-time</td>
+                <td>$50-80</td>
+                <td><span class="margin-badge margin-med">50%+</span></td>
+            </tr>
+            <tr>
+                <td>Station bag refills</td>
+                <td>$25/month</td>
+                <td>$8-10</td>
+                <td><span class="margin-badge margin-high">60%+</span></td>
+            </tr>
+            <tr>
+                <td>Service completion photo</td>
+                <td>Free (Standard+)</td>
+                <td>$0</td>
+                <td><span class="margin-badge margin-high">Retention</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- STL Competitor Pricing -->
+<div class="section">
+    <h2>🏆 Where TJ Sits vs. STL Competitors</h2>
+    <div class="comp-row">
+        <div class="comp-name">DoodyCalls</div>
+        <div class="comp-price" style="color:var(--orange);">~$90</div>
+        <div class="comp-bar-track"><div class="comp-bar-fill" style="width:69%;background:var(--orange);"></div></div>
+    </div>
+    <div class="comp-row">
+        <div class="comp-name">Poopy Paws</div>
+        <div class="comp-price" style="color:var(--orange);">$86</div>
+        <div class="comp-bar-track"><div class="comp-bar-fill" style="width:66%;background:var(--orange);"></div></div>
+    </div>
+    <div class="comp-row">
+        <div class="comp-name">Poop2Scoop</div>
+        <div class="comp-price" style="color:var(--accent2);">$78+</div>
+        <div class="comp-bar-track"><div class="comp-bar-fill" style="width:60%;background:var(--accent2);"></div></div>
+    </div>
+    <div class="comp-row us">
+        <div class="comp-name">🐕 Tidy Tails Basic</div>
+        <div class="comp-price" style="color:var(--accent);">$70</div>
+        <div class="comp-bar-track"><div class="comp-bar-fill" style="width:54%;background:var(--accent);"></div></div>
+    </div>
+    <div class="comp-row us">
+        <div class="comp-name">🐕 TT Standard</div>
+        <div class="comp-price" style="color:var(--accent);">$95</div>
+        <div class="comp-bar-track"><div class="comp-bar-fill" style="width:73%;background:linear-gradient(90deg,var(--accent),var(--accent2));"></div></div>
+    </div>
+    <div class="comp-row us">
+        <div class="comp-name">🐕 TT Premium</div>
+        <div class="comp-price" style="color:var(--gold);">$135</div>
+        <div class="comp-bar-track"><div class="comp-bar-fill" style="width:100%;background:linear-gradient(90deg,var(--accent2),var(--gold));"></div></div>
+    </div>
+    <p style="color:var(--text-dim);font-size:0.8rem;margin-top:8px;">
+        * National avg: $86-$95/mo. Swoop Scoop (7-figure): $96-$105/mo. TJ's Basic undercuts everyone. Standard matches the market. Premium creates a new ceiling.
+    </p>
+</div>
+
+<!-- Pricing Psychology -->
+<div class="section">
+    <h2>🧠 Pricing Psychology Playbook</h2>
+    <div class="tactic">
+        <h4>1. Anchor High, Close Middle</h4>
+        <p>Always show Premium ($135) first. Standard ($95) looks like a deal by comparison. This is textbook price anchoring — Poop2Scoop and POOP 911 don't do this.</p>
+    </div>
+    <div class="tactic">
+        <h4>2. "Most Popular" Badge on Standard</h4>
+        <p>Social proof drives choice. Label Standard as "Most Popular" even before it is. Customers follow the herd.</p>
+    </div>
+    <div class="tactic">
+        <h4>3. The Free First Cleanup (Recurring Only)</h4>
+        <p>POOP 911 uses this and it works. "Free first cleanup when you sign up for monthly." Cost: 15-30 min. ROI: $840+/year per conversion.</p>
+    </div>
+    <div class="tactic">
+        <h4>4. No Per-Dog Pricing in Ads</h4>
+        <p>Advertise "$70/month" — clean, simple. Per-dog surcharges during quoting, not marketing. Poop2Scoop's "+$4/dog" creates friction before they even call.</p>
+    </div>
+    <div class="tactic">
+        <h4>5. Plan Annual 8-10% Increases</h4>
+        <p>Year 2: $70 → $77. Year 3: $77 → $85. Still competitive. Grandfather early adopters for 6 months as loyalty. Announce 30 days out, blame fuel + insurance.</p>
+    </div>
+</div>
+
+<!-- Implementation Roadmap -->
+<div class="section roadmap">
+    <h2>🗺️ Implementation Roadmap</h2>
+    <div class="phase">
+        <h3>Phase 1 — This Weekend</h3>
+        <div class="timing">March 7-9, 2026</div>
+        <ul>
+            <li>Add tiered pricing to website (Basic / Standard / Premium)</li>
+            <li>Create "Spring Cleanup" one-time service page</li>
+            <li>Update quote template to show all 3 tiers</li>
+            <li>Start quoting new leads at Standard tier</li>
+        </ul>
+    </div>
+    <div class="phase p2">
+        <h3>Phase 2 — March</h3>
+        <div class="timing">March 10-31, 2026</div>
+        <ul>
+            <li>Offer existing customers free deodorizer trial → upgrade to Standard</li>
+            <li>Launch spring cleanup on Craigslist, Nextdoor, FB</li>
+            <li>Buy deodorizer supplies (~$20-30)</li>
+            <li>Set up service completion photo workflow</li>
+        </ul>
+    </div>
+    <div class="phase p3">
+        <h3>Phase 3 — April/May</h3>
+        <div class="timing">Evaluate & expand</div>
+        <ul>
+            <li>Measure tier conversion rates, adjust if needed</li>
+            <li>Launch pet waste station offering for commercial</li>
+            <li>Start quoting commercial at proper time-based rates</li>
+            <li>First round of spring cleanup one-timers → convert to recurring</li>
+        </ul>
+    </div>
+    <div class="phase p4">
+        <h3>Phase 4 — Summer</h3>
+        <div class="timing">June+</div>
+        <ul>
+            <li>First annual price increase: Basic $70 → $77</li>
+            <li>Standard becomes the default offering on all channels</li>
+            <li>Refine Premium based on customer feedback</li>
+            <li>Evaluate commercial station revenue stream</li>
+        </ul>
+    </div>
+</div>
+
+<div class="footer">
+    💰 Pricing & Packages Strategy — Franklin for Tidy Tails — March 6, 2026<br>
+    Sources: Swoop Scoop, PSM Survey (200+ companies), Alpha Pet Waste, STL competitor data
+</div>
+
+</body>
+</html>

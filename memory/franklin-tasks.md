@@ -6,6 +6,58 @@
 
 ## March 6, 2026 (Friday)
 
+### 9:04 PM — 💰 PRICING & SERVICE PACKAGES STRATEGY — Revenue Optimization (Hourly Task)
+**Task:** Research national pricing data and build a comprehensive tiered pricing strategy with service packages, add-ons, one-time services, and revenue projections
+**Result:** ✅ SHIPPED — Full pricing playbook with 3 tiers, 3 one-time services, 5 add-ons, competitor positioning, and implementation roadmap
+
+**Why This Task:**
+- Today shipped 10 major assets focused on GETTING customers — but none addressed REVENUE PER CUSTOMER
+- TJ charges $70/month flat — 18-26% below the national average of $86-95/month
+- No tiered pricing, no add-ons, no one-time services, no upsell pathway
+- Tiered pricing alone can boost monthly revenue 30-116% at the SAME customer count
+- A 7-figure pet waste company (Swoop Scoop) charges $96-105/month and raises 10% annually
+
+**What I Built:**
+
+**3 Service Tiers:**
+| Tier | Price | Key Differentiators |
+|------|-------|-------------------|
+| 🥉 Basic | $70/mo | Current offering, 1x/week, 1 dog, competitive weapon |
+| 🥈 Standard (⭐ target) | $95/mo | 2 dogs, deodorizer, priority scheduling, completion text |
+| 🥇 Premium | $135/mo | 2x/week, 3 dogs, photos, spring+fall deep clean |
+
+**3 One-Time Services (Lead Generators):**
+- Spring Cleanup: $99-149 (25-35% convert to recurring)
+- Standard One-Time: $75-125 (events, catch-ups, showings)
+- Event Prep: $125 flat (same-day/next-day for parties)
+
+**5 Add-On Revenue Streams:**
+- Deodorizer spray ($15/visit, 80%+ margin)
+- 2nd weekly visit (+$45/month, 70%+ margin)
+- Pet waste station install ($149, 50%+ margin)
+- Station refills ($25/month, 60%+ margin)
+- Service completion photos (free, retention tool)
+
+**Revenue Projections (25 customers):**
+- All Basic: $1,750/month
+- Tiered Mix: $2,285/month (+30%)
+- Tiered + Commercial + Add-ons: $3,785/month (+116%)
+
+**Also Includes:**
+- Competitor pricing positioning chart (TJ vs. DoodyCalls, Poop2Scoop, Poopy Paws)
+- 5 pricing psychology tactics (anchoring, social proof, free first cleanup)
+- Annual price increase strategy (8-10%/year, grandfather early customers)
+- Commercial pricing formula (time-based → flat rate progression)
+- 4-phase implementation roadmap (weekend → summer)
+
+**Data Sources:** Swoop Scoop (7-figure company), PSM survey of 200+ companies, Alpha Pet Waste, Poo Bros, Poop Patrol, STL competitor data
+
+**Dashboard:** `dashboard/2026-03-06-PRICING-STRATEGY.html`
+**Report:** `research/2026-03-06-PRICING-STRATEGY.md`
+**Rotation:** 💰 Revenue Strategy — Pricing & Packaging
+
+---
+
 ### 8:05 PM — 🌐 DIRECTORY LISTING BLITZ — 12 Platforms, Copy-Paste Ready (Hourly Task)
 **Task:** Audit TJ's online presence, discover Google indexing is still at ZERO, and build a complete directory listing playbook with pre-written profiles for every major platform
 **Result:** ✅ SHIPPED — 12 platform listings with copy-paste descriptions, NAP consistency guide, and prioritized execution checklist
