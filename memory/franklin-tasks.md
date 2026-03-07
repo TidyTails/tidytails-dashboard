@@ -4,6 +4,50 @@
 
 ---
 
+## March 7, 2026 (Saturday)
+
+### 11:04 PM (Mar 6) — 🔍 COMPETITOR DEEP DIVE — 19 Companies Mapped, Pricing Matrix, Direct Rival Found (Hourly Task)
+**Task:** Comprehensive competitive intelligence sweep — scrape every STL pet waste removal company's website, pricing, service areas, features, and reviews
+**Result:** ✅ SHIPPED — Full competitor matrix with pricing, service area overlap map, threat assessments, and priority action checklist
+
+**Why This Task:**
+- Previous competitor research was surface-level — needed ACTUAL pricing data from competitor websites
+- Discovered TJ has a **direct rival (Doggie Doodies)** operating in his EXACT service area with better operations
+- 19 total competitors identified in STL market — more crowded than assumed
+- TJ's $70/mo flat rate is 18-26% below competitors who tier by dog count
+
+**Key Findings:**
+
+**🔴 Doggie Doodies = Primary Threat:**
+- Based in Chesterfield, serves Ballwin, Manchester, Ellisville, Wildwood (TJ's exact cities)
+- Charges $83/mo (1 dog), $88/mo (2 dogs), $100/mo (3 dogs), $121/mo (4 dogs)
+- Has: background checks, tech photos, text alerts, gate photos, customer portal, rewards, referrals, e-gift cards, satisfaction guarantee, free first cleanup, blog
+- Weaknesses: hotmail email, Wix site, corporate tone, no personality
+
+**💰 Pricing Intelligence:**
+| Company | 1 Dog/Week | 2 Dogs/Week |
+|---------|-----------|-------------|
+| Tidy Tails | $70/mo | $70/mo |
+| Doggie Doodies | $83/mo | $88/mo |
+| Dirty Dog Poo Crew | $95/mo | $95/mo |
+| Poopy Paws | $87/mo | $87/mo |
+| POOP 911 | ~$52/mo | ~$60/mo |
+| DoodyCalls | ~$52-60/mo | ~$65/mo |
+
+**☠️ Dead Competitors:**
+- Pawfect Waste Solutions (pooperscooperstl.com) — site is DOWN, 404 error
+- Poop2Scoop — website may be failing
+
+**Revenue Impact of Tiered Pricing (25 customers):**
+- Current flat $70: $1,750/mo
+- Tiered like competitors: $2,210/mo (+$5,520/year)
+
+**Dashboard:** `dashboard/2026-03-07-COMPETITOR-INTEL.html`
+**Report:** `research/2026-03-07-COMPETITOR-DEEP-DIVE.md`
+**Rotation:** 🔍 Competitive Intelligence — Market Analysis
+
+---
+
 ## March 6, 2026 (Friday)
 
 ### 9:04 PM — 💰 PRICING & SERVICE PACKAGES STRATEGY — Revenue Optimization (Hourly Task)
