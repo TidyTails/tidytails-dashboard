@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tidy Tails CRM | Customer Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:#0a0a0a; --bg2:#141414; --bg3:#1a1a1a; --bg4:#242424;
+            --text:#f5f5f5; --text2:#999; --text3:#555;
+            --green:#10b981; --orange:#ff6b35; --blue:#3b82f6;
+            --yellow:#fbbf24; --red:#ef4444; --purple:#8b5cf6;
+            --border:#2a2a2a; --radius:12px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+        .header{background:var(--bg2);border-bottom:1px solid var(--border);padding:1.25rem 1.5rem;position:sticky;top:0;z-index:100;}
+        .header-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:0.75rem;}
+        .header h1{font-size:1.25rem;font-weight:800;}
+        .header h1 span{color:var(--green);}
+        .header-actions{display:flex;gap:0.5rem;}
+        .btn{padding:0.5rem 1rem;border-radius:8px;font-family:'Inter',sans-serif;font-weight:600;font-size:0.85rem;cursor:pointer;border:none;transition:all 0.2s;display:flex;align-items:center;gap:0.4rem;}
+        .btn-green{background:var(--green);color:#000;}
+        .btn-green:hover{filter:brightness(1.1);transform:translateY(-1px);}
+        .btn-ghost{background:transparent;color:var(--text2);padding:0.5rem;}
+        .btn-ghost:hover{color:var(--text);background:var(--bg4);}
+
+        .container{max-width:1100px;margin:0 auto;padding:1.5rem;}
+
+        /* Goal Tracker */
+        .goal-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1.5rem;}
+        .goal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;}
+        .goal-title{font-weight:700;font-size:1rem;}
+        .goal-numbers{font-family:'JetBrains Mono',monospace;}
+        .goal-current{font-size:2rem;font-weight:800;color:var(--green);}
+        .goal-target{font-size:1rem;color:var(--text2);}
+        .progress-bar{width:100%;height:24px;background:var(--bg4);border-radius:12px;overflow:hidden;margin-bottom:0.75rem;}
+        .progress-fill{height:100%;background:linear-gradient(90deg,var(--green),#34d399);border-radius:12px;transition:width 0.5s ease;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;font-size:0.7rem;font-weight:700;color:#000;}
+        .goal-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;}
+        .goal-stat{text-align:center;}
+        .goal-stat-val{font-size:1.25rem;font-weight:800;font-family:'JetBrains Mono',monospace;}
+        .goal-stat-label{font-size:0.7rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.05em;}
+        .goal-stat-val.green{color:var(--green);}
+        .goal-stat-val.orange{color:var(--orange);}
+        .goal-stat-val.yellow{color:var(--yellow);}
+        .goal-stat-val.red{color:var(--red);}
+
+        /* Revenue card */
+        .rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.5rem;}
+        .rev-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-align:center;}
+        .rev-val{font-size:1.75rem;font-weight:800;font-family:'JetBrains Mono',monospace;}
+        .rev-label{font-size:0.75rem;color:var(--text2);text-transform:uppercase;}
+
+        /* Customer table */
+        .table-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:1.5rem;}
+        .table-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+        .table-title{font-weight:700;}
+        table{width:100%;border-collapse:collapse;}
+        th{text-align:left;padding:0.75rem 1rem;font-size:0.75rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.05em;border-bottom:1px solid var(--border);background:var(--bg3);}
+        td{padding:0.75rem 1rem;border-bottom:1px solid var(--border);font-size:0.9rem;}
+        tr:hover td{background:var(--bg3);}
+        .freq-badge{display:inline-block;padding:0.15rem 0.5rem;border-radius:4px;font-size:0.7rem;font-weight:700;}
+        .freq-weekly{background:rgba(16,185,129,0.15);color:var(--green);}
+        .freq-biweekly{background:rgba(59,130,246,0.15);color:var(--blue);}
+        .freq-monthly{background:rgba(168,85,247,0.15);color:var(--purple);}
+        .customer-name{font-weight:600;}
+        .customer-area{color:var(--text2);font-size:0.8rem;}
+
+        /* Map section */
+        .map-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1.5rem;}
+        .area-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0.75rem;margin-top:0.75rem;}
+        .area-card{background:var(--bg4);border-radius:8px;padding:0.75rem;}
+        .area-name{font-weight:700;font-size:0.9rem;margin-bottom:0.25rem;}
+        .area-count{font-family:'JetBrains Mono',monospace;font-size:0.8rem;color:var(--green);}
+        .area-customers{font-size:0.8rem;color:var(--text2);margin-top:0.25rem;}
+
+        /* Add modal */
+        .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;align-items:center;justify-content:center;padding:1rem;}
+        .modal-overlay.active{display:flex;}
+        .modal{background:var(--bg2);border:1px solid var(--border);border-radius:16px;width:100%;max-width:500px;max-height:90vh;overflow-y:auto;}
+        .modal-header{padding:1rem 1.25rem;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+        .modal-title{font-weight:700;}
+        .modal-body{padding:1.25rem;}
+        .modal-footer{padding:1rem 1.25rem;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:0.5rem;}
+        .form-group{margin-bottom:1rem;}
+        .form-label{display:block;font-size:0.8rem;font-weight:600;color:var(--text2);margin-bottom:0.25rem;}
+        .form-input,.form-select{width:100%;padding:0.6rem 0.75rem;background:var(--bg4);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Inter',sans-serif;font-size:0.9rem;}
+        .form-input:focus,.form-select:focus{outline:none;border-color:var(--green);}
+        .form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+
+        .toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--green);color:#000;padding:0.75rem 1.5rem;border-radius:8px;font-weight:600;z-index:9999;display:none;}
+
+        /* Tab Navigation */
+        .tab-nav{display:flex;gap:0;background:var(--bg2);border-bottom:2px solid var(--border);margin-bottom:0;}
+        .tab-btn{flex:1;padding:0.9rem 1rem;font-family:'Inter',sans-serif;font-size:0.95rem;font-weight:700;background:transparent;color:var(--text2);border:none;cursor:pointer;transition:all 0.2s;border-bottom:3px solid transparent;text-align:center;}
+        .tab-btn.active{color:var(--green);border-bottom-color:var(--green);background:var(--bg3);}
+        .tab-btn:hover:not(.active){color:var(--text);background:var(--bg3);}
+        .tab-content{display:none;}
+        .tab-content.active{display:block;}
+
+        /* Schedule Tab */
+        .schedule-controls{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+        .day-selector{display:flex;gap:0;border-radius:8px;overflow:hidden;border:1px solid var(--border);flex-wrap:wrap;}
+        .day-btn{padding:0.6rem 0.85rem;font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:600;background:var(--bg3);color:var(--text2);border:none;cursor:pointer;transition:all 0.15s;border-right:1px solid var(--border);}
+        .day-btn:last-child{border-right:none;}
+        .day-btn.active{background:var(--green);color:#000;}
+        .day-btn .day-count{display:block;font-size:0.65rem;font-family:'JetBrains Mono',monospace;margin-top:2px;}
+
+        .schedule-summary{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;margin-bottom:1rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:0.75rem;}
+        .sched-stat{text-align:center;}
+        .sched-stat-val{font-size:1.4rem;font-weight:800;font-family:'JetBrains Mono',monospace;}
+        .sched-stat-label{font-size:0.7rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.05em;}
+
+        .route-actions{display:flex;gap:0.5rem;margin-bottom:1rem;flex-wrap:wrap;}
+        .btn-blue{background:var(--blue);color:#fff;}
+        .btn-blue:hover{filter:brightness(1.1);transform:translateY(-1px);}
+        .btn-orange{background:var(--orange);color:#fff;}
+        .btn-orange:hover{filter:brightness(1.1);transform:translateY(-1px);}
+        .btn-purple{background:var(--purple);color:#fff;}
+        .btn-purple:hover{filter:brightness(1.1);transform:translateY(-1px);}
+
+        .stop-list{display:flex;flex-direction:column;gap:0.5rem;}
+        .stop-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;display:flex;align-items:center;gap:0.75rem;cursor:grab;transition:all 0.2s;user-select:none;-webkit-user-select:none;}
+        .stop-card:active{cursor:grabbing;transform:scale(0.98);border-color:var(--green);}
+        .stop-card.dragging{opacity:0.4;border-color:var(--green);}
+        .stop-card.drag-over{border-color:var(--green);background:var(--bg3);}
+        .stop-num{width:32px;height:32px;border-radius:50%;background:var(--bg4);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:0.85rem;flex-shrink:0;font-family:'JetBrains Mono',monospace;}
+        .stop-info{flex:1;min-width:0;}
+        .stop-name{font-weight:700;font-size:0.95rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .stop-addr{color:var(--text2);font-size:0.8rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .stop-meta{display:flex;gap:0.5rem;margin-top:0.25rem;align-items:center;}
+        .stop-price{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green);font-size:0.85rem;}
+        .stop-time{font-size:0.75rem;color:var(--text2);}
+        .stop-actions{display:flex;gap:0.25rem;flex-shrink:0;}
+        .stop-actions .btn{padding:0.35rem 0.5rem;font-size:0.75rem;}
+
+        /* Day change modal */
+        .day-change-menu{position:fixed;background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:0.5rem;z-index:300;box-shadow:0 8px 24px rgba(0,0,0,0.5);}
+        .day-change-menu button{display:block;width:100%;padding:0.6rem 1rem;background:transparent;border:none;color:var(--text);font-family:'Inter',sans-serif;font-size:0.9rem;cursor:pointer;border-radius:6px;text-align:left;}
+        .day-change-menu button:hover{background:var(--bg4);}
+        .day-change-menu button.current-day{color:var(--green);font-weight:700;}
+
+        /* Unassigned section */
+        .unassigned-section{margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--border);}
+        .unassigned-title{font-weight:700;color:var(--text2);font-size:0.85rem;margin-bottom:0.5rem;}
+        .unassigned-card{background:var(--bg3);border:1px dashed var(--border);border-radius:var(--radius);padding:0.75rem;display:flex;align-items:center;gap:0.5rem;margin-bottom:0.5rem;cursor:pointer;}
+        .unassigned-card:hover{border-color:var(--green);}
+
+        /* Checklist Mode */
+        .checklist-header{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;margin-bottom:1rem;text-align:center;}
+        .checklist-progress{font-size:1rem;font-weight:700;margin-bottom:0.5rem;}
+        .checklist-bar{width:100%;height:10px;background:var(--bg4);border-radius:5px;overflow:hidden;margin-bottom:0.5rem;}
+        .checklist-bar-fill{height:100%;background:linear-gradient(90deg,var(--green),#34d399);border-radius:5px;transition:width 0.3s;}
+        .checklist-stats{font-size:0.85rem;color:var(--text2);}
+
+        .check-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;display:flex;align-items:center;gap:0.75rem;margin-bottom:0.5rem;cursor:pointer;transition:all 0.2s;min-height:64px;-webkit-tap-highlight-color:transparent;}
+        .check-card:hover{border-color:var(--green);}
+        .check-card.done{opacity:0.5;border-color:var(--border);}
+        .check-card.done .check-name{text-decoration:line-through;}
+        .check-icon{width:40px;height:40px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;transition:all 0.2s;}
+        .check-card.done .check-icon{background:var(--green);border-color:var(--green);color:#000;}
+        .check-info{flex:1;min-width:0;}
+        .check-name{font-weight:700;font-size:1rem;}
+        .check-addr{color:var(--text2);font-size:0.85rem;}
+        .check-price{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--green);font-size:1rem;flex-shrink:0;}
+
+        .btn-exit{background:var(--red);color:#fff;}
+        .btn-exit:hover{filter:brightness(1.1);}
+
+        @media(max-width:600px){
+            .form-row{grid-template-columns:1fr;}
+            .goal-stats{grid-template-columns:1fr 1fr;}
+            th,td{padding:0.5rem 0.6rem;font-size:0.8rem;}
+            .day-btn{padding:0.5rem 0.55rem;font-size:0.7rem;}
+            .schedule-summary{grid-template-columns:1fr 1fr;}
+            .stop-card{padding:0.75rem;}
+            .check-card{padding:0.9rem;}
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-inner">
+            <h1>🐕 Tidy Tails <span>CRM</span></h1>
+            <div class="header-actions">
+                <button class="btn btn-green" onclick="openAddModal()">+ Add Customer</button>
+                <a href="index.html" class="btn btn-ghost">← Dashboard</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB NAVIGATION -->
+    <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('customers')">👥 Customers</button>
+        <button class="tab-btn" onclick="switchTab('schedule')">📅 Schedule & Route</button>
+    </div>
+
+    <!-- CUSTOMERS TAB -->
+    <div class="tab-content active" id="tab-customers">
+    <div class="container">
+        <!-- GOAL TRACKER -->
+        <div class="goal-section">
+            <div class="goal-header">
+                <div class="goal-title">🎯 Goal: 25 Customers by August 2025</div>
+                <div class="goal-numbers">
+                    <span class="goal-current" id="goalCurrent">8</span>
+                    <span class="goal-target">/ 25</span>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width:32%">32%</div>
+            </div>
+            <div class="goal-stats">
+                <div class="goal-stat">
+                    <div class="goal-stat-val green" id="statActive">8</div>
+                    <div class="goal-stat-label">Active</div>
+                </div>
+                <div class="goal-stat">
+                    <div class="goal-stat-val orange" id="statNeeded">17</div>
+                    <div class="goal-stat-label">Still Need</div>
+                </div>
+                <div class="goal-stat">
+                    <div class="goal-stat-val yellow" id="statMonthlyRev">$750</div>
+                    <div class="goal-stat-label">Monthly Rev</div>
+                </div>
+                <div class="goal-stat">
+                    <div class="goal-stat-val red" id="statGap">$1,750</div>
+                    <div class="goal-stat-label">Monthly Gap</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REVENUE -->
+        <div class="rev-grid">
+            <div class="rev-card">
+                <div class="rev-val" style="color:var(--green)" id="revWeekly">$175</div>
+                <div class="rev-label">Weekly Revenue</div>
+            </div>
+            <div class="rev-card">
+                <div class="rev-val" style="color:var(--green)" id="revMonthly">$750</div>
+                <div class="rev-label">Monthly Revenue</div>
+            </div>
+            <div class="rev-card">
+                <div class="rev-val" style="color:var(--yellow)" id="revAnnual">$9,000</div>
+                <div class="rev-label">Annual (Projected)</div>
+            </div>
+        </div>
+
+        <!-- CUSTOMER TABLE -->
+        <div class="table-wrap">
+            <div class="table-header">
+                <div class="table-title">👥 Customers (<span id="customerCount">8</span>)</div>
+            </div>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Address</th>
+                            <th>Frequency</th>
+                            <th>Price</th>
+                            <th>Monthly</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="customerBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SERVICE AREAS -->
+        <div class="map-section">
+            <div class="table-title">📍 Service Areas</div>
+            <div class="area-grid" id="areaGrid"></div>
+        </div>
+    </div><!-- end container -->
+    </div><!-- end tab-customers -->
+
+    <!-- SCHEDULE TAB -->
+    <div class="tab-content" id="tab-schedule">
+    <div class="container">
+        <!-- Checklist Mode (hidden until started) -->
+        <div id="checklistMode" style="display:none;">
+            <div class="checklist-header">
+                <div class="checklist-progress" id="checklistProgress">0/0 yards done</div>
+                <div class="checklist-bar"><div class="checklist-bar-fill" id="checklistBarFill" style="width:0%"></div></div>
+                <div class="checklist-stats" id="checklistStats">$0 earned • Est. 0 min remaining</div>
+            </div>
+            <div class="route-actions">
+                <button class="btn btn-green" onclick="openMapsChecklist()">🗺️ Navigate</button>
+                <button class="btn btn-exit" onclick="exitChecklist()">✕ End Route</button>
+            </div>
+            <div id="checklistStops"></div>
+        </div>
+
+        <!-- Normal Schedule View -->
+        <div id="scheduleView">
+            <!-- Day selector -->
+            <div class="schedule-controls">
+                <div class="day-selector" id="daySelector"></div>
+            </div>
+
+            <!-- Day summary -->
+            <div class="schedule-summary" id="scheduleSummary"></div>
+
+            <!-- Action buttons -->
+            <div class="route-actions" id="routeActions"></div>
+
+            <!-- Stop list for selected day -->
+            <div class="stop-list" id="stopList"></div>
+
+            <!-- Unassigned customers -->
+            <div class="unassigned-section" id="unassignedSection" style="display:none;">
+                <div class="unassigned-title">⚠️ Unassigned Customers</div>
+                <div id="unassignedList"></div>
+            </div>
+        </div>
+    </div>
+    </div><!-- end tab-schedule -->
+
+    <!-- Day Change Menu (hidden) -->
+    <div class="day-change-menu" id="dayChangeMenu" style="display:none;"></div>
+
+    <!-- ADD CUSTOMER MODAL -->
+    <div class="modal-overlay" id="addModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">+ Add Customer</div>
+                <button class="btn btn-ghost" onclick="closeAddModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Name *</label>
+                    <input type="text" class="form-input" id="addName" placeholder="Customer name">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Address</label>
+                    <input type="text" class="form-input" id="addAddress" placeholder="123 Main St">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">City</label>
+                        <input type="text" class="form-input" id="addCity" placeholder="Florissant">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Zip</label>
+                        <input type="text" class="form-input" id="addZip" placeholder="63031">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Frequency</label>
+                        <select class="form-select" id="addFreq">
+                            <option value="weekly">Weekly</option>
+                            <option value="biweekly">Biweekly</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="onetime">One-Time</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Price ($)</label>
+                        <input type="number" class="form-input" id="addPrice" placeholder="25">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Phone</label>
+                    <input type="tel" class="form-input" id="addPhone" placeholder="(314) 555-0123">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Notes</label>
+                    <input type="text" class="form-input" id="addNotes" placeholder="Gate code, dog names, etc.">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" onclick="closeAddModal()">Cancel</button>
+                <button class="btn btn-green" onclick="saveCustomer()">Add Customer</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT MODAL -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Edit Customer</div>
+                <button class="btn btn-ghost" onclick="closeEditModal()">✕</button>
+            </div>
+            <div class="modal-body" id="editBody"></div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" style="color:var(--red);margin-right:auto;" onclick="deleteCustomer()">🗑️ Remove</button>
+                <button class="btn btn-ghost" onclick="closeEditModal()">Cancel</button>
+                <button class="btn btn-green" onclick="updateCustomer()">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        const GOAL = 25;
+        const TARGET_MONTHLY = 2500;
+        let editingId = null;
+
+        // Default customers
+        const defaultCustomers = [
+            {id:1,name:"Mrs. Candee",address:"10220 Pannell Dr",city:"Saint Louis",zip:"63136",freq:"weekly",price:15,phone:"",notes:"",added:"2026-03-06"},
+            {id:2,name:"Jody",address:"9110 Leenora Ave",city:"Saint Louis",zip:"63114",freq:"biweekly",price:45,phone:"",notes:"",added:"2026-03-06"},
+            {id:3,name:"Shannon Zamarripa",address:"St Anthony Ln",city:"Florissant",zip:"63031",freq:"weekly",price:35,phone:"",notes:"",added:"2026-03-06"},
+            {id:4,name:"Amanda Harris",address:"2280 Mullanphy Rd",city:"Florissant",zip:"63031",freq:"weekly",price:30,phone:"",notes:"",added:"2026-03-06"},
+            {id:5,name:"Lawrence",address:"4365 W Belle Pl",city:"Saint Louis",zip:"63108",freq:"biweekly",price:50,phone:"",notes:"",added:"2026-03-06"},
+            {id:6,name:"Greg",address:"4 Glenmill Ct",city:"O'Fallon",zip:"63366",freq:"monthly",price:50,phone:"",notes:"",added:"2026-03-06"},
+            {id:7,name:"Chastity",address:"2580 Guildford Dr",city:"Florissant",zip:"63033",freq:"biweekly",price:45,phone:"",notes:"",added:"2026-03-06"},
+            {id:8,name:"Preshus",address:"1785 Sun Drop Dr",city:"Saint Charles",zip:"63303",freq:"weekly",price:25,phone:"",notes:"",added:"2026-03-06"}
+        ];
+
+        let customers = JSON.parse(localStorage.getItem('tidyTailsCustomers'));
+        if (!customers || customers.length === 0) {
+            customers = defaultCustomers;
+            localStorage.setItem('tidyTailsCustomers', JSON.stringify(customers));
+        }
+
+        function getMonthlyValue(c) {
+            if (c.freq === 'weekly') return c.price * 4;
+            if (c.freq === 'biweekly') return c.price * 2;
+            if (c.freq === 'monthly') return c.price;
+            return c.price;
+        }
+
+        function render() {
+            // Table
+            const body = document.getElementById('customerBody');
+            body.innerHTML = customers.map(c => {
+                const monthly = getMonthlyValue(c);
+                const freqClass = 'freq-' + c.freq;
+                return `<tr onclick="openEditModal(${c.id})" style="cursor:pointer">
+                    <td><div class="customer-name">${c.name}</div><div class="customer-area">${c.phone||''}</div></td>
+                    <td>${c.address}<br><span class="customer-area">${c.city}, MO ${c.zip}</span></td>
+                    <td><span class="freq-badge ${freqClass}">${c.freq}</span></td>
+                    <td>$${c.price}</td>
+                    <td><strong>$${monthly}</strong>/mo</td>
+                    <td style="color:var(--text3);font-size:0.8rem;">${c.notes||''}</td>
+                </tr>`;
+            }).join('');
+
+            // Stats
+            const active = customers.length;
+            const monthlyRev = customers.reduce((sum, c) => sum + getMonthlyValue(c), 0);
+            const weeklyRev = customers.reduce((sum, c) => {
+                if (c.freq === 'weekly') return sum + c.price;
+                if (c.freq === 'biweekly') return sum + c.price; // per visit
+                if (c.freq === 'monthly') return sum + c.price; // per visit
+                return sum;
+            }, 0);
+            const annualRev = monthlyRev * 12;
+            const pct = Math.round((active / GOAL) * 100);
+            const needed = Math.max(0, GOAL - active);
+            const gap = Math.max(0, TARGET_MONTHLY - monthlyRev);
+
+            document.getElementById('goalCurrent').textContent = active;
+            document.getElementById('statActive').textContent = active;
+            document.getElementById('statNeeded').textContent = needed;
+            document.getElementById('statMonthlyRev').textContent = '$' + monthlyRev.toLocaleString();
+            document.getElementById('statGap').textContent = '$' + gap.toLocaleString();
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressFill').textContent = pct + '%';
+            document.getElementById('customerCount').textContent = active;
+            document.getElementById('revWeekly').textContent = '$' + weeklyRev.toLocaleString();
+            document.getElementById('revMonthly').textContent = '$' + monthlyRev.toLocaleString();
+            document.getElementById('revAnnual').textContent = '$' + annualRev.toLocaleString();
+
+            // Areas
+            const areas = {};
+            customers.forEach(c => {
+                const key = c.city || 'Unknown';
+                if (!areas[key]) areas[key] = [];
+                areas[key].push(c.name);
+            });
+            document.getElementById('areaGrid').innerHTML = Object.entries(areas).map(([city, names]) =>
+                `<div class="area-card">
+                    <div class="area-name">📍 ${city}</div>
+                    <div class="area-count">${names.length} customer${names.length>1?'s':''}</div>
+                    <div class="area-customers">${names.join(', ')}</div>
+                </div>`
+            ).join('');
+        }
+
+        function openAddModal() { document.getElementById('addModal').classList.add('active'); }
+        function closeAddModal() { document.getElementById('addModal').classList.remove('active'); }
+
+        function saveCustomer() {
+            const name = document.getElementById('addName').value.trim();
+            if (!name) { alert('Name required'); return; }
+            customers.push({
+                id: Date.now(),
+                name,
+                address: document.getElementById('addAddress').value.trim(),
+                city: document.getElementById('addCity').value.trim(),
+                zip: document.getElementById('addZip').value.trim(),
+                freq: document.getElementById('addFreq').value,
+                price: parseFloat(document.getElementById('addPrice').value) || 0,
+                phone: document.getElementById('addPhone').value.trim(),
+                notes: document.getElementById('addNotes').value.trim(),
+                added: new Date().toISOString().split('T')[0]
+            });
+            localStorage.setItem('tidyTailsCustomers', JSON.stringify(customers));
+            render();
+            closeAddModal();
+            showToast('✅ Customer added!');
+            // Clear form
+            ['addName','addAddress','addCity','addZip','addPrice','addPhone','addNotes'].forEach(id => document.getElementById(id).value = '');
+        }
+
+        function openEditModal(id) {
+            editingId = id;
+            const c = customers.find(x => x.id === id);
+            if (!c) return;
+            document.getElementById('editBody').innerHTML = `
+                <div class="form-group"><label class="form-label">Name</label><input type="text" class="form-input" id="editName" value="${c.name}"></div>
+                <div class="form-group"><label class="form-label">Address</label><input type="text" class="form-input" id="editAddress" value="${c.address||''}"></div>
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">City</label><input type="text" class="form-input" id="editCity" value="${c.city||''}"></div>
+                    <div class="form-group"><label class="form-label">Zip</label><input type="text" class="form-input" id="editZip" value="${c.zip||''}"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">Frequency</label>
+                        <select class="form-select" id="editFreq">
+                            <option value="weekly" ${c.freq==='weekly'?'selected':''}>Weekly</option>
+                            <option value="biweekly" ${c.freq==='biweekly'?'selected':''}>Biweekly</option>
+                            <option value="monthly" ${c.freq==='monthly'?'selected':''}>Monthly</option>
+                            <option value="onetime" ${c.freq==='onetime'?'selected':''}>One-Time</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label class="form-label">Price ($)</label><input type="number" class="form-input" id="editPrice" value="${c.price}"></div>
+                </div>
+                <div class="form-group"><label class="form-label">Phone</label><input type="tel" class="form-input" id="editPhone" value="${c.phone||''}"></div>
+                <div class="form-group"><label class="form-label">Notes</label><input type="text" class="form-input" id="editNotes" value="${c.notes||''}"></div>
+            `;
+            document.getElementById('editModal').classList.add('active');
+        }
+
+        function closeEditModal() { document.getElementById('editModal').classList.remove('active'); editingId = null; }
+
+        function updateCustomer() {
+            const c = customers.find(x => x.id === editingId);
+            if (!c) return;
+            c.name = document.getElementById('editName').value.trim();
+            c.address = document.getElementById('editAddress').value.trim();
+            c.city = document.getElementById('editCity').value.trim();
+            c.zip = document.getElementById('editZip').value.trim();
+            c.freq = document.getElementById('editFreq').value;
+            c.price = parseFloat(document.getElementById('editPrice').value) || 0;
+            c.phone = document.getElementById('editPhone').value.trim();
+            c.notes = document.getElementById('editNotes').value.trim();
+            localStorage.setItem('tidyTailsCustomers', JSON.stringify(customers));
+            render();
+            closeEditModal();
+            showToast('✅ Customer updated!');
+        }
+
+        function deleteCustomer() {
+            if (!confirm('Remove this customer?')) return;
+            customers = customers.filter(x => x.id !== editingId);
+            localStorage.setItem('tidyTailsCustomers', JSON.stringify(customers));
+            render();
+            closeEditModal();
+            showToast('Customer removed');
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.style.display = 'block';
+            setTimeout(() => t.style.display = 'none', 2500);
+        }
+
+        render();
+
+        // ============================================
+        // SCHEDULE & ROUTE SYSTEM
+        // ============================================
+        const DAYS = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+        const DAY_LABELS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        const EST_TIME_PER_STOP = 20; // minutes
+        const EST_DRIVE_BETWEEN = 10; // minutes
+        let selectedDay = DAYS[new Date().getDay()]; // default to today
+        let checklistActive = false;
+        let completedStops = new Set();
+        let dayChangeCustomerId = null;
+
+        function getSchedule() {
+            let sched = JSON.parse(localStorage.getItem('tidyTailsSchedule'));
+            if (!sched) {
+                // Default: all customers on Sunday
+                sched = {};
+                DAYS.forEach(d => sched[d] = []);
+                sched.sunday = customers.map(c => c.id);
+                localStorage.setItem('tidyTailsSchedule', JSON.stringify(sched));
+            }
+            // Ensure all days exist
+            DAYS.forEach(d => { if (!sched[d]) sched[d] = []; });
+            return sched;
+        }
+
+        function saveSchedule(sched) {
+            localStorage.setItem('tidyTailsSchedule', JSON.stringify(sched));
+        }
+
+        function getCustomerById(id) {
+            return customers.find(c => c.id === id);
+        }
+
+        // Sync schedule with customers (remove deleted, add new)
+        function syncSchedule() {
+            const sched = getSchedule();
+            const allIds = customers.map(c => c.id);
+            const scheduledIds = new Set();
+            DAYS.forEach(d => {
+                // Remove customers that no longer exist
+                sched[d] = sched[d].filter(id => {
+                    if (allIds.includes(id)) { scheduledIds.add(id); return true; }
+                    return false;
+                });
+            });
+            // Add unscheduled customers to Sunday by default
+            allIds.forEach(id => {
+                if (!scheduledIds.has(id)) sched.sunday.push(id);
+            });
+            saveSchedule(sched);
+            return sched;
+        }
+
+        // Tab switching
+        function switchTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            if (tab === 'customers') {
+                document.querySelector('.tab-btn:nth-child(1)').classList.add('active');
+                document.getElementById('tab-customers').classList.add('active');
+            } else {
+                document.querySelector('.tab-btn:nth-child(2)').classList.add('active');
+                document.getElementById('tab-schedule').classList.add('active');
+                renderSchedule();
+            }
+        }
+
+        function renderSchedule() {
+            const sched = syncSchedule();
+            renderDaySelector(sched);
+            renderDayView(sched);
+        }
+
+        function renderDaySelector(sched) {
+            const today = DAYS[new Date().getDay()];
+            document.getElementById('daySelector').innerHTML = DAYS.map((d, i) => {
+                const count = sched[d].length;
+                const isActive = d === selectedDay;
+                const isToday = d === today;
+                return `<button class="day-btn ${isActive ? 'active' : ''}" onclick="selectDay('${d}')" title="${isToday ? 'Today' : ''}">
+                    ${DAY_LABELS[i]}${isToday ? ' •' : ''}
+                    <span class="day-count">${count}</span>
+                </button>`;
+            }).join('');
+        }
+
+        function selectDay(day) {
+            selectedDay = day;
+            renderSchedule();
+        }
+
+        function renderDayView(sched) {
+            const stops = sched[selectedDay];
+            const stopCustomers = stops.map(id => getCustomerById(id)).filter(Boolean);
+            const totalRevenue = stopCustomers.reduce((s, c) => s + c.price, 0);
+            const totalTime = stopCustomers.length > 0 
+                ? (stopCustomers.length * EST_TIME_PER_STOP) + ((stopCustomers.length - 1) * EST_DRIVE_BETWEEN) 
+                : 0;
+            const hours = Math.floor(totalTime / 60);
+            const mins = totalTime % 60;
+            const timeStr = hours > 0 ? `${hours}h ${mins}m` : `${mins}m`;
+
+            // Summary
+            document.getElementById('scheduleSummary').innerHTML = `
+                <div class="sched-stat">
+                    <div class="sched-stat-val" style="color:var(--green)">${stopCustomers.length}</div>
+                    <div class="sched-stat-label">Stops</div>
+                </div>
+                <div class="sched-stat">
+                    <div class="sched-stat-val" style="color:var(--yellow)">${timeStr}</div>
+                    <div class="sched-stat-label">Est. Time</div>
+                </div>
+                <div class="sched-stat">
+                    <div class="sched-stat-val" style="color:var(--green)">$${totalRevenue}</div>
+                    <div class="sched-stat-label">Revenue</div>
+                </div>
+                <div class="sched-stat">
+                    <div class="sched-stat-val" style="color:var(--blue)">${totalTime > 0 ? '$' + (totalRevenue / (totalTime / 60)).toFixed(0) + '/hr' : '-'}</div>
+                    <div class="sched-stat-label">Rate</div>
+                </div>
+            `;
+
+            // Action buttons
+            const today = DAYS[new Date().getDay()];
+            document.getElementById('routeActions').innerHTML = `
+                ${stopCustomers.length > 0 ? `
+                    <button class="btn btn-green" onclick="openMapsForDay()">🗺️ Open in Maps</button>
+                    <button class="btn btn-blue" onclick="autoSortByZip()">🔄 Sort by Zip</button>
+                    ${selectedDay === today ? `<button class="btn btn-orange" onclick="startChecklist()">🚀 Start Route</button>` : ''}
+                ` : '<span style="color:var(--text2);font-size:0.9rem;">No stops scheduled for this day</span>'}
+            `;
+
+            // Stop cards
+            const listEl = document.getElementById('stopList');
+            if (stopCustomers.length === 0) {
+                listEl.innerHTML = `<div style="text-align:center;padding:2rem;color:var(--text3);">
+                    <div style="font-size:2rem;margin-bottom:0.5rem;">📭</div>
+                    No stops on ${selectedDay.charAt(0).toUpperCase() + selectedDay.slice(1)}
+                </div>`;
+            } else {
+                listEl.innerHTML = stopCustomers.map((c, i) => `
+                    <div class="stop-card" draggable="true" data-id="${c.id}" 
+                         ondragstart="dragStart(event)" ondragover="dragOver(event)" 
+                         ondrop="dropStop(event)" ondragend="dragEnd(event)"
+                         ontouchstart="touchDragStart(event)" ontouchmove="touchDragMove(event)" ontouchend="touchDragEnd(event)">
+                        <div class="stop-num">${i + 1}</div>
+                        <div class="stop-info">
+                            <div class="stop-name">${c.name}</div>
+                            <div class="stop-addr">${c.address}, ${c.city} ${c.zip}</div>
+                            <div class="stop-meta">
+                                <span class="stop-price">$${c.price}</span>
+                                <span class="stop-time">~${EST_TIME_PER_STOP} min</span>
+                                <span class="freq-badge freq-${c.freq}">${c.freq}</span>
+                            </div>
+                        </div>
+                        <div class="stop-actions">
+                            <button class="btn btn-ghost" onclick="event.stopPropagation();openDayChangeMenu(${c.id}, event)" title="Change day">📅</button>
+                            <button class="btn btn-ghost" onclick="event.stopPropagation();removeFromDay(${c.id})" title="Unassign">✕</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Unassigned customers
+            const allScheduledIds = new Set();
+            DAYS.forEach(d => sched[d].forEach(id => allScheduledIds.add(id)));
+            const unassigned = customers.filter(c => !allScheduledIds.has(c.id));
+            const unSection = document.getElementById('unassignedSection');
+            if (unassigned.length > 0) {
+                unSection.style.display = 'block';
+                document.getElementById('unassignedList').innerHTML = unassigned.map(c => `
+                    <div class="unassigned-card" onclick="assignToDay(${c.id}, '${selectedDay}')">
+                        <span>➕</span>
+                        <span><strong>${c.name}</strong> — ${c.address} — $${c.price}</span>
+                    </div>
+                `).join('');
+            } else {
+                unSection.style.display = 'none';
+            }
+        }
+
+        // Drag & drop reordering
+        let dragSrcId = null;
+
+        function dragStart(e) {
+            dragSrcId = parseInt(e.target.closest('.stop-card').dataset.id);
+            e.target.closest('.stop-card').classList.add('dragging');
+            e.dataTransfer.effectAllowed = 'move';
+        }
+
+        function dragOver(e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            const card = e.target.closest('.stop-card');
+            if (card) {
+                document.querySelectorAll('.stop-card').forEach(c => c.classList.remove('drag-over'));
+                card.classList.add('drag-over');
+            }
+        }
+
+        function dropStop(e) {
+            e.preventDefault();
+            document.querySelectorAll('.stop-card').forEach(c => c.classList.remove('drag-over'));
+            const targetId = parseInt(e.target.closest('.stop-card').dataset.id);
+            if (dragSrcId === targetId) return;
+            const sched = getSchedule();
+            const arr = sched[selectedDay];
+            const fromIdx = arr.indexOf(dragSrcId);
+            const toIdx = arr.indexOf(targetId);
+            if (fromIdx === -1 || toIdx === -1) return;
+            arr.splice(fromIdx, 1);
+            arr.splice(toIdx, 0, dragSrcId);
+            saveSchedule(sched);
+            renderSchedule();
+        }
+
+        function dragEnd(e) {
+            document.querySelectorAll('.stop-card').forEach(c => {
+                c.classList.remove('dragging');
+                c.classList.remove('drag-over');
+            });
+        }
+
+        // Touch drag support for mobile
+        let touchDragEl = null;
+        let touchDragId = null;
+
+        function touchDragStart(e) {
+            const card = e.target.closest('.stop-card');
+            if (!card || e.target.closest('.stop-actions')) return;
+            touchDragId = parseInt(card.dataset.id);
+            touchDragEl = card;
+            card.classList.add('dragging');
+        }
+
+        function touchDragMove(e) {
+            if (!touchDragEl) return;
+            e.preventDefault();
+            const touch = e.touches[0];
+            const el = document.elementFromPoint(touch.clientX, touch.clientY);
+            document.querySelectorAll('.stop-card').forEach(c => c.classList.remove('drag-over'));
+            const target = el ? el.closest('.stop-card') : null;
+            if (target && target !== touchDragEl) target.classList.add('drag-over');
+        }
+
+        function touchDragEnd(e) {
+            if (!touchDragEl) return;
+            const touch = e.changedTouches[0];
+            const el = document.elementFromPoint(touch.clientX, touch.clientY);
+            const target = el ? el.closest('.stop-card') : null;
+            if (target && target !== touchDragEl) {
+                const targetId = parseInt(target.dataset.id);
+                const sched = getSchedule();
+                const arr = sched[selectedDay];
+                const fromIdx = arr.indexOf(touchDragId);
+                const toIdx = arr.indexOf(targetId);
+                if (fromIdx !== -1 && toIdx !== -1) {
+                    arr.splice(fromIdx, 1);
+                    arr.splice(toIdx, 0, touchDragId);
+                    saveSchedule(sched);
+                }
+            }
+            document.querySelectorAll('.stop-card').forEach(c => {
+                c.classList.remove('dragging');
+                c.classList.remove('drag-over');
+            });
+            touchDragEl = null;
+            touchDragId = null;
+            renderSchedule();
+        }
+
+        // Day change menu
+        function openDayChangeMenu(customerId, event) {
+            dayChangeCustomerId = customerId;
+            const menu = document.getElementById('dayChangeMenu');
+            const sched = getSchedule();
+            // Find current day
+            let currentDay = '';
+            DAYS.forEach(d => { if (sched[d].includes(customerId)) currentDay = d; });
+
+            menu.innerHTML = DAYS.map(d => 
+                `<button class="${d === currentDay ? 'current-day' : ''}" onclick="moveToDay(${customerId}, '${d}')">${d.charAt(0).toUpperCase() + d.slice(1)} ${d === currentDay ? '✓' : ''}</button>`
+            ).join('');
+
+            // Position
+            const rect = event.target.getBoundingClientRect();
+            menu.style.top = Math.min(rect.bottom + 4, window.innerHeight - 300) + 'px';
+            menu.style.left = Math.min(rect.left, window.innerWidth - 180) + 'px';
+            menu.style.display = 'block';
+
+            // Close on outside click
+            setTimeout(() => {
+                document.addEventListener('click', closeDayChangeMenu, { once: true });
+            }, 10);
+        }
+
+        function closeDayChangeMenu() {
+            document.getElementById('dayChangeMenu').style.display = 'none';
+        }
+
+        function moveToDay(customerId, newDay) {
+            const sched = getSchedule();
+            // Remove from all days
+            DAYS.forEach(d => { sched[d] = sched[d].filter(id => id !== customerId); });
+            // Add to new day
+            sched[newDay].push(customerId);
+            saveSchedule(sched);
+            closeDayChangeMenu();
+            renderSchedule();
+            showToast(`Moved to ${newDay.charAt(0).toUpperCase() + newDay.slice(1)}`);
+        }
+
+        function removeFromDay(customerId) {
+            const sched = getSchedule();
+            DAYS.forEach(d => { sched[d] = sched[d].filter(id => id !== customerId); });
+            saveSchedule(sched);
+            renderSchedule();
+        }
+
+        function assignToDay(customerId, day) {
+            const sched = getSchedule();
+            if (!sched[day].includes(customerId)) {
+                sched[day].push(customerId);
+                saveSchedule(sched);
+                renderSchedule();
+                showToast('Added to ' + day.charAt(0).toUpperCase() + day.slice(1));
+            }
+        }
+
+        // Auto-sort by zip code
+        function autoSortByZip() {
+            const sched = getSchedule();
+            const stops = sched[selectedDay];
+            stops.sort((a, b) => {
+                const ca = getCustomerById(a);
+                const cb = getCustomerById(b);
+                if (!ca || !cb) return 0;
+                return (ca.zip || '').localeCompare(cb.zip || '') || (ca.address || '').localeCompare(cb.address || '');
+            });
+            saveSchedule(sched);
+            renderSchedule();
+            showToast('Sorted by zip code! 🗺️');
+        }
+
+        // Google Maps
+        function buildMapsUrl(customerList) {
+            if (customerList.length === 0) return '';
+            const addresses = customerList.map(c => encodeURIComponent(`${c.address}, ${c.city}, MO ${c.zip}`));
+            return 'https://www.google.com/maps/dir/' + addresses.join('/');
+        }
+
+        function openMapsForDay() {
+            const sched = getSchedule();
+            const stops = sched[selectedDay].map(id => getCustomerById(id)).filter(Boolean);
+            if (stops.length === 0) return;
+            window.open(buildMapsUrl(stops), '_blank');
+        }
+
+        // ============================================
+        // CHECKLIST MODE
+        // ============================================
+        function startChecklist() {
+            checklistActive = true;
+            completedStops = new Set();
+            // Load any saved progress for today
+            const saved = JSON.parse(localStorage.getItem('tidyTailsChecklistProgress'));
+            const today = new Date().toISOString().split('T')[0];
+            if (saved && saved.date === today) {
+                saved.completed.forEach(id => completedStops.add(id));
+            }
+            document.getElementById('scheduleView').style.display = 'none';
+            document.getElementById('checklistMode').style.display = 'block';
+            renderChecklist();
+        }
+
+        function exitChecklist() {
+            checklistActive = false;
+            document.getElementById('scheduleView').style.display = 'block';
+            document.getElementById('checklistMode').style.display = 'none';
+            localStorage.removeItem('tidyTailsChecklistProgress');
+            renderSchedule();
+        }
+
+        function toggleCheckStop(id) {
+            if (completedStops.has(id)) {
+                completedStops.delete(id);
+            } else {
+                completedStops.add(id);
+            }
+            // Save progress
+            localStorage.setItem('tidyTailsChecklistProgress', JSON.stringify({
+                date: new Date().toISOString().split('T')[0],
+                completed: [...completedStops]
+            }));
+            renderChecklist();
+        }
+
+        function renderChecklist() {
+            const sched = getSchedule();
+            const today = DAYS[new Date().getDay()];
+            const stops = sched[today].map(id => getCustomerById(id)).filter(Boolean);
+            const total = stops.length;
+            const done = stops.filter(c => completedStops.has(c.id)).length;
+            const remaining = total - done;
+            const earned = stops.filter(c => completedStops.has(c.id)).reduce((s, c) => s + c.price, 0);
+            const remainTime = remaining * EST_TIME_PER_STOP + Math.max(0, (remaining - 1)) * EST_DRIVE_BETWEEN;
+            const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+            document.getElementById('checklistProgress').textContent = `${done}/${total} yards done`;
+            document.getElementById('checklistBarFill').style.width = pct + '%';
+            document.getElementById('checklistStats').textContent = `$${earned} earned • Est. ${remainTime} min remaining`;
+
+            // Sort: incomplete first, completed at bottom
+            const sorted = [...stops].sort((a, b) => {
+                const aDone = completedStops.has(a.id) ? 1 : 0;
+                const bDone = completedStops.has(b.id) ? 1 : 0;
+                return aDone - bDone;
+            });
+
+            document.getElementById('checklistStops').innerHTML = sorted.map(c => {
+                const isDone = completedStops.has(c.id);
+                return `<div class="check-card ${isDone ? 'done' : ''}" onclick="toggleCheckStop(${c.id})">
+                    <div class="check-icon">${isDone ? '✅' : ''}</div>
+                    <div class="check-info">
+                        <div class="check-name">${c.name}</div>
+                        <div class="check-addr">${c.address}, ${c.city}</div>
+                    </div>
+                    <div class="check-price">$${c.price}</div>
+                </div>`;
+            }).join('');
+
+            // Celebration if all done
+            if (done === total && total > 0) {
+                document.getElementById('checklistProgress').textContent = `🎉 All ${total} yards complete!`;
+            }
+        }
+
+        function openMapsChecklist() {
+            const sched = getSchedule();
+            const today = DAYS[new Date().getDay()];
+            // Only navigate to remaining stops
+            const remaining = sched[today]
+                .map(id => getCustomerById(id))
+                .filter(c => c && !completedStops.has(c.id));
+            if (remaining.length === 0) {
+                showToast('All stops completed! 🎉');
+                return;
+            }
+            window.open(buildMapsUrl(remaining), '_blank');
+        }
+
+        // Override original saveCustomer and deleteCustomer to sync schedule
+        const _origSave = saveCustomer;
+        const _origRender = render;
+        // Patch render to also sync schedule if on schedule tab
+        // (schedule auto-syncs when renderSchedule is called)
+    </script>
+</body>
+</html>

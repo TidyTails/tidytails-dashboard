@@ -1,0 +1,22 @@
+#!/bin/bash
+# Pre-commit hook: verify all internal href links in index.html exist as files
+# Install: git config core.hooksPath .githooks
+
+ERRORS=0
+ROOT=$(git rev-parse --show-toplevel)
+
+for href in $(grep -o 'href="[^"]*"' "$ROOT/index.html" 2>/dev/null | grep -v 'http' | grep -v '#' | sed 's/href="//;s/"//'); do
+  if [ ! -f "$ROOT/$href" ]; then
+    echo "❌ BROKEN LINK: $href"
+    ERRORS=$((ERRORS + 1))
+  fi
+done
+
+if [ $ERRORS -gt 0 ]; then
+  echo ""
+  echo "🚫 $ERRORS broken link(s) found in index.html. Fix before committing."
+  exit 1
+fi
+
+echo "✅ All links in index.html verified."
+exit 0

@@ -1,0 +1,2209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shed Sales CRM | TuffShed Pipeline</title>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --bg-hover: #242424;
+            --text-primary: #f5f5f5;
+            --text-secondary: #888;
+            --text-muted: #555;
+            --accent-orange: #ff6b35;
+            --accent-green: #10b981;
+            --accent-yellow: #fbbf24;
+            --accent-red: #ef4444;
+            --accent-blue: #3b82f6;
+            --accent-purple: #8b5cf6;
+            --border-color: #2a2a2a;
+            --border-light: #333;
+            --shadow: 0 4px 24px rgba(0,0,0,0.4);
+        }
+
+        .light-mode {
+            --bg-primary: #f8f9fa;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-hover: #f0f0f0;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666;
+            --text-muted: #999;
+            --border-color: #e0e0e0;
+            --border-light: #eee;
+            --shadow: 0 4px 24px rgba(0,0,0,0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            line-height: 1.5;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg-secondary);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent-orange), #ff8c5a);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .logo-text {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 0.875rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-orange);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #ff8c5a;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-hover);
+            border-color: var(--border-light);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+            padding: 0.5rem;
+        }
+
+        .btn-ghost:hover {
+            color: var(--text-primary);
+            background: var(--bg-hover);
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--bg-secondary);
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .stats-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            min-width: fit-content;
+        }
+
+        .stat-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .stat-value.green { color: var(--accent-green); }
+        .stat-value.orange { color: var(--accent-orange); }
+        .stat-value.yellow { color: var(--accent-yellow); }
+        .stat-value.red { color: var(--accent-red); }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            background: var(--bg-secondary);
+            padding: 0 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tabs-content {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            gap: 0;
+        }
+
+        .tab {
+            padding: 1rem 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .tab:hover {
+            color: var(--text-primary);
+        }
+
+        .tab.active {
+            color: var(--accent-orange);
+            border-bottom-color: var(--accent-orange);
+        }
+
+        /* Main Content */
+        .main {
+            max-width: 1800px;
+            margin: 0 auto;
+            padding: 1.5rem;
+        }
+
+        /* Pipeline View */
+        .pipeline {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1rem;
+            overflow-x: auto;
+        }
+
+        @media (max-width: 1200px) {
+            .pipeline {
+                grid-template-columns: repeat(5, minmax(280px, 1fr));
+            }
+        }
+
+        .pipeline-column {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .column-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .column-title {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .column-count {
+            background: var(--bg-hover);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .column-body {
+            padding: 0.75rem;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        /* Lead Cards */
+        .lead-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .lead-card:hover {
+            border-color: var(--accent-orange);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .lead-card.priority-high {
+            border-left: 3px solid var(--accent-yellow);
+        }
+
+        .lead-card.priority-urgent {
+            border-left: 3px solid var(--accent-red);
+            animation: pulse-urgent 2s infinite;
+        }
+
+        @keyframes pulse-urgent {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+            50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+        }
+
+        .lead-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+
+        .lead-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .lead-source {
+            font-size: 0.65rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+        }
+
+        .source-marketplace { background: #3b82f620; color: var(--accent-blue); }
+        .source-salesforce { background: #8b5cf620; color: var(--accent-purple); }
+        .source-walkin { background: #10b98120; color: var(--accent-green); }
+        .source-referral { background: #fbbf2420; color: var(--accent-yellow); }
+        .source-website { background: #ff6b3520; color: var(--accent-orange); }
+
+        .lead-details {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.75rem;
+        }
+
+        .lead-product {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            background: var(--bg-hover);
+            padding: 0.4rem 0.6rem;
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+        }
+
+        .lead-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .lead-date {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .lead-date.overdue {
+            color: var(--accent-red);
+            font-weight: 600;
+        }
+
+        .alert-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            position: absolute;
+            top: -4px;
+            right: -4px;
+        }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1rem;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--bg-secondary);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-card);
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-orange);
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 0.75rem;
+        }
+
+        /* Playbooks View */
+        .playbooks {
+            display: none;
+        }
+
+        .playbooks.active {
+            display: block;
+        }
+
+        .playbook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .playbook-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .playbook-header {
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .playbook-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--accent-orange);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .playbook-title {
+            font-weight: 600;
+        }
+
+        .playbook-body {
+            padding: 1.25rem;
+        }
+
+        .playbook-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .playbook-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .playbook-item-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-orange);
+        }
+
+        .playbook-item-text {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .copy-btn {
+            margin-top: 0.75rem;
+            font-size: 0.75rem;
+            padding: 0.4rem 0.8rem;
+        }
+
+        /* Calendar View */
+        .calendar-view {
+            display: none;
+        }
+
+        .calendar-view.active {
+            display: block;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .calendar-month {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .calendar-grid {
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .calendar-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            background: var(--bg-hover);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .weekday {
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .calendar-days {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+        }
+
+        .calendar-day {
+            min-height: 100px;
+            padding: 0.5rem;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .calendar-day:nth-child(7n) {
+            border-right: none;
+        }
+
+        .day-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .calendar-day.today .day-number {
+            background: var(--accent-orange);
+            color: white;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .calendar-event {
+            background: var(--accent-orange);
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            margin-bottom: 0.25rem;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Alerts Panel */
+        .alerts-panel {
+            position: fixed;
+            right: 1.5rem;
+            top: 80px;
+            width: 320px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            display: none;
+            z-index: 50;
+        }
+
+        .alerts-panel.active {
+            display: block;
+        }
+
+        .alerts-header {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .alerts-title {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .alert-badge {
+            background: var(--accent-red);
+            color: white;
+            font-size: 0.7rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .alerts-body {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .alert-item {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .alert-item:hover {
+            background: var(--bg-hover);
+        }
+
+        .alert-item:last-child {
+            border-bottom: none;
+        }
+
+        .alert-item-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .alert-item-desc {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .alert-item-time {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Screenshot Upload */
+        .upload-zone {
+            border: 2px dashed var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-bottom: 1.5rem;
+        }
+
+        .upload-zone:hover {
+            border-color: var(--accent-orange);
+            background: var(--bg-hover);
+        }
+
+        .upload-zone.dragover {
+            border-color: var(--accent-orange);
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .upload-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .upload-text {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* OCR Processing */
+        .ocr-status {
+            display: none;
+            text-align: center;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .ocr-status.active {
+            display: block;
+        }
+
+        .ocr-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent-orange);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .ocr-status-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .ocr-confidence {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: 'JetBrains Mono', monospace;
+            margin-top: 0.5rem;
+        }
+
+        .ocr-confidence.high {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+        }
+
+        .ocr-confidence.medium {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--accent-yellow);
+        }
+
+        .ocr-confidence.low {
+            background: rgba(239, 68, 68, 0.15);
+            color: var(--accent-red);
+        }
+
+        .auto-filled {
+            border-color: var(--accent-green) !important;
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .auto-filled-badge {
+            font-size: 0.7rem;
+            color: var(--accent-green);
+            margin-left: 0.5rem;
+        }
+
+        /* Multi-upload lead cards */
+        .lead-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: grid;
+            grid-template-columns: 120px 1fr;
+            gap: 1rem;
+            align-items: start;
+            transition: all 0.2s;
+        }
+
+        .lead-card:hover {
+            border-color: var(--border-light);
+        }
+
+        .lead-card.processing {
+            opacity: 0.6;
+        }
+
+        .lead-card-thumb {
+            width: 120px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .lead-card-thumb:hover {
+            transform: scale(1.05);
+        }
+
+        .lead-card-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .lead-card-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+        }
+
+        .lead-card .form-input,
+        .lead-card .form-select,
+        .lead-card .form-textarea {
+            padding: 0.4rem 0.6rem;
+            font-size: 0.85rem;
+        }
+
+        .lead-card .form-label {
+            font-size: 0.7rem;
+            margin-bottom: 0.15rem;
+        }
+
+        .lead-card .form-textarea {
+            min-height: 50px;
+            resize: vertical;
+        }
+
+        .lead-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.25rem;
+        }
+
+        .lead-card-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-orange);
+            font-weight: 600;
+        }
+
+        .lead-card-remove {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.8rem;
+            padding: 0.2rem;
+        }
+
+        .lead-card-remove:hover {
+            color: var(--accent-red);
+        }
+
+        .lead-card-status {
+            font-size: 0.75rem;
+            color: var(--accent-green);
+        }
+
+        @media (max-width: 600px) {
+            .lead-card {
+                grid-template-columns: 80px 1fr;
+            }
+            .lead-card-thumb {
+                width: 80px;
+                height: 110px;
+            }
+            .lead-card-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+        }
+
+        .empty-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .stats-content {
+                gap: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .pipeline {
+                grid-template-columns: minmax(300px, 1fr);
+            }
+
+            .alerts-panel {
+                right: 1rem;
+                left: 1rem;
+                width: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">🏠</div>
+                <div>
+                    <div class="logo-text">Shed Sales CRM</div>
+                    <div class="logo-sub">TuffShed Pipeline</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-ghost" onclick="toggleAlerts()" id="alertsBtn">
+                    🔔 <span id="alertCount">0</span>
+                </button>
+                <button class="btn btn-ghost" onclick="toggleTheme()">🌓</button>
+                <button class="btn btn-secondary" onclick="openUploadModal()">📸 Screenshot</button>
+                <button class="btn btn-primary" onclick="openAddModal()">+ Add Lead</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stats-content">
+            <div class="stat-item">
+                <div class="stat-value" id="statTotal">0</div>
+                <div class="stat-label">Total Leads</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value orange" id="statNew">0</div>
+                <div class="stat-label">New Today</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value yellow" id="statMeetings">0</div>
+                <div class="stat-label">Meetings Scheduled</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value green" id="statWon">0</div>
+                <div class="stat-label">Closed Won</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value red" id="statOverdue">0</div>
+                <div class="stat-label">Need Follow-up</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+        <div class="tabs-content">
+            <div class="tab active" onclick="showView('pipeline')">Pipeline</div>
+            <div class="tab" onclick="showView('playbooks')">Playbooks</div>
+            <div class="tab" onclick="showView('calendar')">Calendar</div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Pipeline View -->
+        <div class="pipeline" id="pipelineView">
+            <div class="pipeline-column" data-stage="new">
+                <div class="column-header">
+                    <div class="column-title">
+                        <span>🆕</span> New Lead
+                        <span class="column-count" id="count-new">0</span>
+                    </div>
+                </div>
+                <div class="column-body" id="stage-new"></div>
+            </div>
+            <div class="pipeline-column" data-stage="contacted">
+                <div class="column-header">
+                    <div class="column-title">
+                        <span>📞</span> Contacted
+                        <span class="column-count" id="count-contacted">0</span>
+                    </div>
+                </div>
+                <div class="column-body" id="stage-contacted"></div>
+            </div>
+            <div class="pipeline-column" data-stage="qualified">
+                <div class="column-header">
+                    <div class="column-title">
+                        <span>✅</span> Qualified
+                        <span class="column-count" id="count-qualified">0</span>
+                    </div>
+                </div>
+                <div class="column-body" id="stage-qualified"></div>
+            </div>
+            <div class="pipeline-column" data-stage="meeting">
+                <div class="column-header">
+                    <div class="column-title">
+                        <span>📅</span> Meeting
+                        <span class="column-count" id="count-meeting">0</span>
+                    </div>
+                </div>
+                <div class="column-body" id="stage-meeting"></div>
+            </div>
+            <div class="pipeline-column" data-stage="closed">
+                <div class="column-header">
+                    <div class="column-title">
+                        <span>🎉</span> Closed
+                        <span class="column-count" id="count-closed">0</span>
+                    </div>
+                </div>
+                <div class="column-body" id="stage-closed"></div>
+            </div>
+        </div>
+
+        <!-- Playbooks View -->
+        <div class="playbooks" id="playbooksView">
+            <div class="playbook-grid">
+                <div class="playbook-card">
+                    <div class="playbook-header">
+                        <div class="playbook-icon">💰</div>
+                        <div class="playbook-title">Pricing Objections</div>
+                    </div>
+                    <div class="playbook-body">
+                        <div class="playbook-item">
+                            <div class="playbook-item-title">"That's more than I expected"</div>
+                            <div class="playbook-item-text">"I hear you. What were you comparing it to? A lot of folks come in thinking big-box store prices, but those are DIY kits that take a weekend and still wobble. This is delivered, installed, and built to last 20+ years. When you break down the cost per year, it's actually pennies a day for a structure that adds real value to your property."</div>
+                            <button class="btn btn-secondary copy-btn" onclick="copyText(this)">📋 Copy</button>
+                        </div>
+                        <div class="playbook-item">
+                            <div class="playbook-item-title">"Can you do any better on price?"</div>
+                            <div class="playbook-item-text">"The price includes delivery, professional installation, and our warranty. What I CAN do is look at current promotions — we sometimes have financing specials or seasonal deals. When were you looking to have it installed? If we can schedule this month, I might be able to include [free shelf/ramp/upgrade]."</div>
+                            <button class="btn btn-secondary copy-btn" onclick="copyText(this)">📋 Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="playbook-card">
+                    <div class="playbook-header">
+                        <div class="playbook-icon">📱</div>
+                        <div class="playbook-title">Follow-Up Templates</div>
+                    </div>
+                    <div class="playbook-body">
+                        <div class="playbook-item">
+                            <div class="playbook-item-title">Day 1 Follow-Up</div>
+                            <div class="playbook-item-text">"Hey [Name]! Just following up on the shed you were asking about. Did you have any other questions I can help with? I'm here if you need sizing advice or want to talk through options. - TJ"</div>
+                            <button class="btn btn-secondary copy-btn" onclick="copyText(this)">📋 Copy</button>
+                        </div>
+                        <div class="playbook-item">
+                            <div class="playbook-item-title">Day 3 Follow-Up</div>
+                            <div class="playbook-item-text">"Hi [Name], checking back in on that [size] shed. A lot of folks like to see them in person before deciding — want to swing by the lot this week? I can show you the build quality up close. What day works for you?"</div>
+                            <button class="btn btn-secondary copy-btn" onclick="copyText(this)">📋 Copy</button>
+                        </div>
+                        <div class="playbook-item">
+                            <div class="playbook-item-title">Day 7 Final Touch</div>
+                            <div class="playbook-item-text">"Hey [Name], last check-in from me! Just wanted to make sure you got all your questions answered about the shed. If timing or budget changed, no worries — I'll be here when you're ready. 👍"</div>
+                            <button class="btn btn-secondary copy-btn" onclick="copyText(this)">📋 Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="playbook-card">
+                    <div class="playbook-header">
+                        <div class="playbook-icon">🎯</div>
+                        <div class="playbook-title">Closing Tactics</div>
+                    </div>
+                    <div class="playbook-body">
+                        <div class="playbook-item">
+                            <div class="playbook-item-title">Assumptive Close</div>
+                            <div class="playbook-item-text">"So we're looking at the 10x12 Premier with the double doors. Want me to check delivery availability for next week, or is the week after better for you?"</div>
+                            <button class="btn btn-secondary copy-btn" onclick="copyText(this)">📋 Copy</button>
+                        </div>
+                        <div class="playbook-item">
+                            <div class="playbook-item-title">Urgency Close</div>
+                            <div class="playbook-item-text">"Just a heads up — we've got 2 of these in stock right now, and spring is our busiest season. If you want to lock in this one, I can hold it with a small deposit today."</div>
+                            <button class="btn btn-secondary copy-btn" onclick="copyText(this)">📋 Copy</button>
+                        </div>
+                        <div class="playbook-item">
+                            <div class="playbook-item-title">Summary Close</div>
+                            <div class="playbook-item-text">"So just to recap: 10x12 with the loft, we deliver and set it up, includes the 5-year warranty, and we can have it there by [date]. Does all that sound good? Let's get you on the schedule."</div>
+                            <button class="btn btn-secondary copy-btn" onclick="copyText(this)">📋 Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="playbook-card">
+                    <div class="playbook-header">
+                        <div class="playbook-icon">❓</div>
+                        <div class="playbook-title">Common Questions</div>
+                    </div>
+                    <div class="playbook-body">
+                        <div class="playbook-item">
+                            <div class="playbook-item-title">"Do I need a permit?"</div>
+                            <div class="playbook-item-text">"It depends on your city/county — most areas under 200 sq ft don't require one, but I'd recommend a quick call to your local building department. I can give you the number if you need it!"</div>
+                            <button class="btn btn-secondary copy-btn" onclick="copyText(this)">📋 Copy</button>
+                        </div>
+                        <div class="playbook-item">
+                            <div class="playbook-item-title">"How long does delivery take?"</div>
+                            <div class="playbook-item-text">"Usually 1-2 weeks depending on what's in stock. If you need something faster, let me know and I'll check what we have ready to go."</div>
+                            <button class="btn btn-secondary copy-btn" onclick="copyText(this)">📋 Copy</button>
+                        </div>
+                        <div class="playbook-item">
+                            <div class="playbook-item-title">"Do you have financing?"</div>
+                            <div class="playbook-item-text">"Yes! We work with several financing partners. Most folks qualify for 0% for 12 months or low monthly payments. Want me to run the numbers for the size you're looking at?"</div>
+                            <button class="btn btn-secondary copy-btn" onclick="copyText(this)">📋 Copy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar View -->
+        <div class="calendar-view" id="calendarView">
+            <div class="calendar-header">
+                <div class="calendar-month" id="calendarMonth">March 2026</div>
+                <div class="calendar-nav">
+                    <button class="btn btn-secondary" onclick="prevMonth()">←</button>
+                    <button class="btn btn-secondary" onclick="nextMonth()">→</button>
+                </div>
+            </div>
+            <div class="calendar-grid">
+                <div class="calendar-weekdays">
+                    <div class="weekday">Sun</div>
+                    <div class="weekday">Mon</div>
+                    <div class="weekday">Tue</div>
+                    <div class="weekday">Wed</div>
+                    <div class="weekday">Thu</div>
+                    <div class="weekday">Fri</div>
+                    <div class="weekday">Sat</div>
+                </div>
+                <div class="calendar-days" id="calendarDays"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Alerts Panel -->
+    <div class="alerts-panel" id="alertsPanel">
+        <div class="alerts-header">
+            <div class="alerts-title">
+                🚨 Action Required
+                <span class="alert-badge" id="alertBadge">0</span>
+            </div>
+            <button class="btn btn-ghost" onclick="toggleAlerts()">✕</button>
+        </div>
+        <div class="alerts-body" id="alertsBody"></div>
+    </div>
+
+    <!-- Add Lead Modal -->
+    <div class="modal-overlay" id="addModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title">Add New Lead</div>
+                <button class="btn btn-ghost" onclick="closeAddModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Name *</label>
+                        <input type="text" class="form-input" id="leadName" placeholder="John Smith">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" class="form-input" id="leadPhone" placeholder="(314) 555-0123">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Source *</label>
+                        <select class="form-select" id="leadSource">
+                            <option value="marketplace">FB Marketplace</option>
+                            <option value="salesforce">Salesforce</option>
+                            <option value="walkin">Walk-in</option>
+                            <option value="referral">Referral</option>
+                            <option value="website">Website</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Priority</label>
+                        <select class="form-select" id="leadPriority">
+                            <option value="normal">Normal</option>
+                            <option value="high">High</option>
+                            <option value="urgent">Urgent 🔥</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">What are they looking for?</label>
+                    <input type="text" class="form-input" id="leadProduct" placeholder="10x12 shed, needs loft space">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Notes</label>
+                    <textarea class="form-textarea" id="leadNotes" placeholder="Initial conversation notes..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Follow-up Date</label>
+                    <input type="date" class="form-input" id="leadFollowup">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeAddModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveLead()">Add Lead</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screenshot Upload Modal (Multi) -->
+    <div class="modal-overlay" id="uploadModal">
+        <div class="modal" style="max-width: 800px;">
+            <div class="modal-header">
+                <div class="modal-title">📸 Add from Screenshots</div>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <span id="uploadCounter" style="font-size: 0.8rem; color: var(--text-secondary); font-family: 'JetBrains Mono', monospace; display: none;">0/0 processed</span>
+                    <button class="btn btn-ghost" onclick="closeUploadModal()">✕</button>
+                </div>
+            </div>
+            <div class="modal-body" style="max-height: 70vh; overflow-y: auto;">
+                <!-- Drop zone -->
+                <div class="upload-zone" id="uploadZone">
+                    <div class="upload-icon">📷</div>
+                    <div class="upload-text">Drop screenshots here or click to upload</div>
+                    <div class="upload-hint">Select multiple — each screenshot becomes a lead</div>
+                    <input type="file" id="fileInput" accept="image/*" multiple style="display: none;">
+                </div>
+
+                <!-- Global OCR progress -->
+                <div class="ocr-status" id="ocrGlobalStatus">
+                    <div class="ocr-spinner"></div>
+                    <div class="ocr-status-text" id="ocrGlobalText">Reading screenshots...</div>
+                </div>
+
+                <!-- Lead cards container -->
+                <div id="leadCards" style="display: none;"></div>
+
+                <!-- Add more zone (shows after first batch) -->
+                <div id="addMoreZone" style="display: none; margin-top: 1rem;">
+                    <div class="upload-zone" style="padding: 1rem; border-style: dotted;" onclick="document.getElementById('addMoreInput').click()">
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">➕ Add more screenshots</div>
+                        <input type="file" id="addMoreInput" accept="image/*" multiple style="display: none;">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeUploadModal()">Cancel</button>
+                <button class="btn btn-primary" id="uploadSaveAllBtn" onclick="saveAllFromUpload()" style="display: none;">
+                    Add All Leads (<span id="leadCount">0</span>)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lead Detail Modal -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal">
+            <div class="modal-header">
+                <div class="modal-title" id="detailTitle">Lead Details</div>
+                <button class="btn btn-ghost" onclick="closeDetailModal()">✕</button>
+            </div>
+            <div class="modal-body" id="detailBody"></div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="deleteLead()">🗑️ Delete</button>
+                <button class="btn btn-primary" onclick="saveLeadChanges()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data
+        let leads = JSON.parse(localStorage.getItem('shedCrmLeads')) || [];
+        let currentLeadId = null;
+        let currentMonth = new Date();
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderPipeline();
+            renderCalendar();
+            updateStats();
+            checkAlerts();
+            setupUploadZone();
+
+            // Add sample data if empty
+            if (leads.length === 0) {
+                addSampleData();
+            }
+        });
+
+        // Sample data
+        function addSampleData() {
+            const samples = [
+                {
+                    id: Date.now(),
+                    name: 'Mike Johnson',
+                    phone: '(314) 555-0147',
+                    source: 'marketplace',
+                    product: '12x16 Premier with loft',
+                    notes: 'Asked about financing options. Has large backyard, needs storage for lawn equipment.',
+                    stage: 'new',
+                    priority: 'high',
+                    followup: new Date().toISOString().split('T')[0],
+                    created: new Date().toISOString(),
+                    history: ['Initial inquiry via Marketplace']
+                },
+                {
+                    id: Date.now() + 1,
+                    name: 'Sarah Williams',
+                    phone: '(636) 555-0198',
+                    source: 'walkin',
+                    product: '10x12 Garden shed',
+                    notes: 'Came in Saturday. Very interested. Needs to measure her yard first.',
+                    stage: 'contacted',
+                    priority: 'normal',
+                    followup: new Date(Date.now() - 86400000 * 2).toISOString().split('T')[0],
+                    created: new Date(Date.now() - 86400000 * 3).toISOString(),
+                    history: ['Walk-in visit', 'Sent follow-up text']
+                },
+                {
+                    id: Date.now() + 2,
+                    name: 'Robert Chen',
+                    phone: '(314) 555-0234',
+                    source: 'salesforce',
+                    product: '14x20 Workshop',
+                    notes: 'Big project. Wants electrical installed. Meeting scheduled for Thursday.',
+                    stage: 'meeting',
+                    priority: 'urgent',
+                    followup: null,
+                    meetingDate: new Date(Date.now() + 86400000 * 2).toISOString().split('T')[0],
+                    created: new Date(Date.now() - 86400000 * 5).toISOString(),
+                    history: ['Salesforce lead', 'Called - very interested', 'Sent quote', 'Scheduled office meeting']
+                }
+            ];
+            leads = samples;
+            saveData();
+            renderPipeline();
+            updateStats();
+            checkAlerts();
+        }
+
+        // Save data
+        function saveData() {
+            localStorage.setItem('shedCrmLeads', JSON.stringify(leads));
+        }
+
+        // Render Pipeline
+        function renderPipeline() {
+            const stages = ['new', 'contacted', 'qualified', 'meeting', 'closed'];
+            stages.forEach(stage => {
+                const container = document.getElementById(`stage-${stage}`);
+                const stageLeads = leads.filter(l => l.stage === stage);
+                container.innerHTML = stageLeads.length === 0 
+                    ? '<div class="empty-state"><div class="empty-icon">📭</div>No leads</div>'
+                    : stageLeads.map(lead => createLeadCard(lead)).join('');
+                document.getElementById(`count-${stage}`).textContent = stageLeads.length;
+            });
+        }
+
+        // Create Lead Card
+        function createLeadCard(lead) {
+            const isOverdue = lead.followup && new Date(lead.followup) < new Date();
+            const needsAlert = isOverdue || lead.priority === 'urgent';
+            
+            return `
+                <div class="lead-card priority-${lead.priority}" onclick="openDetailModal(${lead.id})">
+                    ${needsAlert ? '<div class="alert-dot"></div>' : ''}
+                    <div class="lead-header">
+                        <div class="lead-name">${lead.name}</div>
+                        <span class="lead-source source-${lead.source}">${getSourceLabel(lead.source)}</span>
+                    </div>
+                    ${lead.product ? `<div class="lead-product">🏠 ${lead.product}</div>` : ''}
+                    <div class="lead-details">${lead.phone || 'No phone'}</div>
+                    <div class="lead-footer">
+                        <div class="lead-date ${isOverdue ? 'overdue' : ''}">
+                            ${lead.followup ? `📅 ${formatDate(lead.followup)}` : lead.meetingDate ? `📅 Meeting: ${formatDate(lead.meetingDate)}` : ''}
+                        </div>
+                        ${getSuggestedAction(lead)}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Get source label
+        function getSourceLabel(source) {
+            const labels = {
+                marketplace: 'Marketplace',
+                salesforce: 'Salesforce',
+                walkin: 'Walk-in',
+                referral: 'Referral',
+                website: 'Website'
+            };
+            return labels[source] || source;
+        }
+
+        // Format date
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+
+            if (date.toDateString() === today.toDateString()) return 'Today';
+            if (date.toDateString() === tomorrow.toDateString()) return 'Tomorrow';
+            return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+        }
+
+        // Get suggested action
+        function getSuggestedAction(lead) {
+            if (lead.stage === 'new') {
+                return '<span style="color: var(--accent-orange);">📞 Call now!</span>';
+            }
+            if (lead.stage === 'contacted') {
+                const daysSinceCreated = Math.floor((Date.now() - new Date(lead.created)) / 86400000);
+                if (daysSinceCreated >= 2) {
+                    return '<span style="color: var(--accent-yellow);">⚡ Follow up!</span>';
+                }
+            }
+            if (lead.stage === 'meeting' && lead.meetingDate) {
+                const meetingDate = new Date(lead.meetingDate);
+                const today = new Date();
+                if (meetingDate.toDateString() === today.toDateString()) {
+                    return '<span style="color: var(--accent-green);">🎯 Today!</span>';
+                }
+            }
+            return '';
+        }
+
+        // Update stats
+        function updateStats() {
+            document.getElementById('statTotal').textContent = leads.length;
+            
+            const today = new Date().toDateString();
+            const newToday = leads.filter(l => new Date(l.created).toDateString() === today).length;
+            document.getElementById('statNew').textContent = newToday;
+            
+            const meetings = leads.filter(l => l.stage === 'meeting').length;
+            document.getElementById('statMeetings').textContent = meetings;
+            
+            const won = leads.filter(l => l.stage === 'closed' && l.won).length;
+            document.getElementById('statWon').textContent = won;
+            
+            const overdue = leads.filter(l => l.followup && new Date(l.followup) < new Date() && l.stage !== 'closed').length;
+            document.getElementById('statOverdue').textContent = overdue;
+        }
+
+        // Check alerts
+        function checkAlerts() {
+            const alerts = [];
+            
+            leads.forEach(lead => {
+                if (lead.stage === 'closed') return;
+                
+                // Overdue follow-ups
+                if (lead.followup && new Date(lead.followup) < new Date()) {
+                    alerts.push({
+                        title: `Follow up: ${lead.name}`,
+                        desc: `Overdue since ${formatDate(lead.followup)}`,
+                        leadId: lead.id,
+                        priority: 'high'
+                    });
+                }
+                
+                // Stale leads (contacted for 3+ days)
+                if (lead.stage === 'contacted') {
+                    const daysSince = Math.floor((Date.now() - new Date(lead.created)) / 86400000);
+                    if (daysSince >= 3) {
+                        alerts.push({
+                            title: `Stale lead: ${lead.name}`,
+                            desc: `In "Contacted" for ${daysSince} days`,
+                            leadId: lead.id,
+                            priority: 'medium'
+                        });
+                    }
+                }
+                
+                // Urgent leads
+                if (lead.priority === 'urgent' && lead.stage !== 'meeting') {
+                    alerts.push({
+                        title: `🔥 Urgent: ${lead.name}`,
+                        desc: lead.product || 'High priority lead',
+                        leadId: lead.id,
+                        priority: 'urgent'
+                    });
+                }
+            });
+            
+            document.getElementById('alertCount').textContent = alerts.length;
+            document.getElementById('alertBadge').textContent = alerts.length;
+            
+            const alertsBody = document.getElementById('alertsBody');
+            alertsBody.innerHTML = alerts.length === 0
+                ? '<div class="empty-state">No alerts</div>'
+                : alerts.map(a => `
+                    <div class="alert-item" onclick="openDetailModal(${a.leadId}); toggleAlerts();">
+                        <div class="alert-item-title">${a.title}</div>
+                        <div class="alert-item-desc">${a.desc}</div>
+                    </div>
+                `).join('');
+        }
+
+        // Toggle alerts panel
+        function toggleAlerts() {
+            document.getElementById('alertsPanel').classList.toggle('active');
+        }
+
+        // Toggle theme
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+        }
+
+        // Show view
+        function showView(view) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            document.getElementById('pipelineView').style.display = view === 'pipeline' ? 'grid' : 'none';
+            document.getElementById('playbooksView').classList.toggle('active', view === 'playbooks');
+            document.getElementById('calendarView').classList.toggle('active', view === 'calendar');
+            
+            if (view === 'calendar') renderCalendar();
+        }
+
+        // Modal functions
+        function openAddModal() {
+            document.getElementById('addModal').classList.add('active');
+            document.getElementById('leadFollowup').value = new Date().toISOString().split('T')[0];
+        }
+
+        function closeAddModal() {
+            document.getElementById('addModal').classList.remove('active');
+            // Clear form
+            ['leadName', 'leadPhone', 'leadProduct', 'leadNotes'].forEach(id => {
+                document.getElementById(id).value = '';
+            });
+        }
+
+        function saveLead() {
+            const name = document.getElementById('leadName').value.trim();
+            if (!name) {
+                alert('Name is required');
+                return;
+            }
+
+            const lead = {
+                id: Date.now(),
+                name: name,
+                phone: document.getElementById('leadPhone').value.trim(),
+                source: document.getElementById('leadSource').value,
+                priority: document.getElementById('leadPriority').value,
+                product: document.getElementById('leadProduct').value.trim(),
+                notes: document.getElementById('leadNotes').value.trim(),
+                followup: document.getElementById('leadFollowup').value,
+                stage: 'new',
+                created: new Date().toISOString(),
+                history: ['Lead created']
+            };
+
+            leads.push(lead);
+            saveData();
+            renderPipeline();
+            updateStats();
+            checkAlerts();
+            closeAddModal();
+        }
+
+        // ===== MULTI-UPLOAD SYSTEM =====
+        let pendingLeads = []; // Array of {id, dataUrl, name, phone, source, priority, product, notes}
+        let ocrProcessed = 0;
+        let ocrTotal = 0;
+
+        function openUploadModal() {
+            document.getElementById('uploadModal').classList.add('active');
+        }
+
+        function closeUploadModal() {
+            document.getElementById('uploadModal').classList.remove('active');
+            // Reset everything
+            pendingLeads = [];
+            ocrProcessed = 0;
+            ocrTotal = 0;
+            document.getElementById('uploadZone').style.display = 'block';
+            document.getElementById('ocrGlobalStatus').classList.remove('active');
+            document.getElementById('leadCards').style.display = 'none';
+            document.getElementById('leadCards').innerHTML = '';
+            document.getElementById('addMoreZone').style.display = 'none';
+            document.getElementById('uploadSaveAllBtn').style.display = 'none';
+            document.getElementById('uploadCounter').style.display = 'none';
+        }
+
+        function setupUploadZone() {
+            const zone = document.getElementById('uploadZone');
+            const input = document.getElementById('fileInput');
+            const addMoreInput = document.getElementById('addMoreInput');
+
+            zone.addEventListener('click', () => input.click());
+
+            zone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                zone.classList.add('dragover');
+            });
+
+            zone.addEventListener('dragleave', () => {
+                zone.classList.remove('dragover');
+            });
+
+            zone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                zone.classList.remove('dragover');
+                if (e.dataTransfer.files.length) {
+                    handleFiles(e.dataTransfer.files);
+                }
+            });
+
+            input.addEventListener('change', () => {
+                if (input.files.length) {
+                    handleFiles(input.files);
+                    input.value = ''; // Reset so same files can be re-selected
+                }
+            });
+
+            addMoreInput.addEventListener('change', () => {
+                if (addMoreInput.files.length) {
+                    handleFiles(addMoreInput.files);
+                    addMoreInput.value = '';
+                }
+            });
+        }
+
+        function handleFiles(fileList) {
+            const files = Array.from(fileList).filter(f => f.type.startsWith('image/'));
+            if (files.length === 0) {
+                alert('Please upload images');
+                return;
+            }
+
+            // Hide the initial drop zone, show progress
+            document.getElementById('uploadZone').style.display = 'none';
+            document.getElementById('ocrGlobalStatus').classList.add('active');
+            document.getElementById('uploadCounter').style.display = 'inline';
+
+            ocrTotal += files.length;
+            updateOCRCounter();
+
+            // Process each file
+            files.forEach((file, idx) => {
+                const reader = new FileReader();
+                reader.onload = async (e) => {
+                    const dataUrl = e.target.result;
+                    const cardId = 'card-' + Date.now() + '-' + idx;
+
+                    // Create a pending lead entry
+                    const pending = {
+                        id: cardId,
+                        dataUrl,
+                        name: '',
+                        phone: '',
+                        source: 'marketplace',
+                        priority: 'normal',
+                        product: '',
+                        notes: ''
+                    };
+                    pendingLeads.push(pending);
+
+                    // Run OCR
+                    try {
+                        const parsed = await runOCR(dataUrl);
+                        pending.name = parsed.name || '';
+                        pending.phone = parsed.phone || '';
+                        pending.notes = parsed.conversation || '';
+                    } catch (err) {
+                        console.error('OCR failed for file:', file.name, err);
+                    }
+
+                    ocrProcessed++;
+                    updateOCRCounter();
+
+                    // Render the card
+                    renderLeadCard(pending);
+
+                    // When all done, show the save button
+                    if (ocrProcessed >= ocrTotal) {
+                        document.getElementById('ocrGlobalStatus').classList.remove('active');
+                        document.getElementById('addMoreZone').style.display = 'block';
+                        document.getElementById('uploadSaveAllBtn').style.display = 'flex';
+                        updateLeadCount();
+                    }
+                };
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function updateOCRCounter() {
+            document.getElementById('uploadCounter').textContent = `${ocrProcessed}/${ocrTotal} processed`;
+            document.getElementById('ocrGlobalText').textContent = `🔍 Reading screenshot ${ocrProcessed + 1} of ${ocrTotal}...`;
+        }
+
+        function updateLeadCount() {
+            const count = pendingLeads.length;
+            document.getElementById('leadCount').textContent = count;
+            document.getElementById('uploadSaveAllBtn').querySelector('span').textContent = count;
+        }
+
+        function renderLeadCard(pending) {
+            const container = document.getElementById('leadCards');
+            container.style.display = 'block';
+
+            const cardNum = pendingLeads.indexOf(pending) + 1;
+            const nameDetected = pending.name ? 'auto-filled' : '';
+            const phoneDetected = pending.phone ? 'auto-filled' : '';
+            const nameBadge = pending.name ? '<span class="auto-filled-badge">🤖</span>' : '';
+            const phoneBadge = pending.phone ? '<span class="auto-filled-badge">🤖</span>' : '';
+
+            const html = `
+                <div class="lead-card" id="${pending.id}">
+                    <img class="lead-card-thumb" src="${pending.dataUrl}" onclick="window.open(this.src)" title="Click to enlarge">
+                    <div class="lead-card-fields">
+                        <div class="lead-card-header">
+                            <span class="lead-card-num">#${cardNum}</span>
+                            <button class="lead-card-remove" onclick="removeLeadCard('${pending.id}')" title="Remove">✕ Remove</button>
+                        </div>
+                        <div class="lead-card-row">
+                            <div class="form-group">
+                                <label class="form-label">Name ${nameBadge}</label>
+                                <input type="text" class="form-input ${nameDetected}" value="${escapeAttr(pending.name)}" 
+                                    onchange="updatePending('${pending.id}', 'name', this.value)" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Phone ${phoneBadge}</label>
+                                <input type="tel" class="form-input ${phoneDetected}" value="${escapeAttr(pending.phone)}" 
+                                    onchange="updatePending('${pending.id}', 'phone', this.value)" placeholder="(314) 555-0123">
+                            </div>
+                        </div>
+                        <div class="lead-card-row">
+                            <div class="form-group">
+                                <label class="form-label">Source</label>
+                                <select class="form-select" onchange="updatePending('${pending.id}', 'source', this.value)">
+                                    <option value="marketplace" selected>FB Marketplace</option>
+                                    <option value="salesforce">Salesforce</option>
+                                    <option value="walkin">Walk-in</option>
+                                    <option value="referral">Referral</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Priority</label>
+                                <select class="form-select" onchange="updatePending('${pending.id}', 'priority', this.value)">
+                                    <option value="normal" selected>Normal</option>
+                                    <option value="high">High</option>
+                                    <option value="urgent">Urgent</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">What they want</label>
+                            <input type="text" class="form-input" value="${escapeAttr(pending.product)}" 
+                                onchange="updatePending('${pending.id}', 'product', this.value)" placeholder="10x12 shed...">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Notes</label>
+                            <textarea class="form-textarea" onchange="updatePending('${pending.id}', 'notes', this.value)" 
+                                placeholder="Conversation notes...">${escapeHtml(pending.notes)}</textarea>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            container.insertAdjacentHTML('beforeend', html);
+        }
+
+        function updatePending(cardId, field, value) {
+            const p = pendingLeads.find(l => l.id === cardId);
+            if (p) p[field] = value;
+        }
+
+        function removeLeadCard(cardId) {
+            pendingLeads = pendingLeads.filter(l => l.id !== cardId);
+            const el = document.getElementById(cardId);
+            if (el) el.remove();
+            updateLeadCount();
+            // Renumber remaining cards
+            document.querySelectorAll('.lead-card-num').forEach((el, i) => {
+                el.textContent = '#' + (i + 1);
+            });
+            if (pendingLeads.length === 0) {
+                document.getElementById('uploadSaveAllBtn').style.display = 'none';
+                document.getElementById('addMoreZone').style.display = 'none';
+                document.getElementById('uploadZone').style.display = 'block';
+                document.getElementById('leadCards').style.display = 'none';
+            }
+        }
+
+        function saveAllFromUpload() {
+            // Validate — at least require names
+            const unnamed = pendingLeads.filter(p => !p.name.trim());
+            if (unnamed.length > 0) {
+                alert(`${unnamed.length} lead(s) still need a name. Fill them in or remove them.`);
+                return;
+            }
+
+            let added = 0;
+            pendingLeads.forEach((p, i) => {
+                const lead = {
+                    id: Date.now() + i,
+                    name: p.name.trim(),
+                    phone: p.phone.trim(),
+                    source: p.source,
+                    priority: p.priority,
+                    product: p.product.trim(),
+                    notes: p.notes.trim(),
+                    stage: 'new',
+                    created: new Date().toISOString(),
+                    followup: new Date().toISOString().split('T')[0],
+                    history: ['Added via screenshot upload']
+                };
+                leads.push(lead);
+                added++;
+            });
+
+            saveData();
+            renderPipeline();
+            updateStats();
+            checkAlerts();
+            closeUploadModal();
+
+            // Quick toast
+            showToast(`✅ ${added} lead${added > 1 ? 's' : ''} added from screenshots`);
+        }
+
+        function showToast(msg) {
+            const toast = document.createElement('div');
+            toast.style.cssText = 'position:fixed;bottom:2rem;left:50%;transform:translateX(-50%);background:var(--accent-green);color:white;padding:0.75rem 1.5rem;border-radius:8px;font-weight:600;z-index:9999;font-family:Outfit,sans-serif;box-shadow:0 4px 12px rgba(0,0,0,0.3);';
+            toast.textContent = msg;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        async function runOCR(dataUrl) {
+            // Run Tesseract OCR
+            const result = await Tesseract.recognize(dataUrl, 'eng', {
+                logger: (m) => {
+                    if (m.status === 'recognizing text') {
+                        const pct = Math.round(m.progress * 100);
+                        document.getElementById('ocrGlobalText').textContent = 
+                            `🔍 Reading screenshot ${ocrProcessed + 1} of ${ocrTotal}... ${pct}%`;
+                    }
+                }
+            });
+
+            const fullText = result.data.text;
+            console.log('OCR Full Text:', fullText);
+            return parseFBScreenshot(fullText, result.data);
+        }
+
+        function parseFBScreenshot(fullText, ocrData) {
+            const lines = fullText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+            let name = null;
+            let phone = null;
+            let conversationLines = [];
+
+            console.log('OCR Lines:', lines);
+
+            // === EXTRACT NAME ===
+            // FB Messenger: contact name at top, format: "Name · Listing title"
+            for (let i = 0; i < Math.min(lines.length, 8); i++) {
+                const line = lines[i];
+                if (/^(view buyer|more options|marketplace|<|>|\d{1,2}:\d{2}|today|yesterday)/i.test(line)) continue;
+                if (/^\$[\d,]+/.test(line)) continue;
+                if (/^(AM|PM|WED|THU|FRI|SAT|SUN|MON|TUE)$/i.test(line)) continue;
+
+                const headerMatch = line.match(/^([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)\s*[·\-\|•]\s*.+/);
+                if (headerMatch) { name = headerMatch[1].trim(); break; }
+
+                if (/^[A-Z][a-z]+(\s+[A-Z]\.?)?(\s+[A-Z][a-z]+)?$/.test(line) && line.length < 30) {
+                    if (!/^(View|More|Send|Type|Search|Back|Home|Menu|Settings)$/i.test(line)) {
+                        name = line; break;
+                    }
+                }
+            }
+
+            if (!name) {
+                for (let i = 0; i < Math.min(lines.length, 6); i++) {
+                    const backArrow = lines[i].match(/^[<«‹]\s*([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/);
+                    if (backArrow) { name = backArrow[1].trim(); break; }
+                }
+            }
+
+            // === EXTRACT PHONE ===
+            const phonePatterns = [
+                /\((\d{3})\)\s*(\d{3})[-.\s](\d{4})/,
+                /(\d{3})[-.\s](\d{3})[-.\s](\d{4})/,
+                /(\d{10})/,
+            ];
+            for (const line of lines) {
+                for (const pattern of phonePatterns) {
+                    const match = line.match(pattern);
+                    if (match) {
+                        const digits = match[0].replace(/\D/g, '');
+                        if (digits.length === 10) {
+                            phone = `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
+                            break;
+                        }
+                    }
+                }
+                if (phone) break;
+            }
+
+            // === EXTRACT CONVERSATION ===
+            const skipPatterns = /^(<|>|view buyer|more options|marketplace|\$[\d,]+|[·\-\|]|you can now rate)/i;
+            let pastHeader = false;
+            for (const line of lines) {
+                if (!pastHeader) {
+                    if (/^(the sheds|yes|are you|my number|i'll|what time|do you|how|can you|i'm|we)/i.test(line)) pastHeader = true;
+                    else if (line.length > 40) pastHeader = true;
+                }
+                if (pastHeader && !skipPatterns.test(line) && line.length > 2) {
+                    conversationLines.push(line);
+                }
+            }
+
+            return { name, phone, conversation: conversationLines.join('\n') };
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function escapeAttr(text) {
+            return (text || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        }
+
+        // Detail modal
+        function openDetailModal(leadId) {
+            currentLeadId = leadId;
+            const lead = leads.find(l => l.id === leadId);
+            if (!lead) return;
+
+            document.getElementById('detailTitle').textContent = lead.name;
+            document.getElementById('detailBody').innerHTML = `
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Stage</label>
+                        <select class="form-select" id="editStage">
+                            <option value="new" ${lead.stage === 'new' ? 'selected' : ''}>New Lead</option>
+                            <option value="contacted" ${lead.stage === 'contacted' ? 'selected' : ''}>Contacted</option>
+                            <option value="qualified" ${lead.stage === 'qualified' ? 'selected' : ''}>Qualified</option>
+                            <option value="meeting" ${lead.stage === 'meeting' ? 'selected' : ''}>Meeting</option>
+                            <option value="closed" ${lead.stage === 'closed' ? 'selected' : ''}>Closed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Priority</label>
+                        <select class="form-select" id="editPriority">
+                            <option value="normal" ${lead.priority === 'normal' ? 'selected' : ''}>Normal</option>
+                            <option value="high" ${lead.priority === 'high' ? 'selected' : ''}>High</option>
+                            <option value="urgent" ${lead.priority === 'urgent' ? 'selected' : ''}>Urgent</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Phone</label>
+                        <input type="tel" class="form-input" id="editPhone" value="${lead.phone || ''}">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Source</label>
+                        <select class="form-select" id="editSource">
+                            <option value="marketplace" ${lead.source === 'marketplace' ? 'selected' : ''}>Marketplace</option>
+                            <option value="salesforce" ${lead.source === 'salesforce' ? 'selected' : ''}>Salesforce</option>
+                            <option value="walkin" ${lead.source === 'walkin' ? 'selected' : ''}>Walk-in</option>
+                            <option value="referral" ${lead.source === 'referral' ? 'selected' : ''}>Referral</option>
+                            <option value="website" ${lead.source === 'website' ? 'selected' : ''}>Website</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">What they want</label>
+                    <input type="text" class="form-input" id="editProduct" value="${lead.product || ''}">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label">Follow-up Date</label>
+                        <input type="date" class="form-input" id="editFollowup" value="${lead.followup || ''}">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Meeting Date</label>
+                        <input type="date" class="form-input" id="editMeeting" value="${lead.meetingDate || ''}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Notes</label>
+                    <textarea class="form-textarea" id="editNotes">${lead.notes || ''}</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Add Note</label>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <input type="text" class="form-input" id="newNote" placeholder="Type a new note...">
+                        <button class="btn btn-secondary" onclick="addNote()">Add</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">History</label>
+                    <div style="background: var(--bg-card); border-radius: 8px; padding: 1rem; max-height: 150px; overflow-y: auto;">
+                        ${(lead.history || []).map(h => `<div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.5rem;">• ${h}</div>`).join('')}
+                    </div>
+                </div>
+            `;
+            document.getElementById('detailModal').classList.add('active');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detailModal').classList.remove('active');
+            currentLeadId = null;
+        }
+
+        function addNote() {
+            const noteText = document.getElementById('newNote').value.trim();
+            if (!noteText) return;
+
+            const lead = leads.find(l => l.id === currentLeadId);
+            if (lead) {
+                lead.history = lead.history || [];
+                lead.history.push(`${new Date().toLocaleDateString()}: ${noteText}`);
+                saveData();
+                openDetailModal(currentLeadId);
+            }
+        }
+
+        function saveLeadChanges() {
+            const lead = leads.find(l => l.id === currentLeadId);
+            if (!lead) return;
+
+            const oldStage = lead.stage;
+            lead.stage = document.getElementById('editStage').value;
+            lead.priority = document.getElementById('editPriority').value;
+            lead.phone = document.getElementById('editPhone').value;
+            lead.source = document.getElementById('editSource').value;
+            lead.product = document.getElementById('editProduct').value;
+            lead.followup = document.getElementById('editFollowup').value || null;
+            lead.meetingDate = document.getElementById('editMeeting').value || null;
+            lead.notes = document.getElementById('editNotes').value;
+
+            if (oldStage !== lead.stage) {
+                lead.history = lead.history || [];
+                lead.history.push(`Stage changed: ${oldStage} → ${lead.stage}`);
+            }
+
+            saveData();
+            renderPipeline();
+            updateStats();
+            checkAlerts();
+            renderCalendar();
+            closeDetailModal();
+        }
+
+        function deleteLead() {
+            if (!confirm('Delete this lead?')) return;
+            leads = leads.filter(l => l.id !== currentLeadId);
+            saveData();
+            renderPipeline();
+            updateStats();
+            checkAlerts();
+            closeDetailModal();
+        }
+
+        // Calendar
+        function renderCalendar() {
+            const year = currentMonth.getFullYear();
+            const month = currentMonth.getMonth();
+            
+            document.getElementById('calendarMonth').textContent = 
+                currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+            
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            
+            let html = '';
+            
+            // Empty cells for days before month starts
+            for (let i = 0; i < firstDay; i++) {
+                html += '<div class="calendar-day"></div>';
+            }
+            
+            const today = new Date();
+            
+            for (let day = 1; day <= daysInMonth; day++) {
+                const date = new Date(year, month, day);
+                const dateStr = date.toISOString().split('T')[0];
+                const isToday = date.toDateString() === today.toDateString();
+                
+                const dayMeetings = leads.filter(l => l.meetingDate === dateStr);
+                const dayFollowups = leads.filter(l => l.followup === dateStr);
+                
+                html += `
+                    <div class="calendar-day ${isToday ? 'today' : ''}">
+                        <div class="day-number">${day}</div>
+                        ${dayMeetings.map(l => `<div class="calendar-event" onclick="openDetailModal(${l.id})">${l.name}</div>`).join('')}
+                        ${dayFollowups.map(l => `<div class="calendar-event" style="background: var(--accent-yellow);" onclick="openDetailModal(${l.id})">📞 ${l.name}</div>`).join('')}
+                    </div>
+                `;
+            }
+            
+            document.getElementById('calendarDays').innerHTML = html;
+        }
+
+        function prevMonth() {
+            currentMonth.setMonth(currentMonth.getMonth() - 1);
+            renderCalendar();
+        }
+
+        function nextMonth() {
+            currentMonth.setMonth(currentMonth.getMonth() + 1);
+            renderCalendar();
+        }
+
+        // Copy text helper
+        function copyText(btn) {
+            const text = btn.previousElementSibling.textContent;
+            navigator.clipboard.writeText(text);
+            btn.textContent = '✓ Copied!';
+            setTimeout(() => btn.textContent = '📋 Copy', 1500);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌱 Spring Content Command Center — Tidy Tails</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232733;
+    --accent: #4ade80;
+    --accent2: #22d3ee;
+    --accent3: #f472b6;
+    --orange: #fb923c;
+    --text: #e2e8f0;
+    --text2: #94a3b8;
+    --border: #2d3348;
+    --fb: #1877f2;
+    --nd: #8bc53f;
+    --ig: #e1306c;
+    --success: #22c55e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 0; }
+
+  .header {
+    background: linear-gradient(135deg, #1a1d27 0%, #1e3a2f 50%, #1a1d27 100%);
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .header h1 { font-size: 1.8rem; margin-bottom: 0.3rem; }
+  .header h1 span { color: var(--accent); }
+  .header p { color: var(--text2); font-size: 0.95rem; }
+
+  .stats-bar {
+    display: flex; gap: 1rem; padding: 1rem 1.5rem;
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+  .stat-card {
+    flex: 1; min-width: 100px; text-align: center;
+    background: var(--surface2); border-radius: 10px; padding: 0.8rem 0.5rem;
+  }
+  .stat-card .num { font-size: 1.6rem; font-weight: 700; }
+  .stat-card .label { font-size: 0.75rem; color: var(--text2); margin-top: 2px; }
+  .stat-fb .num { color: var(--fb); }
+  .stat-nd .num { color: var(--nd); }
+  .stat-ig .num { color: var(--ig); }
+  .stat-done .num { color: var(--success); }
+
+  .controls {
+    display: flex; gap: 0.5rem; padding: 1rem 1.5rem;
+    flex-wrap: wrap; align-items: center;
+  }
+  .filter-btn {
+    padding: 0.5rem 1rem; border-radius: 20px; border: 1px solid var(--border);
+    background: var(--surface2); color: var(--text); cursor: pointer;
+    font-size: 0.85rem; transition: all 0.2s;
+  }
+  .filter-btn:hover { border-color: var(--accent); }
+  .filter-btn.active { background: var(--accent); color: #000; border-color: var(--accent); font-weight: 600; }
+  .filter-btn.fb.active { background: var(--fb); border-color: var(--fb); color: #fff; }
+  .filter-btn.nd.active { background: var(--nd); border-color: var(--nd); color: #000; }
+  .filter-btn.ig.active { background: var(--ig); border-color: var(--ig); color: #fff; }
+
+  .week-label {
+    padding: 0.8rem 1.5rem; font-size: 1.1rem; font-weight: 700;
+    color: var(--accent); border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .post-grid {
+    padding: 0.5rem 1rem;
+  }
+
+  .post-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; margin: 0.75rem 0; overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .post-card:hover { border-color: var(--accent); }
+  .post-card.posted { opacity: 0.5; }
+  .post-card.posted .post-header { background: #1a2e1a; }
+
+  .post-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.7rem 1rem; background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+  .post-meta {
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .platform-badge {
+    padding: 0.2rem 0.6rem; border-radius: 10px; font-size: 0.7rem;
+    font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .badge-fb { background: var(--fb); color: #fff; }
+  .badge-nd { background: var(--nd); color: #000; }
+  .badge-ig { background: var(--ig); color: #fff; }
+
+  .post-day { font-size: 0.85rem; color: var(--text2); }
+  .post-type { font-size: 0.7rem; color: var(--orange); background: rgba(251,146,60,0.15); padding: 0.15rem 0.5rem; border-radius: 8px; }
+
+  .post-body {
+    padding: 1rem; line-height: 1.6; font-size: 0.9rem;
+    white-space: pre-wrap; max-height: 200px; overflow-y: auto;
+  }
+  .post-body.expanded { max-height: none; }
+
+  .post-actions {
+    display: flex; gap: 0.5rem; padding: 0.7rem 1rem;
+    border-top: 1px solid var(--border); flex-wrap: wrap;
+  }
+  .action-btn {
+    padding: 0.4rem 0.8rem; border-radius: 8px; border: 1px solid var(--border);
+    background: var(--surface2); color: var(--text); cursor: pointer;
+    font-size: 0.8rem; transition: all 0.2s; display: flex; align-items: center; gap: 0.3rem;
+  }
+  .action-btn:hover { border-color: var(--accent); }
+  .action-btn.copy-btn:hover { background: var(--accent); color: #000; }
+  .action-btn.done-btn { border-color: var(--success); color: var(--success); }
+  .action-btn.done-btn.checked { background: var(--success); color: #000; }
+
+  .tips-section {
+    padding: 1.5rem; border-top: 2px solid var(--border);
+  }
+  .tips-section h2 { color: var(--accent2); margin-bottom: 1rem; font-size: 1.2rem; }
+  .tip-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+  .tip-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 1rem;
+  }
+  .tip-card h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+  .tip-card p, .tip-card li { font-size: 0.85rem; color: var(--text2); line-height: 1.5; }
+  .tip-card ul { padding-left: 1.2rem; }
+  .tip-card li { margin: 0.3rem 0; }
+
+  .hashtag-box {
+    background: var(--surface2); border-radius: 8px; padding: 0.8rem;
+    margin-top: 0.5rem; font-size: 0.8rem; color: var(--accent2);
+    cursor: pointer; word-break: break-word;
+  }
+  .hashtag-box:hover { background: var(--border); }
+
+  .toast {
+    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    background: var(--accent); color: #000; padding: 0.6rem 1.5rem;
+    border-radius: 20px; font-weight: 600; font-size: 0.9rem;
+    opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 99;
+  }
+  .toast.show { opacity: 1; }
+
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.3rem; }
+    .stats-bar { gap: 0.5rem; }
+    .stat-card { padding: 0.5rem; }
+    .stat-card .num { font-size: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🌱 <span>Spring Content</span> Command Center</h1>
+  <p>14 days of ready-to-post content for Facebook, Nextdoor & Instagram</p>
+  <p style="margin-top:0.3rem;font-size:0.8rem;color:var(--accent);">March 8–21, 2026 • Copy → Paste → Post → Mark Done</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-card stat-fb"><div class="num" id="fb-count">0</div><div class="label">Facebook</div></div>
+  <div class="stat-card stat-nd"><div class="num" id="nd-count">0</div><div class="label">Nextdoor</div></div>
+  <div class="stat-card stat-ig"><div class="num" id="ig-count">0</div><div class="label">Instagram</div></div>
+  <div class="stat-card stat-done"><div class="num" id="done-count">0/0</div><div class="label">Posted</div></div>
+</div>
+
+<div class="controls">
+  <button class="filter-btn active" onclick="filter('all')">All</button>
+  <button class="filter-btn fb" onclick="filter('fb')">📘 Facebook</button>
+  <button class="filter-btn nd" onclick="filter('nd')">🏡 Nextdoor</button>
+  <button class="filter-btn ig" onclick="filter('ig')">📸 Instagram</button>
+  <button class="filter-btn" onclick="filter('todo')" style="margin-left:auto;">📋 Not Posted</button>
+</div>
+
+<div id="content-area"></div>
+
+<div class="tips-section">
+  <h2>📖 Platform Playbook</h2>
+  <div class="tip-grid">
+    <div class="tip-card">
+      <h3>📘 Facebook Groups — Where the Customers Are</h3>
+      <ul>
+        <li><strong>Target groups:</strong> Ballwin Community, Chesterfield Neighbors, West County Moms, STL Dog Owners, Manchester/Ellisville Community</li>
+        <li>Post 2-3x per week max per group (don't get flagged as spam)</li>
+        <li>Rotate posts — never post the same thing in 2 groups same day</li>
+        <li>Engage in comments on OTHER people's posts first (build presence)</li>
+        <li>Best times: 7-9 AM, 12-1 PM, 7-9 PM</li>
+        <li>Reply to every comment within 2 hours</li>
+      </ul>
+    </div>
+    <div class="tip-card">
+      <h3>🏡 Nextdoor — The Secret Weapon</h3>
+      <ul>
+        <li><strong>Why it works:</strong> Neighbors trust neighbor recommendations. Nextdoor is built for exactly this.</li>
+        <li>Use "Recommendations" category when asking for business</li>
+        <li>Post in "For Sale & Free" for promotions</li>
+        <li>Comment on pet-related posts organically</li>
+        <li>Ask existing customers to recommend you on Nextdoor</li>
+        <li>Keep tone neighborly — less salesy than Facebook</li>
+        <li>Respond to "looking for pet services" posts FAST</li>
+      </ul>
+    </div>
+    <div class="tip-card">
+      <h3>📸 Instagram — Brand Building</h3>
+      <ul>
+        <li>Post Reels for reach (algorithm pushes video)</li>
+        <li>Before/after yard photos work great</li>
+        <li>Use Stories for day-of-service content</li>
+        <li>Tag location on EVERY post (Ballwin MO, Chesterfield MO, etc.)</li>
+        <li>Engage with local pet accounts and groomers</li>
+        <li>Post consistently — 3-4x per week minimum</li>
+      </ul>
+      <div class="hashtag-box" onclick="copyText(this.innerText, 'Hashtags copied!')">#tidytails #pooperscooper #stldogs #stlouisdogs #dogpoop #dogmom #dogdad #westcountymo #ballwinmo #chesterfieldmo #petwasteRemoval #dogsofstl #cleanyard #springcleaning #backyardgoals #stlouismo #doglife #petwaste #yardcleanup #localstl</div>
+    </div>
+    <div class="tip-card">
+      <h3>🎯 Spring Angles That Convert</h3>
+      <ul>
+        <li><strong>The Thaw:</strong> Snow melted, poop revealed — spring cleanup urgency</li>
+        <li><strong>Outdoor Season:</strong> Kids playing, BBQs, guests coming over</li>
+        <li><strong>Allergies/Health:</strong> Dog waste attracts flies, bacteria, parasites</li>
+        <li><strong>Time Value:</strong> Spring = busy. Yard chores = last priority</li>
+        <li><strong>$70 Anchor:</strong> Always mention — it's below every competitor</li>
+        <li><strong>Local Trust:</strong> "Your neighbor TJ" beats "national franchise"</li>
+        <li><strong>No Contract:</strong> Removes risk. People hate commitments.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied!</div>
+
+<script>
+const POSTS = [
+  // === WEEK 1: March 8-14 ===
+  // Day 1 - Saturday Mar 8
+  {
+    day: "Sat, Mar 8", week: 1, platform: "fb", type: "Spring Opener",
+    content: `Finally warm enough to let the dogs out for more than 30 seconds... and now you can see (and smell) what winter left behind 😅
+
+3 months of snow just melted and your yard is basically a poop museum right now. No judgment — happens to everyone.
+
+I'm TJ, I run Tidy Tails right here in West County. I'll come out, do a full deep clean ($100), and then keep it clean every week so you never deal with this again.
+
+Weekly: $25/visit
+Monthly plan: $70/month (cheapest in STL — I checked)
+One-time rescue: $100
+
+No contracts. No commitments. Just a yard you can actually use this spring.
+
+📱 314-850-7140
+🌐 tidytailsstl.com`
+  },
+  {
+    day: "Sat, Mar 8", week: 1, platform: "nd", type: "Neighbor Intro",
+    content: `Hey neighbors! 👋 With the weather warming up I wanted to introduce myself — I'm TJ, I run a local pet waste removal service called Tidy Tails.
+
+If your backyard is looking rough after this winter (trust me, you're not the only one), I do full yard cleanups and weekly maintenance.
+
+I live in the area and serve Ballwin, Chesterfield, Manchester, Ellisville, Wildwood, and surrounding neighborhoods.
+
+$25/week or $70/month. No contracts, cancel anytime.
+
+Happy to answer any questions! 📱 314-850-7140`
+  },
+
+  // Day 2 - Sunday Mar 9
+  {
+    day: "Sun, Mar 9", week: 1, platform: "ig", type: "Spring Reel Caption",
+    content: `POV: You finally go in the backyard after winter ❄️➡️🌱
+
+That moment when the snow melts and you realize your yard has been storing 3 months of... surprises 💩
+
+Don't worry — Tidy Tails has your back(yard). 
+
+$70/month • No contracts • West County STL
+📱 314-850-7140
+
+#tidytails #pooperscooper #stldogs #springcleaning #westcountymo #ballwinmo #dogmom #cleanyard`
+  },
+  {
+    day: "Sun, Mar 9", week: 1, platform: "fb", type: "Social Proof Ask",
+    content: `Quick question for the dog owners in here 🐕
+
+What's the ONE yard chore you'd love to never do again?
+
+For most people I talk to, it's picking up dog poop. Which is literally why I started Tidy Tails — I do it so you don't have to.
+
+$25/week. Show up same day every week. Your yard stays clean.
+
+If that sounds like a no-brainer, hit me up: 314-850-7140`
+  },
+
+  // Day 3 - Monday Mar 10
+  {
+    day: "Mon, Mar 10", week: 1, platform: "nd", type: "Helpful Neighbor",
+    content: `PSA for dog owners: With the spring thaw, all that waste that's been frozen is now thawing too — and it's a health hazard. Dog waste carries E. coli, giardia, and roundworms that can survive in soil for years.
+
+If you've got kids who play in the yard or other pets, getting it cleaned up sooner rather than later is worth it.
+
+I offer one-time deep cleans for $100 if you just want a fresh start. Or $70/month for weekly maintenance.
+
+Not trying to sell you — just want everyone's yards safe this spring. 🐕
+
+— TJ, Tidy Tails (314-850-7140)`
+  },
+  {
+    day: "Mon, Mar 10", week: 1, platform: "fb", type: "Price Comparison",
+    content: `I just did a deep dive on every pooper scooper company in the STL area. Here's what I found:
+
+The average price? $85-95/month for one dog, once a week.
+
+Tidy Tails? $70/month. Flat.
+
+I'm not a franchise paying corporate fees. I'm not a company with a marketing department and 50 trucks. I'm TJ — I show up, I scoop, your yard is clean.
+
+That's it. That's the pitch.
+
+📱 314-850-7140
+🌐 tidytailsstl.com`
+  },
+
+  // Day 4 - Tuesday Mar 11
+  {
+    day: "Tue, Mar 11", week: 1, platform: "ig", type: "Carousel/Story",
+    content: `Things that cost more than $70/month:
+☕ Daily Starbucks habit: ~$150/month
+📱 Your phone bill: ~$85/month
+🎬 Netflix + Hulu + Disney+: ~$45/month
+🐕 Never picking up dog poop again: $70/month ✅
+
+One of these things actually gives you your weekends back.
+
+Tidy Tails — local pet waste removal in West County STL
+📱 314-850-7140
+
+#tidytails #stldogs #pooperscooper #dogmom #dogdad #westcountymo #chesterfieldmo #worthit`
+  },
+
+  // Day 5 - Wednesday Mar 12
+  {
+    day: "Wed, Mar 12", week: 1, platform: "nd", type: "Recommendation Ask",
+    content: `Anyone else's yard need a serious rescue mission after this winter? 😬
+
+Offering spring deep cleans this week and next — I'll come through and get every last bit out of your yard so you're starting fresh for the season.
+
+$100 for a one-time full clean
+$70/month if you want to keep it that way weekly
+
+I serve Ballwin, Chesterfield, Manchester, Ellisville, Wildwood, and surrounding areas.
+
+TJ — Tidy Tails
+📱 314-850-7140`
+  },
+  {
+    day: "Wed, Mar 12", week: 1, platform: "fb", type: "Objection Buster",
+    content: `"I can just pick it up myself"
+
+Yep. You can.
+
+You can also mow your own lawn, wash your own car, and do your own taxes.
+
+The question isn't "can you" — it's "do you want to?"
+
+If you've got a dog and a yard and you're tired of the poop dance every weekend, I'll handle it for $25/week.
+
+I'm TJ with Tidy Tails. Local. No contracts. Just a clean yard.
+
+📱 314-850-7140`
+  },
+
+  // Day 6 - Thursday Mar 13
+  {
+    day: "Thu, Mar 13", week: 1, platform: "ig", type: "Testimonial/Story",
+    content: `Why I started Tidy Tails 👇
+
+I noticed everyone I knew with dogs had the same problem — the backyard was a disaster zone. Nobody wanted to deal with it, but nobody wanted to pay franchise prices either.
+
+So I started doing it myself. Local, affordable, reliable.
+
+$70/month. Show up every week. Your yard stays clean. Simple.
+
+Serving West County STL — Ballwin, Chesterfield, Manchester, Ellisville & more
+
+📱 314-850-7140
+🌐 tidytailsstl.com
+
+#tidytails #smallbusiness #stlouis #pooperscooper #dogmom #supportlocal`
+  },
+  {
+    day: "Thu, Mar 13", week: 1, platform: "fb", type: "Weekend Prep",
+    content: `Weekend plans include using your backyard?
+
+Quick checklist:
+✅ Grill cleaned? 
+✅ Patio furniture out?
+✅ 47 piles of dog poop removed? 
+
+If that last one made you laugh nervously... I can help 😂
+
+One-time deep clean: $100
+Weekly service: $25/visit  
+Monthly plan: $70 (best value)
+
+TJ — Tidy Tails
+📱 314-850-7140`
+  },
+
+  // Day 7 - Friday Mar 14
+  {
+    day: "Fri, Mar 14", week: 1, platform: "nd", type: "Spring Sale",
+    content: `🌱 SPRING SPECIAL for neighbors:
+
+Sign up for monthly service ($70/mo) this week and I'll throw in your first deep clean FREE (normally $100).
+
+That's basically getting your whole yard cleared out from winter AND weekly service going forward — for $70.
+
+I'm TJ with Tidy Tails, your local pet waste removal service. I do this full-time and take it seriously — show up same day every week, rain or shine.
+
+Limited spots this month as I fill up my weekly route.
+
+📱 314-850-7140
+🌐 tidytailsstl.com`
+  },
+
+  // === WEEK 2: March 15-21 ===
+  // Day 8 - Saturday Mar 15
+  {
+    day: "Sat, Mar 15", week: 2, platform: "fb", type: "Spring Break",
+    content: `Spring break next week means kids home ALL DAY.
+
+You know what that means? They're going to want to play outside. In the yard. The yard with... you know.
+
+Get ahead of it. $100 deep clean this weekend, $70/month to keep it that way.
+
+Your kids (and their shoes) will thank you.
+
+TJ — Tidy Tails
+📱 314-850-7140`
+  },
+  {
+    day: "Sat, Mar 15", week: 2, platform: "ig", type: "Meme/Reel",
+    content: `Your dog after destroying the backyard all winter: 🐕😇
+Your yard right now: 💩💩💩💩💩💩💩
+
+Spring has entered the chat. Time for a yard rescue.
+
+Tidy Tails — $70/month, no contracts, West County STL
+📱 314-850-7140
+
+#tidytails #dogpoop #springcleaning #stldogs #pooperscooper #dogmom #ballwinmo #chesterfieldmo #memeworthy`
+  },
+
+  // Day 9 - Sunday Mar 16
+  {
+    day: "Sun, Mar 16", week: 2, platform: "nd", type: "Community Value",
+    content: `Fun fact most people don't know: The EPA classifies dog waste as a pollutant in the same category as oil and toxic chemicals. It doesn't just disappear — it washes into storm drains and contaminates waterways.
+
+One dog produces about 274 lbs of waste per year. If you've got 2 dogs, that's over 500 lbs sitting in your yard annually.
+
+Not trying to be preachy — just sharing because I care about our neighborhoods. Proper cleanup matters.
+
+If you need help staying on top of it, that's literally what I do. 
+
+TJ — Tidy Tails | 📱 314-850-7140`
+  },
+
+  // Day 10 - Monday Mar 17
+  {
+    day: "Mon, Mar 17", week: 2, platform: "fb", type: "St. Patrick's",
+    content: `Happy St. Patrick's Day! 🍀
+
+Here's some luck for you: Finding out there's a local guy who'll clean your entire yard of dog poop for $70/month.
+
+No franchise fees. No contracts. No BS. Just a clean yard.
+
+That's gotta be worth at least a pot of gold, right? 😂
+
+📱 314-850-7140
+🌐 tidytailsstl.com
+
+☘️ Tidy Tails — keeping STL yards lucky since 2025`
+  },
+  {
+    day: "Mon, Mar 17", week: 2, platform: "ig", type: "Holiday Tie-in",
+    content: `Feeling lucky? 🍀
+
+Lucky = having someone else deal with your dog's backyard situation.
+
+$70/month. That's it. That's the luck. ☘️
+
+Happy St. Patrick's Day from Tidy Tails!
+
+📱 314-850-7140
+
+#stpatricksday #lucky #tidytails #pooperscooper #stldogs #dogmom #cleanyard #stlouismo`
+  },
+
+  // Day 11 - Tuesday Mar 18
+  {
+    day: "Tue, Mar 18", week: 2, platform: "nd", type: "Spring Allergies",
+    content: `Allergy season is here 🤧 and here's something most people don't think about:
+
+Dog waste that sits in your yard attracts flies and other insects, and as it breaks down it releases particles into the air. If you or your kids have allergies, a clean yard actually helps.
+
+Plus, standing water pooling around waste = mosquito breeding ground. Spring rain + dog poop = not great.
+
+Regular cleanup helps keep your yard healthier. I offer weekly service for $70/month — I come same day every week, haul everything away.
+
+TJ — Tidy Tails | 📱 314-850-7140`
+  },
+  {
+    day: "Tue, Mar 18", week: 2, platform: "fb", type: "Multi-Dog",
+    content: `Got 2 dogs? 3? More?
+
+Most pet waste companies charge PER DOG. $10-15 extra for each one. So a 2-dog household is looking at $95-110/month.
+
+Tidy Tails? $70/month. I don't care how many dogs you have.*
+
+Same price. Same service. Your yard is clean, period.
+
+📱 314-850-7140
+🌐 tidytailsstl.com
+
+*Within reason — if you're running a shelter out of your house we should probably talk 😂`
+  },
+
+  // Day 12 - Wednesday Mar 19
+  {
+    day: "Wed, Mar 19", week: 2, platform: "ig", type: "Before/After",
+    content: `Before Tidy Tails: 😬🚫👟
+After Tidy Tails: ✨🌱😎
+
+The glow-up your yard needs this spring.
+
+$70/month • No contracts • West County STL
+📱 314-850-7140
+
+#tidytails #beforeandafter #yardglowup #stldogs #pooperscooper #cleanyard #springcleaning #dogmom #ballwinmo`
+  },
+
+  // Day 13 - Thursday Mar 20
+  {
+    day: "Thu, Mar 20", week: 2, platform: "fb", type: "First Day of Spring",
+    content: `🌸 FIRST DAY OF SPRING 🌸
+
+New season resolution: Stop pretending the backyard is fine.
+
+It's not fine. You know it. Your dogs know it. Your neighbors definitely know it.
+
+Let me fix it. One-time deep clean or weekly service — whatever works for you.
+
+$25/week | $70/month | $100 deep clean
+
+TJ — Tidy Tails
+📱 314-850-7140
+🌐 tidytailsstl.com`
+  },
+  {
+    day: "Thu, Mar 20", week: 2, platform: "nd", type: "Spring Equinox",
+    content: `First day of spring! 🌸 Perfect time for a fresh start in the yard.
+
+If you've been putting off dealing with the backyard situation all winter, now's the time. I'm booking spring deep cleans this week — $100 to get your yard completely cleared out and fresh.
+
+Or jump straight to weekly service at $70/month and never think about it again.
+
+Serving Ballwin, Chesterfield, Manchester, Ellisville, Wildwood & surrounding neighborhoods.
+
+Happy spring everyone! 🌱
+
+— TJ, Tidy Tails | 📱 314-850-7140`
+  },
+
+  // Day 14 - Friday Mar 21
+  {
+    day: "Fri, Mar 21", week: 2, platform: "fb", type: "Weekend CTA",
+    content: `Real quick before the weekend:
+
+If you're hosting anything, having family over, or just want to enjoy your own yard without playing minesweeper...
+
+📱 Text me: 314-850-7140
+
+I can usually get out same week. Deep clean everything. And if you like it, we set up weekly service.
+
+Tidy Tails — local, affordable, reliable. That's the whole pitch.
+
+🌐 tidytailsstl.com`
+  },
+  {
+    day: "Fri, Mar 21", week: 2, platform: "ig", type: "Week Recap",
+    content: `This week's scorecard:
+✅ Yards cleaned
+✅ Dogs pet (the best part tbh)
+✅ Customers happy
+✅ Zero poop left behind
+
+That's the Tidy Tails guarantee. Every week.
+
+Want in? $70/month, no contracts.
+📱 314-850-7140
+🌐 tidytailsstl.com
+
+#tidytails #fridayvibes #pooperscooper #stldogs #dogmom #cleanyard #weekendready #westcountymo #stlouismo`
+  },
+  {
+    day: "Fri, Mar 21", week: 2, platform: "nd", type: "Weekend Promo",
+    content: `Weekend project idea that takes 0 effort on your part:
+
+Text me (314-850-7140), I come clean your entire yard, you enjoy a poop-free backyard all weekend. Done.
+
+One-time: $100
+Weekly: $70/month
+
+I'm filling up my spring schedule so if you've been thinking about it, now's a good time.
+
+Have a great weekend everyone! 🐕
+
+— TJ, Tidy Tails`
+  }
+];
+
+let postedSet = new Set(JSON.parse(localStorage.getItem('tt-posted') || '[]'));
+let currentFilter = 'all';
+
+function render() {
+  const area = document.getElementById('content-area');
+  area.innerHTML = '';
+
+  const filtered = POSTS.filter(p => {
+    if (currentFilter === 'todo') return !postedSet.has(postId(p));
+    if (currentFilter === 'all') return true;
+    return p.platform === currentFilter;
+  });
+
+  let currentWeek = 0;
+  filtered.forEach((p, i) => {
+    if (p.week !== currentWeek) {
+      currentWeek = p.week;
+      const wl = document.createElement('div');
+      wl.className = 'week-label';
+      wl.textContent = `📅 Week ${currentWeek} — ${currentWeek === 1 ? 'March 8–14' : 'March 15–21'}`;
+      area.appendChild(wl);
+    }
+
+    const id = postId(p);
+    const isPosted = postedSet.has(id);
+    const card = document.createElement('div');
+    card.className = `post-card${isPosted ? ' posted' : ''}`;
+    card.dataset.platform = p.platform;
+    card.id = id;
+
+    const badgeClass = p.platform === 'fb' ? 'badge-fb' : p.platform === 'nd' ? 'badge-nd' : 'badge-ig';
+    const platName = p.platform === 'fb' ? 'Facebook' : p.platform === 'nd' ? 'Nextdoor' : 'Instagram';
+
+    card.innerHTML = `
+      <div class="post-header">
+        <div class="post-meta">
+          <span class="platform-badge ${badgeClass}">${platName}</span>
+          <span class="post-day">${p.day}</span>
+          <span class="post-type">${p.type}</span>
+        </div>
+      </div>
+      <div class="post-body">${escHtml(p.content)}</div>
+      <div class="post-actions">
+        <button class="action-btn copy-btn" onclick="copyPost('${id}')">📋 Copy</button>
+        <button class="action-btn" onclick="toggleExpand(this)">📖 Expand</button>
+        <button class="action-btn done-btn${isPosted ? ' checked' : ''}" onclick="togglePosted('${id}', this)">${isPosted ? '✅ Posted' : '⬜ Mark Posted'}</button>
+      </div>
+    `;
+    area.appendChild(card);
+  });
+
+  updateStats();
+}
+
+function postId(p) {
+  return `${p.day}-${p.platform}-${p.type}`.replace(/[^a-zA-Z0-9]/g, '_');
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function filter(f) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  render();
+}
+
+function copyPost(id) {
+  const post = POSTS.find(p => postId(p) === id);
+  if (post) copyText(post.content, 'Post copied!');
+}
+
+function copyText(text, msg) {
+  navigator.clipboard.writeText(text).then(() => showToast(msg || 'Copied!'));
+}
+
+function toggleExpand(btn) {
+  const body = btn.closest('.post-card').querySelector('.post-body');
+  body.classList.toggle('expanded');
+  btn.textContent = body.classList.contains('expanded') ? '📖 Collapse' : '📖 Expand';
+}
+
+function togglePosted(id, btn) {
+  if (postedSet.has(id)) {
+    postedSet.delete(id);
+  } else {
+    postedSet.add(id);
+  }
+  localStorage.setItem('tt-posted', JSON.stringify([...postedSet]));
+  render();
+}
+
+function updateStats() {
+  const fbTotal = POSTS.filter(p => p.platform === 'fb').length;
+  const ndTotal = POSTS.filter(p => p.platform === 'nd').length;
+  const igTotal = POSTS.filter(p => p.platform === 'ig').length;
+  document.getElementById('fb-count').textContent = fbTotal;
+  document.getElementById('nd-count').textContent = ndTotal;
+  document.getElementById('ig-count').textContent = igTotal;
+  document.getElementById('done-count').textContent = `${postedSet.size}/${POSTS.length}`;
+}
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 1500);
+}
+
+render();
+</script>
+</body>
+</html>
