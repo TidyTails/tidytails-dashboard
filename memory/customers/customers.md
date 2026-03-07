@@ -1,87 +1,69 @@
 # Tidy Tails Customer Database
 
-*Human-readable backup of database.json*
+*Updated: March 6, 2026*
 
 ## Quick Stats
 
 | Metric | Value |
 |--------|-------|
-| Active Customers | ~5 |
-| Commercial Leads | 68 |
-| Goal | 25-30 by Aug 2025 |
-| Current Progress | ~17% |
-
-## ⚡ Quick Customer Add (30 seconds)
-
-**TJ:** Just message me: "Add customer: [Name], [Area], [dogs], [frequency]"
-Example: "Add customer: Sarah M, Florissant, 2 dogs (Max & Bella), weekly"
-
-I'll handle the rest. Don't need perfect info — just basics.
+| **Active Customers** | **8** |
+| **Weekly Revenue** | **$175** |
+| **Monthly Revenue** | **~$750** |
+| **Goal** | 25-30 by Aug 2025 |
+| **Current Progress** | **32%** (8/25) |
 
 ---
 
 ## Active Customers
 
-> **Status:** Waiting for TJ to share customer basics
-> 
-> **What we know:**
-> - 4-5 recurring (all Sundays)
-> - 11 yards total on route
-> - Zero service-related churn
-> - All love TJ as a person first
-
-### Current Route (Feb 22, 2026)
-| # | Customer | Area | Dogs | Freq | Notes |
-|---|----------|------|------|------|-------|
-| 1 | TBD | | | | |
-| 2 | TBD | | | | |
-| 3 | TBD | | | | |
-| 4 | TBD | | | | |
-| 5 | TBD | | | | |
-| 6-11 | (additional yards?) | | | | |
+| # | Customer | Address | City/Zip | Frequency | Price | Monthly Value |
+|---|----------|---------|----------|-----------|-------|---------------|
+| 1 | Mrs. Candee | 10220 Pannell Dr | Saint Louis, 63136 | Weekly | $15 | $60 |
+| 2 | Jody | 9110 Leenora Ave | Saint Louis, 63114 | Biweekly | $45 | $90 |
+| 3 | Shannon Zamarripa | St Anthony Ln | Florissant, 63031 | Weekly | $35 | $140 |
+| 4 | Amanda Harris | 2280 Mullanphy Rd | Florissant, 63031 | Weekly | $30 | $120 |
+| 5 | Lawrence | 4365 W Belle Pl | Saint Louis, 63108 | Biweekly | $50 | $100 |
+| 6 | Greg | 4 Glenmill Ct | O'Fallon, 63366 | Monthly | $50 | $50 |
+| 7 | Chastity | 2580 Guildford Dr | Florissant, 63033 | Biweekly | $45 | $90 |
+| 8 | Preshus | 1785 Sun Drop Dr | Saint Charles, 63303 | Weekly | $25 | $100 |
 
 ---
 
-### Template for Adding Customers
+## Revenue Breakdown
 
-```
-### [Name]
-- **Phone:** 
-- **Address:** 
-- **Service:** Weekly/Biweekly/Monthly, $XX
-- **Dogs:** X ([names])
-- **Access:** [gate code, key location, etc.]
-- **Hot Spots:** [where to focus]
-- **Health Score:** X/10
-- **Notes:** 
-```
+| Frequency | Customers | Weekly Rev | Monthly Rev |
+|-----------|-----------|------------|-------------|
+| Weekly (4) | Mrs. Candee, Shannon, Amanda, Preshus | $105 | $420 |
+| Biweekly (3) | Jody, Lawrence, Chastity | $70 (per visit) | $280 |
+| Monthly (1) | Greg | $50 (per visit) | $50 |
+| **TOTAL** | **8** | **~$175** | **~$750** |
 
-## Leads Pipeline
+## Service Areas
 
-| Stage | Count |
-|-------|-------|
-| Commercial Leads | 43 |
-| Contacted | 0 |
-| Interested | 0 |
-| Proposal Sent | 0 |
-| Closed | 0 |
+| Area | Customers | Zip |
+|------|-----------|-----|
+| Saint Louis (City/County) | Mrs. Candee, Jody, Lawrence | 63136, 63114, 63108 |
+| Florissant | Shannon, Amanda, Chastity | 63031, 63033 |
+| O'Fallon | Greg | 63366 |
+| Saint Charles | Preshus | 63303 |
 
-See `memory/leads-commercial.md` for full lead list.
+## Goal Tracker
 
-## Service Schedule
+**Target:** 25 recurring customers by August 2025
+**Current:** 8 customers (32%)
+**Need:** 17 more customers
+**Monthly revenue target:** ~$2,500/mo
+**Current monthly:** ~$750/mo
+**Gap:** ~$1,750/mo
 
-| Day | Customers |
-|-----|-----------|
-| Sunday | All current (~5) |
-| Weekday | None yet |
+### Growth Needed
+- March: +3 customers (reach 11)
+- April: +4 customers (reach 15)
+- May: +4 customers (reach 19)
+- June: +3 customers (reach 22)
+- July: +3 customers (reach 25) ← TARGET
 
-**Capacity:** ~15 yards/week comfortable
-
-## Health Leaderboard
-
-*Champions (8+):* TBD
-*Healthy (5-7):* TBD  
-*At Risk (<5):* TBD
+**That's roughly 1 new customer per week from now to August.**
 
 ---
 
@@ -89,8 +71,5 @@ See `memory/leads-commercial.md` for full lead list.
 
 | Date | Change |
 |------|--------|
+| 2026-03-06 | Full customer list loaded — 8 active customers |
 | 2026-02-18 | Database initialized |
-
----
-
-*Update this file whenever customer info changes. Primary source is database.json.*
