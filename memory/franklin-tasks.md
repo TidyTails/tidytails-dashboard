@@ -4,6 +4,38 @@
 
 ---
 
+### 11:04 AM — 🌐 PROFESSIONAL LANDING PAGE — SEO-Optimized Customer-Facing Website (Hourly Task)
+**Task:** Build and deploy a real, professional landing page for Tidy Tails since the actual website (tidytailspetwasteremoval.net) is DOWN
+**Result:** ✅ SHIPPED — Full landing page live on GitHub Pages with schema markup, mobile CTAs, and SEO optimization
+
+**Why This Task:**
+- TJ's actual website (tidytailspetwasteremoval.net) is FAILING TO LOAD — confirmed via fetch test
+- We've built 10+ internal dashboard tools today but TJ has ZERO customer-facing web presence right now
+- Google search for "pet waste removal St Louis" returns 0 Tidy Tails results
+- Yelp "Best 10 Pet Waste Removal in St Louis" doesn't include Tidy Tails
+- A properly SEO'd page is the foundation everything else depends on
+
+**What I Built:**
+Complete single-page customer-facing website:
+- Spring promo banner (first week free)
+- Hero with click-to-call + text CTAs
+- Social proof bar (100+ yards, 1 year, 5★, $0 hidden fees)
+- 3-step how it works
+- 3-tier pricing (One-time $99+, Weekly $25/wk, Bi-weekly $35/visit)
+- 4 differentiators (same person, text directly, no contracts, local)
+- 20 service area cities as SEO-keyword tags
+- 7-item FAQ accordion
+- Sticky mobile call button
+
+**SEO:** LocalBusiness + Service + FAQPage schema, city-specific keywords, Open Graph, canonical URL
+**Design:** Fraunces + DM Sans fonts, earthy green/gold palette, zero dependencies, mobile-first
+**Live:** `https://tidytails.github.io/tidytails-dashboard/site/`
+**Commits:** `b2410cf`, `5f0eba2`
+
+**Rotation:** 🌐 Website — Customer-Facing Landing Page
+
+---
+
 ### 9:04 AM — 📋 READY-TO-POST AD PACK — 19 Copy-Paste Ads for Every Free Platform (Hourly Task)
 **Task:** Write actual ready-to-deploy ads for Craigslist, Nextdoor, Facebook, and text — no more tools, just the actual copy TJ can post TODAY
 **Result:** ✅ SHIPPED — 19 ads with one-click copy buttons and a 30-minute Saturday posting plan
@@ -2044,3 +2076,45 @@ Little Stinkers checks dog waste for health abnormalities. Low-effort value-add 
 - Live at: https://tidytails.github.io/tidytails-dashboard/research/2026-03-07-LIVE-SEARCH-AUDIT.html
 
 **Rotation:** 🔍 Research/Intel
+
+---
+### 10:05 AM — 📍 GBP DOMINATION PLAYBOOK — Fix TJ's #1 Growth Blocker (Hourly Task)
+**Task:** Build comprehensive Google Business Profile optimization playbook to fix search invisibility
+**Result:** ✅ SHIPPED — 28-step interactive playbook with copy-paste everything
+
+**Why This Task:**
+- Live search audit (3 AM today) confirmed TJ is INVISIBLE in Google search
+- "pet waste removal st louis" — Tidy Tails not in top 10
+- Even "tidy tails pet waste removal st louis" doesn't find TJ
+- This is THE #1 reason growth is stalling — customers can't find him
+- GBP is free, high-ROI, and the foundation for local visibility
+
+**What I Built:**
+- **28-step interactive checklist** with localStorage progress tracking
+- **6 phases:** Claim/Verify → Profile Optimization → Photos → Reviews → Weekly Posts → Directory Listings
+- **Copy-paste ready:** Business description (keyword-optimized), service listings with prices, auto-reply message, review request templates, 4 weeks of GBP posts
+- **Photo checklist:** 15 specific photos to take this weekend, geotagging instructions
+- **Review strategy:** Templates for asking customers, after-service flow, response templates
+- **Directory listing plan:** 12 directories prioritized by impact (Yelp, Facebook, Nextdoor, BBB, Thumbtack, Angi, etc.)
+- **Competitor comparison table:** Shows TJ vs DoodyCalls gap and how the playbook closes it
+
+**Key Insight — TJ's Pricing Advantage:**
+- DoodyCalls/POOP 911 hide prices behind "get a quote"
+- TJ showing $25/wk right on GBP converts price-shoppers who hate calling
+- This is a genuine competitive edge most competitors DON'T have
+
+**Expected Timeline:**
+- Today: Claim + fill out profile (15-20 min)
+- This weekend: Photos + review asks
+- Week 2-3: Verification complete, reviews accumulating
+- Week 3-4: Appearing in local search results
+- Month 2: Ranking in Google Maps 3-pack
+
+**Dashboard Updated:**
+- New featured tool: "Google Business Profile Playbook" 
+- Tools count: 9 → 10
+- Live at: https://tidytails.github.io/tidytails-dashboard/2026-03-07-GBP-DOMINATION-PLAYBOOK.html
+
+**Commit:** `a4233fd` on `tidytails-dashboard` repo
+
+**Rotation:** 🔍 Research/Intel + 🛠️ Tools
