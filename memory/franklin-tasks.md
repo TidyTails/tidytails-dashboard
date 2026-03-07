@@ -4,6 +4,39 @@
 
 ---
 
+### 8:05 AM — 🔍 SEO COMMAND CENTER — Interactive Tool to Fix TJ's Search Invisibility (Hourly Task)
+**Task:** Build an actionable SEO tool to fix the #1 growth blocker — TJ doesn't appear in ANY Google search results
+**Result:** ✅ SHIPPED — Interactive SEO Command Center with 32-item checklist, progress tracking, and Saturday action plan
+
+**Why This Task:**
+- Overnight search audit confirmed TJ is INVISIBLE in Google (0/10 target keyword rankings)
+- Even searching "Tidy Tails pet waste removal St Louis" doesn't return his site — other "Tidy Tails" businesses in Charleston/Atlanta dominate
+- Fresh Paws died in Wildwood/Ellisville — their customers are searching and finding competitors instead
+- Dr. Scoops (new competitor) is already ranking in TJ's territory (Ballwin, Wildwood)
+- No amount of ads, content, or outreach matters if customers literally can't find TJ
+
+**What I Built (6 tabs):**
+1. 🎯 **Today's Plan** — 4-step Saturday action plan (GBP, directories, city pages, reviews) with time estimates
+2. 📍 **Google Business** — 12-item GBP optimization checklist (profile basics + content)
+3. 📂 **Directories** — 15 free directory submissions with direct links (Yelp, Nextdoor, Thumbtack, Angi, BBB, etc.)
+4. 🏘️ **Missing Cities** — 4 ready-to-deploy city page templates (Wildwood, Ellisville, Manchester, Valley Park)
+5. 🔍 **Search Audit** — Live results table showing TJ vs competitors for 7 target keywords
+6. ✍️ **Content Gaps** — 5 high-value blog posts to write with target keywords
+
+**Key Features:**
+- Progress tracker with localStorage persistence (checks survive page reloads)
+- Visibility score updates as tasks are completed (starts at 12/100)
+- Copy-paste templates for every city page
+- Pre-written GBP description, Google Post text, and review request SMS
+
+**Critical Finding:** TJ has a MapQuest listing in Olivette, MO — confirms GBP exists but isn't optimized. Completing the GBP checklist alone could get him into Google Maps results within 2-4 weeks.
+
+**Dashboard Updated:** Added as Tool #7 (now 7 tools total)
+**Live at:** https://tidytails.github.io/tidytails-dashboard/dashboard/seo-command-center.html
+**Commit:** `4273fac` on `tidytails-dashboard` repo
+
+**Rotation:** 🔍 Research/SEO
+
 ### 7:04 AM — 🔍 LIVE COMPETITOR SCAN — Fresh Paws DEAD, Market Intel, Ready-to-Post Scripts (Hourly Task)
 **Task:** Real-time competitive intelligence scan of every active STL pet waste removal competitor — pricing, status, and actionable opportunities
 **Result:** ✅ SHIPPED — 6-tab interactive intel report with copy-paste marketing scripts
