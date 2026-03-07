@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🖨️ Print Marketing Kit — Tidy Tails</title>
+<style>
+/* === SCREEN STYLES === */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Bangers&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #0a0a0a;
+  color: #e0e0e0;
+  min-height: 100vh;
+}
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #1a2e1a 0%, #0a1a0a 50%, #1a3a1a 100%);
+  border-bottom: 2px solid #2d5a27;
+  padding: 24px 20px;
+  text-align: center;
+}
+.header h1 { font-size: 1.5rem; font-weight: 800; color: #fff; }
+.header h1 span { color: #4a8; }
+.header .sub { color: #888; font-size: 0.82rem; margin-top: 4px; }
+.back-link { display: inline-block; margin-top: 8px; color: #4a8; text-decoration: none; font-size: 0.8rem; }
+
+/* Stats */
+.stats { display: flex; gap: 10px; flex-wrap: wrap; padding: 16px 20px; }
+.stat-card { flex: 1; min-width: 110px; background: #141414; border: 1px solid #262626; border-radius: 10px; padding: 12px; text-align: center; }
+.stat-card .num { font-size: 1.6rem; font-weight: 800; color: #4a8; }
+.stat-card .lbl { font-size: 0.68rem; color: #888; margin-top: 2px; }
+
+/* Tabs */
+.tabs { display: flex; gap: 0; border-bottom: 1px solid #262626; background: #111; overflow-x: auto; }
+.tab {
+  padding: 12px 16px; font-size: 0.78rem; font-weight: 600; cursor: pointer;
+  white-space: nowrap; border: none; border-bottom: 2px solid transparent;
+  color: #888; background: none; transition: all 0.2s;
+}
+.tab:hover { color: #ccc; background: #1a1a1a; }
+.tab.active { color: #4a8; border-bottom-color: #4a8; }
+
+/* Sections */
+.section { display: none; padding: 20px; }
+.section.active { display: block; }
+.section h2 { font-size: 1.1rem; color: #fff; margin-bottom: 6px; }
+.section .desc { color: #888; font-size: 0.82rem; margin-bottom: 16px; }
+
+/* Info cards */
+.info-card {
+  background: #141414; border: 1px solid #262626; border-radius: 12px;
+  padding: 16px; margin-bottom: 14px;
+}
+.info-card h3 { color: #4a8; font-size: 0.95rem; margin-bottom: 8px; }
+.info-card p, .info-card li { font-size: 0.84rem; color: #bbb; line-height: 1.6; }
+.info-card ul { margin-left: 18px; }
+
+/* Print button */
+.print-btn {
+  display: block; width: 100%; padding: 14px; background: #2d5a27; color: #fff;
+  border: none; border-radius: 10px; font-size: 0.95rem; font-weight: 700;
+  cursor: pointer; margin-top: 12px; transition: all 0.2s;
+}
+.print-btn:hover { background: #3a7a33; }
+
+/* Tip box */
+.tip { background: #1a1a2a; border: 1px solid #334; border-radius: 10px; padding: 14px; margin-bottom: 16px; }
+.tip strong { color: #8af; }
+.tip p { font-size: 0.82rem; color: #aac; line-height: 1.5; }
+
+/* ROI calc */
+.roi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+.roi-item { background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 12px; text-align: center; }
+.roi-item .val { font-size: 1.2rem; font-weight: 800; }
+.roi-item .val.green { color: #4a8; }
+.roi-item .val.orange { color: #fa4; }
+.roi-item .val.red { color: #f66; }
+.roi-item .val.blue { color: #69f; }
+.roi-item .lbl { font-size: 0.7rem; color: #888; margin-top: 2px; }
+
+/* ==== PRINT PREVIEW CONTAINERS ==== */
+.print-preview {
+  background: #fff; border-radius: 12px; overflow: hidden;
+  margin-bottom: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+
+/* ========================================
+   DOOR HANGER — 4.25" x 11" 
+   ======================================== */
+.door-hanger-preview {
+  width: 100%; max-width: 425px; margin: 0 auto;
+  aspect-ratio: 4.25 / 11;
+  background: linear-gradient(180deg, #1b5e20 0%, #2e7d32 30%, #388e3c 60%, #43a047 100%);
+  color: #fff; padding: 0; position: relative; overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+.dh-hole {
+  width: 60px; height: 60px; background: #0a0a0a; border-radius: 50%;
+  margin: 20px auto 10px; border: 3px dashed #666;
+}
+.dh-top {
+  text-align: center; padding: 8px 20px 0;
+}
+.dh-brand {
+  font-family: 'Bangers', cursive; font-size: 2rem; letter-spacing: 2px;
+  color: #fff; text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+}
+.dh-tagline {
+  font-size: 0.7rem; color: rgba(255,255,255,0.8); margin-top: 2px;
+  font-weight: 500; letter-spacing: 1px; text-transform: uppercase;
+}
+.dh-emoji-strip {
+  text-align: center; font-size: 2rem; margin: 8px 0;
+  letter-spacing: 8px;
+}
+.dh-headline {
+  text-align: center; padding: 0 16px;
+  font-size: 1.3rem; font-weight: 900; line-height: 1.2;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+}
+.dh-offer-box {
+  background: #ffeb3b; color: #1b5e20; margin: 12px 20px;
+  border-radius: 12px; padding: 12px; text-align: center;
+}
+.dh-offer-box .big { font-size: 1.4rem; font-weight: 900; }
+.dh-offer-box .small { font-size: 0.72rem; font-weight: 600; margin-top: 2px; }
+.dh-benefits {
+  padding: 0 20px; margin-top: 8px;
+}
+.dh-benefit {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.78rem; font-weight: 600; margin-bottom: 6px;
+  color: rgba(255,255,255,0.95);
+}
+.dh-benefit .icon { font-size: 1.1rem; }
+.dh-price-section {
+  text-align: center; margin: 10px 0;
+}
+.dh-price {
+  font-size: 1.8rem; font-weight: 900;
+  color: #ffeb3b; text-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+}
+.dh-price-sub { font-size: 0.7rem; color: rgba(255,255,255,0.7); }
+.dh-cta {
+  background: rgba(0,0,0,0.25); margin: 8px 16px;
+  border-radius: 10px; padding: 12px; text-align: center;
+}
+.dh-cta .phone {
+  font-size: 1.3rem; font-weight: 900; color: #ffeb3b;
+  letter-spacing: 1px;
+}
+.dh-cta .web { font-size: 0.72rem; color: rgba(255,255,255,0.7); margin-top: 2px; }
+.dh-bottom {
+  background: rgba(0,0,0,0.3); margin-top: 8px; padding: 8px 16px;
+  text-align: center;
+}
+.dh-bottom p { font-size: 0.65rem; color: rgba(255,255,255,0.6); line-height: 1.4; }
+.dh-qr-placeholder {
+  width: 64px; height: 64px; background: #fff; border-radius: 8px;
+  margin: 6px auto; display: flex; align-items: center; justify-content: center;
+  font-size: 0.5rem; color: #333; font-weight: 700;
+}
+
+/* ========================================
+   YARD SIGN — 18" x 24"
+   ======================================== */
+.yard-sign-preview {
+  width: 100%; max-width: 450px; margin: 0 auto;
+  aspect-ratio: 18 / 24;
+  background: linear-gradient(180deg, #1b5e20 0%, #2e7d32 100%);
+  color: #fff; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 8px;
+  border: 6px solid #ffeb3b; border-radius: 4px;
+  font-family: 'Inter', sans-serif; padding: 20px;
+}
+.ys-brand { font-family: 'Bangers', cursive; font-size: 3rem; letter-spacing: 3px; text-shadow: 3px 3px 0 rgba(0,0,0,0.3); }
+.ys-emoji { font-size: 3.5rem; }
+.ys-headline { font-size: 1.1rem; font-weight: 800; text-align: center; text-transform: uppercase; letter-spacing: 2px; }
+.ys-offer { background: #ffeb3b; color: #1b5e20; padding: 10px 24px; border-radius: 50px; font-size: 1.1rem; font-weight: 900; }
+.ys-phone { font-size: 2rem; font-weight: 900; color: #ffeb3b; text-shadow: 2px 2px 0 rgba(0,0,0,0.3); letter-spacing: 2px; }
+.ys-web { font-size: 0.85rem; color: rgba(255,255,255,0.7); }
+
+/* ========================================
+   BUSINESS CARD — 3.5" x 2"
+   ======================================== */
+.biz-card-preview {
+  width: 100%; max-width: 420px; margin: 0 auto;
+  aspect-ratio: 3.5 / 2; border-radius: 8px; overflow: hidden;
+}
+.biz-front {
+  width: 100%; aspect-ratio: 3.5 / 2;
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  color: #fff; padding: 16px; gap: 4px;
+}
+.biz-front .name { font-family: 'Bangers', cursive; font-size: 1.8rem; letter-spacing: 2px; }
+.biz-front .title { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.7); }
+.biz-front .emoji { font-size: 2rem; }
+.biz-front .tagline { font-size: 0.65rem; color: rgba(255,255,255,0.6); }
+
+.biz-back {
+  width: 100%; aspect-ratio: 3.5 / 2;
+  background: #fff; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; padding: 16px; gap: 6px;
+  color: #333; margin-top: 12px; border-radius: 8px;
+}
+.biz-back .contact-name { font-weight: 800; font-size: 1rem; color: #1b5e20; }
+.biz-back .contact-role { font-size: 0.7rem; color: #888; }
+.biz-back .contact-info { font-size: 0.75rem; color: #555; text-align: center; line-height: 1.6; }
+.biz-back .services { font-size: 0.65rem; color: #999; text-align: center; border-top: 1px solid #eee; padding-top: 6px; margin-top: 4px; }
+
+/* ========================================
+   FLYER — 8.5" x 11"
+   ======================================== */
+.flyer-preview {
+  width: 100%; max-width: 500px; margin: 0 auto;
+  aspect-ratio: 8.5 / 11; background: #fff; color: #333;
+  border-radius: 4px; overflow: hidden;
+  font-family: 'Inter', sans-serif;
+}
+.fly-header {
+  background: linear-gradient(135deg, #1b5e20, #388e3c);
+  color: #fff; padding: 24px 20px; text-align: center;
+}
+.fly-brand { font-family: 'Bangers', cursive; font-size: 2.2rem; letter-spacing: 2px; }
+.fly-subtitle { font-size: 0.72rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 2px; }
+.fly-body { padding: 20px; }
+.fly-headline {
+  font-size: 1.4rem; font-weight: 900; color: #1b5e20;
+  text-align: center; margin-bottom: 12px; line-height: 1.2;
+}
+.fly-offer {
+  background: #ffeb3b; border-radius: 12px; padding: 14px;
+  text-align: center; margin-bottom: 16px;
+}
+.fly-offer .big { font-size: 1.3rem; font-weight: 900; color: #1b5e20; }
+.fly-offer .note { font-size: 0.72rem; color: #555; margin-top: 2px; }
+.fly-benefits-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;
+}
+.fly-ben {
+  display: flex; align-items: flex-start; gap: 6px; font-size: 0.78rem;
+  color: #444; line-height: 1.3;
+}
+.fly-ben .ico { font-size: 1.1rem; flex-shrink: 0; }
+.fly-pricing {
+  background: #f5f5f5; border-radius: 10px; padding: 14px; text-align: center;
+  margin-bottom: 14px;
+}
+.fly-pricing .price { font-size: 1.6rem; font-weight: 900; color: #1b5e20; }
+.fly-pricing .per { font-size: 0.75rem; color: #888; }
+.fly-pricing .compare { font-size: 0.7rem; color: #999; margin-top: 4px; }
+.fly-cta {
+  background: #1b5e20; color: #fff; border-radius: 10px;
+  padding: 14px; text-align: center;
+}
+.fly-cta .phone { font-size: 1.4rem; font-weight: 900; color: #ffeb3b; }
+.fly-cta .web { font-size: 0.75rem; color: rgba(255,255,255,0.7); margin-top: 2px; }
+.fly-areas {
+  text-align: center; font-size: 0.68rem; color: #999;
+  margin-top: 10px; line-height: 1.4;
+}
+
+/* ========================================
+   LEAVE-BEHIND CARD — 5.5" x 4.25"
+   ======================================== */
+.leave-behind-preview {
+  width: 100%; max-width: 440px; margin: 0 auto;
+  aspect-ratio: 5.5 / 4.25;
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  border-radius: 10px; color: #fff; padding: 20px;
+  font-family: 'Inter', sans-serif;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.lb-top { text-align: center; }
+.lb-brand { font-family: 'Bangers', cursive; font-size: 1.6rem; letter-spacing: 1px; }
+.lb-msg {
+  font-size: 0.82rem; font-weight: 600; margin: 6px 0;
+  line-height: 1.4;
+}
+.lb-offer-strip {
+  background: #ffeb3b; color: #1b5e20; border-radius: 8px;
+  padding: 8px; text-align: center; font-weight: 800; font-size: 0.9rem;
+}
+.lb-bottom {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-top: 8px;
+}
+.lb-contact { font-size: 0.75rem; line-height: 1.6; }
+.lb-contact strong { color: #ffeb3b; font-size: 0.9rem; }
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  body { background: #fff !important; }
+  .header, .tabs, .stats, .section:not(.printing), .print-btn, .tip, .info-card,
+  .roi-grid, .no-print, .back-link, .desc, h2 { display: none !important; }
+  .section.printing { display: block !important; padding: 0 !important; }
+  .print-preview { box-shadow: none !important; border-radius: 0 !important; page-break-after: always; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>🖨️ Print Marketing <span>Kit</span></h1>
+  <p class="sub">Professional materials ready to print at home or Staples · Updated Mar 7, 2026</p>
+  <a href="index.html" class="back-link">← Back to Dashboard</a>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-card"><div class="num">5</div><div class="lbl">Print Pieces</div></div>
+  <div class="stat-card"><div class="num">$0.15</div><div class="lbl">Cost/Door Hanger</div></div>
+  <div class="stat-card"><div class="num">2%</div><div class="lbl">Avg Response Rate</div></div>
+  <div class="stat-card"><div class="num">$7.50</div><div class="lbl">Cost/New Lead</div></div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab('doorhanger')">🚪 Door Hanger</div>
+  <div class="tab" onclick="showTab('flyer')">📄 Flyer</div>
+  <div class="tab" onclick="showTab('yardsign')">🪧 Yard Sign</div>
+  <div class="tab" onclick="showTab('bizcard')">💳 Biz Card</div>
+  <div class="tab" onclick="showTab('leavebehind')">📬 Leave-Behind</div>
+  <div class="tab" onclick="showTab('roi')">📊 ROI Calculator</div>
+  <div class="tab" onclick="showTab('guide')">📖 Print Guide</div>
+</div>
+
+<!-- ======================== DOOR HANGER ======================== -->
+<div class="section active" id="doorhanger">
+  <h2>🚪 Door Hanger — Spring Cleanup Edition</h2>
+  <p class="desc">4.25" × 11" · Print on cardstock · Cut with paper cutter · Hole punch the top</p>
+
+  <div class="tip">
+    <strong>💡 Pro Tip:</strong>
+    <p>Door hangers get 1-2% response rate on average. At 200 hangers on a Saturday = 2-4 calls. Target neighborhoods where you ALREADY have a customer for maximum "your neighbor uses us" credibility. Cost: ~$0.15 each at Staples self-serve or $0.07 at home.</p>
+  </div>
+
+  <div class="print-preview door-hanger-preview" id="dh-print">
+    <div class="dh-hole"></div>
+    <div class="dh-top">
+      <div class="dh-brand">TIDY TAILS</div>
+      <div class="dh-tagline">Pet Waste Removal · St. Louis</div>
+    </div>
+    <div class="dh-emoji-strip">🐕💩🏡</div>
+    <div class="dh-headline">Your Yard's Got a Problem.<br>We've Got the Solution.</div>
+    <div class="dh-offer-box">
+      <div class="big">🎁 FIRST CLEANUP FREE</div>
+      <div class="small">No commitment. Try us once. You'll see the difference.</div>
+    </div>
+    <div class="dh-benefits">
+      <div class="dh-benefit"><span class="icon">✅</span> Weekly yard cleanup & waste removal</div>
+      <div class="dh-benefit"><span class="icon">💰</span> Just $17.50/week — less than a pizza</div>
+      <div class="dh-benefit"><span class="icon">🚫</span> No contracts — cancel anytime</div>
+      <div class="dh-benefit"><span class="icon">🏠</span> Serving YOUR neighborhood right now</div>
+      <div class="dh-benefit"><span class="icon">🐕</span> Multi-dog discounts available</div>
+    </div>
+    <div class="dh-price-section">
+      <div class="dh-price">$17.50/wk</div>
+      <div class="dh-price-sub">1 dog · Additional dogs just $5/wk each</div>
+    </div>
+    <div class="dh-cta">
+      <div class="phone">📞 TEXT TJ NOW</div>
+      <div class="web">tidytailsstl.com</div>
+    </div>
+    <div class="dh-bottom">
+      <div class="dh-qr-placeholder">QR CODE<br>HERE</div>
+      <p>Locally owned & operated · Not a franchise<br>Serving West County, South County & North County</p>
+    </div>
+  </div>
+
+  <button class="print-btn" onclick="printPiece('doorhanger')">🖨️ Print Door Hanger</button>
+</div>
+
+<!-- ======================== FLYER ======================== -->
+<div class="section" id="flyer">
+  <h2>📄 Full-Page Flyer — Community Board & Handout</h2>
+  <p class="desc">8.5" × 11" · Great for vet clinic boards, dog parks, community centers, laundromats</p>
+
+  <div class="tip">
+    <strong>💡 Where to Post:</strong>
+    <p>Ask vet clinics & pet stores to pin one up. Drop at laundromats, community centers, dog park bulletin boards, apartment mailrooms. Each flyer posted in a high-traffic spot = 50-100 views/week.</p>
+  </div>
+
+  <div class="print-preview flyer-preview" id="fly-print">
+    <div class="fly-header">
+      <div class="fly-brand">TIDY TAILS</div>
+      <div class="fly-subtitle">Professional Pet Waste Removal</div>
+    </div>
+    <div class="fly-body">
+      <div class="fly-headline">Stop Stepping In It.<br>Start Enjoying Your Yard Again. 🐕</div>
+      <div class="fly-offer">
+        <div class="big">🎁 FIRST WEEK FREE — No Strings Attached</div>
+        <div class="note">Try our weekly service risk-free. Cancel anytime. No contracts ever.</div>
+      </div>
+      <div class="fly-benefits-grid">
+        <div class="fly-ben"><span class="ico">✅</span><span>Weekly yard cleanup — every pile, every time</span></div>
+        <div class="fly-ben"><span class="ico">🗑️</span><span>All waste bagged & hauled away (not your problem)</span></div>
+        <div class="fly-ben"><span class="ico">🔒</span><span>Gated yard? No problem — we work with you</span></div>
+        <div class="fly-ben"><span class="ico">📱</span><span>Text confirmation when we're done each visit</span></div>
+        <div class="fly-ben"><span class="ico">🐕</span><span>Multi-dog households welcome — fair pricing</span></div>
+        <div class="fly-ben"><span class="ico">⭐</span><span>Locally owned, not a franchise</span></div>
+      </div>
+      <div class="fly-pricing">
+        <div class="price">$17.50/week</div>
+        <div class="per">1 dog · Additional dogs $5/wk each</div>
+        <div class="compare">That's less than a large pizza — for a clean yard ALL week</div>
+      </div>
+      <div class="fly-cta">
+        <div class="phone">📞 Text TJ: (314) XXX-XXXX</div>
+        <div class="web">tidytailsstl.com</div>
+      </div>
+      <div class="fly-areas">
+        Serving: Ballwin • Wildwood • Chesterfield • Manchester • Ellisville • Valley Park<br>
+        Kirkwood • Webster Groves • Fenton • Arnold • Florissant • O'Fallon & more
+      </div>
+    </div>
+  </div>
+
+  <button class="print-btn" onclick="printPiece('flyer')">🖨️ Print Flyer</button>
+</div>
+
+<!-- ======================== YARD SIGN ======================== -->
+<div class="section" id="yardsign">
+  <h2>🪧 Yard Sign — Service Marker</h2>
+  <p class="desc">18" × 24" · Leave in customer yards (with permission) during service · Cheap advertising that works 24/7</p>
+
+  <div class="tip">
+    <strong>💡 Yard Sign Strategy:</strong>
+    <p>Ask every current customer: "Mind if I leave a small sign in your yard on service days?" Most say yes. Each sign gets 50+ views/day from neighbors and foot traffic. Order from VistaPrint or Signs.com for ~$8-12 each.</p>
+  </div>
+
+  <div class="print-preview yard-sign-preview" id="ys-print">
+    <div class="ys-brand">TIDY TAILS</div>
+    <div class="ys-emoji">🐕💩</div>
+    <div class="ys-headline">Professional Pet<br>Waste Removal</div>
+    <div class="ys-offer">FIRST WEEK FREE!</div>
+    <div class="ys-phone">(314) XXX-XXXX</div>
+    <div class="ys-web">tidytailsstl.com</div>
+  </div>
+
+  <button class="print-btn" onclick="printPiece('yardsign')">🖨️ Print Sign Design (Reference)</button>
+</div>
+
+<!-- ======================== BUSINESS CARD ======================== -->
+<div class="section" id="bizcard">
+  <h2>💳 Business Card — Front & Back</h2>
+  <p class="desc">3.5" × 2" · Standard size · Order 500 from VistaPrint for ~$20</p>
+
+  <div class="tip">
+    <strong>💡 Business Card Hack:</strong>
+    <p>Leave 3-5 cards at every vet clinic, pet store, groomer, and dog park you visit. Ask if they have a community board. Most do. That's free advertising to your exact target audience.</p>
+  </div>
+
+  <div class="print-preview biz-card-preview" id="bc-print">
+    <!-- Front -->
+    <div class="biz-front">
+      <div class="emoji">🐕💩</div>
+      <div class="name">TIDY TAILS</div>
+      <div class="title">Pet Waste Removal</div>
+      <div class="tagline">Your yard. Our problem. 💪</div>
+    </div>
+    <!-- Back -->
+    <div class="biz-back">
+      <div class="contact-name">TJ — Owner</div>
+      <div class="contact-role">Tidy Tails Pet Waste Removal</div>
+      <div class="contact-info">
+        📞 (314) XXX-XXXX<br>
+        🌐 tidytailsstl.com<br>
+        📧 cartervhomes@gmail.com
+      </div>
+      <div class="services">Weekly Cleanups · One-Time Cleanups · Commercial Service<br>🎁 First Week FREE — No Contracts</div>
+    </div>
+  </div>
+
+  <button class="print-btn" onclick="printPiece('bizcard')">🖨️ Print Business Card (Reference)</button>
+</div>
+
+<!-- ======================== LEAVE-BEHIND CARD ======================== -->
+<div class="section" id="leavebehind">
+  <h2>📬 Leave-Behind Card — Neighbor Referral</h2>
+  <p class="desc">5.5" × 4.25" (half-sheet) · Leave at neighboring houses when doing a cleanup · "Hey, I was just next door..."</p>
+
+  <div class="tip">
+    <strong>💡 The Neighbor Play:</strong>
+    <p>Every time you clean a customer's yard, leave 3-5 of these on neighboring doors. The message is "I was literally just next door" — it's hyper-local social proof. This is how lawn care companies build dense routes.</p>
+  </div>
+
+  <div class="print-preview leave-behind-preview" id="lb-print">
+    <div class="lb-top">
+      <div class="lb-brand">🐕 TIDY TAILS</div>
+      <div class="lb-msg">
+        👋 Hey neighbor! I was just next door<br>cleaning up pet waste for one of your neighbors.
+      </div>
+      <p style="font-size:0.75rem; color:rgba(255,255,255,0.8); margin-top:4px;">
+        They love it — clean yard every week, no effort. Thought you might be interested too!
+      </p>
+    </div>
+    <div class="lb-offer-strip">🎁 FIRST CLEANUP FREE — Just Text TJ</div>
+    <div class="lb-bottom">
+      <div class="lb-contact">
+        <strong>📞 (314) XXX-XXXX</strong><br>
+        tidytailsstl.com<br>
+        $17.50/week · No contracts
+      </div>
+      <div style="text-align:right; font-size: 0.65rem; color: rgba(255,255,255,0.5);">
+        Locally owned<br>Not a franchise<br>🐕💩
+      </div>
+    </div>
+  </div>
+
+  <button class="print-btn" onclick="printPiece('leavebehind')">🖨️ Print Leave-Behind Cards</button>
+</div>
+
+<!-- ======================== ROI CALCULATOR ======================== -->
+<div class="section" id="roi">
+  <h2>📊 ROI Calculator — Door Hanger Canvassing</h2>
+  <p class="desc">See exactly what your canvassing investment returns</p>
+
+  <div class="info-card">
+    <h3>📐 The Math on 200 Door Hangers</h3>
+    <div class="roi-grid">
+      <div class="roi-item"><div class="val blue">200</div><div class="lbl">Doors Hit</div></div>
+      <div class="roi-item"><div class="val orange">$30</div><div class="lbl">Print Cost (Staples)</div></div>
+      <div class="roi-item"><div class="val green">4</div><div class="lbl">Expected Calls (2%)</div></div>
+      <div class="roi-item"><div class="val green">2</div><div class="lbl">Expected Signups (50% close)</div></div>
+    </div>
+    <div class="roi-grid">
+      <div class="roi-item"><div class="val green">$140/mo</div><div class="lbl">Monthly Revenue (2 customers)</div></div>
+      <div class="roi-item"><div class="val green">$1,680/yr</div><div class="lbl">Annual Revenue</div></div>
+      <div class="roi-item"><div class="val green">$15</div><div class="lbl">Cost Per Acquisition</div></div>
+      <div class="roi-item"><div class="val green">56x</div><div class="lbl">Annual ROI</div></div>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <h3>🎯 Scaling Math — Road to 25 Customers</h3>
+    <div class="roi-grid">
+      <div class="roi-item"><div class="val blue">20</div><div class="lbl">New Customers Needed</div></div>
+      <div class="roi-item"><div class="val orange">2,000</div><div class="lbl">Door Hangers Needed</div></div>
+      <div class="roi-item"><div class="val orange">$300</div><div class="lbl">Total Print Cost</div></div>
+      <div class="roi-item"><div class="val green">$1,400/mo</div><div class="lbl">New Monthly Revenue</div></div>
+    </div>
+    <p style="font-size:0.82rem; color:#bbb; margin-top:10px; text-align:center;">
+      At 200 hangers per Saturday = <strong>10 weekends</strong> to hit 25 customers.<br>
+      Total investment: ~$300 in printing. Return: ~$16,800/year. 🚀
+    </p>
+  </div>
+
+  <div class="info-card">
+    <h3>⚡ The Neighbor Multiplier</h3>
+    <p>Every new customer you land through door hangers becomes a <strong>leave-behind opportunity</strong>. When you clean their yard, drop 5 cards on neighboring doors. This creates a compounding effect:</p>
+    <ul style="margin-top:8px;">
+      <li>Month 1: 2 new customers from 200 hangers</li>
+      <li>Month 2: 2 from hangers + 1 from leave-behinds = 3 new</li>
+      <li>Month 3: 2 from hangers + 2 from leave-behinds = 4 new</li>
+      <li><strong>Month 4: You're at 14+ customers and growing</strong></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ======================== PRINT GUIDE ======================== -->
+<div class="section" id="guide">
+  <h2>📖 Complete Printing Guide</h2>
+  <p class="desc">Exactly what to do at Staples, VistaPrint, or at home</p>
+
+  <div class="info-card">
+    <h3>🏪 Option 1: Staples Same-Day Print</h3>
+    <ul>
+      <li><strong>Door Hangers:</strong> Print on 110lb cardstock, 8.5x11, cut in half = 2 per sheet. ~$0.15/hanger. Ask for their paper cutter.</li>
+      <li><strong>Flyers:</strong> Standard color copies on 28lb bright white paper. ~$0.50/page. Or self-serve for $0.25.</li>
+      <li><strong>Leave-Behinds:</strong> Print 4-up on 8.5x11 cardstock, cut to size. ~$0.08/card.</li>
+      <li><strong>Total for 100 door hangers + 50 flyers + 100 leave-behinds:</strong> ~$45</li>
+    </ul>
+  </div>
+
+  <div class="info-card">
+    <h3>🏠 Option 2: Print at Home</h3>
+    <ul>
+      <li>Use a color inkjet or laser printer</li>
+      <li>Buy cardstock from Dollar Tree ($1/pack of 25 sheets)</li>
+      <li>Print door hangers at actual size, cut with scissors or paper cutter</li>
+      <li>Hole punch the top for the door handle</li>
+      <li><strong>Cost: ~$0.07/hanger</strong> (just ink + paper)</li>
+    </ul>
+  </div>
+
+  <div class="info-card">
+    <h3>🌐 Option 3: VistaPrint (Best Quality, 3-5 days)</h3>
+    <ul>
+      <li><strong>Door Hangers:</strong> 250 for $40 ($0.16/each) — professional die-cut with hole</li>
+      <li><strong>Business Cards:</strong> 500 for $20 — premium matte</li>
+      <li><strong>Yard Signs:</strong> 18x24 coroplast, $12 each — includes metal stake</li>
+      <li>Upload designs as PDF or use their editor</li>
+      <li><strong>Tip:</strong> VistaPrint almost always has 40-60% off coupons. Google "VistaPrint promo code" before ordering.</li>
+    </ul>
+  </div>
+
+  <div class="info-card">
+    <h3>🚶 Distribution Strategy — Saturday Blitz</h3>
+    <ul>
+      <li><strong>2 hours = 200 doors.</strong> That's the target.</li>
+      <li>Start with streets where you already have customers</li>
+      <li>Look for yards with dog toys, bowls, leash hooks, or dog doors</li>
+      <li>Skip houses with "No Soliciting" signs</li>
+      <li>Best time: Saturday 10am-12pm (people are home, doing yard work)</li>
+      <li>Wear a branded shirt or hat if you have one</li>
+      <li>If someone comes to the door: "Hey, I'm TJ — I clean yards in the neighborhood. First week's free if you want to try it." Keep it casual.</li>
+    </ul>
+  </div>
+
+  <div class="info-card">
+    <h3>📍 Where to Post Flyers (FREE Advertising)</h3>
+    <ul>
+      <li>✅ Vet clinic bulletin boards (ask the receptionist — 90% say yes)</li>
+      <li>✅ Pet store community boards (PetSmart, local shops)</li>
+      <li>✅ Dog park kiosks and bulletin boards</li>
+      <li>✅ Groomer waiting areas</li>
+      <li>✅ Apartment complex laundry rooms</li>
+      <li>✅ Community center cork boards</li>
+      <li>✅ Library community boards</li>
+      <li>✅ Laundromat ad boards</li>
+      <li>✅ Coffee shop community boards</li>
+      <li>⛔ Don't tape to mailboxes (federal offense)</li>
+      <li>⛔ Don't leave in mailboxes (also illegal)</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active', 'printing'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function printPiece(id) {
+  const section = document.getElementById(id);
+  section.classList.add('printing');
+  window.print();
+  setTimeout(() => section.classList.remove('printing'), 100);
+}
+</script>
+</body>
+</html>
