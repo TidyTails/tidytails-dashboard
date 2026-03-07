@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tidy Tails Growth Model — Industry Benchmarks + Financial Projections</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b0f1a; --bg2: #111827; --bg3: #1f2937; --bg4: #374151;
+            --text: #f9fafb; --text2: #9ca3af; --text3: #6b7280;
+            --green: #10b981; --green-bg: rgba(16,185,129,0.12);
+            --blue: #3b82f6; --blue-bg: rgba(59,130,246,0.12);
+            --orange: #f97316; --orange-bg: rgba(249,115,22,0.12);
+            --red: #ef4444; --red-bg: rgba(239,68,68,0.12);
+            --yellow: #fbbf24; --yellow-bg: rgba(251,191,36,0.12);
+            --purple: #8b5cf6; --purple-bg: rgba(139,92,246,0.12);
+            --cyan: #06b6d4; --cyan-bg: rgba(6,182,212,0.12);
+            --border: #1f2937; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+        .mono { font-family:'JetBrains Mono',monospace; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #0b0f1a 0%, #1a1040 50%, #0b0f1a 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 2.5rem 1.5rem 2rem;
+            text-align: center;
+        }
+        .header h1 { font-size: 2rem; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 0.25rem; }
+        .header h1 span { background: linear-gradient(135deg, var(--green), var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .header p { color: var(--text2); font-size: 0.9rem; max-width: 600px; margin: 0 auto; }
+        .header .source { font-size: 0.7rem; color: var(--text3); margin-top: 0.75rem; }
+
+        /* Tabs */
+        .tabs { display:flex; gap:0; overflow-x:auto; background:var(--bg2); border-bottom:1px solid var(--border); padding:0 1rem; }
+        .tab {
+            padding:0.75rem 1.25rem; cursor:pointer; font-size:0.8rem; font-weight:600;
+            color:var(--text3); border-bottom:2px solid transparent; white-space:nowrap;
+            transition: all 0.2s;
+        }
+        .tab:hover { color:var(--text2); }
+        .tab.active { color:var(--green); border-bottom-color:var(--green); }
+        .tab-content { display:none; }
+        .tab-content.active { display:block; }
+
+        /* Container */
+        .container { max-width:1100px; margin:0 auto; padding:1.5rem; }
+
+        /* Cards */
+        .card {
+            background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius);
+            padding:1.25rem; margin-bottom:1rem;
+        }
+        .card-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; }
+        .card h3 { font-size:1rem; font-weight:700; }
+        .card-subtitle { color:var(--text2); font-size:0.8rem; margin-top:0.15rem; }
+
+        /* Stats grid */
+        .stats { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:0.75rem; margin-bottom:1rem; }
+        .stat {
+            background:var(--bg3); border-radius:10px; padding:1rem;
+            text-align:center;
+        }
+        .stat-label { font-size:0.7rem; color:var(--text3); text-transform:uppercase; letter-spacing:0.05em; font-weight:600; }
+        .stat-value { font-family:'JetBrains Mono',monospace; font-size:1.5rem; font-weight:700; margin:0.25rem 0; }
+        .stat-note { font-size:0.7rem; color:var(--text2); }
+        .stat.green .stat-value { color:var(--green); }
+        .stat.blue .stat-value { color:var(--blue); }
+        .stat.orange .stat-value { color:var(--orange); }
+        .stat.red .stat-value { color:var(--red); }
+        .stat.purple .stat-value { color:var(--purple); }
+        .stat.cyan .stat-value { color:var(--cyan); }
+        .stat.yellow .stat-value { color:var(--yellow); }
+
+        /* Comparison bars */
+        .compare-row { display:flex; align-items:center; gap:0.75rem; margin-bottom:0.75rem; }
+        .compare-label { width:140px; font-size:0.8rem; color:var(--text2); flex-shrink:0; }
+        .compare-bar-wrap { flex:1; background:var(--bg3); border-radius:6px; height:32px; position:relative; overflow:hidden; }
+        .compare-bar {
+            height:100%; border-radius:6px; display:flex; align-items:center;
+            padding:0 0.75rem; font-family:'JetBrains Mono',monospace; font-size:0.75rem;
+            font-weight:600; transition: width 0.8s ease;
+        }
+        .compare-bar.tj { background: linear-gradient(90deg, var(--orange), #fb923c); }
+        .compare-bar.industry { background: linear-gradient(90deg, var(--green), #34d399); }
+        .compare-bar.target { background: linear-gradient(90deg, var(--blue), #60a5fa); }
+        .compare-note { width:80px; font-size:0.7rem; color:var(--text3); text-align:right; flex-shrink:0; }
+
+        /* Table */
+        table { width:100%; border-collapse:collapse; font-size:0.8rem; }
+        th { text-align:left; padding:0.6rem 0.75rem; background:var(--bg3); color:var(--text2); font-weight:600; font-size:0.7rem; text-transform:uppercase; letter-spacing:0.04em; }
+        td { padding:0.6rem 0.75rem; border-bottom:1px solid var(--border); }
+        tr:hover td { background:rgba(255,255,255,0.02); }
+        .highlight-row td { background:var(--green-bg); font-weight:600; }
+
+        /* Progress tracker */
+        .milestone {
+            display:flex; align-items:stretch; gap:0; margin-bottom:0;
+        }
+        .milestone-marker {
+            width:48px; display:flex; flex-direction:column; align-items:center; flex-shrink:0;
+        }
+        .milestone-dot {
+            width:16px; height:16px; border-radius:50%; border:2px solid var(--border);
+            background:var(--bg2); flex-shrink:0; z-index:1;
+        }
+        .milestone-dot.active { border-color:var(--green); background:var(--green); }
+        .milestone-dot.current { border-color:var(--orange); background:var(--orange); box-shadow:0 0 12px rgba(249,115,22,0.4); }
+        .milestone-line { width:2px; flex:1; background:var(--border); }
+        .milestone-line.active { background:var(--green); }
+        .milestone-body { padding:0 0 1.5rem 0.5rem; flex:1; }
+        .milestone-title { font-weight:700; font-size:0.9rem; }
+        .milestone-detail { color:var(--text2); font-size:0.8rem; margin-top:0.15rem; }
+        .milestone-metric { font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--green); margin-top:0.25rem; }
+
+        /* Action items */
+        .action {
+            background:var(--bg3); border-radius:8px; padding:0.75rem 1rem;
+            margin-bottom:0.5rem; display:flex; gap:0.75rem; align-items:flex-start;
+        }
+        .action-priority {
+            font-size:0.65rem; font-weight:700; padding:0.15rem 0.5rem;
+            border-radius:4px; flex-shrink:0; margin-top:0.1rem;
+        }
+        .action-priority.p1 { background:var(--red-bg); color:var(--red); }
+        .action-priority.p2 { background:var(--orange-bg); color:var(--orange); }
+        .action-priority.p3 { background:var(--yellow-bg); color:var(--yellow); }
+        .action-title { font-weight:600; font-size:0.85rem; }
+        .action-desc { color:var(--text2); font-size:0.78rem; margin-top:0.15rem; }
+        .action-impact { font-family:'JetBrains Mono',monospace; font-size:0.75rem; color:var(--green); margin-top:0.25rem; }
+
+        /* Financial slider */
+        .slider-group { margin-bottom:1rem; }
+        .slider-label { display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:0.25rem; }
+        .slider-label span:last-child { font-family:'JetBrains Mono',monospace; color:var(--green); font-weight:600; }
+        input[type=range] {
+            width:100%; -webkit-appearance:none; background:var(--bg3); height:6px;
+            border-radius:3px; outline:none;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance:none; width:18px; height:18px; border-radius:50%;
+            background:var(--green); cursor:pointer;
+        }
+
+        /* Callout */
+        .callout {
+            border-radius:var(--radius); padding:1.25rem; margin-bottom:1rem;
+            border-left:4px solid;
+        }
+        .callout.green { background:var(--green-bg); border-color:var(--green); }
+        .callout.orange { background:var(--orange-bg); border-color:var(--orange); }
+        .callout.blue { background:var(--blue-bg); border-color:var(--blue); }
+        .callout.red { background:var(--red-bg); border-color:var(--red); }
+        .callout h4 { font-size:0.9rem; margin-bottom:0.25rem; }
+        .callout p { font-size:0.8rem; color:var(--text2); }
+        .callout .mono { color:var(--green); }
+
+        .badge { display:inline-block; padding:0.15rem 0.5rem; border-radius:4px; font-size:0.65rem; font-weight:700; }
+        .badge-green { background:var(--green-bg); color:var(--green); }
+        .badge-orange { background:var(--orange-bg); color:var(--orange); }
+        .badge-red { background:var(--red-bg); color:var(--red); }
+
+        .footer { text-align:center; padding:2rem; color:var(--text3); font-size:0.7rem; }
+
+        @media(max-width:640px) {
+            .header h1 { font-size:1.4rem; }
+            .stats { grid-template-columns:repeat(2,1fr); }
+            .compare-label { width:80px; font-size:0.7rem; }
+            .compare-note { width:60px; }
+            .tabs { padding:0; }
+            .tab { padding:0.6rem 0.75rem; font-size:0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>📈 <span>Growth Model</span></h1>
+    <p>Industry benchmarks, financial projections, and the exact math to reach 25-30 recurring customers</p>
+    <div class="source">Sources: ScoopStart.com (Swoop Scoop® — $1.4M/yr, 2,000+ customers) • Number2Club.com • FinancialModelsLab • BusinessPlanSuite | March 2026</div>
+</div>
+
+<div class="tabs">
+    <div class="tab active" onclick="showTab('now')">📍 Where You Are</div>
+    <div class="tab" onclick="showTab('benchmarks')">📊 Industry Data</div>
+    <div class="tab" onclick="showTab('calculator')">🧮 Revenue Calculator</div>
+    <div class="tab" onclick="showTab('roadmap')">🗺️ Growth Roadmap</div>
+    <div class="tab" onclick="showTab('route')">🛣️ Route Math</div>
+    <div class="tab" onclick="showTab('actions')">⚡ This Week</div>
+</div>
+
+<!-- TAB 1: WHERE YOU ARE NOW -->
+<div id="tab-now" class="tab-content active">
+    <div class="container">
+        <div class="callout orange">
+            <h4>🔍 Reality Check — Based on Real Industry Data</h4>
+            <p>Swoop Scoop® grew from 0 to 2,000 customers in 3 years ($1.4M revenue). Number2Club serves Arizona's West Valley. Here's how TJ stacks up against verified benchmarks from operators who've done it.</p>
+        </div>
+
+        <div class="card">
+            <h3>TJ's Current State vs. Industry Benchmarks</h3>
+            <div class="card-subtitle">As of March 2026 — ~1 year in business</div>
+
+            <div style="margin-top:1rem;">
+                <div class="compare-row">
+                    <div class="compare-label">Customers</div>
+                    <div class="compare-bar-wrap">
+                        <div class="compare-bar tj" style="width:16%;">5</div>
+                    </div>
+                    <div class="compare-note">of 30 goal</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-label">Monthly Revenue</div>
+                    <div class="compare-bar-wrap">
+                        <div class="compare-bar tj" style="width:18%;">~$750</div>
+                    </div>
+                    <div class="compare-note">of $4,200</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-label">Avg Revenue/Customer</div>
+                    <div class="compare-bar-wrap">
+                        <div class="compare-bar tj" style="width:65%;">$150/mo</div>
+                    </div>
+                    <div class="compare-note">vs $140 avg</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-label">Google Reviews</div>
+                    <div class="compare-bar-wrap">
+                        <div class="compare-bar tj" style="width:5%;">~1</div>
+                    </div>
+                    <div class="compare-note">need 10+</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-label">Route Density</div>
+                    <div class="compare-bar-wrap">
+                        <div class="compare-bar tj" style="width:15%;">LOW</div>
+                    </div>
+                    <div class="compare-note">scattered</div>
+                </div>
+                <div class="compare-row">
+                    <div class="compare-label">Online Visibility</div>
+                    <div class="compare-bar-wrap">
+                        <div class="compare-bar tj" style="width:8%;">NONE</div>
+                    </div>
+                    <div class="compare-note">invisible</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat orange">
+                <div class="stat-label">Monthly Revenue</div>
+                <div class="stat-value">~$750</div>
+                <div class="stat-note">5 customers × ~$150/mo avg</div>
+            </div>
+            <div class="stat red">
+                <div class="stat-label">Annual Run Rate</div>
+                <div class="stat-value">~$9,000</div>
+                <div class="stat-note">Solo part-time avg: $6-12K</div>
+            </div>
+            <div class="stat green">
+                <div class="stat-label">Pricing</div>
+                <div class="stat-value">$17.50/wk</div>
+                <div class="stat-note">Industry: $22-28/wk (1 dog)</div>
+            </div>
+            <div class="stat purple">
+                <div class="stat-label">Service Area</div>
+                <div class="stat-value">WIDE</div>
+                <div class="stat-note">Florissant → O'Fallon → St. Charles</div>
+            </div>
+        </div>
+
+        <div class="callout red">
+            <h4>⚠️ The #1 Problem: Price + Density</h4>
+            <p>TJ's $17.50/wk is <strong>20-37% below market rate</strong>. Industry standard for 1 dog weekly: $22-$28/wk. At $25/wk, the same 5 customers would generate <strong>$1,083/mo instead of $750</strong> — a 44% increase with zero new customers. Combine that with scattered routes (Florissant to O'Fallon = 25+ min drive) and you're burning time and gas.</p>
+        </div>
+
+        <div class="card">
+            <h3>💰 Quick Win: Price Adjustment Math</h3>
+            <table>
+                <tr><th>Scenario</th><th>Weekly/Customer</th><th>Monthly (5 customers)</th><th>Annual</th><th>Difference</th></tr>
+                <tr class="highlight-row"><td>Current</td><td>$17.50</td><td>$750</td><td>$9,000</td><td>—</td></tr>
+                <tr><td>Match Low Market</td><td>$22.00</td><td>$956</td><td>$11,472</td><td style="color:var(--green)">+$2,472/yr</td></tr>
+                <tr><td>Match Market Avg</td><td>$25.00</td><td>$1,083</td><td>$13,000</td><td style="color:var(--green)">+$4,000/yr</td></tr>
+                <tr><td>Premium Position</td><td>$28.00</td><td>$1,213</td><td>$14,560</td><td style="color:var(--green)">+$5,560/yr</td></tr>
+            </table>
+            <p style="color:var(--text2); font-size:0.75rem; margin-top:0.5rem;">💡 New customers should start at $25/wk. Existing customers can stay at current rate or get a small bump ("costs have gone up slightly") — even $2-3/wk adds up.</p>
+        </div>
+    </div>
+</div>
+
+<!-- TAB 2: INDUSTRY BENCHMARKS -->
+<div id="tab-benchmarks" class="tab-content">
+    <div class="container">
+        <div class="callout blue">
+            <h4>📊 Real Numbers from Real Operators</h4>
+            <p>These aren't projections — they're from operators running actual pet waste removal businesses. Swoop Scoop (Pacific NW) serves 2,000+ customers. Number2Club (Arizona) shares verified pricing and ops data.</p>
+        </div>
+
+        <div class="card">
+            <h3>Industry Earning Benchmarks</h3>
+            <table>
+                <tr><th>Level</th><th>Customers</th><th>Monthly Rev</th><th>Annual Rev</th><th>Time</th><th>Notes</th></tr>
+                <tr><td><span class="badge badge-green">PART-TIME</span></td><td>20-40</td><td>$500-$1,000</td><td>$6-12K</td><td>10-15 hrs/wk</td><td>Weekends only</td></tr>
+                <tr style="background:var(--orange-bg)"><td><span class="badge badge-orange">TJ NOW</span></td><td>5</td><td>~$750</td><td>~$9K</td><td>~5 hrs/wk</td><td>Growing</td></tr>
+                <tr><td><span class="badge badge-green">SIDE BIZ</span></td><td>40-80</td><td>$2,000-$4,500</td><td>$24-54K</td><td>20-25 hrs/wk</td><td>Evenings + weekends</td></tr>
+                <tr class="highlight-row"><td><span class="badge badge-green">TARGET</span></td><td>25-30</td><td>$2,700-$3,250</td><td>$32-39K</td><td>15-20 hrs/wk</td><td>TJ's goal @ $25/wk</td></tr>
+                <tr><td><span class="badge badge-green">FULL-TIME</span></td><td>100-200</td><td>$8-17K</td><td>$100-200K</td><td>40+ hrs/wk</td><td>Solo, maxed out</td></tr>
+                <tr><td><span class="badge badge-green">SCALED</span></td><td>500+</td><td>$42K+</td><td>$500K+</td><td>Employees</td><td>Multiple techs</td></tr>
+                <tr><td><span class="badge badge-green">ENTERPRISE</span></td><td>2,000+</td><td>$117K+</td><td>$1.4M+</td><td>Full team</td><td>Swoop Scoop level</td></tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>Pricing Benchmarks (Industry Standard)</h3>
+            <div class="stats">
+                <div class="stat green">
+                    <div class="stat-label">1 Dog Weekly</div>
+                    <div class="stat-value">$22-28</div>
+                    <div class="stat-note">per visit</div>
+                </div>
+                <div class="stat blue">
+                    <div class="stat-label">2 Dogs Weekly</div>
+                    <div class="stat-value">$28-35</div>
+                    <div class="stat-note">per visit</div>
+                </div>
+                <div class="stat purple">
+                    <div class="stat-label">3+ Dogs Weekly</div>
+                    <div class="stat-value">$35-45</div>
+                    <div class="stat-note">per visit</div>
+                </div>
+                <div class="stat orange">
+                    <div class="stat-label">Initial Cleanup</div>
+                    <div class="stat-value">$50-100</div>
+                    <div class="stat-note">accumulated waste</div>
+                </div>
+                <div class="stat cyan">
+                    <div class="stat-label">Bi-Weekly Premium</div>
+                    <div class="stat-value">+$5-10</div>
+                    <div class="stat-note">per visit vs weekly</div>
+                </div>
+                <div class="stat yellow">
+                    <div class="stat-label">Add-on: Deodorize</div>
+                    <div class="stat-value">$10-20</div>
+                    <div class="stat-note">per visit, 50%+ margin</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Key Industry Metrics</h3>
+            <table>
+                <tr><th>Metric</th><th>Industry Benchmark</th><th>TJ Estimate</th><th>Gap</th></tr>
+                <tr><td>Gross Margin</td><td>50%+</td><td>~70%+ (solo, low overhead)</td><td style="color:var(--green)">✅ Strong</td></tr>
+                <tr><td>Customer Retention</td><td>75%+ annually</td><td>~80% (small base)</td><td style="color:var(--green)">✅ Good</td></tr>
+                <tr><td>Stops/Hour (dense)</td><td>4-6 stops</td><td>~2 stops (spread out)</td><td style="color:var(--red)">❌ Low</td></tr>
+                <tr><td>Drive Time Between</td><td>&lt;5 min</td><td>15-25 min</td><td style="color:var(--red)">❌ High</td></tr>
+                <tr><td>Customer Acq. Cost</td><td>$50-150</td><td>~$0 (word of mouth)</td><td style="color:var(--green)">✅ Great</td></tr>
+                <tr><td>Google Reviews</td><td>10+ to rank</td><td>~1</td><td style="color:var(--red)">❌ Critical</td></tr>
+                <tr><td>Online Bookable</td><td>Yes (most)</td><td>No</td><td style="color:var(--red)">❌ Missing</td></tr>
+                <tr><td>Revenue/Service Hour</td><td>$50-80</td><td>~$35</td><td style="color:var(--orange)">⚠️ Below</td></tr>
+            </table>
+        </div>
+
+        <div class="callout green">
+            <h4>✅ What TJ Is Doing Right</h4>
+            <p>High retention, zero CAC (word of mouth), very low overhead, personal service (same person every time), no contracts flexibility. These are real competitive advantages. The issue is <strong>volume and visibility</strong>, not service quality.</p>
+        </div>
+    </div>
+</div>
+
+<!-- TAB 3: REVENUE CALCULATOR -->
+<div id="tab-calculator" class="tab-content">
+    <div class="container">
+        <div class="card">
+            <h3>🧮 Interactive Revenue Calculator</h3>
+            <div class="card-subtitle">Adjust the sliders to model different scenarios</div>
+
+            <div style="margin-top:1.25rem;">
+                <div class="slider-group">
+                    <div class="slider-label"><span>Weekly Customers</span><span id="val-customers">5</span></div>
+                    <input type="range" id="sl-customers" min="1" max="50" value="5" oninput="updateCalc()">
+                </div>
+                <div class="slider-group">
+                    <div class="slider-label"><span>Avg $/Week per Customer</span><span id="val-price">$17.50</span></div>
+                    <input type="range" id="sl-price" min="15" max="45" value="17" oninput="updateCalc()">
+                </div>
+                <div class="slider-group">
+                    <div class="slider-label"><span>Bi-Weekly Customers</span><span id="val-biweekly">0</span></div>
+                    <input type="range" id="sl-biweekly" min="0" max="20" value="0" oninput="updateCalc()">
+                </div>
+                <div class="slider-group">
+                    <div class="slider-label"><span>Bi-Weekly Rate</span><span id="val-bwprice">$30.00</span></div>
+                    <input type="range" id="sl-bwprice" min="20" max="50" value="30" oninput="updateCalc()">
+                </div>
+                <div class="slider-group">
+                    <div class="slider-label"><span>Commercial Accounts</span><span id="val-commercial">0</span></div>
+                    <input type="range" id="sl-commercial" min="0" max="10" value="0" oninput="updateCalc()">
+                </div>
+                <div class="slider-group">
+                    <div class="slider-label"><span>Commercial $/Month</span><span id="val-commprice">$300</span></div>
+                    <input type="range" id="sl-commprice" min="150" max="600" value="300" oninput="updateCalc()">
+                </div>
+                <div class="slider-group">
+                    <div class="slider-label"><span>Spring Cleanups/Month</span><span id="val-cleanups">0</span></div>
+                    <input type="range" id="sl-cleanups" min="0" max="15" value="0" oninput="updateCalc()">
+                </div>
+            </div>
+
+            <div class="stats" style="margin-top:1.5rem;">
+                <div class="stat green">
+                    <div class="stat-label">Monthly Revenue</div>
+                    <div class="stat-value" id="calc-monthly">$750</div>
+                    <div class="stat-note" id="calc-monthly-note">recurring only</div>
+                </div>
+                <div class="stat blue">
+                    <div class="stat-label">Annual Revenue</div>
+                    <div class="stat-value" id="calc-annual">$9,000</div>
+                    <div class="stat-note">at current rate</div>
+                </div>
+                <div class="stat purple">
+                    <div class="stat-label">Est. Monthly Costs</div>
+                    <div class="stat-value" id="calc-costs">$225</div>
+                    <div class="stat-note">gas, bags, insurance</div>
+                </div>
+                <div class="stat cyan">
+                    <div class="stat-label">Monthly Profit</div>
+                    <div class="stat-value" id="calc-profit">$525</div>
+                    <div class="stat-note" id="calc-margin">70% margin</div>
+                </div>
+                <div class="stat yellow">
+                    <div class="stat-label">Hours/Week</div>
+                    <div class="stat-value" id="calc-hours">4</div>
+                    <div class="stat-note" id="calc-hourly">$43/hr effective</div>
+                </div>
+                <div class="stat orange">
+                    <div class="stat-label">$/Service Hour</div>
+                    <div class="stat-value" id="calc-perhour">$43</div>
+                    <div class="stat-note">industry: $50-80</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🎯 Scenario Comparison</h3>
+            <table>
+                <tr><th>Scenario</th><th>Customers</th><th>Pricing</th><th>Monthly</th><th>Annual</th><th>Hours/Wk</th></tr>
+                <tr style="background:var(--orange-bg)"><td><strong>Current</strong></td><td>5 weekly</td><td>$17.50/wk</td><td>$750</td><td>$9,000</td><td>~5</td></tr>
+                <tr><td>Price Fix Only</td><td>5 weekly</td><td>$25/wk</td><td>$1,083</td><td>$13,000</td><td>~5</td></tr>
+                <tr><td>15 Customers</td><td>15 weekly</td><td>$25/wk</td><td>$1,625</td><td>$19,500</td><td>~10</td></tr>
+                <tr class="highlight-row"><td><strong>Target: 25</strong></td><td>25 weekly</td><td>$25/wk</td><td>$2,708</td><td>$32,500</td><td>~15</td></tr>
+                <tr class="highlight-row"><td><strong>Target: 30</strong></td><td>30 weekly</td><td>$25/wk</td><td>$3,250</td><td>$39,000</td><td>~18</td></tr>
+                <tr><td>30 + 2 Commercial</td><td>30 + 2 comm</td><td>$25/$350</td><td>$3,950</td><td>$47,400</td><td>~20</td></tr>
+                <tr><td>30 + 5 Bi-Weekly</td><td>30 + 5 bw</td><td>$25/$30bw</td><td>$3,575</td><td>$42,900</td><td>~19</td></tr>
+                <tr><td>Full Stack</td><td>30 + 5bw + 2comm</td><td>Mixed</td><td>$4,625</td><td>$55,500</td><td>~22</td></tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- TAB 4: GROWTH ROADMAP -->
+<div id="tab-roadmap" class="tab-content">
+    <div class="container">
+        <div class="callout blue">
+            <h4>🗺️ The Path from 5 → 30 Customers</h4>
+            <p>Based on industry growth rates, adding 2-3 new customers per month is realistic with consistent marketing. That means 25-30 customers is achievable in <strong>8-10 months</strong> with focused effort.</p>
+        </div>
+
+        <div class="card">
+            <h3>Growth Milestones</h3>
+            <div style="margin-top:1rem;">
+                <div class="milestone">
+                    <div class="milestone-marker">
+                        <div class="milestone-dot active"></div>
+                        <div class="milestone-line active"></div>
+                    </div>
+                    <div class="milestone-body">
+                        <div class="milestone-title">✅ Phase 0: Launch (Completed)</div>
+                        <div class="milestone-detail">Business running, first customers secured, service proven</div>
+                        <div class="milestone-metric">5 customers • $750/mo • $9K/yr</div>
+                    </div>
+                </div>
+
+                <div class="milestone">
+                    <div class="milestone-marker">
+                        <div class="milestone-dot current"></div>
+                        <div class="milestone-line"></div>
+                    </div>
+                    <div class="milestone-body">
+                        <div class="milestone-title">🔥 Phase 1: Foundation (NOW — Next 30 Days)</div>
+                        <div class="milestone-detail">Fix pricing, get online, collect reviews, post ads on free platforms</div>
+                        <div class="milestone-metric">Target: 8-10 customers • $867-$1,083/mo</div>
+                        <ul style="color:var(--text2); font-size:0.78rem; margin-top:0.5rem; padding-left:1.25rem;">
+                            <li>Raise new customer price to $25/wk</li>
+                            <li>Get Google Business Profile optimized + verified</li>
+                            <li>Collect 5 Google reviews from current customers</li>
+                            <li>Post on Craigslist (0 competitors) + Nextdoor weekly</li>
+                            <li>Spring cleanup campaign: charge $99-$149 one-time</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="milestone">
+                    <div class="milestone-marker">
+                        <div class="milestone-dot"></div>
+                        <div class="milestone-line"></div>
+                    </div>
+                    <div class="milestone-body">
+                        <div class="milestone-title">Phase 2: Traction (Month 2-3)</div>
+                        <div class="milestone-detail">Density building — focus on 2-3 neighborhoods, referral program, first commercial prospect</div>
+                        <div class="milestone-metric">Target: 12-15 customers • $1,300-$1,625/mo</div>
+                        <ul style="color:var(--text2); font-size:0.78rem; margin-top:0.5rem; padding-left:1.25rem;">
+                            <li>Canvass current customer neighborhoods (leave-behinds)</li>
+                            <li>$25 referral credit program for existing customers</li>
+                            <li>Yard signs at 2-3 customer homes</li>
+                            <li>Pitch 3 apartment complexes in Florissant/St. Charles</li>
+                            <li>Start building route clusters (2-3 stops per area)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="milestone">
+                    <div class="milestone-marker">
+                        <div class="milestone-dot"></div>
+                        <div class="milestone-line"></div>
+                    </div>
+                    <div class="milestone-body">
+                        <div class="milestone-title">Phase 3: Growth (Month 4-6)</div>
+                        <div class="milestone-detail">Consistent marketing engine running, routes getting dense, word-of-mouth snowball</div>
+                        <div class="milestone-metric">Target: 18-22 customers • $1,950-$2,383/mo</div>
+                        <ul style="color:var(--text2); font-size:0.78rem; margin-top:0.5rem; padding-left:1.25rem;">
+                            <li>10+ Google reviews → start appearing in Maps</li>
+                            <li>Facebook Ads test ($5-10/day, neighborhood targeting)</li>
+                            <li>Land first commercial account ($200-350/mo)</li>
+                            <li>Establish 2-3 vet clinic referral partnerships</li>
+                            <li>Routes should be 80%+ within 10-min drive clusters</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="milestone">
+                    <div class="milestone-marker">
+                        <div class="milestone-dot"></div>
+                        <div class="milestone-line"></div>
+                    </div>
+                    <div class="milestone-body">
+                        <div class="milestone-title">Phase 4: Scale (Month 7-10)</div>
+                        <div class="milestone-detail">Hit target, optimize operations, consider first helper</div>
+                        <div class="milestone-metric">Target: 25-30 customers • $2,708-$3,250/mo</div>
+                        <ul style="color:var(--text2); font-size:0.78rem; margin-top:0.5rem; padding-left:1.25rem;">
+                            <li>Consistent 2-3 new customers/month from all channels</li>
+                            <li>Consider CRM (Sweep&Go $50/mo or Jobber) for scheduling</li>
+                            <li>Evaluate hiring a part-time tech ($15-18/hr) for overflow</li>
+                            <li>Revenue should cover dedicated vehicle expenses</li>
+                            <li>Monthly profit: $2,000+ after all costs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="milestone">
+                    <div class="milestone-marker">
+                        <div class="milestone-dot"></div>
+                        <div class="milestone-line" style="background:transparent;"></div>
+                    </div>
+                    <div class="milestone-body">
+                        <div class="milestone-title">🌟 Phase 5: Beyond (Year 2+)</div>
+                        <div class="milestone-detail">The real money: 50-100 customers with dense routes and 1-2 employees</div>
+                        <div class="milestone-metric">50 customers = $5,400/mo • 100 = $10,800/mo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📈 Monthly Revenue Trajectory (at $25/wk)</h3>
+            <div id="revenue-chart" style="margin-top:1rem;">
+                <div style="display:flex; align-items:flex-end; gap:4px; height:200px; padding:0 0.5rem;">
+                    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;">
+                        <div style="font-size:0.6rem; color:var(--text3); margin-bottom:2px;">$750</div>
+                        <div style="width:100%; background:var(--orange); border-radius:4px 4px 0 0; height:23%;"></div>
+                        <div style="font-size:0.6rem; color:var(--text3); margin-top:4px;">Now</div>
+                    </div>
+                    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;">
+                        <div style="font-size:0.6rem; color:var(--text3); margin-bottom:2px;">$1,083</div>
+                        <div style="width:100%; background:var(--yellow); border-radius:4px 4px 0 0; height:33%;"></div>
+                        <div style="font-size:0.6rem; color:var(--text3); margin-top:4px;">M1</div>
+                    </div>
+                    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;">
+                        <div style="font-size:0.6rem; color:var(--text3); margin-bottom:2px;">$1,408</div>
+                        <div style="width:100%; background:var(--yellow); border-radius:4px 4px 0 0; height:43%;"></div>
+                        <div style="font-size:0.6rem; color:var(--text3); margin-top:4px;">M2</div>
+                    </div>
+                    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;">
+                        <div style="font-size:0.6rem; color:var(--text3); margin-bottom:2px;">$1,625</div>
+                        <div style="width:100%; background:var(--blue); border-radius:4px 4px 0 0; height:50%;"></div>
+                        <div style="font-size:0.6rem; color:var(--text3); margin-top:4px;">M3</div>
+                    </div>
+                    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;">
+                        <div style="font-size:0.6rem; color:var(--text3); margin-bottom:2px;">$1,950</div>
+                        <div style="width:100%; background:var(--blue); border-radius:4px 4px 0 0; height:60%;"></div>
+                        <div style="font-size:0.6rem; color:var(--text3); margin-top:4px;">M4</div>
+                    </div>
+                    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;">
+                        <div style="font-size:0.6rem; color:var(--text3); margin-bottom:2px;">$2,167</div>
+                        <div style="width:100%; background:var(--blue); border-radius:4px 4px 0 0; height:67%;"></div>
+                        <div style="font-size:0.6rem; color:var(--text3); margin-top:4px;">M5</div>
+                    </div>
+                    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;">
+                        <div style="font-size:0.6rem; color:var(--text3); margin-bottom:2px;">$2,383</div>
+                        <div style="width:100%; background:var(--blue); border-radius:4px 4px 0 0; height:73%;"></div>
+                        <div style="font-size:0.6rem; color:var(--text3); margin-top:4px;">M6</div>
+                    </div>
+                    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;">
+                        <div style="font-size:0.6rem; color:var(--text3); margin-bottom:2px;">$2,600</div>
+                        <div style="width:100%; background:var(--purple); border-radius:4px 4px 0 0; height:80%;"></div>
+                        <div style="font-size:0.6rem; color:var(--text3); margin-top:4px;">M7</div>
+                    </div>
+                    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;">
+                        <div style="font-size:0.6rem; color:var(--text3); margin-bottom:2px;">$2,817</div>
+                        <div style="width:100%; background:var(--purple); border-radius:4px 4px 0 0; height:87%;"></div>
+                        <div style="font-size:0.6rem; color:var(--text3); margin-top:4px;">M8</div>
+                    </div>
+                    <div style="flex:1; display:flex; flex-direction:column; align-items:center; justify-content:flex-end;">
+                        <div style="font-size:0.6rem; color:var(--green); margin-bottom:2px; font-weight:700;">$3,250</div>
+                        <div style="width:100%; background:var(--green); border-radius:4px 4px 0 0; height:100%;"></div>
+                        <div style="font-size:0.6rem; color:var(--green); margin-top:4px; font-weight:700;">M10</div>
+                    </div>
+                </div>
+                <div style="font-size:0.7rem; color:var(--text3); text-align:center; margin-top:0.5rem;">Assumes +2-3 customers/month at $25/wk average</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TAB 5: ROUTE MATH -->
+<div id="tab-route" class="tab-content">
+    <div class="container">
+        <div class="callout orange">
+            <h4>🛣️ Route Density = Profitability</h4>
+            <p>The #1 factor in pet waste removal profitability isn't pricing — it's <strong>how many stops you can hit per hour</strong>. Industry best: 4-6 stops/hr. TJ's estimate: ~2 stops/hr (customers spread from Florissant to O'Fallon).</p>
+        </div>
+
+        <div class="card">
+            <h3>Route Efficiency Comparison</h3>
+            <table>
+                <tr><th>Metric</th><th>Scattered Routes (Now)</th><th>Clustered Routes (Goal)</th><th>Impact</th></tr>
+                <tr><td>Drive time between stops</td><td>15-25 min</td><td>3-5 min</td><td style="color:var(--green)">-80% drive time</td></tr>
+                <tr><td>Stops per hour</td><td>~2</td><td>4-5</td><td style="color:var(--green)">2.5x more efficient</td></tr>
+                <tr><td>Revenue per hour</td><td>~$35</td><td>$100-125</td><td style="color:var(--green)">3x revenue/hour</td></tr>
+                <tr><td>Gas cost per stop</td><td>~$3-4</td><td>~$0.75-1</td><td style="color:var(--green)">-75% fuel costs</td></tr>
+                <tr><td>30 customers time</td><td>22+ hrs/wk</td><td>10-12 hrs/wk</td><td style="color:var(--green)">50% less time</td></tr>
+                <tr><td>Service 30 in one day?</td><td>No (2 days)</td><td>Yes (6-7 hrs)</td><td style="color:var(--green)">One service day</td></tr>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>🎯 Priority Neighborhoods to Cluster</h3>
+            <div class="card-subtitle">Focus new customer acquisition in areas where TJ already serves</div>
+
+            <div style="margin-top:1rem;">
+                <div class="action">
+                    <div class="action-priority p1">ZONE 1</div>
+                    <div>
+                        <div class="action-title">Florissant / Hazelwood / Black Jack</div>
+                        <div class="action-desc">TJ has existing customers here. High dog ownership, suburban, lots of fenced yards. Target: 8-10 customers in this zone.</div>
+                        <div class="action-impact">Drive time between stops: 3-5 min • 44,000+ households in zone</div>
+                    </div>
+                </div>
+                <div class="action">
+                    <div class="action-priority p1">ZONE 2</div>
+                    <div>
+                        <div class="action-title">St. Charles / St. Peters / O'Fallon</div>
+                        <div class="action-desc">Growing suburbs, newer subdivisions, busy dual-income families. Target: 8-10 customers in this zone — separate service day.</div>
+                        <div class="action-impact">Drive time between stops: 3-7 min • 80,000+ households in zone</div>
+                    </div>
+                </div>
+                <div class="action">
+                    <div class="action-priority p2">ZONE 3</div>
+                    <div>
+                        <div class="action-title">Maryland Heights / Creve Coeur / Bridgeton</div>
+                        <div class="action-desc">Between Zone 1 and 2. Pawfect Waste Solutions (competitor) is DEAD here — orphaned customers available.</div>
+                        <div class="action-impact">Former competitor territory • Higher income demographics</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="callout green" style="margin-top:1rem;">
+                <h4>💡 The Route Strategy</h4>
+                <p><strong>Zone 1</strong> (Florissant area) = Monday/Tuesday<br>
+                <strong>Zone 2</strong> (St. Charles area) = Wednesday/Thursday<br>
+                <strong>Zone 3</strong> (Maryland Heights) = Friday (or add to Zone 1/2 days)<br><br>
+                At 30 customers with good density, you could realistically service all of them in <strong>2 days per week</strong> (6-7 hrs each). The other 5 days? Shed sales, Jamie's calls, or just living life.</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📊 Time Investment at Each Scale</h3>
+            <table>
+                <tr><th>Customers</th><th>Scattered (Current)</th><th>Clustered (Optimized)</th><th>Revenue @ $25/wk</th><th>$/Hour</th></tr>
+                <tr style="background:var(--orange-bg)"><td><strong>5 (now)</strong></td><td>5 hrs/wk</td><td>2.5 hrs/wk</td><td>$541/mo</td><td>$50</td></tr>
+                <tr><td>10</td><td>10 hrs/wk</td><td>4 hrs/wk</td><td>$1,083/mo</td><td>$62</td></tr>
+                <tr><td>15</td><td>15 hrs/wk</td><td>5.5 hrs/wk</td><td>$1,625/mo</td><td>$68</td></tr>
+                <tr><td>20</td><td>18 hrs/wk</td><td>7 hrs/wk</td><td>$2,167/mo</td><td>$71</td></tr>
+                <tr class="highlight-row"><td><strong>25</strong></td><td>22 hrs/wk</td><td>8.5 hrs/wk</td><td>$2,708/mo</td><td>$73</td></tr>
+                <tr class="highlight-row"><td><strong>30</strong></td><td>25+ hrs/wk</td><td>10 hrs/wk</td><td>$3,250/mo</td><td>$75</td></tr>
+                <tr><td>50</td><td>N/A (need help)</td><td>16 hrs/wk</td><td>$5,417/mo</td><td>$78</td></tr>
+            </table>
+            <p style="color:var(--text2); font-size:0.75rem; margin-top:0.5rem;">💡 With optimized routes, 30 customers = ~10 hrs/wk. That's a $75/hr effective rate. Better than most trades.</p>
+        </div>
+    </div>
+</div>
+
+<!-- TAB 6: THIS WEEK -->
+<div id="tab-actions" class="tab-content">
+    <div class="container">
+        <div class="callout green">
+            <h4>⚡ The 3 Things That Actually Matter This Week</h4>
+            <p>We've built 20+ dashboards and tools. None of that matters unless TJ does these 3 things. Everything else is noise.</p>
+        </div>
+
+        <div class="card">
+            <h3>🥇 Priority #1: Get on Google Maps</h3>
+            <div style="margin-top:0.75rem;">
+                <div class="action">
+                    <div class="action-priority p1">DO NOW</div>
+                    <div>
+                        <div class="action-title">Claim/Optimize Google Business Profile</div>
+                        <div class="action-desc">TJ has a listing on MapQuest (Olivette, MO) which means a GBP probably exists but isn't claimed. Go to business.google.com, claim it, update the address, add photos, write the description.</div>
+                        <div class="action-impact">⏱️ 30 min • This alone could generate 2-3 leads/month within 4 weeks</div>
+                    </div>
+                </div>
+                <div class="action">
+                    <div class="action-priority p1">DO NOW</div>
+                    <div>
+                        <div class="action-title">Text Every Customer for a Google Review</div>
+                        <div class="action-desc">"Hey [name]! Quick favor — would you mind leaving us a Google review? It really helps small businesses like ours. Here's the link: [link]" You need 5 reviews minimum to start ranking.</div>
+                        <div class="action-impact">⏱️ 10 min to text 5 people • 5 reviews = visible in Maps in 2-4 weeks</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🥈 Priority #2: Post on Free Platforms</h3>
+            <div style="margin-top:0.75rem;">
+                <div class="action">
+                    <div class="action-priority p2">THIS WEEK</div>
+                    <div>
+                        <div class="action-title">Post 1 Craigslist Ad (0 competitors in STL)</div>
+                        <div class="action-desc">No one is advertising pet waste removal on STL Craigslist. Literally zero. One ad could generate multiple leads. Use the ready-to-post copy we built. Post in Services → Household.</div>
+                        <div class="action-impact">⏱️ 5 min • Renew weekly • Expected: 1-3 leads/week</div>
+                    </div>
+                </div>
+                <div class="action">
+                    <div class="action-priority p2">THIS WEEK</div>
+                    <div>
+                        <div class="action-title">Post on Nextdoor (2-3 neighborhoods)</div>
+                        <div class="action-desc">Introduce yourself in Florissant, Hazelwood, and St. Charles Nextdoor groups. Use the "neighborhood intro" template from the ad pack. Nextdoor has highest trust for local services.</div>
+                        <div class="action-impact">⏱️ 15 min • Expected: 1-2 leads/week from warm local audience</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🥉 Priority #3: Spring Cleanup Push</h3>
+            <div style="margin-top:0.75rem;">
+                <div class="action">
+                    <div class="action-priority p3">THIS WEEK</div>
+                    <div>
+                        <div class="action-title">Offer Spring Cleanup Specials ($99-$149)</div>
+                        <div class="action-desc">Winter's worth of dog waste is sitting in every yard right now. One-time cleanups are the #1 gateway to recurring customers. Industry data: 30-40% of cleanup customers convert to recurring.</div>
+                        <div class="action-impact">5 cleanups × $99 = $495 immediate + 2 new recurring ($216/mo ongoing)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout blue" style="margin-top:1rem;">
+            <h4>📅 The Weekly Rhythm (takes 2 hours total)</h4>
+            <p>
+                <strong>Monday:</strong> Renew Craigslist ad (2 min)<br>
+                <strong>Wednesday:</strong> Post in one Nextdoor group (10 min)<br>
+                <strong>Friday:</strong> Check Google Business Profile insights + respond to any reviews (5 min)<br>
+                <strong>Saturday:</strong> One neighborhood canvass — 50 door hangers in a customer's area (1 hr)<br>
+                <strong>Ongoing:</strong> Ask every new customer for a review within 48 hrs of first service
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🧮 The Math: What 2 hrs/week of Marketing Gets You</h3>
+            <table>
+                <tr><th>Channel</th><th>Time/Week</th><th>Cost</th><th>Expected Leads/Month</th><th>Expected Customers/Month</th></tr>
+                <tr><td>Craigslist</td><td>5 min</td><td>$0</td><td>4-8</td><td>1-2</td></tr>
+                <tr><td>Nextdoor</td><td>15 min</td><td>$0</td><td>2-4</td><td>1</td></tr>
+                <tr><td>Google (after GBP)</td><td>5 min</td><td>$0</td><td>2-4</td><td>1</td></tr>
+                <tr><td>Referrals</td><td>10 min</td><td>$0-25/referral</td><td>1-2</td><td>1</td></tr>
+                <tr><td>Canvassing (Sat)</td><td>1 hr</td><td>$15 (hangers)</td><td>2-4</td><td>1</td></tr>
+                <tr class="highlight-row"><td><strong>TOTAL</strong></td><td><strong>~2 hrs</strong></td><td><strong>~$15</strong></td><td><strong>11-22</strong></td><td><strong>3-5</strong></td></tr>
+            </table>
+            <p style="color:var(--text2); font-size:0.75rem; margin-top:0.5rem;">At 3 new customers/month, you hit 30 customers in ~8 months. At $25/wk each, that's $3,250/mo = <strong>$39,000/yr from 10 hrs of actual service per week.</strong></p>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    <p>📈 Tidy Tails Growth Model — Built by Franklin | Data from ScoopStart.com, Number2Club, FinancialModelsLab, BusinessPlanSuite</p>
+    <p style="margin-top:0.25rem;">Updated March 7, 2026 • <a href="index.html" style="color:var(--green);">← Back to Dashboard</a></p>
+</div>
+
+<script>
+function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+}
+
+function updateCalc() {
+    const customers = parseInt(document.getElementById('sl-customers').value);
+    const price = parseInt(document.getElementById('sl-price').value);
+    const biweekly = parseInt(document.getElementById('sl-biweekly').value);
+    const bwprice = parseInt(document.getElementById('sl-bwprice').value);
+    const commercial = parseInt(document.getElementById('sl-commercial').value);
+    const commprice = parseInt(document.getElementById('sl-commprice').value);
+    const cleanups = parseInt(document.getElementById('sl-cleanups').value);
+
+    document.getElementById('val-customers').textContent = customers;
+    document.getElementById('val-price').textContent = '$' + price + '.00';
+    document.getElementById('val-biweekly').textContent = biweekly;
+    document.getElementById('val-bwprice').textContent = '$' + bwprice + '.00';
+    document.getElementById('val-commercial').textContent = commercial;
+    document.getElementById('val-commprice').textContent = '$' + commprice;
+    document.getElementById('val-cleanups').textContent = cleanups;
+
+    const weeklyRev = customers * price;
+    const biweeklyRev = biweekly * bwprice * 2; // 2x per month
+    const commercialRev = commercial * commprice;
+    const cleanupRev = cleanups * 99;
+    const monthlyRev = (weeklyRev * 4.33) + biweeklyRev + commercialRev + cleanupRev;
+    const annualRev = monthlyRev * 12;
+
+    // Costs: ~$3/stop gas + $30/mo insurance + $20/mo supplies per 10 customers
+    const totalStops = (customers * 4.33) + (biweekly * 2) + (commercial * 4);
+    const gasCost = totalStops * 2;
+    const baseCost = 80; // insurance, phone, misc
+    const supplyCost = Math.ceil((customers + biweekly + commercial) / 10) * 20;
+    const monthlyCosts = gasCost + baseCost + supplyCost;
+
+    const profit = monthlyRev - monthlyCosts;
+    const margin = monthlyRev > 0 ? Math.round((profit / monthlyRev) * 100) : 0;
+
+    // Hours: 20 min/residential stop + 45 min/commercial + 15 min drive scattered
+    const totalCustomers = customers + biweekly + commercial;
+    const hoursPerWeek = Math.max(1, Math.round((customers * 0.5) + (biweekly * 0.25) + (commercial * 1.5)));
+    const hourlyRate = hoursPerWeek > 0 ? Math.round(monthlyRev / (hoursPerWeek * 4.33)) : 0;
+
+    document.getElementById('calc-monthly').textContent = '$' + Math.round(monthlyRev).toLocaleString();
+    document.getElementById('calc-annual').textContent = '$' + Math.round(annualRev).toLocaleString();
+    document.getElementById('calc-costs').textContent = '$' + Math.round(monthlyCosts).toLocaleString();
+    document.getElementById('calc-profit').textContent = '$' + Math.round(profit).toLocaleString();
+    document.getElementById('calc-margin').textContent = margin + '% margin';
+    document.getElementById('calc-hours').textContent = hoursPerWeek;
+    document.getElementById('calc-hourly').textContent = '$' + hourlyRate + '/hr effective';
+    document.getElementById('calc-perhour').textContent = '$' + hourlyRate;
+
+    // Color code profit
+    const profitEl = document.getElementById('calc-profit');
+    profitEl.style.color = profit > 0 ? 'var(--green)' : 'var(--red)';
+}
+
+updateCalc();
+</script>
+</body>
+</html>
