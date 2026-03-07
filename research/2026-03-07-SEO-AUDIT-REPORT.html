@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Audit Report — Tidy Tails STL</title>
+    <style>
+        :root {
+            --bg: #0f1117;
+            --surface: #1a1d27;
+            --surface2: #232733;
+            --border: #2d3143;
+            --text: #e4e6f0;
+            --text-dim: #8b8fa3;
+            --green: #4ade80;
+            --green-dark: #166534;
+            --red: #f87171;
+            --red-dark: #991b1b;
+            --yellow: #fbbf24;
+            --yellow-dark: #92400e;
+            --blue: #60a5fa;
+            --orange: #fb923c;
+            --purple: #a78bfa;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        h1 { font-size: 1.8rem; margin-bottom: 5px; }
+        h2 { font-size: 1.3rem; margin: 30px 0 15px; color: var(--blue); border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        h3 { font-size: 1.1rem; margin: 15px 0 8px; color: var(--text); }
+        .subtitle { color: var(--text-dim); margin-bottom: 25px; font-size: 0.95rem; }
+        .header-row { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; }
+
+        /* Score cards */
+        .score-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .score-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 15px;
+            text-align: center;
+        }
+        .score-card .score {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 2px;
+        }
+        .score-card .label {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .score-bad { color: var(--red); border-color: var(--red-dark); }
+        .score-warn { color: var(--yellow); border-color: var(--yellow-dark); }
+        .score-good { color: var(--green); border-color: var(--green-dark); }
+
+        /* Finding cards */
+        .finding {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 18px 20px;
+            margin-bottom: 12px;
+        }
+        .finding.critical { border-left: 4px solid var(--red); }
+        .finding.warning { border-left: 4px solid var(--yellow); }
+        .finding.good { border-left: 4px solid var(--green); }
+        .finding.info { border-left: 4px solid var(--blue); }
+        .finding-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .finding-title { font-weight: 700; font-size: 1rem; }
+        .badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-critical { background: var(--red-dark); color: var(--red); }
+        .badge-warning { background: var(--yellow-dark); color: var(--yellow); }
+        .badge-good { background: var(--green-dark); color: var(--green); }
+        .badge-info { background: #1e3a5f; color: var(--blue); }
+        .finding p { color: var(--text-dim); font-size: 0.9rem; margin-bottom: 6px; }
+        .finding .fix { color: var(--green); font-size: 0.9rem; font-weight: 600; }
+
+        /* Action items */
+        .action-list {
+            list-style: none;
+            counter-reset: action;
+        }
+        .action-list li {
+            counter-increment: action;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 15px 18px 15px 55px;
+            margin-bottom: 8px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .action-list li::before {
+            content: counter(action);
+            position: absolute;
+            left: 15px;
+            top: 15px;
+            width: 28px;
+            height: 28px;
+            background: var(--surface2);
+            border: 2px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--blue);
+        }
+        .action-list li.done {
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+        .action-list li.done::before {
+            content: "✓";
+            background: var(--green-dark);
+            border-color: var(--green);
+            color: var(--green);
+        }
+        .action-list li strong { color: var(--text); }
+        .action-list li span { color: var(--text-dim); font-size: 0.9rem; }
+
+        /* Impact label */
+        .impact {
+            display: inline-block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .impact-high { background: var(--red-dark); color: var(--red); }
+        .impact-med { background: var(--yellow-dark); color: var(--yellow); }
+        .impact-low { background: #1e3a5f; color: var(--blue); }
+
+        /* Competitor table */
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.85rem;
+        }
+        .comp-table th {
+            background: var(--surface2);
+            padding: 10px 12px;
+            text-align: left;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+        .comp-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border);
+        }
+        .comp-table tr:hover td { background: var(--surface2); }
+        .check { color: var(--green); }
+        .cross { color: var(--red); }
+
+        /* Directory list */
+        .dir-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 8px;
+            margin: 10px 0;
+        }
+        .dir-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 10px 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .dir-item:hover { border-color: var(--blue); }
+        .dir-item.listed { border-color: var(--green-dark); }
+        .dir-item .status { font-size: 0.8rem; font-weight: 600; }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .tab {
+            padding: 8px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-dim);
+            transition: all 0.15s;
+        }
+        .tab:hover { border-color: var(--blue); color: var(--text); }
+        .tab.active { background: var(--blue); color: var(--bg); border-color: var(--blue); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Keyword table */
+        .kw-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 10px 0; }
+        .kw-table th { background: var(--surface2); padding: 8px 12px; text-align: left; color: var(--text-dim); font-size: 0.75rem; text-transform: uppercase; }
+        .kw-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+        .kw-table .vol { color: var(--yellow); font-weight: 600; }
+        .kw-table .diff-easy { color: var(--green); }
+        .kw-table .diff-med { color: var(--yellow); }
+        .kw-table .diff-hard { color: var(--red); }
+
+        .note-box {
+            background: var(--surface2);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 14px 18px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+        .note-box strong { color: var(--yellow); }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--surface2);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s;
+        }
+        a { color: var(--blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        @media (max-width: 600px) {
+            body { padding: 12px; }
+            h1 { font-size: 1.4rem; }
+            .score-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 SEO Audit Report</h1>
+    <p class="subtitle">tidytailsstl.com — Audited March 7, 2026 at 1:00 AM</p>
+
+    <!-- Overall Scores -->
+    <div class="score-grid">
+        <div class="score-card score-good">
+            <div class="score">B+</div>
+            <div class="label">On-Page SEO</div>
+        </div>
+        <div class="score-card score-warn">
+            <div class="score">D</div>
+            <div class="label">Off-Page SEO</div>
+        </div>
+        <div class="score-card score-bad">
+            <div class="score">F</div>
+            <div class="label">Search Visibility</div>
+        </div>
+        <div class="score-card score-warn">
+            <div class="score">C+</div>
+            <div class="label">Content Depth</div>
+        </div>
+        <div class="score-card score-bad">
+            <div class="score">F</div>
+            <div class="label">Reviews/Trust</div>
+        </div>
+        <div class="score-card score-good">
+            <div class="score">A-</div>
+            <div class="label">Technical SEO</div>
+        </div>
+    </div>
+
+    <div class="note-box">
+        <strong>⚡ Bottom Line:</strong> Your website has solid technical foundations — proper schema markup, good title tags, city landing pages, and a blog. The problem is <strong>nobody can find it</strong>. You're invisible for "pet waste removal St Louis" (not in top 50). The fixes are about building authority: Google reviews, directory listings, and more content. These are free and mostly just take time.
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('findings')">🔎 Findings</div>
+        <div class="tab" onclick="showTab('actions')">🎯 Action Plan</div>
+        <div class="tab" onclick="showTab('keywords')">🔑 Keywords</div>
+        <div class="tab" onclick="showTab('directories')">📋 Directories</div>
+        <div class="tab" onclick="showTab('competitors')">👀 Competitors</div>
+        <div class="tab" onclick="showTab('content')">📝 Content Plan</div>
+    </div>
+
+    <!-- FINDINGS TAB -->
+    <div id="findings" class="tab-content active">
+        <h2>🚨 Critical Issues</h2>
+
+        <div class="finding critical">
+            <div class="finding-header">
+                <span class="finding-title">Not Ranking for ANY Target Keywords</span>
+                <span class="badge badge-critical">Critical</span>
+            </div>
+            <p>Searched "pet waste removal St Louis MO" — Tidy Tails is NOT in the top 10 results. DoodyCalls, POOP 911, Poop 2 Scoop, and even Petworks rank ahead. Even searching "tidy tails pet waste removal st louis" shows OTHER companies named "Tidy Tails" from Charleston, Atlanta, and Florida — not you.</p>
+            <p class="fix">🔧 Fix: Google Business Profile optimization + reviews + directory citations + backlinks (see Action Plan)</p>
+        </div>
+
+        <div class="finding critical">
+            <div class="finding-header">
+                <span class="finding-title">Zero or Near-Zero Google Reviews</span>
+                <span class="badge badge-critical">Critical</span>
+            </div>
+            <p>Google's Local Pack (the map results that appear first) is dominated by businesses with 10+ reviews. Without reviews, your Google Business Profile won't appear in map results, which is where 46% of local searches click first.</p>
+            <p class="fix">🔧 Fix: Use the Review Generator tool on your dashboard to text existing customers. Even 5 reviews dramatically changes your visibility.</p>
+        </div>
+
+        <div class="finding critical">
+            <div class="finding-header">
+                <span class="finding-title">Brand Name Collision — "Tidy Tails" Used by 6+ Companies</span>
+                <span class="badge badge-critical">Critical</span>
+            </div>
+            <p>There are at least 6 other pet waste removal companies named "Tidy Tails" nationwide (Charleston SC, Atlanta GA, Valrico FL, etc.). Google has to guess which one a searcher means. This dilutes your brand searches significantly.</p>
+            <p class="fix">🔧 Fix: ALWAYS use "Tidy Tails STL" in all marketing, profiles, and citations. The "STL" differentiator is key. Update your Google Business Profile name to include the differentiator if Google allows it.</p>
+        </div>
+
+        <h2>⚠️ Warnings</h2>
+
+        <div class="finding warning">
+            <div class="finding-header">
+                <span class="finding-title">Only 4 Blog Posts</span>
+                <span class="badge badge-warning">Warning</span>
+            </div>
+            <p>All 4 blog posts were published on the same day (March 6, 2026). Google prefers sites that publish consistently over time. Batch-publishing looks unnatural and doesn't build topical authority gradually.</p>
+            <p class="fix">🔧 Fix: Add 2 new blog posts per month. Backdate new ones a couple weeks apart. Focus on hyper-local topics (see Content Plan tab).</p>
+        </div>
+
+        <div class="finding warning">
+            <div class="finding-header">
+                <span class="finding-title">City Pages Are Thin Content</span>
+                <span class="badge badge-warning">Warning</span>
+            </div>
+            <p>Ferguson page is ~500 words and mostly duplicated pricing info. Google may see these as "doorway pages" (thin pages designed only to rank for specific terms). Each city page should have 800-1200 words of unique content about that specific area.</p>
+            <p class="fix">🔧 Fix: Add local context — nearby parks, dog-friendly spots, neighborhood character, local stats. Make each page genuinely useful for someone in that city.</p>
+        </div>
+
+        <div class="finding warning">
+            <div class="finding-header">
+                <span class="finding-title">No Backlinks (Likely)</span>
+                <span class="badge badge-warning">Warning</span>
+            </div>
+            <p>A new site with no external links pointing to it has no "authority" in Google's eyes. Your competitors (DoodyCalls, POOP 911) have hundreds of backlinks from national franchise networks.</p>
+            <p class="fix">🔧 Fix: Local directory listings (free), local press mentions, community partnerships. See Directories tab.</p>
+        </div>
+
+        <div class="finding warning">
+            <div class="finding-header">
+                <span class="finding-title">No Google Search Console or Analytics Detected</span>
+                <span class="badge badge-warning">Warning</span>
+            </div>
+            <p>The site HTML doesn't show Google Analytics or Search Console verification tags. Without these, you can't see what queries people use to find you, what your click-through rates are, or if Google is even indexing all your pages.</p>
+            <p class="fix">🔧 Fix: Set up Google Search Console (free, 10 min) and Google Analytics 4 (free, 15 min). Submit your sitemap at search.google.com/search-console.</p>
+        </div>
+
+        <h2>✅ What's Working Well</h2>
+
+        <div class="finding good">
+            <div class="finding-header">
+                <span class="finding-title">Excellent Schema Markup</span>
+                <span class="badge badge-good">Good</span>
+            </div>
+            <p>LocalBusiness, Service, and FAQPage structured data all present and well-formatted. This is better than most competitors. Includes phone, email, service areas, pricing range, and opening hours.</p>
+        </div>
+
+        <div class="finding good">
+            <div class="finding-header">
+                <span class="finding-title">Strong Title Tags & Meta Descriptions</span>
+                <span class="badge badge-good">Good</span>
+            </div>
+            <p>Main page title includes primary keywords ("Pet Waste Removal St. Louis | Pooper Scooper Service STL"). Meta description is compelling and includes location + pricing. City pages have unique titles.</p>
+        </div>
+
+        <div class="finding good">
+            <div class="finding-header">
+                <span class="finding-title">City Landing Pages Strategy</span>
+                <span class="badge badge-good">Good</span>
+            </div>
+            <p>11 city-specific landing pages covering the service area. This is the right approach for local SEO. They just need more unique content per page (currently too similar).</p>
+        </div>
+
+        <div class="finding good">
+            <div class="finding-header">
+                <span class="finding-title">Mobile-Responsive Design</span>
+                <span class="badge badge-good">Good</span>
+            </div>
+            <p>Viewport meta tag set, responsive layout. Critical since 60%+ of local searches happen on mobile. ✅</p>
+        </div>
+
+        <div class="finding good">
+            <div class="finding-header">
+                <span class="finding-title">Clear CTAs with Phone Number</span>
+                <span class="badge badge-good">Good</span>
+            </div>
+            <p>Click-to-call and click-to-text links prominently placed. Phone number (314-850-7140) consistently displayed. This is what converts visitors to leads.</p>
+        </div>
+
+        <div class="finding good">
+            <div class="finding-header">
+                <span class="finding-title">Sitemap & Robots.txt Properly Configured</span>
+                <span class="badge badge-good">Good</span>
+            </div>
+            <p>XML sitemap at /sitemap.xml with all pages. Robots.txt allows all crawling. Canonical tags present. ✅</p>
+        </div>
+    </div>
+
+    <!-- ACTION PLAN TAB -->
+    <div id="actions" class="tab-content">
+        <h2>🎯 Priority Action Plan — Get Tidy Tails Ranking</h2>
+
+        <div class="note-box">
+            <strong>📌 Strategy:</strong> You can't out-spend franchise competitors on advertising. You CAN out-local them. Google rewards businesses that are clearly rooted in their community with reviews, citations, and locally-relevant content. Every item below is <strong>free</strong>.
+        </div>
+
+        <h3>This Weekend (30 min total) <span class="impact impact-high">HIGH IMPACT</span></h3>
+        <ol class="action-list" id="actions-weekend">
+            <li onclick="toggleDone(this)">
+                <strong>Set up Google Search Console</strong><br>
+                <span>Go to <a href="https://search.google.com/search-console" target="_blank">search.google.com/search-console</a>. Add tidytailsstl.com. Verify via DNS or HTML tag. Submit your sitemap URL. Takes 10 min.</span>
+            </li>
+            <li onclick="toggleDone(this)">
+                <strong>Set up Google Analytics 4</strong><br>
+                <span>Go to <a href="https://analytics.google.com" target="_blank">analytics.google.com</a>. Create property for tidytailsstl.com. Add the tracking snippet to your site &lt;head&gt;. Takes 15 min.</span>
+            </li>
+            <li onclick="toggleDone(this)">
+                <strong>Text 3 existing customers asking for a Google review</strong><br>
+                <span>Use the Review Generator templates on your dashboard. Your direct review link: <a href="https://g.page/r/Ce_hqIHanGLvEAE/review" target="_blank">g.page/r/Ce_hqIHanGLvEAE/review</a>. Send it via text — email has 10x lower response rate.</span>
+            </li>
+        </ol>
+
+        <h3>Next 2 Weeks <span class="impact impact-high">HIGH IMPACT</span></h3>
+        <ol class="action-list" id="actions-2weeks">
+            <li onclick="toggleDone(this)">
+                <strong>Claim/optimize Google Business Profile</strong><br>
+                <span>Ensure your GBP has: correct business category ("Pet Waste Removal Service"), all service areas listed, business hours, photos of you working, services with prices, and a complete description with keywords.</span>
+            </li>
+            <li onclick="toggleDone(this)">
+                <strong>Submit to 10 free local directories</strong><br>
+                <span>See Directories tab. NAP (Name, Address, Phone) must be IDENTICAL everywhere. Use "Tidy Tails STL" consistently. Each listing = a citation Google uses to verify you're a real business.</span>
+            </li>
+            <li onclick="toggleDone(this)">
+                <strong>Get 5 Google reviews</strong><br>
+                <span>Text all current customers. Follow up after their next service visit. Respond to EVERY review within 24 hours (Google rewards responsive businesses).</span>
+            </li>
+            <li onclick="toggleDone(this)">
+                <strong>Beef up 3 city pages with unique content</strong><br>
+                <span>Start with Ferguson, Florissant, and O'Fallon (highest population). Add: local dog parks nearby, neighborhood character, unique yard challenges, a customer testimonial from that area (even if paraphrased). Target 1000+ words per page.</span>
+            </li>
+        </ol>
+
+        <h3>Next 30 Days <span class="impact impact-med">MEDIUM IMPACT</span></h3>
+        <ol class="action-list" id="actions-30days">
+            <li onclick="toggleDone(this)">
+                <strong>Publish 4 new blog posts (1 per week)</strong><br>
+                <span>See Content Plan tab. Focus on hyper-local topics that competitors can't match. Each post should be 800-1500 words with internal links to your city pages and service descriptions.</span>
+            </li>
+            <li onclick="toggleDone(this)">
+                <strong>Get listed on Yelp + Nextdoor Business</strong><br>
+                <span>Yelp: Claim or create your business page. Add photos, complete info. Nextdoor: Create a Business Page (free tier exists). Post your first recommendation request.</span>
+            </li>
+            <li onclick="toggleDone(this)">
+                <strong>Add FAQ schema to city pages</strong><br>
+                <span>Each city page should have 3-4 unique FAQs specific to that area. Use the FAQ structured data you already have on the main page as a template.</span>
+            </li>
+            <li onclick="toggleDone(this)">
+                <strong>Create a "Pet Waste Removal Cost in St. Louis" blog post</strong><br>
+                <span>This is the #1 commercial-intent keyword you're missing. Compare your pricing to competitors. Be transparent. This page can rank for price-comparison searches.</span>
+            </li>
+        </ol>
+
+        <h3>Next 90 Days <span class="impact impact-low">LONG TERM</span></h3>
+        <ol class="action-list" id="actions-90days">
+            <li onclick="toggleDone(this)">
+                <strong>Reach 15+ Google reviews</strong><br>
+                <span>At this point, you should be appearing in the Local Pack for some searches. Continue asking every new customer for a review after their 2nd service visit.</span>
+            </li>
+            <li onclick="toggleDone(this)">
+                <strong>Build 20+ directory citations</strong><br>
+                <span>Complete all directories in the Directories tab. Consistent NAP across all of them builds "citation authority."</span>
+            </li>
+            <li onclick="toggleDone(this)">
+                <strong>Publish 12+ total blog posts</strong><br>
+                <span>Aim for 2x/month. By now your blog should cover: seasonal topics, health/safety, pricing comparisons, neighborhood guides, and dog owner tips.</span>
+            </li>
+            <li onclick="toggleDone(this)">
+                <strong>Pursue 1-2 local press mentions</strong><br>
+                <span>St. Louis Post-Dispatch community section, Patch.com, local Facebook community admin features. "Local entrepreneur" angle works well. One article = massive backlink authority.</span>
+            </li>
+        </ol>
+
+        <div id="action-progress" style="margin-top: 20px;">
+            <div style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-dim);">
+                <span>Progress</span>
+                <span id="progress-count">0 / 15 complete</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%; background: var(--green);"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KEYWORDS TAB -->
+    <div id="keywords" class="tab-content">
+        <h2>🔑 Target Keywords — What to Rank For</h2>
+
+        <div class="note-box">
+            <strong>Strategy:</strong> Don't try to beat franchises on broad terms. Win the <strong>hyper-local long-tail keywords</strong> — "pooper scooper Ferguson MO" has way less competition than "pet waste removal St Louis" and converts better because the searcher is in your exact area.
+        </div>
+
+        <h3>Primary Keywords (Main Page)</h3>
+        <table class="kw-table">
+            <thead>
+                <tr><th>Keyword</th><th>Est. Monthly Searches</th><th>Competition</th><th>Your Status</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>pet waste removal st louis</td><td class="vol">110-260</td><td class="diff-hard">Hard</td><td class="cross">Not ranking</td></tr>
+                <tr><td>pooper scooper st louis</td><td class="vol">90-170</td><td class="diff-hard">Hard</td><td class="cross">Not ranking</td></tr>
+                <tr><td>dog poop cleanup st louis</td><td class="vol">50-110</td><td class="diff-med">Medium</td><td class="cross">Not ranking</td></tr>
+                <tr><td>pooper scooper service near me</td><td class="vol">1,300+</td><td class="diff-hard">Hard</td><td class="cross">Not ranking</td></tr>
+            </tbody>
+        </table>
+
+        <h3>City-Specific Keywords (Easier Wins 🎯)</h3>
+        <table class="kw-table">
+            <thead>
+                <tr><th>Keyword</th><th>Est. Monthly Searches</th><th>Competition</th><th>Page to Target</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>pooper scooper ferguson mo</td><td class="vol">10-20</td><td class="diff-easy">Easy</td><td>/ferguson</td></tr>
+                <tr><td>dog poop pickup florissant</td><td class="vol">10-20</td><td class="diff-easy">Easy</td><td>/florissant</td></tr>
+                <tr><td>pet waste removal o'fallon mo</td><td class="vol">20-40</td><td class="diff-easy">Easy</td><td>/ofallon</td></tr>
+                <tr><td>pooper scooper chesterfield mo</td><td class="vol">10-30</td><td class="diff-easy">Easy</td><td>/chesterfield</td></tr>
+                <tr><td>dog waste removal st charles mo</td><td class="vol">20-50</td><td class="diff-med">Medium</td><td>/st-charles</td></tr>
+                <tr><td>pooper scooper maryland heights</td><td class="vol">10-20</td><td class="diff-easy">Easy</td><td>/maryland-heights</td></tr>
+                <tr><td>pet waste removal ballwin mo</td><td class="vol">10-20</td><td class="diff-easy">Easy</td><td>/ballwin</td></tr>
+                <tr><td>dog poop service creve coeur</td><td class="vol">10-20</td><td class="diff-easy">Easy</td><td>/creve-coeur</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Blog / Informational Keywords</h3>
+        <table class="kw-table">
+            <thead>
+                <tr><th>Keyword</th><th>Est. Monthly Searches</th><th>Competition</th><th>Content Type</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>how much does pooper scooper cost</td><td class="vol">320+</td><td class="diff-med">Medium</td><td>Blog: Pricing guide</td></tr>
+                <tr><td>is dog poop bad for your yard</td><td class="vol">210+</td><td class="diff-easy">Easy</td><td>Blog ✅ (have this)</td></tr>
+                <tr><td>how often pick up dog poop</td><td class="vol">170+</td><td class="diff-easy">Easy</td><td>Blog ✅ (have this)</td></tr>
+                <tr><td>spring yard cleanup dog poop</td><td class="vol">90+</td><td class="diff-easy">Easy</td><td>Blog ✅ (have this)</td></tr>
+                <tr><td>dog parks st louis county</td><td class="vol">260+</td><td class="diff-med">Medium</td><td>Blog: Dog parks guide</td></tr>
+                <tr><td>dog friendly places st louis</td><td class="vol">390+</td><td class="diff-med">Medium</td><td>Blog: Local guide</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- DIRECTORIES TAB -->
+    <div id="directories" class="tab-content">
+        <h2>📋 Free Directory Listings — Build Your Citations</h2>
+
+        <div class="note-box">
+            <strong>Why this matters:</strong> Every directory listing with consistent Name, Address, Phone (NAP) is a "citation" that tells Google you're a real, verified local business. Franchises have hundreds. You need at least 20 to compete. All of these are <strong>free</strong>.
+        </div>
+
+        <h3>🏆 Top Priority (Do These First)</h3>
+        <div class="dir-grid">
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>Google Business Profile</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">business.google.com — THE most important listing</span>
+                </div>
+                <span class="status" style="color:var(--yellow)">Verify ➜</span>
+            </div>
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>Yelp</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">yelp.com/biz — 2nd biggest local search platform</span>
+                </div>
+                <span class="status" style="color:var(--red)">Not Listed</span>
+            </div>
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>Nextdoor Business</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">business.nextdoor.com — #1 for neighborhood services</span>
+                </div>
+                <span class="status" style="color:var(--red)">Not Listed</span>
+            </div>
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>Facebook Business Page</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">facebook.com/business — social proof + local search</span>
+                </div>
+                <span class="status" style="color:var(--yellow)">Verify ➜</span>
+            </div>
+        </div>
+
+        <h3>📁 General Directories</h3>
+        <div class="dir-grid">
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>Apple Maps (Apple Business Connect)</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">businessconnect.apple.com</span>
+                </div>
+                <span class="status" style="color:var(--red)">Not Listed</span>
+            </div>
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>Bing Places</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">bingplaces.com — powers Cortana/Edge searches</span>
+                </div>
+                <span class="status" style="color:var(--red)">Not Listed</span>
+            </div>
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>Better Business Bureau</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">bbb.org — trust signal, high domain authority</span>
+                </div>
+                <span class="status" style="color:var(--red)">Not Listed</span>
+            </div>
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>Angi (Angie's List)</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">angi.com — home services marketplace</span>
+                </div>
+                <span class="status" style="color:var(--red)">Not Listed</span>
+            </div>
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>Thumbtack</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">thumbtack.com — lead gen + directory</span>
+                </div>
+                <span class="status" style="color:var(--red)">Not Listed</span>
+            </div>
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>HomeAdvisor</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">homeadvisor.com — home services</span>
+                </div>
+                <span class="status" style="color:var(--red)">Not Listed</span>
+            </div>
+        </div>
+
+        <h3>🐾 Pet Industry Specific</h3>
+        <div class="dir-grid">
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>Petworks</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">petworks.com — pet service marketplace</span>
+                </div>
+                <span class="status" style="color:var(--red)">Not Listed</span>
+            </div>
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>Rover</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">rover.com — pet services, high DA</span>
+                </div>
+                <span class="status" style="color:var(--red)">Not Listed</span>
+            </div>
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>Care.com</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">care.com — includes pet services</span>
+                </div>
+                <span class="status" style="color:var(--red)">Not Listed</span>
+            </div>
+        </div>
+
+        <h3>📍 St. Louis Local</h3>
+        <div class="dir-grid">
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>St. Louis Chamber of Commerce</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">stlchamber.com — local business directory</span>
+                </div>
+                <span class="status" style="color:var(--red)">Not Listed</span>
+            </div>
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>STL.News Business Directory</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">stl.news — local news + business listings</span>
+                </div>
+                <span class="status" style="color:var(--red)">Not Listed</span>
+            </div>
+            <div class="dir-item" onclick="this.classList.toggle('listed')">
+                <div>
+                    <strong>Explore St. Louis</strong><br>
+                    <span style="color:var(--text-dim);font-size:0.8rem">explorestlouis.com — tourism + local services</span>
+                </div>
+                <span class="status" style="color:var(--red)">Not Listed</span>
+            </div>
+        </div>
+
+        <div class="note-box" style="margin-top:20px">
+            <strong>⚠️ Critical Rule:</strong> Your business name, address, and phone number must be <strong>EXACTLY the same</strong> on every listing. Use:<br><br>
+            <strong>Name:</strong> Tidy Tails STL<br>
+            <strong>Phone:</strong> (314) 850-7140<br>
+            <strong>Website:</strong> https://tidytailsstl.com<br>
+            <strong>Category:</strong> Pet Waste Removal Service<br><br>
+            Even small differences (St. Louis vs Saint Louis, missing "STL") confuse Google's citation matching.
+        </div>
+    </div>
+
+    <!-- COMPETITORS TAB -->
+    <div id="competitors" class="tab-content">
+        <h2>👀 Who's Beating You (And Why)</h2>
+
+        <table class="comp-table">
+            <thead>
+                <tr>
+                    <th>Competitor</th>
+                    <th>Type</th>
+                    <th>Google Reviews</th>
+                    <th>City Pages</th>
+                    <th>Blog</th>
+                    <th>Schema</th>
+                    <th>Threat Level</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>DoodyCalls STL</strong></td>
+                    <td>Franchise</td>
+                    <td class="check">50+ reviews</td>
+                    <td class="check">Yes (national)</td>
+                    <td class="check">Yes (national)</td>
+                    <td class="check">Yes</td>
+                    <td><span class="badge badge-critical">High</span></td>
+                </tr>
+                <tr>
+                    <td><strong>POOP 911 STL</strong></td>
+                    <td>Franchise</td>
+                    <td class="check">30+ reviews</td>
+                    <td class="check">Yes (national)</td>
+                    <td class="check">Yes</td>
+                    <td class="check">Yes</td>
+                    <td><span class="badge badge-critical">High</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Poop 2 Scoop</strong></td>
+                    <td>Local</td>
+                    <td class="check">10+ reviews</td>
+                    <td class="cross">Limited</td>
+                    <td class="check">Yes</td>
+                    <td class="cross">Unknown</td>
+                    <td><span class="badge badge-warning">Medium</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Dirty Dog Wash Poo Crew</strong></td>
+                    <td>Local Add-on</td>
+                    <td class="check">Reviews (dog wash)</td>
+                    <td class="cross">No</td>
+                    <td class="cross">No</td>
+                    <td class="cross">No</td>
+                    <td><span class="badge badge-info">Low</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Little Stinkers of MO</strong></td>
+                    <td>Local</td>
+                    <td class="cross">Few</td>
+                    <td class="cross">No</td>
+                    <td class="cross">No</td>
+                    <td class="cross">No</td>
+                    <td><span class="badge badge-info">Low</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Pawfect Waste Solutions</strong></td>
+                    <td>Local</td>
+                    <td class="cross">Few</td>
+                    <td class="cross">No</td>
+                    <td class="cross">No</td>
+                    <td class="cross">No</td>
+                    <td><span class="badge badge-info">Dead (404)</span></td>
+                </tr>
+                <tr style="background: var(--surface2);">
+                    <td><strong>🐾 Tidy Tails STL</strong></td>
+                    <td>Local</td>
+                    <td class="cross">0 reviews</td>
+                    <td class="check">11 pages ✨</td>
+                    <td class="check">4 posts</td>
+                    <td class="check">Excellent ✨</td>
+                    <td>—</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="note-box">
+            <strong>Your Competitive Edge:</strong> Most local competitors (Poop 2 Scoop, Little Stinkers, Pawfect, Dirty Dog Wash) have weak or no websites. The franchises (DoodyCalls, POOP 911) have strong national SEO but generic local pages. <strong>You're the only local player with city-specific landing pages AND schema markup.</strong> Once you add reviews and citations, you'll leapfrog every local competitor. The franchises are the long-term battle.
+        </div>
+
+        <h3>Your Advantages Over Franchises</h3>
+        <div class="finding info">
+            <div class="finding-header">
+                <span class="finding-title">Price: $25/week vs $35-45/week (franchises)</span>
+                <span class="badge badge-info">Advantage</span>
+            </div>
+            <p>You're 25-40% cheaper than both DoodyCalls and POOP 911. This should be prominent in ad copy and comparison content.</p>
+        </div>
+        <div class="finding info">
+            <div class="finding-header">
+                <span class="finding-title">Personal: Same person every visit vs rotating techs</span>
+                <span class="badge badge-info">Advantage</span>
+            </div>
+            <p>Franchises send different people. You're always TJ. This is a huge trust differentiator, especially for people with dogs who are nervous around strangers.</p>
+        </div>
+        <div class="finding info">
+            <div class="finding-header">
+                <span class="finding-title">No Contract vs Annual commitments</span>
+                <span class="badge badge-info">Advantage</span>
+            </div>
+            <p>Some franchises push contracts or minimum terms. Your no-contract policy removes the #1 objection people have about recurring services.</p>
+        </div>
+    </div>
+
+    <!-- CONTENT PLAN TAB -->
+    <div id="content" class="tab-content">
+        <h2>📝 Blog Content Plan — Next 8 Posts</h2>
+
+        <div class="note-box">
+            <strong>Content Strategy:</strong> Every blog post should target a specific keyword, link to relevant city pages, and include a CTA with your phone number. Publish consistently — 2x/month minimum. Hyper-local content (mentioning St. Louis neighborhoods, parks, events) is your unfair advantage over franchise blogs.
+        </div>
+
+        <div class="finding info">
+            <div class="finding-header">
+                <span class="finding-title">1. "How Much Does Pet Waste Removal Cost in St. Louis? (2026 Pricing Guide)"</span>
+                <span class="badge badge-info">Week 1</span>
+            </div>
+            <p><strong>Target keyword:</strong> pooper scooper cost st louis (320+ monthly searches nationally)<br>
+            <strong>Angle:</strong> Transparent pricing comparison. Show your rates vs DoodyCalls vs POOP 911. Calculate cost-per-pickup. Include a "is it worth it?" calculator. Internal link: main pricing section + city pages.<br>
+            <strong>Why:</strong> This is a purchase-intent keyword. People searching this are ready to buy — they just need to see the value.</p>
+        </div>
+
+        <div class="finding info">
+            <div class="finding-header">
+                <span class="finding-title">2. "10 Best Dog Parks in St. Louis County (2026 Guide)"</span>
+                <span class="badge badge-info">Week 2</span>
+            </div>
+            <p><strong>Target keyword:</strong> dog parks st louis county (260+ monthly searches)<br>
+            <strong>Angle:</strong> Genuine local guide with your personal reviews of each park. Include parking tips, which parks have water, off-leash areas. Naturally mention that after a park visit, yards need cleanup even more.<br>
+            <strong>Why:</strong> High-volume keyword that attracts dog owners — your exact audience. Builds topical authority.</p>
+        </div>
+
+        <div class="finding info">
+            <div class="finding-header">
+                <span class="finding-title">3. "Dog-Friendly Restaurants & Patios in St. Louis"</span>
+                <span class="badge badge-info">Week 3</span>
+            </div>
+            <p><strong>Target keyword:</strong> dog friendly restaurants st louis (390+ monthly searches)<br>
+            <strong>Angle:</strong> Fun lifestyle content. List 15+ spots with dog-friendly patios. Include neighborhoods so it naturally links to your city pages.<br>
+            <strong>Why:</strong> The highest-volume keyword on this list. Attracts engaged dog owners. Makes your site a local dog resource, not just a service page.</p>
+        </div>
+
+        <div class="finding info">
+            <div class="finding-header">
+                <span class="finding-title">4. "Why Dog Poop Attracts Rats, Flies & Pests (And What to Do)"</span>
+                <span class="badge badge-info">Week 4</span>
+            </div>
+            <p><strong>Target keyword:</strong> does dog poop attract rats (140+ monthly searches)<br>
+            <strong>Angle:</strong> Health/safety angle with local pest context. Mention Missouri's common pests. Link to your health risks blog post.<br>
+            <strong>Why:</strong> Fear-based motivation is powerful. This content creates urgency to sign up for regular service.</p>
+        </div>
+
+        <div class="finding info">
+            <div class="finding-header">
+                <span class="finding-title">5. "Pooper Scooper vs DIY: A Real Cost Comparison"</span>
+                <span class="badge badge-info">Week 5</span>
+            </div>
+            <p><strong>Target keyword:</strong> is pooper scooper service worth it (90+ monthly searches)<br>
+            <strong>Angle:</strong> Math-based comparison. Time spent, tools needed, convenience factor. Your $25/week = $3.57/day. Compare to hourly value of free time.<br>
+            <strong>Why:</strong> Objection-busting content. Expands on your existing "worth it" post with more depth.</p>
+        </div>
+
+        <div class="finding info">
+            <div class="finding-header">
+                <span class="finding-title">6. "The Complete Guide to Dog Ownership Costs in St. Louis (2026)"</span>
+                <span class="badge badge-info">Week 6</span>
+            </div>
+            <p><strong>Target keyword:</strong> cost of owning a dog st louis<br>
+            <strong>Angle:</strong> Comprehensive guide covering vet costs, food, grooming, and waste management in STL. Position waste removal as a small cost in the big picture.<br>
+            <strong>Why:</strong> Huge content piece that positions your site as a dog ownership authority. Natural backlink magnet.</p>
+        </div>
+
+        <div class="finding info">
+            <div class="finding-header">
+                <span class="finding-title">7. "HOA Dog Waste Rules in St. Louis: What You Need to Know"</span>
+                <span class="badge badge-info">Week 7</span>
+            </div>
+            <p><strong>Target keyword:</strong> HOA pet waste rules missouri<br>
+            <strong>Angle:</strong> Useful guide for condo/townhome owners. Links to commercial services. Positions Tidy Tails as the solution for HOA compliance.<br>
+            <strong>Why:</strong> Opens the door to HOA/commercial leads. Unique content no competitor has.</p>
+        </div>
+
+        <div class="finding info">
+            <div class="finding-header">
+                <span class="finding-title">8. "Summer Yard Safety for Dogs in Missouri: Heat, Pests & Waste"</span>
+                <span class="badge badge-info">Week 8</span>
+            </div>
+            <p><strong>Target keyword:</strong> summer yard safety dogs missouri<br>
+            <strong>Angle:</strong> Seasonal content for summer. Cover heat safety, tick/flea season, and how decomposing waste is worse in heat. Time this for May/June publication.<br>
+            <strong>Why:</strong> Seasonal search volume spike. Shows Google you publish timely, relevant content.</p>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Action item toggle
+        function toggleDone(el) {
+            el.classList.toggle('done');
+            updateProgress();
+            saveState();
+        }
+
+        // Progress bar
+        function updateProgress() {
+            const total = document.querySelectorAll('.action-list li').length;
+            const done = document.querySelectorAll('.action-list li.done').length;
+            document.getElementById('progress-count').textContent = `${done} / ${total} complete`;
+            document.getElementById('progress-fill').style.width = `${(done/total)*100}%`;
+        }
+
+        // LocalStorage persistence
+        function saveState() {
+            const state = {};
+            document.querySelectorAll('.action-list li').forEach((li, i) => {
+                state[i] = li.classList.contains('done');
+            });
+            localStorage.setItem('seo-audit-progress', JSON.stringify(state));
+        }
+
+        function loadState() {
+            const state = JSON.parse(localStorage.getItem('seo-audit-progress') || '{}');
+            document.querySelectorAll('.action-list li').forEach((li, i) => {
+                if (state[i]) li.classList.add('done');
+            });
+            updateProgress();
+        }
+
+        loadState();
+    </script>
+</body>
+</html>
