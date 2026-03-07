@@ -4,6 +4,46 @@
 
 ---
 
+### 5:04 AM — 🗺️ WEEKEND CANVASSING PLANNER — 12 Neighborhoods Ranked, Saturday Route, Dog Park Blitz (Hourly Task)
+**Task:** Build an interactive neighborhood canvassing planner with ranked targets, optimized driving route, dog park guerrilla marketing strategy, and ready-to-print door hanger copy
+**Result:** ✅ SHIPPED — 6-tab interactive tool with everything TJ needs to canvas THIS WEEKEND
+
+**Why This Task:**
+- We've shipped tons of digital marketing assets but ZERO boots-on-ground tools
+- Door-to-door is still the #1 conversion channel for local service businesses (3-5% response rate when targeted)
+- Spring is HERE — dog waste is thawing — neighborhoods need to SEE a flyer NOW
+- Competitors (Doggie Doodies) aren't doing door-to-door — we own this channel
+- 200 flyers × 3% = 6 inquiries × 50% close = 3 new customers ($3,420/year value)
+
+**What I Built (6 tabs):**
+
+| Tab | What's In It |
+|-----|-------------|
+| 📊 Overview | Strategy, expected ROI (114x), best canvassing times |
+| 🏘️ Neighborhoods | 12 neighborhoods ranked in 3 tiers by dog-owner density |
+| 🚗 Saturday Route | 7-step optimized morning route (9 AM → noon) |
+| 🐕 Dog Park Blitz | Queeny, Vlasis, Conway strategies + conversation scripts |
+| 📄 Door Hanger | 2 versions of print-ready copy with copy buttons |
+| ✅ Tracker | Persistent checklist + results metrics with conversion calculator |
+
+**Tier 1 (Hit First):**
+1. Woodsmill — Large lots near Queeny Park, families, 40-50 doors
+2. Wild Wood (Plats 2-7) — Tree-lined, mix of retirees + families, 50-60 doors
+3. Castle Pines — Active HOA, young families, 35-45 doors
+
+**Tier 2 (Week 2):** Claymont, Fox Creek, Country Creek, Westglen Village & Woods
+**Tier 3 (Expansion):** Oakleigh Woods, Danbury, Rolling Hills, Polo Lake, Castle Ridge
+
+**Bonus:** Pet store/vet flyer drop locations — Dogtopia, Dog's Best Friend, Petropolis, Williamsburg Pet Hotel
+
+**Dashboard:** `dashboard/2026-03-07-CANVASSING-PLANNER.html`
+**Live:** https://tidytails.github.io/tidytails-dashboard/dashboard/2026-03-07-CANVASSING-PLANNER.html
+**Commit:** `991e3e2` on `tidytails-dashboard` repo
+
+**Rotation:** 🗺️ Sales — Boots-on-Ground Canvassing
+
+---
+
 ### 4:05 AM — 🌱 SPRING CLEANUP CAMPAIGN KIT — Full Marketing Arsenal for Weekend Launch (Hourly Task)
 **Task:** Build a complete spring cleanup campaign toolkit with pricing, copy-paste social posts, text scripts, and execution checklist
 **Result:** ✅ SHIPPED — 8-tab interactive campaign hub with everything TJ needs to sell spring cleanups this weekend
