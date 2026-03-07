@@ -95,6 +95,12 @@
 - Chief oversight: Running every 2 hours ✅
 - Git: Synced ✅
 
+### ✅ Recently Fixed (Mar 7 5PM)
+- ~~23 placeholder phone numbers in 4 tools~~ → All replaced with 314-850-7140
+- ~~4 PDFs not linked from dashboard~~ → All 6 PDFs now linked in index.html
+- All dashboard links verified ✅ (35/35 passing)
+
 ### ⚠️ Issues
 - Google indexing: 0 pages indexed (submitted Mar 5, waiting)
 - fal.ai: Credits exhausted
+- backyardbuildingsstl.com SSL cert issue (HTTPS may show browser warning)

@@ -4,6 +4,40 @@
 
 ---
 
+### 4:05 PM — 🏠 SHED MARKET INTEL — STL Competitor Scan + Spring 2026 Ad Pack (Hourly Task)
+**Task:** Research the STL shed market, profile competitors, build pricing intelligence, and create ready-to-post Marketplace/social ad copy for Backyard Buildings STL
+**Result:** ✅ SHIPPED — 6-tab interactive dashboard with 13 competitors profiled, pricing matrix, 6 Marketplace ads, 4 social posts
+
+**Why This Task:**
+- TuffShed pipeline growth is an explicit goal but ALL 15+ dashboards today were Tidy Tails focused — zero shed work
+- Spring is THE peak shed buying season (search volume spikes March, peaks July) — we're entering the hottest window
+- Backyard Buildings STL website is DOWN (backyardbuildingsstl.com unreachable) — critical finding
+- Facebook Marketplace is the #1 lead channel for sheds and requires consistent posting
+
+**Key Findings from Research:**
+- 13+ active shed dealers in STL area (TuffShed, Cardinal Buildings, Beyond The Backyard, STL Shed Guy, ShedMafia, Barrett Buildings, etc.)
+- ShedHub shows 64 listings in STL at avg $6,568
+- Rent-to-own trend is exploding — STL Shed Guy markets "just 1st month down, no credit"
+- Amish builders across the river offer on-site builds at ~$7,500 (Reddit intel)
+- Barrett Buildings has suspicious $2,499 for 12x20 (pricing error or clearance — worth monitoring)
+- ⚠️ backyardbuildingsstl.com is UNREACHABLE — every Marketplace listing points there, dead website = lost leads
+
+**What I Built (6 tabs):**
+1. 📊 Market Overview — 13+ competitors, $6,568 avg price, spring timing data, key trends
+2. ⚔️ Competitors — Deep profiles on TuffShed, Cardinal, Beyond Backyard, STL Shed Guy, ShedMafia, Barrett, A-1, with attack angles
+3. 💰 Pricing Matrix — Size-by-tier pricing comparison + competitor tactics (RTO, clearance, spring sales)
+4. 📱 Marketplace Ads — 6 copy-paste FB Marketplace listings (entry-level, garage alt, anti-RTO, she-shed, tax refund, workshop)
+5. 📣 Social Posts — Instagram, Nextdoor intro, Facebook campaign, Craigslist listing
+6. ⚡ This Week — 6 prioritized actions with pipeline math (9-25 leads/week potential)
+
+**Dashboard:** `dashboard/2026-03-07-SHED-MARKET-INTEL.html`
+**Live:** https://tidytails.github.io/tidytails-dashboard/dashboard/2026-03-07-SHED-MARKET-INTEL.html
+**Commit:** `89a9067` on `tidytails-dashboard` repo
+
+**Rotation:** 🏠 Sheds — Market Intelligence + Marketing Content
+
+---
+
 ### 3:04 PM — 📈 GROWTH MODEL — Industry Benchmarks + Financial Projections (Hourly Task)
 **Task:** Research real industry data and build a data-driven growth model showing TJ exactly what 25-30 customers looks like financially and how to get there
 **Result:** ✅ SHIPPED — 6-tab interactive model with real benchmarks from $1.4M operators, revenue calculator, route optimization math, and action priorities
