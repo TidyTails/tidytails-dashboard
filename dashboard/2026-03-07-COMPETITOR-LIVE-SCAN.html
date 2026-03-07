@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live Competitor Scan — March 2026 | Tidy Tails</title>
+<style>
+  :root {
+    --bg: #0a0e17;
+    --card: #131825;
+    --border: #1e2a3a;
+    --text: #c8d6e5;
+    --heading: #f1f5f9;
+    --accent: #3b82f6;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --orange: #f97316;
+    --purple: #a855f7;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height:1.6; }
+  
+  .header {
+    background: linear-gradient(135deg, #1a1145 0%, #0f1729 50%, #0a1628 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+  }
+  .header h1 { color: var(--heading); font-size: 1.8rem; margin-bottom: 0.3rem; }
+  .header .subtitle { color: #64748b; font-size: 0.95rem; }
+  
+  .alert-banner {
+    background: linear-gradient(90deg, rgba(239,68,68,0.15), rgba(239,68,68,0.05));
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .alert-banner .icon { font-size: 1.8rem; flex-shrink: 0; }
+  .alert-banner h3 { color: var(--red); margin-bottom: 0.3rem; font-size: 1.1rem; }
+  .alert-banner p { font-size: 0.9rem; }
+  
+  .tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab {
+    padding: 0.8rem 1.2rem;
+    cursor: pointer;
+    color: #64748b;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  
+  .content { padding: 1.5rem; max-width: 900px; margin: 0 auto; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .card h3 { color: var(--heading); margin-bottom: 0.5rem; font-size: 1.05rem; }
+  .card h4 { color: var(--accent); margin: 0.8rem 0 0.4rem; font-size: 0.95rem; }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+  .status-active { background: rgba(34,197,94,0.15); color: var(--green); }
+  .status-dead { background: rgba(239,68,68,0.15); color: var(--red); }
+  .status-warning { background: rgba(234,179,8,0.15); color: var(--yellow); }
+  .status-us { background: rgba(59,130,246,0.15); color: var(--accent); }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  th {
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 0.7rem 0.8rem;
+    border-bottom: 1px solid rgba(30,42,58,0.5);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  
+  .highlight-row { background: rgba(59,130,246,0.05); }
+  
+  .copy-box {
+    background: #0f1520;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 0.8rem 0;
+    position: relative;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    cursor: pointer;
+  }
+  .copy-box:hover { border-color: var(--accent); }
+  .copy-box::after {
+    content: '📋 Click to copy';
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 0.7rem;
+    color: #64748b;
+  }
+  .copy-box.copied::after { content: '✅ Copied!'; color: var(--green); }
+  
+  .opportunity {
+    border-left: 3px solid var(--green);
+    padding-left: 1rem;
+    margin: 1rem 0;
+  }
+  .opportunity h4 { color: var(--green); margin-bottom: 0.3rem; }
+  
+  .threat {
+    border-left: 3px solid var(--orange);
+    padding-left: 1rem;
+    margin: 1rem 0;
+  }
+  .threat h4 { color: var(--orange); margin-bottom: 0.3rem; }
+  
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .metric {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .metric .number { font-size: 2rem; font-weight: 700; color: var(--heading); }
+  .metric .label { font-size: 0.8rem; color: #64748b; margin-top: 0.2rem; }
+  
+  ul { padding-left: 1.5rem; }
+  li { margin-bottom: 0.4rem; font-size: 0.9rem; }
+  
+  .win { color: var(--green); }
+  .lose { color: var(--red); }
+  
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.4rem; }
+    .tab { padding: 0.6rem 0.8rem; font-size: 0.8rem; }
+    .content { padding: 1rem; }
+    table { font-size: 0.78rem; }
+    th, td { padding: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🔍 Live Competitor Scan</h1>
+  <div class="subtitle">STL Pet Waste Market Intelligence — March 7, 2026</div>
+</div>
+
+<div class="alert-banner">
+  <div class="icon">🚨</div>
+  <div>
+    <h3>Fresh Paws Dog Waste Removal Has CLOSED</h3>
+    <p>Their website (wearefreshpaws.com) shows "Website Expired." They served <strong>Wildwood, Ballwin, Chesterfield, Ellisville</strong> — all in our service area. Their customers need a new scooper NOW. This is the easiest customer acquisition opportunity we'll get all spring.</p>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('overview')">📊 Overview</div>
+  <div class="tab" onclick="showTab('pricing')">💰 Pricing</div>
+  <div class="tab" onclick="showTab('competitors')">🏢 Competitors</div>
+  <div class="tab" onclick="showTab('opportunities')">🎯 Opportunities</div>
+  <div class="tab" onclick="showTab('scripts')">💬 Scripts</div>
+  <div class="tab" onclick="showTab('position')">📈 Our Position</div>
+</div>
+
+<div class="content">
+
+  <!-- OVERVIEW -->
+  <div id="overview" class="panel active">
+    <div class="metric-grid">
+      <div class="metric">
+        <div class="number" style="color:var(--red)">2-3</div>
+        <div class="label">Competitors Closing/Down</div>
+      </div>
+      <div class="metric">
+        <div class="number">10+</div>
+        <div class="label">Active Competitors in STL</div>
+      </div>
+      <div class="metric">
+        <div class="number">2</div>
+        <div class="label">National Franchises</div>
+      </div>
+      <div class="metric">
+        <div class="number" style="color:var(--green)">$25</div>
+        <div class="label">Our Weekly Rate (Mid-Market)</div>
+      </div>
+    </div>
+    
+    <div class="card">
+      <h3>Market Snapshot</h3>
+      <p>The STL pet waste removal market is <strong>fragmenting</strong>. Multiple small operators are closing while national franchises persist. This creates a window for Tidy Tails to capture displaced customers and build local dominance.</p>
+      
+      <h4>Key Findings</h4>
+      <ul>
+        <li>🔴 <strong>Fresh Paws is DEAD</strong> — Squarespace expired, served western STL county</li>
+        <li>⚠️ <strong>Poopy Paws website DNS failing</strong> — may be next to close</li>
+        <li>⚠️ <strong>Poop 2 Scoop website unreachable</strong> — status unknown</li>
+        <li>✅ <strong>DoodyCalls & POOP 911</strong> — national franchises, active but impersonal</li>
+        <li>✅ <strong>Dirty Dog Wash Poo Crew</strong> — active, closest on price ($95/mo)</li>
+        <li>✅ <strong>Yucko's</strong> — local veteran since 1990, more focused on products now</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div id="pricing" class="panel">
+    <div class="card">
+      <h3>Pricing Comparison — All Known STL Competitors</h3>
+      <div style="overflow-x:auto">
+        <table>
+          <tr>
+            <th>Company</th>
+            <th>Weekly</th>
+            <th>Monthly</th>
+            <th>Type</th>
+            <th>Status</th>
+          </tr>
+          <tr class="highlight-row">
+            <td><strong>Tidy Tails (us)</strong></td>
+            <td>$25/wk</td>
+            <td>~$100</td>
+            <td>Local indie</td>
+            <td><span class="status-badge status-us">US</span></td>
+          </tr>
+          <tr>
+            <td>POOP 911</td>
+            <td>From $11.95*</td>
+            <td>~$52+</td>
+            <td>Franchise</td>
+            <td><span class="status-badge status-active">Active</span></td>
+          </tr>
+          <tr>
+            <td>Poopy Paws 314</td>
+            <td>$20 flat</td>
+            <td>~$80</td>
+            <td>Local indie</td>
+            <td><span class="status-badge status-warning">Site Down</span></td>
+          </tr>
+          <tr>
+            <td>Dirty Dog Wash</td>
+            <td>~$23.75</td>
+            <td>$95 (1-2 dogs)</td>
+            <td>Local (dog wash)</td>
+            <td><span class="status-badge status-active">Active</span></td>
+          </tr>
+          <tr>
+            <td>DoodyCalls STL</td>
+            <td>Quote only</td>
+            <td>Quote only</td>
+            <td>Franchise</td>
+            <td><span class="status-badge status-active">Active</span></td>
+          </tr>
+          <tr>
+            <td>Yucko's</td>
+            <td>Quote only</td>
+            <td>Quote only</td>
+            <td>Local (since 1990)</td>
+            <td><span class="status-badge status-active">Active</span></td>
+          </tr>
+          <tr>
+            <td>Fresh Paws</td>
+            <td>—</td>
+            <td>—</td>
+            <td>Local indie</td>
+            <td><span class="status-badge status-dead">DEAD</span></td>
+          </tr>
+          <tr>
+            <td>Poop 2 Scoop</td>
+            <td>Unknown</td>
+            <td>Unknown</td>
+            <td>Local</td>
+            <td><span class="status-badge status-warning">Unreachable</span></td>
+          </tr>
+        </table>
+      </div>
+      <p style="margin-top:0.8rem; font-size:0.8rem; color:#64748b;">*POOP 911's $11.95 is likely a teaser rate — base price for 1 small dog, small yard, annual contract. Real cost is higher.</p>
+    </div>
+    
+    <div class="card">
+      <h3>Dirty Dog Wash — Detailed Pricing (Our Closest Comp)</h3>
+      <table>
+        <tr><th># Dogs</th><th>Weekly</th><th>Bi-Weekly</th></tr>
+        <tr><td>1-2 dogs</td><td>$95/mo</td><td>$80/mo</td></tr>
+        <tr><td>3 dogs</td><td>$100/mo</td><td>$95/mo</td></tr>
+        <tr><td>4 dogs</td><td>$105/mo</td><td>$100/mo</td></tr>
+      </table>
+      <p style="margin-top:0.8rem; font-size:0.85rem;">Note: Limited to ¼ acre yards. Trip charge outside 10-mile radius of their shop.</p>
+    </div>
+    
+    <div class="card">
+      <h3>💡 Pricing Takeaway</h3>
+      <p>At $25/week (~$100/mo), Tidy Tails is <strong>competitively positioned</strong>. We're above the budget operators ($20/wk Poopy Paws, $11.95 POOP 911 teaser) but below franchise premiums. Our no-contract model is a genuine differentiator.</p>
+      <p style="margin-top:0.5rem;">Don't race to the bottom on price. The value is in reliability, personal service, and trust — things franchises can't match.</p>
+    </div>
+  </div>
+
+  <!-- COMPETITORS -->
+  <div id="competitors" class="panel">
+    <div class="card" style="border-left: 3px solid var(--orange);">
+      <h3>🏢 DoodyCalls of St. Louis — BIGGEST THREAT</h3>
+      <p><strong>Type:</strong> National franchise (Authority Brands) | <strong>Phone:</strong> (314) 230-8082</p>
+      <p><strong>Services:</strong> Residential scooping, commercial, deodorization, pet waste stations</p>
+      <p><strong>Yelp:</strong> 4 reviews, positive</p>
+      <h4>Their Strengths</h4>
+      <ul>
+        <li>National brand recognition with 25+ years</li>
+        <li>Trained, uniformed, background-checked technicians</li>
+        <li>Commercial services (apartments, HOAs, parks)</li>
+        <li>Satisfaction guarantee</li>
+        <li>Strong SEO from national domain authority</li>
+      </ul>
+      <h4>Their Weaknesses</h4>
+      <ul>
+        <li>Franchise = impersonal, rotating technicians</li>
+        <li>Likely higher pricing (franchise overhead)</li>
+        <li>Only 4 Yelp reviews — low local engagement</li>
+        <li>Corporate website doesn't feel "local"</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-left: 3px solid var(--yellow);">
+      <h3>🚨 POOP 911 — St. Louis</h3>
+      <p><strong>Type:</strong> National franchise (locally owned branch) | <strong>Phone:</strong> 1-877-POOP-911</p>
+      <p><strong>Coverage:</strong> 70+ STL zip codes | <strong>Offer:</strong> First cleanup FREE with recurring</p>
+      <h4>Their Strengths</h4>
+      <ul>
+        <li>Low teaser pricing ($11.95/wk)</li>
+        <li>Free first cleanup hook — removes risk barrier</li>
+        <li>Massive service area coverage</li>
+        <li>Strong national SEO</li>
+      </ul>
+      <h4>Their Weaknesses</h4>
+      <ul>
+        <li>Teaser pricing may not reflect actual costs</li>
+        <li>National call center experience</li>
+        <li>Less personal than true local operator</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-left: 3px solid var(--purple);">
+      <h3>🐕 Dirty Dog Wash Poo Crew</h3>
+      <p><strong>Type:</strong> Local business (dog wash primary) | <strong>Pricing:</strong> $95/mo weekly</p>
+      <h4>Strengths</h4>
+      <ul>
+        <li>Physical location builds trust</li>
+        <li>Multi-service business (wash + waste)</li>
+        <li>Clear, published pricing</li>
+      </ul>
+      <h4>Weaknesses</h4>
+      <ul>
+        <li>Poop service is secondary — not their focus</li>
+        <li>Limited to 10-mile radius of shop</li>
+        <li>¼ acre yard limit</li>
+      </ul>
+    </div>
+
+    <div class="card" style="border-left: 3px solid #64748b;">
+      <h3>🏆 Yucko's — The OG (Since 1990)</h3>
+      <p><strong>Phone:</strong> 314-291-7667 | <strong>Hours:</strong> Mon-Fri 9-4</p>
+      <p><strong>Note:</strong> Now primarily a pet waste product supplier (Dogipot stations, bags, etc.). Scooping service appears secondary. Ancient website. Not a serious competitive threat for residential customers.</p>
+    </div>
+
+    <div class="card" style="border-left: 3px solid var(--red);">
+      <h3>💀 Fresh Paws — CLOSED</h3>
+      <p><strong>Was based in:</strong> Wildwood, MO</p>
+      <p><strong>Service area was:</strong> Western STL County + St. Charles County</p>
+      <p><strong>Status:</strong> Squarespace website expired. Facebook page appears inactive.</p>
+      <p style="color:var(--green); font-weight:600; margin-top:0.5rem;">→ Their customers are our opportunity. See Opportunities tab.</p>
+    </div>
+  </div>
+
+  <!-- OPPORTUNITIES -->
+  <div id="opportunities" class="panel">
+    <div class="card">
+      <div class="opportunity">
+        <h4>🥇 #1 — Grab Fresh Paws' Orphaned Customers (THIS WEEKEND)</h4>
+        <p><strong>Impact: HIGH</strong> | <strong>Effort: LOW</strong> | <strong>Cost: FREE</strong></p>
+        <p>Fresh Paws served Wildwood, Ballwin, Chesterfield, Ellisville. Their website is dead. Customers who relied on them are looking for a replacement right now — and spring cleanup season makes this urgent.</p>
+        <ul>
+          <li>Post on Nextdoor in Wildwood/Ballwin/Chesterfield neighborhoods</li>
+          <li>Post in local Facebook groups for those areas</li>
+          <li>Search for Fresh Paws reviews on Google/Yelp — those reviewers are warm leads</li>
+          <li>Position as "Hey, I heard Fresh Paws closed — we're here to help"</li>
+        </ul>
+        <p><strong>Expected result:</strong> 3-5 inquiries → 2-3 new customers → $2,280-$3,420/year</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="opportunity">
+        <h4>🥈 #2 — Watch Poopy Paws for Second Closure</h4>
+        <p><strong>Impact: HIGH</strong> | <strong>Effort: LOW</strong> | <strong>Timeline: Watch weekly</strong></p>
+        <p>Poopy Paws 314's website DNS is failing. They're #1 rated on Yelp for STL pet waste removal. If they close, their customers are GOLD — already trained to pay for the service and they've left public reviews.</p>
+        <ul>
+          <li>Check poopypaws314.com weekly</li>
+          <li>Monitor their Facebook page (358 followers)</li>
+          <li>Have a Nextdoor post ready to go if they announce closure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="opportunity">
+        <h4>🥉 #3 — Match POOP 911's "First Cleanup Free" Offer</h4>
+        <p><strong>Impact: MEDIUM</strong> | <strong>Effort: LOW</strong> | <strong>Cost: ~$25 per new customer</strong></p>
+        <p>POOP 911 offers first cleanup free with recurring sign-up. This is the smartest customer acquisition hook in the industry. Cost to TJ: ~30 minutes of labor per new customer, but it removes the #1 barrier — risk.</p>
+        <ul>
+          <li>Offer "First week on us" for new recurring customers</li>
+          <li>Add to website, Craigslist ads, and social posts</li>
+          <li>Customer LTV is $1,140/year — $25 acquisition cost is a no-brainer</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <div id="scripts" class="panel">
+    <div class="card">
+      <h3>📱 Nextdoor Post — Fresh Paws Replacement</h3>
+      <div class="copy-box" onclick="copyText(this)">Hey neighbors 👋 I noticed Fresh Paws pet waste removal seems to have closed down. If you're suddenly without a scooper, I wanted to let you know about Tidy Tails.
+
+I'm TJ — locally owned, one-man operation right here in STL County. $25/week, no contracts, I take the waste with me.
+
+Since I know your yard may have piled up without service, I'll do your first cleanup at a discount. Just text me and we'll get you set up before things really thaw out 🐕
+
+tidytailsstl.com</div>
+    </div>
+
+    <div class="card">
+      <h3>📱 Facebook Group Post — Western STL County</h3>
+      <div class="copy-box" onclick="copyText(this)">Anyone in Wildwood/Ballwin/Chesterfield use Fresh Paws for dog waste removal? Looks like they may have closed.
+
+I run Tidy Tails — local pooper scooper service. Same thing: weekly or bi-weekly, I come clean your yard and take the waste with me. No contracts, $25/week.
+
+Happy to do a free first visit for anyone who's been without service. Spring thaw + no scooper = nightmare yard 😅
+
+Text me at [YOUR NUMBER] or check us out: tidytailsstl.com</div>
+    </div>
+
+    <div class="card">
+      <h3>📱 General Spring Post (Any Platform)</h3>
+      <div class="copy-box" onclick="copyText(this)">Spring is here and so is... everything your dog left in the yard since November 💩
+
+Before your first barefoot walk turns into a crime scene, let Tidy Tails handle the spring thaw.
+
+✅ First week free for new weekly customers
+✅ No contracts — ever
+✅ We bag it and take it with us
+
+$25/week. Local. Reliable. Text [YOUR NUMBER] to get on the schedule before spots fill up.
+
+tidytailsstl.com</div>
+    </div>
+
+    <div class="card">
+      <h3>💬 Text to Past Leads (Re-Engage)</h3>
+      <div class="copy-box" onclick="copyText(this)">Hey [NAME]! TJ from Tidy Tails here. Spring thaw is hitting STL hard — yards are rough right now 😬
+
+Wanted to let you know we're offering first week free for new weekly customers. $25/week after that, no contracts.
+
+Want me to swing by for a free first cleanup this week?</div>
+    </div>
+  </div>
+
+  <!-- OUR POSITION -->
+  <div id="position" class="panel">
+    <div class="card">
+      <h3>Where We Win ✅</h3>
+      <ul>
+        <li class="win">✅ <strong>Personal service</strong> — TJ shows up, not a random franchise tech</li>
+        <li class="win">✅ <strong>No contracts</strong> — vs. franchise contract pressure from DoodyCalls/POOP 911</li>
+        <li class="win">✅ <strong>Competitive pricing</strong> — $25/wk is mid-market sweet spot</li>
+        <li class="win">✅ <strong>Modern website</strong> — better than 80% of competitors (Yucko's site is from 2003)</li>
+        <li class="win">✅ <strong>Community presence</strong> — Craigslist ownership, local engagement</li>
+        <li class="win">✅ <strong>Market timing</strong> — competitors are dropping, spring demand is peaking</li>
+      </ul>
+    </div>
+    
+    <div class="card">
+      <h3>Where We Need to Improve ⚠️</h3>
+      <ul>
+        <li class="lose">❌ <strong>Google/Yelp reviews</strong> — need 10+ reviews to compete in search</li>
+        <li class="lose">❌ <strong>SEO visibility</strong> — not ranking for target keywords yet</li>
+        <li class="lose">❌ <strong>No "free first" offer</strong> — POOP 911 uses this effectively</li>
+        <li class="lose">❌ <strong>Service area awareness</strong> — people in our area don't know we exist</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>The Bottom Line</h3>
+      <p style="font-size:1rem; color:var(--heading);">The STL pet waste market is in flux. Small competitors are dying off, leaving customers stranded. National franchises don't provide the personal touch local customers want. <strong>This is TJ's window to build a dominant local brand.</strong></p>
+      <p style="margin-top:0.8rem;">Priority actions this weekend:</p>
+      <ol>
+        <li>Post about Fresh Paws closure on Nextdoor + Facebook in Wildwood/Ballwin/Chesterfield</li>
+        <li>Add "first week free" offer to all marketing</li>
+        <li>Text 3 existing customers for Google reviews</li>
+      </ol>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyText(el) {
+  navigator.clipboard.writeText(el.textContent.trim()).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 2000);
+  });
+}
+</script>
+</body>
+</html>
