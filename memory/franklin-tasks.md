@@ -4,6 +4,42 @@
 
 ---
 
+### 1:04 PM — ⚔️ COMPETITOR BATTLE CARDS — Live Sales Intel From Real Research (Hourly Task)
+**Task:** Crawl actual competitor websites and search results to build a sales-ready battle card tool with verified pricing, weaknesses, and kill scripts
+**Result:** ✅ SHIPPED — 9 competitors profiled with real data, 6 objection-handling scripts, pricing comparison, market gap analysis, and SWOT
+
+**Why This Task:**
+- We've built tons of dashboards today but none based on LIVE competitive research from actual websites
+- TJ and Jamie need something to pull up DURING a sales call when a prospect says "I already use POOP 911"
+- Previous competitor intel was generated from memory/old data — this is from March 7, 2026 live crawls
+- Found a DEAD competitor (Pawfect Waste Solutions — site down) = orphaned customers to grab
+
+**What I Found (Key Intel):**
+- **Pawfect Waste Solutions (pooperscooperstl.com) is DEAD** — site returns "not found." Their territory: Maryland Heights, Creve Coeur, Chesterfield → orphaned customers
+- **POOP 911** advertises "$11.95/wk" but that's bait — real quotes higher after yard assessment
+- **Yucko's** (36 years!) has a GeoCities-era website, phone-only, M-F 8-3 only
+- **Little Stinkers** covers St. Charles County ONLY — doesn't touch STL County
+- **Dirty Dog Wash** charges $95/mo ($23.75/wk) — TJ undercuts them significantly
+- **Critter Sitters** cheapest verified at $15/visit — but poop is their sideline
+- **Craigslist STL has ZERO pet waste ads** — completely uncontested free channel
+- **North County (Florissant area) is a desert** — no dedicated service
+
+**What I Built (6 tabs):**
+1. 📊 Market Overview — stats, territory map, key findings
+2. ⚔️ Battle Cards — 9 individual competitor profiles with strengths/weaknesses/attack angles
+3. 💰 Price Comparison — side-by-side verified pricing table
+4. 💬 Kill Scripts — 6 copy-paste objection handlers for common scenarios
+5. 🎯 Market Gaps — 6 opportunities with revenue estimates
+6. 🔍 SWOT Analysis — honest assessment + top 3 actions
+
+**Dashboard:** `dashboard/2026-03-07-COMPETITOR-BATTLE-CARDS.html`
+**Live:** https://tidytails.github.io/tidytails-dashboard/dashboard/2026-03-07-COMPETITOR-BATTLE-CARDS.html
+**Commits:** `5ea148c`, `a784fad` on `tidytails-dashboard` repo
+
+**Rotation:** 🔍 Research — Live Competitive Intelligence
+
+---
+
 ### 12:05 PM — 🏢 COMMERCIAL LEADS PACK — 40 Fresh Leads in TJ's Actual Service Area (Hourly Task)
 **Task:** Research and compile real commercial leads (apartment complexes, property managers, vet clinics, dog daycares) specifically in TJ's current service territory — NOT generic south county leads
 **Result:** ✅ SHIPPED — 40 leads across 4 categories with phone numbers, pitch angles, call scripts, and commercial pricing guide
