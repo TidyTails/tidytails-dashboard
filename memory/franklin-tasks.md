@@ -4,6 +4,31 @@
 
 ---
 
+### 9:04 PM — 🚀 SPRING CUSTOMER BLITZ — Free Trial Playbook From $200K+ Companies (Hourly Task)
+**Task:** Research what successful pet waste removal companies actually did to scale, then build an actionable free-trial-to-customer conversion playbook
+**Result:** ✅ SHIPPED — Complete blitz playbook with trial tracker, 6 copy-paste scripts, pricing analysis, review pipeline, weekly execution plan
+
+**Why This Task:**
+- We've built 35+ dashboard tools but TJ still has 4-5 customers. Tools don't get customers — TACTICS do.
+- Researched companies that scaled: Kroopin's Poopin Scoopin (376 reviews, 200 weekly customers, multi-six-figures) and Fresh Start ($200K year 1)
+- The #1 pattern: free trials → Google reviews → convert 30-40% to paid
+- Saturday night = research-based strategic work
+
+**What I Built:**
+- **The Math:** 5 trials/week × 8 weeks × 35% conversion = 14 new customers + 30 reviews
+- **6 Copy-Paste Scripts:** FB group post, text offer, review request, conversion, referral, GBP post
+- **Interactive Trial Tracker:** Add/log visits/track conversions with source attribution
+- **Google Review Progress Bar:** Milestones at 10/25/50
+- **Pricing Analysis:** TJ $70 flat → suggested $80/$90/$100 tiered = +$560/mo at 25 customers
+- **Weekly Execution Playbook + 6 Ranked Growth Tactics + Case Studies**
+
+**Dashboard:** `dashboard/2026-03-07-SPRING-CUSTOMER-BLITZ.html`
+**Live:** https://tidytails.github.io/tidytails-dashboard/dashboard/2026-03-07-SPRING-CUSTOMER-BLITZ.html
+**Commit:** `465d7ed` on `tidytails-dashboard` repo
+**Rotation:** 🎯 Strategy — Customer Acquisition
+
+---
+
 ### 8:05 PM — 📅 WEEKLY CONTENT CALENDAR — 21 Ready-to-Post Social Media Posts (Hourly Task)
 **Task:** Create a full week of copy-paste social media content for March 8-14, covering Facebook groups, Instagram, Nextdoor, and Google Business Profile
 **Result:** ✅ SHIPPED — 21 posts across 7 days and 4 platforms, with posting tracker, hashtag sets, and engagement tips
