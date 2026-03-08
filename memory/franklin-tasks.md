@@ -4,6 +4,77 @@
 
 ---
 
+### 8:05 PM — 📅 WEEKLY CONTENT CALENDAR — 21 Ready-to-Post Social Media Posts (Hourly Task)
+**Task:** Create a full week of copy-paste social media content for March 8-14, covering Facebook groups, Instagram, Nextdoor, and Google Business Profile
+**Result:** ✅ SHIPPED — 21 posts across 7 days and 4 platforms, with posting tracker, hashtag sets, and engagement tips
+
+**Why This Task:**
+- We've built 19+ dashboards today but ALL are TOOLS — none give TJ ready-to-GO content for the actual week ahead
+- Consistent posting is the #1 organic growth driver for local service businesses (case study: Miami pet waste company saw 470% social growth with 10 posts/month)
+- TJ can open this Sunday morning and schedule the ENTIRE week in 15 minutes
+- Each post is platform-specific: Nextdoor = neighborly/helpful, Instagram = visual/fun, Facebook = conversational/community, GBP = SEO-boosting
+- Posts rotate through proven content types: educational, social proof, humor, objection-busting, referral, community
+
+**What I Built (7 days + overview + tips):**
+- **Sunday (Mar 8):** Nextdoor neighborhood intro, Instagram humor (spring thaw), GBP spring offer
+- **Monday (Mar 9):** Facebook health risk education, Instagram carousel (5 things in dog poop), Story poll
+- **Tuesday (Mar 10):** Instagram before/after, Nextdoor helpful tips, Story behind-the-scenes
+- **Wednesday (Mar 11):** Facebook "is this a real thing?" post, Instagram Reel script, GBP update
+- **Thursday (Mar 12):** Instagram dog feature, Nextdoor cross-promotion, Story Q&A
+- **Friday (Mar 13):** Facebook weekend push, Instagram math post, Story week recap
+- **Saturday (Mar 14):** Facebook referral program, Instagram humor, Nextdoor lawn care tie-in
+
+**Features:**
+- One-click copy for every post
+- Mark-as-posted tracker with progress bar (localStorage)
+- Pre-built hashtag sets for Instagram (20) and Facebook (5)
+- Best posting times per platform for STL timezone
+- Photo/content ideas for each post
+- Repeatable weekly theme framework for future weeks
+
+**Dashboard:** `dashboard/2026-03-07-WEEKLY-CONTENT-CALENDAR.html`
+**Live:** https://tidytails.github.io/tidytails-dashboard/dashboard/2026-03-07-WEEKLY-CONTENT-CALENDAR.html
+**Commit:** `9af580b` on `tidytails-dashboard` repo
+
+**Rotation:** 📣 Marketing — Social Media Content
+
+---
+
+### 7:05 PM — 🏠 COMMAND CENTER REBUILD — Index Overhaul (Hourly Task)
+**Task:** Rebuild the main dashboard index.html to include ALL 35+ tools, organized by category with clear navigation
+**Result:** ✅ SHIPPED — Complete index reorganization, 7 tool categories, yellow "new" indicators, stats bar, quick links
+
+**Why This Task:**
+- The existing index.html only showed 7 tools and 6 reports — but we built 19+ new dashboard pages TODAY
+- Those 19 pages were INVISIBLE to TJ — if he can't find a tool, it doesn't exist
+- The index is the FRONT DOOR to everything. If it's outdated, all that work is wasted
+- Saturday evening = housekeeping time, not net-new content creation
+
+**What I Did:**
+- Reorganized ALL tools into 7 logical categories:
+  1. 🔧 CRM & Core Tools (4) — CRMs, Growth Model, Lead Pipeline
+  2. 📞 Sales & Leads (4) — Outreach Hub, Commercial Leads, Battle Cards, Neighborhood Targeting
+  3. 📣 Marketing & Ads (7) — Ad Pack, Spring Campaign, Print Kit, Canvassing, Referral, Reviews
+  4. 🔍 SEO & Web Presence (4) — SEO Command Center, Audit, GBP Playbook, Directories
+  5. 🕵️ Competitive Intel (4) — Live Scan, Intel Deep Dive, Pricing Strategy
+  6. 📋 Strategy & Planning (3) — Weekend Action, Briefings, Review System
+  7. 🏠 Shed Business (3) — Market Intel, Spring Playbook, Ads
+- Plus 16 videos, 2 PDFs, Quick Reference with quick-access links
+- Added stats bar (35+ tools, 16 videos, 2 businesses)
+- Yellow dot indicators on all new tools added today
+- Quick Links card for the 4 most-used tools
+
+**Before → After:**
+- Before: 7 tools + 6 reports shown, ~15 cards total
+- After: 35+ tools in 7 categories, ~45 cards, every dashboard page accessible
+
+**Live:** https://tidytails.github.io/tidytails-dashboard/
+**Commit:** `ea2c0ba` on `tidytails-dashboard` repo
+
+**Rotation:** 🏗️ Infrastructure — Dashboard Organization
+
+---
+
 ### 6:05 PM — 🎯 NEIGHBORHOOD TARGETING INTEL — Data-Driven Customer Acquisition (Hourly Task)
 **Task:** Research and build interactive neighborhood targeting tool ranking St. Louis County areas by customer acquisition potential
 **Result:** ✅ SHIPPED — 20 neighborhoods ranked, 4 route clusters, pricing & platform strategy
