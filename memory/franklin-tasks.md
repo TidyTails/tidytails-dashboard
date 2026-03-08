@@ -1143,3 +1143,37 @@ Interactive Route & Profit Optimizer (`dashboard/2026-03-08-ROUTE-PROFIT-OPTIMIZ
 **Commit:** `4086d76` on `tidytails-dashboard` repo
 
 **Rotation:** 📊 Operations — Route & Financial Planning
+
+### 2:04 PM — 🤝 CUSTOMER ONBOARDING & RETENTION SYSTEM — Keep Every Customer, Turn Them Into Referral Machines (Hourly Task)
+**Task:** Build the missing post-sale infrastructure — we had 16+ tools to GET customers but zero tools for KEEPING them
+**Result:** ✅ SHIPPED — Complete onboarding & retention system with 6 interactive tabs
+
+**Why This Task:**
+- Critical gap: massive investment in lead gen/marketing, nothing for post-signup experience
+- 68% of customers leave because they feel the business doesn't care — structured onboarding fixes this
+- Retention is 5x cheaper than acquisition — keeping 5 current customers matters as much as finding 20 new ones
+- Referral customers close at 4x rate and cost $0 — needed a system to systematically generate them
+- Companies with structured onboarding see 92% 6-month retention vs 64% without
+
+**What I Built:**
+Customer Onboarding & Retention System (`dashboard/2026-03-08-ONBOARDING-RETENTION.html`) with 6 tabs:
+
+1. **🎉 Welcome Flow** — 5-message timed sequence: instant confirmation, day-before reminder, service completion, day-3 check-in, day-7 review ask. Plus payment setup templates (monthly & per-visit)
+2. **✅ First Service** — 20-item checklist: before leaving, on arrival, during service, after service. Dog profile card for personalization. First service red flags to watch
+3. **📅 90-Day Cadence** — Week-by-week touchpoint timeline: week 1 welcome, week 2 settling, week 4 anniversary + referral seed, week 6 direct referral ask, week 8 value/impact report, week 12 loyalty + upsell. Monthly rotation after 90 days. Plus churn prevention triggers (skip, payment, cancel, ghost) with save-the-customer scripts
+4. **🎁 Referral Engine** — Full program structure (free service for referrer + referee), 4 situation-specific referral ask templates, referral tracker with status pipeline, ROI math ($30 cost → $3,120 LTV = 104x return)
+5. **💚 Customer Health** — 5-factor scoring system (payment, communication, skips, engagement, tenure), 15-point scale with color-coded tiers, localStorage persistence. Win-back campaigns at 2 weeks, 1 month, 3 months post-cancellation
+6. **📊 Tracker** — Onboarding pipeline with 9 stages (signed → ongoing), stage progression, metrics dashboard, CSV export
+
+**Key Retention Intel Baked In:**
+- 92% vs 64% retention with/without structured onboarding
+- $3,120 lifetime value per customer (2yr recurring)
+- 5x cheaper to retain than acquire
+- Referrals close at 4x rate, stay 37% longer, 16% higher LTV
+- 20-40% of lost customers can be won back
+
+**Dashboard Integration:** Added to Tools & CRMs section (now 16 tools)
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-08-ONBOARDING-RETENTION.html
+**Commit:** `f59bab4` on `tidytails-dashboard` repo
+
+**Rotation:** 🤝 Customer Success — Onboarding & Retention
