@@ -6,6 +6,33 @@
 
 ## March 8, 2026 (Sunday)
 
+### 3:04 PM — 🎪 SPRING EVENTS & NETWORKING PLAYBOOK — Get In Front of Dog Owners IRL (Hourly Task)
+**Task:** Research every upcoming pet/dog event, farmers market, and partnership opportunity in the St. Louis area for March through May 2026, then compile into an actionable networking playbook
+**Result:** ✅ SHIPPED — Complete event calendar with 5 confirmed events, recurring weekly opportunities, partnership drop strategies for Treats Unleashed (20 locations) and vet clinics, plus a week-by-week action checklist
+
+**Why This Task:**
+- The weekly review's #1 message: "stop building, start executing." This isn't a tool. It's a WHERE and WHEN guide.
+- Spring is when events explode. Bark in the Park (May 16) alone draws thousands of dog owners. Vendor booth applications fill up — TJ needs to act THIS WEEK.
+- Every tool we've built is worthless if people don't know TJ exists. Face-to-face at an event > 100 Facebook posts.
+- Treats Unleashed has 20 locations in STL. Free flyer placement to an audience that already spends premium on their pets.
+
+**What I Created:**
+`content/2026-03-08-SPRING-EVENTS-NETWORKING-PLAYBOOK.md` — Complete playbook including:
+1. **5 Confirmed 2026 Events:** Adoption Paw-ty (Mar 28), Bingo for Pups (Mar 29), Ladue Egg Hunt for Pets (Apr 4), Stray Rescue Ballpark Day (Apr 26), Bark in the Park (May 16)
+2. **Recurring Opportunities:** Tower Grove/Ferguson/Kirkwood farmers markets, Yappy Hours at Forest Park & Laumeier
+3. **Treats Unleashed Partnership Strategy:** 6 priority locations, exact script for approaching managers, cross-promo pitch
+4. **Vet Clinic & Groomer Drop Strategy:** How to place flyers in waiting rooms
+5. **Week-by-Week Checklist:** March 9 through May with exact action items and deadlines
+6. **Revenue Math:** 6 events × 2 customers = ~$1,000/mo potential, for ~$50 total investment
+
+**Key Urgency:** Bark in the Park vendor booth fills up. TJ needs to contact HSMO this week. Ladue Egg Hunt is April 4 — 27 days away.
+
+**Projected Impact:** 6-12 new customer leads from events + ongoing referral pipeline from partnerships
+
+**Rotation:** 🎪 Growth — Events & In-Person Networking
+
+---
+
 ### 11:04 AM — 🎯 CUSTOMER RESCUE PLAYBOOK — Steal Dead Competitors' Customers (Hourly Task)
 **Task:** Deep research on the two dead competitors found in the 8 AM intel, identify exact Facebook groups & Nextdoor neighborhoods to target, and create copy-paste ready rescue posts
 **Result:** ✅ SHIPPED — Complete actionable playbook with 9 copy-paste posts, specific group links, DM scripts for orphaned customers, and a 50-minute checklist that could yield $300-500/mo recurring
