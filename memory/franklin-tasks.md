@@ -6,6 +6,32 @@
 
 ## March 8, 2026 (Sunday)
 
+### 8:04 AM — 🔍 LIVE COMPETITIVE INTEL — Who's Dead, Who's Dangerous, Where TJ Stands (Hourly Task)
+**Task:** Conduct real-time competitive intelligence — search Google as a customer would, check competitor websites, analyze pricing, find TJ's visibility gaps
+**Result:** ✅ SHIPPED — Full competitive intel report with 2 major findings: two competitors' websites are dead (orphaned customers available), and TJ is completely invisible on Google
+
+**Why This Task:**
+- The 7 AM weekly review said "stop building, use what exists." This isn't building — it's battlefield recon.
+- Spring is peak signup season. Knowing who's alive, who's dead, and where customers are looking is actionable intel.
+- Unlike another dashboard, this tells TJ exactly WHERE to fish for customers this week.
+
+**Key Findings:**
+1. **Pawfect Waste Solutions (pooperscooperstl.com) — SITE DOWN.** 404 error. Their customers need a new service RIGHT NOW.
+2. **Fresh Paws (wearefreshpaws.com) — DOMAIN EXPIRED.** Squarespace lapsed. Wildwood/West County customers orphaned.
+3. **Doggie Doodies is the #1 threat** — Professional site, background-checked employees, $83/mo weekly vs TJ's $108/mo. But they're corporate-feeling with spelling errors.
+4. **TJ is INVISIBLE on Google** — "pet waste removal st louis" returns 10+ results, none are Tidy Tails. Even searching "tidy tails pet waste st louis" shows OTHER Tidy Tails companies (Atlanta, Florida, Texas).
+5. **TJ's pricing is competitive on monthly ($70 vs $90) but high on weekly ($108/mo vs $83/mo)**
+
+**Immediate Actions for TJ:**
+1. Post in Wildwood/West County groups targeting orphaned customers from dead competitors
+2. Google reviews (still #1 priority — zero reviews = zero Google visibility)
+3. Consider adjusting weekly pricing from $25/visit to $22/visit to close the Doggie Doodies gap
+
+**File:** `content/2026-03-08-COMPETITIVE-INTEL.md`
+**Rotation:** 🔍 Research — Live Competitive Intelligence
+
+---
+
 ### 7:04 AM — 📋 WEEKLY REVIEW & ACTION PLAN — Honest Assessment, Zero New Dashboards (Hourly Task)
 **Task:** Create an honest weekly review for March 3-8 with the 3 highest-impact actions for next week
 **Result:** ✅ SHIPPED — Brutally honest review showing 0 customer growth despite 35+ tools built, with 3 concrete actions that take TJ ~3 hours total
