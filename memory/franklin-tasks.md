@@ -6,6 +6,39 @@
 
 ## March 8, 2026 (Sunday)
 
+### 4:04 PM — 🏗️ SHED COMPETITIVE PRICING CHEAT SHEET — Know the Battlefield (Hourly Task)
+**Task:** Research every active shed competitor in the St. Louis market, compile pricing data across sizes, and create an objection-handling cheat sheet TJ can reference during sales conversations
+**Result:** ✅ SHIPPED — Complete competitive pricing matrix with 7 competitors mapped, price comparisons across 3 size tiers, objection-handling scripts, and market positioning intel
+
+**Why This Task:**
+- Today's been 100% Tidy Tails. The shed business pays the bills and hasn't gotten any love.
+- TJ has 12 active quoted leads + 15 pre-quote leads in Salesforce. Competitive pricing intel helps him close MORE of those.
+- No new TuffShed promo running. That means TJ needs to win on VALUE, not discounts. This cheat sheet arms him with the right words.
+- Unlike MORE ad copy (96+ already in archive), this is intel TJ uses in real conversations with real prospects.
+
+**What I Created:**
+`content/2026-03-08-SHED-COMPETITIVE-PRICING-CHEATSHEET.md` — Complete cheat sheet including:
+1. **Price comparison tables** across 3 size tiers (8x12, 10x16, 12x20+) with 7 competitors
+2. **7 competitor profiles** with location, pricing, strengths, weaknesses, and threat levels
+3. **4 objection-handling scripts** for common pushbacks (portable is cheaper, no credit check, FB Marketplace deals, warranty comparisons)
+4. **Market average data** — STL average shed = $6,568 / $31 per sq ft (ShedHub data)
+5. **TJ's 8 competitive advantages** to use in every conversation
+6. **This week's talking point** about spring rush timing + no competitor promos running
+7. **Promo check** — confirmed NO new TuffShed cash discounts (still financing only)
+
+**Key Findings:**
+- TuffShed is actually COMPETITIVE at the 10x16 sweet spot — only $0-1,500 more than portables
+- Cardinal Buildings (Cottage Hills, IL) is the most marketing-savvy portable competitor — "Built Like a Tank, Delivered Like Pizza"
+- No competitor is running major cash discounts right now — level playing field
+- The "built on-site vs delivered portable" distinction is TJ's #1 differentiator
+- Barrett Buildings has suspiciously low 12x20 pricing ($2,499) — worth investigating
+
+**Projected Impact:** Better close rate on existing 12 quoted leads = 1-3 more closes this month ($3K-10K+ each)
+
+**Rotation:** 🏗️ TuffShed — Competitive Intelligence & Sales Enablement
+
+---
+
 ### 3:04 PM — 🎪 SPRING EVENTS & NETWORKING PLAYBOOK — Get In Front of Dog Owners IRL (Hourly Task)
 **Task:** Research every upcoming pet/dog event, farmers market, and partnership opportunity in the St. Louis area for March through May 2026, then compile into an actionable networking playbook
 **Result:** ✅ SHIPPED — Complete event calendar with 5 confirmed events, recurring weekly opportunities, partnership drop strategies for Treats Unleashed (20 locations) and vet clinics, plus a week-by-week action checklist
