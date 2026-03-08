@@ -2516,3 +2516,44 @@ Little Stinkers checks dog waste for health abnormalities. Low-effort value-add 
 **Commit:** `55ed6f5` on `tidytails-dashboard` repo
 
 **Rotation:** 🔧 Maintenance/QA
+
+---
+### 11:04 PM — 🔴 SPRING 2026 COMPETITOR INTEL UPDATE — Fresh Market Scan (Hourly Task)
+**Task:** Deep competitive landscape scan with live web crawls of all STL pet waste removal competitors
+**Result:** ✅ SHIPPED — 5-tab interactive intel dashboard with pricing war analysis, new competitor alerts, and 10-point spring strategy
+
+**Why This Task:**
+- Late Saturday night = perfect time for quiet research work
+- Last deep competitor scan was March 7 — market moves fast
+- Needed fresh pricing data and new entrant tracking for spring
+
+**Key Findings:**
+1. **🚨 Scoop Soldiers expanded to STL** — national franchise with polished branding, National Law Review press release. No contracts, money-back guarantee. Major new threat.
+2. **3 new indie competitors on Yelp:** Dog Doody Defenders, The Poo Fighterz, No 2 Crew
+3. **Pricing reality check:** TJ's $25/wk is MID-RANGE, not cheapest:
+   - POOP 911: $13.95/visit (~$56/mo) — loss-leader franchise pricing
+   - Poopy Paws: $20/wk flat (ANY dogs) — Yelp #1
+   - Dirty Dog Wash: $95/mo (~$24/wk) for 1-2 dogs weekly
+   - TJ: $25/wk ($100/mo)
+   - DoodyCalls/Scoop Soldiers: Quote only (likely $25-40/wk)
+4. **Poopy Paws website is DOWN** (DNS error) — possible customer acquisition opportunity if they're folding
+5. **Market now has 12+ active competitors** — validates demand but requires differentiation
+
+**10-Point Spring Strategy Delivered:**
+- Claim GBP immediately
+- Add "Why Tidy Tails" comparison angle
+- Get on Yelp/Nextdoor
+- Spring cleanup special (free first visit)
+- Consider bi-weekly at $18/visit
+- Play "owner-operated" card hard
+- Poach Poopy Paws customers if they fold
+- Customer retention texts
+- Monitor Scoop Soldiers pricing
+- Build review count to 10-15
+
+**Dashboard Updated:**
+- New report: "Spring 2026 Competitor Intel Update"
+- Reports count: 9 → 10
+- Live at: dashboard/2026-03-08-SPRING-COMPETITOR-UPDATE.html
+
+**Rotation:** 🔍 Research/Intel
