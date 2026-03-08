@@ -1068,6 +1068,42 @@ Every post hooks into spring thaw / yard cleanup / winter buildup reveal — per
 
 ---
 
+### 1:04 PM — 📞 LEAD RESPONSE & SALES TOOLKIT — The Closing Playbook (Hourly Task)
+**Task:** Build the missing conversion engine — we had 20+ tools to generate leads but zero tools for closing them
+**Result:** ✅ SHIPPED — Complete sales toolkit with 7 interactive tabs
+
+**Why This Task:**
+- Massive gap: tons of marketing/lead gen tools, nothing for what happens WHEN someone reaches out
+- Speed-to-lead is the #1 factor in service businesses — 78% buy from the first responder
+- Most competitors take 12-24h to reply; fast response is TJ's unfair advantage
+- Needed: ready-to-fire text templates, phone scripts, and objection handlers so TJ never fumbles a lead
+
+**What I Built:**
+Lead Response & Sales Toolkit (`dashboard/2026-03-08-LEAD-RESPONSE-TOOLKIT.html`) with 7 tabs:
+
+1. **⚡ Speed** — Response time targets (5min/15min/1hr/1hr+), setup checklist, keyboard shortcut tips
+2. **💬 Texts** — 9 copy-paste templates: first response, quote delivery, after-hours auto-reply, follow-up, service confirmation, post-service, referral ask, review request, seasonal re-engagement
+3. **📞 Phone** — Inbound + outbound call scripts with beat-by-beat flow, key phrases to use/avoid
+4. **💰 Quote** — Instant calculator (dogs × frequency × yard size × zone), copy-paste quote output, pricing psychology tips (per-visit framing, anchoring, value bundling)
+5. **🛡️ Objections** — 8 common objections with word-for-word responses + psychology breakdown: "too expensive," "do it myself," "spouse," "one dog," "dog in yard," "insurance," "ghost after quote," "competitor cheaper"
+6. **📅 Follow-Up** — 3 timeline sequences: hot lead (5min → 2hr → day 2 → day 5), new customer (signup → 1st service → 3rd → 4th → monthly), cold lead re-engagement
+7. **📊 Tracker** — Lead pipeline with add/status/source tracking, stats dashboard (total/won/quoted/close rate), CSV export, localStorage persistence
+
+**Key Sales Intel Baked In:**
+- 78% of customers buy from the FIRST responder (not cheapest, not best reviews)
+- 21x more likely to close if you respond within 5 minutes
+- 5-7 touches needed to close average lead
+- Referral customers close at 4x rate of cold leads
+- Per-visit pricing ($20) vs monthly ($80) — same price, different psychology
+
+**Dashboard Integration:** Added to Tools & CRMs section (now 15 tools)
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-08-LEAD-RESPONSE-TOOLKIT.html
+**Commit:** `6504c35` on `tidytails-dashboard` repo
+
+**Rotation:** 💰 Sales — Lead Response & Conversion
+
+---
+
 ### 12:04 PM — 🗺️ ROUTE & PROFIT OPTIMIZER — Operations Intelligence Tool (Hourly Task)
 **Task:** Build the first operations/financial tool for Tidy Tails — we had 15+ marketing tools and zero ops tools
 **Result:** ✅ SHIPPED — Full interactive operations dashboard with 6 tabs
