@@ -1,9 +1,9 @@
 {
-  "lastCheck": "2026-03-08T08:03:00-06:00",
+  "lastCheck": "2026-03-08T10:03:00-06:00",
   "status": "issues",
-  "issuesFound": 3,
+  "issuesFound": 4,
   "issuesFixed": 0,
-  "issuesPending": 3,
+  "issuesPending": 4,
   "previouslyFixed": [
     "13 broken links in index.html — FIXED",
     "crm/index.html and jamie-outreach-hub.html — FIXED",
@@ -17,9 +17,10 @@
     "allLinksWorking": true,
     "brokenLinks": 0,
     "totalLinksChecked": 12,
-    "gitStatus": "clean — no unpushed changes",
-    "pdfCount": 7,
+    "gitStatus": "clean — branch up to date with origin/master",
+    "pdfCount": 9,
     "pdfLinksInIndex": 6,
+    "pdfsMissingLinks": 3,
     "videoCount": 6,
     "videoLinksInIndex": 6
   },
@@ -41,12 +42,12 @@
   },
   "deliveryVerification": {
     "telegramToDashboard": {
-      "status": "pass",
-      "notes": "Sunday 8AM — no new deliveries expected overnight."
+      "status": "fail",
+      "notes": "3 PDFs generated today/yesterday exist in pdfs/ but NOT linked in index.html. TJ cannot access them from dashboard."
     },
     "hourlyUpdates": {
       "status": "pass",
-      "notes": "Last commits from Mar 7 evening. Normal weekend cadence."
+      "notes": "5 commits in last 24h. Active development cadence."
     },
     "notionSync": {
       "status": "warning",
@@ -56,25 +57,30 @@
   "issues": [
     {
       "id": "issue-001",
-      "severity": "medium",
-      "category": "dashboard",
-      "description": "2 undersized PDFs (<100KB): MORNING_BRIEFING_2026-03-06.pdf (65KB), SHED_ADS_2026-03-07.pdf (70KB). May be legitimate small documents. 7th consecutive check.",
-      "assignedTo": "franklin",
-      "status": "recurring",
-      "foundAt": "2026-03-07T20:03:00-06:00",
-      "fixedAt": null,
-      "checkCount": 7
-    },
-    {
-      "id": "issue-002",
       "severity": "high",
       "category": "dashboard",
-      "description": "EOD_SUMMARY_2026-03-07.pdf (448KB) exists in pdfs/ but NOT linked in index.html. 7th consecutive check — HIGH severity. Systemic process gap: PDF generator does not auto-link to dashboard.",
+      "description": "3 PDFs exist in pdfs/ but NOT linked in index.html: EOD_SUMMARY_2026-03-07.pdf (448KB), MORNING_BRIEFING_2026-03-08.pdf (70KB), SHED_ADS_2026-03-08.pdf (307KB). EOD issue is now 8th consecutive check. This is a SYSTEMIC PROCESS FAILURE — pdf-generator creates files but does not update index.html.",
       "assignedTo": "franklin",
       "status": "recurring-escalated",
       "foundAt": "2026-03-07T22:03:00-06:00",
       "fixedAt": null,
-      "checkCount": 7
+      "checkCount": 8,
+      "affectedFiles": [
+        "pdfs/EOD_SUMMARY_2026-03-07.pdf",
+        "pdfs/MORNING_BRIEFING_2026-03-08.pdf",
+        "pdfs/SHED_ADS_2026-03-08.pdf"
+      ]
+    },
+    {
+      "id": "issue-002",
+      "severity": "medium",
+      "category": "dashboard",
+      "description": "3 undersized PDFs (<100KB): MORNING_BRIEFING_2026-03-06.pdf (65KB), SHED_ADS_2026-03-07.pdf (70KB), MORNING_BRIEFING_2026-03-08.pdf (70KB). May be legitimately small documents but flagged for review.",
+      "assignedTo": "franklin",
+      "status": "recurring",
+      "foundAt": "2026-03-07T20:03:00-06:00",
+      "fixedAt": null,
+      "checkCount": 8
     },
     {
       "id": "issue-003",
@@ -85,6 +91,16 @@
       "status": "informational",
       "foundAt": "2026-03-07T22:03:00-06:00",
       "fixedAt": null
+    },
+    {
+      "id": "issue-004",
+      "severity": "medium",
+      "category": "content",
+      "description": "index.html PDF count badge says '6 PDFs' but there are 9 PDFs in the directory. Badge is stale/manually set and doesn't auto-update.",
+      "assignedTo": "franklin",
+      "status": "found",
+      "foundAt": "2026-03-08T10:03:00-06:00",
+      "fixedAt": null
     }
   ],
   "adCreativeAudit": {
@@ -92,15 +108,15 @@
     "existingVideos": 6,
     "allVideoFilesPresent": true,
     "allVideoSizesValid": true,
-    "notes": "No new creative since last check. All 6 Remotion videos present and linked. No scoring needed this cycle."
+    "notes": "No new creative since 8AM check. All 6 Remotion videos present and linked. No scoring needed this cycle."
   },
   "contentFreshness": {
-    "allPDFs": "Created 2026-03-06 to 2026-03-07 — within 2 days, FRESH",
+    "allPDFs": "Created 2026-03-06 to 2026-03-08 — within 2 days, FRESH",
     "staleFlagDays": 7,
     "staleItems": [],
     "videos": "All created 2026-03-06 — 2 days old, FRESH",
-    "notes": "Content remains fresh. Will approach staleness threshold by Mar 13."
+    "notes": "Content remains fresh. Videos will approach staleness by Mar 13."
   },
-  "bottleneck": "EOD PDF orphan file — 7th consecutive check. PDF generation creates the file but does NOT auto-link it into index.html. This is a repeatable process failure requiring a systemic fix to pdf-generator skill.",
-  "compoundingImprovement": "Auto-link PDFs into index.html at generation time. One skill update eliminates the entire class of orphan-file issues permanently. Systems > heroics."
+  "bottleneck": "PDF generation → dashboard linking gap. 8th consecutive check. pdf-generator skill creates files but does NOT auto-insert links into index.html. This causes every new PDF to be invisible to TJ until manually linked. Systemic fix required.",
+  "compoundingImprovement": "Update pdf-generator skill to auto-insert PDF links into index.html at generation time. One code change eliminates this entire class of orphan-file issues permanently. Add a post-generation hook that: (1) inserts the link card into the correct section, (2) updates the PDF count badge, (3) commits and pushes. Systems > heroics."
 }
