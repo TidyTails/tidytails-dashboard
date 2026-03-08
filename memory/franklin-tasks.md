@@ -6,6 +6,38 @@
 
 ## March 8, 2026 (Sunday)
 
+### 11:04 AM — 🎯 CUSTOMER RESCUE PLAYBOOK — Steal Dead Competitors' Customers (Hourly Task)
+**Task:** Deep research on the two dead competitors found in the 8 AM intel, identify exact Facebook groups & Nextdoor neighborhoods to target, and create copy-paste ready rescue posts
+**Result:** ✅ SHIPPED — Complete actionable playbook with 9 copy-paste posts, specific group links, DM scripts for orphaned customers, and a 50-minute checklist that could yield $300-500/mo recurring
+
+**Why This Task:**
+- The 8 AM competitive intel identified Fresh Paws (Wildwood) and Pawfect Waste Solutions as dead. Research → Playbook is the correct sequence.
+- These are the EASIEST customers to win: they already pay for the service, already understand the value, and need a replacement NOW.
+- This is NOT a dashboard or tool — it's a step-by-step action plan TJ can execute in 50 minutes.
+- Aligns with the weekly review's #1 message: "stop building, start executing."
+
+**What I Created:**
+`content/2026-03-08-CUSTOMER-RESCUE-PLAYBOOK.md` — Complete rescue playbook including:
+1. **Nextdoor posts** — 2 variations targeting Wildwood, Chesterfield, Ballwin neighborhoods with exact neighborhood names
+2. **Facebook groups** — 8 specific groups identified with links (Wildwood 365, Ellisville/Ballwin/Manchester Buy and Sell, Chesterfield Community Network, pet groups)
+3. **Facebook organic post** — 2 variations (formal and conversational)
+4. **Fresh Paws Facebook stalking guide** — How to find and DM their orphaned customers with ready script
+5. **Google territory claim** — Quick actions to outrank dead competitors
+6. **Timing plan** — Sunday Nextdoor, Monday Facebook, Tuesday follow-up
+7. **9-item checklist** with estimated 50 min total investment
+
+**Key Research Confirmed:**
+- Fresh Paws (wearefreshpaws.com) — Squarespace expired, CONFIRMED dead, had Facebook page at facebook.com/wearefreshpaws/
+- Pawfect Waste Solutions (pooperscooperstl.com) — Site returns "SITE NOT FOUND", CONFIRMED dead
+- Both served areas TJ already covers — this is pure market share pickup
+- Wildwood/Chesterfield top interest on Nextdoor: "dogs" — perfect targeting
+
+**Projected Impact:** 3-5 orphaned customers = $300-500/mo recurring revenue for 50 min of work
+
+**Rotation:** 🎯 Growth — Competitor Rescue & Customer Acquisition
+
+---
+
 ### 10:05 AM — 📍 GOOGLE VISIBILITY PLAYBOOK — From Invisible to Page 1 (Hourly Task)
 **Task:** Create a complete, step-by-step Google visibility action plan to solve TJ's #1 problem: being completely invisible on Google
 **Result:** ✅ SHIPPED — Comprehensive 4-tier playbook with exact instructions, copy-paste text, and weekly action items
