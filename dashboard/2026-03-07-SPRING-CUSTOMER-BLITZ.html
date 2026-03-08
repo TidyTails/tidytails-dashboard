@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Customer Blitz | Tidy Tails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #666;
+            --green: #10b981; --orange: #ff6b35; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+        
+        .header {
+            background: linear-gradient(135deg, #1a0a00 0%, #0a1a0a 100%);
+            border-bottom: 2px solid var(--orange);
+            padding: 2rem; text-align: center;
+        }
+        .header h1 { font-size: 2rem; font-weight: 800; }
+        .header h1 span { color: var(--orange); }
+        .header p { color: var(--text2); margin-top: 0.5rem; font-size: 0.95rem; }
+        .back-link { color: var(--blue); text-decoration: none; font-size: 0.85rem; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+        
+        /* Strategy Overview */
+        .strategy-box {
+            background: linear-gradient(135deg, rgba(255,107,53,0.08), rgba(16,185,129,0.08));
+            border: 1px solid var(--orange); border-radius: var(--radius);
+            padding: 1.5rem; margin-bottom: 2rem;
+        }
+        .strategy-box h2 { font-size: 1.2rem; margin-bottom: 0.75rem; color: var(--orange); }
+        .strategy-box .flow {
+            display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;
+            font-size: 0.95rem; margin-bottom: 1rem;
+        }
+        .flow-step {
+            background: var(--bg3); border: 1px solid var(--border);
+            padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600;
+        }
+        .flow-arrow { color: var(--orange); font-size: 1.2rem; }
+        .strategy-stats {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem; margin-top: 1rem;
+        }
+        .stat-card {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: 8px; padding: 1rem; text-align: center;
+        }
+        .stat-card .num { font-size: 1.8rem; font-weight: 800; }
+        .stat-card .label { font-size: 0.8rem; color: var(--text2); margin-top: 0.25rem; }
+        .stat-green .num { color: var(--green); }
+        .stat-orange .num { color: var(--orange); }
+        .stat-blue .num { color: var(--blue); }
+        .stat-yellow .num { color: var(--yellow); }
+        
+        /* Section headers */
+        .section { margin-bottom: 2rem; }
+        .section h2 {
+            font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem;
+            padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+        }
+        
+        /* Script cards */
+        .script-card {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem;
+            position: relative;
+        }
+        .script-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .script-card .when { 
+            font-size: 0.75rem; color: var(--text3); text-transform: uppercase;
+            letter-spacing: 0.05em; margin-bottom: 0.75rem;
+        }
+        .script-text {
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: 8px; padding: 1rem; font-size: 0.9rem;
+            line-height: 1.6; color: var(--text2); white-space: pre-wrap;
+            cursor: pointer; transition: border-color 0.2s;
+        }
+        .script-text:hover { border-color: var(--orange); }
+        .script-text.copied { border-color: var(--green); }
+        .copy-badge {
+            position: absolute; top: 1rem; right: 1rem;
+            font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.6rem;
+            border-radius: 4px; background: var(--bg4); color: var(--text2);
+        }
+        .copy-badge.copied { background: var(--green); color: #000; }
+        .script-note {
+            font-size: 0.8rem; color: var(--text3); margin-top: 0.75rem;
+            font-style: italic;
+        }
+        
+        /* Trial tracker */
+        .tracker {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: var(--radius); overflow: hidden;
+        }
+        .tracker-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 1.25rem; border-bottom: 1px solid var(--border);
+        }
+        .tracker-header h3 { font-weight: 700; }
+        .add-btn {
+            background: var(--orange); color: #000; font-weight: 700;
+            border: none; padding: 0.5rem 1rem; border-radius: 8px;
+            cursor: pointer; font-size: 0.85rem;
+        }
+        .add-btn:hover { filter: brightness(1.1); }
+        
+        .trial-list { padding: 0.5rem; }
+        .trial-item {
+            display: grid; grid-template-columns: 1fr auto auto auto;
+            gap: 0.75rem; align-items: center;
+            padding: 0.75rem; border-radius: 8px; margin-bottom: 0.25rem;
+            background: var(--bg3); border: 1px solid transparent;
+        }
+        .trial-item:hover { border-color: var(--border); }
+        .trial-name { font-weight: 600; font-size: 0.9rem; }
+        .trial-detail { font-size: 0.8rem; color: var(--text2); }
+        .trial-status {
+            font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.6rem;
+            border-radius: 4px; text-align: center; min-width: 80px;
+        }
+        .status-active { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .status-review { background: rgba(251,191,36,0.15); color: var(--yellow); }
+        .status-converted { background: rgba(16,185,129,0.15); color: var(--green); }
+        .status-lost { background: rgba(239,68,68,0.15); color: var(--red); }
+        .trial-actions { display: flex; gap: 0.25rem; }
+        .trial-actions button {
+            background: var(--bg4); border: 1px solid var(--border);
+            color: var(--text2); padding: 0.3rem 0.5rem; border-radius: 4px;
+            cursor: pointer; font-size: 0.75rem;
+        }
+        .trial-actions button:hover { border-color: var(--text2); color: var(--text); }
+        
+        .empty-state {
+            text-align: center; padding: 2rem; color: var(--text3);
+            font-size: 0.9rem;
+        }
+        
+        /* Review tracker */
+        .review-progress {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.25rem; margin-bottom: 1rem;
+        }
+        .review-bar-container {
+            background: var(--bg4); border-radius: 8px; height: 2rem;
+            overflow: hidden; margin: 0.75rem 0;
+        }
+        .review-bar {
+            background: linear-gradient(90deg, var(--orange), var(--green));
+            height: 100%; border-radius: 8px; transition: width 0.5s;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; font-weight: 700; color: #000;
+            min-width: fit-content; padding: 0 0.5rem;
+        }
+        .review-targets {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem; margin-top: 1rem;
+        }
+        .review-target {
+            text-align: center; padding: 0.75rem;
+            background: var(--bg3); border-radius: 8px;
+        }
+        .review-target .milestone { font-size: 1.5rem; font-weight: 800; }
+        .review-target .desc { font-size: 0.75rem; color: var(--text2); }
+        
+        /* Tactics grid */
+        .tactics-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+        .tactic-card {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.25rem;
+        }
+        .tactic-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .tactic-card .roi { 
+            display: inline-block; font-size: 0.7rem; font-weight: 600;
+            padding: 0.15rem 0.5rem; border-radius: 4px;
+            margin-bottom: 0.75rem;
+        }
+        .roi-high { background: rgba(16,185,129,0.15); color: var(--green); }
+        .roi-med { background: rgba(251,191,36,0.15); color: var(--yellow); }
+        .tactic-steps { list-style: none; }
+        .tactic-steps li {
+            font-size: 0.85rem; color: var(--text2); padding: 0.3rem 0;
+            padding-left: 1.25rem; position: relative;
+        }
+        .tactic-steps li::before {
+            content: '→'; position: absolute; left: 0; color: var(--orange);
+        }
+        .tactic-checklist { list-style: none; }
+        .tactic-checklist li {
+            font-size: 0.85rem; color: var(--text2); padding: 0.3rem 0;
+            cursor: pointer;
+        }
+        .tactic-checklist li::before { content: '☐ '; }
+        .tactic-checklist li.done { text-decoration: line-through; color: var(--text3); }
+        .tactic-checklist li.done::before { content: '☑ '; color: var(--green); }
+        
+        /* Pricing comparison */
+        .pricing-table {
+            width: 100%; border-collapse: collapse;
+            background: var(--bg2); border-radius: var(--radius);
+            overflow: hidden;
+        }
+        .pricing-table th, .pricing-table td {
+            padding: 0.75rem 1rem; text-align: left;
+            border-bottom: 1px solid var(--border); font-size: 0.85rem;
+        }
+        .pricing-table th { background: var(--bg3); font-weight: 600; color: var(--text2); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.05em; }
+        .price-current { color: var(--orange); font-weight: 700; }
+        .price-suggested { color: var(--green); font-weight: 700; }
+        .price-diff { color: var(--yellow); font-size: 0.8rem; }
+        
+        /* Math section */
+        .math-card {
+            background: var(--bg2); border: 1px solid var(--green);
+            border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1rem;
+        }
+        .math-card h3 { color: var(--green); margin-bottom: 1rem; }
+        .math-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+        }
+        .math-row:last-child { border-bottom: none; }
+        .math-row .val { font-weight: 700; font-size: 1rem; }
+        .math-row.total { margin-top: 0.5rem; padding-top: 0.75rem; border-top: 2px solid var(--green); }
+        .math-row.total .val { font-size: 1.3rem; color: var(--green); }
+        
+        /* Weekly planner */
+        .week-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+        }
+        .day-card {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: 8px; padding: 1rem;
+        }
+        .day-card h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--orange); }
+        .day-card ul { list-style: none; }
+        .day-card li {
+            font-size: 0.8rem; color: var(--text2); padding: 0.2rem 0;
+            cursor: pointer;
+        }
+        .day-card li::before { content: '○ '; color: var(--text3); }
+        .day-card li.done { color: var(--text3); text-decoration: line-through; }
+        .day-card li.done::before { content: '● '; color: var(--green); }
+        
+        /* Modal */
+        .modal-overlay {
+            display: none; position: fixed; inset: 0;
+            background: rgba(0,0,0,0.7); z-index: 100;
+            justify-content: center; align-items: center;
+        }
+        .modal-overlay.show { display: flex; }
+        .modal {
+            background: var(--bg2); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1.5rem;
+            width: 90%; max-width: 450px;
+        }
+        .modal h3 { margin-bottom: 1rem; }
+        .modal input, .modal select {
+            width: 100%; padding: 0.6rem; margin-bottom: 0.75rem;
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: 8px; color: var(--text); font-size: 0.9rem;
+        }
+        .modal-actions { display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 0.5rem; }
+        .btn-cancel { background: var(--bg4); color: var(--text2); border: 1px solid var(--border); padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; }
+        .btn-save { background: var(--green); color: #000; font-weight: 700; border: none; padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer; }
+        
+        @media (max-width: 600px) {
+            .strategy-box .flow { font-size: 0.8rem; }
+            .trial-item { grid-template-columns: 1fr; gap: 0.5rem; }
+            .pricing-table { font-size: 0.8rem; }
+            .week-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <a href="index.html" class="back-link">← Back to Dashboard</a>
+    <h1>🚀 Spring <span>Customer Blitz</span></h1>
+    <p>The proven playbook to go from 5 → 25 customers. Based on real companies that scaled to $200K+/year.</p>
+</div>
+
+<div class="container">
+
+    <!-- STRATEGY OVERVIEW -->
+    <div class="strategy-box">
+        <h2>🎯 The Playbook (Stolen From Companies That Did $200K+ Year 1)</h2>
+        <div class="flow">
+            <span class="flow-step">🏠 Free Trial</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step">⭐ Google Review</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step">💰 Paid Customer</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step">📣 Referral</span>
+        </div>
+        <p style="font-size:0.9rem; color:var(--text2); margin-bottom:1rem;">
+            <strong style="color:var(--text);">The #1 tactic from Kroopin's Poopin Scoopin (376 reviews, 200 weekly customers, multi-six-figures):</strong>
+            Offer 2-3 free cleanups. Get a Google review. 30-40% convert to paid. Even the ones who don't? They gave you a review that sells FUTURE customers. It's a win-win.
+        </p>
+        <div class="strategy-stats">
+            <div class="stat-card stat-orange">
+                <div class="num" id="stat-trials">0</div>
+                <div class="label">Free Trials Active</div>
+            </div>
+            <div class="stat-card stat-yellow">
+                <div class="num" id="stat-reviews">0</div>
+                <div class="label">Reviews Collected</div>
+            </div>
+            <div class="stat-card stat-green">
+                <div class="num" id="stat-converted">0</div>
+                <div class="label">Converted to Paid</div>
+            </div>
+            <div class="stat-card stat-blue">
+                <div class="num" id="stat-rate">0%</div>
+                <div class="label">Conversion Rate</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- THE MATH -->
+    <div class="section">
+        <h2>📊 The Math: How Free Trials Print Money</h2>
+        <div class="math-card">
+            <h3>Why giving away free work is your BEST investment</h3>
+            <div class="math-row">
+                <span>Free trials offered per week</span>
+                <span class="val">5</span>
+            </div>
+            <div class="math-row">
+                <span>Weeks in March-April push</span>
+                <span class="val">8</span>
+            </div>
+            <div class="math-row">
+                <span>Total free trials = 40 households</span>
+                <span class="val">40</span>
+            </div>
+            <div class="math-row">
+                <span>Conversion rate (industry avg 30-40%)</span>
+                <span class="val">35%</span>
+            </div>
+            <div class="math-row">
+                <span>New paying customers</span>
+                <span class="val" style="color:var(--orange)">14</span>
+            </div>
+            <div class="math-row">
+                <span>Revenue per customer @ $80/mo</span>
+                <span class="val">$80</span>
+            </div>
+            <div class="math-row total">
+                <span><strong>New monthly revenue added</strong></span>
+                <span class="val">$1,120/mo</span>
+            </div>
+            <div class="math-row">
+                <span>Google reviews collected (even non-converts)</span>
+                <span class="val" style="color:var(--yellow)">30+</span>
+            </div>
+            <div class="math-row">
+                <span>Cost to TJ</span>
+                <span class="val" style="color:var(--text2)">~16 hrs labor</span>
+            </div>
+        </div>
+        <p style="font-size:0.85rem; color:var(--text2); margin-top:0.5rem;">
+            ☝️ Even at 25% conversion, that's 10 new customers + 30 Google reviews. The reviews alone will generate organic leads for months. This is the CHEAPEST customer acquisition you'll ever do.
+        </p>
+    </div>
+
+    <!-- PRICING UPGRADE -->
+    <div class="section">
+        <h2>💰 Pricing Reality Check (You're Leaving Money on the Table)</h2>
+        <div style="overflow-x:auto;">
+        <table class="pricing-table">
+            <thead>
+                <tr>
+                    <th>Service</th>
+                    <th>TJ's Current</th>
+                    <th>Doggie Doodies</th>
+                    <th>Market Avg</th>
+                    <th>Suggested</th>
+                    <th>Extra $/mo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1 Dog, Weekly</td>
+                    <td class="price-current">$70</td>
+                    <td>$83</td>
+                    <td>$80-95</td>
+                    <td class="price-suggested">$80</td>
+                    <td class="price-diff">+$10 × 25 = <strong>$250/mo</strong></td>
+                </tr>
+                <tr>
+                    <td>2 Dogs, Weekly</td>
+                    <td class="price-current">$70</td>
+                    <td>$88</td>
+                    <td>$85-100</td>
+                    <td class="price-suggested">$90</td>
+                    <td class="price-diff">+$20 × est 8 = <strong>$160/mo</strong></td>
+                </tr>
+                <tr>
+                    <td>3+ Dogs, Weekly</td>
+                    <td class="price-current">$70</td>
+                    <td>$100-121</td>
+                    <td>$100-130</td>
+                    <td class="price-suggested">$100</td>
+                    <td class="price-diff">+$30 × est 5 = <strong>$150/mo</strong></td>
+                </tr>
+                <tr style="background:var(--bg3);">
+                    <td colspan="4"><strong>Total extra revenue at 25 customers</strong></td>
+                    <td colspan="2"><strong style="color:var(--green); font-size:1.1rem;">+$560/mo</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+        <p style="font-size:0.85rem; color:var(--text2); margin-top:0.75rem;">
+            💡 <strong>Pro move:</strong> Keep $70 for existing customers (loyalty). New customers start at $80+. Multi-dog homes get per-dog pricing. You're STILL cheaper than Doggie Doodies.
+        </p>
+    </div>
+
+    <!-- COPY-PASTE SCRIPTS -->
+    <div class="section">
+        <h2>📱 Copy-Paste Scripts (Tap to Copy)</h2>
+        
+        <div class="script-card">
+            <h3>🏠 Free Trial Offer — Nextdoor / Facebook Post</h3>
+            <div class="when">Post in neighborhood groups, buy/sell/trade, pet groups</div>
+            <div class="script-text" onclick="copyScript(this)">Hey neighbors! 👋 I'm TJ with Tidy Tails — local pet waste removal here in [NEIGHBORHOOD].
+
+Spring's here and I know those backyards are... rough 😅
+
+I'm offering FREE cleanups for the next 2 weeks to introduce myself to the neighborhood. No strings attached. I just ask that if you're happy with the service, you leave me a quick Google review.
+
+I come weekly, scoop everything, bag it, and take it with me. You literally never have to think about poop again.
+
+Drop a comment or DM me if you want on the list! 🐕💩
+
+Serving: Ballwin, Manchester, Ellisville, Chesterfield, Wildwood, Kirkwood & surrounding areas.</div>
+            <span class="copy-badge">TAP TO COPY</span>
+            <p class="script-note">💡 Post this in every local FB group you can find. Search: "[City] Buy Sell Trade", "[City] Community", "[City] Pet Owners", "Craigslist of [City]"</p>
+        </div>
+
+        <div class="script-card">
+            <h3>💬 Free Trial — Direct Text to Friends/Neighbors</h3>
+            <div class="when">Text to anyone you know with a dog in your service area</div>
+            <div class="script-text" onclick="copyScript(this)">Hey! Quick question — do you (or anyone you know) have dogs? I started a pet waste removal service and I'm offering free cleanups for 2 weeks to get some Google reviews. Literally just come scoop the yard, bag it, gone. No catch. Interested?</div>
+            <span class="copy-badge">TAP TO COPY</span>
+            <p class="script-note">💡 Send to EVERYONE in your phone who lives in the area. Even if they don't have dogs, they might know someone. Ask them to forward it.</p>
+        </div>
+
+        <div class="script-card">
+            <h3>⭐ Review Request — After 2nd Free Cleanup</h3>
+            <div class="when">Text after the 2nd free visit</div>
+            <div class="script-text" onclick="copyScript(this)">Hey [NAME]! Just finished your 2nd cleanup 👍 Hope the yard's looking good! Would you mind leaving me a quick Google review? It really helps a small local business like mine. Here's the link:
+
+[GOOGLE REVIEW LINK]
+
+And if you want to keep the service going, I'd love to have you as a regular! Just $80/month for weekly cleanups. Either way, thanks for letting me take care of your yard! 🙏</div>
+            <span class="copy-badge">TAP TO COPY</span>
+        </div>
+
+        <div class="script-card">
+            <h3>🔄 Conversion Text — End of Free Trial</h3>
+            <div class="when">After the final free cleanup (usually visit 2-3)</div>
+            <div class="script-text" onclick="copyScript(this)">Hey [NAME]! That was your last free cleanup — hopefully [DOG NAME] approves of my work 😄
+
+If you'd like to keep it going, here's what I offer:
+
+🐕 1 dog: $80/mo (weekly service)
+🐕🐕 2 dogs: $90/mo
+🐕🐕🐕 3+ dogs: $100/mo
+
+That's less than $20/week to never think about poop again. I handle everything — scoop, bag, haul away.
+
+Want me to add you to the schedule? No contracts, cancel anytime.</div>
+            <span class="copy-badge">TAP TO COPY</span>
+        </div>
+
+        <div class="script-card">
+            <h3>📣 Referral Ask — To Existing Customers</h3>
+            <div class="when">Text to current paying customers</div>
+            <div class="script-text" onclick="copyScript(this)">Hey [NAME]! Hope you're loving the clean yard 🐕 Quick ask — know anyone else who'd want the same service? If they sign up, I'll give you a free month on me. Just have them mention your name when they reach out. Thanks! 🙏</div>
+            <span class="copy-badge">TAP TO COPY</span>
+        </div>
+
+        <div class="script-card">
+            <h3>🌸 Google Business Profile Post — Spring Special</h3>
+            <div class="when">Post as an update on your GBP page</div>
+            <div class="script-text" onclick="copyScript(this)">🌸 Spring Clean-Up Special! 🌸
+
+Winter's over and your backyard doesn't have to suffer anymore. Tidy Tails is offering FREE introductory cleanups for new customers in the West St. Louis County area!
+
+✅ Professional pet waste removal
+✅ Weekly service available
+✅ We scoop, bag, and haul everything away
+✅ Serving Ballwin, Manchester, Ellisville, Chesterfield, Wildwood & more
+
+DM us or call to get started. Your pup (and your shoes) will thank you! 🐕💩</div>
+            <span class="copy-badge">TAP TO COPY</span>
+        </div>
+    </div>
+
+    <!-- FREE TRIAL TRACKER -->
+    <div class="section">
+        <h2>📋 Free Trial Tracker</h2>
+        <div class="tracker">
+            <div class="tracker-header">
+                <h3>Active Trials</h3>
+                <button class="add-btn" onclick="openModal()">+ Add Trial</button>
+            </div>
+            <div class="trial-list" id="trialList">
+                <div class="empty-state" id="emptyState">
+                    No trials yet. Hit "+ Add Trial" to start tracking free trial offers!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GOOGLE REVIEW TRACKER -->
+    <div class="section">
+        <h2>⭐ Google Review Progress</h2>
+        <div class="review-progress">
+            <p style="font-size:0.9rem; color:var(--text2); margin-bottom:0.5rem;">
+                <strong style="color:var(--text);">Why reviews matter:</strong> Erica from Kroopin's gets 118 calls/month from Google — FOR FREE. She has 376 reviews. Your #1 competitor (Doggie Doodies) probably has way fewer. Every review = more visibility = more free leads.
+            </p>
+            <div style="display:flex; justify-content:space-between; font-size:0.85rem;">
+                <span>Current Reviews: <strong id="currentReviews">0</strong></span>
+                <span>Goal: <strong>50 reviews</strong></span>
+            </div>
+            <div class="review-bar-container">
+                <div class="review-bar" id="reviewBar" style="width:0%">0%</div>
+            </div>
+            <div class="review-targets">
+                <div class="review-target">
+                    <div class="milestone" style="color:var(--yellow)">10</div>
+                    <div class="desc">Credibility threshold — people trust you</div>
+                </div>
+                <div class="review-target">
+                    <div class="milestone" style="color:var(--orange)">25</div>
+                    <div class="desc">Start ranking in Google Maps "3-pack"</div>
+                </div>
+                <div class="review-target">
+                    <div class="milestone" style="color:var(--green)">50</div>
+                    <div class="desc">Dominate local search. Free leads on autopilot.</div>
+                </div>
+            </div>
+            <div style="margin-top:1rem; display:flex; gap:0.5rem; align-items:center;">
+                <button onclick="addReview()" style="background:var(--yellow); color:#000; font-weight:700; border:none; padding:0.5rem 1rem; border-radius:8px; cursor:pointer;">+ Got a Review!</button>
+                <button onclick="removeReview()" style="background:var(--bg4); color:var(--text2); border:1px solid var(--border); padding:0.5rem 0.75rem; border-radius:8px; cursor:pointer; font-size:0.8rem;">-1</button>
+                <span style="font-size:0.8rem; color:var(--text3); margin-left:0.5rem;">Click each time you get a new Google review</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEEKLY EXECUTION PLAN -->
+    <div class="section">
+        <h2>📅 Weekly Execution Playbook (Every Week, March-April)</h2>
+        <div class="week-grid">
+            <div class="day-card">
+                <h4>Monday</h4>
+                <ul>
+                    <li onclick="this.classList.toggle('done')">Post in 2 FB groups</li>
+                    <li onclick="this.classList.toggle('done')">Text 3 people for trials</li>
+                    <li onclick="this.classList.toggle('done')">Update GBP post</li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <h4>Tuesday</h4>
+                <ul>
+                    <li onclick="this.classList.toggle('done')">Service regular clients</li>
+                    <li onclick="this.classList.toggle('done')">Do 1-2 free trials</li>
+                    <li onclick="this.classList.toggle('done')">Send review request texts</li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <h4>Wednesday</h4>
+                <ul>
+                    <li onclick="this.classList.toggle('done')">Post in 2 more FB groups</li>
+                    <li onclick="this.classList.toggle('done')">Post on Nextdoor</li>
+                    <li onclick="this.classList.toggle('done')">Respond to ANY inquiries fast</li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <h4>Thursday</h4>
+                <ul>
+                    <li onclick="this.classList.toggle('done')">Service regular clients</li>
+                    <li onclick="this.classList.toggle('done')">Do 1-2 free trials</li>
+                    <li onclick="this.classList.toggle('done')">Follow up on trial leads</li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <h4>Friday</h4>
+                <ul>
+                    <li onclick="this.classList.toggle('done')">Post Instagram content</li>
+                    <li onclick="this.classList.toggle('done')">Send conversion texts</li>
+                    <li onclick="this.classList.toggle('done')">Check Google reviews</li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <h4>Saturday</h4>
+                <ul>
+                    <li onclick="this.classList.toggle('done')">Canvass 1 neighborhood</li>
+                    <li onclick="this.classList.toggle('done')">Leave 30 door hangers</li>
+                    <li onclick="this.classList.toggle('done')">Post in weekend FB groups</li>
+                </ul>
+            </div>
+            <div class="day-card">
+                <h4>Sunday</h4>
+                <ul>
+                    <li onclick="this.classList.toggle('done')">Plan next week's posts</li>
+                    <li onclick="this.classList.toggle('done')">Review trial tracker</li>
+                    <li onclick="this.classList.toggle('done')">Text trial follow-ups</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- GROWTH TACTICS -->
+    <div class="section">
+        <h2>🔥 Proven Growth Tactics (Ranked by ROI)</h2>
+        <div class="tactics-grid">
+            <div class="tactic-card">
+                <h3>1. Free Trial → Review Pipeline</h3>
+                <span class="roi roi-high">💰 HIGHEST ROI — DO THIS FIRST</span>
+                <ul class="tactic-steps">
+                    <li>Offer 2-3 free cleanups to anyone with a dog in service area</li>
+                    <li>After 2nd visit, ask for Google review</li>
+                    <li>After final free visit, send conversion text with pricing</li>
+                    <li>Even non-converts give you a review = future leads</li>
+                    <li>Target: 5 new trials per week</li>
+                </ul>
+            </div>
+            <div class="tactic-card">
+                <h3>2. Facebook Group Saturation</h3>
+                <span class="roi roi-high">💰 HIGH ROI — FREE</span>
+                <ul class="tactic-steps">
+                    <li>Join every buy/sell/trade group in your service cities</li>
+                    <li>Post 2-3x per week per group (vary the content!)</li>
+                    <li>Funny posts get shared more — use humor</li>
+                    <li>Many dog owners don't know this service exists — educate</li>
+                    <li>Reply to EVERY comment within 30 minutes</li>
+                </ul>
+            </div>
+            <div class="tactic-card">
+                <h3>3. Google Business Profile Domination</h3>
+                <span class="roi roi-high">💰 HIGH ROI — FREE</span>
+                <ul class="tactic-steps">
+                    <li>Post updates weekly (offers, photos, tips)</li>
+                    <li>Upload photos after every service (clean yard shots)</li>
+                    <li>Respond to every review (boosts ranking)</li>
+                    <li>Use keywords: "pet waste removal [city]" in description</li>
+                    <li>Category: "Waste Management" (no pet waste option yet)</li>
+                    <li>Goal: 50+ reviews to dominate the map pack</li>
+                </ul>
+            </div>
+            <div class="tactic-card">
+                <h3>4. Nextdoor — Your Secret Weapon</h3>
+                <span class="roi roi-high">💰 HIGH ROI — FREE</span>
+                <ul class="tactic-steps">
+                    <li>Create business page, post as the business</li>
+                    <li>Offer "neighborhood discounts" exclusive to Nextdoor</li>
+                    <li>Be helpful first — answer pet questions, give tips</li>
+                    <li>Post spring cleanup specials</li>
+                    <li>Neighbors trust Nextdoor recommendations over any ad</li>
+                </ul>
+            </div>
+            <div class="tactic-card">
+                <h3>5. Referral Program</h3>
+                <span class="roi roi-high">💰 HIGH ROI — NEARLY FREE</span>
+                <ul class="tactic-steps">
+                    <li>Offer 1 free month for every referral that signs up</li>
+                    <li>Text all current customers the referral offer</li>
+                    <li>Mention it at the end of every service</li>
+                    <li>Cost: 1 month of service ($80) to acquire a customer worth $960/year</li>
+                    <li>Best ROI: your existing customers already sell for you</li>
+                </ul>
+            </div>
+            <div class="tactic-card">
+                <h3>6. Door Hangers in Target Neighborhoods</h3>
+                <span class="roi roi-med">🟡 MEDIUM ROI — LOW COST</span>
+                <ul class="tactic-steps">
+                    <li>Focus on Tier 1 neighborhoods (Ballwin, Chesterfield, Manchester)</li>
+                    <li>Saturday mornings: walk 2-3 streets, hang 30-50</li>
+                    <li>Include spring special + Google review count</li>
+                    <li>QR code to your Google profile or website</li>
+                    <li>Expected response: 1-2% (1-2 leads per 100 hangers)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- KEY INSIGHTS FROM SUCCESSFUL COMPANIES -->
+    <div class="section">
+        <h2>🧠 What Successful Companies Did (So You Don't Have to Guess)</h2>
+        <div class="tactics-grid">
+            <div class="tactic-card" style="border-left: 3px solid var(--purple);">
+                <h3 style="color:var(--purple);">Kroopin's Poopin Scoopin — $200K+/yr</h3>
+                <ul class="tactic-steps">
+                    <li><strong>376 Google reviews</strong> — #1 growth driver, gets 118 calls/month from Google alone</li>
+                    <li>Started at $55/mo, now at $99/mo average — raised prices gradually</li>
+                    <li>Uses automated review request tool (NiceJob → Review Harvest)</li>
+                    <li>Bright pink vehicle wraps — one Nextdoor post about the wraps = 10 new inquiries</li>
+                    <li>Full-time employee handles 125 houses/week at $18.50/hr</li>
+                    <li>Commercial contracts: 17-station dog waste = $625/mo each</li>
+                </ul>
+            </div>
+            <div class="tactic-card" style="border-left: 3px solid var(--blue);">
+                <h3 style="color:var(--blue);">Fresh Start Pet Waste — $200K Year 1</h3>
+                <ul class="tactic-steps">
+                    <li>FB + Google ads pulling 2-5 leads DAILY</li>
+                    <li>175+ 5-star reviews in first year</li>
+                    <li>Key: NEVER pause ad spend — constant visibility wins</li>
+                    <li>Branded trucks as mobile billboards</li>
+                    <li>Strong lead-to-sale process — team trained on conversion</li>
+                    <li>Since the service is "new-ish," education-based marketing works best</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ADD TRIAL MODAL -->
+<div class="modal-overlay" id="trialModal">
+    <div class="modal">
+        <h3>Add Free Trial</h3>
+        <input type="text" id="trialName" placeholder="Name (e.g., Sarah M.)">
+        <input type="text" id="trialNeighborhood" placeholder="Neighborhood (e.g., Ballwin)">
+        <input type="text" id="trialDog" placeholder="Dog name(s) (optional)">
+        <select id="trialSource">
+            <option value="">How did they hear about you?</option>
+            <option value="facebook">Facebook Group</option>
+            <option value="nextdoor">Nextdoor</option>
+            <option value="referral">Referral</option>
+            <option value="text">Direct Text</option>
+            <option value="door">Door Hanger</option>
+            <option value="google">Google Search</option>
+            <option value="other">Other</option>
+        </select>
+        <div class="modal-actions">
+            <button class="btn-cancel" onclick="closeModal()">Cancel</button>
+            <button class="btn-save" onclick="saveTrial()">Add Trial</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// === DATA STORE ===
+const STORAGE_KEY = 'tidytails-blitz';
+
+function loadData() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) return JSON.parse(raw);
+    return { trials: [], reviews: 0 };
+}
+
+function saveData(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+// === TRIAL MANAGEMENT ===
+function openModal() {
+    document.getElementById('trialModal').classList.add('show');
+    document.getElementById('trialName').focus();
+}
+
+function closeModal() {
+    document.getElementById('trialModal').classList.remove('show');
+    document.getElementById('trialName').value = '';
+    document.getElementById('trialNeighborhood').value = '';
+    document.getElementById('trialDog').value = '';
+    document.getElementById('trialSource').value = '';
+}
+
+function saveTrial() {
+    const name = document.getElementById('trialName').value.trim();
+    if (!name) return;
+    
+    const data = loadData();
+    data.trials.push({
+        id: Date.now(),
+        name: name,
+        neighborhood: document.getElementById('trialNeighborhood').value.trim(),
+        dog: document.getElementById('trialDog').value.trim(),
+        source: document.getElementById('trialSource').value,
+        status: 'active', // active, review, converted, lost
+        visits: 0,
+        reviewDone: false,
+        created: new Date().toISOString()
+    });
+    saveData(data);
+    closeModal();
+    render();
+}
+
+function updateStatus(id, status) {
+    const data = loadData();
+    const trial = data.trials.find(t => t.id === id);
+    if (trial) trial.status = status;
+    saveData(data);
+    render();
+}
+
+function addVisit(id) {
+    const data = loadData();
+    const trial = data.trials.find(t => t.id === id);
+    if (trial) {
+        trial.visits++;
+        if (trial.visits >= 2 && trial.status === 'active') {
+            trial.status = 'review'; // Time to ask for review
+        }
+    }
+    saveData(data);
+    render();
+}
+
+function removeTrial(id) {
+    const data = loadData();
+    data.trials = data.trials.filter(t => t.id !== id);
+    saveData(data);
+    render();
+}
+
+// === REVIEWS ===
+function addReview() {
+    const data = loadData();
+    data.reviews++;
+    saveData(data);
+    render();
+}
+
+function removeReview() {
+    const data = loadData();
+    if (data.reviews > 0) data.reviews--;
+    saveData(data);
+    render();
+}
+
+// === COPY SCRIPTS ===
+function copyScript(el) {
+    navigator.clipboard.writeText(el.textContent.trim());
+    el.classList.add('copied');
+    const badge = el.parentElement.querySelector('.copy-badge');
+    badge.textContent = '✓ COPIED!';
+    badge.classList.add('copied');
+    setTimeout(() => {
+        el.classList.remove('copied');
+        badge.textContent = 'TAP TO COPY';
+        badge.classList.remove('copied');
+    }, 2000);
+}
+
+// === RENDER ===
+function render() {
+    const data = loadData();
+    const trials = data.trials;
+    
+    // Stats
+    const active = trials.filter(t => t.status === 'active' || t.status === 'review').length;
+    const converted = trials.filter(t => t.status === 'converted').length;
+    const total = trials.length;
+    const rate = total > 0 ? Math.round((converted / total) * 100) : 0;
+    
+    document.getElementById('stat-trials').textContent = active;
+    document.getElementById('stat-reviews').textContent = data.reviews;
+    document.getElementById('stat-converted').textContent = converted;
+    document.getElementById('stat-rate').textContent = rate + '%';
+    
+    // Review bar
+    const pct = Math.min(100, Math.round((data.reviews / 50) * 100));
+    document.getElementById('currentReviews').textContent = data.reviews;
+    document.getElementById('reviewBar').style.width = pct + '%';
+    document.getElementById('reviewBar').textContent = pct + '%';
+    
+    // Trial list
+    const list = document.getElementById('trialList');
+    const empty = document.getElementById('emptyState');
+    
+    if (trials.length === 0) {
+        empty.style.display = 'block';
+        list.querySelectorAll('.trial-item').forEach(el => el.remove());
+        return;
+    }
+    
+    empty.style.display = 'none';
+    
+    // Clear and rebuild
+    list.querySelectorAll('.trial-item').forEach(el => el.remove());
+    
+    const statusLabels = {
+        active: ['In Progress', 'status-active'],
+        review: ['Ask for Review!', 'status-review'],
+        converted: ['💰 Converted!', 'status-converted'],
+        lost: ['Did Not Convert', 'status-lost']
+    };
+    
+    const sourceEmoji = {
+        facebook: '📘', nextdoor: '🏡', referral: '🤝',
+        text: '💬', door: '🚪', google: '🔍', other: '📌', '': '📌'
+    };
+    
+    trials.sort((a, b) => {
+        const order = { review: 0, active: 1, converted: 2, lost: 3 };
+        return (order[a.status] || 0) - (order[b.status] || 0);
+    });
+    
+    trials.forEach(t => {
+        const [label, cls] = statusLabels[t.status] || ['Unknown', 'status-active'];
+        const emoji = sourceEmoji[t.source] || '📌';
+        
+        const item = document.createElement('div');
+        item.className = 'trial-item';
+        item.innerHTML = `
+            <div>
+                <div class="trial-name">${emoji} ${t.name}</div>
+                <div class="trial-detail">${t.neighborhood}${t.dog ? ' · 🐕 ' + t.dog : ''} · Visits: ${t.visits}</div>
+            </div>
+            <div class="trial-status ${cls}">${label}</div>
+            <div class="trial-actions">
+                ${t.status === 'active' || t.status === 'review' ? `
+                    <button onclick="addVisit(${t.id})" title="Log a visit">+Visit</button>
+                    <button onclick="updateStatus(${t.id},'converted')" title="They signed up!">💰</button>
+                    <button onclick="updateStatus(${t.id},'lost')" title="Did not convert">✕</button>
+                ` : ''}
+                <button onclick="removeTrial(${t.id})" title="Delete">🗑</button>
+            </div>
+        `;
+        list.appendChild(item);
+    });
+}
+
+// Init
+render();
+</script>
+
+</body>
+</html>
