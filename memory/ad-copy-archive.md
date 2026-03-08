@@ -4,6 +4,30 @@
 
 ---
 
+## March 8, 2026 — Sunday DST Pack (9 AM Task)
+
+**Shed-Mar94 - "Spring Forward, Space Forward" (FB Marketplace + Groups)**
+- Hook: Daylight Saving Time happened — spring forward your space too
+- Key: Time change metaphor, garage stuck in 2024, gain square footage
+- Used: TBD (Marketplace + Groups Sun 3/8 AM)
+
+**Shed-Mar95 - "The Sunday Scroll" (FB Marketplace + Nextdoor)**
+- Hook: Self-aware Sunday browsing — you keep seeing sheds for a reason
+- Key: "This is your sign" moment, low-commitment CTA
+- Used: TBD (Marketplace + Nextdoor Sun 3/8 PM)
+
+**Shed-Mar96 - "What $6 a Day Gets You" (FB Marketplace + Groups)**
+- Hook: $6/day = value meal OR a shed — daily cost reframe
+- Key: McDonald's comparison, $180/mo anchor, investment vs consumption
+- Used: TBD (Marketplace + Groups Mon 3/9 AM)
+
+**Shed-Mar97 - "Your Mower Has Seen Things" (FB Marketplace + Instagram)**
+- Hook: Anthropomorphized lawn equipment — mower weathered all winter
+- Key: Equipment protection humor, weather damage = real cost
+- Used: TBD (Marketplace + Instagram Mon 3/9 PM)
+
+---
+
 ## March 7, 2026 — Saturday Weekend Pack (9 AM Task)
 
 **Shed-Mar90 - "Saturday Lot Walk" (FB Marketplace + Groups)**
