@@ -6,6 +6,36 @@
 
 ## March 8, 2026 (Sunday)
 
+### 5:04 PM — 🌐 CUSTOMER-FACING LANDING PAGE — The Missing Foundation (Hourly Task)
+**Task:** Build a professional, SEO-optimized customer-facing landing page that potential customers can actually find, read, and convert from
+**Result:** ✅ SHIPPED — Full landing page with structured data, mobile-first design, clear pricing, service areas, FAQ, and click-to-call/text CTAs
+
+**Why This Task:**
+- Today's 8 AM intel confirmed TJ is INVISIBLE on Google. Every playbook since then says "set up GBP, get listed on directories" — but there was no customer-facing page to link TO.
+- The dashboard has 68 internal tools. Zero customer-facing pages. Customers don't care about CRMs — they need to see pricing, service areas, and a phone number.
+- Google can't rank what doesn't exist. This is the foundation everything else needs.
+- Unlike another internal tool, this page works WITHOUT TJ executing anything. It's live, indexable, and converting right now.
+
+**What I Created:**
+`dashboard/landing.html` — Professional landing page including:
+1. **Hero section** with click-to-call and click-to-text CTAs
+2. **Pricing grid** — All 3 tiers ($70/$95/$135) plus one-time deep cleans
+3. **20 service areas** listed (Florissant through Town & Country)
+4. **6 benefit cards** — Locally owned, savings, no contracts, reliable
+5. **7 FAQ items** with interactive expand/collapse
+6. **Full JSON-LD structured data** — LocalBusiness schema with services, pricing, hours, 14 service areas
+7. **SEO meta tags** targeting "pet waste removal st louis"
+8. **Mobile-first responsive design**
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/landing.html
+**Commit:** `2339795` on `tidytails-dashboard` repo
+
+**Projected Impact:** Foundation for ALL Google visibility efforts. Unblocks GBP, directory listings, and social profile links.
+
+**Rotation:** 🌐 Growth — Customer-Facing Web Presence & SEO Foundation
+
+---
+
 ### 4:04 PM — 🏗️ SHED COMPETITIVE PRICING CHEAT SHEET — Know the Battlefield (Hourly Task)
 **Task:** Research every active shed competitor in the St. Louis market, compile pricing data across sizes, and create an objection-handling cheat sheet TJ can reference during sales conversations
 **Result:** ✅ SHIPPED — Complete competitive pricing matrix with 7 competitors mapped, price comparisons across 3 size tiers, objection-handling scripts, and market positioning intel
