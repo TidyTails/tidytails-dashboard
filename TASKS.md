@@ -1,21 +1,22 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-07 08:00 CST*
+*Last updated: 2026-03-08 08:00 CST*
 
 ---
 
 ## 🐕 DOG WASTE (Tidy Tails)
 
 ### 🔥 In Progress
-- [ ] **Google Indexing** — Site live, Search Console submitted (Mar 5), STILL 0 pages indexed (Day 2)
-  - Status: Waiting on Google to crawl. robots.txt + sitemap.xml confirmed correct. Checked Mar 7 AM.
+- [ ] **Google Indexing** — Site live, Search Console submitted (Mar 5), STILL 0 pages indexed (Day 3)
+  - Status: Waiting on Google to crawl. Checked Mar 8 AM — `site:tidytailsstl.com` returns 0 on Brave.
   - Owner: Google (nothing more we can do — if still 0 by Mar 10, escalate with manual URL inspection)
-  - Expected: 3-7 days for initial indexing (Day 2 of 7)
+  - Expected: 3-7 days for initial indexing (Day 3 of 7)
 
 - [ ] **Spring Marketing Push** — FB group posts, spring-themed content
-  - Status: Saturday posts ready (2026-03-07), Friday posts ready (2026-03-06)
-  - NEW: Fresh Paws customer grab campaign created (Wildwood/Ballwin area)
-  - NEW: Door hanger/flyer text ready for print
+  - Status: Week 11 posts ready (Mar 9-14), Saturday posts (Mar 7), Friday posts (Mar 6)
+  - Monday post uses Daylight Saving hook (clocks sprang forward today!)
+  - Fresh Paws customer grab campaign still ready (Wildwood/Ballwin area)
+  - Door hanger/flyer text ready for print
   - Owner: TJ (posting + printing) + Franklin (content creation)
 
 - [ ] **Ad Creative Pipeline** — AI video ads for social media
