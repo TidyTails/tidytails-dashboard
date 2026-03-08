@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 Neighborhood Targeting Intel — Tidy Tails</title>
+<style>
+:root {
+  --bg: #0a0a0a; --card: #141414; --border: #262626; --border2: #333;
+  --text: #e0e0e0; --text2: #999; --text3: #666;
+  --green: #4a8; --green-bg: #1a2a1a; --green-dark: #2d5a27;
+  --gold: #e8a832; --gold-bg: #2a2210; --gold-border: #554420;
+  --blue: #5588cc; --blue-bg: #1a1a2a; --blue-border: #334;
+  --red: #c44; --red-bg: #2a1a1a;
+  --purple: #a66dd4; --purple-bg: #1f1a2a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 12px; max-width: 900px; margin: 0 auto; }
+h1 { font-size: 1.4rem; margin-bottom: 4px; }
+.subtitle { color: var(--text2); font-size: 0.82rem; margin-bottom: 16px; }
+.insight-bar { background: var(--gold-bg); border: 1px solid var(--gold-border); border-radius: 10px; padding: 14px; margin-bottom: 16px; }
+.insight-bar h3 { color: var(--gold); font-size: 0.9rem; margin-bottom: 6px; }
+.insight-bar p { font-size: 0.82rem; color: #cca; line-height: 1.5; }
+.stats-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+.stat-box { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px; flex: 1; min-width: 90px; text-align: center; }
+.stat-box .num { font-size: 1.5rem; font-weight: bold; color: var(--green); }
+.stat-box .label { font-size: 0.68rem; color: var(--text2); margin-top: 2px; }
+
+/* Tabs */
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+.tab { padding: 8px 14px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 0.78rem; color: var(--text2); transition: all 0.2s; }
+.tab.active { background: var(--green-dark); border-color: var(--green); color: #fff; }
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* Neighborhood Cards */
+.hood-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; position: relative; }
+.hood-card.tier1 { border-left: 3px solid var(--gold); }
+.hood-card.tier2 { border-left: 3px solid var(--green); }
+.hood-card.tier3 { border-left: 3px solid var(--blue); }
+.hood-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px; }
+.hood-name { font-size: 1.05rem; font-weight: bold; color: #fff; }
+.hood-zip { color: var(--text3); font-size: 0.75rem; }
+.score-badge { padding: 4px 10px; border-radius: 20px; font-weight: bold; font-size: 0.85rem; }
+.score-high { background: var(--gold-bg); color: var(--gold); border: 1px solid var(--gold-border); }
+.score-mid { background: var(--green-bg); color: var(--green); border: 1px solid #2a4a2a; }
+.score-low { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+
+.hood-stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 10px; }
+.hood-stat { font-size: 0.78rem; }
+.hood-stat .hs-label { color: var(--text3); font-size: 0.68rem; }
+.hood-stat .hs-val { color: var(--text); font-weight: 600; }
+
+.hood-why { background: var(--green-bg); border-radius: 6px; padding: 10px; margin-bottom: 8px; font-size: 0.8rem; color: #adc; line-height: 1.4; }
+.hood-why strong { color: var(--green); }
+
+.hood-action { font-size: 0.78rem; color: var(--text2); line-height: 1.4; }
+.hood-action strong { color: var(--gold); }
+
+.tier-header { margin: 20px 0 10px; padding: 8px 12px; border-radius: 8px; font-size: 0.9rem; font-weight: bold; }
+.tier1-header { background: var(--gold-bg); color: var(--gold); border: 1px solid var(--gold-border); }
+.tier2-header { background: var(--green-bg); color: var(--green); border: 1px solid #2a4a2a; }
+.tier3-header { background: var(--blue-bg); color: var(--blue); border: 1px solid var(--blue-border); }
+
+/* Scoring explanation */
+.scoring { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 16px; }
+.scoring h3 { font-size: 0.9rem; color: var(--green); margin-bottom: 8px; }
+.score-factor { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 0.8rem; }
+.score-factor:last-child { border: none; }
+.factor-name { color: var(--text); }
+.factor-weight { color: var(--gold); font-weight: bold; }
+.factor-desc { color: var(--text3); font-size: 0.72rem; }
+
+/* Route clusters */
+.cluster { background: var(--purple-bg); border: 1px solid #3a2a4a; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+.cluster h3 { color: var(--purple); font-size: 0.9rem; margin-bottom: 6px; }
+.cluster p { font-size: 0.8rem; color: #bba; line-height: 1.4; }
+.cluster-hoods { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.cluster-tag { background: #2a2040; border: 1px solid #4a3a5a; padding: 3px 8px; border-radius: 12px; font-size: 0.72rem; color: var(--purple); }
+
+/* Filter */
+.filter-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.filter-btn { padding: 6px 12px; background: var(--card); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 0.75rem; color: var(--text2); transition: all 0.2s; }
+.filter-btn.active { background: var(--green-dark); border-color: var(--green); color: #fff; }
+
+/* Strategy section */
+.strategy { background: var(--blue-bg); border: 1px solid var(--blue-border); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+.strategy h3 { color: var(--blue); font-size: 0.9rem; margin-bottom: 6px; }
+.strategy p, .strategy li { font-size: 0.8rem; color: #aac; line-height: 1.5; }
+.strategy ul { margin-left: 16px; margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<h1>🎯 Neighborhood Targeting Intel</h1>
+<p class="subtitle">Data-driven neighborhood rankings for maximum customer acquisition. Updated Mar 7, 2026</p>
+
+<div class="insight-bar">
+  <h3>💡 Why This Matters</h3>
+  <p>Not all neighborhoods are equal. The difference between canvassing in the wrong zip code vs. the right one is 0 calls vs. 5 calls per 100 flyers. This tool ranks every target area by <strong>Tidy Tails Score</strong> — a composite of income, yard size, dog density, and route efficiency. <strong>Fish where the fish are.</strong></p>
+</div>
+
+<div class="stats-row">
+  <div class="stat-box"><div class="num">20</div><div class="label">Neighborhoods Ranked</div></div>
+  <div class="stat-box"><div class="num">5</div><div class="label">Tier 1 (Best)</div></div>
+  <div class="stat-box"><div class="num">4</div><div class="label">Route Clusters</div></div>
+  <div class="stat-box"><div class="num">~185K</div><div class="label">Households in Zone</div></div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('rankings')">🏆 Rankings</div>
+  <div class="tab" onclick="showTab('clusters')">🗺️ Route Clusters</div>
+  <div class="tab" onclick="showTab('strategy')">📋 Strategy</div>
+  <div class="tab" onclick="showTab('scoring')">📊 Scoring Method</div>
+</div>
+
+<!-- RANKINGS TAB -->
+<div id="rankings" class="panel active">
+
+<div class="filter-bar">
+  <div class="filter-btn active" onclick="filterTier('all', this)">All</div>
+  <div class="filter-btn" onclick="filterTier('tier1', this)">🥇 Tier 1</div>
+  <div class="filter-btn" onclick="filterTier('tier2', this)">🥈 Tier 2</div>
+  <div class="filter-btn" onclick="filterTier('tier3', this)">🥉 Tier 3</div>
+</div>
+
+<div class="tier-header tier1-header">🥇 TIER 1 — Prime Targets (Score 85-100)</div>
+
+<div class="hood-card tier1" data-tier="tier1">
+  <div class="hood-header">
+    <div><div class="hood-name">1. Ballwin</div><div class="hood-zip">📍 63011 · Pop: 31,000</div></div>
+    <div class="score-badge score-high">97</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$124K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$290K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">78%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~5,500</div></div>
+  </div>
+  <div class="hood-why"><strong>Why #1:</strong> Perfect sweet spot — affluent enough to pay for service, not so wealthy they already have landscapers handling it. Huge subdivision density with big yards. Multiple dog parks (Vlasis, Ferris). Active Nextdoor communities. TJ's HOME BASE — zero drive time overhead.</div>
+  <div class="hood-action"><strong>Action:</strong> Canvass subdivisions along New Ballwin Rd & Holloway Rd first. Hit Vlasis Park dog area on weekends. Post on Ballwin/Manchester Nextdoor weekly. Target: Carriage Hills, Kehrs Mill Estates, Strecker Woods, Baxter Acres.</div>
+</div>
+
+<div class="hood-card tier1" data-tier="tier1">
+  <div class="hood-header">
+    <div><div class="hood-name">2. Chesterfield</div><div class="hood-zip">📍 63017 · Pop: 49,500</div></div>
+    <div class="score-badge score-high">95</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$133K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$425K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">82%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~9,200</div></div>
+  </div>
+  <div class="hood-why"><strong>Why #2:</strong> Largest pool of potential customers in one zip. High income + high home ownership = people who value their yards but are too busy to scoop. Family-oriented suburbs with 2-3 dogs per household common. Adjacent to Ballwin — easy route pairing.</div>
+  <div class="hood-action"><strong>Action:</strong> Focus on subdivisions south of Olive Blvd (more mid-range, less mansion-territory). Target: Chesterfield Village, Clarkson Meadows, Schoettler Village, Wild Horse Creek neighborhoods. Faust Park area for flyers.</div>
+</div>
+
+<div class="hood-card tier1" data-tier="tier1">
+  <div class="hood-header">
+    <div><div class="hood-name">3. Manchester / Ellisville</div><div class="hood-zip">📍 63011/63021 · Pop: 36,000</div></div>
+    <div class="score-badge score-high">93</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$95K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$240K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">72%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~5,800</div></div>
+  </div>
+  <div class="hood-why"><strong>Why #3:</strong> The "value zone" — families who absolutely can afford $25/week but feel the pain of scooping enough to pay for it. Less competition from landscapers who upsell waste removal in wealthier areas. Manchester Rd corridor = great visibility for signage.</div>
+  <div class="hood-action"><strong>Action:</strong> Target subdivisions off Manchester Rd between Weidman & Clarkson. Post on Manchester/Ellisville Nextdoor. Hit Bluebird Park and Ellisville Athletic Association areas. Target: Manchester Meadows, Enchanted Forest, Wildhorse subdivisions.</div>
+</div>
+
+<div class="hood-card tier1" data-tier="tier1">
+  <div class="hood-header">
+    <div><div class="hood-name">4. Kirkwood</div><div class="hood-zip">📍 63122 · Pop: 27,800</div></div>
+    <div class="score-badge score-high">91</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$110K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$380K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">75%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~4,700</div></div>
+  </div>
+  <div class="hood-why"><strong>Why #4:</strong> EXTREMELY dog-friendly community. Kirkwood Park has heavy dog walker traffic. Strong community identity — people talk to neighbors and recommend services. Older homes with bigger yards = more scooping pain. Close to Webster Groves for route clustering.</div>
+  <div class="hood-action"><strong>Action:</strong> Flyer near Kirkwood Park and downtown Kirkwood (Saturday morning farmers market crowd). Post in Kirkwood Community Facebook group (15K+ members). Target streets south of Manchester between Kirkwood Rd and Geyer Rd.</div>
+</div>
+
+<div class="hood-card tier1" data-tier="tier1">
+  <div class="hood-header">
+    <div><div class="hood-name">5. Wildwood</div><div class="hood-zip">📍 63040 · Pop: 35,500</div></div>
+    <div class="score-badge score-high">88</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$158K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$440K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">92%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~7,400</div></div>
+  </div>
+  <div class="hood-why"><strong>Why #5:</strong> Highest home ownership rate in the area (92%!) with huge yards — exactly the people who NEED this service. Very high income. Slightly lower score because spread-out properties mean more drive time between stops. Best for weekly route once you have 3+ customers there.</div>
+  <div class="hood-action"><strong>Action:</strong> Don't canvass door-to-door (too spread out). Instead: Nextdoor posts, Wildwood Community Facebook groups, and flyers at Al Foster Trailhead (major dog walking spot). Target: Grover, Pond, and Taylor Rd subdivisions.</div>
+</div>
+
+<div class="tier-header tier2-header">🥈 TIER 2 — Strong Targets (Score 75-84)</div>
+
+<div class="hood-card tier2" data-tier="tier2">
+  <div class="hood-header">
+    <div><div class="hood-name">6. Webster Groves</div><div class="hood-zip">📍 63119 · Pop: 23,400</div></div>
+    <div class="score-badge score-mid">84</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$105K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$340K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">74%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~3,900</div></div>
+  </div>
+  <div class="hood-why"><strong>Why:</strong> Very community-oriented suburb with active social groups. Pairs perfectly with Kirkwood route. Older neighborhood character = established dog owners who've been scooping for years and are tired of it.</div>
+  <div class="hood-action"><strong>Action:</strong> Combine with Kirkwood canvassing. Post in Webster-Kirkwood Times community pages. Target streets around Memorial Park and Larson Park.</div>
+</div>
+
+<div class="hood-card tier2" data-tier="tier2">
+  <div class="hood-header">
+    <div><div class="hood-name">7. Creve Coeur</div><div class="hood-zip">📍 63141 · Pop: 18,600</div></div>
+    <div class="score-badge score-mid">82</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$134K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$380K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">70%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~2,900</div></div>
+  </div>
+  <div class="hood-why"><strong>Why:</strong> High income, busy professionals who outsource yard work. Smaller population but high conversion potential. Adjacent to Chesterfield for route efficiency.</div>
+  <div class="hood-action"><strong>Action:</strong> Pair with Chesterfield routes. Focus on residential streets south of Olive (north side is more commercial/condo). Creve Coeur Lake Park for weekend flyers — HUGE dog walking traffic.</div>
+</div>
+
+<div class="hood-card tier2" data-tier="tier2">
+  <div class="hood-header">
+    <div><div class="hood-name">8. Eureka / Pacific</div><div class="hood-zip">📍 63025/63069 · Pop: 22,000</div></div>
+    <div class="score-badge score-mid">80</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$88K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$250K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">76%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~3,800</div></div>
+  </div>
+  <div class="hood-why"><strong>Why:</strong> ZERO pet waste competition out here. Growing suburb with new construction = young families getting dogs. Lower income but $25/week is still accessible. Extension of Wildwood route westward.</div>
+  <div class="hood-action"><strong>Action:</strong> Craigslist + Facebook Marketplace targeting Eureka specifically. Nextdoor posts. The "nobody else is out here" angle works — be the first and only option.</div>
+</div>
+
+<div class="hood-card tier2" data-tier="tier2">
+  <div class="hood-header">
+    <div><div class="hood-name">9. Fenton / Valley Park</div><div class="hood-zip">📍 63026 · Pop: 18,000</div></div>
+    <div class="score-badge score-mid">79</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$78K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$215K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">69%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~2,800</div></div>
+  </div>
+  <div class="hood-why"><strong>Why:</strong> Working-class suburb with lots of dogs and yards. $25/week price point is a strong sell here — competitors' higher prices lock them out. Good connecting point between south county and west county routes.</div>
+  <div class="hood-action"><strong>Action:</strong> Heavy Craigslist targeting. Flyers at Fenton City Park. Focus on the "affordable luxury" angle — "$25/week for a clean yard."</div>
+</div>
+
+<div class="hood-card tier2" data-tier="tier2">
+  <div class="hood-header">
+    <div><div class="hood-name">10. Des Peres / Frontenac</div><div class="hood-zip">📍 63131 · Pop: 12,800</div></div>
+    <div class="score-badge score-mid">77</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$225K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$670K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">85%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~2,400</div></div>
+  </div>
+  <div class="hood-why"><strong>Why:</strong> Very wealthy area — can easily afford premium pricing. Score docked because these homeowners often have full-service landscapers already. Best for upselling premium/daily service. Smaller population limits volume.</div>
+  <div class="hood-action"><strong>Action:</strong> Don't door-knock here (gated communities). Nextdoor + targeted Facebook ads. Consider premium tier pricing ($35-40/week). Position as professional service, not side hustle.</div>
+</div>
+
+<div class="tier-header tier3-header">🥉 TIER 3 — Growth Targets (Score 65-74)</div>
+
+<div class="hood-card tier3" data-tier="tier3">
+  <div class="hood-header">
+    <div><div class="hood-name">11. Crestwood / Sunset Hills</div><div class="hood-zip">📍 63126/63127 · Pop: 20,000</div></div>
+    <div class="score-badge score-low">74</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$82K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$235K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">76%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~3,500</div></div>
+  </div>
+  <div class="hood-why"><strong>Why:</strong> Solid middle-class suburb with decent yard sizes. Good bridge between south county and mid-county. Lower score because it's farther from TJ's base and requires building a separate route cluster.</div>
+  <div class="hood-action"><strong>Action:</strong> Only pursue once you have 2+ customers in Kirkwood/Webster area (makes route viable). Craigslist + Nextdoor targeting.</div>
+</div>
+
+<div class="hood-card tier3" data-tier="tier3">
+  <div class="hood-header">
+    <div><div class="hood-name">12. Maryland Heights</div><div class="hood-zip">📍 63043 · Pop: 27,500</div></div>
+    <div class="score-badge score-low">72</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$86K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$200K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">58%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~3,600</div></div>
+  </div>
+  <div class="hood-why"><strong>Why:</strong> Big population but lower home ownership (lots of apartments/condos = no yards). Best for targeting the single-family home pockets. Adjacent to Creve Coeur for route pairing.</div>
+  <div class="hood-action"><strong>Action:</strong> Target subdivisions only (skip apartment complexes for now). Focus on areas near Dorsett Rd and McKelvey Rd. Pair with Creve Coeur stops.</div>
+</div>
+
+<div class="hood-card tier3" data-tier="tier3">
+  <div class="hood-header">
+    <div><div class="hood-name">13. Oakville / Mehlville</div><div class="hood-zip">📍 63129 · Pop: 36,000</div></div>
+    <div class="score-badge score-low">70</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$78K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$210K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">73%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~6,000</div></div>
+  </div>
+  <div class="hood-why"><strong>Why:</strong> Massive population with lots of dog owners. Score docked for distance from base (south county). But if TJ gets 3+ customers here, the density makes weekly routes very efficient.</div>
+  <div class="hood-action"><strong>Action:</strong> Craigslist targeting "south county" keyword. Only invest in canvassing if organic leads come from here first. Big enough market to support a dedicated south county route day.</div>
+</div>
+
+<div class="hood-card tier3" data-tier="tier3">
+  <div class="hood-header">
+    <div><div class="hood-name">14. Florissant</div><div class="hood-zip">📍 63031 · Pop: 52,000</div></div>
+    <div class="score-badge score-low">68</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$58K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$135K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">65%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~7,600</div></div>
+  </div>
+  <div class="hood-why"><strong>Why:</strong> Huge population, lots of dogs. Lower income makes $25/week a harder sell but the sheer volume means even a small conversion rate yields customers. Far from base (north county) — only viable as expansion market.</div>
+  <div class="hood-action"><strong>Action:</strong> Only pursue after building west county base. When ready: Facebook Marketplace heavy, community groups. Consider $20/week introductory pricing for volume.</div>
+</div>
+
+<div class="hood-card tier3" data-tier="tier3">
+  <div class="hood-header">
+    <div><div class="hood-name">15. St. Charles (across river)</div><div class="hood-zip">📍 63301/63303 · Pop: 72,000</div></div>
+    <div class="score-badge score-low">65</div>
+  </div>
+  <div class="hood-stats">
+    <div class="hood-stat"><div class="hs-label">Median Income</div><div class="hs-val">$99K</div></div>
+    <div class="hood-stat"><div class="hs-label">Avg Home Value</div><div class="hs-val">$275K</div></div>
+    <div class="hood-stat"><div class="hs-label">Owner-Occupied</div><div class="hs-val">68%</div></div>
+    <div class="hood-stat"><div class="hs-label">Est. Dog HH</div><div class="hs-val">~11,000</div></div>
+  </div>
+  <div class="hood-why"><strong>Why:</strong> MASSIVE untapped market across the river. Growing suburbs with new construction = young dog owners. Score docked for bridge traffic and distance. But long-term, this is where a second crew/route would make sense.</div>
+  <div class="hood-action"><strong>Action:</strong> Future expansion only. When at 20+ customers in STL County, consider test marketing here. O'Fallon/St. Peters same deal — save for growth phase.</div>
+</div>
+
+</div>
+
+<!-- ROUTE CLUSTERS TAB -->
+<div id="clusters" class="panel">
+
+<div class="insight-bar">
+  <h3>🗺️ Route Efficiency = Profit</h3>
+  <p>The #1 profit killer in pet waste removal is drive time. These clusters group neighborhoods that are <strong>10-15 minutes apart</strong> so TJ can serve 5-8 customers in one run. Build customers WITHIN clusters first before spreading out.</p>
+</div>
+
+<div class="cluster">
+  <h3>🟡 Cluster A: West County Core (PRIORITY)</h3>
+  <p><strong>Drive radius:</strong> 10 min from Ballwin center<br>
+  <strong>Estimated dog households:</strong> ~26,000<br>
+  <strong>Why it's #1:</strong> TJ's home base. Zero commute overhead. Highest density of target demographics. Can serve 8-10 customers in a single morning run.</p>
+  <div class="cluster-hoods">
+    <span class="cluster-tag">Ballwin</span>
+    <span class="cluster-tag">Chesterfield</span>
+    <span class="cluster-tag">Manchester</span>
+    <span class="cluster-tag">Ellisville</span>
+    <span class="cluster-tag">Creve Coeur</span>
+  </div>
+</div>
+
+<div class="cluster">
+  <h3>🟢 Cluster B: South-Central Corridor</h3>
+  <p><strong>Drive radius:</strong> 12 min from Kirkwood center<br>
+  <strong>Estimated dog households:</strong> ~15,500<br>
+  <strong>Why:</strong> Strong community identity in both towns. Dog-friendly culture. Mix of established homeowners and young families. 20 min from Cluster A — can do both in one day.</p>
+  <div class="cluster-hoods">
+    <span class="cluster-tag">Kirkwood</span>
+    <span class="cluster-tag">Webster Groves</span>
+    <span class="cluster-tag">Crestwood</span>
+    <span class="cluster-tag">Sunset Hills</span>
+    <span class="cluster-tag">Des Peres</span>
+  </div>
+</div>
+
+<div class="cluster">
+  <h3>🔵 Cluster C: Far West Expansion</h3>
+  <p><strong>Drive radius:</strong> 15 min from Wildwood center<br>
+  <strong>Estimated dog households:</strong> ~11,200<br>
+  <strong>Why:</strong> Low/zero competition. Huge yards. Very high income. Spread out = more drive time, but premium pricing potential ($30-35/week). Best once you have 3+ customers to justify the drive.</p>
+  <div class="cluster-hoods">
+    <span class="cluster-tag">Wildwood</span>
+    <span class="cluster-tag">Eureka</span>
+    <span class="cluster-tag">Pacific</span>
+    <span class="cluster-tag">Grover</span>
+  </div>
+</div>
+
+<div class="cluster">
+  <h3>⚪ Cluster D: South County (Future)</h3>
+  <p><strong>Drive radius:</strong> 12 min from Fenton center<br>
+  <strong>Estimated dog households:</strong> ~12,400<br>
+  <strong>Why:</strong> Big market that connects west county to south county. Don't actively pursue until Clusters A and B have 10+ customers. When you're ready, the density here supports a dedicated route day.</p>
+  <div class="cluster-hoods">
+    <span class="cluster-tag">Fenton</span>
+    <span class="cluster-tag">Valley Park</span>
+    <span class="cluster-tag">Oakville</span>
+    <span class="cluster-tag">Mehlville</span>
+  </div>
+</div>
+
+<div class="strategy" style="margin-top: 16px;">
+  <h3>📅 Suggested Weekly Route Schedule (at 15+ customers)</h3>
+  <p style="margin-bottom: 8px;">Once you have enough customers, organize by cluster:</p>
+  <ul>
+    <li><strong>Monday:</strong> Cluster A North (Chesterfield, Creve Coeur)</li>
+    <li><strong>Tuesday:</strong> Cluster A South (Ballwin, Manchester, Ellisville)</li>
+    <li><strong>Wednesday:</strong> Cluster B (Kirkwood, Webster, Des Peres)</li>
+    <li><strong>Thursday:</strong> Cluster C (Wildwood, Eureka) + any stragglers</li>
+    <li><strong>Friday:</strong> Cluster D or makeup day</li>
+  </ul>
+</div>
+
+</div>
+
+<!-- STRATEGY TAB -->
+<div id="strategy" class="panel">
+
+<div class="strategy">
+  <h3>🎯 The 3-Ring Strategy</h3>
+  <p style="margin-bottom: 8px;">Grow outward from your base in concentric rings. Don't skip rings.</p>
+  <ul>
+    <li><strong>Ring 1 (NOW):</strong> Ballwin + Chesterfield + Manchester/Ellisville — your backyard. Every marketing dollar here has maximum ROI because you're already driving through these areas.</li>
+    <li><strong>Ring 2 (At 10 customers):</strong> Add Kirkwood + Webster Groves + Wildwood — natural expansion that keeps routes tight.</li>
+    <li><strong>Ring 3 (At 20 customers):</strong> Add Fenton/South County + Creve Coeur/Maryland Heights — requires dedicated route days but the market is big enough.</li>
+  </ul>
+</div>
+
+<div class="strategy">
+  <h3>💰 Pricing by Neighborhood</h3>
+  <p style="margin-bottom: 8px;">Not every neighborhood gets the same price. Match pricing to what the market will bear:</p>
+  <ul>
+    <li><strong>$25/week (Standard):</strong> Ballwin, Manchester, Ellisville, Fenton, Florissant — price-sensitive families, value positioning</li>
+    <li><strong>$30/week (Mid):</strong> Chesterfield, Kirkwood, Webster, Creve Coeur — can afford a bit more, position as reliable professional service</li>
+    <li><strong>$35-40/week (Premium):</strong> Wildwood, Des Peres, Frontenac, Ladue, Town & Country — wealthy homeowners expect premium pricing (too cheap = suspicious)</li>
+  </ul>
+</div>
+
+<div class="strategy">
+  <h3>📣 Platform Strategy by Neighborhood</h3>
+  <p style="margin-bottom: 8px;">Different neighborhoods respond to different marketing channels:</p>
+  <ul>
+    <li><strong>Nextdoor:</strong> Kirkwood, Webster, Ballwin, Chesterfield — community-oriented suburbs where neighbor recommendations carry weight</li>
+    <li><strong>Facebook Marketplace:</strong> Manchester, Eureka, Fenton, Florissant — deal-seekers who browse Marketplace regularly</li>
+    <li><strong>Craigslist:</strong> ALL areas — still the #1 source for service discovery in STL. Post weekly with location-specific titles</li>
+    <li><strong>Door-to-door flyers:</strong> Ballwin (Tier 1 subdivisions), Manchester, Ellisville — walkable subdivisions where you can hit 50+ doors per hour</li>
+    <li><strong>Dog parks:</strong> Vlasis Park (Ballwin), Creve Coeur Lake, Kirkwood Park, Queeny Park (west county) — talk to dog owners in person</li>
+    <li><strong>Facebook Groups:</strong> Kirkwood Community (15K), Ballwin Neighbors, Chesterfield Life, Wildwood Community — post helpful tips + soft-sell</li>
+  </ul>
+</div>
+
+<div class="strategy">
+  <h3>🏆 Top 5 Actions This Week</h3>
+  <p style="margin-bottom: 8px;">Based on this analysis, here's exactly what to do:</p>
+  <ul>
+    <li><strong>1. Post on Ballwin + Chesterfield Nextdoor</strong> — Free, immediate, targeted to Tier 1 neighborhoods</li>
+    <li><strong>2. Canvass Carriage Hills & Strecker Woods (Ballwin)</strong> — Print 100 flyers, hit these subdivisions Saturday AM</li>
+    <li><strong>3. Post on Craigslist with neighborhood-specific titles</strong> — "Pet Waste Removal — Ballwin/Chesterfield Area" (not generic "St Louis")</li>
+    <li><strong>4. Visit Vlasis Park dog area Saturday afternoon</strong> — Hand out cards, talk to dog owners. 5 min from home.</li>
+    <li><strong>5. Join Kirkwood Community Facebook group</strong> — Plant the seed for Ring 2 expansion with helpful posts</li>
+  </ul>
+</div>
+
+<div class="insight-bar">
+  <h3>⚡ The Math That Matters</h3>
+  <p><strong>Missouri is #4 in the nation for dog ownership</strong> — 45.9% of households own a dog. In west St. Louis County, that's even higher (estimated 48-52% due to suburban single-family home density).<br><br>
+  In Cluster A alone (Ballwin/Chesterfield/Manchester), there are approximately <strong>26,000 dog-owning households</strong>. TJ needs just <strong>25 of them</strong>. That's 0.1% market penetration. The customers are there — they just need to find Tidy Tails.</p>
+</div>
+
+</div>
+
+<!-- SCORING TAB -->
+<div id="scoring" class="panel">
+
+<div class="scoring">
+  <h3>📊 How Tidy Tails Score Is Calculated</h3>
+  <p style="font-size: 0.8rem; color: var(--text2); margin-bottom: 12px;">Each neighborhood is scored 0-100 based on five factors that predict customer acquisition success:</p>
+  
+  <div class="score-factor">
+    <div>
+      <div class="factor-name">💰 Income Sweet Spot</div>
+      <div class="factor-desc">$75K-$175K median household income (too low = can't afford; too high = already have landscapers)</div>
+    </div>
+    <div class="factor-weight">25 pts</div>
+  </div>
+  
+  <div class="score-factor">
+    <div>
+      <div class="factor-name">🏠 Home Ownership Rate</div>
+      <div class="factor-desc">Higher ownership = more yards = more dogs = more need. Renters don't buy yard services.</div>
+    </div>
+    <div class="factor-weight">20 pts</div>
+  </div>
+  
+  <div class="score-factor">
+    <div>
+      <div class="factor-name">🐕 Estimated Dog Density</div>
+      <div class="factor-desc">Based on MO 45.9% ownership rate adjusted for housing type (SFH vs apartments)</div>
+    </div>
+    <div class="factor-weight">20 pts</div>
+  </div>
+  
+  <div class="score-factor">
+    <div>
+      <div class="factor-name">🚗 Route Efficiency</div>
+      <div class="factor-desc">Distance from TJ's base in Ballwin + subdivision density (walkable neighborhoods score higher)</div>
+    </div>
+    <div class="factor-weight">20 pts</div>
+  </div>
+  
+  <div class="score-factor">
+    <div>
+      <div class="factor-name">📣 Marketing Accessibility</div>
+      <div class="factor-desc">Active Nextdoor communities, Facebook groups, dog parks nearby, community events</div>
+    </div>
+    <div class="factor-weight">15 pts</div>
+  </div>
+</div>
+
+<div class="strategy">
+  <h3>📐 Data Sources</h3>
+  <ul>
+    <li><strong>Income data:</strong> U.S. Census Bureau ACS, IncomByZipCode.com</li>
+    <li><strong>Home values:</strong> Zillow, Point2Homes, Census ACS</li>
+    <li><strong>Dog ownership:</strong> AVMA state data (MO = 45.9%), adjusted by housing type mix per zip</li>
+    <li><strong>Population:</strong> Census 2020 + ACS 5-year estimates</li>
+    <li><strong>Competition:</strong> Google Maps search for "pet waste removal" + competitor service area pages</li>
+    <li><strong>Route data:</strong> Google Maps driving time estimates from Ballwin center</li>
+  </ul>
+</div>
+
+</div>
+
+<script>
+function showTab(tabId) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function filterTier(tier, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.hood-card').forEach(card => {
+    if (tier === 'all' || card.dataset.tier === tier) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+  // Show/hide tier headers
+  document.querySelectorAll('.tier-header').forEach(h => {
+    if (tier === 'all') {
+      h.style.display = 'block';
+    } else if (h.classList.contains(tier + '-header')) {
+      h.style.display = 'block';
+    } else {
+      h.style.display = 'none';
+    }
+  });
+}
+</script>
+
+</body>
+</html>
