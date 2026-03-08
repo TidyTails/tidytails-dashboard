@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Onboarding & Retention System | Tidy Tails</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+        
+        .header {
+            background: linear-gradient(135deg, #141414 0%, #1a1a2e 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem; text-align: center;
+        }
+        .header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em; }
+        .header h1 span { color: var(--green); }
+        .header p { color: var(--text2); font-size: 0.85rem; margin-top: 0.25rem; }
+        .back-link { 
+            display: inline-block; color: var(--text2); text-decoration: none; 
+            font-size: 0.8rem; margin-bottom: 0.5rem; 
+        }
+        .back-link:hover { color: var(--orange); }
+        
+        .container { max-width: 1000px; margin: 0 auto; padding: 1.5rem; }
+        
+        /* Tabs */
+        .tabs {
+            display: flex; gap: 0.25rem; overflow-x: auto; padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border); margin-bottom: 1.5rem;
+            scrollbar-width: none;
+        }
+        .tabs::-webkit-scrollbar { display: none; }
+        .tab {
+            padding: 0.6rem 1rem; border-radius: 8px 8px 0 0; cursor: pointer;
+            font-size: 0.8rem; font-weight: 600; white-space: nowrap;
+            color: var(--text2); background: transparent; border: none;
+            transition: all 0.2s;
+        }
+        .tab:hover { color: var(--text); background: var(--bg3); }
+        .tab.active { color: var(--green); background: var(--bg3); border-bottom: 2px solid var(--green); }
+        
+        .panel { display: none; }
+        .panel.active { display: block; }
+        
+        /* Cards */
+        .card {
+            background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 1rem;
+        }
+        .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .card h4 { font-size: 0.85rem; font-weight: 600; color: var(--text2); margin: 1rem 0 0.5rem; }
+        
+        /* Timeline */
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before {
+            content: ''; position: absolute; left: 0.5rem; top: 0; bottom: 0;
+            width: 2px; background: var(--border);
+        }
+        .timeline-item { position: relative; margin-bottom: 1.5rem; }
+        .timeline-dot {
+            position: absolute; left: -1.75rem; top: 0.25rem;
+            width: 12px; height: 12px; border-radius: 50%;
+            border: 2px solid var(--green); background: var(--bg);
+        }
+        .timeline-dot.urgent { border-color: var(--orange); }
+        .timeline-dot.critical { border-color: var(--red); }
+        .timeline-when {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+            color: var(--green); font-weight: 600; margin-bottom: 0.25rem;
+        }
+        .timeline-when.urgent { color: var(--orange); }
+        .timeline-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
+        .timeline-desc { color: var(--text2); font-size: 0.8rem; line-height: 1.5; }
+        
+        /* Copy blocks */
+        .copy-block {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+            padding: 1rem; margin: 0.75rem 0; position: relative; cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .copy-block:hover { border-color: var(--green); }
+        .copy-block::after {
+            content: '📋 Copy'; position: absolute; top: 0.5rem; right: 0.5rem;
+            font-size: 0.65rem; color: var(--text3); background: var(--bg4);
+            padding: 0.2rem 0.5rem; border-radius: 4px;
+        }
+        .copy-block.copied::after { content: '✅ Copied!'; color: var(--green); }
+        .copy-block pre {
+            font-family: 'Inter', sans-serif; font-size: 0.8rem; white-space: pre-wrap;
+            color: var(--text); line-height: 1.6;
+        }
+        
+        /* Checklist */
+        .checklist { list-style: none; }
+        .checklist li {
+            display: flex; align-items: flex-start; gap: 0.5rem;
+            padding: 0.5rem 0; border-bottom: 1px solid var(--border);
+            font-size: 0.85rem;
+        }
+        .checklist li:last-child { border-bottom: none; }
+        .checklist input[type="checkbox"] {
+            margin-top: 0.15rem; accent-color: var(--green);
+            width: 16px; height: 16px; flex-shrink: 0;
+        }
+        .checklist .detail { color: var(--text2); font-size: 0.75rem; display: block; margin-top: 0.15rem; }
+        
+        /* Health Score */
+        .health-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .health-card {
+            background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1rem; position: relative; overflow: hidden;
+        }
+        .health-card .score {
+            font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 800;
+        }
+        .health-card .label { color: var(--text2); font-size: 0.75rem; margin-top: 0.25rem; }
+        .score-green { color: var(--green); }
+        .score-yellow { color: var(--yellow); }
+        .score-red { color: var(--red); }
+        
+        /* Stats */
+        .stat-row {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.75rem; margin-bottom: 1.5rem;
+        }
+        .stat {
+            background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+            padding: 0.75rem; text-align: center;
+        }
+        .stat .num {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700;
+        }
+        .stat .label { color: var(--text2); font-size: 0.7rem; margin-top: 0.25rem; }
+        
+        /* Customer Manager */
+        .form-row {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 0.5rem; margin-bottom: 0.75rem;
+        }
+        .form-row input, .form-row select {
+            background: var(--bg3); border: 1px solid var(--border); color: var(--text);
+            padding: 0.5rem 0.75rem; border-radius: 8px; font-size: 0.8rem;
+            font-family: 'Inter', sans-serif;
+        }
+        .form-row input:focus, .form-row select:focus { outline: none; border-color: var(--green); }
+        
+        .btn {
+            padding: 0.5rem 1.25rem; border: none; border-radius: 8px;
+            font-size: 0.8rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-green { background: var(--green); color: #000; }
+        .btn-green:hover { filter: brightness(1.15); }
+        .btn-orange { background: var(--orange); color: #000; }
+        .btn-orange:hover { filter: brightness(1.15); }
+        .btn-blue { background: var(--blue); color: #fff; }
+        .btn-sm { padding: 0.3rem 0.75rem; font-size: 0.7rem; }
+        
+        /* Customer table */
+        .customer-table {
+            width: 100%; border-collapse: collapse; font-size: 0.8rem;
+        }
+        .customer-table th {
+            text-align: left; padding: 0.5rem; border-bottom: 2px solid var(--border);
+            color: var(--text2); font-weight: 600; font-size: 0.7rem; text-transform: uppercase;
+        }
+        .customer-table td {
+            padding: 0.5rem; border-bottom: 1px solid var(--border);
+        }
+        .customer-table tr:hover td { background: var(--bg3); }
+        
+        .badge {
+            display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px;
+            font-size: 0.65rem; font-weight: 600;
+        }
+        .badge-healthy { background: rgba(16,185,129,0.15); color: var(--green); }
+        .badge-warning { background: rgba(251,191,36,0.15); color: var(--yellow); }
+        .badge-danger { background: rgba(239,68,68,0.15); color: var(--red); }
+        .badge-new { background: rgba(139,92,246,0.15); color: var(--purple); }
+        
+        /* Referral tracker */
+        .referral-card {
+            background: var(--bg3); border-radius: 8px; padding: 0.75rem;
+            margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center;
+        }
+        .referral-card .name { font-weight: 600; font-size: 0.85rem; }
+        .referral-card .meta { color: var(--text2); font-size: 0.75rem; }
+        
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header { padding: 1rem; }
+            .header h1 { font-size: 1.2rem; }
+            .container { padding: 1rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .stat-row { grid-template-columns: repeat(2, 1fr); }
+            .health-grid { grid-template-columns: 1fr; }
+        }
+        
+        /* Animations */
+        .pulse { animation: pulse 2s ease-in-out infinite; }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+        
+        .tip {
+            background: rgba(59,130,246,0.1); border-left: 3px solid var(--blue);
+            padding: 0.75rem 1rem; border-radius: 0 8px 8px 0; margin: 0.75rem 0;
+            font-size: 0.8rem; color: var(--text2);
+        }
+        .tip strong { color: var(--blue); }
+        
+        .warning {
+            background: rgba(239,68,68,0.1); border-left: 3px solid var(--red);
+            padding: 0.75rem 1rem; border-radius: 0 8px 8px 0; margin: 0.75rem 0;
+            font-size: 0.8rem; color: var(--text2);
+        }
+        .warning strong { color: var(--red); }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-link">← Back to Dashboard</a>
+        <h1>🤝 Customer <span>Onboarding & Retention</span> System</h1>
+        <p>Turn every new signup into a loyal, referring customer — the machine that builds itself</p>
+    </div>
+    
+    <div class="container">
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('welcome')">🎉 Welcome Flow</button>
+            <button class="tab" onclick="showTab('first-service')">✅ First Service</button>
+            <button class="tab" onclick="showTab('retention')">📅 90-Day Cadence</button>
+            <button class="tab" onclick="showTab('referrals')">🎁 Referral Engine</button>
+            <button class="tab" onclick="showTab('health')">💚 Customer Health</button>
+            <button class="tab" onclick="showTab('tracker')">📊 Tracker</button>
+        </div>
+        
+        <!-- TAB 1: WELCOME FLOW -->
+        <div id="welcome" class="panel active">
+            <div class="card">
+                <h3>🎉 New Customer Welcome Sequence</h3>
+                <p style="color:var(--text2); font-size:0.85rem; margin-bottom:1rem;">
+                    First impressions set the tone for the entire relationship. This 7-day sequence turns a new signup into a confident, committed customer. Every message is timed for maximum impact.
+                </p>
+                
+                <div class="tip">
+                    <strong>💡 Why this matters:</strong> 68% of customers leave because they feel the business doesn't care about them. A structured welcome flow signals professionalism and builds trust before you even pick up the first pile.
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot urgent"></div>
+                        <div class="timeline-when urgent">IMMEDIATELY — Within 5 minutes of signup</div>
+                        <div class="timeline-title">🔥 Confirmation + Excitement Text</div>
+                        <div class="timeline-desc">Set expectations, build excitement, confirm the details. Speed = professionalism.</div>
+                        <div class="copy-block" onclick="copyBlock(this)">
+                            <pre>Hey [NAME]! 🎉 This is TJ from Tidy Tails — welcome aboard!
+
+Here's what we've got set up for you:
+📍 Address: [ADDRESS]
+🐕 Dogs: [#]
+📅 Service day: [DAY]
+💰 Rate: $[X]/visit
+
+I'll be out for your first service on [DATE]. You don't need to do anything — just leave the gate unlocked if the yard is fenced, and I'll handle the rest.
+
+Any questions before then, just text me here! Looking forward to keeping your yard spotless 🐾</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-when">DAY BEFORE — First service eve</div>
+                        <div class="timeline-title">📋 Reminder + Access Check</div>
+                        <div class="timeline-desc">Reduce no-access situations and show you're organized.</div>
+                        <div class="copy-block" onclick="copyBlock(this)">
+                            <pre>Hey [NAME]! Quick reminder — I'll be by tomorrow ([DAY]) to get your yard cleaned up.
+
+Just want to confirm:
+✅ Gate will be unlocked? Or should I use a code?
+✅ Any areas to avoid or focus on?
+✅ Dog(s) will be [inside/outside]?
+
+See you tomorrow! 🐕</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-when">AFTER FIRST SERVICE — Same day</div>
+                        <div class="timeline-title">✨ Service Complete + Photo (Optional)</div>
+                        <div class="timeline-desc">Confirm you were there, show the result, invite feedback. This is the "wow" moment.</div>
+                        <div class="copy-block" onclick="copyBlock(this)">
+                            <pre>All done at [ADDRESS]! 🧹✨
+
+Your yard is looking clean and fresh. [Found quite a bit / Not too bad today — your [DOG NAME] is pretty tidy!]
+
+I'll be back next [DAY]. If anything comes up before then, just text me.
+
+How'd everything look? Any spots I should pay extra attention to next time?</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-when">DAY 3 — Quick check-in</div>
+                        <div class="timeline-title">💬 Satisfaction Check</div>
+                        <div class="timeline-desc">Shows you care about quality, catches problems early.</div>
+                        <div class="copy-block" onclick="copyBlock(this)">
+                            <pre>Hey [NAME]! Just checking in — how's the yard looking after the first cleanup? 
+
+Anything you'd like me to adjust for next time? More focus on certain areas, different day/time, etc.? I want to make sure we get it perfect for you 👍</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-when">DAY 7 — After 2nd service</div>
+                        <div class="timeline-title">⭐ Review Request</div>
+                        <div class="timeline-desc">They've had 2 services now — enough experience to leave a genuine review.</div>
+                        <div class="copy-block" onclick="copyBlock(this)">
+                            <pre>Hey [NAME]! Hope the yard's staying nice and clean 🐾
+
+Since you've seen us in action a couple times now, would you mind leaving a quick Google review? It really helps small businesses like mine get found by other dog owners.
+
+Here's the link — takes 30 seconds: [GOOGLE REVIEW LINK]
+
+No pressure at all, but it means the world if you can! Thanks 🙏</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>📱 Payment Setup Messages</h3>
+                <div class="tip">
+                    <strong>💡 Pro tip:</strong> Set up payment method BEFORE the first service. "I'll invoice you after" sounds unprofessional and creates awkward collection situations.
+                </div>
+                
+                <h4>Option A: Monthly billing (preferred)</h4>
+                <div class="copy-block" onclick="copyBlock(this)">
+                    <pre>Quick note on billing — I do monthly invoicing at the beginning of each month. For [FREQUENCY] service with [#] dogs, your monthly rate is $[X]/month.
+
+I accept:
+💳 Venmo: @TidyTails
+💰 Zelle: cartervhomes@gmail.com
+📱 Cash App: $TidyTails
+
+I'll send an invoice the 1st of each month. Easy peasy! 🐕</pre>
+                </div>
+                
+                <h4>Option B: Per-visit billing</h4>
+                <div class="copy-block" onclick="copyBlock(this)">
+                    <pre>For billing, I charge $[X] per visit and accept:
+💳 Venmo: @TidyTails
+💰 Zelle: cartervhomes@gmail.com
+📱 Cash App: $TidyTails
+
+I'll send a quick invoice after each service. Most customers find monthly billing easier if you want to switch anytime — just let me know!</pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TAB 2: FIRST SERVICE CHECKLIST -->
+        <div id="first-service" class="panel">
+            <div class="card">
+                <h3>✅ First Service Checklist</h3>
+                <p style="color:var(--text2); font-size:0.85rem; margin-bottom:1rem;">
+                    The first service is your audition. Nail it and you've got a customer for years. Rush it and they'll cancel within a month. Print this or screenshot it.
+                </p>
+                
+                <h4>🚗 Before You Leave (5 min)</h4>
+                <ul class="checklist">
+                    <li><input type="checkbox"> <div><strong>Check customer details</strong><span class="detail">Address, gate code, # of dogs, special instructions</span></div></li>
+                    <li><input type="checkbox"> <div><strong>Equipment loaded</strong><span class="detail">Bags, scooper, rake, sanitizer spray, gloves</span></div></li>
+                    <li><input type="checkbox"> <div><strong>Clean truck/uniform</strong><span class="detail">First impression matters — look professional</span></div></li>
+                    <li><input type="checkbox"> <div><strong>Business cards in pocket</strong><span class="detail">Leave one at the door, have extras for neighbor questions</span></div></li>
+                    <li><input type="checkbox"> <div><strong>Door hanger ready</strong><span class="detail">For 2-3 neighbors on each side — free advertising while you're there</span></div></li>
+                </ul>
+                
+                <h4>🏠 On Arrival (2 min)</h4>
+                <ul class="checklist">
+                    <li><input type="checkbox"> <div><strong>Text "On my way" or "Here!"</strong><span class="detail">Customers love the heads-up. Makes you feel like a legit service.</span></div></li>
+                    <li><input type="checkbox"> <div><strong>Walk the full yard first</strong><span class="detail">Identify all waste areas, note yard layout, check for hazards</span></div></li>
+                    <li><input type="checkbox"> <div><strong>Meet the dog(s) if possible</strong><span class="detail">Learn their names. Use names in future messages. Customers LOVE this.</span></div></li>
+                    <li><input type="checkbox"> <div><strong>Note any existing issues</strong><span class="detail">Heavy accumulation? Muddy areas? Landscaping obstacles? Mention proactively.</span></div></li>
+                </ul>
+                
+                <h4>🧹 During Service (15-25 min)</h4>
+                <ul class="checklist">
+                    <li><input type="checkbox"> <div><strong>Be thorough — ESPECIALLY first time</strong><span class="detail">Go over every inch. First service should be the most thorough service they ever get.</span></div></li>
+                    <li><input type="checkbox"> <div><strong>Get the edges</strong><span class="detail">Along fences, under bushes, near the house — places they never clean themselves</span></div></li>
+                    <li><input type="checkbox"> <div><strong>Double-check before leaving</strong><span class="detail">Walk the yard one more time. Miss one pile on the first visit and trust drops 50%.</span></div></li>
+                    <li><input type="checkbox"> <div><strong>Take a "clean yard" photo</strong><span class="detail">Optional but powerful — shows proof of work. Send with completion text.</span></div></li>
+                </ul>
+                
+                <h4>👋 After Service (5 min)</h4>
+                <ul class="checklist">
+                    <li><input type="checkbox"> <div><strong>Send completion text</strong><span class="detail">Use the template from Welcome Flow tab — confirm you were there</span></div></li>
+                    <li><input type="checkbox"> <div><strong>Leave business card at door</strong><span class="detail">Even if they're home — professional touch</span></div></li>
+                    <li><input type="checkbox"> <div><strong>Drop door hangers on 2-3 neighbors</strong><span class="detail">You're already there! "Your neighbor uses Tidy Tails" is the best ad copy ever</span></div></li>
+                    <li><input type="checkbox"> <div><strong>Log service in CRM</strong><span class="detail">Date, time, notes, any issues — build the history</span></div></li>
+                </ul>
+                
+                <div class="warning">
+                    <strong>⚠️ First Service Red Flags to Watch:</strong> Gate locked (no code given), aggressive dog with no warning, yard is a biohazard (needs spring cleanup quote instead), customer expects you to also do landscaping. Address immediately — don't let problems fester.
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>🐕 Customer Dog Profile Card</h3>
+                <p style="color:var(--text2); font-size:0.85rem; margin-bottom:0.75rem;">
+                    Keep these notes for each customer. Using dog names and knowing their quirks makes TJ feel like family, not just a service.
+                </p>
+                <div class="form-row">
+                    <input type="text" id="dogName" placeholder="Dog name(s)">
+                    <input type="text" id="dogBreed" placeholder="Breed(s)">
+                    <select id="dogSize">
+                        <option value="">Size</option>
+                        <option>Small (&lt;25 lbs)</option>
+                        <option>Medium (25-60 lbs)</option>
+                        <option>Large (60-100 lbs)</option>
+                        <option>XL (100+ lbs)</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <input type="text" id="dogNotes" placeholder="Personality/notes (friendly, shy, barker, escape artist...)" style="grid-column: 1 / -1;">
+                </div>
+                <div class="tip">
+                    <strong>💡 Power move:</strong> "How's [DOG NAME] doing?" in your texts instead of "How's your dog?" — tiny detail, huge relationship impact. Customers tell their friends about this stuff.
+                </div>
+            </div>
+        </div>
+        
+        <!-- TAB 3: 90-DAY RETENTION CADENCE -->
+        <div id="retention" class="panel">
+            <div class="card">
+                <h3>📅 The 90-Day Retention Cadence</h3>
+                <p style="color:var(--text2); font-size:0.85rem; margin-bottom:1rem;">
+                    Most service businesses lose customers through silence. This cadence ensures every customer feels valued with strategic touchpoints that reinforce the habit, gather feedback, and deepen the relationship.
+                </p>
+                
+                <div class="stat-row">
+                    <div class="stat">
+                        <div class="num" style="color:var(--green)">68%</div>
+                        <div class="label">Leave due to perceived indifference</div>
+                    </div>
+                    <div class="stat">
+                        <div class="num" style="color:var(--orange)">5x</div>
+                        <div class="label">Cheaper to retain than acquire</div>
+                    </div>
+                    <div class="stat">
+                        <div class="num" style="color:var(--blue)">$3,120</div>
+                        <div class="label">Lifetime value per customer (2yr)</div>
+                    </div>
+                    <div class="stat">
+                        <div class="num" style="color:var(--purple)">92%</div>
+                        <div class="label">Retention rate target</div>
+                    </div>
+                </div>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot urgent"></div>
+                        <div class="timeline-when urgent">WEEK 1 — Welcome sequence (see Welcome Flow tab)</div>
+                        <div class="timeline-title">Confirmation → Reminder → Service → Check-in → Review ask</div>
+                        <div class="timeline-desc">5 touchpoints in 7 days. Sets the tone for the entire relationship.</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-when">WEEK 2 — Service #2 completion</div>
+                        <div class="timeline-title">💬 "Settling In" Check</div>
+                        <div class="timeline-desc">Quick pulse check — are they happy? Anything to adjust?</div>
+                        <div class="copy-block" onclick="copyBlock(this)">
+                            <pre>Hey [NAME]! Week 2 is in the books — [DOG NAME]'s yard is looking great 🐾
+
+Everything working well with the [DAY] schedule? Just want to make sure we're dialed in for you. 👍</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-when">WEEK 4 — One month milestone</div>
+                        <div class="timeline-title">🎊 One Month Anniversary + Referral Seed</div>
+                        <div class="timeline-desc">Celebrate the milestone and plant the referral seed (don't push yet).</div>
+                        <div class="copy-block" onclick="copyBlock(this)">
+                            <pre>Hey [NAME]! Just realized it's been a month since you started with Tidy Tails. Time flies when the yard stays clean! 😄
+
+Thanks for trusting me with [DOG NAME]'s yard. If any of your neighbors or friends with dogs ever need the same service, I'm always happy to help. You know where to find me! 🐕</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-when">WEEK 6 — Referral ask</div>
+                        <div class="timeline-title">🎁 Direct Referral Ask + Incentive</div>
+                        <div class="timeline-desc">They've had 6+ services. They're a fan or they'd have cancelled. Time to ask directly.</div>
+                        <div class="copy-block" onclick="copyBlock(this)">
+                            <pre>Hey [NAME]! Quick question — know anyone with dogs who'd love a clean yard without the work? 🐾
+
+I'm running a referral special: you get a FREE service when someone you refer signs up. They get their first cleanup FREE too. Win-win!
+
+Just have them text me at 314-850-7140 and mention your name. Thanks [NAME]! 🙏</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-when">WEEK 8 — Value reinforcement</div>
+                        <div class="timeline-title">📊 Impact Report</div>
+                        <div class="timeline-desc">Remind them of the value they're getting. Makes the monthly cost feel tiny.</div>
+                        <div class="copy-block" onclick="copyBlock(this)">
+                            <pre>Hey [NAME]! Fun stat for you — I've cleaned [DOG NAME]'s yard [X] times so far. That's roughly [X] pounds of waste removed from your yard! 💪
+
+Imagine if all that was still sitting out there... 🤢 Hope you're enjoying the clean yard life! See you [DAY] 🐾</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-when">WEEK 12 — Three month check</div>
+                        <div class="timeline-title">🏆 Loyalty Thank You + Upsell Opportunity</div>
+                        <div class="timeline-desc">Three months = established habit. Thank them and explore upsell.</div>
+                        <div class="copy-block" onclick="copyBlock(this)">
+                            <pre>Hey [NAME]! 3 months of clean yards — you're officially a Tidy Tails OG! 🎉
+
+Just wanted to say thanks for being a loyal customer. It means a lot to a small business like mine.
+
+Quick thought — have you ever considered bumping up to twice a week? With [DOG NAME] [and DOG NAME], the yard stays even cleaner and it's only $[X] more per month. No pressure at all, just throwing it out there! 🐕</pre>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-when">ONGOING — Monthly</div>
+                        <div class="timeline-title">📱 Monthly Touchpoint Rotation</div>
+                        <div class="timeline-desc">After 90 days, switch to monthly touches. Rotate through these:</div>
+                    </div>
+                </div>
+                
+                <h4>Monthly Touchpoint Ideas (rotate these)</h4>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.5rem; margin-top:0.5rem;">
+                    <div class="copy-block" onclick="copyBlock(this)" style="margin:0;">
+                        <pre>🐾 Seasonal tip: "[relevant seasonal pet tip]" — Just thinking of [DOG NAME]!</pre>
+                    </div>
+                    <div class="copy-block" onclick="copyBlock(this)" style="margin:0;">
+                        <pre>⭐ "Any feedback for me? Always looking to improve!"</pre>
+                    </div>
+                    <div class="copy-block" onclick="copyBlock(this)" style="margin:0;">
+                        <pre>📸 Send a cute dog photo you took during service (if appropriate)</pre>
+                    </div>
+                    <div class="copy-block" onclick="copyBlock(this)" style="margin:0;">
+                        <pre>🎁 "Referral reminder — free service when a friend signs up!"</pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>🚨 Churn Prevention Triggers</h3>
+                <p style="color:var(--text2); font-size:0.85rem; margin-bottom:0.75rem;">
+                    Watch for these signals and respond IMMEDIATELY. Catching churn early = saving a customer.
+                </p>
+                
+                <div style="display:grid; gap:0.75rem;">
+                    <div style="background:var(--bg3); padding:0.75rem; border-radius:8px; border-left:3px solid var(--yellow);">
+                        <strong style="color:var(--yellow);">⚠️ Yellow Flag: Skipping a service</strong>
+                        <p style="color:var(--text2); font-size:0.8rem; margin-top:0.25rem;">Customer asks to skip a week. Normal occasionally, but 2+ skips = danger zone.</p>
+                        <div class="copy-block" onclick="copyBlock(this)" style="margin-bottom:0;">
+                            <pre>No problem, [NAME]! I'll skip this [DAY] and see you next week. Let me know if anything changes! 🐾</pre>
+                        </div>
+                    </div>
+                    
+                    <div style="background:var(--bg3); padding:0.75rem; border-radius:8px; border-left:3px solid var(--orange);">
+                        <strong style="color:var(--orange);">🟠 Orange Flag: Payment delay</strong>
+                        <p style="color:var(--text2); font-size:0.8rem; margin-top:0.25rem;">Invoice unpaid after 5+ days. Don't let it pile up — address with kindness.</p>
+                        <div class="copy-block" onclick="copyBlock(this)" style="margin-bottom:0;">
+                            <pre>Hey [NAME]! Just a friendly reminder on the [MONTH] invoice ($[X]). No rush — just wanted to make sure it didn't slip through the cracks. 
+
+Venmo: @TidyTails | Zelle: cartervhomes@gmail.com
+
+Thanks! 🐕</pre>
+                        </div>
+                    </div>
+                    
+                    <div style="background:var(--bg3); padding:0.75rem; border-radius:8px; border-left:3px solid var(--red);">
+                        <strong style="color:var(--red);">🔴 Red Flag: "Thinking about cancelling"</strong>
+                        <p style="color:var(--text2); font-size:0.8rem; margin-top:0.25rem;">This is your save-the-customer moment. Don't argue — listen, empathize, offer solutions.</p>
+                        <div class="copy-block" onclick="copyBlock(this)" style="margin-bottom:0;">
+                            <pre>Hey [NAME], totally understand! Mind if I ask — is there anything I could do differently? I'd hate to lose you as a customer.
+
+If it's a budget thing, I could switch you to every-other-week ($[X]/visit) — still keeps the yard manageable and cuts the cost in half. 
+
+Whatever works best for you! 🐾</pre>
+                        </div>
+                    </div>
+                    
+                    <div style="background:var(--bg3); padding:0.75rem; border-radius:8px; border-left:3px solid var(--red);">
+                        <strong style="color:var(--red);">🔴 Red Flag: Unresponsive to messages</strong>
+                        <p style="color:var(--text2); font-size:0.8rem; margin-top:0.25rem;">No reply to 2+ texts. They might be ghosting. One more try, then respect the silence.</p>
+                        <div class="copy-block" onclick="copyBlock(this)" style="margin-bottom:0;">
+                            <pre>Hey [NAME]! Haven't heard from you in a bit — hope everything's okay with you and [DOG NAME]! 
+
+Just want to confirm we're still on for [DAY]? If your schedule's changed, no worries at all — just let me know and we'll figure it out. 👍</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TAB 4: REFERRAL ENGINE -->
+        <div id="referrals" class="panel">
+            <div class="card">
+                <h3>🎁 Referral Engine — Your Cheapest Growth Channel</h3>
+                <p style="color:var(--text2); font-size:0.85rem; margin-bottom:1rem;">
+                    Referral customers close at 4x the rate of cold leads, stay 37% longer, and cost $0 to acquire. This is how you go from 5 → 25 without spending a dime on ads.
+                </p>
+                
+                <div class="stat-row">
+                    <div class="stat">
+                        <div class="num" style="color:var(--green)">4x</div>
+                        <div class="label">Higher close rate vs cold leads</div>
+                    </div>
+                    <div class="stat">
+                        <div class="num" style="color:var(--orange)">37%</div>
+                        <div class="label">Longer customer lifetime</div>
+                    </div>
+                    <div class="stat">
+                        <div class="num" style="color:var(--blue)">$0</div>
+                        <div class="label">Customer acquisition cost</div>
+                    </div>
+                    <div class="stat">
+                        <div class="num" style="color:var(--purple)">16%</div>
+                        <div class="label">Higher lifetime value</div>
+                    </div>
+                </div>
+                
+                <h4>🏗️ The Referral Program Structure</h4>
+                <div style="background:var(--bg3); padding:1rem; border-radius:8px; margin:0.75rem 0;">
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                        <div>
+                            <strong style="color:var(--green);">For the Referrer:</strong>
+                            <ul style="color:var(--text2); font-size:0.8rem; margin-top:0.5rem; padding-left:1rem;">
+                                <li>1 free service per successful referral</li>
+                                <li>Stacks — refer 4 friends = free month</li>
+                                <li>"VIP Customer" status at 3+ referrals</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <strong style="color:var(--blue);">For the New Customer:</strong>
+                            <ul style="color:var(--text2); font-size:0.8rem; margin-top:0.5rem; padding-left:1rem;">
+                                <li>First cleanup FREE (spring cleanup value = $50-100)</li>
+                                <li>$5 off first month of recurring</li>
+                                <li>Referred by a friend = instant trust</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 The math:</strong> You "lose" ~$30 per referral (one free service). But you gain a customer worth $3,120 over 2 years. That's a 104x ROI. No ad platform on earth beats that.
+                </div>
+                
+                <h4>📱 Referral Ask Templates (by situation)</h4>
+                
+                <p style="color:var(--text2); font-size:0.8rem; margin:0.5rem 0;"><strong>After a great service:</strong></p>
+                <div class="copy-block" onclick="copyBlock(this)">
+                    <pre>Glad you're happy with the service! Hey quick question — do you know anyone else with dogs who'd love a clean yard? 
+
+I'm running a referral deal: they get their first cleanup FREE, and you get a FREE service too. Just have them text me at 314-850-7140! 🐾</pre>
+                </div>
+                
+                <p style="color:var(--text2); font-size:0.8rem; margin:0.5rem 0;"><strong>After they leave a Google review:</strong></p>
+                <div class="copy-block" onclick="copyBlock(this)">
+                    <pre>Thanks so much for that review, [NAME]! That honestly means the world to me 🙏
+
+If you ever want to share the love IRL — I do a referral deal where you AND your friend both get a free service. Win-win! Just have them mention your name when they text me. 🐕</pre>
+                </div>
+                
+                <p style="color:var(--text2); font-size:0.8rem; margin:0.5rem 0;"><strong>Seasonal push (spring):</strong></p>
+                <div class="copy-block" onclick="copyBlock(this)">
+                    <pre>Hey [NAME]! Spring is here and everyone's yards are a MESS after winter 😅
+
+If you know anyone who's been putting off the yard cleanup, I'm offering free first cleanups for referrals. Plus you get a free service too!
+
+Perfect time to be the hero friend who shares the hookup 😄 314-850-7140</pre>
+                </div>
+                
+                <p style="color:var(--text2); font-size:0.8rem; margin:0.5rem 0;"><strong>Neighbor-specific (after canvassing their street):</strong></p>
+                <div class="copy-block" onclick="copyBlock(this)">
+                    <pre>Hey [NAME]! I was at your place today and noticed a few of your neighbors have dogs too 🐕
+
+Would you mind mentioning Tidy Tails to them? I'd love to pick up a few more yards on your street — means I'm in the neighborhood more often and can be flexible on timing.
+
+Free service for you for each neighbor who signs up! 🎉</pre>
+                </div>
+                
+                <h4>📊 Referral Tracker</h4>
+                <div style="margin-top:0.5rem;">
+                    <div class="form-row">
+                        <input type="text" id="refCustomer" placeholder="Referring customer">
+                        <input type="text" id="refLead" placeholder="Referred person">
+                        <input type="text" id="refPhone" placeholder="Phone number">
+                        <select id="refStatus">
+                            <option value="pending">Pending</option>
+                            <option value="contacted">Contacted</option>
+                            <option value="quoted">Quoted</option>
+                            <option value="signed">Signed Up ✅</option>
+                            <option value="declined">Declined</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-green btn-sm" onclick="addReferral()">+ Add Referral</button>
+                </div>
+                <div id="referralList" style="margin-top:1rem;"></div>
+            </div>
+        </div>
+        
+        <!-- TAB 5: CUSTOMER HEALTH -->
+        <div id="health" class="panel">
+            <div class="card">
+                <h3>💚 Customer Health Scoring</h3>
+                <p style="color:var(--text2); font-size:0.85rem; margin-bottom:1rem;">
+                    Not all customers are equal. Track health scores to know who's solid, who needs attention, and who's about to churn. Score each customer monthly.
+                </p>
+                
+                <div style="overflow-x:auto;">
+                    <table class="customer-table">
+                        <thead>
+                            <tr>
+                                <th>Factor</th>
+                                <th>Healthy (3 pts)</th>
+                                <th>Warning (2 pts)</th>
+                                <th>At Risk (1 pt)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Payment</strong></td>
+                                <td style="color:var(--green)">Pays within 3 days</td>
+                                <td style="color:var(--yellow)">Pays within 7 days</td>
+                                <td style="color:var(--red)">Pays late / needs reminders</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Communication</strong></td>
+                                <td style="color:var(--green)">Responsive, friendly</td>
+                                <td style="color:var(--yellow)">Slow but responds</td>
+                                <td style="color:var(--red)">Ghosts / doesn't reply</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Service Skips</strong></td>
+                                <td style="color:var(--green)">0-1 skips per quarter</td>
+                                <td style="color:var(--yellow)">2-3 skips per quarter</td>
+                                <td style="color:var(--red)">4+ skips per quarter</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Engagement</strong></td>
+                                <td style="color:var(--green)">Left review, refers friends</td>
+                                <td style="color:var(--yellow)">Appreciative but passive</td>
+                                <td style="color:var(--red)">No engagement at all</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tenure</strong></td>
+                                <td style="color:var(--green)">3+ months</td>
+                                <td style="color:var(--yellow)">1-3 months</td>
+                                <td style="color:var(--red)">Under 1 month</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div style="margin-top:1rem; display:grid; grid-template-columns:repeat(3,1fr); gap:0.75rem;">
+                    <div style="background:rgba(16,185,129,0.1); padding:0.75rem; border-radius:8px; text-align:center;">
+                        <div style="font-family:'JetBrains Mono',monospace; font-size:1.2rem; font-weight:700; color:var(--green);">13-15</div>
+                        <div style="font-size:0.75rem; color:var(--text2);">Healthy — nurture & ask for referrals</div>
+                    </div>
+                    <div style="background:rgba(251,191,36,0.1); padding:0.75rem; border-radius:8px; text-align:center;">
+                        <div style="font-family:'JetBrains Mono',monospace; font-size:1.2rem; font-weight:700; color:var(--yellow);">9-12</div>
+                        <div style="font-size:0.75rem; color:var(--text2);">Warning — proactive check-in needed</div>
+                    </div>
+                    <div style="background:rgba(239,68,68,0.1); padding:0.75rem; border-radius:8px; text-align:center;">
+                        <div style="font-family:'JetBrains Mono',monospace; font-size:1.2rem; font-weight:700; color:var(--red);">5-8</div>
+                        <div style="font-size:0.75rem; color:var(--text2);">At Risk — immediate intervention</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>📊 Score Your Customers</h3>
+                <p style="color:var(--text2); font-size:0.8rem; margin-bottom:0.75rem;">Add each customer and score them. Data saves to your browser.</p>
+                
+                <div class="form-row">
+                    <input type="text" id="healthName" placeholder="Customer name">
+                    <select id="healthPayment"><option value="3">Payment: On time (3)</option><option value="2">Payment: Slow (2)</option><option value="1">Payment: Late (1)</option></select>
+                    <select id="healthComm"><option value="3">Comms: Responsive (3)</option><option value="2">Comms: Slow (2)</option><option value="1">Comms: Ghost (1)</option></select>
+                </div>
+                <div class="form-row">
+                    <select id="healthSkips"><option value="3">Skips: Rare (3)</option><option value="2">Skips: Occasional (2)</option><option value="1">Skips: Frequent (1)</option></select>
+                    <select id="healthEngage"><option value="3">Engaged: Reviews/refers (3)</option><option value="2">Engaged: Passive (2)</option><option value="1">Engaged: None (1)</option></select>
+                    <select id="healthTenure"><option value="3">Tenure: 3+ months (3)</option><option value="2">Tenure: 1-3 months (2)</option><option value="1">Tenure: Under 1 month (1)</option></select>
+                </div>
+                <button class="btn btn-green btn-sm" onclick="addHealthScore()">+ Score Customer</button>
+                
+                <div id="healthList" style="margin-top:1rem;"></div>
+            </div>
+            
+            <div class="card">
+                <h3>🔄 Win-Back Campaigns</h3>
+                <p style="color:var(--text2); font-size:0.85rem; margin-bottom:0.75rem;">
+                    Lost a customer? Don't give up. 20-40% of lost customers can be won back with the right message at the right time.
+                </p>
+                
+                <h4>2 weeks after cancellation:</h4>
+                <div class="copy-block" onclick="copyBlock(this)">
+                    <pre>Hey [NAME]! Hope you and [DOG NAME] are doing well! 🐾
+
+Just wanted to check in — yard holding up okay? If you ever want to restart service (even just a one-time cleanup), I'm just a text away.
+
+No pressure at all. Miss having you on the route! 😄</pre>
+                </div>
+                
+                <h4>1 month after cancellation (seasonal angle):</h4>
+                <div class="copy-block" onclick="copyBlock(this)">
+                    <pre>Hey [NAME]! [SEASON] is hitting and I know yards are getting [crazy with leaves / buried in spring mess / extra messy in the heat].
+
+I'm running a comeback special — first cleanup back is FREE, no strings attached. Just testing the waters to see if you want to jump back in.
+
+Let me know! Hope [DOG NAME] is good 🐕</pre>
+                </div>
+                
+                <h4>3 months after cancellation (last try):</h4>
+                <div class="copy-block" onclick="copyBlock(this)">
+                    <pre>Hey [NAME]! Been a while — just wanted to say hi and let you know I'm still around if you ever need a yard cleanup.
+
+I've got a few new customers on your street now, so I'm in the neighborhood regularly. Easy to add you back in anytime.
+
+Take care! 🐾 — TJ</pre>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TAB 6: TRACKER -->
+        <div id="tracker" class="panel">
+            <div class="card">
+                <h3>📊 Onboarding Pipeline Tracker</h3>
+                <p style="color:var(--text2); font-size:0.85rem; margin-bottom:1rem;">
+                    Track where each new customer is in the onboarding process. Never miss a touchpoint.
+                </p>
+                
+                <div class="form-row">
+                    <input type="text" id="trackName" placeholder="Customer name">
+                    <input type="date" id="trackDate">
+                    <select id="trackStage">
+                        <option value="signed">Just Signed Up</option>
+                        <option value="welcome-sent">Welcome Sent</option>
+                        <option value="first-service">First Service Done</option>
+                        <option value="checkin-sent">Check-in Sent</option>
+                        <option value="review-asked">Review Asked</option>
+                        <option value="month-1">Month 1 Complete</option>
+                        <option value="referral-asked">Referral Asked</option>
+                        <option value="month-3">Month 3 — Established</option>
+                        <option value="ongoing">Ongoing (Retention Mode)</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <input type="text" id="trackNotes" placeholder="Notes (dogs, special requests, etc.)" style="grid-column: 1 / -1;">
+                </div>
+                <button class="btn btn-green btn-sm" onclick="addToTracker()">+ Add to Pipeline</button>
+                <button class="btn btn-blue btn-sm" onclick="exportTracker()" style="margin-left:0.5rem;">📥 Export CSV</button>
+                
+                <div id="trackerList" style="margin-top:1rem;"></div>
+            </div>
+            
+            <div class="card">
+                <h3>📈 Retention Metrics</h3>
+                <div id="retentionMetrics" class="stat-row">
+                    <div class="stat">
+                        <div class="num" id="metricTotal" style="color:var(--green)">0</div>
+                        <div class="label">Total Tracked</div>
+                    </div>
+                    <div class="stat">
+                        <div class="num" id="metricOnboarding" style="color:var(--blue)">0</div>
+                        <div class="label">In Onboarding</div>
+                    </div>
+                    <div class="stat">
+                        <div class="num" id="metricEstablished" style="color:var(--purple)">0</div>
+                        <div class="label">Established</div>
+                    </div>
+                    <div class="stat">
+                        <div class="num" id="metricReferrals" style="color:var(--orange)">0</div>
+                        <div class="label">Referrals Tracked</div>
+                    </div>
+                </div>
+                
+                <div class="tip">
+                    <strong>💡 Benchmark:</strong> Pet waste removal companies with structured onboarding see 92% 6-month retention vs 64% for those who just "show up and scoop." That 28% gap is the difference between 25 customers and 18 customers by August.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tab switching
+        function showTab(id) {
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        // Copy to clipboard
+        function copyBlock(el) {
+            const text = el.querySelector('pre').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                el.classList.add('copied');
+                setTimeout(() => el.classList.remove('copied'), 2000);
+            });
+        }
+        
+        // LocalStorage helpers
+        function save(key, data) { localStorage.setItem('tt-onboard-' + key, JSON.stringify(data)); }
+        function load(key) { try { return JSON.parse(localStorage.getItem('tt-onboard-' + key)) || []; } catch { return []; } }
+        
+        // Referral Tracker
+        let referrals = load('referrals');
+        function addReferral() {
+            const customer = document.getElementById('refCustomer').value.trim();
+            const lead = document.getElementById('refLead').value.trim();
+            const phone = document.getElementById('refPhone').value.trim();
+            const status = document.getElementById('refStatus').value;
+            if (!customer || !lead) return;
+            
+            referrals.push({ customer, lead, phone, status, date: new Date().toISOString().split('T')[0] });
+            save('referrals', referrals);
+            renderReferrals();
+            document.getElementById('refCustomer').value = '';
+            document.getElementById('refLead').value = '';
+            document.getElementById('refPhone').value = '';
+        }
+        
+        function updateRefStatus(idx, status) {
+            referrals[idx].status = status;
+            save('referrals', referrals);
+            renderReferrals();
+        }
+        
+        function deleteReferral(idx) {
+            referrals.splice(idx, 1);
+            save('referrals', referrals);
+            renderReferrals();
+        }
+        
+        function renderReferrals() {
+            const el = document.getElementById('referralList');
+            if (!referrals.length) { el.innerHTML = '<p style="color:var(--text3);font-size:0.8rem;">No referrals tracked yet</p>'; updateMetrics(); return; }
+            
+            const statusColors = { pending: 'var(--text3)', contacted: 'var(--blue)', quoted: 'var(--yellow)', signed: 'var(--green)', declined: 'var(--red)' };
+            const statusLabels = { pending: '⏳ Pending', contacted: '📞 Contacted', quoted: '💰 Quoted', signed: '✅ Signed!', declined: '❌ Declined' };
+            
+            el.innerHTML = referrals.map((r, i) => `
+                <div class="referral-card">
+                    <div>
+                        <div class="name">${r.lead} ${r.phone ? '— ' + r.phone : ''}</div>
+                        <div class="meta">Referred by ${r.customer} • ${r.date}</div>
+                    </div>
+                    <div style="display:flex;gap:0.5rem;align-items:center;">
+                        <select onchange="updateRefStatus(${i}, this.value)" style="background:var(--bg4);border:1px solid var(--border);color:${statusColors[r.status]};padding:0.25rem 0.5rem;border-radius:4px;font-size:0.7rem;">
+                            ${Object.keys(statusLabels).map(s => `<option value="${s}" ${s === r.status ? 'selected' : ''} style="color:var(--text)">${statusLabels[s]}</option>`).join('')}
+                        </select>
+                        <button onclick="deleteReferral(${i})" style="background:none;border:none;color:var(--text3);cursor:pointer;font-size:0.8rem;">🗑️</button>
+                    </div>
+                </div>
+            `).join('');
+            updateMetrics();
+        }
+        
+        // Health Scoring
+        let healthScores = load('health');
+        function addHealthScore() {
+            const name = document.getElementById('healthName').value.trim();
+            if (!name) return;
+            const score = [
+                parseInt(document.getElementById('healthPayment').value),
+                parseInt(document.getElementById('healthComm').value),
+                parseInt(document.getElementById('healthSkips').value),
+                parseInt(document.getElementById('healthEngage').value),
+                parseInt(document.getElementById('healthTenure').value)
+            ];
+            const total = score.reduce((a, b) => a + b, 0);
+            
+            // Update existing or add new
+            const existing = healthScores.findIndex(h => h.name.toLowerCase() === name.toLowerCase());
+            if (existing >= 0) {
+                healthScores[existing] = { name, score, total, date: new Date().toISOString().split('T')[0] };
+            } else {
+                healthScores.push({ name, score, total, date: new Date().toISOString().split('T')[0] });
+            }
+            
+            save('health', healthScores);
+            renderHealth();
+            document.getElementById('healthName').value = '';
+        }
+        
+        function deleteHealth(idx) {
+            healthScores.splice(idx, 1);
+            save('health', healthScores);
+            renderHealth();
+        }
+        
+        function renderHealth() {
+            const el = document.getElementById('healthList');
+            if (!healthScores.length) { el.innerHTML = '<p style="color:var(--text3);font-size:0.8rem;">No customers scored yet</p>'; return; }
+            
+            healthScores.sort((a, b) => a.total - b.total); // Lowest first (needs attention)
+            
+            el.innerHTML = '<div class="health-grid">' + healthScores.map((h, i) => {
+                const color = h.total >= 13 ? 'var(--green)' : h.total >= 9 ? 'var(--yellow)' : 'var(--red)';
+                const label = h.total >= 13 ? 'Healthy' : h.total >= 9 ? 'Warning' : 'At Risk';
+                const badge = h.total >= 13 ? 'badge-healthy' : h.total >= 9 ? 'badge-warning' : 'badge-danger';
+                return `
+                    <div class="health-card">
+                        <div style="display:flex;justify-content:space-between;align-items:start;">
+                            <div>
+                                <div style="font-weight:700;">${h.name}</div>
+                                <span class="badge ${badge}">${label}</span>
+                            </div>
+                            <div style="text-align:right;">
+                                <div style="font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:800;color:${color};">${h.total}/15</div>
+                                <button onclick="deleteHealth(${i})" style="background:none;border:none;color:var(--text3);cursor:pointer;font-size:0.7rem;">remove</button>
+                            </div>
+                        </div>
+                        <div style="color:var(--text3);font-size:0.7rem;margin-top:0.5rem;">Scored ${h.date}</div>
+                    </div>
+                `;
+            }).join('') + '</div>';
+        }
+        
+        // Onboarding Tracker
+        let tracker = load('tracker');
+        const stageLabels = {
+            'signed': '📝 Just Signed Up',
+            'welcome-sent': '👋 Welcome Sent',
+            'first-service': '✅ First Service Done',
+            'checkin-sent': '💬 Check-in Sent',
+            'review-asked': '⭐ Review Asked',
+            'month-1': '📅 Month 1 Complete',
+            'referral-asked': '🎁 Referral Asked',
+            'month-3': '🏆 Month 3 — Established',
+            'ongoing': '🔄 Ongoing'
+        };
+        const stageOrder = Object.keys(stageLabels);
+        
+        function addToTracker() {
+            const name = document.getElementById('trackName').value.trim();
+            const date = document.getElementById('trackDate').value || new Date().toISOString().split('T')[0];
+            const stage = document.getElementById('trackStage').value;
+            const notes = document.getElementById('trackNotes').value.trim();
+            if (!name) return;
+            
+            const existing = tracker.findIndex(t => t.name.toLowerCase() === name.toLowerCase());
+            if (existing >= 0) {
+                tracker[existing] = { ...tracker[existing], stage, notes: notes || tracker[existing].notes, updated: date };
+            } else {
+                tracker.push({ name, date, stage, notes, updated: date });
+            }
+            
+            save('tracker', tracker);
+            renderTracker();
+            document.getElementById('trackName').value = '';
+            document.getElementById('trackNotes').value = '';
+        }
+        
+        function updateStage(idx, stage) {
+            tracker[idx].stage = stage;
+            tracker[idx].updated = new Date().toISOString().split('T')[0];
+            save('tracker', tracker);
+            renderTracker();
+        }
+        
+        function deleteFromTracker(idx) {
+            tracker.splice(idx, 1);
+            save('tracker', tracker);
+            renderTracker();
+        }
+        
+        function renderTracker() {
+            const el = document.getElementById('trackerList');
+            if (!tracker.length) { el.innerHTML = '<p style="color:var(--text3);font-size:0.8rem;">No customers in pipeline yet</p>'; updateMetrics(); return; }
+            
+            tracker.sort((a, b) => stageOrder.indexOf(a.stage) - stageOrder.indexOf(b.stage));
+            
+            el.innerHTML = '<div style="overflow-x:auto;"><table class="customer-table"><thead><tr><th>Customer</th><th>Stage</th><th>Since</th><th>Notes</th><th></th></tr></thead><tbody>' +
+                tracker.map((t, i) => `
+                    <tr>
+                        <td><strong>${t.name}</strong></td>
+                        <td>
+                            <select onchange="updateStage(${i}, this.value)" style="background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:0.25rem;border-radius:4px;font-size:0.7rem;">
+                                ${stageOrder.map(s => `<option value="${s}" ${s === t.stage ? 'selected' : ''}>${stageLabels[s]}</option>`).join('')}
+                            </select>
+                        </td>
+                        <td style="font-size:0.75rem;color:var(--text2);">${t.date}</td>
+                        <td style="font-size:0.75rem;color:var(--text2);">${t.notes || '—'}</td>
+                        <td><button onclick="deleteFromTracker(${i})" style="background:none;border:none;color:var(--text3);cursor:pointer;">🗑️</button></td>
+                    </tr>
+                `).join('') + '</tbody></table></div>';
+            updateMetrics();
+        }
+        
+        function updateMetrics() {
+            document.getElementById('metricTotal').textContent = tracker.length;
+            const onboarding = tracker.filter(t => ['signed','welcome-sent','first-service','checkin-sent','review-asked'].includes(t.stage)).length;
+            const established = tracker.filter(t => ['month-3','ongoing'].includes(t.stage)).length;
+            document.getElementById('metricOnboarding').textContent = onboarding;
+            document.getElementById('metricEstablished').textContent = established;
+            document.getElementById('metricReferrals').textContent = referrals.length;
+        }
+        
+        function exportTracker() {
+            let csv = 'Name,Stage,Start Date,Updated,Notes\n';
+            tracker.forEach(t => {
+                csv += `"${t.name}","${stageLabels[t.stage]}","${t.date}","${t.updated || t.date}","${(t.notes || '').replace(/"/g, '""')}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'tidy-tails-onboarding-' + new Date().toISOString().split('T')[0] + '.csv';
+            a.click();
+        }
+        
+        // Initial render
+        renderReferrals();
+        renderHealth();
+        renderTracker();
+    </script>
+</body>
+</html>
