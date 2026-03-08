@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-08 10:05 CST*
+*Last updated: 2026-03-08 11:04 CST*
 
 ---
 
@@ -22,6 +22,10 @@
   - Owner: Basquiat (needs fal.ai credits topped up)
 
 ### ✅ Recently Completed
+- [x] **Customer Rescue Playbook** — Copy-paste posts for Nextdoor/Facebook targeting dead competitors' orphaned customers. 9 posts, specific group links, DM scripts. 50 min → $300-500/mo potential ✅ (Mar 8)
+- [x] **Google Visibility Playbook** — 4-tier plan from invisible to page 1, with copy-paste GBP description and review templates ✅ (Mar 8)
+- [x] **Live Competitive Intel** — Confirmed 2 competitors dead (Fresh Paws, Pawfect), Doggie Doodies pricing analysis ✅ (Mar 8)
+- [x] **Weekly Review & Action Plan** — Honest assessment: 0 customer growth despite 35+ tools. Top 3 actions for the week ✅ (Mar 8)
 - [x] **Print Marketing Kit** — Door hangers, flyers, yard signs, biz cards, leave-behinds — all print-ready ✅ (Mar 7)
 - [x] **Competitor Battle Cards** — 9 competitors profiled with live data, kill scripts, pricing ✅ (Mar 7)
 - [x] **Commercial Leads Pack** — 40 leads with phone numbers across 4 categories ✅ (Mar 7)
