@@ -4,6 +4,44 @@
 
 ---
 
+### 6:05 PM — 🎯 NEIGHBORHOOD TARGETING INTEL — Data-Driven Customer Acquisition (Hourly Task)
+**Task:** Research and build interactive neighborhood targeting tool ranking St. Louis County areas by customer acquisition potential
+**Result:** ✅ SHIPPED — 20 neighborhoods ranked, 4 route clusters, pricing & platform strategy
+
+**Why This Task:**
+- All existing marketing tools (ads, flyers, canvassing planner) are GREAT but generic
+- Without knowing WHERE to focus, marketing effort is spread thin
+- Data-driven targeting = every dollar and hour of canvassing produces more leads
+- Missouri is #4 nationally in dog ownership (45.9%) — the customers ARE there
+
+**What I Built:**
+- **20 neighborhoods ranked** by "Tidy Tails Score" (0-100 composite)
+- **5 scoring factors:** Income sweet spot (25pts), Home ownership (20pts), Dog density (20pts), Route efficiency (20pts), Marketing accessibility (15pts)
+- **3 tiers:** Tier 1 (Ballwin 97, Chesterfield 95, Manchester/Ellisville 93, Kirkwood 91, Wildwood 88), Tier 2 (5 areas), Tier 3 (5 areas)
+- **4 route clusters** with drive-time analysis and customer capacity
+- **Tiered pricing strategy:** $25/week (value areas) → $30 (mid) → $35-40 (premium neighborhoods)
+- **Platform strategy per neighborhood:** Which marketing channels work WHERE
+- **3-Ring expansion strategy:** Grow outward from Ballwin base systematically
+- **Key stat:** 26,000 dog-owning households in Cluster A. TJ needs 25 customers = 0.1% penetration
+
+**Data Sources:**
+- U.S. Census ACS (income, home ownership, population)
+- IncomByZipCode.com (zip-level income data)
+- HomeSnacks (richest cities rankings)
+- AVMA (Missouri dog ownership: 45.9%)
+- Google Maps (drive time estimates for clusters)
+
+**Dashboard Updated:**
+- New tool: "Neighborhood Targeting Intel"
+- Tools count: 11 → 12
+- Live at: https://tidytails.github.io/tidytails-dashboard/2026-03-07-NEIGHBORHOOD-TARGETING.html
+
+**Commit:** `dc6aaf1` on `tidytails-dashboard` repo
+
+**Rotation:** 🔍 Research/Intel + 📊 Strategy
+
+---
+
 ### 4:05 PM — 🏠 SHED MARKET INTEL — STL Competitor Scan + Spring 2026 Ad Pack (Hourly Task)
 **Task:** Research the STL shed market, profile competitors, build pricing intelligence, and create ready-to-post Marketplace/social ad copy for Backyard Buildings STL
 **Result:** ✅ SHIPPED — 6-tab interactive dashboard with 13 competitors profiled, pricing matrix, 6 Marketplace ads, 4 social posts
