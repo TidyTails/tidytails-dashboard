@@ -6,6 +6,41 @@
 
 ## March 8, 2026 (Sunday)
 
+### 5:04 AM — 📱 SPRING SOCIAL MEDIA WEEK — 7 Days of Ready-to-Post Content (Hourly Task)
+**Task:** Create a full week of social media content for Tidy Tails, optimized for spring thaw season
+**Result:** ✅ SHIPPED — 7 days of platform-specific posts (Facebook, Instagram, Nextdoor) with posting schedule
+
+**Why This Task:**
+- Spring thaw = peak demand season for pet waste removal. Snow melting reveals months of accumulated waste.
+- TJ needs content ready to go Monday morning. No technical setup required (unlike GSC).
+- Competitors (Doggie Doodies) are already active. Can't afford to be silent.
+- Social media is the fastest path to new customers while SEO gets unblocked.
+
+**What I Built:**
+`content/2026-03-08-SPRING-SOCIAL-WEEK.md` — Complete 7-day content calendar:
+- **Monday:** Facebook + Nextdoor (spring reveal + neighbor intro)
+- **Tuesday:** Instagram reel idea + caption (humor/POV style)
+- **Wednesday:** Facebook (the math post — 120 piles/month for 2 dogs)
+- **Thursday:** Nextdoor (seasonal urgency + bacteria/health angle)
+- **Friday:** Instagram (lifestyle/humor checklist format)
+- **Saturday:** Facebook (weekend lifestyle post)
+- **Sunday:** Instagram Stories (5-slide educational series on pet waste as EPA pollutant)
+
+**Style Compliance:**
+- ✅ No dashes/hyphens in sentences (TJ's #1 rule)
+- ✅ Conversational tone, contractions, reads like a real person
+- ✅ Zero AI buzzwords
+- ✅ Every post includes: specific price, service areas, "first visit free" CTA
+- ✅ Platform-appropriate (Nextdoor = neighbor tone, Instagram = hashtags + reel ideas)
+
+**Posting Schedule:** Optimal times included for each platform based on engagement data
+
+**What TJ Does:** Copy, add a photo, post. 2 minutes per day.
+
+**Rotation:** 📱 Content Marketing — Social Media
+
+---
+
 ### 4:04 AM — 🔍 GOOGLE INDEXING AUDIT — The #1 Blocker Confirmed (Hourly Task)
 **Task:** Verify Google indexation status for tidytailsstl.com — flagged as #1 blocker
 **Result:** ✅ CONFIRMED — Zero pages indexed. Created actionable 15-minute fix guide.
