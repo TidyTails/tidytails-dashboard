@@ -1065,3 +1065,45 @@ Every post hooks into spring thaw / yard cleanup / winter buildup reveal — per
 **Commit:** `af75d34` on `tidytails-dashboard` repo
 
 **Rotation:** 📱 Content — Social Media Marketing
+
+---
+
+### 12:04 PM — 🗺️ ROUTE & PROFIT OPTIMIZER — Operations Intelligence Tool (Hourly Task)
+**Task:** Build the first operations/financial tool for Tidy Tails — we had 15+ marketing tools and zero ops tools
+**Result:** ✅ SHIPPED — Full interactive operations dashboard with 6 tabs
+
+**Why This Task:**
+- Every dashboard tool so far was marketing/content focused
+- Zero tools for understanding unit economics, route efficiency, or profitability
+- As TJ scales from 5 → 25+ customers, operational decisions matter MORE than marketing
+- Needed: "What does 25 customers actually look like in hours, profit, and gas?"
+
+**What I Built:**
+Interactive Route & Profit Optimizer (`dashboard/2026-03-08-ROUTE-PROFIT-OPTIMIZER.html`) with 6 tabs:
+
+1. **📊 Dashboard** — Live P&L snapshot, goal progress, zone revenue chart, auto-generated insights
+2. **👥 Customer Manager** — Add/remove customers with zone, dogs, frequency, rate, yard size, service time. CSV export. LocalStorage persistence
+3. **🗺️ Route Planner** — Zone map with 17 STL suburbs, route efficiency score, suggested weekly schedule, drive time/cost analysis
+4. **💰 Pricing Lab** — Tiered pricing modeler (1/2/3/4+ dogs), instant revenue impact calculator, full competitor benchmark table
+5. **📈 Growth Model** — Slider from 5-60 customers showing revenue, profit, hours/week, hiring triggers, revenue projection bars
+6. **🧾 Expense Tracker** — Fixed + variable cost inputs, monthly P&L calculation with margin analysis
+
+**Key Features:**
+- 17 STL zones with drive time estimates (Ballwin 5min, Wildwood 18min, Wentzville 35min, etc.)
+- Route efficiency % (service time vs drive time ratio, industry target 60%+)
+- Hiring trigger calculator: solo cap at ~20 customers, part-time help at 25+
+- Competitor pricing table: all 6 competitors side-by-side
+- Sample data loader for quick demo
+- All customer data persists in browser localStorage
+
+**Industry Intel Baked In:**
+- 50% gross margin benchmark for pet waste removal
+- Solo operator sweet spot: 15-20 customers (~27h/wk field + admin)
+- Route density = #1 profitability driver (cluster same-zone customers)
+- Tiered pricing is industry standard (TJ leaving $460/mo on table at 25 customers)
+
+**Dashboard Integration:** Added to Tools & CRMs section on main dashboard
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-08-ROUTE-PROFIT-OPTIMIZER.html
+**Commit:** `4086d76` on `tidytails-dashboard` repo
+
+**Rotation:** 📊 Operations — Route & Financial Planning

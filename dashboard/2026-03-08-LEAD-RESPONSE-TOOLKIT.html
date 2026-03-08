@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lead Response & Sales Toolkit — Tidy Tails</title>
+<style>
+:root {
+  --green: #22c55e;
+  --green-dark: #16a34a;
+  --green-light: #dcfce7;
+  --blue: #3b82f6;
+  --blue-light: #dbeafe;
+  --orange: #f59e0b;
+  --orange-light: #fef3c7;
+  --red: #ef4444;
+  --red-light: #fee2e2;
+  --purple: #8b5cf6;
+  --purple-light: #ede9fe;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-300: #d1d5db;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-900: #111827;
+  --shadow: 0 1px 3px rgba(0,0,0,0.1);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+  --radius: 12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--gray-50); color: var(--gray-900); line-height:1.6; }
+
+.header {
+  background: linear-gradient(135deg, var(--green-dark) 0%, #059669 100%);
+  color: white; padding: 24px 20px; text-align: center;
+}
+.header h1 { font-size: 1.6rem; margin-bottom: 4px; }
+.header p { opacity: 0.9; font-size: 0.95rem; }
+.header .stat-row { display:flex; justify-content:center; gap:24px; margin-top:12px; flex-wrap:wrap; }
+.header .stat { text-align:center; }
+.header .stat .num { font-size:1.8rem; font-weight:800; }
+.header .stat .label { font-size:0.75rem; opacity:0.8; text-transform:uppercase; letter-spacing:0.5px; }
+
+.tabs {
+  display: flex; overflow-x: auto; background: white; border-bottom: 2px solid var(--gray-200);
+  position: sticky; top: 0; z-index: 100;
+}
+.tab {
+  flex: 1; min-width: 80px; padding: 12px 8px; text-align: center; cursor: pointer;
+  font-size: 0.8rem; font-weight: 600; color: var(--gray-500); border-bottom: 3px solid transparent;
+  transition: all 0.2s; white-space: nowrap;
+}
+.tab:hover { color: var(--gray-700); background: var(--gray-50); }
+.tab.active { color: var(--green-dark); border-bottom-color: var(--green-dark); }
+.tab-icon { font-size: 1.2rem; display: block; margin-bottom: 2px; }
+
+.content { max-width: 800px; margin: 0 auto; padding: 16px; }
+.panel { display: none; }
+.panel.active { display: block; }
+
+.card {
+  background: white; border-radius: var(--radius); padding: 20px; margin-bottom: 16px;
+  box-shadow: var(--shadow); border: 1px solid var(--gray-200);
+}
+.card h2 { font-size: 1.15rem; margin-bottom: 12px; display:flex; align-items:center; gap:8px; }
+.card h3 { font-size: 1rem; margin: 16px 0 8px; color: var(--gray-700); }
+
+.script-block {
+  background: var(--gray-50); border-radius: 8px; padding: 16px; margin: 12px 0;
+  border-left: 4px solid var(--green); position: relative;
+}
+.script-block.alt { border-left-color: var(--blue); }
+.script-block.warning { border-left-color: var(--orange); }
+.script-block.objection { border-left-color: var(--red); }
+.script-block .label {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+  color: var(--green-dark); margin-bottom: 6px;
+}
+.script-block.alt .label { color: var(--blue); }
+.script-block.warning .label { color: var(--orange); }
+.script-block.objection .label { color: var(--red); }
+
+.copy-btn {
+  position: absolute; top: 8px; right: 8px; background: var(--green); color: white;
+  border: none; border-radius: 6px; padding: 4px 10px; font-size: 0.75rem; cursor: pointer;
+  font-weight: 600; transition: all 0.2s;
+}
+.copy-btn:hover { background: var(--green-dark); }
+.copy-btn.copied { background: var(--gray-500); }
+
+.text-template {
+  background: white; border: 2px solid var(--gray-200); border-radius: 8px; padding: 14px;
+  margin: 10px 0; position: relative; font-size: 0.95rem;
+}
+.text-template .tag {
+  display: inline-block; background: var(--green-light); color: var(--green-dark);
+  font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; margin-bottom: 8px;
+}
+.text-template .tag.blue { background: var(--blue-light); color: var(--blue); }
+.text-template .tag.orange { background: var(--orange-light); color: var(--orange); }
+.text-template .tag.purple { background: var(--purple-light); color: var(--purple); }
+
+.quote-calc { background: white; border-radius: var(--radius); padding: 20px; }
+.calc-row { display:flex; align-items:center; gap:12px; margin:12px 0; flex-wrap:wrap; }
+.calc-row label { font-weight:600; min-width:120px; font-size:0.9rem; }
+.calc-row select, .calc-row input {
+  flex:1; padding:10px 12px; border:2px solid var(--gray-200); border-radius:8px;
+  font-size:1rem; min-width:150px;
+}
+.calc-row select:focus, .calc-row input:focus { border-color:var(--green); outline:none; }
+
+.quote-result {
+  background: linear-gradient(135deg, var(--green-light), #f0fdf4);
+  border: 2px solid var(--green); border-radius: var(--radius); padding: 20px;
+  text-align: center; margin-top: 16px;
+}
+.quote-result .price { font-size: 2.5rem; font-weight: 800; color: var(--green-dark); }
+.quote-result .freq { font-size: 1rem; color: var(--gray-700); }
+.quote-result .savings { color: var(--green-dark); font-weight:600; margin-top:4px; }
+
+.objection-item {
+  border: 1px solid var(--gray-200); border-radius: 8px; margin: 10px 0; overflow: hidden;
+}
+.objection-q {
+  padding: 12px 16px; background: var(--red-light); font-weight: 600; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.objection-q:hover { background: #fecaca; }
+.objection-a { padding: 14px 16px; display: none; background: white; }
+.objection-item.open .objection-a { display: block; }
+.objection-item.open .objection-q .arrow { transform: rotate(180deg); }
+.arrow { transition: transform 0.2s; }
+
+.timeline { position: relative; padding-left: 24px; }
+.timeline::before {
+  content:''; position:absolute; left:8px; top:0; bottom:0; width:3px;
+  background: var(--green); border-radius: 2px;
+}
+.timeline-item { position:relative; margin:16px 0; padding-left:16px; }
+.timeline-item::before {
+  content:''; position:absolute; left:-20px; top:6px; width:12px; height:12px;
+  background: var(--green); border-radius:50%; border:3px solid white; box-shadow: var(--shadow);
+}
+.timeline-item .time { font-weight:700; color:var(--green-dark); font-size:0.85rem; }
+.timeline-item .action { margin-top:4px; }
+
+.tip-box {
+  background: var(--orange-light); border-radius: 8px; padding: 12px 16px; margin: 12px 0;
+  border-left: 4px solid var(--orange); font-size: 0.9rem;
+}
+.tip-box strong { color: var(--orange); }
+
+.success-box {
+  background: var(--green-light); border-radius: 8px; padding: 12px 16px; margin: 12px 0;
+  border-left: 4px solid var(--green); font-size: 0.9rem;
+}
+
+.tracker-log { max-height: 300px; overflow-y: auto; }
+.log-entry {
+  display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+  border-bottom: 1px solid var(--gray-100); font-size: 0.9rem;
+}
+.log-entry:last-child { border-bottom: none; }
+.log-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.log-dot.new { background: var(--blue); }
+.log-dot.quoted { background: var(--orange); }
+.log-dot.won { background: var(--green); }
+.log-dot.lost { background: var(--red); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 10px 20px;
+  border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+  border: none; transition: all 0.2s;
+}
+.btn-green { background: var(--green); color: white; }
+.btn-green:hover { background: var(--green-dark); }
+.btn-blue { background: var(--blue); color: white; }
+.btn-blue:hover { background: #2563eb; }
+.btn-outline { background: white; color: var(--gray-700); border: 2px solid var(--gray-200); }
+.btn-outline:hover { border-color: var(--gray-300); }
+
+.speed-metric {
+  text-align: center; padding: 16px; background: var(--blue-light); border-radius: 8px;
+}
+.speed-metric .big { font-size: 3rem; font-weight: 800; color: var(--blue); }
+.speed-metric .sub { font-size: 0.85rem; color: var(--gray-500); }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 600px) { .grid-2 { grid-template-columns: 1fr; } }
+
+.checklist label {
+  display: flex; align-items: flex-start; gap: 8px; padding: 8px 0;
+  cursor: pointer; font-size: 0.95rem;
+}
+.checklist input[type="checkbox"] { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--green); }
+
+.badge {
+  display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem;
+  font-weight: 700; text-transform: uppercase;
+}
+.badge-green { background: var(--green-light); color: var(--green-dark); }
+.badge-blue { background: var(--blue-light); color: var(--blue); }
+.badge-orange { background: var(--orange-light); color: var(--orange); }
+
+hr { border: none; border-top: 1px solid var(--gray-200); margin: 16px 0; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📞 Lead Response & Sales Toolkit</h1>
+  <p>From "I'm interested" to "Sign me up" — your closing playbook</p>
+  <div class="stat-row">
+    <div class="stat">
+      <div class="num" id="responseGoal">&lt;5min</div>
+      <div class="label">Response Goal</div>
+    </div>
+    <div class="stat">
+      <div class="num">78%</div>
+      <div class="label">1st Responder Wins</div>
+    </div>
+    <div class="stat">
+      <div class="num">5-7</div>
+      <div class="label">Touches to Close</div>
+    </div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('speed')">
+    <span class="tab-icon">⚡</span>Speed
+  </div>
+  <div class="tab" onclick="switchTab('texts')">
+    <span class="tab-icon">💬</span>Texts
+  </div>
+  <div class="tab" onclick="switchTab('phone')">
+    <span class="tab-icon">📞</span>Phone
+  </div>
+  <div class="tab" onclick="switchTab('quote')">
+    <span class="tab-icon">💰</span>Quote
+  </div>
+  <div class="tab" onclick="switchTab('objections')">
+    <span class="tab-icon">🛡️</span>Objections
+  </div>
+  <div class="tab" onclick="switchTab('followup')">
+    <span class="tab-icon">📅</span>Follow-Up
+  </div>
+  <div class="tab" onclick="switchTab('tracker')">
+    <span class="tab-icon">📊</span>Tracker
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ===== SPEED TAB ===== -->
+<div class="panel active" id="panel-speed">
+  <div class="card">
+    <h2>⚡ Speed-to-Lead: The #1 Closing Factor</h2>
+    <div class="speed-metric">
+      <div class="big">5 min</div>
+      <div class="sub">Respond within 5 minutes and you're <strong>21x more likely</strong> to close</div>
+    </div>
+
+    <div class="tip-box" style="margin-top:16px;">
+      <strong>🧠 The Data:</strong> 78% of customers buy from the FIRST company that responds. Not the cheapest. Not the best reviews. The <em>fastest</em>. In pet waste removal, most competitors take 12-24 hours to reply. Your speed IS your advantage.
+    </div>
+
+    <h3>🎯 Response Time Targets</h3>
+    <div class="grid-2">
+      <div style="background:var(--green-light);padding:12px;border-radius:8px;text-align:center;">
+        <div style="font-size:1.5rem;font-weight:800;color:var(--green-dark);">🏆 Under 5 min</div>
+        <div style="font-size:0.85rem;color:var(--gray-700);">Ideal — you'll blow them away</div>
+      </div>
+      <div style="background:var(--blue-light);padding:12px;border-radius:8px;text-align:center;">
+        <div style="font-size:1.5rem;font-weight:800;color:var(--blue);">✅ Under 15 min</div>
+        <div style="font-size:0.85rem;color:var(--gray-700);">Good — still faster than 90% of competitors</div>
+      </div>
+      <div style="background:var(--orange-light);padding:12px;border-radius:8px;text-align:center;">
+        <div style="font-size:1.5rem;font-weight:800;color:var(--orange);">⚠️ Under 1 hour</div>
+        <div style="font-size:0.85rem;color:var(--gray-700);">Okay — but they may be shopping</div>
+      </div>
+      <div style="background:var(--red-light);padding:12px;border-radius:8px;text-align:center;">
+        <div style="font-size:1.5rem;font-weight:800;color:var(--red);">❌ Over 1 hour</div>
+        <div style="font-size:0.85rem;color:var(--gray-700);">They've already texted your competitor</div>
+      </div>
+    </div>
+
+    <h3>📱 Setup for Speed</h3>
+    <div class="checklist">
+      <label><input type="checkbox"> Turn on notifications for Google Business Profile messages</label>
+      <label><input type="checkbox"> Turn on notifications for Facebook page messages</label>
+      <label><input type="checkbox"> Save text templates in phone's keyboard shortcuts</label>
+      <label><input type="checkbox"> Set up auto-reply for after-hours ("Got your message! I'll get you a quote by morning")</label>
+      <label><input type="checkbox"> Keep phone ringer ON during business hours (8am-8pm)</label>
+    </div>
+
+    <div class="success-box">
+      <strong>💡 Pro Tip:</strong> Save these text templates as keyboard shortcuts on your phone. Type "tt1" and it expands to your first-response template. Saves 2-3 minutes per lead.
+    </div>
+  </div>
+</div>
+
+<!-- ===== TEXTS TAB ===== -->
+<div class="panel" id="panel-texts">
+  <div class="card">
+    <h2>💬 Text Response Templates</h2>
+    <p style="color:var(--gray-500);margin-bottom:16px;">Copy, personalize the [brackets], and fire off. Under 5 minutes every time.</p>
+
+    <div class="text-template">
+      <span class="tag">FIRST RESPONSE — THE GOLDEN TEXT</span>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="template-text">Hey [Name]! 👋 This is TJ from Tidy Tails. Thanks for reaching out! I'd love to help get your yard cleaned up. Quick question — how many dogs do you have and what area are you in? I can get you a quote in about 2 minutes 🐕</div>
+    </div>
+
+    <div class="tip-box">
+      <strong>Why this works:</strong> It's warm, personal, asks an easy question (they WANT to talk about their dogs), and sets the expectation of a fast quote. The emoji keeps it casual — you're a neighbor helping out, not a corporation.
+    </div>
+
+    <div class="text-template">
+      <span class="tag blue">AFTER THEY REPLY WITH DETAILS</span>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="template-text">Awesome! [Dog count] dog[s] in [area] — I'm actually in that area already for other clients which keeps the price down. For [frequency] service I can do $[price]/visit. That includes the full yard, front and back, and I haul everything away. Want me to come by this [day] for a first cleanup? 🙌</div>
+    </div>
+
+    <div class="text-template">
+      <span class="tag orange">AFTER-HOURS AUTO REPLY</span>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="template-text">Hey! Thanks for reaching out to Tidy Tails 🐾 I'm away from my phone right now but I'll get back to you first thing in the morning with a quote. Talk soon!</div>
+    </div>
+
+    <div class="text-template">
+      <span class="tag purple">QUOTE FOLLOW-UP (IF NO REPLY IN 2 HRS)</span>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="template-text">Hey [Name], just wanted to make sure my quote came through! $[price]/visit for [frequency] service. No contracts or commitments — try it once and see what you think. I've got an opening this [day] if you're interested! 👍</div>
+    </div>
+
+    <div class="text-template">
+      <span class="tag">FIRST-TIME SERVICE CONFIRMATION</span>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="template-text">Hey [Name]! You're all set for [day/date]. I'll be there between [time window]. No need to be home — I'll let myself through the gate and send you a photo when I'm done. Looking forward to it! 🐕💩✨</div>
+    </div>
+
+    <div class="text-template">
+      <span class="tag blue">AFTER FIRST SERVICE</span>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="template-text">All done at your place! ✅ Yard is looking fresh. [Optional: specific note like "Found a lot built up by the back fence — got it all"]. Same time next [day]? Let me know if you want to adjust anything!</div>
+    </div>
+
+    <div class="text-template">
+      <span class="tag orange">REFERRAL ASK (AFTER 3RD SERVICE)</span>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="template-text">Hey [Name]! Hope you're loving the clean yard 🐕 Quick favor — if you know anyone else who could use this service, I'd really appreciate a referral. I'll throw in a free cleanup for both of you! Just have them mention your name 🙌</div>
+    </div>
+
+    <div class="text-template">
+      <span class="tag purple">REVIEW REQUEST (AFTER 4TH SERVICE)</span>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="template-text">Hey [Name]! Quick ask — would you mind leaving a quick Google review? It helps a ton as a small local business. Here's the link: [Google review link]. Even just a sentence or two means the world! 🙏</div>
+    </div>
+
+    <div class="text-template">
+      <span class="tag">SEASONAL RE-ENGAGEMENT (SPRING)</span>
+      <button class="copy-btn" onclick="copyText(this)">Copy</button>
+      <div class="template-text">Hey [Name]! Spring's here and yards are starting to thaw out 😅 A lot of my customers are booking spring cleanups to clear out the winter buildup. Want me to swing by this week? I've got a few spots open!</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PHONE TAB ===== -->
+<div class="panel" id="panel-phone">
+  <div class="card">
+    <h2>📞 Phone Scripts</h2>
+    <p style="color:var(--gray-500);margin-bottom:16px;">Not word-for-word — just hit these beats in order. Be conversational.</p>
+
+    <h3>Inbound Call (They Called You)</h3>
+    <div class="script-block">
+      <div class="label">OPENING (10 sec)</div>
+      "Hey, this is TJ with Tidy Tails! Thanks for calling. What can I help you with?"
+      <br><br>
+      <em style="color:var(--gray-500);font-size:0.85rem;">→ Let them talk. They'll tell you everything you need.</em>
+    </div>
+
+    <div class="script-block alt">
+      <div class="label">DISCOVERY (30 sec)</div>
+      <strong>Ask these 3 questions:</strong>
+      <ol style="margin:8px 0 0 20px;">
+        <li>"How many dogs do you have?" <em style="color:var(--gray-500);">(pricing)</em></li>
+        <li>"What part of town are you in?" <em style="color:var(--gray-500);">(route fit)</em></li>
+        <li>"How often were you thinking — weekly or every other week?" <em style="color:var(--gray-500);">(frames the choice)</em></li>
+      </ol>
+    </div>
+
+    <div class="script-block">
+      <div class="label">QUOTE (15 sec)</div>
+      "For [X] dogs on a [frequency] schedule, I'd be at $[price] per visit. That covers the whole yard — front, back, side — and I haul everything away so you never have to think about it."
+    </div>
+
+    <div class="script-block alt">
+      <div class="label">THE CLOSE (10 sec)</div>
+      "I've actually got an opening this [day]. Want me to put you down for that?"
+      <br><br>
+      <em style="color:var(--gray-500);font-size:0.85rem;">→ Always suggest a specific day. Don't say "whenever works." Make it easy.</em>
+    </div>
+
+    <div class="script-block warning">
+      <div class="label">IF THEY HESITATE</div>
+      "Tell you what — try the first one and see how you like it. No contracts, no commitments. If you love it, we'll set up a regular schedule. If not, no hard feelings."
+    </div>
+
+    <hr>
+
+    <h3>Outbound Call (Following Up on a Lead)</h3>
+    <div class="script-block">
+      <div class="label">OPENING</div>
+      "Hey [Name], this is TJ from Tidy Tails — you reached out about yard cleanup? Just wanted to follow up and see if you still need help with that!"
+      <br><br>
+      <em style="color:var(--gray-500);font-size:0.85rem;">→ Keep it casual. You're a neighbor, not a telemarketer.</em>
+    </div>
+
+    <div class="tip-box">
+      <strong>📞 Phone Tips:</strong>
+      <ul style="margin:8px 0 0 16px;">
+        <li>Smile when you talk — they can hear it</li>
+        <li>Stand up or walk around — it adds energy to your voice</li>
+        <li>Use their name 2-3 times in the conversation</li>
+        <li>Match their energy — if they're chill, be chill</li>
+        <li>Always end with a specific next step, never "let me know"</li>
+      </ul>
+    </div>
+
+    <h3>Key Phrases That Close</h3>
+    <div class="grid-2">
+      <div style="background:var(--green-light);padding:12px;border-radius:8px;">
+        <strong style="color:var(--green-dark);">✅ Say This</strong>
+        <ul style="margin:8px 0 0 12px;font-size:0.9rem;">
+          <li>"I'm already in your area"</li>
+          <li>"No contracts ever"</li>
+          <li>"Try it once, see what you think"</li>
+          <li>"I'll send a photo when done"</li>
+          <li>"Most of my clients say..."</li>
+        </ul>
+      </div>
+      <div style="background:var(--red-light);padding:12px;border-radius:8px;">
+        <strong style="color:var(--red);">❌ Don't Say This</strong>
+        <ul style="margin:8px 0 0 12px;font-size:0.9rem;">
+          <li>"Let me know what you think"</li>
+          <li>"Whenever works for you"</li>
+          <li>"Our services include..."</li>
+          <li>"I can send you more info"</li>
+          <li>"We're a pet waste company"</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== QUOTE CALCULATOR TAB ===== -->
+<div class="panel" id="panel-quote">
+  <div class="card">
+    <h2>💰 Instant Quote Calculator</h2>
+    <p style="color:var(--gray-500);margin-bottom:16px;">Get a quote while they're still on the phone. No "let me get back to you."</p>
+
+    <div class="calc-row">
+      <label>🐕 Dogs:</label>
+      <select id="calcDogs" onchange="calcQuote()">
+        <option value="1">1 dog</option>
+        <option value="2" selected>2 dogs</option>
+        <option value="3">3 dogs</option>
+        <option value="4">4 dogs</option>
+        <option value="5">5+ dogs</option>
+      </select>
+    </div>
+
+    <div class="calc-row">
+      <label>📅 Frequency:</label>
+      <select id="calcFreq" onchange="calcQuote()">
+        <option value="weekly" selected>Weekly</option>
+        <option value="biweekly">Every Other Week</option>
+        <option value="onetime">One-Time Cleanup</option>
+      </select>
+    </div>
+
+    <div class="calc-row">
+      <label>🏡 Yard Size:</label>
+      <select id="calcYard" onchange="calcQuote()">
+        <option value="small">Small (townhouse/condo)</option>
+        <option value="medium" selected>Medium (standard lot)</option>
+        <option value="large">Large (1/2+ acre)</option>
+      </select>
+    </div>
+
+    <div class="calc-row">
+      <label>📍 Zone:</label>
+      <select id="calcZone" onchange="calcQuote()">
+        <option value="core" selected>Core (Ballwin, Manchester, Ellisville)</option>
+        <option value="mid">Mid (Chesterfield, Wildwood, Creve Coeur)</option>
+        <option value="outer">Outer (Wentzville, O'Fallon, St. Peters)</option>
+      </select>
+    </div>
+
+    <div class="quote-result" id="quoteResult">
+      <div class="price" id="quotePrice">$20</div>
+      <div class="freq" id="quoteFreq">per visit — weekly service</div>
+      <div class="savings" id="quoteSavings"></div>
+      <div style="margin-top:12px;" id="quoteMonthly"></div>
+    </div>
+
+    <div style="margin-top:16px;text-align:center;">
+      <button class="btn btn-green" onclick="copyQuote()">📋 Copy Quote Text</button>
+    </div>
+
+    <h3>💡 Pricing Psychology Tips</h3>
+    <div class="tip-box">
+      <strong>Always quote per-visit, not monthly.</strong> "$20 per visit" sounds like lunch money. "$80/month" sounds like a bill. Same price, different psychology.
+    </div>
+    <div class="tip-box">
+      <strong>Anchor with the one-time price.</strong> "A one-time cleanup for that yard would be $75, but on weekly service it's just $20/visit — way better deal." Makes weekly feel like a steal.
+    </div>
+    <div class="tip-box">
+      <strong>Bundle the value.</strong> Never just say the price. Say: "$20 per visit — that covers the full yard, front and back, and I haul everything away." They're not buying poop pickup, they're buying a clean yard they never think about.
+    </div>
+  </div>
+</div>
+
+<!-- ===== OBJECTIONS TAB ===== -->
+<div class="panel" id="panel-objections">
+  <div class="card">
+    <h2>🛡️ Objection Handlers</h2>
+    <p style="color:var(--gray-500);margin-bottom:16px;">Click any objection to see the response. Practice these until they're automatic.</p>
+
+    <div class="objection-item" onclick="toggleObjection(this)">
+      <div class="objection-q">"That's too expensive" / "Let me think about it" <span class="arrow">▼</span></div>
+      <div class="objection-a">
+        <div class="script-block">
+          <div class="label">RESPOND WITH</div>
+          "Totally understand — what does your time look like right now though? Most people tell me they spend 30-45 minutes a week on it, and nobody enjoys it. For $20, that's buying back your Saturday morning. Plus no contracts — try it once, and if it's not worth it to you, no hard feelings."
+        </div>
+        <div class="tip-box">
+          <strong>The move:</strong> Reframe from cost → time saved. $20 for 30-45 min of the worst chore? That's cheaper than a pizza delivery. Then remove risk with "try it once."
+        </div>
+      </div>
+    </div>
+
+    <div class="objection-item" onclick="toggleObjection(this)">
+      <div class="objection-q">"I can just do it myself" <span class="arrow">▼</span></div>
+      <div class="objection-a">
+        <div class="script-block">
+          <div class="label">RESPOND WITH</div>
+          "Oh for sure, you definitely can! Most of my customers could too — they just got tired of being the one who always had to do it. It's one of those things where once someone else handles it, you wonder why you waited so long. Want to try one cleanup and see?"
+        </div>
+        <div class="tip-box">
+          <strong>The move:</strong> Never argue or make them feel dumb. Validate, then use social proof ("most of my customers felt the same way"). End with the low-commitment try.
+        </div>
+      </div>
+    </div>
+
+    <div class="objection-item" onclick="toggleObjection(this)">
+      <div class="objection-q">"I need to talk to my spouse" <span class="arrow">▼</span></div>
+      <div class="objection-a">
+        <div class="script-block">
+          <div class="label">RESPOND WITH</div>
+          "Absolutely! Here's an easy way to frame it — it's about $5 a week per dog. Less than a coffee. And the first cleanup is basically a trial run, no commitment. Want me to text you the quote details so you can show them?"
+        </div>
+        <div class="tip-box">
+          <strong>The move:</strong> Give them ammunition for the conversation. Make it easy for them to sell it to their partner. The text follow-up keeps the door open.
+        </div>
+      </div>
+    </div>
+
+    <div class="objection-item" onclick="toggleObjection(this)">
+      <div class="objection-q">"I only have one dog, it's not that bad" <span class="arrow">▼</span></div>
+      <div class="objection-a">
+        <div class="script-block">
+          <div class="label">RESPOND WITH</div>
+          "Ha, that's actually most of my clients! One dog can still put down 10+ piles a week. It adds up fast, especially in spring. And at $15-18 per visit for one dog, it's basically nothing. Want to try it for a month and see if it's worth it?"
+        </div>
+        <div class="tip-box">
+          <strong>The move:</strong> Quantify the poop. People don't realize how much even one dog produces. Then hit them with the low single-dog price.
+        </div>
+      </div>
+    </div>
+
+    <div class="objection-item" onclick="toggleObjection(this)">
+      <div class="objection-q">"What if my dog is in the yard?" <span class="arrow">▼</span></div>
+      <div class="objection-a">
+        <div class="script-block">
+          <div class="label">RESPOND WITH</div>
+          "Great question! I love dogs, so that's usually not an issue. Most dogs are curious for the first visit and then don't even care after that. If your dog is aggressive or you'd rather them be inside, I can text you 5 minutes before I arrive so you can bring them in. Whatever works best!"
+        </div>
+      </div>
+    </div>
+
+    <div class="objection-item" onclick="toggleObjection(this)">
+      <div class="objection-q">"Do you have insurance?" <span class="arrow">▼</span></div>
+      <div class="objection-a">
+        <div class="script-block">
+          <div class="label">RESPOND WITH</div>
+          "Yep, fully insured! It's one of those things that separates a legit operation from some random person on Craigslist. You can rest easy knowing your property is covered."
+        </div>
+        <div class="tip-box">
+          <strong>Note:</strong> If you don't have insurance yet — GET IT. General liability for pet waste is ~$30-50/month and it's a dealbreaker for commercial clients and cautious homeowners. It's also a competitive advantage.
+        </div>
+      </div>
+    </div>
+
+    <div class="objection-item" onclick="toggleObjection(this)">
+      <div class="objection-q">"I'll call you back" / Ghost after quote <span class="arrow">▼</span></div>
+      <div class="objection-a">
+        <div class="script-block">
+          <div class="label">FOLLOW UP SEQUENCE</div>
+          <strong>Day 1 (2 hours after quote):</strong><br>
+          "Hey [Name], just checking — did you have any questions about the quote? Happy to adjust anything!"<br><br>
+          <strong>Day 3:</strong><br>
+          "Hey [Name]! Just following up — I've got a few openings this week if you want to try that first cleanup. No pressure either way! 👍"<br><br>
+          <strong>Day 7:</strong><br>
+          "Last ping, I promise! 😄 If the timing isn't right, no worries at all. I'll be here whenever you're ready. Have a great week!"
+        </div>
+        <div class="tip-box">
+          <strong>The move:</strong> 3 follow-ups, then stop. You're persistent, not desperate. The "last ping" one works surprisingly well — people feel bad and often respond.
+        </div>
+      </div>
+    </div>
+
+    <div class="objection-item" onclick="toggleObjection(this)">
+      <div class="objection-q">"Another company is cheaper" <span class="arrow">▼</span></div>
+      <div class="objection-a">
+        <div class="script-block">
+          <div class="label">RESPOND WITH</div>
+          "For sure, there are cheaper options out there. What I can tell you is I'm local, I'm the one who shows up every time (not a random employee), and I actually care about doing it right. My customers stick around because the service is consistent. But hey, if price is the main factor, I totally get it — no hard feelings."
+        </div>
+        <div class="tip-box">
+          <strong>The move:</strong> Don't compete on price — compete on trust, consistency, and being local. The "no hard feelings" is genuine and paradoxically makes them more likely to choose you. Nobody wants to feel sold.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOLLOW-UP TAB ===== -->
+<div class="panel" id="panel-followup">
+  <div class="card">
+    <h2>📅 Follow-Up Sequences</h2>
+    <p style="color:var(--gray-500);margin-bottom:16px;">The fortune is in the follow-up. Most leads need 5-7 touches before buying.</p>
+
+    <h3>🔥 Hot Lead (Just Inquired)</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">Within 5 min</div>
+        <div class="action">Send first response text (see Texts tab). Ask about dogs + area.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Within 10 min of their reply</div>
+        <div class="action">Send the quote. Always include a specific day: "I've got Thursday open."</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">2 hours after quote (if no reply)</div>
+        <div class="action">"Hey, did you get the quote? Any questions?"</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Day 2</div>
+        <div class="action">"Just following up — I have openings this week if you want to try it out!"</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Day 5</div>
+        <div class="action">"Last check-in! No pressure either way. I'll be here when you're ready 👍"</div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h3>🌱 New Customer (Just Signed Up)</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">Day of signup</div>
+        <div class="action">Confirmation text with date, time window, instructions (gate code, dog info)</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">After 1st service</div>
+        <div class="action">Completion text + photo of clean yard. Ask for any adjustments.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">After 3rd service</div>
+        <div class="action">Referral ask: "Know anyone who needs this? Free cleanup for both of you!"</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">After 4th-5th service</div>
+        <div class="action">Google review request with direct link.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Monthly (ongoing)</div>
+        <div class="action">Quick check-in: "Everything going well? Anything I should adjust?"</div>
+      </div>
+    </div>
+
+    <hr>
+
+    <h3>❄️ Cold Lead (Inquired 30+ Days Ago, Didn't Sign Up)</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="time">Seasonal triggers</div>
+        <div class="action">"Hey [Name]! Spring's here — want to knock out a cleanup before it gets crazy?"</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Special offers</div>
+        <div class="action">"Running a spring special — first cleanup 50% off. Thought of you!"</div>
+      </div>
+      <div class="timeline-item">
+        <div class="time">Social proof</div>
+        <div class="action">"Just hit [X] 5-star reviews! If you're still thinking about it, we'd love to add you to the schedule."</div>
+      </div>
+    </div>
+
+    <div class="success-box" style="margin-top:16px;">
+      <strong>🏆 The Referral Loop:</strong> Every new customer should generate at least 1 referral ask. Your best marketing channel is happy customers telling their neighbors. Referral customers close at 4x the rate of cold leads and cost $0 to acquire.
+    </div>
+  </div>
+</div>
+
+<!-- ===== TRACKER TAB ===== -->
+<div class="panel" id="panel-tracker">
+  <div class="card">
+    <h2>📊 Lead Tracker</h2>
+    <p style="color:var(--gray-500);margin-bottom:12px;">Log every lead. Know where you stand at a glance.</p>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+      <input type="text" id="leadName" placeholder="Name" style="flex:1;min-width:100px;padding:8px 12px;border:2px solid var(--gray-200);border-radius:8px;">
+      <select id="leadSource" style="padding:8px 12px;border:2px solid var(--gray-200);border-radius:8px;">
+        <option value="FB">Facebook</option>
+        <option value="GBP">Google</option>
+        <option value="ND">Nextdoor</option>
+        <option value="CL">Craigslist</option>
+        <option value="REF">Referral</option>
+        <option value="OTH">Other</option>
+      </select>
+      <select id="leadStatus" style="padding:8px 12px;border:2px solid var(--gray-200);border-radius:8px;">
+        <option value="new">🔵 New</option>
+        <option value="quoted">🟡 Quoted</option>
+        <option value="won">🟢 Won</option>
+        <option value="lost">🔴 Lost</option>
+      </select>
+      <button class="btn btn-green" onclick="addLead()">+ Add</button>
+    </div>
+
+    <div class="grid-2" style="margin-bottom:16px;">
+      <div style="text-align:center;padding:12px;background:var(--blue-light);border-radius:8px;">
+        <div style="font-size:1.5rem;font-weight:800;color:var(--blue);" id="statTotal">0</div>
+        <div style="font-size:0.8rem;color:var(--gray-500);">Total Leads</div>
+      </div>
+      <div style="text-align:center;padding:12px;background:var(--green-light);border-radius:8px;">
+        <div style="font-size:1.5rem;font-weight:800;color:var(--green-dark);" id="statWon">0</div>
+        <div style="font-size:0.8rem;color:var(--gray-500);">Closed Won</div>
+      </div>
+      <div style="text-align:center;padding:12px;background:var(--orange-light);border-radius:8px;">
+        <div style="font-size:1.5rem;font-weight:800;color:var(--orange);" id="statQuoted">0</div>
+        <div style="font-size:0.8rem;color:var(--gray-500);">Awaiting Reply</div>
+      </div>
+      <div style="text-align:center;padding:12px;background:var(--purple-light);border-radius:8px;">
+        <div style="font-size:1.5rem;font-weight:800;color:var(--purple);" id="statRate">0%</div>
+        <div style="font-size:0.8rem;color:var(--gray-500);">Close Rate</div>
+      </div>
+    </div>
+
+    <div class="tracker-log" id="leadLog">
+      <div style="text-align:center;padding:24px;color:var(--gray-500);">
+        No leads yet. Add your first one above! ☝️
+      </div>
+    </div>
+
+    <div style="margin-top:12px;display:flex;gap:8px;">
+      <button class="btn btn-outline" onclick="exportLeads()">📥 Export CSV</button>
+      <button class="btn btn-outline" onclick="clearLeads()" style="color:var(--red);">🗑️ Clear All</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<script>
+// Tab switching
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+}
+
+// Copy text template
+function copyText(btn) {
+  const text = btn.parentElement.querySelector('.template-text').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Quote Calculator
+const pricing = {
+  base: { 1: 15, 2: 20, 3: 25, 4: 30, 5: 35 },
+  yardMod: { small: -2, medium: 0, large: 5 },
+  freqMod: { weekly: 0, biweekly: 5, onetime: 0 },
+  onetimeMult: { 1: 2.5, 2: 3, 3: 3.5, 4: 4, 5: 4.5 },
+  zoneMod: { core: 0, mid: 0, outer: 5 }
+};
+
+function calcQuote() {
+  const dogs = parseInt(document.getElementById('calcDogs').value);
+  const freq = document.getElementById('calcFreq').value;
+  const yard = document.getElementById('calcYard').value;
+  const zone = document.getElementById('calcZone').value;
+
+  let price;
+  if (freq === 'onetime') {
+    price = pricing.base[dogs] * pricing.onetimeMult[dogs] + pricing.yardMod[yard] + pricing.zoneMod[zone];
+    price = Math.round(price / 5) * 5; // round to nearest 5
+    document.getElementById('quotePrice').textContent = '$' + price;
+    document.getElementById('quoteFreq').textContent = 'one-time deep cleanup';
+    document.getElementById('quoteSavings').textContent = '';
+    document.getElementById('quoteMonthly').textContent = '';
+  } else {
+    price = pricing.base[dogs] + pricing.yardMod[yard] + pricing.freqMod[freq] + pricing.zoneMod[zone];
+    const perVisit = Math.max(price, 12);
+    const monthly = freq === 'weekly' ? perVisit * 4 : perVisit * 2;
+    const freqLabel = freq === 'weekly' ? 'weekly' : 'every other week';
+
+    document.getElementById('quotePrice').textContent = '$' + perVisit;
+    document.getElementById('quoteFreq').textContent = 'per visit — ' + freqLabel + ' service';
+    document.getElementById('quoteMonthly').innerHTML = '<span style="font-size:0.95rem;">That\'s <strong>$' + monthly + '/month</strong> for a yard you never think about</span>';
+
+    if (freq === 'biweekly') {
+      const weeklyPrice = pricing.base[dogs] + pricing.yardMod[yard] + pricing.zoneMod[zone];
+      const weeklySavings = (perVisit * 2) - (weeklyPrice * 4);
+      document.getElementById('quoteSavings').textContent = '💡 Weekly saves $' + Math.abs(weeklySavings) + '/month — mention this!';
+    } else {
+      document.getElementById('quoteSavings').textContent = '✅ Best value — most popular choice';
+    }
+  }
+}
+
+function copyQuote() {
+  const price = document.getElementById('quotePrice').textContent;
+  const freq = document.getElementById('quoteFreq').textContent;
+  const dogs = document.getElementById('calcDogs').value;
+  const text = `For ${dogs} dog${dogs>1?'s':''}, I'd be at ${price} ${freq}. That covers the full yard — front, back, everything — and I haul it all away. No contracts, cancel anytime. Want to try a first one this week?`;
+  navigator.clipboard.writeText(text).then(() => {
+    event.target.textContent = '✓ Copied!';
+    setTimeout(() => { event.target.textContent = '📋 Copy Quote Text'; }, 2000);
+  });
+}
+
+// Objections
+function toggleObjection(el) { el.classList.toggle('open'); }
+
+// Lead Tracker
+let leads = JSON.parse(localStorage.getItem('tt-leads') || '[]');
+
+function renderLeads() {
+  const log = document.getElementById('leadLog');
+  if (leads.length === 0) {
+    log.innerHTML = '<div style="text-align:center;padding:24px;color:var(--gray-500);">No leads yet. Add your first one above! ☝️</div>';
+  } else {
+    log.innerHTML = leads.map((l, i) => `
+      <div class="log-entry">
+        <span class="log-dot ${l.status}"></span>
+        <span style="flex:1;"><strong>${l.name}</strong></span>
+        <span class="badge badge-${l.status === 'won' ? 'green' : l.status === 'quoted' ? 'orange' : l.status === 'new' ? 'blue' : 'orange'}">${l.source}</span>
+        <select onchange="updateStatus(${i}, this.value)" style="padding:4px 8px;border:1px solid var(--gray-200);border-radius:4px;font-size:0.8rem;">
+          <option value="new" ${l.status==='new'?'selected':''}>🔵 New</option>
+          <option value="quoted" ${l.status==='quoted'?'selected':''}>🟡 Quoted</option>
+          <option value="won" ${l.status==='won'?'selected':''}>🟢 Won</option>
+          <option value="lost" ${l.status==='lost'?'selected':''}>🔴 Lost</option>
+        </select>
+        <button onclick="removeLead(${i})" style="background:none;border:none;cursor:pointer;font-size:1rem;">✕</button>
+      </div>
+    `).join('');
+  }
+  // Stats
+  document.getElementById('statTotal').textContent = leads.length;
+  document.getElementById('statWon').textContent = leads.filter(l => l.status === 'won').length;
+  document.getElementById('statQuoted').textContent = leads.filter(l => l.status === 'quoted').length;
+  const decided = leads.filter(l => l.status === 'won' || l.status === 'lost');
+  const rate = decided.length > 0 ? Math.round(leads.filter(l=>l.status==='won').length / decided.length * 100) : 0;
+  document.getElementById('statRate').textContent = rate + '%';
+}
+
+function addLead() {
+  const name = document.getElementById('leadName').value.trim();
+  if (!name) return;
+  leads.unshift({ name, source: document.getElementById('leadSource').value, status: document.getElementById('leadStatus').value, date: new Date().toISOString() });
+  localStorage.setItem('tt-leads', JSON.stringify(leads));
+  document.getElementById('leadName').value = '';
+  renderLeads();
+}
+
+function updateStatus(i, status) {
+  leads[i].status = status;
+  localStorage.setItem('tt-leads', JSON.stringify(leads));
+  renderLeads();
+}
+
+function removeLead(i) {
+  leads.splice(i, 1);
+  localStorage.setItem('tt-leads', JSON.stringify(leads));
+  renderLeads();
+}
+
+function clearLeads() {
+  if (confirm('Clear all leads?')) { leads = []; localStorage.removeItem('tt-leads'); renderLeads(); }
+}
+
+function exportLeads() {
+  const csv = 'Name,Source,Status,Date\n' + leads.map(l => `${l.name},${l.source},${l.status},${l.date}`).join('\n');
+  const blob = new Blob([csv], {type:'text/csv'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'tidy-tails-leads.csv'; a.click();
+}
+
+// Init
+calcQuote();
+renderLeads();
+</script>
+</body>
+</html>
