@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📅 Weekly Content Calendar — Tidy Tails</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 12px; max-width: 900px; margin: 0 auto; }
+h1 { font-size: 1.4rem; margin-bottom: 4px; color: #fff; }
+.subtitle { color: #888; font-size: 0.85rem; margin-bottom: 16px; }
+.week-nav { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 16px; overflow-x: auto; }
+.day-tab { padding: 8px 12px; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; cursor: pointer; font-size: 0.78rem; color: #aaa; transition: all 0.2s; white-space: nowrap; flex-shrink: 0; }
+.day-tab.active { background: #2d5a27; border-color: #4a8; color: #fff; }
+.day-tab .day-name { font-weight: 600; }
+.day-tab .day-date { font-size: 0.7rem; opacity: 0.7; }
+.day-tab .post-count { background: #333; padding: 1px 6px; border-radius: 8px; font-size: 0.65rem; margin-left: 4px; }
+.day-tab.active .post-count { background: #1a4a17; }
+.day-section { display: none; }
+.day-section.active { display: block; }
+.day-header { margin-bottom: 14px; }
+.day-header h2 { font-size: 1.1rem; color: #4a8; margin-bottom: 4px; }
+.day-header .theme { color: #888; font-size: 0.82rem; }
+.post-card { background: #141414; border: 1px solid #262626; border-radius: 12px; padding: 16px; margin-bottom: 14px; position: relative; }
+.post-card.posted { opacity: 0.5; border-color: #1a3a1a; }
+.post-card.posted::after { content: '✅ POSTED'; position: absolute; top: 12px; right: 12px; background: #1a3a1a; color: #4a8; padding: 2px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; }
+.platform-tag { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.72rem; font-weight: 600; margin-bottom: 8px; margin-right: 4px; }
+.platform-fb { background: #1a2a4a; color: #6af; }
+.platform-ig { background: #3a1a3a; color: #f6a; }
+.platform-nd { background: #2a3a1a; color: #af6; }
+.platform-goog { background: #3a2a1a; color: #fa6; }
+.post-type { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.72rem; font-weight: 600; background: #2a2a2a; color: #aaa; margin-bottom: 8px; }
+.post-card h3 { color: #fff; font-size: 0.95rem; margin-bottom: 8px; }
+.post-body { white-space: pre-wrap; line-height: 1.6; font-size: 0.88rem; color: #ccc; margin-bottom: 12px; background: #0d0d0d; padding: 14px; border-radius: 8px; border: 1px solid #1a1a1a; }
+.post-notes { font-size: 0.78rem; color: #888; margin-bottom: 10px; padding: 8px 12px; background: #111; border-radius: 6px; border-left: 3px solid #4a8; }
+.post-notes strong { color: #aaa; }
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.copy-btn { background: #2d5a27; color: #fff; border: none; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; font-weight: 600; transition: all 0.2s; flex: 1; }
+.copy-btn:hover { background: #3a7a33; }
+.copy-btn.copied { background: #1a8a1a; }
+.mark-btn { background: #1a1a1a; color: #888; border: 1px solid #333; padding: 10px 14px; border-radius: 8px; cursor: pointer; font-size: 0.82rem; transition: all 0.2s; }
+.mark-btn:hover { background: #2a2a2a; color: #fff; }
+.stats-bar { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.stat { background: #141414; border: 1px solid #262626; border-radius: 10px; padding: 10px 16px; flex: 1; min-width: 100px; text-align: center; }
+.stat .num { font-size: 1.3rem; font-weight: 700; color: #4a8; }
+.stat .label { font-size: 0.7rem; color: #888; margin-top: 2px; }
+.strategy-card { background: #141414; border: 1px solid #262626; border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+.strategy-card h3 { color: #fa4; font-size: 0.95rem; margin-bottom: 8px; }
+.strategy-card ul { list-style: none; }
+.strategy-card li { font-size: 0.85rem; color: #bbb; padding: 4px 0; padding-left: 20px; position: relative; }
+.strategy-card li::before { content: '→'; position: absolute; left: 0; color: #4a8; }
+.hashtag-box { background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 8px; padding: 12px; margin-top: 8px; font-size: 0.82rem; color: #6af; word-break: break-all; }
+.best-time { background: #1a2a1a; border: 1px solid #2a4a2a; border-radius: 8px; padding: 10px 14px; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+.best-time .clock { font-size: 1.2rem; }
+.best-time .time-text { font-size: 0.82rem; color: #aaa; }
+.best-time .time-text strong { color: #4a8; }
+.progress-bar { background: #1a1a1a; border-radius: 8px; height: 8px; margin-top: 8px; overflow: hidden; }
+.progress-fill { background: linear-gradient(90deg, #2d5a27, #4a8); height: 100%; border-radius: 8px; transition: width 0.5s; }
+.overview-tab, .tips-tab { display: none; }
+.overview-tab.active, .tips-tab.active { display: block; }
+@media (max-width: 500px) {
+  .day-tab { padding: 6px 8px; font-size: 0.72rem; }
+  .stats-bar { gap: 6px; }
+  .stat { min-width: 70px; padding: 8px; }
+  .stat .num { font-size: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<h1>📅 Weekly Content Calendar</h1>
+<p class="subtitle">March 8–14, 2026 — Copy, paste, post. 15 minutes to schedule the whole week.</p>
+
+<div class="stats-bar">
+  <div class="stat"><div class="num" id="totalPosts">21</div><div class="label">Posts This Week</div></div>
+  <div class="stat"><div class="num">4</div><div class="label">Platforms</div></div>
+  <div class="stat"><div class="num" id="postedCount">0</div><div class="label">Posted ✅</div></div>
+  <div class="stat"><div class="num" id="remainCount">21</div><div class="label">Remaining</div></div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div>
+<p style="text-align:right; font-size:0.7rem; color:#555; margin-top:4px; margin-bottom:14px;" id="progressText">0% complete</p>
+
+<div class="week-nav" id="weekNav">
+  <div class="day-tab active" data-day="overview"><span class="day-name">📋 Overview</span></div>
+  <div class="day-tab" data-day="sun"><span class="day-name">Sun</span> <span class="day-date">Mar 8</span><span class="post-count">3</span></div>
+  <div class="day-tab" data-day="mon"><span class="day-name">Mon</span> <span class="day-date">Mar 9</span><span class="post-count">3</span></div>
+  <div class="day-tab" data-day="tue"><span class="day-name">Tue</span> <span class="day-date">Mar 10</span><span class="post-count">3</span></div>
+  <div class="day-tab" data-day="wed"><span class="day-name">Wed</span> <span class="day-date">Mar 11</span><span class="post-count">3</span></div>
+  <div class="day-tab" data-day="thu"><span class="day-name">Thu</span> <span class="day-date">Mar 12</span><span class="post-count">3</span></div>
+  <div class="day-tab" data-day="fri"><span class="day-name">Fri</span> <span class="day-date">Mar 13</span><span class="post-count">3</span></div>
+  <div class="day-tab" data-day="sat"><span class="day-name">Sat</span> <span class="day-date">Mar 14</span><span class="post-count">3</span></div>
+  <div class="day-tab" data-day="tips"><span class="day-name">💡 Tips</span></div>
+</div>
+
+<!-- OVERVIEW TAB -->
+<div class="day-section active" data-day="overview">
+  <div class="strategy-card">
+    <h3>📋 This Week's Strategy</h3>
+    <ul>
+      <li><strong>Theme:</strong> Spring Cleanup Season — snow's melting, yards are messy, perfect timing</li>
+      <li><strong>Goal:</strong> 3 posts/day across platforms = consistent visibility without spamming</li>
+      <li><strong>Mix:</strong> Educational (30%), Promotional (30%), Social Proof (20%), Humor (20%)</li>
+      <li><strong>CTA rotation:</strong> DM me → Call/text → Link to site → "Tag a friend"</li>
+      <li><strong>Hashtag sets:</strong> Pre-built below — just copy the right set per platform</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card">
+    <h3>🎯 Platform Strategy</h3>
+    <ul>
+      <li><strong>Facebook Groups</strong> (Mon/Wed/Fri/Sat) — STL neighborhood groups, pet owner groups. Conversational tone. No hard sell.</li>
+      <li><strong>Instagram</strong> (Daily) — Reels/carousels do best. Use stories for polls/behind-the-scenes.</li>
+      <li><strong>Nextdoor</strong> (Tue/Thu/Sun) — Most trusted platform for local services. Be helpful first, sell second.</li>
+      <li><strong>Google Business Profile</strong> (Wed/Sun) — Posts boost local SEO. Short + photo + CTA.</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card">
+    <h3>⏰ Best Posting Times (STL)</h3>
+    <ul>
+      <li><strong>Facebook:</strong> 9-11 AM or 7-9 PM (people scrolling before/after work)</li>
+      <li><strong>Instagram:</strong> 11 AM-1 PM or 7-8 PM (lunch break, evening scroll)</li>
+      <li><strong>Nextdoor:</strong> 6-8 PM weekdays, 9-11 AM weekends (neighbors checking in)</li>
+      <li><strong>GBP Posts:</strong> Anytime — they're indexed, not feed-based</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card">
+    <h3>#️⃣ Hashtag Sets (Copy per Platform)</h3>
+    <div class="hashtag-box" id="igHashtags">
+      <strong>Instagram (copy all):</strong><br>
+      #TidyTailsSTL #PoopScooperSTL #PetWasteRemoval #StLouisDogs #STLDogMom #STLDogDad #DogMomLife #CleanYard #SpringCleaning #PetParent #DogsOfSTL #StLouisPets #YardCleanup #DogPoop #LocalBusiness #SmallBusinessSTL #STLLocal #SupportLocal #PetService #HappyDog
+    </div>
+    <div style="margin-top:6px">
+      <button class="copy-btn" style="width:auto;padding:8px 16px" onclick="copyText('igHashtags', this)">📋 Copy Instagram Hashtags</button>
+    </div>
+    <div class="hashtag-box" style="margin-top:10px" id="fbHashtags">
+      <strong>Facebook (use 3-5 max):</strong><br>
+      #TidyTailsSTL #StLouisDogs #PetWasteRemoval #SpringCleaning #STLLocal
+    </div>
+    <div style="margin-top:6px">
+      <button class="copy-btn" style="width:auto;padding:8px 16px" onclick="copyText('fbHashtags', this)">📋 Copy Facebook Hashtags</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUNDAY MARCH 8 -->
+<div class="day-section" data-day="sun">
+  <div class="day-header">
+    <h2>☀️ Sunday, March 8</h2>
+    <p class="theme">Theme: Spring Kickoff — "Winter's over, what's hiding in your yard?"</p>
+  </div>
+  <div class="best-time">
+    <span class="clock">⏰</span>
+    <span class="time-text">Post at <strong>9-10 AM</strong> (Nextdoor/GBP) and <strong>12 PM</strong> (Instagram)</span>
+  </div>
+
+  <!-- Post 1 -->
+  <div class="post-card" id="sun1">
+    <span class="platform-tag platform-nd">Nextdoor</span>
+    <span class="post-type">📢 Introduction</span>
+    <h3>Nextdoor Neighborhood Intro</h3>
+    <div class="post-body" id="sun1-text">Hey neighbors! 👋
+
+I'm TJ, owner of Tidy Tails here in STL. With spring finally showing up, I wanted to introduce myself to the neighborhood.
+
+I run a pet waste removal service — basically, I come scoop your yard so you don't have to. Weekly service, one-time cleanups, whatever you need.
+
+If you've got a dog and a yard full of... surprises... from the winter, I'm running spring cleanup specials right now. First cleanup is free when you sign up for weekly service.
+
+Happy to answer any questions! Feel free to DM me or check out tidytailsstl.com 🐕
+
+- TJ</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Nextdoor rewards helpful, conversational posts. Don't sound like an ad. This reads like a neighbor introducing themselves. Post in your OWN neighborhood first, then neighboring ones.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('sun1-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('sun1', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+
+  <!-- Post 2 -->
+  <div class="post-card" id="sun2">
+    <span class="platform-tag platform-ig">Instagram</span>
+    <span class="post-type">😂 Humor</span>
+    <h3>The Spring Thaw Reality Check</h3>
+    <div class="post-body" id="sun2-text">That moment when the snow melts and you realize your yard has been keeping score all winter... 💩📊
+
+Your dog wasn't taking a break. They were building an inventory.
+
+Spring cleanup time. Let us handle the audit.
+
+🐕 First cleanup FREE with weekly signup
+📱 DM or visit tidytailsstl.com
+📍 Serving STL County & surrounding areas
+
+#TidyTailsSTL #SpringCleaning #DogsOfSTL #STLDogMom #PetWasteRemoval #StLouisDogs #CleanYard #DogMomLife</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Take a photo of a yard (no actual poop needed — just a yard with patchy grass/mud). Or use a funny stock image. Humor posts get 2-3x more shares. Post as a Reel with text overlay for extra reach.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('sun2-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('sun2', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+
+  <!-- Post 3 -->
+  <div class="post-card" id="sun3">
+    <span class="platform-tag platform-goog">Google Business</span>
+    <span class="post-type">🎯 Promo</span>
+    <h3>GBP Spring Cleanup Offer</h3>
+    <div class="post-body" id="sun3-text">🌱 Spring Cleanup Special — Tidy Tails STL
+
+Winter left a mess in your yard? We'll handle it.
+
+✅ One-time deep cleanups
+✅ Weekly service starting at $25/week
+✅ First cleanup FREE with weekly signup
+
+Serving Ballwin, Chesterfield, Wildwood, O'Fallon, Florissant & surrounding STL County areas.
+
+Book today: tidytailsstl.com or call/text to schedule!</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> GBP posts show up in Google search results and Maps. Add a photo of you working or your truck/gear. Choose "Offer" post type. These boost local SEO directly.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('sun3-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('sun3', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+</div>
+
+<!-- MONDAY MARCH 9 -->
+<div class="day-section" data-day="mon">
+  <div class="day-header">
+    <h2>🌅 Monday, March 9</h2>
+    <p class="theme">Theme: Education — "Why pet waste removal actually matters"</p>
+  </div>
+  <div class="best-time">
+    <span class="clock">⏰</span>
+    <span class="time-text">Post at <strong>9 AM</strong> (Facebook) and <strong>12 PM</strong> (Instagram) and <strong>7 PM</strong> (Instagram Story)</span>
+  </div>
+
+  <div class="post-card" id="mon1">
+    <span class="platform-tag platform-fb">Facebook Group</span>
+    <span class="post-type">📚 Educational</span>
+    <h3>The Health Risk Post</h3>
+    <div class="post-body" id="mon1-text">Did you know dog waste can carry roundworms, E. coli, and giardia — and those parasites can survive in soil for YEARS? 🤢
+
+A single gram of dog poop contains 23 million fecal coliform bacteria. When it rains, that washes straight into storm drains and local waterways.
+
+The EPA actually classifies pet waste as a pollutant in the same category as oil and toxic chemicals.
+
+Three things you can do:
+1. Pick up after your dog every time (or hire someone like me to do it 😉)
+2. Don't leave it thinking "it'll decompose" — it takes up to a year
+3. Spring cleanup if you're behind — I'm running specials this month
+
+Stay safe out there, STL dog fam! 🐕
+
+— TJ, Tidy Tails STL
+tidytailsstl.com</div>
+    <div class="post-notes">
+      <strong>📌 Target groups:</strong> STL Dog Owners, Ballwin Community, Chesterfield Neighbors, O'Fallon MO Community. <strong>Tip:</strong> Educational posts that teach something get way more engagement than pure ads. This establishes TJ as knowledgeable, not just selling.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('mon1-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('mon1', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+
+  <div class="post-card" id="mon2">
+    <span class="platform-tag platform-ig">Instagram</span>
+    <span class="post-type">📚 Educational Carousel</span>
+    <h3>"5 Things in Your Dog's Poop" Carousel</h3>
+    <div class="post-body" id="mon2-text">5 things hiding in your dog's poop that can make your FAMILY sick ⬇️
+
+Slide 1: "What's really in dog poop?" (title slide)
+Slide 2: 🦠 Roundworms — can infect humans, especially kids playing in the yard
+Slide 3: 🧫 E. coli — survives in soil for months after the poop "disappears"
+Slide 4: 🪱 Giardia — causes severe stomach illness, spreads through water
+Slide 5: 💧 Runoff — rain carries bacteria to streams, pools, and drinking water
+Slide 6: ✅ The fix: Regular cleanup. Weekly service from $25/wk. DM us!
+
+Caption:
+Your yard might look clean but if there's been dog waste sitting there... there's stuff you can't see. 🔬
+
+We remove the poop AND the risk. Weekly service starting at $25/week, and your first cleanup is on us.
+
+📍 Serving STL County
+🔗 tidytailsstl.com
+
+#TidyTailsSTL #PetHealth #DogMomLife #StLouisDogs #PetWasteRemoval #CleanYard #HealthyPets #SpringCleaning</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Create a 6-slide carousel in Canva (free). Use bold text on solid backgrounds. Carousels get 3x more reach than single images on Instagram. Don't need fancy graphics — clean text slides work great.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('mon2-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('mon2', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+
+  <div class="post-card" id="mon3">
+    <span class="platform-tag platform-ig">Instagram Story</span>
+    <span class="post-type">📊 Poll</span>
+    <h3>Story Poll — Quick Engagement</h3>
+    <div class="post-body" id="mon3-text">Instagram Story Poll:
+
+Background: Photo of a yard or your dog
+
+Text: "How often do you pick up your yard? 🤔"
+
+Poll options:
+☀️ Every day
+📅 Once a week  
+🙈 When company comes over
+💀 What yard?
+
+Follow-up story: "No judgment! That's literally what we're here for 😂 DM us for a free first cleanup"</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Story polls boost engagement and tell the algorithm your audience is active. The humor options make people want to vote. Follow up with a DM to everyone who votes — Instagram lets you see who responded.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('mon3-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('mon3', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+</div>
+
+<!-- TUESDAY MARCH 10 -->
+<div class="day-section" data-day="tue">
+  <div class="day-header">
+    <h2>🌿 Tuesday, March 10</h2>
+    <p class="theme">Theme: Social Proof & Trust — "Real people, real results"</p>
+  </div>
+  <div class="best-time">
+    <span class="clock">⏰</span>
+    <span class="time-text">Post at <strong>11 AM</strong> (Instagram) and <strong>6 PM</strong> (Nextdoor)</span>
+  </div>
+
+  <div class="post-card" id="tue1">
+    <span class="platform-tag platform-ig">Instagram</span>
+    <span class="post-type">📸 Before/After</span>
+    <h3>Before & After Transformation</h3>
+    <div class="post-body" id="tue1-text">The glow-up nobody talks about 🏡✨
+
+Swipe to see what a Tidy Tails cleanup looks like →
+
+Before: 3 weeks of winter buildup from two Golden Retrievers 😬
+After: A yard the kids can actually play in again ✅
+
+This took us about 30 minutes. The homeowner said they'd been "meaning to get to it" since January. 
+
+Sound familiar? No judgment. That's literally our whole business model 😂
+
+🐕 First cleanup FREE with weekly signup
+📱 DM us or visit tidytailsstl.com
+📍 STL County & surrounding areas
+
+#TidyTailsSTL #BeforeAndAfter #SpringCleaning #CleanYard #StLouisDogs #PetWasteRemoval #DogMomLife #YardGoals</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Take before/after photos at your next cleanup! Even if you don't have them yet, take them TOMORROW. Before/after content is THE highest-converting content type for service businesses. Tip: Take the "before" from the messiest angle, "after" from the best angle.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('tue1-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('tue1', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+
+  <div class="post-card" id="tue2">
+    <span class="platform-tag platform-nd">Nextdoor</span>
+    <span class="post-type">🤝 Value-First</span>
+    <h3>Nextdoor Helpful Tip Post</h3>
+    <div class="post-body" id="tue2-text">Quick PSA for dog owners as we head into spring 🌱
+
+If your yard has been collecting "presents" all winter, here's my recommendation as someone who does this for a living:
+
+1. Start from the perimeter and work inward (trust me, stepping in something mid-cleanup is not fun)
+2. Use a flat-edge shovel for frozen/old stuff — bags alone won't cut it
+3. Double-bag everything. Winter waste is... concentrated.
+4. Hit the areas near the house first — that's where the smell hits when windows open
+5. Or just hire it out 😄 — I'm TJ from Tidy Tails, I do this professionally for homes all over STL County
+
+Free first cleanup if you want to try it out: tidytailsstl.com
+
+Happy spring! 🐕</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Lead with VALUE on Nextdoor. The helpful tips make you look like an expert, and people appreciate the advice even if they don't hire you. The soft CTA at the end feels natural, not salesy. Nextdoor heavily penalizes blatant ads.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('tue2-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('tue2', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+
+  <div class="post-card" id="tue3">
+    <span class="platform-tag platform-ig">Instagram Story</span>
+    <span class="post-type">🎬 Behind the Scenes</span>
+    <h3>Day in the Life Story</h3>
+    <div class="post-body" id="tue3-text">Instagram Story Sequence (3-4 stories):
+
+Story 1: 📸 Selfie in truck/car
+Caption: "Tuesday morning. Time to go make yards beautiful 🐕💩"
+
+Story 2: 📸 Photo of equipment/gear
+Caption: "The tools of the trade. Yes, this is a real job, and yes, I love it 😂"
+
+Story 3: 📸 Photo of a clean yard (after service)
+Caption: "Another happy customer. This yard had 2 months of buildup from 3 dogs. Took me 45 min."
+
+Story 4: 📸 Back in the car
+Caption: "4 yards done before lunch. DM me if you want yours added to the route! First cleanup free 🎉"</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Behind-the-scenes content humanizes your brand. People want to hire a PERSON, not a company. Show your face, your truck, your gear. Keep it casual — phone camera is perfect. No fancy editing needed.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('tue3-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('tue3', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+</div>
+
+<!-- WEDNESDAY MARCH 11 -->
+<div class="day-section" data-day="wed">
+  <div class="day-header">
+    <h2>🌤️ Wednesday, March 11</h2>
+    <p class="theme">Theme: Objection Busting — "Yes, this is a real thing people pay for"</p>
+  </div>
+  <div class="best-time">
+    <span class="clock">⏰</span>
+    <span class="time-text">Post at <strong>10 AM</strong> (Facebook) and <strong>12 PM</strong> (Instagram) and <strong>anytime</strong> (GBP)</span>
+  </div>
+
+  <div class="post-card" id="wed1">
+    <span class="platform-tag platform-fb">Facebook Group</span>
+    <span class="post-type">💬 Conversational</span>
+    <h3>The "Is This Really a Thing?" Post</h3>
+    <div class="post-body" id="wed1-text">I get this reaction a lot when I tell people what I do:
+
+"Wait... people PAY you to pick up dog poop?" 😂
+
+Yep. And here's why:
+
+🕐 Time — Most dog owners spend 30-60 min/week on yard cleanup. That's 26-52 HOURS a year.
+
+🤢 The gross factor — Nobody actually WANTS to do it. Be honest.
+
+👶 Kids & health — Dog waste carries parasites that survive in soil for years. If your kids play in the yard...
+
+💰 The math — $25/week = $3.57/day. Less than a coffee to never touch poop again.
+
+I'm TJ and I run Tidy Tails right here in STL. Been doing this for over a year now and honestly? I love it. My customers are the best.
+
+Got questions? Drop them below or DM me 👇
+
+tidytailsstl.com</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> This addresses the #1 objection before people even raise it. The "is this a real thing?" question is actually your BEST marketing angle — it sparks curiosity. Post in general community groups, not just pet groups.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('wed1-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('wed1', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+
+  <div class="post-card" id="wed2">
+    <span class="platform-tag platform-ig">Instagram</span>
+    <span class="post-type">🎬 Reel Script</span>
+    <h3>"Things My Customers Say" Reel</h3>
+    <div class="post-body" id="wed2-text">Reel Script — "Things my customers say after their first cleanup"
+
+[Film yourself acting out each one, switch positions/angles for each "customer"]
+
+"I should've done this MONTHS ago"
+
+"My kids can finally play in the yard again"
+
+"Wait, you come EVERY week? For THAT price?"
+
+"My husband doesn't believe I hired a poop guy" 😂
+
+"Can you start tomorrow?"
+
+Text overlay at end: "First cleanup FREE when you sign up for weekly service 🐕"
+
+Caption:
+Real things real customers have said to me. Every. Single. One. 😂
+
+The look on people's faces when they see their yard for the first time after a cleanup is the best part of this job.
+
+Want that feeling? DM us 📱
+tidytailsstl.com
+
+#TidyTailsSTL #CustomerLove #StLouisDogs #SmallBusinessSTL #PetWasteRemoval</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Reels get 2-3x the reach of static posts. Film this in your yard or truck — just you, talking to camera, acting out each quote. Keep each one to 2-3 seconds. Total reel should be 15-30 seconds. Trending audio optional but helps.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('wed2-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('wed2', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+
+  <div class="post-card" id="wed3">
+    <span class="platform-tag platform-goog">Google Business</span>
+    <span class="post-type">📰 Update</span>
+    <h3>GBP Weekly Update</h3>
+    <div class="post-body" id="wed3-text">🐕 Tidy Tails — Now Booking Spring Cleanups!
+
+Spring is here and St. Louis yards need help. We're booking one-time spring cleanups and weekly service across STL County.
+
+✅ Professional, reliable service
+✅ Weekly, bi-weekly, or one-time options  
+✅ Serving Ballwin, Chesterfield, Wildwood, O'Fallon, Florissant & more
+✅ First cleanup FREE with weekly signup
+
+Visit tidytailsstl.com or call to schedule your cleanup today!</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Post as an "Update" on GBP. Include a photo (yard, your gear, or the Tidy Tails logo). GBP posts expire after 7 days, so posting weekly keeps your profile active and helps SEO rankings.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('wed3-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('wed3', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+</div>
+
+<!-- THURSDAY MARCH 12 -->
+<div class="day-section" data-day="thu">
+  <div class="day-header">
+    <h2>🌻 Thursday, March 12</h2>
+    <p class="theme">Theme: Community & Connection — "We're your neighbor, not a corporation"</p>
+  </div>
+  <div class="best-time">
+    <span class="clock">⏰</span>
+    <span class="time-text">Post at <strong>12 PM</strong> (Instagram) and <strong>6 PM</strong> (Nextdoor) and <strong>7 PM</strong> (Story)</span>
+  </div>
+
+  <div class="post-card" id="thu1">
+    <span class="platform-tag platform-ig">Instagram</span>
+    <span class="post-type">🐕 Dog Feature</span>
+    <h3>"Meet the Poop Makers" Feature</h3>
+    <div class="post-body" id="thu1-text">Meet [DOG NAME] 🐕 — one of the hardest workers on my route 💩
+
+This [BREED] keeps me employed with [his/her] impressive output. [2 dogs/3 dogs] in this yard and they do NOT take days off.
+
+But that's okay, because neither do I 💪
+
+Shoutout to [DOG NAME]'s humans for keeping their yard clean and their neighbors happy. This is what responsible pet ownership looks like.
+
+Got a poop machine at home? Let us handle the cleanup so you can enjoy the cuddles without the cleanup.
+
+🐕 First cleanup FREE
+📱 DM or visit tidytailsstl.com
+📍 STL County
+
+#TidyTailsSTL #DogsOfSTL #MeetTheDogs #PetWasteRemoval #StLouisDogs #GoodBoy #DogMomLife</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> ASK YOUR CUSTOMERS if you can feature their dog. Take a photo of the dog during service. People LOVE seeing their pets featured. This creates social proof AND gets the customer to share/tag, exposing you to their whole friend list. Fill in [DOG NAME] and [BREED] before posting.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('thu1-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('thu1', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+
+  <div class="post-card" id="thu2">
+    <span class="platform-tag platform-nd">Nextdoor</span>
+    <span class="post-type">💡 Recommendation Ask</span>
+    <h3>Nextdoor Cross-Promotion</h3>
+    <div class="post-body" id="thu2-text">Hey STL dog owners! Quick question —
+
+What's your favorite local pet store, vet, or dog park? I'm always looking for great local businesses to recommend to my customers.
+
+I'm TJ, I run Tidy Tails (pet waste removal) and I'm always chatting with dog owners across the area. Love connecting people with good local spots.
+
+Drop your favorites below! ⬇️🐕</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> This is a STEALTH engagement post. You're asking people to share, which drives comments and visibility. You also build relationships with local businesses you can cross-promote with. Reply to EVERY comment thanking them and adding to your knowledge. Don't mention your service heavily — let your profile do the selling.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('thu2-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('thu2', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+
+  <div class="post-card" id="thu3">
+    <span class="platform-tag platform-ig">Instagram Story</span>
+    <span class="post-type">❓ Q&A</span>
+    <h3>Q&A Story — Ask Me Anything</h3>
+    <div class="post-body" id="thu3-text">Instagram Story — Q&A Sticker
+
+Background: Selfie or photo while working
+
+Text: "I pick up dog poop for a living. Ask me anything 😂"
+
+Add: Question sticker
+
+Then answer the questions in follow-up stories throughout the day.
+
+Common questions to seed if nobody asks:
+- "How much do you make?"
+- "What's the worst yard you've seen?"
+- "Do you ever step in it?"
+- "Why did you start this business?"</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Q&A stickers drive massive engagement. People are genuinely curious about this job. If questions are slow, ask a friend to submit the "seed" questions. Answer honestly and with humor — this builds connection and trust.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('thu3-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('thu3', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+</div>
+
+<!-- FRIDAY MARCH 13 -->
+<div class="day-section" data-day="fri">
+  <div class="day-header">
+    <h2>🎉 Friday, March 13</h2>
+    <p class="theme">Theme: Weekend Push — "Book before the weekend"</p>
+  </div>
+  <div class="best-time">
+    <span class="clock">⏰</span>
+    <span class="time-text">Post at <strong>9 AM</strong> (Facebook) and <strong>12 PM</strong> (Instagram) and <strong>5 PM</strong> (Story)</span>
+  </div>
+
+  <div class="post-card" id="fri1">
+    <span class="platform-tag platform-fb">Facebook Group</span>
+    <span class="post-type">🎯 Soft Sell</span>
+    <h3>Friday Weekend Plans Post</h3>
+    <div class="post-body" id="fri1-text">Weekend plans for STL dog parents:
+
+❌ Spending your Saturday picking up poop
+✅ Letting someone else handle it while you actually enjoy your weekend
+
+Just throwing that out there 😄
+
+I'm TJ from Tidy Tails — I do weekly pet waste removal across STL County. $25/week, first cleanup free.
+
+If you've been putting off the spring cleanup, this is your sign. DM me and I'll get you on the schedule for next week 🐕
+
+tidytailsstl.com</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Friday is the best day for "weekend plans" framing. People are thinking about their to-do list. The ❌/✅ format is eye-catching and easy to read. Works in any community group, not just pet groups.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('fri1-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('fri1', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+
+  <div class="post-card" id="fri2">
+    <span class="platform-tag platform-ig">Instagram</span>
+    <span class="post-type">💰 Value Prop</span>
+    <h3>The Math Post</h3>
+    <div class="post-body" id="fri2-text">Let's do the math on picking up your own dog's poop:
+
+⏰ 30 min/week × 52 weeks = 26 HOURS/year
+🤢 That's 26 hours of... well, you know
+💵 Your time is worth at least $25/hour
+📊 So you're spending $650 worth of time per year on poop
+
+Tidy Tails weekly service: $25/week = $1,300/year
+
+"But that's more expensive!"
+
+Sure, but you get:
+✅ 26 hours of your life back
+✅ A consistently clean yard
+✅ Zero stepping-in-it incidents
+✅ Someone else dealing with the smell
+✅ The ability to say "I have a poop guy" at parties
+
+Investment in your sanity: priceless 😂
+
+DM for a free first cleanup 🐕
+tidytailsstl.com
+
+#TidyTailsSTL #DoTheMath #TimeIsMoney #PetWasteRemoval #StLouisDogs #DogMomLife #SmallBusinessSTL</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Math-based posts work incredibly well because they reframe the purchase decision. The humor at the end ("I have a poop guy") makes it shareable. This can also work as a carousel with one stat per slide.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('fri2-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('fri2', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+
+  <div class="post-card" id="fri3">
+    <span class="platform-tag platform-ig">Instagram Story</span>
+    <span class="post-type">🏆 Week Recap</span>
+    <h3>Friday Recap Story</h3>
+    <div class="post-body" id="fri3-text">Instagram Story — Week Recap
+
+Story 1: "This week's stats 📊"
+- [X] yards cleaned
+- [X] pounds of poop removed (estimate)  
+- [X] happy dogs met
+- [X] times I almost stepped in it: 0 (pro status 😎)
+
+Story 2: "Shoutout to all my weekly customers keeping STL yards clean 🙌"
+
+Story 3: "Got a few openings for new weekly customers. DM me if you want in! First cleanup is on us 🎉"
+
+Add: Link sticker to tidytailsstl.com</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Weekly recaps build the narrative that you're busy and in-demand. Even if numbers are small, frame them positively. "5 yards" sounds like a lot when you say "5 families with cleaner yards." Add a link sticker to your website.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('fri3-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('fri3', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+</div>
+
+<!-- SATURDAY MARCH 14 -->
+<div class="day-section" data-day="sat">
+  <div class="day-header">
+    <h2>🌞 Saturday, March 14</h2>
+    <p class="theme">Theme: Social & Fun — Light weekend content + referral push</p>
+  </div>
+  <div class="best-time">
+    <span class="clock">⏰</span>
+    <span class="time-text">Post at <strong>10 AM</strong> (Facebook) and <strong>11 AM</strong> (Instagram) and <strong>9 AM</strong> (Nextdoor)</span>
+  </div>
+
+  <div class="post-card" id="sat1">
+    <span class="platform-tag platform-fb">Facebook Group</span>
+    <span class="post-type">🎁 Referral</span>
+    <h3>Referral Program Launch</h3>
+    <div class="post-body" id="sat1-text">Quick question for my STL dog fam —
+
+Know someone who's tired of picking up after their pup? 🐕
+
+I'm running a referral special this month:
+
+🎁 Refer a friend to Tidy Tails → You BOTH get a free week of service
+
+That's a free week for you AND your friend. Win-win.
+
+All they have to do is mention your name when they sign up.
+
+Tag a friend who needs this in their life 👇😂
+
+— TJ, Tidy Tails STL
+tidytailsstl.com</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Saturday is the highest engagement day on Facebook. "Tag a friend" CTAs get comments which boost visibility. The referral offer is a no-brainer — cost of one free week ($25) to acquire a recurring customer worth $1,300/yr.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('sat1-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('sat1', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+
+  <div class="post-card" id="sat2">
+    <span class="platform-tag platform-ig">Instagram</span>
+    <span class="post-type">😂 Meme/Humor</span>
+    <h3>Weekend Humor Post</h3>
+    <div class="post-body" id="sat2-text">Saturday morning mood:
+
+My neighbors: mowing their lawns, planting flowers, living their best life 🌸
+
+Me: walking around with a bag, hunting for land mines 💩🔍
+
+Different kind of yard work, same satisfaction 😤💪
+
+Happy Saturday, STL! If your yard needs some attention before the weather gets REALLY nice, you know who to call.
+
+🐕 First cleanup FREE with weekly signup
+📱 DM or text to book
+🔗 tidytailsstl.com
+
+#TidyTailsSTL #SaturdayMood #YardWork #StLouisDogs #PetWasteRemoval #SmallBusinessSTL #WeekendVibes</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> Weekend posts should be lighter and funnier. People are in a good mood on Saturday morning. Self-deprecating humor about the job makes you relatable and likeable. Take a silly selfie with your gear for the photo.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('sat2-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('sat2', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+
+  <div class="post-card" id="sat3">
+    <span class="platform-tag platform-nd">Nextdoor</span>
+    <span class="post-type">🌱 Seasonal</span>
+    <h3>Nextdoor Spring Reminder</h3>
+    <div class="post-body" id="sat3-text">Spring tip for dog owners in the neighborhood 🌱
+
+If you're planning to overseed or fertilize your lawn this spring, make sure you do a thorough poop cleanup first. Dog waste actually KILLS grass — the nitrogen concentration is way too high and creates those dead brown spots.
+
+Plus, any lawn treatment company will charge extra (or refuse) to work on a yard with waste in it.
+
+Quick checklist before lawn season:
+✅ Full yard cleanup (or hire someone like me!)
+✅ Wait 48 hours after cleanup before seeding
+✅ Start a regular removal schedule to protect new grass
+
+I'm TJ from Tidy Tails — happy to help with the cleanup part so your lawn has the best shot this spring.
+
+tidytailsstl.com | DM for details 🐕</div>
+    <div class="post-notes">
+      <strong>📌 Notes:</strong> This ties pet waste removal to something homeowners already care about: their lawn. Nextdoor is full of lawn care conversations in spring. This positions you as a partner in their lawn health, not just a poop picker. Cross-reference with lawn care companies for potential partnerships.
+    </div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyPost('sat3-text', this)">📋 Copy Post</button>
+      <button class="mark-btn" onclick="markPosted('sat3', this)">✅ Mark Posted</button>
+    </div>
+  </div>
+</div>
+
+<!-- TIPS TAB -->
+<div class="day-section" data-day="tips">
+  <div class="strategy-card">
+    <h3>💡 Content Creation Tips</h3>
+    <ul>
+      <li><strong>Take photos EVERY service visit.</strong> Before/after, dogs you meet, clean yards. Build a photo library. You'll never run out of content.</li>
+      <li><strong>15-second Reels > 60-second Reels.</strong> Short and punchy wins. Film quick POV clips while working.</li>
+      <li><strong>Reply to EVERY comment.</strong> Comments boost the algorithm. Even "thanks!" counts. But try to ask a question back to keep the thread going.</li>
+      <li><strong>Post to Stories daily.</strong> Even just a selfie with "heading out to clean yards!" Stories keep you top-of-mind without cluttering the feed.</li>
+      <li><strong>Cross-post strategically.</strong> What works on Instagram might flop on Nextdoor. Adjust tone: IG = fun/visual, Nextdoor = helpful/neighborly, FB = conversational/community.</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card">
+    <h3>📸 Photo Ideas for This Week</h3>
+    <ul>
+      <li>Your gear laid out (shovel, bags, gloves, sanitizer) — "tools of the trade" shot</li>
+      <li>Before/after of a spring cleanup</li>
+      <li>Selfie with a customer's dog (ask permission!)</li>
+      <li>Your truck/car packed and ready for the route</li>
+      <li>A clean, green yard with no poop — the "after" shot</li>
+      <li>Close-up of your branded shirt/hat if you have one</li>
+      <li>POV video: walking across a yard scanning for poop (relatable content)</li>
+      <li>Screenshot of a nice customer text/review (blur name if needed)</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card">
+    <h3>📊 Engagement Hacks</h3>
+    <ul>
+      <li><strong>"Tag a friend who needs this"</strong> — works every time for funny/relatable posts</li>
+      <li><strong>Ask questions in captions</strong> — "How many dogs do you have?" gets comments flowing</li>
+      <li><strong>Use local hashtags</strong> — #STL #StLouis #STLLocal get you in front of local eyeballs</li>
+      <li><strong>Post at peak times</strong> — 9-11 AM and 7-9 PM for STL (see Overview tab for per-platform times)</li>
+      <li><strong>Instagram algorithm loves Reels</strong> — even basic talking-to-camera Reels get 3-5x the reach of photos</li>
+      <li><strong>Nextdoor: be a neighbor first</strong> — comment on others' posts, recommend local businesses, help with questions. THEN post about your service.</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card">
+    <h3>🔄 Rinse & Repeat — Content Themes to Rotate Weekly</h3>
+    <ul>
+      <li><strong>Monday:</strong> Educational (health facts, environmental impact, tips)</li>
+      <li><strong>Tuesday:</strong> Social Proof (before/after, testimonials, customer features)</li>
+      <li><strong>Wednesday:</strong> Objection Busting (address common hesitations)</li>
+      <li><strong>Thursday:</strong> Community (dog features, local shoutouts, Q&A)</li>
+      <li><strong>Friday:</strong> Weekend Push (book now, time-saving math, recap)</li>
+      <li><strong>Saturday:</strong> Fun/Referral (humor, referral offers, light content)</li>
+      <li><strong>Sunday:</strong> Fresh Start (new week, spring themes, soft intro)</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+// Tab navigation
+document.querySelectorAll('.day-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.day-section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    const day = tab.dataset.day;
+    document.querySelector(`.day-section[data-day="${day}"]`).classList.add('active');
+  });
+});
+
+// Copy post text
+function copyPost(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '📋 Copy Post';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// Copy hashtag text
+function copyText(id, btn) {
+  const el = document.getElementById(id);
+  const text = el.innerText.split('\n').slice(1).join(' ').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '📋 Copy Hashtags';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// Mark as posted
+function markPosted(cardId, btn) {
+  const card = document.getElementById(cardId);
+  const isPosted = card.classList.toggle('posted');
+  btn.textContent = isPosted ? '↩️ Undo' : '✅ Mark Posted';
+  
+  // Save state
+  const state = JSON.parse(localStorage.getItem('tt-content-cal') || '{}');
+  state[cardId] = isPosted;
+  localStorage.setItem('tt-content-cal', JSON.stringify(state));
+  
+  updateProgress();
+}
+
+// Update progress
+function updateProgress() {
+  const state = JSON.parse(localStorage.getItem('tt-content-cal') || '{}');
+  const posted = Object.values(state).filter(v => v).length;
+  const total = 21;
+  document.getElementById('postedCount').textContent = posted;
+  document.getElementById('remainCount').textContent = total - posted;
+  const pct = Math.round((posted / total) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = pct + '% complete';
+}
+
+// Restore state on load
+window.addEventListener('load', () => {
+  const state = JSON.parse(localStorage.getItem('tt-content-cal') || '{}');
+  Object.entries(state).forEach(([cardId, isPosted]) => {
+    if (isPosted) {
+      const card = document.getElementById(cardId);
+      if (card) {
+        card.classList.add('posted');
+        const btn = card.querySelector('.mark-btn');
+        if (btn) btn.textContent = '↩️ Undo';
+      }
+    }
+  });
+  updateProgress();
+});
+</script>
+
+</body>
+</html>
