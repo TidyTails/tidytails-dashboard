@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-07 14:10 CST*
+*Last updated: 2026-03-08 10:05 CST*
 
 ---
 
@@ -41,10 +41,15 @@
 
 ### 📝 To Do (TJ Action Required)
 - [ ] **Post FB group posts** — Friday posts ready at dashboard (3 min)
-- [ ] **Text 3 customers for Google reviews** — GBP needs reviews for ranking
+- [ ] **🔥 Text ALL customers for Google reviews** — #1 PRIORITY. 0 reviews = invisible. Template ready in `content/2026-03-08-GOOGLE-VISIBILITY-PLAYBOOK.md`. Goal: 5 reviews by end of March.
+- [ ] **Create Thumbtack profile** — 15 min. Leads come directly. See playbook.
+- [ ] **Claim Nextdoor business page** — 10 min. Covers every neighborhood. See playbook.
+- [ ] **Apple Maps + Bing Places listings** — 10 min total. See playbook.
+- [ ] **Add photos to GBP** — Before/after yard shots. Businesses with photos get 42% more clicks.
+- [ ] **Post to GBP weekly** — "Posts" feature shows in search results. 5 min/week.
+- [ ] **Add service area pages to website** — One page per city = Google ranks you for that city's searches.
 - [ ] **Launch referral program** — Scripts ready, just needs announcement
 - [ ] **Top up fal.ai credits** — Need credits for remaining video ads
-- [ ] **List on free platforms** — Thumbtack, Angi, Yelp ads, Nextdoor business, HomeAdvisor, Bark
 - [ ] **Winter reheat texts** — Send Jamie's scripts to dormant winter customers
 - [ ] **Print spring flyers & door-hang this weekend** — PDF ready at `dashboard/pdfs/SPRING-FLYER-KIT-2026.pdf`, full plan at `campaigns/spring-2026-neighborhood-blitz.md` (~$20, 2-3 hrs)
 

@@ -41,43 +41,17 @@ Even searching "tidy tails pet waste st louis" shows OTHER Tidy Tails companies 
 
 ### TIER 1: FOUNDATION (Do This Week — 1-2 Hours Total)
 
-#### Step 1: Claim Google Business Profile (30 min)
-**This is the single most important thing you can do for visibility.**
+#### Step 1: Google Business Profile — ✅ CLAIMED (Feb 26)
+**Already done!** GBP is claimed and set up. But make sure these details are optimized:
 
-1. Go to [business.google.com](https://business.google.com)
-2. Sign in with your Google account
-3. Click "Add your business to Google"
-4. Enter: **Tidy Tails Pet Waste Removal**
-5. Category: **Pet waste removal service** (primary)
-   - Secondary categories: **Dog walker**, **Pet service**, **Cleaning service**
-6. Since you go to customers (no storefront), select **"I deliver goods and services to my customers"**
-7. Enter service areas:
-   - St. Louis County, MO
-   - St. Charles County, MO
-   - Florissant, MO
-   - Chesterfield, MO
-   - Ballwin, MO
-   - Manchester, MO
-   - Ellisville, MO
-   - Wildwood, MO
-   - Maryland Heights, MO
-   - Creve Coeur, MO
-8. Phone: Your business number
-9. Website: tidytailsstl.com
-10. Verify (Google will offer postcard, phone, or video verification)
-
-**PROFILE DETAILS TO FILL OUT:**
-
-**Business Description (750 chars max):**
+**Business Description (750 chars max) — verify this is filled in:**
 > Tidy Tails is St. Louis's locally owned pet waste removal service. Founded by TJ, a dog lover who handles every yard personally — no random technicians, no franchise fees. We offer weekly ($25/visit), bi-weekly ($45/visit), and monthly ($70/mo) yard cleanup for residential customers across St. Louis County, St. Charles, and surrounding areas. Every visit includes thorough waste removal, a text notification when complete, and a 100% satisfaction guarantee. No contracts ever. First cleanup is free. Serving Florissant, Chesterfield, Ballwin, Manchester, Wildwood, Maryland Heights, Creve Coeur, and beyond.
 
-**Business Hours:** Set your normal operating hours (e.g., Mon-Sat 8am-5pm)
-
-**Attributes to enable:**
-- Locally owned
-- Veteran-owned (if applicable)
-- Identifies as small business
-- Online appointments
+**Verify these are set:**
+- All service areas listed (Florissant, Chesterfield, Ballwin, Manchester, Ellisville, Wildwood, Maryland Heights, Creve Coeur, St. Charles County)
+- Business hours are accurate
+- Attributes enabled: Locally owned, Small business, Online appointments
+- Messaging feature is ON
 
 #### Step 2: Add Photos to GBP (15 min)
 Upload AT MINIMUM:
@@ -119,10 +93,9 @@ Upload AT MINIMUM:
 
 #### Directory Checklist — Do ALL of These:
 
-**☐ Yelp** (yelp.com/biz/claim) — 15 min
-- Claim or create listing under "Pet Waste Removal"
-- Add photos, hours, description
-- Yelp shows up #1 for "pet waste removal st louis" — you MUST be here
+**✅ Yelp** — CLAIMED (Mar 5)
+- Already listed. Make sure photos, hours, and description are fully filled out.
+- Yelp shows up #1 for "pet waste removal st louis" — keep it updated.
 
 **☐ Thumbtack** (thumbtack.com/pro) — 15 min
 - Create pro profile for "Pet Waste Removal"
@@ -201,10 +174,9 @@ Each page should have ~200 words with the city name mentioned naturally 3-5 time
 - "Pet Waste Removal Cost in St. Louis: What to Expect in 2026"
 - "Why Hiring a Pooper Scooper Service Is Worth It (From a St. Louis Dog Owner)"
 
-**☐ Submit sitemap to Google Search Console**
-1. Go to [search.google.com/search-console](https://search.google.com/search-console)
-2. Add tidytailsstl.com as a property
-3. Submit your sitemap (usually tidytailsstl.com/sitemap.xml)
+**✅ Google Search Console** — VERIFIED & SUBMITTED (Mar 5)
+- Sitemap submitted. Waiting on Google to index (can take 3-7 days).
+- Check back weekly to see which pages are indexed and what queries are appearing.
 
 ---
 
@@ -245,16 +217,18 @@ Each page should have ~200 words with the city name mentioned naturally 3-5 time
 
 ## 🎯 TJ'S ACTION ITEMS THIS WEEK
 
-1. **☐ Sunday/Monday: Claim Google Business Profile** (30 min)
-2. **☐ Monday: Text 5 customers for Google reviews** (15 min)
-3. **☐ Tuesday: Create Yelp listing** (15 min)
-4. **☐ Tuesday: Create Thumbtack profile** (15 min)
-5. **☐ Wednesday: Claim Nextdoor business page** (10 min)
-6. **☐ Wednesday: Set up Google Search Console** (10 min)
-7. **☐ Thursday: Add photos to GBP** (15 min)
-8. **☐ Friday: First Google Business Profile post** (5 min)
+1. **✅ Google Business Profile** — DONE (Feb 26). Verify description & service areas are complete.
+2. **✅ Yelp** — DONE (Mar 5). Keep updated.
+3. **✅ Google Search Console** — DONE (Mar 5). Waiting on indexing.
+4. **🔥 Monday: Text 5 customers for Google reviews** (15 min) ← THIS IS #1 PRIORITY
+5. **☐ Monday: Create Thumbtack profile** (15 min)
+6. **☐ Tuesday: Claim Nextdoor business page** (10 min)
+7. **☐ Tuesday: Add MORE photos to GBP** (15 min — before/after shots)
+8. **☐ Wednesday: Apple Maps + Bing Places** (10 min)
+9. **☐ Thursday: First Google Business Profile post** (5 min)
+10. **☐ Friday: Add service area pages to website** (20 min)
 
-**Total time: ~2 hours spread across the week.**
+**Total NEW time: ~1.5 hours spread across the week (3 items already done!).**
 
 ---
 
