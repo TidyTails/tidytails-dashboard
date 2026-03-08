@@ -6,6 +6,36 @@
 
 ## March 8, 2026 (Sunday)
 
+### 10:05 AM — 📍 GOOGLE VISIBILITY PLAYBOOK — From Invisible to Page 1 (Hourly Task)
+**Task:** Create a complete, step-by-step Google visibility action plan to solve TJ's #1 problem: being completely invisible on Google
+**Result:** ✅ SHIPPED — Comprehensive 4-tier playbook with exact instructions, copy-paste text, and weekly action items
+
+**Why This Task:**
+- The 8 AM competitive intel revealed TJ is INVISIBLE on Google. Zero results for any relevant search.
+- Other "Tidy Tails" companies (Charleston, Valrico FL, Atlanta) outrank TJ for his own brand name.
+- 87% of consumers use Google to find local services. This isn't a nice-to-have — it's survival.
+- This builds directly on the competitive intel. Research → Action Plan is the correct sequence.
+- Specifically chosen because it's NOT another tool/dashboard — it's a guide for TJ to execute.
+
+**What I Created:**
+`content/2026-03-08-GOOGLE-VISIBILITY-PLAYBOOK.md` — Complete playbook including:
+1. **Tier 1 (This Week):** Google Business Profile setup with exact category, description, service areas + review request templates
+2. **Tier 2 (Next Week):** 8 directory listings (Yelp, Thumbtack, Nextdoor, Apple Maps, Bing, BBB, Angi, Facebook)
+3. **Tier 3 (Week 3):** Website SEO — service area pages, structured data schema, blog post ideas, Search Console setup
+4. **Tier 4 (Ongoing):** Weekly GBP posts, review collection, photo updates
+
+**Key Details:**
+- Pre-written 750-char GBP business description ready to paste
+- Pre-written review request text message template
+- JSON-LD structured data code ready to embed
+- Complete NAP consistency guide
+- Timeline: Google Maps visibility in 2-4 weeks, page 1 in 2-3 months
+- Total TJ time investment: ~2 hours this week, ~10 min/week ongoing
+
+**Rotation:** 📍 Growth — Google Visibility & Local SEO
+
+---
+
 ### 8:04 AM — 🔍 LIVE COMPETITIVE INTEL — Who's Dead, Who's Dangerous, Where TJ Stands (Hourly Task)
 **Task:** Conduct real-time competitive intelligence — search Google as a customer would, check competitor websites, analyze pricing, find TJ's visibility gaps
 **Result:** ✅ SHIPPED — Full competitive intel report with 2 major findings: two competitors' websites are dead (orphaned customers available), and TJ is completely invisible on Google
@@ -965,3 +995,41 @@ Interactive SEO Audit Report (`research/2026-03-07-SEO-AUDIT-REPORT.html`) with 
 - **March 2-4, 2026:** `memory/archive/franklin-tasks-week3-mar2-4.md` (2221 lines)
 - **Week 2 (Feb 24-28):** `memory/archive/franklin-tasks-week2.md`
 - **Week 1 (Feb 17-23):** `memory/archive/franklin-tasks-week1.md`
+
+## March 8, 2026 (Sunday)
+
+### 9:04 AM — 📱 WEEKLY POSTING HUB — 21 Spring Posts, 5 Platforms, 7 Days (Hourly Task)
+**Task:** Build interactive weekly social media command center with ready-to-post content for Mar 9-15
+**Result:** ✅ SHIPPED — Full posting hub with copy buttons, tracking, groups directory, and posting tips
+
+**Why This Task:**
+- TJ has tons of marketing materials but needs a simple "post THIS in THAT group TODAY" system
+- Spring cleanup season = perfect timing for yard-focused messaging
+- Previous ad packs existed but weren't organized by day/platform for easy execution
+- Needed to consolidate FB groups directory with actual posting content
+
+**What I Built:**
+Interactive Posting Hub (`dashboard/2026-03-08-WEEKLY-POSTING-HUB.html`) with 5 tabs:
+1. **Daily Plan** — 21 posts (3/day, Mon-Sun) with copy buttons and "Posted" tracking
+2. **Groups Directory** — 15+ FB groups + Nextdoor + Craigslist + GBP, organized by area and priority
+3. **Extra Templates** — 6 bonus variations (humor, relatable parent, social proof, emergency, day-in-life)
+4. **Full Schedule** — Weekly calendar view with optimal posting times per platform
+5. **Posting Tips** — Do/Don't rules, pro tips, quick-launch links
+
+**Platforms Covered:**
+- Facebook Groups (community, pet, BST, mom groups)
+- Nextdoor (3 different neighborhood posts)
+- Instagram (feed, stories, reels)
+- Craigslist (services listing + renewal reminders)
+- Google Business Profile (2 weekly posts)
+
+**Spring Angle Throughout:**
+Every post hooks into spring thaw / yard cleanup / winter buildup reveal — perfect seasonal timing
+
+**Dashboard Integration:**
+- Added to Marketing & Ads section on main dashboard
+- Live at: https://tidytails.github.io/tidytails-dashboard/2026-03-08-WEEKLY-POSTING-HUB.html
+
+**Commit:** `af75d34` on `tidytails-dashboard` repo
+
+**Rotation:** 📱 Content — Social Media Marketing
