@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote Generator | Tidy Tails STL</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+
+        .header {
+            background: var(--bg2); border-bottom: 1px solid var(--border);
+            padding: 1.25rem 2rem; display: flex; align-items: center; justify-content: space-between;
+        }
+        .header h1 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.03em; }
+        .header h1 span { color: var(--orange); }
+        .header a { color: var(--text2); text-decoration: none; font-size: 0.85rem; }
+        .header a:hover { color: var(--orange); }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+
+        .card {
+            background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.5rem; position: relative;
+        }
+        .card h2 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+
+        label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text2); margin-bottom: 0.4rem; margin-top: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        label:first-of-type { margin-top: 0; }
+
+        input, select, textarea {
+            width: 100%; padding: 0.65rem 0.85rem; background: var(--bg3); border: 1px solid var(--border);
+            border-radius: 8px; color: var(--text); font-family: inherit; font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: var(--orange); }
+        textarea { resize: vertical; min-height: 80px; }
+
+        .dog-counter {
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+        .dog-btn {
+            width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border);
+            background: var(--bg3); color: var(--text); font-size: 1.2rem; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; transition: all 0.2s;
+        }
+        .dog-btn:hover { background: var(--orange); border-color: var(--orange); color: #000; }
+        .dog-count {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.5rem; font-weight: 700;
+            min-width: 2rem; text-align: center;
+        }
+        .dog-emoji { font-size: 0.85rem; color: var(--text2); }
+
+        .tier-cards { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 0.5rem; }
+        .tier {
+            padding: 0.85rem 1rem; border-radius: 10px; border: 2px solid var(--border);
+            cursor: pointer; transition: all 0.2s; position: relative;
+        }
+        .tier:hover { border-color: var(--text3); }
+        .tier.selected { border-color: var(--orange); background: rgba(255,107,53,0.08); }
+        .tier.recommended { border-color: var(--green); }
+        .tier.recommended.selected { border-color: var(--orange); }
+        .tier-badge {
+            position: absolute; top: -8px; right: 12px; background: var(--green); color: #000;
+            font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 4px;
+            text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        .tier-name { font-weight: 700; font-size: 0.95rem; }
+        .tier-price { font-family: 'JetBrains Mono', monospace; color: var(--orange); font-weight: 700; font-size: 1.1rem; }
+        .tier-desc { font-size: 0.78rem; color: var(--text2); margin-top: 0.25rem; line-height: 1.4; }
+        .tier-features { font-size: 0.75rem; color: var(--text3); margin-top: 0.4rem; }
+        .tier-features span { color: var(--green); }
+
+        .yard-sizes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; }
+        .yard-btn {
+            padding: 0.5rem; border-radius: 8px; border: 2px solid var(--border);
+            background: var(--bg3); color: var(--text2); font-size: 0.75rem; text-align: center;
+            cursor: pointer; transition: all 0.2s; font-weight: 600;
+        }
+        .yard-btn:hover { border-color: var(--text3); }
+        .yard-btn.selected { border-color: var(--orange); color: var(--text); background: rgba(255,107,53,0.08); }
+
+        .onetime-opts { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem; }
+        .onetime-btn {
+            padding: 0.65rem 0.85rem; border-radius: 8px; border: 2px solid var(--border);
+            background: var(--bg3); color: var(--text2); font-size: 0.8rem;
+            cursor: pointer; transition: all 0.2s; display: flex; justify-content: space-between; align-items: center;
+        }
+        .onetime-btn:hover { border-color: var(--text3); }
+        .onetime-btn.selected { border-color: var(--purple); color: var(--text); background: rgba(139,92,246,0.08); }
+        .onetime-price { font-family: 'JetBrains Mono', monospace; font-weight: 700; color: var(--purple); }
+
+        /* Quote Output */
+        .quote-box {
+            background: var(--bg2); border: 2px solid var(--orange); border-radius: var(--radius);
+            padding: 1.5rem; margin-top: 1.5rem;
+        }
+        .quote-header {
+            display: flex; justify-content: space-between; align-items: flex-start;
+            margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border);
+        }
+        .quote-customer { font-weight: 700; font-size: 1.1rem; }
+        .quote-date { font-size: 0.8rem; color: var(--text2); }
+        .quote-total {
+            font-family: 'JetBrains Mono', monospace; font-size: 2rem; font-weight: 800;
+            color: var(--orange);
+        }
+        .quote-total small { font-size: 0.85rem; color: var(--text2); font-weight: 500; }
+        .quote-breakdown { margin: 1rem 0; }
+        .quote-line {
+            display: flex; justify-content: space-between; padding: 0.4rem 0;
+            font-size: 0.85rem; border-bottom: 1px solid var(--bg4);
+        }
+        .quote-line:last-child { border-bottom: none; }
+        .quote-line .ql-label { color: var(--text2); }
+        .quote-line .ql-value { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+
+        .compare-box {
+            background: var(--bg3); border-radius: 8px; padding: 1rem; margin-top: 1rem;
+        }
+        .compare-title { font-size: 0.75rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; }
+        .compare-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.3rem 0; font-size: 0.8rem;
+        }
+        .compare-name { color: var(--text2); }
+        .compare-price { font-family: 'JetBrains Mono', monospace; }
+        .compare-savings { color: var(--green); font-weight: 700; }
+
+        .actions { display: flex; gap: 0.75rem; margin-top: 1.25rem; flex-wrap: wrap; }
+        .btn {
+            padding: 0.65rem 1.25rem; border-radius: 8px; font-weight: 700; font-size: 0.85rem;
+            cursor: pointer; border: none; transition: all 0.2s; text-decoration: none;
+        }
+        .btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+        .btn-orange { background: var(--orange); color: #000; }
+        .btn-green { background: var(--green); color: #000; }
+        .btn-blue { background: var(--blue); color: #fff; }
+        .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text2); }
+        .btn-outline:hover { border-color: var(--text); color: var(--text); }
+
+        /* Text templates */
+        .template-area {
+            background: var(--bg3); border-radius: 8px; padding: 1rem; margin-top: 1rem;
+            font-size: 0.85rem; line-height: 1.6; color: var(--text2); position: relative;
+            white-space: pre-wrap; display: none;
+        }
+        .template-area.visible { display: block; }
+        .copy-badge {
+            position: absolute; top: 8px; right: 8px; background: var(--green); color: #000;
+            font-size: 0.65rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 4px;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .copy-badge:hover { transform: scale(1.05); }
+
+        .tab-row { display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+        .tab-btn {
+            padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
+            cursor: pointer; border: 1px solid var(--border); background: var(--bg3); color: var(--text2);
+            transition: all 0.2s;
+        }
+        .tab-btn.active { background: var(--orange); border-color: var(--orange); color: #000; }
+
+        .history-table { width: 100%; margin-top: 1rem; border-collapse: collapse; }
+        .history-table th {
+            text-align: left; font-size: 0.7rem; font-weight: 700; color: var(--text3);
+            text-transform: uppercase; letter-spacing: 0.05em; padding: 0.5rem 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .history-table td {
+            padding: 0.5rem; font-size: 0.8rem; border-bottom: 1px solid var(--bg4);
+        }
+        .status-badge {
+            font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.5rem; border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .status-sent { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .status-accepted { background: rgba(16,185,129,0.15); color: var(--green); }
+        .status-pending { background: rgba(251,191,36,0.15); color: var(--yellow); }
+        .status-declined { background: rgba(239,68,68,0.15); color: var(--red); }
+
+        .empty-state { text-align: center; padding: 2rem; color: var(--text3); font-size: 0.85rem; }
+
+        .savings-callout {
+            background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(16,185,129,0.05));
+            border: 1px solid rgba(16,185,129,0.3); border-radius: 8px;
+            padding: 0.75rem 1rem; margin-top: 0.75rem; font-size: 0.8rem;
+        }
+        .savings-callout strong { color: var(--green); }
+
+        .annual-savings {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.4rem;
+            font-weight: 800; color: var(--green);
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>💰 <span>Quote</span> Generator</h1>
+    <a href="index.html">← Back to Dashboard</a>
+</div>
+
+<div class="container">
+    <div class="grid">
+        <!-- LEFT: Input Form -->
+        <div>
+            <div class="card">
+                <h2>👤 Customer Info</h2>
+                <label>Name</label>
+                <input type="text" id="custName" placeholder="e.g. Sarah Johnson" oninput="generateQuote()">
+                <label>Address</label>
+                <input type="text" id="custAddress" placeholder="e.g. 123 Oak St, Ballwin MO" oninput="generateQuote()">
+                <label>Phone</label>
+                <input type="tel" id="custPhone" placeholder="(314) 555-0123" oninput="generateQuote()">
+                <label>Email</label>
+                <input type="email" id="custEmail" placeholder="sarah@email.com" oninput="generateQuote()">
+                <label>Notes</label>
+                <textarea id="custNotes" placeholder="Gate code, dog names, special instructions..." oninput="generateQuote()"></textarea>
+            </div>
+
+            <div class="card" style="margin-top:1.5rem;">
+                <h2>🐕 Service Details</h2>
+
+                <label>Number of Dogs</label>
+                <div class="dog-counter">
+                    <button class="dog-btn" onclick="changeDogs(-1)">−</button>
+                    <span class="dog-count" id="dogCount">1</span>
+                    <button class="dog-btn" onclick="changeDogs(1)">+</button>
+                    <span class="dog-emoji" id="dogEmoji">🐕</span>
+                </div>
+
+                <label>Yard Size</label>
+                <div class="yard-sizes">
+                    <div class="yard-btn selected" onclick="selectYard(this, 'small')" data-yard="small">🏠 Small<br><span style="font-size:0.65rem;color:var(--text3)">&lt; ¼ acre</span></div>
+                    <div class="yard-btn" onclick="selectYard(this, 'medium')" data-yard="medium">🏡 Medium<br><span style="font-size:0.65rem;color:var(--text3)">¼ – ½ acre</span></div>
+                    <div class="yard-btn" onclick="selectYard(this, 'large')" data-yard="large">🌳 Large<br><span style="font-size:0.65rem;color:var(--text3)">½+ acre</span></div>
+                </div>
+
+                <label>Service Plan</label>
+                <div class="tier-cards">
+                    <div class="tier" onclick="selectTier(this, 'basic')" data-tier="basic">
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <span class="tier-name">🥉 Basic — The Essentials</span>
+                            <span class="tier-price" id="basicPrice">$70/mo</span>
+                        </div>
+                        <div class="tier-desc">1x weekly cleanup • Standard service</div>
+                        <div class="tier-features"><span>✓</span> 1 dog included • +$10/mo per extra dog</div>
+                    </div>
+                    <div class="tier recommended selected" onclick="selectTier(this, 'standard')" data-tier="standard">
+                        <div class="tier-badge">Best Value</div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <span class="tier-name">🥈 Standard — The Clean Yard</span>
+                            <span class="tier-price" id="standardPrice">$95/mo</span>
+                        </div>
+                        <div class="tier-desc">1x weekly cleanup • Deodorizer spray • Priority scheduling • Text alerts</div>
+                        <div class="tier-features"><span>✓</span> 2 dogs included • +$10/mo per extra dog</div>
+                    </div>
+                    <div class="tier" onclick="selectTier(this, 'premium')" data-tier="premium">
+                        <div style="display:flex;justify-content:space-between;align-items:center;">
+                            <span class="tier-name">🥇 Premium — The VIP Yard</span>
+                            <span class="tier-price" id="premiumPrice">$135/mo</span>
+                        </div>
+                        <div class="tier-desc">2x weekly cleanup • Deodorizer • Photos • Seasonal deep cleans</div>
+                        <div class="tier-features"><span>✓</span> 3 dogs included • +$10/mo per extra dog</div>
+                    </div>
+                </div>
+
+                <label style="margin-top:1.25rem;">Add One-Time Service?</label>
+                <div class="onetime-opts">
+                    <div class="onetime-btn" onclick="toggleOnetime(this, 'spring')" data-service="spring">
+                        <span>🌱 Spring Cleanup — Full yard reset + deodorizer</span>
+                        <span class="onetime-price" id="springPrice">$99</span>
+                    </div>
+                    <div class="onetime-btn" onclick="toggleOnetime(this, 'onetime')" data-service="onetime">
+                        <span>🏡 One-Time Cleanup</span>
+                        <span class="onetime-price" id="onetimePrice">$75</span>
+                    </div>
+                    <div class="onetime-btn" onclick="toggleOnetime(this, 'event')" data-service="event">
+                        <span>🎉 Event Prep — BBQ/party-ready yard</span>
+                        <span class="onetime-price">$125</span>
+                    </div>
+                </div>
+
+                <label style="margin-top:1.25rem;">Discount / Promo</label>
+                <select id="discount" onchange="generateQuote()">
+                    <option value="none">No discount</option>
+                    <option value="spring25">🌱 Spring Special — $25 off first month</option>
+                    <option value="referral">🤝 Referral — $15 off first month</option>
+                    <option value="neighbor">🏘️ Neighbor Discount — 10% off ongoing</option>
+                    <option value="annual">📅 Annual Commitment — 1 month free</option>
+                    <option value="custom">✏️ Custom amount...</option>
+                </select>
+                <input type="number" id="customDiscount" placeholder="Custom discount $" style="display:none;margin-top:0.5rem;" oninput="generateQuote()">
+            </div>
+        </div>
+
+        <!-- RIGHT: Quote Preview + Templates -->
+        <div>
+            <div class="quote-box" id="quotePreview">
+                <div class="quote-header">
+                    <div>
+                        <div class="quote-customer" id="qName">New Customer</div>
+                        <div class="quote-date" id="qDate"></div>
+                    </div>
+                    <div style="text-align:right;">
+                        <div class="quote-total" id="qTotal">$95<small>/mo</small></div>
+                        <div style="font-size:0.75rem;color:var(--text3);" id="qFirstMonth"></div>
+                    </div>
+                </div>
+                <div class="quote-breakdown" id="qBreakdown"></div>
+                <div class="compare-box" id="qCompare"></div>
+                <div class="savings-callout" id="qSavings" style="display:none;"></div>
+            </div>
+
+            <!-- Message Templates -->
+            <div class="card" style="margin-top:1.5rem;">
+                <h2>📋 Ready-to-Send Messages</h2>
+                <div class="tab-row">
+                    <div class="tab-btn active" onclick="showTemplate('text')">📱 Text</div>
+                    <div class="tab-btn" onclick="showTemplate('email')">📧 Email</div>
+                    <div class="tab-btn" onclick="showTemplate('followup')">🔄 Follow-up</div>
+                    <div class="tab-btn" onclick="showTemplate('welcome')">🎉 Welcome</div>
+                </div>
+                <div class="template-area visible" id="tmpl-text">
+                    <div class="copy-badge" onclick="copyTemplate('tmpl-text')">📋 Copy</div>
+                    <span id="textContent"></span>
+                </div>
+                <div class="template-area" id="tmpl-email">
+                    <div class="copy-badge" onclick="copyTemplate('tmpl-email')">📋 Copy</div>
+                    <span id="emailContent"></span>
+                </div>
+                <div class="template-area" id="tmpl-followup">
+                    <div class="copy-badge" onclick="copyTemplate('tmpl-followup')">📋 Copy</div>
+                    <span id="followupContent"></span>
+                </div>
+                <div class="template-area" id="tmpl-welcome">
+                    <div class="copy-badge" onclick="copyTemplate('tmpl-welcome')">📋 Copy</div>
+                    <span id="welcomeContent"></span>
+                </div>
+            </div>
+
+            <div class="actions">
+                <button class="btn btn-orange" onclick="copyQuoteText()">📋 Copy Quote</button>
+                <button class="btn btn-green" onclick="saveQuote()">💾 Save Quote</button>
+                <button class="btn btn-outline" onclick="resetForm()">🔄 Reset</button>
+            </div>
+
+            <!-- Quote History -->
+            <div class="card" style="margin-top:1.5rem;">
+                <h2>📊 Quote History</h2>
+                <table class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Customer</th>
+                            <th>Plan</th>
+                            <th>Total</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="quoteHistory">
+                    </tbody>
+                </table>
+                <div class="empty-state" id="historyEmpty">No quotes yet — create your first one!</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // State
+    let dogs = 1;
+    let yardSize = 'small';
+    let selectedTier = 'standard';
+    let onetimeServices = [];
+    let quoteHistory = JSON.parse(localStorage.getItem('tt_quotes') || '[]');
+
+    // Pricing
+    const tierPricing = {
+        basic:    { base: 70,  included: 1, extra: 10, label: 'Basic — The Essentials', freq: '1x/week' },
+        standard: { base: 95,  included: 2, extra: 10, label: 'Standard — The Clean Yard', freq: '1x/week + deodorizer' },
+        premium:  { base: 135, included: 3, extra: 10, label: 'Premium — The VIP Yard', freq: '2x/week + deodorizer + photos' }
+    };
+
+    const onetimePricing = {
+        spring: { small: 99, medium: 129, large: 149, label: 'Spring Cleanup' },
+        onetime: { small: 75, medium: 99, large: 125, label: 'One-Time Cleanup' },
+        event: { small: 125, medium: 125, large: 125, label: 'Event Prep Cleanup' }
+    };
+
+    const competitors = [
+        { name: 'Doggie Doodies', prices: { 1: 83, 2: 88, 3: 100, 4: 121 } },
+        { name: 'Dirty Dog Poo Crew', prices: { 1: 95, 2: 95, 3: 95, 4: 95 } },
+        { name: 'Poopy Paws', prices: { 1: 87, 2: 87, 3: 87, 4: 87 } },
+        { name: 'DoodyCalls', prices: { 1: 56, 2: 65, 3: 75, 4: 85 } }
+    ];
+
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+        generateQuote();
+        renderHistory();
+        document.getElementById('discount').addEventListener('change', function() {
+            document.getElementById('customDiscount').style.display = this.value === 'custom' ? 'block' : 'none';
+            generateQuote();
+        });
+    });
+
+    function changeDogs(delta) {
+        dogs = Math.max(1, Math.min(10, dogs + delta));
+        document.getElementById('dogCount').textContent = dogs;
+        document.getElementById('dogEmoji').textContent = '🐕'.repeat(Math.min(dogs, 5)) + (dogs > 5 ? '+' : '');
+        updateOnetimePrices();
+        generateQuote();
+    }
+
+    function selectYard(el, size) {
+        document.querySelectorAll('.yard-btn').forEach(b => b.classList.remove('selected'));
+        el.classList.add('selected');
+        yardSize = size;
+        updateOnetimePrices();
+        generateQuote();
+    }
+
+    function selectTier(el, tier) {
+        document.querySelectorAll('.tier').forEach(t => t.classList.remove('selected'));
+        el.classList.add('selected');
+        selectedTier = tier;
+        generateQuote();
+    }
+
+    function toggleOnetime(el, service) {
+        el.classList.toggle('selected');
+        if (onetimeServices.includes(service)) {
+            onetimeServices = onetimeServices.filter(s => s !== service);
+        } else {
+            onetimeServices.push(service);
+        }
+        generateQuote();
+    }
+
+    function updateOnetimePrices() {
+        const surcharge = dogs >= 3 ? 25 : 0;
+        document.getElementById('springPrice').textContent = '$' + (onetimePricing.spring[yardSize] + surcharge);
+        document.getElementById('onetimePrice').textContent = '$' + (onetimePricing.onetime[yardSize] + surcharge);
+    }
+
+    function getMonthlyPrice() {
+        const tier = tierPricing[selectedTier];
+        const extraDogs = Math.max(0, dogs - tier.included);
+        return tier.base + (extraDogs * tier.extra);
+    }
+
+    function getDiscount(monthly) {
+        const d = document.getElementById('discount').value;
+        const custom = parseFloat(document.getElementById('customDiscount').value) || 0;
+        switch(d) {
+            case 'spring25': return { first: 25, ongoing: 0, label: 'Spring Special: $25 off first month' };
+            case 'referral': return { first: 15, ongoing: 0, label: 'Referral: $15 off first month' };
+            case 'neighbor': return { first: 0, ongoing: Math.round(monthly * 0.10), label: 'Neighbor: 10% off ongoing' };
+            case 'annual': return { first: 0, ongoing: 0, freeMonth: true, label: 'Annual: 1 month free (pay 11/12)' };
+            case 'custom': return { first: custom, ongoing: 0, label: 'Custom discount: $' + custom + ' off' };
+            default: return { first: 0, ongoing: 0, label: null };
+        }
+    }
+
+    function generateQuote() {
+        const name = document.getElementById('custName').value || 'New Customer';
+        const monthly = getMonthlyPrice();
+        const discount = getDiscount(monthly);
+        const effectiveMonthly = monthly - (discount.ongoing || 0);
+        const firstMonth = effectiveMonthly - (discount.first || 0);
+
+        // Update tier prices display
+        for (const [key, tier] of Object.entries(tierPricing)) {
+            const extra = Math.max(0, dogs - tier.included) * tier.extra;
+            document.getElementById(key + 'Price').textContent = '$' + (tier.base + extra) + '/mo';
+        }
+
+        // Quote header
+        document.getElementById('qName').textContent = name;
+        document.getElementById('qDate').textContent = 'Quote • ' + new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+        document.getElementById('qTotal').innerHTML = '$' + effectiveMonthly + '<small>/mo</small>';
+
+        if (discount.first > 0) {
+            document.getElementById('qFirstMonth').textContent = 'First month: $' + firstMonth;
+        } else if (discount.freeMonth) {
+            document.getElementById('qFirstMonth').textContent = 'Annual: $' + (effectiveMonthly * 11) + '/yr (save $' + effectiveMonthly + ')';
+        } else {
+            document.getElementById('qFirstMonth').textContent = '';
+        }
+
+        // Breakdown
+        const tier = tierPricing[selectedTier];
+        const extraDogs = Math.max(0, dogs - tier.included);
+        let lines = [];
+        lines.push({ label: tier.label, value: '$' + tier.base + '/mo' });
+        if (extraDogs > 0) {
+            lines.push({ label: extraDogs + ' extra dog' + (extraDogs > 1 ? 's' : '') + ' × $' + tier.extra, value: '+$' + (extraDogs * tier.extra) + '/mo' });
+        }
+        if (discount.ongoing > 0) {
+            lines.push({ label: discount.label, value: '−$' + discount.ongoing + '/mo' });
+        }
+        if (discount.first > 0) {
+            lines.push({ label: discount.label, value: '−$' + discount.first + ' (first month)' });
+        }
+        if (discount.freeMonth) {
+            lines.push({ label: discount.label, value: 'Save $' + effectiveMonthly + '/yr' });
+        }
+
+        // One-time services
+        let onetimeTotal = 0;
+        const surcharge = dogs >= 3 ? 25 : 0;
+        onetimeServices.forEach(s => {
+            const p = onetimePricing[s][yardSize] + (s !== 'event' ? surcharge : 0);
+            onetimeTotal += p;
+            lines.push({ label: onetimePricing[s].label + ' (one-time)', value: '$' + p });
+        });
+
+        document.getElementById('qBreakdown').innerHTML = lines.map(l =>
+            `<div class="quote-line"><span class="ql-label">${l.label}</span><span class="ql-value">${l.value}</span></div>`
+        ).join('');
+
+        // Competitor comparison
+        const compDog = Math.min(dogs, 4);
+        let compHtml = '<div class="compare-title">💡 How We Compare (monthly)</div>';
+        compHtml += `<div class="compare-row"><span style="color:var(--orange);font-weight:700;">Tidy Tails STL</span><span class="compare-price" style="color:var(--orange);font-weight:700;">$${effectiveMonthly}/mo</span></div>`;
+        competitors.forEach(c => {
+            const cp = c.prices[compDog] || c.prices[1];
+            const diff = cp - effectiveMonthly;
+            compHtml += `<div class="compare-row"><span class="compare-name">${c.name}</span><span class="compare-price" style="color:${diff > 0 ? 'var(--red)' : 'var(--green)'}">$${cp}/mo ${diff > 0 ? '(+$' + diff + ')' : ''}</span></div>`;
+        });
+        document.getElementById('qCompare').innerHTML = compHtml;
+
+        // Savings callout
+        const avgComp = Math.round(competitors.reduce((sum, c) => sum + (c.prices[compDog] || c.prices[1]), 0) / competitors.length);
+        const annualSave = (avgComp - effectiveMonthly) * 12;
+        if (annualSave > 0) {
+            document.getElementById('qSavings').style.display = 'block';
+            document.getElementById('qSavings').innerHTML = `<strong>💰 Customer saves ~$${annualSave}/year</strong> vs. the average STL competitor ($${avgComp}/mo). That's real money back in their pocket.`;
+        } else {
+            document.getElementById('qSavings').style.display = 'none';
+        }
+
+        // Update templates
+        updateTemplates(name, effectiveMonthly, firstMonth, discount, onetimeTotal);
+    }
+
+    function updateTemplates(name, monthly, firstMonth, discount, onetimeTotal) {
+        const firstName = name.split(' ')[0] || 'there';
+        const tier = tierPricing[selectedTier];
+        const planName = tier.label.split(' — ')[1] || tier.label;
+        const phone = document.getElementById('custPhone').value || '(phone)';
+        const email = document.getElementById('custEmail').value || '(email)';
+
+        const discountLine = discount.first > 0 ? `\n🎁 Special: ${discount.label} — your first month is just $${firstMonth}!` :
+                           discount.ongoing > 0 ? `\n🎁 ${discount.label} applied!` :
+                           discount.freeMonth ? `\n🎁 ${discount.label}!` : '';
+
+        const onetimeLine = onetimeTotal > 0 ? `\nPlus your initial cleanup: $${onetimeTotal} (one-time)` : '';
+
+        // Text message
+        document.getElementById('textContent').textContent =
+`Hey ${firstName}! 👋 Thanks for your interest in Tidy Tails!
+
+Here's your personalized quote:
+
+📋 ${planName} Plan — $${monthly}/mo
+🐕 ${dogs} dog${dogs > 1 ? 's' : ''} • ${tier.freq}${discountLine}${onetimeLine}
+
+What's included:
+✅ Weekly cleanup & haul-away
+✅ Text when we're done
+✅ No contracts — cancel anytime
+✅ Satisfaction guaranteed
+
+Ready to get started? Just reply "YES" and I'll get you on the schedule!
+
+— TJ, Tidy Tails STL 🐕💩`;
+
+        // Email
+        document.getElementById('emailContent').textContent =
+`Subject: Your Tidy Tails Quote — ${planName} Plan
+
+Hey ${firstName},
+
+Great chatting with you! Here's the quote we discussed:
+
+━━━━━━━━━━━━━━━━━━━━
+📋 ${planName} Plan
+💰 $${monthly}/month
+🐕 ${dogs} dog${dogs > 1 ? 's' : ''}
+📅 ${tier.freq}${discountLine}${onetimeLine}
+━━━━━━━━━━━━━━━━━━━━
+
+What you get:
+• Professional weekly cleanup & haul-away
+• Text notification when service is complete
+• No contracts — cancel anytime
+• 100% satisfaction guaranteed
+
+Getting started is easy — just reply to this email or text me at (314) XXX-XXXX and I'll add you to the schedule. Most customers are up and running within a few days.
+
+Looking forward to keeping your yard clean!
+
+— TJ
+Tidy Tails STL
+tidytailsstl.com`;
+
+        // Follow-up
+        document.getElementById('followupContent').textContent =
+`Hey ${firstName}! 👋
+
+Just following up on the quote I sent over. Wanted to make sure you got it and see if you had any questions!
+
+Quick recap:
+• ${planName} Plan — $${monthly}/mo
+• ${dogs} dog${dogs > 1 ? 's' : ''}, ${tier.freq}
+
+Spring's the perfect time to get the yard fresh again. If you sign up this week, I can usually get your first cleanup done within a few days.
+
+No pressure at all — just let me know either way! 🙂
+
+— TJ, Tidy Tails STL`;
+
+        // Welcome
+        document.getElementById('welcomeContent').textContent =
+`Hey ${firstName}! 🎉
+
+Welcome to the Tidy Tails family! So glad to have you.
+
+Here's what happens next:
+
+1️⃣ Your first cleanup is scheduled for [DAY]
+2️⃣ I'll text you when I'm done each week
+3️⃣ You'll get a monthly invoice — super simple
+
+A few things that help me out:
+• Leave the gate unlocked on service days (or share the code)
+• Let me know if the dogs will be out — I'm great with pups!
+• Any special instructions? Now's the time 😄
+
+Questions? Just text me anytime.
+
+Here's to a cleaner yard! 🐕💩
+
+— TJ, Tidy Tails STL`;
+    }
+
+    function showTemplate(id) {
+        document.querySelectorAll('.template-area').forEach(t => t.classList.remove('visible'));
+        document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+        document.getElementById('tmpl-' + id).classList.add('visible');
+        event.target.classList.add('active');
+    }
+
+    function copyTemplate(id) {
+        const text = document.getElementById(id).querySelector('span').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            const badge = document.querySelector('#' + id + ' .copy-badge');
+            badge.textContent = '✅ Copied!';
+            setTimeout(() => badge.textContent = '📋 Copy', 2000);
+        });
+    }
+
+    function copyQuoteText() {
+        const name = document.getElementById('custName').value || 'New Customer';
+        const monthly = getMonthlyPrice();
+        const tier = tierPricing[selectedTier];
+        const discount = getDiscount(monthly);
+        const effective = monthly - (discount.ongoing || 0);
+        let text = `TIDY TAILS STL — QUOTE\n`;
+        text += `Customer: ${name}\n`;
+        text += `Date: ${new Date().toLocaleDateString()}\n`;
+        text += `Plan: ${tier.label} — $${effective}/mo\n`;
+        text += `Dogs: ${dogs}\n`;
+        if (discount.label) text += `Discount: ${discount.label}\n`;
+        navigator.clipboard.writeText(text);
+    }
+
+    function saveQuote() {
+        const name = document.getElementById('custName').value || 'New Customer';
+        const monthly = getMonthlyPrice();
+        const discount = getDiscount(monthly);
+        const effective = monthly - (discount.ongoing || 0);
+
+        const quote = {
+            name, plan: selectedTier, total: effective, dogs,
+            date: new Date().toISOString(), status: 'sent',
+            phone: document.getElementById('custPhone').value,
+            email: document.getElementById('custEmail').value,
+            discount: discount.label
+        };
+
+        quoteHistory.unshift(quote);
+        localStorage.setItem('tt_quotes', JSON.stringify(quoteHistory));
+        renderHistory();
+
+        // Flash save button
+        const btn = event.target;
+        btn.textContent = '✅ Saved!';
+        setTimeout(() => btn.textContent = '💾 Save Quote', 2000);
+    }
+
+    function renderHistory() {
+        const tbody = document.getElementById('quoteHistory');
+        const empty = document.getElementById('historyEmpty');
+
+        if (quoteHistory.length === 0) {
+            empty.style.display = 'block';
+            tbody.innerHTML = '';
+            return;
+        }
+        empty.style.display = 'none';
+
+        tbody.innerHTML = quoteHistory.slice(0, 10).map((q, i) => {
+            const date = new Date(q.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            const statusClass = 'status-' + q.status;
+            return `<tr>
+                <td style="font-weight:600;">${q.name}</td>
+                <td style="text-transform:capitalize;">${q.plan}</td>
+                <td style="font-family:'JetBrains Mono',monospace;">$${q.total}/mo</td>
+                <td style="color:var(--text2);">${date}</td>
+                <td>
+                    <select style="background:transparent;border:none;color:inherit;font-size:0.7rem;font-weight:700;" onchange="updateStatus(${i}, this.value)">
+                        <option value="sent" ${q.status==='sent'?'selected':''}>📤 SENT</option>
+                        <option value="pending" ${q.status==='pending'?'selected':''}>⏳ PENDING</option>
+                        <option value="accepted" ${q.status==='accepted'?'selected':''}>✅ ACCEPTED</option>
+                        <option value="declined" ${q.status==='declined'?'selected':''}>❌ DECLINED</option>
+                    </select>
+                </td>
+            </tr>`;
+        }).join('');
+    }
+
+    function updateStatus(idx, status) {
+        quoteHistory[idx].status = status;
+        localStorage.setItem('tt_quotes', JSON.stringify(quoteHistory));
+    }
+
+    function resetForm() {
+        document.getElementById('custName').value = '';
+        document.getElementById('custAddress').value = '';
+        document.getElementById('custPhone').value = '';
+        document.getElementById('custEmail').value = '';
+        document.getElementById('custNotes').value = '';
+        dogs = 1;
+        document.getElementById('dogCount').textContent = '1';
+        document.getElementById('dogEmoji').textContent = '🐕';
+        yardSize = 'small';
+        document.querySelectorAll('.yard-btn').forEach(b => b.classList.remove('selected'));
+        document.querySelector('[data-yard="small"]').classList.add('selected');
+        selectedTier = 'standard';
+        document.querySelectorAll('.tier').forEach(t => t.classList.remove('selected'));
+        document.querySelector('[data-tier="standard"]').classList.add('selected');
+        onetimeServices = [];
+        document.querySelectorAll('.onetime-btn').forEach(b => b.classList.remove('selected'));
+        document.getElementById('discount').value = 'none';
+        document.getElementById('customDiscount').style.display = 'none';
+        generateQuote();
+    }
+</script>
+
+</body>
+</html>
