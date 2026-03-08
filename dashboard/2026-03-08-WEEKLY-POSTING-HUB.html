@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📱 Weekly Posting Hub — Mar 9-15, 2026</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #14141f;
+    --card-hover: #1a1a2e;
+    --border: #2a2a3e;
+    --accent: #6c5ce7;
+    --accent-light: #a29bfe;
+    --green: #00b894;
+    --green-dark: #00996b;
+    --orange: #fdcb6e;
+    --red: #e17055;
+    --blue: #74b9ff;
+    --pink: #fd79a8;
+    --text: #e8e8f0;
+    --text-dim: #8888aa;
+    --text-muted: #555577;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .header h1 { font-size: 28px; margin-bottom: 6px; }
+  .header h1 span { color: var(--accent-light); }
+  .header p { color: var(--text-dim); font-size: 14px; }
+  
+  .stats-bar {
+    display: flex;
+    gap: 12px;
+    padding: 16px 20px;
+    overflow-x: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 20px;
+    text-align: center;
+    min-width: 120px;
+  }
+  .stat .num { font-size: 28px; font-weight: 800; }
+  .stat .label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+  .stat.green .num { color: var(--green); }
+  .stat.orange .num { color: var(--orange); }
+  .stat.blue .num { color: var(--blue); }
+  .stat.pink .num { color: var(--pink); }
+  
+  .tabs {
+    display: flex;
+    gap: 0;
+    padding: 0 20px;
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 14px 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-dim);
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: var(--accent-light); border-bottom-color: var(--accent); }
+  
+  .content { max-width: 900px; margin: 0 auto; padding: 20px; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px 0 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .day-header:first-child { margin-top: 0; }
+  .day-emoji { font-size: 24px; }
+  .day-name { font-size: 18px; font-weight: 700; }
+  .day-date { color: var(--text-dim); font-size: 13px; }
+  
+  .post-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin: 12px 0;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .post-card:hover { border-color: var(--accent); }
+  .post-card.posted { opacity: 0.5; }
+  .post-card.posted .post-header { background: var(--green-dark); }
+  
+  .post-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: rgba(108, 92, 231, 0.1);
+    border-bottom: 1px solid var(--border);
+  }
+  .post-platform {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .platform-badge {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-fb { background: #1877f2; color: white; }
+  .badge-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: white; }
+  .badge-nd { background: #00b636; color: white; }
+  .badge-cl { background: #5a0fa5; color: white; }
+  .badge-goog { background: #4285f4; color: white; }
+  
+  .post-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .btn {
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+  }
+  .btn-copy { background: var(--accent); color: white; }
+  .btn-copy:hover { background: var(--accent-light); }
+  .btn-done { background: transparent; border: 1px solid var(--green); color: var(--green); }
+  .btn-done:hover { background: var(--green); color: white; }
+  .btn-done.checked { background: var(--green); color: white; }
+  
+  .post-body {
+    padding: 16px;
+  }
+  .post-target {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+  .post-target a { color: var(--blue); text-decoration: none; }
+  .post-target a:hover { text-decoration: underline; }
+  .post-text {
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    color: var(--text);
+    background: rgba(0,0,0,0.3);
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .post-tip {
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--orange);
+    font-style: italic;
+  }
+  
+  /* Groups Directory */
+  .group-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
+  }
+  .group-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .group-card h4 { font-size: 14px; margin-bottom: 4px; }
+  .group-card .group-type { font-size: 11px; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .group-card p { font-size: 12px; color: var(--text-dim); line-height: 1.4; }
+  .group-card .group-url { font-size: 11px; margin-top: 6px; }
+  .group-card .group-url a { color: var(--blue); text-decoration: none; }
+  .group-card .priority { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 700; margin-top: 6px; }
+  .priority.high { background: rgba(225, 112, 85, 0.2); color: var(--red); }
+  .priority.med { background: rgba(253, 203, 110, 0.2); color: var(--orange); }
+  .priority.low { background: rgba(116, 185, 255, 0.2); color: var(--blue); }
+  
+  /* Schedule view */
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+  }
+  .schedule-table th {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 2px solid var(--accent);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-light);
+  }
+  .schedule-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .schedule-table tr:hover { background: var(--card-hover); }
+  
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 24px 0 8px;
+    color: var(--accent-light);
+  }
+  .section-sub {
+    color: var(--text-dim);
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  
+  /* Spring promo banner */
+  .promo-banner {
+    background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+    border-radius: 12px;
+    padding: 20px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .promo-banner h3 { font-size: 20px; color: #fff; margin-bottom: 4px; }
+  .promo-banner p { font-size: 14px; color: rgba(255,255,255,0.85); }
+  
+  .copied-toast {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--green);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: transform 0.3s ease;
+    z-index: 999;
+  }
+  .copied-toast.show { transform: translateX(-50%) translateY(0); }
+
+  .quick-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin: 16px 0;
+  }
+  .quick-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--blue);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+  .quick-link:hover { border-color: var(--blue); background: rgba(116,185,255,0.1); }
+  
+  @media (max-width: 600px) {
+    .header h1 { font-size: 22px; }
+    .stats-bar { gap: 8px; }
+    .stat { min-width: 80px; padding: 8px 12px; }
+    .stat .num { font-size: 22px; }
+    .group-grid { grid-template-columns: 1fr; }
+    .tabs { padding: 0 8px; }
+    .tab { padding: 12px 14px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📱 <span>Weekly Posting Hub</span></h1>
+  <p>March 9–15, 2026 • Spring Cleanup Season 🌱 • Ready-to-post content for every platform</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat green">
+    <div class="num" id="posted-count">0</div>
+    <div class="label">Posted</div>
+  </div>
+  <div class="stat orange">
+    <div class="num" id="total-posts">21</div>
+    <div class="label">Total Posts</div>
+  </div>
+  <div class="stat blue">
+    <div class="num">5</div>
+    <div class="label">Platforms</div>
+  </div>
+  <div class="stat pink">
+    <div class="num">15+</div>
+    <div class="label">Groups</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('daily')">📅 Daily Plan</div>
+  <div class="tab" onclick="showTab('groups')">👥 Groups Directory</div>
+  <div class="tab" onclick="showTab('templates')">📝 Extra Templates</div>
+  <div class="tab" onclick="showTab('schedule')">📊 Full Schedule</div>
+  <div class="tab" onclick="showTab('tips')">💡 Posting Tips</div>
+</div>
+
+<div class="content">
+
+<!-- ====== DAILY PLAN TAB ====== -->
+<div id="daily" class="tab-content active">
+
+<div class="promo-banner">
+  <h3>🌱 Spring Cleanup Season Is HERE</h3>
+  <p>Every post this week ties into spring. Yards are thawing. Dog poop is emerging. Perfect timing.</p>
+</div>
+
+<!-- MONDAY -->
+<div class="day-header">
+  <span class="day-emoji">🟢</span>
+  <span class="day-name">Monday, Mar 9</span>
+  <span class="day-date">Start the week strong — 3 posts</span>
+</div>
+
+<div class="post-card" id="post-1">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-fb">Facebook</span>
+      Community Group Post
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-1-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-1')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post in: <a href="https://facebook.com/groups/StCharlesMOMS" target="_blank">St. Charles Moms</a> or <a href="https://facebook.com/groups/543486769082842/" target="_blank">St Peters/St Charles BST</a></div>
+    <div class="post-text" id="post-1-text">Happy Monday, everyone! 👋
+
+Quick question for the dog parents — who else is dreading the "spring thaw reveal" in their backyard? 😬
+
+You know what I'm talking about. Months of... surprises... all appearing at once.
+
+I'm TJ, I run a local pet waste removal service called Tidy Tails. I come out weekly and handle ALL of it so you don't have to.
+
+🐕 $25/week (or $70/month)
+🐕 I bag it AND haul it away
+🐕 You don't even need to be home
+🐕 No contracts, no hassle
+
+Spring cleanup specials going on right now — I'll knock out the whole winter's worth on the first visit, included free.
+
+Text me: 314-850-7140 📱
+
+Your flip-flop season starts when I show up 😂</div>
+    <div class="post-tip">💡 Best time to post in mom groups: 8-9 AM or 12-1 PM when kids are at school</div>
+  </div>
+</div>
+
+<div class="post-card" id="post-2">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-nd">Nextdoor</span>
+      Neighborhood Post
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-2-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-2')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post in: Your Nextdoor neighborhood feed (shows to nearby neighborhoods too)</div>
+    <div class="post-text" id="post-2-text">Spring yard checklist:
+✅ Mow the lawn
+✅ Plant some flowers
+✅ Deal with 4 months of dog poop... 😳
+
+That last one is where I come in. I'm TJ — local guy, not a franchise — and I run Tidy Tails pet waste removal.
+
+$25/week. I come to your yard, scoop everything, bag it, take it with me. You get your backyard back.
+
+First cleanup includes clearing out all the winter buildup — no extra charge.
+
+Serving Florissant, Ferguson, Maryland Heights, Chesterfield, O'Fallon, St. Charles & surrounding areas.
+
+Text me: 314-850-7140
+
+Happy spring, neighbors! 🌱</div>
+    <div class="post-tip">💡 Nextdoor posts reach 3-5 nearby neighborhoods. Post early morning for max visibility.</div>
+  </div>
+</div>
+
+<div class="post-card" id="post-3">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-goog">Google</span>
+      Google Business Profile Post
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-3-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-3')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post on: Google Business Profile → Posts → "What's new"</div>
+    <div class="post-text" id="post-3-text">🌱 Spring Cleanup Special — FREE winter buildup removal with your first month of weekly service!
+
+Tidy Tails handles your pet waste so you can enjoy your yard again. We scoop, bag, and haul it away every week. Starting at $25/week.
+
+No contracts. Satisfaction guaranteed. Serving St. Louis County & St. Charles.
+
+📱 Text 314-850-7140 for a free quote!</div>
+    <div class="post-tip">💡 GBP posts expire after 7 days. Post every Monday for continuous visibility in search results.</div>
+  </div>
+</div>
+
+<!-- TUESDAY -->
+<div class="day-header">
+  <span class="day-emoji">🔵</span>
+  <span class="day-name">Tuesday, Mar 10</span>
+  <span class="day-date">Target pet lovers — 3 posts</span>
+</div>
+
+<div class="post-card" id="post-4">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-fb">Facebook</span>
+      Pet Group Post
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-4-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-4')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post in: <a href="https://facebook.com/groups/savingstlouispets/" target="_blank">Saving St. Louis Pets</a></div>
+    <div class="post-text" id="post-4-text">Fellow dog lovers! 🐕
+
+I started Tidy Tails because I love dogs but... let's be honest... nobody loves the yard cleanup part 😅
+
+If you've got a dog (or 2, or 3) and a yard that's gotten away from you, I get it. I come out every week, clean the whole yard, bag everything, and take it with me.
+
+$25/week • No contracts • No judgment on how bad it's gotten 😂
+
+I'm just a local guy who turned "somebody should do this" into an actual business. Not a franchise. Just me showing up on time every week.
+
+Text me: 314-850-7140
+
+P.S. — If your yard has a winter's worth built up, I'll clear the whole thing on the first visit. No extra charge. 🌱</div>
+    <div class="post-tip">💡 Pet rescue groups = passionate dog owners. Be genuine, not salesy. They can smell inauthenticity.</div>
+  </div>
+</div>
+
+<div class="post-card" id="post-5">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-fb">Facebook</span>
+      Buy/Sell/Trade Group
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-5-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-5')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post in: <a href="https://facebook.com/groups/lakestlouisbuyselltrade/" target="_blank">Lake St. Louis BST</a></div>
+    <div class="post-text" id="post-5-text">🐕💩 PET WASTE REMOVAL — Tidy Tails
+
+Tired of scooping? I'll do it for you. Every week.
+
+✅ $25/week (or $70/month)
+✅ I scoop, bag, and haul it away
+✅ You don't even need to be home
+✅ No contracts — cancel anytime
+✅ First visit includes full yard cleanup
+
+Serving Lake St. Louis, O'Fallon, St. Peters, St. Charles & surrounding areas.
+
+Local business, not a franchise. Just me, TJ, showing up on time every week.
+
+📱 Text 314-850-7140 for a free quote
+
+Spring cleanup season is here — yards are thawing and it's not pretty 😅</div>
+  </div>
+</div>
+
+<div class="post-card" id="post-6">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-ig">Instagram</span>
+      Feed Post / Reel Caption
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-6-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-6')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post on: @tidytailsstl Instagram (take a before/after yard photo!)</div>
+    <div class="post-text" id="post-6-text">POV: Spring hits and you finally see what's been hiding under the snow 💀🐕💩
+
+Your dogs didn't take the winter off. Your yard didn't either. But YOU can.
+
+$25/week. I show up. I scoop. I bag. I haul it away. You never think about it again.
+
+DM me or text 314-850-7140 📱
+
+#TidyTails #PetWasteRemoval #StLouis #DogMom #DogDad #SpringCleaning #STL #PooperScooper #YardCleanup #DogLife #StLouisSmallBusiness #SupportLocal #DogOwner #BackyardGoals #SpringVibes</div>
+    <div class="post-tip">💡 Take a quick before/after photo of a yard. Visual proof converts WAY better than text alone.</div>
+  </div>
+</div>
+
+<!-- WEDNESDAY -->
+<div class="day-header">
+  <span class="day-emoji">🟡</span>
+  <span class="day-name">Wednesday, Mar 11</span>
+  <span class="day-date">Mid-week push — 3 posts</span>
+</div>
+
+<div class="post-card" id="post-7">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-fb">Facebook</span>
+      Neighborhood Group
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-7-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-7')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post in: Florissant Community Group, Ferguson Neighbors, or any North County group</div>
+    <div class="post-text" id="post-7-text">Hey Florissant/Ferguson neighbors! 👋
+
+Real talk — how many of you have been putting off yard cleanup because of the dog situation? No shame, we all do it 😂
+
+I'm TJ, your local pet waste removal guy. I started Tidy Tails last year and I've been helping families around here get their yards back.
+
+Here's how simple it is:
+1️⃣ Text me, we pick a day
+2️⃣ I show up weekly and clean your ENTIRE yard
+3️⃣ I bag it all and take it with me
+4️⃣ You get a text when it's done
+
+$25/week. That's it. No contracts, no hidden fees, no awkward upsells.
+
+📱 314-850-7140
+
+Your neighbors' yards look great. Yours can too 😉</div>
+  </div>
+</div>
+
+<div class="post-card" id="post-8">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-cl">Craigslist</span>
+      Services Listing
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-8-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-8')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post on: <a href="https://stlouis.craigslist.org" target="_blank">St. Louis Craigslist</a> → Services → Household</div>
+    <div class="post-text" id="post-8-text">🐕 PET WASTE REMOVAL — Weekly Yard Cleanup — Tidy Tails
+
+Tired of stepping in it? Done pretending you'll "get to it this weekend"? Let me handle it.
+
+WHAT I DO:
+• Come to your yard every week (same day, same time)
+• Scoop every pile in your entire yard
+• Bag it all up and take it with me
+• Text you when it's done
+
+PRICING:
+• Weekly service: $25/week
+• Bi-weekly: $45/visit
+• Monthly: $70/month
+• One-time deep clean: $100
+
+SPRING SPECIAL:
+First visit includes full winter buildup cleanup — FREE with weekly service signup.
+
+SERVICE AREAS:
+Florissant, Ferguson, Maryland Heights, Hazelwood, Bridgeton, St. Ann, Overland, Chesterfield, Ballwin, Manchester, Ellisville, Wildwood, O'Fallon, St. Peters, St. Charles, Lake St. Louis
+
+WHY TIDY TAILS:
+✓ Locally owned — just me, not a franchise
+✓ No contracts — cancel anytime
+✓ Satisfaction guaranteed
+✓ Reliable weekly service rain or shine
+✓ You don't need to be home
+
+TEXT OR CALL: 314-850-7140
+WEBSITE: tidytailsstl.com
+
+Your yard deserves better. So do your shoes.</div>
+    <div class="post-tip">💡 Craigslist ads can be renewed every 48 hours. Set a reminder to renew Friday.</div>
+  </div>
+</div>
+
+<div class="post-card" id="post-9">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-nd">Nextdoor</span>
+      Business Recommendation Ask
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-9-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-9')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post on: Nextdoor → General (or Business section)</div>
+    <div class="post-text" id="post-9-text">Spring is officially here and I'm booking up for the season! 🌱
+
+If you've got dogs and a yard that needs some TLC after winter, I'd love to help. Tidy Tails does weekly pet waste cleanup — I come out, scoop everything, bag it, and take it away.
+
+A few of your neighbors already use me and seem pretty happy about it 😊
+
+$25/week, no contracts. Text me at 314-850-7140 if you want to try it out.
+
+Thanks for supporting local! 🙏</div>
+    <div class="post-tip">💡 On Nextdoor, humble/neighborly tone crushes it. Avoid sounding corporate.</div>
+  </div>
+</div>
+
+<!-- THURSDAY -->
+<div class="day-header">
+  <span class="day-emoji">🟠</span>
+  <span class="day-name">Thursday, Mar 12</span>
+  <span class="day-date">Expand reach — 3 posts</span>
+</div>
+
+<div class="post-card" id="post-10">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-fb">Facebook</span>
+      West County Group
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-10-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-10')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post in: Chesterfield/Ballwin/Manchester community or recommendation groups</div>
+    <div class="post-text" id="post-10-text">Calling all Chesterfield/Ballwin dog parents! 🐕
+
+I know, I know — you MEANT to clean up the yard last weekend. And the weekend before that. And the one before that...
+
+No judgment. That's literally why I exist.
+
+I'm TJ with Tidy Tails. I do weekly pet waste removal so you can actually enjoy your backyard this spring.
+
+Here's the deal:
+🐾 $25/week — I handle everything
+🐾 You don't need to be home
+🐾 I text you when it's done
+🐾 No contract — try it risk-free
+🐾 First visit = full yard cleanup included
+
+I'm local, I'm reliable, and I actually show up when I say I will (shocking, right? 😂)
+
+Text me: 314-850-7140</div>
+  </div>
+</div>
+
+<div class="post-card" id="post-11">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-fb">Facebook</span>
+      Dog-Specific Group
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-11-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-11')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post in: <a href="https://facebook.com/groups/stlouisdiscdogs/" target="_blank">St. Louis Disc Dogs Club</a> or <a href="https://facebook.com/groups/STLMOlostfoundpaws/" target="_blank">Greater STL Lost & Found Paws</a></div>
+    <div class="post-text" id="post-11-text">As a fellow dog person, I know the deal — we'd do anything for our pups. Except maybe scoop the yard in March when winter's "deposits" are all thawing at once 😅
+
+That's my job! I'm TJ with Tidy Tails, a local pet waste removal service. Not a franchise, not a call center — just me and my commitment to showing up every week.
+
+If your yard needs help, especially after winter, I've got you:
+• Weekly cleanup: $25/week
+• I bag it and take it away
+• Spring buildup cleared on first visit — free
+
+Text 314-850-7140 🐕
+
+(Also — your dogs are amazing. Just wanted to say that.)</div>
+  </div>
+</div>
+
+<div class="post-card" id="post-12">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-ig">Instagram</span>
+      Story / Reel
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-12-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-12')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post on: @tidytailsstl — Story with poll or Reel</div>
+    <div class="post-text" id="post-12-text">Story idea: "Be honest..." with a poll:
+
+🗳️ "When's the last time you cleaned your yard?"
+- This week ✨
+- ...last month 😅
+- I plead the 5th 💀
+
+Follow up story: "No judgment. That's literally my job. Text me 314-850-7140 and I'll handle it for $25/week 🐕💩"
+
+---
+
+OR for a Reel caption:
+
+Things I find in yards (a thread) 🧵🐕💩
+
+1. The obvious stuff
+2. Tennis balls (so many tennis balls)
+3. Socks??? 
+4. Evidence of a very good boy who eats everything
+5. My purpose in life
+
+$25/week. I scoop. You relax. Text 314-850-7140.
+
+#TidyTails #PooperScooper #STL #DogMom #SpringCleaning</div>
+  </div>
+</div>
+
+<!-- FRIDAY -->
+<div class="day-header">
+  <span class="day-emoji">🔴</span>
+  <span class="day-name">Friday, Mar 13</span>
+  <span class="day-date">Weekend prep — 3 posts</span>
+</div>
+
+<div class="post-card" id="post-13">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-fb">Facebook</span>
+      Personal Profile Post
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-13-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-13')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post on: TJ's personal Facebook — friends & family see this and share it</div>
+    <div class="post-text" id="post-13-text">TGIF! Quick update on Tidy Tails 🐕💩
+
+Spring has been CRAZY. Yards are thawing and people are realizing... yeah, it built up over winter 😂
+
+If you know anyone in St. Louis County or St. Charles who has dogs and hates yard cleanup — send them my way! 
+
+$25/week. I come to their yard, handle everything, they never think about it again.
+
+Referrals are how I grow this thing, so if you share this or tag a friend, I seriously appreciate it 🙏
+
+Text 314-850-7140 or check out tidytailsstl.com
+
+Have a great weekend, everyone!</div>
+    <div class="post-tip">💡 Personal profile posts get 5-10x more organic reach than business page posts. Ask friends to share!</div>
+  </div>
+</div>
+
+<div class="post-card" id="post-14">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-fb">Facebook</span>
+      St. Louis Yard Sales / BST
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-14-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-14')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post in: <a href="https://facebook.com/groups/stlyardsale/" target="_blank">St. Louis Yard Sales</a></div>
+    <div class="post-text" id="post-14-text">🐕💩 SERVICE OFFERED: Pet Waste Removal
+
+What: Weekly yard cleanup — I scoop, bag, and haul away all dog waste
+Where: St. Louis County, St. Charles County & surrounding areas
+Cost: $25/week or $70/month
+Bonus: First visit includes full winter cleanup — FREE
+
+No contracts. No hidden fees. Local owned.
+
+📱 Text 314-850-7140
+🌐 tidytailsstl.com
+
+Spring is here. Your yard doesn't have to be a minefield anymore 😅</div>
+  </div>
+</div>
+
+<div class="post-card" id="post-15">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-nd">Nextdoor</span>
+      Weekend Angle
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-15-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-15')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post on: Nextdoor (different neighborhood area if possible)</div>
+    <div class="post-text" id="post-15-text">Weekend plans: BBQ? Kids outside? Backyard hangout?
+
+Not if the yard looks like a minefield 🐕💩
+
+I'm TJ with Tidy Tails — I do weekly pet waste cleanup so your weekends are actually enjoyable. $25/week, I take care of everything.
+
+Enjoy your weekend, neighbors! And if you need help before your next cookout... you know where to find me 😊
+
+📱 314-850-7140</div>
+  </div>
+</div>
+
+<!-- SATURDAY -->
+<div class="day-header">
+  <span class="day-emoji">🟣</span>
+  <span class="day-name">Saturday, Mar 14</span>
+  <span class="day-date">Weekend engagement — 3 posts</span>
+</div>
+
+<div class="post-card" id="post-16">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-fb">Facebook</span>
+      Referral/Engagement Post
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-16-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-16')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post in: Any group you've already posted in earlier this week (follow-up / engagement)</div>
+    <div class="post-text" id="post-16-text">Quick shoutout to everyone who's reached out this week! 🙏 Spring cleanup season is real and I'm loving it.
+
+Still have a few openings left for weekly service in these areas:
+📍 Florissant / Ferguson
+📍 Maryland Heights / Bridgeton
+📍 Chesterfield / Ballwin
+📍 O'Fallon / St. Charles / St. Peters
+
+If you've been thinking about it... now's the time. Before the yard gets any worse 😂
+
+And if you refer a friend who signs up, I'll throw in a FREE extra cleanup for you. Because that's how we do it.
+
+Text 314-850-7140
+tidytailsstl.com
+
+— TJ, Tidy Tails 🐕</div>
+    <div class="post-tip">💡 Referral offers in Saturday posts work great — people are relaxed and sharing content</div>
+  </div>
+</div>
+
+<div class="post-card" id="post-17">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-ig">Instagram</span>
+      Weekend Content
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-17-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-17')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post on: @tidytailsstl — Carousel or single image of you working / clean yard</div>
+    <div class="post-text" id="post-17-text">Saturday vibes: You're grilling. Kids are playing. Dogs are running around. And the yard? Spotless. 
+
+That's the Tidy Tails difference. I handle the gross part so you can enjoy the good part.
+
+$25/week. No contracts. Just a clean yard and peace of mind.
+
+📱 314-850-7140
+🌐 tidytailsstl.com
+
+Tag someone who needs this 👇
+
+#TidyTails #CleanYard #DogLife #STL #StLouis #WeekendVibes #DogMom #DogDad #BackyardGoals #PooperScooper #SpringCleaning #LocalBusiness #SmallBusiness #SupportLocal</div>
+  </div>
+</div>
+
+<div class="post-card" id="post-18">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-cl">Craigslist</span>
+      Renew / Repost
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-18-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-18')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Renew Wednesday's Craigslist ad (or repost with slight changes)</div>
+    <div class="post-text" id="post-18-text">⬆️ Renew your Wednesday Craigslist ad! Go to your active postings and click "Renew" to bump it back to the top. If it expired, repost with Wednesday's copy. Craigslist allows renewal every 48 hours.</div>
+    <div class="post-tip">💡 Saturday morning renewals catch weekend browsers looking for services</div>
+  </div>
+</div>
+
+<!-- SUNDAY -->
+<div class="day-header">
+  <span class="day-emoji">⚪</span>
+  <span class="day-name">Sunday, Mar 15</span>
+  <span class="day-date">Week review + plan ahead — 3 posts</span>
+</div>
+
+<div class="post-card" id="post-19">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-fb">Facebook</span>
+      Value / Educational Post
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-19-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-19')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post in: Any pet group — this is educational, not salesy (builds trust)</div>
+    <div class="post-text" id="post-19-text">PSA for dog parents 🐕
+
+Did you know dog waste can take up to a YEAR to decompose? And while it's sitting there, it's:
+
+🦠 Breeding bacteria (E. coli, salmonella, giardia)
+🌧️ Washing into storm drains when it rains
+👶 Creating a health risk for kids who play in the yard
+🐕 Potentially re-infecting your dog with parasites
+
+The EPA actually classifies pet waste as a pollutant in the same category as oil and mining waste. Wild, right?
+
+Spring is the worst time because everything frozen is thawing and becoming active again.
+
+Whether you scoop it yourself or hire someone (hi 👋), just make sure it's getting cleaned up regularly. Your yard, your family, and your neighbors will thank you.
+
+— TJ, Tidy Tails | tidytailsstl.com</div>
+    <div class="post-tip">💡 Educational posts get shared more than promotional ones. Soft sell at the end only.</div>
+  </div>
+</div>
+
+<div class="post-card" id="post-20">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-goog">Google</span>
+      GBP Weekly Update
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-20-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-20')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post on: Google Business Profile → Posts → "What's new"</div>
+    <div class="post-text" id="post-20-text">🐕 Week 2 of spring season and yards are looking GREAT after our visits!
+
+Did you know regular pet waste removal isn't just about convenience? It protects your family from harmful bacteria and keeps your lawn healthier.
+
+Tidy Tails offers weekly, bi-weekly, and monthly cleanup options starting at $25/week. No contracts. Satisfaction guaranteed.
+
+📱 Text 314-850-7140 to get started!</div>
+  </div>
+</div>
+
+<div class="post-card" id="post-21">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-nd">Nextdoor</span>
+      Week Review
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('post-21-text')">📋 Copy</button>
+      <button class="btn btn-done" onclick="markDone('post-21')">✓ Posted</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-target">📍 Post on: Nextdoor</div>
+    <div class="post-text" id="post-21-text">Happy Sunday, neighbors! 🌱
+
+Just wrapped up another great week helping families around here get their yards back in shape. Spring cleanup season is no joke — some of these yards had a LOT of winter buildup 😅
+
+If you've been meaning to deal with your yard but keep putting it off, I totally get it. That's literally why Tidy Tails exists.
+
+$25/week • All waste bagged and removed • No contracts
+
+Have a great Sunday! 
+📱 314-850-7140 whenever you're ready</div>
+  </div>
+</div>
+
+</div>
+
+<!-- ====== GROUPS DIRECTORY TAB ====== -->
+<div id="groups" class="tab-content">
+
+<h2 class="section-title">📍 Facebook Groups to Join & Post In</h2>
+<p class="section-sub">Organized by TJ's service areas. Join all of these, then post in 2-3 per day max (don't spam).</p>
+
+<h3 style="color: var(--green); margin: 20px 0 10px;">🐕 Pet-Focused Groups (Highest Value)</h3>
+<div class="group-grid">
+  <div class="group-card">
+    <div class="group-type">Pet Community</div>
+    <h4>Saving St. Louis Pets</h4>
+    <p>Large, active pet community. Dog lovers = your ideal customers.</p>
+    <div class="group-url"><a href="https://facebook.com/groups/savingstlouispets/" target="_blank">→ Open Group</a></div>
+    <span class="priority high">HIGH PRIORITY</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Dog Owners</div>
+    <h4>St. Louis Disc Dogs Club</h4>
+    <p>Active dog sport enthusiasts. Dedicated dog parents with yards.</p>
+    <div class="group-url"><a href="https://facebook.com/groups/stlouisdiscdogs/" target="_blank">→ Open Group</a></div>
+    <span class="priority high">HIGH PRIORITY</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Pet Rescue</div>
+    <h4>Saving Animals in Greater STL</h4>
+    <p>Rescue-focused. Passionate dog owners who adopt.</p>
+    <div class="group-url"><a href="https://facebook.com/groups/SavingAnimalsinStLouis" target="_blank">→ Open Group</a></div>
+    <span class="priority med">MEDIUM</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Lost Pets</div>
+    <h4>STL Pets Lost and Found</h4>
+    <p>Active community of concerned pet owners.</p>
+    <div class="group-url"><a href="https://facebook.com/groups/stlpetslostandfound/" target="_blank">→ Open Group</a></div>
+    <span class="priority med">MEDIUM</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Lost Pets</div>
+    <h4>Greater STL Lost & Found Paws</h4>
+    <p>Another active lost/found community. Dog owner audience.</p>
+    <div class="group-url"><a href="https://facebook.com/groups/STLMOlostfoundpaws/" target="_blank">→ Open Group</a></div>
+    <span class="priority med">MEDIUM</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Pet Rescue</div>
+    <h4>St. Louis Animal Rescue & Fosters</h4>
+    <p>Foster/rescue community. Multi-dog households common.</p>
+    <div class="group-url"><a href="https://facebook.com/groups/127418610761367/" target="_blank">→ Open Group</a></div>
+    <span class="priority med">MEDIUM</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Lost Pets</div>
+    <h4>Lost and Found Pets - St. Louis, MO</h4>
+    <p>Active pet community focused on reuniting pets.</p>
+    <div class="group-url"><a href="https://facebook.com/groups/stlouispets/" target="_blank">→ Open Group</a></div>
+    <span class="priority low">LOWER</span>
+  </div>
+</div>
+
+<h3 style="color: var(--orange); margin: 20px 0 10px;">👩‍👧 Mom & Family Groups</h3>
+<div class="group-grid">
+  <div class="group-card">
+    <div class="group-type">Moms Group</div>
+    <h4>St. Charles Moms (Missouri)</h4>
+    <p>Moms with families = dogs + kids + busy schedules = IDEAL customers.</p>
+    <div class="group-url"><a href="https://facebook.com/groups/StCharlesMOMS" target="_blank">→ Open Group</a></div>
+    <span class="priority high">HIGH PRIORITY</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Moms Group</div>
+    <h4>North County Moms</h4>
+    <p>Search for Florissant/Ferguson/Hazelwood mom groups — they exist!</p>
+    <div class="group-url"><a href="https://facebook.com/search/groups/?q=north%20county%20moms%20st%20louis" target="_blank">→ Search for Group</a></div>
+    <span class="priority high">HIGH PRIORITY</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Moms Group</div>
+    <h4>West County Moms</h4>
+    <p>Search for Chesterfield/Ballwin/Manchester mom groups.</p>
+    <div class="group-url"><a href="https://facebook.com/search/groups/?q=west%20county%20moms%20st%20louis" target="_blank">→ Search for Group</a></div>
+    <span class="priority med">MEDIUM</span>
+  </div>
+</div>
+
+<h3 style="color: var(--blue); margin: 20px 0 10px;">🛒 Buy/Sell/Trade & Neighborhood Groups</h3>
+<div class="group-grid">
+  <div class="group-card">
+    <div class="group-type">Buy/Sell/Trade</div>
+    <h4>Lake St Louis Buy Sell Trade</h4>
+    <p>Local services allowed. High traffic group.</p>
+    <div class="group-url"><a href="https://facebook.com/groups/lakestlouisbuyselltrade/" target="_blank">→ Open Group</a></div>
+    <span class="priority high">HIGH PRIORITY</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Buy/Sell/Trade</div>
+    <h4>St Peters / St Charles BST</h4>
+    <p>Regional buy/sell/trade covering TJ's territory.</p>
+    <div class="group-url"><a href="https://facebook.com/groups/543486769082842/" target="_blank">→ Open Group</a></div>
+    <span class="priority high">HIGH PRIORITY</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Yard Sales</div>
+    <h4>St Louis Yard Sales</h4>
+    <p>High traffic group. Services sometimes allowed — check rules.</p>
+    <div class="group-url"><a href="https://facebook.com/groups/stlyardsale/" target="_blank">→ Open Group</a></div>
+    <span class="priority med">MEDIUM</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Community</div>
+    <h4>Florissant Community Groups</h4>
+    <p>Search for Florissant neighborhood/community groups on FB.</p>
+    <div class="group-url"><a href="https://facebook.com/search/groups/?q=florissant%20missouri%20community" target="_blank">→ Search for Groups</a></div>
+    <span class="priority high">HIGH PRIORITY</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Community</div>
+    <h4>Ferguson Community Groups</h4>
+    <p>Neighborhood groups for Ferguson area residents.</p>
+    <div class="group-url"><a href="https://facebook.com/search/groups/?q=ferguson%20missouri%20community" target="_blank">→ Search for Groups</a></div>
+    <span class="priority med">MEDIUM</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Community</div>
+    <h4>Maryland Heights / Bridgeton</h4>
+    <p>Search for local community groups.</p>
+    <div class="group-url"><a href="https://facebook.com/search/groups/?q=maryland%20heights%20missouri" target="_blank">→ Search for Groups</a></div>
+    <span class="priority med">MEDIUM</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Community</div>
+    <h4>O'Fallon MO Community</h4>
+    <p>O'Fallon has large, active FB community groups.</p>
+    <div class="group-url"><a href="https://facebook.com/search/groups/?q=o'fallon%20missouri%20community" target="_blank">→ Search for Groups</a></div>
+    <span class="priority high">HIGH PRIORITY</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Community</div>
+    <h4>Chesterfield MO Groups</h4>
+    <p>Chesterfield/West County community and neighborhood groups.</p>
+    <div class="group-url"><a href="https://facebook.com/search/groups/?q=chesterfield%20missouri" target="_blank">→ Search for Groups</a></div>
+    <span class="priority med">MEDIUM</span>
+  </div>
+</div>
+
+<h3 style="color: var(--pink); margin: 20px 0 10px;">📢 Other Platforms</h3>
+<div class="group-grid">
+  <div class="group-card">
+    <div class="group-type">Nextdoor</div>
+    <h4>Your Nextdoor Neighborhoods</h4>
+    <p>Posts reach 3-5 surrounding neighborhoods. Gold for local services.</p>
+    <div class="group-url"><a href="https://nextdoor.com" target="_blank">→ Open Nextdoor</a></div>
+    <span class="priority high">HIGH PRIORITY</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Craigslist</div>
+    <h4>STL Craigslist — Services</h4>
+    <p>Free listing. Renew every 48 hours. Household Services section.</p>
+    <div class="group-url"><a href="https://stlouis.craigslist.org/search/hss" target="_blank">→ Post on Craigslist</a></div>
+    <span class="priority high">HIGH PRIORITY</span>
+  </div>
+  <div class="group-card">
+    <div class="group-type">Reddit</div>
+    <h4>r/StLouis</h4>
+    <p>Be helpful, not promotional. Comment on relevant threads about pets/yards.</p>
+    <div class="group-url"><a href="https://reddit.com/r/StLouis" target="_blank">→ Open Subreddit</a></div>
+    <span class="priority low">LOWER</span>
+  </div>
+</div>
+
+</div>
+
+<!-- ====== EXTRA TEMPLATES TAB ====== -->
+<div id="templates" class="tab-content">
+
+<h2 class="section-title">📝 Bonus Templates</h2>
+<p class="section-sub">Extra post variations. Mix and match with the daily plan.</p>
+
+<div class="post-card" id="tmpl-1">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-fb">Facebook</span>
+      The "Humor" Post
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('tmpl-1-text')">📋 Copy</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-text" id="tmpl-1-text">Things my dog thinks:
+✅ "This is MY yard"
+✅ "I'll go wherever I want"
+✅ "Someone else will clean it up"
+
+Turns out... they're right about that last one 😂
+
+I'm TJ with Tidy Tails. $25/week and your yard is spotless. Text 314-850-7140 🐕💩</div>
+  </div>
+</div>
+
+<div class="post-card" id="tmpl-2">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-fb">Facebook</span>
+      The "Relatable Parent" Post
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('tmpl-2-text')">📋 Copy</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-text" id="tmpl-2-text">Raise your hand if you've said "DON'T GO IN THE BACKYARD" to your kids at least once this month 🙋‍♂️
+
+Yeah... that's not a fun phrase to yell. You deserve a yard where the kids can just... go play. Without a recon mission first.
+
+Tidy Tails — $25/week. I scoop so your kids can play.
+
+📱 314-850-7140
+🌐 tidytailsstl.com</div>
+  </div>
+</div>
+
+<div class="post-card" id="tmpl-3">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-fb">Facebook</span>
+      The "Social Proof" Post
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('tmpl-3-text')">📋 Copy</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-text" id="tmpl-3-text">Here's what one of my customers told me last week:
+
+"Honestly I was embarrassed to have anyone see my yard. But TJ came out, cleaned the whole thing up, and now he's here every week. Best $25 I spend."
+
+That's the goal. No judgment. Just results.
+
+If your yard's gotten away from you, I've literally seen it all. Nothing surprises me anymore 😂
+
+Tidy Tails — weekly pet waste removal
+📱 314-850-7140</div>
+    <div class="post-tip">💡 Even if you don't have this exact quote, ask a customer for a testimonial. Real social proof converts.</div>
+  </div>
+</div>
+
+<div class="post-card" id="tmpl-4">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-fb">Facebook</span>
+      The "Spring Emergency" Post
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('tmpl-4-text')">📋 Copy</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-text" id="tmpl-4-text">🚨 SPRING YARD EMERGENCY HOTLINE 🚨
+
+Symptoms:
+☑️ You looked at your yard and said "oh no"
+☑️ Your dogs act like nothing happened
+☑️ You've been "meaning to get to it" for weeks
+☑️ Guests are coming and you're panicking
+
+Diagnosis: You need Tidy Tails.
+
+Treatment: $25/week. Full yard cleanup. I bag it and take it with me. Recurring weekly so it never gets this bad again.
+
+Side effects: Actually wanting to spend time in your backyard again.
+
+📱 Call Dr. TJ at 314-850-7140 😂🐕💩</div>
+  </div>
+</div>
+
+<div class="post-card" id="tmpl-5">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-nd">Nextdoor</span>
+      The "Neighbor Helping Neighbor" Post
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('tmpl-5-text')">📋 Copy</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-text" id="tmpl-5-text">Hi neighbors! Quick question — does anyone else struggle to keep up with yard cleanup with multiple dogs? 
+
+I actually started a pet waste removal service because of exactly this problem. Now I help families around here stay on top of it.
+
+If you're interested, I charge $25/week and handle everything. Happy to answer any questions!
+
+TJ | Tidy Tails
+314-850-7140</div>
+    <div class="post-tip">💡 Starting with a question gets more engagement than a sales pitch on Nextdoor</div>
+  </div>
+</div>
+
+<div class="post-card" id="tmpl-6">
+  <div class="post-header">
+    <div class="post-platform">
+      <span class="platform-badge badge-ig">Instagram</span>
+      The "Day in the Life" Caption
+    </div>
+    <div class="post-actions">
+      <button class="btn btn-copy" onclick="copyPost('tmpl-6-text')">📋 Copy</button>
+    </div>
+  </div>
+  <div class="post-body">
+    <div class="post-text" id="tmpl-6-text">A Tuesday in the life of a pooper scooper:
+
+6:30 AM — Coffee ☕
+7:00 AM — Load up the truck
+7:30 AM — First yard of the day
+8:00 AM — Meet a very excited golden retriever 🐕
+8:15 AM — Yard #1 done, customer texted ✅
+8:30 AM — Yard #2, two labs and... wow
+9:00 AM — Quick snack, pet a cat
+9:30 AM — Three more yards before lunch
+
+It's not glamorous. But watching someone walk barefoot in their yard for the first time in months? That's the good stuff.
+
+📱 314-850-7140 to get on the schedule
+
+#TidyTails #DayInTheLife #SmallBusiness #STL #PooperScooper #DogMom #Entrepreneur</div>
+  </div>
+</div>
+
+</div>
+
+<!-- ====== SCHEDULE TAB ====== -->
+<div id="schedule" class="tab-content">
+
+<h2 class="section-title">📊 Full Week at a Glance</h2>
+<p class="section-sub">3 posts per day across different platforms. Never post in the same group twice in one week.</p>
+
+<table class="schedule-table">
+  <thead>
+    <tr>
+      <th>Day</th>
+      <th>Platform 1</th>
+      <th>Platform 2</th>
+      <th>Platform 3</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Mon 3/9</strong></td>
+      <td>🔵 FB: Mom/Community Group</td>
+      <td>🟢 Nextdoor: Intro Post</td>
+      <td>🔴 Google Business Profile</td>
+    </tr>
+    <tr>
+      <td><strong>Tue 3/10</strong></td>
+      <td>🔵 FB: Pet Rescue Group</td>
+      <td>🔵 FB: Buy/Sell/Trade</td>
+      <td>📸 Instagram: Feed Post</td>
+    </tr>
+    <tr>
+      <td><strong>Wed 3/11</strong></td>
+      <td>🔵 FB: Neighborhood Group</td>
+      <td>🟣 Craigslist: Services</td>
+      <td>🟢 Nextdoor: Business Post</td>
+    </tr>
+    <tr>
+      <td><strong>Thu 3/12</strong></td>
+      <td>🔵 FB: West County Group</td>
+      <td>🔵 FB: Dog-Specific Group</td>
+      <td>📸 Instagram: Story/Reel</td>
+    </tr>
+    <tr>
+      <td><strong>Fri 3/13</strong></td>
+      <td>🔵 FB: Personal Profile</td>
+      <td>🔵 FB: Yard Sales BST</td>
+      <td>🟢 Nextdoor: Weekend Angle</td>
+    </tr>
+    <tr>
+      <td><strong>Sat 3/14</strong></td>
+      <td>🔵 FB: Referral/Follow-up</td>
+      <td>📸 Instagram: Weekend Post</td>
+      <td>🟣 Craigslist: Renew</td>
+    </tr>
+    <tr>
+      <td><strong>Sun 3/15</strong></td>
+      <td>🔵 FB: Educational Post</td>
+      <td>🔴 Google Business Profile</td>
+      <td>🟢 Nextdoor: Week Review</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 style="color: var(--accent-light); margin: 24px 0 10px;">⏰ Best Posting Times</h3>
+<table class="schedule-table">
+  <thead>
+    <tr>
+      <th>Platform</th>
+      <th>Best Times</th>
+      <th>Why</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Facebook Groups</strong></td>
+      <td>8-9 AM, 12-1 PM, 7-8 PM</td>
+      <td>Morning commute, lunch break, evening scroll</td>
+    </tr>
+    <tr>
+      <td><strong>Nextdoor</strong></td>
+      <td>7-9 AM, 5-7 PM</td>
+      <td>Before/after work when people check neighborhood updates</td>
+    </tr>
+    <tr>
+      <td><strong>Instagram</strong></td>
+      <td>11 AM-1 PM, 7-9 PM</td>
+      <td>Lunch scrolling and evening downtime</td>
+    </tr>
+    <tr>
+      <td><strong>Craigslist</strong></td>
+      <td>Saturday 8-10 AM</td>
+      <td>Weekend browsers looking for services</td>
+    </tr>
+    <tr>
+      <td><strong>Google Business</strong></td>
+      <td>Monday AM</td>
+      <td>Posts last 7 days; Monday = max visibility</td>
+    </tr>
+  </tbody>
+</table>
+
+</div>
+
+<!-- ====== TIPS TAB ====== -->
+<div id="tips" class="tab-content">
+
+<h2 class="section-title">💡 Posting Rules That Get Results</h2>
+
+<div style="display: grid; gap: 16px; margin: 16px 0;">
+  
+  <div class="post-card">
+    <div class="post-body">
+      <h3 style="color: var(--green); margin-bottom: 8px;">✅ DO</h3>
+      <ul style="list-style: none; font-size: 14px; line-height: 2;">
+        <li>✅ Read group rules BEFORE posting (some don't allow services)</li>
+        <li>✅ Post in 2-3 different groups per day (max)</li>
+        <li>✅ Vary your copy — don't paste the same thing everywhere</li>
+        <li>✅ Engage with comments quickly (within 1 hour if possible)</li>
+        <li>✅ Like and comment on other posts in the group (build presence first)</li>
+        <li>✅ Include a photo when possible (you working, a clean yard, your truck)</li>
+        <li>✅ Use the spring angle — it's timely and relatable</li>
+        <li>✅ Post your personal profile post on Friday — friends share weekend content</li>
+        <li>✅ Ask existing customers to comment on your posts ("Love Tidy Tails!")</li>
+        <li>✅ Reply to every DM/text within 5 minutes during business hours</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-body">
+      <h3 style="color: var(--red); margin-bottom: 8px;">❌ DON'T</h3>
+      <ul style="list-style: none; font-size: 14px; line-height: 2;">
+        <li>❌ Post in 10 groups in one hour (looks like spam, may get banned)</li>
+        <li>❌ Use the exact same copy in every group (FB detects duplicates)</li>
+        <li>❌ Post in rescue groups with a hard sell (be helpful first)</li>
+        <li>❌ Ignore comments or questions on your posts</li>
+        <li>❌ Post more than once per week in the same group</li>
+        <li>❌ Get into arguments in comments (kill with kindness)</li>
+        <li>❌ Forget to include your phone number</li>
+        <li>❌ Post late at night (looks unprofessional)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-body">
+      <h3 style="color: var(--orange); margin-bottom: 8px;">🔥 Pro Tips</h3>
+      <ul style="list-style: none; font-size: 14px; line-height: 2;">
+        <li>🔥 <strong>Photos convert 2-3x better than text-only posts.</strong> Snap a quick before/after.</li>
+        <li>🔥 <strong>Video converts 5x better.</strong> Even a 15-second clip of you scooping and a clean yard.</li>
+        <li>🔥 <strong>Ask customers to leave a Google review.</strong> Text them: "Hey! Would you mind leaving a quick Google review? It really helps a small business like mine. Here's the link: [your GMB review link]"</li>
+        <li>🔥 <strong>Cross-post to Instagram Stories.</strong> Screenshot your FB post and share to Stories. More eyeballs.</li>
+        <li>🔥 <strong>Track what works.</strong> When someone texts, ask "How'd you hear about us?" Write it down.</li>
+        <li>🔥 <strong>Respond to texts in under 2 minutes</strong> and you'll close 50%+ of inquiries. Speed = trust.</li>
+        <li>🔥 <strong>The referral play:</strong> Text current customers: "Hey! If you know anyone who needs yard cleanup, I'll give you a free extra visit if they sign up. Just have them mention your name!" </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-body">
+      <h3 style="color: var(--blue); margin-bottom: 8px;">📱 Quick Links — Open and Post</h3>
+      <div class="quick-links">
+        <a href="https://nextdoor.com" target="_blank" class="quick-link">🟢 Nextdoor</a>
+        <a href="https://stlouis.craigslist.org/search/hss" target="_blank" class="quick-link">🟣 Craigslist</a>
+        <a href="https://business.google.com" target="_blank" class="quick-link">🔴 Google Business</a>
+        <a href="https://www.instagram.com" target="_blank" class="quick-link">📸 Instagram</a>
+        <a href="https://www.facebook.com/groups/feed/" target="_blank" class="quick-link">🔵 FB Groups</a>
+        <a href="https://www.yelp.com/biz/tidy-tails-pet-waste-removal-st-louis" target="_blank" class="quick-link">⭐ Yelp</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+</div><!-- end .content -->
+
+<div class="copied-toast" id="toast">✅ Copied to clipboard!</div>
+
+<script>
+// Tab switching
+function showTab(tabId) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(tabId).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Copy post text
+function copyPost(id) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const toast = document.getElementById('toast');
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  });
+}
+
+// Mark as posted
+function markDone(id) {
+  const card = document.getElementById(id);
+  const btn = card.querySelector('.btn-done');
+  const isPosted = card.classList.toggle('posted');
+  btn.classList.toggle('checked', isPosted);
+  btn.textContent = isPosted ? '✓ Done' : '✓ Posted';
+  updateCount();
+  saveState();
+}
+
+function updateCount() {
+  const posted = document.querySelectorAll('.post-card.posted').length;
+  document.getElementById('posted-count').textContent = posted;
+}
+
+// Persist state
+function saveState() {
+  const posted = [];
+  document.querySelectorAll('.post-card.posted').forEach(c => posted.push(c.id));
+  localStorage.setItem('posting-hub-mar9-15', JSON.stringify(posted));
+}
+
+function loadState() {
+  try {
+    const posted = JSON.parse(localStorage.getItem('posting-hub-mar9-15') || '[]');
+    posted.forEach(id => {
+      const card = document.getElementById(id);
+      if (card) {
+        card.classList.add('posted');
+        const btn = card.querySelector('.btn-done');
+        if (btn) { btn.classList.add('checked'); btn.textContent = '✓ Done'; }
+      }
+    });
+    updateCount();
+  } catch(e) {}
+}
+
+loadState();
+</script>
+</body>
+</html>
