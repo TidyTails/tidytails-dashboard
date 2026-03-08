@@ -6,6 +6,43 @@
 
 ## March 8, 2026 (Sunday)
 
+### 4:04 AM — 🔍 GOOGLE INDEXING AUDIT — The #1 Blocker Confirmed (Hourly Task)
+**Task:** Verify Google indexation status for tidytailsstl.com — flagged as #1 blocker
+**Result:** ✅ CONFIRMED — Zero pages indexed. Created actionable 15-minute fix guide.
+
+**Why This Task:**
+- Google indexing was identified as the #1 blocker but never actually verified
+- 4 AM Sunday = perfect time for technical diagnostics, not content creation
+- This is a 15-minute TJ action that unlocks ALL the SEO work we've built (11 city pages, structured data, blog)
+
+**What I Found:**
+- `site:tidytailsstl.com` = **0 results** (Google)
+- `"tidytailsstl.com"` = **0 results** (Brave/Bing)
+- The site literally does not exist to search engines
+
+**What's NOT the problem (site is technically solid):**
+- ✅ Server-rendered HTML, not SPA
+- ✅ robots.txt allows crawling
+- ✅ sitemap.xml with 11+ URLs
+- ✅ No noindex/nofollow tags
+- ✅ Canonical tags correct
+- ✅ 3 structured data schemas (LocalBusiness, Service, FAQPage)
+- ✅ SSL valid, Cloudflare CDN
+
+**What IS the problem:**
+- Site never submitted to Google Search Console
+- Zero backlinks from directories/social
+- Google/Bing sitemap ping endpoints are deprecated (returned 404/410)
+- Only fix: Manual GSC setup + sitemap submission + index requests
+
+**Deliverable:** `dashboard/2026-03-08-GOOGLE-INDEXING-AUDIT.md` — Step-by-step 15-min guide for TJ
+
+**The Discipline:** Didn't build another dashboard. Found and documented the real blocker. Ball is in TJ's court — 15 minutes of his time unlocks months of SEO work.
+
+**Rotation:** 🔍 SEO — Technical Audit
+
+---
+
 ### 1:04 AM — 🩺 HEALTH CHECK — Site & Dashboard Status (Hourly Task)
 **Task:** Quick health check of live properties instead of building another tool at 1 AM
 **Result:** ✅ All systems green. No action needed.
