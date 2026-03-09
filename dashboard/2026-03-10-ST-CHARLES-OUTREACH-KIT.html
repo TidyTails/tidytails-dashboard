@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 St. Charles Outreach Kit — Vet & Daycare Targets</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: #0a0a0f; color: #e0e0e0; line-height: 1.6; }
+.header { background: linear-gradient(135deg, #0d1b2a 0%, #1b263b 50%, #415a77 100%); padding: 2rem; text-align: center; border-bottom: 3px solid #e0a526; }
+.header h1 { font-size: 1.8rem; color: #fff; margin-bottom: 0.5rem; }
+.header p { color: #aaa; font-size: 0.9rem; }
+.stat-bar { display: flex; justify-content: center; gap: 2rem; padding: 1rem 2rem; background: #111; flex-wrap: wrap; }
+.stat { text-align: center; }
+.stat .num { font-size: 1.8rem; font-weight: 800; color: #e0a526; }
+.stat .label { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+.container { max-width: 900px; margin: 0 auto; padding: 1rem; }
+.tabs { display: flex; gap: 0.5rem; margin: 1rem 0; flex-wrap: wrap; }
+.tab { padding: 0.5rem 1rem; background: #1a1a2e; border: 1px solid #333; color: #aaa; border-radius: 8px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+.tab:hover { border-color: #e0a526; color: #fff; }
+.tab.active { background: #e0a526; color: #000; border-color: #e0a526; font-weight: 700; }
+.section { display: none; }
+.section.active { display: block; }
+.card { background: #1a1a2e; border: 1px solid #222; border-radius: 12px; margin: 0.75rem 0; padding: 1.25rem; transition: all 0.2s; }
+.card:hover { border-color: #e0a526; }
+.card h3 { color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem; }
+.card .type-badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem; }
+.badge-vet { background: #1a3a1a; color: #4ade80; }
+.badge-daycare { background: #3a2a1a; color: #fbbf24; }
+.badge-park { background: #1a2a3a; color: #60a5fa; }
+.badge-resort { background: #2a1a3a; color: #c084fc; }
+.card .detail { color: #999; font-size: 0.88rem; margin: 4px 0; }
+.card .detail strong { color: #ccc; }
+.card .phone { color: #e0a526; font-weight: 700; font-size: 1rem; }
+.card .pitch { background: #111; border-left: 3px solid #e0a526; padding: 10px 14px; margin-top: 10px; border-radius: 0 8px 8px 0; font-size: 0.85rem; color: #bbb; }
+.card .actions { display: flex; gap: 0.5rem; margin-top: 12px; flex-wrap: wrap; }
+.btn { padding: 6px 14px; border-radius: 8px; border: 1px solid #333; background: #111; color: #e0a526; font-size: 0.82rem; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
+.btn:hover { background: #e0a526; color: #000; border-color: #e0a526; }
+.copy-btn { cursor: pointer; }
+.copied { background: #1a3a1a !important; color: #4ade80 !important; border-color: #4ade80 !important; }
+.checklist { list-style: none; padding: 0; }
+.checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 12px 14px; background: #111; border: 1px solid #222; border-radius: 8px; margin-bottom: 8px; font-size: 0.9rem; cursor: pointer; transition: all 0.2s; }
+.checklist li:hover { border-color: #e0a526; }
+.checklist input[type="checkbox"] { margin-top: 3px; accent-color: #e0a526; width: 18px; height: 18px; flex-shrink: 0; }
+.checklist li.done { opacity: 0.4; text-decoration: line-through; }
+.route-section { background: #111; border: 1px solid #222; border-radius: 12px; padding: 16px; margin: 12px 0; }
+.route-section h4 { color: #e0a526; margin-bottom: 8px; }
+.route-stop { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid #1a1a2e; }
+.route-stop:last-child { border-bottom: none; }
+.route-num { width: 28px; height: 28px; background: #e0a526; color: #000; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
+.route-info { flex: 1; }
+.route-info .name { color: #fff; font-weight: 600; }
+.route-info .addr { color: #888; font-size: 0.82rem; }
+/* Flyer styles */
+.flyer-preview { background: #fff; color: #111; border-radius: 12px; padding: 2rem; max-width: 600px; margin: 1rem auto; text-align: center; }
+.flyer-preview h2 { color: #1a5c1a; font-size: 1.6rem; margin-bottom: 0.5rem; }
+.flyer-preview .tagline { color: #333; font-size: 1.1rem; margin-bottom: 1rem; }
+.flyer-preview .flyer-benefits { text-align: left; max-width: 400px; margin: 0 auto 1rem; }
+.flyer-preview .flyer-benefits li { margin: 6px 0; color: #333; font-size: 0.95rem; }
+.flyer-preview .cta { background: #1a5c1a; color: #fff; padding: 12px 24px; border-radius: 8px; font-size: 1.1rem; font-weight: 700; display: inline-block; margin: 0.5rem 0; }
+.flyer-preview .fine { color: #666; font-size: 0.85rem; margin-top: 0.5rem; }
+.script-block { background: #0d1117; border: 1px solid #333; border-radius: 10px; padding: 16px; margin: 12px 0; font-family: inherit; position: relative; }
+.script-block .label { color: #e0a526; font-weight: 700; font-size: 0.82rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.script-block p { color: #ccc; font-size: 0.9rem; margin: 6px 0; }
+.script-block .emphasis { color: #fff; font-weight: 600; }
+.tip { background: #1a2a1a; border: 1px solid #2a4a2a; border-radius: 8px; padding: 12px 14px; margin: 10px 0; font-size: 0.85rem; color: #8bc34a; }
+@media print {
+  body { background: #fff; color: #000; }
+  .header, .stat-bar, .tabs, .btn, .actions { display: none; }
+  .section { display: block !important; }
+  .card { border: 1px solid #ddd; background: #fff; page-break-inside: avoid; }
+  .card h3 { color: #000; }
+  .card .detail, .card .pitch { color: #333; }
+  .phone { color: #1a5c1a !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎯 St. Charles County Outreach Kit</h1>
+  <p>Vet Clinics • Dog Daycares • Dog Parks — Verified Contacts for In-Person Visits</p>
+</div>
+
+<div class="stat-bar">
+  <div class="stat"><div class="num">6</div><div class="label">Vet Clinics</div></div>
+  <div class="stat"><div class="num">6</div><div class="label">Dog Daycares</div></div>
+  <div class="stat"><div class="num">4</div><div class="label">Dog Parks</div></div>
+  <div class="stat"><div class="num">2</div><div class="label">Outreach Routes</div></div>
+</div>
+
+<div class="container">
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('targets')">📋 Targets</div>
+    <div class="tab" onclick="showTab('routes')">🗺️ Routes</div>
+    <div class="tab" onclick="showTab('scripts')">🗣️ Pitch Scripts</div>
+    <div class="tab" onclick="showTab('flyer')">📄 Leave-Behind Flyer</div>
+    <div class="tab" onclick="showTab('checklist')">✅ Visit Tracker</div>
+  </div>
+
+  <!-- TARGETS TAB -->
+  <div id="targets" class="section active">
+    <h2 style="color:#fff;margin:1rem 0 0.5rem;font-size:1.2rem;">🩺 Veterinary Clinics</h2>
+    <p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Drop off flyers, introduce yourself, ask if they'd post your card on their community board. Vets are THE #1 referral source for pet waste services.</p>
+
+    <div class="card">
+      <span class="type-badge badge-vet">VET CLINIC</span>
+      <h3>Back on Track Veterinary Hospital</h3>
+      <div class="detail">📍 957 Waterbury Falls Dr, O'Fallon, MO 63368</div>
+      <div class="detail">📞 <span class="phone">(636) 477-6740</span></div>
+      <div class="detail">📧 backontrack@backontrackvet.com</div>
+      <div class="detail">🕐 Mon/Wed 7:30-6, Tue/Thu/Fri 7:30-5, Sat 8-1</div>
+      <div class="detail"><strong>Why target:</strong> Full-service hospital with rehab center. High-end clientele in O'Fallon's nicest area (Waterbury Falls). Clients who invest in pet rehab will invest in yard maintenance. Has community board & active social media.</div>
+      <div class="pitch">💡 <strong>Pitch angle:</strong> "Your rehab clients are focused on pet health — a clean yard prevents parasites that could set back recovery. Could we leave cards for your clients?"</div>
+      <div class="actions">
+        <a href="tel:6364776740" class="btn">📞 Call</a>
+        <a href="https://maps.google.com/?q=957+Waterbury+Falls+Dr+OFallon+MO+63368" target="_blank" class="btn">📍 Map</a>
+        <a href="https://backontrackvet.com" target="_blank" class="btn">🌐 Website</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="type-badge badge-vet">VET CLINIC</span>
+      <h3>Harvester Animal Clinic</h3>
+      <div class="detail">📍 1375 Triad Center Dr, St. Peters, MO 63376</div>
+      <div class="detail">📞 <span class="phone">(636) 447-3565</span></div>
+      <div class="detail">📧 harvesteranimalclinic@yahoo.com</div>
+      <div class="detail"><strong>Why target:</strong> Recently moved to new location — fresh start, may be looking for community partners. Serves dogs, cats, AND exotics. Good community presence on Facebook.</div>
+      <div class="pitch">💡 <strong>Pitch angle:</strong> "Congrats on the new location! We're a local pet waste service expanding into St. Peters. Could we partner up — maybe leave some cards at your front desk?"</div>
+      <div class="actions">
+        <a href="tel:6364473565" class="btn">📞 Call</a>
+        <a href="https://maps.google.com/?q=1375+Triad+Center+Dr+St+Peters+MO+63376" target="_blank" class="btn">📍 Map</a>
+        <a href="https://harvesteranimalclinic.com" target="_blank" class="btn">🌐 Website</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="type-badge badge-vet">VET CLINIC</span>
+      <h3>St. Charles Animal Hospital</h3>
+      <div class="detail">📍 980 N Kingshighway St, St. Charles, MO 63301</div>
+      <div class="detail">📞 <span class="phone">(636) 723-2400</span></div>
+      <div class="detail">🕐 Mon-Thu 7:30-6, Fri 7:30-5, Sat 8-12</div>
+      <div class="detail"><strong>Why target:</strong> Long-established practice on historic Kingshighway in old town St. Charles. Loyal client base, community-oriented. Perfect for word-of-mouth referrals.</div>
+      <div class="pitch">💡 <strong>Pitch angle:</strong> "We're a local pet waste removal service — not a franchise, just a small business helping keep yards clean. Mind if we leave some cards? Happy to refer clients your way too."</div>
+      <div class="actions">
+        <a href="tel:6367232400" class="btn">📞 Call</a>
+        <a href="https://maps.google.com/?q=980+N+Kingshighway+St+Charles+MO+63301" target="_blank" class="btn">📍 Map</a>
+        <a href="https://www.stcharlesanimalhosp.com" target="_blank" class="btn">🌐 Website</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="type-badge badge-vet">VET CLINIC</span>
+      <h3>Arch Animal Hospital West</h3>
+      <div class="detail">📍 117 Birdie Hills Rd, St. Peters, MO 63376</div>
+      <div class="detail">📞 <span class="phone">(636) 240-7646</span></div>
+      <div class="detail">🕐 Mon-Thu 8-6, Fri 8-5</div>
+      <div class="detail"><strong>Why target:</strong> Locally owned (formerly Fischer Animal Hospital). Strong Facebook following (819+ likes). Offers wellness plans — clients who budget for pet care monthly are your ideal customer.</div>
+      <div class="pitch">💡 <strong>Pitch angle:</strong> "Your Snout Wellness Plan clients already budget monthly for pet care — pet waste removal fits right in. Could we be part of your recommended local services?"</div>
+      <div class="actions">
+        <a href="tel:6362407646" class="btn">📞 Call</a>
+        <a href="https://maps.google.com/?q=117+Birdie+Hills+Rd+St+Peters+MO+63376" target="_blank" class="btn">📍 Map</a>
+        <a href="https://archanimalhospitalwest.com" target="_blank" class="btn">🌐 Website</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="type-badge badge-vet">VET CLINIC</span>
+      <h3>Vet Stop Animal Hospital</h3>
+      <div class="detail">📍 7030 Mexico Rd, St. Peters, MO 63376</div>
+      <div class="detail">📞 <span class="phone">(636) 970-2606</span></div>
+      <div class="detail">🕐 Mon-Fri 7-6, Sat 8-1</div>
+      <div class="detail"><strong>Why target:</strong> Also offers boarding & daycare — massive dog-owner client base. 20+ years in business. 2 locations (St. Peters + New Town). High volume = high referral potential.</div>
+      <div class="pitch">💡 <strong>Pitch angle:</strong> "Your boarding clients love their dogs but hate coming home to a messy yard. We could be their go-to cleanup — mind if we leave some flyers in your lobby?"</div>
+      <div class="actions">
+        <a href="tel:6369702606" class="btn">📞 Call</a>
+        <a href="https://maps.google.com/?q=7030+Mexico+Rd+St+Peters+MO+63376" target="_blank" class="btn">📍 Map</a>
+        <a href="https://vetstopanimalclinics.com" target="_blank" class="btn">🌐 Website</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="type-badge badge-vet">VET CLINIC</span>
+      <h3>Family Vet — Lake St. Louis</h3>
+      <div class="detail">📍 Lake St. Louis / Wentzville area</div>
+      <div class="detail">📞 Check website</div>
+      <div class="detail">🕐 Evening & Saturday hours, house calls available</div>
+      <div class="detail"><strong>Why target:</strong> Serves the growing Lake St. Louis/Wentzville corridor. Offers house calls — they literally go to clients' backyards. Great partnership opportunity.</div>
+      <div class="pitch">💡 <strong>Pitch angle:</strong> "You do house calls — you see these backyards firsthand. When you spot a messy yard, here's who to recommend."</div>
+      <div class="actions">
+        <a href="https://lovefamilyvet.com" target="_blank" class="btn">🌐 Website</a>
+      </div>
+    </div>
+
+    <h2 style="color:#fff;margin:1.5rem 0 0.5rem;font-size:1.2rem;">🐕 Dog Daycares & Boarding</h2>
+    <p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">These businesses have the DENSEST concentration of dog owners walking through their doors daily. Leave flyers, ask about bulletin boards, propose a referral exchange.</p>
+
+    <div class="card">
+      <span class="type-badge badge-daycare">DAYCARE</span>
+      <h3>Dogtopia of St. Peters</h3>
+      <div class="detail">📍 6140 Mid Rivers Mall Dr, St. Peters, MO 63304</div>
+      <div class="detail">📞 <span class="phone">(636) 321-3245</span></div>
+      <div class="detail">🕐 Mon-Fri 6:30am-7pm, Sat 8-4, Sun 8-4</div>
+      <div class="detail"><strong>Why target:</strong> National franchise with HIGH volume — dozens of dogs daily. Their clients already spend $30-40/day on daycare. They'll spend $18-25/visit on waste removal without blinking. Has webcams = tech-savvy, busy pet parents.</div>
+      <div class="pitch">💡 <strong>Pitch angle:</strong> "Your clients love their dogs but are too busy to scoop — that's literally why they use daycare. We solve the other half of the problem. Referral partnership?"</div>
+      <div class="actions">
+        <a href="tel:6363213245" class="btn">📞 Call</a>
+        <a href="https://maps.google.com/?q=6140+Mid+Rivers+Mall+Dr+St+Peters+MO+63304" target="_blank" class="btn">📍 Map</a>
+        <a href="https://www.dogtopia.com/stpeters-cottleville/" target="_blank" class="btn">🌐 Website</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="type-badge badge-daycare">DAYCARE</span>
+      <h3>The Watering Bowl — St. Peters</h3>
+      <div class="detail">📍 1409 Harvestowne Industrial Dr, St. Peters, MO 63304</div>
+      <div class="detail">📞 <span class="phone">(636) 486-2606</span></div>
+      <div class="detail"><strong>Why target:</strong> Local STL brand (not franchise). Cage-free, community-focused. They do events and have an engaged following. Perfect partner for a local pet waste company.</div>
+      <div class="pitch">💡 <strong>Pitch angle:</strong> "We're both local St. Louis businesses serving dog parents. Could we do a cross-promo? We'll recommend Watering Bowl to our clients, you recommend us to yours."</div>
+      <div class="actions">
+        <a href="tel:6364862606" class="btn">📞 Call</a>
+        <a href="https://maps.google.com/?q=1409+Harvestowne+Industrial+Dr+St+Peters+MO+63304" target="_blank" class="btn">📍 Map</a>
+        <a href="https://thewateringbowl.com/locations/st-peters-location/" target="_blank" class="btn">🌐 Website</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="type-badge badge-daycare">DAYCARE</span>
+      <h3>Camp Bow Wow — St. Charles</h3>
+      <div class="detail">📍 1751 Scherer Pkwy, St. Charles, MO 63303</div>
+      <div class="detail">📞 <span class="phone">(636) 241-9341</span></div>
+      <div class="detail">🕐 Mon-Sat 7am-7pm</div>
+      <div class="detail"><strong>Why target:</strong> Major franchise — high client volume. Located right off I-70/Scherer Pkwy corridor. Community bulletin board usually available at franchise locations.</div>
+      <div class="pitch">💡 <strong>Pitch angle:</strong> "Camp Bow Wow clients want the best for their dogs — they're already spending on daycare. A clean yard is the next logical step. Can we leave cards at the front desk?"</div>
+      <div class="actions">
+        <a href="tel:6362419341" class="btn">📞 Call</a>
+        <a href="https://maps.google.com/?q=1751+Scherer+Pkwy+St+Charles+MO+63303" target="_blank" class="btn">📍 Map</a>
+        <a href="https://www.campbowwow.com/st-charles/" target="_blank" class="btn">🌐 Website</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="type-badge badge-resort">PET RESORT</span>
+      <h3>Kennelwood Pet Resort — St. Peters</h3>
+      <div class="detail">📍 418 S Church St, St. Peters, MO 63376</div>
+      <div class="detail">📞 <span class="phone">(314) 429-2100</span></div>
+      <div class="detail">🕐 Mon-Fri 7-6, Sat 7-5, Sun 10-5</div>
+      <div class="detail"><strong>Why target:</strong> STL institution — been around forever. "Pet resort" clients are premium spenders. Boarding + grooming + training = wealthy pet parents. 35+ Yelp reviews.</div>
+      <div class="pitch">💡 <strong>Pitch angle:</strong> "Your resort clients come home to a yard that's been neglected while they traveled. We can do a 'Welcome Home' cleanup — partner referral discount?"</div>
+      <div class="actions">
+        <a href="tel:3144292100" class="btn">📞 Call</a>
+        <a href="https://maps.google.com/?q=418+S+Church+St+St+Peters+MO+63376" target="_blank" class="btn">📍 Map</a>
+        <a href="https://www.kennelwood.com/about-us/locations/kennelwood-pet-resort-st-peters-2/" target="_blank" class="btn">🌐 Website</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="type-badge badge-daycare">DAYCARE/BOARDING</span>
+      <h3>Twin Rivers Kennel</h3>
+      <div class="detail">📍 101 Didion Dr, St. Peters, MO 63376</div>
+      <div class="detail">📞 <span class="phone">(636) 946-5490</span></div>
+      <div class="detail"><strong>Why target:</strong> Long-established local kennel. Daycare + boarding + training + grooming. Community staple — their clients trust local businesses.</div>
+      <div class="pitch">💡 <strong>Pitch angle:</strong> "We're both local St. Peters businesses. Your clients already trust you with their dogs — could you pass along our cards? Happy to do the same."</div>
+      <div class="actions">
+        <a href="tel:6369465490" class="btn">📞 Call</a>
+        <a href="https://maps.google.com/?q=101+Didion+Dr+St+Peters+MO+63376" target="_blank" class="btn">📍 Map</a>
+        <a href="https://www.twinriverskennel.com" target="_blank" class="btn">🌐 Website</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="type-badge badge-daycare">DAYCARE/TRAINING</span>
+      <h3>Baxter's K9 Complex</h3>
+      <div class="detail">📍 St. Charles area (serves O'Fallon, St. Peters, St. Charles)</div>
+      <div class="detail"><strong>Why target:</strong> Training + boarding + daycare. Training clients are invested pet parents who follow through on recommendations.</div>
+      <div class="actions">
+        <a href="https://baxtersk9complex.com" target="_blank" class="btn">🌐 Website</a>
+      </div>
+    </div>
+
+    <h2 style="color:#fff;margin:1.5rem 0 0.5rem;font-size:1.2rem;">🏞️ Dog Parks</h2>
+    <p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Dog parks = free customer concentration zones. Visit on a Saturday morning, hand out cards, talk to dog parents. The county even provides free waste bags — proof people need this service.</p>
+
+    <div class="card">
+      <span class="type-badge badge-park">DOG PARK</span>
+      <h3>Veterans Tribute Park Dog Park</h3>
+      <div class="detail">📍 1031 Kisker Rd, St. Charles, MO 63304</div>
+      <div class="detail">💰 <strong>FREE</strong> — no membership required</div>
+      <div class="detail">📐 3 acres, separate large/small dog areas</div>
+      <div class="detail"><strong>Why target:</strong> Closest county dog park to O'Fallon & St. Peters. Free admission = high traffic. 3 acres = lots of dog owners to talk to. Located near Cottleville — affluent zip codes.</div>
+      <div class="tip">🎯 <strong>Best time to visit:</strong> Saturday 9-11am or Sunday afternoon. Bring business cards and a friendly dog if you have one.</div>
+      <div class="actions">
+        <a href="https://maps.google.com/?q=1031+Kisker+Rd+St+Charles+MO+63304" target="_blank" class="btn">📍 Map</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="type-badge badge-park">DOG PARK</span>
+      <h3>St. Peters Rotary Club Dog Park</h3>
+      <div class="detail">📍 370 Lakeside Park, St. Peters, MO</div>
+      <div class="detail">💰 <strong>Membership required</strong></div>
+      <div class="detail">📐 Separate small dog (<24 lbs) and large dog areas</div>
+      <div class="detail"><strong>Why target:</strong> Membership = committed dog owners who care enough to pay for park access. These are exactly the people who'd pay for waste removal. Consider getting a membership ($35-50/yr) for regular networking.</div>
+      <div class="actions">
+        <a href="https://maps.google.com/?q=370+Lakeside+Park+St+Peters+MO" target="_blank" class="btn">📍 Map</a>
+        <a href="https://www.stpetersmo.net/389/St-Peters-Rotary-Club-Dog-Park" target="_blank" class="btn">🌐 Info</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="type-badge badge-park">DOG PARK</span>
+      <h3>DuSable Dog Park</h3>
+      <div class="detail">📍 St. Charles City (St. Charles Parks & Rec)</div>
+      <div class="detail">💰 <strong>FREE</strong></div>
+      <div class="detail">📐 2.5 acres, 3 separate sections, rotating turf</div>
+      <div class="detail"><strong>Why target:</strong> Run by St. Charles Parks & Rec — potential for municipal partnership. 3 sections means 3 different groups of dog owners at any time.</div>
+      <div class="actions">
+        <a href="https://maps.google.com/?q=DuSable+Dog+Park+St+Charles+MO" target="_blank" class="btn">📍 Map</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="type-badge badge-park">DOG PARK</span>
+      <h3>Quail Ridge Park Dog Park</h3>
+      <div class="detail">📍 560 Interstate Dr, Wentzville, MO 63385</div>
+      <div class="detail">💰 <strong>FREE</strong></div>
+      <div class="detail">📐 2.5 acres, separate large/small, covered shelter</div>
+      <div class="detail"><strong>Why target:</strong> Wentzville is one of the fastest-growing cities in MO. New developments = new dog owners who haven't found their service providers yet.</div>
+      <div class="actions">
+        <a href="https://maps.google.com/?q=560+Interstate+Dr+Wentzville+MO+63385" target="_blank" class="btn">📍 Map</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROUTES TAB -->
+  <div id="routes" class="section">
+    <h2 style="color:#fff;margin:1rem 0 0.5rem;">🗺️ Optimized Outreach Routes</h2>
+    <p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Hit multiple targets in one trip. Each route is ~2 hours including drive time and 10-15 min per stop.</p>
+
+    <div class="route-section">
+      <h4>Route A: St. Peters Blitz (Best for Wednesday or Thursday)</h4>
+      <p style="color:#888;font-size:0.85rem;margin-bottom:12px;">~90 min total. All within a 5-mile radius of Mid Rivers Mall.</p>
+      <div class="route-stop">
+        <div class="route-num">1</div>
+        <div class="route-info">
+          <div class="name">Harvester Animal Clinic</div>
+          <div class="addr">1375 Triad Center Dr — Drop flyers, introduce yourself</div>
+        </div>
+      </div>
+      <div class="route-stop">
+        <div class="route-num">2</div>
+        <div class="route-info">
+          <div class="name">Arch Animal Hospital West</div>
+          <div class="addr">117 Birdie Hills Rd — 5 min drive from Harvester</div>
+        </div>
+      </div>
+      <div class="route-stop">
+        <div class="route-num">3</div>
+        <div class="route-info">
+          <div class="name">Vet Stop Animal Hospital</div>
+          <div class="addr">7030 Mexico Rd — High volume, ask about bulletin board</div>
+        </div>
+      </div>
+      <div class="route-stop">
+        <div class="route-num">4</div>
+        <div class="route-info">
+          <div class="name">Dogtopia of St. Peters</div>
+          <div class="addr">6140 Mid Rivers Mall Dr — Franchise, ask manager about partnership</div>
+        </div>
+      </div>
+      <div class="route-stop">
+        <div class="route-num">5</div>
+        <div class="route-info">
+          <div class="name">Twin Rivers Kennel</div>
+          <div class="addr">101 Didion Dr — Local kennel, community connection</div>
+        </div>
+      </div>
+      <div class="route-stop">
+        <div class="route-num">6</div>
+        <div class="route-info">
+          <div class="name">Kennelwood Pet Resort</div>
+          <div class="addr">418 S Church St — Premium clients, leave flyers</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="route-section">
+      <h4>Route B: O'Fallon + St. Charles (Best for Saturday morning)</h4>
+      <p style="color:#888;font-size:0.85rem;margin-bottom:12px;">~2 hours. Combines vet visits with dog park networking. Saturday = more foot traffic at parks.</p>
+      <div class="route-stop">
+        <div class="route-num">1</div>
+        <div class="route-info">
+          <div class="name">Back on Track Veterinary</div>
+          <div class="addr">957 Waterbury Falls Dr, O'Fallon — Open Sat 8-1</div>
+        </div>
+      </div>
+      <div class="route-stop">
+        <div class="route-num">2</div>
+        <div class="route-info">
+          <div class="name">Veterans Tribute Park Dog Park</div>
+          <div class="addr">1031 Kisker Rd — 15 min from vet. Network with dog owners 9-11am</div>
+        </div>
+      </div>
+      <div class="route-stop">
+        <div class="route-num">3</div>
+        <div class="route-info">
+          <div class="name">Camp Bow Wow</div>
+          <div class="addr">1751 Scherer Pkwy, St. Charles — Open Sat 7-7</div>
+        </div>
+      </div>
+      <div class="route-stop">
+        <div class="route-num">4</div>
+        <div class="route-info">
+          <div class="name">St. Charles Animal Hospital</div>
+          <div class="addr">980 N Kingshighway — Open Sat 8-12</div>
+        </div>
+      </div>
+      <div class="route-stop">
+        <div class="route-num">5</div>
+        <div class="route-info">
+          <div class="name">DuSable Dog Park</div>
+          <div class="addr">St. Charles city — Free, 2.5 acres, hand out cards</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tip">
+      💡 <strong>Pro tip:</strong> Print 50 flyers and bring 100 business cards per route. Arrive at vet clinics early (right after opening) when staff isn't swamped. Hit dog parks mid-morning when foot traffic peaks. Ask every person: "Do you pick up after your dog in your own yard, or does someone help you with that?"
+    </div>
+  </div>
+
+  <!-- SCRIPTS TAB -->
+  <div id="scripts" class="section">
+    <h2 style="color:#fff;margin:1rem 0 0.5rem;">🗣️ Pitch Scripts</h2>
+    <p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Copy-paste or memorize. Each script is under 30 seconds. <em>Tap any script to copy.</em></p>
+
+    <div class="script-block" onclick="copyText(this)" style="cursor:pointer;">
+      <div class="label">🩺 For Vet Clinic Front Desk</div>
+      <p>"Hey! I'm TJ from Tidy Tails — we do pet waste removal here in St. Charles County. I know your clients love their pets, and a clean yard actually helps prevent parasites and keeps dogs healthier.</p>
+      <p>Would it be okay if I left some cards or flyers here? A lot of vet offices partner with us because it's a win-win — your clients get a cleaner yard, and you get to recommend a trusted local service.</p>
+      <p class="emphasis">We're not a franchise — just a local guy who shows up on time and does a great job."</p>
+    </div>
+
+    <div class="script-block" onclick="copyText(this)" style="cursor:pointer;">
+      <div class="label">🐕 For Dog Daycare Manager</div>
+      <p>"Hi, I'm TJ with Tidy Tails. We do weekly pet waste removal — basically, we keep people's yards clean so they can actually enjoy them.</p>
+      <p>Your daycare clients are my exact target customer — busy dog parents who love their pets but don't have time for everything. Would you be open to a referral partnership? I'll recommend your daycare to my clients, and you could pass along our cards.</p>
+      <p class="emphasis">I can leave a stack of flyers — no cost, no commitment. Just helping dog parents out."</p>
+    </div>
+
+    <div class="script-block" onclick="copyText(this)" style="cursor:pointer;">
+      <div class="label">🏞️ For Dog Park Conversations</div>
+      <p>"Hey! Great looking dog. [Compliment their dog specifically.]</p>
+      <p>Quick question — do you scoop your own yard, or does someone help you with that? [Wait for answer.]</p>
+      <p><strong>If they scoop themselves:</strong> 'Yeah, it's a pain, right? I actually run a service that handles that — Tidy Tails. We come by weekly and take care of it. Most people say it's the best $20 they spend all week. Here's my card if you ever get tired of it.'</p>
+      <p><strong>If they have someone:</strong> 'Oh nice, who do you use? [Gather intel.] Well, here's my card in case you ever want to try someone different.'</p>
+      <p class="emphasis">If they say no / not interested: 'No worries! If you know anyone who'd want help, pass my card along. Enjoy your day!'</p>
+    </div>
+
+    <div class="script-block" onclick="copyText(this)" style="cursor:pointer;">
+      <div class="label">📞 Cold Call (Before Visit)</div>
+      <p>"Hi, this is TJ with Tidy Tails Pet Waste Removal. I'm going to be in the [St. Peters / O'Fallon / St. Charles] area this week and wanted to swing by to drop off some flyers.</p>
+      <p>We're a local pet waste cleanup service, and a lot of vet offices and daycares partner with us to give their clients a convenient referral.</p>
+      <p class="emphasis">Would it be okay if I stopped by [Wednesday/Thursday]? I'll just be quick — drop off flyers and say hi. Thanks!"</p>
+    </div>
+
+    <div class="tip">
+      🎯 <strong>Key phrases that convert:</strong><br>
+      • "Local, not a franchise" — builds trust<br>
+      • "Your clients" — makes it about THEM, not you<br>
+      • "No cost, no commitment" — low friction<br>
+      • "Parasites / health" — vet offices care about this<br>
+      • "Best $20 they spend all week" — anchors price casually
+    </div>
+  </div>
+
+  <!-- FLYER TAB -->
+  <div id="flyer" class="section">
+    <h2 style="color:#fff;margin:1rem 0 0.5rem;">📄 Leave-Behind Flyer</h2>
+    <p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Print this on half-sheet cardstock (5.5" x 8.5"). Leave at vet offices, daycares, and community boards.</p>
+
+    <div class="flyer-preview">
+      <div style="font-size:3rem;margin-bottom:0.5rem;">🐕💩</div>
+      <h2>TIDY TAILS</h2>
+      <div class="tagline">Pet Waste Removal — So You Don't Have To</div>
+      
+      <div style="border-top:2px solid #1a5c1a;border-bottom:2px solid #1a5c1a;padding:12px 0;margin:1rem 0;">
+        <div style="font-size:1.3rem;font-weight:700;color:#1a5c1a;">Spring Special: First Cleanup FREE</div>
+        <div style="color:#666;font-size:0.9rem;">New customers only. No obligation.</div>
+      </div>
+
+      <ul class="flyer-benefits">
+        <li>✅ Weekly yard cleanup — we scoop, bag & remove</li>
+        <li>✅ Reliable schedule — same day every week</li>
+        <li>✅ Healthier yard — reduce parasites & bacteria</li>
+        <li>✅ Local & insured — not a franchise, just a neighbor</li>
+        <li>✅ Starting at just $18/visit</li>
+      </ul>
+
+      <div class="cta">📞 Call or Text TJ</div>
+      <div style="font-size:1.3rem;font-weight:700;color:#1a5c1a;margin-top:4px;">tidytailspetwasteremoval.net</div>
+      <div class="fine">Serving St. Charles County • O'Fallon • St. Peters • St. Charles • Cottleville</div>
+    </div>
+
+    <div class="tip" style="margin-top:1rem;">
+      📋 <strong>Printing tips:</strong><br>
+      • Print on bright green or white cardstock (heavier than regular paper)<br>
+      • Half-sheet (5.5" x 8.5") is ideal — fits on bulletin boards and in take-home piles<br>
+      • Add TJ's actual phone number before printing<br>
+      • Vistaprint or local FedEx Office: ~$0.15/flyer for 100 copies<br>
+      • Consider tear-off tabs at the bottom with phone number
+    </div>
+
+    <div class="script-block">
+      <div class="label">📝 Flyer Text (Copy for Canva/Design Tool)</div>
+      <p><strong>TIDY TAILS</strong></p>
+      <p>Pet Waste Removal — So You Don't Have To</p>
+      <p>---</p>
+      <p><strong>🌸 Spring Special: First Cleanup FREE</strong></p>
+      <p>New customers only. No obligation.</p>
+      <p>---</p>
+      <p>✅ Weekly yard cleanup — we scoop, bag & remove</p>
+      <p>✅ Reliable schedule — same day every week</p>
+      <p>✅ Healthier yard — reduce parasites & bacteria</p>
+      <p>✅ Local & insured — not a franchise, just a neighbor</p>
+      <p>✅ Starting at just $18/visit</p>
+      <p>---</p>
+      <p>📞 Call or Text TJ: [YOUR NUMBER]</p>
+      <p>🌐 tidytailspetwasteremoval.net</p>
+      <p>Serving St. Charles County • O'Fallon • St. Peters • St. Charles</p>
+    </div>
+  </div>
+
+  <!-- CHECKLIST TAB -->
+  <div id="checklist" class="section">
+    <h2 style="color:#fff;margin:1rem 0 0.5rem;">✅ Visit Tracker</h2>
+    <p style="color:#888;font-size:0.85rem;margin-bottom:1rem;">Check off each location after you visit. Progress saves automatically.</p>
+
+    <h3 style="color:#e0a526;margin:1rem 0 0.5rem;">🩺 Vet Clinics</h3>
+    <ul class="checklist" id="vet-checklist">
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Back on Track Veterinary — O'Fallon (Sat 8-1 best)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Harvester Animal Clinic — St. Peters</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>St. Charles Animal Hospital — St. Charles (Sat 8-12)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Arch Animal Hospital West — St. Peters</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Vet Stop Animal Hospital — St. Peters (Sat 8-1)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Family Vet — Lake St. Louis</span></li>
+    </ul>
+
+    <h3 style="color:#e0a526;margin:1rem 0 0.5rem;">🐕 Daycares & Boarding</h3>
+    <ul class="checklist" id="daycare-checklist">
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Dogtopia — St. Peters</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>The Watering Bowl — St. Peters</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Camp Bow Wow — St. Charles</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Kennelwood Pet Resort — St. Peters</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Twin Rivers Kennel — St. Peters</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Baxter's K9 Complex — St. Charles area</span></li>
+    </ul>
+
+    <h3 style="color:#e0a526;margin:1rem 0 0.5rem;">🏞️ Dog Parks</h3>
+    <ul class="checklist" id="park-checklist">
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Veterans Tribute Park — St. Charles (FREE, 3 acres)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>St. Peters Rotary Dog Park — 370 Lakeside (membership)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>DuSable Dog Park — St. Charles (FREE, 2.5 acres)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Quail Ridge Park — Wentzville (FREE, 2.5 acres)</span></li>
+    </ul>
+
+    <div class="tip" style="margin-top:1rem;">
+      📊 <strong>Goal:</strong> Visit all 16 targets within 2 weeks. Route A (St. Peters) first, Route B (O'Fallon/St. Charles) second. That's 2 half-days of outreach to plant your flag across the entire county.
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyText(el) {
+  const text = el.innerText.replace(/^[A-Z🩺🐕🏞️📞📝 ]+\n/, '');
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = el.style.borderColor;
+    el.style.borderColor = '#4ade80';
+    setTimeout(() => el.style.borderColor = orig, 1500);
+  });
+}
+
+function saveChecklist() {
+  const state = {};
+  document.querySelectorAll('.checklist li').forEach((li, i) => {
+    const cb = li.querySelector('input');
+    state[i] = cb.checked;
+    li.classList.toggle('done', cb.checked);
+  });
+  localStorage.setItem('stcharles-outreach-v1', JSON.stringify(state));
+}
+
+function loadChecklist() {
+  try {
+    const state = JSON.parse(localStorage.getItem('stcharles-outreach-v1') || '{}');
+    document.querySelectorAll('.checklist li').forEach((li, i) => {
+      if (state[i]) {
+        li.querySelector('input').checked = true;
+        li.classList.add('done');
+      }
+    });
+  } catch(e) {}
+}
+
+loadChecklist();
+</script>
+</body>
+</html>
