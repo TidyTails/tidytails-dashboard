@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-08 22:05 CST*
+*Last updated: 2026-03-09 02:05 CST*
 
 ---
 
@@ -22,6 +22,10 @@
   - Owner: Basquiat (needs fal.ai credits topped up)
 
 ### ✅ Recently Completed
+- [x] **🏗️ Dashboard Index Rebuild** — Reorganized 38 tools into 6 searchable categories with search bar, collapsible sections, priority banner, contextual badges, and Quick Reference. Added 6 missing items. ✅ (Mar 9, 2AM)
+- [x] **🎯 Spring Neighborhood Targeting Guide** — 12 neighborhoods analyzed and tiered, 4-week campaign plan targeting Kirkwood/Webster/Ballwin triangle. Dashboard at `/2026-03-09-NEIGHBORHOOD-TARGETING.html` ✅ (Mar 9, 1AM)
+- [x] **🔍 Live Visibility Audit** — 0/6 searches found Tidy Tails. 5 competitor deep-dives with pricing. Dashboard at `/2026-03-09-VISIBILITY-AUDIT.html` ✅ (Mar 9, 12AM)
+- [x] **⭐ Google Review Request System** — 6 copy-paste request templates + 3 response templates. Dashboard at `/2026-03-09-REVIEW-REQUEST-SYSTEM.html` ✅ (Mar 8, 11PM)
 - [x] **🏗️ Shed Sales Follow-Up System** — Complete text/email sequences for all 27 leads. 3 pipeline stages (quoted, pre-quote, post-install), copy-paste templates with one-click copy, timing cadences, pro tips. Dashboard tool at `/2026-03-08-SHED-FOLLOW-UP.html` ✅ (Mar 8, 10PM)
 - [x] **📍 GBP Posts — 4 Weeks Ready** — 5 copy-paste posts (Mar 10–Apr 7) with keyword targeting, photo tips, CTA buttons. Dashboard tool at `/2026-03-08-GBP-POSTS.html` ✅ (Mar 8, 9PM)
 - [x] **📇 Directory Listing Blitz Kit** — Copy-paste kit for 10 directories (8 remaining). Pre-written descriptions, step-by-step walkthroughs, 75 min total. GBP + Yelp already done. ✅ (Mar 8, 8PM)
