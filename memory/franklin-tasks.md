@@ -33,6 +33,53 @@ Referral Program Kit (`dashboard/2026-03-10-REFERRAL-PROGRAM-KIT.html`) with 6 t
 
 ## March 9, 2026 (Monday)
 
+### 11:04 AM — 🗺️ DIRECTORY LISTING BLITZ — You Have 0 Listings, POOP 911 Has 6+ (Hourly Task)
+**Task:** Research every directory where competitors are listed, audit Tidy Tails' current presence (zero), and build a complete step-by-step listing submission guide with copy-paste business info, competitor gap analysis, and 3-day action plan
+**Result:** ✅ SHIPPED — 5-tab interactive dashboard covering 18 directories with competitor comparison, priority tiers, pre-written business descriptions, and status tracker
+
+**Why This Task:**
+- The 9 AM SEO audit found Tidy Tails has ZERO Google visibility — the #1 fix for that is building backlinks through directory listings
+- Searched Yelp "pet waste removal St. Louis" — top results: Poopy Paws, Yucko's, POOP 911, DoodyCalls, Pooanators, Poop2Scoop. NO Tidy Tails.
+- POOP 911 has 3 SEPARATE Yelp pages plus Google Business Profile, BBB, MapQuest, and more
+- Scoop Soldiers proved backlinks = fast ranking — they got indexed within 1 month of launching
+- Each directory listing = dual value: SEO backlink + direct lead source
+- 2026 research shows Google LSAs are now the #1 paid lead channel, and Thumbtack has a ChatGPT partnership
+
+**What I Found:**
+1. **Tidy Tails has ZERO directory listings** (only an auto-generated MapQuest entry)
+2. **POOP 911 has 6+ listings**: 3 Yelp pages, Google Business Profile, BBB, MapQuest, and more
+3. **DoodyCalls** is listed on Yelp, Google, Angi, and running Google Local Service Ads
+4. **Poop2Scoop** is on Yelp, Nextdoor (3 recommendations), PetWorks
+5. **Google LSAs** now sit ABOVE all other ads and the Map Pack — the #1 position on Google
+6. **Thumbtack** has ChatGPT + Alexa + Zillow partnerships — AI assistants recommend Thumbtack pros
+7. **Apple Maps (Business Connect)** is free and serves 60%+ of US smartphone users via Siri
+8. **Bing Places** feeds into Microsoft Copilot, Amazon Alexa, and Yahoo — 3 platforms from 1 listing
+9. **NAP consistency** (Name/Address/Phone) across all directories is critical for Google trust signals
+
+**What I Created:**
+`dashboard/2026-03-09-DIRECTORY-LISTING-BLITZ.html` — 5-tab interactive dashboard:
+1. **📊 Gap Analysis** — Competitor vs Tidy Tails directory presence comparison table
+2. **🗺️ All Listings** — 18 directories in 4 priority tiers (Critical/High/Medium/Bonus) with step-by-step setup instructions and direct signup links
+3. **📝 Copy-Paste Info** — Pre-written business name, descriptions (short + long), service area, categories, hours — all formatted for NAP consistency
+4. **🚀 3-Day Plan** — Day-by-day checklist with persistent checkboxes and progress bar
+5. **✅ Tracker** — Status tracker (❌→⏳→✅) with URL fields to record each live listing
+
+**The 18 Directories:**
+- CRITICAL (Day 1): Google Business Profile, Yelp, Nextdoor
+- HIGH (Day 2): Google LSA, Thumbtack, Angi, Apple Maps, Bing Places
+- MEDIUM (Day 3): BBB, Bark, PetWorks, Alignable, Manta, YellowPages
+- BONUS: Foursquare, Craigslist, Care.com, Hotfrog
+
+**Time Required:** ~3 hours total across 3 days. 14 of 18 listings are completely FREE.
+
+**SEO Impact Math:** 18 new backlinks pointing to tidytailsstl.com. Google typically re-crawls directories within 2-4 weeks. By April, TJ should start appearing in Google search results. Scoop Soldiers proved this timeline — they ranked within 1 month using backlinks.
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-09-DIRECTORY-LISTING-BLITZ.html
+**Commit:** `24b3307` on `tidytails-dashboard` repo
+**Rotation:** 🗺️ Growth — SEO & Directory Visibility
+
+---
+
 ### 9:04 AM — 🔍 LIVE WEBSITE & SEO CONVERSION AUDIT — Your Site Is Invisible to Google (Hourly Task)
 **Task:** Perform a live audit of tidytailsstl.com — crawl the site, check Google search rankings, analyze SEO, compare to competitors, and identify the new threat (Scoop Soldiers)
 **Result:** ✅ SHIPPED — Comprehensive website audit dashboard with Google ranking data, competitor pricing comparison, new competitor intel, and 10-item fix checklist
