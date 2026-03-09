@@ -6,6 +6,34 @@
 
 ## March 8, 2026 (Sunday)
 
+### 7:04 PM — 📋 MONDAY ACTION PLAN — One Page to Rule Them All (Hourly Task)
+**Task:** Consolidate all 7 Sunday playbooks into a single prioritized Monday action plan so TJ doesn't drown in 7 separate documents
+**Result:** ✅ SHIPPED — Single-page action plan with 9 prioritized actions, time estimates, copy-paste references, and a weekly scorecard
+
+**Why This Task:**
+- Today produced 7 playbooks (weekly review, competitive intel, Google visibility, customer rescue, spring events, shed pricing, landing page + SEO). That's information overload.
+- The weekly review's #1 message was "stop building, start executing." A 7-document reading list guarantees NOTHING gets executed.
+- TJ needs ONE page that says "do this first, then this, then this." Not 7 pages that each say "this is important!"
+- This is a meta-task: it makes all the other tasks actually useful.
+
+**What I Created:**
+`content/2026-03-09-MONDAY-ACTION-PLAN.md` — Consolidated action plan including:
+1. **3 Monday Must-Dos (45 min):** Text 3 customers for reviews, Nextdoor rescue post, 2 Facebook group posts
+2. **3 Mid-Week Actions (60-90 min):** Optimize GBP, claim directories, post 3 social posts
+3. **3 If-Time Actions:** HSMO vendor booth email, Treats Unleashed visit, calendar Adoption Paw-ty
+4. **Shed business section** with key talking points from competitive cheat sheet
+5. **Landing page link** reminder to add everywhere
+6. **Weekly scorecard** to track completion and results
+
+**Also Updated:**
+- `dashboard/TASKS.md` — Restructured TJ's to-do section to match Monday Action Plan priority order, added all 7 Sunday deliverables to completed list
+
+**Projected Impact:** Reduces friction from "7 playbooks to read" to "1 page, do #1-3 first." If TJ does just the top 3 Monday actions (45 min), that alone could yield 3-5 leads this week.
+
+**Rotation:** 📋 Operations — Action Plan Consolidation & Execution Enablement
+
+---
+
 ### 6:04 PM — 🔍 SEO INFRASTRUCTURE FIX — Making the Landing Page Actually Findable (Hourly Task)
 **Task:** Fix critical SEO issues preventing Google from finding the landing page shipped at 5 PM, and add proper indexing infrastructure
 **Result:** ✅ SHIPPED — Fixed broken canonical URLs, created sitemap.xml & robots.txt, added .nojekyll, verified all live on GitHub Pages

@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-08 11:04 CST*
+*Last updated: 2026-03-08 19:04 CST*
 
 ---
 
@@ -22,6 +22,11 @@
   - Owner: Basquiat (needs fal.ai credits topped up)
 
 ### ✅ Recently Completed
+- [x] **🚀 Monday Action Plan** — Consolidated all 7 Sunday playbooks into ONE prioritized checklist. 9 actions ranked by impact/effort. "Do #1-3 Monday" = 45 min. ✅ (Mar 8, 7PM)
+- [x] **SEO Infrastructure Fix** — Fixed broken canonical URLs, created sitemap.xml + robots.txt + .nojekyll, verified all live ✅ (Mar 8, 6PM)
+- [x] **Customer-Facing Landing Page** — Full landing page with pricing, FAQ, structured data, CTAs. Live at `/landing.html` ✅ (Mar 8, 5PM)
+- [x] **Shed Competitive Pricing Cheat Sheet** — 7 competitors, 3 size tiers, objection scripts for TJ's 12 active leads ✅ (Mar 8, 4PM)
+- [x] **Spring Events & Networking Playbook** — 5 events, Treats Unleashed partnership strategy, week-by-week checklist ✅ (Mar 8, 3PM)
 - [x] **Customer Rescue Playbook** — Copy-paste posts for Nextdoor/Facebook targeting dead competitors' orphaned customers. 9 posts, specific group links, DM scripts. 50 min → $300-500/mo potential ✅ (Mar 8)
 - [x] **Google Visibility Playbook** — 4-tier plan from invisible to page 1, with copy-paste GBP description and review templates ✅ (Mar 8)
 - [x] **Live Competitive Intel** — Confirmed 2 competitors dead (Fresh Paws, Pawfect), Doggie Doodies pricing analysis ✅ (Mar 8)
@@ -44,18 +49,28 @@
 - [x] **Email Automation** — darius@backyardbuildingsstl.com operational ✅
 
 ### 📝 To Do (TJ Action Required)
-- [ ] **Post FB group posts** — Friday posts ready at dashboard (3 min)
-- [ ] **🔥 Text ALL customers for Google reviews** — #1 PRIORITY. 0 reviews = invisible. Template ready in `content/2026-03-08-GOOGLE-VISIBILITY-PLAYBOOK.md`. Goal: 5 reviews by end of March.
-- [ ] **Create Thumbtack profile** — 15 min. Leads come directly. See playbook.
-- [ ] **Claim Nextdoor business page** — 10 min. Covers every neighborhood. See playbook.
-- [ ] **Apple Maps + Bing Places listings** — 10 min total. See playbook.
-- [ ] **Add photos to GBP** — Before/after yard shots. Businesses with photos get 42% more clicks.
-- [ ] **Post to GBP weekly** — "Posts" feature shows in search results. 5 min/week.
-- [ ] **Add service area pages to website** — One page per city = Google ranks you for that city's searches.
-- [ ] **Launch referral program** — Scripts ready, just needs announcement
-- [ ] **Top up fal.ai credits** — Need credits for remaining video ads
-- [ ] **Winter reheat texts** — Send Jamie's scripts to dormant winter customers
-- [ ] **Print spring flyers & door-hang this weekend** — PDF ready at `dashboard/pdfs/SPRING-FLYER-KIT-2026.pdf`, full plan at `campaigns/spring-2026-neighborhood-blitz.md` (~$20, 2-3 hrs)
+**📋 START HERE → `content/2026-03-09-MONDAY-ACTION-PLAN.md`** — One page, 9 actions, prioritized. Do #1-3 Monday (45 min).
+
+#### 🔴 Monday (45 min)
+- [ ] **🔥 Text 3 customers for Google reviews** — #1 PRIORITY. 0 reviews = invisible. Copy-paste template in Monday Action Plan.
+- [ ] **Post Nextdoor rescue post** — Target dead competitors' orphaned customers in Wildwood/Chesterfield/Ballwin (15 min)
+- [ ] **Post in 2 Facebook groups** — Same rescue strategy, different platform (20 min)
+
+#### 🟡 Tue-Thu (60-90 min)
+- [ ] **Optimize GBP** — Photos, description, service areas, messaging (30 min)
+- [ ] **Claim Yelp + Thumbtack + Apple Maps** — Free directory listings (20 min)
+- [ ] **Post 3 social media posts** — Mon/Wed/Fri, content ready in spring social week file
+
+#### 🟢 If Time
+- [ ] **Email HSMO re: Bark in the Park vendor booth** — May 16, spots fill up (10 min)
+- [ ] **Visit nearest Treats Unleashed** — Drop 20 business cards/flyers (20 min)
+- [ ] **Mark March 28 Adoption Paw-ty on calendar** — Print 50 biz cards before then
+
+#### Backlog
+- [ ] Launch referral program — Scripts ready, just needs announcement
+- [ ] Top up fal.ai credits — Need credits for remaining video ads
+- [ ] Winter reheat texts — Send Jamie's scripts to dormant winter customers
+- [ ] Print spring flyers & door-hang — PDF ready at `dashboard/pdfs/SPRING-FLYER-KIT-2026.pdf`
 
 ### 🎯 Goal Tracking
 - **Target:** 25-30 recurring customers by Aug 2025 (OVERDUE)
