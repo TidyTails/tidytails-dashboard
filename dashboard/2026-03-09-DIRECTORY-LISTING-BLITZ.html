@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🗺️ Directory Listing Blitz — Get Found Everywhere</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; line-height:1.6; }
+
+        .header {
+            background: linear-gradient(135deg, #0f1a0f, #0a150a);
+            border-bottom: 2px solid var(--green);
+            padding: 2rem; text-align: center;
+        }
+        .header h1 { font-size: 1.75rem; font-weight: 800; }
+        .header h1 span { color: var(--green); }
+        .header .subtitle { color: var(--text2); font-size: 0.9rem; margin-top: 0.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+
+        /* Scoreboard */
+        .scoreboard {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem; margin-bottom: 2rem;
+        }
+        .score-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1rem; text-align: center;
+        }
+        .score-card .num { font-size: 2rem; font-weight: 800; }
+        .score-card .label { font-size: 0.75rem; color: var(--text2); margin-top: 0.25rem; }
+        .num-red { color: var(--red); }
+        .num-green { color: var(--green); }
+        .num-blue { color: var(--blue); }
+        .num-yellow { color: var(--yellow); }
+        .num-orange { color: var(--orange); }
+
+        /* Competitor comparison */
+        .comp-table {
+            width: 100%; border-collapse: collapse; margin-bottom: 2rem;
+            font-size: 0.8rem;
+        }
+        .comp-table th {
+            background: var(--bg4); padding: 0.6rem 0.5rem; text-align: left;
+            font-weight: 700; border-bottom: 2px solid var(--border);
+            position: sticky; top: 0;
+        }
+        .comp-table td {
+            padding: 0.5rem; border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+        .comp-table tr:hover { background: rgba(255,255,255,0.03); }
+        .check { color: var(--green); font-weight: 700; }
+        .cross { color: var(--red); font-weight: 700; }
+        .unknown { color: var(--text3); }
+        .highlight-row { background: rgba(239,68,68,0.08); }
+
+        /* Section styling */
+        .section { margin-bottom: 2rem; }
+        .section-header {
+            display: flex; align-items: center; gap: 0.5rem;
+            margin-bottom: 1rem; padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border); cursor: pointer;
+            user-select: none;
+        }
+        .section-header:hover { border-color: var(--green); }
+        .section-header h2 { font-size: 1.15rem; font-weight: 700; flex: 1; }
+        .section-header .toggle { color: var(--text3); font-size: 0.8rem; transition: transform 0.2s; }
+        .section.collapsed .section-content { display: none; }
+        .section.collapsed .toggle { transform: rotate(-90deg); }
+
+        /* Listing cards */
+        .listing-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 0.75rem; position: relative;
+        }
+        .listing-card.critical { border-left: 3px solid var(--red); }
+        .listing-card.high { border-left: 3px solid var(--orange); }
+        .listing-card.medium { border-left: 3px solid var(--yellow); }
+        .listing-card.low { border-left: 3px solid var(--blue); }
+        .listing-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.5rem; }
+        .listing-card .meta { font-size: 0.8rem; color: var(--text2); margin-bottom: 0.75rem; }
+        .listing-card .why { font-size: 0.85rem; margin-bottom: 0.75rem; padding: 0.5rem; background: rgba(255,255,255,0.03); border-radius: 8px; }
+        .listing-card .steps { font-size: 0.85rem; }
+        .listing-card .steps ol { padding-left: 1.25rem; }
+        .listing-card .steps li { margin-bottom: 0.35rem; }
+
+        .badge {
+            display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px;
+            font-size: 0.65rem; font-weight: 700; font-family: 'JetBrains Mono', monospace;
+        }
+        .badge-critical { background: rgba(239,68,68,0.2); color: var(--red); }
+        .badge-high { background: rgba(255,107,53,0.2); color: var(--orange); }
+        .badge-medium { background: rgba(251,191,36,0.2); color: var(--yellow); }
+        .badge-low { background: rgba(59,130,246,0.2); color: var(--blue); }
+        .badge-free { background: rgba(16,185,129,0.2); color: var(--green); }
+        .badge-paid { background: rgba(139,92,246,0.2); color: var(--purple); }
+        .badge-time { background: rgba(255,255,255,0.1); color: var(--text2); }
+
+        /* Copy box */
+        .copy-box {
+            background: var(--bg2); border: 1px solid var(--border); border-radius: 8px;
+            padding: 1rem; margin: 0.75rem 0; position: relative; font-size: 0.85rem;
+            white-space: pre-wrap; line-height: 1.5;
+        }
+        .copy-btn {
+            position: absolute; top: 0.5rem; right: 0.5rem;
+            background: var(--bg4); border: 1px solid var(--border); border-radius: 6px;
+            color: var(--text2); font-size: 0.7rem; padding: 0.3rem 0.6rem; cursor: pointer;
+            font-family: 'JetBrains Mono', monospace; transition: all 0.2s;
+        }
+        .copy-btn:hover { border-color: var(--green); color: var(--green); }
+
+        /* Checklist */
+        .checklist { list-style: none; }
+        .checklist li {
+            display: flex; align-items: flex-start; gap: 0.5rem;
+            padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.85rem;
+        }
+        .checklist input[type="checkbox"] {
+            margin-top: 3px; accent-color: var(--green); min-width: 16px;
+        }
+        .checklist li.checked { color: var(--text3); text-decoration: line-through; }
+
+        /* Progress bar */
+        .progress-wrap { margin: 1rem 0; }
+        .progress-bar { background: var(--bg4); border-radius: 8px; height: 8px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--green); border-radius: 8px; transition: width 0.5s; }
+        .progress-label { font-size: 0.75rem; color: var(--text2); margin-top: 0.25rem; display: flex; justify-content: space-between; }
+
+        /* Alert box */
+        .alert {
+            background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3);
+            border-radius: var(--radius); padding: 1rem; margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+        .alert strong { color: var(--red); }
+        .alert-green {
+            background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.3);
+        }
+        .alert-green strong { color: var(--green); }
+
+        a { color: var(--blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Tab system */
+        .tabs { display: flex; gap: 0; margin-bottom: 0; border-bottom: 2px solid var(--border); overflow-x: auto; }
+        .tab {
+            padding: 0.6rem 1.2rem; font-size: 0.8rem; font-weight: 600;
+            color: var(--text3); cursor: pointer; border-bottom: 2px solid transparent;
+            margin-bottom: -2px; white-space: nowrap; transition: all 0.2s;
+        }
+        .tab:hover { color: var(--text2); }
+        .tab.active { color: var(--green); border-bottom-color: var(--green); }
+        .tab-content { display: none; padding-top: 1.5rem; }
+        .tab-content.active { display: block; }
+
+        @media (max-width: 600px) {
+            .container { padding: 1rem; }
+            .scoreboard { grid-template-columns: repeat(2, 1fr); }
+            .comp-table { font-size: 0.7rem; }
+            .tab { padding: 0.5rem 0.8rem; font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🗺️ Directory <span>Listing Blitz</span></h1>
+    <p class="subtitle">Tidy Tails has ZERO directory listings. POOP 911 has 6+. Every listing = a lead source + an SEO backlink. Time to fix that.</p>
+</div>
+
+<div class="container">
+
+    <!-- Alert -->
+    <div class="alert">
+        <strong>⚠️ WHY THIS MATTERS:</strong> The SEO audit found Tidy Tails has ZERO Google visibility. The #1 fix? Get listed on directories. Each listing creates a backlink (helping Google rank you) AND a direct lead source. POOP 911 appears 3-4 times in search results because they're listed EVERYWHERE. Scoop Soldiers ranked within 1 month by building backlinks. This is the single highest-ROI activity you can do in 2-3 hours.
+    </div>
+
+    <!-- Scoreboard -->
+    <div class="scoreboard">
+        <div class="score-card">
+            <div class="num num-red">0</div>
+            <div class="label">Your Listings</div>
+        </div>
+        <div class="score-card">
+            <div class="num num-green">6+</div>
+            <div class="label">POOP 911 Listings</div>
+        </div>
+        <div class="score-card">
+            <div class="num num-blue">18</div>
+            <div class="label">Directories to Claim</div>
+        </div>
+        <div class="score-card">
+            <div class="num num-yellow">~3 hrs</div>
+            <div class="label">Total Setup Time</div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <div class="tab active" data-tab="gap">📊 Gap Analysis</div>
+        <div class="tab" data-tab="listings">🗺️ All Listings</div>
+        <div class="tab" data-tab="copy">📝 Copy-Paste Info</div>
+        <div class="tab" data-tab="plan">🚀 3-Day Plan</div>
+        <div class="tab" data-tab="tracker">✅ Tracker</div>
+    </div>
+
+    <!-- TAB: Gap Analysis -->
+    <div class="tab-content active" id="tab-gap">
+        <h2 style="margin-bottom: 1rem; font-size: 1.1rem;">Where Competitors Are (And You're Not)</h2>
+
+        <table class="comp-table">
+            <thead>
+                <tr>
+                    <th>Directory</th>
+                    <th>Tidy Tails</th>
+                    <th>POOP 911</th>
+                    <th>DoodyCalls</th>
+                    <th>Poop2Scoop</th>
+                    <th>Scoop Soldiers</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="highlight-row">
+                    <td><strong>Google Business Profile</strong></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                </tr>
+                <tr class="highlight-row">
+                    <td><strong>Google Local Service Ads</strong></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="unknown">?</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="unknown">?</span></td>
+                </tr>
+                <tr class="highlight-row">
+                    <td><strong>Yelp</strong></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="check">✓ 3 pages</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="cross">✗</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Nextdoor</strong></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="check">✓ 3 recs</span></td>
+                    <td><span class="cross">✗</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Thumbtack</strong></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="unknown">?</span></td>
+                    <td><span class="unknown">?</span></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="cross">✗</span></td>
+                </tr>
+                <tr>
+                    <td><strong>MapQuest</strong></td>
+                    <td><span class="check">✓ auto</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="unknown">?</span></td>
+                    <td><span class="unknown">?</span></td>
+                    <td><span class="cross">✗</span></td>
+                </tr>
+                <tr>
+                    <td><strong>BBB</strong></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="cross">✗</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Facebook Business</strong></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Angi</strong></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="unknown">?</span></td>
+                </tr>
+                <tr>
+                    <td><strong>PetWorks.com</strong></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="cross">✗</span></td>
+                    <td><span class="check">✓</span></td>
+                    <td><span class="cross">✗</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="alert-green alert">
+            <strong>💡 THE OPPORTUNITY:</strong> Most competitors are only on 3-4 directories. If you claim 15+ listings, you'll have MORE backlinks than any competitor in the market. Google rewards this. Scoop Soldiers proved it — they got indexed in 1 month by creating backlinks through press releases. Directory listings are even better because they're permanent AND generate leads.
+        </div>
+    </div>
+
+    <!-- TAB: All Listings -->
+    <div class="tab-content" id="tab-listings">
+
+        <!-- CRITICAL TIER -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🔴 Critical — Do These FIRST (Day 1)</h2>
+                <span class="toggle">▼</span>
+            </div>
+            <div class="section-content">
+
+                <div class="listing-card critical">
+                    <h3>Google Business Profile <span class="badge badge-critical">CRITICAL</span> <span class="badge badge-free">FREE</span> <span class="badge badge-time">15 min</span></h3>
+                    <div class="meta">The #1 most important listing. Period. Controls what shows in Google Maps and local search.</div>
+                    <div class="why">
+                        <strong>Why:</strong> When someone searches "pet waste removal near me," Google shows the Map Pack first. You're not in it. POOP 911 IS. This single listing is worth more than every other directory combined.
+                    </div>
+                    <div class="steps">
+                        <ol>
+                            <li>Go to <a href="https://business.google.com" target="_blank">business.google.com</a></li>
+                            <li>Click "Manage now" → Enter "Tidy Tails Pet Waste Removal"</li>
+                            <li>Category: <strong>Pet Waste Removal Service</strong></li>
+                            <li>Service area business (no physical storefront) → Add your service zip codes</li>
+                            <li>Add phone, website (tidytailsstl.com), hours</li>
+                            <li>Verify via postcard (takes 5-7 days) or phone verification</li>
+                            <li>Add 5+ photos (your truck, yard before/after, you in uniform)</li>
+                            <li>Write first GBP post (spring cleanup promotion)</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="listing-card critical">
+                    <h3>Yelp <span class="badge badge-critical">CRITICAL</span> <span class="badge badge-free">FREE</span> <span class="badge badge-time">20 min</span></h3>
+                    <div class="meta">Yelp ranks #1-3 for "pet waste removal St. Louis" — POOP 911 has 3 separate Yelp pages.</div>
+                    <div class="why">
+                        <strong>Why:</strong> When I searched "pet waste removal St Louis" on Yelp, the top results are: Poopy Paws, Yucko's, POOP 911, DoodyCalls, Pooanators, Poop2Scoop. NO Tidy Tails. Yelp pages rank highly in Google too — a Yelp listing is both a lead source AND an SEO backlink.
+                    </div>
+                    <div class="steps">
+                        <ol>
+                            <li>Go to <a href="https://biz.yelp.com" target="_blank">biz.yelp.com</a></li>
+                            <li>Click "Claim your business" or "Add your business"</li>
+                            <li>Business name: <strong>Tidy Tails Pet Waste Removal</strong></li>
+                            <li>Category: <strong>Pet Waste Removal</strong></li>
+                            <li>Service area: St. Louis County, MO</li>
+                            <li>Add photos (at least 3-5), business description, services, hours</li>
+                            <li>Verify ownership via phone or email</li>
+                            <li>Ask 2-3 existing customers to leave a review (Yelp filters aggressively — real reviews from established accounts survive)</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="listing-card critical">
+                    <h3>Nextdoor Business Page <span class="badge badge-critical">CRITICAL</span> <span class="badge badge-free">FREE</span> <span class="badge badge-time">15 min</span></h3>
+                    <div class="meta">44% close rate on leads. Poop2Scoop already has 3 recommendations there.</div>
+                    <div class="why">
+                        <strong>Why:</strong> Already covered in the Nextdoor Launch Strategy dashboard. This is your highest-converting free lead channel. Home services are #1 most searched category. 94% of users trust neighbor recommendations.
+                    </div>
+                    <div class="steps">
+                        <ol>
+                            <li>Go to <a href="https://business.nextdoor.com" target="_blank">business.nextdoor.com</a></li>
+                            <li>Create free Business Page</li>
+                            <li>Add business info, photos, service description</li>
+                            <li>Claim your neighborhoods (Kirkwood, Webster Groves, Ballwin, etc.)</li>
+                            <li>Ask existing customers for recommendations</li>
+                            <li>See the full <a href="2026-03-09-NEXTDOOR-LAUNCH.html">Nextdoor Launch Strategy</a> for post templates</li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- HIGH TIER -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🟠 High Priority — Do These Day 2</h2>
+                <span class="toggle">▼</span>
+            </div>
+            <div class="section-content">
+
+                <div class="listing-card high">
+                    <h3>Google Local Service Ads (LSA) <span class="badge badge-high">HIGH</span> <span class="badge badge-paid">PAY-PER-LEAD</span> <span class="badge badge-time">30 min</span></h3>
+                    <div class="meta">Shows at the VERY TOP of Google — above regular ads, above the Map Pack. Pay only for actual leads.</div>
+                    <div class="why">
+                        <strong>Why:</strong> In 2026, Google LSAs are the #1 paid lead channel for local services. They show a "Google Guaranteed" badge which builds instant trust. You pay per lead ($15-40 estimated for pet waste), not per click. DoodyCalls is already running these.
+                    </div>
+                    <div class="steps">
+                        <ol>
+                            <li>Go to <a href="https://ads.google.com/local-services-ads/" target="_blank">Google LSA signup</a></li>
+                            <li>Select your business category (may need "Pet Care" or "Cleaning")</li>
+                            <li>Submit business license, insurance info</li>
+                            <li>Pass background check (required for "Google Guaranteed" badge)</li>
+                            <li>Set weekly budget (start at $50-100/week, adjust based on lead quality)</li>
+                            <li>⚠️ Note: May take 2-4 weeks for approval. Start the process NOW.</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="listing-card high">
+                    <h3>Thumbtack <span class="badge badge-high">HIGH</span> <span class="badge badge-paid">PAY-PER-LEAD</span> <span class="badge badge-time">20 min</span></h3>
+                    <div class="meta">$400M revenue platform. Partnership with ChatGPT means AI assistants recommend Thumbtack pros.</div>
+                    <div class="why">
+                        <strong>Why:</strong> Thumbtack has a ChatGPT partnership — when people ask ChatGPT to find local services, it recommends Thumbtack pros. That's a brand new lead channel most competitors aren't on yet. Plus the listing itself is a backlink.
+                    </div>
+                    <div class="steps">
+                        <ol>
+                            <li>Go to <a href="https://www.thumbtack.com/pro" target="_blank">thumbtack.com/pro</a></li>
+                            <li>Create pro account → category "Pet Waste Removal" or "Yard Cleanup"</li>
+                            <li>Set service area (St. Louis County zip codes)</li>
+                            <li>Add photos, description, pricing</li>
+                            <li>Set lead preferences and budget (start small: $5-10/lead)</li>
+                            <li>Enable "Instant Book" for higher ranking in results</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="listing-card high">
+                    <h3>Angi (formerly Angie's List / HomeAdvisor) <span class="badge badge-high">HIGH</span> <span class="badge badge-free">FREE LISTING</span> <span class="badge badge-time">15 min</span></h3>
+                    <div class="meta">Free listing with option for paid leads. POOP 911 and DoodyCalls are both listed.</div>
+                    <div class="why">
+                        <strong>Why:</strong> Free basic listing creates a backlink and makes you discoverable. Don't pay for "Angi Leads" yet — the free listing alone has value. Angi pages rank in Google search results.
+                    </div>
+                    <div class="steps">
+                        <ol>
+                            <li>Go to <a href="https://www.angi.com/pro/" target="_blank">angi.com/pro</a></li>
+                            <li>Create free business profile</li>
+                            <li>Category: Pet Waste Removal / Yard Cleanup</li>
+                            <li>Add business details, photos, service descriptions</li>
+                            <li>⚠️ DO NOT sign up for paid "Angi Leads" yet — contracts auto-renew and are hard to cancel</li>
+                            <li>Just claim the free listing for the backlink + discoverability</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="listing-card high">
+                    <h3>Apple Maps (Apple Business Connect) <span class="badge badge-high">HIGH</span> <span class="badge badge-free">FREE</span> <span class="badge badge-time">10 min</span></h3>
+                    <div class="meta">iPhone users searching "pet waste removal near me" use Apple Maps by default.</div>
+                    <div class="why">
+                        <strong>Why:</strong> 60%+ of US smartphone users have iPhones. When they ask Siri "find pet waste removal near me," Apple Maps is what shows up. Free, fast, and nobody thinks about it.
+                    </div>
+                    <div class="steps">
+                        <ol>
+                            <li>Go to <a href="https://businessconnect.apple.com" target="_blank">businessconnect.apple.com</a></li>
+                            <li>Sign in with Apple ID</li>
+                            <li>Search for or add your business</li>
+                            <li>Verify ownership, add photos, hours, description</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="listing-card high">
+                    <h3>Bing Places <span class="badge badge-high">HIGH</span> <span class="badge badge-free">FREE</span> <span class="badge badge-time">10 min</span></h3>
+                    <div class="meta">Bing powers Alexa, Copilot, and has ~10% search market share. Free backlink.</div>
+                    <div class="why">
+                        <strong>Why:</strong> Often overlooked, but Bing Places feeds data to Microsoft Copilot (AI assistant), Amazon Alexa, and Yahoo Search. That's 3 platforms from 1 listing. Takes 10 minutes.
+                    </div>
+                    <div class="steps">
+                        <ol>
+                            <li>Go to <a href="https://www.bingplaces.com" target="_blank">bingplaces.com</a></li>
+                            <li>Import from Google Business Profile (fastest) or create manually</li>
+                            <li>Add business details, verify via phone/postcard</li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- MEDIUM TIER -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🟡 Medium Priority — Day 3 & Beyond</h2>
+                <span class="toggle">▼</span>
+            </div>
+            <div class="section-content">
+
+                <div class="listing-card medium">
+                    <h3>Better Business Bureau (BBB) <span class="badge badge-medium">MEDIUM</span> <span class="badge badge-paid">$400-500/yr</span> <span class="badge badge-time">20 min</span></h3>
+                    <div class="meta">Accreditation builds trust + strong backlink. POOP 911 is BBB accredited.</div>
+                    <div class="why">
+                        <strong>Why:</strong> BBB pages rank very well in Google. "BBB accredited" builds instant trust, especially for new businesses. POOP 911 has this. It's not cheap, but the trust signal + backlink combo is valuable for a service business.
+                    </div>
+                    <div class="steps">
+                        <ol>
+                            <li>Go to <a href="https://www.bbb.org/get-accredited" target="_blank">bbb.org/get-accredited</a></li>
+                            <li>Apply for BBB accreditation ($400-500/year for small business)</li>
+                            <li>Alternative: Just create a free BBB profile without accreditation (still a backlink)</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="listing-card medium">
+                    <h3>Bark.com <span class="badge badge-medium">MEDIUM</span> <span class="badge badge-paid">PAY-PER-LEAD</span> <span class="badge badge-time">15 min</span></h3>
+                    <div class="meta">Growing lead platform with pay-per-lead model. Less competition than Thumbtack.</div>
+                    <div class="steps">
+                        <ol>
+                            <li>Go to <a href="https://www.bark.com/en/us/pro/" target="_blank">bark.com/en/us/pro</a></li>
+                            <li>Create pro profile under "Pet Services"</li>
+                            <li>Set service area and preferences</li>
+                            <li>Buy credits to respond to leads ($5-15 each)</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="listing-card medium">
+                    <h3>PetWorks.com <span class="badge badge-medium">MEDIUM</span> <span class="badge badge-free">FREE</span> <span class="badge badge-time">10 min</span></h3>
+                    <div class="meta">Pet-specific directory. Poop2Scoop is already listed for St. Louis.</div>
+                    <div class="steps">
+                        <ol>
+                            <li>Go to <a href="https://www.petworks.com" target="_blank">petworks.com</a></li>
+                            <li>List your business under "Pet Waste Removal" in St. Louis, MO</li>
+                            <li>Add description, pricing, service area</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="listing-card medium">
+                    <h3>Alignable <span class="badge badge-medium">MEDIUM</span> <span class="badge badge-free">FREE</span> <span class="badge badge-time">10 min</span></h3>
+                    <div class="meta">LinkedIn for local businesses. Good for B2B referrals (property managers, vets).</div>
+                    <div class="steps">
+                        <ol>
+                            <li>Go to <a href="https://www.alignable.com" target="_blank">alignable.com</a></li>
+                            <li>Create business profile</li>
+                            <li>Connect with local businesses (vet clinics, pet stores, property managers)</li>
+                            <li>Great for building the referral network for commercial accounts</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="listing-card medium">
+                    <h3>Manta / YellowPages / Superpages <span class="badge badge-medium">MEDIUM</span> <span class="badge badge-free">FREE</span> <span class="badge badge-time">15 min each</span></h3>
+                    <div class="meta">Old-school directories that still generate backlinks for SEO.</div>
+                    <div class="steps">
+                        <ol>
+                            <li><a href="https://www.manta.com/claim" target="_blank">Manta</a> — Claim/add business listing</li>
+                            <li><a href="https://www.yellowpages.com" target="_blank">YellowPages</a> — Add free listing</li>
+                            <li><a href="https://www.superpages.com" target="_blank">Superpages</a> — Add free listing</li>
+                            <li>These are mainly for backlinks — won't generate leads directly but help Google trust your business</li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- LOW/BONUS TIER -->
+        <div class="section">
+            <div class="section-header" onclick="toggleSection(this)">
+                <h2>🔵 Bonus — Extra Backlinks & Niche Directories</h2>
+                <span class="toggle">▼</span>
+            </div>
+            <div class="section-content">
+
+                <div class="listing-card low">
+                    <h3>Foursquare / Swarm <span class="badge badge-low">BONUS</span> <span class="badge badge-free">FREE</span> <span class="badge badge-time">5 min</span></h3>
+                    <div class="meta">Foursquare data feeds into Uber, Samsung, Snapchat, and other apps.</div>
+                    <div class="steps">
+                        <ol>
+                            <li><a href="https://foursquare.com/add-place" target="_blank">Add your business on Foursquare</a></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="listing-card low">
+                    <h3>Hotfrog <span class="badge badge-low">BONUS</span> <span class="badge badge-free">FREE</span> <span class="badge badge-time">5 min</span></h3>
+                    <div class="meta">Free business directory with dofollow backlinks.</div>
+                    <div class="steps">
+                        <ol>
+                            <li><a href="https://www.hotfrog.com" target="_blank">hotfrog.com</a> — Add business listing</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="listing-card low">
+                    <h3>Craigslist Services <span class="badge badge-low">BONUS</span> <span class="badge badge-free">FREE</span> <span class="badge badge-time">10 min</span></h3>
+                    <div class="meta">Free ad in "Services > Household" for St. Louis. Repost weekly.</div>
+                    <div class="steps">
+                        <ol>
+                            <li>Go to <a href="https://stlouis.craigslist.org" target="_blank">stlouis.craigslist.org</a></li>
+                            <li>Post under Services → Household</li>
+                            <li>Use spring cleanup angle in headline</li>
+                            <li>Repost every 7 days (free, Craigslist allows weekly reposts)</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="listing-card low">
+                    <h3>Care.com <span class="badge badge-low">BONUS</span> <span class="badge badge-free">FREE</span> <span class="badge badge-time">10 min</span></h3>
+                    <div class="meta">Pet care category includes waste removal. Good for reaching pet owners.</div>
+                    <div class="steps">
+                        <ol>
+                            <li><a href="https://www.care.com/enroll-business" target="_blank">care.com</a> — Enroll as a pet care business</li>
+                        </ol>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- TAB: Copy-Paste Info -->
+    <div class="tab-content" id="tab-copy">
+        <h2 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Copy-Paste Business Info</h2>
+        <p style="color: var(--text2); font-size: 0.85rem; margin-bottom: 1.5rem;">Use EXACTLY the same info on every listing. Consistency = trust signal for Google (called NAP consistency: Name, Address, Phone).</p>
+
+        <h3 style="margin-bottom: 0.75rem; font-size: 0.95rem;">📛 Business Name (use this EXACT format everywhere)</h3>
+        <div class="copy-box" id="biz-name">Tidy Tails Pet Waste Removal<button class="copy-btn" onclick="copyText('biz-name')">COPY</button></div>
+
+        <h3 style="margin-bottom: 0.75rem; margin-top: 1.25rem; font-size: 0.95rem;">📞 Phone Number</h3>
+        <div class="copy-box" id="biz-phone">Check your tidytailsstl.com contact info — use the SAME number everywhere<button class="copy-btn" onclick="copyText('biz-phone')">COPY</button></div>
+
+        <h3 style="margin-bottom: 0.75rem; margin-top: 1.25rem; font-size: 0.95rem;">🌐 Website</h3>
+        <div class="copy-box" id="biz-web">https://tidytailsstl.com<button class="copy-btn" onclick="copyText('biz-web')">COPY</button></div>
+
+        <h3 style="margin-bottom: 0.75rem; margin-top: 1.25rem; font-size: 0.95rem;">📍 Service Area</h3>
+        <div class="copy-box" id="biz-area">St. Louis County, MO — including Kirkwood, Webster Groves, Ballwin, Creve Coeur, Chesterfield, Olivette, Ladue, Clayton, University City, Brentwood, Rock Hill, Des Peres, Town and Country, Manchester, Wildwood, and surrounding areas.<button class="copy-btn" onclick="copyText('biz-area')">COPY</button></div>
+
+        <h3 style="margin-bottom: 0.75rem; margin-top: 1.25rem; font-size: 0.95rem;">📝 Short Description (100-150 chars — for platforms with character limits)</h3>
+        <div class="copy-box" id="biz-short">Professional pet waste removal in St. Louis County. Weekly scooping starting at $25/visit. First cleanup FREE. Locally owned, reliable, insured.<button class="copy-btn" onclick="copyText('biz-short')">COPY</button></div>
+
+        <h3 style="margin-bottom: 0.75rem; margin-top: 1.25rem; font-size: 0.95rem;">📝 Long Description (for Yelp, GBP, Angi)</h3>
+        <div class="copy-box" id="biz-long">Tidy Tails Pet Waste Removal keeps St. Louis yards clean so you don't have to. We're a locally owned and operated pet waste removal service covering St. Louis County and surrounding areas.
+
+🐕 OUR SERVICES:
+• Weekly pet waste removal — starting at $25/visit
+• Bi-weekly service available
+• One-time spring/fall cleanups
+• Commercial & HOA service
+• No contracts — cancel anytime
+
+🌟 WHY CHOOSE TIDY TAILS?
+• First cleanup is FREE — no risk to try us
+• Locally owned — not a franchise. You'll always talk to the owner.
+• Reliable, consistent service rain or shine
+• Flexible scheduling that works around your life
+• Insured and professional
+
+📍 SERVING: Kirkwood, Webster Groves, Ballwin, Creve Coeur, Chesterfield, Olivette, Ladue, Clayton, Des Peres, Town and Country, and all of St. Louis County.
+
+Life's too short to spend it picking up poop. Let us handle it.
+
+📞 Call or text for a free quote today!
+🌐 tidytailsstl.com<button class="copy-btn" onclick="copyText('biz-long')">COPY</button></div>
+
+        <h3 style="margin-bottom: 0.75rem; margin-top: 1.25rem; font-size: 0.95rem;">🏷️ Categories / Keywords (use on every platform)</h3>
+        <div class="copy-box" id="biz-cats">Primary: Pet Waste Removal Service
+Secondary: Pooper Scooper Service, Dog Waste Cleanup, Yard Cleanup, Pet Care, Lawn Maintenance
+Keywords: pet waste removal, pooper scooper, dog poop cleanup, yard cleaning, St Louis, STL<button class="copy-btn" onclick="copyText('biz-cats')">COPY</button></div>
+
+        <h3 style="margin-bottom: 0.75rem; margin-top: 1.25rem; font-size: 0.95rem;">⏰ Business Hours</h3>
+        <div class="copy-box" id="biz-hours">Monday - Friday: 8:00 AM - 6:00 PM
+Saturday: 9:00 AM - 4:00 PM
+Sunday: Closed<button class="copy-btn" onclick="copyText('biz-hours')">COPY</button></div>
+
+        <div class="alert-green alert" style="margin-top: 1.5rem;">
+            <strong>⚠️ NAP CONSISTENCY IS CRITICAL:</strong> Google cross-references your business Name, Address, and Phone across ALL directories. If your name is "Tidy Tails Pet Waste Removal" on Yelp but "Tidy Tails STL" on Google, it hurts your ranking. Use the EXACT same info everywhere. Every. Single. Time.
+        </div>
+    </div>
+
+    <!-- TAB: 3-Day Plan -->
+    <div class="tab-content" id="tab-plan">
+        <h2 style="margin-bottom: 1rem; font-size: 1.1rem;">🚀 3-Day Directory Blitz Plan</h2>
+
+        <div class="listing-card" style="border-left: 3px solid var(--red);">
+            <h3>Day 1: The Big 3 (45 min total)</h3>
+            <div class="meta">These create the foundation. Everything else builds on top of these.</div>
+            <ul class="checklist" id="day1-checklist">
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Google Business Profile</strong> — Claim, fill out completely, start verification (15 min)</span></li>
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Yelp</strong> — Create business page, add 3+ photos, full description (20 min)</span></li>
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Nextdoor</strong> — Create Business Page, post introduction (15 min)</span></li>
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Text 3 existing customers</strong> asking for a Google/Yelp review (5 min)</span></li>
+            </ul>
+        </div>
+
+        <div class="listing-card" style="border-left: 3px solid var(--orange);">
+            <h3>Day 2: Lead Platforms + Apple/Bing (60 min total)</h3>
+            <div class="meta">Expand your reach to paid lead platforms and alternative search engines.</div>
+            <ul class="checklist" id="day2-checklist">
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Start Google LSA application</strong> — Upload business docs, begin background check process (30 min)</span></li>
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Thumbtack</strong> — Create pro account, set low initial budget (15 min)</span></li>
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Apple Maps (Business Connect)</strong> — Claim listing (10 min)</span></li>
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Bing Places</strong> — Import from GBP or create manually (10 min)</span></li>
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Angi</strong> — Free listing only, DO NOT pay for leads (10 min)</span></li>
+            </ul>
+        </div>
+
+        <div class="listing-card" style="border-left: 3px solid var(--yellow);">
+            <h3>Day 3: Backlink Bonanza (45 min total)</h3>
+            <div class="meta">Stack up free backlinks from every directory you can find.</div>
+            <ul class="checklist" id="day3-checklist">
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>PetWorks.com</strong> — Pet-specific directory (5 min)</span></li>
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Alignable</strong> — B2B network for referral partners (10 min)</span></li>
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Manta</strong> — Free listing (5 min)</span></li>
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>YellowPages</strong> — Free listing (5 min)</span></li>
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Foursquare</strong> — Feeds data to Uber, Samsung, Snapchat (5 min)</span></li>
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Craigslist</strong> — Post in Services → Household (10 min)</span></li>
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Care.com</strong> — Pet care category (5 min)</span></li>
+                <li><input type="checkbox" onchange="saveChecklist(); updateProgress()"> <span><strong>Hotfrog</strong> — Free directory with backlink (5 min)</span></li>
+            </ul>
+        </div>
+
+        <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 0%"></div></div>
+            <div class="progress-label"><span id="progress-text">0 of 17 completed</span><span id="progress-pct">0%</span></div>
+        </div>
+
+        <div class="alert-green alert" style="margin-top: 1rem;">
+            <strong>🎯 AFTER 3 DAYS:</strong> You'll have 15-18 directory listings, each one a backlink pointing to tidytailsstl.com. Within 2-4 weeks, Google will re-crawl these directories, discover the links to your site, and your search ranking will start climbing. Scoop Soldiers did this (with press releases) and ranked within 1 month.
+        </div>
+    </div>
+
+    <!-- TAB: Tracker -->
+    <div class="tab-content" id="tab-tracker">
+        <h2 style="margin-bottom: 1rem; font-size: 1.1rem;">✅ Listing Status Tracker</h2>
+        <p style="color: var(--text2); font-size: 0.85rem; margin-bottom: 1rem;">Track which listings are live. Update as you complete each one.</p>
+
+        <table class="comp-table" id="tracker-table">
+            <thead>
+                <tr>
+                    <th>Directory</th>
+                    <th>Priority</th>
+                    <th>Cost</th>
+                    <th>Status</th>
+                    <th>URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Google Business Profile</td><td><span class="badge badge-critical">CRITICAL</span></td><td>Free</td><td class="tracker-status" data-key="gbp">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="gbp-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>Yelp</td><td><span class="badge badge-critical">CRITICAL</span></td><td>Free</td><td class="tracker-status" data-key="yelp">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="yelp-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>Nextdoor</td><td><span class="badge badge-critical">CRITICAL</span></td><td>Free</td><td class="tracker-status" data-key="nextdoor">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="nextdoor-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>Google LSA</td><td><span class="badge badge-high">HIGH</span></td><td>Per-Lead</td><td class="tracker-status" data-key="glsa">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="glsa-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>Thumbtack</td><td><span class="badge badge-high">HIGH</span></td><td>Per-Lead</td><td class="tracker-status" data-key="thumbtack">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="thumbtack-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>Angi</td><td><span class="badge badge-high">HIGH</span></td><td>Free</td><td class="tracker-status" data-key="angi">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="angi-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>Apple Maps</td><td><span class="badge badge-high">HIGH</span></td><td>Free</td><td class="tracker-status" data-key="apple">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="apple-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>Bing Places</td><td><span class="badge badge-high">HIGH</span></td><td>Free</td><td class="tracker-status" data-key="bing">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="bing-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>BBB</td><td><span class="badge badge-medium">MEDIUM</span></td><td>$400-500/yr</td><td class="tracker-status" data-key="bbb">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="bbb-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>Bark</td><td><span class="badge badge-medium">MEDIUM</span></td><td>Per-Lead</td><td class="tracker-status" data-key="bark">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="bark-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>PetWorks</td><td><span class="badge badge-medium">MEDIUM</span></td><td>Free</td><td class="tracker-status" data-key="petworks">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="petworks-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>Alignable</td><td><span class="badge badge-medium">MEDIUM</span></td><td>Free</td><td class="tracker-status" data-key="alignable">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="alignable-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>Manta</td><td><span class="badge badge-medium">MEDIUM</span></td><td>Free</td><td class="tracker-status" data-key="manta">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="manta-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>YellowPages</td><td><span class="badge badge-medium">MEDIUM</span></td><td>Free</td><td class="tracker-status" data-key="yp">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="yp-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>Foursquare</td><td><span class="badge badge-low">BONUS</span></td><td>Free</td><td class="tracker-status" data-key="foursquare">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="foursquare-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>Craigslist</td><td><span class="badge badge-low">BONUS</span></td><td>Free</td><td class="tracker-status" data-key="craigslist">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="craigslist-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>Care.com</td><td><span class="badge badge-low">BONUS</span></td><td>Free</td><td class="tracker-status" data-key="care">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="care-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+                <tr><td>Hotfrog</td><td><span class="badge badge-low">BONUS</span></td><td>Free</td><td class="tracker-status" data-key="hotfrog">❌ Not Started</td><td><input type="text" class="tracker-url" data-key="hotfrog-url" placeholder="Paste your listing URL" style="width:100%; background:var(--bg2); border:1px solid var(--border); color:var(--text); padding:0.25rem; border-radius:4px; font-size:0.75rem;"></td></tr>
+            </tbody>
+        </table>
+
+        <div style="display: flex; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap;">
+            <button onclick="cycleAllStatuses()" style="padding: 0.5rem 1rem; background: var(--bg4); border: 1px solid var(--border); color: var(--text); border-radius: 8px; cursor: pointer; font-size: 0.8rem;">Click any status cell to cycle: ❌ → ⏳ → ✅</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    // Section toggle
+    function toggleSection(header) {
+        header.parentElement.classList.toggle('collapsed');
+    }
+
+    // Copy to clipboard
+    function copyText(id) {
+        const el = document.getElementById(id);
+        const text = el.innerText || el.textContent;
+        // Remove the "COPY" button text
+        const clean = text.replace(/COPY$/, '').trim();
+        navigator.clipboard.writeText(clean).then(() => {
+            const btn = el.querySelector('.copy-btn');
+            btn.textContent = '✓ COPIED';
+            btn.style.color = 'var(--green)';
+            btn.style.borderColor = 'var(--green)';
+            setTimeout(() => {
+                btn.textContent = 'COPY';
+                btn.style.color = '';
+                btn.style.borderColor = '';
+            }, 2000);
+        });
+    }
+
+    // Checklist persistence
+    const STORAGE_KEY = 'tidy-tails-directory-blitz';
+
+    function saveChecklist() {
+        const state = {};
+        document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb, i) => {
+            state['cb-' + i] = cb.checked;
+            cb.closest('li').classList.toggle('checked', cb.checked);
+        });
+        localStorage.setItem(STORAGE_KEY + '-checklist', JSON.stringify(state));
+    }
+
+    function loadChecklist() {
+        const saved = localStorage.getItem(STORAGE_KEY + '-checklist');
+        if (saved) {
+            const state = JSON.parse(saved);
+            document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb, i) => {
+                cb.checked = state['cb-' + i] || false;
+                cb.closest('li').classList.toggle('checked', cb.checked);
+            });
+        }
+    }
+
+    function updateProgress() {
+        const total = document.querySelectorAll('.checklist input[type="checkbox"]').length;
+        const checked = document.querySelectorAll('.checklist input[type="checkbox"]:checked').length;
+        const pct = Math.round((checked / total) * 100);
+        document.getElementById('progress-fill').style.width = pct + '%';
+        document.getElementById('progress-text').textContent = checked + ' of ' + total + ' completed';
+        document.getElementById('progress-pct').textContent = pct + '%';
+    }
+
+    // Tracker status cycling
+    const statuses = ['❌ Not Started', '⏳ In Progress', '✅ Live'];
+    document.querySelectorAll('.tracker-status').forEach(cell => {
+        cell.style.cursor = 'pointer';
+        cell.addEventListener('click', () => {
+            const key = cell.dataset.key;
+            const current = statuses.indexOf(cell.textContent.trim());
+            const next = (current + 1) % statuses.length;
+            cell.textContent = statuses[next];
+            saveTracker();
+        });
+    });
+
+    // Tracker URL persistence
+    document.querySelectorAll('.tracker-url').forEach(input => {
+        input.addEventListener('change', saveTracker);
+    });
+
+    function saveTracker() {
+        const state = {};
+        document.querySelectorAll('.tracker-status').forEach(cell => {
+            state[cell.dataset.key] = cell.textContent.trim();
+        });
+        document.querySelectorAll('.tracker-url').forEach(input => {
+            state[input.dataset.key] = input.value;
+        });
+        localStorage.setItem(STORAGE_KEY + '-tracker', JSON.stringify(state));
+    }
+
+    function loadTracker() {
+        const saved = localStorage.getItem(STORAGE_KEY + '-tracker');
+        if (saved) {
+            const state = JSON.parse(saved);
+            document.querySelectorAll('.tracker-status').forEach(cell => {
+                if (state[cell.dataset.key]) cell.textContent = state[cell.dataset.key];
+            });
+            document.querySelectorAll('.tracker-url').forEach(input => {
+                if (state[input.dataset.key]) input.value = state[input.dataset.key];
+            });
+        }
+    }
+
+    // Init
+    loadChecklist();
+    loadTracker();
+    updateProgress();
+</script>
+
+</body>
+</html>
