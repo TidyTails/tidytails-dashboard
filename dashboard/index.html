@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TJ's Dashboard | Tidy Tails & Backyard Buildings</title>
+    <title>TJ's Command Center | Tidy Tails & Backyard Buildings</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     <style>
@@ -18,13 +18,15 @@
         body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
 
         .header {
-            background: var(--bg2); border-bottom: 1px solid var(--border);
-            padding: 1.5rem 2rem; text-align: center;
+            background: linear-gradient(135deg, var(--bg2), #1a1520);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 2rem 1.5rem; text-align: center;
         }
         .header h1 { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.03em; }
         .header h1 span { color: var(--orange); }
-        .header p { color: var(--text2); font-size: 0.85rem; margin-top: 0.25rem; }
-        .header-links { display: flex; justify-content: center; gap: 0.75rem; margin-top: 0.75rem; flex-wrap: wrap; }
+        .header .subtitle { color: var(--text2); font-size: 0.85rem; margin-top: 0.25rem; }
+        .header .updated { color: var(--text3); font-size: 0.7rem; margin-top: 0.5rem; font-family: 'JetBrains Mono', monospace; }
+        .header-links { display: flex; justify-content: center; gap: 0.75rem; margin-top: 1rem; flex-wrap: wrap; }
         .header-links a {
             padding: 0.4rem 0.9rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600;
             text-decoration: none; transition: all 0.2s;
@@ -32,356 +34,571 @@
         .h-link-green { background: rgba(16,185,129,0.15); color: var(--green); }
         .h-link-orange { background: rgba(255,107,53,0.15); color: var(--orange); }
         .h-link-blue { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .h-link-yellow { background: rgba(251,191,36,0.15); color: var(--yellow); }
         .header-links a:hover { transform: translateY(-1px); filter: brightness(1.2); }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
 
+        /* Search */
+        .search-wrap { margin-bottom: 1.5rem; position: relative; }
+        .search-wrap input {
+            width: 100%; padding: 0.75rem 1rem 0.75rem 2.5rem;
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            color: var(--text); font-size: 0.9rem; font-family: 'Inter', sans-serif;
+            outline: none; transition: border-color 0.2s;
+        }
+        .search-wrap input:focus { border-color: var(--orange); }
+        .search-wrap input::placeholder { color: var(--text3); }
+        .search-icon { position: absolute; left: 0.85rem; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 0.9rem; }
+        .search-count { position: absolute; right: 0.85rem; top: 50%; transform: translateY(-50%); color: var(--text3); font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; }
+
+        /* Sections */
         .section { margin-bottom: 2rem; }
         .section-header {
             display: flex; align-items: center; gap: 0.5rem;
             margin-bottom: 1rem; padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid var(--border); cursor: pointer;
+            user-select: none;
         }
-        .section-header h2 { font-size: 1.1rem; font-weight: 700; }
+        .section-header:hover { border-color: var(--orange); }
+        .section-header h2 { font-size: 1.1rem; font-weight: 700; flex: 1; }
         .section-header .count {
             font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
             background: var(--bg4); color: var(--text2); padding: 0.15rem 0.5rem;
             border-radius: 4px;
         }
+        .section-header .toggle { color: var(--text3); font-size: 0.8rem; transition: transform 0.2s; }
+        .section.collapsed .section-content { display: none; }
+        .section.collapsed .toggle { transform: rotate(-90deg); }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 0.75rem; }
 
         .card {
             background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
             padding: 1rem; transition: all 0.2s; text-decoration: none; color: var(--text);
-            display: block;
+            display: block; position: relative;
         }
         .card:hover { border-color: var(--orange); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(255,107,53,0.1); }
-        .card-title { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.5rem; }
-        .card-desc { color: var(--text2); font-size: 0.8rem; line-height: 1.4; }
-        .card-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text3); margin-top: 0.5rem; }
+        .card-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 0.5rem; line-height: 1.3; }
+        .card-desc { color: var(--text2); font-size: 0.78rem; line-height: 1.4; }
+        .card-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--text3); margin-top: 0.5rem; display: flex; justify-content: space-between; }
 
         .badge {
             display: inline-block; padding: 0.1rem 0.4rem; border-radius: 4px;
-            font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+            font-size: 0.6rem; font-weight: 700; text-transform: uppercase; white-space: nowrap;
         }
+        .badge-action { background: rgba(239,68,68,0.2); color: var(--red); }
         .badge-tool { background: rgba(255,107,53,0.15); color: var(--orange); }
-        .badge-report { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .badge-growth { background: rgba(16,185,129,0.15); color: var(--green); }
+        .badge-intel { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .badge-shed { background: rgba(168,85,247,0.15); color: var(--purple); }
         .badge-video { background: rgba(168,85,247,0.15); color: var(--purple); }
         .badge-pdf { background: rgba(239,68,68,0.15); color: var(--red); }
-        .badge-site { background: rgba(16,185,129,0.15); color: var(--green); }
-        .badge-new { background: rgba(251,191,36,0.15); color: var(--yellow); }
+        .badge-doc { background: rgba(251,191,36,0.15); color: var(--yellow); }
+
+        .priority-banner {
+            background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(255,107,53,0.1));
+            border: 1px solid rgba(239,68,68,0.3); border-radius: var(--radius);
+            padding: 1rem 1.25rem; margin-bottom: 1.5rem;
+        }
+        .priority-banner h3 { font-size: 0.95rem; color: var(--red); margin-bottom: 0.35rem; }
+        .priority-banner p { font-size: 0.8rem; color: var(--text2); line-height: 1.4; }
+        .priority-banner a { color: var(--orange); text-decoration: underline; }
 
         .divider { border: none; border-top: 1px solid var(--border); margin: 2rem 0; }
 
-        .footer { text-align: center; padding: 2rem; color: var(--text3); font-size: 0.75rem; }
+        .quick-ref { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.75rem; }
+        .ref-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1rem;
+        }
+        .ref-card h4 { font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .ref-card p { font-size: 0.8rem; color: var(--text2); line-height: 1.6; }
+        .ref-card a { color: var(--blue); text-decoration: none; }
+        .ref-card a:hover { text-decoration: underline; }
+
+        .footer { text-align: center; padding: 2rem; color: var(--text3); font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; }
 
         @media (max-width: 600px) {
             .grid { grid-template-columns: 1fr; }
             .header h1 { font-size: 1.35rem; }
+            .quick-ref { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="header">
         <h1>🏠 TJ's <span>Command Center</span></h1>
-        <p>Everything in one place — tools, reports, videos, ads</p>
+        <p class="subtitle">38 tools, playbooks, and reports — organized so you can find what you need</p>
+        <div class="updated">Last updated: March 9, 2026 · 38 items across 6 categories</div>
         <div class="header-links">
             <a href="https://tidytailsstl.com" target="_blank" class="h-link-green">🐕 Tidy Tails Website</a>
             <a href="https://backyardbuildingsstl.com" target="_blank" class="h-link-orange">🏠 Backyard Buildings</a>
-            <a href="https://g.page/r/Ce_hqIHanGLvEAE/review" target="_blank" class="h-link-blue">⭐ Google Reviews</a>
-            <a href="landing.html" target="_blank" class="h-link-green">🌐 Customer Landing Page</a>
+            <a href="https://g.page/r/Ce_hqIHanGLvEAE/review" target="_blank" class="h-link-yellow">⭐ Google Reviews</a>
+            <a href="landing.html" target="_blank" class="h-link-blue">🌐 Customer Landing Page</a>
         </div>
     </div>
 
     <div class="container">
 
-        <!-- TOOLS & CRMS -->
-        <div class="section">
-            <div class="section-header">
-                <h2>🔧 Tools & CRMs</h2>
-                <span class="count">16 tools</span>
-            </div>
-            <div class="grid">
-                <a href="quote-generator.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">💰 NEW</span> Smart Quote Generator</div>
-                    <div class="card-desc">Instant professional quotes with tiered pricing, competitor comparison, and ready-to-send text/email templates. Save quotes, track status, close deals faster.</div>
-                    <div class="card-meta">📱 Quote → Text → Customer in 60 seconds</div>
-                </a>
-                <a href="2026-03-07-SPRING-CUSTOMER-BLITZ.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">🚀 NEW</span> Spring Customer Blitz — Free Trial Playbook</div>
-                    <div class="card-desc">The proven playbook from companies that hit $200K+ year 1. Free trial tracker, copy-paste scripts, review pipeline, pricing strategy, weekly execution plan. Based on real research.</div>
-                    <div class="card-meta">🎯 5 → 25 customers. This is THE plan.</div>
-                </a>
-                <a href="2026-03-07-GROWTH-MODEL.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">📈 NEW</span> Growth Model — Industry Benchmarks</div>
-                    <div class="card-desc">Real industry data: revenue benchmarks, interactive calculator, route optimization math, 5→30 customer roadmap. Sources: Swoop Scoop ($1.4M/yr), Number2Club, FinancialModelsLab.</div>
-                    <div class="card-meta">📊 The actual math to hit $3,250/mo</div>
-                </a>
-                <a href="2026-03-07-GBP-DOMINATION-PLAYBOOK.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">🔥 NEW</span> Google Business Profile Playbook</div>
-                    <div class="card-desc">Step-by-step GBP optimization: claim, verify, photos, reviews, posts, directories. Copy-paste everything. Progress tracker built in.</div>
-                    <div class="card-meta">📍 Fix TJ's #1 problem: invisible in search</div>
-                </a>
-                <a href="2026-03-08-LEAD-RESPONSE-TOOLKIT.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">📞 NEW</span> Lead Response & Sales Toolkit</div>
-                    <div class="card-desc">Speed-to-lead system, text templates, phone scripts, instant quote calculator, objection handlers, follow-up sequences, and lead tracker. Turn inquiries into customers.</div>
-                    <div class="card-meta">⚡ Respond in 5 min → Close 78% more deals</div>
-                </a>
-                <a href="2026-03-08-ONBOARDING-RETENTION.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">🤝 NEW</span> Customer Onboarding & Retention</div>
-                    <div class="card-desc">Turn signups into lifers. Welcome sequence, first service checklist, 90-day retention cadence, referral engine, health scoring, churn prevention — all with copy-paste templates.</div>
-                    <div class="card-meta">💚 92% retention = the difference between 25 and 18 customers</div>
-                </a>
-                <a href="2026-03-08-ROUTE-PROFIT-OPTIMIZER.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">🗺️ NEW</span> Route & Profit Optimizer</div>
-                    <div class="card-desc">Track customers, plan routes by zone, model pricing strategies, project revenue at any scale. Expense tracker, hiring triggers, P&L dashboard — all interactive.</div>
-                    <div class="card-meta">📊 Know your numbers. Plan your growth.</div>
-                </a>
-                <a href="2026-03-08-WEEKLY-POSTING-HUB.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">📱 NEW</span> Weekly Posting Hub — Mar 9-15</div>
-                    <div class="card-desc">21 ready-to-post spring posts across 5 platforms. Daily plan, groups directory, copy buttons, posting tips. Track what you've posted.</div>
-                    <div class="card-meta">📱 3 posts/day × 7 days = 21 chances at new customers</div>
-                </a>
-                <a href="2026-03-07-READY-TO-POST-ADS.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">🔥 NEW</span> Ready-to-Post Ad Pack</div>
-                    <div class="card-desc">19 copy-paste ads: 6 Craigslist, 6 Nextdoor, 4 Facebook, 3 text scripts. One-click copy. 30-min posting plan.</div>
-                    <div class="card-meta">📋 Copy → Paste → Post → Leads</div>
-                </a>
-                <a href="2026-03-07-PRINT-MARKETING-KIT.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">🔥 NEW</span> Print Marketing Kit</div>
-                    <div class="card-desc">Door hangers, flyers, yard signs, biz cards, leave-behind cards — all print-ready. ROI calculator + Staples/VistaPrint ordering guide.</div>
-                    <div class="card-meta">🖨️ Print today → Canvass tomorrow → New customers</div>
-                </a>
-                <a href="2026-03-07-NEIGHBORHOOD-TARGETING.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">🎯 NEW</span> Neighborhood Targeting Intel</div>
-                    <div class="card-desc">20 neighborhoods ranked by Tidy Tails Score. Income, dog density, route clusters. Data-driven targeting for max ROI.</div>
-                    <div class="card-meta">🎯 Fish where the fish are</div>
-                </a>
-                <a href="2026-03-07-CANVASSING-PLANNER.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">🔥 NEW</span> Weekend Canvassing Planner</div>
-                    <div class="card-desc">12 ranked neighborhoods, optimized Saturday route, dog park blitz strategy, door hanger copy, results tracker</div>
-                    <div class="card-meta">🗺️ Hit 200 doors → 3 new customers</div>
-                </a>
-                <a href="2026-03-07-SPRING-CLEANUP-CAMPAIGN.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">🔥 NEW</span> Spring Cleanup Campaign Kit</div>
-                    <div class="card-desc">Complete campaign: pricing, social posts, text scripts, Nextdoor, Craigslist, flyer copy, ROI calculator, execution checklist with tracking</div>
-                    <div class="card-meta">🌱 Goal: 10 cleanups → 3-4 new recurring customers</div>
-                </a>
-                <a href="2026-03-07-SHED-MARKET-INTEL.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">🏠 NEW</span> Shed Market Intel + Spring Ad Pack</div>
-                    <div class="card-desc">13 STL competitors profiled, pricing matrix, 6 Marketplace ads, 4 social posts — all copy-paste ready for spring peak season.</div>
-                    <div class="card-meta">🔥 Spring peak season: March-July</div>
-                </a>
-                <a href="crm/index.html" class="card">
-                    <div class="card-title"><span class="badge badge-tool">CRM</span> Shed Sales CRM</div>
-                    <div class="card-desc">Pipeline board, screenshot OCR upload, lead tracking, follow-up alerts, playbooks</div>
-                    <div class="card-meta">📸 Now with multi-screenshot OCR upload</div>
-                </a>
-                <a href="tidy-tails-crm.html" class="card">
-                    <div class="card-title"><span class="badge badge-tool">CRM</span> Tidy Tails CRM</div>
-                    <div class="card-desc">Customer management, route scheduling, service tracking for all 8 customers</div>
-                    <div class="card-meta">🗓️ Route scheduler built in</div>
-                </a>
-                <a href="jamie-outreach-hub.html" class="card">
-                    <div class="card-title"><span class="badge badge-tool">HUB</span> Jamie's Outreach Hub</div>
-                    <div class="card-desc">43 commercial leads, cold call scripts, objection handling, tracking tips</div>
-                    <div class="card-meta">📞 314-850-7140 • Scripts ready to copy</div>
-                </a>
-                <a href="2026-03-07-REVIEW-GENERATOR.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">NEW</span> Google Review Generator</div>
-                    <div class="card-desc">Copy-paste review request templates, tracking, platform-specific guides</div>
-                    <div class="card-meta">⭐ Get to 5+ reviews for Maps visibility</div>
-                </a>
-                <a href="research/2026-03-07-SPRING-CONTENT-COMMAND-CENTER.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">NEW</span> Spring Content Command Center</div>
-                    <div class="card-desc">28 ready-to-post captions for Facebook, Nextdoor, Instagram — one-click copy</div>
-                    <div class="card-meta">📱 14-day content calendar • Mark as posted</div>
-                </a>
-                <a href="research/2026-03-07-SEO-AUDIT-REPORT.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">NEW</span> SEO Audit & Action Plan</div>
-                    <div class="card-desc">Full website audit — keyword targets, directory checklist, competitor analysis, content plan</div>
-                    <div class="card-meta">🌐 8-post content plan included</div>
-                </a>
-            </div>
+        <!-- Search -->
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search" placeholder="Search tools, reports, playbooks..." autocomplete="off">
+            <span class="search-count" id="searchCount"></span>
         </div>
 
-        <!-- REPORTS & PLAYBOOKS -->
-        <div class="section">
-            <div class="section-header">
-                <h2>📊 Reports & Playbooks</h2>
-                <span class="count">10 reports</span>
-            </div>
-            <div class="grid">
-                <a href="docs/MORNING_BRIEFING_2026-03-06.html" class="card">
-                    <div class="card-title"><span class="badge badge-report">BRIEFING</span> Morning Briefing</div>
-                    <div class="card-desc">Daily priorities, tasks, and business updates</div>
-                    <div class="card-meta">Mar 6, 2026</div>
-                </a>
-                <a href="docs/SHED_ADS_2026-03-06.html" class="card">
-                    <div class="card-title"><span class="badge badge-report">ADS</span> Shed Ad Copy</div>
-                    <div class="card-desc">Facebook Marketplace listings and Instagram captions for sheds</div>
-                    <div class="card-meta">Mar 6, 2026</div>
-                </a>
-                <a href="2026-03-06-SPRING-REFERRAL-BLITZ.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">NEW</span> Spring Referral Blitz</div>
-                    <div class="card-desc">Complete referral campaign — texts, Nextdoor posts, Instagram, tracking</div>
-                    <div class="card-meta">Mar 6, 2026</div>
-                </a>
-                <a href="2026-03-06-SPRING-SHED-PLAYBOOK.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">NEW</span> Spring Shed Playbook</div>
-                    <div class="card-desc">Seasonal shed sales strategy and promotion guide</div>
-                    <div class="card-meta">Mar 6, 2026</div>
-                </a>
-                <a href="research/2026-03-06-GOOGLE-REVIEW-SYSTEM.html" class="card">
-                    <div class="card-title"><span class="badge badge-report">SYSTEM</span> Google Review System</div>
-                    <div class="card-desc">Automated review request workflow and templates</div>
-                    <div class="card-meta">Mar 6, 2026</div>
-                </a>
-                <a href="research/2026-03-06-STL-COMPETITOR-INTELLIGENCE.html" class="card">
-                    <div class="card-title"><span class="badge badge-report">INTEL</span> STL Competitor Intelligence</div>
-                    <div class="card-desc">Full competitive landscape — pricing, territories, threats</div>
-                    <div class="card-meta">Mar 6, 2026</div>
-                </a>
-                <a href="research/2026-03-07-LIVE-SEARCH-AUDIT.html" class="card">
-                    <div class="card-title"><span class="badge badge-report">🔴 NEW</span> Live Search Audit — Who's Beating You</div>
-                    <div class="card-desc">Real-time search results: TJ invisible online, 2 competitors dead, new rival Dr. Scoops in Ballwin, pricing matrix</div>
-                    <div class="card-meta">Mar 7, 2026 • 3 AM live crawl</div>
-                </a>
-                <a href="2026-03-07-COMPETITOR-BATTLE-CARDS.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">⚔️ NEW</span> Competitor Battle Cards — Sales Call Cheat Sheet</div>
-                    <div class="card-desc">9 competitors profiled with pricing, weaknesses, kill scripts, and market gaps. Pull up during sales calls.</div>
-                    <div class="card-meta">Mar 7, 2026 • Live Research</div>
-                </a>
-                <a href="2026-03-08-SPRING-COMPETITOR-UPDATE.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">🔴 NEW</span> Spring 2026 Competitor Intel Update</div>
-                    <div class="card-desc">Fresh market scan: 12+ competitors tracked, live pricing comparison, 3 new entrants spotted, Scoop Soldiers expansion alert. 10-point spring strategy.</div>
-                    <div class="card-meta">Mar 8, 2026 • Live web crawl</div>
-                </a>
-                <a href="2026-03-07-COMPETITOR-INTEL.html" class="card">
-                    <div class="card-title"><span class="badge badge-report">INTEL</span> Competitor Deep Dive + Pricing Matrix</div>
-                    <div class="card-desc">19 competitors mapped — Doggie Doodies is TJ's direct rival in West County. Full pricing comparison & action plan.</div>
-                    <div class="card-meta">Mar 7, 2026</div>
-                </a>
-                <a href="2026-03-07-WEEKEND-ACTION-PLAN.html" class="card">
-                    <div class="card-title"><span class="badge badge-new">NEW</span> Weekend Action Plan</div>
-                    <div class="card-desc">Prioritized tasks for this weekend — what to do first for maximum impact</div>
-                    <div class="card-meta">Mar 7, 2026</div>
-                </a>
-            </div>
+        <!-- PRIORITY BANNER -->
+        <div class="priority-banner">
+            <h3>🔥 Monday Action Plan — Start Here</h3>
+            <p>All the Sunday playbooks condensed into <strong>one prioritized checklist</strong>. Do items #1-3 first (45 min). 
+            <a href="content/2026-03-09-MONDAY-ACTION-PLAN.md" target="_blank">Read the plan →</a></p>
         </div>
 
-        <!-- VIDEOS -->
-        <div class="section">
-            <div class="section-header">
-                <h2>🎬 Video Ads</h2>
-                <span class="count">6 videos</span>
+        <!-- ⚡ THIS WEEK'S PRIORITIES -->
+        <div class="section" id="sec-priorities">
+            <div class="section-header" onclick="toggleSection('sec-priorities')">
+                <h2>⚡ This Week's Priorities</h2>
+                <span class="count">6 items</span>
+                <span class="toggle">▼</span>
             </div>
-            <div class="grid">
-                <div style="grid-column:1/-1; padding:0.5rem 0;">
-                    <div style="color:var(--orange); font-weight:700; font-size:0.85rem; margin-bottom:0.5rem;">🐕 Tidy Tails Ads</div>
+            <div class="section-content">
+                <div class="grid">
+                    <a href="2026-03-09-REVIEW-REQUEST-SYSTEM.html" class="card" data-search="review request google reviews social proof templates">
+                        <div class="card-title"><span class="badge badge-action">DO THIS</span> Review Request System</div>
+                        <div class="card-desc">6 copy-paste text templates to get Google reviews from existing customers. 0 reviews = invisible. This is the #1 blocker.</div>
+                        <div class="card-meta"><span>⭐ 0→5 reviews</span><span>Mar 9</span></div>
+                    </a>
+                    <a href="2026-03-09-VISIBILITY-AUDIT.html" class="card" data-search="visibility audit search seo google invisible competitors">
+                        <div class="card-title"><span class="badge badge-action">READ THIS</span> Visibility Audit — You're Invisible</div>
+                        <div class="card-desc">Live search audit: 0/6 searches found Tidy Tails. 5 competitor deep-dives with real pricing. Ranked problems with fixes.</div>
+                        <div class="card-meta"><span>🔴 0/6 searches</span><span>Mar 9</span></div>
+                    </a>
+                    <a href="2026-03-09-NEIGHBORHOOD-TARGETING.html" class="card" data-search="neighborhood targeting kirkwood webster ballwin spring campaign canvassing">
+                        <div class="card-title"><span class="badge badge-action">USE THIS</span> Spring Neighborhood Targeting</div>
+                        <div class="card-desc">12 neighborhoods ranked by fit. Kirkwood/Webster/Ballwin triangle = priority. 4-week campaign plan with weekly targets.</div>
+                        <div class="card-meta"><span>🎯 Where to find 20 customers</span><span>Mar 9</span></div>
+                    </a>
+                    <a href="2026-03-08-GBP-POSTS.html" class="card" data-search="google business profile posts content weekly gbp seo">
+                        <div class="card-title"><span class="badge badge-action">POST THIS</span> GBP Posts — 4 Weeks Ready</div>
+                        <div class="card-desc">5 copy-paste Google Business Profile posts (Mar 10–Apr 7). Keyword targeted, with photo tips and CTA buttons.</div>
+                        <div class="card-meta"><span>📍 Post Week 1 Monday</span><span>Mar 8</span></div>
+                    </a>
+                    <a href="2026-03-08-WEEKLY-POSTING-HUB.html" class="card" data-search="social media posting hub content calendar facebook nextdoor instagram">
+                        <div class="card-title"><span class="badge badge-action">POST THESE</span> Weekly Posting Hub — Mar 9-15</div>
+                        <div class="card-desc">21 ready-to-post spring posts across 5 platforms. Daily plan, groups directory, copy buttons, posting tips.</div>
+                        <div class="card-meta"><span>📱 3 posts/day × 7 days</span><span>Mar 8</span></div>
+                    </a>
+                    <a href="2026-03-07-READY-TO-POST-ADS.html" class="card" data-search="ads craigslist nextdoor facebook copy paste ready post">
+                        <div class="card-title"><span class="badge badge-growth">ADS</span> Ready-to-Post Ad Pack</div>
+                        <div class="card-desc">19 copy-paste ads: 6 Craigslist, 6 Nextdoor, 4 Facebook, 3 text scripts. One-click copy. 30-min posting plan.</div>
+                        <div class="card-meta"><span>📋 Copy → Paste → Post</span><span>Mar 7</span></div>
+                    </a>
                 </div>
-                <a href="remotion-videos/out/tidy-tails-brand.mp4" class="card">
-                    <div class="card-title"><span class="badge badge-video">VIDEO</span> Brand Story</div>
-                    <div class="card-desc">Tidy Tails brand intro motion graphics</div>
-                    <div class="card-meta">1.2MB • Remotion</div>
-                </a>
-                <a href="remotion-videos/out/tidy-tails-transformation.mp4" class="card">
-                    <div class="card-title"><span class="badge badge-video">VIDEO</span> Before/After Transformation</div>
-                    <div class="card-desc">Before vs after yard cleanup animation</div>
-                    <div class="card-meta">670KB • Remotion</div>
-                </a>
-
-
-                <div style="grid-column:1/-1; padding:0.5rem 0; margin-top:0.5rem;">
-                    <div style="color:var(--orange); font-weight:700; font-size:0.85rem; margin-bottom:0.5rem;">🏠 Shed & Consulting Ads</div>
-                </div>
-                <a href="remotion-videos/out/shed-math.mp4" class="card">
-                    <div class="card-title"><span class="badge badge-video">VIDEO</span> Shed Math</div>
-                    <div class="card-desc">Cost breakdown — pennies a day for 20+ years</div>
-                    <div class="card-meta">825KB • Remotion</div>
-                </a>
-                <a href="remotion-videos/out/shed-spring.mp4" class="card">
-                    <div class="card-title"><span class="badge badge-video">VIDEO</span> Spring Shed Sale</div>
-                    <div class="card-desc">Seasonal shed promotion</div>
-                    <div class="card-meta">718KB • Remotion</div>
-                </a>
-                <a href="remotion-videos/out/consulting-packages.mp4" class="card">
-                    <div class="card-title"><span class="badge badge-video">VIDEO</span> Consulting Packages</div>
-                    <div class="card-desc">AI consulting service tiers</div>
-                    <div class="card-meta">1.6MB • Remotion</div>
-                </a>
-                <a href="remotion-videos/out/consulting-problem.mp4" class="card">
-                    <div class="card-title"><span class="badge badge-video">VIDEO</span> Consulting Problem</div>
-                    <div class="card-desc">The problem AI consulting solves</div>
-                    <div class="card-meta">716KB • Remotion</div>
-                </a>
             </div>
         </div>
 
-        <!-- PDFs -->
-        <div class="section">
-            <div class="section-header">
-                <h2>📄 PDFs & Documents</h2>
-                <span class="count">6 PDFs</span>
+        <!-- 🔧 CORE TOOLS -->
+        <div class="section" id="sec-tools">
+            <div class="section-header" onclick="toggleSection('sec-tools')">
+                <h2>🔧 Core Business Tools</h2>
+                <span class="count">9 tools</span>
+                <span class="toggle">▼</span>
             </div>
-            <div class="grid">
-                <a href="pdfs/MORNING_BRIEFING_2026-03-07.pdf" class="card">
-                    <div class="card-title"><span class="badge badge-pdf">PDF</span> Morning Briefing</div>
-                    <div class="card-desc">Daily briefing — Mar 7</div>
-                    <div class="card-meta">Mar 7, 2026 • 378KB</div>
-                </a>
-                <a href="pdfs/MORNING_BRIEFING_2026-03-06.pdf" class="card">
-                    <div class="card-title"><span class="badge badge-pdf">PDF</span> Morning Briefing</div>
-                    <div class="card-desc">Daily briefing — Mar 6</div>
-                    <div class="card-meta">Mar 6, 2026</div>
-                </a>
-                <a href="pdfs/SHED_ADS_2026-03-07.pdf" class="card">
-                    <div class="card-title"><span class="badge badge-pdf">PDF</span> Shed Ads</div>
-                    <div class="card-desc">Shed Marketplace ad copy — Mar 7</div>
-                    <div class="card-meta">Mar 7, 2026 • 70KB</div>
-                </a>
-                <a href="pdfs/SHED_ADS_2026-03-06.pdf" class="card">
-                    <div class="card-title"><span class="badge badge-pdf">PDF</span> Shed Ads</div>
-                    <div class="card-desc">Shed Marketplace ad copy — Mar 6</div>
-                    <div class="card-meta">Mar 6, 2026 • 412KB</div>
-                </a>
-                <a href="pdfs/SPRING-FLYER-KIT-2026.pdf" class="card">
-                    <div class="card-title"><span class="badge badge-pdf">PDF</span> Spring Flyer Kit</div>
-                    <div class="card-desc">Printable door hangers & flyers</div>
-                    <div class="card-meta">Spring 2026 • 706KB</div>
-                </a>
-                <a href="pdfs/EOD_SUMMARY_2026-03-06.pdf" class="card">
-                    <div class="card-title"><span class="badge badge-pdf">PDF</span> End of Day Summary</div>
-                    <div class="card-desc">Daily recap — Mar 6</div>
-                    <div class="card-meta">Mar 6, 2026 • 706KB</div>
-                </a>
+            <div class="section-content">
+                <div class="grid">
+                    <a href="quote-generator.html" class="card" data-search="quote generator pricing calculator send text email">
+                        <div class="card-title"><span class="badge badge-tool">TOOL</span> Smart Quote Generator</div>
+                        <div class="card-desc">Instant professional quotes with tiered pricing, competitor comparison, and ready-to-send text/email templates.</div>
+                        <div class="card-meta"><span>📱 Quote → Text → Customer in 60 sec</span></div>
+                    </a>
+                    <a href="tidy-tails-crm.html" class="card" data-search="crm customer management tidy tails route scheduling">
+                        <div class="card-title"><span class="badge badge-tool">CRM</span> Tidy Tails CRM</div>
+                        <div class="card-desc">Customer management, route scheduling, service tracking for all customers.</div>
+                        <div class="card-meta"><span>🗓️ Route scheduler built in</span></div>
+                    </a>
+                    <a href="crm/index.html" class="card" data-search="crm shed sales pipeline screenshot ocr leads">
+                        <div class="card-title"><span class="badge badge-tool">CRM</span> Shed Sales CRM</div>
+                        <div class="card-desc">Pipeline board, screenshot OCR upload, lead tracking, follow-up alerts, playbooks.</div>
+                        <div class="card-meta"><span>📸 Multi-screenshot OCR upload</span></div>
+                    </a>
+                    <a href="2026-03-08-ROUTE-PROFIT-OPTIMIZER.html" class="card" data-search="route optimizer profit revenue projection expenses hiring calculator">
+                        <div class="card-title"><span class="badge badge-tool">TOOL</span> Route & Profit Optimizer</div>
+                        <div class="card-desc">Track customers, plan routes by zone, model pricing strategies, project revenue. Expense tracker, hiring triggers, P&L dashboard.</div>
+                        <div class="card-meta"><span>📊 Know your numbers</span><span>Mar 8</span></div>
+                    </a>
+                    <a href="2026-03-08-LEAD-RESPONSE-TOOLKIT.html" class="card" data-search="lead response sales speed phone scripts text templates objection follow up">
+                        <div class="card-title"><span class="badge badge-tool">TOOL</span> Lead Response & Sales Toolkit</div>
+                        <div class="card-desc">Speed-to-lead system, text templates, phone scripts, instant quote calculator, objection handlers, follow-up sequences, and lead tracker.</div>
+                        <div class="card-meta"><span>⚡ Respond in 5 min → Close 78% more</span><span>Mar 8</span></div>
+                    </a>
+                    <a href="2026-03-08-ONBOARDING-RETENTION.html" class="card" data-search="onboarding retention welcome sequence churn prevention referral">
+                        <div class="card-title"><span class="badge badge-tool">TOOL</span> Customer Onboarding & Retention</div>
+                        <div class="card-desc">Welcome sequence, first service checklist, 90-day retention cadence, referral engine, health scoring, churn prevention.</div>
+                        <div class="card-meta"><span>💚 92% retention = sustainable growth</span><span>Mar 8</span></div>
+                    </a>
+                    <a href="2026-03-07-REVIEW-GENERATOR.html" class="card" data-search="review generator google reviews request templates tracking">
+                        <div class="card-title"><span class="badge badge-tool">TOOL</span> Google Review Generator</div>
+                        <div class="card-desc">Copy-paste review request templates, tracking, platform-specific guides.</div>
+                        <div class="card-meta"><span>⭐ Get to 5+ reviews</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="jamie-outreach-hub.html" class="card" data-search="jamie outreach commercial cold call scripts objection leads">
+                        <div class="card-title"><span class="badge badge-tool">HUB</span> Jamie's Outreach Hub</div>
+                        <div class="card-desc">43 commercial leads, cold call scripts, objection handling, tracking tips.</div>
+                        <div class="card-meta"><span>📞 314-850-7140 • Scripts ready</span></div>
+                    </a>
+                    <a href="seo-command-center.html" class="card" data-search="seo command center search engine optimization tracking">
+                        <div class="card-title"><span class="badge badge-tool">TOOL</span> SEO Command Center</div>
+                        <div class="card-desc">Search engine optimization tracking and management dashboard.</div>
+                        <div class="card-meta"><span>🌐 Track your SEO progress</span></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📈 GROWTH & MARKETING -->
+        <div class="section" id="sec-growth">
+            <div class="section-header" onclick="toggleSection('sec-growth')">
+                <h2>📈 Growth & Marketing</h2>
+                <span class="count">12 playbooks</span>
+                <span class="toggle">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="grid">
+                    <a href="2026-03-07-SPRING-CUSTOMER-BLITZ.html" class="card" data-search="spring customer blitz free trial playbook growth 25 customers">
+                        <div class="card-title"><span class="badge badge-growth">STRATEGY</span> Spring Customer Blitz — Free Trial Playbook</div>
+                        <div class="card-desc">The proven playbook from companies that hit $200K+ year 1. Free trial tracker, scripts, review pipeline, pricing strategy. 5→25 customers.</div>
+                        <div class="card-meta"><span>🎯 THE plan for 25 customers</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="2026-03-07-GROWTH-MODEL.html" class="card" data-search="growth model revenue benchmark calculator roadmap industry data">
+                        <div class="card-title"><span class="badge badge-growth">MODEL</span> Growth Model — Industry Benchmarks</div>
+                        <div class="card-desc">Real industry data: revenue benchmarks, interactive calculator, route optimization math, 5→30 customer roadmap.</div>
+                        <div class="card-meta"><span>📊 The math to hit $3,250/mo</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="2026-03-07-GBP-DOMINATION-PLAYBOOK.html" class="card" data-search="google business profile gbp optimization claim verify photos reviews posts directories">
+                        <div class="card-title"><span class="badge badge-growth">PLAYBOOK</span> Google Business Profile Playbook</div>
+                        <div class="card-desc">Step-by-step GBP optimization: claim, verify, photos, reviews, posts, directories. Copy-paste everything. Progress tracker.</div>
+                        <div class="card-meta"><span>📍 Fix being invisible in search</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="2026-03-07-LEAD-FOLLOWUP-PIPELINE.html" class="card" data-search="lead follow up pipeline sequence automation nurture">
+                        <div class="card-title"><span class="badge badge-growth">SYSTEM</span> Lead Follow-Up Pipeline</div>
+                        <div class="card-desc">Automated follow-up sequences for every pipeline stage. Never let a lead go cold.</div>
+                        <div class="card-meta"><span>🔄 Systematic follow-up</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="2026-03-07-SPRING-CLEANUP-CAMPAIGN.html" class="card" data-search="spring cleanup campaign pricing social posts text scripts nextdoor craigslist flyer">
+                        <div class="card-title"><span class="badge badge-growth">CAMPAIGN</span> Spring Cleanup Campaign Kit</div>
+                        <div class="card-desc">Complete campaign: pricing, social posts, text scripts, Nextdoor, Craigslist, flyer copy, ROI calculator, execution checklist.</div>
+                        <div class="card-meta"><span>🌱 10 cleanups → 3-4 recurring</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="2026-03-07-WEEKLY-CONTENT-CALENDAR.html" class="card" data-search="content calendar weekly social media schedule posting plan">
+                        <div class="card-title"><span class="badge badge-growth">CALENDAR</span> Weekly Content Calendar</div>
+                        <div class="card-desc">Full weekly content schedule across all platforms with ready-to-use posts.</div>
+                        <div class="card-meta"><span>📅 Plan your week</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="2026-03-07-CANVASSING-PLANNER.html" class="card" data-search="canvassing planner door to door neighborhoods route saturday door hangers">
+                        <div class="card-title"><span class="badge badge-growth">PLANNER</span> Weekend Canvassing Planner</div>
+                        <div class="card-desc">12 ranked neighborhoods, optimized Saturday route, dog park blitz strategy, door hanger copy, results tracker.</div>
+                        <div class="card-meta"><span>🗺️ Hit 200 doors → 3 new customers</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="2026-03-07-PRINT-MARKETING-KIT.html" class="card" data-search="print marketing door hangers flyers yard signs business cards leave behind">
+                        <div class="card-title"><span class="badge badge-growth">KIT</span> Print Marketing Kit</div>
+                        <div class="card-desc">Door hangers, flyers, yard signs, biz cards, leave-behind cards — all print-ready. ROI calculator + ordering guide.</div>
+                        <div class="card-meta"><span>🖨️ Print today → Canvass tomorrow</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="2026-03-06-SPRING-REFERRAL-BLITZ.html" class="card" data-search="referral blitz program texts nextdoor instagram tracking spring">
+                        <div class="card-title"><span class="badge badge-growth">CAMPAIGN</span> Spring Referral Blitz</div>
+                        <div class="card-desc">Complete referral campaign — texts, Nextdoor posts, Instagram, tracking.</div>
+                        <div class="card-meta"><span>🔄 Turn customers into recruiters</span><span>Mar 6</span></div>
+                    </a>
+                    <a href="2026-03-06-DIRECTORY-LISTING-BLITZ.html" class="card" data-search="directory listing blitz yelp nextdoor thumbtack bing apple maps">
+                        <div class="card-title"><span class="badge badge-growth">BLITZ</span> Directory Listing Blitz</div>
+                        <div class="card-desc">Copy-paste kit for listing on all 10 major directories. Pre-written descriptions, step-by-step walkthroughs.</div>
+                        <div class="card-meta"><span>📇 0 → 10 directories in 2 hours</span><span>Mar 6</span></div>
+                    </a>
+                    <a href="2026-03-06-PRICING-STRATEGY.html" class="card" data-search="pricing strategy tiers competitor comparison margin">
+                        <div class="card-title"><span class="badge badge-growth">STRATEGY</span> Pricing Strategy</div>
+                        <div class="card-desc">Competitive pricing analysis, tier recommendations, and margin optimization.</div>
+                        <div class="card-meta"><span>💰 Price it right</span><span>Mar 6</span></div>
+                    </a>
+                    <a href="research/2026-03-07-SPRING-CONTENT-COMMAND-CENTER.html" class="card" data-search="content command center spring captions facebook nextdoor instagram copy paste">
+                        <div class="card-title"><span class="badge badge-growth">HUB</span> Spring Content Command Center</div>
+                        <div class="card-desc">28 ready-to-post captions for Facebook, Nextdoor, Instagram — one-click copy.</div>
+                        <div class="card-meta"><span>📱 14-day content calendar</span><span>Mar 7</span></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🔍 COMPETITOR INTEL -->
+        <div class="section" id="sec-intel">
+            <div class="section-header" onclick="toggleSection('sec-intel')">
+                <h2>🔍 Competitor Intel & Research</h2>
+                <span class="count">9 reports</span>
+                <span class="toggle">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="grid">
+                    <a href="2026-03-08-SPRING-COMPETITOR-UPDATE.html" class="card" data-search="spring competitor update market scan pricing new entrants scoop soldiers">
+                        <div class="card-title"><span class="badge badge-intel">LATEST</span> Spring 2026 Competitor Update</div>
+                        <div class="card-desc">12+ competitors tracked, live pricing, 3 new entrants, Scoop Soldiers expansion alert. 10-point spring strategy.</div>
+                        <div class="card-meta"><span>🔴 Latest market scan</span><span>Mar 8</span></div>
+                    </a>
+                    <a href="2026-03-07-COMPETITOR-BATTLE-CARDS.html" class="card" data-search="competitor battle cards sales call cheat sheet kill scripts pricing weaknesses">
+                        <div class="card-title"><span class="badge badge-intel">CARDS</span> Competitor Battle Cards</div>
+                        <div class="card-desc">9 competitors profiled with pricing, weaknesses, kill scripts, and market gaps. Pull up during sales calls.</div>
+                        <div class="card-meta"><span>⚔️ Use during calls</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="2026-03-07-COMPETITOR-PRICING-LIVE.html" class="card" data-search="competitor pricing live matrix comparison rates">
+                        <div class="card-title"><span class="badge badge-intel">PRICING</span> Live Competitor Pricing</div>
+                        <div class="card-desc">Real-time pricing comparison across all major competitors in the STL market.</div>
+                        <div class="card-meta"><span>💰 Know their prices</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="2026-03-07-COMPETITOR-INTEL.html" class="card" data-search="competitor deep dive pricing matrix doggie doodies 19 competitors">
+                        <div class="card-title"><span class="badge badge-intel">REPORT</span> Competitor Deep Dive</div>
+                        <div class="card-desc">19 competitors mapped — Doggie Doodies is TJ's direct rival in West County. Full pricing comparison & action plan.</div>
+                        <div class="card-meta"><span>📊 19 competitors mapped</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="2026-03-07-COMPETITOR-LIVE-SCAN.html" class="card" data-search="competitor live scan search google results who shows up">
+                        <div class="card-title"><span class="badge badge-intel">SCAN</span> Competitor Live Scan</div>
+                        <div class="card-desc">Live Google search results — who shows up and why.</div>
+                        <div class="card-meta"><span>🔍 Real-time search data</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="2026-03-07-NEIGHBORHOOD-TARGETING.html" class="card" data-search="neighborhood targeting 20 neighborhoods ranked income dog density route clusters">
+                        <div class="card-title"><span class="badge badge-intel">DATA</span> Neighborhood Targeting Intel</div>
+                        <div class="card-desc">20 neighborhoods ranked by Tidy Tails Score. Income, dog density, route clusters. Data-driven targeting.</div>
+                        <div class="card-meta"><span>🎯 Fish where the fish are</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="2026-03-07-COMMERCIAL-LEADS-PACK.html" class="card" data-search="commercial leads apartments hoa property management vet clinics phone numbers">
+                        <div class="card-title"><span class="badge badge-intel">LEADS</span> Commercial Leads Pack</div>
+                        <div class="card-desc">40 commercial leads with phone numbers across 4 categories — apartments, HOAs, vets, property management.</div>
+                        <div class="card-meta"><span>📇 40 leads ready to call</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="research/2026-03-07-LIVE-SEARCH-AUDIT.html" class="card" data-search="live search audit google results who beats you rankings">
+                        <div class="card-title"><span class="badge badge-intel">AUDIT</span> Live Search Audit — Who's Beating You</div>
+                        <div class="card-desc">Real-time search results audit. TJ invisible online, 2 competitors dead, new rival Dr. Scoops in Ballwin.</div>
+                        <div class="card-meta"><span>🔴 Live crawl data</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="research/2026-03-06-STL-COMPETITOR-INTELLIGENCE.html" class="card" data-search="stl competitor intelligence landscape pricing territories threats">
+                        <div class="card-title"><span class="badge badge-intel">REPORT</span> STL Competitor Intelligence</div>
+                        <div class="card-desc">Full competitive landscape — pricing, territories, threats.</div>
+                        <div class="card-meta"><span>📊 Full landscape</span><span>Mar 6</span></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🏗️ SHED BUSINESS -->
+        <div class="section" id="sec-shed">
+            <div class="section-header" onclick="toggleSection('sec-shed')">
+                <h2>🏗️ Shed Business — Backyard Buildings</h2>
+                <span class="count">4 items</span>
+                <span class="toggle">▼</span>
+            </div>
+            <div class="section-content">
+                <div class="grid">
+                    <a href="2026-03-08-SHED-FOLLOW-UP.html" class="card" data-search="shed follow up sales text email sequences quoted leads pipeline close">
+                        <div class="card-title"><span class="badge badge-shed">SALES</span> Shed Sales Follow-Up System</div>
+                        <div class="card-desc">Complete text/email sequences for all 27 leads. 3 pipeline stages (quoted, pre-quote, post-install), copy-paste templates, timing cadences.</div>
+                        <div class="card-meta"><span>🏗️ Close more of those 27 leads</span><span>Mar 8</span></div>
+                    </a>
+                    <a href="2026-03-07-SHED-MARKET-INTEL.html" class="card" data-search="shed market intel competitors pricing marketplace ads spring peak">
+                        <div class="card-title"><span class="badge badge-shed">INTEL</span> Shed Market Intel + Spring Ad Pack</div>
+                        <div class="card-desc">13 STL competitors profiled, pricing matrix, 6 Marketplace ads, 4 social posts — copy-paste ready for spring peak.</div>
+                        <div class="card-meta"><span>🔥 Spring peak: March-July</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="2026-03-06-SPRING-SHED-PLAYBOOK.html" class="card" data-search="spring shed playbook seasonal sales strategy promotion guide">
+                        <div class="card-title"><span class="badge badge-shed">PLAYBOOK</span> Spring Shed Playbook</div>
+                        <div class="card-desc">Seasonal shed sales strategy and promotion guide.</div>
+                        <div class="card-meta"><span>📋 Spring strategy</span><span>Mar 6</span></div>
+                    </a>
+                    <a href="crm/index.html" class="card" data-search="crm shed sales pipeline screenshot ocr leads follow up">
+                        <div class="card-title"><span class="badge badge-shed">CRM</span> Shed Sales CRM</div>
+                        <div class="card-desc">Pipeline board, screenshot OCR upload, lead tracking, follow-up alerts.</div>
+                        <div class="card-meta"><span>📸 Track your pipeline</span></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 🎬 VIDEOS & PDFS -->
+        <div class="section" id="sec-media">
+            <div class="section-header" onclick="toggleSection('sec-media')">
+                <h2>🎬 Videos & Documents</h2>
+                <span class="count">6 videos · 10 PDFs · 3 briefings</span>
+                <span class="toggle">▼</span>
+            </div>
+            <div class="section-content">
+                <p style="color:var(--text2); font-size:0.8rem; margin-bottom:1rem;">🐕 <strong>Tidy Tails Ads</strong></p>
+                <div class="grid">
+                    <a href="remotion-videos/out/tidy-tails-brand.mp4" class="card" data-search="video brand story tidy tails motion graphics">
+                        <div class="card-title"><span class="badge badge-video">VIDEO</span> Brand Story</div>
+                        <div class="card-desc">Tidy Tails brand intro motion graphics</div>
+                        <div class="card-meta"><span>1.2MB • Remotion</span></div>
+                    </a>
+                    <a href="remotion-videos/out/tidy-tails-transformation.mp4" class="card" data-search="video before after transformation yard cleanup">
+                        <div class="card-title"><span class="badge badge-video">VIDEO</span> Before/After Transformation</div>
+                        <div class="card-desc">Before vs after yard cleanup animation</div>
+                        <div class="card-meta"><span>670KB • Remotion</span></div>
+                    </a>
+                </div>
+
+                <p style="color:var(--text2); font-size:0.8rem; margin: 1rem 0;">🏠 <strong>Shed & Consulting Ads</strong></p>
+                <div class="grid">
+                    <a href="remotion-videos/out/shed-math.mp4" class="card" data-search="video shed math cost breakdown pennies day">
+                        <div class="card-title"><span class="badge badge-video">VIDEO</span> Shed Math</div>
+                        <div class="card-desc">Cost breakdown — pennies a day for 20+ years</div>
+                        <div class="card-meta"><span>825KB</span></div>
+                    </a>
+                    <a href="remotion-videos/out/shed-spring.mp4" class="card" data-search="video spring shed sale promotion seasonal">
+                        <div class="card-title"><span class="badge badge-video">VIDEO</span> Spring Shed Sale</div>
+                        <div class="card-desc">Seasonal shed promotion</div>
+                        <div class="card-meta"><span>718KB</span></div>
+                    </a>
+                    <a href="remotion-videos/out/consulting-packages.mp4" class="card" data-search="video consulting packages ai service tiers">
+                        <div class="card-title"><span class="badge badge-video">VIDEO</span> Consulting Packages</div>
+                        <div class="card-desc">AI consulting service tiers</div>
+                        <div class="card-meta"><span>1.6MB</span></div>
+                    </a>
+                    <a href="remotion-videos/out/consulting-problem.mp4" class="card" data-search="video consulting problem ai solves">
+                        <div class="card-title"><span class="badge badge-video">VIDEO</span> Consulting Problem</div>
+                        <div class="card-desc">The problem AI consulting solves</div>
+                        <div class="card-meta"><span>716KB</span></div>
+                    </a>
+                </div>
+
+                <p style="color:var(--text2); font-size:0.8rem; margin: 1rem 0;">📄 <strong>PDFs & Briefings</strong></p>
+                <div class="grid">
+                    <a href="pdfs/MORNING_BRIEFING_2026-03-08.pdf" class="card" data-search="pdf morning briefing march 8">
+                        <div class="card-title"><span class="badge badge-pdf">PDF</span> Morning Briefing — Mar 8</div>
+                        <div class="card-desc">Daily priorities, tasks, and business updates</div>
+                        <div class="card-meta"><span>Mar 8, 2026</span></div>
+                    </a>
+                    <a href="pdfs/MORNING_BRIEFING_2026-03-07.pdf" class="card" data-search="pdf morning briefing march 7">
+                        <div class="card-title"><span class="badge badge-pdf">PDF</span> Morning Briefing — Mar 7</div>
+                        <div class="card-desc">Daily priorities, tasks, and business updates</div>
+                        <div class="card-meta"><span>Mar 7, 2026</span></div>
+                    </a>
+                    <a href="pdfs/MORNING_BRIEFING_2026-03-06.pdf" class="card" data-search="pdf morning briefing march 6">
+                        <div class="card-title"><span class="badge badge-pdf">PDF</span> Morning Briefing — Mar 6</div>
+                        <div class="card-desc">Daily priorities, tasks, and business updates</div>
+                        <div class="card-meta"><span>Mar 6, 2026</span></div>
+                    </a>
+                    <a href="pdfs/EOD_SUMMARY_2026-03-08.pdf" class="card" data-search="pdf eod end of day summary march 8">
+                        <div class="card-title"><span class="badge badge-pdf">PDF</span> EOD Summary — Mar 8</div>
+                        <div class="card-desc">Daily recap</div>
+                        <div class="card-meta"><span>Mar 8, 2026</span></div>
+                    </a>
+                    <a href="pdfs/EOD_SUMMARY_2026-03-07.pdf" class="card" data-search="pdf eod end of day summary march 7">
+                        <div class="card-title"><span class="badge badge-pdf">PDF</span> EOD Summary — Mar 7</div>
+                        <div class="card-desc">Daily recap</div>
+                        <div class="card-meta"><span>Mar 7, 2026</span></div>
+                    </a>
+                    <a href="pdfs/EOD_SUMMARY_2026-03-06.pdf" class="card" data-search="pdf eod end of day summary march 6">
+                        <div class="card-title"><span class="badge badge-pdf">PDF</span> EOD Summary — Mar 6</div>
+                        <div class="card-desc">Daily recap</div>
+                        <div class="card-meta"><span>Mar 6, 2026</span></div>
+                    </a>
+                    <a href="pdfs/SHED_ADS_2026-03-08.pdf" class="card" data-search="pdf shed ads marketplace march 8">
+                        <div class="card-title"><span class="badge badge-pdf">PDF</span> Shed Ads — Mar 8</div>
+                        <div class="card-desc">Shed Marketplace ad copy</div>
+                        <div class="card-meta"><span>Mar 8, 2026</span></div>
+                    </a>
+                    <a href="pdfs/SHED_ADS_2026-03-07.pdf" class="card" data-search="pdf shed ads marketplace march 7">
+                        <div class="card-title"><span class="badge badge-pdf">PDF</span> Shed Ads — Mar 7</div>
+                        <div class="card-desc">Shed Marketplace ad copy</div>
+                        <div class="card-meta"><span>Mar 7, 2026</span></div>
+                    </a>
+                    <a href="pdfs/SHED_ADS_2026-03-06.pdf" class="card" data-search="pdf shed ads marketplace march 6">
+                        <div class="card-title"><span class="badge badge-pdf">PDF</span> Shed Ads — Mar 6</div>
+                        <div class="card-desc">Shed Marketplace ad copy</div>
+                        <div class="card-meta"><span>Mar 6, 2026</span></div>
+                    </a>
+                    <a href="pdfs/SPRING-FLYER-KIT-2026.pdf" class="card" data-search="pdf spring flyer kit printable door hangers">
+                        <div class="card-title"><span class="badge badge-pdf">PDF</span> Spring Flyer Kit</div>
+                        <div class="card-desc">Printable door hangers & flyers</div>
+                        <div class="card-meta"><span>Spring 2026</span></div>
+                    </a>
+                </div>
+
+                <p style="color:var(--text2); font-size:0.8rem; margin: 1rem 0;">📊 <strong>HTML Briefings & Reports</strong></p>
+                <div class="grid">
+                    <a href="docs/MORNING_BRIEFING_2026-03-08.html" class="card" data-search="html morning briefing march 8 interactive">
+                        <div class="card-title"><span class="badge badge-doc">HTML</span> Morning Briefing — Mar 8</div>
+                        <div class="card-desc">Interactive version with expandable sections</div>
+                        <div class="card-meta"><span>Mar 8, 2026</span></div>
+                    </a>
+                    <a href="docs/MORNING_BRIEFING_2026-03-07.html" class="card" data-search="html morning briefing march 7 interactive">
+                        <div class="card-title"><span class="badge badge-doc">HTML</span> Morning Briefing — Mar 7</div>
+                        <div class="card-desc">Interactive version with expandable sections</div>
+                        <div class="card-meta"><span>Mar 7, 2026</span></div>
+                    </a>
+                    <a href="docs/MORNING_BRIEFING_2026-03-06.html" class="card" data-search="html morning briefing march 6 interactive">
+                        <div class="card-title"><span class="badge badge-doc">HTML</span> Morning Briefing — Mar 6</div>
+                        <div class="card-desc">Interactive version with expandable sections</div>
+                        <div class="card-meta"><span>Mar 6, 2026</span></div>
+                    </a>
+                    <a href="research/2026-03-07-SEO-AUDIT-REPORT.html" class="card" data-search="seo audit report website keywords directory competitor content plan">
+                        <div class="card-title"><span class="badge badge-doc">REPORT</span> SEO Audit & Action Plan</div>
+                        <div class="card-desc">Full website audit — keyword targets, directory checklist, competitor analysis, content plan.</div>
+                        <div class="card-meta"><span>🌐 8-post content plan included</span><span>Mar 7</span></div>
+                    </a>
+                    <a href="research/2026-03-06-GOOGLE-REVIEW-SYSTEM.html" class="card" data-search="google review system automated request workflow templates">
+                        <div class="card-title"><span class="badge badge-doc">SYSTEM</span> Google Review System</div>
+                        <div class="card-desc">Automated review request workflow and templates.</div>
+                        <div class="card-meta"><span>Mar 6</span></div>
+                    </a>
+                    <a href="2026-03-07-WEEKEND-ACTION-PLAN.html" class="card" data-search="weekend action plan prioritized tasks impact">
+                        <div class="card-title"><span class="badge badge-doc">PLAN</span> Weekend Action Plan</div>
+                        <div class="card-desc">Prioritized tasks for the weekend — what to do first for maximum impact.</div>
+                        <div class="card-meta"><span>Mar 7</span></div>
+                    </a>
+                </div>
             </div>
         </div>
 
         <!-- QUICK REFERENCE -->
         <hr class="divider">
-        <div class="section">
-            <div class="section-header">
+        <div class="section" id="sec-ref">
+            <div class="section-header" onclick="toggleSection('sec-ref')">
                 <h2>📌 Quick Reference</h2>
+                <span class="toggle">▼</span>
             </div>
-            <div class="grid">
-                <div class="card" style="cursor:default;">
-                    <div class="card-title">🐕 Tidy Tails</div>
-                    <div class="card-desc">
-                        📞 <strong>314-850-7140</strong><br>
-                        🌐 <a href="https://tidytailsstl.com" target="_blank" style="color:var(--blue)">tidytailsstl.com</a><br>
-                        ⭐ <a href="https://g.page/r/Ce_hqIHanGLvEAE/review" target="_blank" style="color:var(--yellow)">Google Reviews</a><br>
-                        💰 $25/wk · $45 biweekly · $70/mo · $100 one-time
+            <div class="section-content">
+                <div class="quick-ref">
+                    <div class="ref-card">
+                        <h4>🐕 Tidy Tails</h4>
+                        <p>
+                            📞 <strong>314-850-7140</strong><br>
+                            🌐 <a href="https://tidytailsstl.com" target="_blank">tidytailsstl.com</a><br>
+                            ⭐ <a href="https://g.page/r/Ce_hqIHanGLvEAE/review" target="_blank">Google Reviews</a><br>
+                            💰 $25/wk · $45 biweekly · $70/mo · $100 one-time
+                        </p>
                     </div>
-                </div>
-                <div class="card" style="cursor:default;">
-                    <div class="card-title">🏠 Backyard Buildings STL</div>
-                    <div class="card-desc">
-                        📞 <strong>636-354-7406</strong><br>
-                        🌐 <a href="https://backyardbuildingsstl.com" target="_blank" style="color:var(--blue)">backyardbuildingsstl.com</a><br>
-                        📧 darius@backyardbuildingsstl.com<br>
-                        🏗️ TuffShed / WoodMaster dealer
+                    <div class="ref-card">
+                        <h4>🏠 Backyard Buildings STL</h4>
+                        <p>
+                            📞 <strong>636-354-7406</strong><br>
+                            🌐 <a href="https://backyardbuildingsstl.com" target="_blank">backyardbuildingsstl.com</a><br>
+                            📧 darius@backyardbuildingsstl.com<br>
+                            🏗️ TuffShed / WoodMaster dealer
+                        </p>
+                    </div>
+                    <div class="ref-card">
+                        <h4>📊 Key Stats</h4>
+                        <p>
+                            🎯 Goal: 25-30 customers by Aug 2025<br>
+                            📈 Current: ~5 recurring customers<br>
+                            ⭐ Google Reviews: 0 (need 5+)<br>
+                            🔧 Dashboard Tools: 38
+                        </p>
+                    </div>
+                    <div class="ref-card">
+                        <h4>🏆 Top 3 Priorities</h4>
+                        <p>
+                            1️⃣ Get 5 Google reviews<br>
+                            2️⃣ Get listed in directories<br>
+                            3️⃣ Post weekly on GBP + socials
+                        </p>
                     </div>
                 </div>
             </div>
@@ -389,7 +606,47 @@
     </div>
 
     <div class="footer">
-        Last updated: March 8, 2026 · Built by Franklin 🐕💩
+        Last updated: March 9, 2026 · Built & maintained by Franklin 🐕💩<br>
+        38 tools across 6 categories · Search works on all items
     </div>
+
+    <script>
+        // Section toggle
+        function toggleSection(id) {
+            document.getElementById(id).classList.toggle('collapsed');
+        }
+
+        // Search
+        const searchInput = document.getElementById('search');
+        const searchCount = document.getElementById('searchCount');
+        const allCards = document.querySelectorAll('.card[data-search]');
+        const allSections = document.querySelectorAll('.section');
+
+        searchInput.addEventListener('input', function() {
+            const q = this.value.toLowerCase().trim();
+            if (!q) {
+                allCards.forEach(c => c.style.display = '');
+                allSections.forEach(s => s.classList.remove('collapsed'));
+                searchCount.textContent = '';
+                return;
+            }
+            let visible = 0;
+            allCards.forEach(card => {
+                const text = (card.dataset.search || '') + ' ' + card.textContent.toLowerCase();
+                const match = q.split(' ').every(word => text.includes(word));
+                card.style.display = match ? '' : 'none';
+                if (match) visible++;
+            });
+            searchCount.textContent = visible + ' result' + (visible !== 1 ? 's' : '');
+            // Expand sections with visible cards, collapse empty ones
+            allSections.forEach(sec => {
+                const cards = sec.querySelectorAll('.card[data-search]');
+                const hasVisible = Array.from(cards).some(c => c.style.display !== 'none');
+                if (cards.length > 0) {
+                    sec.classList.toggle('collapsed', !hasVisible);
+                }
+            });
+        });
+    </script>
 </body>
 </html>
