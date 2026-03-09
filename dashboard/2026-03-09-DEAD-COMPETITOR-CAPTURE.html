@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 Dead Competitor Customer Capture — Tidy Tails</title>
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #14141f;
+  --surface2: #1a1a2e;
+  --border: #2a2a3e;
+  --text: #e8e8f0;
+  --muted: #8888aa;
+  --accent: #ff4444;
+  --accent2: #ff6b35;
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --purple: #a855f7;
+  --yellow: #eab308;
+  --gold: #f59e0b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+.header {
+  background: linear-gradient(135deg, #1a0000 0%, #2a0a0a 50%, #1a0000 100%);
+  border-bottom: 2px solid var(--accent);
+  padding: 2rem;
+  text-align: center;
+}
+.header h1 { font-size: 2rem; color: var(--accent); margin-bottom: 0.5rem; }
+.header .subtitle { color: var(--muted); font-size: 1.1rem; }
+.header .urgency {
+  display: inline-block;
+  background: var(--accent);
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-weight: 700;
+  margin-top: 1rem;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+
+/* Opportunity Cards */
+.opp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+.opp-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+.opp-card:hover { transform: translateY(-3px); }
+.opp-header {
+  padding: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.opp-header.dead { background: linear-gradient(135deg, #2a0a0a, #1a0000); border-bottom: 2px solid var(--accent); }
+.opp-name { font-size: 1.3rem; font-weight: 700; }
+.opp-status {
+  padding: 0.3rem 0.8rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.status-dead { background: var(--accent); color: white; }
+.opp-body { padding: 1.2rem; }
+.opp-detail { display: flex; gap: 0.5rem; margin-bottom: 0.6rem; font-size: 0.9rem; }
+.opp-detail .label { color: var(--muted); min-width: 80px; }
+.opp-detail .value { color: var(--text); }
+.opp-customers {
+  background: var(--surface2);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+.opp-customers h4 { color: var(--gold); margin-bottom: 0.5rem; font-size: 0.9rem; }
+
+/* Section Headers */
+.section { margin: 3rem 0 1.5rem; }
+.section h2 {
+  font-size: 1.5rem;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Strategy Tabs */
+.tabs { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.tab {
+  padding: 0.6rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  transition: all 0.2s;
+}
+.tab:hover { border-color: var(--accent); color: var(--text); }
+.tab.active { background: var(--accent); color: white; border-color: var(--accent); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* Post Cards */
+.post-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.post-card .platform {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.platform-fb { background: #1877f2; color: white; }
+.platform-nd { background: #8bc34a; color: #1a1a1a; }
+.platform-google { background: #4285f4; color: white; }
+.platform-flyer { background: var(--purple); color: white; }
+.platform-text { background: var(--gold); color: #1a1a1a; }
+.post-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+.post-card .target { color: var(--muted); font-size: 0.85rem; margin-bottom: 0.8rem; }
+.post-copy {
+  background: var(--surface2);
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+  position: relative;
+  margin-bottom: 0.8rem;
+}
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.copy-btn:hover { background: #cc3333; }
+.post-notes { color: var(--muted); font-size: 0.8rem; font-style: italic; }
+
+/* Action Plan */
+.action-plan {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.day-header {
+  background: var(--surface2);
+  padding: 0.8rem 1.2rem;
+  font-weight: 700;
+  color: var(--accent2);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.day-header:hover { background: #1e1e30; }
+.day-content {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.action-item {
+  display: flex;
+  gap: 0.8rem;
+  align-items: flex-start;
+  padding: 0.5rem 0;
+}
+.action-item input[type="checkbox"] {
+  margin-top: 0.3rem;
+  accent-color: var(--green);
+  width: 18px;
+  height: 18px;
+}
+.action-item label { font-size: 0.9rem; cursor: pointer; }
+.action-item label.done { text-decoration: line-through; color: var(--muted); }
+.action-time { color: var(--muted); font-size: 0.8rem; min-width: 60px; }
+
+/* Revenue Calculator */
+.calc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0; }
+.calc-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.2rem;
+  text-align: center;
+}
+.calc-number { font-size: 2rem; font-weight: 800; color: var(--green); }
+.calc-label { color: var(--muted); font-size: 0.85rem; margin-top: 0.3rem; }
+.calc-sublabel { color: var(--muted); font-size: 0.75rem; }
+
+/* Neighborhoods */
+.hood-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+.hood-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+}
+.hood-card h4 { color: var(--accent2); margin-bottom: 0.5rem; }
+.hood-card .competitor { color: var(--accent); font-size: 0.85rem; margin-bottom: 0.3rem; }
+.hood-card .opportunity { color: var(--green); font-size: 0.85rem; }
+.hood-priority {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  margin-left: 0.5rem;
+}
+.priority-hot { background: var(--accent); color: white; }
+.priority-warm { background: var(--gold); color: #1a1a1a; }
+
+/* Google Ads Keywords */
+.keyword-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+.keyword-table th, .keyword-table td {
+  padding: 0.7rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.keyword-table th {
+  background: var(--surface2);
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+}
+.keyword-table td { font-size: 0.9rem; }
+
+/* Stats Bar */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.stat-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+.stat-value { font-size: 1.8rem; font-weight: 800; }
+.stat-label { color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem; }
+.stat-red { color: var(--accent); }
+.stat-green { color: var(--green); }
+.stat-gold { color: var(--gold); }
+.stat-blue { color: var(--blue); }
+
+@media (max-width: 768px) {
+  .opp-grid { grid-template-columns: 1fr; }
+  .header h1 { font-size: 1.5rem; }
+  .calc-grid { grid-template-columns: 1fr 1fr; }
+  .stats-bar { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎯 Dead Competitor Customer Capture</h1>
+  <div class="subtitle">3 competitors just went dark. Their customers need somewhere to go. Let's make sure it's us.</div>
+  <div class="urgency">⚡ TIME-SENSITIVE — Orphaned customers are actively searching NOW</div>
+</div>
+
+<div class="container">
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-value stat-red">3</div>
+      <div class="stat-label">Dead Competitors</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value stat-gold">~75-150</div>
+      <div class="stat-label">Estimated Orphaned Customers</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value stat-green">$5,250-$10,500</div>
+      <div class="stat-label">Monthly Revenue Pool</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value stat-blue">12+</div>
+      <div class="stat-label">Neighborhoods to Target</div>
+    </div>
+  </div>
+
+  <!-- Dead Competitor Intel -->
+  <div class="section">
+    <h2>💀 Dead Competitor Intel</h2>
+  </div>
+
+  <div class="opp-grid">
+    <!-- Fresh Paws -->
+    <div class="opp-card">
+      <div class="opp-header dead">
+        <span class="opp-name">Fresh Paws</span>
+        <span class="opp-status status-dead">DEAD</span>
+      </div>
+      <div class="opp-body">
+        <div class="opp-detail"><span class="label">Website:</span><span class="value">wearefreshpaws.com — Squarespace expired</span></div>
+        <div class="opp-detail"><span class="label">Areas:</span><span class="value">Western STL County & St. Charles</span></div>
+        <div class="opp-detail"><span class="label">Pricing:</span><span class="value">Unknown (site gone)</span></div>
+        <div class="opp-detail"><span class="label">Overlap:</span><span class="value">HIGH — Chesterfield, Wildwood, Ballwin</span></div>
+        <div class="opp-customers">
+          <h4>🎯 Why This Matters</h4>
+          <p style="font-size:0.85rem">Served TJ's exact territory. Their western STL customers have NO local alternative except Doggie Doodies. If we move fast, we get them before Doggie Doodies does.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pawfect Waste Solutions -->
+    <div class="opp-card">
+      <div class="opp-header dead">
+        <span class="opp-name">Pawfect Waste Solutions</span>
+        <span class="opp-status status-dead">DEAD</span>
+      </div>
+      <div class="opp-body">
+        <div class="opp-detail"><span class="label">Website:</span><span class="value">pooperscooperstl.com — "Site Not Found"</span></div>
+        <div class="opp-detail"><span class="label">Areas:</span><span class="value">STL City & County wide</span></div>
+        <div class="opp-detail"><span class="label">Pricing:</span><span class="value">Unknown (site gone)</span></div>
+        <div class="opp-detail"><span class="label">Overlap:</span><span class="value">MEDIUM — Broader STL coverage</span></div>
+        <div class="opp-customers">
+          <h4>🎯 Why This Matters</h4>
+          <p style="font-size:0.85rem">Broad coverage means their customers could be anywhere in STL county. Target the neighborhoods where TJ already operates — those customers are easiest to service.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Poopy Paws -->
+    <div class="opp-card">
+      <div class="opp-header dead">
+        <span class="opp-name">Poopy Paws</span>
+        <span class="opp-status status-dead">DEAD</span>
+      </div>
+      <div class="opp-body">
+        <div class="opp-detail"><span class="label">Website:</span><span class="value">poopypaws314.com — DNS failure</span></div>
+        <div class="opp-detail"><span class="label">Areas:</span><span class="value">STL County (314 area code)</span></div>
+        <div class="opp-detail"><span class="label">Pricing:</span><span class="value">$20/wk flat rate (was cheapest local)</span></div>
+        <div class="opp-detail"><span class="label">Overlap:</span><span class="value">HIGH — Core STL County</span></div>
+        <div class="opp-customers">
+          <h4>🎯 Why This Matters</h4>
+          <p style="font-size:0.85rem">At $20/wk flat rate, their customers were price-conscious. Offer a "switching bonus" — first cleanup free or first month at a discount to convert them. They're used to paying less than TJ's rate.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Campaign Content -->
+  <div class="section">
+    <h2>📢 Campaign Content — Ready to Post</h2>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('fb')">📘 Facebook Posts</div>
+    <div class="tab" onclick="switchTab('nd')">🏡 Nextdoor Posts</div>
+    <div class="tab" onclick="switchTab('google')">🔍 Google Strategy</div>
+    <div class="tab" onclick="switchTab('text')">📱 Text/DM Scripts</div>
+    <div class="tab" onclick="switchTab('flyer')">📄 Flyer Copy</div>
+  </div>
+
+  <!-- Facebook Posts -->
+  <div id="tab-fb" class="tab-content active">
+    <div class="post-card">
+      <span class="platform platform-fb">Facebook — Local Groups</span>
+      <h3>The "We're Here" Post (General)</h3>
+      <div class="target">Target: Ballwin/Manchester/Chesterfield/Wildwood community groups</div>
+      <div class="post-copy" id="fb1">Hey neighbors! 👋
+
+If your pet waste removal service recently stopped showing up (or their website disappeared 👀), you're not alone — a few companies in the STL area have quietly shut down.
+
+Tidy Tails is still here, still scooping, and taking on new customers in Ballwin, Chesterfield, Wildwood, Manchester, Ellisville, Des Peres, and surrounding areas.
+
+🐕 Weekly or bi-weekly service
+🏡 Residential & commercial
+💰 Free first cleanup for new customers
+📱 Easy text scheduling
+
+We know it's frustrating when your service ghosts you. Let's make sure your yard stays clean. DM me or text [PHONE] for a free quote!
+
+#TidyTails #PetWasteRemoval #STL #Ballwin #Chesterfield #Wildwood
+        <button class="copy-btn" onclick="copyText('fb1')">Copy</button></div>
+      <div class="post-notes">📌 Post in: Ballwin Community, Chesterfield Neighbors, Wildwood Living, Manchester MO groups</div>
+    </div>
+
+    <div class="post-card">
+      <span class="platform platform-fb">Facebook — Targeted</span>
+      <h3>The "Price Match" Post (For Poopy Paws' Budget Customers)</h3>
+      <div class="target">Target: STL County groups where Poopy Paws operated ($20/wk customers)</div>
+      <div class="post-copy" id="fb2">Looking for affordable pet waste removal in STL County? 🐾
+
+If your old service closed down, I get it — it's a pain to find someone reliable again. 
+
+Tidy Tails is offering a special switching deal:
+✅ First cleanup FREE (we'll tackle the backlog)
+✅ First month 15% off
+✅ No contracts, cancel anytime
+✅ Text-based scheduling (no phone tag)
+
+We service weekly starting at $70/month for most yards. Your dogs deserve a clean yard and YOU deserve to not step in it. 😂
+
+Text [PHONE] or DM me — I'll get back to you within an hour.
+        <button class="copy-btn" onclick="copyText('fb2')">Copy</button></div>
+      <div class="post-notes">📌 Note: Poopy Paws charged $20/wk (~$80/mo). TJ at $70/mo is actually CHEAPER. Lead with that.</div>
+    </div>
+
+    <div class="post-card">
+      <span class="platform platform-fb">Facebook — Spring Angle</span>
+      <h3>The "Spring Cleanup + Dead Competitor" Combo</h3>
+      <div class="target">Target: All STL County groups, pet owner groups</div>
+      <div class="post-copy" id="fb3">Spring is here and so are the landmines in your backyard 💣🐕
+
+Fun fact: 3 pet waste removal companies in the STL area have shut down since the start of the year. If your yard's been piling up, now's the time to get it handled.
+
+Tidy Tails Spring Cleanup Special:
+🌱 One-time deep clean — we clear EVERYTHING
+🔄 Or start weekly service with FREE first cleanup
+📍 Serving Ballwin, Chesterfield, Wildwood, Manchester, Ellisville, Des Peres, Kirkwood, Webster Groves & more
+
+Your neighbor's yard is clean. Yours should be too.
+
+Text [PHONE] or visit tidytailspets.com
+        <button class="copy-btn" onclick="copyText('fb3')">Copy</button></div>
+      <div class="post-notes">📌 Don't name the dead competitors directly — let people connect the dots. Looks classier.</div>
+    </div>
+
+    <div class="post-card">
+      <span class="platform platform-fb">Facebook — Social Proof</span>
+      <h3>The "We're Not Going Anywhere" Post</h3>
+      <div class="target">Target: All service area groups</div>
+      <div class="post-copy" id="fb4">A few people have asked me lately: "Are you guys sticking around?" 
+
+I get it. Some pet waste services in STL have come and gone. Here's what I can tell you about Tidy Tails:
+
+✅ Locally owned (not a franchise)
+✅ I personally do the scooping
+✅ Been doing this over a year
+✅ Not going anywhere
+
+If reliability matters to you (and if you've been burned before, it probably does), let's talk. First cleanup is on me.
+
+Text [PHONE] 🐕💩
+        <button class="copy-btn" onclick="copyText('fb4')">Copy</button></div>
+      <div class="post-notes">📌 This one works great AFTER the other posts. Builds trust by addressing the fear directly.</div>
+    </div>
+  </div>
+
+  <!-- Nextdoor Posts -->
+  <div id="tab-nd" class="tab-content">
+    <div class="post-card">
+      <span class="platform platform-nd">Nextdoor — Recommendation Request</span>
+      <h3>Neighborhood Introduction</h3>
+      <div class="target">Target: Ballwin, Chesterfield, Wildwood, Manchester neighborhoods</div>
+      <div class="post-copy" id="nd1">Hi neighbors! I run Tidy Tails, a local pet waste removal service covering our area. 
+
+I know a couple of other pooper scooper services have recently closed up shop, so if you (or someone you know) lost their service, I'd love to help out.
+
+I offer weekly cleanups, and your first one is free so you can see the quality before committing. No contracts. Just a clean yard.
+
+Happy to answer any questions! You can reach me at [PHONE].
+        <button class="copy-btn" onclick="copyText('nd1')">Copy</button></div>
+      <div class="post-notes">📌 Nextdoor tip: Post in "For Sale & Free" → Services category. Keep it neighborly, not salesy.</div>
+    </div>
+
+    <div class="post-card">
+      <span class="platform platform-nd">Nextdoor — Q&A Style</span>
+      <h3>The Helpful Answer (Reply to existing pet posts)</h3>
+      <div class="target">Target: Any post about pets, yard care, or service recommendations</div>
+      <div class="post-copy" id="nd2">Just wanted to throw this out there — if anyone's pet waste removal company stopped showing up (I've heard from a few neighbors this happened), Tidy Tails is local and taking on new clients. 
+
+I serve [NEIGHBORHOOD] and surrounding areas. First cleanup is free and there's no contract. Text me at [PHONE] anytime!
+        <button class="copy-btn" onclick="copyText('nd2')">Copy</button></div>
+      <div class="post-notes">📌 Only post this as a reply when relevant. Don't spam — Nextdoor will flag you. One reply per week max.</div>
+    </div>
+
+    <div class="post-card">
+      <span class="platform platform-nd">Nextdoor — Spring Cleanup</span>
+      <h3>Seasonal + Competitor Void Combo</h3>
+      <div class="target">Target: All neighborhoods in service area</div>
+      <div class="post-copy" id="nd3">Spring is here and yards are… ripe 😅
+
+If you've been putting off the backyard cleanup (or your old service closed), Tidy Tails can help. I do one-time deep cleans and weekly service throughout Ballwin, Chesterfield, Wildwood, Manchester, and surrounding areas.
+
+Spring special: First cleanup free for new weekly customers!
+
+I'm a local owner, not a franchise — just me and my trusty scooper. DM or text [PHONE]. 🐕💩
+        <button class="copy-btn" onclick="copyText('nd3')">Copy</button></div>
+      <div class="post-notes">📌 Self-deprecating humor works great on Nextdoor. These are your neighbors.</div>
+    </div>
+  </div>
+
+  <!-- Google Strategy -->
+  <div id="tab-google" class="tab-content">
+    <div class="post-card">
+      <span class="platform platform-google">Google — SEO Strategy</span>
+      <h3>Keywords Their Customers Are Searching Right Now</h3>
+      <div class="target">People who had a service and need a new one are searching differently than first-timers</div>
+      
+      <table class="keyword-table">
+        <thead>
+          <tr>
+            <th>Keyword/Search Term</th>
+            <th>Intent</th>
+            <th>Priority</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>"pet waste removal near me"</td>
+            <td>Direct search for replacement</td>
+            <td><span style="color:var(--accent)">🔴 HIGH</span></td>
+          </tr>
+          <tr>
+            <td>"pooper scooper service STL"</td>
+            <td>Generic replacement search</td>
+            <td><span style="color:var(--accent)">🔴 HIGH</span></td>
+          </tr>
+          <tr>
+            <td>"Fresh Paws pet waste"</td>
+            <td>Looking for old provider</td>
+            <td><span style="color:var(--gold)">🟡 MED</span></td>
+          </tr>
+          <tr>
+            <td>"pooperscooperstl.com"</td>
+            <td>Looking for Pawfect Waste</td>
+            <td><span style="color:var(--gold)">🟡 MED</span></td>
+          </tr>
+          <tr>
+            <td>"dog poop cleanup Ballwin MO"</td>
+            <td>Fresh Paws territory</td>
+            <td><span style="color:var(--accent)">🔴 HIGH</span></td>
+          </tr>
+          <tr>
+            <td>"dog poop cleanup Chesterfield MO"</td>
+            <td>Fresh Paws/Doggie Doodies territory</td>
+            <td><span style="color:var(--accent)">🔴 HIGH</span></td>
+          </tr>
+          <tr>
+            <td>"yard cleanup service Wildwood"</td>
+            <td>Fresh Paws territory</td>
+            <td><span style="color:var(--gold)">🟡 MED</span></td>
+          </tr>
+          <tr>
+            <td>"pet waste removal Kirkwood"</td>
+            <td>Pawfect territory</td>
+            <td><span style="color:var(--accent)">🔴 HIGH</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="post-notes">📌 Action: Create blog posts or GBP updates targeting these keywords. Google will rank TJ higher when competitors' sites are dead (less competition in results).</div>
+    </div>
+
+    <div class="post-card">
+      <span class="platform platform-google">Google — GBP Posts</span>
+      <h3>Google Business Profile Post — Capture Searchers</h3>
+      <div class="post-copy" id="gbp1">🌱 Spring Cleanup Special — New Customers Welcome!
+
+Some pet waste services in the St. Louis area have recently closed. If you're looking for a reliable, LOCAL replacement, Tidy Tails has you covered.
+
+✅ First cleanup FREE
+✅ Weekly & bi-weekly service
+✅ Serving Ballwin, Chesterfield, Wildwood, Manchester, Ellisville, Des Peres, Kirkwood, Webster Groves
+✅ No contracts — cancel anytime
+
+Text us for a free quote! 🐕💩
+        <button class="copy-btn" onclick="copyText('gbp1')">Copy</button></div>
+      <div class="post-notes">📌 Post this to GBP weekly. Google shows GBP posts in local search results — this is free advertising.</div>
+    </div>
+
+    <div class="post-card">
+      <span class="platform platform-google">Google — Domain Opportunity</span>
+      <h3>💡 Consider Buying Dead Competitor Domains</h3>
+      <div class="target">Redirect their old customers to your site</div>
+      <div style="background: var(--surface2); border-radius: 8px; padding: 1rem; font-size: 0.9rem;">
+        <p><strong>pooperscooperstl.com</strong> — Check availability. If you can buy it for <$20/year, redirect it to tidytailspets.com. Anyone who bookmarked or remembers Pawfect's URL will land on YOUR site.</p>
+        <br>
+        <p><strong>poopypaws314.com</strong> — Same play. DNS is dead, domain may be expiring. Check GoDaddy/Namecheap for availability.</p>
+        <br>
+        <p><strong>wearefreshpaws.com</strong> — Squarespace expired but domain may still be registered. Worth checking.</p>
+        <br>
+        <p style="color:var(--green)"><strong>Cost:</strong> $10-20/year per domain. <strong>Value:</strong> Captures anyone searching for old provider by URL. Even 1-2 customers per year = positive ROI.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Text/DM Scripts -->
+  <div id="tab-text" class="tab-content">
+    <div class="post-card">
+      <span class="platform platform-text">Text — Cold Outreach</span>
+      <h3>If You Find a Dead Competitor's Customer (via reviews, social, etc.)</h3>
+      <div class="post-copy" id="txt1">Hey [NAME]! I noticed you used to use [COMPANY] for pet waste removal — looks like they might have closed down. I run Tidy Tails, a local service in the [AREA] area. 
+
+If you're looking for someone reliable, I'd love to help out. First cleanup is free and no contract required. Let me know! 🐕
+        <button class="copy-btn" onclick="copyText('txt1')">Copy</button></div>
+      <div class="post-notes">📌 Only use if you genuinely find their info via public reviews/recommendations. Don't be creepy about it.</div>
+    </div>
+
+    <div class="post-card">
+      <span class="platform platform-text">Text — Follow-up</span>
+      <h3>Follow-up to Cold Text (If No Response After 3 Days)</h3>
+      <div class="post-copy" id="txt2">Hey [NAME], just following up — totally understand if you found someone else! If you ever need pet waste removal in the future, keep Tidy Tails in mind. We're local and not going anywhere 👍
+        <button class="copy-btn" onclick="copyText('txt2')">Copy</button></div>
+      <div class="post-notes">📌 One follow-up max. Never send a third text. Let it go.</div>
+    </div>
+
+    <div class="post-card">
+      <span class="platform platform-text">DM — Facebook</span>
+      <h3>Reply to Anyone Asking About Pet Waste Services in Groups</h3>
+      <div class="post-copy" id="dm1">Hey! I saw you're looking for a pooper scooper service — I run Tidy Tails and service [AREA]. First cleanup is free so you can see what we're about. Happy to answer any questions! 🐕💩
+        <button class="copy-btn" onclick="copyText('dm1')">Copy</button></div>
+      <div class="post-notes">📌 Be the first to DM when someone posts asking for recommendations. Speed wins.</div>
+    </div>
+  </div>
+
+  <!-- Flyer Copy -->
+  <div id="tab-flyer" class="tab-content">
+    <div class="post-card">
+      <span class="platform platform-flyer">Flyer — Door Hanger</span>
+      <h3>Target Neighborhoods Where Dead Competitors Operated</h3>
+      <div class="target">Print and distribute in Fresh Paws/Pawfect/Poopy Paws service areas</div>
+      <div class="post-copy" id="flyer1">LOST YOUR POOPER SCOOPER? 🐕💩
+━━━━━━━━━━━━━━━━━━━━━━━
+
+Your old pet waste service may have closed.
+We're still here. 👋
+
+TIDY TAILS
+Local • Reliable • Not Going Anywhere
+
+✅ Weekly cleanup — $70/month
+✅ First cleanup FREE
+✅ No contract required
+✅ Text-based scheduling
+
+📱 Text [PHONE] for a free quote
+🌐 tidytailspets.com
+
+━━━━━━━━━━━━━━━━━━━━━━━
+Serving: Ballwin | Chesterfield | Wildwood
+Manchester | Ellisville | Des Peres | Kirkwood
+        <button class="copy-btn" onclick="copyText('flyer1')">Copy</button></div>
+      <div class="post-notes">📌 Print 50-100 door hangers via Vistaprint (~$30). Drop in neighborhoods where competitors operated. Target houses with visible dog toys/fences.</div>
+    </div>
+
+    <div class="post-card">
+      <span class="platform platform-flyer">Flyer — Business Card Drop</span>
+      <h3>Leave at Vet Clinics, Pet Stores, Dog Parks</h3>
+      <div class="post-copy" id="flyer2">TIDY TAILS — PET WASTE REMOVAL
+━━━━━━━━━━━━━━━━━━━━━━━
+
+Need a NEW pooper scooper?
+(Your old one might have closed!)
+
+🐕 Weekly service from $70/mo
+🎁 First cleanup FREE
+📱 Text [PHONE]
+🌐 tidytailspets.com
+
+"Your neighbor's yard is clean.
+  Yours should be too."
+        <button class="copy-btn" onclick="copyText('flyer2')">Copy</button></div>
+      <div class="post-notes">📌 Ask vet clinic front desks if you can leave cards. Most say yes. They get asked about waste services all the time.</div>
+    </div>
+  </div>
+
+  <!-- Target Neighborhoods -->
+  <div class="section">
+    <h2>📍 Priority Neighborhoods to Hit</h2>
+  </div>
+  <p style="color:var(--muted); margin-bottom:1rem;">These are where dead competitors operated AND where TJ already services. Lowest-friction wins.</p>
+
+  <div class="hood-grid">
+    <div class="hood-card">
+      <h4>Ballwin <span class="hood-priority priority-hot">HOT</span></h4>
+      <div class="competitor">💀 Fresh Paws served here</div>
+      <div class="competitor">⚔️ Doggie Doodies also targets here</div>
+      <div class="opportunity">✅ TJ already services — zero travel overhead</div>
+    </div>
+    <div class="hood-card">
+      <h4>Chesterfield <span class="hood-priority priority-hot">HOT</span></h4>
+      <div class="competitor">💀 Fresh Paws served here</div>
+      <div class="competitor">⚔️ Doggie Doodies HQ is here</div>
+      <div class="opportunity">✅ High-income area, higher willingness to pay</div>
+    </div>
+    <div class="hood-card">
+      <h4>Wildwood <span class="hood-priority priority-hot">HOT</span></h4>
+      <div class="competitor">💀 Fresh Paws served here</div>
+      <div class="opportunity">✅ Large lots = bigger job = more revenue per customer</div>
+    </div>
+    <div class="hood-card">
+      <h4>Manchester <span class="hood-priority priority-warm">WARM</span></h4>
+      <div class="competitor">💀 Pawfect served STL County broadly</div>
+      <div class="opportunity">✅ TJ already services — route-efficient</div>
+    </div>
+    <div class="hood-card">
+      <h4>Ellisville <span class="hood-priority priority-warm">WARM</span></h4>
+      <div class="competitor">💀 Fresh Paws likely served here</div>
+      <div class="opportunity">✅ Between Ballwin & Chesterfield — easy add</div>
+    </div>
+    <div class="hood-card">
+      <h4>Des Peres <span class="hood-priority priority-warm">WARM</span></h4>
+      <div class="competitor">💀 Pawfect served STL County broadly</div>
+      <div class="opportunity">✅ Affluent area, pet-friendly</div>
+    </div>
+    <div class="hood-card">
+      <h4>Kirkwood <span class="hood-priority priority-hot">HOT</span></h4>
+      <div class="competitor">💀 Pawfect served here (pooperscooperstl.com)</div>
+      <div class="opportunity">✅ Dense neighborhood, lots of dog owners, walkable routes</div>
+    </div>
+    <div class="hood-card">
+      <h4>Webster Groves <span class="hood-priority priority-warm">WARM</span></h4>
+      <div class="competitor">💀 Pawfect served STL County broadly</div>
+      <div class="opportunity">✅ Adjacent to Kirkwood — easy expansion</div>
+    </div>
+  </div>
+
+  <!-- Revenue Calculator -->
+  <div class="section">
+    <h2>💰 Revenue Opportunity Calculator</h2>
+  </div>
+  <p style="color:var(--muted); margin-bottom:1rem;">Conservative estimates based on typical pet waste removal customer counts per small operator.</p>
+
+  <div class="calc-grid">
+    <div class="calc-card">
+      <div class="calc-number">75-150</div>
+      <div class="calc-label">Estimated Orphaned Customers</div>
+      <div class="calc-sublabel">~25-50 per dead competitor</div>
+    </div>
+    <div class="calc-card">
+      <div class="calc-number">8-15</div>
+      <div class="calc-label">Realistic Capture (10%)</div>
+      <div class="calc-sublabel">With aggressive outreach</div>
+    </div>
+    <div class="calc-card">
+      <div class="calc-number">$560-$1,050</div>
+      <div class="calc-label">Monthly Revenue Added</div>
+      <div class="calc-sublabel">At $70/mo average</div>
+    </div>
+    <div class="calc-card">
+      <div class="calc-number">$6,720-$12,600</div>
+      <div class="calc-label">Annual Revenue Impact</div>
+      <div class="calc-sublabel">From one campaign</div>
+    </div>
+  </div>
+
+  <!-- 7-Day Action Plan -->
+  <div class="section">
+    <h2>📋 7-Day Capture Blitz Action Plan</h2>
+  </div>
+
+  <div class="action-plan">
+    <div class="day-header" onclick="toggleDay('day1')">
+      <span>📅 Day 1 — Monday (TODAY): Foundation</span>
+      <span id="day1-arrow">▼</span>
+    </div>
+    <div class="day-content" id="day1">
+      <div class="action-item">
+        <input type="checkbox" id="a1" onchange="saveCheck(this)">
+        <label for="a1"><strong>Post "We're Here" post</strong> in 4+ Facebook community groups (Ballwin, Chesterfield, Wildwood, Manchester)</label>
+      </div>
+      <div class="action-item">
+        <input type="checkbox" id="a2" onchange="saveCheck(this)">
+        <label for="a2"><strong>Post GBP update</strong> with spring cleanup special + competitor void mention</label>
+      </div>
+      <div class="action-item">
+        <input type="checkbox" id="a3" onchange="saveCheck(this)">
+        <label for="a3"><strong>Check domain availability:</strong> pooperscooperstl.com, poopypaws314.com, wearefreshpaws.com</label>
+      </div>
+      <div class="action-item">
+        <input type="checkbox" id="a4" onchange="saveCheck(this)">
+        <label for="a4"><strong>Search Facebook</strong> for anyone asking about pet waste removal in STL groups this month — DM them</label>
+      </div>
+    </div>
+
+    <div class="day-header" onclick="toggleDay('day2')">
+      <span>📅 Day 2 — Tuesday: Nextdoor Launch</span>
+      <span id="day2-arrow">▶</span>
+    </div>
+    <div class="day-content" id="day2" style="display:none">
+      <div class="action-item">
+        <input type="checkbox" id="a5" onchange="saveCheck(this)">
+        <label for="a5"><strong>Set up Nextdoor business page</strong> (see Nextdoor Launch Strategy dashboard)</label>
+      </div>
+      <div class="action-item">
+        <input type="checkbox" id="a6" onchange="saveCheck(this)">
+        <label for="a6"><strong>Post neighborhood intro</strong> on Nextdoor targeting Ballwin/Chesterfield first</label>
+      </div>
+      <div class="action-item">
+        <input type="checkbox" id="a7" onchange="saveCheck(this)">
+        <label for="a7"><strong>Ask 2-3 existing customers</strong> to recommend Tidy Tails on Nextdoor</label>
+      </div>
+    </div>
+
+    <div class="day-header" onclick="toggleDay('day3')">
+      <span>📅 Day 3 — Wednesday: Google Domination</span>
+      <span id="day3-arrow">▶</span>
+    </div>
+    <div class="day-content" id="day3" style="display:none">
+      <div class="action-item">
+        <input type="checkbox" id="a8" onchange="saveCheck(this)">
+        <label for="a8"><strong>Post 2nd GBP post</strong> targeting specific neighborhoods (Kirkwood, Ballwin)</label>
+      </div>
+      <div class="action-item">
+        <input type="checkbox" id="a9" onchange="saveCheck(this)">
+        <label for="a9"><strong>Search Google for dead competitor names</strong> — see what comes up, identify review pages</label>
+      </div>
+      <div class="action-item">
+        <input type="checkbox" id="a10" onchange="saveCheck(this)">
+        <label for="a10"><strong>If domains available</strong> — buy 1-2 cheapest dead competitor domains, redirect to tidytailspets.com</label>
+      </div>
+    </div>
+
+    <div class="day-header" onclick="toggleDay('day4')">
+      <span>📅 Day 4 — Thursday: Physical Presence</span>
+      <span id="day4-arrow">▶</span>
+    </div>
+    <div class="day-content" id="day4" style="display:none">
+      <div class="action-item">
+        <input type="checkbox" id="a11" onchange="saveCheck(this)">
+        <label for="a11"><strong>Order 100 door hangers</strong> from Vistaprint using flyer copy above (~$30)</label>
+      </div>
+      <div class="action-item">
+        <input type="checkbox" id="a12" onchange="saveCheck(this)">
+        <label for="a12"><strong>Drop business cards</strong> at 3 vet clinics in target area (Kirkwood Animal Hospital, Old Webster, Chesterfield)</label>
+      </div>
+      <div class="action-item">
+        <input type="checkbox" id="a13" onchange="saveCheck(this)">
+        <label for="a13"><strong>Visit 1 dog park</strong> in target area — leave cards, talk to dog owners</label>
+      </div>
+    </div>
+
+    <div class="day-header" onclick="toggleDay('day5')">
+      <span>📅 Day 5 — Friday: Social Proof Push</span>
+      <span id="day5-arrow">▶</span>
+    </div>
+    <div class="day-content" id="day5" style="display:none">
+      <div class="action-item">
+        <input type="checkbox" id="a14" onchange="saveCheck(this)">
+        <label for="a14"><strong>Post "We're Not Going Anywhere" post</strong> on Facebook (builds trust)</label>
+      </div>
+      <div class="action-item">
+        <input type="checkbox" id="a15" onchange="saveCheck(this)">
+        <label for="a15"><strong>Text existing customers</strong> — ask for Google reviews (use Review Request System)</label>
+      </div>
+      <div class="action-item">
+        <input type="checkbox" id="a16" onchange="saveCheck(this)">
+        <label for="a16"><strong>Post 2nd Nextdoor post</strong> (spring cleanup angle)</label>
+      </div>
+    </div>
+
+    <div class="day-header" onclick="toggleDay('day6')">
+      <span>📅 Days 6-7 — Weekend: Door Hangers</span>
+      <span id="day6-arrow">▶</span>
+    </div>
+    <div class="day-content" id="day6" style="display:none">
+      <div class="action-item">
+        <input type="checkbox" id="a17" onchange="saveCheck(this)">
+        <label for="a17"><strong>Distribute 50 door hangers</strong> in Ballwin/Chesterfield (target houses with visible dogs/fences)</label>
+      </div>
+      <div class="action-item">
+        <input type="checkbox" id="a18" onchange="saveCheck(this)">
+        <label for="a18"><strong>Distribute 50 door hangers</strong> in Kirkwood/Webster Groves</label>
+      </div>
+      <div class="action-item">
+        <input type="checkbox" id="a19" onchange="saveCheck(this)">
+        <label for="a19"><strong>Check all inbound messages</strong> — respond within 1 hour to any leads</label>
+      </div>
+      <div class="action-item">
+        <input type="checkbox" id="a20" onchange="saveCheck(this)">
+        <label for="a20"><strong>Review results</strong> — how many leads came in? Plan Week 2 adjustments</label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Tips -->
+  <div class="section">
+    <h2>💡 Pro Tips for Capturing Dead Competitor Customers</h2>
+  </div>
+
+  <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem;">
+    <div style="margin-bottom: 1rem;">
+      <strong style="color: var(--accent2);">1. Speed wins.</strong>
+      <span style="color: var(--muted);"> These customers are looking RIGHT NOW. The first service that reaches them gets them. Every day you wait, Doggie Doodies or POOP 911 might grab them.</span>
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <strong style="color: var(--accent2);">2. Don't trash-talk dead competitors.</strong>
+      <span style="color: var(--muted);"> Never name them directly in posts. Say "some services have closed" — let customers connect the dots. Looks classier and avoids drama.</span>
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <strong style="color: var(--accent2);">3. Lead with "first cleanup free."</strong>
+      <span style="color: var(--muted);"> These customers already know the value of the service. They don't need to be sold on the concept — they just need to trust YOU. A free first cleanup removes all risk.</span>
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <strong style="color: var(--accent2);">4. Emphasize reliability.</strong>
+      <span style="color: var(--muted);"> Their old service literally disappeared. "Local, not a franchise, not going anywhere" hits different when someone just got ghosted by their provider.</span>
+    </div>
+    <div style="margin-bottom: 1rem;">
+      <strong style="color: var(--accent2);">5. Check dead competitor reviews.</strong>
+      <span style="color: var(--muted);"> Google reviews for dead companies still show up. Those reviewers are CONFIRMED pet waste removal buyers in your area. Some have full names you could find on Facebook.</span>
+    </div>
+    <div>
+      <strong style="color: var(--accent2);">6. Poopy Paws was cheaper.</strong>
+      <span style="color: var(--muted);"> At $20/wk (~$80/mo), their customers might balk at paying more. TJ at $70/mo is actually LESS — lead with that price comparison when appropriate.</span>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin: 3rem 0 1rem; color: var(--muted); font-size: 0.8rem;">
+    Built by Franklin 🐕💩 • March 9, 2026 • <a href="index.html" style="color:var(--blue)">← Back to Dashboard</a>
+  </div>
+</div>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+
+function copyText(id) {
+  const el = document.getElementById(id);
+  const text = el.innerText.replace('Copy', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = el.querySelector('.copy-btn');
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+
+function toggleDay(id) {
+  const el = document.getElementById(id);
+  const arrow = document.getElementById(id + '-arrow');
+  if (el.style.display === 'none') {
+    el.style.display = 'block';
+    arrow.textContent = '▼';
+  } else {
+    el.style.display = 'none';
+    arrow.textContent = '▶';
+  }
+}
+
+function saveCheck(cb) {
+  localStorage.setItem('capture_' + cb.id, cb.checked);
+  cb.nextElementSibling.classList.toggle('done', cb.checked);
+}
+
+// Restore checkboxes
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.action-item input[type="checkbox"]').forEach(cb => {
+    const saved = localStorage.getItem('capture_' + cb.id);
+    if (saved === 'true') {
+      cb.checked = true;
+      cb.nextElementSibling.classList.add('done');
+    }
+  });
+});
+</script>
+</body>
+</html>
