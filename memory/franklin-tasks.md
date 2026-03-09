@@ -4,6 +4,51 @@
 
 ---
 
+## March 9, 2026 (Monday)
+
+### 12:05 AM — 🔍 LIVE VISIBILITY AUDIT — TJ Is Invisible Online (Hourly Task)
+**Task:** Conduct a live search engine audit — actually search for Tidy Tails the way a customer would and document what comes up (or doesn't)
+**Result:** ✅ SHIPPED — Full audit with 6 live searches, 5 competitor deep-dives with pricing, 5 ranked problems with fixes, weekly action plan, competitive advantages analysis
+
+**Why This Task:**
+- We've shipped 30+ content pieces, templates, dashboards, and tools over the past 3 days
+- But NONE of that matters if customers can't find Tidy Tails online
+- This audit answers the fundamental question: "If I search for pet waste removal in St. Louis right now, does Tidy Tails show up?"
+- The answer is NO. Zero out of 6 searches returned TJ's business.
+- This is the single most important finding we've uncovered — it reframes all priorities
+
+**Key Findings:**
+- **0/6 searches** returned Tidy Tails in results
+- **5 other "Tidy Tails"** businesses nationally create brand confusion
+- **POOP 911** has 4 different pages just for Olivette, MO — dominates TJ's home turf
+- **Yuckos** (since 1990) is the #1 local independent but has an ancient website
+- **Poop 2 Scoop** is the only competitor showing prices ($18/week for 1 dog)
+- TJ's website (tidytailspetwasteremoval.net) does NOT appear to be indexed by Google
+- Only trace of TJ online: a MapQuest listing with no website link
+
+**Competitors Profiled (with real data):**
+1. Yuckos — 36 years, 314-291-POOP, gotpoop@gotpoop.com
+2. Poop 2 Scoop — $18/week, family-run, 32 FB likes
+3. DoodyCalls STL — franchise, (314) 230-8082, 25+ yrs
+4. POOP 911 — franchise, SEO monster (4 Olivette pages)
+5. Scoop Soldiers — excellent copy quality, national chain
+
+**What I Created:**
+1. `content/2026-03-09-VISIBILITY-AUDIT.md` — Full audit report
+2. `dashboard/2026-03-09-VISIBILITY-AUDIT.html` — Interactive dashboard with:
+   - Search results cards (expandable with details)
+   - Competitor profiles with pricing and weaknesses
+   - Pricing comparison table
+   - 5 problems ranked by urgency (click for fix)
+   - This week's action plan with checkboxes
+   - Competitive advantages analysis
+
+**Impact:** This reframes everything. Before more content, before more templates — TJ needs to be FINDABLE. Website indexed → Reviews → Directories → Then all the content we've built starts working.
+
+**Rotation:** 🔍 Growth — Online Visibility & Competitive Intelligence
+
+---
+
 ## March 9, 2026 (Sunday Night)
 
 ### 11:04 PM — ⭐ GOOGLE REVIEW REQUEST SYSTEM — From 0 to 5 Reviews (Hourly Task)

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔍 Tidy Tails Visibility Audit — March 9, 2026</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0f;color:#e0e0e0;line-height:1.6}
+.container{max-width:1100px;margin:0 auto;padding:20px}
+h1{font-size:1.8rem;color:#ff4444;text-align:center;margin-bottom:8px}
+.subtitle{text-align:center;color:#888;margin-bottom:30px;font-size:.95rem}
+.alert-banner{background:linear-gradient(135deg,#ff2222 0%,#cc0000 100%);color:#fff;padding:20px 24px;border-radius:12px;margin-bottom:24px;text-align:center;font-size:1.15rem;font-weight:700;letter-spacing:.5px;box-shadow:0 4px 20px rgba(255,0,0,.3)}
+.alert-banner .big{font-size:2rem;display:block;margin-bottom:6px}
+
+.search-results{display:grid;gap:16px;margin-bottom:30px}
+.search-card{background:#111;border:1px solid #222;border-radius:10px;padding:18px;cursor:pointer;transition:all .2s}
+.search-card:hover{border-color:#444;transform:translateY(-1px)}
+.search-query{font-family:monospace;color:#4a9eff;font-size:.95rem;margin-bottom:8px}
+.search-query::before{content:'🔎 ';font-family:system-ui}
+.search-verdict{display:inline-block;padding:3px 10px;border-radius:20px;font-size:.8rem;font-weight:700;margin-bottom:8px}
+.verdict-fail{background:#ff222233;color:#ff4444;border:1px solid #ff4444}
+.verdict-warn{background:#ffaa0033;color:#ffaa00;border:1px solid #ffaa00}
+.search-detail{color:#888;font-size:.88rem;display:none}
+.search-card.open .search-detail{display:block}
+.search-card .toggle{float:right;color:#555;font-size:.8rem}
+
+.section-title{font-size:1.3rem;color:#fff;margin:30px 0 16px;padding-bottom:8px;border-bottom:1px solid #222}
+.section-title .emoji{margin-right:6px}
+
+.competitor-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px;margin-bottom:24px}
+.comp-card{background:#111;border:1px solid #222;border-radius:10px;padding:18px;position:relative}
+.comp-rank{position:absolute;top:12px;right:16px;font-size:2rem;color:#333;font-weight:900}
+.comp-name{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:2px}
+.comp-type{color:#888;font-size:.8rem;margin-bottom:10px}
+.comp-stat{display:flex;justify-content:space-between;padding:4px 0;font-size:.88rem;border-bottom:1px solid #1a1a1a}
+.comp-stat:last-child{border:none}
+.comp-stat .label{color:#888}
+.comp-stat .val{color:#4a9eff;font-weight:600}
+.comp-weakness{margin-top:10px;padding:8px 12px;background:#1a1a0a;border-left:3px solid #ffaa00;font-size:.85rem;color:#cca800;border-radius:0 6px 6px 0}
+
+.pricing-table{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:.9rem}
+.pricing-table th{background:#1a1a1a;color:#888;padding:10px 12px;text-align:left;font-weight:600;border-bottom:2px solid #333}
+.pricing-table td{padding:10px 12px;border-bottom:1px solid #1a1a1a}
+.pricing-table tr:hover{background:#111}
+.pricing-table .highlight{background:#ff222211;border-left:3px solid #ff4444}
+.price-known{color:#4aff4a;font-weight:700}
+.price-unknown{color:#555}
+
+.problems{display:grid;gap:14px;margin-bottom:24px}
+.problem{background:#111;border-radius:10px;padding:18px;border-left:4px solid #ff4444;cursor:pointer}
+.problem.p2{border-left-color:#ff6633}
+.problem.p3{border-left-color:#ffaa00}
+.problem.p4{border-left-color:#ffcc44}
+.problem.p5{border-left-color:#ffee66}
+.problem-num{font-size:.75rem;color:#ff4444;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.problem-title{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:6px}
+.problem-desc{color:#aaa;font-size:.9rem;margin-bottom:8px}
+.problem-fix{display:none;background:#0a1a0a;border:1px solid #1a3a1a;border-radius:8px;padding:14px;margin-top:10px;color:#6aff6a;font-size:.88rem}
+.problem.open .problem-fix{display:block}
+.problem .toggle{float:right;color:#555;font-size:.8rem}
+
+.week-plan{background:#111;border-radius:10px;padding:20px;margin-bottom:24px}
+.day-block{margin-bottom:16px}
+.day-label{font-weight:700;color:#4a9eff;font-size:.95rem;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.day-label .badge{background:#4a9eff22;border:1px solid #4a9eff;padding:2px 8px;border-radius:12px;font-size:.7rem}
+.task-item{display:flex;align-items:flex-start;gap:8px;padding:6px 0;font-size:.9rem;color:#ccc}
+.task-item input[type=checkbox]{margin-top:4px;accent-color:#4a9eff}
+.task-item.done{text-decoration:line-through;color:#555}
+
+.advantages{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-bottom:24px}
+.adv-card{background:#0a1a0a;border:1px solid #1a3a1a;border-radius:10px;padding:16px}
+.adv-num{color:#4aff4a;font-weight:700;font-size:.8rem;margin-bottom:4px}
+.adv-title{color:#fff;font-weight:700;margin-bottom:6px}
+.adv-desc{color:#8aaa8a;font-size:.88rem}
+
+.bottom-line{background:linear-gradient(135deg,#1a0a0a 0%,#0a0a1a 100%);border:1px solid #333;border-radius:12px;padding:24px;text-align:center;margin-bottom:20px}
+.bottom-line h3{color:#ff4444;font-size:1.2rem;margin-bottom:10px}
+.bottom-line p{color:#ccc;font-size:.95rem;max-width:700px;margin:0 auto}
+.bottom-line .priority{display:inline-block;margin-top:14px;background:#ff4444;color:#fff;padding:8px 20px;border-radius:8px;font-weight:700;font-size:1rem}
+
+.footer{text-align:center;color:#444;font-size:.8rem;padding:20px 0;border-top:1px solid #111}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🔍 Tidy Tails Live Visibility Audit</h1>
+<p class="subtitle">Real searches. Real results. Real problems. — March 9, 2026</p>
+
+<div class="alert-banner">
+<span class="big">0 out of 6 searches returned Tidy Tails</span>
+Your customers literally cannot find you on the internet.
+</div>
+
+<h2 class="section-title"><span class="emoji">🔎</span> Live Search Results</h2>
+<div class="search-results">
+<div class="search-card" onclick="this.classList.toggle('open')">
+<span class="toggle">▼ details</span>
+<div class="search-query">"Tidy Tails pet waste removal St. Louis"</div>
+<span class="search-verdict verdict-fail">❌ NOT FOUND</span>
+<div class="search-detail">5 other "Tidy Tails" businesses appeared instead — Charleston SC, Valrico FL, Melbourne FL, and generic sites. TJ's business did not appear on the first page.</div>
+</div>
+<div class="search-card" onclick="this.classList.toggle('open')">
+<span class="toggle">▼ details</span>
+<div class="search-query">"pet waste removal Olivette MO dog poop pickup"</div>
+<span class="search-verdict verdict-fail">❌ NOT FOUND</span>
+<div class="search-detail">POOP 911 (national franchise) occupied ALL 4 of the top 5 results with different Olivette-specific pages. The 5th was Olivette city government.</div>
+</div>
+<div class="search-card" onclick="this.classList.toggle('open')">
+<span class="toggle">▼ details</span>
+<div class="search-query">"pooper scooper service St Louis MO near me"</div>
+<span class="search-verdict verdict-fail">❌ NOT FOUND</span>
+<div class="search-detail">Results: #1 Yuckos (since 1990), #2 Scoop Soldiers, #3 Poop 2 Scoop, #4 DoodyCalls St. Louis, #5 POOP 911. No Tidy Tails anywhere.</div>
+</div>
+<div class="search-card" onclick="this.classList.toggle('open')">
+<span class="toggle">▼ details</span>
+<div class="search-query">"dog poop cleanup service St Louis County MO"</div>
+<span class="search-verdict verdict-fail">❌ NOT FOUND</span>
+<div class="search-detail">Same competitors dominated. TJ's business completely absent from results.</div>
+</div>
+<div class="search-card" onclick="this.classList.toggle('open')">
+<span class="toggle">▼ details</span>
+<div class="search-query">"tidy tails" dog waste Missouri (exact brand search)</div>
+<span class="search-verdict verdict-warn">⚠️ PARTIAL</span>
+<div class="search-detail">MapQuest listing for "Tidy Tails Pet Waste Removal, Olivette, MO 63132" appeared — but with no website link and no reviews. Other results were competing Tidy Tails businesses from other states.</div>
+</div>
+<div class="search-card" onclick="this.classList.toggle('open')">
+<span class="toggle">▼ details</span>
+<div class="search-query">"tidytailspetwasteremoval.net" (direct domain search)</div>
+<span class="search-verdict verdict-fail">❌ NOT INDEXED</span>
+<div class="search-detail">Google does not appear to have this domain indexed. Search returned unrelated results and other Tidy Tails businesses.</div>
+</div>
+</div>
+
+<h2 class="section-title"><span class="emoji">🏆</span> Who's Winning in St. Louis</h2>
+<div class="competitor-grid">
+<div class="comp-card">
+<span class="comp-rank">#1</span>
+<div class="comp-name">Yuckos</div>
+<div class="comp-type">Local Independent • Since 1990</div>
+<div class="comp-stat"><span class="label">Website</span><span class="val">yuckos.com</span></div>
+<div class="comp-stat"><span class="label">Phone</span><span class="val">314-291-POOP</span></div>
+<div class="comp-stat"><span class="label">Coverage</span><span class="val">STL County + City + St. Charles</span></div>
+<div class="comp-stat"><span class="label">Email</span><span class="val">gotpoop@gotpoop.com 🔥</span></div>
+<div class="comp-stat"><span class="label">Pricing</span><span class="val">Hidden (free estimates)</span></div>
+<div class="comp-weakness">💡 Weakness: Website looks like 2003. No online booking. No social presence.</div>
+</div>
+<div class="comp-card">
+<span class="comp-rank">#2</span>
+<div class="comp-name">Poop 2 Scoop</div>
+<div class="comp-type">Local Family Business</div>
+<div class="comp-stat"><span class="label">Website</span><span class="val">poop2scoop.com</span></div>
+<div class="comp-stat"><span class="label">Phone</span><span class="val">314-449-9447</span></div>
+<div class="comp-stat"><span class="label">Weekly (1 dog)</span><span class="val price-known">$18/visit</span></div>
+<div class="comp-stat"><span class="label">2x/week</span><span class="val price-known">$16/visit</span></div>
+<div class="comp-stat"><span class="label">Every other week</span><span class="val price-known">$25/visit</span></div>
+<div class="comp-stat"><span class="label">Extra dog</span><span class="val price-known">+$4</span></div>
+<div class="comp-weakness">💡 Weakness: Only 32 Facebook likes. Small social footprint.</div>
+</div>
+<div class="comp-card">
+<span class="comp-rank">#3</span>
+<div class="comp-name">DoodyCalls of St. Louis</div>
+<div class="comp-type">National Franchise • Locally Owned</div>
+<div class="comp-stat"><span class="label">Website</span><span class="val">doodycalls.com/st-louis</span></div>
+<div class="comp-stat"><span class="label">Phone</span><span class="val">(314) 230-8082</span></div>
+<div class="comp-stat"><span class="label">Experience</span><span class="val">25+ years (franchise)</span></div>
+<div class="comp-stat"><span class="label">Pricing</span><span class="val">Hidden (free quote)</span></div>
+<div class="comp-stat"><span class="label">Services</span><span class="val">Residential + Commercial + Stations</span></div>
+<div class="comp-weakness">💡 Weakness: Franchise = impersonal. Higher overhead = higher prices.</div>
+</div>
+<div class="comp-card">
+<span class="comp-rank">#4</span>
+<div class="comp-name">POOP 911</div>
+<div class="comp-type">National Franchise • SEO Monster</div>
+<div class="comp-stat"><span class="label">Website</span><span class="val">poop911.com</span></div>
+<div class="comp-stat"><span class="label">Olivette pages</span><span class="val" style="color:#ff6633">4 different URLs!</span></div>
+<div class="comp-stat"><span class="label">Strategy</span><span class="val">City page for every suburb</span></div>
+<div class="comp-stat"><span class="label">Hook</span><span class="val">Free 1st cleanup</span></div>
+<div class="comp-stat"><span class="label">Pricing</span><span class="val">Hidden (free quote)</span></div>
+<div class="comp-weakness">💡 Weakness: Template content, zero personality, impersonal franchise feel.</div>
+</div>
+<div class="comp-card">
+<span class="comp-rank">#5</span>
+<div class="comp-name">Scoop Soldiers</div>
+<div class="comp-type">National Chain</div>
+<div class="comp-stat"><span class="label">Website</span><span class="val">scoopsoldiers.com/locations/st-louis</span></div>
+<div class="comp-stat"><span class="label">Copy quality</span><span class="val" style="color:#4aff4a">Excellent</span></div>
+<div class="comp-stat"><span class="label">Key line</span><span class="val">"Busy life. Messy yard. Easy fix."</span></div>
+<div class="comp-stat"><span class="label">Scheduling</span><span class="val">Weekly, bi-weekly, custom</span></div>
+<div class="comp-weakness">💡 Weakness: Not locally owned. Generic. No local personality.</div>
+</div>
+</div>
+
+<h2 class="section-title"><span class="emoji">💰</span> Pricing Landscape</h2>
+<table class="pricing-table">
+<thead><tr><th>Competitor</th><th>Weekly (1 dog)</th><th>2x/Week</th><th>Bi-Weekly</th><th>Extra Dog</th></tr></thead>
+<tbody>
+<tr><td>Poop 2 Scoop</td><td class="price-known">$18</td><td class="price-known">$16/ea</td><td class="price-known">$25</td><td class="price-known">+$4</td></tr>
+<tr><td>Yuckos</td><td class="price-unknown">Hidden</td><td class="price-unknown">Hidden</td><td class="price-unknown">Hidden</td><td class="price-unknown">Hidden</td></tr>
+<tr><td>DoodyCalls</td><td class="price-unknown">Hidden</td><td class="price-unknown">Hidden</td><td class="price-unknown">Hidden</td><td class="price-unknown">Hidden</td></tr>
+<tr><td>POOP 911</td><td class="price-unknown">Hidden</td><td class="price-unknown">Hidden</td><td class="price-unknown">Hidden</td><td class="price-unknown">Hidden</td></tr>
+<tr><td>Scoop Soldiers</td><td class="price-unknown">Hidden</td><td class="price-unknown">Hidden</td><td class="price-unknown">Hidden</td><td class="price-unknown">Hidden</td></tr>
+<tr class="highlight"><td><strong>Tidy Tails</strong></td><td style="color:#ff4444">Not findable</td><td style="color:#ff4444">Not findable</td><td style="color:#ff4444">Not findable</td><td style="color:#ff4444">Not findable</td></tr>
+</tbody>
+</table>
+
+<h2 class="section-title"><span class="emoji">🚨</span> The 5 Problems (Click to See Fix)</h2>
+<div class="problems">
+<div class="problem" onclick="this.classList.toggle('open')">
+<span class="toggle">▼ see fix</span>
+<div class="problem-num">Problem #1 — Critical</div>
+<div class="problem-title">No Website Indexed by Google</div>
+<div class="problem-desc">TJ's website does not appear in Google search results. At all. For any keyword. This blocks everything else.</div>
+<div class="problem-fix">
+<strong>Fix:</strong> Get a live, crawlable website up with:<br>
+• Business name + "Pet Waste Removal in St. Louis County" in title tag<br>
+• Service area page listing every city/neighborhood<br>
+• Pricing page (transparency = trust)<br>
+• Phone number clickable on mobile<br>
+• Submit sitemap to Google Search Console<br>
+• Verify the site loads fast on mobile (Google cares)
+</div>
+</div>
+<div class="problem p2" onclick="this.classList.toggle('open')">
+<span class="toggle">▼ see fix</span>
+<div class="problem-num">Problem #2 — High</div>
+<div class="problem-title">Brand Name Collision (5+ Other "Tidy Tails")</div>
+<div class="problem-desc">At least 5 other pet businesses use "Tidy Tails" nationwide. Without local SEO, Google shows the wrong ones.</div>
+<div class="problem-fix">
+<strong>Fix:</strong><br>
+• Always use full brand: "Tidy Tails Pet Waste Removal — St. Louis"<br>
+• Consider "Tidy Tails STL" as the online identity<br>
+• Build strong local signals (GBP, citations, reviews) so Google associates the name with St. Louis<br>
+• Get .com or strong domain with STL in it if possible
+</div>
+</div>
+<div class="problem p3" onclick="this.classList.toggle('open')">
+<span class="toggle">▼ see fix</span>
+<div class="problem-num">Problem #3 — High</div>
+<div class="problem-title">Zero Google Reviews</div>
+<div class="problem-desc">Every competitor has reviews. TJ has zero. Google deprioritizes reviewless businesses in the local map pack.</div>
+<div class="problem-fix">
+<strong>Fix:</strong><br>
+• Use the review request system (created March 9)<br>
+• Ask 4-5 existing customers THIS WEEK<br>
+• Goal: 5 reviews = star rating shows in search<br>
+• Respond to every review within 24 hours<br>
+• Expected conversion: 60-80% of happy customers asked will leave one
+</div>
+</div>
+<div class="problem p4" onclick="this.classList.toggle('open')">
+<span class="toggle">▼ see fix</span>
+<div class="problem-num">Problem #4 — Medium</div>
+<div class="problem-title">No City-Specific Landing Pages</div>
+<div class="problem-desc">POOP 911 has 4 pages just for Olivette. TJ has zero pages for any city. That's why they own local search.</div>
+<div class="problem-fix">
+<strong>Fix:</strong> Create a page for each city served:<br>
+• Olivette, University City, Creve Coeur, Kirkwood<br>
+• Webster Groves, Clayton, Ladue, Brentwood<br>
+• Maplewood, Richmond Heights, Chesterfield<br>
+• Each page: unique content, city name 3-5x, specific neighborhoods<br>
+• Copy POOP 911's strategy but with better, more personal content
+</div>
+</div>
+<div class="problem p5" onclick="this.classList.toggle('open')">
+<span class="toggle">▼ see fix</span>
+<div class="problem-num">Problem #5 — Medium</div>
+<div class="problem-title">Missing from Directory Listings</div>
+<div class="problem-desc">Only found on MapQuest. Not on Yelp, Nextdoor, Thumbtack, HomeAdvisor, BBB, or Yellow Pages.</div>
+<div class="problem-fix">
+<strong>Fix:</strong> Create listings on (in priority order):<br>
+1. Nextdoor (where homeowners ask for recs — HIGHEST priority)<br>
+2. Yelp (people check reviews here)<br>
+3. Facebook Business Page (complete with services + pricing)<br>
+4. Thumbtack (generates leads directly)<br>
+5. HomeAdvisor / Angi<br>
+6. BBB<br>
+7. Yellow Pages / Manta / local directories
+</div>
+</div>
+</div>
+
+<h2 class="section-title"><span class="emoji">✅</span> This Week's Action Plan</h2>
+<div class="week-plan">
+<div class="day-block">
+<div class="day-label">Monday-Tuesday <span class="badge">GET FINDABLE</span></div>
+<div class="task-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done')"> Verify website is live and Google can crawl it</div>
+<div class="task-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done')"> Submit sitemap to Google Search Console</div>
+<div class="task-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done')"> Create or claim Yelp listing</div>
+<div class="task-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done')"> Create Nextdoor business page</div>
+<div class="task-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done')"> Complete Facebook business page (services, pricing, hours)</div>
+</div>
+<div class="day-block">
+<div class="day-label">Wednesday-Thursday <span class="badge">GET REVIEWS</span></div>
+<div class="task-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done')"> Text Customer #1 with review request</div>
+<div class="task-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done')"> Text Customer #2 with review request</div>
+<div class="task-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done')"> Text Customer #3 with review request</div>
+<div class="task-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done')"> Respond to any reviews within 2 hours</div>
+</div>
+<div class="day-block">
+<div class="day-label">Friday <span class="badge">GET CONTENT UP</span></div>
+<div class="task-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done')"> Post first GBP post (Spring Thaw — Week 1 content ready)</div>
+<div class="task-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done')"> Share before/after photo on Facebook</div>
+<div class="task-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done')"> Introduce business on Nextdoor</div>
+</div>
+<div class="day-block">
+<div class="day-label">Weekend <span class="badge">BUILD DEPTH</span></div>
+<div class="task-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done')"> Create city-specific pages for top 5 service areas</div>
+<div class="task-item"><input type="checkbox" onchange="this.parentElement.classList.toggle('done')"> Each page: unique content, city name 3-5x, neighborhoods mentioned</div>
+</div>
+</div>
+
+<h2 class="section-title"><span class="emoji">💪</span> TJ's Competitive Advantages</h2>
+<div class="advantages">
+<div class="adv-card">
+<div class="adv-num">ADVANTAGE #1</div>
+<div class="adv-title">Yuckos' Website is Ancient</div>
+<div class="adv-desc">The #1 local competitor's site looks like 2003. A modern, mobile-friendly site instantly looks more professional and trustworthy.</div>
+</div>
+<div class="adv-card">
+<div class="adv-num">ADVANTAGE #2</div>
+<div class="adv-title">Local Competition is Small</div>
+<div class="adv-desc">Poop 2 Scoop has only 32 Facebook likes. The local players are beatable on social media with consistent posting.</div>
+</div>
+<div class="adv-card">
+<div class="adv-num">ADVANTAGE #3</div>
+<div class="adv-title">Franchises Can't Be Personal</div>
+<div class="adv-desc">DoodyCalls, POOP 911, Scoop Soldiers are all franchises. TJ is a real person who texts back. That's the differentiator homeowners want.</div>
+</div>
+<div class="adv-card">
+<div class="adv-num">ADVANTAGE #4</div>
+<div class="adv-title">Price Transparency Wins</div>
+<div class="adv-desc">Only 1 of 5 competitors shows pricing. Showing prices builds trust and filters tire-kickers. Be the transparent choice.</div>
+</div>
+<div class="adv-card">
+<div class="adv-num">ADVANTAGE #5</div>
+<div class="adv-title">Nobody Owns Nextdoor Yet</div>
+<div class="adv-desc">First mover advantage on the platform where homeowners actually ask neighbors for service recommendations.</div>
+</div>
+<div class="adv-card">
+<div class="adv-num">ADVANTAGE #6</div>
+<div class="adv-title">Spring 2026 Timing is Perfect</div>
+<div class="adv-desc">Dog owners are thinking about spring cleanup RIGHT NOW. Aggressive marketing this month = new customers before competitors react.</div>
+</div>
+</div>
+
+<div class="bottom-line">
+<h3>🎯 The Bottom Line</h3>
+<p>We've built incredible marketing materials, templates, and tools. <strong>None of that matters if customers can't find Tidy Tails.</strong> The #1 priority isn't more content — it's online discoverability.</p>
+<div class="priority">Website → Reviews → Directories → Then Content Works</div>
+</div>
+
+<div class="footer">
+Live audit conducted March 9, 2026 12:05 AM CT • Data from Brave Search API • 6 keyword searches • 5 competitor sites analyzed
+</div>
+</div>
+</body>
+</html>
