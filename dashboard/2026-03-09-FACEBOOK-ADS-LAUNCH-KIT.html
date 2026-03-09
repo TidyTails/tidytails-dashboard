@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facebook Ads Launch Kit — Tidy Tails</title>
+<style>
+:root {
+  --bg: #0a0a0f;
+  --surface: #141420;
+  --surface2: #1a1a2e;
+  --border: #2a2a3e;
+  --accent: #4f8cff;
+  --accent2: #7c5cfc;
+  --success: #34d399;
+  --warning: #fbbf24;
+  --danger: #f87171;
+  --text: #e8e8f0;
+  --muted: #8888a0;
+  --fb-blue: #1877f2;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+
+/* Header */
+.header { text-align: center; padding: 40px 20px 30px; background: linear-gradient(135deg, #1877f2 0%, #4f8cff 50%, #7c5cfc 100%); border-radius: 16px; margin-bottom: 30px; position: relative; overflow: hidden; }
+.header::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%); }
+.header h1 { font-size: 2.2em; font-weight: 800; color: white; margin-bottom: 8px; }
+.header .subtitle { color: rgba(255,255,255,0.85); font-size: 1.15em; }
+.header .badge { display: inline-block; background: rgba(255,255,255,0.2); color: white; padding: 6px 16px; border-radius: 20px; font-size: 0.85em; margin-top: 12px; backdrop-filter: blur(10px); }
+
+/* Stats Bar */
+.stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 30px; }
+.stat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+.stat-card .number { font-size: 2em; font-weight: 800; background: linear-gradient(135deg, var(--fb-blue), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.stat-card .label { color: var(--muted); font-size: 0.85em; margin-top: 4px; }
+
+/* Tabs */
+.tabs { display: flex; gap: 4px; margin-bottom: 24px; overflow-x: auto; padding-bottom: 4px; flex-wrap: wrap; }
+.tab { padding: 10px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; cursor: pointer; font-size: 0.9em; color: var(--muted); transition: all 0.2s; white-space: nowrap; }
+.tab:hover { border-color: var(--accent); color: var(--text); }
+.tab.active { background: var(--fb-blue); border-color: var(--fb-blue); color: white; font-weight: 600; }
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* Cards */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 20px; }
+.card h2 { font-size: 1.3em; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.card h3 { font-size: 1.1em; margin: 16px 0 10px; color: var(--accent); }
+
+/* Ad Copy Cards */
+.ad-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+.ad-card-header { background: linear-gradient(135deg, var(--fb-blue), #4267B2); padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+.ad-card-header h4 { color: white; font-size: 1em; }
+.ad-card-header .hook-type { background: rgba(255,255,255,0.2); color: white; padding: 3px 12px; border-radius: 12px; font-size: 0.8em; }
+.ad-card-body { padding: 20px; }
+.ad-preview { background: white; border-radius: 8px; padding: 16px; color: #1c1e21; margin-bottom: 12px; }
+.ad-preview .page-name { font-weight: 700; font-size: 0.95em; color: #050505; }
+.ad-preview .sponsored { font-size: 0.8em; color: #65676b; }
+.ad-preview .ad-text { margin: 12px 0; font-size: 0.95em; line-height: 1.5; color: #050505; }
+.ad-preview .ad-cta { display: inline-block; background: var(--fb-blue); color: white; padding: 8px 24px; border-radius: 6px; font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+.ad-preview .ad-headline { font-weight: 700; font-size: 1.05em; color: #050505; margin-top: 12px; border-top: 1px solid #ddd; padding-top: 12px; }
+.ad-preview .ad-description { font-size: 0.85em; color: #65676b; }
+
+.copy-btn { background: var(--accent); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.85em; font-weight: 600; transition: all 0.2s; }
+.copy-btn:hover { background: var(--accent2); transform: translateY(-1px); }
+.copy-btn.copied { background: var(--success); }
+
+/* Budget Calculator */
+.calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 600px) { .calc-grid { grid-template-columns: 1fr; } }
+.calc-input { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+.calc-input label { display: block; color: var(--muted); font-size: 0.85em; margin-bottom: 6px; }
+.calc-input input, .calc-input select { width: 100%; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; color: var(--text); font-size: 1em; }
+.calc-result { background: linear-gradient(135deg, var(--surface2), var(--surface)); border: 2px solid var(--accent); border-radius: 12px; padding: 20px; margin-top: 20px; }
+.calc-result .result-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.calc-result .result-row:last-child { border-bottom: none; }
+.calc-result .result-value { font-weight: 700; color: var(--accent); }
+
+/* Steps */
+.step { display: flex; gap: 16px; margin-bottom: 20px; }
+.step-num { min-width: 40px; height: 40px; background: var(--fb-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: white; flex-shrink: 0; }
+.step-content { flex: 1; }
+.step-content h4 { margin-bottom: 6px; }
+
+/* Audience cards */
+.audience-card { background: var(--surface2); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+.audience-card .audience-name { font-weight: 700; color: var(--accent); margin-bottom: 4px; }
+.audience-card .audience-size { font-size: 0.85em; color: var(--success); }
+
+/* Checklist */
+.check-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px; background: var(--surface2); border-radius: 10px; margin-bottom: 8px; cursor: pointer; }
+.check-item input[type="checkbox"] { margin-top: 3px; accent-color: var(--success); width: 18px; height: 18px; }
+.check-item.done { opacity: 0.6; }
+.check-item.done .check-text { text-decoration: line-through; }
+
+/* Tips */
+.tip { background: rgba(79,140,255,0.1); border-left: 3px solid var(--fb-blue); padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+.tip.warning { background: rgba(251,191,36,0.1); border-left-color: var(--warning); }
+.tip.success { background: rgba(52,211,153,0.1); border-left-color: var(--success); }
+
+/* Table */
+.comparison-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+.comparison-table th { background: var(--surface2); padding: 12px; text-align: left; border-bottom: 2px solid var(--border); font-size: 0.85em; color: var(--muted); text-transform: uppercase; }
+.comparison-table td { padding: 12px; border-bottom: 1px solid var(--border); }
+.comparison-table tr:hover { background: var(--surface2); }
+
+.tag { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 0.8em; font-weight: 600; }
+.tag-green { background: rgba(52,211,153,0.15); color: var(--success); }
+.tag-blue { background: rgba(79,140,255,0.15); color: var(--accent); }
+.tag-yellow { background: rgba(251,191,36,0.15); color: var(--warning); }
+.tag-red { background: rgba(248,113,113,0.15); color: var(--danger); }
+
+/* Progress */
+.progress-bar { background: var(--surface2); border-radius: 20px; height: 8px; overflow: hidden; margin: 8px 0; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--fb-blue), var(--accent2)); border-radius: 20px; transition: width 0.5s; }
+
+footer { text-align: center; padding: 30px; color: var(--muted); font-size: 0.85em; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>📣 Facebook Ads Launch Kit</h1>
+    <p class="subtitle">Turn $10/day into 4-5 leads/week — the fastest path to 25+ customers</p>
+    <span class="badge">🎯 Based on Swoop Scoop's 10,000+ leads playbook</span>
+  </div>
+
+  <div class="stats-bar">
+    <div class="stat-card">
+      <div class="number">$10</div>
+      <div class="label">Recommended Daily Budget</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">$5-15</div>
+      <div class="label">Cost Per Lead (Industry Avg)</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">20-60</div>
+      <div class="label">Leads/Month at $300 Spend</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">48:1</div>
+      <div class="label">ROI ($300 → $14,400/yr)</div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('setup')">🔧 Setup Guide</div>
+    <div class="tab" onclick="showTab('ads')">📝 Ad Copy (5 Ads)</div>
+    <div class="tab" onclick="showTab('audiences')">🎯 Audiences</div>
+    <div class="tab" onclick="showTab('budget')">💰 Budget Calculator</div>
+    <div class="tab" onclick="showTab('creative')">🖼️ Creative Guide</div>
+    <div class="tab" onclick="showTab('testing')">🧪 A/B Testing</div>
+    <div class="tab" onclick="showTab('checklist')">✅ Launch Checklist</div>
+  </div>
+
+  <!-- TAB 1: SETUP GUIDE -->
+  <div id="setup" class="panel active">
+    <div class="card">
+      <h2>🔧 Step-by-Step Campaign Setup</h2>
+      <p style="color: var(--muted); margin-bottom: 20px;">Follow these steps to get your first Facebook ad live. Total setup time: ~45 minutes.</p>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Create a Facebook Business Page (if not done)</h4>
+          <p>Go to <strong>facebook.com/pages/create</strong>. Choose "Local Business." Use "Tidy Tails Pet Waste Removal" as the name. Add your logo, cover photo, and fill in ALL business details (address, phone, hours, website).</p>
+          <div class="tip">Already have a page? Skip to step 2. Make sure all info is current and your page has at least 1 post.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Set Up Meta Business Suite</h4>
+          <p>Go to <strong>business.facebook.com</strong>. Create a Business Account if you don't have one. Connect your Facebook Page. This is where you'll manage all ads.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Install Facebook Pixel on Your Website</h4>
+          <p>In Business Suite → Events Manager → Create a Pixel. Add the pixel code to <strong>tidytailsstl.com</strong> (in the &lt;head&gt; tag). This tracks who visits your site from ads — critical for retargeting and optimization.</p>
+          <div class="tip warning">⚠️ If your site is on a builder like Squarespace/Wix/WordPress, search "[platform] + Facebook pixel" for specific instructions. Usually just paste the Pixel ID in settings.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h4>Create Your First Campaign</h4>
+          <p>Go to <strong>Ads Manager</strong> → Create Campaign → Choose objective:</p>
+          <div class="audience-card">
+            <div class="audience-name">✅ RECOMMENDED: "Leads" Objective</div>
+            <p>Meta optimizes to find people most likely to submit their info. Use Facebook's built-in Lead Form (no website visit needed — lower friction).</p>
+          </div>
+          <div class="audience-card">
+            <div class="audience-name">🔄 ALTERNATIVE: "Engagement" Objective</div>
+            <p>Gets more comments/shares/reactions. Great for brand awareness + social proof. People comment "interested" and you DM them.</p>
+          </div>
+          <div class="tip warning">⚠️ Do NOT start with "Traffic" or "Awareness" objectives — they optimize for clicks/views, not actual customers.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h4>Set Your Budget</h4>
+          <p>Start with <strong>$10/day</strong> ($300/month). This is enough to generate data and leads while learning. You can always scale up once you know your cost per lead.</p>
+          <div class="tip success">💡 Swoop Scoop's #1 rule: NEVER pause ad spend. Consistency > bursts. Even $5/day is better than $20/day for 1 week then nothing.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <h4>Set Up Lead Form (for Leads objective)</h4>
+          <p>Create an "Instant Form" in the ad. Keep it SHORT:</p>
+          <ul style="margin: 8px 0 8px 20px;">
+            <li><strong>Intro:</strong> "Get a FREE yard cleanup quote!"</li>
+            <li><strong>Fields:</strong> Full Name, Phone Number, Email (that's it — 3 fields max)</li>
+            <li><strong>Thank You:</strong> "Thanks! We'll call within 24 hours to schedule your free cleanup."</li>
+          </ul>
+          <div class="tip">🔥 Fewer form fields = more leads. Name + Phone is enough. You can get details when you call.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">7</div>
+        <div class="step-content">
+          <h4>Respond to Leads FAST</h4>
+          <p>Download the <strong>Meta Business Suite app</strong> on your phone. Turn on notifications for lead forms. <strong>Call or text every lead within 5 minutes.</strong></p>
+          <div class="tip warning">⚠️ Lead response time is EVERYTHING. A lead contacted within 5 minutes is 21x more likely to convert than one contacted after 30 minutes. This is the #1 factor in Facebook ads ROI.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: AD COPY -->
+  <div id="ads" class="panel">
+    <div class="card">
+      <h2>📝 5 Ready-to-Launch Ad Variations</h2>
+      <p style="color: var(--muted); margin-bottom: 20px;">Each ad targets a different pain point. Run 2-3 simultaneously to find your winner. Click "Copy" to grab the text.</p>
+    </div>
+
+    <!-- Ad 1: The Time Freedom Hook -->
+    <div class="ad-card">
+      <div class="ad-card-header">
+        <h4>Ad #1: The Time Freedom Hook</h4>
+        <span class="hook-type">🎯 Best for: Busy families</span>
+      </div>
+      <div class="ad-card-body">
+        <div class="ad-preview">
+          <div class="page-name">🐕 Tidy Tails Pet Waste Removal</div>
+          <div class="sponsored">Sponsored · St. Louis, MO</div>
+          <div class="ad-text">
+            <strong>Hey St. Louis dog owners 👋</strong><br><br>
+            Be honest — when's the last time you actually ENJOYED your backyard?<br><br>
+            If you're spending your weekends dodging landmines instead of playing with your pup, we need to talk.<br><br>
+            Tidy Tails handles the dirty work so you don't have to. We show up weekly, clean every square inch, and haul it all away.<br><br>
+            🎁 <strong>FIRST CLEANUP FREE</strong> when you sign up this month<br><br>
+            Starting at just $16/week. That's less than your morning coffee run.<br><br>
+            Your weekends back. Your yard clean. Your dog happy. 🐶
+          </div>
+          <div class="ad-headline">Get Your Yard (and Weekends) Back</div>
+          <div class="ad-description">tidytailsstl.com · Professional pet waste removal in St. Louis</div>
+          <div class="ad-cta">Get Free Quote</div>
+        </div>
+        <button class="copy-btn" onclick="copyAd(this, 'ad1')">📋 Copy Ad Text</button>
+        <textarea id="ad1" style="display:none">Hey St. Louis dog owners 👋
+
+Be honest — when's the last time you actually ENJOYED your backyard?
+
+If you're spending your weekends dodging landmines instead of playing with your pup, we need to talk.
+
+Tidy Tails handles the dirty work so you don't have to. We show up weekly, clean every square inch, and haul it all away.
+
+🎁 FIRST CLEANUP FREE when you sign up this month
+
+Starting at just $16/week. That's less than your morning coffee run.
+
+Your weekends back. Your yard clean. Your dog happy. 🐶
+
+👉 Click "Get Free Quote" to claim your free cleanup!</textarea>
+      </div>
+    </div>
+
+    <!-- Ad 2: The Disgusting Truth Hook -->
+    <div class="ad-card">
+      <div class="ad-card-header">
+        <h4>Ad #2: The Health Scare Hook</h4>
+        <span class="hook-type">🎯 Best for: Parents with kids + dogs</span>
+      </div>
+      <div class="ad-card-body">
+        <div class="ad-preview">
+          <div class="page-name">🐕 Tidy Tails Pet Waste Removal</div>
+          <div class="sponsored">Sponsored · St. Louis, MO</div>
+          <div class="ad-text">
+            <strong>⚠️ Attention St. Louis dog owners with kids:</strong><br><br>
+            Did you know a single gram of dog waste contains 23 MILLION bacteria? And it can survive in your soil for over a year?<br><br>
+            If your kids play in the backyard, that's not just gross — it's a health risk. Roundworms, E. coli, Giardia... all from pet waste left too long.<br><br>
+            Tidy Tails removes ALL pet waste from your yard every week. We sanitize, we haul, we handle the mess.<br><br>
+            🎁 <strong>FIRST CLEANUP FREE</strong> — no commitment required<br><br>
+            Protect your family. Protect your yard.<br><br>
+            Locally owned in STL. Starting at $70/month.
+          </div>
+          <div class="ad-headline">Your Kids Deserve a Clean Yard 🏡</div>
+          <div class="ad-description">tidytailsstl.com · Trusted pet waste removal in St. Louis County</div>
+          <div class="ad-cta">Learn More</div>
+        </div>
+        <button class="copy-btn" onclick="copyAd(this, 'ad2')">📋 Copy Ad Text</button>
+        <textarea id="ad2" style="display:none">⚠️ Attention St. Louis dog owners with kids:
+
+Did you know a single gram of dog waste contains 23 MILLION bacteria? And it can survive in your soil for over a year?
+
+If your kids play in the backyard, that's not just gross — it's a health risk. Roundworms, E. coli, Giardia... all from pet waste left too long.
+
+Tidy Tails removes ALL pet waste from your yard every week. We sanitize, we haul, we handle the mess.
+
+🎁 FIRST CLEANUP FREE — no commitment required
+
+Protect your family. Protect your yard.
+
+Locally owned in STL. Starting at $70/month.
+
+👉 Click below to get your free cleanup!</textarea>
+      </div>
+    </div>
+
+    <!-- Ad 3: The Spring Cleanup Hook -->
+    <div class="ad-card">
+      <div class="ad-card-header">
+        <h4>Ad #3: The Spring Cleanup Hook</h4>
+        <span class="hook-type">🎯 Best for: Seasonal timing (NOW!)</span>
+      </div>
+      <div class="ad-card-body">
+        <div class="ad-preview">
+          <div class="page-name">🐕 Tidy Tails Pet Waste Removal</div>
+          <div class="sponsored">Sponsored · St. Louis, MO</div>
+          <div class="ad-text">
+            <strong>🌸 Spring is here, St. Louis... and so is the smell 💩</strong><br><br>
+            All winter long, the snow covered up months of "surprises" in your yard. Now the thaw is here and... yeah.<br><br>
+            Before your first spring BBQ, let Tidy Tails do a DEEP CLEAN of your entire yard. We'll clear out months of buildup so you can actually use your outdoor space again.<br><br>
+            🎁 <strong>SPRING SPECIAL: Free one-time deep clean</strong> when you start weekly service<br><br>
+            We show up. We scoop. You never think about it again.<br><br>
+            📞 Spots filling up for spring — grab yours now!<br><br>
+            Locally owned & operated in St. Louis County 🏠
+          </div>
+          <div class="ad-headline">Spring Yard Rescue — Free Deep Clean 🌸</div>
+          <div class="ad-description">tidytailsstl.com · St. Louis pet waste removal</div>
+          <div class="ad-cta">Book Free Cleanup</div>
+        </div>
+        <button class="copy-btn" onclick="copyAd(this, 'ad3')">📋 Copy Ad Text</button>
+        <textarea id="ad3" style="display:none">🌸 Spring is here, St. Louis... and so is the smell 💩
+
+All winter long, the snow covered up months of "surprises" in your yard. Now the thaw is here and... yeah.
+
+Before your first spring BBQ, let Tidy Tails do a DEEP CLEAN of your entire yard. We'll clear out months of buildup so you can actually use your outdoor space again.
+
+🎁 SPRING SPECIAL: Free one-time deep clean when you start weekly service
+
+We show up. We scoop. You never think about it again.
+
+📞 Spots filling up for spring — grab yours now!
+
+Locally owned & operated in St. Louis County 🏠
+
+👉 Click below to claim your free spring deep clean!</textarea>
+      </div>
+    </div>
+
+    <!-- Ad 4: The Social Proof Hook -->
+    <div class="ad-card">
+      <div class="ad-card-header">
+        <h4>Ad #4: The Lazy Luxury Hook</h4>
+        <span class="hook-type">🎯 Best for: Higher income areas</span>
+      </div>
+      <div class="ad-card-body">
+        <div class="ad-preview">
+          <div class="page-name">🐕 Tidy Tails Pet Waste Removal</div>
+          <div class="sponsored">Sponsored · St. Louis, MO</div>
+          <div class="ad-text">
+            <strong>Imagine never picking up dog poop again. 🙌</strong><br><br>
+            No, seriously. Never. Again.<br><br>
+            For less than the cost of a pizza delivery, Tidy Tails comes to your yard every week and handles all the... let's call it "yard maintenance your dog creates."<br><br>
+            ✅ We come. We scoop. We disappear.<br>
+            ✅ You don't even need to be home<br>
+            ✅ No contracts. Cancel anytime.<br>
+            ✅ 100% satisfaction guaranteed<br><br>
+            🎁 <strong>Try it FREE</strong> — first cleanup on us<br><br>
+            Life's too short to scoop poop. 💁‍♂️<br><br>
+            Starting at $16/week in St. Louis County.
+          </div>
+          <div class="ad-headline">Never Pick Up Dog Poop Again 🎉</div>
+          <div class="ad-description">tidytailsstl.com · Your yard, professionally maintained</div>
+          <div class="ad-cta">Get Free Quote</div>
+        </div>
+        <button class="copy-btn" onclick="copyAd(this, 'ad4')">📋 Copy Ad Text</button>
+        <textarea id="ad4" style="display:none">Imagine never picking up dog poop again. 🙌
+
+No, seriously. Never. Again.
+
+For less than the cost of a pizza delivery, Tidy Tails comes to your yard every week and handles all the... let's call it "yard maintenance your dog creates."
+
+✅ We come. We scoop. We disappear.
+✅ You don't even need to be home
+✅ No contracts. Cancel anytime.
+✅ 100% satisfaction guaranteed
+
+🎁 Try it FREE — first cleanup on us
+
+Life's too short to scoop poop. 💁‍♂️
+
+Starting at $16/week in St. Louis County.
+
+👉 Click below to get your free cleanup!</textarea>
+      </div>
+    </div>
+
+    <!-- Ad 5: The Multi-Dog Hook -->
+    <div class="ad-card">
+      <div class="ad-card-header">
+        <h4>Ad #5: The Multi-Dog Owner Hook</h4>
+        <span class="hook-type">🎯 Best for: 2+ dog households (higher LTV)</span>
+      </div>
+      <div class="ad-card-body">
+        <div class="ad-preview">
+          <div class="page-name">🐕 Tidy Tails Pet Waste Removal</div>
+          <div class="sponsored">Sponsored · St. Louis, MO</div>
+          <div class="ad-text">
+            <strong>Got 2+ dogs? Your yard doesn't stand a chance. 😅</strong><br><br>
+            One dog = manageable. Two dogs = a part-time job. Three? You need backup.<br><br>
+            Tidy Tails specializes in multi-dog yards. We know the struggle. We've seen it all. And we'll have your yard spotless in minutes flat.<br><br>
+            🐕🐕 <strong>Multi-dog household?</strong> Our pricing stays affordable:<br>
+            • 1 dog: $16/week<br>
+            • 2 dogs: $20/week<br>
+            • 3+ dogs: Custom quote<br><br>
+            🎁 <strong>FIRST CLEANUP FREE</strong> for all new customers this month<br><br>
+            Stop fighting a losing battle. Let the pros handle it. 💪
+          </div>
+          <div class="ad-headline">Multi-Dog Yard? We've Got You Covered 🐕🐕🐕</div>
+          <div class="ad-description">tidytailsstl.com · Affordable pet waste removal for any size yard</div>
+          <div class="ad-cta">Get Free Quote</div>
+        </div>
+        <button class="copy-btn" onclick="copyAd(this, 'ad5')">📋 Copy Ad Text</button>
+        <textarea id="ad5" style="display:none">Got 2+ dogs? Your yard doesn't stand a chance. 😅
+
+One dog = manageable. Two dogs = a part-time job. Three? You need backup.
+
+Tidy Tails specializes in multi-dog yards. We know the struggle. We've seen it all. And we'll have your yard spotless in minutes flat.
+
+🐕🐕 Multi-dog household? Our pricing stays affordable:
+• 1 dog: $16/week
+• 2 dogs: $20/week
+• 3+ dogs: Custom quote
+
+🎁 FIRST CLEANUP FREE for all new customers this month
+
+Stop fighting a losing battle. Let the pros handle it. 💪
+
+👉 Click below to claim your free cleanup!</textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: AUDIENCES -->
+  <div id="audiences" class="panel">
+    <div class="card">
+      <h2>🎯 Audience Targeting for St. Louis</h2>
+      <p style="color: var(--muted); margin-bottom: 20px;">Start with Audience 1. Add others as you scale. Each audience should be its own Ad Set so you can compare performance.</p>
+
+      <h3>📍 Location Targeting (All Audiences)</h3>
+      <div class="audience-card">
+        <div class="audience-name">Radius: 25 miles around St. Louis, MO</div>
+        <p>Or target specific ZIP codes for route density:</p>
+        <p style="margin-top: 8px;"><strong>Priority ZIPs:</strong> 63011 (Ballwin), 63017 (Chesterfield), 63021 (Ballwin), 63005 (Chesterfield), 63141 (Creve Coeur), 63131 (Town & Country), 63122 (Kirkwood), 63119 (Webster Groves), 63144 (Brentwood), 63043 (Maryland Heights)</p>
+        <div class="tip">🎯 Target ZIP codes where you already have customers FIRST — new customers nearby = more efficient routes = more profit per hour.</div>
+      </div>
+
+      <h3>👥 Audience 1: Dog Lovers (Start Here)</h3>
+      <div class="audience-card">
+        <div class="audience-name">Interest-Based Targeting</div>
+        <div class="audience-size">Est. Reach: 150,000 - 300,000 in STL metro</div>
+        <p style="margin-top: 8px;"><strong>Interests (select ALL):</strong></p>
+        <ul style="margin: 8px 0 0 20px;">
+          <li>Dogs (interest)</li>
+          <li>Dog lover</li>
+          <li>Dog walking</li>
+          <li>Pet supplies</li>
+          <li>PetSmart / Petco / BarkBox</li>
+        </ul>
+        <p style="margin-top: 8px;"><strong>Demographics:</strong></p>
+        <ul style="margin: 8px 0 0 20px;">
+          <li>Age: 28-65</li>
+          <li>Homeowners (when available)</li>
+        </ul>
+      </div>
+
+      <h3>👥 Audience 2: Advantage+ (Let Meta Optimize)</h3>
+      <div class="audience-card">
+        <div class="audience-name">Advantage+ Targeting (Broad)</div>
+        <div class="audience-size">Meta's AI finds your best customers</div>
+        <p style="margin-top: 8px;">Set location only. Remove all interest/demographic targeting. Let Meta's algorithm find the best prospects based on who engages with your ad.</p>
+        <div class="tip success">💡 Swoop Scoop (10,000+ leads) says Advantage+ is one of their top 3 audiences. It sounds counterintuitive, but Meta's AI is really good at finding buyers when given freedom.</div>
+      </div>
+
+      <h3>👥 Audience 3: Lookalike (After 50+ Customers)</h3>
+      <div class="audience-card">
+        <div class="audience-name">Lookalike Audience from Customer List</div>
+        <div class="audience-size">Upload customer emails/phones → Meta finds similar people</div>
+        <p style="margin-top: 8px;">Once you have 50+ customers, upload your customer list to Meta. Create a 1% Lookalike audience. These are people who "look like" your existing customers — same demographics, interests, behaviors.</p>
+        <div class="tip warning">⚠️ You need at least 100 source contacts for Lookalike to work well. Start building your customer email list NOW.</div>
+      </div>
+
+      <h3>👥 Audience 4: Retargeting (After Pixel Installs)</h3>
+      <div class="audience-card">
+        <div class="audience-name">Website Visitors Retargeting</div>
+        <div class="audience-size">People who visited tidytailsstl.com but didn't convert</div>
+        <p style="margin-top: 8px;">After your Facebook Pixel has been running for 2+ weeks, create a Custom Audience of people who visited your website. Show them a different ad — social proof, testimonial, or stronger offer.</p>
+      </div>
+
+      <h3>🚫 Exclusions (Important!)</h3>
+      <div class="audience-card">
+        <div class="audience-name">Exclude These from All Campaigns</div>
+        <ul style="margin: 8px 0 0 20px;">
+          <li>People who already liked/follow your page</li>
+          <li>People who already submitted a lead form</li>
+          <li>Current customers (upload exclusion list)</li>
+          <li>Competitors' employees (if identifiable)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: BUDGET CALCULATOR -->
+  <div id="budget" class="panel">
+    <div class="card">
+      <h2>💰 Budget & ROI Calculator</h2>
+      <p style="color: var(--muted); margin-bottom: 20px;">Adjust the inputs to see projected returns. Industry data from Swoop Scoop, Fresh Start, and local service benchmarks.</p>
+
+      <div class="calc-grid">
+        <div class="calc-input">
+          <label>Daily Ad Budget ($)</label>
+          <input type="number" id="dailyBudget" value="10" min="5" max="100" onchange="calculate()">
+        </div>
+        <div class="calc-input">
+          <label>Average Cost Per Lead ($)</label>
+          <input type="number" id="costPerLead" value="10" min="3" max="30" onchange="calculate()">
+        </div>
+        <div class="calc-input">
+          <label>Lead → Customer Conversion Rate (%)</label>
+          <input type="number" id="convRate" value="25" min="5" max="50" onchange="calculate()">
+        </div>
+        <div class="calc-input">
+          <label>Average Monthly Revenue Per Customer ($)</label>
+          <input type="number" id="monthlyRev" value="70" min="50" max="150" onchange="calculate()">
+        </div>
+        <div class="calc-input">
+          <label>Average Customer Lifetime (months)</label>
+          <input type="number" id="lifetime" value="18" min="6" max="36" onchange="calculate()">
+        </div>
+        <div class="calc-input">
+          <label>Campaign Duration (days)</label>
+          <input type="number" id="duration" value="30" min="7" max="90" onchange="calculate()">
+        </div>
+      </div>
+
+      <div class="calc-result" id="calcResults">
+        <!-- Filled by JS -->
+      </div>
+
+      <div class="tip" style="margin-top: 20px;">
+        <strong>Industry Benchmarks (Pet Waste Removal):</strong><br>
+        • Cost Per Lead: $5-15 (Facebook), $15-30 (Google)<br>
+        • Lead → Customer: 20-30% (with fast follow-up)<br>
+        • Customer Lifetime: 12-24 months<br>
+        • Monthly Value: $60-100<br>
+        • Swoop Scoop: 10,000+ leads from FB ads over 3 years<br>
+        • Fresh Start: 2-5 leads/day, $200K revenue year 1
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: CREATIVE GUIDE -->
+  <div id="creative" class="panel">
+    <div class="card">
+      <h2>🖼️ Creative & Image Guidelines</h2>
+      <p style="color: var(--muted); margin-bottom: 20px;">Your ad creative is 80% of the battle. Follow these rules from the top performers.</p>
+
+      <h3>📸 Photo Rules</h3>
+      <div class="audience-card">
+        <div class="audience-name">✅ DO: Phone Photos Beat Professional</div>
+        <p>Swoop Scoop's #1 creative tip: <strong>Phone photos outperform professional shots on Facebook.</strong> They feel authentic and blend into the newsfeed naturally.</p>
+      </div>
+
+      <div class="audience-card">
+        <div class="audience-name">📷 Best Photo Ideas for TJ:</div>
+        <ul style="margin: 8px 0 0 20px;">
+          <li><strong>Before/After:</strong> Messy yard → clean yard (BIGGEST winner)</li>
+          <li><strong>You + a dog:</strong> TJ petting a customer's dog after cleanup</li>
+          <li><strong>Action shot:</strong> You scooping (from behind, artistic angle)</li>
+          <li><strong>Clean yard hero shot:</strong> Beautiful green lawn, dog playing</li>
+          <li><strong>Your truck/equipment:</strong> Shows professionalism</li>
+          <li><strong>Funny signage:</strong> "Tidy Tails was here" type shots</li>
+        </ul>
+      </div>
+
+      <div class="audience-card">
+        <div class="audience-name">🚫 DON'T:</div>
+        <ul style="margin: 8px 0 0 20px;">
+          <li>Stock photos (people scroll right past them)</li>
+          <li>Photos of actual dog poop (obviously 😅)</li>
+          <li>Dark or blurry images</li>
+          <li>Too much text on images (Meta limits text to <20% of image)</li>
+          <li>Competitor logos or names</li>
+        </ul>
+      </div>
+
+      <h3>🎬 Video Ideas (Highest Engagement)</h3>
+      <div class="audience-card">
+        <div class="audience-name">15-30 Second Videos Win</div>
+        <ul style="margin: 8px 0 0 20px;">
+          <li><strong>"Day in the life"</strong> — Quick timelapse of you doing a cleanup</li>
+          <li><strong>"Spring thaw reveal"</strong> — Show a messy winter yard → transformation</li>
+          <li><strong>"Meet your scooper"</strong> — Quick intro of TJ, casual and friendly</li>
+          <li><strong>"Customer testimonial"</strong> — Ask a happy customer for a 10-second clip</li>
+          <li><strong>"Satisfying cleanup"</strong> — Oddly satisfying before/after reel</li>
+        </ul>
+        <div class="tip success">💡 Videos get 2-3x more engagement than static images on Facebook. Even a simple phone video outperforms a polished stock photo.</div>
+      </div>
+
+      <h3>✍️ Copy Formatting Rules</h3>
+      <div class="audience-card">
+        <div class="audience-name">The Swoop Scoop Formula</div>
+        <ol style="margin: 8px 0 0 20px;">
+          <li><strong>Call out your audience</strong> in the first line ("Hey St. Louis dog owners")</li>
+          <li><strong>Pain point</strong> — what sucks about their current situation</li>
+          <li><strong>Solution</strong> — what you do (keep it simple)</li>
+          <li><strong>Offer</strong> — free cleanup, discount, limited time deal</li>
+          <li><strong>CTA</strong> — "Click below," "Comment CLEAN," etc.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 6: A/B TESTING -->
+  <div id="testing" class="panel">
+    <div class="card">
+      <h2>🧪 A/B Testing Plan</h2>
+      <p style="color: var(--muted); margin-bottom: 20px;">Don't guess — test. Run these experiments one at a time, each for 5-7 days minimum.</p>
+
+      <h3>Week 1-2: Test Ad Copy (Keep Same Audience)</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr><th>Test</th><th>Variation A</th><th>Variation B</th><th>What You're Learning</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Hook</strong></td>
+            <td>Time Freedom (Ad #1)</td>
+            <td>Spring Cleanup (Ad #3)</td>
+            <td>Which pain point resonates more</td>
+          </tr>
+          <tr>
+            <td><strong>Offer</strong></td>
+            <td>Free first cleanup</td>
+            <td>25% off first month</td>
+            <td>Which converts better</td>
+          </tr>
+          <tr>
+            <td><strong>Tone</strong></td>
+            <td>Casual/funny</td>
+            <td>Professional/health</td>
+            <td>What STL dog owners prefer</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Week 3-4: Test Audiences (Keep Winning Ad)</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr><th>Test</th><th>Audience A</th><th>Audience B</th><th>What You're Learning</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Targeting</strong></td>
+            <td>Dog Lovers interests</td>
+            <td>Advantage+ (broad)</td>
+            <td>Manual vs AI targeting</td>
+          </tr>
+          <tr>
+            <td><strong>Age</strong></td>
+            <td>28-45</td>
+            <td>45-65</td>
+            <td>Which age group converts</td>
+          </tr>
+          <tr>
+            <td><strong>Location</strong></td>
+            <td>25-mile radius</td>
+            <td>Priority ZIP codes only</td>
+            <td>Broad vs focused geography</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Week 5+: Test Creative (Keep Winning Ad + Audience)</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr><th>Test</th><th>Version A</th><th>Version B</th><th>What You're Learning</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Format</strong></td>
+            <td>Static image</td>
+            <td>Short video (15-30s)</td>
+            <td>Image vs video performance</td>
+          </tr>
+          <tr>
+            <td><strong>Image</strong></td>
+            <td>Before/after yard</td>
+            <td>TJ with happy dog</td>
+            <td>Results vs personality</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="tip">
+        <strong>Testing Rules:</strong><br>
+        • Only change ONE variable at a time<br>
+        • Run each test for at least 5 days (need 1,000+ impressions)<br>
+        • Winner = lower Cost Per Lead (not just more clicks)<br>
+        • Kill the loser, keep the winner, test something new<br>
+        • After 30 days, you'll have a dialed-in ad machine
+      </div>
+
+      <h3>📊 Metrics to Track</h3>
+      <table class="comparison-table">
+        <thead>
+          <tr><th>Metric</th><th>Good</th><th>Great</th><th>Red Flag</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cost Per Lead</strong></td>
+            <td><span class="tag tag-blue">$10-15</span></td>
+            <td><span class="tag tag-green">Under $8</span></td>
+            <td><span class="tag tag-red">Over $20</span></td>
+          </tr>
+          <tr>
+            <td><strong>Click-Through Rate</strong></td>
+            <td><span class="tag tag-blue">1-2%</span></td>
+            <td><span class="tag tag-green">Over 2%</span></td>
+            <td><span class="tag tag-red">Under 0.5%</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lead Form Completion</strong></td>
+            <td><span class="tag tag-blue">20-30%</span></td>
+            <td><span class="tag tag-green">Over 40%</span></td>
+            <td><span class="tag tag-red">Under 10%</span></td>
+          </tr>
+          <tr>
+            <td><strong>Lead → Customer</strong></td>
+            <td><span class="tag tag-blue">20-25%</span></td>
+            <td><span class="tag tag-green">Over 30%</span></td>
+            <td><span class="tag tag-red">Under 10%</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB 7: LAUNCH CHECKLIST -->
+  <div id="checklist" class="panel">
+    <div class="card">
+      <h2>✅ Launch Checklist</h2>
+      <p style="color: var(--muted); margin-bottom: 20px;">Complete these in order. Check off as you go. Total time: ~2 hours.</p>
+
+      <div id="checkProgress" style="margin-bottom: 20px;">
+        <div style="display: flex; justify-content: space-between; font-size: 0.9em;">
+          <span>Progress</span>
+          <span id="checkCount">0 / 12</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="checkFill" style="width: 0%"></div></div>
+      </div>
+
+      <h3>🏗️ Foundation (Do First)</h3>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <div class="check-text"><strong>Create/verify Facebook Business Page</strong> — Name, logo, cover photo, business details all filled in</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <div class="check-text"><strong>Set up Meta Business Suite</strong> — business.facebook.com → Create account → Connect page</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <div class="check-text"><strong>Add payment method</strong> — Credit/debit card in Ads Manager billing settings</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <div class="check-text"><strong>Install Facebook Pixel</strong> — Get Pixel code from Events Manager → Add to tidytailsstl.com</div>
+      </div>
+
+      <h3>📝 Campaign Setup</h3>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <div class="check-text"><strong>Create campaign</strong> — Leads objective, $10/day budget, St. Louis targeting</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <div class="check-text"><strong>Build Lead Form</strong> — "Free Yard Cleanup Quote" + Name + Phone + Email fields</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <div class="check-text"><strong>Upload 2-3 ads</strong> — Start with Ad #1 (Time Freedom) + Ad #3 (Spring Cleanup) + Ad #4 (Lazy Luxury)</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <div class="check-text"><strong>Take 3-5 real photos</strong> — Before/after yard, you with a dog, your equipment. Phone photos are FINE.</div>
+      </div>
+
+      <h3>📱 Response System</h3>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <div class="check-text"><strong>Download Meta Business Suite app</strong> — iOS or Android. Turn on push notifications for leads.</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <div class="check-text"><strong>Write response templates</strong> — "Hi [name]! Thanks for reaching out about Tidy Tails. When's a good time for your free cleanup?"</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <div class="check-text"><strong>Set up CRM/tracking</strong> — Even a simple Google Sheet: Name, Phone, Date, Status (New/Called/Booked/Customer)</div>
+      </div>
+
+      <h3>🚀 Go Live</h3>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <input type="checkbox">
+        <div class="check-text"><strong>Submit campaign for review</strong> — Takes 24-48 hours. Check back for approval. You're LIVE! 🎉</div>
+      </div>
+
+      <div class="tip success" style="margin-top: 20px;">
+        <strong>🔑 The #1 Rule After Launch:</strong> Respond to EVERY lead within 5 minutes. Set up notifications, keep your phone close, and treat every lead like it's gold. Because at $10/lead, it literally is.
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    Franklin's Hourly Task — March 9, 2026 12:05 PM CT<br>
+    Source: Swoop Scoop® (10,000+ FB leads), Fresh Start ($200K Y1), ScoopStart.com, industry benchmarks<br>
+    Built for Tidy Tails Pet Waste Removal — St. Louis, MO
+  </footer>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyAd(btn, id) {
+  const text = document.getElementById(id).value;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy Ad Text'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function toggleCheck(item) {
+  const cb = item.querySelector('input[type="checkbox"]');
+  cb.checked = !cb.checked;
+  item.classList.toggle('done', cb.checked);
+  updateProgress();
+  // Save to localStorage
+  saveChecklist();
+}
+
+function updateProgress() {
+  const total = document.querySelectorAll('.check-item').length;
+  const checked = document.querySelectorAll('.check-item input:checked').length;
+  document.getElementById('checkCount').textContent = `${checked} / ${total}`;
+  document.getElementById('checkFill').style.width = `${(checked/total)*100}%`;
+}
+
+function saveChecklist() {
+  const states = [];
+  document.querySelectorAll('.check-item input').forEach(cb => states.push(cb.checked));
+  localStorage.setItem('fb-ads-checklist', JSON.stringify(states));
+}
+
+function loadChecklist() {
+  const saved = localStorage.getItem('fb-ads-checklist');
+  if (saved) {
+    const states = JSON.parse(saved);
+    document.querySelectorAll('.check-item').forEach((item, i) => {
+      if (states[i]) {
+        item.querySelector('input').checked = true;
+        item.classList.add('done');
+      }
+    });
+    updateProgress();
+  }
+}
+
+function calculate() {
+  const daily = parseFloat(document.getElementById('dailyBudget').value) || 10;
+  const cpl = parseFloat(document.getElementById('costPerLead').value) || 10;
+  const conv = parseFloat(document.getElementById('convRate').value) || 25;
+  const rev = parseFloat(document.getElementById('monthlyRev').value) || 70;
+  const life = parseFloat(document.getElementById('lifetime').value) || 18;
+  const days = parseFloat(document.getElementById('duration').value) || 30;
+
+  const totalSpend = daily * days;
+  const totalLeads = Math.floor(totalSpend / cpl);
+  const newCustomers = Math.round(totalLeads * (conv / 100));
+  const monthlyRecurring = newCustomers * rev;
+  const lifetimeValue = monthlyRecurring * life;
+  const roi = totalSpend > 0 ? Math.round((lifetimeValue / totalSpend) * 100) / 100 : 0;
+  const costPerCustomer = newCustomers > 0 ? Math.round(totalSpend / newCustomers) : 0;
+  const paybackDays = costPerCustomer > 0 ? Math.round((costPerCustomer / rev) * 30) : 0;
+
+  document.getElementById('calcResults').innerHTML = `
+    <h3 style="margin-bottom: 16px; color: var(--accent);">📊 Projected Results (${days}-Day Campaign)</h3>
+    <div class="result-row"><span>Total Ad Spend</span><span class="result-value">$${totalSpend.toLocaleString()}</span></div>
+    <div class="result-row"><span>Total Leads Generated</span><span class="result-value">${totalLeads}</span></div>
+    <div class="result-row"><span>New Customers (at ${conv}% conversion)</span><span class="result-value" style="color: var(--success); font-size: 1.2em;">${newCustomers}</span></div>
+    <div class="result-row"><span>Cost Per Customer Acquired</span><span class="result-value">$${costPerCustomer}</span></div>
+    <div class="result-row"><span>New Monthly Recurring Revenue</span><span class="result-value" style="color: var(--success);">$${monthlyRecurring.toLocaleString()}/mo</span></div>
+    <div class="result-row"><span>Customer Lifetime Value</span><span class="result-value" style="color: var(--success); font-size: 1.2em;">$${lifetimeValue.toLocaleString()}</span></div>
+    <div class="result-row"><span>Return on Ad Spend (ROAS)</span><span class="result-value" style="color: ${roi > 5 ? 'var(--success)' : roi > 2 ? 'var(--warning)' : 'var(--danger)'}; font-size: 1.3em;">${roi}:1</span></div>
+    <div class="result-row"><span>Payback Period</span><span class="result-value">${paybackDays} days</span></div>
+    <div style="margin-top: 16px; padding: 12px; background: rgba(52,211,153,0.1); border-radius: 8px; text-align: center;">
+      <strong>Bottom Line:</strong> Spend $${totalSpend} → Get ${newCustomers} customers → Earn $${lifetimeValue.toLocaleString()} over ${life} months<br>
+      <span style="font-size: 1.1em; color: var(--success);">That's $${Math.round(lifetimeValue - totalSpend).toLocaleString()} in profit from a $${totalSpend} investment</span>
+    </div>
+  `;
+}
+
+// Init
+loadChecklist();
+calculate();
+</script>
+</body>
+</html>
