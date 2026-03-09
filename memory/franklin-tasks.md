@@ -33,6 +33,48 @@ Referral Program Kit (`dashboard/2026-03-10-REFERRAL-PROGRAM-KIT.html`) with 6 t
 
 ## March 9, 2026 (Monday)
 
+### 12:05 PM — 📣 FACEBOOK ADS LAUNCH KIT — Turn $10/Day Into 4-5 Leads/Week (Hourly Task)
+**Task:** Build a complete Facebook Ads playbook so TJ can launch paid ads THIS WEEK — the fastest path from 5 customers to 25+
+**Result:** ✅ SHIPPED — 7-tab interactive dashboard with 5 copy-paste ads, audience targeting, budget calculator, A/B testing plan, creative guide, and 12-step launch checklist
+
+**Why This Task:**
+- Today's work has been all ORGANIC (SEO, directories, Nextdoor, dead competitors) — organic takes months
+- Facebook Ads are the #1 lead channel for pet waste companies (Swoop Scoop: 10,000+ leads, Fresh Start: $200K Y1)
+- TJ has ZERO paid advertising running — leaving the fastest growth channel completely untapped
+- At $10/day, Facebook ads can generate 2-5 leads daily starting within 48 hours of launch
+- Spring is peak season — every day without ads = lost leads to POOP 911, DoodyCalls, and Scoop Soldiers
+- Pet waste is still "new-ish" to many people — FB ads EDUCATE prospects who didn't know the service existed
+
+**What I Built:**
+`dashboard/2026-03-09-FACEBOOK-ADS-LAUNCH-KIT.html` — 7-tab interactive dashboard:
+1. **🔧 Setup Guide** — 7-step walkthrough from creating Business Page to going live
+2. **📝 Ad Copy (5 Ads)** — Each targeting different pain points with copy buttons:
+   - #1 Time Freedom (busy families)
+   - #2 Health Scare (parents with kids + dogs)
+   - #3 Spring Cleanup (seasonal timing — NOW)
+   - #4 Lazy Luxury (higher income areas)
+   - #5 Multi-Dog Owner (2+ dog households = higher LTV)
+3. **🎯 Audiences** — 4 audience strategies for STL: Dog Lovers, Advantage+, Lookalike, Retargeting + priority ZIP codes
+4. **💰 Budget Calculator** — Interactive ROI projector ($10/day → 30 leads → 7-8 customers → $9,450 LTV)
+5. **🖼️ Creative Guide** — Photo rules, video ideas, copy formatting (phone photos > professional shots!)
+6. **🧪 A/B Testing** — 6-week structured experiment plan + metrics benchmarks (CPL, CTR, conversion)
+7. **✅ Launch Checklist** — 12-step persistent checklist with progress bar
+
+**Key Research Sources:**
+- Swoop Scoop® (William Milliken): 7-figure pet waste business, 10,000+ FB leads, 487 new customers in best month
+- Fresh Start Pet Waste Removal: $200K revenue year 1, 2-5 leads daily from FB/Google ads
+- ScoopStart.com marketing guide: Campaign objectives, targeting, creative best practices
+- Rule: NEVER pause ad spend — consistency > bursts
+
+**ROI Math (Default Calculator):**
+$300/month ad spend → 30 leads → 7-8 new customers (25% conversion) → $490-560/month recurring → $8,820-10,080 lifetime value = **29-34x ROAS**
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-09-FACEBOOK-ADS-LAUNCH-KIT.html
+**Commit:** `67b6eee` on `tidytails-dashboard` repo
+**Rotation:** 📣 Growth — Paid Advertising & Lead Generation
+
+---
+
 ### 11:04 AM — 🗺️ DIRECTORY LISTING BLITZ — You Have 0 Listings, POOP 911 Has 6+ (Hourly Task)
 **Task:** Research every directory where competitors are listed, audit Tidy Tails' current presence (zero), and build a complete step-by-step listing submission guide with copy-paste business info, competitor gap analysis, and 3-day action plan
 **Result:** ✅ SHIPPED — 5-tab interactive dashboard covering 18 directories with competitor comparison, priority tiers, pre-written business descriptions, and status tracker
