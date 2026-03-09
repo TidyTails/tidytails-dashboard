@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💀 Dead Competitor Customer Rescue Kit — Tidy Tails</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e8e8e8; }
+.header { background: linear-gradient(135deg, #1a0a0a 0%, #2d0a0a 50%, #0a0a1a 100%); padding: 28px 20px; text-align: center; border-bottom: 3px solid #ff3333; }
+.header h1 { font-size: 1.6em; color: #ff4444; margin-bottom: 6px; }
+.header p { color: #999; font-size: 0.95em; }
+.urgency { background: #2d0a0a; border: 1px solid #ff3333; border-radius: 10px; padding: 16px; margin: 16px; text-align: center; }
+.urgency h3 { color: #ff4444; font-size: 1.1em; margin-bottom: 8px; }
+.urgency p { color: #ccc; font-size: 0.9em; line-height: 1.5; }
+.stat-row { display: flex; gap: 10px; padding: 12px 16px; overflow-x: auto; }
+.stat { flex: 1; min-width: 90px; background: #141420; border-radius: 10px; padding: 14px 10px; text-align: center; border: 1px solid #222; }
+.stat .num { font-size: 1.8em; font-weight: 800; color: #ff4444; }
+.stat .label { font-size: 0.7em; color: #888; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.tabs { display: flex; overflow-x: auto; background: #111118; border-bottom: 1px solid #222; padding: 0 8px; gap: 2px; }
+.tab { padding: 12px 14px; cursor: pointer; white-space: nowrap; font-size: 0.85em; color: #666; border-bottom: 2px solid transparent; transition: all 0.2s; flex-shrink: 0; }
+.tab.active { color: #ff4444; border-bottom-color: #ff4444; }
+.tab:hover { color: #ff6666; }
+.panel { display: none; padding: 16px; }
+.panel.active { display: block; }
+.competitor-card { background: #141420; border-radius: 12px; padding: 18px; margin-bottom: 14px; border-left: 4px solid #ff3333; }
+.competitor-card h3 { color: #ff4444; font-size: 1.1em; margin-bottom: 4px; }
+.competitor-card .status { display: inline-block; background: #3a0a0a; color: #ff4444; padding: 2px 10px; border-radius: 12px; font-size: 0.75em; font-weight: 600; margin-bottom: 10px; }
+.competitor-card .detail { color: #999; font-size: 0.88em; line-height: 1.6; }
+.competitor-card .territories { margin-top: 10px; }
+.territory-tag { display: inline-block; background: #1a1a2e; color: #6699ff; padding: 4px 10px; border-radius: 8px; font-size: 0.78em; margin: 3px 4px 3px 0; border: 1px solid #334; }
+.post-card { background: #141420; border-radius: 12px; padding: 18px; margin-bottom: 14px; border: 1px solid #222; position: relative; }
+.post-card h4 { color: #66bbff; font-size: 0.95em; margin-bottom: 4px; }
+.post-card .platform { display: inline-block; padding: 2px 8px; border-radius: 6px; font-size: 0.72em; font-weight: 600; margin-bottom: 10px; }
+.platform-nextdoor { background: #0a2a0a; color: #44cc44; }
+.platform-facebook { background: #0a0a2a; color: #4488ff; }
+.platform-craigslist { background: #2a1a0a; color: #ff9944; }
+.platform-google { background: #0a1a2a; color: #44aaff; }
+.post-card .content { background: #0a0a14; border-radius: 8px; padding: 14px; font-size: 0.88em; line-height: 1.6; color: #ddd; white-space: pre-wrap; cursor: pointer; border: 1px solid #1a1a2e; transition: border-color 0.2s; }
+.post-card .content:hover { border-color: #446; }
+.post-card .content:active { border-color: #ff4444; }
+.copy-btn { position: absolute; top: 14px; right: 14px; background: #ff3333; color: #fff; border: none; padding: 6px 14px; border-radius: 8px; font-size: 0.78em; cursor: pointer; font-weight: 600; }
+.copy-btn:hover { background: #ff5555; }
+.copy-btn.copied { background: #33aa33; }
+.section-title { color: #ff4444; font-size: 1.15em; font-weight: 700; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #222; }
+.timeline { background: #141420; border-radius: 12px; padding: 18px; margin-bottom: 14px; border: 1px solid #222; }
+.timeline h4 { color: #ffaa33; font-size: 0.95em; margin-bottom: 10px; }
+.timeline-item { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+.timeline-dot { width: 10px; height: 10px; border-radius: 50%; background: #ff3333; margin-top: 5px; flex-shrink: 0; }
+.timeline-dot.done { background: #33aa33; }
+.timeline-text { font-size: 0.88em; color: #ccc; line-height: 1.5; }
+.timeline-text strong { color: #ff9944; }
+.checklist-item { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #141420; border-radius: 8px; margin-bottom: 6px; cursor: pointer; border: 1px solid #222; transition: all 0.2s; }
+.checklist-item:hover { border-color: #333; }
+.checklist-item.checked { opacity: 0.5; text-decoration: line-through; }
+.checklist-item input { width: 18px; height: 18px; accent-color: #ff3333; }
+.checklist-item label { font-size: 0.88em; color: #ccc; cursor: pointer; flex: 1; }
+.tip-box { background: #0a1a0a; border: 1px solid #2a4a2a; border-radius: 10px; padding: 14px; margin-bottom: 14px; }
+.tip-box h5 { color: #44cc44; font-size: 0.9em; margin-bottom: 6px; }
+.tip-box p { color: #999; font-size: 0.85em; line-height: 1.5; }
+.territory-section { margin-bottom: 20px; }
+.territory-section h4 { color: #ffaa33; font-size: 1em; margin-bottom: 8px; }
+.zip-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.zip { background: #1a1a2e; color: #aaa; padding: 4px 10px; border-radius: 6px; font-size: 0.8em; font-family: monospace; border: 1px solid #222; }
+.correction-banner { background: #1a2a0a; border: 1px solid #4a6a2a; border-radius: 10px; padding: 12px 16px; margin: 0 16px 16px; }
+.correction-banner p { color: #88cc44; font-size: 0.85em; }
+.correction-banner strong { color: #aaee66; }
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>💀 Dead Competitor Customer Rescue Kit</h1>
+<p>3 competitors went under. Their customers need a new provider NOW.</p>
+</div>
+
+<div class="urgency">
+<h3>⏰ WHY THIS IS URGENT</h3>
+<p>These customers <strong>already paid for poop scooping</strong>. They're the warmest leads in the entire STL market. Every week that passes, they either find someone else or decide to DIY. Move fast.</p>
+</div>
+
+<div class="correction-banner">
+<p>⚠️ <strong>Correction from 3AM report:</strong> Little Stinkers of MO is STILL ALIVE (littlestinkersofmo.com is up). They serve St. Charles/Lincoln/Warren counties. Updated intel below reflects 3 confirmed dead, not 4.</p>
+</div>
+
+<div class="stat-row">
+<div class="stat"><div class="num">3</div><div class="label">Dead Competitors</div></div>
+<div class="stat"><div class="num">50+</div><div class="label">Est. Orphaned Customers</div></div>
+<div class="stat"><div class="num">12</div><div class="label">Target Neighborhoods</div></div>
+<div class="stat"><div class="num">7</div><div class="label">Ready Posts</div></div>
+</div>
+
+<div class="tabs">
+<div class="tab active" onclick="showTab('intel')">💀 Intel</div>
+<div class="tab" onclick="showTab('nextdoor')">📢 Nextdoor</div>
+<div class="tab" onclick="showTab('facebook')">📘 Facebook</div>
+<div class="tab" onclick="showTab('craigslist')">🟠 Craigslist</div>
+<div class="tab" onclick="showTab('plan')">📋 Action Plan</div>
+</div>
+
+<!-- INTEL TAB -->
+<div id="intel" class="panel active">
+<div class="section-title">Confirmed Dead Competitors — Verified March 9, 2026</div>
+
+<div class="competitor-card">
+<h3>🪦 Fresh Paws (wearefreshpaws.com)</h3>
+<div class="status">☠️ SQUARESPACE EXPIRED</div>
+<div class="detail">
+<strong>What happened:</strong> Squarespace subscription expired. Site returns "Website Expired" page.<br>
+<strong>What they offered:</strong> Residential dog waste removal, no contracts, flexible plans<br>
+<strong>Pricing was:</strong> Unknown (site fully down, no cached pricing found)<br>
+<strong>Est. customers:</strong> 15-25 (small operator, similar size to TJ)
+</div>
+<div class="territories">
+<strong>Their territory:</strong>
+<span class="territory-tag">Western STL County</span>
+<span class="territory-tag">St. Charles</span>
+<span class="territory-tag">Ballwin</span>
+<span class="territory-tag">Chesterfield</span>
+<span class="territory-tag">Wildwood</span>
+<span class="territory-tag">Ellisville</span>
+</div>
+<div class="zip-grid" style="margin-top: 10px;">
+<span class="zip">63011</span>
+<span class="zip">63017</span>
+<span class="zip">63021</span>
+<span class="zip">63005</span>
+<span class="zip">63040</span>
+<span class="zip">63038</span>
+</div>
+</div>
+
+<div class="competitor-card">
+<h3>🪦 Poopy Paws 314 (poopypaws314.com)</h3>
+<div class="status">☠️ DNS FAILURE — DOMAIN DEAD</div>
+<div class="detail">
+<strong>What happened:</strong> Complete DNS failure — domain no longer resolves. Still has a Yelp page (314-783-1781) and dead Nextdoor page.<br>
+<strong>What they offered:</strong> Dog waste removal starting at $20/wk flat rate<br>
+<strong>Pricing was:</strong> $20/week flat rate (undercut the market)<br>
+<strong>Est. customers:</strong> 20-30 (had Yelp reviews, Nextdoor presence, multi-route operation)
+</div>
+<div class="territories">
+<strong>Their territory:</strong>
+<span class="territory-tag">South City STL</span>
+<span class="territory-tag">South County</span>
+<span class="territory-tag">North County</span>
+<span class="territory-tag">Expanding to IL</span>
+</div>
+<div class="zip-grid" style="margin-top: 10px;">
+<span class="zip">63116</span>
+<span class="zip">63109</span>
+<span class="zip">63123</span>
+<span class="zip">63125</span>
+<span class="zip">63128</span>
+<span class="zip">63114</span>
+</div>
+</div>
+
+<div class="competitor-card">
+<h3>🪦 Pawfect Waste Solutions (pooperscooperstl.com)</h3>
+<div class="status">☠️ SITE NOT FOUND</div>
+<div class="detail">
+<strong>What happened:</strong> Returns "Site Not Found — not published or does not have a domain assigned."<br>
+<strong>What they offered:</strong> Pet waste removal services, STL metro<br>
+<strong>Pricing was:</strong> Unknown (no cached data)<br>
+<strong>Est. customers:</strong> 10-15 (smaller operation)
+</div>
+<div class="territories">
+<strong>Their territory:</strong>
+<span class="territory-tag">STL City</span>
+<span class="territory-tag">STL County</span>
+<span class="territory-tag">Central Corridor</span>
+</div>
+<div class="zip-grid" style="margin-top: 10px;">
+<span class="zip">63139</span>
+<span class="zip">63143</span>
+<span class="zip">63117</span>
+<span class="zip">63119</span>
+</div>
+</div>
+
+<div class="tip-box">
+<h5>🧠 Why These Leads Are Gold</h5>
+<p>These aren't cold leads. These are people who:<br>
+• Already decided poop scooping is worth paying for<br>
+• Had a regular schedule and routine<br>
+• Are now stuck with a pile-up problem<br>
+• Are actively looking for a replacement (or about to be)<br>
+• Will convert faster than any cold outreach — just be there first</p>
+</div>
+</div>
+
+<!-- NEXTDOOR TAB -->
+<div id="nextdoor" class="panel">
+<div class="section-title">📢 Nextdoor Posts — Ready to Copy & Paste</div>
+
+<div class="tip-box">
+<h5>📍 Posting Strategy</h5>
+<p>Post to each Nextdoor neighborhood separately. Nextdoor rewards local, conversational posts. Don't sell hard — be the helpful neighbor who happens to scoop poop.</p>
+</div>
+
+<div class="post-card">
+<h4>Post #1 — Western STL County (Fresh Paws Territory)</h4>
+<span class="platform platform-nextdoor">Nextdoor</span>
+<button class="copy-btn" onclick="copyContent(this)">📋 Copy</button>
+<div class="content" onclick="copyContent(this.parentElement.querySelector('.copy-btn'))">Hey neighbors! 👋
+
+I run Tidy Tails — a local pet waste removal service here in the Ballwin/Chesterfield/Wildwood area. 
+
+I know a few pet waste companies in the area have recently shut down, so if you're suddenly stuck scooping your own yard again (and hating it 😂), I'd love to help.
+
+We do weekly or bi-weekly cleanups. No contracts, no hassle. Just a clean yard when you get home.
+
+Spring's here and things are... thawing. You know what that means. 💩
+
+DM me or text 314-XXX-XXXX for a free quote. First cleanup is on us!
+
+- TJ, Tidy Tails 🐕</div>
+</div>
+
+<div class="post-card">
+<h4>Post #2 — South County (Poopy Paws Territory)</h4>
+<span class="platform platform-nextdoor">Nextdoor</span>
+<button class="copy-btn" onclick="copyContent(this)">📋 Copy</button>
+<div class="content" onclick="copyContent(this.parentElement.querySelector('.copy-btn'))">South County dog owners! 🐶
+
+With spring starting to warm up, your yard is probably revealing some... winter surprises. 
+
+I'm TJ from Tidy Tails — local pet waste removal. I've been servicing yards across STL County and wanted to introduce myself to the South County area. 
+
+If your old poop scooping service stopped showing up (I've heard a couple around here closed down), I'm here and I'm reliable. Been at it for over a year now.
+
+✅ Weekly or bi-weekly service
+✅ No contracts — cancel anytime  
+✅ First cleanup FREE
+
+Your yard (and your shoes) will thank you. Text me at 314-XXX-XXXX or shoot me a DM!</div>
+</div>
+
+<div class="post-card">
+<h4>Post #3 — General STL County (Pawfect Territory)</h4>
+<span class="platform platform-nextdoor">Nextdoor</span>
+<button class="copy-btn" onclick="copyContent(this)">📋 Copy</button>
+<div class="content" onclick="copyContent(this.parentElement.querySelector('.copy-btn'))">Quick question for dog owners in the area — anyone else's pooper scooper service go MIA? 
+
+I've been hearing from a few people that their service just stopped responding. If that's you, I get it — it's frustrating.
+
+I'm TJ, owner of Tidy Tails. Local, one-man operation (for now 😄). I actually show up, I actually do a thorough job, and I'm not going anywhere.
+
+Spring is prime time to get your yard back in shape before it gets really warm out. I'll even do your first cleanup free so you can see the difference.
+
+Drop me a message! 🐕💩</div>
+</div>
+
+</div>
+
+<!-- FACEBOOK TAB -->
+<div id="facebook" class="panel">
+<div class="section-title">📘 Facebook Posts — Groups & Marketplace</div>
+
+<div class="tip-box">
+<h5>🎯 Target These Facebook Groups</h5>
+<p>
+• Ballwin/Manchester/Ellisville Community<br>
+• Chesterfield MO Community<br>
+• South County STL Community<br>
+• Wildwood MO Residents<br>
+• STL Pet Owners / Dog Lovers groups<br>
+• Any neighborhood-specific "Buy/Sell/Trade" groups in target zips<br>
+Post as a helpful local business owner, not a spammy ad.</p>
+</div>
+
+<div class="post-card">
+<h4>Facebook Group Post — "Orphaned Customer" Angle</h4>
+<span class="platform platform-facebook">Facebook Group</span>
+<button class="copy-btn" onclick="copyContent(this)">📋 Copy</button>
+<div class="content" onclick="copyContent(this.parentElement.querySelector('.copy-btn'))">🐕 Attention STL dog owners whose poop scooping service disappeared!
+
+A few pet waste removal companies in the STL area have recently closed up shop (websites down, phones disconnected). If you're one of the people left hanging, I want to help.
+
+I'm TJ — I run Tidy Tails, a local pet waste removal service. I've been serving STL County for over a year and I'm not going anywhere.
+
+🔹 Weekly or bi-weekly cleanups
+🔹 No contracts ever
+🔹 Reliable — I actually show up
+🔹 First cleanup FREE for new customers this spring
+
+Your backyard has been accumulating all winter. Spring is here. Let's fix that before your kids/dogs/shoes find it first. 😂
+
+Comment "RESCUE" or DM me for a free quote! 🐾</div>
+</div>
+
+<div class="post-card">
+<h4>Facebook Marketplace Listing — Spring Rescue Special</h4>
+<span class="platform platform-facebook">FB Marketplace</span>
+<button class="copy-btn" onclick="copyContent(this)">📋 Copy</button>
+<div class="content" onclick="copyContent(this.parentElement.querySelector('.copy-btn'))">🐕💩 SPRING YARD RESCUE — Pet Waste Removal
+
+Your yard survived winter. Barely. Let's clean it up before it gets warm enough for the smell to hit. 
+
+Tidy Tails — STL's reliable pet waste removal service.
+
+What you get:
+✅ Thorough yard cleanup (we get EVERY piece)
+✅ Weekly or bi-weekly scheduling  
+✅ Gate photos so you know it's done
+✅ No contracts — ever
+
+🎁 SPRING SPECIAL: First cleanup FREE for new recurring customers
+
+Serving: Ballwin, Chesterfield, Wildwood, Manchester, Ellisville, Des Peres, Kirkwood, South County, and more across STL County.
+
+DM or text 314-XXX-XXXX
+
+Tidy Tails — We scoop. You don't. 🐾</div>
+</div>
+
+</div>
+
+<!-- CRAIGSLIST TAB -->
+<div id="craigslist" class="panel">
+<div class="section-title">🟠 Craigslist Ads — Post in Services</div>
+
+<div class="tip-box">
+<h5>📌 Craigslist Tips</h5>
+<p>
+• Post under "services > household" in STL Craigslist<br>
+• Repost every 48 hours (Craigslist allows this)<br>
+• Use slightly different titles each time to stay fresh<br>
+• Include your actual zip codes so searchers find you</p>
+</div>
+
+<div class="post-card">
+<h4>Craigslist Ad — Version A</h4>
+<span class="platform platform-craigslist">Craigslist</span>
+<button class="copy-btn" onclick="copyContent(this)">📋 Copy</button>
+<div class="content" onclick="copyContent(this.parentElement.querySelector('.copy-btn'))">🐕 Pet Waste Removal — Your Old Service Closed? We're Here. (STL County)
+
+Did your pooper scooper service recently stop showing up? You're not alone — several pet waste companies in the STL area have shut down.
+
+Tidy Tails is picking up where they left off.
+
+WHAT WE DO:
+• Weekly or bi-weekly dog waste removal from your yard
+• Spring cleanups (winter's mess, gone in one visit)
+• Reliable scheduling — we show up, every time
+
+THE DEAL:
+• First cleanup FREE for new recurring customers
+• No contracts — cancel anytime
+• Serving: Ballwin, Chesterfield, Wildwood, Manchester, Ellisville, Des Peres, Kirkwood, Mehlville, Lemay, South County, and all of STL County
+
+Spring is here. The thaw is real. Your yard needs help.
+
+Call/text TJ: 314-XXX-XXXX
+Tidy Tails — Local. Reliable. Actually shows up.</div>
+</div>
+
+<div class="post-card">
+<h4>Craigslist Ad — Version B (Casual/Funny)</h4>
+<span class="platform platform-craigslist">Craigslist</span>
+<button class="copy-btn" onclick="copyContent(this)">📋 Copy</button>
+<div class="content" onclick="copyContent(this.parentElement.querySelector('.copy-btn'))">Your Pooper Scooper Ghosted You? I Won't. (STL County)
+
+Look, I get it. You had a good thing going. Someone came, scooped the poop, and your yard was clean. Life was beautiful.
+
+Then they disappeared. Website down. Phone disconnected. And now your yard looks like a minefield after a long winter.
+
+I'm TJ. I run Tidy Tails. I scoop poop across STL County and I'm not going anywhere. (Seriously — I've been at this over a year and my website actually works.)
+
+✅ Weekly/bi-weekly service  
+✅ No contracts
+✅ First cleanup free
+✅ I text you when I'm done
+
+Areas: Ballwin, Chesterfield, Wildwood, Manchester, Ellisville, Des Peres, Kirkwood, South County + more
+
+Your dog isn't going to stop pooping. Might as well have someone handle it.
+
+Text TJ: 314-XXX-XXXX 🐾</div>
+</div>
+
+</div>
+
+<!-- ACTION PLAN TAB -->
+<div id="plan" class="panel">
+<div class="section-title">📋 7-Day Rescue Campaign Action Plan</div>
+
+<div class="timeline">
+<h4>📅 Day 1 (TODAY — Monday)</h4>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Post Nextdoor #1</strong> — Western STL County (Fresh Paws territory: Ballwin, Chesterfield, Wildwood)</div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Post Facebook Group</strong> — "Orphaned Customer" angle in 2-3 STL community groups</div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Post Craigslist Ad A</strong> — Services > Household on STL Craigslist</div></div>
+</div>
+
+<div class="timeline">
+<h4>📅 Day 2 (Tuesday)</h4>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Post Nextdoor #2</strong> — South County (Poopy Paws territory)</div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Reply to any comments/DMs</strong> from Day 1 posts within 1 hour</div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Post FB Marketplace listing</strong> — Spring Rescue Special</div></div>
+</div>
+
+<div class="timeline">
+<h4>📅 Day 3 (Wednesday)</h4>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Post Nextdoor #3</strong> — General STL County (Pawfect territory)</div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Refresh Craigslist</strong> — Repost with Version B</div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Check Yelp/Google</strong> — Look for reviews on dead competitor pages. Reply to those reviewers if possible.</div></div>
+</div>
+
+<div class="timeline">
+<h4>📅 Days 4-5 (Thursday-Friday)</h4>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Follow up on all leads</strong> — Anyone who commented, DM'd, or texted. Speed = close rate.</div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Post in 2 more FB groups</strong> — Try pet-specific groups (STL Dog Owners, etc.)</div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Book free first cleanups</strong> for anyone who responded</div></div>
+</div>
+
+<div class="timeline">
+<h4>📅 Days 6-7 (Weekend)</h4>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Deliver first cleanups</strong> — Make them exceptional. Take before/after photos.</div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Ask for reviews</strong> — "Hey, I know you just switched from [old service]. Would you mind leaving a quick review?"</div></div>
+<div class="timeline-item"><div class="timeline-dot"></div><div class="timeline-text"><strong>Refresh all ads</strong> — Repost Craigslist, update Nextdoor with engagement follow-ups</div></div>
+</div>
+
+<div class="section-title" style="margin-top: 20px;">✅ Campaign Checklist</div>
+
+<div class="checklist-item" onclick="toggleCheck(this)">
+<input type="checkbox"><label>Replace 314-XXX-XXXX with actual phone number in all posts</label>
+</div>
+<div class="checklist-item" onclick="toggleCheck(this)">
+<input type="checkbox"><label>Post Nextdoor #1 — Ballwin/Chesterfield/Wildwood</label>
+</div>
+<div class="checklist-item" onclick="toggleCheck(this)">
+<input type="checkbox"><label>Post Nextdoor #2 — South County</label>
+</div>
+<div class="checklist-item" onclick="toggleCheck(this)">
+<input type="checkbox"><label>Post Nextdoor #3 — General STL County</label>
+</div>
+<div class="checklist-item" onclick="toggleCheck(this)">
+<input type="checkbox"><label>Post to 3+ Facebook community groups</label>
+</div>
+<div class="checklist-item" onclick="toggleCheck(this)">
+<input type="checkbox"><label>Post FB Marketplace listing</label>
+</div>
+<div class="checklist-item" onclick="toggleCheck(this)">
+<input type="checkbox"><label>Post Craigslist Ad A</label>
+</div>
+<div class="checklist-item" onclick="toggleCheck(this)">
+<input type="checkbox"><label>Refresh Craigslist with Version B (Day 3)</label>
+</div>
+<div class="checklist-item" onclick="toggleCheck(this)">
+<input type="checkbox"><label>Respond to all leads within 1 hour</label>
+</div>
+<div class="checklist-item" onclick="toggleCheck(this)">
+<input type="checkbox"><label>Book first free cleanups</label>
+</div>
+<div class="checklist-item" onclick="toggleCheck(this)">
+<input type="checkbox"><label>Deliver cleanups + take before/after photos</label>
+</div>
+<div class="checklist-item" onclick="toggleCheck(this)">
+<input type="checkbox"><label>Ask for reviews from rescued customers</label>
+</div>
+
+<div class="tip-box" style="margin-top: 16px;">
+<h5>🎯 Expected Results</h5>
+<p>
+<strong>Conservative estimate:</strong> 3-5 new recurring customers from this campaign<br>
+<strong>Optimistic:</strong> 8-10 if timed well (many orphaned customers still looking)<br>
+<strong>Revenue impact:</strong> At $100/mo avg, that's $300-$1,000/mo recurring<br>
+<strong>ROI:</strong> $0 cost, ~2 hours of posting time. Pure profit.
+</p>
+</div>
+
+<div class="tip-box">
+<h5>💡 Pro Tip: The "I Heard Your Service Closed" DM</h5>
+<p>If you find anyone on Nextdoor/Facebook who posted about their service disappearing, DM them directly:<br><br>
+<em>"Hey! I saw your post about your pet waste service closing. I run Tidy Tails — local to STL County. Happy to take care of your yard. I'll even do the first cleanup free since I know you're in a tough spot. Want me to swing by this week?"</em><br><br>
+Direct outreach to people who already expressed the need = highest conversion rate possible.</p>
+</div>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelector(`.tab[onclick="showTab('${id}')"]`).classList.add('active');
+}
+
+function copyContent(btn) {
+  const card = btn.closest('.post-card');
+  const content = card.querySelector('.content').innerText;
+  navigator.clipboard.writeText(content).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '📋 Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+function toggleCheck(el) {
+  const cb = el.querySelector('input');
+  cb.checked = !cb.checked;
+  el.classList.toggle('checked', cb.checked);
+  saveChecklist();
+}
+
+function saveChecklist() {
+  const states = [...document.querySelectorAll('.checklist-item input')].map(cb => cb.checked);
+  localStorage.setItem('rescue-checklist', JSON.stringify(states));
+}
+
+function loadChecklist() {
+  const saved = localStorage.getItem('rescue-checklist');
+  if (saved) {
+    const states = JSON.parse(saved);
+    document.querySelectorAll('.checklist-item').forEach((el, i) => {
+      if (states[i]) {
+        el.querySelector('input').checked = true;
+        el.classList.add('checked');
+      }
+    });
+  }
+}
+
+loadChecklist();
+</script>
+
+</body>
+</html>
