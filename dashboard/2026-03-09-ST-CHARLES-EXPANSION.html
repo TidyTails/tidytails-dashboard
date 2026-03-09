@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🗺️ St. Charles Expansion Playbook — Tidy Tails</title>
+<style>
+:root {
+  --bg: #0a0a0a; --card: #141414; --border: #262626; --text: #e0e0e0; --dim: #888;
+  --green: #4a8; --green-bg: #1a2a1a; --green-border: #2d5a27;
+  --red: #e55; --red-bg: #2a1a1a; --red-border: #5a2727;
+  --blue: #58f; --blue-bg: #1a1a2a; --blue-border: #2727a0;
+  --gold: #fa4; --gold-bg: #2a2a1a; --gold-border: #5a5a27;
+  --purple: #a6f; --purple-bg: #2a1a2a; --purple-border: #5a275a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 12px; max-width: 900px; margin: 0 auto; }
+h1 { font-size: 1.4rem; color: #fff; margin-bottom: 2px; }
+.subtitle { color: var(--dim); font-size: 0.82rem; margin-bottom: 16px; }
+.hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; margin-bottom: 16px; }
+.hero-stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px; text-align: center; }
+.hero-stat .num { font-size: 1.6rem; font-weight: bold; }
+.hero-stat .label { font-size: 0.7rem; color: var(--dim); margin-top: 2px; }
+.hero-stat.green .num { color: var(--green); }
+.hero-stat.gold .num { color: var(--gold); }
+.hero-stat.red .num { color: var(--red); }
+.hero-stat.blue .num { color: var(--blue); }
+.hero-stat.purple .num { color: var(--purple); }
+
+/* Tabs */
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+.tab { padding: 8px 12px; background: transparent; border: 1px solid transparent; border-radius: 8px 8px 0 0; cursor: pointer; font-size: 0.78rem; color: var(--dim); transition: all 0.2s; }
+.tab:hover { color: #ccc; background: #1a1a1a; }
+.tab.active { background: var(--green-bg); border-color: var(--green-border); color: var(--green); font-weight: 600; }
+.section { display: none; }
+.section.active { display: block; }
+
+/* Cards */
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+.card h3 { font-size: 1rem; margin-bottom: 8px; }
+.card p, .card li { font-size: 0.85rem; line-height: 1.5; color: #ccc; }
+.card ul { margin-left: 16px; }
+.card li { margin-bottom: 4px; }
+
+/* Zone cards */
+.zone-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; position: relative; }
+.zone-card h3 { font-size: 1rem; margin-bottom: 4px; }
+.zone-meta { font-size: 0.75rem; color: var(--dim); margin-bottom: 8px; }
+.zone-score { position: absolute; top: 16px; right: 16px; width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.1rem; }
+.score-hot { background: var(--green-bg); border: 2px solid var(--green); color: var(--green); }
+.score-warm { background: var(--gold-bg); border: 2px solid var(--gold); color: var(--gold); }
+.score-cool { background: var(--blue-bg); border: 2px solid var(--blue); color: var(--blue); }
+.zone-details { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+.zone-detail { font-size: 0.8rem; }
+.zone-detail .lbl { color: var(--dim); font-size: 0.7rem; }
+.zone-detail .val { color: #ddd; font-weight: 500; }
+
+/* Priority badge */
+.priority { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; }
+.priority.p1 { background: var(--green-bg); border: 1px solid var(--green-border); color: var(--green); }
+.priority.p2 { background: var(--gold-bg); border: 1px solid var(--gold-border); color: var(--gold); }
+.priority.p3 { background: var(--blue-bg); border: 1px solid var(--blue-border); color: var(--blue); }
+
+/* Timeline */
+.timeline { position: relative; padding-left: 24px; }
+.timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+.timeline-item { position: relative; margin-bottom: 16px; }
+.timeline-item::before { content: ''; position: absolute; left: -20px; top: 6px; width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--green); background: var(--bg); }
+.timeline-item.pending::before { border-color: var(--dim); }
+.timeline-item h4 { font-size: 0.9rem; color: #fff; margin-bottom: 4px; }
+.timeline-item p { font-size: 0.82rem; color: #bbb; }
+.timeline-item .week { font-size: 0.7rem; color: var(--gold); font-weight: 600; margin-bottom: 2px; }
+
+/* Copy button */
+.copy-wrap { position: relative; }
+.copy-content { background: #0d0d0d; border: 1px solid #222; border-radius: 8px; padding: 12px; font-size: 0.82rem; line-height: 1.5; white-space: pre-wrap; color: #ccc; margin-bottom: 8px; }
+.copy-btn { background: var(--green-border); color: #fff; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.8rem; font-weight: 600; transition: all 0.2s; }
+.copy-btn:hover { background: #3a7a33; }
+.copy-btn.copied { background: #1a8a1a; }
+
+/* Competitor */
+.comp-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+.comp-status { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; }
+.comp-status.dead { background: var(--red-bg); border: 1px solid var(--red-border); color: var(--red); }
+.comp-status.active { background: var(--green-bg); border: 1px solid var(--green-border); color: var(--green); }
+.comp-status.new { background: var(--purple-bg); border: 1px solid var(--purple-border); color: var(--purple); }
+
+/* Checklist */
+.checklist { list-style: none; margin: 0; padding: 0; }
+.checklist li { display: flex; align-items: flex-start; gap: 8px; padding: 8px 0; border-bottom: 1px solid #1a1a1a; font-size: 0.85rem; }
+.checklist li:last-child { border-bottom: none; }
+.check-box { width: 20px; height: 20px; border: 2px solid #444; border-radius: 4px; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; margin-top: 1px; }
+.check-box.checked { background: var(--green); border-color: var(--green); }
+.check-box.checked::after { content: '✓'; color: #fff; font-size: 0.7rem; font-weight: bold; }
+
+/* Highlight boxes */
+.insight { padding: 12px; border-radius: 8px; margin-bottom: 12px; font-size: 0.82rem; }
+.insight.opportunity { background: var(--green-bg); border: 1px solid var(--green-border); color: #9d9; }
+.insight.warning { background: var(--gold-bg); border: 1px solid var(--gold-border); color: #dd9; }
+.insight.threat { background: var(--red-bg); border: 1px solid var(--red-border); color: #d99; }
+.insight strong { color: #fff; }
+
+/* ROI calculator */
+.roi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.roi-input { background: #0d0d0d; border: 1px solid #333; border-radius: 8px; padding: 10px; }
+.roi-input label { display: block; font-size: 0.72rem; color: var(--dim); margin-bottom: 4px; }
+.roi-input input, .roi-input select { width: 100%; background: #1a1a1a; border: 1px solid #333; border-radius: 6px; padding: 8px; color: #fff; font-size: 0.9rem; }
+.roi-result { background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 10px; padding: 16px; margin-top: 12px; text-align: center; }
+.roi-result .big { font-size: 2rem; font-weight: bold; color: var(--green); }
+.roi-result .sub { font-size: 0.8rem; color: var(--dim); }
+
+@media (max-width: 600px) {
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .zone-details { grid-template-columns: 1fr; }
+  .roi-grid { grid-template-columns: 1fr; }
+  .tab { font-size: 0.72rem; padding: 6px 8px; }
+}
+</style>
+</head>
+<body>
+
+<h1>🗺️ St. Charles Expansion Playbook</h1>
+<p class="subtitle">2 competitors dead. 197K dog-owning households. Zero competition in 3 zip codes. Time to move. — Updated Mar 9, 2026</p>
+
+<div class="hero-stats">
+  <div class="hero-stat green"><div class="num">430K</div><div class="label">County Population</div></div>
+  <div class="hero-stat gold"><div class="num">$103K</div><div class="label">Median HH Income</div></div>
+  <div class="hero-stat blue"><div class="num">~72K</div><div class="label">Dog Households (est.)</div></div>
+  <div class="hero-stat red"><div class="num">2</div><div class="label">Dead Competitors</div></div>
+  <div class="hero-stat purple"><div class="num">1</div><div class="label">New Threat</div></div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('opportunity')">💰 Opportunity</div>
+  <div class="tab" onclick="showTab('zones')">📍 Target Zones</div>
+  <div class="tab" onclick="showTab('competitors')">⚔️ Competitors</div>
+  <div class="tab" onclick="showTab('playbook')">📋 8-Week Plan</div>
+  <div class="tab" onclick="showTab('posts')">📝 Ready Posts</div>
+  <div class="tab" onclick="showTab('roi')">💵 ROI Model</div>
+  <div class="tab" onclick="showTab('checklist')">✅ This Week</div>
+</div>
+
+<!-- TAB 1: OPPORTUNITY -->
+<div id="opportunity" class="section active">
+  <div class="insight opportunity">
+    <strong>🔥 THE WINDOW:</strong> Fresh Paws and Little Stinkers both died serving St. Charles County. Their combined customer base is now UNSERVED. Doggie Doodies is the only new entrant, but they're spread thin across 2 counties. First mover who shows up consistently in these neighborhoods wins.
+  </div>
+
+  <div class="card">
+    <h3>📊 Why St. Charles County Is Gold</h3>
+    <ul>
+      <li><strong>Population:</strong> 430K and growing 1.4%/year — fastest-growing county in metro STL</li>
+      <li><strong>Income:</strong> $103K median household — 30% higher than STL County average</li>
+      <li><strong>Dog Ownership:</strong> Missouri is #4 nationally at 45.9% of households. St. Charles skews suburban/family — likely 48-52%. That's ~72,000 dog-owning households.</li>
+      <li><strong>Housing:</strong> Dominated by single-family homes with yards (your ideal customer)</li>
+      <li><strong>Demographics:</strong> Median age 39.6 — peak "busy family with dogs and disposable income" territory</li>
+      <li><strong>Growth:</strong> New subdivisions going up constantly. New neighborhoods = new dog owners who don't have a service yet.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🎯 The Math: How Many Customers Are Available?</h3>
+    <ul>
+      <li>~72,000 dog-owning households in St. Charles County</li>
+      <li>Industry conversion rate for pet waste services: 1-3% of dog households</li>
+      <li>Conservative 1% = <strong>720 potential customers</strong> in the county</li>
+      <li>Current providers serving the area: ~3 active (Doggie Doodies, possibly Pet Butler, one other)</li>
+      <li>Even split = 240 customers per provider. You need 20-25 more. <strong>That's 3% of available market.</strong></li>
+      <li>This is not a competition problem. It's a visibility problem.</li>
+    </ul>
+  </div>
+
+  <div class="insight warning">
+    <strong>⚠️ TIMING:</strong> Spring 2026 is your window. Dog waste piles up over winter → homeowners Google "yard cleanup" in March/April. Every week you wait, Doggie Doodies captures more of the vacuum. <strong>Move now.</strong>
+  </div>
+
+  <div class="card">
+    <h3>🏠 Customer Profile: St. Charles Ideal Client</h3>
+    <ul>
+      <li><strong>Who:</strong> Dual-income family, 30-50, 1-3 dogs, kids, busy schedule</li>
+      <li><strong>Home:</strong> 3-4 bed SFH in subdivision, fenced yard, HOA neighborhood</li>
+      <li><strong>Income:</strong> $80K-$140K household</li>
+      <li><strong>Pain Point:</strong> "We never have time to clean the yard. The kids can't play back there."</li>
+      <li><strong>Willingness to Pay:</strong> $80-$120/mo for weekly service (higher than STL County average)</li>
+      <li><strong>How They Find You:</strong> Nextdoor recommendations, Facebook neighborhood groups, Google "pet waste removal near me"</li>
+    </ul>
+  </div>
+</div>
+
+<!-- TAB 2: TARGET ZONES -->
+<div id="zones" class="section">
+  <div class="insight opportunity">
+    <strong>📍 STRATEGY:</strong> Don't spray and pray. Focus on 3 priority zones first, build density, then expand. Route efficiency = profitability.
+  </div>
+
+  <!-- Zone 1: O'Fallon -->
+  <div class="zone-card">
+    <div class="zone-score score-hot">A+</div>
+    <h3>🔥 Zone 1: O'Fallon</h3>
+    <div class="zone-meta"><span class="priority p1">PRIORITY 1</span> — Start here. Best ROI.</div>
+    <p style="font-size:0.85rem;color:#ccc;margin-bottom:10px">Largest city in St. Charles County. Massive subdivision density. Little Stinkers' former primary territory — their customers need a replacement NOW.</p>
+    <div class="zone-details">
+      <div class="zone-detail"><div class="lbl">Population</div><div class="val">~95,000</div></div>
+      <div class="zone-detail"><div class="lbl">Median HH Income</div><div class="val">$98,000</div></div>
+      <div class="zone-detail"><div class="lbl">Drive from Ballwin</div><div class="val">~25 min (I-64 → I-70)</div></div>
+      <div class="zone-detail"><div class="lbl">Competition</div><div class="val">LOW — 1 dead, 1 new entrant</div></div>
+    </div>
+    <div style="margin-top:12px">
+      <strong style="font-size:0.82rem;color:var(--gold)">🏘️ Target Neighborhoods:</strong>
+      <ul style="font-size:0.8rem;color:#bbb;margin-top:4px">
+        <li><strong>Dardenne Prairie / Winghaven</strong> — Affluent, large lots, many dogs. HOA community.</li>
+        <li><strong>Falcon Lakes / Lake Sherwood</strong> — Family-heavy subdivisions. Perfect demo.</li>
+        <li><strong>Cimarron / Thornhill</strong> — Established neighborhoods, mature homes, yard pride.</li>
+        <li><strong>Bryan Hill / Weatherby Landing</strong> — Mid-range homes, high dog density.</li>
+        <li><strong>Homefield / Springhill Estates</strong> — Newer construction, young families.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Zone 2: St. Peters -->
+  <div class="zone-card">
+    <div class="zone-score score-hot">A</div>
+    <h3>🔥 Zone 2: St. Peters</h3>
+    <div class="zone-meta"><span class="priority p1">PRIORITY 1</span> — Adjacent to O'Fallon. Bundle these routes.</div>
+    <p style="font-size:0.85rem;color:#ccc;margin-bottom:10px">Right next to O'Fallon — can serve both in the same day trip. Also in Little Stinkers' former territory. Strong family demographics.</p>
+    <div class="zone-details">
+      <div class="zone-detail"><div class="lbl">Population</div><div class="val">~60,000</div></div>
+      <div class="zone-detail"><div class="lbl">Median HH Income</div><div class="val">$90,000</div></div>
+      <div class="zone-detail"><div class="lbl">Drive from Ballwin</div><div class="val">~28 min</div></div>
+      <div class="zone-detail"><div class="lbl">Competition</div><div class="val">LOW — same dead competitor gap</div></div>
+    </div>
+    <div style="margin-top:12px">
+      <strong style="font-size:0.82rem;color:var(--gold)">🏘️ Target Neighborhoods:</strong>
+      <ul style="font-size:0.8rem;color:#bbb;margin-top:4px">
+        <li><strong>Mid Rivers area</strong> — Commercial corridor with dense surrounding residential</li>
+        <li><strong>Spencer Creek / Harvester</strong> — Family subdivisions with large yards</li>
+        <li><strong>Cave Springs / Mexico Road corridor</strong> — Established homes, dog-friendly community</li>
+        <li><strong>St. Peters Rec-Plex area</strong> — Active families, community-oriented</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Zone 3: St. Charles City -->
+  <div class="zone-card">
+    <div class="zone-score score-warm">B+</div>
+    <h3>⭐ Zone 3: St. Charles City</h3>
+    <div class="zone-meta"><span class="priority p2">PRIORITY 2</span> — Fresh Paws' former territory. Good but older housing stock.</div>
+    <p style="font-size:0.85rem;color:#ccc;margin-bottom:10px">County seat. Mix of old and new neighborhoods. Fresh Paws served this area before their website expired. Historic Main Street area has walkable neighborhoods with dog owners.</p>
+    <div class="zone-details">
+      <div class="zone-detail"><div class="lbl">Population</div><div class="val">~72,000</div></div>
+      <div class="zone-detail"><div class="lbl">Median HH Income</div><div class="val">$78,000</div></div>
+      <div class="zone-detail"><div class="lbl">Drive from Ballwin</div><div class="val">~22 min</div></div>
+      <div class="zone-detail"><div class="lbl">Competition</div><div class="val">LOW-MED — Doggie Doodies active here</div></div>
+    </div>
+    <div style="margin-top:12px">
+      <strong style="font-size:0.82rem;color:var(--gold)">🏘️ Target Neighborhoods:</strong>
+      <ul style="font-size:0.8rem;color:#bbb;margin-top:4px">
+        <li><strong>New Town</strong> — Planned community, walkable, lots of dog parks</li>
+        <li><strong>Streets of St. Charles area</strong> — Newer development, younger demos</li>
+        <li><strong>Friedens Road / Elm Point</strong> — Established family neighborhoods</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Zone 4: Lake St. Louis / Wentzville -->
+  <div class="zone-card">
+    <div class="zone-score score-cool">B</div>
+    <h3>📍 Zone 4: Lake St. Louis / Wentzville</h3>
+    <div class="zone-meta"><span class="priority p3">PRIORITY 3</span> — Expansion after you build density in Zones 1-3</div>
+    <p style="font-size:0.85rem;color:#ccc;margin-bottom:10px">Further west but BOOMING growth. Wentzville is one of the fastest-growing cities in Missouri. Worth targeting once you have 3-5 customers in O'Fallon/St. Peters to make the drive worthwhile.</p>
+    <div class="zone-details">
+      <div class="zone-detail"><div class="lbl">Population</div><div class="val">~55,000 combined</div></div>
+      <div class="zone-detail"><div class="lbl">Median HH Income</div><div class="val">$95,000</div></div>
+      <div class="zone-detail"><div class="lbl">Drive from Ballwin</div><div class="val">~35 min</div></div>
+      <div class="zone-detail"><div class="lbl">Competition</div><div class="val">VERY LOW — almost no providers</div></div>
+    </div>
+    <div style="margin-top:12px">
+      <strong style="font-size:0.82rem;color:var(--gold)">🏘️ Target Neighborhoods:</strong>
+      <ul style="font-size:0.8rem;color:#bbb;margin-top:4px">
+        <li><strong>Lake St. Louis subdivisions</strong> — Affluent, lake community, large lots</li>
+        <li><strong>Wentzville Parkway corridor</strong> — New construction everywhere</li>
+        <li><strong>Foristell / Wright City fringe</strong> — Only if clustering nearby</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="insight warning">
+    <strong>🚗 ROUTE MATH:</strong> O'Fallon + St. Peters can be a single service day. From Ballwin, drive out ~25 min, service 4-6 customers, drive home. At $30/visit, a 6-customer day = $180 revenue for ~4 hours work including drive time. Build density before expanding further west.
+  </div>
+</div>
+
+<!-- TAB 3: COMPETITORS -->
+<div id="competitors" class="section">
+  <div class="card">
+    <h3>⚔️ Competitive Landscape: St. Charles County</h3>
+    <p style="margin-bottom:12px">Two providers died, one new entrant. The competitive environment has never been more favorable.</p>
+  </div>
+
+  <div class="comp-card">
+    <h3>💀 Fresh Paws <span class="comp-status dead">DEAD</span></h3>
+    <ul style="font-size:0.85rem;color:#bbb">
+      <li><strong>Territory:</strong> Western STL County & St. Charles County</li>
+      <li><strong>Status:</strong> Squarespace site expired. Phone (636-779-6469) likely disconnected.</li>
+      <li><strong>What Happened:</strong> Appears to have simply stopped operating. No public announcement.</li>
+      <li><strong>Opportunity:</strong> Their St. Charles customers are actively looking for a replacement. Some may not even realize their provider quit — they're just wondering why nobody showed up.</li>
+      <li style="color:var(--green)"><strong>Your Move:</strong> Post in St. Charles area Nextdoor/Facebook: "Has your pet waste service gone quiet? We're here." Don't name-drop them, just be available.</li>
+    </ul>
+  </div>
+
+  <div class="comp-card">
+    <h3>💀 Little Stinkers <span class="comp-status dead">DEAD</span></h3>
+    <ul style="font-size:0.85rem;color:#bbb">
+      <li><strong>Territory:</strong> St. Charles, O'Fallon, St. Peters — the EXACT zones we're targeting</li>
+      <li><strong>Status:</strong> Confirmed dead since March 3 scan. Website down.</li>
+      <li><strong>What Happened:</strong> Unknown. Went silent.</li>
+      <li><strong>Opportunity:</strong> Their O'Fallon/St. Peters customers are the lowest-hanging fruit in the entire metro. These people already WANT to pay for pet waste removal. They just need a new provider.</li>
+      <li style="color:var(--green)"><strong>Your Move:</strong> Focus canvassing in O'Fallon/St. Peters neighborhoods. Your pitch: "We're the local replacement."</li>
+    </ul>
+  </div>
+
+  <div class="comp-card">
+    <h3>⚡ Doggie Doodies <span class="comp-status new">NEW THREAT</span></h3>
+    <ul style="font-size:0.85rem;color:#bbb">
+      <li><strong>Territory:</strong> STL County + St. Charles County — same as TJ</li>
+      <li><strong>Pricing:</strong> $83/mo weekly (1 dog) — higher than TJ</li>
+      <li><strong>Strengths:</strong> Professional website, background checks, text notifications, gate photos, customer portal, rewards program, referral program</li>
+      <li><strong>Weakness:</strong> Spread across 2 counties. Can't be everywhere. New = no reputation yet. No reviews.</li>
+      <li style="color:var(--gold)"><strong>TJ's Advantage:</strong> You're local, personal, cheaper. "Owner-operated" beats corporate-feeling every time in pet services. And you can out-hustle a newcomer with boots on the ground.</li>
+      <li style="color:var(--green)"><strong>Your Move:</strong> Beat them on price ($65-75 vs their $83), beat them on personality (you're the guy who knows the dogs' names), beat them on speed (show up in their blind spots first).</li>
+    </ul>
+  </div>
+
+  <div class="comp-card">
+    <h3>🟡 Pet Butler (National Franchise) <span class="comp-status active">ACTIVE</span></h3>
+    <ul style="font-size:0.85rem;color:#bbb">
+      <li><strong>Territory:</strong> All of STL metro (franchise model)</li>
+      <li><strong>Pricing:</strong> $76-$120/mo depending on frequency and dogs</li>
+      <li><strong>Strengths:</strong> National brand recognition, established systems</li>
+      <li><strong>Weakness:</strong> Franchise = high overhead = higher prices. Impersonal. Employee turnover.</li>
+      <li style="color:var(--green)"><strong>Your Move:</strong> You're cheaper, more personal, and local. Position as "your neighbor, not a franchise."</li>
+    </ul>
+  </div>
+
+  <div class="insight opportunity">
+    <strong>📊 BOTTOM LINE:</strong> In St. Charles County specifically, you're competing against 1 new startup and 1 franchise. The 2 local operators who knew this territory are gone. First local operator to build trust and reviews in these neighborhoods wins for years.
+  </div>
+</div>
+
+<!-- TAB 4: 8-WEEK PLAN -->
+<div id="playbook" class="section">
+  <div class="card">
+    <h3>📋 8-Week St. Charles Expansion Plan</h3>
+    <p>Systematic market entry. Each week builds on the last. Goal: <strong>8-12 new St. Charles customers by end of April.</strong></p>
+  </div>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="week">WEEK 1 (Mar 10-16) — PLANT THE FLAG</div>
+      <h4>🚩 Establish Presence</h4>
+      <p>
+        • Join 5-8 Nextdoor neighborhoods in O'Fallon, St. Peters, St. Charles<br>
+        • Post introduction in each (use templates from Ready Posts tab)<br>
+        • Create/update Google Business Profile to include St. Charles service area<br>
+        • Post 2 Facebook Marketplace ads targeting St. Charles zip codes<br>
+        • Join 3+ Facebook neighborhood groups for the area
+      </p>
+    </div>
+
+    <div class="timeline-item pending">
+      <div class="week">WEEK 2 (Mar 17-23) — BOOTS ON GROUND</div>
+      <h4>🚶 Canvassing Push</h4>
+      <p>
+        • Print 200 door hangers (use our Print Marketing Kit)<br>
+        • Spend 3 hours canvassing O'Fallon: Winghaven, Falcon Lakes, Cimarron<br>
+        • Drop door hangers at houses with visible dog stuff (toys, signs, fences)<br>
+        • Offer "Spring Cleanup Special: First visit FREE"<br>
+        • Post follow-up Nextdoor post: "Just drove through [neighborhood] — spring yards are looking rough! 🐕💩"
+      </p>
+    </div>
+
+    <div class="timeline-item pending">
+      <div class="week">WEEK 3 (Mar 24-30) — SPRING CLEANUP BLITZ</div>
+      <h4>🌸 Seasonal Push</h4>
+      <p>
+        • Launch "Spring Cleanup Special" — one-time deep clean $99 (normally $150+)<br>
+        • Post in ALL St. Charles Nextdoor groups (spring cleanup template)<br>
+        • Craigslist ads targeting 63303, 63304, 63366, 63376 zip codes<br>
+        • Ask any new St. Charles customer for a review immediately<br>
+        • Follow up with all door hanger leads from Week 2
+      </p>
+    </div>
+
+    <div class="timeline-item pending">
+      <div class="week">WEEK 4 (Mar 31 - Apr 6) — COMMUNITY PRESENCE</div>
+      <h4>🤝 Local Networking</h4>
+      <p>
+        • Visit 3 vet clinics in O'Fallon/St. Peters area — drop business cards<br>
+        • Drop flyers at 2 pet stores (Pet Supplies Plus, local shops)<br>
+        • Post in community boards at local libraries, coffee shops<br>
+        • Engage with Nextdoor posts about pets — be helpful, not salesy<br>
+        • Send a "How's your yard looking?" follow-up text to any spring cleanup customers
+      </p>
+    </div>
+
+    <div class="timeline-item pending">
+      <div class="week">WEEK 5 (Apr 7-13) — REFERRAL ACTIVATION</div>
+      <h4>🎁 Turn Customers Into Recruiters</h4>
+      <p>
+        • Launch referral program: "Refer a neighbor, you both get a free week"<br>
+        • Text all current St. Charles customers with the referral offer<br>
+        • Post referral-focused content on Nextdoor ("Know someone who hates scooping? 😄")<br>
+        • Second canvassing push: St. Peters neighborhoods<br>
+        • Track which neighborhoods are converting best → double down there
+      </p>
+    </div>
+
+    <div class="timeline-item pending">
+      <div class="week">WEEK 6 (Apr 14-20) — DENSITY BUILDING</div>
+      <h4>📍 Cluster Customers</h4>
+      <p>
+        • Analyze current St. Charles customer map — where are the clusters?<br>
+        • Heavy-target neighborhoods adjacent to existing customers<br>
+        • "Your neighbor [first name] loves us!" door hangers (with permission)<br>
+        • Post before/after photos on Nextdoor (if customer allows)<br>
+        • Update GBP with fresh St. Charles-focused posts and photos
+      </p>
+    </div>
+
+    <div class="timeline-item pending">
+      <div class="week">WEEK 7 (Apr 21-27) — OPTIMIZE ROUTES</div>
+      <h4>🗺️ Efficiency Check</h4>
+      <p>
+        • Map all St. Charles customers — are they clusterable into 1-2 days?<br>
+        • Calculate actual drive time vs service time ratio<br>
+        • Set fixed "St. Charles Days" (e.g., Tuesdays & Thursdays)<br>
+        • If profitable: expand canvassing to Lake St. Louis / Wentzville<br>
+        • If not: focus on filling gaps in O'Fallon/St. Peters clusters
+      </p>
+    </div>
+
+    <div class="timeline-item pending">
+      <div class="week">WEEK 8 (Apr 28 - May 4) — REVIEW & SCALE</div>
+      <h4>📊 Assess & Decide</h4>
+      <p>
+        • Count: How many St. Charles customers gained?<br>
+        • Revenue: Is the St. Charles route profitable (>$500/day after gas)?<br>
+        • Reviews: How many Google reviews from St. Charles area?<br>
+        • Decision: Scale up (dedicated route day + possible hire) or optimize first?<br>
+        • Set Q2 targets for St. Charles based on real data
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 5: READY TO POST -->
+<div id="posts" class="section">
+  <div class="card">
+    <h3>📝 Copy-Paste Posts for St. Charles Market Entry</h3>
+    <p>Customized for each platform. Just copy, paste, post. No editing needed.</p>
+  </div>
+
+  <h3 style="color:var(--green);font-size:0.9rem;margin:12px 0 8px">🏘️ Nextdoor Introduction Post</h3>
+  <div class="copy-wrap">
+    <div class="copy-content" id="post-nd-intro">Hey neighbors! 👋
+
+I'm TJ, owner of Tidy Tails — a pet waste removal service based right here in the St. Louis area. I've been serving West County and recently expanded into the St. Charles area.
+
+I know a couple pet waste services in this area have gone quiet recently, so I wanted to introduce myself in case anyone's looking for a reliable replacement (or trying the service for the first time!).
+
+What I do:
+🐕 Weekly yard cleanups — I come, I scoop, your yard stays clean
+💰 Affordable — starts at $15/week for 1 dog
+🤝 Owner-operated — you'll always deal with me, not a random employee
+🆓 First cleanup is FREE so you can try it risk-free
+
+Spring is here and yards are... well, let's just say winter wasn't kind. 😅 If you've been putting off that yard cleanup, shoot me a message!
+
+Happy to answer any questions. 🐾</div>
+    <button class="copy-btn" onclick="copyText('post-nd-intro', this)">📋 Copy Nextdoor Post</button>
+  </div>
+
+  <h3 style="color:var(--green);font-size:0.9rem;margin:12px 0 8px">🏘️ Nextdoor "Lost Your Provider?" Post</h3>
+  <div class="copy-wrap">
+    <div class="copy-content" id="post-nd-lost">Quick question for the neighborhood — has anyone else had their pet waste service suddenly stop showing up? 
+
+I've been hearing from a few folks in the area that their provider went MIA. If that's you, I totally get the frustration.
+
+I run Tidy Tails, a local pet waste removal service. I'm the owner and I do every cleanup myself. No random employees, no corporate runaround.
+
+If you're looking for someone reliable:
+✅ Weekly service starting at $15/week
+✅ First cleanup is on me (seriously, free)
+✅ Text confirmations so you know I was there
+✅ Local owner — I actually live in the area
+
+DM me or text/call (include your number). No pressure, just happy to help! 🐶</div>
+    <button class="copy-btn" onclick="copyText('post-nd-lost', this)">📋 Copy "Lost Provider" Post</button>
+  </div>
+
+  <h3 style="color:var(--green);font-size:0.9rem;margin:12px 0 8px">🌸 Nextdoor Spring Cleanup Post</h3>
+  <div class="copy-wrap">
+    <div class="copy-content" id="post-nd-spring">Spring is HERE and so is... everything your dog left in the yard since November. 😬🐕💩
+
+Real talk — after a long winter, most yards are a disaster zone. Your kids can't play out there, you can't enjoy your patio, and mowing over it isn't a strategy. (Trust me, I've heard the stories.)
+
+I'm running a Spring Cleanup Special this month:
+
+🌸 One-time deep yard cleanup — $99 flat rate
+🌸 Includes EVERYTHING, no matter how bad it is
+🌸 Takes about 60-90 min depending on yard size
+🌸 You'll have a yard you actually want to walk in again
+
+Want to keep it clean? Weekly service starts at just $15/week after the initial cleanup.
+
+I'm TJ with Tidy Tails — local, owner-operated, been doing this for a year+. Shoot me a message if you want to get on the schedule before spring really kicks in! 🌱</div>
+    <button class="copy-btn" onclick="copyText('post-nd-spring', this)">📋 Copy Spring Cleanup Post</button>
+  </div>
+
+  <h3 style="color:var(--blue);font-size:0.9rem;margin:12px 0 8px">📘 Facebook Marketplace Ad</h3>
+  <div class="copy-wrap">
+    <div class="copy-content" id="post-fb-market">🐕💩 PET WASTE REMOVAL — O'Fallon, St. Peters, St. Charles
+
+Tired of stepping in surprises? Let me handle it.
+
+TIDY TAILS — Professional Pet Waste Removal
+
+✅ Weekly service starting at $15/week
+✅ Spring cleanup special: $99 flat rate (any yard, any condition)
+✅ First regular cleanup FREE
+✅ Owner-operated — not a franchise, not a corporation
+✅ Serving O'Fallon, St. Peters, St. Charles, Dardenne Prairie, Lake St. Louis
+
+Spring yards are ROUGH after winter. Let me get yours back in shape.
+
+📱 Text or call TJ: [YOUR NUMBER]
+🌐 Tidy Tails — St. Louis Area
+
+⭐ "Finally found someone reliable!" — actual customer quote</div>
+    <button class="copy-btn" onclick="copyText('post-fb-market', this)">📋 Copy FB Marketplace Ad</button>
+  </div>
+
+  <h3 style="color:var(--blue);font-size:0.9rem;margin:12px 0 8px">📘 Facebook Group Introduction</h3>
+  <div class="copy-wrap">
+    <div class="copy-content" id="post-fb-group">Hey everyone! Hope it's okay to share — I own a small pet waste removal service called Tidy Tails and just expanded into the [O'Fallon/St. Peters/St. Charles] area.
+
+I know it's not the most glamorous job, but it sure makes life easier for dog owners 😄
+
+If your yard is looking rough after winter, I'm offering:
+• Spring cleanup: $99 (any yard, any condition)
+• Weekly service: starts at $15/week
+• First regular cleanup is FREE
+
+I'm local, owner-operated, and I actually love what I do. Feel free to DM me with any questions!
+
+Happy spring, neighbors! 🌸🐾</div>
+    <button class="copy-btn" onclick="copyText('post-fb-group', this)">📋 Copy FB Group Post</button>
+  </div>
+
+  <h3 style="color:var(--gold);font-size:0.9rem;margin:12px 0 8px">🔵 Craigslist Ad — St. Charles Area</h3>
+  <div class="copy-wrap">
+    <div class="copy-content" id="post-cl">TITLE: 🐕 Pet Waste Removal — O'Fallon, St. Peters, St. Charles — First Visit FREE
+
+---
+
+Is your backyard a minefield? 💩
+
+TIDY TAILS — Professional Pet Waste Removal
+Serving O'Fallon • St. Peters • St. Charles • Dardenne Prairie • Lake St. Louis
+
+SPRING CLEANUP SPECIAL
+✦ One-time deep yard cleanup: $99 flat rate
+✦ We remove EVERYTHING from the winter — no matter how bad
+✦ Your yard will look (and smell) brand new
+
+WEEKLY SERVICE
+✦ 1 dog: $15/week ($60/month)
+✦ 2 dogs: $20/week ($80/month)
+✦ 3+ dogs: $25/week ($100/month)
+✦ First regular visit is FREE — try us risk-free
+
+WHY TIDY TAILS?
+→ Owner-operated (you deal with me, TJ, every time)
+→ Reliable weekly schedule
+→ Text confirmation after every visit
+→ Locally owned, not a franchise
+→ Been in business 1+ year, expanding to St. Charles County
+
+Your kids deserve a clean yard. Your dogs don't care, but you do.
+
+📱 Call/Text TJ: [YOUR NUMBER]
+📧 cartervhomes@gmail.com
+
+Serious inquiries only. Yes, this is a real job. Yes, it's awesome. 🐕💩</div>
+    <button class="copy-btn" onclick="copyText('post-cl', this)">📋 Copy Craigslist Ad</button>
+  </div>
+
+  <h3 style="color:var(--purple);font-size:0.9rem;margin:12px 0 8px">📱 Door Hanger Text (for print)</h3>
+  <div class="copy-wrap">
+    <div class="copy-content" id="post-door">FRONT:
+═══════════════════
+YOUR YARD CALLED. 
+IT NEEDS HELP. 🐕💩
+
+TIDY TAILS
+Pet Waste Removal
+
+FIRST CLEANUP FREE
+═══════════════════
+
+BACK:
+═══════════════════
+Hi neighbor!
+
+I'm TJ — I run Tidy Tails,
+a pet waste removal service
+right here in the STL area.
+
+SPRING SPECIAL: $99
+Full yard cleanup, any condition
+
+WEEKLY SERVICE from $15/week
+(that's less than a pizza 🍕)
+
+📱 Text TJ: [YOUR NUMBER]
+
+"My only regret is not 
+starting sooner" 
+— Every customer, ever
+
+LOCALLY OWNED & OPERATED
+Not a franchise. Just a guy
+who scoops poop so you don't 
+have to. 💪
+═══════════════════</div>
+    <button class="copy-btn" onclick="copyText('post-door', this)">📋 Copy Door Hanger Text</button>
+  </div>
+
+  <h3 style="color:var(--green);font-size:0.9rem;margin:12px 0 8px">🏥 Vet Clinic Pitch Script</h3>
+  <div class="copy-wrap">
+    <div class="copy-content" id="post-vet">Hi! I'm TJ with Tidy Tails — I run a pet waste removal service in the area. 
+
+I was wondering if you'd be open to me leaving some business cards or flyers at your front desk? A lot of your clients are dog owners, and I've found that vets are the #1 trusted recommendation source for pet services.
+
+I'm not asking for an endorsement or anything — just permission to leave a small stack of cards. I'm locally owned, fully insured, and I've been serving the St. Louis area for over a year.
+
+If any of your clients ever ask about yard cleanup services, it'd be great to be on your radar. Here's my card — feel free to check out our Google reviews.
+
+Thanks for your time!</div>
+    <button class="copy-btn" onclick="copyText('post-vet', this)">📋 Copy Vet Clinic Pitch</button>
+  </div>
+</div>
+
+<!-- TAB 6: ROI MODEL -->
+<div id="roi" class="section">
+  <div class="card">
+    <h3>💵 St. Charles Route ROI Calculator</h3>
+    <p>Is expanding to St. Charles worth the drive time? Let's find out.</p>
+  </div>
+
+  <div class="card">
+    <div class="roi-grid">
+      <div class="roi-input">
+        <label>Customers in St. Charles</label>
+        <input type="number" id="roi-customers" value="6" min="1" max="50" onchange="calcROI()">
+      </div>
+      <div class="roi-input">
+        <label>Avg Weekly Price ($)</label>
+        <input type="number" id="roi-price" value="18" min="10" max="50" onchange="calcROI()">
+      </div>
+      <div class="roi-input">
+        <label>Drive Time (min, round trip)</label>
+        <input type="number" id="roi-drive" value="50" min="20" max="120" onchange="calcROI()">
+      </div>
+      <div class="roi-input">
+        <label>Avg Service Time per Yard (min)</label>
+        <input type="number" id="roi-service" value="15" min="5" max="30" onchange="calcROI()">
+      </div>
+      <div class="roi-input">
+        <label>Gas Cost (round trip, $)</label>
+        <input type="number" id="roi-gas" value="8" min="2" max="30" step="0.5" onchange="calcROI()">
+      </div>
+      <div class="roi-input">
+        <label>Service Frequency</label>
+        <select id="roi-freq" onchange="calcROI()">
+          <option value="4">Weekly (4x/mo)</option>
+          <option value="2">Biweekly (2x/mo)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="roi-result" id="roi-output">
+      <div class="big" id="roi-monthly">$400</div>
+      <div class="sub">Monthly Revenue from St. Charles Route</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px;text-align:center">
+        <div>
+          <div style="font-size:1.2rem;font-weight:bold;color:var(--gold)" id="roi-profit">$368</div>
+          <div style="font-size:0.7rem;color:var(--dim)">Monthly Profit (after gas)</div>
+        </div>
+        <div>
+          <div style="font-size:1.2rem;font-weight:bold;color:var(--blue)" id="roi-hourly">$38</div>
+          <div style="font-size:0.7rem;color:var(--dim)">Effective $/Hour</div>
+        </div>
+        <div>
+          <div style="font-size:1.2rem;font-weight:bold;color:var(--purple)" id="roi-annual">$4,416</div>
+          <div style="font-size:0.7rem;color:var(--dim)">Annual Profit</div>
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:var(--dim);margin-top:8px" id="roi-detail"></div>
+    </div>
+  </div>
+
+  <div class="insight opportunity">
+    <strong>💡 THE BREAKEVEN:</strong> With just 3 weekly customers in St. Charles at $18/visit, you'd make ~$184/month profit for about 2 hours/week of work (including drive time). At 6 customers, it's $368/month. At 10, it's $648/month. The math works fast once you build density.
+  </div>
+
+  <div class="card">
+    <h3>📊 Scenario Comparison</h3>
+    <table style="width:100%;font-size:0.82rem;border-collapse:collapse">
+      <tr style="color:var(--dim);font-size:0.72rem;text-align:left;border-bottom:1px solid #333">
+        <th style="padding:8px 4px">Customers</th>
+        <th>Monthly Rev</th>
+        <th>Gas Cost</th>
+        <th>Monthly Profit</th>
+        <th>Hours/Wk</th>
+        <th>$/Hour</th>
+      </tr>
+      <tr style="border-bottom:1px solid #1a1a1a">
+        <td style="padding:6px 4px">3</td><td>$216</td><td>$32</td><td style="color:var(--gold)">$184</td><td>1.6</td><td>$28</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1a1a1a">
+        <td style="padding:6px 4px">6</td><td>$432</td><td>$32</td><td style="color:var(--green)">$400</td><td>2.3</td><td>$42</td>
+      </tr>
+      <tr style="border-bottom:1px solid #1a1a1a;background:#0d1a0d">
+        <td style="padding:6px 4px"><strong>10</strong></td><td><strong>$720</strong></td><td>$32</td><td style="color:var(--green)"><strong>$688</strong></td><td>3.3</td><td><strong>$51</strong></td>
+      </tr>
+      <tr>
+        <td style="padding:6px 4px">15</td><td>$1,080</td><td>$64*</td><td style="color:var(--green)">$1,016</td><td>5.6*</td><td>$44</td>
+      </tr>
+    </table>
+    <p style="font-size:0.7rem;color:var(--dim);margin-top:6px">*15 customers likely needs 2 route days per week. Gas doubles but so does density efficiency. Assumes $18/visit avg, 15 min/yard, 50 min round trip.</p>
+  </div>
+</div>
+
+<!-- TAB 7: THIS WEEK CHECKLIST -->
+<div id="checklist" class="section">
+  <div class="card">
+    <h3>✅ This Week: St. Charles Launch Checklist</h3>
+    <p style="margin-bottom:12px">Week of March 10-16. Check these off as you go. Saved in your browser.</p>
+
+    <ul class="checklist" id="week1-checklist">
+      <li>
+        <div class="check-box" onclick="toggleCheck(this, 'sc-1')" id="sc-1"></div>
+        <div><strong>Join Nextdoor neighborhoods</strong> — O'Fallon, St. Peters, St. Charles, Dardenne Prairie, Wentzville. Join at least 5.</div>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this, 'sc-2')" id="sc-2"></div>
+        <div><strong>Post introduction on Nextdoor</strong> — Use the template from Ready Posts tab. Post in each neighborhood you joined.</div>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this, 'sc-3')" id="sc-3"></div>
+        <div><strong>Post "Lost Your Provider?" on Nextdoor</strong> — Specifically for O'Fallon & St. Peters where Little Stinkers died.</div>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this, 'sc-4')" id="sc-4"></div>
+        <div><strong>Update Google Business Profile</strong> — Add St. Charles County cities to your service area. Post a "Now Serving St. Charles!" update.</div>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this, 'sc-5')" id="sc-5"></div>
+        <div><strong>Post 2 Facebook Marketplace ads</strong> — Target St. Charles area zip codes (63303, 63304, 63366, 63376). Use template from Ready Posts.</div>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this, 'sc-6')" id="sc-6"></div>
+        <div><strong>Join 3+ Facebook neighborhood groups</strong> — Search for "O'Fallon Neighbors," "St. Peters Community," "St. Charles Families" etc.</div>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this, 'sc-7')" id="sc-7"></div>
+        <div><strong>Post Craigslist ad</strong> — Use the St. Charles-specific template. Post under Services > Household.</div>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this, 'sc-8')" id="sc-8"></div>
+        <div><strong>Create a "Now Serving St. Charles" post</strong> — Share on your personal Facebook, Instagram story, anywhere.</div>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this, 'sc-9')" id="sc-9"></div>
+        <div><strong>Research dog parks in St. Charles area</strong> — Potential flyer locations: Quail Ridge Park (Wentzville), Broemmelsiek Park, Dardenne Park dog area.</div>
+      </li>
+      <li>
+        <div class="check-box" onclick="toggleCheck(this, 'sc-10')" id="sc-10"></div>
+        <div><strong>Map 3 vet clinics to visit next week</strong> — Google "veterinarian O'Fallon MO" and pick 3 that are near residential areas.</div>
+      </li>
+    </ul>
+
+    <div style="margin-top:16px;padding:12px;background:var(--green-bg);border:1px solid var(--green-border);border-radius:8px">
+      <strong style="color:var(--green)">🎯 WEEK 1 GOAL:</strong>
+      <span style="font-size:0.85rem;color:#ccc"> Establish digital presence in St. Charles County. Get at least 1 inquiry from the area. Zero dollars spent — just time and hustle.</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📱 Key Zip Codes for Targeting</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-top:8px">
+      <div style="background:#0d0d0d;padding:8px;border-radius:6px;text-align:center">
+        <div style="font-weight:bold;color:var(--green)">63366</div>
+        <div style="font-size:0.72rem;color:var(--dim)">O'Fallon</div>
+      </div>
+      <div style="background:#0d0d0d;padding:8px;border-radius:6px;text-align:center">
+        <div style="font-weight:bold;color:var(--green)">63368</div>
+        <div style="font-size:0.72rem;color:var(--dim)">O'Fallon / Dardenne</div>
+      </div>
+      <div style="background:#0d0d0d;padding:8px;border-radius:6px;text-align:center">
+        <div style="font-weight:bold;color:var(--green)">63376</div>
+        <div style="font-size:0.72rem;color:var(--dim)">St. Peters</div>
+      </div>
+      <div style="background:#0d0d0d;padding:8px;border-radius:6px;text-align:center">
+        <div style="font-weight:bold;color:var(--gold)">63303</div>
+        <div style="font-size:0.72rem;color:var(--dim)">St. Charles</div>
+      </div>
+      <div style="background:#0d0d0d;padding:8px;border-radius:6px;text-align:center">
+        <div style="font-weight:bold;color:var(--gold)">63304</div>
+        <div style="font-size:0.72rem;color:var(--dim)">St. Charles West</div>
+      </div>
+      <div style="background:#0d0d0d;padding:8px;border-radius:6px;text-align:center">
+        <div style="font-weight:bold;color:var(--blue)">63385</div>
+        <div style="font-size:0.72rem;color:var(--dim)">Wentzville</div>
+      </div>
+      <div style="background:#0d0d0d;padding:8px;border-radius:6px;text-align:center">
+        <div style="font-weight:bold;color:var(--blue)">63367</div>
+        <div style="font-size:0.72rem;color:var(--dim)">Lake St. Louis</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyText(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '📋 Copy'; }, 2000);
+  });
+}
+
+function toggleCheck(el, key) {
+  el.classList.toggle('checked');
+  const state = {};
+  document.querySelectorAll('.check-box').forEach(cb => {
+    state[cb.id] = cb.classList.contains('checked');
+  });
+  localStorage.setItem('sc-expansion-checks', JSON.stringify(state));
+}
+
+// Load saved checks
+try {
+  const saved = JSON.parse(localStorage.getItem('sc-expansion-checks') || '{}');
+  Object.entries(saved).forEach(([id, checked]) => {
+    if (checked) document.getElementById(id)?.classList.add('checked');
+  });
+} catch(e) {}
+
+function calcROI() {
+  const customers = parseInt(document.getElementById('roi-customers').value) || 6;
+  const price = parseInt(document.getElementById('roi-price').value) || 18;
+  const drive = parseInt(document.getElementById('roi-drive').value) || 50;
+  const service = parseInt(document.getElementById('roi-service').value) || 15;
+  const gas = parseFloat(document.getElementById('roi-gas').value) || 8;
+  const freq = parseInt(document.getElementById('roi-freq').value) || 4;
+  
+  const monthlyRev = customers * price * freq;
+  const monthlyGas = gas * freq;
+  const monthlyProfit = monthlyRev - monthlyGas;
+  const totalMinPerTrip = drive + (customers * service);
+  const hoursPerWeek = (totalMinPerTrip / 60).toFixed(1);
+  const hourly = Math.round(monthlyProfit / (hoursPerWeek * freq));
+  const annual = monthlyProfit * 12;
+  
+  document.getElementById('roi-monthly').textContent = '$' + monthlyRev.toLocaleString();
+  document.getElementById('roi-profit').textContent = '$' + monthlyProfit.toLocaleString();
+  document.getElementById('roi-hourly').textContent = '$' + hourly;
+  document.getElementById('roi-annual').textContent = '$' + annual.toLocaleString();
+  document.getElementById('roi-detail').textContent = `${hoursPerWeek} hrs/week total (${drive} min drive + ${customers * service} min service) × ${freq} trips/mo`;
+}
+calcROI();
+</script>
+</body>
+</html>
