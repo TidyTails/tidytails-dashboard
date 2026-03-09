@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📍 Nextdoor Launch Strategy — Tidy Tails</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0a0a0f;color:#e0e0e0;line-height:1.6}
+.container{max-width:1100px;margin:0 auto;padding:20px}
+h1{font-size:1.8rem;color:#00c853;text-align:center;margin-bottom:6px}
+.subtitle{text-align:center;color:#888;margin-bottom:24px;font-size:.95rem}
+
+/* Alert banner */
+.alert-banner{background:linear-gradient(135deg,#00c853 0%,#009624 100%);color:#fff;padding:20px 24px;border-radius:12px;margin-bottom:24px;text-align:center;font-weight:700;box-shadow:0 4px 20px rgba(0,200,83,.3)}
+.alert-banner .big{font-size:1.8rem;display:block;margin-bottom:4px}
+.alert-banner .sub{font-size:.95rem;font-weight:400;opacity:.9}
+
+/* Stats row */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:24px}
+.stat-card{background:#111;border:1px solid #1a1a1a;border-radius:10px;padding:16px;text-align:center}
+.stat-card .number{font-size:2rem;font-weight:800;color:#00c853}
+.stat-card .label{color:#888;font-size:.85rem;margin-top:2px}
+.stat-card.warning .number{color:#ff9800}
+.stat-card.danger .number{color:#ff4444}
+
+/* Section */
+.section{margin-bottom:28px}
+.section-title{font-size:1.25rem;color:#fff;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #222;cursor:pointer;user-select:none}
+.section-title:hover{color:#00c853}
+.section-title .toggle{float:right;color:#555;font-size:.85rem;font-weight:400}
+
+/* Steps */
+.step-list{counter-reset:steps}
+.step{background:#111;border:1px solid #1a1a1a;border-radius:10px;padding:16px 16px 16px 60px;margin-bottom:12px;position:relative;counter-increment:steps}
+.step::before{content:counter(steps);position:absolute;left:16px;top:16px;width:32px;height:32px;background:#00c853;color:#000;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem}
+.step h3{font-size:1rem;color:#fff;margin-bottom:4px}
+.step p{color:#aaa;font-size:.9rem}
+.step .tip{background:#1a2a1a;border-left:3px solid #00c853;padding:8px 12px;margin-top:8px;font-size:.85rem;color:#66bb6a;border-radius:0 6px 6px 0}
+
+/* Competitor cards */
+.comp-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-bottom:16px}
+.comp-card{background:#111;border:1px solid #1a1a1a;border-radius:10px;padding:16px;position:relative}
+.comp-card .name{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:2px}
+.comp-card .meta{color:#888;font-size:.82rem;margin-bottom:8px}
+.comp-card .faves{position:absolute;top:14px;right:16px;background:#00c85322;color:#00c853;padding:3px 10px;border-radius:20px;font-size:.8rem;font-weight:700}
+.comp-card .detail{font-size:.88rem;color:#aaa;margin-bottom:4px}
+.comp-card .weakness{margin-top:8px;padding:8px 12px;background:#1a1a0a;border-left:3px solid #ff9800;font-size:.82rem;color:#cca800;border-radius:0 6px 6px 0}
+
+/* Post cards */
+.post-grid{display:grid;gap:14px}
+.post-card{background:#111;border:1px solid #1a1a1a;border-radius:10px;overflow:hidden}
+.post-header{display:flex;justify-content:space-between;align-items:center;padding:14px 16px;cursor:pointer;user-select:none}
+.post-header:hover{background:#1a1a1a}
+.post-day{font-weight:700;color:#fff;font-size:.95rem}
+.post-type{font-size:.8rem;padding:3px 10px;border-radius:20px;font-weight:600}
+.type-intro{background:#00c85322;color:#00c853}
+.type-seasonal{background:#ff980022;color:#ff9800}
+.type-social{background:#2196f322;color:#2196f3}
+.type-promo{background:#e91e6322;color:#e91e63}
+.type-edu{background:#9c27b022;color:#9c27b0}
+.type-story{background:#ffeb3b22;color:#ffeb3b}
+.type-engage{background:#00bcd422;color:#00bcd4}
+.post-body{display:none;padding:0 16px 16px;border-top:1px solid #1a1a1a}
+.post-card.open .post-body{display:block;padding-top:14px}
+.post-text{background:#0a0a0f;border:1px solid #222;border-radius:8px;padding:14px;font-size:.9rem;color:#ddd;white-space:pre-wrap;line-height:1.7;margin-bottom:10px;position:relative}
+.copy-btn{position:absolute;top:8px;right:8px;background:#00c853;color:#000;border:none;padding:5px 12px;border-radius:6px;cursor:pointer;font-size:.78rem;font-weight:700;transition:all .2s}
+.copy-btn:hover{background:#00e676;transform:scale(1.05)}
+.copy-btn.copied{background:#666;color:#fff}
+.post-notes{font-size:.82rem;color:#888;padding:8px 12px;background:#0d0d12;border-radius:6px}
+.post-notes strong{color:#aaa}
+
+/* Checklist */
+.checklist{list-style:none}
+.checklist li{padding:8px 0;border-bottom:1px solid #1a1a1a;font-size:.9rem;display:flex;align-items:flex-start;gap:8px}
+.checklist li:last-child{border:none}
+.checklist input[type="checkbox"]{margin-top:3px;accent-color:#00c853;width:16px;height:16px;flex-shrink:0}
+.checklist .done{text-decoration:line-through;color:#555}
+
+/* Neighborhood targeting */
+.hood-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.hood-card{background:#111;border:1px solid #1a1a1a;border-radius:10px;padding:14px}
+.hood-card .name{font-weight:700;color:#fff;font-size:1rem;margin-bottom:4px}
+.hood-card .pop{color:#888;font-size:.82rem;margin-bottom:6px}
+.hood-card .strategy{font-size:.85rem;color:#aaa}
+.hood-card .priority{display:inline-block;padding:2px 8px;border-radius:12px;font-size:.75rem;font-weight:700;margin-bottom:6px}
+.priority-1{background:#00c85322;color:#00c853;border:1px solid #00c853}
+.priority-2{background:#ff980022;color:#ff9800;border:1px solid #ff9800}
+.priority-3{background:#2196f322;color:#2196f3;border:1px solid #2196f3}
+
+/* Timeline */
+.timeline{position:relative;padding-left:30px}
+.timeline::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:#222}
+.timeline-item{position:relative;margin-bottom:20px}
+.timeline-item::before{content:'';position:absolute;left:-24px;top:6px;width:12px;height:12px;background:#00c853;border-radius:50%;border:2px solid #0a0a0f}
+.timeline-item .week{font-weight:700;color:#00c853;font-size:.9rem;margin-bottom:4px}
+.timeline-item .tasks{font-size:.88rem;color:#aaa}
+.timeline-item .tasks li{margin-bottom:3px}
+
+/* Floating CTA */
+.float-cta{position:fixed;bottom:20px;right:20px;z-index:100}
+.float-cta a{display:block;background:#00c853;color:#000;padding:12px 20px;border-radius:30px;text-decoration:none;font-weight:800;font-size:.95rem;box-shadow:0 4px 20px rgba(0,200,83,.4);transition:transform .2s}
+.float-cta a:hover{transform:translateY(-2px)}
+
+@media(max-width:600px){
+  .container{padding:12px}
+  h1{font-size:1.4rem}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .comp-grid{grid-template-columns:1fr}
+  .hood-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>📍 Nextdoor Launch Strategy</h1>
+<p class="subtitle">Tidy Tails Pet Waste Removal — March 9, 2026</p>
+
+<div class="alert-banner">
+  <span class="big">🚨 Tidy Tails Is NOT On Nextdoor — Your Competitors ARE</span>
+  <span class="sub">Poop2Scoop has 3 recommendations. Poopy Paws has a page. You have nothing. Fix this TODAY.</span>
+</div>
+
+<!-- Stats -->
+<div class="stats-row">
+  <div class="stat-card">
+    <div class="number">94%</div>
+    <div class="label">Neighbors trust Nextdoor recommendations</div>
+  </div>
+  <div class="stat-card">
+    <div class="number">44%</div>
+    <div class="label">Lead close rate from Nextdoor</div>
+  </div>
+  <div class="stat-card warning">
+    <div class="number">2</div>
+    <div class="label">Competitors already on Nextdoor in STL</div>
+  </div>
+  <div class="stat-card danger">
+    <div class="number">0</div>
+    <div class="label">Tidy Tails Nextdoor presence</div>
+  </div>
+</div>
+
+<!-- WHY NEXTDOOR -->
+<div class="section">
+  <h2 class="section-title" onclick="toggleSection(this)">🎯 Why Nextdoor Is Your Best Free Marketing Channel <span class="toggle">▼</span></h2>
+  <div class="section-content">
+    <div class="step-list">
+      <div class="step">
+        <h3>Hyper-Local = Your Exact Customers</h3>
+        <p>Unlike Facebook where you're competing with every business globally, Nextdoor users are verified residents of specific neighborhoods. When someone in Kirkwood posts "Anyone know a good pooper scooper?", that's a hand-raised lead in YOUR service area.</p>
+      </div>
+      <div class="step">
+        <h3>Trust Factor Is Unmatched</h3>
+        <p>94% of Nextdoor users trust recommendations from neighbors. That's higher than Google reviews, Yelp, or Facebook. A single recommendation from a satisfied customer on Nextdoor is worth more than 10 Facebook ads.</p>
+      </div>
+      <div class="step">
+        <h3>Low Competition = Easy Wins</h3>
+        <p>Only Poop2Scoop and Poopy Paws have Nextdoor pages in STL. Neither is active with posts. You can be the FIRST pet waste removal company actively engaging on Nextdoor in your target neighborhoods.</p>
+      </div>
+      <div class="step">
+        <h3>Free Business Page + Free Posts</h3>
+        <p>Claiming your business page is free. Posting 2x per month to local neighborhoods is free. Getting recommendations is free. This costs you nothing but 15 minutes of setup.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPETITOR PRESENCE -->
+<div class="section">
+  <h2 class="section-title" onclick="toggleSection(this)">🔍 Competitor Nextdoor Presence <span class="toggle">▼</span></h2>
+  <div class="section-content">
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="faves">3 Faves</div>
+        <div class="name">Poop 2 Scoop</div>
+        <div class="meta">St. Louis, MO • Veteran-Owned</div>
+        <div class="detail">✅ Claimed business page</div>
+        <div class="detail">✅ 3 neighbor recommendations</div>
+        <div class="detail">✅ Professional description</div>
+        <div class="detail">❌ No recent posts visible</div>
+        <div class="weakness">⚡ Weakness: Not actively posting. Static page only. You can outpace them with regular engagement.</div>
+      </div>
+      <div class="comp-card">
+        <div class="faves">Page Only</div>
+        <div class="name">Poopy Paws</div>
+        <div class="meta">Saint Louis, MO • Owner: Charlie</div>
+        <div class="detail">✅ Has a business page</div>
+        <div class="detail">❌ Informal/unprofessional description</div>
+        <div class="detail">❌ Website is down</div>
+        <div class="detail">❌ No visible recommendations</div>
+        <div class="weakness">⚡ Weakness: Unprofessional presence, website dead. Easy to look better than them.</div>
+      </div>
+      <div class="comp-card">
+        <div class="faves">Not Found</div>
+        <div class="name">POOP 911</div>
+        <div class="meta">St. Louis franchise</div>
+        <div class="detail">❌ No Nextdoor business page found</div>
+        <div class="detail">✅ Strong Google/Yelp presence</div>
+        <div class="detail">❌ Not engaging on Nextdoor</div>
+        <div class="weakness">⚡ Opportunity: National franchise sleeping on local engagement. Beat them to it.</div>
+      </div>
+      <div class="comp-card">
+        <div class="faves">Not Found</div>
+        <div class="name">DoodyCalls</div>
+        <div class="meta">St. Louis franchise</div>
+        <div class="detail">❌ No Nextdoor business page found</div>
+        <div class="detail">✅ Website and Google presence</div>
+        <div class="detail">❌ Franchise = no local personality</div>
+        <div class="weakness">⚡ Opportunity: Franchises can't do "local neighbor" authentically. You can.</div>
+      </div>
+    </div>
+    <div style="background:#111;border:1px solid #00c853;border-radius:10px;padding:16px;text-align:center;margin-top:8px">
+      <strong style="color:#00c853;font-size:1.1rem">Bottom Line:</strong><br>
+      <span style="color:#aaa">Your biggest competitors either aren't on Nextdoor or aren't active. This is a wide-open lane. First mover advantage is real here.</span>
+    </div>
+  </div>
+</div>
+
+<!-- SETUP GUIDE -->
+<div class="section">
+  <h2 class="section-title" onclick="toggleSection(this)">🛠️ Setup Guide — Do This TODAY (15 min) <span class="toggle">▼</span></h2>
+  <div class="section-content">
+    <ul class="checklist" id="setup-checklist">
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Step 1:</strong> Go to <a href="https://business.nextdoor.com" target="_blank" style="color:#00c853">business.nextdoor.com</a> and click "Claim Your Free Business Page"</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Step 2:</strong> Search for "Tidy Tails" — if it exists from Google data, claim it. If not, create new.</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Step 3:</strong> Business Name: <strong>Tidy Tails Pet Waste Removal</strong></span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Step 4:</strong> Phone: <strong>(314) 850-7140</strong> — will need this for verification call</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Step 5:</strong> Address: Use your home address (Olivette area) — it sets your service radius</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Step 6:</strong> Category: "Pet Services" → "Pet Waste Removal"</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Step 7:</strong> Website: <strong>tidytailsstl.com</strong></span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Step 8:</strong> Hours: Mon-Sat 7:00 AM - 7:00 PM</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Step 9:</strong> Upload profile photo (logo or truck photo)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Step 10:</strong> Write description — use the one below 👇</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Step 11:</strong> Verify phone number (Nextdoor will call you)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Step 12:</strong> Post your first intro post (copy from below)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Step 13:</strong> Ask your 8 current customers to recommend you on Nextdoor</span></li>
+    </ul>
+
+    <h3 style="color:#fff;margin:20px 0 10px">📝 Business Description (Copy-Paste Ready)</h3>
+    <div class="post-text" id="bio-text">Hey neighbors! I'm TJ, owner of Tidy Tails Pet Waste Removal. I'm a local guy based right here in St. Louis County, and I started this business because I saw too many dog owners spending their weekends doing the one chore nobody wants to do.
+
+Here's what I offer:
+🐕 Weekly cleanup — $25/week (1 dog)
+🐕 Biweekly cleanup — $45/visit
+🐕 Monthly service — $70/month (ONLY service in STL that offers this!)
+🐕 One-time deep clean — $99 (perfect for spring!)
+
+No contracts. No hidden fees. Free first visit to check out your yard.
+
+I serve Kirkwood, Webster Groves, Ballwin, Chesterfield, Creve Coeur, Olivette, Florissant, O'Fallon, St. Peters, and most of St. Louis and St. Charles County.
+
+I answer my own phone: (314) 850-7140
+Or text me — I'm fast.
+
+Your neighbors trust me with their yards. Let me earn yours too. 🐾<button class="copy-btn" onclick="copyText('bio-text')">COPY</button></div>
+  </div>
+</div>
+
+<!-- NEIGHBORHOOD TARGETING -->
+<div class="section">
+  <h2 class="section-title" onclick="toggleSection(this)">🏘️ Target Neighborhoods on Nextdoor <span class="toggle">▼</span></h2>
+  <div class="section-content">
+    <p style="color:#888;font-size:.9rem;margin-bottom:14px">Nextdoor organizes by neighborhoods. These are the ones to focus your posts and engagement on, ranked by priority:</p>
+    <div class="hood-grid">
+      <div class="hood-card">
+        <span class="priority priority-1">TIER 1 — START HERE</span>
+        <div class="name">Kirkwood</div>
+        <div class="pop">Median income: $117K • High dog ownership</div>
+        <div class="strategy">💡 Lead with "spring thaw cleanup" angle. Kirkwood has parks and older homes with big backyards. Mention Kirkwood Park specifically.</div>
+      </div>
+      <div class="hood-card">
+        <span class="priority priority-1">TIER 1 — START HERE</span>
+        <div class="name">Webster Groves</div>
+        <div class="pop">Median income: $111K • Family-oriented</div>
+        <div class="strategy">💡 Environmental angle works here. Eco-conscious community. Mention health risks of pet waste near kids' play areas.</div>
+      </div>
+      <div class="hood-card">
+        <span class="priority priority-1">TIER 1 — START HERE</span>
+        <div class="name">Ballwin</div>
+        <div class="pop">Median income: $121K • HOA communities</div>
+        <div class="strategy">💡 HOA angle. Many communities with pet policies. Mention "HOA compliance" and "yard maintenance" in posts.</div>
+      </div>
+      <div class="hood-card">
+        <span class="priority priority-2">TIER 2 — WEEK 2</span>
+        <div class="name">Creve Coeur</div>
+        <div class="pop">Median income: $119K • Affluent professionals</div>
+        <div class="strategy">💡 "Too busy to scoop?" angle. Working professionals who value time over money.</div>
+      </div>
+      <div class="hood-card">
+        <span class="priority priority-2">TIER 2 — WEEK 2</span>
+        <div class="name">Chesterfield</div>
+        <div class="pop">Median income: $133K • Highest income target</div>
+        <div class="strategy">💡 Premium service angle. These homeowners hire help for everything. Position as essential home service.</div>
+      </div>
+      <div class="hood-card">
+        <span class="priority priority-2">TIER 2 — WEEK 2</span>
+        <div class="name">Olivette</div>
+        <div class="pop">Median income: ~$85K • Your home base</div>
+        <div class="strategy">💡 "Your actual neighbor" angle. You live here. That's a selling point nobody else has.</div>
+      </div>
+      <div class="hood-card">
+        <span class="priority priority-3">TIER 3 — WEEK 3+</span>
+        <div class="name">Florissant</div>
+        <div class="pop">Existing customer base here</div>
+        <div class="strategy">💡 You already have customers here (Shannon, Amanda, Chastity). Ask them to recommend you on Nextdoor.</div>
+      </div>
+      <div class="hood-card">
+        <span class="priority priority-3">TIER 3 — WEEK 3+</span>
+        <div class="name">O'Fallon / St. Peters</div>
+        <div class="pop">Growing suburbs • St. Charles County</div>
+        <div class="strategy">💡 "Now serving St. Charles County" angle. Little Stinkers is the main competition here.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- READY TO POST -->
+<div class="section">
+  <h2 class="section-title" onclick="toggleSection(this)">📝 14 Ready-to-Post Nextdoor Posts (2 Weeks) <span class="toggle">▼</span></h2>
+  <div class="section-content">
+    <p style="color:#888;font-size:.88rem;margin-bottom:14px">💡 <strong>Nextdoor posting rules:</strong> Business pages get 2 free posts per month to nearby neighborhoods. Personal account posts are unlimited but must be authentic/helpful, not spammy. Mix both strategies below.</p>
+
+    <div class="post-grid">
+
+      <!-- POST 1 -->
+      <div class="post-card">
+        <div class="post-header" onclick="togglePost(this)">
+          <span class="post-day">📌 Day 1 — Intro Post (Business Page)</span>
+          <span class="post-type type-intro">INTRO</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text" id="post-1">Hey neighbors! 👋
+
+I'm TJ, and I run Tidy Tails Pet Waste Removal right here in St. Louis County. I started this because I saw way too many dog owners dreading the weekend scoop session.
+
+Here's the deal — I come to your yard weekly (or biweekly, or monthly), scoop everything up, bag it, and take it with me. You never think about it again.
+
+🐕 Weekly: $25/week
+🐕 Monthly: $70/month (only service in STL that offers this)
+🐕 Spring deep clean: $99 one-time
+
+No contracts. No hidden fees. I answer my own phone.
+
+Text or call: (314) 850-7140
+
+If you've been putting off dealing with the winter buildup in your yard... spring's here. Let me handle it. 🐾<button class="copy-btn" onclick="copyText('post-1')">COPY</button></div>
+          <div class="post-notes"><strong>Post from:</strong> Business page (1 of 2 free monthly posts)<br><strong>Best time:</strong> Tuesday or Wednesday, 8-10 AM<br><strong>Target neighborhoods:</strong> Kirkwood, Webster Groves, Ballwin</div>
+        </div>
+      </div>
+
+      <!-- POST 2 -->
+      <div class="post-card">
+        <div class="post-header" onclick="togglePost(this)">
+          <span class="post-day">📌 Day 2 — Spring Thaw Alert (Personal Account)</span>
+          <span class="post-type type-seasonal">SEASONAL</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text" id="post-2">Spring thaw PSA for dog owners 🌱🐕
+
+That snow is melting and revealing... well, you know. Months of "I'll get it later."
+
+Real talk: decomposing pet waste can carry roundworm, E. coli, and giardia. With kids and dogs playing in the yard as it warms up, now's the time to deal with it.
+
+I run a pet waste removal service locally (Tidy Tails). Happy to help if your yard needs a reset before spring really kicks in. One-time deep cleans are $99 and I can usually get to you within a few days.
+
+Text me: (314) 850-7140
+
+No pressure — just figured I'd mention it since I know I'm not the only one staring at a minefield right now 😅<button class="copy-btn" onclick="copyText('post-2')">COPY</button></div>
+          <div class="post-notes"><strong>Post from:</strong> Personal account (reads more authentic)<br><strong>Best time:</strong> Saturday morning, 9-11 AM (homeowners looking at yards)<br><strong>Tone:</strong> Helpful neighbor, not salesy</div>
+        </div>
+      </div>
+
+      <!-- POST 3 -->
+      <div class="post-card">
+        <div class="post-header" onclick="togglePost(this)">
+          <span class="post-day">📌 Day 3 — Health & Safety Education</span>
+          <span class="post-type type-edu">EDUCATIONAL</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text" id="post-3">Did you know? A single gram of dog poop contains 23 million fecal coliform bacteria. 😳
+
+And the average dog produces about 275 lbs of waste per year.
+
+With spring here and everyone's kids back outside, here are some things most dog owners don't realize:
+
+🦠 Dog waste doesn't "fertilize" your lawn — it actually kills grass and contaminates soil
+🌧️ Rain washes bacteria from pet waste into storm drains → local waterways
+👶 Kids playing on contaminated grass can pick up parasites like roundworm
+⏰ It takes over a year for dog waste to fully decompose
+
+I'm TJ from Tidy Tails — I remove pet waste from yards across St. Louis County. Not trying to scare anyone, just sharing what I've learned doing this work!
+
+If you have questions or want a free yard assessment, text me: (314) 850-7140<button class="copy-btn" onclick="copyText('post-3')">COPY</button></div>
+          <div class="post-notes"><strong>Post from:</strong> Personal account<br><strong>Best time:</strong> Weekday evening, 6-8 PM<br><strong>Strategy:</strong> Lead with value/education, soft CTA at end</div>
+        </div>
+      </div>
+
+      <!-- POST 4 -->
+      <div class="post-card">
+        <div class="post-header" onclick="togglePost(this)">
+          <span class="post-day">📌 Day 4 — Spring Special Offer (Business Page)</span>
+          <span class="post-type type-promo">PROMO</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text" id="post-4">🌸 SPRING CLEANUP SPECIAL 🌸
+
+Your yard survived winter. Did your grass? 😬
+
+Tidy Tails Spring Reset:
+✅ Complete yard sweep — every pile, every corner
+✅ Double-bagged and removed (not left in your trash)
+✅ Done in 1 visit, usually within 48 hours
+
+$99 one-time deep clean
+OR sign up for weekly service and get your first cleanup FREE
+
+No contracts. Cancel anytime. Just a clean yard and your weekends back.
+
+📱 (314) 850-7140 — text or call TJ directly
+
+Serving Kirkwood, Webster Groves, Ballwin, Chesterfield, Creve Coeur, Olivette, and all of St. Louis County.
+
+🐾 Spring is short. Don't spend it scooping.<button class="copy-btn" onclick="copyText('post-4')">COPY</button></div>
+          <div class="post-notes"><strong>Post from:</strong> Business page (2 of 2 free monthly posts)<br><strong>Best time:</strong> Monday morning, 8-9 AM<br><strong>Target:</strong> All neighborhoods in service area</div>
+        </div>
+      </div>
+
+      <!-- POST 5 -->
+      <div class="post-card">
+        <div class="post-header" onclick="togglePost(this)">
+          <span class="post-day">📌 Day 5 — Social Proof / Testimonial Ask</span>
+          <span class="post-type type-social">SOCIAL PROOF</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text" id="post-5">Quick shoutout to all my Tidy Tails customers — y'all make this job awesome 🙌
+
+I started this business about a year ago because I genuinely love dogs (and honestly, the job is weirdly satisfying). Started with a few yards, now I'm serving families across St. Louis County every week.
+
+If you're one of my customers and you've been happy with the service, I'd really appreciate a recommendation here on Nextdoor. It helps other neighbors find me and trust that I'm the real deal.
+
+And if you're NOT a customer but you've been thinking about getting someone to handle the yard — hit me up. Free first visit to see if we're a good fit.
+
+TJ — (314) 850-7140 📱<button class="copy-btn" onclick="copyText('post-5')">COPY</button></div>
+          <div class="post-notes"><strong>Post from:</strong> Personal account<br><strong>Best time:</strong> Sunday evening (after scooping day — you're feeling it)<br><strong>Strategy:</strong> Authentic gratitude + recommendation ask. Send this post link to your current customers too.</div>
+        </div>
+      </div>
+
+      <!-- POST 6 -->
+      <div class="post-card">
+        <div class="post-header" onclick="togglePost(this)">
+          <span class="post-day">📌 Day 6 — Engage on "Looking For" Posts</span>
+          <span class="post-type type-engage">ENGAGEMENT</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text" id="post-6">TEMPLATE: When someone posts "Looking for a pooper scooper" or "Anyone know a pet waste removal service?"
+
+---
+
+Hey! I run Tidy Tails — local pet waste removal right here in [NEIGHBORHOOD]. I'd love to help!
+
+I do weekly ($25/wk), biweekly ($45), or monthly ($70) service. Also doing spring deep cleans right now for $99.
+
+No contracts, and your first visit is free so you can see if it works for you.
+
+Text me anytime: (314) 850-7140
+
+Happy to answer any questions! 🐾<button class="copy-btn" onclick="copyText('post-6')">COPY</button></div>
+          <div class="post-notes"><strong>Post from:</strong> Personal account (as a comment/reply)<br><strong>Strategy:</strong> This is the #1 way to get customers on Nextdoor. Set up notifications for keywords: "pet waste", "pooper scooper", "dog poop", "yard cleanup". Reply FAST — first responder usually wins.</div>
+        </div>
+      </div>
+
+      <!-- POST 7 -->
+      <div class="post-card">
+        <div class="post-header" onclick="togglePost(this)">
+          <span class="post-day">📌 Day 7 — The Humor Post</span>
+          <span class="post-type type-story">STORYTELLING</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text" id="post-7">Confession: I pick up dog poop for a living. And I love it. 😂
+
+I know, I know. But hear me out.
+
+When I tell people what I do, I get one of two reactions:
+1. "That's a thing?!" (Yes. A very necessary thing.)
+2. "How much?" (They text me by end of day.)
+
+The truth is, nobody WANTS to scoop their yard. You do it because you have to. But what if you... didn't have to?
+
+I'm TJ. I run Tidy Tails Pet Waste Removal. I show up, scoop, bag it, remove it. Your yard is clean when you get home. Your weekends are yours again.
+
+$25/week for a yard that you actually want to walk in barefoot. 🦶
+
+(314) 850-7140 — text me. Or don't. Your yard will still be there either way 😉<button class="copy-btn" onclick="copyText('post-7')">COPY</button></div>
+          <div class="post-notes"><strong>Post from:</strong> Personal account<br><strong>Best time:</strong> Wednesday, midday (hump day humor)<br><strong>Strategy:</strong> Humor = shareability. This is the kind of post neighbors forward to friends. Personality beats polish.</div>
+        </div>
+      </div>
+
+      <!-- POST 8 -->
+      <div class="post-card">
+        <div class="post-header" onclick="togglePost(this)">
+          <span class="post-day">📌 Day 8 — Neighborhood-Specific (Kirkwood)</span>
+          <span class="post-type type-intro">LOCAL</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text" id="post-8">Kirkwood dog owners! 🐕
+
+I'm already serving a few yards in the area and looking to add more stops on my route through Kirkwood this spring.
+
+If your yard has been accumulating over winter (no judgment — everyone's in the same boat), I do:
+
+🧹 One-time spring deep clean: $99
+📅 Weekly service: $25/week
+📅 Monthly service: $70/month
+
+I'm usually in Kirkwood on [SERVICE DAY] already, so adding your yard means I'm literally driving past your house anyway. Saves you time, saves me gas. Win-win.
+
+Text TJ: (314) 850-7140
+
+Already a customer? I'd love a recommendation here on Nextdoor! 🙏<button class="copy-btn" onclick="copyText('post-8')">COPY</button></div>
+          <div class="post-notes"><strong>Post from:</strong> Personal account, posted to Kirkwood neighborhood<br><strong>Strategy:</strong> "Already in the area" creates urgency and trust. Customize [SERVICE DAY] to your actual route.</div>
+        </div>
+      </div>
+
+      <!-- POST 9 -->
+      <div class="post-card">
+        <div class="post-header" onclick="togglePost(this)">
+          <span class="post-day">📌 Day 9 — Before/After Story</span>
+          <span class="post-type type-story">STORYTELLING</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text" id="post-9">Got a call last week from a family with 3 dogs and a half-acre yard. They hadn't been able to keep up with it all winter.
+
+The mom told me: "My kids can't even play in the backyard. I feel terrible."
+
+45 minutes later, the yard was spotless. She texted me that night: "The kids played outside for the first time in months."
+
+That's why I do this. Yeah, it's poop. But it's also giving families their yard back.
+
+If your yard is in the same situation, no judgment. I've literally seen it all. One-time deep cleans start at $99 and I can usually get there within a few days.
+
+TJ — Tidy Tails Pet Waste Removal
+📱 (314) 850-7140<button class="copy-btn" onclick="copyText('post-9')">COPY</button></div>
+          <div class="post-notes"><strong>Post from:</strong> Personal account<br><strong>Strategy:</strong> Story-based posts get 3-5x more engagement than promotional posts. If you have a real story like this, even better. Modify to fit an actual experience.</div>
+        </div>
+      </div>
+
+      <!-- POST 10 -->
+      <div class="post-card">
+        <div class="post-header" onclick="togglePost(this)">
+          <span class="post-day">📌 Day 10 — Referral Incentive</span>
+          <span class="post-type type-promo">PROMO</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text" id="post-10">🎁 NEIGHBOR REFERRAL DEAL 🎁
+
+Know a dog owner who could use some help with their yard? Here's the deal:
+
+Refer a neighbor to Tidy Tails →
+✅ YOU get a free week of service
+✅ THEY get their first cleanup free
+
+No catch. No expiration. Just tell them to mention your name when they text me.
+
+Already a customer? Even better — every referral = a free week for you.
+
+Not a customer yet? Text me and let's get you started. First visit is always free.
+
+TJ — (314) 850-7140
+Tidy Tails Pet Waste Removal 🐾<button class="copy-btn" onclick="copyText('post-10')">COPY</button></div>
+          <div class="post-notes"><strong>Post from:</strong> Personal account<br><strong>Best time:</strong> Friday (people plan weekend activities)<br><strong>Strategy:</strong> Referrals are gold on Nextdoor. The "neighbor" language fits the platform perfectly.</div>
+        </div>
+      </div>
+
+      <!-- POST 11 -->
+      <div class="post-card">
+        <div class="post-header" onclick="togglePost(this)">
+          <span class="post-day">📌 Day 11 — Commercial/HOA Post</span>
+          <span class="post-type type-intro">COMMERCIAL</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text" id="post-11">HOA board members and property managers — quick question:
+
+How's your community handling pet waste stations and cleanup? I ask because I work with residential properties and HOAs across St. Louis County for pet waste management.
+
+What I've seen work:
+📋 Weekly or biweekly rounds of common areas
+🗑️ Station maintenance and bag refills
+📊 Compliance documentation for the board
+
+If your community is dealing with dog waste complaints (especially now with spring), I'd love to chat about how I can help. Volume pricing for communities is way less than you'd think.
+
+TJ — Tidy Tails Pet Waste Removal
+📱 (314) 850-7140<button class="copy-btn" onclick="copyText('post-11')">COPY</button></div>
+          <div class="post-notes"><strong>Post from:</strong> Personal account, target Ballwin/Chesterfield neighborhoods<br><strong>Strategy:</strong> HOA board members are ON Nextdoor. This positions you as a professional service, not just a yard scooper. One HOA deal = 10-50 customers.</div>
+        </div>
+      </div>
+
+      <!-- POST 12 -->
+      <div class="post-card">
+        <div class="post-header" onclick="togglePost(this)">
+          <span class="post-day">📌 Day 12 — Seasonal Reminder</span>
+          <span class="post-type type-seasonal">SEASONAL</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text" id="post-12">March reminder for dog owners 🗓️
+
+If you haven't done a yard cleanup since the snow melted... it's not getting better on its own.
+
+Here's what I'm seeing this week in yards across STL County:
+- 3-4 months of accumulated waste (frozen, now thawing)
+- Lawn damage where piles sat all winter
+- Muddy spots where waste killed the grass
+
+The good news: a single deep clean gets you back to zero. Then weekly service keeps it that way.
+
+Spring deep clean: $99
+Weekly maintenance: $25/week
+Monthly (for light accumulation): $70/month
+
+Don't let it sit until summer. It only gets worse with the heat. 🌡️
+
+Text TJ: (314) 850-7140<button class="copy-btn" onclick="copyText('post-12')">COPY</button></div>
+          <div class="post-notes"><strong>Post from:</strong> Personal account<br><strong>Best time:</strong> Tuesday morning<br><strong>Strategy:</strong> Creates urgency without being pushy. "It only gets worse with heat" is true and motivating.</div>
+        </div>
+      </div>
+
+      <!-- POST 13 -->
+      <div class="post-card">
+        <div class="post-header" onclick="togglePost(this)">
+          <span class="post-day">📌 Day 13 — The "I'm Local" Post</span>
+          <span class="post-type type-story">STORYTELLING</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text" id="post-13">Quick thought on supporting local:
+
+When you hire a franchise pooper scooper service, your money goes to a corporate office somewhere. When you hire me, it goes to a guy who lives in your neighborhood, feeds his family, and will actually remember your dog's name.
+
+I'm TJ. I started Tidy Tails about a year ago. No investors. No corporate backing. Just me, a truck, and a determination to build something real in St. Louis.
+
+Every customer matters to me personally. I answer my own phone. I show up when I say I will. And if something's not right, you tell ME — not a call center.
+
+That's the difference between local and franchise. And it matters.
+
+📱 (314) 850-7140
+tidytailsstl.com<button class="copy-btn" onclick="copyText('post-13')">COPY</button></div>
+          <div class="post-notes"><strong>Post from:</strong> Personal account<br><strong>Strategy:</strong> Nextdoor LOVES "support local" content. This differentiates you from POOP 911 and DoodyCalls (both franchises). Plays perfectly to the Nextdoor audience.</div>
+        </div>
+      </div>
+
+      <!-- POST 14 -->
+      <div class="post-card">
+        <div class="post-header" onclick="togglePost(this)">
+          <span class="post-day">📌 Day 14 — Poll / Engagement Post</span>
+          <span class="post-type type-engage">ENGAGEMENT</span>
+        </div>
+        <div class="post-body">
+          <div class="post-text" id="post-14">Honest question for my fellow dog owners:
+
+How often do you actually clean up your yard? Be honest 😂
+
+A) Every day (overachiever)
+B) A few times a week (responsible)
+C) Once a week (the minimum)
+D) When company's coming over (real talk)
+E) I don't want to talk about it (that's what I'm here for)
+
+No judgment — I literally do this for a living so I've seen EVERYTHING.
+
+If you answered D or E, text me: (314) 850-7140
+I'm TJ from Tidy Tails. I'll make it go away. 🐾<button class="copy-btn" onclick="copyText('post-14')">COPY</button></div>
+          <div class="post-notes"><strong>Post from:</strong> Personal account<br><strong>Best time:</strong> Weekend morning<br><strong>Strategy:</strong> Polls/questions get the highest engagement on Nextdoor. Comments boost visibility to more neighbors. The humor makes it shareable.</div>
+        </div>
+      </div>
+
+    </div><!-- end post-grid -->
+  </div>
+</div>
+
+<!-- RECOMMENDATION STRATEGY -->
+<div class="section">
+  <h2 class="section-title" onclick="toggleSection(this)">⭐ Getting Recommendations (The Real Key) <span class="toggle">▼</span></h2>
+  <div class="section-content">
+    <p style="color:#aaa;font-size:.9rem;margin-bottom:14px">Recommendations are Nextdoor's version of reviews. They show up on your business page and boost your visibility in the neighborhood. Here's how to get them:</p>
+
+    <div class="step-list">
+      <div class="step">
+        <h3>Ask Your 8 Current Customers</h3>
+        <p>Text each customer: "Hey [Name]! Quick favor — I just set up Tidy Tails on Nextdoor. If you're on there, would you mind leaving a recommendation? It helps neighbors find me. Here's the link: [YOUR NEXTDOOR BUSINESS PAGE URL]"</p>
+        <div class="tip">🎯 Goal: Get 4-5 recommendations in week 1. That immediately puts you ahead of Poopy Paws (0) and close to Poop2Scoop (3).</div>
+      </div>
+      <div class="step">
+        <h3>Ask After Every Service</h3>
+        <p>After each cleanup, text: "All done! Yard's looking great 🐾 If you're on Nextdoor, a quick recommendation would mean the world: [LINK]"</p>
+        <div class="tip">🎯 The "just finished" moment is when satisfaction is highest. Strike while the yard is clean.</div>
+      </div>
+      <div class="step">
+        <h3>Respond to Every Recommendation</h3>
+        <p>When someone recommends you, reply publicly with a thank you. This shows you're active and engaged. Other neighbors see it.</p>
+      </div>
+      <div class="step">
+        <h3>Engage in Non-Sales Posts</h3>
+        <p>Comment on neighborhood posts about dogs, parks, local events. Be a neighbor first, business owner second. People recommend businesses they feel connected to.</p>
+        <div class="tip">🎯 Spend 5 minutes/day commenting on 2-3 Nextdoor posts. Not about your business — just being present. This builds recognition so when people need your service, they think of you.</div>
+      </div>
+    </div>
+
+    <h3 style="color:#fff;margin:20px 0 10px">📱 Text Template for Asking Customers</h3>
+    <div class="post-text" id="rec-ask">Hey [NAME]! Hope you and [DOG NAME] are doing great 🐾
+
+Quick favor — I just set up Tidy Tails on Nextdoor and I'm trying to get some recommendations from my awesome customers. If you're on there, would you mind leaving a quick recommendation? Even just a sentence or two would be huge.
+
+Here's the link: [YOUR NEXTDOOR BUSINESS PAGE URL]
+
+No worries if you're not on Nextdoor — I appreciate you either way! Thanks for being a great customer. 🙏<button class="copy-btn" onclick="copyText('rec-ask')">COPY</button></div>
+  </div>
+</div>
+
+<!-- 4-WEEK LAUNCH PLAN -->
+<div class="section">
+  <h2 class="section-title" onclick="toggleSection(this)">📅 4-Week Nextdoor Launch Plan <span class="toggle">▼</span></h2>
+  <div class="section-content">
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="week">Week 1 (March 10-16) — SETUP & LAUNCH</div>
+        <ul class="tasks">
+          <li>☐ Create/claim Nextdoor business page (15 min)</li>
+          <li>☐ Complete profile with description, photos, hours (10 min)</li>
+          <li>☐ Post intro (Post #1) from business page</li>
+          <li>☐ Post spring thaw alert (Post #2) from personal account</li>
+          <li>☐ Text all 8 customers asking for Nextdoor recommendations</li>
+          <li>☐ Set up keyword alerts: "pet waste", "pooper scooper", "dog poop", "yard cleanup"</li>
+          <li>☐ Comment on 5+ neighborhood posts (non-business, just be present)</li>
+          <li><strong>Goal: Page live, 3+ recommendations, 2 posts up</strong></li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="week">Week 2 (March 17-23) — CONTENT & ENGAGEMENT</div>
+        <ul class="tasks">
+          <li>☐ Post educational content (Post #3) — health facts</li>
+          <li>☐ Post spring special (Post #4) from business page</li>
+          <li>☐ Respond to any "looking for" posts (use Post #6 template)</li>
+          <li>☐ Post humor post (Post #7) — engagement driver</li>
+          <li>☐ Daily: 5 min engaging with neighborhood posts</li>
+          <li>☐ Expand to Creve Coeur and Chesterfield neighborhoods</li>
+          <li><strong>Goal: 5+ recommendations, 1 inbound lead from Nextdoor</strong></li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="week">Week 3 (March 24-30) — NEIGHBORHOOD BLITZ</div>
+        <ul class="tasks">
+          <li>☐ Post Kirkwood-specific (Post #8) — customize for neighborhood</li>
+          <li>☐ Post before/after story (Post #9)</li>
+          <li>☐ Post referral deal (Post #10)</li>
+          <li>☐ Create Ballwin and Webster Groves versions of Post #8</li>
+          <li>☐ Respond to ALL recommendation requests within 2 hours</li>
+          <li><strong>Goal: 8+ recommendations, visible in top recommendations for area</strong></li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="week">Week 4 (March 31 - April 6) — ESTABLISH PRESENCE</div>
+        <ul class="tasks">
+          <li>☐ Post HOA/commercial angle (Post #11) in Ballwin/Chesterfield</li>
+          <li>☐ Post seasonal reminder (Post #12)</li>
+          <li>☐ Post "I'm local" differentiator (Post #13)</li>
+          <li>☐ Post engagement poll (Post #14)</li>
+          <li>☐ Audit: Count leads generated from Nextdoor</li>
+          <li>☐ Plan April Nextdoor content based on what worked</li>
+          <li><strong>Goal: 10+ recommendations, 3+ leads, established presence</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXTDOOR RULES -->
+<div class="section">
+  <h2 class="section-title" onclick="toggleSection(this)">⚠️ Nextdoor Rules — Don't Get Flagged <span class="toggle">▼</span></h2>
+  <div class="section-content">
+    <div class="step-list">
+      <div class="step">
+        <h3>Business pages: 2 free posts/month to nearby neighborhoods</h3>
+        <p>Use these strategically — your intro post and your best promotional post. Everything else goes from your personal account.</p>
+      </div>
+      <div class="step">
+        <h3>Personal posts: Be helpful, not spammy</h3>
+        <p>Nextdoor neighbors will flag purely promotional posts from personal accounts. Always lead with value (education, humor, story) and keep the CTA soft. "Text me if interested" beats "CALL NOW FOR 20% OFF!!!"</p>
+      </div>
+      <div class="step">
+        <h3>Don't post more than 2-3x per week</h3>
+        <p>More than that and you'll annoy neighbors and risk getting flagged. Quality over quantity. One great post beats five mediocre ones.</p>
+      </div>
+      <div class="step">
+        <h3>Engage authentically in between posts</h3>
+        <p>Comment on other people's posts. Help with non-business questions. Be a neighbor. This builds goodwill that makes your promotional posts feel natural instead of intrusive.</p>
+      </div>
+      <div class="step">
+        <h3>Never ask for recommendations in exchange for discounts</h3>
+        <p>This violates Nextdoor's terms. You can ASK for recommendations, but don't offer anything in return. The referral program (Post #10) is for referrals, not recommendations. Keep these separate.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- KEYWORD ALERTS -->
+<div class="section">
+  <h2 class="section-title" onclick="toggleSection(this)">🔔 Keyword Alerts — Never Miss a Lead <span class="toggle">▼</span></h2>
+  <div class="section-content">
+    <p style="color:#aaa;font-size:.9rem;margin-bottom:14px">Set up Nextdoor notifications so you're alerted when neighbors post about these topics. Being the FIRST to respond is crucial — first responder wins 80%+ of recommendation-based leads.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px">
+      <div style="background:#111;border:1px solid #1a1a1a;border-radius:8px;padding:12px;text-align:center">
+        <div style="font-size:1.2rem">🔍</div>
+        <div style="color:#00c853;font-weight:700;font-size:.9rem">"pooper scooper"</div>
+      </div>
+      <div style="background:#111;border:1px solid #1a1a1a;border-radius:8px;padding:12px;text-align:center">
+        <div style="font-size:1.2rem">🔍</div>
+        <div style="color:#00c853;font-weight:700;font-size:.9rem">"pet waste"</div>
+      </div>
+      <div style="background:#111;border:1px solid #1a1a1a;border-radius:8px;padding:12px;text-align:center">
+        <div style="font-size:1.2rem">🔍</div>
+        <div style="color:#00c853;font-weight:700;font-size:.9rem">"dog poop"</div>
+      </div>
+      <div style="background:#111;border:1px solid #1a1a1a;border-radius:8px;padding:12px;text-align:center">
+        <div style="font-size:1.2rem">🔍</div>
+        <div style="color:#00c853;font-weight:700;font-size:.9rem">"yard cleanup"</div>
+      </div>
+      <div style="background:#111;border:1px solid #1a1a1a;border-radius:8px;padding:12px;text-align:center">
+        <div style="font-size:1.2rem">🔍</div>
+        <div style="color:#00c853;font-weight:700;font-size:.9rem">"dog service"</div>
+      </div>
+      <div style="background:#111;border:1px solid #1a1a1a;border-radius:8px;padding:12px;text-align:center">
+        <div style="font-size:1.2rem">🔍</div>
+        <div style="color:#00c853;font-weight:700;font-size:.9rem">"lawn service"</div>
+      </div>
+    </div>
+    <div class="tip" style="margin-top:12px;background:#1a2a1a;border-left:3px solid #00c853;padding:10px 14px;font-size:.88rem;color:#66bb6a;border-radius:0 6px 6px 0">
+      💡 <strong>Pro tip:</strong> When responding to recommendation requests, don't just pitch. Answer their question, provide helpful context, and THEN mention your service. "Hey! Great question about yard maintenance in spring. [helpful answer]. By the way, I run a pet waste removal service if that's ever something you need help with."
+    </div>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<div class="float-cta">
+  <a href="https://business.nextdoor.com" target="_blank">🚀 Claim Your Page Now</a>
+</div>
+
+<script>
+function toggleSection(el) {
+  const content = el.nextElementSibling;
+  const toggle = el.querySelector('.toggle');
+  if (content.style.display === 'none') {
+    content.style.display = 'block';
+    toggle.textContent = '▼';
+  } else {
+    content.style.display = 'none';
+    toggle.textContent = '▶';
+  }
+}
+
+function togglePost(el) {
+  el.closest('.post-card').classList.toggle('open');
+}
+
+function copyText(id) {
+  const el = document.getElementById(id);
+  const text = el.innerText.replace('COPY', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = el.querySelector('.copy-btn');
+    btn.textContent = 'COPIED!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'COPY';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// Persistent checklist
+function saveChecklist() {
+  const checks = [];
+  document.querySelectorAll('#setup-checklist input[type="checkbox"]').forEach((cb, i) => {
+    checks[i] = cb.checked;
+    const span = cb.nextElementSibling;
+    if (cb.checked) span.classList.add('done');
+    else span.classList.remove('done');
+  });
+  localStorage.setItem('nextdoor-checklist', JSON.stringify(checks));
+}
+
+function loadChecklist() {
+  const saved = localStorage.getItem('nextdoor-checklist');
+  if (saved) {
+    const checks = JSON.parse(saved);
+    document.querySelectorAll('#setup-checklist input[type="checkbox"]').forEach((cb, i) => {
+      if (checks[i]) {
+        cb.checked = true;
+        cb.nextElementSibling.classList.add('done');
+      }
+    });
+  }
+}
+
+loadChecklist();
+</script>
+</body>
+</html>
