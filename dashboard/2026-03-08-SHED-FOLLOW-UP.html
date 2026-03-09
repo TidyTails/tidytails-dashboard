@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏗️ Shed Sales Follow-Up System — TJ</title>
+<style>
+:root {
+    --bg: #0a0a0a;
+    --card: #141414;
+    --card-hover: #1a1a1a;
+    --accent: #f97316;
+    --accent-dim: #ea580c;
+    --accent-glow: rgba(249, 115, 22, 0.12);
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --gold: #eab308;
+    --red: #ef4444;
+    --purple: #a855f7;
+    --text: #e5e5e5;
+    --text-dim: #a3a3a3;
+    --border: #262626;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    line-height: 1.6;
+    padding: 16px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.header {
+    text-align: center;
+    padding: 32px 20px;
+    background: linear-gradient(135deg, rgba(249, 115, 22, 0.1), rgba(234, 88, 12, 0.05));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    margin-bottom: 24px;
+}
+.header h1 {
+    font-size: 1.8em;
+    background: linear-gradient(135deg, var(--accent), var(--gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+}
+.header .sub { color: var(--text-dim); font-size: 0.95em; }
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+}
+.stat .num {
+    font-size: 2em;
+    font-weight: 700;
+}
+.stat .label { color: var(--text-dim); font-size: 0.8em; }
+.stat.orange .num { color: var(--accent); }
+.stat.blue .num { color: var(--blue); }
+.stat.green .num { color: var(--green); }
+
+/* Tabs */
+.tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+.tab {
+    padding: 10px 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.85em;
+    color: var(--text-dim);
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+.tab:hover { border-color: #444; color: var(--text); }
+.tab.active {
+    background: rgba(249, 115, 22, 0.15);
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* Sequence Cards */
+.seq-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+.seq-header {
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+}
+.seq-header:hover { background: var(--card-hover); }
+.seq-header .title {
+    font-weight: 600;
+    font-size: 1em;
+}
+.seq-header .timing {
+    color: var(--text-dim);
+    font-size: 0.8em;
+    background: #1a1a1a;
+    padding: 3px 10px;
+    border-radius: 8px;
+}
+.seq-body {
+    display: none;
+    padding: 0 20px 20px;
+    border-top: 1px solid var(--border);
+}
+.seq-body.open {
+    display: block;
+    padding-top: 16px;
+}
+.msg-box {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 10px 0;
+    font-size: 0.92em;
+    line-height: 1.7;
+    position: relative;
+    white-space: pre-wrap;
+}
+.msg-box .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 0.75em;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+.msg-box .copy-btn:hover { background: var(--accent-dim); }
+.msg-box .copy-btn.copied {
+    background: var(--green);
+}
+.why {
+    color: var(--text-dim);
+    font-size: 0.82em;
+    font-style: italic;
+    margin-top: 8px;
+    padding-left: 12px;
+    border-left: 2px solid #333;
+}
+.tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.72em;
+    font-weight: 600;
+    margin-right: 6px;
+}
+.tag-text { background: #1a2a1a; color: #4ade80; }
+.tag-email { background: #1a1a3a; color: #818cf8; }
+.tag-call { background: #3a2a1a; color: #fb923c; }
+
+/* Tips */
+.tip-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+}
+.tip-card .tip-num {
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.85em;
+}
+.tip-card .tip-text {
+    margin-top: 4px;
+    font-size: 0.9em;
+}
+
+/* Quick Ref Table */
+.ref-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85em;
+    margin-top: 12px;
+}
+.ref-table th {
+    text-align: left;
+    padding: 10px 12px;
+    background: #1a1a1a;
+    color: var(--accent);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+}
+.ref-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #1e1e1e;
+    color: var(--text-dim);
+}
+.ref-table tr:hover td { color: var(--text); background: #111; }
+
+@media (max-width: 600px) {
+    .stats { grid-template-columns: 1fr; }
+    .header h1 { font-size: 1.4em; }
+    .tabs { gap: 4px; }
+    .tab { padding: 8px 12px; font-size: 0.8em; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🏗️ Shed Sales Follow-Up System</h1>
+    <div class="sub">Copy-paste text & email sequences for every lead stage</div>
+</div>
+
+<div class="stats">
+    <div class="stat orange">
+        <div class="num">12</div>
+        <div class="label">Quoted Leads</div>
+    </div>
+    <div class="stat blue">
+        <div class="num">15</div>
+        <div class="label">Pre-Quote Leads</div>
+    </div>
+    <div class="stat green">
+        <div class="num">$3-15K</div>
+        <div class="label">Per Close</div>
+    </div>
+</div>
+
+<div class="tabs">
+    <div class="tab active" onclick="showTab('quoted')">🟠 Quoted Leads</div>
+    <div class="tab" onclick="showTab('prequote')">🔵 Pre-Quote</div>
+    <div class="tab" onclick="showTab('postinstall')">🟢 Post-Install</div>
+    <div class="tab" onclick="showTab('email')">📧 Emails</div>
+    <div class="tab" onclick="showTab('ref')">📋 Quick Ref</div>
+    <div class="tab" onclick="showTab('tips')">⚡ Pro Tips</div>
+</div>
+
+<!-- QUOTED LEADS -->
+<div id="tab-quoted" class="tab-content active">
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-text">TEXT</span> Day 1 — The Recap</span>
+            <span class="timing">Same day</span>
+        </div>
+        <div class="seq-body">
+            <div class="msg-box" id="q1">Hey [NAME]! Thanks for stopping by today. Just wanted to make sure you got everything you need on that [SIZE/MODEL]. Your quote is good for 30 days, and right now spring install slots are running about 2-3 weeks out. Let me know if any questions come up! — TJ<button class="copy-btn" onclick="copyMsg('q1')">Copy</button></div>
+            <div class="why">Professional, sets the 30-day clock, plants urgency about install times.</div>
+        </div>
+    </div>
+
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-text">TEXT</span> Day 3 — The Value Add</span>
+            <span class="timing">2 days later</span>
+        </div>
+        <div class="seq-body">
+            <div class="msg-box" id="q2">Hey [NAME] — quick thought on your [SIZE] shed. A lot of folks don't realize we can add windows, shelving, or a workbench during the build for way less than adding it after. If you're thinking about using it for [workshop/storage/hobby], might be worth a second look at the options. Happy to send you some ideas.<button class="copy-btn" onclick="copyMsg('q2')">Copy</button></div>
+            <div class="why">Positions you as helpful, not pushy. Opens upsell conversation naturally.</div>
+        </div>
+    </div>
+
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-text">TEXT</span> Day 7 — Spring Urgency</span>
+            <span class="timing">1 week</span>
+        </div>
+        <div class="seq-body">
+            <div class="msg-box" id="q3a">Hey [NAME]! Just a heads up — we're getting into spring booking season and install wait times are starting to stretch. Right now it's still 2-3 weeks, but by mid-April it's usually 6+. No pressure, but wanted you to know so you can plan accordingly. Your quote's still locked in. 👍<button class="copy-btn" onclick="copyMsg('q3a')">Copy</button></div>
+            <p style="color: var(--text-dim); font-size: 0.82em; text-align: center; margin: 8px 0;">— OR if a promo is running —</p>
+            <div class="msg-box" id="q3b">Hey [NAME] — TuffShed just dropped a [PROMO DETAILS]. Your [SIZE] quote from last week would qualify. Want me to run the numbers with the discount applied? Could save you $[AMOUNT].<button class="copy-btn" onclick="copyMsg('q3b')">Copy</button></div>
+            <div class="why">Creates urgency without being salesy. "No pressure" is disarming.</div>
+        </div>
+    </div>
+
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-text">TEXT</span> Day 14 — Social Proof</span>
+            <span class="timing">2 weeks</span>
+        </div>
+        <div class="seq-body">
+            <div class="msg-box" id="q4">Hey [NAME]! Random — just finished an install in [NEARBY AREA] yesterday. The customer did a [SIZE] with [FEATURE] and it came out awesome. Reminded me of what you were looking at. If you want, I can send you a pic of how it turned out. Sometimes seeing a finished build helps make the decision easier.<button class="copy-btn" onclick="copyMsg('q4')">Copy</button></div>
+            <div class="why">Real proof, local relevance, low-pressure. People love seeing finished projects.</div>
+        </div>
+    </div>
+
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-text">TEXT</span> Day 21 — The Honest Check</span>
+            <span class="timing">3 weeks</span>
+        </div>
+        <div class="seq-body">
+            <div class="msg-box" id="q5">Hey [NAME] — I know you've been thinking about the shed for a few weeks. Totally get it — it's a big purchase. Just wanted to ask honestly: is it still on your radar, or did something change? Either way is totally fine. If timing's the issue, I can hold your quote and you can pull the trigger when you're ready. No weirdness either way. 👊<button class="copy-btn" onclick="copyMsg('q5')">Copy</button></div>
+            <div class="why">Gives permission to say no — reduces pressure and often gets a YES.</div>
+        </div>
+    </div>
+
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-text">TEXT</span> Day 30+ — Monthly Touch</span>
+            <span class="timing">Monthly</span>
+        </div>
+        <div class="seq-body">
+            <div class="msg-box" id="q6a">Hey [NAME]! Hope spring's treating you well. Just wanted to let you know your shed options are still available and [CURRENT PROMO OR SEASON NOTE]. If the timing ever lines up, you've got my number. Enjoy the weekend! 🌤️<button class="copy-btn" onclick="copyMsg('q6a')">Copy</button></div>
+            <p style="color: var(--text-dim); font-size: 0.82em; text-align: center; margin: 8px 0;">— Month 3 variation —</p>
+            <div class="msg-box" id="q6b">[NAME]! Summer's coming — if you're still thinking about that [SIZE], now's actually the best time before the summer install rush. Happy to re-quote if anything's changed. Either way, hope you're doing great! ☀️<button class="copy-btn" onclick="copyMsg('q6b')">Copy</button></div>
+            <div class="why">Keeps you top of mind. One text per month is the sweet spot for dormant leads.</div>
+        </div>
+    </div>
+</div>
+
+<!-- PRE-QUOTE -->
+<div id="tab-prequote" class="tab-content">
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-text">TEXT</span> Attempt 1 — The Intro</span>
+            <span class="timing">First contact</span>
+        </div>
+        <div class="seq-body">
+            <div class="msg-box" id="p1">Hey [NAME]! This is TJ from TuffShed/Backyard Buildings. I saw you were interested in a [shed/garage/studio]. I'm the local guy here in St. Louis — would love to help you figure out what works for your space and budget. When's a good time to chat or swing by the HD lot? 🏠<button class="copy-btn" onclick="copyMsg('p1')">Copy</button></div>
+        </div>
+    </div>
+
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-text">TEXT</span> Attempt 2 — Quick Question</span>
+            <span class="timing">Day 3</span>
+        </div>
+        <div class="seq-body">
+            <div class="msg-box" id="p2">Hey [NAME]! TJ again from TuffShed. No worries if you're busy — just wanted to ask: are you looking for storage, a workshop, or something else? Knowing that helps me point you to the right models without wasting your time. 👍<button class="copy-btn" onclick="copyMsg('p2')">Copy</button></div>
+            <div class="why">Easy to answer. One question. No commitment.</div>
+        </div>
+    </div>
+
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-text">TEXT</span> Attempt 3 — Photo Hook</span>
+            <span class="timing">Day 5</span>
+        </div>
+        <div class="seq-body">
+            <div class="msg-box" id="p3">[NAME] — just wrapped a [SIZE] install in [AREA]. Turned out sharp. Want me to show you what options look like for your property? Takes 5 min. No obligation.<button class="copy-btn" onclick="copyMsg('p3')">Copy</button></div>
+            <div class="why">Attach a real install photo. Visual proof beats words every time.</div>
+        </div>
+    </div>
+
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-call">CALL+TEXT</span> Attempt 4 — VM + Text Combo</span>
+            <span class="timing">Day 10</span>
+        </div>
+        <div class="seq-body">
+            <p style="color: var(--gold); font-size: 0.85em; margin-bottom: 8px;">📞 Leave voicemail first, then immediately text:</p>
+            <div class="msg-box" id="p4">Hey [NAME], just left you a quick voicemail. I know shed shopping can feel overwhelming with all the options out there. Here's the short version: I build custom sheds on-site at your property, backed by Home Depot. Free to get a quote. Let me know if you want to chat — even just to get ballpark pricing to compare. 🔨<button class="copy-btn" onclick="copyMsg('p4')">Copy</button></div>
+        </div>
+    </div>
+
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-text">TEXT</span> Attempt 5 — The Breakup ⭐</span>
+            <span class="timing">Day 14</span>
+        </div>
+        <div class="seq-body">
+            <div class="msg-box" id="p5">Hey [NAME]! I've reached out a few times and I totally get it — life's busy. I'll stop bugging you, but just know: if a shed or garage ever makes it back to the to-do list, I'm your local guy. Save my number and hit me up anytime. No expiration date. 🤙 — TJ<button class="copy-btn" onclick="copyMsg('p5')">Copy</button></div>
+            <div class="why">⭐ The breakup text is statistically the HIGHEST-RESPONSE follow-up in sales. People feel guilty and often re-engage.</div>
+        </div>
+    </div>
+</div>
+
+<!-- POST-INSTALL -->
+<div id="tab-postinstall" class="tab-content">
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-text">TEXT</span> Day 1 — Quality Check</span>
+            <span class="timing">Install day</span>
+        </div>
+        <div class="seq-body">
+            <div class="msg-box" id="pi1">[NAME]! Hope you're loving the new [SIZE]! Quick question — does everything look good? Doors opening smooth, no issues? I want to make sure you're 100% happy before I close this out.<button class="copy-btn" onclick="copyMsg('pi1')">Copy</button></div>
+        </div>
+    </div>
+
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-text">TEXT</span> Day 7 — The Setup Check</span>
+            <span class="timing">1 week</span>
+        </div>
+        <div class="seq-body">
+            <div class="msg-box" id="pi2">Hey [NAME]! Just checking in — has the new shed been working out? If you've started setting it up, I'd love to see a pic of how you're using it! Also, if any neighbors or friends ask about it, feel free to send them my way. 🙏<button class="copy-btn" onclick="copyMsg('pi2')">Copy</button></div>
+        </div>
+    </div>
+
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-text">TEXT</span> Day 30 — Review Ask ⭐</span>
+            <span class="timing">1 month</span>
+        </div>
+        <div class="seq-body">
+            <div class="msg-box" id="pi3">Hey [NAME]! It's been about a month — how's the shed treating you? If you've been happy with the experience, I'd really appreciate a quick Google review. It helps other folks in [AREA] find us. Here's the link: [GOOGLE REVIEW LINK]. Takes 30 seconds and means a lot. Thanks! ⭐<button class="copy-btn" onclick="copyMsg('pi3')">Copy</button></div>
+            <div class="why">Review asks at 30 days have the highest conversion — customer has used it enough to love it.</div>
+        </div>
+    </div>
+
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-text">TEXT</span> Day 90 — Referral Plant</span>
+            <span class="timing">3 months</span>
+        </div>
+        <div class="seq-body">
+            <div class="msg-box" id="pi4">Hey [NAME]! Hope the shed's been awesome. Quick thought — spring is when everyone starts thinking about their outdoor space. If anyone you know has been talking about needing storage/a workshop/a she-shed, I'd love an intro. I always take great care of referrals. Have a great [season]! 🌿<button class="copy-btn" onclick="copyMsg('pi4')">Copy</button></div>
+        </div>
+    </div>
+</div>
+
+<!-- EMAILS -->
+<div id="tab-email" class="tab-content">
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-email">EMAIL</span> Post-Quote Summary</span>
+            <span class="timing">Same day</span>
+        </div>
+        <div class="seq-body">
+            <p style="color: var(--text-dim); font-size: 0.82em; margin-bottom: 6px;">Subject: Your TuffShed Quote — [SIZE/MODEL] | TJ at Backyard Buildings</p>
+            <div class="msg-box" id="e1">Hey [NAME],
+
+Great meeting you [at the lot / on the phone] today! Here's a quick summary:
+
+YOUR BUILD:
+• Model: [MODEL/SIZE]
+• Features: [WINDOWS, DOORS, SHELVING, ETC.]
+• Estimated Price: $[PRICE]
+• Current Wait Time: ~[X] weeks from order
+
+PAYMENT OPTIONS:
+💳 Pay in full — straightforward, no fees
+🏦 0% interest for 6 months — pay it off before summer
+📅 9.99% for up to 10 years — lowest monthly payment
+🔑 RTO Flex Lease — no credit check, low deposit
+
+Your quote is good for 30 days. Spring install slots are filling up, so the sooner you lock in, the sooner you'll have it built.
+
+Questions? Just reply or text me at [PHONE]. I'm here to help.
+
+— TJ
+Backyard Buildings STL / TuffShed Authorized Dealer<button class="copy-btn" onclick="copyMsg('e1')">Copy</button></div>
+        </div>
+    </div>
+
+    <div class="seq-card">
+        <div class="seq-header" onclick="toggleSeq(this)">
+            <span class="title"><span class="tag tag-email">EMAIL</span> Day 10 — Still Thinking?</span>
+            <span class="timing">10 days</span>
+        </div>
+        <div class="seq-body">
+            <p style="color: var(--text-dim); font-size: 0.82em; margin-bottom: 6px;">Subject: Still thinking about the shed? (no rush)</p>
+            <div class="msg-box" id="e2">Hey [NAME],
+
+Just wanted to check in on your shed project. Here are a couple things that might help:
+
+1. SEE ONE IN PERSON — We have models on display at the Home Depot lot in [LOCATION]. Walking through one makes a huge difference.
+
+2. COMPARE APPLES TO APPLES — Most portable sheds look cheaper upfront, but add delivery ($200-500), site prep ($300-800), and the fact they're not built to your property... the gap shrinks fast.
+
+3. TIMING — Right now install is [X weeks]. By April it's usually 6+. Same price, longer wait.
+
+No pressure at all — just want to make sure you have what you need to decide.
+
+— TJ<button class="copy-btn" onclick="copyMsg('e2')">Copy</button></div>
+        </div>
+    </div>
+</div>
+
+<!-- QUICK REFERENCE -->
+<div id="tab-ref" class="tab-content">
+    <h3 style="margin-bottom: 12px; color: var(--accent);">Which Sequence to Use</h3>
+    <table class="ref-table">
+        <tr><th>Lead Status</th><th>Sequence</th><th>Start At</th><th>Cadence</th></tr>
+        <tr><td>Just quoted (today)</td><td style="color:var(--accent)">A — Day 1</td><td>Same day recap</td><td>Days 1, 3, 7, 14, 21 → monthly</td></tr>
+        <tr><td>Quoted 1-2 weeks ago</td><td style="color:var(--accent)">A — Day 7/14</td><td>Pick up where fits</td><td>Continue cadence</td></tr>
+        <tr><td>Quoted 3-4 weeks ago</td><td style="color:var(--accent)">A — Day 21</td><td>"Honest check"</td><td>Then monthly</td></tr>
+        <tr><td>Quoted 30+ days</td><td style="color:var(--accent)">A — Dormant</td><td>Monthly touch</td><td>Monthly w/ promo hooks</td></tr>
+        <tr><td>Never contacted</td><td style="color:var(--blue)">B — Attempt 1</td><td>Intro text</td><td>5 attempts over 14 days</td></tr>
+        <tr><td>Contacted, no reply</td><td style="color:var(--blue)">B — next attempt</td><td>Continue sequence</td><td>Every 2-3 days</td></tr>
+        <tr><td>Install complete</td><td style="color:var(--green)">C — Day 1</td><td>Same day check</td><td>Days 1, 7, 30, 90</td></tr>
+    </table>
+
+    <h3 style="margin: 24px 0 12px; color: var(--accent);">Best Times to Text</h3>
+    <div style="background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px;">
+        <p style="font-size: 0.9em;">✅ <strong>Best:</strong> Tue–Thu, 10 AM–2 PM or 5–7 PM</p>
+        <p style="font-size: 0.9em; margin-top: 6px;">⚠️ <strong>OK:</strong> Mon/Fri mid-morning</p>
+        <p style="font-size: 0.9em; margin-top: 6px;">❌ <strong>Avoid:</strong> Weekends, before 9 AM, after 8 PM</p>
+    </div>
+</div>
+
+<!-- PRO TIPS -->
+<div id="tab-tips" class="tab-content">
+    <div class="tip-card">
+        <div class="tip-num">#1 — PERSONALIZE EVERYTHING</div>
+        <div class="tip-text">"[NAME], I remember you mentioned wanting space for your woodworking tools..." beats generic every time. Reference specific details from your conversation.</div>
+    </div>
+    <div class="tip-card">
+        <div class="tip-num">#2 — PHOTOS CLOSE DEALS</div>
+        <div class="tip-text">Keep a folder of finished installs on your phone. Send them in follow-ups. Visual proof > words. Take a photo of EVERY completed install.</div>
+    </div>
+    <div class="tip-card">
+        <div class="tip-num">#3 — SPRING URGENCY IS REAL</div>
+        <div class="tip-text">Install times genuinely stretch from 2-3 weeks to 6-8 weeks. Use it because it's TRUE, not because it's a tactic. Honest urgency converts.</div>
+    </div>
+    <div class="tip-card">
+        <div class="tip-num">#4 — LOG EVERY TOUCH</div>
+        <div class="tip-text">If you don't track it in Salesforce, you'll forget who's at what stage and double-text people. Instant credibility killer.</div>
+    </div>
+    <div class="tip-card">
+        <div class="tip-num">#5 — THE BREAKUP TEXT WORKS</div>
+        <div class="tip-text">Seriously. It's the highest-response follow-up in sales. Use it on EVERY lead that goes quiet after 4 touches. The guilt factor is real.</div>
+    </div>
+    <div class="tip-card">
+        <div class="tip-num">#6 — NEVER "JUST CHECKING IN"</div>
+        <div class="tip-text">Every follow-up must add new value — a photo, a promo, a timing update, a neighbor's build. "Just checking in" = "I have nothing to offer but I want your money."</div>
+    </div>
+    <div class="tip-card">
+        <div class="tip-num">#7 — USE THE COMPETITIVE CHEAT SHEET</div>
+        <div class="tip-text">When someone says "I can get a portable for less," you have the exact rebuttal ready. Check the Shed Competitive Pricing Cheat Sheet on the dashboard.</div>
+    </div>
+</div>
+
+<script>
+function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+}
+
+function toggleSeq(el) {
+    const body = el.nextElementSibling;
+    body.classList.toggle('open');
+}
+
+function copyMsg(id) {
+    const el = document.getElementById(id);
+    const text = el.childNodes[0].textContent.trim();
+    navigator.clipboard.writeText(text).then(() => {
+        const btn = el.querySelector('.copy-btn');
+        btn.textContent = '✓ Copied';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = 'Copy';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+}
+</script>
+
+</body>
+</html>

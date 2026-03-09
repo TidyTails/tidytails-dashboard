@@ -6,6 +6,47 @@
 
 ## March 8, 2026 (Sunday)
 
+### 10:05 PM — 🏗️ SHED SALES FOLLOW-UP SYSTEM — Close More of Those 27 Leads (Hourly Task)
+**Task:** Create a complete, copy-paste text and email follow-up sequence system for TJ's 12 quoted + 15 pre-quote shed leads, covering every pipeline stage with timing cadences
+**Result:** ✅ SHIPPED — 3 full sequences (Quoted, Pre-Quote, Post-Install) with 15+ templates, interactive dashboard tool with one-click copy
+
+**Why This Task:**
+- Today shipped 9 Tidy Tails-focused tasks. The shed business (TJ's day job) has been underserved.
+- TJ has 27 active leads in Salesforce. Each close = $3,000-$15,000+. Closing just 1-2 more from better follow-up = $6-30K.
+- The competitive cheat sheet (4 PM) gave TJ intel to USE in conversations. This system tells him WHEN and WHAT to say.
+- Most sales are lost not because of price, but because of inconsistent or generic follow-up. "Just checking in" kills deals.
+- Spring install rush is real — urgency messaging is genuine and should be used NOW.
+
+**What I Created:**
+1. `content/2026-03-08-SHED-FOLLOW-UP-SEQUENCES.md` — Full source content
+2. `dashboard/2026-03-08-SHED-FOLLOW-UP.html` — Interactive dashboard tool with:
+   - Pipeline stats at top (12 quoted, 15 pre-quote, $3-15K per close)
+   - Tabbed interface: Quoted Leads, Pre-Quote, Post-Install, Emails, Quick Ref, Pro Tips
+   - One-click copy buttons on every template
+   - Expandable sequence cards with timing badges
+   - "Why it works" explanations for each message
+   - Quick reference table for which sequence to use
+   - Best times to text guide
+   - 7 pro tips including the breakup text strategy
+
+**Sequences Created:**
+- **Sequence A (Quoted):** 6 touchpoints — Day 1 recap, Day 3 value add, Day 7 urgency, Day 14 social proof, Day 21 honest check, monthly dormant
+- **Sequence B (Pre-Quote):** 5 attempts — Intro, quick question, photo hook, voicemail+text combo, breakup text
+- **Sequence C (Post-Install):** 4 touchpoints — Day 1 quality check, Day 7 setup check, Day 30 review ask, Day 90 referral plant
+- **Email Templates:** Post-quote summary with payment options, Day 10 "still thinking?" with comparison points
+
+**Key Insights Baked In:**
+- Breakup text (Attempt 5) is the highest-response follow-up in sales — included with emphasis
+- Never "just checking in" — every text adds new value (photo, promo, timing, story)
+- Spring urgency is REAL (2-3 weeks now → 6+ by April) — use because true, not as tactic
+- Best text times: Tue-Thu, 10 AM-2 PM or 5-7 PM
+
+**Projected Impact:** Better follow-up consistency on 27 existing leads = 1-3 additional closes = $3,000-$45,000 in potential revenue. The ROI on this is astronomical.
+
+**Rotation:** 🏗️ TuffShed — Sales Follow-Up & Pipeline Conversion
+
+---
+
 ### 9:04 PM — 📍 GBP POSTS — 4 Weeks of Google Business Profile Content (Hourly Task)
 **Task:** Create 5 weeks of ready-to-publish Google Business Profile posts with keyword targeting, photo suggestions, CTA buttons, and a tracking checklist
 **Result:** ✅ SHIPPED — 5 unique posts covering Spring Thaw, Why Hire a Service, Trust/Social Proof, Spring Events, and Health Facts. Dashboard HTML tool with copy buttons.

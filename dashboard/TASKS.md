@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-08 20:05 CST*
+*Last updated: 2026-03-08 22:05 CST*
 
 ---
 
@@ -22,6 +22,7 @@
   - Owner: Basquiat (needs fal.ai credits topped up)
 
 ### ✅ Recently Completed
+- [x] **🏗️ Shed Sales Follow-Up System** — Complete text/email sequences for all 27 leads. 3 pipeline stages (quoted, pre-quote, post-install), copy-paste templates with one-click copy, timing cadences, pro tips. Dashboard tool at `/2026-03-08-SHED-FOLLOW-UP.html` ✅ (Mar 8, 10PM)
 - [x] **📍 GBP Posts — 4 Weeks Ready** — 5 copy-paste posts (Mar 10–Apr 7) with keyword targeting, photo tips, CTA buttons. Dashboard tool at `/2026-03-08-GBP-POSTS.html` ✅ (Mar 8, 9PM)
 - [x] **📇 Directory Listing Blitz Kit** — Copy-paste kit for 10 directories (8 remaining). Pre-written descriptions, step-by-step walkthroughs, 75 min total. GBP + Yelp already done. ✅ (Mar 8, 8PM)
 - [x] **🚀 Monday Action Plan** — Consolidated all 7 Sunday playbooks into ONE prioritized checklist. 9 actions ranked by impact/effort. "Do #1-3 Monday" = 45 min. ✅ (Mar 8, 7PM)
