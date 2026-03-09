@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tidy Tails — SEO Service Area Pages Kit</title>
+<style>
+  :root {
+    --bg: #0a0f1a;
+    --card: #131a2b;
+    --card-hover: #1a2340;
+    --accent: #22d67a;
+    --accent-dim: #1aad62;
+    --text: #e8eaf0;
+    --text-dim: #8892a8;
+    --border: #1e2a45;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --blue: #3b82f6;
+    --purple: #a855f7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  
+  .header { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-bottom: 1px solid var(--border); padding: 24px 32px; }
+  .header h1 { font-size: 28px; font-weight: 700; margin-bottom: 6px; }
+  .header h1 span { color: var(--accent); }
+  .header p { color: var(--text-dim); font-size: 15px; max-width: 800px; line-height: 1.5; }
+  
+  .stats-bar { display: flex; gap: 16px; padding: 16px 32px; border-bottom: 1px solid var(--border); background: var(--card); flex-wrap: wrap; }
+  .stat { padding: 12px 20px; background: var(--bg); border-radius: 10px; border: 1px solid var(--border); min-width: 160px; }
+  .stat-label { font-size: 11px; text-transform: uppercase; color: var(--text-dim); letter-spacing: 1px; margin-bottom: 4px; }
+  .stat-value { font-size: 22px; font-weight: 700; color: var(--accent); }
+  .stat-value.warning { color: var(--warning); }
+  .stat-value.danger { color: var(--danger); }
+  .stat-value.blue { color: var(--blue); }
+  
+  .why-section { padding: 20px 32px; background: linear-gradient(135deg, #1a1a2e, #16213e); border-bottom: 1px solid var(--border); }
+  .why-section h2 { font-size: 18px; margin-bottom: 12px; color: var(--warning); }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; }
+  .why-item { background: rgba(0,0,0,0.3); padding: 14px 18px; border-radius: 8px; border-left: 3px solid var(--accent); font-size: 14px; line-height: 1.5; }
+  .why-item strong { color: var(--accent); }
+  
+  .container { display: flex; min-height: calc(100vh - 240px); }
+  .sidebar { width: 260px; min-width: 260px; background: var(--card); border-right: 1px solid var(--border); padding: 16px 0; overflow-y: auto; }
+  .sidebar-title { padding: 8px 20px; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dim); margin-bottom: 4px; }
+  .city-btn { display: flex; align-items: center; gap: 10px; width: 100%; padding: 12px 20px; border: none; background: none; color: var(--text); font-size: 14px; cursor: pointer; text-align: left; transition: all 0.15s; border-left: 3px solid transparent; }
+  .city-btn:hover { background: var(--card-hover); }
+  .city-btn.active { background: var(--card-hover); border-left-color: var(--accent); color: var(--accent); font-weight: 600; }
+  .city-btn .emoji { font-size: 18px; }
+  .city-btn .pop { font-size: 11px; color: var(--text-dim); margin-left: auto; }
+  
+  .main { flex: 1; padding: 24px 32px; overflow-y: auto; max-height: calc(100vh - 240px); }
+  
+  .page-preview { background: var(--card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 24px; }
+  .page-header { padding: 20px 24px; background: linear-gradient(135deg, #1a2440, #0f172a); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .page-header h2 { font-size: 20px; }
+  .page-header h2 span { color: var(--accent); }
+  .copy-all-btn { padding: 10px 20px; background: var(--accent); color: #000; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 14px; transition: all 0.2s; }
+  .copy-all-btn:hover { background: #2ee88a; transform: translateY(-1px); }
+  .copy-all-btn:active { transform: translateY(0); }
+  
+  .section { padding: 20px 24px; border-bottom: 1px solid var(--border); }
+  .section:last-child { border-bottom: none; }
+  .section-label { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+  .section-label h3 { font-size: 14px; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; }
+  .section-label .tag { font-size: 10px; padding: 2px 8px; border-radius: 4px; background: rgba(34,214,122,0.15); color: var(--accent); }
+  
+  .content-block { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; position: relative; font-size: 14px; line-height: 1.7; color: var(--text); white-space: pre-wrap; word-wrap: break-word; }
+  .content-block .copy-btn { position: absolute; top: 8px; right: 8px; padding: 6px 14px; background: rgba(34,214,122,0.15); color: var(--accent); border: 1px solid rgba(34,214,122,0.3); border-radius: 6px; cursor: pointer; font-size: 12px; font-weight: 600; transition: all 0.2s; }
+  .content-block .copy-btn:hover { background: var(--accent); color: #000; }
+  
+  .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .meta-item { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 14px 18px; }
+  .meta-item label { font-size: 11px; text-transform: uppercase; color: var(--text-dim); letter-spacing: 1px; display: block; margin-bottom: 6px; }
+  .meta-item .val { font-size: 14px; color: var(--text); line-height: 1.5; }
+  .meta-item .char-count { font-size: 11px; color: var(--text-dim); margin-top: 4px; }
+  .meta-item .char-count.good { color: var(--accent); }
+  .meta-item .char-count.warn { color: var(--warning); }
+  
+  .keywords { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .kw { padding: 4px 10px; background: rgba(59,130,246,0.15); color: var(--blue); border-radius: 4px; font-size: 12px; border: 1px solid rgba(59,130,246,0.25); }
+  .kw.primary { background: rgba(34,214,122,0.15); color: var(--accent); border-color: rgba(34,214,122,0.25); }
+  
+  .checklist { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px 20px; }
+  .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .check-item:last-child { border-bottom: none; }
+  .check-item .icon { font-size: 16px; min-width: 20px; }
+  
+  .competitor-note { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.25); border-radius: 8px; padding: 14px 18px; margin-top: 12px; font-size: 13px; color: #fca5a5; }
+  .competitor-note strong { color: var(--danger); }
+  
+  .setup-tab { padding: 24px; }
+  .setup-step { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin-bottom: 16px; }
+  .setup-step h3 { color: var(--accent); margin-bottom: 8px; font-size: 16px; }
+  .setup-step p, .setup-step li { font-size: 14px; line-height: 1.7; color: var(--text); }
+  .setup-step ul { padding-left: 20px; margin-top: 8px; }
+  .setup-step li { margin-bottom: 4px; }
+  .step-num { display: inline-flex; width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #000; font-weight: 700; font-size: 14px; align-items: center; justify-content: center; margin-right: 10px; }
+  
+  .new-comp { background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3); border-radius: 8px; padding: 14px 18px; margin-bottom: 12px; }
+  .new-comp h4 { color: var(--purple); margin-bottom: 6px; }
+  .new-comp p { font-size: 13px; line-height: 1.5; }
+  
+  @media (max-width: 768px) {
+    .container { flex-direction: column; }
+    .sidebar { width: 100%; min-width: 100%; max-height: 200px; }
+    .main { max-height: none; }
+    .meta-grid { grid-template-columns: 1fr; }
+    .stats-bar { gap: 8px; padding: 12px 16px; }
+    .header, .main, .section { padding: 16px; }
+  }
+  
+  .toast { position: fixed; bottom: 24px; right: 24px; background: var(--accent); color: #000; padding: 12px 24px; border-radius: 8px; font-weight: 600; font-size: 14px; transform: translateY(80px); opacity: 0; transition: all 0.3s ease; z-index: 999; }
+  .toast.show { transform: translateY(0); opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🌍 SEO Service Area Pages — <span>Ready to Deploy</span></h1>
+  <p>12 unique, SEO-optimized service area pages for tidytailsstl.com. Each page targets a specific city with local keywords, unique content, and CTAs. Copy-paste into your website builder → instant local SEO. <strong>This is the #1 fix for your Google invisibility problem.</strong></p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-label">Pages Ready</div>
+    <div class="stat-value">12</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Keywords Targeted</div>
+    <div class="stat-value blue">72+</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">Current Indexed Pages</div>
+    <div class="stat-value danger">0</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">After Deploying</div>
+    <div class="stat-value">13+</div>
+  </div>
+  <div class="stat">
+    <div class="stat-label">New Competitor Found</div>
+    <div class="stat-value warning">Doggy Doods</div>
+  </div>
+</div>
+
+<div class="why-section">
+  <h2>⚠️ Why This Matters RIGHT NOW</h2>
+  <div class="why-grid">
+    <div class="why-item"><strong>Zero Google visibility.</strong> Search "pooper scooper Ballwin MO" — every competitor shows up. Tidy Tails doesn't exist. These pages fix that.</div>
+    <div class="why-item"><strong>Competitors have them.</strong> Doggie Doodies has a service areas page. Doggy Doods has INDIVIDUAL pages for 11 cities. You have zero.</div>
+    <div class="why-item"><strong>Each page = fishing line.</strong> 12 pages targeting 72+ keywords = 72+ chances for Google to show Tidy Tails when someone searches for pet waste removal near them.</div>
+    <div class="why-item"><strong>Spring is NOW.</strong> March–May is peak signup season. Every day without these pages = missed organic leads going to competitors.</div>
+  </div>
+  <div class="new-comp" style="margin-top: 16px;">
+    <h4>🆕 NEW Competitor Discovered: Doggy Doods (doggydoods.com)</h4>
+    <p>Premium pet waste service in St. Charles County. Has individual city pages for 11 areas (Cottleville, Dardenne Prairie, O'Fallon, St. Charles, St. Peters, Wentzville, etc.). Offers tiered plans: Essentials, Signature, Elite Concierge. Partner program with local businesses. Stickers for kids. Very professional. <strong>Directly competing for St. Charles expansion territory.</strong></p>
+  </div>
+</div>
+
+<div class="container">
+  <div class="sidebar">
+    <div class="sidebar-title">Service Area Pages</div>
+    <button class="city-btn active" onclick="showCity(0)" id="btn-0"><span class="emoji">📍</span> Ballwin<span class="pop">~30k</span></button>
+    <button class="city-btn" onclick="showCity(1)" id="btn-1"><span class="emoji">📍</span> Chesterfield<span class="pop">~49k</span></button>
+    <button class="city-btn" onclick="showCity(2)" id="btn-2"><span class="emoji">📍</span> Wildwood<span class="pop">~35k</span></button>
+    <button class="city-btn" onclick="showCity(3)" id="btn-3"><span class="emoji">📍</span> Manchester<span class="pop">~18k</span></button>
+    <button class="city-btn" onclick="showCity(4)" id="btn-4"><span class="emoji">📍</span> Eureka<span class="pop">~11k</span></button>
+    <button class="city-btn" onclick="showCity(5)" id="btn-5"><span class="emoji">📍</span> Ellisville<span class="pop">~10k</span></button>
+    <button class="city-btn" onclick="showCity(6)" id="btn-6"><span class="emoji">📍</span> Des Peres<span class="pop">~9k</span></button>
+    <button class="city-btn" onclick="showCity(7)" id="btn-7"><span class="emoji">📍</span> Fenton<span class="pop">~4k</span></button>
+    <button class="city-btn" onclick="showCity(8)" id="btn-8"><span class="emoji">📍</span> Valley Park<span class="pop">~7k</span></button>
+    <button class="city-btn" onclick="showCity(9)" id="btn-9"><span class="emoji">📍</span> St. Charles<span class="pop">~71k</span></button>
+    <button class="city-btn" onclick="showCity(10)" id="btn-10"><span class="emoji">📍</span> O'Fallon<span class="pop">~91k</span></button>
+    <button class="city-btn" onclick="showCity(11)" id="btn-11"><span class="emoji">📍</span> Creve Coeur<span class="pop">~19k</span></button>
+    <div class="sidebar-title" style="margin-top: 16px;">Resources</div>
+    <button class="city-btn" onclick="showSetup()" id="btn-setup"><span class="emoji">⚙️</span> Setup Guide</button>
+    <button class="city-btn" onclick="showChecklist()" id="btn-check"><span class="emoji">✅</span> Deploy Checklist</button>
+  </div>
+  
+  <div class="main" id="main-content">
+    <!-- Content injected by JS -->
+  </div>
+</div>
+
+<div class="toast" id="toast">Copied!</div>
+
+<script>
+const cities = [
+  {
+    name: "Ballwin",
+    state: "MO",
+    zip: "63011, 63021",
+    pop: "~30,400",
+    title: "Pet Waste Removal in Ballwin, MO | Tidy Tails Pooper Scooper Service",
+    metaDesc: "Professional pet waste removal & pooper scooper service in Ballwin, MO. Weekly yard cleanups starting at $25/week. No contracts. Locally owned. Call Tidy Tails today!",
+    h1: "Pet Waste Removal in Ballwin, MO",
+    subtitle: "Ballwin's Trusted Pooper Scooper Service",
+    competitors: "Doggie Doodies ($19.15/wk), Dr. Scoops (active in Ballwin)",
+    deadComp: "Fresh Paws (dead) — their Ballwin customers are orphaned",
+    content: `If you're a dog owner in Ballwin, you know the struggle. Between work, family, and everything in between, the last thing you want to do on your day off is walk the yard with a bag. That's where Tidy Tails comes in.
+
+We provide reliable, weekly pet waste removal throughout Ballwin — from the neighborhoods around Vlasis Park and Ballwin Golf Course to the subdivisions near Manchester Road and along New Ballwin Road. If you live in Ballwin, we're already in your area.
+
+## Why Ballwin Families Choose Tidy Tails
+
+**You get the same person every time.** Not a franchise sending whoever's available. TJ — the owner — is the one showing up, scooping, and making sure your yard is spotless. You'll know who's in your backyard.
+
+**We're already in your neighborhood.** Tidy Tails serves multiple families in the Ballwin and West County area, which means we're nearby, reliable, and familiar with the area.
+
+**No contracts, ever.** Start when you want. Stop when you want. We earn your business every single visit.
+
+## Our Ballwin Service
+
+- **Weekly cleanup** — $25/week (1-2 dogs, standard yard)
+- **Bi-weekly cleanup** — $45/visit
+- **Monthly cleanup** — $70/month
+- **One-time deep clean** — $100 (spring cleanup, moving, hosting guests)
+
+We bag and remove all waste. You don't touch a thing. We text when we're done so you know your yard is ready.
+
+## Serving All Ballwin Neighborhoods
+
+Whether you're near Holloway Park, off Ries Road, in the Kehrs Mill area, or anywhere in the 63011 and 63021 zip codes — we've got you covered. We also serve neighboring Manchester, Ellisville, and Des Peres.
+
+## Ready to Reclaim Your Yard?
+
+Most Ballwin families start with weekly service and never look back. No contracts. No hassle. Just a clean yard, every week.
+
+**Call or text TJ: [PHONE] | Email: cartervhomes@gmail.com**`,
+    keywords: ["pet waste removal Ballwin MO", "pooper scooper Ballwin", "dog poop cleanup Ballwin MO", "yard cleanup service Ballwin", "pet waste removal 63011", "pooper scooper service near me Ballwin"],
+    primaryKw: "pet waste removal Ballwin MO"
+  },
+  {
+    name: "Chesterfield",
+    state: "MO",
+    zip: "63005, 63017",
+    pop: "~49,000",
+    title: "Pet Waste Removal in Chesterfield, MO | Tidy Tails Pooper Scooper",
+    metaDesc: "Chesterfield's trusted pooper scooper service. Weekly pet waste removal starting at $25/week. No contracts, locally owned. Serving Chesterfield Valley & beyond. Call Tidy Tails!",
+    h1: "Pet Waste Removal in Chesterfield, MO",
+    subtitle: "Chesterfield's Most Reliable Yard Cleanup Service",
+    competitors: "Doggie Doodies ($19.15/wk), DoodyCalls (franchise), Doggy Doods (nearby St. Charles)",
+    deadComp: "Fresh Paws (dead) — served parts of Chesterfield",
+    content: `Chesterfield homeowners take pride in their yards — and you shouldn't have to compromise that because your pup leaves landmines. Tidy Tails provides professional pet waste removal across all of Chesterfield so you can enjoy your backyard without the minefield.
+
+## Your Chesterfield Pooper Scooper
+
+From the neighborhoods around Chesterfield Central Park to the homes lining Olive Boulevard, from Chesterfield Valley to the Clarkson Valley border — we scoop it all.
+
+Tidy Tails isn't a franchise or a call center. It's TJ, a local guy who runs every route himself. Same face every week. Same quality every time. Your dogs will start to recognize the truck.
+
+## How It Works
+
+1. **Get your free quote** — text, call, or fill out the form
+2. **We show up weekly** — same day, same time, rain or shine
+3. **Your yard stays clean** — we text when done, you enjoy the space
+
+## Chesterfield Pricing
+
+- **Weekly** — $25/week (best value for busy families)
+- **Bi-Weekly** — $45/visit
+- **Monthly** — $70/month
+- **One-Time Deep Clean** — $100 (perfect for spring or pre-party cleanup)
+
+All waste is bagged and removed. We leave nothing behind but a clean yard.
+
+## Why Chesterfield Homeowners Switch to Us
+
+A lot of Chesterfield residents have tried franchise services and gotten frustrated — different technicians every time, inconsistent quality, corporate runaround when something goes wrong. With Tidy Tails, you deal directly with the owner. If something's off, you text TJ directly and it gets fixed immediately.
+
+**No contracts.** No hidden fees. No corporate nonsense. Just a clean yard.
+
+## Neighborhoods We Serve in Chesterfield
+
+River Valley, Chesterfield Village, Wild Horse Creek area, Baxter Road corridor, Long Road, Schoettler Road, Chesterfield Mall area, and every neighborhood in between. ZIP codes 63005 and 63017.
+
+**Ready to start?** Text or call TJ: [PHONE]`,
+    keywords: ["pet waste removal Chesterfield MO", "pooper scooper Chesterfield", "dog poop pickup Chesterfield MO", "yard cleanup Chesterfield", "pet waste removal 63005", "pooper scooper service Chesterfield Valley"],
+    primaryKw: "pet waste removal Chesterfield MO"
+  },
+  {
+    name: "Wildwood",
+    state: "MO",
+    zip: "63005, 63038, 63040",
+    pop: "~35,500",
+    title: "Pet Waste Removal in Wildwood, MO | Tidy Tails Dog Waste Cleanup",
+    metaDesc: "Professional dog waste removal in Wildwood, MO. Large yards welcome! Weekly pooper scooper service from $25/week. No contracts. Locally owned. Contact Tidy Tails!",
+    h1: "Pet Waste Removal in Wildwood, MO",
+    subtitle: "Big Yards, Big Dogs — We Handle It All",
+    competitors: "Doggie Doodies (serves Wildwood area), POOP 911 ($11.95/visit)",
+    deadComp: "None confirmed dead in Wildwood specifically",
+    content: `Wildwood is known for bigger lots, more trees, and dogs that have room to roam. That also means more ground to cover when it's cleanup time. If you've been putting off the backyard because your acre lot feels overwhelming — Tidy Tails is here to help.
+
+## Wildwood's Dog Waste Removal Service
+
+We serve homes throughout Wildwood, from the neighborhoods off Highway 100 and Wild Horse Creek to the areas near Babler State Park and along Manchester Road. Whether you have a quarter acre or a full acre, we'll keep it clean.
+
+## Why Wildwood Homeowners Love Us
+
+**We don't rush.** Larger properties need more attention, and we take the time to get every corner. Your dogs don't stick to one spot — and neither do we.
+
+**Built for larger lots.** Some services charge extra for bigger yards or try to rush through. We quote honestly based on your property, and we do the job right.
+
+**One person, every time.** TJ handles every cleanup personally. No rotating crews. No surprise strangers in your backyard.
+
+## Wildwood Pricing
+
+- **Weekly cleanup** — Starting at $25/week (pricing may adjust for larger properties)
+- **Bi-weekly** — Starting at $45/visit
+- **One-time deep clean** — From $100 (spring, fall, or move-in/move-out)
+
+Contact us for a free quote based on your yard size and number of dogs. We'll be straight with you on pricing — no surprises.
+
+## Serving All of Wildwood
+
+Grover, Pond, Old State Road area, Taylor Road, neighborhoods near Al Foster Trailhead, Route 109 corridor, and throughout the 63005, 63038, and 63040 zip codes.
+
+We also serve neighboring Eureka, Chesterfield, and Ellisville.
+
+**Text or call TJ for your free quote: [PHONE]**`,
+    keywords: ["pet waste removal Wildwood MO", "pooper scooper Wildwood", "dog poop cleanup Wildwood MO", "large yard cleanup Wildwood", "pet waste removal 63038", "dog waste pickup Wildwood Missouri"],
+    primaryKw: "pet waste removal Wildwood MO"
+  },
+  {
+    name: "Manchester",
+    state: "MO",
+    zip: "63011, 63021",
+    pop: "~18,100",
+    title: "Pet Waste Removal Manchester, MO | Tidy Tails Pooper Scooper",
+    metaDesc: "Manchester, MO pet waste removal starting at $25/week. Weekly pooper scooper service — no contracts, locally owned. Your yard stays clean while you enjoy your dog. Call Tidy Tails!",
+    h1: "Pet Waste Removal in Manchester, MO",
+    subtitle: "Manchester's Go-To Pooper Scooper",
+    competitors: "Doggie Doodies ($19.15/wk), Dr. Scoops",
+    deadComp: "Poopy Paws 314 (dead) — served parts of South/West County",
+    content: `Manchester is right in the heart of West County — close to everything, family-friendly, and full of dog lovers. If you're tired of dodging piles every time you step outside, Tidy Tails is the fix.
+
+## Weekly Pet Waste Removal in Manchester
+
+We scoop yards throughout Manchester — from the neighborhoods near Manchester Park to the subdivisions off Sulphur Springs Road, Barrett Station Road, and along the Manchester Road corridor. If you live in Manchester, we're already nearby.
+
+## Simple, Honest Service
+
+Here's how it works: We show up the same day every week. We clean your entire yard. We bag and remove all waste. We text you when we're done. That's it. No upsells, no contracts, no games.
+
+## Manchester Pricing
+
+| Service | Price |
+|---------|-------|
+| Weekly cleanup | $25/week |
+| Bi-weekly | $45/visit |
+| Monthly | $70/month |
+| One-time deep clean | $100 |
+
+*Pricing for standard yards with 1-2 dogs. We'll give you an honest quote upfront.*
+
+## Why Manchester Dog Owners Choose Tidy Tails
+
+- **Local owner, not a franchise** — TJ lives and works in the area
+- **Consistent service** — same person, same day, every week
+- **No contracts** — cancel anytime, no penalties
+- **Satisfaction guaranteed** — not happy? We make it right
+
+## Neighborhoods We Cover
+
+All of Manchester including areas near Parkway School District, Des Peres border, Henry Park, and throughout 63011 and 63021.
+
+**Get your free quote today: [PHONE] | cartervhomes@gmail.com**`,
+    keywords: ["pet waste removal Manchester MO", "pooper scooper Manchester", "dog waste cleanup Manchester MO", "yard cleaning service Manchester", "pet waste 63021", "dog poop removal Manchester Missouri"],
+    primaryKw: "pet waste removal Manchester MO"
+  },
+  {
+    name: "Eureka",
+    state: "MO",
+    zip: "63025",
+    pop: "~11,200",
+    title: "Pet Waste Removal Eureka, MO | Tidy Tails Pooper Scooper Service",
+    metaDesc: "Eureka, MO dog waste removal from $25/week. Professional pooper scooper service — reliable, no contracts, locally owned. Enjoy your yard again! Call Tidy Tails.",
+    h1: "Pet Waste Removal in Eureka, MO",
+    subtitle: "Eureka's Local Pooper Scooper Service",
+    competitors: "Doggie Doodies (may serve edges), POOP 911",
+    deadComp: "Fresh Paws (dead) — served western STL including Eureka corridor",
+    content: `Living in Eureka means enjoying that small-town feel with room to breathe — and room for your dogs to run. But more room means more cleanup. Let Tidy Tails take that off your plate.
+
+## Your Eureka Yard, Handled
+
+We provide weekly pet waste removal throughout Eureka, including the neighborhoods along Highway 44, Central Avenue, the areas near Eureka City Park, and subdivisions off Bald Hill Road and Highway 109.
+
+## Why We're Different
+
+Most pet waste services are franchises sending whoever's available. Tidy Tails is different — it's TJ, a local small business owner who does every cleanup himself. You'll never wonder who's in your yard.
+
+## Eureka Service & Pricing
+
+- **Weekly cleanup** — $25/week
+- **Bi-weekly** — $45/visit  
+- **Monthly** — $70/month
+- **One-time deep clean** — $100 (great for spring cleanup after winter)
+
+We bag everything and take it with us. You just enjoy the clean yard.
+
+## Spring Cleanup Special
+
+Winter's over and the snow has melted — revealing months of... surprises. Our one-time deep clean ($100) gets your Eureka yard back to spotless. Then switch to weekly service to keep it that way all season.
+
+## Service Areas Near Eureka
+
+We also serve Wildwood, Pacific, Ellisville, and the surrounding areas. If you're in the 63025 zip code, we've got you covered.
+
+**Get started today — call or text TJ: [PHONE]**`,
+    keywords: ["pet waste removal Eureka MO", "pooper scooper Eureka", "dog poop cleanup Eureka MO", "yard cleanup 63025", "pet waste removal near Eureka Missouri", "dog waste service Eureka"],
+    primaryKw: "pet waste removal Eureka MO"
+  },
+  {
+    name: "Ellisville",
+    state: "MO",
+    zip: "63011, 63021",
+    pop: "~10,000",
+    title: "Pet Waste Removal Ellisville, MO | Tidy Tails Dog Poop Cleanup",
+    metaDesc: "Ellisville pet waste removal — weekly pooper scooper service from $25/week. No contracts, satisfaction guaranteed. Locally owned. Text Tidy Tails for a free quote!",
+    h1: "Pet Waste Removal in Ellisville, MO",
+    subtitle: "Ellisville's Most Reliable Yard Cleanup",
+    competitors: "Doggie Doodies ($19.15/wk — lists Ellisville as service area)",
+    deadComp: "None confirmed dead in Ellisville",
+    content: `Ellisville sits right in the middle of West County's dog-loving neighborhoods. Between Bluebird Park, Kiefer Creek, and all the tree-lined streets — it's a great place for dogs. But where dogs play, piles pile up.
+
+## Professional Pet Waste Removal in Ellisville
+
+Tidy Tails provides reliable, weekly dog waste removal across Ellisville. We handle the dirty work so you can let the kids and dogs out without worrying about what they're stepping in.
+
+## How It Works
+
+It's simple — and that's the point:
+
+1. **Text or call for a free quote** — we'll give you a straight answer, fast
+2. **We clean your yard weekly** — same day, same person, every week
+3. **We bag it and take it** — you never touch a thing
+4. **We text when done** — so you know it's safe to enjoy
+
+## Ellisville Pricing
+
+- Weekly: **$25/week** (1-2 dogs, standard yard)
+- Bi-weekly: **$45/visit**
+- Monthly: **$70/month**
+- One-time deep clean: **$100**
+
+No contracts. No hidden fees. Cancel anytime.
+
+## The Tidy Tails Difference
+
+We're not a franchise or an app. Tidy Tails is a locally owned operation run by TJ — one guy who takes pride in every yard he cleans. You get personal attention, consistent quality, and someone who actually answers when you text.
+
+## Serving Ellisville & Surrounding Areas
+
+We cover all of Ellisville and neighboring Ballwin, Manchester, Des Peres, and Wildwood. If you're in the 63011 or 63021 zip code, we're already in your neighborhood.
+
+**Ready for a cleaner yard? Text TJ: [PHONE]**`,
+    keywords: ["pet waste removal Ellisville MO", "pooper scooper Ellisville", "dog waste cleanup Ellisville", "yard cleaning Ellisville MO", "pet waste service 63011", "dog poop removal Ellisville Missouri"],
+    primaryKw: "pet waste removal Ellisville MO"
+  },
+  {
+    name: "Des Peres",
+    state: "MO",
+    zip: "63131",
+    pop: "~9,200",
+    title: "Pet Waste Removal Des Peres, MO | Tidy Tails Pooper Scooper",
+    metaDesc: "Des Peres pet waste removal from $25/week. Professional, reliable pooper scooper service. No contracts. Locally owned in St. Louis County. Contact Tidy Tails today!",
+    h1: "Pet Waste Removal in Des Peres, MO",
+    subtitle: "Des Peres' Preferred Yard Cleanup Service",
+    competitors: "Doggie Doodies (lists Des Peres), DoodyCalls",
+    deadComp: "Pawfect Waste Solutions (dead) — served STL county",
+    content: `Des Peres is one of the nicest communities in West County — manicured lawns, great schools, and families who care about their outdoor space. If your dog is the one thing keeping your yard from looking perfect, Tidy Tails can fix that.
+
+## Premium Pet Waste Removal for Des Peres
+
+We provide weekly dog waste cleanup throughout Des Peres, including the neighborhoods near Des Peres Park, along Manchester Road, Ballas Road, and the subdivisions off Dougherty Ferry Road.
+
+## What You Get
+
+- **Weekly visits** from the same person (TJ, the owner)
+- **Complete yard coverage** — front, back, side yards
+- **All waste bagged and removed** — we leave no trace
+- **Text notification** when the job is done
+- **No contracts** — ever
+
+## Des Peres Pricing
+
+| Service | Price |
+|---------|-------|
+| Weekly cleanup | $25/week |
+| Bi-weekly cleanup | $45/visit |
+| Monthly cleanup | $70/month |
+| One-time deep clean | $100 |
+
+*Standard pricing for 1-2 dogs. Custom quotes for larger properties or more pets.*
+
+## Why Des Peres Residents Choose Us
+
+In a community where quality matters, you want a service that matches. Tidy Tails isn't a budget franchise — it's a professional, locally-owned service that treats your yard with the same care you do.
+
+**Satisfaction guaranteed.** If you're ever not happy with a visit, we'll come back and make it right — free.
+
+**Text or call for your free quote: [PHONE]**`,
+    keywords: ["pet waste removal Des Peres MO", "pooper scooper Des Peres", "dog waste cleanup Des Peres", "yard cleanup service Des Peres", "pet waste removal 63131", "dog poop pickup Des Peres Missouri"],
+    primaryKw: "pet waste removal Des Peres MO"
+  },
+  {
+    name: "Fenton",
+    state: "MO",
+    zip: "63026",
+    pop: "~4,300",
+    title: "Pet Waste Removal Fenton, MO | Tidy Tails Dog Waste Service",
+    metaDesc: "Fenton, MO pet waste removal starting at $25/week. Reliable weekly pooper scooper service. No contracts, locally owned. Your yard deserves better — call Tidy Tails!",
+    h1: "Pet Waste Removal in Fenton, MO",
+    subtitle: "Fenton's Local Dog Waste Cleanup",
+    competitors: "Doggie Doodies (lists Fenton), Dirty Dog Wash ($21.90/wk)",
+    deadComp: "Poopy Paws 314 (dead) — served South County area",
+    content: `Fenton might be small, but it's full of dog-loving families. And if you've got dogs, you've got piles. Tidy Tails provides reliable weekly pet waste removal in Fenton so you can enjoy your yard year-round.
+
+## Weekly Yard Cleanup in Fenton
+
+We serve all of Fenton — from the Gravois Bluffs area to the neighborhoods along Larkin Williams Road and Highway 141. If you're in the 63026 zip code, we've got you covered.
+
+## What We Do
+
+Every week, we:
+- Walk your entire yard and scoop every pile
+- Bag all waste and take it with us
+- Text you when the job is done
+- Show up on time — same day, every week
+
+That's it. No complicated process. No contracts. Just a clean yard.
+
+## Fenton Pricing
+
+- **Weekly** — $25/week
+- **Bi-weekly** — $45/visit
+- **Monthly** — $70/month
+- **One-time clean** — $100
+
+## Locally Owned & Operated
+
+Tidy Tails is run by TJ, a local owner-operator who handles every yard personally. No franchise, no call center, no random technicians. Just consistent, reliable service from someone who takes pride in the work.
+
+## Also Serving Nearby Areas
+
+We cover Fenton plus neighboring Valley Park, Arnold, Sunset Hills, and the greater South County area.
+
+**Text TJ for a free quote: [PHONE]**`,
+    keywords: ["pet waste removal Fenton MO", "pooper scooper Fenton", "dog poop cleanup Fenton MO", "yard cleanup 63026", "pet waste service Fenton Missouri", "dog waste removal south county STL"],
+    primaryKw: "pet waste removal Fenton MO"
+  },
+  {
+    name: "Valley Park",
+    state: "MO",
+    zip: "63088",
+    pop: "~7,000",
+    title: "Pet Waste Removal Valley Park, MO | Tidy Tails Service",
+    metaDesc: "Valley Park pet waste removal — weekly pooper scooper service from $25/week. No contracts, locally owned. Reliable dog waste cleanup. Call Tidy Tails today!",
+    h1: "Pet Waste Removal in Valley Park, MO",
+    subtitle: "Valley Park's Trusted Pooper Scooper",
+    competitors: "Doggie Doodies (lists Valley Park), Dirty Dog Wash",
+    deadComp: "None confirmed dead in Valley Park",
+    content: `Valley Park families love their dogs — and their backyards. But let's be real, nobody loves the cleanup. That's exactly why Tidy Tails exists.
+
+## Dog Waste Removal in Valley Park
+
+We provide weekly pet waste cleanup throughout Valley Park, including neighborhoods near Valley Park City Hall, along Meramec Station Road, Big Bend Boulevard, and the areas near Hanna Road and I-44.
+
+## The Simple Version
+
+We show up. We clean. We leave. Your yard is spotless. Every week, same day, same person. No contracts, no hassle.
+
+## Valley Park Pricing
+
+- **Weekly cleanup** — $25/week
+- **Bi-weekly** — $45/visit
+- **Monthly** — $70/month
+- **One-time deep clean** — $100
+
+All waste is bagged and hauled away. You don't lift a finger.
+
+## Why Choose a Local Service?
+
+With national franchises in the market, you might wonder why local matters. Here's why: When you text Tidy Tails, TJ answers — the same guy who cleans your yard. No hold music. No ticket system. No "we'll relay your message." Just direct, personal service.
+
+## Surrounding Service Areas
+
+We also serve Fenton, Manchester, Ellisville, Des Peres, and Kirkwood.
+
+**Get started — text or call TJ: [PHONE]**`,
+    keywords: ["pet waste removal Valley Park MO", "pooper scooper Valley Park", "dog poop cleanup Valley Park MO", "yard cleanup 63088", "pet waste service Valley Park", "dog waste removal Valley Park Missouri"],
+    primaryKw: "pet waste removal Valley Park MO"
+  },
+  {
+    name: "St. Charles",
+    state: "MO",
+    zip: "63301, 63303, 63304",
+    pop: "~71,000",
+    title: "Pet Waste Removal St. Charles, MO | Tidy Tails Pooper Scooper",
+    metaDesc: "St. Charles pet waste removal from $25/week. Professional pooper scooper service — no contracts, locally owned. Expanding into St. Charles County! Contact Tidy Tails.",
+    h1: "Pet Waste Removal in St. Charles, MO",
+    subtitle: "Now Serving St. Charles!",
+    competitors: "Doggy Doods (St. Charles specialist), Doggie Doodies, Yuckos (since 1990), DoodyCalls",
+    deadComp: "Fresh Paws (dead) — served St. Charles. Little Stinkers territory nearby.",
+    content: `St. Charles is one of the fastest-growing areas in the STL metro — and with all those new neighborhoods and families comes a lot of dogs. And a lot of yards that need help.
+
+Tidy Tails is expanding into St. Charles to bring reliable, locally-owned pet waste removal to the area. No franchise overhead. No corporate runaround. Just a straightforward service that keeps your yard clean.
+
+## Why St. Charles Needs Another Option
+
+Right now, St. Charles families are mostly choosing between franchises with rotating technicians or newer services that come and go. Tidy Tails offers something different: one person, consistent quality, honest pricing, and a satisfaction guarantee.
+
+## How Our Service Works
+
+1. **Free quote** — text, call, or email. We respond fast.
+2. **Weekly cleanup** — we show up the same day each week
+3. **Bagged and gone** — all waste is removed from your property
+4. **Text when done** — you know exactly when your yard is ready
+
+## St. Charles Pricing
+
+- **Weekly** — $25/week (1-2 dogs, standard yard)
+- **Bi-weekly** — $45/visit
+- **Monthly** — $70/month
+- **One-time deep clean** — $100+ (depending on yard condition)
+
+*Custom quotes for larger lots or 3+ dogs.*
+
+## Areas We Serve in St. Charles County
+
+We're building routes in St. Charles, St. Peters, and surrounding areas. If you're in the 63301, 63303, or 63304 zip codes, reach out — we may already be in your area or close to adding your neighborhood.
+
+## The Expansion Advantage
+
+As we grow into St. Charles, early customers get priority scheduling and the personal attention that comes with a small, growing operation. You're not account #5,000 — you're one of our first St. Charles families, and we treat you that way.
+
+**Interested? Text or call TJ: [PHONE] | cartervhomes@gmail.com**`,
+    keywords: ["pet waste removal St. Charles MO", "pooper scooper St. Charles", "dog poop cleanup St. Charles MO", "yard cleanup St. Charles County", "pet waste service 63301", "dog waste removal St. Charles Missouri"],
+    primaryKw: "pet waste removal St. Charles MO"
+  },
+  {
+    name: "O'Fallon",
+    state: "MO",
+    zip: "63366, 63368",
+    pop: "~91,000",
+    title: "Pet Waste Removal O'Fallon, MO | Tidy Tails Pooper Scooper Service",
+    metaDesc: "O'Fallon, MO pet waste removal from $25/week. Professional pooper scooper service expanding into O'Fallon! No contracts, locally owned. Contact Tidy Tails today!",
+    h1: "Pet Waste Removal in O'Fallon, MO",
+    subtitle: "Expanding into O'Fallon — St. Charles County's Largest City",
+    competitors: "Doggy Doods (O'Fallon specialist), Doggie Doodies, Yuckos, DoodyCalls",
+    deadComp: "None confirmed dead in O'Fallon",
+    content: `O'Fallon is the biggest city in St. Charles County — over 90,000 people, endless neighborhoods, and a LOT of dogs. If you live in O'Fallon and you're tired of the backyard battle, Tidy Tails can help.
+
+## Professional Pet Waste Removal in O'Fallon
+
+We're expanding our service into O'Fallon to bring reliable, no-nonsense pet waste removal to the area's families. Weekly service, honest pricing, and the personal touch that franchise companies can't match.
+
+## What Makes Us Different
+
+**Owner-operated.** TJ doesn't manage scooping crews from an office — he's the one in your yard, every week. That means consistent quality, not a gamble on who shows up.
+
+**No contracts.** O'Fallon families can start, pause, or stop service anytime. We don't need contracts to keep customers — we just do a great job.
+
+**Satisfaction guaranteed.** Not happy? We'll make it right on the next visit. Period.
+
+## O'Fallon Pricing
+
+- **Weekly cleanup** — $25/week
+- **Bi-weekly** — $45/visit
+- **Monthly** — $70/month
+- **One-time deep clean** — $100+
+
+## O'Fallon Neighborhoods
+
+Whether you're near Fort Zumwalt Park, Highway K, Highway N, Bryan Road, or any of O'Fallon's many subdivisions — we're building routes in your area. The earlier you sign up, the better your preferred day/time availability.
+
+## Also Serving Nearby
+
+St. Peters, Lake St. Louis, Dardenne Prairie, Wentzville, and St. Charles.
+
+**Ready to ditch the scooper? Text TJ: [PHONE]**`,
+    keywords: ["pet waste removal O'Fallon MO", "pooper scooper O'Fallon", "dog poop cleanup O'Fallon MO", "yard cleanup 63366", "pet waste service O'Fallon Missouri", "dog waste removal St. Charles County"],
+    primaryKw: "pet waste removal O'Fallon MO"
+  },
+  {
+    name: "Creve Coeur",
+    state: "MO",
+    zip: "63141",
+    pop: "~19,000",
+    title: "Pet Waste Removal Creve Coeur, MO | Tidy Tails Dog Cleanup",
+    metaDesc: "Creve Coeur pet waste removal — weekly pooper scooper service starting at $25/week. Professional, reliable, locally owned. No contracts ever. Call Tidy Tails!",
+    h1: "Pet Waste Removal in Creve Coeur, MO",
+    subtitle: "Creve Coeur's Reliable Yard Cleanup Service",
+    competitors: "Doggie Doodies (lists Creve Coeur), DoodyCalls, Maryland Heights operators",
+    deadComp: "Pawfect Waste Solutions (dead) — served broader STL county",
+    content: `Creve Coeur is home to professionals, families, and plenty of four-legged family members. If your busy schedule means the yard cleanup keeps getting pushed to "next weekend" — Tidy Tails makes it disappear from your to-do list entirely.
+
+## Pet Waste Removal Across Creve Coeur
+
+We service yards throughout Creve Coeur — from the neighborhoods near Creve Coeur Lake Memorial Park to the areas along Olive Boulevard, Ballas Road, and the subdivisions near Conway Road and Spoede Road.
+
+## Why Creve Coeur Professionals Choose Us
+
+**Time is money.** You didn't get where you are by spending weekends scooping poop. For $25/week, that's permanently off your plate. Focus on what matters — we've got the yard.
+
+**Consistency you can count on.** Same person, same day, every single week. TJ handles every yard personally. No franchise crew rotation.
+
+**Zero friction.** No contracts. Monthly invoicing via email. Easy online payment. Start or stop anytime.
+
+## Creve Coeur Pricing
+
+- **Weekly** — $25/week
+- **Bi-weekly** — $45/visit
+- **Monthly** — $70/month
+- **One-time deep clean** — $100
+
+## The Tidy Tails Promise
+
+Satisfaction guaranteed on every visit. If we miss something, we come back and fix it — free. That's how we keep customers for years, not just weeks.
+
+## Nearby Service Areas
+
+We also cover Town & Country, Des Peres, Maryland Heights, Olivette, and Ladue.
+
+**Get your free quote: text or call TJ at [PHONE]**`,
+    keywords: ["pet waste removal Creve Coeur MO", "pooper scooper Creve Coeur", "dog waste cleanup Creve Coeur", "yard cleanup 63141", "pet waste service Creve Coeur Missouri", "dog poop removal West County STL"],
+    primaryKw: "pet waste removal Creve Coeur MO"
+  }
+];
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg || 'Copied!';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => showToast('Copied to clipboard!')).catch(() => showToast('Copy failed'));
+}
+
+function setActive(id) {
+  document.querySelectorAll('.city-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function showCity(idx) {
+  setActive('btn-' + idx);
+  const c = cities[idx];
+  const allContent = `PAGE TITLE: ${c.title}\n\nMETA DESCRIPTION: ${c.metaDesc}\n\nH1: ${c.h1}\nSUBTITLE: ${c.subtitle}\n\n${c.content}`;
+  
+  document.getElementById('main-content').innerHTML = `
+    <div class="page-preview">
+      <div class="page-header">
+        <h2>📍 ${c.name}, <span>${c.state}</span> — Service Area Page</h2>
+        <button class="copy-all-btn" onclick="copyText(\`${allContent.replace(/`/g, '\\`').replace(/\\/g, '\\\\')}\`)">📋 Copy All Content</button>
+      </div>
+      
+      <div class="section">
+        <div class="section-label"><h3>SEO Meta Tags</h3><span class="tag">Critical for Google</span></div>
+        <div class="meta-grid">
+          <div class="meta-item">
+            <label>Page Title (Title Tag)</label>
+            <div class="val">${c.title}</div>
+            <div class="char-count ${c.title.length <= 60 ? 'good' : 'warn'}">${c.title.length} chars (aim for ≤60)</div>
+            <button class="copy-btn" style="position:relative; margin-top:8px; padding:4px 12px; background:rgba(34,214,122,0.15); color:var(--accent); border:1px solid rgba(34,214,122,0.3); border-radius:6px; cursor:pointer; font-size:12px;" onclick="copyText('${c.title.replace(/'/g, "\\'")}')">Copy</button>
+          </div>
+          <div class="meta-item">
+            <label>Meta Description</label>
+            <div class="val">${c.metaDesc}</div>
+            <div class="char-count ${c.metaDesc.length <= 160 ? 'good' : 'warn'}">${c.metaDesc.length} chars (aim for ≤160)</div>
+            <button class="copy-btn" style="position:relative; margin-top:8px; padding:4px 12px; background:rgba(34,214,122,0.15); color:var(--accent); border:1px solid rgba(34,214,122,0.3); border-radius:6px; cursor:pointer; font-size:12px;" onclick="copyText('${c.metaDesc.replace(/'/g, "\\'")}')">Copy</button>
+          </div>
+          <div class="meta-item">
+            <label>URL Slug (Suggested)</label>
+            <div class="val">/pet-waste-removal-${c.name.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-')}-mo</div>
+          </div>
+          <div class="meta-item">
+            <label>ZIP Codes</label>
+            <div class="val">${c.zip}</div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-label"><h3>Target Keywords</h3><span class="tag">${c.keywords.length} keywords</span></div>
+        <div class="keywords">
+          ${c.keywords.map((kw, i) => `<span class="kw ${i === 0 ? 'primary' : ''}">${kw}</span>`).join('')}
+        </div>
+        <div style="margin-top: 8px; font-size: 12px; color: var(--text-dim);">
+          <strong style="color: var(--accent);">Primary:</strong> ${c.primaryKw} — use in H1, first paragraph, and at least 2-3 times in body
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-label"><h3>Page Content</h3><span class="tag">Ready to Deploy</span></div>
+        <div class="content-block" id="content-${idx}">
+          <button class="copy-btn" onclick="copyText(document.getElementById('rawcontent-${idx}').textContent)">Copy Content</button>
+<strong style="font-size: 22px;">${c.h1}</strong>
+<em style="color: var(--text-dim);">${c.subtitle}</em>
+
+${c.content}
+          <span id="rawcontent-${idx}" style="display:none">${c.content}</span>
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-label"><h3>Competitive Intel</h3><span class="tag">Know Your Rivals</span></div>
+        <div class="competitor-note">
+          <strong>Active competitors in ${c.name}:</strong> ${c.competitors}
+          ${c.deadComp ? `<br><br><strong style="color: var(--accent);">🎯 Opportunity:</strong> <span style="color: var(--accent);">${c.deadComp}</span>` : ''}
+        </div>
+      </div>
+      
+      <div class="section">
+        <div class="section-label"><h3>Internal Linking</h3></div>
+        <div style="font-size: 14px; line-height: 1.7; color: var(--text-dim);">
+          Link to from this page:
+          <ul style="margin-top: 8px; padding-left: 20px;">
+            <li>Homepage (tidytailsstl.com)</li>
+            <li>2-3 nearby service area pages (e.g., ${cities.filter((_, i) => i !== idx).slice(0, 3).map(c2 => c2.name).join(', ')})</li>
+            <li>Blog posts (when created)</li>
+          </ul>
+          <br>Link TO this page from:
+          <ul style="margin-top: 8px; padding-left: 20px;">
+            <li>Homepage "Service Areas" section</li>
+            <li>Google Business Profile website link</li>
+            <li>Directory listings (Yelp, Angi, etc.)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function showSetup() {
+  setActive('btn-setup');
+  document.getElementById('main-content').innerHTML = `
+    <div class="setup-tab">
+      <h2 style="margin-bottom: 20px;">⚙️ How to Deploy These Pages</h2>
+      
+      <div class="new-comp">
+        <h4>🆕 New Competitor Intel: Doggy Doods</h4>
+        <p><strong>Website:</strong> doggydoods.com — Premium dog yard maintenance in St. Charles County<br>
+        <strong>Owner:</strong> Eugene — personal service, brings stickers for customers' kids<br>
+        <strong>Service areas:</strong> 11 individual city pages (Cottleville, Dardenne Prairie, Flint Hill, Foristell, Lake St. Louis, O'Fallon, St. Charles, St. Peters, Weldon Spring, Weldon Spring Heights, Wentzville)<br>
+        <strong>Services:</strong> 3 tiers — Fresh Paws Essentials, Signature, Elite Concierge. Plus: Stool Health+, Deodorizing, Deterrent add-ons, Dog Waste Bin Service, HOA Solutions, Pet Waste Stations<br>
+        <strong>Marketing:</strong> Partner program with local businesses, "Doggy Doods Digest" blog, excellent Google reviews<br>
+        <strong>Threat level:</strong> 🟡 MEDIUM — Focused on St. Charles (not West County yet), but very professional and growing fast</p>
+      </div>
+      
+      <div class="new-comp" style="border-color: rgba(59,130,246,0.3); background: rgba(59,130,246,0.1);">
+        <h4 style="color: var(--blue);">📌 Also Found: Yuckos (yuckos.com)</h4>
+        <p><strong>Scooping since 1990.</strong> 36 years in business. Covers St. Louis County/City AND St. Charles County/City. Phone: 314-291-POOP. Website is ancient (looks like 1998) but they're still operating. Commercial & residential. Hours: Mon-Fri 8AM-3PM.<br>
+        <strong>Threat level:</strong> 🟢 LOW — Established but not growing. Terrible web presence. Rely on decades of word-of-mouth.</p>
+      </div>
+      
+      <div class="setup-step">
+        <h3><span class="step-num">1</span> Set Up Google Search Console First</h3>
+        <p>Before these pages help, Google needs to know your site exists.</p>
+        <ul>
+          <li>Go to <strong>search.google.com/search-console</strong></li>
+          <li>Add tidytailsstl.com as a property</li>
+          <li>Verify ownership (DNS or HTML file method)</li>
+          <li>Submit your sitemap (usually tidytailsstl.com/sitemap.xml)</li>
+          <li><strong>This is step 0. Without it, none of this content will appear in Google.</strong></li>
+        </ul>
+      </div>
+      
+      <div class="setup-step">
+        <h3><span class="step-num">2</span> Create Each Service Area Page</h3>
+        <p>In your website builder (Wix, Squarespace, WordPress, etc.):</p>
+        <ul>
+          <li>Create a new page for each city</li>
+          <li>Set the URL slug as suggested (e.g., /pet-waste-removal-ballwin-mo)</li>
+          <li>Set the page title and meta description from the SEO Meta Tags section</li>
+          <li>Paste the page content</li>
+          <li>Format with proper headings (H1, H2, etc.)</li>
+        </ul>
+      </div>
+      
+      <div class="setup-step">
+        <h3><span class="step-num">3</span> Add a Service Areas Hub Page</h3>
+        <p>Create one page at <strong>/service-areas</strong> that links to all 12 city pages. This helps Google discover and index them all.</p>
+        <ul>
+          <li>List each city with a brief description and link</li>
+          <li>Include a simple map or text description of your coverage area</li>
+          <li>Link this hub page from your main navigation</li>
+        </ul>
+      </div>
+      
+      <div class="setup-step">
+        <h3><span class="step-num">4</span> Update Your Homepage</h3>
+        <ul>
+          <li>Add links to city pages in the "Service Areas" section</li>
+          <li>Instead of just listing city names, make each one a clickable link</li>
+          <li>This creates internal links that pass SEO authority to city pages</li>
+        </ul>
+      </div>
+      
+      <div class="setup-step">
+        <h3><span class="step-num">5</span> Set Up Google Business Profile</h3>
+        <p>This is equally critical to the service area pages:</p>
+        <ul>
+          <li>Go to <strong>business.google.com</strong></li>
+          <li>Create your Tidy Tails listing</li>
+          <li>Category: "Pet Waste Removal Service"</li>
+          <li>Service area: List all 12 cities</li>
+          <li>Add photos of you working, before/after yards</li>
+          <li>Link to your service area pages from your GBP</li>
+        </ul>
+      </div>
+      
+      <div class="setup-step">
+        <h3><span class="step-num">6</span> Priority Order</h3>
+        <p>If you can only do a few at a time, start with these (highest search volume + least competition):</p>
+        <ul>
+          <li><strong>1. Ballwin</strong> — your home base, dead competitor's customers available</li>
+          <li><strong>2. Chesterfield</strong> — largest West County city, high income</li>
+          <li><strong>3. St. Charles</strong> — biggest growth opportunity, dead competitor (Fresh Paws)</li>
+          <li><strong>4. O'Fallon</strong> — 91k people, massive market</li>
+          <li><strong>5. Wildwood</strong> — larger lots = higher-value customers</li>
+        </ul>
+      </div>
+    </div>
+  `;
+}
+
+function showChecklist() {
+  setActive('btn-check');
+  document.getElementById('main-content').innerHTML = `
+    <div class="setup-tab">
+      <h2 style="margin-bottom: 20px;">✅ Deployment Checklist</h2>
+      
+      <div class="checklist">
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Google Search Console</strong> — Set up and verified for tidytailsstl.com</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Google Business Profile</strong> — Created with all 12 service areas listed</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Sitemap submitted</strong> — In Google Search Console</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Ballwin page</strong> — Created with SEO meta tags, content, and proper URL slug</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Chesterfield page</strong> — Created</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Wildwood page</strong> — Created</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Manchester page</strong> — Created</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Eureka page</strong> — Created</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Ellisville page</strong> — Created</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Des Peres page</strong> — Created</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Fenton page</strong> — Created</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Valley Park page</strong> — Created</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>St. Charles page</strong> — Created</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>O'Fallon page</strong> — Created</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Creve Coeur page</strong> — Created</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Service Areas hub page</strong> — Created linking to all 12 city pages</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Homepage updated</strong> — Service area links added to navigation</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Internal linking</strong> — Each city page links to 2-3 nearby city pages</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Phone number added</strong> — Replace [PHONE] placeholders with actual number</div></div>
+        <div class="check-item"><span class="icon">⬜</span> <div><strong>Request indexing</strong> — In Google Search Console, submit each new URL for indexing</div></div>
+      </div>
+      
+      <div style="margin-top: 24px; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px;">
+        <h3 style="color: var(--accent); margin-bottom: 12px;">📊 Expected Results Timeline</h3>
+        <div style="font-size: 14px; line-height: 2;">
+          <strong>Week 1:</strong> Pages deployed, submitted to Google Search Console<br>
+          <strong>Week 2-3:</strong> Google discovers and starts indexing pages<br>
+          <strong>Week 4-6:</strong> Pages start appearing in search results (usually page 2-3 initially)<br>
+          <strong>Month 2-3:</strong> With GBP active and reviews coming in, rankings improve<br>
+          <strong>Month 3-6:</strong> Consistent organic traffic from local searches — free leads every week<br>
+          <br>
+          <strong style="color: var(--warning);">Key insight:</strong> Every day you wait to deploy = days added to this timeline. The sooner these pages go live, the sooner Google starts indexing them. Start with the top 5 priority cities this week.
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// Initialize with first city
+showCity(0);
+</script>
+</body>
+</html>
