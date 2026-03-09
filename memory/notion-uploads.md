@@ -190,3 +190,9 @@ Chief uses this to verify sync with dashboard.
 | 00:01 | EOD Summary Mar 7 | 📋 Operations | EOD_SUMMARY_2026-03-07.pdf | ✅ |
 | 12:01 | Morning Briefing Mar 8 | 📋 Operations | MORNING_BRIEFING_2026-03-08.pdf | ✅ |
 | 12:01 | Shed Ads Mar 8 | 🏠 Shed Sales | SHED_ADS_2026-03-08.pdf | ✅ |
+
+## Upload Log — Mar 9, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 00:01 | EOD Summary Mar 8 | 📋 Operations | EOD_SUMMARY_2026-03-08.pdf | ✅ |

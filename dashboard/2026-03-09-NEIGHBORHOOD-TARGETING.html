@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 Spring Neighborhood Targeting — Tidy Tails</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0f1419;color:#e7e9ea;line-height:1.6;padding:20px}
+.container{max-width:1200px;margin:0 auto}
+h1{font-size:2rem;margin-bottom:8px;background:linear-gradient(135deg,#00d4aa,#00a8ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{color:#71767b;font-size:0.95rem;margin-bottom:24px}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:24px}
+.stat-card{background:#1a1f2e;border-radius:12px;padding:16px;text-align:center;border:1px solid #2a2f3e}
+.stat-card .num{font-size:1.8rem;font-weight:700;color:#00d4aa}
+.stat-card .label{font-size:0.8rem;color:#71767b;text-transform:uppercase;letter-spacing:1px}
+.tier-section{margin-bottom:28px}
+.tier-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding:12px 16px;border-radius:10px;cursor:pointer;user-select:none}
+.tier-1-header{background:linear-gradient(135deg,#1a3a2a,#1a2a3a);border:1px solid #00d4aa55}
+.tier-2-header{background:linear-gradient(135deg,#2a2a1a,#2a1a2a);border:1px solid #ffa50055}
+.tier-3-header{background:linear-gradient(135deg,#1a1a2a,#2a1a2a);border:1px solid #71767b55}
+.tier-header h2{font-size:1.2rem;flex:1}
+.tier-badge{font-size:0.75rem;padding:4px 10px;border-radius:20px;font-weight:600;text-transform:uppercase;letter-spacing:1px}
+.badge-1{background:#00d4aa22;color:#00d4aa;border:1px solid #00d4aa44}
+.badge-2{background:#ffa50022;color:#ffa500;border:1px solid #ffa50044}
+.badge-3{background:#71767b22;color:#71767b;border:1px solid #71767b44}
+.neighborhood-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:16px}
+.hood-card{background:#1a1f2e;border-radius:12px;border:1px solid #2a2f3e;overflow:hidden;transition:transform 0.2s,border-color 0.2s}
+.hood-card:hover{transform:translateY(-2px);border-color:#00d4aa44}
+.hood-header{padding:16px 20px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.hood-header h3{font-size:1.1rem}
+.hood-income{font-size:0.85rem;color:#00d4aa;font-weight:600}
+.hood-details{padding:0 20px 20px;display:none}
+.hood-details.open{display:block}
+.hood-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+.meta-item{font-size:0.85rem;color:#a0a4a8}
+.meta-item span{color:#e7e9ea;font-weight:500}
+.stars{color:#ffa500}
+.why-box{background:#0f1419;border-radius:8px;padding:12px;margin-bottom:12px;border-left:3px solid #00d4aa}
+.why-box h4{font-size:0.85rem;color:#00d4aa;margin-bottom:6px}
+.why-box ul{font-size:0.85rem;padding-left:18px;color:#a0a4a8}
+.why-box ul li{margin-bottom:4px}
+.tactics-box{background:#0f1419;border-radius:8px;padding:12px;border-left:3px solid #ffa500}
+.tactics-box h4{font-size:0.85rem;color:#ffa500;margin-bottom:6px}
+.tactics-box ul{font-size:0.85rem;padding-left:18px;color:#a0a4a8}
+.tactics-box ul li{margin-bottom:4px}
+.campaign-section{background:#1a1f2e;border-radius:12px;padding:24px;border:1px solid #2a2f3e;margin-bottom:24px}
+.campaign-section h2{font-size:1.3rem;margin-bottom:16px;color:#00d4aa}
+.week-card{background:#0f1419;border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid #2a2f3e;cursor:pointer}
+.week-card h3{font-size:1rem;margin-bottom:8px;display:flex;align-items:center;gap:8px}
+.week-num{background:#00d4aa22;color:#00d4aa;padding:2px 10px;border-radius:12px;font-size:0.8rem;font-weight:600}
+.week-details{display:none;margin-top:10px}
+.week-details.open{display:block}
+.week-details ul{font-size:0.85rem;padding-left:18px;color:#a0a4a8}
+.week-details ul li{margin-bottom:6px}
+.week-target{margin-top:10px;padding:8px 12px;background:#00d4aa11;border-radius:6px;font-size:0.85rem;color:#00d4aa;border:1px solid #00d4aa22}
+.insights-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-bottom:24px}
+.insight-card{background:#1a1f2e;border-radius:12px;padding:20px;border:1px solid #2a2f3e}
+.insight-card h3{font-size:1rem;margin-bottom:10px;color:#ffa500}
+.insight-card p{font-size:0.85rem;color:#a0a4a8}
+.insight-card .highlight{color:#00d4aa;font-weight:600}
+.route-math{background:#1a1f2e;border-radius:12px;padding:24px;border:1px solid #00d4aa33;margin-bottom:24px}
+.route-math h2{font-size:1.3rem;margin-bottom:16px;color:#00d4aa}
+.math-row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #2a2f3e;font-size:0.9rem}
+.math-row:last-child{border-bottom:none;color:#00d4aa;font-weight:700;font-size:1.1rem}
+.toggle-arrow{font-size:1.2rem;transition:transform 0.2s;color:#71767b}
+.toggle-arrow.open{transform:rotate(90deg)}
+.income-table{width:100%;border-collapse:collapse;margin-top:12px}
+.income-table th{text-align:left;padding:10px 12px;border-bottom:2px solid #2a2f3e;color:#71767b;font-size:0.8rem;text-transform:uppercase;letter-spacing:1px}
+.income-table td{padding:10px 12px;border-bottom:1px solid #1a1f2e;font-size:0.9rem}
+.income-table tr:hover{background:#1a2a3a}
+.priority-tag{font-size:0.75rem;padding:2px 8px;border-radius:10px;font-weight:600}
+.p-high{background:#00d4aa22;color:#00d4aa}
+.p-med{background:#ffa50022;color:#ffa500}
+.p-low{background:#71767b22;color:#71767b}
+footer{text-align:center;color:#71767b;font-size:0.8rem;margin-top:32px;padding-top:16px;border-top:1px solid #2a2f3e}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🎯 Spring Neighborhood Targeting Guide</h1>
+<p class="subtitle">Where to find your next 20 customers — March 2026 | Click any card to expand</p>
+
+<div class="stats-row">
+<div class="stat-card"><div class="num">12</div><div class="label">Neighborhoods Analyzed</div></div>
+<div class="stat-card"><div class="num">3</div><div class="label">Tier 1 Targets</div></div>
+<div class="stat-card"><div class="num">$117K</div><div class="label">Avg Tier 1 Income</div></div>
+<div class="stat-card"><div class="num">4-8</div><div class="label">Expected March Signups</div></div>
+<div class="stat-card"><div class="num">#6</div><div class="label">STL Pet-Friendly Rank (US)</div></div>
+</div>
+
+<!-- TIER 1 -->
+<div class="tier-section">
+<div class="tier-header tier-1-header" onclick="toggleTier('tier1')">
+<h2>🏆 Tier 1 — Start Here</h2>
+<span class="tier-badge badge-1">High Priority</span>
+<span class="toggle-arrow" id="tier1-arrow">▶</span>
+</div>
+<div id="tier1" class="neighborhood-grid" style="display:none">
+
+<div class="hood-card">
+<div class="hood-header" onclick="toggleHood(this)">
+<div><h3>1. Kirkwood</h3><div class="hood-income">$117,439 median</div></div>
+<span class="toggle-arrow">▶</span>
+</div>
+<div class="hood-details">
+<div class="hood-meta">
+<div class="meta-item">Pop: <span>27,540</span></div>
+<div class="meta-item">Lots: <span>Med-Large</span></div>
+<div class="meta-item">Homeowners: <span>Very High</span></div>
+<div class="meta-item">Dog Culture: <span class="stars">★★★★★</span></div>
+</div>
+<div class="why-box">
+<h4>Why Kirkwood?</h4>
+<ul>
+<li>Walkable downtown = dog owners EVERYWHERE</li>
+<li>Family-first suburb with excellent schools</li>
+<li>Strong Facebook groups & Nextdoor presence</li>
+<li>Mix of big-yard homes & newer infill</li>
+<li>Close to TJ's base — short drive times</li>
+</ul>
+</div>
+<div class="tactics-box">
+<h4>Targeting Tactics</h4>
+<ul>
+<li>Door hangers near Kirkwood Park (Adams, Taylor, Woodlawn)</li>
+<li>Partner with Kirkwood Pet Hospital</li>
+<li>Post in Kirkwood Community Facebook group</li>
+<li>Hit: Old Kirkwood, Westchester, near Walker Elementary</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="hood-card">
+<div class="hood-header" onclick="toggleHood(this)">
+<div><h3>2. Webster Groves</h3><div class="hood-income">$110,716 median</div></div>
+<span class="toggle-arrow">▶</span>
+</div>
+<div class="hood-details">
+<div class="hood-meta">
+<div class="meta-item">Pop: <span>23,390</span></div>
+<div class="meta-item">Lots: <span>Med-Large</span></div>
+<div class="meta-item">Homeowners: <span>Very High</span></div>
+<div class="meta-item">Dog Culture: <span class="stars">★★★★☆</span></div>
+</div>
+<div class="why-box">
+<h4>Why Webster Groves?</h4>
+<ul>
+<li>Progressive, eco-conscious — health/environmental pitch works</li>
+<li>Older homes with established yards = deep clean upsells</li>
+<li>Adjacent to Kirkwood — route efficiency</li>
+<li>Active community groups on Nextdoor & Facebook</li>
+</ul>
+</div>
+<div class="tactics-box">
+<h4>Targeting Tactics</h4>
+<ul>
+<li>Lead with environmental/health angle (274 lbs/year stat)</li>
+<li>Partner with Webster Groves Animal Hospital</li>
+<li>Door hangers near Bristol Park & Blackburn Park</li>
+<li>Spring cleanup messaging: "Winter thaw = 6 months hidden waste"</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="hood-card">
+<div class="hood-header" onclick="toggleHood(this)">
+<div><h3>3. Ballwin</h3><div class="hood-income">$121,170 median</div></div>
+<span class="toggle-arrow">▶</span>
+</div>
+<div class="hood-details">
+<div class="hood-meta">
+<div class="meta-item">Pop: <span>~30,000</span></div>
+<div class="meta-item">Lots: <span>Med-Large</span></div>
+<div class="meta-item">Homeowners: <span>Very High</span></div>
+<div class="meta-item">Dog Culture: <span class="stars">★★★★☆</span></div>
+</div>
+<div class="why-box">
+<h4>Why Ballwin?</h4>
+<ul>
+<li>30K population — lots of doors to knock</li>
+<li>Full of HOA subdivisions (sell to board = 20 customers at once)</li>
+<li>Rockwood School District families = busy dual-income households</li>
+<li>LESS saturated than inner suburbs — competitors focus elsewhere</li>
+<li>Highest Tier 1 income at $121K</li>
+</ul>
+</div>
+<div class="tactics-box">
+<h4>Targeting Tactics</h4>
+<ul>
+<li>Research top 5 HOA-managed subdivisions — pitch boards directly</li>
+<li>Door hangers near Vlasis Park</li>
+<li>Facebook Marketplace ads targeting 63011 & 63021</li>
+<li>Hit: Ballwin Meadows, Manchester Meadows, Kehrs Mill area</li>
+</ul>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- TIER 2 -->
+<div class="tier-section">
+<div class="tier-header tier-2-header" onclick="toggleTier('tier2')">
+<h2>🥈 Tier 2 — Strong Potential</h2>
+<span class="tier-badge badge-2">Expand Here</span>
+<span class="toggle-arrow" id="tier2-arrow">▶</span>
+</div>
+<div id="tier2" class="neighborhood-grid" style="display:none">
+
+<div class="hood-card">
+<div class="hood-header" onclick="toggleHood(this)">
+<div><h3>4. Creve Coeur</h3><div class="hood-income">$119,454 median</div></div>
+<span class="toggle-arrow">▶</span>
+</div>
+<div class="hood-details">
+<div class="hood-meta">
+<div class="meta-item">Pop: <span>18,627</span></div>
+<div class="meta-item">Lots: <span>Large</span></div>
+<div class="meta-item">Homeowners: <span>High</span></div>
+<div class="meta-item">Dog Culture: <span class="stars">★★★★☆</span></div>
+</div>
+<div class="why-box"><h4>Why?</h4><ul>
+<li>Dedicated Creve Coeur Dog Park (12301 Conway Rd)</li>
+<li>Larger lots = bigger cleanup jobs = higher pricing</li>
+<li>Dual-income professionals — time is scarce</li>
+<li>Near TJ's home turf (Olivette)</li>
+</ul></div>
+<div class="tactics-box"><h4>Play</h4><ul><li>Premium pricing, emphasize convenience and time savings</li><li>Flyers at dog park bulletin board</li></ul></div>
+</div>
+</div>
+
+<div class="hood-card">
+<div class="hood-header" onclick="toggleHood(this)">
+<div><h3>5. Chesterfield</h3><div class="hood-income">$133,380 median</div></div>
+<span class="toggle-arrow">▶</span>
+</div>
+<div class="hood-details">
+<div class="hood-meta">
+<div class="meta-item">Pop: <span>49,591</span></div>
+<div class="meta-item">Lots: <span>Large</span></div>
+<div class="meta-item">Homeowners: <span>Very High</span></div>
+<div class="meta-item">Dog Culture: <span class="stars">★★★★☆</span></div>
+</div>
+<div class="why-box"><h4>Why?</h4><ul>
+<li>Largest suburb — 49K people, fastest-growing</li>
+<li>Master-planned HOA communities = commercial goldmine</li>
+<li>Highest price tolerance in the area</li>
+<li>⚠️ POOP 911 is strong here — need differentiation</li>
+</ul></div>
+<div class="tactics-box"><h4>Play</h4><ul><li>"Your neighbor, not a 1-800 number" — local vs franchise</li><li>Target new developments (Wildhorse Village)</li></ul></div>
+</div>
+</div>
+
+<div class="hood-card">
+<div class="hood-header" onclick="toggleHood(this)">
+<div><h3>6. Crestwood</h3><div class="hood-income">$115,512 median</div></div>
+<span class="toggle-arrow">▶</span>
+</div>
+<div class="hood-details">
+<div class="hood-meta">
+<div class="meta-item">Pop: <span>11,912</span></div>
+<div class="meta-item">Lots: <span>Medium</span></div>
+<div class="meta-item">Homeowners: <span>Very High</span></div>
+<div class="meta-item">Dog Culture: <span class="stars">★★★☆☆</span></div>
+</div>
+<div class="why-box"><h4>Why?</h4><ul>
+<li>Small community = less competition, easier to dominate</li>
+<li>Between Kirkwood and Sunset Hills — fits route</li>
+<li>Strong neighborhood identity</li>
+</ul></div>
+<div class="tactics-box"><h4>Play</h4><ul><li>Become THE pet waste company in Crestwood</li><li>Small pond, big fish strategy</li></ul></div>
+</div>
+</div>
+
+<div class="hood-card">
+<div class="hood-header" onclick="toggleHood(this)">
+<div><h3>7. Olivette (Home Turf)</h3><div class="hood-income">~$85,000 median</div></div>
+<span class="toggle-arrow">▶</span>
+</div>
+<div class="hood-details">
+<div class="hood-meta">
+<div class="meta-item">Pop: <span>7,737</span></div>
+<div class="meta-item">Lots: <span>Medium</span></div>
+<div class="meta-item">Homeowners: <span>Mod-High</span></div>
+<div class="meta-item">Dog Culture: <span class="stars">★★★☆☆</span></div>
+</div>
+<div class="why-box"><h4>Why?</h4><ul>
+<li>TJ's home base — zero drive time</li>
+<li>⚠️ POOP 911 dominates online (4 Olivette pages)</li>
+<li>Lower income but proximity is huge advantage</li>
+</ul></div>
+<div class="tactics-box"><h4>Play</h4><ul><li>Leverage being LOCAL: "I live here"</li><li>Good for filling schedule gaps between stops</li></ul></div>
+</div>
+</div>
+
+</div>
+</div>
+
+<!-- TIER 3 -->
+<div class="tier-section">
+<div class="tier-header tier-3-header" onclick="toggleTier('tier3')">
+<h2>🥉 Tier 3 — Future Expansion</h2>
+<span class="tier-badge badge-3">Later</span>
+<span class="toggle-arrow" id="tier3-arrow">▶</span>
+</div>
+<div id="tier3" class="neighborhood-grid" style="display:none">
+<div class="hood-card">
+<div class="hood-header" onclick="toggleHood(this)">
+<div><h3>Des Peres</h3><div class="hood-income">$120K+ median</div></div>
+<span class="toggle-arrow">▶</span>
+</div>
+<div class="hood-details"><p style="font-size:0.85rem;color:#a0a4a8;padding:4px 0">Small, affluent, Kirkwood-adjacent. Natural route expansion.</p></div>
+</div>
+<div class="hood-card">
+<div class="hood-header" onclick="toggleHood(this)">
+<div><h3>Wildwood</h3><div class="hood-income">$157,750 median</div></div>
+<span class="toggle-arrow">▶</span>
+</div>
+<div class="hood-details"><p style="font-size:0.85rem;color:#a0a4a8;padding:4px 0">2nd highest income in county! Very large lots = premium pricing. Save until route density established closer in.</p></div>
+</div>
+<div class="hood-card">
+<div class="hood-header" onclick="toggleHood(this)">
+<div><h3>Glendale</h3><div class="hood-income">~$110K median</div></div>
+<span class="toggle-arrow">▶</span>
+</div>
+<div class="hood-details"><p style="font-size:0.85rem;color:#a0a4a8;padding:4px 0">Tiny, family-friendly. Homes rebuilding at $700K+. 5-10 customers could dominate it.</p></div>
+</div>
+<div class="hood-card">
+<div class="hood-header" onclick="toggleHood(this)">
+<div><h3>Sunset Hills</h3><div class="hood-income">~$100K median</div></div>
+<span class="toggle-arrow">▶</span>
+</div>
+<div class="hood-details"><p style="font-size:0.85rem;color:#a0a4a8;padding:4px 0">South of Kirkwood. Natural expansion from Kirkwood/Crestwood route.</p></div>
+</div>
+<div class="hood-card">
+<div class="hood-header" onclick="toggleHood(this)">
+<div><h3>Manchester</h3><div class="hood-income">$92,839 median</div></div>
+<span class="toggle-arrow">▶</span>
+</div>
+<div class="hood-details"><p style="font-size:0.85rem;color:#a0a4a8;padding:4px 0">18K+ population. Lots of subdivisions, slightly lower price point. Good for volume.</p></div>
+</div>
+</div>
+</div>
+
+<!-- ROUTE MATH -->
+<div class="route-math">
+<h2>📐 Route Efficiency Math</h2>
+<p style="font-size:0.85rem;color:#71767b;margin-bottom:16px">Why the Kirkwood-Webster-Ballwin triangle works</p>
+<div class="math-row"><span>15 customers × 15 min each</span><span>3 hrs 45 min work</span></div>
+<div class="math-row"><span>5 min avg drive between stops</span><span>1 hr 15 min driving</span></div>
+<div class="math-row"><span>Total time for 15 customers</span><span>~5 hours</span></div>
+<div class="math-row"><span>Revenue at $20-30/visit avg</span><span>$300 - $450</span></div>
+<div class="math-row"><span>vs. scattered across county</span><span>7+ hours (40% more)</span></div>
+</div>
+
+<!-- 4-WEEK CAMPAIGN -->
+<div class="campaign-section">
+<h2>🗓️ 4-Week Spring Campaign Plan</h2>
+<p style="font-size:0.85rem;color:#71767b;margin-bottom:16px">The "Kirkwood-Webster-Ballwin Triangle" blitz</p>
+
+<div class="week-card" onclick="toggleWeek(this)">
+<h3><span class="week-num">Week 1</span> March 10-16: Kirkwood Blitz <span class="toggle-arrow">▶</span></h3>
+<div class="week-details">
+<ul>
+<li>Print 200 door hangers with spring cleanup offer</li>
+<li>Hit streets within 0.5 miles of Kirkwood Park</li>
+<li>Post in Kirkwood Facebook groups (2-3 posts)</li>
+<li>Visit Kirkwood Pet Hospital — leave cards/flyers</li>
+</ul>
+<div class="week-target">🎯 Target: 3-5 leads, 1-2 signups</div>
+</div>
+</div>
+
+<div class="week-card" onclick="toggleWeek(this)">
+<h3><span class="week-num">Week 2</span> March 17-23: Webster Groves Push <span class="toggle-arrow">▶</span></h3>
+<div class="week-details">
+<ul>
+<li>200 door hangers around Bristol & Blackburn Parks</li>
+<li>Nextdoor post for Webster Groves area</li>
+<li>Environmental health angle in all messaging</li>
+<li>Visit Webster Groves Animal Hospital</li>
+</ul>
+<div class="week-target">🎯 Target: 3-5 leads, 1-2 signups</div>
+</div>
+</div>
+
+<div class="week-card" onclick="toggleWeek(this)">
+<h3><span class="week-num">Week 3</span> March 24-30: Ballwin Expansion <span class="toggle-arrow">▶</span></h3>
+<div class="week-details">
+<ul>
+<li>Research top 5 HOA-managed subdivisions in Ballwin</li>
+<li>Door hangers near Vlasis Park</li>
+<li>Facebook Marketplace ad targeting 63011/63021</li>
+<li>Pitch HOA boards directly with service proposal</li>
+</ul>
+<div class="week-target">🎯 Target: 3-5 leads, 1-2 signups (+ HOA pipeline)</div>
+</div>
+</div>
+
+<div class="week-card" onclick="toggleWeek(this)">
+<h3><span class="week-num">Week 4</span> March 31 - April 6: Follow-Up & Expand <span class="toggle-arrow">▶</span></h3>
+<div class="week-details">
+<ul>
+<li>Follow up ALL leads from weeks 1-3</li>
+<li>Begin Creve Coeur dog park flyer drop</li>
+<li>First GBP post goes live (already created)</li>
+<li>Convert open leads with spring deadline urgency</li>
+</ul>
+<div class="week-target">🎯 Target: Convert 50% of open leads → 4-8 new recurring total</div>
+</div>
+</div>
+</div>
+
+<!-- INSIGHTS -->
+<div style="margin-bottom:24px">
+<h2 style="font-size:1.3rem;margin-bottom:16px;color:#ffa500">💡 Key Insights</h2>
+<div class="insights-grid">
+<div class="insight-card">
+<h3>🏘️ The HOA Goldmine</h3>
+<p>HOA communities (especially Ballwin) can mandate waste cleanup. <span class="highlight">One sale to the board = 10-50 customers at once.</span> Recurring revenue on autopilot. Focus on Ballwin's subdivisions first.</p>
+</div>
+<div class="insight-card">
+<h3>🌱 Spring = Your Season</h3>
+<p>Winter thaw creates <span class="highlight">visible, urgent problems</span>. People spending more time outdoors, noticing the mess. Spring cleaning mindset + new dog adoptions = perfect storm. Run "Spring Cleanup Special" NOW.</p>
+</div>
+<div class="insight-card">
+<h3>🏠 Local > Franchise</h3>
+<p>POOP 911 dominates online but they're a franchise. Your edge: <span class="highlight">"I'm your neighbor, not a 1-800 number."</span> Personal service, flexibility, and community involvement beat corporate every time.</p>
+</div>
+<div class="insight-card">
+<h3>📍 Density = Profit</h3>
+<p>A scattered customer base kills margins. <span class="highlight">5 customers in Kirkwood = more profit than 8 customers across 5 suburbs.</span> Build density in one area before expanding. The triangle strategy does this.</p>
+</div>
+</div>
+</div>
+
+<!-- INCOME TABLE -->
+<div class="campaign-section">
+<h2>📊 Full Income Ranking</h2>
+<table class="income-table">
+<thead><tr><th>#</th><th>Suburb</th><th>Median Income</th><th>Population</th><th>Priority</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Wildwood</td><td>$157,750</td><td>35,517</td><td><span class="priority-tag p-low">Tier 3</span></td></tr>
+<tr><td>2</td><td>Chesterfield</td><td>$133,380</td><td>49,591</td><td><span class="priority-tag p-med">Tier 2</span></td></tr>
+<tr><td>3</td><td>Ballwin</td><td>$121,170</td><td>~30,000</td><td><span class="priority-tag p-high">Tier 1</span></td></tr>
+<tr><td>4</td><td>Creve Coeur</td><td>$119,454</td><td>18,627</td><td><span class="priority-tag p-med">Tier 2</span></td></tr>
+<tr><td>5</td><td>Kirkwood</td><td>$117,439</td><td>27,540</td><td><span class="priority-tag p-high">Tier 1</span></td></tr>
+<tr><td>6</td><td>Crestwood</td><td>$115,512</td><td>11,912</td><td><span class="priority-tag p-med">Tier 2</span></td></tr>
+<tr><td>7</td><td>Webster Groves</td><td>$110,716</td><td>23,390</td><td><span class="priority-tag p-high">Tier 1</span></td></tr>
+<tr><td>8</td><td>Manchester</td><td>$92,839</td><td>18,094</td><td><span class="priority-tag p-low">Tier 3</span></td></tr>
+<tr><td>9</td><td>Olivette</td><td>~$85,000</td><td>7,737</td><td><span class="priority-tag p-med">Tier 2</span></td></tr>
+</tbody>
+</table>
+</div>
+
+<footer>
+🎯 Spring Neighborhood Targeting Guide — Tidy Tails Pet Waste Removal<br>
+Generated by Franklin • March 9, 2026 • Data: Neilsberg, Niche.com, Census ACS
+</footer>
+</div>
+
+<script>
+function toggleTier(id){
+const el=document.getElementById(id);
+const arrow=document.getElementById(id+'-arrow');
+if(el.style.display==='none'){el.style.display='grid';arrow.classList.add('open')}
+else{el.style.display='none';arrow.classList.remove('open')}
+}
+function toggleHood(header){
+const details=header.nextElementSibling;
+const arrow=header.querySelector('.toggle-arrow');
+details.classList.toggle('open');
+arrow.classList.toggle('open');
+}
+function toggleWeek(card){
+const details=card.querySelector('.week-details');
+const arrow=card.querySelector('.toggle-arrow');
+details.classList.toggle('open');
+arrow.classList.toggle('open');
+}
+// Auto-open Tier 1
+document.addEventListener('DOMContentLoaded',()=>{toggleTier('tier1')});
+</script>
+</body>
+</html>

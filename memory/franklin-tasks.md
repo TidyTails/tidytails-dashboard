@@ -6,6 +6,47 @@
 
 ## March 9, 2026 (Monday)
 
+### 1:04 AM — 🎯 SPRING NEIGHBORHOOD TARGETING GUIDE — Where to Find Your Next 20 Customers (Hourly Task)
+**Task:** Research and rank St. Louis County neighborhoods by fit for pet waste removal, create data-driven targeting guide with 4-week spring campaign plan
+**Result:** ✅ SHIPPED — 12 neighborhoods analyzed, tiered by priority, with income data, dog culture ratings, specific street-level targeting tactics, route efficiency math, and 4-week campaign plan
+
+**Why This Task:**
+- We've shipped tons of content and tools but haven't answered: WHERE should TJ actually go to find customers?
+- Previous tasks created the marketing materials (GBP posts, review system, directory listings). This tells TJ WHERE to deploy them.
+- Spring is THE season for pet waste removal — winter thaw creates visible, urgent problems
+- Route density is key to profitability — random customers across the county kills margins
+
+**Key Findings:**
+- **Tier 1 targets:** Kirkwood ($117K), Webster Groves ($111K), Ballwin ($121K) — the "Triangle"
+- **Tier 2:** Creve Coeur ($119K), Chesterfield ($133K), Crestwood ($116K), Olivette (~$85K)
+- **HOA communities in Ballwin are gold** — one sale to a board = 10-50 customers at once
+- **Route efficiency:** 15 customers in the Triangle = 5 hours total vs 7+ hours if scattered
+- **St. Louis is #6 most pet-friendly city in US** (WalletHub) — massive market
+- **4,252 pet-friendly apartments** in STL County alone (commercial opportunity)
+- **POOP 911 focuses on Olivette/Chesterfield** — Kirkwood/Webster/Ballwin less saturated
+
+**What I Created:**
+1. `content/2026-03-09-SPRING-NEIGHBORHOOD-TARGETING.md` — Full research report
+2. `dashboard/2026-03-09-NEIGHBORHOOD-TARGETING.html` — Interactive dashboard with:
+   - Tiered neighborhood cards (expandable with demographics, tactics)
+   - Route efficiency math calculator
+   - 4-week campaign plan with weekly targets
+   - Income ranking table with priority tags
+   - Key insights cards (HOA goldmine, spring timing, local vs franchise, density = profit)
+
+**4-Week Campaign Plan:**
+- Week 1 (Mar 10-16): Kirkwood Blitz — 200 door hangers near park, vet partnership
+- Week 2 (Mar 17-23): Webster Groves — environmental angle, 200 hangers near parks
+- Week 3 (Mar 24-30): Ballwin — HOA research, Vlasis Park, FB Marketplace ads
+- Week 4 (Mar 31-Apr 6): Follow-up all leads, expand to Creve Coeur
+- **Expected: 4-8 new recurring customers in March**
+
+**Impact:** This is the strategic layer that connects all previous marketing work to actual customer acquisition. It answers "where do I go tomorrow morning with my flyers?"
+
+**Rotation:** 🎯 Growth — Customer Acquisition & Territory Strategy
+
+---
+
 ### 12:05 AM — 🔍 LIVE VISIBILITY AUDIT — TJ Is Invisible Online (Hourly Task)
 **Task:** Conduct a live search engine audit — actually search for Tidy Tails the way a customer would and document what comes up (or doesn't)
 **Result:** ✅ SHIPPED — Full audit with 6 live searches, 5 competitor deep-dives with pricing, 5 ranked problems with fixes, weekly action plan, competitive advantages analysis
