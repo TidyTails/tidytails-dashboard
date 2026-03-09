@@ -6,6 +6,42 @@
 
 ## March 8, 2026 (Sunday)
 
+### 9:04 PM — 📍 GBP POSTS — 4 Weeks of Google Business Profile Content (Hourly Task)
+**Task:** Create 5 weeks of ready-to-publish Google Business Profile posts with keyword targeting, photo suggestions, CTA buttons, and a tracking checklist
+**Result:** ✅ SHIPPED — 5 unique posts covering Spring Thaw, Why Hire a Service, Trust/Social Proof, Spring Events, and Health Facts. Dashboard HTML tool with copy buttons.
+
+**Why This Task:**
+- GBP was claimed Feb 26 — 10 days ago — with ZERO posts published.
+- GBP posts are a top-3 local ranking factor. They expire after 7 days, so weekly posting is non-negotiable.
+- Every competitor posts regularly. TJ has 0 posts. This gap is hurting search rankings RIGHT NOW.
+- Today's Google Visibility Playbook (10 AM) said "post weekly on GBP" but didn't provide the actual posts. This fills that gap.
+- Unlike playbooks, this is pure execution-ready content. Copy, paste, publish. 2 minutes per week.
+
+**What I Created:**
+1. `content/2026-03-08-GBP-POSTS-4-WEEKS.md` — Source content with all 5 posts
+2. `dashboard/2026-03-08-GBP-POSTS.html` — Interactive dashboard tool with:
+   - One-click copy buttons for each post
+   - Expandable week cards
+   - Photo & CTA button suggestions per post
+   - Keyword tags showing SEO targets per post
+   - Posting tracker checklist
+   - Step-by-step "how to post" instructions
+
+**Posts Created:**
+- **Week 1 (Mar 10):** Spring Thaw — targets "pet waste removal st louis county"
+- **Week 2 (Mar 17):** Why Hire a Service — math-based objection handling, hits 7 neighborhood names
+- **Week 3 (Mar 24):** Trust & Social Proof — 5 differentiators, targets West/North/St. Charles County
+- **Week 4 (Mar 31):** Spring Events — ties into events playbook, promotes deep cleans + monthly plans
+- **Week 5 (Apr 7):** Health Facts — 274 lbs/year stat, environmental angle, hits "dog waste removal"
+
+**SEO Strategy:** Each post targets different keyword clusters and neighborhood names so Google associates Tidy Tails with maximum geographic coverage. No two posts repeat the same keyword set.
+
+**Projected Impact:** Weekly GBP posts + eventual reviews = visible in Google Maps local pack within 30-60 days. Posts also appear directly in search results, acting as free mini-ads.
+
+**Rotation:** 📍 Growth — Google Business Profile Content & Local SEO
+
+---
+
 ### 8:05 PM — 📇 DIRECTORY LISTING BLITZ KIT — 0 to 10 Directories in 2 Hours (Hourly Task)
 **Task:** Create a complete, copy-paste-ready kit for listing Tidy Tails on all 10 major business directories with pre-written descriptions, step-by-step instructions, and priority scheduling
 **Result:** ✅ SHIPPED — Full kit covering Google Business Profile, Yelp, Nextdoor, Facebook, Thumbtack, Bing Places, Apple Maps, BBB, Angi, and Yellow Pages
@@ -27,9 +63,9 @@
 7. **Keyword list** for platforms that ask for tags/specialties
 8. **Post-setup checklist** for consistency verification
 
-**Key Insight:** Yelp will aggressively try to sell ads after listing — included warning to say no. Thumbtack/Angi charge per lead but free profiles still provide SEO value.
+**Key Insight:** GBP and Yelp already claimed (Feb 26 and Mar 5) — updated kit to reflect 8 remaining. Yelp will aggressively try to sell ads after listing — included warning to say no. Thumbtack/Angi charge per lead but free profiles still provide SEO value.
 
-**Projected Impact:** 10 consistent directory listings = massive local SEO boost + multiple new discovery channels. Google uses citation consistency as a trust signal — going from 0 to 10 citations will materially improve search rankings within 2-4 weeks.
+**Projected Impact:** 8 new consistent directory listings (on top of existing GBP + Yelp) = massive local SEO boost + multiple new discovery channels. Google uses citation consistency as a trust signal — going from 2 to 10 citations will materially improve search rankings within 2-4 weeks.
 
 **Rotation:** 📇 Growth — Directory Listings & Local Citation Building
 
