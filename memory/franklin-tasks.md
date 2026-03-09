@@ -1690,3 +1690,35 @@ St. Charles Expansion Playbook (`dashboard/2026-03-09-ST-CHARLES-EXPANSION.html`
 **Commit:** `3545446` on `tidytails-dashboard` repo
 
 **Rotation:** 🗺️ Growth Strategy — Territory Expansion
+
+### 6:05 AM — 🚀 MONDAY LAUNCH PAD — One-Page Weekly Gameplan (Hourly Task)
+**Task:** Build a focused "Monday Launch Pad" that consolidates all our strategy tools into ONE actionable page TJ opens Monday morning
+**Result:** ✅ SHIPPED — 5-tab interactive weekly gameplan with ready-to-post content
+
+**Why This Task:**
+- We've built 41 dashboard tools. Strategy overload. TJ needs ONE page that says "do THIS, NOW"
+- It's Monday morning. Perfect timing for a weekly launch pad
+- Previous tasks (competitor analysis, St. Charles playbook) generated intel — this converts intel into action
+- Every post TJ copies and pastes from this page could generate a lead TODAY
+
+**What I Built:**
+Monday Launch Pad (`dashboard/2026-03-10-MONDAY-LAUNCH-PAD.html`) with 5 tabs:
+
+1. **🎯 Mission** — This week's top 3 priorities ranked: (1) Launch St. Charles digital presence, (2) Spring cleanup blitz across all platforms, (3) Vet clinic & dog park outreach. Plus "the math" — 1 customer/week = goal hit
+2. **📝 Today's Posts** — 7 copy-paste-ready ads: Nextdoor St. Charles intro, Nextdoor spring cleanup, FB Marketplace listing, FB Group intro, Craigslist refresh, Instagram caption, Google Business Profile post. All tap-to-copy
+3. **✅ Checklist** — 15 items organized by day: Mon-Tue (digital setup & posting), Wed-Thu (boots on ground — vet visits, dog parks), Fri-Sun (follow-ups & referral asks). localStorage persistence
+4. **📞 Follow-Ups** — 3 copy-paste templates: customer check-in + referral ask, new lead quick response, commercial outreach script. Plus follow-up timing rules
+5. **🔧 Tools** — Quick links to the 12 most useful dashboards
+
+**Key Design Choices:**
+- Mobile-first (TJ's on his phone in the field)
+- Tap-to-copy on ALL content blocks — zero friction
+- Progress bar showing 17% → 30 customers
+- "22 weeks left, ~1 customer/week needed" — makes the goal feel manageable
+- Checklist persists via localStorage so he can track through the week
+
+**Dashboard Integration:** Added as top priority banner on Command Center (above commercial leads)
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-10-MONDAY-LAUNCH-PAD.html
+**Commit:** `eaa0707` on `tidytails-dashboard` repo
+
+**Rotation:** 🚀 Operations — Weekly Gameplan
