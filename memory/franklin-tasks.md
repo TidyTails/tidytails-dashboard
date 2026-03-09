@@ -6,6 +6,48 @@
 
 ## March 9, 2026 (Monday)
 
+### 9:04 AM — 🔍 LIVE WEBSITE & SEO CONVERSION AUDIT — Your Site Is Invisible to Google (Hourly Task)
+**Task:** Perform a live audit of tidytailsstl.com — crawl the site, check Google search rankings, analyze SEO, compare to competitors, and identify the new threat (Scoop Soldiers)
+**Result:** ✅ SHIPPED — Comprehensive website audit dashboard with Google ranking data, competitor pricing comparison, new competitor intel, and 10-item fix checklist
+
+**Why This Task:**
+- We've shipped 40+ marketing tools and dashboards, but never actually checked if the WEBSITE converts and if GOOGLE can find it
+- All the Facebook posts, Nextdoor strategies, and flyers in the world don't matter if the website is invisible
+- Spring is TJ's biggest opportunity and every day without Google visibility = lost leads
+- This is the first time we've done a real live search audit from a customer's perspective
+
+**What I Found:**
+1. **tidytailsstl.com is LIVE and well-built** — good copy, clear pricing, solid schema markup, service area pages, blog
+2. **BUT: Zero Google visibility** — searched "pet waste removal St. Louis Missouri" — top 10 results, ZERO are Tidy Tails. POOP 911 appears 3-4 times. Even dead competitors show up.
+3. **NEW COMPETITOR: Scoop Soldiers** — launched in STL February 6, 2026. National franchise doing press releases (which generate backlinks). Already showing up in Google search results after just 1 month!
+4. **Zero social proof on website** — no reviews, no testimonials, no star ratings
+5. **Zero real photos** — only 2 images on entire site (both the logo). No TJ, no dogs, no yards.
+6. **No social media links** — schema.org sameAs array is empty
+7. **Price gap vs Poop2Scoop** — $18/wk vs TJ's $25/wk (28% cheaper). But TJ's monthly plan at $70/mo ($16/wk) is actually cheapest
+8. **Old domain tidytailspets.com is DEAD** — Shopify store gone, DNS doesn't resolve. Any old links/cards pointing there = lost customers
+9. **Blog posts all dated March 6** — looks artificial to Google, need to space content out
+10. **Form uses FormSubmit.co** — works but no CRM/tracking integration
+
+**What I Created:**
+1. `dashboard/2026-03-09-WEBSITE-SEO-AUDIT.html` — Interactive audit dashboard with:
+   - Overall score: B- (great foundation, terrible visibility)
+   - 8-category scorecard (Copy: A, Technical SEO: A, Google Visibility: F, Social Proof: F, Photos: F)
+   - 4 critical issues with expandable fix details
+   - Live Google search results showing where TJ ranks (nowhere) vs competitors
+   - Competitor pricing comparison table (Tidy Tails vs Poop2Scoop vs POOP 911 vs DoodyCalls vs Scoop Soldiers)
+   - New competitor threat assessment (Scoop Soldiers)
+   - Domain situation (tidytailsstl.com ✅ vs tidytailspets.com ❌)
+   - 10-item prioritized fix checklist with time estimates (total: ~3-4 hours)
+   - "Bottom Line for TJ" summary
+2. Updated `dashboard/index.html` — new priority banner + audit card in This Week's Priorities
+
+**Key Insight:** The site itself is genuinely good — better than most competitors. The problem isn't the content, it's the distribution. Google doesn't know TJ exists yet because the site is ~3 days old with zero backlinks. The fix: get listed on Yelp, Nextdoor, Thumbtack, Angi (each = a backlink), get Google reviews, add real photos, and wait for Google to index. Scoop Soldiers proved this works — they did press releases for backlinks and ranked within 1 month.
+
+**Commit:** Pending push
+**Rotation:** 🔍 Growth — Website Conversion & SEO Audit
+
+---
+
 ### 8:05 AM — 🎯 DEAD COMPETITOR CUSTOMER CAPTURE CAMPAIGN — Grab 75-150 Orphaned Customers (Hourly Task)
 **Task:** Build complete customer capture campaign for 3 dead competitors (Fresh Paws, Pawfect Waste Solutions, Poopy Paws) — ready-to-post content across all channels, 7-day action plan, Google strategy, flyer copy
 **Result:** ✅ SHIPPED — Full capture campaign dashboard with 20 copy-paste posts, 7-day blitz plan, and revenue calculator
