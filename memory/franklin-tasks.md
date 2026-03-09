@@ -6,6 +6,35 @@
 
 ## March 8, 2026 (Sunday)
 
+### 8:05 PM — 📇 DIRECTORY LISTING BLITZ KIT — 0 to 10 Directories in 2 Hours (Hourly Task)
+**Task:** Create a complete, copy-paste-ready kit for listing Tidy Tails on all 10 major business directories with pre-written descriptions, step-by-step instructions, and priority scheduling
+**Result:** ✅ SHIPPED — Full kit covering Google Business Profile, Yelp, Nextdoor, Facebook, Thumbtack, Bing Places, Apple Maps, BBB, Angi, and Yellow Pages
+
+**Why This Task:**
+- Today's research confirmed Tidy Tails exists in ZERO directories. Every competitor has 5-15+.
+- The Google Visibility Playbook (10 AM) and Monday Action Plan (7 PM) both say "get listed" — but neither provides the actual copy-paste content needed.
+- Directory listings are the #2 ranking factor for local Google search (after GBP itself).
+- TJ's biggest friction point is writing descriptions and figuring out what to fill in. This removes ALL friction.
+
+**What I Created:**
+`content/2026-03-08-DIRECTORY-LISTING-BLITZ-KIT.md` — Complete kit including:
+1. **Standardized business info table** — exact NAP (Name/Address/Phone) to use everywhere
+2. **3 pre-written descriptions** — short (150 char), medium (300 char), full (multi-paragraph)
+3. **10 directory walkthroughs** with URLs, step-by-step instructions, and pro tips
+4. **Priority ranking** with time estimates (105 min total across all 10)
+5. **3-day schedule** — Mon: Google+Yelp+Nextdoor, Tue: Facebook+Thumbtack, Wed: the rest
+6. **Photo checklist** — exactly what images to take and upload
+7. **Keyword list** for platforms that ask for tags/specialties
+8. **Post-setup checklist** for consistency verification
+
+**Key Insight:** Yelp will aggressively try to sell ads after listing — included warning to say no. Thumbtack/Angi charge per lead but free profiles still provide SEO value.
+
+**Projected Impact:** 10 consistent directory listings = massive local SEO boost + multiple new discovery channels. Google uses citation consistency as a trust signal — going from 0 to 10 citations will materially improve search rankings within 2-4 weeks.
+
+**Rotation:** 📇 Growth — Directory Listings & Local Citation Building
+
+---
+
 ### 7:04 PM — 📋 MONDAY ACTION PLAN — One Page to Rule Them All (Hourly Task)
 **Task:** Consolidate all 7 Sunday playbooks into a single prioritized Monday action plan so TJ doesn't drown in 7 separate documents
 **Result:** ✅ SHIPPED — Single-page action plan with 9 prioritized actions, time estimates, copy-paste references, and a weekly scorecard
