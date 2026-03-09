@@ -1613,3 +1613,38 @@ Interactive report with 6 tabs: Overview, Dead Competitors (4 with former territ
 **Commit:** `aad758d` on `tidytails-dashboard` repo
 
 **Rotation:** 🔍 Market Intelligence — Competitor Landscape Analysis
+
+### 4:05 AM — 🗺️ ST. CHARLES EXPANSION PLAYBOOK — Turn Dead Competitors Into Your Customers (Hourly Task)
+**Task:** Build a comprehensive, actionable expansion playbook for St. Charles County — the territory where 2 competitors just died
+**Result:** ✅ SHIPPED — 7-tab interactive playbook with market data, zone rankings, competitor analysis, 8-week plan, ready-to-post content, ROI calculator, and weekly checklist
+
+**Why This Task:**
+- Q1 Competitor Landscape report (3 AM task) identified St. Charles corridor as THE opportunity — 2 providers dead, 1 new entrant
+- Having intel without an action plan is useless — needed to turn the insight into execution
+- St. Charles County: 430K population, $103K median income, 45.9% dog ownership (MO is #4 nationally)
+- Estimated 72,000 dog-owning households with only ~3 active providers
+- Spring 2026 = the window. Every week we wait, Doggie Doodies captures more of the vacuum
+
+**What I Built:**
+St. Charles Expansion Playbook (`dashboard/2026-03-09-ST-CHARLES-EXPANSION.html`) with 7 tabs:
+
+1. **💰 Opportunity** — Full market analysis: 430K pop, $103K income, ~72K dog households, customer profile (dual-income family, 30-50, 1-3 dogs, $80-120/mo willingness to pay)
+2. **📍 Target Zones** — 4 ranked zones: O'Fallon (A+, Priority 1), St. Peters (A, Priority 1), St. Charles City (B+, Priority 2), Lake St. Louis/Wentzville (B, Priority 3). Each with population, income, drive times, specific neighborhoods to target
+3. **⚔️ Competitors** — Detailed profiles: Fresh Paws (DEAD), Little Stinkers (DEAD), Doggie Doodies (NEW THREAT at $83/mo), Pet Butler (franchise). With specific counter-strategies for each
+4. **📋 8-Week Plan** — Week-by-week execution from "Plant the Flag" to "Review & Scale". Weeks 1-2: digital presence + canvassing. Weeks 3-4: spring cleanup blitz + community networking. Weeks 5-8: referrals, density building, route optimization
+5. **📝 Ready Posts** — 7 copy-paste templates: Nextdoor intro, "Lost Your Provider?" post, Spring Cleanup post, FB Marketplace ad, FB Group intro, Craigslist ad, door hanger text, vet clinic pitch script
+6. **💵 ROI Model** — Interactive calculator: plug in customers/price/drive time, see monthly revenue, profit, $/hour, annual profit. Plus scenario comparison table (3/6/10/15 customers)
+7. **✅ This Week** — 10-item interactive checklist for Week 1 (Mar 10-16): join Nextdoor, post introductions, update GBP, FB Marketplace ads, join groups, Craigslist ad, research dog parks & vet clinics. localStorage persistence.
+
+**Key Data Points:**
+- 72K dog-owning households with 1% conversion = 720 potential customers in the county
+- TJ needs 20-25 more. That's 3% of available market. This is a visibility problem, not a competition problem.
+- 6 customers at $18/visit = $400/mo revenue, $368 profit, $42/hr effective rate
+- O'Fallon + St. Peters can be served in a single route day (~25 min drive)
+- Key zip codes: 63366, 63368 (O'Fallon), 63376 (St. Peters), 63303/63304 (St. Charles)
+
+**Dashboard Integration:** Added to ⚡ This Week's Priorities section (now 7 items) — first card
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-09-ST-CHARLES-EXPANSION.html
+**Commit:** `3545446` on `tidytails-dashboard` repo
+
+**Rotation:** 🗺️ Growth Strategy — Territory Expansion
