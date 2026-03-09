@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Lifecycle System | Tidy Tails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --teal: #14b8a6; --pink: #ec4899;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+        
+        .header {
+            background: linear-gradient(135deg, #0a1a10, #051520);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem; text-align: center;
+        }
+        .header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em; }
+        .header h1 span { color: var(--green); }
+        .header .subtitle { color: var(--text2); font-size: 0.85rem; margin-top: 0.35rem; }
+        .header .stat-row { display: flex; justify-content: center; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; }
+        .header .stat { text-align: center; }
+        .header .stat-val { font-size: 1.4rem; font-weight: 800; }
+        .header .stat-label { font-size: 0.7rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+
+        .tabs { display: flex; gap: 0.25rem; overflow-x: auto; padding-bottom: 0.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+        .tab {
+            padding: 0.6rem 1rem; border-radius: 8px 8px 0 0; cursor: pointer;
+            font-size: 0.78rem; font-weight: 600; white-space: nowrap;
+            color: var(--text3); background: transparent; border: none;
+            transition: all 0.2s; border-bottom: 2px solid transparent;
+        }
+        .tab:hover { color: var(--text2); }
+        .tab.active { color: var(--green); border-bottom-color: var(--green); background: rgba(16,185,129,0.08); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 1rem;
+        }
+        .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+        .card p, .card li { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
+
+        .timeline { position: relative; padding-left: 2rem; }
+        .timeline::before { content: ''; position: absolute; left: 0.5rem; top: 0; bottom: 0; width: 2px; background: var(--border); }
+        .timeline-item { position: relative; margin-bottom: 1.5rem; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -1.75rem; top: 0.25rem;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: var(--green); border: 2px solid var(--bg);
+        }
+        .timeline-item.urgent::before { background: var(--red); }
+        .timeline-item.gold::before { background: var(--yellow); }
+        .timeline-item.blue::before { background: var(--blue); }
+        .timeline-item h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .timeline-item .when { font-size: 0.7rem; color: var(--green); font-weight: 600; text-transform: uppercase; }
+        .timeline-item p { font-size: 0.82rem; color: var(--text2); margin-top: 0.25rem; }
+
+        .script-box {
+            background: var(--bg4); border: 1px solid var(--border); border-radius: 8px;
+            padding: 1rem; margin: 0.75rem 0; position: relative; cursor: pointer;
+        }
+        .script-box:hover { border-color: var(--green); }
+        .script-box::after {
+            content: '📋 Copy'; position: absolute; top: 0.5rem; right: 0.5rem;
+            font-size: 0.65rem; color: var(--text3); background: var(--bg3);
+            padding: 0.2rem 0.5rem; border-radius: 4px;
+        }
+        .script-box.copied::after { content: '✅ Copied!'; color: var(--green); }
+        .script-box p { font-size: 0.82rem; color: var(--text); line-height: 1.5; white-space: pre-wrap; }
+        .script-box .label {
+            font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+            color: var(--green); margin-bottom: 0.5rem; letter-spacing: 0.05em;
+        }
+
+        .checklist { list-style: none; }
+        .checklist li {
+            padding: 0.6rem 0; border-bottom: 1px solid var(--border);
+            display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.85rem;
+        }
+        .checklist li:last-child { border-bottom: none; }
+        .checklist input[type="checkbox"] {
+            width: 18px; height: 18px; margin-top: 2px; accent-color: var(--green);
+            cursor: pointer; flex-shrink: 0;
+        }
+        .checklist label { cursor: pointer; color: var(--text2); }
+        .checklist input:checked + label { text-decoration: line-through; color: var(--text3); }
+
+        .alert-card {
+            border-left: 3px solid; padding: 1rem 1.25rem; border-radius: 0 var(--radius) var(--radius) 0;
+            background: var(--bg3); margin-bottom: 0.75rem;
+        }
+        .alert-red { border-color: var(--red); }
+        .alert-yellow { border-color: var(--yellow); }
+        .alert-green { border-color: var(--green); }
+        .alert-card h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.25rem; }
+        .alert-card p { font-size: 0.8rem; color: var(--text2); }
+
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        @media (max-width: 700px) { .grid-2 { grid-template-columns: 1fr; } }
+
+        .metric-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1rem; text-align: center;
+        }
+        .metric-card .val { font-size: 1.8rem; font-weight: 800; }
+        .metric-card .lbl { font-size: 0.7rem; color: var(--text3); text-transform: uppercase; margin-top: 0.25rem; }
+
+        .flow-visual {
+            display: flex; align-items: center; gap: 0.5rem; overflow-x: auto;
+            padding: 1rem 0; margin: 1rem 0;
+        }
+        .flow-step {
+            background: var(--bg4); border: 1px solid var(--border); border-radius: 8px;
+            padding: 0.75rem 1rem; text-align: center; min-width: 120px; flex-shrink: 0;
+        }
+        .flow-step .emoji { font-size: 1.5rem; }
+        .flow-step .step-title { font-size: 0.75rem; font-weight: 700; margin-top: 0.25rem; }
+        .flow-step .step-when { font-size: 0.6rem; color: var(--text3); }
+        .flow-arrow { color: var(--green); font-size: 1.2rem; flex-shrink: 0; }
+
+        .tag { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.65rem; font-weight: 700; }
+        .tag-green { background: rgba(16,185,129,0.15); color: var(--green); }
+        .tag-blue { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .tag-yellow { background: rgba(251,191,36,0.15); color: var(--yellow); }
+        .tag-red { background: rgba(239,68,68,0.15); color: var(--red); }
+        .tag-purple { background: rgba(139,92,246,0.15); color: var(--purple); }
+
+        table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; }
+        th, td { padding: 0.6rem 0.75rem; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.8rem; }
+        th { color: var(--text3); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+        td { color: var(--text2); }
+
+        .bottom-line {
+            background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(16,185,129,0.05));
+            border: 1px solid rgba(16,185,129,0.3); border-radius: var(--radius);
+            padding: 1.25rem; margin-top: 2rem;
+        }
+        .bottom-line h3 { color: var(--green); font-size: 1rem; margin-bottom: 0.5rem; }
+        .bottom-line p { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
+
+        .back-link { display: inline-block; margin-bottom: 1rem; color: var(--text3); text-decoration: none; font-size: 0.8rem; }
+        .back-link:hover { color: var(--green); }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🔄 Customer <span>Lifecycle System</span></h1>
+    <p class="subtitle">From "new lead" to "raving fan who refers 3 friends" — every touchpoint mapped</p>
+    <div class="stat-row">
+        <div class="stat"><div class="stat-val" style="color:var(--green)">$1,200</div><div class="stat-label">Avg Customer LTV (2yr)</div></div>
+        <div class="stat"><div class="stat-val" style="color:var(--yellow)">87%</div><div class="stat-label">Industry Retention Rate</div></div>
+        <div class="stat"><div class="stat-val" style="color:var(--blue)">6</div><div class="stat-label">Touchpoints in 90 Days</div></div>
+        <div class="stat"><div class="stat-val" style="color:var(--orange)">$0</div><div class="stat-label">Cost to Implement</div></div>
+    </div>
+</div>
+
+<div class="container">
+    <a href="index.html" class="back-link">← Back to Command Center</a>
+
+    <div class="tabs">
+        <button class="tab active" data-tab="overview">📊 Overview</button>
+        <button class="tab" data-tab="onboarding">🎉 Onboarding</button>
+        <button class="tab" data-tab="touchpoints">📱 Touchpoints</button>
+        <button class="tab" data-tab="reviews">⭐ Review System</button>
+        <button class="tab" data-tab="retention">🛡️ Retention</button>
+        <button class="tab" data-tab="referrals">🤝 Referral Asks</button>
+        <button class="tab" data-tab="checklist">✅ Master Checklist</button>
+    </div>
+
+    <!-- TAB 1: OVERVIEW -->
+    <div class="tab-content active" id="overview">
+        <div class="card" style="border-color: var(--green);">
+            <h3>🎯 Why This System Exists</h3>
+            <p>We've built 50+ lead generation tools. Facebook ads, Nextdoor posts, directory listings, dead competitor capture campaigns. But here's the thing — <strong style="color:var(--text)">none of that matters if we can't turn leads into loyal, paying, referring customers.</strong></p>
+            <p style="margin-top:0.5rem;">This system covers what happens AFTER someone says "I'm interested." Every text, every check-in, every ask — timed perfectly so it feels natural, not salesy.</p>
+        </div>
+
+        <h3 style="margin: 1.5rem 0 1rem; font-size: 0.9rem;">The Customer Journey — 7 Stages</h3>
+        <div class="flow-visual">
+            <div class="flow-step"><div class="emoji">📞</div><div class="step-title">Lead In</div><div class="step-when">Day 0</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" style="border-color:var(--green)"><div class="emoji">🎉</div><div class="step-title">Welcome</div><div class="step-when">Day 0-1</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" style="border-color:var(--blue)"><div class="emoji">🏠</div><div class="step-title">First Visit</div><div class="step-when">Day 1-7</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" style="border-color:var(--yellow)"><div class="emoji">✅</div><div class="step-title">Check-In</div><div class="step-when">Day 7-14</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" style="border-color:var(--orange)"><div class="emoji">⭐</div><div class="step-title">Review Ask</div><div class="step-when">Day 14-21</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" style="border-color:var(--purple)"><div class="emoji">🤝</div><div class="step-title">Referral Ask</div><div class="step-when">Day 30+</div></div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-step" style="border-color:var(--teal)"><div class="emoji">💎</div><div class="step-title">Loyal Fan</div><div class="step-when">Day 60+</div></div>
+        </div>
+
+        <div class="grid-2">
+            <div class="card">
+                <h3>📈 The Math That Matters</h3>
+                <table>
+                    <tr><td>Average customer stays</td><td style="color:var(--text);font-weight:700">18-24 months</td></tr>
+                    <tr><td>Monthly revenue per customer</td><td style="color:var(--text);font-weight:700">$70/mo</td></tr>
+                    <tr><td>Lifetime value (2 yr)</td><td style="color:var(--green);font-weight:700">$1,680</td></tr>
+                    <tr><td>Cost to acquire (organic)</td><td style="color:var(--text);font-weight:700">$0-15</td></tr>
+                    <tr><td>Cost to acquire (paid)</td><td style="color:var(--text);font-weight:700">$30-75</td></tr>
+                    <tr><td>Cost to retain</td><td style="color:var(--green);font-weight:700">$0 (texts only)</td></tr>
+                    <tr><td>Referred customer close rate</td><td style="color:var(--green);font-weight:700">50-70%</td></tr>
+                </table>
+            </div>
+            <div class="card">
+                <h3>🧠 Key Principles</h3>
+                <ul style="padding-left: 1.25rem;">
+                    <li>First impression is EVERYTHING — the first visit sets the tone for 2 years of revenue</li>
+                    <li style="margin-top:0.5rem;">Ask for reviews at the <strong style="color:var(--text)">happiness peak</strong> — right after they see their yard clean for the 2nd or 3rd time</li>
+                    <li style="margin-top:0.5rem;">Never ask for a referral and a review in the same message — space them 2+ weeks apart</li>
+                    <li style="margin-top:0.5rem;">Text > email > call for routine communication (90% open rate vs 20%)</li>
+                    <li style="margin-top:0.5rem;">Seasonal check-ins prevent surprise cancellations — spring renewal is critical</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: ONBOARDING -->
+    <div class="tab-content" id="onboarding">
+        <div class="card" style="border-color: var(--green);">
+            <h3>🎉 New Customer Onboarding — The First 48 Hours</h3>
+            <p>The first 48 hours determine if a customer stays 2 months or 2 years. Here's the exact sequence.</p>
+        </div>
+
+        <div class="timeline" style="margin-top: 1.5rem;">
+            <div class="timeline-item urgent">
+                <div class="when">Within 5 Minutes of Signup</div>
+                <h4>📱 Send the Welcome Text</h4>
+                <p>Speed matters. If someone fills out the form or calls, text them IMMEDIATELY. This is your first impression.</p>
+                <div class="script-box" onclick="copyScript(this)">
+                    <div class="label">Welcome Text — New Customer</div>
+                    <p>Hey [Name]! 🐕 This is TJ from Tidy Tails. Welcome aboard!
+
+Quick recap:
+📅 Your first cleanup: [Day], [Date]
+🏠 [Address]
+🐶 [Dog name(s)] — [#] dog(s)
+💰 [Price]/visit ([frequency])
+
+I'll text you after each visit so you know it's done. If you ever need to skip a week or have questions, just text me here.
+
+Looking forward to keeping [Dog name]'s yard spotless! 💪</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="when">Same Day</div>
+                <h4>📋 Gather Key Info</h4>
+                <p>Get everything you need so the first visit goes perfectly.</p>
+                <div class="script-box" onclick="copyScript(this)">
+                    <div class="label">Info Gathering Text</div>
+                    <p>One more thing — a few quick questions to make sure your first cleanup is perfect:
+
+1. Gate code or special access? 🔑
+2. Any areas I should avoid? (garden, kids' play area, etc.)
+3. Where do you prefer I leave the waste bag? (bin, side of house, I haul it?)
+4. Any other pets or anything I should know about?
+
+No rush — just want to nail it from day one!</p>
+                </div>
+            </div>
+
+            <div class="timeline-item blue">
+                <div class="when">Night Before First Visit</div>
+                <h4>🌙 Reminder Text</h4>
+                <p>Builds anticipation and ensures gate is open. Shows professionalism.</p>
+                <div class="script-box" onclick="copyScript(this)">
+                    <div class="label">Eve-of-Visit Reminder</div>
+                    <p>Hey [Name]! Just a heads up — I'll be by tomorrow ([Day]) for your first cleanup! 🐕💨
+
+If you could make sure the gate is unlocked, that'd be great. I'll text you when I'm done.
+
+Ready to make that yard spotless! 💪</p>
+                </div>
+            </div>
+
+            <div class="timeline-item gold">
+                <div class="when">Right After First Visit</div>
+                <h4>✅ Completion Text + Photo</h4>
+                <p>THIS is the magic moment. Send a photo of the clean yard. It's the "wow" moment that cements the relationship.</p>
+                <div class="script-box" onclick="copyScript(this)">
+                    <div class="label">First Visit Completion Text</div>
+                    <p>All done! ✅ Your yard is officially poop-free 🎉
+
+[ATTACH: Photo of clean yard]
+
+Found [X] piles — [Dog name] has been busy! 😄 Everything's looking great. I'll be back [next visit day].
+
+How's it look? Let me know if there's anything I missed! 🐕</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 1.5rem;">
+            <h3>📝 First Visit Field Checklist</h3>
+            <p style="margin-bottom: 0.75rem;">Do these ON SITE during the first visit. They take 2 extra minutes and make you look incredibly professional.</p>
+            <ul class="checklist">
+                <li><input type="checkbox" id="fv1" onchange="saveChecks()"><label for="fv1"><strong>Walk the entire yard</strong> — identify all areas, not just the obvious spots</label></li>
+                <li><input type="checkbox" id="fv2" onchange="saveChecks()"><label for="fv2"><strong>Check for hazards</strong> — broken glass, nails, holes, fire ants, anything dangerous</label></li>
+                <li><input type="checkbox" id="fv3" onchange="saveChecks()"><label for="fv3"><strong>Note the yard layout</strong> — where do dogs go most? What areas need extra attention?</label></li>
+                <li><input type="checkbox" id="fv4" onchange="saveChecks()"><label for="fv4"><strong>Take a "before" photo</strong> — builds your portfolio + social proof</label></li>
+                <li><input type="checkbox" id="fv5" onchange="saveChecks()"><label for="fv5"><strong>Take an "after" photo</strong> — send to customer immediately</label></li>
+                <li><input type="checkbox" id="fv6" onchange="saveChecks()"><label for="fv6"><strong>Double-check gate is secure</strong> — NEVER leave a gate open. Ever.</label></li>
+                <li><input type="checkbox" id="fv7" onchange="saveChecks()"><label for="fv7"><strong>Leave a business card or flyer</strong> — on the door or mailbox (if allowed)</label></li>
+                <li><input type="checkbox" id="fv8" onchange="saveChecks()"><label for="fv8"><strong>Wave to neighbors</strong> — every neighbor is a potential customer</label></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>⚠️ Onboarding Mistakes That Lose Customers</h3>
+            <div class="grid-2">
+                <div class="alert-card alert-red">
+                    <h4>❌ Slow Response Time</h4>
+                    <p>If someone requests a quote and you text back 6 hours later, they've already called POOP 911. Respond in under 5 minutes. Period.</p>
+                </div>
+                <div class="alert-card alert-red">
+                    <h4>❌ No Confirmation Text</h4>
+                    <p>Customer doesn't know if you showed up. They wonder "did he come?" for hours. Always text when done + send a photo.</p>
+                </div>
+                <div class="alert-card alert-red">
+                    <h4>❌ Forgetting Gate Codes</h4>
+                    <p>Nothing says "amateur" like texting the customer every week asking for the gate code. Write it down. Save it in your CRM.</p>
+                </div>
+                <div class="alert-card alert-red">
+                    <h4>❌ Not Leaving a Gate Secure</h4>
+                    <p>This will get you fired instantly. If a dog gets out because you left a gate open, you lose the customer AND get bad word-of-mouth. Triple-check.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 3: TOUCHPOINTS -->
+    <div class="tab-content" id="touchpoints">
+        <div class="card" style="border-color: var(--blue);">
+            <h3>📱 The Complete Touchpoint Calendar</h3>
+            <p>Every text, every check-in, perfectly timed. Copy-paste scripts for each one. The goal: customers feel valued without feeling spammed.</p>
+        </div>
+
+        <div class="timeline" style="margin-top: 1.5rem;">
+            <div class="timeline-item urgent">
+                <div class="when">Day 0 — Signup</div>
+                <h4>🎉 Welcome Text + Info Gathering</h4>
+                <p>See Onboarding tab for scripts. Respond within 5 minutes.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="when">Day 1-3 — First Visit</div>
+                <h4>✅ Completion Text + Photo</h4>
+                <p>See Onboarding tab. Always include a yard photo.</p>
+            </div>
+
+            <div class="timeline-item blue">
+                <div class="when">Day 7 — After 2nd Visit</div>
+                <h4>👋 The "How's Everything?" Check-In</h4>
+                <p>This is the first retention touchpoint. Simple, genuine, no ask attached.</p>
+                <div class="script-box" onclick="copyScript(this)">
+                    <div class="label">Week 1 Check-In</div>
+                    <p>Hey [Name]! Quick check-in after your first couple cleanups — how's everything looking? 🐕
+
+Anything you'd like me to do differently? More focus on any area? I want to make sure it's exactly how you like it.
+
+Thanks for choosing Tidy Tails! 🙏</p>
+                </div>
+            </div>
+
+            <div class="timeline-item gold">
+                <div class="when">Day 14-21 — After 3rd-4th Visit</div>
+                <h4>⭐ Review Ask (See Review Tab for Scripts)</h4>
+                <p>They've seen the value 3-4 times now. This is the happiness peak — the perfect time to ask. Don't combine with any other ask.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="when">Day 30 — One Month Mark</div>
+                <h4>🎯 The Value Reinforcement Text</h4>
+                <p>Remind them why they hired you. Make them feel smart about the decision.</p>
+                <div class="script-box" onclick="copyScript(this)">
+                    <div class="label">One Month Check-In</div>
+                    <p>Hey [Name]! Can you believe it's been a month already? 🎉
+
+[X] cleanups done, [Y] pounds of waste removed from your yard. [Dog name] is keeping me busy! 😄
+
+Just wanted to say thanks for being a Tidy Tails customer. If you ever need anything — extra cleanup before a party, schedule change, whatever — just text me. 🐕💪</p>
+                </div>
+            </div>
+
+            <div class="timeline-item blue">
+                <div class="when">Day 45 — Six Weeks In</div>
+                <h4>🤝 Referral Ask (See Referral Tab for Scripts)</h4>
+                <p>They're established, happy, and have had enough visits to genuinely recommend you. Now's the time.</p>
+            </div>
+
+            <div class="timeline-item">
+                <div class="when">Day 60 — Two Month Mark</div>
+                <h4>🌟 The Seasonal/Value Text</h4>
+                <p>Keep the relationship warm. Tie it to whatever season you're in.</p>
+                <div class="script-box" onclick="copyScript(this)">
+                    <div class="label">Two Month / Seasonal Check-In</div>
+                    <p>Hey [Name]! Spring's in full swing and [Dog name]'s yard is looking great 🌿
+
+Quick heads up — if you're planning any yard work, parties, or have guests coming this season, I can always do an extra cleanup. Just text me and I'll swing by.
+
+Hope you and [Dog name] are enjoying the weather! ☀️🐕</p>
+                </div>
+            </div>
+
+            <div class="timeline-item gold">
+                <div class="when">Day 90 — Three Month Mark</div>
+                <h4>💎 The Loyalty Thank-You</h4>
+                <p>Three months is when a customer goes from "trying it out" to "this is just part of my life." Acknowledge it.</p>
+                <div class="script-box" onclick="copyScript(this)">
+                    <div class="label">3-Month Loyalty Text</div>
+                    <p>[Name]! 3 months of poop-free yards 🎉🐕💩
+
+Seriously though — thank you for sticking with Tidy Tails. You were one of my first customers and I genuinely appreciate your trust.
+
+As a thank you, your next cleanup is on me. No charge. You've earned it. 💪
+
+Thanks for being awesome! — TJ</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="when">Ongoing — Every Visit</div>
+                <h4>✅ Completion Notification</h4>
+                <p>Every. Single. Visit. No exceptions. 30 seconds to send.</p>
+                <div class="script-box" onclick="copyScript(this)">
+                    <div class="label">Standard Completion Text (Quick)</div>
+                    <p>All done! ✅ Yard's looking great. Found [X] piles today. See you [next day]! 🐕</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 1rem;">
+            <h3>📅 Seasonal Touchpoints</h3>
+            <table>
+                <thead><tr><th>Season</th><th>When</th><th>Message</th><th>Opportunity</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td style="color:var(--green)">🌿 Spring</td>
+                        <td>March-April</td>
+                        <td>"Winter's worth of buildup is real — want a deep clean?"</td>
+                        <td><span class="tag tag-green">UPSELL</span> Spring cleanup add-on ($50-100)</td>
+                    </tr>
+                    <tr>
+                        <td style="color:var(--yellow)">☀️ Summer</td>
+                        <td>June-July</td>
+                        <td>"Hot weather = faster decomposition = more smell. Let's stay on top of it"</td>
+                        <td><span class="tag tag-blue">UPGRADE</span> Twice-weekly service</td>
+                    </tr>
+                    <tr>
+                        <td style="color:var(--orange)">🍂 Fall</td>
+                        <td>September-October</td>
+                        <td>"Leaves are hiding the poop! I'll make sure nothing gets missed"</td>
+                        <td><span class="tag tag-purple">RETAIN</span> Prevent seasonal cancellation</td>
+                    </tr>
+                    <tr>
+                        <td style="color:var(--blue)">❄️ Winter</td>
+                        <td>December-January</td>
+                        <td>"Cold doesn't stop the poop! Your yard stays clean rain, snow, or shine"</td>
+                        <td><span class="tag tag-red">RETAIN</span> Biggest churn risk — reassure value</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- TAB 4: REVIEWS -->
+    <div class="tab-content" id="reviews">
+        <div class="card" style="border-color: var(--yellow);">
+            <h3>⭐ Google Review System — Your #1 SEO Weapon</h3>
+            <p>Fresh Start Pet Waste hit 175+ five-star reviews and it's the #1 reason they rank on Google. Every review is a trust signal that puts you above POOP 911 and DoodyCalls. Here's the system.</p>
+        </div>
+
+        <div class="card">
+            <h3>⏰ When to Ask — The Golden Window</h3>
+            <div class="grid-2">
+                <div class="alert-card alert-green">
+                    <h4>✅ Perfect Timing</h4>
+                    <p><strong>After the 3rd or 4th visit</strong> (Day 14-21). Customer has seen real results, the yard transformation is obvious, and they're still in the "wow, I should've done this sooner" phase. This is the happiness peak.</p>
+                </div>
+                <div class="alert-card alert-red">
+                    <h4>❌ Too Early / Too Late</h4>
+                    <p><strong>Don't ask on visit 1</strong> — they haven't experienced enough value yet. <strong>Don't wait until month 3</strong> — the novelty has worn off and it feels routine. The "wow" fades. Strike while it's hot.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📱 Review Ask Scripts — Copy-Paste Ready</h3>
+            
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">Script 1 — The Simple Ask (Best Conversion Rate)</div>
+                <p>Hey [Name]! Quick favor — would you mind leaving a Google review for Tidy Tails? ⭐
+
+It takes like 30 seconds and honestly, it helps me SO much as a small local business. Here's the link:
+
+👉 https://g.page/r/Ce_hqIHanGLvEAE/review
+
+No pressure at all — I just really appreciate your business! 🐕🙏</p>
+            </div>
+
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">Script 2 — After a Great Interaction</div>
+                <p>[Name], you just made my day with that feedback! 😊
+
+If you have 30 seconds, I'd love if you could share that on Google — it really helps other dog owners find us:
+
+👉 https://g.page/r/Ce_hqIHanGLvEAE/review
+
+Totally optional, but would mean the world! 🐕💛</p>
+            </div>
+
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">Script 3 — The "You're Special" Ask</div>
+                <p>Hey [Name]! Real talk — you were one of my very first customers and I'm trying to build up reviews so more people in [neighborhood] can find Tidy Tails.
+
+Would you be willing to leave a quick Google review? Even just a sentence or two helps:
+
+👉 https://g.page/r/Ce_hqIHanGLvEAE/review
+
+I genuinely appreciate you trusting me with [Dog name]'s yard. 🙏🐕</p>
+            </div>
+
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">Script 4 — The Photo Follow-Up Review Ask</div>
+                <p>[SEND AFTER YOUR COMPLETION TEXT + CLEAN YARD PHOTO]
+
+P.S. — If you're happy with how things are going, a quick Google review would be amazing! ⭐
+
+Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review
+
+Takes 30 seconds and helps other dog owners find me. No worries if not! 🐕</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📊 Review Goal Tracker</h3>
+            <p style="margin-bottom: 0.75rem;">Fresh Start has 175+ reviews. POOP 911 STL has ~50. Your target: <strong style="color:var(--yellow)">25 reviews by June 2025</strong> (5 per month from your growing customer base).</p>
+            <table>
+                <thead><tr><th>Milestone</th><th>Reviews</th><th>Impact</th><th>Timeline</th></tr></thead>
+                <tbody>
+                    <tr><td>🏁 Launch</td><td style="color:var(--text);font-weight:700">5</td><td>Google starts showing star ratings in search</td><td>By April</td></tr>
+                    <tr><td>📈 Traction</td><td style="color:var(--text);font-weight:700">15</td><td>Beat most STL competitors; appear in Map Pack</td><td>By May</td></tr>
+                    <tr><td>🏆 Dominant</td><td style="color:var(--text);font-weight:700">25</td><td>Top 3 for "pet waste removal St. Louis"</td><td>By June</td></tr>
+                    <tr><td>👑 King</td><td style="color:var(--text);font-weight:700">50+</td><td>Unassailable social proof; Google loves you</td><td>By Dec</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>💬 Review Response Templates</h3>
+            <p style="margin-bottom: 0.75rem;">ALWAYS respond to reviews. Google rewards it, and it shows future customers you care.</p>
+            
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">5-Star Review Response</div>
+                <p>Thank you so much, [Name]! 🐕💛 It's a pleasure keeping [Dog name]'s yard clean. Reviews like this mean the world to a small local business. Looking forward to many more visits! — TJ, Tidy Tails</p>
+            </div>
+
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">4-Star Review Response</div>
+                <p>Thanks for the feedback, [Name]! I'm glad you're enjoying the service. If there's anything I can do to make it a 5-star experience, please don't hesitate to reach out. Always looking to improve! — TJ, Tidy Tails 🐕</p>
+            </div>
+
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">Negative Review Response (Rare but be ready)</div>
+                <p>Hi [Name], I'm sorry to hear about your experience. That's not the standard I hold myself to. I'd love to make this right — could you text or call me at [phone]? I take every customer's satisfaction seriously. — TJ, Tidy Tails</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 5: RETENTION -->
+    <div class="tab-content" id="retention">
+        <div class="card" style="border-color: var(--red);">
+            <h3>🛡️ Customer Retention — Keep Every Customer You Earn</h3>
+            <p>Getting a customer costs $30-75. Keeping one costs $0. Losing one costs $1,680 in lifetime revenue. Retention isn't optional — it's your most profitable activity.</p>
+        </div>
+
+        <div class="card">
+            <h3>🚨 Early Warning Signs — A Customer Might Cancel</h3>
+            <div class="alert-card alert-red" style="margin-top: 0.75rem;">
+                <h4>🔴 RED FLAG: Skip Requests Increasing</h4>
+                <p>One skip = normal. Two skips in a row = they're reconsidering. Three = they're about to cancel. After the 2nd skip, send a check-in text.</p>
+            </div>
+            <div class="alert-card alert-red">
+                <h4>🔴 RED FLAG: Slow Payment</h4>
+                <p>If payment is late for the first time, it's life. If it's late twice, they may be weighing the cost. Check in casually — "Hey, just making sure everything's good!"</p>
+            </div>
+            <div class="alert-card alert-yellow">
+                <h4>🟡 WATCH: No Response to Texts</h4>
+                <p>If they used to reply "Thanks!" and now silence — something shifted. Don't panic, but do pay attention and provide extra value on next visit.</p>
+            </div>
+            <div class="alert-card alert-yellow">
+                <h4>🟡 WATCH: Seasonal Transition</h4>
+                <p>Fall→Winter and Summer→Fall are the highest churn periods. "Do I really need this when it's cold?" Proactively address this BEFORE they think it.</p>
+            </div>
+            <div class="alert-card alert-yellow">
+                <h4>🟡 WATCH: Life Changes</h4>
+                <p>Moving, new baby, financial stress, pet passing away. Be empathetic. Offer to pause instead of cancel. "We'll be here when you're ready."</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>💬 Save Scripts — When They Want to Cancel</h3>
+
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">Price Objection Save</div>
+                <p>I totally get it, [Name]. Let me see what I can do — would switching to every-other-week work better for your budget? That'd bring it down to about $40/month instead of $70.
+
+Your yard would still stay way cleaner than doing it yourself, and you can always bump back up to weekly whenever you want. What do you think?</p>
+            </div>
+
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">"I'll Just Do It Myself" Save</div>
+                <p>No worries at all! Fair warning though — I hear that a lot, and about 80% of people come back within a month or two 😄
+
+Tell you what — if you want to give it a try, I'll hold your spot. If you want to restart, just text me and I'll pick right back up. No signup fee, no hassle. Sound good?</p>
+            </div>
+
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">Seasonal Pause Save</div>
+                <p>Totally understand wanting to pause for winter! Here's the thing though — poop doesn't stop in the cold 😅 It actually gets WORSE because it hides under snow and leaves, then spring hits and you've got 3 months of buildup.
+
+How about this: I'll drop your rate to $50/month through winter since there's less volume. That way spring doesn't hit you with a $150 deep clean. Sound fair?</p>
+            </div>
+
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">Pet Passed Away</div>
+                <p>[Name], I'm so sorry about [Dog name]. That's really tough and I know how much [he/she] meant to you. 🐕❤️
+
+Don't worry about the service at all — I'll pause your account indefinitely. No cancellation, no questions asked. If you ever get another furry friend and want to start back up, just text me.
+
+Thinking of you and your family. — TJ</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🎁 Retention Boosters — Little Things, Big Impact</h3>
+            <table>
+                <thead><tr><th>Action</th><th>Cost</th><th>When</th><th>Impact</th></tr></thead>
+                <tbody>
+                    <tr><td>Free cleanup (loyalty reward)</td><td>$0 (your time)</td><td>3-month & 6-month marks</td><td><span class="tag tag-green">HIGH</span></td></tr>
+                    <tr><td>Holiday card / text</td><td>$0-2</td><td>Christmas, Thanksgiving</td><td><span class="tag tag-green">HIGH</span></td></tr>
+                    <tr><td>Dog birthday text</td><td>$0</td><td>Ask for dog's birthday at signup</td><td><span class="tag tag-yellow">MEDIUM</span></td></tr>
+                    <tr><td>Dog treat left at door</td><td>$1-2</td><td>Random quarterly surprise</td><td><span class="tag tag-green">HIGH</span></td></tr>
+                    <tr><td>Yard cleanup count milestone</td><td>$0</td><td>"50th cleanup!" text</td><td><span class="tag tag-yellow">MEDIUM</span></td></tr>
+                    <tr><td>Seasonal yard tip</td><td>$0</td><td>Season transitions</td><td><span class="tag tag-blue">LOW</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>📊 Churn Math — Why Every Customer Matters</h3>
+            <div class="grid-2" style="margin-top: 0.5rem;">
+                <div class="metric-card">
+                    <div class="val" style="color:var(--red)">$1,680</div>
+                    <div class="lbl">Revenue Lost Per Cancelled Customer</div>
+                </div>
+                <div class="metric-card">
+                    <div class="val" style="color:var(--green)">$0</div>
+                    <div class="lbl">Cost to Send a Check-In Text</div>
+                </div>
+                <div class="metric-card">
+                    <div class="val" style="color:var(--yellow)">5-7x</div>
+                    <div class="lbl">More Expensive to Get New vs Keep</div>
+                </div>
+                <div class="metric-card">
+                    <div class="val" style="color:var(--blue)">30%</div>
+                    <div class="lbl">Of Cancels Can Be Saved with Downsell</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 6: REFERRALS -->
+    <div class="tab-content" id="referrals">
+        <div class="card" style="border-color: var(--purple);">
+            <h3>🤝 Referral Ask System — Your Cheapest Growth Channel</h3>
+            <p>Referred customers close at 50-70% (vs 10-25% from ads). They stay longer. They spend more. And they cost you literally nothing to acquire. But you have to ASK.</p>
+        </div>
+
+        <div class="card">
+            <h3>⏰ When to Ask for Referrals</h3>
+            <table>
+                <thead><tr><th>Timing</th><th>Why It Works</th><th>Conversion Rate</th></tr></thead>
+                <tbody>
+                    <tr>
+                        <td style="color:var(--green);font-weight:700">Day 45 (6 weeks in)</td>
+                        <td>Established relationship, past the "new" phase, genuinely happy</td>
+                        <td><span class="tag tag-green">20-30%</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color:var(--blue);font-weight:700">After a compliment</td>
+                        <td>They literally just told you they love the service — strike now</td>
+                        <td><span class="tag tag-green">40-50%</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color:var(--yellow);font-weight:700">Quarterly check-in</td>
+                        <td>Casual mention, not the main ask — "oh by the way"</td>
+                        <td><span class="tag tag-yellow">10-15%</span></td>
+                    </tr>
+                    <tr>
+                        <td style="color:var(--red);font-weight:700">❌ Same message as review ask</td>
+                        <td>Too much in one text. Feels transactional.</td>
+                        <td><span class="tag tag-red">LOW</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card">
+            <h3>📱 Referral Ask Scripts</h3>
+            
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">Script 1 — The Casual Ask (Best for Text)</div>
+                <p>Hey [Name]! Random question — do any of your neighbors or friends have dogs? 🐕
+
+I'm growing Tidy Tails and my best customers have come from word of mouth. If you know anyone who'd benefit, I'd love to offer them their first cleanup free.
+
+Plus you'd get $25 off your next month as a thank you! No pressure at all 🙏</p>
+            </div>
+
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">Script 2 — After They Give a Compliment</div>
+                <p>That means so much, [Name]! Honestly, hearing that keeps me going 💪
+
+If you ever mention Tidy Tails to anyone — neighbors, friends at the dog park, whoever — I'd love to give them a free first cleanup. And you'd get $25 off for the referral.
+
+Just have them text me and mention your name! 🐕</p>
+            </div>
+
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">Script 3 — The Neighbor Play</div>
+                <p>Hey [Name]! I've noticed a few houses in your neighborhood have dogs 🐕 (hard not to notice when they're barking at me through the fence 😄)
+
+If any of your neighbors are interested, I'm offering free first cleanups for referrals from existing customers. Plus $25 off your bill!
+
+No pressure — just wanted to mention it! 💪</p>
+            </div>
+
+            <div class="script-box" onclick="copyScript(this)">
+                <div class="label">Script 4 — The Seasonal Referral Push</div>
+                <p>Hey [Name]! Spring is here and I'm taking on new yards in [area] 🌿🐕
+
+If you know anyone drowning in winter poop buildup (we've all been there 😅), I'm doing free first cleanups for referrals this month.
+
+You'd get $25 off too! Just have them mention your name. Thanks for being awesome! 💪</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📊 Referral Program Structure</h3>
+            <table>
+                <thead><tr><th>Component</th><th>Details</th></tr></thead>
+                <tbody>
+                    <tr><td style="color:var(--text);font-weight:600">Referrer Reward</td><td><strong style="color:var(--green)">$25 credit</strong> off next month's bill</td></tr>
+                    <tr><td style="color:var(--text);font-weight:600">New Customer Offer</td><td><strong style="color:var(--green)">First cleanup FREE</strong> (removes all risk)</td></tr>
+                    <tr><td style="color:var(--text);font-weight:600">Tracking</td><td>"Just mention [Name]'s name" — keep it simple</td></tr>
+                    <tr><td style="color:var(--text);font-weight:600">Cost to You</td><td>$25 credit = 1.5% of $1,680 LTV = <strong style="color:var(--green)">67x ROI</strong></td></tr>
+                    <tr><td style="color:var(--text);font-weight:600">Stackable?</td><td>Yes — refer 3 people, get 3 × $25 = $75 off (basically a free month)</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- TAB 7: CHECKLIST -->
+    <div class="tab-content" id="checklist">
+        <div class="card" style="border-color: var(--orange);">
+            <h3>✅ Master Implementation Checklist</h3>
+            <p>Everything you need to set up the complete customer lifecycle system. Most of this takes 5 minutes per task. Total setup: ~1 hour.</p>
+        </div>
+
+        <div class="card">
+            <h3>📋 Setup Tasks — Do These Once</h3>
+            <ul class="checklist">
+                <li><input type="checkbox" id="s1" onchange="saveChecks()"><label for="s1"><strong>Save the welcome text</strong> as a text shortcut on your phone (type "ttw" → welcome text autofills)</label></li>
+                <li><input type="checkbox" id="s2" onchange="saveChecks()"><label for="s2"><strong>Save the completion text</strong> as a text shortcut ("ttd" → done text)</label></li>
+                <li><input type="checkbox" id="s3" onchange="saveChecks()"><label for="s3"><strong>Save the Google review link</strong> in your phone notes: https://g.page/r/Ce_hqIHanGLvEAE/review</label></li>
+                <li><input type="checkbox" id="s4" onchange="saveChecks()"><label for="s4"><strong>Create a customer spreadsheet</strong> with columns: Name, Dog, Start Date, Address, Gate Code, Review Asked?, Referral Asked?</label></li>
+                <li><input type="checkbox" id="s5" onchange="saveChecks()"><label for="s5"><strong>Set phone reminders</strong> for each existing customer: Week 1 check-in, Day 14 review ask, Day 45 referral ask</label></li>
+                <li><input type="checkbox" id="s6" onchange="saveChecks()"><label for="s6"><strong>Ask existing customers for dog birthdays</strong> — send birthday texts for retention boost</label></li>
+                <li><input type="checkbox" id="s7" onchange="saveChecks()"><label for="s7"><strong>Buy a small bag of dog treats</strong> ($5) — leave one at the door occasionally as a surprise</label></li>
+                <li><input type="checkbox" id="s8" onchange="saveChecks()"><label for="s8"><strong>Start taking before/after photos</strong> every visit — builds your portfolio + social proof</label></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🔄 Per-Customer Actions — Do These for Every New Signup</h3>
+            <ul class="checklist">
+                <li><input type="checkbox" id="p1" onchange="saveChecks()"><label for="p1">Send welcome text within 5 minutes</label></li>
+                <li><input type="checkbox" id="p2" onchange="saveChecks()"><label for="p2">Send info-gathering text same day</label></li>
+                <li><input type="checkbox" id="p3" onchange="saveChecks()"><label for="p3">Send eve-of-visit reminder</label></li>
+                <li><input type="checkbox" id="p4" onchange="saveChecks()"><label for="p4">Send completion text + photo after first visit</label></li>
+                <li><input type="checkbox" id="p5" onchange="saveChecks()"><label for="p5">Send Day 7 "how's everything?" check-in</label></li>
+                <li><input type="checkbox" id="p6" onchange="saveChecks()"><label for="p6">Send Day 14-21 review ask</label></li>
+                <li><input type="checkbox" id="p7" onchange="saveChecks()"><label for="p7">Send Day 30 value reinforcement text</label></li>
+                <li><input type="checkbox" id="p8" onchange="saveChecks()"><label for="p8">Send Day 45 referral ask</label></li>
+                <li><input type="checkbox" id="p9" onchange="saveChecks()"><label for="p9">Send Day 60 seasonal check-in</label></li>
+                <li><input type="checkbox" id="p10" onchange="saveChecks()"><label for="p10">Send Day 90 loyalty thank-you + free cleanup</label></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>👥 Existing Customer Quick Actions</h3>
+            <p style="margin-bottom: 0.75rem;">For your current 4-5 customers who are already past onboarding:</p>
+            <ul class="checklist">
+                <li><input type="checkbox" id="e1" onchange="saveChecks()"><label for="e1">Ask each existing customer for a Google review (if not already done)</label></li>
+                <li><input type="checkbox" id="e2" onchange="saveChecks()"><label for="e2">Ask each existing customer for referrals ($25 off offer)</label></li>
+                <li><input type="checkbox" id="e3" onchange="saveChecks()"><label for="e3">Start sending completion texts + photos after every visit</label></li>
+                <li><input type="checkbox" id="e4" onchange="saveChecks()"><label for="e4">Ask for dog birthdays</label></li>
+                <li><input type="checkbox" id="e5" onchange="saveChecks()"><label for="e5">Send a "spring check-in" text this week</label></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- BOTTOM LINE -->
+    <div class="bottom-line">
+        <h3>💡 Bottom Line for TJ</h3>
+        <p>You've got 50+ tools to generate leads. This is the system that turns those leads into <strong style="color:var(--text)">loyal, reviewing, referring customers who stick around for 2+ years.</strong></p>
+        <p style="margin-top:0.5rem;">The whole thing runs on text messages that take 30 seconds each. No apps, no software, no subscriptions. Just consistent, genuine communication that makes people feel valued.</p>
+        <p style="margin-top:0.5rem;"><strong style="color:var(--green)">Start today:</strong> Send a welcome text to your newest customer. Send a review ask to your longest customer. Set up phone text shortcuts. That's it. The system starts working immediately.</p>
+        <p style="margin-top:0.5rem; color:var(--text3); font-size:0.75rem;">Math: 5 customers × 1 referral each = 10 customers. Each referring 1 more = 15. Add leads from ads/Nextdoor/directories = 25-30 by August. This system is the multiplier.</p>
+    </div>
+</div>
+
+<script>
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById(tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    // Copy scripts
+    function copyScript(el) {
+        const text = el.querySelector('p').innerText;
+        navigator.clipboard.writeText(text).then(() => {
+            el.classList.add('copied');
+            setTimeout(() => el.classList.remove('copied'), 2000);
+        });
+    }
+
+    // Persistent checkboxes
+    function saveChecks() {
+        const checks = {};
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            checks[cb.id] = cb.checked;
+        });
+        localStorage.setItem('tt-lifecycle-checks', JSON.stringify(checks));
+    }
+
+    function loadChecks() {
+        const saved = localStorage.getItem('tt-lifecycle-checks');
+        if (saved) {
+            const checks = JSON.parse(saved);
+            Object.entries(checks).forEach(([id, checked]) => {
+                const cb = document.getElementById(id);
+                if (cb) cb.checked = checked;
+            });
+        }
+    }
+
+    loadChecks();
+</script>
+
+</body>
+</html>
