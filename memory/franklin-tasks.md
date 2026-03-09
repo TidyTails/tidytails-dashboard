@@ -33,6 +33,40 @@ Referral Program Kit (`dashboard/2026-03-10-REFERRAL-PROGRAM-KIT.html`) with 6 t
 
 ## March 9, 2026 (Monday)
 
+### 1:04 PM — 🏠 SHED SPRING SALES PLAYBOOK — Your Secret Weapon for Closing More Deals (Hourly Task)
+**Task:** Build a complete spring sales system for TJ's TuffShed/WoodMaster day job — competitor intel, follow-up cadence, objection scripts, and Marketplace ad templates
+**Result:** ✅ SHIPPED — 6-tab interactive playbook with current promos, 8 STL competitors analyzed, 6-step follow-up system with 7 copy-paste scripts, 8 objection handlers, 5 Facebook Marketplace ads, and weekly action plan through March
+
+**Why This Task:**
+- Cron directive specifically mentions "TuffShed pipeline growth" — this side of TJ's business has been massively underserved
+- TJ has ~27 pipeline leads (12 quoted, 15 pre-quote) sitting there — spring is peak shed season
+- Average shed price in STL is $6,568 — each closed deal is worth 6-8x a Tidy Tails customer
+- Spring = peak season: tax refunds ($3,167 avg), spring cleaning mindset, ground thawing
+- Competitors (Classic Buildings, WoodMaster, Marten) are all pushing spring campaigns
+- We'd built 40+ Tidy Tails dashboards but only 3 shed tools — huge gap
+
+**What I Built:**
+`dashboard/2026-03-09-SHED-SPRING-SALES-PLAYBOOK.html` — 6-tab interactive playbook:
+1. **💰 Current Promos** — 2026 Premier Classic Ranch Sweepstakes, all 4 financing options (Service Finance, RTO), pitch scripts for each
+2. **🎯 Competitors** — 8 STL shed competitors mapped (Classic Buildings, WoodMaster, Marten, All About Shedz, Rent Sheds, Mac's Shed Mafia, Shed Empire, Home Depot Sundance) with threat levels and battle scripts
+3. **📞 Follow-Up System** — 6-step cadence (Day 0→Day 30), 7 copy-paste text/call scripts, pipeline priority matrix
+4. **🛡️ Objection Handling** — 8 common objections with 2-3 responses each (too expensive, spouse approval, shopping around, DIY, timing, sizing, HOA, cheaper at HD)
+5. **📱 Marketplace Ads** — 5 complete Facebook Marketplace ad templates (Spring Storage, She Shed/Man Cave, Home Gym, RTO/Budget, Social Proof)
+6. **🌱 Spring Playbook** — Week-by-week action plan for March with persistent checklists, seasonal selling angles through May
+
+**Key Research:**
+- TuffShed running 2026 Premier Classic Ranch Sweepstakes (Dec '25 - Dec '26) — free entry with any quote
+- Up to $1,000 off Sundance Series at Home Depot (ended Feb 11 — HD promo expired)
+- 4 financing options always available: Service Finance (9.99% APR/120mo), 6-mo same-as-cash, RTO National (renters OK), Flex Lease (NO credit check)
+- Classic Buildings = #1 local rival — Amish-built, 3D configurator, cabins/barndos, hundreds of 5-star reviews
+- STL avg shed price: $6,568 (ShedHub, 64 listings)
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-09-SHED-SPRING-SALES-PLAYBOOK.html
+**Commit:** `95229ac` on `tidytails-dashboard` repo
+**Rotation:** 🏠 Revenue — TuffShed Pipeline Growth
+
+---
+
 ### 12:05 PM — 📣 FACEBOOK ADS LAUNCH KIT — Turn $10/Day Into 4-5 Leads/Week (Hourly Task)
 **Task:** Build a complete Facebook Ads playbook so TJ can launch paid ads THIS WEEK — the fastest path from 5 customers to 25+
 **Result:** ✅ SHIPPED — 7-tab interactive dashboard with 5 copy-paste ads, audience targeting, budget calculator, A/B testing plan, creative guide, and 12-step launch checklist
