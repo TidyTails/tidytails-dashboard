@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 STL Pet Waste Competitor Landscape — Q1 2026</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #12121a;
+    --border: #1e1e2e;
+    --accent: #6366f1;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --orange: #f97316;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --dead: #dc2626;
+    --alive: #16a34a;
+    --new: #8b5cf6;
+    --tj: #3b82f6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 20px; }
+  
+  .header { text-align: center; padding: 40px 20px 30px; }
+  .header h1 { font-size: 2.2em; margin-bottom: 8px; }
+  .header .subtitle { color: var(--muted); font-size: 1.1em; }
+  .header .date { color: var(--accent); font-size: 0.9em; margin-top: 8px; }
+  
+  .alert-banner {
+    background: linear-gradient(135deg, #1a0a0a, #2a0a1a);
+    border: 2px solid var(--red);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px auto;
+    max-width: 900px;
+    text-align: center;
+  }
+  .alert-banner h2 { color: var(--red); font-size: 1.6em; margin-bottom: 12px; }
+  .alert-banner p { color: var(--text); font-size: 1.1em; line-height: 1.6; }
+  .alert-banner .number { font-size: 3em; font-weight: 900; color: var(--red); display: block; }
+  
+  .opportunity-banner {
+    background: linear-gradient(135deg, #0a1a0a, #0a2a1a);
+    border: 2px solid var(--green);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px auto;
+    max-width: 900px;
+  }
+  .opportunity-banner h2 { color: var(--green); font-size: 1.4em; margin-bottom: 16px; text-align: center; }
+  .opportunity-banner ul { list-style: none; padding: 0; }
+  .opportunity-banner li { padding: 8px 0; padding-left: 28px; position: relative; font-size: 1.05em; }
+  .opportunity-banner li::before { content: '✅'; position: absolute; left: 0; }
+  
+  .tabs { display: flex; justify-content: center; gap: 8px; margin: 30px auto; max-width: 900px; flex-wrap: wrap; }
+  .tab {
+    padding: 10px 20px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--card);
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: all 0.2s;
+  }
+  .tab:hover { border-color: var(--accent); color: var(--text); }
+  .tab.active { background: var(--accent); color: white; border-color: var(--accent); }
+  
+  .panel { display: none; max-width: 900px; margin: 0 auto; }
+  .panel.active { display: block; }
+  
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .card h3 { margin-bottom: 12px; font-size: 1.2em; }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .badge-dead { background: rgba(220, 38, 38, 0.2); color: var(--dead); border: 1px solid var(--dead); }
+  .badge-alive { background: rgba(22, 163, 74, 0.2); color: var(--alive); border: 1px solid var(--alive); }
+  .badge-new { background: rgba(139, 92, 246, 0.2); color: var(--new); border: 1px solid var(--new); }
+  .badge-threat { background: rgba(249, 115, 22, 0.2); color: var(--orange); border: 1px solid var(--orange); }
+  .badge-tj { background: rgba(59, 130, 246, 0.2); color: var(--tj); border: 1px solid var(--tj); }
+  
+  .competitor-grid { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  
+  .comp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+  }
+  .comp-card.dead { border-color: var(--dead); opacity: 0.8; }
+  .comp-card.new-entry { border-color: var(--new); }
+  .comp-card.franchise { border-color: var(--orange); }
+  
+  .comp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 8px; }
+  .comp-name { font-size: 1.3em; font-weight: 700; }
+  .comp-url { color: var(--muted); font-size: 0.85em; margin-top: 4px; }
+  .comp-url a { color: var(--accent); text-decoration: none; }
+  .comp-url a:hover { text-decoration: underline; }
+  .comp-url.dead-url { text-decoration: line-through; color: var(--red); }
+  
+  .comp-details { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+  .detail-item { padding: 8px 12px; background: rgba(255,255,255,0.03); border-radius: 8px; }
+  .detail-label { font-size: 0.75em; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .detail-value { font-size: 1.05em; margin-top: 4px; }
+  
+  .pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 16px;
+  }
+  .pricing-table th, .pricing-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .pricing-table th {
+    color: var(--muted);
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .pricing-table tr.tj-row { background: rgba(59, 130, 246, 0.1); }
+  .pricing-table .cheapest { color: var(--green); font-weight: 600; }
+  .pricing-table .expensive { color: var(--red); font-weight: 600; }
+  
+  .action-item {
+    background: rgba(99, 102, 241, 0.08);
+    border-left: 3px solid var(--accent);
+    padding: 16px 20px;
+    margin: 12px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .action-item h4 { color: var(--accent); margin-bottom: 6px; }
+  
+  .market-map {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .zone-card {
+    background: rgba(255,255,255,0.03);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .zone-card h4 { color: var(--accent); margin-bottom: 8px; }
+  .zone-density { font-size: 2em; font-weight: 700; }
+  .zone-density.low { color: var(--green); }
+  .zone-density.med { color: var(--yellow); }
+  .zone-density.high { color: var(--red); }
+  .zone-label { font-size: 0.8em; color: var(--muted); margin-top: 4px; }
+  
+  .timeline { position: relative; padding-left: 30px; }
+  .timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+  .timeline-item { position: relative; margin-bottom: 24px; }
+  .timeline-item::before { content: ''; position: absolute; left: -24px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid var(--bg); }
+  .timeline-item.dead-item::before { background: var(--red); }
+  .timeline-item.new-item::before { background: var(--green); }
+
+  @media (max-width: 600px) {
+    .comp-details { grid-template-columns: 1fr; }
+    .header h1 { font-size: 1.6em; }
+    .pricing-table { font-size: 0.85em; }
+    .pricing-table th, .pricing-table td { padding: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎯 STL Pet Waste Competitive Landscape</h1>
+  <div class="subtitle">Q1 2026 Market Intelligence Report</div>
+  <div class="date">Scanned March 9, 2026 • Franklin for Tidy Tails</div>
+</div>
+
+<div class="alert-banner">
+  <span class="number">4</span>
+  <h2>🚨 Competitors Have Gone Dark Since Q4 2025</h2>
+  <p>Fresh Paws, Pawfect Waste Solutions, Poopy Paws, and Little Stinkers all have dead/expired websites. Their former customers are looking for a new provider <strong>right now</strong>.</p>
+</div>
+
+<div class="opportunity-banner">
+  <h2>🎯 Immediate Opportunities for TJ</h2>
+  <ul>
+    <li><strong>Fresh Paws customers</strong> in West STL & St. Charles need a new provider — their Squarespace expired</li>
+    <li><strong>Pawfect Waste Solutions</strong> site is completely gone — their STL city customers are orphaned</li>
+    <li><strong>Poopy Paws</strong> ($20/wk flat rate) — website DNS dead, social still up but likely inactive</li>
+    <li><strong>Little Stinkers</strong> customers in St. Charles/O'Fallon/St. Peters are available</li>
+    <li><strong>NEW THREAT: Doggie Doodies</strong> is a well-run newcomer targeting West County & St. Charles — same turf as TJ</li>
+  </ul>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('overview')">📊 Overview</div>
+  <div class="tab" onclick="showTab('dead')">💀 Dead Competitors</div>
+  <div class="tab" onclick="showTab('active')">🟢 Active Competitors</div>
+  <div class="tab" onclick="showTab('pricing')">💰 Pricing Matrix</div>
+  <div class="tab" onclick="showTab('zones')">🗺️ Territory Map</div>
+  <div class="tab" onclick="showTab('actions')">⚡ Action Plan</div>
+</div>
+
+<!-- OVERVIEW TAB -->
+<div id="overview" class="panel active">
+  <div class="card">
+    <h3>📊 Market Status — March 2026</h3>
+    <div class="comp-details">
+      <div class="detail-item">
+        <div class="detail-label">Total Competitors Tracked</div>
+        <div class="detail-value" style="font-size:1.8em; font-weight:700;">10</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Dead / Inactive</div>
+        <div class="detail-value" style="font-size:1.8em; font-weight:700; color:var(--red);">4</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Active Competitors</div>
+        <div class="detail-value" style="font-size:1.8em; font-weight:700; color:var(--green);">5</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">New Entrants (Since Jan)</div>
+        <div class="detail-value" style="font-size:1.8em; font-weight:700; color:var(--new);">1</div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="card">
+    <h3>🏆 Competitive Position Summary</h3>
+    <div class="timeline">
+      <div class="timeline-item dead-item">
+        <strong style="color:var(--red)">Fresh Paws</strong> — Website expired (Squarespace). Served western STL & St. Charles counties. Phone 636-779-6469 likely disconnected.
+      </div>
+      <div class="timeline-item dead-item">
+        <strong style="color:var(--red)">Pawfect Waste Solutions</strong> — pooperscooperstl.com returns "SITE NOT FOUND." No Wix site remaining. Likely ceased operations.
+      </div>
+      <div class="timeline-item dead-item">
+        <strong style="color:var(--red)">Poopy Paws</strong> — poopypaws314.com DNS failure. Facebook page (358 likes) appears dormant. Was the cheapest at $20/wk flat.
+      </div>
+      <div class="timeline-item dead-item">
+        <strong style="color:var(--red)">Little Stinkers</strong> — Confirmed dead since March 3 scan. Served St. Charles corridor.
+      </div>
+      <div class="timeline-item new-item">
+        <strong style="color:var(--new)">Doggie Doodies (NEW)</strong> — Well-built Wix site. Covers STL County + St. Charles County. Professional operations: background checks, text notifications, gate photos, customer portal, rewards program, referral program. $83/mo weekly (1 dog). <strong>Most professional small operator in the market.</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DEAD COMPETITORS TAB -->
+<div id="dead" class="panel">
+  <div class="comp-card dead">
+    <div class="comp-header">
+      <div>
+        <div class="comp-name">🪦 Fresh Paws Dog Waste Removal</div>
+        <div class="comp-url dead-url">wearefreshpaws.com — SQUARESPACE EXPIRED</div>
+      </div>
+      <span class="status-badge badge-dead">DEAD</span>
+    </div>
+    <div class="comp-details">
+      <div class="detail-item">
+        <div class="detail-label">Last Known Territory</div>
+        <div class="detail-value">Western St. Louis & St. Charles Counties</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Last Known Phone</div>
+        <div class="detail-value">636-779-6469</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Promo at Death</div>
+        <div class="detail-value">Code "FIRSTSCOOP" — first 25 new clients free initial cleanup</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Opportunity</div>
+        <div class="detail-value" style="color:var(--green)">HIGH — Same territory as TJ. These customers need service NOW.</div>
+      </div>
+    </div>
+    <div class="action-item">
+      <h4>🎯 Action: Target Fresh Paws' Former Territory</h4>
+      <p>Post in Nextdoor/Facebook groups for West County & St. Charles. Message: "Looking for a new pet waste service? [Old provider] may have closed — Tidy Tails is here to help! Same great service, local owner. First cleanup free."</p>
+    </div>
+  </div>
+
+  <div class="comp-card dead">
+    <div class="comp-header">
+      <div>
+        <div class="comp-name">🪦 Pawfect Waste Solutions</div>
+        <div class="comp-url dead-url">pooperscooperstl.com — SITE NOT FOUND</div>
+      </div>
+      <span class="status-badge badge-dead">DEAD</span>
+    </div>
+    <div class="comp-details">
+      <div class="detail-item">
+        <div class="detail-label">Last Known Territory</div>
+        <div class="detail-value">St. Louis city & county</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Opportunity</div>
+        <div class="detail-value" style="color:var(--green)">MEDIUM — STL city is further from TJ's core zones but county overlap exists</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comp-card dead">
+    <div class="comp-header">
+      <div>
+        <div class="comp-name">🪦 Poopy Paws</div>
+        <div class="comp-url dead-url">poopypaws314.com — DNS FAILURE</div>
+      </div>
+      <span class="status-badge badge-dead">DEAD</span>
+    </div>
+    <div class="comp-details">
+      <div class="detail-item">
+        <div class="detail-label">Last Known Territory</div>
+        <div class="detail-value">Greater St. Louis area / Illinois side too</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Last Known Pricing</div>
+        <div class="detail-value">$20/week flat rate, any # of dogs — cheapest volume play</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Social Presence</div>
+        <div class="detail-value">Facebook: 358 likes (appears dormant). Yelp: Still listed #1</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Opportunity</div>
+        <div class="detail-value" style="color:var(--green)">MEDIUM — Multi-dog households were their sweet spot</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comp-card dead">
+    <div class="comp-header">
+      <div>
+        <div class="comp-name">🪦 Little Stinkers Pet Waste Services</div>
+        <div class="comp-url dead-url">littlestinkerspetwasteservices.com — DNS DEAD</div>
+      </div>
+      <span class="status-badge badge-dead">DEAD</span>
+    </div>
+    <div class="comp-details">
+      <div class="detail-item">
+        <div class="detail-label">Last Known Territory</div>
+        <div class="detail-value">St. Charles, O'Fallon, St. Peters</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Confirmed Dead</div>
+        <div class="detail-value">March 3, 2026 scan</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Opportunity</div>
+        <div class="detail-value" style="color:var(--green)">HIGH — St. Charles corridor is growing fast</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVE COMPETITORS TAB -->
+<div id="active" class="panel">
+  <div class="comp-card" style="border-color: var(--tj);">
+    <div class="comp-header">
+      <div>
+        <div class="comp-name">🐕 Tidy Tails (US)</div>
+        <div class="comp-url"><a href="#">tidytailsstl.com</a></div>
+      </div>
+      <span class="status-badge badge-tj">OUR TEAM</span>
+    </div>
+    <div class="comp-details">
+      <div class="detail-item">
+        <div class="detail-label">Territory</div>
+        <div class="detail-value">STL County — West County focus</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Current Customers</div>
+        <div class="detail-value">4-5 recurring</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Weekly (1 dog)</div>
+        <div class="detail-value">$25/visit</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Target</div>
+        <div class="detail-value">25-30 recurring by Aug 2025</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comp-card new-entry">
+    <div class="comp-header">
+      <div>
+        <div class="comp-name">⚠️ Doggie Doodies</div>
+        <div class="comp-url"><a href="https://www.doggiedoodies.com" target="_blank">doggiedoodies.com</a></div>
+      </div>
+      <span class="status-badge badge-new">NEW THREAT</span>
+    </div>
+    <div class="comp-details">
+      <div class="detail-item">
+        <div class="detail-label">Territory</div>
+        <div class="detail-value">St. Louis County, West County, St. Charles County — <strong>SAME AS TJ</strong></div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Specific Areas Named</div>
+        <div class="detail-value">Ballwin, Chesterfield, Wildwood, Manchester, Eureka, Ellisville, Des Peres</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Weekly (1 dog)</div>
+        <div class="detail-value">$83/mo (~$19.15/visit)</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Bi-Weekly (1 dog)</div>
+        <div class="detail-value">$85/mo (~$42.50/visit)</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Monthly (1 dog)</div>
+        <div class="detail-value">$90/mo</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">2 Dogs Weekly</div>
+        <div class="detail-value">$88/mo (~$20.30/visit)</div>
+      </div>
+    </div>
+    <div class="card" style="margin-top:16px; background:rgba(139,92,246,0.05); border-color:var(--new);">
+      <h3 style="color:var(--new)">🔍 What Makes Doggie Doodies Dangerous</h3>
+      <ul style="list-style:none; padding:0; line-height:2;">
+        <li>✓ <strong>Background-checked employees</strong> with photo sent before each visit</li>
+        <li>✓ <strong>Text notifications</strong> on arrival + completion</li>
+        <li>✓ <strong>Gate photos</strong> sent after every service for peace of mind</li>
+        <li>✓ <strong>Equipment disinfection</strong> between properties</li>
+        <li>✓ <strong>Customer portal</strong> with auto-pay and invoice management</li>
+        <li>✓ <strong>Rewards program</strong> — points per dollar spent, redeemable for discounts</li>
+        <li>✓ <strong>Referral program</strong> with rewards for both parties</li>
+        <li>✓ <strong>E-Gift Cards</strong> available</li>
+        <li>✓ <strong>Coupon codes</strong> for first-time customers</li>
+        <li>✓ <strong>Free initial cleanup</strong> with recurring plan</li>
+        <li>✓ <strong>Commercial services</strong> with separate pricing</li>
+        <li>✓ <strong>Blog + SEO pages</strong> for every service area</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="comp-card">
+    <div class="comp-header">
+      <div>
+        <div class="comp-name">💩 Poop2Scoop</div>
+        <div class="comp-url"><a href="https://poop2scoop.com" target="_blank">poop2scoop.com</a></div>
+      </div>
+      <span class="status-badge badge-alive">ACTIVE</span>
+    </div>
+    <div class="comp-details">
+      <div class="detail-item">
+        <div class="detail-label">Territory</div>
+        <div class="detail-value">St. Louis & surrounding areas</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Phone</div>
+        <div class="detail-value">314-449-9447</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Weekly (1 dog)</div>
+        <div class="detail-value" style="color:var(--green)">$18/visit — MARKET CHEAPEST</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Bi-Weekly (1 dog)</div>
+        <div class="detail-value">$25/visit</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Type</div>
+        <div class="detail-value">Local, family-run</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Extras</div>
+        <div class="detail-value">+$4 per extra dog, large yard, or deodorizing</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comp-card franchise">
+    <div class="comp-header">
+      <div>
+        <div class="comp-name">🏢 POOP 911</div>
+        <div class="comp-url"><a href="https://www.poop911.com/locations/saint-louis-mo-pet-waste-removal" target="_blank">poop911.com</a></div>
+      </div>
+      <span class="status-badge badge-threat">FRANCHISE</span>
+    </div>
+    <div class="comp-details">
+      <div class="detail-item">
+        <div class="detail-label">Territory</div>
+        <div class="detail-value">Nearly ALL of STL metro (70+ zip codes)</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Starting Price</div>
+        <div class="detail-value">$11.95/visit</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Type</div>
+        <div class="detail-value">National franchise, locally owned</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Key Hook</div>
+        <div class="detail-value">FREE first cleanup with recurring. Referral: free service for both.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comp-card franchise">
+    <div class="comp-header">
+      <div>
+        <div class="comp-name">🏢 DoodyCalls of St. Louis</div>
+        <div class="comp-url"><a href="https://www.doodycalls.com/st-louis/" target="_blank">doodycalls.com/st-louis</a></div>
+      </div>
+      <span class="status-badge badge-threat">FRANCHISE</span>
+    </div>
+    <div class="comp-details">
+      <div class="detail-item">
+        <div class="detail-label">Territory</div>
+        <div class="detail-value">Greater St. Louis</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Phone</div>
+        <div class="detail-value">(314) 230-8082</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Pricing</div>
+        <div class="detail-value">Quote-based only</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Type</div>
+        <div class="detail-value">National franchise, 25+ years, Authority Brands family</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Strengths</div>
+        <div class="detail-value">Uniformed technicians, commercial + residential, pet waste stations</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Weakness</div>
+        <div class="detail-value">Corporate feel, no transparent pricing</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="comp-card">
+    <div class="comp-header">
+      <div>
+        <div class="comp-name">🐕 Dirty Dog Wash Poo Crew</div>
+        <div class="comp-url"><a href="https://www.dirtydogwashstl.com/poocrew" target="_blank">dirtydogwashstl.com/poocrew</a></div>
+      </div>
+      <span class="status-badge badge-alive">ACTIVE</span>
+    </div>
+    <div class="comp-details">
+      <div class="detail-item">
+        <div class="detail-label">Territory</div>
+        <div class="detail-value">Within ~10 miles of their shop</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Weekly (1-2 dogs)</div>
+        <div class="detail-value">$95/mo</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Bi-Weekly (1-2 dogs)</div>
+        <div class="detail-value">$80/mo</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">3 Dogs Weekly</div>
+        <div class="detail-value">$100/mo</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Type</div>
+        <div class="detail-value">Add-on to dog wash business</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">Notes</div>
+        <div class="detail-value" style="color:var(--red)">MOST EXPENSIVE in market. Trip charge outside 10mi.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING TAB -->
+<div id="pricing" class="panel">
+  <div class="card">
+    <h3>💰 Weekly Service — 1 Dog Pricing Comparison</h3>
+    <p style="color:var(--muted); margin-bottom:16px;">Sorted cheapest to most expensive. All prices per-visit or converted to per-visit equivalent.</p>
+    <table class="pricing-table">
+      <tr>
+        <th>Provider</th>
+        <th>Per Visit</th>
+        <th>Monthly</th>
+        <th>Status</th>
+        <th>Notes</th>
+      </tr>
+      <tr>
+        <td>POOP 911</td>
+        <td class="cheapest">$11.95</td>
+        <td>~$52</td>
+        <td><span class="status-badge badge-threat" style="font-size:0.7em">FRANCHISE</span></td>
+        <td>Free first cleanup</td>
+      </tr>
+      <tr>
+        <td>Poop2Scoop</td>
+        <td class="cheapest">$18.00</td>
+        <td>~$78</td>
+        <td><span class="status-badge badge-alive" style="font-size:0.7em">LOCAL</span></td>
+        <td>Family-run, +$4/dog</td>
+      </tr>
+      <tr>
+        <td>Doggie Doodies</td>
+        <td>$19.15</td>
+        <td>$83</td>
+        <td><span class="status-badge badge-new" style="font-size:0.7em">NEW</span></td>
+        <td>Most professional operations</td>
+      </tr>
+      <tr>
+        <td>Poopy Paws</td>
+        <td style="text-decoration:line-through; color:var(--muted)">$20.00</td>
+        <td style="text-decoration:line-through; color:var(--muted)">~$87</td>
+        <td><span class="status-badge badge-dead" style="font-size:0.7em">DEAD</span></td>
+        <td>Flat rate any # dogs</td>
+      </tr>
+      <tr>
+        <td>Dirty Dog Wash</td>
+        <td>$21.90</td>
+        <td>$95</td>
+        <td><span class="status-badge badge-alive" style="font-size:0.7em">LOCAL</span></td>
+        <td>Add-on to dog wash</td>
+      </tr>
+      <tr class="tj-row">
+        <td><strong>⭐ Tidy Tails</strong></td>
+        <td><strong>$25.00</strong></td>
+        <td><strong>~$108</strong></td>
+        <td><span class="status-badge badge-tj" style="font-size:0.7em">US</span></td>
+        <td>Premium positioning</td>
+      </tr>
+      <tr>
+        <td>DoodyCalls</td>
+        <td>Quote only</td>
+        <td>Quote only</td>
+        <td><span class="status-badge badge-threat" style="font-size:0.7em">FRANCHISE</span></td>
+        <td>Likely $20-30 range</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>📊 TJ's Price Position Analysis</h3>
+    <div class="comp-details">
+      <div class="detail-item">
+        <div class="detail-label">vs. Cheapest (POOP 911)</div>
+        <div class="detail-value" style="color:var(--red)">109% more expensive ($25 vs $11.95)</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">vs. Local Cheapest (P2S)</div>
+        <div class="detail-value" style="color:var(--orange)">39% more expensive ($25 vs $18)</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">vs. New Threat (Doggie Doodies)</div>
+        <div class="detail-value" style="color:var(--yellow)">31% more expensive ($25 vs $19.15)</div>
+      </div>
+      <div class="detail-item">
+        <div class="detail-label">vs. Most Expensive (Dirty Dog)</div>
+        <div class="detail-value" style="color:var(--green)">14% more expensive ($25 vs $21.90)</div>
+      </div>
+    </div>
+    <div class="action-item" style="margin-top:16px;">
+      <h4>💡 Pricing Strategy Recommendation</h4>
+      <p>TJ is at the premium end of the market. This is <strong>fine IF the service experience justifies it</strong>. Doggie Doodies proves customers will pay $83-90/mo for professionalism. TJ needs to match their service experience (notifications, gate photos, disinfection) to justify the premium. Don't compete on price — compete on trust and reliability.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TERRITORY MAP TAB -->
+<div id="zones" class="panel">
+  <div class="card">
+    <h3>🗺️ Competitive Density by Zone</h3>
+    <p style="color:var(--muted); margin-bottom:16px;">How many active competitors serve each area. Lower = better opportunity for TJ.</p>
+    <div class="market-map">
+      <div class="zone-card">
+        <h4>Ballwin / Ellisville</h4>
+        <div class="zone-density high">4</div>
+        <div class="zone-label">Active competitors</div>
+        <div style="font-size:0.75em; color:var(--muted); margin-top:4px;">P911, DoodyCalls, P2S, <strong style="color:var(--new)">Doggie Doodies</strong></div>
+      </div>
+      <div class="zone-card">
+        <h4>Chesterfield</h4>
+        <div class="zone-density high">4</div>
+        <div class="zone-label">Active competitors</div>
+        <div style="font-size:0.75em; color:var(--muted); margin-top:4px;">P911, DoodyCalls, P2S, <strong style="color:var(--new)">Doggie Doodies</strong></div>
+      </div>
+      <div class="zone-card">
+        <h4>Wildwood / Eureka</h4>
+        <div class="zone-density med">3</div>
+        <div class="zone-label">Active competitors</div>
+        <div style="font-size:0.75em; color:var(--muted); margin-top:4px;">P911, <strong style="color:var(--new)">Doggie Doodies</strong>, DoodyCalls</div>
+      </div>
+      <div class="zone-card">
+        <h4>Manchester / Des Peres</h4>
+        <div class="zone-density med">3</div>
+        <div class="zone-label">Active competitors</div>
+        <div style="font-size:0.75em; color:var(--muted); margin-top:4px;"><strong style="color:var(--new)">Doggie Doodies</strong>, DoodyCalls, P2S</div>
+      </div>
+      <div class="zone-card">
+        <h4>St. Charles / O'Fallon</h4>
+        <div class="zone-density low">2</div>
+        <div class="zone-label">Active competitors</div>
+        <div style="font-size:0.75em; color:var(--muted); margin-top:4px;">P911, <strong style="color:var(--new)">Doggie Doodies</strong></div>
+        <div style="font-size:0.75em; color:var(--red); margin-top:2px;">Little Stinkers + Fresh Paws DEAD here</div>
+      </div>
+      <div class="zone-card">
+        <h4>St. Peters / Wentzville</h4>
+        <div class="zone-density low">1-2</div>
+        <div class="zone-label">Active competitors</div>
+        <div style="font-size:0.75em; color:var(--muted); margin-top:4px;">P911 maybe</div>
+        <div style="font-size:0.75em; color:var(--green); margin-top:2px;">🎯 LOWEST competition zone</div>
+      </div>
+      <div class="zone-card">
+        <h4>South County</h4>
+        <div class="zone-density med">3</div>
+        <div class="zone-label">Active competitors</div>
+        <div style="font-size:0.75em; color:var(--muted); margin-top:4px;">P911, DoodyCalls, Dirty Dog</div>
+      </div>
+      <div class="zone-card">
+        <h4>North County</h4>
+        <div class="zone-density low">2</div>
+        <div class="zone-label">Active competitors</div>
+        <div style="font-size:0.75em; color:var(--muted); margin-top:4px;">P911, DoodyCalls</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTION PLAN TAB -->
+<div id="actions" class="panel">
+  <div class="card">
+    <h3>⚡ This Week's Action Items — Ranked by Impact</h3>
+    
+    <div class="action-item" style="border-left-color: var(--red);">
+      <h4>🔥 #1 — Capture Dead Competitor Customers (THIS WEEK)</h4>
+      <p><strong>Who:</strong> TJ<br>
+      <strong>What:</strong> Post in Nextdoor groups for West County, St. Charles, Ballwin, Chesterfield neighborhoods. Message: "Has your pet waste service gone quiet? Several local providers have closed recently. Tidy Tails is a local, owner-operated alternative — message me for a free first cleanup."<br>
+      <strong>Why:</strong> 4 competitors just died. Their customers are actively looking. Be the first to reach them.<br>
+      <strong>Time:</strong> 30 minutes to post in 5-10 groups</p>
+    </div>
+
+    <div class="action-item" style="border-left-color: var(--green);">
+      <h4>💚 #2 — Match Doggie Doodies' Service Experience</h4>
+      <p><strong>Who:</strong> TJ (with Franklin's help on templates)<br>
+      <strong>What:</strong> Start sending:<br>
+      • Text notification when heading to a customer's house<br>
+      • Completion text when done<br>
+      • Photo of closed gate after service<br>
+      <strong>Why:</strong> Doggie Doodies does all of this. It justifies their pricing AND creates trust. TJ charges MORE — he needs to deliver MORE.<br>
+      <strong>Time:</strong> 2 minutes per customer per visit</p>
+    </div>
+
+    <div class="action-item" style="border-left-color: var(--new);">
+      <h4>🆕 #3 — Monitor Doggie Doodies Monthly</h4>
+      <p><strong>Who:</strong> Franklin (automated)<br>
+      <strong>What:</strong> Monthly check on doggiedoodies.com for pricing changes, new service areas, reviews<br>
+      <strong>Why:</strong> They're the most professional small operator in the market and cover the EXACT same territory as TJ. This is the competitor to watch.<br>
+      <strong>Time:</strong> Automated</p>
+    </div>
+
+    <div class="action-item" style="border-left-color: var(--yellow);">
+      <h4>⚡ #4 — Google "St. Charles pet waste removal" Opportunity</h4>
+      <p><strong>Who:</strong> TJ / Franklin<br>
+      <strong>What:</strong> With Fresh Paws and Little Stinkers both dead, the St. Charles/O'Fallon/St. Peters corridor has a huge gap. Create location-specific Google Business Profile posts, Nextdoor presence, and Facebook Marketplace ads targeting these areas specifically.<br>
+      <strong>Why:</strong> Two providers went down. Only POOP 911 and Doggie Doodies serve here now. Low competition = easier wins.</p>
+    </div>
+
+    <div class="action-item" style="border-left-color: var(--accent);">
+      <h4>📱 #5 — Start a Referral Program</h4>
+      <p><strong>Who:</strong> TJ<br>
+      <strong>What:</strong> Match competitors: "Refer a friend, you both get a free service." POOP 911 does it. Doggie Doodies does it. It works.<br>
+      <strong>Why:</strong> At 4-5 customers, even 2-3 referrals would be a 40-60% growth bump. Free acquisition.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📋 Key Takeaways</h3>
+    <ul style="list-style:none; padding:0; line-height:2.2;">
+      <li>🟢 <strong>The market is shrinking in providers</strong> — 4 out of 10 competitors are dead. Demand stays the same. Opportunity is real.</li>
+      <li>🟡 <strong>TJ prices at the premium end</strong> — This is fine, but he MUST deliver premium service to match. Gate photos, text alerts, etc.</li>
+      <li>🔴 <strong>Doggie Doodies is the new threat</strong> — Professional operations, same territory, lower price. Watch them closely.</li>
+      <li>🟢 <strong>St. Charles corridor is wide open</strong> — Two providers died here. Only 1-2 active competitors remain. EXPAND HERE.</li>
+      <li>🟡 <strong>Franchise fatigue is real</strong> — POOP 911 and DoodyCalls feel corporate. TJ's "local owner" angle has genuine value.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+<div style="text-align:center; padding:40px 0; color:var(--muted); font-size:0.8em;">
+  Compiled by Franklin • March 9, 2026 3:04 AM • Tidy Tails Market Intelligence<br>
+  Sources: Direct website crawls, Brave Search, Yelp, Google Business, Nextdoor, Facebook
+</div>
+
+</body>
+</html>
