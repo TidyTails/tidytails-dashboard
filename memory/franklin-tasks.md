@@ -6,6 +6,46 @@
 
 ## March 9, 2026 (Monday)
 
+### 8:05 AM — 🎯 DEAD COMPETITOR CUSTOMER CAPTURE CAMPAIGN — Grab 75-150 Orphaned Customers (Hourly Task)
+**Task:** Build complete customer capture campaign for 3 dead competitors (Fresh Paws, Pawfect Waste Solutions, Poopy Paws) — ready-to-post content across all channels, 7-day action plan, Google strategy, flyer copy
+**Result:** ✅ SHIPPED — Full capture campaign dashboard with 20 copy-paste posts, 7-day blitz plan, and revenue calculator
+
+**Why This Task:**
+- The 3 AM competitor report found 3 confirmed dead competitors (websites down, DNS failures, expired domains)
+- Report's #1 recommended action: "Target dead competitor customers NOW via Nextdoor/Facebook"
+- ~75-150 orphaned customers are actively looking for a replacement RIGHT NOW
+- Doggie Doodies (new competitor) is targeting the same areas — this is a race
+- These customers already know the value of pet waste removal — they just need a new provider
+- Poopy Paws at $20/wk ($80/mo) was more expensive than TJ's $70/mo — we can actually win on price
+
+**What I Created:**
+1. `dashboard/2026-03-09-DEAD-COMPETITOR-CAPTURE.html` — Interactive campaign dashboard with:
+   - Dead competitor intel cards (3 companies with territory overlap analysis)
+   - 4 Facebook posts (general, price match, spring combo, social proof) with copy buttons
+   - 3 Nextdoor posts (intro, helpful reply template, spring cleanup)
+   - Google strategy: SEO keywords, GBP post template, domain acquisition opportunity
+   - 2 text/DM scripts for outreach
+   - 2 flyer/door hanger templates with copy
+   - 8 priority neighborhoods mapped to dead competitor zones
+   - 7-day capture blitz action plan with persistent checkboxes
+   - Revenue calculator (10% capture = $560-1,050/mo, $6,720-12,600/year)
+2. Updated `dashboard/index.html` — New priority banner + "ACT NOW" card in This Week's Priorities
+
+**Key Strategic Points:**
+- Don't name dead competitors directly in posts (looks classier)
+- Lead with "first cleanup free" — removes risk for switchers
+- Emphasize reliability ("locally owned, not going anywhere") — addresses trust gap
+- Check dead competitor Google reviews for confirmed buyer names
+- Consider buying dead competitor domains ($10-20/yr, redirect to tidytailspets.com)
+- Poopy Paws was $80/mo → TJ at $70/mo is cheaper — lead with that
+
+**Revenue Math:** 75-150 orphaned customers × 10% capture rate = 8-15 new customers × $70/mo = $560-1,050/month recurring. From one campaign targeting customers who ALREADY pay for this service.
+
+**Commit:** `c4ece7f` on `tidytails-dashboard` repo
+**Rotation:** 🎯 Growth — Dead Competitor Customer Acquisition
+
+---
+
 ### 7:04 AM — 📍 NEXTDOOR LAUNCH STRATEGY — Your Competitors Are There, You're Not (Hourly Task)
 **Task:** Research Nextdoor presence of STL pet waste competitors, build complete launch strategy with setup guide, 14 ready-to-post posts, recommendation strategy, and 4-week rollout plan
 **Result:** ✅ SHIPPED — Full Nextdoor launch playbook with competitive gap analysis, step-by-step setup, 14 copy-paste posts, neighborhood targeting, and recommendation-building strategy
