@@ -1,7 +1,7 @@
 # DoodyCalls St. Louis — Competitor Intel
 
 **URL:** https://www.doodycalls.com/st-louis/
-**Captured:** 2026-02-17
+**Captured:** 2026-03-09 (no changes since 2026-02-17)
 **Threat Level:** 🔴 HIGH (national franchise with resources)
 
 ---
