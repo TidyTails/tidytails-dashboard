@@ -4,6 +4,30 @@
 
 ---
 
+## March 9, 2026 — Monday Fresh Start (9 AM Task)
+
+**Shed-Mar98 - "Monday Morning, Fresh Start" (FB Marketplace + Groups)**
+- Hook: New week energy — make this the week you actually do it
+- Key: Step-by-step simplicity, action CTA, "no more maybe"
+- Used: TBD (Marketplace + Groups Mon 3/9 AM)
+
+**Shed-Mar99 - "The Backyard Season Opener" (FB Marketplace + Nextdoor)**
+- Hook: DST aftermath + grilling season 6 weeks out
+- Key: Backyard lifestyle, entertaining prep, usable outdoor space
+- Used: TBD (Marketplace + Nextdoor Mon 3/9 PM)
+
+**Shed-Mar100 - "100 Ads Later" (FB Marketplace + Instagram)**
+- Hook: Meta/self-aware — you've scrolled past 95 ads, reading #100
+- Key: Humor, persistence, "Ad #101 or a shed in your yard?"
+- Used: TBD (Marketplace + Instagram Mon 3/9 evening)
+
+**Shed-Mar101 - "What's Your Number?" (FB Marketplace + Groups)**
+- Hook: What monthly payment makes you say yes? Interactive pricing
+- Key: $99-$250/mo tiers, affordability reframe, curiosity gap
+- Used: TBD (Marketplace + Groups Tue 3/10 AM)
+
+---
+
 ## March 8, 2026 — Sunday DST Pack (9 AM Task)
 
 **Shed-Mar94 - "Spring Forward, Space Forward" (FB Marketplace + Groups)**
