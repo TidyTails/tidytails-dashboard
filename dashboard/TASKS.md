@@ -1,12 +1,17 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-09 02:05 CST*
+*Last updated: 2026-03-09 07:15 CST*
 
 ---
 
 ## 🐕 DOG WASTE (Tidy Tails)
 
 ### 🔥 In Progress
+- [ ] **Nextdoor Launch** — Page NOT claimed yet. Strategy + 14 posts ready. TJ needs to set up page (15 min).
+  - Status: Dashboard at `2026-03-09-NEXTDOOR-LAUNCH.html`. Competitors already there (Poop2Scoop: 3 recs).
+  - Owner: TJ (setup) — Franklin (content ready)
+  - Action: Claim page at business.nextdoor.com, post intro, ask customers for recommendations
+
 - [ ] **Google Indexing** — Site live, Search Console submitted (Mar 5), but 0 pages indexed yet
   - Status: Waiting on Google to crawl. robots.txt + sitemap.xml confirmed correct.
   - Owner: Google (nothing more we can do)
