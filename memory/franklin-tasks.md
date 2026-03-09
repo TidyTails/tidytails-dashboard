@@ -6,6 +6,48 @@
 
 ## March 9, 2026 (Monday)
 
+### 5:04 AM — 🏢 MONDAY COMMERCIAL LEAD PACK — 25 Leads Ready to Call This Week (Hourly Task)
+**Task:** Research real commercial prospects in the Kirkwood/Webster/Ballwin target Triangle — property management companies, HOA communities, pet-friendly apartment complexes, vet clinics, and dog daycares — with contact info, pitch scripts, and a 5-day action plan
+**Result:** ✅ SHIPPED — 25 researched leads across 4 categories, interactive dashboard with copy-paste pitches, phone numbers, and weekly action plan
+
+**Why This Task:**
+- We've shipped 40+ tools and dashboards in 3 days. All marketing materials, all strategy. But TJ doesn't have a list of actual people to CALL.
+- Commercial accounts are the fastest path to the 25-30 customer goal: one apartment complex or HOA deal = 5-50 customers overnight
+- It's Monday morning. TJ wakes up and needs to know: "Who do I call today?"
+- At 5 AM, perfect time for research — no outbound calls, pure intel gathering
+
+**What I Found:**
+- **7 Property Management Companies** covering our entire target area (West End Mgmt, Deca, CPM Gateway, PMI STL Metro, Eaton, Hermann London, Sentry)
+- **3 HOA Communities** with confirmed pet infrastructure (Castle Pines has waste bag stations = proven need)
+- **7 Apartment Complexes** — pet-friendly, in target zone (The James Kirkwood is NEW luxury, ReNew WestGlen already charges $30/mo pet rent)
+- **8 Referral Partners** — vet clinics & dog businesses whose clients are exactly our target market (Kirkwood Animal Hospital since 1971, Silver Maple Pet Center)
+
+**What I Created:**
+1. `content/2026-03-09-MONDAY-COMMERCIAL-LEADS.md` — Full lead research
+2. `dashboard/2026-03-09-MONDAY-COMMERCIAL-LEADS.html` — Interactive dashboard with:
+   - Searchable, filterable lead cards (by type: prop mgmt, HOA, apartments, referral)
+   - Expandable details with addresses, phone numbers, websites
+   - Copy-paste pitch scripts tailored to each lead type
+   - Click-to-call phone links
+   - 5-day action plan with persistent checkboxes
+   - Revenue potential calculator ($6,600-29,100/mo total, 10% conversion = $660-2,910/mo)
+3. Updated `dashboard/index.html` — New priority banner and lead pack card in This Week's Priorities
+
+**5-Day Action Plan:**
+- Monday: Call CPM Gateway (636-227-8688), Visit The James Kirkwood, Drop cards at Kirkwood Animal Hospital
+- Tuesday: Email Deca (Kirkwood connection), Call Woodsmill Village, Visit Silver Maple Pet Center
+- Wednesday: Research Castle Pines HOA meetings, Call Kensington West, Email West End Mgmt
+- Thursday: Visit Old Webster Animal Hospital, Call ReNew WestGlen, Email PMI STL Metro
+- Friday: Follow up all contacts, Visit Bauserhaus, Research next week's HOA meetings
+
+**Revenue Math:** Even converting 10% of 25 leads = $660-2,910/month in new revenue. One property management relationship could access dozens of communities.
+
+**Impact:** This is the bridge between "we have great marketing materials" and "we have actual leads to call." When TJ opens the dashboard Monday morning, the first thing he sees is 25 businesses he can contact THIS WEEK with pitch scripts ready to go.
+
+**Rotation:** 🎯 Growth — Commercial Lead Research & Prospecting
+
+---
+
 ### 2:05 AM — 🏗️ DASHBOARD INDEX REBUILD — From Chaos to Command Center (Hourly Task)
 **Task:** Completely rebuild the dashboard index.html — reorganize 38 tools from a flat "everything is NEW" dump into 6 searchable, collapsible categories with actionable labels
 **Result:** ✅ SHIPPED — New index with search, collapsible sections, priority banner, and Quick Reference
