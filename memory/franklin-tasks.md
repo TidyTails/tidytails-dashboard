@@ -2041,3 +2041,38 @@ St. Charles Outreach Kit (`dashboard/2026-03-10-ST-CHARLES-OUTREACH-KIT.html`) w
 **Commit:** `842a3f6` on `tidytails-dashboard` repo
 
 **Rotation:** 🎯 Growth Strategy — Referral Network Building
+
+### 3:04 PM — 💀 DEAD COMPETITOR CUSTOMER RESCUE KIT (Hourly Task)
+**Task:** Verify dead competitors from 3AM report, build ready-to-post rescue campaign targeting their orphaned customers
+**Result:** ✅ SHIPPED — 5-tab interactive rescue kit with verified intel, 7 copy-paste posts, and 7-day action plan
+
+**Why This Task:**
+- 3AM competitor report found 4 "dead" competitors — needed verification before acting
+- Orphaned customers are the WARMEST leads in the market (already paid for scooping)
+- Every week we wait, someone else picks them up or they go DIY
+- Spring thaw = urgency multiplier (winter poop accumulation)
+- $0 cost campaign, just TJ's time posting
+
+**Key Correction:**
+- Little Stinkers of MO is STILL ALIVE (littlestinkersofmo.com loads fine, services active in St. Charles/Lincoln/Warren counties)
+- Updated from 4 dead to 3 confirmed dead competitors
+
+**3 Confirmed Dead Competitors:**
+1. **Fresh Paws** (wearefreshpaws.com) — Squarespace expired. Western STL + St. Charles. Est. 15-25 orphaned customers.
+2. **Poopy Paws 314** (poopypaws314.com) — DNS dead. South City, South County, North County. Est. 20-30 orphaned customers.
+3. **Pawfect Waste Solutions** (pooperscooperstl.com) — "Site Not Found." STL city/county. Est. 10-15 orphaned customers.
+
+**What I Built:**
+Dead Competitor Rescue Kit (`dashboard/2026-03-09-DEAD-COMPETITOR-RESCUE.html`) with 5 tabs:
+1. **💀 Intel** — Verified status of each dead competitor, their territories, zip codes, estimated orphaned customer counts
+2. **📢 Nextdoor** — 3 neighborhood-specific posts targeting Fresh Paws territory (western STL), Poopy Paws territory (South County), and Pawfect territory (general STL)
+3. **📘 Facebook** — Group post with "orphaned customer" angle + Marketplace listing with Spring Rescue Special
+4. **🟠 Craigslist** — 2 ad versions (professional + casual/funny) for services section
+5. **📋 Action Plan** — 7-day campaign timeline + 12-item checklist with localStorage persistence
+
+**Expected Impact:** 3-10 new recurring customers from orphaned leads. At $100/mo avg = $300-$1,000/mo new recurring revenue. $0 campaign cost.
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-09-DEAD-COMPETITOR-RESCUE.html
+**Commit:** `caf7d91` on `tidytails-dashboard` repo
+
+**Rotation:** 🎯 Growth Strategy — Competitor Territory Takeover
