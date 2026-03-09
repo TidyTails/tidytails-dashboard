@@ -2111,3 +2111,41 @@ Dead Competitor Rescue Kit (`dashboard/2026-03-09-DEAD-COMPETITOR-RESCUE.html`) 
 **Commit:** `caf7d91` on `tidytails-dashboard` repo
 
 **Rotation:** 🎯 Growth Strategy — Competitor Territory Takeover
+
+### 5:04 PM — 🚨 GOOGLE VISIBILITY EMERGENCY — TidyTailsSTL.com Has ZERO Indexed Pages (Hourly Task)
+**Task:** Investigate why Tidy Tails doesn't appear in any Google searches, diagnose the problem, build actionable fix plan
+**Result:** ✅ SHIPPED — 5-tab emergency diagnostic dashboard with step-by-step fix guide
+
+**Why This Task:**
+- Searched "pooper scooper service st louis county missouri" — Tidy Tails appears NOWHERE
+- Ran `site:tidytailsstl.com` on Google — ZERO results. Not a single page indexed.
+- Every competitor (POOP 911, Yuckos, Scoop Soldiers, Poop2Scoop, Dr. Scoops, Doggie Doodies) ranks on page 1
+- This is THE #1 blocker to growth. All other marketing is handicapped when you can't be found on Google.
+
+**Key Findings:**
+1. **Site has ZERO indexed pages** — Google doesn't know tidytailsstl.com exists
+2. **No Google Business Profile** — won't appear in Maps or local 3-pack ever
+3. **No directory listings** — not on Yelp, Nextdoor Business, Pooperoni, or any directory
+4. **Zero backlinks** — no other sites link to tidytailsstl.com
+5. **NEW COMPETITOR: Dr. Scoops** (getdrscoops.com) — in Ballwin, Manchester, Chesterfield, Ellisville. Has GBP, Nextdoor, Facebook. Wasn't in 3 AM report.
+6. **Good news:** Site has solid SEO fundamentals (structured data, location pages, blog, meta tags). Fix is about DISCOVERY, not rebuilding.
+
+**What I Built:**
+Google Visibility Emergency Dashboard (`dashboard/2026-03-09-GOOGLE-VISIBILITY-EMERGENCY.html`) with 5 tabs:
+
+1. **🔍 Diagnosis** — Evidence of zero indexing, competitor ranking comparison, technical audit (what's right vs wrong)
+2. **🔧 Fix It Now** — 6 step-by-step guides: Google Search Console, Google Business Profile, Bing Webmasters, www redirect, social links, review requests
+3. **📋 Directories** — 12 directory listings in 3 tiers (Today/This Week/2 Weeks) with direct signup links: Google, Yelp, Nextdoor, Facebook, Pooperoni, Thumbtack, Angi, BBB, Apple Maps, HomeAdvisor, Bark, aPaws
+4. **⚔️ New Threat** — Dr. Scoops competitive analysis: head-to-head comparison table, TJ's advantages (monthly plan, personal service, transparent pricing), and 5 immediate counter-actions
+5. **✅ Checklist** — 15-item interactive checklist with localStorage persistence and progress tracker
+
+**Expected Impact:** Once Google Search Console + GBP are set up:
+- Indexed within 1-3 days
+- Ranking for local searches within 2-4 weeks
+- Appearing in Google Maps local 3-pack within 2-4 weeks (with reviews)
+- Could generate 5-15 organic leads/month = $500-$1,500/mo recurring revenue at ZERO ongoing cost
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-09-GOOGLE-VISIBILITY-EMERGENCY.html
+**Commit:** `596dd8e` on `tidytails-dashboard` repo
+
+**Rotation:** 🚨 Critical Infrastructure — Search Visibility
