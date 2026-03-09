@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Review Request System — Tidy Tails</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card-hover: #273548;
+    --accent: #f59e0b;
+    --accent2: #10b981;
+    --text: #f1f5f9;
+    --text-dim: #94a3b8;
+    --border: #334155;
+    --danger: #ef4444;
+    --success: #10b981;
+    --info: #3b82f6;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 20px; }
+  .container { max-width: 900px; margin: 0 auto; }
+  
+  .header { text-align: center; margin-bottom: 30px; padding: 30px 20px; background: linear-gradient(135deg, #f59e0b22, #10b98122); border: 1px solid var(--border); border-radius: 16px; }
+  .header h1 { font-size: 1.8rem; margin-bottom: 8px; }
+  .header h1 span { color: var(--accent); }
+  .header p { color: var(--text-dim); font-size: 0.95rem; }
+  
+  .urgency-banner { background: linear-gradient(90deg, var(--danger), #dc2626); padding: 14px 20px; border-radius: 10px; margin-bottom: 24px; text-align: center; font-weight: 600; font-size: 0.95rem; }
+  
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; }
+  .stat-card .num { font-size: 2rem; font-weight: 800; }
+  .stat-card .num.red { color: var(--danger); }
+  .stat-card .num.amber { color: var(--accent); }
+  .stat-card .num.green { color: var(--accent2); }
+  .stat-card .num.blue { color: var(--info); }
+  .stat-card .label { color: var(--text-dim); font-size: 0.8rem; margin-top: 4px; }
+  
+  .setup-box { background: var(--card); border: 2px dashed var(--accent); border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+  .setup-box h3 { color: var(--accent); margin-bottom: 12px; font-size: 1.1rem; }
+  .setup-box input { width: 100%; padding: 12px 16px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 1rem; margin-bottom: 10px; }
+  .setup-box input::placeholder { color: var(--text-dim); }
+  .setup-box .hint { color: var(--text-dim); font-size: 0.85rem; }
+  .setup-box .hint strong { color: var(--accent); }
+  
+  .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab { padding: 10px 18px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; cursor: pointer; font-size: 0.9rem; color: var(--text-dim); transition: all 0.2s; }
+  .tab:hover { background: var(--card-hover); }
+  .tab.active { background: var(--accent); color: #000; font-weight: 600; border-color: var(--accent); }
+  
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  
+  .template-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+  .template-header { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+  .template-header:hover { background: var(--card-hover); }
+  .template-header h3 { font-size: 1rem; }
+  .template-header .trigger { background: var(--accent)22; color: var(--accent); padding: 4px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; }
+  .template-body { padding: 0 20px 20px; display: none; }
+  .template-body.open { display: block; }
+  
+  .msg-box { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin: 12px 0; font-size: 0.95rem; line-height: 1.7; white-space: pre-wrap; position: relative; }
+  
+  .copy-btn { padding: 8px 16px; background: var(--accent2); color: #000; border: none; border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 0.85rem; transition: all 0.2s; }
+  .copy-btn:hover { transform: scale(1.05); }
+  .copy-btn.copied { background: var(--accent); }
+  
+  .why-box { background: #10b98115; border-left: 3px solid var(--accent2); padding: 12px 16px; border-radius: 0 8px 8px 0; margin-top: 12px; }
+  .why-box strong { color: var(--accent2); }
+  .why-box p { color: var(--text-dim); font-size: 0.9rem; margin-top: 4px; }
+  
+  .response-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+  .response-card h4 { margin-bottom: 8px; }
+  .response-card .stars { color: var(--accent); font-size: 1.2rem; }
+  
+  .checklist { list-style: none; }
+  .checklist li { padding: 10px 0; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+  .checklist li:last-child { border: none; }
+  .checklist input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--accent2); }
+  .checklist label { cursor: pointer; flex: 1; }
+  .checklist .day-badge { background: var(--info)22; color: var(--info); padding: 2px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: 600; }
+  
+  .tips-grid { display: grid; gap: 12px; }
+  .tip { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; display: flex; gap: 12px; align-items: flex-start; }
+  .tip .icon { font-size: 1.5rem; flex-shrink: 0; }
+  .tip .content h4 { font-size: 0.95rem; margin-bottom: 4px; }
+  .tip .content p { color: var(--text-dim); font-size: 0.9rem; }
+  
+  .timeline { border-left: 3px solid var(--accent); padding-left: 20px; margin: 16px 0; }
+  .timeline-item { margin-bottom: 20px; position: relative; }
+  .timeline-item::before { content: ''; position: absolute; left: -26px; top: 6px; width: 12px; height: 12px; background: var(--accent); border-radius: 50%; }
+  .timeline-item h4 { font-size: 0.95rem; margin-bottom: 4px; }
+  .timeline-item p { color: var(--text-dim); font-size: 0.9rem; }
+  
+  @media (max-width: 600px) {
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .tabs { gap: 4px; }
+    .tab { padding: 8px 12px; font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>⭐ Google <span>Review Request</span> System</h1>
+    <p>Copy-paste templates to get 5+ reviews fast • Tidy Tails</p>
+  </div>
+
+  <div class="urgency-banner">
+    🚨 0 reviews = invisible on Google Maps. 5 reviews = star rating shows in search. Ask this week.
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="num red">0</div><div class="label">Current Reviews</div></div>
+    <div class="stat-card"><div class="num amber">5</div><div class="label">Goal by Mar 31</div></div>
+    <div class="stat-card"><div class="num green">10</div><div class="label">Goal by Apr 30</div></div>
+    <div class="stat-card"><div class="num blue">4-5</div><div class="label">Customers to Ask</div></div>
+  </div>
+
+  <div class="setup-box">
+    <h3>⚙️ Setup: Paste Your Google Review Link</h3>
+    <input type="text" id="reviewLink" placeholder="https://g.page/r/YOUR-LINK/review" oninput="updateTemplates()">
+    <p class="hint">📍 Get this from: <strong>Google Business Profile → Ask for reviews → Copy link</strong></p>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('templates')">📱 Text Templates</div>
+    <div class="tab" onclick="switchTab('responses')">💬 Response Templates</div>
+    <div class="tab" onclick="switchTab('checklist')">✅ Action Checklist</div>
+    <div class="tab" onclick="switchTab('timing')">🕐 When to Ask</div>
+    <div class="tab" onclick="switchTab('tips')">💡 Pro Tips</div>
+  </div>
+
+  <!-- TEMPLATES TAB -->
+  <div id="tab-templates" class="tab-content active">
+    
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <h3>📱 #1 — After First Service</h3>
+        <span class="trigger">Same Day</span>
+      </div>
+      <div class="template-body">
+        <div class="msg-box" id="msg1">Hey [Name]! TJ from Tidy Tails 🐾 Hope the yard's looking good! Quick favor — if you're happy with the cleanup, would you mind dropping a quick Google review? It's huge for a small business like mine. Takes like 30 seconds:
+
+[GOOGLE REVIEW LINK]
+
+No pressure at all — thanks for giving us a shot! 🙏</div>
+        <button class="copy-btn" onclick="copyMsg('msg1', this)">📋 Copy Template</button>
+        <div class="why-box">
+          <strong>Why it works:</strong>
+          <p>Casual, grateful, low-pressure. "30 seconds" removes the mental barrier. Same-day means the clean yard is fresh in their mind.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <h3>💪 #2 — After 3rd Service (Loyalty)</h3>
+        <span class="trigger">Visit #3</span>
+      </div>
+      <div class="template-body">
+        <div class="msg-box" id="msg2">Hey [Name]! Just wrapped up visit #3 — your yard is staying sharp 💪 Real talk, your review on Google would mean the world. Most people check reviews before hiring someone and we're just getting started building ours up.
+
+[GOOGLE REVIEW LINK]
+
+Even just a sentence or two helps. Thanks for being one of our first customers — that means a lot 🐕</div>
+        <button class="copy-btn" onclick="copyMsg('msg2', this)">📋 Copy Template</button>
+        <div class="why-box">
+          <strong>Why it works:</strong>
+          <p>By visit 3 they're committed. "One of our first customers" creates ownership — they want to help you succeed.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <h3>🔥 #3 — After a Compliment (Strike While Hot)</h3>
+        <span class="trigger">Immediately</span>
+      </div>
+      <div class="template-body">
+        <div class="msg-box" id="msg3">Ha, that means a lot! Hey since you're already feeling good about us — any chance you'd throw that on Google as a review? 😄 Even just what you texted me. It really helps people find us.
+
+[GOOGLE REVIEW LINK]
+
+Seriously appreciate it 🙏</div>
+        <button class="copy-btn" onclick="copyMsg('msg3', this)">📋 Copy Template</button>
+        <div class="why-box">
+          <strong>Why it works:</strong>
+          <p>They JUST said something nice. "Just copy what you said" is the lowest friction ask possible. Feels natural, not salesy.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <h3>👑 #4 — Existing Recurring Customers (The OG Ask)</h3>
+        <span class="trigger">This Week!</span>
+      </div>
+      <div class="template-body">
+        <div class="msg-box" id="msg4">Hey [Name]! Random ask — you've been with us for a while now and I'm trying to build up our Google reviews so more dog owners can find us. Would you mind leaving a quick one?
+
+[GOOGLE REVIEW LINK]
+
+Doesn't have to be long — even just "great service" helps. You've been awesome to work with and I really appreciate it 🐾</div>
+        <button class="copy-btn" onclick="copyMsg('msg4', this)">📋 Copy Template</button>
+        <div class="why-box">
+          <strong>Why it works:</strong>
+          <p>Honest and direct. "Random ask" feels casual. "Doesn't have to be long" removes perfectionism paralysis. <strong>USE THIS ONE FOR ALL CURRENT CUSTOMERS THIS WEEK.</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <h3>✨ #5 — After Deep Clean</h3>
+        <span class="trigger">Same Day</span>
+      </div>
+      <div class="template-body">
+        <div class="msg-box" id="msg5">Hey [Name]! Hope the yard is feeling brand new after that deep clean 🧹 If you've got 30 seconds, a Google review would be a huge help. We're a small local business trying to get the word out.
+
+[GOOGLE REVIEW LINK]
+
+Thanks for trusting us with it! 🙏</div>
+        <button class="copy-btn" onclick="copyMsg('msg5', this)">📋 Copy Template</button>
+        <div class="why-box">
+          <strong>Why it works:</strong>
+          <p>Deep cleans have dramatic before/after results. "Small local business" triggers the support-local instinct.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="template-card">
+      <div class="template-header" onclick="toggleTemplate(this)">
+        <h3>🔄 #6 — Quarterly Gentle Nudge</h3>
+        <span class="trigger">Every 90 Days</span>
+      </div>
+      <div class="template-body">
+        <div class="msg-box" id="msg6">Hey [Name]! Happy spring! Your yard's been looking great 🐾 Hey I know I've mentioned it before but if you ever get a sec to drop a Google review, it'd really help us out. No rush at all!
+
+[GOOGLE REVIEW LINK]</div>
+        <button class="copy-btn" onclick="copyMsg('msg6', this)">📋 Copy Template</button>
+        <div class="why-box">
+          <strong>Why it works:</strong>
+          <p>Light touch, no guilt. Some people need 2-3 asks — that's totally normal. "No rush" keeps it pressure-free.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RESPONSES TAB -->
+  <div id="tab-responses" class="tab-content">
+    <div class="response-card">
+      <h4><span class="stars">⭐⭐⭐⭐⭐</span> 5-Star Response</h4>
+      <div class="msg-box" id="resp5">Thank you so much, [Name]! 🐾 We love keeping your yard clean and poop-free. Appreciate you trusting Tidy Tails — it means the world to a small local business! 🙏</div>
+      <button class="copy-btn" onclick="copyMsg('resp5', this)">📋 Copy</button>
+    </div>
+    <div class="response-card">
+      <h4><span class="stars">⭐⭐⭐⭐</span> 4-Star Response</h4>
+      <div class="msg-box" id="resp4">Thanks for the feedback, [Name]! We're always looking to improve. If there's anything we can do better, shoot us a text anytime. Appreciate you! 🐾</div>
+      <button class="copy-btn" onclick="copyMsg('resp4', this)">📋 Copy</button>
+    </div>
+    <div class="response-card">
+      <h4><span class="stars" style="color:var(--danger)">⭐</span> Negative Review Response</h4>
+      <div class="msg-box" id="respNeg">Hey [Name], really sorry to hear that. We take every concern seriously — please text or call me directly so I can make it right. Your experience matters to us.</div>
+      <button class="copy-btn" onclick="copyMsg('respNeg', this)">📋 Copy</button>
+    </div>
+    <div class="why-box" style="margin-top:16px">
+      <strong>Key rule:</strong>
+      <p>Respond to EVERY review within 24 hours. Google rewards businesses that engage. Even a simple "Thank you!" helps your ranking.</p>
+    </div>
+  </div>
+
+  <!-- CHECKLIST TAB -->
+  <div id="tab-checklist" class="tab-content">
+    <h3 style="margin-bottom:16px">📋 This Week's Review Blitz</h3>
+    <ul class="checklist">
+      <li>
+        <input type="checkbox" id="c0">
+        <label for="c0"><strong>Get your Google Review link</strong> — GBP → Ask for reviews → copy</label>
+        <span class="day-badge">First!</span>
+      </li>
+      <li>
+        <input type="checkbox" id="c1">
+        <label for="c1">Send Template #4 to <strong>Customer 1</strong></label>
+        <span class="day-badge">Mon</span>
+      </li>
+      <li>
+        <input type="checkbox" id="c2">
+        <label for="c2">Send Template #4 to <strong>Customer 2</strong></label>
+        <span class="day-badge">Mon</span>
+      </li>
+      <li>
+        <input type="checkbox" id="c3">
+        <label for="c3">Send Template #4 to <strong>Customer 3</strong></label>
+        <span class="day-badge">Tue</span>
+      </li>
+      <li>
+        <input type="checkbox" id="c4">
+        <label for="c4">Send Template #4 to <strong>Customer 4</strong></label>
+        <span class="day-badge">Tue</span>
+      </li>
+      <li>
+        <input type="checkbox" id="c5">
+        <label for="c5">Send Template #4 to <strong>Customer 5</strong> (if applicable)</label>
+        <span class="day-badge">Wed</span>
+      </li>
+      <li>
+        <input type="checkbox" id="c6">
+        <label for="c6"><strong>Respond</strong> to first review within 24 hours</label>
+        <span class="day-badge">ASAP</span>
+      </li>
+      <li>
+        <input type="checkbox" id="c7">
+        <label for="c7">Hit <strong>5 reviews</strong> — star rating now shows in search!</label>
+        <span class="day-badge">Mar 31</span>
+      </li>
+    </ul>
+    <div class="why-box" style="margin-top:16px">
+      <strong>⚠️ Important:</strong>
+      <p>Space requests over 2-3 days. Don't send all at once — Google flags sudden review spikes as suspicious. 2 per day max.</p>
+    </div>
+  </div>
+
+  <!-- TIMING TAB -->
+  <div id="tab-timing" class="tab-content">
+    <h3 style="margin-bottom:16px">🕐 When & How to Ask</h3>
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>🏠 After Service (Same Day, 2-4 Hours Later)</h4>
+        <p>The yard is fresh, the relief is real. This is your golden window. Use Templates #1 or #5.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>💬 After a Compliment (Immediately)</h4>
+        <p>They just said something nice? Ask RIGHT THEN. "Hey, mind throwing that on Google?" Template #3.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>📅 After 3rd Visit</h4>
+        <p>They're loyal now. The "one of our first customers" angle hits different. Template #2.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>🔄 Quarterly (If They Haven't Reviewed)</h4>
+        <p>Gentle nudge every 90 days. Some people need multiple asks. Template #6.</p>
+      </div>
+    </div>
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin-top:16px">
+      <h4 style="margin-bottom:8px">📊 Best Times to Send Review Requests</h4>
+      <p style="color:var(--text-dim);font-size:0.9rem">
+        <strong style="color:var(--accent2)">Best days:</strong> Tuesday – Thursday<br>
+        <strong style="color:var(--accent2)">Best times:</strong> 10 AM – 2 PM or 5 – 7 PM<br>
+        <strong style="color:var(--danger)">Avoid:</strong> Monday mornings, Friday afternoons, weekends<br>
+        <strong style="color:var(--info)">Pro move:</strong> Ask in person during service, then text the link after
+      </p>
+    </div>
+  </div>
+
+  <!-- TIPS TAB -->
+  <div id="tab-tips" class="tab-content">
+    <div class="tips-grid">
+      <div class="tip">
+        <span class="icon">📱</span>
+        <div class="content">
+          <h4>Text beats email — always</h4>
+          <p>98% open rate for texts vs 20% for email. Text is the only channel for review requests.</p>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="icon">🗣️</span>
+        <div class="content">
+          <h4>Ask in person first, text the link after</h4>
+          <p>"Hey, mind leaving a review? I'll text you the link." Verbal commitment = 3x more likely to follow through.</p>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="icon">🚫</span>
+        <div class="content">
+          <h4>Never offer incentives for reviews</h4>
+          <p>Violates Google's policy. Reviews can get removed and your profile flagged. Just ask honestly.</p>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="icon">⚡</span>
+        <div class="content">
+          <h4>Respond to every review in 24 hours</h4>
+          <p>Google rewards engaged businesses. Even "Thank you!" signals that you're active and care.</p>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="icon">🎯</span>
+        <div class="content">
+          <h4>5 reviews = star rating in search</h4>
+          <p>Google doesn't show your star rating until you hit 5 reviews. That's the first milestone.</p>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="icon">⚠️</span>
+        <div class="content">
+          <h4>Never ask for "5 stars"</h4>
+          <p>Just ask for "a review." Google flags businesses that solicit specific ratings. Let quality speak.</p>
+        </div>
+      </div>
+      <div class="tip">
+        <span class="icon">📈</span>
+        <div class="content">
+          <h4>Space them out — 2 per day max</h4>
+          <p>Google's algorithm flags sudden review spikes as suspicious. Steady trickle looks organic and safe.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function switchTab(name) {
+    document.querySelectorAll('.tab').forEach((t, i) => {
+      t.classList.toggle('active', t.textContent.toLowerCase().includes(name.slice(0,4)));
+    });
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+  }
+
+  function toggleTemplate(el) {
+    const body = el.nextElementSibling;
+    body.classList.toggle('open');
+  }
+
+  function updateTemplates() {
+    const link = document.getElementById('reviewLink').value || '[GOOGLE REVIEW LINK]';
+    document.querySelectorAll('.msg-box').forEach(box => {
+      box.innerHTML = box.innerHTML.replace(/\[GOOGLE REVIEW LINK\]|https:\/\/g\.page\/r\/[^\s<]+/g, link);
+    });
+  }
+
+  function copyMsg(id, btn) {
+    const el = document.getElementById(id);
+    const text = el.innerText || el.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✅ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = '📋 Copy Template'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  // Tab switching fix
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      const names = ['templates', 'responses', 'checklist', 'timing', 'tips'];
+      const idx = [...this.parentNode.children].indexOf(this);
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.getElementById('tab-' + names[idx]).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
