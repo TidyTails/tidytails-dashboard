@@ -6,6 +6,39 @@
 
 ## March 10, 2026 (Tuesday)
 
+### 11:04 AM — 🔍 COMPETITIVE PRICING & MARKET UPDATE — Live Intel from All STL Competitors (Hourly Task)
+**Task:** Crawl every active competitor's website for current pricing, features, and status. Identify dead competitors whose customers TJ can capture. Build actionable competitive intelligence dashboard.
+**Result:** ✅ SHIPPED — Complete competitive analysis + interactive dashboard with pricing tables, feature comparison, and action items
+
+**Why This Task:**
+- Last competitive intel was March 7. Pricing and competitor status changes fast.
+- Need REAL data from live websites, not assumptions from memory.
+- Spring is peak season — knowing exactly where TJ sits vs competition drives pricing and marketing decisions.
+- Two previous tasks today focused on content/systems. This one focuses on INTELLIGENCE.
+
+**What I Found:**
+1. **2 COMPETITORS ARE DEAD** — Fresh Paws (website expired, served TJ's exact territory) and Poopy Paws (domain DNS failure, had 358 FB followers). Their orphaned customers are up for grabs RIGHT NOW.
+2. **TJ's weekly pricing ($25/wk = $100/mo) is the HIGHEST** transparent price in the market. Poop2Scoop is $18/wk, Doggie Doodies is $83/mo.
+3. **BUT TJ's flat multi-dog rate is UNMATCHED** — at 4 dogs, TJ saves customers $21/mo vs Doggie Doodies. Nobody else offers unlimited dogs at one price.
+4. **Doggie Doodies has leveled up** — now has customer portal, text alerts, gate photos, background checks, equipment disinfection. Professional operation.
+5. **TJ's website (tidytailsstl.com) shows ZERO results** in Brave Search — indexing problem persists.
+6. **Doggie Doodies' biweekly ($85) is almost the same as their weekly ($83)** — terrible value prop for biweekly customers. TJ could target this.
+
+**Key Recommendations:**
+- Hunt Fresh Paws/Poopy Paws orphaned customers immediately (Nextdoor/FB posts)
+- Start text alerts + gate photos (free, matches Doggie Doodies)
+- Market the flat-rate multi-dog advantage hard
+- Add satisfaction guarantee to marketing
+- Consider deodorizing as upsell service
+
+**Files Created:**
+- `content/2026-03-10-COMPETITIVE-PRICING-UPDATE.md` — Full analysis with all pricing data
+- `dashboard/2026-03-10-COMPETITIVE-PRICING-UPDATE.html` — Interactive dashboard with comparison tables, feature matrix, action checklist
+
+**Rotation:** 🔍 Competitive Intelligence — Market Update
+
+---
+
 ### 10:05 AM — 🎯 GUERRILLA MARKETING PLAYBOOK — Dog Parks, Events & Community Channels (Hourly Task)
 **Task:** Research and map every dog park, pet event, Facebook group, Nextdoor strategy, and community channel where TJ can show up and meet dog owners face-to-face this spring
 **Result:** ✅ SHIPPED — Complete playbook + interactive dashboard with copy-paste posts and action checklist

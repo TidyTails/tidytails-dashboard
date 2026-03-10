@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔍 STL Pet Waste — Competitive Intel Dashboard | March 2026</title>
+<style>
+:root {
+  --bg: #0a0a0f;
+  --card: #141420;
+  --card-hover: #1a1a2e;
+  --accent: #6c5ce7;
+  --accent2: #00b894;
+  --danger: #e74c3c;
+  --warn: #f39c12;
+  --text: #e8e8f0;
+  --text-dim: #8888aa;
+  --border: #2a2a3e;
+  --dead: #e74c3c22;
+  --alive: #00b89422;
+  --tj: #6c5ce722;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+.container { max-width:1200px; margin:0 auto; padding:20px; }
+h1 { font-size:1.8rem; margin-bottom:4px; }
+.subtitle { color:var(--text-dim); font-size:0.9rem; margin-bottom:24px; }
+.alert-box { background:linear-gradient(135deg, #e74c3c22, #e74c3c11); border:1px solid #e74c3c44; border-radius:12px; padding:16px 20px; margin-bottom:24px; }
+.alert-box h3 { color:#e74c3c; font-size:1rem; margin-bottom:8px; }
+.alert-box p { font-size:0.9rem; color:var(--text-dim); }
+.opp-box { background:linear-gradient(135deg, #00b89422, #00b89411); border:1px solid #00b89444; border-radius:12px; padding:16px 20px; margin-bottom:24px; }
+.opp-box h3 { color:#00b894; font-size:1rem; margin-bottom:8px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(340px,1fr)); gap:16px; margin-bottom:24px; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; transition:all 0.2s; }
+.card:hover { background:var(--card-hover); transform:translateY(-2px); }
+.card.dead { border-color:#e74c3c44; background:var(--dead); }
+.card.alive { border-color:#00b89444; }
+.card.tj { border-color:#6c5ce744; background:var(--tj); }
+.card h3 { font-size:1.1rem; margin-bottom:4px; display:flex; align-items:center; gap:8px; }
+.badge { font-size:0.7rem; padding:2px 8px; border-radius:99px; font-weight:600; }
+.badge.dead { background:#e74c3c33; color:#e74c3c; }
+.badge.rival { background:#f39c1233; color:#f39c12; }
+.badge.franchise { background:#3498db33; color:#3498db; }
+.badge.budget { background:#00b89433; color:#00b894; }
+.badge.premium { background:#9b59b633; color:#9b59b6; }
+.badge.og { background:#e67e2233; color:#e67e22; }
+.badge.you { background:#6c5ce733; color:#6c5ce7; }
+.card .price { font-size:1.5rem; font-weight:700; color:var(--accent2); }
+.card .price-note { font-size:0.8rem; color:var(--text-dim); }
+.card .details { margin-top:12px; font-size:0.85rem; color:var(--text-dim); }
+.card .details li { margin-bottom:4px; list-style:none; }
+.card .details li::before { content:'→ '; color:var(--accent); }
+
+.pricing-table { width:100%; border-collapse:collapse; margin-bottom:24px; font-size:0.9rem; }
+.pricing-table th { background:var(--card); padding:12px; text-align:left; border-bottom:2px solid var(--border); color:var(--accent); }
+.pricing-table td { padding:10px 12px; border-bottom:1px solid var(--border); }
+.pricing-table tr:hover td { background:var(--card-hover); }
+.pricing-table tr.tj-row { background:var(--tj); }
+.pricing-table tr.tj-row td { font-weight:600; }
+.pricing-table tr.dead-row { opacity:0.5; text-decoration:line-through; }
+.cheapest { color:#00b894; font-weight:700; }
+.expensive { color:#e74c3c; }
+
+.section-title { font-size:1.3rem; margin:32px 0 16px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+
+.action-list { list-style:none; margin-bottom:24px; }
+.action-list li { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:12px 16px; margin-bottom:8px; display:flex; align-items:flex-start; gap:12px; cursor:pointer; transition:all 0.2s; }
+.action-list li:hover { background:var(--card-hover); }
+.action-list li.done { opacity:0.4; text-decoration:line-through; }
+.check { width:22px; height:22px; border:2px solid var(--accent); border-radius:6px; flex-shrink:0; display:flex; align-items:center; justify-content:center; margin-top:2px; }
+.check.checked { background:var(--accent); }
+.check.checked::after { content:'✓'; color:white; font-size:14px; }
+.action-label { font-weight:600; }
+.action-desc { font-size:0.85rem; color:var(--text-dim); }
+.action-timing { font-size:0.75rem; padding:2px 8px; border-radius:99px; font-weight:600; }
+.timing-now { background:#e74c3c33; color:#e74c3c; }
+.timing-week { background:#f39c1233; color:#f39c12; }
+.timing-month { background:#3498db33; color:#3498db; }
+
+.insight-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:16px; margin-bottom:24px; }
+.insight { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; text-align:center; }
+.insight .number { font-size:2rem; font-weight:800; }
+.insight .label { font-size:0.85rem; color:var(--text-dim); margin-top:4px; }
+
+.tab-bar { display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap; }
+.tab { padding:8px 16px; border-radius:8px; background:var(--card); border:1px solid var(--border); cursor:pointer; font-size:0.85rem; color:var(--text-dim); transition:all 0.2s; }
+.tab.active { background:var(--accent); color:white; border-color:var(--accent); }
+.tab:hover:not(.active) { background:var(--card-hover); }
+
+.feature-compare { width:100%; border-collapse:collapse; font-size:0.85rem; margin-bottom:24px; }
+.feature-compare th { background:var(--card); padding:10px; text-align:center; border-bottom:2px solid var(--border); }
+.feature-compare th:first-child { text-align:left; }
+.feature-compare td { padding:8px 10px; border-bottom:1px solid var(--border); text-align:center; }
+.feature-compare td:first-child { text-align:left; font-weight:500; }
+.has { color:#00b894; }
+.no { color:#e74c3c; opacity:0.5; }
+
+@media(max-width:600px) {
+  .grid { grid-template-columns:1fr; }
+  .insight-grid { grid-template-columns:1fr 1fr; }
+  h1 { font-size:1.4rem; }
+  .pricing-table { font-size:0.8rem; }
+  .feature-compare { font-size:0.75rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🔍 STL Pet Waste — Competitive Intel</h1>
+  <p class="subtitle">Live market analysis · March 10, 2026 · 9 competitors tracked</p>
+
+  <div class="insight-grid">
+    <div class="insight">
+      <div class="number" style="color:#e74c3c">2</div>
+      <div class="label">Competitors DEAD</div>
+    </div>
+    <div class="insight">
+      <div class="number" style="color:#00b894">7</div>
+      <div class="label">Active Competitors</div>
+    </div>
+    <div class="insight">
+      <div class="number" style="color:#f39c12">$72-100</div>
+      <div class="label">Weekly Price Range/mo</div>
+    </div>
+    <div class="insight">
+      <div class="number" style="color:#6c5ce7">$0</div>
+      <div class="label">TJ's Extra Dog Fee 🏆</div>
+    </div>
+  </div>
+
+  <div class="alert-box">
+    <h3>🚨 2 Competitors Down — Their Customers Need a Home</h3>
+    <p><strong>Fresh Paws</strong> (western STL & St. Charles) — website expired. <strong>Poopy Paws</strong> — domain dead. Both served TJ's area. Their customers are looking for someone new RIGHT NOW. See action items below.</p>
+  </div>
+
+  <div class="opp-box">
+    <h3>💡 TJ's Secret Weapon: Flat-Rate Multi-Dog Pricing</h3>
+    <p>At 4 dogs, TJ saves customers <strong>$21/mo vs Doggie Doodies</strong> and <strong>$20/mo vs Poop2Scoop</strong>. No other competitor offers unlimited dogs at one flat price. This should be the #1 marketing message.</p>
+  </div>
+
+  <h2 class="section-title">💰 Price Comparison — Weekly Service (1 Dog)</h2>
+  <div class="tab-bar">
+    <div class="tab active" onclick="showTable('weekly')">Weekly</div>
+    <div class="tab" onclick="showTable('biweekly')">Biweekly</div>
+    <div class="tab" onclick="showTable('monthly')">Monthly</div>
+    <div class="tab" onclick="showTable('multidog')">Multi-Dog (4 Dogs)</div>
+  </div>
+
+  <div id="table-weekly">
+    <table class="pricing-table">
+      <tr><th>Competitor</th><th>Monthly Cost</th><th>Per Visit</th><th>Status</th></tr>
+      <tr><td>🥇 Poop2Scoop</td><td class="cheapest">~$72/mo</td><td>$18</td><td>✅ Active</td></tr>
+      <tr><td>🥈 Doggie Doodies</td><td>$83/mo</td><td>~$19.15</td><td>✅ #1 Rival</td></tr>
+      <tr><td>🥉 Dirty Dog Wash</td><td>$95/mo</td><td>~$21.92</td><td>✅ Active</td></tr>
+      <tr class="tj-row"><td>⭐ Tidy Tails (TJ)</td><td class="expensive">$100/mo</td><td>$25</td><td>✅ You</td></tr>
+      <tr><td>DoodyCalls</td><td>Quote only</td><td>—</td><td>✅ Franchise</td></tr>
+      <tr><td>Yuckos</td><td>Quote only</td><td>—</td><td>✅ Since 1990</td></tr>
+      <tr class="dead-row"><td>Poopy Paws</td><td>~$80/mo</td><td>$20</td><td>❌ Dead</td></tr>
+      <tr class="dead-row"><td>Fresh Paws</td><td>Unknown</td><td>—</td><td>❌ Dead</td></tr>
+    </table>
+  </div>
+
+  <div id="table-biweekly" style="display:none">
+    <table class="pricing-table">
+      <tr><th>Competitor</th><th>Monthly Cost</th><th>Notes</th></tr>
+      <tr><td>🥇 Poop2Scoop</td><td class="cheapest">~$50/mo</td><td>$25 every other week</td></tr>
+      <tr><td>🥈 Dirty Dog Wash</td><td>$80/mo</td><td>1-2 dogs included</td></tr>
+      <tr><td>🥉 Doggie Doodies</td><td>$85/mo</td><td>Almost same as weekly!</td></tr>
+      <tr class="tj-row"><td>⭐ Tidy Tails (TJ)</td><td>$90/mo</td><td>$45 biweekly</td></tr>
+    </table>
+  </div>
+
+  <div id="table-monthly" style="display:none">
+    <table class="pricing-table">
+      <tr><th>Competitor</th><th>Monthly Cost</th><th>Notes</th></tr>
+      <tr class="tj-row"><td>🥇 ⭐ Tidy Tails (TJ)</td><td class="cheapest">$70/mo</td><td>CHEAPEST monthly! 🏆</td></tr>
+      <tr><td>🥈 Doggie Doodies</td><td>$90/mo</td><td>$20 MORE than TJ</td></tr>
+    </table>
+  </div>
+
+  <div id="table-multidog" style="display:none">
+    <table class="pricing-table">
+      <tr><th>Competitor</th><th>Monthly Cost (4 Dogs Weekly)</th><th>Savings vs TJ</th></tr>
+      <tr class="tj-row"><td>🥇 ⭐ Tidy Tails (TJ)</td><td class="cheapest">$100/mo</td><td>— 🏆</td></tr>
+      <tr><td>🥈 Dirty Dog Wash</td><td>$105/mo</td><td class="expensive">TJ saves $5/mo</td></tr>
+      <tr><td>🥉 Poop2Scoop</td><td>~$120/mo</td><td class="expensive">TJ saves $20/mo</td></tr>
+      <tr><td>Doggie Doodies</td><td>$121/mo</td><td class="expensive">TJ saves $21/mo</td></tr>
+    </table>
+  </div>
+
+  <h2 class="section-title">⚔️ Feature Comparison</h2>
+  <table class="feature-compare">
+    <tr>
+      <th>Feature</th>
+      <th>Tidy Tails</th>
+      <th>Doggie Doodies</th>
+      <th>Poop2Scoop</th>
+      <th>DoodyCalls</th>
+    </tr>
+    <tr>
+      <td>No contracts</td>
+      <td class="has">✅</td><td class="has">✅</td><td class="has">✅</td><td class="has">✅</td>
+    </tr>
+    <tr>
+      <td>Free first cleanup</td>
+      <td class="no">❌</td><td class="has">✅</td><td class="no">❌</td><td class="no">❌</td>
+    </tr>
+    <tr>
+      <td>Text alerts</td>
+      <td class="no">❌ Add this!</td><td class="has">✅</td><td class="no">❌</td><td class="no">❌</td>
+    </tr>
+    <tr>
+      <td>Gate photos</td>
+      <td class="no">❌ Add this!</td><td class="has">✅</td><td class="no">❌</td><td class="no">❌</td>
+    </tr>
+    <tr>
+      <td>Customer portal</td>
+      <td class="no">❌</td><td class="has">✅</td><td class="no">❌</td><td class="has">✅</td>
+    </tr>
+    <tr>
+      <td>Flat multi-dog rate</td>
+      <td class="has">✅ 🏆</td><td class="no">❌</td><td class="no">❌</td><td class="no">❌</td>
+    </tr>
+    <tr>
+      <td>Deodorizing service</td>
+      <td class="no">❌ Upsell?</td><td class="no">❌</td><td class="has">✅</td><td class="has">✅</td>
+    </tr>
+    <tr>
+      <td>E-gift cards</td>
+      <td class="no">❌</td><td class="has">✅</td><td class="no">❌</td><td class="no">❌</td>
+    </tr>
+    <tr>
+      <td>Referral program</td>
+      <td class="has">✅</td><td class="has">✅</td><td class="no">❌</td><td class="no">❌</td>
+    </tr>
+    <tr>
+      <td>Background checks</td>
+      <td class="no">❌</td><td class="has">✅</td><td class="no">❌</td><td class="has">✅</td>
+    </tr>
+    <tr>
+      <td>Commercial services</td>
+      <td class="has">✅</td><td class="has">✅</td><td class="has">✅</td><td class="has">✅</td>
+    </tr>
+    <tr>
+      <td>Satisfaction guarantee</td>
+      <td class="no">❌ Add!</td><td class="has">✅</td><td class="has">✅</td><td class="has">✅</td>
+    </tr>
+  </table>
+
+  <h2 class="section-title">🏢 Competitor Profiles</h2>
+  <div class="grid">
+    <div class="card tj">
+      <h3>⭐ Tidy Tails (TJ) <span class="badge you">YOU</span></h3>
+      <div class="price">$25/wk flat</div>
+      <div class="price-note">$70/mo monthly · No per-dog fees · 314-850-7140</div>
+      <ul class="details">
+        <li>8 recurring customers</li>
+        <li>Service area: West County STL</li>
+        <li>Flat pricing = 🏆 for multi-dog homes</li>
+        <li>⚠️ Not showing up in search results</li>
+      </ul>
+    </div>
+
+    <div class="card alive">
+      <h3>Doggie Doodies <span class="badge rival">#1 RIVAL</span></h3>
+      <div class="price">$83/mo weekly</div>
+      <div class="price-note">+$5/extra dog · Free first cleanup · 636-633-3443</div>
+      <ul class="details">
+        <li>Chesterfield HQ — same exact territory as TJ</li>
+        <li>Customer portal, text alerts, gate photos</li>
+        <li>Background checks, equipment disinfection</li>
+        <li>E-gift cards + referral program</li>
+        <li>Weakness: hotmail email, no personality</li>
+      </ul>
+    </div>
+
+    <div class="card alive">
+      <h3>Poop2Scoop <span class="badge budget">BUDGET</span></h3>
+      <div class="price">$18/wk (~$72/mo)</div>
+      <div class="price-note">+$4/extra dog · 314-449-9447</div>
+      <ul class="details">
+        <li>Cheapest transparent pricing in market</li>
+        <li>Family-run, satisfaction guarantee</li>
+        <li>Deodorizing deck/patio service</li>
+        <li>Weakness: basic website, no tech features</li>
+      </ul>
+    </div>
+
+    <div class="card alive">
+      <h3>Dirty Dog Wash Poo Crew <span class="badge premium">PREMIUM</span></h3>
+      <div class="price">$95/mo weekly</div>
+      <div class="price-note">1-2 dogs included · Part of grooming business</div>
+      <ul class="details">
+        <li>Cross-sells from grooming customers</li>
+        <li>10-mile radius limit + trip charge</li>
+        <li>Higher pricing positions as premium</li>
+      </ul>
+    </div>
+
+    <div class="card alive">
+      <h3>DoodyCalls <span class="badge franchise">FRANCHISE</span></h3>
+      <div class="price">Quote Only</div>
+      <div class="price-note">National brand · (314) 230-8082</div>
+      <ul class="details">
+        <li>Authority Brands franchise (national)</li>
+        <li>25+ years experience, uniformed techs</li>
+        <li>Commercial + pet waste stations</li>
+        <li>Weakness: franchise = less personal</li>
+      </ul>
+    </div>
+
+    <div class="card alive">
+      <h3>Yuckos <span class="badge og">SINCE 1990</span></h3>
+      <div class="price">Quote Only</div>
+      <div class="price-note">314-291-POOP (7667) · gotpoop@gotpoop.com</div>
+      <ul class="details">
+        <li>36 years in business — the OG</li>
+        <li>Mon-Fri 8AM-3PM</li>
+        <li>Commercial + residential + HOA</li>
+        <li>Weakness: ancient website, no online pricing</li>
+      </ul>
+    </div>
+
+    <div class="card alive">
+      <h3>Poop 911 <span class="badge franchise">FRANCHISE</span></h3>
+      <div class="price">Quote Only</div>
+      <div class="price-note">Focus: City of STL (Soulard, Lafayette Sq)</div>
+      <ul class="details">
+        <li>Free first cleanup with recurring</li>
+        <li>Less overlap with TJ's West County territory</li>
+        <li>National franchise operation</li>
+      </ul>
+    </div>
+
+    <div class="card dead">
+      <h3>Fresh Paws <span class="badge dead">DEAD</span></h3>
+      <div class="price" style="color:#e74c3c">SITE EXPIRED</div>
+      <div class="price-note">Was: Western STL & St. Charles · Squarespace 404</div>
+      <ul class="details">
+        <li>Served TJ's exact territory</li>
+        <li>Customers are orphaned — grab them!</li>
+        <li>Check Nextdoor & Facebook for their clients</li>
+      </ul>
+    </div>
+
+    <div class="card dead">
+      <h3>Poopy Paws <span class="badge dead">DEAD</span></h3>
+      <div class="price" style="color:#e74c3c">DOMAIN DOWN</div>
+      <div class="price-note">Was: $20/wk flat · 358 FB followers</div>
+      <ul class="details">
+        <li>Domain DNS failure — completely offline</li>
+        <li>Had Yelp, Nextdoor, Facebook presence</li>
+        <li>Their customers are looking for new service</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 class="section-title">✅ Action Items</h2>
+  <ul class="action-list" id="actions">
+    <li onclick="toggleAction(this)">
+      <div class="check"></div>
+      <div>
+        <span class="action-timing timing-now">THIS WEEK</span>
+        <div class="action-label">Post in Nextdoor/FB targeting orphaned customers</div>
+        <div class="action-desc">"Looking for a new pet waste service? Fresh Paws and Poopy Paws have closed. We're here to help!" — post in their service area neighborhoods</div>
+      </div>
+    </li>
+    <li onclick="toggleAction(this)">
+      <div class="check"></div>
+      <div>
+        <span class="action-timing timing-now">THIS WEEK</span>
+        <div class="action-label">Start texting customers before/after service</div>
+        <div class="action-desc">Free to implement. "On my way!" + "All done! Gate secured ✅" — matches Doggie Doodies' text alerts feature</div>
+      </div>
+    </li>
+    <li onclick="toggleAction(this)">
+      <div class="check"></div>
+      <div>
+        <span class="action-timing timing-now">THIS WEEK</span>
+        <div class="action-label">Take gate photos after each service</div>
+        <div class="action-desc">Snap a quick pic of the closed gate, send to customer. Builds trust, matches competitor feature. Takes 5 seconds.</div>
+      </div>
+    </li>
+    <li onclick="toggleAction(this)">
+      <div class="check"></div>
+      <div>
+        <span class="action-timing timing-week">NEXT WEEK</span>
+        <div class="action-label">Create "Multi-Dog Special" marketing campaign</div>
+        <div class="action-desc">"Got 4 dogs? Save $21/month vs other scoopers. One flat rate, no matter how many pups." — Target multi-dog FB groups</div>
+      </div>
+    </li>
+    <li onclick="toggleAction(this)">
+      <div class="check"></div>
+      <div>
+        <span class="action-timing timing-week">NEXT WEEK</span>
+        <div class="action-label">Verify website search indexing</div>
+        <div class="action-desc">tidytailsstl.com shows ZERO results in Brave Search. Google Search Console should be checked. The earlier indexing fix needs verification.</div>
+      </div>
+    </li>
+    <li onclick="toggleAction(this)">
+      <div class="check"></div>
+      <div>
+        <span class="action-timing timing-month">THIS MONTH</span>
+        <div class="action-label">Add deodorizing as upsell service</div>
+        <div class="action-desc">Poop2Scoop & DoodyCalls offer deck/patio deodorizing. Simple add-on at $5-10/visit. Pure profit, differentiator.</div>
+      </div>
+    </li>
+    <li onclick="toggleAction(this)">
+      <div class="check"></div>
+      <div>
+        <span class="action-timing timing-month">THIS MONTH</span>
+        <div class="action-label">Add satisfaction guarantee to marketing</div>
+        <div class="action-desc">3 of 4 main competitors offer one. Easy to add: "Not happy? We'll come back for free." Zero risk, builds trust.</div>
+      </div>
+    </li>
+  </ul>
+
+  <p style="text-align:center;color:var(--text-dim);font-size:0.8rem;margin-top:40px;">Built by Franklin 🐕💩 · March 10, 2026 · Data from live competitor websites</p>
+</div>
+
+<script>
+function showTable(id) {
+  ['weekly','biweekly','monthly','multidog'].forEach(t => {
+    document.getElementById('table-'+t).style.display = t===id?'block':'none';
+  });
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.classList.toggle('active', tab.textContent.toLowerCase().includes(id.replace('multidog','multi')));
+  });
+  // Fix tab active for exact match
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  const labels = {weekly:'Weekly',biweekly:'Biweekly',monthly:'Monthly',multidog:'Multi-Dog (4 Dogs)'};
+  document.querySelectorAll('.tab').forEach(tab => {
+    if(tab.textContent === labels[id]) tab.classList.add('active');
+  });
+}
+
+function toggleAction(el) {
+  el.classList.toggle('done');
+  const check = el.querySelector('.check');
+  check.classList.toggle('checked');
+  saveState();
+}
+
+function saveState() {
+  const items = document.querySelectorAll('.action-list li');
+  const state = Array.from(items).map(li => li.classList.contains('done'));
+  localStorage.setItem('comp-actions-2026-03-10', JSON.stringify(state));
+}
+
+function loadState() {
+  const saved = localStorage.getItem('comp-actions-2026-03-10');
+  if(saved) {
+    const state = JSON.parse(saved);
+    const items = document.querySelectorAll('.action-list li');
+    state.forEach((done, i) => {
+      if(done && items[i]) {
+        items[i].classList.add('done');
+        items[i].querySelector('.check').classList.add('checked');
+      }
+    });
+  }
+}
+
+loadState();
+</script>
+</body>
+</html>
