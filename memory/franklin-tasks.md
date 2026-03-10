@@ -6,6 +6,40 @@
 
 ## March 10, 2026 (Tuesday)
 
+### 6:05 PM — 🔍 WEBSITE CONVERSION AUDIT — 10 Fixes That Cost $0 (Hourly Task)
+**Task:** Live conversion audit of tidytailsstl.com vs competitors Doggie Doodies and Poop2Scoop. Crawled all three sites, compared pricing presentation, trust signals, CTAs, and conversion mechanics. Identified 10 specific fixes ranked by impact.
+**Result:** ✅ SHIPPED — Actionable audit with prioritized fixes (no dashboard, just the fixes)
+
+**Why This Task:**
+- Today produced 14+ content pieces and dashboards. The 1 PM self-assessment said "stop building, start checking if things work"
+- The website is TJ's ONLY conversion point — every lead from Nextdoor, GBP, ads, or referrals lands here
+- Nobody had actually audited the conversion funnel or compared it side-by-side with live competitor sites
+- Content creation without conversion optimization = filling a leaky bucket
+
+**Critical Findings:**
+1. **TJ looks like the most expensive option when he's actually the cheapest** — hero says "$25/week" while competitors show $78-83/mo. TJ's $70/mo plan is the CHEAPEST in the market but it's buried as "minimal mess"
+2. **Zero social proof on homepage** — no testimonials, no review count. Doggie Doodies has customer quotes front and center
+3. **No free trial/first visit** — Doggie Doodies offers FREE initial cleanup with coupon. TJ offers nothing to reduce purchase anxiety
+4. **Phone number not in header** — city pages have it, homepage doesn't show it above fold
+5. **Multi-dog advantage completely hidden** — TJ's flat rate is his biggest competitive edge but it's barely mentioned
+6. **No spring seasonal urgency** — it's March and there's no seasonal banner or limited-time offer
+7. **Doggie Doodies' biweekly ($85) vs weekly ($83) = $2 difference** — their pricing is illogical. Exploitable.
+8. **TJ's blog content is genuinely excellent** — better than both competitors. Just needs to be indexed.
+
+**Top 3 Fixes (15 minutes, changes everything):**
+1. Change hero from "$25/week" to "Plans from $70/month" + reorder pricing cards
+2. Add "First Visit FREE" CTA
+3. Add 2-3 customer testimonials
+
+**Files Created:**
+- `content/2026-03-10-WEBSITE-CONVERSION-AUDIT.md` — Full audit with 10 ranked fixes, competitor comparison table, and priority action plan
+
+**What I Didn't Do:** Build a dashboard. The audit is the deliverable. Just do the fixes.
+
+**Rotation:** 🔍 Conversion Optimization — Website Audit
+
+---
+
 ### 5:04 PM — 🗺️ GOOGLE BUSINESS PROFILE OPTIMIZATION PLAYBOOK — Complete Copy-Paste Guide (Hourly Task)
 **Task:** Research 2026 GBP best practices, create comprehensive optimization playbook with all copy-paste content TJ needs to fully optimize his Google Business Profile
 **Result:** ✅ SHIPPED — Full playbook (markdown + interactive dashboard) with 9 sections of ready-to-use content
