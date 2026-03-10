@@ -208,15 +208,16 @@ Pet waste removal service in St. Louis County and surrounding areas.
 - Missing: Website, Google Business Profile
 - Main challenge: Customer acquisition at scale
 
-### Competition (UPDATED Mar 5, 2026 12 AM)
+### Competition (UPDATED Mar 9, 2026 8PM)
 
-**🎯 STL COUNTY = CONFIRMED BLUE OCEAN (verified midnight scan)**
+**⚠️ NEW THREAT: Scoop Soldiers entered STL market Feb 6, 2026**
 
 **ACTIVE Competitors (verified via live site fetches):**
 
 | Competitor | STL County | St. Charles | Weekly | Notes |
 |------------|------------|-------------|--------|-------|
-| **Poop2Scoop** | ✅ Yes | ❓ | $18 | CHEAPEST, 314-449-9447 |
+| **Scoop Soldiers** 🆕 | ✅ Yes | ❓ | **$15** | **NEW — Feb 2026 expansion. National franchise. CHEAPEST in market.** 877-930-POOP. SEO-optimized local pages. Residential + commercial. Background-checked techs. Deodorizer/sanitizer add-ons. THREAT: HIGH |
+| **Poop2Scoop** | ✅ Yes | ❓ | $18 | 314-449-9447 |
 | **Little Stinkers** | ❌ **NO** | ✅ Primary | Quote | NEW domain: littlestinkersofmo.com |
 | **POOP 911** | ❓ 404 | ❓ | Quote | STL page 404 — status unclear |
 | **DoodyCalls** | ✅ Yes | ❓ | Quote | Franchise, (314) 230-8082 |
@@ -229,15 +230,18 @@ Pet waste removal service in St. Louis County and surrounding areas.
 
 **Strategic implication:** Focus marketing on STL County where competition is thinner. St. Charles expansion means head-to-head with Little Stinkers.
 
-**DEAD Competitors (verified):**
-- Fresh Paws — Squarespace expired (Wildwood territory)
+**DEAD Competitors (verified Mar 9):**
+- Fresh Paws (wearefreshpaws.com) — STILL DEAD, Squarespace expired (verified Mar 9)
 - St. Louis Pooper Scoopers — Yelp shows CLOSED (South City)
-- Pawfect Waste Solutions, pooperscooperstl.com, Scoop Soldiers STL, Poopy Paws 314 — DNS dead/404
+- Pawfect Waste Solutions, pooperscooperstl.com, Poopy Paws 314 — DNS dead/404
+- ~~Scoop Soldiers STL~~ — **RESURRECTED.** Now LIVE as national franchise expansion (see ACTIVE above)
 
-**💡 PRICING REALITY:**
+**💡 PRICING REALITY (Updated Mar 9):**
+- TJ's weekly ($25) > Scoop Soldiers ($15) — **TJ is 67% more expensive than cheapest**
 - TJ's weekly ($25) > Poop2Scoop ($18) — **TJ is 39% more expensive**
 - TJ's biweekly ($45) > Poop2Scoop ($25) — **TJ is 80% more expensive**
 - TJ's monthly ($70) = **UNIQUE** — no competitor offers this
+- **Scoop Soldiers is now the price floor** — $15/visit includes up to 4 dogs, all major cards accepted
 
 **Strategic Implications:**
 1. **STOP leading with $25/week** — that's the weak spot

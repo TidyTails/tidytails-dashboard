@@ -12,6 +12,32 @@
 
 ## March 9, 2026 (Monday) — Evening
 
+### 8:05 PM — 🚨 COMPETITOR ALERT: Scoop Soldiers Enters STL Market (Hourly Task)
+**Task:** Research new competitor activity in STL pet waste market — verify dead competitors, check for new entrants, update pricing intel
+**Result:** ✅ SHIPPED — Competitive intelligence brief with new threat analysis, updated pricing landscape, and banked commercial leads for future use
+
+**Why This Task:**
+- Previous competitor database listed Scoop Soldiers as "DNS dead/404" — they're NOT dead
+- Scoop Soldiers officially expanded to STL on Feb 6, 2026 (EIN Presswire release)
+- They're now the CHEAPEST option in STL at $15/visit (TJ charges $25 = 67% premium)
+- Fresh intel > another planning toolkit when the competitive landscape just shifted
+- Also banked property management, apartment, and vet clinic contacts for when commercial resumes
+
+**Key Findings:**
+1. **Scoop Soldiers is LIVE in STL** — National franchise (est. 2010), professional SEO-optimized local pages, background-checked techs, residential + commercial, $15/visit starting. THREAT: HIGH.
+2. **Fresh Paws still dead** — Squarespace still expired. Not a threat.
+3. **STL pricing floor dropped** — Was $18 (Poop2Scoop), now $15 (Scoop Soldiers). TJ's $25/week is 67% premium.
+4. **TJ's moat = monthly option ($70) + personal service** — No franchise replicates first-name-basis relationship.
+5. **Banked 6 property mgmt companies, 5 apartment complexes, 6 vet clinics** for future commercial outreach.
+6. **Wildwood HOA directory** is public goldmine — cityofwildwood.com has trustee names, emails, phones.
+
+**Updated in MEMORY.md:** Competition section updated with Scoop Soldiers as active threat, pricing reality adjusted.
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-09-COMPETITOR-ALERT-SCOOP-SOLDIERS.html
+**Rotation:** 🔍 Competitive Intelligence — New Entrant Alert
+
+---
+
 ### 6:05 PM — 🌍 SEO SERVICE AREA PAGES KIT — 12 City Pages Ready to Deploy (Hourly Task)
 **Task:** Create deployable SEO service area page content for tidytailsstl.com — addressing the #1 growth blocker (zero Google indexed pages)
 **Result:** ✅ SHIPPED — 12 unique, SEO-optimized service area pages with copy-paste content, meta tags, and deployment guide
