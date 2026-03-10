@@ -1,20 +1,23 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-08 08:00 CST*
+*Last updated: 2026-03-10 08:00 CST*
 
 ---
 
 ## 🐕 DOG WASTE (Tidy Tails)
 
 ### 🔥 In Progress
-- [ ] **Google Indexing** — Site live, Search Console submitted (Mar 5), STILL 0 pages indexed (Day 3)
-  - Status: Waiting on Google to crawl. Checked Mar 8 AM — `site:tidytailsstl.com` returns 0 on Brave.
-  - Owner: Google (nothing more we can do — if still 0 by Mar 10, escalate with manual URL inspection)
-  - Expected: 3-7 days for initial indexing (Day 3 of 7)
+- [ ] **🚨 Google Indexing — DAY 5, ESCALATION REQUIRED** — STILL 0 pages indexed
+  - Status: Checked Mar 10 AM — `site:tidytailsstl.com` returns 0 on Brave. Day 5 of waiting.
+  - **ACTION:** TJ must manually request indexing in Google Search Console TODAY
+  - Escalation guide: `dashboard/campaigns/tidy-tails/2026-03-10-GOOGLE-INDEXING-ESCALATION.md`
+  - Owner: TJ (5 min task in GSC)
 
 - [ ] **Spring Marketing Push** — FB group posts, spring-themed content
-  - Status: Week 11 posts ready (Mar 9-14), Saturday posts (Mar 7), Friday posts (Mar 6)
-  - Monday post uses Daylight Saving hook (clocks sprang forward today!)
+  - Status: **Week 12 posts ready (Mar 10-14)** + Week 11 posts still available
+  - Week 12: `dashboard/campaigns/tidy-tails/2026-03-10-WEEK12-FB-POSTS.md`
+  - GBP posts: `dashboard/campaigns/tidy-tails/2026-03-10-WEEK12-GBP-POSTS.md`
+  - New blog post added: Spring Cleaning Checklist (SEO content for indexing)
   - Fresh Paws customer grab campaign still ready (Wildwood/Ballwin area)
   - Door hanger/flyer text ready for print
   - Owner: TJ (posting + printing) + Franklin (content creation)
@@ -32,6 +35,9 @@
 - [x] **Winter Reheat Scripts** — 4 text variations for dormant customers ✅ (Mar 5)
 - [x] **6 AI Video Ads** — Produced via Basquiat ✅ (Mar 5)
 - [x] **Competitor Intel Update** — Doggie Doodies found, pricing matrix updated ✅ (Mar 6)
+- [x] **Week 12 FB + GBP Posts** — 5 FB posts + 3 GBP posts created ✅ (Mar 10)
+- [x] **New Blog Post** — Spring Cleaning Checklist for STL Dog Owners (SEO) ✅ (Mar 10)
+- [x] **Google Indexing Escalation Guide** — Step-by-step for TJ ✅ (Mar 10)
 - [x] **Customer Referral Program v2** — 7 scripts, ROI math, launch plan ✅ (Mar 5)
 - [x] **Free Platform Listing Blitz** — 6 platforms identified ✅ (Mar 6)
 - [x] **Website** — tidytailsstl.com live, SSL, mobile responsive ✅
