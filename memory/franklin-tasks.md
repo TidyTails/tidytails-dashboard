@@ -6,6 +6,39 @@
 
 ## March 10, 2026 (Tuesday)
 
+### 5:04 AM — 📞 ENRICHED CONTACT SHEET — 15 Dial-Ready Leads with Verified Info (Hourly Task)
+**Task:** Enrich top commercial leads with verified phone numbers, addresses, hours, decision-maker names + research 8 NEW pet business partnership leads in target area
+**Result:** ✅ SHIPPED — 15 leads total (6 property managers + 9 pet businesses), 11 with verified phone numbers, call scripts, weekly call schedule
+
+**Why This Task:**
+- Monday Commercial Lead Pack had 25 leads but most were missing phone numbers — can't call a website
+- TJ needs to PICK UP THE PHONE this week. Leads without contact info just collect dust.
+- Added a new category: pet business partnerships (daycares, groomers, pet stores) — these are businesses where TJ's ideal customers ALREADY go
+- Cross-referral partnerships cost nothing and create recurring lead flow
+
+**Key Verified Contacts:**
+1. West End Management — (314) 900-2001 — Has a PET GUARANTEE program (warmest lead!)
+2. Deca Property Management — (314) 631-3306 — Ask for Marty (Broker-Officer, HOA + commercial)
+3. CPM Gateway — (636) 227-8688 — Pure HOA specialist in Ballwin, 40+ years
+4. Hermann London — (314) 802-0797 — Manchester Rd location, right in target area
+5. Silver Maple Pet Center — (314) 965-1630 — 91-year-old institution, Des Peres
+6. Williamsburg Pet Hotel — (636) 227-5764 — Kirkwood, est. 1962
+7. BauserHaus — (314) 961-3911 — Could be BOTH referral partner AND commercial client
+8. Treats Unleashed Kirkwood (2 locations) — (314) 984-0222 / (314) 287-7233
+9. Little House of Dogs — (314) 909-7833 — Ask for Mary
+
+**What I Created:**
+1. `content/2026-03-10-ENRICHED-CONTACT-SHEET.md` — Full enriched lead sheet with pitches
+2. `dashboard/2026-03-10-ENRICHED-CONTACT-SHEET.html` — Interactive dashboard with:
+   - Expandable lead cards with priority badges, contact info, and custom pitch angles
+   - Click-to-call phone buttons
+   - Weekly call schedule checklist (Tue-Wed: property managers, Thu: pet business drop-ins, Fri: follow-ups)
+   - Copy-to-clipboard call scripts
+
+**Rotation:** 🐕 Tidy Tails — Lead Enrichment & Partnership Development
+
+---
+
 ### 4:05 AM — 📋 CUSTOMER ONBOARDING & SERVICE OPS SYSTEM — Professional Infrastructure for Scaling (Hourly Task)
 **Task:** Build a complete customer onboarding system with service agreement, auto-fill text templates, pricing sheet, new customer checklist, situation scripts, and seasonal check-ins
 **Result:** ✅ SHIPPED — Interactive dashboard + markdown content doc

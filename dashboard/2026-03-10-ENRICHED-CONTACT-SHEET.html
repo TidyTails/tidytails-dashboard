@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📞 Enriched Contact Sheet — Ready to Call</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0a0a0a;color:#e0e0e0;padding:20px;max-width:900px;margin:0 auto}
+h1{font-size:1.8em;margin-bottom:4px;color:#fff}
+.subtitle{color:#888;margin-bottom:24px;font-size:.95em}
+.stat-row{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.stat{background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:14px 18px;flex:1;min-width:140px;text-align:center}
+.stat .num{font-size:2em;font-weight:700}
+.stat .label{font-size:.8em;color:#888;margin-top:4px}
+.stat.red .num{color:#ff4444}
+.stat.yellow .num{color:#ffaa00}
+.stat.green .num{color:#44ff88}
+.stat.blue .num{color:#4488ff}
+.section{margin-bottom:20px}
+.section-title{font-size:1.2em;font-weight:700;padding:10px 0;border-bottom:2px solid #333;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.lead-card{background:#1a1a1a;border:1px solid #333;border-radius:10px;margin-bottom:10px;overflow:hidden;transition:all .2s}
+.lead-card:hover{border-color:#555}
+.lead-header{padding:14px 16px;cursor:pointer;display:flex;align-items:center;gap:12px}
+.lead-header .priority{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.lead-header .priority.high{background:#ff4444}
+.lead-header .priority.med{background:#ffaa00}
+.lead-header .priority.low{background:#44ff88}
+.lead-header .name{font-weight:600;flex:1}
+.lead-header .phone{color:#4488ff;font-size:.9em;font-family:monospace}
+.lead-header .arrow{color:#666;transition:transform .2s}
+.lead-card.open .lead-header .arrow{transform:rotate(90deg)}
+.lead-body{display:none;padding:0 16px 16px;border-top:1px solid #222}
+.lead-card.open .lead-body{display:block}
+.lead-body .detail{margin:8px 0;font-size:.9em;line-height:1.5}
+.lead-body .detail strong{color:#aaa}
+.lead-body .pitch{background:#1a2a1a;border:1px solid #2a4a2a;border-radius:8px;padding:12px;margin-top:10px;font-style:italic;color:#88cc88;font-size:.9em;line-height:1.5}
+.lead-body .pitch::before{content:'🗣️ Pitch: ';font-style:normal;font-weight:700}
+.call-btn{display:inline-block;background:#4488ff;color:#fff;text-decoration:none;padding:6px 14px;border-radius:6px;font-size:.85em;margin-top:8px}
+.call-btn:hover{background:#5599ff}
+.checklist{background:#111;border:1px solid #333;border-radius:10px;padding:16px;margin-top:20px}
+.checklist h3{margin-bottom:12px;color:#fff}
+.check-group{margin-bottom:14px}
+.check-group .day{font-size:.85em;color:#ffaa00;font-weight:600;margin-bottom:6px}
+.check-item{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:.9em;cursor:pointer}
+.check-item input{width:18px;height:18px;accent-color:#44ff88}
+.check-item.done{text-decoration:line-through;color:#555}
+.check-item .phone-sm{color:#4488ff;font-family:monospace;font-size:.85em}
+.tag{display:inline-block;padding:2px 8px;border-radius:4px;font-size:.75em;font-weight:600}
+.tag.prop{background:#2a1a3a;color:#aa77ff}
+.tag.pet{background:#1a2a3a;color:#77aaff}
+.tag.referral{background:#1a3a2a;color:#77ffaa}
+.tag.commercial{background:#3a2a1a;color:#ffaa77}
+.scripts{background:#1a1a1a;border:1px solid #333;border-radius:10px;padding:16px;margin-top:20px}
+.scripts h3{margin-bottom:12px}
+.script-card{background:#111;border:1px solid #2a2a2a;border-radius:8px;padding:14px;margin-bottom:10px;cursor:pointer;position:relative}
+.script-card .script-title{font-weight:600;font-size:.9em;margin-bottom:6px;color:#ffaa00}
+.script-card blockquote{font-size:.85em;line-height:1.5;color:#bbb;margin:0;padding-left:12px;border-left:3px solid #333}
+.copy-toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#44ff88;color:#000;padding:10px 24px;border-radius:8px;font-weight:600;display:none;z-index:999}
+</style>
+</head>
+<body>
+
+<h1>📞 Enriched Contact Sheet</h1>
+<p class="subtitle">15 verified, dial-ready leads • Property Managers + Pet Business Partners • March 10, 2026</p>
+
+<div class="stat-row">
+  <div class="stat red"><div class="num">6</div><div class="label">🔴 High Priority</div></div>
+  <div class="stat yellow"><div class="num">6</div><div class="label">🟡 Medium Priority</div></div>
+  <div class="stat green"><div class="num">1</div><div class="label">🟢 Easy Win</div></div>
+  <div class="stat blue"><div class="num">11</div><div class="label">📞 Verified Phones</div></div>
+</div>
+
+<div class="section">
+  <div class="section-title">🏗️ Property Management Companies</div>
+
+  <div class="lead-card" data-priority="high">
+    <div class="lead-header" onclick="toggle(this)">
+      <span class="priority high"></span>
+      <span class="name">West End Management & Leasing <span class="tag prop">PROPERTY</span></span>
+      <span class="phone">(314) 900-2001</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="lead-body">
+      <div class="detail"><strong>Address:</strong> 8151 Clayton Rd, Clayton, MO 63117</div>
+      <div class="detail"><strong>Website:</strong> westendmgt.com</div>
+      <div class="detail"><strong>BBB:</strong> Accredited ✅</div>
+      <div class="detail"><strong>Coverage:</strong> Clayton, Kirkwood, Ballwin, Creve Coeur, Webster Groves, Ladue, Olivette, University City</div>
+      <div class="detail"><strong>Key Intel:</strong> One of the LARGEST in STL. They have a <strong>PET GUARANTEE</strong> program — they already embrace pets!</div>
+      <div class="pitch">You already have a pet guarantee program. Adding professional pet waste removal eliminates the #1 pet complaint from tenants and protects that guarantee. We can service multiple properties on a single route.</div>
+      <a href="tel:+13149002001" class="call-btn">📞 Call Now</a>
+    </div>
+  </div>
+
+  <div class="lead-card" data-priority="high">
+    <div class="lead-header" onclick="toggle(this)">
+      <span class="priority high"></span>
+      <span class="name">Deca Property Management <span class="tag prop">PROPERTY</span></span>
+      <span class="phone">(314) 631-3306</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="lead-body">
+      <div class="detail"><strong>Address:</strong> 8930 Gravois Rd, St. Louis, MO 63123</div>
+      <div class="detail"><strong>Hours:</strong> M-F 9:00 AM - 4:00 PM</div>
+      <div class="detail"><strong>Founded:</strong> 1990 (35 years)</div>
+      <div class="detail"><strong>Key Person:</strong> Marty — Broker-Officer, licensed since 1989, handles commercial + HOA division. South county guy.</div>
+      <div class="detail"><strong>Type:</strong> Family-owned. Residential + commercial + HOA management.</div>
+      <div class="pitch">Marty, your HOA clients deal with pet waste complaints constantly. We eliminate that headache for a fraction of what it costs in violations. Family business to family business — let me show you how this works.</div>
+      <a href="tel:+13146313306" class="call-btn">📞 Call — Ask for Marty</a>
+    </div>
+  </div>
+
+  <div class="lead-card" data-priority="high">
+    <div class="lead-header" onclick="toggle(this)">
+      <span class="priority high"></span>
+      <span class="name">CPM Gateway (Community Property Mgmt) <span class="tag prop">PROPERTY</span> <span class="tag commercial">HOA SPECIALIST</span></span>
+      <span class="phone">(636) 227-8688</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="lead-body">
+      <div class="detail"><strong>Address:</strong> 242 Old Sulphur Spring Rd, Ballwin, MO 63021</div>
+      <div class="detail"><strong>Founded:</strong> 1985 (40+ years)</div>
+      <div class="detail"><strong>Specialty:</strong> HOA management ONLY — condos, townhomes, villas, subdivisions</div>
+      <div class="detail"><strong>Certifications:</strong> AAMC accredited, CMCA + AMS certified managers</div>
+      <div class="detail"><strong>Coverage:</strong> Ballwin, Chesterfield, Kirkwood, Clayton, all of STL County + O'Fallon IL + Columbia MO</div>
+      <div class="pitch">You manage HOA communities where pet waste is a constant covenant violation headache. We turn that complaint into a solved problem — no more violation letters, clean common areas. Can we do a pilot at one community?</div>
+      <a href="tel:+16362278688" class="call-btn">📞 Call Now</a>
+    </div>
+  </div>
+
+  <div class="lead-card" data-priority="med">
+    <div class="lead-header" onclick="toggle(this)">
+      <span class="priority med"></span>
+      <span class="name">Hermann London Real Estate <span class="tag prop">PROPERTY</span></span>
+      <span class="phone">(314) 802-0797</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="lead-body">
+      <div class="detail"><strong>Address:</strong> 7350 Manchester Ave, St. Louis, MO 63143</div>
+      <div class="detail"><strong>Hours:</strong> M-F 9-6, Sat 9-6</div>
+      <div class="detail"><strong>What:</strong> Real estate sales + leasing + property management</div>
+      <div class="detail"><strong>Key Detail:</strong> Manchester Rd location — right in the target area</div>
+      <div class="pitch">You manage rental properties with pet-friendly policies. Your tenants love their dogs but nobody loves cleaning up after them. We do — and it keeps your properties looking great.</div>
+      <a href="tel:+13148020797" class="call-btn">📞 Call Now</a>
+    </div>
+  </div>
+
+  <div class="lead-card" data-priority="med">
+    <div class="lead-header" onclick="toggle(this)">
+      <span class="priority med"></span>
+      <span class="name">PMI STL Metro <span class="tag prop">PROPERTY</span></span>
+      <span class="phone">Look up on Yelp</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="lead-body">
+      <div class="detail"><strong>Address:</strong> 17209 Chesterfield Airport Rd, Ste 210, Chesterfield, MO 63005</div>
+      <div class="detail"><strong>Hours:</strong> M-F 8:30 AM - 5:00 PM</div>
+      <div class="detail"><strong>Key Person:</strong> Zach — "unmatched customer service" per reviews</div>
+      <div class="detail"><strong>Coverage:</strong> Ballwin, Kirkwood, Webster Groves, Manchester, Clayton, Creve Coeur + many more</div>
+      <div class="detail"><strong>Type:</strong> National PMI franchise, local office</div>
+      <div class="pitch">Zach, PMI properties could add pet waste removal as a built-in amenity. Tenants get cleaner yards, owners get happier tenants, costs them nothing. Let's pilot at one property.</div>
+    </div>
+  </div>
+
+  <div class="lead-card" data-priority="med">
+    <div class="lead-header" onclick="toggle(this)">
+      <span class="priority med"></span>
+      <span class="name">Eaton Properties <span class="tag prop">PROPERTY</span></span>
+      <span class="phone">eatonproperties.com</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="lead-body">
+      <div class="detail"><strong>Address:</strong> 3828 S Old Hwy 94, St. Charles, MO</div>
+      <div class="detail"><strong>Founded:</strong> 40+ years</div>
+      <div class="detail"><strong>Coverage:</strong> St. Louis County + St. Charles County</div>
+      <div class="detail"><strong>Type:</strong> Three divisions — property management, investment services, residential sales</div>
+      <div class="pitch">You pride yourselves on latest tech and personalized service. Pet waste removal is a value-add amenity your properties can offer at zero cost — residents pay, property value goes up.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">🐕 Pet Business Partnership Leads</div>
+
+  <div class="lead-card" data-priority="high">
+    <div class="lead-header" onclick="toggle(this)">
+      <span class="priority high"></span>
+      <span class="name">Silver Maple Pet Center <span class="tag pet">PET BIZ</span> <span class="tag referral">REFERRAL</span></span>
+      <span class="phone">(314) 965-1630</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="lead-body">
+      <div class="detail"><strong>Address:</strong> 2014 N Ballas Rd, Des Peres, MO 63131</div>
+      <div class="detail"><strong>Email:</strong> info@silvermaplepetcenter.com</div>
+      <div class="detail"><strong>Founded:</strong> 1935 (91 years!)</div>
+      <div class="detail"><strong>Services:</strong> Dog boarding, daycare, grooming, cat boarding</div>
+      <div class="detail"><strong>Clientele:</strong> Des Peres, Kirkwood, Town & Country, Creve Coeur, Webster Groves, Ladue, Clayton, Brentwood, Ballwin, Fenton</div>
+      <div class="detail"><strong>Reviews:</strong> Glowing — customers rave about staff</div>
+      <div class="pitch">Your clients love their dogs enough to board them here. They'd love someone who cleans up their yard too. Can I leave some cards at your front desk? Happy to refer boarding clients your way too.</div>
+      <a href="tel:+13149651630" class="call-btn">📞 Call / Drop By</a>
+    </div>
+  </div>
+
+  <div class="lead-card" data-priority="high">
+    <div class="lead-header" onclick="toggle(this)">
+      <span class="priority high"></span>
+      <span class="name">Williamsburg Pet Hotel & Suites <span class="tag pet">PET BIZ</span> <span class="tag referral">REFERRAL</span></span>
+      <span class="phone">(636) 227-5764</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="lead-body">
+      <div class="detail"><strong>Location:</strong> Kirkwood, MO area</div>
+      <div class="detail"><strong>Founded:</strong> 1962 (64 years)</div>
+      <div class="detail"><strong>Services:</strong> Dog/cat boarding, daycare, grooming, pool, training</div>
+      <div class="detail"><strong>Coverage:</strong> Chesterfield, Wildwood, Town & Country, Kirkwood, Creve Coeur, Ladue</div>
+      <div class="pitch">Same angle as Silver Maple. Their clients = our ideal customers. Drop cards, cross-refer.</div>
+      <a href="tel:+16362275764" class="call-btn">📞 Call / Drop By</a>
+    </div>
+  </div>
+
+  <div class="lead-card" data-priority="high">
+    <div class="lead-header" onclick="toggle(this)">
+      <span class="priority high"></span>
+      <span class="name">BauserHaus Dog Daycare <span class="tag pet">PET BIZ</span> <span class="tag commercial">COMMERCIAL</span> <span class="tag referral">REFERRAL</span></span>
+      <span class="phone">(314) 961-3911</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="lead-body">
+      <div class="detail"><strong>Address:</strong> 2818 Breckenridge Industrial Ct, St. Louis, MO 63144</div>
+      <div class="detail"><strong>Email:</strong> info@bauserhaus.com</div>
+      <div class="detail"><strong>Hours:</strong> M-F 7AM-7PM, Sat 9-4, Sun 4-6</div>
+      <div class="detail"><strong>Yelp:</strong> 51 reviews (strong)</div>
+      <div class="detail"><strong>Location:</strong> Border of Webster/Brentwood/Maplewood — PERFECT</div>
+      <div class="detail"><strong>Key:</strong> Locally owned. Licensed facility. Could be BOTH a referral partner AND a commercial client!</div>
+      <div class="pitch">We're both local, independent pet businesses. Your daycare clients go home to yards that need cleaning. We clean yards. Plus — do you handle waste cleanup in your outdoor play areas yourselves?</div>
+      <a href="tel:+13149613911" class="call-btn">📞 Call — Dual Pitch</a>
+    </div>
+  </div>
+
+  <div class="lead-card" data-priority="med">
+    <div class="lead-header" onclick="toggle(this)">
+      <span class="priority med"></span>
+      <span class="name">Treats Unleashed — S. Kirkwood <span class="tag pet">PET STORE</span></span>
+      <span class="phone">(314) 984-0222</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="lead-body">
+      <div class="detail"><strong>Address:</strong> 1048 S Kirkwood Rd, Kirkwood, MO 63122</div>
+      <div class="detail"><strong>Hours:</strong> M-Sat 9AM-8PM</div>
+      <div class="detail"><strong>What:</strong> Premium pet food, treats, grooming. 21 locations.</div>
+      <div class="pitch">Ask about community board or carrying cards at checkout. Premium pet food shoppers = ideal Tidy Tails customers.</div>
+      <a href="tel:+13149840222" class="call-btn">📞 Call / Visit</a>
+    </div>
+  </div>
+
+  <div class="lead-card" data-priority="med">
+    <div class="lead-header" onclick="toggle(this)">
+      <span class="priority med"></span>
+      <span class="name">Treats Unleashed — N. Kirkwood <span class="tag pet">PET STORE</span></span>
+      <span class="phone">(314) 287-7233</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="lead-body">
+      <div class="detail"><strong>Address:</strong> 10700 Manchester Rd, Kirkwood, MO 63122</div>
+      <div class="detail"><strong>Hours:</strong> M-Sat 9AM-8PM</div>
+      <div class="pitch">Same approach as South Kirkwood location. Two locations = double exposure in the target zone.</div>
+      <a href="tel:+13142877233" class="call-btn">📞 Call / Visit</a>
+    </div>
+  </div>
+
+  <div class="lead-card" data-priority="low">
+    <div class="lead-header" onclick="toggle(this)">
+      <span class="priority low"></span>
+      <span class="name">Little House of Dogs <span class="tag pet">GROOMING</span></span>
+      <span class="phone">(314) 909-7833</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="lead-body">
+      <div class="detail"><strong>Address:</strong> 1050 N Kirkwood Rd, St. Louis, MO 63122</div>
+      <div class="detail"><strong>Contact:</strong> Mary (owner)</div>
+      <div class="detail"><strong>Email:</strong> mary@littlehouseofdogs.org</div>
+      <div class="detail"><strong>Hours:</strong> Tue-Fri 7:30AM-5:30/6PM, Sat 8-4</div>
+      <div class="pitch">Mary, I run Tidy Tails — local dog waste cleanup. Your grooming clients are exactly our people. Mind if I leave some cards? Happy to recommend you to our customers too.</div>
+      <a href="tel:+13149097833" class="call-btn">📞 Call Mary</a>
+    </div>
+  </div>
+
+  <div class="lead-card" data-priority="med">
+    <div class="lead-header" onclick="toggle(this)">
+      <span class="priority med"></span>
+      <span class="name">No Leash Needed <span class="tag pet">PET BIZ</span> <span class="tag referral">CHAIN</span></span>
+      <span class="phone">noleashneeded.com</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="lead-body">
+      <div class="detail"><strong>Locations:</strong> 8 across STL — Kirkwood, Ellisville, Rock Hill, St. Charles, Lake St. Louis, West County</div>
+      <div class="detail"><strong>Services:</strong> Boarding, daycare, training, grooming</div>
+      <div class="detail"><strong>Key:</strong> Founded by award-winning trainers. Multiple locations = potential multi-site deal.</div>
+      <div class="pitch">Start at Kirkwood location. If cross-referral works, expand to other locations.</div>
+    </div>
+  </div>
+
+  <div class="lead-card" data-priority="med">
+    <div class="lead-header" onclick="toggle(this)">
+      <span class="priority med"></span>
+      <span class="name">Pups Mobile Spa <span class="tag pet">MOBILE GROOMING</span></span>
+      <span class="phone">pupsmobilespa.com</span>
+      <span class="arrow">▶</span>
+    </div>
+    <div class="lead-body">
+      <div class="detail"><strong>Service Area:</strong> Kirkwood, Webster Groves, Des Peres, Town & Country, Ladue, Clayton, Richmond Heights, Brentwood, Maplewood</div>
+      <div class="detail"><strong>Key:</strong> Mobile service — they're at the customer's HOME. They SEE the yards.</div>
+      <div class="pitch">"While we made your pup beautiful, Tidy Tails can make your yard beautiful." Perfect referral partner — they hand cards out AT the customer's house.</div>
+    </div>
+  </div>
+</div>
+
+<div class="checklist">
+  <h3>📋 This Week's Call Sheet</h3>
+
+  <div class="check-group">
+    <div class="day">📅 Tuesday-Wednesday: Property Managers (call 9-11 AM)</div>
+    <label class="check-item"><input type="checkbox" onchange="checkDone(this)"> <strong>West End Management</strong> <span class="phone-sm">(314) 900-2001</span> — Pet guarantee program!</label>
+    <label class="check-item"><input type="checkbox" onchange="checkDone(this)"> <strong>Deca Property</strong> <span class="phone-sm">(314) 631-3306</span> — Ask for Marty</label>
+    <label class="check-item"><input type="checkbox" onchange="checkDone(this)"> <strong>CPM Gateway</strong> <span class="phone-sm">(636) 227-8688</span> — HOA specialist</label>
+    <label class="check-item"><input type="checkbox" onchange="checkDone(this)"> <strong>Hermann London</strong> <span class="phone-sm">(314) 802-0797</span> — Property mgmt div</label>
+  </div>
+
+  <div class="check-group">
+    <div class="day">📅 Thursday: Pet Business Drop-Ins (in person with cards)</div>
+    <label class="check-item"><input type="checkbox" onchange="checkDone(this)"> <strong>Silver Maple</strong> — 2014 N Ballas Rd, Des Peres</label>
+    <label class="check-item"><input type="checkbox" onchange="checkDone(this)"> <strong>Williamsburg Pet Hotel</strong> <span class="phone-sm">(636) 227-5764</span></label>
+    <label class="check-item"><input type="checkbox" onchange="checkDone(this)"> <strong>BauserHaus</strong> — 2818 Breckenridge Industrial Ct <span class="phone-sm">(314) 961-3911</span></label>
+    <label class="check-item"><input type="checkbox" onchange="checkDone(this)"> <strong>Treats Unleashed S. Kirkwood</strong> — 1048 S Kirkwood Rd</label>
+  </div>
+
+  <div class="check-group">
+    <div class="day">📅 Friday: Follow-Up Calls</div>
+    <label class="check-item"><input type="checkbox" onchange="checkDone(this)"> <strong>Little House of Dogs</strong> <span class="phone-sm">(314) 909-7833</span> — Ask for Mary</label>
+    <label class="check-item"><input type="checkbox" onchange="checkDone(this)"> <strong>Treats Unleashed N. Kirkwood</strong> <span class="phone-sm">(314) 287-7233</span></label>
+  </div>
+</div>
+
+<div class="scripts">
+  <h3>🗣️ Quick Scripts (tap to copy)</h3>
+
+  <div class="script-card" onclick="copyScript(this)">
+    <div class="script-title">Property Manager Cold Call (30 sec)</div>
+    <blockquote>"Hi, this is TJ with Tidy Tails Pet Waste Removal. I help property management companies eliminate pet waste complaints from their communities. We service the Kirkwood, Ballwin, and Webster area and I'd love to do a free demo at one of your properties. Who handles vendor relationships for your managed communities?"</blockquote>
+  </div>
+
+  <div class="script-card" onclick="copyScript(this)">
+    <div class="script-title">Pet Business Partnership (in person)</div>
+    <blockquote>"Hey! I'm TJ — I run Tidy Tails, a local dog waste cleanup service. Your customers are exactly the kind of dog owners who need us. Would you be open to keeping some of our cards at your front desk? I'd love to refer our customers your way too."</blockquote>
+  </div>
+
+  <div class="script-card" onclick="copyScript(this)">
+    <div class="script-title">Daycare Commercial Pitch</div>
+    <blockquote>"Do you guys handle the waste cleanup in your outdoor play areas yourselves, or would you be interested in having us come by? We service a lot of the residential yards in this area and we could add you to our route."</blockquote>
+  </div>
+</div>
+
+<div class="copy-toast" id="toast">📋 Copied to clipboard!</div>
+
+<script>
+function toggle(el){el.closest('.lead-card').classList.toggle('open')}
+function checkDone(cb){cb.closest('.check-item').classList.toggle('done',cb.checked)}
+function copyScript(el){
+  const text=el.querySelector('blockquote').textContent.trim();
+  navigator.clipboard.writeText(text).then(()=>{
+    const t=document.getElementById('toast');t.style.display='block';
+    setTimeout(()=>t.style.display='none',2000);
+  });
+}
+</script>
+</body>
+</html>
