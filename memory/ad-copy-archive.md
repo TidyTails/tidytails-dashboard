@@ -4,6 +4,60 @@
 
 ---
 
+## March 10, 2026 — Mid-March Spring Rush (9 AM Task)
+
+**Shed-Mar102 - "Tax Refund: The Smart Play" (FB Marketplace + Groups)**
+- Hook: Tax refund just hit — blow it or build something
+- Key: 0% financing, $500 down, keep the rest, value-add framing
+- Used: TBD (Marketplace + Groups Thu 3/12 AM)
+
+**Shed-Mar103 - "March Madness Bracket" (FB Marketplace + Groups)**
+- Hook: Tournament bracket format — garage clutter vs shed, streaming vs payments
+- Key: Humor, sports tie-in, Netflix comparison
+- Used: TBD (Marketplace + Groups Tue 3/10 PM)
+
+**Shed-Mar104 - "Spring Cleaning Has a Plot Hole" (FB Marketplace + Nextdoor)**
+- Hook: You don't have less stuff, you have less SPACE
+- Key: Plot hole metaphor, item-by-item "Shed" repetition
+- Used: TBD (Marketplace + Nextdoor Wed 3/11 AM)
+
+**Shed-Mar105 - "57° and Thinking About It" (FB Marketplace + Groups)**
+- Hook: Local weather → "this is the year" → install slot urgency
+- Key: March vs April wait times, STL-specific
+- Used: TBD (Marketplace + Groups Wed 3/11 PM)
+
+**Shed-Mar106 - "The Honest Cost Breakdown" (FB Marketplace + Groups)**
+- Hook: Transparent pricing — no "call for pricing" games
+- Key: 4 size tiers with real prices, 3 financing options, trust
+- Used: TBD (Marketplace + Groups Tue 3/10 AM)
+
+**Shed-Mar107 - "St. Patrick's Day" (FB Marketplace + Instagram)**
+- Hook: Irish blessing format — blessed with a garage you can park in
+- Key: Holiday tie-in, clover emojis, festive
+- Used: TBD (Marketplace + Instagram Sat 3/15)
+
+**Shed-Mar108 - "Your Garage Isn't a Garage Anymore" (FB Marketplace + Groups)**
+- Hook: When's the last time you parked INSIDE your garage?
+- Key: Car deserves a roof, stuff deserves its own space
+- Used: TBD (Marketplace + Groups Fri 3/13 AM)
+
+**Shed-Mar109 - "Home Gym Season" (FB Marketplace + Instagram)**
+- Hook: $50/mo gym membership vs owning a home gym shed
+- Key: Gym alternative, multi-use (gym/studio/office/game room)
+- Used: TBD (Marketplace + Instagram Thu 3/12 PM)
+
+**Shed-Mar110 - "The One Where I'm Honest" (FB Marketplace + Groups)**
+- Hook: Real talk — I sell sheds, here's what I won't/will do
+- Key: Trust-building, anti-salesy, transparency
+- Used: TBD (Marketplace + Groups Fri 3/13 PM)
+
+**Shed-Mar111 - "The 3 AM Decision" (FB Marketplace + Instagram)**
+- Hook: Late-night scrolling/planning — 3 AM version of you is right
+- Key: Aspirational, relatable late-night energy, custom designs
+- Used: TBD (Marketplace + Instagram Sat 3/15 PM)
+
+---
+
 ## March 9, 2026 — Monday Fresh Start (9 AM Task)
 
 **Shed-Mar98 - "Monday Morning, Fresh Start" (FB Marketplace + Groups)**

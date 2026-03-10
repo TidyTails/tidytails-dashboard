@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏠 Shed Spring Rush Ads — Week of 3/10</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #12121a;
+    --border: #1e1e2e;
+    --accent: #f59e0b;
+    --accent2: #10b981;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --danger: #ef4444;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 16px;
+  }
+  .header {
+    text-align: center;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 24px;
+  }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header h1 span { color: var(--accent); }
+  .header p { color: var(--muted); font-size: 14px; }
+  .promo-banner {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  .promo-banner h3 { color: var(--accent); margin-bottom: 6px; }
+  .promo-banner .tags { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 8px; }
+  .promo-banner .tag {
+    background: rgba(245, 158, 11, 0.15);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    color: var(--accent);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .schedule {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+  }
+  .schedule h2 { font-size: 18px; margin-bottom: 12px; color: var(--accent); }
+  .schedule table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .schedule th { text-align: left; padding: 8px 12px; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .schedule td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  .schedule td:first-child { font-weight: 600; color: var(--accent); white-space: nowrap; }
+  .tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .tab {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .tab:hover { border-color: var(--accent); color: var(--text); }
+  .tab.active {
+    background: var(--accent);
+    color: #000;
+    border-color: var(--accent);
+    font-weight: 700;
+  }
+  .ad-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 16px;
+    overflow: hidden;
+    display: none;
+  }
+  .ad-card.visible { display: block; }
+  .ad-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ad-header h3 { font-size: 16px; }
+  .ad-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+  .ad-meta span {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+  }
+  .platform { background: rgba(59, 130, 246, 0.15); color: #60a5fa; }
+  .timing { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+  .ad-title {
+    padding: 12px 20px;
+    background: rgba(245, 158, 11, 0.08);
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .ad-title strong { color: var(--accent); }
+  .ad-body {
+    padding: 20px;
+    white-space: pre-wrap;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #cbd5e1;
+    position: relative;
+  }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 13px;
+    margin: 0 20px 16px;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { transform: scale(1.02); filter: brightness(1.1); }
+  .copy-btn.copied { background: var(--accent2); }
+  .posted-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: transparent;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    margin: 0 0 16px 4px;
+    transition: all 0.2s;
+  }
+  .posted-btn:hover { border-color: var(--accent2); color: var(--accent2); }
+  .posted-btn.done { background: rgba(16, 185, 129, 0.15); color: var(--accent2); border-color: var(--accent2); }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .price-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .price-card .size { font-size: 20px; font-weight: 800; color: var(--accent); }
+  .price-card .price { font-size: 14px; color: var(--text); margin: 4px 0; }
+  .price-card .monthly { font-size: 22px; font-weight: 700; color: var(--accent2); }
+  .price-card .use { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 24px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ig-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 12px;
+  }
+  .ig-card h4 { color: #e879f9; margin-bottom: 8px; font-size: 14px; }
+  .ig-card pre {
+    white-space: pre-wrap;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #cbd5e1;
+    font-family: inherit;
+  }
+  .stats-bar {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    flex: 1;
+    min-width: 120px;
+    text-align: center;
+  }
+  .stat .num { font-size: 28px; font-weight: 800; color: var(--accent); }
+  .stat .label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .call-btn {
+    display: block;
+    text-align: center;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--accent), #d97706);
+    color: #000;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 18px;
+    margin: 24px 0;
+  }
+  @media (max-width: 600px) {
+    .header h1 { font-size: 22px; }
+    .ad-header { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏠 <span>Mid-March Spring Rush</span> Ad Pack</h1>
+  <p>10 Fresh Ads for TuffShed STL — Week of 3/10 - 3/16 | Ads #102-111</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="num" id="totalAds">10</div><div class="label">Fresh Ads</div></div>
+  <div class="stat"><div class="num" id="postedCount">0</div><div class="label">Posted</div></div>
+  <div class="stat"><div class="num" id="platformCount">4</div><div class="label">Platforms</div></div>
+  <div class="stat"><div class="num" id="igCount">3</div><div class="label">IG Captions</div></div>
+</div>
+
+<div class="promo-banner">
+  <h3>📌 Active Promos & Financing</h3>
+  <div class="tags">
+    <span class="tag">0% for 6 Months (HD Card)</span>
+    <span class="tag">9.99% APR Traditional</span>
+    <span class="tag">No Credit Check RTO</span>
+    <span class="tag">FREE Delivery Always</span>
+  </div>
+</div>
+
+<div class="schedule">
+  <h2>📅 Posting Schedule</h2>
+  <table>
+    <tr><th>Day</th><th>AM Post</th><th>PM Post</th></tr>
+    <tr><td>Tue 3/10</td><td>#106 Honest Cost → Marketplace + Groups</td><td>#103 March Madness → Marketplace + Groups</td></tr>
+    <tr><td>Wed 3/11</td><td>#104 Spring Cleaning → Marketplace + Nextdoor</td><td>#105 57° Weather → Marketplace + Groups</td></tr>
+    <tr><td>Thu 3/12</td><td>#102 Tax Refund → Marketplace + Groups</td><td>#109 Home Gym → Marketplace + IG</td></tr>
+    <tr><td>Fri 3/13</td><td>#108 Garage → Marketplace + Groups</td><td>#110 Honest Talk → Marketplace + Groups</td></tr>
+    <tr><td>Sat 3/15</td><td>#107 St. Paddy's → Marketplace + IG</td><td>#111 3 AM Decision → Marketplace + IG</td></tr>
+  </table>
+</div>
+
+<h2 class="section-title">💰 Quick Reference: Pricing</h2>
+<div class="pricing-grid">
+  <div class="price-card"><div class="size">8x10</div><div class="price">~$3,200</div><div class="monthly">$99/mo</div><div class="use">Basic Storage</div></div>
+  <div class="price-card"><div class="size">8x12</div><div class="price">~$3,800</div><div class="monthly">$115/mo</div><div class="use">Lawn Equipment</div></div>
+  <div class="price-card"><div class="size">10x12</div><div class="price">~$4,800</div><div class="monthly">$140/mo</div><div class="use">Workshop Starter</div></div>
+  <div class="price-card"><div class="size">10x16</div><div class="price">~$5,800</div><div class="monthly">$180/mo</div><div class="use">Workshop / Gym</div></div>
+  <div class="price-card"><div class="size">12x16</div><div class="price">~$7,200</div><div class="monthly">$220/mo</div><div class="use">Studio / Office</div></div>
+  <div class="price-card"><div class="size">12x20</div><div class="price">~$9,000</div><div class="monthly">$270/mo</div><div class="use">Garage</div></div>
+  <div class="price-card"><div class="size">12x24</div><div class="price">~$10,500</div><div class="monthly">$310/mo</div><div class="use">Large Garage</div></div>
+</div>
+
+<h2 class="section-title">📝 Ad Copy — Click to Copy & Post</h2>
+
+<div class="tabs" id="adTabs">
+  <div class="tab active" data-filter="all">All (10)</div>
+  <div class="tab" data-filter="marketplace">Marketplace</div>
+  <div class="tab" data-filter="groups">Groups</div>
+  <div class="tab" data-filter="nextdoor">Nextdoor</div>
+  <div class="tab" data-filter="instagram">Instagram</div>
+</div>
+
+<div id="adCards">
+
+<!-- Ad 102 -->
+<div class="ad-card visible" data-platforms="marketplace,groups" data-id="102">
+  <div class="ad-header">
+    <h3>#102 — Tax Refund: The Smart Play 💰</h3>
+    <div class="ad-meta"><span class="platform">Marketplace + Groups</span><span class="timing">Thu AM</span></div>
+  </div>
+  <div class="ad-title"><strong>Marketplace Title:</strong> 10x12 Storage Shed — Tax Refund Special $4,200</div>
+  <div class="ad-body">Your tax refund just hit.
+
+You can blow it. Or you can build something.
+
+A shed adds:
+✅ 100-300 sq ft of usable space
+✅ Organization you've been needing since 2023
+✅ Actual value to your property
+
+And with 0% financing for 6 months, you don't even need the whole refund.
+
+Put $500 down. Keep the rest. Get the shed.
+
+No pressure — just math.
+
+📲 Call/text Darius: 636-354-7406
+@reddshedredemption</div>
+  <button class="copy-btn" onclick="copyAd(this)">📋 Copy Ad</button>
+  <button class="posted-btn" onclick="markPosted(this, 102)">✅ Mark Posted</button>
+</div>
+
+<!-- Ad 103 -->
+<div class="ad-card visible" data-platforms="marketplace,groups" data-id="103">
+  <div class="ad-header">
+    <h3>#103 — March Madness Bracket 🏀</h3>
+    <div class="ad-meta"><span class="platform">Marketplace + Groups</span><span class="timing">Tue PM</span></div>
+  </div>
+  <div class="ad-title"><strong>Marketplace Title:</strong> 12x16 Workshop Shed — Your Best Pick This March</div>
+  <div class="ad-body">🏀 My March Madness bracket:
+
+Round 1: Garage clutter vs. A Shed
+Winner: Shed (blowout)
+
+Round 2: "We'll figure it out" vs. 200 extra sq ft
+Winner: The shed again
+
+Sweet 16: Monthly payment vs. that streaming bundle you forgot to cancel
+Winner: …the shed is $180/mo. Netflix is $23. You're paying for both anyway.
+
+Championship: Your backyard, upgraded.
+
+✅ FREE delivery
+✅ 0% financing for 6 months
+✅ Rent-to-own available
+✅ Custom builds on-site
+
+Fill out your bracket → call Darius: 636-354-7406</div>
+  <button class="copy-btn" onclick="copyAd(this)">📋 Copy Ad</button>
+  <button class="posted-btn" onclick="markPosted(this, 103)">✅ Mark Posted</button>
+</div>
+
+<!-- Ad 104 -->
+<div class="ad-card visible" data-platforms="marketplace,nextdoor" data-id="104">
+  <div class="ad-header">
+    <h3>#104 — Spring Cleaning Has a Plot Hole 🧹</h3>
+    <div class="ad-meta"><span class="platform">Marketplace + Nextdoor</span><span class="timing">Wed AM</span></div>
+  </div>
+  <div class="ad-title"><strong>Marketplace Title:</strong> 8x12 Utility Shed — Where Spring Cleaning Actually Goes</div>
+  <div class="ad-body">Every spring you "clean out the garage."
+
+And every spring you just... move stuff around.
+
+Because here's the problem: you don't have less stuff. You have less SPACE.
+
+A shed fixes the plot hole in spring cleaning.
+
+The holiday bins? Shed.
+The sports gear? Shed.
+The tools you swore you'd organize? ...Shed.
+
+Now your garage is actually a garage again.
+
+✅ FREE delivery & setup
+✅ Financing from $99/mo
+✅ No credit check options
+✅ Dozens on the lot — come walk through one
+
+📲 Darius: 636-354-7406
+No pressure. Just space.</div>
+  <button class="copy-btn" onclick="copyAd(this)">📋 Copy Ad</button>
+  <button class="posted-btn" onclick="markPosted(this, 104)">✅ Mark Posted</button>
+</div>
+
+<!-- Ad 105 -->
+<div class="ad-card visible" data-platforms="marketplace,groups" data-id="105">
+  <div class="ad-header">
+    <h3>#105 — 57° and Thinking About It 🌤️</h3>
+    <div class="ad-meta"><span class="platform">Marketplace + Groups</span><span class="timing">Wed PM</span></div>
+  </div>
+  <div class="ad-title"><strong>Marketplace Title:</strong> Custom TuffShed — Spring Install Slots Filling Up</div>
+  <div class="ad-body">It's 57° in STL today.
+
+You walked outside. Looked at the yard. Thought "this is the year."
+
+This IS the year.
+
+Spring install slots are open right now. By April, you're looking at 4-6 week waits.
+
+What you get:
+✔ Built ON your property (not a flimsy portable)
+✔ Engineered for STL weather
+✔ Custom size, color, features
+✔ FREE delivery
+
+March = short wait times.
+April = long wait times.
+This is just how spring works.
+
+📲 Lock it in: Darius @ 636-354-7406
+@reddshedredemption</div>
+  <button class="copy-btn" onclick="copyAd(this)">📋 Copy Ad</button>
+  <button class="posted-btn" onclick="markPosted(this, 105)">✅ Mark Posted</button>
+</div>
+
+<!-- Ad 106 -->
+<div class="ad-card visible" data-platforms="marketplace,groups" data-id="106">
+  <div class="ad-header">
+    <h3>#106 — The Honest Cost Breakdown 📊</h3>
+    <div class="ad-meta"><span class="platform">Marketplace + Groups</span><span class="timing">Tue AM</span></div>
+  </div>
+  <div class="ad-title"><strong>Marketplace Title:</strong> 10x16 Shed — Real Pricing, No Games ($5,800)</div>
+  <div class="ad-body">I'm just gonna tell you what a shed costs. No "call for pricing" games.
+
+8x10 basic: ~$3,200
+10x12 with windows: ~$4,800
+10x16 with workbench: ~$5,800
+12x20 garage: ~$9,500+
+
+Financing:
+→ 0% for 6 months (HD card)
+→ 9.99% APR traditional
+→ Rent-to-own (no credit check)
+
+Monthly payments: $99 - $250 depending on size.
+
+That's it. No bait-and-switch. No asterisks.
+
+Come see them in person or call me. I'll give you an exact quote in 10 minutes.
+
+Darius: 636-354-7406
+✅ FREE delivery always</div>
+  <button class="copy-btn" onclick="copyAd(this)">📋 Copy Ad</button>
+  <button class="posted-btn" onclick="markPosted(this, 106)">✅ Mark Posted</button>
+</div>
+
+<!-- Ad 107 -->
+<div class="ad-card visible" data-platforms="marketplace,instagram" data-id="107">
+  <div class="ad-header">
+    <h3>#107 — St. Patrick's Day ☘️</h3>
+    <div class="ad-meta"><span class="platform">Marketplace + Instagram</span><span class="timing">Sat 3/15</span></div>
+  </div>
+  <div class="ad-title"><strong>Marketplace Title:</strong> TuffShed — Lucky Enough to Have Space ☘️</div>
+  <div class="ad-body">☘️ This St. Patrick's Day, may you be blessed with:
+
+✅ A garage you can park in
+✅ A backyard that works for you
+✅ Storage that doesn't involve "the pile"
+✅ A shed that makes your neighbor jealous
+
+No luck required — just a phone call.
+
+FREE delivery 🍀
+0% financing available 🍀
+Custom builds 🍀
+On-site construction 🍀
+
+Sláinte to more space.
+
+📲 Darius: 636-354-7406
+@reddshedredemption</div>
+  <button class="copy-btn" onclick="copyAd(this)">📋 Copy Ad</button>
+  <button class="posted-btn" onclick="markPosted(this, 107)">✅ Mark Posted</button>
+</div>
+
+<!-- Ad 108 -->
+<div class="ad-card visible" data-platforms="marketplace,groups" data-id="108">
+  <div class="ad-header">
+    <h3>#108 — Your Garage Isn't a Garage Anymore 🚗</h3>
+    <div class="ad-meta"><span class="platform">Marketplace + Groups</span><span class="timing">Fri AM</span></div>
+  </div>
+  <div class="ad-title"><strong>Marketplace Title:</strong> 12x16 Shed — So You Can Actually Park In Your Garage</div>
+  <div class="ad-body">Quick question:
+
+When's the last time you parked INSIDE your garage?
+
+Not pulled up to it. Not "close enough." INSIDE.
+
+If you had to think about it... you need a shed.
+
+Here's the deal:
+→ Move the stuff OUT of the garage
+→ Into a proper storage building
+→ In YOUR yard, built to last
+
+Your car deserves a roof. Your stuff deserves its own space.
+
+✅ Custom sizes (8x10 to 12x24+)
+✅ Built on-site by pros
+✅ FREE delivery
+✅ Payments from $99/mo
+
+📲 Darius: 636-354-7406
+No pressure. Your garage will thank you.</div>
+  <button class="copy-btn" onclick="copyAd(this)">📋 Copy Ad</button>
+  <button class="posted-btn" onclick="markPosted(this, 108)">✅ Mark Posted</button>
+</div>
+
+<!-- Ad 109 -->
+<div class="ad-card visible" data-platforms="marketplace,instagram" data-id="109">
+  <div class="ad-header">
+    <h3>#109 — Home Gym Season 💪</h3>
+    <div class="ad-meta"><span class="platform">Marketplace + Instagram</span><span class="timing">Thu PM</span></div>
+  </div>
+  <div class="ad-title"><strong>Marketplace Title:</strong> 10x16 Home Gym Shed — Skip the Membership, Build Your Own</div>
+  <div class="ad-body">You're paying $50/mo for a gym you go to... sometimes.
+
+What if that $50/mo went toward owning a home gym?
+
+A 10x16 shed = 160 sq ft of YOUR space.
+No waiting for equipment.
+No driving.
+No January crowds in March.
+
+People are turning sheds into:
+💪 Full home gyms
+🎸 Music studios
+💻 Home offices
+🎮 Game rooms
+
+And it costs LESS than a room addition.
+
+0% financing for 6 months
+Payments from $150/mo
+FREE delivery & on-site build
+
+📲 Darius: 636-354-7406
+@reddshedredemption</div>
+  <button class="copy-btn" onclick="copyAd(this)">📋 Copy Ad</button>
+  <button class="posted-btn" onclick="markPosted(this, 109)">✅ Mark Posted</button>
+</div>
+
+<!-- Ad 110 -->
+<div class="ad-card visible" data-platforms="marketplace,groups" data-id="110">
+  <div class="ad-header">
+    <h3>#110 — The One Where I'm Honest 🤝</h3>
+    <div class="ad-meta"><span class="platform">Marketplace + Groups</span><span class="timing">Fri PM</span></div>
+  </div>
+  <div class="ad-title"><strong>Marketplace Title:</strong> TuffShed STL — Honest Talk From Your Local Dealer</div>
+  <div class="ad-body">Real talk for a second.
+
+I sell sheds. You know I sell sheds. I'm not hiding it.
+
+But here's what I WON'T do:
+❌ Pressure you into something you don't need
+❌ Hide the price until you're "committed"
+❌ Pretend a 8x10 fits everything
+
+What I WILL do:
+✅ Tell you exactly what it costs
+✅ Help you pick the right size (not the biggest one)
+✅ Show you dozens on the lot — walk in, look around
+✅ Give you financing options that make sense
+✅ Deliver and build it for FREE
+
+I'm local. I answer my phone. That's it.
+
+Darius: 636-354-7406
+No games. Just sheds.</div>
+  <button class="copy-btn" onclick="copyAd(this)">📋 Copy Ad</button>
+  <button class="posted-btn" onclick="markPosted(this, 110)">✅ Mark Posted</button>
+</div>
+
+<!-- Ad 111 -->
+<div class="ad-card visible" data-platforms="marketplace,instagram" data-id="111">
+  <div class="ad-header">
+    <h3>#111 — The 3 AM Decision 🌙</h3>
+    <div class="ad-meta"><span class="platform">Marketplace + Instagram</span><span class="timing">Sat PM</span></div>
+  </div>
+  <div class="ad-title"><strong>Marketplace Title:</strong> TuffShed — For the Project You've Been Planning at 3 AM</div>
+  <div class="ad-body">You've been up at 3 AM.
+
+Not because of the kids. Not because of work.
+
+Because you're on your phone designing your dream workshop. Or home gym. Or she shed. Or just a place where your stuff isn't in the living room.
+
+That 3 AM version of you? They're right.
+
+It's time.
+
+✅ Custom designs — YOUR vision, built real
+✅ 0% financing for 6 months
+✅ No credit check rent-to-own
+✅ FREE delivery & professional install
+
+Stop scrolling at 3 AM. Start building at 9.
+
+📲 Darius: 636-354-7406
+@reddshedredemption</div>
+  <button class="copy-btn" onclick="copyAd(this)">📋 Copy Ad</button>
+  <button class="posted-btn" onclick="markPosted(this, 111)">✅ Mark Posted</button>
+</div>
+
+</div>
+
+<h2 class="section-title">📸 Instagram Captions</h2>
+
+<div class="ig-card">
+  <h4>IG Story — Tax Refund</h4>
+  <pre>Tax refund + shed = smartest play you'll make this year.
+0% financing. FREE delivery. Custom builds.
+
+📲 636-354-7406</pre>
+  <button class="copy-btn" onclick="copyIg(this)">📋 Copy</button>
+</div>
+
+<div class="ig-card">
+  <h4>IG Story — March Madness</h4>
+  <pre>🏀 Filling out your bracket?
+Your garage clutter vs. a new shed.
+Shed wins every time.
+
+DM me or call: 636-354-7406</pre>
+  <button class="copy-btn" onclick="copyIg(this)">📋 Copy</button>
+</div>
+
+<div class="ig-card">
+  <h4>IG Reel Caption — Spring Rush</h4>
+  <pre>Spring install slots are filling up 👀
+
+March = 2-3 week wait
+April = 6+ weeks
+
+Lock it in now → link in bio or text 636-354-7406
+
+#tuffshed #stlouis #backyardgoals #storageshed #homegym #shedlife #springproject</pre>
+  <button class="copy-btn" onclick="copyIg(this)">📋 Copy</button>
+</div>
+
+<a href="tel:636-354-7406" class="call-btn">📲 Darius: 636-354-7406</a>
+
+<p style="text-align:center;color:var(--muted);font-size:12px;padding:16px 0;">Built by Franklin 🐕💩 — March 10, 2026 | Ads #102-111</p>
+
+<script>
+// Tab filtering
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+    const filter = this.dataset.filter;
+    document.querySelectorAll('.ad-card').forEach(card => {
+      if (filter === 'all' || card.dataset.platforms.includes(filter)) {
+        card.classList.add('visible');
+      } else {
+        card.classList.remove('visible');
+      }
+    });
+  });
+});
+
+// Copy ad text
+function copyAd(btn) {
+  const body = btn.parentElement.querySelector('.ad-body');
+  navigator.clipboard.writeText(body.textContent.trim()).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy Ad'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function copyIg(btn) {
+  const pre = btn.parentElement.querySelector('pre');
+  navigator.clipboard.writeText(pre.textContent.trim()).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Mark as posted (persistent)
+function markPosted(btn, id) {
+  const key = 'shed-posted-' + id;
+  const posted = localStorage.getItem(key);
+  if (posted) {
+    localStorage.removeItem(key);
+    btn.classList.remove('done');
+    btn.textContent = '✅ Mark Posted';
+  } else {
+    localStorage.setItem(key, new Date().toISOString());
+    btn.classList.add('done');
+    btn.textContent = '✅ Posted!';
+  }
+  updatePostedCount();
+}
+
+function updatePostedCount() {
+  let count = 0;
+  for (let i = 102; i <= 111; i++) {
+    if (localStorage.getItem('shed-posted-' + i)) count++;
+  }
+  document.getElementById('postedCount').textContent = count;
+}
+
+// Restore posted state on load
+document.addEventListener('DOMContentLoaded', () => {
+  for (let i = 102; i <= 111; i++) {
+    if (localStorage.getItem('shed-posted-' + i)) {
+      const card = document.querySelector(`[data-id="${i}"]`);
+      if (card) {
+        const btn = card.querySelector('.posted-btn');
+        btn.classList.add('done');
+        btn.textContent = '✅ Posted!';
+      }
+    }
+  }
+  updatePostedCount();
+});
+</script>
+
+</body>
+</html>
