@@ -6,6 +6,46 @@
 
 ## March 10, 2026 (Monday)
 
+### 9:04 PM — 🏠 STL SHED MARKET INTEL Q1 2026 (Hourly Task)
+**Task:** Deep competitive research on the STL shed market — map all active competitors, extract pricing, analyze FB Marketplace dynamics, create actionable sales strategy for TJ's shed business
+**Result:** ✅ SHIPPED — 6-tab interactive intelligence report with competitor profiles, pricing landscape, copy-paste Marketplace ads, and spring action plan
+
+**Why This Task:**
+- Today's other tasks were ALL Tidy Tails focused — shed business was getting zero attention
+- Spring is peak shed season (March-May) — every competitor is ramping up Marketplace activity
+- TJ's shed pipeline needs the same competitive intel treatment we gave Tidy Tails
+- Most shed competitors have weak FB Marketplace game = opportunity gap for TJ
+
+**Key Findings:**
+1. **14+ active shed competitors** in STL metro — market is more crowded than expected
+2. **Tuff Shed Home Depot pricing is fully transparent:** 8x10 = $3,298, 10x12 = $4,198-$4,998 (installed)
+3. **Average shed price on ShedHub STL = $6,568** across 64 active listings
+4. **Rent-to-own is EVERYWHERE** — Cardinal, STL Shed Guy, Cook, 5-Star all offer no-credit-check RTO. If TJ can't match this, it's a disadvantage.
+5. **STL Sheds (Ben)** is TJ's most direct competitor — same "personal local dealer" positioning, excellent reviews, repeat customers
+6. **Cardinal Buildings** has the best website copy in the market — funny, relatable, zero corporate jargon
+7. **NOBODY is doing video walkthroughs on Marketplace** — massive opportunity for TJ
+8. **Speed of response** is the #1 differentiator available — most dealers take 24-48hrs to respond
+9. Created **3 copy-paste Marketplace ads** targeting different buyer psychology (price anchor, spring urgency, DIY comparison)
+10. Built **objection rebuttal guide** for the 5 most common shed buyer objections
+
+**Competitors Profiled:**
+- Tuff Shed (Home Depot) — TJ's employer, insider advantage
+- STL Sheds — strongest local dealer, personal service focus
+- The STL Shed Guy — veteran-owned, strong RTO angle
+- Cardinal Buildings — best marketing in market, IL location
+- 5-Star Buildings — multi-location, good SEO
+- Cook Portable Warehouses — national, since 1984, lifetime warranty
+- The Backyard & Beyond — family-owned, statewide delivery
+- Sunny Sheds — custom on-site builder, different segment
+
+**TJ's Positioning:** "Your Shed Guy" — the knowledgeable industry insider who saves you from overpaying, undersizing, or buying the wrong thing. Not a shed company, a shed consultant.
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-10-SHED-MARKET-INTEL-Q1.html
+**Commit:** `610d0bf` on `tidytails-dashboard` repo
+**Rotation:** 🏠 Shed Business — Market Intelligence
+
+---
+
 ### (Logged from March 9 session — see below)
 
 ---
