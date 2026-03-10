@@ -6,6 +6,43 @@
 
 ## March 10, 2026 (Tuesday)
 
+### 3:04 PM — 🎯 DEAD COMPETITOR CUSTOMER CAPTURE CAMPAIGN — 8 Ready-to-Post Messages (Hourly Task)
+**Task:** Research the two dead STL competitors (Fresh Paws, Poopy Paws), verify their status, map their territories, and create a complete customer capture campaign with copy-paste-ready posts for every platform
+**Result:** ✅ SHIPPED — 8 posts + interactive dashboard with copy buttons, posting schedule, and action checklist
+
+**Why This Task:**
+- 1 PM health check confirmed two competitors are DEAD (Fresh Paws = Squarespace expired, Poopy Paws = DNS failure)
+- Their combined customer base was likely 35-70 active accounts — pre-sold people who already pay for this service
+- Window is NOW — every week without action, these customers either DIY or find someone else
+- This is the highest-ROI play available: $0 cost, targets people already buying this exact service
+- Commercial leads are paused per TJ's Feb 23 directive, so residential capture is the move
+
+**What I Found (Live Research):**
+1. **Fresh Paws** (wearefreshpaws.com) — Confirmed DEAD. Squarespace "Website Expired" page. Based in Wildwood MO, served western STL + St. Charles County. Facebook page still exists (facebook.com/wearefreshpaws)
+2. **Poopy Paws** (poopypaws314.com) — Confirmed DEAD. DNS doesn't resolve (ENOTFOUND). Run by "Charlie", $20/week unlimited dogs, 10 Yelp reviews (still live!), 358 Facebook followers, had Nextdoor presence
+3. **Poopy Paws Yelp page is still active** — says "Updated March 2026" — people searching for them will land here and find out they're gone
+
+**What I Built:**
+- **Post 1:** Nextdoor post targeting Fresh Paws territory (Wildwood/Chesterfield/Ballwin)
+- **Post 2:** Nextdoor PSA for Poopy Paws customers
+- **Post 3:** Facebook dog owner group post covering both competitors
+- **Post 4:** Facebook Marketplace service listing with "old service shut down" spring special
+- **Post 5:** Craigslist services listing
+- **Post 6:** General Nextdoor spring cleanup angle
+- **Post 7:** Yelp business setup strategy (step-by-step to capture Poopy Paws searchers)
+- **Post 8:** Quick reply template for recommendation threads
+- **Full posting schedule** — staggered across the week
+- **Target neighborhood map** — prioritized by competitor territory overlap
+- **ROI estimate** — 2-7 new recurring customers = $200-700/mo additional revenue
+
+**Files Created:**
+- `content/2026-03-10-DEAD-COMPETITOR-CAPTURE-CAMPAIGN.md` — Full campaign documentation
+- `dashboard/2026-03-10-DEAD-COMPETITOR-CAPTURE.html` — Interactive dashboard with copy buttons, posting schedule, persistent checklist
+
+**Rotation:** 🎯 Marketing — Customer Acquisition / Competitor Intelligence
+
+---
+
 ### 1:04 PM — 🏥 DIGITAL HEALTH CHECK + ARCHIVE — Honest Status, No Dashboard (Hourly Task)
 **Task:** Archive bloated task log (1041→471 lines), run live digital health check across all search engines, verify indexing status 7 hours post-IndexNow
 **Result:** ✅ COMPLETED — Task log archived, full health check with 10 findings documented
@@ -524,3 +561,34 @@ Until those 3 things happen, all other marketing is digital shouting into a void
 - **March 2-4, 2026:** `memory/archive/franklin-tasks-week3-mar2-4.md` (2221 lines)
 - **Week 2 (Feb 24-28):** `memory/archive/franklin-tasks-week2.md`
 - **Week 1 (Feb 17-23):** `memory/archive/franklin-tasks-week1.md`
+
+### 2:05 PM — 🔴 LIVE COMPETITIVE INTEL — Real Pricing Data (Hourly Task)
+**Task:** Deep competitive analysis using REAL scraped data from 11+ competitor websites — actual pricing, features, Google rankings, and dead competitor status
+**Result:** ✅ SHIPPED — 6-tab interactive intel report with verified pricing, Google ranking analysis, feature matrix, and prioritized action plan
+
+**Why This Task:**
+- Previous competitor reports used estimated/remembered data. This one scraped LIVE websites today.
+- Found CRITICAL issue: tidytailsstl.com has ZERO Google-indexed pages (confirmed via site: search)
+- TJ is the MOST EXPENSIVE option in the market ($25/wk = $100/mo) — needs to know this
+- Doggie Doodies has significantly upgraded their feature set (photo alerts, gate photos, customer portal)
+
+**Key Findings:**
+1. **tidytailsstl.com = ZERO Google indexing** — site is live but completely invisible to search
+2. **TJ's $100/mo is the highest price in market** — Poop2Scoop = $72, Doggie Doodies = $83, Dirty Dog = $95
+3. **Poop2Scoop at $18/week is 28% cheaper** than TJ's $25/week — biggest price threat
+4. **Doggie Doodies = feature leader** — photo before arrival, gate-close photo, customer portal, referral program, gift cards, equipment disinfection
+5. **Fresh Paws = DEAD** — Squarespace site expired. Customer capture opportunity
+6. **Pawfect Waste Solutions = MAYBE alive?** — Still ranking in Google despite us marking as dead
+7. **Free first cleanup is industry standard** — Doggie Doodies + POOP 911 both offer it, TJ doesn't
+8. **TJ's flat pricing = advantage for 3-4 dog homes** ($100 vs DD's $121 for 4 dogs) — not shown on website
+
+**Priority Actions:**
+- P0: Fix Google indexing (nothing else matters until this works)
+- P0: Add free first cleanup offer
+- P1: Reconsider pricing (tiered or add value to justify premium)
+- P2: Show multi-dog pricing advantage on site
+- P2: Steal DD's photo/text alert features (free to implement)
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-10-LIVE-COMPETITIVE-INTEL.html
+**Commit:** `02133bb` on `tidytails-dashboard` repo
+**Rotation:** 🔍 Competitive Intelligence — Live Market Data
