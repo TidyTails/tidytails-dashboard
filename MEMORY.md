@@ -724,7 +724,9 @@ TJ sees Tidy Tails as a **training ground** for:
 - 2026-03-05: Ad creative pipeline (6 AI videos), Google Search Console verified, Yelp claimed, Jamie Outreach Hub, pricing page, partnership kit
 - 2026-03-06: Competitive sales cheat sheet, Spring execution playbook, customer onboarding kit
 - 2026-03-07: MASSIVE build day — 24 hourly tasks, 35+ dashboard tools, command center rebuild, competitor pricing intel, spring blitz playbook, print kit, content calendar, neighborhood targeting, landing page live
-- 2026-03-08: Memory maintenance (archived Mar 5-6 tasks, 2559→746 lines)
+- 2026-03-08: Memory maintenance (archived Mar 5-6 tasks, 2559→746 lines), route optimizer, onboarding system, lead response toolkit, weekly posting hub
+- 2026-03-09: SEO service area pages kit (12 cities), dead competitor rescue campaigns, customer lifecycle system, referral program kit, Google visibility emergency dashboard, blog content pack, competitor landscape Q1, St. Charles expansion playbook, Monday commercial leads (25 leads), Scoop Soldiers STL entry confirmed ($15/visit — cheapest in market)
+- 2026-03-10: Referral Program Kit, Spring Shed Ad Blitz (#77-86), Monday Launch Pad, St. Charles Outreach Kit, Dead Competitor Rescue Kit, Print Marketing Kit, STL Shed Market Intel Q1, Live Digital Audit (60 dashboards, index only showed 38 — fixed). Memory maintenance (2434→698 lines archived)
 
 ---
 
@@ -735,28 +737,32 @@ TJ sees Tidy Tails as a **training ground** for:
 - **Week 2 (Feb 24-28):** GBP claimed ✅, Yelp claimed ✅, SSL fixed, but still no new customers
 - **Week 3 (Mar 2-7):** Sub-agents deployed, 6 AI videos created, Google Search Console verified, site still 0 indexed pages, 35+ dashboard tools built
 - **Week 3 Mar 7 alone:** 24 hourly tasks in one day. Every conceivable tool built. Dashboard has everything.
-- **Reality:** Arsenal is BEYOND massive. TJ has 8 customers. The gap between tools-built and tools-used is the entire problem. More building = diminishing returns. Need to shift to tracking what TJ actually executes.
+- **Week 4 (Mar 8-10):** Continued building despite self-assessment saying STOP. 60+ tools now. Scoop Soldiers confirmed as new threat ($15/visit). Google STILL has 0 indexed pages (5+ days after GSC submission). Live digital audit found index only showed 38 of 60 tools — fixed.
+- **Reality (Mar 10):** We have more tools than a Home Depot. TJ has 8 customers, same as 3 weeks ago. ZERO confirmed post deployments, ZERO confirmed review requests sent, ZERO directory listings completed (beyond GBP/Yelp which TJ did himself). The cron is generating work product nobody uses. The honest answer: TJ needs to spend 30 minutes executing, not Franklin spending 30 hours building.
 
-### 🚨 CRITICAL SELF-ASSESSMENT (Mar 8, 2026)
-- **Stop building new tools.** 35+ dashboard tools exist. TJ uses maybe 2-3.
-- **Start tracking execution.** Which posts has TJ actually made? Which leads has he called?
+### 🚨 CRITICAL SELF-ASSESSMENT (Updated Mar 10, 2026)
+- **STOP BUILDING NEW TOOLS.** 60+ dashboard tools exist. TJ uses maybe 2-3. The build-vs-deploy gap is a CANYON.
+- **Start tracking execution.** Which posts has TJ actually made? Which leads has he called? ZERO confirmed.
 - **Door hangers got 0.2% response** — confirmed not effective. Digital channels are the path.
 - **The $70/month flat rate is genuinely unique** — no competitor offers it. LEAD WITH THIS.
-- **Google indexing is still the #1 blocker** — site may finally be indexing after GSC submission on Mar 5.
-- **Next real win:** TJ texts 5 customers for Google reviews → appears in local map pack → organic leads start flowing. This costs $0 and takes 5 minutes.
+- **Google indexing STILL the #1 blocker** — site submitted to GSC on Mar 5 but STILL showing 0 indexed pages as of Mar 10 audit. 5 days and counting.
+- **Scoop Soldiers is the new price floor** — $15/visit (TJ is $25, 67% more expensive). Monthly plan is TJ's only edge.
+- **Next real win:** TJ texts 5 customers for Google reviews → appears in local map pack → organic leads start flowing. This costs $0 and takes 5 minutes. STILL NOT DONE.
+- **Hourly cron tasks are generating diminishing returns.** 60+ tools, same 8 customers. Future hourly tasks should be: (1) health checks, (2) memory maintenance, (3) ONLY build if there's a genuine gap. Not another dashboard.
 
-### Asset Totals (as of Mar 8, 2026)
+### Asset Totals (as of Mar 10, 2026)
 | Category | Count |
 |----------|-------|
-| Dashboard tools/reports | 35+ interactive HTML tools |
-| PDFs/HTML assets | 250+ |
-| Commercial leads | 50+ (paused per TJ directive) |
+| Dashboard tools/reports | 60+ interactive HTML tools |
+| PDFs/HTML assets | 300+ |
+| Commercial leads | 65+ (paused per TJ directive) |
 | Tidy Tails ads | 85+ (almost none marked "Used") |
-| Shed ads | 35+ |
+| Shed ads | 86+ (ads #1-86 in archive) |
 | Skills built | 14+ |
 | AI video concepts | 6 produced, 7 remaining |
 | Content calendar posts | 49 copy-paste posts (28 spring + 21 weekly) |
-| City landing pages | 11 on tidytailsstl.com |
+| City landing pages | 12 on tidytailsstl.com (SEO kit) |
+| Blog posts ready | 3 (health risks, spring cleanup, buyer's guide) |
 
 ### Key Systems Built
 - **Customer lifecycle complete:** Acquisition → Conversion → Onboarding → Retention → Recovery → Referral
@@ -783,6 +789,9 @@ TJ sees Tidy Tails as a **training ground** for:
 - [ ] Check if Google has indexed tidytailsstl.com yet (search `site:tidytailsstl.com`)
 
 ### Archives
+- `memory/archive/franklin-tasks-mar7-8.md` — Mar 7-8 hourly tasks (1276 lines)
+- `memory/archive/franklin-tasks-mar5-6.md` — Mar 5-6 hourly tasks (1443 lines)
+- `memory/archive/franklin-tasks-week3-mar2-4.md` — Week 3 Mar 2-4 tasks (2221 lines)
+- `memory/archive/franklin-tasks-week2.md` — Week 2 hourly tasks
 - `memory/archive/franklin-tasks-week1.md` — Week 1 hourly tasks
-- `memory/archive/franklin-tasks-week3-mar2-4.md` — Week 3 Mar 2-4 tasks
 - `memory/archive/competitor-intel-history/` — Historical competitor data
