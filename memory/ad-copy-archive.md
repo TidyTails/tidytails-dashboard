@@ -2079,3 +2079,20 @@ Text Darius: 636-354-7406
 
 *Archive updated: 2026-02-26 9:00 AM*
 
+
+---
+
+## Spring 2026 Blitz — Ads #77-86 (Generated 2026-03-10)
+
+**Ad #77 - "Tax Refund Move"** — Tax refund → invest in shed instead of blowing it
+**Ad #78 - "Smartest Thing You'll Buy This Year"** — Tax refund down payment angle
+**Ad #79 - "The Spring Cleaning Problem"** — Where does the "keep" pile go?
+**Ad #80 - "Marie Kondo'd Your House, Now What?"** — Declutter follow-through
+**Ad #81 - "Your Spring Project List"** — Workshop as project headquarters
+**Ad #82 - "The Lawnmower Problem"** — Garage Tetris every weekend
+**Ad #83 - "Spring Is Our Busy Season"** — Order now before lead times grow
+**Ad #84 - "Before the Price Goes Up"** — Material cost urgency (real)
+**Ad #85 - "Cheaper Than a Home Addition"** — Reframe: $3k shed vs $50k addition
+**Ad #86 - "The Shed Conversation"** — Every couple has it. End it.
+
+*Archive updated: 2026-03-10 11:04 PM*
