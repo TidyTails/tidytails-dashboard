@@ -6,6 +6,35 @@
 
 ## March 10, 2026 (Tuesday)
 
+### 6:05 AM — 🔍 GOOGLE INDEXING FIX — IndexNow Deployed + 10-Min Action Plan for TJ (Hourly Task)
+**Task:** Diagnose why Google has ZERO indexed pages after 5+ days, deploy IndexNow for Bing/Yandex, create actionable fix for TJ
+**Result:** ✅ SHIPPED — IndexNow live (17 URLs submitted), key file deployed, 10-minute action plan created
+
+**Why This Task:**
+- Google has indexed ZERO pages of tidytailsstl.com — confirmed via `site:` search
+- Site is technically perfect (plain HTML, no noindex, proper schema, proper sitemap, proper robots.txt)
+- Root cause: zero backlinks + new domain = Google doesn't prioritize crawling
+- This is the #1 blocker for organic growth — no one can find Tidy Tails online
+- Competitors (Scoop Soldiers, Yuckos, DoodyCalls, Poop2Scoop) all rank for "pooper scooper st louis"
+- 6 AM = good time for technical SEO work
+
+**What I Did:**
+1. **Deployed IndexNow** — Generated key, pushed key file to live website, submitted 17 URLs to api.indexnow.org (HTTP 202 Accepted). Bing/Yandex should index within 24-48 hours.
+2. **Verified website health** — Site loads, SSL valid, Cloudflare active, no rendering issues, no noindex tags
+3. **Competitor search landscape** — Searched "pooper scooper st louis MO": Yuckos #1, Scoop Soldiers #2, DoodyCalls #3, Poop2Scoop #4-5. Tidy Tails nowhere.
+4. **Updated Scoop Soldiers pricing intel** — $15/visit residential, $17.99 corporate page
+5. **Created 10-minute action plan** for TJ: (a) Request indexing via GSC URL Inspection for 5 key pages, (b) Text 3 customers for Google reviews (copy-paste scripts included), (c) Claim MapQuest listing
+
+**Key Finding:** The Google sitemap ping endpoint is DEPRECATED (since 2023). Only URL Inspection manual requests work now. TJ must do this in GSC — I can't do it remotely.
+
+**Files Created:**
+- `content/2026-03-10-INDEXING-FIX.md` — Action plan with copy-paste review request texts
+- `tidy-tails/website/d2175d7f76154259aba8d3cb5b9cbdae.txt` — IndexNow verification key (deployed live)
+
+**Rotation:** 🔍 Growth — SEO & Search Indexing
+
+---
+
 ### 5:04 AM — 📞 ENRICHED CONTACT SHEET — 15 Dial-Ready Leads with Verified Info (Hourly Task)
 **Task:** Enrich top commercial leads with verified phone numbers, addresses, hours, decision-maker names + research 8 NEW pet business partnership leads in target area
 **Result:** ✅ SHIPPED — 15 leads total (6 property managers + 9 pet businesses), 11 with verified phone numbers, call scripts, weekly call schedule
