@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tidy Tails — Directory Submission Tracker</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; padding: 20px; }
+.header { text-align: center; padding: 30px 0 20px; }
+.header h1 { font-size: 2rem; color: #f8fafc; margin-bottom: 8px; }
+.header h1 span { color: #38bdf8; }
+.header p { color: #94a3b8; font-size: 0.95rem; }
+.stats-bar { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin: 20px 0 30px; }
+.stat-card { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 16px 24px; text-align: center; min-width: 140px; }
+.stat-card .num { font-size: 2rem; font-weight: 700; }
+.stat-card .label { font-size: 0.8rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+.stat-card.green .num { color: #4ade80; }
+.stat-card.blue .num { color: #38bdf8; }
+.stat-card.yellow .num { color: #facc15; }
+.stat-card.purple .num { color: #a78bfa; }
+.nap-box { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border: 2px solid #f59e0b; border-radius: 12px; padding: 20px; max-width: 700px; margin: 0 auto 30px; }
+.nap-box h3 { color: #f59e0b; margin-bottom: 12px; font-size: 1rem; }
+.nap-field { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid #334155; }
+.nap-field:last-child { border-bottom: none; }
+.nap-field label { color: #94a3b8; font-size: 0.85rem; min-width: 80px; }
+.nap-field input { flex: 1; background: #0f172a; border: 1px solid #475569; border-radius: 6px; padding: 8px 12px; color: #f8fafc; font-size: 0.9rem; }
+.nap-field .copy-btn { background: #334155; border: none; color: #94a3b8; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; transition: all 0.2s; }
+.nap-field .copy-btn:hover { background: #475569; color: #f8fafc; }
+.tier { margin-bottom: 30px; }
+.tier-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding: 12px 16px; border-radius: 10px; cursor: pointer; transition: background 0.2s; }
+.tier-header:hover { background: #1e293b; }
+.tier-header h2 { font-size: 1.1rem; flex: 1; }
+.tier-header .tier-badge { font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; font-weight: 600; }
+.tier-1 .tier-badge { background: #dc262620; color: #f87171; border: 1px solid #f8717140; }
+.tier-2 .tier-badge { background: #f59e0b20; color: #fbbf24; border: 1px solid #fbbf2440; }
+.tier-3 .tier-badge { background: #3b82f620; color: #60a5fa; border: 1px solid #60a5fa40; }
+.tier-4 .tier-badge { background: #8b5cf620; color: #a78bfa; border: 1px solid #a78bfa40; }
+.tier-progress { font-size: 0.85rem; color: #94a3b8; }
+.dir-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px; }
+.dir-card { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 16px; transition: all 0.2s; }
+.dir-card:hover { border-color: #475569; transform: translateY(-1px); }
+.dir-card.done { border-color: #4ade8040; background: #4ade800a; }
+.dir-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.dir-check { width: 22px; height: 22px; border-radius: 6px; border: 2px solid #475569; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; }
+.dir-check.checked { background: #4ade80; border-color: #4ade80; }
+.dir-check.checked::after { content: '✓'; color: #0f172a; font-weight: 700; font-size: 14px; }
+.dir-name { font-weight: 600; font-size: 1rem; flex: 1; }
+.dir-cost { font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; }
+.dir-cost.free { background: #4ade8020; color: #4ade80; }
+.dir-cost.paid { background: #f59e0b20; color: #fbbf24; }
+.dir-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.dir-tag { font-size: 0.7rem; padding: 2px 8px; background: #334155; border-radius: 8px; color: #94a3b8; }
+.dir-why { font-size: 0.85rem; color: #94a3b8; line-height: 1.5; margin-bottom: 10px; }
+.dir-actions { display: flex; gap: 8px; }
+.dir-btn { padding: 6px 14px; border-radius: 6px; border: none; font-size: 0.8rem; cursor: pointer; transition: all 0.2s; text-decoration: none; display: inline-block; }
+.dir-btn.primary { background: #38bdf8; color: #0f172a; font-weight: 600; }
+.dir-btn.primary:hover { background: #7dd3fc; }
+.dir-btn.secondary { background: #334155; color: #94a3b8; }
+.dir-btn.secondary:hover { background: #475569; color: #f8fafc; }
+.time-est { font-size: 0.75rem; color: #64748b; }
+.schedule { max-width: 700px; margin: 30px auto; background: #1e293b; border-radius: 12px; padding: 24px; border: 1px solid #334155; }
+.schedule h3 { color: #38bdf8; margin-bottom: 16px; }
+.sched-week { margin-bottom: 16px; }
+.sched-week h4 { color: #f8fafc; font-size: 0.9rem; margin-bottom: 8px; }
+.sched-day { display: flex; gap: 8px; align-items: center; padding: 6px 0; font-size: 0.85rem; color: #94a3b8; }
+.sched-day .day { color: #fbbf24; min-width: 100px; font-weight: 600; }
+.desc-box { max-width: 700px; margin: 30px auto; background: #1e293b; border-radius: 12px; padding: 24px; border: 1px solid #334155; }
+.desc-box h3 { color: #38bdf8; margin-bottom: 16px; }
+.desc-text { background: #0f172a; border: 1px solid #334155; border-radius: 8px; padding: 16px; margin-bottom: 12px; position: relative; }
+.desc-text p { color: #cbd5e1; font-size: 0.9rem; line-height: 1.6; }
+.desc-text .label { color: #94a3b8; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.copy-all { background: #334155; border: none; color: #94a3b8; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; position: absolute; top: 12px; right: 12px; transition: all 0.2s; }
+.copy-all:hover { background: #475569; color: #f8fafc; }
+.footer { text-align: center; padding: 40px 0 20px; color: #475569; font-size: 0.8rem; }
+.hidden { display: none; }
+@media (max-width: 600px) {
+  .dir-grid { grid-template-columns: 1fr; }
+  .stats-bar { gap: 10px; }
+  .stat-card { min-width: 100px; padding: 12px 16px; }
+  .stat-card .num { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📍 Directory <span>Submission Tracker</span></h1>
+  <p>Get Tidy Tails listed everywhere customers are looking — track your progress below</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-card green">
+    <div class="num" id="completedCount">0</div>
+    <div class="label">Completed</div>
+  </div>
+  <div class="stat-card blue">
+    <div class="num" id="totalCount">25</div>
+    <div class="label">Total</div>
+  </div>
+  <div class="stat-card yellow">
+    <div class="num" id="progressPct">0%</div>
+    <div class="label">Progress</div>
+  </div>
+  <div class="stat-card purple">
+    <div class="num" id="timeEst">~4.5h</div>
+    <div class="label">Est. Time Left</div>
+  </div>
+</div>
+
+<!-- NAP Consistency Box -->
+<div class="nap-box">
+  <h3>⚠️ NAP CONSISTENCY — Use This EXACT Info Everywhere</h3>
+  <div class="nap-field">
+    <label>Name:</label>
+    <input type="text" id="napName" value="Tidy Tails Pet Waste Removal" readonly>
+    <button class="copy-btn" onclick="copyField('napName')">Copy</button>
+  </div>
+  <div class="nap-field">
+    <label>Phone:</label>
+    <input type="text" id="napPhone" placeholder="Enter business phone" onfocus="this.removeAttribute('readonly')">
+    <button class="copy-btn" onclick="copyField('napPhone')">Copy</button>
+  </div>
+  <div class="nap-field">
+    <label>Website:</label>
+    <input type="text" id="napWeb" value="tidytailspetwasteremoval.net" readonly>
+    <button class="copy-btn" onclick="copyField('napWeb')">Copy</button>
+  </div>
+  <div class="nap-field">
+    <label>Address:</label>
+    <input type="text" id="napAddr" placeholder="Enter business address" onfocus="this.removeAttribute('readonly')">
+    <button class="copy-btn" onclick="copyField('napAddr')">Copy</button>
+  </div>
+</div>
+
+<!-- Tier 1 -->
+<div class="tier tier-1">
+  <div class="tier-header" onclick="toggleTier('tier1')">
+    <h2>⭐ Tier 1: Critical — Do This Week</h2>
+    <span class="tier-badge">HIGHEST IMPACT</span>
+    <span class="tier-progress" id="tier1Progress">0/6</span>
+  </div>
+  <div class="dir-grid" id="tier1"></div>
+</div>
+
+<!-- Tier 2 -->
+<div class="tier tier-2">
+  <div class="tier-header" onclick="toggleTier('tier2')">
+    <h2>⭐ Tier 2: High Value — Do Next Week</h2>
+    <span class="tier-badge">STRONG CITATIONS</span>
+    <span class="tier-progress" id="tier2Progress">0/6</span>
+  </div>
+  <div class="dir-grid" id="tier2"></div>
+</div>
+
+<!-- Tier 3 -->
+<div class="tier tier-3">
+  <div class="tier-header" onclick="toggleTier('tier3')">
+    <h2>⭐ Tier 3: Good Citations — Within 2 Weeks</h2>
+    <span class="tier-badge">FILL OUT PROFILE</span>
+    <span class="tier-progress" id="tier3Progress">0/8</span>
+  </div>
+  <div class="dir-grid" id="tier3"></div>
+</div>
+
+<!-- Tier 4 -->
+<div class="tier tier-4">
+  <div class="tier-header" onclick="toggleTier('tier4')">
+    <h2>⭐ Tier 4: Niche & Bonus — When Time Allows</h2>
+    <span class="tier-badge">BONUS REACH</span>
+    <span class="tier-progress" id="tier4Progress">0/5</span>
+  </div>
+  <div class="dir-grid" id="tier4"></div>
+</div>
+
+<!-- Copy-paste descriptions -->
+<div class="desc-box">
+  <h3>📝 Copy-Paste Descriptions</h3>
+  <div class="desc-text">
+    <div class="label">Short Description (under 160 chars)</div>
+    <p id="descShort">Professional pet waste removal in St. Louis County, MO. Weekly, bi-weekly & one-time cleanups. Reliable, affordable, locally owned. Free quotes!</p>
+    <button class="copy-all" onclick="copyText('descShort')">Copy</button>
+  </div>
+  <div class="desc-text">
+    <div class="label">Long Description</div>
+    <p id="descLong">Tidy Tails Pet Waste Removal keeps St. Louis County yards clean so you don't have to. We offer weekly, bi-weekly, and one-time pet waste cleanup services for residential customers throughout St. Louis County and surrounding areas. Locally owned and operated, we're reliable, affordable, and committed to making your outdoor spaces enjoyable again. No contracts required. Contact us today for a free quote!</p>
+    <button class="copy-all" onclick="copyText('descLong')">Copy</button>
+  </div>
+</div>
+
+<!-- Schedule -->
+<div class="schedule">
+  <h3>📅 Recommended Schedule</h3>
+  <div class="sched-week">
+    <h4>Week 1 — The Big 6 (~1.5 hours)</h4>
+    <div class="sched-day"><span class="day">Monday</span> Google (optimize) + Facebook</div>
+    <div class="sched-day"><span class="day">Tuesday</span> Yelp + Apple Maps</div>
+    <div class="sched-day"><span class="day">Wednesday</span> Bing Places + Nextdoor</div>
+  </div>
+  <div class="sched-week">
+    <h4>Week 2 — High Value (~1.5 hours)</h4>
+    <div class="sched-day"><span class="day">Monday</span> Thumbtack + Angi</div>
+    <div class="sched-day"><span class="day">Tuesday</span> BBB + Yellow Pages + Superpages</div>
+    <div class="sched-day"><span class="day">Wednesday</span> MapQuest (claim existing!)</div>
+  </div>
+  <div class="sched-week">
+    <h4>Week 3 — Fill Out Profile (~1.5 hours)</h4>
+    <div class="sched-day"><span class="day">One sitting</span> Remaining Tier 3 + 4 directories</div>
+  </div>
+</div>
+
+<div class="footer">
+  Franklin 🐕💩 | Built March 10, 2026 | Directory Submission Tracker v1.0
+</div>
+
+<script>
+const directories = [
+  // Tier 1
+  { tier: 1, name: 'Google Business Profile', url: 'https://business.google.com/', cost: 'Free', time: '15 min', tags: ['Search', 'Maps', 'Reviews'], why: 'THE foundation. Everything starts here. Optimize fully — photos, services, description, hours.' },
+  { tier: 1, name: 'Facebook Business Page', url: 'https://www.facebook.com/business/learn/set-up-facebook-page', cost: 'Free', time: '20 min', tags: ['Social', 'Reviews', 'Ads'], why: '40M+ businesses listed. Customers check FB for legitimacy. Reviews here count for trust.' },
+  { tier: 1, name: 'Yelp', url: 'https://biz.yelp.com/', cost: 'Free', time: '15 min', tags: ['Reviews', 'High Authority'], why: '115M+ reviews. Google trusts Yelp citations heavily. Don\'t solicit reviews directly — Yelp penalizes that.' },
+  { tier: 1, name: 'Apple Business Connect', url: 'https://businessconnect.apple.com/', cost: 'Free', time: '15 min', tags: ['Maps', 'Siri', 'iPhone'], why: '1.2B iPhone users. Siri uses Apple Maps. Shows in every iPhone map search.' },
+  { tier: 1, name: 'Bing Places', url: 'https://www.bingplaces.com/', cost: 'Free', time: '5 min', tags: ['Search', 'Import from Google'], why: '10-15% of search traffic. Can import directly from Google — takes 5 minutes.' },
+  { tier: 1, name: 'Nextdoor', url: 'https://nextdoor.com/create-business', cost: 'Free', time: '15 min', tags: ['Neighbors', 'Pet Services', 'Goldmine'], why: 'GOLDMINE for local services. Neighbors recommend pet waste removal constantly. Post an intro!' },
+  // Tier 2
+  { tier: 2, name: 'Thumbtack', url: 'https://www.thumbtack.com/pro', cost: 'Pay/Lead', time: '20 min', tags: ['Leads', 'Pet Waste Category'], why: 'Has dedicated Pet Waste Removal category. Active buyers ready to hire. Start small ($20/week).' },
+  { tier: 2, name: 'Angi (Angie\'s List)', url: 'https://www.angi.com/for-business', cost: 'Free', time: '15 min', tags: ['Home Services', 'Reviews'], why: '3M+ households trust Angi. Strong local SEO signal for service businesses.' },
+  { tier: 2, name: 'Better Business Bureau', url: 'https://www.bbb.org/get-listed', cost: 'Free', time: '10 min', tags: ['Trust Signal', 'High Authority'], why: '100+ year trust brand. Google gives BBB citations significant weight. Skip paid accreditation.' },
+  { tier: 2, name: 'Yellow Pages / YP.com', url: 'https://www.yellowpages.com/', cost: 'Free', time: '10 min', tags: ['Citation', '70M Monthly'], why: 'Still gets 70M monthly visitors. High domain authority citation source.' },
+  { tier: 2, name: 'Superpages', url: 'https://www.superpages.com/', cost: 'Free', time: '10 min', tags: ['Citation', 'Thryv Network'], why: 'Part of Thryv network. Solid citation source that Google recognizes.' },
+  { tier: 2, name: 'MapQuest', url: 'https://www.mapquest.com/', cost: 'Free', time: '10 min', tags: ['Maps', 'Existing Listing!'], why: '⚠️ You already have a listing here with NO website! Claim it and add your URL immediately.' },
+  // Tier 3
+  { tier: 3, name: 'Whitepages', url: 'https://www.whitepages.com/', cost: 'Free', time: '5 min', tags: ['Citation', 'Phone Data'], why: '600M+ phone records. Verify business phone is listed correctly.' },
+  { tier: 3, name: 'Foursquare', url: 'https://business.foursquare.com/', cost: 'Free', time: '10 min', tags: ['Location Data', 'Wide Distribution'], why: 'Powers location data for Uber, Twitter, Samsung. Wide data distribution.' },
+  { tier: 3, name: 'Manta', url: 'https://www.manta.com/', cost: 'Free', time: '10 min', tags: ['Small Business', 'Directory'], why: 'Small business directory with good domain authority for citations.' },
+  { tier: 3, name: 'Hotfrog', url: 'https://www.hotfrog.com/', cost: 'Free', time: '5 min', tags: ['Citation', 'Directory'], why: 'Business directory with decent SEO juice for citation building.' },
+  { tier: 3, name: 'CitySearch', url: 'https://www.citysearch.com/', cost: 'Free', time: '5 min', tags: ['Local Guide', 'Ratings'], why: 'Local business guide with thumbs up/down ratings system.' },
+  { tier: 3, name: 'Local.com', url: 'https://www.local.com/', cost: 'Free', time: '5 min', tags: ['16M+ Listings', 'Local'], why: '16M+ business listings covering every US zip code.' },
+  { tier: 3, name: 'MerchantCircle', url: 'https://www.merchantcircle.com/', cost: 'Free', time: '10 min', tags: ['Networking', 'Local Biz'], why: 'Connects local businesses. Good for networking with complementary services.' },
+  { tier: 3, name: 'ChamberOfCommerce.com', url: 'https://www.chamberofcommerce.com/', cost: 'Free', time: '5 min', tags: ['Trust Signal', 'Citation'], why: 'Trust signal + citation. Free listing (separate from actual chamber membership).' },
+  // Tier 4
+  { tier: 4, name: 'Rover.com', url: 'https://www.rover.com/', cost: 'Free', time: '10 min', tags: ['Pet Services', 'Marketplace'], why: 'Pet services marketplace. Check if waste removal category exists.' },
+  { tier: 4, name: 'Care.com', url: 'https://www.care.com/', cost: 'Free', time: '10 min', tags: ['Home Services', 'Pet Care'], why: 'Home services marketplace including pet care section.' },
+  { tier: 4, name: 'Alignable', url: 'https://www.alignable.com/', cost: 'Free', time: '10 min', tags: ['B2B Networking', 'Referrals'], why: 'Small biz networking. Get referrals from landscapers, dog walkers, pet sitters.' },
+  { tier: 4, name: 'LinkedIn Company Page', url: 'https://www.linkedin.com/company/setup/new/', cost: 'Free', time: '15 min', tags: ['Professional', 'Commercial Leads'], why: 'Professional presence. Great for commercial leads — property managers, HOAs.' },
+  { tier: 4, name: 'Patch.com', url: 'https://patch.com/', cost: 'Free', time: '15 min', tags: ['Local News', 'Community'], why: 'Hyper-local news. Some areas let businesses post. Great community visibility.' }
+];
+
+const STORAGE_KEY = 'tidytails_directory_tracker';
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch(e) { return {}; }
+}
+function saveState(state) { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+function renderDirectories() {
+  const state = loadState();
+  [1,2,3,4].forEach(tier => {
+    const container = document.getElementById(`tier${tier}`);
+    const dirs = directories.filter(d => d.tier === tier);
+    container.innerHTML = dirs.map((d, i) => {
+      const key = d.name.replace(/\s/g, '_');
+      const done = state[key] || false;
+      return `
+        <div class="dir-card ${done ? 'done' : ''}">
+          <div class="dir-top">
+            <div class="dir-check ${done ? 'checked' : ''}" onclick="toggleDir('${key}')"></div>
+            <span class="dir-name">${d.name}</span>
+            <span class="dir-cost ${d.cost === 'Free' ? 'free' : 'paid'}">${d.cost}</span>
+          </div>
+          <div class="dir-meta">
+            ${d.tags.map(t => `<span class="dir-tag">${t}</span>`).join('')}
+            <span class="time-est">⏱ ${d.time}</span>
+          </div>
+          <div class="dir-why">${d.why}</div>
+          <div class="dir-actions">
+            <a href="${d.url}" target="_blank" class="dir-btn primary">Go to Site →</a>
+          </div>
+        </div>
+      `;
+    }).join('');
+  });
+  updateStats();
+}
+
+function toggleDir(key) {
+  const state = loadState();
+  state[key] = !state[key];
+  saveState(state);
+  renderDirectories();
+}
+
+function updateStats() {
+  const state = loadState();
+  const completed = directories.filter(d => state[d.name.replace(/\s/g, '_')]).length;
+  const total = directories.length;
+  const remaining = directories.filter(d => !state[d.name.replace(/\s/g, '_')]);
+  const timeLeft = remaining.reduce((sum, d) => sum + parseInt(d.time), 0);
+
+  document.getElementById('completedCount').textContent = completed;
+  document.getElementById('totalCount').textContent = total;
+  document.getElementById('progressPct').textContent = Math.round(completed / total * 100) + '%';
+  document.getElementById('timeEst').textContent = timeLeft >= 60 ? `~${(timeLeft/60).toFixed(1)}h` : `~${timeLeft}m`;
+
+  [1,2,3,4].forEach(tier => {
+    const tierDirs = directories.filter(d => d.tier === tier);
+    const tierDone = tierDirs.filter(d => state[d.name.replace(/\s/g, '_')]).length;
+    document.getElementById(`tier${tier}Progress`).textContent = `${tierDone}/${tierDirs.length}`;
+  });
+}
+
+function copyField(id) {
+  const el = document.getElementById(id);
+  navigator.clipboard.writeText(el.value);
+  const btn = el.nextElementSibling;
+  btn.textContent = 'Copied!';
+  setTimeout(() => btn.textContent = 'Copy', 1500);
+}
+
+function copyText(id) {
+  const el = document.getElementById(id);
+  navigator.clipboard.writeText(el.textContent);
+  const btn = el.parentElement.querySelector('.copy-all');
+  btn.textContent = 'Copied!';
+  setTimeout(() => btn.textContent = 'Copy', 1500);
+}
+
+renderDirectories();
+</script>
+</body>
+</html>
