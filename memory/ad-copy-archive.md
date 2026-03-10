@@ -2096,3 +2096,29 @@ Text Darius: 636-354-7406
 **Ad #86 - "The Shed Conversation"** — Every couple has it. End it.
 
 *Archive updated: 2026-03-10 11:04 PM*
+
+---
+
+## March 10, 2026 — Tuesday Fresh Pack (9 AM Task)
+
+**Shed-Mar102 - "Tuesday Tax Check" (FB Marketplace + Groups)**
+- Hook: Did that refund hit yet? Smart money vs impulse buy
+- Key: Property value, 0% financing, refund as down payment
+- Used: TBD (Marketplace + Groups Tue 3/10 AM)
+
+**Shed-Mar103 - "The 30-Second Test" (FB Marketplace + Nextdoor)**
+- Hook: Interactive garage self-assessment — checklist format
+- Key: Engagement, space vs organization reframe
+- Used: TBD (Marketplace + Nextdoor Tue 3/10 PM)
+
+**Shed-Mar104 - "Daylight Savings Aftermath" (FB Marketplace + Groups)**
+- Hook: Lost an hour, gain 200 sq ft — DST callback
+- Key: Spring rush warning, seasonal urgency
+- Used: TBD (Marketplace + Groups Tue 3/10 evening)
+
+**Shed-Mar105 - "The Real Man Cave" (FB Marketplace + Instagram)**
+- Hook: Shed > finished basement for man caves
+- Key: Privacy, customization, cost comparison, lifestyle
+- Used: TBD (Marketplace + Instagram Wed 3/11 AM)
+
+*Archive updated: 2026-03-10 9:00 AM*
