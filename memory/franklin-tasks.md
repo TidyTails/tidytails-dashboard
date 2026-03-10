@@ -6,6 +6,34 @@
 
 ## March 10, 2026 (Tuesday)
 
+### 10:05 AM — 🎯 GUERRILLA MARKETING PLAYBOOK — Dog Parks, Events & Community Channels (Hourly Task)
+**Task:** Research and map every dog park, pet event, Facebook group, Nextdoor strategy, and community channel where TJ can show up and meet dog owners face-to-face this spring
+**Result:** ✅ SHIPPED — Complete playbook + interactive dashboard with copy-paste posts and action checklist
+
+**Why This Task:**
+- We've built 9 systems/dashboards/content pieces today. All of them are DIGITAL. TJ also needs to physically SHOW UP where dog owners are.
+- Spring = dog parks full, events starting, yards are gross. Perfect time for guerrilla marketing.
+- Zero ad spend required. Business cards + showing up = highest-conversion marketing for local services.
+- No previous task has mapped the actual physical locations and upcoming events.
+
+**What I Found & Built:**
+1. **6 dog parks mapped** in TJ's service area — Tails & Trails (Ballwin), Treecourt Unleashed (Kirkwood), Eberwein (Chesterfield), Ellisville, Creve Coeur x2
+2. **5 upcoming pet events** — Roots & Rescues (Mar 21), Mattress Dogzzz Grand Opening (Mar 21, Creve Coeur), Stray Rescue Day at Ballpark (Apr 26), Ellisville Bark in the Park (May 2, FREE!), POOCHELLA 2026 (TBD)
+3. **8+ free online channels** — Nextdoor (with full strategy), 6 Facebook groups, Kirkwood-Des Peres Chamber, dog park communities
+4. **4 copy-paste posts** ready for Nextdoor/Facebook (intro, helpful tip, spring special, value post)
+5. **Weekly dog park rotation schedule** — Saturday 9-11 AM, different park each week
+6. **Full cost breakdown** — $300-650 total to execute, ROI of 1.3-2.8x from just ONE new customer
+
+**Key Discovery:** Ellisville "Bark in the Park" (May 2) = FREE admission event right in TJ's service area. Every attendee is a local dog owner. MUST attend and ask about vendor spot.
+
+**Files Created:**
+- `content/2026-03-10-GUERRILLA-MARKETING-PLAYBOOK.md` — Full playbook documentation
+- `dashboard/2026-03-10-GUERRILLA-MARKETING-PLAYBOOK.html` — Interactive dashboard with expandable cards, event timeline, copy-paste posts, persistent checklist
+
+**Rotation:** 🎯 Marketing — Community & Guerrilla Strategy
+
+---
+
 ### 9:05 AM — 🏠 MID-MARCH SPRING RUSH — 10 Fresh Shed Ads (#102-111) (Hourly Task)
 **Task:** Create a full week of fresh Facebook Marketplace + Instagram ads for TuffShed, with seasonal hooks (tax refunds, March Madness, St. Patrick's Day, spring cleaning, weather), interactive dashboard, and posting schedule
 **Result:** ✅ SHIPPED — 10 ads + 3 IG captions + interactive dashboard with copy buttons & post tracker
