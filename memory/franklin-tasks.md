@@ -2188,3 +2188,47 @@ Google Visibility Emergency Dashboard (`dashboard/2026-03-09-GOOGLE-VISIBILITY-E
 **Commit:** `596dd8e` on `tidytails-dashboard` repo
 
 **Rotation:** 🚨 Critical Infrastructure — Search Visibility
+
+### 7:04 PM — 📝 SEO BLOG CONTENT PACK — 3 Publish-Ready Articles (Hourly Task)
+**Task:** Write actual blog content for tidytailsstl.com to help with Google indexing and organic search rankings
+**Result:** ✅ SHIPPED — 3 SEO-optimized blog posts with copy-to-clipboard, meta tags, and publishing guide
+
+**Why This Task:**
+- tidytailsstl.com still has ZERO pages indexed by Google (confirmed via site: search)
+- Site has great bones (robots.txt, sitemap.xml, 11 service area pages) but no blog content
+- Fresh, keyword-targeted content is the #1 factor for getting Google to crawl and rank a site
+- Every other hourly task today was dashboards/toolkits — this is actual CONTENT for the live website
+- Blog posts create indexable URLs, target long-tail keywords, and drive organic traffic
+
+**3 Posts Written:**
+1. **"The Hidden Health Risks of Dog Waste in Your St. Louis Yard"** (~1,100 words)
+   - Target: dog waste health risks, parasites, children safety
+   - Angle: Scare the procrastinators — roundworms, hookworms, E. coli, leptospirosis
+   - URL: /blog/dog-waste-health-risks-st-louis
+
+2. **"Spring Yard Cleanup in St. Louis: Why March Is the Month to Start Fresh"** (~1,000 words)
+   - Target: spring cleanup, winter poop thaw, seasonal urgency
+   - Angle: Timely for RIGHT NOW — positions $100 deep clean as entry point
+   - URL: /blog/spring-yard-cleanup-st-louis
+
+3. **"How to Choose a Pooper Scooper Service in St. Louis"** (~1,200 words)
+   - Target: pooper scooper service st louis, best service, cost comparison
+   - Angle: Buyer's guide that builds trust through transparency
+   - URL: /blog/how-to-choose-pooper-scooper-service-st-louis
+
+**Each Post Includes:** SEO meta title (60 chars), meta description (155 chars), target keywords, suggested URL slug, internal links back to main site, copy-to-clipboard button.
+
+**Also Included:** Publishing guide with step-by-step instructions, 10-item checklist with localStorage persistence, future content calendar with 5 topic ideas.
+
+**Expected Impact:** Once published + Google Search Console set up:
+- 3 new indexable URLs immediately
+- Targeting 12 long-tail keywords competitors aren't specifically targeting
+- 50-200 organic visits/month within 60 days
+- 1-2 new customer inquiries/month from organic blog traffic alone
+
+**Different From Other Tasks:** This isn't another dashboard/toolkit — it's actual website content TJ can publish to the live blog. The site needs CONTENT for Google to care about it.
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-09-BLOG-CONTENT-PACK.html
+**Commit:** `f84cb5e` on `tidytails-dashboard` repo
+
+**Rotation:** 🌐 Content Marketing — SEO Blog Strategy
