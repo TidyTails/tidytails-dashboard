@@ -6,6 +6,48 @@
 
 ## March 10, 2026 (Tuesday)
 
+### 5:04 PM — 🗺️ GOOGLE BUSINESS PROFILE OPTIMIZATION PLAYBOOK — Complete Copy-Paste Guide (Hourly Task)
+**Task:** Research 2026 GBP best practices, create comprehensive optimization playbook with all copy-paste content TJ needs to fully optimize his Google Business Profile
+**Result:** ✅ SHIPPED — Full playbook (markdown + interactive dashboard) with 9 sections of ready-to-use content
+
+**Why This Task:**
+- GBP has been CLAIMED since Feb 26 but never fully OPTIMIZED
+- With zero website indexing, GBP is literally TJ's ONLY Google presence
+- 48% of local-intent searches lead to GBP interaction within 24 hours
+- Competitors (Poop2Scoop, Scoop Soldiers, DoodyCalls) have active, optimized GBP profiles
+- This is FREE and takes 15 minutes for basics
+- Previous tasks identified the problem (no visibility); this gives TJ the fix
+
+**What I Researched:**
+- 2026 GBP optimization guides from LocalMighty, AgencyJet, MooreTech, Medium
+- Google now uses AI to generate answers FROM GBP data (services, Q&A, reviews)
+- Google Vision AI reads uploaded photo metadata for ranking signals
+- Review RECENCY (last 90 days) now weighted more than total count
+- Pre-seeded Q&A becomes "facts" for Google AI Overview answers
+- File naming on photos feeds into categorization
+
+**What I Built (9 Sections):**
+1. **Optimized Business Description** — 750 chars, mentions 7 service areas, leads with $70/month differentiator
+2. **7 Services with Descriptions** — Weekly, biweekly, monthly, deep clean, multi-dog, spring, rental/landlord
+3. **8 Pre-Seeded Q&As** — Pricing, areas, home presence, contracts, dogs, weather, free visit, owner-operated
+4. **8 GBP Posts (4 weeks)** — Spring special, social proof, education, behind-scenes, FAQ, seasonal, value prop, community
+5. **Review Generation Strategy** — After-service text templates, long-time customer template, in-person script, response templates
+6. **Photo Strategy** — 7-item shot list with file naming guide (Google reads filenames!)
+7. **Attributes & Features Checklist** — Locally owned, messaging, hours, auto-reply
+8. **22-Item Priority Checklist** — Today (5 items, 15 min) → This Week (5 items) → Ongoing (6 items) → Monthly (6 items)
+9. **Competitor GBP Comparison Table**
+
+**Files Created:**
+- `content/2026-03-10-GBP-OPTIMIZATION-PLAYBOOK.md` — Full playbook documentation
+- `dashboard/2026-03-10-GBP-OPTIMIZATION.html` — Interactive dashboard with copy buttons, persistent checklist, tabbed navigation
+- Updated `dashboard/index.html` — Added priority banner + card link
+
+**Key Insight:** GBP is now an "answer engine" — Google AI Overview pulls directly from GBP services, Q&A, and reviews to answer voice and text queries. Pre-seeding Q&A is basically writing the script for what Google tells people about your business.
+
+**Rotation:** 🗺️ Marketing — Google Business Profile Optimization
+
+---
+
 ### 4:05 PM — 🚨 LIVE COMPETITIVE PRICING REALITY CHECK — TJ Is Most Expensive in Market (Hourly Task)
 **Task:** Live competitive pricing audit — scraped every STL competitor's current pricing, discovered TJ is 28-44% more expensive than local competitors for weekly service, identified new competitor (STL Critter Sitters), verified dead competitors still dead, confirmed site STILL not indexed
 **Result:** ✅ SHIPPED — Pricing comparison card + detailed research doc with 3 strategic options
