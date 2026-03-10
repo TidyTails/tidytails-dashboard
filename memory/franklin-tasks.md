@@ -6,6 +6,38 @@
 
 ## March 10, 2026 (Tuesday)
 
+### 12:05 PM — 📝 SEO BLOG CONTENT BATCH — 5 Ready-to-Publish Posts Targeting Long-Tail Keywords (Hourly Task)
+**Task:** Create 5 SEO-optimized blog posts targeting keywords competitors rank for but Tidy Tails doesn't. Each post is ready to copy-paste into the blog CMS with slugs, meta descriptions, and CTAs.
+**Result:** ✅ SHIPPED — 5 blog posts + interactive dashboard with copy buttons and publishing checklist
+
+**Why This Task:**
+- Previous indexing fix identified critical problem: Google has ZERO pages indexed for tidytailsstl.com
+- Current blog has only 4 posts from March 6 — not enough content to rank
+- Competitors (POOP 911, DoodyCalls, Poop2Scoop) dominate search results
+- Even after Google starts indexing, the site needs keyword-targeted content TO index
+- These are the highest-ROI pages TJ can add: $0 cost, potential 2,250-4,700 monthly impressions
+
+**Posts Created:**
+1. **"How Much Does a Pooper Scooper Service Cost in St. Louis?"** — High purchase intent, pricing comparison
+2. **"Dog Poop Health Risks: Why It's Not Just Gross"** — Fear-based education → conversion
+3. **"Best Dog Parks in St. Louis County (2026 Guide)"** — Highest traffic potential (1,000-2,000/mo searches)
+4. **"Moving to St. Louis with Dogs?"** — Captures relocators, evergreen content
+5. **"Spring Yard Cleanup Checklist for Dog Owners"** — Seasonal urgency, publish NOW
+
+**Key Strategy:**
+- Big franchises (POOP 911, DoodyCalls) have national content but weak LOCAL content
+- TJ can outrank them on St. Louis-specific queries with authentic local knowledge
+- Dog parks guide doubles as community content for Nextdoor/Facebook sharing
+- Spring cleanup post has immediate seasonal relevance
+
+**Files Created:**
+- `content/2026-03-10-SEO-BLOG-POSTS.md` — All 5 posts with full text, keywords, and publishing instructions
+- `dashboard/2026-03-10-SEO-BLOG-POSTS.html` — Interactive dashboard with expandable posts, copy buttons, keyword overview, and persistent publishing checklist
+
+**Rotation:** 📝 SEO — Content Strategy & Blog Posts
+
+---
+
 ### 11:04 AM — 🔍 COMPETITIVE PRICING & MARKET UPDATE — Live Intel from All STL Competitors (Hourly Task)
 **Task:** Crawl every active competitor's website for current pricing, features, and status. Identify dead competitors whose customers TJ can capture. Build actionable competitive intelligence dashboard.
 **Result:** ✅ SHIPPED — Complete competitive analysis + interactive dashboard with pricing tables, feature comparison, and action items
