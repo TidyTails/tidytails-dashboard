@@ -2398,3 +2398,37 @@ Google Visibility Emergency Dashboard (`dashboard/2026-03-09-GOOGLE-VISIBILITY-E
 **Ad archive:** Updated to 86 total ads
 
 **Rotation:** 🏠 Sheds — Spring Campaign Content
+
+### 1:04 AM — 🔍 WEEKLY COMPETITOR PULSE CHECK #2 — New Entrant Alert (Hourly Task)
+**Task:** Run the scheduled weekly competitor intelligence sweep (March 3 report said "Next check: March 10")
+**Result:** ✅ COMPLETED — Full competitive landscape update with major new finding
+
+**🚨 BIGGEST FINDING: Scoop Soldiers entered the St. Louis market**
+- National company (est. 2010) expanded to STL on February 6, 2026
+- Published press release via EIN Presswire
+- Already have indexed STL location page (Google can find them, can't find TJ)
+- Pricing: ~$20/visit weekly (up to 4 dogs INCLUDED)
+- Offering free first cleanup for new customers
+- Professional marketing infrastructure, SEO pages, background-checked techs
+
+**Full Landscape Update (6 active competitors, up from 5):**
+- Poop2Scoop: Still cheapest ($18/wk), no changes
+- POOP 911: Still covering all STL, added new service area page
+- DoodyCalls: Still active, quote-based
+- Dirty Dog Poo Crew: Pricing confirmed ($95/mo weekly, 1-2 dogs)
+- Yucko's: Still active since 1990, commercial focus
+- Poopy Paws: Website DNS dead (was $20/wk unlimited dogs) — likely dying
+- Little Stinkers, Fresh Paws, Pawfect Waste: Still confirmed dead
+
+**Key Strategic Takeaways:**
+1. Market is getting MORE competitive, not less (Scoop Soldiers is well-funded)
+2. TJ's Google invisibility is now actively costing customers — competitors are indexed, he's not
+3. $70/month remains TJ's only unique positioning
+4. St. Charles is still the biggest open territory opportunity
+5. "Free first cleanup" is becoming industry standard hook (2 of 6 competitors offer it)
+
+**tidytailsstl.com still has ZERO Google-indexed pages** — this is week 2+ of flagging this as the #1 blocker.
+
+**Full report saved:** memory/2026-03-10-competitor-pulse-check.md
+
+**Rotation:** 🔍 Competitive Intelligence — Weekly Pulse Check
