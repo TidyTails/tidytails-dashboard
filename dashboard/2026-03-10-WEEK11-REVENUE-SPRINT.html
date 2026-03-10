@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 11 Revenue Sprint | Tidy Tails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --bg4: #222;
+            --text: #f5f5f5; --text2: #999; --text3: #666;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+
+        .header {
+            background: linear-gradient(135deg, #1a0f05 0%, #0a0a0a 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem;
+        }
+        .header-top { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+        .header h1 { font-size:1.6rem; font-weight:900; letter-spacing:-0.04em; }
+        .header h1 span { color:var(--orange); }
+        .header .subtitle { color:var(--text2); font-size:0.85rem; margin-top:0.3rem; }
+        .header-stats { display:flex; gap:1.5rem; flex-wrap:wrap; }
+        .header-stat { text-align:center; }
+        .header-stat .num { font-size:1.8rem; font-weight:900; font-family:'JetBrains Mono',monospace; }
+        .header-stat .label { font-size:0.7rem; color:var(--text2); text-transform:uppercase; letter-spacing:0.05em; }
+
+        .progress-bar-container { margin-top:1rem; background:var(--bg3); border-radius:8px; height:28px; position:relative; overflow:hidden; }
+        .progress-bar-fill { height:100%; border-radius:8px; transition:width 0.6s ease; display:flex; align-items:center; justify-content:center; font-size:0.75rem; font-weight:700; }
+        .progress-label { position:absolute; right:8px; top:50%; transform:translateY(-50%); font-size:0.7rem; color:var(--text2); }
+
+        .container { max-width:1200px; margin:0 auto; padding:1.5rem; }
+
+        .day-tabs { display:flex; gap:0.5rem; margin-bottom:1.5rem; flex-wrap:wrap; }
+        .day-tab {
+            padding:0.6rem 1.2rem; border-radius:8px; cursor:pointer; font-weight:600; font-size:0.85rem;
+            background:var(--bg3); border:1px solid var(--border); color:var(--text2); transition:all 0.2s;
+        }
+        .day-tab:hover { border-color:var(--orange); color:var(--text); }
+        .day-tab.active { background:var(--orange); border-color:var(--orange); color:#fff; }
+        .day-tab .emoji { margin-right:0.3rem; }
+        .day-tab .count { background:rgba(255,255,255,0.2); padding:0.1rem 0.4rem; border-radius:4px; font-size:0.75rem; margin-left:0.4rem; }
+
+        .day-content { display:none; }
+        .day-content.active { display:block; }
+
+        .time-block {
+            background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius);
+            padding:1.25rem; margin-bottom:1rem;
+        }
+        .time-block-header { display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem; }
+        .time-badge {
+            background:var(--bg4); padding:0.3rem 0.7rem; border-radius:6px;
+            font-size:0.75rem; font-weight:600; color:var(--orange); font-family:'JetBrains Mono',monospace;
+        }
+        .time-block h3 { font-size:1rem; font-weight:700; }
+
+        .task-item {
+            display:flex; align-items:flex-start; gap:0.75rem; padding:0.75rem;
+            background:var(--bg3); border-radius:8px; margin-bottom:0.5rem;
+            border-left:3px solid var(--border); cursor:pointer; transition:all 0.2s;
+        }
+        .task-item:hover { border-left-color:var(--orange); }
+        .task-item.done { opacity:0.5; border-left-color:var(--green); }
+        .task-item.done .task-text { text-decoration:line-through; }
+        .task-check {
+            width:20px; height:20px; border-radius:5px; border:2px solid var(--border);
+            flex-shrink:0; margin-top:2px; cursor:pointer; display:flex; align-items:center;
+            justify-content:center; transition:all 0.2s; font-size:0.75rem;
+        }
+        .task-item.done .task-check { background:var(--green); border-color:var(--green); }
+        .task-text { flex:1; }
+        .task-text .main { font-size:0.9rem; font-weight:500; }
+        .task-text .detail { font-size:0.8rem; color:var(--text2); margin-top:0.25rem; }
+        .task-text .phone { color:var(--green); font-family:'JetBrains Mono',monospace; font-weight:600; }
+
+        .script-box {
+            background:var(--bg); border:1px solid var(--border); border-radius:8px;
+            padding:1rem; margin-top:0.75rem; font-size:0.85rem; color:var(--text2);
+            line-height:1.6; position:relative; display:none;
+        }
+        .script-box.visible { display:block; }
+        .script-toggle {
+            color:var(--blue); font-size:0.8rem; cursor:pointer; margin-top:0.5rem;
+            display:inline-block;
+        }
+        .script-toggle:hover { text-decoration:underline; }
+
+        .copy-btn {
+            position:absolute; top:0.5rem; right:0.5rem; background:var(--bg3);
+            border:1px solid var(--border); color:var(--text2); padding:0.25rem 0.6rem;
+            border-radius:5px; font-size:0.75rem; cursor:pointer; transition:all 0.2s;
+        }
+        .copy-btn:hover { background:var(--orange); color:#fff; border-color:var(--orange); }
+
+        .day-target {
+            background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(255,107,53,0.05));
+            border:1px solid rgba(255,107,53,0.3); border-radius:var(--radius);
+            padding:1rem; margin-top:1rem; display:flex; align-items:center; gap:0.75rem;
+        }
+        .day-target .icon { font-size:1.5rem; }
+        .day-target .target-text { font-size:0.9rem; font-weight:600; }
+        .day-target .target-detail { font-size:0.8rem; color:var(--text2); margin-top:0.2rem; }
+
+        .scorecard {
+            background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius);
+            padding:1.5rem; margin-top:1rem;
+        }
+        .scorecard h3 { font-size:1.1rem; font-weight:800; margin-bottom:1rem; }
+        .score-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:0.75rem; }
+        .score-item {
+            background:var(--bg3); border-radius:8px; padding:0.75rem; text-align:center;
+        }
+        .score-item .metric { font-size:0.75rem; color:var(--text2); margin-bottom:0.3rem; }
+        .score-item .value { font-size:1.5rem; font-weight:800; font-family:'JetBrains Mono',monospace; }
+        .score-item input {
+            background:var(--bg); border:1px solid var(--border); color:var(--text);
+            font-family:'JetBrains Mono',monospace; font-size:1.2rem; font-weight:700;
+            text-align:center; width:60px; border-radius:6px; padding:0.3rem;
+        }
+        .score-item .target { font-size:0.7rem; color:var(--text3); margin-top:0.2rem; }
+
+        .resources-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px, 1fr)); gap:0.75rem; margin-top:1rem; }
+        .resource-card {
+            background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius);
+            padding:1rem; display:flex; align-items:center; gap:0.75rem; cursor:pointer; transition:all 0.2s;
+        }
+        .resource-card:hover { border-color:var(--orange); transform:translateY(-1px); }
+        .resource-card .icon { font-size:1.5rem; }
+        .resource-card .name { font-weight:600; font-size:0.9rem; }
+        .resource-card .desc { font-size:0.75rem; color:var(--text2); }
+
+        .principles {
+            background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius);
+            padding:1.25rem; margin-top:1rem;
+        }
+        .principle { display:flex; gap:0.75rem; padding:0.5rem 0; border-bottom:1px solid var(--border); }
+        .principle:last-child { border:none; }
+        .principle .num { color:var(--orange); font-weight:800; font-family:'JetBrains Mono',monospace; font-size:0.9rem; flex-shrink:0; }
+        .principle .text { font-size:0.85rem; color:var(--text2); }
+        .principle .text strong { color:var(--text); }
+
+        @media (max-width:768px) {
+            .header { padding:1rem; }
+            .header h1 { font-size:1.2rem; }
+            .header-stats { gap:1rem; }
+            .container { padding:1rem; }
+            .score-grid { grid-template-columns:repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-top">
+            <div>
+                <h1>🏃 <span>Week 11</span> Revenue Sprint</h1>
+                <div class="subtitle">March 10-14, 2026 — Turn systems into customers</div>
+            </div>
+            <div class="header-stats">
+                <div class="header-stat">
+                    <div class="num" style="color:var(--orange)">~5</div>
+                    <div class="label">Current Customers</div>
+                </div>
+                <div class="header-stat">
+                    <div class="num" style="color:var(--green)" id="completedCount">0</div>
+                    <div class="label">Tasks Done</div>
+                </div>
+                <div class="header-stat">
+                    <div class="num" style="color:var(--blue)" id="totalTasks">0</div>
+                    <div class="label">Total Tasks</div>
+                </div>
+            </div>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar-fill" id="progressBar" style="width:0%;background:linear-gradient(90deg,var(--orange),var(--yellow));">
+                <span id="progressText">0%</span>
+            </div>
+            <span class="progress-label">Week Progress</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="day-tabs">
+            <div class="day-tab active" data-day="mon"><span class="emoji">📞</span>Mon<span class="count" id="mon-count">0/0</span></div>
+            <div class="day-tab" data-day="tue"><span class="emoji">🌐</span>Tue<span class="count" id="tue-count">0/0</span></div>
+            <div class="day-tab" data-day="wed"><span class="emoji">🚶</span>Wed<span class="count" id="wed-count">0/0</span></div>
+            <div class="day-tab" data-day="thu"><span class="emoji">🤝</span>Thu<span class="count" id="thu-count">0/0</span></div>
+            <div class="day-tab" data-day="fri"><span class="emoji">💰</span>Fri<span class="count" id="fri-count">0/0</span></div>
+            <div class="day-tab" data-day="score"><span class="emoji">📊</span>Scorecard</div>
+            <div class="day-tab" data-day="resources"><span class="emoji">🔗</span>Resources</div>
+        </div>
+
+        <!-- MONDAY -->
+        <div class="day-content active" id="day-mon">
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">9-11 AM</span>
+                    <h3>Call Top Commercial Leads</h3>
+                </div>
+                <div class="task-item" data-day="mon">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Call <strong>West End Management</strong> — <span class="phone">(314) 900-2001</span></div>
+                        <div class="detail">WARMEST LEAD — Has a pet guarantee program. Ask about common area cleanup.</div>
+                        <span class="script-toggle" onclick="toggleScript(this)">📋 Show call script</span>
+                        <div class="script-box">
+                            <button class="copy-btn" onclick="copyText(this)">Copy</button>
+                            "Hi, this is TJ with Tidy Tails Pet Waste Removal. I noticed you have a pet guarantee program — that's awesome. I work with property managers to keep common areas and yards clean. A lot of my clients find it eliminates tenant complaints about dog waste. Do you have 2 minutes to chat about how that might work for your properties?"
+                        </div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="mon">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Call <strong>Deca Property Management</strong> — <span class="phone">(314) 631-3306</span></div>
+                        <div class="detail">Ask for Marty (Broker-Officer). Manages HOA + commercial properties.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="mon">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Call <strong>CPM Gateway</strong> — <span class="phone">(636) 227-8688</span></div>
+                        <div class="detail">Pure HOA specialist in Ballwin. 40+ years in business. Manages many communities.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">1-3 PM</span>
+                    <h3>Pet Business Drop-Ins + Referral Launch</h3>
+                </div>
+                <div class="task-item" data-day="mon">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Drop in at <strong>Silver Maple Pet Center</strong> (Des Peres)</div>
+                        <div class="detail">91-year-old institution. Bring referral cards, introduce yourself, ask to leave cards.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="mon">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Drop in at <strong>BauserHaus</strong> — <span class="phone">(314) 961-3911</span></div>
+                        <div class="detail">Could be BOTH a referral partner AND a commercial client. Pitch both angles.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="mon">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Text ALL 5 current customers the referral program launch</div>
+                        <span class="script-toggle" onclick="toggleScript(this)">📋 Show text template</span>
+                        <div class="script-box">
+                            <button class="copy-btn" onclick="copyText(this)">Copy</button>
+Hey [Name]! 🐕 Quick heads up — I just launched a referral program for Tidy Tails. If you know anyone who could use pet waste cleanup, they'll get their first cleanup FREE and you'll get a free week of service! Just have them mention your name when they reach out. Thanks for being awesome! — TJ
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">EVENING</span>
+                    <h3>Social Media Posts</h3>
+                </div>
+                <div class="task-item" data-day="mon">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Post in <strong>2 Facebook groups</strong> — Kirkwood + Ballwin/Manchester area</div>
+                        <span class="script-toggle" onclick="toggleScript(this)">📋 Show post template</span>
+                        <div class="script-box">
+                            <button class="copy-btn" onclick="copyText(this)">Copy</button>
+Winter's over. Your yard isn't. 🐕💩
+
+If your backyard looks like a minefield right now, you're not alone. Spring thaw = months of accumulated dog waste all at once.
+
+I'm TJ with Tidy Tails Pet Waste Removal — I service [neighborhood] and surrounding areas. Spring cleanups starting now, recurring service available weekly or bi-weekly.
+
+First cleanup is FREE when you sign up for recurring service. DM me or text (XXX) XXX-XXXX!
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-target">
+                <div class="icon">🎯</div>
+                <div>
+                    <div class="target-text">Monday Target: 3 commercial conversations + 5 referral asks sent</div>
+                    <div class="target-detail">Every conversation is a seed. Plant as many as possible today.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TUESDAY -->
+        <div class="day-content" id="day-tue">
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">9-11 AM</span>
+                    <h3>Directory Submissions + Google Indexing</h3>
+                </div>
+                <div class="task-item" data-day="tue">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Submit to <strong>Google Business Profile</strong> — verify/optimize</div>
+                        <div class="detail">This is THE most important listing. Full photos, hours, services, description.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="tue">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Submit to <strong>Yelp Business</strong></div>
+                        <div class="detail">biz.yelp.com — Free listing. Category: Pet Waste Removal.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="tue">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Submit to <strong>Nextdoor Business</strong></div>
+                        <div class="detail">business.nextdoor.com — Hyper-local. Neighbors trust Nextdoor recommendations.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="tue">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Submit to <strong>Thumbtack</strong></div>
+                        <div class="detail">thumbtack.com/join — Leads come to you. Great for one-time cleanup inquiries.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="tue">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Submit to <strong>Angi (Angie's List)</strong></div>
+                        <div class="detail">angi.com — High-intent homeowner traffic.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="tue">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Request <strong>Google indexing</strong> via Search Console</div>
+                        <div class="detail">URL Inspection → Request Indexing for: homepage, services, areas, about, contact pages.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">1-3 PM</span>
+                    <h3>Nextdoor Post + Google Reviews</h3>
+                </div>
+                <div class="task-item" data-day="tue">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Post on <strong>Nextdoor</strong> — personal, neighborly tone</div>
+                        <span class="script-toggle" onclick="toggleScript(this)">📋 Show post template</span>
+                        <div class="script-box">
+                            <button class="copy-btn" onclick="copyText(this)">Copy</button>
+Hey neighbors! 👋 Spring's finally here and yards are... rough 😅
+
+I'm TJ and I run Tidy Tails Pet Waste Removal. I service yards in [your area] so you can actually enjoy your backyard again without watching every step.
+
+Happy to do a free first cleanup for anyone nearby — just send me a message! Weekly and bi-weekly plans available too.
+
+Hope everyone's having a great week! 🐕
+                        </div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="tue">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Ask <strong>2 current customers</strong> for Google reviews</div>
+                        <span class="script-toggle" onclick="toggleScript(this)">📋 Show review request text</span>
+                        <div class="script-box">
+                            <button class="copy-btn" onclick="copyText(this)">Copy</button>
+Hey [Name]! Quick favor — would you mind leaving Tidy Tails a Google review? It really helps small businesses like mine get found by new customers. Even just a sentence or two means a lot!
+
+Here's the link: [YOUR GOOGLE REVIEW LINK]
+
+Thanks so much! 🙏 — TJ
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">EVENING</span>
+                    <h3>Quick Wins</h3>
+                </div>
+                <div class="task-item" data-day="tue">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Claim <strong>MapQuest listing</strong> — already exists, needs website linked</div>
+                        <div class="detail">Quick 5-minute win. Free citation with backlink.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="tue">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Post <strong>Instagram Story</strong> — before/after yard photo</div>
+                        <div class="detail">Use spring cleanup angle. Show the mess, then the clean result.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-target">
+                <div class="icon">🎯</div>
+                <div>
+                    <div class="target-text">Tuesday Target: 5 directories submitted + 2 review requests + 1 Nextdoor post</div>
+                    <div class="target-detail">Every listing is a fishing line in the water. Cast as many as you can.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEDNESDAY -->
+        <div class="day-content" id="day-wed">
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">9-11 AM</span>
+                    <h3>Print + Canvass Kirkwood</h3>
+                </div>
+                <div class="task-item" data-day="wed">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Print <strong>50 door hangers</strong> at home or FedEx Office (~$25)</div>
+                        <div class="detail">Use the Print Marketing Kit design. Include QR code to website + spring special.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="wed">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Canvass <strong>Kirkwood</strong> — 40-50 doors near Kirkwood Park</div>
+                        <div class="detail">Best streets: residential areas near the park, Adams Ave, Woodlawn Ave. Dog walkers = your people.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">1-3 PM</span>
+                    <h3>Canvass Ballwin + Take Photos</h3>
+                </div>
+                <div class="task-item" data-day="wed">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Canvass <strong>Ballwin/Manchester</strong> — 30-40 doors near Vlasis Park</div>
+                        <div class="detail">⚠️ Door hangers on doorknobs/screen doors ONLY — NOT on mailboxes (federal violation).</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="wed">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Take photos of yards that need cleanup</div>
+                        <div class="detail">Great for future social content — show the spring mess (no addresses visible).</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">EVENING</span>
+                    <h3>Follow-Ups + Social</h3>
+                </div>
+                <div class="task-item" data-day="wed">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Follow up on Monday commercial calls that didn't answer</div>
+                        <div class="detail">Voicemail + text combo. "Hi, TJ from Tidy Tails following up on my call Monday..."</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="wed">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Post on Facebook — "Spent the day in [neighborhood]" with photo</div>
+                        <div class="detail">Shows you're active, local, and hustling. People respect the grind.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-target">
+                <div class="icon">🎯</div>
+                <div>
+                    <div class="target-text">Wednesday Target: 80+ doors hit, expect 1-2 leads within 48 hours</div>
+                    <div class="target-detail">Door-to-door is old school but it works. 2% conversion = 1-2 leads from 80 doors.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- THURSDAY -->
+        <div class="day-content" id="day-thu">
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">10 AM-12 PM</span>
+                    <h3>Pet Business Partnership Visits</h3>
+                </div>
+                <div class="task-item" data-day="thu">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Visit <strong>Treats Unleashed Kirkwood</strong> — <span class="phone">(314) 984-0222</span></div>
+                        <div class="detail">Ask to leave referral cards by register. Offer to send your customers their way too.</div>
+                        <span class="script-toggle" onclick="toggleScript(this)">📋 Show partnership pitch</span>
+                        <div class="script-box">
+                            <button class="copy-btn" onclick="copyText(this)">Copy</button>
+"Hey! I'm TJ with Tidy Tails — I do pet waste removal in the area. Your customers are exactly the kind of dog owners who could use my service, and my customers are exactly the kind of people who shop here. Would you be open to keeping a few of my cards at the counter? I'll absolutely recommend you guys to my clients too."
+                        </div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="thu">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Visit <strong>Williamsburg Pet Hotel</strong> — <span class="phone">(636) 227-5764</span></div>
+                        <div class="detail">Kirkwood, est. 1962. Cross-referral opportunity — boarding clients need yard cleanup.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="thu">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Visit <strong>Little House of Dogs</strong> — <span class="phone">(314) 909-7833</span></div>
+                        <div class="detail">Ask for Mary. Grooming + daycare = perfect referral partner.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">1-3 PM</span>
+                    <h3>Follow-Ups + Remaining Calls</h3>
+                </div>
+                <div class="task-item" data-day="thu">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Follow up on ALL leads from Mon-Wed</div>
+                        <div class="detail">Check texts, missed calls, Facebook DMs, Nextdoor messages. Respond to EVERYTHING.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="thu">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Call <strong>Hermann London</strong> — <span class="phone">(314) 802-0797</span></div>
+                        <div class="detail">Manchester Rd location, right in target area. Property management for residential.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="thu">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Check Nextdoor for responses — reply to every comment</div>
+                        <div class="detail">Engagement = visibility. Nextdoor rewards active participation.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">EVENING</span>
+                    <h3>Social + Review Check</h3>
+                </div>
+                <div class="task-item" data-day="thu">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Instagram post — photo at a pet business, tag them</div>
+                        <div class="detail">Cross-promotion. They might share it. Free exposure to their followers.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="thu">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Check for new Google reviews — respond to any that came in</div>
+                        <div class="detail">Always respond to reviews, even positive ones. Shows you care.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-target">
+                <div class="icon">🎯</div>
+                <div>
+                    <div class="target-text">Thursday Target: 3 businesses with your cards on counter + 2 follow-up conversations</div>
+                    <div class="target-detail">Partnerships compound. Each card holder becomes a silent salesperson.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FRIDAY -->
+        <div class="day-content" id="day-fri">
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">9-11 AM</span>
+                    <h3>Close Every Lead</h3>
+                </div>
+                <div class="task-item" data-day="fri">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Follow up on EVERY lead from this week</div>
+                        <div class="detail">Call, text, DM — anyone who showed interest but hasn't signed up yet.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="fri">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Offer a <strong>Weekend Special</strong> to warm leads</div>
+                        <span class="script-toggle" onclick="toggleScript(this)">📋 Show closing text</span>
+                        <div class="script-box">
+                            <button class="copy-btn" onclick="copyText(this)">Copy</button>
+Hey [Name]! Following up from earlier this week. I've got some availability this weekend — if you sign up today, I'll do your first spring cleanup FREE this Saturday. Your yard will look brand new by the time you're done with breakfast. Want me to put you on the schedule? 🐕
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">1-3 PM</span>
+                    <h3>Service Customers + Week Review</h3>
+                </div>
+                <div class="task-item" data-day="fri">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Service existing customers — great work = more referrals</div>
+                        <div class="detail">Take a before/after photo if possible. Ask if they've mentioned you to anyone.</div>
+                    </div>
+                </div>
+                <div class="task-item" data-day="fri">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Fill out the Weekly Scorecard (Scorecard tab)</div>
+                        <div class="detail">Count your numbers. What worked? What didn't? Where to double down next week?</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="time-block">
+                <div class="time-block-header">
+                    <span class="time-badge">EVENING</span>
+                    <h3>Plan + Celebrate</h3>
+                </div>
+                <div class="task-item" data-day="fri">
+                    <div class="task-check"></div>
+                    <div class="task-text">
+                        <div class="main">Post "Sprint Week 1" results on social — accountability + motivation</div>
+                        <div class="detail">Even if results are small, showing the hustle builds trust. People root for small businesses.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-target">
+                <div class="icon">🎯</div>
+                <div>
+                    <div class="target-text">Friday Target: Convert 1-2 leads into paying customers</div>
+                    <div class="target-detail">Every customer you close today was a stranger on Monday. That's the power of consistent action.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCORECARD -->
+        <div class="day-content" id="day-score">
+            <div class="scorecard">
+                <h3>📊 Week 11 Scorecard — Fill In Your Numbers</h3>
+                <div class="score-grid">
+                    <div class="score-item">
+                        <div class="metric">Commercial Calls Made</div>
+                        <input type="number" id="sc-calls" value="0" min="0" onchange="saveScorecard()">
+                        <div class="target">Target: 6+</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="metric">Door Hangers Distributed</div>
+                        <input type="number" id="sc-doors" value="0" min="0" onchange="saveScorecard()">
+                        <div class="target">Target: 80+</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="metric">Directory Submissions</div>
+                        <input type="number" id="sc-dirs" value="0" min="0" onchange="saveScorecard()">
+                        <div class="target">Target: 5+</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="metric">Google Reviews Requested</div>
+                        <input type="number" id="sc-reviews" value="0" min="0" onchange="saveScorecard()">
+                        <div class="target">Target: 3+</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="metric">Social Media Posts</div>
+                        <input type="number" id="sc-posts" value="0" min="0" onchange="saveScorecard()">
+                        <div class="target">Target: 4+</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="metric">Pet Biz Partnerships</div>
+                        <input type="number" id="sc-partners" value="0" min="0" onchange="saveScorecard()">
+                        <div class="target">Target: 3+</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="metric">Referral Asks Sent</div>
+                        <input type="number" id="sc-referrals" value="0" min="0" onchange="saveScorecard()">
+                        <div class="target">Target: 5</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="metric">New Leads Generated</div>
+                        <input type="number" id="sc-leads" value="0" min="0" onchange="saveScorecard()">
+                        <div class="target">Target: 5+</div>
+                    </div>
+                    <div class="score-item" style="background:rgba(255,107,53,0.15); border:1px solid rgba(255,107,53,0.3);">
+                        <div class="metric" style="color:var(--orange); font-weight:700;">NEW CUSTOMERS SIGNED</div>
+                        <input type="number" id="sc-customers" value="0" min="0" onchange="saveScorecard()" style="font-size:1.5rem; color:var(--orange);">
+                        <div class="target" style="color:var(--orange);">Target: 2-3</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="principles" style="margin-top:1.5rem;">
+                <h3 style="margin-bottom:1rem;">💡 Key Principles</h3>
+                <div class="principle">
+                    <div class="num">01</div>
+                    <div class="text"><strong>Speed > Perfection</strong> — A mediocre door hanger distributed beats a perfect one in your printer</div>
+                </div>
+                <div class="principle">
+                    <div class="num">02</div>
+                    <div class="text"><strong>Follow up or fail</strong> — 80% of sales happen on the 5th-12th contact. Most people quit after 1-2.</div>
+                </div>
+                <div class="principle">
+                    <div class="num">03</div>
+                    <div class="text"><strong>Ask for the sale</strong> — Don't just inform. "Can I get you on the schedule for this week?"</div>
+                </div>
+                <div class="principle">
+                    <div class="num">04</div>
+                    <div class="text"><strong>Track everything</strong> — If you don't measure it, you can't improve it</div>
+                </div>
+                <div class="principle">
+                    <div class="num">05</div>
+                    <div class="text"><strong>Spring is NOW</strong> — Every day you wait, competitors are grabbing customers waking up to gross yards</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESOURCES -->
+        <div class="day-content" id="day-resources">
+            <h3 style="margin-bottom:1rem;">🔗 Everything You Need — Already Built</h3>
+            <div class="resources-grid">
+                <div class="resource-card" onclick="window.open('2026-03-10-ENRICHED-CONTACT-SHEET.html','_blank')">
+                    <div class="icon">📞</div>
+                    <div><div class="name">Enriched Contact Sheet</div><div class="desc">15 dial-ready leads with phone numbers & pitch angles</div></div>
+                </div>
+                <div class="resource-card" onclick="window.open('2026-03-10-REFERRAL-PROGRAM.html','_blank')">
+                    <div class="icon">🎁</div>
+                    <div><div class="name">Referral Program Kit</div><div class="desc">"Scoop the Savings" — texts, cards, tracking</div></div>
+                </div>
+                <div class="resource-card" onclick="window.open('2026-03-10-PRINT-MARKETING-KIT.html','_blank')">
+                    <div class="icon">🖨️</div>
+                    <div><div class="name">Print Marketing Kit</div><div class="desc">Door hangers, flyers, yard signs — print-ready</div></div>
+                </div>
+                <div class="resource-card" onclick="window.open('2026-03-10-CUSTOMER-ONBOARDING-SYSTEM.html','_blank')">
+                    <div class="icon">✅</div>
+                    <div><div class="name">Customer Onboarding</div><div class="desc">Welcome texts, agreement, pricing, situation scripts</div></div>
+                </div>
+                <div class="resource-card" onclick="window.open('2026-03-10-DIRECTORY-SUBMISSION-GUIDE.html','_blank')">
+                    <div class="icon">📍</div>
+                    <div><div class="name">Directory Submission Guide</div><div class="desc">25 directories with direct URLs & tracking</div></div>
+                </div>
+                <div class="resource-card" onclick="window.open('quote-generator.html','_blank')">
+                    <div class="icon">💰</div>
+                    <div><div class="name">Quote Generator</div><div class="desc">Instant pricing calculator for prospects</div></div>
+                </div>
+                <div class="resource-card" onclick="window.open('2026-03-10-SPRING-SHED-AD-BLITZ.html','_blank')">
+                    <div class="icon">🏠</div>
+                    <div><div class="name">Spring Shed Ad Blitz</div><div class="desc">TuffShed/WoodMaster ad copy & campaigns</div></div>
+                </div>
+                <div class="resource-card" onclick="window.open('2026-03-10-ST-CHARLES-OUTREACH-KIT.html','_blank')">
+                    <div class="icon">🗺️</div>
+                    <div><div class="name">St. Charles Outreach Kit</div><div class="desc">Expansion territory research & leads</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        document.querySelectorAll('.day-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.day-content').forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('day-' + tab.dataset.day).classList.add('active');
+            });
+        });
+
+        // Task checking with localStorage
+        const STORAGE_KEY = 'week11-sprint';
+
+        function loadState() {
+            try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
+        }
+
+        function saveState(state) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function initTasks() {
+            const state = loadState();
+            const tasks = document.querySelectorAll('.task-item');
+            let total = 0, done = 0;
+
+            tasks.forEach((task, i) => {
+                total++;
+                const key = 'task-' + i;
+                if (state[key]) {
+                    task.classList.add('done');
+                    task.querySelector('.task-check').textContent = '✓';
+                    done++;
+                }
+
+                task.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('script-toggle') || e.target.classList.contains('copy-btn') || e.target.closest('.script-box')) return;
+                    const s = loadState();
+                    const k = 'task-' + i;
+                    if (s[k]) { delete s[k]; task.classList.remove('done'); task.querySelector('.task-check').textContent = ''; }
+                    else { s[k] = true; task.classList.add('done'); task.querySelector('.task-check').textContent = '✓'; }
+                    saveState(s);
+                    updateCounts();
+                });
+            });
+
+            document.getElementById('totalTasks').textContent = total;
+            updateCounts();
+        }
+
+        function updateCounts() {
+            const state = loadState();
+            const days = ['mon','tue','wed','thu','fri'];
+            let totalDone = 0;
+            let totalAll = 0;
+
+            days.forEach(day => {
+                const dayEl = document.getElementById('day-' + day);
+                if (!dayEl) return;
+                const tasks = dayEl.querySelectorAll('.task-item');
+                let dayDone = 0;
+                tasks.forEach((t, localIdx) => {
+                    // Find global index
+                    const allTasks = document.querySelectorAll('.task-item');
+                    let globalIdx = -1;
+                    allTasks.forEach((at, gi) => { if (at === t) globalIdx = gi; });
+                    if (state['task-' + globalIdx]) dayDone++;
+                });
+                const countEl = document.getElementById(day + '-count');
+                if (countEl) countEl.textContent = dayDone + '/' + tasks.length;
+                totalDone += dayDone;
+                totalAll += tasks.length;
+            });
+
+            document.getElementById('completedCount').textContent = totalDone;
+            const pct = totalAll > 0 ? Math.round((totalDone / totalAll) * 100) : 0;
+            document.getElementById('progressBar').style.width = pct + '%';
+            document.getElementById('progressText').textContent = pct + '%';
+        }
+
+        // Script toggle
+        function toggleScript(el) {
+            const box = el.nextElementSibling;
+            box.classList.toggle('visible');
+            el.textContent = box.classList.contains('visible') ? '📋 Hide script' : '📋 Show script';
+        }
+
+        // Copy button
+        function copyText(btn) {
+            const text = btn.parentElement.textContent.replace('Copy', '').trim();
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = '✓ Copied!';
+                setTimeout(() => btn.textContent = 'Copy', 1500);
+            });
+        }
+
+        // Scorecard persistence
+        function saveScorecard() {
+            const data = {};
+            document.querySelectorAll('.score-item input').forEach(inp => { data[inp.id] = inp.value; });
+            localStorage.setItem(STORAGE_KEY + '-scorecard', JSON.stringify(data));
+        }
+
+        function loadScorecard() {
+            try {
+                const data = JSON.parse(localStorage.getItem(STORAGE_KEY + '-scorecard'));
+                if (data) {
+                    Object.keys(data).forEach(k => {
+                        const el = document.getElementById(k);
+                        if (el) el.value = data[k];
+                    });
+                }
+            } catch {}
+        }
+
+        initTasks();
+        loadScorecard();
+    </script>
+</body>
+</html>
