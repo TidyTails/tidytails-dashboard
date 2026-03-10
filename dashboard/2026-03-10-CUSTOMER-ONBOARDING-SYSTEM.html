@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tidy Tails — Customer Onboarding System</title>
+<style>
+:root {
+  --bg: #0a0a0f;
+  --card: #12121a;
+  --border: #1e1e2e;
+  --text: #e0e0e8;
+  --dim: #8888a0;
+  --green: #22c55e;
+  --green-bg: #22c55e18;
+  --blue: #3b82f6;
+  --blue-bg: #3b82f618;
+  --amber: #f59e0b;
+  --amber-bg: #f59e0b18;
+  --purple: #a855f7;
+  --purple-bg: #a855f718;
+  --red: #ef4444;
+  --red-bg: #ef444418;
+  --teal: #14b8a6;
+  --teal-bg: #14b8a618;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; line-height:1.6; }
+.container { max-width:1000px; margin:0 auto; padding:20px; }
+h1 { font-size:1.8rem; margin-bottom:4px; }
+.subtitle { color:var(--dim); margin-bottom:24px; font-size:0.95rem; }
+.tabs { display:flex; gap:4px; margin-bottom:24px; flex-wrap:wrap; }
+.tab { padding:8px 16px; background:var(--card); border:1px solid var(--border); border-radius:8px; cursor:pointer; font-size:0.85rem; color:var(--dim); transition:all .2s; }
+.tab:hover { border-color:#444; color:var(--text); }
+.tab.active { background:var(--green-bg); border-color:var(--green); color:var(--green); }
+.panel { display:none; }
+.panel.active { display:block; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:16px; }
+.card h3 { font-size:1.1rem; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+.badge { display:inline-block; padding:2px 10px; border-radius:12px; font-size:0.75rem; font-weight:600; }
+.badge-green { background:var(--green-bg); color:var(--green); }
+.badge-blue { background:var(--blue-bg); color:var(--blue); }
+.badge-amber { background:var(--amber-bg); color:var(--amber); }
+.badge-purple { background:var(--purple-bg); color:var(--purple); }
+.badge-red { background:var(--red-bg); color:var(--red); }
+.badge-teal { background:var(--teal-bg); color:var(--teal); }
+.template-box { background:#0d0d14; border:1px solid var(--border); border-radius:8px; padding:16px; margin:12px 0; position:relative; font-size:0.9rem; white-space:pre-wrap; font-family:inherit; }
+.copy-btn { position:absolute; top:8px; right:8px; background:var(--green); color:#000; border:none; padding:4px 12px; border-radius:6px; cursor:pointer; font-size:0.75rem; font-weight:600; }
+.copy-btn:hover { opacity:.85; }
+.copy-btn.copied { background:var(--blue); color:#fff; }
+table { width:100%; border-collapse:collapse; margin:12px 0; }
+th, td { padding:10px 14px; text-align:left; border-bottom:1px solid var(--border); font-size:0.9rem; }
+th { color:var(--dim); font-weight:600; font-size:0.8rem; text-transform:uppercase; letter-spacing:.5px; }
+.price { color:var(--green); font-weight:600; }
+.checklist { list-style:none; }
+.checklist li { padding:8px 0; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px; font-size:0.9rem; }
+.checklist li:last-child { border:none; }
+.checklist input[type=checkbox] { width:18px; height:18px; accent-color:var(--green); cursor:pointer; }
+.checklist label { cursor:pointer; flex:1; }
+.checklist input:checked + label { color:var(--dim); text-decoration:line-through; }
+.timeline { position:relative; padding-left:24px; }
+.timeline::before { content:''; position:absolute; left:8px; top:0; bottom:0; width:2px; background:var(--border); }
+.timeline-item { position:relative; margin-bottom:20px; }
+.timeline-item::before { content:''; position:absolute; left:-20px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--green); border:2px solid var(--bg); }
+.timeline-item.blue::before { background:var(--blue); }
+.timeline-item.amber::before { background:var(--amber); }
+.timeline-item.purple::before { background:var(--purple); }
+.timeline-item h4 { font-size:0.95rem; margin-bottom:4px; }
+.timeline-item p { color:var(--dim); font-size:0.85rem; }
+.input-row { display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap; }
+.input-row input { flex:1; min-width:150px; padding:8px 12px; background:#0d0d14; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:0.9rem; }
+.input-row input:focus { outline:none; border-color:var(--green); }
+.fill-btn { background:var(--green); color:#000; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; font-weight:600; font-size:0.85rem; }
+.fill-btn:hover { opacity:.85; }
+.section-label { color:var(--dim); font-size:0.8rem; text-transform:uppercase; letter-spacing:.5px; margin:16px 0 8px; font-weight:600; }
+.response-card { background:#0d0d14; border:1px solid var(--border); border-radius:8px; margin:8px 0; overflow:hidden; }
+.response-header { padding:12px 16px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-size:0.9rem; }
+.response-header:hover { background:#15151f; }
+.response-body { display:none; padding:0 16px 16px; }
+.response-card.open .response-body { display:block; }
+.response-card.open .arrow { transform:rotate(180deg); }
+.arrow { transition:transform .2s; color:var(--dim); }
+.stat-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:12px; margin-bottom:20px; }
+.stat { background:#0d0d14; border:1px solid var(--border); border-radius:8px; padding:14px; text-align:center; }
+.stat-value { font-size:1.5rem; font-weight:700; }
+.stat-label { color:var(--dim); font-size:0.75rem; text-transform:uppercase; margin-top:4px; }
+.note { color:var(--dim); font-size:0.85rem; font-style:italic; margin:8px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🐕 Customer Onboarding System</h1>
+<p class="subtitle">Turn new leads into locked-in recurring customers with a professional, repeatable process</p>
+
+<div class="stat-grid">
+  <div class="stat"><div class="stat-value" style="color:var(--green)">7</div><div class="stat-label">Text Templates</div></div>
+  <div class="stat"><div class="stat-value" style="color:var(--blue)">6</div><div class="stat-label">Situation Scripts</div></div>
+  <div class="stat"><div class="stat-value" style="color:var(--amber)">15+</div><div class="stat-label">Checklist Items</div></div>
+  <div class="stat"><div class="stat-value" style="color:var(--purple)">4</div><div class="stat-label">Seasonal Templates</div></div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab(0)">📋 Onboarding Flow</div>
+  <div class="tab" onclick="showTab(1)">📱 Text Templates</div>
+  <div class="tab" onclick="showTab(2)">💰 Pricing Sheet</div>
+  <div class="tab" onclick="showTab(3)">📝 Service Agreement</div>
+  <div class="tab" onclick="showTab(4)">🔥 Situation Scripts</div>
+  <div class="tab" onclick="showTab(5)">🗓️ Seasonal Check-Ins</div>
+</div>
+
+<!-- TAB 0: Onboarding Flow -->
+<div class="panel active" id="panel-0">
+<div class="card">
+  <h3>📋 New Customer Onboarding Timeline</h3>
+  <p class="note">Every new customer goes through this flow. No exceptions. This is how you go from 5 to 30.</p>
+  
+  <div class="timeline" style="margin-top:20px;">
+    <div class="timeline-item">
+      <h4>🟢 Day 0 — Signup</h4>
+      <p>Service agreement signed (or verbal via text) • Gate access confirmed • Service day confirmed • Pricing agreed • Added to customer tracker • Welcome text sent • Address added to route</p>
+    </div>
+    <div class="timeline-item blue">
+      <h4>🔵 Day 1 — First Visit</h4>
+      <p>Extra thorough cleanup • Check for hazards • Note yard size & waste level • Send "first visit complete" text • Drop business cards at 2-3 neighbor houses</p>
+    </div>
+    <div class="timeline-item amber">
+      <h4>🟡 Week 3 — Review Request</h4>
+      <p>Send Google review request • Check for any issues • Confirm customer is happy with day/time</p>
+    </div>
+    <div class="timeline-item purple">
+      <h4>🟣 Month 1 — First Invoice</h4>
+      <p>Send invoice with payment instructions • Include referral offer ($10 off per referral) • Update tracker • Confirm payment received</p>
+    </div>
+    <div class="timeline-item" style="--dot-color:var(--teal)">
+      <h4>📅 Ongoing — Monthly</h4>
+      <p>Invoice by the 1st • Follow up late payments by the 5th • Quarterly seasonal check-in text</p>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>✅ New Customer Checklist</h3>
+  <p class="section-label">Before First Visit</p>
+  <ul class="checklist">
+    <li><input type="checkbox" id="c1"><label for="c1">Service agreement signed or verbal confirmation via text</label></li>
+    <li><input type="checkbox" id="c2"><label for="c2">Gate access confirmed (code / unlocked / open on service day)</label></li>
+    <li><input type="checkbox" id="c3"><label for="c3">Service day and time confirmed</label></li>
+    <li><input type="checkbox" id="c4"><label for="c4">Pricing confirmed and agreed upon</label></li>
+    <li><input type="checkbox" id="c5"><label for="c5">Customer added to tracker/schedule</label></li>
+    <li><input type="checkbox" id="c6"><label for="c6">Welcome text sent (Template #1)</label></li>
+    <li><input type="checkbox" id="c7"><label for="c7">Address added to route map</label></li>
+  </ul>
+  
+  <p class="section-label">First Visit</p>
+  <ul class="checklist">
+    <li><input type="checkbox" id="c8"><label for="c8">Extra thorough first cleanup</label></li>
+    <li><input type="checkbox" id="c9"><label for="c9">Check yard for hazards (broken fence, aggressive dogs)</label></li>
+    <li><input type="checkbox" id="c10"><label for="c10">Note yard size and typical waste level</label></li>
+    <li><input type="checkbox" id="c11"><label for="c11">Send "visit complete" text (Template #2)</label></li>
+    <li><input type="checkbox" id="c12"><label for="c12">Drop business cards at 2-3 neighbor houses</label></li>
+  </ul>
+  
+  <p class="section-label">Week 3</p>
+  <ul class="checklist">
+    <li><input type="checkbox" id="c13"><label for="c13">Send Google review request (Template #3)</label></li>
+    <li><input type="checkbox" id="c14"><label for="c14">Check: any complaints? Address immediately</label></li>
+    <li><input type="checkbox" id="c15"><label for="c15">Confirm customer happy with service day/time</label></li>
+  </ul>
+  
+  <p class="section-label">Month 1</p>
+  <ul class="checklist">
+    <li><input type="checkbox" id="c16"><label for="c16">Send first invoice with payment info (Template #4)</label></li>
+    <li><input type="checkbox" id="c17"><label for="c17">Include referral offer in message</label></li>
+    <li><input type="checkbox" id="c18"><label for="c18">Update customer tracker with status</label></li>
+    <li><input type="checkbox" id="c19"><label for="c19">Confirm payment received on time</label></li>
+  </ul>
+</div>
+</div>
+
+<!-- TAB 1: Text Templates -->
+<div class="panel" id="panel-1">
+<div class="card">
+  <h3>📱 Auto-Fill Customer Info</h3>
+  <p class="note">Fill in once — all templates below update automatically</p>
+  <div class="input-row">
+    <input type="text" id="cust-name" placeholder="Customer Name (e.g., Sarah)">
+    <input type="text" id="cust-day" placeholder="Service Day (e.g., Tuesday)">
+    <input type="text" id="cust-rate" placeholder="Rate (e.g., 15)">
+  </div>
+  <div class="input-row">
+    <input type="text" id="cust-dogs" placeholder="# Dogs (e.g., 2)">
+    <input type="text" id="cust-date" placeholder="First Visit Date (e.g., March 15)">
+    <input type="text" id="cust-amount" placeholder="Monthly Amount (e.g., 60)">
+  </div>
+  <div class="input-row">
+    <input type="text" id="review-link" placeholder="Google Review Link">
+    <button class="fill-btn" onclick="fillTemplates()">Fill All Templates →</button>
+  </div>
+</div>
+
+<div class="card">
+  <h3>1️⃣ Welcome Text <span class="badge badge-green">Day 0</span></h3>
+  <div class="template-box" id="tmpl-welcome">
+    <button class="copy-btn" onclick="copyText('tmpl-welcome')">Copy</button>Hey [NAME]! 🐕 This is TJ from Tidy Tails. Welcome aboard! Quick recap:
+
+📅 Your service day: [DAY]
+💰 Your rate: $[RATE]/week ([DOGS] dog(s))
+🏠 I'll text you after each visit
+
+Your first cleanup is [DATE]. I'll do an extra-thorough job since it's the first one.
+
+Any questions, just text me back. Excited to keep your yard clean! 💪</div>
+</div>
+
+<div class="card">
+  <h3>2️⃣ First Visit Complete <span class="badge badge-blue">Day 1</span></h3>
+  <div class="template-box" id="tmpl-first">
+    <button class="copy-btn" onclick="copyText('tmpl-first')">Copy</button>Hey [NAME]! Your yard is all cleaned up! ✅
+
+Everything looked good back there. [Add a personal note — dog's name, nice yard, etc.]
+
+You'll get a text like this after every visit. See you next [DAY]! 🐕</div>
+</div>
+
+<div class="card">
+  <h3>3️⃣ Review Request <span class="badge badge-amber">Week 3</span></h3>
+  <div class="template-box" id="tmpl-review">
+    <button class="copy-btn" onclick="copyText('tmpl-review')">Copy</button>Hey [NAME]! Just finished cleanup #3. Your yard's looking great on the regular schedule! 🙌
+
+Quick favor — if you're happy with the service, would you mind leaving a quick Google review? It really helps a small business like mine.
+
+[REVIEW_LINK]
+
+Takes 30 seconds and means the world. Thanks! 🙏</div>
+</div>
+
+<div class="card">
+  <h3>4️⃣ First Month Invoice <span class="badge badge-purple">Month 1</span></h3>
+  <div class="template-box" id="tmpl-invoice">
+    <button class="copy-btn" onclick="copyText('tmpl-invoice')">Copy</button>Hey [NAME]! Just wanted to say thanks for a great first month with Tidy Tails. 🎉
+
+Your monthly total is $[AMOUNT] — you can send via Venmo (@TidyTailsSTL) or Zelle (cartervhomes@gmail.com).
+
+Also — if you know anyone who could use poop scooping, I'll give you $10 off your next month for every referral who signs up. Just have them mention your name!
+
+Thanks for being a customer. See you [DAY]! 🐕</div>
+</div>
+</div>
+
+<!-- TAB 2: Pricing Sheet -->
+<div class="panel" id="panel-2">
+<div class="card">
+  <h3>💰 Residential Weekly Service</h3>
+  <table>
+    <tr><th>Dogs</th><th>Weekly Rate</th><th>Monthly Cost</th></tr>
+    <tr><td>1 dog</td><td class="price">$15/week</td><td>~$60/month</td></tr>
+    <tr><td>2 dogs</td><td class="price">$18/week</td><td>~$72/month</td></tr>
+    <tr><td>3 dogs</td><td class="price">$21/week</td><td>~$84/month</td></tr>
+    <tr><td>4+ dogs</td><td class="price">Custom</td><td>—</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>⚡ Twice-Weekly Service</h3>
+  <table>
+    <tr><th>Dogs</th><th>Weekly Rate</th><th>Monthly Cost</th></tr>
+    <tr><td>1 dog</td><td class="price">$25/week</td><td>~$100/month</td></tr>
+    <tr><td>2 dogs</td><td class="price">$30/week</td><td>~$120/month</td></tr>
+    <tr><td>3+ dogs</td><td class="price">$35/week</td><td>~$140/month</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>🧹 One-Time Services</h3>
+  <table>
+    <tr><th>Service</th><th>Starting At</th></tr>
+    <tr><td>Deep Clean (standard yard)</td><td class="price">$75</td></tr>
+    <tr><td>Deep Clean (large/heavy)</td><td class="price">$150+</td></tr>
+    <tr><td>Move-Out Clean</td><td class="price">$100+</td></tr>
+    <tr><td>Event Prep</td><td class="price">$50+</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h3>✅ What's Included — Every Visit</h3>
+  <ul style="list-style:none;padding:0;">
+    <li style="padding:6px 0;">✅ Complete yard waste removal</li>
+    <li style="padding:6px 0;">✅ Waste bagged and placed in your trash</li>
+    <li style="padding:6px 0;">✅ Text confirmation after every visit</li>
+    <li style="padding:6px 0;">✅ No contracts — cancel anytime</li>
+    <li style="padding:6px 0;">✅ Satisfaction guaranteed</li>
+  </ul>
+  <p class="note" style="margin-top:12px;">Payment: Monthly billing via Venmo, Zelle, or cash<br>Service Area: St. Louis County, St. Charles County, and surrounding areas</p>
+</div>
+</div>
+
+<!-- TAB 3: Service Agreement -->
+<div class="panel" id="panel-3">
+<div class="card">
+  <h3>📝 Service Agreement</h3>
+  <p class="note">Print or send digitally. For most residential customers, a verbal text agreement works fine — but having a formal version builds trust and looks professional for commercial clients.</p>
+  
+  <div style="background:#0d0d14;border:1px solid var(--border);border-radius:8px;padding:24px;margin-top:16px;font-size:0.9rem;">
+    <div style="text-align:center;margin-bottom:20px;">
+      <h2 style="font-size:1.3rem;">TIDY TAILS PET WASTE REMOVAL</h2>
+      <p style="color:var(--dim);">Service Agreement</p>
+    </div>
+    
+    <p class="section-label">Client Information</p>
+    <p>Client Name: _________________________<br>
+    Service Address: _________________________<br>
+    Phone: _________________________<br>
+    Email: _________________________</p>
+    
+    <p class="section-label">Service Details</p>
+    <p>☐ Weekly (1x/week) &nbsp;&nbsp; ☐ Twice Weekly (2x/week) &nbsp;&nbsp; ☐ One-Time Deep Clean<br><br>
+    Number of Dogs: _____ &nbsp;&nbsp; Dog Name(s): _________________________<br>
+    Preferred Service Day(s): _________________________</p>
+    
+    <p class="section-label">Yard Access</p>
+    <p>☐ Gate code: _________ &nbsp;&nbsp; ☐ Gate unlocked &nbsp;&nbsp; ☐ Will leave open &nbsp;&nbsp; ☐ Other: _________</p>
+    
+    <p class="section-label">Agreed Rate</p>
+    <p>$_______ per _______ &nbsp;&nbsp;&nbsp; Billing: Monthly, due on the 1st</p>
+    
+    <p class="section-label">Terms</p>
+    <ul style="color:var(--dim);font-size:0.85rem;padding-left:20px;">
+      <li>Cancel anytime with 7 days' notice. No contracts, no fees.</li>
+      <li>24-hour notice for planned skips. No charge.</li>
+      <li>Yard must be accessible on service day.</li>
+      <li>Severe weather = reschedule to next business day.</li>
+      <li>Holiday weeks may shift by one day (text notification).</li>
+    </ul>
+    
+    <div style="margin-top:24px;display:flex;gap:40px;">
+      <div style="flex:1;">
+        <p>Client Signature: _________________<br><span style="color:var(--dim);font-size:0.8rem;">Date: _____________</span></p>
+      </div>
+      <div style="flex:1;">
+        <p>Tidy Tails: _________________<br><span style="color:var(--dim);font-size:0.8rem;">Date: _____________</span></p>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TAB 4: Situation Scripts -->
+<div class="panel" id="panel-4">
+<div class="card">
+  <h3>🔥 Ready-Made Scripts for Common Situations</h3>
+  <p class="note">Click to expand. Copy the text. Handle any situation like a pro.</p>
+  
+  <div class="response-card" onclick="this.classList.toggle('open')">
+    <div class="response-header">
+      <span>💸 Late Payment — Day 5 (Gentle)</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="response-body">
+      <div class="template-box" id="tmpl-late5">
+        <button class="copy-btn" onclick="event.stopPropagation();copyText('tmpl-late5')">Copy</button>Hey [NAME]! Quick reminder — your monthly payment of $[AMOUNT] was due on the 1st. No worries if it slipped through! You can send via Venmo (@TidyTailsSTL) or Zelle (cartervhomes@gmail.com). Thanks! 🙏</div>
+    </div>
+  </div>
+  
+  <div class="response-card" onclick="this.classList.toggle('open')">
+    <div class="response-header">
+      <span>💸 Late Payment — Day 10 (Firm)</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="response-body">
+      <div class="template-box" id="tmpl-late10">
+        <button class="copy-btn" onclick="event.stopPropagation();copyText('tmpl-late10')">Copy</button>Hey [NAME], just following up on the payment for this month. It's $[AMOUNT] — let me know if there's an issue or if you need to set up a different payment method. Happy to work with you! 👍</div>
+    </div>
+  </div>
+  
+  <div class="response-card" onclick="this.classList.toggle('open')">
+    <div class="response-header">
+      <span>🚪 Customer Wants to Cancel</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="response-body">
+      <div class="template-box" id="tmpl-cancel">
+        <button class="copy-btn" onclick="event.stopPropagation();copyText('tmpl-cancel')">Copy</button>Hey [NAME], no problem at all. I appreciate you being a customer! If it's a budget thing, I could do biweekly visits at half the cost — keeps your yard manageable without breaking the bank. Either way, no hard feelings. 🙏</div>
+    </div>
+  </div>
+  
+  <div class="response-card" onclick="this.classList.toggle('open')">
+    <div class="response-header">
+      <span>😤 Complaint — Missed Spot</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="response-body">
+      <div class="template-box" id="tmpl-complaint">
+        <button class="copy-btn" onclick="event.stopPropagation();copyText('tmpl-complaint')">Copy</button>Hey [NAME], I'm sorry about that! I'll swing back by today and take care of it — no extra charge. I want to make sure you're 100% happy. Thanks for letting me know. 👍</div>
+    </div>
+  </div>
+  
+  <div class="response-card" onclick="this.classList.toggle('open')">
+    <div class="response-header">
+      <span>🌧️ Weather Delay</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="response-body">
+      <div class="template-box" id="tmpl-weather">
+        <button class="copy-btn" onclick="event.stopPropagation();copyText('tmpl-weather')">Copy</button>Hey [NAME]! With the weather today, I'm pushing your service to tomorrow. Everything else stays the same. Stay safe out there! ❄️</div>
+    </div>
+  </div>
+  
+  <div class="response-card" onclick="this.classList.toggle('open')">
+    <div class="response-header">
+      <span>🐶 Adding a Dog</span>
+      <span class="arrow">▼</span>
+    </div>
+    <div class="response-body">
+      <div class="template-box" id="tmpl-newdog">
+        <button class="copy-btn" onclick="event.stopPropagation();copyText('tmpl-newdog')">Copy</button>Congrats on the new pup! 🐶 With the extra dog, your rate would go to $[NEW_RATE]/week. I'll update starting next visit. What's the new one's name?</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TAB 5: Seasonal Check-Ins -->
+<div class="panel" id="panel-5">
+<div class="card">
+  <h3>🗓️ Quarterly Customer Check-In Templates</h3>
+  <p class="note">Send once per quarter to every customer. Keeps you top of mind and catches cancellations before they happen.</p>
+  
+  <p class="section-label">🌱 Spring (March)</p>
+  <div class="template-box" id="tmpl-spring">
+    <button class="copy-btn" onclick="copyText('tmpl-spring')">Copy</button>Hey [NAME]! Spring's here and the thaw is real 😅 You might notice a bigger cleanup this week — winter buildup is no joke. But we'll get it squared away!
+
+Any changes to your schedule or adding another dog? Let me know! 🐕</div>
+  
+  <p class="section-label">☀️ Summer (June)</p>
+  <div class="template-box" id="tmpl-summer">
+    <button class="copy-btn" onclick="copyText('tmpl-summer')">Copy</button>Hey [NAME]! Summer's in full swing. Just a heads up — with the heat, I try to get to your yard early to beat the worst of it.
+
+If you're going on vacation, just let me know and I'll skip those weeks (no charge). Enjoy the summer! ☀️</div>
+  
+  <p class="section-label">🍂 Fall (September)</p>
+  <div class="template-box" id="tmpl-fall">
+    <button class="copy-btn" onclick="copyText('tmpl-fall')">Copy</button>Hey [NAME]! Fall cleanup season — leaves + poop = my favorite combo 😂
+
+Just wanted to check in — everything good with the service? Any feedback? I'm always looking to improve. Thanks for sticking with Tidy Tails! 🍂</div>
+  
+  <p class="section-label">❄️ Winter (December)</p>
+  <div class="template-box" id="tmpl-winter">
+    <button class="copy-btn" onclick="copyText('tmpl-winter')">Copy</button>Hey [NAME]! Thanks for being a Tidy Tails customer this year! 🎄
+
+Quick heads up — I still service through winter. Snow/ice days I'll reschedule to the next day. If you want to pause for the season, just let me know — no hard feelings and you can restart anytime.
+
+Happy holidays! 🐕</div>
+</div>
+</div>
+
+</div>
+
+<script>
+function showTab(idx) {
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+  document.querySelectorAll('.panel').forEach((p,i) => p.classList.toggle('active', i===idx));
+}
+
+function copyText(id) {
+  const el = document.getElementById(id);
+  const btn = el.querySelector('.copy-btn');
+  const text = el.textContent.replace('Copy','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function fillTemplates() {
+  const name = document.getElementById('cust-name').value || '[NAME]';
+  const day = document.getElementById('cust-day').value || '[DAY]';
+  const rate = document.getElementById('cust-rate').value || '[RATE]';
+  const dogs = document.getElementById('cust-dogs').value || '[DOGS]';
+  const date = document.getElementById('cust-date').value || '[DATE]';
+  const amount = document.getElementById('cust-amount').value || '[AMOUNT]';
+  const reviewLink = document.getElementById('review-link').value || '[REVIEW_LINK]';
+  
+  const replacements = {
+    '[NAME]': name, '[DAY]': day, '[RATE]': rate,
+    '[DOGS]': dogs, '[DATE]': date, '[AMOUNT]': amount,
+    '[REVIEW_LINK]': reviewLink
+  };
+  
+  document.querySelectorAll('.template-box').forEach(box => {
+    if (!box.dataset.original) box.dataset.original = box.innerHTML;
+    let html = box.dataset.original;
+    for (const [k,v] of Object.entries(replacements)) {
+      html = html.replaceAll(k, v);
+    }
+    box.innerHTML = html;
+  });
+}
+
+// Persist checkboxes in localStorage
+document.querySelectorAll('.checklist input[type=checkbox]').forEach(cb => {
+  const key = 'tt-onboard-' + cb.id;
+  cb.checked = localStorage.getItem(key) === 'true';
+  cb.addEventListener('change', () => localStorage.setItem(key, cb.checked));
+});
+</script>
+</body>
+</html>
