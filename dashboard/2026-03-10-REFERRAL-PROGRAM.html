@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tidy Tails — Scoop the Savings Referral Program</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f1117; color: #e4e4e7; line-height: 1.6; }
+.container { max-width: 900px; margin: 0 auto; padding: 20px; }
+h1 { font-size: 2rem; margin-bottom: 6px; }
+.subtitle { color: #a1a1aa; margin-bottom: 30px; font-size: 1.05rem; }
+.accent { color: #22c55e; }
+.badge { display: inline-block; background: #22c55e20; color: #22c55e; border: 1px solid #22c55e40; padding: 2px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; margin-left: 8px; }
+
+/* Cards */
+.card { background: #1a1b23; border: 1px solid #27272a; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+.card h2 { font-size: 1.2rem; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+/* Tier table */
+.tier-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 8px; }
+.tier { background: #22222a; border: 1px solid #333; border-radius: 10px; padding: 16px; text-align: center; transition: transform 0.2s, border-color 0.2s; }
+.tier:hover { transform: translateY(-2px); border-color: #22c55e60; }
+.tier .number { font-size: 2rem; font-weight: 800; color: #22c55e; }
+.tier .label { font-size: 0.75rem; color: #71717a; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.tier .reward { font-size: 0.95rem; font-weight: 600; color: #fff; }
+.tier.vip { border-color: #eab308; background: linear-gradient(135deg, #22222a, #2a2518); }
+.tier.vip .number { color: #eab308; }
+
+/* Text templates */
+.text-block { background: #111118; border: 1px solid #27272a; border-radius: 8px; padding: 16px; margin-bottom: 12px; position: relative; cursor: pointer; transition: border-color 0.2s; }
+.text-block:hover { border-color: #22c55e60; }
+.text-block .text-label { font-size: 0.75rem; color: #22c55e; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; font-weight: 600; }
+.text-block .text-content { font-size: 0.95rem; color: #d4d4d8; white-space: pre-wrap; }
+.copy-btn { position: absolute; top: 12px; right: 12px; background: #22c55e20; color: #22c55e; border: 1px solid #22c55e40; padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; transition: all 0.2s; }
+.copy-btn:hover { background: #22c55e; color: #000; }
+.copy-btn.copied { background: #22c55e; color: #000; }
+
+/* Checklist */
+.checklist { list-style: none; }
+.checklist li { padding: 10px 0; border-bottom: 1px solid #27272a; display: flex; align-items: flex-start; gap: 10px; }
+.checklist li:last-child { border-bottom: none; }
+.checklist input[type="checkbox"] { margin-top: 4px; accent-color: #22c55e; width: 18px; height: 18px; cursor: pointer; }
+.checklist .task-text { flex: 1; }
+.checklist .task-text.done { text-decoration: line-through; color: #52525b; }
+.priority { font-size: 0.7rem; padding: 2px 8px; border-radius: 999px; font-weight: 600; }
+.priority.today { background: #ef444420; color: #ef4444; border: 1px solid #ef444440; }
+.priority.week { background: #f59e0b20; color: #f59e0b; border: 1px solid #f59e0b40; }
+.priority.ongoing { background: #3b82f620; color: #3b82f6; border: 1px solid #3b82f640; }
+
+/* ROI */
+.roi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.roi-box { background: #22222a; border-radius: 10px; padding: 20px; text-align: center; }
+.roi-box .scenario { font-size: 0.75rem; color: #71717a; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.roi-box .revenue { font-size: 1.8rem; font-weight: 800; color: #22c55e; }
+.roi-box .detail { font-size: 0.85rem; color: #a1a1aa; margin-top: 4px; }
+.roi-box .roi-badge { display: inline-block; background: #22c55e20; color: #22c55e; padding: 4px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; margin-top: 8px; }
+
+/* Social posts */
+.social-tab-bar { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+.social-tab { background: #22222a; border: 1px solid #333; border-radius: 8px; padding: 8px 16px; cursor: pointer; font-size: 0.85rem; transition: all 0.2s; }
+.social-tab:hover { border-color: #22c55e60; }
+.social-tab.active { background: #22c55e20; border-color: #22c55e; color: #22c55e; }
+.social-content { display: none; }
+.social-content.active { display: block; }
+
+/* Pro tips */
+.tip { display: flex; gap: 12px; padding: 12px 0; border-bottom: 1px solid #27272a; }
+.tip:last-child { border-bottom: none; }
+.tip-num { background: #22c55e; color: #000; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; flex-shrink: 0; }
+.tip-text { font-size: 0.9rem; color: #d4d4d8; }
+
+/* Referral card preview */
+.card-preview { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.ref-card { background: #fff; color: #111; border-radius: 10px; padding: 24px; text-align: center; font-family: 'Georgia', serif; }
+.ref-card h3 { font-size: 1.1rem; margin-bottom: 4px; }
+.ref-card .tagline { font-size: 0.8rem; color: #666; margin-bottom: 16px; }
+.ref-card .big-text { font-size: 1.3rem; font-weight: 800; color: #16a34a; margin-bottom: 8px; }
+.ref-card .small-text { font-size: 0.8rem; color: #555; }
+.ref-card .ref-line { border-top: 1px dashed #ccc; margin: 12px 0; padding-top: 12px; }
+.ref-card-back { background: #16a34a; color: #fff; border-radius: 10px; padding: 24px; }
+.ref-card-back h3 { font-size: 1.1rem; margin-bottom: 12px; }
+.ref-card-back ul { list-style: none; text-align: left; }
+.ref-card-back ul li { padding: 4px 0; font-size: 0.9rem; }
+.ref-card-back ul li::before { content: "✓ "; font-weight: bold; }
+.ref-card-back .bottom-note { margin-top: 16px; font-size: 0.8rem; opacity: 0.9; font-style: italic; }
+
+@media (max-width: 640px) {
+  .tier-grid { grid-template-columns: repeat(2, 1fr); }
+  .roi-grid { grid-template-columns: 1fr; }
+  .card-preview { grid-template-columns: 1fr; }
+  h1 { font-size: 1.5rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>🐕 Scoop the Savings <span class="badge">REFERRAL PROGRAM</span></h1>
+  <p class="subtitle">Turn 4 happy customers into 25. Every referral = free service + new recurring revenue.</p>
+
+  <!-- Tier Structure -->
+  <div class="card">
+    <h2>🏆 Reward Tiers</h2>
+    <div class="tier-grid">
+      <div class="tier">
+        <div class="label">1st Referral</div>
+        <div class="number">1</div>
+        <div class="reward">Free Week</div>
+      </div>
+      <div class="tier">
+        <div class="label">2nd Referral</div>
+        <div class="number">2</div>
+        <div class="reward">Free Week</div>
+      </div>
+      <div class="tier">
+        <div class="label">3rd Referral</div>
+        <div class="number">3</div>
+        <div class="reward">Free Month!</div>
+      </div>
+      <div class="tier vip">
+        <div class="label">5+ Referrals</div>
+        <div class="number">VIP</div>
+        <div class="reward">10% Off Forever</div>
+      </div>
+    </div>
+    <p style="color: #71717a; font-size: 0.85rem; text-align: center; margin-top: 8px;">New customers always get their first cleanup FREE</p>
+  </div>
+
+  <!-- ROI Projections -->
+  <div class="card">
+    <h2>📈 Projected ROI</h2>
+    <div class="roi-grid">
+      <div class="roi-box">
+        <div class="scenario">Conservative (1 referral each)</div>
+        <div class="revenue">$3,600/yr</div>
+        <div class="detail">3 new customers × $100/mo</div>
+        <div class="roi-badge">36× ROI</div>
+      </div>
+      <div class="roi-box">
+        <div class="scenario">Optimistic (2 referrals each)</div>
+        <div class="revenue">$7,200/yr</div>
+        <div class="detail">6 new customers × $100/mo</div>
+        <div class="roi-badge">24× ROI</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Text Templates -->
+  <div class="card">
+    <h2>📱 Copy-Paste Texts for Current Customers</h2>
+
+    <div class="text-block" onclick="copyText(this)">
+      <div class="text-label">🚀 Launch Text — Send to ALL customers TODAY</div>
+      <span class="copy-btn">Copy</span>
+      <div class="text-content">Hey [Name]! Quick heads up — I just launched a referral program for Tidy Tails 🐕
+
+If you refer someone who signs up, you get a FREE week of service. Refer 3 people and you get a whole FREE MONTH.
+
+If you know any neighbors, friends, or family with dogs who hate scooping (who doesn't lol), just have them text me and mention your name.
+
+Their first cleanup is free too so there's zero risk for them. Appreciate you! 🙏</div>
+    </div>
+
+    <div class="text-block" onclick="copyText(this)">
+      <div class="text-label">🔄 Casual Follow-Up — 1 week later</div>
+      <span class="copy-btn">Copy</span>
+      <div class="text-content">Hey [Name]! Just a reminder about that referral deal — free week of service for every person you send my way. Spring is when everyone realizes their yard is a disaster zone 😂 If anyone mentions needing help, I'm your guy!</div>
+    </div>
+
+    <div class="text-block" onclick="copyText(this)">
+      <div class="text-label">🏅 Social Proof Nudge — After first referral comes in</div>
+      <span class="copy-btn">Copy</span>
+      <div class="text-content">Hey [Name]! Just wanted to let you know — [Referrer Name] just referred someone and earned a free week. Figured I'd remind you the offer is still going! Anyone you know with dogs who'd love a clean yard? 🐕💩</div>
+    </div>
+
+    <div class="text-block" onclick="copyText(this)">
+      <div class="text-label">🌱 Spring Seasonal Angle</div>
+      <span class="copy-btn">Copy</span>
+      <div class="text-content">Hey [Name]! Spring thaw season is here and I'm getting a TON of requests for cleanups. If you know anyone whose yard looks like a minefield right now 😬 send them my way — you'll get a free week and they get their first cleanup free. Win-win!</div>
+    </div>
+  </div>
+
+  <!-- Texts for Referred Person -->
+  <div class="card">
+    <h2>📱 Texts for Referred Customers</h2>
+
+    <div class="text-block" onclick="copyText(this)">
+      <div class="text-label">👋 When a referral reaches out</div>
+      <span class="copy-btn">Copy</span>
+      <div class="text-content">Hey! [Referrer] told me about you. Thanks for reaching out! I'd love to help get your yard back in shape.
+
+Since [Referrer] referred you, your first cleanup is totally free — no strings attached. I'll come out, clean everything up, and you can see if you like it.
+
+What's your address and how many dogs do you have? I'll get you on the schedule 👍</div>
+    </div>
+
+    <div class="text-block" onclick="copyText(this)">
+      <div class="text-label">✅ After their first free cleanup</div>
+      <span class="copy-btn">Copy</span>
+      <div class="text-content">Hey [Name]! Just finished up your yard — looking good out there! 🐕✨
+
+If you want to keep it that way, weekly service is $25/visit (most popular) or biweekly is $30/visit. I handle everything — show up, scoop, bag it, and take it with me.
+
+Want me to put you on the regular schedule? No contract, cancel anytime.</div>
+    </div>
+  </div>
+
+  <!-- Social Media Posts -->
+  <div class="card">
+    <h2>📣 Social Media Announcements</h2>
+    <div class="social-tab-bar">
+      <div class="social-tab active" onclick="showSocial('fb')">Facebook</div>
+      <div class="social-tab" onclick="showSocial('nd')">Nextdoor</div>
+      <div class="social-tab" onclick="showSocial('ig')">Instagram</div>
+      <div class="social-tab" onclick="showSocial('inperson')">In-Person Script</div>
+    </div>
+
+    <div id="social-fb" class="social-content active">
+      <div class="text-block" onclick="copyText(this)">
+        <span class="copy-btn">Copy</span>
+        <div class="text-content">🐕 NEW: Scoop the Savings Referral Program
+
+Love having a clean yard? Help your friends get one too.
+
+Here's the deal:
+→ Refer a friend who signs up → YOU get a FREE WEEK of service
+→ Refer 3 friends → YOU get a FREE MONTH
+→ Your friend gets their first cleanup FREE
+
+No limit. No catch. Just tell people about us and save money on your service.
+
+Know someone whose yard is a disaster after winter? Tag them below or send them our way 👇
+
+tidytailsstl.com | DM or text to get started
+
+#stlouis #tidytails #referralprogram #dogmom #dogdad #pooperscooper #westcounty #stlouismo</div>
+      </div>
+    </div>
+
+    <div id="social-nd" class="social-content">
+      <div class="text-block" onclick="copyText(this)">
+        <span class="copy-btn">Copy</span>
+        <div class="text-content">Hey neighbors! I just launched a referral program for Tidy Tails 🐕
+
+If you're a current customer and refer a neighbor who signs up, you get a free week of service. Refer 3 and you get a free month!
+
+And for anyone new — your first cleanup is always free. I just come out, scoop everything, and you see if it's worth it (it always is 😂).
+
+Spring is the perfect time to get your yard back in shape. DM me if you're interested or if you have questions!</div>
+      </div>
+    </div>
+
+    <div id="social-ig" class="social-content">
+      <div class="text-block" onclick="copyText(this)">
+        <span class="copy-btn">Copy</span>
+        <div class="text-content">STORY SLIDE 1: "ANNOUNCEMENT 🎉 — Tidy Tails now has a referral program"
+
+STORY SLIDE 2: "Refer a friend → Free week for you | Refer 3 → Free month for you | Your friend gets first cleanup FREE"
+
+STORY SLIDE 3: "Know someone whose yard is a war zone? 💀 Tag them or DM me | Link in bio → tidytailsstl.com"</div>
+      </div>
+    </div>
+
+    <div id="social-inperson" class="social-content">
+      <div class="text-block" onclick="copyText(this)">
+        <span class="copy-btn">Copy</span>
+        <div class="text-content">Say this after finishing a job (when customer is home):
+
+"Hey, quick thing — I just started a referral program. If you know anyone else in the neighborhood with dogs, send them my way. You'll get a free week of service and they get their first cleanup free. Just have them mention your name when they text me."
+
+💡 This works because you're catching them right when they see their clean yard — happiest moment with your service.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Referral Card Preview -->
+  <div class="card">
+    <h2>📇 Referral Card Design (Print at Vistaprint ~$20/250)</h2>
+    <div class="card-preview">
+      <div class="ref-card">
+        <h3>🐕 TIDY TAILS</h3>
+        <div class="tagline">Pet Waste Removal — St. Louis</div>
+        <div class="big-text">FREE FIRST CLEANUP</div>
+        <div class="small-text">for new customers</div>
+        <div class="ref-line">
+          <div class="small-text">Referred by: _______________</div>
+        </div>
+        <div class="small-text" style="margin-top: 8px;">Text: [TJ's #] | tidytailsstl.com</div>
+      </div>
+      <div class="ref-card-back">
+        <h3>SCOOP THE SAVINGS</h3>
+        <ul>
+          <li>Weekly service from $25/visit</li>
+          <li>We scoop, bag & remove everything</li>
+          <li>No contracts, cancel anytime</li>
+          <li>Serving West County & beyond</li>
+        </ul>
+        <div class="bottom-note">Your friend who gave you this card earns a FREE WEEK when you sign up!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Launch Checklist -->
+  <div class="card">
+    <h2>🎯 Launch Checklist</h2>
+    <ul class="checklist">
+      <li>
+        <input type="checkbox" onchange="toggleDone(this)">
+        <span class="task-text">Text ALL current customers the launch text</span>
+        <span class="priority today">TODAY</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="toggleDone(this)">
+        <span class="task-text">Post on Facebook (launch announcement)</span>
+        <span class="priority today">TODAY</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="toggleDone(this)">
+        <span class="task-text">Post on Nextdoor (neighbor tone)</span>
+        <span class="priority today">TODAY</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="toggleDone(this)">
+        <span class="task-text">Post Instagram Story (3 slides)</span>
+        <span class="priority today">TODAY</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="toggleDone(this)">
+        <span class="task-text">Mention referral program at next job</span>
+        <span class="priority today">TODAY</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="toggleDone(this)">
+        <span class="task-text">Set up referral tracking (Google Sheet or Notes)</span>
+        <span class="priority week">THIS WEEK</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="toggleDone(this)">
+        <span class="task-text">Order referral cards on Vistaprint (~$20/250)</span>
+        <span class="priority week">THIS WEEK</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="toggleDone(this)">
+        <span class="task-text">Leave 2-3 cards at each customer's door</span>
+        <span class="priority week">THIS WEEK</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="toggleDone(this)">
+        <span class="task-text">Send follow-up texts to non-referrers (1 week later)</span>
+        <span class="priority ongoing">ONGOING</span>
+      </li>
+      <li>
+        <input type="checkbox" onchange="toggleDone(this)">
+        <span class="task-text">Celebrate referrals on social media</span>
+        <span class="priority ongoing">ONGOING</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Pro Tips -->
+  <div class="card">
+    <h2>💡 Pro Tips</h2>
+    <div class="tip">
+      <div class="tip-num">1</div>
+      <div class="tip-text"><strong>Hit new customers first.</strong> They just experienced the "wow" moment. Ask for referrals within the first 2 weeks while they're most excited.</div>
+    </div>
+    <div class="tip">
+      <div class="tip-num">2</div>
+      <div class="tip-text"><strong>Make rewards immediate.</strong> Don't say "next month." Say "your next visit is free." Speed of reward = speed of next referral.</div>
+    </div>
+    <div class="tip">
+      <div class="tip-num">3</div>
+      <div class="tip-text"><strong>Name names (with permission).</strong> "Sarah from Ballwin just earned a free week!" Social proof drives action from other customers.</div>
+    </div>
+    <div class="tip">
+      <div class="tip-num">4</div>
+      <div class="tip-text"><strong>Spring is your golden window.</strong> Everyone's yard is gross right now. The next 6 weeks are prime referral season. Push hard.</div>
+    </div>
+    <div class="tip">
+      <div class="tip-num">5</div>
+      <div class="tip-text"><strong>Stack with reviews.</strong> Customer refers someone AND leaves a Google review? Bonus free week. Lock in that loyalty and build online presence simultaneously.</div>
+    </div>
+  </div>
+
+  <p style="text-align: center; color: #52525b; margin: 30px 0; font-size: 0.85rem;">
+    Built by Franklin 🐕💩 — March 10, 2026 | 7:04 AM
+  </p>
+</div>
+
+<script>
+function copyText(block) {
+  const content = block.querySelector('.text-content').innerText;
+  navigator.clipboard.writeText(content).then(() => {
+    const btn = block.querySelector('.copy-btn');
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function showSocial(id) {
+  document.querySelectorAll('.social-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.social-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('social-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleDone(checkbox) {
+  const text = checkbox.nextElementSibling;
+  text.classList.toggle('done', checkbox.checked);
+}
+</script>
+</body>
+</html>
