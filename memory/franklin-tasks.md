@@ -6,6 +6,69 @@
 
 ## March 10, 2026 (Tuesday)
 
+### 9:04 PM — 📍 GBP CONTENT KIT — Pre-Written Copy for Instant Google Business Profile Setup (Hourly Task)
+**Task:** Build a complete copy-paste content kit so TJ can set up Google Business Profile in 20 minutes with zero writing
+**Result:** ✅ SHIPPED — Interactive toolkit with every piece of GBP copy pre-written, one-click copy buttons, and progress tracking
+
+**Why This Task:**
+- Sprint plan identified GBP as the #1 priority — zero Google visibility is the single biggest growth blocker
+- The GBP Domination Playbook already exists but it's a *strategy* guide — TJ still has to write all the copy himself
+- Friction kills execution. If TJ has to write a business description, service descriptions, Q&A, and posts from scratch, it won't happen tonight
+- This kit removes ALL writing friction: everything is pre-written, just copy → paste → done
+
+**What I Built:**
+- **Business description** (750 chars) — keyword-optimized for "pet waste removal," "dog poop cleanup," + 6 STL suburb names
+- **5 service descriptions** — weekly, bi-weekly, one-time, commercial, waste stations — ready to paste into GBP services tab
+- **6 pre-loaded Q&A entries** — pricing, service areas, contracts, what happens to waste — boosts SEO when self-posted
+- **8 GBP post templates** in 4 categories (spring, promos, tips, social proof) — each with one-click copy
+- **Photo checklist** — 6 must-have shots (before/after, action shot, vehicle, clean result, happy dog, logo)
+- **Review request text templates** — casual ask + post-service ask + instructions for getting the review link
+- **Interactive 10-step setup checklist** with localStorage progress tracking
+- **Weekly 5-min maintenance routine** — post, upload photos, respond to reviews
+- **Category guidance** — "Waste Management Service" primary + "Pet Service" secondary (no pet waste category exists)
+- **Attributes checklist** — payment methods, service options, "from the business" highlights
+- Added to dashboard index under SEO & Web Presence section
+
+**Key Insight:** The gap between "TJ knows he needs GBP" and "TJ actually sets it up" is 100% friction. A strategy guide says "write a compelling description." This kit says "here's your description, copy it." That's the difference between done and not done.
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-10-GBP-CONTENT-KIT.html
+**Commit:** `ad2143c` on `tidytails-dashboard` repo
+**Rotation:** 🔍 SEO & Web Presence — GBP Setup Execution
+
+---
+
+### 8:05 PM — 🎯 WEEKLY SPRINT PLAN — Stop Researching, Start Doing (Hourly Task)
+**Task:** Consolidate ALL of today's research (7 reports, 19 dashboards) into a single prioritized 5-day action plan with 15 specific tasks TJ can execute
+**Result:** ✅ SHIPPED — Interactive sprint plan with progress tracking, daily themes, time estimates, and links to source materials
+
+**Why This Task:**
+- Today produced an overwhelming amount of research and content — 7 major research tasks and 19 dashboard files
+- Risk of "analysis paralysis" — so many reports that TJ doesn't know where to start
+- Every report kept identifying the same 3 blockers: no GSC, no GBP, no social presence
+- Pure PM work: synthesize, prioritize, simplify. This is Franklin's actual job.
+
+**What I Built:**
+- **5-day sprint plan** (Wed Mar 11 → Sun Mar 16) with daily themes:
+  - 🔥 Wednesday: Google Foundation Day (GSC + GBP + Bing — 40 min)
+  - 📣 Thursday: Nextdoor + Social Blitz (dead competitor capture + spring posts — 45 min)
+  - ⭐ Friday: Reviews & Referrals (text customers + Yelp setup — 30 min)
+  - 🌐 Saturday: Website Quick Wins (pricing fix + free visit CTA + phone — 30 min)
+  - 📋 Sunday: Directory Listings (MapQuest + Thumbtack + Craigslist — 30 min)
+- **Interactive checklist** with localStorage persistence — progress survives page refreshes
+- **Progress bar** showing overall completion percentage
+- **Impact summary**: 15 tasks, ~3 hours total, $0 cost
+- **Links to source materials** for every task (SEO rescue plan, GBP playbook, capture campaign, etc.)
+- **TL;DR box** with the 3 things that actually matter
+- Added as **top priority banner** on main dashboard index
+
+**Key Insight:** The most valuable deliverable today isn't another research report — it's the simple prioritized list that tells TJ exactly what to do tomorrow morning. Research without action is just entertainment.
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-10-WEEKLY-SPRINT-PLAN.html
+**Commit:** `220d55f` on `tidytails-dashboard` repo
+**Rotation:** 📋 Project Management — Sprint Planning & Synthesis
+
+---
+
 ### 7:04 PM — 🚨 SEO RESCUE PLAN — Fix tidytailsstl.com Zero Google Indexing (Hourly Task)
 **Task:** Deep technical SEO audit + actionable fix plan for tidytailsstl.com which has ZERO Google-indexed pages
 **Result:** ✅ SHIPPED — Interactive rescue plan with full audit, competitor comparison, step-by-step fix guide, and priority checklist
