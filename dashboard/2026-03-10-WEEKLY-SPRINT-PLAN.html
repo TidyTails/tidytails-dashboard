@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJ's Sprint Plan | Mar 11-16, 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #666;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; padding-bottom:4rem; }
+        
+        .hero {
+            background: linear-gradient(135deg, #1a1008, #0a1a0f, #0a0f1a);
+            border-bottom: 2px solid var(--orange);
+            padding: 2.5rem 1.5rem 2rem;
+            text-align: center;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255,107,53,0.15);
+            color: var(--orange);
+            padding: 0.3rem 0.9rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+        .hero h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; }
+        .hero h1 span { color: var(--orange); }
+        .hero .subtitle { color: var(--text2); font-size: 0.85rem; margin-top: 0.5rem; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+        
+        .tldr {
+            background: linear-gradient(135deg, rgba(255,107,53,0.08), rgba(16,185,129,0.05));
+            border: 1px solid rgba(255,107,53,0.2);
+            border-radius: var(--radius);
+            padding: 1.25rem 1.5rem;
+            margin: 1.5rem auto;
+            max-width: 700px;
+        }
+        .tldr h3 { font-size: 0.85rem; color: var(--orange); margin-bottom: 0.5rem; font-weight: 700; }
+        .tldr p { font-size: 0.9rem; line-height: 1.6; color: var(--text2); }
+        .tldr strong { color: var(--text); }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 0 1.5rem; }
+        
+        /* Progress bar */
+        .progress-section { margin: 1.5rem auto; max-width: 800px; padding: 0 1.5rem; }
+        .progress-bar-wrap {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1rem 1.25rem;
+        }
+        .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .progress-header span { font-size: 0.8rem; color: var(--text2); }
+        .progress-header .pct { color: var(--green); font-weight: 700; font-size: 0.9rem; }
+        .progress-track {
+            height: 8px; background: var(--bg); border-radius: 4px; overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%; background: linear-gradient(90deg, var(--orange), var(--green));
+            border-radius: 4px; transition: width 0.5s ease;
+        }
+        
+        /* Day cards */
+        .day-card {
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-top: 1.5rem;
+            overflow: hidden;
+            transition: border-color 0.2s;
+        }
+        .day-card:hover { border-color: var(--bg4); }
+        .day-card.today { border-color: var(--orange); }
+        .day-header {
+            padding: 1rem 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            user-select: none;
+        }
+        .day-header:hover { background: rgba(255,255,255,0.02); }
+        .day-label { display: flex; align-items: center; gap: 0.6rem; }
+        .day-emoji { font-size: 1.3rem; }
+        .day-name { font-weight: 700; font-size: 1rem; }
+        .day-theme { color: var(--text2); font-size: 0.8rem; font-weight: 500; }
+        .day-meta { display: flex; align-items: center; gap: 0.75rem; }
+        .day-time {
+            background: rgba(255,255,255,0.05);
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            color: var(--text2);
+            font-weight: 600;
+        }
+        .day-chevron { color: var(--text3); font-size: 0.8rem; transition: transform 0.2s; }
+        .day-card.open .day-chevron { transform: rotate(180deg); }
+        
+        .day-body { padding: 0 1.25rem 1.25rem; display: none; }
+        .day-card.open .day-body { display: block; }
+        
+        .task-item {
+            display: flex;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            align-items: flex-start;
+        }
+        .task-item:last-child { border-bottom: none; }
+        .task-check {
+            width: 20px; height: 20px; min-width: 20px;
+            border: 2px solid var(--text3);
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+            margin-top: 2px;
+        }
+        .task-check:hover { border-color: var(--green); }
+        .task-check.done { background: var(--green); border-color: var(--green); }
+        .task-check.done::after { content: '✓'; color: white; font-size: 0.7rem; font-weight: 700; }
+        .task-content { flex: 1; }
+        .task-title { font-size: 0.9rem; font-weight: 600; line-height: 1.3; }
+        .task-item.done .task-title { text-decoration: line-through; color: var(--text3); }
+        .task-desc { font-size: 0.8rem; color: var(--text2); margin-top: 0.25rem; line-height: 1.4; }
+        .task-item.done .task-desc { color: var(--text3); }
+        .task-tags { display: flex; gap: 0.4rem; margin-top: 0.4rem; flex-wrap: wrap; }
+        .tag {
+            font-size: 0.65rem; font-weight: 600; padding: 0.15rem 0.5rem;
+            border-radius: 4px; text-transform: uppercase; letter-spacing: 0.03em;
+        }
+        .tag-time { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .tag-impact { background: rgba(239,68,68,0.15); color: var(--red); }
+        .tag-easy { background: rgba(16,185,129,0.15); color: var(--green); }
+        .tag-link { background: rgba(139,92,246,0.1); color: var(--purple); cursor: pointer; text-decoration: none; }
+        .tag-link:hover { background: rgba(139,92,246,0.2); }
+        
+        /* Impact meter */
+        .impact-row {
+            display: flex; gap: 1rem; margin: 2rem auto; max-width: 800px; padding: 0 1.5rem;
+            flex-wrap: wrap;
+        }
+        .impact-card {
+            flex: 1; min-width: 150px;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1rem;
+            text-align: center;
+        }
+        .impact-card .num { font-size: 1.5rem; font-weight: 800; }
+        .impact-card .label { font-size: 0.7rem; color: var(--text2); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .num-orange { color: var(--orange); }
+        .num-green { color: var(--green); }
+        .num-blue { color: var(--blue); }
+        .num-yellow { color: var(--yellow); }
+        
+        /* Bottom note */
+        .bottom-note {
+            max-width: 800px; margin: 2rem auto;
+            padding: 1rem 1.5rem;
+            background: var(--bg2);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.8rem; color: var(--text2); line-height: 1.6;
+        }
+        .bottom-note strong { color: var(--text); }
+
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.3rem; }
+            .impact-card { min-width: 120px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="hero">
+    <div class="hero-badge">🎯 WEEK 11 SPRINT — MAR 11–16</div>
+    <h1>Stop Researching. <span>Start Doing.</span></h1>
+    <p class="subtitle">Today produced 19 dashboards and 7 research reports. This plan distills ALL of it into 15 actions across 5 days. Nothing new to read — just do the list.</p>
+</div>
+
+<div class="tldr">
+    <h3>⚡ THE 3 THINGS THAT ACTUALLY MATTER</h3>
+    <p>
+        <strong>1. Google Search Console</strong> — site has ZERO indexed pages. 15 min fix, biggest single blocker.<br>
+        <strong>2. Google Business Profile</strong> — only way to appear in local search/maps until site is indexed.<br>
+        <strong>3. Post on Nextdoor</strong> — competitors already there. Free. Immediate local reach.
+    </p>
+</div>
+
+<div class="progress-section">
+    <div class="progress-bar-wrap">
+        <div class="progress-header">
+            <span>Sprint Progress</span>
+            <span class="pct" id="progressPct">0%</span>
+        </div>
+        <div class="progress-track">
+            <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+    </div>
+</div>
+
+<div class="impact-row">
+    <div class="impact-card">
+        <div class="num num-orange">15</div>
+        <div class="label">Total Tasks</div>
+    </div>
+    <div class="impact-card">
+        <div class="num num-green">~3 hrs</div>
+        <div class="label">Total Time</div>
+    </div>
+    <div class="impact-card">
+        <div class="num num-blue">$0</div>
+        <div class="label">Total Cost</div>
+    </div>
+    <div class="impact-card">
+        <div class="num num-yellow" id="completedCount">0</div>
+        <div class="label">Completed</div>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- WEDNESDAY -->
+    <div class="day-card today open" data-day="wed">
+        <div class="day-header" onclick="toggleDay(this)">
+            <div class="day-label">
+                <span class="day-emoji">🔥</span>
+                <div>
+                    <div class="day-name">Wednesday, Mar 11</div>
+                    <div class="day-theme">Google Foundation Day — The #1 Blocker</div>
+                </div>
+            </div>
+            <div class="day-meta">
+                <span class="day-time">~40 min</span>
+                <span class="day-chevron">▼</span>
+            </div>
+        </div>
+        <div class="day-body">
+            <div class="task-item" data-task="gsc">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Set up Google Search Console</div>
+                    <div class="task-desc">Go to search.google.com/search-console → Add property → Enter tidytailsstl.com → Verify via DNS TXT record (Squarespace: Settings → Domains → DNS Settings). Submit sitemap URL: tidytailsstl.com/sitemap.xml. Request indexing for homepage + 4 city pages.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">15 min</span>
+                        <span class="tag tag-impact">🚨 Critical</span>
+                        <a class="tag tag-link" href="2026-03-10-SEO-RESCUE-PLAN.html" target="_blank">SEO Rescue Plan →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="task-item" data-task="gbp">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Create Google Business Profile</div>
+                    <div class="task-desc">Go to business.google.com → Create profile → Business name: "Tidy Tails Pet Waste Removal" → Category: "Pet Waste Removal Service" → Service area: St. Louis County + St. Charles County → Add phone, website, hours. Verification will take ~1 week via postcard/phone.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">15 min</span>
+                        <span class="tag tag-impact">🚨 Critical</span>
+                        <a class="tag tag-link" href="2026-03-10-GBP-OPTIMIZATION.html" target="_blank">GBP Playbook →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="task-item" data-task="bing">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Set up Bing Webmaster Tools</div>
+                    <div class="task-desc">Go to bing.com/webmasters → Sign in with Microsoft account → Import from GSC (one-click) or add manually. Covers Bing + DuckDuckGo + Brave Search indexing.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">5 min</span>
+                        <span class="tag tag-easy">Easy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- THURSDAY -->
+    <div class="day-card" data-day="thu">
+        <div class="day-header" onclick="toggleDay(this)">
+            <div class="day-label">
+                <span class="day-emoji">📣</span>
+                <div>
+                    <div class="day-name">Thursday, Mar 12</div>
+                    <div class="day-theme">Nextdoor + Social Blitz — Get Visible NOW</div>
+                </div>
+            </div>
+            <div class="day-meta">
+                <span class="day-time">~45 min</span>
+                <span class="day-chevron">▼</span>
+            </div>
+        </div>
+        <div class="day-body">
+            <div class="task-item" data-task="nextdoor1">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Post on Nextdoor — Dead Competitor Capture</div>
+                    <div class="task-desc">Fresh Paws (Wildwood) and Poopy Paws (STL area) are both dead. Post the ready-to-go PSA letting their old customers know you exist. Copy from the capture campaign dashboard.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">10 min</span>
+                        <span class="tag tag-impact">High ROI</span>
+                        <a class="tag tag-link" href="2026-03-10-DEAD-COMPETITOR-CAPTURE.html" target="_blank">Capture Campaign →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="task-item" data-task="nextdoor2">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Post on Nextdoor — Spring Cleanup Offer</div>
+                    <div class="task-desc">Separate post: "Spring's here — anyone else's yard a minefield? 💩 Offering free first cleanups this month." Keep it casual, not salesy. Nextdoor penalizes obvious ads.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">10 min</span>
+                        <span class="tag tag-easy">Easy</span>
+                    </div>
+                </div>
+            </div>
+            <div class="task-item" data-task="fb-group">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Post in 2-3 STL Facebook Dog Groups</div>
+                    <div class="task-desc">Search for "St. Louis dog owners", "STL pets", "St. Charles dog" groups. Join if needed. Post the spring cleanup offer. Be helpful first — answer questions, then mention your service.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">20 min</span>
+                        <span class="tag tag-easy">Easy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FRIDAY -->
+    <div class="day-card" data-day="fri">
+        <div class="day-header" onclick="toggleDay(this)">
+            <div class="day-label">
+                <span class="day-emoji">⭐</span>
+                <div>
+                    <div class="day-name">Friday, Mar 13</div>
+                    <div class="day-theme">Reviews & Referrals — Build Social Proof</div>
+                </div>
+            </div>
+            <div class="day-meta">
+                <span class="day-time">~30 min</span>
+                <span class="day-chevron">▼</span>
+            </div>
+        </div>
+        <div class="day-body">
+            <div class="task-item" data-task="review-ask">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Text existing customers for Google reviews</div>
+                    <div class="task-desc">Send to each current customer: "Hey [name]! Quick favor — if you've been happy with the service, would you mind leaving a quick Google review? It really helps a small business like mine. Here's the link: [GBP review link]" — Send after GBP is live.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">10 min</span>
+                        <span class="tag tag-impact">High ROI</span>
+                        <a class="tag tag-link" href="2026-03-10-REFERRAL-PROGRAM-KIT.html" target="_blank">Referral Kit →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="task-item" data-task="referral-launch">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Launch referral offer to current customers</div>
+                    <div class="task-desc">Text each customer: "Know anyone who'd want their yard cleaned? If they sign up, you both get a free week. Just have them mention your name!" — Simple, no tracking system needed.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">10 min</span>
+                        <span class="tag tag-easy">Easy</span>
+                    </div>
+                </div>
+            </div>
+            <div class="task-item" data-task="yelp-setup">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Claim/create Yelp business listing</div>
+                    <div class="task-desc">Poopy Paws' Yelp page still gets traffic. Create your own Yelp listing so those searchers find you instead. Go to biz.yelp.com → Add business → Fill out all fields.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">10 min</span>
+                        <span class="tag tag-easy">Easy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SATURDAY -->
+    <div class="day-card" data-day="sat">
+        <div class="day-header" onclick="toggleDay(this)">
+            <div class="day-label">
+                <span class="day-emoji">🌐</span>
+                <div>
+                    <div class="day-name">Saturday, Mar 14</div>
+                    <div class="day-theme">Website Quick Wins — 3 Fixes, 15 Minutes</div>
+                </div>
+            </div>
+            <div class="day-meta">
+                <span class="day-time">~30 min</span>
+                <span class="day-chevron">▼</span>
+            </div>
+        </div>
+        <div class="day-body">
+            <div class="task-item" data-task="hero-fix">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Fix hero pricing: "$25/week" → "Plans from $70/month"</div>
+                    <div class="task-desc">Right now the hero makes TJ look expensive ($25/week = $108/mo). Competitors show monthly ($78-95/mo). Switching to "Plans from $70/month" instantly makes TJ the cheapest option AND matches how competitors price. Edit in Squarespace.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">5 min</span>
+                        <span class="tag tag-impact">High Impact</span>
+                        <a class="tag tag-link" href="2026-03-10-CUSTOMER-ONBOARDING-SYSTEM.html" target="_blank">Conversion Audit →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="task-item" data-task="free-visit">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Add "First Visit FREE" to homepage</div>
+                    <div class="task-desc">Doggie Doodies offers a free initial cleanup. TJ should too. Add a banner or button: "Try us free — first cleanup on us, no commitment." Reduces purchase anxiety massively.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">10 min</span>
+                        <span class="tag tag-impact">High Impact</span>
+                    </div>
+                </div>
+            </div>
+            <div class="task-item" data-task="phone-header">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Add phone number to homepage header</div>
+                    <div class="task-desc">City pages have it, homepage doesn't. Some people want to call, not fill out forms. Make the phone number clickable (tel: link) in the site header on every page.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">5 min</span>
+                        <span class="tag tag-easy">Easy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUNDAY -->
+    <div class="day-card" data-day="sun">
+        <div class="day-header" onclick="toggleDay(this)">
+            <div class="day-label">
+                <span class="day-emoji">📋</span>
+                <div>
+                    <div class="day-name">Sunday, Mar 16</div>
+                    <div class="day-theme">Directory Listings — Free Backlinks</div>
+                </div>
+            </div>
+            <div class="day-meta">
+                <span class="day-time">~30 min</span>
+                <span class="day-chevron">▼</span>
+            </div>
+        </div>
+        <div class="day-body">
+            <div class="task-item" data-task="dir-mapquest">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Claim MapQuest listing + add website</div>
+                    <div class="task-desc">There's already a stub listing with no website link. Go to mapquest.com, search for Tidy Tails, claim it, add the website URL and all business details.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">5 min</span>
+                        <span class="tag tag-easy">Easy</span>
+                    </div>
+                </div>
+            </div>
+            <div class="task-item" data-task="dir-thumbtack">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Create Thumbtack profile</div>
+                    <div class="task-desc">Thumbtack is where people search for local services. Create a profile at thumbtack.com. Free to list — you only pay when you respond to leads. Good for getting first customers fast.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">15 min</span>
+                        <span class="tag tag-impact">Lead Source</span>
+                        <a class="tag tag-link" href="2026-03-10-DIRECTORY-SUBMISSION-GUIDE.html" target="_blank">Directory Guide →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="task-item" data-task="dir-craigslist">
+                <div class="task-check" onclick="toggleTask(this)"></div>
+                <div class="task-content">
+                    <div class="task-title">Post on Craigslist Services</div>
+                    <div class="task-desc">Post under Services → Household in the St. Louis Craigslist. Free, takes 5 minutes, and some people still use it. Repost weekly for visibility.</div>
+                    <div class="task-tags">
+                        <span class="tag tag-time">5 min</span>
+                        <span class="tag tag-easy">Easy</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container">
+    <div class="bottom-note">
+        <strong>Why this plan?</strong> Franklin ran 7 research tasks today (pricing audit, SEO audit, GBP audit, competitor analysis, conversion audit, blog content, and a capture campaign). The findings all point to the same thing: <strong>the website and service are great, but nobody can find them.</strong> Every task on this list fixes discoverability. Total cost: $0. Total time: ~3 hours spread across 5 days. Expected result: Google indexing within 1-2 weeks, GBP live within 1 week, and immediate social visibility on Nextdoor/Facebook.
+    </div>
+</div>
+
+<script>
+    const STORAGE_KEY = 'tj-sprint-mar11';
+    
+    function loadState() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch { return {}; }
+    }
+    function saveState(state) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function toggleDay(header) {
+        header.closest('.day-card').classList.toggle('open');
+    }
+
+    function toggleTask(el) {
+        el.classList.toggle('done');
+        el.closest('.task-item').classList.toggle('done');
+        
+        const taskId = el.closest('.task-item').dataset.task;
+        const state = loadState();
+        state[taskId] = el.classList.contains('done');
+        saveState(state);
+        updateProgress();
+    }
+
+    function updateProgress() {
+        const all = document.querySelectorAll('.task-item');
+        const done = document.querySelectorAll('.task-item.done');
+        const pct = Math.round((done.length / all.length) * 100);
+        document.getElementById('progressPct').textContent = pct + '%';
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('completedCount').textContent = done.length;
+    }
+
+    // Restore state on load
+    (function() {
+        const state = loadState();
+        Object.keys(state).forEach(taskId => {
+            if (state[taskId]) {
+                const item = document.querySelector(`[data-task="${taskId}"]`);
+                if (item) {
+                    item.classList.add('done');
+                    item.querySelector('.task-check').classList.add('done');
+                }
+            }
+        });
+        updateProgress();
+    })();
+</script>
+
+</body>
+</html>

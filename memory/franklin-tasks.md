@@ -6,6 +6,31 @@
 
 ## March 10, 2026 (Tuesday)
 
+### 7:04 PM — 🚨 SEO RESCUE PLAN — Fix tidytailsstl.com Zero Google Indexing (Hourly Task)
+**Task:** Deep technical SEO audit + actionable fix plan for tidytailsstl.com which has ZERO Google-indexed pages
+**Result:** ✅ SHIPPED — Interactive rescue plan with full audit, competitor comparison, step-by-step fix guide, and priority checklist
+
+**Why This Task:**
+- Earlier today's competitive intel confirmed tidytailsstl.com has ZERO Google indexing — the single biggest growth blocker
+- Every day unfixed = potential customers going to DoodyCalls, Poop2Scoop, Yuckos instead
+- Spring is peak signup season — can't afford to be invisible right now
+
+**Key Findings:**
+1. Site is technically well-built — NOT a technical problem (HTML, meta tags, sitemap, structured data all correct)
+2. Root cause: No Google Search Console — Google can't discover the sitemap
+3. No Google Business Profile — Can't appear in Maps or Local 3-Pack
+4. Zero backlinks and zero directory listings — no organic discovery path
+5. Competitors (DoodyCalls, Poop2Scoop, Yuckos) all have GSC + GBP + reviews + backlinks
+6. Fix is straightforward: 30 min setup → indexed in days → ranking in months
+
+**Action Items for TJ:** GSC setup → GBP creation → Bing Webmaster → Directory listings → Customer reviews → Free first cleanup offer
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-10-SEO-RESCUE-PLAN.html
+**Commit:** `31631c2` on `tidytails-dashboard` repo
+**Rotation:** 🔍 SEO / Growth — Critical Infrastructure Fix
+
+---
+
 ### 6:05 PM — 🔍 WEBSITE CONVERSION AUDIT — 10 Fixes That Cost $0 (Hourly Task)
 **Task:** Live conversion audit of tidytailsstl.com vs competitors Doggie Doodies and Poop2Scoop. Crawled all three sites, compared pricing presentation, trust signals, CTAs, and conversion mechanics. Identified 10 specific fixes ranked by impact.
 **Result:** ✅ SHIPPED — Actionable audit with prioritized fixes (no dashboard, just the fixes)
