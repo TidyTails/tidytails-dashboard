@@ -6,6 +6,30 @@
 
 ## March 11, 2026 (Wednesday)
 
+### 3:04 PM — 🏗️ SHED COMPETITIVE INTEL — Live Market Scan + Tariff Urgency Angles
+**Task:** Real-time competitive intelligence scan on STL shed market: pricing, competitors, financing, lumber tariffs
+**Result:** ✅ COMPLETED — `deliverables/shed-competitive-intel-march11.md`
+
+**Why This Task:**
+- Shed side only got 1 task today (follow-up sequence). Pipeline growth is an explicit goal.
+- Canadian lumber tariffs just hit 35% (highest in years), new Commerce review launched March 9. This is REAL urgency TJ can use in conversations RIGHT NOW.
+- TuffShed's $1K-off promo expired Feb 11. No active promo = window for WoodMaster to compete without needing discounts.
+- TuffShed delivery showing 4-5 week lead times on Home Depot. Speed is a competitive advantage.
+
+**Key Findings:**
+1. **Lumber tariffs at 35%** — Commerce Dept review opened March 9, 2026. Every analyst says prices going up.
+2. **Madison's Lumber Index: $491/mfbm** — slightly down week-over-week but tariff uncertainty means upward pressure
+3. **TuffShed 10x12 pricing: $5,500-$6,100** (live Home Depot prices). No active cash promo.
+4. **12+ active shed competitors in STL** — but clear split between installed (TuffShed, WoodMaster) vs portable (Cook, Derksen, Cardinal)
+5. **Cook 10x12: ~$3,995** — cheapest option but portable/pre-built, not installed. Different product category.
+6. **Shed Shak/Cardinal** — strong local reviews, RTO no credit check, but all portable buildings
+7. Created 4 sales talk tracks for common objections (TuffShed comparison, portable vs permanent, wait-for-deal, financing)
+8. TuffShed did a FOX 2 segment Feb 27 — they're actively marketing STL
+
+**Rotation:** 🏗️ TuffShed Pipeline — Competitive Intelligence (pure recon, no build)
+
+---
+
 ### 2:05 PM — 📣 SPRING SOCIAL MEDIA BLITZ — 8 Copy-Paste Posts for This Week
 **Task:** Created hyper-targeted social media posts using real STL weather data (55-62° Thu-Sat, rain Sunday) and spring timing angles (daylight saving, winter thaw, BBQ season approaching)
 **Result:** ✅ COMPLETED — `deliverables/spring-social-blitz-march11.md`
