@@ -16,3 +16,8 @@
 **NEVER edit the tidytails-dashboard copy for shed website changes.**
 
 **Photo naming convention:** `[type]-[serial].jpg` (e.g., `barn-400027.jpg`, `utility-155301.jpg`)
+
+## 📍 Shed Lot Address (Saved Mar 11, 2026)
+**5520 Westwood Dr, Saint Charles, MO**
+Phone: 636-354-7406
+Contact: Darius

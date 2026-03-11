@@ -1,0 +1,5 @@
+PROMPT 1: Cinematic golden hour shot of a dad and his teenage daughter building a custom guitar together inside a beautifully lit backyard workshop, sawdust floating in warm light beams streaming through large windows, pegboard walls lined with organized tools, shallow depth of field with the shed's barn-style exterior visible through the open double doors.
+
+PROMPT 2: Wide aerial drone shot pulling back to reveal a stunning modern she-shed with French doors thrown open onto a flagstone patio, a woman inside lounging on a velvet couch with string lights and potted plants everywhere, early spring Missouri sunset painting the sky orange and pink behind mature oak trees, the whole backyard glowing.
+
+PROMPT 3: Dynamic low-angle shot of a man finishing a deadlift inside a rugged home gym shed, rubber flooring and concrete walls with motivational posters, garage-style door rolled wide open to a bright spring morning, dogwood trees blooming in the suburban backyard beyond, sweat and determination lit by dramatic side light.

@@ -6,6 +6,32 @@
 
 ## March 11, 2026 (Tuesday night / Wednesday)
 
+### 7:04 AM — 📍 GET LISTED IN 30 MINUTES — Copy-Paste Directory Submission Guide
+**Task:** Created the exact URLs, pre-filled business info, and step-by-step instructions for TJ to get Tidy Tails listed on Google Search Console, Google Business Profile, Yelp, and Nextdoor in 30 minutes flat.
+**Result:** ✅ COMPLETED — `deliverables/get-listed-30-minutes.md`
+
+**Why This Task:**
+- SEO diagnosis (2 AM) identified the PROBLEM. This delivers the SOLUTION.
+- Zero Google presence remains the #1 blocker. Every day without listings = invisible.
+- Previous deliverables told TJ WHAT to do. This one tells him exactly HOW, with every URL and field pre-filled.
+- 30 minutes of TJ's time → unlocks ALL organic discovery for the first time ever.
+
+**What I Created:**
+1. **Google Search Console** — exact URL, step-by-step verification (HTML tag + DNS options), sitemap submission, indexing request
+2. **Google Business Profile** — pre-filled business info (name, category, service areas, description), verification process
+3. **Yelp Business Page** — claim URL, pre-written description, category setup
+4. **Nextdoor Business Page** — claim URL, strategy for first business post (spring cleanup offer)
+5. **Bonus 6 listings** — Thumbtack, BBB, Pooper-Scooper.com ($7/mo), aPaws ($85/yr), Facebook, Apple Business Connect
+6. **Pre-written business description** ready to copy-paste across all platforms
+
+**Key Difference from SEO Diagnosis:** The diagnosis said "you need directory listings." This guide has the actual clickable URLs, the pre-filled form data, and the exact steps. TJ opens it, follows the steps, done.
+
+**Expected Impact:** 4 core listings = Google indexing within 2-7 days, Google Maps visibility, Yelp presence, Nextdoor reach. This is how every one of the 12+ STL competitors gets found. First time Tidy Tails will be on a level playing field.
+
+**Rotation:** 📍 SEO/Listings — Actionable submission guide (not analysis)
+
+---
+
 ### 6:05 AM — 🎯 SPRING CAMPAIGN PACKAGE — Ready-to-Post Content for Peak Season
 **Task:** Created complete spring 2026 marketing campaign with copy-paste social posts, referral templates, and posting schedule
 **Result:** ✅ COMPLETED — `deliverables/spring-campaign-2026.md`

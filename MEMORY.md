@@ -798,3 +798,8 @@ TJ sees Tidy Tails as a **training ground** for:
 - `memory/archive/franklin-tasks-week2.md` — Week 2 hourly tasks
 - `memory/archive/franklin-tasks-week1.md` — Week 1 hourly tasks
 - `memory/archive/competitor-intel-history/` — Historical competitor data
+
+## 📍 Shed Lot Location
+- **Address:** 5520 Westwood Dr, Saint Charles, MO
+- **Phone:** 636-354-7406
+- **Contact name:** Darius

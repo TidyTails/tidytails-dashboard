@@ -206,3 +206,10 @@ Chief uses this to verify sync with dashboard.
 | 00:01 | EOD Summary Mar 9 | 📋 Operations | EOD_SUMMARY_2026-03-09.pdf | ✅ |
 | 12:01 | Morning Briefing Mar 10 | 📋 Operations | MORNING_BRIEFING_2026-03-10.pdf | ✅ |
 | 12:01 | Shed Ads Mar 10 | 🏠 Shed Sales | SHED_ADS_2026-03-10.pdf | ✅ |
+
+## Upload Log — Mar 11, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 00:01 | EOD Summary Mar 10 | 📋 Operations | EOD_SUMMARY_2026-03-10.pdf | ✅ |
+| 06:01 | 18-Month Promo Scripts | 🏠 Shed Sales | 18MO_PROMO_SCRIPTS_2026-03-11.pdf | ✅ |

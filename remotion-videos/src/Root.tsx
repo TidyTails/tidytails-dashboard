@@ -15,6 +15,7 @@ import { DogReview } from './compositions/DogReview';
 import { RealEstateAngle } from './compositions/RealEstateAngle';
 import { SixtySplitRace } from './compositions/SixtySplitRace';
 import { UnboxingParody } from './compositions/UnboxingParody';
+import { ShedPromo18Mo } from './compositions/ShedPromo18Mo';
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -150,6 +151,14 @@ export const RemotionRoot: React.FC = () => {
         id="UnboxingParody"
         component={UnboxingParody}
         durationInFrames={300}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="ShedPromo18Mo"
+        component={ShedPromo18Mo}
+        durationInFrames={360}
         fps={30}
         width={1080}
         height={1920}
