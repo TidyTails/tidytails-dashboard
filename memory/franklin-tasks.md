@@ -6,6 +6,31 @@
 
 ## March 11, 2026 (Wednesday)
 
+### 1:04 PM — 📣 REFERRAL PROGRAM KIT — Turn 8 Customers Into 16
+**Task:** Built complete referral program playbook with copy-paste text messages, social posts, door hangers, leave-behind cards, and tracking system
+**Result:** ✅ COMPLETED — `deliverables/referral-program-kit.md`
+
+**Why This Task:**
+- Self-assessment says STOP BUILDING DASHBOARDS. This is pure execution fuel — text templates TJ sends today.
+- 8 customers × 1 referral each = 16 customers. That's the highest ROI move available.
+- Referrals convert 3-5x better than any ad channel. Zero cost. Pre-built trust.
+- Spring season = neighbors are seeing TJ work their neighbor's yard. Perfect timing for door hangers.
+
+**What's In The Kit:**
+1. Text message templates (4 messages: the ask, follow-up, thank-you, outreach to referred person)
+2. Nextdoor referral post (copy-paste)
+3. Facebook referral post (copy-paste)
+4. Leave-behind referral card design (front/back, print-ready)
+5. Door hanger for neighbors on same streets TJ services
+6. Tracking spreadsheet template
+7. This-week timeline: 45 min total for all actions
+
+**The Offer:** Referrer gets $25 off next month. New customer gets first cleanup FREE. Cost to TJ: ~$25-50 per referral. ROI: new $70/month recurring customer.
+
+**Rotation:** 📣 Marketing — Referral System (execution-ready, no build)
+
+---
+
 ### 12:05 PM — 🔍 SEO EMERGENCY DIAGNOSIS — Why tidytailsstl.com Is Invisible
 **Task:** Full technical SEO audit of tidytailsstl.com — checked robots.txt, sitemap, meta tags, schema, rendering, headers, domain age, search visibility, backlinks
 **Result:** ✅ COMPLETED — `deliverables/seo-emergency-diagnosis-march11.md`
