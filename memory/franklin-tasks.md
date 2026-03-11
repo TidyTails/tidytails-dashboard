@@ -6,6 +6,37 @@
 
 ## March 11, 2026 (Wednesday)
 
+### 4:04 PM — 💰 PAID ADVERTISING ROI ANALYSIS — Should TJ Spend Money on Ads?
+**Task:** Comprehensive paid advertising ROI analysis across all channels (Facebook Ads, Google Ads, Nextdoor Ads, Google LSAs) with real industry benchmarks, competitor ad spend data, and a phased spending playbook
+**Result:** ✅ COMPLETED — `deliverables/paid-ads-roi-analysis-march11.md`
+
+**Why This Task:**
+- Today produced 10+ content deliverables. More content won't help. This is a STRATEGIC DECISION tool.
+- TJ has $0 in ad spend. Every successful pet waste company (Swoop Scoop $200k+, Fresh Start $200k) runs paid ads.
+- Spring is THE season — every week without ads = customers going to competitors
+- This answers the question: "Is it worth spending money on ads, and where?"
+
+**Key Findings:**
+1. **Facebook Ads are #1 for pet waste removal** — Swoop Scoop (7-figure company) generated 10,000+ leads via FB ads, 487 new customers in their best month
+2. **Google Ads are SECONDARY** — low search volume for pooper scooper services. People don't Google what they don't know exists.
+3. **$150/month on FB ads could generate 2-4 new customers/month** — that's $1,680-3,360/year revenue from $150 spend (1,000%+ ROI)
+4. **Nextdoor ads are cheapest** — $1.51/ad, CPL of $10-30, but smaller audience
+5. **Google LSAs may not qualify** — pet waste removal isn't an explicit LSA category
+6. **Total ad spend to reach 25 customers: ~$1,000-2,500** over 60-90 days
+7. **Quick-start: $35 for one week** of FB ads to test (less than dinner out)
+8. **Critical prerequisite: GBP must be set up BEFORE Google Ads** — non-negotiable
+
+**What's Different About This Deliverable:**
+- Not another "how to market" guide. This is a NUMBERS document.
+- Real CPC/CPL data from LocaliQ (3,200 campaigns), WordStream, and Swoop Scoop
+- Competitor ad spend estimates
+- 4-phase spending playbook from $0 to $800/month
+- Break-even analysis at every budget level
+
+**Rotation:** 💰 Strategy — Paid Advertising Analysis (no build, pure ROI math + decision framework)
+
+---
+
 ### 3:04 PM — 🏗️ SHED COMPETITIVE INTEL — Live Market Scan + Tariff Urgency Angles
 **Task:** Real-time competitive intelligence scan on STL shed market: pricing, competitors, financing, lumber tariffs
 **Result:** ✅ COMPLETED — `deliverables/shed-competitive-intel-march11.md`
