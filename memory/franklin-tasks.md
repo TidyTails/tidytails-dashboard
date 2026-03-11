@@ -87,3 +87,58 @@
 - **March 2-4, 2026:** `memory/archive/franklin-tasks-week3-mar2-4.md` (2221 lines)
 - **Week 2 (Feb 24-28):** `memory/archive/franklin-tasks-week2.md`
 - **Week 1 (Feb 17-23):** `memory/archive/franklin-tasks-week1.md`
+
+### 4:05 AM — ⏸️ SKIP — Preserving Resources
+**Task:** Evaluated available work, decided to skip
+**Result:** No new task — SEO diagnosis shipped at 2 AM, nothing urgent at 4 AM
+**Reasoning:** Same as 3 AM skip. TJ's asleep, status check says "stop building, execution needed." Next meaningful work window is 7-8 AM when morning briefing and actionable prep make sense. Saving tokens.
+
+### 5:04 AM — 🔍 Competitive Landscape Check + Google Index Status
+**Task:** Quick status check on #1 blocker (Google indexing) + scan for new competitors
+**Result:** ✅ COMPLETED — Key intel gathered, no new tools built
+
+**Why This Task:**
+- Self-assessment says STOP BUILDING. This is pure recon — no dashboards, no PDFs.
+- Google indexing is the #1 blocker. Worth checking after 6 days.
+- Yelp results showed unfamiliar names. Quick scan to see if market changed.
+
+**Findings:**
+
+**1. Google Indexing — STILL ZERO (Day 6)**
+- `site:tidytailsstl.com` returns 0 results on Brave Search
+- Branded search "tidy tails pet waste removal st louis" → 0 results for tidytailsstl.com
+- All 10 results are OTHER "Tidy Tails" companies in other states or STL competitors
+- **6 days after GSC submission and STILL invisible.** This is now a serious concern.
+
+**2. NEW Competitor Profiled: Dog Doody Defenders 🆕**
+- **Location:** Florissant, MO (Daniel Boone Dr) — DIRECTLY in TJ's service area
+- **Website:** dogdoodydefenders.com (indexed, ranking on Yelp)
+- **Pricing:**
+  - Weekly: $17/visit ($68/month)
+  - Twice weekly: $27 total ($108/month)
+  - Bi-weekly: $27/visit
+  - Monthly: $54/visit
+- **TJ comparison:** TJ's $70/month flat rate is virtually identical to their weekly rate ($68/month). TJ's actually MORE competitive for multi-dog households (flat rate vs per-visit).
+- **Threat level:** MEDIUM — they're local, indexed, and priced competitively
+
+**3. No 2 Crew**
+- Wildwood, MO — spin-off from The Watering Bowl doggy daycare (since 2010)
+- Experienced poop scoopers from daycare operations
+- On both STL and St. Charles Yelp listings
+
+**4. Scoop Soldiers STL Update**
+- Has a polished, SEO-optimized St. Louis landing page
+- "No contracts" approach, weekly/bi-weekly/custom scheduling
+- Previously confirmed at $15/visit — still the price floor
+- Professional copy, uniformed techs, background-checked
+
+**5. Full STL Competitor Count (from Yelp):**
+Poopy Paws, Yucko's, Dog Doody Defenders, POOP 911, The Poo Fighterz, DoodyCalls, The Pootector, No 2 Crew, Poop 2 Scoop, Pooanators, Scoop Soldiers, Scooper Pro = **12+ active competitors**
+
+**Tidy Tails appears on ZERO of these listings.**
+
+**Key Takeaway:** The market has 12+ competitors, all indexed and discoverable. TJ is invisible. The $70/month flat rate is competitive with Dog Doody Defenders ($68/month weekly) and undercuts most per-visit models for weekly service. But none of that matters if nobody can find us. GSC + directory listings remain the only thing that matters.
+
+**Rotation:** 🔍 Research — Competitive Intel (no build)
+
+---
