@@ -6,6 +6,35 @@
 
 ## March 11, 2026 (Wednesday)
 
+### 9:04 AM — 🏘️ NEW CHANNEL: Nextdoor Marketing Playbook
+**Task:** Researched Nextdoor as untapped customer acquisition channel for Tidy Tails
+**Result:** ✅ COMPLETED — Full playbook created at `deliverables/nextdoor-playbook.md`
+
+**Why This Task (NOT Another SEO Guide):**
+- We've created 3+ identical "get listed on Google" guides. TJ hasn't executed them.
+- Nextdoor is a COMPLETELY DIFFERENT channel we haven't touched at all.
+- It bypasses Google entirely — neighbors recommend services to neighbors directly.
+- 77% of Nextdoor users are homeowners (our exact target customer).
+
+**Key Findings:**
+1. **Competitors already there:** Poop 2 Scoop has 3 recs, Poopy Paws has a page. Tidy Tails = ZERO.
+2. **FREE tier is powerful:** Business page + 2 free posts/month + unlimited engagement in comments.
+3. **Paid ads dirt cheap:** $1.51/ad for neighborhood-only, vs $10-25/click on Google.
+4. **Setup time:** 30 minutes total, zero cost.
+5. **Fresh Start case study:** $200k first year using FB/Google ads + reviews. Reviews are king.
+
+**Deliverable includes:**
+- Step-by-step setup guide (10 min)
+- Pre-written business posts (copy-paste ready)
+- Customer recommendation request template
+- 10 priority STL neighborhoods to target
+- Free vs paid strategy breakdown
+- Success metrics and timeline
+
+**Rotation:** 🏘️ Research — New Channel Discovery (NOT another SEO rehash)
+
+---
+
 ### 8:04 AM — ⏸️ DUPLICATE DETECTION — Skipping Redundant Work
 **Task:** Ran full online presence diagnostic (Google indexing, GBP, Yelp, MapQuest, phone number search)
 **Result:** ⏸️ SKIPPED NEW OUTPUT — 7 AM and 8 AM crons already created identical deliverables today
