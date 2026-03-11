@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-09 07:15 CST*
+*Last updated: 2026-03-11 18:05 CST*
 
 ---
 
@@ -25,6 +25,19 @@
   - Status: 6 videos produced (Mar 5). fal.ai credits exhausted.
   - Remaining: Split Screen Walk (#9), Landmine Map, Calendar X, Dog Stare, Excuse Pile, Zoom Out
   - Owner: Basquiat (needs fal.ai credits topped up)
+
+### 📋 THIS WEEK'S PLAYBOOK (Mar 12-16) — NEW
+- [ ] **Thu: Google Business Profile** (30 min) 🔴 — Follow `get-listed-30-minutes.md`
+- [ ] **Thu: Yelp Business Page** (15 min) 🔴 — Follow `get-listed-30-minutes.md`
+- [ ] **Thu: Post "The Thaw" social post** (5 min) — From `spring-social-blitz-march11.md`
+- [ ] **Fri: Text 4 customers for referrals** (20 min) 🔴 — Templates in `referral-program-kit.md`
+- [ ] **Fri: Ask 2 customers for Google reviews** (10 min)
+- [ ] **Fri: Set up Nextdoor business page** (10 min) — Guide in `nextdoor-playbook.md`
+- [ ] **Sat: Post in 2 Facebook groups** (10 min) — From `spring-social-blitz-march11.md`
+- [ ] **Sat: Text remaining 4 customers for referrals** (15 min)
+- [ ] **Mon: Send 3 TuffShed follow-up texts** (15 min) — From `shed-pipeline-followup-sequence.md`
+- [ ] **Mon: Check GBP verification status** (5 min)
+- Full playbook: `deliverables/weekly-execution-playbook-mar11.md`
 
 ### ✅ Recently Completed
 - [x] **🏗️ Dashboard Index Rebuild** — Reorganized 38 tools into 6 searchable categories with search bar, collapsible sections, priority banner, contextual badges, and Quick Reference. Added 6 missing items. ✅ (Mar 9, 2AM)
