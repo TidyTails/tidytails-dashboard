@@ -6,6 +6,38 @@
 
 ## March 12, 2026 (Thursday)
 
+### 4:05 PM — 🏠 FACEBOOK MARKETPLACE SHED OPTIMIZATION PLAYBOOK — Algorithm Hacks + 15 Hooks + Competitor Counters
+**Task:** Create a complete Marketplace optimization system for TJ's 200+ shed listings — algorithm mechanics, listing templates, competitor counter-scripts, and spring seasonal angles
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 4 PM — 11 tasks today, only ONE shed-focused (9 AM ad copy). TuffShed pipeline has been underserved all day.
+- TJ has 200+ Marketplace listings but likely isn't optimizing for the algorithm
+- Volume without optimization is just noise. The algorithm rewards freshness, fast responses, complete details, and engagement.
+- Competitor pricing intelligence needed updating — TuffShed's $1,000 promo expired Feb 11, delivery times showing 3-5 weeks
+- Canadian lumber tariffs at 35% = real urgency that should be in EVERY listing
+
+**What I Built:**
+1. **STL competitor pricing cheat sheet** — Live March 2026 prices from TuffShed, Cook, Shed Shak, 5-Star, with avg market price ($6,908)
+2. **FB Marketplace algorithm breakdown** — What boosts listings, what kills them, the refresh trick
+3. **Optimized listing template** — Title formula + description template with financing/tariff urgency
+4. **15 high-converting listing hooks** — Each targeting a different buyer motivation:
+   - Garage Reclaimer, Home Office, Workshop, She Shed, Tax Refund, Spring Cleaning, Resale Value, Weather, Personal Service, Contractor, Tariff Urgency, Organization, ADU/Guest House, Pet Owner, Hobbyist
+5. **7-photo minimum strategy** — Exactly what to shoot and why
+6. **Weekly listing management schedule** — Monday/Wednesday/Friday/Saturday system
+7. **4 competitor counter-scripts** — Cook/Shed Shak, TuffShed/HD, DIY Kits, Price Objection
+8. **Spring 2026 seasonal angle calendar** (March-May, week by week)
+9. **5 advanced Marketplace hacks** — $1 listing trick, post-install photos, relist-as-new, cross-post to groups, mark-as-available timer
+10. **Tracking system** — Weekly metrics + simple phone/spreadsheet tracker
+11. **Quick-start checklist** — 5 things TJ can do TODAY
+
+**Key Insight:** TJ has the volume (200+ listings) but likely not the optimization. The FB Marketplace algorithm heavily rewards listing freshness, fast response times, and complete details. A systematic approach to refreshing, rewriting, and tracking his listings could dramatically increase message volume without creating a single new listing. Combined with competitor intel (TuffShed's 3-5 week lead time, expired promo) and lumber tariff urgency, every listing becomes a better conversion tool.
+
+**Deliverable:** `deliverables/shed-marketplace-optimization-spring2026.md`
+**Rotation:** 🏠 Sheds — Marketplace Optimization
+
+---
+
 ### 3:04 PM — 🎬 SHORT-FORM VIDEO CONTENT SCRIPTS — 15 Ready-to-Film TikTok/IG Reels
 **Task:** Create complete video content strategy with 15 scripted, ready-to-film short-form videos for TikTok and Instagram Reels
 **Result:** ✅ COMPLETED
