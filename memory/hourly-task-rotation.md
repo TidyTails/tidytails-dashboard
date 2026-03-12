@@ -51,6 +51,7 @@
 ### ⚙️ SYSTEMS (Tools/Ops)
 - [x] Dashboard improvements (Mar 3 3AM — Week 3 execution tracker!)
 - [ ] New skill development
+- [x] Customer onboarding/retention system (Mar 12 11AM — 7-stage lifecycle, 15+ templates, churn prevention!)
 - [ ] Automation ideas
 - [x] Process documentation (Mar 4 2AM — Quick Start Guide! Top 10 tools + when to use)
 - [ ] Tool research

@@ -6,6 +6,36 @@
 
 ## March 12, 2026 (Thursday)
 
+### 11:04 AM — 🔄 CUSTOMER ONBOARDING & RETENTION SYSTEM — From Lead to Loyal Referral Source
+**Task:** Build complete 7-stage customer lifecycle system with copy-paste templates for every touchpoint from first inquiry to 1-year anniversary
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 11 AM — Different area from earlier tasks (sheds at 9, strategy at 10). This is SYSTEMS.
+- We have 30+ lead gen deliverables but ZERO for what happens AFTER someone says "I'm interested"
+- At 4-5 customers, TJ handles this off the cuff. At 25? He'll forget follow-ups and lose customers.
+- Each customer = $840/year. One missed follow-up = $840 gone. One referral = $840 gained at $0 cost.
+- The growth playbook (10 AM) is about to send leads TJ's way. He needs a system to catch them.
+
+**What I Built:**
+1. **7-Stage Lifecycle:** Inquiry → Quote → First Clean → Week 2 Check-in → Month 1 Review Ask → Month 2 Referral Ask → Ongoing Retention
+2. **15+ copy-paste text templates** — personalize the name, hit send
+3. **Response time rules** — 15 min during business hours, no overnight ghosting
+4. **Quote follow-up cadence** — Quote → 24h follow-up → 72h final (max 3 touches)
+5. **Review ask timing** — after 4th service when they're in the "honeymoon phase"
+6. **Referral program** — $20 off for referrals with scarcity framing ("spots opening up")
+7. **Seasonal/holiday retention templates** — spring, December, anniversary
+8. **Churn red flags table** — 5 warning signs and exactly what to do
+9. **Tech stack recommendations** — Phone Notes → Google Sheets → CRM (Jobber at 15+ customers)
+10. **Printable cheat sheet** — when to send what, at a glance
+
+**Key Insight:** Most pet waste companies show up, scoop, leave. Zero communication. This system makes Tidy Tails the business that actually follows up, checks in, and makes customers feel valued. That's the moat — not price, not Facebook ads.
+
+**Deliverable:** `deliverables/customer-onboarding-retention-system.md`
+**Rotation:** ⚙️ Systems — Customer Lifecycle
+
+---
+
 ### 10:06 AM — 📊 REAL-DATA GROWTH PLAYBOOK — What Actually Works to Get Customers
 **Task:** Research how successful pet waste removal businesses ACTUALLY grew (not theory — real operators, real numbers), create actionable playbook for TJ
 **Result:** ✅ COMPLETED
