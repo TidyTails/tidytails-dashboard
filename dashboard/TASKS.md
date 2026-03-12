@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-11 18:05 CST*
+*Last updated: 2026-03-12 12:25 CST*
 
 ---
 
@@ -39,7 +39,19 @@
 - [ ] **Mon: Check GBP verification status** (5 min)
 - Full playbook: `deliverables/weekly-execution-playbook-mar11.md`
 
+### 🔴 HIGH PRIORITY — New Intel (Mar 12)
+- [ ] **CALL DoodyCalls STL: (314) 230-8082** — They're NOT listed in franchise directory anymore. May be closing. If yes → capture their commercial clients (apartments, HOAs).
+- [ ] **CALL Poopy Paws: (314) 783-1781** — Website is dead (DNS failure). Check if Charlie is still operating. If dead → his customers need a new service.
+- [ ] **FIX WEBSITE INDEXING** — Still 0 pages indexed after 6+ months. This is the #1 growth blocker. Every live competitor outranks us.
+- [ ] **Get 10 Google Reviews THIS MONTH** — No competitor dominates reviews. First to 15 reviews owns local search.
+
 ### ✅ Recently Completed
+- [x] **🔍 Live Competitive Intel Spring 2026** — Full market scan: 3 competitors dead (Pawfect, Fresh Paws, Poopy Paws website), DoodyCalls possibly leaving STL, pricing gap analysis ($25 vs $18 Poop2Scoop), strategic capture plan. Deliverable: `competitive-intel-spring-2026-LIVE.md` ✅ (Mar 12, 12PM)
+- [x] **🔄 Customer Onboarding & Retention System** — 7-stage lifecycle, 15+ templates, churn detection, referral program. ✅ (Mar 12, 11AM)
+- [x] **📊 Real-Data Growth Playbook** — Researched how real operators grew (Erica Krupin: 200 customers from FB groups, William Milliken: 7-figures from FB ads). 7-day sprint plan. ✅ (Mar 12, 10AM)
+- [x] **🏠 Mid-March Shed Ad Blitz** — 6 Marketplace ads + 3 IG captions. Tax refund, spring cleaning, Mother's Day angles. ✅ (Mar 12, 9AM)
+- [x] **🤝 Referral Partner Database** — 20 pet businesses with contacts, addresses, pitch scripts, priority rankings. ✅ (Mar 12, 8AM)
+- [x] **⭐ Review Generation System** — Templates, tracking, strategy for turning customers into reviews. ✅ (Mar 12, 7AM)
 - [x] **🏗️ Dashboard Index Rebuild** — Reorganized 38 tools into 6 searchable categories with search bar, collapsible sections, priority banner, contextual badges, and Quick Reference. Added 6 missing items. ✅ (Mar 9, 2AM)
 - [x] **🎯 Spring Neighborhood Targeting Guide** — 12 neighborhoods analyzed and tiered, 4-week campaign plan targeting Kirkwood/Webster/Ballwin triangle. Dashboard at `/2026-03-09-NEIGHBORHOOD-TARGETING.html` ✅ (Mar 9, 1AM)
 - [x] **🔍 Live Visibility Audit** — 0/6 searches found Tidy Tails. 5 competitor deep-dives with pricing. Dashboard at `/2026-03-09-VISIBILITY-AUDIT.html` ✅ (Mar 9, 12AM)
