@@ -6,6 +6,41 @@
 
 ## March 12, 2026 (Thursday)
 
+### 9:06 AM — 🏠 MID-MARCH SHED AD BLITZ — 6 Marketplace Ads + 3 IG Captions
+**Task:** Create fresh Facebook Marketplace and Instagram ad copy for TuffShed spring season — tax refund hooks, spring cleaning angles, Mother's Day early play
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 9 AM — TJ's work day is starting, shed ads are directly actionable for his sales pipeline
+- Last shed-focused task was March 4 (8 DAYS AGO) — sheds have been underserved while we hammered Tidy Tails
+- Mid-March = tax refunds landing + spring weather turning = PEAK shed buying window
+- TJ has 200+ Marketplace listings — fresh copy keeps the algorithm feeding him
+
+**What I Built:**
+1. **6 Facebook Marketplace ads** — each with a different angle:
+   - Ad 1: Tax Refund hook (spend it on something that adds value)
+   - Ad 2: Spring Cleaning (stop rearranging the problem, solve it)
+   - Ad 3: Weather's Turning (workshop urgency)
+   - Ad 4: Home Office (escape the kitchen table)
+   - Ad 5: Resale Value (logic/investment play)
+   - Ad 6: She Shed / Mother's Day early plant (May 11 = 60 days away)
+2. **3 Instagram captions** with full hashtag sets for @reddshedredemption
+3. **7-day posting schedule** (Thu 3/12 through Wed 3/18)
+4. **Current promos verified:** 0% interest for 6 months, 9.99% APR/120 months, RTO no credit check, FREE delivery
+
+**Key Angles Used:**
+- Tax refund = spend on value, not forgettable stuff
+- Garage reclaim = your car's been in the driveway for 3 years
+- Workshop for spring projects
+- WFH escape from kid interruptions
+- Mother's Day gift she actually wants (order now = installed by May 11)
+- All written in TJ's voice (Darius persona, casual, no pressure, humor)
+
+**Deliverable:** `deliverables/shed-ads-mid-march-2026.md`
+**Rotation:** 🏠 Sheds — Spring Ad Campaign
+
+---
+
 ### 8:05 AM — 🤝 REFERRAL PARTNER DATABASE — 20 Ready-to-Contact Pet Businesses
 **Task:** Research and compile a complete referral partner database of vet clinics, groomers, dog walkers, daycares, and pet stores in Kirkwood/Webster Groves target area with contact details, addresses, phone numbers, and pitch scripts
 **Result:** ✅ COMPLETED
