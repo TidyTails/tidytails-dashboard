@@ -6,6 +6,39 @@
 
 ## March 12, 2026 (Thursday)
 
+### 2:10 PM — 📱 GOOGLE BUSINESS PROFILE 4-WEEK CONTENT CALENDAR — 8 Ready-to-Post GBP Posts
+**Task:** Create a complete 4-week Google Business Profile posting calendar with copy-paste content, photo instructions, and CTA strategy
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 2 PM — Today covered sheds, strategy, systems, intelligence, content, referrals. ZERO GBP content.
+- Competitive intel from noon found tidytailsstl.com has ZERO Google indexation after 24+ days
+- If the website isn't indexed, GBP is TJ's ONLY visibility in Google Search and Maps
+- GBP posts expire after 7 days — without a posting schedule, the profile looks dead
+- No competitor in STL has an active GBP posting strategy. First mover advantage.
+- Every post is a free mini-ad that shows up when people search "pooper scooper near me"
+
+**What I Built:**
+1. **8 ready-to-post GBP posts** across 4 weeks (2 per week, Mon + Thu cadence)
+2. **Post mix:** 4 Updates, 2 Offers, 1 Commercial pitch, 1 One-time service promo
+3. **Photo instructions** for every single post — what to shoot, how, why
+4. **Week 1:** Spring thaw hook + 50% off first clean offer (SPRING26 code)
+5. **Week 2:** "Why weekly?" math breakdown + environmental/health education
+6. **Week 3:** Social proof/testimonial + referral program ($20 both ways)
+7. **Week 4:** One-time deep cleanups + commercial/apartment outreach
+8. **Publishing checklist** — 7 items to verify before every post
+9. **Photo bank guide** — 8 categories of photos to build over time
+10. **GBP optimization checklist** — profile elements to fix while posting
+11. **Post-Week-4 rotation strategy** — 6 content categories to cycle through
+
+**Key Insight:** GBP is the single most underutilized marketing channel for Tidy Tails right now. While the website is invisible to Google, GBP posts show up directly in search results and Maps. Every competitor in STL either doesn't have GBP or doesn't post to it. Two posts per week = always fresh, always visible, zero cost. This is the bridge between "website not indexed" and "showing up in local search."
+
+**Deliverable:** `deliverables/gbp-content-calendar-4weeks.md`
+**Rotation:** 📱 Marketing — GBP Content Calendar
+
+---
+
+
 ### 1:04 PM — 📝 SEO BLOG CONTENT BATCH 2 — 4 High-Intent Posts Ready to Publish
 **Task:** Write 4 SEO-optimized blog posts targeting buyer-intent keywords that competitors own but Tidy Tails is invisible for
 **Result:** ✅ COMPLETED
