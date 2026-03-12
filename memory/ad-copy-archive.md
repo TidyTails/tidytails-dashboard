@@ -4,6 +4,32 @@
 
 ---
 
+## March 12, 2026 — Thursday Mid-March Pack (9 AM Task)
+
+**Shed-Mar112 - "Thursday Thoughts" (FB Marketplace + Groups)**
+- Hook: Saturday morning garage cycle — break it with a text
+- Key: Cycle-breaking framing, direct CTA, urgency without pressure
+- Used: TBD (Marketplace + Groups Thu 3/12 AM)
+
+**Shed-Mar113 - "Pi Day Prep" (FB Marketplace + Instagram)**
+- Hook: Pi Day Saturday — irrational number vs irrational garage situation
+- Key: Math humor, mortgage vs shed cost comparison
+- Used: TBD (Marketplace + Instagram Thu 3/12 PM)
+
+**Shed-Mar114 - "The Spring Break Move" (FB Marketplace + Nextdoor)**
+- Hook: Spring break = perfect time, kids home, weather warming
+- Key: Timeline framing (order → delivered before school resumes)
+- Used: TBD (Marketplace + Nextdoor Fri 3/13 AM)
+
+**Shed-Mar115 - "What $5 a Day Buys" (FB Marketplace + Groups)**
+- Hook: $5/day = coffee OR a shed — daily cost reframe
+- Key: $150/mo anchor, spending vs investing, 20-year durability
+- Used: TBD (Marketplace + Groups Fri 3/13 PM)
+
+*Archive updated: 2026-03-12 9:00 AM*
+
+---
+
 ## March 10, 2026 — Mid-March Spring Rush (9 AM Task)
 
 **Shed-Mar102 - "Tax Refund: The Smart Play" (FB Marketplace + Groups)**
