@@ -74,6 +74,42 @@
 
 **Rotation:** ⚙️ Systems — Memory Management
 
+### 4:05 AM — 🌐 SEO CITY PAGE AUDIT & FIX — Duplicate Content Elimination
+**Task:** Audit all city landing pages on tidytailsstl.com, identify duplicate content pages, build unique replacements
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 4 AM — perfect for web auditing, no outreach needed
+- March 11 breakthrough was the 9 PM audit (checking reality vs. building more content)
+- `site:tidytailsstl.com` still returns 0 results — need to diagnose why
+- Spring is peak season — every day without indexing = lost organic leads
+
+**What I Found:**
+- 10 of 14 city pages have unique local content ✅
+- **4 pages serve identical homepage content** (duplicate content problem):
+  - Kirkwood (our #1 target neighborhood!)
+  - Webster Groves (our #2 target neighborhood!)
+  - Olivette (TJ's home base area!)
+  - University City
+- Sitemap.xml is missing Olivette and University City entries
+- robots.txt is correct (Allow: /)
+- All SEO meta tags on homepage are excellent
+
+**What I Built:**
+1. `deliverables/city-pages/kirkwood.html` — unique content with local landmarks (Downtown Kirkwood, Farmers' Market, Meramec River, Kirkwood Park)
+2. `deliverables/city-pages/webster-groves.html` — unique content (Old Webster, Lockwood Ave, Victorian homes, Memorial Park)
+3. `deliverables/city-pages/olivette.html` — unique content (Olive Blvd, central county positioning)
+4. `deliverables/city-pages/university-city.html` — unique content (Delmar Loop, Wash U, Parkview/Ames Place)
+5. `deliverables/seo-city-page-audit-mar12.md` — full audit report with TJ action items
+
+Each page has: unique title, meta description, canonical URL, OG tags, Schema.org JSON-LD with correct ZIP, unique body copy with local landmarks, neighborhood lists, updated cross-linking nav.
+
+**Impact:** Removing duplicate content is a prerequisite for Google to index the site. Our top 2 target neighborhoods (Kirkwood + Webster Groves) were the most damaged pages. TJ needs to deploy these ASAP.
+
+**Rotation:** 🌐 SEO — Duplicate Content Fix
+
+---
+
 ### 2:05 AM — 🔍 SPRING COMPETITOR PRICE CHECK & INTEL UPDATE
 **Task:** Scrape all major STL pet waste removal competitor websites for updated pricing, spring promos, and changes since March 7 deep dive
 **Result:** ✅ COMPLETED
