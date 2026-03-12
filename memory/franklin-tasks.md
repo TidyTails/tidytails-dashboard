@@ -42,6 +42,35 @@
 
 **Rotation:** ⚙️ Systems — Memory Management
 
+### 2:05 AM — 🔍 SPRING COMPETITOR PRICE CHECK & INTEL UPDATE
+**Task:** Scrape all major STL pet waste removal competitor websites for updated pricing, spring promos, and changes since March 7 deep dive
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 2 AM — perfect time for web research, no outreach needed
+- Spring is peak signup season — competitors may have launched promos
+- Last competitive intel was March 7 (5 days ago)
+- Need fresh data for TJ's spring marketing decisions
+
+**What I Did:**
+1. Scraped 7 competitor websites: Doggie Doodies, POOP 911, DoodyCalls, Poop 2 Scoop, Dirty Dog Poo Crew, Yuckos, Poopy Paws
+2. Updated pricing matrix with new Poop 2 Scoop data ($18/week per visit)
+3. Tracked changes from March 7 baseline (mostly unchanged — good sign)
+4. Identified spring promo patterns (free first cleanup is universal)
+5. Documented 10 actionable recommendations prioritized by effort/impact
+6. Saved to `research/2026-03-12-SPRING-COMPETITOR-UPDATE.md`
+
+**Key Findings:**
+- TJ at $70/mo is STILL the cheapest independent operator
+- Multi-dog flat rate is TJ's unique competitive advantage (saves customers $17-25/mo vs competitors)
+- "Free first cleanup" is the spring standard — TJ doesn't have this yet
+- Doggie Doodies charges $90/mo for ONE monthly visit (!!) — TJ charges $70 for FOUR
+- Doggie Doodies still has embarrassing typos (INITAL, RESIDENTAL, Guarentee)
+- Yuckos has been doing this since 1990 with a Geocities-era website — market has demand
+- No competitor pricing has changed in 5 days — market is stable
+
+**Rotation:** 🔍 Competitor Intelligence — Spring Recon
+
 ---
 
 ## Archive
