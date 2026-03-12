@@ -1,26 +1,25 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-10 08:00 CST*
+*Last updated: 2026-03-12 08:00 CST*
 
 ---
 
 ## 🐕 DOG WASTE (Tidy Tails)
 
 ### 🔥 In Progress
-- [ ] **🚨 Google Indexing — DAY 5, ESCALATION REQUIRED** — STILL 0 pages indexed
-  - Status: Checked Mar 10 AM — `site:tidytailsstl.com` returns 0 on Brave. Day 5 of waiting.
-  - **ACTION:** TJ must manually request indexing in Google Search Console TODAY
-  - Escalation guide: `dashboard/campaigns/tidy-tails/2026-03-10-GOOGLE-INDEXING-ESCALATION.md`
-  - Owner: TJ (5 min task in GSC)
+- [ ] **🚨 Google Indexing — DAY 7, STILL ZERO PAGES** — Checked Mar 12 8AM, `site:tidytailsstl.com` returns 0 on Brave AND Google
+  - Domain age: ~25 days. Technically sound but zero backlinks/directory listings = Google has no external signals
+  - **ROOT CAUSE:** No directory listings beyond GBP/Yelp. Zero backlinks. Google won't prioritize a brand-new domain with no external trust signals.
+  - **FIX:** TJ spends 30-45 min submitting to directories (Thumbtack, Nextdoor Business, HomeAdvisor, Angi, Bark, Petworks). Package ready: `dashboard/marketing/directory-listing-package.md`
+  - Owner: TJ (30-45 min, one-time)
 
 - [ ] **Spring Marketing Push** — FB group posts, spring-themed content
-  - Status: **Week 12 posts ready (Mar 10-14)** + Week 11 posts still available
+  - Status: **3 fresh Thursday posts ready (Mar 12)** + Week 12 posts still available
+  - **TODAY's posts:** `dashboard/marketing/2026-03-12-thursday-posts.md` (3 copy-paste posts, spring angle, free first cleanup offer)
   - Week 12: `dashboard/campaigns/tidy-tails/2026-03-10-WEEK12-FB-POSTS.md`
   - GBP posts: `dashboard/campaigns/tidy-tails/2026-03-10-WEEK12-GBP-POSTS.md`
-  - New blog post added: Spring Cleaning Checklist (SEO content for indexing)
   - Fresh Paws customer grab campaign still ready (Wildwood/Ballwin area)
-  - Door hanger/flyer text ready for print
-  - Owner: TJ (posting + printing) + Franklin (content creation)
+  - Owner: TJ (posting) + Franklin (content creation)
 
 - [ ] **Ad Creative Pipeline** — AI video ads for social media
   - Status: 6 videos produced (Mar 5). fal.ai credits exhausted.
@@ -62,7 +61,7 @@
 - **Gap:** Need 20-25 more customers
 - **Strategy:** Free marketing first (FB groups, GBP, Yelp, Nextdoor), then paid ads
 
-### 🔍 Competitive Landscape (Updated Mar 6)
+### 🔍 Competitive Landscape (Updated Mar 12)
 | Competitor | Weekly Price | Monthly | Threat |
 |------------|-------------|---------|--------|
 | Poop2Scoop | $18 | N/A | 🔴 Cheapest |
