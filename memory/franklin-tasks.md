@@ -4,6 +4,37 @@
 
 ---
 
+## March 12, 2026 (Thursday)
+
+### 12:05 AM — 🔍 Spring Competitor Marketing Sweep (Live Recon)
+**Task:** Live competitive intelligence sweep — fetched competitor websites, checked Google search rankings, verified TJ's web presence, analyzed what competitors are doing for spring 2026
+**Result:** ✅ COMPLETED — `deliverables/competitor-spring-sweep-march12.md`
+
+**Why This Task:**
+- Spring is when every pet waste company ramps marketing. Need to know what we're up against RIGHT NOW.
+- Last competitor check was Mar 9. Market moves fast.
+- Website was flagged as broken/blank at 9 PM Mar 11 — needed to verify current state.
+
+**Key Findings:**
+1. **tidytailsstl.com is LIVE and functional** — SSL fixed, real content with pricing, services, CTAs. Major improvement from the 9 PM audit.
+2. **Tidy Tails STILL NOT in Google search results** — searched "pooper scooper St Louis," "pet waste removal St Louis." Zero appearances. 7+ competitors outrank TJ.
+3. **Doggie Doodies = #1 THREAT** — MASSIVE upgrades: E-gift cards, referral program, blog, customer portal, technician photos before visits, gate photos after service, equipment disinfection, coupon codes for free first cleanup. AND they expanded into St. Charles County (TJ's territory).
+4. **Scoop Soldiers press release 3 weeks ago** — actively promoting STL expansion via PR. Now ranking #1 in Google for "pooper scooper St Louis."
+5. **POOP 911 has 4+ separate STL pages** — each targeting different keyword variations. That's why they dominate search with 4 results. TJ should copy this strategy.
+6. **Poop2Scoop unchanged** at $18/wk. **DoodyCalls unchanged.** **Yucko's unchanged.**
+7. **Pricing validation: TJ's $70/month is STILL unique AND cheapest monthly option.** Doggie Doodies just launched monthly at $90. TJ is $20/mo cheaper.
+
+**3 Actionable Recommendations:**
+1. Create neighborhood-specific pages (Florissant, Kirkwood, O'Fallon) — copy POOP 911's SEO strategy
+2. Add trust signals: gate photos, equipment disinfection claim, referral page
+3. Lead with $70/month harder — only option under $90
+
+**Also Updated:** MEMORY.md competition section with Mar 12 findings, website status
+
+**Rotation:** 🔍 Competitive Intelligence — Live Spring Sweep
+
+---
+
 ## March 11, 2026 (Wednesday)
 
 ### 11:04 PM — 🤝 Referral Program Kit (Complete Launch Package)

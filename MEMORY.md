@@ -205,18 +205,21 @@ Pet waste removal service in St. Louis County and surrounding areas.
 ### Marketing Situation
 - Budget: $200/month (can scale with results)
 - Current: Facebook groups, Instagram, Facebook page
-- Missing: Website, Google Business Profile
-- Main challenge: Customer acquisition at scale
+- Website: ✅ LIVE (tidytailsstl.com) — SSL fixed, real content, pricing, CTAs — verified Mar 12
+- GBP: CLAIMED ✅ | Yelp: CLAIMED ✅
+- ❌ **STILL NOT IN GOOGLE SEARCH RESULTS** as of Mar 12, 2026 — searched multiple terms, Tidy Tails doesn't appear. POOP 911 has 4 results, Scoop Soldiers #1.
+- Main challenge: Customer acquisition + SEO visibility
 
-### Competition (UPDATED Mar 9, 2026 8PM)
+### Competition (UPDATED Mar 12, 2026 12AM)
 
-**⚠️ NEW THREAT: Scoop Soldiers entered STL market Feb 6, 2026**
+**⚠️ THREAT LEVEL: Doggie Doodies upgraded significantly. Scoop Soldiers actively pushing PR.**
 
-**ACTIVE Competitors (verified via live site fetches):**
+**ACTIVE Competitors (verified via live site fetches Mar 12):**
 
 | Competitor | STL County | St. Charles | Weekly | Notes |
 |------------|------------|-------------|--------|-------|
-| **Scoop Soldiers** 🆕 | ✅ Yes | ❓ | **$15** | **NEW — Feb 2026 expansion. National franchise. CHEAPEST in market.** 877-930-POOP. SEO-optimized local pages. Residential + commercial. Background-checked techs. Deodorizer/sanitizer add-ons. THREAT: HIGH |
+| **Doggie Doodies** 🔴 | ✅ Yes | ✅ **NEW** | $83/mo (~$19) | **MAJOR UPGRADES: E-gift cards, referral program, blog, customer portal, tech photos, gate photos, equipment disinfection, coupon codes. Now targeting St. Charles County. Monthly: $90. THREAT: HIGHEST** |
+| **Scoop Soldiers** 🆕 | ✅ Yes | ❓ | **$15** | **Feb 2026 expansion. Press release ~3 weeks ago. National franchise. CHEAPEST in market.** 877-930-POOP. THREAT: HIGH |
 | **Poop2Scoop** | ✅ Yes | ❓ | $18 | 314-449-9447 |
 | **Little Stinkers** | ❌ **NO** | ✅ Primary | Quote | NEW domain: littlestinkersofmo.com |
 | **POOP 911** | ❓ 404 | ❓ | Quote | STL page 404 — status unclear |
