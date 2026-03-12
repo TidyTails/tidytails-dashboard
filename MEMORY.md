@@ -731,6 +731,7 @@ TJ sees Tidy Tails as a **training ground** for:
 - 2026-03-09: SEO service area pages kit (12 cities), dead competitor rescue campaigns, customer lifecycle system, referral program kit, Google visibility emergency dashboard, blog content pack, competitor landscape Q1, St. Charles expansion playbook, Monday commercial leads (25 leads), Scoop Soldiers STL entry confirmed ($15/visit — cheapest in market)
 - 2026-03-10: **24 hourly tasks** (new record). Referral program, print kit, Nextdoor playbook, 3 competitive intel reports, SEO rescue + IndexNow deployed, 5 blog posts, GBP content kit + optimization playbook, guerrilla marketing playbook, dead competitor capture campaign, website conversion audit, 10 shed ads (#102-111), STL shed market intel Q1, directory guide (25 dirs), enriched contacts (15 leads), customer onboarding system, weekly sprint plan, revenue sprint, 2 maintenance cycles. Live digital audit fixed index (38→60 tools shown).
 - 2026-03-11: Memory maintenance (812 lines archived from Mar 10). Honest assessment: still 8 customers, 60+ tools, 0 Google indexing. Sprint plan exists for Wed-Sun — TJ needs to execute.
+- 2026-03-11: **BREAKTHROUGH DAY** — 25 tasks, but the important ones were DIAGNOSTIC not creative. 9 PM audit discovered website was essentially blank. 2 AM SEO diagnosis found root cause: domain only 23 days old + zero backlinks + zero directory listings (site technically perfect). Built production-ready landing page HTML. Shipped 12-platform directory submission package. Neighborhood targeting identified Kirkwood + Webster Groves as #1 targets. Paid ads ROI analysis: $150/mo FB ads → 2-4 new customers/mo. Shed intel: 35% lumber tariffs = real urgency angle. Skipped 3 duplicate tasks (good discipline). Weekly execution playbook distilled 16 deliverables into daily 3-action checklists.
 
 ---
 
@@ -749,10 +750,13 @@ TJ sees Tidy Tails as a **training ground** for:
 - **Start tracking execution.** Which posts has TJ actually made? Which leads has he called? ZERO confirmed.
 - **Door hangers got 0.2% response** — confirmed not effective. Digital channels are the path.
 - **The $70/month flat rate is genuinely unique** — no competitor offers it. LEAD WITH THIS.
-- **Google indexing STILL the #1 blocker** — site submitted to GSC on Mar 5 but STILL showing 0 indexed pages as of Mar 10 audit. 5 days and counting.
+- **Google indexing explained (Mar 11):** Domain is only 23 days old. Site is technically perfect. Root cause = zero backlinks + zero directory listings. Google has no external signals to discover the site. Fix: GBP + directory submissions (30 min of TJ's time).
 - **Scoop Soldiers is the new price floor** — $15/visit (TJ is $25, 67% more expensive). Monthly plan is TJ's only edge.
 - **Next real win:** TJ texts 5 customers for Google reviews → appears in local map pack → organic leads start flowing. This costs $0 and takes 5 minutes. STILL NOT DONE.
 - **Hourly cron tasks are generating diminishing returns.** 60+ tools, same 8 customers. Future hourly tasks should be: (1) health checks, (2) memory maintenance, (3) ONLY build if there's a genuine gap. Not another dashboard.
+- **Geographic targeting (Mar 11):** Kirkwood + Webster Groves = top 2 neighborhoods. I-44 Corridor cluster has 15,500+ dog-owning households. Focus there first, expand concentrically.
+- **Paid ads conclusion (Mar 11):** $150/mo FB ads could generate 2-4 new customers/mo (1,000%+ ROI). But GBP must exist first. Google Ads secondary — low search volume for this service category.
+- **Lumber tariffs (Mar 11):** 35% on Canadian lumber, Commerce Dept review opened Mar 9. Real urgency angle for TuffShed pipeline.
 
 ### Asset Totals (as of Mar 10, 2026)
 | Category | Count |
@@ -793,6 +797,7 @@ TJ sees Tidy Tails as a **training ground** for:
 - [ ] Check if Google has indexed tidytailsstl.com yet (search `site:tidytailsstl.com`)
 
 ### Archives
+- `memory/archive/franklin-tasks-mar11.md` — Mar 11 hourly tasks (672 lines, 25 tasks)
 - `memory/archive/franklin-tasks-mar10.md` — Mar 10 hourly tasks (812 lines, 24 tasks)
 - `memory/archive/franklin-tasks-mar9.md` — Mar 9 hourly tasks (534 lines)
 - `memory/archive/franklin-tasks-mar7-8.md` — Mar 7-8 hourly tasks (1276 lines)
