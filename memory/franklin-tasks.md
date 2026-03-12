@@ -6,6 +6,47 @@
 
 ## March 12, 2026 (Thursday)
 
+### 5:04 AM — 🔍 LIVE SEARCH INTELLIGENCE AUDIT — Where Is Tidy Tails?
+**Task:** Full live audit of Tidy Tails' search visibility — check every city page, search rankings, competitor positions, and new threats
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 5 AM — perfect for web auditing
+- Previous tasks keep building content, but nobody has checked WHERE WE ACTUALLY STAND in search results since March 11
+- The 4 AM task found 4 broken city pages — need to verify the full picture
+- Spring is peak season — every day invisible = lost customers
+
+**What I Found:**
+
+🚨 **CRITICAL:** Tidy Tails returns ZERO search results across ALL search engines
+- `site:tidytailsstl.com` = 0 results (still not indexed after 3+ weeks)
+- `"tidy tails" "st louis" pet waste` = 0 results (brand doesn't exist in search)
+- A DEAD competitor (Pawfect Waste Solutions, 404 error) STILL ranks higher than us (#9)
+
+🆕 **NEW COMPETITOR DISCOVERED:** Scoop Soldiers
+- National franchise not in our previous competitive intel (March 7 deep dive missed them)
+- Founded 2010, professional website, military-themed branding
+- Ranking #5 for main keyword, serves STL residential + commercial + HOAs
+- Includes up to 4 dogs in pricing (similar to TJ's multi-dog advantage)
+- Partners with Valor Service Dogs (charity trust angle)
+
+📊 **Search Rankings for "pet waste removal St. Louis MO":**
+1. DoodyCalls (franchise), 2. Poop 2 Scoop (local), 3. PetWorks, 4. Yelp, 5. Scoop Soldiers 🆕, 6-8-10. POOP 911 (THREE listings!), 7. Yuckos, 9. Pawfect 💀
+
+🌐 **City Page Audit — Confirmed:**
+- 10 of 14 pages: ✅ unique content
+- 4 pages BROKEN (Kirkwood, Webster Groves, Olivette, University City): serving identical homepage HTML with wrong canonical URLs
+
+**TJ's Critical Actions (priority order):**
+1. 🔴 Set up Google Search Console + submit sitemap (15 min, highest ROI action possible)
+2. 🔴 Deploy fixed city pages from deliverables/city-pages/ (20 min)
+3. 🟡 Create Yelp Business Page (Yelp ranks #4 for our keyword)
+4. 🟡 List on PetWorks directory (ranks #3)
+5. 🟢 Consider buying pooperscooperstl.com domain (dead competitor still ranking)
+
+**Deliverable:** `research/2026-03-12-SEARCH-INTELLIGENCE-REPORT.md`
+**Rotation:** 🔍 Competitive Intelligence — Search Visibility Audit
+
 ### 3:04 AM — 🎯 LEAD PLATFORM SETUP GUIDE — Get in Front of Active Buyers
 **Task:** Create comprehensive, ready-to-execute guide for listing Tidy Tails on paid lead generation platforms (Google LSAs, Thumbtack, Bark) plus free channels (Craigslist, FB Marketplace)
 **Result:** ✅ COMPLETED
