@@ -6,6 +6,36 @@
 
 ## March 12, 2026 (Thursday)
 
+### 1:04 PM — 📝 SEO BLOG CONTENT BATCH 2 — 4 High-Intent Posts Ready to Publish
+**Task:** Write 4 SEO-optimized blog posts targeting buyer-intent keywords that competitors own but Tidy Tails is invisible for
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 1 PM — Today covered intelligence, strategy, systems, sheds, referrals. ZERO content for the website.
+- Site has 4 blog posts (all March 6), still ZERO pages indexed by Google after 24 days
+- Competitors like POOP 911 have 3+ pages ranking for "pooper scooper st louis" variations
+- Scoop Soldiers discovered as NEW competitor not in previous intel
+- More indexable content = more chances for Google to find and rank the site
+
+**What I Built:**
+1. **"How Much Does Dog Poop Pickup Cost in St. Louis? (2026 Prices)"** — High-intent pricing comparison. People searching this are ready to buy. Includes real competitor pricing data ($15-30/week range). No competitor has a transparent pricing guide.
+2. **"7 Best Pooper Scooper Services in St. Louis, MO (2026)"** — Listicle comparing all active STL competitors honestly. This is the #1 page type that captures comparison shoppers. Being transparent about competitors builds massive trust.
+3. **"Does Dog Poop Kill Grass? What St. Louis Homeowners Need to Know"** — Educational post with St. Louis-specific lawn science (clay soil, fescue grass, freeze-thaw cycles). Converts readers from awareness to action.
+4. **"Moving Into a New Home in St. Louis?"** — Targets one-time deep clean buyers ($100 service). High-margin, transactional intent. Nobody else has this content.
+
+**Also Included:**
+- 4-day publishing schedule (Thu-Wed)
+- SEO checklist for each post (meta descriptions, schema, internal links)
+- Copy-paste meta descriptions for all 4 posts
+- URL slug recommendations
+
+**Key Insight:** The competitor listicle (Post 2) is the most strategically important. It captures people actively searching for "best pooper scooper st louis" and positions Tidy Tails as the transparent, trustworthy option. Every competitor page is self-promotional — nobody has an honest comparison. First mover advantage is huge here.
+
+**Deliverable:** `deliverables/blog-posts-seo-batch2-march12.md`
+**Rotation:** 📝 Content — SEO Blog Posts
+
+---
+
 ### 12:05 PM — 🔍 LIVE COMPETITIVE INTELLIGENCE — Who's Alive, Who's Dead, and Where TJ Wins
 **Task:** Live scan of every pet waste removal competitor in the St. Louis market — verify websites, pricing, status, reviews, and identify strategic opportunities
 **Result:** ✅ COMPLETED
