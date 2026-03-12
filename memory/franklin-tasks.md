@@ -6,6 +6,30 @@
 
 ## March 11, 2026 (Wednesday)
 
+### 8:05 PM — 🗺️ NEIGHBORHOOD TARGETING HEAT MAP — Where the Dogs (and Money) Are
+**Task:** Built a data-driven neighborhood targeting guide ranking top 10 STL County suburbs by "Dog Owner Density Score" using proxy indicators (homeownership, income, lot size, pet infrastructure, family density)
+**Result:** ✅ COMPLETED — `deliverables/neighborhood-targeting-heatmap-march11.md`
+
+**Why This Task:**
+- 17 deliverables created today. All say "market to STL" but none answer WHERE specifically.
+- TJ has been posting in random FB groups. This tells him exactly which 2 neighborhoods to focus on FIRST.
+- Used real data: AVMA pet ownership stats (65.6% of dog owners are homeowners), census income data, vet clinic locations as dog density proxies, dog park locations, Nextdoor community data.
+
+**Key Findings:**
+1. **Kirkwood (#1) and Webster Groves (#2)** are the two best neighborhoods to target — ~10,000 combined dog-owning households, highest community engagement, most vet clinics per capita
+2. **Route clustering matters more than total reach** — defined 3 geographic clusters (I-44 Corridor, West County, North County)
+3. **I-44 Corridor cluster (Kirkwood→Webster→Sunset Hills→Crestwood)** has 15,500+ dog-owning households within 10 min of each other — this cluster alone could get TJ to 25 customers
+4. **7 specific dog parks** identified for flyering/networking (Kitun, Queeny, Creve Coeur Lake, Bar-K, etc.)
+5. **6 priority vet clinics** in Cluster A territory for bulletin board card drops
+6. **Week 1 action plan:** ~1 hr 45 min total, focused on Kirkwood + Webster Groves
+7. **The math:** TJ needs 0.04% conversion from target neighborhoods. The dogs are there.
+
+**Key Insight:** Stop trying to reach "St. Louis." Target Kirkwood + Webster Groves first. Get 10 customers. Then expand to Ballwin. Concentric circles, not shotgun blast.
+
+**Rotation:** 🗺️ Strategy — Geographic Targeting (data-driven, not another generic marketing guide)
+
+---
+
 ### 6:05 PM — 🎯 WEEKLY EXECUTION PLAYBOOK — Turning 16 Deliverables Into 1 Action Plan
 **Task:** Created a single-page weekly execution playbook that distills all 16 deliverables from today into daily 3-action checklists for Thu-Mon (Mar 12-16)
 **Result:** ✅ COMPLETED — `deliverables/weekly-execution-playbook-mar11.md`
