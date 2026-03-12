@@ -221,3 +221,6 @@ Chief uses this to verify sync with dashboard.
 | Time | File | Notion Folder | Dashboard Path | Status |
 |------|------|---------------|----------------|--------|
 | 00:01 | EOD Summary Mar 11 | 📋 Operations | EOD_SUMMARY_2026-03-11.pdf | ✅ |
+| 12:01 | Morning Briefing Mar 12 | 📋 Operations | MORNING_BRIEFING_2026-03-12.pdf | ✅ |
+| 12:01 | Shed Ads Mar 12 | 🏠 Shed Sales | SHED_ADS_2026-03-12.pdf | ✅ |
+| 12:01 | Shed Ads Mar 12 (md) | 🏠 Shed Sales | SHED_ADS_2026-03-12.md | ✅ |
