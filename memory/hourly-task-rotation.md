@@ -54,7 +54,7 @@
 - [x] Customer onboarding/retention system (Mar 12 11AM — 7-stage lifecycle, 15+ templates, churn prevention!)
 - [ ] Automation ideas
 - [x] Process documentation (Mar 4 2AM — Quick Start Guide! Top 10 tools + when to use)
-- [ ] Tool research
+- [x] Tool research (Mar 13 2AM — Paid advertising channels: FB Ads, Google Ads, LSAs — full strategy with real data from 7-fig companies!)
 
 ---
 

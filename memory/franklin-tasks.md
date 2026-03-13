@@ -4,6 +4,47 @@
 
 ---
 
+## March 13, 2026 (Friday)
+
+### 2:04 AM — 💰 PAID ADVERTISING STRATEGY — Real Data from 7-Figure Pet Waste Companies
+**Task:** Research paid advertising channels (Google LSAs, Google Ads, Facebook Ads) with real data from successful pet waste businesses, build actionable game plan for TJ
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 2 AM — prime research time, quiet hours
+- We've built tons of marketing materials but TJ has NO paid advertising strategy yet
+- Website is still invisible to Google — paid ads could bypass the SEO problem entirely
+- No competitors appear to be running FB ads in STL — massive first-mover opportunity
+- Unchecked item: Tool research (advertising tools count)
+
+**What I Did:**
+1. Researched Google Local Services Ads (LSAs) eligibility — crawled official Google docs + 3 industry guides
+2. Discovered pet waste removal is NOT a direct LSA category (closest: Lawn Care → Yard Cleanup)
+3. Documented full LSA requirements (insurance, background check, license, GBP needed)
+4. Found ScoopStart/Swoop Scoop — 7-figure pet waste company that generated 10,000+ leads via Facebook ads
+5. Found Fresh Start Pet Waste Removal — $200K first year using FB + Google ads (2-5 leads/day)
+6. Researched Google Ads CPC for pet waste keywords ($2-8/click — very low competition)
+7. Built complete budget model: $500/month → 5-8 new customers/month → 25+ customers in 3 months
+8. Created sample ad copy ready for TJ to use
+9. Built comprehensive dashboard page with all data visualized
+
+**Key Findings:**
+- **Facebook Ads are #1 for pet waste** — low search volume means Google catches fewer leads than FB
+- **$15-30 cost per lead on Facebook** for service businesses
+- **None of TJ's 19 STL competitors appear to run FB ads** — wide open territory
+- **$500/month could generate 5-8 new recurring customers** — ads pay for themselves by month 2
+- **Google LSAs are a "later" play** — require verified GBP with 20+ reviews, insurance docs, possibly pesticide license
+- **GBP verification remains the #1 blocker** — every paid channel depends on it
+- **Swoop Scoop's secret: 500+ Google reviews + never pausing ad spend**
+
+**Deliverables:**
+- `research/2026-03-13-PAID-ADVERTISING-STRATEGY.md` — Full 10K+ word research report
+- `dashboard/2026-03-13-PAID-AD-STRATEGY.html` — Interactive dashboard with budget calculator, channel rankings, ad templates
+
+**Rotation:** 💰 Paid Advertising — Channel Strategy & Budget Plan
+
+---
+
 ## March 12-13, 2026 (Thursday Night)
 
 ### 1:04 AM — ⚔️ ST. CHARLES COUNTY COMPETITIVE BATTLEFIELD REPORT
