@@ -1342,3 +1342,48 @@ Each page has: unique title, meta description, canonical URL, OG tags, Schema.or
 - `dashboard/2026-03-13-CUSTOMER-EXPERIENCE-PLAYBOOK.html` — Interactive mobile dashboard
 
 **Rotation:** 🎯 Operations — Customer Experience System
+
+### 6:05 PM — ✍️ SEO BLOG CONTENT PACK — 3 New Posts Targeting High-Value Keyword Gaps
+**Task:** Write 3 new SEO-optimized blog posts for tidytailsstl.com targeting keywords not covered by existing 6 posts
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 6 PM Friday — content creation window, no outreach needed
+- Today's competitive intel flagged Tidy Tails has 0 indexed pages on search engines
+- POOP 911 dominates search with multi-page SEO strategy — we need more content
+- Existing blog had 6 posts; these 3 target pain-point keywords that drive "just hire someone" conversions
+- Each post naturally funnels readers toward hiring Tidy Tails
+
+**What I Built:**
+1. **"How to Get Rid of Dog Poop Smell in Your Yard"** — targets "dog poop smell yard," "pet waste odor removal"
+   - 7 practical solutions, St. Louis humidity angle, seasonal smell guide
+   - Pain point: smell → solution: consistent removal → CTA: hire us
+2. **"Is Dog Poop Killing Your Grass? How to Fix Brown Spots"** — targets "dog poop killing grass," "dog burn spots lawn"
+   - Science of nitrogen burn, poop vs urine comparison table, 6-step repair guide
+   - Pain point: dead lawn → solution: prevent with removal → CTA: cheaper than lawn repair
+3. **"Multiple Dogs? How to Keep Your Yard Clean"** — targets "multiple dogs yard cleanup," "multi dog household"
+   - Multi-dog math, yard zoning strategy, scenario cards for 2/3/4+ dogs
+   - Pain point: volume overwhelm → solution: professional service → CTA: per-dog pricing is cheaper
+
+**SEO Features on All 3 Posts:**
+- Schema.org BlogPosting structured data
+- Canonical URLs, Open Graph meta tags
+- Keyword-rich meta descriptions
+- Internal cross-linking between all blog posts
+- St. Louis geo-targeting in content
+- Mobile-responsive design matching existing blog style
+
+**Also Updated:**
+- Blog index (blog/index.html) — 3 new posts added at top
+- Sitemap (sitemap.xml) — 3 new URLs added, blog index lastmod updated
+
+**Total blog posts:** 6 → 9 (50% content increase)
+
+**Files:**
+- `tidy-tails/website/blog/dog-poop-smell-yard.html`
+- `tidy-tails/website/blog/dog-poop-killing-grass.html`
+- `tidy-tails/website/blog/multiple-dogs-yard-clean.html`
+- `tidy-tails/website/blog/index.html` (updated)
+- `tidy-tails/website/sitemap.xml` (updated)
+
+**Rotation:** ✍️ Content — SEO Blog Pack
