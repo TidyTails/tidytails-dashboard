@@ -6,6 +6,38 @@
 
 ## March 13, 2026 (Friday)
 
+### 1:04 PM — 🏥 VET CLINIC REFERRAL PARTNER LIST — 20 Clinics, 2-Hour Flyer Drop Route
+**Task:** Research all veterinary clinics in TJ's service area and build a complete flyer drop + referral partnership plan
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- Commercial leads file had "TIER 3B: Vet Clinics" marked as "research next" — this was the identified gap
+- Vet clinics are the highest-converting referral source for pet services (100% dog-owner audience, trusted authority, captive waiting room audience)
+- Every other task today was research/strategy — this fills a concrete gap in the lead pipeline
+- Spring = everyone's at the vet for heartworm tests, flea prevention, and annual checkups = peak flyer visibility
+
+**What I Built:**
+1. **20 veterinary clinics** across TJ's core service area — all with phone numbers, addresses, and websites
+2. **3-tier organization:** Tier 1 (6 clinics in Ballwin/Ellisville/Manchester), Tier 2 (7 in Chesterfield/T&C/Creve Coeur wealthy areas), Tier 3 (7 in Wildwood/Kirkwood/Webster/Eureka)
+3. **2 optimized Saturday routes** — Route 1 hits 7 core-area clinics in 2 hours, Route 2 hits 6 Chesterfield-area clinics the next week
+4. **30-second walk-in pitch script** plus handling for "let me check with the doctor" and "formal partnership" responses
+5. **Flyer design specs** — quarter-sheet, content, design rules
+6. **Expected results math** — conservative estimate of 5 new customers/month from flyer drops alone
+7. **Priority call list** — top 6 clinics to call Monday with reasons why each is first
+
+**Key Finds:**
+- **Kehrs Mill Vet Care** (est. 2023) in Ballwin is the easiest win — brand new, hungry for community partners, explicitly welcoming
+- **Fox Creek Vet Hospital** has 3 locations (Manchester, Kirkwood, Wildwood) — one partnership = 3 waiting rooms
+- **Town & Country Vet Hospital** serves the highest-income zip codes in West County
+- **Tri-City Animal & Bird Clinic** has been operating since 1961 and serves exactly TJ's 5 core cities
+- Total estimated weekly impressions from 20 clinic flyers: ~1,000 dog owners
+
+**File:** `deliverables/vet-clinic-referral-partners-march2026.md`
+**Also Updated:** `deliverables/commercial-leads-spring-2026-LIVE.md` (Tier 3B now links to full research)
+**Rotation:** 🏥 Lead Generation — Vet Clinic Referral Partners
+
+---
+
 ### 11:04 AM — 🔍 LIVE Spring Competitive Intel Update — Market Re-Scan + New Dead Competitor Found
 **Task:** Live crawl all STL pet waste competitors for current pricing, status changes, and new market threats
 **Result:** ✅ COMPLETED
