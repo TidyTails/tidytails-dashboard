@@ -706,6 +706,40 @@ Each page has: unique title, meta description, canonical URL, OG tags, Schema.or
 
 ---
 
+### 12:05 AM — 📱 FACEBOOK GROUP POSTING MASTER GUIDE
+**Task:** Research and compile comprehensive guide to every FB group TJ should be posting in across STL area, plus Nextdoor/Craigslist/GBP strategy
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- Midnight Friday — perfect for web research
+- FB groups are TJ's #1 free customer acquisition channel
+- No organized list existed — TJ was posting ad hoc
+- Weekend content exists (Weekend Blitz) but no guide on WHERE to post it
+
+**What I Did:**
+1. Researched STL-area Facebook groups via web search and group directories
+2. Found 10+ specific Buy/Sell/Trade groups with links, member counts (up to 110K members), and activity levels
+3. Identified 6 dog-specific groups/pages for targeted outreach
+4. Listed 20+ neighborhood groups to search for on Facebook (can't get links without login)
+5. Added breed-specific, homeowner, and parent group categories
+6. Created full posting rules (what gets you banned vs. what converts)
+7. Built weekly posting schedule (12-14 posts/week across different groups)
+8. Added Nextdoor strategy (free business page + recommendations)
+9. Included other free platforms: Craigslist, GBP, Yelp, Thumbtack
+10. Created 25-minute weekly routine for maximum reach
+
+**Key Finds:**
+- Wentzville BST group: 110.6K members — massive reach for St. Charles expansion
+- St. Charles BST: 77.9K members — TJ's growth zone
+- Florissant-Hazelwood BST: TJ's home turf, needs to be here
+- Nextdoor: Hugely underutilized for local services — free business page available
+- St. Louis Senior Dog Project: 15K followers — senior dog owners are ideal customers
+
+**File:** `dashboard/marketing/facebook-group-posting-guide.md`
+**Rotation:** 📱 Marketing — Distribution Channel Guide
+
+---
+
 ### 2:05 AM — 🔍 SPRING COMPETITOR PRICE CHECK & INTEL UPDATE
 **Task:** Scrape all major STL pet waste removal competitor websites for updated pricing, spring promos, and changes since March 7 deep dive
 **Result:** ✅ COMPLETED
