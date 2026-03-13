@@ -1230,3 +1230,42 @@ Each page has: unique title, meta description, canonical URL, OG tags, Schema.or
 - `dashboard/2026-03-13-SPRING-WEEKEND-BLITZ.html` — interactive mobile dashboard
 
 **Rotation:** 📱 Marketing — Spring Content Blitz
+
+### 3:04 PM — 🔍 FULL COMPETITIVE INTELLIGENCE DEEP DIVE — 6 Active Competitors Profiled
+**Task:** Comprehensive competitive analysis update — research every active competitor's current pricing, positioning, services, and tactics
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 3 PM Friday — strategic research window, no outreach needed
+- Last deep competitor analysis was Feb 22 — market has shifted significantly
+- Scoop Soldiers came back from the dead (was 404, now live with press release)
+- Needed current pricing data for battle positioning
+- Spring = every competitor is ramping up, we need current intel
+
+**What I Did:**
+1. Researched and profiled 6 active competitors: Scoop Soldiers, POOP 911, Poop 2 Scoop, DoodyCalls, Doggy Doods, Little Stinkers
+2. Confirmed 4 dead competitors: Poopy Paws (DNS dead), Pawfect Waste Solutions (404), Fresh Paws (expired), STL Pooper Scoopers (closed)
+3. Identified 9+ additional Yelp-listed competitors for monitoring
+4. Built complete pricing matrix with current confirmed prices
+5. Discovered Scoop Soldiers did EINPresswire press release Feb 6, 2026
+6. Discovered POOP 911's multi-URL SEO strategy (4+ pages per city with different keywords)
+7. Discovered Doggy Doods' customer experience tactics (gate photos, kid stickers, on-my-way texts)
+8. Discovered Little Stinkers' unique "bucket service" ($10/week)
+9. Confirmed Tidy Tails STILL has 0 indexed pages on Brave Search
+10. Created comprehensive Markdown report with 5 priority action items
+11. Built interactive HTML battle card dashboard with expandable competitor profiles
+12. Updated master competitive-intel.md with latest data
+
+**Key Findings:**
+- Our $70/mo is CHEAPER than Poop 2 Scoop (~$72/mo) — messaging opportunity
+- Scoop Soldiers undercuts us at ~$60/mo but is a faceless franchise
+- POOP 911 dominates search with 4+ URL patterns per city — we should copy this
+- Eugene (Doggy Doods) has the best customer experience in the market — we should steal his tactics
+- A press release ($99-299) could solve our backlink/indexing problem (Scoop Soldiers did exactly this)
+
+**Files:**
+- `tidy-tails/marketing/2026-03-13-COMPETITIVE-INTEL-REPORT.md` — Full 12-page report
+- `dashboard/research/2026-03-13-COMPETITIVE-BATTLE-CARD.html` — Interactive battle card
+- `memory/competitive-intel.md` — Updated master file
+
+**Rotation:** 🔍 Research — Competitive Intelligence

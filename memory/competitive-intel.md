@@ -1,6 +1,18 @@
 # Competitive Intelligence - St. Louis Pet Waste Removal
 
-## Last Updated: 2026-03-13 @ 11:15 PM (Search Visibility Audit)
+## Last Updated: 2026-03-13 @ 3:15 PM (Full Competitive Deep Dive)
+
+### Latest Update Summary (Mar 13, 3 PM)
+- Scoop Soldiers STL page LIVE again — EINPresswire press release Feb 6, 2026
+- Scoop Soldiers pricing: starts $15/visit weekly (~$60/mo)
+- Poop 2 Scoop pricing CONFIRMED: $18/visit weekly (~$72/mo), +$4 extra dog/large yard
+- DoodyCalls STL active — phone (314) 230-8082, Authority Brands parent company
+- Doggy Doods (Eugene) has ELITE customer experience — gate photos, on-my-way texts, kid stickers
+- Little Stinkers has unique "bucket service" at $10/week
+- Poopy Paws website DNS dead — confirmed out of business
+- 4+ dead competitors = stranded customers available
+- Full battle card: `dashboard/research/2026-03-13-COMPETITIVE-BATTLE-CARD.html`
+- Full report: `tidy-tails/marketing/2026-03-13-COMPETITIVE-INTEL-REPORT.md`
 
 ---
 
