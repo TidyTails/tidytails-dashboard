@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-13 4:10 CST*
+*Last updated: 2026-03-13 11:15 CST*
 
 ---
 
@@ -44,6 +44,7 @@
 ### 🔴 HIGH PRIORITY — New Intel (Mar 12)
 - [ ] **CALL DoodyCalls STL: (314) 230-8082** — They're NOT listed in franchise directory anymore. May be closing. If yes → capture their commercial clients (apartments, HOAs).
 - [ ] **CALL Poopy Paws: (314) 783-1781** — Website is dead (DNS failure). Check if Charlie is still operating. If dead → his customers need a new service.
+- [ ] **CAPTURE Super Scoopers STL Customers** — Confirmed DEAD (Mar 13): website down, Yelp CLOSED. Based in St. Peters. Their STL/St. Charles/Lincoln county customers need a provider. Check their Yelp/FB for people asking about alternatives.
 - [ ] **FIX WEBSITE INDEXING** — Still 0 pages indexed after 6+ months. This is the #1 growth blocker. Every live competitor outranks us.
 - [ ] **Get 10 Google Reviews THIS MONTH** — No competitor dominates reviews. First to 15 reviews owns local search.
 
@@ -54,6 +55,7 @@
 - Research: `research/2026-03-13-PAID-ADVERTISING-STRATEGY.md` — Real data from Swoop Scoop (7-fig, 10K+ leads) and Fresh Start ($200K year 1)
 
 ### ✅ Recently Completed
+- [x] **🔍 LIVE Spring Competitive Intel Update** — Full market re-scan: Poop 2 Scoop still $18/week (39% cheaper), POOP 911 offering "1st free," Scoop Soldiers expanding aggressively (Cleveland acquisition + Cincinnati launch), **Super Scoopers STL confirmed DEAD** (website down, Yelp CLOSED) = new capture opportunity. `site:tidytailsstl.com` STILL 0 results. Industry benchmarks: 75% contribution margin, $60 CAC target. ✅ (Mar 13, 11AM)
 - [x] **🌐 4 Missing City Pages Built** — Kirkwood, Webster Groves, Olivette, University City. Full SEO: unique content, neighborhoods, schema markup, sitemap updated, all cross-links added. ✅ (Mar 13, 4AM)
 - [x] **💰 Paid Advertising Strategy** — Researched FB Ads, Google Ads, LSAs with real data from 7-figure pet waste companies. $500/month plan → 5-8 new customers/month. Dashboard + full research report. ✅ (Mar 13, 2AM)
 - [x] **🔍 Live Competitive Intel Spring 2026** — Full market scan: 3 competitors dead (Pawfect, Fresh Paws, Poopy Paws website), DoodyCalls possibly leaving STL, pricing gap analysis ($25 vs $18 Poop2Scoop), strategic capture plan. Deliverable: `competitive-intel-spring-2026-LIVE.md` ✅ (Mar 12, 12PM)

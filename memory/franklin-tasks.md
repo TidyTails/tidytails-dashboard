@@ -6,6 +6,32 @@
 
 ## March 13, 2026 (Friday)
 
+### 11:04 AM — 🔍 LIVE Spring Competitive Intel Update — Market Re-Scan + New Dead Competitor Found
+**Task:** Live crawl all STL pet waste competitors for current pricing, status changes, and new market threats
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 11 AM Friday — Time for a fresh competitive scan. Last full scan was March 12.
+- Need to verify if website indexing has improved (it hasn't)
+- Need to check for new entrants, pricing changes, or competitor moves
+- Spring is peak season — competitive landscape shifts fast
+
+**What I Found:**
+1. **`site:tidytailsstl.com` = STILL 0 RESULTS** — Day 3+ of zero indexing. Critical.
+2. **Poop 2 Scoop pricing confirmed:** $18/week (1 dog), $16/visit 2x/week, $25 EOW, +$4 extra dog/large yard
+3. **POOP 911 still offering "1st service FREE"** — covers 70+ STL zip codes
+4. **Scoop Soldiers EXPANDING AGGRESSIVELY** — Acquired Dog Waste Management in Cleveland + launched Cincinnati in last 3 weeks. M&A strategy = they could enter STL
+5. **🆕 Super Scoopers STL = CONFIRMED DEAD** — Website fails to load, Yelp listing marked "CLOSED" (July 2025). Based in St. Peters, served STL/St. Charles/Lincoln counties. Another batch of orphaned customers to capture.
+6. **Industry benchmarks:** 75% contribution margin, $60 CAC, $70K-$156K owner income Year 1-2, market growing at 8.6% CAGR to $101.2M by 2030
+7. **TJ's $25/week is 39% more than P2S's $18/week** — biggest pricing gap in market
+
+**Key Strategic Insight:** The STL market is consolidating. 4 local operators dead in 12-18 months. Nationals expanding. The window to establish local dominance is NOW before Scoop Soldiers or another national acquires the territory.
+
+**File:** `deliverables/spring-competitive-intel-live-march13.md`
+**Rotation:** 🔍 Competitive Intelligence — Live Market Scan
+
+---
+
 ### 10:05 AM — 🎯 WEEKEND EXECUTION PLAN — Cut Through the Noise, 5 Moves That Matter
 **Task:** Consolidate 10+ overnight deliverables into a single, crystal-clear weekend action plan with exact steps and time estimates
 **Result:** ✅ COMPLETED
