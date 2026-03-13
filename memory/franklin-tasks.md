@@ -6,6 +6,23 @@
 
 ## March 12, 2026 (Thursday)
 
+### 9:04 PM — 🔍 LIVE Competitive Intelligence Deep Dive — 10 Competitors Mapped with Pricing, Weaknesses & Battle Plan
+**Task:** Research every active STL pet waste removal competitor with real current data — pricing, reviews, service areas, strengths, weaknesses
+**Result:** Created `deliverables/competitor-deep-dive-march2026.md` with:
+- 10 competitors identified and profiled (2 national franchises, 8 locals)
+- Complete pricing comparison table with actual numbers (Poop 2 Scoop $18/wk, Poopy Paws $20/wk flat, Dirty Dog Wash $95/mo, POOP 911 from $11.95)
+- Geographic gap analysis revealing North County and Mid-County are WIDE OPEN
+- Individual threat assessments for each competitor
+- Key finding: Pawfect Waste Solutions website is DOWN (404) — possible closure = orphaned customers
+- Key finding: DoodyCalls has only 4 Yelp reviews despite 25+ year brand — STL franchise is weak
+- Key finding: Yucko's (since 1990) has a Geocities-era website and zero modern marketing — dying slowly
+- Market size estimate: 95%+ of potential STL customers not being served by anyone
+- Actionable battle plan: price at $15-17/wk, free first cleanup, Spring Cleanup Special, target unserved geographies
+**Impact:** TJ now knows exactly who he's competing with, what they charge, where they're weak, and where the open territory is. No more guessing.
+**File:** `deliverables/competitor-deep-dive-march2026.md`
+
+---
+
 ### 8:05 PM — 🏢 LIVE Commercial Lead Research — 22 Named Targets with Phone Numbers
 **Task:** Deep-dive commercial lead research for pet waste removal contracts
 **Result:** Created `deliverables/commercial-leads-spring-2026-LIVE.md` with 22 named leads:
