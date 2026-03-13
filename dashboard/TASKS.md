@@ -45,7 +45,14 @@
 - [ ] **FIX WEBSITE INDEXING** — Still 0 pages indexed after 6+ months. This is the #1 growth blocker. Every live competitor outranks us.
 - [ ] **Get 10 Google Reviews THIS MONTH** — No competitor dominates reviews. First to 15 reviews owns local search.
 
+### 📣 PAID ADVERTISING (New — Mar 13)
+- [ ] **SET UP FACEBOOK ADS** — $350/month could generate 5-8 new customers/month. No STL competitors running FB ads. Full guide: `dashboard/2026-03-13-PAID-AD-STRATEGY.html`
+- [ ] **ADD GOOGLE ADS** — $150/month complement. Start after FB ads are running. Keywords: "pet waste removal St. Louis"
+- [ ] **REVISIT LSAs LATER** — Pet waste isn't a direct category. Need 20+ reviews and insurance docs first.
+- Research: `research/2026-03-13-PAID-ADVERTISING-STRATEGY.md` — Real data from Swoop Scoop (7-fig, 10K+ leads) and Fresh Start ($200K year 1)
+
 ### ✅ Recently Completed
+- [x] **💰 Paid Advertising Strategy** — Researched FB Ads, Google Ads, LSAs with real data from 7-figure pet waste companies. $500/month plan → 5-8 new customers/month. Dashboard + full research report. ✅ (Mar 13, 2AM)
 - [x] **🔍 Live Competitive Intel Spring 2026** — Full market scan: 3 competitors dead (Pawfect, Fresh Paws, Poopy Paws website), DoodyCalls possibly leaving STL, pricing gap analysis ($25 vs $18 Poop2Scoop), strategic capture plan. Deliverable: `competitive-intel-spring-2026-LIVE.md` ✅ (Mar 12, 12PM)
 - [x] **🔄 Customer Onboarding & Retention System** — 7-stage lifecycle, 15+ templates, churn detection, referral program. ✅ (Mar 12, 11AM)
 - [x] **📊 Real-Data Growth Playbook** — Researched how real operators grew (Erica Krupin: 200 customers from FB groups, William Milliken: 7-figures from FB ads). 7-day sprint plan. ✅ (Mar 12, 10AM)
