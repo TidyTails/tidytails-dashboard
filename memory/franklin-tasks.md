@@ -6,6 +6,41 @@
 
 ## March 12-13, 2026 (Thursday Night)
 
+### 1:04 AM — ⚔️ ST. CHARLES COUNTY COMPETITIVE BATTLEFIELD REPORT
+**Task:** Deep competitive intelligence on TJ's expansion zone — mapping every competitor, pricing, positioning, and building attack plan
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 1 AM — prime web research time
+- Previous audit flagged NEW competitor "Doggy Doods" in St. Charles — needed full deep dive
+- St. Charles is TJ's target expansion zone — need to know the battlefield before expanding
+- Also discovered ANOTHER new competitor: Kurt's Doggy Dooty
+
+**What I Did:**
+1. Deep-crawled Doggy Doods website — all service tiers, origin story, reviews, service areas
+2. Discovered their 3-tier model (Essentials/Signature/Elite Concierge) with NO public pricing
+3. Analyzed their branding strategy (premium positioning, veteran story, "dog yard maintenance" framing)
+4. Found and crawled Kurt's Doggy Dooty — budget competitor at $66/mo for 1 dog
+5. Checked Little Stinkers of MO St. Charles expansion page
+6. Mapped all 6+ competitors serving St. Charles County
+7. Built complete pricing comparison matrix
+8. Identified TJ's biggest competitive advantage: multi-dog flat-rate pricing
+9. Created 6-point attack plan for St. Charles market entry
+10. Identified Doggy Doods' weaknesses (hidden pricing, 404 pages, overengineered copy, only 6 months old)
+
+**Key Findings:**
+- **Doggy Doods (Eugene)** is the most sophisticated competitor TJ has faced — professional branding, Chamber member, aPaws member, client portal, accessibility compliance
+- **BUT** they hide pricing, have broken pages, use corporate-speak, and are only 6 months old
+- **Kurt's Doggy Dooty** undercuts TJ for 1-dog weekly ($66/mo vs $100/mo) but has terrible website and zero marketing
+- **TJ's multi-dog flat rate is STILL the killer advantage** — no competitor offers it
+- **Nobody owns the "affordable local guy" position** in St. Charles — it's wide open for TJ
+- **Stool health monitoring** is a trend (Doggy Doods + Little Stinkers both do it) — TJ should add a simple version
+
+**Deliverable:** `research/2026-03-13-ST-CHARLES-COMPETITIVE-BATTLEFIELD.md`
+**Rotation:** ⚔️ Competitive Intelligence — St. Charles Battlefield
+
+---
+
 ### 11:04 PM — 🔍 GOOGLE SEARCH VISIBILITY AUDIT — Hard Data on Our Invisibility
 **Task:** Live search audit across 5 key terms to document exactly where Tidy Tails shows up (or doesn't) in Google results, identify new competitors, and create prioritized action list
 **Result:** ✅ COMPLETED
