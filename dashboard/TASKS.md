@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-12 12:25 CST*
+*Last updated: 2026-03-13 3:15 CST*
 
 ---
 
@@ -18,8 +18,10 @@
   - Expected: 3-7 days for initial indexing
 
 - [ ] **Spring Marketing Push** — FB group posts, spring-themed content
-  - Status: Friday posts ready (2026-03-06), weekend posts ready (2026-03-05)
-  - Owner: TJ (posting) + Franklin (content creation)
+  - Status: **2-week content pack ready!** 13 posts for Mar 14-28 + 3 IG posts + posting schedule
+  - File: `ready-to-post/spring-2026-tidy-tails-content-pack.md`
+  - Companion: `dashboard/marketing/facebook-group-posting-guide.md` (WHERE to post)
+  - Owner: TJ (posting) + Franklin (content ready ✅)
 
 - [ ] **Ad Creative Pipeline** — AI video ads for social media
   - Status: 6 videos produced (Mar 5). fal.ai credits exhausted.
