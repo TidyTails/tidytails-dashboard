@@ -6,6 +6,41 @@
 
 ## March 13, 2026 (Friday)
 
+### 6:04 AM — 🏠 TUFFSHED SPRING SALES BATTLE CARD — Phone-Ready Closer's Toolkit
+**Task:** Build comprehensive sales battle card with live competitor pricing, objection scripts, financing math, and urgency triggers for spring shed sales
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 6 AM — 7th task tonight, pivoting from Tidy Tails to TuffShed (the shed side has been neglected)
+- Spring is PEAK shed buying season — every week without a sales toolkit = missed revenue
+- Lumber tariffs just hit 35.19% with NEW review opened March 9 — massive urgency lever
+- TuffShed has NO active promo (both expired) — means TJ needs to sell on value, not discounts
+- No existing "pull up on your phone" reference for live sales conversations
+
+**What I Built:**
+1. **30-second elevator pitch** — Ready to use on any call
+2. **4 urgency triggers** with exact scripts — Tariffs (35.19%), lead times (4-6 weeks), tax refund, spring cleanup
+3. **Live competitor pricing matrix** — TuffShed Home Depot prices (verified 3/13), STL Sheds Amish-built prices, Cook Portable, market averages
+4. **Complete financing breakdown** — All 4 options (0% for 6mo, 9.99% 120mo, RTO variable, RTO Flex/no credit check) with monthly payment calculator
+5. **7 objection handling scripts** — "Need to think about it," "too expensive," "found cheaper," "waiting for sale," "spouse needs to see," "DIY," "price match"
+6. **Upsell playbook** — Size upgrades, use case expansion (office/she-shed/ADU), add-ons
+7. **Quick math reference** — Monthly payments at every price point, per-day cost framing, property value add
+8. **Spring calendar** — Key dates and corresponding sales angles
+9. **Lead source ranking** — Hot/warm pipeline with follow-up cadence
+
+**Key Intel Gathered:**
+- TuffShed 10x12 range: $4,898-$6,135 (no active promos — both expired)
+- STL Sheds (Amish competitor): 10x12 Utility at $4,255-$4,355 — undercuts TuffShed
+- Canadian lumber tariffs: 35.19% combined (up from 14.4%) — strongest urgency lever available
+- New Commerce Dept review opened March 9 — rates could go HIGHER
+- TuffShed delivery showing April 9-22 (4-6 week lead time)
+- STL average shed price: $6,568-$6,908
+
+**File:** `deliverables/shed-spring-sales-battlecard-march2026.md`
+**Rotation:** 🏠 TuffShed — Spring Sales Enablement
+
+---
+
 ### 5:04 AM — 🤝 REFERRAL PROGRAM — "Friends Don't Let Friends Scoop" Complete Launch Kit
 **Task:** Build a complete, ready-to-launch referral program with research-backed incentive structure, text templates, tracking system, and amplification tactics
 **Result:** ✅ COMPLETED
