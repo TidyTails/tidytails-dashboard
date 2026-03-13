@@ -1158,3 +1158,43 @@ Each page has: unique title, meta description, canonical URL, OG tags, Schema.or
 
 **Files:** `tidy-tails/website/kirkwood.html`, `webster-groves.html`, `olivette.html`, `university-city.html`
 **Rotation:** 🌐 SEO — Critical Page Fix
+
+### 12:05 PM — 🐕 SPRING WEEKEND BLITZ PACK — 7 Ready-to-Post Ads for This Weekend
+**Task:** Create a complete spring weekend content blitz with ready-to-copy-paste posts for FB groups, Nextdoor, and Instagram
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- Friday noon — TJ can start posting TONIGHT and all weekend
+- Spring is THE buying season for pet waste removal (snow melts, yards revealed)
+- FB groups + Nextdoor = free marketing reaching hundreds of local dog owners
+- Last fresh content batch was March 10 — need new material to avoid fatigue
+- At 8 customers, every lead counts toward the growth goal
+
+**What I Created:**
+1. **7 unique posts** — each with different hook, angle, and tone
+2. **Full posting schedule** — Friday evening through Sunday evening, timed for peak engagement
+3. **Platform-specific tone** — FB groups (casual/fun), Nextdoor (neighborly), Instagram (lifestyle + hashtags)
+4. **Interactive dashboard page** — mobile-friendly, tap-to-expand, one-click copy buttons
+5. **Tips section** — posting best practices, response time goals, follow-up reminders
+
+**Post Breakdown:**
+- Post #1: "The Spring Reveal" — winter aftermath shock (FB Pet Groups, Fri evening)
+- Post #2: "Saturday Morning Reality Check" — confession/relatable (Mom Groups, Sat AM)
+- Post #3: "The Good Neighbor" — neighborly tone (Nextdoor, Sat noon)
+- Post #4: "Before & After Energy" — spring cleanup season (Instagram, Sat evening)
+- Post #5: "The Math Post" — time vs money breakdown (FB B/S/T, Sun AM)
+- Post #6: "Spring Cleaning Tie-In" — checklist hook (Nextdoor, Sun afternoon)
+- Post #7: "Sunday Unwind" — lifestyle/relax angle (Instagram, Sun evening)
+
+**All posts include:**
+- $70/month lead pricing (our competitive advantage)
+- Free first deep clean offer
+- No contracts messaging
+- 314-850-7140 contact
+- tidytailsstl.com URL
+
+**Files:**
+- `tidy-tails/marketing/2026-03-13-SPRING-WEEKEND-BLITZ.md` — full copy deck
+- `dashboard/2026-03-13-SPRING-WEEKEND-BLITZ.html` — interactive mobile dashboard
+
+**Rotation:** 📱 Marketing — Spring Content Blitz
