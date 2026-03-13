@@ -6,6 +6,42 @@
 
 ## March 13, 2026 (Friday)
 
+### 9:04 AM — 📍 DIRECTORY SUBMISSION KIT — Get Tidy Tails VISIBLE in 1 Hour
+**Task:** Build a complete, copy-paste-ready directory submission kit so TJ can go from ZERO online presence to 10+ listings in 1 hour
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 9 AM Friday — TJ's awake, give him something he can EXECUTE right now
+- Live audit confirmed: `site:tidytailsstl.com` returns ZERO results (still, 2 days after diagnosis)
+- Search for "pooper scooper St Louis" shows 10 competitors — Tidy Tails not among them
+- Every competitor (Yucko's, Poop 2 Scoop, POOP 911, DoodyCalls, even dead Poopy Paws) has directory listings
+- The SEO diagnosis from March 11 identified the problem but didn't give TJ a brain-dead-simple execution plan
+- This kit removes ALL friction — just follow steps and paste info
+
+**What I Built:**
+1. **Copy-paste business info block** — Name, phone, address, descriptions (short + long), keywords — ready to paste into every form
+2. **22 directory listings** organized in 3 tiers by impact (Tier 1: 7 critical, Tier 2: 8 important, Tier 3: 7 nice-to-have)
+3. **Step-by-step instructions** for each directory — exact URLs, click-by-click instructions
+4. **1-Hour Blitz Plan** — 6 actions in priority order that TJ can knock out in 60 minutes
+5. **Review request templates** — 3 text templates for asking existing customers for Google/Yelp reviews
+6. **Tracking checklist** — printable table with checkboxes
+7. **NAP consistency rules** — explained why business info must be identical everywhere
+8. **Timeline expectations** — what happens at 1 week, 1 month, 3 months after submission
+
+**Key Findings from Live Audit:**
+- Website is technically perfect: good HTML, meta tags, structured data, sitemap, no noindex
+- The ONLY problem is that Google doesn't know it exists (no GSC, no backlinks, no citations)
+- Competitors dominating search all have 10+ directory listings
+- Even "dead" competitor Poopy Paws still outranks Tidy Tails because they have Yelp + Facebook
+- Pawfect Waste Solutions (pooperscooperstl.com) — supposedly dead — is STILL ranking in search results
+
+**The Big Point:** TJ's website is a race car sitting in a garage. This kit opens the garage door. 1 hour of directory submissions will do more for customer acquisition than any amount of ad copy or content creation.
+
+**File:** `deliverables/directory-submission-kit-march13.md`
+**Rotation:** 📍 SEO — Directory Submission & Citation Building
+
+---
+
 ### 8:04 AM — 🎯 DEAD COMPETITOR CUSTOMER CAPTURE PLAN — Steal Orphaned Customers for $0
 **Task:** Research dead/dying STL competitors, verify current status via live web crawling, and build an actionable plan to capture their abandoned customers
 **Result:** ✅ COMPLETED
