@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tidy Tails — Referral Tracker</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f1117; color: #e4e4e7; min-height: 100vh;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+        
+        h1 { font-size: 1.8rem; margin-bottom: 8px; }
+        h1 span { color: #22c55e; }
+        .subtitle { color: #71717a; margin-bottom: 24px; font-size: 0.95rem; }
+        
+        /* Stats Row */
+        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+        .stat-card { 
+            background: #1a1b23; border-radius: 12px; padding: 16px; text-align: center;
+            border: 1px solid #27272a;
+        }
+        .stat-card .number { font-size: 2rem; font-weight: 700; }
+        .stat-card .label { font-size: 0.8rem; color: #71717a; margin-top: 4px; }
+        .stat-card.green .number { color: #22c55e; }
+        .stat-card.blue .number { color: #3b82f6; }
+        .stat-card.yellow .number { color: #eab308; }
+        .stat-card.purple .number { color: #a855f7; }
+        
+        /* Add Form */
+        .add-form { 
+            background: #1a1b23; border-radius: 12px; padding: 20px; margin-bottom: 24px;
+            border: 1px solid #27272a;
+        }
+        .add-form h2 { font-size: 1.1rem; margin-bottom: 12px; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr 1fr auto; gap: 10px; align-items: end; }
+        .form-group label { display: block; font-size: 0.8rem; color: #71717a; margin-bottom: 4px; }
+        .form-group input, .form-group select { 
+            width: 100%; padding: 10px 12px; background: #0f1117; border: 1px solid #3f3f46;
+            border-radius: 8px; color: #e4e4e7; font-size: 0.9rem;
+        }
+        .form-group input:focus, .form-group select:focus { outline: none; border-color: #22c55e; }
+        .btn-add { 
+            padding: 10px 20px; background: #22c55e; color: #000; border: none; border-radius: 8px;
+            font-weight: 600; cursor: pointer; font-size: 0.9rem; white-space: nowrap;
+        }
+        .btn-add:hover { background: #16a34a; }
+        
+        /* Table */
+        .table-wrap { 
+            background: #1a1b23; border-radius: 12px; border: 1px solid #27272a; overflow: hidden;
+        }
+        .table-header { padding: 16px 20px; border-bottom: 1px solid #27272a; display: flex; justify-content: space-between; align-items: center; }
+        .table-header h2 { font-size: 1.1rem; }
+        
+        table { width: 100%; border-collapse: collapse; }
+        thead th { 
+            padding: 12px 16px; text-align: left; font-size: 0.75rem; color: #71717a;
+            text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid #27272a;
+        }
+        tbody td { padding: 12px 16px; border-bottom: 1px solid #1e1e26; font-size: 0.9rem; }
+        tbody tr:hover { background: #1e1f2a; }
+        
+        .status-badge { 
+            padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;
+            display: inline-block;
+        }
+        .status-lead { background: #422006; color: #f59e0b; }
+        .status-signed { background: #052e16; color: #22c55e; }
+        .status-passed { background: #1c1917; color: #78716c; }
+        .status-contacted { background: #172554; color: #3b82f6; }
+        
+        .reward-toggle { 
+            width: 20px; height: 20px; border-radius: 4px; border: 2px solid #3f3f46;
+            background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            color: #22c55e; font-size: 14px;
+        }
+        .reward-toggle.checked { background: #22c55e; border-color: #22c55e; color: #000; }
+        
+        .btn-delete { 
+            background: none; border: none; color: #71717a; cursor: pointer; font-size: 1rem;
+            padding: 4px;
+        }
+        .btn-delete:hover { color: #ef4444; }
+        
+        .empty-state { padding: 40px; text-align: center; color: #52525b; }
+        .empty-state .icon { font-size: 2rem; margin-bottom: 8px; }
+        
+        /* Referral Leaderboard */
+        .leaderboard { 
+            background: #1a1b23; border-radius: 12px; padding: 20px; margin-top: 24px;
+            border: 1px solid #27272a;
+        }
+        .leaderboard h2 { font-size: 1.1rem; margin-bottom: 12px; }
+        .leader-item { 
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 0; border-bottom: 1px solid #1e1e26;
+        }
+        .leader-item:last-child { border-bottom: none; }
+        .leader-name { font-weight: 600; }
+        .leader-count { 
+            background: #22c55e20; color: #22c55e; padding: 4px 12px; border-radius: 20px;
+            font-size: 0.85rem; font-weight: 600;
+        }
+        
+        /* Templates Section */
+        .templates { 
+            background: #1a1b23; border-radius: 12px; padding: 20px; margin-top: 24px;
+            border: 1px solid #27272a;
+        }
+        .templates h2 { font-size: 1.1rem; margin-bottom: 12px; }
+        .template-card { 
+            background: #0f1117; border-radius: 8px; padding: 14px; margin-bottom: 10px;
+            border: 1px solid #27272a; position: relative;
+        }
+        .template-card .template-label { font-size: 0.75rem; color: #22c55e; font-weight: 600; margin-bottom: 6px; }
+        .template-card .template-text { font-size: 0.85rem; line-height: 1.5; color: #a1a1aa; }
+        .btn-copy { 
+            position: absolute; top: 12px; right: 12px; background: #27272a; border: none;
+            color: #e4e4e7; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.75rem;
+        }
+        .btn-copy:hover { background: #3f3f46; }
+        .btn-copy.copied { background: #22c55e; color: #000; }
+        
+        /* Back link */
+        .back-link { 
+            display: inline-block; margin-bottom: 16px; color: #71717a; text-decoration: none;
+            font-size: 0.85rem;
+        }
+        .back-link:hover { color: #e4e4e7; }
+        
+        @media (max-width: 640px) {
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .form-row { grid-template-columns: 1fr; }
+            .container { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Dashboard</a>
+        <h1>🤝 <span>Good Neighbor</span> Referral Tracker</h1>
+        <p class="subtitle">Track referrals, reward customers, grow the pack. Free week for referrers, free cleanup + $10 off for new signups.</p>
+        
+        <div class="stats">
+            <div class="stat-card green">
+                <div class="number" id="stat-total">0</div>
+                <div class="label">Total Referrals</div>
+            </div>
+            <div class="stat-card blue">
+                <div class="number" id="stat-signed">0</div>
+                <div class="label">Signed Up</div>
+            </div>
+            <div class="stat-card yellow">
+                <div class="number" id="stat-pending">0</div>
+                <div class="label">Pending</div>
+            </div>
+            <div class="stat-card purple">
+                <div class="number" id="stat-revenue">$0</div>
+                <div class="label">Est. Annual Revenue</div>
+            </div>
+        </div>
+        
+        <div class="add-form">
+            <h2>➕ Add Referral</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Referrer (Existing Customer)</label>
+                    <input type="text" id="input-referrer" placeholder="e.g., Sarah M.">
+                </div>
+                <div class="form-group">
+                    <label>Referred Person</label>
+                    <input type="text" id="input-referred" placeholder="e.g., Mike next door">
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="input-status">
+                        <option value="lead">Lead</option>
+                        <option value="contacted">Contacted</option>
+                        <option value="signed">Signed Up</option>
+                        <option value="passed">Passed</option>
+                    </select>
+                </div>
+                <button class="btn-add" onclick="addReferral()">Add</button>
+            </div>
+        </div>
+        
+        <div class="table-wrap">
+            <div class="table-header">
+                <h2>📋 Referral Log</h2>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Referrer</th>
+                        <th>Referred</th>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Reward</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="referral-body">
+                </tbody>
+            </table>
+            <div class="empty-state" id="empty-state">
+                <div class="icon">🐕</div>
+                <p>No referrals yet. Text your customers and watch this fill up!</p>
+            </div>
+        </div>
+        
+        <div class="leaderboard" id="leaderboard-section" style="display:none;">
+            <h2>🏆 Referral Leaderboard</h2>
+            <div id="leaderboard-list"></div>
+        </div>
+        
+        <div class="templates">
+            <h2>📱 Quick Text Templates (Tap to Copy)</h2>
+            
+            <div class="template-card">
+                <div class="template-label">THE ASK</div>
+                <div class="template-text">Hey [NAME]! Quick question — do any of your neighbors have dogs? 🐕 I'm running a spring special: if you refer a friend/neighbor who signs up, YOU get a free week of service and THEY get their first cleanup free + $10 off their first month. Just have them text me and mention your name!</div>
+                <button class="btn-copy" onclick="copyTemplate(this)">Copy</button>
+            </div>
+            
+            <div class="template-card">
+                <div class="template-label">THE CASUAL DROP</div>
+                <div class="template-text">Hey [NAME]! Spring's here and I'm picking up a few new yards in your area. Know anyone nearby who'd want their yard cleaned up? I'll hook you up with a free week if they sign up. Just have them hit me up! 🐕💩</div>
+                <button class="btn-copy" onclick="copyTemplate(this)">Copy</button>
+            </div>
+            
+            <div class="template-card">
+                <div class="template-label">POST-SERVICE</div>
+                <div class="template-text">Hey [NAME], just finished up your yard — looking good! 👍 BTW if any of your neighbors want in on weekly service, I'm doing a referral deal this spring: free week for you, free first cleanup for them. Just have them text me!</div>
+                <button class="btn-copy" onclick="copyTemplate(this)">Copy</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const STORAGE_KEY = 'tidytails_referrals';
+        
+        function loadReferrals() {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        }
+        
+        function saveReferrals(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+        
+        function addReferral() {
+            const referrer = document.getElementById('input-referrer').value.trim();
+            const referred = document.getElementById('input-referred').value.trim();
+            const status = document.getElementById('input-status').value;
+            
+            if (!referrer || !referred) return;
+            
+            const data = loadReferrals();
+            data.push({
+                id: Date.now(),
+                referrer,
+                referred,
+                status,
+                date: new Date().toISOString().split('T')[0],
+                rewardGiven: false
+            });
+            saveReferrals(data);
+            
+            document.getElementById('input-referrer').value = '';
+            document.getElementById('input-referred').value = '';
+            document.getElementById('input-status').value = 'lead';
+            
+            render();
+        }
+        
+        function updateStatus(id, newStatus) {
+            const data = loadReferrals();
+            const item = data.find(r => r.id === id);
+            if (item) item.status = newStatus;
+            saveReferrals(data);
+            render();
+        }
+        
+        function toggleReward(id) {
+            const data = loadReferrals();
+            const item = data.find(r => r.id === id);
+            if (item) item.rewardGiven = !item.rewardGiven;
+            saveReferrals(data);
+            render();
+        }
+        
+        function deleteReferral(id) {
+            const data = loadReferrals().filter(r => r.id !== id);
+            saveReferrals(data);
+            render();
+        }
+        
+        function copyTemplate(btn) {
+            const text = btn.parentElement.querySelector('.template-text').textContent;
+            navigator.clipboard.writeText(text);
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        }
+        
+        function render() {
+            const data = loadReferrals();
+            const tbody = document.getElementById('referral-body');
+            const empty = document.getElementById('empty-state');
+            
+            // Stats
+            const signed = data.filter(r => r.status === 'signed').length;
+            const pending = data.filter(r => r.status === 'lead' || r.status === 'contacted').length;
+            document.getElementById('stat-total').textContent = data.length;
+            document.getElementById('stat-signed').textContent = signed;
+            document.getElementById('stat-pending').textContent = pending;
+            document.getElementById('stat-revenue').textContent = '$' + (signed * 840).toLocaleString();
+            
+            if (data.length === 0) {
+                tbody.innerHTML = '';
+                empty.style.display = 'block';
+            } else {
+                empty.style.display = 'none';
+                tbody.innerHTML = data.sort((a, b) => b.id - a.id).map(r => `
+                    <tr>
+                        <td><strong>${r.referrer}</strong></td>
+                        <td>${r.referred}</td>
+                        <td>${r.date}</td>
+                        <td>
+                            <select onchange="updateStatus(${r.id}, this.value)" style="background:#0f1117;border:1px solid #3f3f46;color:#e4e4e7;padding:4px 8px;border-radius:6px;font-size:0.8rem;">
+                                <option value="lead" ${r.status==='lead'?'selected':''}>🟡 Lead</option>
+                                <option value="contacted" ${r.status==='contacted'?'selected':''}>🔵 Contacted</option>
+                                <option value="signed" ${r.status==='signed'?'selected':''}>🟢 Signed Up</option>
+                                <option value="passed" ${r.status==='passed'?'selected':''}>⚫ Passed</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="reward-toggle ${r.rewardGiven?'checked':''}" onclick="toggleReward(${r.id})">
+                                ${r.rewardGiven ? '✓' : ''}
+                            </button>
+                        </td>
+                        <td><button class="btn-delete" onclick="deleteReferral(${r.id})">×</button></td>
+                    </tr>
+                `).join('');
+            }
+            
+            // Leaderboard
+            const leaderSection = document.getElementById('leaderboard-section');
+            const leaderList = document.getElementById('leaderboard-list');
+            if (data.length > 0) {
+                const counts = {};
+                data.forEach(r => { counts[r.referrer] = (counts[r.referrer] || 0) + 1; });
+                const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+                leaderSection.style.display = 'block';
+                leaderList.innerHTML = sorted.map(([name, count], i) => `
+                    <div class="leader-item">
+                        <span class="leader-name">${i === 0 ? '👑' : '🐕'} ${name}</span>
+                        <span class="leader-count">${count} referral${count > 1 ? 's' : ''}</span>
+                    </div>
+                `).join('');
+            } else {
+                leaderSection.style.display = 'none';
+            }
+        }
+        
+        render();
+    </script>
+</body>
+</html>
