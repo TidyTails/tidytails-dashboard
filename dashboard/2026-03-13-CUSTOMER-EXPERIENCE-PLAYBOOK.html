@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Experience Playbook | Tidy Tails</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            line-height: 1.6;
+            -webkit-text-size-adjust: 100%;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a3a5c, #0d5a7a);
+            padding: 32px 20px;
+            text-align: center;
+        }
+        
+        .header h1 { font-size: 24px; color: #fff; margin-bottom: 6px; }
+        .header .subtitle { color: rgba(255,255,255,0.8); font-size: 14px; }
+        .header .tag {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #fff;
+            margin-top: 10px;
+        }
+        
+        .container { max-width: 600px; margin: 0 auto; padding: 16px; }
+        
+        /* Priority Banner */
+        .priority-banner {
+            background: linear-gradient(135deg, #2d1b00, #4a2800);
+            border: 1px solid #ff9500;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+        }
+        .priority-banner h3 { color: #ff9500; font-size: 16px; margin-bottom: 8px; }
+        .priority-banner .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,149,0,0.15);
+        }
+        .priority-banner .step:last-child { border-bottom: none; }
+        .priority-banner .step-num {
+            background: #ff9500;
+            color: #000;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        .priority-banner .step-text { font-size: 14px; color: #e0e0e0; }
+        .priority-banner .step-time { color: #ff9500; font-size: 12px; font-weight: 600; }
+        
+        /* Phase Cards */
+        .phase {
+            background: #141414;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            margin: 16px 0;
+            overflow: hidden;
+        }
+        
+        .phase-header {
+            padding: 14px 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .phase-header:active { background: rgba(255,255,255,0.03); }
+        
+        .phase-title {
+            font-size: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .phase-arrow {
+            color: #666;
+            transition: transform 0.2s;
+            font-size: 18px;
+        }
+        
+        .phase.open .phase-arrow { transform: rotate(90deg); }
+        
+        .phase-content {
+            display: none;
+            padding: 0 16px 16px;
+        }
+        
+        .phase.open .phase-content { display: block; }
+        
+        /* Message Templates */
+        .msg-template {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 10px 0;
+            position: relative;
+        }
+        
+        .msg-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #4a9eff;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        
+        .msg-text {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #ccc;
+            white-space: pre-wrap;
+        }
+        
+        .msg-why {
+            font-size: 12px;
+            color: #888;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #2a2a2a;
+            font-style: italic;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #4a9eff;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        .copy-btn.copied {
+            background: #34c759;
+        }
+        
+        /* Wow Factor Table */
+        .wow-table {
+            width: 100%;
+            margin: 12px 0;
+        }
+        
+        .wow-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #1f1f1f;
+        }
+        
+        .wow-row:last-child { border-bottom: none; }
+        
+        .wow-item { flex: 1; font-size: 14px; }
+        .wow-cost { color: #34c759; font-size: 13px; font-weight: 600; width: 80px; text-align: right; }
+        .wow-stars { width: 70px; text-align: right; font-size: 12px; }
+        
+        /* Shortcuts Section */
+        .shortcut-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin: 12px 0;
+        }
+        
+        .shortcut-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        
+        .shortcut-code {
+            font-family: 'SF Mono', 'Fira Code', monospace;
+            background: #0d3b0d;
+            color: #34c759;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+        
+        .shortcut-desc {
+            font-size: 12px;
+            color: #999;
+        }
+        
+        /* ROI Section */
+        .roi-card {
+            background: linear-gradient(135deg, #0d2b1a, #1a3d2a);
+            border: 1px solid #34c759;
+            border-radius: 12px;
+            padding: 16px;
+            margin: 16px 0;
+            text-align: center;
+        }
+        
+        .roi-card h3 { color: #34c759; font-size: 18px; margin-bottom: 12px; }
+        
+        .roi-stat {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(52,199,89,0.15);
+        }
+        
+        .roi-stat:last-child { border-bottom: none; }
+        .roi-label { font-size: 14px; color: #aaa; }
+        .roi-value { font-size: 14px; font-weight: 700; color: #34c759; }
+        
+        /* Checklist */
+        .checklist { margin: 12px 0; }
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #1f1f1f;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .check-item:last-child { border-bottom: none; }
+        .check-box {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #4a9eff;
+            border-radius: 6px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+        .check-item.done .check-box {
+            background: #4a9eff;
+            color: #fff;
+        }
+        .check-item.done .check-label {
+            text-decoration: line-through;
+            color: #666;
+        }
+        .check-label { font-size: 14px; }
+        .check-when { font-size: 11px; color: #888; display: block; }
+
+        /* Section headers */
+        .section-note {
+            font-size: 13px;
+            color: #888;
+            margin: 8px 0 12px;
+            line-height: 1.5;
+        }
+
+        .stolen-from {
+            display: inline-block;
+            background: rgba(255,149,0,0.12);
+            color: #ff9500;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .phase-color-1 .phase-header { border-left: 3px solid #4a9eff; }
+        .phase-color-2 .phase-header { border-left: 3px solid #34c759; }
+        .phase-color-3 .phase-header { border-left: 3px solid #ff9500; }
+        .phase-color-4 .phase-header { border-left: 3px solid #af52de; }
+        .phase-color-5 .phase-header { border-left: 3px solid #ff2d55; }
+
+        .footer {
+            text-align: center;
+            padding: 24px 16px;
+            color: #555;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🐕 Customer Experience Playbook</h1>
+    <p class="subtitle">The "They'll Never Leave" Service System</p>
+    <span class="tag">Tap any section to expand • Tap templates to copy</span>
+</div>
+
+<div class="container">
+
+    <!-- PRIORITY: DO THIS WEEKEND -->
+    <div class="priority-banner">
+        <h3>⚡ START THIS WEEKEND (15 min)</h3>
+        <div class="checklist" id="weekend-checklist">
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div>
+                    <span class="check-label">Set up text shortcuts on phone</span>
+                    <span class="check-when">Settings > General > Keyboard > Text Replacement</span>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div>
+                    <span class="check-label">Send on-my-way texts starting Monday</span>
+                    <span class="check-when">Every customer, every visit — no exceptions</span>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div>
+                    <span class="check-label">Send "all done" texts after every visit</span>
+                    <span class="check-when">Within 5 min of finishing — use dog's name</span>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div>
+                    <span class="check-label">Buy bag of dog treats ($5 at Walmart)</span>
+                    <span class="check-when">Leave one at gate/door after each visit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHASE 1: PRE-SERVICE -->
+    <div class="phase phase-color-1">
+        <div class="phase-header" onclick="togglePhase(this.parentElement)">
+            <span class="phase-title">📍 Phase 1: Pre-Service</span>
+            <span class="phase-arrow">›</span>
+        </div>
+        <div class="phase-content">
+            <p class="section-note">Morning of service day — set expectations before you arrive</p>
+
+            <div class="msg-template">
+                <div class="msg-label">Day-Before Reminder (new customers, first 3 visits)</div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text" id="pre1">Hey [NAME]! 👋 Just a heads up — Tidy Tails is scheduled for your yard tomorrow. Anything I should know? (gate code changes, new dog, etc.) See you then! - TJ</div>
+                <div class="msg-why">Catches gate code changes, shows professionalism, builds trust early</div>
+            </div>
+
+            <div class="msg-template">
+                <div class="msg-label">On-My-Way Text <span class="stolen-from">Stolen from Doggy Doods</span></div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text" id="pre2">🐕 On my way to your place! Should be there in about 15 min.</div>
+                <div class="msg-why">Customers LOVE this. Lets them put dogs inside, shows reliability, creates a touchpoint</div>
+            </div>
+
+            <div class="msg-template">
+                <div class="msg-label">On-My-Way Short (for regulars)</div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text" id="pre3">🐕 Headed your way! ~15 min</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHASE 2: DURING SERVICE -->
+    <div class="phase phase-color-2">
+        <div class="phase-header" onclick="togglePhase(this.parentElement)">
+            <span class="phase-title">📸 Phase 2: During Service</span>
+            <span class="phase-arrow">›</span>
+        </div>
+        <div class="phase-content">
+            <p class="section-note">While you're on-site — document and observe</p>
+
+            <div class="msg-template">
+                <div class="msg-label">📸 Gate Photo Protocol <span class="stolen-from">Stolen from Doggy Doods</span></div>
+                <div class="msg-text">AFTER photo: Take EVERY time (5 seconds, clean yard shot)
+
+BEFORE photo: Only if yard is notably messy (marketing content with permission)
+
+Rules:
+• No identifiable personal items visible
+• Focus on the grass looking clean
+• Natural daylight, quick snap
+• This is your receipt + social proof</div>
+            </div>
+
+            <div class="msg-template">
+                <div class="msg-label">👀 Quick Yard Scan — Things to Notice</div>
+                <div class="msg-text">While scooping, look for:
+• Grass getting long? → mention casually
+• New dog toys? → "Cute toy, [DOG] must love it"
+• Fence damage? → "Noticed a loose board"
+• Holiday decorations? → "Love the setup!"
+• Anything different → shows you pay attention</div>
+                <div class="msg-why">Customers are amazed when providers notice things. Shows you care about their property, not just scooping.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHASE 3: POST-SERVICE -->
+    <div class="phase phase-color-3 open">
+        <div class="phase-header" onclick="togglePhase(this.parentElement)">
+            <span class="phase-title">✅ Phase 3: Post-Service</span>
+            <span class="phase-arrow">›</span>
+        </div>
+        <div class="phase-content">
+            <p class="section-note">Within 5 minutes of finishing — this is the MOST important text you send</p>
+
+            <div class="msg-template">
+                <div class="msg-label">Standard Complete (first month)</div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text">✅ All clean! Your yard's looking great today. [DOG NAME] was [watching from the window/hanging out with me/being adorable]. See you next [DAY]! 🐕</div>
+            </div>
+
+            <div class="msg-template">
+                <div class="msg-label">Short Complete (regulars)</div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text">✅ Done! Yard's clean. See you [DAY]! 🐕</div>
+            </div>
+
+            <div class="msg-template">
+                <div class="msg-label">Complete + Observation</div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text">✅ All clean! Quick heads up — noticed [observation]. Not a big deal but wanted to mention it. See you next [DAY]!</div>
+            </div>
+
+            <div class="msg-template">
+                <div class="msg-label">Complete + Photo (occasional)</div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text">✅ All done! Here's how it looks 👇 See you [DAY]! 🐕</div>
+                <div class="msg-why">Attach the after-photo. Don't do this every time — once every 2-3 weeks keeps it special.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHASE 4: FOLLOW-UP -->
+    <div class="phase phase-color-4">
+        <div class="phase-header" onclick="togglePhase(this.parentElement)">
+            <span class="phase-title">🔄 Phase 4: Follow-Up Sequences</span>
+            <span class="phase-arrow">›</span>
+        </div>
+        <div class="phase-content">
+            <p class="section-note">Strategic touchpoints that prevent cancellations and generate growth</p>
+
+            <div class="msg-template">
+                <div class="msg-label">3-Visit Check-In (after 3rd service)</div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text">Hey [NAME]! Just checking in — how's everything going with the service? Anything I can do differently? I want to make sure [DOG NAME]'s yard stays perfect. 🐕</div>
+                <div class="msg-why">This catches problems BEFORE they become cancellations. If they give ANY feedback, fix it immediately.</div>
+            </div>
+
+            <div class="msg-template">
+                <div class="msg-label">1-Month Review Ask (after ~4 visits)</div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text">Hey [NAME]! Been a month of clean yards — hope [DOG NAME] is enjoying it! 😄
+
+Quick favor — Google reviews are HUGE for small businesses like mine. If you've been happy with the service, would you mind leaving a quick one? Takes 30 seconds:
+
+[GOOGLE REVIEW LINK]
+
+Totally no pressure — I appreciate your business either way! 🙏</div>
+                <div class="msg-why">⚠️ Only ask ONCE. If they don't do it, don't ask again for 3+ months. Nothing kills goodwill faster than nagging.</div>
+            </div>
+
+            <div class="msg-template">
+                <div class="msg-label">2-Month Referral Seed (after ~8 visits)</div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text">By the way — if you know anyone in [THEIR NEIGHBORHOOD] who could use the service, I'm running a deal where you both get $10 off your next month. Just have them mention your name! 🐕</div>
+                <div class="msg-why">Referrals convert 3-5x better than cold leads. Mentioning their specific neighborhood creates urgency.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHASE 5: RETENTION -->
+    <div class="phase phase-color-5">
+        <div class="phase-header" onclick="togglePhase(this.parentElement)">
+            <span class="phase-title">❤️ Phase 5: Retention & Delight</span>
+            <span class="phase-arrow">›</span>
+        </div>
+        <div class="phase-content">
+            <p class="section-note">Seasonal touchpoints + anniversary moments that make cancellation feel impossible</p>
+
+            <div class="msg-template">
+                <div class="msg-label">🌱 Spring Touchpoint</div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text">Hey [NAME]! Spring's here and [DOG NAME]'s yard is about to get a LOT more use. Want me to do a deep clean to kick off the season? I'll throw it in free for monthly customers. 🌱</div>
+            </div>
+
+            <div class="msg-template">
+                <div class="msg-label">☀️ Summer Touchpoint</div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text">Hey [NAME]! Summer's heating up — just a heads up I'll be out a little earlier on [DAY]s to beat the heat. [DOG NAME] and I will both appreciate it! ☀️</div>
+            </div>
+
+            <div class="msg-template">
+                <div class="msg-label">🍂 Fall Touchpoint</div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text">Hey [NAME]! Fall cleanup season — leaves + dog waste = not fun. I'll make sure to get everything even under the leaf piles. Your yard's in good hands! 🍂</div>
+            </div>
+
+            <div class="msg-template">
+                <div class="msg-label">❄️ Winter Touchpoint</div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text">Hey [NAME]! Just a note — I'll still be out every [DAY] rain, snow, or shine. [DOG NAME]'s yard doesn't take holidays! Stay warm out there. ❄️</div>
+            </div>
+
+            <div class="msg-template">
+                <div class="msg-label">🎉 1-Year Anniversary</div>
+                <button class="copy-btn" onclick="copyMsg(this)">Copy</button>
+                <div class="msg-text">Hey [NAME]! Fun fact — today marks 1 YEAR of clean yards for [DOG NAME]! 🎉 That's roughly 52 visits and probably a LOT of... you know what. 😂
+
+Thanks for sticking with Tidy Tails — you're one of my OG customers and I genuinely appreciate it. Here's to year 2! 🐕🎉</div>
+                <div class="msg-why">The Zappos/Chewy move. Nobody in this industry does this. Costs nothing, creates an emotional bond.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WOW FACTORS -->
+    <div class="phase" style="border-color: #ffd60a;">
+        <div class="phase-header" onclick="togglePhase(this.parentElement)" style="border-left: 3px solid #ffd60a;">
+            <span class="phase-title">🏆 "Wow Factor" Upgrades</span>
+            <span class="phase-arrow">›</span>
+        </div>
+        <div class="phase-content">
+            <p class="section-note">Ranked by impact-to-cost ratio</p>
+
+            <h4 style="color: #34c759; margin: 12px 0 8px; font-size: 14px;">💚 Free / Almost Free</h4>
+            <div class="wow-table">
+                <div class="wow-row">
+                    <span class="wow-item">On-my-way texts</span>
+                    <span class="wow-cost">FREE</span>
+                    <span class="wow-stars">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div class="wow-row">
+                    <span class="wow-item">Service complete texts</span>
+                    <span class="wow-cost">FREE</span>
+                    <span class="wow-stars">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div class="wow-row">
+                    <span class="wow-item">After-photos of yards</span>
+                    <span class="wow-cost">FREE</span>
+                    <span class="wow-stars">⭐⭐⭐⭐</span>
+                </div>
+                <div class="wow-row">
+                    <span class="wow-item">Use dog's name every text</span>
+                    <span class="wow-cost">FREE</span>
+                    <span class="wow-stars">⭐⭐⭐⭐</span>
+                </div>
+                <div class="wow-row">
+                    <span class="wow-item">Seasonal touchpoints</span>
+                    <span class="wow-cost">FREE</span>
+                    <span class="wow-stars">⭐⭐⭐⭐</span>
+                </div>
+            </div>
+
+            <h4 style="color: #ff9500; margin: 16px 0 8px; font-size: 14px;">🟠 Cheap ($1-5/customer)</h4>
+            <div class="wow-table">
+                <div class="wow-row">
+                    <span class="wow-item">Dog treats at gate</span>
+                    <span class="wow-cost">~$0.25</span>
+                    <span class="wow-stars">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div class="wow-row">
+                    <span class="wow-item">"Clean Yard" door hanger</span>
+                    <span class="wow-cost">~$0.10</span>
+                    <span class="wow-stars">⭐⭐⭐⭐</span>
+                </div>
+                <div class="wow-row">
+                    <span class="wow-item">Kid stickers (if kids)</span>
+                    <span class="wow-cost">~$0.05</span>
+                    <span class="wow-stars">⭐⭐⭐⭐</span>
+                </div>
+                <div class="wow-row">
+                    <span class="wow-item">Holiday cards</span>
+                    <span class="wow-cost">~$2/yr</span>
+                    <span class="wow-stars">⭐⭐⭐</span>
+                </div>
+            </div>
+
+            <h4 style="color: #af52de; margin: 16px 0 8px; font-size: 14px;">🟣 Investment ($10-50)</h4>
+            <div class="wow-table">
+                <div class="wow-row">
+                    <span class="wow-item">Branded yard sign</span>
+                    <span class="wow-cost">~$5/sign</span>
+                    <span class="wow-stars">⭐⭐⭐⭐⭐</span>
+                </div>
+                <div class="wow-row">
+                    <span class="wow-item">Magnetic car sign</span>
+                    <span class="wow-cost">~$30</span>
+                    <span class="wow-stars">⭐⭐⭐⭐</span>
+                </div>
+                <div class="wow-row">
+                    <span class="wow-item">Branded polo shirt</span>
+                    <span class="wow-cost">~$20</span>
+                    <span class="wow-stars">⭐⭐⭐⭐</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PHONE SHORTCUTS -->
+    <div class="phase" style="border-color: #30d158;">
+        <div class="phase-header" onclick="togglePhase(this.parentElement)" style="border-left: 3px solid #30d158;">
+            <span class="phase-title">📱 Phone Text Shortcuts</span>
+            <span class="phase-arrow">›</span>
+        </div>
+        <div class="phase-content">
+            <p class="section-note">iPhone: Settings > General > Keyboard > Text Replacement</p>
+            <div class="shortcut-grid">
+                <div class="shortcut-card">
+                    <span class="shortcut-code">omw1</span>
+                    <span class="shortcut-desc">Full on-my-way message</span>
+                </div>
+                <div class="shortcut-card">
+                    <span class="shortcut-code">omw2</span>
+                    <span class="shortcut-desc">Short on-my-way</span>
+                </div>
+                <div class="shortcut-card">
+                    <span class="shortcut-code">done1</span>
+                    <span class="shortcut-desc">Full service complete</span>
+                </div>
+                <div class="shortcut-card">
+                    <span class="shortcut-code">done2</span>
+                    <span class="shortcut-desc">Short complete</span>
+                </div>
+                <div class="shortcut-card">
+                    <span class="shortcut-code">rev1</span>
+                    <span class="shortcut-desc">Review request</span>
+                </div>
+                <div class="shortcut-card">
+                    <span class="shortcut-code">ref1</span>
+                    <span class="shortcut-desc">Referral seed</span>
+                </div>
+            </div>
+            <p class="section-note" style="margin-top: 12px;">⏱ 5 min setup → saves 2-3 min per customer per visit → 16-24 min/week saved with 8 customers</p>
+        </div>
+    </div>
+
+    <!-- ROI -->
+    <div class="roi-card">
+        <h3>💰 Projected ROI</h3>
+        <div class="roi-stat">
+            <span class="roi-label">Setup Cost</span>
+            <span class="roi-value">~$0</span>
+        </div>
+        <div class="roi-stat">
+            <span class="roi-label">Setup Time</span>
+            <span class="roi-value">15 min</span>
+        </div>
+        <div class="roi-stat">
+            <span class="roi-label">Reviews (month 1)</span>
+            <span class="roi-value">+4 Google reviews</span>
+        </div>
+        <div class="roi-stat">
+            <span class="roi-label">Referrals (month 2)</span>
+            <span class="roi-value">+2 warm leads</span>
+        </div>
+        <div class="roi-stat">
+            <span class="roi-label">Retention Improvement</span>
+            <span class="roi-value">80% → 95%</span>
+        </div>
+        <div class="roi-stat">
+            <span class="roi-label">New Revenue (3 months)</span>
+            <span class="roi-value">+$210-350/mo</span>
+        </div>
+    </div>
+
+    <div class="footer">
+        🐕 Tidy Tails CX Playbook • March 13, 2026<br>
+        Built by Franklin • Tactics stolen from the best in the game
+    </div>
+
+</div>
+
+<script>
+function togglePhase(el) {
+    el.classList.toggle('open');
+}
+
+function toggleCheck(el) {
+    el.classList.toggle('done');
+    const box = el.querySelector('.check-box');
+    box.textContent = el.classList.contains('done') ? '✓' : '';
+    
+    // Save state
+    const items = document.querySelectorAll('#weekend-checklist .check-item');
+    const states = Array.from(items).map(i => i.classList.contains('done'));
+    try { localStorage.setItem('tt-cx-checklist', JSON.stringify(states)); } catch(e) {}
+}
+
+function copyMsg(btn) {
+    const template = btn.closest('.msg-template');
+    const text = template.querySelector('.msg-text').textContent;
+    
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => {
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.textContent = 'Copy';
+                btn.classList.remove('copied');
+            }, 1500);
+        });
+    } else {
+        // Fallback
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = 'Copy';
+            btn.classList.remove('copied');
+        }, 1500);
+    }
+}
+
+// Restore checklist state
+try {
+    const saved = JSON.parse(localStorage.getItem('tt-cx-checklist') || '[]');
+    const items = document.querySelectorAll('#weekend-checklist .check-item');
+    saved.forEach((done, i) => {
+        if (done && items[i]) {
+            items[i].classList.add('done');
+            items[i].querySelector('.check-box').textContent = '✓';
+        }
+    });
+} catch(e) {}
+</script>
+
+</body>
+</html>

@@ -1269,3 +1269,40 @@ Each page has: unique title, meta description, canonical URL, OG tags, Schema.or
 - `memory/competitive-intel.md` — Updated master file
 
 **Rotation:** 🔍 Research — Competitive Intelligence
+
+### 4:05 PM — 🎯 CUSTOMER EXPERIENCE PLAYBOOK — The "They'll Never Leave" Service System
+**Task:** Build a comprehensive customer experience workflow with copy-paste templates for every service touchpoint
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 4 PM Friday — perfect time for a strategic system TJ can implement starting Monday
+- Competitive intel (completed 3 PM today) revealed Doggy Doods has ELITE CX (gate photos, on-my-way texts, kid stickers)
+- Tidy Tails has 0 Google reviews and 0 search visibility — reviews fix this
+- Better CX = higher retention = more referrals = organic growth toward 25-30 customers
+- This costs $0 to implement and takes 15 minutes to set up
+
+**What I Built:**
+1. **5-phase service visit workflow** — Pre-Service → During Service → Post-Service → Follow-Up → Retention
+2. **12 copy-paste text templates** — on-my-way, service complete, 3-visit check-in, review request, referral seed, 4 seasonal touchpoints, anniversary
+3. **Phone text shortcut system** — 6 shortcuts (omw1, omw2, done1, done2, rev1, ref1) that save 16-24 min/week
+4. **"Wow Factor" upgrade matrix** — 14 tactics ranked by cost vs impact, from free to $30
+5. **Implementation priority checklist** — what to do this weekend, week 1, week 2, month 1
+6. **ROI projection** — conservatively 3-5 new customers in 3 months from CX alone
+
+**Key Tactics Stolen From Competitors:**
+- Doggy Doods: on-my-way texts, gate photos, kid stickers
+- DoodyCalls: post-service sequence, door hangers
+- Chewy/Zappos: anniversary recognition, emotional touchpoints
+
+**Interactive Dashboard Features:**
+- Tap-to-expand phases
+- One-click copy on every template
+- Weekend checklist with saved state
+- Wow factor comparison table
+- ROI card with projections
+
+**Files:**
+- `tidy-tails/operations/2026-03-13-CUSTOMER-EXPERIENCE-PLAYBOOK.md` — Full playbook
+- `dashboard/2026-03-13-CUSTOMER-EXPERIENCE-PLAYBOOK.html` — Interactive mobile dashboard
+
+**Rotation:** 🎯 Operations — Customer Experience System
