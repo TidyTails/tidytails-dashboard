@@ -1,19 +1,21 @@
 # Competitive Intelligence - St. Louis Pet Waste Removal
 
-## Last Updated: 2026-02-22 @ 7:05 PM (Verified by Franklin)
+## Last Updated: 2026-03-13 @ 11:15 PM (Search Visibility Audit)
 
 ---
 
-## 🚨 MARKET WINDOW: 3 LOCAL COMPETITORS NOW DOWN
+## 🚨 MARKET UPDATE: COMPETITOR STATUS CHANGED
 
-| Competitor | Status | Verified |
+| Competitor | Previous Status | Current Status (Mar 13) |
 |------------|--------|----------|
-| **Pawfect Waste Solutions** | 404 - DEAD | Feb 22, 7 PM |
-| **Scoop Soldiers STL** | 404 - Page gone | Feb 22, 7 PM |
-| **Fresh Paws** | Squarespace EXPIRED | Feb 22, 7 PM |
+| **Pawfect Waste Solutions** | 404 - DEAD | Still 404 ✅ Dead |
+| **Scoop Soldiers STL** | 404 - Page gone | ⚠️ BACK — dedicated STL landing page, ranking #1 for "pooper scooper St. Louis" |
+| **Fresh Paws** | Squarespace EXPIRED | Still dead (DNS not resolving) ✅ |
+| **Doggy Doods** | Unknown | 🆕 NEW — St. Charles County. "Premium Dog Yard Maintenance." Run by Eugene. Great reviews. In TJ's expansion zone! |
+| **Little Stinkers of MO** | Known | ⚠️ GROWING — O'Fallon city pages, offers deodorizing + litter box + pet waste stations |
 
-**THE OPPORTUNITY:**
-Three local competitors have exited or failed. Only active local competition is **Poop 2 Scoop**. National franchises (DoodyCalls, POOP 911) are more expensive and less personal.
+**THE SITUATION:**
+Market is more competitive than Feb 22. Scoop Soldiers came back, Doggy Doods is new, Little Stinkers is expanding. Tidy Tails has ZERO search visibility while competitors are entrenching.
 
 ---
 

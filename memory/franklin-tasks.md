@@ -4,7 +4,42 @@
 
 ---
 
-## March 12, 2026 (Thursday)
+## March 12-13, 2026 (Thursday Night)
+
+### 11:04 PM — 🔍 GOOGLE SEARCH VISIBILITY AUDIT — Hard Data on Our Invisibility
+**Task:** Live search audit across 5 key terms to document exactly where Tidy Tails shows up (or doesn't) in Google results, identify new competitors, and create prioritized action list
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- Google indexing has been at 0 pages for 7+ days
+- We had no concrete data on search positioning
+- Previous competitor checks focused on their sites, not search rankings
+- 11 PM = perfect for web research
+
+**What I Did:**
+1. Searched 5 key terms: "pet waste removal St. Louis MO", "pooper scooper service St. Louis", "tidytailsstl.com", "Tidy Tails St. Louis dog poop", "dog poop pickup Florissant Ferguson O'Fallon"
+2. Confirmed Tidy Tails has ZERO results for ANY search — including exact domain search
+3. Discovered 2 new competitors (Doggy Doods, confirmed Little Stinkers expansion)
+4. Mapped who ranks where and why (POOP 911 dominates with 6+ results per search)
+5. Identified competitor SEO strategies (city pages, multiple URL patterns, directory listings)
+6. Created prioritized action list with quick wins
+7. Updated competitive-intel.md with new market status
+8. Saved full audit to `dashboard/research/2026-03-13-SEARCH-VISIBILITY-AUDIT.md`
+
+**Key Findings:**
+- tidytailsstl.com is 100% invisible — even searching exact domain returns NOTHING
+- Scoop Soldiers is BACK with dedicated STL page (was 404 in Feb, now #1 for "pooper scooper St. Louis")
+- **Doggy Doods** is NEW — solo operator "Eugene" in St. Charles County, premium positioning, great reviews. Direct threat to TJ's expansion zone
+- POOP 911 has 6+ pages per search because they create multiple URL patterns per city
+- Root cause confirmed: zero external backlinks. Google doesn't know the site exists
+- Directory submission package from March 11 is STILL unused — every day is lost ground
+
+**⚡ Critical Takeaway for TJ:**
+The website is technically excellent. The ONLY missing piece is directory listings + Google Search Console verification. 45 minutes could change everything.
+
+**Rotation:** 🔍 Search Intelligence — Visibility Audit
+
+---
 
 ### 10:05 PM — 🔍 WEBSITE CONVERSION AUDIT — Why tidytailsstl.com Gets Zero Leads
 **Task:** Full conversion audit of tidytailsstl.com — crawl every page, check search visibility, identify why the site isn't generating inbound leads
