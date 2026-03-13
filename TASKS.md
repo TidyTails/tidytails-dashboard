@@ -1,23 +1,26 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-12 08:00 CST*
+*Last updated: 2026-03-13 08:00 CST*
 
 ---
 
 ## 🐕 DOG WASTE (Tidy Tails)
 
 ### 🔥 In Progress
-- [ ] **🚨 Google Indexing — DAY 7, STILL ZERO PAGES** — Checked Mar 12 8AM, `site:tidytailsstl.com` returns 0 on Brave AND Google
-  - Domain age: ~25 days. Technically sound but zero backlinks/directory listings = Google has no external signals
+- [ ] **🚨 Google Indexing — DAY 8, STILL ZERO PAGES** — Checked Mar 13 8AM, `site:tidytailsstl.com` returns 0 on Brave
+  - Domain age: ~26 days. Technically sound but zero backlinks/directory listings = Google has no external signals
+  - 4 broken city pages FIXED overnight (Kirkwood, Webster Groves, Olivette, U City) — all returning 200
+  - Sitemap now has 17 URLs
   - **ROOT CAUSE:** No directory listings beyond GBP/Yelp. Zero backlinks. Google won't prioritize a brand-new domain with no external trust signals.
   - **FIX:** TJ spends 30-45 min submitting to directories (Thumbtack, Nextdoor Business, HomeAdvisor, Angi, Bark, Petworks). Package ready: `dashboard/marketing/directory-listing-package.md`
   - Owner: TJ (30-45 min, one-time)
 
 - [ ] **Spring Marketing Push** — FB group posts, spring-themed content
-  - Status: **3 fresh Thursday posts ready (Mar 12)** + Week 12 posts still available
-  - **TODAY's posts:** `dashboard/marketing/2026-03-12-thursday-posts.md` (3 copy-paste posts, spring angle, free first cleanup offer)
-  - Week 12: `dashboard/campaigns/tidy-tails/2026-03-10-WEEK12-FB-POSTS.md`
-  - GBP posts: `dashboard/campaigns/tidy-tails/2026-03-10-WEEK12-GBP-POSTS.md`
+  - Status: **4 fresh Friday posts ready (Mar 13)** + Weekend Blitz (Mar 14-16) + 2-week content pack (Mar 14-28) + Week 13 calendar (Mar 17-21)
+  - **TODAY's posts:** `dashboard/marketing/2026-03-13-friday-posts.md` (4 posts: community, dog groups, GBP, Nextdoor)
+  - **This weekend:** `dashboard/marketing/2026-03-14-WEEKEND-BLITZ.md` (15-min action plan)
+  - **Next week:** `dashboard/campaigns/tidy-tails/2026-03-13-WEEK13-CONTENT-CALENDAR.md` (St. Patty's Day + First Day of Spring)
+  - **2 weeks out:** `ready-to-post/spring-2026-tidy-tails-content-pack.md` (13 posts, Mar 14-28)
   - Fresh Paws customer grab campaign still ready (Wildwood/Ballwin area)
   - Owner: TJ (posting) + Franklin (content creation)
 
@@ -49,7 +52,10 @@
   - Posts: `dashboard/campaigns/tidy-tails/2026-03-07-SATURDAY-FB-POSTS.md`
 - [ ] **Print door hangers** — Leave on doors while scooping tomorrow (Sunday)
   - Text: `dashboard/campaigns/tidy-tails/2026-03-07-DOOR-HANGER-TEXT.md`
-- [ ] **Text 3 customers for Google reviews** — GBP needs reviews for ranking
+- [ ] **Text 2 customers for Google reviews** — GBP needs reviews for ranking
+  - **NEW: Review request scripts ready** → `dashboard/marketing/review-request-scripts.md`
+  - Copy-paste texts, priority list (Shannon → Amanda → Jody), tips on timing
+  - Goal: 5 reviews by end of March
 - [ ] **Launch referral program** — Scripts ready, just needs announcement
 - [ ] **Top up fal.ai credits** — Need credits for remaining video ads
 - [ ] **List on free platforms** — Thumbtack, Angi, Yelp ads, Nextdoor business, HomeAdvisor, Bark
