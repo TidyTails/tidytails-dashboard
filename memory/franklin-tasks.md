@@ -889,3 +889,38 @@ Each page has: unique title, meta description, canonical URL, OG tags, Schema.or
 - **March 2-4, 2026:** `memory/archive/franklin-tasks-week3-mar2-4.md` (2221 lines)
 - **Week 2 (Feb 24-28):** `memory/archive/franklin-tasks-week2.md`
 - **Week 1 (Feb 17-23):** `memory/archive/franklin-tasks-week1.md`
+
+---
+
+### 4:05 AM — 🌐 4 BROKEN CITY PAGES FIXED — Kirkwood, Webster Groves, Olivette, U City
+**Task:** Create the 4 missing city landing pages identified as BROKEN in the March 12 search intelligence report
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 4 AM — perfect for code/content work, no outreach needed
+- These 4 URLs were serving broken/homepage HTML — confirmed in March 12 audit
+- Kirkwood (#1 target) and Webster Groves (#2 target) are our priority neighborhoods
+- Olivette is TJ's home base area — embarrassing to have that page broken
+- Google can't index pages that literally don't exist as files
+- This directly addresses the #1 growth blocker: website indexing
+
+**What I Did:**
+1. Created `kirkwood.html` — unique content about Downtown Kirkwood, Meacham Park, Adams Ave, Geyer Rd corridor, Kirkwood Park. ZIP 63122.
+2. Created `webster-groves.html` — unique content about Old Webster, Tuxedo Park, Lockwood Ave, Big Bend corridor, Southwest High area. ZIP 63119.
+3. Created `olivette.html` — unique content about Olive Blvd corridor, Dielman Rd, Stacy Park, Indian Meadows. ZIP 63132.
+4. Created `university-city.html` — unique content about The Loop/Delmar, Parkview, University Heights, Heman Park, Ruth Park. ZIP 63130.
+5. Each page has: full LocalBusiness schema markup, geo meta tags, unique neighborhood lists, proper canonical URLs, SMS pre-filled text links
+6. Updated `sitemap.xml` with 4 new URLs (dated 2026-03-13)
+7. Updated `index.html` homepage service areas to link all 15 cities
+8. Updated all 11 existing city page nav sections to cross-link the 4 new pages
+9. Committed and pushed to GitHub (commit `08d2ff9`)
+
+**Impact:**
+- Website now has 15 working city pages (up from 11)
+- Sitemap now lists 22 total URLs (up from 18)
+- All city pages cross-link each other (internal linking = SEO boost)
+- When Google finally crawls, it'll find real pages at these URLs instead of broken duplicates
+- Kirkwood and Webster Groves searches now have a shot at ranking
+
+**Files:** `tidy-tails/website/kirkwood.html`, `webster-groves.html`, `olivette.html`, `university-city.html`
+**Rotation:** 🌐 SEO — Critical Page Fix
