@@ -6,6 +6,40 @@
 
 ## March 13, 2026 (Friday)
 
+### 8:04 AM — 🎯 DEAD COMPETITOR CUSTOMER CAPTURE PLAN — Steal Orphaned Customers for $0
+**Task:** Research dead/dying STL competitors, verify current status via live web crawling, and build an actionable plan to capture their abandoned customers
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 8 AM Friday — TJ wakes up, give him something he can ACT ON in 30 minutes
+- Competitive intel from yesterday showed 3+ competitors dead/dying — but no CAPTURE PLAN existed
+- These are customers who were ALREADY PAYING for service. Zero-cost acquisition.
+- First mover wins. Every day TJ waits, these orphans find someone else or give up.
+
+**What I Built:**
+1. **4 dead/dying competitor profiles** with current status verification (live crawled all sites + social)
+2. **Specific capture tactics per competitor** — Pawfect Waste (100% dead), Fresh Paws (100% dead), Poopy Paws (wounded, Charlie may still operate via phone), DoodyCalls STL (franchise retreat suspected)
+3. **5 ready-to-use scripts** — Nextdoor/FB replies, door hanger copy, apartment cold email, competitor networking call
+4. **Weekend action plan** — Friday (30 min), Saturday (2 hours), Monday (1 hour)
+5. **Apartment complex pet waste station audit** — drive-and-find strategy for unmaintained stations
+6. **Revenue projection** — 6-11 new customers, $1,000-2,200/mo potential from capture alone
+7. **Google Ads quick strike** — $70 budget to capture "pooper scooper STL" searches from Pawfect orphans
+
+**Key Intel Verified (Live March 13):**
+- pooperscooperstl.com (Pawfect) — Still dead, 404
+- wearefreshpaws.com (Fresh Paws) — Still dead, DNS failure
+- poopypaws314.com (Poopy Paws) — Still dead, but Charlie may operate via phone/Nextdoor. FB page has 358 likes, Yelp updated Oct 2025. $20/week flat rate any # dogs.
+- DoodyCalls STL — Page active but still NOT in franchise directory. Phone: (314) 230-8082
+- Poop 2 Scoop confirmed $18/week (vs TJ's $25) — still the price leader
+- Yucko's still operating since 1990, terrible website, M-F only, no public pricing
+
+**The Big Insight:** This isn't about creating demand — it's about CAPTURING demand that already exists. These people were already paying $80-100/month. They didn't stop wanting clean yards. Their provider just died.
+
+**File:** `deliverables/dead-competitor-capture-plan-march2026.md`
+**Rotation:** 🎯 Growth — Dead Competitor Customer Capture
+
+---
+
 ### 7:04 AM — 🤝 REFERRAL PARTNER NETWORK + NEW COMMERCIAL LEADS — The Missing Growth Lever
 **Task:** Research and build a referral partner network (vet clinics, dog daycares, groomers) + find NEW apartment/commercial leads not already on the existing list
 **Result:** ✅ COMPLETED
