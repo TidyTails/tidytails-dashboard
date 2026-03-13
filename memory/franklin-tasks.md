@@ -6,6 +6,42 @@
 
 ## March 13, 2026 (Friday)
 
+### 5:04 PM — 🏠 WEEKEND SHED AD PACK — 6 Weather-Triggered Ads for Peak Marketplace Hours
+**Task:** Create a batch of fresh shed ads optimized for this specific weekend's weather and timing
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- Today's been wall-to-wall Tidy Tails work (7 tasks). TuffShed pipeline has gotten ZERO attention today.
+- Friday 5 PM = people start weekend Marketplace scrolling within hours
+- Saturday is 64° and sunny (peak outdoor browsing), Sunday drops to thunderstorms, Monday 29° with snow — PERFECT weather hooks
+- Existing ad archive has general spring ads but nothing tied to THIS weekend's specific weather
+- Weekend is highest-traffic period for Facebook Marketplace — need fresh content ready to post
+
+**What I Built:**
+1. **6 ready-to-post ads** with specific posting schedule (Saturday 9 AM → Monday 7 AM)
+2. **Each ad matched to a weather moment:**
+   - "64° Saturday" — get outside, come see sheds on a nice day
+   - "70 to Snow" — your stuff's riding STL's weather rollercoaster
+   - "The Weekend Scroll" — self-aware Marketplace humor for Saturday night
+   - "March Man Cave" — tournament watching + dream space
+   - "Before Tornado Season" — storms rolling in, protection angle
+   - "Monday Reality Check" — 29°, car in driveway, "this is the year"
+3. **2 Instagram captions** for @reddshedredemption (Saturday lot photo + Sunday weather story)
+4. **Tariff talking point** for DM conversations (35% lumber tariff + new review opened)
+5. **5 weekend-specific posting tips** (renewal timing, response speed, fresh photos)
+
+**Key Hooks Used:**
+- Real-time STL weather data (NWS forecast pulled live)
+- 35% Canadian lumber tariff urgency (Commerce Dept review opened March 9)
+- TuffShed financing: 0% for 6 months, RTO no credit check, as low as $148/mo
+- Self-aware humor matching TJ's voice (scrolling meta-joke, "kick some tires")
+
+**File:** `deliverables/shed-ads-weekend-march15-16.md`
+**Also Updated:** `memory/ad-copy-archive.md` (Shed-Mar116 through Mar121 added)
+**Rotation:** 🏠 Ad Copy — Shed Weekend Weather Pack
+
+---
+
 ### 1:04 PM — 🏥 VET CLINIC REFERRAL PARTNER LIST — 20 Clinics, 2-Hour Flyer Drop Route
 **Task:** Research all veterinary clinics in TJ's service area and build a complete flyer drop + referral partnership plan
 **Result:** ✅ COMPLETED

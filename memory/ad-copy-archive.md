@@ -4,6 +4,42 @@
 
 ---
 
+## March 13, 2026 — Weekend Weather Pack (5 PM Task)
+
+**Shed-Mar116 - "64° Saturday" (FB Marketplace + Groups)**
+- Hook: 64° Saturday — walk outside, see your garage, have That Thought
+- Key: Weather-triggered, "come kick some tires" soft CTA
+- Used: TBD (Marketplace + Groups Sat 3/15 9 AM)
+
+**Shed-Mar117 - "70 to Snow" (FB Marketplace + Nextdoor)**
+- Hook: STL temp swing 64→70→29° — your stuff's riding that rollercoaster
+- Key: Weather urgency, protection framing, not just storage
+- Used: TBD (Marketplace + Nextdoor Sat 3/15 2 PM)
+
+**Shed-Mar118 - "The Weekend Scroll" (FB Marketplace)**
+- Hook: Self-aware Marketplace humor — "you've seen 47 couches"
+- Key: Saturday night scroll meta-humor, "scrolled this far for a reason"
+- Used: TBD (Marketplace Sat 3/15 6 PM)
+
+**Shed-Mar119 - "March Man Cave" (FB Marketplace + Groups)**
+- Hook: Tournament watching → imagine your OWN space
+- Key: Multi-use reframe (man cave/gym/office/studio), March Madness tie-in
+- Used: TBD (Marketplace + Groups Sun 3/16 10 AM)
+
+**Shed-Mar120 - "Before Tornado Season" (Nextdoor + FB Groups)**
+- Hook: Storms rolling in, tornado season March-June in STL
+- Key: Emotional timing (posted during actual storms), protection angle
+- Used: TBD (Nextdoor + Groups Sun 3/16 12 PM)
+
+**Shed-Mar121 - "Monday Reality Check" (FB Marketplace + Instagram)**
+- Hook: Monday 29° snow, car in driveway because garage is full
+- Key: "This is the year" motivation, fresh week energy
+- Used: TBD (Marketplace + Instagram Mon 3/17 7 AM)
+
+*Archive updated: 2026-03-13 5:04 PM*
+
+---
+
 ## March 12, 2026 — Thursday Mid-March Pack (9 AM Task)
 
 **Shed-Mar112 - "Thursday Thoughts" (FB Marketplace + Groups)**
