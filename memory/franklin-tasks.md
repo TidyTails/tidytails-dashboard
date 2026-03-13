@@ -6,6 +6,35 @@
 
 ## March 13, 2026 (Friday)
 
+### 7:04 AM — 🤝 REFERRAL PARTNER NETWORK + NEW COMMERCIAL LEADS — The Missing Growth Lever
+**Task:** Research and build a referral partner network (vet clinics, dog daycares, groomers) + find NEW apartment/commercial leads not already on the existing list
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 7 AM Friday — TJ might wake up soon, give him something he can ACT ON today
+- Existing commercial leads list is heavy on property management companies (slow to close)
+- NOBODY in STL pet waste market is building referral partnerships with vet clinics/daycares
+- One good referral partner = steady lead flow at zero cost, compounding over time
+- Also found fresh apartment complexes with dog parks NOT on the existing list
+
+**What I Built:**
+1. **7 veterinary clinics** in target neighborhoods (Kirkwood, Webster Groves, Brentwood) — Old Webster Animal Hospital, Kirkwood Animal Hospital, Yorkshire, Webster Groves AH, City Paws, Fox Creek, VEG Brentwood
+2. **7 dog daycares/boarding facilities** with addresses + phone numbers — The Watering Bowl (Brentwood), Dogtopia (Rock Hill), Bauserhaus (Webster/Brentwood/Maplewood border), Silver Maple, No Leash Needed (Kirkwood), Happy Tails, Grateful Pets
+3. **7 NEW apartment complexes** not on existing list — The Barton (229 units, Clayton, dog park + pet spa), Elle on Lockwood (Webster Groves), Arrive Brentwood I & II (Richmond Heights, Trinity PM), Kings Landing (Creve Coeur), Gallery/STL Luxury (multi-property), Encore at Forest Park, The Rail
+4. **2 NEW HOA management companies** — Spectrum Association Management (serves Kirkwood HOAs specifically), Kirkwood South Committee
+5. **Friday action plan** — 3 things TJ can do TODAY in 30 minutes
+6. **Revenue potential calc** — $1,900-4,300/mo from these leads alone
+7. **Pitch scripts** tailored to each business type
+
+**Key Insight:** Everyone else is running ads and cold calling. Nobody is building a referral network with vet clinics and daycares. A single busy vet clinic sees 20-30 dog owners per day. If they mention Tidy Tails to 5%, that's 1-2 warm leads daily. For free. Forever.
+
+**The Barton** in Clayton is potentially the single highest-value apartment lead: 229 luxury units, fenced dog park, pet spa, no weight limit on pets, affluent residents. Phone: (314) 300-6770.
+
+**File:** `deliverables/referral-partner-network-march13.md`
+**Rotation:** 🤝 Growth — Referral Partner Network + New Leads
+
+---
+
 ### 6:04 AM — 🏠 TUFFSHED SPRING SALES BATTLE CARD — Phone-Ready Closer's Toolkit
 **Task:** Build comprehensive sales battle card with live competitor pricing, objection scripts, financing math, and urgency triggers for spring shed sales
 **Result:** ✅ COMPLETED
