@@ -1530,3 +1530,45 @@ Each page has: unique title, meta description, canonical URL, OG tags, Schema.or
 - `tidy-tails/website/sitemap.xml` (updated)
 
 **Rotation:** ✍️ Content — SEO Blog Pack
+
+### 11:04 PM — 🗓️ SPRING PET EVENTS CALENDAR — 14 Events Researched with Scripts & ROI
+**Task:** Research all upcoming spring pet events in St. Louis metro (March-July 2026) and build an actionable event calendar with networking scripts, priority rankings, and ROI projections
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 11 PM Friday — perfect for research that doesn't need outreach
+- Events are the cheapest, highest-density customer acquisition channel available
+- Bark in the Park alone draws 5,000-10,000 dog owners — vendor spots fill up
+- TJ has zero brand awareness — events put him face-to-face with dog owners
+- Registration deadlines are time-sensitive (vendor booths go fast)
+
+**What I Built:**
+1. **14 pet events identified** — March through July 2026
+2. **Priority ranking system** — CRITICAL → HIGH → SHOULD-DO → NICE-TO-DO
+3. **Networking scripts per event type** — adoption events, pet stores, large festivals, event organizers
+4. **One-click copy scripts** on dashboard
+5. **Vendor booth info for Bark in the Park** — contact Cole Imbs: 314-951-1567
+6. **ROI projection** — ~$500 total investment → 8-15 new customers → $560-1,050/month recurring
+7. **Event attendance kit checklist** with persistent state
+
+**Key Events Found:**
+- **Mar 14 (TOMORROW):** Stray Rescue St. Patrick's Day Adoption — FREE
+- **Mar 21:** Mattress Dogzzz Grand Opening in Creve Coeur — affluent area
+- **Mar 28:** Adoption Paw-ty at Crestwood Vet — vet partnership play
+- **Apr 4:** Treats Unleashed Egg Hunt Ladue — #1 referral partner opportunity
+- **Apr 13:** Blues Giveback Game — Stray Rescue booth
+- **Apr 26:** Stray Rescue Day at Busch Stadium — thousands of animal lovers
+- **May 7:** Give STL Day — social media charity tie-in
+- **May 16:** 🏆 BARK IN THE PARK — 5,000-10,000 attendees, Tower Grove Park
+
+**Immediate Actions Added to Task Board:**
+1. Call Cole Imbs (314-951-1567) for Bark in the Park vendor booth
+2. Register for Treats Unleashed Egg Hunt (Apr 4)
+3. Attend Crestwood Vet Paw-ty (Mar 28)
+4. Print 200+ business cards
+
+**Files:**
+- `research/2026-03-13-SPRING-PET-EVENTS-CALENDAR.md` — Full research
+- `dashboard/2026-03-13-SPRING-PET-EVENTS.html` — Interactive dashboard
+
+**Rotation:** 🗓️ Marketing — Event Calendar & Networking

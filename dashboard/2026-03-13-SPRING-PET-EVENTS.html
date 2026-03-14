@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🗓️ Spring Pet Events Calendar — Tidy Tails</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 16px; max-width: 600px; margin: 0 auto; }
+h1 { font-size: 1.5rem; text-align: center; margin-bottom: 4px; }
+.subtitle { text-align: center; color: #888; font-size: 0.85rem; margin-bottom: 20px; }
+
+.hero { background: linear-gradient(135deg, #1a472a 0%, #2d6a4f 100%); border-radius: 16px; padding: 20px; margin-bottom: 20px; text-align: center; }
+.hero h2 { font-size: 1.3rem; color: #95d5b2; margin-bottom: 8px; }
+.hero .stat { font-size: 2.5rem; font-weight: 800; color: #fff; }
+.hero .stat-label { color: #b7e4c7; font-size: 0.85rem; }
+.hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
+.hero-stat { background: rgba(0,0,0,0.2); border-radius: 10px; padding: 12px; }
+.hero-stat .num { font-size: 1.5rem; font-weight: 700; color: #d8f3dc; }
+.hero-stat .lbl { font-size: 0.75rem; color: #95d5b2; }
+
+.urgent { background: linear-gradient(135deg, #7f1d1d, #991b1b); border-radius: 14px; padding: 16px; margin-bottom: 20px; border: 1px solid #ef4444; }
+.urgent h3 { color: #fca5a5; font-size: 1rem; margin-bottom: 10px; }
+.urgent-item { background: rgba(0,0,0,0.3); border-radius: 10px; padding: 12px; margin-bottom: 8px; }
+.urgent-item:last-child { margin-bottom: 0; }
+.urgent-item .action { color: #fef2f2; font-weight: 600; font-size: 0.95rem; }
+.urgent-item .why { color: #fca5a5; font-size: 0.8rem; margin-top: 4px; }
+.phone-link { color: #93c5fd; text-decoration: none; font-weight: 700; font-size: 1.1rem; }
+.phone-link:hover { text-decoration: underline; }
+
+.month-header { font-size: 1.1rem; font-weight: 700; color: #a78bfa; margin: 20px 0 12px; padding-left: 4px; border-left: 3px solid #a78bfa; padding-left: 10px; }
+
+.event-card { background: #1a1a1a; border-radius: 14px; margin-bottom: 12px; overflow: hidden; border: 1px solid #2a2a2a; transition: all 0.2s; }
+.event-card.critical { border-color: #ef4444; }
+.event-card.high { border-color: #f59e0b; }
+.event-card.medium { border-color: #3b82f6; }
+.event-card.low { border-color: #6b7280; }
+
+.event-header { padding: 14px 16px; cursor: pointer; display: flex; align-items: center; gap: 12px; }
+.event-header:active { background: #252525; }
+.event-date { min-width: 48px; text-align: center; }
+.event-date .month { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: #a78bfa; font-weight: 600; }
+.event-date .day { font-size: 1.4rem; font-weight: 800; color: #fff; line-height: 1.1; }
+.event-date .dow { font-size: 0.6rem; color: #888; text-transform: uppercase; }
+.event-info { flex: 1; }
+.event-name { font-weight: 700; font-size: 0.95rem; color: #fff; }
+.event-meta { font-size: 0.75rem; color: #888; margin-top: 3px; }
+.event-meta span { margin-right: 10px; }
+.priority-badge { font-size: 0.6rem; padding: 2px 8px; border-radius: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.priority-badge.critical { background: #7f1d1d; color: #fca5a5; }
+.priority-badge.high { background: #78350f; color: #fcd34d; }
+.priority-badge.medium { background: #1e3a5f; color: #93c5fd; }
+.priority-badge.low { background: #374151; color: #9ca3af; }
+
+.event-details { display: none; padding: 0 16px 16px; border-top: 1px solid #2a2a2a; }
+.event-details.open { display: block; }
+.detail-row { display: flex; gap: 8px; margin-top: 10px; font-size: 0.85rem; }
+.detail-row .label { color: #888; min-width: 70px; }
+.detail-row .value { color: #d0d0d0; }
+.detail-row .value a { color: #93c5fd; text-decoration: none; }
+.script-box { background: #111; border-radius: 10px; padding: 12px; margin-top: 12px; font-size: 0.8rem; color: #a7f3d0; font-style: italic; line-height: 1.5; position: relative; }
+.script-box::before { content: '💬'; position: absolute; top: -8px; left: 8px; font-size: 1rem; }
+.copy-btn { display: inline-block; background: #2563eb; color: white; border: none; padding: 6px 14px; border-radius: 8px; font-size: 0.75rem; cursor: pointer; margin-top: 8px; font-weight: 600; }
+.copy-btn:active { background: #1d4ed8; transform: scale(0.97); }
+
+.checklist { background: #1a1a1a; border-radius: 14px; padding: 16px; margin: 20px 0; border: 1px solid #2a2a2a; }
+.checklist h3 { font-size: 1rem; margin-bottom: 12px; color: #a78bfa; }
+.check-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid #1f1f1f; font-size: 0.85rem; }
+.check-item:last-child { border-bottom: none; }
+.check-item input[type="checkbox"] { margin-top: 3px; accent-color: #22c55e; width: 18px; height: 18px; }
+.check-item label { color: #d0d0d0; cursor: pointer; }
+
+.roi-card { background: linear-gradient(135deg, #1a2744 0%, #1e3a5f 100%); border-radius: 14px; padding: 20px; margin: 20px 0; }
+.roi-card h3 { color: #93c5fd; margin-bottom: 12px; }
+.roi-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem; }
+.roi-row:last-child { border-bottom: none; }
+.roi-row .label { color: #94a3b8; }
+.roi-row .value { color: #fff; font-weight: 600; }
+.roi-row .value.green { color: #4ade80; }
+.roi-row .value.red { color: #f87171; }
+
+.footer { text-align: center; color: #555; font-size: 0.75rem; margin-top: 30px; padding: 16px; }
+</style>
+</head>
+<body>
+
+<h1>🗓️ Spring Pet Events Calendar</h1>
+<p class="subtitle">March — July 2026 | St. Louis Metro</p>
+
+<div class="hero">
+  <h2>Events = Customers</h2>
+  <div class="stat">14</div>
+  <div class="stat-label">Dog Owner Events Found</div>
+  <div class="hero-grid">
+    <div class="hero-stat">
+      <div class="num">15,000+</div>
+      <div class="lbl">Total Attendees</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">~$500</div>
+      <div class="lbl">Total Cost</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">8-15</div>
+      <div class="lbl">Est. New Customers</div>
+    </div>
+    <div class="hero-stat">
+      <div class="num">$560-1K</div>
+      <div class="lbl">Monthly Rev Increase</div>
+    </div>
+  </div>
+</div>
+
+<div class="urgent">
+  <h3>🚨 DO THIS WEEK</h3>
+  <div class="urgent-item">
+    <div class="action">📞 Call Cole Imbs for Bark in the Park Vendor Booth</div>
+    <a href="tel:3149511567" class="phone-link">📱 314-951-1567</a>
+    <div class="why">Largest pet festival in the Midwest. 5,000-10,000 attendees. Spots FILL UP.</div>
+  </div>
+  <div class="urgent-item">
+    <div class="action">📅 Mark Calendar: Crestwood Vet Paw-ty (Mar 28)</div>
+    <div class="why">Adoption event AT A VET CLINIC = vet partnership opportunity + new adopters who need poop service</div>
+  </div>
+  <div class="urgent-item">
+    <div class="action">🖨️ Print 200 business cards</div>
+    <div class="why">You'll need them for every event. Vistaprint: 250 for $15 with 3-day delivery.</div>
+  </div>
+</div>
+
+<!-- MARCH EVENTS -->
+<div class="month-header">📅 MARCH</div>
+
+<div class="event-card medium" onclick="toggleDetails(this)">
+  <div class="event-header">
+    <div class="event-date">
+      <div class="month">Mar</div>
+      <div class="day">14</div>
+      <div class="dow">Sat</div>
+    </div>
+    <div class="event-info">
+      <div class="event-name">☘️ St. Patrick's Day Adoption Event</div>
+      <div class="event-meta"><span>🕐 2-5 PM</span><span>💰 Free</span></div>
+    </div>
+    <span class="priority-badge medium">Tomorrow</span>
+  </div>
+  <div class="event-details">
+    <div class="detail-row"><span class="label">📍 Where:</span><span class="value">Stray Rescue Shelter</span></div>
+    <div class="detail-row"><span class="label">👥 Crowd:</span><span class="value">50-100 new dog adopters</span></div>
+    <div class="detail-row"><span class="label">🎯 Why:</span><span class="value">New adopters = future poop cleanup customers. They don't know what they're in for yet.</span></div>
+    <div class="detail-row"><span class="label">🔗 Link:</span><span class="value"><a href="https://www.strayrescue.org/adoption-event/stpaddys-shelter-adoption-event" target="_blank">Event Details</a></span></div>
+    <div class="script-box">
+      "Congrats on the new family member! What kind of dog? ... That's awesome. I'm TJ with Tidy Tails — we do weekly yard cleanup so you never have to deal with it. First cleanup's free. Here's my card!"
+    </div>
+    <button class="copy-btn" onclick="event.stopPropagation(); copyScript(this)">📋 Copy Script</button>
+  </div>
+</div>
+
+<div class="event-card high" onclick="toggleDetails(this)">
+  <div class="event-header">
+    <div class="event-date">
+      <div class="month">Mar</div>
+      <div class="day">21</div>
+      <div class="dow">Sat</div>
+    </div>
+    <div class="event-info">
+      <div class="event-name">🏠 Mattress Dogzzz Grand Opening</div>
+      <div class="event-meta"><span>🕐 11AM-2PM</span><span>💰 Free</span><span>📍 Creve Coeur</span></div>
+    </div>
+    <span class="priority-badge high">High</span>
+  </div>
+  <div class="event-details">
+    <div class="detail-row"><span class="label">📍 Where:</span><span class="value">11420 Olive Blvd, Creve Coeur 63141</span></div>
+    <div class="detail-row"><span class="label">👥 Crowd:</span><span class="value">Affluent Creve Coeur pet owners</span></div>
+    <div class="detail-row"><span class="label">🎯 Why:</span><span class="value">Creve Coeur = HIGH INCOME area. These dog owners spend money on services. Stray Rescue will be there too.</span></div>
+    <div class="detail-row"><span class="label">🔗 Link:</span><span class="value"><a href="https://www.strayrescue.org/adoption-event/mattress-dogzzz-grand-opening-celebration" target="_blank">Event Details</a></span></div>
+    <div class="script-box">
+      "Cool event! You live around here? ... Nice, how many dogs? We do weekly yard cleanup in this area — Tidy Tails. $70/month and you never touch poop again. Here's my card."
+    </div>
+    <button class="copy-btn" onclick="event.stopPropagation(); copyScript(this)">📋 Copy Script</button>
+  </div>
+</div>
+
+<div class="event-card high" onclick="toggleDetails(this)">
+  <div class="event-header">
+    <div class="event-date">
+      <div class="month">Mar</div>
+      <div class="day">28</div>
+      <div class="dow">Sat</div>
+    </div>
+    <div class="event-info">
+      <div class="event-name">🐾 Adoption Paw-ty @ Crestwood Vet</div>
+      <div class="event-meta"><span>🕐 10 AM</span><span>💰 Free</span><span>📍 Crestwood</span></div>
+    </div>
+    <span class="priority-badge high">High</span>
+  </div>
+  <div class="event-details">
+    <div class="detail-row"><span class="label">📍 Where:</span><span class="value">Hometown Veterinary Partners, Crestwood</span></div>
+    <div class="detail-row"><span class="label">👥 Crowd:</span><span class="value">30-80 new adopters + vet clinic staff</span></div>
+    <div class="detail-row"><span class="label">🎯 Why:</span><span class="value">DOUBLE WIN: Meet new dog adopters AND introduce yourself to the vet practice. Vet referral partnerships = recurring lead source forever.</span></div>
+    <div class="detail-row"><span class="label">🔗 Link:</span><span class="value"><a href="https://www.eventbrite.com/e/adoptiong-paw-ty-with-open-door-animal-sanctuary-tickets-1984476335139" target="_blank">Register on Eventbrite</a></span></div>
+    <div class="script-box">
+      To vet staff: "Love that you host these. I'm TJ with Tidy Tails — local pet waste removal. Any chance we could leave some cards here? Our customers always ask us for vet recommendations, so we'd love to send people your way too."
+    </div>
+    <button class="copy-btn" onclick="event.stopPropagation(); copyScript(this)">📋 Copy Script</button>
+  </div>
+</div>
+
+<div class="event-card low" onclick="toggleDetails(this)">
+  <div class="event-header">
+    <div class="event-date">
+      <div class="month">Mar</div>
+      <div class="day">29</div>
+      <div class="dow">Sun</div>
+    </div>
+    <div class="event-info">
+      <div class="event-name">🎱 Bingo for the Pups</div>
+      <div class="event-meta"><span>🕐 4 PM</span><span>📍 Chicken N Pickle, St. Charles</span></div>
+    </div>
+    <span class="priority-badge low">Nice-to-do</span>
+  </div>
+  <div class="event-details">
+    <div class="detail-row"><span class="label">📍 Where:</span><span class="value">Chicken N Pickle, St. Charles</span></div>
+    <div class="detail-row"><span class="label">👥 Crowd:</span><span class="value">50-100 dog lovers in casual setting</span></div>
+    <div class="detail-row"><span class="label">🎯 Why:</span><span class="value">Casual atmosphere = easy conversations. Good networking without the pressure.</span></div>
+    <div class="detail-row"><span class="label">🔗 Link:</span><span class="value"><a href="https://www.eventbrite.com/e/bingo-for-the-pups-tickets-1982522336677" target="_blank">Event Details</a></span></div>
+  </div>
+</div>
+
+<!-- APRIL EVENTS -->
+<div class="month-header">📅 APRIL</div>
+
+<div class="event-card critical" onclick="toggleDetails(this)">
+  <div class="event-header">
+    <div class="event-date">
+      <div class="month">Apr</div>
+      <div class="day">4</div>
+      <div class="dow">Sat</div>
+    </div>
+    <div class="event-info">
+      <div class="event-name">🥚 Ladue Egg Hunt — Treats Unleashed</div>
+      <div class="event-meta"><span>🕐 9:30 AM</span><span>💰 Free</span><span>📍 Ladue</span></div>
+    </div>
+    <span class="priority-badge critical">Critical</span>
+  </div>
+  <div class="event-details">
+    <div class="detail-row"><span class="label">📍 Where:</span><span class="value">Treats Unleashed, Ladue</span></div>
+    <div class="detail-row"><span class="label">👥 Crowd:</span><span class="value">50-100+ affluent pet owners</span></div>
+    <div class="detail-row"><span class="label">🎯 Why:</span><span class="value">Treats Unleashed is our #1 referral partner target. Meet staff, ask about flyer placement. Their customers = our exact target demo (pet owners who spend money on quality).</span></div>
+    <div class="detail-row"><span class="label">🔗 Link:</span><span class="value"><a href="https://www.eventbrite.com/e/ladue-egg-hunt-for-pets-2026-tickets-1980572850712" target="_blank">Register on Eventbrite</a></span></div>
+    <div class="script-box">
+      To store manager: "I love this place — my customers always ask where to buy quality food. I'm TJ with Tidy Tails, local pet waste removal. Would you be open to a referral partnership? We'd recommend you to our customers, and maybe you could keep some of our cards at the register?"
+    </div>
+    <button class="copy-btn" onclick="event.stopPropagation(); copyScript(this)">📋 Copy Script</button>
+  </div>
+</div>
+
+<div class="event-card low" onclick="toggleDetails(this)">
+  <div class="event-header">
+    <div class="event-date">
+      <div class="month">Apr</div>
+      <div class="day">5</div>
+      <div class="dow">Sun</div>
+    </div>
+    <div class="event-info">
+      <div class="event-name">🏎️ Easter Car Show w/ Stray Rescue</div>
+      <div class="event-meta"><span>🕐 11AM-3PM</span><span>💰 Free</span><span>📍 Forest Park</span></div>
+    </div>
+    <span class="priority-badge low">Nice-to-do</span>
+  </div>
+  <div class="event-details">
+    <div class="detail-row"><span class="label">📍 Where:</span><span class="value">Festival Plaza (Muny upper lot), Forest Park</span></div>
+    <div class="detail-row"><span class="label">🎯 Why:</span><span class="value">Mixed crowd — car enthusiasts + pet people near Stray Rescue booth. Easter Sunday, casual networking.</span></div>
+  </div>
+</div>
+
+<div class="event-card medium" onclick="toggleDetails(this)">
+  <div class="event-header">
+    <div class="event-date">
+      <div class="month">Apr</div>
+      <div class="day">13</div>
+      <div class="dow">Mon</div>
+    </div>
+    <div class="event-info">
+      <div class="event-name">🏒 Blues Giveback Game + Adoption</div>
+      <div class="event-meta"><span>🕐 7 PM</span><span>💰 Ticket $30-80</span></div>
+    </div>
+    <span class="priority-badge medium">Should-do</span>
+  </div>
+  <div class="event-details">
+    <div class="detail-row"><span class="label">📍 Where:</span><span class="value">Enterprise Center — Blues vs. Minnesota Wild</span></div>
+    <div class="detail-row"><span class="label">🎯 Why:</span><span class="value">Stray Rescue booth at the game. Hundreds of animal lovers. Wear Tidy Tails gear, hand cards to people near rescue booth.</span></div>
+    <div class="detail-row"><span class="label">🔗 Link:</span><span class="value"><a href="https://www.strayrescue.org/all/blues-giveback-game-adoption-event" target="_blank">Event Details</a></span></div>
+  </div>
+</div>
+
+<div class="event-card medium" onclick="toggleDetails(this)">
+  <div class="event-header">
+    <div class="event-date">
+      <div class="month">Apr</div>
+      <div class="day">26</div>
+      <div class="dow">Sun</div>
+    </div>
+    <div class="event-info">
+      <div class="event-name">⚾ Stray Rescue Day at Busch Stadium</div>
+      <div class="event-meta"><span>🕐 1:15 PM</span><span>💰 Ticket</span><span>Cards vs Mariners</span></div>
+    </div>
+    <span class="priority-badge medium">Should-do</span>
+  </div>
+  <div class="event-details">
+    <div class="detail-row"><span class="label">📍 Where:</span><span class="value">Busch Stadium — Cardinals vs. Seattle Mariners</span></div>
+    <div class="detail-row"><span class="label">👥 Crowd:</span><span class="value">Thousands of animal-loving Cards fans</span></div>
+    <div class="detail-row"><span class="label">🎯 Why:</span><span class="value">High-visibility. Stray Rescue merch table + adoptable dogs. Network near their booth. Fun day + business development.</span></div>
+    <div class="detail-row"><span class="label">🔗 Link:</span><span class="value"><a href="https://www.strayrescue.org/fundraising-event/srdayballpark" target="_blank">Register</a></span></div>
+  </div>
+</div>
+
+<!-- MAY EVENTS -->
+<div class="month-header">📅 MAY — THE BIG MONTH</div>
+
+<div class="event-card medium" onclick="toggleDetails(this)">
+  <div class="event-header">
+    <div class="event-date">
+      <div class="month">May</div>
+      <div class="day">7</div>
+      <div class="dow">Thu</div>
+    </div>
+    <div class="event-info">
+      <div class="event-name">💚 Give STL Day — Social Media Play</div>
+      <div class="event-meta"><span>All Day</span><span>💰 Free</span><span>Online</span></div>
+    </div>
+    <span class="priority-badge medium">Should-do</span>
+  </div>
+  <div class="event-details">
+    <div class="detail-row"><span class="label">🎯 Play:</span><span class="value">Post that Tidy Tails is donating $1 per service this week to a local rescue. Tag the rescue. Free goodwill marketing that builds brand.</span></div>
+    <div class="detail-row"><span class="label">🔗 Link:</span><span class="value"><a href="https://www.givestlday.org/" target="_blank">Give STL Day</a></span></div>
+    <div class="script-box">
+      Social post: "🐾 It's #GiveSTLDay! This week, Tidy Tails is donating $1 from every service to @StrayRescueSTL. Clean yards AND helping homeless pets? That's a win-win. Book a cleanup: tidytailsstl.com 💚"
+    </div>
+    <button class="copy-btn" onclick="event.stopPropagation(); copyScript(this)">📋 Copy Script</button>
+  </div>
+</div>
+
+<div class="event-card critical" onclick="toggleDetails(this)">
+  <div class="event-header">
+    <div class="event-date">
+      <div class="month">May</div>
+      <div class="day">16</div>
+      <div class="dow">Sat</div>
+    </div>
+    <div class="event-info">
+      <div class="event-name">🏆 BARK IN THE PARK</div>
+      <div class="event-meta"><span>🕐 8AM-2PM</span><span>📍 Tower Grove</span><span>💰 Booth ~$300</span></div>
+    </div>
+    <span class="priority-badge critical">THE ONE</span>
+  </div>
+  <div class="event-details">
+    <div class="detail-row"><span class="label">📍 Where:</span><span class="value">Tower Grove Park, St. Louis</span></div>
+    <div class="detail-row"><span class="label">👥 Crowd:</span><span class="value">5,000 — 10,000+ dog owners</span></div>
+    <div class="detail-row"><span class="label">💰 Cost:</span><span class="value">Vendor booth ~$200-400</span></div>
+    <div class="detail-row"><span class="label">🎯 Why:</span><span class="value">LARGEST PET FESTIVAL IN THE MIDWEST. Presented by Purina. 5,000-10,000 dog owners in one park. This alone could generate 20-50 leads.</span></div>
+    <div class="detail-row"><span class="label">📞 Contact:</span><span class="value"><a href="tel:3149511567">Cole Imbs: 314-951-1567</a> (vendor booth)</span></div>
+    <div class="detail-row"><span class="label">🔗 Register:</span><span class="value"><a href="https://p2p.onecause.com/bark2026" target="_blank">Bark 2026 Registration</a></span></div>
+    <div class="detail-row"><span class="label">📦 Bring:</span><span class="value">500 biz cards, 200 flyers, banner, dog treats, sign-up sheet, branded tablecloth</span></div>
+    <div class="script-box">
+      "Hey! Here with your dog? How many do you have? ... Nice! I'm TJ with Tidy Tails — we come out weekly and scoop your yard so you never have to deal with it. $70/month for one dog. Want to sign up for a free first cleanup?"
+    </div>
+    <button class="copy-btn" onclick="event.stopPropagation(); copyScript(this)">📋 Copy Script</button>
+    <div style="margin-top:12px; padding:12px; background:rgba(239,68,68,0.15); border-radius:10px; border:1px solid rgba(239,68,68,0.3);">
+      <div style="font-weight:700; color:#fca5a5; font-size:0.9rem;">⚠️ CALL COLE THIS WEEK</div>
+      <div style="color:#d4d4d4; font-size:0.8rem; margin-top:4px;">Vendor spots fill up months in advance. Don't wait.</div>
+      <a href="tel:3149511567" class="phone-link" style="display:block; text-align:center; margin-top:8px;">📱 Tap to Call: 314-951-1567</a>
+    </div>
+  </div>
+</div>
+
+<!-- ROI CARD -->
+<div class="roi-card">
+  <h3>💰 ROI Estimate — All Events</h3>
+  <div class="roi-row"><span class="label">Bark in the Park booth</span><span class="value red">-$300</span></div>
+  <div class="roi-row"><span class="label">Business cards (500)</span><span class="value red">-$30</span></div>
+  <div class="roi-row"><span class="label">Flyers (200)</span><span class="value red">-$20</span></div>
+  <div class="roi-row"><span class="label">Dog treats for booth</span><span class="value red">-$30</span></div>
+  <div class="roi-row"><span class="label">Game tickets (2 events)</span><span class="value red">-$120</span></div>
+  <div class="roi-row" style="border-top: 2px solid rgba(255,255,255,0.2); padding-top:10px;"><span class="label"><strong>Total Investment</strong></span><span class="value red"><strong>~$500</strong></span></div>
+  <div class="roi-row"><span class="label">Est. new customers</span><span class="value green">8-15</span></div>
+  <div class="roi-row"><span class="label">Monthly revenue increase</span><span class="value green">$560-$1,050</span></div>
+  <div class="roi-row" style="border-top: 2px solid rgba(255,255,255,0.2); padding-top:10px;"><span class="label"><strong>Pays for itself</strong></span><span class="value green"><strong>Month 1</strong></span></div>
+</div>
+
+<!-- EVENT KIT CHECKLIST -->
+<div class="checklist">
+  <h3>📦 Event Attendance Kit</h3>
+  <div class="check-item"><input type="checkbox" id="c1"><label for="c1">50-100 business cards (per event)</label></div>
+  <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Spring flyers from print kit</label></div>
+  <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Tidy Tails branded shirt</label></div>
+  <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Phone with QR code to website</label></div>
+  <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Leave-behind cards</label></div>
+  <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Sign-up sheet for free first service</label></div>
+</div>
+
+<div class="footer">
+  Franklin 🐕💩 | Research: March 13, 2026<br>
+  Sources: Stray Rescue, HSMO, Eventbrite, Treats Unleashed
+</div>
+
+<script>
+function toggleDetails(card) {
+  const details = card.querySelector('.event-details');
+  details.classList.toggle('open');
+}
+
+function copyScript(btn) {
+  const scriptBox = btn.previousElementSibling;
+  const text = scriptBox.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = '📋 Copy Script', 2000);
+  });
+}
+
+// Persist checklist state
+document.querySelectorAll('.check-item input').forEach(cb => {
+  const key = 'event-kit-' + cb.id;
+  cb.checked = localStorage.getItem(key) === 'true';
+  cb.addEventListener('change', () => localStorage.setItem(key, cb.checked));
+});
+</script>
+
+</body>
+</html>

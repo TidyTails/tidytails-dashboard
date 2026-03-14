@@ -54,7 +54,16 @@
 - [ ] **REVISIT LSAs LATER** — Pet waste isn't a direct category. Need 20+ reviews and insurance docs first.
 - Research: `research/2026-03-13-PAID-ADVERTISING-STRATEGY.md` — Real data from Swoop Scoop (7-fig, 10K+ leads) and Fresh Start ($200K year 1)
 
+### 🗓️ SPRING EVENTS (New — Mar 13)
+- [ ] **📞 CALL COLE IMBS: 314-951-1567** — Bark in the Park vendor booth (May 16). Largest pet festival in Midwest. 5,000-10,000 dog owners. Spots fill up.
+- [ ] **🥚 Register for Treats Unleashed Egg Hunt (Apr 4)** — Ladue. Referral partner play. Eventbrite link in dashboard.
+- [ ] **🐾 Attend Crestwood Vet Paw-ty (Mar 28)** — Vet partnership + new adopters. Register on Eventbrite.
+- [ ] **🏠 Attend Mattress Dogzzz Grand Opening (Mar 21)** — Creve Coeur affluent area. 11420 Olive Blvd.
+- [ ] **🖨️ Print 200+ business cards** — Need for all events. Vistaprint: 250 for ~$15.
+- Full calendar: `dashboard/2026-03-13-SPRING-PET-EVENTS.html` | Research: `research/2026-03-13-SPRING-PET-EVENTS-CALENDAR.md`
+
 ### ✅ Recently Completed
+- [x] **🗓️ Spring Pet Events Calendar** — 14 events researched (Mar-Jul), networking scripts, ROI estimates, vendor booth contact for Bark in the Park. Interactive dashboard + full research report. ✅ (Mar 13, 11PM)
 - [x] **🔍 LIVE Spring Competitive Intel Update** — Full market re-scan: Poop 2 Scoop still $18/week (39% cheaper), POOP 911 offering "1st free," Scoop Soldiers expanding aggressively (Cleveland acquisition + Cincinnati launch), **Super Scoopers STL confirmed DEAD** (website down, Yelp CLOSED) = new capture opportunity. `site:tidytailsstl.com` STILL 0 results. Industry benchmarks: 75% contribution margin, $60 CAC target. ✅ (Mar 13, 11AM)
 - [x] **🌐 4 Missing City Pages Built** — Kirkwood, Webster Groves, Olivette, University City. Full SEO: unique content, neighborhoods, schema markup, sitemap updated, all cross-links added. ✅ (Mar 13, 4AM)
 - [x] **💰 Paid Advertising Strategy** — Researched FB Ads, Google Ads, LSAs with real data from 7-figure pet waste companies. $500/month plan → 5-8 new customers/month. Dashboard + full research report. ✅ (Mar 13, 2AM)
