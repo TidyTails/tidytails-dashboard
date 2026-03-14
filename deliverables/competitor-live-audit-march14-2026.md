@@ -207,5 +207,63 @@ They published 2 SEO blog posts in February. They have city pages. They have a r
 
 ---
 
-*Compiled by Franklin | 1:04 AM CST, March 14, 2026*
-*Sources: Direct website crawls of doggiedoodies.com, poop2scoop.com, yuckos.com, poop911.com, doodycalls.com/st-louis, pooperscooperstl.com, wearefreshpaws.com, poopypaws314.com + Brave search results*
+## 🆕 10 AM UPDATE — 2 New Competitors Discovered + Dead Confirmations
+
+### 🟡 Little Stinkers of MO — littlestinkersofmo.com | THREAT LEVEL: MEDIUM
+**New-to-our-tracking competitor operating in St. Charles County area.**
+
+- Services: Dog waste removal (weekly/bi-weekly), litter box service, pet waste stations, deodorizing, playground sanitation
+- Service areas: **St. Charles County, Lincoln County, Warren County** — cities include O'Fallon, St. Peters, St. Charles, Wentzville, Dardenne Prairie, New Melle, Troy, Moscow Mills, Wright City, Warrenton
+- Pricing: Quote-based (no public pricing)
+- Website: Professional, on Squarespace or similar. Has testimonials section.
+- Positioning: "More than just another scooping service" — full-service pet waste sanitary company
+- **Key differentiator**: Offers commercial pet waste station installation + servicing, playground sanitation
+
+**Assessment:** Direct competitor in the St. Charles County expansion zone TJ has been eyeing. Their coverage of Wentzville, Dardenne Prairie, and Wright City extends further west than most competitors. TJ's advantage: they don't seem to cover St. Louis County at all. **If TJ expands to St. Charles, this is who he's competing with.**
+
+### 🟡 Dirty Dog Wash Poo Crew — dirtydogwashstl.com/poocrew | THREAT LEVEL: LOW-MEDIUM
+**A dog wash business that added poop pickup as an add-on service.**
+
+- Services: Residential & commercial pet waste removal
+- Pricing (PUBLICLY LISTED):
+  - 1-2 dogs: **$95/mo weekly**, $80/mo bi-weekly
+  - 3 dogs: **$100/mo weekly**, $95/mo bi-weekly
+  - 4 dogs: **$105/mo weekly**, $100/mo bi-weekly
+- Yard size limit: 1/4 acre or smaller, extra charge for larger
+- Trip charge for homes >10 miles from their shop
+- Commercial: Call for estimate
+- Phone: Available on main site
+
+**Assessment:** MOST EXPENSIVE competitor we've found. Their poop service is a side gig to their dog wash business. $95/mo for 1-2 dogs weekly makes TJ's proposed $88/mo look like a deal. **This validates premium pricing.** However, they may bundle poop pickup with dog wash services for cross-sell.
+
+### ☠️ CONFIRMED DEAD (Updated 10 AM)
+
+| Competitor | Status | Evidence |
+|---|---|---|
+| **Pawfect Waste Solutions** (pooperscooperstl.com) | ☠️ DEAD | 404 "Site not found" — domain active but site unpublished |
+| **Fresh Paws** (wearefreshpaws.com) | ☠️ DEAD | DNS failure — domain completely down (ENOTFOUND) |
+| **Poopy Paws** | ☠️ DEAD | Previously confirmed, still dead |
+
+**Note:** Both Pawfect and Fresh Paws still appear in Google/Yelp search results despite being dead. This is a capture opportunity — customers searching for these businesses find nothing. TJ could run ads targeting "Pawfect Waste Solutions" or "Fresh Paws St. Louis" as keywords.
+
+### 📊 COMPLETE Pricing Matrix (All Known Competitors, March 14, 2026)
+
+| Competitor | 1 Dog Weekly/Mo | 2 Dogs Weekly/Mo | Type | Threat |
+|---|---|---|---|---|
+| **POOP 911** | ~$52/mo* | Unknown | National franchise | Medium |
+| **Poop 2 Scoop** | $72/mo ($18/wk) | $88/mo ($22/wk) | Local, veteran-owned | Medium |
+| **Doggie Doodies** | $83/mo | $88/mo | Local, aggressive | 🔴 HIGH |
+| **Tidy Tails (proposed)** | **$88/mo** | **$108/mo** | Local, personal brand | — |
+| **Dirty Dog Wash** | $95/mo | $95/mo (1-2 dogs) | Dog wash add-on | Low-Med |
+| **DoodyCalls** | Quote-based | Quote-based | National franchise | Medium |
+| **Little Stinkers** | Quote-based | Quote-based | Local, St. Charles focus | Medium |
+| **Yucko's** | Quote-based | Quote-based | Legacy (since 1990) | Low |
+
+*POOP 911 $11.95/wk is national teaser price — actual local pricing likely higher*
+
+**Key Takeaway:** TJ's proposed $88/mo sits right in the middle. Only Poop 2 Scoop meaningfully undercuts. Dirty Dog Wash at $95/mo proves the market supports premium pricing. The competitive advantage isn't price — it's personal service, reliability, and actually showing up in search results.
+
+---
+
+*Updated by Franklin | 10:08 AM CST, March 14, 2026*
+*Sources: Direct website crawls of all competitor sites + Brave search results for "pet waste removal St. Louis MO"*

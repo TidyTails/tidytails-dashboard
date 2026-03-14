@@ -194,6 +194,29 @@
 
 ---
 
+### 10:08 AM — 🔍 COMPETITIVE LANDSCAPE UPDATE — 2 New Competitors Found
+**Task:** Fresh search for "pet waste removal St. Louis" + crawl all results for new competitors
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- Saturday morning, good time for research recon
+- Last search was 1 AM — wanted to verify daytime search results and look for missed competitors
+- The market has more players than we tracked
+
+**What I Found:**
+1. **Little Stinkers of MO** (littlestinkersofmo.com) — NEW competitor in St. Charles County (O'Fallon, St. Peters, Wentzville, Dardenne Prairie). Offers dog waste, litter box, pet waste stations, deodorizing, playground sanitation. Quote-based pricing. Direct competitor if TJ expands west.
+2. **Dirty Dog Wash Poo Crew** (dirtydogwashstl.com/poocrew) — Dog wash business with poop pickup add-on. MOST EXPENSIVE competitor: $95/mo weekly for 1-2 dogs. Validates TJ's $88/mo premium pricing.
+3. **Fresh Paws — CONFIRMED DEAD** — DNS failure (ENOTFOUND). Domain completely down. Was still showing in search results.
+4. **Pawfect Waste Solutions — CONFIRMED DEAD** — 404 "Site not found". Domain active but site unpublished. Also still in search results.
+5. **Updated complete pricing matrix** with all 8 known competitors
+
+**Key Insight:** TJ's proposed $88/mo is perfectly positioned. Only Poop 2 Scoop ($72/mo) meaningfully undercuts. Dirty Dog Wash at $95/mo proves premium pricing works. Dead competitors (Fresh Paws, Pawfect) still showing in search = capture opportunity for their stranded customers.
+
+**File:** `deliverables/competitor-live-audit-march14-2026.md` (updated)
+**Rotation:** 🔍 Research — Competitor Discovery
+
+---
+
 ### 1:04 AM — 🔍 LIVE COMPETITOR AUDIT — Fresh Intel on Every Active Competitor
 **Task:** Crawl all competitor websites for pricing changes, new features, service area expansion, content activity, and market status updates
 **Result:** ✅ COMPLETED
