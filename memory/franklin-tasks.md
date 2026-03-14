@@ -6,6 +6,54 @@
 
 ## March 13, 2026 (Friday)
 
+### 10:05 PM — 🌐 SEO CITY PAGES BATCH — 8 New Service Area Pages for Google Visibility
+**Task:** Build SEO-optimized city/service area landing pages for all priority cities missing from tidytailsstl.com
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 10 PM Friday — 13th task today. But this one addresses the SINGLE BIGGEST GROWTH BLOCKER: Google visibility.
+- **tidytailsstl.com has ZERO Google indexed pages** as of March 12. Zero. Invisible.
+- Only 4 city pages existed (Kirkwood, Olivette, University City, Webster Groves) — all secondary markets
+- ZERO pages for cities where TJ HAS CUSTOMERS (Florissant, O'Fallon, St. Charles)
+- ZERO pages for target growth areas (Ballwin, Chesterfield, Manchester, Ellisville, Wildwood)
+- City pages are the #1 local SEO tactic for service businesses — each is a new search entry point
+- Each page targets 8+ keywords: "pooper scooper [city]", "pet waste removal [city] MO", "dog poop cleanup [city]", etc.
+
+**What I Built:**
+1. **8 new city pages** — each with unique, localized content (not copy-paste template garbage):
+   - **Ballwin** (63011) — Vlasis Park, Castlewood, BAA fields, West County family positioning
+   - **Chesterfield** (63017) — premium positioning, HOA angle, Amphitheater/Central Park references
+   - **Florissant** (63031/33) — "already serving 3 families here" social proof, Old Town/North County references
+   - **O'Fallon** (63366) — fastest-growing city hook, Dames Park/Fort Zumwalt, new construction angle
+   - **St. Charles** (63301/03) — Katy Trail, Main Street, historic charm + new builds
+   - **Manchester** (63021) — Manchester Days, Parkway schools, Manchester Rd corridor
+   - **Ellisville** (63011) — Bluebird Park, community pool, established neighborhood vibe
+   - **Wildwood** (63040) — large lot expertise, acre properties, outdoor lifestyle angle
+   - **Maryland Heights** (63043) — Creve Coeur Lake, commuter hub, Aquaport
+2. **Updated sitemap.xml** — all 13 pages (home + 12 cities) ready to submit to Google Search Console
+3. **Deployment guide** with step-by-step instructions for TJ
+
+**SEO Features Per Page:**
+- Unique `<title>` and `<meta description>` with city name + zip
+- Schema.org LocalBusiness JSON-LD (unique address per city)
+- Open Graph tags for social sharing
+- Geo meta tags (region, placename)
+- Canonical URLs
+- Unique local content (neighborhoods, landmarks, personality)
+- Cross-linking to all other city pages (internal link network)
+- Click-to-call and click-to-text CTAs
+- Mobile responsive
+- $70/month plan highlighted (unique selling proposition)
+
+**Key Insight:** TJ has 60+ deliverables. He has ad copy. He has marketing plans. He has competitor research. What he DOESN'T have is a way for people to FIND HIM when they Google "pooper scooper in Ballwin" or "pet waste removal Florissant." These 8 pages are the bridge between having a website and having a website that actually generates leads. Each one is a fishing line cast into a specific city's search traffic.
+
+**Files:** `deliverables/city-pages/` — 8 new HTML pages + sitemap-update.xml + DEPLOY-GUIDE.md
+**Total city pages:** 12 (4 existing + 8 new)
+**Git:** Committed + pushed
+**Rotation:** 🌐 SEO — City/Service Area Landing Pages
+
+---
+
 ### 9:04 PM — 📊 WEEKLY KPI SCORECARD DASHBOARD — See Progress at a Glance
 **Task:** Build an interactive Weekly Scorecard dashboard that consolidates goal tracking, KPIs, competitive landscape, action items, and Franklin's work log into one page
 **Result:** ✅ COMPLETED
