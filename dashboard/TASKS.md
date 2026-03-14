@@ -12,10 +12,11 @@
   - Owner: TJ (setup) — Franklin (content ready)
   - Action: Claim page at business.nextdoor.com, post intro, ask customers for recommendations
 
-- [ ] **Google Indexing** — Site live, Search Console submitted (Mar 5), but 0 pages indexed yet
-  - Status: Waiting on Google to crawl. robots.txt + sitemap.xml confirmed correct.
-  - Owner: Google (nothing more we can do)
-  - Expected: 3-7 days for initial indexing
+- [ ] **Google Indexing** — ⚠️ CORRECTED: Domain only 26 days old (registered Feb 16). 0 pages indexed is NORMAL for a new domain.
+  - Status: Technical SEO is solid (no issues found). Problem is zero backlinks/authority, not technical.
+  - **FIX:** Build backlinks NOW — GBP link, directory listings, social posts with URL. See `deliverables/google-indexing-acceleration-march14.md`
+  - Owner: TJ (Saturday checklist: GSC pings + GBP link + directory listings = 45 min)
+  - Expected: First pages indexed within 1-2 weeks IF backlink actions taken this weekend
 
 - [ ] **Spring Marketing Push** — FB group posts, spring-themed content
   - Status: **2-week content pack ready!** 13 posts for Mar 14-28 + 3 IG posts + posting schedule
@@ -45,7 +46,7 @@
 - [ ] **CALL DoodyCalls STL: (314) 230-8082** — They're NOT listed in franchise directory anymore. May be closing. If yes → capture their commercial clients (apartments, HOAs).
 - [ ] **CALL Poopy Paws: (314) 783-1781** — Website is dead (DNS failure). Check if Charlie is still operating. If dead → his customers need a new service.
 - [ ] **CAPTURE Super Scoopers STL Customers** — Confirmed DEAD (Mar 13): website down, Yelp CLOSED. Based in St. Peters. Their STL/St. Charles/Lincoln county customers need a provider. Check their Yelp/FB for people asking about alternatives.
-- [ ] **FIX WEBSITE INDEXING** — Still 0 pages indexed after 6+ months. This is the #1 growth blocker. Every live competitor outranks us.
+- [ ] **FIX WEBSITE INDEXING** — Domain is only 26 days old (NOT 6+ months). 0 indexed pages is normal. Build backlinks to accelerate. See `deliverables/google-indexing-acceleration-march14.md`
 - [ ] **Get 10 Google Reviews THIS MONTH** — No competitor dominates reviews. First to 15 reviews owns local search.
 
 ### 📣 PAID ADVERTISING (New — Mar 13)
