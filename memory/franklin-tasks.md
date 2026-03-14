@@ -6,6 +6,38 @@
 
 ## March 13, 2026 (Friday)
 
+### 8:05 PM — 📅 SPRING EVENTS & GUERRILLA MARKETING CALENDAR — Show Up Where Dog Owners Are
+**Task:** Research every spring pet event, community festival, and networking opportunity in the STL area for both businesses, and build an actionable event marketing calendar
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- Today was 9+ tasks, ALL digital (copy, research, plans, directories). Zero real-world marketing.
+- The fastest path to 25-30 customers is showing up where dog owners physically gather
+- Events like Bark in the Park have 5,000-10,000 dog owners in ONE MORNING
+- Vendor booths at these events cost $50-200 — cheaper than any ad campaign
+- Time-sensitive: Bark in the Park is May 16, Pups on the Pitch is March 22 — registration windows closing
+
+**What I Built:**
+1. **8 researched events** across March-June 2026, organized by date with full details
+2. **Bark in the Park deep-dive** — May 16, Tower Grove Park, HSMO's 30th annual, LARGEST PET FESTIVAL IN THE MIDWEST
+   - Vendor booth contact: bark@hsmo.org, (314) 951-1565
+   - 5K registration: $35, Festival: FREE
+   - Estimated 5,000-10,000 dog owners in attendance
+3. **Pups on the Pitch** — March 22, STL CITY SC + Purina, $60 networking event with wealthy dog owners (NEXT WEEK!)
+4. **Ballwin Race Series sponsorship** — $250/event, Matt Struemph (636) 227-8950, TJ's HOME TURF
+5. **5 dog parks** mapped as free guerrilla marketing venues with best times
+6. **TuffShed event opportunities** — Chesterfield Outdoor Fest, Home Show 2027 planning, race sponsorship
+7. **Full budget breakdown** — $545-825 total for spring event season, estimated 30-60 leads, 8-15 customers (13:1 ROI)
+8. **10-item priority action list** with deadlines
+9. **Calendar view** — visual March-June timeline
+
+**Key Insight:** TJ has been building a digital marketing machine all week. But the #1 growth lever for local service businesses is FACE-TO-FACE networking at events where your customers already gather. One $200 booth at Bark in the Park could generate more customers than months of Facebook posts. This calendar bridges the gap between digital plans and real-world execution.
+
+**File:** `deliverables/spring-events-marketing-calendar-2026.md`
+**Rotation:** 📅 Marketing — Spring Events & Guerrilla Marketing Calendar
+
+---
+
 ### 7:04 PM — 🔄 CUSTOMER REFERRAL & REVIEW BLITZ KIT — Turn 8 Customers Into Growth Engine
 **Task:** Build a complete referral program + review request system with copy-paste texts for all 8 customers
 **Result:** ✅ COMPLETED
