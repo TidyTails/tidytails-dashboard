@@ -6,6 +6,42 @@
 
 ## March 14, 2026 (Saturday)
 
+### 9:06 AM — 🛠️ OPERATIONS TOOLKIT — Software, Credibility & Benchmarks
+**Task:** Research industry-specific tools, professional associations, and operational benchmarks TJ needs before scaling
+**Result:** ✅ COMPLETED — Full toolkit with software comparison, aPaws membership guide, industry benchmarks, and prioritized action checklist
+
+**Why This Task:**
+- 58 deliverables created, still 8 customers. The problem isn't marketing content — it's operational readiness.
+- FB ads launch kit was built at 8 AM. But if leads come in and hit a "text me" workflow instead of a professional signup flow, we lose them.
+- TJ needs infrastructure BEFORE he needs more leads.
+
+**Key Findings:**
+1. **Sweep&Go** — Industry-specific CRM/route optimizer built exclusively for pooper scoopers
+   - $29/mo normally, but **SPRINGRUSH2026 promo = $14.50/mo for 6 months**
+   - Client self-signup portal (embed on website), automated billing, route optimization, mobile app
+   - 15-day free trial, no credit card required
+   
+2. **aPaws** — Association of Professional Animal Waste Specialists
+   - $85/year membership, directory listing, insurance discounts, credibility badge
+   - Requires proof of liability insurance (unknown if TJ has this)
+   - Neither Doggie Doodies nor Clean Turf STL advertise membership — instant differentiator
+
+3. **Industry Benchmarks:**
+   - Market: $1.29 billion, growing 8-10% annually
+   - Top operators earn $96/hour (TJ ~$45/hr)
+   - Customer lifetime value: $1,500-2,500
+   - Solo capacity ceiling: ~40-50 weekly customers
+   - Hire first employee at ~30 recurring customers
+
+4. **Free Education Resources:** 5 Sweep&Go webinars specifically for pooper scoopers (GBP optimization, Google Ads, SEO, marketing funnels, analytics) + 2 Google Sheets (GMB checklist, citation sources)
+
+5. **Critical Gap Identified:** TJ's liability insurance status unknown. Needed for aPaws AND customer trust. ~$40-100/mo for $1M coverage.
+
+**Deliverable:** `deliverables/operations-toolkit-spring2026.md`
+**Rotation:** 🛠️ Operations — Infrastructure & Professional Development
+
+---
+
 ### 8:05 AM — 🚀 FACEBOOK ADS LAUNCH KIT — Complete Campaign Ready to Activate
 **Task:** Build a complete, copy-paste Facebook Ads launch kit so TJ can go from zero to running ads in 30 minutes
 **Result:** ✅ COMPLETED — Full kit with 4 ad variations, step-by-step Meta Ads Manager setup, targeting specs, lead follow-up scripts, budget plan, and tracking template
