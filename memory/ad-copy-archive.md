@@ -4,6 +4,32 @@
 
 ---
 
+## March 14, 2026 — Saturday Pi Day Pack (9 AM Task)
+
+**Shed-Mar122 - "The Pi Day Equation" (FB Marketplace + Groups)**
+- Hook: Pi Day math humor — garage over capacity, solve for X = shed
+- Key: Math people angle, equation format, playful 3.14 tie-in
+- Used: TBD (Marketplace + Groups Sat 3/14 AM)
+
+**Shed-Mar123 - "The Saturday Test Drive" (FB Marketplace + Nextdoor)**
+- Hook: Test drive a shed — walk inside one, bring the spouse
+- Key: In-person experience, sensory engagement, Saturday energy
+- Used: TBD (Marketplace + Nextdoor Sat 3/14 midday)
+
+**Shed-Mar124 - "Spring Training" (FB Marketplace + Instagram)**
+- Hook: Baseball spring training metaphor — prep your yard for the season
+- Key: Sports tie-in, step-by-step simplicity, seasonal urgency
+- Used: TBD (Marketplace + Instagram Sat 3/14 PM)
+
+**Shed-Mar125 - "Your Driveway Tells a Story" (FB Marketplace + Groups)**
+- Hook: Every driveway tells a story — what does yours say?
+- Key: Social proof/perception angle, emotional trigger, curb appeal
+- Used: TBD (Marketplace + Groups Sat 3/14 evening)
+
+*Archive updated: 2026-03-14 9:00 AM*
+
+---
+
 ## March 13, 2026 — Weekend Weather Pack (5 PM Task)
 
 **Shed-Mar116 - "64° Saturday" (FB Marketplace + Groups)**
