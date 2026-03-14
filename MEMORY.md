@@ -78,9 +78,9 @@ Features: 13 copy-paste scripts (cold calls, texts, emails, review asks), 43 com
 
 Central hub linking ALL tools, reports, videos, PDFs. ⚠️ NEVER let this go missing again — was flagged 7 times in one day before being built.
 
-## 🔍 Competitive Intelligence (Updated Mar 14, 2026)
+## 🔍 Competitive Intelligence (Updated Mar 14, 2026 — 7 AM)
 
-**19+ competitors identified** in STL pet waste removal market. Key findings:
+**21+ competitors identified** in STL pet waste removal market. Key findings:
 
 **🔴 Doggie Doodies = TJ's #1 rival:**
 - Chesterfield-based LLC, serves EXACT same cities (Ballwin, Manchester, Ellisville, Wildwood, Chesterfield)
@@ -90,9 +90,27 @@ Central hub linking ALL tools, reports, videos, PDFs. ⚠️ NEVER let this go m
 - Phone: 636-633-3443
 - **CRITICAL:** They are EXECUTING what we've been PLANNING. Competitive window narrowing.
 
-**5 confirmed DEAD competitors** (as of Mar 14): Pawfect, Fresh Paws, Poopy Paws, STL Pooper Scoopers, Super Scoopers STL (new — confirmed July 2025 via Yelp)
+**🔴 Clean Turf STL = NEW DIRECT THREAT (discovered Mar 14, 7 AM):**
+- Ballwin, MO 63021 — EXACT same territory as TJ and Doggie Doodies
+- Service areas: Ballwin, Manchester, Ellisville, Wildwood, Chesterfield, Town & Country, Valley Park
+- Dual service: pet waste removal + house cleaning
+- Pricing: $75 one-time minimum, weekly/monthly plans (quote-based), free first cleanup with autopay, $25 referral credit
+- Phone: 314-337-9929 | Email: cleanturfstl@gmail.com | Site: cleanturfstl.com (Wix)
+- Has Yelp listing (updated Nov 2025) + MapQuest listing — TJ has NEITHER
+- Already indexed by Google — TJ is NOT
+- Weakness: Wix, Gmail, no personality, split focus, no visible reviews, new (2025)
+
+**🟡 Yuckos = MISSED VETERAN (discovered Mar 14, 7 AM):**
+- Operating since 1990 — 36 YEARS in business
+- Phone: 314-291-7667 (POOP) | Email: gotpoop@gotpoop.com | Site: yuckos.com
+- Serves St. Louis County + City + St. Charles County
+- Commercial + residential, fully insured, free estimates, no contracts
+- Ancient website (looks like 1995), phone-only, M-F 8AM-3PM only (no weekends = TJ's opening)
+
+**5 confirmed DEAD competitors** (as of Mar 14): Pawfect (404), Fresh Paws, Poopy Paws, STL Pooper Scoopers, Super Scoopers STL
 
 **Dashboard:** `dashboard/2026-03-07-COMPETITOR-INTEL.html`
+**Latest update:** `deliverables/competitor-update-march14-7am.md`
 
 ## 💰 Pricing Strategy (New — Mar 14, 2026)
 

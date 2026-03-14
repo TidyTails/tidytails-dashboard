@@ -6,6 +6,49 @@
 
 ## March 14, 2026 (Saturday)
 
+### 7:04 AM — 🔍 COMPETITIVE RECON — 2 New Competitors Discovered
+**Task:** Saturday morning competitive intelligence sweep — search for new competitors, verify existing tracking, check TJ's Google visibility
+**Result:** ✅ COMPLETED — Found 2 previously untracked competitors
+
+**Why This Task:**
+- 7 AM Saturday — TJ waking up soon. Fresh intel he can act on this weekend.
+- Followed own stand-down principle: no more content, only useful execution support.
+- Search recon turned up genuinely new threats not in our 19-competitor database.
+
+**Key Findings:**
+
+1. **🔴 Clean Turf STL (NEW — DIRECT THREAT)**
+   - Ballwin, MO 63021 — EXACT same territory as TJ
+   - Service areas: Ballwin, Manchester, Ellisville, Wildwood, Chesterfield, Town & Country, Valley Park
+   - Phone: 314-337-9929 | cleanturfstl@gmail.com | cleanturfstl.com (Wix)
+   - Has Yelp listing + MapQuest listing (TJ has neither)
+   - Already indexed by Google (TJ ISN'T — day 9)
+   - Pricing: $75 one-time minimum, free first cleanup with autopay, $25 referral credits
+   - Dual service: house cleaning + pet waste
+   - New business (copyright 2025), no visible reviews
+   - **Threat: HIGH** — same cities, better directory presence than TJ
+
+2. **🟡 Yuckos (MISSED VETERAN)**
+   - Operating since 1990 — 36 years in business
+   - Phone: 314-291-POOP (7667) | gotpoop@gotpoop.com
+   - St. Louis + St. Charles counties, commercial + residential, fully insured
+   - Ancient website, phone-only, M-F 8-3 only (no weekends = TJ's opening)
+   - **Threat: MEDIUM** — established but not growing
+
+3. **Pawfect Waste Solutions confirmed DEAD** — pooperscooperstl.com returns 404
+
+4. **TJ still ZERO Google-indexed pages** — site:tidytailsstl.com returns nothing (day 9+)
+   - Google sitemap ping API deprecated
+   - Only fix: Google Search Console setup by TJ
+
+**Competitive landscape now:** 21+ competitors tracked (up from 19). West County market getting crowded — TJ, Doggie Doodies, AND Clean Turf STL all serving same cities.
+
+**Updated:** MEMORY.md competitive section, pricing matrix
+**Deliverable:** `deliverables/competitor-update-march14-7am.md`
+**Rotation:** 🔍 Research — Competitive Intelligence
+
+---
+
 ### 6:05 AM — ⏸️ DELIBERATE STAND-DOWN
 **Task:** Evaluated hourly task rotation at 6 AM Saturday
 **Result:** ⏸️ SKIPPED — Continued stand-down
