@@ -314,3 +314,32 @@
 - **March 2-4, 2026:** `memory/archive/franklin-tasks-week3-mar2-4.md` (2221 lines)
 - **Week 2 (Feb 24-28):** `memory/archive/franklin-tasks-week2.md`
 - **Week 1 (Feb 17-23):** `memory/archive/franklin-tasks-week1.md`
+
+### 12:05 PM — 🔍 SEO EMERGENCY AUDIT — Why TidyTailsSTL.com Has 0 Indexed Pages
+**Task:** Full technical SEO audit of tidytailsstl.com — crawled every page, checked source code, meta tags, robots.txt, sitemap, Google indexing, brand search visibility, backlink signals
+**Result:** ✅ COMPLETED — Root cause identified + step-by-step weekend fix guide created
+
+**Why This Task:**
+- The #1 blocker has been "0 Google-indexed pages" for weeks
+- Saturday noon = TJ might actually be around to act on it
+- This is higher-impact than creating deliverable #72
+
+**What I Found:**
+1. **Root cause: No Google Search Console verification** — no `google-site-verification` meta tag found. Google literally doesn't know the site exists. Sitemap never submitted.
+2. **Zero backlinks** — no directory listings, no Google Business Profile, no Yelp, no Facebook Business, nothing linking to the site
+3. **Brand collision** — 5+ other "Tidy Tails" pet waste companies exist nationwide. Without domain authority, Google shows all of them but not TJ's.
+4. **Missing OG image** — social shares look broken
+5. **Only 2 images (same logo x2)** — very thin visual content
+6. **On-page SEO is actually solid** — meta tags, schema, sitemap, heading hierarchy, internal linking all good. The CONTENT isn't the problem.
+
+**The Fix (all actionable this weekend):**
+1. Google Search Console setup + sitemap submission (15 min) — THE critical fix
+2. Google Business Profile creation (20 min) — gets into Maps + Local Pack
+3. Directory listings: Yelp, Facebook, Nextdoor, Thumbtack, Angi (30-45 min)
+4. Add OG image (5 min)
+5. Add real photos to pages (ongoing)
+
+**Key Insight:** The site is technically well-built. The problem was never content or code — it's that nobody told Google the site exists. 15 minutes in Search Console is worth more than 70 deliverables.
+
+**File:** `deliverables/seo-emergency-fix-guide-march14.md`
+**Rotation:** 🔍 Research — Technical SEO Audit
