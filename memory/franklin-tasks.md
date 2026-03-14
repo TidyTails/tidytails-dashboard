@@ -6,6 +6,46 @@
 
 ## March 14, 2026 (Saturday)
 
+### 3:04 PM — 🌐 DEAD COMPETITOR TERRITORY SEO PAGES — 3 New City Pages Live
+**Task:** Build city/area pages targeting dead competitor territories with zero web presence
+**Result:** ✅ COMPLETED — 3 new pages live, all existing pages cross-linked, sitemap updated, pushed to GitHub
+
+**Why This Task:**
+- The 2:15 PM dead competitor capture campaign identified territories where orphaned customers are searching
+- Tidy Tails had ZERO web presence in South City, South County, and Wentzville — key dead competitor territories
+- Poopy Paws (DEAD) served South City/South County; Super Scoopers (DEAD) served Wentzville/St. Charles County
+- Little Stinkers of MO is already moving into Super Scoopers' old territory — need to compete for SEO now
+
+**What Was Built:**
+1. **south-county.html** — Targets Affton, Mehlville, Oakville, Lemay, Sappington, Concord, Green Park, Crestwood, Sunset Hills, Fenton (Poopy Paws territory). ZIP: 63123, 63125, 63129
+2. **south-city.html** — Targets Tower Grove South/East, Bevo Mill, Dutchtown, Carondelet, The Hill, Southampton, Holly Hills, St. Louis Hills (Poopy Paws territory). ZIP: 63116, 63111, 63118
+3. **wentzville.html** — Targets Wentzville, Lake St. Louis, Foristell, Dardenne Prairie, New Melle, Troy (Super Scoopers territory). ZIP: 63385
+
+**SEO Features on Each Page:**
+- "Switching provider?" alert box with free first visit offer (captures orphaned customers)
+- Full schema.org LocalBusiness structured data with multiple areaServed
+- Meta descriptions with city + zip code targeting
+- Canonical URLs, OpenGraph tags
+- Neighborhood-specific content (not generic)
+- Pricing grid, benefits, CTA buttons
+
+**Additional Updates:**
+- Updated sitemap.xml with 3 new URLs (now 21 city pages total)
+- Updated service area navigation on ALL 18 existing city pages (full cross-linking network)
+- Added 3 new areas to homepage service area section
+- Total website now has 21 city/area pages (up from 18)
+
+**Expected Results:** 
+- Orphaned customers Googling "pooper scooper [area]" will find Tidy Tails
+- "Switching provider" messaging directly addresses their pain point
+- Cross-linking between all 21 pages strengthens internal link structure for SEO
+- Wentzville page competes with Little Stinkers for emerging territory
+
+**Files:** `tidy-tails/website/south-county.html`, `south-city.html`, `wentzville.html`, updated `sitemap.xml` + all 15 existing city pages
+**Rotation:** 🌐 SEO — Dead Competitor Territory Capture
+
+---
+
 ### 2:15 PM — 💀 DEAD COMPETITOR CUSTOMER CAPTURE CAMPAIGN — 5 Competitors Down, Their Customers Are Ours
 **Task:** Research current status of all dead/dying STL competitors, build ready-to-execute customer capture campaign
 **Result:** ✅ COMPLETED — Verified 5 dead competitors, upgraded Poopy Paws to DEAD, discovered NEW competitor, built full capture playbook
