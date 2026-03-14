@@ -6,6 +6,38 @@
 
 ## March 14, 2026 (Saturday)
 
+### 2:15 PM — 💀 DEAD COMPETITOR CUSTOMER CAPTURE CAMPAIGN — 5 Competitors Down, Their Customers Are Ours
+**Task:** Research current status of all dead/dying STL competitors, build ready-to-execute customer capture campaign
+**Result:** ✅ COMPLETED — Verified 5 dead competitors, upgraded Poopy Paws to DEAD, discovered NEW competitor, built full capture playbook
+
+**Why This Task:**
+- 5 dead competitors = 50-100+ orphaned customers actively looking for new service
+- This is the FASTEST path to new customers — $0 cost, no ads, just showing up where they're looking
+- New competitor (Little Stinkers of MO) is already moving into dead competitor territory — window closing
+
+**Key Findings:**
+1. **Poopy Paws UPGRADED to DEAD** — Website (poopypaws314.com) now has DNS failure. Previously listed as "wounded." Had 358 Facebook likes, served South City/South County/North County/Illinois. Charlie's customers are stranded.
+2. **Super Scoopers STL still DEAD** — Yelp CLOSED, website fails to load. St. Peters base.
+3. **Fresh Paws still DEAD** — DNS failure on wearefreshpaws.com
+4. **NEW COMPETITOR: Little Stinkers of MO** (littlestinkersofmo.com) — Operating in Lincoln/Warren/St. Charles counties. Moving into Super Scoopers' old territory. Services include dog waste, litter boxes, pet waste stations, deodorizing, playground sanitation.
+5. **DoodyCalls STL still active** — Website live, (314) 230-8082 still working. Still in franchise system despite earlier concerns.
+6. **Poop 2 Scoop pricing confirmed** — $18/week (1 dog), $16/visit 2x/week, $25 every-other-week. +$4 per extra dog.
+
+**Campaign Built:**
+- 3 copy-paste FB group post templates (The Switch, Spring Rescue, Direct Capture reply)
+- 3 priority target zones mapped (St. Charles County, South City/County, Western STL)
+- Specific FB groups to post in for each territory
+- Text/outreach scripts for converting orphaned customers
+- Price objection handling (Poopy Paws was $20 vs TJ's $25)
+- Weekend action checklist: 30 min total for TJ
+
+**Expected Results:** 3-5 new customers (conservative) to 8-12 (optimistic) within 2-6 weeks. $0 cost.
+
+**Files:** `deliverables/dead-competitor-capture-campaign-march14.md`, `dashboard/2026-03-14-DEAD-COMPETITOR-CAPTURE.html`, updated `dashboard/TASKS.md`
+**Rotation:** 🔍 Research — Competitive Intel & Customer Capture
+
+---
+
 ### 11:04 AM — 🔍 GOOGLE INDEXING DEEP TECHNICAL AUDIT — Root Cause Found
 **Task:** Investigate why tidytailsstl.com has 0 Google-indexed pages and create actionable fix plan
 **Result:** ✅ COMPLETED — Found the REAL root cause. Corrected major misdiagnosis on task board.

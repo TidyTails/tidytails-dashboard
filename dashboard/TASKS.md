@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-13 11:15 CST*
+*Last updated: 2026-03-14 2:30 PM CST*
 
 ---
 
@@ -63,7 +63,20 @@
 - [ ] **🖨️ Print 200+ business cards** — Need for all events. Vistaprint: 250 for ~$15.
 - Full calendar: `dashboard/2026-03-13-SPRING-PET-EVENTS.html` | Research: `research/2026-03-13-SPRING-PET-EVENTS-CALENDAR.md`
 
+### 💀 DEAD COMPETITOR CAPTURE (New — Mar 14)
+- [ ] **POST IN ST. CHARLES COUNTY FB GROUPS** — "The Switch" template targets Super Scoopers' orphaned customers. Copy-paste ready.
+- [ ] **POST IN SOUTH CITY/COUNTY FB GROUPS** — "Spring Rescue" template targets Poopy Paws' abandoned customers. Copy-paste ready.
+- [ ] **SEARCH FB FOR DEAD COMPETITOR MENTIONS** — Reply to anyone asking about Super Scoopers, Poopy Paws, or Fresh Paws with capture template.
+- [ ] **BUILD CITY PAGES: /st-peters, /south-city** — SEO capture for dead competitor territories
+- **Poopy Paws UPGRADED TO DEAD** — Website DNS failure confirmed Mar 14. Previously "wounded." 358 FB likes, served South City/County/North County.
+- **NEW COMPETITOR: Little Stinkers of MO** — Moving into Super Scoopers' old St. Charles County territory. Need to act fast.
+- Full campaign: `deliverables/dead-competitor-capture-campaign-march14.md` | Dashboard: `2026-03-14-DEAD-COMPETITOR-CAPTURE.html`
+
 ### ✅ Recently Completed
+- [x] **💀 Dead Competitor Capture Campaign** — Verified 5 dead competitors, upgraded Poopy Paws to DEAD, discovered NEW competitor (Little Stinkers of MO), built copy-paste FB/Nextdoor posts, territory maps, weekend action checklist. $0 cost, 3-12 new customers potential. Dashboard + full research. ✅ (Mar 14, 2:30 PM)
+- [x] **🔍 Google Indexing Deep Audit** — Found real root cause: domain only 26 days old, not 6+ months. Technical SEO is solid. Corrected task board misdiagnosis. ✅ (Mar 14, 11AM)
+- [x] **🛠️ Operations Toolkit** — Sweep&Go CRM, aPaws membership, industry benchmarks, liability insurance gap. ✅ (Mar 14, 9AM)
+- [x] **🚀 Facebook Ads Launch Kit** — Complete campaign with 4 variations, Meta Ads setup, targeting, follow-up scripts. ✅ (Mar 14, 8AM)
 - [x] **🗓️ Spring Pet Events Calendar** — 14 events researched (Mar-Jul), networking scripts, ROI estimates, vendor booth contact for Bark in the Park. Interactive dashboard + full research report. ✅ (Mar 13, 11PM)
 - [x] **🔍 LIVE Spring Competitive Intel Update** — Full market re-scan: Poop 2 Scoop still $18/week (39% cheaper), POOP 911 offering "1st free," Scoop Soldiers expanding aggressively (Cleveland acquisition + Cincinnati launch), **Super Scoopers STL confirmed DEAD** (website down, Yelp CLOSED) = new capture opportunity. `site:tidytailsstl.com` STILL 0 results. Industry benchmarks: 75% contribution margin, $60 CAC target. ✅ (Mar 13, 11AM)
 - [x] **🌐 4 Missing City Pages Built** — Kirkwood, Webster Groves, Olivette, University City. Full SEO: unique content, neighborhoods, schema markup, sitemap updated, all cross-links added. ✅ (Mar 13, 4AM)
