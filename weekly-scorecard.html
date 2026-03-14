@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Scorecard | TJ's Command Center</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #aaa; --text3: #666;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --teal: #14b8a6; --pink: #ec4899; --lime: #84cc16;
+            --border: #2a2a2a; --radius: 14px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+        .header {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a0f20 50%, #0f1520 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 1.5rem 1.5rem; text-align: center;
+        }
+        .header h1 { font-size: 2rem; font-weight: 900; letter-spacing: -0.04em; }
+        .header h1 .accent { background: linear-gradient(135deg, var(--orange), var(--yellow)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header .week-label {
+            display: inline-block; margin-top: 0.5rem;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+            color: var(--text2); background: var(--bg4); padding: 0.35rem 0.85rem;
+            border-radius: 6px; border: 1px solid var(--border);
+        }
+        .back-link { position: absolute; top: 1rem; left: 1rem; color: var(--text2); text-decoration: none; font-size: 0.85rem; }
+        .back-link:hover { color: var(--orange); }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+
+        /* ── Goal Tracker ── */
+        .goal-section {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        .goal-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.5rem; position: relative; overflow: hidden;
+        }
+        .goal-card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+        }
+        .goal-card.tidy::before { background: linear-gradient(90deg, var(--green), var(--teal)); }
+        .goal-card.shed::before { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
+        .goal-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text2); font-weight: 600; margin-bottom: 0.5rem; }
+        .goal-biz { font-size: 1.15rem; font-weight: 800; margin-bottom: 1rem; }
+        .goal-biz .emoji { margin-right: 0.25rem; }
+
+        .goal-metric { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.35rem; }
+        .goal-metric-label { font-size: 0.8rem; color: var(--text2); }
+        .goal-metric-value { font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 1rem; }
+
+        .progress-bar { width: 100%; height: 8px; background: var(--bg4); border-radius: 4px; margin: 0.75rem 0 0.35rem; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease; }
+        .progress-fill.green { background: linear-gradient(90deg, var(--green), var(--teal)); }
+        .progress-fill.orange { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
+        .progress-text { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text3); text-align: right; }
+
+        .big-number { font-family: 'JetBrains Mono', monospace; font-size: 2.5rem; font-weight: 900; line-height: 1; }
+        .big-number.green { color: var(--green); }
+        .big-number.orange { color: var(--orange); }
+        .big-label { font-size: 0.75rem; color: var(--text2); margin-top: 0.25rem; }
+
+        /* ── KPI Grid ── */
+        .kpi-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+        .kpi {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: 10px;
+            padding: 1rem; text-align: center;
+        }
+        .kpi-value { font-family: 'JetBrains Mono', monospace; font-size: 1.6rem; font-weight: 800; }
+        .kpi-label { font-size: 0.72rem; color: var(--text2); margin-top: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .kpi-delta { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; margin-top: 0.35rem; padding: 0.15rem 0.4rem; border-radius: 4px; display: inline-block; }
+        .kpi-delta.up { background: rgba(16,185,129,0.15); color: var(--green); }
+        .kpi-delta.down { background: rgba(239,68,68,0.15); color: var(--red); }
+        .kpi-delta.neutral { background: rgba(251,191,36,0.15); color: var(--yellow); }
+
+        /* ── Sections ── */
+        .section { margin-bottom: 2rem; }
+        .section-title {
+            font-size: 1rem; font-weight: 800; margin-bottom: 1rem;
+            padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+
+        /* ── Weekly Actions ── */
+        .action-list { list-style: none; }
+        .action-item {
+            display: flex; align-items: flex-start; gap: 0.75rem;
+            padding: 0.75rem 1rem; background: var(--bg3); border: 1px solid var(--border);
+            border-radius: 10px; margin-bottom: 0.5rem; cursor: pointer; transition: all 0.2s;
+        }
+        .action-item:hover { border-color: var(--orange); }
+        .action-item.done { opacity: 0.5; }
+        .action-item.done .action-text { text-decoration: line-through; }
+        .action-check {
+            width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 5px;
+            flex-shrink: 0; margin-top: 2px; display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s; font-size: 0.7rem;
+        }
+        .action-item.done .action-check { background: var(--green); border-color: var(--green); color: #000; }
+        .action-text { font-size: 0.85rem; font-weight: 500; }
+        .action-meta { font-size: 0.72rem; color: var(--text3); margin-top: 0.15rem; }
+        .action-priority {
+            font-size: 0.6rem; font-weight: 700; padding: 0.12rem 0.4rem;
+            border-radius: 3px; text-transform: uppercase; margin-left: auto; flex-shrink: 0;
+        }
+        .p-critical { background: rgba(239,68,68,0.2); color: var(--red); }
+        .p-high { background: rgba(255,107,53,0.2); color: var(--orange); }
+        .p-medium { background: rgba(251,191,36,0.2); color: var(--yellow); }
+
+        /* ── Wins / Pipeline ── */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+        .panel {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem;
+        }
+        .panel-title { font-size: 0.85rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .win-item { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0; font-size: 0.82rem; }
+        .win-icon { font-size: 1.1rem; }
+        .pipeline-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.82rem; }
+        .pipeline-row:last-child { border: none; }
+        .pipeline-stage { color: var(--text2); }
+        .pipeline-count { font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+
+        /* ── Competitor Watch ── */
+        .competitor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
+        .competitor-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: 10px;
+            padding: 1rem;
+        }
+        .competitor-name { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.25rem; }
+        .competitor-price { font-family: 'JetBrains Mono', monospace; color: var(--yellow); font-size: 0.9rem; font-weight: 600; }
+        .competitor-note { font-size: 0.72rem; color: var(--text3); margin-top: 0.25rem; }
+        .competitor-status { font-size: 0.65rem; padding: 0.12rem 0.35rem; border-radius: 3px; display: inline-block; margin-top: 0.35rem; }
+        .s-active { background: rgba(239,68,68,0.15); color: var(--red); }
+        .s-weak { background: rgba(251,191,36,0.15); color: var(--yellow); }
+        .s-dead { background: rgba(16,185,129,0.15); color: var(--green); }
+
+        /* ── Week Ahead ── */
+        .week-ahead { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.5rem; }
+        .day-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+            padding: 0.75rem 0.5rem; text-align: center; min-height: 100px;
+        }
+        .day-card.today { border-color: var(--orange); background: rgba(255,107,53,0.05); }
+        .day-name { font-size: 0.65rem; text-transform: uppercase; color: var(--text3); font-weight: 600; letter-spacing: 0.05em; }
+        .day-date { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 700; margin: 0.25rem 0; }
+        .day-task { font-size: 0.65rem; color: var(--text2); line-height: 1.3; margin-top: 0.35rem; }
+        .day-task strong { color: var(--text); }
+
+        /* ── Franklin Tasks ── */
+        .franklin-log { max-height: 300px; overflow-y: auto; }
+        .franklin-item { display: flex; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .franklin-item:last-child { border: none; }
+        .franklin-time { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--text3); white-space: nowrap; min-width: 65px; }
+        .franklin-desc { font-size: 0.8rem; }
+        .franklin-tag { font-size: 0.6rem; padding: 0.1rem 0.3rem; border-radius: 3px; background: rgba(139,92,246,0.15); color: var(--purple); margin-left: 0.35rem; }
+
+        /* ── History ── */
+        .history-nav { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .history-btn {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+            padding: 0.35rem 0.7rem; border-radius: 6px; border: 1px solid var(--border);
+            background: var(--bg3); color: var(--text2); cursor: pointer; transition: all 0.2s;
+        }
+        .history-btn:hover, .history-btn.active { border-color: var(--orange); color: var(--orange); }
+
+        .footer { text-align: center; padding: 2rem; color: var(--text3); font-size: 0.72rem; }
+        .footer a { color: var(--text2); text-decoration: none; }
+
+        @media (max-width: 768px) {
+            .goal-section { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .two-col { grid-template-columns: 1fr; }
+            .competitor-grid { grid-template-columns: 1fr; }
+            .week-ahead { grid-template-columns: repeat(4, 1fr); }
+        }
+        @media (max-width: 480px) {
+            .kpi-grid { grid-template-columns: 1fr 1fr; }
+            .week-ahead { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="header" style="position: relative;">
+        <a href="index.html" class="back-link">← Command Center</a>
+        <h1>📊 Weekly <span class="accent">Scorecard</span></h1>
+        <div class="week-label">Week of March 10–16, 2026</div>
+    </div>
+
+    <div class="container">
+
+        <!-- ═══════════ GOAL TRACKERS ═══════════ -->
+        <div class="goal-section">
+            <div class="goal-card tidy">
+                <div class="goal-label">🐕 Tidy Tails Pet Waste Removal</div>
+                <div class="goal-biz">Customer Goal: 25 by August</div>
+                <div style="display: flex; align-items: baseline; gap: 0.5rem;">
+                    <span class="big-number green">8</span>
+                    <span style="color: var(--text3); font-size: 0.9rem;">/ 25 recurring</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill green" style="width: 32%;"></div></div>
+                <div class="progress-text">32% to goal • 17 to go • ~21 weeks left</div>
+                <div style="margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                    <div>
+                        <div class="goal-metric"><span class="goal-metric-label">Monthly Revenue</span><span class="goal-metric-value" style="color:var(--green);">~$800</span></div>
+                        <div class="goal-metric"><span class="goal-metric-label">Avg/Customer</span><span class="goal-metric-value">$100</span></div>
+                    </div>
+                    <div>
+                        <div class="goal-metric"><span class="goal-metric-label">Goal Revenue</span><span class="goal-metric-value" style="color:var(--text3);">$2,500</span></div>
+                        <div class="goal-metric"><span class="goal-metric-label">Needed/Week</span><span class="goal-metric-value" style="color:var(--yellow);">~0.8</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="goal-card shed">
+                <div class="goal-label">🏠 Backyard Buildings STL (TuffShed)</div>
+                <div class="goal-biz">Pipeline Growth — Spring Rush</div>
+                <div style="display: flex; align-items: baseline; gap: 0.5rem;">
+                    <span class="big-number orange">🔥</span>
+                    <span style="color: var(--text3); font-size: 0.9rem;">Peak season active</span>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <div class="goal-metric"><span class="goal-metric-label">Tariff Urgency</span><span class="goal-metric-value" style="color:var(--red);">35.19%</span></div>
+                    <div class="goal-metric"><span class="goal-metric-label">Lead Time</span><span class="goal-metric-value">4-6 weeks</span></div>
+                    <div class="goal-metric"><span class="goal-metric-label">Financing</span><span class="goal-metric-value" style="color:var(--green);">0% / 6mo</span></div>
+                    <div class="goal-metric"><span class="goal-metric-label">Active Promos</span><span class="goal-metric-value" style="color:var(--red);">None</span></div>
+                </div>
+                <div style="margin-top: 0.75rem; font-size: 0.75rem; color: var(--text3);">
+                    Price range: $4,898–$6,135 (10×12) • RTO from $148/mo
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ KPI STRIP ═══════════ -->
+        <div class="kpi-grid">
+            <div class="kpi">
+                <div class="kpi-value" style="color: var(--red);">0</div>
+                <div class="kpi-label">Google Index Pages</div>
+                <div class="kpi-delta down">🚨 Critical</div>
+            </div>
+            <div class="kpi">
+                <div class="kpi-value" style="color: var(--yellow);">0</div>
+                <div class="kpi-label">Google Reviews</div>
+                <div class="kpi-delta neutral">needs setup</div>
+            </div>
+            <div class="kpi">
+                <div class="kpi-value" style="color: var(--purple);">4</div>
+                <div class="kpi-label">Dead Competitors</div>
+                <div class="kpi-delta up">↑ opportunity</div>
+            </div>
+            <div class="kpi">
+                <div class="kpi-value" style="color: var(--green);">60+</div>
+                <div class="kpi-label">Deliverables Built</div>
+                <div class="kpi-delta up">this week</div>
+            </div>
+        </div>
+
+        <!-- ═══════════ THIS WEEKEND: TOP 5 ═══════════ -->
+        <div class="section">
+            <div class="section-title">🎯 Weekend Priority Actions (March 14–16)</div>
+            <ul class="action-list" id="actionList">
+                <li class="action-item" onclick="toggleAction(this)">
+                    <div class="action-check"></div>
+                    <div>
+                        <div class="action-text">Set up Google Business Profile</div>
+                        <div class="action-meta">30 min • Unlocks local search, reviews, Maps visibility</div>
+                    </div>
+                    <span class="action-priority p-critical">critical</span>
+                </li>
+                <li class="action-item" onclick="toggleAction(this)">
+                    <div class="action-check"></div>
+                    <div>
+                        <div class="action-text">Submit to top 7 directories (Yelp, Thumbtack, Angi, etc.)</div>
+                        <div class="action-meta">1 hr • Copy-paste kit ready in Directory Submission Kit</div>
+                    </div>
+                    <span class="action-priority p-critical">critical</span>
+                </li>
+                <li class="action-item" onclick="toggleAction(this)">
+                    <div class="action-check"></div>
+                    <div>
+                        <div class="action-text">Text all 8 customers for Google reviews + referrals</div>
+                        <div class="action-meta">15 min • Scripts ready in Referral Blitz Kit</div>
+                    </div>
+                    <span class="action-priority p-high">high</span>
+                </li>
+                <li class="action-item" onclick="toggleAction(this)">
+                    <div class="action-check"></div>
+                    <div>
+                        <div class="action-text">Post in 3 Facebook groups + Nextdoor</div>
+                        <div class="action-meta">20 min • Copy-paste posts ready in Content Pack</div>
+                    </div>
+                    <span class="action-priority p-high">high</span>
+                </li>
+                <li class="action-item" onclick="toggleAction(this)">
+                    <div class="action-check"></div>
+                    <div>
+                        <div class="action-text">Post 2 weekend shed ads to Marketplace</div>
+                        <div class="action-meta">10 min • Weather-triggered ads ready in Shed Ad Pack</div>
+                    </div>
+                    <span class="action-priority p-medium">medium</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ═══════════ WINS + PIPELINE ═══════════ -->
+        <div class="two-col">
+            <div class="panel">
+                <div class="panel-title">🏆 This Week's Wins</div>
+                <div class="win-item"><span class="win-icon">📍</span> Directory submission kit built (22 listings mapped)</div>
+                <div class="win-item"><span class="win-icon">🎯</span> Dead competitor capture plan — 4 companies identified</div>
+                <div class="win-item"><span class="win-icon">🏥</span> 20 vet clinics mapped for referral partnerships</div>
+                <div class="win-item"><span class="win-icon">🤝</span> Referral program designed ("Friends Don't Let Friends Scoop")</div>
+                <div class="win-item"><span class="win-icon">📅</span> Spring events calendar — 8 events, $545 budget</div>
+                <div class="win-item"><span class="win-icon">🏠</span> TuffShed battle card + weekend ad pack created</div>
+                <div class="win-item"><span class="win-icon">🔍</span> Full competitive scan — pricing, status, threats</div>
+                <div class="win-item"><span class="win-icon">📣</span> 2-week social content pack ready to post</div>
+            </div>
+            <div class="panel">
+                <div class="panel-title">📊 Growth Pipeline</div>
+                <div class="pipeline-row"><span class="pipeline-stage">🟢 Ready to execute</span><span class="pipeline-count" style="color:var(--green);">5 actions</span></div>
+                <div class="pipeline-row"><span class="pipeline-stage">🟡 Leads identified (not contacted)</span><span class="pipeline-count" style="color:var(--yellow);">40+ commercial</span></div>
+                <div class="pipeline-row"><span class="pipeline-stage">🟡 Vet clinics (not visited)</span><span class="pipeline-count" style="color:var(--yellow);">20 clinics</span></div>
+                <div class="pipeline-row"><span class="pipeline-stage">🟡 Referral partners (not contacted)</span><span class="pipeline-count" style="color:var(--yellow);">14 businesses</span></div>
+                <div class="pipeline-row"><span class="pipeline-stage">🔴 Dead competitor customers</span><span class="pipeline-count" style="color:var(--red);">~50-100 orphans</span></div>
+                <div class="pipeline-row"><span class="pipeline-stage">🔴 Google visibility</span><span class="pipeline-count" style="color:var(--red);">0 indexed pages</span></div>
+                <div style="margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px solid var(--border); font-size: 0.75rem; color: var(--text3);">
+                    Bottleneck: GBP setup + directory submissions must happen before any SEO/review strategy works.
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ COMPETITIVE LANDSCAPE ═══════════ -->
+        <div class="section" style="margin-top: 2rem;">
+            <div class="section-title">⚔️ Competitive Landscape (as of March 13)</div>
+            <div class="competitor-grid">
+                <div class="competitor-card">
+                    <div class="competitor-name">Poop 2 Scoop</div>
+                    <div class="competitor-price">$18/week (1 dog)</div>
+                    <div class="competitor-note">Price leader • $16/visit 2x/wk • $25 EOW</div>
+                    <div class="competitor-status s-active">⚡ Active threat</div>
+                </div>
+                <div class="competitor-card">
+                    <div class="competitor-name">POOP 911</div>
+                    <div class="competitor-price">1st service FREE</div>
+                    <div class="competitor-note">National franchise • 70+ STL zips covered</div>
+                    <div class="competitor-status s-active">⚡ Active threat</div>
+                </div>
+                <div class="competitor-card">
+                    <div class="competitor-name">Yucko's</div>
+                    <div class="competitor-price">Not published</div>
+                    <div class="competitor-note">Since 1990 • M-F only • outdated site</div>
+                    <div class="competitor-status s-weak">⚠️ Established but weak</div>
+                </div>
+                <div class="competitor-card">
+                    <div class="competitor-name">Scoop Soldiers</div>
+                    <div class="competitor-price">$12.50/visit</div>
+                    <div class="competitor-note">Acquiring companies in OH — could expand to STL</div>
+                    <div class="competitor-status s-active">⚡ Expansion threat</div>
+                </div>
+                <div class="competitor-card">
+                    <div class="competitor-name">Pawfect Waste Solutions</div>
+                    <div class="competitor-price">Was ~$20/wk</div>
+                    <div class="competitor-note">pooperscooperstl.com = 404. Still ranks in search.</div>
+                    <div class="competitor-status s-dead">💀 Dead — capture customers</div>
+                </div>
+                <div class="competitor-card">
+                    <div class="competitor-name">Fresh Paws / Poopy Paws</div>
+                    <div class="competitor-price">Was $20/wk</div>
+                    <div class="competitor-note">DNS dead (Fresh Paws), maybe phone-only (Poopy Paws)</div>
+                    <div class="competitor-status s-dead">💀 Dead — orphaned customers</div>
+                </div>
+            </div>
+            <div style="margin-top: 0.75rem; padding: 0.75rem 1rem; background: rgba(255,107,53,0.08); border-radius: 8px; font-size: 0.8rem; border: 1px solid rgba(255,107,53,0.15);">
+                <strong style="color: var(--orange);">⚡ TJ's price: $25/week</strong> — 39% above Poop 2 Scoop's $18. Competitive edge: multi-dog flat rate, flexible scheduling, local owner (not franchise), text-based booking.
+            </div>
+        </div>
+
+        <!-- ═══════════ WEEK AHEAD CALENDAR ═══════════ -->
+        <div class="section">
+            <div class="section-title">📅 Week Ahead (March 14–20)</div>
+            <div class="week-ahead">
+                <div class="day-card">
+                    <div class="day-name">Sat</div>
+                    <div class="day-date">14</div>
+                    <div class="day-task"><strong>GBP Setup</strong><br>Directory blitz<br>Post shed ads</div>
+                </div>
+                <div class="day-card">
+                    <div class="day-name">Sun</div>
+                    <div class="day-date">15</div>
+                    <div class="day-task"><strong>Text customers</strong><br>Reviews + referrals<br>FB group posts</div>
+                </div>
+                <div class="day-card">
+                    <div class="day-name">Mon</div>
+                    <div class="day-date">16</div>
+                    <div class="day-task"><strong>Call top 6 vet clinics</strong><br>Nextdoor post<br>Flyer prep</div>
+                </div>
+                <div class="day-card">
+                    <div class="day-name">Tue</div>
+                    <div class="day-date">17</div>
+                    <div class="day-task"><strong>Route day</strong><br>Scooping + flyer drops</div>
+                </div>
+                <div class="day-card">
+                    <div class="day-name">Wed</div>
+                    <div class="day-date">18</div>
+                    <div class="day-task"><strong>Review follow-ups</strong><br>Check directory listings</div>
+                </div>
+                <div class="day-card">
+                    <div class="day-name">Thu</div>
+                    <div class="day-date">19</div>
+                    <div class="day-task"><strong>Route day</strong><br>Commercial lead calls</div>
+                </div>
+                <div class="day-card">
+                    <div class="day-name">Fri</div>
+                    <div class="day-date">20</div>
+                    <div class="day-task"><strong>Week review</strong><br>Update scorecard<br>Plan next week</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ PUPS ON THE PITCH ALERT ═══════════ -->
+        <div style="background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.1)); border: 1px solid rgba(59,130,246,0.3); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;">
+            <div style="font-weight: 800; font-size: 0.95rem; margin-bottom: 0.5rem;">⚽ UPCOMING: Pups on the Pitch — March 22</div>
+            <div style="font-size: 0.82rem; color: var(--text2); line-height: 1.5;">
+                STL CITY SC + Purina event • $60/ticket • Wealthy dog owners networking<br>
+                <strong style="color: var(--blue);">Action:</strong> Register + bring business cards. High-value lead opportunity.<br>
+                <span style="color: var(--text3);">9 days away — registration may be limited</span>
+            </div>
+        </div>
+
+        <!-- ═══════════ BARK IN THE PARK ALERT ═══════════ -->
+        <div style="background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(20,184,166,0.1)); border: 1px solid rgba(16,185,129,0.3); border-radius: var(--radius); padding: 1.25rem; margin-bottom: 2rem;">
+            <div style="font-weight: 800; font-size: 0.95rem; margin-bottom: 0.5rem;">🐕 SAVE THE DATE: Bark in the Park — May 16</div>
+            <div style="font-size: 0.82rem; color: var(--text2); line-height: 1.5;">
+                HSMO's 30th annual • Tower Grove Park • 5,000-10,000 dog owners<br>
+                <strong style="color: var(--green);">Action:</strong> Reserve vendor booth NOW — bark@hsmo.org or (314) 951-1565<br>
+                <span style="color: var(--text3);">Largest pet festival in the Midwest • Booth: ~$150-200</span>
+            </div>
+        </div>
+
+        <!-- ═══════════ FRANKLIN'S TASK LOG ═══════════ -->
+        <div class="section">
+            <div class="section-title">🤖 Franklin's Work Log — March 13</div>
+            <div class="panel">
+                <div class="franklin-log">
+                    <div class="franklin-item">
+                        <div class="franklin-time">8:05 PM</div>
+                        <div class="franklin-desc">📅 Spring Events & Guerrilla Marketing Calendar <span class="franklin-tag">marketing</span></div>
+                    </div>
+                    <div class="franklin-item">
+                        <div class="franklin-time">7:04 PM</div>
+                        <div class="franklin-desc">🔄 Customer Referral & Review Blitz Kit <span class="franklin-tag">growth</span></div>
+                    </div>
+                    <div class="franklin-item">
+                        <div class="franklin-time">5:04 PM</div>
+                        <div class="franklin-desc">🏠 Weekend Shed Ad Pack (6 weather-triggered ads) <span class="franklin-tag">ad copy</span></div>
+                    </div>
+                    <div class="franklin-item">
+                        <div class="franklin-time">1:04 PM</div>
+                        <div class="franklin-desc">🏥 Vet Clinic Referral Partner List (20 clinics) <span class="franklin-tag">leads</span></div>
+                    </div>
+                    <div class="franklin-item">
+                        <div class="franklin-time">11:04 AM</div>
+                        <div class="franklin-desc">🔍 Live Competitive Intel Scan <span class="franklin-tag">intel</span></div>
+                    </div>
+                    <div class="franklin-item">
+                        <div class="franklin-time">10:05 AM</div>
+                        <div class="franklin-desc">🎯 Weekend Execution Plan (5 priorities) <span class="franklin-tag">strategy</span></div>
+                    </div>
+                    <div class="franklin-item">
+                        <div class="franklin-time">9:04 AM</div>
+                        <div class="franklin-desc">📍 Directory Submission Kit (22 directories) <span class="franklin-tag">seo</span></div>
+                    </div>
+                    <div class="franklin-item">
+                        <div class="franklin-time">8:04 AM</div>
+                        <div class="franklin-desc">🎯 Dead Competitor Capture Plan <span class="franklin-tag">growth</span></div>
+                    </div>
+                    <div class="franklin-item">
+                        <div class="franklin-time">7:04 AM</div>
+                        <div class="franklin-desc">🤝 Referral Partner Network + New Leads <span class="franklin-tag">leads</span></div>
+                    </div>
+                    <div class="franklin-item">
+                        <div class="franklin-time">6:04 AM</div>
+                        <div class="franklin-desc">🏠 TuffShed Spring Sales Battle Card <span class="franklin-tag">sales</span></div>
+                    </div>
+                    <div class="franklin-item">
+                        <div class="franklin-time">5:04 AM</div>
+                        <div class="franklin-desc">🤝 Referral Program Launch Kit <span class="franklin-tag">growth</span></div>
+                    </div>
+                    <div class="franklin-item">
+                        <div class="franklin-time">3:04 AM</div>
+                        <div class="franklin-desc">🌸 Spring 2-Week Content Pack <span class="franklin-tag">content</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ THE BIG PICTURE ═══════════ -->
+        <div style="background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem;">
+            <div style="font-weight: 800; font-size: 1rem; margin-bottom: 0.75rem;">📈 The Big Picture — Where We Stand</div>
+            <div style="font-size: 0.85rem; color: var(--text2); line-height: 1.7;">
+                <strong style="color: var(--text);">What's built:</strong> Complete marketing infrastructure — ads, content, referral program, competitive intel, event calendar, lead lists, sales scripts, directory kit. The ammo is loaded.<br><br>
+                <strong style="color: var(--text);">What's missing:</strong> <span style="color: var(--red);">Execution.</span> Zero Google reviews. Zero directory listings. Zero vet clinic visits. GBP not set up. Website invisible on Google. All the plans and copy in the world don't matter until TJ spends 2.5 hours this weekend doing the 5 priority actions.<br><br>
+                <strong style="color: var(--text);">The math:</strong> 8 customers → 25 in 21 weeks = <span style="color: var(--yellow);">~0.8 new customers per week</span>. That's achievable with referrals (3-6), dead competitor capture (6-11), vet clinic drops (5/mo), and GBP/directory visibility. But <span style="color: var(--orange);">the clock is ticking.</span>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>Built by Franklin 🐕💩 • <a href="index.html">Back to Command Center</a> • Updated March 13, 2026 9:04 PM</p>
+    </div>
+
+    <script>
+        function toggleAction(el) {
+            el.classList.toggle('done');
+            if (el.classList.contains('done')) {
+                el.querySelector('.action-check').textContent = '✓';
+            } else {
+                el.querySelector('.action-check').textContent = '';
+            }
+            saveState();
+        }
+
+        function saveState() {
+            const items = document.querySelectorAll('.action-item');
+            const state = Array.from(items).map(i => i.classList.contains('done'));
+            localStorage.setItem('scorecard-actions-wk11', JSON.stringify(state));
+        }
+
+        function loadState() {
+            try {
+                const state = JSON.parse(localStorage.getItem('scorecard-actions-wk11'));
+                if (state) {
+                    const items = document.querySelectorAll('.action-item');
+                    state.forEach((done, i) => {
+                        if (done && items[i]) {
+                            items[i].classList.add('done');
+                            items[i].querySelector('.action-check').textContent = '✓';
+                        }
+                    });
+                }
+            } catch(e) {}
+        }
+
+        loadState();
+    </script>
+</body>
+</html>
