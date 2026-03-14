@@ -1,13 +1,13 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-13 08:00 CST*
+*Last updated: 2026-03-14 08:00 CST*
 
 ---
 
 ## 🐕 DOG WASTE (Tidy Tails)
 
 ### 🔥 In Progress
-- [ ] **🚨 Google Indexing — DAY 8, STILL ZERO PAGES** — Checked Mar 13 8AM, `site:tidytailsstl.com` returns 0 on Brave
+- [ ] **🚨 Google Indexing — DAY 9, STILL ZERO PAGES** — Checked Mar 14 8AM, `site:tidytailsstl.com` returns 0 on Brave
   - Domain age: ~26 days. Technically sound but zero backlinks/directory listings = Google has no external signals
   - 4 broken city pages FIXED overnight (Kirkwood, Webster Groves, Olivette, U City) — all returning 200
   - Sitemap now has 17 URLs
@@ -16,8 +16,8 @@
   - Owner: TJ (30-45 min, one-time)
 
 - [ ] **Spring Marketing Push** — FB group posts, spring-themed content
-  - Status: **4 fresh Friday posts ready (Mar 13)** + Weekend Blitz (Mar 14-16) + 2-week content pack (Mar 14-28) + Week 13 calendar (Mar 17-21)
-  - **TODAY's posts:** `dashboard/marketing/2026-03-13-friday-posts.md` (4 posts: community, dog groups, GBP, Nextdoor)
+  - Status: **5 fresh Saturday posts ready (Mar 14)** + Weekend Blitz (Mar 14-16) + Week 13 calendar (Mar 17-21) + 2-week content pack (Mar 14-28)
+  - **TODAY's posts:** `dashboard/marketing/2026-03-14-SATURDAY-POSTS.md` (5 posts: community, dog groups, GBP, Nextdoor, Instagram)
   - **This weekend:** `dashboard/marketing/2026-03-14-WEEKEND-BLITZ.md` (15-min action plan)
   - **Next week:** `dashboard/campaigns/tidy-tails/2026-03-13-WEEK13-CONTENT-CALENDAR.md` (St. Patty's Day + First Day of Spring)
   - **2 weeks out:** `ready-to-post/spring-2026-tidy-tails-content-pack.md` (13 posts, Mar 14-28)
