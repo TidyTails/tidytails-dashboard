@@ -6,6 +6,39 @@
 
 ## March 13, 2026 (Friday)
 
+### 9:04 PM — 📊 WEEKLY KPI SCORECARD DASHBOARD — See Progress at a Glance
+**Task:** Build an interactive Weekly Scorecard dashboard that consolidates goal tracking, KPIs, competitive landscape, action items, and Franklin's work log into one page
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 9 PM Friday — 12th task today, ALL research/planning/copy. TJ has 60+ deliverables now. That's overwhelming.
+- No single place to see "where do I stand?" — customer count vs goal, what's working, what's next
+- TJ needs a dashboard he opens weekly to track progress, not dig through dozens of files
+- Interactive checklist lets him check off weekend actions and see them persist via localStorage
+- This is infrastructure that compounds — updated weekly, it becomes the business scorecard
+
+**What I Built:**
+1. **Dual goal tracker** — Tidy Tails (8/25 customers, 32%, progress bar) + TuffShed (tariff urgency, pricing, financing)
+2. **4 KPI cards** — Google indexed pages (0 🚨), Google reviews (0), dead competitors (4 = opportunity), deliverables built (60+)
+3. **Interactive weekend action checklist** — 5 priority items with click-to-complete, persists in localStorage
+4. **This Week's Wins panel** — 8 major accomplishments summarized
+5. **Growth Pipeline panel** — lead sources quantified by stage (ready/identified/not contacted)
+6. **Competitive landscape** — 6 competitors with pricing, status badges (active/weak/dead)
+7. **Week Ahead calendar** — March 14-20 with daily action items
+8. **Event alerts** — Pups on the Pitch (March 22) and Bark in the Park (May 16) with action items
+9. **Franklin's Work Log** — all 12 tasks from today with timestamps and category tags
+10. **Big Picture summary** — honest assessment: infrastructure is built, execution is the bottleneck
+11. **Added to Command Center** index.html as first item in CRM & Core Tools section
+
+**Key Insight:** Building a 13th deliverable would have been easy but pointless. TJ doesn't need more content — he needs visibility into his business at a glance. This scorecard is the "one page to rule them all" that answers: How close am I to my goal? What should I do THIS WEEKEND? What's my competition doing? What did Franklin build for me?
+
+**File:** `weekly-scorecard.html`
+**Also Updated:** `index.html` (added as first card in CRM & Core Tools, count → 5)
+**Git:** Committed + pushed
+**Rotation:** 📊 Infrastructure — Weekly KPI Scorecard
+
+---
+
 ### 8:05 PM — 📅 SPRING EVENTS & GUERRILLA MARKETING CALENDAR — Show Up Where Dog Owners Are
 **Task:** Research every spring pet event, community festival, and networking opportunity in the STL area for both businesses, and build an actionable event marketing calendar
 **Result:** ✅ COMPLETED
