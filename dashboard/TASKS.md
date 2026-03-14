@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-14 3:15 PM CST*
+*Last updated: 2026-03-14 4:15 PM CST*
 
 ---
 
@@ -73,6 +73,7 @@
 - Full campaign: `deliverables/dead-competitor-capture-campaign-march14.md` | Dashboard: `2026-03-14-DEAD-COMPETITOR-CAPTURE.html`
 
 ### ✅ Recently Completed
+- [x] **🏠 Late March Shed Ad Campaign** — 6 FB Marketplace ads + 3 IG captions for Mar 17-23. Fresh tariff urgency (35% duty, new review opened Mar 9), March Madness hook, Spring Equinox, tax refund final push. Updated battlecard with new competitor intel (Cardinal Portable Sheds, STL Sheds content marketing). No active promo = sell urgency + financing. ✅ (Mar 14, 4PM)
 - [x] **🌐 Dead Competitor Territory SEO Pages** — 3 new city pages (South County, South City, Wentzville) targeting orphaned customers from dead Poopy Paws and Super Scoopers. "Switching provider?" alerts, full SEO, cross-linked all 21 city pages. ✅ (Mar 14, 3PM)
 - [x] **💀 Dead Competitor Capture Campaign** — Verified 5 dead competitors, upgraded Poopy Paws to DEAD, discovered NEW competitor (Little Stinkers of MO), built copy-paste FB/Nextdoor posts, territory maps, weekend action checklist. $0 cost, 3-12 new customers potential. Dashboard + full research. ✅ (Mar 14, 2:30 PM)
 - [x] **🔍 Google Indexing Deep Audit** — Found real root cause: domain only 26 days old, not 6+ months. Technical SEO is solid. Corrected task board misdiagnosis. ✅ (Mar 14, 11AM)
@@ -179,6 +180,7 @@
 ### 📝 To Do
 - [ ] **HTTPS enforcement** for backyardbuildingsstl.com
 - [ ] **Follow-up emails** for Fenton shed leads (due Sun Mar 9)
+- [x] **Late March Ad Campaign** — 6 FB Marketplace ads + 3 IG posts for Mar 17-23. Tariff urgency angles, March Madness, Spring Equinox, tax refund. No active promo = lean on tariff urgency + financing. ✅ (Mar 14, 4PM)
 - [ ] Daily ad copy generation (paused — need TJ direction on current promos)
 
 ---

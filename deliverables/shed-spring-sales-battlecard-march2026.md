@@ -1,7 +1,7 @@
 # 🏠 TuffShed/WoodMaster Spring Sales Battle Card
 ## March 2026 — Pull This Up On Every Sales Call
 **For:** TJ (as Darius) | **Contact:** 636-354-7406
-**Last Updated:** March 13, 2026
+**Last Updated:** March 14, 2026
 
 ---
 
@@ -15,7 +15,7 @@
 
 ### 1. Tariff Bomb (STRONGEST lever right now)
 - **Canadian softwood lumber duty: 35.19%** (was 14.4% last year — more than doubled)
-- **NEW Commerce Dept review opened March 9, 2026** — could increase AGAIN
+- **NEW Commerce Dept review opened March 9, 2026** — could increase AGAIN. Final results expected Jan 2027.
 - **One Austin analysis pegs combined duties at 45%** when all tariffs stack
 - **What to say:** *"Lumber tariffs doubled in the last year. The government just opened another review 4 days ago. I can't tell you prices won't go up — but I can tell you they haven't gone DOWN."*
 
@@ -45,10 +45,13 @@
 | Tahoe Independence Barn | 10x12 | **$6,135** | Premium barn style |
 | Tahoe Tucson Barn | 10x12 | **$5,531** | Popular barn |
 
-**⚠️ NO active TuffShed promo right now!**
+**⚠️ NO active TuffShed promo right now!** (confirmed March 14)
 - $1,000 off Sundance expired Feb 11
 - Three for Free + 5% off expired March 4
 - Next promo likely April/May — but waiting = higher base prices
+- **New competitor: Cardinal Portable Sheds** (Southern IL, Amish-built, delivers to STL)
+- **STL Sheds still active** — creating YouTube content, "Buying a Shed in 2026" blog posts. Ben: (618) 670-6856
+- **shedhub.com avg STL shed price: $6,897** (trending UP with tariffs)
 
 ### STL Sheds (Amish-Built Competitor) — Fairmont City, IL
 | Style | Size | Price | Notes |

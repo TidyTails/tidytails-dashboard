@@ -6,6 +6,52 @@
 
 ## March 14, 2026 (Saturday)
 
+### 4:05 PM — 🏠 LATE MARCH SHED AD CAMPAIGN + COMPETITOR INTEL UPDATE — 6 Marketplace Ads + 3 IG Posts Ready
+**Task:** Research current TuffShed/WoodMaster promos, update tariff intel, check competitors, and create fresh late-March shed ad copy
+**Result:** ✅ COMPLETED — Full week of ad content for March 17-23, updated battlecard, new competitor intel
+
+**Why This Task:**
+- All 5 tasks today were Tidy Tails — shed business got ZERO attention
+- Spring is peak shed selling season and current ad batch (Mar 12) is aging out
+- NO active TuffShed promo right now (Three for Free expired Mar 4) — need new selling angles
+- Fresh tariff news (March 9 Commerce Dept review) is the strongest urgency lever available
+
+**Key Intel Gathered:**
+1. **NO ACTIVE TUFFSHED PROMO** — Confirmed March 14. $1K off expired Feb 11, Three for Free expired Mar 4. Next promo likely April/May.
+2. **TARIFF NEWS IS HOTTER THAN EVER** — Commerce Dept opened new review March 9, 2026. Current duty: 35.19% (was 14.4%). Could go HIGHER. Final results expected Jan 2027.
+3. **NEW COMPETITOR: Cardinal Portable Sheds** — Southern IL, Amish-built, delivers to STL. Lower threat but worth monitoring.
+4. **STL Sheds getting smarter** — Creating YouTube content + "Buying a Shed in 2026" blog posts. Ben still the contact. Everlast + Wolf Metal brands.
+5. **STL avg shed price trending up** — shedhub.com shows $6,897 avg (up from ~$6,568 earlier in March). Tariff pressure confirmed in market data.
+
+**What Was Built:**
+1. **6 Facebook Marketplace Ads:**
+   - AD 1: "March Madness" — bracket/garage hook
+   - AD 2: "First Day of Spring" — equinox timing (post March 20)
+   - AD 3: "Tariff Bomb" — pure urgency, cites March 9 review
+   - AD 4: "Last Tax Refund Push" — option A vs option B framing
+   - AD 5: "Garage Intervention" — humor/relatable
+   - AD 6: "Spring Projects" — workshop angle
+
+2. **3 Instagram Captions (@reddshedredemption):**
+   - Spring Equinox post (March 20)
+   - Tariff Warning PSA (March 18)
+   - Saturday Lot Tour (March 22)
+
+3. **Full 7-day posting schedule** (March 17-23)
+4. **"Why No Sale Right Now?" talk track** for customer objections
+5. **Updated battlecard** with new competitor intel + tariff timeline
+
+**Strategy Shift:**
+- No promo = sell on URGENCY (tariffs) + FINANCING (0% interest)
+- "Today's price is the deal" — because base prices going up
+- Fresh angles: March Madness, Spring Equinox, government tariff review news
+- Talk track for "Are there any promotions?" objection
+
+**Files:** `deliverables/shed-ads-late-march-2026.md`, updated `deliverables/shed-spring-sales-battlecard-march2026.md`, updated `dashboard/TASKS.md`
+**Rotation:** 🏠 Sheds — Ad Copy + Competitive Intel
+
+---
+
 ### 3:04 PM — 🌐 DEAD COMPETITOR TERRITORY SEO PAGES — 3 New City Pages Live
 **Task:** Build city/area pages targeting dead competitor territories with zero web presence
 **Result:** ✅ COMPLETED — 3 new pages live, all existing pages cross-linked, sitemap updated, pushed to GitHub
