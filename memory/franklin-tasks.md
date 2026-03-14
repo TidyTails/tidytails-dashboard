@@ -422,6 +422,35 @@
 
 ---
 
+### 5:04 PM — 🚨 COMPETITIVE LANDSCAPE UPDATE — Scoop Soldiers Has Launched in STL
+**Task:** Full competitive intelligence update — discovered and profiled new market entrants, updated pricing matrix, assessed threat levels, built response plan
+**Result:** ✅ COMPLETED — Critical intel: Scoop Soldiers (national franchise, 1300+ reviews, $15/visit) officially launched in St. Louis Feb 6, 2026. Also found Clean Turf STL (new local, house cleaning + pet waste combo).
+
+**Why This Task:**
+- Last competitive report (March 13) flagged Scoop Soldiers as a POTENTIAL threat expanding in the Midwest
+- They have now OFFICIALLY launched with a dedicated STL landing page and press releases
+- This changes TJ's competitive position significantly — he's now the most expensive known option in market
+- Spring timing makes this urgent — new customers are shopping NOW
+
+**What I Found:**
+1. **Scoop Soldiers** — $15/visit, up to 4 dogs FREE, franchise with 1300+ reviews, sanitizer/deodorizer/station installation, launched STL Feb 6 2026
+2. **Clean Turf STL** — New local competitor, combines house cleaning + pet waste, $75 one-time minimum, referral program, free first cleanup with autopay
+3. **TJ is now most expensive** at $25/week vs $15 (Scoop Soldiers), $18 (Poop 2 Scoop), ~$12-18 (DoodyCalls)
+4. **Google still shows 0 indexed pages for tidytailsstl.com** — day 12+
+
+**Response Plan (5 moves):**
+1. Execute weekend plan (GBP, Search Console, directories) IMMEDIATELY
+2. Lean into "local owner" positioning vs franchise competitors
+3. Consider pricing adjustment or intro tier
+4. Get Google reviews from existing customers this week
+5. Fast-track pet waste station service offering
+
+**File:** `deliverables/competitive-landscape-march14-update.md`
+**Dashboard:** Added red threat banner to main dashboard
+**Rotation:** 🔍 Research — Competitive Intelligence
+
+---
+
 ## Archive
 - **March 12-13, 2026:** `memory/archive/franklin-tasks-mar12-13.md` (1,321 lines, 30+ tasks)
 - **March 11, 2026:** `memory/archive/franklin-tasks-mar11.md` (672 lines, 25 tasks)
