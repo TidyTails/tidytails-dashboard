@@ -6,6 +6,35 @@
 
 ## March 14, 2026 (Saturday)
 
+### 6:05 PM — 💰 PAID ADS PLAYBOOK — Google Ads + Facebook Ads Strategy for Tidy Tails
+**Task:** Research paid advertising costs, strategies, and ROI for pet waste removal businesses. Build a complete playbook with budget tiers, ad copy, targeting, and step-by-step setup for Google Ads, Facebook Ads, Google LSAs, and Nextdoor.
+**Result:** ✅ COMPLETED — Full paid ads playbook with 3 channels, 4 budget phases, 9 ready-to-use ad variations, ROI projections, and competitor ad intelligence
+
+**Why This Task:**
+- TJ has ZERO paid advertising — every successful poop scoop company credits FB/Google ads as their #1 growth lever
+- Fresh Start hit $200K year 1 with FB + Google Ads pulling 2-5 leads/day
+- Swoop Scoop (7-figure) generated 10,000+ leads from Facebook alone
+- STL market has LOW ad competition — most local competitors aren't running sophisticated ads
+- Spring = peak signup season, every week without ads is missed revenue
+
+**What I Built:**
+1. **Facebook Ads strategy** — 3 ready-to-post ad variations with copy, targeting (STL neighborhoods), budget tiers ($10-20/day)
+2. **Google Ads strategy** — keyword list with estimated CPCs ($1-5), 3 search ad variations, negative keyword list
+3. **Google Local Service Ads (LSAs)** — pay-per-lead option, setup guide
+4. **Nextdoor ads** — hyperlocal targeting secret weapon
+5. **4-phase budget plan** — $0 → $300 → $500 → $1,000/month
+6. **ROI math** — $500/month → 10 new recurring customers/month → hit 25 customer goal in 2 months
+7. **Conversion tracking requirements** — what must be set up before spending a dime
+8. **Competitor ad intelligence** — who's running ads in STL (most aren't)
+9. **Pro tips from $100K-$1M companies** — Swoop Scoop, Fresh Start, Reddit operators
+
+**Key Insight:** $500/month in ads → 10 new recurring customers/month → $250/month in new recurring revenue that compounds. The customers are searching — TJ just isn't visible yet.
+
+**File:** `deliverables/paid-ads-playbook-tidy-tails.md`
+**Rotation:** 💰 Revenue — Paid Advertising Strategy
+
+---
+
 ### 4:05 PM — 🏠 LATE MARCH SHED AD CAMPAIGN + COMPETITOR INTEL UPDATE — 6 Marketplace Ads + 3 IG Posts Ready
 **Task:** Research current TuffShed/WoodMaster promos, update tariff intel, check competitors, and create fresh late-March shed ad copy
 **Result:** ✅ COMPLETED — Full week of ad content for March 17-23, updated battlecard, new competitor intel
