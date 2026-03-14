@@ -6,6 +6,36 @@
 
 ## March 13, 2026 (Friday)
 
+### 7:04 PM — 🔄 CUSTOMER REFERRAL & REVIEW BLITZ KIT — Turn 8 Customers Into Growth Engine
+**Task:** Build a complete referral program + review request system with copy-paste texts for all 8 customers
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- Doggie Doodies has a referral program. TJ doesn't. Competitive gap.
+- ZERO Google reviews = invisible on GBP. Reviews are the #1 factor in local search ranking.
+- Referrals convert at 4x the rate of cold leads. 8 customers × 2-3 dog-owner friends = 16-24 untapped leads.
+- Cost: $0. This is the cheapest growth channel available.
+- All other tasks today were research and ad copy — this is the missing ACTIVATION piece.
+
+**What I Built:**
+1. **Referral program structure** — "Send a Friend, Save $10" (both sides get $10 off, no limit)
+2. **8 personalized review request texts** — one for each current customer with the Google review link baked in
+3. **Referral program announcement text** — timed for Sunday after scooping (fresh positive experience)
+4. **Non-reviewer follow-up text** — gentle Wednesday follow-up, one-and-done
+5. **2 Google Business Profile posts** — referral offer + spring cleaning push, with CTAs
+6. **1 Nextdoor post** — neighborhood-friendly intro with referral mention
+7. **3 Facebook group posts** — community groups + pet/dog groups, staggered across 3 days
+8. **Simple phone-notes referral tracking system** — no software needed
+9. **Weekend blitz checklist** — 10-step execution plan, Saturday through Wednesday
+10. **Expected results math** — conservative estimate: 7-14 leads, 3-6 new customers in 30 days
+
+**Key Insight:** TJ has been building deliverables and plans all week. What he hasn't done is ASK HIS EXISTING CUSTOMERS TO HELP HIM GROW. This kit makes that effortless — 20 min of texting + 30 min of posting.
+
+**File:** `deliverables/customer-referral-review-blitz-march2026.md`
+**Rotation:** 🔄 Growth — Customer Referral & Review Blitz
+
+---
+
 ### 5:04 PM — 🏠 WEEKEND SHED AD PACK — 6 Weather-Triggered Ads for Peak Marketplace Hours
 **Task:** Create a batch of fresh shed ads optimized for this specific weekend's weather and timing
 **Result:** ✅ COMPLETED
