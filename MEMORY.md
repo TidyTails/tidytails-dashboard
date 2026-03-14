@@ -78,22 +78,46 @@ Features: 13 copy-paste scripts (cold calls, texts, emails, review asks), 43 com
 
 Central hub linking ALL tools, reports, videos, PDFs. ⚠️ NEVER let this go missing again — was flagged 7 times in one day before being built.
 
-## 🔍 Competitive Intelligence (Updated Mar 7, 2026)
+## 🔍 Competitive Intelligence (Updated Mar 14, 2026)
 
-**19 competitors identified** in STL pet waste removal market. Key findings:
+**19+ competitors identified** in STL pet waste removal market. Key findings:
 
 **🔴 Doggie Doodies = TJ's #1 rival:**
 - Chesterfield-based LLC, serves EXACT same cities (Ballwin, Manchester, Ellisville, Wildwood, Chesterfield)
-- Pricing: $83/mo (1 dog), $88/mo (2 dogs), $100/mo (3 dogs), $121/mo (4 dogs)
-- Has: customer portal, text alerts, gate photos, rewards program, referral program, background checks, free first cleanup
-- Weaknesses: hotmail email, Wix site, no personality
+- Pricing: $83/mo (1 dog weekly), $88/mo (2 dogs), $100/mo (3 dogs), $121/mo (4 dogs). Monthly plan: $90.
+- Has: customer portal, text alerts, gate photos, rewards program, referral program, background checks, free first cleanup, 4 SEO blog posts (Nov '25 - Feb '26), e-gift cards, expanded to Florissant/Eureka/Valley Park
+- Weaknesses: hotmail email, Wix site, spelling errors (Guarentee, Residental, Tech-Savy), no personality
 - Phone: 636-633-3443
+- **CRITICAL:** They are EXECUTING what we've been PLANNING. Competitive window narrowing.
 
-**TJ's pricing ($70 flat) is 18-26% below local competitors.** Multi-dog homes are being undercharged.
-
-**Dead competitor:** Pawfect Waste Solutions (pooperscooperstl.com) — site is DOWN. Domain may be available.
+**5 confirmed DEAD competitors** (as of Mar 14): Pawfect, Fresh Paws, Poopy Paws, STL Pooper Scoopers, Super Scoopers STL (new — confirmed July 2025 via Yelp)
 
 **Dashboard:** `dashboard/2026-03-07-COMPETITOR-INTEL.html`
+
+## 💰 Pricing Strategy (New — Mar 14, 2026)
+
+**Current reality:** TJ's pricing is inconsistent ($15-$50/visit). Advertised $70/mo is 16-42% below Doggie Doodies.
+**Industry benchmark:** Average is $86-95/mo (Poop Scoop Millionaire survey). 7-figure company charges $96-105/mo.
+**Recommended new pricing:**
+- 1 dog weekly: **$88/mo** (was $70) — only $5 above Doggie Doodies
+- 2 dogs weekly: **$108/mo**
+- 3 dogs weekly: **$128/mo**
+- Monthly stays at $70 (budget entry point)
+**Revenue impact at 25 customers:** +$5,700/year from pricing alone
+**File:** `deliverables/pricing-strategy-revenue-optimization-march2026.md`
+
+## 📊 Deliverable Reality Check (Mar 14, 2026)
+
+**70+ deliverables built in 10 days.** Still 8 customers.
+- The problem is NOT content, research, or planning. It's EXECUTION.
+- TJ's weekend priority should be 5 actions totaling 2.5 hours:
+  1. Google Business Profile optimization (30 min)
+  2. Top 7 directory submissions (1 hour) — kit at `deliverables/directory-submission-kit-march13.md`
+  3. Text customers for reviews + referrals (15 min)
+  4. Post in 3 FB groups + Nextdoor (20 min)
+  5. Dead competitor customer capture on social (15 min)
+- **Everything else is noise until these are done.**
+- Weekend execution plan: `deliverables/weekend-execution-plan-march14-16.md`
 
 ## 📧 Email Automation Project (COMPLETE Mar 4, 2026)
 
