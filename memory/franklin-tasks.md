@@ -315,6 +315,39 @@
 - **Week 2 (Feb 24-28):** `memory/archive/franklin-tasks-week2.md`
 - **Week 1 (Feb 17-23):** `memory/archive/franklin-tasks-week1.md`
 
+### 1:05 PM — 🏗️ PET WASTE STATION SERVICES — Commercial Expansion Playbook
+**Task:** Research pet waste station suppliers, pricing, new apartment/municipal leads NOT on existing list, and build a complete launch playbook for station installation + servicing as a new revenue stream
+**Result:** ✅ COMPLETED — Full playbook with supplier pricing, sell-side pricing model, 8 new leads, call scripts, and 4-week launch plan
+
+**Why This Task:**
+- DoodyCalls and Poop 2 Scoop already offer station services in STL — TJ doesn't
+- This is a NEW revenue stream, not another version of existing work
+- Station installation creates switching costs (Trojan horse for common area cleanup contracts)
+- Spring = every property manager thinking about outdoor amenities
+
+**What I Built:**
+1. **Supplier pricing matrix** — Zero Waste USA, Dog Waste Depot, Natural Pet Partners, Barco
+2. **Sell-side pricing model** — Installation ($450-750), Monthly servicing ($35-100/station)
+3. **Revenue projection** — 5 commercial clients = $1,500-3,000/month recurring
+4. **8 NEW leads not on existing list:**
+   - Aventura at Maryland Oaks (luxury, gated dog park, Maryland Heights)
+   - Boulder Springs (pet-friendly, no weight limits, Maryland Heights)
+   - Tribeca STL (dog park + pet spa, Mission Rock managed, CWE)
+   - Tails & Trails Dog Park (5-acre county park, Queeny Park)
+   - Southwest City Dog Park (community-run, reopening ~June)
+   - Lucas Dog Park (downtown, membership-based)
+   - St. Louis Luxury/Gallery (multiple properties)
+   - Creve Coeur Lake corridor apartments
+5. **Call scripts** for apartment managers and community dog parks
+6. **4-week launch plan** with specific action items
+
+**Key Insight:** Station installation is the Trojan horse. Once you install $500 worth of hardware in the ground, they're not switching vendors. And "while I'm here servicing stations, want me to clean the common areas too?" is the easiest upsell in the business.
+
+**File:** `deliverables/pet-waste-station-services-playbook.md`
+**Rotation:** 💰 Revenue — New Service Line Development
+
+---
+
 ### 12:05 PM — 🔍 SEO EMERGENCY AUDIT — Why TidyTailsSTL.com Has 0 Indexed Pages
 **Task:** Full technical SEO audit of tidytailsstl.com — crawled every page, checked source code, meta tags, robots.txt, sitemap, Google indexing, brand search visibility, backlink signals
 **Result:** ✅ COMPLETED — Root cause identified + step-by-step weekend fix guide created
