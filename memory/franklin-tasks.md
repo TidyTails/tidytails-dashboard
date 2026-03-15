@@ -6,6 +6,40 @@
 
 ## March 14, 2026 (Saturday)
 
+### 8:05 PM — 🎯 SOCIAL GUERRILLA MARKETING KIT — $0 Customer Acquisition Playbook
+**Task:** Research and build a complete, ready-to-execute social media marketing kit with exact Facebook groups to join, Nextdoor strategy, dog park guerrilla marketing targets, upcoming STL pet events, 6 copy-paste posts, 7-day posting schedule, and tracking framework
+**Result:** ✅ COMPLETED — Full kit with 19 Facebook groups, 6 ready-to-post templates, 8 dog park targets, 4 spring events, 7-day schedule, and ROI projections
+
+**Why This Task:**
+- We have 70+ deliverables but TJ still has 4-5 customers — the gap is DISTRIBUTION, not strategy
+- Facebook groups and Nextdoor are proven #1 free channels for local service businesses
+- Case study: Kroopin's Poopin Scoopin grew to 200+ weekly customers and multi-six-figures using exactly this method
+- Spring thaw = perfect timing for "worst Easter egg hunt ever" messaging
+- Saturday evening = TJ might scroll through this tonight and start joining groups
+
+**What I Built:**
+1. **19 Facebook groups organized in 3 tiers:**
+   - Tier 1: 5 STL dog/pet groups (STL Dog Moms, STL All Dogs, etc.)
+   - Tier 2: 12 neighborhood/community groups (Kirkwood, Webster Groves, Creve Coeur, Chesterfield, Wildwood, etc.)
+   - Tier 3: 2 buy/sell/marketplace groups
+2. **Nextdoor business setup guide** with neighbor discount strategy
+3. **6 copy-paste posts** — tap to copy on dashboard:
+   - Introduction post, Spring Thaw PSA, Discussion starter, Nextdoor intro, Dog park photo post, Quick reply template
+4. **8 dog park guerrilla marketing targets** with best times to visit and the 15-second pitch script
+5. **4 upcoming STL pet events** — Arch Bark, Bark in the Park (HSMO), Humane Day, Stray Rescue at Ballpark
+6. **7-day posting schedule** (10-15 min/day)
+7. **Weekly tracking framework** with conversion math
+8. **Interactive dashboard page** with tap-to-copy, checklists with localStorage, weekly tracker inputs
+
+**Key Insight:** One Facebook group post about vehicle wraps got Kroopin's 10 customer inquiries. TJ posting in 10 groups/week at even 1/10th that conversion rate = 1 inquiry per group per month = 10 inquiries/month = 5 new customers/month. For $0.
+
+**The Math:** 15 groups × 200-500 reach × 1% click × 10% inquiry × 50% close = 1-2 new customers/WEEK
+
+**Files:** `deliverables/social-guerrilla-marketing-kit-march2026.md`, `dashboard/2026-03-14-SOCIAL-GUERRILLA-KIT.html`, updated `dashboard/index.html`
+**Rotation:** 🎯 Marketing — Social Media Distribution
+
+---
+
 ### 7:05 PM — ⭐ GOOGLE REVIEW GENERATION SYSTEM — Complete 30-Day System to Hit 15 Reviews
 **Task:** Build a comprehensive review generation system to take Tidy Tails from 0 to 15 Google reviews in 30 days
 **Result:** ✅ COMPLETED — Full system with copy-paste texts, post-service automation, response templates, QR code strategy, progress tracker dashboard, and printable service card design
