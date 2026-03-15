@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-14 7:15 PM CST*
+*Last updated: 2026-03-15 11:15 AM CST*
 
 ---
 
@@ -187,10 +187,16 @@
   - Status: Can send automated follow-ups to shed leads
   - Owner: Franklin
 
+### ✅ Done
+- [x] **Payment Calculator** — Interactive financing/RTO/cash calculator for backyardbuildingsstl.com ✅ (Mar 15, 11AM)
+  - Sliders for price, term, APR. All 23 buildings with monthly payment overlays. RTO no-credit-check option.
+  - Live: `backyard-buildings-stl/calculator.html` | Linked from main site
+  - TJ can drop link in every Marketplace post: "See your monthly payment →"
+- [x] **Late March Ad Campaign** — 6 FB Marketplace ads + 3 IG posts for Mar 17-23. Tariff urgency angles, March Madness, Spring Equinox, tax refund. No active promo = lean on tariff urgency + financing. ✅ (Mar 14, 4PM)
+
 ### 📝 To Do
 - [ ] **HTTPS enforcement** for backyardbuildingsstl.com
 - [ ] **Follow-up emails** for Fenton shed leads (due Sun Mar 9)
-- [x] **Late March Ad Campaign** — 6 FB Marketplace ads + 3 IG posts for Mar 17-23. Tariff urgency angles, March Madness, Spring Equinox, tax refund. No active promo = lean on tariff urgency + financing. ✅ (Mar 14, 4PM)
 - [ ] Daily ad copy generation (paused — need TJ direction on current promos)
 
 ---

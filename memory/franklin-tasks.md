@@ -6,6 +6,45 @@
 
 ## March 15, 2026 (Sunday)
 
+### 11:04 AM — 🧮 SHED PAYMENT CALCULATOR — Interactive Financing & RTO Tool
+**Task:** Build interactive payment calculator for Backyard Buildings STL website
+**Result:** ✅ COMPLETED — Full calculator page shipped + linked from main site
+
+**Why This Task:**
+- 5 Tidy Tails tasks today already — shed business needed attention (TuffShed pipeline growth)
+- **The #1 objection buyers have:** "I can't afford $5,000+ upfront"
+- No competitor in the STL shed market has a payment calculator
+- TJ can link to this from EVERY Facebook Marketplace post: "See your monthly payment →"
+- Converts tire-kickers into leads by showing $3,509 shed = just $89/mo
+
+**What I Built:**
+
+1. **Interactive Payment Calculator** — `backyard-buildings-stl/calculator.html`
+   - Price slider ($3K-$12K) with instant monthly payment calculation
+   - Three payment modes:
+     - 💳 **Financing** — Custom APR (0-24%) + term (6-84 months), shows 0% HD card promo
+     - 🔑 **Rent-to-Own** — No credit check, 24-60 month terms, return anytime
+     - 💵 **Cash** — Shows total savings vs financing/RTO
+   - Full 23-building inventory with monthly payment overlays
+   - Click any building → auto-sets calculator to that price
+   - Inventory filters: Under $150/mo, Under $200/mo, Clearance, Garages
+   
+2. **Compare Section** — Cash vs Financing vs RTO side-by-side comparison cards
+   
+3. **Urgency Banner** — Lumber crossing $501, 45% tariffs, 22 mills closed
+   - "Today's price is tomorrow's discount" messaging
+   
+4. **Updated Main Site** — Footer "Financing" link → Payment Calculator, inventory card buttons → "💰 Payments" linking to calculator
+
+**SEO:** Targeting "shed financing St Louis", "rent to own sheds St Louis", "no credit check sheds Missouri"
+**Mobile-first** — Responsive design matching existing site aesthetic (Outfit + Playfair Display fonts, forest/ocean color scheme)
+
+**Live at:** `tidytails.github.io/tidytails-dashboard/backyard-buildings-stl/calculator.html`
+**Git:** Pushed to origin/master ✅ (commit fdc23c0)
+**Rotation:** 🏠 Shed Business — Sales Infrastructure
+
+---
+
 ### 10:05 AM — 🏥🍺🏞️ NEW COMMERCIAL LEAD VERTICALS — Senior Living, Breweries, Dog Parks
 **Task:** Research 3 completely untapped lead verticals for Tidy Tails commercial outreach
 **Result:** ✅ COMPLETED — 26 new leads across 3 verticals shipped
