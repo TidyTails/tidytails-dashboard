@@ -6,6 +6,51 @@
 
 ## March 15, 2026 (Sunday)
 
+### 2:04 AM — 🔍 COMPETITOR PULSE CHECK — New Threat Discovered
+**Task:** Bi-weekly competitive intelligence sweep — check competitor websites, search visibility, pricing changes
+**Result:** ✅ COMPLETED — Major findings
+
+**Why This Task:**
+- 2 AM Sunday. Perfect time for quiet research.
+- Last pulse check was Mar 13. Spring season heating up.
+- Rotation: 🔍 Research (last task was ⚙️ Systems at 1 AM)
+
+**Key Findings:**
+
+1. **🔴 NEW THREAT: Dog Doody Defenders**
+   - Chesterfield + Florissant — TJ's EXACT territory
+   - $17/visit weekly ($68/mo) — 32% cheaper than TJ
+   - Has: website, Facebook, MapQuest listing, Yelp listing
+   - More directory listings than TJ has
+   - Threat Level: HIGH
+
+2. **Scoop Soldiers STL — CONFIRMED BACK**
+   - Full SEO landing page (2000+ words)
+   - Heavy on keywords: "pooper scooper service St Louis"
+   - No pricing listed (forces contact — smart)
+
+3. **Dirty Dog Wash Poo Crew — NEW tracker addition**
+   - $95/mo weekly (1-2 dogs) — close to TJ's $100
+   - Add-on service from existing dog wash business
+   - Limited radius (10mi from shop)
+   - Threat Level: MEDIUM
+
+4. **TJ's Search Visibility — STILL ZERO**
+   - tidytailsstl.com not appearing for brand name searches
+   - 4 other "Tidy Tails" companies outranking him nationally
+   - Brand confusion risk is real
+
+5. **Pricing Reality Check**
+   - TJ is now the MOST EXPENSIVE tracked competitor
+   - Little Stinkers: $40/mo, Scoop Soldiers: ~$60/mo, DDD: $68/mo, P2S: $72/mo
+   - TJ: $100/mo — needs price justification or premium positioning
+
+**Deliverables:**
+- `memory/2026-03-15-competitor-pulse-check.md` — full report with pricing matrix
+- Updated `memory/competitive-intel.md` — status table + summary
+
+**Rotation:** 🔍 Research — Competitor Intelligence
+
 ### 1:04 AM — ⚙️ MEMORY MAINTENANCE — Archive Mar 14-15, Update MEMORY.md
 **Task:** Archive bloated 774-line task log, distill key strategic learnings into MEMORY.md, update competitive intel
 **Result:** ✅ COMPLETED

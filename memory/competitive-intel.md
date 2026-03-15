@@ -1,18 +1,20 @@
 # Competitive Intelligence - St. Louis Pet Waste Removal
 
-## Last Updated: 2026-03-13 @ 3:15 PM (Full Competitive Deep Dive)
+## Last Updated: 2026-03-15 @ 2:04 AM (Competitor Pulse Check)
 
-### Latest Update Summary (Mar 13, 3 PM)
-- Scoop Soldiers STL page LIVE again — EINPresswire press release Feb 6, 2026
-- Scoop Soldiers pricing: starts $15/visit weekly (~$60/mo)
-- Poop 2 Scoop pricing CONFIRMED: $18/visit weekly (~$72/mo), +$4 extra dog/large yard
-- DoodyCalls STL active — phone (314) 230-8082, Authority Brands parent company
-- Doggy Doods (Eugene) has ELITE customer experience — gate photos, on-my-way texts, kid stickers
-- Little Stinkers has unique "bucket service" at $10/week
-- Poopy Paws website DNS dead — confirmed out of business
-- 4+ dead competitors = stranded customers available
-- Full battle card: `dashboard/research/2026-03-13-COMPETITIVE-BATTLE-CARD.html`
-- Full report: `tidy-tails/marketing/2026-03-13-COMPETITIVE-INTEL-REPORT.md`
+### Latest Update Summary (Mar 15, 2 AM)
+- 🔴 NEW: Dog Doody Defenders — Chesterfield/Florissant, $17/visit weekly ($68/mo), 32% cheaper than TJ
+- Scoop Soldiers STL — CONFIRMED BACK with full SEO landing page (2000+ words)
+- 🆕 Dirty Dog Wash Poo Crew — $95/mo weekly, add-on service from dog wash biz
+- Pawfect Waste Solutions — Still DEAD (404)
+- Fresh Paws — Still DEAD (DNS failure)
+- TJ search visibility — STILL ZERO for brand name searches
+- TJ is now the MOST EXPENSIVE tracked competitor in market ($100/mo weekly)
+- Full pulse check: `memory/2026-03-15-competitor-pulse-check.md`
+
+**Previous updates:**
+- Mar 13 3PM: Scoop Soldiers back, Poop 2 Scoop $18/visit, Doggy Doods discovered
+- Mar 13 battle card: `dashboard/research/2026-03-13-COMPETITIVE-BATTLE-CARD.html`
 
 ---
 
@@ -20,14 +22,16 @@
 
 | Competitor | Previous Status | Current Status (Mar 13) |
 |------------|--------|----------|
+| **Dog Doody Defenders** | Not tracked | 🔴 NEW — Chesterfield + Florissant, $17/visit, website + FB + MapQuest + Yelp |
+| **Dirty Dog Wash Poo Crew** | Not tracked | 🟡 NEW — $95/mo weekly, add-on from dog wash business |
 | **Pawfect Waste Solutions** | 404 - DEAD | Still 404 ✅ Dead |
-| **Scoop Soldiers STL** | 404 - Page gone | ⚠️ BACK — dedicated STL landing page, ranking #1 for "pooper scooper St. Louis" |
+| **Scoop Soldiers STL** | 404 → BACK (Mar 13) | ✅ CONFIRMED BACK — full SEO page, heavy content, no pricing listed |
 | **Fresh Paws** | Squarespace EXPIRED | Still dead (DNS not resolving) ✅ |
-| **Doggy Doods** | Unknown | 🆕 NEW — St. Charles County. "Premium Dog Yard Maintenance." Run by Eugene. Great reviews. In TJ's expansion zone! |
-| **Little Stinkers of MO** | Known | ⚠️ GROWING — O'Fallon city pages, offers deodorizing + litter box + pet waste stations |
+| **Doggy Doods** | Unknown | 🆕 St. Charles County. Eugene. Great reviews. In TJ's expansion zone |
+| **Little Stinkers of MO** | Known | ⚠️ GROWING — O'Fallon city pages, deodorizing + litter box + waste stations |
 
-**THE SITUATION:**
-Market is more competitive than Feb 22. Scoop Soldiers came back, Doggy Doods is new, Little Stinkers is expanding. Tidy Tails has ZERO search visibility while competitors are entrenching.
+**THE SITUATION (Mar 15):**
+Market is getting MORE crowded, not less. 3 new/returning competitors in 2 weeks. TJ is the most expensive option AND the least visible. Dog Doody Defenders is in Chesterfield (TJ's home turf) at 32% less. Spring season = window narrowing fast.
 
 ---
 
