@@ -6,6 +6,35 @@
 
 ## March 15, 2026 (Sunday)
 
+### 6:05 PM — 🔍 COMPETITIVE INTELLIGENCE SWEEP
+**Task:** Full competitive monitoring sweep — check all known competitors for changes, pricing updates, new content, and discover new entrants
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- Sunday evening = low-action window, perfect for research
+- Haven't done a comprehensive comp sweep since Mar 14 morning
+- Spring season means competitors are likely making moves
+
+**Key Findings:**
+
+1. **🚨 Doggie Doodies EXPANDED to St. Charles County** — Now serves St. Peters, O'Fallon, Lake St. Louis, Wentzville, Cottleville, Dardenne Prairie. Title tag changed to "St. Charles County & St. Louis County." Two new SEO blog posts in Feb targeting new territory.
+2. **🆕 Dirty Dog Wash "Poo Crew"** — NEW competitor not in our database. Dog wash business cross-selling pet waste removal at PREMIUM prices ($95/mo for 1-2 dogs weekly). Proves the cross-sell partnership model works.
+3. **🆕 POOP 911 St. Louis franchise** — National franchise covering 70+ zip codes, mostly south STL/city. Free first cleanup promo. Less overlap with TJ's West County territory.
+4. **Clean Turf STL pivoted** — Now dual-service (house cleaning + pet waste). Added "Fresh & Sanitary Finish" deodorizer add-on. Smart upsell strategy.
+5. **tidytailsstl.com STILL NOT INDEXED** — `site:tidytailsstl.com` = 0 results. Every single active competitor IS indexed. This remains the #1 blocker.
+6. **Pawfect Waste Solutions still dead (404)** — Ghost listing still appearing in Google, capturing searches TJ can't get.
+
+**Strategic Takeaways:**
+- Doggie Doodies' expansion to St. Charles = TJ should double down as the FOCUSED West County specialist
+- Cross-sell partnerships with groomers/dog washes are proven by Dirty Dog Wash
+- Add-on services (deodorizer spray, waste station restocking) = differentiation opportunity
+- Google indexing remains the single biggest gap between TJ and every competitor
+
+**Deliverable:** `deliverables/competitive-intel-update-march15-evening.md`
+**Rotation:** 🔍 Research — Competitive Intelligence
+
+---
+
 ### 5:04 PM — 💰 PREMIUM PRICING TOOLKIT — Sales Objection Killer
 **Task:** Build an interactive toolkit that turns Tidy Tails' #1 weakness (highest price in STL) into a closing advantage
 **Result:** ✅ COMPLETED — Shipped & live on dashboard
