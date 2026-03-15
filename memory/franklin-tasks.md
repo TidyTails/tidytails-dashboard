@@ -6,6 +6,54 @@
 
 ## March 15, 2026 (Sunday)
 
+### 10:05 AM — 🏥🍺🏞️ NEW COMMERCIAL LEAD VERTICALS — Senior Living, Breweries, Dog Parks
+**Task:** Research 3 completely untapped lead verticals for Tidy Tails commercial outreach
+**Result:** ✅ COMPLETED — 26 new leads across 3 verticals shipped
+
+**Why This Task:**
+- Existing commercial lead list covers property managers, apartments, daycares, vets — solid but saturated
+- Senior living, dog-friendly bars, and municipal dog parks are verticals NO STL pet waste competitor appears to be targeting
+- Senior living = institutional budgets, guaranteed dogs, single decision maker, reliable payment
+- Dog-friendly bars/restaurants = FREE marketing channel (flyer placement, referral partnerships)
+- Municipal dog parks = recurring government contracts, high visibility, credibility builder
+- K9 Garden just opened (Feb 2026) — brand new referral partnership opportunity
+
+**What I Built:**
+
+1. **Senior Living Leads (10)** — Researched pet-friendly senior communities in Ballwin/Chesterfield:
+   - Friendship Village Chesterfield (636) 898-8500 — two campuses
+   - Meramec Bluffs Ballwin (636) 861-0600 — RIGHT IN BALLWIN
+   - Brookdale West County (636) 227-5838 — also in Ballwin
+   - Sunrise of Chesterfield (636) 536-3800
+   - Delmar Gardens (3 locations, 400+ residents, named admin Joseph Dino)
+   - + 4 more facilities with addresses and capacity
+
+2. **Dog-Friendly Bar/Restaurant Referral Partners (11):**
+   - Rock & Brews Chesterfield (TJ's territory)
+   - Wild Crush Wine Bar(n) Town & Country — (314) 392-9594
+   - K9 Garden (NEW, formerly Bar K) — STL's biggest dog venue
+   - 9 Mile Garden, Billy G's, Urban Chestnut, Narwhal's, Wellspent, 2nd Shift, Rockwell, Frisco Barroom
+
+3. **Municipal Dog Parks (5):**
+   - Tails & Trails at Queeny Park (BALLWIN — home turf!)
+   - Eberwein Park (CHESTERFIELD)
+   - Ellisville Dog Park
+   - 2 Creve Coeur parks + Treecourt (23 acres!)
+
+4. **Call scripts** for each vertical + priority call list ranking all 26 leads
+
+**Key Strategic Insight:**
+- Senior living is the highest revenue potential — one facility could be $200-400/mo
+- K9 Garden referral partnership could yield 5-10 residential customers from day 1
+- Free demo at Queeny Park dog park → before/after photos → pitch to county parks dept
+
+**Deliverable:** `deliverables/commercial-leads-NEW-verticals-march15.md`
+**Dashboard:** Updated with new leads card in intel section
+**Git:** Pushed to origin/master ✅
+**Rotation:** 🎯 Strategy — Lead Generation (New Verticals)
+
+---
+
 ### 9:05 AM — 📍 LOCAL CITATION AUDIT + INTERACTIVE TRACKER
 **Task:** Audit TJ's online presence vs. competitors, build interactive citation submission tracker
 **Result:** ✅ COMPLETED — Citation audit + interactive dashboard tracker shipped
