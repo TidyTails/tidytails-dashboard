@@ -187,6 +187,37 @@
 
 ---
 
+### 6:05 AM — 🎯 LEAD GENERATION PLATFORMS RESEARCH
+**Task:** Research every pay-per-lead and free listing platform available for pet waste removal in STL
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 80+ deliverables built, still 4-5 customers. The gap is DISTRIBUTION, not content.
+- TJ needs to be WHERE people are looking, not just have great content.
+- Sunday 6 AM = perfect research window. Different from SEO audit at 5 AM.
+
+**Key Findings:**
+1. **Pooper-Scooper.com Missouri page is EMPTY** — zero listings for the entire state. $7/mo to be the only one listed.
+2. **Nextdoor Business Page is FREE** — hyperlocal, neighbors recommend services. Other pet waste companies already use it.
+3. **Thumbtack HAS a pet waste removal category** — $10-25/lead estimated for STL (low competition area)
+4. **Google Local Service Ads DON'T support pet waste removal** — not an eligible category (only HVAC, plumbing, etc.)
+5. **Angi = AVOID** — $288/yr + $15-85/shared lead, 12-month auto-renewing contracts, 1.96/5 BBB rating from contractors
+6. **$200k/yr company's secret:** Facebook + Google Ads = 2-5 leads DAILY. Never stop ad spend.
+7. **Yelp has a free tier** — Clean Turf STL already has one, TJ doesn't.
+
+**Deliverable:** `deliverables/lead-gen-platforms-guide-march2026.md`
+- 6 platform deep-dives with costs, signup steps, and ROI math
+- Comparison matrix (7 platforms)
+- Week-by-week execution playbook (90 minutes total setup)
+- "Skip" list with reasons (Google LSAs, Angi, Porch, Houzz)
+
+**Total monthly investment if TJ follows the plan:** $160-310/mo across all platforms
+**Expected result:** If even 2 customers come from these platforms per month = $176/mo revenue vs $160-310 spend. Breaks even in month 1, profitable by month 2+ as customers stick.
+
+**Rotation:** 🎯 Strategy — Lead Generation
+
+---
+
 ### 5:04 AM — 🔍 SEO AUDIT + SPRING MARKETING BLITZ
 **Task:** Deep technical SEO audit of tidytailsstl.com + ready-to-post spring marketing content
 **Result:** ✅ COMPLETED
