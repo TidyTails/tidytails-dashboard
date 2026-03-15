@@ -6,6 +6,59 @@
 
 ## March 15, 2026 (Sunday)
 
+### 3:04 PM — ⚠️ LIVE PRICING POSITION & COMPETITIVE THREAT BRIEF
+**Task:** Scrape real pricing from every STL pet waste competitor and build a market position analysis
+**Result:** ✅ COMPLETED — Shipped & live on dashboard
+
+**Why This Task:**
+- We've built 80+ deliverables but never answered the fundamental question: **where does Tidy Tails sit on PRICE vs. competitors?**
+- Previous competitor analyses listed competitors but didn't have actual, confirmed pricing data from their websites
+- Discovered Doggie Doodies operates in TJ's EXACT territory (Ballwin, Chesterfield, Wildwood) with better ops AND lower prices
+- This is the kind of intel that changes strategy, not another content template
+
+**What I Found (THE PROBLEM):**
+1. **Tidy Tails is the MOST EXPENSIVE option in the market:**
+   - POOP 911: $11.95/wk (~$52/mo) — 52% cheaper than us
+   - Poop 2 Scoop: $18/visit (~$78/mo) — 28% cheaper
+   - Doggie Doodies: $19.15/wk ($83/mo) — 23% cheaper
+   - Dirty Dog Wash: ~$21.88/wk ($95/mo) — 12% cheaper
+   - **Tidy Tails: $25/wk (~$108/mo)** — most expensive confirmed price
+
+2. **Doggie Doodies is the PRIMARY THREAT:**
+   - Serves Ballwin, Chesterfield, Wildwood, Ellisville, Valley Park — TJ's exact cities
+   - Has: text notifications, gate photos, customer portal, rewards program, referral program, e-gift cards, background-checked staff
+   - Monthly pricing: $83/mo for weekly 1-dog (vs our ~$108)
+   - Free first cleanup with plan purchase
+   - Modern Wix website with online booking
+
+3. **Reddit intel from successful operators:**
+   - Guy went 0→39 customers in 3 months in a 20k population city
+   - Nextdoor = #1 free acquisition channel (daily posting recommended)
+   - Route density obsession (2-5 min between properties = $50/hr)
+   - Subscription model > per-visit billing for stability
+
+**What I Built:**
+- Interactive pricing comparison dashboard with bar charts and ranked table
+- Doggie Doodies deep-dive threat card with feature comparison
+- Head-to-head feature matrix: Tidy Tails vs 4 competitors across 13 features
+- "What Actually Works" section from real operator case studies
+- 6-item strategic response plan for THIS WEEK
+- Pricing decision framework (don't lower now + add $89/mo monthly plan option)
+- Competitor quick-reference table with phone numbers and websites
+
+**Strategic Recommendation:**
+- DON'T lower price yet (awareness problem, not price problem at 4-5 customers)
+- DO add "monthly plan" at $89/mo as an alternative to per-visit pricing
+- DO steal Doggie Doodies' best ops ideas (arrival texts, gate photos — free to implement)
+- DO lean into "owner shows up" as the #1 differentiator
+- DO start daily Nextdoor posting this week
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-15-PRICING-POSITION-THREAT-BRIEF.html
+**Git:** Pushed to origin/master ✅ (commit a604dbd)
+**Rotation:** 📊 Strategy — Competitive Intelligence
+
+---
+
 ### 2:05 PM — 🎯 WEEKLY EXECUTION DASHBOARD — "Stop Building, Start Doing"
 **Task:** Build an interactive weekly action plan that bridges 80+ deliverables to actual execution
 **Result:** ✅ COMPLETED — Shipped & live on dashboard
