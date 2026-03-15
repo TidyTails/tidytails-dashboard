@@ -6,6 +6,109 @@
 
 ## March 15, 2026 (Sunday)
 
+### 4:04 AM — 📝 SEO BLOG: Dog Poop Laws in Missouri & St. Louis
+**Task:** Write new blog post targeting keyword gap no competitor covers
+**Result:** ✅ COMPLETED — New high-intent blog post published
+
+**Why This Task:**
+- 4 AM Sunday. Content creation = perfect quiet work.
+- **tidytailsstl.com has ZERO Google indexing** — `site:tidytailsstl.com` returns 0 results
+- TJ's brand name search returns Atlanta competitor "Tidy Tails Waste Solutions" instead
+- NONE of the 21+ STL competitors have content about dog poop laws/fines — keyword gap
+- "dog poop laws missouri" / "can you get fined for not picking up dog poop" = high-intent searches
+- More unique content = more pages for Google to index when crawling begins
+- Internal links to ALL city pages = SEO juice flowing through the site
+- Rotation: 📝 Content (continuing content run after 3 AM social pack)
+
+**What I Built:**
+
+1. **Blog post** — `tidy-tails/website/blog/dog-poop-laws-missouri-st-louis.html`
+   - 1,800+ words of original, locally-targeted content
+   - City-by-city fine table (Ballwin, Chesterfield, Florissant, Ferguson, etc.) — each links to city page
+   - FAQPage schema markup → eligible for Google "People Also Ask" rich snippets
+   - Covers: state law, city ordinances, HOA rules, renters, dog walkers, MSD environmental angle
+   - 5 FAQ items targeting exact search queries people use
+   - Related articles section linking to 3 other blog posts (internal linking)
+   - Real data: 78 STL complaints/year stat, Berkeley stockpiling ordinance, MSD campaign
+   - Written in TJ's casual, direct voice
+
+2. **Updated blog index** — new post at top with card + structured data
+3. **Updated sitemap.xml** — new URL added for crawler discovery
+
+**Target Keywords (NONE of 21+ competitors rank for these):**
+- "dog poop laws missouri"
+- "pet waste ordinance st louis"
+- "is it illegal to not pick up dog poop missouri"
+- "dog poop fine st louis county"
+- "can my HOA fine me for dog poop"
+- "pooper scooper law missouri"
+
+**SEO Strategy:**
+- FAQPage schema = rich snippet eligibility (appear as expandable Q&As in Google)
+- Internal links to 9 city pages + 3 blog posts = distributes authority across site
+- Informational intent → catches people at awareness stage → soft CTA for service
+- Table format for fine data → featured snippet potential
+- Fresh content signals to Google that the site is active
+
+**Critical Finding During Research:**
+- `site:tidytailsstl.com` returns ZERO results — the site is NOT indexed by Google AT ALL
+- TJ MUST set up Google Search Console and submit the sitemap
+- Without GSC, all this content is invisible regardless of quality
+- **This is the #1 blocker for organic growth**
+
+**Files:** `tidy-tails/website/blog/dog-poop-laws-missouri-st-louis.html`, updated `blog/index.html`, updated `sitemap.xml`
+**Git:** Pushed to origin/master ✅ (commit 90471ef)
+**Rotation:** 📝 Content — SEO Blog Post
+
+---
+
+### 3:04 AM — 📝 SPRING CONTENT PACK — 12 Ready-to-Post Social Media Pieces
+**Task:** Create copy-paste-ready social content for Facebook groups, Nextdoor, and Instagram
+**Result:** ✅ COMPLETED — Full content pack shipped
+
+**Why This Task:**
+- 3 AM Sunday. Content creation = perfect quiet work.
+- Core problem remains: EXECUTION GAP. TJ has 80+ deliverables but isn't posting.
+- Reduce friction to zero: literal copy-paste with one-click copy buttons.
+- Spring is HERE — peak season for dog waste cleanup demand.
+- Rotation: 📝 Content (last tasks were ⚙️ Systems 1 AM, 🔍 Research 2 AM)
+
+**What I Built:**
+
+1. **Markdown content pack** — `deliverables/spring-2026-social-content-pack.md`
+   - 5 Facebook group posts (spring minefield, honest question, kids/parents, value prop, social proof)
+   - 3 Nextdoor posts (neighbor intro, engagement ask, dog photo)
+   - 4 Instagram posts (before/after, office view, real talk, reel script)
+   - 1-month posting schedule (Mar 16 - Apr 13)
+   - Platform-specific tips for each channel
+   - Spring deep clean offer strategy ($100 one-time → upsell to weekly)
+
+2. **Interactive HTML dashboard** — `dashboard/spring-content-pack.html`
+   - One-click copy buttons for each post
+   - Platform filter (Facebook/Nextdoor/Instagram)
+   - Posting schedule with checkbox tracker (localStorage)
+   - Mobile-friendly for phone use
+   - Live at: https://tidytails.github.io/tidytails-dashboard/dashboard/spring-content-pack.html
+
+**Key Strategic Decisions:**
+- Led with $25/week and $100 deep clean (not $70/month) — spring deep clean is easier first sale
+- All posts written in TJ's voice — casual, direct, not salesy
+- Engagement-style posts (questions, polls) mixed with info posts
+- Every post includes phone number — texting is lowest friction CTA
+- Avoided mentioning competitors or price comparisons
+
+**Why This Matters:**
+- TJ's problem isn't content creation — it's POSTING. This removes the writing step entirely.
+- 2 min per post × 12 posts = 24 minutes total to execute a full month of marketing
+- Spring deep clean at $100 is the easiest conversion path (one-time, urgent, no commitment)
+- If even 2-3 posts convert 1 customer each, that's $300/mo recurring revenue
+
+**Files:** `deliverables/spring-2026-social-content-pack.md`, `dashboard/spring-content-pack.html`
+**Git:** Pushed to origin/master ✅
+**Rotation:** 📝 Content — Social Media Pack
+
+---
+
 ### 2:04 AM — 🔍 COMPETITOR PULSE CHECK — New Threat Discovered
 **Task:** Bi-weekly competitive intelligence sweep — check competitor websites, search visibility, pricing changes
 **Result:** ✅ COMPLETED — Major findings
