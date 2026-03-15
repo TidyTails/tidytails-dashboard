@@ -4,6 +4,32 @@
 
 ---
 
+## March 15, 2026 — Sunday Spring Countdown Pack (9 AM Task)
+
+**Shed-Mar126 - "Sunday Confessional" (FB Marketplace + Groups)**
+- Hook: How long has your car been sleeping outside? Confessional format
+- Key: Depreciation angle, emotional honesty, guilt-free solution
+- Used: TBD (Marketplace + Groups Sun 3/15 AM)
+
+**Shed-Mar127 - "5 Days to Spring" (FB Marketplace + Nextdoor)**
+- Hook: Spring starts Friday — mower buried behind 14 boxes
+- Key: Seasonal countdown, prep > scramble, delivery before April
+- Used: TBD (Marketplace + Nextdoor Sun 3/15 midday)
+
+**Shed-Mar128 - "St. Paddy's Prep" (FB Marketplace + Instagram)**
+- Hook: Fake Irish proverb — "May your shed be full of tools"
+- Key: Holiday tie-in (St. Patrick's Day Tue), humor, clover emojis
+- Used: TBD (Marketplace + Instagram Sun 3/15 PM)
+
+**Shed-Mar129 - "The Sunday Walk-Around" (FB Marketplace + Groups)**
+- Hook: Walk your property, count everything that shouldn't be where it is
+- Key: Interactive/experiential, "freedom" framing, wife's look humor
+- Used: TBD (Marketplace + Groups Sun 3/15 evening)
+
+*Archive updated: 2026-03-15 9:00 AM*
+
+---
+
 ## March 14, 2026 — Saturday Pi Day Pack (9 AM Task)
 
 **Shed-Mar122 - "The Pi Day Equation" (FB Marketplace + Groups)**
