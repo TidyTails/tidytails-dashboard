@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instant Quote | Tidy Tails Pet Waste Removal | St. Louis</title>
+  <meta name="description" content="Get an instant pet waste removal quote for your St. Louis yard. Enter your details and see pricing in seconds.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-light: #22c55e;
+      --green-dark: #15803d;
+      --orange: #f97316;
+      --bg: #fafaf9;
+      --card: #ffffff;
+      --text: #1c1917;
+      --text2: #57534e;
+      --text3: #a8a29e;
+      --border: #e7e5e4;
+      --radius: 16px;
+      --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+      --shadow-lg: 0 4px 24px rgba(0,0,0,0.1);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #15803d 0%, #166534 50%, #14532d 100%);
+      color: white;
+      text-align: center;
+      padding: 2.5rem 1.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 60%;
+      height: 200%;
+      background: radial-gradient(ellipse, rgba(255,255,255,0.06) 0%, transparent 70%);
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .hero p {
+      font-size: 0.95rem;
+      opacity: 0.85;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+    .quote-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      margin-top: -1.5rem;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .step {
+      padding: 1.5rem;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .step.active { display: block; }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-indicator {
+      display: flex;
+      gap: 0.5rem;
+      padding: 1.25rem 1.5rem 0;
+    }
+    .step-dot {
+      flex: 1;
+      height: 4px;
+      border-radius: 4px;
+      background: var(--border);
+      transition: background 0.3s;
+    }
+    .step-dot.done { background: var(--green); }
+    .step-dot.current { background: var(--green-light); }
+
+    .step-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--green);
+      margin-bottom: 0.25rem;
+    }
+    .step h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    /* Dog selector */
+    .dog-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .dog-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 1rem 0.5rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--card);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+    .dog-btn:hover { border-color: var(--green-light); background: #f0fdf4; }
+    .dog-btn.selected {
+      border-color: var(--green);
+      background: #f0fdf4;
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.15);
+    }
+    .dog-btn .emoji { font-size: 1.5rem; }
+    .dog-btn .label { font-size: 0.8rem; font-weight: 600; color: var(--text); }
+
+    /* Yard size */
+    .yard-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .yard-btn {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--card);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+      font-family: inherit;
+    }
+    .yard-btn:hover { border-color: var(--green-light); background: #f0fdf4; }
+    .yard-btn.selected {
+      border-color: var(--green);
+      background: #f0fdf4;
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.15);
+    }
+    .yard-btn .yard-icon { font-size: 1.5rem; }
+    .yard-btn .yard-info { flex: 1; }
+    .yard-btn .yard-title { font-weight: 600; font-size: 0.95rem; }
+    .yard-btn .yard-desc { font-size: 0.8rem; color: var(--text2); }
+
+    /* Frequency */
+    .freq-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .freq-btn {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--card);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: left;
+      font-family: inherit;
+    }
+    .freq-btn:hover { border-color: var(--green-light); background: #f0fdf4; }
+    .freq-btn.selected {
+      border-color: var(--green);
+      background: #f0fdf4;
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.15);
+    }
+    .freq-left { display: flex; flex-direction: column; }
+    .freq-title { font-weight: 600; font-size: 0.95rem; }
+    .freq-desc { font-size: 0.8rem; color: var(--text2); }
+    .freq-badge {
+      background: var(--orange);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    /* Quote result */
+    .quote-result {
+      text-align: center;
+      padding: 0.5rem 0 1rem;
+    }
+    .price-display {
+      margin: 1rem 0;
+    }
+    .price-amount {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--green);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .price-period {
+      font-size: 0.9rem;
+      color: var(--text2);
+      margin-top: 0.25rem;
+    }
+    .price-savings {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      background: #fef3c7;
+      color: #92400e;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      border-radius: 100px;
+      margin-top: 0.5rem;
+    }
+    .quote-breakdown {
+      text-align: left;
+      background: #f5f5f4;
+      border-radius: 12px;
+      padding: 1rem 1.25rem;
+      margin: 1.25rem 0;
+      font-size: 0.85rem;
+    }
+    .quote-breakdown .row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.35rem 0;
+    }
+    .quote-breakdown .row.total {
+      border-top: 1px solid var(--border);
+      margin-top: 0.35rem;
+      padding-top: 0.65rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+    .quote-breakdown .label { color: var(--text2); }
+
+    /* Lead form */
+    .lead-form {
+      margin-top: 1rem;
+    }
+    .form-group {
+      margin-bottom: 0.75rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--text2);
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      background: var(--card);
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 70px; }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 0.9rem 1.5rem;
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-primary {
+      background: var(--green);
+      color: white;
+    }
+    .btn-primary:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .btn-primary:active { transform: translateY(0); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text2);
+      border: 2px solid var(--border);
+      margin-top: 0.5rem;
+    }
+    .btn-outline:hover { border-color: var(--text3); }
+    .btn-call {
+      background: var(--orange);
+      color: white;
+    }
+    .btn-call:hover { background: #ea580c; }
+
+    /* Trust bar */
+    .trust-bar {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1.25rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.75rem;
+      color: var(--text2);
+      font-weight: 500;
+    }
+    .trust-item .icon { font-size: 1rem; }
+
+    /* Success state */
+    .success-state {
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      background: #f0fdf4;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 1rem;
+    }
+    .success-state h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .success-state p {
+      color: var(--text2);
+      font-size: 0.9rem;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    .success-contact {
+      margin-top: 1.25rem;
+      padding: 1rem;
+      background: #f5f5f4;
+      border-radius: 12px;
+      font-size: 0.85rem;
+    }
+    .success-contact a {
+      color: var(--green);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.8rem;
+      color: var(--text3);
+    }
+    .footer a { color: var(--green); text-decoration: none; font-weight: 500; }
+
+    /* Comparison callout */
+    .comparison {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+    }
+    .comparison-title {
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: #92400e;
+      margin-bottom: 0.5rem;
+    }
+    .comparison-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.25rem 0;
+      color: var(--text2);
+    }
+    .comparison-row.us { color: var(--green); font-weight: 700; }
+
+    /* Responsive */
+    @media (max-width: 380px) {
+      .dog-grid { grid-template-columns: repeat(2, 1fr); }
+      .form-row { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">🐕 Free Instant Quote</div>
+  <h1>How Much Does Poop Scooping Cost?</h1>
+  <p>Answer 3 quick questions and get your personalized price in 30 seconds.</p>
+</div>
+
+<div class="container">
+  <div class="quote-card">
+    <div class="step-indicator">
+      <div class="step-dot current" id="dot1"></div>
+      <div class="step-dot" id="dot2"></div>
+      <div class="step-dot" id="dot3"></div>
+      <div class="step-dot" id="dot4"></div>
+    </div>
+
+    <!-- Step 1: Number of Dogs -->
+    <div class="step active" id="step1">
+      <div class="step-label">Step 1 of 3</div>
+      <h2>How many dogs do you have?</h2>
+      <div class="dog-grid">
+        <button class="dog-btn" onclick="selectDogs(1)">
+          <span class="emoji">🐕</span>
+          <span class="label">1 dog</span>
+        </button>
+        <button class="dog-btn" onclick="selectDogs(2)">
+          <span class="emoji">🐕🐕</span>
+          <span class="label">2 dogs</span>
+        </button>
+        <button class="dog-btn" onclick="selectDogs(3)">
+          <span class="emoji">🐕🐕🐕</span>
+          <span class="label">3 dogs</span>
+        </button>
+        <button class="dog-btn" onclick="selectDogs(4)">
+          <span class="emoji">🐾</span>
+          <span class="label">4+</span>
+        </button>
+      </div>
+      <p style="font-size:0.8rem;color:var(--text3);text-align:center">Select one to continue</p>
+    </div>
+
+    <!-- Step 2: Yard Size -->
+    <div class="step" id="step2">
+      <div class="step-label">Step 2 of 3</div>
+      <h2>What's your yard like?</h2>
+      <div class="yard-options">
+        <button class="yard-btn" onclick="selectYard('small')">
+          <span class="yard-icon">🏡</span>
+          <div class="yard-info">
+            <div class="yard-title">Small Yard</div>
+            <div class="yard-desc">Townhome, patio yard, under 3,000 sq ft</div>
+          </div>
+        </button>
+        <button class="yard-btn" onclick="selectYard('medium')">
+          <span class="yard-icon">🏠</span>
+          <div class="yard-info">
+            <div class="yard-title">Standard Yard</div>
+            <div class="yard-desc">Typical suburban yard, 3,000–8,000 sq ft</div>
+          </div>
+        </button>
+        <button class="yard-btn" onclick="selectYard('large')">
+          <span class="yard-icon">🏘️</span>
+          <div class="yard-info">
+            <div class="yard-title">Large Yard</div>
+            <div class="yard-desc">Big property, over 8,000 sq ft or acreage</div>
+          </div>
+        </button>
+      </div>
+      <button class="btn btn-outline" onclick="goBack(1)">← Back</button>
+    </div>
+
+    <!-- Step 3: Frequency -->
+    <div class="step" id="step3">
+      <div class="step-label">Step 3 of 3</div>
+      <h2>How often should we come?</h2>
+      <div class="freq-options">
+        <button class="freq-btn" onclick="selectFreq('weekly')">
+          <div class="freq-left">
+            <span class="freq-title">Weekly</span>
+            <span class="freq-desc">Most popular — keeps yard spotless</span>
+          </div>
+          <span class="freq-badge">BEST VALUE</span>
+        </button>
+        <button class="freq-btn" onclick="selectFreq('biweekly')">
+          <div class="freq-left">
+            <span class="freq-title">Every 2 Weeks</span>
+            <span class="freq-desc">Great for 1-dog homes</span>
+          </div>
+        </button>
+        <button class="freq-btn" onclick="selectFreq('monthly')">
+          <div class="freq-left">
+            <span class="freq-title">Monthly</span>
+            <span class="freq-desc">Light maintenance</span>
+          </div>
+        </button>
+        <button class="freq-btn" onclick="selectFreq('onetime')">
+          <div class="freq-left">
+            <span class="freq-title">One-Time Deep Clean</span>
+            <span class="freq-desc">Spring cleanup, moving, party prep</span>
+          </div>
+        </button>
+      </div>
+      <button class="btn btn-outline" onclick="goBack(2)">← Back</button>
+    </div>
+
+    <!-- Step 4: Quote Result + Lead Capture -->
+    <div class="step" id="step4">
+      <div class="quote-result">
+        <div class="step-label">Your Personalized Quote</div>
+        <h2 id="quoteHeadline">Here's your price!</h2>
+        <div class="price-display">
+          <div class="price-amount" id="priceAmount">$25</div>
+          <div class="price-period" id="pricePeriod">per week</div>
+        </div>
+        <div class="price-savings" id="savingsTag" style="display:none">
+          💰 <span id="savingsText"></span>
+        </div>
+      </div>
+
+      <div class="quote-breakdown" id="breakdown">
+        <div class="row">
+          <span class="label">Dogs</span>
+          <span id="bdDogs">1 dog</span>
+        </div>
+        <div class="row">
+          <span class="label">Yard</span>
+          <span id="bdYard">Standard</span>
+        </div>
+        <div class="row">
+          <span class="label">Frequency</span>
+          <span id="bdFreq">Weekly</span>
+        </div>
+        <div class="row total">
+          <span>Your Price</span>
+          <span id="bdTotal">$25/week</span>
+        </div>
+      </div>
+
+      <div class="comparison" id="comparisonBox">
+        <div class="comparison-title">💡 How We Compare</div>
+        <div class="comparison-row">
+          <span>National franchise avg.</span>
+          <span id="compNational">~$35/wk</span>
+        </div>
+        <div class="comparison-row us">
+          <span>Tidy Tails (local, personal)</span>
+          <span id="compUs">$25/wk</span>
+        </div>
+      </div>
+
+      <div class="lead-form">
+        <h2 style="font-size:1.1rem;margin-bottom:0.75rem">🎉 Want to lock this price in?</h2>
+        <p style="font-size:0.85rem;color:var(--text2);margin-bottom:1rem">Drop your info and TJ will personally reach out within a few hours. No spam, no pressure.</p>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" id="fname" placeholder="Jamie" autocomplete="given-name">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" id="lname" placeholder="Smith" autocomplete="family-name">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" id="phone" placeholder="(314) 555-1234" autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label>Zip Code</label>
+          <input type="text" id="zip" placeholder="63021" maxlength="5" autocomplete="postal-code">
+        </div>
+        <div class="form-group">
+          <label>Anything else we should know? <span style="color:var(--text3)">(optional)</span></label>
+          <textarea id="notes" placeholder="Gate code, dog names, preferred day..."></textarea>
+        </div>
+
+        <button class="btn btn-primary" onclick="submitLead()">
+          ✅ Request My Free First Cleanup
+        </button>
+        <p style="font-size:0.75rem;color:var(--text3);text-align:center;margin-top:0.5rem">
+          First cleanup is FREE — no obligation, no credit card needed
+        </p>
+
+        <div style="text-align:center;margin-top:1rem">
+          <span style="font-size:0.8rem;color:var(--text3)">Prefer to just call?</span><br>
+          <a href="tel:+13149439091" class="btn btn-call" style="width:auto;display:inline-flex;margin-top:0.5rem;padding:0.6rem 1.5rem;font-size:0.9rem">
+            📞 (314) 943-9091
+          </a>
+        </div>
+      </div>
+
+      <button class="btn btn-outline" onclick="goBack(3)">← Change selections</button>
+    </div>
+
+    <!-- Step 5: Success -->
+    <div class="step" id="step5">
+      <div class="success-state">
+        <div class="success-icon">🎉</div>
+        <h2>You're All Set!</h2>
+        <p>TJ will text or call you within a few hours to schedule your <strong>free first cleanup</strong>.</p>
+        <div class="success-contact">
+          <p>Can't wait? Reach out directly:</p>
+          <p style="margin-top:0.5rem">
+            📞 <a href="tel:+13149439091">(314) 943-9091</a><br>
+            💬 <a href="sms:+13149439091">Text us</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="trust-bar">
+      <div class="trust-item"><span class="icon">✅</span> No contracts</div>
+      <div class="trust-item"><span class="icon">🔒</span> Satisfaction guaranteed</div>
+      <div class="trust-item"><span class="icon">📍</span> Locally owned</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p><strong>Tidy Tails Pet Waste Removal</strong></p>
+    <p>Serving St. Louis County, St. Charles & beyond</p>
+    <p style="margin-top:0.5rem"><a href="https://tidytailsstl.com">tidytailsstl.com</a> · <a href="tel:+13149439091">(314) 943-9091</a></p>
+  </div>
+</div>
+
+<script>
+  // State
+  let dogs = 0, yard = '', freq = '';
+
+  // Pricing matrix: [dogs][yard][freq] = price
+  // Base: 1 dog, standard yard, weekly = $25/wk
+  const pricing = {
+    weekly: {
+      1: { small: 22, medium: 25, large: 30 },
+      2: { small: 28, medium: 32, large: 38 },
+      3: { small: 35, medium: 40, large: 48 },
+      4: { small: 42, medium: 48, large: 58 }
+    },
+    biweekly: {
+      1: { small: 38, medium: 45, large: 55 },
+      2: { small: 48, medium: 55, large: 65 },
+      3: { small: 58, medium: 65, large: 78 },
+      4: { small: 68, medium: 78, large: 90 }
+    },
+    monthly: {
+      1: { small: 60, medium: 70, large: 85 },
+      2: { small: 75, medium: 85, large: 100 },
+      3: { small: 90, medium: 100, large: 120 },
+      4: { small: 105, medium: 120, large: 140 }
+    },
+    onetime: {
+      1: { small: 75, medium: 100, large: 135 },
+      2: { small: 95, medium: 120, large: 160 },
+      3: { small: 115, medium: 145, large: 190 },
+      4: { small: 135, medium: 170, large: 220 }
+    }
+  };
+
+  // National franchise comparison prices (higher)
+  const nationalPricing = {
+    weekly: { 1: 35, 2: 45, 3: 55, 4: 65 },
+    biweekly: { 1: 55, 2: 70, 3: 85, 4: 100 },
+    monthly: { 1: 85, 2: 105, 3: 125, 4: 145 },
+    onetime: { 1: 150, 2: 180, 3: 220, 4: 260 }
+  };
+
+  function selectDogs(n) {
+    dogs = n;
+    document.querySelectorAll('.dog-btn').forEach((b, i) => {
+      b.classList.toggle('selected', i + 1 === n);
+    });
+    setTimeout(() => goTo(2), 250);
+  }
+
+  function selectYard(size) {
+    yard = size;
+    document.querySelectorAll('.yard-btn').forEach(b => {
+      b.classList.toggle('selected', b.onclick.toString().includes("'" + size + "'"));
+    });
+    setTimeout(() => goTo(3), 250);
+  }
+
+  function selectFreq(f) {
+    freq = f;
+    document.querySelectorAll('.freq-btn').forEach(b => {
+      b.classList.toggle('selected', b.onclick.toString().includes("'" + f + "'"));
+    });
+    setTimeout(() => showQuote(), 300);
+  }
+
+  function showQuote() {
+    const price = pricing[freq][dogs][yard];
+    const national = nationalPricing[freq][dogs];
+
+    // Display price
+    const el = document.getElementById('priceAmount');
+    el.textContent = '$' + price;
+
+    const periodMap = {
+      weekly: 'per week',
+      biweekly: 'per visit (every 2 weeks)',
+      monthly: 'per month',
+      onetime: 'one-time visit'
+    };
+    document.getElementById('pricePeriod').textContent = periodMap[freq];
+
+    // Savings
+    const savedPerVisit = national - price;
+    if (freq === 'weekly' && savedPerVisit > 0) {
+      document.getElementById('savingsTag').style.display = 'inline-flex';
+      document.getElementById('savingsText').textContent = 'Save ~$' + (savedPerVisit * 52) + '/year vs franchises';
+    } else if (savedPerVisit > 0) {
+      document.getElementById('savingsTag').style.display = 'inline-flex';
+      document.getElementById('savingsText').textContent = 'Save $' + savedPerVisit + ' vs franchise average';
+    } else {
+      document.getElementById('savingsTag').style.display = 'none';
+    }
+
+    // Breakdown
+    const yardLabels = { small: 'Small', medium: 'Standard', large: 'Large' };
+    const freqLabels = { weekly: 'Weekly', biweekly: 'Every 2 Weeks', monthly: 'Monthly', onetime: 'One-Time' };
+    document.getElementById('bdDogs').textContent = dogs + (dogs === 4 ? '+' : '') + ' dog' + (dogs > 1 ? 's' : '');
+    document.getElementById('bdYard').textContent = yardLabels[yard] + ' yard';
+    document.getElementById('bdFreq').textContent = freqLabels[freq];
+    document.getElementById('bdTotal').textContent = '$' + price + '/' + (freq === 'onetime' ? 'visit' : freq === 'biweekly' ? 'visit' : freq);
+
+    // Comparison
+    const compLabel = freq === 'weekly' ? '/wk' : freq === 'biweekly' ? '/visit' : freq === 'monthly' ? '/mo' : '/visit';
+    document.getElementById('compNational').textContent = '~$' + national + compLabel;
+    document.getElementById('compUs').textContent = '$' + price + compLabel;
+
+    // Monthly cost headline
+    if (freq === 'weekly') {
+      document.getElementById('quoteHeadline').textContent = 'That\'s just $' + (price * 4.33).toFixed(0) + '/month for a spotless yard!';
+    } else if (freq === 'biweekly') {
+      document.getElementById('quoteHeadline').textContent = 'That\'s about $' + (price * 2.17).toFixed(0) + '/month for a clean yard!';
+    } else {
+      document.getElementById('quoteHeadline').textContent = 'Great choice — here\'s your price!';
+    }
+
+    goTo(4);
+  }
+
+  function goTo(step) {
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.getElementById('step' + step).classList.add('active');
+    
+    // Update dots
+    for (let i = 1; i <= 4; i++) {
+      const dot = document.getElementById('dot' + i);
+      dot.className = 'step-dot';
+      if (i < step) dot.classList.add('done');
+      else if (i === step) dot.classList.add('current');
+    }
+  }
+
+  function goBack(step) {
+    goTo(step);
+  }
+
+  function submitLead() {
+    const fname = document.getElementById('fname').value.trim();
+    const lname = document.getElementById('lname').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const zip = document.getElementById('zip').value.trim();
+    const notes = document.getElementById('notes').value.trim();
+
+    if (!fname || !phone) {
+      alert('Please enter at least your first name and phone number so TJ can reach you!');
+      return;
+    }
+
+    // Save lead to localStorage
+    const lead = {
+      fname, lname, phone, zip, notes,
+      dogs, yard, freq,
+      price: pricing[freq][dogs][yard],
+      timestamp: new Date().toISOString(),
+      source: 'quote-calculator'
+    };
+
+    const leads = JSON.parse(localStorage.getItem('tt_leads') || '[]');
+    leads.push(lead);
+    localStorage.setItem('tt_leads', JSON.stringify(leads));
+
+    // Show success
+    goTo(5);
+
+    // Update dots
+    for (let i = 1; i <= 4; i++) {
+      document.getElementById('dot' + i).className = 'step-dot done';
+    }
+  }
+
+  // Admin: view leads (type viewLeads() in console)
+  window.viewLeads = function() {
+    const leads = JSON.parse(localStorage.getItem('tt_leads') || '[]');
+    console.table(leads);
+    return leads;
+  };
+</script>
+</body>
+</html>
