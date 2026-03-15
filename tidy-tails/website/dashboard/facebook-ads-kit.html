@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facebook Ads Campaign Kit — Tidy Tails Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green: #2d5a27;
+            --green-light: #4a7c42;
+            --green-dark: #1e3d1a;
+            --cream: #f8f6f0;
+            --orange: #e07b39;
+            --white: #fff;
+            --gray: #666;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(135deg, #1877f2, #0d47a1);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header h1 { font-size: 1.8rem; margin-bottom: 6px; }
+        .header p { opacity: 0.9; font-size: 1rem; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        
+        /* Quick Start */
+        .quick-start {
+            background: #e8f5e9;
+            border: 2px solid var(--green);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+        .quick-start h2 { color: var(--green-dark); font-size: 1.2rem; margin-bottom: 12px; }
+        .quick-start ol { padding-left: 20px; }
+        .quick-start li { margin-bottom: 8px; font-size: 0.95rem; }
+        .quick-start a { color: #1877f2; font-weight: 600; }
+        
+        /* Budget Card */
+        .budget-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            text-align: center;
+        }
+        .budget-item .number { font-size: 1.8rem; font-weight: 700; color: var(--green); }
+        .budget-item .label { font-size: 0.8rem; color: var(--gray); text-transform: uppercase; }
+        
+        /* Ad Cards */
+        .ad-section { margin-bottom: 28px; }
+        .ad-section h2 {
+            font-size: 1.3rem;
+            color: var(--green-dark);
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--green);
+        }
+        .ad-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        .ad-card h3 {
+            font-size: 1rem;
+            color: var(--green-dark);
+            margin-bottom: 4px;
+        }
+        .ad-card .tag {
+            display: inline-block;
+            background: #e3f2fd;
+            color: #1565c0;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+        .ad-card .tag.stories { background: #fce4ec; color: #c62828; }
+        .ad-card .tag.retarget { background: #fff3e0; color: #e65100; }
+        .ad-card .tag.upsell { background: #e8f5e9; color: #2e7d32; }
+        .ad-text {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 14px;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        .ad-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+        .ad-meta span { display: flex; align-items: center; gap: 4px; }
+        .copy-btn {
+            background: var(--green);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .copy-btn:hover { background: var(--green-light); }
+        .copy-btn:active { transform: scale(0.97); }
+        .copy-btn.copied { background: #4caf50; }
+        
+        /* Targeting */
+        .targeting-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .targeting-card h3 { color: var(--green-dark); margin-bottom: 10px; }
+        .target-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .target-item {
+            background: #f0f7ff;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+        .target-item.exclude { background: #fff0f0; }
+        
+        /* Metrics */
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.85rem;
+        }
+        .metrics-table th {
+            background: var(--green-dark);
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        .metrics-table td { padding: 10px; border-bottom: 1px solid #eee; }
+        .metrics-table .good { color: #2e7d32; font-weight: 600; }
+        .metrics-table .ok { color: #f57f17; font-weight: 600; }
+        .metrics-table .bad { color: #c62828; font-weight: 600; }
+        
+        /* Landing Page Link */
+        .lp-banner {
+            background: linear-gradient(135deg, var(--orange), #d4692d);
+            color: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        .lp-banner h3 { margin-bottom: 8px; }
+        .lp-banner a {
+            display: inline-block;
+            background: white;
+            color: var(--orange);
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+        
+        /* Checklist */
+        .checklist { list-style: none; }
+        .checklist li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+        }
+        .checklist input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--green);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 16px;
+            color: #1877f2;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 600px) {
+            .target-grid { grid-template-columns: 1fr; }
+            .budget-card { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📘 Facebook Ads Campaign Kit</h1>
+        <p>Spring Deep Clean — Copy, paste, run. Get customers this week.</p>
+    </div>
+    
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Dashboard</a>
+        
+        <!-- Quick Start -->
+        <div class="quick-start">
+            <h2>⚡ Quick Start (30 min)</h2>
+            <ol>
+                <li>Go to <a href="https://business.facebook.com/adsmanager" target="_blank">Facebook Ads Manager</a></li>
+                <li>Click <strong>+ Create</strong> → Choose <strong>Leads</strong></li>
+                <li>Set budget to <strong>$7/day</strong></li>
+                <li>Copy targeting below → Copy ad text → <strong>Publish</strong></li>
+                <li><strong>Respond to every message within 1 hour</strong> ← This is the conversion step</li>
+            </ol>
+        </div>
+        
+        <!-- Budget Math -->
+        <div class="budget-card">
+            <div class="budget-item">
+                <div class="number">$7</div>
+                <div class="label">Per Day</div>
+            </div>
+            <div class="budget-item">
+                <div class="number">$210</div>
+                <div class="label">Monthly Spend</div>
+            </div>
+            <div class="budget-item">
+                <div class="number">4+</div>
+                <div class="label">Expected Bookings</div>
+            </div>
+            <div class="budget-item">
+                <div class="number">$190+</div>
+                <div class="label">Month 1 Profit</div>
+            </div>
+        </div>
+        
+        <!-- Landing Page Banner -->
+        <div class="lp-banner">
+            <h3>🔗 Dedicated Landing Page Ready</h3>
+            <p>Point your ads here for maximum conversions:</p>
+            <a href="../spring-clean.html" target="_blank">tidytailsstl.com/spring-clean.html →</a>
+        </div>
+        
+        <!-- Targeting -->
+        <div class="ad-section">
+            <h2>🎯 Audience Targeting</h2>
+            <div class="targeting-card">
+                <h3>Include</h3>
+                <div class="target-grid">
+                    <div class="target-item">📍 St. Louis + 25mi radius</div>
+                    <div class="target-item">👤 Ages 25-65</div>
+                    <div class="target-item">🐕 Dog owner interest</div>
+                    <div class="target-item">🛒 PetSmart / Petco</div>
+                    <div class="target-item">📦 Chewy.com interest</div>
+                    <div class="target-item">🌳 Dog park interest</div>
+                    <div class="target-item">🏠 Homeowner</div>
+                    <div class="target-item">🍖 Dog food / Pet supplies</div>
+                </div>
+                <h3 style="margin-top: 14px;">Exclude</h3>
+                <div class="target-grid">
+                    <div class="target-item exclude">🏢 Apartment dwellers</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Ad Copy -->
+        <div class="ad-section">
+            <h2>📝 Ad Copy (Copy & Paste)</h2>
+            
+            <div class="ad-card">
+                <h3>Version A — "Minefield" (Direct/Funny)</h3>
+                <span class="tag">Best for Feed</span>
+                <div class="ad-text" id="ad-a">Your yard looks like a minefield right now, doesn't it? 💣
+
+The snow melted. Three months of dog poop appeared. The kids can't play outside. You keep saying "I'll deal with it this weekend."
+
+You won't. And that's okay — because that's literally our job.
+
+$100 flat rate. We scoop every pile. Front yard, back yard, every corner. Haul it all away. You walk outside to a clean yard.
+
+📱 Text 314-850-7140 or click below to book.</div>
+                <div class="ad-meta">
+                    <span>📌 Headline: Spring Yard Deep Clean — $100 Flat</span>
+                    <span>🔘 CTA: Send Message</span>
+                </div>
+                <button class="copy-btn" onclick="copyAd('ad-a', this)">📋 Copy Ad Text</button>
+            </div>
+            
+            <div class="ad-card">
+                <h3>Version B — "Parent Angle"</h3>
+                <span class="tag">Best for Feed</span>
+                <div class="ad-text" id="ad-b">Hey St. Louis dog parents — when's the last time your kids actually played in the backyard? 🤔
+
+If the answer involves dodging landmines... we should talk.
+
+Tidy Tails Spring Deep Clean: $100 flat rate.
+✅ Every pile in your yard — gone
+✅ We bag it and haul it away
+✅ Done in one visit
+✅ You don't touch a thing
+
+Your yard went through a rough winter. Give it (and yourself) a fresh start.
+
+📱 Text 314-850-7140 to book this week.</div>
+                <div class="ad-meta">
+                    <span>📌 Headline: Kids Deserve a Clean Yard This Spring</span>
+                    <span>🔘 CTA: Send Message</span>
+                </div>
+                <button class="copy-btn" onclick="copyAd('ad-b', this)">📋 Copy Ad Text</button>
+            </div>
+            
+            <div class="ad-card">
+                <h3>Version C — "Short & Punchy"</h3>
+                <span class="tag stories">Best for Stories</span>
+                <div class="ad-text" id="ad-c">3 months of dog poop. 1 visit. $100.
+
+We scoop it all. You enjoy your yard.
+
+Tidy Tails — St. Louis pet waste removal.
+📱 Text 314-850-7140</div>
+                <div class="ad-meta">
+                    <span>📌 Headline: Spring Deep Clean — $100</span>
+                    <span>🔘 CTA: Send Message</span>
+                </div>
+                <button class="copy-btn" onclick="copyAd('ad-c', this)">📋 Copy Ad Text</button>
+            </div>
+            
+            <div class="ad-card">
+                <h3>Retargeting Ad (Week 2+)</h3>
+                <span class="tag retarget">Retargeting</span>
+                <div class="ad-text" id="ad-retarget">Still thinking about it? 🤔
+
+Your yard isn't getting any cleaner on its own. And spring's moving fast.
+
+$100. Every pile. Gone. Text 314-850-7140 and we'll get you on the schedule this week.
+
+No contract. No commitment beyond the deep clean. Just a yard you can actually use.</div>
+                <div class="ad-meta">
+                    <span>📌 Headline: Your Yard Is Still Waiting</span>
+                    <span>💰 Budget: $3/day</span>
+                    <span>🔘 CTA: Send Message</span>
+                </div>
+                <button class="copy-btn" onclick="copyAd('ad-retarget', this)">📋 Copy Ad Text</button>
+            </div>
+            
+            <div class="ad-card">
+                <h3>Weekly Upsell Text (Send After Deep Clean)</h3>
+                <span class="tag upsell">Text Message</span>
+                <div class="ad-text" id="ad-upsell">Hey [Name]! How's the yard looking? 🐕 Quick question — want to keep it that way? Weekly service is just $25/week, no contract. We come every week so you never have to think about it again. Want me to add you to the schedule? -TJ</div>
+                <button class="copy-btn" onclick="copyAd('ad-upsell', this)">📋 Copy Text</button>
+            </div>
+        </div>
+        
+        <!-- Metrics -->
+        <div class="ad-section">
+            <h2>📊 What Good Looks Like</h2>
+            <div class="ad-card">
+                <table class="metrics-table">
+                    <tr>
+                        <th>Metric</th>
+                        <th>Good ✅</th>
+                        <th>Okay 🟡</th>
+                        <th>Bad 🔴</th>
+                    </tr>
+                    <tr>
+                        <td>Cost per click</td>
+                        <td class="good">&lt; $0.80</td>
+                        <td class="ok">$0.80-1.50</td>
+                        <td class="bad">&gt; $1.50</td>
+                    </tr>
+                    <tr>
+                        <td>Click-through rate</td>
+                        <td class="good">&gt; 2%</td>
+                        <td class="ok">1-2%</td>
+                        <td class="bad">&lt; 1%</td>
+                    </tr>
+                    <tr>
+                        <td>Cost per lead</td>
+                        <td class="good">&lt; $15</td>
+                        <td class="ok">$15-30</td>
+                        <td class="bad">&gt; $30</td>
+                    </tr>
+                    <tr>
+                        <td>Messages/day</td>
+                        <td class="good">2+</td>
+                        <td class="ok">1</td>
+                        <td class="bad">0</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Weekly Checklist -->
+        <div class="ad-section">
+            <h2>✅ Weekly Checklist</h2>
+            <div class="ad-card">
+                <h3>Week 1</h3>
+                <ul class="checklist">
+                    <li><input type="checkbox" id="w1-1" onchange="saveChecks()"><label for="w1-1">Campaign live with all 3 ad versions</label></li>
+                    <li><input type="checkbox" id="w1-2" onchange="saveChecks()"><label for="w1-2">Budget set to $7/day</label></li>
+                    <li><input type="checkbox" id="w1-3" onchange="saveChecks()"><label for="w1-3">Checked results after 3 days</label></li>
+                    <li><input type="checkbox" id="w1-4" onchange="saveChecks()"><label for="w1-4">Responded to all messages within 1 hour</label></li>
+                </ul>
+                <h3 style="margin-top: 16px;">Week 2</h3>
+                <ul class="checklist">
+                    <li><input type="checkbox" id="w2-1" onchange="saveChecks()"><label for="w2-1">Killed worst-performing ad version</label></li>
+                    <li><input type="checkbox" id="w2-2" onchange="saveChecks()"><label for="w2-2">CPC under $1.50? If not, adjusted targeting</label></li>
+                    <li><input type="checkbox" id="w2-3" onchange="saveChecks()"><label for="w2-3">Started retargeting campaign (if pixel installed)</label></li>
+                    <li><input type="checkbox" id="w2-4" onchange="saveChecks()"><label for="w2-4">Sent upsell text to any deep clean customers</label></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function copyAd(id, btn) {
+            const text = document.getElementById(id).innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = '✅ Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => {
+                    btn.textContent = '📋 Copy Ad Text';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+        
+        function saveChecks() {
+            const checks = {};
+            document.querySelectorAll('.checklist input').forEach(cb => {
+                checks[cb.id] = cb.checked;
+            });
+            localStorage.setItem('fb-ads-checks', JSON.stringify(checks));
+        }
+        
+        // Load saved checks
+        const saved = JSON.parse(localStorage.getItem('fb-ads-checks') || '{}');
+        Object.entries(saved).forEach(([id, checked]) => {
+            const el = document.getElementById(id);
+            if (el) el.checked = checked;
+        });
+    </script>
+</body>
+</html>
