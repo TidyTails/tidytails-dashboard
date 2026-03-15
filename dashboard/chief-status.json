@@ -1,20 +1,20 @@
 {
-  "lastCheck": "2026-03-15T08:03:00-05:00",
-  "checkNumber": 91,
+  "lastCheck": "2026-03-15T10:03:00-05:00",
+  "checkNumber": 92,
   "status": "issues",
-  "issuesFound": 6,
-  "issuesFixed": 0,
-  "issuesPending": 6,
+  "issuesFound": 5,
+  "issuesFixed": 1,
+  "issuesPending": 4,
   "dashboardHealth": {
-    "gitStatus": "master is 8 commits ahead of origin/main. GitHub Action auto-sync (created check #89) still NOT firing. Deployment gap GROWING.",
-    "totalPdfsOnDisk": 29,
+    "gitStatus": "FIXED this check — manually pushed master→main (14 commits synced). GitHub Action YAML exists but still not auto-firing. Needs investigation.",
+    "totalPdfsOnDisk": 31,
     "totalLinkedPdfs": 10,
-    "unlinkedPdfs": 19,
+    "unlinkedPdfs": 21,
     "brokenPdfLinks": 0,
     "brokenVideoLinks": 0,
     "videoLinksVerified": "All 6 Remotion video files exist on disk in remotion-videos/out/.",
-    "undersizedPdfs": 12,
-    "undersizedDetail": "MORNING_BRIEFING_2026-03-09.pdf at 21KB (likely corrupt). 11 others at 65-70KB (truncated stubs). Day 18+ unresolved."
+    "undersizedPdfs": 13,
+    "undersizedDetail": "13 PDFs under 100KB (65-70KB range — likely truncated/stub PDFs). Day 19+ unresolved."
   },
   "phoneNumberVerification": {
     "status": "PASS",
@@ -46,66 +46,52 @@
   },
   "issues": [
     {
-      "id": "issue-091-1",
+      "id": "issue-092-1",
       "severity": "HIGH",
       "category": "deployment",
-      "description": "GitHub Action auto-sync (master→main) NOT firing. 8 commits on master not deployed to main. Gap GROWING from 5 at last check. Live site increasingly stale.",
+      "description": "GitHub Action auto-sync (master→main) still not auto-firing. Manually synced this check (14 commits pushed). Action YAML exists but workflow likely needs re-enabling in GitHub Settings or permissions fix.",
       "assignedTo": "franklin",
-      "status": "found",
-      "checksFlagged": 2,
-      "note": "Action YAML exists at .github/workflows/ but not triggering. Likely: workflow not on main branch, or permissions issue. Needs manual push or Action debug."
+      "status": "partial-fix",
+      "checksFlagged": 3,
+      "note": "Manual sync done. Root cause (Action not triggering) still unresolved. Check GitHub Actions tab for error logs."
     },
     {
-      "id": "issue-091-2",
+      "id": "issue-092-2",
       "severity": "HIGH",
       "category": "dashboard",
-      "description": "19 of 29 PDFs on disk NOT linked in index.html. Only Mar 6-8 content visible. Mar 9-14 completely orphaned — 6 days of work invisible to TJ. Day 18+.",
+      "description": "21 of 31 PDFs on disk are NOT linked in index.html. Users cannot access 68% of generated content. Day 19+ unresolved.",
       "assignedTo": "franklin",
       "status": "found",
-      "daysFlagged": 18
+      "checksFlagged": 4
     },
     {
-      "id": "issue-091-3",
+      "id": "issue-092-3",
       "severity": "HIGH",
       "category": "dashboard",
-      "description": "12 PDFs under 100KB. MORNING_BRIEFING_2026-03-09.pdf at 21KB likely corrupt/empty. Others at 65-70KB are stub files, not real PDFs. Day 18+ unresolved.",
+      "description": "13 PDFs are undersized (<100KB, mostly 65-70KB). Likely truncated or stub files. Day 19+ unresolved.",
       "assignedTo": "franklin",
       "status": "found",
-      "daysFlagged": 18
+      "checksFlagged": 4
     },
     {
-      "id": "issue-091-4",
-      "severity": "HIGH",
-      "category": "content",
-      "description": "All 6 Remotion videos last generated Mar 6 — now 9 days stale. No new video creative produced.",
-      "assignedTo": "franklin",
-      "status": "found",
-      "daysFlagged": 9
-    },
-    {
-      "id": "issue-091-5",
+      "id": "issue-092-4",
       "severity": "MEDIUM",
       "category": "website",
-      "description": "tidytails.html and consulting.html do not exist in dashboard repo. Referenced in skill config but never created.",
+      "description": "tidytails.html and consulting.html do not exist in dashboard repo. Referenced in SKILL.md but never created.",
       "assignedTo": "franklin",
       "status": "found",
-      "daysFlagged": 18
+      "checksFlagged": 4
     },
     {
-      "id": "issue-091-6",
+      "id": "issue-092-5",
       "severity": "MEDIUM",
       "category": "content",
-      "description": "35+ files in dashboard root and research/ are 8+ days stale. Content inversion: older Mar 6-8 content linked and accessible, newer Mar 9-14 work orphaned.",
+      "description": "Remotion video creative last updated 9 days ago (Mar 6). No new video content generated. Spring campaign season needs fresh creative.",
       "assignedTo": "franklin",
       "status": "found",
-      "daysFlagged": 8
+      "checksFlagged": 4
     }
   ],
-  "bottleneck": "DELIVERY GAP — Work is being PRODUCED but not DELIVERED. 19 of 29 PDFs exist but are invisible on the dashboard. The GitHub Action sync is broken so even committed work doesn't reach the live site. Two compounding failures: (1) PDFs not linked in HTML, (2) master→main sync broken. TJ cannot see a full week of deliverables.",
-  "compoundingImprovement": "Fix the two-part delivery pipeline: (1) Manual git push origin master:main RIGHT NOW to close the 8-commit gap. (2) Debug the GitHub Action — likely needs the workflow file on the main branch to trigger. (3) Build a post-commit hook or script that auto-links new PDFs into index.html sections. These three fixes, once done, make delivery permanent and zero-effort.",
-  "phoneNumbers": {
-    "tidyTails": "314-850-7140 ✅",
-    "sheds": "636-354-7406 ✅",
-    "consulting": "636-354-7406 ✅"
-  }
+  "bottleneck": "PDF generation pipeline. Franklin generates PDFs daily but (a) 42% are undersized/corrupt and (b) 68% never get linked in index.html. The pipeline creates output but doesn't complete delivery. This is the single constraint blocking dashboard value for TJ.",
+  "compoundingImprovement": "Add a post-generation verification step to Franklin's PDF skill: after creating any PDF, (1) verify file size >100KB, (2) auto-append link to index.html, (3) log to delivery tracker. This turns a manual, forgettable step into an automated gate. Every future PDF would self-verify and self-link."
 }
