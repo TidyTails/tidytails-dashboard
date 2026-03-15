@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citation Tracker — Tidy Tails</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1117; color: #e4e4e7; min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 24px; border-bottom: 1px solid #2a2a3e; }
+        .header h1 { font-size: 1.5rem; margin-bottom: 4px; }
+        .header h1 span { color: #f59e0b; }
+        .header p { color: #9ca3af; font-size: 0.85rem; }
+        
+        .stats-bar { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; padding: 16px 24px; background: #151520; }
+        .stat-card { background: #1a1a2e; border-radius: 10px; padding: 14px; text-align: center; border: 1px solid #2a2a3e; }
+        .stat-card .number { font-size: 1.8rem; font-weight: 700; }
+        .stat-card .label { font-size: 0.7rem; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+        .stat-card.completed .number { color: #10b981; }
+        .stat-card.pending .number { color: #f59e0b; }
+        .stat-card.total .number { color: #3b82f6; }
+        .stat-card.score .number { color: #8b5cf6; }
+        
+        .progress-container { padding: 16px 24px; }
+        .progress-bar-bg { background: #1a1a2e; border-radius: 999px; height: 12px; overflow: hidden; border: 1px solid #2a2a3e; }
+        .progress-bar-fill { height: 100%; border-radius: 999px; background: linear-gradient(90deg, #10b981, #3b82f6); transition: width 0.5s ease; }
+        .progress-label { display: flex; justify-content: space-between; margin-top: 6px; font-size: 0.75rem; color: #9ca3af; }
+        
+        .section { padding: 16px 24px; }
+        .section-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .tier-badge { font-size: 0.65rem; padding: 3px 8px; border-radius: 999px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tier-today { background: #dc262620; color: #f87171; border: 1px solid #dc262640; }
+        .tier-week { background: #f59e0b20; color: #fbbf24; border: 1px solid #f59e0b40; }
+        .tier-later { background: #10b98120; color: #34d399; border: 1px solid #10b98140; }
+        
+        .citation-list { display: flex; flex-direction: column; gap: 8px; }
+        .citation-item { background: #1a1a2e; border-radius: 10px; padding: 14px 16px; border: 1px solid #2a2a3e; display: flex; align-items: center; gap: 12px; transition: all 0.2s; cursor: pointer; }
+        .citation-item:hover { border-color: #3b82f6; }
+        .citation-item.done { opacity: 0.6; border-color: #10b98140; }
+        .citation-item.done .cite-name { text-decoration: line-through; }
+        
+        .check-box { width: 22px; height: 22px; border-radius: 6px; border: 2px solid #4b5563; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
+        .citation-item.done .check-box { background: #10b981; border-color: #10b981; }
+        .check-box svg { width: 14px; height: 14px; fill: none; stroke: white; stroke-width: 3; opacity: 0; }
+        .citation-item.done .check-box svg { opacity: 1; }
+        
+        .cite-info { flex: 1; min-width: 0; }
+        .cite-name { font-weight: 600; font-size: 0.95rem; }
+        .cite-meta { font-size: 0.75rem; color: #9ca3af; margin-top: 2px; }
+        .cite-meta .cost { color: #10b981; }
+        .cite-meta .cost.paid { color: #f59e0b; }
+        
+        .cite-link { background: #3b82f620; color: #60a5fa; border: 1px solid #3b82f640; padding: 6px 12px; border-radius: 8px; font-size: 0.75rem; text-decoration: none; white-space: nowrap; transition: all 0.2s; }
+        .cite-link:hover { background: #3b82f640; }
+        
+        .nap-section { background: #1a1a2e; border-radius: 10px; padding: 16px; border: 1px solid #2a2a3e; margin-top: 8px; }
+        .nap-section h3 { font-size: 0.85rem; color: #f59e0b; margin-bottom: 10px; }
+        .nap-field { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #2a2a3e20; }
+        .nap-field:last-child { border-bottom: none; }
+        .nap-label { font-size: 0.75rem; color: #9ca3af; }
+        .nap-value { font-size: 0.85rem; font-weight: 500; }
+        .copy-btn { background: #3b82f620; color: #60a5fa; border: 1px solid #3b82f640; padding: 4px 10px; border-radius: 6px; font-size: 0.7rem; cursor: pointer; transition: all 0.2s; }
+        .copy-btn:hover { background: #3b82f640; }
+        .copy-btn.copied { background: #10b98120; color: #34d399; border-color: #10b98140; }
+        
+        .competitor-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+        .comp-row { background: #1a1a2e; border-radius: 8px; padding: 10px 14px; border: 1px solid #2a2a3e; display: flex; justify-content: space-between; align-items: center; }
+        .comp-name { font-weight: 600; font-size: 0.85rem; }
+        .comp-count { font-size: 0.85rem; }
+        .comp-count.high { color: #10b981; }
+        .comp-count.mid { color: #f59e0b; }
+        .comp-count.low { color: #f87171; }
+        
+        .why-box { background: linear-gradient(135deg, #1a1a2e, #16213e); border: 1px solid #f59e0b40; border-radius: 10px; padding: 16px; margin: 16px 24px; }
+        .why-box h3 { color: #f59e0b; font-size: 0.9rem; margin-bottom: 8px; }
+        .why-box p { font-size: 0.8rem; color: #d1d5db; line-height: 1.5; }
+        .why-box strong { color: #f87171; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📍 Citation <span>Tracker</span></h1>
+        <p>Local directory listings — backlinks, discovery channels, trust signals</p>
+    </div>
+    
+    <div class="stats-bar">
+        <div class="stat-card completed"><div class="number" id="completedCount">0</div><div class="label">Completed</div></div>
+        <div class="stat-card pending"><div class="number" id="pendingCount">0</div><div class="label">Remaining</div></div>
+        <div class="stat-card total"><div class="number" id="totalCount">18</div><div class="label">Total</div></div>
+        <div class="stat-card score"><div class="number" id="scorePercent">0%</div><div class="label">Score</div></div>
+    </div>
+    
+    <div class="progress-container">
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill" style="width: 0%"></div></div>
+        <div class="progress-label"><span>Citation coverage</span><span id="progressText">0 of 18</span></div>
+    </div>
+    
+    <div class="why-box">
+        <h3>⚠️ Why This Matters Right Now</h3>
+        <p><strong>tidytailsstl.com returns ZERO Google results</strong> after 10+ days with Search Console verified. The site has almost no backlinks. Each citation = a backlink + trust signal. Competitors like Poop2Scoop have 5+ citations and rank on page 1. TJ has 3. Close this gap and Google starts paying attention.</p>
+    </div>
+    
+    <div class="section">
+        <div class="section-title"><span>🔴 Do Today</span><span class="tier-badge tier-today">~45 min</span></div>
+        <div class="citation-list" id="tier1"></div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title"><span>🟡 Do This Week</span><span class="tier-badge tier-week">~60 min</span></div>
+        <div class="citation-list" id="tier2"></div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title"><span>🟢 Do Within 2 Weeks</span><span class="tier-badge tier-later">~45 min</span></div>
+        <div class="citation-list" id="tier3"></div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">📋 Copy-Paste Business Info</div>
+        <div class="nap-section">
+            <h3>NAP CONSISTENCY — Use this EXACT info everywhere</h3>
+            <div class="nap-field"><span class="nap-label">Business Name</span><span class="nap-value">Tidy Tails</span><button class="copy-btn" onclick="copyText('Tidy Tails', this)">Copy</button></div>
+            <div class="nap-field"><span class="nap-label">Phone</span><span class="nap-value">(314) 850-7140</span><button class="copy-btn" onclick="copyText('(314) 850-7140', this)">Copy</button></div>
+            <div class="nap-field"><span class="nap-label">Website</span><span class="nap-value">https://tidytailsstl.com</span><button class="copy-btn" onclick="copyText('https://tidytailsstl.com', this)">Copy</button></div>
+            <div class="nap-field"><span class="nap-label">Email</span><span class="nap-value">TJ@tidytailsstl.com</span><button class="copy-btn" onclick="copyText('TJ@tidytailsstl.com', this)">Copy</button></div>
+            <div class="nap-field"><span class="nap-label">Location</span><span class="nap-value">St. Louis, MO</span><button class="copy-btn" onclick="copyText('St. Louis, MO', this)">Copy</button></div>
+            <div class="nap-field"><span class="nap-label">Category</span><span class="nap-value">Pet Waste Removal</span><button class="copy-btn" onclick="copyText('Pet Waste Removal', this)">Copy</button></div>
+            <div class="nap-field"><span class="nap-label">Hours</span><span class="nap-value">Mon-Sun 8:00 AM - 6:00 PM</span><button class="copy-btn" onclick="copyText('Monday-Sunday, 8:00 AM - 6:00 PM', this)">Copy</button></div>
+            <div class="nap-field"><span class="nap-label">Short Bio</span><span class="nap-value" style="font-size:0.75rem; max-width: 200px;">Professional pet waste removal serving St. Louis County & St. Charles. Weekly service from $25.</span><button class="copy-btn" onclick="copyText('Professional pet waste removal serving St. Louis County & St. Charles. Weekly service from $25. No contracts, satisfaction guaranteed. Locally owned & operated.', this)">Copy</button></div>
+            <div class="nap-field"><span class="nap-label">Full Description</span><span class="nap-value" style="font-size:0.7rem; max-width: 200px;">Click to copy full desc →</span><button class="copy-btn" onclick="copyText('Tidy Tails is St. Louis\'s trusted pet waste removal service. We provide reliable, weekly pooper scooper service for busy families and dog lovers. Locally owned and operated by TJ — same person every visit, guaranteed satisfaction. Serving St. Louis County, St. Charles, O\'Fallon, Florissant, Ferguson, Maryland Heights, Chesterfield, Ballwin, and more. No contracts ever. Starting at $25/week.', this)">Copy</button></div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">📊 Competitor Comparison</div>
+        <div class="competitor-grid">
+            <div class="comp-row"><span class="comp-name">DoodyCalls (franchise)</span><span class="comp-count high">8+ citations</span></div>
+            <div class="comp-row"><span class="comp-name">POOP 911 (franchise)</span><span class="comp-count high">7+ citations</span></div>
+            <div class="comp-row"><span class="comp-name">Poop2Scoop</span><span class="comp-count mid">5+ citations</span></div>
+            <div class="comp-row"><span class="comp-name">Yucko's</span><span class="comp-count mid">4+ citations</span></div>
+            <div class="comp-row"><span class="comp-name">Doggie Doodies</span><span class="comp-count mid">4+ citations</span></div>
+            <div class="comp-row"><span class="comp-name">Clean Turf STL</span><span class="comp-count low">3 citations</span></div>
+            <div class="comp-row"><span class="comp-name" style="color: #f59e0b;">Tidy Tails ← YOU</span><span class="comp-count low" id="tjCitations">3 citations</span></div>
+        </div>
+    </div>
+    
+    <div style="height: 60px;"></div>
+    
+    <script>
+        const citations = [
+            { id: 'apaws', name: 'aPaws Directory', url: 'https://apaws.org/about/join/', time: '10 min', cost: '~$50-100/yr', costType: 'paid', tier: 1, why: 'Industry trade association. Only 5 MO members. Instant credibility.' },
+            { id: 'mapquest', name: 'MapQuest', url: 'https://www.mapquest.com/add-listing', time: '5 min', cost: 'FREE', costType: 'free', tier: 1, why: 'Doggie Doodies + POOP 911 are here. Free backlink.' },
+            { id: 'nextdoor', name: 'Nextdoor Business', url: 'https://business.nextdoor.com', time: '10 min', cost: 'FREE', costType: 'free', tier: 1, why: 'Hyper-local. Homeowners. 2 free Local Deals/month.' },
+            { id: 'petworks', name: 'PetWorks.com', url: 'https://www.petworks.com/join', time: '5 min', cost: 'FREE', costType: 'free', tier: 1, why: 'Only Poop2Scoop is listed in STL. Be the 2nd.' },
+            { id: 'thumbtack', name: 'Thumbtack', url: 'https://www.thumbtack.com/pro', time: '15 min', cost: 'Free/$10-60 lead', costType: 'paid', tier: 1, why: 'Active buyers searching for pet waste removal.' },
+            { id: 'bing', name: 'Bing Places', url: 'https://www.bingplaces.com', time: '10 min', cost: 'FREE', costType: 'free', tier: 2, why: 'Powers Bing, DuckDuckGo, Yahoo, Alexa, Cortana.' },
+            { id: 'apple', name: 'Apple Maps', url: 'https://mapsconnect.apple.com', time: '10 min', cost: 'FREE', costType: 'free', tier: 2, why: '50%+ of US uses iPhone. Zero competitors here.' },
+            { id: 'bbb', name: 'BBB', url: 'https://www.bbb.org/get-listed', time: '10 min', cost: 'FREE', costType: 'free', tier: 2, why: 'Trust signal for commercial/property manager pitches.' },
+            { id: 'foursquare', name: 'Foursquare', url: 'https://foursquare.com/add-place', time: '5 min', cost: 'FREE', costType: 'free', tier: 2, why: 'Powers 150K+ apps location data. Feeds Apple Maps.' },
+            { id: 'hotfrog', name: 'Hotfrog', url: 'https://www.hotfrog.com', time: '5 min', cost: 'FREE', costType: 'free', tier: 2, why: 'High domain authority backlink.' },
+            { id: 'manta', name: 'Manta', url: 'https://www.manta.com/claim', time: '5 min', cost: 'FREE', costType: 'free', tier: 2, why: 'Popular small business directory.' },
+            { id: 'yp', name: 'YP.com (Yellow Pages)', url: 'https://www.yp.com/add-listing', time: '5 min', cost: 'FREE', costType: 'free', tier: 2, why: '60M+ monthly visits. Free backlink.' },
+            { id: 'superpages', name: 'Superpages', url: 'https://www.superpages.com/add-listing', time: '5 min', cost: 'FREE', costType: 'free', tier: 2, why: 'Same owner as YP, separate citation.' },
+            { id: 'alignable', name: 'Alignable', url: 'https://www.alignable.com', time: '10 min', cost: 'FREE', costType: 'free', tier: 3, why: 'Nextdoor for businesses. Connect with property managers.' },
+            { id: 'expertise', name: 'Expertise.com', url: 'https://www.expertise.com/get-listed', time: '5 min', cost: 'FREE', costType: 'free', tier: 3, why: '"Best X in Y" pages rank #1 on Google.' },
+            { id: 'bark', name: 'Bark.com', url: 'https://www.bark.com/en/us/company/register/', time: '10 min', cost: 'Free/per lead', costType: 'paid', tier: 3, why: 'Lead gen platform. Customers come to you.' },
+            { id: 'angi', name: 'Angi', url: 'https://www.angi.com/pro', time: '10 min', cost: 'FREE', costType: 'free', tier: 3, why: 'Homeowner-focused. Property managers use this.' },
+            { id: 'porch', name: 'Porch.com', url: 'https://pro.porch.com/join', time: '5 min', cost: 'FREE', costType: 'free', tier: 3, why: 'Home services directory + lead gen.' },
+        ];
+        
+        function getState() {
+            try { return JSON.parse(localStorage.getItem('citationTracker') || '{}'); } catch { return {}; }
+        }
+        function saveState(state) { localStorage.setItem('citationTracker', JSON.stringify(state)); }
+        
+        function toggle(id) {
+            const state = getState();
+            state[id] = !state[id];
+            saveState(state);
+            render();
+        }
+        
+        function render() {
+            const state = getState();
+            const tiers = { 1: document.getElementById('tier1'), 2: document.getElementById('tier2'), 3: document.getElementById('tier3') };
+            Object.values(tiers).forEach(t => t.innerHTML = '');
+            
+            let completed = 0;
+            citations.forEach(c => {
+                const done = !!state[c.id];
+                if (done) completed++;
+                const item = document.createElement('div');
+                item.className = `citation-item${done ? ' done' : ''}`;
+                item.innerHTML = `
+                    <div class="check-box" onclick="toggle('${c.id}')">
+                        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    </div>
+                    <div class="cite-info" onclick="toggle('${c.id}')">
+                        <div class="cite-name">${c.name}</div>
+                        <div class="cite-meta">${c.time} · <span class="cost ${c.costType === 'paid' ? 'paid' : ''}">${c.cost}</span> · ${c.why}</div>
+                    </div>
+                    <a class="cite-link" href="${c.url}" target="_blank" rel="noopener">Sign Up →</a>
+                `;
+                tiers[c.tier].appendChild(item);
+            });
+            
+            const total = citations.length;
+            const pending = total - completed;
+            const pct = Math.round((completed / total) * 100);
+            document.getElementById('completedCount').textContent = completed;
+            document.getElementById('pendingCount').textContent = pending;
+            document.getElementById('scorePercent').textContent = pct + '%';
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressText').textContent = `${completed} of ${total}`;
+            document.getElementById('tjCitations').textContent = `${3 + completed} citations`;
+            document.getElementById('tjCitations').className = completed >= 5 ? 'comp-count mid' : (completed >= 10 ? 'comp-count high' : 'comp-count low');
+        }
+        
+        function copyText(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = 'Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+            });
+        }
+        
+        render();
+    </script>
+</body>
+</html>
