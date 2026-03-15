@@ -6,6 +6,40 @@
 
 ## March 15, 2026 (Sunday)
 
+### 12:05 PM — 📱 INSTANT QUOTE CALCULATOR & LEAD CAPTURE
+**Task:** Build a mobile-first quote calculator that prospects can use to get instant pricing and submit their info
+**Result:** ✅ COMPLETED — SHIPPED & LIVE
+
+**Why This Task:**
+- 80+ deliverables exist but the gap is CONVERSION tools, not more content
+- TJ's website has static pricing but no interactive experience
+- Prospects who engage with a calculator convert 2-3x higher than static page visitors
+- Sunday noon = good time to build rather than research
+
+**What Was Built:**
+1. **4-step quote wizard:** Dogs → Yard Size → Frequency → Instant Price
+2. **Dynamic pricing matrix** — 1-4+ dogs × 3 yard sizes × 4 frequencies (48 price points)
+3. **Franchise comparison** — shows Tidy Tails vs national franchise average
+4. **Annual savings display** — e.g., "Save ~$520/year vs franchises"
+5. **Lead capture form** — name, phone, zip, notes → localStorage
+6. **Free first cleanup CTA** — removes friction from first conversion
+7. **Direct call/text buttons** — one-tap calling
+8. **Mobile-first design** — optimized for phone screens
+
+**How TJ Uses This:**
+- Share in Facebook groups / Nextdoor posts
+- Text to prospects who ask "how much?"
+- Add to Instagram bio link
+- Embed on tidytailsstl.com
+
+**URL:** https://tidytails.github.io/tidytails-dashboard/quote-calculator.html
+**Dashboard:** Added to Sales & Leads section
+**Git:** Committed and pushed
+
+**Rotation:** 🔧 Tools — Conversion Optimization
+
+---
+
 ### 11:04 AM — 🧮 SHED PAYMENT CALCULATOR — Interactive Financing & RTO Tool
 **Task:** Build interactive payment calculator for Backyard Buildings STL website
 **Result:** ✅ COMPLETED — Full calculator page shipped + linked from main site
