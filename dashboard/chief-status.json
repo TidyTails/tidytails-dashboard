@@ -1,38 +1,47 @@
 {
-  "lastCheck": "2026-03-15T10:03:00-05:00",
-  "checkNumber": 92,
+  "lastCheck": "2026-03-15T12:03:00-05:00",
+  "checkNumber": 93,
   "status": "issues",
   "issuesFound": 5,
-  "issuesFixed": 1,
-  "issuesPending": 4,
+  "issuesFixed": 0,
+  "issuesPending": 5,
   "dashboardHealth": {
-    "gitStatus": "FIXED this check — manually pushed master→main (14 commits synced). GitHub Action YAML exists but still not auto-firing. Needs investigation.",
-    "totalPdfsOnDisk": 31,
+    "gitStatus": "CLEAN — branch up to date with origin/master, 0 ahead/0 behind. Last check #92 fixed the 14-commit deployment gap.",
+    "totalPdfsOnDisk": 45,
     "totalLinkedPdfs": 10,
-    "unlinkedPdfs": 21,
+    "unlinkedPdfs": 35,
     "brokenPdfLinks": 0,
     "brokenVideoLinks": 0,
-    "videoLinksVerified": "All 6 Remotion video files exist on disk in remotion-videos/out/.",
+    "videoLinksVerified": "All 6 Remotion video files exist on disk and are linked in index.html.",
     "undersizedPdfs": 13,
-    "undersizedDetail": "13 PDFs under 100KB (65-70KB range — likely truncated/stub PDFs). Day 19+ unresolved."
+    "undersizedDetail": "13 PDFs under 100KB (20-70KB range). Day 20 unresolved. Likely stub/truncated PDFs from pdf-generator skill.",
+    "mdFilesInPdfsDir": 7,
+    "mdFilesDetail": "7 .md source files sitting in pdfs/ dir — should be converted to actual PDFs or removed."
   },
   "phoneNumberVerification": {
     "status": "PASS",
     "tidyTails": {
       "expected": "314-850-7140",
       "foundInDashboard": true,
+      "occurrences": 2,
       "correct": true
     },
     "sheds": {
       "expected": "636-354-7406",
       "foundInDashboard": true,
+      "occurrences": 1,
       "correct": true
     }
   },
   "websitePages": {
-    "tidytailsHtml": "MISSING — file does not exist in dashboard repo",
-    "consultingHtml": "MISSING — file does not exist in dashboard repo",
-    "indexHtml": "EXISTS — last updated Mar 15"
+    "tidytailsHtml": "MISSING — file does not exist. tidy-tails-crm.html exists but no standalone Tidy Tails landing page.",
+    "consultingHtml": "MISSING — file does not exist. Consulting videos exist in remotion-videos/out/.",
+    "indexHtml": "EXISTS — 77KB, last updated Mar 15 10:09 AM"
+  },
+  "contentFreshness": {
+    "remotionVideos": "STALE — all 6 videos last generated Mar 6 (9 days ago)",
+    "latestPdf": "SHED_ADS_2026-03-15.pdf + MORNING_BRIEFING_2026-03-15.pdf (today)",
+    "latestCommit": "Shed payment calculator + 26 new commercial leads (today)"
   },
   "adCreativeAudit": {
     "remotionVideos": {
@@ -46,52 +55,50 @@
   },
   "issues": [
     {
-      "id": "issue-092-1",
-      "severity": "HIGH",
-      "category": "deployment",
-      "description": "GitHub Action auto-sync (master→main) still not auto-firing. Manually synced this check (14 commits pushed). Action YAML exists but workflow likely needs re-enabling in GitHub Settings or permissions fix.",
-      "assignedTo": "franklin",
-      "status": "partial-fix",
-      "checksFlagged": 3,
-      "note": "Manual sync done. Root cause (Action not triggering) still unresolved. Check GitHub Actions tab for error logs."
-    },
-    {
-      "id": "issue-092-2",
+      "id": "issue-093-1",
       "severity": "HIGH",
       "category": "dashboard",
-      "description": "21 of 31 PDFs on disk are NOT linked in index.html. Users cannot access 68% of generated content. Day 19+ unresolved.",
+      "description": "35 of 45 PDFs on disk are NOT linked in index.html. Only 10 PDFs accessible to TJ via dashboard. Day 20 of this gap widening.",
       "assignedTo": "franklin",
-      "status": "found",
-      "checksFlagged": 4
+      "status": "recurring",
+      "daysPending": 20
     },
     {
-      "id": "issue-092-3",
+      "id": "issue-093-2",
       "severity": "HIGH",
       "category": "dashboard",
-      "description": "13 PDFs are undersized (<100KB, mostly 65-70KB). Likely truncated or stub files. Day 19+ unresolved.",
+      "description": "13 PDFs under 100KB — likely stub/truncated files from pdf-generator. Never been fixed.",
       "assignedTo": "franklin",
-      "status": "found",
-      "checksFlagged": 4
+      "status": "recurring",
+      "daysPending": 20
     },
     {
-      "id": "issue-092-4",
+      "id": "issue-093-3",
       "severity": "MEDIUM",
       "category": "website",
-      "description": "tidytails.html and consulting.html do not exist in dashboard repo. Referenced in SKILL.md but never created.",
+      "description": "tidytails.html and consulting.html do not exist. These standalone pages have never been created.",
       "assignedTo": "franklin",
-      "status": "found",
-      "checksFlagged": 4
+      "status": "recurring",
+      "daysPending": 20
     },
     {
-      "id": "issue-092-5",
+      "id": "issue-093-4",
       "severity": "MEDIUM",
       "category": "content",
-      "description": "Remotion video creative last updated 9 days ago (Mar 6). No new video content generated. Spring campaign season needs fresh creative.",
+      "description": "All 6 Remotion videos are 9 days old (Mar 6). No new video creative generated since.",
       "assignedTo": "franklin",
-      "status": "found",
-      "checksFlagged": 4
+      "status": "recurring",
+      "daysPending": 9
+    },
+    {
+      "id": "issue-093-5",
+      "severity": "LOW",
+      "category": "dashboard",
+      "description": "7 .md files sitting in pdfs/ directory — should be converted to PDFs or cleaned up.",
+      "assignedTo": "franklin",
+      "status": "found"
     }
   ],
-  "bottleneck": "PDF generation pipeline. Franklin generates PDFs daily but (a) 42% are undersized/corrupt and (b) 68% never get linked in index.html. The pipeline creates output but doesn't complete delivery. This is the single constraint blocking dashboard value for TJ.",
-  "compoundingImprovement": "Add a post-generation verification step to Franklin's PDF skill: after creating any PDF, (1) verify file size >100KB, (2) auto-append link to index.html, (3) log to delivery tracker. This turns a manual, forgettable step into an automated gate. Every future PDF would self-verify and self-link."
+  "bottleneck": "PDF pipeline is broken at the 'link to dashboard' step. PDFs get generated and saved to disk, but never get wired into index.html. This means 78% of deliverables are invisible to TJ. The pdf-generator skill also produces undersized stubs. Both problems compound daily.",
+  "compoundingImprovement": "Fix pdf-generator to: (1) validate output >100KB before saving, (2) auto-append a link to index.html after successful generation. One fix eliminates two recurring issues permanently."
 }
