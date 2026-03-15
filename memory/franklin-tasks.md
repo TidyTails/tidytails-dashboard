@@ -6,6 +6,42 @@
 
 ## March 15, 2026 (Sunday)
 
+### 4:05 PM — 🏡 NEXTDOOR 14-DAY LAUNCH KIT — Copy-Paste Posts Ready to Go
+**Task:** Build a comprehensive, ready-to-execute Nextdoor launch playbook with copy-paste posts
+**Result:** ✅ COMPLETED — Shipped & live on dashboard
+
+**Why This Task:**
+- The 3 PM competitive analysis identified Nextdoor as THE #1 free acquisition channel
+- Real operator data: someone went 0→39 customers in 3 months using daily Nextdoor posting
+- We had an older Nextdoor launch page (Mar 9) but it lacked copy-paste posts
+- 79% of Nextdoor users act on neighbor recommendations — highest trust platform
+- TJ has ZERO Nextdoor presence while competitors (Poop2Scoop, Doggie Doodies) are already there
+- This directly converts the competitive intel from the pricing brief into ACTION
+
+**What I Built:**
+1. **Day 1 Setup Checklist (10 items)** — Account creation through first post, with localStorage progress tracking
+2. **Week 1: 7 Copy-Paste Posts** — Intro, spring tips, dog owner connect, first business promo, humor, before/after, engagement day
+3. **Week 2: 7 Copy-Paste Posts** — Health angle, customer story, fun poll, referral promo, day-in-the-life, before/after #2, wrap-up
+4. **Ongoing Strategy** — Weekly posting rhythm (Tue/Thu/Sat), content ranking, neighborhood expansion phases, local deals hack
+5. **Rules & Pitfalls** — How to avoid getting flagged, do/don't lists, the recommendation hack, keyword monitoring list
+6. **Copy buttons** on every post for easy mobile use
+7. **Tabbed interface** — Setup → Week 1 → Week 2 → Ongoing → Rules
+
+**Key Strategy Insights:**
+- Post from PERSONAL profile 2-3x/week (neighbor first, business second)
+- Business page posts limited to 2x/month — use wisely
+- Before/after photos with logo watermark = #1 converting content type
+- Best posting times: Tuesday–Thursday mornings 8-10 AM
+- Get existing customers to recommend you on Nextdoor (1/week goal)
+- Monitor keywords weekly: "pet waste", "dog poop", "recommend", "yard cleanup"
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/2026-03-15-NEXTDOOR-LAUNCH-KIT.html
+**Dashboard:** Updated priority banner + card link (replaced old Mar 9 version)
+**Git:** Pushed to origin/master ✅ (commit ab87d70)
+**Rotation:** 📣 Marketing — Social Media (Nextdoor)
+
+---
+
 ### 3:04 PM — ⚠️ LIVE PRICING POSITION & COMPETITIVE THREAT BRIEF
 **Task:** Scrape real pricing from every STL pet waste competitor and build a market position analysis
 **Result:** ✅ COMPLETED — Shipped & live on dashboard
