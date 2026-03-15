@@ -6,6 +6,34 @@
 
 ## March 14, 2026 (Saturday)
 
+### 11:10 PM — ☘️ MONDAY SPRINT — 15-Minute St. Patrick's Day Action Page
+**Task:** Build a radically simple, mobile-first action page for Monday March 17 with exactly 3 things TJ can do in 15 minutes before his first service call
+**Result:** ✅ COMPLETED — Single-page sprint with 3 tap-to-copy actions, progress tracker, and St. Patrick's Day themed FB posts
+
+**Why This Task:**
+- 86 dashboard pages. 70+ deliverables. Still 4-5 customers. The bottleneck is execution, not more strategy.
+- TJ needs to open ONE page on his phone, see 3 things, tap to copy, and DO them.
+- Monday March 17 = St. Patrick's Day = perfect seasonal hook for Facebook group posts (people actually stop scrolling for timely content)
+- Late Saturday night = right time to prep Monday's sprint so it's ready when TJ wakes up
+
+**What I Built:**
+1. **3-Action Sprint Page** (`dashboard/2026-03-17-MONDAY-SPRINT.html`):
+   - Action 1: Text all 4-5 customers for Google reviews (5 min, 2 template variants, tap-to-copy)
+   - Action 2: Post in 2 Facebook groups (5 min, St. Patrick's Day themed posts, tap-to-copy, suggested groups)
+   - Action 3: Claim Nextdoor business page (5 min, direct link, intro post template)
+   - Bonus: Reply to FB comments + check GBP verification
+2. **Progress tracker** with localStorage — mark actions done, see 0/3 → 3/3 bar
+3. **Per-action checklists** — track which customers texted, which groups posted in
+4. **Mobile-first design** — 480px max width, big tap targets, clean dark UI
+5. **Dashboard updated** — Priority banner added at top of index.html
+
+**Key Insight:** We've been building an arsenal. What TJ needs is a trigger pull. This page is the simplest possible trigger — open, copy, paste, done. No navigation, no 86-page dashboard, no strategy docs. Just: do these 3 things in 15 minutes Monday morning.
+
+**Files:** `dashboard/2026-03-17-MONDAY-SPRINT.html`, updated `dashboard/index.html`
+**Rotation:** 🎯 Execution — Sprint Planning
+
+---
+
 ### 10:05 PM — 📊 WEEKLY KPI SCORECARD — Track What Actually Matters
 **Task:** Build a weekly KPI tracking dashboard to close the execution gap — 69 deliverables but still 4-5 customers means we're not tracking what matters
 **Result:** ✅ COMPLETED — Full interactive scorecard with customer growth chart, auto-insights engine, milestone tracking, weekly logging streak, and history table

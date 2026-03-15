@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monday Sprint | Mar 17</title>
+    <style>
+        :root {
+            --bg: #0a0a0a; --card: #151515; --border: #252525;
+            --text: #f0f0f0; --dim: #777; --muted: #444;
+            --green: #10b981; --orange: #ff6b35; --blue: #3b82f6;
+            --red: #ef4444; --yellow: #fbbf24;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg); color: var(--text);
+            max-width: 480px; margin: 0 auto; padding: 0 0 4rem;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(160deg, #1a1a2e 0%, #0a0a0a 100%);
+            padding: 2.5rem 1.5rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+        .hero .day { font-size: 0.75rem; color: var(--orange); text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; }
+        .hero h1 { font-size: 1.6rem; font-weight: 800; margin: 0.4rem 0 0.3rem; letter-spacing: -0.03em; }
+        .hero .sub { color: var(--dim); font-size: 0.85rem; }
+        .hero .timer {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            margin-top: 1rem; padding: 0.4rem 1rem;
+            background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 100px; font-size: 0.8rem; color: var(--green); font-weight: 600;
+        }
+
+        /* Progress */
+        .progress-wrap {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .progress-bar {
+            height: 6px; background: var(--border); border-radius: 100px; overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%; width: 0%; background: var(--green);
+            border-radius: 100px; transition: width 0.6s ease;
+        }
+        .progress-label {
+            display: flex; justify-content: space-between;
+            font-size: 0.7rem; color: var(--dim); margin-top: 0.4rem;
+        }
+
+        /* Actions */
+        .action {
+            margin: 1rem 1rem 0;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .action.done { opacity: 0.5; }
+        .action.done .action-header { background: rgba(16, 185, 129, 0.08); }
+        .action.done .action-num { background: var(--green); }
+
+        .action-header {
+            display: flex; align-items: center; gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .action-num {
+            flex-shrink: 0;
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.85rem; font-weight: 800;
+            transition: all 0.3s;
+        }
+        .action:nth-child(1) .action-num { background: var(--red); }
+        .action:nth-child(2) .action-num { background: var(--orange); }
+        .action:nth-child(3) .action-num { background: var(--blue); }
+
+        .action-title { font-weight: 700; font-size: 0.95rem; flex: 1; }
+        .action-time { font-size: 0.7rem; color: var(--dim); font-weight: 600; white-space: nowrap; }
+
+        .action-body {
+            padding: 0 1.25rem 1.25rem;
+        }
+        .action-why {
+            font-size: 0.8rem; color: var(--dim); margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        .action-why strong { color: var(--text); }
+
+        /* Copy blocks */
+        .copy-block {
+            position: relative;
+            background: #0d0d0d;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 0.9rem 1rem;
+            margin-bottom: 0.75rem;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            transition: border-color 0.2s;
+        }
+        .copy-block:active { border-color: var(--green); }
+        .copy-block .label {
+            font-size: 0.65rem; color: var(--muted); text-transform: uppercase;
+            letter-spacing: 0.1em; font-weight: 700; margin-bottom: 0.4rem;
+        }
+        .copy-block .text {
+            font-size: 0.85rem; line-height: 1.55; color: #ccc;
+            white-space: pre-wrap;
+        }
+        .copy-badge {
+            position: absolute; top: 0.6rem; right: 0.7rem;
+            font-size: 0.6rem; color: var(--muted); font-weight: 600;
+        }
+        .copy-block.copied .copy-badge { color: var(--green); }
+
+        /* Link buttons */
+        .link-btn {
+            display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+            padding: 0.7rem 1rem; border-radius: 10px;
+            font-size: 0.85rem; font-weight: 700;
+            text-decoration: none; color: #fff;
+            margin-bottom: 0.5rem;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .link-btn.green { background: var(--green); }
+        .link-btn.orange { background: var(--orange); }
+        .link-btn.blue { background: var(--blue); }
+
+        /* Checkbox */
+        .check-row {
+            display: flex; align-items: center; gap: 0.6rem;
+            padding: 0.5rem 0;
+            font-size: 0.85rem;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .check-box {
+            flex-shrink: 0;
+            width: 22px; height: 22px;
+            border: 2px solid var(--border); border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+        }
+        .check-row.checked .check-box {
+            background: var(--green); border-color: var(--green);
+        }
+        .check-row.checked .check-box::after {
+            content: '✓'; color: white; font-size: 0.7rem; font-weight: 800;
+        }
+        .check-row.checked span { text-decoration: line-through; color: var(--dim); }
+
+        /* Divider */
+        .divider {
+            display: flex; align-items: center; gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.7rem; color: var(--muted);
+            text-transform: uppercase; letter-spacing: 0.12em; font-weight: 700;
+        }
+        .divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+        /* Bottom nav */
+        .bottom {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(10,10,10,0.95); backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border);
+            padding: 0.6rem 1rem;
+            display: flex; justify-content: center; gap: 0.5rem;
+            max-width: 480px; margin: 0 auto;
+        }
+        .bottom a {
+            font-size: 0.7rem; color: var(--dim); text-decoration: none;
+            padding: 0.4rem 0.8rem; border-radius: 8px;
+            background: var(--card); border: 1px solid var(--border);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed; bottom: 5rem; left: 50%; transform: translateX(-50%);
+            background: var(--green); color: white;
+            padding: 0.5rem 1.2rem; border-radius: 100px;
+            font-size: 0.8rem; font-weight: 700;
+            opacity: 0; transition: opacity 0.3s; pointer-events: none;
+            z-index: 100;
+        }
+        .toast.show { opacity: 1; }
+
+        /* "or" separator */
+        .or-sep {
+            text-align: center; font-size: 0.7rem; color: var(--muted);
+            margin: 0.3rem 0; font-weight: 600;
+        }
+
+        .tip {
+            margin: 0.75rem 0 0;
+            padding: 0.65rem 0.8rem;
+            background: rgba(251, 191, 36, 0.06);
+            border-left: 3px solid var(--yellow);
+            border-radius: 0 8px 8px 0;
+            font-size: 0.75rem; color: var(--dim); line-height: 1.5;
+        }
+        .tip strong { color: var(--yellow); }
+    </style>
+</head>
+<body>
+
+<!-- Hero -->
+<div class="hero">
+    <div class="day">Monday March 17</div>
+    <h1>☘️ 15-Minute Sprint</h1>
+    <div class="sub">3 actions. Tap to copy. That's it.</div>
+    <div class="timer">⏱ ~15 min total</div>
+</div>
+
+<!-- Progress -->
+<div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-label">
+        <span id="progressText">0 of 3 done</span>
+        <span id="progressPct">0%</span>
+    </div>
+</div>
+
+<!-- ACTION 1 -->
+<div class="action" id="action1">
+    <div class="action-header" onclick="toggleDone('action1')">
+        <div class="action-num">1</div>
+        <div class="action-title">Text Customers for Reviews</div>
+        <div class="action-time">5 min</div>
+    </div>
+    <div class="action-body">
+        <div class="action-why">
+            You have <strong>0 Google reviews</strong>. First pet waste company to 15 reviews owns STL local search. One text to each of your 4-5 customers. That's it.
+        </div>
+
+        <div class="copy-block" onclick="copyText(this)">
+            <div class="label">Template A — Casual</div>
+            <div class="copy-badge">TAP TO COPY</div>
+            <div class="text">Hey [Name]! Quick favor — would you mind leaving me a Google review? It really helps small businesses like mine get found. Here's the link: https://g.page/r/tidytailsstl/review
+
+Appreciate you! 🐕</div>
+        </div>
+
+        <div class="or-sep">— or —</div>
+
+        <div class="copy-block" onclick="copyText(this)">
+            <div class="label">Template B — Personal</div>
+            <div class="copy-badge">TAP TO COPY</div>
+            <div class="text">Hey [Name], it's TJ from Tidy Tails. I'm trying to grow the business this spring and Google reviews make a huge difference. If you've been happy with the service, would you mind leaving a quick review? Takes like 30 seconds.
+
+[Google Review Link]
+
+Thanks a ton — means more than you know! 🙏</div>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Pro tip:</strong> Send between 10am-2pm for best response rates. Personalize with their dog's name if you can.
+        </div>
+
+        <div style="margin-top: 0.75rem;">
+            <div class="check-row" onclick="toggleCheck(this)"><div class="check-box"></div><span>Texted Customer 1</span></div>
+            <div class="check-row" onclick="toggleCheck(this)"><div class="check-box"></div><span>Texted Customer 2</span></div>
+            <div class="check-row" onclick="toggleCheck(this)"><div class="check-box"></div><span>Texted Customer 3</span></div>
+            <div class="check-row" onclick="toggleCheck(this)"><div class="check-box"></div><span>Texted Customer 4</span></div>
+            <div class="check-row" onclick="toggleCheck(this)"><div class="check-box"></div><span>Texted Customer 5</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- ACTION 2 -->
+<div class="action" id="action2">
+    <div class="action-header" onclick="toggleDone('action2')">
+        <div class="action-num">2</div>
+        <div class="action-title">Post in 2 Facebook Groups</div>
+        <div class="action-time">5 min</div>
+    </div>
+    <div class="action-body">
+        <div class="action-why">
+            Free customer acquisition. One poop scoop company got <strong>200+ customers</strong> just from FB groups. Spring thaw = everyone's noticing the mess in their yard right now.
+        </div>
+
+        <div class="copy-block" onclick="copyText(this)">
+            <div class="label">Post — Spring Thaw Angle ☘️</div>
+            <div class="copy-badge">TAP TO COPY</div>
+            <div class="text">Happy St. Patrick's Day! 🍀 Here's some luck for your yard — spring is here and so is everything your dog left behind all winter. 😅
+
+I'm TJ, owner of Tidy Tails Pet Waste Removal. I serve the St. Louis County area and handle weekly cleanups starting at $25/week or $70/month.
+
+If your backyard is looking rough after the thaw, shoot me a text at (314) 850-7140 or check out tidytailsstl.com. First cleanup included with any plan!
+
+Your kids and your shoes will thank you. 🐕💩</div>
+        </div>
+
+        <div class="or-sep">— or —</div>
+
+        <div class="copy-block" onclick="copyText(this)">
+            <div class="label">Post — Problem/Solution</div>
+            <div class="copy-badge">TAP TO COPY</div>
+            <div class="text">Real talk — who else is scared to walk barefoot in their own backyard right now? 😂
+
+The snow melted and revealed 3 months of "presents." If you've got a dog and a yard in STL County, I can fix that for you.
+
+I'm TJ with Tidy Tails — local pet waste removal. Weekly cleanups, $25/week or $70/month. I bring the bags, the scooper, and zero judgment.
+
+Text me: (314) 850-7140
+tidytailsstl.com 🐾</div>
+        </div>
+
+        <div class="divider">Where to post</div>
+
+        <div class="check-row" onclick="toggleCheck(this)"><div class="check-box"></div><span>STL Dog Owners / STL Dog Moms</span></div>
+        <div class="check-row" onclick="toggleCheck(this)"><div class="check-box"></div><span>Kirkwood/Webster/Crestwood Community</span></div>
+        <div class="check-row" onclick="toggleCheck(this)"><div class="check-box"></div><span>Chesterfield/Wildwood/Ballwin Community</span></div>
+        <div class="check-row" onclick="toggleCheck(this)"><div class="check-box"></div><span>STL Marketplace (any buy/sell group)</span></div>
+
+        <div class="tip">
+            <strong>💡 St. Patrick's Day hook:</strong> It's March 17 — the ☘️ angle makes your post timely and memorable. People scroll past generic ads. They stop at seasonal/funny ones.
+        </div>
+    </div>
+</div>
+
+<!-- ACTION 3 -->
+<div class="action" id="action3">
+    <div class="action-header" onclick="toggleDone('action3')">
+        <div class="action-num">3</div>
+        <div class="action-title">Claim Nextdoor (If Not Done)</div>
+        <div class="action-time">5 min</div>
+    </div>
+    <div class="action-body">
+        <div class="action-why">
+            Nextdoor is <strong>#1 for local service businesses</strong>. Your competitor Poop2Scoop already has 3 recommendations there. Free to claim. Takes 5 minutes.
+        </div>
+
+        <a class="link-btn orange" href="https://business.nextdoor.com" target="_blank">
+            Open Nextdoor Business →
+        </a>
+
+        <div class="check-row" onclick="toggleCheck(this)"><div class="check-box"></div><span>Created business page</span></div>
+        <div class="check-row" onclick="toggleCheck(this)"><div class="check-box"></div><span>Added service area (STL County)</span></div>
+        <div class="check-row" onclick="toggleCheck(this)"><div class="check-box"></div><span>Posted intro</span></div>
+
+        <div class="copy-block" onclick="copyText(this)" style="margin-top: 0.75rem;">
+            <div class="label">Nextdoor Intro Post</div>
+            <div class="copy-badge">TAP TO COPY</div>
+            <div class="text">Hi neighbors! 👋 I'm TJ, owner of Tidy Tails Pet Waste Removal. I'm a local St. Louis County business offering weekly yard cleanups for dog owners.
+
+If winter left your yard looking like a minefield, I'd love to help. $25/week or $70/month — I bring everything and leave your yard spotless.
+
+Happy to answer any questions! (314) 850-7140 or tidytailsstl.com 🐾</div>
+        </div>
+
+        <div class="tip">
+            <strong>💡 Already claimed?</strong> Skip this and post the intro instead. Or tap your header to mark done and you're finished!
+        </div>
+    </div>
+</div>
+
+<!-- Bonus Section -->
+<div class="divider" style="margin-top: 1rem;">If you have 5 more minutes</div>
+
+<div class="action" id="action4">
+    <div class="action-header" onclick="toggleDone('action4')">
+        <div class="action-num" style="background: var(--muted); font-size: 0.7rem;">+</div>
+        <div class="action-title">Reply to Any FB Group Comments</div>
+        <div class="action-time">2 min</div>
+    </div>
+    <div class="action-body">
+        <div class="action-why">
+            If you posted in groups this past weekend (or anytime), check for comments. <strong>Every comment you reply to = the algorithm shows your post to more people.</strong> Be friendly, answer questions, like comments.
+        </div>
+    </div>
+</div>
+
+<div class="action" id="action5">
+    <div class="action-header" onclick="toggleDone('action5')">
+        <div class="action-num" style="background: var(--muted); font-size: 0.7rem;">+</div>
+        <div class="action-title">Check GBP Verification Status</div>
+        <div class="action-time">1 min</div>
+    </div>
+    <div class="action-body">
+        <a class="link-btn blue" href="https://business.google.com" target="_blank">
+            Open Google Business Profile →
+        </a>
+        <div class="action-why" style="margin-top: 0.5rem;">
+            If your postcard arrived, enter the PIN. If not, check when it was mailed. Every day you're not verified = invisible on Google Maps.
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">✓ Copied!</div>
+
+<!-- Bottom nav -->
+<div class="bottom">
+    <a href="index.html">← Dashboard</a>
+    <a href="2026-03-14-WEEKLY-KPI-SCORECARD.html">📊 KPIs</a>
+    <a href="2026-03-14-REVIEW-GENERATION-SYSTEM.html">⭐ Reviews</a>
+</div>
+
+<script>
+    // State management
+    const STATE_KEY = 'monday-sprint-mar17';
+    let state = JSON.parse(localStorage.getItem(STATE_KEY) || '{"done":{},"checks":{}}');
+
+    function saveState() {
+        localStorage.setItem(STATE_KEY, JSON.stringify(state));
+        updateProgress();
+    }
+
+    // Action done toggle
+    function toggleDone(id) {
+        state.done[id] = !state.done[id];
+        document.getElementById(id).classList.toggle('done', state.done[id]);
+        saveState();
+    }
+
+    // Checkbox toggle
+    function toggleCheck(el) {
+        el.classList.toggle('checked');
+        const idx = Array.from(document.querySelectorAll('.check-row')).indexOf(el);
+        state.checks[idx] = el.classList.contains('checked');
+        saveState();
+    }
+
+    // Copy to clipboard
+    function copyText(el) {
+        const text = el.querySelector('.text').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            el.classList.add('copied');
+            el.querySelector('.copy-badge').textContent = '✓ COPIED';
+            showToast();
+            setTimeout(() => {
+                el.classList.remove('copied');
+                el.querySelector('.copy-badge').textContent = 'TAP TO COPY';
+            }, 2000);
+        });
+    }
+
+    // Toast
+    function showToast() {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 1500);
+    }
+
+    // Progress
+    function updateProgress() {
+        const mainActions = ['action1', 'action2', 'action3'];
+        const doneCount = mainActions.filter(id => state.done[id]).length;
+        const pct = Math.round((doneCount / 3) * 100);
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('progressText').textContent = doneCount + ' of 3 done';
+        document.getElementById('progressPct').textContent = pct + '%';
+    }
+
+    // Restore state on load
+    function restore() {
+        Object.keys(state.done).forEach(id => {
+            const el = document.getElementById(id);
+            if (el && state.done[id]) el.classList.add('done');
+        });
+        document.querySelectorAll('.check-row').forEach((el, idx) => {
+            if (state.checks[idx]) el.classList.add('checked');
+        });
+        updateProgress();
+    }
+    restore();
+</script>
+
+</body>
+</html>
