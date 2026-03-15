@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>This Week's Game Plan | Tidy Tails + Backyard Buildings</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+        
+        .header {
+            background: linear-gradient(135deg, #1a1520, #0d1b2a);
+            border-bottom: 2px solid var(--orange);
+            padding: 2rem; text-align: center;
+        }
+        .header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.03em; }
+        .header h1 .accent { color: var(--orange); }
+        .header .week-label { color: var(--text2); font-size: 0.9rem; margin-top: 0.25rem; }
+        .header .progress-section { margin-top: 1.25rem; }
+        .progress-bar-wrap {
+            background: var(--bg4); border-radius: 20px; height: 28px;
+            max-width: 500px; margin: 0 auto; overflow: hidden; position: relative;
+        }
+        .progress-bar-fill {
+            height: 100%; border-radius: 20px; transition: width 0.6s ease;
+            background: linear-gradient(90deg, var(--orange), #ff9f1c);
+        }
+        .progress-text {
+            position: absolute; inset: 0; display: flex; align-items: center;
+            justify-content: center; font-weight: 700; font-size: 0.85rem;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .stats-row {
+            display: flex; justify-content: center; gap: 2rem; margin-top: 1rem;
+            font-size: 0.8rem; color: var(--text2);
+        }
+        .stats-row .stat-val { font-weight: 700; color: var(--green); font-family: 'JetBrains Mono', monospace; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+        
+        /* Motivation banner */
+        .motivation {
+            background: linear-gradient(135deg, rgba(255,107,53,0.1), rgba(255,159,28,0.05));
+            border: 1px solid rgba(255,107,53,0.2); border-radius: var(--radius);
+            padding: 1rem 1.25rem; margin-bottom: 1.5rem; text-align: center;
+        }
+        .motivation .quote { font-size: 1rem; font-weight: 600; color: var(--orange); }
+        .motivation .attribution { font-size: 0.75rem; color: var(--text3); margin-top: 0.25rem; }
+
+        /* Day sections */
+        .day-section { margin-bottom: 1.5rem; }
+        .day-header {
+            display: flex; align-items: center; gap: 0.75rem;
+            padding: 0.75rem 1rem; background: var(--bg2);
+            border: 1px solid var(--border); border-radius: var(--radius) var(--radius) 0 0;
+            cursor: pointer; user-select: none;
+        }
+        .day-header:hover { border-color: var(--orange); }
+        .day-header .day-name { font-weight: 700; font-size: 1rem; flex: 1; }
+        .day-header .day-date { color: var(--text2); font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; }
+        .day-header .day-time { 
+            background: rgba(16,185,129,0.15); color: var(--green); 
+            padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
+        }
+        .day-header .toggle { color: var(--text3); font-size: 0.8rem; transition: transform 0.2s; }
+        .day-section.collapsed .day-content { display: none; }
+        .day-section.collapsed .toggle { transform: rotate(-90deg); }
+        .day-content {
+            border: 1px solid var(--border); border-top: none;
+            border-radius: 0 0 var(--radius) var(--radius);
+            padding: 0.75rem;
+        }
+
+        /* Task cards */
+        .task {
+            display: flex; gap: 0.75rem; padding: 0.75rem;
+            background: var(--bg3); border-radius: 8px; margin-bottom: 0.5rem;
+            transition: all 0.2s; align-items: flex-start;
+        }
+        .task:last-child { margin-bottom: 0; }
+        .task:hover { background: var(--bg4); }
+        .task.completed { opacity: 0.5; }
+        .task.completed .task-title { text-decoration: line-through; }
+        
+        .task-check {
+            width: 22px; height: 22px; border-radius: 6px; border: 2px solid var(--text3);
+            cursor: pointer; flex-shrink: 0; margin-top: 2px; display: flex;
+            align-items: center; justify-content: center; transition: all 0.2s;
+        }
+        .task-check:hover { border-color: var(--green); }
+        .task.completed .task-check { background: var(--green); border-color: var(--green); }
+        .task.completed .task-check::after { content: '✓'; color: #fff; font-size: 0.75rem; font-weight: 700; }
+        
+        .task-body { flex: 1; min-width: 0; }
+        .task-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.25rem; }
+        .task-desc { font-size: 0.8rem; color: var(--text2); line-height: 1.5; }
+        .task-meta { display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap; }
+        .task-tag {
+            padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.7rem;
+            font-weight: 600; font-family: 'JetBrains Mono', monospace;
+        }
+        .tag-time { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .tag-impact { background: rgba(255,107,53,0.15); color: var(--orange); }
+        .tag-biz { background: rgba(139,92,246,0.15); color: var(--purple); }
+        .tag-money { background: rgba(16,185,129,0.15); color: var(--green); }
+        
+        .task-link {
+            display: inline-block; margin-top: 0.4rem; font-size: 0.75rem;
+            color: var(--blue); text-decoration: none; font-weight: 500;
+        }
+        .task-link:hover { text-decoration: underline; }
+
+        /* Priority indicator */
+        .priority-dot {
+            width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 7px;
+        }
+        .priority-critical { background: var(--red); box-shadow: 0 0 6px rgba(239,68,68,0.5); }
+        .priority-high { background: var(--orange); }
+        .priority-medium { background: var(--yellow); }
+        .priority-low { background: var(--green); }
+
+        /* Bottom summary */
+        .weekly-summary {
+            background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; margin-top: 1.5rem;
+        }
+        .weekly-summary h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--orange); }
+        .kpi-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.75rem; }
+        .kpi-card {
+            background: var(--bg3); border-radius: 8px; padding: 0.75rem; text-align: center;
+        }
+        .kpi-card .label { font-size: 0.7rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; }
+        .kpi-card .value { font-size: 1.5rem; font-weight: 800; margin-top: 0.25rem; font-family: 'JetBrains Mono', monospace; }
+        .kpi-card .target { font-size: 0.7rem; color: var(--text3); margin-top: 0.15rem; }
+
+        /* Reset button */
+        .reset-btn {
+            display: block; margin: 1.5rem auto 0; padding: 0.6rem 1.5rem;
+            background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+            color: var(--text2); font-size: 0.8rem; cursor: pointer; font-family: 'Inter', sans-serif;
+        }
+        .reset-btn:hover { border-color: var(--red); color: var(--red); }
+
+        @media (max-width: 640px) {
+            .stats-row { gap: 1rem; font-size: 0.75rem; }
+            .kpi-row { grid-template-columns: repeat(2, 1fr); }
+            .day-header { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🎯 This Week's <span class="accent">Game Plan</span></h1>
+    <div class="week-label">Week of March 16–22, 2026 • Spring Cleanup Season 🌱</div>
+    <div class="progress-section">
+        <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+            <div class="progress-text" id="progressText">0 / 0 tasks</div>
+        </div>
+        <div class="stats-row">
+            <span>⏱️ Total time: <span class="stat-val" id="totalTime">0h</span></span>
+            <span>🔥 Completed: <span class="stat-val" id="completedCount">0</span></span>
+            <span>💰 Est. leads: <span class="stat-val" id="estLeads">0</span></span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="motivation">
+        <div class="quote">"Erica posted in 47 Facebook groups → 80+ recurring customers. You have 15 groups ready. Post TODAY."</div>
+        <div class="attribution">— From the Facebook Group Blitz Playbook</div>
+    </div>
+
+    <!-- MONDAY -->
+    <div class="day-section" id="day-mon">
+        <div class="day-header" onclick="toggleDay('day-mon')">
+            <div class="day-name">📅 Monday</div>
+            <div class="day-date">MAR 16</div>
+            <div class="day-time">~2.5 hrs</div>
+            <span class="toggle">▼</span>
+        </div>
+        <div class="day-content">
+            <div class="task" data-time="30" data-leads="0" onclick="toggleTask(this)">
+                <div class="priority-dot priority-critical"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🔴 Submit 5 Tier-1 Citations (Google → Yelp → Nextdoor → Angi → BBB)</div>
+                    <div class="task-desc">Your site has ZERO Google indexation. More external links = faster indexing. The citation tracker has direct sign-up links and copy-paste NAP info ready.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">30 min</span>
+                        <span class="task-tag tag-impact">CRITICAL</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                    </div>
+                    <a class="task-link" href="citation-tracker.html" target="_blank">📋 Open Citation Tracker →</a>
+                </div>
+            </div>
+            <div class="task" data-time="45" data-leads="3" onclick="toggleTask(this)">
+                <div class="priority-dot priority-critical"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🔴 Join 6 Facebook Groups + Post in 3</div>
+                    <div class="task-desc">Join all Tier 1 groups from the playbook. Post the "Spring Cleanup" template in 3 groups. Use Post Template #1 (Spring Cleanup) — it's copy-paste ready.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">45 min</span>
+                        <span class="task-tag tag-impact">CRITICAL</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                        <span class="task-tag tag-money">~3 leads</span>
+                    </div>
+                    <a class="task-link" href="../deliverables/facebook-group-blitz-playbook-march2026.md" target="_blank">📱 Open FB Blitz Playbook →</a>
+                </div>
+            </div>
+            <div class="task" data-time="15" data-leads="1" onclick="toggleTask(this)">
+                <div class="priority-dot priority-high"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟠 Post GBP Update #1 — "Spring Is Here"</div>
+                    <div class="task-desc">Copy the Week 1 post from the GBP calendar. Take a before photo of a messy yard. Set CTA to "Call now." Takes 10 min with the template.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">15 min</span>
+                        <span class="task-tag tag-impact">HIGH</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                        <span class="task-tag tag-money">~1 lead</span>
+                    </div>
+                    <a class="task-link" href="../deliverables/gbp-content-calendar-4weeks.md" target="_blank">📍 Open GBP Calendar →</a>
+                </div>
+            </div>
+            <div class="task" data-time="30" data-leads="1" onclick="toggleTask(this)">
+                <div class="priority-dot priority-medium"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟡 Print 50 Door Hangers at Staples</div>
+                    <div class="task-desc">Use the print-ready door hanger design. Estimated cost: ~$25-40 for 50 copies on card stock. Upload the HTML file or screenshot to Staples print portal.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">30 min</span>
+                        <span class="task-tag tag-impact">MEDIUM</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                        <span class="task-tag tag-money">~1 lead</span>
+                    </div>
+                    <a class="task-link" href="../deliverables/print-marketing-kit-spring2026.html" target="_blank">🖨️ Open Print Kit →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TUESDAY -->
+    <div class="day-section" id="day-tue">
+        <div class="day-header" onclick="toggleDay('day-tue')">
+            <div class="day-name">📅 Tuesday</div>
+            <div class="day-date">MAR 17</div>
+            <div class="day-time">~2 hrs</div>
+            <span class="toggle">▼</span>
+        </div>
+        <div class="day-content">
+            <div class="task" data-time="60" data-leads="2" onclick="toggleTask(this)">
+                <div class="priority-dot priority-critical"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🔴 Distribute 50 Door Hangers — Ballwin Neighborhoods</div>
+                    <div class="task-desc">Target streets near your current customers first (neighbors see the truck). Focus on Ballwin Tier 1 neighborhoods from the distribution strategy. 50 hangers = ~1 hour of walking.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">60 min</span>
+                        <span class="task-tag tag-impact">CRITICAL</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                        <span class="task-tag tag-money">~2 leads</span>
+                    </div>
+                    <a class="task-link" href="../deliverables/print-marketing-kit-spring2026.html" target="_blank">📍 See Distribution Strategy →</a>
+                </div>
+            </div>
+            <div class="task" data-time="20" data-leads="2" onclick="toggleTask(this)">
+                <div class="priority-dot priority-high"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟠 Post in 3 More Facebook Groups</div>
+                    <div class="task-desc">Use Post Template #2 (Funny/Relatable) from the playbook. Different template than Monday = doesn't look spammy. Target Tier 2 groups.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">20 min</span>
+                        <span class="task-tag tag-impact">HIGH</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                        <span class="task-tag tag-money">~2 leads</span>
+                    </div>
+                    <a class="task-link" href="../deliverables/facebook-group-blitz-playbook-march2026.md" target="_blank">📱 FB Playbook — Template #2 →</a>
+                </div>
+            </div>
+            <div class="task" data-time="30" data-leads="0" onclick="toggleTask(this)">
+                <div class="priority-dot priority-high"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟠 Ask 2 Current Customers for Google Reviews</div>
+                    <div class="task-desc">Text your happiest customers. Keep it simple: "Hey [name], would you mind leaving us a quick Google review? It really helps. Here's the link: [GBP link]." Reviews = trust + ranking.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">10 min</span>
+                        <span class="task-tag tag-impact">HIGH</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                    </div>
+                    <a class="task-link" href="../deliverables/google-review-generation-system-march14.md" target="_blank">⭐ Review Generation System →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- WEDNESDAY -->
+    <div class="day-section" id="day-wed">
+        <div class="day-header" onclick="toggleDay('day-wed')">
+            <div class="day-name">📅 Wednesday</div>
+            <div class="day-date">MAR 18</div>
+            <div class="day-time">~1.5 hrs</div>
+            <span class="toggle">▼</span>
+        </div>
+        <div class="day-content">
+            <div class="task" data-time="30" data-leads="1" onclick="toggleTask(this)">
+                <div class="priority-dot priority-high"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟠 Call 3 Senior Living Facilities</div>
+                    <div class="task-desc">Use the senior living call script. Start with: Meramec Bluffs (Ballwin — home turf), Brookdale West County, Friendship Village. One "yes" = $200-400/mo recurring.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">30 min</span>
+                        <span class="task-tag tag-impact">HIGH</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                        <span class="task-tag tag-money">~1 lead</span>
+                    </div>
+                    <a class="task-link" href="../deliverables/commercial-leads-NEW-verticals-march15.md" target="_blank">📞 Senior Living Leads + Call Scripts →</a>
+                </div>
+            </div>
+            <div class="task" data-time="20" data-leads="2" onclick="toggleTask(this)">
+                <div class="priority-dot priority-high"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟠 Post in 3 More Facebook Groups — Template #3</div>
+                    <div class="task-desc">Use the "Social Proof / Testimonial" template. If you've gotten any positive feedback from customers, use it. If not, use the generic trust-building version.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">20 min</span>
+                        <span class="task-tag tag-impact">HIGH</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                        <span class="task-tag tag-money">~2 leads</span>
+                    </div>
+                    <a class="task-link" href="../deliverables/facebook-group-blitz-playbook-march2026.md" target="_blank">📱 FB Playbook — Template #3 →</a>
+                </div>
+            </div>
+            <div class="task" data-time="30" data-leads="0" onclick="toggleTask(this)">
+                <div class="priority-dot priority-medium"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟡 Post 3 Shed Listings on Facebook Marketplace</div>
+                    <div class="task-desc">Pick 3 buildings from inventory (start with the $3,509 utility — lowest price point). Post with photos, link to payment calculator. "Just $89/mo — see your payment →"</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">30 min</span>
+                        <span class="task-tag tag-impact">MEDIUM</span>
+                        <span class="task-tag tag-biz">Sheds</span>
+                    </div>
+                    <a class="task-link" href="../backyard-buildings-stl/calculator.html" target="_blank">💰 Shed Payment Calculator →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- THURSDAY -->
+    <div class="day-section" id="day-thu">
+        <div class="day-header" onclick="toggleDay('day-thu')">
+            <div class="day-name">📅 Thursday</div>
+            <div class="day-date">MAR 19</div>
+            <div class="day-time">~1.5 hrs</div>
+            <span class="toggle">▼</span>
+        </div>
+        <div class="day-content">
+            <div class="task" data-time="15" data-leads="1" onclick="toggleTask(this)">
+                <div class="priority-dot priority-high"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟠 Post GBP Update #2 — "Meet TJ" Personal Story</div>
+                    <div class="task-desc">Use the Week 1, Post 2 template from the GBP calendar. Personal stories build trust. Photo of you working = instant credibility.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">15 min</span>
+                        <span class="task-tag tag-impact">HIGH</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                        <span class="task-tag tag-money">~1 lead</span>
+                    </div>
+                    <a class="task-link" href="../deliverables/gbp-content-calendar-4weeks.md" target="_blank">📍 GBP Calendar — Post #2 →</a>
+                </div>
+            </div>
+            <div class="task" data-time="30" data-leads="1" onclick="toggleTask(this)">
+                <div class="priority-dot priority-high"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟠 Visit K9 Garden — Pitch Referral Partnership</div>
+                    <div class="task-desc">K9 Garden (formerly Bar K) just opened Feb 2026. Bring leave-behind cards. Pitch: "I'll give your members $10 off, you get flyer placement." One partnership = 5-10 residential leads.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">30 min</span>
+                        <span class="task-tag tag-impact">HIGH</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                        <span class="task-tag tag-money">~1 lead</span>
+                    </div>
+                    <a class="task-link" href="../deliverables/commercial-leads-NEW-verticals-march15.md" target="_blank">🍺 Dog-Friendly Venue Leads →</a>
+                </div>
+            </div>
+            <div class="task" data-time="45" data-leads="2" onclick="toggleTask(this)">
+                <div class="priority-dot priority-medium"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟡 Distribute 50 More Door Hangers — Valley Park / Fenton</div>
+                    <div class="task-desc">Tier 2 neighborhoods from the distribution strategy. Different area than Tuesday. Aim for homes with dogs (look for signs: dog bowls, fence, dog door, barking).</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">45 min</span>
+                        <span class="task-tag tag-impact">MEDIUM</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                        <span class="task-tag tag-money">~2 leads</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FRIDAY -->
+    <div class="day-section" id="day-fri">
+        <div class="day-header" onclick="toggleDay('day-fri')">
+            <div class="day-name">📅 Friday</div>
+            <div class="day-date">MAR 20</div>
+            <div class="day-time">~1.5 hrs</div>
+            <span class="toggle">▼</span>
+        </div>
+        <div class="day-content">
+            <div class="task" data-time="20" data-leads="2" onclick="toggleTask(this)">
+                <div class="priority-dot priority-high"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟠 Post in 3 More Facebook Groups — Template #4 (Weekend CTA)</div>
+                    <div class="task-desc">Use the weekend-angle template. "Weekend plans? Don't spend it picking up dog poop." Friday posts catch people planning their weekend.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">20 min</span>
+                        <span class="task-tag tag-impact">HIGH</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                        <span class="task-tag tag-money">~2 leads</span>
+                    </div>
+                </div>
+            </div>
+            <div class="task" data-time="30" data-leads="1" onclick="toggleTask(this)">
+                <div class="priority-dot priority-high"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟠 Call 2 Apartment Complexes from Lead List</div>
+                    <div class="task-desc">Target pet-friendly complexes in Ballwin/Chesterfield. Use commercial call script. Apartment deals = 5-20 units recurring. One complex replaces 5+ residential customers.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">20 min</span>
+                        <span class="task-tag tag-impact">HIGH</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                        <span class="task-tag tag-money">~1 lead</span>
+                    </div>
+                    <a class="task-link" href="../deliverables/commercial-leads-spring-2026-LIVE.md" target="_blank">🏢 Commercial Lead List →</a>
+                </div>
+            </div>
+            <div class="task" data-time="30" data-leads="0" onclick="toggleTask(this)">
+                <div class="priority-dot priority-medium"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟡 Submit 5 More Citations (Tier 2 — MapQuest, aPaws, PetWorks, HomeAdvisor, Thumbtack)</div>
+                    <div class="task-desc">Second batch of directory submissions. Every backlink gets you closer to Google indexation. Copy-paste NAP from the tracker.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">30 min</span>
+                        <span class="task-tag tag-impact">MEDIUM</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                    </div>
+                    <a class="task-link" href="citation-tracker.html" target="_blank">📋 Citation Tracker →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SATURDAY -->
+    <div class="day-section" id="day-sat">
+        <div class="day-header" onclick="toggleDay('day-sat')">
+            <div class="day-name">📅 Saturday</div>
+            <div class="day-date">MAR 21</div>
+            <div class="day-time">~1 hr</div>
+            <span class="toggle">▼</span>
+        </div>
+        <div class="day-content">
+            <div class="task" data-time="30" data-leads="2" onclick="toggleTask(this)">
+                <div class="priority-dot priority-high"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟠 Visit Queeny Park Dog Park — Network + Leave Cards</div>
+                    <div class="task-desc">Tails & Trails at Queeny Park is in BALLWIN — home turf. Saturday morning = packed with dog owners. Bring 20 leave-behind cards. Chat with owners naturally. Before/after photos for social proof.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">30 min</span>
+                        <span class="task-tag tag-impact">HIGH</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                        <span class="task-tag tag-money">~2 leads</span>
+                    </div>
+                </div>
+            </div>
+            <div class="task" data-time="30" data-leads="0" onclick="toggleTask(this)">
+                <div class="priority-dot priority-medium"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟡 Post 3 More Shed Marketplace Listings</div>
+                    <div class="task-desc">Saturday = peak Marketplace browsing. Post 3 different buildings. Include "See your monthly payment →" link to calculator. Weekend buyers are ready to act.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">30 min</span>
+                        <span class="task-tag tag-impact">MEDIUM</span>
+                        <span class="task-tag tag-biz">Sheds</span>
+                    </div>
+                    <a class="task-link" href="../backyard-buildings-stl/calculator.html" target="_blank">💰 Payment Calculator →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUNDAY -->
+    <div class="day-section" id="day-sun">
+        <div class="day-header" onclick="toggleDay('day-sun')">
+            <div class="day-name">📅 Sunday</div>
+            <div class="day-date">MAR 22</div>
+            <div class="day-time">~1 hr</div>
+            <span class="toggle">▼</span>
+        </div>
+        <div class="day-content">
+            <div class="task" data-time="20" data-leads="0" onclick="toggleTask(this)">
+                <div class="priority-dot priority-high"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟠 Weekly Review — What Worked?</div>
+                    <div class="task-desc">Check: How many leads came in? Which channel produced them? What got engagement? What flopped? This data shapes next week's plan. Jot notes in your phone.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">20 min</span>
+                        <span class="task-tag tag-impact">HIGH</span>
+                        <span class="task-tag tag-biz">Both</span>
+                    </div>
+                </div>
+            </div>
+            <div class="task" data-time="20" data-leads="2" onclick="toggleTask(this)">
+                <div class="priority-dot priority-medium"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟡 Nextdoor Post — Introduce Tidy Tails</div>
+                    <div class="task-desc">Nextdoor is hyperlocal. Post in your neighborhood feed: "Hey neighbors — I run Tidy Tails, a pet waste removal service here in Ballwin..." Keep it personal, not salesy.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">15 min</span>
+                        <span class="task-tag tag-impact">MEDIUM</span>
+                        <span class="task-tag tag-biz">Tidy Tails</span>
+                        <span class="task-tag tag-money">~2 leads</span>
+                    </div>
+                </div>
+            </div>
+            <div class="task" data-time="20" data-leads="0" onclick="toggleTask(this)">
+                <div class="priority-dot priority-low"></div>
+                <div class="task-check"></div>
+                <div class="task-body">
+                    <div class="task-title">🟢 Plan Next Week's Focus Areas</div>
+                    <div class="task-desc">Based on review: double down on what worked, cut what didn't. Franklin will generate a fresh weekly plan every Sunday.</div>
+                    <div class="task-meta">
+                        <span class="task-tag tag-time">20 min</span>
+                        <span class="task-tag tag-impact">LOW</span>
+                        <span class="task-tag tag-biz">Both</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Weekly Summary -->
+    <div class="weekly-summary">
+        <h3>📊 If You Complete Everything This Week</h3>
+        <div class="kpi-row">
+            <div class="kpi-card">
+                <div class="label">Total Time</div>
+                <div class="value" style="color: var(--blue);">~11h</div>
+                <div class="target">~1.5 hrs/day avg</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Est. Leads</div>
+                <div class="value" style="color: var(--green);">20+</div>
+                <div class="target">from all channels</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">FB Groups Hit</div>
+                <div class="value" style="color: var(--purple);">12</div>
+                <div class="target">4 different templates</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Door Hangers</div>
+                <div class="value" style="color: var(--orange);">100</div>
+                <div class="target">2 neighborhoods</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Citations</div>
+                <div class="value" style="color: var(--yellow);">10</div>
+                <div class="target">Tier 1 + 2 complete</div>
+            </div>
+            <div class="kpi-card">
+                <div class="label">Cold Calls</div>
+                <div class="value" style="color: var(--red);">5</div>
+                <div class="target">senior + apartments</div>
+            </div>
+        </div>
+    </div>
+
+    <button class="reset-btn" onclick="resetAll()">🔄 Reset All Tasks (New Week)</button>
+</div>
+
+<script>
+    const STORAGE_KEY = 'weeklyExecution_2026_03_16';
+
+    function loadState() {
+        try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        } catch { return {}; }
+    }
+
+    function saveState(state) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function getTaskId(taskEl) {
+        const title = taskEl.querySelector('.task-title');
+        return title ? title.textContent.substring(0, 40) : '';
+    }
+
+    function toggleTask(taskEl) {
+        taskEl.classList.toggle('completed');
+        const state = loadState();
+        const id = getTaskId(taskEl);
+        state[id] = taskEl.classList.contains('completed');
+        saveState(state);
+        updateProgress();
+    }
+
+    function toggleDay(dayId) {
+        document.getElementById(dayId).classList.toggle('collapsed');
+    }
+
+    function updateProgress() {
+        const tasks = document.querySelectorAll('.task');
+        const completed = document.querySelectorAll('.task.completed');
+        const total = tasks.length;
+        const done = completed.length;
+        const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('progressText').textContent = `${done} / ${total} tasks (${pct}%)`;
+        document.getElementById('completedCount').textContent = done;
+
+        // Calculate time and leads
+        let totalTime = 0, completedTime = 0, totalLeads = 0, completedLeads = 0;
+        tasks.forEach(t => {
+            const time = parseInt(t.dataset.time || 0);
+            const leads = parseInt(t.dataset.leads || 0);
+            totalTime += time;
+            totalLeads += leads;
+            if (t.classList.contains('completed')) {
+                completedTime += time;
+                completedLeads += leads;
+            }
+        });
+        document.getElementById('totalTime').textContent = Math.round(completedTime / 60 * 10) / 10 + 'h / ' + Math.round(totalTime / 60 * 10) / 10 + 'h';
+        document.getElementById('estLeads').textContent = completedLeads + ' / ' + totalLeads;
+    }
+
+    function resetAll() {
+        if (!confirm('Reset all tasks for a new week?')) return;
+        localStorage.removeItem(STORAGE_KEY);
+        document.querySelectorAll('.task').forEach(t => t.classList.remove('completed'));
+        updateProgress();
+    }
+
+    // Restore state on load
+    function restoreState() {
+        const state = loadState();
+        document.querySelectorAll('.task').forEach(taskEl => {
+            const id = getTaskId(taskEl);
+            if (state[id]) {
+                taskEl.classList.add('completed');
+            }
+        });
+        updateProgress();
+    }
+
+    restoreState();
+</script>
+
+</body>
+</html>
