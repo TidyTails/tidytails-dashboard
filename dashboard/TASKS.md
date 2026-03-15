@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-14 4:15 PM CST*
+*Last updated: 2026-03-14 7:15 PM CST*
 
 ---
 
@@ -47,7 +47,7 @@
 - [ ] **CALL Poopy Paws: (314) 783-1781** — Website is dead (DNS failure). Check if Charlie is still operating. If dead → his customers need a new service.
 - [ ] **CAPTURE Super Scoopers STL Customers** — Confirmed DEAD (Mar 13): website down, Yelp CLOSED. Based in St. Peters. Their STL/St. Charles/Lincoln county customers need a provider. Check their Yelp/FB for people asking about alternatives.
 - [ ] **FIX WEBSITE INDEXING** — Domain is only 26 days old (NOT 6+ months). 0 indexed pages is normal. Build backlinks to accelerate. See `deliverables/google-indexing-acceleration-march14.md`
-- [ ] **Get 10 Google Reviews THIS MONTH** — No competitor dominates reviews. First to 15 reviews owns local search.
+- [ ] **Get 15 Google Reviews by April 14** — Complete review generation system built! Dashboard: `2026-03-14-REVIEW-GENERATION-SYSTEM.html`. Copy-paste texts, post-service automation, response templates, QR code strategy, progress tracker. First to 15 reviews OWNS local search. **START THIS WEEKEND: text all 4-5 customers (10 min).**
 
 ### 📣 PAID ADVERTISING (New — Mar 13)
 - [ ] **SET UP FACEBOOK ADS** — $350/month could generate 5-8 new customers/month. No STL competitors running FB ads. Full guide: `dashboard/2026-03-13-PAID-AD-STRATEGY.html`
@@ -72,7 +72,17 @@
 - **NEW COMPETITOR: Little Stinkers of MO** — Moving into Super Scoopers' old St. Charles County territory. Need to act fast.
 - Full campaign: `deliverables/dead-competitor-capture-campaign-march14.md` | Dashboard: `2026-03-14-DEAD-COMPETITOR-CAPTURE.html`
 
+### ⭐ REVIEW GENERATION SYSTEM (New — Mar 14)
+- [ ] **THIS WEEKEND: Text all 4-5 current customers** — Use Template A or B from dashboard. 10 minutes.
+- [ ] **THIS WEEKEND: Text 3-5 friends/family** — Anyone who's seen your work. 5 minutes.
+- [ ] **Set phone reminder: "Send review text" after every service visit**
+- [ ] **Respond to ALL reviews within 24 hours** — Use response templates in dashboard
+- [ ] **Order business cards with QR code** — Back side: "Scan for Google Review ⭐". Combine with event card order.
+- Full system: `dashboard/2026-03-14-REVIEW-GENERATION-SYSTEM.html` | Playbook: `deliverables/google-review-generation-system-march14.md`
+
 ### ✅ Recently Completed
+- [x] **⭐ Google Review Generation System** — Complete 30-day system: 0→15 reviews. Copy-paste texts for every scenario (personal ask, post-service, new customer, referral combo), post-service automation guide, review response templates (5-star/4-star/negative), QR code strategy, printable service completion card design, progress tracker with localStorage. Dashboard + full playbook. ✅ (Mar 14, 7PM)
+- [x] **💰 Paid Ads Playbook** — Full strategy: Facebook Ads ($10-20/day), Google Ads ($5-10/day), LSAs, Nextdoor ads. 9 ready-to-use ad variations, 4-phase budget plan ($0→$1K/month), ROI math ($500/month → 10 new customers/month), competitor ad intel (nobody running sophisticated ads in STL). ✅ (Mar 14, 6PM)
 - [x] **🏠 Late March Shed Ad Campaign** — 6 FB Marketplace ads + 3 IG captions for Mar 17-23. Fresh tariff urgency (35% duty, new review opened Mar 9), March Madness hook, Spring Equinox, tax refund final push. Updated battlecard with new competitor intel (Cardinal Portable Sheds, STL Sheds content marketing). No active promo = sell urgency + financing. ✅ (Mar 14, 4PM)
 - [x] **🌐 Dead Competitor Territory SEO Pages** — 3 new city pages (South County, South City, Wentzville) targeting orphaned customers from dead Poopy Paws and Super Scoopers. "Switching provider?" alerts, full SEO, cross-linked all 21 city pages. ✅ (Mar 14, 3PM)
 - [x] **💀 Dead Competitor Capture Campaign** — Verified 5 dead competitors, upgraded Poopy Paws to DEAD, discovered NEW competitor (Little Stinkers of MO), built copy-paste FB/Nextdoor posts, territory maps, weekend action checklist. $0 cost, 3-12 new customers potential. Dashboard + full research. ✅ (Mar 14, 2:30 PM)

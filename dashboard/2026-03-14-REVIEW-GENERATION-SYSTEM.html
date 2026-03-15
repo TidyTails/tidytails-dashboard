@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⭐ Google Review Generation System — Tidy Tails</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+h1 { font-size: 2.2em; margin-bottom: 5px; }
+.subtitle { color: #888; font-size: 1.1em; margin-bottom: 30px; }
+.hero { background: linear-gradient(135deg, #f59e0b, #d97706); padding: 25px 30px; border-radius: 16px; margin-bottom: 30px; color: #000; }
+.hero h2 { font-size: 1.6em; margin-bottom: 8px; }
+.hero p { font-size: 1.1em; opacity: 0.85; }
+.stat-row { display: flex; gap: 15px; margin: 20px 0; flex-wrap: wrap; }
+.stat { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 20px; flex: 1; min-width: 140px; text-align: center; }
+.stat .number { font-size: 2.2em; font-weight: 700; }
+.stat .label { color: #888; font-size: 0.85em; margin-top: 5px; }
+.stat .number.gold { color: #f59e0b; }
+.stat .number.green { color: #22c55e; }
+.stat .number.blue { color: #60a5fa; }
+.stat .number.red { color: #dc2626; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; margin-bottom: 30px; }
+.card { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 20px; }
+.card h3 { font-size: 1.2em; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #333; }
+.section { margin-bottom: 35px; }
+.section-title { font-size: 1.5em; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid #333; }
+.copy-box { background: #111; border: 1px solid #444; border-radius: 8px; padding: 15px; margin: 12px 0; font-size: 0.95em; white-space: pre-wrap; position: relative; cursor: pointer; transition: border-color 0.2s; }
+.copy-box:hover { border-color: #f59e0b; }
+.copy-box::before { content: '📋 Tap to copy'; position: absolute; top: -10px; right: 10px; background: #333; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; color: #aaa; }
+.copy-box.copied::before { content: '✅ Copied!'; background: #22c55e; color: #000; }
+.label-tag { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 0.75em; font-weight: 700; margin-bottom: 8px; }
+.tag-urgent { background: #dc2626; color: white; }
+.tag-easy { background: #22c55e; color: black; }
+.tag-auto { background: #3b82f6; color: white; }
+.timeline { position: relative; padding-left: 30px; }
+.timeline::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 2px; background: #333; }
+.timeline-item { position: relative; margin-bottom: 25px; }
+.timeline-item::before { content: ''; position: absolute; left: -24px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: #333; border: 2px solid #555; }
+.timeline-item.active::before { background: #f59e0b; border-color: #f59e0b; box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
+.timeline-item h4 { font-size: 1em; margin-bottom: 4px; }
+.timeline-item p { color: #888; font-size: 0.9em; }
+.progress-bar { background: #222; border-radius: 10px; height: 24px; overflow: hidden; margin: 10px 0; position: relative; }
+.progress-fill { background: linear-gradient(90deg, #f59e0b, #22c55e); height: 100%; border-radius: 10px; transition: width 0.5s; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; font-size: 0.75em; font-weight: 700; color: #000; }
+.response-template { background: #111; border-left: 3px solid #22c55e; padding: 12px 15px; margin: 10px 0; border-radius: 0 8px 8px 0; }
+.response-template.warning { border-left-color: #f59e0b; }
+.response-template.danger { border-left-color: #dc2626; }
+.response-template h5 { font-size: 0.85em; color: #888; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+.checklist { list-style: none; }
+.checklist li { padding: 10px 0; border-bottom: 1px solid #222; display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+.checklist li::before { content: '☐'; font-size: 1.2em; flex-shrink: 0; }
+.checklist li.done::before { content: '☑'; color: #22c55e; }
+.checklist li.done { text-decoration: line-through; opacity: 0.6; }
+.big-btn { display: block; background: linear-gradient(135deg, #f59e0b, #d97706); color: #000; text-decoration: none; text-align: center; padding: 18px 30px; border-radius: 12px; font-size: 1.2em; font-weight: 700; margin: 20px 0; transition: transform 0.2s, box-shadow 0.2s; }
+.big-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3); }
+.qr-section { text-align: center; padding: 30px; background: #fff; border-radius: 12px; color: #000; }
+.qr-section h3 { color: #1a5c2e; margin-bottom: 10px; }
+.qr-placeholder { width: 200px; height: 200px; margin: 15px auto; border: 3px dashed #ccc; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 0.9em; color: #999; flex-direction: column; gap: 8px; }
+table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+th, td { text-align: left; padding: 10px; border-bottom: 1px solid #333; }
+th { color: #888; font-size: 0.85em; text-transform: uppercase; letter-spacing: 0.5px; }
+.competitor-row td:nth-child(3) { font-weight: 700; }
+.tip-box { background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 8px; padding: 15px; margin: 15px 0; }
+.tip-box h4 { color: #60a5fa; font-size: 0.95em; margin-bottom: 6px; }
+.tip-box p { font-size: 0.9em; color: #aaa; }
+.do-dont { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+.do-list, .dont-list { padding: 15px; border-radius: 8px; }
+.do-list { background: rgba(34, 197, 94, 0.1); border: 1px solid rgba(34, 197, 94, 0.3); }
+.dont-list { background: rgba(220, 38, 38, 0.1); border: 1px solid rgba(220, 38, 38, 0.3); }
+.do-list h4 { color: #22c55e; }
+.dont-list h4 { color: #dc2626; }
+.do-list li, .dont-list li { padding: 4px 0; font-size: 0.9em; margin-left: 16px; }
+@media (max-width: 768px) { 
+  .grid { grid-template-columns: 1fr; } 
+  .do-dont { grid-template-columns: 1fr; }
+  .stat-row { gap: 10px; }
+  .stat { min-width: 100px; padding: 15px; }
+  .stat .number { font-size: 1.8em; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>⭐ Google Review Generation System</h1>
+<p class="subtitle">March 14, 2026 — Goal: 0 → 15 reviews in 30 days</p>
+
+<div class="hero">
+  <h2>🏆 First to 15 Reviews WINS Local Search</h2>
+  <p>No STL pet waste company dominates Google reviews right now. 15 genuine 5-star reviews = top of the Local Pack = free organic leads forever. This is the highest-ROI 30 minutes you can spend this weekend.</p>
+</div>
+
+<!-- Progress Tracker -->
+<div class="section">
+  <h2 class="section-title">📊 Review Progress Tracker</h2>
+  <div class="stat-row">
+    <div class="stat"><div class="number gold" id="currentReviews">0</div><div class="label">Current Reviews</div></div>
+    <div class="stat"><div class="number green">15</div><div class="label">Target (Apr 14)</div></div>
+    <div class="stat"><div class="number blue" id="asksSent">0</div><div class="label">Asks Sent</div></div>
+    <div class="stat"><div class="number" id="convRate" style="color:#e0e0e0">—</div><div class="label">Conversion Rate</div></div>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill" style="width: 0%">0/15</div>
+  </div>
+  <div style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
+    <button onclick="addReview()" style="background: #22c55e; color: #000; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 1em;">+ New Review Received</button>
+    <button onclick="addAsk()" style="background: #3b82f6; color: #fff; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 1em;">+ Ask Sent</button>
+    <button onclick="resetTracker()" style="background: #333; color: #aaa; border: 1px solid #555; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 0.9em;">Reset</button>
+  </div>
+</div>
+
+<!-- Phase 1: This Weekend -->
+<div class="section">
+  <h2 class="section-title">🚀 Phase 1: This Weekend (March 15-16)</h2>
+  <p style="color: #888; margin-bottom: 15px;">Goal: Get your first 3-5 reviews. Total time: ~30 minutes.</p>
+  
+  <div class="grid">
+    <div class="card">
+      <h3>📱 Text Current Customers <span class="label-tag tag-urgent">DO TODAY</span></h3>
+      <p style="color: #888; font-size: 0.9em; margin-bottom: 12px;">Send to ALL 4-5 recurring customers. They already love you — easiest reviews you'll ever get.</p>
+      
+      <p style="font-size: 0.85em; color: #f59e0b; margin-bottom: 6px; font-weight: 600;">Template A — The Personal Ask:</p>
+      <div class="copy-box" onclick="copyText(this)">Hey [NAME]! Quick favor — would you mind leaving me a Google review? It really helps other dog owners find us. Takes about 60 seconds: tidytailsstl.com/review.html
+
+No worries if you can't, I appreciate you either way! 🐕</div>
+
+      <p style="font-size: 0.85em; color: #f59e0b; margin-bottom: 6px; font-weight: 600;">Template B — "You'd Be My First":</p>
+      <div class="copy-box" onclick="copyText(this)">Hey [NAME]! Random question — would you be one of my first Google reviews? I'm trying to build up my page so new customers can find us. Here's the link: tidytailsstl.com/review.html
+
+Would mean a lot! 🙌</div>
+    </div>
+
+    <div class="card">
+      <h3>👥 Ask Friends & Family <span class="label-tag tag-easy">EASY WIN</span></h3>
+      <p style="color: #888; font-size: 0.9em; margin-bottom: 12px;">Anyone who's seen your work, visited your yard, or knows the business firsthand can leave a legitimate review.</p>
+      
+      <div class="copy-box" onclick="copyText(this)">Hey! You know I started that pooper scooper business right? Would you mind leaving me a Google review? Even just mentioning what you know about the service. Would really help me get started: tidytailsstl.com/review.html</div>
+
+      <div class="tip-box">
+        <h4>⚠️ Keep It Legit</h4>
+        <p>Don't offer anything in exchange. Just ask. Google prohibits incentivized reviews and WILL remove them.</p>
+      </div>
+    </div>
+  </div>
+
+  <ul class="checklist" id="weekendChecklist">
+    <li onclick="this.classList.toggle('done')">Text all 4-5 current customers using templates above (10 min)</li>
+    <li onclick="this.classList.toggle('done')">Text 3-5 friends/family who know the business (5 min)</li>
+    <li onclick="this.classList.toggle('done')">Set phone reminder: "Send review text" after every service visit</li>
+    <li onclick="this.classList.toggle('done')">Bookmark review link for quick copy-paste: tidytailsstl.com/review.html</li>
+    <li onclick="this.classList.toggle('done')">Add review link to your text message signature or notes app</li>
+  </ul>
+</div>
+
+<!-- Phase 2: The System -->
+<div class="section">
+  <h2 class="section-title">⚙️ Phase 2: The Automated System (Weeks 2-4)</h2>
+  
+  <div class="grid">
+    <div class="card">
+      <h3>📬 Post-Service Text <span class="label-tag tag-auto">AFTER EVERY VISIT</span></h3>
+      <p style="color: #888; font-size: 0.9em; margin-bottom: 12px;">Send within 2 hours of service. The "job well done" feeling drops 60% after 24 hours.</p>
+      
+      <div class="copy-box" onclick="copyText(this)">Hey [NAME]! Just wrapped up your yard 👍 If you've got a sec, a quick Google review would really help other dog owners find us: tidytailsstl.com/review.html
+
+Thanks! See you next [DAY]!</div>
+
+      <p style="font-size: 0.85em; color: #60a5fa; margin-top: 12px; font-weight: 600;">5-Day Follow-Up (only if they didn't review):</p>
+      <div class="copy-box" onclick="copyText(this)">Hey [NAME]! No pressure at all, just wanted to bump my review link in case you missed it. Even a quick "great service" helps a ton: tidytailsstl.com/review.html
+
+Have a great week! 🐾</div>
+      
+      <div class="tip-box">
+        <h4>📏 The Rule</h4>
+        <p>Ask ONCE, follow up ONCE. Never ask a third time. Nobody wants to feel nagged.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🆕 New Customer Window</h3>
+      <p style="color: #888; font-size: 0.9em; margin-bottom: 12px;">Best time to ask new customers: after their 2nd or 3rd service. They've seen consistency.</p>
+      
+      <div class="copy-box" onclick="copyText(this)">Hey [NAME]! Hope the yard's looking good after visit #2! Now that you've seen the service a couple times, would you mind leaving a quick Google review? Helps other dog owners in [AREA] find us: tidytailsstl.com/review.html
+
+Really appreciate you choosing Tidy Tails! 🐕</div>
+
+      <p style="font-size: 0.85em; color: #22c55e; margin-top: 12px; font-weight: 600;">Referral + Review Combo:</p>
+      <div class="copy-box" onclick="copyText(this)">Hey [NAME]! [NEW CUSTOMER] just signed up — thanks for the recommendation! Would you mind leaving a quick Google review mentioning you referred someone? Helps other people trust us: tidytailsstl.com/review.html
+
+Your next month has $25 off btw! 🙌</div>
+    </div>
+  </div>
+</div>
+
+<!-- 30-Day Timeline -->
+<div class="section">
+  <h2 class="section-title">📅 30-Day Review Timeline</h2>
+  <div class="timeline">
+    <div class="timeline-item active">
+      <h4>Week 1 (Mar 15-21) — "The First Five"</h4>
+      <p>Text all current customers + friends/family. Target: 3-5 reviews.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Week 2 (Mar 22-28) — "Build the Habit"</h4>
+      <p>Post-service texts after every visit. Follow up on Week 1 non-responders. Target: +2-3 reviews.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Week 3 (Mar 29 - Apr 4) — "New Customer Push"</h4>
+      <p>Ask any new customers from dead competitor capture or referrals. Target: +2-3 reviews.</p>
+    </div>
+    <div class="timeline-item">
+      <h4>Week 4 (Apr 5-11) — "Sprint to 15"</h4>
+      <p>Final push. Event contacts, Nextdoor neighbors, any remaining asks. Target: +2-4 reviews.</p>
+    </div>
+  </div>
+  
+  <table>
+    <thead>
+      <tr><th>Week</th><th>Starting</th><th>Asks Sent</th><th>Expected</th><th>Running Total</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Week 1</td><td>0</td><td>5-8</td><td>3-5</td><td>3-5</td></tr>
+      <tr><td>Week 2</td><td>3-5</td><td>3-5</td><td>2-3</td><td>5-8</td></tr>
+      <tr><td>Week 3</td><td>5-8</td><td>3-5</td><td>2-3</td><td>7-11</td></tr>
+      <tr><td>Week 4</td><td>7-11</td><td>3-5</td><td>2-4</td><td>10-15 ✅</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Response Templates -->
+<div class="section">
+  <h2 class="section-title">💬 Review Response Templates</h2>
+  <p style="color: #888; margin-bottom: 15px;">Respond to EVERY review within 24 hours. Google rewards engagement.</p>
+  
+  <div class="response-template">
+    <h5>⭐⭐⭐⭐⭐ 5-Star Response A</h5>
+    <div class="copy-box" onclick="copyText(this)">Thank you so much [NAME]! We love keeping your yard clean for [dog name if mentioned]. Customers like you make this job the best in St. Louis! 🐾</div>
+  </div>
+  
+  <div class="response-template">
+    <h5>⭐⭐⭐⭐⭐ 5-Star Response B</h5>
+    <div class="copy-box" onclick="copyText(this)">[NAME], this made our day! We take a lot of pride in doing great work for our St. Louis customers. Thanks for trusting us with your yard! ⭐</div>
+  </div>
+  
+  <div class="response-template warning">
+    <h5>⭐⭐⭐⭐ 4-Star Response</h5>
+    <div class="copy-box" onclick="copyText(this)">Thanks for the review [NAME]! We're always looking to improve — if there's anything we can do to earn that 5th star, just let us know. We appreciate you! 🐕</div>
+  </div>
+  
+  <div class="response-template danger">
+    <h5>⭐⭐⭐ or Below</h5>
+    <div class="copy-box" onclick="copyText(this)">[NAME], thank you for the honest feedback. We take this seriously and want to make it right. Could you text or call us at 314-850-7140 so we can address this directly? Your satisfaction matters to us.</div>
+  </div>
+</div>
+
+<!-- Do's and Don'ts -->
+<div class="section">
+  <h2 class="section-title">✅ Rules of the Game</h2>
+  <div class="do-dont">
+    <div class="do-list">
+      <h4>✅ DO</h4>
+      <ul>
+        <li>Ask every customer for a review</li>
+        <li>Send the link within 2 hours of service</li>
+        <li>Respond to every review (good or bad)</li>
+        <li>Mention "St. Louis" in your responses (SEO)</li>
+        <li>Keep asks personal and casual</li>
+        <li>Follow up exactly once (5 days later)</li>
+      </ul>
+    </div>
+    <div class="dont-list">
+      <h4>❌ DON'T</h4>
+      <ul>
+        <li>Offer discounts/freebies for reviews</li>
+        <li>Only ask happy customers (review-gating)</li>
+        <li>Ask more than twice per customer</li>
+        <li>Buy fake reviews (Google will nuke you)</li>
+        <li>Have family review from your home address</li>
+        <li>Argue with negative reviews publicly</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- QR Code Section -->
+<div class="section">
+  <h2 class="section-title">📲 QR Code Strategy</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Where to Put Your QR Code</h3>
+      <ul style="list-style: none;">
+        <li style="padding: 8px 0; border-bottom: 1px solid #222;">🃏 <strong>Business Cards</strong> — Back side: "Scan for Google Review ⭐"</li>
+        <li style="padding: 8px 0; border-bottom: 1px solid #222;">🚪 <strong>Service Completion Card</strong> — Leave on door/gate after each visit</li>
+        <li style="padding: 8px 0; border-bottom: 1px solid #222;">🚗 <strong>Vehicle Magnet</strong> — If you get one, include QR</li>
+        <li style="padding: 8px 0; border-bottom: 1px solid #222;">🎪 <strong>Event Table</strong> — Tent card for Bark in the Park, etc.</li>
+        <li style="padding: 8px 0;">✉️ <strong>Email Signature</strong> — Link in every email</li>
+      </ul>
+    </div>
+    <div class="card" style="display: flex; align-items: center; justify-content: center;">
+      <div class="qr-section" style="width: 100%;">
+        <h3>Your Review Page</h3>
+        <p style="margin-bottom: 10px;">tidytailsstl.com/review.html</p>
+        <div class="qr-placeholder">
+          <span style="font-size: 3em;">📱</span>
+          <span>Generate QR at<br>qr-code-generator.com</span>
+        </div>
+        <p style="margin-top: 10px; font-size: 0.85em; color: #666;">Point it to: tidytailsstl.com/review.html</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Service Completion Card -->
+<div class="section">
+  <h2 class="section-title">🏷️ Service Completion Card (Print These)</h2>
+  <p style="color: #888; margin-bottom: 15px;">Leave on door handle or gate after every visit. ~$15 for 250 at Vistaprint.</p>
+  <div style="background: #fff; color: #333; border-radius: 12px; padding: 30px; max-width: 400px; margin: 0 auto; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+    <div style="font-size: 1.5em; margin-bottom: 10px;">🐾 TIDY TAILS STL 🐾</div>
+    <div style="font-size: 1.1em; color: #1a5c2e; font-weight: 600; margin-bottom: 15px;">✅ Your yard was serviced today!</div>
+    <div style="border-top: 2px dashed #ddd; padding-top: 15px; margin-top: 15px;">
+      <div style="font-size: 0.95em; color: #555; margin-bottom: 8px;">Love the service?</div>
+      <div style="font-size: 1.2em; font-weight: 700; color: #1a5c2e;">Leave us a Google Review! ⭐</div>
+      <div style="margin: 15px auto; width: 120px; height: 120px; border: 2px dashed #ccc; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #999; font-size: 0.8em;">[QR Code]</div>
+      <div style="font-size: 0.85em; color: #888;">tidytailsstl.com/review.html</div>
+    </div>
+    <div style="border-top: 1px solid #eee; padding-top: 12px; margin-top: 15px; font-size: 0.85em; color: #888;">
+      📞 314-850-7140 &nbsp;|&nbsp; 🌐 tidytailsstl.com
+    </div>
+  </div>
+</div>
+
+<!-- Review Link -->
+<a href="https://g.page/r/Ce_hqIHanGLvEAE/review" target="_blank" class="big-btn">
+  ⭐ Open Google Review Page Directly
+</a>
+
+<p style="text-align: center; color: #555; margin-top: 40px; font-size: 0.85em;">
+  Built by Franklin 🐕💩 | Review Generation System v1.0 | March 14, 2026
+</p>
+
+</div>
+
+<script>
+// Review Tracker with localStorage persistence
+const STORAGE_KEY = 'tidy-tails-review-tracker';
+
+function loadData() {
+  const saved = localStorage.getItem(STORAGE_KEY);
+  return saved ? JSON.parse(saved) : { reviews: 0, asks: 0 };
+}
+
+function saveData(data) {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+function updateUI() {
+  const data = loadData();
+  document.getElementById('currentReviews').textContent = data.reviews;
+  document.getElementById('asksSent').textContent = data.asks;
+  
+  const pct = Math.min(100, Math.round((data.reviews / 15) * 100));
+  const fill = document.getElementById('progressFill');
+  fill.style.width = pct + '%';
+  fill.textContent = data.reviews + '/15';
+  
+  const rate = data.asks > 0 ? Math.round((data.reviews / data.asks) * 100) + '%' : '—';
+  document.getElementById('convRate').textContent = rate;
+}
+
+function addReview() {
+  const data = loadData();
+  data.reviews++;
+  saveData(data);
+  updateUI();
+}
+
+function addAsk() {
+  const data = loadData();
+  data.asks++;
+  saveData(data);
+  updateUI();
+}
+
+function resetTracker() {
+  if (confirm('Reset review tracker to 0?')) {
+    saveData({ reviews: 0, asks: 0 });
+    updateUI();
+  }
+}
+
+function copyText(el) {
+  const text = el.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 2000);
+  });
+}
+
+// Init
+updateUI();
+</script>
+</body>
+</html>
