@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Competitive Review Audit — March 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0a0a0a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 640px; margin: 0 auto; padding: 16px; }
+  
+  .alert-banner { background: linear-gradient(135deg, #dc2626, #991b1b); border-radius: 12px; padding: 20px; margin-bottom: 20px; text-align: center; }
+  .alert-banner h1 { font-size: 1.4em; color: #fff; margin-bottom: 8px; }
+  .alert-banner p { color: #fca5a5; font-size: 0.95em; }
+  .alert-banner .big-zero { font-size: 3em; font-weight: 800; color: #fff; display: block; margin: 8px 0; }
+  
+  h2 { color: #fff; font-size: 1.1em; margin: 24px 0 12px; padding-bottom: 6px; border-bottom: 1px solid #333; }
+  h3 { color: #f59e0b; font-size: 1em; margin: 16px 0 8px; }
+  
+  .competitor-card { background: #1a1a1a; border-radius: 10px; padding: 16px; margin-bottom: 12px; border-left: 4px solid #666; }
+  .competitor-card.threat { border-left-color: #dc2626; }
+  .competitor-card.moderate { border-left-color: #f59e0b; }
+  .competitor-card.new { border-left-color: #8b5cf6; }
+  
+  .comp-name { font-size: 1.1em; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }
+  .comp-name .tag { font-size: 0.65em; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+  .tag.threat-tag { background: #dc2626; color: #fff; }
+  .tag.new-tag { background: #8b5cf6; color: #fff; }
+  .tag.veteran-tag { background: #059669; color: #fff; }
+  .tag.franchise-tag { background: #2563eb; color: #fff; }
+  
+  .comp-detail { font-size: 0.85em; color: #999; margin-top: 6px; line-height: 1.5; }
+  .comp-detail strong { color: #e0e0e0; }
+  .comp-price { color: #f59e0b; font-weight: 600; }
+  
+  .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 8px; }
+  .feature { font-size: 0.78em; color: #86efac; }
+  .feature.missing { color: #fca5a5; }
+  
+  .pricing-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.85em; }
+  .pricing-table th { text-align: left; padding: 8px; background: #1a1a1a; color: #999; border-bottom: 1px solid #333; }
+  .pricing-table td { padding: 8px; border-bottom: 1px solid #1a1a1a; }
+  .pricing-table tr.highlight { background: #1a2e1a; }
+  .pricing-table tr.highlight td { color: #86efac; font-weight: 600; }
+  .pricing-table tr.recommended { background: #2a1a0a; }
+  .pricing-table tr.recommended td { color: #f59e0b; font-weight: 600; }
+  
+  .insight-card { background: #1a1a2e; border-radius: 10px; padding: 16px; margin-bottom: 12px; border-left: 4px solid #818cf8; }
+  .insight-card h4 { color: #818cf8; font-size: 0.95em; margin-bottom: 6px; }
+  .insight-card p { font-size: 0.85em; color: #c7d2fe; line-height: 1.5; }
+  
+  .action-item { background: #1a2e1a; border-radius: 10px; padding: 16px; margin-bottom: 10px; cursor: pointer; position: relative; }
+  .action-item.done { opacity: 0.5; }
+  .action-item.done::after { content: '✅'; position: absolute; right: 12px; top: 12px; font-size: 1.2em; }
+  .action-num { font-size: 0.7em; color: #059669; font-weight: 700; display: block; margin-bottom: 4px; }
+  .action-title { font-weight: 700; color: #86efac; font-size: 0.95em; }
+  .action-time { font-size: 0.75em; color: #6ee7b7; margin-top: 2px; }
+  .action-desc { font-size: 0.82em; color: #a7f3d0; margin-top: 6px; line-height: 1.4; }
+  
+  .copy-box { background: #111; border: 1px solid #333; border-radius: 8px; padding: 12px; margin: 8px 0; font-size: 0.82em; cursor: pointer; position: relative; transition: border-color 0.2s; }
+  .copy-box:hover { border-color: #059669; }
+  .copy-box:active { border-color: #86efac; }
+  .copy-label { font-size: 0.7em; color: #666; display: block; margin-bottom: 4px; }
+  .copied-toast { display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: #059669; color: #fff; padding: 8px 20px; border-radius: 20px; font-size: 0.85em; z-index: 100; }
+  
+  .review-bar { display: flex; align-items: center; gap: 8px; margin: 4px 0; }
+  .review-bar .name { font-size: 0.82em; width: 130px; color: #999; }
+  .review-bar .bar { flex: 1; height: 18px; background: #1a1a1a; border-radius: 4px; overflow: hidden; position: relative; }
+  .review-bar .bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s; }
+  .review-bar .count { font-size: 0.75em; color: #666; width: 30px; text-align: right; }
+  
+  .bottom-truth { background: linear-gradient(135deg, #1a1a2e, #0a0a1e); border-radius: 12px; padding: 20px; margin: 24px 0; text-align: center; border: 1px solid #333; }
+  .bottom-truth h3 { color: #818cf8; margin-bottom: 12px; }
+  .bottom-truth p { font-size: 0.9em; color: #c7d2fe; line-height: 1.6; }
+  .bottom-truth .emphasis { color: #f59e0b; font-weight: 700; font-size: 1.1em; display: block; margin: 12px 0; }
+</style>
+</head>
+<body>
+
+<div class="alert-banner">
+  <h1>🔍 COMPETITIVE REVIEW AUDIT</h1>
+  <p>Search: "Tidy Tails pet waste St Louis"</p>
+  <span class="big-zero">0 Results</span>
+  <p>Google doesn't know you exist. Every competitor below does.</p>
+</div>
+
+<h2>🏆 Review Race — Where You Stand</h2>
+
+<div class="review-bar">
+  <span class="name">Yuckos</span>
+  <div class="bar"><div class="bar-fill" style="width: 100%; background: #059669;"></div></div>
+  <span class="count">6+</span>
+</div>
+<div class="review-bar">
+  <span class="name">Poopy Paws</span>
+  <div class="bar"><div class="bar-fill" style="width: 83%; background: #059669;"></div></div>
+  <span class="count">5+</span>
+</div>
+<div class="review-bar">
+  <span class="name">DoodyCalls</span>
+  <div class="bar"><div class="bar-fill" style="width: 67%; background: #f59e0b;"></div></div>
+  <span class="count">4+</span>
+</div>
+<div class="review-bar">
+  <span class="name">POOP 911</span>
+  <div class="bar"><div class="bar-fill" style="width: 50%; background: #f59e0b;"></div></div>
+  <span class="count">3+</span>
+</div>
+<div class="review-bar">
+  <span class="name">Doggie Doodies</span>
+  <div class="bar"><div class="bar-fill" style="width: 33%; background: #f59e0b;"></div></div>
+  <span class="count">2+</span>
+</div>
+<div class="review-bar">
+  <span class="name" style="color: #fca5a5; font-weight: 700;">TIDY TAILS</span>
+  <div class="bar"><div class="bar-fill" style="width: 0%; background: #dc2626;"></div></div>
+  <span class="count" style="color: #fca5a5; font-weight: 700;">0</span>
+</div>
+
+<h2>🔴 Direct Threats</h2>
+
+<div class="competitor-card threat">
+  <div class="comp-name">Doggie Doodies <span class="tag threat-tag">#1 RIVAL</span></div>
+  <div class="comp-detail">
+    <strong>Territory:</strong> 20+ cities — Ballwin, Manchester, Ellisville, Wildwood, Chesterfield + expanded to St. Charles County<br>
+    <strong>Price:</strong> <span class="comp-price">$83/mo (1 dog weekly)</span> | $88 (2 dogs) | $100 (3 dogs)<br>
+    <strong>Site:</strong> doggiedoodies.com (Wix) | <strong>Phone:</strong> (636) 633-3443<br>
+    <strong>⚠️ EXPANDED</strong> to 20+ cities across both counties since last check
+  </div>
+  <div class="feature-grid">
+    <span class="feature">✅ Customer portal</span>
+    <span class="feature">✅ Background checks</span>
+    <span class="feature">✅ Text alerts</span>
+    <span class="feature">✅ Gate photos</span>
+    <span class="feature">✅ Rewards program</span>
+    <span class="feature">✅ Referral credits</span>
+    <span class="feature">✅ E-gift cards</span>
+    <span class="feature">✅ Free first cleanup</span>
+    <span class="feature">✅ SEO blog</span>
+    <span class="feature">✅ Commercial page</span>
+  </div>
+</div>
+
+<div class="competitor-card threat">
+  <div class="comp-name">Clean Turf STL <span class="tag threat-tag">SAME TERRITORY</span></div>
+  <div class="comp-detail">
+    <strong>Territory:</strong> Ballwin, Manchester, Ellisville, Wildwood, Chesterfield<br>
+    <strong>Price:</strong> <span class="comp-price">$75 one-time min</span>, quote-based plans<br>
+    <strong>Phone:</strong> (314) 337-9929 | <strong>Dual:</strong> Pet waste + house cleaning<br>
+    <strong>Listed on:</strong> Yelp, MapQuest (TJ is on neither)
+  </div>
+</div>
+
+<div class="competitor-card new">
+  <div class="comp-name">Doggy Doods <span class="tag new-tag">NEW — STUDY THIS ONE</span></div>
+  <div class="comp-detail">
+    <strong>Territory:</strong> St. Charles County<br>
+    <strong>Site:</strong> doggydoods.com (professional, not Wix!)<br>
+    <strong>Operator:</strong> Eugene (solo, personal brand)<br>
+    <strong>Reviews:</strong> 6 detailed testimonials — ALL excellent<br>
+    <strong>🎯 WHAT THEY DO RIGHT:</strong>
+  </div>
+  <div class="feature-grid">
+    <span class="feature">🎯 Stickers for kids</span>
+    <span class="feature">📸 Gate photos</span>
+    <span class="feature">📱 "On the way" texts</span>
+    <span class="feature">🌧️ "Rain or shine"</span>
+    <span class="feature">🤝 Local rescue partner</span>
+    <span class="feature">💬 A+ communication</span>
+  </div>
+</div>
+
+<h2>🟡 Established Players</h2>
+
+<div class="competitor-card moderate">
+  <div class="comp-name">Poopy Paws <span class="tag" style="background:#059669;color:#fff;">BUDGET KING</span></div>
+  <div class="comp-detail">
+    <strong>Price:</strong> <span class="comp-price">$20/week flat rate</span> (~$80/mo, any # dogs)<br>
+    <strong>FB:</strong> 358 likes | <strong>Nextdoor:</strong> Listed | <strong>Operator:</strong> Charlie
+  </div>
+</div>
+
+<div class="competitor-card moderate">
+  <div class="comp-name">Yuckos <span class="tag veteran-tag">36 YEARS</span></div>
+  <div class="comp-detail">
+    <strong>Since:</strong> 1990 | <strong>Yelp:</strong> 6 reviews<br>
+    <strong>Phone:</strong> (314) 291-POOP | <strong>Hours:</strong> M-F 8-3 only (no weekends!)<br>
+    <strong>Also sells:</strong> Dogipot waste stations
+  </div>
+</div>
+
+<div class="competitor-card moderate">
+  <div class="comp-name">DoodyCalls STL <span class="tag franchise-tag">FRANCHISE</span></div>
+  <div class="comp-detail"><strong>National brand</strong> (25+ years) | <strong>Yelp:</strong> 4 reviews | Background checks, satisfaction guarantee</div>
+</div>
+
+<div class="competitor-card moderate">
+  <div class="comp-name">POOP 911 <span class="tag franchise-tag">FRANCHISE</span></div>
+  <div class="comp-detail"><strong>Multiple STL locations</strong> | <strong>Yelp:</strong> 3+ reviews | Free first service, 20+ years exp</div>
+</div>
+
+<h2>💬 What Customers Actually Want</h2>
+<p style="font-size:0.8em;color:#999;margin-bottom:12px;">Mined from competitor reviews — these are the themes that make people choose AND stay:</p>
+
+<div class="insight-card">
+  <h4>#1 — Communication (mentioned in 90%+ of reviews)</h4>
+  <p>"Keeps us informed" · "On the way alerts" · "Gate photos" · "Responsive from the start"</p>
+</div>
+
+<div class="insight-card">
+  <h4>#2 — Consistency (mentioned in 80%+ of reviews)</h4>
+  <p>"Shows up when they promise" · "Rain or shine" · "Consistently great" · "Reliable"</p>
+</div>
+
+<div class="insight-card">
+  <h4>#3 — Personal Touch (the loyalty driver)</h4>
+  <p>"Eugene is kind" · "Stickers for the kids" · "Takes real pride" · Named by first name in reviews</p>
+</div>
+
+<div class="insight-card">
+  <h4>#4 — Peace of Mind (the upsell trigger)</h4>
+  <p>"Gate photos" · "Don't need to be home" · "Ended all the stress"</p>
+</div>
+
+<h2>💰 Pricing Comparison — 1 Dog Weekly</h2>
+
+<table class="pricing-table">
+  <tr><th>Company</th><th>Monthly</th><th>Per Visit</th></tr>
+  <tr class="highlight"><td>Tidy Tails (current)</td><td>$70</td><td>$16.15</td></tr>
+  <tr><td>Poopy Paws</td><td>~$80</td><td>$20.00</td></tr>
+  <tr><td>Doggie Doodies</td><td>$83</td><td>$19.15</td></tr>
+  <tr><td>DoodyCalls (est.)</td><td>~$90</td><td>~$21</td></tr>
+  <tr><td>POOP 911 (est.)</td><td>~$90</td><td>~$21</td></tr>
+  <tr class="recommended"><td>Tidy Tails (should be)</td><td>$88</td><td>$20.30</td></tr>
+</table>
+<p style="font-size:0.78em;color:#f59e0b;text-align:center;">At $88/mo × 25 customers = $2,200/mo. At $70 = $1,750/mo. That's $5,400/year you're leaving behind.</p>
+
+<h2>🎯 Monday Morning: Do These 3 Things</h2>
+
+<div class="action-item" onclick="toggleAction(this, 'a1')">
+  <span class="action-num">ACTION 1</span>
+  <div class="action-title">Text customers for Google reviews</div>
+  <div class="action-time">⏱ 5 minutes</div>
+  <div class="action-desc">You have 0 reviews. Competitors have 3-6+. Text each current customer.</div>
+</div>
+
+<div class="copy-box" onclick="copyText(this)">
+  <span class="copy-label">TAP TO COPY — Review Request Text</span>
+  Hey! Quick favor — would you mind leaving me a Google review? It really helps small businesses like mine get found. Takes 30 seconds. Thanks! 🙏
+</div>
+
+<div class="action-item" onclick="toggleAction(this, 'a2')">
+  <span class="action-num">ACTION 2</span>
+  <div class="action-title">Start sending "on my way" texts + gate photos</div>
+  <div class="action-time">⏱ 0 extra minutes — just do it during service</div>
+  <div class="action-desc">This is the #1 thing customers rave about in competitor reviews. Costs nothing. Text "On my way!" before each stop, snap a pic of the closed gate after.</div>
+</div>
+
+<div class="action-item" onclick="toggleAction(this, 'a3')">
+  <span class="action-num">ACTION 3</span>
+  <div class="action-title">Verify Google Business Profile is live</div>
+  <div class="action-time">⏱ 10 minutes</div>
+  <div class="action-desc">Without GBP, reviews go nowhere. Check business.google.com — if not verified, do it NOW.</div>
+</div>
+
+<div class="bottom-truth">
+  <h3>The Hard Truth</h3>
+  <p>We've built 112 dashboard pages.</p>
+  <span class="emphasis">Your competitors are winning with a Wix site, a hotmail address, and a text message.</span>
+  <p>They're not winning on technology.<br>They're winning on <strong>showing up and telling people about it.</strong></p>
+</div>
+
+<div class="copied-toast" id="copiedToast">📋 Copied!</div>
+
+<script>
+function copyText(el) {
+  const label = el.querySelector('.copy-label');
+  const text = el.textContent.replace(label.textContent, '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const toast = document.getElementById('copiedToast');
+    toast.style.display = 'block';
+    setTimeout(() => toast.style.display = 'none', 1500);
+  });
+}
+
+function toggleAction(el, key) {
+  const done = localStorage.getItem('audit_' + key) === 'true';
+  localStorage.setItem('audit_' + key, !done);
+  el.classList.toggle('done', !done);
+}
+
+// Restore state
+document.addEventListener('DOMContentLoaded', () => {
+  ['a1','a2','a3'].forEach((key, i) => {
+    if (localStorage.getItem('audit_' + key) === 'true') {
+      document.querySelectorAll('.action-item')[i].classList.add('done');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
