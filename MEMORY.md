@@ -107,7 +107,14 @@ Central hub linking ALL tools, reports, videos, PDFs. ⚠️ NEVER let this go m
 - Commercial + residential, fully insured, free estimates, no contracts
 - Ancient website (looks like 1995), phone-only, M-F 8AM-3PM only (no weekends = TJ's opening)
 
-**5 confirmed DEAD competitors** (as of Mar 14): Pawfect (404), Fresh Paws, Poopy Paws, STL Pooper Scoopers, Super Scoopers STL
+**6 confirmed DEAD competitors** (as of Mar 15): Pawfect (404), Fresh Paws (DNS expired), Poopy Paws (DNS failure, upgraded from ACTIVE Mar 14), STL Pooper Scoopers (Yelp CLOSED), Super Scoopers STL (Yelp CLOSED)
+
+**NEW competitors discovered Mar 14-15:**
+- **Doggy Doods** (doggydoods.com) — Solo operator Eugene, St. Charles County, 6 glowing testimonials, professional site
+- **Dog Doody Defenders** — Veteran-owned (can't compete on this angle)
+- **The Poo Fighterz** — Multi-market (STL + Springfield IL)
+- **No 2 Crew** — Yelp only
+- **Tidy Pup** — Minimal presence
 
 **Dashboard:** `dashboard/2026-03-07-COMPETITOR-INTEL.html`
 **Latest update:** `deliverables/competitor-update-march14-7am.md`
@@ -302,7 +309,7 @@ Pet waste removal service in St. Louis County and surrounding areas.
 
 | Competitor | Status | Weekly Price | Territory |
 |------------|--------|--------------|-----------|
-| **Poopy Paws** | ✅ ACTIVE | **$20** | St. Louis (cheapest!) |
+| **Poopy Paws** | 💀 DEAD | **$20** | St. Louis — DNS failure, 358 FB likes orphaned |
 | **Poop2Scoop** | ✅ ACTIVE | $18-25 | St. Louis |
 | **POOP 911** | ✅ ACTIVE | Quote (FREE 1st) | St. Louis metro |
 | **DoodyCalls** | ✅ ACTIVE | Quote | St. Louis |
@@ -774,6 +781,8 @@ TJ sees Tidy Tails as a **training ground** for:
 - 2026-03-10: **24 hourly tasks** (new record). Referral program, print kit, Nextdoor playbook, 3 competitive intel reports, SEO rescue + IndexNow deployed, 5 blog posts, GBP content kit + optimization playbook, guerrilla marketing playbook, dead competitor capture campaign, website conversion audit, 10 shed ads (#102-111), STL shed market intel Q1, directory guide (25 dirs), enriched contacts (15 leads), customer onboarding system, weekly sprint plan, revenue sprint, 2 maintenance cycles. Live digital audit fixed index (38→60 tools shown).
 - 2026-03-11: Memory maintenance (812 lines archived from Mar 10). Honest assessment: still 8 customers, 60+ tools, 0 Google indexing. Sprint plan exists for Wed-Sun — TJ needs to execute.
 - 2026-03-11: **BREAKTHROUGH DAY** — 25 tasks, but the important ones were DIAGNOSTIC not creative. 9 PM audit discovered website was essentially blank. 2 AM SEO diagnosis found root cause: domain only 23 days old + zero backlinks + zero directory listings (site technically perfect). Built production-ready landing page HTML. Shipped 12-platform directory submission package. Neighborhood targeting identified Kirkwood + Webster Groves as #1 targets. Paid ads ROI analysis: $150/mo FB ads → 2-4 new customers/mo. Shed intel: 35% lumber tariffs = real urgency angle. Skipped 3 duplicate tasks (good discipline). Weekly execution playbook distilled 16 deliverables into daily 3-action checklists.
+- 2026-03-14: **MASSIVE RESEARCH DAY** — 15+ tasks. Key: SEO audit confirmed domain only 26 days old (registered Feb 16). Found 2 new competitors (Clean Turf STL in Ballwin = direct threat, Yuckos = 36-year veteran). Poopy Paws upgraded to DEAD. Built: Google Review Generation System, Social Guerrilla Kit (19 FB groups mapped), Paid Ads Playbook, Dead Competitor Capture Campaign, 3 new SEO city pages (21 total), Weekly KPI Scorecard, Shed Market Intel update (lumber $501), Facebook Ads Launch Kit, Operations Toolkit (Sweep&Go CRM, aPaws membership). Pricing strategy: $88/mo recommended (was $70).
+- 2026-03-15: Competitive Review Audit (TJ has 0 reviews, competitors have 6+). Monday Sprint page built for Mar 17 (3 actions in 15 min). Memory maintenance cycles.
 
 ---
 
@@ -785,7 +794,7 @@ TJ sees Tidy Tails as a **training ground** for:
 - **Week 3 (Mar 2-7):** Sub-agents deployed, 6 AI videos created, Google Search Console verified, site still 0 indexed pages, 35+ dashboard tools built
 - **Week 3 Mar 7 alone:** 24 hourly tasks in one day. Every conceivable tool built. Dashboard has everything.
 - **Week 4 (Mar 8-10):** Continued building despite self-assessment saying STOP. 60+ tools now. Scoop Soldiers confirmed as new threat ($15/visit). Google STILL has 0 indexed pages (5+ days after GSC submission). Live digital audit found index only showed 38 of 60 tools — fixed.
-- **Reality (Mar 10):** We have more tools than a Home Depot. TJ has 8 customers, same as 3 weeks ago. ZERO confirmed post deployments, ZERO confirmed review requests sent, ZERO directory listings completed (beyond GBP/Yelp which TJ did himself). The cron is generating work product nobody uses. The honest answer: TJ needs to spend 30 minutes executing, not Franklin spending 30 hours building.
+- **Reality (Mar 15):** We have more tools than a Home Depot. TJ has 4-5 customers (possibly DOWN from 8 — need to verify). ZERO confirmed post deployments, ZERO confirmed review requests sent, ZERO directory listings completed (beyond GBP/Yelp which TJ did himself). The cron is generating work product nobody uses. The honest answer: TJ needs to spend 30 minutes executing, not Franklin spending 30 hours building.
 
 ### 🚨 CRITICAL SELF-ASSESSMENT (Updated Mar 10, 2026)
 - **STOP BUILDING NEW TOOLS.** 60+ dashboard tools exist. TJ uses maybe 2-3. The build-vs-deploy gap is a CANYON.
@@ -811,7 +820,7 @@ TJ sees Tidy Tails as a **training ground** for:
 | Skills built | 14+ |
 | AI video concepts | 6 produced, 7 remaining |
 | Content calendar posts | 49 copy-paste posts (28 spring + 21 weekly) |
-| City landing pages | 12 on tidytailsstl.com (SEO kit) |
+| City landing pages | 21 on tidytailsstl.com (SEO kit, up from 12) |
 | Blog posts ready | 3 (health risks, spring cleanup, buyer's guide) |
 
 ### Key Systems Built
@@ -839,6 +848,8 @@ TJ sees Tidy Tails as a **training ground** for:
 - [ ] Check if Google has indexed tidytailsstl.com yet (search `site:tidytailsstl.com`)
 
 ### Archives
+- `memory/archive/franklin-tasks-mar14-15.md` — Mar 14-15 hourly tasks (767 lines, 20+ tasks)
+- `memory/archive/franklin-tasks-mar12-13.md` — Mar 12-13 hourly tasks (1,321 lines, 30+ tasks)
 - `memory/archive/franklin-tasks-mar11.md` — Mar 11 hourly tasks (672 lines, 25 tasks)
 - `memory/archive/franklin-tasks-mar10.md` — Mar 10 hourly tasks (812 lines, 24 tasks)
 - `memory/archive/franklin-tasks-mar9.md` — Mar 9 hourly tasks (534 lines)
