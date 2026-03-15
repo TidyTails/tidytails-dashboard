@@ -187,6 +187,37 @@
 
 ---
 
+### 5:04 AM — 🔍 SEO AUDIT + SPRING MARKETING BLITZ
+**Task:** Deep technical SEO audit of tidytailsstl.com + ready-to-post spring marketing content
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 5 AM Sunday. Perfect for research, not outreach.
+- The #1 problem is still ZERO Google indexing. `site:tidytailsstl.com` returns 0 results.
+- Spring is peak season for pet waste signups — need marketing content NOW.
+- Commercial leads paused per TJ's directive, so focused on residential growth levers.
+
+**Key Findings:**
+1. **On-page SEO: B+** — Schema markup (LocalBusiness, Service, FAQ), meta tags, OG tags, canonical, sitemap, robots.txt all solid. Actually better than most competitors.
+2. **Off-page SEO: F** — Zero indexed pages, zero backlinks, no Google Business Profile, no directory listings, no reviews, no social profiles linked.
+3. **The fix is simple but TJ has to do it:** Google Search Console (15 min), Google Business Profile (30 min), 7 directory submissions (45 min) = 90 minutes to go from invisible to indexed.
+4. **Brand confusion:** 4+ other "Tidy Tails" pet waste companies nationally. STL-specific differentiation critical.
+5. **Competitor advantage:** DoodyCalls, Poop2Scoop, Little Stinkers all have GBP + Yelp + years of domain age. TJ's domain is 27 days old.
+
+**Deliverable:** `deliverables/seo-audit-spring-blitz-march2026.md`
+- Full technical SEO audit with scores
+- Priority action plan (Tier 1/2/3)
+- 4 Facebook group posts (copy-paste ready)
+- 2 Nextdoor posts (copy-paste ready)
+- 1 Instagram caption with hashtags
+- Competitor comparison matrix
+- Expected timeline for indexing
+- Step-by-step instructions for GSC, GBP, and directories
+
+**Rotation:** 🔍 Research — SEO & Marketing
+
+---
+
 ## Archive
 - **March 14-15, 2026:** `memory/archive/franklin-tasks-mar14-15.md` (767 lines, 20+ tasks)
 - **March 12-13, 2026:** `memory/archive/franklin-tasks-mar12-13.md` (1,321 lines, 30+ tasks)
