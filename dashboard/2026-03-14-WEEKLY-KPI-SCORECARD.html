@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly KPI Scorecard | Tidy Tails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+        
+        .header {
+            background: linear-gradient(135deg, #0a1520, #1a0f25);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 1.5rem 1.5rem; text-align: center;
+        }
+        .header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em; }
+        .header h1 span { color: var(--green); }
+        .header .subtitle { color: var(--text2); font-size: 0.85rem; margin-top: 0.3rem; }
+        .header .meta { color: var(--text3); font-size: 0.7rem; margin-top: 0.5rem; font-family: 'JetBrains Mono', monospace; }
+        
+        .container { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+        
+        /* North Star */
+        .north-star {
+            background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(59,130,246,0.05));
+            border: 1px solid rgba(16,185,129,0.3); border-radius: var(--radius);
+            padding: 1.5rem; margin-bottom: 1.5rem; text-align: center;
+        }
+        .north-star h2 { font-size: 1rem; color: var(--green); margin-bottom: 0.75rem; }
+        .north-star .big-number {
+            font-size: 4rem; font-weight: 800; color: var(--text);
+            font-family: 'JetBrains Mono', monospace; line-height: 1;
+        }
+        .north-star .big-number span { color: var(--text3); font-size: 2rem; }
+        .north-star .goal-bar {
+            width: 100%; max-width: 500px; height: 28px; background: var(--bg4);
+            border-radius: 14px; margin: 1rem auto 0.5rem; overflow: hidden; position: relative;
+        }
+        .north-star .goal-fill {
+            height: 100%; border-radius: 14px; transition: width 0.5s ease;
+            background: linear-gradient(90deg, var(--green), var(--blue));
+        }
+        .north-star .goal-label {
+            font-size: 0.75rem; color: var(--text2); font-family: 'JetBrains Mono', monospace;
+        }
+        .north-star .trend { margin-top: 0.5rem; font-size: 0.85rem; }
+        .trend-up { color: var(--green); }
+        .trend-down { color: var(--red); }
+        .trend-flat { color: var(--yellow); }
+        
+        /* KPI Grid */
+        .kpi-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin-bottom: 1.5rem; }
+        .kpi-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1rem; text-align: center;
+        }
+        .kpi-card .kpi-label { font-size: 0.7rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600; }
+        .kpi-card .kpi-value {
+            font-size: 2rem; font-weight: 800; margin: 0.25rem 0;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .kpi-card .kpi-target { font-size: 0.7rem; color: var(--text3); }
+        .kpi-card .kpi-change { font-size: 0.75rem; font-weight: 600; }
+        .kpi-card.good { border-color: rgba(16,185,129,0.4); }
+        .kpi-card.warn { border-color: rgba(251,191,36,0.4); }
+        .kpi-card.bad { border-color: rgba(239,68,68,0.4); }
+        
+        /* Weekly Log */
+        .section { margin-bottom: 2rem; }
+        .section h2 {
+            font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem;
+            padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        
+        /* Input Form */
+        .entry-form {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem;
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 0.75rem; }
+        .form-group { display: flex; flex-direction: column; }
+        .form-group label { font-size: 0.75rem; color: var(--text2); margin-bottom: 0.25rem; font-weight: 600; }
+        .form-group input, .form-group select {
+            background: var(--bg4); border: 1px solid var(--border); border-radius: 8px;
+            padding: 0.5rem 0.75rem; color: var(--text); font-size: 0.9rem;
+            font-family: 'JetBrains Mono', monospace; outline: none;
+        }
+        .form-group input:focus { border-color: var(--orange); }
+        .form-group input::placeholder { color: var(--text3); }
+        .btn {
+            padding: 0.6rem 1.5rem; border: none; border-radius: 8px; font-weight: 700;
+            font-size: 0.85rem; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-primary { background: var(--green); color: #000; }
+        .btn-primary:hover { filter: brightness(1.15); }
+        .btn-danger { background: rgba(239,68,68,0.2); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+        .btn-danger:hover { background: rgba(239,68,68,0.3); }
+        .btn-row { display: flex; gap: 0.5rem; margin-top: 0.75rem; }
+        
+        /* History Table */
+        .history-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .history-table th {
+            text-align: left; padding: 0.5rem; color: var(--text2); font-size: 0.7rem;
+            text-transform: uppercase; letter-spacing: 0.05em; border-bottom: 1px solid var(--border);
+        }
+        .history-table td {
+            padding: 0.5rem; border-bottom: 1px solid var(--bg4);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .history-table tr:hover { background: var(--bg4); }
+        .history-table .week-label { font-family: 'Inter', sans-serif; font-weight: 600; color: var(--text); }
+        
+        /* Chart area */
+        .chart-container {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1rem; margin-bottom: 1rem; position: relative; height: 220px;
+        }
+        .chart-canvas { width: 100%; height: 100%; }
+        
+        /* Streak */
+        .streak-bar {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+        }
+        .streak-number { font-size: 2.5rem; font-weight: 800; color: var(--orange); font-family: 'JetBrains Mono', monospace; }
+        .streak-label { font-size: 0.85rem; color: var(--text2); }
+        .streak-label strong { color: var(--text); display: block; font-size: 1rem; }
+        
+        /* Insights */
+        .insight {
+            background: var(--bg3); border-left: 3px solid var(--orange);
+            padding: 0.75rem 1rem; margin-bottom: 0.5rem; border-radius: 0 8px 8px 0;
+        }
+        .insight .insight-title { font-weight: 700; font-size: 0.85rem; }
+        .insight .insight-text { color: var(--text2); font-size: 0.8rem; margin-top: 0.15rem; }
+        
+        .empty-state { text-align: center; padding: 3rem; color: var(--text3); }
+        .empty-state .emoji { font-size: 3rem; margin-bottom: 1rem; }
+        .empty-state p { font-size: 0.9rem; }
+        
+        @media (max-width: 600px) {
+            .form-row { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: 1fr 1fr; }
+            .history-table { font-size: 0.7rem; }
+            .history-table th, .history-table td { padding: 0.35rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 Weekly <span>KPI Scorecard</span></h1>
+        <p class="subtitle">Track the numbers that actually matter. Update weekly. No bullshit.</p>
+        <div class="meta">Tidy Tails STL · Goal: 25-30 recurring customers</div>
+    </div>
+    
+    <div class="container">
+        
+        <!-- North Star Metric -->
+        <div class="north-star" id="northStar">
+            <h2>🎯 NORTH STAR: RECURRING CUSTOMERS</h2>
+            <div class="big-number"><span id="currentCustomers">—</span><span> / 30</span></div>
+            <div class="goal-bar"><div class="goal-fill" id="goalFill" style="width:0%"></div></div>
+            <div class="goal-label" id="goalLabel">Log your first week to see progress</div>
+            <div class="trend" id="customerTrend"></div>
+        </div>
+        
+        <!-- KPI Summary Cards -->
+        <div class="kpi-grid" id="kpiGrid">
+            <div class="kpi-card" id="kpiRevenue">
+                <div class="kpi-label">Weekly Revenue</div>
+                <div class="kpi-value" style="color:var(--green);">—</div>
+                <div class="kpi-target">Target: $500/wk</div>
+                <div class="kpi-change" id="revenueChange"></div>
+            </div>
+            <div class="kpi-card" id="kpiReviews">
+                <div class="kpi-label">Google Reviews</div>
+                <div class="kpi-value" style="color:var(--yellow);">—</div>
+                <div class="kpi-target">Target: 15 reviews</div>
+                <div class="kpi-change" id="reviewsChange"></div>
+            </div>
+            <div class="kpi-card" id="kpiLeads">
+                <div class="kpi-label">Leads This Week</div>
+                <div class="kpi-value" style="color:var(--blue);">—</div>
+                <div class="kpi-target">Target: 5/week</div>
+                <div class="kpi-change" id="leadsChange"></div>
+            </div>
+            <div class="kpi-card" id="kpiPosts">
+                <div class="kpi-label">Posts / Outreach</div>
+                <div class="kpi-value" style="color:var(--purple);">—</div>
+                <div class="kpi-target">Target: 5/week</div>
+                <div class="kpi-change" id="postsChange"></div>
+            </div>
+        </div>
+        
+        <!-- Execution Streak -->
+        <div class="streak-bar" id="streakBar">
+            <div class="streak-number" id="streakNum">0</div>
+            <div class="streak-label">
+                <strong>Week Logging Streak</strong>
+                Log every Sunday to build the habit. Data beats feelings.
+            </div>
+        </div>
+        
+        <!-- Customer Growth Chart -->
+        <div class="section">
+            <h2>📈 Customer Growth</h2>
+            <div class="chart-container">
+                <canvas id="growthChart" class="chart-canvas"></canvas>
+            </div>
+        </div>
+        
+        <!-- Log New Week -->
+        <div class="section">
+            <h2>✏️ Log This Week's Numbers</h2>
+            <div class="entry-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Week Ending (Sunday)</label>
+                        <input type="date" id="weekDate">
+                    </div>
+                    <div class="form-group">
+                        <label>Recurring Customers</label>
+                        <input type="number" id="inputCustomers" placeholder="e.g. 5" min="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Weekly Revenue ($)</label>
+                        <input type="number" id="inputRevenue" placeholder="e.g. 125" min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>Total Google Reviews</label>
+                        <input type="number" id="inputReviews" placeholder="e.g. 3" min="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>New Leads / Inquiries</label>
+                        <input type="number" id="inputLeads" placeholder="e.g. 2" min="0">
+                    </div>
+                    <div class="form-group">
+                        <label>Posts / Outreach Actions</label>
+                        <input type="number" id="inputPosts" placeholder="e.g. 4" min="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Ad Spend ($)</label>
+                        <input type="number" id="inputAdSpend" placeholder="e.g. 0" min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label>One-Time Jobs ($)</label>
+                        <input type="number" id="inputOneTime" placeholder="e.g. 50" min="0" step="0.01">
+                    </div>
+                </div>
+                <div class="form-group" style="margin-bottom:0.5rem;">
+                    <label>Notes (wins, losses, what happened)</label>
+                    <input type="text" id="inputNotes" placeholder="e.g. Got 2 new customers from Nextdoor, lost 1 to Scoop Soldiers">
+                </div>
+                <div class="btn-row">
+                    <button class="btn btn-primary" onclick="saveWeek()">💾 Save Week</button>
+                    <button class="btn btn-danger" onclick="deleteLastWeek()">🗑️ Delete Last Entry</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Auto-Insights -->
+        <div class="section" id="insightsSection" style="display:none;">
+            <h2>💡 Auto-Insights</h2>
+            <div id="insightsContainer"></div>
+        </div>
+        
+        <!-- Weekly History -->
+        <div class="section">
+            <h2>📋 Weekly History</h2>
+            <div id="historyContainer">
+                <div class="empty-state">
+                    <div class="emoji">📊</div>
+                    <p>No weeks logged yet. Enter this week's numbers above.<br>
+                    <span style="color:var(--text3);font-size:0.8rem;">Data is stored in your browser. Won't disappear.</span></p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Milestones -->
+        <div class="section">
+            <h2>🏆 Milestones</h2>
+            <div id="milestones">
+                <div class="kpi-grid">
+                    <div class="kpi-card" id="ms5"><div class="kpi-label">5 Customers</div><div class="kpi-value">—</div><div class="kpi-target">Foundation</div></div>
+                    <div class="kpi-card" id="ms10"><div class="kpi-label">10 Customers</div><div class="kpi-value">—</div><div class="kpi-target">Momentum</div></div>
+                    <div class="kpi-card" id="ms15"><div class="kpi-label">First Review</div><div class="kpi-value">—</div><div class="kpi-target">Social Proof</div></div>
+                    <div class="kpi-card" id="ms20"><div class="kpi-label">$500/wk Revenue</div><div class="kpi-value">—</div><div class="kpi-target">Part-Time Income</div></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'tidytails_kpi_data';
+        
+        // Get stored data
+        function getData() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { weeks: [] };
+            } catch(e) { return { weeks: [] }; }
+        }
+        
+        function saveData(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+        
+        // Set default date to nearest Sunday
+        function setDefaultDate() {
+            const d = new Date();
+            const day = d.getDay();
+            const diff = day === 0 ? 0 : 7 - day;
+            d.setDate(d.getDate() + diff);
+            document.getElementById('weekDate').value = d.toISOString().split('T')[0];
+        }
+        
+        // Save a week
+        function saveWeek() {
+            const week = {
+                date: document.getElementById('weekDate').value,
+                customers: parseInt(document.getElementById('inputCustomers').value) || 0,
+                revenue: parseFloat(document.getElementById('inputRevenue').value) || 0,
+                reviews: parseInt(document.getElementById('inputReviews').value) || 0,
+                leads: parseInt(document.getElementById('inputLeads').value) || 0,
+                posts: parseInt(document.getElementById('inputPosts').value) || 0,
+                adSpend: parseFloat(document.getElementById('inputAdSpend').value) || 0,
+                oneTime: parseFloat(document.getElementById('inputOneTime').value) || 0,
+                notes: document.getElementById('inputNotes').value || '',
+                logged: new Date().toISOString()
+            };
+            
+            if (!week.date) { alert('Pick a week ending date'); return; }
+            
+            const data = getData();
+            // Replace if same week exists
+            const idx = data.weeks.findIndex(w => w.date === week.date);
+            if (idx >= 0) { data.weeks[idx] = week; }
+            else { data.weeks.push(week); }
+            
+            // Sort by date
+            data.weeks.sort((a,b) => a.date.localeCompare(b.date));
+            saveData(data);
+            
+            // Clear form
+            ['inputCustomers','inputRevenue','inputReviews','inputLeads','inputPosts','inputAdSpend','inputOneTime','inputNotes'].forEach(id => {
+                document.getElementById(id).value = '';
+            });
+            
+            render();
+        }
+        
+        function deleteLastWeek() {
+            const data = getData();
+            if (data.weeks.length === 0) return;
+            if (!confirm('Delete the last entry (' + data.weeks[data.weeks.length-1].date + ')?')) return;
+            data.weeks.pop();
+            saveData(data);
+            render();
+        }
+        
+        // Calculate change
+        function calcChange(current, previous) {
+            if (previous === 0 && current === 0) return { text: '—', class: 'trend-flat' };
+            if (previous === 0) return { text: '+' + current, class: 'trend-up' };
+            const diff = current - previous;
+            if (diff > 0) return { text: '+' + diff, class: 'trend-up' };
+            if (diff < 0) return { text: '' + diff, class: 'trend-down' };
+            return { text: '→ flat', class: 'trend-flat' };
+        }
+        
+        // Generate insights
+        function generateInsights(weeks) {
+            const insights = [];
+            if (weeks.length < 2) return insights;
+            
+            const latest = weeks[weeks.length - 1];
+            const prev = weeks[weeks.length - 2];
+            
+            // Customer growth rate
+            if (latest.customers > prev.customers) {
+                const gained = latest.customers - prev.customers;
+                const weeksTo30 = latest.customers >= 30 ? 0 : Math.ceil((30 - latest.customers) / gained);
+                insights.push({
+                    title: `🚀 Growing! +${gained} customer${gained>1?'s':''} this week`,
+                    text: weeksTo30 > 0 ? `At this pace, you'll hit 30 customers in ~${weeksTo30} weeks (${new Date(Date.now() + weeksTo30*7*86400000).toLocaleDateString('en-US', {month:'short', day:'numeric'})})` : 'You hit the goal! 🎉'
+                });
+            } else if (latest.customers < prev.customers) {
+                insights.push({
+                    title: '⚠️ Lost a customer',
+                    text: `Went from ${prev.customers} → ${latest.customers}. Find out why. Was it price, service, or seasonal?`
+                });
+            } else if (latest.customers === prev.customers && weeks.length >= 3) {
+                const flat = weeks.filter((w,i) => i >= weeks.length-3).every(w => w.customers === latest.customers);
+                if (flat) {
+                    insights.push({
+                        title: '📉 Stalled — same customer count for 3+ weeks',
+                        text: 'Time to try something new: run paid ads, post in FB groups, or hit dog parks.'
+                    });
+                }
+            }
+            
+            // Revenue per customer
+            if (latest.customers > 0) {
+                const rpc = (latest.revenue / latest.customers).toFixed(0);
+                insights.push({
+                    title: `💰 Revenue per customer: $${rpc}/week`,
+                    text: rpc < 20 ? 'Below $20/customer — check if anyone needs a price increase' : `Healthy revenue per customer`
+                });
+            }
+            
+            // Lead conversion
+            if (prev.leads > 0 && latest.customers > prev.customers) {
+                const convRate = ((latest.customers - prev.customers) / prev.leads * 100).toFixed(0);
+                insights.push({
+                    title: `📞 Lead conversion: ${convRate}%`,
+                    text: convRate < 30 ? 'Below 30% — work on follow-up speed and closing' : 'Solid conversion rate!'
+                });
+            }
+            
+            // No posts warning
+            if (latest.posts === 0) {
+                insights.push({
+                    title: '🔇 Zero outreach this week',
+                    text: 'No posts, no ads, no outreach = no new customers. Post in at least 3 FB groups next week.'
+                });
+            }
+            
+            // Ad spend ROI
+            if (latest.adSpend > 0 && latest.leads > 0) {
+                const cpl = (latest.adSpend / latest.leads).toFixed(0);
+                insights.push({
+                    title: `📊 Cost per lead: $${cpl}`,
+                    text: cpl > 50 ? 'Expensive leads — tweak targeting or try different ad copy' : 'Good cost per lead for local services'
+                });
+            }
+            
+            // Total revenue trend
+            const totalRev = latest.revenue + latest.oneTime;
+            const prevTotalRev = prev.revenue + prev.oneTime;
+            if (totalRev > prevTotalRev) {
+                insights.push({
+                    title: `📈 Revenue up $${(totalRev - prevTotalRev).toFixed(0)} vs last week`,
+                    text: `Total: $${totalRev.toFixed(0)} (recurring: $${latest.revenue.toFixed(0)} + one-time: $${latest.oneTime.toFixed(0)})`
+                });
+            }
+            
+            return insights;
+        }
+        
+        // Draw simple chart
+        function drawChart(weeks) {
+            const canvas = document.getElementById('growthChart');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.parentElement.clientWidth - 32;
+            canvas.height = 188;
+            
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            if (weeks.length === 0) {
+                ctx.fillStyle = '#555';
+                ctx.font = '14px Inter, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Log your first week to see the growth chart', canvas.width/2, canvas.height/2);
+                return;
+            }
+            
+            const maxCustomers = Math.max(30, ...weeks.map(w => w.customers));
+            const padding = { top: 25, right: 20, bottom: 35, left: 40 };
+            const chartW = canvas.width - padding.left - padding.right;
+            const chartH = canvas.height - padding.top - padding.bottom;
+            
+            // Goal line at 30
+            const goalY = padding.top + chartH - (30 / maxCustomers * chartH);
+            ctx.strokeStyle = 'rgba(16,185,129,0.3)';
+            ctx.setLineDash([5,5]);
+            ctx.beginPath();
+            ctx.moveTo(padding.left, goalY);
+            ctx.lineTo(canvas.width - padding.right, goalY);
+            ctx.stroke();
+            ctx.setLineDash([]);
+            ctx.fillStyle = 'rgba(16,185,129,0.5)';
+            ctx.font = '10px JetBrains Mono, monospace';
+            ctx.textAlign = 'right';
+            ctx.fillText('Goal: 30', canvas.width - padding.right - 5, goalY - 5);
+            
+            // Y axis labels
+            ctx.fillStyle = '#555';
+            ctx.font = '10px JetBrains Mono, monospace';
+            ctx.textAlign = 'right';
+            for (let i = 0; i <= maxCustomers; i += Math.max(1, Math.ceil(maxCustomers/5))) {
+                const y = padding.top + chartH - (i / maxCustomers * chartH);
+                ctx.fillText(i, padding.left - 8, y + 3);
+                ctx.strokeStyle = 'rgba(42,42,42,0.5)';
+                ctx.beginPath();
+                ctx.moveTo(padding.left, y);
+                ctx.lineTo(canvas.width - padding.right, y);
+                ctx.stroke();
+            }
+            
+            if (weeks.length === 1) {
+                // Single dot
+                const x = padding.left + chartW / 2;
+                const y = padding.top + chartH - (weeks[0].customers / maxCustomers * chartH);
+                ctx.beginPath();
+                ctx.arc(x, y, 6, 0, Math.PI * 2);
+                ctx.fillStyle = '#3b82f6';
+                ctx.fill();
+                ctx.fillStyle = '#f5f5f5';
+                ctx.font = 'bold 12px JetBrains Mono, monospace';
+                ctx.textAlign = 'center';
+                ctx.fillText(weeks[0].customers, x, y - 12);
+                return;
+            }
+            
+            // Draw line
+            const stepX = chartW / (weeks.length - 1);
+            
+            // Area fill
+            ctx.beginPath();
+            ctx.moveTo(padding.left, padding.top + chartH);
+            weeks.forEach((w, i) => {
+                const x = padding.left + i * stepX;
+                const y = padding.top + chartH - (w.customers / maxCustomers * chartH);
+                ctx.lineTo(x, y);
+            });
+            ctx.lineTo(padding.left + (weeks.length-1) * stepX, padding.top + chartH);
+            ctx.closePath();
+            const gradient = ctx.createLinearGradient(0, padding.top, 0, padding.top + chartH);
+            gradient.addColorStop(0, 'rgba(59,130,246,0.2)');
+            gradient.addColorStop(1, 'rgba(59,130,246,0)');
+            ctx.fillStyle = gradient;
+            ctx.fill();
+            
+            // Line
+            ctx.beginPath();
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 2.5;
+            ctx.lineJoin = 'round';
+            weeks.forEach((w, i) => {
+                const x = padding.left + i * stepX;
+                const y = padding.top + chartH - (w.customers / maxCustomers * chartH);
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            });
+            ctx.stroke();
+            
+            // Dots + labels
+            weeks.forEach((w, i) => {
+                const x = padding.left + i * stepX;
+                const y = padding.top + chartH - (w.customers / maxCustomers * chartH);
+                ctx.beginPath();
+                ctx.arc(x, y, 4, 0, Math.PI * 2);
+                ctx.fillStyle = '#3b82f6';
+                ctx.fill();
+                ctx.strokeStyle = '#0a0a0a';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // Value label
+                ctx.fillStyle = '#f5f5f5';
+                ctx.font = 'bold 10px JetBrains Mono, monospace';
+                ctx.textAlign = 'center';
+                ctx.fillText(w.customers, x, y - 10);
+                
+                // Date label
+                ctx.fillStyle = '#555';
+                ctx.font = '9px JetBrains Mono, monospace';
+                const d = new Date(w.date + 'T12:00:00');
+                ctx.fillText(d.toLocaleDateString('en-US', {month:'short', day:'numeric'}), x, canvas.height - 5);
+            });
+            
+            ctx.lineWidth = 1;
+        }
+        
+        // Check milestones
+        function checkMilestones(weeks) {
+            const milestones = {
+                ms5: { check: w => w.customers >= 5, label: '5 Customers' },
+                ms10: { check: w => w.customers >= 10, label: '10 Customers' },
+                ms15: { check: w => w.reviews >= 1, label: 'First Review' },
+                ms20: { check: w => w.revenue >= 500, label: '$500/wk' }
+            };
+            
+            Object.entries(milestones).forEach(([id, ms]) => {
+                const card = document.getElementById(id);
+                const val = card.querySelector('.kpi-value');
+                const hit = weeks.find(w => ms.check(w));
+                if (hit) {
+                    val.textContent = '✅';
+                    val.style.fontSize = '1.5rem';
+                    card.classList.add('good');
+                    card.querySelector('.kpi-target').textContent = 'Hit: ' + new Date(hit.date + 'T12:00:00').toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+                } else {
+                    val.textContent = '—';
+                    val.style.color = 'var(--text3)';
+                }
+            });
+        }
+        
+        // Main render
+        function render() {
+            const data = getData();
+            const weeks = data.weeks;
+            const latest = weeks.length > 0 ? weeks[weeks.length - 1] : null;
+            const prev = weeks.length > 1 ? weeks[weeks.length - 2] : null;
+            
+            // North Star
+            if (latest) {
+                document.getElementById('currentCustomers').textContent = latest.customers;
+                const pct = Math.min(100, (latest.customers / 30 * 100));
+                document.getElementById('goalFill').style.width = pct + '%';
+                document.getElementById('goalLabel').textContent = `${pct.toFixed(0)}% to goal · ${30 - latest.customers} more to go`;
+                
+                if (prev) {
+                    const ch = calcChange(latest.customers, prev.customers);
+                    document.getElementById('customerTrend').innerHTML = `<span class="${ch.class}">${ch.text} vs last week</span>`;
+                }
+                
+                // KPI cards
+                document.querySelector('#kpiRevenue .kpi-value').textContent = '$' + latest.revenue.toFixed(0);
+                document.querySelector('#kpiReviews .kpi-value').textContent = latest.reviews;
+                document.querySelector('#kpiLeads .kpi-value').textContent = latest.leads;
+                document.querySelector('#kpiPosts .kpi-value').textContent = latest.posts;
+                
+                if (prev) {
+                    ['revenue','reviews','leads','posts'].forEach(key => {
+                        const ch = calcChange(latest[key], prev[key]);
+                        const el = document.getElementById(key + 'Change');
+                        if (el) el.innerHTML = `<span class="${ch.class}">${ch.text}</span>`;
+                    });
+                }
+                
+                // Card status colors
+                document.getElementById('kpiRevenue').className = 'kpi-card ' + (latest.revenue >= 500 ? 'good' : latest.revenue >= 200 ? 'warn' : 'bad');
+                document.getElementById('kpiReviews').className = 'kpi-card ' + (latest.reviews >= 15 ? 'good' : latest.reviews >= 5 ? 'warn' : 'bad');
+                document.getElementById('kpiLeads').className = 'kpi-card ' + (latest.leads >= 5 ? 'good' : latest.leads >= 2 ? 'warn' : 'bad');
+                document.getElementById('kpiPosts').className = 'kpi-card ' + (latest.posts >= 5 ? 'good' : latest.posts >= 2 ? 'warn' : 'bad');
+            }
+            
+            // Streak
+            let streak = 0;
+            if (weeks.length > 0) {
+                streak = 1;
+                for (let i = weeks.length - 1; i > 0; i--) {
+                    const d1 = new Date(weeks[i].date);
+                    const d2 = new Date(weeks[i-1].date);
+                    const daysDiff = (d1 - d2) / 86400000;
+                    if (daysDiff <= 9) streak++; // allow some slack
+                    else break;
+                }
+            }
+            document.getElementById('streakNum').textContent = streak;
+            
+            // Chart
+            drawChart(weeks);
+            
+            // Insights
+            const insights = generateInsights(weeks);
+            const insSection = document.getElementById('insightsSection');
+            const insContainer = document.getElementById('insightsContainer');
+            if (insights.length > 0) {
+                insSection.style.display = 'block';
+                insContainer.innerHTML = insights.map(i => `<div class="insight"><div class="insight-title">${i.title}</div><div class="insight-text">${i.text}</div></div>`).join('');
+            } else {
+                insSection.style.display = 'none';
+            }
+            
+            // History table
+            const histContainer = document.getElementById('historyContainer');
+            if (weeks.length === 0) {
+                histContainer.innerHTML = '<div class="empty-state"><div class="emoji">📊</div><p>No weeks logged yet. Enter this week\'s numbers above.<br><span style="color:var(--text3);font-size:0.8rem;">Data is stored in your browser. Won\'t disappear.</span></p></div>';
+            } else {
+                let html = '<div style="overflow-x:auto;"><table class="history-table"><thead><tr><th>Week</th><th>👤 Cust</th><th>💰 Rev</th><th>⭐ Rev</th><th>📞 Leads</th><th>📣 Posts</th><th>💸 Ads</th><th>📝 Notes</th></tr></thead><tbody>';
+                [...weeks].reverse().forEach(w => {
+                    const d = new Date(w.date + 'T12:00:00');
+                    const label = d.toLocaleDateString('en-US', {month:'short', day:'numeric'});
+                    html += `<tr>
+                        <td class="week-label">${label}</td>
+                        <td style="color:var(--green);font-weight:700;">${w.customers}</td>
+                        <td>$${w.revenue.toFixed(0)}</td>
+                        <td>${w.reviews}</td>
+                        <td>${w.leads}</td>
+                        <td>${w.posts}</td>
+                        <td>$${w.adSpend.toFixed(0)}</td>
+                        <td style="font-family:Inter,sans-serif;color:var(--text2);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="${w.notes || ''}">${w.notes || '—'}</td>
+                    </tr>`;
+                });
+                html += '</tbody></table></div>';
+                histContainer.innerHTML = html;
+            }
+            
+            // Milestones
+            checkMilestones(weeks);
+        }
+        
+        // Init
+        setDefaultDate();
+        render();
+        
+        // Redraw chart on resize
+        window.addEventListener('resize', () => drawChart(getData().weeks));
+    </script>
+</body>
+</html>

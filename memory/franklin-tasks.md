@@ -6,6 +6,41 @@
 
 ## March 14, 2026 (Saturday)
 
+### 10:05 PM — 📊 WEEKLY KPI SCORECARD — Track What Actually Matters
+**Task:** Build a weekly KPI tracking dashboard to close the execution gap — 69 deliverables but still 4-5 customers means we're not tracking what matters
+**Result:** ✅ COMPLETED — Full interactive scorecard with customer growth chart, auto-insights engine, milestone tracking, weekly logging streak, and history table
+
+**Why This Task:**
+- 69 deliverables shipped. Still 4-5 customers. The gap isn't strategy — it's tracking execution.
+- No existing mechanism to track week-over-week progress on the metrics that matter
+- TJ can't tell if things are improving, stalling, or declining without data
+- Late Saturday = good time for infrastructure rather than more content
+- A scorecard creates accountability — "same number 3 weeks in a row" hits different than "I should probably post more"
+
+**What I Built:**
+1. **North Star Metric** — Big recurring customer count with progress bar toward 30-customer goal
+2. **4 KPI Cards** — Revenue, Google Reviews, Leads, Posts/Outreach with color-coded status (green/yellow/red) and week-over-week change indicators
+3. **Customer Growth Chart** — Canvas-rendered line chart with goal line at 30, shows trajectory over time
+4. **Weekly Logging Form** — Enter: customers, revenue, reviews, leads, posts, ad spend, one-time jobs, notes. 2 minutes per week.
+5. **Auto-Insights Engine** — Generates contextual alerts:
+   - Growth pace → "At this rate, you'll hit 30 by [date]"
+   - Stall detection → "Same count 3+ weeks, try something new"
+   - Revenue per customer calculation
+   - Lead conversion rate tracking
+   - Zero outreach warnings
+   - Cost per lead from ads
+6. **Weekly Logging Streak** — Gamified consistency tracker
+7. **Milestone Board** — Tracks when you hit: 5 customers, 10 customers, first review, $500/wk revenue
+8. **History Table** — All weeks at a glance with every metric
+9. **localStorage persistence** — Data survives browser refreshes, no backend needed
+
+**Key Insight:** We've been building playbooks for weeks. What we haven't built is the instrument panel. You can't improve what you don't measure. This scorecard is the single place where TJ answers "are we actually growing?" every Sunday in 2 minutes.
+
+**Files:** `dashboard/2026-03-14-WEEKLY-KPI-SCORECARD.html`, updated `dashboard/index.html`
+**Rotation:** 📊 Operations — Business Intelligence
+
+---
+
 ### 9:04 PM — 🏗️ SHED MARKET INTEL UPDATE — Lumber $501, Tariffs 45%+, Competitor Pricing Refresh
 **Task:** Research and compile fresh shed market intelligence with updated lumber pricing, tariff data, live competitor pricing, and actionable sales talking points for TJ's weekend conversations
 **Result:** ✅ COMPLETED — Full intel report with live pricing data, 5 tap-to-copy sales talk tracks, competitor breakdown, tariff visualization, and weekend action checklist
