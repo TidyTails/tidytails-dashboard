@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Spring Content Pack — Tidy Tails</title>
+    <style>
+        :root {
+            --green: #2d6a4f;
+            --green-light: #40916c;
+            --green-dark: #1b4332;
+            --cream: #f8f6f0;
+            --orange: #e07b39;
+            --white: #fff;
+            --gray: #666;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--cream); color: #333; }
+        
+        .header {
+            background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header h1 { font-size: 1.8rem; margin-bottom: 8px; }
+        .header p { opacity: 0.85; font-size: 1rem; }
+        
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        
+        .stats-bar {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .stat {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 16px 20px;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .stat-number { font-size: 1.6rem; font-weight: 800; color: var(--green); }
+        .stat-label { font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid var(--green);
+            background: var(--white);
+            color: var(--green);
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--green);
+            color: white;
+        }
+        
+        .post-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 20px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .post-header:hover { background: rgba(0,0,0,0.02); }
+        .post-title { font-weight: 700; font-size: 1rem; }
+        .post-meta {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .platform-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .badge-facebook { background: #e7f0ff; color: #1877f2; }
+        .badge-nextdoor { background: #e8f5e9; color: #00b140; }
+        .badge-instagram { background: #fce4ec; color: #e91e63; }
+        
+        .post-body {
+            display: none;
+            padding: 0 20px 20px;
+        }
+        .post-body.open { display: block; }
+        
+        .post-content {
+            background: #f5f5f5;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--green);
+        }
+        
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: var(--orange);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+        .copy-btn.copied { background: var(--green); }
+        
+        .post-tip {
+            background: #fffde7;
+            border-radius: 8px;
+            padding: 10px 14px;
+            font-size: 0.8rem;
+            color: #795548;
+            margin-top: 10px;
+        }
+        .post-tip strong { color: #5d4037; }
+        
+        .schedule-section {
+            margin-top: 30px;
+        }
+        .schedule-section h2 {
+            font-size: 1.3rem;
+            color: var(--green-dark);
+            margin-bottom: 16px;
+        }
+        .schedule-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            background: var(--white);
+            border-radius: 10px;
+            margin-bottom: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+        .schedule-date {
+            font-weight: 700;
+            font-size: 0.85rem;
+            color: var(--green);
+            min-width: 80px;
+        }
+        .schedule-post { font-size: 0.9rem; flex: 1; }
+        .schedule-check {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        .schedule-check.done {
+            background: var(--green);
+            border-color: var(--green);
+            color: white;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 16px 0;
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.4rem; }
+            .stats-bar { flex-direction: column; }
+            .post-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌸 Spring Content Pack</h1>
+        <p>12 ready-to-post pieces for Facebook, Nextdoor & Instagram</p>
+    </div>
+    
+    <div class="container">
+        <a href="../" class="back-link">← Back to Dashboard</a>
+        
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="stat-number">12</div>
+                <div class="stat-label">Total Posts</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Facebook</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Nextdoor</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Instagram</div>
+            </div>
+        </div>
+        
+        <div class="filter-bar">
+            <button class="filter-btn active" onclick="filterPosts('all')">All</button>
+            <button class="filter-btn" onclick="filterPosts('facebook')">📘 Facebook</button>
+            <button class="filter-btn" onclick="filterPosts('nextdoor')">🏘️ Nextdoor</button>
+            <button class="filter-btn" onclick="filterPosts('instagram')">📸 Instagram</button>
+        </div>
+        
+        <div id="posts-container"></div>
+        
+        <div class="schedule-section">
+            <h2>📅 Posting Schedule</h2>
+            <div id="schedule-container"></div>
+        </div>
+    </div>
+
+    <script>
+    const posts = [
+        {
+            id: 'fb1',
+            platform: 'facebook',
+            title: 'The "Spring Minefield" Post',
+            tip: 'Best for Florissant & North County groups. Post on a Sunday when people are thinking about yard work.',
+            content: `Spring is here and the snow melted... but it left behind every pile from winter 😅
+
+If your backyard looks like a minefield right now, you're not alone. I'm TJ with Tidy Tails — I do pet waste removal in St. Louis County and St. Charles County.
+
+Here's what I offer:
+✅ Weekly cleanup — $25/week
+✅ One-time deep clean — $100 (perfect for spring reset)
+✅ No contracts, ever
+✅ I bag it and haul it away
+
+If you've been putting off the spring cleanup... text me. I'll have your yard looking like new in one visit.
+
+📱 (314) 850-7140 call or text
+🌐 tidytailsstl.com`
+        },
+        {
+            id: 'fb2',
+            platform: 'facebook',
+            title: 'The "Honest Question" Post (Gets Comments)',
+            tip: 'Engagement bait — the question gets people commenting, which boosts visibility. Reply to EVERY comment.',
+            content: `Honest question for dog owners: how long has it been since you actually cleaned up your whole yard? No judgment 😂
+
+I started Tidy Tails because I know the answer for most people is "too long." Life gets busy. The piles stack up. And then it's this huge chore nobody wants to deal with.
+
+I come out weekly, clean every corner, bag it, and take it with me. Starting at $25/week.
+
+Serving Florissant, O'Fallon, St. Peters, Ferguson, Maryland Heights, and most of STL County.
+
+Drop a 🙋 if you've been meaning to deal with your yard but keep putting it off. (No shame — that's literally why I started this business)
+
+📱 (314) 850-7140`
+        },
+        {
+            id: 'fb3',
+            platform: 'facebook',
+            title: 'The "Kids & Spring" Post (Parent Appeal)',
+            tip: 'Best for family-oriented groups. Parents are your highest-converting demographic — they want the yard safe for kids.',
+            content: `Your kids want to play outside. Your yard wants to fight them. 😬
+
+Spring is here and the backyard should be a fun zone, not a danger zone. If your dog's been doing their thing all winter and you haven't kept up (who has?), let me take care of it.
+
+I'm TJ — local guy, not a franchise. I show up same day every week, scoop everything, bag it, and haul it off. Your kids get their yard back. You get your weekends back.
+
+Weekly service: $25/week
+Spring deep clean: $100 (one visit, fresh start)
+
+📱 Text me: (314) 850-7140
+🐕 tidytailsstl.com
+
+Serving St. Louis County & St. Charles County`
+        },
+        {
+            id: 'fb4',
+            platform: 'facebook',
+            title: 'The "Value Prop" Math Post',
+            tip: 'For price-conscious audiences. The math makes the value undeniable — 3 hours of gross work vs. $25/week.',
+            content: `I did the math so you don't have to:
+
+⏱️ Average time to fully clean a yard with 1-2 dogs: 45 min
+📅 That's 3+ hours/month of your weekend
+💰 My service: $25/week = about $100/month
+
+For the price of two dinners out, you never have to deal with dog poop again. Like, ever.
+
+I'm TJ with Tidy Tails. Locally owned, just me — same face every week. No contracts. No franchise fees getting passed along.
+
+Spring special: First-time customers get a FREE deep clean assessment.
+
+📱 (314) 850-7140
+🌐 tidytailsstl.com`
+        },
+        {
+            id: 'fb5',
+            platform: 'facebook',
+            title: 'The "Social Proof" Post',
+            tip: 'Use this AFTER getting positive feedback from a customer. Even better: screenshot the text and post it (with permission).',
+            content: `Started Tidy Tails about a year ago thinking "who would pay someone to pick up dog poop?"
+
+Turns out... a LOT of people. And they're some of the coolest customers I've ever worked with.
+
+Here's what I keep hearing:
+"I should've done this months ago"
+"Best money I spend all month"  
+"My yard has never looked this good"
+
+If you've been on the fence — just try it. No contracts. Cancel anytime. I'll come out, clean everything, and you'll wonder why you waited.
+
+📱 (314) 850-7140
+🌐 tidytailsstl.com
+
+Serving: Florissant, O'Fallon, St. Peters, Ferguson, Chesterfield, Maryland Heights, Ballwin, and more`
+        },
+        {
+            id: 'nd1',
+            platform: 'nextdoor',
+            title: 'Neighbor Introduction',
+            tip: 'Replace [YOUR NEIGHBORHOOD] with your actual neighborhood name. Nextdoor shows this to nearby neighborhoods too.',
+            content: `Hey neighbors! Quick intro — I'm TJ and I run Tidy Tails, a pet waste removal service right here in the area.
+
+With spring here, I know a lot of yards are... rough after winter 😅
+
+What I do: come to your yard weekly, scoop everything, bag it, haul it away. $25/week, no contracts.
+
+I also do one-time deep cleans for $100 if you just need a spring reset.
+
+Happy to answer any questions! (314) 850-7140
+
+tidytailsstl.com`
+        },
+        {
+            id: 'nd2',
+            platform: 'nextdoor',
+            title: 'The "Ask" Post (Gets Engagement)',
+            tip: 'Framing as a question gets neighbors responding. Their comments boost your visibility to MORE neighborhoods.',
+            content: `Quick question for dog owners in the area — what's the biggest yard headache you deal with in spring?
+
+I ask because I run a pet waste removal service (Tidy Tails) and I'm always looking for ways to help. Right now my most popular service is the spring deep clean — one visit, every pile gone, $100 flat.
+
+Also do weekly service for folks who want to keep it clean going forward ($25/week).
+
+Curious what issues everyone's dealing with as it warms up. 🐕`
+        },
+        {
+            id: 'nd3',
+            platform: 'nextdoor',
+            title: 'The "Dog Photo" Post',
+            tip: 'Attach a photo of a cute dog from a job (or your own dog). Dogs get clicks. Keep the caption short for Nextdoor.',
+            content: `Another spring cleanup in the books! Love this job — fresh air, happy dogs, and customers who are pumped to actually use their backyard again.
+
+If your yard needs some love after winter, hit me up:
+📱 (314) 850-7140
+🌐 tidytailsstl.com
+
+Weekly service or one-time cleanups available. No contracts, locally owned.`
+        },
+        {
+            id: 'ig1',
+            platform: 'instagram',
+            title: 'Before/After Spring Deep Clean',
+            tip: 'Take a REAL before/after photo on your next job. Even phone quality is fine — authenticity beats production value.',
+            content: `The before/after nobody asked for but EVERYONE needs to see 💩➡️✨
+
+Spring deep clean: $100. One visit. Every. Single. Pile. Gone.
+
+Your backyard deserves better. So do your bare feet.
+
+📱 (314) 850-7140
+🌐 tidytailsstl.com
+
+#tidytailsstl #pooperscooper #stlouis #petwasteRemoval #springcleaning #dogmom #dogdad #stldog #florissant #ofallon #stpeters #yardcleanup #localstl #stlouismo #doglife`
+        },
+        {
+            id: 'ig2',
+            platform: 'instagram',
+            title: '"This Is My Office" Photo Post',
+            tip: 'Take a nice outdoor photo — could be a sunset, a yard, a dog. Anything that says "I love being outside."',
+            content: `My office view isn't bad 🐕☀️
+
+Every week I get to be outdoors, hang with dogs, and make backyards usable again. Not a bad gig.
+
+Spring bookings are filling up — if you need weekly service or a one-time deep clean, hit the link in bio or text me.
+
+📱 (314) 850-7140
+
+#tidytailsstl #pooperscooper #smallbusinessstl #stlouisdog #workingoutdoors #dogmom #dogsofstlouis #petwasteRemoval #springcleanup #localstl #supportlocal #stlouismo`
+        },
+        {
+            id: 'ig3',
+            platform: 'instagram',
+            title: '"Real Talk" Carousel/List Post',
+            tip: 'Works as a text-based carousel (5 slides, 1 per quote) or as a single caption. Carousel gets more saves.',
+            content: `Things I hear every single week as a pooper scooper:
+
+1. "I should've called you months ago"
+2. "My husband/wife is SO happy right now"
+3. "The kids can finally play outside"
+4. "This is the best $25 I spend"
+5. "Why didn't I know this existed?"
+
+If this sounds like something you need... it probably is 😂
+
+📱 (314) 850-7140
+🌐 tidytailsstl.com
+
+#tidytailsstl #stlouis #pooperscooperservice #petwasteRemoval #dogowner #stldog #weeklyservice #smallbusiness #stlouismo #dogmom #realtalks`
+        },
+        {
+            id: 'ig4',
+            platform: 'instagram',
+            title: '15-Second Reel Script',
+            tip: 'Film this yourself talking to camera. Casual, not scripted. Just hit the key points: what you do, price, no contracts.',
+            content: `[REEL SCRIPT — Talk to camera, casual vibe]
+
+"Hey, quick question. When's the last time you actually fully cleaned up your yard? If the answer is 'I don't wanna talk about it' — that's where I come in.
+
+I'm TJ with Tidy Tails. I show up every week, scoop everything, bag it, haul it out. $25 a week, no contracts.
+
+Spring deep cleans are $100 — one visit, fresh start. Link in bio."
+
+[End with yard shot or happy dog]
+
+#tidytailsstl #stlouis #pooperscooper #springcleanup #dogmom #stldog #petwasteRemoval #reels`
+        }
+    ];
+
+    const schedule = [
+        { date: 'Mar 16', day: 'Sun', post: 'fb1', label: 'FB: Spring Minefield → Florissant group' },
+        { date: 'Mar 18', day: 'Tue', post: 'nd1', label: 'Nextdoor: Neighbor Introduction' },
+        { date: 'Mar 20', day: 'Thu', post: 'ig1', label: 'IG: Before/After (need photo!)' },
+        { date: 'Mar 22', day: 'Sat', post: 'fb2', label: 'FB: Honest Question → O\'Fallon group' },
+        { date: 'Mar 24', day: 'Mon', post: 'nd2', label: 'Nextdoor: The Ask Post' },
+        { date: 'Mar 26', day: 'Wed', post: 'ig2', label: 'IG: This Is My Office' },
+        { date: 'Mar 28', day: 'Fri', post: 'fb3', label: 'FB: Kids & Spring → STL County group' },
+        { date: 'Mar 30', day: 'Sun', post: 'ig3', label: 'IG: Real Talk carousel' },
+        { date: 'Apr 1', day: 'Tue', post: 'fb4', label: 'FB: Value Prop → Dog owners group' },
+        { date: 'Apr 3', day: 'Thu', post: 'nd3', label: 'Nextdoor: Dog Photo post' },
+        { date: 'Apr 5', day: 'Sat', post: 'ig4', label: 'IG: Reel (film this!)' },
+        { date: 'Apr 7', day: 'Mon', post: 'fb5', label: 'FB: Social Proof → Any group' },
+    ];
+
+    function renderPosts(filter = 'all') {
+        const container = document.getElementById('posts-container');
+        const filtered = filter === 'all' ? posts : posts.filter(p => p.platform === filter);
+        
+        container.innerHTML = filtered.map(p => `
+            <div class="post-card" data-platform="${p.platform}">
+                <div class="post-header" onclick="togglePost('${p.id}')">
+                    <div>
+                        <span class="platform-badge badge-${p.platform}">${p.platform === 'facebook' ? '📘 Facebook' : p.platform === 'nextdoor' ? '🏘️ Nextdoor' : '📸 Instagram'}</span>
+                        <span class="post-title"> ${p.title}</span>
+                    </div>
+                    <span id="arrow-${p.id}">▼</span>
+                </div>
+                <div class="post-body" id="body-${p.id}">
+                    <div class="post-content" id="content-${p.id}">${escapeHtml(p.content)}</div>
+                    <button class="copy-btn" onclick="copyPost('${p.id}')">📋 Copy to Clipboard</button>
+                    <div class="post-tip">💡 <strong>Tip:</strong> ${p.tip}</div>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function renderSchedule() {
+        const container = document.getElementById('schedule-container');
+        const done = JSON.parse(localStorage.getItem('schedule-done') || '{}');
+        
+        container.innerHTML = schedule.map((s, i) => `
+            <div class="schedule-item">
+                <div class="schedule-check ${done[i] ? 'done' : ''}" onclick="toggleSchedule(${i})">
+                    ${done[i] ? '✓' : ''}
+                </div>
+                <div class="schedule-date">${s.date}</div>
+                <div class="schedule-post" style="${done[i] ? 'text-decoration: line-through; opacity: 0.5;' : ''}">${s.label}</div>
+                <span class="platform-badge badge-${posts.find(p=>p.id===s.post)?.platform || 'facebook'}" style="font-size:0.65rem">${s.day}</span>
+            </div>
+        `).join('');
+    }
+
+    function togglePost(id) {
+        const body = document.getElementById('body-' + id);
+        const arrow = document.getElementById('arrow-' + id);
+        body.classList.toggle('open');
+        arrow.textContent = body.classList.contains('open') ? '▲' : '▼';
+    }
+
+    function copyPost(id) {
+        const post = posts.find(p => p.id === id);
+        if (post) {
+            navigator.clipboard.writeText(post.content).then(() => {
+                const btns = document.querySelectorAll('.copy-btn');
+                btns.forEach(b => { b.classList.remove('copied'); b.innerHTML = '📋 Copy to Clipboard'; });
+                event.target.classList.add('copied');
+                event.target.innerHTML = '✅ Copied!';
+                setTimeout(() => {
+                    event.target.classList.remove('copied');
+                    event.target.innerHTML = '📋 Copy to Clipboard';
+                }, 2000);
+            });
+        }
+    }
+
+    function toggleSchedule(index) {
+        const done = JSON.parse(localStorage.getItem('schedule-done') || '{}');
+        done[index] = !done[index];
+        localStorage.setItem('schedule-done', JSON.stringify(done));
+        renderSchedule();
+    }
+
+    function filterPosts(platform) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+        renderPosts(platform);
+    }
+
+    function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    renderPosts();
+    renderSchedule();
+    </script>
+</body>
+</html>
