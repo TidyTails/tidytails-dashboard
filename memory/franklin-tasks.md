@@ -6,6 +6,85 @@
 
 ## March 15, 2026 (Sunday)
 
+### 8:05 AM — 📱 FACEBOOK GROUP BLITZ PLAYBOOK
+**Task:** Research how successful pet waste removal founders actually got their first 25+ customers, then create a hyper-specific Facebook group posting playbook for STL
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 80+ deliverables created. Still 4-5 customers. The gap is EXECUTION, not more guides.
+- Every single successful founder credits Facebook groups as their #1 channel.
+- This deliverable is different: it's copy-paste posts + specific group names + response templates.
+
+**Key Research:**
+- Erica (Kroopin's Poopin Scoopin): 47 groups, 1 post → $5-6K + 80 recurring customers
+- Fresh Start: $200k year 1 via Facebook + Google Ads (2-5 leads/day)
+- Reddit: 39 customers in 3 months, branding + FB, $50/hr
+- Holy Crap Poop Scoop: 150 yards, FB + door hangers, $85/mo
+
+**Deliverable:** `deliverables/facebook-group-blitz-playbook-march2026.md`
+- 7 copy-paste posts, 15+ specific STL FB groups, posting schedule, response templates, before/after photo guide
+- Website STILL not indexed (`site:tidytailsstl.com` = 0 results)
+
+**Rotation:** 🎯 Strategy — Customer Acquisition
+
+---
+
+### 7:04 AM — 🎯 FACEBOOK ADS CAMPAIGN KIT + SPRING LANDING PAGE
+**Task:** Build paid advertising infrastructure — dedicated landing page + complete Facebook Ads campaign
+**Result:** ✅ COMPLETED — Landing page + 3 ad campaigns + dashboard tool shipped
+
+**Why This Task:**
+- 7 AM Sunday. 6 hours of content/research done overnight. All organic. But organic is BLOCKED by zero Google indexing.
+- The fastest path to NEW CUSTOMERS RIGHT NOW is paid Facebook ads. No waiting for Google.
+- Research at 6 AM found that a $200k/yr pet waste company's secret: "Facebook + Google Ads = 2-5 leads DAILY."
+- TJ needs ad infrastructure that's copy-paste ready. No friction. Just publish.
+- Rotation: 🎯 Strategy — Paid Advertising (first time building ad infrastructure)
+
+**What I Built:**
+
+1. **Spring Deep Clean Landing Page** — `tidy-tails/website/spring-clean.html`
+   - Mobile-first (most FB ad traffic is mobile)
+   - Single focus: $100 spring deep clean → text to book
+   - Sections: Hero with price → Problem agitation → What's included → Social proof → How it works → Upsell to $25/week → FAQ → Bottom CTA
+   - FAQ schema markup for Google rich snippets
+   - OG tags optimized for Facebook sharing
+   - Facebook Pixel placeholder (ready for TJ's pixel ID)
+   - Sticky top bar with phone number
+   - Pulse animation on CTA buttons
+   - Live at: tidytailsstl.com/spring-clean.html
+
+2. **Facebook Ads Dashboard** — `dashboard/facebook-ads-kit.html`
+   - One-click copy buttons for all 3 ad versions
+   - Audience targeting specs in visual cards
+   - Performance metrics guide (good/okay/bad ranges)
+   - Weekly optimization checklist with localStorage persistence
+   - Retargeting ad copy + upsell text template
+   - Budget math visualization ($7/day → $190+ profit month 1)
+   - Live at: tidytails.github.io/tidytails-dashboard/dashboard/facebook-ads-kit.html
+
+3. **Full Campaign Guide** — `deliverables/facebook-ads-campaign-kit-march2026.md`
+   - Campaign #1: "Spring Minefield" — 3 ad variations (Feed + Stories)
+   - Campaign #2: Retargeting visitors who didn't convert
+   - Campaign #3: Weekly service upsell for deep clean customers
+   - Exact targeting: dog owners + homeowners + STL 25mi radius
+   - Budget math: $7/day ($210/mo) → 4+ bookings ($400) → $190 profit month 1
+   - Week-by-week optimization checklist
+   - Creative ideas (before/after, video, Canva templates)
+   - Quick start: 30 minutes from zero to running ads
+
+**Why This Is Different From Everything Else Built:**
+- All 80+ previous deliverables are ORGANIC (free, requires TJ to post/execute)
+- This is PAID — works even when TJ doesn't post. Money goes in, leads come out.
+- Deep clean at $100 is the easiest first sale (one-time, no commitment)
+- Upsell funnel: $100 deep clean → $25/week recurring → lifetime value $1,300+/yr
+- If 2 deep clean customers convert to weekly, that's $200/mo recurring from $210 ad spend
+
+**Files:** `tidy-tails/website/spring-clean.html`, `dashboard/facebook-ads-kit.html`, `deliverables/facebook-ads-campaign-kit-march2026.md`, updated `sitemap.xml`
+**Git:** Pushed to origin/master ✅ (commit 74785a4)
+**Rotation:** 🎯 Strategy — Paid Advertising Infrastructure
+
+---
+
 ### 4:04 AM — 📝 SEO BLOG: Dog Poop Laws in Missouri & St. Louis
 **Task:** Write new blog post targeting keyword gap no competitor covers
 **Result:** ✅ COMPLETED — New high-intent blog post published
