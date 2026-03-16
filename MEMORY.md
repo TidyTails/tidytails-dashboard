@@ -64,7 +64,9 @@
 - GBP: CLAIMED ✅ (Feb 26) — DO NOT ASK AGAIN
 - Yelp: CLAIMED ✅ (Mar 5) — DO NOT ASK AGAIN
 - Google Search Console: VERIFIED ✅ (Mar 5) — DO NOT ASK AGAIN
-- **⚠️ STILL NOT INDEXED BY GOOGLE** (as of Mar 15 — domain registered Feb 16, only 27 days old)
+- **⚠️ STILL NOT INDEXED BY GOOGLE** (confirmed Mar 16 — Day 30, site: search = 0 results)
+- **⚠️ BRAND NAME COLLISION:** 8+ other "Tidy Tails" businesses nationally compete for branded search. Always use "Tidy Tails STL" in citations.
+- **MapQuest listing EXISTS** (auto-generated, Olivette MO 63132) — free citation
 - **ZERO Google reviews** vs competitors with 6+
 - Google Review Link: https://g.page/r/Ce_hqIHanGLvEAE/review
 - 21 city/area landing pages built on tidytailsstl.com

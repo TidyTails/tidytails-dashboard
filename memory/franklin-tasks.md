@@ -6,6 +6,65 @@
 
 ## March 16, 2026 (Monday)
 
+### 1:04 AM — 🔍 COMPETITIVE INTEL & INDEXING CHECK (Monitoring Sweep)
+**Task:** Late-night competitive monitoring — check Google indexing status, competitor website health, pricing updates
+**Result:** ✅ COMPLETE
+
+**Why This Task:**
+- Self-assessment says: "Late night = systems/maintenance" and "Competitive monitoring — market is moving"
+- Not building more deliverables. Gathering intel that informs decisions.
+- 1 AM Monday = perfect for recon, not creation
+
+**Key Findings:**
+
+1. **🚨 tidytailsstl.com STILL NOT INDEXED BY GOOGLE** (Day 30)
+   - `site:tidytailsstl.com` returns ZERO results via Brave Search
+   - Searching "Tidy Tails pet waste removal St Louis" → TJ's site doesn't appear anywhere
+   - robots.txt is clean (Allow: /), sitemap.xml has 17 URLs, all looks correct
+   - **Root cause:** Domain age (30 days) + zero backlinks = Google has no reason to crawl
+   - **Action needed:** Directory submissions (guide already built) would give Google signals to crawl
+
+2. **📍 MapQuest listing EXISTS** (NEW — not previously tracked)
+   - URL: mapquest.com/us/missouri/tidy-tails-pet-waste-removal-777064125
+   - Listed under Olivette, MO 63132
+   - This is an organic/auto-generated listing — free citation we didn't create
+
+3. **💀 Poopy Paws CONFIRMED DEAD (again)**
+   - poopypaws314.com DNS failure (ENOTFOUND) — domain has lapsed
+   - Was Yelp's #1 listed St. Louis pooper scooper
+   - 358 Facebook followers orphaned — their customers need a new provider
+   - **Opportunity:** TJ could target Poopy Paws' old service areas
+
+4. **💰 Poop 2 Scoop pricing confirmed: $18/week**
+   - Weekly: $18 (1 dog, regular yard)
+   - Twice weekly: $16
+   - Every other week: $25
+   - Add-ons: $4/extra dog, $4/large yard, $4/deodorize deck
+   - Also offers commercial services and pet waste stations
+   - Veteran-owned, 100% satisfaction guarantee, no contracts
+   - Phone: 314-449-9447
+
+5. **🗺️ Little Stinkers service area confirmed: St. Charles County ONLY**
+   - Serves: New Melle, Innsbrook, Troy, Moscow Mills, O'Fallon, St. Peters, St. Charles, Dardenne Prairie, Wright City, Warrenton, Truesdale, Wentzville
+   - Does NOT serve STL County — only overlaps in St. Charles County cities
+   - Offers: dog waste, litter boxes, pet waste stations, deodorizing, playground sanitation
+
+6. **⚠️ Brand Name Collision in Search Results**
+   - "Tidy Tails" returned 8 OTHER businesses nationally before TJ's
+   - Tidy Tails Charleston SC (tidytailschs.com)
+   - Tidy Tails Waste Solutions Atlanta (tidytailswastesolutions.com)
+   - Tidy Tails Valrico FL (teen-owned, got press coverage)
+   - Tidy Tails Pet Care (tidytailspetcare.com) — dog wash/groom
+   - Tidy Tails Pet Waste Removal (tidytailspetwasteremoval.net)
+   - **Implication:** Even when indexed, TJ may struggle for branded searches without "STL" or "St Louis"
+   - **SEO play:** Always use "Tidy Tails STL" or "Tidy Tails St. Louis" in all listings/citations
+
+**No action items created** — monitoring only. Existing priorities (directory submissions, review requests) remain correct.
+
+**Rotation:** 🔍 Research — Competitive Monitoring
+
+---
+
 ### 12:05 AM — 🔍 DIRECTORY SUBMISSION PLAYBOOK (Off-Page SEO)
 **Task:** Research and compile comprehensive directory submission guide to fix F-grade off-page SEO
 **Result:** ✅ COMPLETE
