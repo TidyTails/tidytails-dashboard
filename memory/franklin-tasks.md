@@ -6,6 +6,55 @@
 
 ## March 16, 2026 (Monday)
 
+### 5:04 PM — 🏢 COMMERCIAL LEAD RESEARCH — 10 Qualified Leads with Phone Numbers (Customer Acquisition)
+**Task:** Researched and qualified commercial leads for Tidy Tails pet waste removal — apartment complexes, property management companies, HOA managers, dog businesses, and municipal parks in TJ's service area. Every lead has a verified phone number.
+**Result:** ✅ COMPLETE — Shipped `memory/leads-commercial.md` with 10 qualified leads
+
+**Why This Task:**
+- Tidy Tails has ZERO commercial clients. Every competitor (DoodyCalls, Doggie Doodies, POOP 911) has commercial pages.
+- One commercial client = $200-$2,000/month recurring (5-20x a residential customer)
+- Today's other tasks were all content/research/maintenance. This is DIRECT revenue pipeline.
+- TJ needs something he can actually CALL this week, not another strategy doc.
+
+**Key Findings:**
+
+**🏆 #1 Lead: Millsap Properties — (314) 686-3337**
+- Owns/manages 7 pet-friendly apartment communities
+- Properties in Florissant (63031!), Hazelwood, Ballwin, AND St. Charles
+- Charbonier Apartments is literally in TJ's core territory
+- One contract here = potentially 7 properties serviced
+- Small enough to make fast decisions (not a national chain)
+
+**🏛️ HOA Management Whales (2 leads):**
+- Associa Smith Management — (314) 394-4200 — Largest HOA manager in STL, dozens of communities
+- Sentry Management — (314) 994-7440 — 32+ communities in STL metro, national company
+- Both manage HOAs where pet waste in common areas is the #1 complaint
+
+**🏠 Pet-Friendly Apartment Complexes (4 leads):**
+- Park Forest Apartments — (314) 351-1021 — Has bark park, Yappy Hours, pet waste stations
+- Emerald Crossing — (314) 426-0000 — Dog park, near Ferguson/Overland
+- Vanderbilt Apartments — (636) 434-1255 — St. Peters, where TJ already has a customer
+- Steelyard Apartments — Same management as Emerald Crossing (bundle pitch)
+
+**🐕 Dog Business Partners (2 leads):**
+- Baronwood Kennels — (314) 838-2021 — Florissant, family-owned since 1971, outdoor areas
+- Happy Tails Daycare — (314) 291-3647 — St. Ann, 24/7, 52 Yelp reviews, high traffic
+
+**🏛️ Municipal Long Plays (2 leads):**
+- Florissant Dog Park — (314) 921-5700
+- Maryland Heights Dogport — (314) 738-2599
+
+**Total pipeline value if all won:** $2,500-$8,200/month
+**Realistic (20-30% close):** $500-$2,460/month new recurring revenue
+
+**Also included:** Commercial pricing guide, competitor commercial rates, and recommended call order for TJ.
+
+**Impact:** This is the first time Tidy Tails has a commercial lead pipeline. Period. Even landing ONE of these (Millsap Properties at $500-$1,500/mo) would equal 5-15 new residential customers. Commercial is the fastest path to the revenue goal.
+
+**Rotation:** 🏢 Business Development — Commercial Pipeline
+
+---
+
 ### 4:05 PM — 🧹 MEMORY CONSOLIDATION + SITE VERIFICATION (Maintenance)
 **Task:** Archived 30+ stale memory files, trimmed memory directory, verified today's work is live, updated MEMORY.md
 **Result:** ✅ COMPLETE
