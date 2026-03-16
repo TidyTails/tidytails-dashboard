@@ -389,6 +389,42 @@
 
 ## March 16, 2026 (Monday)
 
+### 11:04 AM — 🔗 CITATION BLITZ ACTION PLAN (Off-Page SEO)
+**Task:** Researched and built comprehensive 20-directory citation action plan to fix Tidy Tails' off-page SEO grade (currently F — 0 backlinks, 0 directory listings beyond GBP/Yelp, NOT indexed by Google after 30 days)
+**Result:** ✅ COMPLETE — Shipped `deliverables/citation-blitz-action-plan.md`
+
+**Why This Task:**
+- Off-page SEO is literally the #1 bottleneck. Site has been live 30+ days, still not indexed by Google.
+- Zero backlinks = zero authority = Google doesn't trust the site enough to index it.
+- Every competitor has 10-50+ directory citations. TJ has 2 (GBP + Yelp).
+- This was explicitly called out in competitive analysis: Petworks, aPaws, Thumbtack, Apple Maps — competitors are on all of them, TJ is on none.
+
+**What I Built:**
+1. **20 specific directories** organized in 3 priority tiers by Domain Authority
+2. **Exact NAP template** with consistent business info for every listing
+3. **Direct signup URLs** for each directory — TJ can just click and go
+4. **Time estimates** — ~4.5 hours total, broken into 3-4/day over a week
+5. **2 niche directories** (aPaws $85/yr, Pooper-Scooper.com $7/mo) that competitors already use
+6. **Key highlights:**
+   - Apple Business Connect (DA 99) — not claimed
+   - Bing Places (DA 93) — can import from GBP in 5 min
+   - Nextdoor (DA 83) — where customers literally ask for pet waste services
+   - Petworks (DA ~70) — Poop2Scoop + Dr. Scoops listed, TJ is NOT
+   - Thumbtack (DA 80+) — free listing + potential leads
+7. **Rules for citation building** — NAP consistency, spread over 5-7 days, always use "Tidy Tails Pet Waste Removal" (not just "Tidy Tails")
+
+**Expected Impact:**
+- Short term: Google begins discovering tidytailsstl.com via directory backlinks
+- 2-4 weeks: Site gets indexed
+- 1-3 months: Local search visibility improvements
+- Grade improvement: F → C+ off-page SEO
+
+**Action for TJ:** Start with Tier 1 (Apple, Bing, Nextdoor, Petworks) — these are the highest impact and take ~1.5 hours total.
+
+**Rotation:** 📈 Marketing — SEO / Off-Page Authority
+
+---
+
 ### 10:06 AM — 🔍 COMPETITIVE INTELLIGENCE SWEEP
 **Task:** Full competitive landscape monitoring — check all major competitors for changes, new entrants, pricing shifts
 **Result:** ✅ COMPLETE
