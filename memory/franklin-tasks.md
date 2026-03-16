@@ -6,6 +6,37 @@
 
 ## March 16, 2026 (Monday)
 
+### 6:05 PM — 🌟 GOOGLE REVIEW REQUEST KIT (Customer Acquisition / Local SEO)
+**Task:** Created personalized, copy-paste-ready review request texts for all 8 customers + an ongoing review system for future customers.
+**Result:** ✅ COMPLETE — Shipped `memory/review-request-kit.md`
+
+**Why This Task:**
+- Tidy Tails has **ZERO Google reviews** — this is the single biggest credibility gap
+- Competitors (Doggie Doodies: 6 reviews, POOP 911: dozens) all have reviews
+- Google reviews are the #1 local SEO ranking factor for the map pack
+- Site still isn't indexed after 30 days — reviews + GBP activity may help trigger indexing
+- This is something TJ can DO TONIGHT in 15 minutes. No strategy docs. Just copy, paste, send.
+
+**What I Built:**
+1. **8 personalized text messages** — one for each customer, different tone/length based on relationship
+2. **Prioritized send order** — weekly customers first (most engaged), monthly last
+3. **Timing guide** — when to send, when to follow up
+4. **Follow-up template** — for non-responders after 3-4 days
+5. **Ongoing system** — templates for new customers (after 2nd service), one-times, and quarterly re-asks
+6. **"What should I write?" response** — for customers who ask
+7. **Review tracker table** — checkboxes to track who's been asked and who responded
+8. **Impact projection** — what 1, 3, 5, 10+ reviews would mean for visibility
+
+**Expected Impact:**
+- If 3-5 of 8 customers leave reviews = instant credibility + local pack boost
+- Even 1 review puts us ahead of several competitors with zero
+- Ongoing system ensures every future customer gets asked
+- **This costs $0 and takes TJ 15 minutes**
+
+**Rotation:** 🌟 Customer Retention / Local SEO
+
+---
+
 ### 5:04 PM — 🏢 COMMERCIAL LEAD RESEARCH — 10 Qualified Leads with Phone Numbers (Customer Acquisition)
 **Task:** Researched and qualified commercial leads for Tidy Tails pet waste removal — apartment complexes, property management companies, HOA managers, dog businesses, and municipal parks in TJ's service area. Every lead has a verified phone number.
 **Result:** ✅ COMPLETE — Shipped `memory/leads-commercial.md` with 10 qualified leads
