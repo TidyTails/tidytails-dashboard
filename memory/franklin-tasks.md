@@ -6,6 +6,56 @@
 
 ## March 16, 2026 (Monday)
 
+### 9:04 AM — 🏠 SHED MARKET COMPETITIVE ANALYSIS (TuffShed Pipeline Growth)
+**Task:** Deep-dive competitive intelligence on the St. Louis shed market — pricing, competitors, platform gaps, and 5 specific action items for this week
+**Result:** ✅ COMPLETE — Shipped `marketing/2026-03-16-SHED-COMPETITIVE-ANALYSIS.md`
+
+**Why This Task:**
+- Shed business has been neglected — all focus has been on Tidy Tails
+- 23 units ($3,509-$11,299) sitting on lot with website that Google doesn't know exists
+- Each shed sale = $3,500-$11,300 revenue (more than months of poop scooping)
+- Spring is THE buying season for sheds — window is open NOW
+- Cron specifically called out "TuffShed pipeline growth"
+
+**Key Findings:**
+
+**1. backyardbuildingsstl.com = NOT INDEXED (same as tidytailsstl.com)**
+- `site:backyardbuildingsstl.com` = 0 results
+- Both businesses have the same critical problem: invisible online
+
+**2. Competitive Landscape — 8+ Active Competitors Identified**
+- TuffShed Corporate: 2 STL showrooms, Page 1 SEO, 23 Yelp photos, BBB accredited
+- 5-Star Buildings: 4 Missouri locations including Fenton (TJ's turf), strong SEO
+- Classic Building Sales: St. Charles, $85/mo RTO, no credit check
+- Cardinal Buildings: Cottage Hills IL, great copywriting, factory-direct pricing
+- EZ Portable Buildings: shedsfentonmo.com — $77/mo RTO, keyword-rich domain
+- Barrett Buildings: STL city, undercutting on small units ($2,499-$4,149)
+- Shed Mafia: Belleville IL, ShedHub listed
+- The Backyard & Beyond: Broad range, Missouri-based
+
+**3. TJ's Pricing is Competitive but Invisible**
+- Entry-level ($3,509) beats market comparables ($3,683+)
+- Mid-range ($4,409-$5,899) under market avg of $6,568
+- Greenhouse ($5,999) is UNIQUE — no STL competitor has one
+- Problem: nobody can find these prices because the site isn't indexed
+
+**4. Biggest Platform Gap: ShedHub.com**
+- Free dealer marketplace that ranks on Google (the "Zillow for sheds")
+- 6-8 dealers already listed in STL area
+- TJ has 0 listings = missing 23 potential indexed pages
+- THIS IS THE #1 IMMEDIATE ACTION for the shed business
+
+**5 Action Items for This Week:**
+1. List all 23 units on ShedHub.com (30 min, free)
+2. Post 5 FB Marketplace listings TODAY (15 min)
+3. Add monthly payment pricing to ALL ads ($119/mo > $5,899 sticker shock)
+4. Create/claim Google Business Profile for Backyard Buildings STL (15 min)
+5. Cross-post to Craigslist St. Louis (10 min)
+
+**Rotation:** 🏠 Strategy — TuffShed Pipeline / Competitive Intelligence
+
+---
+
 ### 8:04 AM — 🎯 NEIGHBORHOOD TARGETING GUIDE (Strategic Customer Acquisition)
 **Task:** Built data-driven neighborhood targeting analysis identifying the top 3 expansion zones, ranked by income, dog ownership density, competitor gaps, and route efficiency
 **Result:** ✅ COMPLETE — Shipped `marketing/2026-03-16-NEIGHBORHOOD-TARGETING-GUIDE.md`
