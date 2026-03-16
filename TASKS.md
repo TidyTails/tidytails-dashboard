@@ -92,9 +92,22 @@
   - Owner: Franklin
 
 ### 📝 To Do
+- [ ] **🔥 List ALL 23 units on ShedHub.com** — Free shed marketplace, 6-8 competitors already listed, TJ has ZERO. Each unit gets its own indexed page. Fastest path to online leads. (30 min)
+- [ ] **🔥 Post 5 FB Marketplace listings TODAY** — Greenhouse, Aqua Garden, Navy Workshop, Teal Barn, Charcoal Garage. Copy ready. (15 min)
+- [ ] **Add monthly RTO pricing to all ads** — Competitors lead with "$XX/mo" not "$X,XXX cash". Remove sticker shock. (5 min per ad)
+- [ ] **Create GBP for Backyard Buildings STL** — Separate from Tidy Tails. Add all 23 unit photos. (15 min)
+- [ ] **Cross-post to Craigslist STL** — Free, still gets big-ticket traffic. Farm & Garden + For Sale. (10 min)
 - [ ] **HTTPS enforcement** for backyardbuildingsstl.com
 - [ ] **Follow-up emails** for Fenton shed leads (due Sun Mar 9)
 - [ ] Daily ad copy generation (paused — need TJ direction on current promos)
+
+### 🔍 Shed Competitive Intel (Updated Mar 16)
+- **backyardbuildingsstl.com NOT INDEXED** — same as tidytailsstl.com
+- **8+ active competitors** in STL area
+- **TJ's pricing is competitive** but invisible online
+- **Biggest gap:** Not on ShedHub.com (free marketplace with Google ranking)
+- **Unique differentiator:** Greenhouse ($5,999) — no STL competitor has one
+- Full analysis: `marketing/2026-03-16-SHED-COMPETITIVE-ANALYSIS.md`
 
 ---
 
