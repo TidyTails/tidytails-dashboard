@@ -6,6 +6,33 @@
 
 ## March 16, 2026 (Monday)
 
+### 7:04 AM — 🌱 SPRING 2026 MARKETING KIT (Customer Acquisition)
+**Task:** Created comprehensive spring marketing campaign package with 12 ready-to-post social media templates, campaign calendar through April, competitive intel update, and weekly action items
+**Result:** ✅ COMPLETE — Shipped `marketing/2026-03-16-SPRING-MARKETING-KIT.md`
+
+**Why This Task:**
+- Spring is THE acquisition season for pet waste — snow just melted, yards are disasters
+- 4-5 customers vs 25-30 goal = we need aggressive marketing NOW
+- Pooper Scooper Week (Apr 1-7) and Scoop the Poop Week (Apr 23-29) are 2 weeks away
+- Doggie Doodies is already running "Free Initial Cleanup" promo — we need to match it
+- Commercial leads are paused — residential growth is the only path right now
+
+**What's In The Kit:**
+1. **12 ready-to-post social media templates** (Facebook, Instagram, Nextdoor, pet groups)
+2. **7-day Instagram Story series** for Pooper Scooper Week (fun facts)
+3. **Campaign calendar** (4 weeks: Mar 17 → Apr 29)
+4. **Competitive pricing intel** — Doggie Doodies charges $83/mo vs our $70 (we're 16% cheaper)
+5. **"First Cleanup FREE" promo strategy** to match competitors
+6. **Weekly action checklist** for TJ — specific daily tasks
+7. **Facebook group hit list** — which groups to join and post in
+8. **Event tie-ins** — Mattress Dogzzz (Mar 21), Adoption Paw-ty (Mar 28), Egg Hunt (Apr 4)
+
+**Key Insight:** Doggie Doodies charges $83/mo for weekly 1-dog, $85/mo bi-weekly. TJ at $70/mo is already the price leader. Combined with "Free First Cleanup" to match their promo, we undercut them on both price AND offer.
+
+**Rotation:** 🌱 Marketing / Customer Acquisition
+
+---
+
 ### 6:05 AM — ⏸️ INTENTIONAL SKIP (Cost Discipline)
 **Task:** Evaluated whether a 6 AM task moves the needle. Decided: no.
 **Result:** ✅ SKIPPED ON PURPOSE
