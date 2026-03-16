@@ -156,9 +156,44 @@
    - **Implication:** Even when indexed, TJ may struggle for branded searches without "STL" or "St Louis"
    - **SEO play:** Always use "Tidy Tails STL" or "Tidy Tails St. Louis" in all listings/citations
 
+**Rotation:** 🔍 Research — Competitive Monitoring
+
+---
+
+### 5:04 AM — 🔍 MONDAY MARKET INTELLIGENCE CHECK
+**Task:** Google indexing verification, competitive monitoring, directory opportunity discovery
+**Result:** ✅ COMPLETE
+
+**Why This Task:**
+- 5 AM Monday. Self-assessment says: monitor, don't build. Morning = briefings, not creation.
+- Need to track Google indexing progress (site is ~28 days old)
+- Competitive landscape shifts need regular monitoring
+- Follow the "maintenance over creation" principle from Core Lessons
+
+**What I Found:**
+
+1. **❌ STILL NOT INDEXED BY GOOGLE** — `site:tidytailsstl.com` returns 0 results. Day ~28.
+   - This is expected for a new domain with zero backlinks. Not alarming yet.
+   - Directory submissions remain the #1 unlock for this.
+
+2. **🆕 DISCOVERED: GatewayDogs.com** — FREE St. Louis dog directory
+   - **"Dog Waste Removal" category has ZERO listings** — Tidy Tails can be FIRST
+   - Doggie Doodies (#1 rival) is listed as "Featured Business" but NOT in waste removal category
+   - 18 vets + 21 groomers listed = potential referral partners browsing this directory
+   - Contact: Richard@GatewayBusiness.com / 314-822-7000
+   - Submission URL: https://gatewaydogs.com/business-directory/?wpbdp_view=submit_listing
+   - **Added to directory submission guide as Tier 3 #21 (starred priority)**
+
+3. **Doggie Doodies Status:** Still running "FREE INITIAL CLEAN UP" promo. Added commercial pricing page. Same Wix site. Spelling error still live ("INITAL"). No major changes.
+
+4. **Search Landscape:** "dog poop pickup St. Louis" still shows Poop2Scoop, DoodyCalls, Yuckos, POOP 911, Dirty Dog Wash. Zero organic Tidy Tails presence. This won't change until directory backlinks force indexing.
+
+**Deliverable:** Updated `deliverables/seo/directory-submission-guide.md` with GatewayDogs.com
+**Impact:** GatewayDogs.com is a quick win — 5 min submission, first-mover in category, local backlink. Added to TJ's action list.
+
 **No action items created** — monitoring only. Existing priorities (directory submissions, review requests) remain correct.
 
-**Rotation:** 🔍 Research — Competitive Monitoring
+**Rotation:** 🔍 Research — Competitive Monitoring / Market Intel
 
 ---
 

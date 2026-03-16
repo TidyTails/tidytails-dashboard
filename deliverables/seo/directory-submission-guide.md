@@ -75,7 +75,8 @@ St. Charles County, O'Fallon, St. Peters, Florissant, and more.
 
 | # | Directory | Notes | URL |
 |---|-----------|-------|-----|
-| 21 | STLtoday.com Business Directory | Local newspaper directory, high local relevance | https://www.stltoday.com/places/ |
+| 21 | ⭐ GatewayDogs.com | **FREE STL dog directory — "Dog Waste Removal" category has 0 listings. Be FIRST.** Contact: Richard@GatewayBusiness.com / 314-822-7000 | https://gatewaydogs.com/business-directory/?wpbdp_view=submit_listing |
+| 22 | STLtoday.com Business Directory | Local newspaper directory, high local relevance | https://www.stltoday.com/places/ |
 | 22 | St. Louis Near Me Directory | Hyperlocal STL directory | https://stlouismissourinearme.com |
 | 23 | BusinessListUS - St. Louis | Local business aggregator | http://saintlouis.businesslistus.com/ |
 | 24 | St. Louis Chamber of Commerce | Paid but high authority; check free options | https://www.stlregionalchamber.com/ |
