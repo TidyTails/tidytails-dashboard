@@ -387,6 +387,67 @@
 
 ---
 
+## March 16, 2026 (Monday)
+
+### 10:06 AM — 🔍 COMPETITIVE INTELLIGENCE SWEEP
+**Task:** Full competitive landscape monitoring — check all major competitors for changes, new entrants, pricing shifts
+**Result:** ✅ COMPLETE
+
+**Why This Task:**
+- Competitive monitoring is explicitly in "What Franklin Should Focus On" in MEMORY.md
+- Monday morning = good time to check what moved over the weekend
+- Market is actively changing (Doggie Doodies expanded, new entrants popping up)
+
+**What I Found:**
+
+**🆕 NEW COMPETITOR: Dr. Scoops Pet Waste Removal**
+- Solo operator Adam Hughes, based in Manchester/Ballwin MO
+- Website: getdrscoops.com (professional, modern)
+- Facebook: 39 likes (DrScoopsSTL)
+- Nextdoor presence
+- Listed on Petworks.com marketplace
+- Serving: Ballwin, Manchester, Chesterfield, Wildwood, Kirkwood, Webster Groves, Creve Coeur, Maryland Heights, Clayton, Ellisville, Town and Country
+- **⚠️ Covers BOTH of our recommended expansion targets (Kirkwood + Webster Groves)**
+- Since 2023, fully insured, background-checked, eco-friendly
+- Offers: weekly, biweekly, one-time, sanitizer/deodorizer, commercial
+- Threat: MEDIUM (solo op, small social following, but professional presentation)
+
+**📈 DOGGIE DOODIES (#1 RIVAL) UPDATES:**
+- **Service area expanded AGAIN**: Now includes Kirkwood, Creve Coeur, Maryland Heights, Des Peres, Eureka, Valley Park, Twin Oaks (STL County) + St. Peters, O'Fallon, Lake St. Louis, Wentzville, Cottleville, Dardenne Prairie, New Town (St. Charles)
+- **Added COMMERCIAL services page**: HOAs, property management, dog waste station installations + restocks, dog parks
+- **Pricing now shown as monthly**: Weekly=$83/mo, Biweekly=$85/mo, Monthly=$90/mo
+- **TJ's $70/month is $20 CHEAPER than DD's $90/month** — competitive advantage to emphasize!
+- 2-dog weekly pricing: $88/mo
+- Still on Hotmail + Wix (weaknesses remain)
+
+**🆕 PLATFORM: Petworks.com**
+- Pet service marketplace/aggregator
+- Dr. Scoops and Poop2Scoop already listed
+- **Tidy Tails NOT listed** — free listing opportunity
+- Users can request quotes, book directly, read reviews
+
+**✅ CONFIRMED STILL DEAD:**
+- Pawfect (pooperscooperstl.com) — "Site not found" error
+- Fresh Paws (wearefreshpaws.com) — DNS still doesn't resolve
+
+**📊 SEARCH VISIBILITY:**
+- Tidy Tails STILL not appearing in any organic search results for STL pet waste queries
+- POOP 911, DoodyCalls, Poop2Scoop, Doggie Doodies, Scoop Soldiers dominate results
+
+**What I Updated:**
+1. ✅ MEMORY.md competitor table — added Dr. Scoops, updated Doggie Doodies expansion + commercial
+2. ✅ MEMORY.md pricing section — added DD monthly comparison, Petworks opportunity
+3. ✅ This task log
+
+**Action Items for TJ:**
+- [ ] **Sign up on Petworks.com** (free listing, competitors already there)
+- [ ] **Lead with $70/month pricing** in ads — it's cheaper than Doggie Doodies' $90/month!
+- [ ] **Consider adding "free first cleanup"** — DD, POOP 911 both offer it, proven conversion tactic
+
+**Rotation:** 🔍 Research — Competitive Intelligence
+
+---
+
 ## Archive
 - **March 15-16, 2026:** `memory/archive/franklin-tasks-mar15-16.md` (818 lines, 18+ tasks)
 - **March 14-15, 2026:** `memory/archive/franklin-tasks-mar14-15.md` (767 lines, 20+ tasks)

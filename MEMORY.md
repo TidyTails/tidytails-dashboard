@@ -107,7 +107,8 @@
 | **Scoop Soldiers** 🔴 | STL County | ~$15 | ~$60 | HIGH | National franchise, Feb 2026 expansion, full SEO page |
 | **Dog Doody Defenders** 🔴 | Chesterfield + Florissant | $17 | ~$68 | HIGH | Veteran-owned, TJ's exact territory |
 | **Poop2Scoop** 🟡 | STL County | $18 | ~$78 | MED | Veteran-owned, smart add-on pricing, aPaws member |
-| **Doggie Doodies** 🔴 | Ballwin/Chesterfield + St. Charles | $19.15 | $83 | HIGHEST | TJ's #1 rival. Customer portal, text alerts, gate photos, rewards, referral program, e-gift cards, blog. Expanded to St. Charles County. Hotmail + Wix = weaknesses. |
+| **Doggie Doodies** 🔴 | Ballwin/Chesterfield + St. Charles + Kirkwood/Creve Coeur/MD Heights/Eureka | $19.15 | $83 | HIGHEST | TJ's #1 rival. Customer portal, rewards, referral, e-gift cards, blog. Expanded AGAIN: now Kirkwood, Creve Coeur, MD Heights, Des Peres, Eureka, Valley Park. Added COMMERCIAL page (HOAs, waste stations). Biweekly=$85/mo, Monthly=$90/mo. Hotmail + Wix = weaknesses. |
+| **Dr. Scoops** 🟡 | Ballwin/Manchester/Chesterfield/Kirkwood/Webster Groves | Quote | Quote | MED | NEW (found Mar 16). Solo op Adam Hughes, since 2023. Own site (getdrscoops.com), FB (39 likes), Nextdoor, Petworks. Insured, background-checked. Covers our expansion targets! |
 | **Dirty Dog Wash Poo Crew** 🟡 | Chesterfield (10mi radius) | ~$22 | $95 | MED | Cross-sell from grooming business |
 | **DoodyCalls** 🟡 | STL County | Quote | Quote | MED | National franchise |
 | **Yucko's** 🟡 | STL County + City + St. Charles | Quote | Quote | LOW | Commercial focus, since 1990, phone-only M-F 8-3 |
@@ -120,12 +121,14 @@
 ### DEAD Competitors (confirmed Mar 15)
 Pawfect (404), Fresh Paws (DNS expired), Poopy Paws (DNS failure — 358 orphaned FB followers), STL Pooper Scoopers (Yelp CLOSED), Super Scoopers STL (Yelp CLOSED)
 
-### Pricing Reality
+### Pricing Reality (Updated Mar 16)
 - **TJ is the MOST EXPENSIVE local indie** at $25/wk (~$108/mo)
 - POOP 911 is 52% cheaper, Poop2Scoop is 28% cheaper, Doggie Doodies is 23% cheaper
-- **TJ's $70/month flat rate remains UNIQUE** — lead with this
+- **TJ's $70/month flat rate is CHEAPER than Doggie Doodies' $90/month** — competitive advantage!
+- DD biweekly ($85/mo) > TJ biweekly ($90/mo) — DD slightly cheaper there
 - Recommended: add $89/mo plan option, offer "free first cleanup" (steal POOP 911's playbook)
 - DON'T lower prices yet — awareness problem, not price problem at 4-5 customers
+- **Petworks.com** — free marketplace, TJ NOT listed. Dr. Scoops + Poop2Scoop already there. Easy win.
 
 ---
 
