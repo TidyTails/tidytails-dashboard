@@ -4,6 +4,32 @@
 
 ---
 
+## March 16, 2026 — Monday St. Paddy's Eve Pack (9 AM Task)
+
+**Shed-Mar130 - "Eve of St. Paddy's" (FB Marketplace + Groups)**
+- Hook: St. Patrick's Day eve — luck vs square footage
+- Key: Irish blessing format, clover emojis, garage parking humor
+- Used: TBD (Marketplace + Groups Mon 3/16 AM)
+
+**Shed-Mar131 - "The Monday Math" (FB Marketplace + Nextdoor)**
+- Hook: Days until spring = 4, delivery time doubling warning
+- Key: Calendar urgency, not a sales pitch framing, spring equinox Thu
+- Used: TBD (Marketplace + Nextdoor Mon 3/16 midday)
+
+**Shed-Mar132 - "The Bracket Buster" (FB Marketplace + Instagram)**
+- Hook: March Madness bracket — garage vs parking, weekend vs finding drill
+- Key: Tournament humor, Missouri hail damage, clutter game over
+- Used: TBD (Marketplace + Instagram Mon 3/16 PM)
+
+**Shed-Mar133 - "Spring Equinox in 4 Days" (FB Marketplace + Groups)**
+- Hook: Spring equinox Thursday, every year same pattern
+- Key: Head start framing, Feb/Mar/Apr/May progression, Monday morning advantage
+- Used: TBD (Marketplace + Groups Mon 3/16 evening)
+
+*Archive updated: 2026-03-16 9:00 AM*
+
+---
+
 ## March 15, 2026 — Sunday Spring Countdown Pack (9 AM Task)
 
 **Shed-Mar126 - "Sunday Confessional" (FB Marketplace + Groups)**
