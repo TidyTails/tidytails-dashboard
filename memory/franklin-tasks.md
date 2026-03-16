@@ -6,6 +6,60 @@
 
 ## March 16, 2026 (Monday)
 
+### 4:06 AM — 🔍 COMPETITIVE MONITORING & INDEXING STATUS (Week 5 Pulse)
+**Task:** Monthly indexing check + competitor movement scan
+**Result:** ✅ COMPLETE
+
+**Why This Task:**
+- It's 4 AM Monday — maintenance/monitoring window per own rules
+- Site hit Day 30 milestone — critical to verify indexing status
+- Competitor landscape is moving fast (Scoop Soldiers expansion, Doggie Doodies updates)
+- Following "maintenance over creation" directive
+
+**Key Findings:**
+
+**1. tidytailsstl.com: STILL NOT INDEXED (Day 30)**
+- `site:tidytailsstl.com` = 0 results
+- `"tidy tails" "st louis" pet waste` = 0 results
+- Not appearing in ANY pet waste removal search results for STL
+- Technical SEO is clean (no noindex, robots.txt allows all, sitemap valid, schema markup solid)
+- **Root cause unchanged:** Domain age (30 days) + zero backlinks + zero directory citations
+- **The directory submission guide from last task is THE fix** — TJ/wife need to execute it
+
+**2. Doggie Doodies (#1 Rival) — EXPANDED FURTHER**
+- Title now targets "St. Charles County & St. Louis County" (both territories)
+- Pushing "FREE INITIAL CLEANUP WITH SELECT PLAN PURCHASE" heavily (3x on homepage)
+- NEW features since last check: Team member photo notifications, gate photos, disinfected equipment messaging
+- Still on Wix, still using Hotmail — those are weaknesses
+- They're professionalizing faster than expected
+
+**3. Scoop Soldiers — FULLY ESTABLISHED IN STL**
+- Dedicated /locations/st-louis page with strong SEO copy
+- Press releases on National Law Review + Town Talk + EINPresswire = generating BACKLINKS
+- Also expanded to Indianapolis — growing nationally, fast
+- Their SEO strategy: franchise pages + press release backlinks. Smart.
+- Pricing still ~$15/visit — undercutting TJ significantly
+
+**4. POOP 911 — No Changes**
+- Still at $11.95/wk, still the price leader
+- STL page unchanged
+
+**5. Tidy Tails NOT in Yelp Search Results**
+- Yelp "pet waste removal St. Louis" shows POOP 911, Yucko's, DoodyCalls, Poopy Paws
+- Tidy Tails not appearing despite claimed listing — may need profile optimization/reviews
+
+**Competitive Threat Assessment:**
+- Scoop Soldiers' press release strategy is creating the exact backlinks that Tidy Tails lacks
+- Doggie Doodies is professionalizing (team photos, gate photos, equipment disinfection messaging)
+- TJ's competitive moat remains: $70/month flat rate (unique), personal "same guy every time" angle
+- But without indexing, none of the SEO work matters. DIRECTORY SUBMISSIONS ARE PRIORITY #1.
+
+**No deliverable created** — this is monitoring, not building. Logged findings for TJ's awareness.
+
+**Rotation:** 🔍 Research — Competitive Monitoring
+
+---
+
 ### 3:04 AM — ⏸️ INTENTIONAL SKIP (Cost Discipline)
 **Task:** Evaluated whether a 3 AM task moves the needle. Decided: no.
 **Result:** ✅ SKIPPED ON PURPOSE
