@@ -6,6 +6,48 @@
 
 ## March 16, 2026 (Monday)
 
+### 3:04 PM — 🔍 COMPETITIVE MONITORING SWEEP + SITE HEALTH VERIFICATION (Maintenance)
+**Task:** Live competitive monitoring sweep — checked all competitor websites, searched for new entrants, verified both TJ sites, checked Google indexing status.
+**Result:** ✅ COMPLETE — Shipped `deliverables/competitive-monitoring-march16-3pm.md`
+
+**Why This Task:**
+- Self-assessment says "competitive monitoring" and "maintenance over creation" are the right focus areas
+- Market is moving fast — Scoop Soldiers launched 5 weeks ago, DD keeps expanding
+- Haven't done a live competitor check in days
+
+**Key Findings:**
+
+**🚨 6 NEW Competitors NOT in our tracker:**
+- No 2 Crew (Wildwood — Watering Bowl doggy daycare spinoff)
+- Tidy Pup (Saint Peters — ⚠️ confusingly similar name to Tidy Tails!)
+- Millie's Pooper Scoopers (STL + St. Charles)
+- Green Sweep (St. Peters)
+- The Dog Poo Guru (St. Peters)
+- Pooanators (STL area)
+Total known competitors: **20+** (was 14)
+
+**🚨 Doggie Doodies NOW LISTS FLORISSANT as service area**
+- 2 of TJ's highest-paying customers (Shannon $140/mo, Amanda $120/mo) are in Florissant 63031
+- DD offering free first cleanup + customer portal + notifications
+
+**🚨 Both sites STILL NOT INDEXED by Google (Day 30+)**
+- Google sitemap ping URL is DEPRECATED (returns 404)
+- Only option: manual "Request Indexing" in Google Search Console
+
+**🚨 Tidy Tails NOT showing in ANY Yelp search results**
+- Zero reviews = invisible in Yelp rankings
+
+**📊 Competitor Updates:**
+- Scoop Soldiers already ranking 5 weeks post-launch (strong SEO)
+- Dr. Scoops leveled up: now fully insured, background-checked, offers commercial
+- Commercial/HOA pages are standard now — DD, Dr. Scoops, Scoop Soldiers, DoodyCalls all have them
+
+**Impact:** Updated MEMORY.md competitor table with 6 new entries. Real intelligence, not another strategy doc. Market is getting more crowded — the window for easy growth is closing.
+
+**Rotation:** 🔍 Competitive Monitoring — Market Intelligence
+
+---
+
 ### 2:05 PM — 🔧 SHED SITE HTTPS FIX + SEO INFRASTRUCTURE (TuffShed Pipeline — CRITICAL FIX)
 **Task:** Audited both websites for infrastructure issues. Found and FIXED a critical HTTPS/SSL failure on backyardbuildingsstl.com. Added missing SEO files.
 **Result:** ✅ COMPLETE — Shipped fixes directly to production

@@ -118,6 +118,14 @@
 | **Doggy Doods** 🟢 | St. Charles County | Quote | Quote | LOW | Solo operator Eugene, 6 testimonials |
 | **The Poo Fighterz** 🟢 | STL + Springfield IL | Quote | Quote | LOW | Multi-market |
 
+### NEW Competitors Found (Mar 16 3PM sweep)
+| **No 2 Crew** 🟡 | Wildwood (West County) | Quote | Quote | MED | Spinoff from The Watering Bowl doggy daycare (since 2010). On Yelp. |
+| **Tidy Pup** 🟡 | Saint Peters | Quote | Quote | MED | ⚠️ SIMILAR NAME to Tidy Tails! Yelp, Facebook, Yellow Pages. |
+| **Millie's Pooper Scoopers** 🟡 | STL + St. Charles | Quote | Quote | MED | Yellow Pages listing |
+| **Green Sweep** 🟢 | St. Peters | Quote | Quote | LOW | Yelp only |
+| **The Dog Poo Guru** 🟢 | St. Peters | Quote | Quote | LOW | Yelp only |
+| **Pooanators** 🟡 | STL area | Quote | Quote | MED | On Yelp, multiple STL searches |
+
 ### DEAD Competitors (confirmed Mar 15)
 Pawfect (404), Fresh Paws (DNS expired), Poopy Paws (DNS failure — 358 orphaned FB followers), STL Pooper Scoopers (Yelp CLOSED), Super Scoopers STL (Yelp CLOSED)
 
