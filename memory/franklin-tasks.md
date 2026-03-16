@@ -6,6 +6,37 @@
 
 ## March 16, 2026 (Monday)
 
+### 8:04 AM — 🎯 NEIGHBORHOOD TARGETING GUIDE (Strategic Customer Acquisition)
+**Task:** Built data-driven neighborhood targeting analysis identifying the top 3 expansion zones, ranked by income, dog ownership density, competitor gaps, and route efficiency
+**Result:** ✅ COMPLETE — Shipped `marketing/2026-03-16-NEIGHBORHOOD-TARGETING-GUIDE.md`
+
+**Why This Task:**
+- We have 80+ marketing deliverables but TJ doesn't know WHERE to deploy them
+- Random posting in random groups = wasted effort
+- Needed to map current customer clusters → identify gaps → find highest-ROI expansion zones
+- Spring is here — this is the moment to be TARGETED, not scattered
+
+**What's In The Guide:**
+1. **Customer cluster map** — shows 4/8 customers in North (Florissant), revealing concentration
+2. **Zone 1: I-44 Corridor (Kirkwood/Webster Groves/Crestwood)** — THE golden zone
+   - $106K-$117K median income (2x Florissant)
+   - 15,500+ dog-owning households
+   - NO dedicated pet waste competitor targets this area
+   - 9 vet clinics identified for flyer drops
+   - Nextdoor neighborhoods mapped
+3. **Zone 2: Florissant Deep** — referral play from existing 3 customers
+4. **Zone 3: O'Fallon/St. Charles** — organic growth, don't over-invest yet
+5. **Zones to AVOID** and why (Chesterfield = Doggie Doodies turf, South City = POOP 911 turf)
+6. **5 specific actions for this week** with time estimates
+7. **Revenue math** — 10 new targeted customers = double current revenue
+8. **Route efficiency analysis** — clustered zones = more yards per hour
+
+**Key Insight:** Kirkwood/Webster Groves is a wide-open market. High income, dog-loving homeowners, multiple dog parks, zero dedicated pet waste competitor. TJ can OWN this corridor with 50 door hangers and 3 vet clinic flyer drops.
+
+**Rotation:** 🎯 Strategy — Customer Acquisition Targeting
+
+---
+
 ### 7:04 AM — 🌱 SPRING 2026 MARKETING KIT (Customer Acquisition)
 **Task:** Created comprehensive spring marketing campaign package with 12 ready-to-post social media templates, campaign calendar through April, competitive intel update, and weekly action items
 **Result:** ✅ COMPLETE — Shipped `marketing/2026-03-16-SPRING-MARKETING-KIT.md`
