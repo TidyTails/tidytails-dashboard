@@ -6,6 +6,51 @@
 
 ## March 16, 2026 (Monday)
 
+### 12:05 PM — 📋 DIRECTORY BLITZ KIT (Customer Acquisition / SEO Fix)
+**Task:** Researched every directory where competitors are listed but Tidy Tails is NOT, created copy-paste submission kit with pre-written descriptions, direct URLs, costs, and priority ranking
+**Result:** ✅ COMPLETE — Shipped `marketing/2026-03-16-DIRECTORY-BLITZ-KIT.md`
+
+**Why This Task:**
+- We have 80+ strategy docs but Tidy Tails is still invisible online (Day 30+, zero Google indexing)
+- Root cause: zero backlinks + zero directory citations = Google has no signals to crawl
+- Competitors have 3-8 directory listings each. TJ has ZERO.
+- This is the most execution-ready deliverable possible: URLs to click, copy to paste, done in 60 min
+
+**Key Findings:**
+
+**1. 12 Directories Identified Where Competitors Are Listed, TJ is Not**
+- 6 are completely FREE and take ~60 min total
+- Google Business Profile, Nextdoor, GatewayDogs, Yelp, Petworks, Thumbtack
+- 3 are low-cost (APAWS membership ~$50-100/yr, Angi, MapQuest claim)
+- 3 are ongoing (Craigslist weekly, FB optimization, BBB)
+
+**2. NEW Competitor Discovered: Dirty Dog Wash "Poo Crew"**
+- Dog wash business in STL that added pet waste removal
+- Charges $95/mo for 1-2 dogs weekly — TJ is 26% cheaper at $70
+- Limited service area (10-mile radius of shop)
+- Low-medium threat but proves there's demand
+
+**3. CORRECTION: ShedHub is NOT Free**
+- Morning's shed analysis said "List on ShedHub (30 min, free)" — WRONG
+- Actual cost: $19.50/listing minimum, $356.50 for all 23 units at bulk rate
+- Still potentially worth it, but TJ needs to know the real cost
+
+**4. APAWS Missouri Has 5 Members — TJ Should Be #6**
+- Trade association for professional pooper scoopers
+- Directory listing, insurance discount, credibility badge
+- Yucko's, Poop2Scoop, The Pootector, Little Stinkers, CL Professional already listed
+
+**5. GatewayDogs.com Lists Doggie Doodies as "Featured" — TJ is Missing**
+- Free STL-specific pet directory
+- Contact: Richard@GatewayBusiness.com / 314-822-7000
+- 5-minute email gets TJ listed
+
+**Impact Math:** 6 free directories × 60 minutes = 6 backlinks + 6 discovery channels + 6 NAP citations. Most efficient hour TJ can spend this week.
+
+**Rotation:** 📋 Execution Support — Directory/SEO
+
+---
+
 ### 9:04 AM — 🏠 SHED MARKET COMPETITIVE ANALYSIS (TuffShed Pipeline Growth)
 **Task:** Deep-dive competitive intelligence on the St. Louis shed market — pricing, competitors, platform gaps, and 5 specific action items for this week
 **Result:** ✅ COMPLETE — Shipped `marketing/2026-03-16-SHED-COMPETITIVE-ANALYSIS.md`
