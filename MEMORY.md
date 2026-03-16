@@ -290,6 +290,7 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 - **Mar 11:** BREAKTHROUGH — discovered website was essentially blank, root cause: domain only 23 days old + zero backlinks
 - **Mar 14:** 15+ tasks. Found 2 new competitors (Clean Turf STL, Yuckos). Pricing strategy: $88/mo recommended.
 - **Mar 15:** 18+ tasks. 12 city SEO pages, payment calculator, premium pricing toolkit, Nextdoor launch kit, Facebook ads campaign kit. Competitive pricing audit confirmed TJ is most expensive in market. Memory overhaul completed.
+- **Mar 16:** Shed site HTTPS fixed + robots.txt/sitemap/schema added. 6 new competitors found (20+ total). Directory blitz kit + spring content blitz shipped. Memory consolidation: archived 30+ stale files, pruned memory/ from cluttered to clean. Both sites STILL not indexed (Day 30+).
 
 ---
 
@@ -328,14 +329,15 @@ Path: Tidy Tails → document the AI journey → build marketing agency for smal
 - TJ Ad Style Guide: `memory/tj-ad-style-guide.md`
 - Before/After Photos: `assets/tidy-tails/before-after/` (3 real job sets)
 
-## Memory File Structure
-- `memory/YYYY-MM-DD.md` — Daily logs
+## Memory File Structure (Updated Mar 16, 2026)
+- `memory/YYYY-MM-DD.md` — Daily logs (recent only; older archived)
 - `memory/franklin-tasks.md` — Current hourly task log
-- `memory/archive/` — Archived task logs (10+ files, 10,000+ lines total)
+- `memory/archive/` — All archived task logs, old daily files, stale docs
 - `memory/contacts.md` — Key contacts
 - `memory/tuffshed.md` — Shed job details, pipeline
-- `memory/tidy-tails-operations.md` — Operations details
-- `memory/leads-commercial.md` — Commercial lead tracker
-- `memory/ad-copy-archive.md` — Ad copy history
-- `memory/motra-business-idea.md` — MOTRA details
+- `memory/competitive-intel.md` — Detailed competitor profiles
+- `memory/motra-business-idea.md` — MOTRA details (parked)
 - `memory/hourly-task-rotation.md` — Task rotation balance
+- `memory/tj-ad-style-guide.md` — TJ's voice/style rules for ad copy
+- `memory/notion-uploads.md` — Notion sync tracking
+- `memory/fb-groups-target-list.md` — Facebook group targets for posting
