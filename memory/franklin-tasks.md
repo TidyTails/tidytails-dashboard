@@ -4,7 +4,84 @@
 
 ---
 
-## March 15, 2026 (Sunday)
+## March 15-16, 2026 (Sunday)
+
+### 10:04 PM — 🔍 LIVE COMPETITIVE PRICING INTELLIGENCE
+**Task:** Deep-dive live pricing audit of every STL pet waste removal competitor with verified web data
+**Result:** ✅ COMPLETED
+
+**Why This Task:**
+- 10 PM Sunday = good research window, no outreach needed
+- We've built 80+ deliverables but TJ still doesn't know exactly where he sits on PRICE vs competitors
+- Previous comp reports were broader; this one focuses specifically on verified, current pricing
+- Actionable intel TJ can use Monday morning
+
+**Key Findings:**
+1. **TJ is the most expensive local indie scooper in STL** — $25/wk vs POOP 911 at $11.95-$13.95/wk (44-52% cheaper)
+2. **Poop 2 Scoop charges $18/visit** (28% cheaper) — veteran-owned, smart add-on pricing model
+3. **Poopy Paws website is DOWN** (poopypaws314.com DNS error) — potential dead competitor, their customers may be looking for alternatives
+4. **POOP 911 offers FREE first service** — killer acquisition tactic TJ should steal
+5. **TJ has ZERO presence on Yelp, Nextdoor, or GBP** while every competitor has at least 2 of 3
+6. **TJ's premium pricing is correct positioning** but the value gap isn't communicated well enough
+
+**Top 3 Recommendations:**
+1. Launch "First Visit Free" promo (steal POOP 911's playbook)
+2. Target Poopy Paws' orphaned customers (their site is dead)
+3. Add "Why We're Worth It" comparison section to website
+
+**Deliverable:** `deliverables/competitive-pricing-intel-march16-2026.md`
+**Rotation:** 🔍 Research — Competitive Intelligence
+
+---
+
+### 7:06 PM — 🗺️ 12 CITY SEO LANDING PAGES — Local Search Domination
+**Task:** Build individual, SEO-optimized landing pages for every service area city
+**Result:** ✅ COMPLETED — 12 city pages + sitemap + robots.txt shipped & live
+
+**Why This Task:**
+- tidytailsstl.com STILL NOT INDEXED by Google (flagged every single competitive sweep)
+- When the site DOES get indexed, having dedicated city pages = instant advantage
+- Every search for "pet waste removal [city] MO" is a separate ranking opportunity
+- No competitor except Doggie Doodies has city-specific pages — and theirs are weak blog posts, not landing pages
+- This is a one-time build that compounds over time — set it and forget it SEO
+
+**What I Built:**
+1. **12 Individual City Landing Pages** — Each with:
+   - Unique `<title>` and `<meta description>` targeting "[city] pet waste removal"
+   - LocalBusiness schema with city-specific address, geo coordinates, and area served
+   - FAQPage schema with city-specific Q&A (3 questions each)
+   - Open Graph tags for social sharing
+   - City-specific copy: tagline, local hook, neighborhood details, fun facts
+   - Full pricing section, benefits grid, Google Maps embed
+   - Mobile-optimized with floating CTA bar
+   - Cross-linking navigation between all 12 city pages
+
+2. **Cities Covered:**
+   - **St. Louis County (10):** Wildwood, Ballwin, Chesterfield, Ellisville, Manchester, Valley Park, Town & Country, Creve Coeur, Maryland Heights, Olivette
+   - **St. Charles County (2):** St. Peters, O'Fallon
+
+3. **Areas Index Page** — Hub page linking all cities with population data and descriptions
+
+4. **XML Sitemap** — 14 URLs (home + areas index + 12 cities) for Google Search Console
+
+5. **robots.txt** — With sitemap reference for crawler discovery
+
+6. **Main Site Updated** — Service area tags now link to individual city pages + "View all areas" link
+
+7. **Generator Script** — `generate-city-pages.sh` for easy addition of new cities
+
+**SEO Impact (when indexed):**
+- 12 new keyword targets: "pet waste removal [City] MO" × 12
+- Each page has unique content (not duplicate) — Google rewards this
+- Schema markup gives rich results in SERPs
+- Internal linking between city pages boosts domain authority
+- Sitemap helps Google discover and index all pages faster
+
+**Live at:** https://tidytails.github.io/tidytails-dashboard/site/areas/
+**Git:** Pushed to origin/master ✅ (commit 4ec2cc5)
+**Rotation:** 🌐 SEO — Local Landing Pages
+
+---
 
 ### 6:05 PM — 🔍 COMPETITIVE INTELLIGENCE SWEEP
 **Task:** Full competitive monitoring sweep — check all known competitors for changes, pricing updates, new content, and discover new entrants
