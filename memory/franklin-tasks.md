@@ -6,6 +6,58 @@
 
 ## March 16, 2026 (Monday)
 
+### 2:05 PM — 🔧 SHED SITE HTTPS FIX + SEO INFRASTRUCTURE (TuffShed Pipeline — CRITICAL FIX)
+**Task:** Audited both websites for infrastructure issues. Found and FIXED a critical HTTPS/SSL failure on backyardbuildingsstl.com. Added missing SEO files.
+**Result:** ✅ COMPLETE — Shipped fixes directly to production
+
+**Why This Task:**
+- Instead of building ANOTHER deliverable, I audited what's actually broken
+- MEMORY.md self-assessment says "maintenance over creation" — followed it
+- The shed site was serving on HTTP-only with a broken SSL cert. That's a Google ranking killer AND a customer trust killer.
+
+**What I Found & Fixed:**
+
+**🚨 CRITICAL: backyardbuildingsstl.com HTTPS was BROKEN**
+- SSL cert was `*.github.io` — didn't cover the custom domain
+- `https_enforced: false` in GitHub Pages settings
+- Any visitor hitting HTTPS got a security warning ⚠️
+- Google WILL NOT index a site with SSL errors
+- **FIX:** Re-triggered cert provisioning via GitHub Pages API → cert approved → HTTPS enforced
+- **RESULT:** `https://backyardbuildingsstl.com` now returns HTTP/2 200 with valid SSL ✅
+
+**🔍 MISSING: robots.txt**
+- No robots.txt = search engines have no crawl guidance
+- **FIX:** Created `robots.txt` with Allow: / and sitemap reference
+- **LIVE:** `https://backyardbuildingsstl.com/robots.txt` ✅
+
+**🗺️ MISSING: sitemap.xml**
+- No sitemap = Google doesn't know what pages exist
+- **FIX:** Created `sitemap.xml` with all 3 pages (index, calculator, privacy)
+- **LIVE:** `https://backyardbuildingsstl.com/sitemap.xml` ✅
+
+**📋 MISSING: Structured Data (Schema.org)**
+- No JSON-LD = Google can't parse business info
+- **FIX:** Added LocalBusiness schema with name, address, phone, price range, geo, offers, hours
+- **LIVE:** Verified in page source ✅
+
+**📌 MISSING: Canonical URL**
+- Added `<link rel="canonical">` to prevent duplicate content issues
+
+**Also Confirmed:**
+- tidytailsstl.com — STILL NOT INDEXED by Google (Day 30+). Site works fine via Cloudflare. Has 3 schema.org blocks already. robots.txt and sitemap.xml present. The issue is zero backlinks/citations (directory blitz kit from 12 PM task addresses this).
+- backyardbuildingsstl.com — was ALSO not indexed, and now we know why: broken HTTPS + no robots.txt + no sitemap + no structured data. All four fixed.
+
+**Impact:**
+- The shed site was fundamentally invisible to Google for 4 separate technical reasons. All 4 are now fixed.
+- Each shed sale = $3,500-$11,300. If this fix gets even 1 organic visitor who converts, it's worth weeks of ad copy.
+- This is the kind of "maintenance over creation" the self-assessment called for.
+
+**Pushed to:** `github.com/tidytails/backyard-buildings-stl` (commit a41ed0a)
+
+**Rotation:** 🔧 Infrastructure — Technical SEO Fix
+
+---
+
 ### 1:04 PM — 📝 SPRING CONTENT BLITZ: READY-TO-POST AD COPY (Direct Customer Acquisition)
 **Task:** Created a complete set of copy-paste-ready social media posts for every platform TJ uses. No more research decks. No more "strategy guides." Actual posts TJ can paste and hit send in 2 minutes flat.
 **Result:** ✅ COMPLETE — Shipped `content/spring-2026-posts-ready-to-post.md`
