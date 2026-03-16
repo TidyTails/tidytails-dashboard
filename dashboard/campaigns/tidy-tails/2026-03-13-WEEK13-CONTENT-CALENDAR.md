@@ -53,7 +53,7 @@ Free first cleanup to try it out.
 
 ---
 
-## Friday March 21 — First Day of Spring! 🌸
+## Friday March 20 — First Day of Spring! 🌸
 
 ### FB Post (ALL groups — big push day)
 ```
@@ -105,6 +105,4 @@ DM or text 314-850-7140
 |-----|----------|-----------|--------|
 | Mon 3/17 | FB + GBP | St. Patty's themed | 2-3 community groups |
 | Wed 3/19 | FB | Dog owner humor | 1-2 dog groups |
-| Fri 3/21 | FB + GBP + IG | First Day of Spring | ALL groups (3-4) |
-
-**Note:** First Day of Spring (March 20) is actually Thursday, but Friday is better for engagement. Post Thursday evening or Friday morning.
+| Fri 3/20 | FB + GBP + IG | First Day of Spring | ALL groups (3-4) |

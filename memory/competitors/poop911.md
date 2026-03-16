@@ -1,7 +1,7 @@
 # Poop 911 — Competitor Intel
 
 **URL:** https://www.poop911.com/
-**Last Captured:** 2026-03-09
+**Last Captured:** 2026-03-16
 **Threat Level:** 🔴 HIGH (national brand, NOW ACTIVE IN STL!)
 
 ---
@@ -20,6 +20,12 @@ Their old URL (`/locations/missouri/st-louis/`) is still 404, BUT they've restru
 - Looks like a placeholder/SEO page — not a fully built-out local presence yet
 - Still showing "Free initial cleanup with regular service" promo on 404 page
 - No evidence of increased STL investment since Feb 23
+
+### Mar 16, 2026 Update
+- No changes from Mar 9 — old URL still 404, new URL still title-only placeholder
+- 3 weeks with zero content buildout since discovery on Feb 23
+- Poop 911 is clearly NOT prioritizing St. Louis market expansion
+- National site copyright updated to 2026, still pushing franchise opps
 
 ---
 
