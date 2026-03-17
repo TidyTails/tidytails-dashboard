@@ -7,13 +7,16 @@
 ## 🐕 DOG WASTE (Tidy Tails)
 
 ### 🔥 In Progress
-- [ ] **🚨 Google Indexing — DAY 28, STILL ZERO PAGES** — Checked Mar 16 8AM, `site:tidytailsstl.com` returns 0 on Brave
-  - Domain age: ~28 days. Technically sound but zero backlinks/directory listings = Google has no external signals
-  - Sitemap has 17+ URLs, on-page SEO grade B+, off-page SEO grade F
-  - **ROOT CAUSE:** No directory listings beyond GBP/Yelp. Zero backlinks. Google won't prioritize a brand-new domain with no external trust signals.
-  - **FIX:** TJ spends 30-45 min submitting to directories (Thumbtack, Nextdoor Business, HomeAdvisor, Angi, Bark, Petworks). Package ready: `dashboard/marketing/directory-listing-package.md`
-  - **⚠️ This is becoming URGENT.** 28 days with no indexing means every week of delay = lost potential organic leads during spring peak season.
-  - Owner: TJ (30-45 min, one-time)
+- [ ] **🚨 Google Indexing — DAY 30+, STILL ZERO PAGES** — Confirmed Mar 16
+  - Domain age: ~30 days. On-page SEO: B+. Off-page SEO: **F**
+  - **ROOT CAUSE:** Only 2 citations (GBP + Yelp). Zero backlinks. Google has no external trust signals.
+  - **🆕 FIX: CITATION BLITZ GUIDE READY** → `memory/citation-blitz-guide.md`
+    - 20 directories researched, verified, prioritized by impact
+    - **Speed Run (40 min):** Bing Places, Apple Business Connect, MapQuest, Nextdoor, Petworks = 5 new citations
+    - **Full guide (3-4 hrs over a week):** 20 total citations → should trigger indexing
+    - MapQuest already has auto-generated listing — just needs claiming
+  - **⚠️ CRITICAL:** Every week unindexed = lost organic leads during SPRING PEAK SEASON
+  - Owner: TJ (speed run tonight = 40 min)
 
 - [ ] **Spring Marketing Push — THIS IS THE WEEK** 🌸
   - **St. Patrick's Day TOMORROW (Mar 17)** — Post ready: `dashboard/campaigns/tidy-tails/2026-03-13-WEEK13-CONTENT-CALENDAR.md`
