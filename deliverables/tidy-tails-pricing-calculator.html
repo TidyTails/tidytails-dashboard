@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tidy Tails STL — Instant Price Quote</title>
+<style>
+  :root {
+    --green: #2D7A3A;
+    --green-light: #E8F5E9;
+    --green-dark: #1B5E20;
+    --gold: #F9A825;
+    --gold-light: #FFF8E1;
+    --text: #1a1a1a;
+    --text-light: #555;
+    --bg: #FAFAFA;
+    --card: #FFFFFF;
+    --radius: 16px;
+    --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 20px 16px 40px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .header .emoji { font-size: 48px; margin-bottom: 8px; }
+  .header h1 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--green-dark);
+    letter-spacing: -0.5px;
+  }
+  .header p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-top: 4px;
+  }
+
+  /* Card */
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 24px 20px;
+    margin-bottom: 16px;
+  }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--green);
+    margin-bottom: 16px;
+  }
+
+  /* Option Selector */
+  .option-group {
+    margin-bottom: 20px;
+  }
+  .option-label {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 8px;
+  }
+
+  .option-btn {
+    background: #F5F5F5;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 14px 8px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .option-btn:hover { background: var(--green-light); }
+  .option-btn.selected {
+    background: var(--green-light);
+    border-color: var(--green);
+  }
+  .option-btn .num {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--green-dark);
+    display: block;
+  }
+  .option-btn .label {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-top: 2px;
+  }
+
+  /* Frequency Cards */
+  .freq-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .freq-btn {
+    background: #F5F5F5;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .freq-btn:hover { background: var(--green-light); }
+  .freq-btn.selected {
+    background: var(--green-light);
+    border-color: var(--green);
+  }
+  .freq-btn .freq-name {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .freq-btn .freq-desc {
+    font-size: 12px;
+    color: var(--text-light);
+  }
+  .freq-btn .freq-price {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--green-dark);
+  }
+  .freq-btn .freq-unit {
+    font-size: 11px;
+    color: var(--text-light);
+  }
+  .freq-btn .best-value {
+    background: var(--gold);
+    color: #333;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: 6px;
+  }
+
+  /* Yard Size */
+  .yard-btns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .yard-btn {
+    background: #F5F5F5;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    padding: 14px 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .yard-btn:hover { background: var(--green-light); }
+  .yard-btn.selected {
+    background: var(--green-light);
+    border-color: var(--green);
+  }
+  .yard-btn .yard-icon { font-size: 22px; }
+  .yard-btn .yard-name {
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: 4px;
+  }
+  .yard-btn .yard-desc {
+    font-size: 11px;
+    color: var(--text-light);
+  }
+
+  /* Results */
+  .result-card {
+    background: linear-gradient(135deg, var(--green-dark), var(--green));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px 24px;
+    margin-bottom: 16px;
+    color: white;
+    text-align: center;
+    display: none;
+  }
+  .result-card.visible { display: block; animation: slideUp 0.3s ease-out; }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .result-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.85;
+  }
+  .result-price {
+    font-size: 56px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 8px 0;
+  }
+  .result-price sup {
+    font-size: 28px;
+    vertical-align: super;
+    margin-right: 2px;
+  }
+  .result-per {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 4px;
+  }
+  .result-breakdown {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .savings-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: #333;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-top: 12px;
+  }
+
+  /* CTA */
+  .cta-section {
+    text-align: center;
+    margin-top: 8px;
+    display: none;
+  }
+  .cta-section.visible { display: block; animation: slideUp 0.3s ease-out; }
+
+  .cta-btn {
+    display: block;
+    width: 100%;
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 14px;
+    padding: 18px;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+    margin-bottom: 10px;
+  }
+  .cta-btn:hover { background: var(--green-dark); }
+  .cta-btn:active { transform: scale(0.98); }
+
+  .cta-call {
+    display: block;
+    width: 100%;
+    background: white;
+    color: var(--green-dark);
+    border: 2px solid var(--green);
+    border-radius: 14px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    margin-bottom: 16px;
+  }
+  .cta-call:hover { background: var(--green-light); }
+
+  .cta-note {
+    font-size: 12px;
+    color: var(--text-light);
+  }
+
+  /* Competitor Comparison */
+  .compare-card {
+    background: var(--gold-light);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+    display: none;
+  }
+  .compare-card.visible { display: block; animation: slideUp 0.3s ease-out; }
+  .compare-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 12px;
+  }
+  .compare-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    font-size: 13px;
+  }
+  .compare-row:last-child { border-bottom: none; }
+  .compare-row .comp-name { color: var(--text-light); }
+  .compare-row .comp-price { font-weight: 700; }
+  .compare-row.ours { color: var(--green-dark); font-weight: 700; }
+  .compare-row.ours .comp-price { color: var(--green-dark); }
+
+  /* Trust badges */
+  .trust {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    padding-top: 16px;
+  }
+  .trust-item {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-light);
+  }
+  .trust-item .trust-icon {
+    font-size: 24px;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  /* Spring promo banner */
+  .promo-banner {
+    background: linear-gradient(90deg, #FF6B35, #F7C948);
+    border-radius: 12px;
+    padding: 14px 16px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+  }
+  .promo-banner .promo-text {
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .promo-banner .promo-sub {
+    font-size: 12px;
+    opacity: 0.9;
+    margin-top: 2px;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 11px;
+    color: #999;
+  }
+
+  /* Selection summary */
+  .selection-summary {
+    background: #F0F0F0;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    display: none;
+  }
+  .selection-summary.visible { display: flex; gap: 12px; flex-wrap: wrap; }
+  .selection-summary .tag {
+    background: white;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="emoji">🐕💩</div>
+    <h1>Get Your Free Quote</h1>
+    <p>Instant pricing — no signup required</p>
+  </div>
+
+  <!-- Spring Promo -->
+  <div class="promo-banner">
+    <div class="promo-text">🌸 Spring Special — First Cleanup FREE</div>
+    <div class="promo-sub">with any recurring service plan</div>
+  </div>
+
+  <!-- Step 1: Dogs -->
+  <div class="card">
+    <div class="card-title">Step 1 — How Many Dogs?</div>
+    <div class="option-group">
+      <div class="options" id="dogOptions">
+        <div class="option-btn" data-dogs="1" onclick="selectDogs(1)">
+          <span class="num">1</span>
+          <span class="label">dog</span>
+        </div>
+        <div class="option-btn" data-dogs="2" onclick="selectDogs(2)">
+          <span class="num">2</span>
+          <span class="label">dogs</span>
+        </div>
+        <div class="option-btn" data-dogs="3" onclick="selectDogs(3)">
+          <span class="num">3</span>
+          <span class="label">dogs</span>
+        </div>
+        <div class="option-btn" data-dogs="4" onclick="selectDogs(4)">
+          <span class="num">4+</span>
+          <span class="label">dogs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 2: Yard -->
+  <div class="card" id="yardCard" style="opacity:0.4;pointer-events:none;">
+    <div class="card-title">Step 2 — Yard Size</div>
+    <div class="yard-btns" id="yardOptions">
+      <div class="yard-btn" data-yard="small" onclick="selectYard('small')">
+        <div class="yard-icon">🏡</div>
+        <div class="yard-name">Standard</div>
+        <div class="yard-desc">Most yards</div>
+      </div>
+      <div class="yard-btn" data-yard="large" onclick="selectYard('large')">
+        <div class="yard-icon">🏠</div>
+        <div class="yard-name">Large</div>
+        <div class="yard-desc">½ acre+</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 3: Frequency -->
+  <div class="card" id="freqCard" style="opacity:0.4;pointer-events:none;">
+    <div class="card-title">Step 3 — How Often?</div>
+    <div class="freq-options" id="freqOptions">
+      <div class="freq-btn" data-freq="weekly" onclick="selectFreq('weekly')">
+        <div>
+          <div class="freq-name">Weekly <span class="best-value">Best Value</span></div>
+          <div class="freq-desc">Most popular — keeps yard pristine</div>
+        </div>
+        <div style="text-align:right">
+          <div class="freq-price" id="weeklyPrice">$25</div>
+          <div class="freq-unit">/visit</div>
+        </div>
+      </div>
+      <div class="freq-btn" data-freq="biweekly" onclick="selectFreq('biweekly')">
+        <div>
+          <div class="freq-name">Every 2 Weeks</div>
+          <div class="freq-desc">Good maintenance schedule</div>
+        </div>
+        <div style="text-align:right">
+          <div class="freq-price" id="biweeklyPrice">$45</div>
+          <div class="freq-unit">/visit</div>
+        </div>
+      </div>
+      <div class="freq-btn" data-freq="monthly" onclick="selectFreq('monthly')">
+        <div>
+          <div class="freq-name">Monthly</div>
+          <div class="freq-desc">Flat rate — unique to us!</div>
+        </div>
+        <div style="text-align:right">
+          <div class="freq-price" id="monthlyPrice">$70</div>
+          <div class="freq-unit">/month</div>
+        </div>
+      </div>
+      <div class="freq-btn" data-freq="onetime" onclick="selectFreq('onetime')">
+        <div>
+          <div class="freq-name">One-Time Deep Clean</div>
+          <div class="freq-desc">Spring cleanup or fresh start</div>
+        </div>
+        <div style="text-align:right">
+          <div class="freq-price" id="onetimePrice">$100</div>
+          <div class="freq-unit">one visit</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Selection Summary -->
+  <div class="selection-summary" id="summary"></div>
+
+  <!-- Result -->
+  <div class="result-card" id="resultCard">
+    <div class="result-label">Your Quote</div>
+    <div class="result-price" id="resultPrice"></div>
+    <div class="result-per" id="resultPer"></div>
+    <div class="result-breakdown" id="resultBreakdown"></div>
+    <div class="savings-badge" id="savingsBadge" style="display:none"></div>
+  </div>
+
+  <!-- Competitor Comparison (only for recurring plans) -->
+  <div class="compare-card" id="compareCard">
+    <div class="compare-title">💡 How We Compare (St. Louis Market)</div>
+    <div id="compareRows"></div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section" id="ctaSection">
+    <a class="cta-btn" id="textCta" href="sms:3148507140&body=Hi! I'd like to get a quote for pet waste removal.">
+      📱 Text Us to Get Started
+    </a>
+    <a class="cta-call" href="tel:3148507140">
+      📞 Call (314) 850-7140
+    </a>
+    <div class="cta-note">
+      No contracts • No hidden fees • Satisfaction guaranteed<br>
+      <strong>Owner-operated</strong> — TJ personally handles every yard
+    </div>
+  </div>
+
+  <!-- Trust -->
+  <div class="trust" id="trustSection" style="display:none">
+    <div class="trust-item">
+      <span class="trust-icon">🛡️</span>
+      No Contracts
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">✅</span>
+      Satisfaction<br>Guaranteed
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">👤</span>
+      Owner<br>Operated
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">🐾</span>
+      Pet Parents<br>Ourselves
+    </div>
+  </div>
+
+  <div class="footer">
+    Tidy Tails STL — Pet Waste Removal<br>
+    St. Louis County & Surrounding Areas<br>
+    tidytailsstl.com
+  </div>
+
+</div>
+
+<script>
+  // State
+  let state = { dogs: null, yard: null, freq: null };
+
+  // Pricing logic
+  // Base: $25/visit weekly, $45/visit biweekly, $70/mo monthly, $100 one-time
+  // Extra dog: $5/visit (for 2+)
+  // Large yard: +$10/visit
+  function calcPrice() {
+    if (!state.dogs || !state.yard || !state.freq) return null;
+
+    let extraDogs = Math.max(0, state.dogs - 1);
+    let dogSurcharge = extraDogs * 5;
+    let yardSurcharge = state.yard === 'large' ? 10 : 0;
+
+    let prices = {
+      weekly: { visit: 25 + dogSurcharge + yardSurcharge, per: 'visit' },
+      biweekly: { visit: 45 + dogSurcharge + yardSurcharge, per: 'visit' },
+      monthly: { visit: 70 + (dogSurcharge * 2) + (yardSurcharge * 2), per: 'month' },
+      onetime: { visit: 100 + (dogSurcharge * 3) + (yardSurcharge * 2), per: 'one-time' }
+    };
+
+    let sel = prices[state.freq];
+    let monthly;
+    switch(state.freq) {
+      case 'weekly': monthly = sel.visit * 4; break;
+      case 'biweekly': monthly = sel.visit * 2; break;
+      case 'monthly': monthly = sel.visit; break;
+      case 'onetime': monthly = sel.visit; break;
+    }
+
+    return { visit: sel.visit, per: sel.per, monthly: monthly, freq: state.freq };
+  }
+
+  // Competitor monthly prices (1 dog, standard yard, weekly)
+  const competitors = {
+    weekly: [
+      { name: 'POOP 911', price: '$48/mo', raw: 48 },
+      { name: 'Poop 2 Scoop', price: '$72/mo', raw: 72 },
+      { name: 'Dog Doody Defenders', price: '$68/mo', raw: 68 },
+      { name: 'Poopy Paws', price: '$80/mo', raw: 80 },
+      { name: 'DoodyCalls', price: 'Quote only', raw: 999 },
+    ],
+    biweekly: [
+      { name: 'Poop 2 Scoop', price: '$50/mo', raw: 50 },
+      { name: 'Dog Doody Defenders', price: '$54/mo', raw: 54 },
+      { name: 'POOP 911', price: '$24+/mo', raw: 24 },
+      { name: 'DoodyCalls', price: 'Quote only', raw: 999 },
+    ],
+    monthly: [
+      { name: 'Dog Doody Defenders', price: '$54/mo', raw: 54 },
+      { name: 'DoodyCalls', price: 'Quote only', raw: 999 },
+    ]
+  };
+
+  function selectDogs(n) {
+    state.dogs = n;
+    document.querySelectorAll('#dogOptions .option-btn').forEach(b => b.classList.remove('selected'));
+    document.querySelector(`#dogOptions [data-dogs="${n}"]`).classList.add('selected');
+    unlockCard('yardCard');
+    updatePriceLabels();
+    updateResult();
+  }
+
+  function selectYard(size) {
+    state.yard = size;
+    document.querySelectorAll('#yardOptions .yard-btn').forEach(b => b.classList.remove('selected'));
+    document.querySelector(`#yardOptions [data-yard="${size}"]`).classList.add('selected');
+    unlockCard('freqCard');
+    updatePriceLabels();
+    updateResult();
+  }
+
+  function selectFreq(freq) {
+    state.freq = freq;
+    document.querySelectorAll('#freqOptions .freq-btn').forEach(b => b.classList.remove('selected'));
+    document.querySelector(`#freqOptions [data-freq="${freq}"]`).classList.add('selected');
+    updateResult();
+  }
+
+  function unlockCard(id) {
+    let card = document.getElementById(id);
+    card.style.opacity = '1';
+    card.style.pointerEvents = 'auto';
+  }
+
+  function updatePriceLabels() {
+    if (!state.dogs || !state.yard) return;
+    let extra = Math.max(0, state.dogs - 1) * 5;
+    let yard = state.yard === 'large' ? 10 : 0;
+    let s = extra + yard;
+
+    document.getElementById('weeklyPrice').textContent = '$' + (25 + s);
+    document.getElementById('biweeklyPrice').textContent = '$' + (45 + s);
+    document.getElementById('monthlyPrice').textContent = '$' + (70 + s * 2);
+    document.getElementById('onetimePrice').textContent = '$' + (100 + s * 3);
+  }
+
+  function updateResult() {
+    let result = calcPrice();
+    if (!result) return;
+
+    let card = document.getElementById('resultCard');
+    let cta = document.getElementById('ctaSection');
+    let compare = document.getElementById('compareCard');
+    let trust = document.getElementById('trustSection');
+
+    // Price display
+    let priceStr;
+    if (result.freq === 'onetime') {
+      priceStr = '<sup>$</sup>' + result.visit;
+    } else {
+      priceStr = '<sup>$</sup>' + result.visit;
+    }
+    document.getElementById('resultPrice').innerHTML = priceStr;
+
+    let perText = {
+      weekly: '/visit • billed weekly',
+      biweekly: '/visit • every 2 weeks',
+      monthly: '/month • flat rate',
+      onetime: 'one-time deep clean'
+    };
+    document.getElementById('resultPer').textContent = perText[result.freq];
+
+    // Breakdown
+    let breakdown = '';
+    if (result.freq === 'weekly') {
+      breakdown = `That's $${result.monthly}/month for a spotless yard every week`;
+    } else if (result.freq === 'biweekly') {
+      breakdown = `That's $${result.monthly}/month • Upgrade to weekly and save $${(result.monthly - (result.visit - 20) * 4)}/mo`;
+    } else if (result.freq === 'monthly') {
+      breakdown = `Flat rate no matter the mess — unique to Tidy Tails!`;
+    } else {
+      breakdown = `Perfect for spring cleanups or getting a fresh start`;
+    }
+    document.getElementById('resultBreakdown').textContent = breakdown;
+
+    // Savings badge for monthly
+    let badge = document.getElementById('savingsBadge');
+    if (result.freq === 'monthly') {
+      badge.style.display = 'inline-block';
+      badge.textContent = '🔥 Only option like this in St. Louis!';
+    } else if (result.freq === 'weekly') {
+      badge.style.display = 'inline-block';
+      badge.textContent = `💰 Best per-visit value`;
+    } else {
+      badge.style.display = 'none';
+    }
+
+    // Update SMS CTA with details
+    let dogText = state.dogs === 1 ? '1 dog' : state.dogs + ' dogs';
+    let yardText = state.yard === 'large' ? 'large yard' : 'standard yard';
+    let freqText = { weekly: 'weekly', biweekly: 'every 2 weeks', monthly: 'monthly', onetime: 'one-time cleanup' }[result.freq];
+    let smsBody = encodeURIComponent(`Hi! I'd like to sign up for ${freqText} service. I have ${dogText} and a ${yardText}. My quote was $${result.visit}${result.freq === 'monthly' ? '/mo' : '/visit'}.`);
+    document.getElementById('textCta').href = `sms:3148507140&body=${smsBody}`;
+
+    // Show competitor comparison for recurring plans
+    if (result.freq !== 'onetime' && competitors[result.freq]) {
+      let rows = '';
+      let comps = competitors[result.freq];
+      // Add Tidy Tails to the mix and sort
+      let allOptions = [...comps, { name: '✅ Tidy Tails (You)', price: '$' + result.monthly + '/mo', raw: result.monthly, ours: true }];
+      allOptions.sort((a, b) => a.raw - b.raw);
+
+      allOptions.forEach(c => {
+        let cls = c.ours ? 'compare-row ours' : 'compare-row';
+        rows += `<div class="${cls}"><span class="comp-name">${c.name}</span><span class="comp-price">${c.price}</span></div>`;
+      });
+      document.getElementById('compareRows').innerHTML = rows;
+      compare.classList.add('visible');
+    } else {
+      compare.classList.remove('visible');
+    }
+
+    // Summary
+    let summary = document.getElementById('summary');
+    summary.innerHTML = `<span class="tag">🐕 ${state.dogs === 4 ? '4+' : state.dogs} dog${state.dogs > 1 ? 's' : ''}</span>
+      <span class="tag">🏡 ${state.yard === 'large' ? 'Large' : 'Standard'} yard</span>
+      <span class="tag">📅 ${freqText.charAt(0).toUpperCase() + freqText.slice(1)}</span>`;
+    summary.classList.add('visible');
+
+    card.classList.add('visible');
+    cta.classList.add('visible');
+    trust.style.display = 'flex';
+
+    // Smooth scroll to result
+    setTimeout(() => card.scrollIntoView({ behavior: 'smooth', block: 'center' }), 100);
+  }
+</script>
+
+</body>
+</html>

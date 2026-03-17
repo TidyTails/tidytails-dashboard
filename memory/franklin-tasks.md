@@ -7,6 +7,61 @@
 
 ## March 17, 2026 (Tuesday)
 
+### 2:05 PM — 💰 INSTANT PRICING CALCULATOR — Website Conversion Tool (Lead Generation / Website)
+**Task:** Researched all STL competitor pricing (live scrape of 8+ competitor sites), then built a mobile-first interactive pricing calculator widget for the Tidy Tails website.
+**Result:** ✅ COMPLETE — Shipped `deliverables/tidy-tails-pricing-calculator.html`
+
+**Why This Task:**
+- We have 50+ strategy docs/kits but ZERO conversion tools on the website
+- Once SSL is fixed (TJ's #1 task), the site needs to CONVERT visitors into leads
+- No STL competitor has an instant pricing calculator — this is a differentiator
+- Removes the biggest friction point: "How much does it cost?" → answered in 10 seconds
+- Pre-fills an SMS text with the customer's exact quote — speed to lead
+- Shows competitive pricing comparison to build confidence
+
+**What I Built:**
+1. **3-step interactive calculator:** Dogs → Yard Size → Frequency
+2. **Dynamic pricing** adjusts for extra dogs ($5/dog) and large yards (+$10)
+3. **4 plan options:** Weekly ($25+/visit), Biweekly ($45+/visit), Monthly ($70+ flat), One-Time ($100+)
+4. **Instant result card** with monthly cost breakdown
+5. **Live competitor comparison** showing Tidy Tails vs POOP 911, Poop 2 Scoop, Dog Doody Defenders, Poopy Paws, DoodyCalls — sorted by price
+6. **Pre-filled SMS CTA** — one tap to text TJ with exact service details and quote
+7. **Spring promo banner** — "First Cleanup FREE with recurring service"
+8. **Trust badges** — No contracts, satisfaction guaranteed, owner-operated
+9. **Progressive disclosure UI** — steps unlock as user progresses (reduces overwhelm)
+10. **Fully mobile-optimized** — designed for phone-first (where most leads come from)
+
+**Competitor Pricing Research (March 17, 2026 — LIVE DATA):**
+| Competitor | Weekly/visit | Biweekly/visit | Monthly | Type |
+|-----------|-------------|----------------|---------|------|
+| POOP 911 | **$11.95** | Custom | Custom | National franchise |
+| Dog Doody Defenders | **$17** | $27 | $54 | Local — Florissant/Chesterfield |
+| Poop 2 Scoop | **$18** | $25 | N/A | Local — STL |
+| Poopy Paws | **$20** | N/A | N/A | Local — STL |
+| **Tidy Tails** | **$25** | $45 | **$70** | Local — STL County |
+| DoodyCalls | Quote only | Quote only | Quote only | National franchise |
+| Scoop Soldiers | Not listed | Not listed | N/A | National franchise (back in STL) |
+| Yuckos | Call for quote | Call for quote | N/A | Local veteran (since 1990) |
+| Little Stinkers | Free quote | Free quote | N/A | St. Charles/Lincoln County |
+
+**Key Pricing Insights:**
+- TJ is the MOST EXPENSIVE local competitor at $25/visit weekly
+- BUT: TJ is the ONLY one offering a $70 flat monthly rate — genuine differentiator
+- POOP 911 at $11.95/visit is the price floor — franchise subsidized pricing
+- Dog Doody Defenders ($17) and Poop 2 Scoop ($18) are the real price competition
+- Price justification strategy: owner-operated, guaranteed, personal service
+- The calculator transparently shows pricing while highlighting TJ's unique monthly option
+
+**New Competitors Discovered:**
+- **Poopy Paws** (poopypaws314.com) — $20/week flat regardless of dog count, STL + IL
+- **The Poo Fighterz** — listed on Yelp STL top 10 (new since last check)
+- **No 2 Crew** — listed on Yelp STL top 10 (new since last check)
+- **The Pootector** — listed on Yelp STL top 10
+
+**Rotation:** 🛠️ Website Tools / Lead Conversion
+
+---
+
 ### 1:04 PM — 🎯 GOOGLE ADS LAUNCH KIT — Complete Campaign Ready to Deploy (Paid Acquisition)
 **Task:** Researched Google Ads benchmarks, STL competitor landscape, home services CPC data, and Swoop Scoop's FB+Google combo strategy, then built a complete Google Ads launch kit as a 6-tab mobile-first HTML deliverable.
 **Result:** ✅ COMPLETE — Shipped `deliverables/google-ads-launch-kit-march2026.html`

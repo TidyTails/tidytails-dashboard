@@ -231,8 +231,14 @@ Then tomorrow:
 | 18 | aPaws | ⬜ | | |
 | 19 | OpenStreetMap | ⬜ | | |
 | 20 | LinkedIn | ⬜ | | |
+| 21 | LocalPetCare.com | ⬜ | | |
+| 22 | HouseMyPet.com | ⬜ | | |
 
-**Goal: 10+ citations by end of week → 20 by end of March**
+**Goal: 10+ citations by end of week → 22 by end of March**
+
+### NEW Directories Found (Mar 17):
+- **LocalPetCare.com** — Free pet business listing. Pooper scoopers already listed. URL: https://www.localpetcare.com/business
+- **HouseMyPet.com** — Free pet services directory. URL: https://www.housemypet.com/Directory
 
 ---
 
