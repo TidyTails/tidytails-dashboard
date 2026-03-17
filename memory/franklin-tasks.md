@@ -7,6 +7,62 @@
 
 ## March 17, 2026 (Tuesday)
 
+### 7:04 AM — 🎯 COMPETITOR BATTLE CARD — Live Pricing Intel + Objection Handlers (Sales/Competitive Intel)
+**Task:** Crawled all 7 major STL competitor websites for LIVE March 2026 pricing, spring promotions, and marketing activity. Built a mobile-first HTML battle card TJ can reference during sales calls.
+**Result:** ✅ COMPLETE — Shipped `deliverables/competitor-battle-card-spring2026.html`
+
+**Why This Task:**
+- We had 10+ competitive reports but none were USABLE during a live phone call
+- Spring is NOW — needed to verify what competitors are actually charging and promoting TODAY
+- TJ is a natural closer but needs ammo when prospects compare prices
+- Previous pricing data was weeks old — needed fresh verification
+
+**What I Built:**
+1. **Mobile-first HTML battle card** (4 tabs, works on phone, no dependencies)
+2. **Tab 1 — Pricing:** Every competitor's CURRENT pricing (verified March 17, 2026)
+   - POOP 911: $11.95/wk (~$52/mo) — still cheapest
+   - Dog Doody Defenders: $17/wk (~$74/mo) — updated from previous data
+   - Poop2Scoop: $18/wk (~$78/mo) — plus $4 add-ons
+   - Doggie Doodies: $83/mo weekly, $85/mo biweekly, $90/mo monthly
+   - Dirty Dog Poo Crew: $95/mo (1-2 dogs) — most expensive
+   - Tidy Tails: $25/wk ($108/mo) weekly BUT $70/mo flat rate = CHEAPEST monthly
+3. **Tab 2 — Objection Handlers:** 6 scripted responses for common pushbacks
+   - "POOP 911 is cheaper" → franchise stranger vs. owner-operator pitch
+   - "Doggie Doodies is cheaper" → hotmail/Wix/backyard-only limitations
+   - "Found someone on Nextdoor" → consistency/insurance/commitment angle
+   - "Can you match?" → value over price + free first cleanup offer
+   - "I'll do it myself" → $2.30/day framing
+   - "Do you do one-time?" → spring cleanup → recurring conversion
+4. **Tab 3 — Spring Intel:** What each competitor is doing RIGHT NOW
+   - Doggie Doodies: weekly blog posts, coupon codes, expanded to 6 new cities
+   - POOP 911: free first cleanup, local pet parent messaging
+   - Scoop Soldiers: just entered STL, press release for SEO
+   - Dr. Scoops: clean site, Petworks listing, covers expansion targets
+5. **Tab 4 — Weaknesses:** Specific weak spots to exploit per competitor
+   - DD's hotmail + Wix + backyard-only pricing
+   - POOP 911's franchise anonymity
+   - Scoop Soldiers' zero local reviews
+   - Dr. Scoops' limited capacity
+
+**KEY NEW FINDINGS:**
+- Dog Doody Defenders monthly is only $54/visit (once monthly) — cheaper than TJ's $70
+- Doggie Doodies' $90/mo monthly is 29% more than TJ's $70 — USE THIS
+- Dirty Dog Poo Crew is $95/mo — 36% more than TJ's $70 — USE THIS
+- Doggie Doodies is publishing blog content weekly (Feb 11, 18) — active content marketing
+- Doggie Doodies expanded to Kirkwood, Creve Coeur, MD Heights, Eureka, Valley Park
+- Both POOP 911 and Doggie Doodies offer free first cleanup — TJ should match
+
+**How TJ Uses It:**
+1. Save HTML to phone home screen
+2. Prospect asks about competitors → tap Pricing tab
+3. Prospect pushes back on price → tap Objections tab
+4. Read scripts verbatim or adapt to natural style
+5. Close with "First cleanup free, start this Sunday"
+
+**Rotation:** 🔍 Competitive Intel / Sales Enablement
+
+---
+
 ### 6:05 AM — 📨 COMMERCIAL PROPOSAL + OUTREACH KIT — Sales Conversion Tools (Revenue/Commercial)
 **Task:** Built a professional commercial services proposal (HTML) and complete outreach email/text kit so TJ can actually CONVERT the 12 commercial leads we already have.
 **Result:** ✅ COMPLETE — Shipped `deliverables/tidy-tails-commercial-proposal.html` + `deliverables/commercial-outreach-emails.md`
