@@ -6,6 +6,41 @@
 
 ## March 16, 2026 (Monday)
 
+### 7:06 PM — 🌐 CITATION BLITZ GUIDE — 20 Directory Listings Researched (Off-Page SEO)
+**Task:** Researched, verified, and compiled a comprehensive directory listing guide — 20 platforms where TJ needs to create/claim business citations for Tidy Tails.
+**Result:** ✅ COMPLETE — Shipped `memory/citation-blitz-guide.md`
+
+**Why This Task:**
+- Tidy Tails Off-page SEO grade: **F** — ZERO citations beyond GBP and Yelp
+- Site STILL NOT INDEXED by Google after 30+ days — lack of citations is likely the cause
+- Competitors (Poop2Scoop, Dr. Scoops) are already on Petworks, aPaws, Nextdoor
+- NAP citations are the #1 signal Google uses to verify local businesses are real
+- AI search (ChatGPT, Perplexity, Gemini) sources from directories — zero presence = invisible
+
+**What I Built:**
+1. **20 directories** organized into 3 tiers by priority (DA score + relevance)
+2. **Tier 1 (7 sites):** Apple Business Connect, Bing Places, Facebook, Nextdoor, Petworks, MapQuest, Foursquare — all free, all DA 75+
+3. **Tier 2 (7 sites):** Manta, BBB, Angi, Porch, HomeAdvisor, Thumbtack, Merchant Circle
+4. **Tier 3 (6 sites):** aPaws ($85/yr), OpenStreetMap, Hotfrog, CityLocal Pro, Yellow Pages, LinkedIn
+5. **NAP consistency checklist** — exact copy-paste business info for every listing
+6. **"Speed Run" order** — 5 listings in 40 minutes for TJ to do tonight
+7. **Tracking table** — checkbox grid to track submission status
+8. **Business description** — short + long versions, ready to paste
+
+**Expected Impact:**
+- Current: 2 citations (GBP + Yelp)
+- After speed run: 7 citations (250% increase)
+- After full guide: 20+ citations
+- Google indexing likely triggered within 1-2 weeks of 10+ consistent citations
+- Map Pack visibility improvement
+- AI search discovery for "pet waste removal St. Louis"
+
+**Key Discovery:** MapQuest already has an auto-generated listing (Olivette MO 63132) — just needs claiming and correcting. Free backlink sitting there unclaimed.
+
+**Rotation:** 🌐 SEO / Off-Page — Citation Building
+
+---
+
 ### 6:05 PM — 🌟 GOOGLE REVIEW REQUEST KIT (Customer Acquisition / Local SEO)
 **Task:** Created personalized, copy-paste-ready review request texts for all 8 customers + an ongoing review system for future customers.
 **Result:** ✅ COMPLETE — Shipped `memory/review-request-kit.md`
