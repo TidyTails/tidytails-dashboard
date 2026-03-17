@@ -1,5 +1,5 @@
 # MEMORY.md — Franklin's Long-Term Memory
-*Last major overhaul: March 15, 2026 11 PM*
+*Last major overhaul: March 15, 2026 11 PM | Last maintenance: March 17, 2026 1 AM*
 
 ## Who I Am
 - **Name:** Franklin
@@ -275,7 +275,7 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 | AI video concepts | 6 produced |
 | City landing pages | 21 |
 | Blog posts | 4 |
-| Content calendar posts | 49+ copy-paste ready |
+| Content calendar posts | 61+ copy-paste ready |
 | Commercial leads | 65+ (paused per TJ) |
 
 ---
@@ -290,7 +290,8 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 - **Mar 11:** BREAKTHROUGH — discovered website was essentially blank, root cause: domain only 23 days old + zero backlinks
 - **Mar 14:** 15+ tasks. Found 2 new competitors (Clean Turf STL, Yuckos). Pricing strategy: $88/mo recommended.
 - **Mar 15:** 18+ tasks. 12 city SEO pages, payment calculator, premium pricing toolkit, Nextdoor launch kit, Facebook ads campaign kit. Competitive pricing audit confirmed TJ is most expensive in market. Memory overhaul completed.
-- **Mar 16:** Shed site HTTPS fixed + robots.txt/sitemap/schema added. 6 new competitors found (20+ total). Directory blitz kit + spring content blitz shipped. Memory consolidation: archived 30+ stale files, pruned memory/ from cluttered to clean. Both sites STILL not indexed (Day 30+).
+- **Mar 16:** Shed site HTTPS fixed + robots.txt/sitemap/schema added. 6 new competitors found (20+ total). Directory blitz kit + spring content blitz shipped. Memory consolidation: archived 30+ stale files, pruned memory/ from cluttered to clean. Both sites STILL not indexed (Day 30+). Paid ads analysis: NOT YET — fix foundation first. Week action plan: 5 tasks / 2 hours / $0. Citation blitz guide: 20 directories mapped. Review request kit: 8 personalized texts. Spring social media pack: 12 posts for 4 weeks.
+- **Mar 17:** Competitive intel refresh — discovered 5+ "Tidy Tails" brand collision nationally (our company buried in search). Spring social media content pack shipped. Memory maintenance pass.
 
 ---
 
@@ -305,6 +306,8 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 8. **Late night = maintenance. Morning = briefings. Don't create more content at 2 AM.**
 9. **Phone-sized design matters.** TJ and Jamie use mobile. Copy buttons = no excuses.
 10. **Door hangers don't work (0.2%).** Digital channels are the path.
+11. **Don't run paid ads until foundation is set.** 0 reviews + 0 citations + not indexed = wasted money. Fix those first, THEN $150-200/mo FB ads.
+12. **Pet waste = demand CREATION, not capture.** Most people don't search for it. Facebook shows them it exists. Google captures the ones who saw your FB ad then searched.
 
 ---
 
