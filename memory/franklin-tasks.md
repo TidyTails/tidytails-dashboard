@@ -5,6 +5,34 @@
 ---
 
 
+## March 17, 2026 (Tuesday)
+
+### 12:07 AM — 🔍 COMPETITIVE INTEL UPDATE + BRAND COLLISION DISCOVERY (Research)
+**Task:** Live competitive intelligence sweep of all STL pet waste competitors. Crawled 8+ competitor websites, checked pricing, platform presence, and search rankings.
+**Result:** ✅ COMPLETE — Shipped `deliverables/competitive-intel-update-march17-2026.md`
+
+**Why This Task:**
+- Last competitive scan was March 13 — due for weekly refresh
+- 90+ deliverables but still 4-5 customers — need intel, not more templates
+- Midnight = perfect time for research that doesn't need TJ's involvement
+
+**Key Discoveries:**
+1. **🚨 BRAND COLLISION** — 5+ other "Tidy Tails" pet waste companies nationally. When you Google "Tidy Tails pet waste removal," TJ's company is BURIED behind Charleston SC, Valrico FL, Atlanta GA, and others. The .net domain + no GBP + no citations = Google doesn't know which Tidy Tails to show.
+2. **Dr. Scoops fully profiled** — getdrscoops.com is a clean, modern local competitor in Ballwin/West County. On Petworks, Nextdoor, and Facebook. Better digital presence than TJ right now.
+3. **Poopy Paws pricing confirmed** — $20/wk flat for ANY number of dogs. Killer value prop for multi-dog homes. TJ charges $25 base.
+4. **Website STILL NOT INDEXED** (Week 5+). `site:tidytailspetwasteremoval.net` = ZERO results.
+5. **Platform presence matrix** — Tidy Tails has the LOWEST online presence of any active competitor.
+
+**Actionable Recommendations:**
+- Add "STL" to ALL branding to fight name collision (15 min)
+- Consider tidytailsstl.com domain for cleaner local SEO
+- Counter Poopy Paws with multi-dog pricing ($22/wk for 2+ dogs)
+- GET THE WEBSITE INDEXED (week 5 of this being the #1 blocker)
+
+**Rotation:** 🔍 Research — Competitive Intelligence
+
+---
+
 ## March 17, 2026 (Monday Night)
 
 ### 11:04 PM — 📱 SPRING SOCIAL MEDIA CONTENT PACK (Marketing)
