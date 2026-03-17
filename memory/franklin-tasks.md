@@ -7,6 +7,60 @@
 
 ## March 17, 2026 (Tuesday)
 
+### 11:04 AM — 🪵 LUMBER/TARIFF PRICE INTEL BRIEF — Sales Ammunition for the Lot (Shed Pipeline / Sales)
+**Task:** Researched current lumber futures, tariff status, and market conditions. Built a mobile-first HTML sales cheat sheet TJ can reference on every shed sales call TODAY.
+**Result:** ✅ COMPLETE — Shipped `deliverables/shed-lumber-tariff-intel-march17-2026.html`
+
+**Why This Task:**
+- 8 straight tasks were Tidy Tails — TuffShed pipeline needed attention
+- Previous lumber intel (March 11) had prices at $491/MBF — MASSIVELY outdated
+- Lumber just broke $600/MBF (March 16) — a 22% surge in 11 days
+- This isn't another "someday" deliverable — TJ literally sells sheds 9-5 TODAY
+- Real-time market data = urgency pitch ammunition for every customer conversation
+
+**What I Found (Key New Intel):**
+- **Lumber futures:** $600/MBF (4-week high, up 22% from $491 on March 6)
+- **May 2026 futures:** $598/MBF — markets expect sustained high prices
+- **2027+ futures:** "Progressively higher levels" per CME data
+- **Canadian softwood tariffs:** ~35% countervailing + 10% Section 232 (Oct 2025) = ~45% total
+- **Supply crunch:** Mill closures removing 1.3 BILLION board feet from North American supply in 2026
+- **Demand surge:** Multifamily housing starts up 29.1%, total residential up 7.2%
+- **NAHB Housing Market Index:** 38 in March (edging up)
+- **Political risk:** Trump admin seeking new tariffs to close $1.6T revenue gap — lumber already targeted
+- **Competitors:** French Creek Designs running 20-30% off through March 31 (clearing inventory before repricing)
+- **No active TuffShed promo** — $1K-off ended Feb 11, next likely Memorial Day (May 25)
+- **Shed site (backyardbuildingsstl.com):** HTTP 200, serving from GitHub Pages, working fine ✅
+
+**What I Built:**
+1. **Price alert header:** $600/MBF with 22% surge callout — immediate visual impact
+2. **3 stat cards:** 45% tariffs, 1.3B board feet removed, 29% housing starts surge
+3. **"Why Prices Are Rising" section:** 4 forces explained in customer-friendly language
+4. **Futures outlook:** Where prices are heading (spoiler: UP)
+5. **"What This Means for Sheds" section:** Why current inventory = old lumber costs = the real deal
+6. **5 copy-paste talk tracks with one-tap clipboard copy:**
+   - The Opener (use with EVERY prospect)
+   - "I want to wait for a sale" handler
+   - "Why is this so expensive?" handler
+   - "I'll just build one myself" handler (with DIY cost math at $600/MBF)
+   - Pipeline follow-up TEXT message template
+7. **Tariff timeline:** Oct 2025 → 2027+ with key dates and events
+8. **Quick reference card:** All key numbers at a glance
+
+**Why This Is Different From Previous Shed Intel:**
+- March 11 brief had $491 lumber — now OUTDATED by 22%
+- This is a SALES TOOL, not a research document — designed for phone reference between customers
+- The $491→$600 surge is the single strongest urgency datapoint TJ has ever had
+- The DIY cost comparison ($4,500-$6,000 vs. $3,509 WoodMaster) kills the "I'll build it myself" objection with current numbers
+
+**Expected Impact:**
+- TJ can cite REAL numbers on every call: "$600 per thousand board feet, up 22% in two weeks"
+- Pipeline follow-up text gives urgent reason to re-engage all 27 quoted/pre-quote leads
+- "Today's price is tomorrow's discount" is no longer a sales tactic — it's verifiable math
+
+**Rotation:** 🏠 Shed Business — Sales Enablement / Market Intelligence
+
+---
+
 ### 10:05 AM — 🏘️ NEIGHBORHOOD SATURATION KIT — Route Density Customer Acquisition (Lead Gen / Growth)
 **Task:** Built a comprehensive, mobile-first HTML campaign kit that turns TJ's existing Sunday route into a customer acquisition engine by saturating neighborhoods where he already has customers.
 **Result:** ✅ COMPLETE — Shipped `deliverables/neighborhood-saturation-kit.html`
