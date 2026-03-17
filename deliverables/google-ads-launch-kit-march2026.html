@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads Launch Kit — Tidy Tails</title>
+<style>
+  :root {
+    --green: #22c55e;
+    --green-dark: #16a34a;
+    --green-bg: #f0fdf4;
+    --blue: #3b82f6;
+    --blue-bg: #eff6ff;
+    --orange: #f97316;
+    --orange-bg: #fff7ed;
+    --red: #ef4444;
+    --red-bg: #fef2f2;
+    --purple: #8b5cf6;
+    --purple-bg: #faf5ff;
+    --gray-50: #f9fafb;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-300: #d1d5db;
+    --gray-500: #6b7280;
+    --gray-700: #374151;
+    --gray-900: #111827;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--gray-50);
+    color: var(--gray-900);
+    line-height: 1.6;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #1e40af, #7c3aed);
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+  }
+
+  .header h1 { font-size: 1.75rem; margin-bottom: 0.5rem; }
+  .header p { opacity: 0.9; font-size: 0.95rem; max-width: 600px; margin: 0 auto; }
+
+  .badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 0.8rem;
+    margin-top: 0.75rem;
+  }
+
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    background: white;
+    border-bottom: 2px solid var(--gray-200);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .tab {
+    flex: 1;
+    min-width: 80px;
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    white-space: nowrap;
+    background: white;
+    border: none;
+    color: var(--gray-500);
+  }
+
+  .tab.active {
+    color: #7c3aed;
+    border-bottom-color: #7c3aed;
+  }
+
+  .panel { display: none; padding: 1rem; max-width: 700px; margin: 0 auto; }
+  .panel.active { display: block; }
+
+  .card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    border: 1px solid var(--gray-200);
+  }
+
+  .card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .card h3 {
+    font-size: 0.95rem;
+    margin: 1rem 0 0.5rem;
+    color: var(--gray-700);
+  }
+
+  .step-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #7c3aed;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .highlight {
+    background: var(--green-bg);
+    border-left: 4px solid var(--green);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 0.75rem 0;
+    font-size: 0.9rem;
+  }
+
+  .warning {
+    background: var(--orange-bg);
+    border-left: 4px solid var(--orange);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 0.75rem 0;
+    font-size: 0.9rem;
+  }
+
+  .danger {
+    background: var(--red-bg);
+    border-left: 4px solid var(--red);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 0.75rem 0;
+    font-size: 0.9rem;
+  }
+
+  .info {
+    background: var(--blue-bg);
+    border-left: 4px solid var(--blue);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 0.75rem 0;
+    font-size: 0.9rem;
+  }
+
+  .insight {
+    background: var(--purple-bg);
+    border-left: 4px solid var(--purple);
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin: 0.75rem 0;
+    font-size: 0.9rem;
+  }
+
+  .copy-box {
+    background: var(--gray-100);
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    padding: 14px;
+    margin: 0.75rem 0;
+    font-family: -apple-system, sans-serif;
+    font-size: 0.88rem;
+    position: relative;
+    white-space: pre-wrap;
+    line-height: 1.5;
+  }
+
+  .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .copy-btn:active { transform: scale(0.95); }
+
+  .keyword-grid {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 0;
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.85rem;
+    margin: 0.75rem 0;
+  }
+
+  .keyword-grid .kg-header {
+    background: var(--gray-100);
+    padding: 8px 12px;
+    font-weight: 700;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .keyword-grid .kg-cell {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+
+  .keyword-grid .kg-cell:nth-child(3n+1) { font-weight: 500; }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .tag-high { background: #fecaca; color: #991b1b; }
+  .tag-med { background: #fed7aa; color: #9a3412; }
+  .tag-low { background: #bbf7d0; color: #166534; }
+
+  .checklist { list-style: none; padding: 0; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-100);
+    font-size: 0.9rem;
+  }
+
+  .checklist input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    accent-color: #7c3aed;
+  }
+
+  .math-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--gray-100);
+    font-size: 0.9rem;
+  }
+
+  .math-row .label { color: var(--gray-500); }
+  .math-row .value { font-weight: 700; }
+  .math-row .value.green { color: var(--green-dark); }
+
+  .ad-preview {
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 16px;
+    margin: 0.75rem 0;
+    background: white;
+  }
+
+  .ad-preview .ad-url {
+    font-size: 0.8rem;
+    color: var(--gray-500);
+  }
+
+  .ad-preview .ad-headline {
+    font-size: 1.05rem;
+    color: #1a0dab;
+    font-weight: 500;
+    margin: 4px 0;
+    cursor: pointer;
+  }
+
+  .ad-preview .ad-desc {
+    font-size: 0.85rem;
+    color: #4d5156;
+  }
+
+  .ad-preview .ad-label {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #202124;
+    background: #e8eaed;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-bottom: 4px;
+  }
+
+  .neg-kw-list {
+    columns: 2;
+    column-gap: 1rem;
+    font-size: 0.85rem;
+    list-style: none;
+    padding: 0;
+  }
+
+  .neg-kw-list li {
+    padding: 3px 0;
+    color: var(--gray-700);
+  }
+
+  .neg-kw-list li::before {
+    content: "−";
+    color: var(--red);
+    font-weight: 700;
+    margin-right: 6px;
+  }
+
+  .budget-card {
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .budget-amount {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #7c3aed;
+  }
+
+  .budget-label {
+    color: var(--gray-500);
+    font-size: 0.85rem;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 0.75rem 0;
+  }
+
+  .stat-box {
+    text-align: center;
+    padding: 12px;
+    border-radius: 8px;
+    background: var(--gray-50);
+  }
+
+  .stat-box .stat-num {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #7c3aed;
+  }
+
+  .stat-box .stat-desc {
+    font-size: 0.75rem;
+    color: var(--gray-500);
+  }
+
+  ol.steps { padding-left: 0; list-style: none; counter-reset: step; }
+  ol.steps li {
+    counter-increment: step;
+    padding: 8px 0 8px 36px;
+    position: relative;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: #7c3aed;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  strong { font-weight: 700; }
+  .small { font-size: 0.8rem; color: var(--gray-500); }
+  .mt { margin-top: 1rem; }
+  .mb { margin-bottom: 1rem; }
+
+  @media (max-width: 500px) {
+    .neg-kw-list { columns: 1; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎯 Google Ads Launch Kit</h1>
+  <p>Everything you need to launch Google Ads for Tidy Tails. Step-by-step setup, exact keywords, ad copy ready to paste, and budget math.</p>
+  <div class="badge">🕐 Setup Time: 45-60 min</div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab(0)">⚡ Why</button>
+  <button class="tab" onclick="showTab(1)">🔑 Keywords</button>
+  <button class="tab" onclick="showTab(2)">📝 Ad Copy</button>
+  <button class="tab" onclick="showTab(3)">🚀 Setup</button>
+  <button class="tab" onclick="showTab(4)">📊 Math</button>
+  <button class="tab" onclick="showTab(5)">✅ Go</button>
+</div>
+
+<!-- TAB 0: WHY GOOGLE ADS -->
+<div class="panel active" id="panel-0">
+
+  <div class="card">
+    <h2>🎯 Why Google Ads + Facebook Ads = The Combo</h2>
+    <p>Swoop Scoop (7-figure pet waste removal) uses <strong>both channels together</strong>. Here's why:</p>
+
+    <div class="stat-grid mt">
+      <div class="stat-box">
+        <div class="stat-num">FB</div>
+        <div class="stat-desc">Creates awareness<br>"I didn't know this existed!"</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num">Google</div>
+        <div class="stat-desc">Captures intent<br>"Let me search for this"</div>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <strong>The magic:</strong> Someone sees your Facebook ad → doesn't sign up immediately → later Googles "pooper scooper st louis" → finds your Google ad → calls you. Without Google Ads, that customer goes to Yuckos or Scoop Soldiers.
+    </div>
+
+    <h3>Your STL Competitors on Google</h3>
+    <div class="copy-box" style="font-size: 0.85rem;">
+🟢 Yuckos — since 1990, 314-291-7667, basic website
+🟡 Scoop Soldiers — national franchise, STL location
+🟡 POOP 911 — franchise, St. Charles coverage
+🟡 DoodyCalls — franchise, limited STL presence
+🟢 Poop2Scoop — local, decent website
+🔴 Tidy Tails — INVISIBLE on Google search
+
+None of these competitors appear to be running
+aggressive Google Ads in STL. The field is OPEN.</div>
+  </div>
+
+  <div class="card">
+    <h2>💰 Google Ads vs Facebook Ads — Quick Comparison</h2>
+    <div class="math-row"><span class="label">FB Avg CPC (home services)</span><span class="value">$1-3</span></div>
+    <div class="math-row"><span class="label">Google Avg CPC (home services)</span><span class="value">$3-8</span></div>
+    <div class="math-row"><span class="label">Pet waste CPC (low competition)</span><span class="value">$2-5</span></div>
+    <div class="math-row"><span class="label">Google conversion rate (home svc)</span><span class="value">8-12%</span></div>
+    <div class="math-row"><span class="label">Why Google converts better</span><span class="value green">They're actively SEARCHING</span></div>
+
+    <div class="info mt">
+      <strong>Translation:</strong> Google clicks cost more, but the people clicking are already looking for your service RIGHT NOW. Higher intent = higher close rate.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚠️ Prerequisites Before You Start</h2>
+    <ul class="checklist">
+      <li><input type="checkbox" id="pre1"><label for="pre1"><strong>SSL certificate fixed</strong> on tidytailsstl.com or .net — Google won't show ads for insecure sites</label></li>
+      <li><input type="checkbox" id="pre2"><label for="pre2"><strong>Website loads fast</strong> and has clear phone number + service area</label></li>
+      <li><input type="checkbox" id="pre3"><label for="pre3"><strong>Google Business Profile</strong> claimed and optimized (helps Quality Score)</label></li>
+      <li><input type="checkbox" id="pre4"><label for="pre4"><strong>Phone ready</strong> to answer calls — speed to lead is everything</label></li>
+    </ul>
+
+    <div class="danger mt">
+      <strong>🚫 Do NOT launch Google Ads until SSL is fixed.</strong> Google will reject or heavily penalize ads pointing to an insecure (http://) site. Fix this FIRST. It takes 10 minutes through your hosting provider.
+    </div>
+  </div>
+</div>
+
+<!-- TAB 1: KEYWORDS -->
+<div class="panel" id="panel-1">
+
+  <div class="card">
+    <h2>🔑 Primary Keywords — Copy These Exactly</h2>
+    <p class="small mb">These are the exact keywords to add to your campaign. Organized by match type for maximum control.</p>
+
+    <h3>🎯 Phrase Match Keywords (Best for Starting Out)</h3>
+    <p class="small">Phrase match shows your ad when someone searches for your keyword phrase in any order, with other words around it.</p>
+
+    <div class="copy-box">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>"pooper scooper st louis"
+"pet waste removal st louis"
+"dog poop cleanup st louis"
+"pooper scooper service near me"
+"dog waste removal"
+"pet waste removal near me"
+"pooper scooper"
+"dog poop removal service"
+"yard cleanup dog poop"
+"pet waste cleanup service"
+"pooper scooper service st charles"
+"dog poop pickup service"
+"pooper scooper ballwin"
+"pooper scooper chesterfield"
+"pooper scooper florissant"
+"pooper scooper o'fallon mo"</div>
+
+    <h3>💎 High-Intent Keywords (These People Are Ready to Buy)</h3>
+    <div class="copy-box">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>"hire pooper scooper"
+"pooper scooper service cost"
+"pooper scooper service prices"
+"pet waste removal quotes"
+"best pooper scooper service"
+"weekly dog poop cleanup"
+"professional poop scooper"
+"pooper scooper service reviews"</div>
+
+    <h3>🌱 Seasonal Keywords (Spring Gold — Use NOW)</h3>
+    <div class="copy-box">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>"spring yard cleanup dog poop"
+"spring cleanup pet waste"
+"winter dog poop cleanup"
+"yard cleanup after winter"</div>
+  </div>
+
+  <div class="card">
+    <h2>🚫 Negative Keywords — CRITICAL (Add These First!)</h2>
+    <p>These prevent your ads from showing for irrelevant searches. <strong>This saves you MONEY.</strong></p>
+
+    <div class="copy-box">
+<button class="copy-btn" onclick="copyText(this)">Copy All</button>pooper scooper tool
+pooper scooper amazon
+buy pooper scooper
+pooper scooper walmart
+dog poop bags
+poop bags
+poop scoop shovel
+pet waste station
+dog waste bag dispenser
+pet waste bag
+diy
+how to
+job
+jobs
+hiring
+career
+salary
+franchise
+start a business
+volunteer
+free
+training
+puppy training
+dog training
+potty training
+cat
+bird
+horse
+farm
+compost
+septic
+plumber</div>
+
+    <div class="warning">
+      <strong>Why this matters:</strong> Without negative keywords, you'll pay $3-5 every time someone searches "pooper scooper tool amazon" — they want a product, not a service. These negatives save you ~40% of wasted ad spend.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📍 Location Targeting</h2>
+    <div class="highlight">
+      <strong>Target these zip codes / cities:</strong><br>
+      Within <strong>15 miles of Ballwin, MO 63011</strong><br><br>
+      Key areas: Ballwin, Chesterfield, Florissant, O'Fallon MO, St. Charles, Maryland Heights, Ferguson, Kirkwood, Webster Groves, Hazelwood, Creve Coeur, Des Peres, Town & Country, Olivette, University City, Clayton
+    </div>
+
+    <div class="warning">
+      <strong>Important setting:</strong> In location options, choose <strong>"People IN or regularly IN your targeted locations"</strong> — NOT "People interested in your locations." The default includes people just searching ABOUT St. Louis, wasting your budget.
+    </div>
+  </div>
+</div>
+
+<!-- TAB 2: AD COPY -->
+<div class="panel" id="panel-2">
+
+  <div class="card">
+    <h2>📝 Google Responsive Search Ads</h2>
+    <p class="small mb">Google mixes and matches your headlines and descriptions to find the best combo. You provide up to 15 headlines and 4 descriptions. Here are your best ones:</p>
+
+    <h3>Headlines (30 characters max each)</h3>
+    <div class="copy-box">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>Tidy Tails Pet Waste Removal
+Pooper Scooper Service STL
+Dog Poop Cleanup St. Louis
+First Cleanup FREE
+$25/Week - No Contracts
+Local & Reliable Service
+Spring Cleanup Special
+We Scoop So You Don't
+Professional Dog Waste Removal
+Weekly Service Starting $25
+Free Estimates - Call Now
+St. Louis Pet Waste Pros
+Same Day Quotes Available
+Serving STL County & More
+Locally Owned - Not a Franchise</div>
+
+    <h3>Descriptions (90 characters max each)</h3>
+    <div class="copy-box">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>Professional pet waste removal in St. Louis. Weekly service from $25. First cleanup FREE!
+Tired of dog poop? We show up weekly, scoop every pile & haul it away. No contracts ever.
+Locally owned pooper scooper service in STL County. Free first cleanup when you sign up.
+Spring special: Get your first yard cleanup FREE. Serving Ballwin to O'Fallon. Call today!</div>
+  </div>
+
+  <div class="card">
+    <h2>👁️ How Your Ads Will Look on Google</h2>
+
+    <div class="ad-preview">
+      <div class="ad-label">Sponsored</div>
+      <div class="ad-url">tidytailsstl.com</div>
+      <div class="ad-headline">Tidy Tails Pet Waste Removal | First Cleanup FREE | $25/Week</div>
+      <div class="ad-desc">Professional pet waste removal in St. Louis. Weekly service from $25. First cleanup FREE! Locally owned pooper scooper service in STL County. No contracts ever.</div>
+    </div>
+
+    <div class="ad-preview">
+      <div class="ad-label">Sponsored</div>
+      <div class="ad-url">tidytailsstl.com</div>
+      <div class="ad-headline">Dog Poop Cleanup St. Louis | Spring Cleanup Special | We Scoop So You Don't</div>
+      <div class="ad-desc">Tired of dog poop? We show up weekly, scoop every pile & haul it away. No contracts ever. Spring special: Get your first yard cleanup FREE. Call today!</div>
+    </div>
+
+    <div class="ad-preview">
+      <div class="ad-label">Sponsored</div>
+      <div class="ad-url">tidytailsstl.com</div>
+      <div class="ad-headline">Pooper Scooper Service STL | Local & Reliable | Free Estimates</div>
+      <div class="ad-desc">Locally owned pooper scooper service in STL County. Free first cleanup when you sign up. Serving Ballwin to O'Fallon. Same day quotes available.</div>
+    </div>
+
+    <div class="info mt">
+      Google will automatically test different combinations of your headlines and descriptions to find what converts best. That's why we provide 15 headlines — let the algorithm work for you.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📞 Call Extensions (Add These!)</h2>
+    <p>These add your phone number directly to the ad — people can tap to call without visiting your website.</p>
+
+    <div class="copy-box">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>Phone: 314-850-7140
+Call hours: Mon-Fri 7AM-7PM, Sat 8AM-5PM</div>
+
+    <h3>Sitelink Extensions (Free Extra Links)</h3>
+    <div class="copy-box">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>Sitelink 1: "Get a Free Quote" → tidytailsstl.com (or /quote)
+Sitelink 2: "Service Areas" → tidytailsstl.com (or /areas)
+Sitelink 3: "Pricing" → tidytailsstl.com (or /pricing)
+Sitelink 4: "About Us" → tidytailsstl.com (or /about)</div>
+
+    <h3>Callout Extensions (Extra Selling Points)</h3>
+    <div class="copy-box">
+<button class="copy-btn" onclick="copyText(this)">Copy</button>No Contracts
+Free First Cleanup
+Locally Owned
+Same-Day Quotes
+Weekly Service
+Fully Insured</div>
+  </div>
+</div>
+
+<!-- TAB 3: SETUP -->
+<div class="panel" id="panel-3">
+
+  <div class="card">
+    <h2>🚀 Step-by-Step Setup Guide</h2>
+    <p class="small mb">Follow these exactly. Total time: 45-60 minutes.</p>
+
+    <div class="card" style="background: var(--purple-bg); border: 1px solid #c4b5fd;">
+      <h3>Step 1: Create Google Ads Account (5 min)</h3>
+      <ol class="steps">
+        <li>Go to <strong>ads.google.com</strong></li>
+        <li>Click "Start Now" — sign in with your Google account</li>
+        <li><strong>IMPORTANT:</strong> When it asks "What's your main advertising goal?" — click <strong>"Switch to Expert Mode"</strong> at the bottom. Do NOT use Smart Campaigns (they waste money)</li>
+        <li>Click <strong>"Create an account without a campaign"</strong></li>
+        <li>Confirm your business info and billing country</li>
+        <li>Add your payment method (debit/credit card)</li>
+      </ol>
+    </div>
+
+    <div class="danger">
+      <strong>⚠️ Skip "Smart Campaign" setup.</strong> Google will try to get you into their simplified mode. It sounds easier but gives you zero control and wastes budget. Always use Expert Mode.
+    </div>
+
+    <div class="card" style="background: var(--blue-bg); border: 1px solid #93c5fd;">
+      <h3>Step 2: Set Up Conversion Tracking (10 min)</h3>
+      <ol class="steps">
+        <li>In Google Ads, go to <strong>Goals → Conversions → Summary</strong></li>
+        <li>Click <strong>"+ New conversion action"</strong></li>
+        <li>Select <strong>"Phone calls"</strong> → "Calls from ads or website"</li>
+        <li>Enter your phone number: <strong>314-850-7140</strong></li>
+        <li>Set minimum call duration to <strong>30 seconds</strong> (filters out accidental clicks)</li>
+        <li>Save</li>
+        <li>If your website has a contact form, also add a <strong>"Website"</strong> conversion for the thank-you page</li>
+      </ol>
+    </div>
+
+    <div class="warning">
+      <strong>Why this matters:</strong> Without conversion tracking, you can't tell which keywords are getting you actual calls vs. wasting money. This is the #1 mistake new advertisers make.
+    </div>
+
+    <div class="card" style="background: var(--green-bg); border: 1px solid #86efac;">
+      <h3>Step 3: Create Your Campaign (15 min)</h3>
+      <ol class="steps">
+        <li>Click <strong>"+ New Campaign"</strong></li>
+        <li>Objective: <strong>"Leads"</strong></li>
+        <li>Campaign type: <strong>"Search"</strong></li>
+        <li>Select your phone call conversion from Step 2</li>
+        <li>Campaign name: <strong>"Tidy Tails - Pet Waste STL"</strong></li>
+        <li>Networks: <strong>UNCHECK</strong> "Include Google Search Partners" and "Include Google Display Network" — Search only!</li>
+        <li>Locations: <strong>"Enter another location"</strong> → type "Ballwin, Missouri" → set radius to <strong>15 miles</strong></li>
+        <li>Location options: Select <strong>"Presence: People in or regularly in your targeted locations"</strong></li>
+        <li>Language: <strong>English</strong></li>
+        <li>Budget: <strong>$10/day</strong> ($300/month)</li>
+        <li>Bidding: <strong>"Maximize conversions"</strong> (if you have conversion tracking) or <strong>"Maximize clicks"</strong> with a $5 max CPC bid cap (if no tracking yet)</li>
+      </ol>
+    </div>
+
+    <div class="card" style="background: var(--orange-bg); border: 1px solid #fdba74;">
+      <h3>Step 4: Create Your Ad Group & Keywords (10 min)</h3>
+      <ol class="steps">
+        <li>Ad group name: <strong>"Pet Waste Removal"</strong></li>
+        <li>Copy/paste the <strong>Phrase Match keywords</strong> from the Keywords tab</li>
+        <li>Make sure each keyword has quotes around it (phrase match)</li>
+        <li>Go to <strong>Keywords → Negative Keywords</strong></li>
+        <li>Copy/paste ALL the negative keywords from the Keywords tab</li>
+      </ol>
+    </div>
+
+    <div class="card" style="background: var(--purple-bg); border: 1px solid #c4b5fd;">
+      <h3>Step 5: Create Your Ads (10 min)</h3>
+      <ol class="steps">
+        <li>Select <strong>"Responsive search ad"</strong></li>
+        <li>Final URL: <strong>https://tidytailsstl.com</strong> (or .net)</li>
+        <li>Copy/paste the <strong>15 headlines</strong> from the Ad Copy tab</li>
+        <li>Copy/paste the <strong>4 descriptions</strong> from the Ad Copy tab</li>
+        <li>Add your <strong>Call extension</strong>: 314-850-7140</li>
+        <li>Add <strong>Sitelink extensions</strong> from the Ad Copy tab</li>
+        <li>Add <strong>Callout extensions</strong> from the Ad Copy tab</li>
+        <li>Preview your ad → looks good? Hit <strong>"Publish"</strong></li>
+      </ol>
+    </div>
+
+    <div class="card" style="background: var(--green-bg); border: 1px solid #86efac;">
+      <h3>Step 6: Ad Schedule (2 min)</h3>
+      <ol class="steps">
+        <li>Go to <strong>"Ad schedule"</strong> in your campaign</li>
+        <li>Set ads to run <strong>Monday-Saturday, 7AM to 8PM</strong></li>
+        <li>This ensures you only pay for clicks when you can actually answer calls</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 4: MATH -->
+<div class="panel" id="panel-4">
+
+  <div class="card budget-card">
+    <div class="budget-label">Recommended Starting Budget</div>
+    <div class="budget-amount">$10/day</div>
+    <div class="budget-label">= $300/month</div>
+  </div>
+
+  <div class="card">
+    <h2>📊 Projected Results at $10/day</h2>
+
+    <h3>Conservative Estimate (Month 1)</h3>
+    <div class="math-row"><span class="label">Daily budget</span><span class="value">$10</span></div>
+    <div class="math-row"><span class="label">Monthly spend</span><span class="value">$300</span></div>
+    <div class="math-row"><span class="label">Estimated CPC (pet waste, STL)</span><span class="value">$2-4</span></div>
+    <div class="math-row"><span class="label">Monthly clicks</span><span class="value">75-150</span></div>
+    <div class="math-row"><span class="label">Conversion rate (calls/forms)</span><span class="value">8-12%</span></div>
+    <div class="math-row"><span class="label">Monthly leads</span><span class="value">6-18</span></div>
+    <div class="math-row"><span class="label">Close rate (realistic)</span><span class="value">30-50%</span></div>
+    <div class="math-row"><span class="label"><strong>New customers/month</strong></span><span class="value green"><strong>2-9</strong></span></div>
+
+    <div class="highlight mt">
+      <strong>The math checks out:</strong> At $25/week per customer ($100/month), just 3 new recurring customers = $300/month in new MRR. Your ad spend pays for itself in month 1.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>💎 Customer Lifetime Value Math</h2>
+    <div class="math-row"><span class="label">Avg monthly revenue per customer</span><span class="value">$100</span></div>
+    <div class="math-row"><span class="label">Avg customer retention</span><span class="value">12+ months</span></div>
+    <div class="math-row"><span class="label">Customer LTV</span><span class="value green">$1,200</span></div>
+    <div class="math-row"><span class="label">Cost to acquire (Google Ads)</span><span class="value">$33-100</span></div>
+    <div class="math-row"><span class="label">LTV:CAC Ratio</span><span class="value green">12:1 to 36:1</span></div>
+
+    <div class="info mt">
+      <strong>Industry benchmark:</strong> LTV:CAC of 3:1 is considered good. At 12:1+, Google Ads for pet waste removal is a money printer. The key: these are RECURRING customers, not one-time sales.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📈 Scaling Plan</h2>
+
+    <div class="math-row"><span class="label">Week 1-2: Test phase</span><span class="value">$10/day ($70/wk)</span></div>
+    <div class="math-row"><span class="label">Week 3-4: If getting leads</span><span class="value">$15/day ($105/wk)</span></div>
+    <div class="math-row"><span class="label">Month 2: Scale winners</span><span class="value">$20/day ($140/wk)</span></div>
+    <div class="math-row"><span class="label">Month 3+: Full throttle</span><span class="value">$25-30/day</span></div>
+
+    <div class="warning mt">
+      <strong>Rule:</strong> Only increase budget when you're actually converting leads. If you're getting clicks but no calls, fix the landing page or keywords before spending more.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🔄 FB + Google Combined Budget</h2>
+    <div class="math-row"><span class="label">Facebook Ads</span><span class="value">$5/day ($150/mo)</span></div>
+    <div class="math-row"><span class="label">Google Ads</span><span class="value">$10/day ($300/mo)</span></div>
+    <div class="math-row"><span class="label"><strong>Total ad spend</strong></span><span class="value"><strong>$450/mo</strong></span></div>
+    <div class="math-row"><span class="label">Expected new customers/month</span><span class="value green">5-15</span></div>
+    <div class="math-row"><span class="label">New MRR from those customers</span><span class="value green">$500-1,500</span></div>
+
+    <div class="highlight mt">
+      <strong>Bottom line:</strong> $450/month in ads → $500-1,500/month in new recurring revenue. And those customers keep paying month after month. By month 3, you're profitable on ad spend alone.
+    </div>
+  </div>
+</div>
+
+<!-- TAB 5: GO LIVE CHECKLIST -->
+<div class="panel" id="panel-5">
+
+  <div class="card">
+    <h2>✅ Pre-Launch Checklist</h2>
+    <ul class="checklist">
+      <li><input type="checkbox" id="go1"><label for="go1">SSL certificate is active on website ✅</label></li>
+      <li><input type="checkbox" id="go2"><label for="go2">Website has phone number prominently displayed</label></li>
+      <li><input type="checkbox" id="go3"><label for="go3">Google Business Profile is claimed and complete</label></li>
+      <li><input type="checkbox" id="go4"><label for="go4">Google Ads account created in Expert Mode</label></li>
+      <li><input type="checkbox" id="go5"><label for="go5">Conversion tracking set up (phone calls)</label></li>
+      <li><input type="checkbox" id="go6"><label for="go6">Campaign created with Search network ONLY</label></li>
+      <li><input type="checkbox" id="go7"><label for="go7">Location targeting set to 15mi around Ballwin</label></li>
+      <li><input type="checkbox" id="go8"><label for="go8">Location option set to "People IN locations"</label></li>
+      <li><input type="checkbox" id="go9"><label for="go9">All phrase match keywords added</label></li>
+      <li><input type="checkbox" id="go10"><label for="go10">ALL negative keywords added (saves $$)</label></li>
+      <li><input type="checkbox" id="go11"><label for="go11">15 headlines + 4 descriptions entered</label></li>
+      <li><input type="checkbox" id="go12"><label for="go12">Call extension added (314-850-7140)</label></li>
+      <li><input type="checkbox" id="go13"><label for="go13">Sitelink extensions added</label></li>
+      <li><input type="checkbox" id="go14"><label for="go14">Callout extensions added</label></li>
+      <li><input type="checkbox" id="go15"><label for="go15">Ad schedule set (Mon-Sat, 7AM-8PM)</label></li>
+      <li><input type="checkbox" id="go16"><label for="go16">Budget set to $10/day</label></li>
+      <li><input type="checkbox" id="go17"><label for="go17">Phone notifications ON — answer within 60 seconds!</label></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📅 Week 1 Monitoring Routine</h2>
+    <p>Check these daily for the first week (takes 5 minutes):</p>
+    <ul class="checklist">
+      <li><input type="checkbox"><label><strong>Day 1:</strong> Confirm ad is "Eligible" (not disapproved). Check search terms report for junk keywords → add as negatives</label></li>
+      <li><input type="checkbox"><label><strong>Day 2-3:</strong> Check Search Terms report again. Are you showing for relevant searches? Add more negatives for anything irrelevant</label></li>
+      <li><input type="checkbox"><label><strong>Day 4-5:</strong> Check cost per click. If CPC > $6, tighten your keyword match types or location targeting</label></li>
+      <li><input type="checkbox"><label><strong>Day 6-7:</strong> Review which headlines Google is showing most. Pause any that aren't working. Check if you've gotten any calls</label></li>
+    </ul>
+
+    <div class="insight mt">
+      <strong>Pro tip:</strong> The <strong>Search Terms report</strong> is your best friend. It shows EXACTLY what people typed to see your ad. Check it every 2-3 days and add irrelevant terms as negative keywords. This is how you keep improving.
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>⚡ Speed to Lead Protocol</h2>
+    <div class="highlight">
+      <strong>78% of customers go with whoever responds first.</strong>
+    </div>
+    <p>When a call comes in from Google Ads:</p>
+    <ol class="steps">
+      <li><strong>Answer within 3 rings</strong> — or call back within 5 minutes</li>
+      <li>Say: <em>"Hey, this is TJ with Tidy Tails! Thanks for calling."</em></li>
+      <li>Ask: How many dogs? How often do they use the yard? What area?</li>
+      <li>Quote immediately: "$25/week for 1-2 dogs. First cleanup is free."</li>
+      <li>Book the first service on the call: "I can be there Thursday — does morning or afternoon work better?"</li>
+      <li>Send a text confirmation right after: name, date, time, address</li>
+    </ol>
+
+    <div class="warning mt">
+      <strong>If you miss the call:</strong> Call back within 5 minutes AND text: "Hey, this is TJ from Tidy Tails! Just saw I missed your call — I do pet waste removal in the STL area. When's a good time to chat?"
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🎉 You're Ready — Hit Publish!</h2>
+    <div class="highlight" style="text-align: center; font-size: 1.1rem;">
+      <strong>Your ads will start showing within 24 hours.</strong><br>
+      First leads typically come within 3-7 days.<br><br>
+      📞 Keep your phone on. This is where it starts.
+    </div>
+  </div>
+</div>
+
+<script>
+function showTab(index) {
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', i === index));
+  document.querySelectorAll('.panel').forEach((p,i) => p.classList.toggle('active', i === index));
+  window.scrollTo(0, 0);
+}
+
+function copyText(btn) {
+  const box = btn.parentElement;
+  const text = box.textContent.replace('Copy All','').replace('Copy','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+
+// Persist checkboxes
+document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+  const key = 'gads_' + (cb.id || cb.closest('li')?.textContent?.substring(0,30));
+  cb.checked = localStorage.getItem(key) === 'true';
+  cb.addEventListener('change', () => localStorage.setItem(key, cb.checked));
+});
+</script>
+
+</body>
+</html>
