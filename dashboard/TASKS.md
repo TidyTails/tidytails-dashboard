@@ -1,10 +1,17 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-15 11:15 AM CST*
+*Last updated: 2026-03-17 3:05 AM CST*
 
 ---
 
 ## 🐕 DOG WASTE (Tidy Tails)
+
+### 🚨 CRITICAL — FIX TODAY
+- [ ] **SSL Certificate EXPIRED** — Website has been DOWN since Feb 19 (26 days). THIS is why Google won't index. Every visitor sees "connection not private" warning. **15-minute fix in GoDaddy dashboard.** See `deliverables/URGENT-website-down-ssl-expired-march17.md`
+  - Status: GoDaddy cert expired Feb 19, 2026. Site loads over HTTP but HTTPS is broken.
+  - Owner: TJ (requires GoDaddy login)
+  - Action: GoDaddy Dashboard → SSL → Renew/Re-enable → Then submit to Google Search Console
+  - **This unblocks ALL SEO, citations, and online visibility work**
 
 ### 🔥 In Progress
 - [ ] **Nextdoor Launch** — Page NOT claimed yet. Strategy + 14 posts ready. TJ needs to set up page (15 min).
@@ -12,11 +19,11 @@
   - Owner: TJ (setup) — Franklin (content ready)
   - Action: Claim page at business.nextdoor.com, post intro, ask customers for recommendations
 
-- [ ] **Google Indexing** — ⚠️ CORRECTED: Domain only 26 days old (registered Feb 16). 0 pages indexed is NORMAL for a new domain.
-  - Status: Technical SEO is solid (no issues found). Problem is zero backlinks/authority, not technical.
-  - **FIX:** Build backlinks NOW — GBP link, directory listings, social posts with URL. See `deliverables/google-indexing-acceleration-march14.md`
-  - Owner: TJ (Saturday checklist: GSC pings + GBP link + directory listings = 45 min)
-  - Expected: First pages indexed within 1-2 weeks IF backlink actions taken this weekend
+- [ ] **Google Indexing** — 🚨 ROOT CAUSE FOUND: SSL cert expired Feb 19. Google can't crawl HTTPS sites with expired certs. Fix SSL first (see CRITICAL above), then submit to Search Console.
+  - Status: Previous diagnosis was wrong — it's not a "new domain" issue, it's a BROKEN SITE issue
+  - **FIX:** Step 1: Renew SSL (see CRITICAL). Step 2: Submit sitemap in Google Search Console. Step 3: Request indexing for homepage.
+  - Owner: TJ
+  - Expected: 3-7 days after SSL fix
 
 - [ ] **Spring Marketing Push** — FB group posts, spring-themed content
   - Status: **2-week content pack ready!** 13 posts for Mar 14-28 + 3 IG posts + posting schedule
