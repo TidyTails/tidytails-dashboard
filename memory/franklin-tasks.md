@@ -6,6 +6,41 @@
 
 ## March 16, 2026 (Monday)
 
+### 10:10 PM — 💰 PAID ADS ANALYSIS — Facebook vs Google Ads Decision Guide (Strategy)
+**Task:** Researched whether Tidy Tails should invest in paid advertising (Facebook Ads, Google Ads), what it would cost, what results to expect, and created a phased roadmap.
+**Result:** ✅ COMPLETE — Shipped `deliverables/paid-ads-analysis-march2026.md`
+
+**Why This Task:**
+- 89 deliverables created, still 4-5 customers — the gap is execution + visibility, not content
+- TJ has NEVER run paid ads. Every successful pet waste company uses FB + Google ads to scale.
+- Swoop Scoop hit $400K/month revenue largely through Facebook ads (10,000+ leads)
+- But running ads BEFORE fixing the foundation (0 reviews, site not indexed) = wasted money
+- TJ needs a CLEAR answer: "Should I spend money on ads?" with specific numbers
+
+**What I Built:**
+1. **Clear recommendation:** NOT YET — fix foundation first (reviews, citations, indexing), then start
+2. **Facebook Ads deep dive:** $150-200/month starter budget, expected 10-20 leads/month, $8-20/lead
+3. **Google Ads analysis:** Phase 2 after FB proves out, $200-300/month, higher intent but lower volume
+4. **3 ready-to-use ad copy variations** — problem/solution, spring hook, social proof
+5. **Targeting blueprint** — audiences, radius, demographics, interests
+6. **Keyword research** — estimated CPCs for STL pet waste keywords ($2-8/click, LOW competition)
+7. **Case studies** — Swoop Scoop ($400K/mo), Fresh Start ($200K yr1), solo operator ($6K yr1 on $2K spend)
+8. **4-phase roadmap** — Foundation ($0) → FB Test ($200/mo) → Google ($200-300/mo) → Scale ($500-800/mo)
+9. **ROI math:** 2 new weekly customers covers $200 ad spend. LTV of weekly customer = $1,200+/year.
+10. **Negative keyword list** for Google Ads to avoid wasted spend
+
+**Key Insight:** Pet waste removal has LOW Google search volume — most people don't know the service exists. Facebook CREATES demand by showing ads to dog owners. Google CAPTURES demand from people who saw your FB ad then searched for you. This is why every successful company starts with FB, not Google.
+
+**Expected Impact:**
+- Gives TJ a clear "not yet" answer that prevents wasted money NOW
+- Provides exact steps and budget for when he IS ready (after reviews + citations)
+- Ready-to-use ad copy when he launches
+- Projected: 2-5 new customers/month at $40-100/customer from first FB campaign
+
+**Rotation:** 💰 Strategy — Paid Advertising Analysis
+
+---
+
 ### 8:07 PM — 🎯 WEEK ACTION PLAN — Mar 17-23 Execution Playbook (Meta-Productivity)
 **Task:** Created a tight, no-BS weekly action plan that activates all of today's deliverables into a 5-step, 2-hour execution playbook for TJ.
 **Result:** ✅ COMPLETE — Shipped `deliverables/week-action-plan-march17-23.md`
