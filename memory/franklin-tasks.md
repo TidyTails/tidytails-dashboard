@@ -7,6 +7,49 @@
 
 ## March 17, 2026 (Tuesday)
 
+### 8:06 AM — 🗂️ DIRECTORY SUBMISSION BLITZ KIT — Off-Page SEO from F to C+ (SEO/Visibility)
+**Task:** Researched 20+ free and paid business directories, verified TJ's current online presence (basically zero beyond GBP/Yelp), and built a mobile-first HTML submission kit with copy-paste NAP info, pre-written descriptions, direct sign-up links, priority tiers, progress tracking, and a checklist.
+**Result:** ✅ COMPLETE — Shipped `deliverables/directory-submission-blitz-kit.html`
+
+**Why This Task:**
+- Off-page SEO is rated F — zero backlinks, zero directory citations beyond GBP + Yelp
+- Searched for "Tidy Tails" + "314-850-7140" + "tidytailsstl" = ZERO results anywhere
+- TJ is invisible to Siri (no Apple Maps listing), Bing/Copilot (no Bing Places), Nextdoor (no business page), and every pet service marketplace
+- Competitors (Dr. Scoops, Poop2Scoop) are already on Petworks, aPaws — TJ is not
+- Once SSL is fixed, these backlinks will help Google index the site faster
+- Each directory listing is a 24/7 customer acquisition channel that compounds over time
+
+**What I Built:**
+1. **Mobile-first HTML kit** with 4 tabs (Tier 1 / Tier 2 / Pet-Specific / Checklist)
+2. **Copy-paste NAP card** — one-tap copy of business name, phone, website, email, categories
+3. **Two pre-written descriptions** — 50-word short + 150-word long, ready to paste into any directory
+4. **20 directories prioritized by impact:**
+   - Tier 1 (DO TODAY - 8 dirs): Apple Business Connect (DA99), Bing Places (DA93), Facebook Business (DA94), Nextdoor (DA83), Thumbtack (DA78), BBB (DA91), MapQuest (DA80, already auto-listed!), Foursquare (DA91)
+   - Tier 2 (THIS WEEK - 7 dirs): Angi (DA76), Porch (DA76), Manta (DA80), Merchant Circle (DA76), Alignable (DA70), Trustpilot (DA92), OpenStreetMap (DA89)
+   - Pet-Specific (5 dirs): Petworks (FREE, competitors already there), Pooper-Scooper.com ($7/mo), aPaws ($85/yr), Care.com (DA77), Rover (DA75+)
+5. **Direct sign-up links** for every directory
+6. **Progress tracker** with localStorage persistence (checks survive browser refresh)
+7. **Submission day checklist** including SSL fix reminder and common mistakes to avoid
+8. **Time estimate:** ~3 hours total to go from 2 listings to 22+
+9. **Cost breakdown:** $0 for 17 directories, ~$177/year for full coverage including paid niche directories
+
+**KEY FINDINGS:**
+- Apple Business Connect is the biggest miss — 60%+ of customers use iPhones, Siri can't find TJ
+- Bing Places feeds ChatGPT/Copilot search — AI search literally can't find Tidy Tails
+- MapQuest already has an auto-generated listing in Olivette MO 63132 — just needs claiming
+- Petworks is free to join (15% commission on bookings) and Dr. Scoops + Poop2Scoop are already there
+- aPaws membership ($85/yr) gives directory listing + industry credibility badge
+
+**Expected Impact:**
+- Off-page SEO: F → C+ within 4 weeks
+- Backlinks: 0 → 15+ from high-authority domains
+- Visibility: Discoverable via Siri, Bing/Copilot, Nextdoor, pet marketplaces
+- Combined with SSL fix: Google indexing within 1-2 weeks
+
+**Rotation:** 🔍 SEO / Online Visibility — Off-Page Citations
+
+---
+
 ### 7:04 AM — 🎯 COMPETITOR BATTLE CARD — Live Pricing Intel + Objection Handlers (Sales/Competitive Intel)
 **Task:** Crawled all 7 major STL competitor websites for LIVE March 2026 pricing, spring promotions, and marketing activity. Built a mobile-first HTML battle card TJ can reference during sales calls.
 **Result:** ✅ COMPLETE — Shipped `deliverables/competitor-battle-card-spring2026.html`

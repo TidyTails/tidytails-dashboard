@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tidy Tails — Directory Submission Blitz Kit</title>
+<style>
+  :root {
+    --green: #2d6a4f;
+    --green-light: #40916c;
+    --green-bg: #d8f3dc;
+    --orange: #e76f51;
+    --orange-bg: #fae1d8;
+    --blue: #264653;
+    --blue-bg: #d4e8f0;
+    --gray: #6c757d;
+    --bg: #fafaf8;
+    --card: #ffffff;
+    --radius: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: #1a1a1a; line-height: 1.6; padding: 16px; max-width: 800px; margin: 0 auto; }
+  
+  h1 { font-size: 1.8rem; color: var(--green); margin-bottom: 4px; }
+  .subtitle { color: var(--gray); font-size: 0.95rem; margin-bottom: 24px; }
+  
+  .score-bar { background: #fee2e2; border-radius: 20px; padding: 12px 20px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+  .score-badge { background: #dc2626; color: white; font-weight: 800; font-size: 1.3rem; padding: 8px 16px; border-radius: 10px; }
+  .score-text { font-size: 0.95rem; }
+  .score-text strong { color: #dc2626; }
+  
+  .nap-card { background: var(--green-bg); border: 2px solid var(--green); border-radius: var(--radius); padding: 20px; margin-bottom: 24px; position: relative; }
+  .nap-card h2 { font-size: 1.1rem; color: var(--green); margin-bottom: 12px; }
+  .nap-field { background: white; border-radius: 8px; padding: 10px 14px; margin-bottom: 8px; font-size: 0.95rem; cursor: pointer; position: relative; display: flex; justify-content: space-between; align-items: center; border: 1px solid #b7e4c7; }
+  .nap-field:active { background: #f0f0f0; }
+  .nap-label { font-weight: 600; color: var(--green); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  .nap-value { font-weight: 500; }
+  .copy-btn { background: var(--green); color: white; border: none; padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; }
+  .copy-btn:active { background: var(--green-light); }
+  .copy-all { display: block; width: 100%; background: var(--green); color: white; border: none; padding: 12px; border-radius: 8px; font-size: 1rem; font-weight: 600; cursor: pointer; margin-top: 8px; }
+  
+  .tabs { display: flex; gap: 4px; margin-bottom: 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tab { padding: 10px 16px; background: #e0e0e0; border: none; border-radius: 10px 10px 0 0; cursor: pointer; font-size: 0.85rem; font-weight: 600; white-space: nowrap; color: #555; }
+  .tab.active { background: var(--card); color: var(--green); box-shadow: 0 -2px 4px rgba(0,0,0,0.05); }
+  
+  .tab-content { display: none; background: var(--card); border-radius: 0 var(--radius) var(--radius) var(--radius); padding: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 24px; }
+  .tab-content.active { display: block; }
+  
+  .dir-item { border-bottom: 1px solid #eee; padding: 14px 0; }
+  .dir-item:last-child { border-bottom: none; }
+  .dir-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .dir-name { font-weight: 700; font-size: 1rem; }
+  .dir-da { font-size: 0.75rem; background: var(--blue-bg); color: var(--blue); padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+  .dir-meta { font-size: 0.85rem; color: var(--gray); margin-bottom: 8px; }
+  .dir-link { display: inline-block; background: var(--green); color: white; text-decoration: none; padding: 6px 14px; border-radius: 6px; font-size: 0.85rem; font-weight: 600; }
+  .dir-link:active { background: var(--green-light); }
+  .dir-note { font-size: 0.8rem; color: var(--orange); margin-top: 6px; font-style: italic; }
+  .dir-status { font-size: 0.8rem; margin-top: 4px; }
+  
+  .priority-high { border-left: 4px solid #dc2626; padding-left: 12px; }
+  .priority-med { border-left: 4px solid #f59e0b; padding-left: 12px; }
+  .priority-low { border-left: 4px solid var(--green); padding-left: 12px; }
+  
+  .checklist-item { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; }
+  .checklist-item input[type="checkbox"] { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--green); }
+  
+  .desc-box { background: #f8f8f4; border-radius: 8px; padding: 14px; margin: 16px 0; font-size: 0.9rem; border: 1px solid #eee; }
+  .desc-box h3 { font-size: 0.9rem; color: var(--green); margin-bottom: 8px; }
+  
+  .impact-box { background: var(--orange-bg); border-radius: var(--radius); padding: 16px; margin-bottom: 24px; }
+  .impact-box h3 { color: var(--orange); margin-bottom: 8px; }
+  
+  .time-est { background: var(--blue-bg); border-radius: var(--radius); padding: 16px; margin-bottom: 24px; }
+  .time-est h3 { color: var(--blue); margin-bottom: 8px; }
+  
+  .progress-bar { background: #e5e7eb; border-radius: 10px; height: 12px; margin: 12px 0; overflow: hidden; }
+  .progress-fill { background: linear-gradient(90deg, var(--green), var(--green-light)); height: 100%; border-radius: 10px; width: 0%; transition: width 0.3s; }
+  .progress-text { font-size: 0.85rem; color: var(--gray); text-align: center; }
+  
+  .footer { text-align: center; color: var(--gray); font-size: 0.8rem; margin-top: 32px; padding: 16px; }
+  
+  @media (max-width: 480px) {
+    h1 { font-size: 1.5rem; }
+    .tab { padding: 8px 12px; font-size: 0.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<h1>🗂️ Directory Submission Blitz</h1>
+<p class="subtitle">Tidy Tails Pet Waste Removal — Go from invisible to everywhere</p>
+
+<div class="score-bar">
+  <div class="score-badge">F</div>
+  <div class="score-text">
+    <strong>Off-Page SEO Score: F</strong><br>
+    Currently listed on: Google Business Profile + Yelp (2 of 25+ recommended). Zero backlinks. Zero directory citations.
+  </div>
+</div>
+
+<!-- NAP Copy-Paste Card -->
+<div class="nap-card">
+  <h2>📋 Your NAP Info (Copy-Paste Ready)</h2>
+  <p style="font-size:0.8rem; color:var(--green); margin-bottom:12px;">⚠️ Use these EXACT details on every directory. Consistency = higher rankings.</p>
+  
+  <div class="nap-field" onclick="copyText('Tidy Tails Pet Waste Removal')">
+    <div><span class="nap-label">Business Name</span><br><span class="nap-value">Tidy Tails Pet Waste Removal</span></div>
+    <button class="copy-btn">Copy</button>
+  </div>
+  
+  <div class="nap-field" onclick="copyText('314-850-7140')">
+    <div><span class="nap-label">Phone</span><br><span class="nap-value">314-850-7140</span></div>
+    <button class="copy-btn">Copy</button>
+  </div>
+  
+  <div class="nap-field" onclick="copyText('tidytailsstl.com')">
+    <div><span class="nap-label">Website</span><br><span class="nap-value">tidytailsstl.com</span></div>
+    <button class="copy-btn">Copy</button>
+  </div>
+  
+  <div class="nap-field" onclick="copyText('cartervhomes@gmail.com')">
+    <div><span class="nap-label">Email</span><br><span class="nap-value">cartervhomes@gmail.com</span></div>
+    <button class="copy-btn">Copy</button>
+  </div>
+
+  <div class="nap-field" onclick="copyText('St. Louis, MO')">
+    <div><span class="nap-label">City / State</span><br><span class="nap-value">St. Louis, MO</span></div>
+    <button class="copy-btn">Copy</button>
+  </div>
+  
+  <div class="nap-field" onclick="copyText('Pet Waste Removal, Pooper Scooper Service, Dog Poop Cleanup')">
+    <div><span class="nap-label">Categories</span><br><span class="nap-value" style="font-size:0.85rem;">Pet Waste Removal, Pooper Scooper Service, Dog Poop Cleanup</span></div>
+    <button class="copy-btn">Copy</button>
+  </div>
+  
+  <button class="copy-all" onclick="copyAll()">📋 Copy All NAP Info</button>
+</div>
+
+<!-- Pre-written descriptions -->
+<div class="desc-box">
+  <h3>📝 Short Description (50 words — for directories with character limits)</h3>
+  <p id="desc-short" onclick="copyText(this.innerText)" style="cursor:pointer;">Tidy Tails Pet Waste Removal keeps St. Louis yards clean so you don't have to. Weekly, biweekly, and monthly scooping service starting at $70/month — the best flat rate in STL. Owner-operated, insured, and we haul everything away. Free first cleanup for new weekly customers.</p>
+  <button class="copy-btn" style="margin-top:8px;" onclick="copyText(document.getElementById('desc-short').innerText)">Copy Short</button>
+</div>
+
+<div class="desc-box">
+  <h3>📝 Long Description (150 words — for directories that allow it)</h3>
+  <p id="desc-long" onclick="copyText(this.innerText)" style="cursor:pointer;">Tidy Tails Pet Waste Removal is a locally owned and operated pet waste cleanup service serving St. Louis County, St. Charles County, and surrounding areas. We take care of the one chore every dog owner dreads — so you can actually enjoy your yard again.
+
+Our services include weekly, biweekly, and monthly yard scooping, one-time deep cleans, spring cleanups, and commercial property service for apartments, HOAs, and dog-friendly businesses. We show up on schedule, scoop every pile, and haul all waste away — you'll never see a bag left behind.
+
+What makes us different? We're owner-operated (not a franchise), fully insured, and we offer the best flat-rate monthly pricing in St. Louis at just $70/month. No contracts, no surprises.
+
+Currently offering a free first cleanup for all new weekly customers. Call or text 314-850-7140 to get started.</p>
+  <button class="copy-btn" style="margin-top:8px;" onclick="copyText(document.getElementById('desc-long').innerText)">Copy Long</button>
+</div>
+
+<!-- Time Estimate -->
+<div class="time-est">
+  <h3>⏱️ Time Estimate</h3>
+  <p><strong>Tier 1 (Do Today):</strong> ~90 minutes for 8 high-impact directories</p>
+  <p><strong>Tier 2 (This Week):</strong> ~60 minutes for 7 medium directories</p>
+  <p><strong>Tier 3 (Pet-Specific):</strong> ~30 minutes for 5 niche directories</p>
+  <p style="margin-top:8px; font-weight:700;">Total: ~3 hours to go from 2 listings to 22+ listings</p>
+</div>
+
+<!-- Progress Tracker -->
+<div style="margin-bottom:24px;">
+  <h3 style="margin-bottom:4px;">📊 Your Progress</h3>
+  <div class="progress-bar"><div class="progress-fill" id="progressBar"></div></div>
+  <p class="progress-text" id="progressText">0 of 20 directories completed</p>
+</div>
+
+<!-- Directory Tabs -->
+<div class="tabs">
+  <button class="tab active" onclick="showTab('tier1')">🔴 Tier 1 (Today)</button>
+  <button class="tab" onclick="showTab('tier2')">🟡 Tier 2 (This Week)</button>
+  <button class="tab" onclick="showTab('tier3')">🐾 Pet-Specific</button>
+  <button class="tab" onclick="showTab('checklist')">✅ Checklist</button>
+</div>
+
+<!-- TIER 1 -->
+<div class="tab-content active" id="tier1">
+  <p style="font-size:0.85rem; color:var(--gray); margin-bottom:16px;">These are the highest-authority, highest-impact directories. Do these FIRST — they're the ones Google trusts most for local business validation.</p>
+  
+  <div class="dir-item priority-high">
+    <div class="dir-header">
+      <span class="dir-name">1. Apple Business Connect</span>
+      <span class="dir-da">DA 99</span>
+    </div>
+    <div class="dir-meta">Apple Maps, Siri, Spotlight Search — every iPhone user. FREE.</div>
+    <div class="dir-meta">⏱️ ~15 min | Needs Apple ID</div>
+    <a class="dir-link" href="https://businessconnect.apple.com/" target="_blank">Sign Up →</a>
+    <div class="dir-note">🎯 HUGE — 60%+ of your customers use iPhones. When someone asks Siri "dog poop cleanup near me," you need to be here.</div>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-high">
+    <div class="dir-header">
+      <span class="dir-name">2. Bing Places</span>
+      <span class="dir-da">DA 93</span>
+    </div>
+    <div class="dir-meta">Powers Bing Maps, Cortana, and ChatGPT/Copilot search results. FREE.</div>
+    <div class="dir-meta">⏱️ ~10 min | Can import from Google Business Profile</div>
+    <a class="dir-link" href="https://www.bingplaces.com/" target="_blank">Sign Up →</a>
+    <div class="dir-note">💡 ChatGPT and Microsoft Copilot pull from Bing — this is how AI search finds you.</div>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-high">
+    <div class="dir-header">
+      <span class="dir-name">3. Facebook Business Page</span>
+      <span class="dir-da">DA 94</span>
+    </div>
+    <div class="dir-meta">Business page (not personal). Enables FB Marketplace ads, reviews, check-ins. FREE.</div>
+    <div class="dir-meta">⏱️ ~15 min | Add all service details, hours, photos</div>
+    <a class="dir-link" href="https://www.facebook.com/pages/create" target="_blank">Create Page →</a>
+    <div class="dir-note">⚠️ If you already have one, just verify NAP matches exactly. If not — create it now. FB is where your customers live.</div>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-high">
+    <div class="dir-header">
+      <span class="dir-name">4. Nextdoor Business</span>
+      <span class="dir-da">DA 83</span>
+    </div>
+    <div class="dir-meta">THE hyperlocal platform. Neighbors recommend services here. FREE business page.</div>
+    <div class="dir-meta">⏱️ ~10 min | Claim free business page</div>
+    <a class="dir-link" href="https://business.nextdoor.com/" target="_blank">Claim Business →</a>
+    <div class="dir-note">🔥 Kroopin's Poopin Scoopin built 200+ customers mainly through Nextdoor. This is where STL homeowners ask for service recommendations.</div>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-high">
+    <div class="dir-header">
+      <span class="dir-name">5. Thumbtack</span>
+      <span class="dir-da">DA 78</span>
+    </div>
+    <div class="dir-meta">Service marketplace — people actively searching for pet waste removal. FREE profile, pay-per-lead optional.</div>
+    <div class="dir-meta">⏱️ ~15 min | Create pro profile, set service area</div>
+    <a class="dir-link" href="https://www.thumbtack.com/pro" target="_blank">Join as Pro →</a>
+    <div class="dir-note">💰 Free profile gets you visibility. Leads cost $5-15 each. Even without paying, the backlink + listing helps SEO.</div>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-high">
+    <div class="dir-header">
+      <span class="dir-name">6. BBB (Better Business Bureau)</span>
+      <span class="dir-da">DA 91</span>
+    </div>
+    <div class="dir-meta">Trust signal. FREE listing (not accreditation). Shows up in Google Knowledge Panel. FREE.</div>
+    <div class="dir-meta">⏱️ ~10 min | Create free business profile</div>
+    <a class="dir-link" href="https://www.bbb.org/get-listed" target="_blank">Get Listed →</a>
+    <div class="dir-note">Trust badge. Even without paying for accreditation, a BBB listing signals legitimacy to Google AND customers.</div>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-high">
+    <div class="dir-header">
+      <span class="dir-name">7. MapQuest</span>
+      <span class="dir-da">DA 80</span>
+    </div>
+    <div class="dir-meta">Already has an auto-generated listing for Tidy Tails (Olivette MO 63132). CLAIM it. FREE.</div>
+    <div class="dir-meta">⏱️ ~5 min | Search and claim existing listing</div>
+    <a class="dir-link" href="https://www.mapquest.com/" target="_blank">Find & Claim →</a>
+    <div class="dir-note">⚡ This one's almost free — the listing already exists. Just claim it and verify the NAP is correct.</div>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-high">
+    <div class="dir-header">
+      <span class="dir-name">8. Foursquare / Swarm</span>
+      <span class="dir-da">DA 91</span>
+    </div>
+    <div class="dir-meta">Powers location data for Uber, Twitter, Snapchat, Samsung. FREE listing.</div>
+    <div class="dir-meta">⏱️ ~10 min | Add business or claim existing</div>
+    <a class="dir-link" href="https://foursquare.com/add-place" target="_blank">Add Place →</a>
+    <div class="dir-note">Data aggregator — feeds your business info to 100+ apps and services automatically.</div>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+</div>
+
+<!-- TIER 2 -->
+<div class="tab-content" id="tier2">
+  <p style="font-size:0.85rem; color:var(--gray); margin-bottom:16px;">Solid directories that build citation depth and backlinks. Do these within the week.</p>
+  
+  <div class="dir-item priority-med">
+    <div class="dir-header">
+      <span class="dir-name">9. Angi (Angie's List)</span>
+      <span class="dir-da">DA 76</span>
+    </div>
+    <div class="dir-meta">Home services marketplace. FREE business listing, paid ads optional.</div>
+    <div class="dir-meta">⏱️ ~10 min</div>
+    <a class="dir-link" href="https://www.angi.com/pro" target="_blank">Join as Pro →</a>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-med">
+    <div class="dir-header">
+      <span class="dir-name">10. Porch</span>
+      <span class="dir-da">DA 76</span>
+    </div>
+    <div class="dir-meta">Home services directory. FREE profile with lead gen. Competes with Angi/Thumbtack.</div>
+    <div class="dir-meta">⏱️ ~10 min</div>
+    <a class="dir-link" href="https://pro.porch.com/join" target="_blank">Join as Pro →</a>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-med">
+    <div class="dir-header">
+      <span class="dir-name">11. Manta</span>
+      <span class="dir-da">DA 80</span>
+    </div>
+    <div class="dir-meta">Small business directory. FREE listing with profile, hours, description.</div>
+    <div class="dir-meta">⏱️ ~10 min</div>
+    <a class="dir-link" href="https://www.manta.com/claim" target="_blank">Claim Listing →</a>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-med">
+    <div class="dir-header">
+      <span class="dir-name">12. Merchant Circle</span>
+      <span class="dir-da">DA 76</span>
+    </div>
+    <div class="dir-meta">Local business directory with coupons feature. FREE.</div>
+    <div class="dir-meta">⏱️ ~10 min</div>
+    <a class="dir-link" href="https://www.merchantcircle.com/signup" target="_blank">Sign Up →</a>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-med">
+    <div class="dir-header">
+      <span class="dir-name">13. Alignable</span>
+      <span class="dir-da">DA 70</span>
+    </div>
+    <div class="dir-meta">Business networking + referrals. Like LinkedIn for local businesses. FREE.</div>
+    <div class="dir-meta">⏱️ ~10 min</div>
+    <a class="dir-link" href="https://www.alignable.com/biz/signup" target="_blank">Sign Up →</a>
+    <div class="dir-note">Great for connecting with property managers and pet businesses who might refer clients.</div>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-med">
+    <div class="dir-header">
+      <span class="dir-name">14. Trustpilot</span>
+      <span class="dir-da">DA 92</span>
+    </div>
+    <div class="dir-meta">Review platform. FREE business page. High DA backlink.</div>
+    <div class="dir-meta">⏱️ ~10 min</div>
+    <a class="dir-link" href="https://business.trustpilot.com/" target="_blank">Claim Business →</a>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-med">
+    <div class="dir-header">
+      <span class="dir-name">15. OpenStreetMap</span>
+      <span class="dir-da">DA 89</span>
+    </div>
+    <div class="dir-meta">Open-source maps. Feeds data to many apps. FREE.</div>
+    <div class="dir-meta">⏱️ ~10 min | Create account, add business as POI</div>
+    <a class="dir-link" href="https://www.openstreetmap.org/user/new" target="_blank">Create Account →</a>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+</div>
+
+<!-- TIER 3: PET-SPECIFIC -->
+<div class="tab-content" id="tier3">
+  <p style="font-size:0.85rem; color:var(--gray); margin-bottom:16px;">These are industry-specific directories where your EXACT customers are looking. Highest intent traffic.</p>
+  
+  <div class="dir-item priority-high">
+    <div class="dir-header">
+      <span class="dir-name">16. Petworks</span>
+      <span class="dir-da">DA 55+</span>
+    </div>
+    <div class="dir-meta">Pet services marketplace. FREE to join (15% commission on bookings through platform).</div>
+    <div class="dir-meta">⏱️ ~15 min | Create pro profile</div>
+    <a class="dir-link" href="https://www.petworks.com" target="_blank">Join as Pro →</a>
+    <div class="dir-note">🔥 Dr. Scoops and Poop2Scoop are already listed here. You're NOT. People actively search Petworks for pet waste removal.</div>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-high">
+    <div class="dir-header">
+      <span class="dir-name">17. Pooper-Scooper.com</span>
+      <span class="dir-da">Niche</span>
+    </div>
+    <div class="dir-meta">THE dedicated pooper scooper directory. Starts at $7/month.</div>
+    <div class="dir-meta">⏱️ ~10 min | $7/mo = $84/year</div>
+    <a class="dir-link" href="https://www.pooper-scooper.com" target="_blank">Get Listed →</a>
+    <div class="dir-note">People searching this site are READY TO BUY. $7/mo is nothing if it lands even one customer ($70+/mo).</div>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-med">
+    <div class="dir-header">
+      <span class="dir-name">18. aPaws (Association of Professional Animal Waste Specialists)</span>
+      <span class="dir-da">Niche</span>
+    </div>
+    <div class="dir-meta">Industry trade association. $85/year membership. Directory listing + credibility badge + resources.</div>
+    <div class="dir-meta">⏱️ ~15 min | $85/year</div>
+    <a class="dir-link" href="https://apaws.org/join/" target="_blank">Join aPaws →</a>
+    <div class="dir-note">Poop2Scoop is already a member. Membership gives you a "Find a Scooper" directory listing, credibility, and access to industry best practices. $85 is cheap for the legitimacy signal.</div>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-med">
+    <div class="dir-header">
+      <span class="dir-name">19. Care.com</span>
+      <span class="dir-da">DA 77</span>
+    </div>
+    <div class="dir-meta">Pet care services marketplace. FREE basic profile.</div>
+    <div class="dir-meta">⏱️ ~10 min</div>
+    <a class="dir-link" href="https://www.care.com/enroll-pet-care-provider" target="_blank">Join as Provider →</a>
+    <div class="dir-note">Big DA backlink + people search here for pet services in their zip code.</div>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+
+  <div class="dir-item priority-low">
+    <div class="dir-header">
+      <span class="dir-name">20. Rover (Marketplace listing)</span>
+      <span class="dir-da">DA 75+</span>
+    </div>
+    <div class="dir-meta">Pet services platform (primarily sitting/walking but some list waste removal). FREE.</div>
+    <div class="dir-meta">⏱️ ~15 min</div>
+    <a class="dir-link" href="https://www.rover.com/become-a-sitter/" target="_blank">Apply →</a>
+    <div class="dir-note">Even if they don't have a pet waste removal category, the profile and backlink help.</div>
+    <div class="dir-status"><label><input type="checkbox" class="dir-check" onchange="updateProgress()"> Done</label></div>
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="tab-content" id="checklist">
+  <h3 style="margin-bottom:12px; color:var(--green);">🎯 Submission Day Checklist</h3>
+  
+  <div class="checklist-item">
+    <input type="checkbox">
+    <div><strong>Before you start:</strong> Have these open in browser tabs — email (for verification links), Google Business Profile (to copy-import where supported), and this page (for NAP copy-paste).</div>
+  </div>
+  
+  <div class="checklist-item">
+    <input type="checkbox">
+    <div><strong>Photos ready:</strong> Have 3-5 photos on your phone — logo, you working (action shot), clean yard before/after, truck/equipment. Most directories let you add photos.</div>
+  </div>
+  
+  <div class="checklist-item">
+    <input type="checkbox">
+    <div><strong>Hours:</strong> Use same hours everywhere. Suggested: Mon-Sat 8AM-6PM, Sun 9AM-4PM (scooping day).</div>
+  </div>
+  
+  <div class="checklist-item">
+    <input type="checkbox">
+    <div><strong>Service areas:</strong> List these consistently: St. Louis County, St. Charles County, Florissant, Ferguson, O'Fallon, St. Peters, Maryland Heights, Kirkwood, Webster Groves.</div>
+  </div>
+  
+  <div class="checklist-item">
+    <input type="checkbox">
+    <div><strong>⚠️ FIX SSL FIRST:</strong> Renew your SSL certificate in GoDaddy before submitting to directories. Some verify your website URL — if it shows "Not Secure," they may reject it or it looks unprofessional.</div>
+  </div>
+  
+  <div class="checklist-item">
+    <input type="checkbox">
+    <div><strong>After ALL submissions:</strong> Submit sitemap to Google Search Console again. The new backlinks + fixed SSL = Google should index within 3-7 days.</div>
+  </div>
+  
+  <h3 style="margin-top:24px; margin-bottom:12px; color:var(--orange);">🚫 Common Mistakes to Avoid</h3>
+  <ul style="font-size:0.9rem; padding-left:20px;">
+    <li style="margin-bottom:8px;"><strong>Inconsistent NAP:</strong> "Tidy Tails" vs "Tidy Tails Pet Waste Removal" vs "TidyTails" — pick ONE and use it everywhere. Use the full name.</li>
+    <li style="margin-bottom:8px;"><strong>Wrong phone:</strong> The shed number (636-354-7406) is NOT the Tidy Tails number. Always use 314-850-7140.</li>
+    <li style="margin-bottom:8px;"><strong>Skipping verification:</strong> Many directories send a postcard or email. VERIFY every listing. Unverified = doesn't count.</li>
+    <li style="margin-bottom:8px;"><strong>No photos:</strong> Listings with photos get 35% more clicks. Add at least your logo + 1 action shot.</li>
+    <li style="margin-bottom:8px;"><strong>No description:</strong> Copy the short or long description from above. Empty listings rank lower.</li>
+  </ul>
+</div>
+
+<!-- Expected Impact -->
+<div class="impact-box">
+  <h3>📈 Expected Impact</h3>
+  <p><strong>Before:</strong> 2 directory listings (GBP + Yelp). Off-page SEO: F. Zero backlinks. Invisible to AI search.</p>
+  <p><strong>After:</strong> 20+ directory listings across high-authority sites. Off-page SEO: C+ (improving). 15+ backlinks. Visible to Siri, Bing/Copilot, Nextdoor, pet marketplaces.</p>
+  <p style="margin-top:8px;"><strong>Timeline:</strong> Most listings go live within 24-48 hours. Full SEO effect takes 2-4 weeks. Combined with SSL fix, expect Google indexing within 1-2 weeks.</p>
+  <p style="margin-top:8px;"><strong>Cost:</strong> $0 for 17 directories. ~$92/year for paid niche directories (aPaws $85 + Pooper-Scooper.com $84). Total: $177/year for maximum coverage.</p>
+</div>
+
+<div class="footer">
+  Built by Franklin 🐕💩 — March 17, 2026<br>
+  Tidy Tails Directory Blitz Kit v1.0
+</div>
+
+<script>
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    // Brief visual feedback
+    const el = event.target.closest('.nap-field, .desc-box');
+    if (el) {
+      el.style.background = '#d8f3dc';
+      setTimeout(() => el.style.background = '', 500);
+    }
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+}
+
+function copyAll() {
+  const nap = `Business Name: Tidy Tails Pet Waste Removal
+Phone: 314-850-7140
+Website: tidytailsstl.com
+Email: cartervhomes@gmail.com
+City/State: St. Louis, MO
+Categories: Pet Waste Removal, Pooper Scooper Service, Dog Poop Cleanup
+Service Areas: St. Louis County, St. Charles County, Florissant, Ferguson, O'Fallon, St. Peters, Maryland Heights, Kirkwood, Webster Groves
+Hours: Mon-Sat 8AM-6PM, Sun 9AM-4PM`;
+  
+  navigator.clipboard.writeText(nap).then(() => {
+    const btn = event.target;
+    btn.innerText = '✅ Copied!';
+    setTimeout(() => btn.innerText = '📋 Copy All NAP Info', 1500);
+  });
+}
+
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function updateProgress() {
+  const checks = document.querySelectorAll('.dir-check');
+  const done = Array.from(checks).filter(c => c.checked).length;
+  const total = checks.length;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressText').innerText = `${done} of ${total} directories completed (${pct}%)`;
+  
+  // Save to localStorage
+  const state = Array.from(checks).map(c => c.checked);
+  localStorage.setItem('tidytails-dir-progress', JSON.stringify(state));
+}
+
+// Restore progress
+window.addEventListener('load', () => {
+  try {
+    const state = JSON.parse(localStorage.getItem('tidytails-dir-progress'));
+    if (state) {
+      const checks = document.querySelectorAll('.dir-check');
+      state.forEach((checked, i) => { if (checks[i]) checks[i].checked = checked; });
+      updateProgress();
+    }
+  } catch(e) {}
+});
+</script>
+
+</body>
+</html>
