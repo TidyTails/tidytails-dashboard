@@ -53,6 +53,7 @@
 - [x] Dashboard improvements (Mar 3 3AM — Week 3 execution tracker!)
 - [ ] New skill development
 - [x] Customer onboarding/retention system (Mar 12 11AM — 7-stage lifecycle, 15+ templates, churn prevention!)
+- [x] Quick Quote Calculator (Mar 17 5AM — Mobile sales tool! Quote + text customers in 30 seconds!)
 - [ ] Automation ideas
 - [x] Process documentation (Mar 4 2AM — Quick Start Guide! Top 10 tools + when to use)
 - [x] Tool research (Mar 16 10PM — Paid ads analysis: FB vs Google, NOT YET until foundation fixed, $150-200/mo starter budget when ready)

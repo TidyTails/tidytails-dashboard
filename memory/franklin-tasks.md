@@ -7,6 +7,54 @@
 
 ## March 17, 2026 (Tuesday)
 
+### 5:04 AM — 📱 TIDY TAILS QUICK QUOTE CALCULATOR — Mobile Sales Tool (Systems/Tools)
+**Task:** Built a mobile-first HTML quote calculator that TJ can pull up on his phone during calls and at job sites to instantly calculate and text professional quotes to prospects.
+**Result:** ✅ COMPLETE — Shipped `deliverables/tidy-tails-quote-calculator.html`
+
+**Why This Task:**
+- TJ has 50+ deliverables of plans, copy, and strategies — but NO on-the-ground sales tools
+- When a prospect calls, TJ needs to quote fast and text a professional-looking quote instantly
+- The website is DOWN (SSL expired) — no online quote form exists
+- Spring cleanup funnel was just built (4 AM) — this calculator includes the cleanup pricing and upsell scripts
+- Every service business that scales has a quoting tool. TJ's been doing math in his head.
+
+**What I Built:**
+1. **Mobile-first quote calculator** — 1018-line HTML, works offline, no dependencies
+2. **Two tabs:** Recurring service + Spring cleanup
+3. **Recurring tab:** Frequency toggle (weekly/biweekly/one-time), dog count stepper, add-ons (large yard, deck, deodorizer)
+4. **Spring cleanup tab:** Dog count, cleanup type (standard vs deep clean), yard size (standard/large/XL)
+5. **Live quote display:** Monthly total, per-visit cost, annual cost, daily cost
+6. **Auto-generated text messages:** Copy-paste quotes for each scenario in TJ's voice
+7. **Built-in upsell scripts:** Shows the right conversion pitch based on what the customer selected
+8. **Editable base pricing:** ✏️ button reveals price editor so TJ can adjust rates without editing code
+9. **Clipboard copy:** One-tap copy of the formatted text quote
+
+**Pricing Integrated:**
+- Recurring: $70/mo weekly, $45/visit biweekly, $50 one-time (editable)
+- Extra dogs: $15/mo (weekly), $5/visit (bi/one-time)
+- Spring cleanup: $75 (1 dog), $95 (2 dogs), $120 (3+), deep clean $125-175
+- Add-ons: Large yard +$15, deck +$10, deodorizer +$10
+
+**How TJ Uses It:**
+1. Open the HTML file on phone (save to home screen)
+2. Prospect calls → tap frequency, set dogs, toggle add-ons
+3. See the price instantly + upsell script
+4. Tap "Copy" → paste into text message → send
+5. Professional quote sent in under 30 seconds
+
+**Also Researched (Bonus Intel):**
+- St. Charles Home Show: April 10-12, 2026 — TuffShed NOT exhibiting (was at STL Home & Garden Show March 6-8)
+- "Bear Creek Yard Creations" IS exhibiting — potential shed competitor
+- Bark in the Park: May 16, 2026 at Tower Grove Park — HSMO's largest pet festival
+- Ladue Egg Hunt for Pets: April 4, 2026 at Treats Unleashed Ladue
+- Treats Unleashed Easter Event: April 18, 2026
+- Dogtown St. Patrick's Day Parade: TODAY (March 17) — pet-friendly
+- Purina Farms opens mid-April through October
+
+**Rotation:** ⚙️ Systems / Tools — Sales Tooling
+
+---
+
 ### 4:07 AM — 🌱 SPRING CLEANUP ACQUISITION FUNNEL — The #1 Growth Play for March-April (Customer Acquisition)
 **Task:** Researched spring rush strategies from top pet waste companies, analyzed pricing data, and built a complete customer acquisition funnel using one-time spring cleanups as the gateway to recurring service.
 **Result:** ✅ COMPLETE — Shipped `deliverables/spring-cleanup-acquisition-funnel-march2026.md`

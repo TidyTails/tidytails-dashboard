@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Tidy Tails — Quick Quote</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    
+    :root {
+      --green: #2d6a4f;
+      --green-light: #40916c;
+      --green-pale: #b7e4c7;
+      --gold: #d4a017;
+      --bg: #f0f4f0;
+      --white: #ffffff;
+      --text: #1b4332;
+      --text-light: #52796f;
+      --shadow: 0 2px 12px rgba(0,0,0,0.08);
+      --radius: 14px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .header {
+      background: var(--green);
+      color: white;
+      padding: 1.2rem 1rem 1rem;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .header h1 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .header p {
+      font-size: 0.8rem;
+      opacity: 0.8;
+      margin-top: 0.2rem;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 0.75rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Toggle buttons group */
+    .toggle-group {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .toggle-btn {
+      flex: 1;
+      min-width: 0;
+      padding: 0.7rem 0.3rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      background: white;
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+      -webkit-appearance: none;
+    }
+
+    .toggle-btn.active {
+      border-color: var(--green);
+      background: var(--green);
+      color: white;
+    }
+
+    .toggle-btn:active {
+      transform: scale(0.97);
+    }
+
+    .toggle-btn small {
+      display: block;
+      font-size: 0.65rem;
+      font-weight: 400;
+      margin-top: 0.15rem;
+      opacity: 0.75;
+    }
+
+    /* Stepper control */
+    .stepper {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .stepper-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--green);
+      background: white;
+      color: var(--green);
+      font-size: 1.4rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      -webkit-appearance: none;
+    }
+
+    .stepper-btn:active {
+      background: var(--green);
+      color: white;
+    }
+
+    .stepper-value {
+      font-size: 2rem;
+      font-weight: 800;
+      min-width: 3rem;
+      text-align: center;
+    }
+
+    .stepper-label {
+      font-size: 0.8rem;
+      color: var(--text-light);
+      margin-left: auto;
+    }
+
+    /* Switches */
+    .switch-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .switch-row:last-child { border-bottom: none; }
+
+    .switch-label {
+      font-size: 0.9rem;
+      font-weight: 500;
+    }
+
+    .switch-label small {
+      display: block;
+      font-size: 0.72rem;
+      color: var(--text-light);
+      font-weight: 400;
+    }
+
+    .switch {
+      position: relative;
+      width: 50px;
+      height: 28px;
+      flex-shrink: 0;
+    }
+
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: #ccc;
+      border-radius: 28px;
+      transition: 0.2s;
+    }
+
+    .slider::before {
+      content: '';
+      position: absolute;
+      height: 22px;
+      width: 22px;
+      left: 3px;
+      bottom: 3px;
+      background: white;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+
+    .switch input:checked + .slider {
+      background: var(--green);
+    }
+
+    .switch input:checked + .slider::before {
+      transform: translateX(22px);
+    }
+
+    /* Quote Result */
+    .quote-result {
+      background: linear-gradient(135deg, var(--green) 0%, #1b4332 100%);
+      color: white;
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-bottom: 0.75rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(45,106,79,0.3);
+    }
+
+    .quote-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      opacity: 0.8;
+    }
+
+    .quote-amount {
+      font-size: 3.2rem;
+      font-weight: 900;
+      margin: 0.25rem 0;
+      letter-spacing: -0.03em;
+    }
+
+    .quote-amount sup {
+      font-size: 1.4rem;
+      vertical-align: super;
+    }
+
+    .quote-per {
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    .quote-breakdown {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      text-align: center;
+    }
+
+    .breakdown-item .bd-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.7;
+    }
+
+    .breakdown-item .bd-value {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-top: 0.15rem;
+    }
+
+    /* Upsell */
+    .upsell {
+      background: linear-gradient(135deg, #fef9e7, #fdf2d5);
+      border: 2px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .upsell-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #8b6914;
+      margin-bottom: 0.4rem;
+    }
+
+    .upsell-text {
+      font-size: 0.82rem;
+      color: #5a4510;
+      line-height: 1.5;
+    }
+
+    .upsell-text strong {
+      color: #8b6914;
+    }
+
+    /* Spring Cleanup Section */
+    .cleanup-result {
+      background: linear-gradient(135deg, #d4a017 0%, #b8860b 100%);
+      color: white;
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 0.75rem;
+      text-align: center;
+      box-shadow: 0 4px 16px rgba(212,160,23,0.25);
+    }
+
+    .cleanup-amount {
+      font-size: 2.4rem;
+      font-weight: 900;
+    }
+
+    .cleanup-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.85;
+      margin-bottom: 0.2rem;
+    }
+
+    .cleanup-note {
+      font-size: 0.78rem;
+      margin-top: 0.5rem;
+      opacity: 0.9;
+    }
+
+    /* Text Quote */
+    .text-quote {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      margin-bottom: 0.75rem;
+      box-shadow: var(--shadow);
+    }
+
+    .text-quote-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.75rem;
+    }
+
+    .text-quote-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--green);
+    }
+
+    .copy-btn {
+      padding: 0.4rem 0.8rem;
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .copy-btn:active {
+      transform: scale(0.95);
+      background: var(--green-light);
+    }
+
+    .copy-btn.copied {
+      background: var(--gold);
+    }
+
+    .quote-preview {
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--text);
+      background: #f8faf8;
+      border-radius: 8px;
+      padding: 0.75rem;
+      white-space: pre-wrap;
+      font-family: -apple-system, system-ui, sans-serif;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 1rem;
+      color: var(--text-light);
+      font-size: 0.7rem;
+    }
+
+    /* Tab bar */
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 0.75rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .tab {
+      flex: 1;
+      padding: 0.75rem 0.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+      border: none;
+      background: white;
+      color: var(--text-light);
+    }
+
+    .tab.active {
+      background: var(--green);
+      color: white;
+    }
+
+    .section { display: none; }
+    .section.active { display: block; }
+
+    /* Pricing Editor */
+    .price-editor {
+      display: none;
+      margin-top: 0.5rem;
+    }
+    
+    .price-editor.show { display: block; }
+    
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .price-row label {
+      font-size: 0.8rem;
+      color: var(--text-light);
+    }
+    
+    .price-input {
+      width: 70px;
+      padding: 0.35rem 0.5rem;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: right;
+      color: var(--text);
+    }
+    
+    .price-input:focus {
+      outline: none;
+      border-color: var(--green);
+    }
+
+    .edit-prices-btn {
+      font-size: 0.72rem;
+      color: var(--text-light);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0.25rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🐕💩 Tidy Tails Quick Quote</h1>
+    <p>Pull up on calls. Quote in seconds.</p>
+  </div>
+
+  <div class="container">
+    <!-- Tabs -->
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('recurring')">Recurring</button>
+      <button class="tab" onclick="switchTab('cleanup')">Spring Cleanup</button>
+    </div>
+
+    <!-- ========== RECURRING SECTION ========== -->
+    <div id="recurring-section" class="section active">
+
+      <!-- Frequency -->
+      <div class="card">
+        <div class="card-title">How Often?</div>
+        <div class="toggle-group">
+          <button class="toggle-btn active" data-freq="weekly" onclick="setFreq('weekly')">
+            Weekly
+            <small>Best value</small>
+          </button>
+          <button class="toggle-btn" data-freq="biweekly" onclick="setFreq('biweekly')">
+            Biweekly
+            <small>Every 2 wks</small>
+          </button>
+          <button class="toggle-btn" data-freq="onetime" onclick="setFreq('onetime')">
+            One-Time
+            <small>Single visit</small>
+          </button>
+        </div>
+      </div>
+
+      <!-- Number of Dogs -->
+      <div class="card">
+        <div class="card-title">Number of Dogs</div>
+        <div class="stepper">
+          <button class="stepper-btn" onclick="adjustDogs(-1)">−</button>
+          <div class="stepper-value" id="dog-count">1</div>
+          <button class="stepper-btn" onclick="adjustDogs(1)">+</button>
+          <div class="stepper-label" id="dog-label">1 dog</div>
+        </div>
+      </div>
+
+      <!-- Add-ons -->
+      <div class="card">
+        <div class="card-title">Add-ons</div>
+        <div class="switch-row">
+          <div class="switch-label">
+            Large Yard
+            <small>Over ¼ acre</small>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="large-yard" onchange="calculate()">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="switch-row">
+          <div class="switch-label">
+            Deck / Patio Cleanup
+            <small>Hard surface included</small>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="deck" onchange="calculate()">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="switch-row">
+          <div class="switch-label">
+            Deodorizer Treatment
+            <small>Enzyme spray after cleanup</small>
+          </div>
+          <label class="switch">
+            <input type="checkbox" id="deodorizer" onchange="calculate()">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Pricing Editor Toggle -->
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="card-title" style="margin:0">Base Pricing</div>
+          <button class="edit-prices-btn" onclick="togglePriceEditor()">✏️ Edit prices</button>
+        </div>
+        <div class="price-editor" id="price-editor">
+          <div class="price-row">
+            <label>Weekly (per month)</label>
+            <div>$<input class="price-input" id="p-weekly" type="number" value="70" onchange="calculate()"></div>
+          </div>
+          <div class="price-row">
+            <label>Biweekly (per visit)</label>
+            <div>$<input class="price-input" id="p-biweekly" type="number" value="45" onchange="calculate()"></div>
+          </div>
+          <div class="price-row">
+            <label>One-time (per visit)</label>
+            <div>$<input class="price-input" id="p-onetime" type="number" value="50" onchange="calculate()"></div>
+          </div>
+          <div class="price-row">
+            <label>Extra dog (per month/weekly)</label>
+            <div>$<input class="price-input" id="p-extradog-mo" type="number" value="15" onchange="calculate()"></div>
+          </div>
+          <div class="price-row">
+            <label>Extra dog (per visit/bi+one)</label>
+            <div>$<input class="price-input" id="p-extradog-visit" type="number" value="5" onchange="calculate()"></div>
+          </div>
+          <div class="price-row">
+            <label>Large yard surcharge</label>
+            <div>$<input class="price-input" id="p-largeyard" type="number" value="15" onchange="calculate()"></div>
+          </div>
+          <div class="price-row">
+            <label>Deck/patio add-on</label>
+            <div>$<input class="price-input" id="p-deck" type="number" value="10" onchange="calculate()"></div>
+          </div>
+          <div class="price-row">
+            <label>Deodorizer add-on</label>
+            <div>$<input class="price-input" id="p-deodorizer" type="number" value="10" onchange="calculate()"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quote Result -->
+      <div class="quote-result" id="quote-result">
+        <div class="quote-label">Monthly Total</div>
+        <div class="quote-amount" id="quote-amount">$70</div>
+        <div class="quote-per" id="quote-per">$17.50 per visit · 4 visits/month</div>
+        <div class="quote-breakdown">
+          <div class="breakdown-item">
+            <div class="bd-label">Annual Cost</div>
+            <div class="bd-value" id="quote-annual">$840</div>
+          </div>
+          <div class="breakdown-item">
+            <div class="bd-label">Daily Cost</div>
+            <div class="bd-value" id="quote-daily">$2.30</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upsell Prompt (shows for biweekly/one-time) -->
+      <div class="upsell" id="upsell-box" style="display:none">
+        <div class="upsell-title">💡 Upsell Script</div>
+        <div class="upsell-text" id="upsell-text"></div>
+      </div>
+
+      <!-- Copy-paste Text Quote -->
+      <div class="text-quote">
+        <div class="text-quote-header">
+          <div class="text-quote-title">📱 Text to Customer</div>
+          <button class="copy-btn" onclick="copyQuote()">Copy</button>
+        </div>
+        <div class="quote-preview" id="text-quote"></div>
+      </div>
+    </div>
+
+    <!-- ========== SPRING CLEANUP SECTION ========== -->
+    <div id="cleanup-section" class="section">
+
+      <!-- Dogs -->
+      <div class="card">
+        <div class="card-title">Number of Dogs</div>
+        <div class="stepper">
+          <button class="stepper-btn" onclick="adjustCleanupDogs(-1)">−</button>
+          <div class="stepper-value" id="cleanup-dog-count">1</div>
+          <button class="stepper-btn" onclick="adjustCleanupDogs(1)">+</button>
+          <div class="stepper-label" id="cleanup-dog-label">1 dog</div>
+        </div>
+      </div>
+
+      <!-- Cleanup Type -->
+      <div class="card">
+        <div class="card-title">Cleanup Type</div>
+        <div class="toggle-group">
+          <button class="toggle-btn active" data-ctype="standard" onclick="setCleanupType('standard')">
+            Standard
+            <small>Regular spring</small>
+          </button>
+          <button class="toggle-btn" data-ctype="deep" onclick="setCleanupType('deep')">
+            Deep Clean
+            <small>Winter buildup</small>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cleanup Add-ons -->
+      <div class="card">
+        <div class="card-title">Yard Size</div>
+        <div class="toggle-group">
+          <button class="toggle-btn active" data-ysize="standard" onclick="setYardSize('standard')">
+            Standard
+            <small>≤ ¼ acre</small>
+          </button>
+          <button class="toggle-btn" data-ysize="large" onclick="setYardSize('large')">
+            Large
+            <small>> ¼ acre</small>
+          </button>
+          <button class="toggle-btn" data-ysize="xlarge" onclick="setYardSize('xlarge')">
+            XL
+            <small>> ½ acre</small>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cleanup Quote -->
+      <div class="cleanup-result" id="cleanup-result">
+        <div class="cleanup-label">Spring Cleanup Quote</div>
+        <div class="cleanup-amount" id="cleanup-amount">$75</div>
+        <div class="cleanup-note" id="cleanup-note">1 dog · Standard yard · Regular cleanup</div>
+      </div>
+
+      <!-- Upsell to Recurring -->
+      <div class="upsell" id="cleanup-upsell">
+        <div class="upsell-title">🔥 The Conversion Script</div>
+        <div class="upsell-text" id="cleanup-upsell-text">
+          "The spring cleanup is <strong>$75</strong>. But here's what most people do — sign up for weekly service at <strong>$70/month</strong> and I'll do the spring cleanup <strong>FREE</strong> as your first visit. You save $75 and your yard stays clean all season."
+        </div>
+      </div>
+
+      <!-- Text Quote for Cleanup -->
+      <div class="text-quote">
+        <div class="text-quote-header">
+          <div class="text-quote-title">📱 Text to Customer</div>
+          <button class="copy-btn" onclick="copyCleanupQuote()">Copy</button>
+        </div>
+        <div class="quote-preview" id="cleanup-text-quote"></div>
+      </div>
+    </div>
+
+    <div class="footer">
+      Tidy Tails Pet Waste Removal — St. Louis, MO<br>
+      (314) 850-7140 · Built by Franklin 🐕💩
+    </div>
+  </div>
+
+  <script>
+    // === STATE ===
+    let state = {
+      freq: 'weekly',
+      dogs: 1,
+      largeYard: false,
+      deck: false,
+      deodorizer: false,
+      // Cleanup
+      cleanupDogs: 1,
+      cleanupType: 'standard',
+      yardSize: 'standard'
+    };
+
+    // === RECURRING LOGIC ===
+    function setFreq(f) {
+      state.freq = f;
+      document.querySelectorAll('[data-freq]').forEach(b => b.classList.toggle('active', b.dataset.freq === f));
+      calculate();
+    }
+
+    function adjustDogs(delta) {
+      state.dogs = Math.max(1, Math.min(8, state.dogs + delta));
+      document.getElementById('dog-count').textContent = state.dogs;
+      document.getElementById('dog-label').textContent = state.dogs === 1 ? '1 dog' : state.dogs + ' dogs';
+      calculate();
+    }
+
+    function getPrice(id) {
+      return parseFloat(document.getElementById(id).value) || 0;
+    }
+
+    function calculate() {
+      const freq = state.freq;
+      const dogs = state.dogs;
+      const largeYard = document.getElementById('large-yard').checked;
+      const deck = document.getElementById('deck').checked;
+      const deodorizer = document.getElementById('deodorizer').checked;
+
+      let monthly = 0;
+      let perVisit = 0;
+      let visitsPerMonth = 0;
+      let label = '';
+
+      if (freq === 'weekly') {
+        const base = getPrice('p-weekly');
+        const extraDog = getPrice('p-extradog-mo');
+        monthly = base + (dogs - 1) * extraDog;
+        if (largeYard) monthly += getPrice('p-largeyard');
+        if (deck) monthly += getPrice('p-deck');
+        if (deodorizer) monthly += getPrice('p-deodorizer');
+        visitsPerMonth = 4;
+        perVisit = monthly / visitsPerMonth;
+        label = 'per month';
+      } else if (freq === 'biweekly') {
+        const base = getPrice('p-biweekly');
+        const extraDog = getPrice('p-extradog-visit');
+        perVisit = base + (dogs - 1) * extraDog;
+        if (largeYard) perVisit += getPrice('p-largeyard');
+        if (deck) perVisit += getPrice('p-deck');
+        if (deodorizer) perVisit += getPrice('p-deodorizer');
+        visitsPerMonth = 2;
+        monthly = perVisit * visitsPerMonth;
+        label = 'per month';
+      } else {
+        const base = getPrice('p-onetime');
+        const extraDog = getPrice('p-extradog-visit');
+        perVisit = base + (dogs - 1) * extraDog;
+        if (largeYard) perVisit += getPrice('p-largeyard');
+        if (deck) perVisit += getPrice('p-deck');
+        if (deodorizer) perVisit += getPrice('p-deodorizer');
+        monthly = perVisit;
+        visitsPerMonth = 1;
+        label = 'one-time';
+      }
+
+      const annual = monthly * 12;
+      const daily = monthly / 30;
+
+      // Update display
+      if (freq === 'onetime') {
+        document.getElementById('quote-amount').innerHTML = '$' + perVisit.toFixed(0);
+        document.getElementById('quote-per').textContent = 'One-time visit';
+        document.getElementById('quote-result').querySelector('.quote-label').textContent = 'One-Time Quote';
+        document.getElementById('quote-annual').textContent = '—';
+        document.getElementById('quote-daily').textContent = '—';
+      } else {
+        document.getElementById('quote-amount').innerHTML = '$' + monthly.toFixed(0);
+        document.getElementById('quote-per').textContent = 
+          '$' + perVisit.toFixed(2) + ' per visit · ' + visitsPerMonth + ' visits/month';
+        document.getElementById('quote-result').querySelector('.quote-label').textContent = 'Monthly Total';
+        document.getElementById('quote-annual').textContent = '$' + annual.toFixed(0);
+        document.getElementById('quote-daily').textContent = '$' + daily.toFixed(2);
+      }
+
+      // Upsell logic
+      const upsellBox = document.getElementById('upsell-box');
+      if (freq === 'biweekly') {
+        const weeklyBase = getPrice('p-weekly') + (dogs - 1) * getPrice('p-extradog-mo');
+        upsellBox.style.display = 'block';
+        document.getElementById('upsell-text').innerHTML = 
+          '"For just <strong>$' + (weeklyBase - monthly).toFixed(0).replace('-','') + 
+          (weeklyBase > monthly ? ' more' : ' less') + 
+          '/month</strong>, you could go weekly and I\'d be there every single week. That\'s only <strong>$' + 
+          (weeklyBase/4).toFixed(2) + '/visit</strong> instead of $' + perVisit.toFixed(2) + 
+          '. Your yard never gets a chance to build up."';
+      } else if (freq === 'onetime') {
+        const weeklyBase = getPrice('p-weekly') + (dogs - 1) * getPrice('p-extradog-mo');
+        upsellBox.style.display = 'block';
+        document.getElementById('upsell-text').innerHTML = 
+          '"If you sign up for weekly service at <strong>$' + weeklyBase.toFixed(0) + 
+          '/month</strong>, I\'ll do this first visit <strong>FREE</strong>. That\'s just <strong>$' + 
+          (weeklyBase/4).toFixed(2) + '/visit</strong> — and your yard stays clean every single week. No more poop patrol."';
+      } else {
+        upsellBox.style.display = 'none';
+      }
+
+      // Generate text quote
+      generateTextQuote(freq, dogs, monthly, perVisit, visitsPerMonth, largeYard, deck, deodorizer);
+    }
+
+    function generateTextQuote(freq, dogs, monthly, perVisit, visits, largeYard, deck, deodorizer) {
+      let addons = [];
+      if (largeYard) addons.push('large yard');
+      if (deck) addons.push('deck/patio cleanup');
+      if (deodorizer) addons.push('deodorizer treatment');
+
+      const dogText = dogs === 1 ? '1 dog' : dogs + ' dogs';
+      const addonText = addons.length > 0 ? '\nIncludes: ' + addons.join(', ') : '';
+
+      let text = '';
+      if (freq === 'weekly') {
+        text = `Hey! Here's your Tidy Tails quote:
+
+🐕 Weekly Service — ${dogText}${addonText}
+💰 $${monthly.toFixed(0)}/month ($${perVisit.toFixed(2)}/visit)
+
+That's ${visits} visits/month. I come the same day each week, bag everything up, and haul it away. You never touch a thing.
+
+No contracts — cancel anytime. Want to lock in a day? Just let me know!
+
+— TJ, Tidy Tails
+📞 (314) 850-7140`;
+      } else if (freq === 'biweekly') {
+        text = `Hey! Here's your Tidy Tails quote:
+
+🐕 Biweekly Service — ${dogText}${addonText}
+💰 $${perVisit.toFixed(0)}/visit ($${monthly.toFixed(0)}/month)
+
+Every other week I'll come through, scoop, bag, and haul everything away.
+
+Pro tip: Most folks with ${dogs}+ dog${dogs > 1 ? 's' : ''} go weekly — only $${getPrice('p-weekly').toFixed(0)}/mo and your yard never builds up. Just something to think about!
+
+No contracts. Cancel anytime.
+
+— TJ, Tidy Tails
+📞 (314) 850-7140`;
+      } else {
+        text = `Hey! Here's your quote for a one-time cleanup:
+
+🐕 One-Time Visit — ${dogText}${addonText}
+💰 $${perVisit.toFixed(0)}
+
+I'll come through, scoop every last pile, bag it up, and haul it away. Your yard will be spotless.
+
+If you love it (you will), weekly service is just $${getPrice('p-weekly').toFixed(0)}/mo — and I'll count this visit as your first one FREE.
+
+— TJ, Tidy Tails
+📞 (314) 850-7140`;
+      }
+
+      document.getElementById('text-quote').textContent = text;
+    }
+
+    // === SPRING CLEANUP LOGIC ===
+    function adjustCleanupDogs(delta) {
+      state.cleanupDogs = Math.max(1, Math.min(8, state.cleanupDogs + delta));
+      document.getElementById('cleanup-dog-count').textContent = state.cleanupDogs;
+      document.getElementById('cleanup-dog-label').textContent = state.cleanupDogs === 1 ? '1 dog' : state.cleanupDogs + ' dogs';
+      calculateCleanup();
+    }
+
+    function setCleanupType(t) {
+      state.cleanupType = t;
+      document.querySelectorAll('[data-ctype]').forEach(b => b.classList.toggle('active', b.dataset.ctype === t));
+      calculateCleanup();
+    }
+
+    function setYardSize(s) {
+      state.yardSize = s;
+      document.querySelectorAll('[data-ysize]').forEach(b => b.classList.toggle('active', b.dataset.ysize === s));
+      calculateCleanup();
+    }
+
+    function calculateCleanup() {
+      const dogs = state.cleanupDogs;
+      const type = state.cleanupType;
+      const yard = state.yardSize;
+
+      // Base pricing from the funnel research
+      let price = 0;
+      if (type === 'standard') {
+        if (dogs === 1) price = 75;
+        else if (dogs === 2) price = 95;
+        else price = 120 + (dogs - 3) * 20;
+      } else {
+        // Deep clean (winter buildup)
+        if (dogs === 1) price = 125;
+        else if (dogs === 2) price = 150;
+        else price = 175 + (dogs - 3) * 25;
+      }
+
+      // Yard size surcharge
+      if (yard === 'large') price += 25;
+      else if (yard === 'xlarge') price += 50;
+
+      const dogText = dogs === 1 ? '1 dog' : dogs + ' dogs';
+      const yardText = yard === 'standard' ? 'Standard yard' : yard === 'large' ? 'Large yard (+$25)' : 'XL yard (+$50)';
+      const typeText = type === 'standard' ? 'Regular cleanup' : 'Deep clean (winter buildup)';
+
+      document.getElementById('cleanup-amount').textContent = '$' + price;
+      document.getElementById('cleanup-note').textContent = dogText + ' · ' + yardText + ' · ' + typeText;
+
+      // Update upsell script
+      const weeklyPrice = getPrice('p-weekly') + (dogs - 1) * getPrice('p-extradog-mo');
+      document.getElementById('cleanup-upsell-text').innerHTML = 
+        '"The spring cleanup is <strong>$' + price + '</strong>. But here\'s what most people do — sign up for weekly service at <strong>$' + 
+        weeklyPrice.toFixed(0) + '/month</strong> and I\'ll do the spring cleanup <strong>FREE</strong> as your first visit. You save $' + 
+        price + ' and your yard stays clean all season."';
+
+      // Generate cleanup text quote
+      generateCleanupTextQuote(dogs, price, type, yard, weeklyPrice);
+    }
+
+    function generateCleanupTextQuote(dogs, price, type, yard, weeklyPrice) {
+      const dogText = dogs === 1 ? '1 dog' : dogs + ' dogs';
+      const typeLabel = type === 'deep' ? 'deep clean (winter buildup removal)' : 'spring cleanup';
+
+      let text = `Hey! Here's your spring cleanup quote:
+
+🌱 Spring ${type === 'deep' ? 'Deep Clean' : 'Cleanup'} — ${dogText}
+💰 $${price}
+
+I'll come through and clear out every last pile from the winter. ${type === 'deep' ? 'Full deep clean — digging out the compacted stuff, getting into corners, the works.' : 'Complete yard sweep, bag, and haul away.'}
+
+Here's the deal though — if you sign up for weekly service ($${weeklyPrice}/mo), the spring cleanup is ON ME. Free. You save $${price} and your yard stays clean all season long.
+
+No contracts. Cancel anytime.
+
+— TJ, Tidy Tails
+📞 (314) 850-7140`;
+
+      document.getElementById('cleanup-text-quote').textContent = text;
+    }
+
+    // === TAB SWITCHING ===
+    function switchTab(tab) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      
+      if (tab === 'recurring') {
+        document.querySelectorAll('.tab')[0].classList.add('active');
+        document.getElementById('recurring-section').classList.add('active');
+      } else {
+        document.querySelectorAll('.tab')[1].classList.add('active');
+        document.getElementById('cleanup-section').classList.add('active');
+      }
+    }
+
+    // === PRICE EDITOR ===
+    function togglePriceEditor() {
+      document.getElementById('price-editor').classList.toggle('show');
+    }
+
+    // === COPY ===
+    function copyQuote() {
+      const text = document.getElementById('text-quote').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('#recurring-section .copy-btn');
+        btn.textContent = '✓ Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      });
+    }
+
+    function copyCleanupQuote() {
+      const text = document.getElementById('cleanup-text-quote').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('#cleanup-section .copy-btn');
+        btn.textContent = '✓ Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      });
+    }
+
+    // === INIT ===
+    calculate();
+    calculateCleanup();
+  </script>
+</body>
+</html>
