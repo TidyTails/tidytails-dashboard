@@ -14,6 +14,7 @@
 - [x] FB Ads campaign prep (Mar 3 4PM — Full blueprint ready!)
 - [x] Route optimization research (Mar 3 9PM — Sweep&Go vs Upper vs Free, staged recs!)
 - [x] Seasonal campaign ideas (Mar 3 6PM — Spring 2026 Calendar: Mar-May with key dates!)
+- [x] Spring cleanup acquisition funnel (Mar 17 4AM — Complete funnel: pricing, 5 ads, upsell scripts, projections!)
 - [x] Lead channel research (Mar 4 1AM — 8 channels beyond FB groups! Nextdoor, Yelp, directories!)
 - [x] Sales comparison sheet (Mar 4 1PM — "Why Tidy Tails" with objection handling + pricing counters!)
 - [x] Case studies from jobs (Mar 4 2PM — Testimonial & Case Study Kit with text scripts, templates, platform formats!)

@@ -7,6 +7,45 @@
 
 ## March 17, 2026 (Tuesday)
 
+### 4:07 AM — 🌱 SPRING CLEANUP ACQUISITION FUNNEL — The #1 Growth Play for March-April (Customer Acquisition)
+**Task:** Researched spring rush strategies from top pet waste companies, analyzed pricing data, and built a complete customer acquisition funnel using one-time spring cleanups as the gateway to recurring service.
+**Result:** ✅ COMPLETE — Shipped `deliverables/spring-cleanup-acquisition-funnel-march2026.md`
+
+**Why This Task:**
+- Spring rush is THE growth window — every successful pet waste company built their business during March-April
+- Swoop Scoop gained 487 customers in one month using this exact strategy
+- TJ has 8 customers, needs 25. One-time cleanups → recurring conversion is the fastest path.
+- Website is DOWN (SSL expired) — this funnel works through FB Marketplace, Nextdoor, and FB Groups (no website needed)
+- All ads are in TJ's voice, copy-paste ready, with pricing benchmarked against STL competitors
+
+**What I Built:**
+1. **Spring cleanup pricing model** — $75 base (benchmarked: national $50-150, STL competitors $60-100)
+2. **The conversion script** — "Sign up weekly and the spring cleanup is FREE" (the key upsell)
+3. **5 ready-to-post ads** — FB Marketplace (×2), Nextdoor, FB Groups, Instagram
+4. **3-step upsell sequence** — on-site pitch, 3-day follow-up text, 2-week check-in
+5. **Route density marketing** — leave door hangers at neighbors after each cleanup
+6. **Operations prep checklist** — supplies, scheduling, and capacity planning
+7. **Posting schedule** — where to post, when, how often
+8. **Financial projections** — Conservative: 5 new recurring customers + $975 cleanup revenue by end of April
+
+**Research Sources:**
+- Swoop Scoop® (William Milliken) — 10K+ leads, $2M/yr, spring rush is their biggest channel
+- Holy Crap Poop Scoop — 150 spring yards, $85/mo, FB + door hangers
+- Poop Scoops For Noobs — Spring rush operational best practices
+- Number 2 Club — National pricing benchmarks
+- Kroopin's Poopin Scoopin — 200+ weekly customers via Nextdoor + reviews
+
+**Expected Impact:**
+- Conservative: 8 → 13 customers, $750 → $1,250/mo by end of April
+- Aggressive: 8 → 15 customers, $750 → $1,450/mo
+- $975-$1,350 in one-time cleanup revenue during the 6-week window
+
+**Key Insight:** The "free spring cleanup when you sign up for weekly" offer is the single most powerful conversion tool. It reframes a $75 expense into a $0 bonus. Every successful scooper company uses some version of this.
+
+**Rotation:** 🐕 Tidy Tails — Customer Acquisition / Spring Campaign
+
+---
+
 ### 3:05 AM — 🚨 CRITICAL: Website SSL Expired — Root Cause Found (Technical Audit)
 **Task:** Technical SEO audit of tidytailspetwasteremoval.net to diagnose why the site hasn't indexed in 5+ weeks. Used curl, openssl, DNS, and search engine queries.
 **Result:** ✅ COMPLETE — Shipped `deliverables/URGENT-website-down-ssl-expired-march17.md`
