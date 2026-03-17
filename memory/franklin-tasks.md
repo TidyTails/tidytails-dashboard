@@ -7,6 +7,53 @@
 
 ## March 17, 2026 (Tuesday)
 
+### 6:05 AM — 📨 COMMERCIAL PROPOSAL + OUTREACH KIT — Sales Conversion Tools (Revenue/Commercial)
+**Task:** Built a professional commercial services proposal (HTML) and complete outreach email/text kit so TJ can actually CONVERT the 12 commercial leads we already have.
+**Result:** ✅ COMPLETE — Shipped `deliverables/tidy-tails-commercial-proposal.html` + `deliverables/commercial-outreach-emails.md`
+
+**Why This Task:**
+- We have 12 commercial leads (property mgmt, apartments, HOAs, dog businesses) that TJ hasn't contacted yet
+- Finding MORE leads wasn't the bottleneck — TJ had no professional materials to send after a cold call
+- Property managers and HOA boards expect formal proposals, not texts
+- A single commercial contract (e.g., Millsap's 7 properties) could equal 5-10 residential customers
+- Spring is THE window — snow melt means poop complaints spike NOW
+
+**What I Built:**
+
+**1. Commercial Proposal (HTML — printable/PDF-ready):**
+- Professional branded one-pager with Tidy Tails green branding
+- Editable fields (click to customize property name, date, unit count, pricing)
+- "The Problem" section with stats (78% renters own pets, #1 complaint, EPA bacteria data)
+- Services comparison table (Essential / Premium / Complete tiers)
+- Three pricing tiers: $150/mo (small), $300/mo (medium), $500/mo (large)
+- "Why Tidy Tails" differentiators (local, flexible, better value, we take waste with us)
+- 4-step getting started process
+- 100% satisfaction guarantee (no contracts)
+- "Cost of Doing Nothing" section — turnover costs, negative reviews, health liability
+- Contact CTA with phone, email, website
+- Print-optimized CSS for clean PDF output
+- Mobile-responsive for phone viewing
+
+**2. Commercial Outreach Email Kit (5 templates + texts + playbook):**
+- Cold outreach email for property managers/apartments
+- Cold outreach email for HOA management companies
+- Follow-up email (3-5 days, no response)
+- Post-site-walk proposal email
+- Spring seasonal push email
+- 3 text message templates (cold, HOA, follow-up)
+- Complete outreach playbook: best days/times, phone script, objection handlers
+- 4 objection responses ("we handle in-house," "no budget," "send me info," "not interested")
+
+**Expected Impact:**
+- TJ can call Millsap Properties TODAY and email a pro proposal within minutes
+- All 12 leads become actionable with ready-made outreach
+- One closed commercial deal = $150-$500/mo recurring
+- Millsap alone (7 properties) could be $1,000-$3,000/mo
+
+**Rotation:** 📨 Sales / Commercial — Conversion Tools
+
+---
+
 ### 5:04 AM — 📱 TIDY TAILS QUICK QUOTE CALCULATOR — Mobile Sales Tool (Systems/Tools)
 **Task:** Built a mobile-first HTML quote calculator that TJ can pull up on his phone during calls and at job sites to instantly calculate and text professional quotes to prospects.
 **Result:** ✅ COMPLETE — Shipped `deliverables/tidy-tails-quote-calculator.html`
