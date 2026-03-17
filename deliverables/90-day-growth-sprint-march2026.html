@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>90-Day Growth Sprint — Tidy Tails</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --card: #141414;
+    --border: #222;
+    --text: #e8e8e8;
+    --muted: #888;
+    --accent: #22c55e;
+    --accent2: #3b82f6;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --hot: #ff6b35;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 12px;
+    max-width: 600px;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+  }
+  .hero {
+    text-align: center;
+    padding: 24px 16px;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #0f2e1a 0%, #0a1628 100%);
+    border-radius: 16px;
+    border: 1px solid #1a3a25;
+  }
+  .hero h1 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+  .hero .sub { color: var(--muted); font-size: 13px; }
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 8px;
+    text-align: center;
+  }
+  .stat-card .num { font-size: 24px; font-weight: 800; }
+  .stat-card .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat-card.green .num { color: var(--accent); }
+  .stat-card.blue .num { color: var(--accent2); }
+  .stat-card.orange .num { color: var(--hot); }
+
+  .tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    padding: 8px 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .tab.active { background: var(--accent); color: #000; border-color: var(--accent); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .phase {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .phase-header {
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .phase-header .emoji { font-size: 20px; }
+  .phase-header .info { flex: 1; }
+  .phase-header .title { font-size: 15px; font-weight: 700; }
+  .phase-header .meta { font-size: 11px; color: var(--muted); }
+  .phase-header .arrow {
+    font-size: 12px;
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+  .phase.open .phase-header .arrow { transform: rotate(90deg); }
+  .phase-body { padding: 0 16px 14px; display: none; }
+  .phase.open .phase-body { display: block; }
+
+  .week-block {
+    margin-bottom: 14px;
+    padding-left: 12px;
+    border-left: 2px solid var(--border);
+  }
+  .week-label {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent2);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 6px 0;
+  }
+  .task-item input[type="checkbox"] {
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+  }
+  .task-item label { font-size: 13px; cursor: pointer; }
+  .task-item label.done { text-decoration: line-through; color: var(--muted); }
+  .task-item .tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .tag.tj { background: #1e3a5f; color: #60a5fa; }
+  .tag.jamie { background: #3a1e5f; color: #a78bfa; }
+  .tag.franklin { background: #1e3a2e; color: #4ade80; }
+  .tag.critical { background: #5f1e1e; color: #f87171; }
+  .tag.free { background: #1e3a1e; color: #4ade80; }
+  .tag.paid { background: #5f4a1e; color: #fbbf24; }
+
+  .impact-card {
+    background: #0f1f15;
+    border: 1px solid #1a3a25;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 10px 0;
+  }
+  .impact-card .row { display: flex; justify-content: space-between; font-size: 13px; padding: 3px 0; }
+  .impact-card .row .val { font-weight: 700; color: var(--accent); }
+
+  .blocker {
+    background: #1f0f0f;
+    border: 1px solid #3a1a1a;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 10px 0;
+  }
+  .blocker .title { font-size: 13px; font-weight: 700; color: var(--danger); margin-bottom: 4px; }
+  .blocker .desc { font-size: 12px; color: var(--muted); }
+
+  .insight {
+    background: #0f1528;
+    border: 1px solid #1a2a4a;
+    border-radius: 10px;
+    padding: 12px;
+    margin: 10px 0;
+    font-size: 12px;
+    color: #93c5fd;
+  }
+  .insight strong { color: #60a5fa; }
+
+  .progress-wrap {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .progress-title { font-size: 13px; font-weight: 700; margin-bottom: 8px; }
+  .progress-bar-bg {
+    width: 100%;
+    height: 8px;
+    background: #222;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), #4ade80);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+  }
+  .progress-label { font-size: 11px; color: var(--muted); margin-top: 4px; }
+
+  .roi-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin: 10px 0;
+  }
+  .roi-table th {
+    text-align: left;
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .roi-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .roi-table .highlight { color: var(--accent); font-weight: 700; }
+
+  .cta-box {
+    background: linear-gradient(135deg, #1a3a25 0%, #0a1628 100%);
+    border: 1px solid var(--accent);
+    border-radius: 14px;
+    padding: 16px;
+    text-align: center;
+    margin: 16px 0;
+  }
+  .cta-box .big { font-size: 18px; font-weight: 800; margin-bottom: 4px; }
+  .cta-box .small { font-size: 12px; color: var(--muted); }
+
+  .footnote { font-size: 11px; color: var(--muted); text-align: center; padding: 16px; }
+
+  @media (max-width: 400px) {
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .hero h1 { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <h1>🎯 90-Day Growth Sprint</h1>
+  <div class="sub">March 17 → June 15, 2026 · Tidy Tails</div>
+  <div class="sub" style="margin-top:4px; color:#22c55e; font-weight:600;">From 8 → 25 Customers in 12 Weeks</div>
+</div>
+
+<!-- Stats -->
+<div class="stats-row">
+  <div class="stat-card green">
+    <div class="num">8</div>
+    <div class="label">Current</div>
+  </div>
+  <div class="stat-card orange">
+    <div class="num">17</div>
+    <div class="label">Need</div>
+  </div>
+  <div class="stat-card blue">
+    <div class="num">$750</div>
+    <div class="label">MRR Now</div>
+  </div>
+</div>
+
+<!-- Overall Progress -->
+<div class="progress-wrap" id="overallProgress">
+  <div class="progress-title">Sprint Progress: <span id="progressPct">0%</span></div>
+  <div class="progress-bar-bg">
+    <div class="progress-bar-fill" id="progressBar" style="width:0%"></div>
+  </div>
+  <div class="progress-label"><span id="tasksDone">0</span> of <span id="tasksTotal">0</span> tasks completed</div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab active" data-tab="sprint">📋 Sprint</div>
+  <div class="tab" data-tab="math">📊 The Math</div>
+  <div class="tab" data-tab="channels">📣 Channels</div>
+  <div class="tab" data-tab="weekly">🗓 Weekly</div>
+  <div class="tab" data-tab="rules">⚡ Rules</div>
+</div>
+
+<!-- TAB: Sprint Plan -->
+<div class="tab-content active" id="tab-sprint">
+
+  <div class="blocker">
+    <div class="title">🚨 BLOCKER: SSL Certificate Expired (26 days!)</div>
+    <div class="desc">tidytailspetwasteremoval.net SSL expired Feb 19. Google won't crawl it. Visitors get security warnings. <strong>Fix this BEFORE spending $1 on ads.</strong> tidytailsstl.com is fine — but make sure all ads point there.</div>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="phase open" id="phase1">
+    <div class="phase-header" onclick="togglePhase('phase1')">
+      <div class="emoji">🔧</div>
+      <div class="info">
+        <div class="title">Phase 1: Fix the Foundation</div>
+        <div class="meta">Weeks 1-2 · Mar 17-30 · Cost: $0</div>
+      </div>
+      <div class="arrow">▶</div>
+    </div>
+    <div class="phase-body">
+      <div class="insight">
+        <strong>Why this first:</strong> Running ads to a broken site is like pouring water into a bucket with holes. These 7 tasks take ~3 hours total and multiply the ROI of everything else.
+      </div>
+
+      <div class="week-block">
+        <div class="week-label">Week 1 (Mar 17-23)</div>
+        <div class="task-item"><input type="checkbox" id="t1" onchange="saveState()"><label for="t1">Renew SSL cert on tidytailspetwasteremoval.net (GoDaddy, 15 min) <span class="tag critical">CRITICAL</span> <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t2" onchange="saveState()"><label for="t2">Claim/verify Google Business Profile — add photos, hours, service area <span class="tag critical">CRITICAL</span> <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t3" onchange="saveState()"><label for="t3">Claim Apple Business Connect listing (60% of customers use iPhones) <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t4" onchange="saveState()"><label for="t4">Claim Bing Places listing (feeds ChatGPT/Copilot search) <span class="tag tj">TJ</span></label></div>
+      </div>
+      <div class="week-block">
+        <div class="week-label">Week 2 (Mar 24-30)</div>
+        <div class="task-item"><input type="checkbox" id="t5" onchange="saveState()"><label for="t5">Install Meta Pixel on tidytailsstl.com (track ad conversions) <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t6" onchange="saveState()"><label for="t6">Set up Google Search Console + submit sitemap <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t7" onchange="saveState()"><label for="t7">Create Nextdoor Business Page (free, high-trust local platform) <span class="tag tj">TJ</span></label></div>
+      </div>
+
+      <div class="impact-card">
+        <div class="row"><span>Time investment</span><span class="val">~3 hours total</span></div>
+        <div class="row"><span>Cost</span><span class="val">$0 (SSL renewal ~$12/yr)</span></div>
+        <div class="row"><span>Unlocks</span><span class="val">All paid + organic growth</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="phase" id="phase2">
+    <div class="phase-header" onclick="togglePhase('phase2')">
+      <div class="emoji">🔥</div>
+      <div class="info">
+        <div class="title">Phase 2: Ignite Paid Growth</div>
+        <div class="meta">Weeks 3-6 · Mar 31-Apr 27 · Cost: $300-450</div>
+      </div>
+      <div class="arrow">▶</div>
+    </div>
+    <div class="phase-body">
+      <div class="insight">
+        <strong>Industry data:</strong> Facebook Ads are the #1 channel for pet waste removal. Swoop Scoop generated 10,000+ leads and 487 customers in their best month. Google search volume is LOW for this niche — FB educates people that the service exists.
+      </div>
+
+      <div class="week-block">
+        <div class="week-label">Week 3 (Mar 31 - Apr 6)</div>
+        <div class="task-item"><input type="checkbox" id="t8" onchange="saveState()"><label for="t8">Launch Facebook Ad Campaign #1: Spring Cleanup special — $5/day <span class="tag paid">$150/mo</span> <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t9" onchange="saveState()"><label for="t9">Target: Dog owners in STL County + St Charles, 25-65, 15mi radius <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t10" onchange="saveState()"><label for="t10">Use real photos (phone pics > stock images) + spring promo offer <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t11" onchange="saveState()"><label for="t11">Post in 3 STL Facebook groups (free) — use ready-made posts <span class="tag free">FREE</span> <span class="tag tj">TJ</span></label></div>
+      </div>
+      <div class="week-block">
+        <div class="week-label">Week 4 (Apr 7-13)</div>
+        <div class="task-item"><input type="checkbox" id="t12" onchange="saveState()"><label for="t12">Review FB ad performance — kill underperformers, double down on winners <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t13" onchange="saveState()"><label for="t13">Post Nextdoor introduction + spring cleanup offer <span class="tag free">FREE</span> <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t14" onchange="saveState()"><label for="t14">Send referral ask texts to all 8 current customers ($25 credit per referral) <span class="tag tj">TJ</span></label></div>
+      </div>
+      <div class="week-block">
+        <div class="week-label">Week 5 (Apr 14-20)</div>
+        <div class="task-item"><input type="checkbox" id="t15" onchange="saveState()"><label for="t15">Launch FB Ad Campaign #2: "Your neighbor uses us" social proof angle <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t16" onchange="saveState()"><label for="t16">Order 50 door hangers ($30-40) for Florissant hot zone <span class="tag paid">~$35</span> <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t17" onchange="saveState()"><label for="t17">Drop 25 door hangers in Shannon/Amanda's neighborhoods after Sunday route <span class="tag tj">TJ</span></label></div>
+      </div>
+      <div class="week-block">
+        <div class="week-label">Week 6 (Apr 21-27)</div>
+        <div class="task-item"><input type="checkbox" id="t18" onchange="saveState()"><label for="t18">Launch Google Ads — "pooper scooper st louis" keywords, $5/day <span class="tag paid">$150/mo</span> <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t19" onchange="saveState()"><label for="t19">Drop remaining 25 door hangers in Chastity's neighborhood (63033) <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t20" onchange="saveState()"><label for="t20">Ask 3 best customers for Google reviews (goal: 5+ reviews) <span class="tag tj">TJ</span></label></div>
+      </div>
+
+      <div class="impact-card">
+        <div class="row"><span>Total ad spend</span><span class="val">~$300/mo</span></div>
+        <div class="row"><span>Expected leads</span><span class="val">15-30/month</span></div>
+        <div class="row"><span>Expected new customers</span><span class="val">5-10</span></div>
+        <div class="row"><span>Projected customer count</span><span class="val">13-18 by end of Phase 2</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="phase" id="phase3">
+    <div class="phase-header" onclick="togglePhase('phase3')">
+      <div class="emoji">🚀</div>
+      <div class="info">
+        <div class="title">Phase 3: Scale What Works</div>
+        <div class="meta">Weeks 7-9 · Apr 28-May 18 · Cost: $300-600</div>
+      </div>
+      <div class="arrow">▶</div>
+    </div>
+    <div class="phase-body">
+      <div class="insight">
+        <strong>Key principle:</strong> By now you'll have 4-6 weeks of data. Double down on the channel producing the cheapest leads. Kill anything with CAC over $50. The industry average is $20-35 per acquired customer.
+      </div>
+
+      <div class="week-block">
+        <div class="week-label">Week 7 (Apr 28 - May 4)</div>
+        <div class="task-item"><input type="checkbox" id="t21" onchange="saveState()"><label for="t21">Audit all channels: Calculate cost per lead + cost per customer for each <span class="tag tj">TJ</span> <span class="tag franklin">FRANKLIN</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t22" onchange="saveState()"><label for="t22">Double budget on best-performing ad channel ($10/day) <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t23" onchange="saveState()"><label for="t23">Order yard signs (5 for ~$75) for customer lawns <span class="tag paid">~$75</span> <span class="tag tj">TJ</span></label></div>
+      </div>
+      <div class="week-block">
+        <div class="week-label">Week 8 (May 5-11)</div>
+        <div class="task-item"><input type="checkbox" id="t24" onchange="saveState()"><label for="t24">Place yard signs at 3-5 customer properties (ask permission first) <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t25" onchange="saveState()"><label for="t25">Launch 2nd round referral push — text remaining customers <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t26" onchange="saveState()"><label for="t26">Post 2x on Nextdoor with before/after photos <span class="tag free">FREE</span> <span class="tag tj">TJ</span></label></div>
+      </div>
+      <div class="week-block">
+        <div class="week-label">Week 9 (May 12-18)</div>
+        <div class="task-item"><input type="checkbox" id="t27" onchange="saveState()"><label for="t27">Expand FB ad radius to include O'Fallon/St Peters (Greg's area) <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t28" onchange="saveState()"><label for="t28">Submit to 5 free business directories (use blitz kit) <span class="tag jamie">JAMIE</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t29" onchange="saveState()"><label for="t29">Get to 10+ Google reviews (ask every new customer) <span class="tag tj">TJ</span></label></div>
+      </div>
+
+      <div class="impact-card">
+        <div class="row"><span>Monthly ad spend</span><span class="val">$300-600</span></div>
+        <div class="row"><span>Expected new customers</span><span class="val">4-8 more</span></div>
+        <div class="row"><span>Projected customer count</span><span class="val">17-26 by end of Phase 3</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="phase" id="phase4">
+    <div class="phase-header" onclick="togglePhase('phase4')">
+      <div class="emoji">🏆</div>
+      <div class="info">
+        <div class="title">Phase 4: Lock In & Systemize</div>
+        <div class="meta">Weeks 10-12 · May 19-Jun 15 · Cost: Maintain</div>
+      </div>
+      <div class="arrow">▶</div>
+    </div>
+    <div class="phase-body">
+      <div class="insight">
+        <strong>Goal:</strong> By now you should be at or near 25 customers. Phase 4 is about retention, route optimization, and building systems so you don't churn back down.
+      </div>
+
+      <div class="week-block">
+        <div class="week-label">Week 10 (May 19-25)</div>
+        <div class="task-item"><input type="checkbox" id="t30" onchange="saveState()"><label for="t30">Optimize routes — group customers by geography, minimize drive time <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t31" onchange="saveState()"><label for="t31">Set up Sweep&Go or Jobber for scheduling (free trials available) <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t32" onchange="saveState()"><label for="t32">Create "service complete" text template — send after every visit <span class="tag franklin">FRANKLIN</span></label></div>
+      </div>
+      <div class="week-block">
+        <div class="week-label">Week 11 (May 26 - Jun 1)</div>
+        <div class="task-item"><input type="checkbox" id="t33" onchange="saveState()"><label for="t33">Launch summer retention promo — loyalty discount for 3+ month customers <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t34" onchange="saveState()"><label for="t34">Document SOPs: quoting, onboarding, service, follow-up <span class="tag franklin">FRANKLIN</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t35" onchange="saveState()"><label for="t35">Evaluate: need to hire help? At 25 customers, math changes. <span class="tag tj">TJ</span></label></div>
+      </div>
+      <div class="week-block">
+        <div class="week-label">Week 12 (Jun 2-15)</div>
+        <div class="task-item"><input type="checkbox" id="t36" onchange="saveState()"><label for="t36">Full sprint retrospective — what worked, what didn't, what's next <span class="tag tj">TJ</span> <span class="tag franklin">FRANKLIN</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t37" onchange="saveState()"><label for="t37">Set Q3 goals based on sprint results <span class="tag tj">TJ</span></label></div>
+        <div class="task-item"><input type="checkbox" id="t38" onchange="saveState()"><label for="t38">Celebrate 🎉 <span class="tag tj">TJ</span></label></div>
+      </div>
+
+      <div class="impact-card">
+        <div class="row"><span>Target customer count</span><span class="val">25+</span></div>
+        <div class="row"><span>Target MRR</span><span class="val">$2,350+</span></div>
+        <div class="row"><span>Churn prevention</span><span class="val">Systems in place</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: The Math -->
+<div class="tab-content" id="tab-math">
+  <div class="phase open">
+    <div class="phase-header">
+      <div class="emoji">🧮</div>
+      <div class="info">
+        <div class="title">The Customer Acquisition Math</div>
+        <div class="meta">Based on industry benchmarks + STL market</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="insight">
+        <strong>Key insight from Swoop Scoop (7-figure pet waste company):</strong> Facebook Ads are the #1 lead channel because most people don't know pet waste removal services exist. You're not capturing demand — you're creating it.
+      </div>
+
+      <table class="roi-table">
+        <tr><th>Metric</th><th>Conservative</th><th>Moderate</th></tr>
+        <tr><td>Monthly ad budget</td><td>$300</td><td>$500</td></tr>
+        <tr><td>Cost per lead (FB)</td><td>$15</td><td>$10</td></tr>
+        <tr><td>Leads per month</td><td>20</td><td>50</td></tr>
+        <tr><td>Lead → customer rate</td><td>25%</td><td>35%</td></tr>
+        <tr><td>New customers/month</td><td class="highlight">5</td><td class="highlight">17</td></tr>
+        <tr><td>Avg customer value</td><td>$94/mo</td><td>$94/mo</td></tr>
+        <tr><td>Revenue from new custs</td><td class="highlight">$470/mo</td><td class="highlight">$1,598/mo</td></tr>
+        <tr><td>Customer lifetime</td><td>8 months</td><td>12 months</td></tr>
+        <tr><td>LTV per customer</td><td class="highlight">$752</td><td class="highlight">$1,128</td></tr>
+        <tr><td>CAC (cost to acquire)</td><td>$60</td><td>$29</td></tr>
+        <tr><td>LTV:CAC ratio</td><td class="highlight">12.5x</td><td class="highlight">38.9x</td></tr>
+      </table>
+
+      <div class="impact-card">
+        <div class="row"><span>Break-even point</span><span class="val">Month 1</span></div>
+        <div class="row"><span>12-month ROI @ $300/mo</span><span class="val">$22,560 - $3,600 = <strong>$18,960</strong></span></div>
+        <div class="row"><span>Every $1 in ads returns</span><span class="val">$5-12 in revenue</span></div>
+      </div>
+
+      <div class="insight">
+        <strong>The real math:</strong> At $94/mo avg customer value, you only need 4 new customers from $300 in ads to cover the ad spend. Everything after that is profit. And those customers keep paying month after month.
+      </div>
+
+      <h3 style="font-size:14px; margin:14px 0 8px;">Revenue Projection: 8 → 25 Customers</h3>
+      <table class="roi-table">
+        <tr><th>Month</th><th>Customers</th><th>MRR</th><th>Cumulative Revenue</th></tr>
+        <tr><td>Now (March)</td><td>8</td><td>$750</td><td>$750</td></tr>
+        <tr><td>April</td><td>12</td><td>$1,128</td><td>$1,878</td></tr>
+        <tr><td>May</td><td>18</td><td>$1,692</td><td>$3,570</td></tr>
+        <tr><td>June</td><td class="highlight">25</td><td class="highlight">$2,350</td><td class="highlight">$5,920</td></tr>
+      </table>
+
+      <div class="cta-box">
+        <div class="big">$2,350/mo by June</div>
+        <div class="small">From $750/mo today · 3x revenue in 90 days</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: Channels -->
+<div class="tab-content" id="tab-channels">
+  <div class="phase open">
+    <div class="phase-header">
+      <div class="emoji">📣</div>
+      <div class="info">
+        <div class="title">Channel Ranking by ROI</div>
+        <div class="meta">Ranked by expected cost per acquired customer</div>
+      </div>
+    </div>
+    <div class="phase-body">
+
+      <div style="margin-bottom:14px;">
+        <div style="font-size:14px; font-weight:700; color:var(--accent); margin-bottom:4px;">🥇 #1: Customer Referrals — $0 CAC</div>
+        <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">
+          Your 8 current customers are your best salespeople. A $25 credit per referral costs way less than any ad. Industry data: referred customers have 37% higher retention.
+        </div>
+        <div style="font-size:12px;"><strong>Action:</strong> Text each customer a personal referral ask. Script in Neighborhood Saturation Kit.</div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <div style="font-size:14px; font-weight:700; color:var(--accent); margin-bottom:4px;">🥈 #2: Facebook Ads — ~$20-60 CAC</div>
+        <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">
+          The proven #1 channel for pet waste removal. Low competition in STL. Educates people that the service exists (most don't know). Start at $5/day.
+        </div>
+        <div style="font-size:12px;"><strong>Best targeting:</strong> Dog owners + Advantage+ in STL County, 25-65 age. Use phone photos, not stock images.</div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <div style="font-size:14px; font-weight:700; color:var(--accent2); margin-bottom:4px;">🥉 #3: Nextdoor — $0 CAC</div>
+        <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">
+          Highest-trust local platform. Free business page + neighborhood recommendations. Pet-related posts get 3x engagement.
+        </div>
+        <div style="font-size:12px;"><strong>Action:</strong> Create business page, post weekly. Use scripts from Nextdoor Kit.</div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <div style="font-size:14px; font-weight:700; color:var(--warning); margin-bottom:4px;">4. Door Hangers / Yard Signs — ~$5-15 CAC</div>
+        <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">
+          Drop in neighborhoods where you already service. Near-zero marginal cost per new customer on existing routes.
+        </div>
+        <div style="font-size:12px;"><strong>Focus:</strong> Florissant (63031/63033) — 3 customers already there = social proof.</div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <div style="font-size:14px; font-weight:700; color:var(--warning); margin-bottom:4px;">5. Google Ads — ~$40-80 CAC</div>
+        <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">
+          Captures high-intent searchers. Home services CPC averages $7.85 nationally, but pet waste is a niche with LOWER competition = likely $2-5 CPC in STL. Complements FB (people see FB ad → Google you later).
+        </div>
+        <div style="font-size:12px;"><strong>Top keywords:</strong> "pooper scooper st louis", "pet waste removal near me", "dog poop pickup service"</div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <div style="font-size:14px; font-weight:700; color:var(--muted); margin-bottom:4px;">6. Facebook Groups — $0 CAC (time cost)</div>
+        <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">
+          Good for brand awareness but harder to track. Post in STL pet/neighborhood groups 2-3x/week. Don't spam.
+        </div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <div style="font-size:14px; font-weight:700; color:var(--muted); margin-bottom:4px;">7. Google Business Profile + SEO — $0 (long game)</div>
+        <div style="font-size:12px; color:var(--muted); margin-bottom:6px;">
+          Critical foundation but takes 3-6 months to rank. Do it NOW so it pays off later. Key: get 10+ Google reviews ASAP — reviews are the #1 local ranking factor.
+        </div>
+      </div>
+
+      <div class="blocker">
+        <div class="title">⚠️ Channels NOT Worth It Right Now</div>
+        <div class="desc">
+          • <strong>Instagram Ads</strong> — Not enough social proof yet. Build organic first.<br>
+          • <strong>Google Local Services Ads</strong> — Pet waste removal isn't a supported category in most markets.<br>
+          • <strong>Direct mail</strong> — Too expensive at this scale ($0.50-1.00 per piece, low response rate).<br>
+          • <strong>Commercial leads</strong> — Paused per TJ. Revisit at 20+ residential customers.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: Weekly -->
+<div class="tab-content" id="tab-weekly">
+  <div class="phase open">
+    <div class="phase-header">
+      <div class="emoji">🗓</div>
+      <div class="info">
+        <div class="title">Weekly Rhythm</div>
+        <div class="meta">15-30 min/day marketing routine</div>
+      </div>
+    </div>
+    <div class="phase-body">
+      <div class="insight">
+        <strong>The Swoop Scoop rule:</strong> NEVER pause or stop ad spend unless you absolutely have to. Consistent visibility keeps leads flowing. Even $5/day beats $0/day.
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <div style="font-size:14px; font-weight:700; margin-bottom:6px;">📅 Monday — Plan + Post</div>
+        <div style="font-size:12px; color:var(--muted);">
+          • Check FB/Google ad performance (5 min)<br>
+          • Post in 1 Facebook group (5 min)<br>
+          • Review any new leads from weekend (10 min)
+        </div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <div style="font-size:14px; font-weight:700; margin-bottom:6px;">📅 Tuesday — Follow Up</div>
+        <div style="font-size:12px; color:var(--muted);">
+          • Text any leads that haven't responded (5 min)<br>
+          • Post on Nextdoor (5 min)
+        </div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <div style="font-size:14px; font-weight:700; margin-bottom:6px;">📅 Wednesday — Content</div>
+        <div style="font-size:12px; color:var(--muted);">
+          • Take a before/after photo during service<br>
+          • Post to Instagram/Facebook page (5 min)
+        </div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <div style="font-size:14px; font-weight:700; margin-bottom:6px;">📅 Thursday — Outreach</div>
+        <div style="font-size:12px; color:var(--muted);">
+          • Text 1 past lead who didn't convert (5 min)<br>
+          • Check Google reviews — respond to any new ones
+        </div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <div style="font-size:14px; font-weight:700; margin-bottom:6px;">📅 Friday — Review</div>
+        <div style="font-size:12px; color:var(--muted);">
+          • Quick weekly check: How many leads? How many closed? <br>
+          • Adjust ad budget if needed
+        </div>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <div style="font-size:14px; font-weight:700; margin-bottom:6px;">📅 Sunday — Service Day Bonus</div>
+        <div style="font-size:12px; color:var(--muted);">
+          • After finishing route: drop 5-10 door hangers in nearby houses<br>
+          • Ask one customer for a Google review<br>
+          • Snap a "clean yard" photo for social media
+        </div>
+      </div>
+
+      <div class="impact-card">
+        <div class="row"><span>Daily time commitment</span><span class="val">15-30 min</span></div>
+        <div class="row"><span>Sunday bonus</span><span class="val">+15 min after route</span></div>
+        <div class="row"><span>Total weekly</span><span class="val">~2 hours marketing</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: Rules -->
+<div class="tab-content" id="tab-rules">
+  <div class="phase open">
+    <div class="phase-header">
+      <div class="emoji">⚡</div>
+      <div class="info">
+        <div class="title">Sprint Rules — Non-Negotiable</div>
+        <div class="meta">Break these and the sprint fails</div>
+      </div>
+    </div>
+    <div class="phase-body">
+
+      <div style="margin-bottom:14px; padding:10px; background:#1f0f0f; border-radius:8px; border-left:3px solid var(--danger);">
+        <div style="font-size:13px; font-weight:700;">Rule #1: No more planning without doing.</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:4px;">We have 50+ kits, guides, and playbooks. The problem isn't knowledge — it's execution. This sprint is about DOING, not reading more strategies.</div>
+      </div>
+
+      <div style="margin-bottom:14px; padding:10px; background:#1f0f0f; border-radius:8px; border-left:3px solid var(--danger);">
+        <div style="font-size:13px; font-weight:700;">Rule #2: Fix the SSL cert this week. Period.</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:4px;">It's been expired 26 days. Every day it stays broken is a day Google can't find you. 15 minutes in GoDaddy. Do it today.</div>
+      </div>
+
+      <div style="margin-bottom:14px; padding:10px; background:#1f0f0f; border-radius:8px; border-left:3px solid var(--danger);">
+        <div style="font-size:13px; font-weight:700;">Rule #3: Never pause ads once started.</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:4px;">Even $5/day. Consistency beats intensity. Pausing resets the algorithm and wastes the learning period. Set it and let it run for 2+ weeks before judging.</div>
+      </div>
+
+      <div style="margin-bottom:14px; padding:10px; background:#0f1528; border-radius:8px; border-left:3px solid var(--accent2);">
+        <div style="font-size:13px; font-weight:700;">Rule #4: Respond to leads within 5 minutes.</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:4px;">Speed to lead matters more than anything. The first company to respond gets the customer 78% of the time. Turn on phone notifications for FB messages and form submissions.</div>
+      </div>
+
+      <div style="margin-bottom:14px; padding:10px; background:#0f1528; border-radius:8px; border-left:3px solid var(--accent2);">
+        <div style="font-size:13px; font-weight:700;">Rule #5: Track everything in one place.</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:4px;">Keep a simple spreadsheet: Lead name, source (FB/Google/Nextdoor/referral), date, status (new/quoted/closed/lost). Can't improve what you can't measure.</div>
+      </div>
+
+      <div style="margin-bottom:14px; padding:10px; background:#0f1f15; border-radius:8px; border-left:3px solid var(--accent);">
+        <div style="font-size:13px; font-weight:700;">Rule #6: One new customer per week minimum.</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:4px;">17 customers in 12 weeks = ~1.4/week. Round up: if you're not gaining at least 1 per week, something is broken. Diagnose and fix immediately.</div>
+      </div>
+
+      <div style="margin-bottom:14px; padding:10px; background:#0f1f15; border-radius:8px; border-left:3px solid var(--accent);">
+        <div style="font-size:13px; font-weight:700;">Rule #7: Ask for reviews after EVERY completed service.</div>
+        <div style="font-size:12px; color:var(--muted); margin-top:4px;">Google reviews are the #1 local ranking factor. Goal: 1 new review per week. By end of sprint: 12+ reviews. Send the review link by text right after service.</div>
+      </div>
+
+      <div class="cta-box">
+        <div class="big">Execution > Strategy</div>
+        <div class="small">A mediocre plan executed beats a perfect plan ignored.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Total Budget Summary -->
+<div class="phase open" id="budgetSummary">
+  <div class="phase-header">
+    <div class="emoji">💰</div>
+    <div class="info">
+      <div class="title">Total 90-Day Budget</div>
+      <div class="meta">All-in cost to go from 8 → 25 customers</div>
+    </div>
+  </div>
+  <div class="phase-body">
+    <table class="roi-table">
+      <tr><th>Item</th><th>Monthly</th><th>90-Day Total</th></tr>
+      <tr><td>Facebook Ads</td><td>$150</td><td>$450</td></tr>
+      <tr><td>Google Ads (starting Week 6)</td><td>$150</td><td>$300</td></tr>
+      <tr><td>Door hangers (50)</td><td>—</td><td>$35</td></tr>
+      <tr><td>Yard signs (5)</td><td>—</td><td>$75</td></tr>
+      <tr><td>SSL renewal</td><td>—</td><td>$12</td></tr>
+      <tr><td><strong>TOTAL</strong></td><td><strong>$300-500</strong></td><td class="highlight"><strong>$872</strong></td></tr>
+    </table>
+    <div class="impact-card">
+      <div class="row"><span>Total 90-day investment</span><span class="val">~$872</span></div>
+      <div class="row"><span>Expected new MRR at end</span><span class="val">$1,600+</span></div>
+      <div class="row"><span>Payback period</span><span class="val">< 1 month</span></div>
+      <div class="row"><span>12-month ROI</span><span class="val">20x+</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="footnote">
+  Built by Franklin · March 17, 2026 · Tidy Tails Growth Sprint<br>
+  Data sourced from: Swoop Scoop, ScoopStart, WordStream, Fresh Start Pet Waste, industry benchmarks
+</div>
+
+<script>
+// Tab switching
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// Phase toggle
+function togglePhase(id) {
+  document.getElementById(id).classList.toggle('open');
+}
+
+// Checkbox persistence
+function saveState() {
+  const state = {};
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    state[cb.id] = cb.checked;
+    const label = cb.nextElementSibling;
+    if (label) label.classList.toggle('done', cb.checked);
+  });
+  localStorage.setItem('sprint90_v1', JSON.stringify(state));
+  updateProgress();
+}
+
+function loadState() {
+  try {
+    const state = JSON.parse(localStorage.getItem('sprint90_v1') || '{}');
+    Object.keys(state).forEach(id => {
+      const cb = document.getElementById(id);
+      if (cb) {
+        cb.checked = state[id];
+        const label = cb.nextElementSibling;
+        if (label && state[id]) label.classList.add('done');
+      }
+    });
+  } catch(e) {}
+  updateProgress();
+}
+
+function updateProgress() {
+  const all = document.querySelectorAll('input[type="checkbox"]');
+  const done = document.querySelectorAll('input[type="checkbox"]:checked');
+  const pct = all.length ? Math.round((done.length / all.length) * 100) : 0;
+  document.getElementById('progressPct').textContent = pct + '%';
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('tasksDone').textContent = done.length;
+  document.getElementById('tasksTotal').textContent = all.length;
+}
+
+loadState();
+</script>
+</body>
+</html>

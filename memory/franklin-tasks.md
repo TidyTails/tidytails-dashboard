@@ -7,6 +7,54 @@
 
 ## March 17, 2026 (Tuesday)
 
+### 12:06 PM — 🎯 90-DAY GROWTH SPRINT — From 8 → 25 Customers in 12 Weeks (Strategy / Execution)
+**Task:** Researched paid ads benchmarks (Google CPC, Facebook ROI, industry case studies), analyzed STL competitive landscape, reviewed all 50+ existing deliverables, and built a focused 90-day sprint plan that cuts through the noise.
+**Result:** ✅ COMPLETE — Shipped `deliverables/90-day-growth-sprint-march2026.html`
+
+**Why This Task:**
+- We have 50+ marketing kits, playbooks, and guides — but TJ is still at 8 customers
+- The problem isn't knowledge, it's EXECUTION — needed a single prioritized plan
+- Spring is peak season RIGHT NOW — every week without action is lost revenue
+- Previous tasks were all "here's how to do X" — this one says "do THIS, in THIS order, THIS week"
+
+**Key Research Findings:**
+- **Facebook Ads = #1 channel** for pet waste removal (Swoop Scoop: 10,000+ leads, 487 customers in best month)
+- **Google search volume is LOW** for this niche — FB educates people the service EXISTS
+- **Home services CPC averages $7.85** nationally, but pet waste = lower competition = likely $2-5 in STL
+- **$300/mo budget** can yield 5-17 new customers/month depending on close rate
+- **Tidy Tails is INVISIBLE** in Google search for "pooper scooper st louis" — competitors Yuckos, Scoop Soldiers, DoodyCalls, POOP 911, Poop2Scoop dominate
+- **SSL still expired** 26 days on .net domain — blocking all SEO progress
+- **Speed to lead matters:** First responder gets the customer 78% of the time
+- **Industry CAC benchmark:** $20-35 per acquired customer
+
+**What I Built (5-tab mobile-first HTML):**
+1. **📋 Sprint tab** — 4 phases, 12 weeks, 38 checkbox tasks with localStorage persistence
+   - Phase 1 (Wk 1-2): Fix foundations — SSL, GBP, Apple/Bing listings, Meta Pixel
+   - Phase 2 (Wk 3-6): Launch FB ads ($5/day), door hangers, referral push, Google Ads
+   - Phase 3 (Wk 7-9): Scale winners, yard signs, directory submissions, expand radius
+   - Phase 4 (Wk 10-12): Route optimization, scheduling software, SOPs, retention
+2. **📊 The Math tab** — Full ROI projections, LTV:CAC analysis, revenue trajectory ($750 → $2,350/mo)
+3. **📣 Channels tab** — 7 marketing channels ranked by ROI with specific actions
+4. **🗓 Weekly tab** — 15-30 min/day marketing routine (Mon-Sun)
+5. **⚡ Rules tab** — 7 non-negotiable sprint rules (execution > strategy)
+
+**What Makes This Different From Previous Deliverables:**
+- NOT another strategy guide — it's a CHECKLIST with specific week-by-week tasks
+- Each task has an owner tag (TJ/Jamie/Franklin)
+- Progress tracking with localStorage — checks survive browser refresh
+- Brutally prioritized: SSL → GBP → FB Ads → Google Ads → Scale
+- Total 90-day budget: $872 for projected 17 new customers and $1,600+ new MRR
+
+**Expected Impact:**
+- Gives TJ ONE document to follow instead of 50+ scattered guides
+- Clear weekly rhythm: 15-30 min/day, 2 hours/week total marketing
+- Projected outcome: 8 → 25 customers, $750 → $2,350/mo MRR in 12 weeks
+- ROI: $872 investment → $19,200+ annual recurring revenue = 22x return
+
+**Rotation:** 🎯 Strategic Planning / Growth Execution
+
+---
+
 ### 11:04 AM — 🪵 LUMBER/TARIFF PRICE INTEL BRIEF — Sales Ammunition for the Lot (Shed Pipeline / Sales)
 **Task:** Researched current lumber futures, tariff status, and market conditions. Built a mobile-first HTML sales cheat sheet TJ can reference on every shed sales call TODAY.
 **Result:** ✅ COMPLETE — Shipped `deliverables/shed-lumber-tariff-intel-march17-2026.html`
