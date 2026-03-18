@@ -54,17 +54,20 @@
 - Average customer value: ~$100/month
 - **$70/month flat rate = UNIQUE** — no competitor offers this
 
-### Current State (Mar 15, 2026)
-- **4-5 recurring customers** (possibly down from 8 earlier — need TJ to verify)
+### Current State (Mar 17, 2026)
+- **~8 recurring customers** (per customer table below, TJ hasn't confirmed churn)
 - Solo operation, wife does scheduling
 - Revenue: ~$750/month at peak, likely lower now
 - Sunday scooping day — all customers on Sunday
+- **SSL EXPIRED Feb 19, 2026** — 26 days and counting. Site shows security warning. Blocks Google indexing. TJ MUST fix this.
+- **GBP VERIFIED** ✅ but only **7% complete** — needs hours, photos, services, description, categories
 
 ### Online Presence
-- GBP: CLAIMED ✅ (Feb 26) — DO NOT ASK AGAIN
+- GBP: VERIFIED ✅ (Mar 17, 2026) — Profile verified but only **7% complete**. DO NOT ASK ABOUT VERIFICATION AGAIN.
 - Yelp: CLAIMED ✅ (Mar 5) — DO NOT ASK AGAIN
 - Google Search Console: VERIFIED ✅ (Mar 5) — DO NOT ASK AGAIN
-- **⚠️ STILL NOT INDEXED BY GOOGLE** (confirmed Mar 16 — Day 30, site: search = 0 results)
+- **⚠️ SSL EXPIRED Feb 19, 2026** — Site shows security warning. Blocks ALL indexing. TJ must renew in GoDaddy.
+- **⚠️ STILL NOT INDEXED BY GOOGLE** (confirmed Mar 16 — Day 30+, site: search = 0 results)
 - **⚠️ BRAND NAME COLLISION:** 8+ other "Tidy Tails" businesses nationally compete for branded search. Always use "Tidy Tails STL" in citations.
 - **MapQuest listing EXISTS** (auto-generated, Olivette MO 63132) — free citation
 - **ZERO Google reviews** vs competitors with 6+
@@ -73,6 +76,7 @@
 - 4 blog posts published
 - Technical SEO: B+ (schema, meta, sitemap, robots.txt all solid)
 - Off-page SEO: F (zero backlinks, zero directory listings beyond GBP/Yelp)
+- **Directory blitz kit ready** — 20 directories mapped with copy-paste info, TJ just needs to execute
 
 ### Service Areas
 - St. Louis County, St. Charles County
@@ -129,14 +133,19 @@
 ### DEAD Competitors (confirmed Mar 15)
 Pawfect (404), Fresh Paws (DNS expired), Poopy Paws (DNS failure — 358 orphaned FB followers), STL Pooper Scoopers (Yelp CLOSED), Super Scoopers STL (Yelp CLOSED)
 
-### Pricing Reality (Updated Mar 16)
-- **TJ is the MOST EXPENSIVE local indie** at $25/wk (~$108/mo)
-- POOP 911 is 52% cheaper, Poop2Scoop is 28% cheaper, Doggie Doodies is 23% cheaper
-- **TJ's $70/month flat rate is CHEAPER than Doggie Doodies' $90/month** — competitive advantage!
+### Pricing Reality (Updated Mar 17 — LIVE SCRAPE)
+- POOP 911: $11.95/wk (~$52/mo) — 52% cheaper than TJ
+- Dog Doody Defenders: $17/wk (~$68/mo) — 32% cheaper
+- Poop 2 Scoop: $18/wk (~$78/mo) — 28% cheaper
+- Doggie Doodies: $19.15/wk ($83/mo) — 23% cheaper
+- Poopy Paws: $20/wk (~$87/mo) — 20% cheaper
+- **Tidy Tails: $25/wk ($108/mo) — MOST EXPENSIVE local indie**
+- **TJ's $70/month flat rate is CHEAPER than Doggie Doodies' $90/month** — genuine competitive advantage!
 - DD biweekly ($85/mo) > TJ biweekly ($90/mo) — DD slightly cheaper there
 - Recommended: add $89/mo plan option, offer "free first cleanup" (steal POOP 911's playbook)
-- DON'T lower prices yet — awareness problem, not price problem at 4-5 customers
+- DON'T lower prices yet — awareness problem, not price problem at 8 customers
 - **Petworks.com** — free marketplace, TJ NOT listed. Dr. Scoops + Poop2Scoop already there. Easy win.
+- **MapQuest listing EXISTS** (auto-generated, Olivette MO 63132) — free citation
 
 ---
 
@@ -185,10 +194,12 @@ Assets: Landing page, pitch deck (v6), one-pager, market research.
 ## 🚨 CRITICAL SELF-ASSESSMENT (Mar 15, 2026)
 
 ### The Build vs Deploy Canyon
-- **100+ deliverables built** in 4 weeks. 60+ dashboard tools. 300+ PDFs/HTML assets.
-- **Still 4-5 customers.** Possibly DOWN from 8.
+- **120+ deliverables built** in 5 weeks. 60+ dashboard tools. 300+ PDFs/HTML assets.
+- **Still ~8 customers.** Goal was 25-30 by Aug 2025 — now 7+ months overdue.
 - **ZERO confirmed post deployments.** ZERO confirmed review requests sent. ZERO directory listings beyond GBP/Yelp (which TJ did himself).
-- The cron generates work product nobody uses. The honest answer: TJ needs 30 minutes executing, not Franklin spending 30 hours building.
+- Mar 17 alone: 12+ deliverables in one day. The cron is a content factory but execution is TJ's bottleneck.
+- The honest answer: TJ needs 30 minutes executing, not Franklin spending 30 hours building.
+- **SSL expired 26 days ago** — literally everything is blocked until this is fixed.
 
 ### What Actually Needs to Happen (TJ's 5-Minute Wins)
 - [ ] **Text 5 customers for Google reviews** (5 min, $0)
@@ -263,20 +274,21 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 
 ---
 
-## 📊 Asset Inventory (Mar 15, 2026)
+## 📊 Asset Inventory (Mar 17, 2026)
 
 | Category | Count |
 |----------|-------|
 | Dashboard tools/reports | 60+ |
-| PDFs/HTML deliverables | 300+ |
-| Tidy Tails ads written | 85+ |
+| PDFs/HTML deliverables | 320+ |
+| Tidy Tails ads written | 100+ |
 | Shed ads written | 110+ |
 | Skills built | 14+ |
 | AI video concepts | 6 produced |
 | City landing pages | 21 |
 | Blog posts | 4 |
-| Content calendar posts | 61+ copy-paste ready |
+| Content calendar posts | 76+ copy-paste ready |
 | Commercial leads | 65+ (paused per TJ) |
+| Interactive tools | 8+ (pricing calc, review blitz, GBP kit, battle card, etc.) |
 
 ---
 
@@ -291,7 +303,7 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 - **Mar 14:** 15+ tasks. Found 2 new competitors (Clean Turf STL, Yuckos). Pricing strategy: $88/mo recommended.
 - **Mar 15:** 18+ tasks. 12 city SEO pages, payment calculator, premium pricing toolkit, Nextdoor launch kit, Facebook ads campaign kit. Competitive pricing audit confirmed TJ is most expensive in market. Memory overhaul completed.
 - **Mar 16:** Shed site HTTPS fixed + robots.txt/sitemap/schema added. 6 new competitors found (20+ total). Directory blitz kit + spring content blitz shipped. Memory consolidation: archived 30+ stale files, pruned memory/ from cluttered to clean. Both sites STILL not indexed (Day 30+). Paid ads analysis: NOT YET — fix foundation first. Week action plan: 5 tasks / 2 hours / $0. Citation blitz guide: 20 directories mapped. Review request kit: 8 personalized texts. Spring social media pack: 12 posts for 4 weeks.
-- **Mar 17:** Competitive intel refresh — discovered 5+ "Tidy Tails" brand collision nationally (our company buried in search). Spring social media content pack shipped. Memory maintenance pass.
+- **Mar 17:** MASSIVE output day (12+ deliverables). SSL still expired (Day 26). GBP confirmed VERIFIED but only 7% complete. TJ frustrated: "tired of being stagnant." Key deliverables: competitor battle card (live pricing), directory blitz kit (20 dirs), neighborhood saturation kit, 90-day growth sprint, Google Ads launch kit, pricing calculator (live competitor scrape), GBP optimization kit, review/referral text blitz (personalized per customer), spring cleanup blitz (15 posts), lumber intel ($600/MBF — 22% surge). CRITICAL: competitor pricing confirmed TJ is most expensive ($25/wk vs POOP 911 $11.95, DD $17). Memory consolidation pass at 11 PM.
 
 ---
 
@@ -308,6 +320,8 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 10. **Door hangers don't work (0.2%).** Digital channels are the path.
 11. **Don't run paid ads until foundation is set.** 0 reviews + 0 citations + not indexed = wasted money. Fix those first, THEN $150-200/mo FB ads.
 12. **Pet waste = demand CREATION, not capture.** Most people don't search for it. Facebook shows them it exists. Google captures the ones who saw your FB ad then searched.
+13. **Lumber hit $600/MBF** (Mar 17) — up 22% in 11 days. 45% tariffs + 1.3B board feet removed from supply. "Today's price is tomorrow's discount" is now verifiable math.
+14. **Cron tasks compound but don't convert.** 12 deliverables in one day doesn't help if none get deployed. Future hourly tasks should skew toward maintenance/monitoring, not new content.
 
 ---
 

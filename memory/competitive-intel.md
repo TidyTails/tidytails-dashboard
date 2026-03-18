@@ -1,6 +1,33 @@
 # Competitive Intelligence - St. Louis Pet Waste Removal
 
-## Last Updated: 2026-03-15 @ 2:04 AM (Competitor Pulse Check)
+## Last Updated: 2026-03-17 @ 2:05 PM (Live Pricing Scrape + New Competitors)
+
+### Latest Update Summary (Mar 17, 2 PM)
+- 🔴 PRICING CONFIRMED: TJ is the most expensive local competitor at $25/visit weekly
+- ✅ TJ's $70/mo flat rate is UNIQUE — no competitor offers this
+- 🆕 NEW: Poopy Paws — $20/week flat regardless of dog count (poopypaws314.com)
+- 🆕 NEW: The Poo Fighterz, No 2 Crew, The Pootector — all on Yelp top 10
+- POOP 911 confirmed at $11.95/visit (franchise floor price)
+- Dog Doody Defenders confirmed $17/visit (unchanged)
+- Poop 2 Scoop confirmed $18/visit (unchanged)
+- Scoop Soldiers STL page is BACK with heavy SEO content (was 404 in Feb)
+- Little Stinkers expanding in St. Charles/Lincoln County, offers bucket service ($10/wk)
+- Built pricing calculator: `deliverables/tidy-tails-pricing-calculator.html`
+
+### Full Market Pricing Matrix (Mar 17, verified)
+| Competitor | Weekly/visit | Monthly equiv | Type | Territory |
+|-----------|-------------|---------------|------|-----------|
+| POOP 911 | $11.95 | ~$48 | National franchise | STL County |
+| Dog Doody Defenders | $17 | $68 | Local | Florissant/Chesterfield |
+| Poop 2 Scoop | $18 | $72 | Local | STL County |
+| Poopy Paws | $20 | $80 | Local | STL + IL |
+| **Tidy Tails** | **$25** | **$100** | Local | STL County |
+| DoodyCalls | Quote only | ~$56-80 est | National franchise | STL metro |
+| Yuckos | Call only | Unknown | Local (since 1990!) | STL + St. Charles |
+| Scoop Soldiers | Not listed | Unknown | National franchise | STL (page back) |
+| Little Stinkers | Free quote | Unknown | Local | St. Charles/Lincoln |
+
+**Previous updates:**
 
 ### Latest Update Summary (Mar 15, 2 AM)
 - 🔴 NEW: Dog Doody Defenders — Chesterfield/Florissant, $17/visit weekly ($68/mo), 32% cheaper than TJ

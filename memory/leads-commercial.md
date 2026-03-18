@@ -185,23 +185,158 @@
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY
+---
+
+## 🏠 TIER 1: Apartment Complexes — NEW BATCH (March 17, 2026 — 3:04 PM)
+
+### Delrado Apartments ⭐ STRONG FIT — FLORISSANT
+- **Type:** Apartment Complex
+- **Address:** 680 Mescalero Ct, Florissant, MO 63031
+- **Contact:** Leasing Office
+- **Phone:** (314) 501-5599
+- **Website:** delradoapartments.com
+- **Why Good Fit:** Pet-friendly complex with a DEDICATED DOG PARK (fenced, with waste station), community green space, swimming pool. Located in Florissant 63031 — TJ's #1 hot zone where Shannon and Amanda already are. Two pets max per apartment. Dog park has welcome sign, black metal fence, waste station already in place. They're already investing in pet infrastructure = they understand the value.
+- **Properties/Units:** 1 & 2 bedroom apartments, multi-building complex
+- **Found:** March 17, 2026
+- **Status:** New
+- **Pitch angle:** "We service several homes right here in Florissant 63031. Your dog park is great — we can keep it spotless weekly so residents actually want to use it. One flat monthly rate, no contract."
+
+### Greenway Chase ⭐ STRONG FIT — FLORISSANT
+- **Type:** Apartment Complex
+- **Address:** 629 Greenway Manor Dr, Florissant, MO 63031
+- **Contact:** Leasing Office
+- **Phone:** (314) 838-2879
+- **Website:** greenwaychase.com
+- **Why Good Fit:** Pet-friendly 1 & 2 bedroom apartments with ON-SITE DOG PARK. Located near Black Jack in Florissant 63031 — same zip as TJ's customers. Washer/dryer connections, off-street parking, established community. Rents $940-$1,305/mo = middle-class demographic = dog owners who want clean spaces.
+- **Properties/Units:** Multi-building, 683-950 sq ft units
+- **Found:** March 17, 2026
+- **Status:** New
+- **Pitch angle:** "We're already in the neighborhood — we service homes right on this side of Florissant. Professional weekly dog park cleanup, one flat rate, keeps your grounds looking sharp."
+
+### Whisper Hollow Apartments ⭐ STRONG FIT — MARYLAND HEIGHTS
+- **Type:** Apartment Complex
+- **Address:** 12430 Whisper Hollow Dr, Maryland Heights, MO 63043
+- **Contact:** Leasing Office
+- **Phone:** (866) 205-4579 (leasing line) / (314) 878-8898 (local)
+- **Website:** rentwhisperhollow.com
+- **Why Good Fit:** Pet-friendly studio, 1 & 2 bedrooms with FENCED-IN PET PARK, swimming pool, fitness center, clubhouse. 11 Yelp reviews. Cats and dogs welcome. Near Creve Coeur Lake — outdoorsy residents = more dog owners. Large community ($952-$1,928/mo range). Maryland Heights is in TJ's service area.
+- **Properties/Units:** Studio to 2-bedroom, multi-building
+- **Found:** March 17, 2026
+- **Status:** New
+- **Pitch angle:** "Your pet park is a great selling point for residents — let us keep it pristine. Weekly professional service means your maintenance crew can focus on other things."
+
+### Maryland Park Apartments — MARYLAND HEIGHTS
+- **Type:** Apartment Complex
+- **Address:** 2170 McKelvey Rd, Maryland Heights, MO 63043
+- **Contact:** Leasing Office
+- **Phone:** (833) 727-0379
+- **Website:** livemarylandpark.com
+- **Why Good Fit:** Pet-friendly with plans to add a dog park (per Alignable listing). 1-2 bedrooms, $1,109-$2,228/mo. They're ACTIVELY INVESTING in pet amenities = perfect timing to pitch professional waste management as part of their pet-friendly upgrade.
+- **Properties/Units:** 1-2 bedrooms, multi-building
+- **Found:** March 17, 2026
+- **Status:** New
+- **Pitch angle:** "I saw you're adding a dog park — that's awesome. We can handle the waste management side so it stays clean from day one. Professional weekly service, one flat rate."
+
+### Jasper Apartments ⭐ BRAND NEW COMMUNITY — ST. PETERS
+- **Type:** Apartment Complex (NEW BUILD)
+- **Address:** 1000 Jasper Ln, St. Peters, MO 63303
+- **Contact:** Leasing Office
+- **Phone:** (636) 747-4411
+- **Website:** jasperlifestl.com
+- **Why Good Fit:** BRAND NEW community with dog park, pet wash room, pool, fitness center, pickleball court. 1-2-3 bedroom homes. New = actively building their vendor list. They haven't established a pet waste vendor yet = get in on the ground floor. St. Peters where TJ already has customer Preshus.
+- **Properties/Units:** 1-3 bedrooms, brand new construction
+- **Found:** March 17, 2026
+- **Status:** New
+- **Pitch angle:** "Congrats on the new community! We're a local pet waste removal company already servicing St. Peters. We'd love to be your pet waste vendor — keep that beautiful new dog park clean from the start."
+
+---
+
+## 🏢 TIER 1: HOA Management Companies — NEW BATCH (March 17, 2026)
+
+### Community Property Management (CPM Gateway) ⭐ HIGH VALUE
+- **Type:** HOA/Condo Management Company
+- **Address:** 242 Old Sulphur Spring Rd, Manchester, MO 63021
+- **Contact:** Main Office
+- **Phone:** (636) 227-8688
+- **Website:** cpmgateway.com
+- **Why Good Fit:** 35+ years managing HOAs across St. Louis County, St. Charles County, Jefferson County, and Franklin County. Full-service community association management. They manage multiple communities = one vendor relationship could open dozens of HOAs. Based in Manchester but serves TJ's entire service area.
+- **Properties/Units:** Multiple HOA communities across STL metro
+- **Found:** March 17, 2026
+- **Status:** New
+- **Pitch angle:** "Pet waste in common areas is one of the most common HOA complaints. We offer professional weekly cleanup for your communities — one vendor, one invoice, clean common areas. We already service North County and St. Charles."
+
+### TreeStone Properties — BOUTIQUE HOA SPECIALIST
+- **Type:** HOA/Condo Management Company
+- **Address:** 400 Chesterfield Center #400, Chesterfield, MO 63017
+- **Contact:** Melanie (per public records)
+- **Phone:** (636) 733-9021
+- **Email:** melanie@treestoneproperties.com
+- **Website:** treestoneproperties.com
+- **Why Good Fit:** Boutique firm = more personal, more likely to try a local vendor vs. national franchise. Specializes in HOA and condo management in STL area. Smaller firm = faster decision-making. They focus on "improving efficiency" for communities = professional waste management fits their pitch perfectly.
+- **Properties/Units:** Multiple HOA/condo communities in STL metro
+- **Found:** March 17, 2026
+- **Status:** New
+- **Pitch angle:** "We're a local, owner-operated pet waste removal company. For your communities with pet-friendly policies, we offer weekly common area cleanup at a flat monthly rate. No contracts, satisfaction guaranteed."
+
+---
+
+## 🏛️ TIER 2: Municipal — NEW (March 17, 2026)
+
+### City of Overland — Woodson Road Dog Park
+- **Type:** Municipal Dog Park
+- **Address:** 1655 Woodson Road, Overland, MO 63114
+- **Contact:** Parks & Recreation Department / Erin Willey
+- **Phone:** (314) 428-0490
+- **Website:** overlandmo.org/418/Dog-Park
+- **Why Good Fit:** 3-section fenced dog park in Overland — right next to Maryland Heights and Ferguson (TJ's service area). City-operated = stable recurring contract. The park is divided into 3 sections (likely small/large dog areas) = significant grounds to maintain. Open sunrise to sunset = heavy usage.
+- **Found:** March 17, 2026
+- **Status:** New
+- **Pitch angle:** "We provide professional pet waste removal for dog parks and public spaces. Weekly service keeps your park clean and safe for residents. One flat monthly rate, less hassle for your parks crew."
+
+---
+
+## 👵 TIER 3: Senior Living — NEW (March 17, 2026)
+
+### Fields of Florissant (Willow Ridge Senior Living) ⭐ UNIQUE ANGLE
+- **Type:** Senior Living Community (Independent, Assisted, Memory Care)
+- **Address:** 1101 Garden Plaza Dr, Florissant, MO 63033
+- **Contact:** Shay Leach, Community Relations Liaison
+- **Phone:** (314) 831-0988
+- **Website:** willowridgeseniorliving.com/communities/the-fields-of-florissant/
+- **Why Good Fit:** Pet-friendly senior community with private luxury villas. Florissant 63033 = TJ's territory. Seniors with pets NEED help with yard cleanup — physical limitations make pet waste a real problem. Independent living residents have their own yards/patios. This is a totally untapped market segment for pet waste removal.
+- **Properties/Units:** 88+ unit senior community with villas
+- **Found:** March 17, 2026
+- **Status:** New
+- **Pitch angle:** "Your residents love their pets but may need help keeping up with yard cleanup. We offer affordable weekly pet waste removal right here in Florissant. Could be a great value-add amenity for your community."
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated March 17, 2026 — 20 total leads)
 
 | Lead | Type | Phone | Priority | Est. Monthly Value |
 |------|------|-------|----------|-------------------|
 | **Millsap Properties** | Prop Mgmt (7 props) | (314) 686-3337 | 🔴 CALL FIRST | $500-$1,500 |
 | **Associa Smith Mgmt** | HOA Mgmt (dozens) | (314) 394-4200 | 🔴 HIGH | $300-$2,000+ |
 | **Sentry Management** | HOA Mgmt (32+ HOAs) | (314) 994-7440 | 🔴 HIGH | $300-$2,000+ |
+| **CPM Gateway** | HOA Mgmt (35+ yrs) | (636) 227-8688 | 🔴 HIGH | $300-$2,000+ |
+| **TreeStone Properties** | HOA Boutique | (636) 733-9021 | 🟡 MEDIUM | $200-$1,000+ |
+| **Delrado Apartments** | Apt + Dog Park | (314) 501-5599 | 🔴 HIGH (Florissant!) | $200-$400 |
+| **Greenway Chase** | Apt + Dog Park | (314) 838-2879 | 🔴 HIGH (Florissant!) | $200-$400 |
+| **Jasper Apartments** | Apt NEW BUILD | (636) 747-4411 | 🔴 HIGH (St. Peters!) | $200-$400 |
 | **Park Forest Apts** | Apartment Complex | (314) 351-1021 | 🟡 MEDIUM | $200-$400 |
 | **Emerald Crossing** | Apartment Complex | (314) 426-0000 | 🟡 MEDIUM | $200-$400 |
+| **Whisper Hollow** | Apt + Pet Park | (314) 878-8898 | 🟡 MEDIUM | $200-$400 |
+| **Maryland Park** | Apt (adding dog park) | (833) 727-0379 | 🟡 MEDIUM | $200-$400 |
 | **Vanderbilt Apts** | Apartment Complex | (636) 434-1255 | 🟡 MEDIUM | $200-$400 |
 | **Baronwood Kennels** | Kennel/Referral | (314) 838-2021 | 🟡 MEDIUM | $100-$200 + referrals |
 | **Happy Tails** | Daycare/Referral | (314) 291-3647 | 🟡 MEDIUM | $100-$200 + referrals |
+| **Fields of Florissant** | Senior Living | (314) 831-0988 | 🟡 MEDIUM | $150-$300 |
 | **Florissant Dog Park** | Municipal | (314) 921-5700 | 🟢 LONG PLAY | $300-$600 |
 | **Maryland Heights** | Municipal | (314) 738-2599 | 🟢 LONG PLAY | $300-$600 |
+| **Overland Dog Park** | Municipal | (314) 428-0490 | 🟢 LONG PLAY | $200-$400 |
 
-**Total pipeline if all won:** $2,500-$8,200/month
-**Realistic close rate (20-30%):** $500-$2,460/month in new recurring revenue
+**Total pipeline if all won:** $4,250-$13,800/month (up from $2,500-$8,200)
+**Realistic close rate (20-30%):** $850-$4,140/month in new recurring revenue
 
 ---
 
