@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jamie's Lead Playbook — Tidy Tails</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --card-hover: #222639;
+    --accent: #6c63ff;
+    --accent2: #00d4aa;
+    --gold: #fbbf24;
+    --red: #ef4444;
+    --green: #22c55e;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #2d3148;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 16px;
+    padding-bottom: 80px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 20px 0 12px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 16px;
+  }
+  .header h1 {
+    font-size: 1.6em;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+  }
+  .header .subtitle {
+    color: var(--muted);
+    font-size: 0.85em;
+  }
+
+  /* Speed Banner */
+  .speed-banner {
+    background: linear-gradient(135deg, #dc262620, #ef444420);
+    border: 1px solid #ef444440;
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .speed-banner .timer { font-size: 1.8em; font-weight: 800; color: var(--red); }
+  .speed-banner .msg { font-size: 0.8em; color: var(--muted); }
+
+  /* Nav Tabs */
+  .tabs {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    border-radius: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 0.8em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .tab.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+
+  /* Section */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* Cards */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .card h3 {
+    font-size: 1em;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card h3 .emoji { font-size: 1.2em; }
+
+  /* Copy Block */
+  .copy-block {
+    background: #0d0f15;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+    margin: 10px 0;
+    font-size: 0.88em;
+    line-height: 1.6;
+    position: relative;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 0.7em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-btn.copied {
+    background: var(--green);
+  }
+
+  /* Pricing Table */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 10px 0;
+  }
+  .price-item {
+    background: #0d0f15;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+  }
+  .price-item .label { font-size: 0.7em; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .price-item .amount { font-size: 1.4em; font-weight: 800; color: var(--accent2); }
+  .price-item .note { font-size: 0.7em; color: var(--muted); }
+  .price-item.popular { border-color: var(--gold); }
+  .price-item.popular .label { color: var(--gold); }
+
+  /* Objection Handler */
+  .objection {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .objection-q {
+    padding: 14px 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 0.9em;
+  }
+  .objection-q .arrow {
+    transition: transform 0.2s;
+    color: var(--muted);
+  }
+  .objection.open .objection-q .arrow { transform: rotate(90deg); }
+  .objection-a {
+    display: none;
+    padding: 0 16px 14px;
+    font-size: 0.85em;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .objection.open .objection-a { display: block; }
+
+  /* Timeline */
+  .timeline {
+    position: relative;
+    padding-left: 28px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .tl-item {
+    position: relative;
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -22px;
+    top: 16px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .tl-item .when {
+    font-size: 0.7em;
+    color: var(--accent);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tl-item .what {
+    font-size: 0.85em;
+    margin-top: 2px;
+  }
+
+  /* Checklist */
+  .checklist { list-style: none; }
+  .checklist li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.88em;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check-icon {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+  }
+  .check-icon.done {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .check-icon.done::after {
+    content: '✓';
+    color: white;
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  /* Competitor Quick Compare */
+  .comp-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82em;
+  }
+  .comp-row:last-child { border-bottom: none; }
+  .comp-row .name { color: var(--muted); }
+  .comp-row .price { font-weight: 700; }
+  .comp-row.us { color: var(--accent2); }
+  .comp-row.us .name { color: var(--accent2); }
+
+  /* Status Badge */
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-hot { background: #ef444430; color: var(--red); }
+  .badge-warm { background: #fbbf2430; color: var(--gold); }
+  .badge-info { background: #6c63ff30; color: var(--accent); }
+
+  /* Area Coverage */
+  .area-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin: 10px 0;
+  }
+  .area-tag {
+    background: #0d0f15;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 0.75em;
+    text-align: center;
+  }
+
+  /* Floating Action */
+  .fab {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    border: none;
+    font-size: 24px;
+    box-shadow: 0 4px 20px rgba(108,99,255,0.4);
+    cursor: pointer;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Highlight */
+  .highlight {
+    background: var(--accent);
+    color: white;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.85em;
+  }
+
+  /* Small Text */
+  .small { font-size: 0.78em; color: var(--muted); }
+  .mt { margin-top: 8px; }
+  .mb { margin-bottom: 8px; }
+  strong { color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🐕 Jamie's Lead Playbook</h1>
+  <div class="subtitle">Tidy Tails — Every Script You Need to Close</div>
+</div>
+
+<div class="speed-banner">
+  <div class="timer">⚡ 15 MIN</div>
+  <div class="msg">Respond to every lead within 15 minutes — 78% go with whoever replies first</div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" data-tab="scripts">📱 Scripts</div>
+  <div class="tab" data-tab="pricing">💰 Pricing</div>
+  <div class="tab" data-tab="objections">🛡️ Objections</div>
+  <div class="tab" data-tab="timeline">📅 Follow-Up</div>
+  <div class="tab" data-tab="competitors">⚔️ vs Them</div>
+  <div class="tab" data-tab="areas">🗺️ Areas</div>
+</div>
+
+<!-- ===================== SCRIPTS ===================== -->
+<div class="section active" id="scripts">
+
+  <div class="card">
+    <h3><span class="emoji">📲</span> New Lead — Text Response <span class="badge badge-hot">MOST COMMON</span></h3>
+    <div class="copy-block" id="script-text">Hey [NAME]! This is Jamie with Tidy Tails 🐕 Thanks for reaching out!
+
+Quick couple questions so I can get you a quote:
+• How many dogs?
+• Roughly how big is your yard?
+• Thinking weekly or biweekly?
+
+I service [THEIR AREA] and can usually get you started within a week!<button class="copy-btn" onclick="copyText('script-text')">Copy</button></div>
+    <div class="small">📌 Replace [NAME] and [THEIR AREA]. Move ALL conversations to text.</div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">📘</span> New Lead — Facebook / Nextdoor</h3>
+    <div class="copy-block" id="script-fb">Hey [NAME]! Thanks for the interest 😊
+
+Shoot me a text at 314-850-7140 and I'll get you a quick quote — just need to know how many dogs and yard size. Takes about 2 minutes!
+
+Looking forward to it! 🐾<button class="copy-btn" onclick="copyText('script-fb')">Copy</button></div>
+    <div class="small">📌 ALWAYS move to text. Facebook/Nextdoor messages get buried.</div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">💬</span> Sending the Quote</h3>
+    <div class="copy-block" id="script-quote">Alright [NAME], here's what I'm thinking:
+
+📋 [X] dog(s), [SIZE] yard
+💰 $70/month (weekly service) — our most popular option
+   Also available: biweekly $45/mo
+
+That covers a full yard sweep every visit. I bag it, haul it, done. No contracts, cancel anytime.
+
+I'm in [THEIR AREA] every [DAY]. I could start as early as [NEXT DATE].
+
+Want me to add you to the schedule? 👍<button class="copy-btn" onclick="copyText('script-quote')">Copy</button></div>
+    <div class="small">📌 Lead with monthly price ($70 beats almost everyone). "No contracts" kills the biggest objection. Specific start date creates urgency.</div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">🔄</span> Follow-Up #1 — 24 Hours, No Response</h3>
+    <div class="copy-block" id="script-fu1">Hey [NAME]! Just wanted to make sure you got my quote. No pressure at all — happy to answer any questions if you've got 'em 🐾<button class="copy-btn" onclick="copyText('script-fu1')">Copy</button></div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">👋</span> Follow-Up #2 — 72 Hours (FINAL)</h3>
+    <div class="copy-block" id="script-fu2">Hey [NAME], just circling back one last time. If the timing isn't right, totally understand — I'll be here whenever you're ready. Have a good one! 👋<button class="copy-btn" onclick="copyText('script-fu2')">Copy</button></div>
+    <div class="small">⚠️ MAX 3 touchpoints total (quote + 2 follow-ups). Never be pushy.</div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">📞</span> Missed Call — Voicemail / Callback</h3>
+    <div class="copy-block" id="script-vm">Hey [NAME], this is Jamie with Tidy Tails returning your call! Sorry I missed you — was probably out scooping 😄
+
+Give me a call back or shoot me a text at 314-850-7140 and I'll get you a quote real quick. Talk soon!<button class="copy-btn" onclick="copyText('script-vm')">Copy</button></div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">✅</span> First Clean — Before</h3>
+    <div class="copy-block" id="script-first-before">Hey [NAME]! Jamie here — heading your way today for the first cleanup 🐕
+
+Heads up: first visit takes a bit longer since I'm doing a full deep clean to get you caught up. After that, weekly visits keep it quick and spotless.
+
+I'll text you when I'm done!<button class="copy-btn" onclick="copyText('script-first-before')">Copy</button></div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">🎉</span> First Clean — After</h3>
+    <div class="copy-block" id="script-first-after">All done at your place! ✅
+
+Grabbed [X] bags worth — should be WAY less going forward with weekly visits.
+
+• I'll be back next [DAY]
+• If your pup has a favorite corner they destroy, let me know and I'll hit it extra hard 😄
+• Any questions anytime, just text me
+
+Thanks for trusting us with your yard, [NAME]! 🐾<button class="copy-btn" onclick="copyText('script-first-after')">Copy</button></div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">⭐</span> Ask for Google Review (After ~1 Month)</h3>
+    <div class="copy-block" id="script-review">Hey [NAME]! We're about a month in now and your yard's been looking great 🔥
+
+Real talk — as a small local business, Google reviews are HUGE for us. Would you mind leaving a quick one? Even just a sentence or two makes a massive difference.
+
+Here's the link: [GOOGLE REVIEW LINK]
+
+No worries at all if not. Just appreciate you being a customer! 🙏<button class="copy-btn" onclick="copyText('script-review')">Copy</button></div>
+    <div class="small">📌 Send after 4th service. We need 5 reviews by April 1 to show in Local Pack.</div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">🤝</span> Ask for Referral (After ~2 Months)</h3>
+    <div class="copy-block" id="script-referral">Hey [NAME]! Random question — know anyone in [THEIR AREA] who's tired of dodging landmines in their yard? 😄
+
+I've got a couple spots opening up on my [DAY] route. If you send someone my way who signs up, I'll knock $20 off your next month.
+
+No pressure at all! Just thought I'd ask 🐾<button class="copy-btn" onclick="copyText('script-referral')">Copy</button></div>
+    <div class="small">📌 $20 referral credit to acquire a $840/year customer = no-brainer ROI.</div>
+  </div>
+
+</div>
+
+<!-- ===================== PRICING ===================== -->
+<div class="section" id="pricing">
+
+  <div class="card">
+    <h3><span class="emoji">💰</span> Our Pricing</h3>
+    <div class="pricing-grid">
+      <div class="price-item popular">
+        <div class="label">⭐ Weekly (Most Popular)</div>
+        <div class="amount">$70<span style="font-size:0.5em">/mo</span></div>
+        <div class="note">=$17.50/visit</div>
+      </div>
+      <div class="price-item">
+        <div class="label">Biweekly</div>
+        <div class="amount">$45<span style="font-size:0.5em">/mo</span></div>
+        <div class="note">=$22.50/visit</div>
+      </div>
+      <div class="price-item">
+        <div class="label">One-Time Deep Clean</div>
+        <div class="amount">$25</div>
+        <div class="note">single visit</div>
+      </div>
+      <div class="price-item">
+        <div class="label">Extra Dog Add-On</div>
+        <div class="amount">+$10<span style="font-size:0.5em">/mo</span></div>
+        <div class="note">per additional dog</div>
+      </div>
+    </div>
+    <div class="small mt">
+      <strong>What's included:</strong> Full yard sweep, bagged & hauled away, every visit. No contracts. Cancel anytime.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">🧮</span> Quick Quote Calculator</h3>
+    <div style="margin: 12px 0;">
+      <label class="small" style="display: block; margin-bottom: 4px;">Number of dogs:</label>
+      <div style="display: flex; gap: 8px;">
+        <button class="dog-btn" data-dogs="1" onclick="calcQuote(1)" style="flex:1; padding: 10px; border-radius: 8px; background: var(--accent); color: white; border: none; font-weight: 700; font-size: 1em; cursor: pointer;">1 🐕</button>
+        <button class="dog-btn" data-dogs="2" onclick="calcQuote(2)" style="flex:1; padding: 10px; border-radius: 8px; background: var(--card-hover); color: var(--text); border: 1px solid var(--border); font-weight: 700; font-size: 1em; cursor: pointer;">2 🐕🐕</button>
+        <button class="dog-btn" data-dogs="3" onclick="calcQuote(3)" style="flex:1; padding: 10px; border-radius: 8px; background: var(--card-hover); color: var(--text); border: 1px solid var(--border); font-weight: 700; font-size: 1em; cursor: pointer;">3+</button>
+      </div>
+    </div>
+    <div id="quote-result" style="display:none;">
+      <div class="pricing-grid">
+        <div class="price-item popular">
+          <div class="label">⭐ Weekly</div>
+          <div class="amount" id="q-weekly">$70</div>
+        </div>
+        <div class="price-item">
+          <div class="label">Biweekly</div>
+          <div class="amount" id="q-biweekly">$45</div>
+        </div>
+      </div>
+      <div class="copy-block" id="quote-generated" style="font-size: 0.82em;"><button class="copy-btn" onclick="copyText('quote-generated')">Copy</button></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">📊</span> Why Monthly Beats Per-Visit</h3>
+    <div class="small" style="line-height: 1.7;">
+      When they ask about per-visit pricing, reframe it:<br><br>
+      <strong>"Most of our customers go with the monthly plan because it works out way cheaper — $70/month comes out to just $17.50 per visit for weekly. And you don't have to think about scheduling, we just show up every [DAY]. No surprises on the bill either."</strong><br><br>
+      If they insist on one-time: $25/visit. But push monthly — it's better for them AND us.
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== OBJECTIONS ===================== -->
+<div class="section" id="objections">
+
+  <div class="card" style="margin-bottom: 16px;">
+    <h3><span class="emoji">🛡️</span> Top Objections & Comebacks</h3>
+    <div class="small">Tap any objection to see the response. Don't memorize — just pull up this page.</div>
+  </div>
+
+  <div class="objection" onclick="this.classList.toggle('open')">
+    <div class="objection-q">"That's too expensive" <span class="arrow">›</span></div>
+    <div class="objection-a">
+      <strong>Jamie says:</strong> "I totally get it — let me break it down though. $70/month is $17.50 per visit. I'm out there for 15-20 minutes each time, bagging everything, hauling it away. Most people spend more than that on a fast food run. 😄<br><br>
+      And compared to other services in the area, we're actually one of the more affordable monthly options. Doggie Doodies charges $83/month, Poopy Paws is $80. We're $70 flat."<br><br>
+      <strong>If they're still hesitant:</strong> "We also do biweekly for $45/month if that fits your budget better. Most people upgrade to weekly after a couple weeks because the yard stays SO much cleaner."
+    </div>
+  </div>
+
+  <div class="objection" onclick="this.classList.toggle('open')">
+    <div class="objection-q">"I can just do it myself" <span class="arrow">›</span></div>
+    <div class="objection-a">
+      <strong>Jamie says:</strong> "Oh totally, you can! The question is do you want to? 😄 Most of our customers COULD do it themselves — they'd just rather spend that 30 minutes a week doing literally anything else.<br><br>
+      Plus we do a really thorough sweep — we find stuff in corners and along fences that's easy to miss. After a couple weeks most people wonder why they didn't do this sooner."<br><br>
+      <strong>Key:</strong> Never make them feel bad for doing it themselves. Just paint the picture of NOT having to.
+    </div>
+  </div>
+
+  <div class="objection" onclick="this.classList.toggle('open')">
+    <div class="objection-q">"I need to think about it" <span class="arrow">›</span></div>
+    <div class="objection-a">
+      <strong>Jamie says:</strong> "Absolutely, take your time! No rush at all. Just know there's no contract — you can try it for a month and if it's not your thing, cancel anytime. Zero risk.<br><br>
+      I'll follow up in a day or two to see if you have any questions. Sound good?"<br><br>
+      <strong>Key:</strong> "No contract" + "cancel anytime" eliminates the risk of deciding. Follow up in 24h.
+    </div>
+  </div>
+
+  <div class="objection" onclick="this.classList.toggle('open')">
+    <div class="objection-q">"Do you do [specific area]?" <span class="arrow">›</span></div>
+    <div class="objection-a">
+      <strong>Check the Areas tab</strong> for our full service map. If they're in our zone:<br><br>
+      "Yep! I'm in [AREA] every [DAY]. I could get you on the schedule as early as next week."<br><br>
+      <strong>If they're outside our zone:</strong> "I don't currently cover that area, but I'm expanding routes this spring. Mind if I take your info and reach out when I add your neighborhood?"<br><br>
+      <strong>Key:</strong> Never say "no" flat out. Collect info for future routes.
+    </div>
+  </div>
+
+  <div class="objection" onclick="this.classList.toggle('open')">
+    <div class="objection-q">"What if you miss spots?" <span class="arrow">›</span></div>
+    <div class="objection-a">
+      <strong>Jamie says:</strong> "Great question! I do a really thorough grid-pattern sweep every visit — fences, corners, under bushes, the works. But if you ever notice something I missed, just text me. I'll come back and make it right, no charge.<br><br>
+      I take photos sometimes too so you can see the before/after. Your yard, your standards — I want you 100% happy."<br><br>
+      <strong>Key:</strong> The "I'll come back" guarantee removes all risk.
+    </div>
+  </div>
+
+  <div class="objection" onclick="this.classList.toggle('open')">
+    <div class="objection-q">"How do I pay?" <span class="arrow">›</span></div>
+    <div class="objection-a">
+      <strong>Jamie says:</strong> "Super easy — I send a simple invoice at the beginning of the month. You can pay by Venmo, Zelle, or cash, whatever's easiest for you. Most people do Venmo since it takes about 5 seconds."<br><br>
+      <strong>Key:</strong> Keep it simple. No complicated payment portals.
+    </div>
+  </div>
+
+  <div class="objection" onclick="this.classList.toggle('open')">
+    <div class="objection-q">"Do I need to be home?" <span class="arrow">›</span></div>
+    <div class="objection-a">
+      <strong>Jamie says:</strong> "Nope! That's the beauty of it. As long as I can access the yard (gate code, side gate, etc.), I come, clean, and go. You come home to a clean yard without lifting a finger.<br><br>
+      I'll text you when I'm done each time so you know it's taken care of."<br><br>
+      <strong>Key:</strong> The "text when done" detail = professionalism that competitors don't offer.
+    </div>
+  </div>
+
+  <div class="objection" onclick="this.classList.toggle('open')">
+    <div class="objection-q">"I only have one dog, is it worth it?" <span class="arrow">›</span></div>
+    <div class="objection-a">
+      <strong>Jamie says:</strong> "You'd be surprised! Even one dog can leave 15-20 piles a week. Multiply that over a month when it's been raining... it adds up fast. 😅<br><br>
+      Most of our one-dog customers say the same thing after the first clean — 'I had no idea there was that much out there.' It's one of those things you don't realize until someone handles it for you."
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== FOLLOW-UP TIMELINE ===================== -->
+<div class="section" id="timeline">
+
+  <div class="card" style="margin-bottom: 16px;">
+    <h3><span class="emoji">📅</span> Customer Journey — When to Send What</h3>
+    <div class="small">This is your cadence. Follow it for every customer, every time.</div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="when">Within 15 min</div>
+      <div class="what"><strong>Respond to inquiry.</strong> Use the text/FB script from Scripts tab. Get their dog count + yard size.</div>
+    </div>
+    <div class="tl-item">
+      <div class="when">Same day</div>
+      <div class="what"><strong>Send the quote.</strong> $70/mo weekly, $45 biweekly. End with "Want me to add you to the schedule?"</div>
+    </div>
+    <div class="tl-item">
+      <div class="when">+24 hours (if no reply)</div>
+      <div class="what"><strong>Follow-up #1.</strong> "Just wanted to make sure you got my quote…" Friendly, zero pressure.</div>
+    </div>
+    <div class="tl-item">
+      <div class="when">+72 hours (if still nothing)</div>
+      <div class="what"><strong>Follow-up #2 — FINAL.</strong> "Circling back one last time…" Then STOP. No more chasing.</div>
+    </div>
+    <div class="tl-item">
+      <div class="when">Day of 1st service</div>
+      <div class="what"><strong>Pre-clean text</strong> (heading your way) + <strong>Post-clean text</strong> (all done, X bags, see you next [DAY]).</div>
+    </div>
+    <div class="tl-item">
+      <div class="when">After 2nd service</div>
+      <div class="what"><strong>Check-in text.</strong> "Everything looking good? Anything to adjust?" Catches problems before they cancel.</div>
+    </div>
+    <div class="tl-item">
+      <div class="when">After 4th service (~1 month)</div>
+      <div class="what"><strong>Ask for Google review.</strong> Direct link. "Even just a sentence." We need 5 by April 1!</div>
+    </div>
+    <div class="tl-item">
+      <div class="when">After 8th service (~2 months)</div>
+      <div class="what"><strong>Ask for referral.</strong> $20 off their next month for every signup. This is free lead gen.</div>
+    </div>
+    <div class="tl-item">
+      <div class="when">Monthly (ongoing)</div>
+      <div class="what"><strong>Rotate:</strong> Seasonal check-in, holiday note, anniversary text. Stay top of mind.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== COMPETITORS ===================== -->
+<div class="section" id="competitors">
+
+  <div class="card">
+    <h3><span class="emoji">⚔️</span> How We Stack Up (Monthly Pricing)</h3>
+    <div class="small mb">If a lead mentions a competitor, you'll know exactly what to say.</div>
+
+    <div class="comp-row"><span class="name">POOP 911 (franchise)</span><span class="price">~$48/mo</span></div>
+    <div class="comp-row"><span class="name">Scoop Soldiers (franchise)</span><span class="price">~$60/mo</span></div>
+    <div class="comp-row"><span class="name">Dog Doody Defenders</span><span class="price">$68/mo</span></div>
+    <div class="comp-row us"><span class="name">⭐ TIDY TAILS (us!)</span><span class="price">$70/mo</span></div>
+    <div class="comp-row"><span class="name">Poop 2 Scoop (+$4/dog)</span><span class="price">$72/mo</span></div>
+    <div class="comp-row"><span class="name">Poopy Paws</span><span class="price">$80/mo</span></div>
+    <div class="comp-row"><span class="name">Doggie Doodies</span><span class="price">$83/mo</span></div>
+    <div class="comp-row"><span class="name">Dirty Dog Wash</span><span class="price">$95/mo</span></div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">💪</span> Our Advantages vs Everyone</h3>
+    <ul class="checklist" style="list-style: none;">
+      <li>✅ <strong>No contracts</strong> — most franchises require 3-6 month commitments</li>
+      <li>✅ <strong>Text when done</strong> — most competitors never confirm service</li>
+      <li>✅ <strong>Local & personal</strong> — not a random franchise employee rotating through</li>
+      <li>✅ <strong>Flat rate</strong> — no surprise charges for extra dogs (most add $4-10/dog)</li>
+      <li>✅ <strong>Flexible payment</strong> — Venmo, Zelle, cash (franchises force credit card)</li>
+      <li>✅ <strong>Satisfaction guaranteed</strong> — we come back if you're not happy, free</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">🗣️</span> "Why Not Go With [Cheaper Competitor]?"</h3>
+    <div class="small" style="line-height: 1.7;">
+      <strong>If they mention Poop 911 or Scoop Soldiers:</strong><br>
+      "Those are franchise operations — you'll get a different person every time, and they typically lock you into contracts. With us, same person every visit, no contract, and you've got my personal number. If there's ever an issue, you text me directly. That peace of mind is worth the few bucks difference."<br><br>
+      <strong>If they mention a cheaper local:</strong><br>
+      "I've seen some of those services come and go. We've been doing this consistently and we stand behind our work. Plus our flat rate means no surprises — some of those cheaper quotes go up once they see your yard or charge per dog."
+    </div>
+  </div>
+
+</div>
+
+<!-- ===================== AREAS ===================== -->
+<div class="section" id="areas">
+
+  <div class="card">
+    <h3><span class="emoji">🗺️</span> Service Areas</h3>
+    <div class="area-grid">
+      <div class="area-tag">Florissant</div>
+      <div class="area-tag">Ferguson</div>
+      <div class="area-tag">Hazelwood</div>
+      <div class="area-tag">Maryland Heights</div>
+      <div class="area-tag">Bridgeton</div>
+      <div class="area-tag">Overland</div>
+      <div class="area-tag">St. Ann</div>
+      <div class="area-tag">Jennings</div>
+      <div class="area-tag">Berkeley</div>
+      <div class="area-tag">Normandy</div>
+      <div class="area-tag">Cool Valley</div>
+      <div class="area-tag">Bel-Nor</div>
+      <div class="area-tag">Bellefontaine</div>
+      <div class="area-tag">Black Jack</div>
+      <div class="area-tag">Spanish Lake</div>
+      <div class="area-tag">Creve Coeur</div>
+    </div>
+    <div class="small mt">📌 Expanding routes in Spring 2026. If someone is close but not listed, take their info!</div>
+  </div>
+
+  <div class="card">
+    <h3><span class="emoji">📝</span> For Out-of-Area Leads</h3>
+    <div class="copy-block" id="script-ooa">Thanks for reaching out! I don't currently cover [THEIR AREA] but I'm expanding my routes this spring. Mind if I grab your info and reach out when I add your neighborhood? Shouldn't be too long! 🐾<button class="copy-btn" onclick="copyText('script-ooa')">Copy</button></div>
+    <div class="small">📌 NEVER say "no." Always collect info. Every out-of-area lead is a future customer.</div>
+  </div>
+
+</div>
+
+<!-- FAB — Quick Call -->
+<button class="fab" onclick="window.location.href='tel:3148507140'" title="Call Jamie's line">📞</button>
+
+<script>
+// Tab switching
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(tab.dataset.tab).classList.add('active');
+  });
+});
+
+// Copy to clipboard
+function copyText(id) {
+  const el = document.getElementById(id);
+  const btn = el.querySelector('.copy-btn');
+  // Get text content excluding the button
+  let text = '';
+  el.childNodes.forEach(node => {
+    if (node.nodeType === 3) text += node.textContent;
+    else if (!node.classList || !node.classList.contains('copy-btn')) text += node.textContent;
+  });
+  text = text.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// Quote calculator
+function calcQuote(dogs) {
+  document.querySelectorAll('.dog-btn').forEach(b => {
+    b.style.background = 'var(--card-hover)';
+    b.style.color = 'var(--text)';
+    b.style.border = '1px solid var(--border)';
+  });
+  event.target.style.background = 'var(--accent)';
+  event.target.style.color = 'white';
+  event.target.style.border = 'none';
+
+  const extraDogs = Math.max(0, dogs - 1);
+  const weekly = 70 + (extraDogs * 10);
+  const biweekly = 45 + (extraDogs * 10);
+
+  document.getElementById('q-weekly').textContent = '$' + weekly + '/mo';
+  document.getElementById('q-biweekly').textContent = '$' + biweekly + '/mo';
+
+  const dogText = dogs === 1 ? '1 dog' : dogs >= 3 ? dogs + ' dogs' : dogs + ' dogs';
+  document.getElementById('quote-generated').innerHTML = `📋 ${dogText}
+💰 $${weekly}/month (weekly) — most popular
+   Also: biweekly $${biweekly}/mo
+
+Full yard sweep every visit. Bagged & hauled. No contracts, cancel anytime.
+
+Want me to add you to the schedule? 👍<button class="copy-btn" onclick="copyText('quote-generated')">Copy</button>`;
+
+  document.getElementById('quote-result').style.display = 'block';
+}
+</script>
+
+</body>
+</html>
