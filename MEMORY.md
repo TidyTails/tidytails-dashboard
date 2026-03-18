@@ -1,5 +1,5 @@
 # MEMORY.md — Franklin's Long-Term Memory
-*Last major overhaul: March 15, 2026 11 PM | Last maintenance: March 17, 2026 1 AM*
+*Last major overhaul: March 15, 2026 11 PM | Last maintenance: March 18, 2026 6 AM*
 
 ## Who I Am
 - **Name:** Franklin
@@ -195,12 +195,12 @@ Assets: Landing page, pitch deck (v6), one-pager, market research.
 ## 🚨 CRITICAL SELF-ASSESSMENT (Mar 15, 2026)
 
 ### The Build vs Deploy Canyon
-- **120+ deliverables built** in 5 weeks. 60+ dashboard tools. 300+ PDFs/HTML assets.
+- **130+ deliverables built** in 5 weeks. 60+ dashboard tools. 320+ PDFs/HTML assets.
 - **Still ~8 customers.** Goal was 25-30 by Aug 2025 — now 7+ months overdue.
 - **ZERO confirmed post deployments.** ZERO confirmed review requests sent. ZERO directory listings beyond GBP/Yelp (which TJ did himself).
-- Mar 17 alone: 12+ deliverables in one day. The cron is a content factory but execution is TJ's bottleneck.
+- Mar 17 alone: 12+ deliverables in one day. Mar 18 overnight: 5 more. Cron is a content factory but execution is TJ's bottleneck.
 - The honest answer: TJ needs 30 minutes executing, not Franklin spending 30 hours building.
-- **SSL expired 26 days ago** — literally everything is blocked until this is fixed.
+- **SSL is FIXED** (renewed Feb 16, valid until May 17). GSC resubmission is now the #1 blocker.
 
 ### What Actually Needs to Happen (TJ's 5-Minute Wins)
 - [ ] **Text 5 customers for Google reviews** (5 min, $0)
@@ -280,7 +280,7 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 | Category | Count |
 |----------|-------|
 | Dashboard tools/reports | 60+ |
-| PDFs/HTML deliverables | 320+ |
+| PDFs/HTML deliverables | 330+ |
 | Tidy Tails ads written | 100+ |
 | Shed ads written | 110+ |
 | Skills built | 14+ |
@@ -290,6 +290,7 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 | Content calendar posts | 76+ copy-paste ready |
 | Commercial leads | 65+ (paused per TJ) |
 | Interactive tools | 8+ (pricing calc, review blitz, GBP kit, battle card, etc.) |
+| FB groups mapped | 32+ (with strategy, member counts, posting schedule) |
 
 ---
 
@@ -304,7 +305,8 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 - **Mar 14:** 15+ tasks. Found 2 new competitors (Clean Turf STL, Yuckos). Pricing strategy: $88/mo recommended.
 - **Mar 15:** 18+ tasks. 12 city SEO pages, payment calculator, premium pricing toolkit, Nextdoor launch kit, Facebook ads campaign kit. Competitive pricing audit confirmed TJ is most expensive in market. Memory overhaul completed.
 - **Mar 16:** Shed site HTTPS fixed + robots.txt/sitemap/schema added. 6 new competitors found (20+ total). Directory blitz kit + spring content blitz shipped. Memory consolidation: archived 30+ stale files, pruned memory/ from cluttered to clean. Both sites STILL not indexed (Day 30+). Paid ads analysis: NOT YET — fix foundation first. Week action plan: 5 tasks / 2 hours / $0. Citation blitz guide: 20 directories mapped. Review request kit: 8 personalized texts. Spring social media pack: 12 posts for 4 weeks.
-- **Mar 17:** MASSIVE output day (12+ deliverables). SSL still expired (Day 26). GBP confirmed VERIFIED but only 7% complete. TJ frustrated: "tired of being stagnant." Key deliverables: competitor battle card (live pricing), directory blitz kit (20 dirs), neighborhood saturation kit, 90-day growth sprint, Google Ads launch kit, pricing calculator (live competitor scrape), GBP optimization kit, review/referral text blitz (personalized per customer), spring cleanup blitz (15 posts), lumber intel ($600/MBF — 22% surge). CRITICAL: competitor pricing confirmed TJ is most expensive ($25/wk vs POOP 911 $11.95, DD $17). Memory consolidation pass at 11 PM.
+- **Mar 17:** MASSIVE output day (12+ deliverables). GBP confirmed VERIFIED but only 7% complete. TJ frustrated: "tired of being stagnant." Key deliverables: competitor battle card (live pricing), directory blitz kit (20 dirs), neighborhood saturation kit, 90-day growth sprint, Google Ads launch kit, pricing calculator (live competitor scrape), GBP optimization kit, review/referral text blitz (personalized per customer), spring cleanup blitz (15 posts), lumber intel ($600/MBF — 22% surge). CRITICAL: competitor pricing confirmed TJ is most expensive ($25/wk vs POOP 911 $11.95, DD $17). Memory consolidation pass at 11 PM.
+- **Mar 18:** 5 overnight tasks (12AM-5AM). SEO recovery audit (site A+ technically, ZERO indexed), FB group blitz guide (32+ groups mapped), competitive sweep (DD in Florissant!), Florissant customer defense kit (protecting 47% revenue), dashboard cleanup (12→5 priority banners). Memory maintenance + archival at 6AM.
 
 ---
 

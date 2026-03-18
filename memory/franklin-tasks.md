@@ -7,6 +7,38 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 6:05 AM — 🧠 MEMORY MAINTENANCE & ARCHIVAL — Clean Context for Better Performance (Maintenance)
+**Task:** Reviewed Mar 16-18 daily files, archived stale franklin-tasks entries (trimmed 158 lines), updated MEMORY.md with Mar 18 milestone, fixed contradictory SSL references, updated asset inventory, and pruned outdated data.
+**Result:** ✅ COMPLETE — franklin-tasks.md trimmed 1124→966 lines, MEMORY.md updated
+
+**Why This Task:**
+- Self-assessment: "Maintenance over creation. 60+ tools exist. Don't build #61."
+- 4 deliverables already shipped tonight (12AM-5AM) — the factory doesn't need more content
+- franklin-tasks.md hit 1124 lines — bloating context for future sessions
+- MEMORY.md still referenced "SSL expired 26 days ago" when SSL was renewed weeks ago
+- Mar 18 milestone (5 overnight tasks) not yet recorded
+- Asset inventory count was stale (320 → 330+, added FB groups row)
+- Clean memory = better decisions on next session
+
+**What I Did:**
+1. Archived Mar 16 Monday + Monday Night entries (159 lines → `memory/archive/franklin-tasks-mar16-mon-night.md`)
+2. Updated MEMORY.md milestone section with Mar 18 overnight work summary
+3. Fixed Build vs Deploy Canyon: removed "SSL expired" blocker, replaced with "GSC resubmission is #1 blocker"
+4. Updated deliverable count: 120+ → 130+, 300+ → 320+ → 330+
+5. Added FB groups mapped (32+) to asset inventory
+6. Updated maintenance timestamp to Mar 18 6 AM
+7. Reviewed daily logs for Mar 16-18: no contradictions found beyond SSL reference
+
+**Expected Impact:**
+- Future sessions load ~160 fewer lines of context
+- No more false "SSL expired" alerts confusing the prioritization
+- Mar 18 work is discoverable in MEMORY.md milestones
+- Accurate asset counts prevent redundant work
+
+**Rotation:** ⚙️ Systems / Memory Maintenance
+
+---
+
 ### 5:05 AM — 🧹 DASHBOARD CLEANUP & LIVE EXECUTION AUDIT — Signal Over Noise (Systems/Maintenance)
 **Task:** Cleaned up the dashboard (12 priority banners → 5 focused ones), ran a live execution audit (website status, search indexing, competitor activity), updated stale data, and linked tonight's 4 deliverables.
 **Result:** ✅ COMPLETE — Dashboard `index.html` updated, priority banners consolidated, stats current
@@ -950,166 +982,8 @@ The website isn't the problem. Discovery is the problem. TJ built a store in the
 
 ---
 
-## March 17, 2026 (Monday Night)
-
-### 11:04 PM — 📱 SPRING SOCIAL MEDIA CONTENT PACK (Marketing)
-**Task:** Created a 4-week social media content pack with 12 ready-to-post captions for Facebook, Instagram, and Nextdoor, plus evergreen bonus posts and platform-specific best practices.
-**Result:** ✅ COMPLETE
-
-**Why This Task:**
-- Spring is THE peak signup season — we need content going out NOW
-- We had a GBP calendar but nothing for Facebook/Instagram/Nextdoor
-- TJ needs copy-paste ready content, not more strategy docs
-- Social media is free marketing that compounds over time
-
-**What I Created:**
-- `deliverables/spring-social-media-pack-march2026.md` — full 4-week content calendar
-- **Week 1:** "Spring Thaw Poop Reveal" — hook posts, neighborhood intros
-- **Week 2:** Price comparison/value posts + engagement-driving questions  
-- **Week 3:** Spring cleaning special with free first cleanup offer
-- **Week 4:** Trust builders + personal brand story
-- **Bonus:** Evergreen posts for rain, holidays, hot days, dog parks
-- Platform-specific best practices for each channel
-- Photo/content ideas for every post
-- Posting schedule: Mon (FB+IG), Wed (Nextdoor), Fri (rotate)
-
-**Also Done:**
-- ✅ Archived task log (879 → 147 lines) to `memory/archive/franklin-tasks-mar16-17.md`
-- ✅ Researched Petworks.com (free signup at petworks.com/signup — confirmed)
-- ✅ Confirmed Google LSAs support pet care category (eligible for Tidy Tails)
-
-**Rotation:** 📈 Marketing — Social Media Content
-
----
-
-## March 16, 2026 (Monday)
-
-### 10:10 PM — 💰 PAID ADS ANALYSIS — Facebook vs Google Ads Decision Guide (Strategy)
-**Task:** Researched whether Tidy Tails should invest in paid advertising (Facebook Ads, Google Ads), what it would cost, what results to expect, and created a phased roadmap.
-**Result:** ✅ COMPLETE — Shipped `deliverables/paid-ads-analysis-march2026.md`
-
-**Why This Task:**
-- 89 deliverables created, still 4-5 customers — the gap is execution + visibility, not content
-- TJ has NEVER run paid ads. Every successful pet waste company uses FB + Google ads to scale.
-- Swoop Scoop hit $400K/month revenue largely through Facebook ads (10,000+ leads)
-- But running ads BEFORE fixing the foundation (0 reviews, site not indexed) = wasted money
-- TJ needs a CLEAR answer: "Should I spend money on ads?" with specific numbers
-
-**What I Built:**
-1. **Clear recommendation:** NOT YET — fix foundation first (reviews, citations, indexing), then start
-2. **Facebook Ads deep dive:** $150-200/month starter budget, expected 10-20 leads/month, $8-20/lead
-3. **Google Ads analysis:** Phase 2 after FB proves out, $200-300/month, higher intent but lower volume
-4. **3 ready-to-use ad copy variations** — problem/solution, spring hook, social proof
-5. **Targeting blueprint** — audiences, radius, demographics, interests
-6. **Keyword research** — estimated CPCs for STL pet waste keywords ($2-8/click, LOW competition)
-7. **Case studies** — Swoop Scoop ($400K/mo), Fresh Start ($200K yr1), solo operator ($6K yr1 on $2K spend)
-8. **4-phase roadmap** — Foundation ($0) → FB Test ($200/mo) → Google ($200-300/mo) → Scale ($500-800/mo)
-9. **ROI math:** 2 new weekly customers covers $200 ad spend. LTV of weekly customer = $1,200+/year.
-10. **Negative keyword list** for Google Ads to avoid wasted spend
-
-**Key Insight:** Pet waste removal has LOW Google search volume — most people don't know the service exists. Facebook CREATES demand by showing ads to dog owners. Google CAPTURES demand from people who saw your FB ad then searched for you. This is why every successful company starts with FB, not Google.
-
-**Expected Impact:**
-- Gives TJ a clear "not yet" answer that prevents wasted money NOW
-- Provides exact steps and budget for when he IS ready (after reviews + citations)
-- Ready-to-use ad copy when he launches
-- Projected: 2-5 new customers/month at $40-100/customer from first FB campaign
-
-**Rotation:** 💰 Strategy — Paid Advertising Analysis
-
----
-
-### 8:07 PM — 🎯 WEEK ACTION PLAN — Mar 17-23 Execution Playbook (Meta-Productivity)
-**Task:** Created a tight, no-BS weekly action plan that activates all of today's deliverables into a 5-step, 2-hour execution playbook for TJ.
-**Result:** ✅ COMPLETE — Shipped `deliverables/week-action-plan-march17-23.md`
-
-**Why This Task:**
-- Self-assessment says "100+ deliverables built, still 4-5 customers" — the gap isn't content, it's execution
-- Today alone we shipped: commercial leads (10 with phone numbers), review request kit (8 personalized texts), citation blitz guide (20 directories), competitive monitoring sweep
-- None of that matters if TJ doesn't know WHAT to do WHEN in WHAT ORDER
-- Previous week plans were 20 tasks / 11 hours — too ambitious. This one is 5 actions / 2 hours.
-
-**What I Built:**
-1. **Monday: Send 5 review request texts** (15 min) — copy-paste from review kit
-2. **Tuesday: Citation speed run — 5 directories** (40 min) — Apple, Bing, Facebook, Foursquare, MapQuest
-3. **Wednesday: Post in 2 Facebook groups** (15 min) — spring cleanup hook, copy-paste ready
-4. **Thursday: Call top 3 commercial leads** (30 min) — Millsap Properties, Park Forest, Baronwood Kennels
-5. **Weekend: Claim Nextdoor + Petworks** (20 min) — two platforms where competitors are and we're not
-
-**Expected Impact:**
-- 0 → 3-5 Google reviews (credibility + local pack boost)
-- 2 → 9+ directory citations (Google indexing trigger)
-- 0 → 3 commercial leads contacted ($500-$1,500/mo pipeline each)
-- 2 new platform presences (Nextdoor + Petworks)
-- Total time: ~2 hours. Total cost: $0.
-
-**Why This Is Different:** Previous week plans were 20 tasks / 11 hours / overwhelming. This is 5 things. Copy-paste ready. References existing deliverables. No new tools needed. If TJ does ONLY this plan and nothing else, it's the most productive week Tidy Tails has had.
-
-**Dashboard:** Updated "START HERE" card to point to this plan. Old plan demoted to "PREVIOUS."
-
-**Rotation:** 🎯 Execution — Meta-Productivity
-
----
-
-### 7:06 PM — 🌐 CITATION BLITZ GUIDE — 20 Directory Listings Researched (Off-Page SEO)
-**Task:** Researched, verified, and compiled a comprehensive directory listing guide — 20 platforms where TJ needs to create/claim business citations for Tidy Tails.
-**Result:** ✅ COMPLETE — Shipped `memory/citation-blitz-guide.md`
-
-**Why This Task:**
-- Tidy Tails Off-page SEO grade: **F** — ZERO citations beyond GBP and Yelp
-- Site STILL NOT INDEXED by Google after 30+ days — lack of citations is likely the cause
-- Competitors (Poop2Scoop, Dr. Scoops) are already on Petworks, aPaws, Nextdoor
-- NAP citations are the #1 signal Google uses to verify local businesses are real
-- AI search (ChatGPT, Perplexity, Gemini) sources from directories — zero presence = invisible
-
-**What I Built:**
-1. **20 directories** organized into 3 tiers by priority (DA score + relevance)
-2. **Tier 1 (7 sites):** Apple Business Connect, Bing Places, Facebook, Nextdoor, Petworks, MapQuest, Foursquare — all free, all DA 75+
-3. **Tier 2 (7 sites):** Manta, BBB, Angi, Porch, HomeAdvisor, Thumbtack, Merchant Circle
-4. **Tier 3 (6 sites):** aPaws ($85/yr), OpenStreetMap, Hotfrog, CityLocal Pro, Yellow Pages, LinkedIn
-5. **NAP consistency checklist** — exact copy-paste business info for every listing
-6. **"Speed Run" order** — 5 listings in 40 minutes for TJ to do tonight
-7. **Tracking table** — checkbox grid to track submission status
-8. **Business description** — short + long versions, ready to paste
-
-**Expected Impact:**
-- Current: 2 citations (GBP + Yelp)
-- After speed run: 7 citations (250% increase)
-- After full guide: 20+ citations
-- Google indexing likely triggered within 1-2 weeks of 10+ consistent citations
-- Map Pack visibility improvement
-- AI search discovery for "pet waste removal St. Louis"
-
-**Key Discovery:** MapQuest already has an auto-generated listing (Olivette MO 63132) — just needs claiming and correcting. Free backlink sitting there unclaimed.
-
-**Rotation:** 🌐 SEO / Off-Page — Citation Building
-
----
-
-### 6:05 PM — 🌟 GOOGLE REVIEW REQUEST KIT (Customer Acquisition / Local SEO)
-**Task:** Created personalized, copy-paste-ready review request texts for all 8 customers + an ongoing review system for future customers.
-**Result:** ✅ COMPLETE — Shipped `memory/review-request-kit.md`
-
-**Why This Task:**
-- Tidy Tails has **ZERO Google reviews** — this is the single biggest credibility gap
-- Competitors (Doggie Doodies: 6 reviews, POOP 911: dozens) all have reviews
-- Google reviews are the #1 local SEO ranking factor for the map pack
-- Site still isn't indexed after 30 days — reviews + GBP activity may help trigger indexing
-- This is something TJ can DO TONIGHT in 15 minutes. No strategy docs. Just copy, paste, send.
-
-**What I Built:**
-1. **8 personalized text messages** — one for each customer, different tone/length based on relationship
-2. **Prioritized send order** — weekly customers first (most engaged), monthly last
-3. **Timing guide** — when to send, when to follow up
-4. **Follow-up template** — for non-responders after 3-4 days
-5. **Ongoing system** — templates for new customers (after 2nd service), one-times, and quarterly re-asks
-6. **"What should I write?" response** — for customers who ask
-7. **Review tracker table** — checkboxes to track who's been asked and who responded
-8. **Impact projection** — what 1, 3, 5, 10+ reviews would mean for visibility
-
----
-
 ## Archive
+- **March 16, 2026 (Mon) + Mon Night:** `memory/archive/franklin-tasks-mar16-mon-night.md` (159 lines, 4 tasks — paid ads analysis, week action plan, citation blitz, review request kit, social media pack)
 - **March 16-17, 2026:** `memory/archive/franklin-tasks-mar16-17.md` (879 lines, 15+ tasks)
 - **March 15-16, 2026:** `memory/archive/franklin-tasks-mar15-16.md` (818 lines, 18+ tasks)
 - **March 14-15, 2026:** `memory/archive/franklin-tasks-mar14-15.md` (767 lines, 20+ tasks)
