@@ -72,7 +72,10 @@
 - **⚠️ BRAND NAME COLLISION:** 8+ other "Tidy Tails" businesses nationally compete for branded search. Always use "Tidy Tails STL" in citations.
 - **MapQuest listing EXISTS** (auto-generated, Olivette MO 63132) — free citation
 - **BringFido.com** — pet services directory covers Florissant. TJ NOT listed. Free listing.
-- **Doggie Doodies may have $72/mo entry tier** — search snippet shows "starting at $72/monthly" (Mar 18). Monitor.
+- **Doggie Doodies pricing confirmed** — $83/mo weekly, $85/mo biweekly, $90/mo monthly (Mar 18 live scrape)
+- **NEW: Dirty Dog Wash "Poo Crew"** — Chesterfield groomer added waste removal. $95/mo (1-2 dogs weekly). 43 Yelp reviews, 66 FB reviews. Cross-sell advantage but HIGHER than TJ.
+- **POOP 911 has Florissant-specific SEO page** — hyper-local refs (McCluer schools, St. Ferdinand Park). Didn't exist in Feb. They're targeting TJ's core territory.
+- **Scoop Soldiers confirmed $15/visit** — up to 4 dogs included. First service FREE. Fully operational STL.
 - **ZERO Google reviews** vs competitors with 6+
 - Google Review Link: https://g.page/r/Ce_hqIHanGLvEAE/review
 - 21 city/area landing pages built on tidytailsstl.com

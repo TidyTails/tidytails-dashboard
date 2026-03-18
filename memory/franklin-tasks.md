@@ -7,6 +7,29 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 1:04 PM — 🔍 LIVE COMPETITIVE SWEEP + NEW COMPETITOR DISCOVERED (Research/Monitoring)
+**Task:** Full competitive intelligence sweep — checked indexing status, crawled all active competitor websites, verified pricing, identified new threats.
+**Result:** ✅ COMPLETE — Shipped `deliverables/competitive-intel-march18-2026.md`, updated `memory/competitive-intel.md` + MEMORY.md
+
+**Why This Task:**
+- Per core lesson #14: monitoring/research > creating more content
+- Last full sweep was Mar 17 — need to track fast-moving market
+- Spring = when competitors ramp up marketing
+
+**Key Discoveries:**
+1. 🆕 **NEW COMPETITOR: Dirty Dog Wash "Poo Crew"** — Chesterfield groomer (125 Long Rd) added pet waste removal. $95/mo for 1-2 dogs weekly. 43 Yelp reviews, 66 FB reviews (98% recommend), active on Nextdoor. Cross-sell advantage from grooming customers. But HIGHER than TJ ($95 vs $70/mo flat rate).
+2. 🔴 **POOP 911 now has dedicated Florissant SEO page** — Hyper-local references (McCluer schools, St. Ferdinand Park, Eagan Center, Civic Center). First cleanup FREE. This page didn't exist in Feb scans. They're actively building Florissant-specific SEO while TJ's site isn't even indexed.
+3. ✅ **Scoop Soldiers confirmed $15/visit** — includes up to 4 dogs! First service FREE. Fully operational in STL with polished landing page.
+4. ✅ **Doggie Doodies pricing stable** — $83/mo weekly (1 dog), $85/mo biweekly, $90/mo monthly. Coupon codes active (WEEKLY1DOG, BIWEEKLY1DOG). Service area page now vague.
+5. ✅ **Poop2Scoop confirmed $18/visit** — +$4 per extra dog, +$4 large yard, +$4 deck deodorize.
+6. ⚠️ **WEBSITE STILL NOT INDEXED** — Day 30+. Zero results for site:tidytailsstl.com or any brand search.
+
+**Market Summary:** 11+ active competitors (up from 7 in February). 4 competitors now serve Florissant. TJ is most expensive per-visit ($25) but cheapest monthly ($70). Market is getting more crowded — speed of execution matters more than ever.
+
+**Rotation:** 🔍 Research — Competitive Intelligence
+
+---
+
 ### 12:10 PM — 🚀 LEAD PLATFORM SIGNUP PLAYBOOK — Get Found Where Customers Look (Lead Generation)
 **Task:** Researched every lead generation platform relevant to pet waste removal. Crawled Thumbtack, Petworks, Pooper-Scooper.com, BringFido, Bark.com, Angi, aPaws, Craigslist, and Nextdoor. Evaluated each for cost, setup time, lead quality, and whether competitors are already there. Built a prioritized 2-hour signup playbook with copy-paste business info and ad copy.
 **Result:** ✅ COMPLETE — Shipped `deliverables/lead-platform-signup-playbook-march18-2026.md`
