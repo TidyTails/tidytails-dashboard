@@ -7,6 +7,40 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 2:05 PM — 📊 AD PERFORMANCE TRACKER — Built What TJ Asked For (Dashboard / Tool)
+**Task:** Built and deployed a full ad performance tracking dashboard. TJ asked for this at 1:21 PM after confirming ads are LIVE for the first time. He needs to know what's working vs what's not.
+**Result:** ✅ COMPLETE — LIVE at https://tidytails.github.io/tidytails-dashboard/ad-tracker.html
+
+**Why This Task:**
+- TJ EXPLICITLY ASKED for an ad tracking system today at 1:21 PM
+- Ads are LIVE for the first time ever — this is the moment tracking matters
+- Without tracking, TJ's burning money blind. Cost/lead and ROI visibility = critical
+- Direct request from the boss > any autonomous task I'd pick
+
+**What I Built:**
+1. **Campaign Management** — Add campaigns with name, business (Tidy Tails/Sheds), platform (FB/IG/Google/Nextdoor/CL/Thumbtack/etc), budget, status, ad copy, notes
+2. **Lead Logging** — Log every inbound lead: date, name/phone, campaign source, contact method (call/text/FB msg/form/email/referral), status (new→contacted→converted→lost), monthly value, notes
+3. **6 KPI Cards** — Active Campaigns, Total Spent, Total Leads, Cost/Lead, Conversions, Annualized Revenue
+4. **Platform Bar Chart** — Visual breakdown of which platforms generate the most leads
+5. **Lead Pipeline** — Full lead table with inline status changes (dropdown to move new→contacted→converted→lost)
+6. **Filtering** — Tabs for All/Active/Paused/Ended/Tidy Tails/Sheds
+7. **Data Portability** — Export/Import JSON, clear all (with double-confirm)
+8. **Mobile-optimized** — Works great on phone, matches dashboard dark theme
+9. **Dashboard Integration** — Added prominent "📊 Ad Tracker" button to main dashboard nav
+
+**How TJ Uses It:**
+- When ad goes live → "New Campaign" (name, platform, budget)
+- When someone calls/texts from an ad → "Log Lead" (which campaign, contact info, status)  
+- Check KPIs anytime to see cost/lead, conversion rate, ROI
+- When lead becomes customer → update status to "Converted" + enter monthly value
+- Export data periodically for backup
+
+**Technical:** Pure HTML/CSS/JS, localStorage (no backend needed), matches existing dashboard aesthetic. Zero dependencies. Deployed to GitHub Pages.
+
+**Rotation:** 📊 Dashboard — Ad Tracking (Direct TJ Request)
+
+---
+
 ### 1:04 PM — 🔍 LIVE COMPETITIVE SWEEP + NEW COMPETITOR DISCOVERED (Research/Monitoring)
 **Task:** Full competitive intelligence sweep — checked indexing status, crawled all active competitor websites, verified pricing, identified new threats.
 **Result:** ✅ COMPLETE — Shipped `deliverables/competitive-intel-march18-2026.md`, updated `memory/competitive-intel.md` + MEMORY.md
