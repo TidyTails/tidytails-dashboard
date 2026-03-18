@@ -7,6 +7,35 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 11:10 AM — 🏢 NORTH COUNTY COMMERCIAL LEADS BLITZ — Territory Defense (Tidy Tails)
+**Task:** Researched and compiled 10 fresh apartment complex/townhome commercial leads specifically in North County (Florissant, Hazelwood, Black Jack, Ferguson, Spanish Lake) to counter POOP 911's Florissant expansion. Includes phone numbers, addresses, pet policies, custom pitch angles, call scripts, and revenue projections.
+**Result:** ✅ COMPLETE — Full call list at `deliverables/north-county-commercial-leads-march18-2026.md`
+
+**Why This Task:**
+- POOP 911 has a dedicated Florissant landing page — they're coming for TJ's territory
+- Existing commercial leads list (March 12) skews West County/Maryland Heights — zero North County apartment targets
+- Commercial accounts = 5-10x residential revenue per contract. One closed deal = massive impact.
+- TJ is a natural closer — he just needs the list and the phone numbers
+- Spring = property managers are thinking about grounds maintenance
+
+**Key Leads Found:**
+1. **The Finn** (Hazelwood) — TWO dog parks, gated, pet-heavy. Phone: (833) 879-2209
+2. **Hazelwood Forest** — Building a pet spa, pet-friendly, large grassy areas
+3. **Crossing at Northpointe** (Florissant) — Markets as "pet friendly," right in POOP 911's target area
+4. **Paddock Village** (Florissant) — Splash pad = families = dogs. $925-$1,600/mo
+5. **Madison Aspen Woods** (Florissant/Black Jack) — Large townhome complex. Phone: (314) 831-3333
+6. **Whispering Lake** (Florissant) — Up to 5-BR units, huge community
+7. **Spanish Lake Townhomes** — New management = new vendor opportunity. Phone: (855) 648-0309
+8. **Oak Forest** (63146) — Near Creve Coeur, higher-end
+9. **Nantucket Gardens** (Ferguson) — Charges pet rent, responsive management. Phone: (314) 521-8844
+10. **Parc Charlene** (Florissant) — Quick win, smaller complex
+
+**Revenue Potential:** 3 closed deals at $350/mo avg = $1,050/mo new commercial revenue (140% increase over current ~$750/mo residential)
+
+**Rotation:** 🏢 Commercial / Lead Generation
+
+---
+
 ### 10:05 AM — 🐕 SPRING YARD CALCULATOR — Interactive Lead Gen Quiz (Tidy Tails)
 **Task:** Built and deployed an interactive "How Much Poop Is Hiding in Your Yard?" quiz as a lead generation tool on the live GitHub Pages website.
 **Result:** ✅ COMPLETE — LIVE at https://tidytails.github.io/tidytails-website/spring-calculator.html
