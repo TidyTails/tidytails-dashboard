@@ -7,6 +7,41 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 4:05 AM — 🛡️ FLORISSANT CUSTOMER DEFENSE KIT — Protecting 47% of Revenue (Customer Retention)
+**Task:** Built a targeted customer retention kit to defend TJ's 3 Florissant customers (Shannon, Amanda, Chastity = $350/month) against Doggie Doodies' expansion into their territory.
+**Result:** ✅ COMPLETE — Shipped `deliverables/florissant-customer-defense-kit-march2026.md`
+
+**Why This Task:**
+- Doggie Doodies confirmed in Florissant as of 3 AM competitive sweep
+- 3 of TJ's 8 customers are in Florissant = 47% of monthly revenue
+- DD is 23-30% cheaper ($83/mo vs TJ's $108/mo for weekly 1-dog)
+- DD has rewards program, referral system, customer portal, gate photos — more "professional" than TJ
+- Losing even 1-2 of these customers = devastating revenue hit
+- DEFENSE is as important as OFFENSE when competitors invade your core territory
+
+**What I Built:**
+1. **4 specific defensive plays** — each with copy-paste text messages and time estimates
+2. **Play 1: Loyalty Lock Texts** — personalized messages for Shannon, Amanda, and Chastity that build relationship and preempt switching
+3. **Play 2: Service Photo Upgrade** — before/after photos (30 sec/customer) that beat DD's gate photos
+4. **Play 3: Florissant Loyalty Rate** — 3 pricing options (Grandfather Lock, Loyalty Discount, Add Value) with specific scripts and revenue impact math
+5. **Play 4: Referral Offense** — simple "free month for referral" that beats DD's points program
+6. **Weekly action checklist** — 30 minutes total this week, 2 minutes ongoing per Sunday
+7. **Competitive advantage breakdown** — 5 things TJ has that DD can't buy (relationship, consistency, flexibility, trust, local)
+8. **Warning signs** — how to detect if a customer is shopping around + immediate counter-moves
+9. **30-day defense plan** — reviews, neighborhood saturation, Florissant special, GBP completion
+
+**Key Insight:** DD sends gate photos because they rotate crews (strangers every week). TJ IS the crew — that personal relationship is the #1 defense. The texts this week preempt any DD flyer or ad.
+
+**Expected Impact:**
+- Retain $350/month in revenue (vs potential loss of 47%)
+- Plant referral seeds that could ADD customers in Florissant
+- Before/after photos create content pipeline + justify premium pricing
+- "Grandfather Lock" framing costs $0 but prevents price shopping
+
+**Rotation:** 🛡️ Customer Retention / Competitive Defense
+
+---
+
 ### 3:04 AM — 🔍 COMPETITIVE MONITORING SWEEP — Doggie Doodies in Florissant + Scoop Soldiers Official Launch (Competitive Intel)
 **Task:** Live competitive monitoring sweep of top 3 threats — crawled Doggie Doodies (full site), Scoop Soldiers (STL page + press release), Doody Defenders, and verified tidytailsstl.com indexing status.
 **Result:** ✅ COMPLETE — Shipped `deliverables/competitive-monitoring-march18-3am-2026.md`, updated MEMORY.md competitive table
