@@ -7,6 +7,39 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 10:05 AM — 🐕 SPRING YARD CALCULATOR — Interactive Lead Gen Quiz (Tidy Tails)
+**Task:** Built and deployed an interactive "How Much Poop Is Hiding in Your Yard?" quiz as a lead generation tool on the live GitHub Pages website.
+**Result:** ✅ COMPLETE — LIVE at https://tidytails.github.io/tidytails-website/spring-calculator.html
+
+**Why This Task:**
+- 90+ deliverables but still 4-5 customers. The gap isn't templates — it's ENGAGEMENT.
+- TJ's website (GoDaddy) has had expired SSL for 27+ days. GitHub Pages is the only working web presence.
+- Interactive content gets 2-3x more engagement than static posts. A quiz is shareable, fun, and directly drives calls/texts.
+- Spring is HERE — prime acquisition season. Need something people will actually click and share.
+
+**What I Built:**
+1. **Interactive 4-question quiz** — asks about # of dogs, dog size, cleanup frequency, and time since last real cleanup
+2. **Waste accumulation calculator** — shows estimated lbs, # of piles, trash bags, and hours to clean yourself
+3. **Spring promo integration** — "First cleanup FREE with weekly signup" + "mention Spring Calculator"
+4. **Call/Text CTAs** — direct phone/SMS links to TJ's number (314-850-7140)
+5. **Social share buttons** — Facebook share, copy link, text-a-friend built in
+6. **5 ready-to-post social media copy** — FB Groups, FB personal, Nextdoor, Instagram, and customer referral text
+7. **Homepage integration** — added pulsing gold "Spring Quiz" banner to hero section
+8. **Updated sitemap** — added new page with priority 0.9
+
+**Design:** Mobile-first, clean green/white palette, smooth animations, 30-second completion time. Fun copy ("Be honest. We won't judge." / "Whatever someone's coming over 😬"). Results are dramatic enough to share.
+
+**Deliverables:**
+- `deliverables/spring-yard-calculator-march2026.html`
+- `deliverables/spring-calculator-social-posts-march2026.md`
+- Live: https://tidytails.github.io/tidytails-website/spring-calculator.html
+
+**Next Step for TJ:** Share the quiz link in FB groups and on Nextdoor using the provided copy-paste posts. Text it to existing customers for referral. This is the FIRST deliverable designed to go viral — not just sit in a folder.
+
+**Rotation:** 🐕 Tidy Tails — Lead Generation / Content Marketing
+
+---
+
 ### 9:10 AM — 🏠 FRESH SHED MARKETPLACE ADS — Spring Equinox Ad Pack (Sheds)
 **Task:** Created 6 fresh Facebook Marketplace ads + 3 Instagram captions for the week of March 18-24. Updated tariff intel (now 45%, confirmed by BC Premier meeting with U.S. ambassador). Researched TuffShed current promos (none active — financing only). Built ads around 5 fresh hooks: spring equinox, bar shed, tariff urgency, she shed, clearance pre-owned, and garage replacement. Included posting schedule and market intel update.
 **Result:** ✅ COMPLETE — Full ad pack at `deliverables/shed-marketplace-ads-march18-2026.md`

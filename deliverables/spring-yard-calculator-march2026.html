@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Yard Cleanup Calculator | Tidy Tails STL</title>
+    <meta name="description" content="How much dog waste is hiding in your yard? Take our free 30-second quiz and find out. St. Louis pet waste removal from $25/week.">
+    <meta name="keywords" content="dog waste calculator, pet waste removal St. Louis, spring yard cleanup, pooper scooper service STL">
+    <link rel="canonical" href="https://tidytailsstl.com/spring-calculator">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="🐕💩 How Much Poop Is Hiding in Your Yard?">
+    <meta property="og:description" content="Take our free 30-second quiz. The answer might surprise you. Spring is here — time for a clean yard.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tidytailsstl.com/spring-calculator">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Spring Yard Cleanup Calculator",
+        "description": "Interactive calculator showing how much dog waste accumulates in your yard",
+        "provider": {
+            "@type": "LocalBusiness",
+            "name": "Tidy Tails",
+            "telephone": "+1-314-850-7140",
+            "areaServed": "St. Louis, MO"
+        }
+    }
+    </script>
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --green: #2d6a4f;
+            --green-light: #40916c;
+            --green-bg: #f0f7f4;
+            --brown: #8B4513;
+            --brown-light: #D2691E;
+            --gold: #f4a261;
+            --red: #e63946;
+            --dark: #1a1a2e;
+            --gray: #6b7280;
+            --white: #ffffff;
+            --shadow: 0 4px 24px rgba(0,0,0,0.08);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--green-bg);
+            color: var(--dark);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* NAV */
+        .nav {
+            background: var(--white);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-brand {
+            font-weight: 800;
+            font-size: 1.1rem;
+            color: var(--green);
+            text-decoration: none;
+        }
+        .nav-cta {
+            background: var(--green);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: background 0.2s;
+        }
+        .nav-cta:hover { background: var(--green-light); }
+        
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 3rem 1.5rem 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .hero-emoji { font-size: 3.5rem; margin-bottom: 1rem; }
+        .hero h1 {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 0.75rem;
+            color: var(--dark);
+        }
+        .hero h1 span { color: var(--green); }
+        .hero p {
+            color: var(--gray);
+            font-size: 1.05rem;
+            line-height: 1.5;
+        }
+        
+        /* CALCULATOR CONTAINER */
+        .calc-container {
+            max-width: 520px;
+            margin: 0 auto 3rem;
+            padding: 0 1.5rem;
+        }
+        
+        /* STEP CARDS */
+        .step {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 1rem;
+            display: none;
+            animation: slideUp 0.4s ease;
+        }
+        .step.active { display: block; }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .step-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--green);
+            margin-bottom: 0.75rem;
+        }
+        .step h2 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.3;
+        }
+        .step p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* OPTION BUTTONS */
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+        .options.single { grid-template-columns: 1fr; }
+        
+        .option-btn {
+            background: var(--green-bg);
+            border: 2px solid transparent;
+            border-radius: 14px;
+            padding: 1.2rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        .option-btn:hover {
+            border-color: var(--green-light);
+            background: #e8f5ef;
+        }
+        .option-btn.selected {
+            border-color: var(--green);
+            background: #d8f0e3;
+            color: var(--green);
+        }
+        .option-btn .emoji {
+            display: block;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .option-btn .sub {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--gray);
+            margin-top: 0.25rem;
+        }
+        
+        /* PROGRESS BAR */
+        .progress {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            padding: 0 1.5rem;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .progress-dot {
+            flex: 1;
+            height: 4px;
+            border-radius: 4px;
+            background: #d1e7dd;
+            transition: background 0.3s;
+        }
+        .progress-dot.filled { background: var(--green); }
+        
+        /* RESULTS */
+        .results {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+            display: none;
+            animation: slideUp 0.5s ease;
+        }
+        .results.active { display: block; }
+        
+        .results-header {
+            text-align: center;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 1.5rem;
+        }
+        .results-header .emoji { font-size: 3rem; margin-bottom: 0.5rem; }
+        .results-header h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .results-header h2 span { color: var(--red); }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .stat-card {
+            background: var(--green-bg);
+            border-radius: 14px;
+            padding: 1.2rem;
+            text-align: center;
+        }
+        .stat-card.highlight {
+            background: #fff3e0;
+            grid-column: 1 / -1;
+        }
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--green);
+            line-height: 1;
+        }
+        .stat-card.highlight .stat-number { color: var(--brown-light); }
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-top: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+        
+        .savings-box {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            border-radius: 14px;
+            padding: 1.5rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+        .savings-box h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+        .savings-price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+        .savings-note {
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+        
+        .spring-promo {
+            background: #fff8e1;
+            border: 2px dashed var(--gold);
+            border-radius: 14px;
+            padding: 1.2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .spring-promo .tag {
+            background: var(--gold);
+            color: white;
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 0.25rem 0.75rem;
+            border-radius: 999px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+        .spring-promo p {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--dark);
+        }
+        .spring-promo .small {
+            font-size: 0.8rem;
+            color: var(--gray);
+            font-weight: 400;
+            margin-top: 0.25rem;
+        }
+        
+        .cta-section {
+            text-align: center;
+        }
+        .cta-btn {
+            display: inline-block;
+            background: var(--green);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            transition: all 0.2s;
+            box-shadow: 0 4px 16px rgba(45,106,79,0.3);
+            width: 100%;
+            max-width: 320px;
+        }
+        .cta-btn:hover {
+            background: var(--green-light);
+            transform: translateY(-1px);
+        }
+        .cta-secondary {
+            display: inline-block;
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+        .cta-or {
+            color: var(--gray);
+            font-size: 0.8rem;
+            margin: 0.5rem 0;
+        }
+        
+        /* SHARE */
+        .share-section {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+        .share-section p {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-bottom: 0.75rem;
+        }
+        .share-btns {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+        .share-btn {
+            background: var(--white);
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: var(--dark);
+        }
+        .share-btn:hover { background: var(--green-bg); border-color: var(--green); }
+        
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray);
+            font-size: 0.8rem;
+        }
+        footer a { color: var(--green); text-decoration: none; }
+        
+        /* RESPONSIVE */
+        @media (max-width: 420px) {
+            .hero h1 { font-size: 1.6rem; }
+            .step { padding: 1.5rem; }
+            .options { gap: 0.5rem; }
+            .stat-grid { gap: 0.75rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="nav">
+        <a href="index.html" class="nav-brand">🐾 Tidy Tails STL</a>
+        <a href="tel:3148507140" class="nav-cta">📞 (314) 850-7140</a>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-emoji">🐕💩</div>
+        <h1>How Much Poop Is <span>Hiding</span> in Your Yard?</h1>
+        <p>Take our free 30-second quiz. The answer might make you put your shoes on before going outside.</p>
+    </div>
+
+    <div class="progress">
+        <div class="progress-dot filled" id="prog1"></div>
+        <div class="progress-dot" id="prog2"></div>
+        <div class="progress-dot" id="prog3"></div>
+        <div class="progress-dot" id="prog4"></div>
+    </div>
+
+    <div class="calc-container">
+        
+        <!-- STEP 1: Number of Dogs -->
+        <div class="step active" id="step1">
+            <div class="step-label">Question 1 of 4</div>
+            <h2>How many dogs do you have? 🐕</h2>
+            <p>Each dog produces about 0.75 lbs of waste per day.</p>
+            <div class="options">
+                <button class="option-btn" onclick="selectOption(1, 1)">
+                    <span class="emoji">🐕</span>
+                    1 dog
+                </button>
+                <button class="option-btn" onclick="selectOption(1, 2)">
+                    <span class="emoji">🐕🐕</span>
+                    2 dogs
+                </button>
+                <button class="option-btn" onclick="selectOption(1, 3)">
+                    <span class="emoji">🐕🐕🐕</span>
+                    3 dogs
+                </button>
+                <button class="option-btn" onclick="selectOption(1, 4)">
+                    <span class="emoji">🐕🐕🐕🐕</span>
+                    4+ dogs
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 2: Dog Size -->
+        <div class="step" id="step2">
+            <div class="step-label">Question 2 of 4</div>
+            <h2>What size is your biggest dog? 🦴</h2>
+            <p>Bigger dogs = bigger... you know.</p>
+            <div class="options">
+                <button class="option-btn" onclick="selectOption(2, 'small')">
+                    <span class="emoji">🐩</span>
+                    Small
+                    <span class="sub">Under 25 lbs</span>
+                </button>
+                <button class="option-btn" onclick="selectOption(2, 'medium')">
+                    <span class="emoji">🐕</span>
+                    Medium
+                    <span class="sub">25–60 lbs</span>
+                </button>
+                <button class="option-btn" onclick="selectOption(2, 'large')">
+                    <span class="emoji">🐕‍🦺</span>
+                    Large
+                    <span class="sub">60–100 lbs</span>
+                </button>
+                <button class="option-btn" onclick="selectOption(2, 'xl')">
+                    <span class="emoji">🦮</span>
+                    XL Beast
+                    <span class="sub">100+ lbs</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 3: How often do you clean? -->
+        <div class="step" id="step3">
+            <div class="step-label">Question 3 of 4</div>
+            <h2>How often do you clean the yard? 🧹</h2>
+            <p>Be honest. We won't judge.</p>
+            <div class="options single">
+                <button class="option-btn" onclick="selectOption(3, 'daily')">
+                    Every day (sure you do 😏)
+                </button>
+                <button class="option-btn" onclick="selectOption(3, 'weekly')">
+                    About once a week
+                </button>
+                <button class="option-btn" onclick="selectOption(3, 'biweekly')">
+                    Every couple weeks... maybe
+                </button>
+                <button class="option-btn" onclick="selectOption(3, 'monthly')">
+                    Whenever someone's coming over 😬
+                </button>
+                <button class="option-btn" onclick="selectOption(3, 'never')">
+                    I can't remember the last time 💀
+                </button>
+            </div>
+        </div>
+
+        <!-- STEP 4: How long since last cleanup? -->
+        <div class="step" id="step4">
+            <div class="step-label">Question 4 of 4</div>
+            <h2>When was the last real cleanup? 📅</h2>
+            <p>Not "I kicked a few to the side." A real, thorough cleanup.</p>
+            <div class="options">
+                <button class="option-btn" onclick="selectOption(4, 7)">
+                    <span class="emoji">✅</span>
+                    This week
+                </button>
+                <button class="option-btn" onclick="selectOption(4, 21)">
+                    <span class="emoji">😅</span>
+                    2-3 weeks ago
+                </button>
+                <button class="option-btn" onclick="selectOption(4, 60)">
+                    <span class="emoji">😬</span>
+                    A month or two
+                </button>
+                <button class="option-btn" onclick="selectOption(4, 120)">
+                    <span class="emoji">💀</span>
+                    All winter...
+                </button>
+            </div>
+        </div>
+
+        <!-- RESULTS -->
+        <div class="results" id="results">
+            <div class="results-header">
+                <div class="emoji" id="results-emoji">😱</div>
+                <h2 id="results-headline">Your yard has about <span id="results-lbs">0</span> lbs of waste</h2>
+                <p id="results-subtitle" style="color: var(--gray); font-size: 0.9rem;"></p>
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-piles">0</div>
+                    <div class="stat-label">Estimated Piles</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="stat-bags">0</div>
+                    <div class="stat-label">Trash Bags Full</div>
+                </div>
+                <div class="stat-card highlight">
+                    <div class="stat-number" id="stat-time">0</div>
+                    <div class="stat-label">Hours to Clean It Yourself</div>
+                </div>
+            </div>
+
+            <div class="savings-box">
+                <h3>Or We Handle It For...</h3>
+                <div class="savings-price" id="service-price">$25/week</div>
+                <div class="savings-note" id="service-note">First deep clean included free with weekly signup</div>
+            </div>
+
+            <div class="spring-promo">
+                <div class="tag">🌸 Spring 2026 Special</div>
+                <p>First cleanup FREE when you start weekly service</p>
+                <p class="small">No contracts. Cancel anytime. Mention "Spring Calculator."</p>
+            </div>
+
+            <div class="cta-section">
+                <a href="tel:3148507140" class="cta-btn">📞 Call TJ — (314) 850-7140</a>
+                <div class="cta-or">or</div>
+                <a href="sms:3148507140?body=Hey%20TJ!%20I%20just%20took%20the%20Spring%20Yard%20Calculator%20quiz%20and%20I%20need%20help%20%F0%9F%98%82%20Can%20I%20get%20a%20quote%3F" class="cta-secondary">💬 Text Us Instead</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Share Section (shows after results) -->
+    <div class="share-section" id="share-section" style="display:none;">
+        <p>Know someone whose yard could use this? 😏</p>
+        <div class="share-btns">
+            <a class="share-btn" id="share-fb" href="#" target="_blank">📘 Share</a>
+            <a class="share-btn" id="share-copy" href="#" onclick="copyLink(event)">📋 Copy Link</a>
+            <a class="share-btn" id="share-text" href="#">💬 Text a Friend</a>
+        </div>
+    </div>
+
+    <footer>
+        <p><a href="index.html">🐾 Tidy Tails</a> — St. Louis's Trusted Pet Waste Removal</p>
+        <p style="margin-top:0.25rem;">Serving St. Louis County, St. Charles, O'Fallon, Florissant & more</p>
+        <p style="margin-top:1rem;">© 2026 Tidy Tails. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const answers = {};
+        const sizeMultiplier = { small: 0.4, medium: 0.75, large: 1.2, xl: 1.8 };
+        
+        function selectOption(step, value) {
+            answers[step] = value;
+            
+            // Highlight selected
+            const stepEl = document.getElementById('step' + step);
+            stepEl.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+            event.target.closest('.option-btn').classList.add('selected');
+            
+            // Brief delay then advance
+            setTimeout(() => {
+                if (step < 4) {
+                    document.getElementById('step' + step).classList.remove('active');
+                    document.getElementById('step' + (step + 1)).classList.add('active');
+                    document.getElementById('prog' + (step + 1)).classList.add('filled');
+                } else {
+                    showResults();
+                }
+            }, 300);
+        }
+        
+        function showResults() {
+            document.getElementById('step4').classList.remove('active');
+            
+            const dogs = answers[1] || 1;
+            const size = answers[2] || 'medium';
+            const daysSinceLast = answers[4] || 21;
+            
+            // Calculate waste (lbs per dog per day based on size)
+            const lbsPerDogPerDay = sizeMultiplier[size] || 0.75;
+            const totalLbs = Math.round(dogs * lbsPerDogPerDay * daysSinceLast);
+            const piles = Math.round(totalLbs / 0.25); // ~0.25 lbs per pile average
+            const bags = Math.max(1, Math.round(totalLbs / 8)); // ~8 lbs per bag
+            const cleanupHours = Math.max(0.5, (piles * 0.5 / 60)).toFixed(1); // ~30 sec per pile
+            
+            // Results emoji + headline based on severity
+            let emoji, subtitle;
+            if (totalLbs < 10) {
+                emoji = '😐';
+                subtitle = "Not terrible, but it adds up fast. Spring is the perfect time to get ahead of it.";
+            } else if (totalLbs < 30) {
+                emoji = '😬';
+                subtitle = "That's a LOT of landmines. Your yard is basically an obstacle course.";
+            } else if (totalLbs < 80) {
+                emoji = '😱';
+                subtitle = "Your yard has been through it this winter. Time for a serious rescue mission.";
+            } else {
+                emoji = '💀';
+                subtitle = "We're not gonna sugarcoat it — your yard needs professional intervention. Yesterday.";
+            }
+            
+            document.getElementById('results-emoji').textContent = emoji;
+            document.getElementById('results-lbs').textContent = totalLbs;
+            document.getElementById('results-subtitle').textContent = subtitle;
+            document.getElementById('stat-piles').textContent = piles.toLocaleString();
+            document.getElementById('stat-bags').textContent = bags;
+            document.getElementById('stat-time').textContent = cleanupHours;
+            
+            // Pricing recommendation
+            let price, note;
+            if (dogs <= 2) {
+                price = '$25/week';
+                note = 'First deep clean included free with weekly signup';
+            } else {
+                price = '$25+/week';
+                note = 'Multi-dog pricing available — text for your exact quote';
+            }
+            document.getElementById('service-price').textContent = price;
+            document.getElementById('service-note').textContent = note;
+            
+            // Show results
+            document.getElementById('results').classList.add('active');
+            document.getElementById('share-section').style.display = 'block';
+            
+            // Setup share links
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent(`My yard has ${totalLbs} lbs of dog waste hiding in it 💀 Take this quiz to check yours:`);
+            document.getElementById('share-fb').href = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+            document.getElementById('share-text').href = `sms:?body=${text}%20${url}`;
+            
+            // Smooth scroll
+            setTimeout(() => {
+                document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+        
+        function copyLink(e) {
+            e.preventDefault();
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                e.target.textContent = '✅ Copied!';
+                setTimeout(() => { e.target.textContent = '📋 Copy Link'; }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
