@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ad Tracker | Tidy Tails & Sheds</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+        
+        .header {
+            background: linear-gradient(135deg, var(--bg2), #1a1520);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 2rem; text-align: center;
+        }
+        .header h1 { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.03em; }
+        .header h1 span { color: var(--orange); }
+        .header .subtitle { color: var(--text2); font-size: 0.8rem; margin-top: 0.25rem; }
+        .back-link { 
+            position: absolute; top: 1.5rem; left: 1.5rem;
+            color: var(--text2); text-decoration: none; font-size: 0.8rem;
+            display: flex; align-items: center; gap: 0.3rem;
+        }
+        .back-link:hover { color: var(--orange); }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+        
+        /* KPI Cards */
+        .kpi-row { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); 
+            gap: 0.75rem; margin-bottom: 1.5rem; 
+        }
+        .kpi {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1rem; text-align: center;
+        }
+        .kpi .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text2); margin-bottom: 0.25rem; }
+        .kpi .value { font-size: 1.5rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; }
+        .kpi .sub { font-size: 0.65rem; color: var(--text3); margin-top: 0.15rem; }
+        .kpi.green .value { color: var(--green); }
+        .kpi.orange .value { color: var(--orange); }
+        .kpi.blue .value { color: var(--blue); }
+        .kpi.yellow .value { color: var(--yellow); }
+        .kpi.red .value { color: var(--red); }
+        .kpi.purple .value { color: var(--purple); }
+        
+        /* Tabs */
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .tab {
+            padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600;
+            cursor: pointer; border: 1px solid var(--border); background: var(--bg3);
+            color: var(--text2); transition: all 0.2s;
+        }
+        .tab:hover { border-color: var(--orange); color: var(--text); }
+        .tab.active { background: rgba(255,107,53,0.15); border-color: var(--orange); color: var(--orange); }
+        
+        /* Add Campaign Form */
+        .form-panel {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 1.5rem; display: none;
+        }
+        .form-panel.visible { display: block; }
+        .form-panel h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 0.75rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.25rem; }
+        .form-group label { font-size: 0.7rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.04em; }
+        .form-group input, .form-group select, .form-group textarea {
+            padding: 0.6rem 0.75rem; background: var(--bg4); border: 1px solid var(--border);
+            border-radius: 8px; color: var(--text); font-family: 'Inter', sans-serif;
+            font-size: 0.85rem; outline: none; transition: border-color 0.2s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--orange); }
+        .form-group select option { background: var(--bg4); }
+        .form-group textarea { resize: vertical; min-height: 60px; }
+        .form-actions { display: flex; gap: 0.5rem; margin-top: 1rem; justify-content: flex-end; }
+        
+        .btn {
+            padding: 0.5rem 1.25rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600;
+            cursor: pointer; border: none; transition: all 0.2s; font-family: 'Inter', sans-serif;
+        }
+        .btn-primary { background: var(--orange); color: white; }
+        .btn-primary:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .btn-secondary { background: var(--bg4); color: var(--text2); border: 1px solid var(--border); }
+        .btn-secondary:hover { border-color: var(--text2); color: var(--text); }
+        .btn-green { background: var(--green); color: white; }
+        .btn-green:hover { filter: brightness(1.1); }
+        .btn-red { background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+        .btn-red:hover { background: rgba(239,68,68,0.25); }
+        .btn-small { padding: 0.3rem 0.6rem; font-size: 0.7rem; }
+        
+        /* Campaign Cards */
+        .campaigns { display: flex; flex-direction: column; gap: 0.75rem; }
+        .campaign-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1rem; transition: border-color 0.2s;
+        }
+        .campaign-card:hover { border-color: #333; }
+        .campaign-header {
+            display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .campaign-title { font-weight: 700; font-size: 0.95rem; flex: 1; }
+        .campaign-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .badge {
+            padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.65rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.03em;
+        }
+        .badge-active { background: rgba(16,185,129,0.15); color: var(--green); }
+        .badge-paused { background: rgba(251,191,36,0.15); color: var(--yellow); }
+        .badge-ended { background: rgba(239,68,68,0.15); color: var(--red); }
+        .badge-tidy { background: rgba(16,185,129,0.15); color: var(--green); }
+        .badge-shed { background: rgba(139,92,246,0.15); color: var(--purple); }
+        .badge-platform { background: rgba(59,130,246,0.15); color: var(--blue); }
+        
+        .campaign-stats {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 0.5rem; margin-bottom: 0.75rem;
+        }
+        .stat { text-align: center; padding: 0.4rem; background: var(--bg4); border-radius: 6px; }
+        .stat .s-label { font-size: 0.6rem; color: var(--text3); text-transform: uppercase; }
+        .stat .s-value { font-size: 0.95rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+        .stat .s-value.good { color: var(--green); }
+        .stat .s-value.warn { color: var(--yellow); }
+        .stat .s-value.bad { color: var(--red); }
+        
+        .campaign-notes { font-size: 0.8rem; color: var(--text2); margin-top: 0.5rem; font-style: italic; }
+        .campaign-actions { display: flex; gap: 0.4rem; margin-top: 0.75rem; flex-wrap: wrap; }
+        
+        /* Log Lead Modal */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.7); display: none; z-index: 100;
+            align-items: center; justify-content: center; padding: 1rem;
+        }
+        .modal-overlay.visible { display: flex; }
+        .modal {
+            background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.5rem; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto;
+        }
+        .modal h3 { margin-bottom: 1rem; font-size: 1rem; }
+        
+        /* Lead Log Table */
+        .leads-section { margin-top: 1.5rem; }
+        .leads-section h3 { font-size: 0.95rem; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; }
+        .lead-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+        .lead-table th {
+            text-align: left; padding: 0.5rem; font-size: 0.65rem; text-transform: uppercase;
+            color: var(--text2); border-bottom: 1px solid var(--border); letter-spacing: 0.04em;
+        }
+        .lead-table td { padding: 0.5rem; border-bottom: 1px solid rgba(42,42,42,0.5); }
+        .lead-table tr:hover td { background: rgba(255,107,53,0.03); }
+        
+        .lead-source { display: inline-flex; align-items: center; gap: 0.25rem; }
+        .lead-dot { width: 6px; height: 6px; border-radius: 50%; }
+        .dot-new { background: var(--blue); }
+        .dot-contacted { background: var(--yellow); }
+        .dot-converted { background: var(--green); }
+        .dot-lost { background: var(--red); }
+        
+        /* Chart area */
+        .chart-container {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 1.5rem;
+        }
+        .chart-container h3 { font-size: 0.9rem; margin-bottom: 1rem; }
+        .bar-chart { display: flex; align-items: flex-end; gap: 0.5rem; height: 150px; padding-top: 0.5rem; }
+        .bar-group { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 0.25rem; height: 100%; justify-content: flex-end; }
+        .bar { width: 100%; max-width: 40px; border-radius: 4px 4px 0 0; transition: height 0.3s; min-height: 2px; }
+        .bar-label { font-size: 0.6rem; color: var(--text3); text-align: center; white-space: nowrap; }
+        .bar-value { font-size: 0.65rem; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+        
+        /* Export/Import */
+        .data-actions { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; justify-content: flex-end; flex-wrap: wrap; }
+        
+        /* Empty state */
+        .empty-state {
+            text-align: center; padding: 3rem; color: var(--text3);
+        }
+        .empty-state .emoji { font-size: 2.5rem; margin-bottom: 0.75rem; }
+        .empty-state p { font-size: 0.9rem; margin-bottom: 1rem; }
+        
+        /* Toast */
+        .toast {
+            position: fixed; bottom: 2rem; right: 2rem; padding: 0.75rem 1.25rem;
+            background: var(--green); color: white; border-radius: 8px; font-size: 0.85rem;
+            font-weight: 600; opacity: 0; transform: translateY(10px); transition: all 0.3s;
+            z-index: 200;
+        }
+        .toast.visible { opacity: 1; transform: translateY(0); }
+        
+        @media (max-width: 600px) {
+            .container { padding: 1rem; }
+            .kpi-row { grid-template-columns: repeat(3, 1fr); }
+            .form-grid { grid-template-columns: 1fr; }
+            .campaign-stats { grid-template-columns: repeat(3, 1fr); }
+            .header { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header" style="position: relative;">
+        <a href="index.html" class="back-link">← Dashboard</a>
+        <h1>📊 Ad <span>Tracker</span></h1>
+        <div class="subtitle">Track every ad. Know what works. Kill what doesn't.</div>
+    </div>
+    
+    <div class="container">
+        <!-- KPIs -->
+        <div class="kpi-row" id="kpiRow">
+            <div class="kpi orange"><div class="label">Active Campaigns</div><div class="value" id="kpiActive">0</div></div>
+            <div class="kpi blue"><div class="label">Total Spent</div><div class="value" id="kpiSpent">$0</div></div>
+            <div class="kpi green"><div class="label">Total Leads</div><div class="value" id="kpiLeads">0</div></div>
+            <div class="kpi yellow"><div class="label">Cost / Lead</div><div class="value" id="kpiCPL">--</div></div>
+            <div class="kpi purple"><div class="label">Conversions</div><div class="value" id="kpiConversions">0</div></div>
+            <div class="kpi green"><div class="label">Revenue</div><div class="value" id="kpiRevenue">$0</div><div class="sub">from converted leads</div></div>
+        </div>
+        
+        <!-- Leads by Platform Chart -->
+        <div class="chart-container" id="chartContainer">
+            <h3>📈 Leads by Platform</h3>
+            <div class="bar-chart" id="platformChart"></div>
+        </div>
+        
+        <!-- Actions -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem;">
+            <div class="tabs">
+                <div class="tab active" data-filter="all">All</div>
+                <div class="tab" data-filter="active">Active</div>
+                <div class="tab" data-filter="paused">Paused</div>
+                <div class="tab" data-filter="ended">Ended</div>
+                <div class="tab" data-filter="tidy">🐕 Tidy Tails</div>
+                <div class="tab" data-filter="shed">🏠 Sheds</div>
+            </div>
+            <div style="display: flex; gap: 0.5rem;">
+                <button class="btn btn-secondary btn-small" onclick="toggleForm()">+ New Campaign</button>
+                <button class="btn btn-secondary btn-small" onclick="toggleLeadForm()">+ Log Lead</button>
+            </div>
+        </div>
+        
+        <!-- Add Campaign Form -->
+        <div class="form-panel" id="campaignForm">
+            <h3>➕ New Campaign</h3>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Campaign Name</label>
+                    <input type="text" id="fName" placeholder="e.g., Spring Cleanup FB Ad">
+                </div>
+                <div class="form-group">
+                    <label>Business</label>
+                    <select id="fBusiness">
+                        <option value="tidy">🐕 Tidy Tails</option>
+                        <option value="shed">🏠 Sheds</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Platform</label>
+                    <select id="fPlatform">
+                        <option value="facebook">Facebook</option>
+                        <option value="facebook-mp">FB Marketplace</option>
+                        <option value="instagram">Instagram</option>
+                        <option value="google">Google Ads</option>
+                        <option value="nextdoor">Nextdoor</option>
+                        <option value="craigslist">Craigslist</option>
+                        <option value="thumbtack">Thumbtack</option>
+                        <option value="yelp">Yelp</option>
+                        <option value="tiktok">TikTok</option>
+                        <option value="flyer">Flyer / Door Hanger</option>
+                        <option value="referral">Referral Program</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Budget ($)</label>
+                    <input type="number" id="fBudget" placeholder="0" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>Start Date</label>
+                    <input type="date" id="fStart">
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="fStatus">
+                        <option value="active">Active</option>
+                        <option value="paused">Paused</option>
+                        <option value="ended">Ended</option>
+                    </select>
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label>Ad Copy / Description</label>
+                    <textarea id="fCopy" placeholder="Paste your ad copy here for reference..."></textarea>
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label>Notes</label>
+                    <textarea id="fNotes" placeholder="Targeting, audience, anything to remember..."></textarea>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-secondary" onclick="toggleForm()">Cancel</button>
+                <button class="btn btn-primary" onclick="saveCampaign()">Save Campaign</button>
+            </div>
+        </div>
+        
+        <!-- Campaigns List -->
+        <div class="campaigns" id="campaignsList"></div>
+        
+        <!-- Leads Log -->
+        <div class="leads-section">
+            <h3>📋 Lead Log <span style="font-size: 0.7rem; color: var(--text3); font-weight: 400;" id="leadCount"></span></h3>
+            <div style="overflow-x: auto;">
+                <table class="lead-table" id="leadsTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name / Info</th>
+                            <th>Campaign</th>
+                            <th>Source</th>
+                            <th>Status</th>
+                            <th>Value</th>
+                            <th>Notes</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="leadsBody"></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Data Management -->
+        <div class="data-actions" style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+            <button class="btn btn-secondary btn-small" onclick="exportData()">📥 Export Data</button>
+            <label class="btn btn-secondary btn-small" style="cursor:pointer;">📤 Import Data<input type="file" accept=".json" onchange="importData(event)" style="display:none;"></label>
+            <button class="btn btn-red btn-small" onclick="clearAllData()">🗑 Clear All</button>
+        </div>
+    </div>
+    
+    <!-- Log Lead Modal -->
+    <div class="modal-overlay" id="leadModal">
+        <div class="modal">
+            <h3>📞 Log a Lead</h3>
+            <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="lDate">
+                </div>
+                <div class="form-group">
+                    <label>Campaign</label>
+                    <select id="lCampaign"><option value="">-- Select --</option></select>
+                </div>
+                <div class="form-group">
+                    <label>Name / Phone / Info</label>
+                    <input type="text" id="lName" placeholder="e.g., Sarah from Florissant">
+                </div>
+                <div class="form-group">
+                    <label>How they reached out</label>
+                    <select id="lSource">
+                        <option value="call">📞 Phone Call</option>
+                        <option value="text">💬 Text</option>
+                        <option value="fb-message">📱 FB Message</option>
+                        <option value="form">📋 Website Form</option>
+                        <option value="email">📧 Email</option>
+                        <option value="referral">🤝 Referral</option>
+                        <option value="walkin">🚶 Walk-in/Direct</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Status</label>
+                    <select id="lStatus">
+                        <option value="new">🔵 New Lead</option>
+                        <option value="contacted">🟡 Contacted</option>
+                        <option value="converted">🟢 Converted (Customer!)</option>
+                        <option value="lost">🔴 Lost</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Monthly Value ($)</label>
+                    <input type="number" id="lValue" placeholder="e.g., 100" step="0.01">
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label>Notes</label>
+                    <textarea id="lNotes" placeholder="What they said, what service, area..."></textarea>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button class="btn btn-secondary" onclick="toggleLeadForm()">Cancel</button>
+                <button class="btn btn-green" onclick="saveLead()">Log Lead</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+    
+    <script>
+        // ========= DATA LAYER =========
+        const STORAGE_KEY = 'tidytails_ad_tracker';
+        
+        function getData() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) return JSON.parse(raw);
+            } catch(e) {}
+            return { campaigns: [], leads: [] };
+        }
+        
+        function saveData(data) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        }
+        
+        function genId() { return Date.now().toString(36) + Math.random().toString(36).substr(2, 5); }
+        
+        // ========= CAMPAIGNS =========
+        function toggleForm() {
+            document.getElementById('campaignForm').classList.toggle('visible');
+        }
+        
+        function saveCampaign() {
+            const name = document.getElementById('fName').value.trim();
+            if (!name) { showToast('⚠️ Name required'); return; }
+            
+            const data = getData();
+            const campaign = {
+                id: genId(),
+                name,
+                business: document.getElementById('fBusiness').value,
+                platform: document.getElementById('fPlatform').value,
+                budget: parseFloat(document.getElementById('fBudget').value) || 0,
+                startDate: document.getElementById('fStart').value || new Date().toISOString().split('T')[0],
+                status: document.getElementById('fStatus').value,
+                copy: document.getElementById('fCopy').value.trim(),
+                notes: document.getElementById('fNotes').value.trim(),
+                created: new Date().toISOString()
+            };
+            data.campaigns.push(campaign);
+            saveData(data);
+            
+            // Reset form
+            ['fName','fBudget','fCopy','fNotes'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('fStart').value = new Date().toISOString().split('T')[0];
+            toggleForm();
+            render();
+            showToast('✅ Campaign saved!');
+        }
+        
+        function deleteCampaign(id) {
+            if (!confirm('Delete this campaign? Leads will keep their campaign reference.')) return;
+            const data = getData();
+            data.campaigns = data.campaigns.filter(c => c.id !== id);
+            saveData(data);
+            render();
+            showToast('Campaign deleted');
+        }
+        
+        function toggleCampaignStatus(id) {
+            const data = getData();
+            const c = data.campaigns.find(c => c.id === id);
+            if (!c) return;
+            const cycle = { active: 'paused', paused: 'active', ended: 'active' };
+            c.status = cycle[c.status] || 'active';
+            saveData(data);
+            render();
+        }
+        
+        function updateBudget(id) {
+            const data = getData();
+            const c = data.campaigns.find(c => c.id === id);
+            if (!c) return;
+            const val = prompt('Update total budget spent ($):', c.budget);
+            if (val === null) return;
+            c.budget = parseFloat(val) || 0;
+            saveData(data);
+            render();
+            showToast('Budget updated');
+        }
+        
+        // ========= LEADS =========
+        function toggleLeadForm() {
+            const modal = document.getElementById('leadModal');
+            modal.classList.toggle('visible');
+            if (modal.classList.contains('visible')) {
+                populateCampaignDropdown();
+                document.getElementById('lDate').value = new Date().toISOString().split('T')[0];
+            }
+        }
+        
+        function populateCampaignDropdown() {
+            const data = getData();
+            const sel = document.getElementById('lCampaign');
+            sel.innerHTML = '<option value="">-- No Campaign --</option>';
+            data.campaigns.forEach(c => {
+                sel.innerHTML += `<option value="${c.id}">${c.name} (${c.platform})</option>`;
+            });
+        }
+        
+        function saveLead() {
+            const name = document.getElementById('lName').value.trim();
+            if (!name) { showToast('⚠️ Name/info required'); return; }
+            
+            const data = getData();
+            const lead = {
+                id: genId(),
+                date: document.getElementById('lDate').value || new Date().toISOString().split('T')[0],
+                campaignId: document.getElementById('lCampaign').value,
+                name,
+                source: document.getElementById('lSource').value,
+                status: document.getElementById('lStatus').value,
+                value: parseFloat(document.getElementById('lValue').value) || 0,
+                notes: document.getElementById('lNotes').value.trim(),
+                created: new Date().toISOString()
+            };
+            data.leads.push(lead);
+            saveData(data);
+            
+            ['lName','lValue','lNotes'].forEach(id => document.getElementById(id).value = '');
+            toggleLeadForm();
+            render();
+            showToast('✅ Lead logged!');
+        }
+        
+        function updateLeadStatus(id, newStatus) {
+            const data = getData();
+            const l = data.leads.find(l => l.id === id);
+            if (!l) return;
+            l.status = newStatus;
+            saveData(data);
+            render();
+        }
+        
+        function deleteLead(id) {
+            if (!confirm('Delete this lead?')) return;
+            const data = getData();
+            data.leads = data.leads.filter(l => l.id !== id);
+            saveData(data);
+            render();
+        }
+        
+        // ========= RENDERING =========
+        let currentFilter = 'all';
+        
+        function render() {
+            const data = getData();
+            renderKPIs(data);
+            renderCampaigns(data);
+            renderLeads(data);
+            renderChart(data);
+        }
+        
+        function renderKPIs(data) {
+            const active = data.campaigns.filter(c => c.status === 'active').length;
+            const totalSpent = data.campaigns.reduce((sum, c) => sum + c.budget, 0);
+            const totalLeads = data.leads.length;
+            const conversions = data.leads.filter(l => l.status === 'converted').length;
+            const revenue = data.leads.filter(l => l.status === 'converted').reduce((sum, l) => sum + l.value, 0);
+            const cpl = totalLeads > 0 ? (totalSpent / totalLeads) : 0;
+            
+            document.getElementById('kpiActive').textContent = active;
+            document.getElementById('kpiSpent').textContent = '$' + totalSpent.toFixed(0);
+            document.getElementById('kpiLeads').textContent = totalLeads;
+            document.getElementById('kpiCPL').textContent = totalLeads > 0 ? '$' + cpl.toFixed(2) : '--';
+            document.getElementById('kpiConversions').textContent = conversions;
+            document.getElementById('kpiRevenue').textContent = '$' + (revenue * 12).toFixed(0);
+            document.querySelector('#kpiRevenue + .sub, .kpi:last-child .sub')
+            // Update revenue subtitle
+            const revKpi = document.getElementById('kpiRevenue').parentElement;
+            const sub = revKpi.querySelector('.sub');
+            if (sub) sub.textContent = `$${revenue.toFixed(0)}/mo × 12`;
+        }
+        
+        function renderCampaigns(data) {
+            const container = document.getElementById('campaignsList');
+            let campaigns = [...data.campaigns].reverse();
+            
+            if (currentFilter === 'active') campaigns = campaigns.filter(c => c.status === 'active');
+            else if (currentFilter === 'paused') campaigns = campaigns.filter(c => c.status === 'paused');
+            else if (currentFilter === 'ended') campaigns = campaigns.filter(c => c.status === 'ended');
+            else if (currentFilter === 'tidy') campaigns = campaigns.filter(c => c.business === 'tidy');
+            else if (currentFilter === 'shed') campaigns = campaigns.filter(c => c.business === 'shed');
+            
+            if (campaigns.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <div class="emoji">📊</div>
+                        <p>No campaigns yet. Add your first one!</p>
+                        <button class="btn btn-primary" onclick="toggleForm()">+ New Campaign</button>
+                    </div>`;
+                return;
+            }
+            
+            container.innerHTML = campaigns.map(c => {
+                const leads = data.leads.filter(l => l.campaignId === c.id);
+                const converted = leads.filter(l => l.status === 'converted');
+                const cpl = leads.length > 0 && c.budget > 0 ? (c.budget / leads.length).toFixed(2) : '--';
+                const convRate = leads.length > 0 ? ((converted.length / leads.length) * 100).toFixed(0) : '0';
+                const monthlyRev = converted.reduce((sum, l) => sum + l.value, 0);
+                const roi = c.budget > 0 ? (((monthlyRev * 12 - c.budget) / c.budget) * 100).toFixed(0) : '--';
+                
+                const statusBadge = c.status === 'active' ? 'badge-active' : c.status === 'paused' ? 'badge-paused' : 'badge-ended';
+                const bizBadge = c.business === 'tidy' ? 'badge-tidy' : 'badge-shed';
+                const bizLabel = c.business === 'tidy' ? '🐕 Tidy Tails' : '🏠 Sheds';
+                
+                const platformNames = {
+                    'facebook': 'Facebook', 'facebook-mp': 'FB Marketplace', 'instagram': 'Instagram',
+                    'google': 'Google Ads', 'nextdoor': 'Nextdoor', 'craigslist': 'Craigslist',
+                    'thumbtack': 'Thumbtack', 'yelp': 'Yelp', 'tiktok': 'TikTok',
+                    'flyer': 'Flyer', 'referral': 'Referral', 'other': 'Other'
+                };
+                
+                const cplClass = cpl === '--' ? '' : parseFloat(cpl) < 15 ? 'good' : parseFloat(cpl) < 30 ? 'warn' : 'bad';
+                const roiClass = roi === '--' ? '' : parseInt(roi) > 100 ? 'good' : parseInt(roi) > 0 ? 'warn' : 'bad';
+                
+                return `
+                <div class="campaign-card">
+                    <div class="campaign-header">
+                        <div class="campaign-title">${c.name}</div>
+                        <div class="campaign-meta">
+                            <span class="badge badge-platform">${platformNames[c.platform] || c.platform}</span>
+                            <span class="badge ${bizBadge}">${bizLabel}</span>
+                            <span class="badge ${statusBadge}">${c.status}</span>
+                        </div>
+                    </div>
+                    <div class="campaign-stats">
+                        <div class="stat"><div class="s-label">Spent</div><div class="s-value">$${c.budget.toFixed(0)}</div></div>
+                        <div class="stat"><div class="s-label">Leads</div><div class="s-value">${leads.length}</div></div>
+                        <div class="stat"><div class="s-label">Cost/Lead</div><div class="s-value ${cplClass}">${cpl === '--' ? '--' : '$'+cpl}</div></div>
+                        <div class="stat"><div class="s-label">Converted</div><div class="s-value ${converted.length > 0 ? 'good' : ''}">${converted.length}</div></div>
+                        <div class="stat"><div class="s-label">Conv. Rate</div><div class="s-value">${convRate}%</div></div>
+                        <div class="stat"><div class="s-label">ROI</div><div class="s-value ${roiClass}">${roi === '--' ? '--' : roi+'%'}</div></div>
+                    </div>
+                    ${c.notes ? `<div class="campaign-notes">"${c.notes}"</div>` : ''}
+                    <div class="campaign-actions">
+                        <button class="btn btn-secondary btn-small" onclick="toggleCampaignStatus('${c.id}')">${c.status === 'active' ? '⏸ Pause' : '▶️ Activate'}</button>
+                        <button class="btn btn-secondary btn-small" onclick="updateBudget('${c.id}')">💰 Update Spend</button>
+                        <button class="btn btn-red btn-small" onclick="deleteCampaign('${c.id}')">Delete</button>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+        
+        function renderLeads(data) {
+            const tbody = document.getElementById('leadsBody');
+            const leads = [...data.leads].reverse();
+            
+            document.getElementById('leadCount').textContent = `(${leads.length} total)`;
+            
+            if (leads.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" style="text-align:center; padding:2rem; color:var(--text3);">No leads logged yet. When someone calls or texts from an ad, log it here!</td></tr>`;
+                return;
+            }
+            
+            const statusIcons = { new: '🔵', contacted: '🟡', converted: '🟢', lost: '🔴' };
+            const sourceIcons = { call: '📞', text: '💬', 'fb-message': '📱', form: '📋', email: '📧', referral: '🤝', walkin: '🚶', other: '❓' };
+            
+            tbody.innerHTML = leads.map(l => {
+                const campaign = data.campaigns.find(c => c.id === l.campaignId);
+                const statusOptions = ['new','contacted','converted','lost'].map(s => 
+                    `<option value="${s}" ${l.status === s ? 'selected' : ''}>${statusIcons[s]} ${s}</option>`
+                ).join('');
+                
+                return `
+                <tr>
+                    <td style="white-space:nowrap; font-family:'JetBrains Mono',monospace; font-size:0.75rem;">${l.date}</td>
+                    <td><strong>${l.name}</strong></td>
+                    <td style="font-size:0.75rem; color:var(--text2);">${campaign ? campaign.name : '--'}</td>
+                    <td>${sourceIcons[l.source] || ''} ${l.source}</td>
+                    <td>
+                        <select onchange="updateLeadStatus('${l.id}', this.value)" style="background:var(--bg4); border:1px solid var(--border); border-radius:4px; color:var(--text); padding:0.2rem 0.3rem; font-size:0.75rem; font-family:'Inter',sans-serif;">
+                            ${statusOptions}
+                        </select>
+                    </td>
+                    <td style="font-family:'JetBrains Mono',monospace;">${l.value > 0 ? '$'+l.value.toFixed(0)+'/mo' : '--'}</td>
+                    <td style="font-size:0.75rem; color:var(--text2); max-width:150px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${l.notes || ''}">${l.notes || ''}</td>
+                    <td><button class="btn btn-red btn-small" onclick="deleteLead('${l.id}')">×</button></td>
+                </tr>`;
+            }).join('');
+        }
+        
+        function renderChart(data) {
+            const container = document.getElementById('platformChart');
+            
+            // Count leads by platform
+            const platformLeads = {};
+            data.leads.forEach(l => {
+                const campaign = data.campaigns.find(c => c.id === l.campaignId);
+                const platform = campaign ? campaign.platform : 'unknown';
+                platformLeads[platform] = (platformLeads[platform] || 0) + 1;
+            });
+            
+            const platformNames = {
+                'facebook': 'FB', 'facebook-mp': 'FBM', 'instagram': 'IG',
+                'google': 'Google', 'nextdoor': 'Next', 'craigslist': 'CL',
+                'thumbtack': 'Tack', 'yelp': 'Yelp', 'tiktok': 'TT',
+                'flyer': 'Flyer', 'referral': 'Ref', 'other': 'Other', 'unknown': '??'
+            };
+            const platformColors = {
+                'facebook': '#3b82f6', 'facebook-mp': '#60a5fa', 'instagram': '#e879f9',
+                'google': '#fbbf24', 'nextdoor': '#10b981', 'craigslist': '#8b5cf6',
+                'thumbtack': '#f97316', 'yelp': '#ef4444', 'tiktok': '#06b6d4',
+                'flyer': '#a78bfa', 'referral': '#34d399', 'other': '#6b7280', 'unknown': '#374151'
+            };
+            
+            const entries = Object.entries(platformLeads).sort((a,b) => b[1] - a[1]);
+            
+            if (entries.length === 0) {
+                container.innerHTML = '<div style="text-align:center; color:var(--text3); font-size:0.8rem; padding: 2rem;">Chart populates as you log leads → campaigns</div>';
+                return;
+            }
+            
+            const max = Math.max(...entries.map(e => e[1]));
+            
+            container.innerHTML = entries.map(([platform, count]) => {
+                const height = Math.max(10, (count / max) * 120);
+                const color = platformColors[platform] || '#6b7280';
+                const name = platformNames[platform] || platform;
+                return `
+                <div class="bar-group">
+                    <div class="bar-value" style="color:${color};">${count}</div>
+                    <div class="bar" style="height:${height}px; background:${color};"></div>
+                    <div class="bar-label">${name}</div>
+                </div>`;
+            }).join('');
+        }
+        
+        // ========= TABS =========
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentFilter = tab.dataset.filter;
+                render();
+            });
+        });
+        
+        // ========= DATA EXPORT/IMPORT =========
+        function exportData() {
+            const data = getData();
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ad-tracker-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('📥 Data exported!');
+        }
+        
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (imported.campaigns && imported.leads) {
+                        const current = getData();
+                        // Merge (avoid duplicates by ID)
+                        const existingCIds = new Set(current.campaigns.map(c => c.id));
+                        const existingLIds = new Set(current.leads.map(l => l.id));
+                        imported.campaigns.forEach(c => { if (!existingCIds.has(c.id)) current.campaigns.push(c); });
+                        imported.leads.forEach(l => { if (!existingLIds.has(l.id)) current.leads.push(l); });
+                        saveData(current);
+                        render();
+                        showToast('📤 Data imported!');
+                    } else {
+                        showToast('⚠️ Invalid file format');
+                    }
+                } catch(e) { showToast('⚠️ Could not parse file'); }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+        
+        function clearAllData() {
+            if (!confirm('⚠️ Delete ALL campaigns and leads? This cannot be undone.')) return;
+            if (!confirm('Are you REALLY sure?')) return;
+            localStorage.removeItem(STORAGE_KEY);
+            render();
+            showToast('🗑 All data cleared');
+        }
+        
+        // ========= TOAST =========
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('visible');
+            setTimeout(() => toast.classList.remove('visible'), 2500);
+        }
+        
+        // ========= INIT =========
+        document.getElementById('fStart').value = new Date().toISOString().split('T')[0];
+        render();
+    </script>
+</body>
+</html>
