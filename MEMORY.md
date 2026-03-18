@@ -54,20 +54,21 @@
 - Average customer value: ~$100/month
 - **$70/month flat rate = UNIQUE** — no competitor offers this
 
-### Current State (Mar 17, 2026)
+### Current State (Mar 18, 2026)
 - **~8 recurring customers** (per customer table below, TJ hasn't confirmed churn)
 - Solo operation, wife does scheduling
 - Revenue: ~$750/month at peak, likely lower now
 - Sunday scooping day — all customers on Sunday
-- **SSL EXPIRED Feb 19, 2026** — 26 days and counting. Site shows security warning. Blocks Google indexing. TJ MUST fix this.
+- **SSL RENEWED ✅** — Certificate valid Feb 16 → May 17, 2026. Site loads fast on Cloudflare.
 - **GBP VERIFIED** ✅ but only **7% complete** — needs hours, photos, services, description, categories
 
 ### Online Presence
 - GBP: VERIFIED ✅ (Mar 17, 2026) — Profile verified but only **7% complete**. DO NOT ASK ABOUT VERIFICATION AGAIN.
 - Yelp: CLAIMED ✅ (Mar 5) — DO NOT ASK AGAIN
 - Google Search Console: VERIFIED ✅ (Mar 5) — DO NOT ASK AGAIN
-- **⚠️ SSL EXPIRED Feb 19, 2026** — Site shows security warning. Blocks ALL indexing. TJ must renew in GoDaddy.
-- **⚠️ STILL NOT INDEXED BY GOOGLE** (confirmed Mar 16 — Day 30+, site: search = 0 results)
+- **✅ SSL RENEWED** (Feb 16, 2026) — Valid until May 17, 2026. Blocker removed.
+- **⚠️ STILL NOT INDEXED** (confirmed Mar 18 — site:tidytailsstl.com = 0 results on Brave/Bing/Google)
+- **⚠️ GSC RESUBMISSION NEEDED** — TJ must manually request indexing in Google Search Console. This is the #1 priority action.
 - **⚠️ BRAND NAME COLLISION:** 8+ other "Tidy Tails" businesses nationally compete for branded search. Always use "Tidy Tails STL" in citations.
 - **MapQuest listing EXISTS** (auto-generated, Olivette MO 63132) — free citation
 - **ZERO Google reviews** vs competitors with 6+
