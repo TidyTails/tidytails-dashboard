@@ -7,6 +7,40 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 5:04 PM — 📱 JAMIE'S LEAD CONVERSION PLAYBOOK — Mobile Sales Tool (Sales/Operations)
+**Task:** Built a mobile-optimized HTML playbook Jamie can bookmark on her phone with every script, objection handler, pricing calculator, and competitor comparison she needs to convert leads in real-time.
+**Result:** ✅ COMPLETE — LIVE at https://tidytails.github.io/tidytails-dashboard/jamie-lead-playbook.html, added to dashboard nav
+
+**Why This Task:**
+- Ads are LIVE as of today — leads are about to start coming in
+- Existing onboarding doc is a 350-line markdown file — useless on a phone during a live conversation
+- Old scripts all say "TJ" — Jamie is the face now (branding change from today's 1:21 PM update)
+- 78% of customers go with whoever responds first — Jamie needs scripts AT HER FINGERTIPS
+- This bridges the gap between "ads running" and "money in the bank"
+
+**What's In It:**
+1. **📱 Scripts Tab** — 10 copy-paste templates: new lead (text), new lead (FB/Nextdoor), quote, follow-up #1, follow-up #2, missed call, first clean before/after, review ask, referral ask
+2. **💰 Pricing Tab** — Visual pricing grid + interactive quote calculator (tap 1/2/3+ dogs → auto-generates copy-paste quote text)
+3. **🛡️ Objections Tab** — 8 expandable objection handlers: too expensive, can do it myself, need to think about it, do you cover my area, what if you miss spots, how do I pay, do I need to be home, only one dog
+4. **📅 Follow-Up Timeline** — Visual timeline showing exactly when to send what (15 min → same day → 24h → 72h → 1st clean → 2nd clean → 1 month review → 2 month referral)
+5. **⚔️ Competitors Tab** — Live pricing comparison (all 8 major competitors), our advantages, what to say when they mention a cheaper option
+6. **🗺️ Areas Tab** — 16 service area cities, out-of-area script
+7. **📞 Floating Call Button** — One-tap call to 314-850-7140
+8. **Copy buttons on EVERY script** — tap to copy, paste into text. Zero friction.
+
+**Technical:** Dark theme matching dashboard, all Jamie-branded, mobile-first responsive, pure HTML/CSS/JS, deployed to GitHub Pages, linked from dashboard nav bar.
+
+**Key Design Decisions:**
+- Every script has a one-tap COPY button (this is for texting, not reading)
+- Objections are collapsible accordions (find what you need fast)
+- Quote calculator does the math AND generates the copy-paste text
+- Speed banner at top: "⚡ 15 MIN — respond within 15 minutes"
+- Competitor tab lets Jamie handle "why not go with X?" on the spot
+
+**Rotation:** 📱 Sales/Operations — Lead Conversion Tools
+
+---
+
 ### 4:05 PM — 🗺️ GBP COMPLETE OPTIMIZATION GUIDE — Post-Indexing Edition (SEO/Growth)
 **Task:** Google indexing went live TODAY at 3:03 PM. But GBP is only 7% complete and has 0 reviews. Built comprehensive guide to capitalize on the indexing breakthrough before the window closes.
 **Result:** ✅ COMPLETE — Shipped `deliverables/gbp-optimization-complete-guide-march2026.md`, updated dashboard
