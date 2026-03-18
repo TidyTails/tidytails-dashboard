@@ -71,6 +71,8 @@
 - **⚠️ GSC RESUBMISSION NEEDED** — TJ must manually request indexing in Google Search Console. This is the #1 priority action.
 - **⚠️ BRAND NAME COLLISION:** 8+ other "Tidy Tails" businesses nationally compete for branded search. Always use "Tidy Tails STL" in citations.
 - **MapQuest listing EXISTS** (auto-generated, Olivette MO 63132) — free citation
+- **BringFido.com** — pet services directory covers Florissant. TJ NOT listed. Free listing.
+- **Doggie Doodies may have $72/mo entry tier** — search snippet shows "starting at $72/monthly" (Mar 18). Monitor.
 - **ZERO Google reviews** vs competitors with 6+
 - Google Review Link: https://g.page/r/Ce_hqIHanGLvEAE/review
 - 21 city/area landing pages built on tidytailsstl.com
@@ -102,13 +104,13 @@
 
 ---
 
-## 🔍 Competitive Landscape (Updated Mar 18, 2026 3AM)
+## 🔍 Competitive Landscape (Updated Mar 18, 2026 7AM)
 
 ### ACTIVE Competitors — Definitive Table
 
 | Competitor | Territory | Weekly Price | Monthly | Threat | Key Notes |
 |------------|-----------|-------------|---------|--------|-----------|
-| **POOP 911** 🔴 | South STL/City (70+ zips) | $11.95-$13.95 | ~$52 | HIGH | National franchise, FREE first cleanup, lowest price |
+| **POOP 911** 🔴 | South STL/City (70+ zips) + **FLORISSANT** | $11.95-$13.95 | ~$52 | HIGH | National franchise, FREE first cleanup, lowest price. **Has dedicated Florissant landing page** with local SEO (St. Ferdinand Park, Eagan Center, McCluer schools). |
 | **Scoop Soldiers** 🔴 | STL County + surrounding | ~$15 | ~$60 | HIGH | National franchise, **officially launched STL Feb 6 2026** (EIN Presswire). 24hr support, sanitization/deodorizer add-ons, commercial+residential. Led by Michayla Sims. Also expanding to Cincinnati. First service FREE. |
 | **Dog Doody Defenders** 🔴 | Chesterfield + Florissant | $17 | ~$68 | HIGH | Veteran-owned, TJ's exact territory. Site still minimal. |
 | **Poop2Scoop** 🟡 | STL County | $18 | ~$78 | MED | Veteran-owned, smart add-on pricing, aPaws member |

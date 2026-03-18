@@ -7,6 +7,25 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 7:04 AM — 🔍 COMPETITIVE INTELLIGENCE SWEEP — Territory Threat Assessment (Research)
+**Task:** Live competitive sweep of all major competitors targeting TJ's territory. Checked site indexing status, scraped Doggie Doodies pricing, Scoop Soldiers STL page, POOP 911 Florissant page, and Dr. Scoops status.
+**Result:** ✅ COMPLETE — Full intel report at `deliverables/competitive-intel-march18-7am.md`
+
+**Key Findings:**
+1. **🚨 POOP 911 has a DEDICATED Florissant landing page** — hyper-local SEO targeting TJ's core territory with landmark name-drops (St. Ferdinand Park, Eagan Center, McCluer schools). At $11.95/wk they're 52% cheaper.
+2. **tidytailsstl.com STILL NOT INDEXED** — 0 results on Brave. Weeks of zero visibility. GSC resubmission remains #1 blocker.
+3. **Scoop Soldiers 6 weeks in STL** — professional franchise presence, targeting residential + HOA + commercial. Quote-based pricing.
+4. **Doggie Doodies pricing stable** ($83/mo weekly) but search snippet shows "starting at $72/monthly" — possible new tier.
+5. **Doggie Doodies service areas page simplified** — no individual cities listed anymore, just "West County & St. Charles County."
+6. **Dr. Scoops still Ballwin-only** — not in TJ's territory yet.
+7. **BringFido.com** — new free directory opportunity found for Florissant listings.
+
+**Why This Task:** Self-assessment says "Competitive monitoring. Market is moving." POOP 911 building Florissant-specific SEO is a direct threat to TJ's core customer base. This intel is actionable — TJ needs to know competitors are targeting his exact neighborhoods.
+
+**Rotation:** 🔍 Research / Competitive Intelligence
+
+---
+
 ### 6:05 AM — 🧠 MEMORY MAINTENANCE & ARCHIVAL — Clean Context for Better Performance (Maintenance)
 **Task:** Reviewed Mar 16-18 daily files, archived stale franklin-tasks entries (trimmed 158 lines), updated MEMORY.md with Mar 18 milestone, fixed contradictory SSL references, updated asset inventory, and pruned outdated data.
 **Result:** ✅ COMPLETE — franklin-tasks.md trimmed 1124→966 lines, MEMORY.md updated
