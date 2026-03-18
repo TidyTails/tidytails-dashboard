@@ -68,8 +68,8 @@
 - Yelp: CLAIMED ✅ (Mar 5) — DO NOT ASK AGAIN
 - Google Search Console: VERIFIED ✅ (Mar 5) — DO NOT ASK AGAIN
 - **✅ SSL RENEWED** (Feb 16, 2026) — Valid until May 17, 2026. Blocker removed.
-- **⚠️ STILL NOT INDEXED** (confirmed Mar 18 — site:tidytailsstl.com = 0 results on Brave/Bing/Google)
-- **⚠️ GSC RESUBMISSION NEEDED** — TJ must manually request indexing in Google Search Console. This is the #1 priority action.
+- **✅ INDEXED ON GOOGLE** (confirmed Mar 18 3:03 PM) — URL on Google, page indexed, HTTPS ✅, FAQ schema ✅, sitemap submitted (17 pages discovered)
+- **✅ GSC DONE** — TJ submitted sitemap + URL inspection confirmed indexed. #1 blocker RESOLVED.
 - **⚠️ BRAND NAME COLLISION:** 8+ other "Tidy Tails" businesses nationally compete for branded search. Always use "Tidy Tails STL" in citations.
 - **MapQuest listing EXISTS** (auto-generated, Olivette MO 63132) — free citation
 - **BringFido.com** — pet services directory covers Florissant. TJ NOT listed. Free listing.
