@@ -7,6 +7,47 @@
 
 ## March 17, 2026 (Tuesday)
 
+### 7:04 PM — 🚨 DIGITAL VISIBILITY EMERGENCY AUDIT — Why Nobody Can Find Tidy Tails (SEO / Discovery)
+**Task:** Conducted a live digital presence audit — actually searched Google, Yelp, and directories to see what a customer finds when searching for pet waste removal in STL. Built a 5-tab mobile-first HTML action plan with copy-paste business info and execution checklist.
+**Result:** ✅ COMPLETE — Shipped `deliverables/digital-visibility-emergency-plan-march2026.html`
+
+**Why This Task:**
+- We have 106 deliverables but Tidy Tails is STILL invisible online
+- I searched "pooper scooper st louis" — Tidy Tails is NOT in the top 100 results
+- Even searching "Tidy Tails pet waste St Louis" doesn't return tidytailsstl.com
+- 10+ competitors rank on Google page 1; Tidy Tails isn't there
+- Yelp's top 10 STL pet waste: no Tidy Tails
+- The website looks great — the problem is DISCOVERABILITY, not quality
+
+**Key Findings:**
+- **Google Search Rank: 0** — not in top 100 for any relevant keyword
+- **Directory Listings: 0/12** — GBP, Yelp, Nextdoor, Bing, Apple Maps, Facebook, Thumbtack, Angi, BBB all missing or unoptimized
+- **Online Reviews: 0** — Google + Yelp combined
+- **tidytailsstl.net: DEAD** — DNS doesn't resolve (old domain completely gone)
+- **New competitor alert:** "Pawfect Waste Solutions" claimed pooperscooperstl.com (currently 404)
+- **Brand confusion:** "Tidy Tails Waste Solutions" in Atlanta has 5-star reviews and ranks above TJ's business for brand searches
+- **Competitor Poop 2 Scoop** appears 3x on page 1 (their site + PetWorks listing + services page)
+
+**What I Built (5 tabs):**
+1. **📊 Audit** — Live search results showing exactly who ranks and where Tidy Tails is (nowhere), platform-by-platform status
+2. **🔍 vs Them** — Competitor presence comparison grid, Yelp top 10 list, new competitor alerts
+3. **📋 Listings** — 12 priority-ranked platforms to claim with direct links, time estimates, and setup instructions
+4. **📝 Copy** — Copy-paste business name, short/medium/full descriptions, keywords, service areas, and NAP for all platforms
+5. **✅ Do It** — 17-item execution checklist: Tonight (45 min), This Week, Reviews strategy, Next Week — with localStorage progress tracking
+
+**The Core Insight:**
+The website isn't the problem. Discovery is the problem. TJ built a store in the middle of a forest with no road signs. Fix the signs first, then worry about everything else.
+
+**Expected Impact:**
+- 2 hours of TJ's time → listed on 6+ platforms
+- 5+ Google reviews → appear in Local Pack within weeks
+- $0 cost for projected 5-10 organic leads/month
+- This is the FOUNDATION that makes every other marketing effort work
+
+**Rotation:** 🔍 Digital Presence / Local SEO
+
+---
+
 ### 6:05 PM — 🏘️ NEXTDOOR + COMMUNITY MARKETING LAUNCH KIT (Lead Generation / Free Channels)
 **Task:** Researched Nextdoor business features, competitor presence, Facebook groups, and Craigslist strategy. Built a complete community marketing launch kit with ready-to-post content for 4 free channels.
 **Result:** ✅ COMPLETE — Shipped `deliverables/nextdoor-community-launch-kit-march2026.md`
