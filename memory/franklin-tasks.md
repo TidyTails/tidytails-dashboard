@@ -7,6 +7,48 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 1:04 AM — 📱 FACEBOOK GROUP BLITZ GUIDE — 32+ Groups Mapped With Strategy (Lead Generation)
+**Task:** Researched, verified, and compiled a comprehensive Facebook Group marketing guide — 32+ St. Louis area groups organized by type (BST, Pet, Mom, Neighborhood) with member counts, URLs, posting templates, 2-week schedule, and tips from successful pet waste companies.
+**Result:** ✅ COMPLETE — Shipped `memory/fb-groups-blitz-guide.md`
+
+**Why This Task:**
+- Facebook groups = ONLY proven lead channel for Tidy Tails (per MEMORY.md)
+- Old list (Feb 24) had only 8 groups with no member counts or strategy
+- Lesson #14 in memory: "Cron tasks compound but don't convert" — this guide is designed for EXECUTION, not reading
+- Spring = peak season for pet waste removal — time-sensitive opportunity
+- Erica Krupin (Kroopin's Poopin Scoopin) made $5-6K from ONE Facebook group post — proof this works
+
+**What I Built:**
+1. **32+ groups** organized into 4 tiers by type/ROI:
+   - Tier 1: 12 Buy/Sell/Trade groups (10K-110K members each)
+   - Tier 2: 8 Pet/Dog groups (targeted audience)
+   - Tier 3: 9 Mom/Parent groups (referral machines)
+   - Tier 4: 3 Neighborhood/Community groups + 2 big pages
+2. **4 copy-paste post templates** (Before/After, Spring Cleanup, Casual/Funny, Helpful Engagement)
+3. **2-week posting schedule** (75 min week 1, 70 min week 2, 10 min/day ongoing)
+4. **20-minute Speed Run** (3 groups to join + post in tonight)
+5. **Pro tips from research** — what works vs. what doesn't, based on case studies
+6. **Expected results table** — conservative to aggressive projections
+
+**Key Research Findings:**
+- Wentzville MO BST group has **110,600 members** — largest in TJ's territory
+- St. Charles MO BST has **77,900 members**
+- Before/after photos are the #1 performing content type for pet waste companies
+- BST groups outperform pet groups for direct customer acquisition
+- Mom groups = referral multiplier (1 rec → 3-5 signups)
+- Spring thaw posts convert highest March-May (RIGHT NOW)
+
+**Expected Impact:**
+- Conservative: 2-3 new customers/month ($200-300 added revenue)
+- Moderate: 5-7 new customers/month ($500-700 added revenue)
+- This is the single highest-ROI action TJ can take with $0 budget
+
+**Supersedes:** `memory/fb-groups-target-list.md` (Feb 24 version, 8 groups, no strategy)
+
+**Rotation:** 📱 Marketing / Lead Generation — Facebook Groups
+
+---
+
 ### 12:04 AM — 🔍 SEO RECOVERY AUDIT — Post-SSL Fix Indexing Status (Lead Generation)
 **Task:** Comprehensive technical SEO audit of tidytailsstl.com now that SSL is renewed. Verified all 17 pages return 200, checked schema markup, meta tags, sitemap, robots.txt, page speed, and search engine visibility.
 **Result:** ✅ COMPLETE — Shipped `deliverables/seo-recovery-audit-march18-2026.md`
