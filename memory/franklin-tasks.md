@@ -7,6 +7,37 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 3:05 PM — 🏠 FRESH SHED AD PACK — 11 Ready-to-Post Ads with Updated Market Data (Shed Ads)
+**Task:** Created 11 fresh shed ads (6 FB Marketplace + 3 Instagram + 2 Craigslist) with live March 18 market data. TJ specifically requested fresh shed ads at 1:21 PM today.
+**Result:** ✅ COMPLETE — Shipped `deliverables/shed-ads-fresh-march18-2026.md`, updated dashboard
+
+**Why This Task:**
+- TJ EXPLICITLY asked for fresh shed ads at 1:21 PM — direct request from the boss
+- Previous ad pack (March 14) had stale data — lumber was unspecified, tariff review "5 days ago"
+- Updated with LIVE data: lumber $501/mfbm (+2% this week), tariffs 35.19%, review 9 days in
+- Spring equinox is TOMORROW (March 20) — time-sensitive seasonal hook
+- No active TuffShed promo — ads lean on urgency + financing (confirmed via live scrape)
+
+**What's In It:**
+1. **6 FB Marketplace Ads** — Spring Equinox Eve, Lumber Went Up, Midweek Reality Check, Storage Unit Math, Dog Days of Spring, Investment Angle
+2. **3 Instagram Captions** — Spring Equinox, Lumber Update, Spring Projects
+3. **2 Craigslist Posts** — Storage Shed, Workshop/Office
+4. **Full posting schedule** — Mar 18-24, one ad per day
+5. **Market data table** — lumber $501, tariff 35.19%, financing options
+6. **Comparison table** — what changed vs last week's ads
+
+**Fresh Hooks (not in previous batch):**
+- Storage unit cost comparison ($9,000 over 5 years vs owning)
+- Specific lumber price ($501 with week-over-week trend)
+- Spring project workshop angle
+- Craigslist versions (new platform = new eyeballs)
+
+**All in TJ's voice:** conversational, no pressure, humor where it fits, Darius contact, @reddshedredemption
+
+**Rotation:** 🏠 Shed Business — Ad Copy (Direct TJ Request)
+
+---
+
 ### 2:05 PM — 📊 AD PERFORMANCE TRACKER — Built What TJ Asked For (Dashboard / Tool)
 **Task:** Built and deployed a full ad performance tracking dashboard. TJ asked for this at 1:21 PM after confirming ads are LIVE for the first time. He needs to know what's working vs what's not.
 **Result:** ✅ COMPLETE — LIVE at https://tidytails.github.io/tidytails-dashboard/ad-tracker.html
