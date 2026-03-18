@@ -14,7 +14,8 @@
 - **Best time for Tidy Tails work:** 4-6pm weekdays
 - Natural closer (12+ years sales). Drained by: ad copy, content, admin, learning/videos.
 - Wants autonomy given to me, but I check before external actions
-- Wife handles scheduling, has 3 hrs/week capacity for growth tasks
+- Wife **Jamie** handles scheduling, has 3 hrs/week capacity for growth tasks
+- **⚠️ JAMIE = face of Tidy Tails.** All customer-facing content says Jamie, NOT TJ. TJ is "the technician." Jamie is the owner/contact in all ads, posts, copy.
 - Email: cartervhomes@gmail.com
 
 ## 🤖 Sub-Agent Architecture
