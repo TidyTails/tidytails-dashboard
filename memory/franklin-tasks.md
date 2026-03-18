@@ -7,6 +7,36 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 12:10 PM — 🚀 LEAD PLATFORM SIGNUP PLAYBOOK — Get Found Where Customers Look (Lead Generation)
+**Task:** Researched every lead generation platform relevant to pet waste removal. Crawled Thumbtack, Petworks, Pooper-Scooper.com, BringFido, Bark.com, Angi, aPaws, Craigslist, and Nextdoor. Evaluated each for cost, setup time, lead quality, and whether competitors are already there. Built a prioritized 2-hour signup playbook with copy-paste business info and ad copy.
+**Result:** ✅ COMPLETE — Shipped `deliverables/lead-platform-signup-playbook-march18-2026.md`
+
+**Why This Task:**
+- 90+ deliverables built, still ~8 customers. Lesson #1: "Build vs deploy gap is the #1 problem"
+- Lesson #14: "Cron tasks compound but don't convert"
+- TJ is invisible on EVERY lead platform — Craigslist, Thumbtack, Petworks, Bark, Angi, BringFido, Pooper-Scooper.com
+- Meanwhile competitors (Poop2Scoop, POOP 911, Dr. Scoops) ARE on these platforms getting leads
+
+**🔥 Key Discovery:**
+- **Pooper-Scooper.com Missouri page = COMPLETELY EMPTY.** Zero listings. TJ would be the ONLY pet waste service in the entire state for $7-10/month. This directory ranks on Google for "pooper scooper [state]" searches.
+- Petworks has Poop2Scoop listed but NOT Tidy Tails
+- BringFido is free and TJ isn't listed
+- Thumbtack has 106 yard waste pros in STL but no dedicated pet waste — first mover opportunity
+
+**Deliverable Includes:**
+- 10 platforms ranked by priority (free first, then low-cost, then professional)
+- Copy-paste business info block for all platforms
+- Ready-to-post Craigslist ad copy
+- Ready-to-paste Pooper-Scooper.com listing (100 words)
+- 2-hour evening session schedule (exact timing for each signup)
+- Expected lead/revenue impact projections (8-25 leads/month, $280-840/month revenue)
+
+**This is different from previous work:** Not another content piece or template. This is the META-TASK — getting TJ LISTED where customers actually search. Every platform = another door for inbound leads.
+
+**Rotation:** 🎯 Lead Generation — Platform Presence
+
+---
+
 ### 11:10 AM — 🏢 NORTH COUNTY COMMERCIAL LEADS BLITZ — Territory Defense (Tidy Tails)
 **Task:** Researched and compiled 10 fresh apartment complex/townhome commercial leads specifically in North County (Florissant, Hazelwood, Black Jack, Ferguson, Spanish Lake) to counter POOP 911's Florissant expansion. Includes phone numbers, addresses, pet policies, custom pitch angles, call scripts, and revenue projections.
 **Result:** ✅ COMPLETE — Full call list at `deliverables/north-county-commercial-leads-march18-2026.md`
