@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📱 Text Blitz — Reviews & Referrals | Tidy Tails</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #13131a;
+    --card-border: #1e1e2e;
+    --accent: #10b981;
+    --accent2: #6366f1;
+    --accent3: #f59e0b;
+    --text: #e4e4e7;
+    --muted: #71717a;
+    --danger: #ef4444;
+    --success: #22c55e;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding-bottom: 80px;
+  }
+  .header {
+    background: linear-gradient(135deg, #10b981 0%, #059669 50%, #047857 100%);
+    padding: 24px 16px 20px;
+    text-align: center;
+  }
+  .header h1 { font-size: 22px; font-weight: 800; color: white; }
+  .header p { font-size: 13px; color: rgba(255,255,255,0.85); margin-top: 4px; }
+  .stats-bar {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px;
+    overflow-x: auto;
+    background: var(--card);
+    border-bottom: 1px solid var(--card-border);
+  }
+  .stat-pill {
+    flex-shrink: 0;
+    background: var(--bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .stat-pill .num { color: var(--accent); }
+  .tabs {
+    display: flex;
+    background: var(--card);
+    border-bottom: 1px solid var(--card-border);
+    overflow-x: auto;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .tab {
+    flex: 1;
+    min-width: 80px;
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .tab.active { color: var(--accent); border-color: var(--accent); }
+  .tab-content { display: none; padding: 16px; }
+  .tab-content.active { display: block; }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .card h3 { font-size: 15px; margin-bottom: 8px; }
+  .card p { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .customer-card {
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+  }
+  .customer-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    cursor: pointer;
+  }
+  .customer-name {
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .customer-meta {
+    font-size: 11px;
+    color: var(--muted);
+  }
+  .customer-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 10px;
+    background: rgba(16,185,129,0.15);
+    color: var(--accent);
+  }
+  .customer-badge.week2 {
+    background: rgba(99,102,241,0.15);
+    color: var(--accent2);
+  }
+  .message-box {
+    background: var(--bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    padding: 12px;
+    margin: 8px 16px 12px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text);
+    position: relative;
+  }
+  .message-box .label {
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .copy-btn {
+    display: block;
+    width: calc(100% - 32px);
+    margin: 0 16px 12px;
+    padding: 10px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-btn:active { transform: scale(0.97); }
+  .copy-btn.copied {
+    background: var(--success);
+  }
+  .sms-btn {
+    display: block;
+    width: calc(100% - 32px);
+    margin: 0 16px 16px;
+    padding: 10px;
+    background: var(--accent2);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+  }
+  .done-check {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px 16px;
+    font-size: 13px;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .done-check input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent);
+  }
+  .done-check.checked { color: var(--success); text-decoration: line-through; }
+  .schedule-day {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--card-border);
+  }
+  .schedule-day:last-child { border: none; }
+  .day-badge {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 10px;
+  }
+  .day-badge .num { font-size: 16px; }
+  .day-badge.green { background: rgba(16,185,129,0.15); color: var(--accent); }
+  .day-badge.purple { background: rgba(99,102,241,0.15); color: var(--accent2); }
+  .day-badge.amber { background: rgba(245,158,11,0.15); color: var(--accent3); }
+  .schedule-info { flex: 1; }
+  .schedule-info .who { font-size: 14px; font-weight: 600; }
+  .schedule-info .what { font-size: 12px; color: var(--muted); }
+  .alert {
+    background: rgba(245,158,11,0.1);
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .alert strong { color: var(--accent3); }
+  .progress-ring {
+    width: 100%;
+    height: 8px;
+    background: var(--bg);
+    border-radius: 4px;
+    margin: 12px 0;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+  }
+  .tip {
+    background: rgba(99,102,241,0.1);
+    border-left: 3px solid var(--accent2);
+    padding: 10px 12px;
+    margin: 12px 0;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 0 8px 8px 0;
+  }
+  .review-link-box {
+    background: linear-gradient(135deg, rgba(16,185,129,0.15), rgba(99,102,241,0.15));
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .review-link-box h3 { color: var(--accent); margin-bottom: 8px; }
+  .review-link-box code {
+    display: block;
+    background: var(--bg);
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    word-break: break-all;
+    margin: 8px 0;
+    color: var(--accent);
+  }
+  .counter { font-size: 28px; font-weight: 800; color: var(--accent); }
+  h2 { font-size: 17px; margin-bottom: 12px; }
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 20px 0 10px;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📱 Text Blitz — Reviews & Referrals</h1>
+  <p>8 customers × 3 texts each = 24 touchpoints in 14 days</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-pill">⭐ Reviews: <span class="num" id="reviewCount">0</span>/8</div>
+  <div class="stat-pill">🤝 Referrals: <span class="num" id="referralCount">0</span>/8</div>
+  <div class="stat-pill">📱 Texts Sent: <span class="num" id="sentCount">0</span>/24</div>
+  <div class="stat-pill">📅 March 18-31</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('schedule')">📅 Schedule</div>
+  <div class="tab" onclick="showTab('reviews')">⭐ Reviews</div>
+  <div class="tab" onclick="showTab('referrals')">🤝 Referrals</div>
+  <div class="tab" onclick="showTab('upsell')">💰 Upsell</div>
+  <div class="tab" onclick="showTab('setup')">⚙️ Setup</div>
+</div>
+
+<!-- SCHEDULE TAB -->
+<div class="tab-content active" id="tab-schedule">
+  <div class="card">
+    <h3>🎯 The Plan</h3>
+    <p>Send 2-3 texts per day, staggered across customers. Google flags review spikes, so we spread them out. Each customer gets 3 touches over 2 weeks: review ask → referral ask → upsell/thank you.</p>
+    <div class="progress-ring"><div class="progress-fill" id="progressBar" style="width:0%"></div></div>
+    <div style="text-align:center;font-size:12px;color:var(--muted)"><span id="progressPct">0</span>% complete</div>
+  </div>
+
+  <div class="alert">
+    <strong>⚠️ IMPORTANT:</strong> Before sending ANY review texts, you need your Google review link. Go to the ⚙️ Setup tab first to get it. Takes 2 minutes.
+  </div>
+
+  <h2>Week 1: Review Requests (Mar 18-21)</h2>
+  <div class="card">
+    <div class="schedule-day">
+      <div class="day-badge green"><span class="num">18</span>TUE</div>
+      <div class="schedule-info">
+        <div class="who">Shannon + Amanda</div>
+        <div class="what">⭐ Review ask — Your Florissant loyals, longest customers</div>
+      </div>
+    </div>
+    <div class="schedule-day">
+      <div class="day-badge green"><span class="num">19</span>WED</div>
+      <div class="schedule-info">
+        <div class="who">Preshus + Chastity</div>
+        <div class="what">⭐ Review ask — Weekly/biweekly regulars</div>
+      </div>
+    </div>
+    <div class="schedule-day">
+      <div class="day-badge green"><span class="num">20</span>THU</div>
+      <div class="schedule-info">
+        <div class="who">Mrs. Candee + Jody</div>
+        <div class="what">⭐ Review ask — OG customers</div>
+      </div>
+    </div>
+    <div class="schedule-day">
+      <div class="day-badge green"><span class="num">21</span>FRI</div>
+      <div class="schedule-info">
+        <div class="who">Lawrence + Greg</div>
+        <div class="what">⭐ Review ask — Round out the full 8</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>Week 2: Referral + Upsell (Mar 24-28)</h2>
+  <div class="card">
+    <div class="schedule-day">
+      <div class="day-badge purple"><span class="num">24</span>MON</div>
+      <div class="schedule-info">
+        <div class="who">Shannon + Amanda</div>
+        <div class="what">🤝 Referral ask — Florissant neighbors, highest density</div>
+      </div>
+    </div>
+    <div class="schedule-day">
+      <div class="day-badge purple"><span class="num">25</span>TUE</div>
+      <div class="schedule-info">
+        <div class="who">Preshus + Chastity</div>
+        <div class="what">🤝 Referral ask — St. Charles + Florissant expansion</div>
+      </div>
+    </div>
+    <div class="schedule-day">
+      <div class="day-badge purple"><span class="num">26</span>WED</div>
+      <div class="schedule-info">
+        <div class="who">Mrs. Candee + Jody</div>
+        <div class="what">🤝 Referral ask — STL city/county growth</div>
+      </div>
+    </div>
+    <div class="schedule-day">
+      <div class="day-badge purple"><span class="num">27</span>THU</div>
+      <div class="schedule-info">
+        <div class="who">Lawrence + Greg</div>
+        <div class="what">🤝 Referral ask — Complete the cycle</div>
+      </div>
+    </div>
+    <div class="schedule-day">
+      <div class="day-badge amber"><span class="num">28</span>FRI</div>
+      <div class="schedule-info">
+        <div class="who">Biweekly/Monthly customers</div>
+        <div class="what">💰 Upsell — Frequency upgrade offer for spring</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    💡 <strong>Best time to text:</strong> 10 AM - 2 PM on weekdays, or right after you finish their yard. Never text before 9 AM or after 8 PM.
+  </div>
+</div>
+
+<!-- REVIEWS TAB -->
+<div class="tab-content" id="tab-reviews">
+  <div class="review-link-box">
+    <h3>📋 Your Google Review Link</h3>
+    <p style="font-size:12px;color:var(--muted);">Get this from GBP dashboard → "Get more reviews" → copy link</p>
+    <code id="reviewLinkDisplay">Set up in ⚙️ Setup tab first</code>
+    <button class="copy-btn" style="width:100%;margin:8px 0 0" onclick="copyReviewLink()">📋 Copy Review Link</button>
+  </div>
+
+  <div class="section-label">PERSONALIZED REVIEW TEXTS — COPY & SEND</div>
+
+  <!-- Shannon -->
+  <div class="customer-card" id="review-shannon">
+    <div class="customer-header" onclick="toggleCard(this)">
+      <div>
+        <div class="customer-name">Shannon Zamarripa</div>
+        <div class="customer-meta">📍 Florissant 63031 · Weekly · $35/visit</div>
+      </div>
+      <div class="customer-badge">DAY 1</div>
+    </div>
+    <div class="message-box">
+      <div class="label">⭐ Review Request Text</div>
+      Hey Shannon! Quick favor — I'm trying to get my Google page going so more people in Florissant can find us. Would you mind leaving a quick review? Just takes a sec: <span class="review-link-placeholder">[REVIEW LINK]</span>
+
+Totally understand if you're busy, no pressure at all. Appreciate you! 🐶
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'review-shannon')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-review-shannon')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Amanda -->
+  <div class="customer-card" id="review-amanda">
+    <div class="customer-header" onclick="toggleCard(this)">
+      <div>
+        <div class="customer-name">Amanda Harris</div>
+        <div class="customer-meta">📍 Florissant 63031 · Weekly · $30/visit</div>
+      </div>
+      <div class="customer-badge">DAY 1</div>
+    </div>
+    <div class="message-box">
+      <div class="label">⭐ Review Request Text</div>
+      Hey Amanda! Hope you and the pups are good 🐕 I'm building up my Google page and it would mean a lot if you could drop a quick review. Here's the link: <span class="review-link-placeholder">[REVIEW LINK]</span>
+
+Even just a sentence or two helps a ton. Thanks for being one of my first customers!
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'review-amanda')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-review-amanda')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Preshus -->
+  <div class="customer-card" id="review-preshus">
+    <div class="customer-header" onclick="toggleCard(this)">
+      <div>
+        <div class="customer-name">Preshus</div>
+        <div class="customer-meta">📍 St. Charles 63303 · Weekly · $25/visit</div>
+      </div>
+      <div class="customer-badge">DAY 2</div>
+    </div>
+    <div class="message-box">
+      <div class="label">⭐ Review Request Text</div>
+      Hey Preshus! I'm working on getting more visibility online so people in St. Charles can find us easier. Would you be down to leave a quick Google review? Here's the link: <span class="review-link-placeholder">[REVIEW LINK]</span>
+
+Would really help me out. Thanks! 🙏
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'review-preshus')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-review-preshus')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Chastity -->
+  <div class="customer-card" id="review-chastity">
+    <div class="customer-header" onclick="toggleCard(this)">
+      <div>
+        <div class="customer-name">Chastity</div>
+        <div class="customer-meta">📍 Florissant 63033 · Biweekly · $45/visit</div>
+      </div>
+      <div class="customer-badge">DAY 2</div>
+    </div>
+    <div class="message-box">
+      <div class="label">⭐ Review Request Text</div>
+      Hey Chastity! Random ask — would you mind leaving me a Google review? I'm trying to build up my page so folks in Florissant can find us. Super quick: <span class="review-link-placeholder">[REVIEW LINK]</span>
+
+No worries if not, I appreciate you either way! 🐾
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'review-chastity')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-review-chastity')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Mrs. Candee -->
+  <div class="customer-card" id="review-candee">
+    <div class="customer-header" onclick="toggleCard(this)">
+      <div>
+        <div class="customer-name">Mrs. Candee</div>
+        <div class="customer-meta">📍 St. Louis 63136 · Weekly · $15/visit</div>
+      </div>
+      <div class="customer-badge">DAY 3</div>
+    </div>
+    <div class="message-box">
+      <div class="label">⭐ Review Request Text</div>
+      Hi Mrs. Candee! Hope you're doing well. I'm working on getting my business more visible online and I was wondering if you'd be willing to leave me a quick Google review? Here's the link: <span class="review-link-placeholder">[REVIEW LINK]</span>
+
+It would really mean a lot to me. Thank you! 😊
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'review-candee')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-review-candee')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Jody -->
+  <div class="customer-card" id="review-jody">
+    <div class="customer-header" onclick="toggleCard(this)">
+      <div>
+        <div class="customer-name">Jody</div>
+        <div class="customer-meta">📍 St. Louis 63114 · Biweekly · $45/visit</div>
+      </div>
+      <div class="customer-badge">DAY 3</div>
+    </div>
+    <div class="message-box">
+      <div class="label">⭐ Review Request Text</div>
+      Hey Jody! Quick one — I'm building up my Google reviews and you'd be doing me a huge favor if you could leave a quick one. Takes like 30 seconds: <span class="review-link-placeholder">[REVIEW LINK]</span>
+
+Really appreciate it! 🙌
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'review-jody')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-review-jody')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Lawrence -->
+  <div class="customer-card" id="review-lawrence">
+    <div class="customer-header" onclick="toggleCard(this)">
+      <div>
+        <div class="customer-name">Lawrence</div>
+        <div class="customer-meta">📍 St. Louis 63108 · Biweekly · $50/visit</div>
+      </div>
+      <div class="customer-badge">DAY 4</div>
+    </div>
+    <div class="message-box">
+      <div class="label">⭐ Review Request Text</div>
+      Hey Lawrence! Hope all's good. I'm trying to get my Google page up and running — would you be willing to drop a quick review? Here's the direct link: <span class="review-link-placeholder">[REVIEW LINK]</span>
+
+Even a couple words helps. Thanks man! 💪
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'review-lawrence')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-review-lawrence')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Greg -->
+  <div class="customer-card" id="review-greg">
+    <div class="customer-header" onclick="toggleCard(this)">
+      <div>
+        <div class="customer-name">Greg</div>
+        <div class="customer-meta">📍 O'Fallon 63366 · Monthly · $50/visit</div>
+      </div>
+      <div class="customer-badge">DAY 4</div>
+    </div>
+    <div class="message-box">
+      <div class="label">⭐ Review Request Text</div>
+      Hey Greg! Hope the yard's holding up. I'm working on building my online presence and a Google review from you would go a long way. Here's the link: <span class="review-link-placeholder">[REVIEW LINK]</span>
+
+Totally optional but really appreciated! 🐕
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'review-greg')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-review-greg')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h3>⚡ Follow-Up Text (3 days after ask)</h3>
+    <p>If someone hasn't left a review after 3 days, send ONE follow-up. Then drop it — never ask more than twice.</p>
+    <div class="message-box" style="margin:8px 0">
+      <div class="label">Generic Follow-Up</div>
+      Hey [NAME]! Just circling back on that Google review — totally understand if you're busy. Here's the link again if you get a sec: <span class="review-link-placeholder">[REVIEW LINK]</span> Thanks! 🙏
+    </div>
+  </div>
+
+  <div class="tip">
+    💡 <strong>Pro tip from Reddit:</strong> Don't ask all 8 at once. Google detects review spikes and may flag them. 2 per day over 4 days is perfect. That's exactly how this schedule works.
+  </div>
+
+  <div class="card">
+    <h3>✍️ What to Say When They Ask "What Should I Write?"</h3>
+    <p>Some customers will want guidance. Tell them:</p>
+    <div class="message-box" style="margin:8px 0">
+      <div class="label">Suggested Reply</div>
+      Honestly, just write whatever comes to mind! Something like how often we come out, if your yard looks good, how easy it is — whatever feels natural. Even just 1-2 sentences is awesome.
+    </div>
+  </div>
+</div>
+
+<!-- REFERRALS TAB -->
+<div class="tab-content" id="tab-referrals">
+  <div class="card">
+    <h3>🤝 Referral Program: $25 Off Next Month</h3>
+    <p>For every new customer a current customer refers, BOTH get $25 off their next service. Simple, easy to explain, genuinely valuable. At TJ's prices, this is a real discount that motivates action.</p>
+  </div>
+
+  <div class="alert">
+    <strong>📅 Send these Week 2 (Mar 24-27)</strong> — after review requests, not at the same time. One ask per text. Don't stack requests.
+  </div>
+
+  <div class="section-label">PERSONALIZED REFERRAL TEXTS</div>
+
+  <!-- Shannon Referral -->
+  <div class="customer-card">
+    <div class="customer-header">
+      <div>
+        <div class="customer-name">Shannon Zamarripa</div>
+        <div class="customer-meta">📍 Florissant 63031 · HIGH DENSITY TARGET</div>
+      </div>
+      <div class="customer-badge week2">WEEK 2</div>
+    </div>
+    <div class="message-box">
+      <div class="label">🤝 Referral Text</div>
+      Hey Shannon! Spring's here and I'm looking to pick up a few more yards in Florissant. If you know anyone on your street or in the neighborhood who could use the help, I'd love the referral. You'd both get $25 off your next service 🐶
+
+Just have them text me at 314-850-7140!
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'ref-shannon')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-ref-shannon')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Amanda Referral -->
+  <div class="customer-card">
+    <div class="customer-header">
+      <div>
+        <div class="customer-name">Amanda Harris</div>
+        <div class="customer-meta">📍 Florissant 63031 · HIGH DENSITY TARGET</div>
+      </div>
+      <div class="customer-badge week2">WEEK 2</div>
+    </div>
+    <div class="message-box">
+      <div class="label">🤝 Referral Text</div>
+      Hey Amanda! I'm picking up new customers for spring and trying to grow my route in your area. Know any dog parents near Mullanphy who need their yard cleaned up? You'd both get $25 off 💰
+
+They can text me at 314-850-7140. Thanks!
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'ref-amanda')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-ref-amanda')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Preshus Referral -->
+  <div class="customer-card">
+    <div class="customer-header">
+      <div>
+        <div class="customer-name">Preshus</div>
+        <div class="customer-meta">📍 St. Charles 63303 · ST. CHARLES EXPANSION</div>
+      </div>
+      <div class="customer-badge week2">WEEK 2</div>
+    </div>
+    <div class="message-box">
+      <div class="label">🤝 Referral Text</div>
+      Hey Preshus! I'm trying to grow my route in St. Charles this spring. If any of your neighbors or friends need yard cleanup, send them my way — you'd both get $25 off your next service!
+
+They can reach me at 314-850-7140 🐾
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'ref-preshus')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-ref-preshus')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Chastity Referral -->
+  <div class="customer-card">
+    <div class="customer-header">
+      <div>
+        <div class="customer-name">Chastity</div>
+        <div class="customer-meta">📍 Florissant 63033 · FLORISSANT EXPANSION</div>
+      </div>
+      <div class="customer-badge week2">WEEK 2</div>
+    </div>
+    <div class="message-box">
+      <div class="label">🤝 Referral Text</div>
+      Hey Chastity! Spring cleanup season is here and I'm picking up new yards in your area. If you know anyone on Guildford or nearby who has dogs and a messy yard, I'd appreciate the referral! Both of you get $25 off 🎉
+
+314-850-7140 to get started!
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'ref-chastity')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-ref-chastity')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Mrs. Candee Referral -->
+  <div class="customer-card">
+    <div class="customer-header">
+      <div>
+        <div class="customer-name">Mrs. Candee</div>
+        <div class="customer-meta">📍 St. Louis 63136</div>
+      </div>
+      <div class="customer-badge week2">WEEK 2</div>
+    </div>
+    <div class="message-box">
+      <div class="label">🤝 Referral Text</div>
+      Hi Mrs. Candee! Spring is here and I'm looking to help more people in your area. If any of your neighbors or friends have dogs and need their yard taken care of, I'd love the referral. You'd both get $25 off your next service!
+
+They can text me at 314-850-7140 😊
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'ref-candee')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-ref-candee')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Jody Referral -->
+  <div class="customer-card">
+    <div class="customer-header">
+      <div>
+        <div class="customer-name">Jody</div>
+        <div class="customer-meta">📍 St. Louis 63114</div>
+      </div>
+      <div class="customer-badge week2">WEEK 2</div>
+    </div>
+    <div class="message-box">
+      <div class="label">🤝 Referral Text</div>
+      Hey Jody! I'm growing my route this spring and could use your help. If you know any dog owners near you who'd want their yard cleaned up, send 'em my way. $25 off for both of you!
+
+314-850-7140 👊
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'ref-jody')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-ref-jody')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Lawrence Referral -->
+  <div class="customer-card">
+    <div class="customer-header">
+      <div>
+        <div class="customer-name">Lawrence</div>
+        <div class="customer-meta">📍 St. Louis 63108</div>
+      </div>
+      <div class="customer-badge week2">WEEK 2</div>
+    </div>
+    <div class="message-box">
+      <div class="label">🤝 Referral Text</div>
+      Hey Lawrence! Spring's picking up and I'm adding yards to my route. If any of your people have dogs and need cleanup, shoot them my number. $25 off for both of you.
+
+314-850-7140. Appreciate you! 💪
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'ref-lawrence')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-ref-lawrence')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Greg Referral -->
+  <div class="customer-card">
+    <div class="customer-header">
+      <div>
+        <div class="customer-name">Greg</div>
+        <div class="customer-meta">📍 O'Fallon 63366</div>
+      </div>
+      <div class="customer-badge week2">WEEK 2</div>
+    </div>
+    <div class="message-box">
+      <div class="label">🤝 Referral Text</div>
+      Hey Greg! I'm looking to pick up more yards in O'Fallon this spring. If you know anyone out your way who has dogs and a messy yard, I'd appreciate the referral. $25 off for both of you!
+
+They can text me at 314-850-7140 🐕
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'ref-greg')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-ref-greg')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h3>📊 Referral Math</h3>
+    <p>
+      <strong>If 3 of 8 customers refer someone (37% rate):</strong><br>
+      → 3 new leads<br>
+      → At 60% close rate = 2 new customers<br>
+      → At $100/mo avg = <strong>$200/mo new recurring revenue</strong><br>
+      → Cost: $150 in referral credits ($25 × 6)<br>
+      → Payback: <strong>Less than 1 month</strong>
+    </p>
+  </div>
+</div>
+
+<!-- UPSELL TAB -->
+<div class="tab-content" id="tab-upsell">
+  <div class="card">
+    <h3>💰 Spring Frequency Upgrade</h3>
+    <p>Target biweekly and monthly customers to upgrade frequency. Spring = more poop = perfect timing. Even one upgrade from biweekly to weekly doubles that customer's value.</p>
+  </div>
+
+  <div class="section-label">UPSELL TARGETS (Send Mar 28)</div>
+
+  <!-- Jody Upsell -->
+  <div class="customer-card">
+    <div class="customer-header">
+      <div>
+        <div class="customer-name">Jody — Biweekly → Weekly</div>
+        <div class="customer-meta">Current: $90/mo → Potential: $180/mo (+$90)</div>
+      </div>
+      <div class="customer-badge" style="background:rgba(245,158,11,0.15);color:var(--accent3)">UPSELL</div>
+    </div>
+    <div class="message-box">
+      <div class="label">💰 Frequency Upgrade Text</div>
+      Hey Jody! With spring here, things are probably getting a little extra messy in the yard 😅 Wanted to let you know I can bump you to weekly visits if you want — keeps things cleaner between visits. Would be $22.50/visit instead of $45 biweekly, so actually less per visit. Let me know if you're interested!
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'upsell-jody')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-upsell-jody')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Lawrence Upsell -->
+  <div class="customer-card">
+    <div class="customer-header">
+      <div>
+        <div class="customer-name">Lawrence — Biweekly → Weekly</div>
+        <div class="customer-meta">Current: $100/mo → Potential: $200/mo (+$100)</div>
+      </div>
+      <div class="customer-badge" style="background:rgba(245,158,11,0.15);color:var(--accent3)">UPSELL</div>
+    </div>
+    <div class="message-box">
+      <div class="label">💰 Frequency Upgrade Text</div>
+      Hey Lawrence! Spring's here and yards are getting hit hard. If you want to go weekly for a while, I can do $25/visit instead of $50 biweekly — saves you per visit and keeps the yard way cleaner. Just let me know!
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'upsell-lawrence')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-upsell-lawrence')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Chastity Upsell -->
+  <div class="customer-card">
+    <div class="customer-header">
+      <div>
+        <div class="customer-name">Chastity — Biweekly → Weekly</div>
+        <div class="customer-meta">Current: $90/mo → Potential: $140/mo (+$50)</div>
+      </div>
+      <div class="customer-badge" style="background:rgba(245,158,11,0.15);color:var(--accent3)">UPSELL</div>
+    </div>
+    <div class="message-box">
+      <div class="label">💰 Frequency Upgrade Text</div>
+      Hey Chastity! Spring means extra yard work 😬 If you want to try weekly visits for a month or two, I can do $35/visit instead of $45 biweekly. Yard stays cleaner and it's less per visit. No commitment — try it and see!
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'upsell-chastity')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-upsell-chastity')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <!-- Greg Upsell -->
+  <div class="customer-card">
+    <div class="customer-header">
+      <div>
+        <div class="customer-name">Greg — Monthly → Biweekly</div>
+        <div class="customer-meta">Current: $50/mo → Potential: $90/mo (+$40)</div>
+      </div>
+      <div class="customer-badge" style="background:rgba(245,158,11,0.15);color:var(--accent3)">UPSELL</div>
+    </div>
+    <div class="message-box">
+      <div class="label">💰 Frequency Upgrade Text</div>
+      Hey Greg! With spring getting going, a month between cleanups can get pretty rough out there. Want to try biweekly for the next couple months? $45/visit, keeps things way more manageable. Let me know!
+    </div>
+    <button class="copy-btn" onclick="copyMessage(this, 'upsell-greg')">📋 Copy Text</button>
+    <label class="done-check" onclick="toggleDone(this, 'sent-upsell-greg')">
+      <input type="checkbox"> Sent ✓
+    </label>
+  </div>
+
+  <div class="card" style="margin-top:16px;">
+    <h3>📊 Upsell Math</h3>
+    <p>
+      <strong>If 2 of 4 upsell targets upgrade:</strong><br>
+      → Average revenue increase: ~$70/mo per upgrade<br>
+      → Total: <strong>+$140/mo recurring</strong><br>
+      → Annual impact: <strong>+$1,680</strong><br>
+      → Cost: <strong>$0</strong> (just a text message)<br><br>
+      Combined with potential MRR: $750 + $140 = <strong>$890/mo</strong>
+    </p>
+  </div>
+</div>
+
+<!-- SETUP TAB -->
+<div class="tab-content" id="tab-setup">
+  <div class="card">
+    <h3>⚙️ Step 1: Get Your Google Review Link</h3>
+    <p>You need this link before sending ANY review texts. Here's how:</p>
+    <ol style="font-size:13px;line-height:2;padding-left:20px;margin-top:8px;">
+      <li>Open <a href="https://business.google.com" style="color:var(--accent)">business.google.com</a> on your phone</li>
+      <li>Select "Tidy Tails" from your businesses</li>
+      <li>Look for <strong>"Get more reviews"</strong> or <strong>"Ask for reviews"</strong></li>
+      <li>Copy the short URL Google gives you</li>
+      <li>Paste it below 👇</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>📋 Paste Your Review Link Here</h3>
+    <input type="text" id="reviewLinkInput" placeholder="Paste your Google review link here..." 
+           style="width:100%;padding:12px;background:var(--bg);border:1px solid var(--card-border);border-radius:8px;color:var(--text);font-size:14px;margin:8px 0;">
+    <button class="copy-btn" style="width:100%;margin:0;" onclick="saveReviewLink()">💾 Save & Update All Texts</button>
+    <p style="font-size:11px;color:var(--muted);margin-top:8px;">This saves to your browser. All review texts above will auto-update with your link.</p>
+  </div>
+
+  <div class="card">
+    <h3>🔗 Alternative: Manual Review Link Format</h3>
+    <p>If you can't find the "Get more reviews" button, you can create the link manually:</p>
+    <div class="message-box" style="margin:8px 0">
+      <div class="label">Google Review URL Format</div>
+      https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID
+    </div>
+    <p style="margin-top:8px;">To find your Place ID:</p>
+    <ol style="font-size:13px;line-height:2;padding-left:20px;">
+      <li>Go to <a href="https://developers.google.com/maps/documentation/places/web-service/place-id" style="color:var(--accent)">Google Place ID Finder</a></li>
+      <li>Search "Tidy Tails St Louis"</li>
+      <li>Copy the Place ID</li>
+      <li>Replace YOUR_PLACE_ID in the URL above</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>📱 Quick Tip: Shorten Your Link</h3>
+    <p>Long Google URLs look sketchy in texts. Use <a href="https://tinyurl.com" style="color:var(--accent)">tinyurl.com</a> to shorten it. Even better: if your website is working, create a redirect page at <strong>tidytailsstl.com/review</strong> that redirects to Google.</p>
+  </div>
+
+  <div class="card">
+    <h3>📊 How to Respond to Reviews</h3>
+    <p>When reviews come in, respond to EVERY one within 24 hours. Here are templates:</p>
+    
+    <div class="message-box" style="margin:8px 0">
+      <div class="label">5-Star Response Template</div>
+      Thank you so much [NAME]! Really appreciate you taking the time to leave a review. Keeping your yard clean is what we love doing — looking forward to the next visit! 🐶
+    </div>
+    
+    <div class="message-box" style="margin:8px 0">
+      <div class="label">4-Star Response Template</div>
+      Thanks for the review [NAME]! We're always looking to improve — if there's anything we can do better, just let us know. See you next time!
+    </div>
+    
+    <div class="message-box" style="margin:8px 0">
+      <div class="label">3-Star or Below Response Template</div>
+      Thank you for your feedback [NAME]. We take this seriously and want to make it right. Please reach out to us directly at 314-850-7140 so we can address your concerns.
+    </div>
+  </div>
+
+  <div class="tip">
+    💡 <strong>Google rewards businesses that respond to reviews.</strong> Responding shows Google you're active and engaged. It also shows potential customers you care. Always respond, even to 5-star reviews.
+  </div>
+</div>
+
+<script>
+  // Tab switching
+  function showTab(name) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // Save/load review link
+  function saveReviewLink() {
+    const link = document.getElementById('reviewLinkInput').value.trim();
+    if (!link) { alert('Please paste your Google review link first!'); return; }
+    localStorage.setItem('tt-review-link', link);
+    updateReviewLinks(link);
+    alert('✅ Saved! All review texts updated with your link.');
+  }
+
+  function updateReviewLinks(link) {
+    document.getElementById('reviewLinkDisplay').textContent = link;
+    document.querySelectorAll('.review-link-placeholder').forEach(el => {
+      el.textContent = link;
+      el.style.color = 'var(--accent)';
+    });
+  }
+
+  // Load saved link on startup
+  const savedLink = localStorage.getItem('tt-review-link');
+  if (savedLink) {
+    document.getElementById('reviewLinkInput').value = savedLink;
+    updateReviewLinks(savedLink);
+  }
+
+  // Copy review link
+  function copyReviewLink() {
+    const link = localStorage.getItem('tt-review-link') || '';
+    if (!link) { alert('Set up your review link in the ⚙️ Setup tab first!'); return; }
+    navigator.clipboard.writeText(link);
+  }
+
+  // Copy message text
+  function copyMessage(btn, id) {
+    const card = btn.closest('.customer-card') || btn.closest('.card');
+    const msgBox = card.querySelector('.message-box');
+    const text = msgBox.textContent.replace(/^\s*(⭐|🤝|💰|Generic).*\n/m, '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✅ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = '📋 Copy Text';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  // Done checkboxes with localStorage
+  function toggleDone(label, key) {
+    const cb = label.querySelector('input');
+    setTimeout(() => {
+      localStorage.setItem('tt-' + key, cb.checked);
+      label.classList.toggle('checked', cb.checked);
+      updateProgress();
+    }, 50);
+  }
+
+  function updateProgress() {
+    let sent = 0, reviews = 0, referrals = 0;
+    document.querySelectorAll('.done-check input').forEach(cb => {
+      if (cb.checked) sent++;
+    });
+    // Count review sends
+    for (let i = 0; i < 8; i++) {
+      const names = ['shannon','amanda','preshus','chastity','candee','jody','lawrence','greg'];
+      if (localStorage.getItem('tt-sent-review-' + names[i]) === 'true') reviews++;
+      if (localStorage.getItem('tt-sent-ref-' + names[i]) === 'true') referrals++;
+    }
+    document.getElementById('sentCount').textContent = sent;
+    document.getElementById('reviewCount').textContent = reviews;
+    document.getElementById('referralCount').textContent = referrals;
+    const pct = Math.round((sent / 24) * 100);
+    document.getElementById('progressBar').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct;
+  }
+
+  // Load saved checkbox states
+  document.querySelectorAll('.done-check').forEach(label => {
+    const onclick = label.getAttribute('onclick');
+    if (onclick) {
+      const match = onclick.match(/'([^']+)'/);
+      if (match) {
+        const key = match[1];
+        const saved = localStorage.getItem('tt-' + key);
+        if (saved === 'true') {
+          label.querySelector('input').checked = true;
+          label.classList.add('checked');
+        }
+      }
+    }
+  });
+  updateProgress();
+</script>
+
+</body>
+</html>
