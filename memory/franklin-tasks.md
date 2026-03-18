@@ -7,6 +7,32 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 3:04 AM — 🔍 COMPETITIVE MONITORING SWEEP — Doggie Doodies in Florissant + Scoop Soldiers Official Launch (Competitive Intel)
+**Task:** Live competitive monitoring sweep of top 3 threats — crawled Doggie Doodies (full site), Scoop Soldiers (STL page + press release), Doody Defenders, and verified tidytailsstl.com indexing status.
+**Result:** ✅ COMPLETE — Shipped `deliverables/competitive-monitoring-march18-3am-2026.md`, updated MEMORY.md competitive table
+
+**Key Findings:**
+1. **🚨 Doggie Doodies NOW IN FLORISSANT** — TJ's core territory. Also added Fenton, Valley Park, Twin Oaks, Cottleville, New Town. Commercial page live with HOA/property management inquiry form. Blog actively publishing (2 posts in Feb 2026). Rewards program, referral program, e-gift cards, customer portal, pre-visit team photos, gate photos — building a real operation.
+2. **🚨 Scoop Soldiers officially launched STL Feb 6, 2026** — EIN Presswire release. Led by Michayla Sims. 24hr customer support, sanitization/deodorizer add-ons, commercial+residential. First service FREE. Also expanding to Cincinnati.
+3. **⚠️ tidytailsstl.com STILL NOT INDEXED** — site:tidytailsstl.com = 0 results on Brave. This remains the #1 blocker.
+4. **"Free first cleanup" is now table stakes** — DD, Scoop Soldiers, AND POOP 911 all offer it. TJ doesn't.
+5. **Doody Defenders** — still minimal website, not a serious near-term threat
+
+**Why This Task:**
+- MEMORY.md says "Competitive monitoring. Market is moving" = what Franklin SHOULD focus on
+- Late night = maintenance/monitoring, not creation (per standing rules)
+- Last full competitive sweep was Mar 17 — market moves fast in spring
+- Doggie Doodies' Florissant expansion is a direct threat to TJ's existing customer base
+
+**Expected Impact:**
+- TJ sees Florissant threat and prioritizes customer retention (review requests, relationship building)
+- "Free first cleanup" becomes a priority feature to add
+- Urgency on GSC resubmission reinforced with competitive context
+
+**Rotation:** 🔍 Competitive Intelligence / Monitoring
+
+---
+
 ### 1:04 AM — 📱 FACEBOOK GROUP BLITZ GUIDE — 32+ Groups Mapped With Strategy (Lead Generation)
 **Task:** Researched, verified, and compiled a comprehensive Facebook Group marketing guide — 32+ St. Louis area groups organized by type (BST, Pet, Mom, Neighborhood) with member counts, URLs, posting templates, 2-week schedule, and tips from successful pet waste companies.
 **Result:** ✅ COMPLETE — Shipped `memory/fb-groups-blitz-guide.md`

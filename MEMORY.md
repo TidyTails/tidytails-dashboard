@@ -102,17 +102,17 @@
 
 ---
 
-## 🔍 Competitive Landscape (Consolidated Mar 15, 2026)
+## 🔍 Competitive Landscape (Updated Mar 18, 2026 3AM)
 
 ### ACTIVE Competitors — Definitive Table
 
 | Competitor | Territory | Weekly Price | Monthly | Threat | Key Notes |
 |------------|-----------|-------------|---------|--------|-----------|
 | **POOP 911** 🔴 | South STL/City (70+ zips) | $11.95-$13.95 | ~$52 | HIGH | National franchise, FREE first cleanup, lowest price |
-| **Scoop Soldiers** 🔴 | STL County | ~$15 | ~$60 | HIGH | National franchise, Feb 2026 expansion, full SEO page |
-| **Dog Doody Defenders** 🔴 | Chesterfield + Florissant | $17 | ~$68 | HIGH | Veteran-owned, TJ's exact territory |
+| **Scoop Soldiers** 🔴 | STL County + surrounding | ~$15 | ~$60 | HIGH | National franchise, **officially launched STL Feb 6 2026** (EIN Presswire). 24hr support, sanitization/deodorizer add-ons, commercial+residential. Led by Michayla Sims. Also expanding to Cincinnati. First service FREE. |
+| **Dog Doody Defenders** 🔴 | Chesterfield + Florissant | $17 | ~$68 | HIGH | Veteran-owned, TJ's exact territory. Site still minimal. |
 | **Poop2Scoop** 🟡 | STL County | $18 | ~$78 | MED | Veteran-owned, smart add-on pricing, aPaws member |
-| **Doggie Doodies** 🔴 | Ballwin/Chesterfield + St. Charles + Kirkwood/Creve Coeur/MD Heights/Eureka | $19.15 | $83 | HIGHEST | TJ's #1 rival. Customer portal, rewards, referral, e-gift cards, blog. Expanded AGAIN: now Kirkwood, Creve Coeur, MD Heights, Des Peres, Eureka, Valley Park. Added COMMERCIAL page (HOAs, waste stations). Biweekly=$85/mo, Monthly=$90/mo. Hotmail + Wix = weaknesses. |
+| **Doggie Doodies** 🔴 | Ballwin/Chesterfield + St. Charles + **NOW FLORISSANT** + Kirkwood/Creve Coeur/MD Heights/Eureka/Fenton/Valley Park/Twin Oaks/Des Peres/Cottleville/New Town | $19.15 | $83 | **HIGHEST** | TJ's #1 rival. **NOW IN FLORISSANT** (TJ's core territory!). Customer portal, rewards ("Clean Paw Paws"), referral, e-gift cards, blog (posting Feb 2026), COMMERCIAL page live (HOAs, waste stations, installations). Pre-visit team photos + gate photos. FREE first cleanup with coupon codes. Phone: (636)633-3443. Biweekly=$85/mo, Monthly=$90/mo. Hotmail + Wix = weaknesses. |
 | **Dr. Scoops** 🟡 | Ballwin/Manchester/Chesterfield/Kirkwood/Webster Groves | Quote | Quote | MED | NEW (found Mar 16). Solo op Adam Hughes, since 2023. Own site (getdrscoops.com), FB (39 likes), Nextdoor, Petworks. Insured, background-checked. Covers our expansion targets! |
 | **Dirty Dog Wash Poo Crew** 🟡 | Chesterfield (10mi radius) | ~$22 | $95 | MED | Cross-sell from grooming business |
 | **DoodyCalls** 🟡 | STL County | Quote | Quote | MED | National franchise |
