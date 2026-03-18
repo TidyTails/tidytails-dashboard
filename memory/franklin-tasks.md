@@ -7,6 +7,37 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 9:10 AM — 🏠 FRESH SHED MARKETPLACE ADS — Spring Equinox Ad Pack (Sheds)
+**Task:** Created 6 fresh Facebook Marketplace ads + 3 Instagram captions for the week of March 18-24. Updated tariff intel (now 45%, confirmed by BC Premier meeting with U.S. ambassador). Researched TuffShed current promos (none active — financing only). Built ads around 5 fresh hooks: spring equinox, bar shed, tariff urgency, she shed, clearance pre-owned, and garage replacement. Included posting schedule and market intel update.
+**Result:** ✅ COMPLETE — Full ad pack at `deliverables/shed-marketplace-ads-march18-2026.md`
+
+**What's in the pack:**
+1. **AD 1: "First Day of Spring"** — Spring equinox (March 20) garage cleanup hook
+2. **AD 2: "Bar Shed"** — 12x16 Barn ($6,799) as backyard bar, riding TuffShed's own bar shed content
+3. **AD 3: "Tariff Urgency"** — Lumber tariffs at 45%, price lock angle with 10x12 Blue Utility ($4,699)
+4. **AD 4: "She Shed"** — 10x16 Aqua Teal Garden ($6,299) targeting women/couples
+5. **AD 5: "Clearance"** — Pre-owned 8x12 Tool Shed ($3,509), scarcity play
+6. **AD 6: "Garage Replacement"** — 12x24 Charcoal Garage ($11,299), premium push
+7. **3 IG Captions** — Spring, tariff warning, bar shed lifestyle
+8. **Full posting schedule** — Wed through Sun, optimized by platform and day
+
+**Market Intel Update:**
+- Tariffs confirmed at **45%** (up from 35.19%) — BC Premier just met with U.S. ambassador, no resolution
+- Additional 10% IEEPA tariff on all Canadian goods
+- Lumber at ~$494/mfbm (Jan 30 index)
+- No active TuffShed promos — lean on urgency + financing
+- TuffShed pushing "bar shed" content marketing (St. Patrick's Day post)
+
+**Why This Task:**
+- Rotation: Last 3 tasks were Tidy Tails-focused. Sheds haven't had fresh ads since March 16.
+- Spring equinox is Thursday March 20 — peak relevance window is NOW
+- Tariff situation escalated (45% vs 35.19% previously used in ads) — stronger urgency angle
+- TJ posts on Marketplace regularly — this is directly actionable, not another tool he won't use
+
+**Rotation:** 🏠 Sheds / Ad Copy
+
+---
+
 ### 7:04 AM — 🔍 COMPETITIVE INTELLIGENCE SWEEP — Territory Threat Assessment (Research)
 **Task:** Live competitive sweep of all major competitors targeting TJ's territory. Checked site indexing status, scraped Doggie Doodies pricing, Scoop Soldiers STL page, POOP 911 Florissant page, and Dr. Scoops status.
 **Result:** ✅ COMPLETE — Full intel report at `deliverables/competitive-intel-march18-7am.md`
