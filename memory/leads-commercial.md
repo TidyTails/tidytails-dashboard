@@ -311,10 +311,97 @@
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated March 17, 2026 — 20 total leads)
+## 🏠 TIER 1: Apartment Complexes — NEW BATCH (March 18, 2026 — 9:00 AM)
+
+### Meadowridge Apartments ⭐ STRONG FIT — ST. CHARLES
+- **Type:** Apartment Complex with Dog Park
+- **Address:** 2000 Styling Ridge Dr, Saint Charles, MO 63304
+- **Contact:** Leasing Office
+- **Phone:** (636) 244-1616
+- **Website:** meadowridgeapts.com
+- **Why Good Fit:** Newer community (built 2018), 180 units, 3 stories, dedicated on-premise dog park. Max 2 pets per apartment. Zero-entry pool, sundeck, fitness center — they invest in amenities. St. Charles County, close to TJ's existing St. Peters clients.
+- **Properties/Units:** 180 units, 1-2 bedrooms
+- **Found:** March 18, 2026
+- **Status:** New
+- **Pitch angle:** "Your dog park is a great amenity — let us keep it clean so residents actually want to use it. We already service St. Charles County. One flat monthly rate, professional weekly cleanup."
+
+### Capital at St. Charles ⭐ ALL BREEDS WELCOME
+- **Type:** Apartment Complex with Dog Park + Pet Stations
+- **Address:** 10 San Miguel Dr, Saint Charles, MO 63303
+- **Contact:** Leasing Office
+- **Phone:** (636) 244-3400
+- **Website:** capitalstcharles.com
+- **Why Good Fit:** ALL breeds welcome, no weight limit. Dog park AND plentiful pet stations. $1,171-$1,593/mo rent range. Managed by Eighteen Capital Group (could lead to more properties). Currently running spring move-in specials = actively marketing = responsive to vendor pitches. No breed restrictions = higher dog density than most complexes.
+- **Properties/Units:** 1-2 bedroom apartments & townhomes
+- **Found:** March 18, 2026
+- **Status:** New
+- **Pitch angle:** "You welcome all breeds, all sizes — that's awesome. With that many dogs, professional waste management keeps your grounds looking sharp. Already in St. Charles County."
+
+### Westchester Village Apartments ⭐ LARGE COMMUNITY — O'FALLON
+- **Type:** Large Apartment Community with Dog Park + Lake
+- **Address:** 941 Clubhouse Ln, O'Fallon, MO 63366
+- **Contact:** Leasing Office
+- **Phone:** (636) 272-7500
+- **Website:** westchestervillageapts.com
+- **Why Good Fit:** Dog park, private lake with walking trail, outdoor grilling stations, pool, fitness center, clubhouse. 1, 2, & 3-bedroom apartments. Pet-friendly, 2 pets max. Walking trail around lake = lots of outdoor foot traffic with dogs. Off Hwy 70 and Bryan Road — easy route access for TJ. Established community with extensive grounds.
+- **Properties/Units:** 1-3 bedrooms, multi-building
+- **Found:** March 18, 2026
+- **Status:** New
+- **Pitch angle:** "Your community has a dog park AND a walking trail around the lake — that's a lot of ground to keep clean. One invoice, one vendor, cleaner grounds for residents."
+
+---
+
+## 🐕 TIER 1: Dog Businesses — MULTI-LOCATION (March 18, 2026)
+
+### No Leash Needed ⭐⭐ HUGE OPPORTUNITY — 8 LOCATIONS
+- **Type:** Dog Boarding / Daycare / Training / Grooming Chain
+- **Locations:** 8 across St. Louis & St. Charles (Ellisville, Kirkwood, Rock Hill, Lake St. Louis, St. Charles, West County + more)
+- **Contact:** Main Office
+- **Phone:** (314) 942-0011
+- **Website:** noleashneeded.com
+- **Why Good Fit:** EIGHT locations = massive opportunity. Award-winning dog training, boarding, daycare, and grooming. High dog volume at every location. Lake St. Louis and St. Charles locations are in TJ's service area. Even landing 2-3 locations = huge recurring revenue. Plus referral partnership potential — their clients OWN dogs and need yard cleanup at home.
+- **Found:** March 18, 2026
+- **Status:** New
+- **Pitch angle:** "We can handle outdoor waste at your St. Charles and Lake St. Louis spots — plus set up a referral deal where your clients get a discount on yard cleanup at home."
+
+### Kennelwood Pet Resorts — PREMIUM BRAND
+- **Type:** Premium Pet Boarding / Grooming / Daycare / Training
+- **Locations:** Multiple across St. Louis metro
+- **Contact:** Main Office
+- **Phone:** (314) 429-2100
+- **Website:** kennelwood.com
+- **Why Good Fit:** One of STL's most established and premium pet care brands. Founded by Donald Danforth Jr. Multiple locations. Their premium positioning means they'll pay for quality service. Excellent referral partner — their clients are affluent dog owners.
+- **Found:** March 18, 2026
+- **Status:** New
+- **Pitch angle:** "Kennelwood's reputation for top-tier pet care is unmatched. We'd love to complement that with professional outdoor waste management at your facilities."
+
+---
+
+## 🏠 TIER 2: Villa Communities — NEW (March 18, 2026)
+
+### The Willows at O'Fallon — UNIQUE ANGLE
+- **Type:** Villa-Style Rental Community
+- **Address:** O'Fallon, MO
+- **Contact:** Leasing Office
+- **Phone:** (636) 294-1399
+- **Website:** thewillowsofallon.com
+- **Why Good Fit:** Villa-style living with basements, 2-car garages, private patios with BACKYARDS. Pet-friendly community. Different angle — residents have their own yards. Management could offer TJ's service as a resident perk. Dog park on-site for common area cleanup too.
+- **Found:** March 18, 2026
+- **Status:** New
+- **Pitch angle:** "Your villas have backyards — great for dog owners, but more cleanup. We can service common areas AND offer residents individual yard cleanup as an amenity."
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated March 18, 2026 — 26 total leads)
 
 | Lead | Type | Phone | Priority | Est. Monthly Value |
 |------|------|-------|----------|-------------------|
+| **No Leash Needed** | 8-Location Dog Biz | (314) 942-0011 | 🔴 HIGH (8 sites!) | $300-$750 |
+| **Meadowridge Apts** | Apt + Dog Park | (636) 244-1616 | 🔴 HIGH | $250-$400 |
+| **Capital at St. Charles** | Apt + All Breeds | (636) 244-3400 | 🔴 HIGH | $200-$400 |
+| **Westchester Village** | Apt + Dog Park + Lake | (636) 272-7500 | 🔴 HIGH | $300-$500 |
+| **Kennelwood Pet Resorts** | Premium Pet Care | (314) 429-2100 | 🟡 MED | $200-$400 |
+| **The Willows O'Fallon** | Villa Community | (636) 294-1399 | 🟡 MED | $200-$400 |
 | **Millsap Properties** | Prop Mgmt (7 props) | (314) 686-3337 | 🔴 CALL FIRST | $500-$1,500 |
 | **Associa Smith Mgmt** | HOA Mgmt (dozens) | (314) 394-4200 | 🔴 HIGH | $300-$2,000+ |
 | **Sentry Management** | HOA Mgmt (32+ HOAs) | (314) 994-7440 | 🔴 HIGH | $300-$2,000+ |
@@ -335,8 +422,8 @@
 | **Maryland Heights** | Municipal | (314) 738-2599 | 🟢 LONG PLAY | $300-$600 |
 | **Overland Dog Park** | Municipal | (314) 428-0490 | 🟢 LONG PLAY | $200-$400 |
 
-**Total pipeline if all won:** $4,250-$13,800/month (up from $2,500-$8,200)
-**Realistic close rate (20-30%):** $850-$4,140/month in new recurring revenue
+**Total pipeline if all won:** $5,700-$16,650/month (26 leads)
+**Realistic close rate (20-30%):** $1,140-$4,995/month in new recurring revenue
 
 ---
 
