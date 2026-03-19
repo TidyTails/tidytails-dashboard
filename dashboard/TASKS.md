@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-17 3:05 AM CST*
+*Last updated: 2026-03-18 8:05 PM CST*
 
 ---
 
@@ -14,16 +14,14 @@
   - **This unblocks ALL SEO, citations, and online visibility work**
 
 ### 🔥 In Progress
-- [ ] **Nextdoor Launch** — Page NOT claimed yet. Strategy + 14 posts ready. TJ needs to set up page (15 min).
-  - Status: Dashboard at `2026-03-09-NEXTDOOR-LAUNCH.html`. Competitors already there (Poop2Scoop: 3 recs).
-  - Owner: TJ (setup) — Franklin (content ready)
-  - Action: Claim page at business.nextdoor.com, post intro, ask customers for recommendations
+- [ ] **Nextdoor Launch** — 🔴 Page STILL NOT claimed. Updated launch kit with fresh 4-week content plan ready. 20 min to launch, $0 cost.
+  - Status: UPDATED kit at `deliverables/nextdoor-launch-kit-march2026.md`. Poop2Scoop has 3 recs, we have 0.
+  - Owner: TJ/Jamie (setup) — Franklin (content ready)
+  - Action: Go to business.nextdoor.com → create page → copy-paste description → post intro → text customers for recs
 
-- [ ] **Google Indexing** — 🚨 ROOT CAUSE FOUND: SSL cert expired Feb 19. Google can't crawl HTTPS sites with expired certs. Fix SSL first (see CRITICAL above), then submit to Search Console.
-  - Status: Previous diagnosis was wrong — it's not a "new domain" issue, it's a BROKEN SITE issue
-  - **FIX:** Step 1: Renew SSL (see CRITICAL). Step 2: Submit sitemap in Google Search Console. Step 3: Request indexing for homepage.
-  - Owner: TJ
-  - Expected: 3-7 days after SSL fix
+- [x] **Google Indexing** — ✅ FIXED March 18! Sitemap submitted, 17 pages discovered, homepage indexed. SEO is GO.
+  - Status: DONE — URL is on Google, page indexed, HTTPS working, FAQ schema detected
+  - Next: Focus on getting 5 Google reviews by April 1 to appear in Local Pack
 
 - [ ] **Spring Marketing Push** — FB group posts, spring-themed content
   - Status: **2-week content pack ready!** 13 posts for Mar 14-28 + 3 IG posts + posting schedule
