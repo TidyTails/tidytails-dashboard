@@ -7,6 +7,37 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 10:05 PM — 🚨 CRITICAL BRANDING FIX — Complete TJ→Jamie Sweep Across BOTH Repos (Website/Conversion)
+**Task:** Discovered the 6PM branding fix only hit the dashboard repo — the ACTUAL LIVE tidytails-website repo still had 48 "TJ" references across 18 files. With ads spending money, every page visitors landed on said "TJ" but Jamie answers the phone. Fixed everything.
+**Result:** ✅ COMPLETE — 33 files fixed total (18 live site + 15 dashboard), 94 instances replaced, both repos pushed to GitHub
+
+**Why This Task:**
+- The 9PM competitive scan flagged "Meet TJ still on live site" — the 6PM fix NEVER deployed to the actual live repo
+- Ads are LIVE and spending money RIGHT NOW — every click costs money
+- Brand mismatch (TJ on site, Jamie on phone) kills trust instantly
+- This is protecting ad spend ROI, not creating new content
+
+**What Was Fixed (tidytails-website — THE LIVE SITE):**
+1. 🔴 **Homepage** — "Meet TJ" section, signature, schema email, form action, footer email (5 instances)
+2. 🔴 **7 area pages** — Ballwin, Bridgeton, Chesterfield, Creve Coeur, Ferguson, Florissant, Hazelwood, Maryland Heights, O'Fallon, St Charles, St Peters — all had "I'm TJ" in body copy + meta descriptions
+3. 🔴 **5 blog posts** — Author schemas, bylines ("By TJ"), footer emails across dog-poop-laws, health-risks, how-often, is-worth-it, spring-cleanup
+4. 🔴 **Blog index** — 4 author schema entries
+5. 🔴 **Spring calculator** — CTA button "Call TJ" and SMS greeting
+6. 🔴 **Florissant meta description** — "by TJ" in search result snippet
+
+**What Was Fixed (tidytails-dashboard repo):**
+1. All blog post author schemas + bylines (10 files)
+2. Homepage schema email + form action + footer
+3. Spring content pack templates (5 "I'm TJ" instances)
+4. Facebook ads kit signature
+5. Spring-clean testimonial
+
+**Key Insight:** There are TWO separate repos for the website content. The 6PM fix only hit one. This fix hit both + verified zero remaining TJ references.
+
+**Rotation:** 🌐 Website/Conversion — Critical Branding Protection (Ad Spend at Risk)
+
+---
+
 ### 9:04 PM — 🔍 COMPETITIVE INTEL SWEEP — Live Pricing Scrape + Market Changes (Research/Monitoring)
 **Task:** Live-scraped all major competitor websites to check for pricing changes, new service areas, and market moves. Found critical updates.
 **Result:** ✅ COMPLETE — Full report at `deliverables/competitive-intel-march18-9pm.md`, MEMORY.md updated
