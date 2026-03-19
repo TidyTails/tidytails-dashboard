@@ -7,6 +7,96 @@
 
 ## March 19, 2026 (Thursday)
 
+### 4:05 PM — 🚀 SPRING 2026 LAUNCH PLAYBOOK — 15-Week Execution Plan Turning 12+ Tools Into Action (Strategy/Execution)
+**Task:** Built a comprehensive Spring 2026 Launch Playbook that organizes ALL dashboard tools and assets into a phased, week-by-week execution plan with 39 concrete tasks, progress tracking, and revenue targets. This is the "master plan" that turns scattered tools into a coordinated growth campaign.
+**Result:** ✅ COMPLETE — Dashboard tool at `dashboard/spring-playbook.html`, pushed to GitHub
+
+**Why This Task:**
+- Today we built 10+ individual tools (blog posts, community kit, referral program, free cleanup page, FB ads kit, event calendar, review texts, GBP checklist, commercial call sheet, content pack)
+- But NO unified execution plan — risk of tool fatigue where TJ/Jamie have SO many options that nothing gets done
+- The #1 failure mode for small businesses isn't lack of tools — it's lack of prioritized execution
+- Swoop Scoop (7-figure pet waste) confirms: Facebook ads + Google + referrals + events together = 487 new customers in a month
+- Need to show TJ/Jamie EXACTLY what to do THIS WEEK vs next week vs April vs May
+
+**3-Phase Plan:**
+1. 🏗️ **Phase 1: Foundation (Mar 19-30)** — GBP to 100%, first 3-5 Google reviews, referral texts to all 8 customers, first 6 FB group posts, attend Mattress Dogzzz event, Nextdoor listing, commercial calls
+2. 📈 **Phase 2: Momentum (Apr 1-30)** — Launch FB ads at $5-10/day, Tower Grove Farmers Market, weekly posting routine, before/after photos, 10 directory submissions, first commercial account, Pooches in the Ballpark
+3. 🚀 **Phase 3: Scale (May-Jun)** — Bark in the Park vendor booth, scale ads to $20-30/day, hire planning at 15+ customers, 15+ Google reviews, second commercial account, route optimization
+
+**Key Features:**
+- Overall progress bar with tasks done / total
+- Revenue tracker: $800/mo current → $2,500/mo target by June
+- 🔥 "Critical Now" banner — 4 blockers that unlock everything else
+- Quick links to all 8 dashboard tools
+- 39 tasks with WHO (TJ/Jamie/Franklin), IMPACT rating (High/Med/Low), and links to relevant tools
+- Expandable week-by-week sections
+- localStorage progress persistence (checks survive between visits)
+- Growth math table showing all channels: referrals + community + ads + events + SEO + commercial = 8-15 new customers/mo potential
+
+**The Math:**
+- Even at LOW end (8 new customers/mo), hit 25 total by mid-May
+- Key insight: it's about activating ALL channels simultaneously, not maximizing one
+- Total ad spend needed: $150-350/mo — rest is FREE channels
+- Bark in the Park booth ($300-500) = 15 leads → 3-5 customers = profitable month 1
+
+**Pushed to:** `TidyTails/tidytails-dashboard` (master) ✅
+
+**Rotation:** 🚀 Strategy — Master Execution Plan
+
+---
+
+### 3:04 PM — 📅 EVENT MARKETING CALENDAR — 14 Real STL Dog Events with Action Plans (In-Person Marketing/Networking)
+**Task:** Researched and compiled every major St. Louis dog event from March through October 2026. Built a mobile-first event marketing calendar with action checklists, pitch scripts, supplies list, and ROI tracker. This is the FIRST in-person marketing tool we've built — everything else has been digital.
+**Result:** ✅ COMPLETE — Dashboard tool at `dashboard/event-marketing-calendar.html`, pushed to GitHub
+
+**Why This Task:**
+- Today has been 9 straight digital content/tool builds — zero physical/in-person marketing
+- Every pet waste success story (Reddit, Swoop Scoop, industry playbooks) says events + grassroots networking are TOP acquisition channels
+- Mattress Dogzzz Grand Opening is THIS SATURDAY (Mar 21) with Stray Rescue adoption event — we had NO plan for it
+- Bark in the Park (May 16) is the LARGEST PET FESTIVAL IN THE MIDWEST — 10,000+ dog owners — needs advance planning NOW
+- In-person conversion rate is 3-5x higher than digital (trust is built face-to-face)
+- K9 Garden has 700+ members = 700 pre-qualified leads we're ignoring
+
+**14 Events Found & Planned:**
+1. 🛏️ **Mattress Dogzzz Grand Opening** — Sat Mar 21, Creve Coeur (⚡ 2 DAYS!)
+2. 🌱 **Roots & Rescues Fundraiser** — Sat Mar 21, Stray Rescue HQ (⚡ 2 DAYS!)
+3. 🐕 **K9 Garden Breed Meetups** — Ongoing weekly (700+ members)
+4. ⚽ **Pups on the Pitch (STL City SC)** — Sun Mar 22
+5. 🥬 **Tower Grove Farmers Market** — Opens Apr 4, weekly through Oct (DOG-FRIENDLY!)
+6. 🚗 **Easter Concours d'Elegance** — Sun Apr 5, Forest Park (FREE + Stray Rescue)
+7. 🏒 **Blues Giveback + Stray Rescue** — Mon Apr 13
+8. 🐕 **Petco Fenton Adoptions** — Monthly 3rd Saturdays (FREE, recurring)
+9. ⚾ **Pooches in the Ballpark (Cardinals)** — Sat Apr 25 (2,000-3,000 dog owners!)
+10. ⚾ **Stray Rescue Day at Ballpark** — Sun Apr 26
+11. 🏃 **Duo Dash 5K + Dog Walk** — May (TBD)
+12. 🐾 **BARK IN THE PARK (HSMO)** — Sat May 16 (🏆 BIGGEST — 10,000+ attendees!)
+13. 🎵 **POOCHELLA (Stray Rescue)** — Jul 2026 (date TBD)
+14. 🎃 **GO! STL Halloween Dog Walk** — Oct 2026
+
+**Tool Features:**
+- Urgent countdown banner (next event: 2 DAYS!)
+- Expandable event cards with full details
+- ✅ Checklist for each event (localStorage persistence)
+- 🗣️ 5 pitch scripts for Jamie (dog opener, homeowner, adopter, business partner, shelter partner)
+- 🎒 Complete event supply kit with costs ($75-100 starter kit)
+- 💰 ROI tracker with event logging
+- Time-based filters (This Week, April, May-Jun, Free Only)
+- Stray Rescue partnership pitch (free cleanup for adopters)
+- K9 Garden partnership pitch (cards at front desk)
+- Vendor booth ROI math for Bark in the Park
+
+**Key Discovery:** 
+- 🚨 TWO events THIS SATURDAY that we had no plan for (Roots & Rescues 10AM + Mattress Dogzzz 11AM)
+- Stray Rescue partnership could give us access to every adoption event all year
+- Tower Grove Farmers Market is a 7-month recurring free channel (Apr-Oct, dog-friendly)
+- Bark in the Park vendor booth: $300-500 → 5-15 leads → 2-3 customers = profitable month 1
+
+**Pushed to:** `TidyTails/tidytails-dashboard` (master) ✅
+
+**Rotation:** 📅 In-Person Marketing — Event Calendar
+
+---
+
 ### 2:04 PM — 🎁 REFERRAL PROGRAM — Dual-Reward Referral System + Jamie's Text Manager (Customer Retention/Acquisition)
 **Task:** Built a complete referral program: public landing page for referred customers + dashboard tool with 8 personalized referral texts Jamie can send to existing customers. This is the cheapest customer acquisition channel we haven't tapped yet.
 **Result:** ✅ COMPLETE — LIVE at `https://tidytailsstl.com/refer`, dashboard tool at `dashboard/referral-program.html`, pushed to BOTH repos
