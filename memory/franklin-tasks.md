@@ -7,6 +7,33 @@
 
 ## March 19, 2026 (Thursday)
 
+### 5:04 AM — 🔍 COMPETITIVE INTEL UPDATE — Live Site Crawl + POOP 911 Florissant Withdrawal Discovery (Competitive Monitoring)
+**Task:** Live-crawled all major competitor websites to check for changes since last sweep (Mar 18). Compared pricing, service areas, content, and features.
+**Result:** ✅ COMPLETE — Full report at `deliverables/competitive-intel-march19-5am.md`
+
+**Why This Task:**
+- Memory says late night/early morning = maintenance over creation, competitive monitoring specifically called out
+- Spring is peak season — competitors are actively expanding and posting
+- Last full competitor crawl was Mar 18 — need to track week-over-week changes
+
+**🚨 MAJOR DISCOVERY: POOP 911 May Have LEFT Florissant**
+- Their dedicated Florissant page (/florissant-missouri/) now returns **404**
+- Their STL zip code list does NOT include 63031 or 63033 (Florissant/Hazelwood)
+- This was our #1 rated national franchise threat at the CHEAPEST price ($11.95/wk)
+- If confirmed, removes cheapest competitor from TJ's core territory
+- **TJ needs to verify by calling POOP 911's 888 number**
+
+**Other Key Findings:**
+1. 🔴 Doggie Doodies actively blogging (2 SEO posts in Feb), Florissant explicitly in footer — REAL threat
+2. 🟡 Scoop Soldiers STL page exists but is template-heavy, zero local knowledge — beatable
+3. 🟡 Dog Doody Defenders unchanged ($17/wk, $54/mo) — still undercuts TJ's $70/mo
+4. 🟡 Dr. Scoops significantly upgraded their website — getting serious, still Ballwin-only
+5. ✅ Tidy Tails site loading fine, SSL valid
+
+**Rotation:** 🔍 Competitive Monitoring — Live Crawl + Territory Analysis
+
+---
+
 ### 4:05 AM — 🔍 SEO HEALTH AUDIT — Live Site Crawl + Search Visibility Reality Check (Maintenance/SEO)
 **Task:** Crawled every URL on tidytailsstl.com, checked search engine visibility, audited sitemap accuracy, verified page uniqueness, and produced a definitive SEO health report with prioritized action items.
 **Result:** ✅ COMPLETE — Full report at `deliverables/seo-health-audit-march19-2026.md`

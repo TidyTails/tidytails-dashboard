@@ -75,7 +75,7 @@
 - **BringFido.com** — pet services directory covers Florissant. TJ NOT listed. Free listing.
 - **Doggie Doodies pricing confirmed** — $83/mo weekly, $85/mo biweekly, $90/mo monthly (Mar 18 live scrape)
 - **NEW: Dirty Dog Wash "Poo Crew"** — Chesterfield groomer added waste removal. $95/mo (1-2 dogs weekly). 43 Yelp reviews, 66 FB reviews. Cross-sell advantage but HIGHER than TJ.
-- **POOP 911 has Florissant-specific SEO page** — hyper-local refs (McCluer schools, St. Ferdinand Park). Didn't exist in Feb. They're targeting TJ's core territory.
+- **⚠️ POOP 911 Florissant page is NOW 404** (as of Mar 19 5AM crawl) — their STL zip list excludes 63031/63033. May have WITHDRAWN from Florissant. TJ should verify by calling their 888 number. Previously had hyper-local page targeting TJ's core territory.
 - **Scoop Soldiers confirmed $15/visit** — up to 4 dogs included. First service FREE. Fully operational STL.
 - **ZERO Google reviews** vs competitors with 6+
 - Google Review Link: https://g.page/r/Ce_hqIHanGLvEAE/review
