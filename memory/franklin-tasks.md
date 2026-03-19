@@ -7,6 +7,39 @@
 
 ## March 19, 2026 (Thursday)
 
+### 7:04 AM — 📝 SEO BLOG POST — "Dog Poop Laws in St. Louis" Deployed LIVE (SEO/Content)
+**Task:** Wrote and deployed a new 8-minute SEO blog post targeting "dog poop laws St. Louis Missouri" — a high-value informational keyword with zero competition from existing blog content. Updated blog index, sitemap, and pushed to both repos.
+**Result:** ✅ COMPLETE — LIVE at `https://tidytails.github.io/tidytails-website/blog/dog-poop-laws-st-louis-missouri.html`, pushed to both repos
+
+**Why This Task:**
+- Google just indexed the site (March 18) — honeymoon crawl period = new pages get discovered fast
+- Previous sitemap had a ghost entry for "blog/dog-poop-laws" that was never built — this fulfills it
+- Only 4 blog posts existed — 5th post adds fresh content signal during active crawl window
+- "Dog poop laws [city]" is a high-intent informational query that funnels to service signup
+- FAQ schema (5 Q&As) = rich snippet potential in search results
+- No competitor has a St. Louis-specific dog poop laws page — first mover advantage
+
+**What Was Deployed:**
+1. 📝 **Full 8-minute blog post** — Covers Missouri state law, St. Louis City rules, County ordinances, municipality breakdown, apartment/HOA rules, dog park rules, private property nuisance laws
+2. ⚖️ **FAQ schema (5 questions)** — "Is it illegal to not pick up dog poop in St. Louis?", fine amounts, own yard rules, HOA fines, reporting process
+3. 💰 **Fine breakdown grid** — Visual cards showing $50-$500 range by offense level + HOA fines
+4. 📍 **City-by-city enforcement table** — Florissant, O'Fallon, Chesterfield, Maryland Heights, Hazelwood, Kirkwood, Webster Groves, St. Charles, Ballwin, Creve Coeur
+5. 📊 **Stats and callouts** — 274 lbs/dog/year, 78% of apartments allow pets, DNA testing trend
+6. 📞 **Dual CTAs** — Call + Text Jamie buttons throughout
+7. 🔗 **Internal links** — Links to health risks, how often, and is-it-worth-it posts
+8. 📰 **Blog index updated** — New post card at top with ⚖️ Laws & Regulations tag
+9. 🗺️ **Sitemap updated** — 21 total URLs now (was 20)
+
+**SEO Targeting:**
+- Primary: "dog poop laws St. Louis", "pet waste ordinance Missouri", "dog poop fine St. Louis County"
+- Secondary: "is it illegal not to pick up dog poop Missouri", "pooper scooper law Missouri"
+- Long-tail: "dog poop laws Florissant MO", "HOA dog poop fine St. Louis"
+- Schema: FAQPage + BlogPosting with geo targeting
+
+**Rotation:** 📝 SEO/Content — Blog Post (Indexing Window Capitalizer)
+
+---
+
 ### 6:05 AM — 🌐 SEO EXPANSION — Kirkwood + Webster Groves City Pages Deployed LIVE (SEO/Territory Expansion)
 **Task:** Built and deployed two new city landing pages for Kirkwood (63122) and Webster Groves (63119) — our top expansion targets with 15,500+ dog-owning households on the I-44 corridor. Updated sitemap, homepage, and all existing city page navigation sitewide.
 **Result:** ✅ COMPLETE — LIVE on tidytailsstl.com, pushed to GitHub (14 files changed, 455 insertions)
