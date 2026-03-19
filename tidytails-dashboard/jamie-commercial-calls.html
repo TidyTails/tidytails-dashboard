@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commercial Calls — Tidy Tails</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+  
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --card-hover: #22263a;
+    --border: #2a2e3f;
+    --text: #e2e8f0;
+    --text-dim: #94a3b8;
+    --green: #4ade80;
+    --green-dark: #166534;
+    --amber: #fbbf24;
+    --amber-dark: #92400e;
+    --red: #f87171;
+    --red-dark: #991b1b;
+    --blue: #60a5fa;
+    --blue-dark: #1e40af;
+    --purple: #a78bfa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding: 12px;
+    padding-bottom: 100px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 8px 0 4px;
+  }
+  
+  .subtitle {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    margin-bottom: 16px;
+  }
+
+  /* TABS */
+  .tab-bar {
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab-bar::-webkit-scrollbar { display: none; }
+
+  .tab {
+    flex-shrink: 0;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .tab.active {
+    background: var(--green-dark);
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  /* SECTIONS */
+  .section { display: none; }
+  .section.active { display: block; }
+
+  /* LEAD CARDS */
+  .lead-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+  }
+  .lead-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+  }
+  .lead-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text);
+  }
+  .lead-type {
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .type-pm { background: var(--blue-dark); color: var(--blue); }
+  .type-apt { background: var(--green-dark); color: var(--green); }
+  .type-hoa { background: var(--amber-dark); color: var(--amber); }
+  .type-dog { background: rgba(168,85,247,0.2); color: var(--purple); }
+  .type-muni { background: var(--red-dark); color: var(--red); }
+  .type-senior { background: rgba(236,72,153,0.2); color: #f472b6; }
+
+  .lead-detail {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin: 2px 0;
+  }
+  .lead-pitch {
+    font-size: 0.78rem;
+    color: var(--amber);
+    margin: 8px 0 10px;
+    padding: 8px 10px;
+    background: rgba(251,191,36,0.08);
+    border-radius: 8px;
+    border-left: 3px solid var(--amber);
+  }
+  .lead-value {
+    font-weight: 700;
+    color: var(--green);
+    font-size: 0.8rem;
+  }
+
+  .lead-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 10px;
+  }
+  .btn {
+    flex: 1;
+    padding: 10px 8px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 700;
+    font-size: 0.78rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: transform 0.1s;
+  }
+  .btn:active { transform: scale(0.96); }
+  .btn-call {
+    background: var(--green);
+    color: #000;
+  }
+  .btn-text {
+    background: var(--blue);
+    color: #000;
+  }
+  .btn-email {
+    background: var(--amber);
+    color: #000;
+  }
+  .btn-copy {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  /* STATUS TRACKING */
+  .status-row {
+    display: flex;
+    gap: 4px;
+    margin-top: 8px;
+  }
+  .status-btn {
+    flex: 1;
+    padding: 6px 4px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text-dim);
+    font-size: 0.65rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+  }
+  .status-btn.active-status {
+    border-color: var(--green);
+    background: var(--green-dark);
+    color: var(--green);
+  }
+
+  /* SCRIPTS */
+  .script-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .script-header {
+    padding: 12px 14px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .script-header .chevron {
+    transition: transform 0.2s;
+    font-size: 0.8rem;
+  }
+  .script-header.open .chevron { transform: rotate(180deg); }
+  .script-body {
+    display: none;
+    padding: 0 14px 14px;
+  }
+  .script-body.open { display: block; }
+  .script-text {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    white-space: pre-wrap;
+  }
+  .script-text em {
+    color: var(--amber);
+    font-style: normal;
+    font-weight: 600;
+  }
+  .copy-script {
+    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--green);
+    background: var(--green-dark);
+    color: var(--green);
+    font-weight: 700;
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+
+  /* PRICING TABLE */
+  .price-grid {
+    display: grid;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .price-row {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .price-label {
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+  .price-desc {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+  }
+  .price-amount {
+    font-weight: 800;
+    color: var(--green);
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+
+  /* OBJECTION HANDLERS */
+  .objection-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    overflow: hidden;
+  }
+  .objection-q {
+    padding: 12px 14px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: var(--red);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .objection-a {
+    display: none;
+    padding: 0 14px 12px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .objection-a.open { display: block; }
+
+  /* FLOATING CALL BAR */
+  .float-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15,17,23,0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--border);
+    padding: 10px 12px;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+  .float-bar a {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+  .float-call {
+    background: var(--green);
+    color: #000;
+  }
+  .float-text {
+    background: var(--blue);
+    color: #000;
+  }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+    margin-bottom: 16px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 8px;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--green);
+  }
+  .stat-label {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .priority-badge {
+    display: inline-block;
+    font-size: 0.6rem;
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    margin-left: 6px;
+  }
+  .pri-high { background: var(--red-dark); color: var(--red); }
+  .pri-med { background: var(--amber-dark); color: var(--amber); }
+
+  /* FILTER */
+  .filter-row {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+  }
+  .filter-btn {
+    padding: 6px 10px;
+    border-radius: 6px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.7rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .filter-btn.active {
+    background: var(--green-dark);
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .back-link {
+    display: block;
+    text-align: center;
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.75rem;
+    margin-bottom: 8px;
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">← Back to Dashboard</a>
+<h1>📞 Commercial Call Sheet</h1>
+<p class="subtitle">26 leads • Tap to call • Updated March 18, 2026</p>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-card">
+    <div class="stat-num" id="stat-total">26</div>
+    <div class="stat-label">Total Leads</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" id="stat-called">0</div>
+    <div class="stat-label">Called</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" id="stat-scheduled">0</div>
+    <div class="stat-label">Walks</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" id="stat-pipeline">$0</div>
+    <div class="stat-label">Pipeline</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tab-bar">
+  <div class="tab active" data-tab="leads">📋 Leads</div>
+  <div class="tab" data-tab="scripts">📞 Scripts</div>
+  <div class="tab" data-tab="pricing">💰 Pricing</div>
+  <div class="tab" data-tab="objections">🛡️ Objections</div>
+  <div class="tab" data-tab="texts">💬 Texts</div>
+  <div class="tab" data-tab="emails">📧 Emails</div>
+</div>
+
+<!-- ==================== LEADS TAB ==================== -->
+<div class="section active" id="sec-leads">
+  
+  <div class="filter-row">
+    <div class="filter-btn active" data-filter="all">All (26)</div>
+    <div class="filter-btn" data-filter="high">🔴 High</div>
+    <div class="filter-btn" data-filter="apt">🏠 Apts</div>
+    <div class="filter-btn" data-filter="hoa">🏢 HOA</div>
+    <div class="filter-btn" data-filter="dog">🐕 Dog Biz</div>
+    <div class="filter-btn" data-filter="other">Other</div>
+    <div class="filter-btn" data-filter="uncalled">📵 Uncalled</div>
+  </div>
+
+  <div id="leads-container"></div>
+</div>
+
+<!-- ==================== SCRIPTS TAB ==================== -->
+<div class="section" id="sec-scripts">
+  
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      📞 Opening — Apartment / Complex <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">"Hey <em>[Name]</em>, this is Jamie with Tidy Tails — we're a local pet waste removal company here in St. Louis.
+
+I'm calling because I saw <em>[Property Name]</em> is pet-friendly, and I know that can come with some headaches in the common areas.
+
+We handle all of it — weekly cleanup of dog parks, walking paths, common lawns, waste station restocking, and we haul everything off-site.
+
+Do you deal with any pet waste issues out there?"
+
+<em>[Let them talk — listen for pain points]</em>
+
+"Yeah, that's exactly what we handle. Most properties our size pay around <em>$200-400 a month</em> depending on size. Would it be worth me doing a quick walkthrough so I can put together an exact number?"</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      🏢 Opening — HOA Management Company <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">"Hi <em>[Name]</em>, this is Jamie with Tidy Tails. We do professional pet waste removal for HOA communities in St. Louis.
+
+I'm reaching out because pet waste in common areas is one of the top complaints at board meetings — and we make it disappear.
+
+We service communities in North County, St. Charles, and West County already. We do weekly or bi-weekly cleanups, maintain waste stations, and send photo service reports to the board.
+
+Do you manage any communities where pet waste has been an issue?"
+
+<em>[Listen — they'll likely say YES]</em>
+
+"Perfect. We usually start with one community as a pilot — flat monthly rate, no contracts. If the board loves it, we add more. Would that work for you?"</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      🐕 Opening — Dog Daycare / Kennel <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">"Hey <em>[Name]</em>, this is Jamie from Tidy Tails — we're a pet waste removal company right here in <em>[area]</em>.
+
+I was calling because I thought there might be a two-way fit. First — do you have any outdoor areas that need regular waste cleanup? We can handle that weekly.
+
+But the bigger idea is a referral partnership. Your clients own dogs and probably deal with waste in their yards at home. We could set up a deal where your clients get 10% off their first month with us, and we refer our clients to you for boarding and daycare.
+
+Win-win — you help your clients, we both grow. Sound interesting?"</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      🏛️ Opening — Municipal / Dog Park <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">"Hi, I'm Jamie with Tidy Tails Pet Waste Removal. Could I speak with someone in Parks and Recreation?
+
+<em>[Transferred]</em>
+
+Hi <em>[Name]</em>, I'm Jamie with Tidy Tails — we provide commercial pet waste cleanup for dog parks and public spaces.
+
+I was calling about <em>[Dog Park Name]</em>. We handle weekly waste removal, station restocking, and we take everything off-site. It takes the load off your parks crew and keeps the park clean for residents.
+
+Most municipal dog parks our size run about <em>$300-500 a month</em> for weekly service. Is that something your department would consider, or is there an RFP process I should know about?"</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      👵 Opening — Senior Living <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">"Hi <em>[Name]</em>, this is Jamie with Tidy Tails. We're a local pet waste removal service.
+
+I'm calling because I know a lot of your residents love their pets but may need a little help keeping up with yard cleanup — especially in the warmer months.
+
+We offer affordable weekly service right here in <em>[area]</em>. Some communities offer it as a resident amenity, and some residents book us individually.
+
+Would that be something worth exploring? I'd love to come by for a quick chat."</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      📞 Voicemail Script (Universal) <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">"Hey <em>[Name]</em>, this is Jamie with Tidy Tails Pet Waste Removal — (314) 850-7140. 
+
+I'm calling about professional waste cleanup for <em>[Property Name]</em>. We handle common areas, dog parks, waste stations — the stuff your maintenance team doesn't want to do.
+
+Spring is here and I'd love to do a free walkthrough. Give me a call or text at (314) 850-7140. Thanks!"</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      🤝 Follow-Up Call (After Walkthrough) <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">"Hey <em>[Name]</em>, it's Jamie from Tidy Tails. I just emailed over our proposal from the walkthrough <em>[yesterday / on Tuesday / etc.]</em>.
+
+Quick recap — we're looking at <em>[frequency]</em> service covering <em>[areas]</em>, coming in at <em>$[amount]</em> a month. No contracts, and we can start as early as <em>[day]</em>.
+
+Did you get a chance to look it over? Any questions I can answer?"
+
+<em>[If they need board approval:]</em>
+
+"Totally understand. Would it help if I put together a one-page summary for the board? Happy to keep it simple. When's the next meeting?"</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      ⚡ Quick Tips — Before Every Call <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text"><strong>Best times to call:</strong> Tue-Thu, 9:00-11:30 AM
+<strong>Avoid:</strong> Mondays (slammed), Fridays (checked out), lunch (11:30-1)
+
+<strong>Before dialing:</strong>
+✅ Know the property name and what they have (dog park? how many units?)
+✅ Have a rough price in mind from the Pricing tab
+✅ Smile when you talk — they can hear it
+
+<strong>Key phrases that work:</strong>
+• "the stuff your maintenance team doesn't want to do"
+• "most properties our size pay around $X"
+• "no contracts — try us for a month"
+• "free walkthrough, no obligation"
+• "spring is when it gets rough"
+
+<strong>After the call:</strong>
+1. Update status below (Called / Walk Scheduled / etc.)
+2. Send follow-up text within 1 hour
+3. Email proposal within 24 hours if walkthrough scheduled</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PRICING TAB ==================== -->
+<div class="section" id="sec-pricing">
+  
+  <h2 style="font-size:1rem; margin-bottom:12px;">💰 Commercial Pricing Guide</h2>
+  
+  <div class="price-grid">
+    <div class="price-row">
+      <div>
+        <div class="price-label">Small Complex</div>
+        <div class="price-desc">&lt;50 units • 1×/week</div>
+      </div>
+      <div class="price-amount">$150-200/mo</div>
+    </div>
+    <div class="price-row">
+      <div>
+        <div class="price-label">Medium Complex</div>
+        <div class="price-desc">50-150 units • 2×/week</div>
+      </div>
+      <div class="price-amount">$250-400/mo</div>
+    </div>
+    <div class="price-row">
+      <div>
+        <div class="price-label">Large Complex</div>
+        <div class="price-desc">150+ units • 3×/week</div>
+      </div>
+      <div class="price-amount">$400-600/mo</div>
+    </div>
+    <div class="price-row">
+      <div>
+        <div class="price-label">HOA Common Areas</div>
+        <div class="price-desc">By acreage • 1-2×/week</div>
+      </div>
+      <div class="price-amount">$100-300/mo</div>
+    </div>
+    <div class="price-row">
+      <div>
+        <div class="price-label">Dog Park Only</div>
+        <div class="price-desc">Fenced area • 2-3×/week</div>
+      </div>
+      <div class="price-amount">$150-250/mo</div>
+    </div>
+    <div class="price-row">
+      <div>
+        <div class="price-label">Waste Station Add-On</div>
+        <div class="price-desc">Per station • restocked</div>
+      </div>
+      <div class="price-amount">$50-75/mo</div>
+    </div>
+    <div class="price-row">
+      <div>
+        <div class="price-label">Dog Biz / Kennel</div>
+        <div class="price-desc">Outdoor areas • 1-2×/week</div>
+      </div>
+      <div class="price-amount">$100-200/mo</div>
+    </div>
+    <div class="price-row">
+      <div>
+        <div class="price-label">Municipal Dog Park</div>
+        <div class="price-desc">City contract • 2-3×/week</div>
+      </div>
+      <div class="price-amount">$300-600/mo</div>
+    </div>
+  </div>
+
+  <h2 style="font-size:1rem; margin-bottom:12px;">🧮 Quick Quote Calculator</h2>
+  <div style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px;">
+    <div style="margin-bottom:10px;">
+      <label style="font-size:0.75rem; color:var(--text-dim); font-weight:600;">Property Size</label>
+      <select id="calc-size" onchange="calcQuote()" style="width:100%; padding:10px; border-radius:8px; background:var(--bg); border:1px solid var(--border); color:var(--text); font-size:0.85rem; margin-top:4px;">
+        <option value="150">Small (&lt;50 units)</option>
+        <option value="325" selected>Medium (50-150 units)</option>
+        <option value="500">Large (150+ units)</option>
+        <option value="200">HOA Common Area</option>
+        <option value="150">Dog Biz / Kennel</option>
+        <option value="450">Municipal Dog Park</option>
+      </select>
+    </div>
+    <div style="margin-bottom:10px;">
+      <label style="font-size:0.75rem; color:var(--text-dim); font-weight:600;">Frequency</label>
+      <select id="calc-freq" onchange="calcQuote()" style="width:100%; padding:10px; border-radius:8px; background:var(--bg); border:1px solid var(--border); color:var(--text); font-size:0.85rem; margin-top:4px;">
+        <option value="1">1×/week</option>
+        <option value="2" selected>2×/week</option>
+        <option value="3">3×/week</option>
+      </select>
+    </div>
+    <div style="margin-bottom:10px;">
+      <label style="font-size:0.75rem; color:var(--text-dim); font-weight:600;">Waste Stations?</label>
+      <select id="calc-stations" onchange="calcQuote()" style="width:100%; padding:10px; border-radius:8px; background:var(--bg); border:1px solid var(--border); color:var(--text); font-size:0.85rem; margin-top:4px;">
+        <option value="0">No stations</option>
+        <option value="1">1-3 stations (+$50)</option>
+        <option value="2">4-6 stations (+$100)</option>
+        <option value="3">7+ stations (+$150)</option>
+      </select>
+    </div>
+
+    <div id="calc-result" style="background:var(--green-dark); border-radius:10px; padding:14px; text-align:center; margin-top:10px;">
+      <div style="font-size:0.7rem; color:var(--text-dim); text-transform:uppercase; font-weight:600;">Estimated Monthly Quote</div>
+      <div id="calc-amount" style="font-size:1.8rem; font-weight:800; color:var(--green);">$325/mo</div>
+    </div>
+
+    <button onclick="copyQuote()" style="width:100%; margin-top:10px; padding:12px; border-radius:8px; border:1px solid var(--green); background:var(--green-dark); color:var(--green); font-weight:700; font-size:0.82rem; cursor:pointer;">📋 Copy Quote Text</button>
+  </div>
+
+  <h2 style="font-size:1rem; margin: 16px 0 12px;">⚔️ vs. Competitors</h2>
+  <div style="background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px;">
+    <div style="font-size:0.78rem; color:var(--text-dim); line-height:1.7;">
+      <strong style="color:var(--text);">DoodyCalls STL</strong> — National franchise, higher overhead, custom quotes<br>
+      <strong style="color:var(--text);">Doggie Doodies</strong> — Has commercial page, serves HOAs<br>
+      <strong style="color:var(--text);">POOP 911</strong> — National franchise, premium pricing<br><br>
+      <strong style="color:var(--green);">Tidy Tails advantage:</strong> Local, personal, no contracts, lower overhead = competitive pricing with better service. We pick up the phone. They route to a call center.
+    </div>
+  </div>
+</div>
+
+<!-- ==================== OBJECTIONS TAB ==================== -->
+<div class="section" id="sec-objections">
+  
+  <div class="objection-card">
+    <div class="objection-q" onclick="toggleObj(this)">"We handle it in-house" <span class="chevron">▼</span></div>
+    <div class="objection-a">"Totally get it — most properties start that way. Quick question though: how many hours a week does your team spend on it? Most property managers tell me it's 5-10 hours that could go toward turns, repairs, and work orders. We're usually cheaper than the labor cost — and your team gets to focus on what actually matters."</div>
+  </div>
+
+  <div class="objection-card">
+    <div class="objection-q" onclick="toggleObj(this)">"We don't have the budget" <span class="chevron">▼</span></div>
+    <div class="objection-a">"I hear you. A couple of our properties actually fold it into their pet amenity package — some add a small pet rent increase ($5-10/month per pet unit) that more than covers it. Residents are happy because the grounds are clean, and it pays for itself. Would that work for your community?"</div>
+  </div>
+
+  <div class="objection-card">
+    <div class="objection-q" onclick="toggleObj(this)">"Send me some info" <span class="chevron">▼</span></div>
+    <div class="objection-a">"Absolutely — what's the best email? I'll send over a proposal and some info on what we do. One thing though — I'd love to do a quick walkthrough first so the numbers are exact for your property. Would [Tuesday or Wednesday] work for 15 minutes?"</div>
+  </div>
+
+  <div class="objection-card">
+    <div class="objection-q" onclick="toggleObj(this)">"Not interested" <span class="chevron">▼</span></div>
+    <div class="objection-a">"No worries at all, appreciate your time. If things change — especially once spring hits and the complaints start rolling in — my number's (314) 850-7140. Have a good one!"</div>
+  </div>
+
+  <div class="objection-card">
+    <div class="objection-q" onclick="toggleObj(this)">"We need board approval" <span class="chevron">▼</span></div>
+    <div class="objection-a">"Totally understand — most HOAs work that way. I can put together a one-page summary specifically for the board: what we do, what it costs, the ROI. When's your next meeting? I can have it ready."</div>
+  </div>
+
+  <div class="objection-card">
+    <div class="objection-q" onclick="toggleObj(this)">"How often do you come?" <span class="chevron">▼</span></div>
+    <div class="objection-a">"We customize it based on your needs. Most medium-sized complexes do 2× a week — that keeps things consistently clean. But we have some smaller properties on 1× a week and larger ones on 3×. I'll recommend what makes sense after the walkthrough."</div>
+  </div>
+
+  <div class="objection-card">
+    <div class="objection-q" onclick="toggleObj(this)">"What if it doesn't work out?" <span class="chevron">▼</span></div>
+    <div class="objection-a">"No contracts. You can cancel anytime. Most of our commercial clients try us for a month and never look back — but there's zero risk on your end. We earn it every visit."</div>
+  </div>
+
+  <div class="objection-card">
+    <div class="objection-q" onclick="toggleObj(this)">"We already use someone" <span class="chevron">▼</span></div>
+    <div class="objection-a">"That's great — at least you know the value of professional service. Are you happy with them? If not, we'd love the chance to earn your business. We're local, we answer our phones, and we don't lock you into contracts. Happy to do a free trial visit so you can compare."</div>
+  </div>
+
+  <div class="objection-card">
+    <div class="objection-q" onclick="toggleObj(this)">"That seems expensive" <span class="chevron">▼</span></div>
+    <div class="objection-a">"I get it — let me break it down. At $[X] a month, that's about $[Y] per visit. If your maintenance crew spends even 2-3 hours a week on waste — at $15-20/hr, you're already paying more than that. Plus we're specialists — we're faster, more thorough, and your team can focus on actual maintenance."</div>
+  </div>
+</div>
+
+<!-- ==================== TEXTS TAB ==================== -->
+<div class="section" id="sec-texts">
+  
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      💬 Cold Text — Apartment Complex <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Hi [Name], this is Jamie with Tidy Tails! We do pet waste removal for apartment communities in [area]. Noticed [Property Name] is pet-friendly — any chance your team deals with waste in the common areas? We handle all of it starting at $150/mo. Happy to do a free walkthrough if you're interested 🐾</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Text</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      💬 Cold Text — HOA <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Hi [Name], Jamie here with Tidy Tails. We clean up pet waste from HOA common areas in St. Louis — it's the #1 board complaint and we make it disappear. Free site walk, no contracts. Worth a quick chat? (314) 850-7140</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Text</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      💬 Cold Text — Dog Business <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Hey [Name]! Jamie from Tidy Tails here. I had an idea — what if we set up a referral deal? Your clients own dogs and need yard cleanup, our clients need boarding/daycare. We can also handle your outdoor areas. Win-win? Let me know if you're interested!</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Text</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      💬 Follow-Up Text (After No Response) <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Hey [Name], just following up on my message about pet waste removal for [Property Name]. Spring is when it gets rough — happy to do a quick walkthrough whenever works. Jamie @ Tidy Tails (314) 850-7140</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Text</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      💬 After Walkthrough — Sending Proposal <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Hey [Name], great meeting you today! Just emailed over the proposal for [Property Name]. Quick recap: [frequency] service, [areas covered], $[amount]/mo. No contracts — we can start as early as [day]. Let me know if you have any questions! — Jamie</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Text</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      💬 Spring Urgency Text <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Hi [Name]! Spring is officially here and 4 months of frozen dog waste is about to thaw all at once 😬 If [Property Name] could use some help this season, we do free walkthroughs and there's no contract. Just text or call — Jamie @ Tidy Tails (314) 850-7140</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Text</button>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== EMAILS TAB ==================== -->
+<div class="section" id="sec-emails">
+  
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      📧 Cold Email — Property Manager <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text"><strong>Subject:</strong> Quick question about [Property Name]'s pet waste management
+
+Hi [Name],
+
+I'm Jamie with Tidy Tails, a local pet waste removal service here in St. Louis. I'm reaching out because I noticed [Property Name] is pet-friendly — which is great for attracting residents, but I know from working with local properties that it comes with some headaches.
+
+We handle all of it — weekly common area cleanup, waste station restocking, and we take everything off-site. No mess left behind.
+
+Quick stats:
+• Resident complaints about pet waste drop to near zero
+• Maintenance team gets 5-10 hours/week back
+• Starts at $150/mo for smaller communities
+
+I'd love to do a free walkthrough of [Property Name] and put together an exact quote. No obligation — just 15 minutes.
+
+Would Tuesday or Wednesday work?
+
+Best,
+Jamie
+Tidy Tails Pet Waste Removal
+(314) 850-7140
+tidytailspetwasteremoval.net</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Email</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      📧 Cold Email — HOA Management <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text"><strong>Subject:</strong> Solving your communities' #1 pet complaint
+
+Hi [Name],
+
+I'm Jamie with Tidy Tails — we provide professional pet waste removal for HOAs and apartment communities in St. Louis.
+
+Pet waste is the #1 complaint at HOA board meetings, and we make it go away:
+
+• Weekly/bi-weekly common area cleanup
+• Waste station maintenance (bags, cans, cleaning)
+• All waste removed off-site
+• Photo service reports for your boards
+
+We currently serve North County, St. Charles, and West County. I'd love to start with one of your communities as a pilot — flat monthly rate, no contracts. If the board loves it, we add more.
+
+Worth a quick call?
+
+Jamie
+Tidy Tails Pet Waste Removal
+(314) 850-7140</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Email</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      📧 Follow-Up Email (3-5 Days Later) <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text"><strong>Subject:</strong> Re: [Original subject]
+
+Hi [Name],
+
+Just bumping this — I know [property management / HOA] inboxes are brutal.
+
+Quick version: We clean up dog waste from commercial properties so your team doesn't have to. Free walkthrough, no contracts, starts at $150/mo.
+
+Spring is when the complaints spike. Happy to swing by before it gets bad.
+
+Worth a 5-minute call?
+
+Jamie
+(314) 850-7140</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Email</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      📧 Spring Seasonal Push <span class="chevron">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text"><strong>Subject:</strong> Spring = the worst time for dog waste on your property
+
+Hi [Name],
+
+Spring in St. Louis means one thing for pet-friendly properties: 4 months of frozen dog waste suddenly thawing at once. Your residents notice. Your Google reviews reflect it.
+
+Tidy Tails handles commercial pet waste removal across St. Louis County. We come 1-3×/week, clean every common area, restock your stations, and take all waste off-site.
+
+Book a free walkthrough this week and lock in spring pricing before the complaints start.
+
+(314) 850-7140 — call or text works.
+
+Jamie
+Tidy Tails Pet Waste Removal</div>
+      <button class="copy-script" onclick="copyScript(this)">📋 Copy Email</button>
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING BAR -->
+<div class="float-bar">
+  <a href="tel:3148507140" class="float-call">📞 Call Jamie</a>
+  <a href="sms:3148507140" class="float-text">💬 Text Jamie</a>
+</div>
+
+<script>
+// ============ LEAD DATA ============
+const leads = [
+  {id:'millsap', name:'Millsap Properties', type:'pm', typeName:'Prop Mgmt', phone:'3146863337', phoneDisplay:'(314) 686-3337', area:'Florissant/Hazelwood/St. Charles', detail:'7 pet-friendly apartment communities', value:'$500-1,500', priority:'high', pitch:'Your residents love their dogs. We service Florissant and Hazelwood already — literally down the street from Charbonier.'},
+  {id:'associa', name:'Associa Smith Mgmt', type:'hoa', typeName:'HOA Mgmt', phone:'3143944200', phoneDisplay:'(314) 394-4200', area:'St. Louis Metro', detail:'Largest HOA mgmt company in STL', value:'$300-2,000+', priority:'high', pitch:'Pet waste is the #1 HOA common area complaint. One vendor, one invoice — we handle it all.'},
+  {id:'sentry', name:'Sentry Management', type:'hoa', typeName:'HOA Mgmt', phone:'3149947440', phoneDisplay:'(314) 994-7440', area:'9666 Olive Blvd, STL', detail:'32+ HOA communities', value:'$300-2,000+', priority:'high', pitch:'We know boards deal with pet waste complaints constantly. Weekly common area cleanup, flat monthly fee.'},
+  {id:'cpm', name:'CPM Gateway', type:'hoa', typeName:'HOA Mgmt', phone:'6362278688', phoneDisplay:'(636) 227-8688', area:'Manchester / STL County', detail:'35+ years, multiple communities', value:'$300-2,000+', priority:'high', pitch:'One vendor relationship opens dozens of HOAs. We already serve North County and St. Charles.'},
+  {id:'noleash', name:'No Leash Needed', type:'dog', typeName:'Dog Biz (8 loc)', phone:'3149420011', phoneDisplay:'(314) 942-0011', area:'8 locations across STL', detail:'Boarding, daycare, training, grooming', value:'$300-750', priority:'high', pitch:'Outdoor waste at your St. Charles and Lake St. Louis spots — plus referral deal for yard cleanup.'},
+  {id:'delrado', name:'Delrado Apartments', type:'apt', typeName:'Apartment', phone:'3145015599', phoneDisplay:'(314) 501-5599', area:'680 Mescalero Ct, Florissant', detail:'Dog park, waste station, 1-2 BR', value:'$200-400', priority:'high', pitch:'We service homes right here in Florissant 63031. Keep your dog park spotless weekly.'},
+  {id:'greenway', name:'Greenway Chase', type:'apt', typeName:'Apartment', phone:'3148382879', phoneDisplay:'(314) 838-2879', area:'629 Greenway Manor, Florissant', detail:'On-site dog park, 1-2 BR, $940-1,305', value:'$200-400', priority:'high', pitch:'Already in the neighborhood servicing homes. Professional weekly dog park cleanup.'},
+  {id:'jasper', name:'Jasper Apartments', type:'apt', typeName:'Apartment (NEW)', phone:'6367474411', phoneDisplay:'(636) 747-4411', area:'1000 Jasper Ln, St. Peters', detail:'Brand new, dog park, pet wash room', value:'$200-400', priority:'high', pitch:'New community = no waste vendor yet. Get in on the ground floor.'},
+  {id:'meadowridge', name:'Meadowridge Apartments', type:'apt', typeName:'Apartment', phone:'6362441616', phoneDisplay:'(636) 244-1616', area:'2000 Styling Ridge, St. Charles', detail:'180 units, dog park, built 2018', value:'$250-400', priority:'high', pitch:'Dog park is a great amenity — let us keep it clean. Already in St. Charles County.'},
+  {id:'capital', name:'Capital at St. Charles', type:'apt', typeName:'Apartment', phone:'6362443400', phoneDisplay:'(636) 244-3400', area:'10 San Miguel Dr, St. Charles', detail:'All breeds welcome, no weight limit', value:'$200-400', priority:'high', pitch:'All breeds, all sizes = lots of dogs. Professional waste management keeps grounds sharp.'},
+  {id:'westchester', name:'Westchester Village', type:'apt', typeName:'Apartment', phone:'6362727500', phoneDisplay:'(636) 272-7500', area:"941 Clubhouse Ln, O'Fallon", detail:'Dog park, lake, walking trail, 1-3 BR', value:'$300-500', priority:'high', pitch:'Dog park AND walking trail around the lake — lots of ground to keep clean.'},
+  {id:'treestone', name:'TreeStone Properties', type:'hoa', typeName:'HOA Boutique', phone:'6367339021', phoneDisplay:'(636) 733-9021', area:'Chesterfield', detail:'Boutique HOA firm, faster decisions', value:'$200-1,000+', priority:'med', pitch:'Local owner-operated, flat monthly rate, no contracts. Pilot one community first.'},
+  {id:'parkforest', name:'Park Forest Apartments', type:'apt', typeName:'Apartment', phone:'3143511021', phoneDisplay:'(314) 351-1021', area:'7529 Fleta St, STL 63123', detail:'Bark park, pet treats, Yappy Hours', value:'$200-400', priority:'med', pitch:'You already do Yappy Hours — we can take waste cleanup off your maintenance crew.'},
+  {id:'emerald', name:'Emerald Crossing', type:'apt', typeName:'Apartment', phone:'3144260000', phoneDisplay:'(314) 426-0000', area:'10545 Emerald Ridge, Overland', detail:'Dog park, pool, Mission Rock mgmt', value:'$200-400', priority:'med', pitch:'Dog park is a great amenity — let us keep it spotless weekly.'},
+  {id:'whisper', name:'Whisper Hollow', type:'apt', typeName:'Apartment', phone:'3148788898', phoneDisplay:'(314) 878-8898', area:'12430 Whisper Hollow Dr, MD Heights', detail:'Fenced pet park, studio-2BR', value:'$200-400', priority:'med', pitch:'Pet park + near Creve Coeur Lake = lots of dog owners. Weekly professional service.'},
+  {id:'maryland', name:'Maryland Park Apts', type:'apt', typeName:'Apartment', phone:'8337270379', phoneDisplay:'(833) 727-0379', area:'2170 McKelvey Rd, MD Heights', detail:'Adding dog park, 1-2 BR', value:'$200-400', priority:'med', pitch:'Adding a dog park? Perfect timing — we handle waste management from day one.'},
+  {id:'vanderbilt', name:'Vanderbilt Apartments', type:'apt', typeName:'Apartment', phone:'6364341255', phoneDisplay:'(636) 434-1255', area:'100 Vanderbilt Blvd, St. Peters', detail:'Dog park, pool, near customer Preshus', value:'$200-400', priority:'med', pitch:'Already service clients in St. Peters. Adding your dog park to our route is easy.'},
+  {id:'kennelwood', name:'Kennelwood Pet Resorts', type:'dog', typeName:'Premium Pet Care', phone:'3144292100', phoneDisplay:'(314) 429-2100', area:'Multiple STL locations', detail:'Established premium brand, multiple locations', value:'$200-400', priority:'med', pitch:'Complement your premium care with professional outdoor waste management.'},
+  {id:'baronwood', name:'Baronwood Kennels', type:'dog', typeName:'Kennel/Referral', phone:'3148382021', phoneDisplay:'(314) 838-2021', area:'17220 New Halls Ferry, Florissant', detail:'Family-owned since 1971, boarding', value:'$100-200+ref', priority:'med', pitch:'Fellow Florissant business. Clean outdoor areas + referral partnership.'},
+  {id:'happytails', name:'Happy Tails Daycare', type:'dog', typeName:'Daycare/Referral', phone:'3142913647', phoneDisplay:'(314) 291-3647', area:'2920 N Lindbergh, St. Ann', detail:'24/7, 52 Yelp reviews, since 2000', value:'$100-200+ref', priority:'med', pitch:'You handle the love, we handle the cleanup. Plus referral deal for clients.'},
+  {id:'willows', name:"Willows at O'Fallon", type:'apt', typeName:'Villa Community', phone:'6362941399', phoneDisplay:'(636) 294-1399', area:"O'Fallon", detail:'Villas with backyards, dog park', value:'$200-400', priority:'med', pitch:'Villas with yards + common dog park. Service both areas as one package.'},
+  {id:'steelyard', name:'Steelyard Apartments', type:'apt', typeName:'Apartment', phone:'0', phoneDisplay:'See website', area:'STL (Mission Rock mgmt)', detail:'Dog wash station + dog park', value:'$200-400', priority:'med', pitch:'Bundle with Emerald Crossing — same management company (Mission Rock).'},
+  {id:'fields', name:'Fields of Florissant', type:'senior', typeName:'Senior Living', phone:'3148310988', phoneDisplay:'(314) 831-0988', area:'1101 Garden Plaza Dr, Florissant', detail:'Pet-friendly villas, 88+ units', value:'$150-300', priority:'med', pitch:'Residents love their pets but need help with cleanup. Great amenity offer.'},
+  {id:'florissantpark', name:'Florissant Dog Park', type:'muni', typeName:'Municipal', phone:'3149215700', phoneDisplay:'(314) 921-5700', area:'Florissant', detail:'City park, registration required', value:'$300-600', priority:'med', pitch:'Professional waste removal at a fraction of what your crew costs.'},
+  {id:'mdhts', name:'Maryland Heights Dogport', type:'muni', typeName:'Municipal', phone:'3147382599', phoneDisplay:'(314) 738-2599', area:'McKelvey Woods Ct, MD Heights', detail:'Off-leash, membership-based', value:'$300-600', priority:'med', pitch:'Offer professional service cheaper than internal maintenance.'},
+  {id:'overland', name:'Overland Dog Park', type:'muni', typeName:'Municipal', phone:'3144280490', phoneDisplay:'(314) 428-0490', area:'1655 Woodson Rd, Overland', detail:'3-section fenced park', value:'$200-400', priority:'med', pitch:'3 sections = significant grounds. Weekly service keeps it safe for residents.'},
+];
+
+// ============ STATE (localStorage) ============
+const STATE_KEY = 'tt_commercial_state';
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STATE_KEY)) || {}; } catch { return {}; }
+}
+function saveState(s) { localStorage.setItem(STATE_KEY, JSON.stringify(s)); }
+let state = loadState();
+
+// ============ RENDER LEADS ============
+function renderLeads(filter) {
+  const container = document.getElementById('leads-container');
+  let filtered = leads;
+  
+  if (filter === 'high') filtered = leads.filter(l => l.priority === 'high');
+  else if (filter === 'apt') filtered = leads.filter(l => l.type === 'apt');
+  else if (filter === 'hoa') filtered = leads.filter(l => l.type === 'hoa');
+  else if (filter === 'dog') filtered = leads.filter(l => l.type === 'dog');
+  else if (filter === 'other') filtered = leads.filter(l => ['muni','senior','pm'].includes(l.type));
+  else if (filter === 'uncalled') filtered = leads.filter(l => !state[l.id] || state[l.id].status === 'new');
+
+  let html = '';
+  filtered.forEach(l => {
+    const st = state[l.id] || {status: 'new'};
+    const typeClass = l.type === 'pm' ? 'type-pm' : l.type === 'apt' ? 'type-apt' : l.type === 'hoa' ? 'type-hoa' : l.type === 'dog' ? 'type-dog' : l.type === 'muni' ? 'type-muni' : 'type-senior';
+    const priBadge = l.priority === 'high' ? '<span class="priority-badge pri-high">HIGH</span>' : '';
+    
+    html += `
+    <div class="lead-card">
+      <div class="lead-header">
+        <div class="lead-name">${l.name}${priBadge}</div>
+        <span class="lead-type ${typeClass}">${l.typeName}</span>
+      </div>
+      <div class="lead-detail">📍 ${l.area}</div>
+      <div class="lead-detail">📋 ${l.detail}</div>
+      <div class="lead-detail lead-value">💰 ${l.value}/mo</div>
+      <div class="lead-pitch">💡 ${l.pitch}</div>
+      <div class="lead-actions">
+        ${l.phone !== '0' ? `<a href="tel:${l.phone}" class="btn btn-call">📞 Call</a>` : ''}
+        ${l.phone !== '0' ? `<a href="sms:${l.phone}" class="btn btn-text">💬 Text</a>` : ''}
+      </div>
+      <div class="status-row">
+        <div class="status-btn ${st.status==='new'?'active-status':''}" onclick="setStatus('${l.id}','new')">New</div>
+        <div class="status-btn ${st.status==='called'?'active-status':''}" onclick="setStatus('${l.id}','called')">Called</div>
+        <div class="status-btn ${st.status==='voicemail'?'active-status':''}" onclick="setStatus('${l.id}','voicemail')">VM</div>
+        <div class="status-btn ${st.status==='walk'?'active-status':''}" onclick="setStatus('${l.id}','walk')">Walk</div>
+        <div class="status-btn ${st.status==='quoted'?'active-status':''}" onclick="setStatus('${l.id}','quoted')">Quoted</div>
+        <div class="status-btn ${st.status==='won'?'active-status':''}" onclick="setStatus('${l.id}','won')">Won ✅</div>
+        <div class="status-btn ${st.status==='lost'?'active-status':''}" onclick="setStatus('${l.id}','lost')">Lost</div>
+      </div>
+    </div>`;
+  });
+  
+  container.innerHTML = html || '<p style="text-align:center;color:var(--text-dim);padding:20px;">No leads match this filter</p>';
+  updateStats();
+}
+
+function setStatus(id, status) {
+  state[id] = state[id] || {};
+  state[id].status = status;
+  state[id].updated = new Date().toISOString();
+  saveState(state);
+  renderLeads(currentFilter);
+}
+
+function updateStats() {
+  const total = leads.length;
+  let called = 0, walks = 0, pipelineMin = 0;
+  leads.forEach(l => {
+    const st = state[l.id]?.status;
+    if (st && st !== 'new') called++;
+    if (st === 'walk' || st === 'quoted') walks++;
+    if (st === 'walk' || st === 'quoted' || st === 'won') {
+      const match = l.value.match(/\$(\d+)/);
+      if (match) pipelineMin += parseInt(match[1]);
+    }
+  });
+  document.getElementById('stat-total').textContent = total;
+  document.getElementById('stat-called').textContent = called;
+  document.getElementById('stat-scheduled').textContent = walks;
+  document.getElementById('stat-pipeline').textContent = pipelineMin > 0 ? '$'+pipelineMin.toLocaleString() : '$0';
+}
+
+// ============ TABS ============
+let currentFilter = 'all';
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById('sec-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderLeads(currentFilter);
+  });
+});
+
+// ============ SCRIPTS ============
+function toggleScript(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+
+function toggleObj(el) {
+  el.nextElementSibling.classList.toggle('open');
+}
+
+function copyScript(btn) {
+  const text = btn.previousElementSibling.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = btn.textContent.includes('Email') ? '📋 Copy Email' : btn.textContent.includes('Text') ? '📋 Copy Text' : '📋 Copy Script', 2000);
+  });
+}
+
+// ============ PRICING CALCULATOR ============
+function calcQuote() {
+  const base = parseInt(document.getElementById('calc-size').value);
+  const freq = parseInt(document.getElementById('calc-freq').value);
+  const stations = parseInt(document.getElementById('calc-stations').value) * 50;
+  const total = Math.round(base * (freq === 1 ? 0.7 : freq === 2 ? 1 : 1.4)) + stations;
+  document.getElementById('calc-amount').textContent = '$' + total + '/mo';
+}
+
+function copyQuote() {
+  const amount = document.getElementById('calc-amount').textContent;
+  const size = document.getElementById('calc-size').selectedOptions[0].text;
+  const freq = document.getElementById('calc-freq').selectedOptions[0].text;
+  const stations = document.getElementById('calc-stations').selectedOptions[0].text;
+  
+  const text = `Tidy Tails Commercial Quote:\n• Property: ${size}\n• Service: ${freq}\n• Stations: ${stations}\n• Monthly: ${amount}\n\nNo contracts. Free walkthrough included.\nJamie — (314) 850-7140`;
+  
+  navigator.clipboard.writeText(text).then(() => {
+    event.target.textContent = '✅ Copied!';
+    setTimeout(() => event.target.textContent = '📋 Copy Quote Text', 2000);
+  });
+}
+
+// INIT
+renderLeads('all');
+calcQuote();
+</script>
+</body>
+</html>
