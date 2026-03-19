@@ -7,6 +7,50 @@
 
 ## March 19, 2026 (Thursday)
 
+### 5:04 PM — 🔍 LIVE COMPETITIVE INTEL UPDATE — 2 New Threats, Google Invisibility Crisis, Market Doubling (Competitive Intelligence/SEO)
+**Task:** Conducted live competitive research — searched Google for our core keywords, scraped competitor websites for pricing, discovered new market entrants, and built an interactive dashboard with threat assessments, pricing comparisons, and prioritized action items.
+**Result:** ✅ COMPLETE — Dashboard tool at `dashboard/competitive-intel-march2026.html`, pushed to GitHub
+
+**Why This Task:**
+- Today has been 10+ consecutive TOOL-BUILDING tasks — zero market intelligence
+- All those tools are useless if we don't know where we stand vs competitors RIGHT NOW
+- Spring 2026 = peak season = new competitors entering the market
+- Last competitor scan was March 9 — 10 days of blindness
+
+**Critical Findings:**
+1. 🚨 **tidytailsstl.com is INVISIBLE on Google** — doesn't appear in top 10 for "dog poop cleanup Florissant MO" or even when searching for the domain directly. Possible indexing failure.
+2. 🛡️ **Dog Doody Defenders (NEW)** — Based on Daniel Boone Dr, FLORISSANT MO. $17/week (32% cheaper than us). Direct threat in our primary territory.
+3. 🎖️ **Poop2Scoop (NEW)** — Veteran-owned, $18/week (28% cheaper). Covers all our service areas. On Nextdoor, PetWorks, MapQuest, Yelp.
+4. 📈 **Market doubled** — From ~6 known competitors to 12+ active in STL metro. Spring attracts new entrants.
+5. 🏷️ **Brand confusion** — 5 OTHER "Tidy Tails" businesses nationwide stealing our brand searches (Atlanta, FL, TX, PNW).
+
+**Pricing Reality:**
+| Company | Weekly | vs Us |
+|---|---|---|
+| Dog Doody Defenders | $17 | -32% |
+| Poop2Scoop | $18 | -28% |
+| POOP 911 | ~$20-25 | -0-20% |
+| **Tidy Tails** | **$25** | — |
+| DoodyCalls | ~$25-30 | +0-20% |
+
+**Opportunity Found:** North County (Ferguson, Jennings, Bridgeton, Black Jack, Spanish Lake) — NO competitor has dedicated pages for these areas. They're close to TJ's Florissant base = efficient routes.
+
+**8 Priority Actions Identified:**
+1. CRITICAL: Fix Google indexing
+2. CRITICAL: Create city-specific landing pages (copy POOP 911's strategy)
+3. HIGH: Get on Yelp immediately
+4. HIGH: Frame pricing value (don't lower prices — differentiate)
+5. HIGH: Directory blitz — match Poop2Scoop's footprint
+6. MEDIUM: Steal "health check + treat" idea from Little Stinkers
+7. MEDIUM: Own North County SEO before anyone else
+8. MEDIUM: Build trust signals (reviews, insured badge, BBB)
+
+**Pushed to:** `TidyTails/tidytails-dashboard` (master) ✅
+
+**Rotation:** 🔍 Competitive Intelligence — Market Reality Check
+
+---
+
 ### 4:05 PM — 🚀 SPRING 2026 LAUNCH PLAYBOOK — 15-Week Execution Plan Turning 12+ Tools Into Action (Strategy/Execution)
 **Task:** Built a comprehensive Spring 2026 Launch Playbook that organizes ALL dashboard tools and assets into a phased, week-by-week execution plan with 39 concrete tasks, progress tracking, and revenue targets. This is the "master plan" that turns scattered tools into a coordinated growth campaign.
 **Result:** ✅ COMPLETE — Dashboard tool at `dashboard/spring-playbook.html`, pushed to GitHub
