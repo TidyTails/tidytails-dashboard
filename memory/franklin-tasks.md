@@ -7,6 +7,40 @@
 
 ## March 19, 2026 (Thursday)
 
+### 6:05 AM — 🌐 SEO EXPANSION — Kirkwood + Webster Groves City Pages Deployed LIVE (SEO/Territory Expansion)
+**Task:** Built and deployed two new city landing pages for Kirkwood (63122) and Webster Groves (63119) — our top expansion targets with 15,500+ dog-owning households on the I-44 corridor. Updated sitemap, homepage, and all existing city page navigation sitewide.
+**Result:** ✅ COMPLETE — LIVE on tidytailsstl.com, pushed to GitHub (14 files changed, 455 insertions)
+
+**Why This Task:**
+- MEMORY identifies Kirkwood + Webster Groves as **best expansion targets** — affluent, dog-heavy, under-served
+- Site just got indexed on Google (Mar 18) — new pages will get crawled fast during this honeymoon period
+- POOP 911 may have LEFT Florissant (404 discovery at 5AM) — time to expand territory aggressively while competitors retreat
+- Only competitor in Kirkwood/Webster area is Dr. Scoops (solo op, quote-only, Ballwin-based) — we can OWN these search terms
+- SEO audit at 4AM said the bottleneck is NOT more tools — it's getting more indexed pages ranking for local search terms
+
+**What Was Deployed:**
+1. 📍 **kirkwood.html** — Full city page with LocalBusiness schema, 12 neighborhood tags (Downtown Kirkwood, Meramec Highlands, Kirkwood Park area, etc.), local knowledge section about Kirkwood Dog Park, pricing grid, dual CTA (call + text)
+2. 📍 **webster-groves.html** — Full city page with LocalBusiness schema, 12 neighborhood tags (Old Webster, Tuxedo Park, North Webster Groves, etc.), local knowledge about Farmers' Market + Blackburn Park, pricing grid, dual CTA
+3. 🗺️ **sitemap.xml updated** — 19 total URLs (was 17), both new pages with 2026-03-19 lastmod
+4. 🏠 **Homepage updated** — Kirkwood + Webster Groves added to service area tags AND schema.org areaServed array
+5. 🔗 **All 11 existing city pages updated** — Kirkwood + Webster Groves links added to service-areas-nav footer
+6. ✅ All pages use **Jamie branding**, correct phone **(314) 850-7140**, tap-to-call/text CTAs, pre-filled SMS
+
+**SEO Targeting:**
+- Primary: "pet waste removal Kirkwood MO", "pooper scooper Kirkwood"
+- Primary: "pet waste removal Webster Groves MO", "pooper scooper Webster Groves"
+- Schema: LocalBusiness with geo coordinates, zip codes, areaServed
+- Internal linking: every city page now links to every other city page (13-way interlink)
+
+**Competitive Context:**
+- Dr. Scoops is only known competitor in these areas — solo op, no dedicated city pages, quote-based pricing
+- Doggie Doodies (our #1 rival) hasn't expanded this far south/west yet
+- With site freshly indexed, Google should discover these pages within days via sitemap
+
+**Rotation:** 🌐 SEO/Territory Expansion — New City Pages
+
+---
+
 ### 5:04 AM — 🔍 COMPETITIVE INTEL UPDATE — Live Site Crawl + POOP 911 Florissant Withdrawal Discovery (Competitive Monitoring)
 **Task:** Live-crawled all major competitor websites to check for changes since last sweep (Mar 18). Compared pricing, service areas, content, and features.
 **Result:** ✅ COMPLETE — Full report at `deliverables/competitive-intel-march19-5am.md`
