@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Call Sheet | Tidy Tails</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; -webkit-tap-highlight-color:transparent; }
+
+        .header {
+            background: linear-gradient(135deg, var(--bg2), #1a1520);
+            border-bottom: 1px solid var(--border);
+            padding: 1.25rem 1.5rem; text-align: center; position: relative;
+        }
+        .back-link {
+            position: absolute; top: 1.25rem; left: 1rem;
+            color: var(--text2); text-decoration: none; font-size: 0.8rem;
+        }
+        .back-link:hover { color: var(--orange); }
+        .header h1 { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.03em; }
+        .header h1 span { color: var(--green); }
+        .header .subtitle { color: var(--text2); font-size: 0.8rem; margin-top: 0.25rem; }
+        .header .date { color: var(--text3); font-size: 0.7rem; margin-top: 0.3rem; font-family: 'JetBrains Mono', monospace; }
+
+        .container { max-width: 700px; margin: 0 auto; padding: 1rem; }
+
+        /* Progress Bar */
+        .progress-wrap {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1rem; margin-bottom: 1rem;
+        }
+        .progress-label { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .progress-label span { font-size: 0.8rem; font-weight: 600; }
+        .progress-label .count { font-family: 'JetBrains Mono', monospace; color: var(--green); }
+        .progress-bar { height: 8px; background: var(--bg4); border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--green), #34d399); border-radius: 4px; transition: width 0.5s ease; }
+
+        /* Quick Tips */
+        .tips {
+            background: linear-gradient(135deg, #0a1a10, #051a0a);
+            border: 1px solid rgba(16,185,129,0.3); border-radius: var(--radius);
+            padding: 1rem; margin-bottom: 1rem; font-size: 0.8rem;
+        }
+        .tips h3 { font-size: 0.85rem; color: var(--green); margin-bottom: 0.5rem; }
+        .tips ul { padding-left: 1.25rem; color: var(--text2); line-height: 1.6; }
+        .tips li { margin-bottom: 0.15rem; }
+        .tips strong { color: var(--text); }
+
+        /* Filter Tabs */
+        .filters { display: flex; gap: 0.4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .filter-btn {
+            padding: 0.4rem 0.75rem; border-radius: 8px; font-size: 0.75rem; font-weight: 600;
+            cursor: pointer; border: 1px solid var(--border); background: var(--bg3);
+            color: var(--text2); transition: all 0.2s; font-family: 'Inter', sans-serif;
+        }
+        .filter-btn:hover { border-color: var(--orange); color: var(--text); }
+        .filter-btn.active { background: rgba(255,107,53,0.15); border-color: var(--orange); color: var(--orange); }
+
+        /* Lead Cards */
+        .leads { display: flex; flex-direction: column; gap: 0.75rem; }
+
+        .lead-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            overflow: hidden; transition: border-color 0.2s;
+        }
+        .lead-card:hover { border-color: #444; }
+        .lead-card.called { opacity: 0.6; }
+        .lead-card.called .lead-top { background: rgba(16,185,129,0.05); }
+
+        .lead-top {
+            padding: 1rem; cursor: pointer; user-select: none;
+        }
+        .lead-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; }
+        .lead-rank {
+            width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 800; font-size: 0.75rem; font-family: 'JetBrains Mono', monospace; flex-shrink: 0;
+        }
+        .rank-hot { background: rgba(239,68,68,0.2); color: var(--red); }
+        .rank-warm { background: rgba(251,191,36,0.2); color: var(--yellow); }
+        .rank-cool { background: rgba(59,130,246,0.2); color: var(--blue); }
+
+        .lead-info { flex: 1; }
+        .lead-name { font-weight: 700; font-size: 0.95rem; line-height: 1.3; }
+        .lead-type { font-size: 0.7rem; color: var(--text2); margin-top: 0.15rem; }
+        .lead-value {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+            color: var(--green); margin-top: 0.25rem;
+        }
+        .lead-badges { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-top: 0.35rem; }
+        .badge {
+            padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.6rem; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.03em;
+        }
+        .badge-florissant { background: rgba(255,107,53,0.15); color: var(--orange); }
+        .badge-stcharles { background: rgba(139,92,246,0.15); color: var(--purple); }
+        .badge-mdhts { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .badge-stpeters { background: rgba(16,185,129,0.15); color: var(--green); }
+        .badge-ofallon { background: rgba(251,191,36,0.15); color: var(--yellow); }
+        .badge-whale { background: rgba(239,68,68,0.15); color: var(--red); }
+        .badge-referral { background: rgba(168,85,247,0.15); color: var(--purple); }
+        .badge-dogpark { background: rgba(16,185,129,0.15); color: var(--green); }
+        .badge-new { background: rgba(59,130,246,0.2); color: var(--blue); }
+
+        .lead-expand { color: var(--text3); font-size: 0.7rem; transition: transform 0.2s; }
+
+        /* Expanded Details */
+        .lead-details {
+            display: none; padding: 0 1rem 1rem; border-top: 1px solid var(--border);
+        }
+        .lead-card.expanded .lead-details { display: block; }
+        .lead-card.expanded .lead-expand { transform: rotate(180deg); }
+
+        .detail-section { margin-top: 0.75rem; }
+        .detail-section h4 { font-size: 0.75rem; color: var(--orange); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.35rem; }
+        .detail-section p { font-size: 0.82rem; color: var(--text2); line-height: 1.5; }
+
+        .pitch-script {
+            background: var(--bg4); border-radius: 8px; padding: 0.75rem;
+            font-size: 0.82rem; line-height: 1.6; color: var(--text);
+            border-left: 3px solid var(--orange);
+        }
+        .pitch-script .greeting { color: var(--green); font-weight: 600; }
+        .pitch-script .hook { color: var(--yellow); }
+        .pitch-script .close { color: var(--orange); font-weight: 600; }
+
+        /* Action Buttons */
+        .lead-actions {
+            display: flex; gap: 0.5rem; margin-top: 0.75rem; flex-wrap: wrap;
+        }
+        .action-btn {
+            display: flex; align-items: center; gap: 0.35rem;
+            padding: 0.6rem 1rem; border-radius: 8px; font-size: 0.8rem; font-weight: 600;
+            text-decoration: none; cursor: pointer; border: none;
+            font-family: 'Inter', sans-serif; transition: all 0.2s; flex: 1;
+            justify-content: center; min-width: 120px;
+        }
+        .action-btn:hover { transform: translateY(-1px); filter: brightness(1.1); }
+        .btn-call { background: var(--green); color: white; }
+        .btn-text { background: var(--blue); color: white; }
+        .btn-website { background: var(--bg4); color: var(--text2); border: 1px solid var(--border); }
+
+        /* Outcome Buttons */
+        .outcome-section { margin-top: 0.75rem; }
+        .outcome-section h4 { font-size: 0.7rem; color: var(--text3); text-transform: uppercase; margin-bottom: 0.35rem; }
+        .outcome-btns { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+        .outcome-btn {
+            padding: 0.35rem 0.65rem; border-radius: 6px; font-size: 0.7rem; font-weight: 600;
+            cursor: pointer; border: 1px solid var(--border); background: var(--bg4);
+            color: var(--text2); font-family: 'Inter', sans-serif; transition: all 0.15s;
+        }
+        .outcome-btn:hover { border-color: var(--text2); }
+        .outcome-btn.selected { border-color: var(--green); color: var(--green); background: rgba(16,185,129,0.1); }
+        .outcome-btn.selected-vm { border-color: var(--yellow); color: var(--yellow); background: rgba(251,191,36,0.1); }
+        .outcome-btn.selected-no { border-color: var(--red); color: var(--red); background: rgba(239,68,68,0.1); }
+        .outcome-btn.selected-meeting { border-color: var(--green); color: var(--green); background: rgba(16,185,129,0.15); animation: pulse 2s infinite; }
+
+        @keyframes pulse { 0%,100% { box-shadow: none; } 50% { box-shadow: 0 0 8px rgba(16,185,129,0.3); } }
+
+        .notes-input {
+            width: 100%; margin-top: 0.5rem; padding: 0.5rem; background: var(--bg4);
+            border: 1px solid var(--border); border-radius: 6px; color: var(--text);
+            font-family: 'Inter', sans-serif; font-size: 0.8rem; resize: vertical; min-height: 40px;
+        }
+        .notes-input:focus { border-color: var(--orange); outline: none; }
+        .notes-input::placeholder { color: var(--text3); }
+
+        /* Pricing Reference */
+        .pricing-ref {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1rem; margin-top: 1.5rem;
+        }
+        .pricing-ref h3 { font-size: 0.85rem; margin-bottom: 0.75rem; }
+        .pricing-grid { display: grid; grid-template-columns: 1fr auto; gap: 0.25rem 1rem; font-size: 0.8rem; }
+        .pricing-grid .p-label { color: var(--text2); }
+        .pricing-grid .p-value { font-family: 'JetBrains Mono', monospace; color: var(--green); font-weight: 600; text-align: right; }
+
+        /* Status row shown on lead card */
+        .lead-status {
+            font-size: 0.7rem; font-weight: 600; margin-top: 0.35rem;
+            display: none;
+        }
+        .lead-card.called .lead-status { display: block; }
+
+        .footer { text-align: center; padding: 2rem 1rem; color: var(--text3); font-size: 0.7rem; font-family: 'JetBrains Mono', monospace; }
+
+        @media (max-width: 600px) {
+            .container { padding: 0.75rem; }
+            .header { padding: 1rem; }
+            .header h1 { font-size: 1.15rem; }
+            .lead-actions { flex-direction: column; }
+            .action-btn { flex: auto; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-link">← Dashboard</a>
+        <h1>📞 Commercial <span>Call Sheet</span></h1>
+        <p class="subtitle">Top 10 leads ranked by value · Tap to call · Track outcomes</p>
+        <p class="date">Updated March 19, 2026 · 26 leads in pipeline</p>
+    </div>
+
+    <div class="container">
+
+        <!-- Progress -->
+        <div class="progress-wrap">
+            <div class="progress-label">
+                <span>📞 Calls Made Today</span>
+                <span class="count" id="callCount">0 / 10</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+        </div>
+
+        <!-- Tips -->
+        <div class="tips" id="tipsPanel">
+            <h3>💡 Jamie's Call Playbook</h3>
+            <ul>
+                <li><strong>Best time to call:</strong> Tue-Thu, 9-11 AM or 2-4 PM</li>
+                <li><strong>Ask for:</strong> Property manager, community manager, or facilities manager</li>
+                <li><strong>Lead with:</strong> "I'm Jamie from Tidy Tails — we do pet waste removal for apartments and HOAs in [their area]"</li>
+                <li><strong>If voicemail:</strong> Leave a 20-second message, mention you'll email a one-pager</li>
+                <li><strong>Always mention:</strong> "We're already in your area" — specifics in each script below</li>
+                <li><strong>Close with:</strong> "Can I send you a quick info sheet with pricing?"</li>
+            </ul>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterLeads('all')">All (10)</button>
+            <button class="filter-btn" onclick="filterLeads('whale')">🐋 Whales</button>
+            <button class="filter-btn" onclick="filterLeads('apartment')">🏠 Apartments</button>
+            <button class="filter-btn" onclick="filterLeads('hoa')">🏘️ HOAs</button>
+            <button class="filter-btn" onclick="filterLeads('dogbiz')">🐕 Dog Biz</button>
+            <button class="filter-btn" onclick="filterLeads('uncalled')">📵 Not Called</button>
+        </div>
+
+        <!-- Lead Cards -->
+        <div class="leads" id="leadsList">
+
+            <!-- LEAD 1: Millsap Properties -->
+            <div class="lead-card" data-id="millsap" data-category="whale apartment" id="lead-millsap">
+                <div class="lead-top" onclick="toggleLead('millsap')">
+                    <div class="lead-header">
+                        <div class="lead-rank rank-hot">1</div>
+                        <div class="lead-info">
+                            <div class="lead-name">Millsap Properties</div>
+                            <div class="lead-type">Property Management · 7 Pet-Friendly Apartment Communities</div>
+                            <div class="lead-value">💰 Est. $500–$1,500/mo</div>
+                            <div class="lead-badges">
+                                <span class="badge badge-whale">🐋 WHALE</span>
+                                <span class="badge badge-florissant">FLORISSANT</span>
+                                <span class="badge badge-stcharles">ST. CHARLES</span>
+                            </div>
+                            <div class="lead-status" id="status-millsap"></div>
+                        </div>
+                        <span class="lead-expand">▼</span>
+                    </div>
+                </div>
+                <div class="lead-details">
+                    <div class="detail-section">
+                        <h4>Why #1 Priority</h4>
+                        <p>Manages <strong>7 pet-friendly apartment communities</strong> across Florissant, Hazelwood, Ballwin, and St. Charles — ALL in TJ's service area. One "yes" here = 7 properties. This is the single highest-value lead.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>📍 Their Properties (All Pet-Friendly)</h4>
+                        <p>
+                            • Charbonier Apts — Florissant 63031 ⭐<br>
+                            • Teson Garden Apts — Hazelwood 63042 ⭐<br>
+                            • White Birch Apts — Hazelwood 63042 ⭐<br>
+                            • Cunningham Apts — St. Charles 63301<br>
+                            • Leslie Apts — Ballwin 63021<br>
+                            • Amber Terrace — St. Charles 63301<br>
+                            • Villa Roma — St. Charles 63301
+                        </p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>📝 Pitch Script</h4>
+                        <div class="pitch-script">
+                            <span class="greeting">"Hi, this is Jamie from Tidy Tails — we're a local pet waste removal company.</span> I noticed you manage several pet-friendly communities in Florissant and Hazelwood — <span class="hook">we actually service homes right down the street from Charbonier Apartments.</span> A lot of apartment communities are adding professional pet waste cleanup as an amenity — keeps the grounds clean, reduces maintenance crew time, and residents love it. <span class="close">Would you be open to me sending over a quick info sheet with pricing? We could start with one property as a trial."</span>
+                        </div>
+                    </div>
+                    <div class="lead-actions">
+                        <a href="tel:3146863337" class="action-btn btn-call">📞 Call (314) 686-3337</a>
+                        <a href="mailto:millsappropertymanagement@gmail.com?subject=Pet%20Waste%20Removal%20for%20Your%20Communities&body=Hi%2C%0A%0AI%27m%20Jamie%20from%20Tidy%20Tails%20%E2%80%94%20we%20provide%20professional%20pet%20waste%20removal%20for%20apartment%20communities%20in%20the%20St.%20Louis%20area.%0A%0AI%20noticed%20your%20communities%20in%20Florissant%20and%20Hazelwood%20are%20pet-friendly%2C%20and%20I%E2%80%99d%20love%20to%20chat%20about%20how%20we%20can%20help%20keep%20your%20grounds%20clean.%0A%0AWould%20you%20have%2010%20minutes%20this%20week%20for%20a%20quick%20call%3F%0A%0ABest%2C%0AJamie%20Dabrowski%0ATidy%20Tails%20STL%0A(314)%20850-7140%0Atidytailsstl.com" class="action-btn btn-text">📧 Email</a>
+                        <a href="https://millsapproperties.com" target="_blank" class="action-btn btn-website">🔗 Website</a>
+                    </div>
+                    <div class="outcome-section">
+                        <h4>Log Outcome</h4>
+                        <div class="outcome-btns">
+                            <button class="outcome-btn" onclick="logOutcome('millsap','spoke','selected')">✅ Spoke to Someone</button>
+                            <button class="outcome-btn" onclick="logOutcome('millsap','voicemail','selected-vm')">📱 Left Voicemail</button>
+                            <button class="outcome-btn" onclick="logOutcome('millsap','noanswer','selected-no')">❌ No Answer</button>
+                            <button class="outcome-btn" onclick="logOutcome('millsap','meeting','selected-meeting')">🤝 Meeting Scheduled!</button>
+                            <button class="outcome-btn" onclick="logOutcome('millsap','emailed','selected')">📧 Emailed Info</button>
+                        </div>
+                        <textarea class="notes-input" id="notes-millsap" placeholder="Quick notes — who you spoke to, follow-up date..." onchange="saveNotes('millsap')"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEAD 2: No Leash Needed -->
+            <div class="lead-card" data-id="noleash" data-category="whale dogbiz" id="lead-noleash">
+                <div class="lead-top" onclick="toggleLead('noleash')">
+                    <div class="lead-header">
+                        <div class="lead-rank rank-hot">2</div>
+                        <div class="lead-info">
+                            <div class="lead-name">No Leash Needed</div>
+                            <div class="lead-type">Dog Boarding/Daycare/Training · 8 STL Locations</div>
+                            <div class="lead-value">💰 Est. $300–$750/mo</div>
+                            <div class="lead-badges">
+                                <span class="badge badge-whale">🐋 8 LOCATIONS</span>
+                                <span class="badge badge-stcharles">ST. CHARLES</span>
+                                <span class="badge badge-referral">+ REFERRALS</span>
+                            </div>
+                            <div class="lead-status" id="status-noleash"></div>
+                        </div>
+                        <span class="lead-expand">▼</span>
+                    </div>
+                </div>
+                <div class="lead-details">
+                    <div class="detail-section">
+                        <h4>Why Top Priority</h4>
+                        <p><strong>8 locations</strong> across STL — Ellisville, Kirkwood, Rock Hill, Lake St. Louis, St. Charles, West County + more. Award-winning dog training, boarding, daycare, and grooming. High dog volume = high waste. Plus <strong>referral goldmine</strong> — their clients own dogs and need yard cleanup at home.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>📝 Pitch Script</h4>
+                        <div class="pitch-script">
+                            <span class="greeting">"Hi, I'm Jamie with Tidy Tails — we do pet waste removal here in St. Louis.</span> I love what you guys do at No Leash Needed — <span class="hook">with 8 locations and all those happy dogs, I bet outdoor cleanup is a never-ending job for your team.</span> We handle that professionally so your staff can focus on the dogs. Plus, I'd love to talk about a referral partnership — <span class="close">your clients go home to yards that need cleaning too. Could we set up 10 minutes to chat about both?"</span>
+                        </div>
+                    </div>
+                    <div class="lead-actions">
+                        <a href="tel:3149420011" class="action-btn btn-call">📞 Call (314) 942-0011</a>
+                        <a href="https://noleashneeded.com" target="_blank" class="action-btn btn-website">🔗 Website</a>
+                    </div>
+                    <div class="outcome-section">
+                        <h4>Log Outcome</h4>
+                        <div class="outcome-btns">
+                            <button class="outcome-btn" onclick="logOutcome('noleash','spoke','selected')">✅ Spoke to Someone</button>
+                            <button class="outcome-btn" onclick="logOutcome('noleash','voicemail','selected-vm')">📱 Left Voicemail</button>
+                            <button class="outcome-btn" onclick="logOutcome('noleash','noanswer','selected-no')">❌ No Answer</button>
+                            <button class="outcome-btn" onclick="logOutcome('noleash','meeting','selected-meeting')">🤝 Meeting Scheduled!</button>
+                        </div>
+                        <textarea class="notes-input" id="notes-noleash" placeholder="Quick notes..." onchange="saveNotes('noleash')"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEAD 3: Associa Smith Management -->
+            <div class="lead-card" data-id="associa" data-category="whale hoa" id="lead-associa">
+                <div class="lead-top" onclick="toggleLead('associa')">
+                    <div class="lead-header">
+                        <div class="lead-rank rank-hot">3</div>
+                        <div class="lead-info">
+                            <div class="lead-name">Associa Smith Management Group</div>
+                            <div class="lead-type">HOA Management · Largest in STL · Dozens of Communities</div>
+                            <div class="lead-value">💰 Est. $300–$2,000+/mo</div>
+                            <div class="lead-badges">
+                                <span class="badge badge-whale">🐋 WHALE</span>
+                                <span class="badge badge-stcharles">REGION-WIDE</span>
+                            </div>
+                            <div class="lead-status" id="status-associa"></div>
+                        </div>
+                        <span class="lead-expand">▼</span>
+                    </div>
+                </div>
+                <div class="lead-details">
+                    <div class="detail-section">
+                        <h4>Why Top Priority</h4>
+                        <p>The <strong>LARGEST HOA management company in STL</strong>. Part of the national Associa network. They manage dozens of HOA communities — if they add us as a vendor, we could service 5-20 communities. Pet waste in common areas is the #1 HOA complaint nationally. Ask for their <strong>"vendor services" or "community manager."</strong></p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>📝 Pitch Script</h4>
+                        <div class="pitch-script">
+                            <span class="greeting">"Hi, I'm Jamie from Tidy Tails — we specialize in pet waste removal for HOA communities.</span> <span class="hook">I know pet waste in common areas is one of the most common complaints HOA boards deal with.</span> We solve it with professional weekly cleanup — one vendor, one invoice, clean common areas. We're already servicing North County and St. Charles County. <span class="close">Could I send you a one-page info sheet for your community managers to review? No pressure — just want to be on your radar as a vendor option."</span>
+                        </div>
+                    </div>
+                    <div class="lead-actions">
+                        <a href="tel:3143944200" class="action-btn btn-call">📞 Call (314) 394-4200</a>
+                        <a href="https://smithmgmt.com" target="_blank" class="action-btn btn-website">🔗 Website</a>
+                    </div>
+                    <div class="outcome-section">
+                        <h4>Log Outcome</h4>
+                        <div class="outcome-btns">
+                            <button class="outcome-btn" onclick="logOutcome('associa','spoke','selected')">✅ Spoke to Someone</button>
+                            <button class="outcome-btn" onclick="logOutcome('associa','voicemail','selected-vm')">📱 Left Voicemail</button>
+                            <button class="outcome-btn" onclick="logOutcome('associa','noanswer','selected-no')">❌ No Answer</button>
+                            <button class="outcome-btn" onclick="logOutcome('associa','meeting','selected-meeting')">🤝 Meeting Scheduled!</button>
+                        </div>
+                        <textarea class="notes-input" id="notes-associa" placeholder="Quick notes..." onchange="saveNotes('associa')"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEAD 4: Delrado Apartments -->
+            <div class="lead-card" data-id="delrado" data-category="apartment" id="lead-delrado">
+                <div class="lead-top" onclick="toggleLead('delrado')">
+                    <div class="lead-header">
+                        <div class="lead-rank rank-hot">4</div>
+                        <div class="lead-info">
+                            <div class="lead-name">Delrado Apartments</div>
+                            <div class="lead-type">Apartment Complex · Dedicated Dog Park · Florissant 63031</div>
+                            <div class="lead-value">💰 Est. $200–$400/mo</div>
+                            <div class="lead-badges">
+                                <span class="badge badge-florissant">FLORISSANT</span>
+                                <span class="badge badge-dogpark">DOG PARK</span>
+                            </div>
+                            <div class="lead-status" id="status-delrado"></div>
+                        </div>
+                        <span class="lead-expand">▼</span>
+                    </div>
+                </div>
+                <div class="lead-details">
+                    <div class="detail-section">
+                        <h4>Why Priority</h4>
+                        <p>Fenced dog park with waste station already in place — they're investing in pet infrastructure. <strong>Florissant 63031</strong> = TJ's #1 zone where Shannon and Amanda already are. Easy route add.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>📝 Pitch Script</h4>
+                        <div class="pitch-script">
+                            <span class="greeting">"Hi, I'm Jamie with Tidy Tails — we're a pet waste removal company right here in Florissant.</span> <span class="hook">We actually service several homes on this side of 63031 already.</span> I noticed your community has a great dog park — we can keep it spotless with weekly professional cleanup. <span class="close">One flat monthly rate, no contract. Can I give you a quick rundown on pricing?"</span>
+                        </div>
+                    </div>
+                    <div class="lead-actions">
+                        <a href="tel:3145015599" class="action-btn btn-call">📞 Call (314) 501-5599</a>
+                        <a href="https://delradoapartments.com" target="_blank" class="action-btn btn-website">🔗 Website</a>
+                    </div>
+                    <div class="outcome-section">
+                        <h4>Log Outcome</h4>
+                        <div class="outcome-btns">
+                            <button class="outcome-btn" onclick="logOutcome('delrado','spoke','selected')">✅ Spoke</button>
+                            <button class="outcome-btn" onclick="logOutcome('delrado','voicemail','selected-vm')">📱 VM</button>
+                            <button class="outcome-btn" onclick="logOutcome('delrado','noanswer','selected-no')">❌ No Ans</button>
+                            <button class="outcome-btn" onclick="logOutcome('delrado','meeting','selected-meeting')">🤝 Meeting!</button>
+                        </div>
+                        <textarea class="notes-input" id="notes-delrado" placeholder="Quick notes..." onchange="saveNotes('delrado')"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEAD 5: Jasper Apartments -->
+            <div class="lead-card" data-id="jasper" data-category="apartment" id="lead-jasper">
+                <div class="lead-top" onclick="toggleLead('jasper')">
+                    <div class="lead-header">
+                        <div class="lead-rank rank-hot">5</div>
+                        <div class="lead-info">
+                            <div class="lead-name">Jasper Apartments</div>
+                            <div class="lead-type">BRAND NEW Community · Dog Park + Pet Wash · St. Peters</div>
+                            <div class="lead-value">💰 Est. $200–$400/mo</div>
+                            <div class="lead-badges">
+                                <span class="badge badge-stpeters">ST. PETERS</span>
+                                <span class="badge badge-new">NEW BUILD</span>
+                                <span class="badge badge-dogpark">DOG PARK</span>
+                            </div>
+                            <div class="lead-status" id="status-jasper"></div>
+                        </div>
+                        <span class="lead-expand">▼</span>
+                    </div>
+                </div>
+                <div class="lead-details">
+                    <div class="detail-section">
+                        <h4>Why Priority</h4>
+                        <p><strong>Brand new construction</strong> = they haven't picked a pet waste vendor yet. Dog park, pet wash room, pickleball court — they're building premium. Get in on the ground floor. TJ already services client Preshus in St. Peters.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>📝 Pitch Script</h4>
+                        <div class="pitch-script">
+                            <span class="greeting">"Hi, I'm Jamie with Tidy Tails — congrats on the new community!</span> <span class="hook">We're a local pet waste removal company already servicing St. Peters.</span> New communities with dog parks are perfect for us — we keep the grounds clean from day one so you never have to deal with complaints. <span class="close">I'd love to be your pet waste vendor. Can I send over a quick pricing sheet?"</span>
+                        </div>
+                    </div>
+                    <div class="lead-actions">
+                        <a href="tel:6367474411" class="action-btn btn-call">📞 Call (636) 747-4411</a>
+                        <a href="https://jasperlifestl.com" target="_blank" class="action-btn btn-website">🔗 Website</a>
+                    </div>
+                    <div class="outcome-section">
+                        <h4>Log Outcome</h4>
+                        <div class="outcome-btns">
+                            <button class="outcome-btn" onclick="logOutcome('jasper','spoke','selected')">✅ Spoke</button>
+                            <button class="outcome-btn" onclick="logOutcome('jasper','voicemail','selected-vm')">📱 VM</button>
+                            <button class="outcome-btn" onclick="logOutcome('jasper','noanswer','selected-no')">❌ No Ans</button>
+                            <button class="outcome-btn" onclick="logOutcome('jasper','meeting','selected-meeting')">🤝 Meeting!</button>
+                        </div>
+                        <textarea class="notes-input" id="notes-jasper" placeholder="Quick notes..." onchange="saveNotes('jasper')"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEAD 6: Westchester Village -->
+            <div class="lead-card" data-id="westchester" data-category="apartment" id="lead-westchester">
+                <div class="lead-top" onclick="toggleLead('westchester')">
+                    <div class="lead-header">
+                        <div class="lead-rank rank-hot">6</div>
+                        <div class="lead-info">
+                            <div class="lead-name">Westchester Village Apartments</div>
+                            <div class="lead-type">Large Community · Dog Park + Lake Trail · O'Fallon</div>
+                            <div class="lead-value">💰 Est. $300–$500/mo</div>
+                            <div class="lead-badges">
+                                <span class="badge badge-ofallon">O'FALLON</span>
+                                <span class="badge badge-dogpark">DOG PARK</span>
+                            </div>
+                            <div class="lead-status" id="status-westchester"></div>
+                        </div>
+                        <span class="lead-expand">▼</span>
+                    </div>
+                </div>
+                <div class="lead-details">
+                    <div class="detail-section">
+                        <h4>Why Priority</h4>
+                        <p>Dog park, private lake with walking trail, grilling stations — lots of outdoor space with dog traffic. 1-3 bedroom apartments, large community. Off Hwy 70 and Bryan Road = easy route access.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>📝 Pitch Script</h4>
+                        <div class="pitch-script">
+                            <span class="greeting">"Hi, I'm Jamie from Tidy Tails — we do pet waste removal for apartment communities.</span> <span class="hook">Your community has a dog park AND that beautiful walking trail around the lake — that's a lot of ground to keep clean.</span> We handle it weekly so your maintenance crew doesn't have to. <span class="close">One invoice, one vendor, cleaner grounds. Can I walk you through what that looks like?"</span>
+                        </div>
+                    </div>
+                    <div class="lead-actions">
+                        <a href="tel:6362727500" class="action-btn btn-call">📞 Call (636) 272-7500</a>
+                        <a href="https://westchestervillageapts.com" target="_blank" class="action-btn btn-website">🔗 Website</a>
+                    </div>
+                    <div class="outcome-section">
+                        <h4>Log Outcome</h4>
+                        <div class="outcome-btns">
+                            <button class="outcome-btn" onclick="logOutcome('westchester','spoke','selected')">✅ Spoke</button>
+                            <button class="outcome-btn" onclick="logOutcome('westchester','voicemail','selected-vm')">📱 VM</button>
+                            <button class="outcome-btn" onclick="logOutcome('westchester','noanswer','selected-no')">❌ No Ans</button>
+                            <button class="outcome-btn" onclick="logOutcome('westchester','meeting','selected-meeting')">🤝 Meeting!</button>
+                        </div>
+                        <textarea class="notes-input" id="notes-westchester" placeholder="Quick notes..." onchange="saveNotes('westchester')"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEAD 7: Sentry Management -->
+            <div class="lead-card" data-id="sentry" data-category="whale hoa" id="lead-sentry">
+                <div class="lead-top" onclick="toggleLead('sentry')">
+                    <div class="lead-header">
+                        <div class="lead-rank rank-warm">7</div>
+                        <div class="lead-info">
+                            <div class="lead-name">Sentry Management — St. Louis</div>
+                            <div class="lead-type">HOA Management · 32+ Communities · National Company</div>
+                            <div class="lead-value">💰 Est. $300–$2,000+/mo</div>
+                            <div class="lead-badges">
+                                <span class="badge badge-whale">🐋 WHALE</span>
+                                <span class="badge badge-stcharles">STL + ST. CHARLES</span>
+                            </div>
+                            <div class="lead-status" id="status-sentry"></div>
+                        </div>
+                        <span class="lead-expand">▼</span>
+                    </div>
+                </div>
+                <div class="lead-details">
+                    <div class="detail-section">
+                        <h4>Why Priority</h4>
+                        <p>National HOA management company, local STL office manages <strong>32+ communities</strong> across St. Louis County and St. Charles County. Recently expanded their portfolio. Same HOA pitch as Associa — pet waste = #1 common area complaint.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>📝 Pitch Script</h4>
+                        <div class="pitch-script">
+                            <span class="greeting">"Hi, I'm Jamie from Tidy Tails — we provide pet waste removal for HOA communities in St. Louis.</span> <span class="hook">I know HOA boards constantly deal with pet waste complaints in common areas — it's usually in the top 3 issues.</span> We solve that with weekly professional service. One flat rate per community, one invoice to your office. <span class="close">I'd love to get on your vendor list. Who's the best person to send our info to?"</span>
+                        </div>
+                    </div>
+                    <div class="lead-actions">
+                        <a href="tel:3149947440" class="action-btn btn-call">📞 Call (314) 994-7440</a>
+                        <a href="https://sentrymgt.com/offices/st-louis" target="_blank" class="action-btn btn-website">🔗 Website</a>
+                    </div>
+                    <div class="outcome-section">
+                        <h4>Log Outcome</h4>
+                        <div class="outcome-btns">
+                            <button class="outcome-btn" onclick="logOutcome('sentry','spoke','selected')">✅ Spoke</button>
+                            <button class="outcome-btn" onclick="logOutcome('sentry','voicemail','selected-vm')">📱 VM</button>
+                            <button class="outcome-btn" onclick="logOutcome('sentry','noanswer','selected-no')">❌ No Ans</button>
+                            <button class="outcome-btn" onclick="logOutcome('sentry','meeting','selected-meeting')">🤝 Meeting!</button>
+                        </div>
+                        <textarea class="notes-input" id="notes-sentry" placeholder="Quick notes..." onchange="saveNotes('sentry')"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEAD 8: Baronwood Kennels -->
+            <div class="lead-card" data-id="baronwood" data-category="dogbiz" id="lead-baronwood">
+                <div class="lead-top" onclick="toggleLead('baronwood')">
+                    <div class="lead-header">
+                        <div class="lead-rank rank-warm">8</div>
+                        <div class="lead-info">
+                            <div class="lead-name">Baronwood Kennels</div>
+                            <div class="lead-type">Pet Boarding/Grooming · Family-Owned Since 1971 · Florissant</div>
+                            <div class="lead-value">💰 Est. $100–$200/mo + Referrals</div>
+                            <div class="lead-badges">
+                                <span class="badge badge-florissant">FLORISSANT</span>
+                                <span class="badge badge-referral">REFERRAL PARTNER</span>
+                            </div>
+                            <div class="lead-status" id="status-baronwood"></div>
+                        </div>
+                        <span class="lead-expand">▼</span>
+                    </div>
+                </div>
+                <div class="lead-details">
+                    <div class="detail-section">
+                        <h4>Why Priority</h4>
+                        <p>Family-owned since 1971 in <strong>Florissant</strong>. Indoor AND outdoor kennels with "picturesque country setting." Two angles: (1) clean their outdoor areas, (2) referral partnership — their boarding clients have dogs that poop at home too. Easy, warm call — local business to local business.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>📝 Pitch Script</h4>
+                        <div class="pitch-script">
+                            <span class="greeting">"Hi, I'm Jamie from Tidy Tails — we're a local Florissant pet waste removal company.</span> <span class="hook">We've been admiring what you've built at Baronwood — over 50 years serving the community is incredible.</span> I have two things I'd love to chat about: one, we can help keep your outdoor areas clean with weekly service. And two, your boarding clients probably need yard cleanup at home — <span class="close">what if we set up a little referral deal? Your clients get a discount, and we send our clients your way for boarding. Win-win?"</span>
+                        </div>
+                    </div>
+                    <div class="lead-actions">
+                        <a href="tel:3148382021" class="action-btn btn-call">📞 Call (314) 838-2021</a>
+                        <a href="https://baronwoodkennels.com" target="_blank" class="action-btn btn-website">🔗 Website</a>
+                    </div>
+                    <div class="outcome-section">
+                        <h4>Log Outcome</h4>
+                        <div class="outcome-btns">
+                            <button class="outcome-btn" onclick="logOutcome('baronwood','spoke','selected')">✅ Spoke</button>
+                            <button class="outcome-btn" onclick="logOutcome('baronwood','voicemail','selected-vm')">📱 VM</button>
+                            <button class="outcome-btn" onclick="logOutcome('baronwood','noanswer','selected-no')">❌ No Ans</button>
+                            <button class="outcome-btn" onclick="logOutcome('baronwood','meeting','selected-meeting')">🤝 Meeting!</button>
+                        </div>
+                        <textarea class="notes-input" id="notes-baronwood" placeholder="Quick notes..." onchange="saveNotes('baronwood')"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEAD 9: Greenway Chase -->
+            <div class="lead-card" data-id="greenway" data-category="apartment" id="lead-greenway">
+                <div class="lead-top" onclick="toggleLead('greenway')">
+                    <div class="lead-header">
+                        <div class="lead-rank rank-warm">9</div>
+                        <div class="lead-info">
+                            <div class="lead-name">Greenway Chase Apartments</div>
+                            <div class="lead-type">Apartment Complex · On-Site Dog Park · Florissant 63031</div>
+                            <div class="lead-value">💰 Est. $200–$400/mo</div>
+                            <div class="lead-badges">
+                                <span class="badge badge-florissant">FLORISSANT</span>
+                                <span class="badge badge-dogpark">DOG PARK</span>
+                            </div>
+                            <div class="lead-status" id="status-greenway"></div>
+                        </div>
+                        <span class="lead-expand">▼</span>
+                    </div>
+                </div>
+                <div class="lead-details">
+                    <div class="detail-section">
+                        <h4>Why Priority</h4>
+                        <p>Pet-friendly apartments with on-site dog park, Florissant 63031 — same zip as TJ's customers. Rents $940-$1,305/mo = middle-class demographic that values clean common areas.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>📝 Pitch Script</h4>
+                        <div class="pitch-script">
+                            <span class="greeting">"Hi, I'm Jamie with Tidy Tails.</span> <span class="hook">We're already in the neighborhood — we service homes right on this side of Florissant.</span> Professional weekly dog park cleanup, one flat rate, keeps your grounds looking sharp for residents. <span class="close">Can I give you a quick 2-minute pricing rundown?"</span>
+                        </div>
+                    </div>
+                    <div class="lead-actions">
+                        <a href="tel:3148382879" class="action-btn btn-call">📞 Call (314) 838-2879</a>
+                        <a href="https://greenwaychase.com" target="_blank" class="action-btn btn-website">🔗 Website</a>
+                    </div>
+                    <div class="outcome-section">
+                        <h4>Log Outcome</h4>
+                        <div class="outcome-btns">
+                            <button class="outcome-btn" onclick="logOutcome('greenway','spoke','selected')">✅ Spoke</button>
+                            <button class="outcome-btn" onclick="logOutcome('greenway','voicemail','selected-vm')">📱 VM</button>
+                            <button class="outcome-btn" onclick="logOutcome('greenway','noanswer','selected-no')">❌ No Ans</button>
+                            <button class="outcome-btn" onclick="logOutcome('greenway','meeting','selected-meeting')">🤝 Meeting!</button>
+                        </div>
+                        <textarea class="notes-input" id="notes-greenway" placeholder="Quick notes..." onchange="saveNotes('greenway')"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LEAD 10: Kennelwood Pet Resorts -->
+            <div class="lead-card" data-id="kennelwood" data-category="dogbiz" id="lead-kennelwood">
+                <div class="lead-top" onclick="toggleLead('kennelwood')">
+                    <div class="lead-header">
+                        <div class="lead-rank rank-warm">10</div>
+                        <div class="lead-info">
+                            <div class="lead-name">Kennelwood Pet Resorts</div>
+                            <div class="lead-type">Premium Pet Boarding/Grooming · Multiple Locations · Est. Brand</div>
+                            <div class="lead-value">💰 Est. $200–$400/mo + Referrals</div>
+                            <div class="lead-badges">
+                                <span class="badge badge-whale">PREMIUM</span>
+                                <span class="badge badge-referral">REFERRAL PARTNER</span>
+                            </div>
+                            <div class="lead-status" id="status-kennelwood"></div>
+                        </div>
+                        <span class="lead-expand">▼</span>
+                    </div>
+                </div>
+                <div class="lead-details">
+                    <div class="detail-section">
+                        <h4>Why Priority</h4>
+                        <p>One of STL's most established and premium pet care brands. Founded by Donald Danforth Jr. Multiple locations, premium clientele = affluent dog owners who'll pay for yard cleanup. Great referral partner.</p>
+                    </div>
+                    <div class="detail-section">
+                        <h4>📝 Pitch Script</h4>
+                        <div class="pitch-script">
+                            <span class="greeting">"Hi, I'm Jamie from Tidy Tails — we do pet waste removal in the St. Louis area.</span> <span class="hook">Kennelwood's reputation is top-notch — your clients clearly care about premium pet care.</span> Two ideas: we can handle outdoor waste cleanup at your facilities, and we'd love to explore a referral partnership — <span class="close">your clients go home to yards that need professional cleanup too. Who should I talk to about vendor partnerships?"</span>
+                        </div>
+                    </div>
+                    <div class="lead-actions">
+                        <a href="tel:3144292100" class="action-btn btn-call">📞 Call (314) 429-2100</a>
+                        <a href="https://kennelwood.com" target="_blank" class="action-btn btn-website">🔗 Website</a>
+                    </div>
+                    <div class="outcome-section">
+                        <h4>Log Outcome</h4>
+                        <div class="outcome-btns">
+                            <button class="outcome-btn" onclick="logOutcome('kennelwood','spoke','selected')">✅ Spoke</button>
+                            <button class="outcome-btn" onclick="logOutcome('kennelwood','voicemail','selected-vm')">📱 VM</button>
+                            <button class="outcome-btn" onclick="logOutcome('kennelwood','noanswer','selected-no')">❌ No Ans</button>
+                            <button class="outcome-btn" onclick="logOutcome('kennelwood','meeting','selected-meeting')">🤝 Meeting!</button>
+                        </div>
+                        <textarea class="notes-input" id="notes-kennelwood" placeholder="Quick notes..." onchange="saveNotes('kennelwood')"></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /leads -->
+
+        <!-- Pricing Reference -->
+        <div class="pricing-ref">
+            <h3>💰 Commercial Pricing Quick Reference</h3>
+            <div class="pricing-grid">
+                <span class="p-label">Small complex (&lt;50 units), 1x/week</span>
+                <span class="p-value">$150–$200/mo</span>
+                <span class="p-label">Medium complex (50-150 units), 2x/week</span>
+                <span class="p-value">$250–$400/mo</span>
+                <span class="p-label">Large complex (150+ units), 3x/week</span>
+                <span class="p-value">$400–$600/mo</span>
+                <span class="p-label">HOA common areas</span>
+                <span class="p-value">$100–$300/mo</span>
+                <span class="p-label">Pet waste station maintenance (add-on)</span>
+                <span class="p-value">$50–$75/mo</span>
+                <span class="p-label">Dog park only (weekly)</span>
+                <span class="p-value">$75–$150/mo</span>
+                <span class="p-label">Kennel/daycare outdoor area</span>
+                <span class="p-value">$100–$200/mo</span>
+            </div>
+            <p style="font-size:0.75rem;color:var(--text3);margin-top:0.75rem;">💡 <strong style="color:var(--text2);">TJ's edge:</strong> Local, personal, no franchise overhead. Can undercut DoodyCalls/POOP 911 and still make great margins. Always offer a free walkthrough before quoting.</p>
+        </div>
+
+        <div class="footer">
+            Built by Franklin · March 19, 2026<br>
+            26 leads in pipeline · $5,700–$16,650/mo total potential
+        </div>
+
+    </div>
+
+    <script>
+        // Local storage for persistence
+        const STORAGE_KEY = 'tt-call-sheet';
+
+        function loadState() {
+            try {
+                return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { outcomes: {}, notes: {} };
+            } catch(e) { return { outcomes: {}, notes: {} }; }
+        }
+
+        function saveState(state) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        // Toggle lead card expansion
+        function toggleLead(id) {
+            const card = document.getElementById('lead-' + id);
+            card.classList.toggle('expanded');
+        }
+
+        // Log outcome
+        function logOutcome(leadId, outcome, className) {
+            const state = loadState();
+            state.outcomes[leadId] = outcome;
+            saveState(state);
+
+            // Update UI
+            const card = document.getElementById('lead-' + leadId);
+            const btns = card.querySelectorAll('.outcome-btn');
+            btns.forEach(btn => btn.className = 'outcome-btn');
+
+            // Find and highlight the clicked button
+            btns.forEach(btn => {
+                if (btn.textContent.toLowerCase().includes(outcome === 'spoke' ? 'spoke' :
+                    outcome === 'voicemail' ? 'voicemail' || 'vm' :
+                    outcome === 'noanswer' ? 'no' :
+                    outcome === 'meeting' ? 'meeting' :
+                    outcome === 'emailed' ? 'email' : '')) {
+                    btn.classList.add(className);
+                }
+            });
+
+            // Mark card as called
+            if (['spoke','voicemail','noanswer','meeting','emailed'].includes(outcome)) {
+                card.classList.add('called');
+                const statusEl = document.getElementById('status-' + leadId);
+                const labels = {
+                    'spoke': '✅ Spoke to someone',
+                    'voicemail': '📱 Left voicemail',
+                    'noanswer': '❌ No answer',
+                    'meeting': '🤝 MEETING SCHEDULED!',
+                    'emailed': '📧 Info emailed'
+                };
+                const colors = {
+                    'spoke': 'var(--green)',
+                    'voicemail': 'var(--yellow)',
+                    'noanswer': 'var(--red)',
+                    'meeting': 'var(--green)',
+                    'emailed': 'var(--blue)'
+                };
+                statusEl.textContent = labels[outcome] || outcome;
+                statusEl.style.color = colors[outcome] || 'var(--text2)';
+            }
+
+            updateProgress();
+        }
+
+        function saveNotes(leadId) {
+            const state = loadState();
+            state.notes[leadId] = document.getElementById('notes-' + leadId).value;
+            saveState(state);
+        }
+
+        function updateProgress() {
+            const state = loadState();
+            const called = Object.keys(state.outcomes).length;
+            document.getElementById('callCount').textContent = called + ' / 10';
+            document.getElementById('progressFill').style.width = (called / 10 * 100) + '%';
+        }
+
+        // Restore state on load
+        function restoreState() {
+            const state = loadState();
+
+            // Restore outcomes
+            for (const [leadId, outcome] of Object.entries(state.outcomes)) {
+                const card = document.getElementById('lead-' + leadId);
+                if (!card) continue;
+                card.classList.add('called');
+                const statusEl = document.getElementById('status-' + leadId);
+                if (statusEl) {
+                    const labels = {
+                        'spoke': '✅ Spoke to someone',
+                        'voicemail': '📱 Left voicemail',
+                        'noanswer': '❌ No answer',
+                        'meeting': '🤝 MEETING SCHEDULED!',
+                        'emailed': '📧 Info emailed'
+                    };
+                    const colors = {
+                        'spoke': 'var(--green)',
+                        'voicemail': 'var(--yellow)',
+                        'noanswer': 'var(--red)',
+                        'meeting': 'var(--green)',
+                        'emailed': 'var(--blue)'
+                    };
+                    statusEl.textContent = labels[outcome] || outcome;
+                    statusEl.style.color = colors[outcome] || 'var(--text2)';
+                }
+            }
+
+            // Restore notes
+            for (const [leadId, note] of Object.entries(state.notes)) {
+                const el = document.getElementById('notes-' + leadId);
+                if (el) el.value = note;
+            }
+
+            updateProgress();
+        }
+
+        // Filter leads
+        function filterLeads(category) {
+            const cards = document.querySelectorAll('.lead-card');
+            const btns = document.querySelectorAll('.filter-btn');
+
+            btns.forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+
+            cards.forEach(card => {
+                if (category === 'all') {
+                    card.style.display = '';
+                } else if (category === 'uncalled') {
+                    const state = loadState();
+                    card.style.display = state.outcomes[card.dataset.id] ? 'none' : '';
+                } else {
+                    card.style.display = card.dataset.category.includes(category) ? '' : 'none';
+                }
+            });
+        }
+
+        // Init
+        restoreState();
+    </script>
+</body>
+</html>
