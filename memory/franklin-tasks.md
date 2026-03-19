@@ -7,6 +7,46 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 7:05 PM — 📞 JAMIE'S COMMERCIAL CALL SHEET — Mobile Sales Tool for 26 Commercial Leads (Sales/Commercial)
+**Task:** Built a mobile-optimized HTML call sheet with all 26 commercial leads, one-tap calling, status tracking, call scripts for every property type, pricing calculator, objection handlers, and copy-paste text/email templates — all Jamie-branded.
+**Result:** ✅ COMPLETE — LIVE at https://tidytails.github.io/tidytails-dashboard/tidytails-dashboard/jamie-commercial-calls.html, added to dashboard nav, pushed to GitHub
+
+**Why This Task:**
+- We have 26 commercial leads worth $5,700-16,650/month in potential recurring revenue — ZERO outreach done
+- Ads are live for residential, but commercial is where the big money is ($200-2,000/month per contract)
+- Jamie needs a tool she can open on her phone and start dialing — not a markdown file
+- All previous outreach templates said "TJ" — now properly Jamie-branded
+- Spring is the #1 time property managers are thinking about waste cleanup
+
+**What's In It:**
+1. **📋 Leads Tab** — All 26 leads with one-tap call/text buttons, pitch angles, monthly value estimates, status tracking (New → Called → VM → Walk → Quoted → Won → Lost)
+2. **📞 Scripts Tab** — 7 call scripts: apartment opening, HOA management, dog daycare/kennel, municipal parks, senior living, voicemail, follow-up after walkthrough, plus quick tips
+3. **💰 Pricing Tab** — Commercial pricing grid (small/medium/large complex, HOA, dog park, municipal), interactive quote calculator, competitor comparison
+4. **🛡️ Objections Tab** — 9 expandable objection handlers: in-house, no budget, send info, not interested, board approval, frequency, won't work, already have someone, too expensive
+5. **💬 Texts Tab** — 6 copy-paste text templates: cold (apt/HOA/dog biz), follow-up, post-walkthrough, spring urgency
+6. **📧 Emails Tab** — 4 copy-paste email templates: cold property manager, cold HOA, follow-up, spring seasonal push
+7. **📊 Stats Bar** — Live tracking: total leads, called, walkthroughs scheduled, pipeline value
+8. **🔍 Filters** — All, High Priority, Apartments, HOA, Dog Businesses, Other, Uncalled
+9. **📞 Floating Bar** — One-tap call/text Jamie at bottom of every screen
+
+**Technical:** Dark theme matching dashboard, localStorage for status persistence, pure HTML/CSS/JS, mobile-first responsive, deployed to GitHub Pages.
+
+**Key Design Decisions:**
+- Every lead has CALL + TEXT buttons (one tap from card to phone)
+- Status tracking persists in localStorage — Jamie can track progress across sessions
+- Scripts are tailored by property type (apartments vs HOAs vs dog businesses vs municipal)
+- Quote calculator generates copy-paste text with pricing breakdown
+- All content uses Jamie's name and phone number (314) 850-7140
+
+**Commercial Pipeline Potential:**
+- 26 leads, realistic 20-30% close rate = 5-8 new commercial clients
+- Conservative estimate: $1,140-4,995/month in new recurring revenue
+- That's 10-50+ equivalent residential customers in value
+
+**Rotation:** 📞 Sales/Commercial — Outreach Tools
+
+---
+
 ### 6:05 PM — 🔍 AD LANDING PAGE CONVERSION AUDIT + BRANDING FIX — Ads Are Live, Site Must Convert (Website/Conversion)
 **Task:** Ads went live TODAY. Audited the entire website from an ad-clicker's perspective, found 7 conversion-killing issues, and fixed the most critical one: TJ branding still on 21 pages when Jamie is now the face of the business.
 **Result:** ✅ COMPLETE — 21 pages fixed, pushed live, full audit in `deliverables/ad-landing-page-audit-march18-2026.md`
