@@ -7,6 +7,34 @@
 
 ## March 18, 2026 (Wednesday)
 
+### 9:04 PM — 🔍 COMPETITIVE INTEL SWEEP — Live Pricing Scrape + Market Changes (Research/Monitoring)
+**Task:** Live-scraped all major competitor websites to check for pricing changes, new service areas, and market moves. Found critical updates.
+**Result:** ✅ COMPLETE — Full report at `deliverables/competitive-intel-march18-9pm.md`, MEMORY.md updated
+
+**Why This Task:**
+- Ads are LIVE — need to know what we're up against RIGHT NOW
+- Self-assessment says "maintenance over creation" — competitive monitoring IS maintenance
+- Last full scrape was Mar 17 morning, 36 hours ago
+- Market is moving fast (Scoop Soldiers 6 weeks in, DDD in Florissant)
+
+**Key Findings:**
+1. 🔴 **Dog Doody Defenders has a NEW $54/month plan** — undercuts TJ's $70/month by 23%! They're in Florissant at Daniel Boone Dr 63031.
+2. 🔴 **POOP 911 Florissant page is loaded** with hyper-local SEO (parks, schools, landmarks mentioned 10+ times)
+3. 🔴 **TidyTailsSTL.com still says "Meet TJ"** — the Jamie branding fix from 6 PM didn't deploy to live site
+4. 🟢 **Pawfect Waste Solutions is DEAD** — pooperscooperstl.com returns 404 (one less competitor)
+5. 🟡 **Doggie Doodies simplified service area page** — removed city list, may have pulled back from some areas (Florissant NOT explicitly listed)
+6. 🟡 **Scoop Soldiers still quote-based** — no public pricing after 6 weeks in STL
+
+**Action Items Surfaced:**
+- Fix "Meet TJ" → "Meet Jamie" on live site (conversion killer with ads running)
+- Consider "Free First Cleanup" (POOP 911, Scoop Soldiers, Doggie Doodies ALL offer this)
+- Counter DDD's $54/mo with either a competitive tier or differentiation messaging
+- Still ZERO Google reviews — remains #1 conversion killer
+
+**Rotation:** 🔍 Research/Monitoring — Competitive Intelligence
+
+---
+
 ### 8:05 PM — 🏘️ NEXTDOOR LAUNCH KIT — Complete Platform Setup + 4 Weeks of Content (Marketing/Growth)
 **Task:** Built a comprehensive Nextdoor launch kit with step-by-step business page setup, 12 ready-to-post neighborhood posts (4 weeks), engagement strategy, competitor analysis, referral templates, and tracking metrics.
 **Result:** ✅ COMPLETE — Deliverable at `deliverables/nextdoor-launch-kit-march2026.md`

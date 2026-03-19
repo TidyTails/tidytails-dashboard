@@ -137,16 +137,18 @@
 | **The Dog Poo Guru** 🟢 | St. Peters | Quote | Quote | LOW | Yelp only |
 | **Pooanators** 🟡 | STL area | Quote | Quote | MED | On Yelp, multiple STL searches |
 
-### DEAD Competitors (confirmed Mar 15)
-Pawfect (404), Fresh Paws (DNS expired), Poopy Paws (DNS failure — 358 orphaned FB followers), STL Pooper Scoopers (Yelp CLOSED), Super Scoopers STL (Yelp CLOSED)
+### DEAD Competitors (confirmed Mar 18)
+Pawfect (404), Fresh Paws (DNS expired), Poopy Paws (DNS failure — 358 orphaned FB followers), STL Pooper Scoopers (Yelp CLOSED), Super Scoopers STL (Yelp CLOSED), **Pawfect Waste Solutions** (pooperscooperstl.com — 404, never launched)
 
-### Pricing Reality (Updated Mar 17 — LIVE SCRAPE)
+### Pricing Reality (Updated Mar 18 9PM — LIVE SCRAPE)
 - POOP 911: $11.95/wk (~$52/mo) — 52% cheaper than TJ
-- Dog Doody Defenders: $17/wk (~$68/mo) — 32% cheaper
+- **Dog Doody Defenders: $17/wk (~$74/mo), NEW $54/mo monthly plan** — undercuts TJ's $70/mo by 23%
 - Poop 2 Scoop: $18/wk (~$78/mo) — 28% cheaper
-- Doggie Doodies: $19.15/wk ($83/mo) — 23% cheaper
-- Poopy Paws: $20/wk (~$87/mo) — 20% cheaper
+- Doggie Doodies: $19.15/wk ($83/mo), biweekly $85/mo, monthly $90/mo — 23% cheaper weekly
+- Poopy Paws: $20/wk (~$87/mo) — 20% cheaper (site dead but pricing was this)
 - **Tidy Tails: $25/wk ($108/mo) — MOST EXPENSIVE local indie**
+- ⚠️ **TJ's $70/mo is NO LONGER cheapest monthly** — Dog Doody Defenders now at $54/mo
+- TJ's $70/mo still beats Doggie Doodies $90/mo
 - **TJ's $70/month flat rate is CHEAPER than Doggie Doodies' $90/month** — genuine competitive advantage!
 - DD biweekly ($85/mo) > TJ biweekly ($90/mo) — DD slightly cheaper there
 - Recommended: add $89/mo plan option, offer "free first cleanup" (steal POOP 911's playbook)
