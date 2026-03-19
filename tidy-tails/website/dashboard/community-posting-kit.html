@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Posting Kit | Tidy Tails</title>
+    <meta name="robots" content="noindex">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --green: #1a5c2e;
+            --green-light: #2d8a47;
+            --green-pale: #e8f5e9;
+            --blue: #1877f2;
+            --blue-dark: #1565c0;
+            --nextdoor: #8bc34a;
+            --nextdoor-dark: #689f38;
+            --orange: #e07b39;
+            --red: #e53935;
+            --gray: #666;
+            --gray-light: #f5f5f5;
+            --white: #fff;
+            --shadow: 0 2px 12px rgba(0,0,0,0.08);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--gray-light);
+            color: #333;
+            line-height: 1.5;
+            padding-bottom: 100px;
+        }
+        
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--green) 0%, var(--green-light) 100%);
+            color: white;
+            padding: 24px 16px 20px;
+            text-align: center;
+        }
+        .header h1 { font-size: 1.5rem; margin-bottom: 4px; }
+        .header p { font-size: 0.85rem; opacity: 0.85; }
+        
+        /* Stats bar */
+        .stats-bar {
+            display: flex;
+            gap: 8px;
+            padding: 12px 16px;
+            background: white;
+            border-bottom: 1px solid #eee;
+            overflow-x: auto;
+        }
+        .stat-chip {
+            flex-shrink: 0;
+            background: var(--green-pale);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--green);
+        }
+        .stat-chip.urgent {
+            background: #fff3e0;
+            color: var(--orange);
+        }
+        
+        /* Tab navigation */
+        .tabs {
+            display: flex;
+            background: white;
+            border-bottom: 2px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+        }
+        .tab {
+            flex: 1;
+            padding: 14px 8px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gray);
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        .tab.active {
+            color: var(--green);
+            border-bottom-color: var(--green);
+        }
+        .tab-icon { font-size: 1.2rem; display: block; margin-bottom: 2px; }
+        
+        /* Tab content */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        
+        /* Section headers */
+        .section-header {
+            padding: 16px 16px 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--gray);
+        }
+        
+        /* Group cards */
+        .group-card {
+            background: white;
+            margin: 8px 16px;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: var(--shadow);
+        }
+        .group-card .group-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        .group-card .platform-badge {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: white;
+        }
+        .platform-badge.fb { background: var(--blue); }
+        .platform-badge.nd { background: var(--nextdoor); }
+        .platform-badge.mp { background: #e91e63; }
+        .group-card .group-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+        .group-card .group-meta {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 10px;
+        }
+        .group-card .group-meta span {
+            margin-right: 12px;
+        }
+        .group-link {
+            display: inline-block;
+            background: var(--blue);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .group-link.nd-link { background: var(--nextdoor); }
+        .group-link.mp-link { background: #e91e63; }
+        .posted-toggle {
+            float: right;
+            background: var(--green-pale);
+            border: 2px solid var(--green);
+            color: var(--green);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .posted-toggle.done {
+            background: var(--green);
+            color: white;
+        }
+        
+        /* Post templates */
+        .post-card {
+            background: white;
+            margin: 8px 16px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        .post-card-header {
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .post-type-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 12px;
+        }
+        .badge-spring { background: #e8f5e9; color: #2e7d32; }
+        .badge-social { background: #e3f2fd; color: #1565c0; }
+        .badge-value { background: #fff3e0; color: #e65100; }
+        .badge-humor { background: #fce4ec; color: #c62828; }
+        .badge-seasonal { background: #f3e5f5; color: #7b1fa2; }
+        .badge-commercial { background: #e0f2f1; color: #00695c; }
+        
+        .post-body {
+            padding: 16px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            color: #333;
+            max-height: 200px;
+            overflow: hidden;
+            position: relative;
+            transition: max-height 0.3s;
+        }
+        .post-body.expanded {
+            max-height: 2000px;
+        }
+        .post-body::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(transparent, white);
+            pointer-events: none;
+        }
+        .post-body.expanded::after {
+            display: none;
+        }
+        
+        .post-actions {
+            padding: 12px 16px;
+            display: flex;
+            gap: 8px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .btn-copy {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .btn-copy.primary {
+            background: var(--green);
+            color: white;
+        }
+        .btn-copy.secondary {
+            background: var(--gray-light);
+            color: #333;
+        }
+        .btn-copy.copied {
+            background: var(--orange) !important;
+            color: white !important;
+        }
+        
+        /* Tips section */
+        .tip-card {
+            background: white;
+            margin: 8px 16px;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--orange);
+        }
+        .tip-card h3 {
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            color: var(--orange);
+        }
+        .tip-card ul {
+            padding-left: 18px;
+            font-size: 0.85rem;
+        }
+        .tip-card li { margin-bottom: 6px; }
+        
+        /* Tracker */
+        .tracker-card {
+            background: white;
+            margin: 8px 16px;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: var(--shadow);
+        }
+        .tracker-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f5f5f5;
+        }
+        .tracker-row:last-child { border-bottom: none; }
+        .tracker-row .label { font-size: 0.85rem; font-weight: 600; }
+        .tracker-row .count {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--green);
+        }
+        
+        /* Progress bar */
+        .progress-container {
+            margin: 16px 16px 8px;
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            box-shadow: var(--shadow);
+        }
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .progress-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green), var(--green-light));
+            border-radius: 5px;
+            transition: width 0.5s;
+        }
+        
+        /* Expand/collapse */
+        .expand-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 8px;
+            background: none;
+            border: none;
+            color: var(--green);
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+        }
+        
+        /* Schedule card */
+        .schedule-card {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            margin: 8px 16px;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: var(--shadow);
+        }
+        .schedule-card h3 { margin-bottom: 12px; font-size: 1rem; }
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            font-size: 0.85rem;
+        }
+        .schedule-row:last-child { border-bottom: none; }
+        .schedule-day { font-weight: 600; }
+        .schedule-task { opacity: 0.85; }
+        
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: #333;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 1000;
+            transition: transform 0.3s;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>📣 Community Posting Kit</h1>
+    <p>Ready-to-paste posts for FB Groups, Nextdoor & Marketplace</p>
+</div>
+
+<div class="stats-bar">
+    <div class="stat-chip" id="totalPosted">0 / 15 Posted</div>
+    <div class="stat-chip urgent">🎯 Goal: 5 posts this week</div>
+    <div class="stat-chip">🌸 Spring Peak Season</div>
+</div>
+
+<!-- Progress -->
+<div class="progress-container">
+    <div class="progress-label">
+        <span>Weekly Posting Progress</span>
+        <span id="progressPct">0%</span>
+    </div>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+    </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+    <button class="tab active" onclick="showTab('groups')">
+        <span class="tab-icon">🎯</span> Where
+    </button>
+    <button class="tab" onclick="showTab('posts')">
+        <span class="tab-icon">✍️</span> Posts
+    </button>
+    <button class="tab" onclick="showTab('tips')">
+        <span class="tab-icon">💡</span> Tips
+    </button>
+    <button class="tab" onclick="showTab('schedule')">
+        <span class="tab-icon">📅</span> Plan
+    </button>
+</div>
+
+<!-- TAB: WHERE TO POST -->
+<div class="tab-content active" id="tab-groups">
+    
+    <div class="section-header">🔵 Facebook Groups — High Priority</div>
+    
+    <div class="group-card">
+        <div class="group-header">
+            <span class="platform-badge fb">FB GROUP</span>
+            <span class="group-name">Florissant Buy Sell Trade</span>
+            <button class="posted-toggle" onclick="togglePosted(this)" data-group="florissant-bst">✓ Posted</button>
+        </div>
+        <div class="group-meta">
+            <span>👥 15K+ members</span>
+            <span>📍 Core territory</span>
+        </div>
+        <p style="font-size:0.8rem;color:#666;margin-bottom:10px">Search: "Florissant Buy Sell Trade" on Facebook. Several active groups — join the largest ones. Service posts typically allowed 1-2x/week.</p>
+        <a href="https://www.facebook.com/search/groups/?q=florissant%20buy%20sell%20trade" target="_blank" class="group-link">Search on Facebook →</a>
+    </div>
+    
+    <div class="group-card">
+        <div class="group-header">
+            <span class="platform-badge fb">FB GROUP</span>
+            <span class="group-name">O'Fallon MO Community & Buy/Sell</span>
+            <button class="posted-toggle" onclick="togglePosted(this)" data-group="ofallon-bst">✓ Posted</button>
+        </div>
+        <div class="group-meta">
+            <span>👥 20K+ members</span>
+            <span>📍 Expansion zone</span>
+        </div>
+        <p style="font-size:0.8rem;color:#666;margin-bottom:10px">Multiple active groups. O'Fallon is high-income, dog-heavy — prime territory.</p>
+        <a href="https://www.facebook.com/search/groups/?q=o%27fallon%20mo%20community" target="_blank" class="group-link">Search on Facebook →</a>
+    </div>
+    
+    <div class="group-card">
+        <div class="group-header">
+            <span class="platform-badge fb">FB GROUP</span>
+            <span class="group-name">St. Peters/St. Charles Buy Sell Trade</span>
+            <button class="posted-toggle" onclick="togglePosted(this)" data-group="stpeters-bst">✓ Posted</button>
+        </div>
+        <div class="group-meta">
+            <span>👥 25K+ members</span>
+            <span>📍 Active territory</span>
+        </div>
+        <a href="https://www.facebook.com/groups/543486769082842/" target="_blank" class="group-link">Open Group →</a>
+    </div>
+    
+    <div class="group-card">
+        <div class="group-header">
+            <span class="platform-badge fb">FB GROUP</span>
+            <span class="group-name">Saving St. Louis Pets</span>
+            <button class="posted-toggle" onclick="togglePosted(this)" data-group="saving-stl-pets">✓ Posted</button>
+        </div>
+        <div class="group-meta">
+            <span>👥 Large pet community</span>
+            <span>🐕 Pet-specific — high intent</span>
+        </div>
+        <p style="font-size:0.8rem;color:#666;margin-bottom:10px">Pet-focused group. May allow service posts sparingly — lead with VALUE (spring tips, pet health), not sales.</p>
+        <a href="https://www.facebook.com/groups/savingstlouispets/" target="_blank" class="group-link">Open Group →</a>
+    </div>
+    
+    <div class="group-card">
+        <div class="group-header">
+            <span class="platform-badge fb">FB GROUP</span>
+            <span class="group-name">STL All Dogs Community</span>
+            <button class="posted-toggle" onclick="togglePosted(this)" data-group="stl-all-dogs">✓ Posted</button>
+        </div>
+        <div class="group-meta">
+            <span>👥 Dog owners group</span>
+            <span>🐕 Perfect fit</span>
+        </div>
+        <p style="font-size:0.8rem;color:#666;margin-bottom:10px">Dog-lovers community. Great for sharing tips and casually mentioning the service.</p>
+        <a href="https://www.stlalldogs.com/" target="_blank" class="group-link">Visit Community →</a>
+    </div>
+
+    <div class="group-card">
+        <div class="group-header">
+            <span class="platform-badge fb">FB GROUP</span>
+            <span class="group-name">Chesterfield / Wildwood Community</span>
+            <button class="posted-toggle" onclick="togglePosted(this)" data-group="chesterfield-bst">✓ Posted</button>
+        </div>
+        <div class="group-meta">
+            <span>👥 10K+ members</span>
+            <span>💰 High-income area</span>
+        </div>
+        <a href="https://www.facebook.com/search/groups/?q=chesterfield%20mo%20community" target="_blank" class="group-link">Search on Facebook →</a>
+    </div>
+    
+    <div class="group-card">
+        <div class="group-header">
+            <span class="platform-badge fb">FB GROUP</span>
+            <span class="group-name">Maryland Heights / Creve Coeur Area</span>
+            <button class="posted-toggle" onclick="togglePosted(this)" data-group="mdheights-bst">✓ Posted</button>
+        </div>
+        <div class="group-meta">
+            <span>👥 Community group</span>
+            <span>📍 Service area</span>
+        </div>
+        <a href="https://www.facebook.com/search/groups/?q=maryland%20heights%20community" target="_blank" class="group-link">Search on Facebook →</a>
+    </div>
+
+    <div class="group-card">
+        <div class="group-header">
+            <span class="platform-badge fb">FB GROUP</span>
+            <span class="group-name">Kirkwood / Webster Groves Community</span>
+            <button class="posted-toggle" onclick="togglePosted(this)" data-group="kirkwood-bst">✓ Posted</button>
+        </div>
+        <div class="group-meta">
+            <span>👥 Established groups</span>
+            <span>🏡 Affluent, dog-heavy</span>
+        </div>
+        <a href="https://www.facebook.com/search/groups/?q=kirkwood%20mo%20community" target="_blank" class="group-link">Search on Facebook →</a>
+    </div>
+    
+    <div class="section-header">🟢 Nextdoor — Neighborhood Level</div>
+    
+    <div class="group-card">
+        <div class="group-header">
+            <span class="platform-badge nd">NEXTDOOR</span>
+            <span class="group-name">All Florissant Neighborhoods</span>
+            <button class="posted-toggle" onclick="togglePosted(this)" data-group="nd-florissant">✓ Posted</button>
+        </div>
+        <div class="group-meta">
+            <span>🏘️ Hyperlocal — neighbors trust neighbors</span>
+        </div>
+        <p style="font-size:0.8rem;color:#666;margin-bottom:10px">Post as a "local business recommendation" or in the "For Sale & Free" section. Nextdoor posts get crazy engagement because people trust their neighbors.</p>
+        <a href="https://nextdoor.com/" target="_blank" class="group-link nd-link">Open Nextdoor →</a>
+    </div>
+    
+    <div class="group-card">
+        <div class="group-header">
+            <span class="platform-badge nd">NEXTDOOR</span>
+            <span class="group-name">All O'Fallon / St. Peters Neighborhoods</span>
+            <button class="posted-toggle" onclick="togglePosted(this)" data-group="nd-ofallon">✓ Posted</button>
+        </div>
+        <div class="group-meta">
+            <span>🏘️ Second priority neighborhood</span>
+        </div>
+        <a href="https://nextdoor.com/" target="_blank" class="group-link nd-link">Open Nextdoor →</a>
+    </div>
+    
+    <div class="section-header">🔴 Facebook Marketplace — Service Listings</div>
+    
+    <div class="group-card">
+        <div class="group-header">
+            <span class="platform-badge mp">MARKETPLACE</span>
+            <span class="group-name">FB Marketplace — St. Louis Area</span>
+            <button class="posted-toggle" onclick="togglePosted(this)" data-group="mp-stl">✓ Posted</button>
+        </div>
+        <div class="group-meta">
+            <span>📍 Florissant radius</span>
+            <span>💰 List as a service</span>
+        </div>
+        <p style="font-size:0.8rem;color:#666;margin-bottom:10px">Create a listing under "Home Services" or "Pet Supplies." Price at $25. Title: "Pet Waste Removal — Weekly Service $25/wk." Renew every 7 days.</p>
+        <a href="https://www.facebook.com/marketplace/create/item/" target="_blank" class="group-link mp-link">Create Listing →</a>
+    </div>
+    
+    <div class="group-card">
+        <div class="group-header">
+            <span class="platform-badge mp">MARKETPLACE</span>
+            <span class="group-name">FB Marketplace — Spring Deep Clean</span>
+            <button class="posted-toggle" onclick="togglePosted(this)" data-group="mp-spring">✓ Posted</button>
+        </div>
+        <div class="group-meta">
+            <span>🌸 Seasonal special</span>
+            <span>💰 $100 one-time</span>
+        </div>
+        <p style="font-size:0.8rem;color:#666;margin-bottom:10px">Separate listing: "Spring Yard Deep Clean — $100." One-time service listing gets clicks because of the clear price.</p>
+        <a href="https://www.facebook.com/marketplace/create/item/" target="_blank" class="group-link mp-link">Create Listing →</a>
+    </div>
+    
+    <div class="section-header">📌 Also Consider</div>
+    
+    <div class="group-card">
+        <div class="group-header">
+            <span class="platform-badge fb">FB GROUP</span>
+            <span class="group-name">North County STL Community Groups</span>
+        </div>
+        <div class="group-meta">
+            <span>Search: "North County St Louis", "Hazelwood MO", "Ferguson MO community"</span>
+        </div>
+        <a href="https://www.facebook.com/search/groups/?q=north%20county%20st%20louis" target="_blank" class="group-link">Search →</a>
+    </div>
+    
+    <div class="group-card">
+        <div class="group-header">
+            <span class="platform-badge fb">FB GROUP</span>
+            <span class="group-name">St. Louis Dog Parks & Dog Owners</span>
+        </div>
+        <div class="group-meta">
+            <span>Search: "St Louis dog owners", "STL dog park", "St Louis dog walkers"</span>
+        </div>
+        <a href="https://www.facebook.com/search/groups/?q=st%20louis%20dog%20owners" target="_blank" class="group-link">Search →</a>
+    </div>
+</div>
+
+<!-- TAB: POST TEMPLATES -->
+<div class="tab-content" id="tab-posts">
+    
+    <div class="section-header">🌸 Spring-Themed (Best for March-April)</div>
+    
+    <div class="post-card">
+        <div class="post-card-header">
+            <span class="post-type-badge badge-spring">🌸 SPRING SPECIAL</span>
+            <span style="font-size:0.75rem;color:#999">Best performer</span>
+        </div>
+        <div class="post-body" id="post1">Spring is here and so is the snow-melt surprise in your yard 😅🐕
+
+If your backyard looks like a minefield right now, you're not alone. A winter's worth of dog poop is no joke.
+
+We're offering spring deep cleans — $100 flat rate. We come out, scoop every single pile, and leave your yard fresh.
+
+Or if you're tired of the weekly battle: $25/week and we handle it every week so you never think about it again.
+
+Text Jamie at 314-850-7140 — we cover Florissant, O'Fallon, St. Peters, Chesterfield, and most of St. Louis County 🐾</div>
+        <button class="expand-btn" onclick="toggleExpand('post1')">Show more ▼</button>
+        <div class="post-actions">
+            <button class="btn-copy primary" onclick="copyPost('post1')">📋 Copy Post</button>
+        </div>
+    </div>
+    
+    <div class="post-card">
+        <div class="post-card-header">
+            <span class="post-type-badge badge-spring">🌸 SPRING TIP + OFFER</span>
+        </div>
+        <div class="post-body" id="post2">PSA for dog owners: now that the snow has melted, all that poop from winter is sitting in your grass. If you don't clean it up soon, it WILL kill patches of your lawn 🥴
+
+Fun fact: one dog produces about 275 lbs of waste per year. Multiply that by a St. Louis winter where nobody wants to go outside...
+
+If you want a fresh start this spring without spending your whole Saturday in the yard, we do one-time deep cleans for $100. Or weekly service for $25/week.
+
+We're local (Florissant-based) and cover most of STL County and St. Charles County.
+
+Text 314-850-7140 if you want a quote! 🐾 ~Jamie, Tidy Tails</div>
+        <button class="expand-btn" onclick="toggleExpand('post2')">Show more ▼</button>
+        <div class="post-actions">
+            <button class="btn-copy primary" onclick="copyPost('post2')">📋 Copy Post</button>
+        </div>
+    </div>
+    
+    <div class="section-header">💬 Conversational / Community-Style</div>
+    
+    <div class="post-card">
+        <div class="post-card-header">
+            <span class="post-type-badge badge-social">💬 COMMUNITY QUESTION</span>
+            <span style="font-size:0.75rem;color:#999">High engagement</span>
+        </div>
+        <div class="post-body" id="post3">Genuine question for dog owners — how do you keep up with the poop situation? 😂
+
+We have multiple dogs and I swear it's a full-time job. That's actually why we started Tidy Tails — we do the scooping so you don't have to.
+
+$25/week for weekly cleanup. We bring our own bags, do the whole yard, and you never have to think about it.
+
+Anyone else feel like they're losing the battle? 😅
+
+If you want help: text Jamie at 314-850-7140. We serve most of the St. Louis area!</div>
+        <button class="expand-btn" onclick="toggleExpand('post3')">Show more ▼</button>
+        <div class="post-actions">
+            <button class="btn-copy primary" onclick="copyPost('post3')">📋 Copy Post</button>
+        </div>
+    </div>
+    
+    <div class="post-card">
+        <div class="post-card-header">
+            <span class="post-type-badge badge-social">💬 RECOMMENDATION STYLE</span>
+            <span style="font-size:0.75rem;color:#999">Nextdoor format</span>
+        </div>
+        <div class="post-body" id="post4">Wanted to share a service recommendation! 
+
+If anyone is looking for pet waste removal, Tidy Tails is local and affordable. They come weekly and clean up the entire yard — $25/week or $70/month flat rate.
+
+It's one of those things you don't think you need until you try it, then you wonder why you waited so long 😄
+
+Their number is 314-850-7140 (text works too). They cover Florissant, O'Fallon, St. Peters, Maryland Heights, Chesterfield, Kirkwood, and more.
+
+Just thought I'd pass it along! 🐾</div>
+        <button class="expand-btn" onclick="toggleExpand('post4')">Show more ▼</button>
+        <div class="post-actions">
+            <button class="btn-copy primary" onclick="copyPost('post4')">📋 Copy Post</button>
+        </div>
+    </div>
+    
+    <div class="section-header">😂 Humor / Attention-Grabbing</div>
+    
+    <div class="post-card">
+        <div class="post-card-header">
+            <span class="post-type-badge badge-humor">😂 FUNNY / RELATABLE</span>
+            <span style="font-size:0.75rem;color:#999">Gets shares</span>
+        </div>
+        <div class="post-body" id="post5">Things I didn't expect as a dog owner:
+1. Becoming a professional poop detective
+2. Knowing the exact minefield pattern of my backyard
+3. Playing "is that mud or..." every time I step outside
+4. Considering my dog's output-to-input ratio 🤣
+
+If any of this hits home — we literally scoop poop for a living so you don't have to. 
+
+$25/week. We come, we scoop, you enjoy your yard again.
+
+Text Jamie: 314-850-7140
+Tidy Tails — serving St. Louis County & St. Charles County 🐕💩</div>
+        <button class="expand-btn" onclick="toggleExpand('post5')">Show more ▼</button>
+        <div class="post-actions">
+            <button class="btn-copy primary" onclick="copyPost('post5')">📋 Copy Post</button>
+        </div>
+    </div>
+    
+    <div class="post-card">
+        <div class="post-card-header">
+            <span class="post-type-badge badge-humor">😂 REAL TALK</span>
+        </div>
+        <div class="post-body" id="post6">Real talk: nobody WANTS to pick up dog poop. We just do it because we love our dogs.
+
+But what if you didn't have to? 
+
+Tidy Tails comes to your yard weekly — we scoop every pile, bag it, and take it away. You get your weekends back. Your kids can play in the yard without you doing recon first. Your shoes stay clean.
+
+$25/week | $70/month flat rate | $100 one-time deep clean
+
+We're a small local business based in Florissant, serving Florissant, O'Fallon, St. Peters, Chesterfield, Maryland Heights, Kirkwood, Webster Groves, and more.
+
+Text Jamie at 314-850-7140 to get started. No contracts. Cancel anytime. 🐾</div>
+        <button class="expand-btn" onclick="toggleExpand('post6')">Show more ▼</button>
+        <div class="post-actions">
+            <button class="btn-copy primary" onclick="copyPost('post6')">📋 Copy Post</button>
+        </div>
+    </div>
+    
+    <div class="section-header">💰 Value / Price-Focused</div>
+    
+    <div class="post-card">
+        <div class="post-card-header">
+            <span class="post-type-badge badge-value">💰 PRICE COMPARISON</span>
+        </div>
+        <div class="post-body" id="post7">For anyone who's looked into pooper scooper services and thought they were too expensive — we're probably the most affordable option in St. Louis.
+
+Tidy Tails pricing:
+✅ $25/week (weekly visits)
+✅ $45 biweekly
+✅ $70/month flat rate — this is our most popular
+✅ $100 one-time deep clean
+
+Most competitors charge $80-95/month. We're local, we're affordable, and we actually show up 😄
+
+No contracts. No hidden fees. Just a clean yard.
+
+Text Jamie: 314-850-7140
+tidytailsstl.com 🐾</div>
+        <button class="expand-btn" onclick="toggleExpand('post7')">Show more ▼</button>
+        <div class="post-actions">
+            <button class="btn-copy primary" onclick="copyPost('post7')">📋 Copy Post</button>
+        </div>
+    </div>
+    
+    <div class="section-header">🏢 Commercial / Property Manager</div>
+    
+    <div class="post-card">
+        <div class="post-card-header">
+            <span class="post-type-badge badge-commercial">🏢 PROPERTY MANAGERS</span>
+            <span style="font-size:0.75rem;color:#999">For business groups</span>
+        </div>
+        <div class="post-body" id="post8">Attention property managers & HOA boards 👋
+
+Spring is when tenants start complaining about pet waste in common areas. If pet waste management is eating into your maintenance budget or causing tenant complaints, we can help.
+
+Tidy Tails offers commercial pet waste removal:
+• Scheduled visits (1-5x per week)
+• Common area + dog station coverage
+• Pet waste station installation available
+• Custom pricing based on property size
+
+We already serve residential clients across St. Louis County — now expanding commercial services for apartments, HOAs, townhome communities, and dog-friendly businesses.
+
+Text or call Jamie: 314-850-7140
+tidytailsstl.com/blog/commercial-pet-waste-removal-property-managers</div>
+        <button class="expand-btn" onclick="toggleExpand('post8')">Show more ▼</button>
+        <div class="post-actions">
+            <button class="btn-copy primary" onclick="copyPost('post8')">📋 Copy Post</button>
+        </div>
+    </div>
+    
+    <div class="section-header">📸 Photo Post Captions</div>
+    
+    <div class="post-card">
+        <div class="post-card-header">
+            <span class="post-type-badge badge-seasonal">📸 BEFORE/AFTER CAPTION</span>
+            <span style="font-size:0.75rem;color:#999">Pair with photo</span>
+        </div>
+        <div class="post-body" id="post9">Before and after 🐾✨
+
+Another yard saved from the winter poop apocalypse. This is what a $100 spring deep clean looks like.
+
+Your yard could be next! Text Jamie at 314-850-7140
+
+#TidyTails #StLouis #PooperScooper #SpringCleaning #DogMom #DogDad</div>
+        <button class="expand-btn" onclick="toggleExpand('post9')">Show more ▼</button>
+        <div class="post-actions">
+            <button class="btn-copy primary" onclick="copyPost('post9')">📋 Copy Post</button>
+        </div>
+    </div>
+    
+    <div class="post-card">
+        <div class="post-card-header">
+            <span class="post-type-badge badge-seasonal">📸 MARKETPLACE LISTING</span>
+            <span style="font-size:0.75rem;color:#999">For FB Marketplace</span>
+        </div>
+        <div class="post-body" id="post10">🐕 Pet Waste Removal Service — St. Louis Area
+
+Tidy Tails — local pooper scooper service
+
+PRICING:
+• $25/week (weekly service)
+• $45/biweekly
+• $70/month flat rate
+• $100 one-time deep clean
+
+WHAT'S INCLUDED:
+✅ Full yard cleanup every visit
+✅ We bring our own bags & supplies
+✅ All waste removed from property
+✅ No contracts — cancel anytime
+
+SERVICE AREA:
+Florissant, O'Fallon, St. Peters, St. Charles, Chesterfield, Maryland Heights, Kirkwood, Webster Groves, Ferguson, Hazelwood, Bridgeton, Creve Coeur, and more!
+
+📱 Text or call Jamie: 314-850-7140
+🌐 tidytailsstl.com</div>
+        <button class="expand-btn" onclick="toggleExpand('post10')">Show more ▼</button>
+        <div class="post-actions">
+            <button class="btn-copy primary" onclick="copyPost('post10')">📋 Copy Post</button>
+        </div>
+    </div>
+</div>
+
+<!-- TAB: TIPS -->
+<div class="tab-content" id="tab-tips">
+    
+    <div class="section-header">🧠 Posting Strategy</div>
+    
+    <div class="tip-card">
+        <h3>🔑 The #1 Rule: Don't Be Salesy</h3>
+        <ul>
+            <li><strong>Be a person, not a business.</strong> Community groups hate ads. Write like you're talking to a neighbor.</li>
+            <li>Lead with VALUE or HUMOR — the pitch comes second</li>
+            <li>Ask questions to drive comments ("Anyone else dealing with this?")</li>
+            <li>Respond to EVERY comment — engagement boosts visibility</li>
+        </ul>
+    </div>
+    
+    <div class="tip-card">
+        <h3>📅 Timing Matters</h3>
+        <ul>
+            <li><strong>Best days:</strong> Tuesday, Wednesday, Thursday (avoid Monday chaos & weekend noise)</li>
+            <li><strong>Best times:</strong> 7-9 AM (morning scroll) or 7-9 PM (evening wind-down)</li>
+            <li><strong>Worst time:</strong> Friday afternoon — everyone's checked out</li>
+            <li>Post ONE group per day max — don't spam 5 groups at once</li>
+        </ul>
+    </div>
+    
+    <div class="tip-card">
+        <h3>🔄 Rotation Strategy</h3>
+        <ul>
+            <li><strong>Week 1:</strong> Spring-themed posts (deep clean focus)</li>
+            <li><strong>Week 2:</strong> Humor/relatable posts (engagement focus)</li>
+            <li><strong>Week 3:</strong> Value/price posts (conversion focus)</li>
+            <li><strong>Week 4:</strong> Photo/before-after posts (social proof)</li>
+            <li>Never post the same copy in the same group twice</li>
+        </ul>
+    </div>
+    
+    <div class="tip-card">
+        <h3>💬 Nextdoor-Specific Tips</h3>
+        <ul>
+            <li>Use "Recommendation" format — it looks organic, not like an ad</li>
+            <li>Neighbors trust Nextdoor more than Facebook for local services</li>
+            <li>Keep it SHORT — Nextdoor posts do better under 100 words</li>
+            <li>Include your neighborhood name ("here in Florissant...")</li>
+            <li>Reply to anyone asking for pet service recommendations</li>
+        </ul>
+    </div>
+    
+    <div class="tip-card">
+        <h3>🚫 What NOT to Do</h3>
+        <ul>
+            <li>❌ Don't post the same thing in 5 groups in one day (looks spammy)</li>
+            <li>❌ Don't use ALL CAPS or too many emojis (screams "ad")</li>
+            <li>❌ Don't just post and disappear — reply to EVERY comment</li>
+            <li>❌ Don't post before reading group rules (some require admin approval)</li>
+            <li>❌ Don't argue with negative comments — just stay helpful</li>
+        </ul>
+    </div>
+    
+    <div class="tip-card">
+        <h3>🎯 Responding to Comments — Scripts</h3>
+        <ul>
+            <li><strong>"How much?"</strong> → "Weekly is $25/wk, or $70/month flat rate! Text me at 314-850-7140 and I can give you a quick quote 😊"</li>
+            <li><strong>"What areas?"</strong> → "We cover Florissant, O'Fallon, St. Peters, Chesterfield, and most of STL County! Where are you located?"</li>
+            <li><strong>"How does it work?"</strong> → "Super easy! We come on a set day each week, scoop the entire yard, bag it, and take it with us. No contracts, cancel anytime."</li>
+            <li><strong>"I need this lol"</strong> → "Haha we hear that a lot! 😂 Text Jamie at 314-850-7140 whenever you're ready!"</li>
+        </ul>
+    </div>
+</div>
+
+<!-- TAB: SCHEDULE -->
+<div class="tab-content" id="tab-schedule">
+    
+    <div class="section-header">📅 Recommended Posting Schedule</div>
+    
+    <div class="schedule-card">
+        <h3>🗓️ This Week's Plan</h3>
+        <div class="schedule-row">
+            <span class="schedule-day">Thu (Today)</span>
+            <span class="schedule-task">Spring post → Florissant BST group</span>
+        </div>
+        <div class="schedule-row">
+            <span class="schedule-day">Fri</span>
+            <span class="schedule-task">Marketplace listing (weekly service)</span>
+        </div>
+        <div class="schedule-row">
+            <span class="schedule-day">Sat</span>
+            <span class="schedule-task">Nextdoor post (Florissant neighborhoods)</span>
+        </div>
+        <div class="schedule-row">
+            <span class="schedule-day">Sun</span>
+            <span class="schedule-task">Before/after photo post (after scooping day)</span>
+        </div>
+        <div class="schedule-row">
+            <span class="schedule-day">Mon</span>
+            <span class="schedule-task">Skip — Mondays are noisy</span>
+        </div>
+        <div class="schedule-row">
+            <span class="schedule-day">Tue</span>
+            <span class="schedule-task">Humor post → O'Fallon community group</span>
+        </div>
+        <div class="schedule-row">
+            <span class="schedule-day">Wed</span>
+            <span class="schedule-task">Value/price post → St. Peters BST group</span>
+        </div>
+    </div>
+    
+    <div class="section-header">🎯 Monthly Goals</div>
+    
+    <div class="tracker-card">
+        <div class="tracker-row">
+            <span class="label">FB Group Posts</span>
+            <span class="count" id="fbCount">0 / 8</span>
+        </div>
+        <div class="tracker-row">
+            <span class="label">Nextdoor Posts</span>
+            <span class="count" id="ndCount">0 / 4</span>
+        </div>
+        <div class="tracker-row">
+            <span class="label">Marketplace Listings</span>
+            <span class="count" id="mpCount">0 / 3</span>
+        </div>
+        <div class="tracker-row">
+            <span class="label">Comments Replied</span>
+            <span class="count" id="replyCount">0</span>
+        </div>
+        <div class="tracker-row">
+            <span class="label">Leads Generated</span>
+            <span class="count" id="leadCount">0</span>
+        </div>
+    </div>
+    
+    <div class="section-header">💡 Quick Math</div>
+    
+    <div class="tip-card" style="border-left-color: var(--green);">
+        <h3 style="color: var(--green);">📊 Why This Works</h3>
+        <ul>
+            <li><strong>5 posts/week × 4 weeks = 20 posts/month</strong></li>
+            <li>Average FB group post reaches 500-2,000 people</li>
+            <li>Even 1% engagement = 5-20 comments per post</li>
+            <li>Convert 5% of inquiries = <strong>5-10 new leads/month</strong></li>
+            <li>Close 30% = <strong>2-3 new customers/month</strong></li>
+            <li>At $100/mo avg = <strong>$200-300/mo revenue</strong> from FREE posting</li>
+            <li>That's 8-12 new customers in 4 months → <strong>hitting the 25-30 goal</strong></li>
+        </ul>
+    </div>
+</div>
+
+<!-- Toast notification -->
+<div class="toast" id="toast">Copied! 📋</div>
+
+<script>
+// Tab switching
+function showTab(tabId) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    event.target.closest('.tab').classList.add('active');
+}
+
+// Copy post text
+function copyPost(postId) {
+    const text = document.getElementById(postId).textContent.trim();
+    navigator.clipboard.writeText(text).then(() => {
+        const btn = event.target;
+        btn.classList.add('copied');
+        btn.textContent = '✅ Copied!';
+        showToast('Post copied to clipboard! 📋');
+        setTimeout(() => {
+            btn.classList.remove('copied');
+            btn.textContent = '📋 Copy Post';
+        }, 2000);
+    });
+}
+
+// Expand/collapse post
+function toggleExpand(postId) {
+    const body = document.getElementById(postId);
+    const btn = event.target;
+    body.classList.toggle('expanded');
+    btn.textContent = body.classList.contains('expanded') ? 'Show less ▲' : 'Show more ▼';
+}
+
+// Toggle posted status
+function togglePosted(btn) {
+    btn.classList.toggle('done');
+    const group = btn.dataset.group;
+    const posted = btn.classList.contains('done');
+    
+    // Save to localStorage
+    const state = JSON.parse(localStorage.getItem('tt-posting-kit') || '{}');
+    state[group] = posted;
+    localStorage.setItem('tt-posting-kit', JSON.stringify(state));
+    
+    updateProgress();
+}
+
+// Update progress
+function updateProgress() {
+    const state = JSON.parse(localStorage.getItem('tt-posting-kit') || '{}');
+    const total = document.querySelectorAll('.posted-toggle').length;
+    const done = Object.values(state).filter(v => v).length;
+    
+    document.getElementById('totalPosted').textContent = done + ' / ' + total + ' Posted';
+    const pct = Math.round((done / total) * 100);
+    document.getElementById('progressPct').textContent = pct + '%';
+    document.getElementById('progressFill').style.width = pct + '%';
+}
+
+// Load saved state
+function loadState() {
+    const state = JSON.parse(localStorage.getItem('tt-posting-kit') || '{}');
+    document.querySelectorAll('.posted-toggle').forEach(btn => {
+        if (state[btn.dataset.group]) {
+            btn.classList.add('done');
+        }
+    });
+    updateProgress();
+}
+
+// Toast notification
+function showToast(msg) {
+    const toast = document.getElementById('toast');
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// Init
+loadState();
+</script>
+
+</body>
+</html>
