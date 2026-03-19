@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring 2026 Launch Playbook — Tidy Tails</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green: #2d5a27;
+            --green-light: #4a7c42;
+            --green-dark: #1e3d1a;
+            --cream: #f8f6f0;
+            --orange: #e07b39;
+            --red: #d32f2f;
+            --blue: #1565c0;
+            --white: #fff;
+            --gray: #666;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+        .header h1 { font-size: 1.7rem; margin-bottom: 4px; }
+        .header .subtitle { opacity: 0.9; font-size: 1rem; }
+        .progress-banner {
+            background: linear-gradient(90deg, var(--green-dark), var(--green));
+            color: white;
+            padding: 16px 20px;
+            text-align: center;
+        }
+        .progress-bar-outer {
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            height: 24px;
+            max-width: 600px;
+            margin: 10px auto 6px;
+            overflow: hidden;
+        }
+        .progress-bar-inner {
+            background: linear-gradient(90deg, #4caf50, #81c784);
+            height: 100%;
+            border-radius: 20px;
+            transition: width 0.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85rem;
+            min-width: 40px;
+        }
+        .progress-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 8px;
+            font-size: 0.9rem;
+        }
+        .progress-stats span { opacity: 0.9; }
+        .progress-stats strong { font-size: 1.1rem; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+        /* Critical Now Banner */
+        .critical-banner {
+            background: linear-gradient(135deg, #ff5722, #d32f2f);
+            color: white;
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .critical-banner h2 { font-size: 1.2rem; margin-bottom: 8px; }
+        .critical-banner p { font-size: 0.95rem; opacity: 0.95; }
+        .critical-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 12px;
+        }
+        .critical-item {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .critical-item:hover { background: rgba(255,255,255,0.3); }
+
+        /* Phase Cards */
+        .phase {
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .phase-header {
+            padding: 16px 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+        .phase-header h3 { font-size: 1.1rem; }
+        .phase-header .dates { font-size: 0.85rem; color: var(--gray); }
+        .phase-header .toggle { font-size: 1.2rem; transition: transform 0.3s; }
+        .phase-header .toggle.open { transform: rotate(180deg); }
+        .phase.current .phase-header { background: #e8f5e9; border-left: 4px solid var(--green); }
+        .phase.upcoming .phase-header { background: #e3f2fd; border-left: 4px solid var(--blue); }
+        .phase.future .phase-header { background: #fff3e0; border-left: 4px solid var(--orange); }
+
+        .phase-body { padding: 0 20px 20px; display: none; }
+        .phase.expanded .phase-body { display: block; }
+        .phase.expanded .toggle { transform: rotate(180deg); }
+
+        .week-section {
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            margin-bottom: 14px;
+            overflow: hidden;
+        }
+        .week-header {
+            background: #fafafa;
+            padding: 12px 16px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .week-header .week-progress {
+            font-size: 0.8rem;
+            background: var(--green);
+            color: white;
+            padding: 2px 10px;
+            border-radius: 10px;
+        }
+        .week-body { padding: 12px 16px; display: none; }
+        .week-section.expanded .week-body { display: block; }
+
+        .task-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .task-row:last-child { border-bottom: none; }
+        .task-check {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+            font-size: 0.8rem;
+        }
+        .task-check.done { background: var(--green); border-color: var(--green); color: white; }
+        .task-info { flex: 1; }
+        .task-title { font-weight: 600; font-size: 0.9rem; }
+        .task-title.done { text-decoration: line-through; color: #999; }
+        .task-who {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 1px 6px;
+            border-radius: 4px;
+            font-weight: 700;
+            margin-left: 4px;
+        }
+        .who-jamie { background: #e8f5e9; color: var(--green-dark); }
+        .who-tj { background: #e3f2fd; color: var(--blue); }
+        .who-franklin { background: #fff3e0; color: #e65100; }
+        .who-both { background: #fce4ec; color: #c62828; }
+        .task-detail { font-size: 0.82rem; color: var(--gray); margin-top: 2px; }
+        .task-link {
+            display: inline-block;
+            font-size: 0.78rem;
+            color: var(--blue);
+            text-decoration: none;
+            margin-top: 3px;
+        }
+        .task-link:hover { text-decoration: underline; }
+        .task-impact {
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        .impact-high { background: #ffebee; color: var(--red); }
+        .impact-med { background: #fff3e0; color: #e65100; }
+        .impact-low { background: #e8f5e9; color: var(--green); }
+
+        /* Revenue Tracker */
+        .revenue-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .revenue-card h3 { margin-bottom: 12px; }
+        .rev-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .rev-stat {
+            text-align: center;
+            padding: 12px;
+            background: #f5f5f5;
+            border-radius: 8px;
+        }
+        .rev-stat .num { font-size: 1.5rem; font-weight: 800; color: var(--green-dark); }
+        .rev-stat .label { font-size: 0.75rem; color: var(--gray); }
+
+        /* Tool Quick Links */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .tool-link {
+            background: white;
+            border-radius: 10px;
+            padding: 14px;
+            text-decoration: none;
+            color: #333;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .tool-link:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+        .tool-icon { font-size: 1.4rem; }
+        .tool-name { font-weight: 600; font-size: 0.85rem; }
+        .tool-desc { font-size: 0.72rem; color: var(--gray); }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8rem;
+            color: #999;
+        }
+
+        @media (max-width: 600px) {
+            .rev-grid { grid-template-columns: 1fr; }
+            .tools-grid { grid-template-columns: 1fr; }
+            .progress-stats { flex-direction: column; gap: 4px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🚀 Spring 2026 Launch Playbook</h1>
+    <p class="subtitle">8 customers → 25 customers by June 30</p>
+</div>
+
+<div class="progress-banner">
+    <div style="font-weight:600;">Overall Progress</div>
+    <div class="progress-bar-outer">
+        <div class="progress-bar-inner" id="overallProgress" style="width:0%">0%</div>
+    </div>
+    <div class="progress-stats">
+        <span>Customers: <strong id="custCount">8</strong> / 25</span>
+        <span>Tasks Done: <strong id="tasksDone">0</strong> / <strong id="tasksTotal">0</strong></span>
+        <span>Revenue: <strong id="revMonth">$800</strong>/mo</span>
+    </div>
+</div>
+
+<div class="container">
+
+    <!-- CRITICAL NOW -->
+    <div class="critical-banner">
+        <h2>🔥 DO THESE FIRST — They Unlock Everything Else</h2>
+        <p>These 4 items are blocking ALL other growth. Nothing else matters until these are done.</p>
+        <div class="critical-items">
+            <div class="critical-item" onclick="scrollToTask('gbp-complete')">📍 GBP → 100%</div>
+            <div class="critical-item" onclick="scrollToTask('first-review')">⭐ First Google Review</div>
+            <div class="critical-item" onclick="scrollToTask('referral-texts')">📱 Send Referral Texts</div>
+            <div class="critical-item" onclick="scrollToTask('first-fb-post')">📣 First Community Post</div>
+        </div>
+    </div>
+
+    <!-- REVENUE TRACKER -->
+    <div class="revenue-card">
+        <h3>💰 Revenue Growth Tracker</h3>
+        <div class="rev-grid">
+            <div class="rev-stat">
+                <div class="num" id="revNow">$800</div>
+                <div class="label">Current Monthly</div>
+            </div>
+            <div class="rev-stat">
+                <div class="num" style="color:var(--orange);">$2,500</div>
+                <div class="label">June Target</div>
+            </div>
+            <div class="rev-stat">
+                <div class="num" style="color:var(--green);" id="revGap">$1,700</div>
+                <div class="label">Gap to Close</div>
+            </div>
+        </div>
+        <p style="text-align:center;font-size:0.82rem;color:var(--gray);margin-top:10px;">
+            Gap = ~17 new customers at $100/mo avg. 15 weeks to close it. That's <strong>~1.2 new customers per week</strong>.
+        </p>
+    </div>
+
+    <!-- QUICK TOOL LINKS -->
+    <h3 style="margin-bottom:12px;">🛠️ Your Tools (Use These)</h3>
+    <div class="tools-grid">
+        <a href="referral-program.html" class="tool-link">
+            <span class="tool-icon">🎁</span>
+            <div>
+                <div class="tool-name">Referral Program</div>
+                <div class="tool-desc">Send texts to 8 customers</div>
+            </div>
+        </a>
+        <a href="community-posting-kit.html" class="tool-link">
+            <span class="tool-icon">📣</span>
+            <div>
+                <div class="tool-name">Community Posts</div>
+                <div class="tool-desc">15 groups, 10 ready posts</div>
+            </div>
+        </a>
+        <a href="review-texts-ready.html" class="tool-link">
+            <span class="tool-icon">⭐</span>
+            <div>
+                <div class="tool-name">Review Requests</div>
+                <div class="tool-desc">Get Google reviews</div>
+            </div>
+        </a>
+        <a href="gbp-quick-complete.html" class="tool-link">
+            <span class="tool-icon">📍</span>
+            <div>
+                <div class="tool-name">GBP Complete</div>
+                <div class="tool-desc">7% → 100% checklist</div>
+            </div>
+        </a>
+        <a href="commercial-call-sheet.html" class="tool-link">
+            <span class="tool-icon">🏢</span>
+            <div>
+                <div class="tool-name">Commercial Calls</div>
+                <div class="tool-desc">Top 10 leads + scripts</div>
+            </div>
+        </a>
+        <a href="event-marketing-calendar.html" class="tool-link">
+            <span class="tool-icon">📅</span>
+            <div>
+                <div class="tool-name">Event Calendar</div>
+                <div class="tool-desc">14 dog events thru Oct</div>
+            </div>
+        </a>
+        <a href="facebook-ads-kit.html" class="tool-link">
+            <span class="tool-icon">📘</span>
+            <div>
+                <div class="tool-name">Facebook Ads Kit</div>
+                <div class="tool-desc">Campaign templates</div>
+            </div>
+        </a>
+        <a href="spring-content-pack.html" class="tool-link">
+            <span class="tool-icon">🌸</span>
+            <div>
+                <div class="tool-name">Spring Content</div>
+                <div class="tool-desc">Seasonal posts & copy</div>
+            </div>
+        </a>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- PHASE 1: FOUNDATION (Week of Mar 19 - Mar 30) -->
+    <!-- ============================================ -->
+    <div class="phase current expanded" id="phase1">
+        <div class="phase-header" onclick="togglePhase('phase1')">
+            <div>
+                <h3>🏗️ Phase 1: Foundation</h3>
+                <div class="dates">Mar 19 – Mar 30 (NOW)</div>
+            </div>
+            <div>
+                <span class="toggle">▼</span>
+            </div>
+        </div>
+        <div class="phase-body">
+            <p style="font-size:0.85rem;color:var(--gray);margin-bottom:14px;">
+                <strong>Goal:</strong> Get the basics locked down. GBP complete, first reviews, first community posts. These are prerequisites for everything else.
+            </p>
+
+            <!-- Week 1: Mar 19-23 -->
+            <div class="week-section expanded" id="week1">
+                <div class="week-header" onclick="toggleWeek('week1')">
+                    <span>📅 Week 1: Mar 19-23 (THIS WEEK)</span>
+                    <span class="week-progress" id="week1-progress">0/8</span>
+                </div>
+                <div class="week-body">
+                    <div class="task-row" id="gbp-complete">
+                        <div class="task-check" data-task="gbp-100" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Complete Google Business Profile to 100%</div>
+                            <span class="task-who who-tj">TJ</span>
+                            <div class="task-detail">Add hours, photos, services, description, categories. Currently 7% — this is the #1 blocker for local search.</div>
+                            <a href="gbp-quick-complete.html" class="task-link">→ Open GBP Checklist (17 min)</a>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row" id="first-review">
+                        <div class="task-check" data-task="first-review" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Get first 3 Google reviews (Shannon, Amanda, Preshus)</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Send review request texts to top 3 customers. Zero reviews is killing credibility.</div>
+                            <a href="review-texts-ready.html" class="task-link">→ Open Review Texts (copy & send)</a>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row" id="referral-texts">
+                        <div class="task-check" data-task="referral-texts-1" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Send referral texts to top 4 customers</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Shannon, Amanda, Preshus, Jody — highest value customers. Each knows 3-5 dog owners.</div>
+                            <a href="referral-program.html" class="task-link">→ Open Referral Texts (copy & send)</a>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row" id="first-fb-post">
+                        <div class="task-check" data-task="first-fb-post" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Post in 3 Facebook groups (Florissant BST, O'Fallon, St. Peters)</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Use spring-themed post from kit. 5 min per post from phone.</div>
+                            <a href="community-posting-kit.html" class="task-link">→ Open Posting Kit (copy & paste)</a>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="mattress-dogzzz" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">🐕 Attend Mattress Dogzzz Grand Opening (Sat Mar 21)</div>
+                            <span class="task-who who-both">TJ+JAMIE</span>
+                            <div class="task-detail">Creve Coeur, 11AM. Stray Rescue adoption event. Bring cards. Talk to 10+ dog owners.</div>
+                            <a href="event-marketing-calendar.html" class="task-link">→ Open Event Details + Pitch Scripts</a>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="nextdoor-join" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Join Nextdoor as a business (free listing)</div>
+                            <span class="task-who who-tj">TJ</span>
+                            <div class="task-detail">Nextdoor.com/claim → claim business page. Free directory listing + ability to post.</div>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="commercial-3" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Call 3 commercial leads from call sheet</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Start with Millsap Properties (7 properties) and No Leash Needed (8 locations).</div>
+                            <a href="commercial-call-sheet.html" class="task-link">→ Open Call Sheet</a>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="free-cleanup-share" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Share free cleanup page link in first FB group post</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Use tidytailsstl.com/free-cleanup as the CTA link in all community posts.</div>
+                            <a href="https://tidytailsstl.com/free-cleanup.html" class="task-link">→ View Landing Page</a>
+                        </div>
+                        <span class="task-impact impact-low">LOW</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 2: Mar 24-30 -->
+            <div class="week-section" id="week2">
+                <div class="week-header" onclick="toggleWeek('week2')">
+                    <span>📅 Week 2: Mar 24-30</span>
+                    <span class="week-progress" id="week2-progress">0/7</span>
+                </div>
+                <div class="week-body">
+                    <div class="task-row">
+                        <div class="task-check" data-task="reviews-5" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Get to 5 total Google reviews</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Send review texts to remaining customers (Jody, Chastity, Lawrence, Greg, Mrs. Candee).</div>
+                            <a href="review-texts-ready.html" class="task-link">→ Open Review Texts</a>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="fb-round-2" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Post in 3 more FB groups (Saving STL Pets, STL All Dogs, Chesterfield)</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Use different post style than week 1 (humor or value post). Rotate styles.</div>
+                            <a href="community-posting-kit.html" class="task-link">→ Open Posting Kit</a>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="referral-round-2" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Send referral texts to remaining 4 customers</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Chastity, Lawrence, Greg, Mrs. Candee. Complete the full customer base.</div>
+                            <a href="referral-program.html" class="task-link">→ Open Referral Program</a>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="directory-5" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Submit to 5 online directories (Bing Places, MapQuest, BringFido, Angi, HomeAdvisor)</div>
+                            <span class="task-who who-tj">TJ</span>
+                            <div class="task-detail">Off-page SEO is F grade. Each listing = 1 backlink + 1 citation. 20 min total.</div>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="fb-marketplace-1" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Post service listing on Facebook Marketplace</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">List as "Pet Waste Removal Service" → weekly cleanup $25. Free to list, high visibility.</div>
+                            <a href="community-posting-kit.html" class="task-link">→ Marketplace post template in kit</a>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="commercial-3-wk2" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Call 3 more commercial leads</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Target apartment complexes: Shenandoah Village, Bristol Place, The Woodlands.</div>
+                            <a href="commercial-call-sheet.html" class="task-link">→ Open Call Sheet</a>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="gbp-first-post" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Publish first Google Business post (spring promo)</div>
+                            <span class="task-who who-tj">TJ</span>
+                            <div class="task-detail">GBP posts boost local ranking. Use: "Spring Special: Free First Cleanup! 🐕 Text Jamie: 314-850-7140"</div>
+                        </div>
+                        <span class="task-impact impact-low">LOW</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- PHASE 2: MOMENTUM (Apr 1 - Apr 30) -->
+    <!-- ============================================ -->
+    <div class="phase upcoming" id="phase2">
+        <div class="phase-header" onclick="togglePhase('phase2')">
+            <div>
+                <h3>📈 Phase 2: Build Momentum</h3>
+                <div class="dates">Apr 1 – Apr 30 (Target: 12-15 customers)</div>
+            </div>
+            <div>
+                <span class="toggle">▼</span>
+            </div>
+        </div>
+        <div class="phase-body">
+            <p style="font-size:0.85rem;color:var(--gray);margin-bottom:14px;">
+                <strong>Goal:</strong> Layer paid ads on top of organic. Attend 3+ events. Close first commercial account. Consistent community posting.
+            </p>
+
+            <!-- Week 3-4: Apr 1-13 -->
+            <div class="week-section" id="week3">
+                <div class="week-header" onclick="toggleWeek('week3')">
+                    <span>📅 Weeks 3-4: Apr 1-13</span>
+                    <span class="week-progress" id="week3-progress">0/7</span>
+                </div>
+                <div class="week-body">
+                    <div class="task-row">
+                        <div class="task-check" data-task="fb-ads-start" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">🔥 Launch first Facebook ad campaign ($5-10/day)</div>
+                            <span class="task-who who-tj">TJ</span>
+                            <div class="task-detail">Engagement objective. Target dog lovers in STL County, 25-55. Link to free-cleanup page. Start small, measure for 7 days.</div>
+                            <a href="facebook-ads-kit.html" class="task-link">→ Open FB Ads Kit (full setup guide)</a>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="tower-grove-start" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">📅 Tower Grove Farmers Market opens Apr 4 (attend!)</div>
+                            <span class="task-who who-both">TJ+JAMIE</span>
+                            <div class="task-detail">Dog-friendly weekly market through October. Bring 50 cards. Walk dog, chat with owners.</div>
+                            <a href="event-marketing-calendar.html" class="task-link">→ Event Details</a>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="weekly-posting" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Establish weekly FB posting routine (3-5 posts/week)</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Monday + Thursday in groups. Wednesday Marketplace refresh. Weekend Nextdoor. 5 min each.</div>
+                            <a href="community-posting-kit.html" class="task-link">→ Posting Schedule</a>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="before-after" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">📸 Take 5 before/after photos on Sunday scooping</div>
+                            <span class="task-who who-tj">TJ</span>
+                            <div class="task-detail">Real photos convert 3x better than stock. Use for GBP, FB posts, ads. Phone photos > professional.</div>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="directory-10" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Submit to 5 more directories (total 10)</div>
+                            <span class="task-who who-tj">TJ</span>
+                            <div class="task-detail">BBB, Thumbtack, Nextdoor Business, YellowPages, Manta. Off-page SEO → C grade.</div>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="commercial-first" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Close first commercial account ($100-300/mo)</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Follow up on all March calls. Offer free demo cleanup for most promising lead.</div>
+                            <a href="commercial-call-sheet.html" class="task-link">→ Call Sheet</a>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="blues-giveback" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">📅 Blues Giveback + Stray Rescue (Apr 13)</div>
+                            <span class="task-who who-both">TJ+JAMIE</span>
+                            <div class="task-detail">Great networking event. Bring cards, talk to Stray Rescue about free cleanup partnership.</div>
+                            <a href="event-marketing-calendar.html" class="task-link">→ Event Details</a>
+                        </div>
+                        <span class="task-impact impact-low">LOW</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 5-6: Apr 14-30 -->
+            <div class="week-section" id="week4">
+                <div class="week-header" onclick="toggleWeek('week4')">
+                    <span>📅 Weeks 5-6: Apr 14-30</span>
+                    <span class="week-progress" id="week4-progress">0/6</span>
+                </div>
+                <div class="week-body">
+                    <div class="task-row">
+                        <div class="task-check" data-task="fb-ads-optimize" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Review FB ad performance, optimize or scale</div>
+                            <span class="task-who who-tj">TJ</span>
+                            <div class="task-detail">If CPA < $30: increase budget to $15/day. If CPA > $50: change creative/targeting. Kill underperformers.</div>
+                            <a href="facebook-ads-kit.html" class="task-link">→ FB Ads Kit</a>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="pooches-ballpark" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">📅 Pooches in the Ballpark (Apr 25) — 2,000+ dog owners!</div>
+                            <span class="task-who who-both">TJ+JAMIE</span>
+                            <div class="task-detail">Bring 200 cards/flyers. This is a goldmine — 2,000-3,000 dog owners in one place.</div>
+                            <a href="event-marketing-calendar.html" class="task-link">→ Event Prep Checklist</a>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="referral-round-2b" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Second round of referral asks (follow up)</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Text anyone who didn't respond in March. Add any new customers to referral pipeline.</div>
+                            <a href="referral-program.html" class="task-link">→ Referral Manager</a>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="google-ads-research" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Research Google Ads (layer on top of FB)</div>
+                            <span class="task-who who-franklin">FRANKLIN</span>
+                            <div class="task-detail">If FB ads are working, adding Google captures high-intent searches. Budget: $10/day on top keywords.</div>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="reviews-10" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Target 10 total Google reviews</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Ask new customers for reviews within 48 hours of first service. Include review link in follow-up text.</div>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="flyer-design" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Design + print door hangers/flyers for dense neighborhoods</div>
+                            <span class="task-who who-franklin">FRANKLIN</span>
+                            <div class="task-detail">Vistaprint: 250 door hangers ~$25. Target neighborhoods near existing customers for route density.</div>
+                        </div>
+                        <span class="task-impact impact-low">LOW</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- PHASE 3: SCALE (May - June) -->
+    <!-- ============================================ -->
+    <div class="phase future" id="phase3">
+        <div class="phase-header" onclick="togglePhase('phase3')">
+            <div>
+                <h3>🚀 Phase 3: Scale</h3>
+                <div class="dates">May 1 – Jun 30 (Target: 20-25 customers)</div>
+            </div>
+            <div>
+                <span class="toggle">▼</span>
+            </div>
+        </div>
+        <div class="phase-body">
+            <p style="font-size:0.85rem;color:var(--gray);margin-bottom:14px;">
+                <strong>Goal:</strong> Peak spring demand. Scale what's working, kill what isn't. Bark in the Park is the marquee event. Consider hiring help if hitting 20+ customers.
+            </p>
+
+            <!-- May -->
+            <div class="week-section" id="week5">
+                <div class="week-header" onclick="toggleWeek('week5')">
+                    <span>📅 May 2026</span>
+                    <span class="week-progress" id="week5-progress">0/7</span>
+                </div>
+                <div class="week-body">
+                    <div class="task-row">
+                        <div class="task-check" data-task="bark-park" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">🏆 BARK IN THE PARK (May 16) — THE BIG ONE</div>
+                            <span class="task-who who-both">TJ+JAMIE</span>
+                            <div class="task-detail">10,000+ attendees. Vendor booth $300-500. Goal: 15 leads → 3-5 new customers. ROI: profitable month 1.</div>
+                            <a href="event-marketing-calendar.html" class="task-link">→ Bark in the Park Prep</a>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="bark-booth-reserve" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Reserve Bark in the Park vendor booth (do this in April!)</div>
+                            <span class="task-who who-tj">TJ</span>
+                            <div class="task-detail">HSMO website for vendor registration. Sells out. Don't wait.</div>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="scale-ads" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Scale ad budget to $20-30/day if ROI positive</div>
+                            <span class="task-who who-tj">TJ</span>
+                            <div class="task-detail">By now you should know your cost per customer. If < $50, go aggressive. Spring demand peaks May-June.</div>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="hire-plan" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">If 15+ customers: start looking for part-time help</div>
+                            <span class="task-who who-tj">TJ</span>
+                            <div class="task-detail">Can't scoop 20+ yards solo on Sundays. Need help by 18-20 customers. Plan ahead.</div>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="duo-dash" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">📅 Duo Dash 5K + Dog Walk (May TBD)</div>
+                            <span class="task-who who-both">TJ+JAMIE</span>
+                            <div class="task-detail">Dog walk event — great for networking with active dog owners who care about clean yards.</div>
+                        </div>
+                        <span class="task-impact impact-low">LOW</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="second-commercial" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Close second commercial account</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Use first commercial account as a reference. "We already service [X], they love it."</div>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="reviews-15" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Target 15+ Google reviews</div>
+                            <span class="task-who who-jamie">JAMIE</span>
+                            <div class="task-detail">Every new customer = review request within 48 hours. Automate into onboarding flow.</div>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- June -->
+            <div class="week-section" id="week6">
+                <div class="week-header" onclick="toggleWeek('week6')">
+                    <span>📅 June 2026 (FINISH LINE)</span>
+                    <span class="week-progress" id="week6-progress">0/4</span>
+                </div>
+                <div class="week-body">
+                    <div class="task-row">
+                        <div class="task-check" data-task="hit-25" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">🏆 HIT 25 RECURRING CUSTOMERS</div>
+                            <span class="task-who who-both">TEAM</span>
+                            <div class="task-detail">If all channels are running: referrals (2-3/mo) + organic (2-3/mo) + ads (3-5/mo) + events (2-3/mo) = 9-14/mo. Very achievable.</div>
+                        </div>
+                        <span class="task-impact impact-high">HIGH</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="second-day" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Add second scooping day (Wednesday or Saturday)</div>
+                            <span class="task-who who-tj">TJ</span>
+                            <div class="task-detail">At 20+ customers, Sunday-only won't work. Add midweek day for biweekly customers.</div>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="route-optimize" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Optimize scooping route for efficiency</div>
+                            <span class="task-who who-franklin">FRANKLIN</span>
+                            <div class="task-detail">Map all customer locations, create most efficient route. Save 30-60 min per Sunday.</div>
+                        </div>
+                        <span class="task-impact impact-med">MED</span>
+                    </div>
+                    <div class="task-row">
+                        <div class="task-check" data-task="summer-plan" onclick="toggleTask(this)"></div>
+                        <div class="task-info">
+                            <div class="task-title">Build Summer 2026 growth plan (July-September)</div>
+                            <span class="task-who who-franklin">FRANKLIN</span>
+                            <div class="task-detail">Poochella (July), Halloween Dog Walk (Oct). Keep momentum through summer heat.</div>
+                        </div>
+                        <span class="task-impact impact-low">LOW</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MATH SECTION -->
+    <div class="revenue-card">
+        <h3>📊 The Growth Math</h3>
+        <div style="font-size:0.88rem;">
+            <p style="margin-bottom:10px;"><strong>Where new customers come from (monthly, once all channels active):</strong></p>
+            <table style="width:100%;border-collapse:collapse;font-size:0.85rem;">
+                <tr style="border-bottom:1px solid #eee;">
+                    <td style="padding:6px 0;">🎁 Referrals</td>
+                    <td style="text-align:right;font-weight:700;">1-2/mo</td>
+                    <td style="text-align:right;color:var(--gray);">$0 cost</td>
+                </tr>
+                <tr style="border-bottom:1px solid #eee;">
+                    <td style="padding:6px 0;">📣 Community Posts (FB/Nextdoor)</td>
+                    <td style="text-align:right;font-weight:700;">2-3/mo</td>
+                    <td style="text-align:right;color:var(--gray);">$0 cost</td>
+                </tr>
+                <tr style="border-bottom:1px solid #eee;">
+                    <td style="padding:6px 0;">📘 Facebook Ads</td>
+                    <td style="text-align:right;font-weight:700;">3-5/mo</td>
+                    <td style="text-align:right;color:var(--gray);">$150-300/mo</td>
+                </tr>
+                <tr style="border-bottom:1px solid #eee;">
+                    <td style="padding:6px 0;">📅 Events & Networking</td>
+                    <td style="text-align:right;font-weight:700;">1-2/mo</td>
+                    <td style="text-align:right;color:var(--gray);">$0-50/event</td>
+                </tr>
+                <tr style="border-bottom:1px solid #eee;">
+                    <td style="padding:6px 0;">🔍 Google/SEO (organic)</td>
+                    <td style="text-align:right;font-weight:700;">1-2/mo</td>
+                    <td style="text-align:right;color:var(--gray);">$0 cost</td>
+                </tr>
+                <tr style="border-bottom:1px solid #eee;">
+                    <td style="padding:6px 0;">🏢 Commercial</td>
+                    <td style="text-align:right;font-weight:700;">0-1/mo</td>
+                    <td style="text-align:right;color:var(--gray);">$0 cost</td>
+                </tr>
+                <tr style="font-weight:700;color:var(--green-dark);">
+                    <td style="padding:8px 0;">TOTAL POTENTIAL</td>
+                    <td style="text-align:right;">8-15/mo</td>
+                    <td style="text-align:right;">$150-350/mo</td>
+                </tr>
+            </table>
+            <p style="margin-top:12px;color:var(--gray);font-size:0.82rem;">
+                Even at the LOW end (8/mo), you hit 25 customers by mid-May. The key is activating ALL channels, not maximizing one.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        Spring 2026 Playbook — Built by Franklin 🐕💩<br>
+        Last updated: March 19, 2026
+    </div>
+</div>
+
+<script>
+    // Task persistence
+    const STORAGE_KEY = 'tidytails-playbook-tasks';
+
+    function loadTasks() {
+        try {
+            return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+        } catch { return {}; }
+    }
+
+    function saveTasks(tasks) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+    }
+
+    function toggleTask(el) {
+        const taskId = el.dataset.task;
+        const tasks = loadTasks();
+        tasks[taskId] = !tasks[taskId];
+        saveTasks(tasks);
+        renderAll();
+    }
+
+    function renderAll() {
+        const tasks = loadTasks();
+        let totalDone = 0;
+        let totalTasks = 0;
+
+        document.querySelectorAll('.task-check').forEach(el => {
+            const taskId = el.dataset.task;
+            totalTasks++;
+            if (tasks[taskId]) {
+                el.classList.add('done');
+                el.textContent = '✓';
+                const title = el.nextElementSibling?.querySelector('.task-title');
+                if (title) title.classList.add('done');
+                totalDone++;
+            } else {
+                el.classList.remove('done');
+                el.textContent = '';
+                const title = el.nextElementSibling?.querySelector('.task-title');
+                if (title) title.classList.remove('done');
+            }
+        });
+
+        // Update week progress
+        ['week1','week2','week3','week4','week5','week6'].forEach(weekId => {
+            const weekEl = document.getElementById(weekId);
+            if (!weekEl) return;
+            const checks = weekEl.querySelectorAll('.task-check');
+            let done = 0;
+            checks.forEach(c => { if (tasks[c.dataset.task]) done++; });
+            const prog = weekEl.querySelector('.week-progress');
+            if (prog) prog.textContent = `${done}/${checks.length}`;
+        });
+
+        // Update overall
+        document.getElementById('tasksDone').textContent = totalDone;
+        document.getElementById('tasksTotal').textContent = totalTasks;
+        const pct = totalTasks > 0 ? Math.round((totalDone / totalTasks) * 100) : 0;
+        const bar = document.getElementById('overallProgress');
+        bar.style.width = pct + '%';
+        bar.textContent = pct + '%';
+    }
+
+    // Phase toggle
+    function togglePhase(id) {
+        document.getElementById(id).classList.toggle('expanded');
+    }
+
+    // Week toggle
+    function toggleWeek(id) {
+        document.getElementById(id).classList.toggle('expanded');
+    }
+
+    // Scroll to task
+    function scrollToTask(id) {
+        const el = document.getElementById(id);
+        if (el) {
+            // Expand parent phase and week if needed
+            const phase = el.closest('.phase');
+            const week = el.closest('.week-section');
+            if (phase) phase.classList.add('expanded');
+            if (week) week.classList.add('expanded');
+            setTimeout(() => {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                el.style.background = '#fff9c4';
+                setTimeout(() => el.style.background = '', 2000);
+            }, 100);
+        }
+    }
+
+    // Init
+    renderAll();
+</script>
+
+</body>
+</html>
