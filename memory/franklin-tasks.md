@@ -5,6 +5,38 @@
 ---
 
 
+## March 19, 2026 (Wednesday)
+
+### 12:05 AM — 💰 COMPETITIVE PRICING INTELLIGENCE — Full Market Price Scrape + Strategic Analysis (Research/Competitive Intel)
+**Task:** Live-scraped all 6 major STL competitors' websites for current pricing, services, and market positioning. Built comprehensive pricing matrix and strategic recommendations.
+**Result:** ✅ COMPLETE — Full report at `deliverables/competitive-pricing-intel-march19-2026.md`
+
+**Why This Task:**
+- Ads are LIVE and spending money — need to know exactly where we stand on price
+- Last pricing data was from Mar 18 9PM scan but lacked side-by-side analysis
+- Spring is peak acquisition season — pricing strategy matters NOW
+- Multiple new competitors (Scoop Soldiers, Dog Doody Defenders) have entered the market
+
+**Key Findings:**
+1. 🔴 **Tidy Tails is the MOST EXPENSIVE per-visit in the market** — $25/visit vs POOP 911's $11.95 and DDD's $17
+2. 🔴 **The $70/month flat rate is ONLY a winner IF it means weekly service** — if so, it's $17.50/visit which beats most competitors. This needs to be CRYSTAL CLEAR in all marketing
+3. 🔴 **"First Service Free" is now TABLE STAKES** — POOP 911, Scoop Soldiers, and Doggie Doodies all offer it. We're the ONLY major competitor without one
+4. 🔴 **ZERO Google reviews vs 6+ for POOP 911** — with paid ads running, this is burning money
+5. 🟡 **Dog Doody Defenders expanding services** — now offering kennel cleaning and dog walking alongside waste removal
+6. 🟡 **Scoop Soldiers confirmed serious** — published EIN Presswire press release about STL expansion, targeting residential + commercial
+7. 🟢 **Dirty Dog Wash ($95/mo) is MORE expensive than us** — but they remove waste offsite as differentiator
+8. 🟢 **Poop 2 Scoop listed on petworks.com and apaws.org** — free directories we should be on
+
+**Action Items for TJ:**
+- Clarify: Is $70/month = weekly service? If yes, LEAD with "$17.50/visit" messaging
+- Add "First Cleanup Free" offer — table stakes in this market
+- Send review blitz texts THIS WEEK (dashboard tool already built)
+- List on petworks.com and apaws.org (free, 5 min each)
+
+**Rotation:** 💰 Research/Competitive Intel — Pricing Strategy
+
+---
+
 ## March 18, 2026 (Wednesday)
 
 ### 11:04 PM — ⭐ JAMIE'S REVIEW BLITZ — Personalized Copy-Paste Texts for All 8 Customers (Growth/Conversion)
