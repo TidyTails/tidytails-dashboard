@@ -7,6 +7,65 @@
 
 ## March 19, 2026 (Thursday)
 
+### 2:04 PM — 🎁 REFERRAL PROGRAM — Dual-Reward Referral System + Jamie's Text Manager (Customer Retention/Acquisition)
+**Task:** Built a complete referral program: public landing page for referred customers + dashboard tool with 8 personalized referral texts Jamie can send to existing customers. This is the cheapest customer acquisition channel we haven't tapped yet.
+**Result:** ✅ COMPLETE — LIVE at `https://tidytailsstl.com/refer`, dashboard tool at `dashboard/referral-program.html`, pushed to BOTH repos
+
+**Why This Task:**
+- We've built tons of content, SEO pages, and conversion tools today — the missing piece is LEVERAGING EXISTING CUSTOMERS
+- 8 recurring customers × avg 3-5 dog-owner friends each = 24-40 potential referrals sitting untapped
+- Referrals convert at 3-5x higher rate than cold leads (trust is pre-built)
+- Doggie Doodies already has a referral program ("Clean Paw Paws" rewards) — we needed competitive parity
+- Cost per acquisition via referral: $0 (one free month = $70-100 in lost revenue but $1,200+ LTV)
+- Spring is when neighbors are outside talking over fences — perfect timing
+
+**What Was Built:**
+1. 🌐 **Public Referral Page** (`refer.html`) — LIVE on tidytailsstl.com
+   - Hero with dual-reward value prop (both get free month)
+   - Reward cards showing what each party gets (referrer: free month, friend: free cleanup + free month)
+   - 3-step "How It Works" flow
+   - "Do The Math" section: refer 1→$100 saved, 3→$300, 5→$500, 12→free year
+   - Share section with pre-written text + copy button + SMS/Facebook share buttons
+   - "Were You Referred?" CTA section with pre-filled SMS
+   - Customer testimonials (Shannon, Amanda, St. Charles customer)
+   - FAQ with 6 questions (schema markup for Google rich snippets)
+   - Offer schema for structured data
+   - Mobile-first, matches site design system
+
+2. 📊 **Dashboard Referral Manager** (`dashboard/referral-program.html`)
+   - 8 personalized texts for each current customer (Shannon, Amanda, Preshus, Jody, Chastity, Lawrence, Greg, Mrs. Candee)
+   - Texts sorted by highest monthly value (best referral sources first)
+   - Copy-to-clipboard for each text
+   - "Mark Sent" tracking with localStorage persistence
+   - Referral tracker: log referrals with name, referrer, city, status (contacted → scheduled → signed)
+   - Stats dashboard: texts sent, referrals won, money saved
+   - Best practices tips (timing, targeting, follow-up, link sharing)
+   - Referral page URL copy button
+
+3. 🗺️ **Sitemap updated** — refer page at priority 0.9
+
+**Revenue Math:**
+- 8 customers × send referral text = ~8 asks
+- ~50% respond positively = 4 potential referrals
+- ~50% of those actually text = 2 new leads
+- Close rate ~50% = 1 new customer per round of texts
+- LTV per customer: ~$1,200/year
+- Cost: 1 free month ($70-100) per referral = 14:1 ROI
+- Run this monthly → 1-2 new customers/month from referrals alone
+
+**Pushed to BOTH repos:**
+- `TidyTails/tidytails-dashboard` (master) ✅
+- `TidyTails/tidytails-website` (master) ✅ — LIVE on GitHub Pages
+
+**SEO Keywords Targeted:**
+- "pet waste removal referral St. Louis"
+- "Tidy Tails referral program"
+- "dog poop cleanup friend discount"
+
+**Rotation:** 🎁 Customer Retention — Referral Program
+
+---
+
 ### 1:04 PM — 🎁 FREE FIRST CLEANUP LANDING PAGE — Conversion-Focused Promo Page (Conversion/Competitive Parity)
 **Task:** Built and deployed a dedicated "Free First Cleanup" landing page to match competitor offers and remove the #1 conversion barrier. Every major competitor (POOP 911, Scoop Soldiers, Doggie Doodies) offers free first cleanups — TJ didn't have one. Now he does.
 **Result:** ✅ COMPLETE — LIVE at `https://tidytailsstl.com/free-cleanup.html`, pushed to BOTH repos
