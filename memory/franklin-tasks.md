@@ -7,6 +7,43 @@
 
 ## March 19, 2026 (Thursday)
 
+### 6:04 PM — 🐾 NORTH COUNTY VET BLITZ + LEAD EXPANSION — 6 New Referral Partners, 37 Total Leads (Lead Generation/Territory Expansion)
+**Task:** Identified North County (Ferguson, Jennings, Black Jack, Spanish Lake, Normandy) as untapped territory with zero competitor presence. Found 6 qualified commercial leads — 1 massive apartment complex (411 units!) and 5 vet clinic referral partners. Restructured the entire call order into a tiered system with a vet blitz strategy.
+**Result:** ✅ COMPLETE — 6 new leads added to `memory/leads-commercial.md`, pipeline now at 37 leads / $7,575-$20,450/mo potential
+
+**Why This Task:**
+- Previous task (5pm) identified North County as competitor-free territory — needed to capitalize
+- 31 leads existed but none in Ferguson, Jennings, Black Jack, Spanish Lake, Normandy
+- Vet clinics = highest ROI referral partners (each sees 100-200+ dog owners, $0 cost to approach)
+- Needed actionable leads, not more tools/dashboards
+
+**New Leads Found:**
+1. 🏢 **Renewal Heights Apartments** — 411-unit pet-friendly complex with DOG PARK in Ferguson. (314) 699-9923
+2. 🏥 **Ferguson Animal Hospital** — Full-service vet, 483 Airport Rd, Ferguson. (314) 524-0707
+3. 🏥 **Halls Ferry Animal Hospital** — Serves Spanish Lake/Black Jack area. (314) 868-8584
+4. 🏥 **Gateway City Animal Clinic** — W Florissant Ave, Ferguson border. (314) 868-7387
+5. 🏥 **Normandy Animal Hospital + Urgent Care** — High traffic, Florissant Rd. (314) 383-4677
+6. 🏥 **Cross Keys Animal Clinic** — Florissant, Hwy 67. Closest to TJ's base. (314) 837-4617
+
+**New Strategy — Vet Blitz:**
+- Jamie visits all 6 vet clinics in one afternoon with cards + flyers
+- 3 hours total, $0 cost (just gas + printed cards)
+- Each clinic sees 100-200+ dog owners = 600-1,200 potential eyeballs
+- Even 1% conversion = 6-12 new residential customers
+- **Highest ROI activity available right now**
+
+**Also restructured call order into 4 tiers:**
+- Tier A: Call ASAP (Millsap, Renewal Heights, Baronwood)
+- Tier B: Vet Clinic Blitz (all 6 in one afternoon)
+- Tier C: Apartment Complexes
+- Tier D: The Whales (HOA management companies)
+
+**Pushed to:** `TidyTails/tidytails-dashboard` (pending)
+
+**Rotation:** 🐾 Lead Generation — North County Territory Expansion
+
+---
+
 ### 5:04 PM — 🔍 LIVE COMPETITIVE INTEL UPDATE — 2 New Threats, Google Invisibility Crisis, Market Doubling (Competitive Intelligence/SEO)
 **Task:** Conducted live competitive research — searched Google for our core keywords, scraped competitor websites for pricing, discovered new market entrants, and built an interactive dashboard with threat assessments, pricing comparisons, and prioritized action items.
 **Result:** ✅ COMPLETE — Dashboard tool at `dashboard/competitive-intel-march2026.html`, pushed to GitHub

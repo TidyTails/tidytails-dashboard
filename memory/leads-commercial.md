@@ -1,5 +1,5 @@
 # Commercial Leads — Tidy Tails Pet Waste Removal
-*Last updated: March 19, 2026 9:00 AM*
+*Last updated: March 19, 2026 6:04 PM*
 *Status legend: New | Contacted | Quoted | Won | Lost*
 
 ---
@@ -465,10 +465,89 @@
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated March 19, 2026 — 31 total leads)
+## 🏢 NORTH COUNTY EXPANSION — NEW TERRITORY (March 19, 2026 — 6:04 PM)
+*These leads are in the untapped North County zone: Ferguson, Jennings, Black Jack, Spanish Lake, Normandy. NO competitor has dedicated presence here. Closest to TJ's Florissant base = efficient routes.*
+
+### Renewal Heights Apartments ⭐ DOG PARK — FERGUSON
+- **Type:** Apartment Complex with Dog Park
+- **Address:** 2974 Coppercreek Rd, Ferguson (St. Louis), MO 63136
+- **Contact:** Leasing Office (managed by Clifton River Capital)
+- **Phone:** (314) 699-9923
+- **Website:** renewalheights.com
+- **Why Good Fit:** 411-unit pet-friendly apartment complex in Ferguson with DEDICATED DOG PARK, grilling area, playground. Recently renovated — new management investing in amenities. Partnership with Boys & Girls Clubs = community-minded. 1-2 bedrooms, $695-$900/mo range. No deposit through Obligo = attracting younger renters who are more likely to have dogs. 
+- **Properties/Units:** 411 units (huge!)
+- **Found:** March 19, 2026
+- **Status:** New
+- **Pitch angle:** "411 units + dog park = a LOT of waste to manage. We can take that off your maintenance team's plate. We're right down the road in Florissant. Weekly service, one flat rate."
+
+### Ferguson Animal Hospital ⭐ REFERRAL PARTNER — FERGUSON
+- **Type:** Veterinary Clinic
+- **Address:** 483 Airport Rd, Ferguson, MO 63135
+- **Contact:** Main Office
+- **Phone:** (314) 524-0707
+- **Email:** fergusonah@sbcglobal.net
+- **Website:** fergusonanimal.com
+- **Why Good Fit:** Full-service vet clinic in Ferguson — dogs, cats, exotics. Established practice with online pharmacy and appointments. Clients are dog owners in Ferguson/North County = pre-qualified leads for residential service. Referral partnership (cards at desk, flyers in lobby). Also has outdoor areas that may need cleanup. 
+- **Found:** March 19, 2026
+- **Status:** New
+- **Pitch angle:** "We're Tidy Tails — local Florissant pet waste removal. Can we leave cards at your front desk? Your dog owner clients would love us. We'll give them 10% off first month."
+
+### Halls Ferry Animal Hospital ⭐ REFERRAL PARTNER — SPANISH LAKE/BLACK JACK
+- **Type:** Veterinary Clinic  
+- **Address:** 10050 Halls Ferry Rd, St. Louis, MO 63136
+- **Contact:** Main Office
+- **Phone:** (314) 868-8584
+- **Website:** halls-hospital.edan.io
+- **Why Good Fit:** Located on Halls Ferry Rd — serves Spanish Lake, Black Jack, and North County dog owners. Good reviews ("friendly staff, good prices, loving care"). BBB listed. Their clients are exactly the demographic we want — North County dog owners who need yard cleanup but have NO local pooper scooper option.
+- **Found:** March 19, 2026
+- **Status:** New
+- **Pitch angle:** "Your clients love their dogs — we help them keep their yards clean. Can we set up a referral partnership? Cards at your desk, 10% discount for your clients."
+
+### Gateway City Animal Clinic ⭐ REFERRAL PARTNER — FLORISSANT/FERGUSON BORDER
+- **Type:** Veterinary Clinic
+- **Address:** 10436 W Florissant Ave, St. Louis, MO 63136
+- **Contact:** Main Office
+- **Phone:** (314) 868-7387
+- **Website:** (Yelp listing, PetsApp)
+- **Why Good Fit:** Located on W Florissant Ave — right at the Florissant/Ferguson border. 13 Yelp reviews. Open late (7pm Tue-Thu) = serves working families with dogs. Full service: vaccinations, neutering, dental. Perfect referral partner for the W Florissant corridor.
+- **Found:** March 19, 2026
+- **Status:** New
+- **Pitch angle:** "Fellow local business on W Florissant — can we drop off cards for your dog owner clients? We do weekly yard cleanup so they don't have to."
+
+### Normandy Animal Hospital & Urgent Care ⭐ REFERRAL PARTNER — NORMANDY
+- **Type:** Veterinary Clinic + Urgent Care
+- **Address:** 7626 Florissant Rd, St. Louis, MO 63121
+- **Contact:** Main Office
+- **Phone:** (314) 383-4677
+- **Website:** normandyvet.com
+- **Why Good Fit:** Full-service vet PLUS urgent care on Florissant Rd in Normandy. 25 Yelp reviews = strong community presence. Serves Normandy, Jennings, and North County. Urgent care means high foot traffic = more eyes on Tidy Tails cards. Their clients are local dog owners who need yard cleanup.
+- **Found:** March 19, 2026
+- **Status:** New
+- **Pitch angle:** "You see a lot of dog owners every day — especially at urgent care. We'd love to be the yard cleanup service you recommend. Cards at your desk, mutual referrals."
+
+### Cross Keys Animal Clinic — FLORISSANT (Hwy 67)
+- **Type:** Veterinary Clinic
+- **Address:** 2685 N Hwy 67, Florissant, MO 63033
+- **Contact:** Main Office
+- **Phone:** (314) 837-4617
+- **Website:** crosskeysanimalclinic.com
+- **Why Good Fit:** Already in Florissant on Hwy 67 — TJ's core territory. Open Saturdays. 362 Facebook likes. In the Cross Keys area near TJ's existing customers. Easy walk-in with cards + flyers.
+- **Found:** March 19, 2026
+- **Status:** New
+- **Pitch angle:** "We're the local Florissant pooper scooper service — can we leave some cards for your dog clients? They'd love us."
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated March 19, 2026 — 37 total leads)
 
 | Lead | Type | Phone | Priority | Est. Monthly Value |
 |------|------|-------|----------|-------------------|
+| **Renewal Heights Apts** | 411-Unit Apt + Dog Park | (314) 699-9923 | 🔴 HIGH (411 units!) | $300-$500 |
+| **Ferguson Animal Hospital** | Vet Referral Partner | (314) 524-0707 | 🟡 MEDIUM | $50-$100 + referrals |
+| **Halls Ferry Animal Hosp** | Vet Referral Partner | (314) 868-8584 | 🟡 MEDIUM | $50-$100 + referrals |
+| **Gateway City Animal** | Vet Referral Partner | (314) 868-7387 | 🟡 MEDIUM | $50-$100 + referrals |
+| **Normandy Animal Hospital** | Vet + Urgent Care | (314) 383-4677 | 🟡 MEDIUM | $50-$100 + referrals |
+| **Cross Keys Animal Clinic** | Vet Referral Partner | (314) 837-4617 | 🟡 MEDIUM | $50-$100 + referrals |
 | **The Watering Bowl** | 3-Location Dog Daycare | (314) 647-3647 | 🔴 HIGH (3 sites!) | $300-$750 |
 | **Heartland View Apts** | Luxury Apt — Wentzville | (636) 887-0763 | 🔴 HIGH | $200-$400 |
 | **Quail Ridge Dog Park** | County Dog Park | (636) 949-7535 | 🟢 LONG PLAY | $300-$600 |
@@ -500,21 +579,45 @@
 | **Maryland Heights** | Municipal | (314) 738-2599 | 🟢 LONG PLAY | $300-$600 |
 | **Overland Dog Park** | Municipal | (314) 428-0490 | 🟢 LONG PLAY | $200-$400 |
 
-**Total pipeline if all won:** $6,875-$19,050/month (31 leads)
-**Realistic close rate (20-30%):** $1,375-$5,715/month in new recurring revenue
+**Total pipeline if all won:** $7,575-$20,450/month (37 leads)
+**Realistic close rate (20-30%):** $1,515-$6,135/month in new recurring revenue
+
+### 🗺️ NORTH COUNTY VET BLITZ — THE UNTAPPED GOLDMINE
+The 6 vet clinics above serve North County dog owners who have ZERO local pooper scooper options. If Jamie visits all 6 in one afternoon with cards and flyers:
+- **Time investment:** ~3 hours (30 min each)
+- **Potential reach:** 100-200+ dog owner clients per clinic = 600-1,200 potential eyeballs on Tidy Tails
+- **Expected conversions:** Even at 1% = 6-12 new residential customers
+- **Cost:** $0 (just gas and printed cards)
+- **This is the highest ROI activity available right now.**
 
 ---
 
 ## 🎯 RECOMMENDED CALL ORDER (This Week)
 
-1. **Millsap Properties** — Call first. 7 pet-friendly properties in YOUR area. Ask for the property manager or owner. They're small enough to make fast decisions.
-2. **Baronwood Kennels** — Easy, friendly call. Family business. Lead with "fellow local Florissant business" angle. Pitch both service AND referral partnership.
-3. **Park Forest Apartments** — They already have bark parks and pet events. They GET IT. Easy sell.
-4. **Happy Tails** — High-traffic dog facility. Referral partnership could feed residential leads.
-5. **Emerald Crossing** — Close to service area, dog park on site.
-6. **Vanderbilt Apartments** — Already in St. Peters with Preshus.
-7. **Associa Smith Management** — Bigger ask, but one YES = dozens of HOA communities. Ask for "vendor services" or "community manager."
-8. **Sentry Management** — Same as Smith. These are the whales.
+### 📞 TIER A: Call ASAP (Highest ROI)
+1. **Millsap Properties** — Call first. 7 pet-friendly properties in YOUR area. Ask for the property manager or owner. Small enough to make fast decisions.
+2. **Renewal Heights Apartments** — 411 UNITS with dog park in Ferguson. That's massive. Ask for property manager. Clifton River Capital manages it.
+3. **Baronwood Kennels** — Easy, friendly call. Family business. Lead with "fellow local Florissant business." Pitch service AND referral.
+
+### 🐾 TIER B: Vet Clinic Referral Blitz (Do in one afternoon)
+*Jamie should visit these IN PERSON with cards and a flyer. Walk in, ask for the office manager, leave materials. 30 minutes each.*
+4. **Cross Keys Animal Clinic** — Florissant, Hwy 67. Closest to home base. Start here.
+5. **Baronwood Kennels** — Same trip, same corridor.
+6. **Gateway City Animal Clinic** — W Florissant Ave. 10 minutes from Cross Keys.
+7. **Ferguson Animal Hospital** — Airport Rd, Ferguson. Quick stop.
+8. **Halls Ferry Animal Hospital** — Halls Ferry Rd. Serves Spanish Lake & Black Jack.
+9. **Normandy Animal Hospital** — Florissant Rd, Normandy. Has urgent care = high traffic.
+
+### 🏢 TIER C: Apartment Complexes
+10. **Park Forest Apartments** — Already have bark parks and pet events. Easy sell.
+11. **Emerald Crossing** — Close to service area, dog park on site.
+12. **Vanderbilt Apartments** — Already in St. Peters with Preshus.
+13. **Delrado Apartments** — Florissant 63031. Dog park. TJ's hot zone.
+
+### 🐋 TIER D: The Whales (Longer Play, Huge Upside)
+14. **Associa Smith Management** — One YES = dozens of HOA communities. Ask for "vendor services."
+15. **Sentry Management** — Same. 32+ communities.
+16. **CPM Gateway** — 35+ years of HOAs.
 
 ---
 
