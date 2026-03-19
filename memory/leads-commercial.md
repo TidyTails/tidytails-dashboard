@@ -1,5 +1,5 @@
 # Commercial Leads — Tidy Tails Pet Waste Removal
-*Last updated: March 16, 2026 5:04 PM*
+*Last updated: March 19, 2026 9:00 AM*
 *Status legend: New | Contacted | Quoted | Won | Lost*
 
 ---
@@ -392,10 +392,88 @@
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated March 18, 2026 — 26 total leads)
+## 🐕 TIER 1: Dog Businesses — NEW BATCH (March 19, 2026 — 9:00 AM)
+
+### The Watering Bowl ⭐⭐ HUGE OPPORTUNITY — 3 LOCATIONS
+- **Type:** Cage-Free Dog Daycare / Boarding / Training / Grooming Chain
+- **Locations:**
+  - Brentwood: 2615 S Hanley Rd, St. Louis, MO 63144 — (314) 647-3647
+  - The Grove: 5215 Manchester Ave, St. Louis, MO 63110 — (314) 328-2505
+  - St. Peters: 1409 Harvestowne Ind Dr, St. Peters, MO 63304 — (636) 486-2606 ⭐
+- **Phone (Main):** (314) 647-3647
+- **Website:** thewateringbowl.com
+- **Now Part Of:** Best Friends Pet Care (employee-owned)
+- **Why Good Fit:** Cage-free facility = dogs run and play ALL DAY indoors AND outdoors. Outdoor synthetic turf areas at each location = significant waste generation. St. Peters location is in TJ's core territory. 3 active locations. Now powered by Best Friends Pet Care. Landing one location could open all three. Plus referral potential — their daycare clients need yard cleanup at home.
+- **Found:** March 19, 2026
+- **Status:** New
+- **Pitch angle:** "Your dogs play outside all day — that's a LOT of cleanup for your crew. We handle professional pet waste removal so your outdoor areas stay clean and safe. We're already in St. Peters."
+
+### Mrs. Anderson's Pet Grooming & Doggie Day Care
+- **Type:** Pet Grooming / Small Dog Daycare
+- **Address:** St. Louis, MO (South County area)
+- **Phone:** (314) 843-2800
+- **Website:** mrsandersons.net
+- **Established:** 1960 — 66 years in business!
+- **Why Good Fit:** One of STL's longest-running pet businesses. Grooming for dogs AND cats, plus doggie daycare for small and senior dogs. Deep community trust = huge referral potential. Even their daycare outdoor areas need cleanup.
+- **Found:** March 19, 2026
+- **Status:** New
+- **Pitch angle:** "66 years in business — incredible! We'd love to set up a referral partnership. Your grooming clients need yard cleanup at home. 10% off their first month."
+
+---
+
+## 🏠 TIER 1: Apartment Complexes — NEW (March 19, 2026)
+
+### Heartland View Apartments ⭐ ALL BREEDS — WENTZVILLE
+- **Type:** Luxury Apartment Community
+- **Address:** 1000 Heartland View Dr, Wentzville, MO 63385
+- **Phone:** (636) 887-0763
+- **Website:** myheartlandview.com
+- **Units:** 1-3 bedrooms, 770–1,269 sq ft, $1,345–$2,010/mo
+- **Pet Policy:** ALL BREEDS welcome. Max 2 pets. $300 non-refundable fee + $25/mo per pet.
+- **Why Good Fit:** All breeds, no weight limit = high dog density. Newer luxury community in Wentzville. Wentzville is booming — getting in here opens doors to the whole area.
+- **Found:** March 19, 2026
+- **Status:** New
+- **Pitch angle:** "You welcome all breeds — professional pet waste cleanup keeps your grounds as premium as the rest of your community."
+
+---
+
+## 🏛️ TIER 2: Municipal — NEW (March 19, 2026)
+
+### Quail Ridge Dog Park (St. Charles County Parks)
+- **Type:** County Dog Park
+- **Address:** 560 Interstate Dr, Wentzville, MO 63385
+- **Contact:** St. Charles County Parks & Recreation
+- **Phone:** (636) 949-7535 (Parks admin) / (636) 949-7900 (general)
+- **Email:** publicinfo@sccmo.org
+- **Website:** sccmo.org/716/Quail-Ridge-Park
+- **Size:** 2.5-acre dog park, separate large/small dog areas, covered shelter
+- **Why Good Fit:** Main county dog park in western St. Charles County. Heavy use. County-managed = stable recurring. Adjacent to Quail Ridge Trail.
+- **Found:** March 19, 2026
+- **Status:** New
+- **Pitch angle:** "2.5 acres of dog park gets heavy traffic. Weekly service keeps it clean and safe. One flat monthly rate."
+
+### Chesterfield Dog Park (City of Chesterfield)
+- **Type:** Municipal Dog Park
+- **Address:** Chesterfield Central Park, 16365 Lydia Hill Dr, Chesterfield, MO 63017
+- **Phone:** (636) 812-9500
+- **Website:** chesterfield.mo.us
+- **Size:** 2-acre dog park, separate small dog area, pavilion
+- **Why Good Fit:** Affluent area, city invests in amenities. High-traffic park. Municipal = stable recurring.
+- **Found:** March 19, 2026
+- **Status:** New
+- **Pitch angle:** "Weekly service keeps your park clean, reduces complaints, frees up maintenance staff."
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated March 19, 2026 — 31 total leads)
 
 | Lead | Type | Phone | Priority | Est. Monthly Value |
 |------|------|-------|----------|-------------------|
+| **The Watering Bowl** | 3-Location Dog Daycare | (314) 647-3647 | 🔴 HIGH (3 sites!) | $300-$750 |
+| **Heartland View Apts** | Luxury Apt — Wentzville | (636) 887-0763 | 🔴 HIGH | $200-$400 |
+| **Quail Ridge Dog Park** | County Dog Park | (636) 949-7535 | 🟢 LONG PLAY | $300-$600 |
+| **Chesterfield Dog Park** | Municipal Dog Park | (636) 812-9500 | 🟢 LONG PLAY | $300-$500 |
+| **Mrs. Anderson's** | Grooming + Daycare | (314) 843-2800 | 🟡 MEDIUM | $75-$150 + referrals |
 | **No Leash Needed** | 8-Location Dog Biz | (314) 942-0011 | 🔴 HIGH (8 sites!) | $300-$750 |
 | **Meadowridge Apts** | Apt + Dog Park | (636) 244-1616 | 🔴 HIGH | $250-$400 |
 | **Capital at St. Charles** | Apt + All Breeds | (636) 244-3400 | 🔴 HIGH | $200-$400 |
@@ -422,8 +500,8 @@
 | **Maryland Heights** | Municipal | (314) 738-2599 | 🟢 LONG PLAY | $300-$600 |
 | **Overland Dog Park** | Municipal | (314) 428-0490 | 🟢 LONG PLAY | $200-$400 |
 
-**Total pipeline if all won:** $5,700-$16,650/month (26 leads)
-**Realistic close rate (20-30%):** $1,140-$4,995/month in new recurring revenue
+**Total pipeline if all won:** $6,875-$19,050/month (31 leads)
+**Realistic close rate (20-30%):** $1,375-$5,715/month in new recurring revenue
 
 ---
 
