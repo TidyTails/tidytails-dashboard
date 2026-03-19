@@ -7,6 +7,48 @@
 
 ## March 19, 2026 (Thursday)
 
+### 10:04 AM — 🏢 COMMERCIAL BLOG POST + 6 MISSING POSTS SYNCED TO LIVE SITE (Content/SEO/Commercial)
+**Task:** Wrote and deployed first-ever commercial-focused blog post targeting property managers, HOA boards, and apartment complexes. Also discovered and synced 6 blog posts that existed in dashboard repo but were MISSING from the live website.
+**Result:** ✅ COMPLETE — LIVE at `https://tidytailsstl.com/blog/commercial-pet-waste-removal-property-managers`
+
+**Why This Task:**
+- All 11 existing blog posts targeted residential homeowners — ZERO commercial content
+- Commercial accounts are 5-10x higher value than residential ($100-500/mo vs $25/wk)
+- Today is Thursday = "Call 3 Commercial Leads" day — inbound content supports outbound calls
+- Property managers Google "commercial pet waste removal" — we need to show up
+- Spring = when property managers deal with snow-melt poop reveal complaints
+
+**What Was Built:**
+1. **Full commercial blog post** (8 min read, ~27KB) with:
+   - ROI framing for property managers (tenant retention, maintenance cost reduction)
+   - Comparison table: signs vs fines vs DNA testing vs professional service
+   - Pricing guide by property size (small HOA: $100-175/mo, mid-size: $175-350/mo, large: $300-500+/mo)
+   - FAQ schema with 5 commercial-focused Q&As for Google rich snippets
+   - CTAs targeting Jamie's phone number
+   - All service areas listed (Florissant, St. Peters, O'Fallon, Chesterfield, etc.)
+2. **Blog index updated** — new post featured at top (now 12 posts total)
+3. **Sitemap updated** — now 22 URLs, commercial post at priority 0.8
+
+**BONUS DISCOVERY & FIX:**
+- Found 6 blog posts that existed in dashboard repo but were MISSING from the live tidytails-website repo
+- Synced: dog-poop-killing-grass, dog-poop-laws-missouri-st-louis, dog-poop-smell-yard, multiple-dogs-yard-clean, pet-waste-removal-cost-st-louis, spring-cleaning-checklist-st-louis-dog-owners
+- Live site went from 6 blog posts to 13 in one push
+
+**Pushed to BOTH repos:**
+- `TidyTails/tidytails-dashboard` (master) ✅
+- `TidyTails/tidytails-website` (master) ✅ — LIVE on GitHub Pages
+
+**SEO Keywords Targeted:**
+- "commercial pet waste removal st louis"
+- "apartment pet waste service"
+- "HOA dog waste removal"
+- "property management pet waste"
+- "commercial pooper scooper service"
+
+**Rotation:** 📝 Content — Commercial SEO
+
+---
+
 ### 7:04 AM — 📝 SEO BLOG POST — "Dog Poop Laws in St. Louis" Deployed LIVE (SEO/Content)
 **Task:** Wrote and deployed a new 8-minute SEO blog post targeting "dog poop laws St. Louis Missouri" — a high-value informational keyword with zero competition from existing blog content. Updated blog index, sitemap, and pushed to both repos.
 **Result:** ✅ COMPLETE — LIVE at `https://tidytails.github.io/tidytails-website/blog/dog-poop-laws-st-louis-missouri.html`, pushed to both repos
