@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⭐ Jamie's Review Blitz | Tidy Tails</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --gold: #f59e0b; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --orange: #ff6b35;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; -webkit-tap-highlight-color: transparent; }
+        
+        .header {
+            background: linear-gradient(135deg, #1a1408, #141414);
+            border-bottom: 2px solid var(--gold);
+            padding: 1.25rem 1.5rem; text-align: center;
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header h1 { font-size: 1.4rem; font-weight: 800; }
+        .header h1 span { color: var(--gold); }
+        .header .subtitle { color: var(--text2); font-size: 0.75rem; margin-top: 0.25rem; }
+        .back-link { 
+            position: absolute; top: 1.25rem; left: 1rem;
+            color: var(--text2); text-decoration: none; font-size: 0.8rem;
+        }
+        .back-link:hover { color: var(--gold); }
+
+        .container { max-width: 700px; margin: 0 auto; padding: 1rem; }
+
+        /* Urgency Banner */
+        .urgency {
+            background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(239,68,68,0.05));
+            border: 1px solid rgba(239,68,68,0.3);
+            border-radius: var(--radius); padding: 1rem 1.25rem;
+            margin-bottom: 1rem; text-align: center;
+        }
+        .urgency .big { font-size: 1.8rem; font-weight: 800; color: var(--red); }
+        .urgency .why { font-size: 0.8rem; color: var(--text2); margin-top: 0.25rem; line-height: 1.4; }
+        .urgency .why strong { color: var(--gold); }
+
+        /* Progress */
+        .progress-section {
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .progress-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .progress-header .label { font-size: 0.75rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em; }
+        .progress-header .count { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 700; color: var(--gold); }
+        .progress-bar { height: 8px; background: var(--bg4); border-radius: 4px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--green)); border-radius: 4px; transition: width 0.5s ease; }
+        .progress-sub { font-size: 0.7rem; color: var(--text3); margin-top: 0.35rem; text-align: right; }
+
+        /* Stats Row */
+        .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1rem; }
+        .stat {
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 0.75rem; text-align: center;
+        }
+        .stat .val { font-size: 1.3rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; }
+        .stat .lab { font-size: 0.6rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.04em; margin-top: 0.15rem; }
+        .stat.gold .val { color: var(--gold); }
+        .stat.green .val { color: var(--green); }
+        .stat.blue .val { color: var(--blue); }
+
+        /* Customer Card */
+        .customer-card {
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: var(--radius); margin-bottom: 0.75rem;
+            overflow: hidden; transition: border-color 0.2s;
+        }
+        .customer-card.sent { border-color: rgba(16,185,129,0.3); }
+        .customer-card.reviewed { border-color: var(--gold); box-shadow: 0 0 12px rgba(245,158,11,0.1); }
+        
+        .card-top {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.85rem 1rem; cursor: pointer; user-select: none;
+        }
+        .card-top:active { background: rgba(255,255,255,0.02); }
+        .card-left { display: flex; align-items: center; gap: 0.6rem; }
+        .avatar {
+            width: 36px; height: 36px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.85rem;
+        }
+        .avatar.not-asked { background: rgba(153,153,153,0.15); color: var(--text2); }
+        .avatar.sent { background: rgba(251,191,36,0.15); color: var(--yellow); }
+        .avatar.reviewed { background: rgba(245,158,11,0.2); color: var(--gold); }
+        .card-name { font-weight: 700; font-size: 0.9rem; }
+        .card-detail { font-size: 0.7rem; color: var(--text2); }
+        .card-right { display: flex; align-items: center; gap: 0.5rem; }
+        .status-pill {
+            font-size: 0.65rem; font-weight: 600; padding: 0.2rem 0.6rem;
+            border-radius: 20px; text-transform: uppercase; letter-spacing: 0.03em;
+        }
+        .pill-waiting { background: rgba(153,153,153,0.15); color: var(--text2); }
+        .pill-sent { background: rgba(251,191,36,0.15); color: var(--yellow); }
+        .pill-reviewed { background: rgba(245,158,11,0.2); color: var(--gold); }
+        .chevron { color: var(--text3); font-size: 0.8rem; transition: transform 0.2s; }
+        .customer-card.expanded .chevron { transform: rotate(90deg); }
+
+        .card-body { display: none; padding: 0 1rem 1rem; }
+        .customer-card.expanded .card-body { display: block; }
+
+        /* Message Preview */
+        .msg-preview {
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: 10px; padding: 0.85rem 1rem;
+            font-size: 0.85rem; line-height: 1.5; color: var(--text2);
+            margin-bottom: 0.75rem; position: relative;
+            white-space: pre-wrap;
+        }
+        .msg-label {
+            font-size: 0.6rem; font-weight: 600; text-transform: uppercase;
+            color: var(--text3); letter-spacing: 0.04em; margin-bottom: 0.35rem;
+        }
+
+        /* Action Buttons */
+        .action-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .btn {
+            padding: 0.55rem 1rem; border-radius: 8px; font-size: 0.8rem;
+            font-weight: 600; cursor: pointer; border: none;
+            transition: all 0.15s; font-family: 'Inter', sans-serif;
+            display: inline-flex; align-items: center; gap: 0.3rem;
+            flex: 1; justify-content: center; min-width: 0;
+        }
+        .btn-copy { background: rgba(59,130,246,0.15); color: var(--blue); border: 1px solid rgba(59,130,246,0.3); }
+        .btn-copy:hover { background: rgba(59,130,246,0.25); }
+        .btn-copy.copied { background: var(--green); color: white; border-color: var(--green); }
+        .btn-sms { background: rgba(16,185,129,0.15); color: var(--green); border: 1px solid rgba(16,185,129,0.3); }
+        .btn-sms:hover { background: rgba(16,185,129,0.25); }
+        .btn-mark { background: rgba(245,158,11,0.15); color: var(--gold); border: 1px solid rgba(245,158,11,0.3); }
+        .btn-mark:hover { background: rgba(245,158,11,0.25); }
+        .btn-followup { background: rgba(139,92,246,0.15); color: var(--purple); border: 1px solid rgba(139,92,246,0.3); }
+        .btn-followup:hover { background: rgba(139,92,246,0.25); }
+        
+        .followup-row { margin-top: 0.5rem; }
+
+        /* Review Link Box */
+        .review-link {
+            background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(245,158,11,0.03));
+            border: 1px solid rgba(245,158,11,0.3);
+            border-radius: var(--radius); padding: 1rem 1.25rem;
+            margin-bottom: 1rem; text-align: center;
+        }
+        .review-link h3 { font-size: 0.85rem; color: var(--gold); margin-bottom: 0.5rem; }
+        .review-link .link-text {
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: 8px; padding: 0.6rem 0.75rem;
+            font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+            color: var(--text2); word-break: break-all; cursor: pointer;
+            margin-bottom: 0.5rem; transition: border-color 0.2s;
+        }
+        .review-link .link-text:hover { border-color: var(--gold); }
+        .review-link .link-text.copied { border-color: var(--green); color: var(--green); }
+
+        /* Tips */
+        .tips {
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+        }
+        .tips h3 { font-size: 0.85rem; margin-bottom: 0.75rem; }
+        .tip-item { display: flex; gap: 0.5rem; margin-bottom: 0.5rem; font-size: 0.8rem; color: var(--text2); }
+        .tip-emoji { flex-shrink: 0; }
+
+        /* Toast */
+        .toast {
+            position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%) translateY(80px);
+            background: var(--green); color: white; padding: 0.65rem 1.25rem;
+            border-radius: 8px; font-size: 0.85rem; font-weight: 600;
+            opacity: 0; transition: all 0.3s; z-index: 200;
+            white-space: nowrap;
+        }
+        .toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* Footer */
+        .footer { text-align: center; padding: 1.5rem; color: var(--text3); font-size: 0.65rem; }
+
+        @media (max-width: 500px) {
+            .container { padding: 0.75rem; }
+            .stats-row { grid-template-columns: repeat(3, 1fr); gap: 0.35rem; }
+            .action-row { flex-direction: column; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="index.html" class="back-link">← Dashboard</a>
+        <h1>⭐ <span>Review Blitz</span></h1>
+        <div class="subtitle">Get 5+ Google reviews this week · Personalized texts ready to send</div>
+    </div>
+
+    <div class="container">
+        <!-- Urgency -->
+        <div class="urgency">
+            <div class="big">0 Reviews ⚠️</div>
+            <div class="why">
+                Ads are LIVE and spending money.<br>
+                Every lead that Googles us sees <strong>zero social proof</strong>.<br>
+                5 reviews = unlock the Google Maps 3-pack. 💰
+            </div>
+        </div>
+
+        <!-- Progress -->
+        <div class="progress-section">
+            <div class="progress-header">
+                <span class="label">Review Progress</span>
+                <span class="count" id="progressCount">0 / 5 goal</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 0%;"></div></div>
+            <div class="progress-sub" id="progressSub">Send the first text today!</div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row">
+            <div class="stat blue"><div class="val" id="statAsked">0</div><div class="lab">Asked</div></div>
+            <div class="stat gold"><div class="val" id="statReviewed">0</div><div class="lab">Reviewed</div></div>
+            <div class="stat green"><div class="val" id="statRate">0%</div><div class="lab">Conv Rate</div></div>
+        </div>
+
+        <!-- Google Review Link -->
+        <div class="review-link">
+            <h3>📎 Your Google Review Link</h3>
+            <div class="link-text" id="reviewLinkBox" onclick="copyReviewLink()">
+                https://g.page/r/Ce_hqIHanGLvEAE/review
+            </div>
+            <div style="font-size: 0.7rem; color: var(--text2);">
+                ✅ This is your actual Google review link · Tap to copy
+            </div>
+        </div>
+
+        <!-- Customer Cards -->
+        <div id="customerList"></div>
+
+        <!-- Tips -->
+        <div class="tips">
+            <h3>💡 Jamie's Cheat Sheet</h3>
+            <div class="tip-item"><span class="tip-emoji">⏰</span> <span><strong>Best time to ask:</strong> Right after a cleanup (within 1 hour) — satisfaction is highest</span></div>
+            <div class="tip-item"><span class="tip-emoji">📱</span> <span><strong>Text > Email:</strong> 60% of reviews come from texts, only 10% from email asks</span></div>
+            <div class="tip-item"><span class="tip-emoji">🚫</span> <span><strong>Never offer incentives</strong> for reviews (Google will flag and remove them)</span></div>
+            <div class="tip-item"><span class="tip-emoji">🔄</span> <span><strong>Follow up once</strong> after 3 days if no review — don't be pushy</span></div>
+            <div class="tip-item"><span class="tip-emoji">⭐</span> <span><strong>Reply to every review</strong> within 24 hours — shows you care and boosts SEO</span></div>
+            <div class="tip-item"><span class="tip-emoji">🎯</span> <span><strong>Goal: 5 reviews this week.</strong> That unlocks the Google Maps 3-pack and makes every ad dollar work harder</span></div>
+        </div>
+
+        <!-- Quick Responses -->
+        <div class="tips">
+            <h3>💬 Reply Templates (for when reviews come in)</h3>
+            <div class="msg-preview" onclick="copyText(this)" style="margin-top: 0.5rem;">
+                <div class="msg-label">5-Star Reply</div>Thank you so much [NAME]! 🐾 We love keeping your yard clean for [DOG NAME]. It's customers like you that make this job the best! — Jamie, Tidy Tails</div>
+            <div class="msg-preview" onclick="copyText(this)" style="margin-top: 0.5rem;">
+                <div class="msg-label">4-Star Reply</div>Thanks for the kind words [NAME]! We're always looking to improve — if there's anything we can do better, don't hesitate to reach out. We appreciate you! 🐕 — Jamie</div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast"></div>
+
+    <div class="footer">
+        Built by Franklin · Updated March 18, 2026<br>
+        Part of TJ's Command Center
+    </div>
+
+    <script>
+        // ========= CUSTOMER DATA =========
+        const STORAGE_KEY = 'tidytails_review_blitz';
+        
+        // Actual Tidy Tails customers with personalized messages
+        const CUSTOMERS = [
+            {
+                id: 'candee',
+                name: 'Mrs. Candee',
+                area: 'Saint Louis, 63136',
+                frequency: 'Weekly · $15/wk',
+                firstMsg: `Hey Mrs. Candee! 😊 It's Jamie from Tidy Tails. I just wanted to say thank you for being one of our very first weekly customers — it really means a lot to us!
+
+If you have a quick minute, would you mind leaving us a Google review? We're a small local business and every review helps us reach more families in the neighborhood. 🐾
+
+Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review
+
+No pressure at all — we appreciate you either way! 💛`,
+                followupMsg: `Hi Mrs. Candee! Just following up from my text the other day. If you get a chance to leave us a quick Google review, it would mean the world to us. Even just a sentence or two helps! Here's the link again: https://g.page/r/Ce_hqIHanGLvEAE/review Thank you! 🐾 — Jamie`,
+            },
+            {
+                id: 'jody',
+                name: 'Jody',
+                area: 'Saint Louis, 63114',
+                frequency: 'Biweekly · $45/visit',
+                firstMsg: `Hey Jody! It's Jamie from Tidy Tails 🐕 Hope you and the pup are doing great!
+
+I have a quick favor — we're trying to build up our Google reviews so more people in the area can find us. Would you be willing to leave us a short review?
+
+Here's the link (takes like 30 seconds): https://g.page/r/Ce_hqIHanGLvEAE/review
+
+Totally understand if you're busy — just thought I'd ask! Thanks for being such a great customer. 😊`,
+                followupMsg: `Hey Jody! Just a quick follow-up — if you get a sec to drop us a Google review, we'd really appreciate it. Every one counts for a small business like ours! 🙏 https://g.page/r/Ce_hqIHanGLvEAE/review — Jamie`,
+            },
+            {
+                id: 'shannon',
+                name: 'Shannon',
+                area: 'Florissant, 63031',
+                frequency: 'Weekly · $35/wk',
+                firstMsg: `Hey Shannon! It's Jamie from Tidy Tails 😊 We love taking care of your yard every week — you're one of our favorite stops in Florissant!
+
+Quick question — would you be open to leaving us a Google review? We're building our reputation online and honest reviews from amazing customers like you make ALL the difference.
+
+Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review
+
+Even just a few words would be incredible. Thank you so much! 🐾`,
+                followupMsg: `Hi Shannon! Just circling back — if you have a spare minute to leave a Google review for Tidy Tails, it would really help us out. Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review Thank you! 💛 — Jamie`,
+            },
+            {
+                id: 'amanda',
+                name: 'Amanda',
+                area: 'Florissant, 63031',
+                frequency: 'Weekly · $30/wk',
+                firstMsg: `Hey Amanda! Jamie here from Tidy Tails 🐾 Thanks for trusting us with your yard every week — it's always great seeing your place in Florissant!
+
+I have a small ask — would you mind leaving us a quick Google review? We're a small local crew and reviews are literally how new customers find us.
+
+Super easy, here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review
+
+No worries if you're too busy — we appreciate you regardless! 😊`,
+                followupMsg: `Hey Amanda! Just a gentle nudge — if you get a moment to leave us a Google review, it'd mean a ton. Even a quick "great service" helps! 🐕 https://g.page/r/Ce_hqIHanGLvEAE/review — Jamie`,
+            },
+            {
+                id: 'lawrence',
+                name: 'Lawrence',
+                area: 'Saint Louis, 63108',
+                frequency: 'Biweekly · $50/visit',
+                firstMsg: `Hey Lawrence! It's Jamie from Tidy Tails. Hope everything's been good since our last visit!
+
+Would you be willing to leave us a quick Google review? We're trying to grow and get more visibility in the St. Louis area. Reviews from real customers carry so much weight.
+
+Here's the direct link: https://g.page/r/Ce_hqIHanGLvEAE/review
+
+Really appreciate you being a loyal customer — thanks in advance! 💪`,
+                followupMsg: `Hey Lawrence! Following up on my review request — totally understand if you haven't had time. If you get a chance: https://g.page/r/Ce_hqIHanGLvEAE/review Even a quick star rating helps us a lot. Thanks man! — Jamie`,
+            },
+            {
+                id: 'greg',
+                name: 'Greg',
+                area: "O'Fallon, 63366",
+                frequency: 'Monthly · $50/visit',
+                firstMsg: `Hey Greg! Jamie from Tidy Tails here 🐾 Thanks for having us out to O'Fallon each month — always happy to keep your yard spotless!
+
+Quick favor — could you leave us a Google review when you get a chance? We're building our online presence and reviews from awesome customers like you really help us stand out.
+
+Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review
+
+No rush at all — just whenever you have a minute. Thanks Greg! 😊`,
+                followupMsg: `Hey Greg! Just a quick follow-up — would love a Google review from you if you get a chance! Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review Thanks! 🙏 — Jamie`,
+            },
+            {
+                id: 'chastity',
+                name: 'Chastity',
+                area: 'Florissant, 63033',
+                frequency: 'Biweekly · $45/visit',
+                firstMsg: `Hey Chastity! It's Jamie from Tidy Tails 😊 Hope the yard is staying clean between visits!
+
+I wanted to reach out and ask if you'd be willing to leave us a Google review. We're a growing local business and honest reviews help more than you'd think!
+
+Here's the link (super quick): https://g.page/r/Ce_hqIHanGLvEAE/review
+
+We genuinely appreciate your business and any kind words you'd share. Thank you! 🐾`,
+                followupMsg: `Hi Chastity! Just following up — if you have a moment to drop a Google review, we'd be so grateful! Even just a star rating helps. 💛 https://g.page/r/Ce_hqIHanGLvEAE/review — Jamie`,
+            },
+            {
+                id: 'preshus',
+                name: 'Preshus',
+                area: 'Saint Charles, 63303',
+                frequency: 'Weekly · $25/wk',
+                firstMsg: `Hey Preshus! Jamie from Tidy Tails here 🐕 We love coming out to Saint Charles every week — your yard always looks great after we're done!
+
+Would you be open to leaving us a Google review? We're a small local business trying to grow, and reviews from happy customers like you are everything.
+
+Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review
+
+Even a sentence or two makes a huge difference. Thank you so much! 😊💛`,
+                followupMsg: `Hey Preshus! Just circling back on my review request. No pressure at all, but if you get a sec: https://g.page/r/Ce_hqIHanGLvEAE/review We appreciate you! 🐾 — Jamie`,
+            },
+        ];
+
+        // ========= STATE =========
+        function getState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (raw) return JSON.parse(raw);
+            } catch(e) {}
+            return { reviewLink: '', customers: {}, reviewCount: 0 };
+        }
+
+        function saveState(state) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function getCustomerState(id) {
+            const state = getState();
+            return state.customers[id] || { status: 'waiting', sentDate: null, reviewedDate: null };
+        }
+
+        function setCustomerStatus(id, status) {
+            const state = getState();
+            if (!state.customers[id]) state.customers[id] = {};
+            state.customers[id].status = status;
+            if (status === 'sent') state.customers[id].sentDate = new Date().toISOString().split('T')[0];
+            if (status === 'reviewed') {
+                state.customers[id].reviewedDate = new Date().toISOString().split('T')[0];
+                state.reviewCount = (state.reviewCount || 0) + 1;
+            }
+            saveState(state);
+            render();
+        }
+
+        // ========= RENDERING =========
+        function render() {
+            const state = getState();
+            const container = document.getElementById('customerList');
+            
+            // Stats
+            let asked = 0, reviewed = 0;
+            CUSTOMERS.forEach(c => {
+                const cs = state.customers[c.id] || {};
+                if (cs.status === 'sent' || cs.status === 'followed-up') asked++;
+                if (cs.status === 'reviewed') { asked++; reviewed++; }
+            });
+            
+            document.getElementById('statAsked').textContent = asked;
+            document.getElementById('statReviewed').textContent = reviewed;
+            document.getElementById('statRate').textContent = asked > 0 ? Math.round((reviewed / asked) * 100) + '%' : '0%';
+            
+            // Progress
+            const goal = 5;
+            document.getElementById('progressCount').textContent = `${reviewed} / ${goal} goal`;
+            document.getElementById('progressFill').style.width = Math.min(100, (reviewed / goal) * 100) + '%';
+            
+            if (reviewed >= goal) {
+                document.getElementById('progressSub').textContent = '🎉 GOAL REACHED! You did it!';
+                document.getElementById('progressSub').style.color = 'var(--gold)';
+            } else if (reviewed > 0) {
+                document.getElementById('progressSub').textContent = `${goal - reviewed} more to go! Keep pushing!`;
+            }
+
+            // Customer cards
+            container.innerHTML = CUSTOMERS.map(c => {
+                const cs = state.customers[c.id] || { status: 'waiting' };
+                const status = cs.status || 'waiting';
+                
+                const statusLabel = {
+                    'waiting': 'Not Asked',
+                    'sent': 'Text Sent',
+                    'followed-up': 'Followed Up', 
+                    'reviewed': '⭐ Reviewed!'
+                }[status] || status;
+                
+                const pillClass = status === 'reviewed' ? 'pill-reviewed' : status === 'sent' || status === 'followed-up' ? 'pill-sent' : 'pill-waiting';
+                const avatarClass = status === 'reviewed' ? 'reviewed' : status === 'sent' || status === 'followed-up' ? 'sent' : 'not-asked';
+                const cardClass = status === 'reviewed' ? 'reviewed' : status === 'sent' || status === 'followed-up' ? 'sent' : '';
+                const initial = c.name.charAt(0);
+                
+                const reviewLink = state.reviewLink || 'https://g.page/r/Ce_hqIHanGLvEAE/review';
+                const firstMsg = c.firstMsg.replace(/\[REVIEW_LINK\]/g, reviewLink);
+                const followupMsg = c.followupMsg.replace(/\[REVIEW_LINK\]/g, reviewLink);
+                
+                // Choose which message to show
+                const showFollowup = status === 'sent' || status === 'followed-up';
+                const activeMsg = showFollowup ? followupMsg : firstMsg;
+                const msgLabel = showFollowup ? '🔄 Follow-Up Text' : '💬 First Ask Text';
+                
+                const sentInfo = cs.sentDate ? `<span style="font-size: 0.65rem; color: var(--text3); margin-left: 0.5rem;">Sent ${cs.sentDate}</span>` : '';
+                
+                return `
+                <div class="customer-card ${cardClass}" id="card-${c.id}">
+                    <div class="card-top" onclick="toggleCard('${c.id}')">
+                        <div class="card-left">
+                            <div class="avatar ${avatarClass}">${initial}</div>
+                            <div>
+                                <div class="card-name">${c.name} ${sentInfo}</div>
+                                <div class="card-detail">${c.area} · ${c.frequency}</div>
+                            </div>
+                        </div>
+                        <div class="card-right">
+                            <span class="status-pill ${pillClass}">${statusLabel}</span>
+                            <span class="chevron">›</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="msg-label">${msgLabel}</div>
+                        <div class="msg-preview" id="msg-${c.id}">${activeMsg}</div>
+                        <div class="action-row">
+                            <button class="btn btn-copy" onclick="copyCustomerMsg('${c.id}')">📋 Copy Text</button>
+                            <button class="btn btn-sms" onclick="openSMS('${c.id}')">💬 Open SMS</button>
+                        </div>
+                        <div class="action-row" style="margin-top: 0.5rem;">
+                            ${status === 'waiting' ? `<button class="btn btn-mark" onclick="setCustomerStatus('${c.id}', 'sent')">✅ Mark as Sent</button>` : ''}
+                            ${status === 'sent' ? `
+                                <button class="btn btn-followup" onclick="setCustomerStatus('${c.id}', 'followed-up')">🔄 Sent Follow-Up</button>
+                                <button class="btn btn-mark" onclick="setCustomerStatus('${c.id}', 'reviewed')">⭐ Got Review!</button>
+                            ` : ''}
+                            ${status === 'followed-up' ? `
+                                <button class="btn btn-mark" onclick="setCustomerStatus('${c.id}', 'reviewed')">⭐ Got Review!</button>
+                            ` : ''}
+                            ${status === 'reviewed' ? `<button class="btn" style="background:rgba(245,158,11,0.15);color:var(--gold);border:1px solid rgba(245,158,11,0.3);pointer-events:none;">⭐ Review Received!</button>` : ''}
+                            ${status !== 'waiting' ? `<button class="btn" style="background:rgba(153,153,153,0.1);color:var(--text3);border:1px solid var(--border);" onclick="setCustomerStatus('${c.id}', 'waiting')">↩ Reset</button>` : ''}
+                        </div>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        // ========= INTERACTIONS =========
+        function toggleCard(id) {
+            const card = document.getElementById('card-' + id);
+            card.classList.toggle('expanded');
+        }
+
+        function copyCustomerMsg(id) {
+            const msgEl = document.getElementById('msg-' + id);
+            const text = msgEl.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('📋 Message copied!');
+            }).catch(() => {
+                // Fallback
+                const range = document.createRange();
+                range.selectNode(msgEl);
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+                document.execCommand('copy');
+                window.getSelection().removeAllRanges();
+                showToast('📋 Message copied!');
+            });
+        }
+
+        function openSMS(id) {
+            const customer = CUSTOMERS.find(c => c.id === id);
+            const state = getState();
+            const cs = state.customers[id] || { status: 'waiting' };
+            const reviewLink = state.reviewLink || 'https://g.page/r/Ce_hqIHanGLvEAE/review';
+            const showFollowup = cs.status === 'sent' || cs.status === 'followed-up';
+            const msg = showFollowup ? customer.followupMsg : customer.firstMsg;
+            const finalMsg = msg.replace(/\[REVIEW_LINK\]/g, reviewLink);
+            
+            // sms: URI — works on iOS and Android
+            const smsBody = encodeURIComponent(finalMsg);
+            window.open(`sms:?body=${smsBody}`, '_self');
+            showToast('📱 Opening SMS...');
+        }
+
+        function copyReviewLink() {
+            const el = document.getElementById('reviewLinkBox');
+            const text = el.innerText.trim();
+            navigator.clipboard.writeText(text).then(() => {
+                el.classList.add('copied');
+                showToast('📋 Review link copied!');
+                setTimeout(() => el.classList.remove('copied'), 2000);
+            });
+        }
+
+        function copyText(el) {
+            const text = el.innerText.replace(/^(5-Star Reply|4-Star Reply|📋 Tap to copy)\s*/g, '').trim();
+            navigator.clipboard.writeText(text).then(() => {
+                showToast('📋 Copied!');
+            });
+        }
+
+        // ========= TOAST =========
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('visible');
+            setTimeout(() => toast.classList.remove('visible'), 2500);
+        }
+
+        // ========= INIT =========
+        render();
+        
+        // Auto-expand first "waiting" customer
+        const state = getState();
+        const firstWaiting = CUSTOMERS.find(c => {
+            const cs = state.customers[c.id] || {};
+            return !cs.status || cs.status === 'waiting';
+        });
+        if (firstWaiting) {
+            setTimeout(() => toggleCard(firstWaiting.id), 300);
+        }
+    </script>
+</body>
+</html>
