@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📅 Event Marketing Calendar — Tidy Tails</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --green: #2d5a27;
+            --green-light: #4a7c42;
+            --green-dark: #1e3d1a;
+            --cream: #f8f6f0;
+            --orange: #e07b39;
+            --red: #e04040;
+            --blue: #3b82f6;
+            --purple: #7c3aed;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #1a2e1a 0%, #0a1a0a 50%, #1a3a1a 100%);
+            border-bottom: 2px solid var(--green);
+            padding: 24px 20px;
+            text-align: center;
+        }
+        .header h1 { font-size: 1.5rem; font-weight: 800; color: #fff; }
+        .header h1 span { color: #4a8; }
+        .header .sub { color: #888; font-size: 0.82rem; margin-top: 4px; }
+        .back-link { display: inline-block; margin-top: 8px; color: #4a8; text-decoration: none; font-size: 0.8rem; }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 16px; }
+
+        /* Urgent Banner */
+        .urgent-banner {
+            background: linear-gradient(135deg, #7f1d1d, #991b1b);
+            border: 2px solid #ef4444;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+            text-align: center;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.4); }
+            50% { box-shadow: 0 0 20px 4px rgba(239,68,68,0.2); }
+        }
+        .urgent-banner h2 { color: #fca5a5; font-size: 1.1rem; margin-bottom: 4px; }
+        .urgent-banner p { color: #fecaca; font-size: 0.85rem; }
+        .urgent-banner .days { font-size: 2rem; font-weight: 900; color: #fff; }
+
+        /* Stats Row */
+        .stats { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+        .stat {
+            flex: 1; min-width: 90px;
+            background: #141414; border: 1px solid #262626; border-radius: 10px;
+            padding: 12px; text-align: center;
+        }
+        .stat .num { font-size: 1.5rem; font-weight: 800; color: #4a8; }
+        .stat .lbl { font-size: 0.68rem; color: #888; margin-top: 2px; }
+
+        /* Tabs */
+        .tabs { display: flex; gap: 0; border-bottom: 1px solid #262626; background: #111; overflow-x: auto; margin-bottom: 20px; border-radius: 8px 8px 0 0; }
+        .tab {
+            padding: 12px 16px; font-size: 0.78rem; font-weight: 600; cursor: pointer;
+            white-space: nowrap; border: none; border-bottom: 2px solid transparent;
+            color: #888; background: none; transition: all 0.2s;
+        }
+        .tab:hover { color: #ccc; background: #1a1a1a; }
+        .tab.active { color: #4a8; border-bottom-color: #4a8; }
+
+        /* Section */
+        .section { display: none; }
+        .section.active { display: block; }
+
+        /* Event Card */
+        .event-card {
+            background: #141414; border: 1px solid #262626; border-radius: 12px;
+            margin-bottom: 16px; overflow: hidden;
+            transition: all 0.2s;
+        }
+        .event-card:hover { border-color: #4a8; }
+        .event-card.urgent { border-color: #ef4444; }
+        .event-card.upcoming { border-color: #f59e0b; }
+        .event-card.future { border-color: #3b82f6; }
+
+        .event-header {
+            padding: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+        .event-header-left { flex: 1; }
+        .event-name { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+        .event-meta { font-size: 0.78rem; color: #888; }
+        .event-meta span { margin-right: 12px; }
+        .event-date-box {
+            min-width: 60px; text-align: center;
+            background: #1a1a1a; border-radius: 8px; padding: 8px;
+        }
+        .event-date-box .month { font-size: 0.65rem; text-transform: uppercase; color: #4a8; font-weight: 700; }
+        .event-date-box .day { font-size: 1.4rem; font-weight: 900; color: #fff; }
+        .event-date-box .dow { font-size: 0.6rem; color: #888; }
+
+        .event-badge {
+            display: inline-block; padding: 2px 8px; border-radius: 4px;
+            font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+            margin-right: 6px; margin-bottom: 4px;
+        }
+        .badge-urgent { background: #7f1d1d; color: #fca5a5; }
+        .badge-free { background: #14532d; color: #86efac; }
+        .badge-paid { background: #1e3a5f; color: #93c5fd; }
+        .badge-vendor { background: #4c1d95; color: #c4b5fd; }
+        .badge-network { background: #713f12; color: #fde68a; }
+        .badge-high { background: #1e3d1a; color: #4ade80; }
+
+        .event-body {
+            display: none; padding: 0 16px 16px;
+            border-top: 1px solid #262626;
+        }
+        .event-body.open { display: block; }
+
+        .event-section { margin-top: 14px; }
+        .event-section h4 { font-size: 0.82rem; color: #4a8; margin-bottom: 6px; font-weight: 700; }
+        .event-section p, .event-section li { font-size: 0.82rem; color: #bbb; line-height: 1.6; }
+        .event-section ul { padding-left: 18px; }
+        .event-section li { margin-bottom: 4px; }
+
+        /* Action Checklist */
+        .checklist { list-style: none; padding: 0; }
+        .checklist li {
+            display: flex; align-items: flex-start; gap: 8px;
+            padding: 8px 0; border-bottom: 1px solid #1a1a1a;
+            font-size: 0.82rem; color: #bbb;
+        }
+        .checklist input[type="checkbox"] {
+            margin-top: 2px; accent-color: #4a8;
+            width: 16px; height: 16px; flex-shrink: 0;
+        }
+        .checklist li.done { color: #666; text-decoration: line-through; }
+
+        /* Copy Button */
+        .copy-btn {
+            display: inline-block; padding: 6px 12px;
+            background: #1a2e1a; border: 1px solid #4a8; border-radius: 6px;
+            color: #4a8; font-size: 0.75rem; font-weight: 600;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .copy-btn:hover { background: #2d5a27; color: #fff; }
+        .copy-btn.copied { background: #4a8; color: #fff; }
+
+        /* Pitch Script */
+        .pitch-box {
+            background: #1a1a2a; border: 1px solid #334; border-radius: 10px;
+            padding: 14px; margin-top: 8px;
+        }
+        .pitch-box p { font-size: 0.82rem; color: #aac; line-height: 1.6; font-style: italic; }
+
+        /* Supply List */
+        .supply-card {
+            background: #1a1a1a; border: 1px solid #333; border-radius: 8px;
+            padding: 12px; margin-bottom: 8px;
+        }
+        .supply-card h5 { font-size: 0.82rem; color: #fff; margin-bottom: 4px; }
+        .supply-card p { font-size: 0.75rem; color: #888; }
+
+        /* ROI Estimate */
+        .roi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 8px; }
+        .roi-item {
+            background: #1a1a1a; border: 1px solid #333; border-radius: 8px;
+            padding: 10px; text-align: center;
+        }
+        .roi-item .val { font-size: 1.1rem; font-weight: 800; }
+        .roi-item .val.green { color: #4ade80; }
+        .roi-item .val.orange { color: #fbbf24; }
+        .roi-item .val.blue { color: #60a5fa; }
+        .roi-item .val.red { color: #f87171; }
+        .roi-item .lbl { font-size: 0.65rem; color: #888; margin-top: 2px; }
+
+        /* Timeline */
+        .timeline { position: relative; padding-left: 24px; }
+        .timeline::before {
+            content: ''; position: absolute; left: 8px; top: 0; bottom: 0;
+            width: 2px; background: #262626;
+        }
+        .timeline-item { position: relative; margin-bottom: 20px; }
+        .timeline-dot {
+            position: absolute; left: -20px; top: 4px;
+            width: 12px; height: 12px; border-radius: 50%;
+            border: 2px solid #4a8; background: #0a0a0a;
+        }
+        .timeline-dot.urgent { border-color: #ef4444; background: #7f1d1d; }
+        .timeline-dot.active { border-color: #f59e0b; background: #713f12; }
+        .timeline-item h4 { font-size: 0.85rem; color: #fff; }
+        .timeline-item p { font-size: 0.75rem; color: #888; }
+
+        /* Filter */
+        .filters { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+        .filter-btn {
+            padding: 6px 12px; border-radius: 20px; border: 1px solid #333;
+            background: #1a1a1a; color: #888; font-size: 0.72rem; font-weight: 600;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .filter-btn:hover { border-color: #4a8; color: #ccc; }
+        .filter-btn.active { background: #2d5a27; border-color: #4a8; color: #fff; }
+
+        /* Progress */
+        .progress-bar { background: #262626; border-radius: 4px; height: 6px; margin-top: 6px; }
+        .progress-fill { height: 100%; border-radius: 4px; background: #4a8; transition: width 0.3s; }
+
+        /* Responsive */
+        @media (max-width: 500px) {
+            .stats { gap: 6px; }
+            .stat { min-width: 70px; padding: 8px; }
+            .stat .num { font-size: 1.2rem; }
+            .roi-grid { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>📅 Event <span>Marketing Calendar</span></h1>
+    <p class="sub">STL Dog Events • Networking Plans • Action Checklists</p>
+    <a href="https://tidytails.github.io/tidytails-dashboard/" class="back-link">← Back to Dashboard</a>
+</div>
+
+<div class="container">
+
+    <!-- URGENT BANNER -->
+    <div class="urgent-banner" id="urgentBanner">
+        <h2>🚨 NEXT EVENT: <span id="nextEventName">Loading...</span></h2>
+        <div class="days" id="nextEventCountdown">--</div>
+        <p id="nextEventDetails">Loading event details...</p>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat">
+            <div class="num" id="statTotal">14</div>
+            <div class="lbl">Events Found</div>
+        </div>
+        <div class="stat">
+            <div class="num" id="statFree">9</div>
+            <div class="lbl">Free Entry</div>
+        </div>
+        <div class="stat">
+            <div class="num" id="statDogOwners">~50K</div>
+            <div class="lbl">Total Reach</div>
+        </div>
+        <div class="stat">
+            <div class="num" id="statPrepped">0</div>
+            <div class="lbl">Prepped ✅</div>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs">
+        <button class="tab active" onclick="showTab('calendar')">📅 Calendar</button>
+        <button class="tab" onclick="showTab('supplies')">🎒 Event Kit</button>
+        <button class="tab" onclick="showTab('pitches')">🗣️ Pitch Scripts</button>
+        <button class="tab" onclick="showTab('roi')">💰 ROI Tracker</button>
+    </div>
+
+    <!-- CALENDAR TAB -->
+    <div class="section active" id="tab-calendar">
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterEvents('all')">All</button>
+            <button class="filter-btn" onclick="filterEvents('this-week')">This Week</button>
+            <button class="filter-btn" onclick="filterEvents('april')">April</button>
+            <button class="filter-btn" onclick="filterEvents('may-jun')">May-Jun</button>
+            <button class="filter-btn" onclick="filterEvents('free')">Free Only</button>
+        </div>
+
+        <div id="eventsList">
+
+            <!-- EVENT 1: Mattress Dogzzz - THIS SATURDAY -->
+            <div class="event-card urgent" data-date="2026-03-21" data-cost="free" data-month="march">
+                <div class="event-header" onclick="toggleEvent(this)">
+                    <div class="event-header-left">
+                        <div>
+                            <span class="event-badge badge-urgent">⚡ 2 DAYS</span>
+                            <span class="event-badge badge-free">FREE</span>
+                            <span class="event-badge badge-network">NETWORKING</span>
+                        </div>
+                        <div class="event-name">🛏️ Mattress Dogzzz Grand Opening</div>
+                        <div class="event-meta">
+                            <span>📍 11420 Olive Blvd, Creve Coeur</span>
+                            <span>⏰ 11AM-2PM</span>
+                        </div>
+                    </div>
+                    <div class="event-date-box">
+                        <div class="month">MAR</div>
+                        <div class="day">21</div>
+                        <div class="dow">SAT</div>
+                    </div>
+                </div>
+                <div class="event-body">
+                    <div class="event-section">
+                        <h4>📋 What Is This?</h4>
+                        <p>Mattress store that partners with Stray Rescue for adoption events. Grand opening of Creve Coeur location. Dog owners + pet lovers + local business community. <strong>Stray Rescue will be there with adoptable dogs.</strong></p>
+                    </div>
+                    <div class="event-section">
+                        <h4>🎯 Why This Matters for Tidy Tails</h4>
+                        <ul>
+                            <li><strong>New dog owners adopting today</strong> = immediate need for yard cleanup</li>
+                            <li>Creve Coeur is our expansion territory (landing page already built)</li>
+                            <li>Stray Rescue staff/volunteers are CONNECTED to the dog community</li>
+                            <li>Local business networking — mattress stores see every homeowner</li>
+                            <li>Zero cost, Saturday morning, 15 min from current route</li>
+                        </ul>
+                    </div>
+                    <div class="event-section">
+                        <h4>✅ Action Checklist (Jamie)</h4>
+                        <ul class="checklist" data-event="mattress-dogzzz">
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Print 50 business cards or flyers (use Print Marketing Kit)</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Arrive by 10:45 AM — early bird gets the connections</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Talk to Stray Rescue volunteers — offer partnership (free cleanup for foster families)</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Talk to Mattress Dogzzz owner — cross-referral opportunity</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Give cards to anyone adopting — "New dog? First cleanup free!"</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Take a selfie with a dog for social media post</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Post recap in FB groups: "Just met the cutest pups at Mattress Dogzzz!"</li>
+                        </ul>
+                    </div>
+                    <div class="event-section">
+                        <h4>🗣️ What to Say</h4>
+                        <div class="pitch-box">
+                            <p>"Hey! I'm Jamie with Tidy Tails — we do pet waste removal around St. Louis. Basically we come scoop your yard so you don't have to. First cleanup is free! Here's my card if you know anyone with dogs who'd love a clean yard."</p>
+                        </div>
+                    </div>
+                    <div class="event-section">
+                        <h4>🔗 Stray Rescue Partnership Pitch</h4>
+                        <div class="pitch-box">
+                            <p>"I love what you guys do. We'd love to offer a free month of yard cleanup to anyone who adopts through Stray Rescue — kind of a welcome-home gift for new pet parents. Could we leave some cards at your events?"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 2: Roots & Rescues - ALSO THIS SATURDAY -->
+            <div class="event-card urgent" data-date="2026-03-21" data-cost="free" data-month="march">
+                <div class="event-header" onclick="toggleEvent(this)">
+                    <div class="event-header-left">
+                        <div>
+                            <span class="event-badge badge-urgent">⚡ 2 DAYS</span>
+                            <span class="event-badge badge-free">FREE</span>
+                        </div>
+                        <div class="event-name">🌱 Roots & Rescues Fundraiser</div>
+                        <div class="event-meta">
+                            <span>📍 Stray Rescue HN</span>
+                            <span>⏰ 10AM-12PM</span>
+                        </div>
+                    </div>
+                    <div class="event-date-box">
+                        <div class="month">MAR</div>
+                        <div class="day">21</div>
+                        <div class="dow">SAT</div>
+                    </div>
+                </div>
+                <div class="event-body">
+                    <div class="event-section">
+                        <h4>📋 What Is This?</h4>
+                        <p>Fundraiser + adoption event at Stray Rescue headquarters. Plant-themed (spring!). Great mix of animal lovers and community supporters.</p>
+                    </div>
+                    <div class="event-section">
+                        <h4>🎯 Strategy</h4>
+                        <ul>
+                            <li>Go to this FIRST (10AM), then drive to Mattress Dogzzz (11AM) — both on same day!</li>
+                            <li>Adopters = guaranteed new dog owners needing yard help</li>
+                            <li>Network with Stray Rescue staff about ongoing partnership</li>
+                        </ul>
+                    </div>
+                    <div class="event-section">
+                        <h4>✅ Action Checklist</h4>
+                        <ul class="checklist" data-event="roots-rescues">
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Arrive 10AM at Stray Rescue</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Bring 25 cards/flyers for this event</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Ask about leaving cards at adoption desk permanently</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Leave by 10:45 → drive to Mattress Dogzzz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 3: K9 Garden Events -->
+            <div class="event-card upcoming" data-date="2026-03-21" data-cost="paid" data-month="march">
+                <div class="event-header" onclick="toggleEvent(this)">
+                    <div class="event-header-left">
+                        <div>
+                            <span class="event-badge badge-paid">$$ MEMBERSHIP</span>
+                            <span class="event-badge badge-high">HIGH VALUE</span>
+                        </div>
+                        <div class="event-name">🐕 K9 Garden — Ongoing Events</div>
+                        <div class="event-meta">
+                            <span>📍 South City (old Bar K location)</span>
+                            <span>⏰ Various</span>
+                        </div>
+                    </div>
+                    <div class="event-date-box">
+                        <div class="month">ALL</div>
+                        <div class="day">🔄</div>
+                        <div class="dow">WEEKLY</div>
+                    </div>
+                </div>
+                <div class="event-body">
+                    <div class="event-section">
+                        <h4>📋 What Is This?</h4>
+                        <p>St. Louis's premier indoor/outdoor dog park, bar & restaurant. <strong>700+ members.</strong> Regular breed meetups, yappy hours, live music. Replaced the old Bar K. Every person there has a dog. Every single one.</p>
+                    </div>
+                    <div class="event-section">
+                        <h4>🎯 Why This Is GOLD</h4>
+                        <ul>
+                            <li>700+ paying dog-owning members = pre-qualified leads</li>
+                            <li>Weekly events = recurring visibility opportunity</li>
+                            <li>Breed meetups draw 20-50 owners each (Frenchie meetup Mar 21!)</li>
+                            <li>Partnership potential: leave cards at front desk, sponsor an event</li>
+                            <li>These are AFFLUENT dog owners who spend money on their pets</li>
+                        </ul>
+                    </div>
+                    <div class="event-section">
+                        <h4>🗣️ Partnership Pitch for K9 Garden</h4>
+                        <div class="pitch-box">
+                            <p>"Hey, I run Tidy Tails — pet waste removal around STL. Your members are exactly who we serve. Could we leave some business cards at the front desk or sponsor a breed meetup? We'd give your members a free first cleanup as a perk."</p>
+                        </div>
+                    </div>
+                    <div class="event-section">
+                        <h4>✅ Action Items</h4>
+                        <ul class="checklist" data-event="k9-garden">
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Visit K9 Garden website: k9garden.com</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Buy a day pass ($15-25) to scope it out</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Talk to management about card placement or sponsorship</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Attend one breed meetup and network</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 4: Pups on the Pitch -->
+            <div class="event-card upcoming" data-date="2026-03-22" data-cost="paid" data-month="march">
+                <div class="event-header" onclick="toggleEvent(this)">
+                    <div class="event-header-left">
+                        <div>
+                            <span class="event-badge badge-urgent">⚡ 3 DAYS</span>
+                            <span class="event-badge badge-paid">$$ TICKETS</span>
+                        </div>
+                        <div class="event-name">⚽ Pups on the Pitch — STL City SC</div>
+                        <div class="event-meta">
+                            <span>📍 Energizer Park (CityPark)</span>
+                            <span>⏰ Sun Mar 22</span>
+                        </div>
+                    </div>
+                    <div class="event-date-box">
+                        <div class="month">MAR</div>
+                        <div class="day">22</div>
+                        <div class="dow">SUN</div>
+                    </div>
+                </div>
+                <div class="event-body">
+                    <div class="event-section">
+                        <h4>📋 What Is This?</h4>
+                        <p>STL City SC + Purina host a yappy hour on the actual soccer pitch. Picnic-style with dogs. <strong>Very limited tickets</strong> — may be sold out. Worth checking.</p>
+                    </div>
+                    <div class="event-section">
+                        <h4>🎯 Strategy</h4>
+                        <ul>
+                            <li>If tickets available, this is concentrated dog owners in a premium setting</li>
+                            <li>Purina-sponsored = pet industry presence, good for networking</li>
+                            <li>Even if sold out, note for next year's calendar</li>
+                        </ul>
+                    </div>
+                    <div class="event-section">
+                        <h4>✅ Action Items</h4>
+                        <ul class="checklist" data-event="pups-pitch">
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Check stlcitysc.com/pups for ticket availability</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> If attending, bring 30 business cards</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 5: Easter Car Show -->
+            <div class="event-card future" data-date="2026-04-05" data-cost="free" data-month="april">
+                <div class="event-header" onclick="toggleEvent(this)">
+                    <div class="event-header-left">
+                        <div>
+                            <span class="event-badge badge-free">FREE</span>
+                            <span class="event-badge badge-network">NETWORKING</span>
+                        </div>
+                        <div class="event-name">🚗 Easter Concours d'Elegance + Stray Rescue</div>
+                        <div class="event-meta">
+                            <span>📍 Forest Park (The Muny area)</span>
+                            <span>⏰ 11AM-3PM</span>
+                        </div>
+                    </div>
+                    <div class="event-date-box">
+                        <div class="month">APR</div>
+                        <div class="day">5</div>
+                        <div class="dow">SUN</div>
+                    </div>
+                </div>
+                <div class="event-body">
+                    <div class="event-section">
+                        <h4>📋 What Is This?</h4>
+                        <p>Classic car show in Forest Park on Easter Sunday. <strong>Stray Rescue has an adoption booth.</strong> Free admission. Mix of car enthusiasts and pet lovers. Upscale crowd.</p>
+                    </div>
+                    <div class="event-section">
+                        <h4>🎯 Strategy</h4>
+                        <ul>
+                            <li>Find the Stray Rescue booth and network</li>
+                            <li>Adopters get free first cleanup card</li>
+                            <li>Affluent Forest Park crowd = premium customer potential</li>
+                            <li>Easter = families out, often with dogs in the park area</li>
+                        </ul>
+                    </div>
+                    <div class="event-section">
+                        <h4>✅ Action Checklist</h4>
+                        <ul class="checklist" data-event="easter-car">
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Plan to attend after Easter brunch</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Bring 40 business cards</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Look for the Stray Rescue booth specifically</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 6: Tower Grove Farmers Market Season Opens -->
+            <div class="event-card future" data-date="2026-04-04" data-cost="free" data-month="april">
+                <div class="event-header" onclick="toggleEvent(this)">
+                    <div class="event-header-left">
+                        <div>
+                            <span class="event-badge badge-free">FREE</span>
+                            <span class="event-badge badge-high">HIGH VALUE</span>
+                            <span class="event-badge badge-network">RECURRING</span>
+                        </div>
+                        <div class="event-name">🥬 Tower Grove Farmers Market — Season Opens</div>
+                        <div class="event-meta">
+                            <span>📍 Tower Grove Park</span>
+                            <span>⏰ Saturdays 8AM-12:30PM (Apr-Oct)</span>
+                        </div>
+                    </div>
+                    <div class="event-date-box">
+                        <div class="month">APR</div>
+                        <div class="day">4</div>
+                        <div class="dow">SAT</div>
+                    </div>
+                </div>
+                <div class="event-body">
+                    <div class="event-section">
+                        <h4>📋 What Is This?</h4>
+                        <p><strong>THE biggest recurring dog-owner gathering in STL.</strong> 37,000 Facebook followers. Thousands attend weekly. DOG-FRIENDLY (unlike county markets). Runs every Saturday April through October. This is a 7-month free marketing channel.</p>
+                    </div>
+                    <div class="event-section">
+                        <h4>🎯 Why This Is THE #1 Event Opportunity</h4>
+                        <ul>
+                            <li><strong>Dog-friendly market</strong> — tons of people bring their dogs</li>
+                            <li>3,000-5,000 visitors per Saturday in peak season</li>
+                            <li>Recurring — go once a month, build recognition</li>
+                            <li>South City/Tower Grove = affluent dog neighborhoods</li>
+                            <li>Can't get a vendor booth? Just walk around with cards.</li>
+                            <li>Cost: $0 (just show up with cards and a dog)</li>
+                        </ul>
+                    </div>
+                    <div class="event-section">
+                        <h4>🗣️ Casual Conversation Approach</h4>
+                        <div class="pitch-box">
+                            <p>[While petting someone's dog] "Oh my gosh, what a cutie! How old? ... We actually do pet waste cleanup — my husband does the scooping, I handle scheduling. Would you ever want someone to just... handle that part? First cleanup's free!" [hand card]</p>
+                        </div>
+                    </div>
+                    <div class="event-section">
+                        <h4>✅ Monthly Attendance Plan</h4>
+                        <ul class="checklist" data-event="tower-grove">
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> April: First visit — scope it out, bring 30 cards</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> May: Bring Tidy Tails shirt/hat for visibility + 50 cards</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> June: Ask about vendor booth ($35-50/week?)</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Bring a dog! Conversation starter.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 7: Blues Giveback -->
+            <div class="event-card future" data-date="2026-04-13" data-cost="paid" data-month="april">
+                <div class="event-header" onclick="toggleEvent(this)">
+                    <div class="event-header-left">
+                        <div>
+                            <span class="event-badge badge-paid">$$ TICKETS</span>
+                            <span class="event-badge badge-network">NETWORKING</span>
+                        </div>
+                        <div class="event-name">🏒 Blues Giveback Game + Stray Rescue</div>
+                        <div class="event-meta">
+                            <span>📍 Enterprise Center</span>
+                            <span>⏰ 7PM (Blues vs Wild)</span>
+                        </div>
+                    </div>
+                    <div class="event-date-box">
+                        <div class="month">APR</div>
+                        <div class="day">13</div>
+                        <div class="dow">MON</div>
+                    </div>
+                </div>
+                <div class="event-body">
+                    <div class="event-section">
+                        <h4>📋 What Is This?</h4>
+                        <p>Blues hockey game with Stray Rescue merch booth and adoptable dogs in the concourse. Hockey fans + dog lovers crossover. Great for visibility.</p>
+                    </div>
+                    <div class="event-section">
+                        <h4>🎯 Strategy</h4>
+                        <ul>
+                            <li>Stray Rescue will have a booth — visit and network</li>
+                            <li>Not a primary lead gen event, but good for relationship building</li>
+                            <li>If TJ likes hockey anyway, two birds one stone</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 8: Pooches in the Ballpark -->
+            <div class="event-card future" data-date="2026-04-25" data-cost="paid" data-month="april">
+                <div class="event-header" onclick="toggleEvent(this)">
+                    <div class="event-header-left">
+                        <div>
+                            <span class="event-badge badge-paid">$$ TICKETS</span>
+                            <span class="event-badge badge-high">HIGH VALUE</span>
+                        </div>
+                        <div class="event-name">⚾ Pooches in the Ballpark — Cardinals</div>
+                        <div class="event-meta">
+                            <span>📍 Busch Stadium</span>
+                            <span>⏰ Sat Apr 25</span>
+                        </div>
+                    </div>
+                    <div class="event-date-box">
+                        <div class="month">APR</div>
+                        <div class="day">25</div>
+                        <div class="dow">SAT</div>
+                    </div>
+                </div>
+                <div class="event-body">
+                    <div class="event-section">
+                        <h4>📋 What Is This?</h4>
+                        <p>The Cardinals' annual dog-friendly game. Dogs parade around the warning track. Purina goodie bags. All-inclusive food/drink tickets. <strong>Thousands of dog owners in one place.</strong> Sponsored by Purina.</p>
+                    </div>
+                    <div class="event-section">
+                        <h4>🎯 Why This Is a MONSTER Opportunity</h4>
+                        <ul>
+                            <li>Estimated 2,000-3,000 dog owners attend</li>
+                            <li>Pre-game dog parade = everyone's mingling, talking about dogs</li>
+                            <li>Dog owners who buy $50+ game tickets = premium market</li>
+                            <li>Purina goodie bag moment = natural card-insertion opportunity</li>
+                            <li>Massive social media posting opportunity</li>
+                        </ul>
+                    </div>
+                    <div class="event-section">
+                        <h4>✅ Action Checklist</h4>
+                        <ul class="checklist" data-event="pooches-ballpark">
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Buy tickets ASAP (they sell out): mlb.com/cardinals/tickets/specials/pooches-in-the-ballpark</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Bring 100 business cards — this is the big one</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Wear Tidy Tails gear (get a polo/hat printed before this)</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> During dog parade: hand cards to owners you chat with</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Take LOTS of photos/videos for social media</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Post in FB groups the next day: "Met so many amazing pups at Pooches!"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 9: Stray Rescue Day at Ballpark -->
+            <div class="event-card future" data-date="2026-04-26" data-cost="paid" data-month="april">
+                <div class="event-header" onclick="toggleEvent(this)">
+                    <div class="event-header-left">
+                        <div>
+                            <span class="event-badge badge-paid">$$ TICKETS</span>
+                            <span class="event-badge badge-network">NETWORKING</span>
+                        </div>
+                        <div class="event-name">⚾ Stray Rescue Day at the Ballpark</div>
+                        <div class="event-meta">
+                            <span>📍 Busch Stadium</span>
+                            <span>⏰ Sun Apr 26, 1:15PM (vs Mariners)</span>
+                        </div>
+                    </div>
+                    <div class="event-date-box">
+                        <div class="month">APR</div>
+                        <div class="day">26</div>
+                        <div class="dow">SUN</div>
+                    </div>
+                </div>
+                <div class="event-body">
+                    <div class="event-section">
+                        <h4>📋 What Is This?</h4>
+                        <p>Cardinals game dedicated to Stray Rescue. Adoption presence, merch booth. Back-to-back with Pooches in the Ballpark (Saturday). Could do both days for maximum exposure.</p>
+                    </div>
+                    <div class="event-section">
+                        <h4>⚠️ Note: Day After Pooches</h4>
+                        <p>April 25 (Pooches) + April 26 (Stray Rescue Day) = insane dog-owner weekend at Busch. If budget allows, attend both. If not, prioritize Pooches (Apr 25) — more dogs actually present.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 10: Bark in the Park -->
+            <div class="event-card future" data-date="2026-05-16" data-cost="paid" data-month="may">
+                <div class="event-header" onclick="toggleEvent(this)">
+                    <div class="event-header-left">
+                        <div>
+                            <span class="event-badge badge-paid">$25-35</span>
+                            <span class="event-badge badge-high">🏆 BIGGEST EVENT</span>
+                        </div>
+                        <div class="event-name">🐾 Bark in the Park — HSMO (31st Annual)</div>
+                        <div class="event-meta">
+                            <span>📍 Tower Grove Park</span>
+                            <span>⏰ Sat May 16, 8AM-1PM</span>
+                        </div>
+                    </div>
+                    <div class="event-date-box">
+                        <div class="month">MAY</div>
+                        <div class="day">16</div>
+                        <div class="dow">SAT</div>
+                    </div>
+                </div>
+                <div class="event-body">
+                    <div class="event-section">
+                        <h4>📋 What Is This?</h4>
+                        <p><strong>THE LARGEST PET FESTIVAL IN THE MIDWEST.</strong> 31st annual. 5K run + 1-mile dog walk + pet festival. Vendors, giveaways, pet contests, demos. Thousands of dog owners. Humane Society of Missouri's biggest fundraiser. This is THE event to be at.</p>
+                    </div>
+                    <div class="event-section">
+                        <h4>🎯 This Is THE MAIN EVENT</h4>
+                        <ul>
+                            <li><strong>10,000+ attendees</strong> expected — all dog owners</li>
+                            <li>5K run = active, outdoorsy dog owners who want clean yards</li>
+                            <li>Vendor booths available — could be a game changer for Tidy Tails</li>
+                            <li>Even without a booth: walk around, talk to people, hand out cards</li>
+                            <li>Purina goodie bag inclusion opportunity (sponsor level)</li>
+                            <li>Social media goldmine — hundreds of dog photos</li>
+                        </ul>
+                    </div>
+                    <div class="event-section">
+                        <h4>💰 Vendor Booth Consideration</h4>
+                        <div class="roi-grid">
+                            <div class="roi-item">
+                                <div class="val orange">$200-500</div>
+                                <div class="lbl">Est. Booth Cost</div>
+                            </div>
+                            <div class="roi-item">
+                                <div class="val blue">10,000+</div>
+                                <div class="lbl">Attendees</div>
+                            </div>
+                            <div class="roi-item">
+                                <div class="val green">200-500</div>
+                                <div class="lbl">Cards Distributed</div>
+                            </div>
+                            <div class="roi-item">
+                                <div class="val green">5-15</div>
+                                <div class="lbl">Expected New Leads</div>
+                            </div>
+                        </div>
+                        <p style="font-size:0.78rem;color:#888;margin-top:8px;">At $100/mo avg customer value × 5 new customers = $500/mo recurring. Booth pays for itself in month 1.</p>
+                    </div>
+                    <div class="event-section">
+                        <h4>✅ Action Checklist (START NOW)</h4>
+                        <ul class="checklist" data-event="bark-park">
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Visit hsmo.org/bark-in-the-park for registration ($25 early bird, $35 after May 1)</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Email Cole Imbs (314.951.1567 / cole.imbs@hsmo.org) about vendor booth pricing</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Register for 5K or 1-mile walk ($25)</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Order branded Tidy Tails shirts/hats before this date</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Print 300+ business cards</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> If vendor booth: design simple table display (banner, cards, signup sheet)</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Prepare "spin the wheel" or giveaway for booth traffic</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Pre-write social media posts for during/after event</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 11: Duo Dash 5K -->
+            <div class="event-card future" data-date="2026-05-01" data-cost="paid" data-month="may">
+                <div class="event-header" onclick="toggleEvent(this)">
+                    <div class="event-header-left">
+                        <div>
+                            <span class="event-badge badge-paid">$$ REG</span>
+                            <span class="event-badge badge-network">NETWORKING</span>
+                        </div>
+                        <div class="event-name">🏃 Duo Dash 5K + 1-Mile Dog Walk</div>
+                        <div class="event-meta">
+                            <span>📍 St. Louis area (TBD)</span>
+                            <span>⏰ TBD (check runguides.com)</span>
+                        </div>
+                    </div>
+                    <div class="event-date-box">
+                        <div class="month">MAY</div>
+                        <div class="day">TBD</div>
+                        <div class="dow">—</div>
+                    </div>
+                </div>
+                <div class="event-body">
+                    <div class="event-section">
+                        <h4>📋 What Is This?</h4>
+                        <p>5K run with your dog + 1-mile dog walk. Perfect demographic — active dog owners who care about their dogs' wellbeing. Check runguides.com/event/32082 for details.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 12: Stray Rescue Petco Adoptions -->
+            <div class="event-card future" data-date="2026-04-18" data-cost="free" data-month="april">
+                <div class="event-header" onclick="toggleEvent(this)">
+                    <div class="event-header-left">
+                        <div>
+                            <span class="event-badge badge-free">FREE</span>
+                            <span class="event-badge badge-network">RECURRING</span>
+                        </div>
+                        <div class="event-name">🐕 Stray Rescue @ Fenton Petco (Monthly)</div>
+                        <div class="event-meta">
+                            <span>📍 Petco, Fenton MO</span>
+                            <span>⏰ Every 3rd Saturday</span>
+                        </div>
+                    </div>
+                    <div class="event-date-box">
+                        <div class="month">3RD</div>
+                        <div class="day">SAT</div>
+                        <div class="dow">MONTHLY</div>
+                    </div>
+                </div>
+                <div class="event-body">
+                    <div class="event-section">
+                        <h4>📋 What Is This?</h4>
+                        <p>Monthly adoption event at Fenton Petco. Every 3rd Saturday. FREE. Walk in, find adopters, hand out "New dog? First cleanup FREE!" cards. Low effort, recurring, adopters are ideal customers.</p>
+                    </div>
+                    <div class="event-section">
+                        <h4>🎯 Strategy</h4>
+                        <ul>
+                            <li>Stop by for 30 minutes on the way to/from scooping</li>
+                            <li>Ask Petco manager if you can leave cards at the register</li>
+                            <li>Dates: Apr 18, May 16, Jun 20, Jul 18, Aug 15...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 13: Poochella -->
+            <div class="event-card future" data-date="2026-07-18" data-cost="free" data-month="july">
+                <div class="event-header" onclick="toggleEvent(this)">
+                    <div class="event-header-left">
+                        <div>
+                            <span class="event-badge badge-free">FREE</span>
+                            <span class="event-badge badge-high">HIGH VALUE</span>
+                        </div>
+                        <div class="event-name">🎵 POOCHELLA — Stray Rescue Festival</div>
+                        <div class="event-meta">
+                            <span>📍 Stray Rescue HQ (Pine St)</span>
+                            <span>⏰ July 2026 (date TBD — usually 3rd Sat)</span>
+                        </div>
+                    </div>
+                    <div class="event-date-box">
+                        <div class="month">JUL</div>
+                        <div class="day">18?</div>
+                        <div class="dow">SAT</div>
+                    </div>
+                </div>
+                <div class="event-body">
+                    <div class="event-section">
+                        <h4>📋 What Is This?</h4>
+                        <p>Stray Rescue's signature summer adoption festival. Live DJ, food, vendors, adoptable dogs. Pine Street gets shut down. Hundreds attend. Last year's dates: July 19 (2025), July 20 (2024). <strong>2026 date not announced yet — watch strayrescue.org/events.</strong></p>
+                    </div>
+                    <div class="event-section">
+                        <h4>✅ Action Items</h4>
+                        <ul class="checklist" data-event="poochella">
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Set reminder to check strayrescue.org in May for 2026 date</li>
+                            <li><input type="checkbox" onchange="saveChecklist(this)"> Ask about vendor/sponsor opportunity</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 14: GO! STL Halloween Dog Walk -->
+            <div class="event-card future" data-date="2026-10-31" data-cost="paid" data-month="october">
+                <div class="event-header" onclick="toggleEvent(this)">
+                    <div class="event-header-left">
+                        <div>
+                            <span class="event-badge badge-paid">$$ REG</span>
+                        </div>
+                        <div class="event-name">🎃 GO! STL Halloween Dog Walk</div>
+                        <div class="event-meta">
+                            <span>📍 Downtown STL</span>
+                            <span>⏰ October 2026 (date TBD)</span>
+                        </div>
+                    </div>
+                    <div class="event-date-box">
+                        <div class="month">OCT</div>
+                        <div class="day">TBD</div>
+                        <div class="dow">—</div>
+                    </div>
+                </div>
+                <div class="event-body">
+                    <div class="event-section">
+                        <h4>📋 What Is This?</h4>
+                        <p>GO! St. Louis Halloween Race includes a 1-mile costumed dog walk. Fun, casual, dog owners in costume = very talkative and open to networking.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div><!-- /eventsList -->
+    </div>
+
+    <!-- SUPPLIES TAB -->
+    <div class="section" id="tab-supplies">
+        <h2 style="color:#fff;font-size:1.1rem;margin-bottom:16px;">🎒 Event Marketing Kit — What to Bring</h2>
+
+        <div class="supply-card" style="border-color:#4a8;">
+            <h5>📇 Business Cards (MOST IMPORTANT)</h5>
+            <p>Get 500 printed on Vistaprint ($20-30). Include: Tidy Tails logo, Jamie's name, (314) 850-7140, tidytailsstl.com, "First Cleanup FREE!" on back. <strong>This is the minimum viable event kit.</strong></p>
+        </div>
+
+        <div class="supply-card">
+            <h5>👕 Branded Shirt or Hat</h5>
+            <p>Even a simple green polo with "Tidy Tails" on it. Makes you look legit and starts conversations. CustomInk or local print shop. $15-25 each.</p>
+        </div>
+
+        <div class="supply-card">
+            <h5>📱 QR Code Card</h5>
+            <p>QR code linking to tidytailsstl.com/free-cleanup. Put on a small table sign. People scan while chatting. Free to make at qr-code-generator.com.</p>
+        </div>
+
+        <div class="supply-card">
+            <h5>📋 Signup Sheet (for vendor booths)</h5>
+            <p>Simple clipboard: "Want a FREE yard cleanup? Name | Phone | City | # of Dogs." Follow up within 24 hours.</p>
+        </div>
+
+        <div class="supply-card">
+            <h5>🎡 Spin-the-Wheel (for Bark in the Park booth)</h5>
+            <p>Amazon $30-40. Prizes: Free cleanup, Free month, 50% off first month, Tidy Tails sticker. Gets people to stop at your booth.</p>
+        </div>
+
+        <div class="supply-card">
+            <h5>🦴 Dog Treats</h5>
+            <p>Bag of small training treats. Offer to dogs you meet. Instant icebreaker with owners. $5-10.</p>
+        </div>
+
+        <div class="supply-card">
+            <h5>💰 Total Starter Kit Cost</h5>
+            <p style="color:#4ade80;font-weight:700;">~$75-100 for cards + shirt + treats. ROI: 1 new customer ($1,200/year LTV) pays for this 12x over.</p>
+        </div>
+
+        <h3 style="color:#fff;font-size:1rem;margin:20px 0 12px;">🖨️ Quick Print Checklist</h3>
+        <ul class="checklist" data-event="supplies">
+            <li><input type="checkbox" onchange="saveChecklist(this)"> Order 500 business cards (Vistaprint, 3-5 day delivery)</li>
+            <li><input type="checkbox" onchange="saveChecklist(this)"> Order 1-2 branded shirts (CustomInk or local)</li>
+            <li><input type="checkbox" onchange="saveChecklist(this)"> Print QR code flyer (home printer OK)</li>
+            <li><input type="checkbox" onchange="saveChecklist(this)"> Buy dog treats (Petco/Walmart, $5-10)</li>
+            <li><input type="checkbox" onchange="saveChecklist(this)"> Get a small clipboard for signup sheet</li>
+            <li><input type="checkbox" onchange="saveChecklist(this)"> [For Bark in Park] Order spin wheel from Amazon</li>
+        </ul>
+    </div>
+
+    <!-- PITCH SCRIPTS TAB -->
+    <div class="section" id="tab-pitches">
+        <h2 style="color:#fff;font-size:1.1rem;margin-bottom:16px;">🗣️ Event Pitch Scripts for Jamie</h2>
+        <p style="color:#888;font-size:0.82rem;margin-bottom:20px;">Copy these or adapt to your style. The key: be casual, lead with the dog, mention "free" early.</p>
+
+        <div class="pitch-box" style="margin-bottom:16px;">
+            <h4 style="color:#4a8;margin-bottom:8px;font-size:0.85rem;">🐕 The Dog Opener (Best for walking around)</h4>
+            <p>"Oh my gosh, what a beautiful [breed]! What's their name? ... [Chat about dog] ... So random question — do you ever get behind on picking up the yard? We do pet waste cleanup — first time's totally free. Here's my card if you ever need us!"</p>
+            <button class="copy-btn" onclick="copyText(this, `Oh my gosh, what a beautiful [breed]! What's their name? ... So random question — do you ever get behind on picking up the yard? We do pet waste cleanup — first time's totally free. Here's my card if you ever need us!`)">📋 Copy</button>
+        </div>
+
+        <div class="pitch-box" style="margin-bottom:16px;">
+            <h4 style="color:#4a8;margin-bottom:8px;font-size:0.85rem;">🏠 The Homeowner Angle (For people without dogs present)</h4>
+            <p>"Hey! Do you have dogs at home? We do pet waste removal around St. Louis — basically we come scoop your yard weekly so you don't have to deal with it. It's like having a lawn service but for the gross part. First cleanup is free!"</p>
+            <button class="copy-btn" onclick="copyText(this, `Hey! Do you have dogs at home? We do pet waste removal around St. Louis — basically we come scoop your yard weekly so you don't have to deal with it. It's like having a lawn service but for the gross part. First cleanup is free!`)">📋 Copy</button>
+        </div>
+
+        <div class="pitch-box" style="margin-bottom:16px;">
+            <h4 style="color:#4a8;margin-bottom:8px;font-size:0.85rem;">🐾 The Adopter Special (For adoption events)</h4>
+            <p>"Congratulations on your new family member! We do pet waste removal — clean up the yard so you can focus on the fun stuff. We'd love to give you a free first cleanup as a welcome-home gift. Here's my card — just text me when you're settled in!"</p>
+            <button class="copy-btn" onclick="copyText(this, `Congratulations on your new family member! We do pet waste removal — clean up the yard so you can focus on the fun stuff. We'd love to give you a free first cleanup as a welcome-home gift. Here's my card — just text me when you're settled in!`)">📋 Copy</button>
+        </div>
+
+        <div class="pitch-box" style="margin-bottom:16px;">
+            <h4 style="color:#4a8;margin-bottom:8px;font-size:0.85rem;">🤝 The Business Partnership Pitch</h4>
+            <p>"Hey, I'm Jamie with Tidy Tails — we do pet waste removal. I noticed your business attracts a lot of dog owners. Would you be open to keeping a stack of our cards at your counter? We can send customers your way too. Win-win!"</p>
+            <button class="copy-btn" onclick="copyText(this, `Hey, I'm Jamie with Tidy Tails — we do pet waste removal. I noticed your business attracts a lot of dog owners. Would you be open to keeping a stack of our cards at your counter? We can send customers your way too. Win-win!`)">📋 Copy</button>
+        </div>
+
+        <div class="pitch-box" style="margin-bottom:16px;">
+            <h4 style="color:#4a8;margin-bottom:8px;font-size:0.85rem;">🏢 The Rescue/Shelter Partnership</h4>
+            <p>"We love what you guys do for animals in St. Louis. We'd like to offer a free month of yard cleanup to anyone who adopts through your organization — kind of a welcome-home package. Could we leave some cards at your adoption desk?"</p>
+            <button class="copy-btn" onclick="copyText(this, `We love what you guys do for animals in St. Louis. We'd like to offer a free month of yard cleanup to anyone who adopts through your organization — kind of a welcome-home package. Could we leave some cards at your adoption desk?`)">📋 Copy</button>
+        </div>
+
+        <div style="background:#1a2e1a;border:1px solid #4a8;border-radius:10px;padding:16px;margin-top:20px;">
+            <h4 style="color:#4a8;font-size:0.85rem;margin-bottom:8px;">💡 Jamie's Event Rules</h4>
+            <ul style="font-size:0.82rem;color:#bbb;padding-left:18px;line-height:1.8;">
+                <li><strong>Lead with the dog, not the pitch.</strong> Pet the dog first. Ask its name. THEN mention Tidy Tails.</li>
+                <li><strong>Say "free" early.</strong> "First cleanup is free" removes all pressure.</li>
+                <li><strong>Hand the card, don't push.</strong> "Here's my card IF you ever need us" > "Can I sign you up?"</li>
+                <li><strong>Don't sell, connect.</strong> These are future neighbors/friends, not leads.</li>
+                <li><strong>Follow up within 48 hours.</strong> Anyone who texted or showed interest, follow up.</li>
+                <li><strong>Post about it.</strong> Photo + "Had a blast at [event]!" in FB groups builds credibility.</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ROI TRACKER TAB -->
+    <div class="section" id="tab-roi">
+        <h2 style="color:#fff;font-size:1.1rem;margin-bottom:16px;">💰 Event ROI Tracker</h2>
+        <p style="color:#888;font-size:0.82rem;margin-bottom:20px;">Track what you spend and what comes back. Log after each event.</p>
+
+        <div class="roi-grid" style="margin-bottom:20px;">
+            <div class="roi-item">
+                <div class="val green" id="roiRevenue">$0</div>
+                <div class="lbl">Revenue from Event Leads</div>
+            </div>
+            <div class="roi-item">
+                <div class="val red" id="roiSpent">$0</div>
+                <div class="lbl">Total Spent on Events</div>
+            </div>
+            <div class="roi-item">
+                <div class="val blue" id="roiCards">0</div>
+                <div class="lbl">Cards Handed Out</div>
+            </div>
+            <div class="roi-item">
+                <div class="val orange" id="roiLeads">0</div>
+                <div class="lbl">Leads Generated</div>
+            </div>
+        </div>
+
+        <!-- Event log -->
+        <div style="margin-bottom:16px;">
+            <h3 style="color:#fff;font-size:0.95rem;margin-bottom:12px;">📝 Log an Event</h3>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                <input id="logEvent" placeholder="Event name" style="background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:10px;color:#fff;font-size:0.82rem;">
+                <input id="logDate" type="date" style="background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:10px;color:#fff;font-size:0.82rem;">
+                <input id="logCost" placeholder="$ spent" type="number" style="background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:10px;color:#fff;font-size:0.82rem;">
+                <input id="logCards" placeholder="Cards given" type="number" style="background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:10px;color:#fff;font-size:0.82rem;">
+                <input id="logLeads" placeholder="Leads (texts/calls)" type="number" style="background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:10px;color:#fff;font-size:0.82rem;">
+                <input id="logCustomers" placeholder="Customers signed" type="number" style="background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:10px;color:#fff;font-size:0.82rem;">
+            </div>
+            <button onclick="logEventROI()" style="width:100%;margin-top:8px;padding:12px;background:#2d5a27;color:#fff;border:none;border-radius:8px;font-weight:700;font-size:0.85rem;cursor:pointer;">Log Event Result</button>
+        </div>
+
+        <div id="eventLog" style="margin-top:16px;"></div>
+
+        <div style="background:#1a1a2a;border:1px solid #334;border-radius:10px;padding:16px;margin-top:20px;">
+            <h4 style="color:#8af;font-size:0.85rem;margin-bottom:8px;">📊 The Math</h4>
+            <ul style="font-size:0.82rem;color:#aac;padding-left:18px;line-height:1.8;">
+                <li>Average customer LTV: <strong>$1,200/year</strong></li>
+                <li>Cost to acquire via events: <strong>$25-50</strong> (cards + gas)</li>
+                <li>ROI per event customer: <strong>24:1 to 48:1</strong></li>
+                <li>Even Bark in the Park booth ($300-500): <strong>2-3 customers = profitable in month 1</strong></li>
+                <li>Compare to Facebook ads: <strong>$15-30 per lead</strong> with lower conversion rate</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// Tab switching
+function showTab(name) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    event.target.classList.add('active');
+}
+
+// Toggle event card
+function toggleEvent(header) {
+    const body = header.nextElementSibling;
+    body.classList.toggle('open');
+}
+
+// Filter events
+function filterEvents(type) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    
+    const cards = document.querySelectorAll('.event-card');
+    const now = new Date();
+    
+    cards.forEach(card => {
+        const date = card.dataset.date;
+        const cost = card.dataset.cost;
+        const month = card.dataset.month;
+        let show = true;
+        
+        if (type === 'this-week') {
+            const d = new Date(date + 'T00:00:00');
+            const diff = (d - now) / (1000*60*60*24);
+            show = diff >= -1 && diff <= 7;
+        } else if (type === 'april') {
+            show = month === 'april';
+        } else if (type === 'may-jun') {
+            show = month === 'may' || month === 'june' || month === 'july';
+        } else if (type === 'free') {
+            show = cost === 'free';
+        }
+        
+        card.style.display = show ? 'block' : 'none';
+    });
+}
+
+// Countdown to next event
+function updateCountdown() {
+    const events = [
+        { name: 'Mattress Dogzzz + Roots & Rescues', date: '2026-03-21', detail: 'THIS SATURDAY! Two events — Roots & Rescues 10AM, then Mattress Dogzzz 11AM (Creve Coeur)' },
+        { name: 'Pups on the Pitch', date: '2026-03-22', detail: 'STL City SC • Check ticket availability at stlcitysc.com/pups' },
+        { name: 'Tower Grove Farmers Market Opens', date: '2026-04-04', detail: 'Season opener! Dog-friendly. 8AM-12:30PM every Saturday through October.' },
+        { name: 'Easter Car Show + Stray Rescue', date: '2026-04-05', detail: 'Forest Park • Free admission • Stray Rescue adoption booth' },
+        { name: 'Blues Giveback + Stray Rescue', date: '2026-04-13', detail: 'Enterprise Center • 7PM • Stray Rescue booth in concourse' },
+        { name: 'Petco Adoption (Fenton)', date: '2026-04-18', detail: 'Monthly 3rd Saturday event • Free • Quick stop' },
+        { name: 'Pooches in the Ballpark', date: '2026-04-25', detail: 'Busch Stadium • BUY TICKETS NOW • Biggest Cardinals dog event' },
+        { name: 'Stray Rescue Day at Ballpark', date: '2026-04-26', detail: 'Busch Stadium • 1:15PM vs Mariners' },
+        { name: 'BARK IN THE PARK', date: '2026-05-16', detail: 'BIGGEST PET FESTIVAL IN THE MIDWEST • Tower Grove Park • 10,000+ attendees' },
+    ];
+    
+    const now = new Date();
+    let next = null;
+    
+    for (const e of events) {
+        const d = new Date(e.date + 'T10:00:00');
+        if (d >= now) { next = { ...e, dateObj: d }; break; }
+    }
+    
+    if (next) {
+        const diff = Math.ceil((next.dateObj - now) / (1000*60*60*24));
+        document.getElementById('nextEventName').textContent = next.name;
+        document.getElementById('nextEventCountdown').textContent = diff === 0 ? 'TODAY!' : diff === 1 ? 'TOMORROW!' : diff + ' DAYS';
+        document.getElementById('nextEventDetails').textContent = next.detail;
+        
+        if (diff <= 2) {
+            document.getElementById('urgentBanner').style.borderColor = '#ef4444';
+        } else if (diff <= 7) {
+            document.getElementById('urgentBanner').style.borderColor = '#f59e0b';
+            document.getElementById('urgentBanner').style.background = 'linear-gradient(135deg, #713f12, #854d0e)';
+        }
+    }
+}
+
+// Checklist persistence
+function saveChecklist(el) {
+    const list = el.closest('.checklist');
+    const eventId = list.dataset.event;
+    const checks = [];
+    list.querySelectorAll('input[type="checkbox"]').forEach((cb, i) => {
+        checks.push(cb.checked);
+        cb.closest('li').classList.toggle('done', cb.checked);
+    });
+    localStorage.setItem('tt-event-' + eventId, JSON.stringify(checks));
+    updatePreppedCount();
+}
+
+function loadChecklists() {
+    document.querySelectorAll('.checklist').forEach(list => {
+        const eventId = list.dataset.event;
+        const saved = localStorage.getItem('tt-event-' + eventId);
+        if (saved) {
+            const checks = JSON.parse(saved);
+            list.querySelectorAll('input[type="checkbox"]').forEach((cb, i) => {
+                if (checks[i]) {
+                    cb.checked = true;
+                    cb.closest('li').classList.add('done');
+                }
+            });
+        }
+    });
+}
+
+function updatePreppedCount() {
+    let prepped = 0;
+    document.querySelectorAll('.checklist').forEach(list => {
+        const total = list.querySelectorAll('input[type="checkbox"]').length;
+        const checked = list.querySelectorAll('input[type="checkbox"]:checked').length;
+        if (total > 0 && checked === total) prepped++;
+    });
+    document.getElementById('statPrepped').textContent = prepped;
+}
+
+// Copy text
+function copyText(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✅ Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = '📋 Copy';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+}
+
+// ROI Logger
+function logEventROI() {
+    const entry = {
+        event: document.getElementById('logEvent').value,
+        date: document.getElementById('logDate').value,
+        cost: parseFloat(document.getElementById('logCost').value) || 0,
+        cards: parseInt(document.getElementById('logCards').value) || 0,
+        leads: parseInt(document.getElementById('logLeads').value) || 0,
+        customers: parseInt(document.getElementById('logCustomers').value) || 0,
+    };
+    
+    if (!entry.event) return alert('Enter event name');
+    
+    const logs = JSON.parse(localStorage.getItem('tt-event-roi') || '[]');
+    logs.push(entry);
+    localStorage.setItem('tt-event-roi', JSON.stringify(logs));
+    
+    // Clear inputs
+    ['logEvent','logDate','logCost','logCards','logLeads','logCustomers'].forEach(id => {
+        document.getElementById(id).value = '';
+    });
+    
+    renderROI();
+}
+
+function renderROI() {
+    const logs = JSON.parse(localStorage.getItem('tt-event-roi') || '[]');
+    
+    let totalSpent = 0, totalCards = 0, totalLeads = 0, totalCustomers = 0;
+    logs.forEach(l => {
+        totalSpent += l.cost;
+        totalCards += l.cards;
+        totalLeads += l.leads;
+        totalCustomers += l.customers;
+    });
+    
+    const revenue = totalCustomers * 100; // $100/mo avg
+    
+    document.getElementById('roiRevenue').textContent = '$' + (revenue * 12).toLocaleString() + '/yr';
+    document.getElementById('roiSpent').textContent = '$' + totalSpent.toLocaleString();
+    document.getElementById('roiCards').textContent = totalCards.toLocaleString();
+    document.getElementById('roiLeads').textContent = totalLeads.toLocaleString();
+    
+    // Render log
+    const logDiv = document.getElementById('eventLog');
+    if (logs.length === 0) {
+        logDiv.innerHTML = '<p style="color:#666;font-size:0.82rem;text-align:center;">No events logged yet. Attend your first event and track results!</p>';
+        return;
+    }
+    
+    logDiv.innerHTML = logs.map((l, i) => `
+        <div style="background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:12px;margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;">
+            <div>
+                <div style="color:#fff;font-weight:600;font-size:0.85rem;">${l.event}</div>
+                <div style="color:#888;font-size:0.72rem;">${l.date} • $${l.cost} spent • ${l.cards} cards • ${l.leads} leads • ${l.customers} customers</div>
+            </div>
+            <button onclick="deleteROIEntry(${i})" style="background:none;border:none;color:#666;cursor:pointer;font-size:0.8rem;">✕</button>
+        </div>
+    `).join('');
+}
+
+function deleteROIEntry(index) {
+    const logs = JSON.parse(localStorage.getItem('tt-event-roi') || '[]');
+    logs.splice(index, 1);
+    localStorage.setItem('tt-event-roi', JSON.stringify(logs));
+    renderROI();
+}
+
+// Init
+loadChecklists();
+updateCountdown();
+updatePreppedCount();
+renderROI();
+</script>
+
+</body>
+</html>
