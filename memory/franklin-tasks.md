@@ -7,6 +7,40 @@
 
 ## March 19, 2026 (Wednesday)
 
+### 3:04 AM — 📞 COMMERCIAL CALL SHEET — Mobile-First Outreach Tool for Jamie (Sales/Lead Conversion)
+**Task:** Built a mobile-first commercial call sheet with the top 10 priority leads ranked by value, tap-to-call buttons, personalized pitch scripts, outcome tracking, and pricing reference. Today (Thursday) is "Call 3 commercial leads" day per the weekly action plan — Jamie now has the exact tool to execute.
+**Result:** ✅ COMPLETE — `dashboard/commercial-call-sheet.html` live, linked from dashboard header, pushed to GitHub
+
+**Why This Task:**
+- Weekly plan says Thursday = call 3 commercial leads, but there was NO mobile-friendly tool for Jamie to actually make those calls
+- We have 26 leads in the pipeline but ZERO contacted — this is the conversion bottleneck
+- The existing leads-commercial.md file is a wall of text — useless on a phone while making calls
+- Ads are spending real money → commercial accounts = faster ROI at $150-$2,000/month per contract
+- Spring is peak season — property managers are budgeting NOW
+
+**What Was Built:**
+1. 📞 **10 priority leads ranked by estimated monthly value** — Millsap ($500-$1.5k), No Leash Needed ($300-$750), Associa Smith ($300-$2k+), etc.
+2. 📱 **Tap-to-call buttons** — one tap on mobile to dial each lead's actual phone number
+3. 📧 **Pre-written email for Millsap** (top lead) — subject line, body, and Jamie's signature pre-loaded in mailto link
+4. 📝 **Personalized pitch scripts for all 10 leads** — each script references their specific property, location, and angle
+5. 🏷️ **Filter tabs** — Whales, Apartments, HOAs, Dog Biz, Not Called
+6. ✅ **Outcome tracking** — Spoke/Voicemail/No Answer/Meeting Scheduled/Emailed buttons with localStorage persistence
+7. 📊 **Progress bar** — visual tracker showing calls made out of 10
+8. 💰 **Pricing quick reference** — commercial rates at a glance (small/medium/large complex, HOA, dog park, kennel)
+9. 💡 **Jamie's Call Playbook** — best times, who to ask for, how to handle voicemail
+10. 📝 **Notes field per lead** — saved to localStorage for follow-up tracking
+
+**Key Design Decisions:**
+- Mobile-first: all buttons are large tap targets, single column layout
+- Scripts use color-coded sections: green=greeting, yellow=hook, orange=close
+- Cards collapse/expand so the page isn't overwhelming
+- Called leads dim to 60% opacity so uncalled leads stand out
+- localStorage persistence means Jamie doesn't lose progress if she closes the page
+
+**Rotation:** 📞 Sales/Lead Conversion — Commercial Outreach Tool
+
+---
+
 ### 2:04 AM — 🎯 SPRING AD LANDING PAGE — Conversion-Optimized Google Ads Page Deployed LIVE (Conversion/Ad ROI)
 **Task:** Built and deployed a dedicated, conversion-optimized landing page specifically for Google Ads traffic. The current ads point to the generic homepage — this page is purpose-built to convert ad clicks into calls/texts with zero distractions.
 **Result:** ✅ COMPLETE — LIVE at `https://tidytails.github.io/tidytails-website/spring-landing.html` + dashboard copy at `dashboard/spring-ad-landing-page.html`, both repos pushed to GitHub
