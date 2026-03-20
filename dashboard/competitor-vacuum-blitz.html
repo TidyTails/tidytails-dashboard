@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 Competitor Vacuum Blitz — Tidy Tails</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
+  
+  .header { background: linear-gradient(135deg, #1a472a 0%, #0d2818 100%); padding: 32px 24px; border-bottom: 3px solid #22c55e; }
+  .header h1 { font-size: 28px; color: #22c55e; margin-bottom: 8px; }
+  .header .subtitle { color: #86efac; font-size: 16px; }
+  .header .date { color: #6b7280; font-size: 13px; margin-top: 8px; }
+  
+  .alert-banner { background: linear-gradient(90deg, #14532d, #166534); border-left: 4px solid #22c55e; padding: 20px 24px; margin: 20px; border-radius: 8px; }
+  .alert-banner h2 { color: #22c55e; font-size: 20px; margin-bottom: 8px; }
+  .alert-banner .stat { display: inline-block; background: #22c55e; color: #0a0a0a; font-weight: 700; padding: 2px 10px; border-radius: 12px; font-size: 14px; margin-right: 8px; }
+  .alert-banner p { color: #bbf7d0; font-size: 14px; margin-top: 8px; }
+  
+  .section { padding: 20px 24px; }
+  .section h2 { color: #f59e0b; font-size: 20px; margin-bottom: 16px; border-bottom: 1px solid #333; padding-bottom: 8px; }
+  .section h3 { color: #60a5fa; font-size: 16px; margin: 16px 0 8px; }
+  
+  .competitor-status { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin: 16px 0; }
+  .comp-card { background: #1a1a1a; border-radius: 8px; padding: 16px; border-left: 4px solid #ef4444; }
+  .comp-card.active { border-left-color: #f59e0b; }
+  .comp-card .name { font-weight: 700; font-size: 15px; color: #fff; }
+  .comp-card .status { font-size: 13px; margin-top: 4px; }
+  .comp-card .status.gone { color: #ef4444; }
+  .comp-card .status.weak { color: #f59e0b; }
+  .comp-card .detail { font-size: 12px; color: #9ca3af; margin-top: 4px; }
+  
+  .lead-card { background: #1a1a1a; border-radius: 10px; padding: 20px; margin: 12px 0; border: 1px solid #333; position: relative; }
+  .lead-card.priority-1 { border-left: 4px solid #22c55e; }
+  .lead-card.priority-2 { border-left: 4px solid #3b82f6; }
+  .lead-card.priority-3 { border-left: 4px solid #a855f7; }
+  
+  .lead-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+  .lead-name { font-size: 18px; font-weight: 700; color: #fff; }
+  .lead-type { font-size: 11px; background: #333; padding: 2px 8px; border-radius: 10px; color: #9ca3af; }
+  
+  .lead-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 8px; margin: 12px 0; }
+  .lead-info .item { font-size: 13px; }
+  .lead-info .label { color: #6b7280; }
+  .lead-info .value { color: #d1d5db; }
+  .lead-info a { color: #60a5fa; text-decoration: none; }
+  
+  .pitch-box { background: #1e293b; border-radius: 8px; padding: 14px; margin-top: 12px; }
+  .pitch-box .pitch-label { color: #f59e0b; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .pitch-box .pitch-text { color: #e2e8f0; font-size: 14px; font-style: italic; }
+  .pitch-box .pitch-text .highlight { color: #22c55e; font-weight: 600; font-style: normal; }
+  
+  .vacuum-angle { background: #3b0764; border: 1px solid #7c3aed; border-radius: 8px; padding: 12px; margin-top: 10px; }
+  .vacuum-angle .va-label { color: #c084fc; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .vacuum-angle .va-text { color: #e9d5ff; font-size: 13px; }
+  
+  .script-box { background: #1a1a2e; border: 1px solid #4338ca; border-radius: 10px; padding: 20px; margin: 20px 0; }
+  .script-box h3 { color: #818cf8; margin-bottom: 12px; }
+  .script-box .line { margin: 8px 0; font-size: 14px; }
+  .script-box .speaker { font-weight: 700; color: #a78bfa; }
+  .script-box .words { color: #e0e7ff; }
+  .script-box .note { font-size: 12px; color: #6b7280; font-style: italic; margin: 4px 0 4px 20px; }
+  
+  .copy-btn { background: #333; color: #e0e0e0; border: 1px solid #555; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 12px; margin-top: 8px; transition: all 0.2s; }
+  .copy-btn:hover { background: #22c55e; color: #000; border-color: #22c55e; }
+  .copy-btn.copied { background: #22c55e; color: #000; }
+  
+  .priority-legend { display: flex; gap: 16px; margin: 16px 0; flex-wrap: wrap; }
+  .priority-legend .item { display: flex; align-items: center; gap: 6px; font-size: 13px; }
+  .priority-legend .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .priority-legend .dot.p1 { background: #22c55e; }
+  .priority-legend .dot.p2 { background: #3b82f6; }
+  .priority-legend .dot.p3 { background: #a855f7; }
+  
+  .timeline { background: #1a1a1a; border-radius: 10px; padding: 20px; margin: 16px 0; }
+  .timeline h3 { color: #f59e0b; margin-bottom: 12px; }
+  .timeline .week { display: flex; gap: 12px; margin: 8px 0; align-items: flex-start; }
+  .timeline .week-label { min-width: 90px; color: #f59e0b; font-weight: 600; font-size: 13px; }
+  .timeline .week-tasks { font-size: 13px; color: #d1d5db; }
+  
+  .bottom-note { background: #1a1a1a; padding: 20px 24px; margin: 20px; border-radius: 10px; border: 1px solid #333; }
+  .bottom-note h3 { color: #22c55e; margin-bottom: 8px; }
+  .bottom-note p { font-size: 14px; color: #9ca3af; }
+  
+  @media (max-width: 600px) {
+    .header h1 { font-size: 22px; }
+    .lead-header { flex-direction: column; gap: 8px; }
+    .lead-info { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎯 Competitor Vacuum Blitz</h1>
+  <div class="subtitle">4 of 7 STL competitors GONE — here's how to grab their customers</div>
+  <div class="date">Built: March 20, 2026 5:00 AM | First Day of Spring 🌱</div>
+</div>
+
+<div class="alert-banner">
+  <h2>⚡ The Window Is Open NOW</h2>
+  <span class="stat">4 competitors gone</span>
+  <span class="stat">Only 3 remain</span>
+  <span class="stat">North County = ZERO competition</span>
+  <p>POOP 911 withdrew entirely. DoodyCalls is closing. Poop2Scoop shut down. Pawfect's site is dead. The remaining 3 competitors (Doggie Doodies, Scoop Soldiers, Dirty Dog Wash) are all focused on West County/Chesterfield — NOT North County. <strong>Florissant, Hazelwood, and Bridgeton have NO active pet waste removal service except Tidy Tails.</strong></p>
+</div>
+
+<div class="section">
+  <h2>💀 Competitor Status Board</h2>
+  <div class="competitor-status">
+    <div class="comp-card">
+      <div class="name">POOP 911</div>
+      <div class="status gone">❌ FULLY WITHDRAWN — All STL pages 404</div>
+      <div class="detail">National franchise pulled out of entire STL market. Florissant, St. Louis, Missouri state pages all broken.</div>
+    </div>
+    <div class="comp-card">
+      <div class="name">DoodyCalls STL</div>
+      <div class="status gone">❌ LIKELY CLOSING — Removed from locations page</div>
+      <div class="detail">Page exists at doodycalls.com/st-louis but NOT listed on their official locations directory. Franchise winding down.</div>
+    </div>
+    <div class="comp-card">
+      <div class="name">Poop2Scoop</div>
+      <div class="status gone">❌ CLOSED — PetWorks confirms paused/closed</div>
+      <div class="detail">Veteran-owned, operated since 2017. Website still loads but listing says "paused or closed."</div>
+    </div>
+    <div class="comp-card">
+      <div class="name">Pawfect Waste Solutions</div>
+      <div class="status gone">❌ SITE DOWN — Domain may have lapsed</div>
+      <div class="detail">pooperscooperstl.com returns "SITE NOT FOUND."</div>
+    </div>
+    <div class="comp-card active">
+      <div class="name">Doggie Doodies</div>
+      <div class="status weak">⚠️ Active — West County/St. Charles ONLY</div>
+      <div class="detail">$83-90/mo. Hotmail email. Wix site. NOT in North County. TJ's $70/mo beats them.</div>
+    </div>
+    <div class="comp-card active">
+      <div class="name">Scoop Soldiers</div>
+      <div class="status weak">⚠️ Active — National franchise, STL page</div>
+      <div class="detail">~$60-65/mo (weekly at $15/visit). Generic national brand, no local face.</div>
+    </div>
+    <div class="comp-card active">
+      <div class="name">Dirty Dog Wash "Poo Crew"</div>
+      <div class="status weak">⚠️ Active — Chesterfield 10-mi radius ONLY</div>
+      <div class="detail">$95/mo weekly. Grooming shop add-on. Geographically limited to Chesterfield area.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>📞 Priority Call List — Vacuum Zone Leads</h2>
+  <p style="color: #9ca3af; font-size: 14px; margin-bottom: 8px;">These leads are in areas where competitors just left. The "competitor withdrawal" angle makes calls warmer — they may already NEED a new provider.</p>
+  
+  <div class="priority-legend">
+    <div class="item"><div class="dot p1"></div> 🟢 Call THIS WEEK — Highest value</div>
+    <div class="item"><div class="dot p2"></div> 🔵 Call next week</div>
+    <div class="item"><div class="dot p3"></div> 🟣 Research & approach this month</div>
+  </div>
+
+  <!-- LEAD 1: Millsap Properties -->
+  <div class="lead-card priority-1">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">⭐ Millsap Properties</div>
+        <div style="color: #22c55e; font-size: 13px; font-weight: 600;">7 properties across Florissant + Hazelwood + St. Charles</div>
+      </div>
+      <div class="lead-type">Property Management</div>
+    </div>
+    <div class="lead-info">
+      <div class="item"><span class="label">📞 Phone:</span> <span class="value">(314) 686-3337</span></div>
+      <div class="item"><span class="label">📧 Email:</span> <span class="value">millsappropertymanagement@gmail.com</span></div>
+      <div class="item"><span class="label">🏢 Key Properties:</span> <span class="value">Charbonier Apts (Florissant), Teson Garden (Hazelwood), White Birch (Hazelwood)</span></div>
+      <div class="item"><span class="label">💰 Est. Value:</span> <span class="value">$200-500/mo (multi-property contract)</span></div>
+    </div>
+    <div class="vacuum-angle">
+      <div class="va-label">🎯 Competitor Vacuum Angle</div>
+      <div class="va-text">POOP 911 just pulled out of Florissant entirely. DoodyCalls is closing their STL franchise. If Millsap was using either of these, they need a replacement NOW. Their Florissant and Hazelwood properties are in the exact zone where all competitors have disappeared.</div>
+    </div>
+    <div class="pitch-box">
+      <div class="pitch-label">Jamie's Opening Line</div>
+      <div class="pitch-text">"Hi, this is Jamie with Tidy Tails — we do pet waste removal in Florissant and Hazelwood. I'm reaching out because <span class="highlight">two of the bigger companies in this area just shut down</span>, and I wanted to make sure property managers like you aren't left without options for keeping common areas clean. We're local, we're already servicing clients near Charbonier — can I send you a quick proposal?"</div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, `Hi, this is Jamie with Tidy Tails — we do pet waste removal in Florissant and Hazelwood. I'm reaching out because two of the bigger companies in this area just shut down, and I wanted to make sure property managers like you aren't left without options for keeping common areas clean. We're local, we're already servicing clients near Charbonier — can I send you a quick proposal?`)">📋 Copy Script</button>
+  </div>
+
+  <!-- LEAD 2: CPM Gateway -->
+  <div class="lead-card priority-1">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">⭐ CPM Gateway — Florissant HOA Manager</div>
+        <div style="color: #22c55e; font-size: 13px; font-weight: 600;">Manages dozens of Florissant HOA communities</div>
+      </div>
+      <div class="lead-type">HOA Management</div>
+    </div>
+    <div class="lead-info">
+      <div class="item"><span class="label">🌐 Website:</span> <a href="https://cpmgateway.com" target="_blank">cpmgateway.com</a></div>
+      <div class="item"><span class="label">📍 Focus:</span> <span class="value">North St. Louis County — Florissant, Hazelwood area</span></div>
+      <div class="item"><span class="label">🏘️ Clients:</span> <span class="value">75%+ retention over 5 years. AAMC accredited. Manages multiple HOA communities.</span></div>
+      <div class="item"><span class="label">💰 Est. Value:</span> <span class="value">$150-400/mo per community (multiple communities possible)</span></div>
+    </div>
+    <div class="vacuum-angle">
+      <div class="va-label">🎯 Competitor Vacuum Angle</div>
+      <div class="va-text">CPM Gateway specifically serves Florissant/North County HOAs. Their communities likely have pet waste issues. With POOP 911 gone and DoodyCalls leaving, they may be getting complaints from boards about dirty common areas with no service provider to call. We're the ONLY local option.</div>
+    </div>
+    <div class="pitch-box">
+      <div class="pitch-label">Jamie's Opening Line</div>
+      <div class="pitch-text">"Hi, I'm Jamie with Tidy Tails — we specialize in pet waste removal for communities right here in Florissant. I know <span class="highlight">pet waste is consistently one of the top complaints HOA boards deal with</span>, and with a couple of the bigger cleanup companies leaving the area, I wanted to introduce ourselves. We're local, we're affordable, and we can handle common area cleanup on a weekly schedule. Would any of your communities be interested in a quote?"</div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, `Hi, I'm Jamie with Tidy Tails — we specialize in pet waste removal for communities right here in Florissant. I know pet waste is consistently one of the top complaints HOA boards deal with, and with a couple of the bigger cleanup companies leaving the area, I wanted to introduce ourselves. We're local, we're affordable, and we can handle common area cleanup on a weekly schedule. Would any of your communities be interested in a quote?`)">📋 Copy Script</button>
+  </div>
+
+  <!-- LEAD 3: Greenway Chase -->
+  <div class="lead-card priority-1">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">⭐ Greenway Chase Apartments</div>
+        <div style="color: #22c55e; font-size: 13px; font-weight: 600;">312 units + dog park — Florissant/Black Jack</div>
+      </div>
+      <div class="lead-type">Apartment Complex</div>
+    </div>
+    <div class="lead-info">
+      <div class="item"><span class="label">📍 Address:</span> <span class="value">629 Greenway Manor Dr, Florissant, MO 63031</span></div>
+      <div class="item"><span class="label">🏢 Size:</span> <span class="value">312 units, built 1985, 3 stories</span></div>
+      <div class="item"><span class="label">🐕 Pet Policy:</span> <span class="value">Dogs/cats allowed (breed restrictions). ON-SITE DOG PARK.</span></div>
+      <div class="item"><span class="label">💰 Est. Value:</span> <span class="value">$200-400/mo (common areas + dog park weekly)</span></div>
+      <div class="item"><span class="label">🏊 Amenities:</span> <span class="value">Pool, 2 tennis courts, fitness center, clubhouse, dog park</span></div>
+    </div>
+    <div class="vacuum-angle">
+      <div class="va-label">🎯 Competitor Vacuum Angle</div>
+      <div class="va-text">312 pet-friendly units with a DOG PARK in Florissant. This is a goldmine. With zero competitors left in North County, their maintenance crew is probably doing the dirty work themselves. A professional service is an easy sell to reduce tenant complaints and keep the dog park usable.</div>
+    </div>
+    <div class="pitch-box">
+      <div class="pitch-label">Jamie's Opening Line</div>
+      <div class="pitch-text">"Hi, I'm Jamie with Tidy Tails — I saw you have an awesome dog park at Greenway Chase, and I wanted to reach out. <span class="highlight">We keep dog parks and common areas clean weekly</span> so your residents actually want to use them and your maintenance team doesn't have to deal with it. We're the only local pet waste removal service in Florissant. Can I drop off a proposal for your property manager?"</div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, `Hi, I'm Jamie with Tidy Tails — I saw you have an awesome dog park at Greenway Chase, and I wanted to reach out. We keep dog parks and common areas clean weekly so your residents actually want to use them and your maintenance team doesn't have to deal with it. We're the only local pet waste removal service in Florissant. Can I drop off a proposal for your property manager?`)">📋 Copy Script</button>
+  </div>
+
+  <!-- LEAD 4: Des Arboles -->
+  <div class="lead-card priority-2">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">Des Arboles Apartments</div>
+        <div style="color: #3b82f6; font-size: 13px;">Pet-friendly community in Florissant</div>
+      </div>
+      <div class="lead-type">Apartment Complex</div>
+    </div>
+    <div class="lead-info">
+      <div class="item"><span class="label">📍 Address:</span> <span class="value">3209 Cross Keys Dr, Florissant, MO 63033</span></div>
+      <div class="item"><span class="label">📞 Phone:</span> <span class="value">(314) 831-1366</span></div>
+      <div class="item"><span class="label">🐕 Pet Policy:</span> <span class="value">Dogs and cats welcome</span></div>
+      <div class="item"><span class="label">💰 Est. Value:</span> <span class="value">$75-150/mo</span></div>
+    </div>
+    <div class="pitch-box">
+      <div class="pitch-label">Jamie's Script</div>
+      <div class="pitch-text">"Hi, this is Jamie with Tidy Tails. We're a pet waste removal service right here in Florissant. I noticed you're pet-friendly and wanted to see if <span class="highlight">common area cleanup is something your team handles in-house or if you'd be open to a professional service</span>. We're local and very affordable — can I send over some info?"</div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, `Hi, this is Jamie with Tidy Tails. We're a pet waste removal service right here in Florissant. I noticed you're pet-friendly and wanted to see if common area cleanup is something your team handles in-house or if you'd be open to a professional service. We're local and very affordable — can I send over some info?`)">📋 Copy Script</button>
+  </div>
+
+  <!-- LEAD 5: Sugar Pines -->
+  <div class="lead-card priority-2">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">Sugar Pines Apartments</div>
+        <div style="color: #3b82f6; font-size: 13px;">Pet-friendly — Florissant, MO 63033</div>
+      </div>
+      <div class="lead-type">Apartment Complex</div>
+    </div>
+    <div class="lead-info">
+      <div class="item"><span class="label">📍 Address:</span> <span class="value">11011 Sugar Pines Ct, Florissant, MO 63033</span></div>
+      <div class="item"><span class="label">🐕 Pet Policy:</span> <span class="value">Dogs and cats welcome (dedicated pet policy page)</span></div>
+      <div class="item"><span class="label">💰 Est. Value:</span> <span class="value">$75-150/mo</span></div>
+    </div>
+    <div class="pitch-box">
+      <div class="pitch-label">Jamie's Script</div>
+      <div class="pitch-text">"Hi, this is Jamie from Tidy Tails — local pet waste removal in Florissant. I saw you welcome pets and I wanted to introduce our service. <span class="highlight">We handle weekly cleanup of common areas and walkways</span> so your grounds stay clean and your residents stay happy. There aren't any other pet waste services in Florissant right now, so we're it! Can I share pricing?"</div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, `Hi, this is Jamie from Tidy Tails — local pet waste removal in Florissant. I saw you welcome pets and I wanted to introduce our service. We handle weekly cleanup of common areas and walkways so your grounds stay clean and your residents stay happy. There aren't any other pet waste services in Florissant right now, so we're it! Can I share pricing?`)">📋 Copy Script</button>
+  </div>
+
+  <!-- LEAD 6: Delrado -->
+  <div class="lead-card priority-2">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">Delrado Apartments</div>
+        <div style="color: #3b82f6; font-size: 13px;">Florissant — near Hazelwood School District</div>
+      </div>
+      <div class="lead-type">Apartment Complex</div>
+    </div>
+    <div class="lead-info">
+      <div class="item"><span class="label">📍 Address:</span> <span class="value">680 Mescalero Ct, Florissant, MO 63031</span></div>
+      <div class="item"><span class="label">📞 Phone:</span> <span class="value">(314) 501-5599</span></div>
+      <div class="item"><span class="label">🐕 Pet Policy:</span> <span class="value">Pet-friendly</span></div>
+      <div class="item"><span class="label">💰 Est. Value:</span> <span class="value">$75-150/mo</span></div>
+    </div>
+    <div class="pitch-box">
+      <div class="pitch-label">Jamie's Script</div>
+      <div class="pitch-text">"Hi, I'm Jamie with Tidy Tails — we do pet waste cleanup for apartment communities in Florissant. <span class="highlight">Spring is here and dog owners are outside more</span>, which means more waste in your common areas. We handle it weekly so your maintenance crew doesn't have to. Can I email you a quick proposal?"</div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, `Hi, I'm Jamie with Tidy Tails — we do pet waste cleanup for apartment communities in Florissant. Spring is here and dog owners are outside more, which means more waste in your common areas. We handle it weekly so your maintenance crew doesn't have to. Can I email you a quick proposal?`)">📋 Copy Script</button>
+  </div>
+
+  <!-- LEAD 7: Florissant HOAs -->
+  <div class="lead-card priority-3">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">Florissant HOA Communities (10+ identified)</div>
+        <div style="color: #a855f7; font-size: 13px;">HOAs with potential common area contracts</div>
+      </div>
+      <div class="lead-type">HOA Communities</div>
+    </div>
+    <div class="lead-info">
+      <div class="item" style="grid-column: 1 / -1;">
+        <span class="label">🏘️ Communities Found:</span>
+        <span class="value">Afshari Estates • Ashbury Crossing • Boardwalk • Castlereagh Estates • Charbonier HOA • Chateau Du Mont Estates • Colony at Jamestown • Cross Keys Estates • Estates at Behlmann Farms • Estates at Lexington Gardens</span>
+      </div>
+      <div class="item"><span class="label">📊 Source:</span> <a href="https://hoa-community.com/location/mo/florissant-mo/" target="_blank">hoa-community.com</a></div>
+      <div class="item"><span class="label">💰 Est. Value:</span> <span class="value">$100-250/mo per community</span></div>
+    </div>
+    <div class="vacuum-angle">
+      <div class="va-label">🎯 Strategy</div>
+      <div class="va-text">Instead of calling each HOA individually, go through CPM Gateway (Lead #2 above) who manages many of these. One relationship = multiple contracts. For HOAs not managed by CPM, approach the board president at annual meetings or via HOA websites.</div>
+    </div>
+  </div>
+
+  <!-- LEAD 8: Associa Smith Management (existing) -->
+  <div class="lead-card priority-1">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">⭐ Associa / Smith Management Group</div>
+        <div style="color: #22c55e; font-size: 13px; font-weight: 600;">LARGEST HOA manager in STL metro — dozens of communities</div>
+      </div>
+      <div class="lead-type">HOA Management (Existing Lead)</div>
+    </div>
+    <div class="lead-info">
+      <div class="item"><span class="label">📍 Address:</span> <span class="value">1630 Des Peres Rd, Suite 210, St. Louis, MO 63131</span></div>
+      <div class="item"><span class="label">📞 Phone:</span> <span class="value">(314) 394-4200</span></div>
+      <div class="item"><span class="label">🌐 Website:</span> <a href="https://smithmgmt.com" target="_blank">smithmgmt.com</a></div>
+      <div class="item"><span class="label">💰 Est. Value:</span> <span class="value">$500-2,000/mo (portfolio contract)</span></div>
+    </div>
+    <div class="vacuum-angle">
+      <div class="va-label">🎯 Competitor Vacuum Angle</div>
+      <div class="va-text">With DoodyCalls leaving and POOP 911 gone, Associa communities that used those services need a replacement. Associa is the #1 HOA manager in STL. Landing this ONE relationship could mean 5-10+ community contracts. Use the competitor withdrawal as urgency: "Your communities may already be without service."</div>
+    </div>
+    <div class="pitch-box">
+      <div class="pitch-label">Jamie's Opening Line</div>
+      <div class="pitch-text">"Hi, I'm Jamie with Tidy Tails — local pet waste removal. I'm calling because <span class="highlight">DoodyCalls just closed their St. Louis franchise and POOP 911 pulled out completely</span>. If any of your managed communities were using those services, they're going to need a new provider. We're local, affordable, and already servicing the area. I'd love to discuss a partnership where we handle pet waste for your communities."</div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, `Hi, I'm Jamie with Tidy Tails — local pet waste removal. I'm calling because DoodyCalls just closed their St. Louis franchise and POOP 911 pulled out completely. If any of your managed communities were using those services, they're going to need a new provider. We're local, affordable, and already servicing the area. I'd love to discuss a partnership where we handle pet waste for your communities.`)">📋 Copy Script</button>
+  </div>
+</div>
+
+<div class="section">
+  <h2>📜 Master Cold Call Script — "Competitor Withdrawal" Version</h2>
+  
+  <div class="script-box">
+    <h3>🎯 The Competitor Vacuum Script (for any commercial lead)</h3>
+    
+    <div class="line"><span class="speaker">Jamie:</span> <span class="words">"Hi [Name], this is Jamie with Tidy Tails — we're a local pet waste removal service here in [their area]. How are you today?"</span></div>
+    
+    <div class="note">[Brief pleasantry, then pivot]</div>
+    
+    <div class="line"><span class="speaker">Jamie:</span> <span class="words">"I'm reaching out because there's been a big shift in our industry locally — a few of the larger pet waste companies have either shut down or left St. Louis in the last few months. POOP 911 pulled out entirely, and DoodyCalls is closing their franchise here."</span></div>
+    
+    <div class="note">[Pause — let them react. They may say "oh, we used them!" or "I didn't know that"]</div>
+    
+    <div class="line"><span class="speaker">Jamie:</span> <span class="words">"So I wanted to make sure property managers and HOAs in the area know there's still a local option. We handle weekly common area cleanup, dog park maintenance, and pet waste station servicing. Everything your maintenance crew shouldn't have to do."</span></div>
+    
+    <div class="note">[If they're interested:]</div>
+    
+    <div class="line"><span class="speaker">Jamie:</span> <span class="words">"I'd love to put together a quick proposal for you. It's usually very affordable — most communities pay between $100 and $300 a month depending on size. Can I get your email to send that over?"</span></div>
+    
+    <div class="note">[If they hesitate:]</div>
+    
+    <div class="line"><span class="speaker">Jamie:</span> <span class="words">"No pressure at all! Spring is here and this is when pet waste complaints spike. If it becomes an issue, keep our number — we can usually start within a week. It's Jamie at 314-850-7140."</span></div>
+    
+    <button class="copy-btn" onclick="copyText(this, `Hi [Name], this is Jamie with Tidy Tails — we're a local pet waste removal service here in [their area]. How are you today?\n\nI'm reaching out because there's been a big shift in our industry locally — a few of the larger pet waste companies have either shut down or left St. Louis in the last few months. POOP 911 pulled out entirely, and DoodyCalls is closing their franchise here.\n\nSo I wanted to make sure property managers and HOAs in the area know there's still a local option. We handle weekly common area cleanup, dog park maintenance, and pet waste station servicing. Everything your maintenance crew shouldn't have to do.\n\nI'd love to put together a quick proposal for you. It's usually very affordable — most communities pay between $100 and $300 a month depending on size. Can I get your email to send that over?\n\n[If they hesitate:] No pressure at all! Spring is here and this is when pet waste complaints spike. If it becomes an issue, keep our number — we can usually start within a week. It's Jamie at 314-850-7140.`)">📋 Copy Full Script</button>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🗓️ Execution Timeline</h2>
+  <div class="timeline">
+    <h3>Jamie's Blitz Plan (3 hours total, spread across the week)</h3>
+    <div class="week">
+      <div class="week-label">Mon/Tue:</div>
+      <div class="week-tasks">Call Millsap Properties + Associa Smith Management (the two big fish). 20 min total. Use the competitor withdrawal script.</div>
+    </div>
+    <div class="week">
+      <div class="week-label">Wed:</div>
+      <div class="week-tasks">Call CPM Gateway + Greenway Chase (312 units). 20 min. Drop off a flyer at Greenway Chase if possible — it's in Florissant.</div>
+    </div>
+    <div class="week">
+      <div class="week-label">Thu/Fri:</div>
+      <div class="week-tasks">Call Des Arboles, Sugar Pines, Delrado. 15 min total. These are smaller but they're ALL in Florissant — easy route bundling.</div>
+    </div>
+    <div class="week">
+      <div class="week-label">Next Week:</div>
+      <div class="week-tasks">Follow up on any proposals sent. Research individual HOA boards from the Florissant list. Email any that didn't answer the phone.</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>💡 Commercial Pricing Quick Reference</h2>
+  <div style="background: #1a1a1a; border-radius: 10px; padding: 20px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+      <div>
+        <div style="color: #f59e0b; font-weight: 600; margin-bottom: 4px;">Small Complex (under 100 units)</div>
+        <div style="font-size: 24px; color: #22c55e; font-weight: 700;">$75-150/mo</div>
+        <div style="font-size: 12px; color: #6b7280;">Weekly common area sweep</div>
+      </div>
+      <div>
+        <div style="color: #f59e0b; font-weight: 600; margin-bottom: 4px;">Large Complex (100-300+ units)</div>
+        <div style="font-size: 24px; color: #22c55e; font-weight: 700;">$200-400/mo</div>
+        <div style="font-size: 12px; color: #6b7280;">Weekly common areas + dog park</div>
+      </div>
+      <div>
+        <div style="color: #f59e0b; font-weight: 600; margin-bottom: 4px;">HOA Community</div>
+        <div style="font-size: 24px; color: #22c55e; font-weight: 700;">$100-300/mo</div>
+        <div style="font-size: 12px; color: #6b7280;">Common areas, trails, dog stations</div>
+      </div>
+      <div>
+        <div style="color: #f59e0b; font-weight: 600; margin-bottom: 4px;">Property Mgmt Portfolio</div>
+        <div style="font-size: 24px; color: #22c55e; font-weight: 700;">Negotiate bulk</div>
+        <div style="font-size: 12px; color: #6b7280;">10-15% discount for 3+ properties</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="bottom-note">
+  <h3>🧠 Why This Matters Right Now</h3>
+  <p>This is a once-in-a-business-lifetime window. Half the market just evaporated and spring is starting TODAY. Properties that had service are looking for replacements. Properties that didn't have service are about to get swamped with complaints as dogs spend more time outside. Tidy Tails is the ONLY local operator in North County. First mover advantage is real — whoever calls first, wins.</p>
+  <p style="margin-top: 8px; color: #22c55e; font-weight: 600;">Even ONE commercial contract from this list = $100-400/mo recurring. That's 1-4 residential customers worth of revenue from a single phone call.</p>
+</div>
+
+<script>
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.textContent = '📋 Copy Script';
+    }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>

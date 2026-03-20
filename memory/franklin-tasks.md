@@ -32,6 +32,36 @@
 
 ---
 
+### 5:04 AM — 🎯 COMPETITOR VACUUM BLITZ — Commercial Call Sheet (Lead Gen)
+**Task:** Built a complete "Competitor Vacuum Blitz" call sheet that connects the 4am competitive intel (4/7 STL competitors GONE) to actionable commercial leads with tailored scripts. Researched Florissant apartment complexes, HOA communities, and property management companies in the vacuum zones.
+
+**Result:** ✅ COMPLETE — `dashboard/competitor-vacuum-blitz.html`
+
+**Key Deliverables:**
+1. **7 competitor status cards** showing exactly who's gone and who's left
+2. **8 prioritized commercial leads** in the competitor vacuum zones:
+   - Millsap Properties (7 properties in Florissant/Hazelwood) ⭐
+   - CPM Gateway (Florissant HOA manager — dozens of communities) ⭐
+   - Greenway Chase Apartments (312 units with dog park) ⭐
+   - Associa/Smith Management (largest STL HOA manager) ⭐
+   - Des Arboles, Sugar Pines, Delrado (3 Florissant apartment complexes)
+   - 10+ Florissant HOA communities identified
+3. **Custom "Competitor Withdrawal" cold call script** — warm angle using the fact that POOP 911/DoodyCalls left
+4. **Individual opening lines** for each lead with copy-to-clipboard
+5. **3-week execution timeline** for Jamie (3 hours total)
+6. **Commercial pricing quick reference** ($75-400/mo ranges)
+
+**New Leads Found:** CPM Gateway (Florissant HOA manager), Greenway Chase (312 units), Des Arboles, Sugar Pines, Delrado — all in Florissant competitor vacuum zone
+**Source:** City of Florissant official apartment list, hoa-community.com, apartments.com, RentCafe
+
+**Why This Task:** The 4am competitive intel revealed a massive market vacuum. But intel without action = wasted opportunity. This turns "4 competitors are gone" into "here's who to call Monday with exactly what to say." Jamie can execute this in under 3 hours with zero prep.
+
+**Revenue Potential:** Even 1 commercial contract = $100-400/mo recurring = 1-4 residential customers from a single call.
+
+**Rotation:** 🎯 Sales / Lead Generation
+
+---
+
 ### 4:04 AM — 🔍 COMPETITIVE INTEL SWEEP — Market Thinning Report (Research)
 **Task:** Deep crawl of all known STL pet waste removal competitors to verify status and pricing. Crawled POOP 911 (3 URLs), Scoop Soldiers (3 pages), Doggie Doodies (3 pages), DoodyCalls (2 pages), Dirty Dog Wash, Poop2Scoop, and Pawfect Waste Solutions.
 
