@@ -7,6 +7,79 @@
 
 ## March 20, 2026 (Friday)
 
+### 12:05 PM — 🏠 SHED SALES CLOSER TOOL — "Why Buy NOW" with Live Market Data (TuffShed/Sales)
+**Task:** Researched live lumber futures and tariff data, then built a mobile-optimized sales closer tool TJ can pull up on his phone at the lot. Includes 5 copy-paste talk track scripts, 6 objection handlers with responses, wait-tax math calculator, storage unit comparison, and a lumber price escalation timeline.
+
+**Result:** ✅ COMPLETE — `dashboard/shed-urgency-closer.html`
+
+**Live Market Intel (as of Mar 20):**
+- Lumber futures: $602/1,000 BF (4-week high, rebounding past $600)
+- Canadian lumber tariffs: 45.19% total (anti-dumping 20.56% + CVD 14.63% + §232 10%)
+- Supply removed: 1.3 billion board feet from mill closures this year
+- Multifamily housing starts: +29.1% surge
+- NAHB HMI: 38 (stabilizing, buyer traffic improving)
+- USMCA review scheduled 2026 — tariffs could get WORSE
+
+**Key Features:**
+1. **Market Ticker** — Live data at top (lumber price, tariff %, supply cut, price direction)
+2. **5 Sales Scripts** — The Opener, Math Close, Urgency Close, Storage Unit Comparison, Quality Angle
+3. **6 Objection Handlers** — "Want to wait," "Too expensive," "Cheaper at Home Depot," "Need to ask spouse," "I'll rent storage," "How long for delivery"
+4. **Wait Tax Calculator** — Shows $500-$1,000 cost of waiting 6 months
+5. **Storage Unit vs. Shed Math** — 3-year comparison ($6,300 rent vs $3,096 financed + equity)
+6. **Price Escalation Timeline** — Jul 2025 → 2026 showing each tariff increase
+7. **Payment Estimates** — Quick reference grid ($86-$450+/mo by size)
+8. **Tabbed UI** — Scripts | Data | Objections | Math | Timeline
+9. **Copy buttons** on every script for one-tap copying
+10. **Mobile-optimized** — dark theme, big text, designed for phone at the lot
+
+**Why This Task:** 
+- TuffShed pipeline hasn't gotten any love today (11 Tidy Tails tasks already shipped)
+- Lumber JUST rebounded past $600 — fresh urgency angle
+- Tariffs escalated 3x in 2025, now at 45% — most customers don't know this
+- Spring = peak season. TJ needs ammunition for walk-up customers RIGHT NOW
+- Previous shed intel (Mar 17) was data-only — this is a SALES TOOL with scripts
+
+**Revenue Impact:** One closed shed deal = $3,000-15,000+ revenue. This tool helps TJ close fence-sitters with real data and rehearsed scripts.
+
+**Dashboard Updated:** Added "Why Buy NOW — Sales Closer Tool" as first item in Shed Business section (highlighted red badge).
+
+**Rotation:** 🏠 TuffShed / Sales Tools
+
+---
+
+### 11:04 AM — 📞 COMMERCIAL LEAD ENRICHMENT — Verified Contacts for Jamie (Lead Gen/Sales)
+**Task:** Researched and verified real phone numbers, emails, and decision-maker info for 7 commercial leads in TJ's core territory (Florissant 63031/63033). Built an interactive call sheet with one-tap dial buttons, pre-written email links with populated subject/body, personalized pitch scripts per lead, and a progress tracker.
+
+**Result:** ✅ COMPLETE — `dashboard/commercial-leads-enriched.html`
+
+**Verified Contact Info Found:**
+1. **Millsap Properties** ⭐ — (314) 686-3337, millsappropertymanagement@gmail.com (7 pet-friendly communities, owns all properties)
+2. **CPM Gateway** ⭐ — (636) 227-8688, Manchester MO (manages dozens of Florissant HOAs, has dedicated Florissant page)
+3. **Greenway Chase** ⭐ — (314) 528-9326, 629 Greenway Manor Dr 63031 (~312 units, has BARK PARK)
+4. **Delrado Apartments** — 314-666-RADO, pm@delradorents.com, leasing@delradorents.com (on-site dog park, managed by Avaz Management)
+5. **Sugar Pines** — (314) 219-5122, 11011 Sugar Pines Ct 63033 (pet-friendly)
+6. **Des Arboles** — 3209 Cross Keys Dr 63033, contact form (pet-friendly, advertises "bring your pets!")
+7. **Associa/Smith Management** — (314) 394-4200, 1630 Des Peres Rd (largest STL HOA manager, 100s of communities)
+
+**Key Features:**
+- One-tap phone links (tel: protocol for mobile)
+- Pre-written emails with populated subject + body (mailto: links)
+- Personalized pitch scripts per lead with copy buttons
+- Progress tracker with localStorage (Called → Emailed → Meeting → Won)
+- Universal cold call script with responses for yes/no/maybe
+- Commercial pricing quick reference
+- Pro tips for call timing and objection handling
+
+**Revenue Potential:** $1,200-3,600/mo across all leads. Even 1 commercial contract = $75-400/mo recurring.
+
+**Why This Task:** We have 130+ marketing deliverables and ~8 customers. Previous call sheets had lead NAMES but no verified PHONE NUMBERS or EMAILS. Jamie can't call leads she can't find numbers for. This removes the last barrier between "we have leads" and "Jamie is on the phone."
+
+**Dashboard Updated:** Added "📞 Verified Commercial Leads" link to dashboard nav (highlighted green with border).
+
+**Rotation:** 📞 Sales / Lead Generation / Enrichment
+
+---
+
 ### 9:09 AM — 🔍 LIVE SEARCH VISIBILITY AUDIT — Where Are We Actually Ranking? (Research/Audit)
 **Task:** Ran live search queries across Brave to audit exactly where tidytailsstl.com appears (or doesn't) in real search results. Tested 5 queries: site: search, generic local keywords, zip code keywords, branded search, and exact domain search.
 

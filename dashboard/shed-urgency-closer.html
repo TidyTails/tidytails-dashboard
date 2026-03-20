@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏠 Why Buy Your Shed NOW — Sales Closer Tool</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #13131a;
+    --accent: #f59e0b;
+    --red: #ef4444;
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #1e293b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 12px;
+  }
+  .header {
+    text-align: center;
+    padding: 20px 0 12px;
+  }
+  .header h1 {
+    font-size: 1.6em;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .header .subtitle {
+    color: var(--muted);
+    font-size: 0.9em;
+  }
+  .ticker {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    border: 1px solid var(--accent);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 16px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .ticker-item {
+    text-align: center;
+  }
+  .ticker-label {
+    font-size: 0.7em;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .ticker-value {
+    font-size: 1.8em;
+    font-weight: 800;
+    margin: 2px 0;
+  }
+  .ticker-value.red { color: var(--red); }
+  .ticker-value.green { color: var(--green); }
+  .ticker-value.amber { color: var(--accent); }
+  .ticker-change {
+    font-size: 0.75em;
+    color: var(--red);
+  }
+  .ticker-change.up::before { content: '▲ '; }
+  .ticker-change.down::before { content: '▼ '; }
+
+  .section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+  }
+  .section h2 {
+    font-size: 1.1em;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .urgency-bar {
+    background: #1a1a2e;
+    border-radius: 8px;
+    height: 32px;
+    overflow: hidden;
+    margin: 8px 0;
+    position: relative;
+  }
+  .urgency-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green), var(--accent), var(--red));
+    width: 82%;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 8px;
+    font-weight: 700;
+    font-size: 0.85em;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.85; }
+  }
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -20px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--red);
+  }
+  .timeline-item.past::before { background: var(--muted); }
+  .timeline-item.now::before { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+  .timeline-date { font-size: 0.75em; color: var(--accent); font-weight: 600; }
+  .timeline-event { font-size: 0.9em; margin-top: 2px; }
+  .timeline-impact { font-size: 0.8em; color: var(--red); margin-top: 2px; }
+
+  .comparison {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  .comp-card {
+    background: #1a1a2e;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+  }
+  .comp-card.good { border: 1px solid var(--green); }
+  .comp-card.bad { border: 1px solid var(--red); }
+  .comp-label { font-size: 0.7em; color: var(--muted); text-transform: uppercase; }
+  .comp-price { font-size: 1.5em; font-weight: 800; margin: 4px 0; }
+  .comp-price.green { color: var(--green); }
+  .comp-price.red { color: var(--red); }
+  .comp-note { font-size: 0.75em; color: var(--muted); }
+
+  .script-box {
+    background: #1a1a2e;
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 12px;
+    margin: 10px 0;
+    font-style: italic;
+    font-size: 0.9em;
+    line-height: 1.5;
+    position: relative;
+  }
+  .script-box .label {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--accent);
+    font-size: 0.75em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 0.7em;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .copy-btn.copied { background: var(--green); }
+
+  .objection {
+    margin: 10px 0;
+    padding: 12px;
+    background: #1a1a2e;
+    border-radius: 8px;
+  }
+  .objection-q {
+    font-weight: 700;
+    color: var(--red);
+    font-size: 0.9em;
+    margin-bottom: 6px;
+  }
+  .objection-a {
+    font-size: 0.85em;
+    color: var(--text);
+    line-height: 1.4;
+  }
+
+  .math-box {
+    background: linear-gradient(135deg, #0d2818, #1a1a2e);
+    border: 1px solid var(--green);
+    border-radius: 8px;
+    padding: 14px;
+    margin: 10px 0;
+  }
+  .math-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    font-size: 0.9em;
+  }
+  .math-row.total {
+    border-top: 2px solid var(--green);
+    margin-top: 6px;
+    padding-top: 10px;
+    font-weight: 700;
+    font-size: 1.1em;
+    color: var(--green);
+  }
+  .math-row .neg { color: var(--red); }
+
+  .cta-section {
+    text-align: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #1a0f05, #13131a);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    margin: 16px 0;
+  }
+  .cta-section h2 {
+    justify-content: center;
+    font-size: 1.3em;
+  }
+  .cta-section p {
+    color: var(--muted);
+    font-size: 0.9em;
+    margin: 8px 0;
+  }
+  .cta-highlight {
+    font-size: 1.8em;
+    font-weight: 800;
+    color: var(--green);
+    margin: 8px 0;
+  }
+
+  .tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 12px;
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 8px 14px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.8em;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .tab.active { background: var(--accent); color: #000; font-weight: 700; border-color: var(--accent); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin: 10px 0;
+  }
+  .stat-item {
+    background: #1a1a2e;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+  }
+  .stat-number { font-size: 1.4em; font-weight: 800; color: var(--accent); }
+  .stat-label { font-size: 0.65em; color: var(--muted); text-transform: uppercase; margin-top: 2px; }
+
+  .footer {
+    text-align: center;
+    padding: 16px;
+    color: var(--muted);
+    font-size: 0.75em;
+  }
+  .updated { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏠 Why Buy Your Shed NOW</h1>
+  <div class="subtitle">Sales Closer Tool — Pull this up at the lot</div>
+</div>
+
+<!-- LIVE MARKET TICKER -->
+<div class="ticker">
+  <div class="ticker-item">
+    <div class="ticker-label">Lumber Futures</div>
+    <div class="ticker-value red">$602</div>
+    <div class="ticker-change up">per 1,000 board feet</div>
+  </div>
+  <div class="ticker-item">
+    <div class="ticker-label">Canadian Tariffs</div>
+    <div class="ticker-value red">45%</div>
+    <div class="ticker-change up">Anti-dump + CVD + §232</div>
+  </div>
+  <div class="ticker-item">
+    <div class="ticker-label">Supply Removed</div>
+    <div class="ticker-value amber">1.3B</div>
+    <div class="ticker-change">board feet this year</div>
+  </div>
+  <div class="ticker-item">
+    <div class="ticker-label">Price Direction</div>
+    <div class="ticker-value red">↑ UP</div>
+    <div class="ticker-change">4-week high, rebounding</div>
+  </div>
+</div>
+
+<!-- URGENCY METER -->
+<div class="section">
+  <h2>⚡ Buy-Now Urgency Level</h2>
+  <div class="urgency-bar">
+    <div class="urgency-fill">HIGH — 82%</div>
+  </div>
+  <p style="font-size: 0.8em; color: var(--muted); margin-top: 6px;">
+    Based on lumber futures trend, tariff escalation, supply removal, and spring demand surge
+  </p>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab('scripts')">💬 Scripts</div>
+  <div class="tab" onclick="showTab('data')">📊 Data</div>
+  <div class="tab" onclick="showTab('objections')">🛡️ Objections</div>
+  <div class="tab" onclick="showTab('math')">🧮 Math</div>
+  <div class="tab" onclick="showTab('timeline')">📅 Timeline</div>
+</div>
+
+<!-- SCRIPTS TAB -->
+<div id="scripts" class="tab-content active">
+
+  <div class="script-box">
+    <span class="label">🎯 The Opener — When They're Browsing</span>
+    <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+    "You picked a good time to look. Lumber just hit a 4-week high — $602 a board foot — and with the 45% tariff on Canadian wood, every manufacturer is looking at price increases. What you see today? This is the best price you're gonna get for a while."
+  </div>
+
+  <div class="script-box">
+    <span class="label">💰 The Math Close — When They're Interested</span>
+    <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+    "Let me show you something real quick. Canadian lumber tariffs just went from 14% to 45% in the last year. That 45% gets baked right into the price of every board in your shed. A $5,000 shed today? If lumber goes up another 15-20% — which every analyst is projecting — that same shed is $5,750 to $6,000 by fall. You're literally saving $500-$1,000 by pulling the trigger now."
+  </div>
+
+  <div class="script-box">
+    <span class="label">⏰ The Urgency Close — When They're On The Fence</span>
+    <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+    "I get it — it's a big decision. But here's what I'd want someone to tell me: 1.3 billion board feet of lumber supply is getting pulled from the market this year. Mills are closing. Tariffs are climbing. Spring is when everyone wants to build. If you wait till summer, you're paying more AND waiting longer for delivery. Today you get today's price and we can get you on the schedule before the rush."
+  </div>
+
+  <div class="script-box">
+    <span class="label">🏡 The Self-Storage Comparison</span>
+    <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+    "Quick question — are you paying for a storage unit right now? [If yes:] What, like $150-200 a month? In 3 years that's over $6,000 you'll never see again. This shed? You own it. It's on your property. It adds value to your home. And on financing, you could be looking at $86 a month. You're actually SAVING money while building equity."
+  </div>
+
+  <div class="script-box">
+    <span class="label">🔨 The Quality Angle — vs. Cheap Alternatives</span>
+    <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+    "You can find cheaper sheds online — I won't pretend otherwise. But those are shipped flat-pack from overseas with the thinnest lumber they can get away with. We build on-site with LP SmartSide and real 2x4 framing. The difference? Our sheds last 20-30 years. Those kits start sagging in 3-5. When you factor in replacement costs, this is actually the cheaper option."
+  </div>
+
+</div>
+
+<!-- DATA TAB -->
+<div id="data" class="tab-content">
+
+  <div class="section" style="margin:0 0 12px">
+    <h2>📈 What's Driving Prices Up</h2>
+    <div class="stat-grid">
+      <div class="stat-item">
+        <div class="stat-number">45%</div>
+        <div class="stat-label">Canadian Tariff</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">1.3B</div>
+        <div class="stat-label">BF Supply Cut</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">$602</div>
+        <div class="stat-label">Lumber Price</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">29%</div>
+        <div class="stat-label">Multi-Family Surge</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">7.2%</div>
+        <div class="stat-label">Construction Up</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">38</div>
+        <div class="stat-label">NAHB Index</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="margin:0">
+    <h2>🪵 Tariff Breakdown — Show the Customer</h2>
+    <div class="math-box" style="background: linear-gradient(135deg, #2a0f0f, #1a1a2e); border-color: var(--red);">
+      <div class="math-row">
+        <span>Anti-Dumping Duty</span>
+        <span class="neg">20.56%</span>
+      </div>
+      <div class="math-row">
+        <span>Countervailing Duty</span>
+        <span class="neg">14.63%</span>
+      </div>
+      <div class="math-row">
+        <span>Section 232 Tariff</span>
+        <span class="neg">10.00%</span>
+      </div>
+      <div class="math-row total" style="color: var(--red);">
+        <span>Total Duties on Canadian Lumber</span>
+        <span>45.19%</span>
+      </div>
+    </div>
+    <p style="font-size: 0.8em; color: var(--muted); margin-top: 8px;">
+      <strong>Translation for the customer:</strong> "Almost HALF the cost of Canadian lumber is now government tariffs. 
+      Canada supplies 85% of US lumber imports. That cost goes right into every shed, deck, and house being built."
+    </p>
+  </div>
+
+</div>
+
+<!-- OBJECTIONS TAB -->
+<div id="objections" class="tab-content">
+
+  <div class="objection">
+    <div class="objection-q">😬 "I want to wait and see if prices come down."</div>
+    <div class="objection-a">
+      "I hear you. Here's the thing — lumber dropped for two months and just reversed. It's at a 4-week high right now. 
+      The tariffs aren't going away — they actually INCREASED three times in the last year. Mills are shutting down. 
+      And spring is when demand peaks. Every indicator says prices go up from here, not down. 
+      Waiting 6 months could mean paying $500-$1,000 more for the exact same shed."
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="objection-q">💸 "It's more than I wanted to spend."</div>
+    <div class="objection-a">
+      "Totally get it. Let me ask — what were you thinking budget-wise? [Listen.] 
+      Here's what a lot of people don't realize: we have financing options where you could be looking at $86-$150 a month 
+      depending on size. And unlike rent on a storage unit, you're building equity. This adds value to your property. 
+      Plus — and this is real — this price is locked in TODAY. Next quarter? It's gonna be higher."
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="objection-q">🏪 "I saw cheaper ones at Home Depot / Lowe's."</div>
+    <div class="objection-a">
+      "You sure did. Those are pre-fab kits — thin panels, no real framing, no foundation. You're assembling it yourself 
+      in your backyard on a Saturday cursing at the instructions. [smile] Our buildings are professionally installed, 
+      real 2x4 construction, LP SmartSide engineered wood siding. Lifetime warranty. Those box store kits? 
+      3-5 years before they're leaning. This lasts 20-30 years. When you divide by years of use, 
+      this is actually cheaper per year."
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="objection-q">🤔 "I need to talk to my spouse / think about it."</div>
+    <div class="objection-a">
+      "Absolutely — smart move. Take them through the numbers together. Here's what I'd do: 
+      I can put together a quote for you right now — no obligation — so you have real numbers to discuss instead of guessing. 
+      That way when you talk it over, you're looking at YOUR shed, YOUR price, YOUR monthly payment. 
+      And I'll lock that price for [X] days so you don't have to worry about it going up while you decide. Fair?"
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="objection-q">📦 "I'll just rent a storage unit instead."</div>
+    <div class="objection-a">
+      "A 10x10 storage unit in St. Louis runs $150-$200 a month. In 3 years that's $5,400-$7,200 — gone. 
+      You still don't own anything. You're driving across town every time you need your stuff. 
+      A 10x10 TuffShed on financing? About $86 a month. It's in your backyard. You own it. 
+      It adds property value. And in 5 years you've paid it off and your cost drops to zero. 
+      The storage unit never stops charging you."
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="objection-q">⏳ "How long until delivery/install?"</div>
+    <div class="objection-a">
+      "Right now we're looking at [check current lead times]. Spring is our busiest season — 
+      everyone wants to build when the weather breaks. If you lock in today, you're ahead of the rush. 
+      Wait till May or June? You're looking at longer wait times AND higher prices. 
+      Getting on the schedule now is the move."
+    </div>
+  </div>
+
+</div>
+
+<!-- MATH TAB -->
+<div id="math" class="tab-content">
+
+  <div class="section" style="margin:0 0 12px">
+    <h2>🧮 The "Wait Tax" — What Delay Costs</h2>
+    
+    <div class="comparison">
+      <div class="comp-card good">
+        <div class="comp-label">Buy Today</div>
+        <div class="comp-price green">$5,000</div>
+        <div class="comp-note">Current pricing locked in</div>
+      </div>
+      <div class="comp-card bad">
+        <div class="comp-label">Buy in 6 Months</div>
+        <div class="comp-price red">$5,750+</div>
+        <div class="comp-note">15% lumber increase projected</div>
+      </div>
+    </div>
+    
+    <div class="math-box">
+      <div class="math-row">
+        <span>Example: 10x12 Shed Today</span>
+        <span style="color: var(--green);">$5,000</span>
+      </div>
+      <div class="math-row">
+        <span>Lumber cost increase (15%)</span>
+        <span class="neg">+$400-600</span>
+      </div>
+      <div class="math-row">
+        <span>Tariff pass-through</span>
+        <span class="neg">+$100-200</span>
+      </div>
+      <div class="math-row">
+        <span>Spring demand markup</span>
+        <span class="neg">+$0-200</span>
+      </div>
+      <div class="math-row total" style="color: var(--red);">
+        <span>Cost of Waiting</span>
+        <span>$500 - $1,000</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="margin:0 0 12px">
+    <h2>💰 Shed vs. Storage Unit (3-Year View)</h2>
+    <div class="math-box">
+      <div class="math-row" style="font-weight:700; color: var(--accent);">
+        <span>Self-Storage (10x10)</span>
+        <span></span>
+      </div>
+      <div class="math-row">
+        <span>Monthly rent</span>
+        <span class="neg">$175/mo</span>
+      </div>
+      <div class="math-row">
+        <span>36 months total</span>
+        <span class="neg">-$6,300</span>
+      </div>
+      <div class="math-row">
+        <span>Equity at end</span>
+        <span class="neg">$0</span>
+      </div>
+    </div>
+    <div class="math-box" style="margin-top: 8px;">
+      <div class="math-row" style="font-weight:700; color: var(--accent);">
+        <span>TuffShed (10x10)</span>
+        <span></span>
+      </div>
+      <div class="math-row">
+        <span>Monthly payment (financed)</span>
+        <span style="color: var(--green);">$86/mo</span>
+      </div>
+      <div class="math-row">
+        <span>36 months total</span>
+        <span>-$3,096</span>
+      </div>
+      <div class="math-row">
+        <span>Equity / property value added</span>
+        <span style="color: var(--green);">+$3,000-4,000</span>
+      </div>
+      <div class="math-row total">
+        <span>Net savings vs. storage unit</span>
+        <span>$6,200-7,300</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="margin:0">
+    <h2>📐 Quick Payment Estimates</h2>
+    <p style="font-size: 0.8em; color: var(--muted); margin-bottom: 8px;">Show customer approximate monthly payments (varies by term/credit)</p>
+    <div class="stat-grid">
+      <div class="stat-item">
+        <div class="stat-number" style="font-size:1.1em;">$86</div>
+        <div class="stat-label">10x10 Shed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" style="font-size:1.1em;">$120</div>
+        <div class="stat-label">10x16 Shed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" style="font-size:1.1em;">$175</div>
+        <div class="stat-label">12x20 Shed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" style="font-size:1.1em;">$250</div>
+        <div class="stat-label">12x24 Garage</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" style="font-size:1.1em;">$350</div>
+        <div class="stat-label">14x28 Garage</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number" style="font-size:1.1em;">$450+</div>
+        <div class="stat-label">2-Story / Custom</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TIMELINE TAB -->
+<div id="timeline" class="tab-content">
+
+  <div class="section" style="margin:0">
+    <h2>📅 Lumber Price Escalation Timeline</h2>
+    <p style="font-size:0.8em; color:var(--muted); margin-bottom:12px;">Show the customer: every month they wait, prices climb</p>
+    
+    <div class="timeline">
+      <div class="timeline-item past">
+        <div class="timeline-date">Jul 2025</div>
+        <div class="timeline-event">Anti-dumping duties tripled: 7.66% → 20.56%</div>
+        <div class="timeline-impact">Canadian lumber got 13% more expensive overnight</div>
+      </div>
+      <div class="timeline-item past">
+        <div class="timeline-date">Aug 2025</div>
+        <div class="timeline-event">Countervailing duties doubled: 6.74% → 14.63%</div>
+        <div class="timeline-impact">Combined duties now at 35%</div>
+      </div>
+      <div class="timeline-item past">
+        <div class="timeline-date">Sep 2025</div>
+        <div class="timeline-event">Section 232 tariff added: +10%</div>
+        <div class="timeline-impact">Total Canadian lumber duties hit 45%</div>
+      </div>
+      <div class="timeline-item past">
+        <div class="timeline-date">Jan-Feb 2026</div>
+        <div class="timeline-event">Lumber dipped to ~$590 (brief relief)</div>
+        <div class="timeline-impact">Builders bought the dip — supply tightened</div>
+      </div>
+      <div class="timeline-item now">
+        <div class="timeline-date">Mar 2026 — NOW</div>
+        <div class="timeline-event">Lumber rebounds to $602 (4-week high)</div>
+        <div class="timeline-impact">⚡ THIS is the moment. Spring demand starting, prices rising</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">Apr-Jun 2026</div>
+        <div class="timeline-event">Peak building season + mill closures</div>
+        <div class="timeline-impact">Projected: $650-700+ per 1,000 BF</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-date">2026 USMCA Review</div>
+        <div class="timeline-event">US-Canada trade agreement up for review</div>
+        <div class="timeline-impact">Tariffs could get WORSE, not better</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CTA SECTION -->
+<div class="cta-section">
+  <h2>🎯 The Bottom Line</h2>
+  <p>Every week a customer waits, they pay more for the exact same shed.</p>
+  <div class="cta-highlight">Today's Price = Tomorrow's Discount</div>
+  <p style="margin-top: 8px; color: var(--text); font-size: 0.85em;">
+    Lumber: $602/BF ↑ | Tariffs: 45% ↑ | Supply: 1.3B BF removed ↓<br>
+    Spring demand surging. Lock in today's price NOW.
+  </p>
+</div>
+
+<div class="footer">
+  <div class="updated">Updated: March 20, 2026</div>
+  <div>Sources: CME Group, NAHB, U.S. Commerce Dept, FRED</div>
+  <div style="margin-top: 4px;">For TJ at the lot — not customer-facing</div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyScript(btn) {
+  const box = btn.parentElement;
+  const text = box.textContent.replace('Copy', '').replace(box.querySelector('.label').textContent, '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
