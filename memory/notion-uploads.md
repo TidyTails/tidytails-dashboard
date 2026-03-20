@@ -289,3 +289,4 @@ Chief uses this to verify sync with dashboard.
 | 12:01 | Morning Briefing Mar 19 | 📋 Operations | MORNING_BRIEFING_2026-03-19.pdf | ✅ |
 | 12:01 | Shed Ads Mar 19 | 🏠 Shed Sales | SHED_ADS_2026-03-19.pdf | ✅ |
 | 12:01 | Commercial Leads Mar 19 | 🐕 Jamie's Hub | COMMERCIAL_LEADS_2026-03-19.pdf | ✅ |
+| 18:01 | Shed Lead Reheat — Lumber Urgency | 🏠 Shed Sales | SHED_LEAD_REHEAT_LUMBER_URGENCY.html | ✅ |
