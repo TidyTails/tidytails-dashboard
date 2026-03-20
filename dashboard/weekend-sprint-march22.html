@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏃 Weekend Sprint — March 22-23, 2026</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #12121a;
+    --border: #1e1e2e;
+    --accent: #22c55e;
+    --accent-dim: rgba(34,197,94,0.15);
+    --yellow: #eab308;
+    --yellow-dim: rgba(234,179,8,0.12);
+    --red: #ef4444;
+    --red-dim: rgba(239,68,68,0.12);
+    --blue: #3b82f6;
+    --blue-dim: rgba(59,130,246,0.12);
+    --purple: #a855f7;
+    --purple-dim: rgba(168,85,247,0.12);
+    --text: #e4e4e7;
+    --muted: #71717a;
+    --bright: #fafafa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 20px; }
+
+  .container { max-width: 800px; margin: 0 auto; }
+
+  header { text-align: center; padding: 30px 0 20px; }
+  header h1 { font-size: 2rem; color: var(--bright); margin-bottom: 6px; }
+  header .subtitle { color: var(--muted); font-size: 0.95rem; }
+  header .urgency { display: inline-block; background: var(--red-dim); color: var(--red); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; margin-top: 12px; }
+
+  .why-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin: 20px 0 30px; }
+  .why-box h3 { color: var(--yellow); margin-bottom: 10px; font-size: 1rem; }
+  .why-box p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .why-box strong { color: var(--text); }
+
+  .sprint-item { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 16px; overflow: hidden; transition: all 0.2s; }
+  .sprint-item.done { opacity: 0.5; }
+  .sprint-item.done .sprint-header { text-decoration: line-through; }
+
+  .sprint-header { display: flex; align-items: center; padding: 18px 20px; cursor: pointer; gap: 14px; }
+  .sprint-header:hover { background: rgba(255,255,255,0.02); }
+
+  .sprint-number { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+  .n1 { background: var(--red-dim); color: var(--red); }
+  .n2 { background: var(--yellow-dim); color: var(--yellow); }
+  .n3 { background: var(--accent-dim); color: var(--accent); }
+  .n4 { background: var(--blue-dim); color: var(--blue); }
+  .n5 { background: var(--purple-dim); color: var(--purple); }
+
+  .sprint-title { flex: 1; }
+  .sprint-title h3 { font-size: 1rem; color: var(--bright); margin-bottom: 3px; }
+  .sprint-title .meta { font-size: 0.8rem; color: var(--muted); }
+
+  .sprint-check { width: 28px; height: 28px; border-radius: 8px; border: 2px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; transition: all 0.2s; font-size: 1rem; }
+  .sprint-check.checked { background: var(--accent); border-color: var(--accent); color: #000; }
+
+  .sprint-body { padding: 0 20px 20px 70px; display: none; }
+  .sprint-body.open { display: block; }
+  .sprint-body p { color: var(--muted); font-size: 0.88rem; line-height: 1.6; margin-bottom: 10px; }
+  .sprint-body .step { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 12px 14px; margin-bottom: 8px; font-size: 0.85rem; }
+  .sprint-body .step strong { color: var(--text); }
+  .sprint-body .step .copy-text { color: var(--muted); font-size: 0.82rem; line-height: 1.5; margin-top: 6px; white-space: pre-wrap; }
+
+  .copy-btn { background: var(--accent-dim); color: var(--accent); border: none; padding: 5px 12px; border-radius: 6px; font-size: 0.75rem; cursor: pointer; margin-top: 6px; font-weight: 600; }
+  .copy-btn:hover { background: var(--accent); color: #000; }
+  .copy-btn.copied { background: var(--accent); color: #000; }
+
+  .roi-box { background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(59,130,246,0.08)); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin: 30px 0; text-align: center; }
+  .roi-box h3 { color: var(--accent); margin-bottom: 12px; }
+  .roi-box .roi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+  .roi-box .roi-stat { padding: 10px; }
+  .roi-box .roi-stat .num { font-size: 1.5rem; font-weight: 700; color: var(--bright); }
+  .roi-box .roi-stat .label { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+
+  .progress-bar { background: var(--border); height: 8px; border-radius: 4px; margin: 20px 0 10px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.4s; }
+  .progress-text { text-align: center; color: var(--muted); font-size: 0.8rem; }
+
+  .link-out { color: var(--blue); text-decoration: none; font-size: 0.82rem; }
+  .link-out:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    body { padding: 12px; }
+    header h1 { font-size: 1.5rem; }
+    .sprint-body { padding: 0 12px 16px 50px; }
+    .roi-box .roi-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>🏃 Weekend Sprint</h1>
+  <div class="subtitle">March 22–23, 2026 • Saturday & Sunday</div>
+  <div class="urgency">⚡ 5 actions. $0 cost. Could add 5+ customers.</div>
+</header>
+
+<div class="why-box">
+  <h3>⚠️ Why This Weekend Matters</h3>
+  <p>Thursday was a <strong>massive research day</strong> — competitive intel, lead expansion, ad kits, review tools. But tools don't grow the business. <strong>Action does.</strong> These 5 tasks are cherry-picked from 10+ hours of research. They're ordered by impact, cost $0, and most take under 30 minutes. <strong>Spring is HERE. POOP 911 pulled out of Florissant. Dog Doody Defenders just dropped to $54/mo. The window is NOW.</strong></p>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+<div class="progress-text" id="progressText">0 of 5 complete</div>
+
+<!-- TASK 1 -->
+<div class="sprint-item" id="task1">
+  <div class="sprint-header" onclick="toggle(1)">
+    <div class="sprint-number n1">1</div>
+    <div class="sprint-title">
+      <h3>🌟 Text Customers for Google Reviews</h3>
+      <div class="meta">Jamie • Sunday 12-1 PM • 30 min • $0 cost</div>
+    </div>
+    <div class="sprint-check" onclick="event.stopPropagation();check(1)" id="check1"></div>
+  </div>
+  <div class="sprint-body" id="body1">
+    <p><strong>WHY #1:</strong> We have ZERO Google reviews. Every competitor has 6+. This is the single biggest trust killer — every ad dollar, every referral, every Google search hits a dead end when prospects see no reviews. 8 happy customers have never been asked.</p>
+    <p><strong>Expected result:</strong> 3-5 reviews within a week (40-60% text response rate)</p>
+
+    <div class="step">
+      <strong>📱 Text to Shannon (longest customer):</strong>
+      <div class="copy-text">Hey Shannon! 😊 Jamie here from Tidy Tails. You've been with us the longest and we really appreciate you and your pups! Would you mind leaving us a quick Google review? It would mean the world to us as a small local business. Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review</div>
+      <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+    </div>
+
+    <div class="step">
+      <strong>📱 Text to Amanda:</strong>
+      <div class="copy-text">Hi Amanda! Jamie from Tidy Tails 🐾 Hope the pups are doing great! If you've been happy with our service, we'd love a quick Google review — it really helps us as a small business. Takes less than a minute! https://g.page/r/Ce_hqIHanGLvEAE/review</div>
+      <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+    </div>
+
+    <div class="step">
+      <strong>📱 Text to Mrs. Candee:</strong>
+      <div class="copy-text">Hi Mrs. Candee! Jamie here from Tidy Tails. We love taking care of your yard! If you get a chance, a quick Google review would really help us grow. Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review Thank you so much! 🐾</div>
+      <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+    </div>
+
+    <div class="step">
+      <strong>📱 Generic text for Jody, Lawrence, Greg, Chastity, Preshus:</strong>
+      <div class="copy-text">Hey! Jamie from Tidy Tails here 🐾 If you've been happy with our service, we'd really appreciate a quick Google review! It helps us so much as a small local business. Here's the direct link: https://g.page/r/Ce_hqIHanGLvEAE/review Thanks a ton! 😊</div>
+      <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+    </div>
+
+    <p>💡 <strong>Pro tip:</strong> Send between 12-3 PM Sunday (people are relaxed, on their phones). Don't send all 8 at once — space 5 min apart so it feels personal.</p>
+    <a class="link-out" href="weekend-launch-texts.html">→ Full personalized text kit with tracking</a>
+  </div>
+</div>
+
+<!-- TASK 2 -->
+<div class="sprint-item" id="task2">
+  <div class="sprint-header" onclick="toggle(2)">
+    <div class="sprint-number n2">2</div>
+    <div class="sprint-title">
+      <h3>📍 Complete Google Business Profile</h3>
+      <div class="meta">TJ or Jamie • Saturday afternoon • 45 min • $0 cost</div>
+    </div>
+    <div class="sprint-check" onclick="event.stopPropagation();check(2)" id="check2"></div>
+  </div>
+  <div class="sprint-body" id="body2">
+    <p><strong>WHY #2:</strong> GBP is verified but only 7% complete. Google BURIES incomplete profiles. We can't rank in Maps or local search until this is done. Competitors have full profiles with photos, hours, and services.</p>
+
+    <div class="step">
+      <strong>Step 1: Set Business Hours</strong>
+      <div class="copy-text">Monday-Friday: 9:00 AM – 5:00 PM
+Saturday: 9:00 AM – 4:00 PM
+Sunday: 9:00 AM – 4:00 PM</div>
+      <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+    </div>
+
+    <div class="step">
+      <strong>Step 2: Write Business Description (750 chars)</strong>
+      <div class="copy-text">Tidy Tails is St. Louis's trusted pet waste removal service, keeping yards clean and families happy since 2024. We serve Florissant, O'Fallon, St. Peters, Ferguson, Maryland Heights, and surrounding St. Louis County communities. Our reliable weekly, biweekly, and monthly scooping plans start at just $70/month — one of the most affordable flat-rate options in the area. We also offer one-time deep cleans for $100. Locally owned and operated, fully insured, and committed to giving you back your weekends. Call or text 314-850-7140 for a free quote!</div>
+      <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+    </div>
+
+    <div class="step">
+      <strong>Step 3: Add Services</strong>
+      <div class="copy-text">• Weekly Pet Waste Removal — $25/week
+• Biweekly Pet Waste Removal — $45/visit
+• Monthly Pet Waste Removal — $70/month
+• One-Time Deep Clean — $100
+• Commercial Pet Waste Service — Custom Quote</div>
+      <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+    </div>
+
+    <div class="step">
+      <strong>Step 4: Upload 5+ Photos</strong>
+      <div class="copy-text">Take these Sunday during scooping:
+1. Before/after yard shot (best proof)
+2. Jamie or TJ in Tidy Tails gear
+3. Truck/equipment photo
+4. Happy dog in a clean yard
+5. Close-up of service area (fence/gate)
+
+Upload as "At work" photos in GBP.</div>
+    </div>
+
+    <div class="step">
+      <strong>Step 5: Add Primary Category + Secondary</strong>
+      <div class="copy-text">Primary: Pet Waste Removal Service
+Secondary: Pet Service, Cleaning Service</div>
+    </div>
+
+    <p>🎯 <strong>Goal:</strong> Get from 7% → 80%+ complete. Google rewards complete profiles with 7x more clicks.</p>
+    <a class="link-out" href="gbp-quick-complete.html">→ Full GBP completion guide</a>
+  </div>
+</div>
+
+<!-- TASK 3 -->
+<div class="sprint-item" id="task3">
+  <div class="sprint-header" onclick="toggle(3)">
+    <div class="sprint-number n3">3</div>
+    <div class="sprint-title">
+      <h3>📣 Post on Nextdoor + Facebook Groups</h3>
+      <div class="meta">Jamie • Sunday 1-2 PM • 20 min • $0 cost</div>
+    </div>
+    <div class="sprint-check" onclick="event.stopPropagation();check(3)" id="check3"></div>
+  </div>
+  <div class="sprint-body" id="body3">
+    <p><strong>WHY #3:</strong> Poopy Paws is dead (358 orphaned followers on Facebook, Nextdoor page still up). POOP 911's Florissant page is 404. Their customers need a new service RIGHT NOW. Nextdoor + FB groups are where they'll look.</p>
+
+    <div class="step">
+      <strong>📱 Nextdoor Post (Florissant neighborhood):</strong>
+      <div class="copy-text">🐾 Spring is here and so is the backyard mess! 
+
+Hi neighbors! I'm Jamie with Tidy Tails — we're a local pet waste removal service based right here in Florissant. 
+
+We scoop so you don't have to! Plans start at just $70/month (one of the most affordable in STL). We also do one-time deep cleans for $100 if your yard needs some spring love.
+
+🌸 Spring Special: $10 off your first month! Just mention this post.
+
+Locally owned, fully insured, and we actually show up when we say we will 😄
+
+Call/text Jamie: 314-850-7140
+www.tidytailsstl.com</div>
+      <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+    </div>
+
+    <div class="step">
+      <strong>📱 Facebook Group Post (Florissant Neighbors / STL Dog Owners):</strong>
+      <div class="copy-text">Anyone else's yard looking rough after winter? 😅🐕
+
+Hey y'all! Jamie here — I run Tidy Tails, a pet waste removal service in the Florissant area. We come to your yard weekly, biweekly, or monthly and handle the dirty work so you can actually enjoy your backyard again.
+
+Flat rate $70/month — no contracts, no surprises.
+
+Spring special going on now: $10 off your first month! 🌸
+
+DM me or call/text 314-850-7140 for a free quote!
+www.tidytailsstl.com</div>
+      <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+    </div>
+
+    <p>💡 <strong>Pro tips:</strong></p>
+    <p>• Post on Nextdoor between 10 AM - 2 PM Saturday (peak engagement)</p>
+    <p>• Join 2-3 local FB groups first if not already a member (STL Dog Owners, Florissant Neighbors, Florissant MO Community)</p>
+    <p>• Reply to every comment within 1 hour — Nextdoor boosts active posts</p>
+    <a class="link-out" href="weekend-launch-texts.html">→ More social post templates</a>
+  </div>
+</div>
+
+<!-- TASK 4 -->
+<div class="sprint-item" id="task4">
+  <div class="sprint-header" onclick="toggle(4)">
+    <div class="sprint-number n4">4</div>
+    <div class="sprint-title">
+      <h3>🤝 Ask Top 3 Customers for Referrals</h3>
+      <div class="meta">Jamie • Sunday after reviews • 10 min • $0 cost</div>
+    </div>
+    <div class="sprint-check" onclick="event.stopPropagation();check(4)" id="check4"></div>
+  </div>
+  <div class="sprint-body" id="body4">
+    <p><strong>WHY #4:</strong> Referrals convert at 30-50% (vs 3-5% for cold leads). Shannon, Amanda, and Mrs. Candee have been with us longest and are most likely to know other dog owners. One referral = $70-140/month recurring.</p>
+
+    <div class="step">
+      <strong>📱 Text to Shannon:</strong>
+      <div class="copy-text">One more thing Shannon! 😊 If you know anyone in Florissant who could use a yard cleanup service, we'd love the referral! We're offering $15 off your next month for any referral that signs up. Just have them mention your name! 🐾</div>
+      <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+    </div>
+
+    <div class="step">
+      <strong>📱 Text to Amanda:</strong>
+      <div class="copy-text">Hey Amanda! Quick question — know any neighbors or friends with dogs who might want yard cleanup? We're giving $15 off your next month for any referral that signs up! Just have them text me at this number 🐾</div>
+      <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+    </div>
+
+    <div class="step">
+      <strong>📱 Text to Mrs. Candee:</strong>
+      <div class="copy-text">Hi Mrs. Candee! If you know anyone who could use our service, we'd love the referral! We're offering $15 off your next month for anyone who signs up. Just have them mention your name when they call! Thank you! 🐾</div>
+      <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+    </div>
+
+    <p>💡 Send these 15 min AFTER the review request — don't double-ask in the same text.</p>
+  </div>
+</div>
+
+<!-- TASK 5 -->
+<div class="sprint-item" id="task5">
+  <div class="sprint-header" onclick="toggle(5)">
+    <div class="sprint-number n5">5</div>
+    <div class="sprint-title">
+      <h3>📸 Take 10 Before/After Photos Sunday</h3>
+      <div class="meta">TJ • During Sunday scooping • 15 min • $0 cost</div>
+    </div>
+    <div class="sprint-check" onclick="event.stopPropagation();check(5)" id="check5"></div>
+  </div>
+  <div class="sprint-body" id="body5">
+    <p><strong>WHY #5:</strong> We need photos for GBP (Task 2), social media, ads, and the website. Zero original photos means we can't complete GBP, can't run authentic FB ads, and can't do before/after social posts. One Sunday of photos fuels 4+ weeks of content.</p>
+
+    <div class="step">
+      <strong>📸 Shot List (while scooping Sunday):</strong>
+      <div class="copy-text">BEFORE/AFTER (most important):
+□ Wide shot of yard BEFORE scooping
+□ Same angle AFTER scooping
+□ Close-up of messy area BEFORE
+□ Same spot AFTER (clean grass)
+
+PEOPLE/BRAND:
+□ TJ with equipment (bag, scooper)
+□ TJ walking to/from yard
+□ Truck/vehicle with any branding
+
+LIFESTYLE:
+□ Dog playing in clean yard (ask customer)
+□ Nice clean yard shot (green grass, sunshine)
+□ Equipment laid out professionally
+
+TIPS:
+- Use portrait mode for the people shots
+- Landscape for yard shots
+- Natural lighting (Sunday 10am-2pm is perfect)
+- Don't include customer faces without permission
+- Get at least 2 different customer yards</div>
+    </div>
+
+    <p>🎯 <strong>These photos unlock:</strong> GBP completion, FB/Instagram posts, before/after ads, website gallery, Google Posts.</p>
+  </div>
+</div>
+
+<div class="roi-box">
+  <h3>📊 Expected Weekend ROI</h3>
+  <div class="roi-grid">
+    <div class="roi-stat">
+      <div class="num">3-5</div>
+      <div class="label">Google Reviews<br>(from 0 → competitive)</div>
+    </div>
+    <div class="roi-stat">
+      <div class="num">1-2</div>
+      <div class="label">Referral Leads<br>($70-140/mo each)</div>
+    </div>
+    <div class="roi-stat">
+      <div class="num">3-8</div>
+      <div class="label">Social Inquiries<br>(Nextdoor + FB)</div>
+    </div>
+    <div class="roi-stat">
+      <div class="num">$0</div>
+      <div class="label">Total Cost<br>(all organic)</div>
+    </div>
+  </div>
+</div>
+
+<div class="why-box">
+  <h3>📋 What Franklin Built Thursday (Reference)</h3>
+  <p>These are all ready on the dashboard when you need them:</p>
+  <p>• <a class="link-out" href="weekend-launch-texts.html">Full Text Message Kit</a> — 8 personalized review texts + referral texts with tracking</p>
+  <p>• <a class="link-out" href="google-ads-kit.html">Google Ads Campaign Kit</a> — Ready-to-launch search ads when you're ready for paid</p>
+  <p>• <a class="link-out" href="competitive-intel-march2026.html">Competitive Intel Dashboard</a> — Full competitor landscape, pricing, threat levels</p>
+  <p>• <a class="link-out" href="gbp-quick-complete.html">GBP Quick Complete Guide</a> — Step-by-step profile optimization</p>
+  <p>• <a class="link-out" href="facebook-ads-complete-kit.html">Facebook Ads Kit</a> — Campaign structures + creative when ready for paid social</p>
+  <p><br><strong>Don't worry about the paid stuff yet.</strong> This weekend is about the FREE foundations: reviews, GBP, social, referrals, photos. Paid comes after these are in place.</p>
+</div>
+
+</div>
+
+<script>
+const state = JSON.parse(localStorage.getItem('sprint-march22') || '{"checks":{},"open":{}}');
+
+function save() { localStorage.setItem('sprint-march22', JSON.stringify(state)); }
+
+function updateProgress() {
+  const done = Object.values(state.checks).filter(Boolean).length;
+  document.getElementById('progressFill').style.width = (done/5*100)+'%';
+  document.getElementById('progressText').textContent = done + ' of 5 complete' + (done===5?' 🎉 WEEKEND SPRINT DONE!':'');
+}
+
+function toggle(n) {
+  const body = document.getElementById('body'+n);
+  const isOpen = body.classList.contains('open');
+  // close all
+  for(let i=1;i<=5;i++) document.getElementById('body'+i).classList.remove('open');
+  if(!isOpen) body.classList.add('open');
+  state.open = {};
+  if(!isOpen) state.open[n] = true;
+  save();
+}
+
+function check(n) {
+  state.checks[n] = !state.checks[n];
+  const el = document.getElementById('check'+n);
+  const item = document.getElementById('task'+n);
+  if(state.checks[n]) {
+    el.classList.add('checked'); el.textContent='✓'; item.classList.add('done');
+  } else {
+    el.classList.remove('checked'); el.textContent=''; item.classList.remove('done');
+  }
+  save(); updateProgress();
+}
+
+function copyText(btn) {
+  const text = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!'; btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// restore state
+for(let i=1;i<=5;i++) {
+  if(state.checks[i]) { check(i); }
+  if(state.open[i]) { document.getElementById('body'+i).classList.add('open'); }
+}
+updateProgress();
+</script>
+</body>
+</html>
