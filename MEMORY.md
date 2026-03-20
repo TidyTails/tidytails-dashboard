@@ -114,9 +114,9 @@
 
 | Competitor | Territory | Weekly Price | Monthly | Threat | Key Notes |
 |------------|-----------|-------------|---------|--------|-----------|
-| **POOP 911** 🔴 | South STL/City (70+ zips) + **FLORISSANT** | $11.95-$13.95 | ~$52 | HIGH | National franchise, FREE first cleanup, lowest price. **Has dedicated Florissant landing page** with local SEO (St. Ferdinand Park, Eagan Center, McCluer schools). |
+| **POOP 911** 🔴 | South STL/City (70+ zips) | $11.95-$13.95 | ~$52 | HIGH | National franchise, FREE first cleanup, lowest price. **Florissant page NOW 404** (confirmed Mar 20). Still has main STL page. |
 | **Scoop Soldiers** 🔴 | STL County + surrounding | ~$15 | ~$60 | HIGH | National franchise, **officially launched STL Feb 6 2026** (EIN Presswire). 24hr support, sanitization/deodorizer add-ons, commercial+residential. Led by Michayla Sims. Also expanding to Cincinnati. First service FREE. |
-| **Dog Doody Defenders** 🔴 | Chesterfield + Florissant | $17 | ~$68 | HIGH | Veteran-owned, TJ's exact territory. Site still minimal. |
+| **Dog Doody Defenders** 🔴 | Chesterfield + Florissant | $17 | $54/mo monthly plan | HIGH | Florissant-based (Daniel Boone Dr). Now offers dog walking, yard deodorizing, kennel cleaning. Twice-weekly $27. On Yelp, MapQuest, FB. **Direct competitor in TJ's core territory.** |
 | **Poop2Scoop** 🟡 | STL County | $18 | ~$78 | MED | Veteran-owned, smart add-on pricing, aPaws member |
 | **Doggie Doodies** 🔴 | Ballwin/Chesterfield + St. Charles + **NOW FLORISSANT** + Kirkwood/Creve Coeur/MD Heights/Eureka/Fenton/Valley Park/Twin Oaks/Des Peres/Cottleville/New Town | $19.15 | $83 | **HIGHEST** | TJ's #1 rival. **NOW IN FLORISSANT** (TJ's core territory!). Customer portal, rewards ("Clean Paw Paws"), referral, e-gift cards, blog (posting Feb 2026), COMMERCIAL page live (HOAs, waste stations, installations). Pre-visit team photos + gate photos. FREE first cleanup with coupon codes. Phone: (636)633-3443. Biweekly=$85/mo, Monthly=$90/mo. Hotmail + Wix = weaknesses. |
 | **Dr. Scoops** 🟡 | Ballwin/Manchester/Chesterfield/Kirkwood/Webster Groves | Quote | Quote | MED | NEW (found Mar 16). Solo op Adam Hughes, since 2023. Own site (getdrscoops.com), FB (39 likes), Nextdoor, Petworks. Insured, background-checked. Covers our expansion targets! |
@@ -137,11 +137,19 @@
 | **The Dog Poo Guru** 🟢 | St. Peters | Quote | Quote | LOW | Yelp only |
 | **Pooanators** 🟡 | STL area | Quote | Quote | MED | On Yelp, multiple STL searches |
 
-### DEAD Competitors (confirmed Mar 18)
-Pawfect (404), Fresh Paws (DNS expired), Poopy Paws (DNS failure — 358 orphaned FB followers), STL Pooper Scoopers (Yelp CLOSED), Super Scoopers STL (Yelp CLOSED), **Pawfect Waste Solutions** (pooperscooperstl.com — 404, never launched)
+### DEAD Competitors (confirmed Mar 20)
+Pawfect (404), Fresh Paws (DNS expired), Poopy Paws (DNS failure — 358 orphaned FB followers + Nextdoor page still up), STL Pooper Scoopers (Yelp CLOSED), Super Scoopers STL (Yelp CLOSED), **Pawfect Waste Solutions** (pooperscooperstl.com — 404, never launched)
 
-### Pricing Reality (Updated Mar 18 9PM — LIVE SCRAPE)
+### Search Visibility (Mar 20 9PM)
+- **`site:tidytailsstl.com` on Brave Search = 0 results** — NOT indexed on Brave at all
+- Not showing in top 10 for "pet waste removal St Louis MO" on any search engine checked
+- Not showing in Yelp Florissant results despite being claimed since Mar 5
+- Google Search Console confirmed indexed (Mar 18) but organic visibility still near-zero
+- **Diagnosis: Indexed but not ranking.** Need backlinks, reviews, and authority signals.
+
+### Pricing Reality (Updated Mar 20 9PM — LIVE SCRAPE)
 - POOP 911: $11.95/wk (~$52/mo) — 52% cheaper than TJ
+- Dog Doody Defenders: $17/wk, **$54/mo monthly** (was $68) — now undercuts TJ's $70/mo by 23%
 - **Dog Doody Defenders: $17/wk (~$74/mo), NEW $54/mo monthly plan** — undercuts TJ's $70/mo by 23%
 - Poop 2 Scoop: $18/wk (~$78/mo) — 28% cheaper
 - Doggie Doodies: $19.15/wk ($83/mo), biweekly $85/mo, monthly $90/mo — 23% cheaper weekly

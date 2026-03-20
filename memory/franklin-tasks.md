@@ -7,6 +7,31 @@
 
 ## March 19, 2026 (Thursday)
 
+### 9:04 PM — 🔍 LIVE COMPETITIVE INTEL SWEEP — 3 Dead Competitors, Pricing Shifts, Zero Search Visibility (Competitive Intelligence)
+**Task:** Conducted live competitive research — searched for our core keywords, scraped competitor websites for current pricing, verified dead competitors, checked search engine visibility across Brave and Yelp, and updated MEMORY.md with findings.
+**Result:** ✅ COMPLETE — Intel report at `memory/competitive-intel-march20-2026.md`, MEMORY.md updated
+
+**Key Findings:**
+1. 🪦 **3 competitors confirmed dead:** Poopy Paws (DNS failure, 358 orphaned FB followers), Pawfect Waste Solutions (site never launched), POOP 911 Florissant page (still 404)
+2. 💰 **Dog Doody Defenders expanded:** Now offers $54/mo monthly plan (undercuts TJ's $70), plus dog walking, deodorizing, and kennel cleaning. They're building a multi-service pet company, not just scooping.
+3. 🚨 **We are INVISIBLE online:** `site:tidytailsstl.com` returns 0 results on Brave. Not in top 10 for "pet waste removal St Louis MO." Not showing in Yelp Florissant results. Despite 21 landing pages + sitemap + schema, organic visibility is near-zero.
+4. 🎯 **Florissant is now competitor-light:** POOP 911 pulled out. Only Dog Doody Defenders and us remain active. This is the window to dominate.
+5. 📊 **TJ is the most expensive weekly service** ($25/wk) among all local independents. Only DoodyCalls (franchise) charges similar.
+6. ✅ **TJ's $70/mo flat rate IS competitive** — cheaper than Doggie Doodies ($90), Dirty Dog Wash ($95). Should lead marketing with monthly pricing.
+7. 🆕 **"No 2 Crew" confirmed** as Watering Bowl daycare spinoff, Wildwood-based. Low overlap with TJ's territory.
+
+**Actionable Recommendations:**
+- CRITICAL: Complete Yelp profile (claimed but not appearing in searches)
+- CRITICAL: Post on dead Poopy Paws' Nextdoor to capture orphaned customers
+- CRITICAL: Execute Sunday review text blitz (already built)
+- HIGH: Lead all ads with $70/mo pricing (competitive advantage)
+- HIGH: Consider "First Cleanup Free" to match POOP 911/Scoop Soldiers/Doggie Doodies
+- MEDIUM: Add yard deodorizing upsell ($15-25 per visit add-on)
+
+**Rotation:** 🔍 Competitive Intelligence — Live Market Sweep
+
+---
+
 ### 8:04 PM — 📱 WEEKEND LAUNCH TEXTS — Zero-Cost Sunday Blitz to Get First Google Reviews (Customer Activation/Reviews)
 **Task:** Built a copy-paste text message kit so Jamie can send personalized review requests, referral asks, Nextdoor intro, and Facebook group posts THIS SUNDAY. Zero Google reviews is the #1 blocker killing every other growth effort. 8 happy customers and not a single review request sent. Fixed that.
 **Result:** ✅ COMPLETE — Dashboard tool at `dashboard/weekend-launch-texts.html`, pushed to GitHub
