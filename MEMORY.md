@@ -10,7 +10,7 @@
 ## Who TJ Is
 - Founder of Tidy Tails + works full-time at TuffShed (shed/garage dealer)
 - Based in St. Louis area (America/Chicago)
-- **Day job:** 9-5 M-F at TuffShed. Scooping Sundays 9am-4pm.
+- **Day job:** 9-5 M-F at TuffShed. Scooping **MONDAYS** (changed from Sundays, Mar 20).
 - **Best time for Tidy Tails work:** 4-6pm weekdays
 - Natural closer (12+ years sales). Drained by: ad copy, content, admin, learning/videos.
 - Wants autonomy given to me, but I check before external actions

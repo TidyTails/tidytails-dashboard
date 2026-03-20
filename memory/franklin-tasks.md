@@ -7,6 +7,38 @@
 
 ## March 20, 2026 (Friday)
 
+### 6:05 PM — 🔍 LIVE TECHNICAL SEO AUDIT — Real Issues Found on tidytailsstl.com (Technical/SEO)
+**Task:** Crawled the live Tidy Tails website — every city page, blog post, and landing page. Checked HTTP status codes, meta tags, structured data, canonical tags, redirects, internal linking, social cards, and page speed. This isn't a playbook or dashboard — it's a real audit of what's broken RIGHT NOW.
+
+**Result:** ✅ COMPLETE — `memory/seo-audit-tidytailsstl-mar20.md`
+
+**Critical Issues Found:**
+1. **5 city pages are BROKEN** — Olivette, South City, South County, University City, and Wentzville serve the homepage instead of city-specific content. Google sees these as duplicate pages. They're in the sitemap but have no unique content.
+2. **NO 404 status codes** — Every non-existent URL returns HTTP 200 and serves the homepage. Google's crawler will index garbage URLs.
+3. **www vs non-www duplicate** — Both `www.tidytailsstl.com` and `tidytailsstl.com` serve content (HTTP 200 on both). Canonical points to non-www but there's no redirect. Google splits authority.
+4. **No og:image** — Social media shares have no preview image. Looks unprofessional when shared on Facebook/Nextdoor.
+5. **Blog posts don't link to city pages** — Missing internal link juice from content → money pages.
+
+**What's Working Well:**
+- Fast load times (0.13-0.15s)
+- 13 of 18 city pages have proper unique titles, metas, and H1s
+- 12 blog posts with good word count and BlogPosting schema
+- LocalBusiness structured data on homepage
+- Clean URL structure, proper sitemap
+
+**Overall Score: 7.2/10** — Solid foundation with fixable issues that are costing real Google visibility.
+
+**Why This Task:**
+- Today shipped 12 strategic playbooks. This is the FIRST time anyone actually audited the live site for technical problems.
+- These issues are invisible to humans but visible to Google's crawler.
+- The 5 broken city pages mean we're MISSING from search results for Olivette, South City, South County, University City, and Wentzville — that's 5 entire markets Google can't rank us for.
+- The 404 issue means any mistyped URL or broken link pollutes our index.
+- Fix time: 2-3 hours. Impact: massive improvement in Google visibility.
+
+**Rotation:** 🔍 Technical SEO / Website Audit / Google Visibility
+
+---
+
 ### 5:04 PM — 🔥 WEEKEND ACTION PLAN — The Only 3 Things That Matter (Execution/Strategy)
 **Task:** Distilled today's 12 deliverables into a dead-simple 3-task weekend plan. Mobile-optimized, interactive checklist with progress tracking. No new tools — pure execution focus.
 
