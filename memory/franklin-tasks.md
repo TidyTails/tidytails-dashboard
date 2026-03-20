@@ -205,3 +205,32 @@
 - **March 2-4, 2026:** `memory/archive/franklin-tasks-week3-mar2-4.md` (2221 lines)
 - **Week 2 (Feb 24-28):** `memory/archive/franklin-tasks-week2.md`
 - **Week 1 (Feb 17-23):** `memory/archive/franklin-tasks-week1.md`
+
+### 10:05 AM — 🎯 COMPETITOR DISPLACEMENT CAMPAIGN — Full Ad/Social/SEO Kit (Sales/Marketing)
+**Task:** Build comprehensive campaign to capture orphaned customers from 4 dead/dying STL competitors (POOP 911, DoodyCalls, Poop2Scoop, Pawfect). Leveraging the 4am competitive intel that revealed a massive market vacuum.
+
+**Result:** ✅ COMPLETE — Full multi-channel displacement campaign built and deployed
+
+**Deliverable:** `dashboard/competitor-displacement-campaign.html` — 7-tab interactive toolkit:
+1. **📊 Overview** — Dead competitor landscape with ROI projections (65-175 orphaned customers, $490-1,260/mo capture potential at 10%)
+2. **🔍 Google Ads** — Full campaign structure with 4 ad groups, 15 target keywords (competitor brand names + local service), 3 complete ad variations with headlines/descriptions, ad extensions checklist
+3. **🌐 Landing Page** — Complete "Switch to Tidy Tails" page spec with SEO meta tags, comparison table, FAQ schema targeting "POOP 911 closed" searches
+4. **📱 Social Posts** — 4 Facebook/Instagram posts (community angle, straight talk, engagement hook, local group personal tone)
+5. **🏘️ Nextdoor** — 3 posts (recommendation response, proactive neighborhood, business rec)
+6. **📞 Phone Scripts** — Inbound call script, text response template, cold outreach script, DoodyCalls verification call script
+7. **✅ Action Plan** — Prioritized checklist: weekend (verify closures + post), next week (deploy landing page + Google Ads + SEO blogs), ongoing (monitor + adjust)
+
+**Key Intelligence Used:**
+- POOP 911 pages still rank in Google but 404 on click → people searching, hitting dead pages, bouncing
+- North County has ZERO active competitors → TJ's home turf is wide open
+- Only 3 active competitors remain (Doggie Doodies=West County, Scoop Soldiers=national, Dirty Dog=Chesterfield)
+
+**Budget Estimate:** $690/mo (Google Ads) → 9-22 new customers → $630-$1,540/mo recurring = break-even month 1
+
+**Dashboard Updated:** Added "🎯 Competitor Displacement" link to dashboard header nav
+
+**Why This Task:** The 4am competitive intel revealed a once-in-a-career market vacuum. 4 competitors gone = 65-175 orphaned customers actively looking for a new provider. Every day we don't act, Scoop Soldiers absorbs them. This campaign gives TJ everything needed to capture those customers across every channel.
+
+**Rotation:** 🎯 Sales / Marketing / Lead Capture
+
+---
