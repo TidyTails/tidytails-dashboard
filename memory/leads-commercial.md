@@ -1,5 +1,5 @@
 # Commercial Leads — Tidy Tails Pet Waste Removal
-*Last updated: March 19, 2026 6:04 PM*
+*Last updated: March 20, 2026 9:05 AM*
 *Status legend: New | Contacted | Quoted | Won | Lost*
 
 ---
@@ -538,7 +538,81 @@
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated March 19, 2026 — 37 total leads)
+## 🏠 TIER 1: Apartment Complexes — NEW BATCH (March 20, 2026 — 9:00 AM)
+
+### Cortona at Forest Park ⭐⭐ LUXURY — DOG PARK + PET SPA
+- **Type:** Luxury Apartment Complex
+- **Address:** 5800 Highlands Plaza Dr, St. Louis, MO 63110
+- **Contact:** Leasing Office
+- **Phone:** (314) 535-1212
+- **Website:** cortonaforestpark.com
+- **Why Good Fit:** Luxury community near Forest Park with DEDICATED DOG PARK + SELF-SERVICE PET SPA. Private gated entrance. Studios to 2BR, $1,207-$10,542/mo = affluent residents with dogs. #1 rated pet-friendly on Yelp STL. Many residents have dogs/cats per reviews. They're already investing heavily in pet infrastructure.
+- **Properties/Units:** Studios to 2-bedrooms, 575-1,299 sq ft
+- **Found:** March 20, 2026
+- **Status:** New
+- **Pitch angle:** "You've already built an amazing pet experience with the dog park and pet spa — we can complete the picture. Professional weekly waste cleanup keeps your grounds as premium as your apartments."
+
+### Kings Landing Apartments ⭐ NO WEIGHT RESTRICTIONS — CREVE COEUR
+- **Type:** Newly Renovated Apartment Complex
+- **Address:** 618 North New Ballas Road, Creve Coeur, MO 63141
+- **Contact:** Leasing Office
+- **Phone:** (314) 549-7993
+- **Website:** kingslandingapartments.com
+- **Why Good Fit:** Pet-friendly with NO WEIGHT RESTRICTIONS. Newly renovated 1, 2, 3-bedroom apartments + lofts. 5-story parking garage. Off I-270 in affluent Creve Coeur. Active Facebook/Instagram. No weight limit = large dogs = more waste. Management clearly investing in upgrades.
+- **Properties/Units:** 1-3 bedrooms and lofts
+- **Found:** March 20, 2026
+- **Status:** New
+- **Pitch angle:** "No weight restrictions means big dogs and lots of them. We keep your newly renovated grounds looking sharp with weekly professional cleanup. One flat rate."
+
+### Turtle Creek Apartments — FENTON (EXPANSION TERRITORY)
+- **Type:** Apartment Complex
+- **Address:** Fenton, MO 63026
+- **Contact:** Leasing Office
+- **Phone:** See website
+- **Website:** Search "Turtle Creek Apartments Fenton MO"
+- **Why Good Fit:** Top-rated dog-friendly apartment in Fenton area on Yelp. Fenton/South County = new geographic market for Tidy Tails. Getting a foothold here opens up an entirely untapped territory.
+- **Found:** March 20, 2026
+- **Status:** New
+- **Pitch angle:** "Your residents love that you're pet-friendly. Weekly professional cleanup keeps the grounds spotless. One vendor, one invoice."
+
+### Greenmar Apartments — FENTON
+- **Type:** Pet-Friendly Community
+- **Address:** Fenton, MO 63026
+- **Contact:** Leasing Office
+- **Phone:** See greenmarapts.com
+- **Website:** greenmarapts.com
+- **Why Good Fit:** Has dedicated pet policy page = actively markets pet-friendliness. Fenton area. Expands TJ's geographic reach south.
+- **Found:** March 20, 2026
+- **Status:** New
+- **Pitch angle:** "You clearly care about being pet-friendly — you've got a whole page for it. Let us handle the waste side. Weekly cleanup, flat rate, no contract."
+
+### Sunnen Station Apartments — MAPLEWOOD
+- **Type:** Mixed-Use / Loft Community
+- **Address:** Maplewood, MO (near Brentwood)
+- **Contact:** Leasing Office
+- **Phone:** See website
+- **Website:** Search "Sunnen Station Apartments Maplewood MO"
+- **Why Good Fit:** Maplewood is one of STL's most walkable, dog-friendly neighborhoods. Near Greenway Trail = high dog foot traffic. Loft-style = younger professionals who value convenience. Top-10 dog-friendly on Yelp STL.
+- **Found:** March 20, 2026
+- **Status:** New
+- **Pitch angle:** "Maplewood is one of the most dog-friendly neighborhoods in STL — your residents prove that. Professional weekly cleanup keeps common areas clean. Flat monthly rate."
+
+---
+
+## 🏢 STRATEGIC: Industry Association (March 20, 2026)
+
+### St. Louis Apartment Association (STLAA) ⭐⭐ VENDOR REGISTRATION
+- **Type:** Industry Association — Vendor Directory
+- **Website:** stlaa.org
+- **Why Good Fit:** Regional apartment industry association. Property managers and leasing companies are members. VENDOR DIRECTORY puts Tidy Tails in front of EVERY apartment complex manager in STL metro. Instead of cold-calling, be on the list they check when they need vendors. Force multiplier.
+- **Cost:** ~$200-$500/year for vendor membership
+- **Found:** March 20, 2026
+- **Status:** New
+- **Pitch angle:** Visit stlaa.org, find vendor/partner signup, register Tidy Tails. Gets you in front of hundreds of property managers at once. ROI is massive if even 2-3 complexes find you through it.
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated March 20, 2026 — 43 total leads)
 
 | Lead | Type | Phone | Priority | Est. Monthly Value |
 |------|------|-------|----------|-------------------|
@@ -579,8 +653,15 @@
 | **Maryland Heights** | Municipal | (314) 738-2599 | 🟢 LONG PLAY | $300-$600 |
 | **Overland Dog Park** | Municipal | (314) 428-0490 | 🟢 LONG PLAY | $200-$400 |
 
-**Total pipeline if all won:** $7,575-$20,450/month (37 leads)
-**Realistic close rate (20-30%):** $1,515-$6,135/month in new recurring revenue
+| **Cortona at Forest Park** | Luxury Apt + Dog Park + Pet Spa | (314) 535-1212 | 🔴 HIGH | $300-$500 |
+| **Kings Landing** | Apt No Weight Limit — Creve Coeur | (314) 549-7993 | 🔴 HIGH | $200-$400 |
+| **Turtle Creek** | Apt — Fenton (new territory) | See website | 🟡 MEDIUM | $200-$400 |
+| **Greenmar Apts** | Apt — Fenton (new territory) | See website | 🟡 MEDIUM | $200-$400 |
+| **Sunnen Station** | Loft Community — Maplewood | See website | 🟡 MEDIUM | $200-$400 |
+| **STLAA Vendor Reg** | Industry Association | stlaa.org | 🔴 STRATEGIC | $200-$500/yr → massive ROI |
+
+**Total pipeline if all won:** $8,875-$22,650/month (43 leads)
+**Realistic close rate (20-30%):** $1,775-$6,795/month in new recurring revenue
 
 ### 🗺️ NORTH COUNTY VET BLITZ — THE UNTAPPED GOLDMINE
 The 6 vet clinics above serve North County dog owners who have ZERO local pooper scooper options. If Jamie visits all 6 in one afternoon with cards and flyers:

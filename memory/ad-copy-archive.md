@@ -1,6 +1,12 @@
 # Ad Copy Archive — Shed Ads
 *Tracks previously written ads to avoid repeats*
 
+## March 20, 2026
+- **Shed-Mar146** — "First Day of Spring" — Spring timing, garage disaster zone, "three springs now" guilt
+- **Shed-Mar147** — "Friday Freedom" — Weekend energy, use cases (gym, office, man cave, craft room), no credit check
+- **Shed-Mar148** — "That Corner Pile" — Relatable clutter description, garage guilt, not an Amazon pop-up tent
+- **Shed-Mar149** — "No Credit Check Spotlight" — Financing focus, barrier removal, payments as low as $150/mo
+
 ## March 19, 2026
 - **Shed-Mar142** — "Spring Cleaning Confession" — Garage chaos + spring timing, "Later is now"
 - **Shed-Mar143** — "Your Yard Deserves Better" — Cost comparison (storage vs shed vs addition vs pretending)
@@ -27,3 +33,7 @@
 - Side effects humor
 - PSA / Warning hook
 - "Why buy from me" trust builder
+- First day of spring / seasonal timing
+- Friday / weekend energy
+- Corner pile / specific clutter guilt
+- No credit check / financing spotlight
