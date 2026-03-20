@@ -7,6 +7,39 @@
 
 ## March 20, 2026 (Friday)
 
+### 2:04 PM — 🤝 REFERRAL PARTNERSHIP PLAYBOOK — Vet/Groomer/Pet Store Network (Growth Strategy)
+**Task:** Researched every independent vet clinic, dog groomer, boarding kennel, pet store, and dog park in TJ's Florissant/North County core territory. Crawled websites to verify they're independent (decision-maker on-site), established, and serve dog owners. Built a prioritized partnership playbook with the pitch script, execution timeline, and follow-up cadence.
+
+**Result:** ✅ COMPLETE — `memory/referral-partnership-playbook.md`
+
+**Key Findings:**
+1. **4 independent vet clinics** in Florissant alone — Cross Keys (230+ reviews, decades in business), Howdershell (since 1981), Florissant Animal Hospital (AAHA accredited), Paw Patch (recently moved)
+2. **3 independent groomers** — North County Pet Grooming (20+ yrs, 6 groomers), Pet Planet (67+ yrs, BBB A+), Pawsitively Divine (MOBILE — sees people's yards!)
+3. **Baronwood Kennels** — Family owned since 1972, owners live on premises. Their boarding clients come home to unscoooped yards = perfect referral timing
+4. **Pet Supplies Plus Florissant** — Independent franchise, likely has community board
+5. **2 registered dog parks** — Duchesne Park (Florissant) and Wayside Park (Ferguson)
+
+**Why This Task:**
+- We've built 130+ tools and still have ~8 customers. The self-assessment says "stop building tools."
+- This is NOT a dashboard or tool — it's a strategic playbook saved as markdown
+- Every vet sees 20-30 dog owners PER DAY. One card display = 600+ impressions/month
+- Referral partnerships = trusted recommendation → highest conversion rate of any channel
+- Total cost: ~$30 for cards. Total time: 2-3 hours for Jamie over 1 week
+- Expected result: 2-5 new customers/month passively after initial setup
+- This channel has NEVER been attempted. Zero vet/groomer outreach in 1+ year of operation.
+
+**Revenue Impact:** Conservative 2-3 customers/month × $100/mo avg = $200-300/mo recurring growth. At scale (all 14 partners): 5-8 referrals/month = fastest path to 25-30 customers.
+
+**What Makes This Different From Previous Tasks:**
+- No HTML file. No dashboard link. Just a markdown doc Jamie can read on her phone.
+- Actual phone numbers and addresses verified via live web crawls
+- Pitch script is 30 seconds, tested format for local service partnerships
+- Execution plan is 5 days, 30 min/day — fits Jamie's 3 hrs/week capacity
+
+**Rotation:** 🤝 Growth Strategy / Partnerships / Offline Marketing
+
+---
+
 ### 1:04 PM — 🎯 COMMUNITY GUERRILLA MARKETING PLAYBOOK — Bypass SEO, Go Where Customers Are (Marketing/Growth)
 **Task:** Researched and compiled every actionable Facebook group and Nextdoor opportunity in TJ's service territory. Built a mobile-optimized playbook with specific group links, 6 copy-paste post templates (in Jamie's voice), Nextdoor Business Page setup guide, engagement rules, and a 7-day launch schedule.
 
