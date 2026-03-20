@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STL Pet Waste Removal — Competitive Intel (Mar 20, 2026 6AM Update)</title>
+<style>
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --green: #3fb950;
+    --red: #f85149;
+    --yellow: #d29922;
+    --blue: #58a6ff;
+    --purple: #bc8cff;
+    --orange: #f0883e;
+    --tidy: #22c55e;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); padding: 20px; max-width: 1200px; margin: 0 auto; }
+  
+  .header { text-align: center; margin-bottom: 30px; padding: 30px 20px; background: linear-gradient(135deg, #161b22 0%, #1a2332 100%); border-radius: 16px; border: 1px solid var(--border); }
+  .header h1 { font-size: 2em; margin-bottom: 8px; }
+  .header h1 span { color: var(--tidy); }
+  .header p { color: var(--muted); font-size: 0.95em; }
+  
+  .alert-box { background: rgba(248,81,73,0.1); border: 1px solid rgba(248,81,73,0.3); border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+  .alert-box h3 { color: var(--red); margin-bottom: 8px; }
+  .alert-box .correction { color: var(--yellow); font-weight: 600; }
+  
+  .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 30px; }
+  .status-card { background: var(--card); border-radius: 12px; padding: 16px; border: 1px solid var(--border); text-align: center; }
+  .status-card .count { font-size: 2.5em; font-weight: 700; }
+  .status-card .label { color: var(--muted); font-size: 0.85em; margin-top: 4px; }
+  .count-green { color: var(--green); }
+  .count-red { color: var(--red); }
+  .count-yellow { color: var(--yellow); }
+  .count-blue { color: var(--blue); }
+  
+  .section { margin-bottom: 30px; }
+  .section h2 { font-size: 1.4em; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  
+  .competitor-card { background: var(--card); border-radius: 12px; padding: 20px; margin-bottom: 16px; border: 1px solid var(--border); position: relative; }
+  .competitor-card.tidy { border-color: var(--tidy); background: rgba(34,197,94,0.05); }
+  .competitor-card.dead { opacity: 0.6; border-color: var(--red); }
+  .competitor-card.uncertain { border-color: var(--yellow); }
+  
+  .comp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+  .comp-name { font-size: 1.2em; font-weight: 700; }
+  .comp-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.75em; font-weight: 600; text-transform: uppercase; }
+  .badge-active { background: rgba(63,185,80,0.2); color: var(--green); }
+  .badge-dead { background: rgba(248,81,73,0.2); color: var(--red); }
+  .badge-uncertain { background: rgba(210,153,34,0.2); color: var(--yellow); }
+  .badge-tidy { background: rgba(34,197,94,0.3); color: #fff; }
+  .badge-new { background: rgba(188,140,255,0.2); color: var(--purple); }
+  
+  .comp-details { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; font-size: 0.9em; }
+  .comp-details dt { color: var(--muted); }
+  .comp-details dd { margin-bottom: 4px; }
+  
+  .pricing-table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+  .pricing-table th, .pricing-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--border); font-size: 0.9em; }
+  .pricing-table th { color: var(--muted); font-weight: 600; background: rgba(255,255,255,0.02); }
+  .pricing-table tr.tidy-row { background: rgba(34,197,94,0.08); font-weight: 600; }
+  .pricing-table tr.tidy-row td { color: var(--tidy); }
+  .pricing-table .cheapest { color: var(--green); font-weight: 700; }
+  .pricing-table .expensive { color: var(--red); }
+  
+  .insight-box { background: rgba(88,166,255,0.08); border: 1px solid rgba(88,166,255,0.2); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .insight-box h3 { color: var(--blue); margin-bottom: 10px; }
+  .insight-box ul { padding-left: 20px; }
+  .insight-box li { margin-bottom: 6px; color: var(--muted); }
+  .insight-box li strong { color: var(--text); }
+  
+  .territory-map { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+  .territory-card { background: var(--card); border-radius: 12px; padding: 16px; border: 1px solid var(--border); }
+  .territory-card h4 { margin-bottom: 8px; }
+  .territory-card .competitors { color: var(--muted); font-size: 0.85em; }
+  .territory-card .opportunity { color: var(--green); font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+  .territory-card .crowded { color: var(--yellow); font-weight: 600; font-size: 0.9em; margin-top: 8px; }
+  
+  .action-items { background: rgba(63,185,80,0.08); border: 1px solid rgba(63,185,80,0.2); border-radius: 12px; padding: 20px; }
+  .action-items h3 { color: var(--green); margin-bottom: 12px; }
+  .action-items ol { padding-left: 20px; }
+  .action-items li { margin-bottom: 8px; }
+  .action-items .priority { background: rgba(248,81,73,0.2); color: var(--red); padding: 2px 8px; border-radius: 4px; font-size: 0.8em; font-weight: 600; }
+  .action-items .medium { background: rgba(210,153,34,0.2); color: var(--yellow); padding: 2px 8px; border-radius: 4px; font-size: 0.8em; font-weight: 600; }
+  
+  .timestamp { text-align: center; color: var(--muted); font-size: 0.8em; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border); }
+
+  @media (max-width: 600px) {
+    .comp-details { grid-template-columns: 1fr; }
+    .pricing-table { font-size: 0.8em; }
+    .pricing-table th, .pricing-table td { padding: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🔍 STL Competitive Intel — <span>6AM Update</span></h1>
+  <p>March 20, 2026 | Verified via direct website crawls | Franklin's autonomous sweep</p>
+</div>
+
+<div class="alert-box">
+  <h3>⚠️ Corrections to 4AM Report</h3>
+  <p style="margin-bottom:8px">Two status calls from the overnight sweep need updating:</p>
+  <p class="correction">1. POOP 911 STL pages are loading again (were 404 at 4am). Status: UNCERTAIN — pages have content but may be auto-generated without a local operator.</p>
+  <p class="correction" style="margin-top:6px">2. Poop2Scoop website is FULLY ACTIVE with pricing, phone, and order form. NOT paused/closed as PetWorks listing suggested.</p>
+</div>
+
+<div class="status-grid">
+  <div class="status-card">
+    <div class="count count-green">5</div>
+    <div class="label">Active Competitors</div>
+  </div>
+  <div class="status-card">
+    <div class="count count-yellow">1</div>
+    <div class="label">Uncertain Status</div>
+  </div>
+  <div class="status-card">
+    <div class="count count-red">1</div>
+    <div class="label">Confirmed Dead</div>
+  </div>
+  <div class="status-card">
+    <div class="count count-blue">0</div>
+    <div class="label">N. County Competitors</div>
+  </div>
+</div>
+
+<!-- TIDY TAILS -->
+<div class="section">
+  <h2>🏆 Our Position</h2>
+  <div class="competitor-card tidy">
+    <div class="comp-header">
+      <span class="comp-name">🐕💩 Tidy Tails (Us)</span>
+      <span class="comp-badge badge-tidy">HOME TEAM</span>
+    </div>
+    <div class="comp-details">
+      <dt>Territory</dt><dd><strong>North County + STL County</strong></dd>
+      <dt>Weekly</dt><dd>$25/visit (~$100/mo)</dd>
+      <dt>Biweekly</dt><dd>$45/mo</dd>
+      <dt>Monthly</dt><dd><strong>$70/mo (UNIQUE — nobody else offers this)</strong></dd>
+      <dt>Reviews</dt><dd>⚠️ Needs more Google reviews</dd>
+      <dt>Differentiator</dt><dd>Local, personal service. Jamie as the face. $70/mo flat rate kills it.</dd>
+    </div>
+  </div>
+</div>
+
+<!-- ACTIVE COMPETITORS -->
+<div class="section">
+  <h2>✅ Active Competitors (Confirmed March 20, 2026)</h2>
+
+  <div class="competitor-card">
+    <div class="comp-header">
+      <span class="comp-name">Poop2Scoop</span>
+      <span class="comp-badge badge-active">ACTIVE</span>
+    </div>
+    <div class="comp-details">
+      <dt>URL</dt><dd>poop2scoop.com</dd>
+      <dt>Phone</dt><dd>314-449-9447</dd>
+      <dt>Territory</dt><dd>St. Louis metro + surrounding areas</dd>
+      <dt>Weekly</dt><dd>$18/visit ($72/mo) — 1 dog</dd>
+      <dt>2x Weekly</dt><dd>$16/visit ($128/mo)</dd>
+      <dt>Biweekly</dt><dd>$25/visit ($50/mo)</dd>
+      <dt>Add-ons</dt><dd>+$4/extra dog, +$4 large yard, +$4 deodorize</dd>
+      <dt>Notes</dt><dd>Veteran-owned, local family business. Active website with order form. Satisfaction guarantee. Been around since ~2017.</dd>
+      <dt>Threat Level</dt><dd>⚠️ <strong>MEDIUM</strong> — direct territory overlap, competitive pricing. Their $18/visit weekly is cheaper than TJ's $25.</dd>
+    </div>
+  </div>
+
+  <div class="competitor-card">
+    <div class="comp-header">
+      <span class="comp-name">DoodyCalls of St. Louis</span>
+      <span class="comp-badge badge-active">ACTIVE</span>
+    </div>
+    <div class="comp-details">
+      <dt>URL</dt><dd>doodycalls.com/st-louis</dd>
+      <dt>Phone</dt><dd>(314) 230-8082</dd>
+      <dt>Territory</dt><dd>St. Louis metro (national franchise)</dd>
+      <dt>Pricing</dt><dd>Quote-based (not published). Historically mid-range.</dd>
+      <dt>Services</dt><dd>Residential, commercial, stations, deodorizing</dd>
+      <dt>Strength</dt><dd>Authority Brands family, 25+ years brand history, uniformed techs</dd>
+      <dt>Notes</dt><dd>Page is live and functional despite NOT appearing on their main locations directory. May be operating with reduced marketing push.</dd>
+      <dt>Threat Level</dt><dd>⚠️ <strong>MEDIUM</strong> — brand power but unclear local commitment</dd>
+    </div>
+  </div>
+
+  <div class="competitor-card">
+    <div class="comp-header">
+      <span class="comp-name">Scoop Soldiers</span>
+      <span class="comp-badge badge-active">ACTIVE</span>
+    </div>
+    <div class="comp-details">
+      <dt>URL</dt><dd>scoopsoldiers.com/locations/st-louis</dd>
+      <dt>Phone</dt><dd>(877) 930-POOP</dd>
+      <dt>Territory</dt><dd>STL metro (national franchise)</dd>
+      <dt>Pricing</dt><dd>~$15/visit (previously confirmed). First visit free.</dd>
+      <dt>Monthly est.</dt><dd>~$60-65/mo weekly</dd>
+      <dt>Services</dt><dd>Residential, commercial, HOA, deodorizing/sanitizing</dd>
+      <dt>Notes</dt><dd>Refreshed website copy — polished, professional. Background-checked uniformed techs. Satisfaction guarantee. Est. 2010.</dd>
+      <dt>Threat Level</dt><dd>🔴 <strong>HIGH</strong> — cheapest per-visit, professional brand, STL-wide coverage. Main competitor on price.</dd>
+    </div>
+  </div>
+
+  <div class="competitor-card">
+    <div class="comp-header">
+      <span class="comp-name">Dirty Dog Wash "Poo Crew"</span>
+      <span class="comp-badge badge-active">ACTIVE</span>
+    </div>
+    <div class="comp-details">
+      <dt>URL</dt><dd>dirtydogwashstl.com/poocrew</dd>
+      <dt>Location</dt><dd>Chesterfield (10-mi radius only)</dd>
+      <dt>Weekly (1-2 dogs)</dt><dd>$95/mo</dd>
+      <dt>Biweekly (1-2 dogs)</dt><dd>$80/mo</dd>
+      <dt>3 dogs weekly</dt><dd>$100/mo</dd>
+      <dt>Reviews</dt><dd>43 Yelp + 66 Facebook (strong)</dd>
+      <dt>Notes</dt><dd>Primarily a grooming shop with waste removal add-on. Limited to Chesterfield area. Trip charge outside 10mi.</dd>
+      <dt>Threat Level</dt><dd>🟢 <strong>LOW</strong> — limited radius, expensive, no North County overlap</dd>
+    </div>
+  </div>
+
+  <div class="competitor-card">
+    <div class="comp-header">
+      <span class="comp-name">Little Stinkers of MO</span>
+      <span class="comp-badge badge-new">NEW FIND</span>
+      <span class="comp-badge badge-active">ACTIVE</span>
+    </div>
+    <div class="comp-details">
+      <dt>URL</dt><dd>littlestinkersofmo.com</dd>
+      <dt>Territory</dt><dd><strong>St. Charles, Lincoln, Warren counties ONLY</strong></dd>
+      <dt>Cities</dt><dd>Wentzville, O'Fallon, St. Peters, St. Charles, New Melle, Troy, etc.</dd>
+      <dt>Services</dt><dd>Dog waste, litter boxes, pet waste stations, deodorizing, playground sanitation</dd>
+      <dt>Pricing</dt><dd>Not published — quote-based</dd>
+      <dt>Notes</dt><dd>First time appearing in our search results. Professional website. Full-service model including litter boxes and playground sanitation (unique offerings).</dd>
+      <dt>Threat Level</dt><dd>🟢 <strong>NONE</strong> — completely outside TJ's service area. St. Charles County only.</dd>
+    </div>
+  </div>
+</div>
+
+<!-- UNCERTAIN / DEAD -->
+<div class="section">
+  <h2>⚠️ Uncertain / Dead</h2>
+
+  <div class="competitor-card uncertain">
+    <div class="comp-header">
+      <span class="comp-name">POOP 911 — St. Louis</span>
+      <span class="comp-badge badge-uncertain">UNCERTAIN</span>
+    </div>
+    <div class="comp-details">
+      <dt>Status Change</dt><dd><strong>Pages were 404 at 4am, now loading at 6am</strong></dd>
+      <dt>Content</dt><dd>Location page shows zip codes only. Service area page has title but nearly empty body.</dd>
+      <dt>Assessment</dt><dd>Pages may be auto-generated franchise templates without a local operator. The flip from 404→200 in 2 hours could be CDN caching or a page rebuild.</dd>
+      <dt>Action Needed</dt><dd>📞 <strong>Call (877) POOP-911 and ask if they serve STL</strong> — this is the only way to confirm.</dd>
+      <dt>Threat Level</dt><dd>🟡 <strong>UNCERTAIN</strong> — if they're back, they're a well-funded national competitor. If not, it's ghost pages.</dd>
+    </div>
+  </div>
+
+  <div class="competitor-card dead">
+    <div class="comp-header">
+      <span class="comp-name">Pawfect Waste Solutions</span>
+      <span class="comp-badge badge-dead">DEAD</span>
+    </div>
+    <div class="comp-details">
+      <dt>URL</dt><dd>pooperscooperstl.com — returns "SITE NOT FOUND"</dd>
+      <dt>Status</dt><dd>Domain appears lapsed. No redirect. No content.</dd>
+      <dt>Confirmed</dt><dd>Dead as of Mar 20 6am check (same as 4am)</dd>
+    </div>
+  </div>
+</div>
+
+<!-- PRICING COMPARISON -->
+<div class="section">
+  <h2>💰 Pricing Comparison (1 Dog, Standard Yard)</h2>
+  <table class="pricing-table">
+    <thead>
+      <tr>
+        <th>Company</th>
+        <th>Weekly/mo</th>
+        <th>Biweekly/mo</th>
+        <th>Per Visit (wk)</th>
+        <th>Territory</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="tidy-row">
+        <td>🐕💩 Tidy Tails</td>
+        <td>~$100</td>
+        <td class="cheapest">$45 ★</td>
+        <td>$25</td>
+        <td>N. County + STL Co</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td>Scoop Soldiers</td>
+        <td class="cheapest">~$60-65 ★</td>
+        <td>—</td>
+        <td class="cheapest">~$15 ★</td>
+        <td>STL Metro</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td>Poop2Scoop</td>
+        <td>$72</td>
+        <td>$50</td>
+        <td>$18</td>
+        <td>STL Metro</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td>Dirty Dog Wash</td>
+        <td class="expensive">$95</td>
+        <td class="expensive">$80</td>
+        <td>~$22</td>
+        <td>Chesterfield only</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td>DoodyCalls</td>
+        <td>Quote</td>
+        <td>Quote</td>
+        <td>Quote</td>
+        <td>STL Metro</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td>Little Stinkers</td>
+        <td>Quote</td>
+        <td>Quote</td>
+        <td>Quote</td>
+        <td>St. Charles Co only</td>
+        <td>✅</td>
+      </tr>
+    </tbody>
+  </table>
+  <p style="color:var(--muted);font-size:0.85em;margin-top:12px">★ = cheapest in category. TJ's $70/mo flat rate is unique — no competitor offers a once-monthly service tier. TJ's biweekly at $45 beats everyone.</p>
+</div>
+
+<!-- TERRITORY MAP -->
+<div class="section">
+  <h2>🗺️ Territory Analysis</h2>
+  <div class="territory-map">
+    <div class="territory-card">
+      <h4>🟢 North County (Florissant, Hazelwood, Bridgeton, Maryland Heights)</h4>
+      <p class="competitors">Active competitors: <strong>ZERO confirmed</strong></p>
+      <p class="competitors" style="margin-top:4px">POOP 911 was here — status now uncertain</p>
+      <p class="competitors" style="margin-top:4px">Scoop Soldiers claims STL metro coverage (unverified in N. County)</p>
+      <p class="opportunity">🎯 TJ's HOME TURF — Lowest competition anywhere in STL</p>
+    </div>
+    <div class="territory-card">
+      <h4>🟡 South County</h4>
+      <p class="competitors">Scoop Soldiers, Poop2Scoop, DoodyCalls may serve here</p>
+      <p class="crowded">Moderate competition — expansion opportunity</p>
+    </div>
+    <div class="territory-card">
+      <h4>🔴 West County / Chesterfield</h4>
+      <p class="competitors">Dirty Dog Wash (home base), Doggie Doodies, Scoop Soldiers</p>
+      <p class="crowded">Most competitive zone — 3+ active providers</p>
+    </div>
+    <div class="territory-card">
+      <h4>⚪ St. Charles County</h4>
+      <p class="competitors">Little Stinkers (home base), Doggie Doodies, Scoop Soldiers</p>
+      <p class="competitors" style="margin-top:4px">Outside TJ's current service area</p>
+    </div>
+  </div>
+</div>
+
+<!-- INSIGHTS -->
+<div class="section">
+  <h2>💡 Key Insights</h2>
+  
+  <div class="insight-box">
+    <h3>📊 Pricing Reality Check</h3>
+    <ul>
+      <li><strong>TJ's $25/visit weekly ($100/mo) is the MOST EXPENSIVE weekly option.</strong> Scoop Soldiers at ~$15 and Poop2Scoop at $18 significantly undercut.</li>
+      <li><strong>TJ's $45/mo biweekly is the CHEAPEST biweekly option.</strong> Poop2Scoop charges $50, Dirty Dog charges $80.</li>
+      <li><strong>TJ's $70/mo flat rate is UNIQUE.</strong> Nobody else offers monthly service. This is the killer differentiator for budget-conscious dog owners.</li>
+      <li><strong>Recommendation:</strong> Lead marketing with the $70/mo and $45/biweekly tiers. These are where TJ wins on price. The $25/visit weekly tier is a premium option — position it as "white glove" service, not the default.</li>
+    </ul>
+  </div>
+
+  <div class="insight-box">
+    <h3>🎯 Competitive Moat: North County</h3>
+    <ul>
+      <li><strong>Zero confirmed local competitors in North County.</strong> This hasn't changed.</li>
+      <li>National franchises (Scoop Soldiers, DoodyCalls) claim broad coverage but have no North County–specific pages or marketing.</li>
+      <li>POOP 911 was the only competitor with a Florissant-specific page — their status is now uncertain.</li>
+      <li><strong>Action:</strong> Every dollar spent marketing in North County faces minimal competition. This is the highest-ROI territory.</li>
+    </ul>
+  </div>
+
+  <div class="insight-box">
+    <h3>🆕 New Competitor: Little Stinkers</h3>
+    <ul>
+      <li>First time appearing in our search radar — professional site, full-service model.</li>
+      <li><strong>No threat to TJ.</strong> Operates exclusively in St. Charles, Lincoln, and Warren counties.</li>
+      <li>Interesting offerings: litter box service, playground sanitation. Worth monitoring if they expand east.</li>
+      <li>Their existence confirms demand for pet waste services is growing in the STL metro region.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ACTION ITEMS -->
+<div class="section">
+  <div class="action-items">
+    <h3>📋 Action Items for TJ</h3>
+    <ol>
+      <li><span class="priority">HIGH</span> <strong>Call POOP 911 at (877) POOP-911</strong> — Verify if they actually serve STL or if their pages are ghost content. This changes our competitive picture significantly.</li>
+      <li><span class="priority">HIGH</span> <strong>Lead with $70/mo and $45/biweekly in all ads.</strong> These are TJ's price-winning tiers. The $25/visit weekly should be positioned as premium, not the headline.</li>
+      <li><span class="medium">MEDIUM</span> <strong>Double down on North County marketing.</strong> Google Ads, Nextdoor, FB groups for Florissant/Hazelwood/Bridgeton. Zero local competition = highest conversion rates.</li>
+      <li><span class="medium">MEDIUM</span> <strong>Google Reviews push.</strong> Dirty Dog Wash has 109+ reviews. Poop2Scoop and Scoop Soldiers have social proof. TJ needs to close this gap to compete in search.</li>
+      <li><span class="medium">MEDIUM</span> <strong>Monitor Poop2Scoop activity.</strong> Their website is active but the PetWorks listing says "paused." They may be operating at reduced capacity — an opportunity to capture their dissatisfied customers.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="timestamp">
+  <p>🔍 Compiled by Franklin | March 20, 2026 6:04 AM CT | Sources: Direct website crawls (poop2scoop.com, doodycalls.com, scoopsoldiers.com, dirtydogwashstl.com, littlestinkersofmo.com, poop911.com, pooperscooperstl.com) + Brave Search</p>
+  <p style="margin-top:4px">Next sweep recommended: March 27, 2026 (weekly cadence)</p>
+</div>
+
+</body>
+</html>

@@ -7,6 +7,31 @@
 
 ## March 20, 2026 (Friday)
 
+### 6:04 AM — 🔍 COMPETITIVE INTEL UPDATE — Market Status Corrections + New Competitor Discovery (Research)
+**Task:** Full competitive sweep of all known STL pet waste removal competitors. Crawled 7 competitor websites directly. Found significant corrections to 4am report and discovered a new competitor.
+
+**Result:** ✅ COMPLETE — `dashboard/2026-03-20-COMPETITIVE-INTEL-UPDATE.html`
+
+**Key Corrections to 4AM Report:**
+1. **POOP 911 pages loading again** — Were 404 at 4am, now returning 200 with content (zip codes, service area). Status changed from "WITHDRAWN" to "UNCERTAIN." Could be CDN caching, page rebuild, or new operator. TJ needs to call (877) POOP-911 to verify.
+2. **Poop2Scoop is ACTIVE** — Website fully functional with pricing ($18/visit weekly, $25/visit biweekly), phone (314-449-9447), and online order form. NOT paused/closed as PetWorks listing suggested.
+
+**New Competitor Discovered:**
+- **Little Stinkers of MO** (littlestinkersofmo.com) — Professional site, serves St. Charles/Lincoln/Warren counties ONLY. No threat to TJ (wrong territory). Offers unique services: litter boxes, playground sanitation.
+
+**Updated Competitive Landscape (7 tracked companies):**
+- ✅ Active: Poop2Scoop, DoodyCalls, Scoop Soldiers, Dirty Dog Wash, Little Stinkers
+- ⚠️ Uncertain: POOP 911 (pages flickering between 404/200)
+- ❌ Dead: Pawfect Waste Solutions (site still down)
+
+**Pricing Insight:** TJ's $25/visit weekly ($100/mo) is the MOST EXPENSIVE weekly option. Scoop Soldiers ~$15, Poop2Scoop $18. BUT TJ's $45 biweekly is CHEAPEST, and $70/mo flat rate is UNIQUE. Marketing should lead with biweekly/monthly tiers.
+
+**North County Status:** Still ZERO confirmed local competitors. Highest-ROI territory for TJ.
+
+**Rotation:** 🔍 Research / Competitive Intel
+
+---
+
 ### 2:05 AM — 🧹 MEMORY MAINTENANCE + ARCHIVE — Context Trimming for Performance (Maintenance)
 **Task:** franklin-tasks.md hit 818 lines again with March 19's 15+ entries. Archived March 19 entries (730 lines) to `memory/archive/franklin-tasks-mar19.md`. Archived earlier March 20 entries (Spring content blitz + SEO audit) to `memory/archive/franklin-tasks-mar20-early.md`. Updated MEMORY.md with March 20 milestone (First Day of Spring content blitz, SEO audit findings). Cleaned stale/duplicate info in MEMORY.md competitive section.
 **Result:** ✅ COMPLETE — franklin-tasks.md trimmed from 818 → ~50 lines (94% reduction). MEMORY.md updated with March 20 findings.
