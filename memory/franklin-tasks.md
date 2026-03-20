@@ -7,6 +7,34 @@
 
 ## March 20, 2026 (Friday)
 
+### 8:07 AM — 📰 PR & BACKLINK BLITZ — Off-Page SEO Fix (SEO/Marketing)
+**Task:** Built a complete PR & Backlink Blitz kit to fix Tidy Tails' F-grade off-page SEO. Includes a ready-to-submit press release, 8 free PR distribution sites with tracking, 4 directory backlink opportunities, and 4 personalized local media pitches (STL Post-Dispatch, STL Magazine, Webster-Kirkwood Times, Florissant Valley Messenger).
+
+**Result:** ✅ COMPLETE — `dashboard/pr-backlink-blitz.html`
+
+**Key Intel Corrections:**
+- POOP 911 Florissant page is BACK UP (was 404 at 4AM, now loading fine at 8AM). Status changed from "WITHDRAWN" to "UNCERTAIN." Transient outage, not confirmed exit.
+- Updated MEMORY.md to reflect corrected competitive status.
+
+**Why This Task:**
+- Off-page SEO score: F. Zero backlinks. Zero directory listings beyond GBP/Yelp.
+- `site:tidytailsstl.com` = 0 results on Brave. Google barely knows we exist.
+- Atlanta's "Tidy Tails Waste Solutions" used ONE press release on EIN Presswire → now dominates branded search.
+- Idaho Poop Scoop posted a press release YESTERDAY and already ranks.
+- Spring = perfect news hook. Cost: $0. Time: ~45 min for Jamie.
+- Each submission = 1-3 backlinks from DA 50-80 sites. More than our TOTAL right now.
+
+**Deliverables:**
+1. Professional press release (spring expansion angle + competitor exodus narrative)
+2. 8 free PR submission sites mapped with direct links + tracking checkboxes
+3. 4 pet/business directory backlink opportunities (PetWorks, BringFido, Pooperoni, MapQuest)
+4. 4 local media email pitches (copy-paste, tailored per outlet)
+5. Progress bar + localStorage tracking
+
+**Rotation:** 📈 SEO / Off-Page Marketing
+
+---
+
 ### 7:04 AM — 📱 SUNDAY REVIEW BLITZ — Personalized Review Request Campaign (Execution)
 **Task:** Built a complete copy-paste review request package for Sunday scooping day. 8 personalized texts (one per customer), all from Jamie's voice, each tailored with customer name/location/frequency. Interactive tracking board with sent/reviewed toggles and progress bar. Includes the Google review link, why-it-matters breakdown, and step-by-step play.
 
