@@ -7,6 +7,45 @@
 
 ## March 20, 2026 (Friday)
 
+### 1:04 PM — 🎯 COMMUNITY GUERRILLA MARKETING PLAYBOOK — Bypass SEO, Go Where Customers Are (Marketing/Growth)
+**Task:** Researched and compiled every actionable Facebook group and Nextdoor opportunity in TJ's service territory. Built a mobile-optimized playbook with specific group links, 6 copy-paste post templates (in Jamie's voice), Nextdoor Business Page setup guide, engagement rules, and a 7-day launch schedule.
+
+**Result:** ✅ COMPLETE — `dashboard/community-guerrilla-playbook.html`
+
+**Key Deliverables:**
+1. **7 Tier 1 Facebook Groups** — Florissant/Ferguson community groups (hyperlocal, recommendation-heavy)
+2. **6 Tier 2 Groups** — Greater STL Buy/Sell/Trade groups (combined 300K+ members)
+3. **5 Tier 3 Search Terms** — Pet-specific STL groups to find and join on Facebook directly
+4. **Complete Nextdoor Setup Guide** — 6-step process to claim free business page + post strategy
+5. **6 Copy-Paste Post Templates** — Spring intro, value tips, Nextdoor intro, recommendation reply, funny BST post, commercial/HOA post
+6. **Rules of Engagement** — 7 rules to avoid getting banned (80/20 value rule, no cross-posting, etc.)
+7. **7-Day Launch Schedule** — ~2 hours total across the week, reaching 100K+ potential customers
+8. **18-Item Master Checklist** — with localStorage progress tracking
+9. **Stats Dashboard** — Groups joined, posts shared, leads generated
+
+**Why This Task:**
+- 9th task today. 8 dashboard tools already shipped. Another tool won't convert.
+- Search audit (9 AM) proved: site is INVISIBLE. SEO will take months. 
+- Community posting is how EVERY local service business gets their first 20 customers.
+- Facebook groups in Florissant have thousands of active members asking for recommendations RIGHT NOW.
+- Nextdoor Florissant's #4 interest is literally "dogs." 76% of users are influenced by neighbor recommendations.
+- Total cost: $0. Total time: ~15 min/day. Expected result: 2-5 leads/week if consistent.
+
+**Key Intel:**
+- Florissant top Nextdoor interests: home improvement, walking, gardening, DOGS, BBQ
+- PetSmart Florissant is a "Neighborhood Favorite" in 56 Nextdoor neighborhoods — proves pet density
+- Wentzville BST group has 110K members. St. Charles BST has 78K. Missouri Marketplace has 54K.
+- Tidy Tails has NO Nextdoor presence (only Highland CA competitor "Tidy Tails" found)
+- Facebook search is limited from outside — requires logging in to find pet-specific groups
+
+**Revenue Impact:** Community posting is the #1 free customer acquisition channel for local services. One "who do you recommend?" reply in a Florissant group could convert to $100+/mo recurring. 
+
+**Dashboard Updated:** Added "🎯 Community Guerrilla Playbook" as highlighted green link in header nav.
+
+**Rotation:** 🎯 Marketing / Community Growth / Customer Acquisition
+
+---
+
 ### 12:05 PM — 🏠 SHED SALES CLOSER TOOL — "Why Buy NOW" with Live Market Data (TuffShed/Sales)
 **Task:** Researched live lumber futures and tariff data, then built a mobile-optimized sales closer tool TJ can pull up on his phone at the lot. Includes 5 copy-paste talk track scripts, 6 objection handlers with responses, wait-tax math calculator, storage unit comparison, and a lumber price escalation timeline.
 
