@@ -75,9 +75,15 @@
 - **BringFido.com** — pet services directory covers Florissant. TJ NOT listed. Free listing.
 - **Doggie Doodies pricing confirmed** — $83/mo weekly, $85/mo biweekly, $90/mo monthly (Mar 18 live scrape)
 - **NEW: Dirty Dog Wash "Poo Crew"** — Chesterfield groomer added waste removal. $95/mo (1-2 dogs weekly). 43 Yelp reviews, 66 FB reviews. Cross-sell advantage but HIGHER than TJ.
-- **⚠️ POOP 911 Florissant page is NOW 404** (as of Mar 19 5AM crawl) — their STL zip list excludes 63031/63033. May have WITHDRAWN from Florissant. TJ should verify by calling their 888 number. Previously had hyper-local page targeting TJ's core territory.
-- **Scoop Soldiers confirmed $15/visit** — up to 4 dogs included. First service FREE. Fully operational STL.
-- **ZERO Google reviews** vs competitors with 6+
+- **🚨 POOP 911 FULLY WITHDRAWN FROM STL** (confirmed Mar 20) — Florissant page 404, St. Louis page 404, Missouri state page broken (blank city names). Franchise appears to have completely exited STL metro.
+- **⚠️ DoodyCalls STL LIKELY CLOSING** — Page still loads but STL is MISSING from their official locations page. Franchise winding down.
+- **❌ Poop2Scoop CLOSED** — PetWorks listing says "paused or closed." Veteran-owned, operated since 2017.
+- **❌ Pawfect Waste Solutions SITE DOWN** — pooperscooperstl.com returns "SITE NOT FOUND"
+- **4 of 7 STL competitors have withdrawn/closed** — Market is THINNING FAST (confirmed Mar 20 4AM crawl)
+- **North County has ZERO active local competitors** — TJ's home turf is wide open
+- **Only 3 active competitors remain:** Doggie Doodies (West County only), Scoop Soldiers (national franchise), Dirty Dog Wash (Chesterfield only)
+- **Scoop Soldiers confirmed $15/visit** — up to 4 dogs included. First service FREE. Only real overlap with TJ's territory.
+- **ZERO Google reviews** vs competitors with 6+ — Still #1 weakness
 - Google Review Link: https://g.page/r/Ce_hqIHanGLvEAE/review
 - 21 city/area landing pages built on tidytailsstl.com
 - 4 blog posts published

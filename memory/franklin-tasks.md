@@ -32,6 +32,29 @@
 
 ---
 
+### 4:04 AM — 🔍 COMPETITIVE INTEL SWEEP — Market Thinning Report (Research)
+**Task:** Deep crawl of all known STL pet waste removal competitors to verify status and pricing. Crawled POOP 911 (3 URLs), Scoop Soldiers (3 pages), Doggie Doodies (3 pages), DoodyCalls (2 pages), Dirty Dog Wash, Poop2Scoop, and Pawfect Waste Solutions.
+
+**Result:** ✅ COMPLETE — MAJOR DISCOVERY: 4 of 7 STL competitors have withdrawn, closed, or gone dark.
+
+**Key Findings:**
+1. **POOP 911** — FULLY WITHDRAWN from STL. Florissant, St. Louis, AND Missouri state pages all 404/broken.
+2. **DoodyCalls STL** — Likely closing. Still has a page but REMOVED from their official locations directory.
+3. **Poop2Scoop** — Confirmed closed/paused per PetWorks listing.
+4. **Pawfect Waste Solutions** — Website down entirely.
+5. **Only 3 active competitors remain:** Doggie Doodies (West County only), Scoop Soldiers (national), Dirty Dog Wash (Chesterfield only)
+6. **North County has ZERO active competitors** — TJ's home turf is wide open
+
+**Deliverable:** `memory/competitive-intel-mar20-4am.md` — Full report with pricing matrix, status for each competitor, and strategic recommendations
+
+**MEMORY.md updated** with new competitive landscape data (replaced outdated POOP 911 entry with comprehensive market status)
+
+**Why This Matters:** This is actionable intel for TJ. The market vacuum means aggressive local marketing in North County could capture displaced customers from POOP 911 and DoodyCalls with near-zero competition.
+
+**Rotation:** 🔍 Research / Competitive Intel
+
+---
+
 
 ## Archive
 - **March 20, 2026 (Fri) 12-1 AM:** `memory/archive/franklin-tasks-mar20-early.md` (66 lines, 2 tasks — First Day of Spring content blitz, Technical SEO audit)
