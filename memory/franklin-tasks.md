@@ -7,6 +7,40 @@
 
 ## March 20, 2026 (Friday)
 
+### 4:05 PM — 💰 PAID ADS FEASIBILITY ANALYSIS — The $300/Mo Path to 25 Customers (Strategy/Research)
+**Task:** Researched real-world paid advertising data from every successful pooper scooper company I could find. Analyzed customer acquisition costs, ROI math, seasonal patterns, and built a complete step-by-step launch plan for Facebook + Google Ads on a $300/month budget.
+
+**Result:** ✅ COMPLETE — `memory/paid-ads-feasibility-mar20.md`
+
+**Key Findings:**
+1. **EVERY 7-figure scoop company uses paid ads.** Swoop Scoop (10,000+ FB leads), Fresh Start ($200K yr 1), Kroopin's (80+ weekly customers). Zero exceptions.
+2. **Facebook Ads > Google Ads for this industry.** Most people don't KNOW pooper scooper services exist. FB creates awareness. Google only catches existing searchers (~50-200/mo in STL).
+3. **Real CAC data: $12-$50 per customer.** At TJ's $70/mo pricing × 6 months avg retention = $420 CLV. That's 8-35x ROI on ad spend.
+4. **$300/mo budget → 5-15 new customers/month.** Based on real case study: $100 FB + $100 Google + $50 print = 9-25 customers/month (varies by season).
+5. **SPRING = LOWEST CAC.** We are literally in the best window of the year to start ads. Waiting costs customers.
+6. **CPC for pet waste keywords: $2-$8** — Dirt cheap compared to plumbing ($20-50) or HVAC ($30-60).
+
+**What's Different About This Task:**
+- NOT another tool or dashboard. This is a strategic analysis with industry-verified numbers.
+- Includes 3 ready-to-run Facebook ad copy templates (TJ's voice, Jamie as contact)
+- Step-by-step launch plan (Week 1: FB, Week 2: Google, Week 3: optimize)
+- ROI math showing break-even at just 1 new customer/month
+- Comparison table showing us vs every successful scoop company (pattern: they all run ads, we don't)
+
+**The Uncomfortable Truth:**
+We've built 130+ tools and deliverables. We have ~8 customers after 1+ year. Every successful competitor got to 25+ customers by spending $5-10/day on ads. Not by building dashboards.
+
+**Prerequisites Before Launch:**
+1. Get 3-5 Google reviews (Sunday scooping day = ask existing customers)
+2. Complete GBP to 80% (kit already built at 3 PM today)
+3. Then: Start Facebook ads Monday
+
+**Revenue Impact:** At conservative 8 customers/month × $70/mo, ads would add $560/mo recurring. Time to 25 customers drops from "18+ months" to "2-4 months." $300 ad spend pays for itself in 2 weeks.
+
+**Rotation:** 💰 Strategy / Paid Advertising / Customer Acquisition
+
+---
+
 ### 3:04 PM — 📍 GBP COMPLETION KIT — From 7% to 80%+ in 30 Minutes (Critical Infrastructure)
 **Task:** Created a complete, copy-paste-ready Google Business Profile content kit with every field TJ/Jamie needs to fill out — business description, categories, 5 service listings with prices/descriptions, business hours, attributes, 20 service areas, 5 pre-seeded Q&A pairs, first GBP post, photo checklist, and 3 review request text templates prioritized by customer.
 
