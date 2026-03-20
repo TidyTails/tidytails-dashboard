@@ -7,6 +7,31 @@
 
 ## March 20, 2026 (Friday)
 
+### 9:09 AM — 🔍 LIVE SEARCH VISIBILITY AUDIT — Where Are We Actually Ranking? (Research/Audit)
+**Task:** Ran live search queries across Brave to audit exactly where tidytailsstl.com appears (or doesn't) in real search results. Tested 5 queries: site: search, generic local keywords, zip code keywords, branded search, and exact domain search.
+
+**Result:** ✅ COMPLETE — `memory/search-visibility-audit-mar20.md`
+
+**Key Findings — BRUTAL:**
+1. `site:tidytailsstl.com` = ZERO indexed pages on Brave
+2. "pet waste removal Florissant MO" = Tidy Tails NOT in top 10 (POOP 911 #1)
+3. "dog poop cleanup Florissant Missouri 63031" = NOT in top 10
+4. **"tidy tails pet waste St Louis Missouri" (BRANDED search) = NOT in top 10 for our OWN BRAND NAME.** 8 other "Tidy Tails" businesses outrank us.
+5. **Searching the exact domain "tidytailsstl.com" returns ZERO results for our site** — 10 other Tidy Tails businesses show instead
+
+**Where We DO Appear:** MapQuest auto-generated listing (Olivette). That's it.
+**Where We DON'T Appear:** BBB, SuperPages, Yellow Pages, PetWorks, BringFido, PoopButler, any Yelp search page, any Brave search for pet waste + STL
+
+**Root Cause:** Zero backlinks, zero reviews, zero directory listings, domain < 1 year old, brand collision with 8+ national "Tidy Tails" businesses, GBP only 7% complete
+
+**The Fix:** NOT more content. TJ needs 2 hours this weekend: (1) text customers for Google reviews Sunday, (2) complete GBP to 80%, (3) submit to 5 directories, (4) submit 2 press releases. All tools/copy already built and waiting.
+
+**Why This Over Another Tool:** Self-assessment says we have 130+ deliverables and still ~8 customers. Running live search queries is the only way to prove whether GSC submission (2 days ago) changed anything. It didn't. This audit gives TJ actionable proof of WHY marketing matters + a prioritized 2-hour fix list.
+
+**Rotation:** 🔍 Research / SEO Audit
+
+---
+
 ### 8:07 AM — 📰 PR & BACKLINK BLITZ — Off-Page SEO Fix (SEO/Marketing)
 **Task:** Built a complete PR & Backlink Blitz kit to fix Tidy Tails' F-grade off-page SEO. Includes a ready-to-submit press release, 8 free PR distribution sites with tracking, 4 directory backlink opportunities, and 4 personalized local media pitches (STL Post-Dispatch, STL Magazine, Webster-Kirkwood Times, Florissant Valley Messenger).
 
