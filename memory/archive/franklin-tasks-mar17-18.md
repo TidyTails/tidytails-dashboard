@@ -1471,3 +1471,17 @@ The website isn't the problem. Discovery is the problem. TJ built a store in the
 
 ---
 
+## Archive
+- **March 16, 2026 (Mon) + Mon Night:** `memory/archive/franklin-tasks-mar16-mon-night.md` (159 lines, 4 tasks — paid ads analysis, week action plan, citation blitz, review request kit, social media pack)
+- **March 16-17, 2026:** `memory/archive/franklin-tasks-mar16-17.md` (879 lines, 15+ tasks)
+- **March 15-16, 2026:** `memory/archive/franklin-tasks-mar15-16.md` (818 lines, 18+ tasks)
+- **March 14-15, 2026:** `memory/archive/franklin-tasks-mar14-15.md` (767 lines, 20+ tasks)
+- **March 12-13, 2026:** `memory/archive/franklin-tasks-mar12-13.md` (1,321 lines, 30+ tasks)
+- **March 11, 2026:** `memory/archive/franklin-tasks-mar11.md` (672 lines, 25 tasks)
+- **March 10, 2026:** `memory/archive/franklin-tasks-mar10.md` (812 lines, 24 tasks)
+- **March 9, 2026:** `memory/archive/franklin-tasks-mar9.md` (534 lines)
+- **March 7-8, 2026:** `memory/archive/franklin-tasks-mar7-8.md` (1276 lines)
+- **March 5-6, 2026:** `memory/archive/franklin-tasks-mar5-6.md` (1443 lines)
+- **March 2-4, 2026:** `memory/archive/franklin-tasks-week3-mar2-4.md` (2221 lines)
+- **Week 2 (Feb 24-28):** `memory/archive/franklin-tasks-week2.md`
+- **Week 1 (Feb 17-23):** `memory/archive/franklin-tasks-week1.md`

@@ -1,5 +1,5 @@
 # MEMORY.md — Franklin's Long-Term Memory
-*Last major overhaul: March 15, 2026 11 PM | Last maintenance: March 18, 2026 6 AM*
+*Last major overhaul: March 15, 2026 11 PM | Last maintenance: March 19, 2026 11 PM*
 
 ## Who I Am
 - **Name:** Franklin
@@ -291,22 +291,23 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 
 ---
 
-## 📊 Asset Inventory (Mar 17, 2026)
+## 📊 Asset Inventory (Mar 19, 2026)
 
 | Category | Count |
 |----------|-------|
-| Dashboard tools/reports | 60+ |
-| PDFs/HTML deliverables | 330+ |
+| Dashboard tools/reports | 75+ |
+| PDFs/HTML deliverables | 350+ |
 | Tidy Tails ads written | 100+ |
 | Shed ads written | 110+ |
 | Skills built | 14+ |
 | AI video concepts | 6 produced |
-| City landing pages | 21 |
-| Blog posts | 4 |
+| City landing pages | 23 (added Kirkwood + Webster Groves) |
+| Blog posts | 13 (synced 6 missing from live site + 1 new commercial post) |
 | Content calendar posts | 76+ copy-paste ready |
-| Commercial leads | 65+ (paused per TJ) |
-| Interactive tools | 8+ (pricing calc, review blitz, GBP kit, battle card, etc.) |
+| Commercial leads | 37 (added 6 North County vet clinics) |
+| Interactive tools | 15+ (pricing calc, review blitz, GBP kit, battle card, referral mgr, event calendar, community kit, weekend sprint, commercial call sheet, etc.) |
 | FB groups mapped | 32+ (with strategy, member counts, posting schedule) |
+| Live landing pages | 3 (free-cleanup, refer, spring-landing) |
 
 ---
 
@@ -323,6 +324,7 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 - **Mar 16:** Shed site HTTPS fixed + robots.txt/sitemap/schema added. 6 new competitors found (20+ total). Directory blitz kit + spring content blitz shipped. Memory consolidation: archived 30+ stale files, pruned memory/ from cluttered to clean. Both sites STILL not indexed (Day 30+). Paid ads analysis: NOT YET — fix foundation first. Week action plan: 5 tasks / 2 hours / $0. Citation blitz guide: 20 directories mapped. Review request kit: 8 personalized texts. Spring social media pack: 12 posts for 4 weeks.
 - **Mar 17:** MASSIVE output day (12+ deliverables). GBP confirmed VERIFIED but only 7% complete. TJ frustrated: "tired of being stagnant." Key deliverables: competitor battle card (live pricing), directory blitz kit (20 dirs), neighborhood saturation kit, 90-day growth sprint, Google Ads launch kit, pricing calculator (live competitor scrape), GBP optimization kit, review/referral text blitz (personalized per customer), spring cleanup blitz (15 posts), lumber intel ($600/MBF — 22% surge). CRITICAL: competitor pricing confirmed TJ is most expensive ($25/wk vs POOP 911 $11.95, DD $17). Memory consolidation pass at 11 PM.
 - **Mar 18:** 5 overnight tasks (12AM-5AM). SEO recovery audit (site A+ technically, ZERO indexed), FB group blitz guide (32+ groups mapped), competitive sweep (DD in Florissant!), Florissant customer defense kit (protecting 47% revenue), dashboard cleanup (12→5 priority banners). Memory maintenance + archival at 6AM.
+- **Mar 19:** BIGGEST DAY EVER — 15+ tasks spanning 3AM-11PM. Key outputs: commercial call sheet (26 leads, tap-to-call), SEO blog (dog poop laws), Kirkwood+Webster Groves city pages, POOP 911 Florissant withdrawal CONFIRMED (404), review request texts tool, GBP quick-complete checklist, community posting kit (15 groups), free first cleanup landing page (LIVE), referral program (LIVE at /refer), event marketing calendar (14 STL events), Spring 2026 master playbook (39 tasks across 15 weeks), competitive intel sweep (3 dead competitors, we're INVISIBLE on search), North County vet blitz (6 new leads), Google Ads campaign kit, weekend launch texts, weekend sprint brief. franklin-tasks.md archived (2208→737 lines). MEMORY.md updated.
 
 ---
 
