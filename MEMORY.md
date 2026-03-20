@@ -1,5 +1,5 @@
 # MEMORY.md — Franklin's Long-Term Memory
-*Last major overhaul: March 15, 2026 11 PM | Last maintenance: March 19, 2026 11 PM*
+*Last major overhaul: March 15, 2026 11 PM | Last maintenance: March 20, 2026 2 AM*
 
 ## Who I Am
 - **Name:** Franklin
@@ -140,28 +140,26 @@
 ### DEAD Competitors (confirmed Mar 20)
 Pawfect (404), Fresh Paws (DNS expired), Poopy Paws (DNS failure — 358 orphaned FB followers + Nextdoor page still up), STL Pooper Scoopers (Yelp CLOSED), Super Scoopers STL (Yelp CLOSED), **Pawfect Waste Solutions** (pooperscooperstl.com — 404, never launched)
 
-### Search Visibility (Mar 20 9PM)
-- **`site:tidytailsstl.com` on Brave Search = 0 results** — NOT indexed on Brave at all
-- Not showing in top 10 for "pet waste removal St Louis MO" on any search engine checked
+### Search Visibility (Mar 20 — SEO Audit Score: 30/100)
+- **On-page SEO: A-** — schema, meta tags, sitemap, robots.txt, canonicals all solid
+- **Off-page SEO: F** — zero backlinks, zero directory listings beyond GBP/Yelp, zero reviews
+- Google Search Console confirmed indexed (Mar 18) but organic visibility near-zero
+- `site:tidytailsstl.com` on Brave = 0 results. Not in top 10 for core keywords.
 - Not showing in Yelp Florissant results despite being claimed since Mar 5
-- Google Search Console confirmed indexed (Mar 18) but organic visibility still near-zero
-- **Diagnosis: Indexed but not ranking.** Need backlinks, reviews, and authority signals.
+- **Root cause:** No GA4, GBP only 7% complete, zero reviews, zero backlinks
+- **The metaphor:** "Built a Porsche but never put gas in it." 35 pages of well-optimized content nobody can find.
+- **Fix:** 2 hours of TJ's time ($0 cost) — GSC sitemap submission ✅ done, GA4 setup, GBP completion, review request texts
 
-### Pricing Reality (Updated Mar 20 9PM — LIVE SCRAPE)
-- POOP 911: $11.95/wk (~$52/mo) — 52% cheaper than TJ
-- Dog Doody Defenders: $17/wk, **$54/mo monthly** (was $68) — now undercuts TJ's $70/mo by 23%
-- **Dog Doody Defenders: $17/wk (~$74/mo), NEW $54/mo monthly plan** — undercuts TJ's $70/mo by 23%
-- Poop 2 Scoop: $18/wk (~$78/mo) — 28% cheaper
-- Doggie Doodies: $19.15/wk ($83/mo), biweekly $85/mo, monthly $90/mo — 23% cheaper weekly
-- Poopy Paws: $20/wk (~$87/mo) — 20% cheaper (site dead but pricing was this)
-- **Tidy Tails: $25/wk ($108/mo) — MOST EXPENSIVE local indie**
-- ⚠️ **TJ's $70/mo is NO LONGER cheapest monthly** — Dog Doody Defenders now at $54/mo
-- TJ's $70/mo still beats Doggie Doodies $90/mo
-- **TJ's $70/month flat rate is CHEAPER than Doggie Doodies' $90/month** — genuine competitive advantage!
-- DD biweekly ($85/mo) > TJ biweekly ($90/mo) — DD slightly cheaper there
-- Recommended: add $89/mo plan option, offer "free first cleanup" (steal POOP 911's playbook)
-- DON'T lower prices yet — awareness problem, not price problem at 8 customers
-- **Petworks.com** — free marketplace, TJ NOT listed. Dr. Scoops + Poop2Scoop already there. Easy win.
+### Pricing Reality (Updated Mar 20 — LIVE SCRAPE)
+- POOP 911: $11.95/wk (~$52/mo) — cheapest in market
+- Dog Doody Defenders: $17/wk, **$54/mo monthly plan** — undercuts TJ's $70/mo by 23%
+- Scoop Soldiers: $15/visit (first FREE) — price floor
+- Poop 2 Scoop: $18/wk (~$78/mo) — veteran-owned
+- Doggie Doodies: $19.15/wk ($83/mo), biweekly $85/mo, monthly $90/mo
+- **Tidy Tails: $25/wk | $45 biweekly | $70/mo | $100 deep clean — MOST EXPENSIVE weekly indie**
+- ⚠️ TJ's $70/mo undercut by DDD's $54/mo, but BEATS Doggie Doodies ($90/mo) and Dirty Dog Wash ($95/mo)
+- Strategy: DON'T lower prices — awareness problem, not price problem at 8 customers. Lead with $70/mo value.
+- **Petworks.com** — free marketplace, TJ NOT listed. Easy win.
 - **MapQuest listing EXISTS** (auto-generated, Olivette MO 63132) — free citation
 
 ---
@@ -325,6 +323,7 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 - **Mar 17:** MASSIVE output day (12+ deliverables). GBP confirmed VERIFIED but only 7% complete. TJ frustrated: "tired of being stagnant." Key deliverables: competitor battle card (live pricing), directory blitz kit (20 dirs), neighborhood saturation kit, 90-day growth sprint, Google Ads launch kit, pricing calculator (live competitor scrape), GBP optimization kit, review/referral text blitz (personalized per customer), spring cleanup blitz (15 posts), lumber intel ($600/MBF — 22% surge). CRITICAL: competitor pricing confirmed TJ is most expensive ($25/wk vs POOP 911 $11.95, DD $17). Memory consolidation pass at 11 PM.
 - **Mar 18:** 5 overnight tasks (12AM-5AM). SEO recovery audit (site A+ technically, ZERO indexed), FB group blitz guide (32+ groups mapped), competitive sweep (DD in Florissant!), Florissant customer defense kit (protecting 47% revenue), dashboard cleanup (12→5 priority banners). Memory maintenance + archival at 6AM.
 - **Mar 19:** BIGGEST DAY EVER — 15+ tasks spanning 3AM-11PM. Key outputs: commercial call sheet (26 leads, tap-to-call), SEO blog (dog poop laws), Kirkwood+Webster Groves city pages, POOP 911 Florissant withdrawal CONFIRMED (404), review request texts tool, GBP quick-complete checklist, community posting kit (15 groups), free first cleanup landing page (LIVE), referral program (LIVE at /refer), event marketing calendar (14 STL events), Spring 2026 master playbook (39 tasks across 15 weeks), competitive intel sweep (3 dead competitors, we're INVISIBLE on search), North County vet blitz (6 new leads), Google Ads campaign kit, weekend launch texts, weekend sprint brief. franklin-tasks.md archived (2208→737 lines). MEMORY.md updated.
+- **Mar 20:** 🌱 FIRST DAY OF SPRING. 1 AM: Built 7-piece ready-to-post content kit across 5 platforms (Facebook x3, Instagram x2, Nextdoor, GBP) — Jamie can post all in ~20 minutes. 12 AM: Full technical SEO audit — **SEO Score: 30/100** (great on-page, zero off-page). Key finding: 18 city pages patched with cross-links (+54 internal links). Root cause of zero visibility = no GSC setup + no GA4 + GBP only 7% + zero backlinks + zero reviews. "Built a Porsche but never put gas in it." 2 AM: Memory maintenance — archived 796 lines, trimmed task log 94%.
 
 ---
 
