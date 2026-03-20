@@ -7,6 +7,37 @@
 
 ## March 20, 2026 (Friday)
 
+### 3:04 PM — 📍 GBP COMPLETION KIT — From 7% to 80%+ in 30 Minutes (Critical Infrastructure)
+**Task:** Created a complete, copy-paste-ready Google Business Profile content kit with every field TJ/Jamie needs to fill out — business description, categories, 5 service listings with prices/descriptions, business hours, attributes, 20 service areas, 5 pre-seeded Q&A pairs, first GBP post, photo checklist, and 3 review request text templates prioritized by customer.
+
+**Result:** ✅ COMPLETE — `memory/gbp-completion-kit.md`
+
+**Key Deliverables:**
+1. **750-char business description** — optimized for local search terms, mentions $70/mo value prop
+2. **Primary + 4 secondary GBP categories** — "Pet Waste Removal Service" primary
+3. **5 fully-written services** — Weekly ($25), Biweekly ($45/mo), Monthly ($70/mo), Deep Clean ($100), Commercial (quote)
+4. **20 service areas** covering all of STL County + St. Charles County
+5. **5 Q&A entries** — pre-written questions AND answers covering pricing, areas, access, dogs, waste removal
+6. **Spring GBP post** — ready to publish with CTA button
+7. **Photo checklist** — 8 specific photos to take/upload with tips
+8. **3 review request text templates** — personalized, with direct Google Review link
+9. **Prioritized customer list** for review requests (Shannon, Amanda, Preshus, Jody, Mrs. Candee)
+10. **Completion checklist** — 10 items, estimated 30 minutes total
+
+**Why This Task:**
+- GBP at 7% = Google barely knows Tidy Tails exists. This is THE #1 blocker.
+- ZERO Google reviews vs competitors with 6-30+. Without reviews, we lose every comparison.
+- Already have 130+ marketing deliverables — none of them work if people can't find us on Maps.
+- 46% of all Google searches have local intent. Maps visibility is literally the difference between getting calls and not.
+- Not another dashboard or HTML tool. Just a markdown doc with copy-paste content.
+- 30 minutes of Jamie's time = more impact than everything else we've built combined.
+
+**Revenue Impact:** Complete GBP profiles appear in the "local pack" (top 3 Maps results). Going from 7% to 80%+ will dramatically increase visibility for "pet waste removal near me" searches. Even 1 new customer/month from Maps = $70-100/mo recurring. With reviews, that becomes 2-5/month.
+
+**Rotation:** 📍 GBP / Local SEO / Critical Infrastructure
+
+---
+
 ### 2:04 PM — 🤝 REFERRAL PARTNERSHIP PLAYBOOK — Vet/Groomer/Pet Store Network (Growth Strategy)
 **Task:** Researched every independent vet clinic, dog groomer, boarding kennel, pet store, and dog park in TJ's Florissant/North County core territory. Crawled websites to verify they're independent (decision-maker on-site), established, and serve dog owners. Built a prioritized partnership playbook with the pitch script, execution timeline, and follow-up cadence.
 
