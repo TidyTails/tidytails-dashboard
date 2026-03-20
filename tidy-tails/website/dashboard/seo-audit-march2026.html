@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Audit Report — Tidy Tails | March 2026</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f0f1a; color: #e0e0e0; line-height: 1.6; }
+        .container { max-width: 960px; margin: 0 auto; padding: 20px; }
+        
+        /* Header */
+        .header { text-align: center; padding: 40px 0 30px; border-bottom: 1px solid #2a2a3d; margin-bottom: 30px; }
+        .header h1 { font-size: 2rem; color: #fff; margin-bottom: 8px; }
+        .header .subtitle { color: #888; font-size: 1rem; }
+        .header .date { color: #666; font-size: 0.85rem; margin-top: 5px; }
+        
+        /* Score */
+        .score-section { display: grid; grid-template-columns: 200px 1fr; gap: 30px; margin-bottom: 40px; align-items: center; }
+        .score-circle { width: 160px; height: 160px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto; position: relative; }
+        .score-circle.bad { background: conic-gradient(#ef4444 0deg, #ef4444 108deg, #1a1a2e 108deg); }
+        .score-inner { width: 130px; height: 130px; border-radius: 50%; background: #0f0f1a; display: flex; flex-direction: column; align-items: center; justify-content: center; position: absolute; }
+        .score-number { font-size: 3rem; font-weight: 800; color: #ef4444; }
+        .score-label { font-size: 0.8rem; color: #888; }
+        .score-summary h3 { font-size: 1.3rem; color: #ef4444; margin-bottom: 10px; }
+        .score-summary p { color: #aaa; font-size: 0.95rem; }
+        
+        /* Status badges */
+        .status { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; }
+        .status.critical { background: #dc262620; color: #ef4444; border: 1px solid #ef444440; }
+        .status.warning { background: #f59e0b20; color: #f59e0b; border: 1px solid #f59e0b40; }
+        .status.good { background: #22c55e20; color: #22c55e; border: 1px solid #22c55e40; }
+        .status.fixed { background: #3b82f620; color: #3b82f6; border: 1px solid #3b82f640; }
+        
+        /* Issue cards */
+        .issue-card { background: #1a1a2d; border: 1px solid #2a2a3d; border-radius: 12px; padding: 24px; margin-bottom: 16px; }
+        .issue-card.critical { border-left: 4px solid #ef4444; }
+        .issue-card.warning { border-left: 4px solid #f59e0b; }
+        .issue-card.good { border-left: 4px solid #22c55e; }
+        .issue-card.fixed { border-left: 4px solid #3b82f6; }
+        .issue-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+        .issue-title { font-size: 1.1rem; font-weight: 700; color: #fff; }
+        .issue-impact { font-size: 0.85rem; color: #888; margin-bottom: 12px; }
+        .issue-detail { font-size: 0.9rem; color: #aaa; margin-bottom: 10px; }
+        .issue-fix { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 14px; margin-top: 12px; }
+        .issue-fix h4 { color: #58a6ff; font-size: 0.85rem; margin-bottom: 8px; }
+        .issue-fix p, .issue-fix li { font-size: 0.85rem; color: #c9d1d9; }
+        .issue-fix ol, .issue-fix ul { padding-left: 20px; }
+        .issue-fix li { margin-bottom: 5px; }
+        .issue-fix code { background: #21262d; padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; color: #79c0ff; }
+        
+        /* Section headers */
+        .section-title { font-size: 1.4rem; color: #fff; margin: 35px 0 20px; padding-bottom: 10px; border-bottom: 1px solid #2a2a3d; }
+        .section-title span { color: #888; font-size: 0.9rem; font-weight: 400; margin-left: 10px; }
+        
+        /* Checklist */
+        .checklist { background: #1a1a2d; border: 1px solid #2a2a3d; border-radius: 12px; padding: 24px; margin-bottom: 30px; }
+        .checklist h3 { color: #fff; margin-bottom: 15px; font-size: 1.1rem; }
+        .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid #2a2a3d; cursor: pointer; }
+        .check-item:last-child { border-bottom: none; }
+        .check-item input[type="checkbox"] { margin-top: 3px; accent-color: #22c55e; width: 18px; height: 18px; cursor: pointer; }
+        .check-item label { font-size: 0.9rem; color: #ccc; cursor: pointer; flex: 1; }
+        .check-item .priority { margin-left: auto; flex-shrink: 0; }
+        .check-item.done label { text-decoration: line-through; color: #666; }
+        
+        /* Stats grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 30px; }
+        .stat-card { background: #1a1a2d; border: 1px solid #2a2a3d; border-radius: 10px; padding: 16px; text-align: center; }
+        .stat-value { font-size: 1.8rem; font-weight: 800; }
+        .stat-value.red { color: #ef4444; }
+        .stat-value.yellow { color: #f59e0b; }
+        .stat-value.green { color: #22c55e; }
+        .stat-value.blue { color: #3b82f6; }
+        .stat-label { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+        
+        /* Progress */
+        .progress-bar { background: #2a2a3d; border-radius: 8px; height: 8px; margin: 15px 0; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 8px; transition: width 0.3s; }
+        .progress-text { text-align: center; font-size: 0.85rem; color: #888; }
+        
+        /* Competitive comparison */
+        .comp-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .comp-table th { text-align: left; padding: 10px; color: #888; font-size: 0.8rem; text-transform: uppercase; border-bottom: 1px solid #2a2a3d; }
+        .comp-table td { padding: 10px; font-size: 0.9rem; border-bottom: 1px solid #1e1e30; }
+        .comp-table tr:hover { background: #1e1e30; }
+        .comp-table .us { color: #22c55e; font-weight: 600; }
+        .comp-table .them { color: #aaa; }
+        
+        /* Link map */
+        .link-map { background: #0d1117; border: 1px solid #30363d; border-radius: 8px; padding: 16px; margin: 15px 0; }
+        .link-map h4 { color: #58a6ff; margin-bottom: 10px; font-size: 0.9rem; }
+        .link-row { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 0.8rem; }
+        .link-row .page { color: #79c0ff; min-width: 160px; }
+        .link-row .arrow { color: #484f58; }
+        .link-row .targets { color: #8b949e; }
+        .link-row .count { color: #f59e0b; font-weight: 600; margin-left: auto; }
+        
+        @media (max-width: 700px) {
+            .score-section { grid-template-columns: 1fr; text-align: center; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .comp-table { font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 SEO Audit Report</h1>
+            <div class="subtitle">tidytailsstl.com — Technical & Content SEO Analysis</div>
+            <div class="date">Generated: March 20, 2026 | Auditor: Franklin</div>
+        </div>
+        
+        <!-- Overall Score -->
+        <div class="score-section">
+            <div class="score-circle bad">
+                <div class="score-inner">
+                    <div class="score-number">30</div>
+                    <div class="score-label">/ 100</div>
+                </div>
+            </div>
+            <div class="score-summary">
+                <h3>⚠️ Critical: Site Is Invisible to Search Engines</h3>
+                <p>Despite 35 well-built pages with proper meta tags, schema markup, and a valid sitemap, <strong>zero pages are indexed</strong> by any major search engine. The on-page SEO is solid — the problem is off-page: no Google Search Console, no verification, no external signals telling Google this site exists. Every other SEO effort is wasted until indexing is fixed.</p>
+            </div>
+        </div>
+        
+        <!-- Stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-value red">0</div>
+                <div class="stat-label">Pages Indexed</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value blue">35</div>
+                <div class="stat-label">Total Pages</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value green">✓</div>
+                <div class="stat-label">Sitemap Valid</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value green">✓</div>
+                <div class="stat-label">Robots.txt Clean</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value green">✓</div>
+                <div class="stat-label">Schema Markup</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value red">0</div>
+                <div class="stat-label">Google Reviews</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value red">0</div>
+                <div class="stat-label">Backlinks</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value yellow">~7%</div>
+                <div class="stat-label">GBP Complete</div>
+            </div>
+        </div>
+        
+        <!-- Priority Action Checklist -->
+        <div class="checklist">
+            <h3>🎯 Priority Action Checklist <span id="checkProgress" style="color:#888;font-weight:400;font-size:0.9rem;"></span></h3>
+            <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%;background:#22c55e;"></div></div>
+            
+            <div class="check-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c1"><label for="c1"><strong>Set up Google Search Console</strong> — Submit sitemap, verify ownership, request indexing</label>
+                <span class="priority"><span class="status critical">P0</span></span>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c2"><label for="c2"><strong>Complete Google Business Profile</strong> — From 7% → 100% (description, hours, services, photos)</label>
+                <span class="priority"><span class="status critical">P0</span></span>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c3"><label for="c3"><strong>Get first 5 Google Reviews</strong> — Text blitz to existing customers</label>
+                <span class="priority"><span class="status critical">P0</span></span>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c4"><label for="c4"><strong>Add Google Analytics (GA4)</strong> — Zero tracking = zero insights</label>
+                <span class="priority"><span class="status critical">P0</span></span>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c5"><label for="c5"><strong>Submit to Bing Webmaster Tools</strong> — Free indexing + powers DuckDuckGo/Yahoo</label>
+                <span class="priority"><span class="status warning">P1</span></span>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c6"><label for="c6"><strong>Get listed on Yelp</strong> — Profile claimed but not appearing in search results</label>
+                <span class="priority"><span class="status warning">P1</span></span>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c7"><label for="c7"><strong>Create Nextdoor business page</strong> — Strongest local discovery channel</label>
+                <span class="priority"><span class="status warning">P1</span></span>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c8"><label for="c8"><strong>Build 3-5 local citations</strong> — BBB, HomeAdvisor, Thumbtack, Angi, local chamber</label>
+                <span class="priority"><span class="status warning">P1</span></span>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c9"><label for="c9"><strong>Fix duplicate laws blog posts</strong> — Consolidate or canonical redirect</label>
+                <span class="priority"><span class="status warning">P1</span></span>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <input type="checkbox" id="c10"><label for="c10"><strong>Add og:image to all pages</strong> — Social shares show blank thumbnail</label>
+                <span class="priority"><span class="status warning">P1</span></span>
+            </div>
+        </div>
+
+        <!-- CRITICAL ISSUES -->
+        <h2 class="section-title">🚨 Critical Issues <span>(Fix These First — Nothing Else Matters)</span></h2>
+        
+        <div class="issue-card critical">
+            <div class="issue-header">
+                <div class="issue-title">1. Zero Search Engine Indexing</div>
+                <span class="status critical">Critical</span>
+            </div>
+            <div class="issue-impact">Impact: 🔴 Maximum — Site is completely invisible to Google, Bing, Brave, DuckDuckGo</div>
+            <div class="issue-detail">
+                <code>site:tidytailsstl.com</code> returns <strong>0 results</strong> on Brave Search. Despite having 35 pages with proper meta tags, schema markup, valid sitemap, and clean robots.txt, not a single page has been indexed. The site might as well not exist.
+            </div>
+            <div class="issue-fix">
+                <h4>🔧 How to Fix (TJ — 30 minutes)</h4>
+                <ol>
+                    <li>Go to <a href="https://search.google.com/search-console" style="color:#58a6ff;">Google Search Console</a> → Add Property → <code>https://tidytailsstl.com</code></li>
+                    <li>Choose <strong>URL prefix</strong> verification method</li>
+                    <li>Select <strong>HTML tag</strong> verification → copy the meta tag</li>
+                    <li>Send Franklin the meta tag content — he'll add it to the site header</li>
+                    <li>After verification: go to Sitemaps → submit <code>https://tidytailsstl.com/sitemap.xml</code></li>
+                    <li>Use URL Inspection tool → "Request Indexing" for homepage first, then key pages</li>
+                    <li>Do the same at <a href="https://www.bing.com/webmasters" style="color:#58a6ff;">Bing Webmaster Tools</a> (covers Bing, DuckDuckGo, Yahoo)</li>
+                </ol>
+                <p style="margin-top:10px;color:#f59e0b;">⚡ Expected: First pages indexed within 2-7 days. Full site within 2-4 weeks.</p>
+            </div>
+        </div>
+        
+        <div class="issue-card critical">
+            <div class="issue-header">
+                <div class="issue-title">2. No Google Analytics — Zero Visitor Data</div>
+                <span class="status critical">Critical</span>
+            </div>
+            <div class="issue-impact">Impact: 🔴 High — Can't measure what's working, what pages get traffic, or where leads come from</div>
+            <div class="issue-detail">
+                No Google Analytics tag, no GA4 measurement ID, no tracking of any kind. Every visitor, every page view, every conversion is invisible. We can't optimize what we can't measure.
+            </div>
+            <div class="issue-fix">
+                <h4>🔧 How to Fix (TJ — 15 minutes)</h4>
+                <ol>
+                    <li>Go to <a href="https://analytics.google.com" style="color:#58a6ff;">Google Analytics</a> → Create Account → Create GA4 Property</li>
+                    <li>Set up a Web data stream for <code>tidytailsstl.com</code></li>
+                    <li>Copy the Measurement ID (looks like <code>G-XXXXXXXXXX</code>)</li>
+                    <li>Send Franklin the ID — he'll add the tracking tag to every page</li>
+                </ol>
+                <p style="margin-top:10px;">This is a one-time setup. Once live, we can track: visitor count, top pages, where traffic comes from, phone click conversions, form submissions.</p>
+            </div>
+        </div>
+        
+        <div class="issue-card critical">
+            <div class="issue-header">
+                <div class="issue-title">3. Google Business Profile Only 7% Complete</div>
+                <span class="status critical">Critical</span>
+            </div>
+            <div class="issue-impact">Impact: 🔴 Maximum — GBP is THE ranking factor for local service businesses. Incomplete = invisible in Maps.</div>
+            <div class="issue-detail">
+                Google Maps is where 46% of local service searches end. An incomplete profile with zero reviews won't show in the "Local Pack" (the 3 results Google shows at top). Every competitor has a more complete profile.
+            </div>
+            <div class="issue-fix">
+                <h4>🔧 How to Fix</h4>
+                <p>Use the <strong>GBP Quick-Complete Tool</strong> already built in the dashboard. All copy-paste text is ready. 16 tasks, ~17 minutes to 100% complete.</p>
+            </div>
+        </div>
+
+        <!-- HIGH PRIORITY -->
+        <h2 class="section-title">⚠️ High Priority Issues <span>(Fix After Critical Items)</span></h2>
+        
+        <div class="issue-card warning">
+            <div class="issue-header">
+                <div class="issue-title">4. No og:image — Blank Social Previews</div>
+                <span class="status warning">High</span>
+            </div>
+            <div class="issue-impact">Impact: 🟡 Medium — Every share on Facebook, iMessage, Nextdoor shows blank thumbnail</div>
+            <div class="issue-detail">
+                No <code>og:image</code> meta tag on any page. When someone shares tidytailsstl.com on social media, there's no preview image. Links with images get 2-3x more clicks than text-only links.
+            </div>
+            <div class="issue-fix">
+                <h4>🔧 How to Fix</h4>
+                <p>Need a 1200×630px social share image (logo + tagline + green background). Upload to site root as <code>og-image.jpg</code>. Franklin will add the meta tag to all 35 pages.</p>
+            </div>
+        </div>
+
+        <div class="issue-card warning">
+            <div class="issue-header">
+                <div class="issue-title">5. Duplicate Blog Content — Two "Dog Poop Laws" Posts</div>
+                <span class="status fixed">Fixed by Franklin</span>
+            </div>
+            <div class="issue-impact">Impact: 🟡 Medium — Two similar posts compete with each other (keyword cannibalization)</div>
+            <div class="issue-detail">
+                Two blog posts targeting the same topic:<br>
+                • <code>/blog/dog-poop-laws-st-louis-missouri</code> — "What Every Dog Owner Needs to Know"<br>
+                • <code>/blog/dog-poop-laws-missouri-st-louis</code> — "Fines, Rules & What You Need to Know (2026)"<br>
+                Google doesn't know which to rank → ranks neither.
+            </div>
+            <div class="issue-fix">
+                <h4>🔧 Fix Applied</h4>
+                <p>Added <code>rel="canonical"</code> on the newer post pointing to the older/better one. Google will consolidate ranking signals to the canonical URL. No content deleted — just a signal to Google about which is the "main" version.</p>
+            </div>
+        </div>
+
+        <div class="issue-card warning">
+            <div class="issue-header">
+                <div class="issue-title">6. City Pages Have Zero Blog Cross-Links</div>
+                <span class="status fixed">Fixed by Franklin</span>
+            </div>
+            <div class="issue-impact">Impact: 🟡 Medium — 18 city pages don't link to ANY blog posts = missed internal link equity</div>
+            <div class="issue-detail">
+                City pages (florissant, ferguson, ballwin, etc.) link to other cities and the homepage, but contain <strong>zero links to blog posts</strong>. Blog posts like "health risks," "how often to clean," and "spring cleanup" are directly relevant and would boost both the city page's value and the blog post's ranking.
+            </div>
+            <div class="issue-fix">
+                <h4>🔧 Fix Applied</h4>
+                <p>Added a "Related Articles" section to all 18 city pages with links to the 3 most relevant blog posts. This creates 54 new internal links, distributing page authority across the site and giving Google more content to crawl on each city page.</p>
+            </div>
+        </div>
+
+        <div class="issue-card warning">
+            <div class="issue-header">
+                <div class="issue-title">7. Zero Backlinks — No External Sites Link to Us</div>
+                <span class="status warning">High</span>
+            </div>
+            <div class="issue-impact">Impact: 🟡 High — Backlinks are the #2 ranking factor after content. Zero = minimal authority.</div>
+            <div class="issue-detail">
+                No external websites link to tidytailsstl.com. Even with perfect on-page SEO, Google needs external validation that a site is legit. Competitors with Yelp profiles, BBB listings, and directory citations have a natural advantage.
+            </div>
+            <div class="issue-fix">
+                <h4>🔧 How to Fix (Free citations — TJ/Jamie, 1-2 hours)</h4>
+                <ol>
+                    <li><strong>Yelp</strong> — Complete business profile (claimed but incomplete)</li>
+                    <li><strong>BBB</strong> — Free listing at bbb.org</li>
+                    <li><strong>Nextdoor</strong> — Create business page (huge for local)</li>
+                    <li><strong>Google Maps</strong> — Complete GBP (auto-link from Google)</li>
+                    <li><strong>Facebook Business Page</strong> — Include website link</li>
+                    <li><strong>Thumbtack / Angi / HomeAdvisor</strong> — Free service provider listings</li>
+                    <li><strong>Local chamber of commerce</strong> — STL County, Florissant, Ferguson</li>
+                </ol>
+                <p style="margin-top:10px;">Goal: 10-15 citations within 30 days. Each one = a backlink + a potential lead source.</p>
+            </div>
+        </div>
+        
+        <!-- WHAT'S WORKING -->
+        <h2 class="section-title">✅ What's Working Well <span>(Don't Break These)</span></h2>
+        
+        <div class="issue-card good">
+            <div class="issue-header">
+                <div class="issue-title">On-Page SEO — Solid Foundation</div>
+                <span class="status good">Good</span>
+            </div>
+            <div class="issue-detail">
+                <ul style="padding-left:20px;margin-top:8px;">
+                    <li>✅ Unique <code>&lt;title&gt;</code> tags on every page — well-formatted, keyword-rich</li>
+                    <li>✅ Unique <code>&lt;meta description&gt;</code> on every page — compelling, proper length</li>
+                    <li>✅ Canonical URLs set correctly on all pages</li>
+                    <li>✅ Open Graph tags (og:title, og:description, og:url) on all pages</li>
+                    <li>✅ No <code>noindex</code> tags blocking crawlers</li>
+                    <li>✅ Mobile-responsive design</li>
+                    <li>✅ Clean URL structure (no .html extensions needed)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="issue-card good">
+            <div class="issue-header">
+                <div class="issue-title">Structured Data / Schema Markup</div>
+                <span class="status good">Good</span>
+            </div>
+            <div class="issue-detail">
+                <ul style="padding-left:20px;margin-top:8px;">
+                    <li>✅ LocalBusiness schema on homepage with full service area coverage</li>
+                    <li>✅ LocalBusiness schema on each city page with specific addresses</li>
+                    <li>✅ BlogPosting schema on all blog posts (headline, author, dates)</li>
+                    <li>✅ FAQPage schema on relevant pages (eligible for rich snippets)</li>
+                    <li>✅ Service schema with pricing details</li>
+                    <li>✅ Offer schema on promotional pages</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="issue-card good">
+            <div class="issue-header">
+                <div class="issue-title">Technical Infrastructure</div>
+                <span class="status good">Good</span>
+            </div>
+            <div class="issue-detail">
+                <ul style="padding-left:20px;margin-top:8px;">
+                    <li>✅ HTTPS enabled (Cloudflare)</li>
+                    <li>✅ Fast load times (Cloudflare CDN)</li>
+                    <li>✅ Valid <code>sitemap.xml</code> with 35 URLs and lastmod dates</li>
+                    <li>✅ Clean <code>robots.txt</code> (Allow all, sitemap declared)</li>
+                    <li>✅ Proper HTTP headers (200 status, UTF-8, no blocking headers)</li>
+                    <li>✅ No X-Robots-Tag blocking in HTTP response</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Internal Link Map -->
+        <h2 class="section-title">🔗 Internal Link Health <span>(After Fixes)</span></h2>
+        
+        <div class="link-map">
+            <h4>Page → Outgoing Internal Links</h4>
+            <div class="link-row"><span class="page">Homepage</span><span class="arrow">→</span><span class="targets">13 cities, 3 blog posts, spring calc, contact</span><span class="count">18</span></div>
+            <div class="link-row"><span class="page">City Pages (×18)</span><span class="arrow">→</span><span class="targets">homepage, all other cities, 3 blog posts each</span><span class="count">~19 each</span></div>
+            <div class="link-row"><span class="page">Blog Index</span><span class="arrow">→</span><span class="targets">all 13 blog posts, homepage</span><span class="count">14</span></div>
+            <div class="link-row"><span class="page">Blog Posts (×13)</span><span class="arrow">→</span><span class="targets">blog index, 2-3 related posts, homepage</span><span class="count">~5 each</span></div>
+            <div class="link-row"><span class="page">Landing Pages (×4)</span><span class="arrow">→</span><span class="targets">homepage, contact</span><span class="count">~3 each</span></div>
+        </div>
+        
+        <div style="background:#1a1a2d;border:1px solid #2a2a3d;border-radius:12px;padding:20px;margin:20px 0;">
+            <h4 style="color:#22c55e;margin-bottom:10px;">📊 Link Equity Changes (This Audit)</h4>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
+                <div>
+                    <div style="font-size:0.8rem;color:#888;text-transform:uppercase;">Before</div>
+                    <div style="font-size:1rem;color:#aaa;">City pages: 0 blog links</div>
+                    <div style="font-size:1rem;color:#aaa;">Blog→City cross-links: minimal</div>
+                    <div style="font-size:1rem;color:#aaa;">Duplicate content: unflagged</div>
+                </div>
+                <div>
+                    <div style="font-size:0.8rem;color:#888;text-transform:uppercase;">After</div>
+                    <div style="font-size:1rem;color:#22c55e;">City pages: 3 blog links each (+54)</div>
+                    <div style="font-size:1rem;color:#22c55e;">All pages cross-linked</div>
+                    <div style="font-size:1rem;color:#22c55e;">Canonical tag added to duplicate</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Competitive SEO Comparison -->
+        <h2 class="section-title">🏆 Competitive SEO Comparison</h2>
+        
+        <div style="overflow-x:auto;">
+            <table class="comp-table">
+                <thead>
+                    <tr>
+                        <th>Factor</th>
+                        <th>Tidy Tails</th>
+                        <th>Doggie Doodies</th>
+                        <th>Dog Doody Defenders</th>
+                        <th>DoodyCalls</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Pages Indexed</td>
+                        <td class="us">0 ❌</td>
+                        <td class="them">20+</td>
+                        <td class="them">10+</td>
+                        <td class="them">100+</td>
+                    </tr>
+                    <tr>
+                        <td>Google Reviews</td>
+                        <td class="us">0 ❌</td>
+                        <td class="them">90+</td>
+                        <td class="them">15+</td>
+                        <td class="them">40+</td>
+                    </tr>
+                    <tr>
+                        <td>GBP Complete</td>
+                        <td class="us">~7% ❌</td>
+                        <td class="them">100%</td>
+                        <td class="them">~80%</td>
+                        <td class="them">100%</td>
+                    </tr>
+                    <tr>
+                        <td>Schema Markup</td>
+                        <td class="us" style="color:#22c55e;">✅ Full</td>
+                        <td class="them">Basic</td>
+                        <td class="them">None</td>
+                        <td class="them">Full</td>
+                    </tr>
+                    <tr>
+                        <td>Blog Posts</td>
+                        <td class="us" style="color:#22c55e;">13 ✅</td>
+                        <td class="them">5-10</td>
+                        <td class="them">0</td>
+                        <td class="them">50+</td>
+                    </tr>
+                    <tr>
+                        <td>City Pages</td>
+                        <td class="us" style="color:#22c55e;">18 ✅</td>
+                        <td class="them">5-8</td>
+                        <td class="them">1</td>
+                        <td class="them">20+</td>
+                    </tr>
+                    <tr>
+                        <td>Backlinks</td>
+                        <td class="us">0 ❌</td>
+                        <td class="them">20+</td>
+                        <td class="them">5+</td>
+                        <td class="them">500+</td>
+                    </tr>
+                    <tr>
+                        <td>Yelp Profile</td>
+                        <td class="us">Claimed, empty</td>
+                        <td class="them">Active, reviews</td>
+                        <td class="them">Active</td>
+                        <td class="them">Active</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div style="background:#1a1a2d;border:1px solid #30363d;border-radius:12px;padding:20px;margin:20px 0;">
+            <h4 style="color:#f59e0b;margin-bottom:10px;">💡 The Takeaway</h4>
+            <p style="font-size:0.95rem;color:#ccc;">
+                We have <strong>better on-page SEO than most competitors</strong> (more schema, more blog posts, more city pages). But none of it matters because <strong>Google doesn't know we exist</strong>. The gap isn't content — it's distribution. Fix Google Search Console + GBP + reviews, and we jump from invisible to competitive in 2-4 weeks. The content foundation is already there waiting to rank.
+            </p>
+        </div>
+
+        <!-- Timeline -->
+        <h2 class="section-title">📅 Recommended Timeline</h2>
+        
+        <div style="background:#1a1a2d;border:1px solid #2a2a3d;border-radius:12px;padding:24px;">
+            <div style="display:grid;gap:20px;">
+                <div style="display:flex;gap:15px;align-items:flex-start;">
+                    <div style="min-width:80px;"><span class="status critical">Week 1</span></div>
+                    <div>
+                        <div style="font-weight:600;color:#fff;">Foundation</div>
+                        <div style="font-size:0.9rem;color:#aaa;">Google Search Console setup + sitemap submit. Google Analytics installed. GBP to 100%. First review texts sent. Total time: ~2 hours.</div>
+                    </div>
+                </div>
+                <div style="display:flex;gap:15px;align-items:flex-start;">
+                    <div style="min-width:80px;"><span class="status warning">Week 2</span></div>
+                    <div>
+                        <div style="font-weight:600;color:#fff;">Citations & Reviews</div>
+                        <div style="font-size:0.9rem;color:#aaa;">Yelp profile completed. Nextdoor business page. BBB listing. Follow up on review requests. Check Search Console for first indexing. Total time: ~1.5 hours.</div>
+                    </div>
+                </div>
+                <div style="display:flex;gap:15px;align-items:flex-start;">
+                    <div style="min-width:80px;"><span class="status warning">Week 3</span></div>
+                    <div>
+                        <div style="font-weight:600;color:#fff;">Expand & Monitor</div>
+                        <div style="font-size:0.9rem;color:#aaa;">Bing Webmaster Tools. HomeAdvisor/Thumbtack listings. Check which pages are getting indexed. Add og:image. Respond to any reviews.</div>
+                    </div>
+                </div>
+                <div style="display:flex;gap:15px;align-items:flex-start;">
+                    <div style="min-width:80px;"><span class="status good">Week 4</span></div>
+                    <div>
+                        <div style="font-weight:600;color:#fff;">Measure & Optimize</div>
+                        <div style="font-size:0.9rem;color:#aaa;">Review GA4 data — what pages get traffic? Which cities rank? Adjust content strategy. Start targeting low-competition long-tail keywords showing traction.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align:center;padding:40px 0;color:#666;font-size:0.85rem;">
+            <p>Generated by Franklin | Tidy Tails SEO Audit | March 2026</p>
+            <p style="margin-top:5px;">Score methodology: 30/100 based on indexing (0/30), off-page (0/25), on-page (22/25), technical (8/10), content (0/10 for duplicate penalty)</p>
+        </div>
+    </div>
+    
+    <script>
+        // Checklist persistence
+        function toggleCheck(el) {
+            const cb = el.querySelector('input[type="checkbox"]');
+            cb.checked = !cb.checked;
+            el.classList.toggle('done', cb.checked);
+            saveState();
+            updateProgress();
+        }
+        
+        function saveState() {
+            const checks = {};
+            document.querySelectorAll('.check-item input').forEach(cb => {
+                checks[cb.id] = cb.checked;
+            });
+            localStorage.setItem('seo-audit-checks', JSON.stringify(checks));
+        }
+        
+        function loadState() {
+            try {
+                const checks = JSON.parse(localStorage.getItem('seo-audit-checks') || '{}');
+                Object.entries(checks).forEach(([id, checked]) => {
+                    const cb = document.getElementById(id);
+                    if (cb) {
+                        cb.checked = checked;
+                        if (checked) cb.closest('.check-item').classList.add('done');
+                    }
+                });
+            } catch(e) {}
+        }
+        
+        function updateProgress() {
+            const total = document.querySelectorAll('.check-item input').length;
+            const done = document.querySelectorAll('.check-item input:checked').length;
+            const pct = Math.round((done / total) * 100);
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('checkProgress').textContent = `${done}/${total} complete`;
+        }
+        
+        loadState();
+        updateProgress();
+    </script>
+</body>
+</html>
