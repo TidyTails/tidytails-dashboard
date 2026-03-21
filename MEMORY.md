@@ -75,8 +75,8 @@
 - **BringFido.com** — pet services directory covers Florissant. TJ NOT listed. Free listing.
 - **Doggie Doodies pricing confirmed** — $83/mo weekly, $85/mo biweekly, $90/mo monthly (Mar 18 live scrape)
 - **NEW: Dirty Dog Wash "Poo Crew"** — Chesterfield groomer added waste removal. $95/mo (1-2 dogs weekly). 43 Yelp reviews, 66 FB reviews. Cross-sell advantage but HIGHER than TJ.
-- **⚠️ POOP 911 STATUS UNCERTAIN** (Mar 20 update) — Florissant page was 404 at 4 AM but BACK UP at 8 AM with full content. Likely transient outage, NOT confirmed withdrawal. TJ should call (877) POOP-911 to verify.
-- **⚠️ DoodyCalls STL LIKELY CLOSING** — Page still loads but STL is MISSING from their official locations page. Franchise winding down.
+- **🔴 POOP 911 DOUBLING DOWN ON FLORISSANT** (Mar 20 8PM — corrected) — Old URLs were 404 due to site-wide URL restructure, NOT withdrawal. New page at `/locations/florissant-mo-pet-waste-removal` has hyper-local SEO content mentioning St. Ferdinand Park, Eagan Center, McCluer High. They're INVESTING in Florissant.
+- **DoodyCalls STL STILL ACTIVE** (Mar 20 8PM) — Website loads, local phone (314) 230-8082, listed on Missouri locations page. Not closing.
 - **❌ Poop2Scoop CLOSED** — PetWorks listing says "paused or closed." Veteran-owned, operated since 2017.
 - **❌ Pawfect Waste Solutions SITE DOWN** — pooperscooperstl.com returns "SITE NOT FOUND"
 - **3-4 of 7 STL competitors have withdrawn/closed** — Market thinning (POOP 911 status uncertain as of Mar 20 8AM)
@@ -121,10 +121,10 @@
 | Competitor | Territory | Weekly Price | Monthly | Threat | Key Notes |
 |------------|-----------|-------------|---------|--------|-----------|
 | **POOP 911** 🔴 | South STL/City (70+ zips) | $11.95-$13.95 | ~$52 | HIGH | National franchise, FREE first cleanup, lowest price. **Florissant page NOW 404** (confirmed Mar 20). Still has main STL page. |
-| **Scoop Soldiers** 🔴 | STL County + surrounding | ~$15 | ~$60 | HIGH | National franchise, **officially launched STL Feb 6 2026** (EIN Presswire). 24hr support, sanitization/deodorizer add-ons, commercial+residential. Led by Michayla Sims. Also expanding to Cincinnati. First service FREE. |
+| **Scoop Soldiers** ⬜ | KC metro ONLY (NOT STL) | ~$15 | ~$60 | **NONE** | STL page returns 404 "we don't service your area." MO locations list only KC area (Blue Springs, Independence, KC, Lee's Summit, Liberty). Feb 2026 press release was aspirational or franchisee fell through. NOT a current threat. |
 | **Dog Doody Defenders** 🔴 | Chesterfield + Florissant | $17 | $54/mo monthly plan | HIGH | Florissant-based (Daniel Boone Dr). Now offers dog walking, yard deodorizing, kennel cleaning. Twice-weekly $27. On Yelp, MapQuest, FB. **Direct competitor in TJ's core territory.** |
 | **Poop2Scoop** 🟡 | STL County | $18 | ~$78 | MED | Veteran-owned, smart add-on pricing, aPaws member |
-| **Doggie Doodies** 🔴 | Ballwin/Chesterfield + St. Charles + **NOW FLORISSANT** + Kirkwood/Creve Coeur/MD Heights/Eureka/Fenton/Valley Park/Twin Oaks/Des Peres/Cottleville/New Town | $19.15 | $83 | **HIGHEST** | TJ's #1 rival. **NOW IN FLORISSANT** (TJ's core territory!). Customer portal, rewards ("Clean Paw Paws"), referral, e-gift cards, blog (posting Feb 2026), COMMERCIAL page live (HOAs, waste stations, installations). Pre-visit team photos + gate photos. FREE first cleanup with coupon codes. Phone: (636)633-3443. Biweekly=$85/mo, Monthly=$90/mo. Hotmail + Wix = weaknesses. |
+| **Doggie Doodies** 🔴 | Ballwin/Chesterfield + St. Charles + West County (Florissant UNCONFIRMED) | $19.15 | $83 | HIGH | Service areas page says "St. Louis County (West County) & St. Charles County" — Florissant NOT listed. May serve on request. Customer portal, rewards, referral, e-gift cards, blog, COMMERCIAL page. FREE first cleanup with coupon codes. Phone: (636)633-3443. Biweekly=$85/mo, Monthly=$90/mo. Hotmail + Wix = weaknesses. |
 | **Dr. Scoops** 🟡 | Ballwin/Manchester/Chesterfield/Kirkwood/Webster Groves | Quote | Quote | MED | NEW (found Mar 16). Solo op Adam Hughes, since 2023. Own site (getdrscoops.com), FB (39 likes), Nextdoor, Petworks. Insured, background-checked. Covers our expansion targets! |
 | **Dirty Dog Wash Poo Crew** 🟡 | Chesterfield (10mi radius) | ~$22 | $95 | MED | Cross-sell from grooming business |
 | **DoodyCalls** 🟡 | STL County | Quote | Quote | MED | National franchise |

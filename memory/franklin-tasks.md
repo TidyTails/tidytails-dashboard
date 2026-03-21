@@ -7,6 +7,36 @@
 
 ## March 20, 2026 (Friday)
 
+### 8:04 PM — 🔍 LIVE COMPETITOR STATUS SWEEP — 3 Major Intel Corrections (Competitive Intelligence)
+**Task:** Crawled all competitor websites directly (POOP 911, DoodyCalls, Doggie Doodies, Scoop Soldiers, Dog Doody Defenders, Dr. Scoops) to verify current status and correct stale intel. Checked HTTP status codes, service area pages, pricing pages, and location listings.
+
+**Result:** ✅ COMPLETE — `memory/competitor-sweep-mar20-8pm.md`
+
+**3 Major Intel Corrections:**
+1. **POOP 911 "withdrawal" was WRONG** — Old Florissant URL 404'd due to site-wide URL restructure. NEW page at `/locations/florissant-mo-pet-waste-removal` is LIVE with massive hyper-local SEO content (mentions St. Ferdinand Park, Eagan Center, McCluer High). They're DOUBLING DOWN on Florissant, not leaving.
+2. **Scoop Soldiers NEVER launched in STL** — Their STL page returns 404 "we don't service your area." MO locations list only KC metro (Blue Springs, Independence, KC, Lee's Summit, Liberty). Feb 2026 press release was aspirational. Downgraded from HIGH → NOT A THREAT.
+3. **Doggie Doodies NOT confirmed in Florissant** — Service areas page says "St. Louis County (West County) & St. Charles County." Florissant not listed. Previous "NOW IN FLORISSANT" was likely over-indexed. Still HIGH threat but West County focused.
+
+**Additional Findings:**
+- **Dog Doody Defenders is TJ's #1 local threat** — Based in Florissant 63031 (Daniel Boone Dr), $17/week (32% cheaper than TJ's $25), also offers dog walking + deodorizing + kennel cleaning
+- **DoodyCalls STL still active** — local phone (314) 230-8082, website live, satisfaction guarantee
+- **Dr. Scoops** — Ballwin only, not a Florissant threat
+- **TJ's pricing is HIGHEST in Florissant** — $25/wk vs POOP 911 $12, DDD $17, Doggie Doodies $19
+
+**MEMORY.md Updated:** Corrected 3 competitor entries (POOP 911, Scoop Soldiers, Doggie Doodies) with verified data.
+
+**Why This Task:**
+- 9 tasks already shipped today, all based on competitive assumptions. If those assumptions are wrong, the strategies are wrong.
+- The POOP 911 "withdrawal" narrative was driving strategy (competitor displacement campaign at 10 AM). Now we know they're actually INVESTING in Florissant — different playbook needed.
+- Scoop Soldiers removal from threat list simplifies competitive analysis.
+- Dog Doody Defenders being literally based in TJ's zip code is the most important competitive fact we have.
+
+**Revenue Impact:** Better intel → better strategy. Knowing Dog Doody Defenders is the real local threat (not Doggie Doodies) and that POOP 911 is doubling down (not leaving) changes how TJ should position Tidy Tails. The $70/mo flat rate is TJ's differentiator — nobody else offers it.
+
+**Rotation:** 🔍 Competitive Intelligence / Market Analysis
+
+---
+
 ### 6:05 PM — 🔍 LIVE TECHNICAL SEO AUDIT — Real Issues Found on tidytailsstl.com (Technical/SEO)
 **Task:** Crawled the live Tidy Tails website — every city page, blog post, and landing page. Checked HTTP status codes, meta tags, structured data, canonical tags, redirects, internal linking, social cards, and page speed. This isn't a playbook or dashboard — it's a real audit of what's broken RIGHT NOW.
 
