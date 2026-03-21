@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tidy Tails — Printable Door Hangers</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+  /* === SCREEN STYLES (Dashboard View) === */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #1a1a2e;
+    color: #e0e0e0;
+    min-height: 100vh;
+  }
+
+  .screen-only {
+    padding: 20px 20px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 30px 20px;
+    background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .page-header h1 {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 2rem;
+    color: #4ade80;
+    margin-bottom: 8px;
+  }
+  .page-header p {
+    color: #94a3b8;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .instructions {
+    background: #16213e;
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 30px;
+  }
+  .instructions h2 {
+    font-family: 'Fredoka', sans-serif;
+    color: #4ade80;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+  .instructions ol {
+    padding-left: 20px;
+    line-height: 1.8;
+    color: #cbd5e1;
+  }
+  .instructions ol li { margin-bottom: 4px; }
+  .instructions .tip {
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: rgba(250, 204, 21, 0.1);
+    border-left: 3px solid #facc15;
+    border-radius: 0 8px 8px 0;
+    color: #fde68a;
+    font-size: 0.9rem;
+  }
+
+  .print-btn-container { text-align: center; margin: 30px 0; }
+  .print-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 40px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: 'Fredoka', sans-serif;
+    color: #fff;
+    background: linear-gradient(135deg, #4ade80, #22c55e);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 15px rgba(74, 222, 128, 0.3);
+  }
+  .print-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(74, 222, 128, 0.5);
+  }
+
+  .style-picker {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+  }
+  .style-btn {
+    padding: 10px 24px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
+    background: transparent;
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .style-btn.active, .style-btn:hover {
+    border-color: #4ade80;
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.1);
+  }
+
+  .preview-label {
+    text-align: center;
+    color: #64748b;
+    font-size: 0.85rem;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .preview-wrapper {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    margin-bottom: 30px;
+  }
+
+  /* === DOOR HANGER STYLES (Print + Preview) === */
+  .hanger-page {
+    width: 8.5in;
+    min-height: 11in;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25in;
+    gap: 0.25in;
+  }
+
+  .door-hanger {
+    width: 4in;
+    height: 5in;
+    border: 2px dashed #ccc;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --- Spring Style --- */
+  .door-hanger.spring {
+    background: linear-gradient(180deg, #ecfdf5 0%, #d1fae5 40%, #a7f3d0 100%);
+    border-color: #86efac;
+  }
+  .spring .hanger-top {
+    background: linear-gradient(135deg, #166534, #15803d);
+    color: #fff;
+    padding: 16px 16px 14px;
+    text-align: center;
+    position: relative;
+  }
+  .spring .hanger-top::after {
+    content: '🌸🐾🌸';
+    display: block;
+    font-size: 16px;
+    margin-top: 4px;
+    letter-spacing: 8px;
+  }
+  .spring .brand-name {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .spring .tagline {
+    font-size: 10px;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+  .spring .hanger-body {
+    flex: 1;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .spring .hook-line {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #166534;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .spring .poop-emoji-row {
+    text-align: center;
+    font-size: 20px;
+    letter-spacing: 6px;
+    margin: -4px 0;
+  }
+  .spring .value-props {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .spring .value-prop {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: #374151;
+    font-weight: 500;
+  }
+  .spring .value-prop .icon {
+    font-size: 14px;
+    width: 20px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .spring .pricing-box {
+    background: rgba(255,255,255,0.8);
+    border: 2px solid #22c55e;
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+  }
+  .spring .pricing-box .price-headline {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #166534;
+    margin-bottom: 4px;
+  }
+  .spring .pricing-box .prices {
+    font-size: 11px;
+    color: #374151;
+    line-height: 1.5;
+  }
+  .spring .pricing-box .prices strong {
+    color: #166534;
+    font-weight: 700;
+  }
+  .spring .hanger-footer {
+    background: #166534;
+    color: #fff;
+    padding: 10px 16px;
+    text-align: center;
+  }
+  .spring .phone {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .spring .cta-sub {
+    font-size: 9px;
+    opacity: 0.9;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+  .spring .website-line {
+    font-size: 9px;
+    opacity: 0.8;
+    margin-top: 2px;
+  }
+
+  /* --- Bold/Summer Style --- */
+  .door-hanger.bold {
+    background: linear-gradient(180deg, #fffbeb 0%, #fef3c7 40%, #fde68a 100%);
+    border-color: #fbbf24;
+  }
+  .bold .hanger-top {
+    background: linear-gradient(135deg, #b91c1c, #dc2626);
+    color: #fff;
+    padding: 16px 16px 12px;
+    text-align: center;
+  }
+  .bold .hanger-top .alert-line {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    opacity: 0.9;
+    margin-bottom: 4px;
+  }
+  .bold .brand-name {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .bold .hanger-body {
+    flex: 1;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .bold .hook-line {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #991b1b;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .bold .hook-sub {
+    font-size: 11px;
+    color: #374151;
+    text-align: center;
+    line-height: 1.4;
+  }
+  .bold .bullet-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0 4px;
+  }
+  .bold .bullet-item {
+    font-size: 11px;
+    color: #374151;
+    font-weight: 500;
+    display: flex;
+    gap: 6px;
+  }
+  .bold .bullet-item .check { color: #dc2626; font-weight: 700; }
+  .bold .pricing-strip {
+    background: #fff;
+    border: 2px solid #f59e0b;
+    border-radius: 10px;
+    padding: 8px 12px;
+    text-align: center;
+  }
+  .bold .pricing-strip .flat-rate {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #b91c1c;
+  }
+  .bold .pricing-strip .flat-rate-sub {
+    font-size: 10px;
+    color: #6b7280;
+    margin-top: 1px;
+  }
+  .bold .hanger-footer {
+    background: #1f2937;
+    color: #fff;
+    padding: 10px 16px;
+    text-align: center;
+  }
+  .bold .phone {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fbbf24;
+    letter-spacing: 1px;
+  }
+  .bold .cta-sub {
+    font-size: 9px;
+    color: #9ca3af;
+    margin-top: 2px;
+    letter-spacing: 0.5px;
+  }
+  .bold .website-line {
+    font-size: 9px;
+    color: #6b7280;
+    margin-top: 2px;
+  }
+
+  /* --- Neighbor/Social Proof Style --- */
+  .door-hanger.neighbor {
+    background: linear-gradient(180deg, #eff6ff 0%, #dbeafe 40%, #bfdbfe 100%);
+    border-color: #93c5fd;
+  }
+  .neighbor .hanger-top {
+    background: linear-gradient(135deg, #1e40af, #2563eb);
+    color: #fff;
+    padding: 16px 16px 12px;
+    text-align: center;
+  }
+  .neighbor .wave-line {
+    font-size: 10px;
+    font-weight: 500;
+    opacity: 0.9;
+    margin-bottom: 4px;
+  }
+  .neighbor .brand-name {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+  }
+  .neighbor .hanger-body {
+    flex: 1;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .neighbor .hook-line {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e40af;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .neighbor .social-proof {
+    background: rgba(255,255,255,0.8);
+    border-left: 3px solid #2563eb;
+    border-radius: 0 8px 8px 0;
+    padding: 8px 12px;
+    font-size: 11px;
+    color: #374151;
+    font-style: italic;
+    line-height: 1.4;
+  }
+  .neighbor .social-proof .attribution {
+    font-style: normal;
+    font-weight: 600;
+    color: #1e40af;
+    margin-top: 4px;
+    display: block;
+  }
+  .neighbor .features {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .neighbor .feature {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 11px;
+    color: #374151;
+    font-weight: 500;
+  }
+  .neighbor .feature .icon { font-size: 14px; width: 20px; text-align: center; }
+  .neighbor .pricing-box {
+    background: rgba(255,255,255,0.8);
+    border: 2px solid #3b82f6;
+    border-radius: 10px;
+    padding: 8px 10px;
+    text-align: center;
+  }
+  .neighbor .pricing-box .intro-offer {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: #1e40af;
+  }
+  .neighbor .pricing-box .prices {
+    font-size: 10px;
+    color: #374151;
+    line-height: 1.5;
+    margin-top: 2px;
+  }
+  .neighbor .hanger-footer {
+    background: #1e40af;
+    color: #fff;
+    padding: 10px 16px;
+    text-align: center;
+  }
+  .neighbor .phone {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .neighbor .cta-sub {
+    font-size: 9px;
+    opacity: 0.9;
+    margin-top: 2px;
+  }
+  .neighbor .website-line {
+    font-size: 9px;
+    opacity: 0.8;
+    margin-top: 2px;
+  }
+
+  /* Responsive preview */
+  @media screen and (max-width: 768px) {
+    .hanger-page { width: 100%; padding: 16px; }
+    .door-hanger { width: 100%; max-width: 4in; }
+    .page-header h1 { font-size: 1.5rem; }
+  }
+
+  /* === PRINT STYLES === */
+  @media print {
+    body { background: #fff !important; }
+    .screen-only, .print-btn-container, .style-picker, .preview-label { display: none !important; }
+    .preview-wrapper { box-shadow: none; border-radius: 0; }
+
+    .hanger-page {
+      width: 8.5in;
+      height: 11in;
+      padding: 0.25in;
+      page-break-after: always;
+    }
+    .door-hanger {
+      border: 1.5px dashed #999 !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+  }
+
+  /* === CUT LINE LABEL === */
+  .cut-line {
+    width: 3.5in;
+    border-top: 1.5px dashed #999;
+    position: relative;
+    margin: 4px 0;
+  }
+  .cut-line::after {
+    content: '✂ cut here';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    padding: 0 8px;
+    font-size: 8px;
+    color: #999;
+    font-family: 'Inter', sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<!-- === SCREEN DASHBOARD === -->
+<div class="screen-only">
+  <div class="page-header">
+    <h1>🚪 Door Hangers — Print & Drop</h1>
+    <p>Print at home, cut in half, hang on neighbor doors every Monday while you're scooping.<br>
+    Zero cost. Highest conversion rate of any marketing channel for local services.</p>
+  </div>
+
+  <div class="instructions">
+    <h2>📋 How to Use</h2>
+    <ol>
+      <li>Pick a style below (or print all 3)</li>
+      <li>Click <strong>🖨️ Print Door Hangers</strong></li>
+      <li>Print on <strong>cardstock</strong> for best results (regular paper works too)</li>
+      <li>Cut along the dashed line — <strong>2 hangers per page</strong></li>
+      <li>Every Monday: drop 5-10 on doors <strong>near the house you're scooping</strong></li>
+      <li>Focus on houses with visible dog stuff (toys, bowls, leash hooks, fence signs)</li>
+    </ol>
+    <div class="tip">
+      💡 <strong>Pro tip:</strong> Neighbors who just watched you clean the yard next door convert at 3-5x the rate of cold marketing. They already trust you.
+    </div>
+  </div>
+
+  <div class="style-picker">
+    <button class="style-btn active" onclick="showStyle('spring')">🌸 Spring Clean</button>
+    <button class="style-btn" onclick="showStyle('bold')">🔥 Bold/Urgency</button>
+    <button class="style-btn" onclick="showStyle('neighbor')">👋 Neighbor Proof</button>
+  </div>
+
+  <div class="print-btn-container">
+    <button class="print-btn" onclick="window.print()">🖨️ Print Door Hangers</button>
+  </div>
+
+  <p class="preview-label">▼ Preview (what prints) ▼</p>
+</div>
+
+<!-- === PRINTABLE PAGES === -->
+
+<!-- PAGE 1: Spring Style x2 -->
+<div class="preview-wrapper" id="page-spring">
+<div class="hanger-page">
+  <div class="door-hanger spring">
+    <div class="hanger-top">
+      <div class="brand-name">TIDY TAILS</div>
+      <div class="tagline">Professional Pet Waste Removal — St. Louis</div>
+    </div>
+    <div class="hanger-body">
+      <div class="hook-line">Spring is here! 🌱<br>Your yard doesn't have to smell like winter.</div>
+      <div class="poop-emoji-row">💩 → ✨</div>
+      <div class="value-props">
+        <div class="value-prop"><span class="icon">🗓️</span> Weekly, biweekly, or monthly service</div>
+        <div class="value-prop"><span class="icon">🧤</span> We scoop so you don't have to</div>
+        <div class="value-prop"><span class="icon">🐕</span> Multiple dogs? No problem</div>
+        <div class="value-prop"><span class="icon">💚</span> Locally owned & operated</div>
+      </div>
+      <div class="pricing-box">
+        <div class="price-headline">Plans Starting At</div>
+        <div class="prices">
+          <strong>$25/week</strong> &nbsp;·&nbsp; <strong>$45</strong>/biweekly &nbsp;·&nbsp; <strong>$70</strong>/month flat<br>
+          One-time deep cleans: <strong>$100</strong>
+        </div>
+      </div>
+    </div>
+    <div class="hanger-footer">
+      <div class="phone">📱 (314) 850-7140</div>
+      <div class="cta-sub">Call or text Jamie for a free quote!</div>
+      <div class="website-line">tidytailsstl.com</div>
+    </div>
+  </div>
+
+  <div class="cut-line"></div>
+
+  <div class="door-hanger spring">
+    <div class="hanger-top">
+      <div class="brand-name">TIDY TAILS</div>
+      <div class="tagline">Professional Pet Waste Removal — St. Louis</div>
+    </div>
+    <div class="hanger-body">
+      <div class="hook-line">Spring is here! 🌱<br>Your yard doesn't have to smell like winter.</div>
+      <div class="poop-emoji-row">💩 → ✨</div>
+      <div class="value-props">
+        <div class="value-prop"><span class="icon">🗓️</span> Weekly, biweekly, or monthly service</div>
+        <div class="value-prop"><span class="icon">🧤</span> We scoop so you don't have to</div>
+        <div class="value-prop"><span class="icon">🐕</span> Multiple dogs? No problem</div>
+        <div class="value-prop"><span class="icon">💚</span> Locally owned & operated</div>
+      </div>
+      <div class="pricing-box">
+        <div class="price-headline">Plans Starting At</div>
+        <div class="prices">
+          <strong>$25/week</strong> &nbsp;·&nbsp; <strong>$45</strong>/biweekly &nbsp;·&nbsp; <strong>$70</strong>/month flat<br>
+          One-time deep cleans: <strong>$100</strong>
+        </div>
+      </div>
+    </div>
+    <div class="hanger-footer">
+      <div class="phone">📱 (314) 850-7140</div>
+      <div class="cta-sub">Call or text Jamie for a free quote!</div>
+      <div class="website-line">tidytailsstl.com</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PAGE 2: Bold/Urgency Style x2 -->
+<div class="preview-wrapper" id="page-bold" style="display:none;">
+<div class="hanger-page">
+  <div class="door-hanger bold">
+    <div class="hanger-top">
+      <div class="alert-line">⚠️ Your Neighbor's Yard Just Got Cleaned ⚠️</div>
+      <div class="brand-name">TIDY TAILS</div>
+    </div>
+    <div class="hanger-body">
+      <div class="hook-line">Tired of dodging<br>landmines in your yard?</div>
+      <div class="hook-sub">We were just next door. Here's what your neighbor knows that you don't...</div>
+      <div class="bullet-list">
+        <div class="bullet-item"><span class="check">✓</span> Dog waste attracts rats, flies & parasites</div>
+        <div class="bullet-item"><span class="check">✓</span> It kills grass and contaminates soil</div>
+        <div class="bullet-item"><span class="check">✓</span> 1 dog = 275 lbs of waste per year 😳</div>
+        <div class="bullet-item"><span class="check">✓</span> Your neighbor's yard is pristine now</div>
+      </div>
+      <div class="pricing-strip">
+        <div class="flat-rate">$70/month flat</div>
+        <div class="flat-rate-sub">Weekly service · All dogs included · No contracts</div>
+      </div>
+    </div>
+    <div class="hanger-footer">
+      <div class="phone">📱 (314) 850-7140</div>
+      <div class="cta-sub">Text "CLEAN" to Jamie for a same-week start</div>
+      <div class="website-line">tidytailsstl.com</div>
+    </div>
+  </div>
+
+  <div class="cut-line"></div>
+
+  <div class="door-hanger bold">
+    <div class="hanger-top">
+      <div class="alert-line">⚠️ Your Neighbor's Yard Just Got Cleaned ⚠️</div>
+      <div class="brand-name">TIDY TAILS</div>
+    </div>
+    <div class="hanger-body">
+      <div class="hook-line">Tired of dodging<br>landmines in your yard?</div>
+      <div class="hook-sub">We were just next door. Here's what your neighbor knows that you don't...</div>
+      <div class="bullet-list">
+        <div class="bullet-item"><span class="check">✓</span> Dog waste attracts rats, flies & parasites</div>
+        <div class="bullet-item"><span class="check">✓</span> It kills grass and contaminates soil</div>
+        <div class="bullet-item"><span class="check">✓</span> 1 dog = 275 lbs of waste per year 😳</div>
+        <div class="bullet-item"><span class="check">✓</span> Your neighbor's yard is pristine now</div>
+      </div>
+      <div class="pricing-strip">
+        <div class="flat-rate">$70/month flat</div>
+        <div class="flat-rate-sub">Weekly service · All dogs included · No contracts</div>
+      </div>
+    </div>
+    <div class="hanger-footer">
+      <div class="phone">📱 (314) 850-7140</div>
+      <div class="cta-sub">Text "CLEAN" to Jamie for a same-week start</div>
+      <div class="website-line">tidytailsstl.com</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- PAGE 3: Neighbor/Social Proof Style x2 -->
+<div class="preview-wrapper" id="page-neighbor" style="display:none;">
+<div class="hanger-page">
+  <div class="door-hanger neighbor">
+    <div class="hanger-top">
+      <div class="wave-line">👋 Hi neighbor!</div>
+      <div class="brand-name">TIDY TAILS</div>
+    </div>
+    <div class="hanger-body">
+      <div class="hook-line">We just cleaned a yard<br>on your street! 🏡</div>
+      <div class="social-proof">
+        "I put it off for months. Jamie came out and my yard was spotless in 20 minutes. Now I don't even think about it."
+        <span class="attribution">— Happy customer, right here in your neighborhood</span>
+      </div>
+      <div class="features">
+        <div class="feature"><span class="icon">⏱️</span> We're already in your neighborhood weekly</div>
+        <div class="feature"><span class="icon">🔒</span> No contracts — cancel anytime</div>
+        <div class="feature"><span class="icon">🐶</span> 1 dog or 5 — same price</div>
+        <div class="feature"><span class="icon">🌿</span> Healthier yard, happier dogs</div>
+      </div>
+      <div class="pricing-box">
+        <div class="intro-offer">Your Neighbors Pay As Low As</div>
+        <div class="prices">
+          <strong>$25/week</strong> &nbsp;·&nbsp; <strong>$45</strong>/biweekly &nbsp;·&nbsp; <strong>$70</strong>/month flat
+        </div>
+      </div>
+    </div>
+    <div class="hanger-footer">
+      <div class="phone">📱 (314) 850-7140</div>
+      <div class="cta-sub">Text or call Jamie — free quotes, fast start</div>
+      <div class="website-line">tidytailsstl.com</div>
+    </div>
+  </div>
+
+  <div class="cut-line"></div>
+
+  <div class="door-hanger neighbor">
+    <div class="hanger-top">
+      <div class="wave-line">👋 Hi neighbor!</div>
+      <div class="brand-name">TIDY TAILS</div>
+    </div>
+    <div class="hanger-body">
+      <div class="hook-line">We just cleaned a yard<br>on your street! 🏡</div>
+      <div class="social-proof">
+        "I put it off for months. Jamie came out and my yard was spotless in 20 minutes. Now I don't even think about it."
+        <span class="attribution">— Happy customer, right here in your neighborhood</span>
+      </div>
+      <div class="features">
+        <div class="feature"><span class="icon">⏱️</span> We're already in your neighborhood weekly</div>
+        <div class="feature"><span class="icon">🔒</span> No contracts — cancel anytime</div>
+        <div class="feature"><span class="icon">🐶</span> 1 dog or 5 — same price</div>
+        <div class="feature"><span class="icon">🌿</span> Healthier yard, happier dogs</div>
+      </div>
+      <div class="pricing-box">
+        <div class="intro-offer">Your Neighbors Pay As Low As</div>
+        <div class="prices">
+          <strong>$25/week</strong> &nbsp;·&nbsp; <strong>$45</strong>/biweekly &nbsp;·&nbsp; <strong>$70</strong>/month flat
+        </div>
+      </div>
+    </div>
+    <div class="hanger-footer">
+      <div class="phone">📱 (314) 850-7140</div>
+      <div class="cta-sub">Text or call Jamie — free quotes, fast start</div>
+      <div class="website-line">tidytailsstl.com</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<script>
+function showStyle(style) {
+  document.querySelectorAll('.preview-wrapper').forEach(el => el.style.display = 'none');
+  document.getElementById('page-' + style).style.display = 'block';
+  document.querySelectorAll('.style-btn').forEach(btn => btn.classList.remove('active'));
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>

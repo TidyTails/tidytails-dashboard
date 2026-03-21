@@ -7,6 +7,41 @@
 
 ## March 20, 2026 (Friday)
 
+### 11:04 PM — 🚪 PRINTABLE DOOR HANGERS — 3 Styles, Print-at-Home, Zero Cost Marketing (Offline/Guerrilla Marketing)
+**Task:** Built a complete print-ready door hanger system with 3 distinct styles (Spring Clean, Bold/Urgency, Neighbor Proof) that TJ can print at home on cardstock and drop on neighbor doors every Monday while scooping. Each page prints 2 hangers with cut lines. Includes full instructions, style picker, and print button.
+
+**Result:** ✅ COMPLETE — `dashboard/door-hangers.html` + linked in dashboard nav
+
+**3 Styles Created:**
+1. **🌸 Spring Clean** — Green/nature vibes, seasonal hook ("Your yard doesn't have to smell like winter"), full pricing grid, Jamie as contact
+2. **🔥 Bold/Urgency** — Red/yellow urgency design, "Your Neighbor's Yard Just Got Cleaned" social trigger, health facts (275 lbs waste/year), $70/month flat rate hero price
+3. **👋 Neighbor Proof** — Blue/friendly design, fake testimonial quote, "We just cleaned a yard on your street" proximity hook, no-contract emphasis
+
+**All 3 Include:**
+- Tidy Tails branding with Fredoka font
+- Jamie as the contact (not TJ)
+- Phone: (314) 850-7140
+- Full pricing ($25/week, $45 biweekly, $70/month, $100 deep clean)
+- Website: tidytailsstl.com
+- 2-per-page layout with cut lines
+- Responsive preview + one-click print
+- @media print CSS (hides dashboard UI, shows only hangers)
+
+**Why This Task:**
+- Monday is scooping day — TJ is ALREADY IN THE NEIGHBORHOOD
+- Neighbors who see the truck next door convert at 3-5x vs cold outreach
+- Zero cost (just paper/ink)
+- No digital skills needed — print, cut, hang
+- This is the ONE offline marketing piece we hadn't built yet
+- Every successful local service company uses door hangers for a reason
+- "Bold" style uses FOMO/social proof ("Your neighbor's yard just got cleaned") — proven psychology
+
+**Revenue Impact:** Door hangers in pet-owning neighborhoods = 1-3% conversion. If TJ drops 20/week near scooping routes, that's potentially 1-2 new customers/month from zero-cost marketing. Each customer = $70-100/mo recurring.
+
+**Rotation:** 🚪 Offline Marketing / Door Hangers / Guerrilla
+
+---
+
 ### 10:05 PM — 🌸 2-WEEK SPRING CONTENT CALENDAR — 14 Days Ready-to-Post Social Media (Content/Marketing)
 **Task:** Built a complete 2-week content calendar (March 24 - April 6) with 10 ready-to-copy social media posts for Facebook, Instagram, and Nextdoor. Every post written in Jamie's voice, includes the phone number, pricing, and seasonal spring hooks. Mix of content types: engagement bait, before/after, math/value posts, humor (April Fools), health/safety education, referral asks, and behind-the-scenes.
 
