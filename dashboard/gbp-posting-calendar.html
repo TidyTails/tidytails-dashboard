@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📅 GBP 4-Week Posting Calendar — 8 Ready Posts</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; min-height: 100vh; }
+
+.header { background: linear-gradient(135deg, #1a1a2e, #16213e); padding: 24px 16px; text-align: center; border-bottom: 2px solid #0f3460; }
+.header h1 { font-size: 1.4rem; font-weight: 800; margin-bottom: 4px; }
+.header h1 span { color: #4ecdc4; }
+.header .sub { color: #888; font-size: 0.82rem; }
+
+.tabs { display: flex; overflow-x: auto; gap: 0; background: #111; border-bottom: 1px solid #333; }
+.tab { padding: 12px 16px; font-size: 0.82rem; font-weight: 600; color: #888; cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; transition: all 0.2s; flex: 1; text-align: center; }
+.tab:hover { color: #ccc; }
+.tab.active { color: #4ecdc4; border-bottom-color: #4ecdc4; background: rgba(78,205,196,0.05); }
+.tab .check { color: #10b981; margin-left: 4px; display: none; }
+.tab.done .check { display: inline; }
+
+.container { max-width: 640px; margin: 0 auto; padding: 16px; }
+
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* Why Section */
+.why-box { background: linear-gradient(135deg, #1a2e1a, #162e16); border: 1px solid #2d5a2d; border-radius: 12px; padding: 16px; margin-bottom: 20px; }
+.why-box h3 { color: #4ecdc4; font-size: 1rem; margin-bottom: 8px; }
+.why-box p { color: #aaa; font-size: 0.82rem; line-height: 1.6; margin-bottom: 8px; }
+.why-box .stat { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+.why-box .stat-item { background: rgba(78,205,196,0.1); border: 1px solid rgba(78,205,196,0.2); border-radius: 8px; padding: 10px 14px; flex: 1; min-width: 120px; text-align: center; }
+.why-box .stat-num { font-size: 1.5rem; font-weight: 800; color: #4ecdc4; }
+.why-box .stat-label { font-size: 0.7rem; color: #888; margin-top: 2px; }
+
+/* Progress */
+.progress-wrap { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 16px; margin-bottom: 20px; }
+.progress-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.progress-top .label { font-size: 0.85rem; font-weight: 600; }
+.progress-top .pct { font-size: 1.1rem; font-weight: 800; color: #4ecdc4; }
+.progress-bar { height: 8px; background: #222; border-radius: 4px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #ff4444, #ff8800, #4ecdc4); border-radius: 4px; transition: width 0.5s; }
+.progress-detail { display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.75rem; color: #666; }
+
+/* Week Cards */
+.week-header { display: flex; align-items: center; gap: 10px; margin: 20px 0 12px; }
+.week-header h2 { font-size: 1.05rem; font-weight: 700; }
+.week-header .badge { font-size: 0.7rem; background: rgba(59,130,246,0.2); color: #3b82f6; padding: 3px 10px; border-radius: 10px; }
+.week-header .badge-done { background: rgba(16,185,129,0.2); color: #10b981; }
+
+.post-card { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; margin-bottom: 14px; overflow: hidden; transition: border-color 0.2s; }
+.post-card:hover { border-color: #4ecdc4; }
+.post-card.completed { opacity: 0.5; border-color: #10b981; }
+
+.post-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #222; }
+.post-header .day { font-size: 0.82rem; font-weight: 600; }
+.post-header .type { font-size: 0.7rem; padding: 3px 10px; border-radius: 10px; }
+.type-update { background: rgba(59,130,246,0.15); color: #3b82f6; }
+.type-offer { background: rgba(255,107,53,0.15); color: #ff6b35; }
+.type-tip { background: rgba(251,191,36,0.15); color: #fbbf24; }
+.type-proof { background: rgba(139,92,246,0.15); color: #8b5cf6; }
+
+.post-body { padding: 14px 16px; }
+.post-body .content { font-size: 0.85rem; line-height: 1.6; white-space: pre-wrap; color: #ccc; background: #0d1117; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px; position: relative; }
+.post-body .photo-hint { margin-top: 8px; font-size: 0.75rem; color: #666; display: flex; align-items: center; gap: 6px; }
+.post-body .photo-hint span { color: #fbbf24; }
+
+.post-actions { display: flex; gap: 8px; padding: 0 16px 14px; }
+.btn { padding: 8px 16px; border-radius: 8px; border: none; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.btn-copy { background: #4ecdc4; color: #000; flex: 1; }
+.btn-copy:hover { background: #6ee0d8; }
+.btn-done { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
+.btn-done:hover { background: rgba(16,185,129,0.25); }
+.btn-done.checked { background: #10b981; color: #000; }
+
+/* Open GBP Button */
+.gbp-btn { display: block; margin: 16px 0; padding: 14px; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; text-align: center; border-radius: 12px; text-decoration: none; font-size: 0.9rem; font-weight: 700; transition: all 0.2s; }
+.gbp-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
+
+/* Tips */
+.tip-box { background: #1a1a20; border: 1px solid #333; border-radius: 10px; padding: 14px; margin-top: 16px; }
+.tip-box h3 { font-size: 0.85rem; color: #fbbf24; margin-bottom: 8px; }
+.tip-box ul { list-style: none; padding: 0; }
+.tip-box li { font-size: 0.8rem; color: #aaa; padding: 4px 0; padding-left: 18px; position: relative; line-height: 1.5; }
+.tip-box li::before { content: '→'; position: absolute; left: 0; color: #4ecdc4; }
+
+/* Schedule Summary */
+.schedule { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 16px 0; }
+.schedule-day { background: #1a1a1a; border: 1px solid #333; border-radius: 8px; padding: 10px; text-align: center; }
+.schedule-day .wk { font-size: 0.65rem; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+.schedule-day .posts { font-size: 1.2rem; font-weight: 800; color: #4ecdc4; margin: 4px 0; }
+.schedule-day .days { font-size: 0.7rem; color: #888; }
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>📅 GBP <span>4-Week Posting Calendar</span></h1>
+<p class="sub">8 copy-paste posts • 2 per week • 2 min each • $0 cost</p>
+</div>
+
+<div class="tabs">
+<div class="tab active" onclick="showPanel('overview')">📊 Overview</div>
+<div class="tab" onclick="showPanel('week1')" id="tab-week1">Week 1<span class="check">✓</span></div>
+<div class="tab" onclick="showPanel('week2')" id="tab-week2">Week 2<span class="check">✓</span></div>
+<div class="tab" onclick="showPanel('week3')" id="tab-week3">Week 3<span class="check">✓</span></div>
+<div class="tab" onclick="showPanel('week4')" id="tab-week4">Week 4<span class="check">✓</span></div>
+<div class="tab" onclick="showPanel('tips')">💡 Tips</div>
+</div>
+
+<div class="container">
+
+<!-- OVERVIEW PANEL -->
+<div class="panel active" id="panel-overview">
+
+<div class="progress-wrap">
+<div class="progress-top">
+<span class="label">Posts Published</span>
+<span class="pct" id="totalPct">0/8</span>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="totalFill" style="width: 0%"></div></div>
+<div class="progress-detail">
+<span>Start: This Week</span>
+<span id="totalPctNum">0% complete</span>
+</div>
+</div>
+
+<div class="why-box">
+<h3>🤔 Why Post on Google Business Profile?</h3>
+<p>Google rewards active businesses. Businesses that post weekly get <strong>significantly more visibility</strong> in Maps and local search. TJ currently has <strong>ZERO posts</strong> while competitors are posting regularly.</p>
+<p>GBP Posts show up directly in your business listing when people search. They're free advertising that Google literally encourages you to do.</p>
+<div class="stat">
+<div class="stat-item">
+<div class="stat-num">7x</div>
+<div class="stat-label">More clicks with complete profiles</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">0</div>
+<div class="stat-label">TJ's current GBP posts</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">2 min</div>
+<div class="stat-label">Per post (copy, paste, publish)</div>
+</div>
+</div>
+</div>
+
+<h3 style="font-size: 0.9rem; margin-bottom: 10px; color: #ccc;">📆 4-Week Schedule</h3>
+<div class="schedule">
+<div class="schedule-day">
+<div class="wk">Week 1</div>
+<div class="posts">2</div>
+<div class="days">Mon + Thu</div>
+</div>
+<div class="schedule-day">
+<div class="wk">Week 2</div>
+<div class="posts">2</div>
+<div class="days">Tue + Fri</div>
+</div>
+<div class="schedule-day">
+<div class="wk">Week 3</div>
+<div class="posts">2</div>
+<div class="days">Mon + Thu</div>
+</div>
+<div class="schedule-day">
+<div class="wk">Week 4</div>
+<div class="posts">2</div>
+<div class="days">Tue + Fri</div>
+</div>
+</div>
+
+<a class="gbp-btn" href="https://business.google.com" target="_blank">🔗 Open Google Business Profile → Post Now</a>
+
+<div class="tip-box">
+<h3>⚡ How to Post (30 seconds)</h3>
+<ul>
+<li>Open Google Business Profile (button above)</li>
+<li>Click "Add update" or "Create post"</li>
+<li>Copy the post text below (use the Copy button)</li>
+<li>Paste it in, add a photo if you have one</li>
+<li>Hit "Publish" — done</li>
+<li><strong>Pro tip:</strong> Add a "Call now" or "Learn more" button to each post</li>
+</ul>
+</div>
+</div>
+
+<!-- WEEK 1 PANEL -->
+<div class="panel" id="panel-week1">
+<div class="week-header">
+<h2>📅 Week 1</h2>
+<span class="badge" id="badge-week1">0/2 posted</span>
+</div>
+
+<div class="post-card" id="card-p1">
+<div class="post-header">
+<span class="day">📌 Post 1 — Monday</span>
+<span class="type type-update">UPDATE</span>
+</div>
+<div class="post-body">
+<div class="content" id="text-p1">Spring is here and your backyard shouldn't smell like winter! 🐾
+
+Tidy Tails is St. Louis's locally owned pet waste removal service. We show up on schedule, clean every inch of your yard, and haul everything away.
+
+Simple pricing, no contracts:
+• Weekly service — $25/week
+• Monthly plan — $70/month (best value in STL)
+• One-time deep clean — $100
+
+Serving Florissant, O'Fallon, St. Peters, Ferguson, Maryland Heights, St. Charles & more.
+
+📱 Text or call Jamie: 314-850-7140
+🌐 tidytailsstl.com</div>
+<div class="photo-hint"><span>📸</span> Best photo: Clean yard with happy dog, or before/after shot</div>
+</div>
+<div class="post-actions">
+<button class="btn btn-copy" onclick="copyPost('text-p1')">📋 Copy Post</button>
+<button class="btn btn-done" id="btn-p1" onclick="toggleDone('p1')">✓ Posted</button>
+</div>
+</div>
+
+<div class="post-card" id="card-p2">
+<div class="post-header">
+<span class="day">📌 Post 2 — Thursday</span>
+<span class="type type-tip">TIP</span>
+</div>
+<div class="post-body">
+<div class="content" id="text-p2">Did you know? Dog waste takes up to 12 months to fully decompose. And while it sits there, it releases harmful bacteria into your soil and can contaminate groundwater. 🦠
+
+The EPA actually classifies pet waste as an environmental pollutant — right up there with oil and toxic chemicals.
+
+The fix is simple: regular removal keeps your family, your pets, and your yard healthy.
+
+Tidy Tails handles it so you don't have to. Weekly, biweekly, or monthly — whatever works for you.
+
+📱 Free quote: Text Jamie at 314-850-7140</div>
+<div class="photo-hint"><span>📸</span> Best photo: Lush green yard, or info graphic about pet waste facts</div>
+</div>
+<div class="post-actions">
+<button class="btn btn-copy" onclick="copyPost('text-p2')">📋 Copy Post</button>
+<button class="btn btn-done" id="btn-p2" onclick="toggleDone('p2')">✓ Posted</button>
+</div>
+</div>
+</div>
+
+<!-- WEEK 2 PANEL -->
+<div class="panel" id="panel-week2">
+<div class="week-header">
+<h2>📅 Week 2</h2>
+<span class="badge" id="badge-week2">0/2 posted</span>
+</div>
+
+<div class="post-card" id="card-p3">
+<div class="post-header">
+<span class="day">📌 Post 3 — Tuesday</span>
+<span class="type type-offer">OFFER</span>
+</div>
+<div class="post-body">
+<div class="content" id="text-p3">🌸 SPRING DEEP CLEAN SPECIAL 🌸
+
+Winter left its mark on your yard. Let's fix that.
+
+$100 one-time deep clean — we'll clear every pile from every corner of your yard. Then if you want to keep it that way, our monthly plan is just $70/month.
+
+No contracts. No hidden fees. Just a clean yard and more time with your dog.
+
+This is our busiest season — spots fill up fast in spring!
+
+📱 Text Jamie to schedule: 314-850-7140
+🌐 tidytailsstl.com</div>
+<div class="photo-hint"><span>📸</span> Best photo: Before/after of a yard cleanup, or spring flowers with a clean lawn</div>
+</div>
+<div class="post-actions">
+<button class="btn btn-copy" onclick="copyPost('text-p3')">📋 Copy Post</button>
+<button class="btn btn-done" id="btn-p3" onclick="toggleDone('p3')">✓ Posted</button>
+</div>
+</div>
+
+<div class="post-card" id="card-p4">
+<div class="post-header">
+<span class="day">📌 Post 4 — Friday</span>
+<span class="type type-proof">SOCIAL PROOF</span>
+</div>
+<div class="post-body">
+<div class="content" id="text-p4">Here's what happens when you stop dreading your backyard:
+
+✅ Kids actually play outside again
+✅ You can walk barefoot without fear
+✅ BBQ season is stress-free
+✅ No more "I'll get to it this weekend" guilt
+✅ Your neighbors stop giving you the side-eye
+
+Our customers tell us the same thing: "I wish I'd started this sooner."
+
+Tidy Tails shows up the same day every week. You don't even have to be home. We text you when we're done.
+
+Starting at $25/week — less than a pizza delivery.
+
+📱 314-850-7140 | tidytailsstl.com</div>
+<div class="photo-hint"><span>📸</span> Best photo: Kids or family playing in a clean yard, or a dog on fresh grass</div>
+</div>
+<div class="post-actions">
+<button class="btn btn-copy" onclick="copyPost('text-p4')">📋 Copy Post</button>
+<button class="btn btn-done" id="btn-p4" onclick="toggleDone('p4')">✓ Posted</button>
+</div>
+</div>
+</div>
+
+<!-- WEEK 3 PANEL -->
+<div class="panel" id="panel-week3">
+<div class="week-header">
+<h2>📅 Week 3</h2>
+<span class="badge" id="badge-week3">0/2 posted</span>
+</div>
+
+<div class="post-card" id="card-p5">
+<div class="post-header">
+<span class="day">📌 Post 5 — Monday</span>
+<span class="type type-update">UPDATE</span>
+</div>
+<div class="post-body">
+<div class="content" id="text-p5">Fun fact: The average dog produces about 275 pounds of waste per year. If you've got two dogs? That's over 500 lbs sitting in your yard. 💩
+
+Nobody wants to think about it. That's literally why we exist.
+
+Tidy Tails is a one-person operation (hi, I'm Jamie!) serving St. Louis County and St. Charles County. Same face every week, same reliable service, same clean yard.
+
+Why customers stick with us:
+→ No contracts — stay because you want to, not because you have to
+→ $70/month flat rate — no per-dog upcharges
+→ We bag it AND haul it away
+→ Text confirmation when we're done
+
+📱 Get a free quote: 314-850-7140</div>
+<div class="photo-hint"><span>📸</span> Best photo: Jamie with equipment/truck, or a friendly dog greeting</div>
+</div>
+<div class="post-actions">
+<button class="btn btn-copy" onclick="copyPost('text-p5')">📋 Copy Post</button>
+<button class="btn btn-done" id="btn-p5" onclick="toggleDone('p5')">✓ Posted</button>
+</div>
+</div>
+
+<div class="post-card" id="card-p6">
+<div class="post-header">
+<span class="day">📌 Post 6 — Thursday</span>
+<span class="type type-tip">TIP</span>
+</div>
+<div class="post-body">
+<div class="content" id="text-p6">3 reasons spring is the WORST time to skip yard cleanup:
+
+1️⃣ Thawing ground releases months of bacteria all at once — your soil absorbs it fast
+
+2️⃣ April showers wash waste into storm drains, which flow directly to local waterways (the EPA calls it a pollutant!)
+
+3️⃣ Warm weather + waste = flies, odor, and parasites that put your pets AND kids at risk
+
+The good news? One weekly visit keeps all of this under control. We handle it, you enjoy the yard.
+
+Tidy Tails serves Florissant, O'Fallon, St. Peters, Chesterfield, Ballwin, Ferguson, Maryland Heights, and everywhere in between.
+
+📱 Text Jamie for a free quote: 314-850-7140
+🌐 tidytailsstl.com</div>
+<div class="photo-hint"><span>📸</span> Best photo: Spring yard with flowers, or seasonal outdoor scene</div>
+</div>
+<div class="post-actions">
+<button class="btn btn-copy" onclick="copyPost('text-p6')">📋 Copy Post</button>
+<button class="btn btn-done" id="btn-p6" onclick="toggleDone('p6')">✓ Posted</button>
+</div>
+</div>
+</div>
+
+<!-- WEEK 4 PANEL -->
+<div class="panel" id="panel-week4">
+<div class="week-header">
+<h2>📅 Week 4</h2>
+<span class="badge" id="badge-week4">0/2 posted</span>
+</div>
+
+<div class="post-card" id="card-p7">
+<div class="post-header">
+<span class="day">📌 Post 7 — Tuesday</span>
+<span class="type type-offer">OFFER</span>
+</div>
+<div class="post-body">
+<div class="content" id="text-p7">Know someone who hates picking up after their dog? (Don't we all? 😂)
+
+We're offering $20 off your next month for every friend you refer who signs up. They get a clean yard, you get a discount. Win-win.
+
+How it works:
+1. Tell your friend about Tidy Tails
+2. They text Jamie at 314-850-7140
+3. They mention your name
+4. You get $20 off your next bill
+
+No limit on referrals. Refer 3 friends? That's $60 off. 
+
+📱 Questions? Text Jamie: 314-850-7140
+🌐 tidytailsstl.com</div>
+<div class="photo-hint"><span>📸</span> Best photo: Two dogs together, or neighbors chatting with dogs</div>
+</div>
+<div class="post-actions">
+<button class="btn btn-copy" onclick="copyPost('text-p7')">📋 Copy Post</button>
+<button class="btn btn-done" id="btn-p7" onclick="toggleDone('p7')">✓ Posted</button>
+</div>
+</div>
+
+<div class="post-card" id="card-p8">
+<div class="post-header">
+<span class="day">📌 Post 8 — Friday</span>
+<span class="type type-proof">SOCIAL PROOF</span>
+</div>
+<div class="post-body">
+<div class="content" id="text-p8">A month ago, you were dreading the spring thaw.
+
+Now? Your yard is spotless. The kids are playing outside. You're grilling without checking your shoes first. And you haven't touched a plastic bag in weeks.
+
+That's what weekly service looks like.
+
+Tidy Tails is locally owned, serving St. Louis families who'd rather spend time WITH their dogs than cleaning up AFTER them.
+
+🐾 No contracts — ever
+🐾 Same person every week (hi, it's Jamie!)
+🐾 $70/month flat rate — cheapest monthly plan in STL
+🐾 100% satisfaction guaranteed
+
+Ready to get your weekends back?
+
+📱 Text or call: 314-850-7140
+🌐 tidytailsstl.com</div>
+<div class="photo-hint"><span>📸</span> Best photo: Sunset/evening yard shot, or happy family outdoors</div>
+</div>
+<div class="post-actions">
+<button class="btn btn-copy" onclick="copyPost('text-p8')">📋 Copy Post</button>
+<button class="btn btn-done" id="btn-p8" onclick="toggleDone('p8')">✓ Posted</button>
+</div>
+</div>
+</div>
+
+<!-- TIPS PANEL -->
+<div class="panel" id="panel-tips">
+<div class="tip-box" style="margin-top: 0; margin-bottom: 16px; border-color: #4ecdc4;">
+<h3>📊 Why GBP Posts Are a Cheat Code</h3>
+<ul>
+<li><strong>Google rewards activity.</strong> Businesses that post weekly rank higher in Maps. Period.</li>
+<li><strong>Posts show in your listing.</strong> When someone searches "pooper scooper near me," your latest post appears right in the search results.</li>
+<li><strong>Posts expire after 6 months,</strong> but the ranking boost from consistent activity is permanent.</li>
+<li><strong>Competitors ARE posting.</strong> POOP 911, Doggie Doodies, and DoodyCalls all post regularly. Zero posts = falling behind.</li>
+<li><strong>It's 100% free</strong> and takes 2 minutes. There is literally no reason not to.</li>
+</ul>
+</div>
+
+<div class="tip-box" style="margin-bottom: 16px;">
+<h3>📸 Photo Tips (Huge Boost)</h3>
+<ul>
+<li><strong>Always add a photo</strong> — posts with photos get 35% more clicks</li>
+<li>Real photos ONLY. No stock images. Google can detect them.</li>
+<li>Best performers: before/after yards, dogs, Jamie working, equipment</li>
+<li>Phone camera is totally fine — authenticity beats perfection</li>
+<li>Snap a quick pic at each customer's yard — build a library for posts</li>
+<li>Name files descriptively: "pet-waste-removal-florissant-mo.jpg" (minor SEO boost)</li>
+</ul>
+</div>
+
+<div class="tip-box" style="margin-bottom: 16px;">
+<h3>⏰ Best Times to Post</h3>
+<ul>
+<li><strong>Weekday mornings (7-9 AM)</strong> — people checking phones before work</li>
+<li><strong>Weekday evenings (5-7 PM)</strong> — people browsing after work</li>
+<li>Avoid late night and early morning</li>
+<li>Consistency matters more than exact timing — just pick a routine</li>
+</ul>
+</div>
+
+<div class="tip-box" style="margin-bottom: 16px;">
+<h3>🔄 After These 4 Weeks</h3>
+<ul>
+<li>Recycle! Rewrite slightly and repost — Google doesn't penalize this</li>
+<li>Add seasonal content: summer BBQ season, fall leaf cleanup, winter persistence</li>
+<li>Share customer wins (with permission): "Just finished a deep clean in O'Fallon — 3 dogs, zero traces left!"</li>
+<li>Announce service area expansions, new pricing, or referral promos</li>
+<li>Respond to every Q&A on your listing (another free ranking signal)</li>
+</ul>
+</div>
+
+<div class="tip-box">
+<h3>🎯 GBP Post Types That Work</h3>
+<ul>
+<li><strong>Updates</strong> — general business info, service area announcements</li>
+<li><strong>Offers</strong> — spring specials, referral deals, first-time discounts</li>
+<li><strong>Tips</strong> — pet health, yard care, environmental facts (builds authority)</li>
+<li><strong>Social Proof</strong> — customer results, transformation stories, testimonials</li>
+<li>Mix them up! This calendar alternates between all four types.</li>
+</ul>
+</div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+const STORAGE_KEY = 'gbpPostsDone';
+const TOTAL_POSTS = 8;
+
+// Load saved state
+function loadState() {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+}
+function saveState(state) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+
+// Initialize
+const state = loadState();
+for (let i = 1; i <= TOTAL_POSTS; i++) {
+    if (state['p' + i]) {
+        markDone('p' + i, false);
+    }
+}
+updateProgress();
+
+function showPanel(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    event.target.closest('.tab').classList.add('active');
+}
+
+function copyPost(id) {
+    const el = document.getElementById(id);
+    const text = el.textContent.trim();
+    navigator.clipboard.writeText(text).then(() => {
+        const btn = el.closest('.post-card').querySelector('.btn-copy');
+        const orig = btn.textContent;
+        btn.textContent = '✅ Copied!';
+        btn.style.background = '#10b981';
+        setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 2000);
+    });
+}
+
+function toggleDone(id) {
+    const s = loadState();
+    if (s[id]) {
+        delete s[id];
+        saveState(s);
+        unmarkDone(id);
+    } else {
+        s[id] = Date.now();
+        saveState(s);
+        markDone(id, true);
+    }
+    updateProgress();
+}
+
+function markDone(id, animate) {
+    const card = document.getElementById('card-' + id);
+    const btn = document.getElementById('btn-' + id);
+    if (card) card.classList.add('completed');
+    if (btn) { btn.classList.add('checked'); btn.textContent = '✓ Done!'; }
+}
+
+function unmarkDone(id) {
+    const card = document.getElementById('card-' + id);
+    const btn = document.getElementById('btn-' + id);
+    if (card) card.classList.remove('completed');
+    if (btn) { btn.classList.remove('checked'); btn.textContent = '✓ Posted'; }
+}
+
+function updateProgress() {
+    const s = loadState();
+    let done = 0;
+    for (let i = 1; i <= TOTAL_POSTS; i++) {
+        if (s['p' + i]) done++;
+    }
+    // Total progress
+    document.getElementById('totalPct').textContent = done + '/' + TOTAL_POSTS;
+    document.getElementById('totalFill').style.width = (done / TOTAL_POSTS * 100) + '%';
+    document.getElementById('totalPctNum').textContent = Math.round(done / TOTAL_POSTS * 100) + '% complete';
+
+    // Week badges
+    for (let w = 1; w <= 4; w++) {
+        const p1 = (w - 1) * 2 + 1;
+        const p2 = (w - 1) * 2 + 2;
+        const wDone = (s['p' + p1] ? 1 : 0) + (s['p' + p2] ? 1 : 0);
+        const badge = document.getElementById('badge-week' + w);
+        if (badge) {
+            badge.textContent = wDone + '/2 posted';
+            badge.className = wDone === 2 ? 'badge badge-done' : 'badge';
+        }
+        const tab = document.getElementById('tab-week' + w);
+        if (tab) {
+            if (wDone === 2) tab.classList.add('done');
+            else tab.classList.remove('done');
+        }
+    }
+}
+</script>
+</body>
+</html>
