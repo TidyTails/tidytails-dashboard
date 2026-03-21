@@ -7,6 +7,45 @@
 
 ## March 20, 2026 (Friday)
 
+### 9:04 PM — 🔧 5 BROKEN CITY PAGES FIXED — Production-Ready HTML for Deploy (SEO/Website Fix)
+**Task:** Built all 5 missing city landing pages identified in the 6 PM SEO audit. These pages (Olivette, University City, South City, South County, Wentzville) were in the sitemap but serving homepage content — Google sees them as duplicates and ignores them entirely. Created production-ready HTML files matching the exact Florissant/Ferguson template with hyper-local content.
+
+**Result:** ✅ COMPLETE — `website-fixes/` directory with 5 HTML files + README
+
+**Pages Created:**
+1. **Olivette** (63132) — Stacy Park, Warson Park, Olive Blvd, Tower Hill, Dielman neighborhoods
+2. **University City** (63130) — Delmar Loop, Parkview, Ruth Park, Heman Park, University Hills
+3. **South City** (63116) — Tower Grove, Bevo, Dutchtown, Holly Hills, Carondelet, The Hill, Shaw
+4. **South County** (63125) — Mehlville, Oakville, Affton, Lemay, Concord, Green Park, Crestwood
+5. **Wentzville** (63385) — Downtown, Pearce Blvd, Highway N, Quail Ridge, Progress Point
+
+**What Each Page Includes:**
+- City-specific `<title>`, `<meta description>`, `<h1>` (unique — no duplicate content)
+- LocalBusiness JSON-LD structured data with correct city/zip
+- Canonical URL, OG tags, geo meta tags
+- 10-12 hyper-local neighborhood names per page
+- City-specific hero text and intro copy
+- Pre-populated SMS links with city name
+- Full pricing grid, benefits list, CTA sections
+- Cross-linking service areas nav
+- Mobile responsive, pixel-matches existing working pages
+
+**Why This Task:**
+- The 6 PM SEO audit found these 5 pages as the #1 CRITICAL issue
+- These aren't new pages — they're ALREADY in the sitemap but serving wrong content
+- Google is currently crawling them, seeing duplicate homepage, and ignoring them
+- That means Tidy Tails is INVISIBLE in search results for 5 entire markets
+- Fix is simple: replace the broken pages with these files and redeploy
+- Combined potential: hundreds of monthly "pet waste removal [city]" searches going to competitors
+
+**Revenue Impact:** Opening 5 new geographic markets to Google Search. Even 1 customer from any of these areas = $70-100/mo recurring. Conservative estimate: 2-5 leads/month once indexed.
+
+**Deploy Instructions:** In `website-fixes/README.md` — copy files to site root, push, verify, request re-indexing in GSC.
+
+**Rotation:** 🔧 SEO Fix / Website Content / Google Visibility
+
+---
+
 ### 8:04 PM — 🔍 LIVE COMPETITOR STATUS SWEEP — 3 Major Intel Corrections (Competitive Intelligence)
 **Task:** Crawled all competitor websites directly (POOP 911, DoodyCalls, Doggie Doodies, Scoop Soldiers, Dog Doody Defenders, Dr. Scoops) to verify current status and correct stale intel. Checked HTTP status codes, service area pages, pricing pages, and location listings.
 
