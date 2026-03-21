@@ -7,6 +7,35 @@
 
 ## March 20, 2026 (Friday)
 
+### 10:05 PM — 🌸 2-WEEK SPRING CONTENT CALENDAR — 14 Days Ready-to-Post Social Media (Content/Marketing)
+**Task:** Built a complete 2-week content calendar (March 24 - April 6) with 10 ready-to-copy social media posts for Facebook, Instagram, and Nextdoor. Every post written in Jamie's voice, includes the phone number, pricing, and seasonal spring hooks. Mix of content types: engagement bait, before/after, math/value posts, humor (April Fools), health/safety education, referral asks, and behind-the-scenes.
+
+**Result:** ✅ COMPLETE — `content/spring-content-calendar-mar24-apr6.md`
+
+**What's Included:**
+- 10 fully-written posts across 14 days (5 posts/week, 2 rest days per week)
+- Platform-specific guidance (FB groups, IG hashtags, Nextdoor neighborhoods)
+- Optimal posting times for each day
+- Photo shot list for real content capture during Monday routes
+- Posting checklist and weekly engagement tasks
+- Content strategy notes and tracking guidance
+- April Fools special post (high-share potential)
+- Referral program post ($10 off per referral — needs TJ approval)
+
+**Why This Task:**
+- Spring is THE peak buying season for pet waste removal. Snow melts, yards are disasters, people Google "pet waste removal" more March-May than any other time.
+- TJ/Jamie have ZERO scheduled content despite having all the tools and 130+ deliverables.
+- Content costs $0. Takes 5 min to copy-paste and post.
+- Nextdoor and FB community groups are where STL homeowners actually hang out.
+- Every successful competitor (Swoop Scoop, Fresh Start) posts 3-5x/week consistently.
+- This removes the "what do I post?" friction — just open the calendar and copy.
+
+**Revenue Impact:** Consistent social media presence → brand awareness → inbound leads. Even 1 customer from 2 weeks of posting = $70-100/mo recurring. Facebook community group posts alone can reach 5,000-15,000 people in Florissant/North County for $0.
+
+**Rotation:** 🌸 Content Marketing / Social Media / Spring Campaign
+
+---
+
 ### 9:04 PM — 🔧 5 BROKEN CITY PAGES FIXED — Production-Ready HTML for Deploy (SEO/Website Fix)
 **Task:** Built all 5 missing city landing pages identified in the 6 PM SEO audit. These pages (Olivette, University City, South City, South County, Wentzville) were in the sitemap but serving homepage content — Google sees them as duplicates and ignores them entirely. Created production-ready HTML files matching the exact Florissant/Ferguson template with hyper-local content.
 
