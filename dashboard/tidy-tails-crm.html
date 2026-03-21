@@ -238,6 +238,7 @@
             <div class="header-actions">
                 <button class="btn btn-green" onclick="openAddModal()">+ Add</button>
                 <button class="btn btn-ghost btn-sm" onclick="exportData()" title="Export backup">📤 Export</button>
+                <button class="btn btn-ghost btn-sm" onclick="copyExport()" title="Copy data to clipboard">📋 Copy</button>
                 <button class="btn btn-ghost btn-sm" onclick="document.getElementById('importInput').click()" title="Import backup">📥 Import</button>
                 <button class="btn btn-ghost btn-sm" onclick="refreshAll()" title="Refresh">🔄</button>
                 <a href="index.html" class="btn btn-ghost btn-sm">← Dashboard</a>
@@ -516,16 +517,57 @@
 
         function exportData() {
             const data = JSON.stringify(customers, null, 2);
-            const blob = new Blob([data], {type:'application/json'});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'tidytails-crm-backup.json';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
-            showToast('📤 Backup downloaded!');
+            // Mobile-friendly: open in new tab so user can copy or save
+            try {
+                const blob = new Blob([data], {type:'application/json'});
+                const url = URL.createObjectURL(blob);
+                // Try download link first
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'tidytails-crm-backup.json';
+                a.style.display = 'none';
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                }, 500);
+                showToast('📤 Backup downloaded!');
+            } catch(e) {
+                // Fallback: copy to clipboard
+                navigator.clipboard.writeText(data).then(() => {
+                    showToast('📋 Data copied to clipboard — paste into a note to save!');
+                }).catch(() => {
+                    // Last resort: open in new window
+                    const w = window.open('', '_blank');
+                    if (w) {
+                        w.document.write('<pre style="word-wrap:break-word;white-space:pre-wrap;">' + data.replace(/</g,'&lt;') + '</pre>');
+                        w.document.title = 'CRM Backup — Select All & Copy';
+                        showToast('📄 Opened backup in new tab — copy the text!');
+                    } else {
+                        alert('Backup data:\n\n' + data.substring(0, 2000) + '\n\n(Copy this text)');
+                    }
+                });
+            }
+        }
+
+        // Also add a "Copy to Clipboard" export as a more reliable mobile option
+        function copyExport() {
+            const data = JSON.stringify(customers, null, 2);
+            navigator.clipboard.writeText(data).then(() => {
+                showToast('📋 CRM data copied to clipboard!');
+            }).catch(() => {
+                // Textarea fallback for older browsers
+                const ta = document.createElement('textarea');
+                ta.value = data;
+                ta.style.position = 'fixed';
+                ta.style.opacity = '0';
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand('copy');
+                document.body.removeChild(ta);
+                showToast('📋 CRM data copied to clipboard!');
+            });
         }
 
         function importData(event) {
