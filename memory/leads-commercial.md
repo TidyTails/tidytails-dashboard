@@ -612,7 +612,85 @@
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated March 20, 2026 — 43 total leads)
+## 🏠 TIER 1: Apartment Complexes — AVENTURA BUNDLE (March 21, 2026 — 9:00 AM)
+*Aventura = luxury brand managed by MLP LLC. 3 STL locations with dog parks. PITCH AS BUNDLE.*
+
+### Aventura at Maryland Oaks ⭐ BUNDLE LEAD — MARYLAND HEIGHTS
+- **Type:** Luxury Apartment Complex with Off-Leash Dog Park
+- **Address:** 2100 East Aventura Way, Maryland Heights, MO 63043
+- **Contact:** Leasing Office
+- **Phone:** (314) 682-5755
+- **Website:** avmarylandoaks.com
+- **Managed By:** MLP LLC
+- **Why Good Fit:** Luxury community with dedicated off-leash dog park, resort pool, fire pit. Maryland Heights = TJ's service area. MLP LLC manages multiple Aventura properties — landing one opens all.
+- **Found:** March 21, 2026
+- **Status:** New
+- **Pitch angle:** "Your off-leash dog park is a huge draw for residents — we can keep it clean with weekly professional service. One flat rate, no contract."
+
+### Aventura at Hawk Ridge ⭐ BUNDLE LEAD — LAKE ST. LOUIS
+- **Type:** Luxury Apartment Complex with Expansive Dog Park
+- **Address:** Lake St. Louis, MO 63367
+- **Contact:** Leasing Office
+- **Phone:** (636) 625-1300
+- **Website:** avhawkridge.com
+- **Managed By:** MLP LLC
+- **Why Good Fit:** Expansive off-leash dog park. Lake St. Louis is growing, affluent, dog-heavy. Near TJ's St. Charles County clients. Same management as Maryland Oaks = bundle deal.
+- **Found:** March 21, 2026
+- **Status:** New
+- **Pitch angle:** "Bundle both Aventura locations — one vendor, one invoice, volume discount."
+
+### Aventura at Forest Park — ST. LOUIS CITY
+- **Type:** Luxury Apartment Complex with Dog Park + Townhomes
+- **Address:** Near Forest Park, St. Louis, MO 63110
+- **Contact:** Leasing Office
+- **Phone:** (314) 282-4400
+- **Website:** avforestpark.com
+- **Managed By:** MLP LLC
+- **Why Good Fit:** Near Forest Park = dog-heavy area. Off-leash dog park on-site. Studios to townhomes. Third Aventura property = complete the bundle pitch to MLP LLC.
+- **Found:** March 21, 2026
+- **Status:** New
+- **Pitch angle:** "Three Aventura communities, three dog parks, one vendor. Bundle rate for all three."
+
+---
+
+## 🏢 TIER 1: Multi-Property Brand — NEW (March 21, 2026)
+
+### Gallery Apartments / STL Luxury Living ⭐⭐ MULTI-LOCATION BRAND
+- **Type:** Multi-Property Luxury Brand
+- **Phone:** (314) 421-4500
+- **Website:** stlluxury.com/petfriendly
+- **Why Good Fit:** Manages MULTIPLE pet-friendly apartment communities across STL. Dedicated pet-friendly page on website. Some locations have fenced dog parks. One vendor relationship = access to all communities.
+- **Found:** March 21, 2026
+- **Status:** New
+- **Pitch angle:** "You market pet-friendliness as a feature — let us make it even better. One vendor for all your pet-friendly communities."
+
+---
+
+## 🐕 TIER 2: Referral Partners — NEW (March 21, 2026)
+
+### Bridgeton Animal Hospital — BRIDGETON
+- **Type:** Veterinary Clinic / Referral Partner
+- **Address:** 12422 Natural Bridge Rd, Bridgeton, MO 63044
+- **Phone:** (314) 291-4580
+- **Website:** bridgetonvet.com
+- **Why Good Fit:** Full-service vet on Natural Bridge Rd. Fills gap in North County vet referral network between Hazelwood and Maryland Heights. Dog owner clients = pre-qualified residential leads.
+- **Found:** March 21, 2026
+- **Status:** New
+- **Pitch angle:** "Local pet waste removal — can we leave cards at your desk? 10% off first month for your clients."
+
+### Pet Supplies Plus — FLORISSANT
+- **Type:** Pet Retail Store / Referral Partner
+- **Address:** 1175 N Hwy 67, Florissant, MO 63031
+- **Phone:** (314) 839-4700
+- **Website:** petsuppliesplus.com
+- **Why Good Fit:** Major pet retail on Hwy 67 in TJ's core 63031 zip. High foot traffic of dog owners. Community board for local business cards. Could do in-store demo/table day.
+- **Found:** March 21, 2026
+- **Status:** New
+- **Pitch angle:** "Can we put cards on your community board? Could even do a table at your next adoption event."
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated March 21, 2026 — 49 total leads)
 
 | Lead | Type | Phone | Priority | Est. Monthly Value |
 |------|------|-------|----------|-------------------|

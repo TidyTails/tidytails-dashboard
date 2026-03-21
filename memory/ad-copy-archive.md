@@ -1,6 +1,12 @@
 # Ad Copy Archive — Shed Ads
 *Tracks previously written ads to avoid repeats*
 
+## March 21, 2026
+- **Shed-Mar150** — "Saturday Project" — Weekend DIY energy, shed as weekend upgrade, aspirational use cases
+- **Shed-Mar151** — "Picture This" — Garage visualization humor, "your car misses its house", transformation angle
+- **Shed-Mar152** — "Multiplying Stuff" — Kids = accumulation, every birthday/sport/holiday adds more, family angle
+- **Shed-Mar153** — "One Decision" — Action-oriented, overcome analysis paralysis, "they wonder why they waited"
+
 ## March 20, 2026
 - **Shed-Mar146** — "First Day of Spring" — Spring timing, garage disaster zone, "three springs now" guilt
 - **Shed-Mar147** — "Friday Freedom" — Weekend energy, use cases (gym, office, man cave, craft room), no credit check
@@ -20,6 +26,10 @@
 - **Shed-Mar141** — "The Math" — Home addition vs storage unit vs shed cost comparison
 
 ## Hooks Used (don't repeat within 2 weeks)
+- Saturday DIY / weekend project energy
+- Garage visualization ("picture it empty")
+- Kids = stuff multiplication (family angle)
+- "One decision away" action/FOMO
 - Spring cleaning / garage chaos
 - March Madness / brackets
 - Tax refund season
