@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎁 Referral Program | Tidy Tails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --teal: #14b8a6; --pink: #ec4899;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+
+        .header {
+            background: linear-gradient(135deg, #1a1520, #151a25);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem; text-align: center;
+        }
+        .header h1 { font-size: 2rem; font-weight: 900; letter-spacing: -0.03em; }
+        .header h1 span { color: var(--green); }
+        .header .subtitle { color: var(--text2); font-size: 0.9rem; margin-top: 0.5rem; }
+        .back-link { display: inline-block; margin-bottom: 1rem; color: var(--text3); text-decoration: none; font-size: 0.85rem; }
+        .back-link:hover { color: var(--orange); }
+
+        /* Tabs */
+        .tabs { display: flex; gap: 0; border-bottom: 2px solid var(--border); margin: 0 auto; max-width: 1100px; padding: 0 1.5rem; overflow-x: auto; }
+        .tab {
+            padding: 0.85rem 1.25rem; font-size: 0.85rem; font-weight: 700; cursor: pointer;
+            color: var(--text3); border-bottom: 3px solid transparent; transition: all 0.2s;
+            white-space: nowrap; user-select: none;
+        }
+        .tab:hover { color: var(--text2); }
+        .tab.active { color: var(--green); border-bottom-color: var(--green); }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 1.5rem; }
+
+        /* Cards */
+        .card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.5rem; margin-bottom: 1rem;
+        }
+        .card h3 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.75rem; }
+        .card p { color: var(--text2); font-size: 0.9rem; line-height: 1.6; margin-bottom: 0.5rem; }
+
+        /* Stat grid */
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+        .stat-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; text-align: center;
+        }
+        .stat-card .number { font-size: 2rem; font-weight: 900; }
+        .stat-card .label { color: var(--text2); font-size: 0.8rem; margin-top: 0.25rem; }
+        .green { color: var(--green); }
+        .orange { color: var(--orange); }
+        .blue { color: var(--blue); }
+        .yellow { color: var(--yellow); }
+        .purple { color: var(--purple); }
+        .teal { color: var(--teal); }
+
+        /* Message templates */
+        .msg-template {
+            background: var(--bg4); border: 1px solid var(--border); border-radius: 10px;
+            padding: 1.25rem; margin-bottom: 1rem; position: relative;
+        }
+        .msg-template .msg-label {
+            font-size: 0.75rem; font-weight: 700; color: var(--green);
+            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem;
+        }
+        .msg-template .msg-text {
+            font-size: 0.9rem; line-height: 1.7; color: var(--text); white-space: pre-wrap;
+        }
+        .copy-btn {
+            position: absolute; top: 0.75rem; right: 0.75rem;
+            background: var(--bg3); border: 1px solid var(--border); border-radius: 6px;
+            color: var(--text2); padding: 0.3rem 0.7rem; font-size: 0.75rem; cursor: pointer;
+            font-family: 'Inter', sans-serif; font-weight: 600; transition: all 0.2s;
+        }
+        .copy-btn:hover { background: var(--green); color: #000; border-color: var(--green); }
+        .copy-btn.copied { background: var(--green); color: #000; border-color: var(--green); }
+
+        /* Referral card preview */
+        .referral-card-preview {
+            background: linear-gradient(135deg, #1a2520, #152025);
+            border: 2px solid var(--green); border-radius: 16px;
+            padding: 2rem; text-align: center; max-width: 400px; margin: 1.5rem auto;
+        }
+        .referral-card-preview .rcp-title { font-size: 1.3rem; font-weight: 900; color: var(--green); }
+        .referral-card-preview .rcp-offer { font-size: 2rem; font-weight: 900; color: var(--yellow); margin: 0.75rem 0; }
+        .referral-card-preview .rcp-detail { color: var(--text2); font-size: 0.85rem; line-height: 1.5; }
+        .referral-card-preview .rcp-both { 
+            margin-top: 1rem; padding: 0.75rem; background: rgba(16,185,129,0.15); 
+            border-radius: 8px; font-weight: 700; font-size: 0.9rem; color: var(--green);
+        }
+
+        /* Tracker */
+        .tracker-table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+        .tracker-table th {
+            background: var(--bg4); padding: 0.75rem; text-align: left; font-size: 0.8rem;
+            font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.05em;
+            border-bottom: 2px solid var(--border);
+        }
+        .tracker-table td {
+            padding: 0.75rem; border-bottom: 1px solid var(--border); font-size: 0.9rem;
+        }
+        .tracker-table tr:hover { background: var(--bg4); }
+        .status-badge {
+            display: inline-block; padding: 0.2rem 0.6rem; border-radius: 4px;
+            font-size: 0.75rem; font-weight: 700; cursor: pointer; user-select: none;
+        }
+        .status-pending { background: rgba(251,191,36,0.2); color: var(--yellow); }
+        .status-asked { background: rgba(59,130,246,0.2); color: var(--blue); }
+        .status-referred { background: rgba(16,185,129,0.2); color: var(--green); }
+        .status-converted { background: rgba(139,92,246,0.2); color: var(--purple); }
+        .status-rewarded { background: rgba(236,72,153,0.2); color: var(--pink); }
+
+        /* Timeline */
+        .timeline { margin-top: 1rem; }
+        .timeline-item {
+            display: flex; gap: 1rem; padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .timeline-day {
+            min-width: 50px; font-weight: 800; font-size: 0.85rem; color: var(--green);
+        }
+        .timeline-action { font-size: 0.9rem; color: var(--text2); line-height: 1.5; }
+        .timeline-action strong { color: var(--text); }
+
+        /* Incentive tiers */
+        .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .tier-card {
+            background: var(--bg4); border-radius: var(--radius); padding: 1.5rem;
+            text-align: center; border: 2px solid transparent; transition: all 0.2s;
+        }
+        .tier-card:nth-child(1) { border-color: var(--green); }
+        .tier-card:nth-child(2) { border-color: var(--yellow); }
+        .tier-card:nth-child(3) { border-color: var(--purple); }
+        .tier-card .tier-name { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+        .tier-card .tier-reward { font-size: 1.5rem; font-weight: 900; margin-bottom: 0.5rem; }
+        .tier-card .tier-desc { font-size: 0.85rem; color: var(--text2); }
+
+        /* ROI box */
+        .roi-box {
+            background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(59,130,246,0.1));
+            border: 1px solid rgba(16,185,129,0.3); border-radius: var(--radius);
+            padding: 1.5rem; margin-top: 1.5rem;
+        }
+        .roi-box h4 { color: var(--green); font-size: 1rem; margin-bottom: 0.75rem; }
+        .roi-row { display: flex; justify-content: space-between; padding: 0.4rem 0; font-size: 0.9rem; }
+        .roi-row .roi-label { color: var(--text2); }
+        .roi-row .roi-value { font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+        .roi-divider { border-top: 1px dashed var(--border); margin: 0.5rem 0; }
+        .roi-total { font-size: 1.1rem; }
+        .roi-total .roi-value { color: var(--green); font-size: 1.3rem; }
+
+        /* Checklist */
+        .checklist { list-style: none; margin-top: 1rem; }
+        .checklist li {
+            display: flex; align-items: flex-start; gap: 0.75rem;
+            padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.9rem; cursor: pointer;
+        }
+        .checklist li:hover { background: rgba(255,255,255,0.02); }
+        .check-box {
+            min-width: 22px; height: 22px; border: 2px solid var(--border); border-radius: 5px;
+            display: flex; align-items: center; justify-content: center; font-size: 0.7rem;
+            transition: all 0.2s; margin-top: 2px;
+        }
+        .checklist li.done .check-box { background: var(--green); border-color: var(--green); color: #000; }
+        .checklist li.done { color: var(--text3); text-decoration: line-through; }
+
+        /* Highlight box */
+        .highlight {
+            background: rgba(255,107,53,0.1); border-left: 4px solid var(--orange);
+            padding: 1rem 1.25rem; border-radius: 0 8px 8px 0; margin: 1rem 0;
+            font-size: 0.9rem; color: var(--text2); line-height: 1.6;
+        }
+        .highlight strong { color: var(--orange); }
+
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.7; } }
+        @media (max-width: 600px) {
+            .stat-grid { grid-template-columns: 1fr 1fr; }
+            .tier-grid { grid-template-columns: 1fr; }
+            .tabs { padding: 0 0.5rem; }
+            .tab { padding: 0.7rem 0.8rem; font-size: 0.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <a href="index.html" class="back-link">← Back to Dashboard</a>
+    <h1>🎁 <span>Referral Program</span> Toolkit</h1>
+    <p class="subtitle">Your cheapest, highest-converting customer channel. Turn 5 happy customers into 15.</p>
+</div>
+
+<div class="tabs">
+    <div class="tab active" data-tab="overview">📊 Overview</div>
+    <div class="tab" data-tab="templates">💬 Text Templates</div>
+    <div class="tab" data-tab="incentives">🎁 Incentives</div>
+    <div class="tab" data-tab="tracker">📋 Tracker</div>
+    <div class="tab" data-tab="playbook">📖 Playbook</div>
+    <div class="tab" data-tab="math">💰 ROI Math</div>
+</div>
+
+<div class="container">
+
+    <!-- TAB 1: OVERVIEW -->
+    <div class="tab-content active" id="tab-overview">
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="number green">$0</div>
+                <div class="label">Cost Per Referral Lead</div>
+            </div>
+            <div class="stat-card">
+                <div class="number orange">50-70%</div>
+                <div class="label">Referral Close Rate (vs 5-15% cold)</div>
+            </div>
+            <div class="stat-card">
+                <div class="number blue">37%</div>
+                <div class="label">Higher Retention Rate</div>
+            </div>
+            <div class="stat-card">
+                <div class="number yellow">4-5</div>
+                <div class="label">Current Happy Customers</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🎯 Why Referrals Are Your #1 Growth Lever Right Now</h3>
+            <p>You're spending time on ads, SEO, cold outreach, and events. All good. But you have 4-5 customers who <strong>already love Tidy Tails</strong> and talk to neighbors with dogs. That's your lowest-cost, highest-trust channel.</p>
+            <div class="highlight">
+                <strong>Industry data:</strong> Referral customers cost 5-25x less to acquire than ad-driven customers. They retain 37% longer and have 16% higher lifetime value. In service businesses like pet waste removal, <strong>word-of-mouth is the #1 driver</strong> — 83% of customers say they'd refer a service they love, but only 29% actually do because <strong>nobody asks them</strong>.
+            </div>
+            <p style="margin-top:1rem;">The fix is dead simple: <strong>Ask. Incentivize. Thank.</strong></p>
+        </div>
+
+        <div class="card">
+            <h3>🏗️ The Program Structure</h3>
+            <p><strong>Name:</strong> "Friends & Clean Yards" Referral Program</p>
+            <p><strong>How it works:</strong></p>
+            <p>1. Customer refers a friend → friend signs up for recurring service</p>
+            <p>2. <strong>Referrer gets:</strong> 1 free service visit (worth $17.50)</p>
+            <p>3. <strong>New customer gets:</strong> 50% off first month ($35 instead of $70)</p>
+            <p>4. No limit on referrals — refer 4 friends, get a whole free month</p>
+            <div class="highlight">
+                <strong>Why this works:</strong> Both sides get something. The referrer feels appreciated (not just used). The new customer gets a low-risk way to try the service. And your cost? One skipped service visit ($17.50) to acquire a $70/mo recurring customer. That's a 400% ROI in month one.
+            </div>
+        </div>
+
+        <!-- Referral card preview -->
+        <div class="card">
+            <h3>📱 The Referral Card (Text-Friendly)</h3>
+            <p>This is what Jamie texts to customers or what they can forward to friends:</p>
+            <div class="referral-card-preview">
+                <div class="rcp-title">🐕 TIDY TAILS</div>
+                <div class="rcp-offer">50% OFF</div>
+                <div class="rcp-detail">Your first month of pet waste removal<br>Just $35/mo (regularly $70)</div>
+                <div class="rcp-both">
+                    ✨ You BOTH win — your friend gets a FREE visit too!
+                </div>
+                <p style="margin-top:1rem;font-size:0.8rem;color:var(--text3);">
+                    📱 Text Jamie: (314) 833-0965<br>
+                    🌐 tidytailsstl.com
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 2: TEXT TEMPLATES -->
+    <div class="tab-content" id="tab-templates">
+        <div class="card">
+            <h3>💬 Text Templates for Jamie</h3>
+            <p>Copy-paste these. Personalize the [brackets]. Send after a service day when the yard looks great.</p>
+        </div>
+
+        <div class="msg-template">
+            <div class="msg-label">🌟 The "After Great Service" Ask (Best Timing)</div>
+            <div class="msg-text">Hey [Name]! Just finished up your yard — looking good out there 🐕✨
+
+Quick question — know anyone in the neighborhood who might want their yard cleaned up too? We're doing a referral deal right now:
+
+🎁 YOU get a free service visit
+🎁 THEY get 50% off their first month
+
+No pressure at all, just wanted to let you know! Thanks for being awesome 🙌</div>
+            <button class="copy-btn" onclick="copyMsg(this)">📋 Copy</button>
+        </div>
+
+        <div class="msg-template">
+            <div class="msg-label">🏘️ The "Neighbor Angle" (For Subdivision Customers)</div>
+            <div class="msg-text">Hey [Name]! I noticed a few houses on your street have dogs too — if any of your neighbors ever mention needing yard help, we've got a deal where you both save:
+
+You: Free visit next time
+Them: Half off their first month
+
+Just have them text me at (314) 833-0965 and mention your name! 🐾</div>
+            <button class="copy-btn" onclick="copyMsg(this)">📋 Copy</button>
+        </div>
+
+        <div class="msg-template">
+            <div class="msg-label">🐕 The "Dog Park / Dog Friend" (Casual)</div>
+            <div class="msg-text">Hey [Name]! Random thought — if you've got any dog-parent friends who are tired of backyard landmines 💩 we're giving referral rewards right now. You get a free visit, they get 50% off. Win-win!
+
+No worries if not, just wanted to throw it out there 😄</div>
+            <button class="copy-btn" onclick="copyMsg(this)">📋 Copy</button>
+        </div>
+
+        <div class="msg-template">
+            <div class="msg-label">📱 The "Forwardable" (Customer Can Send to Friends)</div>
+            <div class="msg-text">Hey! My yard guy does pet waste removal and he's running a deal — 50% off your first month ($35 instead of $70, weekly service). Honestly it's been a game changer for us, especially with [dog situation].
+
+His name's Jamie: (314) 833-0965
+Website: tidytailsstl.com
+
+Tell him [Customer Name] sent you and we both get a bonus 🎁</div>
+            <button class="copy-btn" onclick="copyMsg(this)">📋 Copy</button>
+        </div>
+
+        <div class="msg-template">
+            <div class="msg-label">🎉 The "Thank You + Reward Confirmation"</div>
+            <div class="msg-text">Hey [Name]! Just wanted to let you know — [Friend's Name] signed up! 🎉
+
+Your free service visit is locked in for next week. Seriously appreciate you spreading the word — people like you are what makes this business awesome 🙌🐾</div>
+            <button class="copy-btn" onclick="copyMsg(this)">📋 Copy</button>
+        </div>
+
+        <div class="msg-template">
+            <div class="msg-label">⏰ The "Seasonal Reminder" (Send Every 2-3 Months)</div>
+            <div class="msg-text">Hey [Name]! Spring is here and everyone's discovering what their dogs left behind all winter 😅
+
+Just a reminder — our referral deal is still going! Free visit for you, 50% off for any friend you send our way. Thanks for being a Tidy Tails customer! 🐕💚</div>
+            <button class="copy-btn" onclick="copyMsg(this)">📋 Copy</button>
+        </div>
+
+        <div class="msg-template">
+            <div class="msg-label">💼 The "Multi-Dog Household Upsell + Referral Combo"</div>
+            <div class="msg-text">Hey [Name]! Quick heads up — know anyone with multiple dogs? We do multi-dog yards too and honestly those are the customers who love us the most (way more poop = way more relief 😂).
+
+Same referral deal applies — free visit for you, 50% off for them. Just have them mention your name!</div>
+            <button class="copy-btn" onclick="copyMsg(this)">📋 Copy</button>
+        </div>
+    </div>
+
+    <!-- TAB 3: INCENTIVES -->
+    <div class="tab-content" id="tab-incentives">
+        <div class="card">
+            <h3>🎁 Incentive Structure</h3>
+            <p>Keep it simple. Escalating rewards for repeat referrers.</p>
+        </div>
+
+        <div class="tier-grid">
+            <div class="tier-card">
+                <div class="tier-name green">🌱 First Referral</div>
+                <div class="tier-reward green">1 Free Visit</div>
+                <div class="tier-desc">Worth $17.50. Applied to their next service week. Simple, immediate, tangible.</div>
+            </div>
+            <div class="tier-card">
+                <div class="tier-name yellow">⭐ 3rd Referral</div>
+                <div class="tier-reward yellow">Free Month</div>
+                <div class="tier-desc">4 visits free (worth $70). They've earned VIP status. This is your superfan.</div>
+            </div>
+            <div class="tier-card">
+                <div class="tier-name purple">👑 5+ Referrals</div>
+                <div class="tier-reward purple">Permanent 15% Off</div>
+                <div class="tier-desc">$59.50/mo forever. They're basically a brand ambassador at this point. Treat them like gold.</div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:1.5rem;">
+            <h3>💡 Why These Numbers Work</h3>
+            <div class="roi-box">
+                <h4>Cost vs. Revenue Per Referral</h4>
+                <div class="roi-row">
+                    <span class="roi-label">Your cost (1 free visit)</span>
+                    <span class="roi-value" style="color:var(--red);">-$17.50</span>
+                </div>
+                <div class="roi-row">
+                    <span class="roi-label">New customer first month (50% off)</span>
+                    <span class="roi-value">$35.00</span>
+                </div>
+                <div class="roi-row">
+                    <span class="roi-label">Month 2+ revenue</span>
+                    <span class="roi-value">$70.00/mo</span>
+                </div>
+                <div class="roi-divider"></div>
+                <div class="roi-row">
+                    <span class="roi-label">Net after 3 months</span>
+                    <span class="roi-value" style="color:var(--green);">+$157.50</span>
+                </div>
+                <div class="roi-row roi-total">
+                    <span class="roi-label">Annual value per referral</span>
+                    <span class="roi-value">+$787.50</span>
+                </div>
+            </div>
+            <p style="margin-top:1rem;"><strong>Compare to paid ads:</strong> Google Ads might cost $30-50 per lead with a 10-20% close rate = $150-500 per customer. Referrals cost $17.50 per customer with a 50-70% close rate. <strong>Not even close.</strong></p>
+        </div>
+
+        <div class="card">
+            <h3>🎯 Optional Bonus Ideas (Low Cost, High Impact)</h3>
+            <p>• <strong>Yeti tumbler or nice dog toy</strong> for 5th referral (~$15, huge perceived value)</p>
+            <p>• <strong>"Founding Referrer" handwritten thank-you card</strong> — costs $1, feels like a million bucks</p>
+            <p>• <strong>Free deep clean</strong> instead of free visit for 2+ dog households</p>
+            <p>• <strong>Amazon gift card</strong> ($25 for 3rd referral) — universal, everyone loves it</p>
+            <p style="margin-top:0.75rem; color:var(--text3); font-size:0.85rem;">Rule of thumb: If the incentive costs less than $25 and the referral is worth $800+/year, you're winning.</p>
+        </div>
+    </div>
+
+    <!-- TAB 4: TRACKER -->
+    <div class="tab-content" id="tab-tracker">
+        <div class="card">
+            <h3>📋 Customer Referral Tracker</h3>
+            <p>Click status badges to cycle through: Pending → Asked → Referred → Converted → Rewarded</p>
+        </div>
+
+        <div style="overflow-x:auto;">
+            <table class="tracker-table">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Dogs</th>
+                        <th>Subdivision</th>
+                        <th>Ask Status</th>
+                        <th>Referrals Made</th>
+                        <th>Converted</th>
+                        <th>Rewards Given</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Customer 1</strong></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="status-badge status-pending" onclick="cycleStatus(this)">Pending</span></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td style="color:var(--text3);font-size:0.8rem;">Update with real customer info</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer 2</strong></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="status-badge status-pending" onclick="cycleStatus(this)">Pending</span></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td style="color:var(--text3);font-size:0.8rem;">—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer 3</strong></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="status-badge status-pending" onclick="cycleStatus(this)">Pending</span></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td style="color:var(--text3);font-size:0.8rem;">—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer 4</strong></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="status-badge status-pending" onclick="cycleStatus(this)">Pending</span></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td style="color:var(--text3);font-size:0.8rem;">—</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer 5</strong></td>
+                        <td>—</td>
+                        <td>—</td>
+                        <td><span class="status-badge status-pending" onclick="cycleStatus(this)">Pending</span></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td style="color:var(--text3);font-size:0.8rem;">—</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="color:var(--text3);font-size:0.8rem;margin-top:0.75rem;">💡 Jamie: fill in real customer names, dog counts, and subdivision/neighborhood names. This helps target the referral ask.</p>
+
+        <div class="roi-box" style="margin-top:1.5rem;">
+            <h4>📊 Referral Funnel Math</h4>
+            <div class="roi-row">
+                <span class="roi-label">Current customers</span>
+                <span class="roi-value">5</span>
+            </div>
+            <div class="roi-row">
+                <span class="roi-label">× Average knows 3 dog owners</span>
+                <span class="roi-value">= 15 potential referrals</span>
+            </div>
+            <div class="roi-row">
+                <span class="roi-label">× 30% will actually refer when asked</span>
+                <span class="roi-value">= 4-5 referrals</span>
+            </div>
+            <div class="roi-row">
+                <span class="roi-label">× 60% referral close rate</span>
+                <span class="roi-value">= 2-3 new customers</span>
+            </div>
+            <div class="roi-divider"></div>
+            <div class="roi-row roi-total">
+                <span class="roi-label">Expected new recurring customers</span>
+                <span class="roi-value">2-3 ($140-210/mo)</span>
+            </div>
+            <div class="roi-row">
+                <span class="roi-label">Your total cost</span>
+                <span class="roi-value" style="color:var(--red);">$35-52 (free visits)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- TAB 5: PLAYBOOK -->
+    <div class="tab-content" id="tab-playbook">
+        <div class="card">
+            <h3>📖 The 14-Day Referral Launch Playbook</h3>
+            <p>Step-by-step. No guesswork. Just do the next thing on the list.</p>
+        </div>
+
+        <div class="card">
+            <h3>Week 1: Plant the Seeds</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-day">Day 1</div>
+                    <div class="timeline-action">
+                        <strong>Update this tracker</strong> with real customer names, dogs, and neighborhoods.<br>
+                        <strong>Decide:</strong> Are you doing this via text only, or also mentioning in person during service?<br>
+                        <em>Time: 10 minutes</em>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Day 2-3</div>
+                    <div class="timeline-action">
+                        <strong>Send the "After Great Service" text</strong> to your 2 happiest customers.<br>
+                        Pick the ones who've complimented you, tipped, or been the most enthusiastic.<br>
+                        <em>Don't mass-blast everyone on day 1. Stagger it so it feels personal.</em>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Day 4-5</div>
+                    <div class="timeline-action">
+                        <strong>Send to remaining customers.</strong> Use the template that fits best:<br>
+                        • Subdivision customer → "Neighbor Angle"<br>
+                        • Social customer → "Dog Park / Dog Friend"<br>
+                        • Everyone → "After Great Service" works universally
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Day 6-7</div>
+                    <div class="timeline-action">
+                        <strong>Follow up with anyone who said "yeah maybe!"</strong><br>
+                        Something casual: "Hey just wanted to check — did [name] end up reaching out? No rush!"<br>
+                        <em>Most referrals happen on the nudge, not the first ask.</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Week 2: Close & Reward</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-day">Day 8-10</div>
+                    <div class="timeline-action">
+                        <strong>When referral leads come in:</strong><br>
+                        • Respond within 1 hour (speed = close rate)<br>
+                        • Mention who referred them: "Hey! [Name] said great things about your yard situation"<br>
+                        • Offer the 50% first month deal immediately
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Day 11-12</div>
+                    <div class="timeline-action">
+                        <strong>Deliver the reward.</strong> Text the referrer the thank-you template.<br>
+                        <em>Key: Do this FAST. Within 24 hours of the new signup. Speed = more future referrals.</em><br>
+                        Apply the free visit credit to their next service week.
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-day">Day 13-14</div>
+                    <div class="timeline-action">
+                        <strong>Debrief.</strong> Update tracker. Note what worked, who was responsive.<br>
+                        Identify your "referral champions" — these customers get priority service and occasional bonuses.<br>
+                        <strong>Plan the next round</strong> (every 6-8 weeks, with the seasonal reminder template).
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight">
+            <strong>Pro tip from the industry:</strong> The #1 mistake is asking once and forgetting. Referral programs work when you ask <strong>consistently</strong> — not annoyingly, but every 2-3 months with a natural trigger (season change, milestone, great service day). Put a recurring reminder: "Send referral texts" every 8 weeks.
+        </div>
+
+        <div class="card">
+            <h3>🚀 Scaling It Up (When You Hit 10+ Customers)</h3>
+            <p>• <strong>Add referral mention to every service completion text:</strong> "Yard's all done! ✨ Remember — refer a friend, get a free visit!"</p>
+            <p>• <strong>Physical referral cards:</strong> Leave a small card on the door with each service (costs ~$0.10/card at Vistaprint)</p>
+            <p>• <strong>Google Review → Referral combo:</strong> "Thanks for the review! Know anyone who needs clean-yard therapy?"</p>
+            <p>• <strong>Nextdoor strategy:</strong> When customers post about Tidy Tails, they're doing a referral to their entire neighborhood</p>
+            <p>• <strong>Referral leaderboard:</strong> Gamify it. "You're 1 referral away from a free month!" — people love progress bars</p>
+        </div>
+    </div>
+
+    <!-- TAB 6: ROI MATH -->
+    <div class="tab-content" id="tab-math">
+        <div class="card">
+            <h3>💰 Referral Program ROI Calculator</h3>
+            <p>Let's compare referrals to every other acquisition channel.</p>
+        </div>
+
+        <div class="stat-grid">
+            <div class="stat-card">
+                <div class="number green">$17.50</div>
+                <div class="label">Cost Per Referral Customer</div>
+            </div>
+            <div class="stat-card">
+                <div class="number red">$150-500</div>
+                <div class="label">Cost Per Google Ads Customer</div>
+            </div>
+            <div class="stat-card">
+                <div class="number orange">$50-200</div>
+                <div class="label">Cost Per Facebook Ads Customer</div>
+            </div>
+            <div class="stat-card">
+                <div class="number blue">$0-50</div>
+                <div class="label">Cost Per Door Hanger Customer</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📊 12-Month Referral Projection</h3>
+            <div class="roi-box">
+                <h4>Conservative Scenario (2 referral rounds, 1-2 conversions each)</h4>
+                <div class="roi-row">
+                    <span class="roi-label">Round 1 (Month 1): 5 customers asked</span>
+                    <span class="roi-value">→ 2 new customers</span>
+                </div>
+                <div class="roi-row">
+                    <span class="roi-label">Round 2 (Month 3): 7 customers asked</span>
+                    <span class="roi-value">→ 2 new customers</span>
+                </div>
+                <div class="roi-row">
+                    <span class="roi-label">Round 3 (Month 5): 9 customers asked</span>
+                    <span class="roi-value">→ 3 new customers</span>
+                </div>
+                <div class="roi-row">
+                    <span class="roi-label">Round 4 (Month 8): 12 customers asked</span>
+                    <span class="roi-value">→ 3 new customers</span>
+                </div>
+                <div class="roi-divider"></div>
+                <div class="roi-row">
+                    <span class="roi-label">Total new customers from referrals</span>
+                    <span class="roi-value green" style="font-size:1.2rem;">10 customers</span>
+                </div>
+                <div class="roi-row">
+                    <span class="roi-label">Total cost (10 free visits)</span>
+                    <span class="roi-value" style="color:var(--red);">$175</span>
+                </div>
+                <div class="roi-row roi-total">
+                    <span class="roi-label">Annual recurring revenue added</span>
+                    <span class="roi-value">$8,400/year</span>
+                </div>
+                <div class="roi-row">
+                    <span class="roi-label">ROI</span>
+                    <span class="roi-value green" style="font-size:1.5rem;">4,700%</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🔄 The Compounding Effect</h3>
+            <p>Here's what makes referrals magical: <strong>each new customer becomes a new referral source.</strong></p>
+            <div class="highlight">
+                <strong>Month 1:</strong> 5 customers → 2 referrals → 7 customers<br>
+                <strong>Month 3:</strong> 7 customers → 2 referrals → 9 customers<br>
+                <strong>Month 5:</strong> 9 customers → 3 referrals → 12 customers<br>
+                <strong>Month 8:</strong> 12 customers → 3 referrals → 15 customers<br>
+                <strong>Month 10:</strong> 15 customers → 4 referrals → 19 customers<br>
+                <strong>Month 12:</strong> 19 customers → 5 referrals → 24 customers<br><br>
+                <strong>Combined with your other channels (ads, SEO, events, cold outreach), hitting 25-30 by August is very achievable.</strong>
+            </div>
+            <p style="margin-top:1rem;">Referrals alone won't get you to 30 — but they're the <strong>multiplier</strong> that makes everything else work harder. Every customer you acquire through any channel becomes a new referral node.</p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Tab switching
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            tab.classList.add('active');
+            document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+        });
+    });
+
+    // Copy button
+    function copyMsg(btn) {
+        const text = btn.parentElement.querySelector('.msg-text').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            btn.textContent = '✅ Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => { btn.textContent = '📋 Copy'; btn.classList.remove('copied'); }, 2000);
+        });
+    }
+
+    // Status cycling
+    const statuses = ['Pending', 'Asked', 'Referred', 'Converted', 'Rewarded'];
+    const statusClasses = ['status-pending', 'status-asked', 'status-referred', 'status-converted', 'status-rewarded'];
+    function cycleStatus(el) {
+        const current = statuses.indexOf(el.textContent);
+        const next = (current + 1) % statuses.length;
+        el.textContent = statuses[next];
+        el.className = 'status-badge ' + statusClasses[next];
+    }
+
+    // Checklist toggle
+    document.querySelectorAll('.checklist li').forEach(li => {
+        li.addEventListener('click', () => {
+            li.classList.toggle('done');
+            const box = li.querySelector('.check-box');
+            box.textContent = li.classList.contains('done') ? '✓' : '';
+        });
+    });
+</script>
+
+</body>
+</html>
