@@ -7,6 +7,48 @@
 
 ## March 21, 2026 (Saturday)
 
+### 1:04 AM — 🔍 COMPLETE COMPETITIVE LANDSCAPE + SEARCH VISIBILITY AUDIT (Competitive Intelligence)
+**Task:** Crawled every competitor website, checked live search rankings for STL pet waste keywords, profiled 3 previously-unknown competitors (Yucko's, Poopy Paws, The Poo Fighterz), and discovered that Tidy Tails has ZERO search visibility — not appearing in ANY search result for any keyword, not on Yelp, not on any pet directory.
+
+**Result:** ✅ COMPLETE — `memory/competitor-landscape-mar21-2026.md`
+
+**Key Findings:**
+1. **TIDY TAILS IS COMPLETELY INVISIBLE** — "pooper scooper Florissant MO" returns 10 competitors, 0 Tidy Tails. "Tidy Tails pet waste St Louis" returns ZERO results. Not on Yelp. Not on any directory.
+2. **3 NEW competitors profiled:**
+   - **Yucko's** — Operating since 1990 (36 years!), covers all of STL County + St. Charles, terrible website but massive longevity
+   - **Poopy Paws** — #1 on Yelp for STL, $20/week flat rate, but website is completely DOWN (DNS failure)
+   - **The Poo Fighterz** — Good Yelp reviews, serves STL metro, low digital footprint
+3. **TJ is the most expensive** — $25/week vs POOP 911 at $11.95, DDD at $17, Poopy Paws at $20
+4. **DDD (Dog Doody Defenders) has BAD REVIEWS** — MapQuest review calls out "Poor Communication, Inconsistent Service" — this is TJ's attack angle
+5. **Poopy Paws' website is DEAD** — their customers may be looking for alternatives right now
+6. **Poop 2 Scoop may be closed** — PetWorks listing says "paused or closed"
+7. **Full Yelp ranking captured** — 10 competitors ranked for both "Florissant" and "St. Louis" searches
+
+**Pricing Landscape (Weekly):**
+- POOP 911: $11.95 (cheapest)
+- DDD: $17
+- Poop 2 Scoop: $18
+- Poopy Paws: $20
+- **Tidy Tails: $25 (HIGHEST)**
+- Strategic recommendation: Lead with $70/month positioning, not $25/week
+
+**TOP 3 ZERO-COST Actions:**
+1. Create Yelp listing (10 min, instant visibility in "Florissant pet waste" results)
+2. Complete GBP (still at 7% — biggest single blocker)
+3. Get on directories: BringFido, PetWorks, Pooperoni, MapQuest, Nextdoor
+
+**Why This Task at 1 AM:**
+- Research doesn't require human interaction
+- The last competitor sweep (Mar 20, 8 PM) missed Yucko's, Poopy Paws, and The Poo Fighterz entirely
+- The search visibility finding is the MOST IMPORTANT thing we've uncovered — TJ can't get customers from Google/Yelp if he literally doesn't exist there
+- Poopy Paws' dead website + Poop 2 Scoop's closure = immediate market opportunity
+
+**Revenue Impact:** Identifying that Tidy Tails has ZERO search presence explains why organic leads aren't coming. Creating a Yelp listing alone could generate 2-5 inquiries/month based on competitor traffic. Exploiting DDD's bad reviews and Poopy Paws' dead website = steal their dissatisfied customers.
+
+**Rotation:** 🔍 Competitive Intelligence / Search Visibility / Market Analysis
+
+---
+
 ### 12:06 AM — 📞 MONDAY CALL SHEET — Jamie's Top 12 Commercial Leads, Mobile-First, Tap-to-Call (Sales/Revenue)
 **Task:** Built a mobile-first Monday Call Sheet that turns 40+ dormant commercial leads into an actionable hit list. 12 leads ranked by revenue potential, each with tap-to-call buttons, pre-written text messages, custom pitch hooks, and a notes field. Progress tracking with localStorage persistence. Tab filtering (Hot/Warm/Cool/Script). Universal call script included.
 
