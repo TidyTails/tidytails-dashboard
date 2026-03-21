@@ -7,6 +7,29 @@
 
 ## March 21, 2026 (Saturday)
 
+### 3:04 PM — ⭐ Google Review Blitz — Zero to Hero in 14 Days (Hourly Autonomous)
+**Task:** Build complete Google review generation system. ZERO reviews is the #1 credibility killer — every marketing dollar is wasted when prospects see an empty profile. Competitors have 6-43 reviews. This blocks EVERYTHING.
+
+**Result:** ✅ COMPLETE — `dashboard/google-review-blitz.html` — 6-tab interactive toolkit
+
+**Deliverable:** Full review blitz system:
+1. **📊 Why Reviews** — Crisis banner (0 vs competitors' 6-43), stat cards (88% trust reviews, 270% more clicks at 5+), competitor comparison grid, review count progress tracker with goal of 10
+2. **💬 Text Templates** — 5 copy-paste texts for Jamie: Simple Ask, Specific Ask (prompts what to write for better SEO), Multi-Dog Owner, Gentle Reminder, Friends & Family. All include the direct Google review link.
+3. **📋 Customer Tracker** — All 8 customers ranked by priority with click-to-cycle status badges (Not Asked → Texted → Reminded → Reviewed). Priority order: Shannon ($140, Florissant) → Amanda ($120, Florissant) → Chastity ($90, Florissant) → Lawrence → Preshus → Jody → Mrs. Candee → Greg. LocalStorage persistence.
+4. **📅 14-Day Plan** — Staggered timeline: Day 1 top 3, Day 2 next 3, Day 3 last 2 + friends/family, Day 6-7 gentle reminders, Day 8 in-person mention, Day 14 assessment. 11-item interactive checklist.
+5. **💬 Response Templates** — 3 five-star responses, 1 four-star, 1 negative review handler. All with SEO tips (mention city, service type, brand name, sign as Jamie).
+6. **🚀 Advanced Tactics** — Post-service automation flow, email signature with review link, QR code strategy for door hangers/cards/flyers, review velocity targets (1/month ongoing), milestone impact table (1→3→5→10→20+ reviews).
+
+**Key Insight:** Florissant strategy — 3 of 8 customers are in Florissant. If all 3 review mentioning their city, TJ dominates "pooper scooper Florissant" searches. Coached templates to prompt city mentions.
+
+**Dashboard Updated:** Fixed nav link from old `google-reviews-blitz.html` to new `google-review-blitz.html`
+
+**Why This Task:** Every other marketing asset we've built (spring campaign, referral program, commercial outreach, GBP posts) drives prospects to Google — where they see ZERO reviews and bounce. This is the foundation that makes everything else work. 5 reviews at $0 cost = 270% more clicks = every future dollar works 2-3x harder.
+
+**Rotation:** ⭐ Reviews / Credibility / Conversion / SEO
+
+---
+
 ### 2:04 PM — 🎁 Referral Program Toolkit (Hourly Autonomous)
 **Task:** Build complete referral program system — existing customers are the cheapest, highest-converting acquisition channel and we haven't tapped it at all.
 
