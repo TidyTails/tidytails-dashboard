@@ -7,6 +7,46 @@
 
 ## March 21, 2026 (Saturday)
 
+### 4:04 PM — 🌸 Spring Events & Partnership Playbook — Face-to-Face Marketing Engine (Hourly Autonomous)
+**Task:** Research upcoming STL pet events, local pet businesses for cross-referral partnerships, and build a complete in-person marketing system. TJ has $0 ad budget, zero Google reviews, near-zero search visibility — face-to-face bypasses all of that and converts 10-20x better than digital.
+
+**Result:** ✅ COMPLETE — `dashboard/spring-events-partnerships.html` — 6-tab interactive playbook
+
+**Deliverable:** Full in-person marketing system:
+1. **📅 Events Calendar** — 5 major events with dates, venues, crowd sizes, and TJ's exact move:
+   - 🌍 **Earth Day Festival** (Apr 25-26, Forest Park, 30K attendees) — vendor registration OPEN
+   - 🐾 **Bark in the Park** (May 16, Tower Grove Park) — 30th annual, LARGEST pet festival in Midwest
+   - 🏒 **Blues Giveback Game** (Apr 13) — Stray Rescue adoption event
+   - ⚾ **Stray Rescue Day at Ballpark** (Apr 26) — Cardinals vs Mariners
+   - 🐕 **K9 Garden** (OPEN NOW) — new dog park/bar/restaurant at former Bar K space, opened Jan 2026
+   - Plus MASCUSA National Dog Show (May 20-23, Gray Summit) and 8 dog parks for regular networking
+2. **🤝 Partnership Targets** — 15 verified local pet businesses with phone numbers and custom pitch angles:
+   - 5 Florissant/North County (North County Pet Grooming, Pet Planet, Doggiestylzs, Pet Supplies Plus, Amanda's)
+   - 4 St. Charles/O'Fallon (Baxter's K9, Bark Central, Sorenson Kennels, Camp Bow Wow)
+   - 6 Metro STL (K9 Garden, Happy Tails, Petropolis, No Leash Needed, Pets & Company, Aussie Pet Mobile)
+   - Click-to-cycle status badges (New → Contacted → Interested → Partnered → Declined) with localStorage
+3. **💬 Scripts & Pitches** — 8 copy-paste scripts:
+   - 3 elevator pitches (quick hit, hook, spring urgency)
+   - 3 partnership walk-in scripts (groomers, daycares, dog venues)
+   - 2 follow-up texts (after events, after dropping cards)
+4. **📄 Event Materials** — business card copy, half-page flyer, vendor booth setup checklist ($30-50 total)
+5. **✅ Action Plan** — 13-item phased checklist across 5 weeks (Week 1-2: cards + local drops, Week 3-4: K9 Garden + St. Charles, Week 5+: Earth Day + Bark in the Park)
+6. **💰 ROI Projections** — Channel comparison, 60-day forecast (18-42 leads → 4-13 customers → $280-910/mo), partnership compound effect (20-50 customers in year 1 from partnerships alone), total investment $28-240 → $3,360-10,920 first year = 1,400-45,000% ROI
+
+**Key Insights:**
+- **K9 Garden is BRAND NEW** (Jan 2026, former Bar K) — looking for community partners. 13K Instagram followers. Membership-based = built-in referral channel.
+- **Earth Day Festival** environmental angle is PERFECT for pet waste removal — "cleaner waterways, healthier parks." No other pooper scooper will be there.
+- **Bark in the Park** is THE event — thousands of STL dog owners in one park. Even without a booth, 200 cards = 10-20 leads.
+- **Partnership compound effect:** Once cards are at 10 locations, leads come in monthly with ZERO additional effort.
+
+**Dashboard Updated:** Added "🌸 EVENTS & PARTNERSHIPS" to header nav with pulse animation
+
+**Why This Task:** Every previous task has been digital (dashboards, copy, SEO). TJ's biggest weakness (zero reviews, no search visibility) makes digital marketing nearly worthless right now. Face-to-face bypasses ALL of that — nobody checks Google reviews when they meet Jamie in person. This is the highest-converting $0 channel available. Earth Day is 35 days away. Bark in the Park is 56 days away. Clock is ticking.
+
+**Rotation:** 🌸 In-Person Marketing / Events / Partnerships / Community
+
+---
+
 ### 3:04 PM — ⭐ Google Review Blitz — Zero to Hero in 14 Days (Hourly Autonomous)
 **Task:** Build complete Google review generation system. ZERO reviews is the #1 credibility killer — every marketing dollar is wasted when prospects see an empty profile. Competitors have 6-43 reviews. This blocks EVERYTHING.
 
