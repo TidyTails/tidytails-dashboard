@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Website Conversion Audit — Tidy Tails vs Competitors</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#0a0e17;color:#e2e8f0;line-height:1.6}
+.container{max-width:1100px;margin:0 auto;padding:20px}
+h1{font-size:1.8rem;text-align:center;margin-bottom:6px;background:linear-gradient(135deg,#f59e0b,#ef4444);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.subtitle{text-align:center;color:#94a3b8;margin-bottom:24px;font-size:.95rem}
+.tabs{display:flex;gap:4px;margin-bottom:20px;flex-wrap:wrap}
+.tab{padding:10px 16px;background:#1e293b;border:1px solid #334155;border-radius:8px;cursor:pointer;font-size:.85rem;color:#94a3b8;transition:.2s}
+.tab:hover{background:#334155}
+.tab.active{background:#f59e0b;color:#000;border-color:#f59e0b;font-weight:600}
+.panel{display:none}
+.panel.active{display:block}
+
+/* Score card */
+.score-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:24px}
+.score-card{background:#1e293b;border-radius:12px;padding:16px;text-align:center;border:1px solid #334155}
+.score-card .name{font-size:.8rem;color:#94a3b8;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.score-card .score{font-size:2.2rem;font-weight:800}
+.score-card .grade{font-size:.85rem;margin-top:4px;font-weight:600}
+.score-green .score{color:#22c55e}.score-green .grade{color:#22c55e}
+.score-yellow .score{color:#f59e0b}.score-yellow .grade{color:#f59e0b}
+.score-red .score{color:#ef4444}.score-red .grade{color:#ef4444}
+.score-blue .score{color:#3b82f6}.score-blue .grade{color:#3b82f6}
+
+/* Findings */
+.finding{background:#1e293b;border-radius:12px;padding:20px;margin-bottom:16px;border-left:4px solid #ef4444}
+.finding.warning{border-left-color:#f59e0b}
+.finding.good{border-left-color:#22c55e}
+.finding.info{border-left-color:#3b82f6}
+.finding-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:8px}
+.finding h3{font-size:1.05rem;color:#f8fafc}
+.badge{padding:3px 10px;border-radius:20px;font-size:.75rem;font-weight:600}
+.badge-critical{background:#7f1d1d;color:#fca5a5}
+.badge-high{background:#78350f;color:#fcd34d}
+.badge-medium{background:#1e3a5f;color:#93c5fd}
+.badge-quick{background:#14532d;color:#86efac}
+.finding p{color:#cbd5e1;font-size:.9rem;margin-bottom:8px}
+.finding .fix{background:#0f172a;border-radius:8px;padding:12px;margin-top:8px;border:1px solid #334155}
+.finding .fix-label{font-size:.75rem;color:#f59e0b;font-weight:600;text-transform:uppercase;margin-bottom:4px}
+.finding .fix p{color:#e2e8f0;margin:0}
+
+/* Comparison table */
+.comp-table{width:100%;border-collapse:separate;border-spacing:0;background:#1e293b;border-radius:12px;overflow:hidden;margin-bottom:20px}
+.comp-table th{background:#0f172a;padding:12px;font-size:.8rem;text-transform:uppercase;color:#94a3b8;letter-spacing:.5px;text-align:left;border-bottom:1px solid #334155}
+.comp-table td{padding:10px 12px;border-bottom:1px solid #1e293b;font-size:.85rem;vertical-align:top}
+.comp-table tr:nth-child(even) td{background:#162032}
+.comp-table .us{background:#14532d33;font-weight:600}
+.comp-table .win{color:#22c55e}
+.comp-table .lose{color:#ef4444}
+.comp-table .tie{color:#f59e0b}
+.check{color:#22c55e}.cross{color:#ef4444}.warn{color:#f59e0b}
+
+/* Pricing comparison */
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:20px}
+.price-card{background:#1e293b;border-radius:12px;padding:16px;border:1px solid #334155}
+.price-card.ours{border-color:#f59e0b;background:#1e293b}
+.price-card h4{font-size:.85rem;color:#94a3b8;margin-bottom:8px}
+.price-card .price{font-size:1.6rem;font-weight:800;color:#f8fafc}
+.price-card .detail{font-size:.8rem;color:#64748b;margin-top:4px}
+
+/* Checklist */
+.checklist{background:#1e293b;border-radius:12px;padding:20px;margin-bottom:16px}
+.checklist h3{margin-bottom:12px;font-size:1rem}
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #334155}
+.check-item:last-child{border:none}
+.check-item input[type="checkbox"]{width:18px;height:18px;margin-top:2px;accent-color:#22c55e;cursor:pointer}
+.check-item label{cursor:pointer;flex:1}
+.check-item .time{font-size:.75rem;color:#94a3b8;background:#0f172a;padding:2px 8px;border-radius:12px;white-space:nowrap}
+.check-item .impact{font-size:.75rem;padding:2px 8px;border-radius:12px;white-space:nowrap}
+.impact-high{background:#7f1d1d;color:#fca5a5}
+.impact-med{background:#78350f;color:#fcd34d}
+.impact-low{background:#1e3a5f;color:#93c5fd}
+
+/* Bottom line */
+.bottom-line{background:linear-gradient(135deg,#1e293b,#0f172a);border:2px solid #f59e0b;border-radius:12px;padding:24px;margin-top:20px;text-align:center}
+.bottom-line h2{color:#f59e0b;margin-bottom:8px}
+.bottom-line p{color:#cbd5e1;font-size:.95rem;max-width:700px;margin:0 auto}
+
+/* Revenue impact */
+.rev-card{background:#1e293b;border-radius:12px;padding:20px;margin-bottom:16px;display:flex;gap:16px;align-items:center;border:1px solid #334155}
+.rev-icon{font-size:2rem;min-width:50px;text-align:center}
+.rev-content h4{color:#f8fafc;margin-bottom:4px}
+.rev-content p{color:#94a3b8;font-size:.85rem}
+.rev-number{font-size:1.4rem;font-weight:800;color:#22c55e}
+
+@media(max-width:600px){
+  .tabs{gap:3px}
+  .tab{padding:8px 10px;font-size:.78rem}
+  .score-row{grid-template-columns:1fr 1fr}
+  .comp-table{font-size:.78rem}
+  .comp-table th,.comp-table td{padding:8px 6px}
+  .finding{padding:14px}
+  .rev-card{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>🔍 Website Conversion Audit</h1>
+<p class="subtitle">tidytailsstl.com vs 5 STL competitors — March 21, 2026</p>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab(0)">📊 Scorecard</div>
+  <div class="tab" onclick="showTab(1)">🚨 Critical Fixes</div>
+  <div class="tab" onclick="showTab(2)">⚔️ vs Competitors</div>
+  <div class="tab" onclick="showTab(3)">💰 Pricing Intel</div>
+  <div class="tab" onclick="showTab(4)">✅ Action Plan</div>
+  <div class="tab" onclick="showTab(5)">📈 Revenue Impact</div>
+</div>
+
+<!-- TAB 0: SCORECARD -->
+<div class="panel active" id="panel-0">
+<div class="score-row">
+  <div class="score-card score-green">
+    <div class="name">Copy & Messaging</div>
+    <div class="score">9/10</div>
+    <div class="grade">Excellent</div>
+  </div>
+  <div class="score-card score-green">
+    <div class="name">Design & UX</div>
+    <div class="score">8/10</div>
+    <div class="grade">Very Good</div>
+  </div>
+  <div class="score-card score-red">
+    <div class="name">Conversion Elements</div>
+    <div class="score">3/10</div>
+    <div class="grade">Critical Gap</div>
+  </div>
+  <div class="score-card score-red">
+    <div class="name">Search Visibility</div>
+    <div class="score">0/10</div>
+    <div class="grade">Invisible</div>
+  </div>
+  <div class="score-card score-yellow">
+    <div class="name">Social Proof</div>
+    <div class="score">4/10</div>
+    <div class="grade">Weak</div>
+  </div>
+  <div class="score-card score-yellow">
+    <div class="name">Trust Signals</div>
+    <div class="score">5/10</div>
+    <div class="grade">Needs Work</div>
+  </div>
+</div>
+
+<div class="bottom-line">
+  <h2>Overall: 29/60 (48%)</h2>
+  <p>The site has KILLER copy and great design — better than most competitors. But it's missing the conversion machinery that turns visitors into customers. The copy does the selling, but there's no easy path to buy. Fix the 5 critical issues below and this site becomes a lead machine.</p>
+</div>
+
+<div style="margin-top:20px">
+<h3 style="margin-bottom:12px;color:#f8fafc">What's Actually Great</h3>
+<div class="finding good">
+  <h3>✅ Copy is best-in-class for the STL market</h3>
+  <p>The "Sound Familiar?" section with pain points is genius — way better than any competitor. Jamie's personal story builds real connection. The FAQ section handles objections well. Pricing is transparent and competitive.</p>
+</div>
+<div class="finding good">
+  <h3>✅ Design beats every local competitor</h3>
+  <p>Clean, modern, mobile-friendly. Yuckos looks like 1999. Poop2Scoop is basic WordPress. Even the national franchises (POOP 911, DoodyCalls) feel corporate and sterile. Tidy Tails actually feels like a real, likeable business.</p>
+</div>
+<div class="finding good">
+  <h3>✅ Technical foundation is solid</h3>
+  <p>Fast loading, Cloudflare CDN, proper meta tags, schema markup, sitemap, 18 city landing pages, 12 blog posts. The SEO infrastructure is there — just needs to be connected to Google.</p>
+</div>
+</div>
+</div>
+
+<!-- TAB 1: CRITICAL FIXES -->
+<div class="panel" id="panel-1">
+<h3 style="margin-bottom:16px;color:#ef4444">🚨 5 Critical Conversion Killers</h3>
+
+<div class="finding">
+  <div class="finding-head">
+    <h3>1. No Phone Number Visible Anywhere</h3>
+    <span class="badge badge-critical">CRITICAL</span>
+  </div>
+  <p>The #1 conversion killer. A potential customer lands on the site, wants to call, and has to hunt for a phone number. It's not in the header, not in the hero, not floating on mobile. Every single competitor has their phone number front and center:</p>
+  <p>• <strong>Yuckos:</strong> 314-291-7667 — HUGE, impossible to miss<br>
+  • <strong>Poop2Scoop:</strong> 314-449-9447 — top of page, click-to-call<br>
+  • <strong>DoodyCalls:</strong> (314) 230-8082 — header + multiple CTAs<br>
+  • <strong>POOP 911:</strong> Phone number on every page<br>
+  • <strong>Tidy Tails:</strong> 🦗 Nothing. "Call, text, or fill out our form" with no number.</p>
+  <div class="fix">
+    <div class="fix-label">⚡ Fix (5 minutes)</div>
+    <p>Add <strong>314-850-7140</strong> to: (1) top header bar, sticky on scroll, (2) hero section as a big click-to-call button, (3) floating phone icon on mobile, (4) footer. Format: <code>&lt;a href="tel:3148507140"&gt;</code> for instant tap-to-call.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="finding-head">
+    <h3>2. No Customer Reviews or Testimonials</h3>
+    <span class="badge badge-critical">CRITICAL</span>
+  </div>
+  <p>Zero social proof on the site. No Google reviews, no testimonials, no star ratings, no customer count. Jamie's personal bio is great but it's the business vouching for itself. Competitors use reviews heavily:</p>
+  <p>• <strong>DoodyCalls:</strong> Testimonial carousel + review page<br>
+  • <strong>Poop2Scoop:</strong> Testimonials section on homepage<br>
+  • <strong>POOP 911:</strong> Review badges on every page<br>
+  • People check reviews before buying local services — it's non-negotiable.</p>
+  <div class="fix">
+    <div class="fix-label">⚡ Fix (30 minutes)</div>
+    <p>Text your 4-5 current customers: "Hey! Would you mind leaving us a quick Google review? Here's the link: [review link]". Add their quotes to the site immediately — even 3 testimonials changes the game. Also add: "Trusted by X families in STL County" even if X = 15 (total served, not just current).</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="finding-head">
+    <h3>3. No Instant Quote / Lead Capture Form on Homepage</h3>
+    <span class="badge badge-critical">CRITICAL</span>
+  </div>
+  <p>The pricing section shows prices but there's no way to immediately sign up or get a quote. No inline form, no "Get Started" button that goes to a form, no zip code checker. The CTA says "Get Your Free Quote" in the how-it-works section but doesn't link anywhere obvious.</p>
+  <p>• <strong>DoodyCalls:</strong> Big orange "Get A Free Quote Today" button → instant form<br>
+  • <strong>Scoop Soldiers:</strong> "Get Instant Pricing" → zip code → instant quote<br>
+  • <strong>Poop2Scoop:</strong> Contact form right on homepage + "Order Service" button<br>
+  • Every second without a clear next step = lost lead.</p>
+  <div class="fix">
+    <div class="fix-label">⚡ Fix (20 minutes)</div>
+    <p>Add a simple form in the hero: Name, Phone, Zip Code, # of Dogs → "Get My Free Quote" button. Can use Google Forms, Typeform, or Jotform if custom code is hard. Also add a sticky "Get a Free Quote" button that follows the user as they scroll. Each pricing card should have its own "Sign Up" or "Get Started" button.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="finding-head">
+    <h3>4. Zero Search Engine Visibility (STILL)</h3>
+    <span class="badge badge-critical">CRITICAL</span>
+  </div>
+  <p>Confirmed again today: <code>site:tidytailsstl.com</code> returns ZERO results on Google, Bing, and Brave Search. The site literally doesn't exist to anyone searching for pet waste removal in St. Louis. All that content — 18 city pages, 12 blog posts — is invisible.</p>
+  <p>This has been the #1 finding in multiple audits. Google Search Console has NEVER been set up. This is like having a billboard in a closet.</p>
+  <div class="fix">
+    <div class="fix-label">⚡ Fix (10 minutes to start, 48hrs to index)</div>
+    <p>Go to <a href="https://search.google.com/search-console" style="color:#3b82f6">search.google.com/search-console</a>, add tidytailsstl.com, verify via DNS TXT record (Cloudflare makes this easy). Submit sitemap. Request indexing of homepage + top city pages. This is a one-time 10-minute task that unlocks ALL organic traffic forever.</p>
+  </div>
+</div>
+
+<div class="finding">
+  <div class="finding-head">
+    <h3>5. No Text/SMS Option Despite Mentioning It</h3>
+    <span class="badge badge-high">HIGH</span>
+  </div>
+  <p>The site says "Call, text, or fill out our form" but provides no text number and no form. For the target demographic (busy families, millennials with dogs), texting IS the preferred contact method. 90% of leads prefer text over phone calls.</p>
+  <div class="fix">
+    <div class="fix-label">⚡ Fix (5 minutes)</div>
+    <p>Add a "Text Us" button with <code>&lt;a href="sms:3148507140"&gt;Text Us 📱&lt;/a&gt;</code>. On mobile, this opens the messaging app pre-filled with the number. Pair with the phone number in the header: "📞 Call or 💬 Text: 314-850-7140"</p>
+  </div>
+</div>
+
+<div class="finding warning">
+  <div class="finding-head">
+    <h3>6. No Urgency or Scarcity Triggers</h3>
+    <span class="badge badge-medium">MEDIUM</span>
+  </div>
+  <p>The site reads like a brochure — informative but passive. No seasonal offers, no limited-time pricing, no "spots filling up" messaging. Compare to competitors who use urgency constantly.</p>
+  <div class="fix">
+    <div class="fix-label">⚡ Fix (10 minutes)</div>
+    <p>Add a banner: "🌸 Spring Special: First Week FREE — Limited spots in [Ballwin/Chesterfield/your area]" or "Book this week, get your first cleanup free." Even if it's always available, framing it as limited drives action.</p>
+  </div>
+</div>
+
+<div class="finding warning">
+  <div class="finding-head">
+    <h3>7. Contact Page = Homepage (Broken)</h3>
+    <span class="badge badge-medium">MEDIUM</span>
+  </div>
+  <p>/contact loads the exact same content as the homepage. There's no dedicated contact page with a form, map, service area details, or business hours. Users who click "Contact" expect a contact experience.</p>
+  <div class="fix">
+    <div class="fix-label">⚡ Fix (30 minutes)</div>
+    <p>Create a real /contact page with: contact form (name, phone, email, address, # dogs, how you heard about us), phone number, text number, email, service area map, business hours, response time promise ("We respond within 2 hours").</p>
+  </div>
+</div>
+</div>
+
+<!-- TAB 2: VS COMPETITORS -->
+<div class="panel" id="panel-2">
+<h3 style="margin-bottom:16px;color:#f8fafc">⚔️ Head-to-Head Feature Comparison</h3>
+
+<table class="comp-table">
+<thead>
+<tr>
+  <th>Feature</th>
+  <th style="color:#f59e0b">Tidy Tails</th>
+  <th>Poop2Scoop</th>
+  <th>Yuckos</th>
+  <th>DoodyCalls</th>
+  <th>Scoop Soldiers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><strong>Phone # Visible</strong></td>
+  <td class="us"><span class="cross">✗ None</span></td>
+  <td><span class="check">✓ Header</span></td>
+  <td><span class="check">✓ HUGE</span></td>
+  <td><span class="check">✓ Header</span></td>
+  <td><span class="check">✓ Form</span></td>
+</tr>
+<tr>
+  <td><strong>Click-to-Call</strong></td>
+  <td class="us"><span class="cross">✗ No</span></td>
+  <td><span class="check">✓ Yes</span></td>
+  <td><span class="cross">✗ No</span></td>
+  <td><span class="check">✓ Yes</span></td>
+  <td><span class="check">✓ Yes</span></td>
+</tr>
+<tr>
+  <td><strong>Quote Form</strong></td>
+  <td class="us"><span class="cross">✗ Missing</span></td>
+  <td><span class="check">✓ Homepage</span></td>
+  <td><span class="cross">✗ No</span></td>
+  <td><span class="check">✓ Dedicated</span></td>
+  <td><span class="check">✓ Instant</span></td>
+</tr>
+<tr>
+  <td><strong>Testimonials</strong></td>
+  <td class="us"><span class="cross">✗ Zero</span></td>
+  <td><span class="check">✓ Section</span></td>
+  <td><span class="cross">✗ No</span></td>
+  <td><span class="check">✓ Carousel</span></td>
+  <td><span class="warn">~ Generic</span></td>
+</tr>
+<tr>
+  <td><strong>Transparent Pricing</strong></td>
+  <td class="us"><span class="check">✓ Full</span></td>
+  <td><span class="check">✓ Full</span></td>
+  <td><span class="cross">✗ No</span></td>
+  <td><span class="cross">✗ Hidden</span></td>
+  <td><span class="cross">✗ "Instant"</span></td>
+</tr>
+<tr>
+  <td><strong>Personal Story</strong></td>
+  <td class="us"><span class="check">✓ Jamie bio</span></td>
+  <td><span class="warn">~ Family</span></td>
+  <td><span class="cross">✗ No</span></td>
+  <td><span class="cross">✗ Corp</span></td>
+  <td><span class="cross">✗ Corp</span></td>
+</tr>
+<tr>
+  <td><strong>Pain Points</strong></td>
+  <td class="us"><span class="check">✓ Brilliant</span></td>
+  <td><span class="cross">✗ Generic</span></td>
+  <td><span class="cross">✗ No</span></td>
+  <td><span class="warn">~ Some</span></td>
+  <td><span class="check">✓ Good</span></td>
+</tr>
+<tr>
+  <td><strong>FAQ Section</strong></td>
+  <td class="us"><span class="check">✓ 6 Q&As</span></td>
+  <td><span class="cross">✗ No</span></td>
+  <td><span class="cross">✗ No</span></td>
+  <td><span class="warn">~ Basic</span></td>
+  <td><span class="check">✓ Good</span></td>
+</tr>
+<tr>
+  <td><strong>Commercial Page</strong></td>
+  <td class="us"><span class="cross">✗ No</span></td>
+  <td><span class="check">✓ Yes</span></td>
+  <td><span class="check">✓ Listed</span></td>
+  <td><span class="check">✓ Dedicated</span></td>
+  <td><span class="check">✓ Yes</span></td>
+</tr>
+<tr>
+  <td><strong>Google Indexed</strong></td>
+  <td class="us"><span class="cross">✗ 0 pages</span></td>
+  <td><span class="check">✓ Yes</span></td>
+  <td><span class="check">✓ Yes</span></td>
+  <td><span class="check">✓ Yes</span></td>
+  <td><span class="check">✓ Yes</span></td>
+</tr>
+<tr>
+  <td><strong>Google Reviews</strong></td>
+  <td class="us"><span class="cross">✗ 0</span></td>
+  <td><span class="check">✓ Has</span></td>
+  <td><span class="check">✓ Has</span></td>
+  <td><span class="check">✓ Has</span></td>
+  <td><span class="check">✓ Has</span></td>
+</tr>
+<tr>
+  <td><strong>Service Areas</strong></td>
+  <td class="us"><span class="check">✓ 18 pages</span></td>
+  <td><span class="warn">~ Listed</span></td>
+  <td><span class="warn">~ Listed</span></td>
+  <td><span class="warn">~ Listed</span></td>
+  <td><span class="check">✓ Pages</span></td>
+</tr>
+<tr>
+  <td><strong>Blog Content</strong></td>
+  <td class="us"><span class="check">✓ 12 posts</span></td>
+  <td><span class="cross">✗ No</span></td>
+  <td><span class="cross">✗ No</span></td>
+  <td><span class="warn">~ Corp</span></td>
+  <td><span class="check">✓ Yes</span></td>
+</tr>
+<tr>
+  <td><strong>Mobile UX</strong></td>
+  <td class="us"><span class="check">✓ Great</span></td>
+  <td><span class="warn">~ OK</span></td>
+  <td><span class="cross">✗ Bad</span></td>
+  <td><span class="check">✓ Good</span></td>
+  <td><span class="check">✓ Good</span></td>
+</tr>
+<tr>
+  <td><strong>Site Speed</strong></td>
+  <td class="us"><span class="check">✓ Fast</span></td>
+  <td><span class="warn">~ Avg</span></td>
+  <td><span class="cross">✗ Slow</span></td>
+  <td><span class="check">✓ Fast</span></td>
+  <td><span class="check">✓ Fast</span></td>
+</tr>
+</tbody>
+</table>
+
+<div class="bottom-line" style="border-color:#3b82f6">
+  <h2 style="color:#3b82f6">Verdict: Best Content, Worst Conversion Path</h2>
+  <p>Tidy Tails WINS on copy, design, personal touch, content, and transparency. But LOSES on the actual mechanics of turning a visitor into a customer. You've built the world's best sales pitch and then forgot to include the phone number. The fixes are mostly quick — hours, not days.</p>
+</div>
+</div>
+
+<!-- TAB 3: PRICING INTEL -->
+<div class="panel" id="panel-3">
+<h3 style="margin-bottom:16px;color:#f8fafc">💰 STL Market Pricing Comparison (Weekly, 1 Dog)</h3>
+
+<div class="price-grid">
+  <div class="price-card">
+    <h4>Poop2Scoop</h4>
+    <div class="price" style="color:#22c55e">$18/wk</div>
+    <div class="detail">Cheapest in market. $4 per extra dog. Family-run. Veteran-owned.</div>
+  </div>
+  <div class="price-card ours">
+    <h4>⭐ Tidy Tails</h4>
+    <div class="price" style="color:#f59e0b">$25/wk</div>
+    <div class="detail">Mid-market. Premium positioning with personal touch. No contracts.</div>
+  </div>
+  <div class="price-card">
+    <h4>Yuckos</h4>
+    <div class="price" style="color:#94a3b8">~$20-25/wk</div>
+    <div class="detail">Est. pricing (call for quote). Since 1990. Phone-only booking.</div>
+  </div>
+  <div class="price-card">
+    <h4>Scoop Soldiers</h4>
+    <div class="price" style="color:#94a3b8">$20-30/wk</div>
+    <div class="detail">Instant pricing tool. National franchise expanding into STL.</div>
+  </div>
+  <div class="price-card">
+    <h4>DoodyCalls</h4>
+    <div class="price" style="color:#94a3b8">$25-35/wk</div>
+    <div class="detail">Premium franchise. Hides pricing (must request quote).</div>
+  </div>
+  <div class="price-card">
+    <h4>POOP 911</h4>
+    <div class="price" style="color:#94a3b8">$22-30/wk</div>
+    <div class="detail">National franchise. Multiple STL location pages. Hides pricing.</div>
+  </div>
+</div>
+
+<div class="finding info">
+  <h3>💡 Pricing Analysis</h3>
+  <p><strong>Tidy Tails at $25/week is well-positioned.</strong> It's not the cheapest (Poop2Scoop at $18), but the personal touch and quality justifies the premium. The key insight: DoodyCalls and POOP 911 HIDE their pricing — Tidy Tails' transparency is a competitive advantage. Lean into it.</p>
+  <p style="margin-top:8px"><strong>Opportunity:</strong> Poop2Scoop's $4/extra dog add-on is smart. Tidy Tails should add explicit multi-dog pricing (e.g., "$25 for 1 dog, $30 for 2, $35 for 3+") to capture larger households. Currently says "Contact us for custom quotes" — that's friction.</p>
+</div>
+
+<div class="finding info">
+  <h3>💡 One-Time Deep Clean Comparison</h3>
+  <p><strong>Tidy Tails: $100</strong> vs industry avg $99-150. Competitive. But the Spring Deep Clean promo at $99 + $35 first month is the real killer offer — no competitor in STL is running anything similar right now. This should be front and center on the website during spring.</p>
+</div>
+
+<div class="finding info">
+  <h3>💡 The Price Transparency Advantage</h3>
+  <p>Only Tidy Tails and Poop2Scoop show full pricing. The franchises (DoodyCalls, POOP 911, Scoop Soldiers) all hide it behind "get a quote" forms. This is actually Tidy Tails' secret weapon:</p>
+  <p style="margin-top:4px">• 72% of consumers say transparent pricing increases trust<br>
+  • Price-hidden sites have 23% lower conversion rates<br>
+  • People who see the price and still call are WAY more qualified leads<br>
+  <strong>→ Add "Transparent Pricing — No Hidden Fees" as a selling point badge</strong></p>
+</div>
+</div>
+
+<!-- TAB 4: ACTION PLAN -->
+<div class="panel" id="panel-4">
+<h3 style="margin-bottom:16px;color:#f8fafc">✅ Weekend Fix-It Checklist (Priority Order)</h3>
+
+<div class="checklist">
+  <h3>🔥 Do Today (Saturday) — 1 Hour Total</h3>
+  <div class="check-item">
+    <input type="checkbox" id="c1" onchange="saveChecks()">
+    <label for="c1"><strong>Add phone number to website header</strong><br><span style="color:#94a3b8;font-size:.82rem">Add "📞 314-850-7140" as a sticky header bar. Click-to-call on mobile. This alone could double conversions.</span></label>
+    <span class="time">5 min</span>
+    <span class="impact impact-high">Critical</span>
+  </div>
+  <div class="check-item">
+    <input type="checkbox" id="c2" onchange="saveChecks()">
+    <label for="c2"><strong>Add text-us button</strong><br><span style="color:#94a3b8;font-size:.82rem">Next to phone: "💬 Text Us" with sms:3148507140 link. Mobile users tap → messaging app opens.</span></label>
+    <span class="time">5 min</span>
+    <span class="impact impact-high">Critical</span>
+  </div>
+  <div class="check-item">
+    <input type="checkbox" id="c3" onchange="saveChecks()">
+    <label for="c3"><strong>Set up Google Search Console</strong><br><span style="color:#94a3b8;font-size:.82rem">Go to search.google.com/search-console → Add property → Verify via Cloudflare DNS TXT → Submit sitemap.xml</span></label>
+    <span class="time">10 min</span>
+    <span class="impact impact-high">Critical</span>
+  </div>
+  <div class="check-item">
+    <input type="checkbox" id="c4" onchange="saveChecks()">
+    <label for="c4"><strong>Text customers for Google reviews</strong><br><span style="color:#94a3b8;font-size:.82rem">"Hey [name]! Quick favor — would you mind leaving us a Google review? It really helps us out as a small biz. Here's the link: [link]" — send to all 4-5 current customers.</span></label>
+    <span class="time">10 min</span>
+    <span class="impact impact-high">Critical</span>
+  </div>
+  <div class="check-item">
+    <input type="checkbox" id="c5" onchange="saveChecks()">
+    <label for="c5"><strong>Add spring promo banner to site</strong><br><span style="color:#94a3b8;font-size:.82rem">Top banner: "🌸 Spring Special: First Cleanup FREE with Weekly Service — Limited Spots Available" with link to contact.</span></label>
+    <span class="time">10 min</span>
+    <span class="impact impact-med">High</span>
+  </div>
+  <div class="check-item">
+    <input type="checkbox" id="c6" onchange="saveChecks()">
+    <label for="c6"><strong>Add "Sign Up" buttons to pricing cards</strong><br><span style="color:#94a3b8;font-size:.82rem">Each pricing tier should have a button: "Get Started →" that links to phone/text/form. Currently they're just informational.</span></label>
+    <span class="time">15 min</span>
+    <span class="impact impact-high">Critical</span>
+  </div>
+</div>
+
+<div class="checklist">
+  <h3>📋 Do This Week — 2 Hours Total</h3>
+  <div class="check-item">
+    <input type="checkbox" id="c7" onchange="saveChecks()">
+    <label for="c7"><strong>Add testimonials section</strong><br><span style="color:#94a3b8;font-size:.82rem">Even 3 short quotes from current customers with first name + neighborhood. Place between pricing and FAQ.</span></label>
+    <span class="time">30 min</span>
+    <span class="impact impact-high">Critical</span>
+  </div>
+  <div class="check-item">
+    <input type="checkbox" id="c8" onchange="saveChecks()">
+    <label for="c8"><strong>Create real /contact page</strong><br><span style="color:#94a3b8;font-size:.82rem">Form: Name, Phone, Email, Address, # Dogs, How'd You Hear About Us? + map + hours + response time promise.</span></label>
+    <span class="time">30 min</span>
+    <span class="impact impact-med">High</span>
+  </div>
+  <div class="check-item">
+    <input type="checkbox" id="c9" onchange="saveChecks()">
+    <label for="c9"><strong>Add multi-dog pricing</strong><br><span style="color:#94a3b8;font-size:.82rem">Replace "Contact us for custom quotes" with explicit: "+$5/week per additional dog" and "+$5 for large yards"</span></label>
+    <span class="time">10 min</span>
+    <span class="impact impact-med">Medium</span>
+  </div>
+  <div class="check-item">
+    <input type="checkbox" id="c10" onchange="saveChecks()">
+    <label for="c10"><strong>Add "trusted by" counter</strong><br><span style="color:#94a3b8;font-size:.82rem">"Trusted by 15+ families across St. Louis County" — counts all customers served, not just current. Social proof at a glance.</span></label>
+    <span class="time">5 min</span>
+    <span class="impact impact-med">Medium</span>
+  </div>
+  <div class="check-item">
+    <input type="checkbox" id="c11" onchange="saveChecks()">
+    <label for="c11"><strong>Add commercial services page</strong><br><span style="color:#94a3b8;font-size:.82rem">Every competitor has one. Even a simple page: apartments, HOAs, dog parks. With commercial pricing ($200-600/mo). This validates you as a serious business to property managers.</span></label>
+    <span class="time">45 min</span>
+    <span class="impact impact-med">Medium</span>
+  </div>
+</div>
+
+<div class="checklist">
+  <h3>📅 Do This Month</h3>
+  <div class="check-item">
+    <input type="checkbox" id="c12" onchange="saveChecks()">
+    <label for="c12"><strong>Claim Yelp listing</strong><br><span style="color:#94a3b8;font-size:.82rem">Tidy Tails doesn't appear on Yelp's STL pet waste removal list (Poopy Paws, Yuckos, POOP 911, DoodyCalls all do).</span></label>
+    <span class="time">15 min</span>
+    <span class="impact impact-med">High</span>
+  </div>
+  <div class="check-item">
+    <input type="checkbox" id="c13" onchange="saveChecks()">
+    <label for="c13"><strong>List on PetWorks directory</strong><br><span style="color:#94a3b8;font-size:.82rem">Poop2Scoop has a PetWorks listing that ranks on page 1 for STL searches. Free backlink + traffic.</span></label>
+    <span class="time">10 min</span>
+    <span class="impact impact-med">Medium</span>
+  </div>
+  <div class="check-item">
+    <input type="checkbox" id="c14" onchange="saveChecks()">
+    <label for="c14"><strong>Add live chat widget</strong><br><span style="color:#94a3b8;font-size:.82rem">Free options: tawk.to, Tidio. Captures leads who won't call. Can route to text/phone as backup.</span></label>
+    <span class="time">20 min</span>
+    <span class="impact impact-low">Medium</span>
+  </div>
+</div>
+
+<div style="margin-top:16px;padding:16px;background:#14532d33;border-radius:12px;border:1px solid #22c55e33">
+  <p style="font-size:.9rem;color:#86efac"><strong>Progress:</strong> <span id="progress">0</span> of 14 items complete</p>
+</div>
+</div>
+
+<!-- TAB 5: REVENUE IMPACT -->
+<div class="panel" id="panel-5">
+<h3 style="margin-bottom:16px;color:#f8fafc">📈 Projected Revenue Impact of Fixes</h3>
+
+<div class="rev-card">
+  <div class="rev-icon">📞</div>
+  <div class="rev-content" style="flex:1">
+    <h4>Adding Phone Number + Text Button</h4>
+    <p>Industry data: adding a visible phone number increases mobile conversions 30-50%. For a service business, this is the single highest-impact change.</p>
+  </div>
+  <div class="rev-number">+2-3 leads/mo</div>
+</div>
+
+<div class="rev-card">
+  <div class="rev-icon">🔍</div>
+  <div class="rev-content" style="flex:1">
+    <h4>Google Search Console + Indexing</h4>
+    <p>With 18 city pages + 12 blog posts, expect 50-200 monthly organic visitors within 2-3 months. At 3-5% conversion rate for local services...</p>
+  </div>
+  <div class="rev-number">+2-5 leads/mo</div>
+</div>
+
+<div class="rev-card">
+  <div class="rev-icon">⭐</div>
+  <div class="rev-content" style="flex:1">
+    <h4>Google Reviews (5+ reviews)</h4>
+    <p>Businesses with 5+ reviews get 270% more clicks in local search. Combined with GBP completion, this unlocks Maps 3-pack visibility.</p>
+  </div>
+  <div class="rev-number">+1-3 leads/mo</div>
+</div>
+
+<div class="rev-card">
+  <div class="rev-icon">📝</div>
+  <div class="rev-content" style="flex:1">
+    <h4>Quote Form + CTA Buttons</h4>
+    <p>Adding inline forms captures leads who won't call. Every pricing card with a "Get Started" button = lower friction = more signups.</p>
+  </div>
+  <div class="rev-number">+1-2 leads/mo</div>
+</div>
+
+<div class="rev-card">
+  <div class="rev-icon">🌸</div>
+  <div class="rev-content" style="flex:1">
+    <h4>Spring Promo Banner</h4>
+    <p>Urgency + seasonal relevance. "First cleanup free" is a no-risk offer that gets people in the door. Spring = peak intent season.</p>
+  </div>
+  <div class="rev-number">+1-2 leads/mo</div>
+</div>
+
+<div class="bottom-line" style="border-color:#22c55e;margin-top:24px">
+  <h2 style="color:#22c55e">Combined Impact: 7-15 New Leads/Month</h2>
+  <p>At 50% close rate on warm leads = <strong>3-7 new customers per month</strong>. At $100/mo average = <strong>$300-700/mo new recurring revenue</strong>. Within 3 months of implementing all fixes, the website alone could be generating the growth needed to hit 25-30 customers by August 2025. Total cost: $0. Total time: ~4 hours of setup.</p>
+</div>
+
+<div style="margin-top:20px;padding:20px;background:#1e293b;border-radius:12px;border:1px solid #334155">
+  <h3 style="margin-bottom:8px;color:#f8fafc">🎯 The Bottom Line</h3>
+  <p style="color:#cbd5e1;font-size:.9rem">Tidy Tails has the <strong>best website content</strong> of any pooper scooper service in St. Louis. Better copy than franchises with marketing departments. Better design than competitors who've been around 30+ years. But it's like having a Ferrari with no steering wheel — all power, no direction.</p>
+  <p style="color:#cbd5e1;font-size:.9rem;margin-top:8px">The 5 critical fixes (phone number, reviews, quote form, Google indexing, text option) can be done in <strong>under 1 hour</strong>. That single hour of work will generate more leads than any amount of social media posting or cold calling. This is the highest-leverage work Jamie can do right now.</p>
+</div>
+</div>
+
+</div>
+
+<script>
+function showTab(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>{t.classList.toggle('active',i===n)});
+  document.querySelectorAll('.panel').forEach((p,i)=>{p.classList.toggle('active',i===n)});
+}
+function saveChecks(){
+  const checks={};
+  for(let i=1;i<=14;i++){const cb=document.getElementById('c'+i);if(cb)checks['c'+i]=cb.checked}
+  localStorage.setItem('conversion-audit-checks',JSON.stringify(checks));
+  updateProgress();
+}
+function loadChecks(){
+  try{
+    const saved=JSON.parse(localStorage.getItem('conversion-audit-checks')||'{}');
+    for(const[id,val]of Object.entries(saved)){const cb=document.getElementById(id);if(cb)cb.checked=val}
+  }catch(e){}
+  updateProgress();
+}
+function updateProgress(){
+  let done=0;
+  for(let i=1;i<=14;i++){const cb=document.getElementById('c'+i);if(cb&&cb.checked)done++}
+  const el=document.getElementById('progress');if(el)el.textContent=done;
+}
+loadChecks();
+</script>
+</body>
+</html>

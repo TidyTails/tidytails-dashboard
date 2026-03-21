@@ -7,6 +7,19 @@
 
 ## March 21, 2026 (Saturday)
 
+### 1:04 PM — 🔍 WEBSITE CONVERSION AUDIT — Best Copy, Worst Conversion Path (Conversion/Revenue)
+**Task:** Full conversion audit of tidytailsstl.com vs 5 STL competitors (Poop2Scoop, Yuckos, DoodyCalls, Scoop Soldiers, POOP 911). Scored 29/60 — best copy & design in market but missing conversion machinery. 6-tab dashboard with scorecard, 7 findings, competitor comparison table, pricing intel, 14-item checklist, revenue projections.
+
+**Result:** ✅ COMPLETE — `dashboard/website-conversion-audit.html` + dashboard nav updated + pushed to GitHub
+
+**5 Critical Findings:** No phone number visible, zero reviews/testimonials, no quote form or signup buttons, zero Google indexing, no text/SMS option despite mentioning it.
+
+**Revenue Projection:** Fixing 5 critical items (~1hr work) → 7-15 new leads/mo → 3-7 new customers/mo → $300-700/mo recurring. $0 cost.
+
+**Rotation:** 🔍 Conversion / Website / Revenue Optimization
+
+---
+
 ### 12:05 PM — 📅 GBP 4-WEEK POSTING CALENDAR — 8 Copy-Paste Google Posts Ready to Deploy (SEO/Local Visibility)
 **Task:** Built a complete 4-week Google Business Profile posting calendar with 8 pre-written, copy-paste posts. TJ currently has ZERO GBP posts while competitors post weekly — this is a free ranking signal being left on the table. The calendar includes a mix of 4 post types (updates, offers, tips, social proof), all written in Jamie's voice with phone number, website, service areas, and pricing baked in. Interactive dashboard with progress tracking, copy buttons, completion badges, and posting tips.
 
