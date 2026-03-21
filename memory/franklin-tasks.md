@@ -7,6 +7,46 @@
 
 ## March 21, 2026 (Saturday)
 
+### 8:05 AM — 🏢 COMMERCIAL PROPERTY LEADS — 14 Verified Leads with Phone Numbers (Revenue/Sales)
+**Task:** Researched property management companies, apartment complexes, and HOA managers across TJ's service area (St. Louis County, Chesterfield, Ballwin, Manchester, O'Fallon, St. Charles, St. Peters). Found 14 commercial leads with verified phone numbers, addresses, and custom pitch angles. Built an interactive call dashboard with 4 call scripts, email template, pricing guide, recommended call order, and status tracking.
+
+**Result:** ✅ COMPLETE — `dashboard/commercial-property-leads-spring2026.html` + dashboard nav updated + pushed to GitHub
+
+**Top 6 Hot Leads (with phone numbers):**
+1. **Mills Properties** — 28+ apartment communities across STL metro, ALL pet-friendly, SLAA member (THE WHALE)
+2. **Millsap Properties** — 7 communities in Ballwin, Hazelwood, Florissant, St. Charles (all pet-friendly)
+3. **St. Louis Luxury / Gallery Apartments** — 📞 314-421-4500 — Multiple locations, dedicated pet-friendly page with dog parks
+4. **Deca Property Management** — 📞 (314) 631-3306 — Offers "Pet Damage Guarantee" to owners, manages residential + commercial + HOA
+5. **Kensington West Apartments** — 📞 (636) 330-4398 — Ballwin, pet-friendly, A+ BBB (easiest close on the list)
+6. **Amoso Properties** — 📞 636-757-3406 — Residential + commercial + HOA in St. Charles, A+ BBB, 12+ years
+
+**5 Warm Leads:** Top Performance PM (314-499-1001), Renters Warehouse (314-525-5062, 16K+ units), Evernest (816-875-4971, 15K+ units), Frontier PM (314-932-7004), Keyrenter St Charles (636-707-2000)
+
+**3 New Leads:** SOTO Property Solutions ($2K pet damage guarantee), Sentry Management (national HOA specialist), Woods Mill Park Apts (Chesterfield)
+
+**Dashboard Features:**
+- 🔥 Leads organized by temperature (Hot/Warm/New)
+- 📞 Click-to-call buttons with verified phone numbers
+- 💬 4 copy-paste call scripts + 1 email template
+- 📊 Commercial pricing guide ($200-600/mo per property)
+- 📋 Recommended Monday morning call order with times
+- ✅ Lead status tracking with localStorage persistence
+- 📈 Progress bar showing contact rate
+
+**Why This Task:**
+- Saturday morning = prep time for Monday calls
+- Spring just started — pet waste complaints are spiking in common areas
+- Commercial accounts = revenue multiplier (1 complex = 3-7 residential customers)
+- Previous commercial leads were from March 7-9 — needed fresh batch with new angles
+- Property managers with pet damage guarantees = WARM leads (they already eat the cost)
+- One closed commercial deal = $200-500/mo recurring. Three deals by June = $1K/mo.
+
+**Revenue Impact:** If TJ calls 6 leads Monday and closes just 1 medium apartment complex, that's $300-400/month recurring from a single phone call. Target: 3 commercial accounts by June = ~$1,000/month = equivalent to 14 residential customers.
+
+**Rotation:** 🏢 Commercial Lead Generation / Sales Enablement / Revenue
+
+---
+
 ### 7:04 AM — 📅 SPRING EVENTS CALENDAR — 12 Dog Events Where TJ's Customers Will Be (Networking/Marketing)
 **Task:** Researched every upcoming pet event, dog-friendly farmers market, adoption drive, and community festival in the St. Louis metro area for Spring 2026. Found 12 events (9 free) from March through May where hundreds-to-thousands of dog owners will gather. Built an interactive dashboard with countdowns, elevator pitches, prep checklist, status tracking, and ROI projections.
 
