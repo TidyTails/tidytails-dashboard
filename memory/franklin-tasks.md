@@ -7,6 +7,39 @@
 
 ## March 21, 2026 (Saturday)
 
+### 12:05 PM — 📅 GBP 4-WEEK POSTING CALENDAR — 8 Copy-Paste Google Posts Ready to Deploy (SEO/Local Visibility)
+**Task:** Built a complete 4-week Google Business Profile posting calendar with 8 pre-written, copy-paste posts. TJ currently has ZERO GBP posts while competitors post weekly — this is a free ranking signal being left on the table. The calendar includes a mix of 4 post types (updates, offers, tips, social proof), all written in Jamie's voice with phone number, website, service areas, and pricing baked in. Interactive dashboard with progress tracking, copy buttons, completion badges, and posting tips.
+
+**Result:** ✅ COMPLETE — `dashboard/gbp-posting-calendar.html` + dashboard nav updated + pushed to GitHub
+
+**Key Deliverables:**
+- 8 unique posts across 4 weeks (2 per week, Mon/Thu and Tue/Fri rotation)
+- Post types: 2 Updates, 2 Offers (spring deep clean + referral), 2 Tips (health/environmental), 2 Social Proof
+- All posts include: Jamie's name, 314-850-7140, tidytailsstl.com, service areas, pricing
+- Copy button on each post (one tap → paste into GBP)
+- Progress tracker with completion percentage and per-week badges
+- Photo suggestions for each post (posts with photos get 35% more clicks)
+- Tips section: best times to post, photo strategy, what to do after 4 weeks, post types explained
+- Direct link to Google Business Profile manager
+
+**Why This Task:**
+- GBP at 7% complete, ZERO posts ever — biggest free ranking signal being ignored
+- Google explicitly rewards businesses that post 1-2x/week with higher Maps placement
+- Competitors (POOP 911, Doggie Doodies, DoodyCalls) all post regularly — we're falling behind
+- Each post takes 2 minutes. 8 posts = 16 minutes total. $0 cost. Permanent ranking benefit.
+- Spring is peak search season — "pooper scooper near me" searches spike March-May
+- Posts appear directly in business listing when people search — free advertising
+
+**Expected Impact:**
+- Higher Maps ranking from activity signals (within 2-4 weeks)
+- Posts visible directly in search results to potential customers
+- Consistent brand presence signals trustworthiness to Google's algorithm
+- Combined with GBP completion (7% → 100%), should unlock Maps 3-pack visibility
+
+**Rotation:** 📅 SEO / Local Visibility / Google Business Profile / Free Marketing
+
+---
+
 ### 11:04 AM — 📞 COMMERCIAL OUTREACH KIT — Scripts, Emails, Walk-In Route, Objection Handling (Sales)
 **Task:** Built complete 7-tab interactive outreach toolkit converting 49 uncontacted commercial leads into actionable Monday morning workflow. Includes phone scripts for apartment complexes/HOAs/dog businesses/voicemail, email templates, optimized 7-stop vet clinic walk-in route with drive times, 9 word-for-word objection handlers, 5-touch follow-up sequence, and weekly tracker with goal counters.
 
