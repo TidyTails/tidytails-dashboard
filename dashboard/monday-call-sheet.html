@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📞 Monday Call Sheet | Jamie's Hit List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:#0a0a0a; --bg2:#141414; --bg3:#1a1a1a; --bg4:#242424;
+            --text:#f5f5f5; --text2:#999; --text3:#555;
+            --green:#10b981; --orange:#ff6b35; --blue:#3b82f6;
+            --yellow:#fbbf24; --red:#ef4444; --purple:#8b5cf6;
+            --gold:#f59e0b; --border:#2a2a2a; --radius:12px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:100px;}
+        
+        .header{
+            background:linear-gradient(135deg,#141414,#0a1a14);
+            border-bottom:2px solid var(--green);
+            padding:1.25rem 1rem;text-align:center;position:sticky;top:0;z-index:100;
+        }
+        .header h1{font-size:1.5rem;font-weight:800;color:var(--green);}
+        .header .sub{color:var(--text2);font-size:.8rem;margin-top:.25rem;}
+        .header .date{color:var(--text3);font-size:.7rem;margin-top:.5rem;}
+        
+        /* Stats bar */
+        .stats{display:flex;gap:.5rem;padding:.75rem 1rem;overflow-x:auto;}
+        .stat{flex:1;min-width:70px;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:.6rem .5rem;text-align:center;}
+        .stat .num{font-size:1.4rem;font-weight:800;line-height:1;}
+        .stat .lbl{font-size:.6rem;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-top:.15rem;}
+        .stat.g .num{color:var(--green);}
+        .stat.o .num{color:var(--orange);}
+        .stat.b .num{color:var(--blue);}
+        .stat.y .num{color:var(--yellow);}
+        
+        /* Tabs */
+        .tabs{display:flex;gap:.5rem;padding:.75rem 1rem;border-bottom:1px solid var(--border);overflow-x:auto;}
+        .tab{padding:.5rem 1rem;border-radius:8px;font-size:.8rem;font-weight:600;cursor:pointer;
+            background:var(--bg3);color:var(--text2);border:1px solid var(--border);white-space:nowrap;
+            transition:all .2s;flex-shrink:0;}
+        .tab.active{background:rgba(16,185,129,.15);color:var(--green);border-color:var(--green);}
+        .tab:hover{border-color:var(--green);}
+        .tab .badge-count{display:inline-block;background:var(--bg4);padding:.1rem .4rem;border-radius:4px;
+            font-size:.65rem;margin-left:.25rem;}
+        
+        .container{max-width:600px;margin:0 auto;padding:.5rem;}
+        
+        /* Lead cards */
+        .lead-card{
+            background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);
+            margin:.5rem 0;overflow:hidden;transition:all .2s;
+        }
+        .lead-card.called{opacity:.5;border-color:var(--green);}
+        .lead-card.called .card-header{background:rgba(16,185,129,.1);}
+        .lead-card.skip{opacity:.4;}
+        
+        .card-header{
+            padding:.75rem 1rem;cursor:pointer;display:flex;align-items:center;gap:.5rem;
+        }
+        .card-header:active{background:var(--bg3);}
+        .rank{
+            width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+            font-weight:800;font-size:.75rem;flex-shrink:0;
+        }
+        .rank.hot{background:rgba(239,68,68,.2);color:var(--red);}
+        .rank.warm{background:rgba(255,107,53,.2);color:var(--orange);}
+        .rank.cool{background:rgba(59,130,246,.2);color:var(--blue);}
+        .card-info{flex:1;min-width:0;}
+        .card-name{font-weight:700;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .card-type{font-size:.7rem;color:var(--text2);}
+        .card-value{text-align:right;flex-shrink:0;}
+        .card-value .est{font-weight:700;font-size:.85rem;color:var(--green);}
+        .card-value .per{font-size:.6rem;color:var(--text3);}
+        .chevron{color:var(--text3);font-size:.8rem;transition:transform .2s;flex-shrink:0;}
+        .lead-card.open .chevron{transform:rotate(90deg);}
+        
+        .card-body{display:none;padding:0 1rem 1rem;border-top:1px solid var(--border);}
+        .lead-card.open .card-body{display:block;}
+        
+        .detail-row{display:flex;gap:.5rem;margin-top:.5rem;font-size:.8rem;}
+        .detail-row .label{color:var(--text2);min-width:60px;flex-shrink:0;}
+        .detail-row .value{color:var(--text);}
+        .detail-row .value a{color:var(--blue);text-decoration:none;}
+        
+        .pitch-box{
+            background:var(--bg3);border:1px solid var(--border);border-radius:8px;
+            padding:.75rem;margin-top:.75rem;font-size:.8rem;line-height:1.5;
+        }
+        .pitch-box .pitch-label{font-size:.65rem;color:var(--gold);text-transform:uppercase;
+            font-weight:700;letter-spacing:.5px;margin-bottom:.25rem;}
+        
+        /* Action buttons */
+        .actions{display:flex;gap:.5rem;margin-top:.75rem;}
+        .btn{flex:1;padding:.6rem;border-radius:8px;font-weight:700;font-size:.8rem;
+            cursor:pointer;border:none;text-align:center;transition:all .2s;text-decoration:none;
+            display:flex;align-items:center;justify-content:center;gap:.3rem;}
+        .btn-call{background:var(--green);color:#000;}
+        .btn-call:active{background:#059669;}
+        .btn-text{background:var(--blue);color:#fff;}
+        .btn-text:active{background:#2563eb;}
+        .btn-done{background:var(--bg3);color:var(--text2);border:1px solid var(--border);}
+        .btn-done:active{background:var(--bg4);}
+        .btn-done.checked{background:rgba(16,185,129,.15);color:var(--green);border-color:var(--green);}
+        
+        /* Script overlay */
+        .script-banner{
+            background:linear-gradient(135deg,#1a1408,#1a0a14);
+            border:1px solid var(--gold);border-radius:var(--radius);
+            padding:1rem;margin:.5rem 0;
+        }
+        .script-banner h3{color:var(--gold);font-size:.85rem;margin-bottom:.5rem;}
+        .script-banner p{font-size:.8rem;line-height:1.6;color:var(--text2);}
+        .script-banner strong{color:var(--text);}
+        
+        /* Progress bar */
+        .progress-wrap{padding:.75rem 1rem;position:sticky;bottom:0;background:var(--bg);
+            border-top:1px solid var(--border);z-index:50;}
+        .progress-bar{height:8px;background:var(--bg3);border-radius:4px;overflow:hidden;}
+        .progress-fill{height:100%;background:var(--green);transition:width .3s;border-radius:4px;}
+        .progress-text{font-size:.7rem;color:var(--text2);text-align:center;margin-top:.25rem;}
+        
+        /* Notes */
+        .notes-area{margin-top:.5rem;}
+        .notes-area textarea{
+            width:100%;background:var(--bg);border:1px solid var(--border);border-radius:8px;
+            color:var(--text);font-family:'Inter',sans-serif;font-size:.8rem;padding:.5rem;
+            resize:vertical;min-height:40px;outline:none;
+        }
+        .notes-area textarea:focus{border-color:var(--green);}
+        .notes-area textarea::placeholder{color:var(--text3);}
+        
+        @media(max-width:400px){
+            .stat{min-width:60px;padding:.5rem .25rem;}
+            .stat .num{font-size:1.1rem;}
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>📞 Monday Call Sheet</h1>
+    <div class="sub">Jamie's Commercial Hit List — Tap to Call</div>
+    <div class="date">Week of March 24, 2026 | Updated: March 21</div>
+</div>
+
+<div class="stats">
+    <div class="stat g"><div class="num" id="totalLeads">12</div><div class="lbl">Leads</div></div>
+    <div class="stat o"><div class="num" id="called">0</div><div class="lbl">Called</div></div>
+    <div class="stat b"><div class="num" id="interested">0</div><div class="lbl">Interest</div></div>
+    <div class="stat y"><div class="num" id="estRevenue">$4K+</div><div class="lbl">/mo potential</div></div>
+</div>
+
+<div class="tabs">
+    <div class="tab active" data-tab="all">All <span class="badge-count">12</span></div>
+    <div class="tab" data-tab="hot">🔥 Hot <span class="badge-count">4</span></div>
+    <div class="tab" data-tab="warm">🟠 Warm <span class="badge-count">4</span></div>
+    <div class="tab" data-tab="cool">🔵 Cool <span class="badge-count">4</span></div>
+    <div class="tab" data-tab="script">📋 Script</div>
+</div>
+
+<div class="container" id="content">
+
+    <!-- UNIVERSAL CALL SCRIPT -->
+    <div class="script-banner" id="script-section" style="display:none;">
+        <h3>📋 Universal Opening Script</h3>
+        <p>
+            <strong>"Hi, this is Jamie with Tidy Tails — we're a local pet waste removal company here in [their city]. I was calling because [CUSTOM HOOK]. We do weekly cleanup at a flat monthly rate — no contracts, no hassle. Would that be something you'd be interested in hearing more about?"</strong>
+        </p>
+        <p style="margin-top:.75rem;color:var(--gold);font-size:.75rem;">
+            ⚡ KEY RULES:<br>
+            • Smile when you dial — they can hear it<br>
+            • Say their business name — shows you did homework<br>
+            • If voicemail: leave name, number, one sentence. That's it.<br>
+            • Text after VM: "Hi! Jamie from Tidy Tails. Just left you a voicemail about pet waste cleanup for [their business]. Here when you're ready! 🐾"<br>
+            • Track every call below — even no-answers
+        </p>
+    </div>
+
+    <!-- LEAD 1: Millsap Properties -->
+    <div class="lead-card" data-tier="hot" data-id="millsap">
+        <div class="card-header" onclick="toggleCard(this)">
+            <div class="rank hot">1</div>
+            <div class="card-info">
+                <div class="card-name">Millsap Properties</div>
+                <div class="card-type">Property Mgmt — 7 apartment communities</div>
+            </div>
+            <div class="card-value">
+                <div class="est">$500+</div>
+                <div class="per">/mo</div>
+            </div>
+            <div class="chevron">▶</div>
+        </div>
+        <div class="card-body">
+            <div class="detail-row"><span class="label">📍</span><span class="value">Florissant, Hazelwood, St. Charles, Ballwin</span></div>
+            <div class="detail-row"><span class="label">📞</span><span class="value"><a href="tel:+13146863337">(314) 686-3337</a></span></div>
+            <div class="detail-row"><span class="label">📧</span><span class="value"><a href="mailto:millsappropertymanagement@gmail.com">millsappropertymanagement@gmail.com</a></span></div>
+            <div class="detail-row"><span class="label">🏢</span><span class="value">7 pet-friendly communities — Charbonier Apts in Florissant 63031 (TJ's zip!)</span></div>
+            <div class="pitch-box">
+                <div class="pitch-label">🎯 Custom Hook</div>
+                "I noticed you manage Charbonier Apartments right here in Florissant — we actually service homes in that same neighborhood. Your residents love their dogs, and we can keep those common areas clean with a flat monthly rate. One vendor for all 7 communities if you like what you see."
+            </div>
+            <div class="actions">
+                <a href="tel:+13146863337" class="btn btn-call">📞 Call</a>
+                <a href="sms:+13146863337?body=Hi!%20This%20is%20Jamie%20from%20Tidy%20Tails%20pet%20waste%20removal.%20We%20service%20Florissant%20%26%20would%20love%20to%20help%20keep%20your%20apartment%20common%20areas%20clean.%20Can%20I%20send%20you%20some%20info%3F%20🐾" class="btn btn-text">💬 Text</a>
+                <button class="btn btn-done" onclick="markDone(this,'millsap')">✓</button>
+            </div>
+            <div class="notes-area">
+                <textarea placeholder="Notes: who answered, callback time, interest level..." id="notes-millsap"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEAD 2: No Leash Needed -->
+    <div class="lead-card" data-tier="hot" data-id="noleash">
+        <div class="card-header" onclick="toggleCard(this)">
+            <div class="rank hot">2</div>
+            <div class="card-info">
+                <div class="card-name">No Leash Needed</div>
+                <div class="card-type">Dog Daycare/Boarding — 8 locations</div>
+            </div>
+            <div class="card-value">
+                <div class="est">$400+</div>
+                <div class="per">/mo</div>
+            </div>
+            <div class="chevron">▶</div>
+        </div>
+        <div class="card-body">
+            <div class="detail-row"><span class="label">📍</span><span class="value">8 locations — Lake St. Louis, St. Charles, Ellisville, Kirkwood + more</span></div>
+            <div class="detail-row"><span class="label">📞</span><span class="value"><a href="tel:+13149420011">(314) 942-0011</a></span></div>
+            <div class="detail-row"><span class="label">🌐</span><span class="value"><a href="https://noleashneeded.com" target="_blank">noleashneeded.com</a></span></div>
+            <div class="detail-row"><span class="label">🏢</span><span class="value">Award-winning chain. Huge outdoor areas at every location. St. Charles & Lake St. Louis in TJ's zone.</span></div>
+            <div class="pitch-box">
+                <div class="pitch-label">🎯 Custom Hook</div>
+                "I saw you have 8 locations across St. Louis — that's impressive! With cage-free play, your outdoor areas get a LOT of traffic. We handle professional pet waste cleanup so your team can focus on the dogs. Already in St. Charles County. Could we start with one location and see how it goes?"
+            </div>
+            <div class="actions">
+                <a href="tel:+13149420011" class="btn btn-call">📞 Call</a>
+                <a href="sms:+13149420011?body=Hi!%20Jamie%20from%20Tidy%20Tails.%20We%20do%20professional%20pet%20waste%20cleanup%20for%20dog%20facilities.%20Would%20love%20to%20chat%20about%20your%20outdoor%20areas.%20🐾" class="btn btn-text">💬 Text</a>
+                <button class="btn btn-done" onclick="markDone(this,'noleash')">✓</button>
+            </div>
+            <div class="notes-area">
+                <textarea placeholder="Notes..." id="notes-noleash"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEAD 3: Renewal Heights -->
+    <div class="lead-card" data-tier="hot" data-id="renewal">
+        <div class="card-header" onclick="toggleCard(this)">
+            <div class="rank hot">3</div>
+            <div class="card-info">
+                <div class="card-name">Renewal Heights Apts</div>
+                <div class="card-type">411-unit complex w/ dog park — Ferguson</div>
+            </div>
+            <div class="card-value">
+                <div class="est">$350+</div>
+                <div class="per">/mo</div>
+            </div>
+            <div class="chevron">▶</div>
+        </div>
+        <div class="card-body">
+            <div class="detail-row"><span class="label">📍</span><span class="value">2974 Coppercreek Rd, Ferguson, MO 63136</span></div>
+            <div class="detail-row"><span class="label">📞</span><span class="value"><a href="tel:+13146999923">(314) 699-9923</a></span></div>
+            <div class="detail-row"><span class="label">🌐</span><span class="value"><a href="https://renewalheights.com" target="_blank">renewalheights.com</a></span></div>
+            <div class="detail-row"><span class="label">🏢</span><span class="value">411 units! Pet-friendly, dedicated dog park, recently renovated. Huge complex right next to Florissant.</span></div>
+            <div class="pitch-box">
+                <div class="pitch-label">🎯 Custom Hook</div>
+                "411 units with a dog park — that's a LOT of love and a LOT of cleanup! We're right down the road in Florissant and can take that off your maintenance crew's plate. Weekly service, one flat rate, we handle everything."
+            </div>
+            <div class="actions">
+                <a href="tel:+13146999923" class="btn btn-call">📞 Call</a>
+                <a href="sms:+13146999923?body=Hi!%20Jamie%20with%20Tidy%20Tails%20pet%20waste%20removal.%20We%27re%20in%20Florissant%20and%20would%20love%20to%20help%20with%20your%20dog%20park%20cleanup.%20One%20flat%20monthly%20rate!%20🐾" class="btn btn-text">💬 Text</a>
+                <button class="btn btn-done" onclick="markDone(this,'renewal')">✓</button>
+            </div>
+            <div class="notes-area">
+                <textarea placeholder="Notes..." id="notes-renewal"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEAD 4: Associa Smith Management -->
+    <div class="lead-card" data-tier="hot" data-id="associa">
+        <div class="card-header" onclick="toggleCard(this)">
+            <div class="rank hot">4</div>
+            <div class="card-info">
+                <div class="card-name">Associa Smith Mgmt</div>
+                <div class="card-type">Largest HOA mgmt in STL — dozens of communities</div>
+            </div>
+            <div class="card-value">
+                <div class="est">$500+</div>
+                <div class="per">/mo</div>
+            </div>
+            <div class="chevron">▶</div>
+        </div>
+        <div class="card-body">
+            <div class="detail-row"><span class="label">📍</span><span class="value">1630 Des Peres Rd, Suite 210, St. Louis, MO 63131</span></div>
+            <div class="detail-row"><span class="label">📞</span><span class="value"><a href="tel:+13143944200">(314) 394-4200</a></span></div>
+            <div class="detail-row"><span class="label">🌐</span><span class="value"><a href="https://smithmgmt.com" target="_blank">smithmgmt.com</a></span></div>
+            <div class="detail-row"><span class="label">🏢</span><span class="value">BIGGEST HOA company in STL metro. Manages dozens of communities. Pet waste = #1 HOA complaint.</span></div>
+            <div class="pitch-box">
+                <div class="pitch-label">🎯 Custom Hook</div>
+                "I know pet waste in common areas is one of the top complaints HOA boards deal with. We solve that — weekly professional cleanup for your communities at a flat monthly rate. We service North County and St. Charles already. Could I send you our commercial rates?"
+            </div>
+            <div class="actions">
+                <a href="tel:+13143944200" class="btn btn-call">📞 Call</a>
+                <a href="sms:+13143944200?body=Hi!%20Jamie%20with%20Tidy%20Tails.%20We%20provide%20pet%20waste%20removal%20for%20HOA%20common%20areas.%20%231%20resident%20complaint%20solved!%20Can%20I%20send%20info%3F%20🐾" class="btn btn-text">💬 Text</a>
+                <button class="btn btn-done" onclick="markDone(this,'associa')">✓</button>
+            </div>
+            <div class="notes-area">
+                <textarea placeholder="Notes..." id="notes-associa"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEAD 5: The Watering Bowl -->
+    <div class="lead-card" data-tier="warm" data-id="wateringbowl">
+        <div class="card-header" onclick="toggleCard(this)">
+            <div class="rank warm">5</div>
+            <div class="card-info">
+                <div class="card-name">The Watering Bowl</div>
+                <div class="card-type">Cage-free daycare — 3 locations</div>
+            </div>
+            <div class="card-value">
+                <div class="est">$250+</div>
+                <div class="per">/mo</div>
+            </div>
+            <div class="chevron">▶</div>
+        </div>
+        <div class="card-body">
+            <div class="detail-row"><span class="label">📍</span><span class="value">Brentwood, The Grove, St. Peters (TJ's area!)</span></div>
+            <div class="detail-row"><span class="label">📞</span><span class="value"><a href="tel:+13146473647">(314) 647-3647</a> (Brentwood) · <a href="tel:+16364862606">(636) 486-2606</a> (St. Peters)</span></div>
+            <div class="detail-row"><span class="label">🌐</span><span class="value"><a href="https://thewateringbowl.com" target="_blank">thewateringbowl.com</a></span></div>
+            <div class="detail-row"><span class="label">🏢</span><span class="value">Cage-free = dogs play on outdoor turf ALL DAY. Massive waste generation. Now part of Best Friends Pet Care.</span></div>
+            <div class="pitch-box">
+                <div class="pitch-label">🎯 Custom Hook</div>
+                "Your dogs play outside all day on that turf — I bet cleanup is a big job for your team. We do professional pet waste removal and we're already in St. Peters. Could start with that location and see how it goes. Plus — your daycare clients need yard cleanup at home. Referral partnership?"
+            </div>
+            <div class="actions">
+                <a href="tel:+16364862606" class="btn btn-call">📞 St. Peters</a>
+                <a href="tel:+13146473647" class="btn btn-call">📞 Brentwood</a>
+                <button class="btn btn-done" onclick="markDone(this,'wateringbowl')">✓</button>
+            </div>
+            <div class="notes-area">
+                <textarea placeholder="Notes..." id="notes-wateringbowl"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEAD 6: Delrado Apartments -->
+    <div class="lead-card" data-tier="warm" data-id="delrado">
+        <div class="card-header" onclick="toggleCard(this)">
+            <div class="rank warm">6</div>
+            <div class="card-info">
+                <div class="card-name">Delrado Apartments</div>
+                <div class="card-type">Dog park complex — Florissant 63031</div>
+            </div>
+            <div class="card-value">
+                <div class="est">$200+</div>
+                <div class="per">/mo</div>
+            </div>
+            <div class="chevron">▶</div>
+        </div>
+        <div class="card-body">
+            <div class="detail-row"><span class="label">📍</span><span class="value">680 Mescalero Ct, Florissant, MO 63031</span></div>
+            <div class="detail-row"><span class="label">📞</span><span class="value"><a href="tel:+13145015599">(314) 501-5599</a></span></div>
+            <div class="detail-row"><span class="label">🌐</span><span class="value"><a href="https://delradoapartments.com" target="_blank">delradoapartments.com</a></span></div>
+            <div class="detail-row"><span class="label">🏢</span><span class="value">Pet-friendly with dedicated dog park, fenced, waste station. TJ's zip code 63031! Near Shannon & Amanda's homes.</span></div>
+            <div class="pitch-box">
+                <div class="pitch-label">🎯 Custom Hook</div>
+                "We're literally right here in Florissant 63031 — we service homes in your neighborhood already. Your dog park is great but those waste stations need regular service. We can handle it weekly for one flat rate."
+            </div>
+            <div class="actions">
+                <a href="tel:+13145015599" class="btn btn-call">📞 Call</a>
+                <a href="sms:+13145015599?body=Hi!%20Jamie%20with%20Tidy%20Tails%20in%20Florissant.%20We%20do%20pet%20waste%20removal%20and%20would%20love%20to%20keep%20your%20dog%20park%20clean.%20Flat%20monthly%20rate!%20🐾" class="btn btn-text">💬 Text</a>
+                <button class="btn btn-done" onclick="markDone(this,'delrado')">✓</button>
+            </div>
+            <div class="notes-area">
+                <textarea placeholder="Notes..." id="notes-delrado"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEAD 7: Jasper Apartments -->
+    <div class="lead-card" data-tier="warm" data-id="jasper">
+        <div class="card-header" onclick="toggleCard(this)">
+            <div class="rank warm">7</div>
+            <div class="card-info">
+                <div class="card-name">Jasper Apartments</div>
+                <div class="card-type">BRAND NEW — dog park + pet wash — St. Peters</div>
+            </div>
+            <div class="card-value">
+                <div class="est">$250+</div>
+                <div class="per">/mo</div>
+            </div>
+            <div class="chevron">▶</div>
+        </div>
+        <div class="card-body">
+            <div class="detail-row"><span class="label">📍</span><span class="value">1000 Jasper Ln, St. Peters, MO 63303</span></div>
+            <div class="detail-row"><span class="label">📞</span><span class="value"><a href="tel:+16367474411">(636) 747-4411</a></span></div>
+            <div class="detail-row"><span class="label">🌐</span><span class="value"><a href="https://jasperlifestl.com" target="_blank">jasperlifestl.com</a></span></div>
+            <div class="detail-row"><span class="label">🏢</span><span class="value">BRAND NEW build — still building vendor list! Dog park, pet wash, pickleball. 1-3 BR. No established waste vendor yet.</span></div>
+            <div class="pitch-box">
+                <div class="pitch-label">🎯 Custom Hook</div>
+                "Congrats on the new community — it looks amazing! Since you're still setting up vendors, we'd love to be your pet waste partner from day one. We're already in St. Peters and can keep that beautiful new dog park spotless."
+            </div>
+            <div class="actions">
+                <a href="tel:+16367474411" class="btn btn-call">📞 Call</a>
+                <a href="sms:+16367474411?body=Hi!%20Jamie%20from%20Tidy%20Tails.%20Congrats%20on%20Jasper%20-%20beautiful%20community!%20We%20do%20pet%20waste%20removal%20and%20would%20love%20to%20be%20your%20vendor.%20Already%20in%20St.%20Peters!%20🐾" class="btn btn-text">💬 Text</a>
+                <button class="btn btn-done" onclick="markDone(this,'jasper')">✓</button>
+            </div>
+            <div class="notes-area">
+                <textarea placeholder="Notes..." id="notes-jasper"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEAD 8: Sentry Management -->
+    <div class="lead-card" data-tier="warm" data-id="sentry">
+        <div class="card-header" onclick="toggleCard(this)">
+            <div class="rank warm">8</div>
+            <div class="card-info">
+                <div class="card-name">Sentry Management</div>
+                <div class="card-type">HOA mgmt — 32+ communities</div>
+            </div>
+            <div class="card-value">
+                <div class="est">$400+</div>
+                <div class="per">/mo</div>
+            </div>
+            <div class="chevron">▶</div>
+        </div>
+        <div class="card-body">
+            <div class="detail-row"><span class="label">📍</span><span class="value">9666 Olive Blvd, Ste 116, St. Louis, MO 63132</span></div>
+            <div class="detail-row"><span class="label">📞</span><span class="value"><a href="tel:+13149947440">(314) 994-7440</a></span></div>
+            <div class="detail-row"><span class="label">🌐</span><span class="value"><a href="https://sentrymgt.com/offices/st-louis" target="_blank">sentrymgt.com</a></span></div>
+            <div class="detail-row"><span class="label">🏢</span><span class="value">National HOA company, 32+ communities in STL metro. St. Louis County + St. Charles County (O'Fallon, St. Peters, Wentzville).</span></div>
+            <div class="pitch-box">
+                <div class="pitch-label">🎯 Custom Hook</div>
+                "I know HOA boards deal with pet waste complaints constantly — it's one of the top issues. We solve it with professional weekly cleanup for common areas. One vendor, one invoice, done. We service North County and St. Charles already."
+            </div>
+            <div class="actions">
+                <a href="tel:+13149947440" class="btn btn-call">📞 Call</a>
+                <a href="sms:+13149947440?body=Hi!%20Jamie%20from%20Tidy%20Tails.%20We%20do%20professional%20pet%20waste%20cleanup%20for%20HOA%20common%20areas.%20Would%20love%20to%20chat%20about%20your%20communities.%20🐾" class="btn btn-text">💬 Text</a>
+                <button class="btn btn-done" onclick="markDone(this,'sentry')">✓</button>
+            </div>
+            <div class="notes-area">
+                <textarea placeholder="Notes..." id="notes-sentry"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEAD 9: Baronwood Kennels -->
+    <div class="lead-card" data-tier="cool" data-id="baronwood">
+        <div class="card-header" onclick="toggleCard(this)">
+            <div class="rank cool">9</div>
+            <div class="card-info">
+                <div class="card-name">Baronwood Kennels</div>
+                <div class="card-type">Boarding/grooming — Florissant (since 1971)</div>
+            </div>
+            <div class="card-value">
+                <div class="est">$150+</div>
+                <div class="per">/mo</div>
+            </div>
+            <div class="chevron">▶</div>
+        </div>
+        <div class="card-body">
+            <div class="detail-row"><span class="label">📍</span><span class="value">17220 New Halls Ferry Rd, Florissant, MO 63034</span></div>
+            <div class="detail-row"><span class="label">📞</span><span class="value"><a href="tel:+13148382021">(314) 838-2021</a></span></div>
+            <div class="detail-row"><span class="label">🌐</span><span class="value"><a href="https://baronwoodkennels.com" target="_blank">baronwoodkennels.com</a></span></div>
+            <div class="detail-row"><span class="label">🏢</span><span class="value">Family-owned since 1971. Indoor + outdoor kennels. "Country setting." Florissant = TJ's territory. Service + referral play.</span></div>
+            <div class="pitch-box">
+                <div class="pitch-label">🎯 Custom Hook</div>
+                "Fellow Florissant business — we do pet waste removal. Two things: can we clean your outdoor kennel areas weekly? And — your boarding clients probably need yard cleanup at home. Let's set up a referral deal. Your clients get 10% off, we send you boarding referrals."
+            </div>
+            <div class="actions">
+                <a href="tel:+13148382021" class="btn btn-call">📞 Call</a>
+                <a href="sms:+13148382021?body=Hi!%20Jamie%20with%20Tidy%20Tails%20-%20fellow%20Florissant%20pet%20biz!%20Would%20love%20to%20chat%20about%20outdoor%20cleanup%20%2B%20referral%20partnership.%20🐾" class="btn btn-text">💬 Text</a>
+                <button class="btn btn-done" onclick="markDone(this,'baronwood')">✓</button>
+            </div>
+            <div class="notes-area">
+                <textarea placeholder="Notes..." id="notes-baronwood"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEAD 10: Greenway Chase -->
+    <div class="lead-card" data-tier="cool" data-id="greenway">
+        <div class="card-header" onclick="toggleCard(this)">
+            <div class="rank cool">10</div>
+            <div class="card-info">
+                <div class="card-name">Greenway Chase Apts</div>
+                <div class="card-type">Dog park complex — Florissant 63031</div>
+            </div>
+            <div class="card-value">
+                <div class="est">$200+</div>
+                <div class="per">/mo</div>
+            </div>
+            <div class="chevron">▶</div>
+        </div>
+        <div class="card-body">
+            <div class="detail-row"><span class="label">📍</span><span class="value">629 Greenway Manor Dr, Florissant, MO 63031</span></div>
+            <div class="detail-row"><span class="label">📞</span><span class="value"><a href="tel:+13148382879">(314) 838-2879</a></span></div>
+            <div class="detail-row"><span class="label">🌐</span><span class="value"><a href="https://greenwaychase.com" target="_blank">greenwaychase.com</a></span></div>
+            <div class="detail-row"><span class="label">🏢</span><span class="value">Pet-friendly, on-site dog park, same zip as TJ's customers. Near Black Jack.</span></div>
+            <div class="pitch-box">
+                <div class="pitch-label">🎯 Custom Hook</div>
+                "We're already in the neighborhood — we service homes right near you in Florissant. Your dog park is a great amenity. Professional weekly cleanup keeps it in shape and keeps residents happy. One flat rate."
+            </div>
+            <div class="actions">
+                <a href="tel:+13148382879" class="btn btn-call">📞 Call</a>
+                <a href="sms:+13148382879?body=Hi!%20Jamie%20from%20Tidy%20Tails%20in%20Florissant.%20We%20do%20dog%20park%20cleanup%20and%20we%27re%20right%20in%20your%20neighborhood.%20Flat%20monthly%20rate!%20🐾" class="btn btn-text">💬 Text</a>
+                <button class="btn btn-done" onclick="markDone(this,'greenway')">✓</button>
+            </div>
+            <div class="notes-area">
+                <textarea placeholder="Notes..." id="notes-greenway"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEAD 11: Ferguson Animal Hospital -->
+    <div class="lead-card" data-tier="cool" data-id="fergusonah">
+        <div class="card-header" onclick="toggleCard(this)">
+            <div class="rank cool">11</div>
+            <div class="card-info">
+                <div class="card-name">Ferguson Animal Hospital</div>
+                <div class="card-type">Vet clinic — referral partnership</div>
+            </div>
+            <div class="card-value">
+                <div class="est">Referrals</div>
+                <div class="per">∞ value</div>
+            </div>
+            <div class="chevron">▶</div>
+        </div>
+        <div class="card-body">
+            <div class="detail-row"><span class="label">📍</span><span class="value">483 Airport Rd, Ferguson, MO 63135</span></div>
+            <div class="detail-row"><span class="label">📞</span><span class="value"><a href="tel:+13145240707">(314) 524-0707</a></span></div>
+            <div class="detail-row"><span class="label">📧</span><span class="value"><a href="mailto:fergusonah@sbcglobal.net">fergusonah@sbcglobal.net</a></span></div>
+            <div class="detail-row"><span class="label">🏢</span><span class="value">Full-service vet. Every client owns a dog. Cards at front desk = passive lead gen forever.</span></div>
+            <div class="pitch-box">
+                <div class="pitch-label">🎯 Custom Hook</div>
+                "Hi — fellow local pet business! We do yard waste cleanup for dog owners in Ferguson and Florissant. Could we drop off some business cards for your front desk? Your dog clients would love us. We'll send you referrals too."
+            </div>
+            <div class="actions">
+                <a href="tel:+13145240707" class="btn btn-call">📞 Call</a>
+                <a href="sms:+13145240707?body=Hi!%20Jamie%20from%20Tidy%20Tails%20pet%20waste%20removal.%20Fellow%20local%20pet%20biz%20-%20can%20we%20drop%20off%20some%20cards%20for%20your%20desk%3F%20Your%20dog%20clients%20need%20us!%20🐾" class="btn btn-text">💬 Text</a>
+                <button class="btn btn-done" onclick="markDone(this,'fergusonah')">✓</button>
+            </div>
+            <div class="notes-area">
+                <textarea placeholder="Notes..." id="notes-fergusonah"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEAD 12: Cross Keys Animal Clinic -->
+    <div class="lead-card" data-tier="cool" data-id="crosskeys">
+        <div class="card-header" onclick="toggleCard(this)">
+            <div class="rank cool">12</div>
+            <div class="card-info">
+                <div class="card-name">Cross Keys Animal Clinic</div>
+                <div class="card-type">Vet clinic — Florissant Hwy 67</div>
+            </div>
+            <div class="card-value">
+                <div class="est">Referrals</div>
+                <div class="per">∞ value</div>
+            </div>
+            <div class="chevron">▶</div>
+        </div>
+        <div class="card-body">
+            <div class="detail-row"><span class="label">📍</span><span class="value">2685 N Hwy 67, Florissant, MO 63033</span></div>
+            <div class="detail-row"><span class="label">📞</span><span class="value"><a href="tel:+13148374617">(314) 837-4617</a></span></div>
+            <div class="detail-row"><span class="label">🌐</span><span class="value"><a href="https://crosskeysanimalclinic.com" target="_blank">crosskeysanimalclinic.com</a></span></div>
+            <div class="detail-row"><span class="label">🏢</span><span class="value">On Hwy 67 in Florissant — TJ's core turf. Open Saturdays. 362 FB likes. Near TJ's existing customers.</span></div>
+            <div class="pitch-box">
+                <div class="pitch-label">🎯 Custom Hook</div>
+                "We're the local Florissant pooper scooper — literally right here on 67. Can we bring by some cards for your front desk? Your dog owner clients would appreciate the recommendation. We'll return the favor."
+            </div>
+            <div class="actions">
+                <a href="tel:+13148374617" class="btn btn-call">📞 Call</a>
+                <a href="sms:+13148374617?body=Hi!%20Jamie%20from%20Tidy%20Tails%20-%20local%20Florissant%20pet%20waste%20removal.%20Can%20we%20drop%20off%20cards%20for%20your%20desk%3F%20We%27re%20right%20here%20on%2067!%20🐾" class="btn btn-text">💬 Text</a>
+                <button class="btn btn-done" onclick="markDone(this,'crosskeys')">✓</button>
+            </div>
+            <div class="notes-area">
+                <textarea placeholder="Notes..." id="notes-crosskeys"></textarea>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Progress bar at bottom -->
+<div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+    <div class="progress-text" id="progressText">0 of 12 calls made — Let's go! 📞</div>
+</div>
+
+<script>
+    // State management with localStorage
+    const STATE_KEY = 'tidy-tails-call-sheet-mar24';
+    
+    function loadState() {
+        try { return JSON.parse(localStorage.getItem(STATE_KEY)) || {}; } 
+        catch { return {}; }
+    }
+    
+    function saveState(state) {
+        localStorage.setItem(STATE_KEY, JSON.stringify(state));
+    }
+    
+    // Toggle card expansion
+    function toggleCard(header) {
+        const card = header.closest('.lead-card');
+        card.classList.toggle('open');
+    }
+    
+    // Mark as called
+    function markDone(btn, id) {
+        const state = loadState();
+        const card = btn.closest('.lead-card');
+        
+        if (card.classList.contains('called')) {
+            card.classList.remove('called');
+            btn.classList.remove('checked');
+            btn.textContent = '✓';
+            delete state[id];
+        } else {
+            card.classList.add('called');
+            btn.classList.add('checked');
+            btn.textContent = '✓ Done';
+            state[id] = { called: true, time: new Date().toISOString() };
+        }
+        
+        // Save notes
+        const textarea = document.getElementById('notes-' + id);
+        if (textarea && textarea.value) {
+            if (!state[id]) state[id] = {};
+            state[id].notes = textarea.value;
+        }
+        
+        saveState(state);
+        updateProgress();
+    }
+    
+    // Update progress bar
+    function updateProgress() {
+        const state = loadState();
+        const total = document.querySelectorAll('.lead-card').length;
+        const called = Object.values(state).filter(s => s.called).length;
+        
+        document.getElementById('called').textContent = called;
+        document.getElementById('progressFill').style.width = (called/total*100) + '%';
+        
+        const messages = [
+            `${called} of ${total} calls made — Let's go! 📞`,
+            `${called} of ${total} done — Keep dialing! 🔥`,
+            `${called} of ${total} — You're on fire! 💪`,
+            `${called} of ${total} — Almost there! ⚡`,
+            `ALL ${total} CALLS DONE! 🏆 Jamie is a MACHINE!`
+        ];
+        
+        const msgIdx = called === total ? 4 : Math.min(Math.floor(called / 3), 3);
+        document.getElementById('progressText').textContent = messages[msgIdx];
+    }
+    
+    // Tab filtering
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+            
+            const filter = tab.dataset.tab;
+            const scriptSection = document.getElementById('script-section');
+            
+            if (filter === 'script') {
+                scriptSection.style.display = 'block';
+                document.querySelectorAll('.lead-card').forEach(c => c.style.display = 'none');
+                return;
+            }
+            
+            scriptSection.style.display = 'none';
+            document.querySelectorAll('.lead-card').forEach(card => {
+                if (filter === 'all' || card.dataset.tier === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    });
+    
+    // Restore state on load
+    function restoreState() {
+        const state = loadState();
+        Object.entries(state).forEach(([id, data]) => {
+            const card = document.querySelector(`[data-id="${id}"]`);
+            if (!card) return;
+            
+            if (data.called) {
+                card.classList.add('called');
+                const btn = card.querySelector('.btn-done');
+                if (btn) { btn.classList.add('checked'); btn.textContent = '✓ Done'; }
+            }
+            
+            if (data.notes) {
+                const textarea = document.getElementById('notes-' + id);
+                if (textarea) textarea.value = data.notes;
+            }
+        });
+        updateProgress();
+    }
+    
+    // Auto-save notes on change
+    document.querySelectorAll('textarea').forEach(ta => {
+        ta.addEventListener('change', () => {
+            const id = ta.id.replace('notes-', '');
+            const state = loadState();
+            if (!state[id]) state[id] = {};
+            state[id].notes = ta.value;
+            saveState(state);
+        });
+    });
+    
+    restoreState();
+</script>
+
+</body>
+</html>
