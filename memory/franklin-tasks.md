@@ -7,6 +7,38 @@
 
 ## March 21, 2026 (Saturday)
 
+### 2:05 AM — 💰 PAID ADS PLAYBOOK — Facebook + Google Strategy with ROI Projections (Revenue/Marketing)
+**Task:** Researched real industry data from 7-figure pet waste businesses (Swoop Scoop: 10K+ FB leads, Fresh Start: $200K year 1), 2025 home services ad benchmarks (LocaliQ: 3,200 campaigns), and competitor ad activity in STL. Built a comprehensive interactive playbook with budget scenarios, ROI calculator, phased roadmap, 3 ready-to-use ad templates, keyword targeting plan, and step-by-step quick-start guide.
+
+**Result:** ✅ COMPLETE — `dashboard/paid-ads-playbook.html` + linked in dashboard nav + research saved to `memory/paid-ads-research-mar21-2026.md`
+
+**Key Findings:**
+1. **Facebook Ads > Google Ads for pet waste** — Swoop Scoop (7-figure biz) says FB generated more leads than any other channel because most people don't know the service exists. Low search volume = Google can't capture demand that doesn't exist yet.
+2. **$150/month → 3-5 new customers** — At $8-15/lead on FB with 30% close rate, $5/day spend generates 10-15 leads/month → 3-5 customers → $210-500/month new revenue. ROI positive month 1.
+3. **Customer LTV = $1,500** — At 18 months avg retention × $85/month, spending even $150 to acquire a customer is a 10:1 return.
+4. **ZERO local competitors running paid ads** — Only POOP 911 and DoodyCalls (both national franchises) run Google Ads in STL. All 12+ indie competitors have zero paid presence. $5/day instantly leapfrogs every local player.
+5. **Cleaning Services CVR = 17.65%** — Best conversion rate in ALL home services categories. Pet waste is in this niche. High intent once someone clicks.
+6. **Phase strategy:** FB now ($150/mo) → Add Google after 10+ reviews ($300/mo) → Scale at 20+ customers ($600-900/mo)
+
+**What's In The Playbook:**
+- Executive summary with clear recommendation
+- FB vs Google comparison with visual bar chart
+- 3 ready-to-copy Facebook ad templates (Awareness Hook, Spring Pain Point, Value Math)
+- Complete Google Ads keyword table with est. CPC
+- Competitor ad activity intelligence
+- ROI calculator for both FB and Google scenarios  
+- 3-phase roadmap with budgets and prerequisites
+- $0 checklist (do before spending on ads)
+- 3 budget tiers: Starter $150/mo, Growth $450/mo, Scale $900/mo
+- 7-step quick-start guide to launch first FB ad
+- Tracking guide for measuring results
+
+**Revenue Impact:** This is the missing strategic piece. TJ has 130+ deliverables but no paid acquisition strategy. If he launches Phase 1 ($150/mo FB), conservative projection = 10-15 new customers in 3 months. That's potentially $700-1,500/month recurring revenue from $450 total investment. Answers the question "should I spend money on ads?" with hard data instead of guessing.
+
+**Rotation:** 💰 Paid Advertising / Strategy / Revenue Growth
+
+---
+
 ### 1:04 AM — 🔍 COMPLETE COMPETITIVE LANDSCAPE + SEARCH VISIBILITY AUDIT (Competitive Intelligence)
 **Task:** Crawled every competitor website, checked live search rankings for STL pet waste keywords, profiled 3 previously-unknown competitors (Yucko's, Poopy Paws, The Poo Fighterz), and discovered that Tidy Tails has ZERO search visibility — not appearing in ANY search result for any keyword, not on Yelp, not on any pet directory.
 
