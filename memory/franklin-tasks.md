@@ -7,6 +7,32 @@
 
 ## March 21, 2026 (Saturday)
 
+### 3:05 AM — 📍 90-DAY GROWTH ROADMAP — 5→30 Customers in 13 Weeks (Strategic Planning)
+**Task:** Recognized the core problem: 159 dashboard deliverables but only 4-5 customers. TJ doesn't need more plans — he needs ONE plan he actually follows. Built an interactive 90-day roadmap that distills everything into 42 specific, prioritized weekly tasks across 3 phases. Each task links to the relevant existing deliverable. Includes "Why This Order" strategy section explaining the sequencing logic.
+
+**Result:** ✅ COMPLETE — `dashboard/90-day-growth-roadmap.html` + linked in dashboard nav as top-level item
+
+**The 3 Phases:**
+1. **Foundation (Wk 1-3):** GBP to 100%, get 3-5 reviews, 10 directory listings, join FB groups + Nextdoor, launch referral program, order door hangers → 5→10 customers
+2. **Growth (Wk 4-8):** Launch FB ads ($5/day), distribute door hangers, consistent posting rhythm, commercial lead calls, mid-point audit → 10→20 customers  
+3. **Scale (Wk 9-13):** Increase ad budget, launch Google Ads, expand to St. Charles, close commercial account, hire decision → 20→30 customers
+
+**Key Design Decisions:**
+- **42 tasks, not 159** — ruthlessly cut everything that isn't directly customer-generating
+- **~3 hrs/week time commitment** — realistic for a one-person operation
+- **~$150/mo total budget** — door hangers + FB ads, nothing else until foundation is set
+- **Free before paid** — prove messaging works with $0 channels, then amplify
+- **Reviews before ads** — running ads with 0 reviews = wasting money
+- **Every task links to existing deliverable** — no new content needed, just execution of what exists
+- **Interactive checkboxes with localStorage** — progress persists between sessions
+- **Progress bars auto-update** — customer count, revenue, weeks completed
+
+**Why This Matters:** The #1 insight from tonight's competitive audit: Tidy Tails is completely invisible in search (0 results for any keyword). But building 160th deliverable won't fix that — following ONE roadmap will. This page is now the only page TJ needs to look at.
+
+**Rotation:** 📍 Strategic Planning / Execution / Growth Roadmap
+
+---
+
 ### 2:05 AM — 💰 PAID ADS PLAYBOOK — Facebook + Google Strategy with ROI Projections (Revenue/Marketing)
 **Task:** Researched real industry data from 7-figure pet waste businesses (Swoop Scoop: 10K+ FB leads, Fresh Start: $200K year 1), 2025 home services ad benchmarks (LocaliQ: 3,200 campaigns), and competitor ad activity in STL. Built a comprehensive interactive playbook with budget scenarios, ROI calculator, phased roadmap, 3 ready-to-use ad templates, keyword targeting plan, and step-by-step quick-start guide.
 
