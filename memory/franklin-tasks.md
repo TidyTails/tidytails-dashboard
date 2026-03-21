@@ -7,6 +7,48 @@
 
 ## March 21, 2026 (Saturday)
 
+### 7:04 AM — 📅 SPRING EVENTS CALENDAR — 12 Dog Events Where TJ's Customers Will Be (Networking/Marketing)
+**Task:** Researched every upcoming pet event, dog-friendly farmers market, adoption drive, and community festival in the St. Louis metro area for Spring 2026. Found 12 events (9 free) from March through May where hundreds-to-thousands of dog owners will gather. Built an interactive dashboard with countdowns, elevator pitches, prep checklist, status tracking, and ROI projections.
+
+**Result:** ✅ COMPLETE — `dashboard/spring-events-calendar-2026.html` + dashboard nav updated + pushed to GitHub
+
+**Key Events Found:**
+- **Mar 28:** Adoption Paw-ty — Crestwood (NEXT WEEK!)
+- **Mar 29:** Bingo for the Pups — Chicken N Pickle, St. Charles
+- **Apr 4:** Ladue Pet Egg Hunt — Treats Unleashed ($5, hundreds of affluent dog owners)
+- **Apr 4:** O'Fallon PetSmart Adoption — Needy Paws (new adopters = instant leads)
+- **Apr 5+:** Tower Grove Farmers Market (every Saturday, DOG-FRIENDLY, 37K FB followers)
+- **Apr 18:** ⭐ ARCH BARK — Gateway Arch (Purina-sponsored, THOUSANDS attend, FREE)
+- **May TBD:** Whiskers & Wags Pet Expo — O'Fallon (VENDOR BOOTH OPPORTUNITY in TJ's territory)
+- **May 16:** ⭐ Bark in the Park — Tower Grove (HSMO's biggest event, free walk + festival)
+- **Monthly:** Stray Rescue Adoption Days at Fenton Petco (3rd Saturday)
+- **Weekly:** St. Charles Farmers Market (Saturday mornings)
+
+**Dashboard Features:**
+- 📅 Visual timeline of all events chronologically
+- ⏰ Live countdown timers ("7 days away!" / "TODAY!")
+- 🎯 Elevator pitches for each event (what to say to dog owners)
+- 📋 Event prep checklist with costs (~$100 total for all supplies)
+- ✅ Status tracking per event (planned/registered/attended/skip)
+- 📊 ROI math: 6 events × 50 cards = 9 customers = $630/mo recurring
+- 🚨 Specific action items (apply for Whiskers & Wags vendor booth NOW)
+- ⚠️ Note: Soulard Market does NOT allow dogs — skip it
+
+**Why This Task:**
+- First weekend of spring — events are being announced RIGHT NOW
+- The Adoption Paw-ty is ONE WEEK from today — time-sensitive
+- Arch Bark is 4 weeks out — needs to be on TJ's radar NOW
+- O'Fallon Whiskers & Wags vendor booth applications likely closing soon
+- Event marketing = $0 cost, face-to-face with exact target audience
+- This is a different channel than everything else we've built (social, ads, SEO) — it's BOOTS ON THE GROUND
+- Every event has hundreds of dog owners in one place. No other marketing delivers that.
+
+**Revenue Impact:** If TJ attends 6 events, hands out 50 cards each (300 total), and converts just 3% → 9 new customers × $70/month = $630/month in new recurring revenue. Total cost: ~$100 in supplies + gas. That's a 6x ROI in month 1, compounding forever.
+
+**Rotation:** 📅 Event Marketing / Networking / Customer Acquisition
+
+---
+
 ### 6:04 AM — 🎯 LIVE COMPETITOR PRICING INTEL — Sales Ammo for Jamie (Competitive Intelligence)
 **Task:** Scraped all 7 active competitors' websites for current Spring 2026 pricing. Built an interactive sales tool with 3 tabs: visual price comparison chart + detailed competitor cards, copy-paste objection rebuttals for Jamie's calls, and a quick-reference cheat sheet. Every data point is from live web scrapes, not guesses.
 

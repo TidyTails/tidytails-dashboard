@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐕 Spring Events Calendar — Tidy Tails Networking Opportunities</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
+        
+        .header {
+            background: linear-gradient(135deg, #1a472a 0%, #2d5016 50%, #1a472a 100%);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            border-bottom: 3px solid #4ade80;
+        }
+        .header h1 { font-size: 1.8rem; color: #4ade80; margin-bottom: 0.3rem; }
+        .header .subtitle { color: #a3e635; font-size: 1rem; }
+        .header .tagline { color: #94a3b8; font-size: 0.85rem; margin-top: 0.5rem; }
+        
+        .stats-bar {
+            display: flex; justify-content: center; gap: 2rem; padding: 1rem;
+            background: #111; border-bottom: 1px solid #333;
+            flex-wrap: wrap;
+        }
+        .stat { text-align: center; }
+        .stat-num { font-size: 1.5rem; font-weight: bold; color: #4ade80; }
+        .stat-label { font-size: 0.75rem; color: #888; text-transform: uppercase; }
+        
+        .container { max-width: 900px; margin: 0 auto; padding: 1rem; }
+        
+        .section-title {
+            font-size: 1.3rem; color: #4ade80; margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem; border-bottom: 1px solid #333;
+        }
+        
+        .event-card {
+            background: #1a1a1a; border: 1px solid #333; border-radius: 12px;
+            margin-bottom: 1rem; overflow: hidden;
+            transition: border-color 0.3s;
+        }
+        .event-card:hover { border-color: #4ade80; }
+        .event-card.hot { border-left: 4px solid #ef4444; }
+        .event-card.warm { border-left: 4px solid #f59e0b; }
+        .event-card.cool { border-left: 4px solid #3b82f6; }
+        .event-card.recurring { border-left: 4px solid #8b5cf6; }
+        
+        .event-header {
+            padding: 1rem 1.2rem;
+            display: flex; justify-content: space-between; align-items: flex-start;
+            cursor: pointer;
+        }
+        .event-header:hover { background: #222; }
+        
+        .event-title-group { flex: 1; }
+        .event-emoji { font-size: 1.5rem; margin-right: 0.5rem; }
+        .event-name { font-size: 1.1rem; font-weight: bold; color: #fff; }
+        .event-date { color: #4ade80; font-size: 0.9rem; margin-top: 0.2rem; }
+        .event-location { color: #94a3b8; font-size: 0.85rem; }
+        
+        .event-badges { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.3rem; }
+        .badge {
+            font-size: 0.7rem; padding: 0.15rem 0.5rem; border-radius: 20px;
+            text-transform: uppercase; font-weight: 600;
+        }
+        .badge-free { background: #064e3b; color: #34d399; }
+        .badge-dog { background: #312e81; color: #a78bfa; }
+        .badge-huge { background: #7f1d1d; color: #fca5a5; }
+        .badge-vendor { background: #78350f; color: #fcd34d; }
+        .badge-recurring { background: #3b0764; color: #c4b5fd; }
+        
+        .countdown {
+            background: #111; padding: 0.3rem 0.8rem; border-radius: 8px;
+            font-size: 0.8rem; color: #f59e0b; font-weight: bold;
+            white-space: nowrap; margin-left: 1rem;
+        }
+        .countdown.soon { color: #ef4444; background: #1a0505; }
+        .countdown.today { color: #4ade80; background: #051a0a; animation: pulse 2s infinite; }
+        
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        
+        .event-details {
+            display: none; padding: 0 1.2rem 1.2rem;
+            border-top: 1px solid #2a2a2a;
+        }
+        .event-details.open { display: block; }
+        
+        .detail-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+            margin-top: 1rem;
+        }
+        @media (max-width: 600px) { .detail-grid { grid-template-columns: 1fr; } }
+        
+        .detail-box {
+            background: #111; border-radius: 8px; padding: 0.8rem;
+        }
+        .detail-box h4 { color: #4ade80; font-size: 0.85rem; margin-bottom: 0.4rem; }
+        .detail-box p, .detail-box li { font-size: 0.85rem; color: #ccc; }
+        .detail-box ul { padding-left: 1.2rem; }
+        .detail-box li { margin-bottom: 0.2rem; }
+        
+        .action-item {
+            background: #0a1a0a; border: 1px solid #166534; border-radius: 8px;
+            padding: 0.8rem; margin-top: 0.8rem;
+        }
+        .action-item h4 { color: #4ade80; font-size: 0.85rem; }
+        .action-item p { font-size: 0.85rem; color: #86efac; }
+        
+        .prep-section {
+            background: #1a1a1a; border: 1px solid #333; border-radius: 12px;
+            padding: 1.5rem; margin-top: 1.5rem;
+        }
+        .prep-section h3 { color: #f59e0b; margin-bottom: 1rem; font-size: 1.1rem; }
+        
+        .checklist-item {
+            display: flex; align-items: center; padding: 0.5rem 0;
+            border-bottom: 1px solid #222;
+        }
+        .checklist-item:last-child { border-bottom: none; }
+        .checklist-item input[type="checkbox"] {
+            width: 20px; height: 20px; margin-right: 0.8rem;
+            accent-color: #4ade80; cursor: pointer;
+        }
+        .checklist-item label { cursor: pointer; font-size: 0.9rem; }
+        .checklist-item .cost { color: #f59e0b; font-size: 0.8rem; margin-left: auto; }
+        
+        .timeline {
+            position: relative; padding-left: 2rem; margin-top: 1rem;
+        }
+        .timeline::before {
+            content: ''; position: absolute; left: 0.8rem; top: 0; bottom: 0;
+            width: 2px; background: #333;
+        }
+        .timeline-item {
+            position: relative; margin-bottom: 1.5rem;
+        }
+        .timeline-dot {
+            position: absolute; left: -1.45rem; top: 0.3rem;
+            width: 12px; height: 12px; border-radius: 50%;
+            background: #4ade80; border: 2px solid #0a0a0a;
+        }
+        .timeline-dot.past { background: #555; }
+        .timeline-dot.next { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
+        .timeline-date { color: #4ade80; font-weight: bold; font-size: 0.9rem; }
+        .timeline-event { color: #e0e0e0; font-size: 0.9rem; }
+        .timeline-note { color: #888; font-size: 0.8rem; }
+        
+        .roi-box {
+            background: linear-gradient(135deg, #0a1a0a, #1a0a2a);
+            border: 1px solid #4ade80; border-radius: 12px;
+            padding: 1.5rem; margin-top: 1.5rem; text-align: center;
+        }
+        .roi-box h3 { color: #4ade80; margin-bottom: 0.5rem; }
+        .roi-big { font-size: 2rem; font-weight: bold; color: #fff; }
+        .roi-sub { color: #94a3b8; font-size: 0.85rem; margin-top: 0.3rem; }
+        
+        .link-btn {
+            display: inline-block; padding: 0.4rem 1rem; border-radius: 6px;
+            background: #166534; color: #4ade80; text-decoration: none;
+            font-size: 0.85rem; margin-top: 0.5rem; transition: background 0.3s;
+        }
+        .link-btn:hover { background: #15803d; }
+        
+        .status-tracker {
+            display: flex; gap: 0.5rem; margin-top: 0.5rem; flex-wrap: wrap;
+        }
+        .status-btn {
+            padding: 0.3rem 0.8rem; border-radius: 20px; border: 1px solid #444;
+            background: #222; color: #aaa; cursor: pointer; font-size: 0.75rem;
+            transition: all 0.3s;
+        }
+        .status-btn.active { border-color: #4ade80; color: #4ade80; background: #0a1a0a; }
+        .status-btn:hover { border-color: #666; }
+
+        .elevator-pitch {
+            background: #111; border-left: 3px solid #f59e0b;
+            padding: 0.8rem 1rem; margin-top: 0.8rem; border-radius: 0 8px 8px 0;
+        }
+        .elevator-pitch h4 { color: #f59e0b; font-size: 0.85rem; margin-bottom: 0.3rem; }
+        .elevator-pitch p { font-size: 0.85rem; color: #fcd34d; font-style: italic; }
+
+        .footer {
+            text-align: center; padding: 2rem; color: #555; font-size: 0.8rem;
+            border-top: 1px solid #222; margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🐕 Spring Events Calendar 2026</h1>
+        <div class="subtitle">Where Dog Owners Will Be — And Where TJ Should Be Too</div>
+        <div class="tagline">Every event = hundreds of dog owners in one place. Show up. Hand out cards. Get customers.</div>
+    </div>
+
+    <div class="stats-bar">
+        <div class="stat">
+            <div class="stat-num" id="totalEvents">12</div>
+            <div class="stat-label">Events Found</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num" id="freeEvents">9</div>
+            <div class="stat-label">Free to Attend</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num" id="attendedCount">0</div>
+            <div class="stat-label">Attended</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num" id="estDogOwners">5,000+</div>
+            <div class="stat-label">Est. Dog Owners</div>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <!-- WHY THIS MATTERS -->
+        <div class="roi-box">
+            <h3>💰 The Math on Event Marketing</h3>
+            <div class="roi-big">$0 Cost → 3-5 Leads Per Event</div>
+            <div class="roi-sub">
+                If you attend 6 events, hand out 50 cards each, and convert 3% → that's <strong>9 new customers = $630/month recurring</strong>.<br>
+                Cost: $40 in business cards + gas. ROI: infinite.
+            </div>
+        </div>
+
+        <!-- TIMELINE VIEW -->
+        <h2 class="section-title">📅 Spring 2026 Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot next"></div>
+                <div class="timeline-date">Sat, Mar 28</div>
+                <div class="timeline-event">🐾 Adoption Paw-ty — Crestwood</div>
+                <div class="timeline-note">1 week away! Network with adopters getting their first dog</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Sun, Mar 29</div>
+                <div class="timeline-event">🎲 Bingo for the Pups — Chicken N Pickle, St. Charles</div>
+                <div class="timeline-note">Fun, casual event. Dog lovers in St. Charles area.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Sat, Apr 4</div>
+                <div class="timeline-event">🥚 Ladue Pet Egg Hunt — Treats Unleashed</div>
+                <div class="timeline-note">Hundreds of dog owners. Vendor booths. Perfect for cards.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Sat, Apr 4</div>
+                <div class="timeline-event">🐾 O'Fallon PetSmart Adoption — Needy Paws</div>
+                <div class="timeline-note">New dog adopters = people who need poop pickup immediately</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Starting Apr 5</div>
+                <div class="timeline-event">🌿 Tower Grove Farmers Market (Every Saturday)</div>
+                <div class="timeline-note">Dog-friendly market. 8AM-12:30PM. Go weekly. Wear the shirt.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Starting Apr (TBD)</div>
+                <div class="timeline-event">🌽 St. Charles Farmers Market (Every Saturday)</div>
+                <div class="timeline-note">8AM-12PM. Dog owners everywhere. Alternate with Tower Grove.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Sat, Apr 18</div>
+                <div class="timeline-event">🏛️ ARCH BARK — Gateway Arch National Park ⭐</div>
+                <div class="timeline-note">BIGGEST DOG EVENT OF SPRING. Free. Purina-sponsored. Thousands attend.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">3rd Sat/Month</div>
+                <div class="timeline-event">🐕 Stray Rescue Adoption Day — Fenton Petco</div>
+                <div class="timeline-note">Monthly. New adopters = instant leads.</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">May (TBD)</div>
+                <div class="timeline-event">🐾 Whiskers & Wags Pet Expo — O'Fallon Civic Park</div>
+                <div class="timeline-note">Annual. Vendor booths + adoption drive. Apply for vendor spot!</div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Sat, May 16</div>
+                <div class="timeline-event">🏃 Bark in the Park — Tower Grove Park ⭐</div>
+                <div class="timeline-note">HSMO's biggest event. 5K + free walk + pet festival. MASSIVE crowd.</div>
+            </div>
+        </div>
+
+        <!-- MAJOR EVENTS -->
+        <h2 class="section-title">🔥 Must-Attend Events (Don't Miss These)</h2>
+
+        <!-- ARCH BARK -->
+        <div class="event-card hot" id="archbark">
+            <div class="event-header" onclick="toggleEvent('archbark')">
+                <div class="event-title-group">
+                    <span class="event-emoji">🏛️</span>
+                    <span class="event-name">Arch Bark 2026</span>
+                    <div class="event-date">Saturday, April 18 — 10:00 AM to 2:00 PM</div>
+                    <div class="event-location">📍 North Gateway, Gateway Arch National Park</div>
+                    <div class="event-badges">
+                        <span class="badge badge-free">FREE</span>
+                        <span class="badge badge-dog">DOG-FRIENDLY</span>
+                        <span class="badge badge-huge">HUGE EVENT</span>
+                    </div>
+                </div>
+                <div class="countdown" id="countdown-archbark"></div>
+            </div>
+            <div class="event-details" id="details-archbark">
+                <div class="detail-grid">
+                    <div class="detail-box">
+                        <h4>What's Happening</h4>
+                        <ul>
+                            <li>Community dog walk through Arch grounds</li>
+                            <li>Purina Incredible Dog Team performances</li>
+                            <li>Dog Fashion Show + Best Trick Contest</li>
+                            <li>Tennis ball pit for dogs</li>
+                            <li>Free caricature drawings</li>
+                            <li>Local vendors + food trucks</li>
+                            <li>Lawn games</li>
+                        </ul>
+                    </div>
+                    <div class="detail-box">
+                        <h4>Why This Is Gold</h4>
+                        <ul>
+                            <li><strong>Purina-sponsored</strong> — draws THOUSANDS</li>
+                            <li>100% dog owners in attendance</li>
+                            <li>Casual/fun atmosphere = easy conversations</li>
+                            <li>People bring dogs → they NEED poop service</li>
+                            <li>Free to attend, just show up</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="elevator-pitch">
+                    <h4>🎯 Your 10-Second Pitch Here</h4>
+                    <p>"Hey, nice dog! I'm TJ — I run Tidy Tails, we do weekly yard cleanup. $70 a month, no contracts. If your yard's looking rough after winter, we can fix that. Here's my card."</p>
+                </div>
+                <div class="action-item">
+                    <h4>📋 Action Items</h4>
+                    <p>• Bring 100 business cards minimum<br>• Wear Tidy Tails shirt/hat<br>• Bring Jamie for extra coverage<br>• Take selfies with dogs for social media content<br>• Post "Live from Arch Bark" on Instagram stories</p>
+                </div>
+                <a href="https://www.eventbrite.com/e/arch-bark-tickets-1985374472492" target="_blank" class="link-btn">Register on Eventbrite →</a>
+                <div class="status-tracker">
+                    <div class="status-btn" data-event="archbark" data-status="planned" onclick="setStatus(this)">📌 Planned</div>
+                    <div class="status-btn" data-event="archbark" data-status="registered" onclick="setStatus(this)">✅ Registered</div>
+                    <div class="status-btn" data-event="archbark" data-status="attended" onclick="setStatus(this)">🎯 Attended</div>
+                    <div class="status-btn" data-event="archbark" data-status="skip" onclick="setStatus(this)">⏭️ Skip</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BARK IN THE PARK -->
+        <div class="event-card hot" id="barkpark">
+            <div class="event-header" onclick="toggleEvent('barkpark')">
+                <div class="event-title-group">
+                    <span class="event-emoji">🏃</span>
+                    <span class="event-name">Bark in the Park 2026</span>
+                    <div class="event-date">Saturday, May 16 — Morning (Time TBD)</div>
+                    <div class="event-location">📍 Tower Grove Park, St. Louis</div>
+                    <div class="event-badges">
+                        <span class="badge badge-free">FREE WALK</span>
+                        <span class="badge badge-dog">DOG-FRIENDLY</span>
+                        <span class="badge badge-huge">1000+ ATTENDEES</span>
+                    </div>
+                </div>
+                <div class="countdown" id="countdown-barkpark"></div>
+            </div>
+            <div class="event-details" id="details-barkpark">
+                <div class="detail-grid">
+                    <div class="detail-box">
+                        <h4>What's Happening</h4>
+                        <ul>
+                            <li>5K Race ($35 — includes t-shirt)</li>
+                            <li><strong>1-Mile Walk — FREE</strong></li>
+                            <li>Pet Festival — FREE</li>
+                            <li>Humane Society of Missouri's biggest annual event</li>
+                            <li>Vendor booths, activities, pet services</li>
+                        </ul>
+                    </div>
+                    <div class="detail-box">
+                        <h4>Why This Is Gold</h4>
+                        <ul>
+                            <li>HSMO's flagship event — massive turnout</li>
+                            <li>Mix of current + new dog owners</li>
+                            <li>People who care about animals = ideal customers</li>
+                            <li>Free 1-mile walk = easy to join</li>
+                            <li>Festival area perfect for networking</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="elevator-pitch">
+                    <h4>🎯 Your 10-Second Pitch Here</h4>
+                    <p>"Love that you support HSMO! I'm TJ from Tidy Tails — I keep yards clean so you can focus on the fun stuff with your pup. Here's my card — first cleanup's free if you mention Bark in the Park."</p>
+                </div>
+                <div class="action-item">
+                    <h4>📋 Action Items</h4>
+                    <p>• Do the free 1-mile walk with your own dog (or borrow one!)<br>• Walk around festival area handing out cards<br>• Ask HSMO about vendor/sponsor booth for next year<br>• "Bark in the Park" promo: first cleanup free for attendees</p>
+                </div>
+                <a href="https://allevents.in/st-louis/bark-in-the-park-2026/200029644983917" target="_blank" class="link-btn">Event Details →</a>
+                <div class="status-tracker">
+                    <div class="status-btn" data-event="barkpark" data-status="planned" onclick="setStatus(this)">📌 Planned</div>
+                    <div class="status-btn" data-event="barkpark" data-status="registered" onclick="setStatus(this)">✅ Registered</div>
+                    <div class="status-btn" data-event="barkpark" data-status="attended" onclick="setStatus(this)">🎯 Attended</div>
+                    <div class="status-btn" data-event="barkpark" data-status="skip" onclick="setStatus(this)">⏭️ Skip</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LADUE EGG HUNT -->
+        <div class="event-card warm" id="egghunt">
+            <div class="event-header" onclick="toggleEvent('egghunt')">
+                <div class="event-title-group">
+                    <span class="event-emoji">🥚</span>
+                    <span class="event-name">Ladue Egg Hunt for Pets</span>
+                    <div class="event-date">Saturday, April 4 — 9:30 AM to 1:30 PM</div>
+                    <div class="event-location">📍 Treats Unleashed Ladue — 8861 Ladue Rd, St. Louis 63124</div>
+                    <div class="event-badges">
+                        <span class="badge badge-dog">DOG-FRIENDLY</span>
+                        <span class="badge badge-vendor">VENDORS</span>
+                    </div>
+                </div>
+                <div class="countdown" id="countdown-egghunt"></div>
+            </div>
+            <div class="event-details" id="details-egghunt">
+                <div class="detail-grid">
+                    <div class="detail-box">
+                        <h4>What's Happening</h4>
+                        <ul>
+                            <li>Thousands of eggs with dog treats on the lawn</li>
+                            <li>3 hunt times: 9:30 AM, 11 AM, 12:30 PM</li>
+                            <li>Separate sections: Small, Medium, Large dogs</li>
+                            <li>Easter bunny photos, vendor booths</li>
+                            <li>$5 registration, benefits bulldog rescue</li>
+                        </ul>
+                    </div>
+                    <div class="detail-box">
+                        <h4>Why This Is Gold</h4>
+                        <ul>
+                            <li>Treats Unleashed = premium pet store clientele</li>
+                            <li>Ladue = affluent area, higher price tolerance</li>
+                            <li>People willing to spend $5 on dog fun = willing to pay $70/mo for clean yard</li>
+                            <li>3 separate hunt times = 3x the networking</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="elevator-pitch">
+                    <h4>🎯 Your 10-Second Pitch Here</h4>
+                    <p>"That egg hunt was cute! You know what's NOT cute? What comes out the other end. I handle that — TJ from Tidy Tails, weekly yard cleanup. Here's my card."</p>
+                </div>
+                <a href="https://www.eventbrite.com/e/ladue-egg-hunt-for-pets-2026-tickets-1980572850712" target="_blank" class="link-btn">Register ($5) →</a>
+                <div class="status-tracker">
+                    <div class="status-btn" data-event="egghunt" data-status="planned" onclick="setStatus(this)">📌 Planned</div>
+                    <div class="status-btn" data-event="egghunt" data-status="registered" onclick="setStatus(this)">✅ Registered</div>
+                    <div class="status-btn" data-event="egghunt" data-status="attended" onclick="setStatus(this)">🎯 Attended</div>
+                    <div class="status-btn" data-event="egghunt" data-status="skip" onclick="setStatus(this)">⏭️ Skip</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADOPTION PAWTY - NEXT WEEK -->
+        <div class="event-card warm" id="pawty">
+            <div class="event-header" onclick="toggleEvent('pawty')">
+                <div class="event-title-group">
+                    <span class="event-emoji">🐾</span>
+                    <span class="event-name">Adoption Paw-ty! — Open Door Animal Sanctuary</span>
+                    <div class="event-date">Saturday, March 28 — 10:00 AM</div>
+                    <div class="event-location">📍 Hometown Veterinary Partners, Crestwood</div>
+                    <div class="event-badges">
+                        <span class="badge badge-free">FREE</span>
+                        <span class="badge badge-dog">ADOPTION EVENT</span>
+                    </div>
+                </div>
+                <div class="countdown soon" id="countdown-pawty"></div>
+            </div>
+            <div class="event-details" id="details-pawty">
+                <div class="detail-grid">
+                    <div class="detail-box">
+                        <h4>Why Adoption Events Are PERFECT</h4>
+                        <ul>
+                            <li>People adopting a dog TODAY = need poop service THIS MONTH</li>
+                            <li>They're already committing to dog ownership expenses</li>
+                            <li>Emotional high = receptive to "let me help you"</li>
+                            <li>Vet clinic = could become referral partner too</li>
+                        </ul>
+                    </div>
+                    <div class="detail-box">
+                        <h4>Action Plan</h4>
+                        <ul>
+                            <li>Bring "New Dog Owner" special offer cards</li>
+                            <li>Talk to vet staff about referral partnership</li>
+                            <li>Offer first cleanup free for adopters</li>
+                            <li>Take photos for social media</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="elevator-pitch">
+                    <h4>🎯 Your Pitch to New Adopters</h4>
+                    <p>"Congrats on the new family member! Quick tip — the yard situation gets real fast. I do weekly cleanups for $70/month, and for new adopters I'll do your first visit free. Here's my card."</p>
+                </div>
+                <a href="https://www.eventbrite.com/e/adoptiong-paw-ty-with-open-door-animal-sanctuary-tickets-1984476335139" target="_blank" class="link-btn">Event Details →</a>
+                <div class="status-tracker">
+                    <div class="status-btn" data-event="pawty" data-status="planned" onclick="setStatus(this)">📌 Planned</div>
+                    <div class="status-btn" data-event="pawty" data-status="attended" onclick="setStatus(this)">🎯 Attended</div>
+                    <div class="status-btn" data-event="pawty" data-status="skip" onclick="setStatus(this)">⏭️ Skip</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- BINGO FOR PUPS -->
+        <div class="event-card cool" id="bingo">
+            <div class="event-header" onclick="toggleEvent('bingo')">
+                <div class="event-title-group">
+                    <span class="event-emoji">🎲</span>
+                    <span class="event-name">Bingo for the Pups</span>
+                    <div class="event-date">Sunday, March 29 — 4:00 PM</div>
+                    <div class="event-location">📍 Chicken N Pickle, St. Charles</div>
+                    <div class="event-badges">
+                        <span class="badge badge-dog">DOG-LOVERS</span>
+                    </div>
+                </div>
+                <div class="countdown soon" id="countdown-bingo"></div>
+            </div>
+            <div class="event-details" id="details-bingo">
+                <div class="detail-grid">
+                    <div class="detail-box">
+                        <h4>Why It's Worth It</h4>
+                        <ul>
+                            <li>St. Charles — TJ's expansion territory</li>
+                            <li>Fundraiser = compassionate dog people</li>
+                            <li>Casual setting, easy to network</li>
+                            <li>Chicken N Pickle is trendy — good crowd</li>
+                        </ul>
+                    </div>
+                    <div class="detail-box">
+                        <h4>Action Plan</h4>
+                        <ul>
+                            <li>Bring cards, enjoy the bingo</li>
+                            <li>Chat with fellow dog lovers at your table</li>
+                            <li>Mention service casually, don't hard-sell</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.eventbrite.com/e/bingo-for-the-pups-tickets-1982522336677" target="_blank" class="link-btn">Get Tickets →</a>
+                <div class="status-tracker">
+                    <div class="status-btn" data-event="bingo" data-status="planned" onclick="setStatus(this)">📌 Planned</div>
+                    <div class="status-btn" data-event="bingo" data-status="attended" onclick="setStatus(this)">🎯 Attended</div>
+                    <div class="status-btn" data-event="bingo" data-status="skip" onclick="setStatus(this)">⏭️ Skip</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WHISKERS & WAGS -->
+        <div class="event-card warm" id="whiskers">
+            <div class="event-header" onclick="toggleEvent('whiskers')">
+                <div class="event-title-group">
+                    <span class="event-emoji">🐕</span>
+                    <span class="event-name">Whiskers & Wags Pet Expo & Adoption Drive</span>
+                    <div class="event-date">May 2026 (Date TBD — usually 1st Saturday)</div>
+                    <div class="event-location">📍 Civic Park, O'Fallon — 308 Civic Park Dr, 63366</div>
+                    <div class="event-badges">
+                        <span class="badge badge-free">FREE</span>
+                        <span class="badge badge-dog">DOG-FRIENDLY</span>
+                        <span class="badge badge-vendor">VENDOR BOOTHS</span>
+                        <span class="badge badge-huge">CITY EVENT</span>
+                    </div>
+                </div>
+                <div class="countdown" id="countdown-whiskers"></div>
+            </div>
+            <div class="event-details" id="details-whiskers">
+                <div class="detail-grid">
+                    <div class="detail-box">
+                        <h4>What's Happening</h4>
+                        <ul>
+                            <li>City of O'Fallon's official pet expo</li>
+                            <li>Vendor booths (pet products, services)</li>
+                            <li>Adoption agencies on site</li>
+                            <li>Disc dog demos, K-9 demos</li>
+                            <li>Paw painting, splash pools, face paint</li>
+                            <li>Food trucks</li>
+                        </ul>
+                    </div>
+                    <div class="detail-box">
+                        <h4>🚨 APPLY FOR A VENDOR BOOTH</h4>
+                        <ul>
+                            <li>This is TJ's service area</li>
+                            <li>Could set up a Tidy Tails booth</li>
+                            <li>Hand out cards, sign up customers on the spot</li>
+                            <li>Contact O'Fallon Parks & Rec ASAP to apply</li>
+                            <li>Previous vendors: pet food, vet, training, grooming — poop service fits!</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="action-item">
+                    <h4>🚨 TIME-SENSITIVE: Apply for Vendor Booth</h4>
+                    <p>Call O'Fallon Parks & Rec to ask about vendor applications for Whiskers & Wags 2026. Get the date confirmed and reserve a spot. Cost is probably $25-50 for a table. Worth 10x that in leads.</p>
+                </div>
+                <a href="https://ofallon.mo.us/whiskers" target="_blank" class="link-btn">O'Fallon Whiskers & Wags Page →</a>
+                <div class="status-tracker">
+                    <div class="status-btn" data-event="whiskers" data-status="planned" onclick="setStatus(this)">📌 Planned</div>
+                    <div class="status-btn" data-event="whiskers" data-status="applied" onclick="setStatus(this)">📝 Applied</div>
+                    <div class="status-btn" data-event="whiskers" data-status="confirmed" onclick="setStatus(this)">✅ Confirmed</div>
+                    <div class="status-btn" data-event="whiskers" data-status="attended" onclick="setStatus(this)">🎯 Attended</div>
+                    <div class="status-btn" data-event="whiskers" data-status="skip" onclick="setStatus(this)">⏭️ Skip</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RECURRING: FARMERS MARKETS -->
+        <h2 class="section-title">🔁 Weekly Recurring Opportunities</h2>
+
+        <div class="event-card recurring" id="towergrove">
+            <div class="event-header" onclick="toggleEvent('towergrove')">
+                <div class="event-title-group">
+                    <span class="event-emoji">🌿</span>
+                    <span class="event-name">Tower Grove Farmers Market</span>
+                    <div class="event-date">Every Saturday, 8:00 AM - 12:30 PM (April → November)</div>
+                    <div class="event-location">📍 Tower Grove Park, St. Louis</div>
+                    <div class="event-badges">
+                        <span class="badge badge-free">FREE</span>
+                        <span class="badge badge-dog">DOG-FRIENDLY ✅</span>
+                        <span class="badge badge-recurring">WEEKLY</span>
+                    </div>
+                </div>
+            </div>
+            <div class="event-details" id="details-towergrove">
+                <div class="detail-grid">
+                    <div class="detail-box">
+                        <h4>Why Farmers Markets Work</h4>
+                        <ul>
+                            <li><strong>Dog-friendly</strong> — tons of people bring their dogs</li>
+                            <li>37K Facebook followers = massive community</li>
+                            <li>Casual atmosphere, easy to chat</li>
+                            <li>Same people come every week = build recognition</li>
+                            <li>Live music, food, browsing = people are relaxed and open</li>
+                        </ul>
+                    </div>
+                    <div class="detail-box">
+                        <h4>The Farmers Market Strategy</h4>
+                        <ul>
+                            <li>Wear your Tidy Tails shirt every time</li>
+                            <li>Bring cards in your pocket</li>
+                            <li>When you see someone with a dog: compliment the dog, then mention what you do</li>
+                            <li>Don't hard-sell — just be visible and friendly</li>
+                            <li>After 3-4 weeks, regulars will know you as "the poop guy"</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="action-item">
+                    <h4>⚠️ NOT Soulard Market</h4>
+                    <p>Soulard Farmers Market does NOT allow dogs. Skip it. Tower Grove and St. Charles are the dog-friendly ones.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-card recurring" id="stcharlesmarket">
+            <div class="event-header" onclick="toggleEvent('stcharlesmarket')">
+                <div class="event-title-group">
+                    <span class="event-emoji">🌽</span>
+                    <span class="event-name">St. Charles Farmers Market</span>
+                    <div class="event-date">Every Saturday, 8:00 AM - 12:00 PM (Spring → Fall)</div>
+                    <div class="event-location">📍 St. Charles, MO</div>
+                    <div class="event-badges">
+                        <span class="badge badge-free">FREE</span>
+                        <span class="badge badge-recurring">WEEKLY</span>
+                    </div>
+                </div>
+            </div>
+            <div class="event-details" id="details-stcharlesmarket">
+                <div class="detail-box">
+                    <h4>Why St. Charles Market Matters</h4>
+                    <ul>
+                        <li>TJ already has a customer in St. Peters (Preshus)</li>
+                        <li>St. Charles County is the expansion target</li>
+                        <li>More suburban = more yards = more poop</li>
+                        <li>Alternate weeks: Tower Grove one Saturday, St. Charles the next</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="event-card recurring" id="petco">
+            <div class="event-header" onclick="toggleEvent('petco')">
+                <div class="event-title-group">
+                    <span class="event-emoji">🐕</span>
+                    <span class="event-name">Stray Rescue Adoption Days</span>
+                    <div class="event-date">Every 3rd Saturday of the Month</div>
+                    <div class="event-location">📍 Fenton Petco</div>
+                    <div class="event-badges">
+                        <span class="badge badge-free">FREE</span>
+                        <span class="badge badge-recurring">MONTHLY</span>
+                    </div>
+                </div>
+            </div>
+            <div class="event-details" id="details-petco">
+                <div class="detail-box">
+                    <h4>Monthly Opportunity</h4>
+                    <ul>
+                        <li>New adopters = instant need for poop service</li>
+                        <li>Recurring monthly — mark your calendar</li>
+                        <li>Talk to Stray Rescue about leaving cards/flyers at their facility</li>
+                        <li>Next dates: April 19, May 17, June 21</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PREP CHECKLIST -->
+        <div class="prep-section">
+            <h3>🎒 Event Prep Checklist — Get These Ready NOW</h3>
+            <div class="checklist-item">
+                <input type="checkbox" id="prep1" onchange="saveChecklist()">
+                <label for="prep1"><strong>Business cards</strong> — 500 count. VistaPrint does 500 for ~$20</label>
+                <span class="cost">~$20</span>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="prep2" onchange="saveChecklist()">
+                <label for="prep2"><strong>Tidy Tails t-shirt</strong> — Custom print with logo, phone number, website on back</label>
+                <span class="cost">~$15</span>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="prep3" onchange="saveChecklist()">
+                <label for="prep3"><strong>QR code flyer</strong> — Links to tidytailsstl.com. Print 50 half-sheets at Staples</label>
+                <span class="cost">~$10</span>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="prep4" onchange="saveChecklist()">
+                <label for="prep4"><strong>"First Cleanup Free" cards</strong> — Small promo cards for events. Track which event they came from.</label>
+                <span class="cost">~$10</span>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="prep5" onchange="saveChecklist()">
+                <label for="prep5"><strong>Dog treats</strong> — Give a treat to every dog you meet. Owner remembers the person who was nice to their dog.</label>
+                <span class="cost">~$15</span>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="prep6" onchange="saveChecklist()">
+                <label for="prep6"><strong>Poop bag holder with branding</strong> — Attach to leash, has your info on it. Conversation starter!</label>
+                <span class="cost">~$30</span>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="prep7" onchange="saveChecklist()">
+                <label for="prep7"><strong>Clipboard + sign-up sheet</strong> — For people who want a callback. Name, phone, zip code, # of dogs.</label>
+                <span class="cost">$0</span>
+            </div>
+            <p style="color: #f59e0b; margin-top: 1rem; font-weight: bold;">Total investment: ~$100 → Good for ALL events through summer</p>
+        </div>
+
+        <!-- PRIORITY SCHEDULE -->
+        <div class="prep-section" style="border-color: #4ade80;">
+            <h3 style="color: #4ade80;">🎯 TJ's Recommended Schedule (Pick at Least 6)</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 0.5rem;">
+                <tr style="border-bottom: 1px solid #333;">
+                    <td style="padding: 0.5rem; color: #4ade80; font-weight: bold;">MUST DO</td>
+                    <td style="padding: 0.5rem;">
+                        <strong>Arch Bark</strong> (Apr 18) — Biggest, free, thousands of dog owners<br>
+                        <strong>Bark in the Park</strong> (May 16) — Second biggest, free walk<br>
+                        <strong>Whiskers & Wags</strong> (May TBD) — O'Fallon = your territory, get a vendor booth
+                    </td>
+                </tr>
+                <tr style="border-bottom: 1px solid #333;">
+                    <td style="padding: 0.5rem; color: #f59e0b; font-weight: bold;">SHOULD DO</td>
+                    <td style="padding: 0.5rem;">
+                        <strong>Ladue Egg Hunt</strong> (Apr 4) — Affluent crowd, $5 entry<br>
+                        <strong>Tower Grove Market</strong> (weekly) — Go at least 2x/month with your shirt on<br>
+                        <strong>Adoption Paw-ty</strong> (Mar 28) — This is NEXT WEEK
+                    </td>
+                </tr>
+                <tr>
+                    <td style="padding: 0.5rem; color: #3b82f6; font-weight: bold;">NICE TO DO</td>
+                    <td style="padding: 0.5rem;">
+                        <strong>Bingo for the Pups</strong> (Mar 29) — Casual, St. Charles crowd<br>
+                        <strong>St. Charles Market</strong> (weekly) — Alternate Saturdays<br>
+                        <strong>Petco Adoption Days</strong> (monthly) — 15-min stop on the way home
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        Built by Franklin 🐕💩 | March 21, 2026 | Spring is HERE — go meet your customers
+    </div>
+
+    <script>
+        // Toggle event details
+        function toggleEvent(id) {
+            const details = document.getElementById('details-' + id);
+            details.classList.toggle('open');
+        }
+
+        // Countdown calculator
+        function updateCountdowns() {
+            const events = {
+                'pawty': new Date('2026-03-28T10:00:00-05:00'),
+                'bingo': new Date('2026-03-29T16:00:00-05:00'),
+                'egghunt': new Date('2026-04-04T09:30:00-05:00'),
+                'archbark': new Date('2026-04-18T10:00:00-05:00'),
+                'barkpark': new Date('2026-05-16T09:00:00-05:00'),
+                'whiskers': new Date('2026-05-02T10:00:00-05:00')
+            };
+            
+            const now = new Date();
+            
+            for (const [id, date] of Object.entries(events)) {
+                const el = document.getElementById('countdown-' + id);
+                if (!el) continue;
+                
+                const diff = date - now;
+                if (diff < 0) {
+                    el.textContent = 'PASSED';
+                    el.className = 'countdown';
+                } else {
+                    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                    if (days === 0) {
+                        el.textContent = 'TODAY!';
+                        el.className = 'countdown today';
+                    } else if (days <= 7) {
+                        el.textContent = days + ' day' + (days > 1 ? 's' : '') + ' away!';
+                        el.className = 'countdown soon';
+                    } else {
+                        el.textContent = days + ' days';
+                        el.className = 'countdown';
+                    }
+                }
+            }
+        }
+
+        // Status tracking with localStorage
+        function setStatus(btn) {
+            const event = btn.dataset.event;
+            const status = btn.dataset.status;
+            
+            // Remove active from siblings
+            btn.parentElement.querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Save
+            const statuses = JSON.parse(localStorage.getItem('tt-event-statuses') || '{}');
+            statuses[event] = status;
+            localStorage.setItem('tt-event-statuses', JSON.stringify(statuses));
+            
+            updateAttendedCount();
+        }
+
+        function loadStatuses() {
+            const statuses = JSON.parse(localStorage.getItem('tt-event-statuses') || '{}');
+            for (const [event, status] of Object.entries(statuses)) {
+                const btn = document.querySelector(`.status-btn[data-event="${event}"][data-status="${status}"]`);
+                if (btn) btn.classList.add('active');
+            }
+            updateAttendedCount();
+        }
+
+        function updateAttendedCount() {
+            const statuses = JSON.parse(localStorage.getItem('tt-event-statuses') || '{}');
+            const attended = Object.values(statuses).filter(s => s === 'attended').length;
+            document.getElementById('attendedCount').textContent = attended;
+        }
+
+        // Checklist with localStorage
+        function saveChecklist() {
+            const checks = {};
+            for (let i = 1; i <= 7; i++) {
+                checks['prep' + i] = document.getElementById('prep' + i).checked;
+            }
+            localStorage.setItem('tt-event-checklist', JSON.stringify(checks));
+        }
+
+        function loadChecklist() {
+            const checks = JSON.parse(localStorage.getItem('tt-event-checklist') || '{}');
+            for (const [id, checked] of Object.entries(checks)) {
+                const el = document.getElementById(id);
+                if (el) el.checked = checked;
+            }
+        }
+
+        // Initialize
+        updateCountdowns();
+        loadStatuses();
+        loadChecklist();
+        setInterval(updateCountdowns, 60000);
+
+        // Auto-open the first upcoming event
+        toggleEvent('pawty');
+    </script>
+</body>
+</html>
