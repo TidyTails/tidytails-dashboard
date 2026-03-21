@@ -1,0 +1,1060 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐕 Spring Events & Partnership Playbook — Tidy Tails STL</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0f; color: #e0e0e0; }
+        
+        .header {
+            background: linear-gradient(135deg, #1a472a 0%, #0d2818 50%, #1a3a2a 100%);
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 3px solid #4ade80;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '🌸🐕🎪🐾🌿';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.5rem;
+            letter-spacing: 1rem;
+            opacity: 0.3;
+        }
+        .header h1 { font-size: 1.8rem; color: #4ade80; margin-bottom: 0.3rem; }
+        .header p { color: #a0d8b0; font-size: 0.95rem; }
+        
+        .why-banner {
+            background: linear-gradient(135deg, #1e3a5f, #0d2240);
+            border: 2px solid #3b82f6;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem;
+            text-align: center;
+        }
+        .why-banner h2 { color: #60a5fa; font-size: 1.3rem; margin-bottom: 0.8rem; }
+        .why-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .why-stat {
+            background: rgba(59, 130, 246, 0.15);
+            border-radius: 8px;
+            padding: 1rem;
+        }
+        .why-stat .num { font-size: 1.8rem; font-weight: 800; color: #60a5fa; }
+        .why-stat .label { font-size: 0.8rem; color: #93c5fd; margin-top: 0.3rem; }
+        
+        .tabs {
+            display: flex;
+            overflow-x: auto;
+            gap: 0.5rem;
+            padding: 1rem 1.5rem;
+            background: #111;
+            border-bottom: 1px solid #333;
+        }
+        .tab {
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 0.85rem;
+            font-weight: 600;
+            background: #1e1e2e;
+            color: #888;
+            border: 1px solid #333;
+            transition: all 0.2s;
+        }
+        .tab.active { background: #4ade80; color: #000; border-color: #4ade80; }
+        .tab:hover:not(.active) { background: #2a2a3e; color: #ccc; }
+        
+        .tab-content { display: none; padding: 1.5rem; }
+        .tab-content.active { display: block; }
+        
+        .section-title {
+            font-size: 1.2rem;
+            color: #4ade80;
+            margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #333;
+        }
+        .section-title:first-child { margin-top: 0; }
+        
+        /* Event Cards */
+        .event-card {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid #4ade80;
+            position: relative;
+        }
+        .event-card.hot { border-left-color: #ef4444; }
+        .event-card.warm { border-left-color: #f59e0b; }
+        .event-card.cool { border-left-color: #3b82f6; }
+        
+        .event-date {
+            display: inline-block;
+            background: #4ade80;
+            color: #000;
+            font-weight: 800;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .event-card.hot .event-date { background: #ef4444; color: #fff; }
+        .event-card.warm .event-date { background: #f59e0b; color: #000; }
+        .event-card.cool .event-date { background: #3b82f6; color: #fff; }
+        
+        .event-name { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem; }
+        .event-detail { color: #aaa; font-size: 0.9rem; margin-bottom: 0.3rem; }
+        .event-detail strong { color: #ddd; }
+        
+        .event-action {
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            border-radius: 8px;
+            padding: 0.8rem;
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+        }
+        .event-action strong { color: #4ade80; }
+        
+        .countdown {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(74, 222, 128, 0.15);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            border-radius: 8px;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.75rem;
+            color: #4ade80;
+            font-weight: 700;
+        }
+        .event-card.hot .countdown { background: rgba(239, 68, 68, 0.15); border-color: rgba(239, 68, 68, 0.3); color: #ef4444; }
+        
+        /* Partner Cards */
+        .partner-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem;
+        }
+        .partner-card {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 1.2rem;
+            border: 1px solid #333;
+            transition: border-color 0.2s;
+        }
+        .partner-card:hover { border-color: #4ade80; }
+        
+        .partner-name { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
+        .partner-type {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .type-groomer { background: #7c3aed; color: #fff; }
+        .type-daycare { background: #2563eb; color: #fff; }
+        .type-store { background: #d97706; color: #fff; }
+        .type-venue { background: #059669; color: #fff; }
+        .type-vet { background: #dc2626; color: #fff; }
+        .type-trainer { background: #0891b2; color: #fff; }
+        
+        .partner-detail { color: #aaa; font-size: 0.85rem; margin-bottom: 0.3rem; }
+        .partner-phone {
+            display: inline-block;
+            background: rgba(74, 222, 128, 0.1);
+            border: 1px solid rgba(74, 222, 128, 0.3);
+            border-radius: 6px;
+            padding: 0.3rem 0.6rem;
+            color: #4ade80;
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-decoration: none;
+            margin-top: 0.3rem;
+        }
+        .partner-phone:hover { background: rgba(74, 222, 128, 0.2); }
+        
+        .partner-pitch {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding: 0.6rem;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            color: #ccc;
+            font-style: italic;
+        }
+        
+        .partner-status {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .status-new { background: #333; color: #888; }
+        .status-contacted { background: #1e3a5f; color: #60a5fa; }
+        .status-interested { background: #1a3a1a; color: #4ade80; }
+        .status-partnered { background: #4ade80; color: #000; }
+        .status-declined { background: #3a1a1a; color: #f87171; }
+        
+        /* Scripts */
+        .script-card {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            border: 1px solid #333;
+        }
+        .script-title { font-size: 1rem; font-weight: 700; color: #f59e0b; margin-bottom: 0.5rem; }
+        .script-text {
+            background: #111;
+            border-radius: 8px;
+            padding: 1rem;
+            font-size: 0.85rem;
+            color: #ddd;
+            line-height: 1.6;
+            white-space: pre-wrap;
+        }
+        .copy-btn {
+            display: inline-block;
+            background: #4ade80;
+            color: #000;
+            border: none;
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            margin-top: 0.5rem;
+        }
+        .copy-btn:hover { background: #22c55e; }
+        .copy-btn.copied { background: #666; color: #fff; }
+        
+        /* Checklist */
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.8rem;
+            padding: 0.8rem;
+            background: #1a1a2e;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+        .checklist-item:hover { border-color: #4ade80; }
+        .checklist-item.checked { opacity: 0.5; }
+        .checklist-item.checked .check-text { text-decoration: line-through; }
+        .check-box {
+            width: 22px;
+            height: 22px;
+            min-width: 22px;
+            border-radius: 6px;
+            border: 2px solid #555;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+        .checklist-item.checked .check-box { background: #4ade80; border-color: #4ade80; color: #000; }
+        .check-text { font-size: 0.9rem; }
+        .check-time { font-size: 0.75rem; color: #888; margin-top: 0.2rem; }
+        
+        /* ROI */
+        .roi-card {
+            background: linear-gradient(135deg, #1a2a1a, #0d1f0d);
+            border: 2px solid #4ade80;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+        .roi-title { font-size: 1.1rem; color: #4ade80; font-weight: 700; margin-bottom: 1rem; }
+        .roi-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(74, 222, 128, 0.1);
+            font-size: 0.9rem;
+        }
+        .roi-row:last-child { border-bottom: none; }
+        .roi-label { color: #aaa; }
+        .roi-value { color: #4ade80; font-weight: 700; }
+        
+        .tip-box {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+        }
+        .tip-box strong { color: #f59e0b; }
+        
+        .progress-bar-container {
+            background: #1a1a2e;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .progress-label { font-size: 0.85rem; color: #aaa; margin-bottom: 0.5rem; }
+        .progress-bar {
+            background: #333;
+            border-radius: 8px;
+            height: 12px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            background: linear-gradient(90deg, #4ade80, #22c55e);
+            height: 100%;
+            border-radius: 8px;
+            transition: width 0.5s;
+        }
+        .progress-num { font-size: 0.8rem; color: #4ade80; margin-top: 0.3rem; font-weight: 700; }
+        
+        @media (max-width: 600px) {
+            .partner-grid { grid-template-columns: 1fr; }
+            .why-stats { grid-template-columns: repeat(2, 1fr); }
+            .countdown { position: static; margin-bottom: 0.5rem; display: inline-block; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌸 Spring Events & Partnership Playbook</h1>
+        <p>Face-to-face marketing converts 10-20x better than digital ads — for $0</p>
+    </div>
+    
+    <div class="why-banner">
+        <h2>Why In-Person > Digital Right Now</h2>
+        <p style="color:#93c5fd; font-size:0.9rem; margin-bottom:1rem;">TJ has ZERO Google reviews, near-zero search visibility, and no ad budget. Face-to-face bypasses ALL of that.</p>
+        <div class="why-stats">
+            <div class="why-stat">
+                <div class="num">10-20x</div>
+                <div class="label">Higher conversion than digital</div>
+            </div>
+            <div class="why-stat">
+                <div class="num">$0</div>
+                <div class="label">Cost to attend most events</div>
+            </div>
+            <div class="why-stat">
+                <div class="num">5</div>
+                <div class="label">Major pet events coming up</div>
+            </div>
+            <div class="why-stat">
+                <div class="num">15+</div>
+                <div class="label">Partnership targets identified</div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tabs">
+        <div class="tab active" onclick="showTab('events')">📅 Events Calendar</div>
+        <div class="tab" onclick="showTab('partners')">🤝 Partnership Targets</div>
+        <div class="tab" onclick="showTab('scripts')">💬 Scripts & Pitches</div>
+        <div class="tab" onclick="showTab('flyer')">📄 Event Materials</div>
+        <div class="tab" onclick="showTab('checklist')">✅ Action Plan</div>
+        <div class="tab" onclick="showTab('roi')">💰 ROI Projections</div>
+    </div>
+    
+    <!-- TAB 1: EVENTS CALENDAR -->
+    <div id="events" class="tab-content active">
+        <h3 class="section-title">🔥 Can't-Miss Events (Next 60 Days)</h3>
+        
+        <div class="event-card hot">
+            <div class="countdown" id="countdown-earthday"></div>
+            <div class="event-date">APR 25-26 (FRI-SAT)</div>
+            <div class="event-name">🌍 St. Louis Earth Day Festival 2026</div>
+            <div class="event-detail"><strong>Where:</strong> The Muny Grounds, Forest Park</div>
+            <div class="event-detail"><strong>When:</strong> 11 AM – 5 PM both days</div>
+            <div class="event-detail"><strong>Crowd:</strong> 30,000+ attendees over 2 days — eco-conscious, pet-friendly crowd</div>
+            <div class="event-detail"><strong>Theme:</strong> "Planet vs Plastic" — pet waste removal = environmental service = PERFECT FIT</div>
+            <div class="event-detail"><strong>Vendor Status:</strong> Registration OPEN (late fees may apply — regular ended 2/28)</div>
+            <div class="event-action">
+                <strong>🎯 TJ's Move:</strong> Apply as vendor/exhibitor. Pitch: "Pet waste removal = cleaner waterways, healthier parks." Environmental angle is unique — no other pooper scooper will be there. Even as an attendee, hand out 100 cards.<br><br>
+                <strong>📋 Apply:</strong> <a href="https://earthday-365.org/festival/vendors-exhibitors/" target="_blank" style="color:#4ade80;">earthday-365.org/festival/vendors-exhibitors</a>
+            </div>
+        </div>
+        
+        <div class="event-card hot">
+            <div class="countdown" id="countdown-bark"></div>
+            <div class="event-date">MAY 16 (SAT)</div>
+            <div class="event-name">🐾 Bark in the Park 2026 — 30th Annual!</div>
+            <div class="event-detail"><strong>Where:</strong> Tower Grove Park</div>
+            <div class="event-detail"><strong>When:</strong> 8 AM – 2 PM</div>
+            <div class="event-detail"><strong>Host:</strong> Humane Society of Missouri (presented by Purina)</div>
+            <div class="event-detail"><strong>Crowd:</strong> THOUSANDS — the LARGEST pet festival in the Midwest</div>
+            <div class="event-detail"><strong>Format:</strong> 5K run, 1-mile walk, pet festival with vendors, giveaways, contests, demos</div>
+            <div class="event-action">
+                <strong>🎯 TJ's Move:</strong> #1 EVENT OF THE YEAR for Tidy Tails. Every single person there is a dog owner in STL. Even without a vendor booth, Jamie should attend with 200+ business cards and a "Spring Deep Clean $99" flyer. Work the crowd.<br><br>
+                <strong>📋 Register/Vendor:</strong> <a href="https://p2p.onecause.com/bark2026" target="_blank" style="color:#4ade80;">p2p.onecause.com/bark2026</a> | <a href="https://hsmo.org/bark-sponsor/" target="_blank" style="color:#4ade80;">Sponsorship info</a>
+            </div>
+        </div>
+        
+        <h3 class="section-title">🟡 Also Attend (Good Exposure)</h3>
+        
+        <div class="event-card warm">
+            <div class="event-date">APR 13 (MON)</div>
+            <div class="event-name">🏒 Blues Giveback Game & Stray Rescue Adoption Event</div>
+            <div class="event-detail"><strong>When:</strong> 7 PM puck drop — Blues vs Minnesota Wild</div>
+            <div class="event-detail"><strong>Vibe:</strong> Stray Rescue merch + adoptable dogs at the game</div>
+            <div class="event-action">
+                <strong>🎯 TJ's Move:</strong> Network with Stray Rescue volunteers — they know EVERY dog owner in STL. Leave cards. Ask about becoming a community partner.
+            </div>
+        </div>
+        
+        <div class="event-card warm">
+            <div class="event-date">APR 26 (SUN)</div>
+            <div class="event-name">⚾ Stray Rescue Day at the Ballpark</div>
+            <div class="event-detail"><strong>When:</strong> 1:15 PM — Cardinals vs Seattle Mariners</div>
+            <div class="event-detail"><strong>Note:</strong> Same weekend as Earth Day Festival — double down</div>
+            <div class="event-action">
+                <strong>🎯 TJ's Move:</strong> Attend if possible. Dog-lovers packed in one stadium = walking billboard opportunity. Wear a Tidy Tails shirt.
+            </div>
+        </div>
+        
+        <h3 class="section-title">🏠 Ongoing Venues (Visit Anytime)</h3>
+        
+        <div class="event-card cool">
+            <div class="event-date">OPEN DAILY</div>
+            <div class="event-name">🍺 K9 Garden (Formerly Bar K) — NEW!</div>
+            <div class="event-detail"><strong>Where:</strong> 4565 McRee Ave, Forest Park Southeast</div>
+            <div class="event-detail"><strong>What:</strong> Dog park + restaurant + bar + live music + event spaces</div>
+            <div class="event-detail"><strong>Opened:</strong> January 2026 — BRAND NEW, looking for community partners</div>
+            <div class="event-action">
+                <strong>🎯 TJ's Move:</strong> Visit ASAP. Talk to management about leaving flyers/cards at front desk. Ask about becoming a preferred vendor — members who need waste removal at home. New businesses LOVE cross-promotions. They have events every week.<br><br>
+                <strong>📋 Contact:</strong> <a href="mailto:info@k9garden.com" style="color:#4ade80;">info@k9garden.com</a> | (314) 530-9990
+            </div>
+        </div>
+        
+        <div class="event-card cool">
+            <div class="event-date">WEEKLY EVENTS</div>
+            <div class="event-name">🐕 8 Dog Parks in Service Area</div>
+            <div class="event-detail">DuSable Park (Florissant) • Kitun Dog Park • Treecourt Park • Deer Creek Park • Tower Grove Dog Park • Willmore Park • St. Ferdinand Park (Florissant) • Francis Park</div>
+            <div class="event-action">
+                <strong>🎯 TJ's Move:</strong> Weekend mornings (8-10 AM) and weekday evenings (5-7 PM) = peak times. Bring cards, chat up owners. Target 2 parks per week. 15-second elevator pitch (see Scripts tab).
+            </div>
+        </div>
+        
+        <div class="event-card cool">
+            <div class="event-date">ONGOING</div>
+            <div class="event-name">🐾 MASCUSA National Dog Show — Gray Summit, MO</div>
+            <div class="event-detail"><strong>When:</strong> May 20-23, 2026 — Obedience & Rally Trials</div>
+            <div class="event-detail"><strong>Where:</strong> Gray Summit, MO (40 min from STL)</div>
+            <div class="event-action">
+                <strong>🎯 TJ's Move:</strong> Competitive dog show owners = multi-dog households with $$$. Hand out cards focusing on the premium/reliable angle.
+            </div>
+        </div>
+    </div>
+    
+    <!-- TAB 2: PARTNERSHIP TARGETS -->
+    <div id="partners" class="tab-content">
+        <h3 class="section-title">🎯 Cross-Referral Strategy</h3>
+        <div class="tip-box">
+            <strong>💡 The Deal:</strong> "Hey, I run Tidy Tails — pet waste removal in [area]. I'd love to leave some cards here. In return, I'll recommend you to every customer I have. We serve the same dog owners but don't compete." Simple. Mutual. Free.
+        </div>
+        
+        <h3 class="section-title">🏠 Florissant / North County — TJ's Core Territory</h3>
+        <div class="partner-grid">
+            <div class="partner-card" data-id="north-county-grooming">
+                <div class="partner-name">🌟 North County Pet Grooming</div>
+                <span class="partner-type type-groomer">GROOMER</span>
+                <div class="partner-detail">📍 Florissant, MO — <strong>PERFECT territory match</strong></div>
+                <div class="partner-detail">⭐ Certified, all breeds, cats too. Open Mon-Sat 6am-4pm</div>
+                <a href="tel:3147411889" class="partner-phone">📞 (314) 741-1889</a>
+                <div class="partner-pitch">"You see every dog in Florissant. We clean their yards. Card swap would be perfect — your clients need us, our clients need you."</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+            
+            <div class="partner-card" data-id="pet-planet">
+                <div class="partner-name">Pet Planet Grooming</div>
+                <span class="partner-type type-groomer">GROOMER</span>
+                <div class="partner-detail">📍 Florissant — Top-rated on Yelp</div>
+                <div class="partner-detail">⭐ Independent local groomer — great partner energy</div>
+                <div class="partner-pitch">"Independent businesses helping each other out — I'll send all my customers your way for grooming."</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+            
+            <div class="partner-card" data-id="doggiestylzs">
+                <div class="partner-name">Doggiestylzs Boutique & Grooming</div>
+                <span class="partner-type type-groomer">GROOMER</span>
+                <div class="partner-detail">📍 Florissant — Boutique + full-service grooming</div>
+                <div class="partner-detail">⭐ They sell products too — could display our cards at register</div>
+                <div class="partner-pitch">"Love the boutique concept! Our customers would love shopping here after we clean their yards."</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+            
+            <div class="partner-card" data-id="psp-florissant">
+                <div class="partner-name">🌟 Pet Supplies Plus — Florissant</div>
+                <span class="partner-type type-store">PET STORE</span>
+                <div class="partner-detail">📍 8230 N Lindbergh Blvd, Florissant 63031</div>
+                <div class="partner-detail">⭐ 23 reviews, community bulletin board, high foot traffic</div>
+                <a href="tel:3143958574" class="partner-phone">📞 (314) 395-8574</a>
+                <div class="partner-pitch">"Can I leave some business cards or a flyer on your community board? We're a local pet waste service — your customers are exactly who we serve."</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+            
+            <div class="partner-card" data-id="amandas-grooming">
+                <div class="partner-name">Amanda's Pet Grooming</div>
+                <span class="partner-type type-groomer">GROOMER</span>
+                <div class="partner-detail">📍 North County area</div>
+                <div class="partner-detail">⭐ Independent — usually more open to partnerships</div>
+                <div class="partner-pitch">"Fellow small business in North County — want to trade referrals?"</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+        </div>
+        
+        <h3 class="section-title">📍 St. Charles / O'Fallon / St. Peters — Expansion Territory</h3>
+        <div class="partner-grid">
+            <div class="partner-card" data-id="baxters-k9">
+                <div class="partner-name">🌟 Baxter's K9 Complex</div>
+                <span class="partner-type type-daycare">DAYCARE/BOARDING</span>
+                <div class="partner-detail">📍 St. Charles — serves O'Fallon, St. Peters, Cottleville</div>
+                <div class="partner-detail">⭐ Training + boarding + daycare. Yelp & Google presence. Perfect complement.</div>
+                <div class="partner-pitch">"Your clients leave their dogs with you when they travel — but who cleans the yard before they come home? We do."</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+            
+            <div class="partner-card" data-id="bark-central">
+                <div class="partner-name">Bark Central</div>
+                <span class="partner-type type-daycare">DAYCARE/BOARDING</span>
+                <div class="partner-detail">📍 St. Charles — pet resort, grooming, kennel</div>
+                <div class="partner-detail">⭐ Full-service = high-spending pet owners</div>
+                <div class="partner-pitch">"Your clients clearly invest in their pets. We help them invest in their yards too."</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+            
+            <div class="partner-card" data-id="sorenson">
+                <div class="partner-name">Sorenson Kennels</div>
+                <span class="partner-type type-trainer">TRAINING/BOARDING</span>
+                <div class="partner-detail">📍 Defiance, MO — serves St. Charles County</div>
+                <div class="partner-detail">⭐ Training + breeding + boarding since generations</div>
+                <div class="partner-pitch">"Well-trained dogs still poop! Your clients might appreciate knowing about our service."</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+            
+            <div class="partner-card" data-id="camp-bow-wow">
+                <div class="partner-name">Camp Bow Wow — St. Charles</div>
+                <span class="partner-type type-daycare">DAYCARE/BOARDING</span>
+                <div class="partner-detail">📍 St. Charles — national franchise with local clientele</div>
+                <div class="partner-detail">⭐ High volume of dog owners coming through daily</div>
+                <div class="partner-pitch">"Would you be open to displaying some of our business cards? We could do the same for you."</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+        </div>
+        
+        <h3 class="section-title">🏙️ Metro STL — High-Value Targets</h3>
+        <div class="partner-grid">
+            <div class="partner-card" data-id="k9-garden">
+                <div class="partner-name">🌟 K9 Garden (ex-Bar K)</div>
+                <span class="partner-type type-venue">DOG VENUE</span>
+                <div class="partner-detail">📍 4565 McRee Ave — Forest Park Southeast</div>
+                <div class="partner-detail">⭐ NEW (Jan 2026). Dog park + restaurant + bar + events. Membership-based. 13K Instagram followers.</div>
+                <a href="tel:3145309990" class="partner-phone">📞 (314) 530-9990</a>
+                <div class="partner-pitch">"Your members are exactly our customers — dog owners who invest in their pets. Can we do a membership perk? 10% off first month for K9 Garden members?"</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+            
+            <div class="partner-card" data-id="happy-tails">
+                <div class="partner-name">Happy Tails</div>
+                <span class="partner-type type-daycare">DAYCARE/BOARDING</span>
+                <div class="partner-detail">📍 STL County — 24/7 care, since 2000</div>
+                <div class="partner-detail">⭐ 20+ year reputation. Grooming + training + daycare.</div>
+                <div class="partner-pitch">"You've been trusted with STL's dogs for 25 years. We'd be honored to be a recommended vendor."</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+            
+            <div class="partner-card" data-id="petropolis">
+                <div class="partner-name">Petropolis</div>
+                <span class="partner-type type-daycare">DAYCARE/BOARDING</span>
+                <div class="partner-detail">📍 STL + St. Charles locations — multi-location</div>
+                <div class="partner-detail">⭐ Boarding, daycare, grooming, training — one-stop shop</div>
+                <div class="partner-pitch">"You handle everything indoors — we handle everything outdoors. Perfect complement."</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+            
+            <div class="partner-card" data-id="no-leash">
+                <div class="partner-name">No Leash Needed</div>
+                <span class="partner-type type-trainer">TRAINING/DAYCARE</span>
+                <div class="partner-detail">📍 8 locations across greater STL (including Lake St. Louis)</div>
+                <div class="partner-detail">⭐ Award-winning trainers. HUGE reach across metro.</div>
+                <div class="partner-pitch">"8 locations = massive referral potential. We'd love to be your go-to recommendation for yard cleanup."</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+            
+            <div class="partner-card" data-id="pets-company">
+                <div class="partner-name">Pets & Company</div>
+                <span class="partner-type type-daycare">BOARDING/SPA</span>
+                <div class="partner-detail">📍 Chesterfield — small-kennel, max 65 dogs</div>
+                <div class="partner-detail">⭐ Serves St. Peters, Ballwin, O'Fallon, St. Charles. Premium clientele.</div>
+                <div class="partner-pitch">"Premium pet care deserves premium yard care. Your clients would appreciate knowing about us."</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+            
+            <div class="partner-card" data-id="aussie-mobile">
+                <div class="partner-name">Aussie Pet Mobile — West STL</div>
+                <span class="partner-type type-groomer">MOBILE GROOMER</span>
+                <div class="partner-detail">📍 Mobile — serves Florissant + West STL</div>
+                <div class="partner-detail">⭐ Mobile groomers see the YARD when they arrive. Natural referral.</div>
+                <div class="partner-pitch">"You literally pull up to our customers' yards. If you see a minefield, hand them our card! We'll do the same for grooming."</div>
+                <span class="partner-status status-new" onclick="cycleStatus(this)">● NEW</span>
+            </div>
+        </div>
+        
+        <div class="progress-bar-container">
+            <div class="progress-label">Partnership Progress</div>
+            <div class="progress-bar"><div class="progress-fill" id="partnerProgress" style="width:0%"></div></div>
+            <div class="progress-num" id="partnerProgressText">0 of 15 contacted</div>
+        </div>
+    </div>
+    
+    <!-- TAB 3: SCRIPTS & PITCHES -->
+    <div id="scripts" class="tab-content">
+        <h3 class="section-title">🗣️ In-Person Elevator Pitch (15 seconds)</h3>
+        <div class="script-card">
+            <div class="script-title">The Quick Hit — Dog Park / Event / Anywhere</div>
+            <div class="script-text">"Hey! I'm Jamie with Tidy Tails — we do yard cleanup for dog owners. $70 a month, we come every week so you never have to deal with it. Here's my card — we're local, just here in [Florissant/North County/STL]."</div>
+            <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+        </div>
+        
+        <div class="script-card">
+            <div class="script-title">The Hook — If They Seem Interested</div>
+            <div class="script-text">"How many dogs do you have? [React] Oh nice! So that's probably — what, couple times a day each? That adds up fast. We come out once a week and handle all of it. Most people say it's the best $70 they spend. Want me to text you more info?"</div>
+            <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+        </div>
+        
+        <div class="script-card">
+            <div class="script-title">The Spring Hook — Seasonal Urgency</div>
+            <div class="script-text">"Spring's here and I know what that means — everything that piled up over winter is thawing out! We're running a spring deep clean special right now — $99, we come clear out the whole yard. Most people add weekly service after and it's just $70 a month. Here's my card!"</div>
+            <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+        </div>
+        
+        <h3 class="section-title">🤝 Partnership Pitch — Walk-In to Pet Business</h3>
+        <div class="script-card">
+            <div class="script-title">For Groomers / Pet Stores</div>
+            <div class="script-text">"Hi! I'm Jamie — I run Tidy Tails, a local pet waste removal service right here in [area]. I was wondering if I could leave a small stack of business cards on your counter? We serve the same dog owners but we don't compete at all — I'd love to recommend your shop to all our customers too. Maybe we could do a little card swap?"</div>
+            <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+        </div>
+        
+        <div class="script-card">
+            <div class="script-title">For Daycares / Boarding</div>
+            <div class="script-text">"Hey there! I'm Jamie with Tidy Tails — we handle yard cleanup for dog owners. I figured your clients are exactly who could use us — people who care enough about their dogs to bring them here probably care about a clean yard too. Would you be open to keeping some of our cards at the front? We'll absolutely send people your way for boarding and daycare."</div>
+            <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+        </div>
+        
+        <div class="script-card">
+            <div class="script-title">For K9 Garden / Dog Bars / Venues</div>
+            <div class="script-text">"Love what you guys are doing with this place! I run Tidy Tails — pet waste removal for homeowners. Your members are exactly our customers. Would you be interested in a partnership? Maybe a 10% discount for your members? We could put up a little sign or leave cards. Happy to promote you guys to our customer list too."</div>
+            <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+        </div>
+        
+        <h3 class="section-title">📱 Follow-Up Text After Meeting</h3>
+        <div class="script-card">
+            <div class="script-title">After Getting Someone's Number at an Event</div>
+            <div class="script-text">Hey [Name]! This is Jamie from Tidy Tails — we met at [event/park]. Just wanted to follow up! We do weekly yard cleanup for $70/month. Right now we're doing spring deep cleans for $99 to clear out the winter buildup. Want me to swing by for a free estimate? 🐕 tidytailsstl.com</div>
+            <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+        </div>
+        
+        <div class="script-card">
+            <div class="script-title">After Dropping Cards at a Business</div>
+            <div class="script-text">Hey [Business Name]! This is Jamie from Tidy Tails. Thanks so much for letting us leave cards at your shop! Just wanted to say — if any of your team members need yard cleanup, I'd love to offer 50% off the first month as a thank you. And I'm already telling customers about you! 🙌</div>
+            <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+        </div>
+    </div>
+    
+    <!-- TAB 4: EVENT MATERIALS -->
+    <div id="flyer" class="tab-content">
+        <h3 class="section-title">📄 What Jamie Needs for Events</h3>
+        
+        <div class="tip-box">
+            <strong>⚡ Quick Print Checklist:</strong> Order from Vistaprint, Canva Print, or local print shop. Budget: $30-50 covers everything.
+        </div>
+        
+        <div class="script-card">
+            <div class="script-title">🃏 Business Card Content</div>
+            <div class="script-text">FRONT:
+🐕 TIDY TAILS
+Pet Waste Removal — St. Louis
+
+Jamie | 314-850-7140
+tidytailsstl.com
+
+BACK:
+Weekly Service: $70/month
+Biweekly: $45 | One-Time Deep Clean: $100
+Spring Special: $99 Deep Clean + First Month $35!
+
+Serving: Florissant • O'Fallon • St. Charles
+Ferguson • Maryland Heights • St. Peters
+& surrounding areas
+
+"You'll never step in it again!" 🐾</div>
+            <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+        </div>
+        
+        <div class="script-card">
+            <div class="script-title">📋 Half-Page Flyer (for bulletin boards & partner businesses)</div>
+            <div class="script-text">🐕 TIRED OF STEPPING IN IT?
+
+TIDY TAILS — Professional Pet Waste Removal
+Serving St. Louis County & St. Charles County
+
+✅ Weekly yard cleanup — $70/month flat
+✅ We come, we scoop, we're gone
+✅ All waste removed — not just piled up
+✅ Reliable, insured, locally owned
+
+🌸 SPRING SPECIAL 🌸
+$99 One-Time Deep Clean
+(Clear the winter buildup!)
+
++ First month of weekly service: JUST $35!
+
+📞 Call/Text Jamie: 314-850-7140
+🌐 tidytailsstl.com
+
+"Best $70 I spend every month!" — Shannon, Florissant
+
+Serving: Florissant • O'Fallon • St. Peters • St. Charles
+Ferguson • Maryland Heights • Ballwin • and more!</div>
+            <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+        </div>
+        
+        <div class="script-card">
+            <div class="script-title">🎯 Event Booth Quick-Setup (If Vendor at Earth Day)</div>
+            <div class="script-text">WHAT TO BRING:
+□ Small folding table ($20 at Walmart)
+□ Tablecloth — green preferred (on brand)
+□ 200 business cards
+□ 50 half-page flyers
+□ Bowl of dog treats (ice breaker!)
+□ Small sign: "FREE yard assessment!" 
+□ Phone charger (you'll be texting)
+□ Tidy Tails shirt or hat (if you have one)
+□ QR code printout → tidytailsstl.com
+□ Signup sheet (name, phone, zip code, # of dogs)
+
+TOTAL COST: $30-50 (most stuff you already have)
+
+PRO TIP: The treats bring the dogs over.
+The dogs bring the owners. The owners get the pitch.
+
+GOAL: 50 signups = 5-10 paying customers</div>
+            <button class="copy-btn" onclick="copyText(this)">📋 Copy</button>
+        </div>
+    </div>
+    
+    <!-- TAB 5: ACTION PLAN CHECKLIST -->
+    <div id="checklist" class="tab-content">
+        <h3 class="section-title">📋 Week 1 (This Week — March 21-28)</h3>
+        
+        <div class="checklist-item" onclick="toggleCheck(this)" data-id="check-1">
+            <div class="check-box"></div>
+            <div>
+                <div class="check-text">Order 250 business cards (Vistaprint — $15-25, arrives in 5 days)</div>
+                <div class="check-time">⏱ 10 min online | 💰 $15-25</div>
+            </div>
+        </div>
+        
+        <div class="checklist-item" onclick="toggleCheck(this)" data-id="check-2">
+            <div class="check-box"></div>
+            <div>
+                <div class="check-text">Print 30 half-page flyers at home or local library ($3-5)</div>
+                <div class="check-time">⏱ 15 min | 💰 $3-5</div>
+            </div>
+        </div>
+        
+        <div class="checklist-item" onclick="toggleCheck(this)" data-id="check-3">
+            <div class="check-box"></div>
+            <div>
+                <div class="check-text">Visit Pet Supplies Plus Florissant — leave cards on community board</div>
+                <div class="check-time">⏱ 15 min drive + 5 min | 💰 FREE</div>
+            </div>
+        </div>
+        
+        <div class="checklist-item" onclick="toggleCheck(this)" data-id="check-4">
+            <div class="check-box"></div>
+            <div>
+                <div class="check-text">Visit North County Pet Grooming — card swap pitch</div>
+                <div class="check-time">⏱ 10 min | 💰 FREE</div>
+            </div>
+        </div>
+        
+        <h3 class="section-title">📋 Week 2 (March 28 — April 4)</h3>
+        
+        <div class="checklist-item" onclick="toggleCheck(this)" data-id="check-5">
+            <div class="check-box"></div>
+            <div>
+                <div class="check-text">Visit 2 more Florissant groomers — Doggiestylzs + Pet Planet</div>
+                <div class="check-time">⏱ 30 min total | 💰 FREE</div>
+            </div>
+        </div>
+        
+        <div class="checklist-item" onclick="toggleCheck(this)" data-id="check-6">
+            <div class="check-box"></div>
+            <div>
+                <div class="check-text">Dog park visit — DuSable Park or St. Ferdinand Park (Florissant). Saturday morning 9-11 AM.</div>
+                <div class="check-time">⏱ 1-2 hours (bring your own dog!) | 💰 FREE</div>
+            </div>
+        </div>
+        
+        <div class="checklist-item" onclick="toggleCheck(this)" data-id="check-7">
+            <div class="check-box"></div>
+            <div>
+                <div class="check-text">Apply for Earth Day Festival vendor booth (April 25-26)</div>
+                <div class="check-time">⏱ 20 min | 💰 ~$100-200 vendor fee (worth it for 30,000 attendees)</div>
+            </div>
+        </div>
+        
+        <h3 class="section-title">📋 Week 3-4 (April 4-18)</h3>
+        
+        <div class="checklist-item" onclick="toggleCheck(this)" data-id="check-8">
+            <div class="check-box"></div>
+            <div>
+                <div class="check-text">Visit K9 Garden — partnership pitch for member discount program</div>
+                <div class="check-time">⏱ 1 hour (stay for a drink, scout the vibe) | 💰 $15 for a beer</div>
+            </div>
+        </div>
+        
+        <div class="checklist-item" onclick="toggleCheck(this)" data-id="check-9">
+            <div class="check-box"></div>
+            <div>
+                <div class="check-text">Hit 2 St. Charles businesses — Baxter's K9 + Bark Central</div>
+                <div class="check-time">⏱ 45 min | 💰 FREE</div>
+            </div>
+        </div>
+        
+        <div class="checklist-item" onclick="toggleCheck(this)" data-id="check-10">
+            <div class="check-box"></div>
+            <div>
+                <div class="check-text">Second dog park visit — different park, different time</div>
+                <div class="check-time">⏱ 1-2 hours | 💰 FREE</div>
+            </div>
+        </div>
+        
+        <h3 class="section-title">📋 April 25-May 16 (Event Season)</h3>
+        
+        <div class="checklist-item" onclick="toggleCheck(this)" data-id="check-11">
+            <div class="check-box"></div>
+            <div>
+                <div class="check-text">🌍 ATTEND: Earth Day Festival (Apr 25-26) — vendor booth or hand out cards</div>
+                <div class="check-time">⏱ 4-6 hours per day | 💰 $0-200 | 🎯 Goal: 50 signups</div>
+            </div>
+        </div>
+        
+        <div class="checklist-item" onclick="toggleCheck(this)" data-id="check-12">
+            <div class="check-box"></div>
+            <div>
+                <div class="check-text">🐾 ATTEND: Bark in the Park (May 16) — THE big one. 200+ cards.</div>
+                <div class="check-time">⏱ 6 hours | 💰 $0-40 | 🎯 Goal: 100 cards distributed, 20 leads</div>
+            </div>
+        </div>
+        
+        <div class="checklist-item" onclick="toggleCheck(this)" data-id="check-13">
+            <div class="check-box"></div>
+            <div>
+                <div class="check-text">Follow up ALL leads from events within 24 hours (text template in Scripts tab)</div>
+                <div class="check-time">⏱ 30 min per batch | 💰 FREE</div>
+            </div>
+        </div>
+        
+        <div class="progress-bar-container">
+            <div class="progress-label">Checklist Progress</div>
+            <div class="progress-bar"><div class="progress-fill" id="checkProgress" style="width:0%"></div></div>
+            <div class="progress-num" id="checkProgressText">0 of 13 completed</div>
+        </div>
+    </div>
+    
+    <!-- TAB 6: ROI PROJECTIONS -->
+    <div id="roi" class="tab-content">
+        <h3 class="section-title">💰 Face-to-Face vs Digital — The Math</h3>
+        
+        <div class="roi-card">
+            <div class="roi-title">📊 Channel Comparison</div>
+            <div class="roi-row"><span class="roi-label">Facebook Ads (per customer)</span><span class="roi-value" style="color:#ef4444;">$150-500</span></div>
+            <div class="roi-row"><span class="roi-label">Google Ads (per customer)</span><span class="roi-value" style="color:#ef4444;">$200-600</span></div>
+            <div class="roi-row"><span class="roi-label">Referral program (per customer)</span><span class="roi-value" style="color:#f59e0b;">$17.50</span></div>
+            <div class="roi-row"><span class="roi-label">Dog park networking (per customer)</span><span class="roi-value">$0</span></div>
+            <div class="roi-row"><span class="roi-label">Partnership referrals (per customer)</span><span class="roi-value">$0</span></div>
+            <div class="roi-row"><span class="roi-label">Event attendance (per customer)</span><span class="roi-value">$5-40</span></div>
+        </div>
+        
+        <div class="roi-card">
+            <div class="roi-title">🎯 Conservative 60-Day Projection (Events + Partnerships)</div>
+            <div class="roi-row"><span class="roi-label">Business cards at 5 partner locations</span><span class="roi-value">1-3 leads/month</span></div>
+            <div class="roi-row"><span class="roi-label">4 dog park visits (2x/month)</span><span class="roi-value">2-4 leads</span></div>
+            <div class="roi-row"><span class="roi-label">Earth Day Festival (30K attendees)</span><span class="roi-value">5-15 leads</span></div>
+            <div class="roi-row"><span class="roi-label">Bark in the Park (thousands)</span><span class="roi-value">10-20 leads</span></div>
+            <div class="roi-row" style="border-top: 2px solid #4ade80; padding-top: 0.8rem;">
+                <span class="roi-label"><strong>Total leads (60 days)</strong></span>
+                <span class="roi-value">18-42 leads</span>
+            </div>
+            <div class="roi-row"><span class="roi-label">At 20-30% close rate (warm leads)</span><span class="roi-value">4-13 new customers</span></div>
+            <div class="roi-row"><span class="roi-label">Monthly recurring revenue added</span><span class="roi-value">$280-910/mo</span></div>
+        </div>
+        
+        <div class="roi-card">
+            <div class="roi-title">💸 Total Investment</div>
+            <div class="roi-row"><span class="roi-label">250 business cards</span><span class="roi-value">$15-25</span></div>
+            <div class="roi-row"><span class="roi-label">30 flyers</span><span class="roi-value">$3-5</span></div>
+            <div class="roi-row"><span class="roi-label">Earth Day vendor booth (optional)</span><span class="roi-value">$100-200</span></div>
+            <div class="roi-row"><span class="roi-label">Dog treats for events</span><span class="roi-value">$10</span></div>
+            <div class="roi-row" style="border-top: 2px solid #4ade80; padding-top: 0.8rem;">
+                <span class="roi-label"><strong>Total investment</strong></span>
+                <span class="roi-value">$28-240</span>
+            </div>
+            <div class="roi-row"><span class="roi-label"><strong>Revenue generated (first year)</strong></span><span class="roi-value">$3,360-10,920</span></div>
+            <div class="roi-row"><span class="roi-label"><strong>ROI</strong></span><span class="roi-value" style="font-size:1.3rem;">1,400-45,000%</span></div>
+        </div>
+        
+        <div class="tip-box">
+            <strong>🔑 The Key Insight:</strong> TJ has a $0 marketing budget, ZERO online reviews, and near-zero search visibility. Face-to-face completely bypasses all of those weaknesses. At events, nobody checks your Google reviews — they meet Jamie, like her, and sign up. This is the single most effective channel until the online presence catches up.
+        </div>
+        
+        <div class="roi-card" style="border-color: #f59e0b;">
+            <div class="roi-title" style="color: #f59e0b;">⚡ Compound Effect — Why Partnerships Keep Paying</div>
+            <div class="roi-row"><span class="roi-label">Month 1: Cards at 5 locations</span><span class="roi-value">1-3 leads</span></div>
+            <div class="roi-row"><span class="roi-label">Month 2: Same cards, no work</span><span class="roi-value">1-3 more leads</span></div>
+            <div class="roi-row"><span class="roi-label">Month 3: Add 5 more locations</span><span class="roi-value">2-6 leads</span></div>
+            <div class="roi-row"><span class="roi-label">Month 6: 10 partner locations</span><span class="roi-value">3-8 leads/month</span></div>
+            <div class="roi-row"><span class="roi-label">Month 12: Network effect</span><span class="roi-value">5-12 leads/month</span></div>
+            <div class="roi-row" style="border-top: 2px solid #f59e0b; padding-top: 0.8rem;">
+                <span class="roi-label"><strong>Year 1 total from partnerships alone</strong></span>
+                <span class="roi-value">20-50 customers</span>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Tab switching
+        function showTab(id) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        // Copy text
+        function copyText(btn) {
+            const text = btn.previousElementSibling.textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                btn.textContent = '✅ Copied!';
+                btn.classList.add('copied');
+                setTimeout(() => { btn.textContent = '📋 Copy'; btn.classList.remove('copied'); }, 2000);
+            });
+        }
+        
+        // Checklist
+        function toggleCheck(el) {
+            el.classList.toggle('checked');
+            const id = el.dataset.id;
+            const checks = JSON.parse(localStorage.getItem('tt-events-checks') || '{}');
+            checks[id] = el.classList.contains('checked');
+            localStorage.setItem('tt-events-checks', JSON.stringify(checks));
+            if (el.classList.contains('checked')) {
+                el.querySelector('.check-box').textContent = '✓';
+            } else {
+                el.querySelector('.check-box').textContent = '';
+            }
+            updateCheckProgress();
+        }
+        
+        function updateCheckProgress() {
+            const total = document.querySelectorAll('.checklist-item').length;
+            const done = document.querySelectorAll('.checklist-item.checked').length;
+            const pct = Math.round((done / total) * 100);
+            document.getElementById('checkProgress').style.width = pct + '%';
+            document.getElementById('checkProgressText').textContent = done + ' of ' + total + ' completed';
+        }
+        
+        // Partner status cycling
+        const statuses = ['new', 'contacted', 'interested', 'partnered', 'declined'];
+        const statusLabels = { new: '● NEW', contacted: '📞 CONTACTED', interested: '🟢 INTERESTED', partnered: '🤝 PARTNERED', declined: '❌ DECLINED' };
+        
+        function cycleStatus(el) {
+            const card = el.closest('.partner-card');
+            const id = card.dataset.id;
+            let current = statuses.find(s => el.classList.contains('status-' + s)) || 'new';
+            let next = statuses[(statuses.indexOf(current) + 1) % statuses.length];
+            
+            el.className = 'partner-status status-' + next;
+            el.textContent = statusLabels[next];
+            
+            const partnerState = JSON.parse(localStorage.getItem('tt-partner-status') || '{}');
+            partnerState[id] = next;
+            localStorage.setItem('tt-partner-status', JSON.stringify(partnerState));
+            updatePartnerProgress();
+        }
+        
+        function updatePartnerProgress() {
+            const state = JSON.parse(localStorage.getItem('tt-partner-status') || '{}');
+            const total = document.querySelectorAll('.partner-card').length;
+            const contacted = Object.values(state).filter(s => s !== 'new').length;
+            const pct = Math.round((contacted / total) * 100);
+            document.getElementById('partnerProgress').style.width = pct + '%';
+            document.getElementById('partnerProgressText').textContent = contacted + ' of ' + total + ' contacted';
+        }
+        
+        // Countdown timers
+        function updateCountdowns() {
+            const now = new Date();
+            const earthDay = new Date('2026-04-25T11:00:00-05:00');
+            const bark = new Date('2026-05-16T08:00:00-05:00');
+            
+            function daysUntil(target) {
+                const diff = target - now;
+                return Math.ceil(diff / (1000 * 60 * 60 * 24));
+            }
+            
+            const edEl = document.getElementById('countdown-earthday');
+            const bkEl = document.getElementById('countdown-bark');
+            
+            if (edEl) edEl.textContent = '⏰ ' + daysUntil(earthDay) + ' days away';
+            if (bkEl) bkEl.textContent = '⏰ ' + daysUntil(bark) + ' days away';
+        }
+        
+        // Load saved state
+        function loadState() {
+            const checks = JSON.parse(localStorage.getItem('tt-events-checks') || '{}');
+            Object.entries(checks).forEach(([id, checked]) => {
+                if (checked) {
+                    const el = document.querySelector(`[data-id="${id}"]`);
+                    if (el) { el.classList.add('checked'); el.querySelector('.check-box').textContent = '✓'; }
+                }
+            });
+            
+            const partnerState = JSON.parse(localStorage.getItem('tt-partner-status') || '{}');
+            Object.entries(partnerState).forEach(([id, status]) => {
+                const card = document.querySelector(`[data-id="${id}"]`);
+                if (card) {
+                    const btn = card.querySelector('.partner-status');
+                    btn.className = 'partner-status status-' + status;
+                    btn.textContent = statusLabels[status];
+                }
+            });
+            
+            updateCheckProgress();
+            updatePartnerProgress();
+            updateCountdowns();
+        }
+        
+        loadState();
+    </script>
+</body>
+</html>
