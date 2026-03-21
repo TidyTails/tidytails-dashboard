@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📅 Week of Mar 24-30 — Content Calendar | Tidy Tails</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
+  .container { max-width: 700px; margin: 0 auto; padding: 16px; }
+  
+  header { text-align: center; padding: 24px 0 16px; border-bottom: 2px solid #2a2a2a; margin-bottom: 20px; }
+  header h1 { font-size: 1.5em; color: #4ade80; margin-bottom: 4px; }
+  header p { color: #888; font-size: 0.9em; }
+  
+  .progress-bar { background: #1a1a1a; border-radius: 12px; padding: 12px 16px; margin-bottom: 20px; }
+  .progress-bar .bar-track { background: #2a2a2a; border-radius: 8px; height: 12px; overflow: hidden; margin-top: 8px; }
+  .progress-bar .bar-fill { background: linear-gradient(90deg, #4ade80, #22c55e); height: 100%; border-radius: 8px; transition: width 0.5s; }
+  .progress-bar .label { font-size: 0.85em; color: #aaa; display: flex; justify-content: space-between; }
+  
+  .day-tabs { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; -webkit-overflow-scrolling: touch; }
+  .day-tab { padding: 8px 14px; border-radius: 8px; background: #1a1a1a; border: 1px solid #2a2a2a; color: #888; font-size: 0.8em; cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: all 0.2s; }
+  .day-tab.active { background: #166534; border-color: #22c55e; color: #fff; }
+  .day-tab.done { background: #1a2a1a; border-color: #4ade80; color: #4ade80; }
+  .day-tab.done::before { content: '✅ '; }
+  
+  .day-card { display: none; background: #111; border: 1px solid #2a2a2a; border-radius: 12px; overflow: hidden; }
+  .day-card.active { display: block; }
+  
+  .day-header { padding: 16px; background: linear-gradient(135deg, #0d2818, #132a1a); border-bottom: 1px solid #2a2a2a; }
+  .day-header h2 { color: #4ade80; font-size: 1.1em; }
+  .day-header .meta { display: flex; gap: 12px; margin-top: 6px; font-size: 0.8em; color: #888; }
+  .day-header .meta span { display: flex; align-items: center; gap: 4px; }
+  
+  .post-content { padding: 16px; }
+  .post-content blockquote { background: #0d0d0d; border-left: 3px solid #4ade80; padding: 14px 16px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 0.92em; line-height: 1.7; white-space: pre-wrap; }
+  .post-content h3 { color: #fbbf24; font-size: 0.95em; margin: 16px 0 8px; }
+  .post-content p { color: #aaa; font-size: 0.88em; margin: 8px 0; }
+  .post-content .tip { background: #1a1600; border: 1px solid #fbbf2433; border-radius: 8px; padding: 10px 14px; margin-top: 12px; font-size: 0.85em; color: #fbbf24; }
+  
+  .copy-btn { display: block; width: 100%; padding: 14px; background: #166534; color: #fff; border: none; border-radius: 8px; font-size: 1em; font-weight: 600; cursor: pointer; margin-top: 12px; transition: background 0.2s; }
+  .copy-btn:active { background: #15803d; }
+  .copy-btn.copied { background: #22c55e; }
+  
+  .done-btn { display: block; width: 100%; padding: 12px; background: transparent; color: #4ade80; border: 2px solid #4ade80; border-radius: 8px; font-size: 0.95em; cursor: pointer; margin-top: 8px; transition: all 0.2s; }
+  .done-btn.completed { background: #4ade80; color: #000; }
+  
+  .hashtags { padding: 12px 16px; background: #0d0d0d; border-top: 1px solid #1a1a1a; font-size: 0.8em; color: #666; }
+  
+  .week-notes { background: #111; border: 1px solid #2a2a2a; border-radius: 12px; padding: 16px; margin-top: 20px; }
+  .week-notes h3 { color: #fbbf24; margin-bottom: 10px; }
+  .week-notes ul { list-style: none; padding: 0; }
+  .week-notes li { padding: 8px 0; border-bottom: 1px solid #1a1a1a; font-size: 0.88em; color: #ccc; }
+  .week-notes li:last-child { border: none; }
+  .week-notes li::before { content: '💡 '; }
+  
+  .goal-box { background: linear-gradient(135deg, #1a0d00, #2a1a0a); border: 2px solid #f59e0b; border-radius: 12px; padding: 20px; margin-top: 20px; text-align: center; }
+  .goal-box h3 { color: #f59e0b; font-size: 1.2em; }
+  .goal-box p { color: #fbbf24; margin-top: 8px; font-size: 1.5em; font-weight: 700; }
+  .goal-box small { color: #888; display: block; margin-top: 8px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>📅 Content Calendar</h1>
+    <p>Week of March 24–30, 2026 • Copy → Paste → Post</p>
+  </header>
+
+  <div class="progress-bar">
+    <div class="label"><span id="prog-text">0/7 posted</span><span id="prog-pct">0%</span></div>
+    <div class="bar-track"><div class="bar-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+
+  <div class="day-tabs" id="tabs"></div>
+
+  <!-- MONDAY -->
+  <div class="day-card" id="day-0" data-day="0">
+    <div class="day-header">
+      <h2>📘 Monday, March 24</h2>
+      <div class="meta"><span>📍 Facebook Groups</span><span>⏰ Post 5-7 PM</span></div>
+    </div>
+    <div class="post-content">
+      <h3>Angle: "Monday Morning" — Seasonal Urgency</h3>
+      <p>Post in: Florissant Community, Hazelwood Neighbors, Maryland Heights Chat</p>
+      <blockquote id="post-0">Monday morning. Coffee's hot. Your yard is not. 🐕💩
+
+Actually scratch that — your yard IS hot... if you count the 3 months of dog poop that just thawed out.
+
+I'm TJ with Tidy Tails. I do the one job nobody wants to do: I clean up your dog's business so you can actually use your backyard again.
+
+Here's the deal:
+🧹 Weekly service — $70/month flat
+🧹 Biweekly — $45/month
+🧹 One-time spring deep clean — $100
+
+No contracts. No per-dog upcharges. No surprises.
+
+Your neighbors are starting to mow. Don't be the yard that smells. 😅
+
+📞 314-850-7140 (call or text)
+🌐 tidytailsstl.com</blockquote>
+      <button class="copy-btn" onclick="copyPost(0)">📋 Copy Post</button>
+      <button class="done-btn" onclick="markDone(0)">✅ Mark as Posted</button>
+      <div class="tip">💡 Post in 2-3 groups, not all at once. Space them 30 min apart so Facebook doesn't flag as spam.</div>
+    </div>
+  </div>
+
+  <!-- TUESDAY -->
+  <div class="day-card" id="day-1" data-day="1">
+    <div class="day-header">
+      <h2>🏘️ Tuesday, March 25</h2>
+      <div class="meta"><span>📍 Nextdoor</span><span>⏰ Post 8-10 AM</span></div>
+    </div>
+    <div class="post-content">
+      <h3>Angle: "Ask the Neighborhood" — Conversation Starter</h3>
+      <p>Nextdoor rewards question-style posts. This invites engagement AND pitches naturally.</p>
+      <blockquote id="post-1">Quick question for the dog owners in the neighborhood 🐶
+
+Now that it's warming up — how's your backyard looking? Be honest. 😬
+
+I ask because I run a local pet waste removal service (Tidy Tails) and this time of year my phone starts blowing up. Winter poop doesn't disappear. It just... waits.
+
+If you've been putting off the big spring cleanup, here's what I offer:
+
+• One-time deep clean: $100 (most yards take me about an hour)
+• Weekly service: $70/month flat — I come out same day every week
+• Biweekly: $45/month
+
+I'm local, insured, and I've been doing this in our area for over a year. Happy to answer any questions or give you a quick quote.
+
+TJ — 314-850-7140
+tidytailsstl.com</blockquote>
+      <button class="copy-btn" onclick="copyPost(1)">📋 Copy Post</button>
+      <button class="done-btn" onclick="markDone(1)">✅ Mark as Posted</button>
+      <div class="tip">💡 Nextdoor loves questions. If people comment, reply to EVERY one within 2 hours. Speed = trust.</div>
+    </div>
+  </div>
+
+  <!-- WEDNESDAY -->
+  <div class="day-card" id="day-2" data-day="2">
+    <div class="day-header">
+      <h2>📸 Wednesday, March 26</h2>
+      <div class="meta"><span>📍 Instagram + FB Story</span><span>⏰ Post 11AM-1PM</span></div>
+    </div>
+    <div class="post-content">
+      <h3>Angle: "The Math" — Quick Visual Post</h3>
+      <p>Take a photo of your truck, equipment, or a clean yard. Pair with this caption.</p>
+      <blockquote id="post-2">1 dog. 14 poops per week. That's 168 since January 1st sitting in your yard right now.
+
+2 dogs? Double it. 336.
+
+You picking all that up this weekend? Or you want me to handle it?
+
+$70/month. Weekly. Done.
+
+📞 314-850-7140</blockquote>
+      <h3>📱 Story Version:</h3>
+      <p>Add a poll sticker: "My yard is clean ✅ / Don't look at my yard 😅"</p>
+      <button class="copy-btn" onclick="copyPost(2)">📋 Copy Post</button>
+      <button class="done-btn" onclick="markDone(2)">✅ Mark as Posted</button>
+      <div class="tip">💡 Posts with photos get 3-5x more engagement. Even a crappy phone photo of your truck beats text-only every time.</div>
+    </div>
+  </div>
+
+  <!-- THURSDAY -->
+  <div class="day-card" id="day-3" data-day="3">
+    <div class="day-header">
+      <h2>📘 Thursday, March 27</h2>
+      <div class="meta"><span>📍 Facebook Groups (NEW ones)</span><span>⏰ Post 5-7 PM</span></div>
+    </div>
+    <div class="post-content">
+      <h3>Angle: "Real Talk" — Founder Story / Emotional</h3>
+      <p>Post in: Ferguson Community, Bridgeton/St. Ann Neighbors, Overland Chat — groups you DIDN'T post in Monday.</p>
+      <blockquote id="post-3">Can I be real for a sec?
+
+Nobody starts a business thinking "I want to pick up dog poop for a living." But here I am. And honestly? I love it.
+
+Not the poop part (obviously). But the part where a customer texts me "OMG my yard looks amazing" or tells me their kids can finally play outside again. That part hits different.
+
+I'm TJ. I run Tidy Tails right here in STL. One-man operation, local, showing up every week rain or shine.
+
+If your yard's been neglected over winter — no judgment. That's literally 90% of my customers right now. Spring is cleanup season.
+
+$70/month for weekly service. $100 for a one-time deep clean.
+
+Call or text: 314-850-7140
+tidytailsstl.com
+
+And yeah — I'm the guy who chose poop over a desk job. Zero regrets. 🐕💩✌️</blockquote>
+      <button class="copy-btn" onclick="copyPost(3)">📋 Copy Post</button>
+      <button class="done-btn" onclick="markDone(3)">✅ Mark as Posted</button>
+      <div class="tip">💡 Founder stories humanize the brand. People buy from people they like. This post builds trust AND sells.</div>
+    </div>
+  </div>
+
+  <!-- FRIDAY -->
+  <div class="day-card" id="day-4" data-day="4">
+    <div class="day-header">
+      <h2>📰 Friday, March 28</h2>
+      <div class="meta"><span>📍 Craigslist</span><span>⏰ Post anytime</span></div>
+    </div>
+    <div class="post-content">
+      <h3>Angle: "Weekend Prep" — Urgency</h3>
+      <p>Craigslist > Services > Household. Refresh/repost weekly for visibility.</p>
+      <blockquote id="post-4">🐕 Weekend Coming — Get Your Yard Cleaned First | $70/mo Dog Poop Removal
+
+Weekend plans? BBQ? Kids playing outside? Friends coming over?
+
+Not if your yard looks (and smells) like a dog park that hasn't been serviced since December.
+
+Tidy Tails Pet Waste Removal — St. Louis County
+
+WHAT I DO:
+✅ Come to your yard on your scheduled day
+✅ Find every pile (yes, even the hidden ones)
+✅ Bag it, haul it, gone
+✅ Leave your yard actually usable
+
+PRICING:
+• Weekly — $70/month flat (most popular)
+• Biweekly — $45/month
+• One-time deep clean — $100
+• Multi-dog? Same price. No upcharges.
+
+WHY ME:
+→ Local owner-operated (not a franchise)
+→ Insured
+→ I actually show up
+→ Flat rate means flat rate
+
+Serving: Florissant, Hazelwood, Maryland Heights, Ferguson, Bridgeton, St. Ann, Overland, Creve Coeur, Chesterfield, Ballwin, and surrounding areas.
+
+📞 314-850-7140 (call or text anytime)
+🌐 tidytailsstl.com
+
+Spring cleanup slots filling up. Don't wait until it's 85° and the smell is next-level. 🫠</blockquote>
+      <button class="copy-btn" onclick="copyPost(4)">📋 Copy Post</button>
+      <button class="done-btn" onclick="markDone(4)">✅ Mark as Posted</button>
+      <div class="tip">💡 Craigslist ads get buried fast. Repost every Friday for best weekend visibility. Delete old one first.</div>
+    </div>
+  </div>
+
+  <!-- SATURDAY -->
+  <div class="day-card" id="day-5" data-day="5">
+    <div class="day-header">
+      <h2>📸 Saturday, March 29</h2>
+      <div class="meta"><span>📍 Instagram Feed</span><span>⏰ Post 11AM-1PM</span></div>
+    </div>
+    <div class="post-content">
+      <h3>Angle: "Behind the Scenes" — Founder Life</h3>
+      <p>Take a photo: truck loaded up, equipment ready, clean yard, or selfie with gear.</p>
+      <blockquote id="post-5">Saturday morning. Most people are sleeping in. I'm loading up the truck for a spring cleanup. ☀️🐕
+
+Started Tidy Tails because I saw a problem nobody was solving well — at least not around here. Most competitors either charge per dog (sneaky), don't show up consistently, or are big franchises that don't care about your specific yard.
+
+I'm one guy. Local. I know my customers by name. I know their dogs by name. And I'm not going anywhere.
+
+If you're in St. Louis County and your yard needs help, hit the link in bio or text me: 314-850-7140
+
+$70/month flat. Weekly. No contracts. No BS.
+
+#tidytails #stlouis #petwasteRemoval #dogmom #dogdad #springcleaning #florissant #hazelwood #stllocal #smallbusiness #doglife #pooperscooper #yardcleanup</blockquote>
+      <button class="copy-btn" onclick="copyPost(5)">📋 Copy Post</button>
+      <button class="done-btn" onclick="markDone(5)">✅ Mark as Posted</button>
+      <div class="tip">💡 Instagram rewards consistency. One good feed post per week beats 5 mediocre ones. Make this one count.</div>
+    </div>
+  </div>
+
+  <!-- SUNDAY -->
+  <div class="day-card" id="day-6" data-day="6">
+    <div class="day-header">
+      <h2>🟢 Sunday, March 30</h2>
+      <div class="meta"><span>📍 GBP + Nextdoor</span><span>⏰ Post 9-11 AM</span></div>
+    </div>
+    <div class="post-content">
+      <h3>Angle: "New Week" — Soft Close</h3>
+      <p>Google Business Profile post + Nextdoor follow-up to Tuesday's post.</p>
+      <h3>GBP Post:</h3>
+      <blockquote id="post-6a">New week starting tomorrow — perfect time to finally tackle that spring poop cleanup. 🌱
+
+Tidy Tails serves St. Louis County with weekly dog waste removal for $70/month flat. One-time deep cleans available too.
+
+Your yard won't clean itself. But I will. 😎
+
+📞 314-850-7140</blockquote>
+      <button class="copy-btn" onclick="copyPost('6a')">📋 Copy GBP Post</button>
+      <h3 style="margin-top:20px">Nextdoor Follow-up:</h3>
+      <blockquote id="post-6b">Hey again! Just wanted to say thanks to everyone who reached out this week. Already booked a few spring cleanups in the neighborhood. 🙌
+
+If you're still thinking about it — I've got openings next week. Spring's only getting warmer and so is... well... you know. 😅
+
+314-850-7140 or tidytailsstl.com
+
+— TJ, Tidy Tails</blockquote>
+      <button class="copy-btn" onclick="copyPost('6b')">📋 Copy Nextdoor Post</button>
+      <button class="done-btn" onclick="markDone(6)">✅ Mark as Posted</button>
+      <div class="tip">💡 GBP posts boost your Google Maps ranking. Even if nobody reads them, Google rewards activity. Post weekly.</div>
+    </div>
+  </div>
+
+  <div class="week-notes">
+    <h3>💡 This Week's Tips</h3>
+    <ul>
+      <li>Photos beat text-only 3-5x. Take ONE photo each scooping day — truck, clean yard, equipment. Anything.</li>
+      <li>Respond to every comment within 2 hours. Speed = trust. Even "how much?" deserves a warm reply.</li>
+      <li>Don't post in the same Facebook group twice in one week. Spread across different groups Mon vs Thu.</li>
+      <li>Best posting times: FB groups 5-7 PM weekdays, Nextdoor mornings, Instagram 11AM-1PM or 7-9PM.</li>
+      <li>Don't delete old posts. People search community groups and find posts from weeks ago.</li>
+    </ul>
+  </div>
+
+  <div class="goal-box">
+    <h3>🎯 This Week's Goal</h3>
+    <p>3 Inbound Inquiries</p>
+    <small>Not 30. Not 10. Just 3 people texting 314-850-7140 because they saw a post. Hit that? We scale.</small>
+  </div>
+</div>
+
+<script>
+const DAYS = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+const KEY = 'tt-content-mar24-30';
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; }
+}
+function saveState(s) { localStorage.setItem(KEY, JSON.stringify(s)); }
+
+function init() {
+  const state = loadState();
+  const tabs = document.getElementById('tabs');
+  
+  DAYS.forEach((d, i) => {
+    const tab = document.createElement('div');
+    tab.className = 'day-tab' + (i === 0 ? ' active' : '') + (state[i] ? ' done' : '');
+    tab.textContent = d;
+    tab.onclick = () => switchDay(i);
+    tabs.appendChild(tab);
+  });
+  
+  document.getElementById('day-0').classList.add('active');
+  
+  // Restore done states
+  Object.keys(state).forEach(k => {
+    const btn = document.querySelector(`#day-${k} .done-btn`);
+    if (btn && state[k]) { btn.classList.add('completed'); btn.textContent = '✅ Posted!'; }
+  });
+  
+  updateProgress();
+}
+
+function switchDay(i) {
+  document.querySelectorAll('.day-tab').forEach((t, idx) => t.classList.toggle('active', idx === i));
+  document.querySelectorAll('.day-card').forEach((c, idx) => c.classList.toggle('active', idx === i));
+}
+
+function copyPost(id) {
+  const el = document.getElementById('post-' + id);
+  if (!el) return;
+  navigator.clipboard.writeText(el.textContent.trim()).then(() => {
+    const btns = el.closest('.post-content').querySelectorAll('.copy-btn');
+    btns.forEach(b => {
+      if (b.onclick.toString().includes(id)) {
+        b.textContent = '✅ Copied!';
+        b.classList.add('copied');
+        setTimeout(() => { b.textContent = '📋 Copy Post'; b.classList.remove('copied'); }, 2000);
+      }
+    });
+  });
+}
+
+function markDone(i) {
+  const state = loadState();
+  state[i] = !state[i];
+  saveState(state);
+  
+  const btn = document.querySelector(`#day-${i} .done-btn`);
+  const tab = document.querySelectorAll('.day-tab')[i];
+  
+  if (state[i]) {
+    btn.classList.add('completed'); btn.textContent = '✅ Posted!';
+    tab.classList.add('done');
+  } else {
+    btn.classList.remove('completed'); btn.textContent = '✅ Mark as Posted';
+    tab.classList.remove('done');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const state = loadState();
+  const done = Object.values(state).filter(Boolean).length;
+  document.getElementById('prog-text').textContent = `${done}/7 posted`;
+  document.getElementById('prog-pct').textContent = `${Math.round(done/7*100)}%`;
+  document.getElementById('prog-fill').style.width = `${done/7*100}%`;
+}
+
+init();
+</script>
+</body>
+</html>

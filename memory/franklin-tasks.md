@@ -7,6 +7,66 @@
 
 ## March 21, 2026 (Saturday)
 
+### 5:04 AM — 📅 WEEKLY CONTENT CALENDAR — Mar 24-30 Copy-Paste Posts (Content/Marketing)
+**Task:** Created a full 7-day content calendar with ready-to-post copy for every platform TJ uses. Each post has a unique angle (urgency, community, math, founder story, weekend prep, behind-the-scenes, soft close). Built both a markdown reference file AND an interactive mobile-first dashboard page with copy-to-clipboard buttons, day tabs, progress tracking, and posting tips.
+
+**Result:** ✅ COMPLETE — `content/week-mar24-30-2026-content-calendar.md` + `dashboard/weekly-content-mar24-30.html` + dashboard nav updated (pulsing green link) + pushed to GitHub
+
+**Daily Breakdown:**
+- **Mon (Mar 24):** Facebook Groups — "Monday Morning" seasonal urgency hook
+- **Tue (Mar 25):** Nextdoor — "Ask the Neighborhood" conversation starter  
+- **Wed (Mar 26):** Instagram/FB Story — "The Math" visual post with poll sticker
+- **Thu (Mar 27):** Facebook Groups (DIFFERENT ones) — "Real Talk" founder story
+- **Fri (Mar 28):** Craigslist — "Weekend Prep" urgency refresh
+- **Sat (Mar 29):** Instagram Feed — "Behind the Scenes" founder life
+- **Sun (Mar 30):** GBP + Nextdoor — "New Week" soft close + follow-up
+
+**Dashboard Features:**
+- 📱 Mobile-first design (opens on phone for posting on-the-go)
+- 📋 One-tap copy buttons for each post
+- ✅ "Mark as Posted" tracking with progress bar (localStorage)
+- 📆 Day tabs for quick navigation
+- 💡 Platform-specific tips per day
+- 🎯 Weekly goal: 3 inbound inquiries
+
+**Why This Task:**
+- It's Saturday 5 AM — perfect time to prep next week's content so TJ doesn't have to think about what to post
+- Previous content packs exist but are dated (March 16) and generic. This one is specifically sequenced for Mar 24-30 with fresh angles
+- The 90-day roadmap Phase 1 requires "consistent posting rhythm" — this makes it dead simple
+- Interactive dashboard means TJ can open it on his phone, tap copy, paste into Facebook, done in 2 minutes
+- Different Facebook groups on Mon vs Thu prevents spam flagging
+- Every post reinforces $70/month flat rate and 314-850-7140
+
+**Revenue Impact:** Consistent weekly posting is the #1 free customer acquisition channel. If even 1 of 7 posts generates an inquiry that converts, that's $70/month recurring revenue from zero spend. Compounding effect: each week of posts builds visibility and recognition in local groups.
+
+**Rotation:** 📅 Content Marketing / Social Media / Customer Acquisition
+
+---
+
+
+### 4:05 AM — ⭐ GOOGLE REVIEWS BLITZ TOOLKIT — 0→5 Reviews in 7 Days (Customer Acquisition)
+**Task:** Zero Google reviews is the #1 weakness blocking everything else (ads, SEO, trust). Built a comprehensive interactive toolkit with copy-paste text/email templates in Jamie's voice, a customer tracker for all 8 customers, a 7-day action plan, QR code for print materials, review response templates, and pro tips. All templates include the direct Google review link. Tracker uses localStorage for persistence.
+
+**Result:** ✅ COMPLETE — `dashboard/google-reviews-blitz.html` + updated dashboard nav (pulsing gold link) + pushed to GitHub
+
+**What's In The Toolkit:**
+- **4 text message templates** — warm & simple, after-service, honest ask (vulnerability angle), short & sweet
+- **1 email template** — for customers who prefer email
+- **1 in-person script** — for TJ to use on Monday scooping days (70%+ conversion when combined with text)
+- **1 follow-up template** — gentle one-time follow-up for non-responders
+- **Customer tracker** — all 8 customers with click-to-cycle status (pending → asked → reviewed → declined)
+- **7-day plan** — Mon: ask in person + text. Tue: text the rest. Wed: email backup. Thu-Fri: wait. Sat: follow-up. Sun: celebrate.
+- **QR code** — live-generated QR pointing to Google review link, with ideas for where to print it
+- **Review response templates** — 2 templates for responding to reviews (Google rewards responsiveness)
+- **Pro tips** — timing, channel effectiveness, what NOT to do (don't buy reviews, don't incentivize)
+- **Ongoing system checklist** — how to systematize review collection for all future customers
+
+**Why This Matters:** Reviews are the #2 ranking factor for Google Maps. Businesses with 5+ reviews get 270% more clicks. Every competitor has 6+. Running ads with 0 reviews = wasting money. This is the single highest-leverage action before ANY paid marketing.
+
+**Rotation:** ⭐ Customer Acquisition / Reviews / Trust Building
+
+---
+
 ### 3:05 AM — 📍 90-DAY GROWTH ROADMAP — 5→30 Customers in 13 Weeks (Strategic Planning)
 **Task:** Recognized the core problem: 159 dashboard deliverables but only 4-5 customers. TJ doesn't need more plans — he needs ONE plan he actually follows. Built an interactive 90-day roadmap that distills everything into 42 specific, prioritized weekly tasks across 3 phases. Each task links to the relevant existing deliverable. Includes "Why This Order" strategy section explaining the sequencing logic.
 
