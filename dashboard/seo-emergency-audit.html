@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚨 SEO Emergency Audit — Tidy Tails is INVISIBLE</title>
+<style>
+:root { --red: #ef4444; --orange: #f97316; --green: #22c55e; --blue: #3b82f6; --purple: #8b5cf6; --dark: #0f172a; --card: #1e293b; --text: #e2e8f0; --muted: #94a3b8; --border: #334155; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: var(--dark); color: var(--text); font-family: -apple-system, system-ui, sans-serif; line-height: 1.6; padding: 16px; max-width: 800px; margin: 0 auto; }
+h1 { font-size: 1.5rem; margin-bottom: 4px; }
+.subtitle { color: var(--muted); margin-bottom: 24px; font-size: 0.9rem; }
+.severity { display: inline-block; background: var(--red); color: white; padding: 2px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 16px; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+.score-bar { background: var(--card); border-radius: 12px; padding: 20px; margin-bottom: 24px; border: 1px solid var(--border); }
+.score-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.score-num { font-size: 2.5rem; font-weight: 800; color: var(--red); }
+.score-label { color: var(--muted); font-size: 0.85rem; }
+.bar-bg { background: #334155; border-radius: 8px; height: 12px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 8px; transition: width 1s; }
+.bar-red { background: linear-gradient(90deg, var(--red), var(--orange)); }
+.bar-green { background: linear-gradient(90deg, var(--green), #4ade80); }
+
+.section { margin-bottom: 24px; }
+.section-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.card { background: var(--card); border-radius: 10px; padding: 16px; margin-bottom: 10px; border-left: 4px solid var(--border); }
+.card.critical { border-left-color: var(--red); }
+.card.warning { border-left-color: var(--orange); }
+.card.good { border-left-color: var(--green); }
+.card.info { border-left-color: var(--blue); }
+.card-title { font-weight: 700; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+.card-desc { color: var(--muted); font-size: 0.88rem; }
+.tag { display: inline-block; padding: 1px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+.tag-crit { background: rgba(239,68,68,0.2); color: var(--red); }
+.tag-warn { background: rgba(249,115,22,0.2); color: var(--orange); }
+.tag-good { background: rgba(34,197,94,0.2); color: var(--green); }
+.tag-info { background: rgba(59,130,246,0.2); color: var(--blue); }
+
+.action-list { list-style: none; padding: 0; }
+.action-list li { background: var(--card); border-radius: 8px; padding: 14px 16px; margin-bottom: 8px; border: 1px solid var(--border); display: flex; align-items: flex-start; gap: 12px; cursor: pointer; transition: all 0.2s; }
+.action-list li:hover { border-color: var(--blue); }
+.action-list li.done { opacity: 0.5; text-decoration: line-through; border-color: var(--green); }
+.check { width: 22px; height: 22px; border: 2px solid var(--muted); border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
+.action-list li.done .check { background: var(--green); border-color: var(--green); }
+.action-list li.done .check::after { content: '✓'; color: white; font-size: 14px; }
+.action-text { flex: 1; }
+.action-title { font-weight: 600; font-size: 0.95rem; }
+.action-detail { color: var(--muted); font-size: 0.82rem; margin-top: 2px; }
+.action-time { color: var(--purple); font-size: 0.78rem; font-weight: 600; }
+
+.competitor-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.competitor-table th { text-align: left; color: var(--muted); padding: 6px 8px; border-bottom: 1px solid var(--border); font-size: 0.78rem; }
+.competitor-table td { padding: 8px; border-bottom: 1px solid rgba(51,65,85,0.5); }
+.competitor-table tr:hover { background: rgba(59,130,246,0.05); }
+
+.progress-ring { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+.ring-item { text-align: center; }
+.ring-label { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+
+.tab-bar { display: flex; gap: 4px; margin-bottom: 16px; overflow-x: auto; }
+.tab { padding: 8px 16px; border-radius: 8px; background: var(--card); color: var(--muted); font-size: 0.85rem; font-weight: 600; cursor: pointer; border: 1px solid var(--border); white-space: nowrap; }
+.tab.active { background: var(--blue); color: white; border-color: var(--blue); }
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.link-btn { display: inline-block; background: var(--blue); color: white; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600; margin: 4px 4px 4px 0; }
+.link-btn.green { background: var(--green); }
+.link-btn.orange { background: var(--orange); }
+.link-btn.purple { background: var(--purple); }
+
+.divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+.stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 20px; }
+.stat { background: var(--card); border-radius: 10px; padding: 14px; text-align: center; border: 1px solid var(--border); }
+.stat-val { font-size: 1.8rem; font-weight: 800; }
+.stat-label { font-size: 0.75rem; color: var(--muted); }
+.red { color: var(--red); }
+.orange { color: var(--orange); }
+.green { color: var(--green); }
+.blue { color: var(--blue); }
+</style>
+</head>
+<body>
+
+<span class="severity">🚨 SEVERITY: CRITICAL</span>
+<h1>SEO Emergency Audit</h1>
+<p class="subtitle">tidytailsstl.com — Audited March 21, 2026 at 9:08 AM</p>
+
+<!-- Overall Score -->
+<div class="score-bar">
+  <div class="score-header">
+    <div>
+      <div class="score-num">18<span style="font-size:1rem;color:var(--muted)">/100</span></div>
+      <div class="score-label">Search Visibility Score</div>
+    </div>
+    <div style="text-align:right">
+      <div style="font-size:0.85rem;font-weight:700;color:var(--red)">INVISIBLE</div>
+      <div style="font-size:0.78rem;color:var(--muted)">0 pages indexed anywhere</div>
+    </div>
+  </div>
+  <div class="bar-bg"><div class="bar-fill bar-red" style="width:18%"></div></div>
+</div>
+
+<!-- Key Stats -->
+<div class="stat-grid">
+  <div class="stat"><div class="stat-val red">0</div><div class="stat-label">Pages Indexed</div></div>
+  <div class="stat"><div class="stat-val red">0</div><div class="stat-label">Google Reviews</div></div>
+  <div class="stat"><div class="stat-val red">0</div><div class="stat-label">Backlinks (est.)</div></div>
+  <div class="stat"><div class="stat-val orange">0</div><div class="stat-label">Directory Listings</div></div>
+  <div class="stat"><div class="stat-val green">35+</div><div class="stat-label">Pages on Site</div></div>
+  <div class="stat"><div class="stat-val green">A+</div><div class="stat-label">On-Page SEO</div></div>
+</div>
+
+<!-- Tabs -->
+<div class="tab-bar">
+  <div class="tab active" onclick="switchTab('diagnosis')">🔍 Diagnosis</div>
+  <div class="tab" onclick="switchTab('actions')">✅ Fix-It Checklist</div>
+  <div class="tab" onclick="switchTab('directories')">📍 Directories</div>
+  <div class="tab" onclick="switchTab('comparison')">📊 vs Competitors</div>
+</div>
+
+<!-- Tab 1: Diagnosis -->
+<div id="tab-diagnosis" class="tab-content active">
+  <div class="section">
+    <div class="section-title">🩺 What's Wrong (and What's Right)</div>
+    
+    <div class="card critical">
+      <div class="card-title">❌ Not in Google Search Console <span class="tag tag-crit">CRITICAL</span></div>
+      <div class="card-desc">No <code>google-site-verification</code> meta tag found in the HTML. This means Google Search Console hasn't been set up, which means Google has NEVER been told this site exists. No manual submission, no indexing requests, no crawl error reports. <strong>This is the #1 reason the site is invisible.</strong></div>
+    </div>
+
+    <div class="card critical">
+      <div class="card-title">❌ Zero Indexed Pages <span class="tag tag-crit">CRITICAL</span></div>
+      <div class="card-desc"><code>site:tidytailsstl.com</code> returns 0 results on both Google and Brave. The site has 35+ well-optimized pages (18 city landing pages, 12 blog posts, homepage, pricing) but none are in any search index. Even searching the exact domain name "tidytailsstl.com" returns other "Tidy Tails" businesses, not this one.</div>
+    </div>
+
+    <div class="card critical">
+      <div class="card-title">❌ Zero Backlinks / Domain Authority <span class="tag tag-crit">CRITICAL</span></div>
+      <div class="card-desc">No other website links to tidytailsstl.com. Backlinks are the #1 ranking factor. Without any links pointing to the site, Google sees it as untrustworthy. Competitors like Poop2Scoop and DoodyCalls have dozens to hundreds of backlinks from directories, pet blogs, and local sites.</div>
+    </div>
+
+    <div class="card critical">
+      <div class="card-title">❌ Not on ANY Directory <span class="tag tag-crit">CRITICAL</span></div>
+      <div class="card-desc">Tidy Tails isn't listed on Yelp, BBB, Nextdoor Business, Thumbtack, Angi, HomeAdvisor, PetWorks, or any local business directory. Every single competitor is listed on 3-8 directories. These listings create backlinks AND direct traffic. A Yelp listing alone can generate 2-3 leads/month.</div>
+    </div>
+
+    <div class="card warning">
+      <div class="card-title">⚠️ Zero Google Reviews <span class="tag tag-warn">IMPORTANT</span></div>
+      <div class="card-desc">Google Maps/Business profile has 0 reviews. Reviews are the #2 ranking factor for local search. Competitors average 15-50 reviews. Google literally won't show a business in the "3-pack" (map results) without reviews. We built the review blitz toolkit — it MUST be executed.</div>
+    </div>
+
+    <div class="card warning">
+      <div class="card-title">⚠️ No Bing Webmaster Tools <span class="tag tag-warn">IMPORTANT</span></div>
+      <div class="card-desc">No Bing verification meta tag either. Bing powers DuckDuckGo, Yahoo, and other search engines. That's ~10% of search traffic being left on the table.</div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="card good">
+      <div class="card-title">✅ Excellent On-Page SEO <span class="tag tag-good">STRONG</span></div>
+      <div class="card-desc">Title tags, meta descriptions, Open Graph, canonical URLs, structured data (LocalBusiness + Service schemas), geo meta tags — all present and well-optimized. The homepage targets the right keywords. City pages have unique, localized content. This is genuinely well-built.</div>
+    </div>
+
+    <div class="card good">
+      <div class="card-title">✅ Great Content <span class="tag tag-good">STRONG</span></div>
+      <div class="card-desc">12 blog posts covering high-search-volume topics (dog poop laws, health risks, cost guides, seasonal content). 18 city-specific landing pages targeting "[service] + [city]" keywords. Blog index is well-organized. This is exactly what Google wants to rank.</div>
+    </div>
+
+    <div class="card good">
+      <div class="card-title">✅ Technical Foundation <span class="tag tag-good">STRONG</span></div>
+      <div class="card-desc">Static HTML (not SPA — Google can crawl it instantly), Cloudflare hosting (fast), proper robots.txt with sitemap reference, valid sitemap.xml with 35+ URLs, HTTPS, mobile-responsive. No technical barriers to indexing.</div>
+    </div>
+
+    <div class="card good">
+      <div class="card-title">✅ Proper Sitemap <span class="tag tag-good">STRONG</span></div>
+      <div class="card-desc">sitemap.xml exists with all pages listed, proper lastmod dates, correct priorities. Homepage = 1.0, city pages = 0.8, blog posts included. robots.txt correctly references it. When Google Search Console is connected, this will be submitted automatically.</div>
+    </div>
+
+    <div class="card info">
+      <div class="card-title">💡 The Bottom Line</div>
+      <div class="card-desc"><strong>The site is a loaded gun that nobody has fired.</strong> Every piece of content, every meta tag, every landing page is ready to rank — but Google doesn't know the site exists. The fix isn't a rebuild. The fix is connecting it to the world: Search Console + directories + reviews. That's it.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Tab 2: Fix-It Checklist -->
+<div id="tab-actions" class="tab-content">
+  <div class="section">
+    <div class="section-title">⚡ Priority Actions — Do This Week</div>
+    <p style="color:var(--muted);font-size:0.85rem;margin-bottom:16px;">Tap any item to mark it done. Progress saves to your browser.</p>
+
+    <ul class="action-list" id="checklist">
+      <li data-key="gsc" onclick="toggleCheck(this)">
+        <div class="check"></div>
+        <div class="action-text">
+          <div class="action-title">1. Set Up Google Search Console <span class="tag tag-crit">🔴 DO TODAY</span></div>
+          <div class="action-detail">Go to search.google.com/search-console → Add Property → Enter "tidytailsstl.com" → Verify via DNS TXT record (add to Cloudflare DNS). Then submit sitemap URL: https://tidytailsstl.com/sitemap.xml. Google will start crawling within 24-48 hours.</div>
+          <div class="action-time">⏱️ 10 minutes</div>
+          <a href="https://search.google.com/search-console" class="link-btn" onclick="event.stopPropagation()" target="_blank">Open Search Console →</a>
+        </div>
+      </li>
+
+      <li data-key="request-index" onclick="toggleCheck(this)">
+        <div class="check"></div>
+        <div class="action-text">
+          <div class="action-title">2. Request Indexing of Key Pages <span class="tag tag-crit">🔴 DO TODAY</span></div>
+          <div class="action-detail">After verifying in Search Console, go to URL Inspection → paste each URL → click "Request Indexing" for these priority pages: homepage, /blog/ index, /ballwin, /chesterfield, /ofallon, /st-charles. Do 10-15 pages. Google allows ~10-15 indexing requests/day.</div>
+          <div class="action-time">⏱️ 15 minutes</div>
+        </div>
+      </li>
+
+      <li data-key="bing" onclick="toggleCheck(this)">
+        <div class="check"></div>
+        <div class="action-text">
+          <div class="action-title">3. Set Up Bing Webmaster Tools <span class="tag tag-warn">🟠 THIS WEEK</span></div>
+          <div class="action-detail">Go to bing.com/webmasters → Sign in with Microsoft account → Import from Google Search Console (one click after GSC is set up). Covers Bing, Yahoo, DuckDuckGo search results.</div>
+          <div class="action-time">⏱️ 5 minutes</div>
+          <a href="https://www.bing.com/webmasters" class="link-btn orange" onclick="event.stopPropagation()" target="_blank">Open Bing Tools →</a>
+        </div>
+      </li>
+
+      <li data-key="gbp" onclick="toggleCheck(this)">
+        <div class="check"></div>
+        <div class="action-text">
+          <div class="action-title">4. Claim/Verify Google Business Profile <span class="tag tag-crit">🔴 DO TODAY</span></div>
+          <div class="action-detail">If not already verified: business.google.com → search for "Tidy Tails" → Claim/verify. Set website to tidytailsstl.com. Add service areas (all 18 cities). Upload photos. Set business category to "Pet Waste Removal Service". This is what shows in Google Maps.</div>
+          <div class="action-time">⏱️ 15 minutes</div>
+          <a href="https://business.google.com" class="link-btn green" onclick="event.stopPropagation()" target="_blank">Google Business →</a>
+        </div>
+      </li>
+
+      <li data-key="yelp" onclick="toggleCheck(this)">
+        <div class="check"></div>
+        <div class="action-text">
+          <div class="action-title">5. Create Yelp Business Page <span class="tag tag-warn">🟠 THIS WEEK</span></div>
+          <div class="action-detail">biz.yelp.com → Add Business → "Tidy Tails" → Category: "Pet Waste Removal" → Add phone (314-850-7140), website, service areas, photos. Yelp is the #3 result for "pet waste removal st louis" — being listed here = instant visibility AND a backlink.</div>
+          <div class="action-time">⏱️ 15 minutes</div>
+          <a href="https://biz.yelp.com" class="link-btn purple" onclick="event.stopPropagation()" target="_blank">Yelp for Business →</a>
+        </div>
+      </li>
+
+      <li data-key="nextdoor" onclick="toggleCheck(this)">
+        <div class="check"></div>
+        <div class="action-text">
+          <div class="action-title">6. Claim Nextdoor Business Page <span class="tag tag-warn">🟠 THIS WEEK</span></div>
+          <div class="action-detail">business.nextdoor.com → Claim business → Add Tidy Tails with service area covering all target neighborhoods. Nextdoor is where homeowners ARE. Free local business page + recommendations from neighbors. This is arguably the best directory for a local service business.</div>
+          <div class="action-time">⏱️ 10 minutes</div>
+          <a href="https://business.nextdoor.com" class="link-btn green" onclick="event.stopPropagation()" target="_blank">Nextdoor Business →</a>
+        </div>
+      </li>
+
+      <li data-key="thumbtack" onclick="toggleCheck(this)">
+        <div class="check"></div>
+        <div class="action-text">
+          <div class="action-title">7. Create Thumbtack Profile <span class="tag tag-info">🔵 THIS WEEK</span></div>
+          <div class="action-detail">thumbtack.com/pro → Create account → Category: "Pet Waste Removal" → Set service area to St. Louis metro. Thumbtack actively matches local pros with customers searching for pet waste removal. Free to create a profile; only pay per lead if desired.</div>
+          <div class="action-time">⏱️ 10 minutes</div>
+          <a href="https://www.thumbtack.com/pro" class="link-btn" onclick="event.stopPropagation()" target="_blank">Thumbtack Pro →</a>
+        </div>
+      </li>
+
+      <li data-key="reviews" onclick="toggleCheck(this)">
+        <div class="check"></div>
+        <div class="action-text">
+          <div class="action-title">8. Execute Google Reviews Blitz <span class="tag tag-crit">🔴 THIS WEEK</span></div>
+          <div class="action-detail">Use the Review Blitz Toolkit we already built. Text all 4-5 current customers this week. Goal: 5 reviews by end of next week. Even 3 reviews dramatically improves Google Maps visibility. Every competitor has reviews; this is table stakes.</div>
+          <div class="action-time">⏱️ 5 min to send texts</div>
+          <a href="google-reviews-blitz.html" class="link-btn green" onclick="event.stopPropagation()">Open Review Toolkit →</a>
+        </div>
+      </li>
+
+      <li data-key="apple" onclick="toggleCheck(this)">
+        <div class="check"></div>
+        <div class="action-text">
+          <div class="action-title">9. Add to Apple Maps (Apple Business Connect) <span class="tag tag-info">🔵 NEXT WEEK</span></div>
+          <div class="action-detail">businessconnect.apple.com → Register Tidy Tails → Add location, service areas, hours, website. Apple Maps is default for all iPhones. Free listing = free visibility to every iPhone user searching "pet waste removal near me".</div>
+          <div class="action-time">⏱️ 10 minutes</div>
+          <a href="https://businessconnect.apple.com" class="link-btn" onclick="event.stopPropagation()" target="_blank">Apple Business →</a>
+        </div>
+      </li>
+
+      <li data-key="petworks" onclick="toggleCheck(this)">
+        <div class="check"></div>
+        <div class="action-text">
+          <div class="action-title">10. List on Pet Industry Directories <span class="tag tag-info">🔵 NEXT WEEK</span></div>
+          <div class="action-detail">Create listings on: PetWorks.com (competitor Poop2Scoop is listed here), Pooperoni.com (niche directory for poop scoopers), and APAWS/local pet directories. Each listing = 1 backlink + potential direct traffic.</div>
+          <div class="action-time">⏱️ 20 minutes total</div>
+        </div>
+      </li>
+    </ul>
+
+    <div class="card info" style="margin-top:16px">
+      <div class="card-title">📈 Expected Timeline</div>
+      <div class="card-desc">
+        <strong>Day 1 (Today):</strong> Set up GSC + request indexing + GBP claim<br>
+        <strong>Days 2-3:</strong> Pages start appearing in Google (homepage first)<br>
+        <strong>Week 1:</strong> 10-15 pages indexed, directory listings live, first reviews coming in<br>
+        <strong>Week 2-3:</strong> City pages start ranking for "[service] [city]" long-tail keywords<br>
+        <strong>Month 1:</strong> Blog posts start ranking for informational queries<br>
+        <strong>Month 2-3:</strong> Established presence, competing for "pooper scooper st louis"<br><br>
+        <strong>Bottom line:</strong> The site could go from 0 to showing in search within 48 HOURS of setting up GSC. The content is already there — Google just needs to be told to look.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tab 3: Directories -->
+<div id="tab-directories" class="tab-content">
+  <div class="section">
+    <div class="section-title">📍 Directory Listings — Create All of These</div>
+    <p style="color:var(--muted);font-size:0.85rem;margin-bottom:16px;">Each listing = 1 backlink + direct traffic potential. Use consistent info everywhere:</p>
+    
+    <div class="card info" style="margin-bottom:16px">
+      <div class="card-title">📋 Copy-Paste Business Info (NAP)</div>
+      <div class="card-desc">
+        <strong>Business Name:</strong> Tidy Tails<br>
+        <strong>Phone:</strong> (314) 850-7140<br>
+        <strong>Website:</strong> https://tidytailsstl.com<br>
+        <strong>Email:</strong> jamie@tidytailsstl.com<br>
+        <strong>Category:</strong> Pet Waste Removal Service<br>
+        <strong>Location:</strong> St. Louis, MO (service-area business)<br>
+        <strong>Hours:</strong> Mon-Sun 8AM-6PM<br>
+        <strong>Description:</strong> Professional pet waste removal serving St. Louis County, St. Charles & beyond. Weekly yard cleanup from $25/week. No contracts, 100% satisfaction guaranteed. Locally owned by Jamie — not a franchise.<br>
+        <strong>Service Areas:</strong> St. Louis County, Ballwin, Chesterfield, O'Fallon, St. Charles, St. Peters, Florissant, Ferguson, Maryland Heights, Creve Coeur, Hazelwood, Bridgeton, Kirkwood, Webster Groves, Olivette, University City, Wentzville
+      </div>
+    </div>
+
+    <table class="competitor-table">
+      <thead>
+        <tr><th>Directory</th><th>Priority</th><th>Backlink?</th><th>Traffic?</th><th>Cost</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Google Business Profile</strong></td><td><span class="tag tag-crit">🔴 #1</span></td><td>✅ Yes</td><td>🔥 High</td><td>Free</td></tr>
+        <tr><td><strong>Google Search Console</strong></td><td><span class="tag tag-crit">🔴 #1</span></td><td>N/A</td><td>🔥 Essential</td><td>Free</td></tr>
+        <tr><td><strong>Yelp</strong></td><td><span class="tag tag-crit">🔴 #2</span></td><td>✅ DoFollow</td><td>🔥 High</td><td>Free</td></tr>
+        <tr><td><strong>Nextdoor Business</strong></td><td><span class="tag tag-crit">🔴 #2</span></td><td>✅ Yes</td><td>🔥 High</td><td>Free</td></tr>
+        <tr><td><strong>Bing Webmaster Tools</strong></td><td><span class="tag tag-warn">🟠 #3</span></td><td>N/A</td><td>Medium</td><td>Free</td></tr>
+        <tr><td><strong>Apple Business Connect</strong></td><td><span class="tag tag-warn">🟠 #3</span></td><td>✅ Yes</td><td>Medium</td><td>Free</td></tr>
+        <tr><td><strong>Thumbtack</strong></td><td><span class="tag tag-warn">🟠 #3</span></td><td>✅ Yes</td><td>Medium</td><td>Free profile</td></tr>
+        <tr><td><strong>BBB (Better Business Bureau)</strong></td><td><span class="tag tag-info">🔵 #4</span></td><td>✅ DoFollow</td><td>Low</td><td>Free basic</td></tr>
+        <tr><td><strong>PetWorks.com</strong></td><td><span class="tag tag-info">🔵 #4</span></td><td>✅ Yes</td><td>Low-Med</td><td>Free</td></tr>
+        <tr><td><strong>Pooperoni.com</strong></td><td><span class="tag tag-info">🔵 #4</span></td><td>✅ Yes</td><td>Low</td><td>Free</td></tr>
+        <tr><td><strong>Angi (Angie's List)</strong></td><td><span class="tag tag-info">🔵 #5</span></td><td>✅ Yes</td><td>Medium</td><td>Free basic</td></tr>
+        <tr><td><strong>HomeAdvisor</strong></td><td><span class="tag tag-info">🔵 #5</span></td><td>✅ Yes</td><td>Medium</td><td>Pay-per-lead</td></tr>
+        <tr><td><strong>Facebook Business Page</strong></td><td><span class="tag tag-info">🔵 #5</span></td><td>✅ NoFollow</td><td>Medium</td><td>Free</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card" style="margin-top:16px">
+      <div class="card-title">🎯 NAP Consistency Rule</div>
+      <div class="card-desc">Use the EXACT same business name, address, and phone number on every single directory. Google cross-references all of these. Inconsistencies hurt rankings. Copy-paste from the info card above every time.</div>
+    </div>
+  </div>
+</div>
+
+<!-- Tab 4: Competitor Comparison -->
+<div id="tab-comparison" class="tab-content">
+  <div class="section">
+    <div class="section-title">📊 Tidy Tails vs Competitors — Search Presence</div>
+    <p style="color:var(--muted);font-size:0.85rem;margin-bottom:16px;">Why competitors show up and we don't:</p>
+
+    <table class="competitor-table">
+      <thead>
+        <tr><th>Company</th><th>Google Reviews</th><th>Yelp?</th><th>Directories</th><th>Indexed Pages</th><th>Ranking?</th></tr>
+      </thead>
+      <tbody>
+        <tr style="background:rgba(239,68,68,0.1)"><td><strong>🐾 Tidy Tails</strong></td><td class="red"><strong>0</strong></td><td class="red">❌ No</td><td class="red">0</td><td class="red">0</td><td class="red">❌ Invisible</td></tr>
+        <tr><td>Poop2Scoop</td><td>15+</td><td>✅</td><td>5+</td><td>20+</td><td>✅ Page 1</td></tr>
+        <tr><td>POOP 911</td><td>20+</td><td>✅</td><td>8+</td><td>50+</td><td>✅ Page 1</td></tr>
+        <tr><td>DoodyCalls</td><td>30+</td><td>✅</td><td>10+</td><td>100+</td><td>✅ Page 1</td></tr>
+        <tr><td>Yucko's</td><td>50+</td><td>✅</td><td>6+</td><td>10+</td><td>✅ Page 1</td></tr>
+        <tr><td>Scoop Soldiers</td><td>10+</td><td>✅</td><td>4+</td><td>30+</td><td>✅ Page 1</td></tr>
+        <tr><td>Poopy Paws</td><td>6+</td><td>✅</td><td>2+</td><td>5+</td><td>✅ Maps</td></tr>
+      </tbody>
+    </table>
+
+    <div class="card critical" style="margin-top:16px">
+      <div class="card-title">💀 The Gap</div>
+      <div class="card-desc">Every single competitor — even the worst ones with ancient websites — has at minimum: Google reviews, a Yelp listing, and indexed pages. Tidy Tails has NONE of these. The website is better than most competitors. The content is better. The pricing is better. But none of that matters if nobody can find it.</div>
+    </div>
+
+    <div class="card good" style="margin-top:10px">
+      <div class="card-title">🚀 The Opportunity</div>
+      <div class="card-desc">The good news: fixing this is FAST. Search Console setup = 10 minutes. Directory listings = 1-2 hours total. Review blitz = already built. Within 2 weeks, Tidy Tails could be appearing in search results. Within a month, ranking for long-tail terms like "pooper scooper ballwin mo" or "pet waste removal chesterfield." Within 2 months, competing for the main keywords. The 18 city pages are a MASSIVE advantage — no competitor has anything like that.</div>
+    </div>
+
+    <div class="card info" style="margin-top:10px">
+      <div class="card-title">📐 What "Winning" Looks Like</div>
+      <div class="card-desc">
+        <strong>Month 1 target:</strong> 5+ Google reviews, 5+ directories, 20+ pages indexed<br>
+        <strong>Month 2 target:</strong> Ranking for 5+ city-specific long-tail keywords<br>
+        <strong>Month 3 target:</strong> Appearing in Google Maps 3-pack for primary service areas<br>
+        <strong>Month 4-6 target:</strong> Page 1 for "pooper scooper st louis" / "pet waste removal st louis"<br><br>
+        <strong>Revenue impact:</strong> Organic search is the highest-converting marketing channel. "Pet waste removal near me" searchers are actively looking to BUY. Even 50 monthly organic visitors at 5% conversion = 2-3 new customers/month = $140-210/month in new recurring revenue. COMPOUNDING.
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+<p style="color:var(--muted);font-size:0.78rem;text-align:center;">Built by Franklin 🐕💩 • March 21, 2026 • Hourly Autonomous Task</p>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Checklist persistence
+function toggleCheck(li) {
+  li.classList.toggle('done');
+  saveChecklist();
+}
+
+function saveChecklist() {
+  const state = {};
+  document.querySelectorAll('#checklist li').forEach(li => {
+    state[li.dataset.key] = li.classList.contains('done');
+  });
+  localStorage.setItem('seo-audit-checklist', JSON.stringify(state));
+}
+
+function loadChecklist() {
+  try {
+    const state = JSON.parse(localStorage.getItem('seo-audit-checklist') || '{}');
+    document.querySelectorAll('#checklist li').forEach(li => {
+      if (state[li.dataset.key]) li.classList.add('done');
+    });
+  } catch(e) {}
+}
+
+loadChecklist();
+</script>
+</body>
+</html>
