@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📍 Directory Blitz — Get Listed Everywhere FREE</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 16px; max-width: 700px; margin: 0 auto; }
+h1 { font-size: 1.4rem; text-align: center; margin-bottom: 4px; }
+.sub { text-align: center; color: #888; font-size: 0.82rem; margin-bottom: 16px; }
+.sub strong { color: #ff6b6b; }
+
+/* Score */
+.score-wrap { text-align: center; margin-bottom: 20px; }
+.score-num { font-size: 3.2rem; font-weight: 800; }
+.score-num.red { color: #ff4444; }
+.score-num.orange { color: #ff8800; }
+.score-num.yellow { color: #ffd93d; }
+.score-num.green { color: #4ecdc4; }
+.score-label { color: #888; font-size: 0.82rem; }
+.progress-bar { height: 10px; background: #222; border-radius: 5px; margin: 8px 0 4px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 5px; transition: width 0.6s ease; }
+.score-detail { color: #666; font-size: 0.78rem; }
+
+/* Tabs */
+.tabs { display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap; }
+.tab { flex: 1; min-width: 80px; padding: 10px 6px; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; text-align: center; cursor: pointer; font-size: 0.78rem; transition: all 0.2s; }
+.tab.active { background: #1a2e3e; border-color: #2563eb; color: #60a5fa; }
+.tab .tab-icon { font-size: 1.2rem; display: block; margin-bottom: 2px; }
+
+/* Sections */
+.section { display: none; }
+.section.active { display: block; }
+
+/* Cards */
+.dir-card { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.dir-header { padding: 14px 16px; display: flex; align-items: center; gap: 12px; }
+.dir-check { width: 22px; height: 22px; accent-color: #4ecdc4; flex-shrink: 0; cursor: pointer; }
+.dir-info { flex: 1; }
+.dir-name { font-size: 0.95rem; font-weight: 700; color: #fff; }
+.dir-meta { font-size: 0.75rem; color: #888; margin-top: 2px; }
+.dir-meta .tag { display: inline-block; padding: 1px 7px; border-radius: 8px; font-size: 0.7rem; margin-right: 4px; }
+.tag.free { background: #1a3a1a; color: #4ecdc4; }
+.tag.paid { background: #3a2a1a; color: #ff8800; }
+.tag.high { background: #1a2a3a; color: #60a5fa; }
+.tag.med { background: #2a2a1a; color: #ffd93d; }
+.tag.pet { background: #2a1a2a; color: #c084fc; }
+.dir-body { padding: 0 16px 14px; display: none; }
+.dir-body.open { display: block; }
+.dir-toggle { background: none; border: none; color: #4ecdc4; font-size: 0.78rem; cursor: pointer; padding: 2px 8px; }
+.dir-link { display: inline-block; margin-top: 8px; padding: 8px 16px; background: #2563eb; color: #fff; border-radius: 6px; text-decoration: none; font-size: 0.82rem; font-weight: 600; }
+.dir-link:hover { background: #1d4ed8; }
+.dir-why { color: #aaa; font-size: 0.8rem; line-height: 1.5; margin-top: 6px; }
+.dir-steps { color: #ccc; font-size: 0.8rem; line-height: 1.6; margin-top: 8px; padding-left: 18px; }
+.dir-steps li { margin-bottom: 4px; }
+.dir-time { color: #4ecdc4; font-size: 0.75rem; font-weight: 600; }
+.done-card .dir-header { opacity: 0.5; }
+.done-card .dir-name { text-decoration: line-through; }
+
+/* Copy Box */
+.copy-section { background: #111; border: 1px solid #2a2a2a; border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+.copy-header { padding: 12px 16px; background: #1a1a1a; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+.copy-header h3 { font-size: 0.9rem; }
+.copy-content { padding: 12px 16px; }
+.copy-box { background: #0d1117; border: 1px solid #2a2a2a; border-radius: 6px; padding: 12px; margin-bottom: 10px; font-size: 0.82rem; line-height: 1.5; position: relative; white-space: pre-wrap; color: #ccc; }
+.copy-box .label { color: #4ecdc4; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 4px; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #4ecdc4; color: #000; border: none; padding: 4px 12px; border-radius: 4px; font-size: 0.72rem; cursor: pointer; font-weight: 700; }
+.copy-btn:active { background: #3dbdb5; }
+
+/* Impact */
+.impact-box { background: #1a2e1a; border: 1px solid #2d5a2d; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+.impact-box h3 { color: #4ecdc4; font-size: 0.95rem; margin-bottom: 8px; }
+.impact-box p { color: #aaa; font-size: 0.82rem; line-height: 1.5; }
+.impact-box .stat { display: inline-block; background: #0d1117; padding: 4px 10px; border-radius: 6px; color: #fff; font-weight: 700; margin: 2px; }
+
+/* Priority banner */
+.priority-banner { background: linear-gradient(135deg, #1a0a0a, #2a1a1a); border: 1px solid #ff4444; border-radius: 10px; padding: 14px 16px; margin-bottom: 16px; }
+.priority-banner h3 { color: #ff6b6b; font-size: 0.9rem; margin-bottom: 6px; }
+.priority-banner p { color: #aaa; font-size: 0.8rem; line-height: 1.4; }
+
+/* Checklist order */
+.order-badge { display: inline-block; width: 24px; height: 24px; border-radius: 50%; background: #2563eb; color: #fff; text-align: center; line-height: 24px; font-size: 0.75rem; font-weight: 700; flex-shrink: 0; }
+</style>
+</head>
+<body>
+
+<h1>📍 Directory Blitz Kit</h1>
+<p class="sub">Get Tidy Tails listed on <strong>20 directories FREE</strong> — each one = a backlink + discovery channel</p>
+
+<!-- Score -->
+<div class="score-wrap">
+  <div class="score-num red" id="scoreNum">0/20</div>
+  <div class="score-label">Directories Claimed</div>
+  <div class="progress-bar"><div class="progress-fill" id="scoreFill" style="width:0%; background: linear-gradient(90deg, #ff4444, #4ecdc4);"></div></div>
+  <div class="score-detail" id="scoreDetail">🚨 Zero online presence — invisible to search engines</div>
+</div>
+
+<!-- Priority Banner -->
+<div class="priority-banner">
+  <h3>🚨 WHY THIS MATTERS</h3>
+  <p>Tidy Tails has <strong>0 backlinks</strong>, <strong>0 directory listings</strong>, and <strong>0 Google reviews</strong>. When someone searches "pet waste removal St. Louis" — you don't exist. Each directory listing creates a citation (your business name, address, phone appearing online) which is one of the top 3 Google ranking factors for local businesses. <strong>15 citations = Page 1 potential.</strong></p>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab('essential')" id="tab-essential"><span class="tab-icon">⚡</span>Essential (7)</div>
+  <div class="tab" onclick="showTab('pet')" id="tab-pet"><span class="tab-icon">🐾</span>Pet-Specific (6)</div>
+  <div class="tab" onclick="showTab('local')" id="tab-local"><span class="tab-icon">📍</span>Local STL (4)</div>
+  <div class="tab" onclick="showTab('bonus')" id="tab-bonus"><span class="tab-icon">🎯</span>Bonus (3)</div>
+  <div class="tab" onclick="showTab('copy')" id="tab-copy"><span class="tab-icon">📋</span>Copy-Paste</div>
+</div>
+
+<!-- ============ ESSENTIAL DIRECTORIES ============ -->
+<div class="section active" id="sec-essential">
+
+<div class="dir-card" data-id="google">
+  <div class="dir-header">
+    <span class="order-badge">1</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Google Business Profile</div>
+      <div class="dir-meta"><span class="tag free">FREE</span><span class="tag high">HIGH IMPACT</span> <span class="dir-time">⏱ 20 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why"><strong>#1 priority.</strong> GBP is already claimed at 7% complete. You need to finish it — add services, description, photos, hours, service area. Use the GBP Quick-Complete guide on the dashboard.</p>
+    <ol class="dir-steps">
+      <li>Go to business.google.com and sign in</li>
+      <li>Complete ALL sections (see GBP Quick-Complete guide)</li>
+      <li>Add 5+ photos (truck, uniform, before/after, yard)</li>
+      <li>Add all services with descriptions</li>
+      <li>Set service area (St. Louis County + surrounding)</li>
+      <li>Write your business description (copy from Copy-Paste tab)</li>
+      <li>Post your first Google Update</li>
+    </ol>
+    <a class="dir-link" href="https://business.google.com" target="_blank">Open Google Business Profile →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="yelp">
+  <div class="dir-header">
+    <span class="order-badge">2</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Yelp</div>
+      <div class="dir-meta"><span class="tag free">FREE</span><span class="tag high">HIGH IMPACT</span> <span class="dir-time">⏱ 15 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">Yelp ranks #1-3 on Google for most local service searches. Even without paid ads, your free listing shows up in search results. Yelp "Pet Waste Removal" category exists.</p>
+    <ol class="dir-steps">
+      <li>Go to biz.yelp.com → "Claim your Business" or "Add Business"</li>
+      <li>Search for "Tidy Tails" first (may already be auto-generated)</li>
+      <li>If not found, click "Add your business to Yelp"</li>
+      <li>Category: "Pet Waste Removal" (it exists!)</li>
+      <li>Add business description, photos, hours, service area</li>
+      <li>Verify via phone or postcard</li>
+    </ol>
+    <a class="dir-link" href="https://biz.yelp.com/claim" target="_blank">Claim on Yelp →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="bing">
+  <div class="dir-header">
+    <span class="order-badge">3</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Bing Places for Business</div>
+      <div class="dir-meta"><span class="tag free">FREE</span><span class="tag high">HIGH IMPACT</span> <span class="dir-time">⏱ 10 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">Bing has 10-15% of search market share. Can import directly from Google Business Profile — takes 2 minutes if GBP is done first. Also powers Yahoo search results.</p>
+    <ol class="dir-steps">
+      <li>Go to bingplaces.com</li>
+      <li>Click "Import from Google" (fastest option)</li>
+      <li>Sign in with Microsoft account</li>
+      <li>Select your GBP listing → Import</li>
+      <li>Review and confirm details</li>
+      <li>Verify via phone, text, or email</li>
+    </ol>
+    <a class="dir-link" href="https://www.bingplaces.com" target="_blank">Claim on Bing →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="nextdoor">
+  <div class="dir-header">
+    <span class="order-badge">4</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Nextdoor Business Page</div>
+      <div class="dir-meta"><span class="tag free">FREE</span><span class="tag high">HIGH IMPACT</span> <span class="dir-time">⏱ 10 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why"><strong>Gold mine for local services.</strong> Nextdoor users are exactly your target market — homeowners with dogs. People constantly ask for pet service recommendations. Free business page lets neighbors find and recommend you.</p>
+    <ol class="dir-steps">
+      <li>Go to business.nextdoor.com</li>
+      <li>Click "Claim your free Business Page"</li>
+      <li>Search for your business or create new</li>
+      <li>Category: Pets → Pet Waste Removal</li>
+      <li>Add description, photos, service area</li>
+      <li>Set up deals/offers (optional but powerful)</li>
+      <li>Start engaging with neighborhood pet posts</li>
+    </ol>
+    <a class="dir-link" href="https://business.nextdoor.com" target="_blank">Claim on Nextdoor →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="facebook">
+  <div class="dir-header">
+    <span class="order-badge">5</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Facebook Business Page</div>
+      <div class="dir-meta"><span class="tag free">FREE</span><span class="tag high">HIGH IMPACT</span> <span class="dir-time">⏱ 15 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">Facebook pages rank on Google. They're also where people share recommendations. If you already have a page, make sure it's 100% complete with services, description, and reviews enabled.</p>
+    <ol class="dir-steps">
+      <li>Go to facebook.com/pages/create (or update existing page)</li>
+      <li>Category: "Pet Service" or "Cleaning Service"</li>
+      <li>Add ALL info: phone, website, hours, service area, description</li>
+      <li>Add cover photo (before/after yard or logo)</li>
+      <li>Enable reviews/recommendations</li>
+      <li>Post your first update with spring promo</li>
+    </ol>
+    <a class="dir-link" href="https://www.facebook.com/pages/create" target="_blank">Create/Update Page →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="thumbtack">
+  <div class="dir-header">
+    <span class="order-badge">6</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Thumbtack</div>
+      <div class="dir-meta"><span class="tag free">FREE LISTING</span><span class="tag high">HIGH IMPACT</span> <span class="dir-time">⏱ 15 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">Thumbtack has a dedicated "Pet Waste Removal" category. People actively search here for this exact service. Free to create a profile — you only pay if you choose to respond to leads (optional).</p>
+    <ol class="dir-steps">
+      <li>Go to thumbtack.com/pro</li>
+      <li>Create pro account</li>
+      <li>Service: "Pet Waste Removal"</li>
+      <li>Set service area: St. Louis County, MO</li>
+      <li>Add photos, description, pricing info</li>
+      <li>Set availability and preferences</li>
+      <li>You can set a $0 budget to start — just having the profile helps SEO</li>
+    </ol>
+    <a class="dir-link" href="https://www.thumbtack.com/pro" target="_blank">Join Thumbtack →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="apple">
+  <div class="dir-header">
+    <span class="order-badge">7</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Apple Maps (Apple Business Connect)</div>
+      <div class="dir-meta"><span class="tag free">FREE</span><span class="tag med">MEDIUM</span> <span class="dir-time">⏱ 10 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">iPhone users use Apple Maps by default. Siri uses Apple Maps for local results. If you're not on Apple Maps, you don't exist for ~50% of phone users.</p>
+    <ol class="dir-steps">
+      <li>Go to businessconnect.apple.com</li>
+      <li>Sign in with Apple ID</li>
+      <li>Search for your business or add new</li>
+      <li>Add all details: category, hours, photos, description</li>
+      <li>Verify ownership</li>
+    </ol>
+    <a class="dir-link" href="https://businessconnect.apple.com" target="_blank">Claim on Apple Maps →</a>
+  </div>
+</div>
+
+</div>
+
+<!-- ============ PET-SPECIFIC DIRECTORIES ============ -->
+<div class="section" id="sec-pet">
+
+<div class="dir-card" data-id="pooperscooper">
+  <div class="dir-header">
+    <span class="order-badge">8</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Pooper-Scooper.com</div>
+      <div class="dir-meta"><span class="tag paid">$7/mo</span><span class="tag pet">PET NICHE</span> <span class="dir-time">⏱ 10 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why"><strong>THE industry directory</strong> for pet waste removal. When people Google "pooper scooper near me," this site ranks. $7/mo is nothing — one customer covers it for years.</p>
+    <ol class="dir-steps">
+      <li>Go to pooper-scooper.com</li>
+      <li>Click "List Your Service" or similar</li>
+      <li>Create your listing with service area, pricing, description</li>
+      <li>Add photos and contact info</li>
+      <li>$7/month subscription</li>
+    </ol>
+    <a class="dir-link" href="https://www.pooper-scooper.com" target="_blank">List on Pooper-Scooper.com →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="apaws">
+  <div class="dir-header">
+    <span class="order-badge">9</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">aPaws.org (Pet Waste Industry Assoc.)</div>
+      <div class="dir-meta"><span class="tag paid">MEMBERSHIP</span><span class="tag pet">PET NICHE</span> <span class="dir-time">⏱ 15 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">Association of Professional Animal Waste Specialists. Being a member adds credibility and gets you listed in their directory. The "aPaws Member" badge on your site builds trust.</p>
+    <ol class="dir-steps">
+      <li>Go to apaws.org</li>
+      <li>Check membership tiers and pricing</li>
+      <li>Apply for membership</li>
+      <li>Get listed in member directory</li>
+      <li>Use aPaws member badge on website</li>
+    </ol>
+    <a class="dir-link" href="https://apaws.org" target="_blank">Join aPaws →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="rover">
+  <div class="dir-header">
+    <span class="order-badge">10</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Rover.com</div>
+      <div class="dir-meta"><span class="tag free">FREE</span><span class="tag pet">PET NICHE</span> <span class="dir-time">⏱ 15 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">Rover is massive for pet services. While primarily for sitting/walking, having a presence here puts you in front of pet owners who already pay for pet services — perfect cross-sell audience.</p>
+    <ol class="dir-steps">
+      <li>Go to rover.com/become-a-sitter</li>
+      <li>Create a profile</li>
+      <li>List "Dog Walking" or similar service as an entry point</li>
+      <li>In your bio, mention pet waste removal as additional service</li>
+      <li>This gets you in front of active pet-spending customers</li>
+    </ol>
+    <a class="dir-link" href="https://www.rover.com/become-a-sitter/" target="_blank">Join Rover →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="care">
+  <div class="dir-header">
+    <span class="order-badge">11</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Care.com</div>
+      <div class="dir-meta"><span class="tag free">FREE LISTING</span><span class="tag pet">PET NICHE</span> <span class="dir-time">⏱ 10 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">Care.com has a pet care section where homeowners search for pet services. Another channel to reach dog owners who are already paying for pet care.</p>
+    <ol class="dir-steps">
+      <li>Go to care.com and create a caregiver account</li>
+      <li>Select "Pet Care" as your service category</li>
+      <li>Complete profile with pet waste removal focus</li>
+      <li>Add service area and pricing</li>
+    </ol>
+    <a class="dir-link" href="https://www.care.com" target="_blank">List on Care.com →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="petbusinessworld">
+  <div class="dir-header">
+    <span class="order-badge">12</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">PetSitUSA.com</div>
+      <div class="dir-meta"><span class="tag free">FREE</span><span class="tag pet">PET NICHE</span> <span class="dir-time">⏱ 5 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">Free pet service directory organized by state. Solid backlink and another way for people to find local pet services in Missouri.</p>
+    <ol class="dir-steps">
+      <li>Go to petsitusa.com</li>
+      <li>Find "Add your listing" or similar</li>
+      <li>Select Missouri → St. Louis</li>
+      <li>Add business details</li>
+    </ol>
+    <a class="dir-link" href="https://www.petsitusa.com" target="_blank">List on PetSitUSA →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="angi">
+  <div class="dir-header">
+    <span class="order-badge">13</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Angi (formerly Angie's List)</div>
+      <div class="dir-meta"><span class="tag free">FREE LISTING</span><span class="tag pet">PET SERVICE</span> <span class="dir-time">⏱ 10 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">Angi has a pet service category and strong domain authority. Your free listing gets a high-quality backlink. Homeowners trust Angi for service provider reviews.</p>
+    <ol class="dir-steps">
+      <li>Go to angi.com/pro</li>
+      <li>Create a business profile</li>
+      <li>Select relevant categories</li>
+      <li>Add photos, description, service area</li>
+      <li>Free tier is sufficient for backlink and discovery</li>
+    </ol>
+    <a class="dir-link" href="https://www.angi.com/pro" target="_blank">Join Angi →</a>
+  </div>
+</div>
+
+</div>
+
+<!-- ============ LOCAL STL DIRECTORIES ============ -->
+<div class="section" id="sec-local">
+
+<div class="dir-card" data-id="bbb">
+  <div class="dir-header">
+    <span class="order-badge">14</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Better Business Bureau (BBB)</div>
+      <div class="dir-meta"><span class="tag free">FREE LISTING</span><span class="tag med">TRUST</span> <span class="dir-time">⏱ 15 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">BBB has massive domain authority. A free listing on BBB = a powerful backlink + trust signal. You don't need to be "accredited" (paid) — just having a listing helps.</p>
+    <ol class="dir-steps">
+      <li>Go to bbb.org → "Get Listed"</li>
+      <li>Add your business (free, no accreditation required)</li>
+      <li>Fill out all business details</li>
+      <li>This creates a high-authority backlink</li>
+    </ol>
+    <a class="dir-link" href="https://www.bbb.org/get-listed" target="_blank">Get Listed on BBB →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="stlchamber">
+  <div class="dir-header">
+    <span class="order-badge">15</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">St. Louis Regional Chamber</div>
+      <div class="dir-meta"><span class="tag paid">MEMBERSHIP</span><span class="tag med">LOCAL SEO</span> <span class="dir-time">⏱ 15 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">Chamber of Commerce backlinks are gold for local SEO. The listing tells Google "this is a real, established local business." Check if they have a free tier.</p>
+    <ol class="dir-steps">
+      <li>Go to stlregionalchamber.com</li>
+      <li>Look for membership options (some have free starter tiers)</li>
+      <li>Also check your specific city/county chamber (Ballwin, Chesterfield, etc.)</li>
+      <li>Many small-city chambers have $50-100/yr memberships</li>
+    </ol>
+    <a class="dir-link" href="https://www.stlregionalchamber.com" target="_blank">St. Louis Chamber →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="yellowpages">
+  <div class="dir-header">
+    <span class="order-badge">16</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Yellow Pages (YP.com)</div>
+      <div class="dir-meta"><span class="tag free">FREE</span><span class="tag med">MEDIUM</span> <span class="dir-time">⏱ 10 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">Old school but still matters. YP.com has huge domain authority, and Google uses it as a data source for local business info. Free listing = strong citation.</p>
+    <ol class="dir-steps">
+      <li>Go to yellowpages.com → "Add Your Business"</li>
+      <li>Or go to listings.yellowpages.com</li>
+      <li>Create your free listing</li>
+      <li>Category: "Pet Waste Removal" or "Pet Services"</li>
+      <li>Add all business details consistently (same as Google)</li>
+    </ol>
+    <a class="dir-link" href="https://www.yellowpages.com" target="_blank">List on Yellow Pages →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="mapquest">
+  <div class="dir-header">
+    <span class="order-badge">17</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">MapQuest / Foursquare</div>
+      <div class="dir-meta"><span class="tag free">FREE</span><span class="tag med">MEDIUM</span> <span class="dir-time">⏱ 10 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">Foursquare powers MapQuest, Uber, Samsung Maps, and many other apps. One listing feeds multiple platforms. Strong citation source.</p>
+    <ol class="dir-steps">
+      <li>Go to foursquare.com → "Add a Place" or business.foursquare.com</li>
+      <li>Claim or create your business listing</li>
+      <li>Add all details consistently</li>
+      <li>This listing syndicates to 100+ apps and services</li>
+    </ol>
+    <a class="dir-link" href="https://foursquare.com/business" target="_blank">Claim on Foursquare →</a>
+  </div>
+</div>
+
+</div>
+
+<!-- ============ BONUS DIRECTORIES ============ -->
+<div class="section" id="sec-bonus">
+
+<div class="dir-card" data-id="hotfrog">
+  <div class="dir-header">
+    <span class="order-badge">18</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Hotfrog</div>
+      <div class="dir-meta"><span class="tag free">FREE</span><span class="tag med">BACKLINK</span> <span class="dir-time">⏱ 5 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">Free business directory with decent domain authority. Quick to set up, adds another citation to your profile. Every citation counts when you're starting from zero.</p>
+    <ol class="dir-steps">
+      <li>Go to hotfrog.com → "Add Your Business"</li>
+      <li>Create free account and listing</li>
+      <li>Add consistent NAP (Name, Address, Phone)</li>
+    </ol>
+    <a class="dir-link" href="https://www.hotfrog.com" target="_blank">List on Hotfrog →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="manta">
+  <div class="dir-header">
+    <span class="order-badge">19</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Manta</div>
+      <div class="dir-meta"><span class="tag free">FREE</span><span class="tag med">BACKLINK</span> <span class="dir-time">⏱ 5 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">Small business directory with good domain authority. Free listing, quick setup. Adds another citation.</p>
+    <ol class="dir-steps">
+      <li>Go to manta.com → "Add Your Business"</li>
+      <li>Create free listing</li>
+      <li>Add consistent NAP info</li>
+    </ol>
+    <a class="dir-link" href="https://www.manta.com" target="_blank">List on Manta →</a>
+  </div>
+</div>
+
+<div class="dir-card" data-id="alignable">
+  <div class="dir-header">
+    <span class="order-badge">20</span>
+    <input type="checkbox" class="dir-check" onchange="updateScore()">
+    <div class="dir-info">
+      <div class="dir-name">Alignable</div>
+      <div class="dir-meta"><span class="tag free">FREE</span><span class="tag med">NETWORKING</span> <span class="dir-time">⏱ 10 min</span></div>
+    </div>
+    <button class="dir-toggle" onclick="toggleBody(this)">Details ▼</button>
+  </div>
+  <div class="dir-body">
+    <p class="dir-why">LinkedIn for small businesses. Great for connecting with other local business owners who might become referral partners (property managers, realtors, dog groomers). Plus it's another backlink.</p>
+    <ol class="dir-steps">
+      <li>Go to alignable.com</li>
+      <li>Create your business profile</li>
+      <li>Connect with local St. Louis businesses</li>
+      <li>Join local business groups</li>
+      <li>Great for B2B networking (property managers, etc.)</li>
+    </ol>
+    <a class="dir-link" href="https://www.alignable.com" target="_blank">Join Alignable →</a>
+  </div>
+</div>
+
+</div>
+
+<!-- ============ COPY-PASTE TAB ============ -->
+<div class="section" id="sec-copy">
+
+<div class="impact-box">
+  <h3>📋 Copy-Paste Business Info</h3>
+  <p>Use this EXACT info on every directory. Consistency = higher Google rankings. Google checks that your Name, Address, and Phone (NAP) match across all listings.</p>
+</div>
+
+<div class="copy-section">
+  <div class="copy-header"><h3>🏢 Business Name</h3></div>
+  <div class="copy-content">
+    <div class="copy-box">
+      <span class="label">Use this EXACT name everywhere</span>
+Tidy Tails STL
+      <button class="copy-btn" onclick="copyText(this)">COPY</button>
+    </div>
+  </div>
+</div>
+
+<div class="copy-section">
+  <div class="copy-header"><h3>📞 Phone Number</h3></div>
+  <div class="copy-content">
+    <div class="copy-box">
+      <span class="label">Primary business phone</span>
+(314) 662-0078
+      <button class="copy-btn" onclick="copyText(this)">COPY</button>
+    </div>
+  </div>
+</div>
+
+<div class="copy-section">
+  <div class="copy-header"><h3>🌐 Website</h3></div>
+  <div class="copy-content">
+    <div class="copy-box">
+      <span class="label">Website URL</span>
+https://tidytailsstl.com
+      <button class="copy-btn" onclick="copyText(this)">COPY</button>
+    </div>
+  </div>
+</div>
+
+<div class="copy-section">
+  <div class="copy-header"><h3>📧 Email</h3></div>
+  <div class="copy-content">
+    <div class="copy-box">
+      <span class="label">Business email</span>
+tidytailsstl@gmail.com
+      <button class="copy-btn" onclick="copyText(this)">COPY</button>
+    </div>
+  </div>
+</div>
+
+<div class="copy-section">
+  <div class="copy-header"><h3>📍 Service Area</h3></div>
+  <div class="copy-content">
+    <div class="copy-box">
+      <span class="label">List these cities/areas</span>
+St. Louis County, Ballwin, Chesterfield, Wildwood, Ellisville, Manchester, Eureka, Valley Park, Fenton, Des Peres, Town and Country, Kirkwood, Webster Groves, Creve Coeur, Maryland Heights, Florissant, Hazelwood, Bridgeton, St. Charles, O'Fallon MO
+      <button class="copy-btn" onclick="copyText(this)">COPY</button>
+    </div>
+  </div>
+</div>
+
+<div class="copy-section">
+  <div class="copy-header"><h3>⏰ Business Hours</h3></div>
+  <div class="copy-content">
+    <div class="copy-box">
+      <span class="label">Service hours</span>
+Monday - Friday: 8:00 AM - 6:00 PM
+Saturday: 9:00 AM - 4:00 PM
+Sunday: Closed
+      <button class="copy-btn" onclick="copyText(this)">COPY</button>
+    </div>
+  </div>
+</div>
+
+<div class="copy-section">
+  <div class="copy-header"><h3>📝 Short Description (150 chars)</h3></div>
+  <div class="copy-content">
+    <div class="copy-box">
+      <span class="label">For directories with character limits</span>
+Professional pet waste removal serving St. Louis County. Weekly, bi-weekly & one-time yard cleanups. Free quotes. Your yard, our doody! 🐕💩
+      <button class="copy-btn" onclick="copyText(this)">COPY</button>
+    </div>
+  </div>
+</div>
+
+<div class="copy-section">
+  <div class="copy-header"><h3>📝 Full Description (for GBP, Yelp, etc.)</h3></div>
+  <div class="copy-content">
+    <div class="copy-box">
+      <span class="label">Full business description — copy for longer listings</span>
+Tidy Tails STL is St. Louis County's trusted pet waste removal service. We keep your yard clean so you can actually enjoy it — no more dodging landmines or dealing with the mess yourself.
+
+Our services include:
+• Weekly yard cleanups — we come on the same day every week
+• Bi-weekly service — every other week for smaller yards
+• One-time deep cleans — perfect for spring cleanups, move-ins, or catching up after winter
+• Commercial properties — apartment complexes, HOAs, dog parks, and vet clinics
+
+We serve Ballwin, Chesterfield, Wildwood, Ellisville, Manchester, Eureka, Kirkwood, Webster Groves, Creve Coeur, Florissant, and all of St. Louis County.
+
+Locally owned and operated. Reliable, professional, and affordable. Free quotes — call or text us today!
+      <button class="copy-btn" onclick="copyText(this)">COPY</button>
+    </div>
+  </div>
+</div>
+
+<div class="copy-section">
+  <div class="copy-header"><h3>🏷️ Categories / Keywords</h3></div>
+  <div class="copy-content">
+    <div class="copy-box">
+      <span class="label">Use these when selecting categories</span>
+Primary: Pet Waste Removal
+Secondary: Pet Services, Dog Waste Cleanup, Pooper Scooper Service, Yard Cleanup, Pet Care Services
+
+Keywords to include in descriptions:
+pet waste removal, dog poop pickup, pooper scooper, yard cleanup, St. Louis, STL, pet waste, dog waste removal service
+      <button class="copy-btn" onclick="copyText(this)">COPY</button>
+    </div>
+  </div>
+</div>
+
+<div class="impact-box">
+  <h3>⚠️ CRITICAL: NAP Consistency</h3>
+  <p><strong>NAP = Name, Address, Phone.</strong> Google checks that these match EXACTLY across all directories. If your name is "Tidy Tails STL" on Google but "TidyTails" on Yelp, Google gets confused and ranks you lower. Use the EXACT same format everywhere. Copy-paste from this page — don't type it fresh each time.</p>
+</div>
+
+</div>
+
+<!-- Impact Section -->
+<div class="impact-box">
+  <h3>📈 Expected Impact</h3>
+  <p>
+    <strong>Week 1-2:</strong> New listings start appearing in search results<br>
+    <strong>Week 3-4:</strong> Google recognizes consistent citations, rankings improve<br>
+    <strong>Month 2-3:</strong> Listings start generating organic traffic and calls<br><br>
+    <strong>By the numbers:</strong><br>
+    <span class="stat">20 backlinks</span> from 0 → builds domain authority<br>
+    <span class="stat">20 discovery channels</span> people can find you<br>
+    <span class="stat">$0-7/mo</span> total cost (only Pooper-Scooper.com is paid)<br>
+    <span class="stat">~3 hours</span> total time investment for all 20<br>
+    <span class="stat">15+ citations</span> → page 1 potential for local searches
+  </p>
+</div>
+
+<script>
+// Tab switching
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  document.getElementById('tab-' + id).classList.add('active');
+}
+
+// Toggle card details
+function toggleBody(btn) {
+  const body = btn.closest('.dir-card').querySelector('.dir-body');
+  body.classList.toggle('open');
+  btn.textContent = body.classList.contains('open') ? 'Hide ▲' : 'Details ▼';
+}
+
+// Copy text
+function copyText(btn) {
+  const box = btn.closest('.copy-box');
+  const text = box.textContent.replace('COPY', '').replace(box.querySelector('.label')?.textContent || '', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ COPIED';
+    btn.style.background = '#22c55e';
+    setTimeout(() => { btn.textContent = 'COPY'; btn.style.background = '#4ecdc4'; }, 1500);
+  });
+}
+
+// Score tracking with localStorage
+function updateScore() {
+  const checks = document.querySelectorAll('.dir-check');
+  let done = 0;
+  const state = {};
+  checks.forEach((c, i) => {
+    const card = c.closest('.dir-card');
+    const id = card.dataset.id;
+    if (c.checked) {
+      done++;
+      card.classList.add('done-card');
+    } else {
+      card.classList.remove('done-card');
+    }
+    state[id] = c.checked;
+  });
+  
+  localStorage.setItem('dir-blitz-state', JSON.stringify(state));
+  
+  const total = checks.length;
+  const pct = Math.round((done / total) * 100);
+  
+  document.getElementById('scoreNum').textContent = done + '/' + total;
+  document.getElementById('scoreFill').style.width = pct + '%';
+  
+  const numEl = document.getElementById('scoreNum');
+  numEl.className = 'score-num';
+  if (pct === 0) { numEl.classList.add('red'); }
+  else if (pct < 40) { numEl.classList.add('orange'); }
+  else if (pct < 75) { numEl.classList.add('yellow'); }
+  else { numEl.classList.add('green'); }
+  
+  const detail = document.getElementById('scoreDetail');
+  if (done === 0) detail.textContent = '🚨 Zero online presence — invisible to search engines';
+  else if (done < 7) detail.textContent = '🟡 Getting started — keep going! Essential directories first.';
+  else if (done < 15) detail.textContent = '🟢 Good progress — citations building up. Google is noticing.';
+  else if (done < 20) detail.textContent = '🔥 Almost there — strong citation profile building!';
+  else detail.textContent = '🏆 COMPLETE — 20 citations! Give it 2-4 weeks for rankings to improve.';
+}
+
+// Restore state from localStorage
+function restoreState() {
+  try {
+    const state = JSON.parse(localStorage.getItem('dir-blitz-state') || '{}');
+    document.querySelectorAll('.dir-card').forEach(card => {
+      const id = card.dataset.id;
+      if (state[id]) {
+        card.querySelector('.dir-check').checked = true;
+      }
+    });
+    updateScore();
+  } catch(e) {}
+}
+
+restoreState();
+</script>
+
+</body>
+</html>

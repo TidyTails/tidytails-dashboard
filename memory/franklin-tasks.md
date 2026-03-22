@@ -7,6 +7,34 @@
 
 ## March 22, 2026 (Sunday)
 
+### 9:04 PM (Sat night) — 📍 Directory Blitz Kit — 20 FREE Listings to Go From Invisible to Found (Hourly Autonomous)
+**Task:** SEO audit found 0 backlinks, 0 directory listings, 0 citations. That's why Tidy Tails doesn't show up in ANY search results. Built a complete interactive directory submission kit with 20 directories organized by priority, copy-paste business info for NAP consistency, and step-by-step instructions for each.
+
+**Result:** ✅ COMPLETE — `dashboard/directory-submission-kit.html` — 5-tab interactive directory submission system
+
+**Deliverable:** Full directory blitz system:
+1. **⚡ Essential (7):** Google Business Profile, Yelp, Bing Places, Nextdoor, Facebook, Thumbtack, Apple Maps — these are the ones that actually send leads
+2. **🐾 Pet-Specific (6):** Pooper-Scooper.com ($7/mo), aPaws.org, Rover, Care.com, PetSitUSA, Angi — niche directories where pet owners search
+3. **📍 Local STL (4):** BBB, St. Louis Chamber, Yellow Pages, Foursquare/MapQuest — high-authority backlinks for local SEO
+4. **🎯 Bonus (3):** Hotfrog, Manta, Alignable — additional citations and networking
+5. **📋 Copy-Paste:** Exact business name, phone, email, website, service areas, hours, short description, full description, categories/keywords — all copy-paste ready for NAP consistency
+
+**Key Features:**
+- Interactive progress tracker (0/20 → 20/20) with localStorage persistence
+- Each directory has priority order number, time estimate, step-by-step instructions, and direct signup link
+- Completed directories get checked off and visually dimmed
+- NAP consistency section explains why EXACT matches matter for Google ranking
+- Total investment: ~3 hours, $0-7/mo
+
+**Why This Matters:** Citations (your business info appearing consistently across the web) are one of the TOP 3 Google local ranking factors. Going from 0 citations to 15+ can move you from invisible to page 1 for "pet waste removal St. Louis" within 4-8 weeks. This is the single highest-ROI SEO task TJ can do — each listing takes 5-15 minutes and is permanent.
+
+**Dashboard Updated:** Added to Reviews & Reputation tools section + archive
+**Pushed to GitHub:** ✅
+
+**Rotation:** 📍 SEO / Citations / Directory Listings / Online Presence
+
+---
+
 ### 8:05 PM (Sat night) — 🏠 Sunday Shed Ads — 4 Fresh Posts Ready to Go (Hourly Autonomous)
 **Task:** Write 4 fresh shed ads for Sunday posting with brand-new hooks that haven't been used in the last 2 weeks. Checked TuffShed current promos (No Interest if paid in 6 months via Service Finance, RTO National no credit check). All ads match TJ's voice from style guide.
 
