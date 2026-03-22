@@ -7,6 +7,43 @@
 
 ## March 22, 2026 (Sunday)
 
+### 6:04 PM — 🔧 Blog Post Deduplication — Keyword Cannibalization Fix (SEO/Maintenance)
+**Task:** Today's 3:04 PM technical audit found two blog posts cannibalizing each other on "dog poop laws st louis missouri." Both posts targeting the same keyword = Google doesn't know which to rank = both rank lower. Fixed it.
+
+**Result:** ✅ COMPLETE — 5 files changed, duplicate merged into primary post, pushed to GitHub
+
+**What Got Done:**
+1. **Identified primary vs duplicate** — `dog-poop-laws-st-louis-missouri` (newer, richer, FAQPage schema) = keep. `dog-poop-laws-missouri-st-louis` (older, Mar 15) = merge & redirect.
+2. **Merged 3 unique sections** from duplicate into primary:
+   - **MSD Environmental section** — 23M fecal coliform per gram stat, stormwater runoff to Mississippi River, MSD's "Don't Be a Party POOPer" campaign
+   - **"What Actually Happens If You Get Caught"** — 5-step complaint-driven enforcement process most people don't know about
+   - **Berkeley, MO strictest ordinance** — explicitly prohibits "stockpiling pet waste on concrete surfaces" even on private property
+3. **Converted duplicate to redirect** — `meta http-equiv="refresh"` + `rel="canonical"` + `noindex` meta tag
+4. **Removed from sitemap.xml** — was being crawled as unique content, now excluded
+5. **Removed from blog index** — card removed from grid + structured data BlogPosting entry removed
+6. **Expanded primary keywords** — Added "dog poop laws missouri," "pet waste laws missouri," "is it illegal to not pick up dog poop missouri," "dog poop rules st louis" to capture both search intents
+7. **Updated meta description** — Now explicitly mentions "Missouri & St. Louis" and "fines up to $500" and "city-by-city breakdown" and "2026 guide"
+8. **Updated technical audit dashboard** — Duplicate Content score card: 2 → 0 ✅, fix marked as complete with details
+9. **dateModified bumped** to 2026-03-22 in both structured data and sitemap
+10. **Git pushed** — 5 files, 57 insertions, 441 deletions
+
+**What This Fixes:**
+- 🔧 **Keyword cannibalization eliminated** — One strong post instead of two weak ones competing
+- 🔧 **Link equity consolidated** — Any backlinks to the old URL now redirect to the primary
+- 🔧 **Sitemap trust improved** — Google sees fewer duplicate signals
+- 🔧 **Primary post enriched** — MSD section adds E-E-A-T (environmental authority), enforcement section adds practical value, Berkeley callout adds specificity
+
+**What Still Needs Deploying (TJ):**
+- The merged primary post needs to be uploaded to Cloudflare Pages to go live
+- Same goes for the redirect page (so old URL properly redirects)
+- 6 ghost city pages from the technical audit still need deploying too
+
+**Why This Task:** Self-assessment says "maintain existing assets." Today's audit identified this as a concrete, fixable SEO problem. Two posts fighting each other for the same keyword is textbook cannibalization. One enriched post > two thin competitors. Zero new building, pure maintenance.
+
+**Rotation:** 🔧 SEO / Blog Maintenance / Content Optimization
+
+---
+
 ### 5:04 PM — 📋 Weekly Action Plan Overhaul — 7→15 Tasks, All Tools Linked (Execution/Planning)
 **Task:** The weekly action plan was built BEFORE today's 10 new tools. It had generic references to old tools, missed the Adoption Paw-ty entirely on Saturday, and didn't include commercial call targets. Rebuilt to connect every day to the right tool with correct links.
 
