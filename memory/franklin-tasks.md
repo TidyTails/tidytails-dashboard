@@ -7,6 +7,65 @@
 
 ## March 21, 2026 (Saturday)
 
+### 7:04 PM — 📋 Weekly Action Plan — Turn 10 Toolkits Into 7 Actions (Hourly Autonomous)
+**Task:** Today we shipped 10 toolkits (review blitz, referral program, spring campaign, commercial outreach, events/partnerships, GBP, shed pricing intel, SEO audit, dashboard redesign, plus the morning briefing). That's amazing — but it's also information overload. TJ needs ONE page that says "do THIS on Monday, THIS on Tuesday."
+
+**Result:** ✅ COMPLETE — `dashboard/weekly-action-plan.html` — Interactive weekly plan for March 23-29
+
+**Deliverable:** Single-page day-by-day action plan that cherry-picks the highest-ROI action from each toolkit:
+- **Monday (Scooping Day):** Jamie texts 3 Florissant customers for Google reviews (5 min) + drops cards at 2 vet clinics on route (5 min)
+- **Tuesday:** Post Spring Deep Clean in 3 Facebook groups (10 min)
+- **Wednesday:** Jamie calls top 5 commercial leads with scripts (30 min)
+- **Thursday:** Post 3 shed listings on FB Marketplace (15 min)
+- **Friday:** Jamie texts referral offer to all 8 customers (10 min)
+- **Saturday:** Complete GBP to 50%+ (20 min) + Nextdoor post (5 min)
+- **Sunday:** Check review count + respond (5 min)
+
+**Features:**
+- North Star progress tracker (8 → 10 customers)
+- Progress bar with completion percentage
+- Expandable day cards with checkboxes (localStorage persistence)
+- Every task links to its full toolkit
+- Time estimates on every task (total: ~100 min for the whole week)
+- Quick reference cards (review link, phone, website, CRM)
+- Reset button for reuse
+
+**Dashboard Updated:** Added orange alert banner linking to action plan in TODAY mode
+**Pushed to GitHub:** ✅
+
+**Why This Task:** 10 toolkits in one day = incredible output, but useless if TJ opens the dashboard and doesn't know where to start. This is the meta-layer — the "just tell me what to do" page that makes all 10 toolkits accessible through one entry point. Every task is under 30 min, $0 cost, and copy-paste ready.
+
+**Rotation:** 📋 Planning / Prioritization / UX / Meta-Organization
+
+---
+
+### 6:05 PM — 🏠 Dashboard 3-Mode Redesign: TODAY / TOOLS / ARCHIVE (Hourly Autonomous)
+**Task:** TJ said today "every time you do step-by-step guides I can't access them" and asked for a 3-mode dashboard redesign. The index.html had 24 pulsing header links, 97 HTML files in one giant scroll, and 7 priority banners fighting for attention. Complete redesign into 3 clean modes.
+
+**Result:** ✅ COMPLETE — `dashboard/index.html` — 3-mode dashboard
+
+**Deliverable:** Full redesign from cluttered junk drawer to organized command center:
+1. **⚡ TODAY mode** — What matters right now. Stats bar (8 customers, 0 reviews, 7% GBP, indexed ✅, SSL ✅), 2 alert banners (reviews + spring campaign), 8 prioritized action cards for this week, 3 shed items, quick reference cards. Just what TJ needs to act on.
+2. **🔧 TOOLS mode** — The permanent toolkit organized by function: Sales & Leads (6), Reviews & Reputation (4), Marketing & Campaigns (6), Research & Intel (4), Shed Business (4), Operations & Systems (4). 28 items total, findable by category.
+3. **📁 ARCHIVE mode** — Searchable list of ALL 90+ items ever built. Most recent first, color-coded category badges (SHED, GROWTH, INTEL, REVIEWS, etc.), dates, instant search. Everything is findable.
+
+**Key Changes:**
+- 24 pulsing header links → 5 clean quick links (Website, Sheds, Reviews, CRM, Landing)
+- 7 competing priority banners → 2 focused alerts
+- Giant single-scroll → 3 tabbed modes with localStorage persistence
+- Archive has search built in — type "shed" or "reviews" and instantly filter
+- Mobile responsive throughout
+- Mode remembers via localStorage — opens where you left off
+
+**Why This Task:** TJ literally asked for this today. Every tool we've built is useless if he can't find it. 97 dashboard files and 24 pulsing links = information overload = nothing gets used. This is the meta-task that makes every other task work. No new content — pure organization of existing content.
+
+**Dashboard Updated:** This IS the dashboard update
+**Pushed to GitHub:** ✅
+
+**Rotation:** 🏠 Dashboard / UX / Organization / Infrastructure
+
+---
+
 ### 5:04 PM — 🏗️ Shed Market Competitive Pricing Intel — Spring 2026 STL Market (Hourly Autonomous)
 **Task:** Deep competitive intelligence on the STL shed market. TJ sells TuffShed and WoodMaster — needed real, verified pricing data and competitor profiles to arm him for spring selling season. All previous shed dashboards were from early March with stale data.
 
