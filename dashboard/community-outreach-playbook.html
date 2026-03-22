@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Outreach Playbook — Tidy Tails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:#0a0a0a; --bg2:#111; --bg3:#1a1a1a; --bg4:#242424;
+            --text:#f5f5f5; --text2:#999; --text3:#555;
+            --orange:#ff6b35; --green:#10b981; --blue:#3b82f6;
+            --yellow:#fbbf24; --red:#ef4444; --purple:#8b5cf6;
+            --border:#2a2a2a; --radius:12px;
+        }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:1rem;}
+        .header{text-align:center;margin-bottom:1.5rem;padding:1.5rem;background:linear-gradient(135deg,var(--bg2),#1a1520);border-radius:var(--radius);border:1px solid var(--border);}
+        .header h1{font-size:1.5rem;font-weight:800;letter-spacing:-0.03em;}
+        .header h1 span{color:var(--green);}
+        .header p{color:var(--text2);font-size:0.8rem;margin-top:0.4rem;max-width:600px;margin-left:auto;margin-right:auto;}
+        .stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:0.5rem;margin-bottom:1.5rem;}
+        .stat{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.75rem;text-align:center;}
+        .stat-val{font-size:1.3rem;font-weight:800;}
+        .stat-label{font-size:0.62rem;color:var(--text2);margin-top:0.1rem;}
+
+        .filter-bar{display:flex;gap:0.5rem;margin-bottom:1.25rem;flex-wrap:wrap;}
+        .filter-btn{padding:0.4rem 0.85rem;border-radius:8px;font-size:0.72rem;font-weight:700;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text2);transition:all 0.2s;font-family:inherit;}
+        .filter-btn:hover{border-color:var(--orange);color:var(--text);}
+        .filter-btn.active{background:var(--orange);color:#000;border-color:var(--orange);}
+
+        .section{margin-bottom:2rem;}
+        .sec-head{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.75rem;padding-bottom:0.4rem;border-bottom:1px solid var(--border);}
+        .sec-head h2{font-size:1rem;font-weight:700;}
+        .sec-head .cnt{font-size:0.62rem;color:var(--text2);background:var(--bg4);padding:0.1rem 0.5rem;border-radius:4px;}
+
+        .community-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem;margin-bottom:0.75rem;transition:all 0.2s;position:relative;}
+        .community-card:hover{border-color:var(--green);transform:translateY(-1px);box-shadow:0 4px 20px rgba(16,185,129,0.1);}
+        .cc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.5rem;}
+        .cc-name{font-weight:700;font-size:0.9rem;display:flex;align-items:center;gap:0.5rem;}
+        .cc-link{font-size:0.7rem;color:var(--blue);text-decoration:none;word-break:break-all;}
+        .cc-link:hover{text-decoration:underline;}
+        .cc-meta{display:flex;gap:0.75rem;flex-wrap:wrap;margin-bottom:0.5rem;}
+        .cc-tag{font-size:0.62rem;padding:0.15rem 0.5rem;border-radius:4px;font-weight:600;}
+        .tag-size{background:rgba(59,130,246,0.15);color:var(--blue);}
+        .tag-type{background:rgba(168,85,247,0.15);color:var(--purple);}
+        .tag-priority{background:rgba(16,185,129,0.15);color:var(--green);}
+        .tag-hot{background:rgba(239,68,68,0.15);color:var(--red);}
+        .tag-competitor{background:rgba(251,191,36,0.15);color:var(--yellow);}
+        .cc-desc{font-size:0.76rem;color:var(--text2);line-height:1.5;margin-bottom:0.6rem;}
+        .cc-strategy{background:var(--bg4);border-radius:8px;padding:0.75rem;margin-bottom:0.5rem;}
+        .cc-strategy h4{font-size:0.72rem;font-weight:700;color:var(--green);margin-bottom:0.3rem;}
+        .cc-strategy p{font-size:0.72rem;color:var(--text2);line-height:1.5;}
+        .cc-post{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:0.75rem;margin-top:0.5rem;position:relative;}
+        .cc-post h5{font-size:0.68rem;font-weight:700;color:var(--orange);margin-bottom:0.3rem;text-transform:uppercase;}
+        .cc-post p{font-size:0.72rem;color:var(--text);line-height:1.55;white-space:pre-wrap;}
+        .copy-btn{position:absolute;top:0.5rem;right:0.5rem;background:var(--bg4);border:1px solid var(--border);color:var(--text2);font-size:0.62rem;padding:0.25rem 0.6rem;border-radius:6px;cursor:pointer;font-family:inherit;font-weight:600;transition:all 0.2s;}
+        .copy-btn:hover{background:var(--green);color:#000;border-color:var(--green);}
+        .copy-btn.copied{background:var(--green);color:#000;border-color:var(--green);}
+
+        .posted-toggle{display:flex;align-items:center;gap:0.5rem;margin-top:0.5rem;}
+        .posted-toggle label{font-size:0.65rem;color:var(--text3);cursor:pointer;}
+        .posted-toggle input{cursor:pointer;}
+        .posted-toggle input:checked + label{color:var(--green);}
+
+        .rules-box{background:linear-gradient(135deg,rgba(239,68,68,0.08),rgba(255,107,53,0.05));border:1px solid rgba(239,68,68,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:1.5rem;}
+        .rules-box h3{font-size:0.85rem;color:var(--red);margin-bottom:0.4rem;}
+        .rules-box ul{font-size:0.76rem;color:var(--text2);line-height:1.7;padding-left:1.2rem;}
+        .rules-box li strong{color:var(--text);}
+
+        .progress-bar{height:6px;background:var(--bg4);border-radius:3px;overflow:hidden;margin-top:0.75rem;}
+        .progress-fill{height:100%;background:linear-gradient(90deg,var(--green),var(--blue));transition:width 0.3s;border-radius:3px;}
+
+        .tip{background:linear-gradient(135deg,rgba(16,185,129,0.08),rgba(16,185,129,0.03));border:1px solid rgba(16,185,129,0.3);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:1.5rem;}
+        .tip h3{font-size:0.85rem;color:var(--green);margin-bottom:0.3rem;}
+        .tip p{font-size:0.76rem;color:var(--text2);line-height:1.5;}
+
+        .footer{text-align:center;padding:2rem;color:var(--text3);font-size:0.62rem;}
+        @media(max-width:600px){.stats{grid-template-columns:repeat(2,1fr);}.cc-top{flex-direction:column;gap:0.3rem;}}
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>📣 Community <span>Outreach Playbook</span></h1>
+    <p>Every online community where STL dog owners hang out. Ready-to-post content for each. Post in 3 groups = 3 potential customers. This is your FREE customer acquisition channel.</p>
+</div>
+
+<div class="stats" id="stats">
+    <div class="stat"><div class="stat-val" style="color:var(--blue)" id="total-communities">31</div><div class="stat-label">Communities Mapped</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--green)" id="posted-count">0</div><div class="stat-label">Posted In</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--orange)">~180K+</div><div class="stat-label">Combined Reach</div></div>
+    <div class="stat"><div class="stat-val" style="color:var(--yellow)">$0</div><div class="stat-label">Total Cost</div></div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" id="progress" style="width:0%"></div></div>
+<p style="font-size:0.62rem;color:var(--text3);margin-top:0.3rem;text-align:center;" id="progress-text">0 of 31 communities posted in</p>
+
+<div class="rules-box" style="margin-top:1.25rem;">
+    <h3>⚠️ Posting Rules — Don't Get Banned</h3>
+    <ul>
+        <li><strong>Never hard-sell.</strong> Lead with value ("spring tip: dog waste takes 12 months to decompose") then mention your service casually.</li>
+        <li><strong>Read group rules FIRST.</strong> Some groups ban business posts. If so, engage in comments only — answer questions, be helpful.</li>
+        <li><strong>Post from Jamie's personal account</strong>, not a business page. Personal posts get 5-10x more reach.</li>
+        <li><strong>Space it out.</strong> One group per day, max. Posting in 5 groups the same day = spam vibes.</li>
+        <li><strong>Engage first, post later.</strong> Join the group, comment on 3-4 posts over a week, THEN share your intro post.</li>
+        <li><strong>Include a photo.</strong> Photo of Jamie scooping, a clean yard, or the truck. Posts with photos get 3x engagement.</li>
+        <li><strong>Local angle always.</strong> Mention specific neighborhoods: "Just finished a cleanup in Kirkwood!" not "We serve the St. Louis area."</li>
+    </ul>
+</div>
+
+<div class="tip">
+    <h3>💡 The 3-Post Formula That Works</h3>
+    <p><strong>Post 1 (Week 1):</strong> "Hey neighbors! Just wanted to introduce myself…" — personal story, why you started, offer a freebie.<br>
+    <strong>Post 2 (Week 3):</strong> Value post — "Fun fact: 1 dog produces 274 lbs of waste per year" or "Spring cleanup tip…"<br>
+    <strong>Post 3 (Week 5):</strong> Social proof — "Just hit my 10th weekly customer! Here's what I've learned…" or customer testimonial.<br>
+    <strong>Then:</strong> Answer questions in the group whenever someone asks for pet service recommendations.</p>
+</div>
+
+<div class="filter-bar">
+    <button class="filter-btn active" onclick="filterCards('all')">All (31)</button>
+    <button class="filter-btn" onclick="filterCards('facebook')">📘 Facebook Groups</button>
+    <button class="filter-btn" onclick="filterCards('nextdoor')">🏠 Nextdoor</button>
+    <button class="filter-btn" onclick="filterCards('reddit')">🤖 Reddit</button>
+    <button class="filter-btn" onclick="filterCards('dogpark')">🐕 Dog Parks</button>
+    <button class="filter-btn" onclick="filterCards('org')">🐾 Pet Orgs</button>
+    <button class="filter-btn" onclick="filterCards('priority')">🔥 Priority</button>
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- 🔥 PRIORITY TARGETS                -->
+<!-- ═══════════════════════════════════ -->
+<div class="section">
+<div class="sec-head"><h2>🔥 Priority Targets — Post Here First</h2><span class="cnt">6</span></div>
+
+<div class="community-card" data-type="nextdoor priority" data-id="nextdoor-main">
+    <div class="cc-top">
+        <div class="cc-name">🏠 Nextdoor — Your Neighborhoods</div>
+        <a href="https://nextdoor.com/sell/" target="_blank" class="cc-link">nextdoor.com</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-hot">🔥 #1 PRIORITY</span>
+        <span class="cc-tag tag-size">Hyperlocal</span>
+        <span class="cc-tag tag-competitor">⚠️ Poop2Scoop already here</span>
+    </div>
+    <div class="cc-desc">THE most important platform for local services. Homeowners ask for recommendations here DAILY. Poop2Scoop has a business page with 3 "faves." Tidy Tails has ZERO presence. This is leaving money on the table.</div>
+    <div class="cc-strategy">
+        <h4>📋 Strategy</h4>
+        <p>1. Create a <strong>Nextdoor Business page</strong> (free) — nextdoor.com/create-page<br>
+        2. Post a "new neighbor business" intro in your service areas<br>
+        3. Monitor "pet services" and "dog" mentions — respond helpfully<br>
+        4. Ask existing customers to "recommend" you on Nextdoor (this is HUGE)</p>
+    </div>
+    <div class="cc-post">
+        <h5>📝 Ready-to-Post: Neighbor Intro</h5>
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <p>Hey neighbors! 👋 I'm Jamie with Tidy Tails — we're a local pet waste removal service based right here in STL County.
+
+I know it's not the most glamorous job, but someone's gotta do it 😄 We come by weekly or biweekly and make sure your yard stays clean for the kids, the dogs, and your bare feet this summer.
+
+Starting at $35/visit. First cleanup is FREE so you can see if it's worth it.
+
+If you've ever stepped in a landmine in your own backyard, you know the struggle is real 🐕💩
+
+📞 314-850-7140 or tidytailsstl.com</p>
+    </div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-nextdoor-main" onchange="updateProgress()">
+        <label for="post-nextdoor-main">✅ Business page created & intro posted</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook priority" data-id="stl-moms">
+    <div class="cc-top">
+        <div class="cc-name">📘 St Louis Moms</div>
+        <a href="https://www.facebook.com/groups/stlouismoms/" target="_blank" class="cc-link">facebook.com/groups/stlouismoms</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-hot">🔥 HIGH VALUE</span>
+        <span class="cc-tag tag-size">📊 Large (10K+ likely)</span>
+        <span class="cc-tag tag-type">Moms with kids + dogs</span>
+    </div>
+    <div class="cc-desc">Moms with young kids AND dogs = perfect customer. They're busy, yard is a minefield, kids play outside. This group sees constant "recommend a service" threads. Pet waste removal is the EXACT kind of "life hack" moms share with each other.</div>
+    <div class="cc-strategy">
+        <h4>📋 Strategy</h4>
+        <p>Wait for someone to ask for pet services or yard help. Comment with your intro. If group allows business intros, post the "busy parent" angle. Moms share good finds with other moms — one post here can snowball.</p>
+    </div>
+    <div class="cc-post">
+        <h5>📝 Ready-to-Post: Busy Parent Angle</h5>
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <p>Any other STL parents tired of doing the "poop check" before the kids go play in the backyard? 😅
+
+My name's Jamie and I started Tidy Tails because I got tired of the battle myself. We come by weekly and scoop so your yard is actually usable — no surprises, no stepping in it, no excuses to skip outdoor time.
+
+$70/month flat rate (that's less than a lot of lawn services). First visit free.
+
+Not trying to spam — just figured if there are other dog + kid households dealing with this, it might save someone's Saturday morning 🙌
+
+tidytailsstl.com | 📞 314-850-7140</p>
+    </div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-stl-moms" onchange="updateProgress()">
+        <label for="post-stl-moms">✅ Posted / Engaged</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook priority" data-id="saving-stl-pets">
+    <div class="cc-top">
+        <div class="cc-name">📘 Saving St Louis Pets</div>
+        <a href="https://www.facebook.com/groups/savingstlouispets/" target="_blank" class="cc-link">facebook.com/groups/savingstlouispets</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-hot">🔥 HIGH VALUE</span>
+        <span class="cc-tag tag-size">📊 Pet-focused community</span>
+        <span class="cc-tag tag-type">Adoptions & pet owners</span>
+    </div>
+    <div class="cc-desc">People adopting dogs = future customers. When someone adopts, they need all the pet services. Being helpful here (not salesy) builds brand recognition. Mentioned by name in Reddit threads about STL pet communities.</div>
+    <div class="cc-strategy">
+        <h4>📋 Strategy</h4>
+        <p>Don't sell directly. Congratulate adopters. Answer pet care questions. When someone posts about their new dog, comment: "Congrats! If you ever need yard help, hit me up." Soft touch, high trust.</p>
+    </div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-saving-stl" onchange="updateProgress()">
+        <label for="post-saving-stl">✅ Joined & engaging</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook priority" data-id="stl-lost-found">
+    <div class="cc-top">
+        <div class="cc-name">📘 Lost and Found Pets — St. Louis, MO</div>
+        <a href="https://www.facebook.com/groups/stlouispets/" target="_blank" class="cc-link">facebook.com/groups/stlouispets</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-priority">🐾 PET OWNERS</span>
+        <span class="cc-tag tag-size">📊 Active community</span>
+    </div>
+    <div class="cc-desc">Highly active group of dog owners. While primarily for lost/found pets, members are engaged pet owners who use pet services. Don't sell here — just be a good community member and have "Tidy Tails" in your profile.</div>
+    <div class="cc-strategy">
+        <h4>📋 Strategy</h4>
+        <p>Join and genuinely help share lost pet posts (people notice who's active). Put "Jamie | Tidy Tails Pet Waste Removal 🐕" as your Facebook workplace. Your name = your brand visibility.</p>
+    </div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-stl-lost" onchange="updateProgress()">
+        <label for="post-stl-lost">✅ Joined & profile updated</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook priority" data-id="stl-parent">
+    <div class="cc-top">
+        <div class="cc-name">📘 STL Parent Things To Do</div>
+        <a href="https://www.facebook.com/groups/stlparent/" target="_blank" class="cc-link">facebook.com/groups/stlparent</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-hot">🔥 HIGH VALUE</span>
+        <span class="cc-tag tag-type">Parents with yards + dogs</span>
+    </div>
+    <div class="cc-desc">Parents looking for activities = parents with yards, kids, and often dogs. Same play as STL Moms: these are busy families who'd love to outsource the poop patrol.</div>
+    <div class="cc-strategy">
+        <h4>📋 Strategy</h4>
+        <p>Same approach as STL Moms. Wait for relevant threads or post a value-first intro if group allows.</p>
+    </div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-stl-parent" onchange="updateProgress()">
+        <label for="post-stl-parent">✅ Joined & engaging</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="reddit priority" data-id="reddit-stl">
+    <div class="cc-top">
+        <div class="cc-name">🤖 r/StLouis</div>
+        <a href="https://reddit.com/r/StLouis" target="_blank" class="cc-link">reddit.com/r/StLouis</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-hot">🔥 HIGH VALUE</span>
+        <span class="cc-tag tag-size">📊 100K+ members</span>
+        <span class="cc-tag tag-type">Local recommendations</span>
+    </div>
+    <div class="cc-desc">When people ask "any recommendations for ___?" on r/StLouis, they get real answers. Someone posting about dog services = warm lead. Reddit is anti-spam but loves genuine local business owners who engage authentically.</div>
+    <div class="cc-strategy">
+        <h4>📋 Strategy</h4>
+        <p>Create a Reddit account. Be a real community member first — comment on STL posts for a few weeks. When someone asks about pet services or yard maintenance, mention Tidy Tails naturally. NEVER make a standalone ad post.</p>
+    </div>
+    <div class="cc-post">
+        <h5>📝 Template: Answering a "Recommendations?" Thread</h5>
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <p>I run Tidy Tails — we do weekly/biweekly yard cleanups in STL County. $70/month flat rate, first visit free. We're a small local operation, not a franchise. 
+
+Happy to answer any questions! tidytailsstl.com or 314-850-7140</p>
+    </div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-reddit-stl" onchange="updateProgress()">
+        <label for="post-reddit-stl">✅ Account created & engaging</label>
+    </div>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- 📘 NEIGHBORHOOD FACEBOOK GROUPS     -->
+<!-- ═══════════════════════════════════ -->
+<div class="section">
+<div class="sec-head"><h2>📘 Neighborhood Facebook Groups — Service Area</h2><span class="cnt">12</span></div>
+
+<div class="community-card" data-type="facebook" data-id="kirkwood-bst">
+    <div class="cc-top">
+        <div class="cc-name">📘 Town & Country / Kirkwood / Ballwin BST</div>
+        <a href="https://www.facebook.com/groups/1586676684938750/" target="_blank" class="cc-link">facebook.com/groups/1586676684938750</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-priority">✅ SERVICE AREA</span>
+        <span class="cc-tag tag-type">Buy Sell Trade</span>
+    </div>
+    <div class="cc-desc">Covers 3 key Tidy Tails service cities. Buy/sell groups allow service posts (check rules). These are homeowners with yards.</div>
+    <div class="cc-post">
+        <h5>📝 Service Offer Post</h5>
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <p>🐕 SERVICE AVAILABLE — Pet Waste Removal
+
+Hey Kirkwood/Ballwin/T&C neighbors! Offering weekly or biweekly yard cleanups. We come by, scoop everything, haul it away. You never think about it again.
+
+✅ $70/month flat rate (weekly visits)
+✅ First cleanup FREE
+✅ Locally owned & operated
+
+Spring is here and the thaw is REAL 😅 Let us dig you out.
+
+📞 314-850-7140
+🌐 tidytailsstl.com</p>
+    </div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-kirkwood-bst" onchange="updateProgress()">
+        <label for="post-kirkwood-bst">✅ Posted</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook" data-id="chesterfield-bst">
+    <div class="cc-top">
+        <div class="cc-name">📘 Chesterfield / Ballwin / Kirkwood Sales</div>
+        <a href="https://www.facebook.com/groups/238610962947394/" target="_blank" class="cc-link">facebook.com/groups/238610962947394</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-priority">✅ SERVICE AREA</span>
+        <span class="cc-tag tag-type">Sales group</span>
+    </div>
+    <div class="cc-desc">Another group covering prime Tidy Tails territory. Chesterfield = higher income homes with bigger yards and multiple dogs.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-chesterfield-bst" onchange="updateProgress()">
+        <label for="post-chesterfield-bst">✅ Posted</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook" data-id="chesterfield-community">
+    <div class="cc-top">
+        <div class="cc-name">📘 Chesterfield Community Network</div>
+        <a href="https://www.facebook.com/groups/chesterfieldcommunitynetwork/" target="_blank" class="cc-link">facebook.com/groups/chesterfieldcommunitynetwork</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-priority">✅ SERVICE AREA</span>
+        <span class="cc-tag tag-type">Community / Recommendations</span>
+    </div>
+    <div class="cc-desc">Community groups are GOLD for "who do you recommend for ___?" threads. Be in the group so you can answer when someone asks about pet services.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-chesterfield-comm" onchange="updateProgress()">
+        <label for="post-chesterfield-comm">✅ Joined</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook" data-id="kirkwood-community">
+    <div class="cc-top">
+        <div class="cc-name">📘 Kirkwood Community Aid</div>
+        <a href="https://www.facebook.com/groups/2540491152832652/" target="_blank" class="cc-link">facebook.com/groups/2540491152832652</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-priority">✅ SERVICE AREA</span>
+        <span class="cc-tag tag-type">Community help</span>
+    </div>
+    <div class="cc-desc">Community aid groups = people helping people. Offer a free cleanup for a neighbor in need and watch the goodwill (and referrals) roll in.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-kirkwood-comm" onchange="updateProgress()">
+        <label for="post-kirkwood-comm">✅ Joined</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook" data-id="ofallon-whats-going-on">
+    <div class="cc-top">
+        <div class="cc-name">📘 What's Going on, O'Fallon Missouri</div>
+        <a href="https://www.facebook.com/groups/2843095859077290/" target="_blank" class="cc-link">facebook.com/groups/2843095859077290</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-priority">✅ EXPANSION ZONE</span>
+        <span class="cc-tag tag-type">Community</span>
+    </div>
+    <div class="cc-desc">O'Fallon is TJ's expansion target. Start building brand awareness here NOW before Little Stinkers of MO locks down St. Charles County.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-ofallon-wgo" onchange="updateProgress()">
+        <label for="post-ofallon-wgo">✅ Joined</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook" data-id="ofallon-whats-happening">
+    <div class="cc-top">
+        <div class="cc-name">📘 What's Happening in O'Fallon Missouri?</div>
+        <a href="https://www.facebook.com/groups/829221844452244/" target="_blank" class="cc-link">facebook.com/groups/829221844452244</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-priority">✅ EXPANSION ZONE</span>
+        <span class="cc-tag tag-type">Community</span>
+    </div>
+    <div class="cc-desc">Second O'Fallon community group. Different admins = different audience.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-ofallon-wh" onchange="updateProgress()">
+        <label for="post-ofallon-wh">✅ Joined</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook" data-id="ofallon-bst">
+    <div class="cc-top">
+        <div class="cc-name">📘 O'Fallon Missouri Buy Sell Trade</div>
+        <a href="https://www.facebook.com/groups/LPcoBST" target="_blank" class="cc-link">facebook.com/groups/LPcoBST</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-priority">✅ EXPANSION ZONE</span>
+        <span class="cc-tag tag-type">Buy Sell Trade</span>
+    </div>
+    <div class="cc-desc">BST groups are the most business-post-friendly groups. Service offers are expected here.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-ofallon-bst" onchange="updateProgress()">
+        <label for="post-ofallon-bst">✅ Posted</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook" data-id="stl-lost-found-greater">
+    <div class="cc-top">
+        <div class="cc-name">📘 Greater St Louis Missouri Lost & Found Paws</div>
+        <a href="https://www.facebook.com/groups/STLMOlostfoundpaws/" target="_blank" class="cc-link">facebook.com/groups/STLMOlostfoundpaws</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-type">Pet community</span>
+        <span class="cc-tag tag-size">📊 Active</span>
+    </div>
+    <div class="cc-desc">Part of the statewide Missouri Lost & Found Paws network (7 regional groups). Huge engaged pet owner audience. Be helpful, not salesy.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-stl-lfp" onchange="updateProgress()">
+        <label for="post-stl-lfp">✅ Joined</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook" data-id="metro-stl-lost">
+    <div class="cc-top">
+        <div class="cc-name">📘 Metro STL Lost and Found Pets</div>
+        <a href="https://www.facebook.com/groups/stlpetslostandfound/" target="_blank" class="cc-link">facebook.com/groups/stlpetslostandfound</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-type">Pet community</span>
+    </div>
+    <div class="cc-desc">Another active lost/found group. Same strategy: join, be helpful, have Tidy Tails in your profile.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-metro-stl" onchange="updateProgress()">
+        <label for="post-metro-stl">✅ Joined</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook" data-id="fix-stl-county">
+    <div class="cc-top">
+        <div class="cc-name">📘 Fix St Louis County Animal Care and Control</div>
+        <a href="https://www.facebook.com/groups/fixstlouiscountyacc/" target="_blank" class="cc-link">facebook.com/groups/fixstlouiscountyacc</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-type">Animal advocacy</span>
+    </div>
+    <div class="cc-desc">Passionate animal advocates = passionate pet owners. Engage authentically. These people know EVERYONE in the STL pet community and their recommendations carry weight.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-fix-stl" onchange="updateProgress()">
+        <label for="post-fix-stl">✅ Joined</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook" data-id="stl-senior-dog">
+    <div class="cc-top">
+        <div class="cc-name">📘 St. Louis Senior Dog Project</div>
+        <a href="https://www.facebook.com/St.LouisSeniorDogProject/" target="_blank" class="cc-link">facebook.com/St.LouisSeniorDogProject</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-size">📊 15K+ followers</span>
+        <span class="cc-tag tag-type">Rescue / Adoption</span>
+    </div>
+    <div class="cc-desc">15,332 followers! Senior dog owners often can't easily pick up waste (mobility issues, seniors themselves). This is a SERVICE pitch not a convenience pitch — different angle, same result.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-senior-dog" onchange="updateProgress()">
+        <label for="post-senior-dog">✅ Following & engaging</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="facebook" data-id="revive-stl">
+    <div class="cc-top">
+        <div class="cc-name">📘 Revive STL</div>
+        <a href="https://www.facebook.com/groups/revitalizestl/" target="_blank" class="cc-link">facebook.com/groups/revitalizestl</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-type">Community improvement</span>
+    </div>
+    <div class="cc-desc">Community improvement focus = people who care about clean neighborhoods. Dog waste is literally a neighborhood cleanliness issue. This is your "clean neighborhoods" angle.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-revive-stl" onchange="updateProgress()">
+        <label for="post-revive-stl">✅ Joined</label>
+    </div>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- 🐕 DOG PARKS — Offline + Online     -->
+<!-- ═══════════════════════════════════ -->
+<div class="section">
+<div class="sec-head"><h2>🐕 Dog Parks — Flyer & Partner Opportunities</h2><span class="cnt">7</span></div>
+
+<div class="community-card" data-type="dogpark" data-id="tails-trails">
+    <div class="cc-top">
+        <div class="cc-name">🐕 Tails & Trails Dog Park (Queeny Park)</div>
+        <a href="https://stlouiscountymo.gov/st-louis-county-departments/parks/places/tails-trails-dog-park/" target="_blank" class="cc-link">STL County Parks</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-hot">🔥 TOP TARGET</span>
+        <span class="cc-tag tag-size">5 acres, membership</span>
+        <span class="cc-tag tag-type">Manchester / West County</span>
+    </div>
+    <div class="cc-desc">5 acres, separate large/small areas, $75/yr membership. These are DEDICATED dog owners who INVEST in their dogs. They spend $75 just to use a park — $70/mo for clean yards is an easy sell. Ask about posting flyers or leaving business cards on the community board.</div>
+    <div class="cc-strategy">
+        <h4>📋 Strategy</h4>
+        <p>Get a day pass ($6). Bring business cards. Talk to people. "Hey, your dog's awesome! I'm Jamie, I do yard cleanups..." <br>Ask park staff if there's a community bulletin board for flyers.</p>
+    </div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-tails-trails" onchange="updateProgress()">
+        <label for="post-tails-trails">✅ Visited / flyers posted</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="dogpark" data-id="sw-city-dog-park">
+    <div class="cc-top">
+        <div class="cc-name">🐕 Southwest City Dog Park (Willmore Park)</div>
+        <a href="https://swcitydogpark.org/" target="_blank" class="cc-link">swcitydogpark.org</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-priority">✅ GOOD TARGET</span>
+        <span class="cc-tag tag-size">1.1 acres, membership $60-75/yr</span>
+        <span class="cc-tag tag-type">St. Louis Hills / Southampton</span>
+    </div>
+    <div class="cc-desc">Oldest membership dog park in the city. 1.1 acres, agility equipment, dog pools in summer. Members are dedicated dog owners. May reopen in June — plan a visit then. Has its own Facebook community and monthly clean-up events.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-sw-city" onchange="updateProgress()">
+        <label for="post-sw-city">✅ Visited / flyers posted</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="dogpark" data-id="lucas-dog-park">
+    <div class="cc-top">
+        <div class="cc-name">🐕 Lucas Dog Park (Downtown)</div>
+        <a href="https://members.lucasparkdogpark.org/" target="_blank" class="cc-link">lucasparkdogpark.org</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-type">Downtown STL</span>
+        <span class="cc-tag tag-size">$75/yr membership</span>
+    </div>
+    <div class="cc-desc">Downtown membership park. Smaller but highly community-oriented — monthly clean-up events (2nd Friday, March-October). Volunteer at a clean-up = instant credibility.</div>
+    <div class="cc-strategy">
+        <h4>📋 Strategy</h4>
+        <p>Volunteer at the monthly clean-up. "I literally do this for a living!" Bring cards. Natural conversation starter.</p>
+    </div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-lucas" onchange="updateProgress()">
+        <label for="post-lucas">✅ Visited / volunteered</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="dogpark" data-id="forest-park-meetup">
+    <div class="cc-top">
+        <div class="cc-name">🐕 Forest Park Saturday Dog Meetup</div>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-hot">🔥 FREE</span>
+        <span class="cc-tag tag-type">Every Saturday 8:30 AM</span>
+    </div>
+    <div class="cc-desc">Free weekly dog meetup at the Round Fountain in Forest Park, every Saturday at 8:30 AM. No membership needed. THIS IS A GOLDMINE — 10-30 dog owners gathered in one spot weekly. Bring cards, treats for dogs, and just be a dog person.</div>
+    <div class="cc-strategy">
+        <h4>📋 Strategy</h4>
+        <p>Show up 3 Saturdays in a row. Become a regular. On Saturday #3, people will know you. Casually mention what you do. Hand out cards. Offer a "meetup member" discount.</p>
+    </div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-forest-park" onchange="updateProgress()">
+        <label for="post-forest-park">✅ Attended meetup</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="dogpark" data-id="francis-park">
+    <div class="cc-top">
+        <div class="cc-name">🐕 Francis Park Dog Area</div>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-type">St. Louis Hills</span>
+        <span class="cc-tag tag-size">Free, open</span>
+    </div>
+    <div class="cc-desc">Popular dog-friendly open area. Free, no membership. Great for casual conversations with dog owners.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-francis" onchange="updateProgress()">
+        <label for="post-francis">✅ Visited</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="dogpark" data-id="st-johns">
+    <div class="cc-top">
+        <div class="cc-name">🐕 St. John's Dog Park</div>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-type">Free public park</span>
+    </div>
+    <div class="cc-desc">Free public dog park mentioned frequently in STL dog owner forums. Good for weekend card drops.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-st-johns" onchange="updateProgress()">
+        <label for="post-st-johns">✅ Visited</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="dogpark" data-id="stl-50-parks">
+    <div class="cc-top">
+        <div class="cc-name">📊 50+ STL Dog Parks (Full Map)</div>
+        <a href="https://graphics.stltoday.com/maps/dog-parks/" target="_blank" class="cc-link">STL Today Interactive Map</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-type">Reference</span>
+    </div>
+    <div class="cc-desc">STL Today mapped 50+ dog parks in the metro area. Use this to find parks near current customers — drop flyers while you're in the neighborhood doing cleanups.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-50-parks" onchange="updateProgress()">
+        <label for="post-50-parks">✅ Reviewed map</label>
+    </div>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- 🐾 PET ORGANIZATIONS                -->
+<!-- ═══════════════════════════════════ -->
+<div class="section">
+<div class="sec-head"><h2>🐾 Pet Organizations — Partnership Targets</h2><span class="cnt">6</span></div>
+
+<div class="community-card" data-type="org" data-id="stray-rescue">
+    <div class="cc-top">
+        <div class="cc-name">🐾 Stray Rescue of St. Louis</div>
+        <a href="https://www.facebook.com/StrayRescue/" target="_blank" class="cc-link">facebook.com/StrayRescue — 568K followers</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-hot">🔥 568K FOLLOWERS</span>
+        <span class="cc-tag tag-type">Rescue / Adoption</span>
+    </div>
+    <div class="cc-desc">568,773 Facebook followers — the BIGGEST pet audience in STL by a massive margin. They host adoption events constantly. A partnership or sponsorship here = enormous visibility. Even getting ONE post shared by them = thousands of eyeballs.</div>
+    <div class="cc-strategy">
+        <h4>📋 Strategy</h4>
+        <p><strong>Short-term:</strong> Follow, engage, share their posts on Jamie's personal page.<br>
+        <strong>Medium-term:</strong> Offer "free first month for anyone who adopts from Stray Rescue" — pitch this to their community outreach team. They'd LOVE promoting a perk for new adopters.<br>
+        <strong>Long-term:</strong> Sponsor an adoption event ($50-100 sponsorship = your logo on their materials)</p>
+    </div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-stray-rescue" onchange="updateProgress()">
+        <label for="post-stray-rescue">✅ Following & engaged</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="org" data-id="open-door">
+    <div class="cc-top">
+        <div class="cc-name">🐾 Open Door Animal Sanctuary</div>
+        <a href="https://opendooranimal.org" target="_blank" class="cc-link">opendooranimal.org</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-priority">✅ ALREADY CONNECTED</span>
+        <span class="cc-tag tag-type">Adoption events at Hometown Vet</span>
+    </div>
+    <div class="cc-desc">Already connected via the March 28 Adoption Paw-ty! Largest no-kill shelter in STL, established 1975. This is a warm relationship — build on it after the event.</div>
+    <div class="cc-strategy">
+        <h4>📋 Strategy</h4>
+        <p>After the Paw-ty: follow up with organizers, offer ongoing "new adopter" discounts, ask to be included in their adoption packets.</p>
+    </div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-open-door" onchange="updateProgress()">
+        <label for="post-open-door">✅ Partnership initiated</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="org" data-id="gateway-pet">
+    <div class="cc-top">
+        <div class="cc-name">🐾 Gateway Pet Guardians</div>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-type">East STL rescue</span>
+    </div>
+    <div class="cc-desc">Frequently recommended rescue org. Active volunteer base = pet-passionate people. Follow and engage on social.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-gateway-pet" onchange="updateProgress()">
+        <label for="post-gateway-pet">✅ Following</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="org" data-id="stray-paws">
+    <div class="cc-top">
+        <div class="cc-name">🐾 Stray Paws Rescue</div>
+        <a href="https://www.straypawsrescue.com/" target="_blank" class="cc-link">straypawsrescue.com</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-type">Rescue</span>
+        <span class="cc-tag tag-size">Hosting April gala @ Sheraton Westport</span>
+    </div>
+    <div class="cc-desc">Active rescue hosting an upcoming gala at Sheraton Westport Plaza. These events are great networking for pet service businesses. Consider attending or donating a "free month" as a silent auction item.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-stray-paws" onchange="updateProgress()">
+        <label for="post-stray-paws">✅ Following / event attended</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="org" data-id="4legged-kids">
+    <div class="cc-top">
+        <div class="cc-name">🐾 4 Legged Kids (Pet Blog)</div>
+        <a href="https://4leggedkids.com/" target="_blank" class="cc-link">4leggedkids.com</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-type">Local pet blog</span>
+    </div>
+    <div class="cc-desc">Local STL pet blog covering dog parks, pet events, pet advocacy. Writer is a former vet tech. Getting featured or mentioned here = targeted SEO backlink + relevant audience.</div>
+    <div class="cc-strategy">
+        <h4>📋 Strategy</h4>
+        <p>Email the blogger. Offer a free cleanup in exchange for a mention or review. Blog backlinks = SEO gold when you have zero domain authority.</p>
+    </div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-4legged" onchange="updateProgress()">
+        <label for="post-4legged">✅ Contacted</label>
+    </div>
+</div>
+
+<div class="community-card" data-type="org" data-id="stl-lost-pets-org">
+    <div class="cc-top">
+        <div class="cc-name">🐾 STL Lost Pets (stllostpets.org)</div>
+        <a href="https://stllostpets.org/" target="_blank" class="cc-link">stllostpets.org</a>
+    </div>
+    <div class="cc-meta">
+        <span class="cc-tag tag-type">Pet resources hub</span>
+    </div>
+    <div class="cc-desc">Centralized lost pet resource for the whole metro area. They link to shelters, resources, and services. Getting listed in their resources section = permanent backlink + referrals.</div>
+    <div class="posted-toggle">
+        <input type="checkbox" id="post-stl-lost-org" onchange="updateProgress()">
+        <label for="post-stl-lost-org">✅ Contacted about listing</label>
+    </div>
+</div>
+
+</div>
+
+<!-- ═══════════════════════════════════ -->
+<!-- 📊 WEEKLY POSTING SCHEDULE          -->
+<!-- ═══════════════════════════════════ -->
+<div class="section">
+<div class="sec-head"><h2>📅 Suggested Weekly Posting Schedule</h2></div>
+
+<div class="community-card" data-type="all" style="border-color:var(--blue);">
+    <div class="cc-desc" style="color:var(--text);line-height:2;">
+        <strong>🟢 Monday:</strong> Post in 1 BST group (rotate: Kirkwood → Chesterfield → O'Fallon)<br>
+        <strong>🟢 Tuesday:</strong> Engage in pet groups — comment on 3-5 posts in Saving STL Pets / Lost & Found<br>
+        <strong>🟢 Wednesday:</strong> Post on Nextdoor (different neighborhood each week)<br>
+        <strong>🟢 Thursday:</strong> Share a pet tip or fun fact on personal page (tags: #StLouis #DogOwner #TidyTails)<br>
+        <strong>🟢 Friday:</strong> Check Reddit r/StLouis for pet service recommendation threads<br>
+        <strong>🟢 Saturday:</strong> Forest Park dog meetup (8:30 AM) + 1 dog park visit with cards<br>
+        <strong>🟢 Sunday:</strong> Rest / plan next week's posts
+    </div>
+</div>
+</div>
+
+<div class="footer">
+    Built by Franklin 🐕💩 · March 22, 2026 · 31 communities mapped<br>
+    <a href="index.html" style="color:var(--blue);text-decoration:underline;">← Back to Dashboard</a>
+</div>
+
+<script>
+function copyPost(btn) {
+    const postText = btn.parentElement.querySelector('p').innerText;
+    navigator.clipboard.writeText(postText).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    });
+}
+
+function filterCards(type) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    document.querySelectorAll('.community-card').forEach(card => {
+        if (type === 'all' || type === 'priority') {
+            card.style.display = '';
+        } else {
+            const cardType = card.getAttribute('data-type') || '';
+            card.style.display = cardType.includes(type) ? '' : 'none';
+        }
+    });
+    if (type === 'priority') {
+        document.querySelectorAll('.community-card').forEach(card => {
+            const cardType = card.getAttribute('data-type') || '';
+            card.style.display = cardType.includes('priority') ? '' : 'none';
+        });
+    }
+    document.querySelectorAll('.section').forEach(sec => {
+        const visibleCards = sec.querySelectorAll('.community-card:not([style*="display: none"])');
+        sec.style.display = visibleCards.length > 0 ? '' : 'none';
+    });
+}
+
+function updateProgress() {
+    const checkboxes = document.querySelectorAll('.posted-toggle input[type="checkbox"]');
+    const total = checkboxes.length;
+    let checked = 0;
+    checkboxes.forEach(cb => {
+        if (cb.checked) checked++;
+        // Save state
+        localStorage.setItem('community-' + cb.id, cb.checked);
+    });
+    document.getElementById('posted-count').textContent = checked;
+    document.getElementById('progress').style.width = Math.round((checked / total) * 100) + '%';
+    document.getElementById('progress-text').textContent = checked + ' of ' + total + ' communities posted in';
+}
+
+// Restore state on load
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.posted-toggle input[type="checkbox"]').forEach(cb => {
+        const saved = localStorage.getItem('community-' + cb.id);
+        if (saved === 'true') cb.checked = true;
+    });
+    updateProgress();
+});
+</script>
+
+</body>
+</html>

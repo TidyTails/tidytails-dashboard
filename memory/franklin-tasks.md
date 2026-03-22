@@ -7,6 +7,42 @@
 
 ## March 22, 2026 (Sunday)
 
+### 4:04 PM — 📣 Community Outreach Playbook — 31 STL Communities Mapped (Growth/Marketing)
+**Task:** Researched and mapped every online and offline community where STL dog owners congregate. Built a comprehensive outreach playbook with ready-to-post content, posting rules, and a weekly schedule.
+
+**Result:** ✅ COMPLETE — `dashboard/community-outreach-playbook.html` — 31 communities, 4 ready-to-post templates, weekly posting schedule
+
+**What Got Done:**
+1. **31 communities mapped** across 5 categories: Facebook groups (12), dog parks (7), pet organizations (6), Nextdoor (1), Reddit (1), plus 4 priority targets
+2. **6 priority targets identified** — Nextdoor (competitor Poop2Scoop already there, TJ has ZERO presence), St Louis Moms (10K+), STL Parent Things To Do, Saving St Louis Pets, r/StLouis (100K+), Lost & Found Pets STL
+3. **4 copy-paste post templates** — Nextdoor neighbor intro, busy parent angle, BST service offer, Reddit recommendation reply
+4. **7-day posting schedule** — one action per day to avoid spam flags while maintaining consistent presence
+5. **Posting rules / anti-ban guide** — personal account > business page, engage first post later, read group rules, space it out
+6. **3-post formula** — Week 1 intro, Week 3 value post, Week 5 social proof
+7. **Dog park intelligence** — Tails & Trails (5 acre membership park, Queeny), SW City Dog Park (oldest membership park), Lucas Park (monthly cleanups = volunteer opportunity), Forest Park Saturday meetup (8:30 AM at Round Fountain, FREE, 10-30 dog owners weekly)
+8. **Pet org partnership targets** — Stray Rescue (568K FB followers!), Open Door Sanctuary (already connected via Paw-ty), Stray Paws Rescue (upcoming gala), 4 Legged Kids blog (SEO backlink opportunity), Gateway Pet Guardians
+9. **Progress tracker** with localStorage persistence — track which communities have been posted in
+10. **Dashboard updated** — Added to TODAY alerts + TOOLS marketing section, tool count 30→31
+
+**Key Discoveries:**
+- 🚨 **Poop2Scoop is already on Nextdoor** with 3 "faves" — TJ has ZERO Nextdoor presence. This is the #1 platform for local service recommendations.
+- 🔥 **Forest Park Saturday Dog Meetup** (8:30 AM, Round Fountain) — FREE weekly gathering of 10-30 dog owners. Show up 3 weeks in a row = become a regular = customers.
+- 💡 **Stray Rescue = 568K followers** — a single partnership or sponsorship here dwarfs everything else combined.
+- 💡 **4 Legged Kids blog** — local pet blog, former vet tech. A feature/mention = SEO backlink + targeted audience.
+- 📊 **Combined reach: ~180K+** across all 31 communities for $0.
+
+**What TJ/Jamie Should Do:**
+1. **This week:** Create Nextdoor Business page (10 min, free) — competitor is already there
+2. **This week:** Join 3-4 Facebook groups from the priority list
+3. **Saturday:** Go to Forest Park dog meetup at 8:30 AM with business cards
+4. **Next week:** Start the 7-day posting schedule (1 group per day)
+
+**Why This Task:** We have 25+ dashboard tools but ZERO systematic approach to the FREE channels where dog owners already are. Every tool in the dashboard is useless if nobody knows Tidy Tails exists. This playbook makes "post in communities" as easy as the review request texts — open, copy, paste, done.
+
+**Rotation:** 📣 Marketing / Community Outreach / Growth
+
+---
+
 ### 3:04 PM — 🔧 Website Technical Audit — 6 Ghost Pages Found (SEO/Monitoring)
 **Task:** Full technical crawl of all 37 sitemap URLs on tidytailsstl.com. Checked HTTP status, content uniqueness, titles, meta descriptions, canonical tags, file sizes, and search visibility.
 
