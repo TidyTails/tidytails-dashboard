@@ -7,6 +7,30 @@
 
 ## March 22, 2026 (Sunday)
 
+### 9:11 AM — 🐾 Adoption Paw-ty Event Prep Kit — Complete Playbook (Deliverable)
+**Task:** Adoption Paw-ty at Hometown Vet in Crestwood is 6 DAYS AWAY (March 28). We had event info in the spring calendar but ZERO prep materials — no scripts, no offer cards, no follow-up plan. People adopting dogs = perfect Tidy Tails customers. Built the definitive event playbook.
+
+**Result:** ✅ COMPLETE — `dashboard/adoption-pawty-prep.html` — 8-section interactive prep kit
+
+**What Got Done:**
+1. **Event intel verified** — Eventbrite confirms 10am-2pm (was listed as 10am-12pm, actually runs to 2pm), 9575 Watson Rd, Open Door Animal Sanctuary (largest no-kill in STL, est. 1975), FREE event
+2. **Packing checklist (8 items)** — Business cards, new adopter flyers, treats, sign-up sheet, branded shirt, poop bags (ice breaker!), all with persistent checkbox tracking
+3. **New Adopter Special Offer** — Printable half-sheet: First visit FREE + $35/mo for 3 months (reg $70). Expires April 15. Math: $105 discount → $840/yr LTV = 8x return
+4. **5 conversation scripts** — Just Adopted (money shot), Browsing, Already Has Dog, Open Door Volunteers (referral pitch), Hometown Vet Staff (partnership pitch)
+5. **Live lead tracker** — Name/phone/zip/notes input, localStorage persistence, copy-all export. Use at event on phone.
+6. **4 social media posts** — Pre-event (Thu/Fri), during-event story, post-event recap, Nextdoor post. All copy-paste ready.
+7. **Hometown Vet partnership play** — 6-step escalation from leaving cards → cross-referral → co-branded welcome kit. Intel: modern full-service, Crestwood Crossings location, hosts community events.
+8. **5-touch follow-up plan** — Day 0 text, Day 2 vet email, Day 5 second text, Week 2 social recap, April 1 final follow-up. Scripts for each.
+9. **Day-of timeline** — 9am to 6pm with 9 checkboxes. Arrive at 9:30 (30 min early to meet staff), photos at 11am, follow-up texts by 4pm.
+10. **Conversion math** — 30-50 attendees → 15-25 conversations → 8-15 numbers → 2-4 bookings → 1-3 recurring customers. $10 cost + 4 hours.
+11. **Dashboard updates** — Top card on TODAY panel (green glow), archive list entry
+
+**Why This Task:** The Adoption Paw-ty was referenced in the morning briefing as "6 days away" but had ZERO actionable prep. The spring calendar page just says "bring cards and talk to people." That's not a plan — it's a wish. This converts a calendar entry into a complete playbook Jamie can execute by following steps on his phone. New dog adopters are the highest-intent leads in the world — they literally just committed to dog ownership. One event done right could land 1-3 recurring customers at basically zero cost.
+
+**Rotation:** 🎪 Events / Sales Enablement / Growth
+
+---
+
 ### 8:00 AM — 🔍 Self-Directed Sunday Audit (Monitoring/Maintenance)
 **Task:** 8 AM self-directed work block. Per self-assessment: NO new toolkits. Focus on monitoring, maintenance, and preparing TJ's message.
 
