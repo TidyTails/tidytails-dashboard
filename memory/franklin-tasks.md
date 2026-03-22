@@ -7,6 +7,45 @@
 
 ## March 22, 2026 (Sunday)
 
+### 6:05 AM — 🔍 Competitor Intel Update + Search Visibility Audit (Intelligence/Monitoring)
+**Task:** 6 AM Sunday = monitoring, not building. Ran competitive intel scan and search visibility check. The self-assessment says "STOP BUILDING TOOLKITS" — so I checked if existing assets are even findable.
+
+**Result:** ✅ COMPLETE — 1 new competitor profiled, Florissant search gap documented, Poop2Scoop status confirmed
+
+**What Got Done:**
+1. **New competitor discovered: Pooey Pet Service** — BBB A+ rated (only BBB-accredited pet waste service in STL!)
+   - pooeypetservice.com | (314) 877-9955 | South City 63118
+   - Owner: Mell. Bi-weekly only. $100/mo (1 pet), $120/mo (2 pets), $130/mo (3 pets)
+   - Also: pet sitting ($100-125/day), pet transport, commercial dog parks
+   - Donates to Stray Rescue STL — good PR angle
+   - **TJ crushes on price:** $45 biweekly vs their $100 biweekly = 55% cheaper
+   - Low-medium threat overall (expensive, limited frequency, weak web presence)
+
+2. **Florissant search audit — Tidy Tails INVISIBLE:**
+   - "pet waste removal florissant mo" → POOP 911 #1, BBB #2, Yelp #3, SuperPages #4, YellowPages #5
+   - Tidy Tails appears on ZERO search results despite having a Florissant landing page
+   - BBB shows 17 pet waste removal businesses near Florissant — Tidy Tails not among them
+   - Yelp Florissant results list 9+ competitors — Tidy Tails not listed (claimed since Mar 5!)
+
+3. **Poop2Scoop confirmed ACTIVE** — site live, pricing verified:
+   - $18/wk, $16 twice-weekly, $25 bi-weekly (all 1 dog)
+   - Now advertising commercial services (apartments, condos, dog parks, pet waste stations)
+   - Updated intel file with commercial capabilities
+
+4. **Site health check** — tidytailsstl.com loads fine (HTTP 200, SSL valid)
+
+**Updated Files:**
+- `memory/competitor-intel-spring2026.md` — Added Pooey Pet Service (Tier 2C), updated Poop2Scoop, market count 14→15
+- `memory/2026-03-22.md` — Daily log entry
+
+**Key Insight:** Brave Search API quota nearly exhausted (1,958/2,000). Had to work with limited searches. The real finding isn't the new competitor — it's that after 3 weeks of tooling, Tidy Tails is still completely invisible in Florissant search results. Every competitor shows up on BBB, Yelp, SuperPages, and YellowPages. We show up on none. GBP completion + directory submissions remain THE blocker. No amount of dashboard tools fixes this.
+
+**Why This Task:** Core lesson: "Late night/early morning = monitoring, not toolkits." Did exactly that. Ran competitive scan, found new intel, documented the search visibility gap. Didn't build toolkit #97. The honest status: 15 tracked competitors, many struggling, but we're invisible where customers actually search.
+
+**Rotation:** 🔍 Competitive Intelligence / Search Visibility / Monitoring
+
+---
+
 ### 5:04 AM — 📍 GBP Setup Wizard — Interactive 8-Step Guided Setup (Deliverable)
 **Task:** GBP completion is at 7%. Monday Action Brief lists it as Priority #2. POOP 911 has full SEO pages. DoodyCalls has 43 reviews. Tidy Tails has ZERO search visibility. Built the definitive GBP setup tool — not another checklist, but a step-by-step interactive wizard with everything pre-written and copy-pasteable.
 

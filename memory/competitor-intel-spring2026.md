@@ -26,12 +26,13 @@
 
 ### TIER 2: MEDIUM THREAT (Local Independents)
 
-**Poop 2 Scoop**
+**Poop 2 Scoop** ✅ CONFIRMED ACTIVE (Mar 22 site check)
 - Local, veteran-owned, family-run
-- Phone: 314-449-9447
-- Pricing: $18/wk (1 dog), $25 bi-weekly, +$4/extra dog, +$4 large yard, +$4 deodorize
-- Clean professional website
-- No contracts
+- Phone: 314-449-9447 | info@poop2scoop.com
+- Pricing: $18/wk (1 dog), $16 twice-weekly, $25 bi-weekly, +$4/extra dog, +$4 large yard, +$4 deodorize
+- Also offers: Deck/patio deodorizing, commercial (apartments, condos, dog parks, pet waste stations)
+- Clean professional website (still live Mar 22)
+- No contracts, 100% satisfaction guarantee
 - No visible Google/social presence
 
 **Poopy Paws**
@@ -61,6 +62,29 @@
 - Also sells Dogipot products nationally
 - Covers St. Louis + St. Charles
 - 98 Facebook likes, 6 Yelp reviews
+
+### TIER 2C: NEW DISCOVERY (Mar 22, 2026)
+
+**Pooey Pet Service** ⚠️ NEW — BBB A+ RATED
+- Website: pooeypetservice.com (clean, Squarespace-style)
+- Phone: (314) 877-9955
+- Location: Saint Louis, MO 63118 (South City)
+- Owner: Mell (owns Shar-Pei "Autumn" + Pitbull mix "Trouble")
+- BBB Accredited: YES — A+ rating (only BBB-accredited pet waste service in STL!)
+- Hours: M-F 9-5, Sat by appt, Sun closed
+- Services: Bi-weekly yard cleanup + pet sitting + pet transport
+- Pricing (EXPENSIVE):
+  - 1 Pet: $100/mo bi-weekly
+  - 2 Pets: $120/mo bi-weekly
+  - 3 Pets: $130/mo bi-weekly
+  - Pet sitting small: $100/day
+  - Pet sitting large: $125/day
+  - Commercial dog parks: quote-only
+- Gives % of revenue to Stray Rescue of St. Louis (good PR angle)
+- Only offers bi-weekly subscription — no weekly option
+- **Assessment:** LOW-MEDIUM threat. Their bi-weekly 1-pet at $100/mo is MASSIVELY more expensive than TJ's $45 biweekly. No weekly option means they don't compete on TJ's core frequency. BBB A+ rating is impressive but doesn't translate to search visibility. Weak online presence beyond BBB. The pet sitting + transport add-ons show they're diversifying rather than dominating waste removal.
+- **TJ wins on:** Price ($45 vs $100 biweekly), frequency options (weekly/biweekly/monthly vs biweekly-only), service area coverage
+- **They win on:** BBB credibility, pet sitting add-on, charity angle
 
 ### DEAD/DORMANT
 
@@ -151,11 +175,12 @@
 8. **Pawfect Waste Solutions customers** — 404 site, out of business. Orphaned customers.
 9. **Kitty litter service** — Super Scoopers offers this. Low-effort upsell for TJ.
 
-## Full Market Count (Mar 2026)
-**Total tracked competitors: 14**
+## Full Market Count (Mar 2026 — Updated Mar 22)
+**Total tracked competitors: 15**
 - Tier 1 (franchise): DoodyCalls, POOP 911 (2)
 - Tier 2 (established local): Poop 2 Scoop, Poopy Paws, No. 2 Crew, The Pootector (4)
 - Tier 2B (St. Charles): Super Scoopers, Yucko's (2)
+- Tier 2C (new): Pooey Pet Service (1)
 - Tier 3 (small/niche): Dirty Dog Wash, The Poo Fighterz, Pooanators, Dog Doody Defenders (4)
 - Dead: Pawfect Waste Solutions, possibly Poopy Paws (declining) (1-2)
 
