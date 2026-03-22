@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏠 Marketplace Listings — 23 Buildings Ready to Post</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
+  .container { max-width: 700px; margin: 0 auto; padding: 16px; }
+  
+  header { text-align: center; padding: 24px 0 16px; border-bottom: 2px solid #2a2a2a; margin-bottom: 20px; }
+  header h1 { font-size: 1.4em; color: #a78bfa; margin-bottom: 4px; }
+  header p { color: #888; font-size: 0.88em; }
+  
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
+  .stat-box { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 10px; padding: 12px; text-align: center; }
+  .stat-num { font-size: 1.4em; font-weight: 800; }
+  .stat-label { font-size: 0.72em; color: #888; margin-top: 2px; }
+  
+  .filter-bar { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; -webkit-overflow-scrolling: touch; }
+  .filter-btn { padding: 8px 14px; border-radius: 8px; background: #1a1a1a; border: 1px solid #2a2a2a; color: #888; font-size: 0.8em; cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: all 0.2s; font-family: inherit; }
+  .filter-btn.active { background: #4c1d95; border-color: #7c3aed; color: #fff; }
+  .filter-btn:hover { border-color: #555; }
+  
+  .progress-bar { background: #1a1a1a; border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; }
+  .progress-bar .label { font-size: 0.82em; color: #aaa; display: flex; justify-content: space-between; }
+  .progress-bar .bar-track { background: #2a2a2a; border-radius: 6px; height: 10px; overflow: hidden; margin-top: 6px; }
+  .progress-bar .bar-fill { background: linear-gradient(90deg, #a78bfa, #7c3aed); height: 100%; border-radius: 6px; transition: width 0.5s; }
+  
+  .listing-card { background: #111; border: 1px solid #2a2a2a; border-radius: 12px; margin-bottom: 14px; overflow: hidden; transition: all 0.2s; }
+  .listing-card:hover { border-color: #7c3aed; }
+  .listing-card.posted { opacity: 0.5; border-color: #10b981; }
+  
+  .listing-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #1a1a1a; cursor: pointer; }
+  .listing-header:hover { background: #1a1a1a; }
+  .listing-title { font-size: 0.9em; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .listing-price { font-size: 1em; font-weight: 800; color: #a78bfa; }
+  .listing-meta { display: flex; gap: 6px; }
+  .tag { font-size: 0.65em; padding: 2px 8px; border-radius: 4px; font-weight: 600; text-transform: uppercase; }
+  .tag-clearance { background: rgba(239,68,68,0.2); color: #ef4444; }
+  .tag-garage { background: rgba(251,191,36,0.2); color: #fbbf24; }
+  .tag-barn { background: rgba(16,185,129,0.2); color: #10b981; }
+  .tag-garden { background: rgba(59,130,246,0.2); color: #3b82f6; }
+  .tag-utility { background: rgba(168,85,247,0.2); color: #a78bfa; }
+  .tag-tool { background: rgba(255,107,53,0.2); color: #ff6b35; }
+  .tag-greenhouse { background: rgba(16,185,129,0.2); color: #10b981; }
+  .tag-highlight { background: rgba(251,191,36,0.2); color: #fbbf24; }
+  
+  .listing-body { display: none; padding: 16px; }
+  .listing-body.open { display: block; }
+  
+  .field-label { font-size: 0.75em; font-weight: 600; color: #a78bfa; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; margin-top: 14px; }
+  .field-label:first-child { margin-top: 0; }
+  
+  .listing-text { background: #0a0a0a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 14px; font-size: 0.88em; line-height: 1.7; white-space: pre-wrap; margin-bottom: 4px; }
+  
+  .btn-row { display: flex; gap: 8px; margin-top: 12px; }
+  .copy-btn { flex: 1; padding: 12px; background: #4c1d95; color: #fff; border: none; border-radius: 8px; font-size: 0.92em; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+  .copy-btn:active { background: #6d28d9; }
+  .copy-btn.copied { background: #10b981; }
+  .done-btn { padding: 12px 16px; background: transparent; color: #10b981; border: 2px solid #10b981; border-radius: 8px; font-size: 0.92em; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+  .done-btn.completed { background: #10b981; color: #000; }
+  
+  .photo-note { margin-top: 10px; padding: 10px 14px; background: #1a1600; border: 1px solid rgba(251,191,36,0.2); border-radius: 8px; font-size: 0.8em; color: #fbbf24; }
+  
+  .tips-box { background: #111; border: 1px solid #2a2a2a; border-radius: 12px; padding: 16px; margin-top: 20px; }
+  .tips-box h3 { color: #fbbf24; font-size: 0.95em; margin-bottom: 10px; }
+  .tips-box ul { list-style: none; padding: 0; }
+  .tips-box li { padding: 6px 0; font-size: 0.84em; color: #ccc; border-bottom: 1px solid #1a1a1a; }
+  .tips-box li:last-child { border: none; }
+  .tips-box li::before { content: '💡 '; }
+  
+  .footer { text-align: center; padding: 24px; color: #555; font-size: 0.7em; }
+  
+  .expand-icon { transition: transform 0.2s; color: #555; }
+  .expand-icon.open { transform: rotate(90deg); }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🏠 Marketplace Listings</h1>
+    <p>23 buildings • Copy → Paste into FB Marketplace → Post</p>
+  </header>
+  
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-num" style="color:#a78bfa" id="total-count">23</div><div class="stat-label">Buildings</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:#10b981" id="posted-count">0</div><div class="stat-label">Posted</div></div>
+    <div class="stat-box"><div class="stat-num" style="color:#fbbf24" id="remaining-count">23</div><div class="stat-label">Remaining</div></div>
+  </div>
+  
+  <div class="progress-bar">
+    <div class="label"><span id="prog-text">0/23 listed on Marketplace</span><span id="prog-pct">0%</span></div>
+    <div class="bar-track"><div class="bar-fill" id="prog-fill" style="width:0%"></div></div>
+  </div>
+  
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterType('all')">All (23)</button>
+    <button class="filter-btn" onclick="filterType('UTILITY')">Utility (10)</button>
+    <button class="filter-btn" onclick="filterType('BARN')">Barns (3)</button>
+    <button class="filter-btn" onclick="filterType('GARDEN')">Garden (3)</button>
+    <button class="filter-btn" onclick="filterType('GARAGE')">Garages (2)</button>
+    <button class="filter-btn" onclick="filterType('clearance')">🔥 Clearance (2)</button>
+    <button class="filter-btn" onclick="filterType('GREENHOUSE')">Greenhouse</button>
+    <button class="filter-btn" onclick="filterType('TOOL')">Tool Shed</button>
+  </div>
+  
+  <div id="listings"></div>
+  
+  <div class="tips-box">
+    <h3>📱 Marketplace Posting Tips</h3>
+    <ul>
+      <li>Post 3-5 listings per day max — Marketplace throttles bulk posters</li>
+      <li>Use REAL PHOTOS from your lot, not stock. Buyers want to see the actual unit</li>
+      <li>Re-list every 7 days — bumps you back to the top of search results</li>
+      <li>Price it $1 less than round numbers ($5,898 vs $5,899) — looks like a deal</li>
+      <li>Reply to DMs within 5 minutes — first response wins 78% of the time</li>
+      <li>Set location to your lot (5520 Westwood Dr, St Charles) so buyers can visit</li>
+      <li>"IN STOCK" and "READY TODAY" are the two most powerful phrases on Marketplace</li>
+      <li>Cross-post to Craigslist and OfferUp — same copy works everywhere</li>
+    </ul>
+  </div>
+  
+  <div class="footer">
+    Built by Franklin 🐕💩 · Backyard Buildings STL · 636-354-7406<br>
+    Inventory as of March 4, 2026 · 23 units
+  </div>
+</div>
+
+<script>
+const buildings = [
+  {
+    serial: "WM-400657", type: "GARAGE", size: "12x24", color: "Charcoal", trim: "White",
+    features: ["Gambrel Roof", "Loft Included", "Premium", "Double Doors"],
+    price: 11299, highlight: true,
+    title: "12x24 Detached Garage w/ Loft — Charcoal/White — IN STOCK",
+    desc: `12x24 Detached Garage — Charcoal w/ White Trim — IN STOCK & Ready for Delivery
+
+This is the big boy. 12x24 with a gambrel roof, built-in loft for extra storage, double doors, and premium finish. Charcoal exterior with white trim — looks sharp next to any house.
+
+Perfect for:
+• Single car garage / workshop
+• Large equipment storage
+• She-shed / man cave conversion
+• Home office with serious square footage
+
+SPECS:
+📐 12' x 24' (288 sq ft)
+🎨 Charcoal w/ White Trim
+🏗️ Gambrel Roof + Loft
+🚪 Double Doors
+⭐ Premium Build Quality
+
+💰 $11,299 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR available | Rent-to-own | No credit check options
+
+This is an authorized WoodMaster building with full manufacturer warranty. Currently sitting on our display lot in St. Charles — come see it in person.
+
+📞 Call/text: 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "400108", type: "GARAGE", size: "12x24", color: "Taupe", trim: "White",
+    features: ["Gambrel Roof", "Loft Included", "Double Doors"],
+    price: 11299, highlight: true,
+    title: "12x24 Detached Garage w/ Loft — Taupe/White — IN STOCK",
+    desc: `12x24 Detached Garage — Taupe w/ White Trim — IN STOCK & Ready for Delivery
+
+Massive 12x24 garage with a gambrel roof and built-in loft. Taupe exterior blends with everything. Double doors for easy access. This is 288 square feet of usable space.
+
+USE IT FOR:
+• Park your car + still have workshop space
+• Riding mower, ATVs, snowblower — fits it all
+• Convert into a backyard studio or office
+• Storage that actually fits your stuff
+
+SPECS:
+📐 12' x 24' (288 sq ft)
+🎨 Taupe w/ White Trim
+🏗️ Gambrel Roof + Loft Storage
+🚪 Double Doors
+
+💰 $11,299 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+Authorized WoodMaster building. Full warranty. On our lot right now — come look.
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "WM-4003819", type: "BARN", size: "12x16", color: "Brown", trim: "White",
+    features: ["Gambrel Roof", "Double Doors", "Loft Included"],
+    price: 6799,
+    title: "12x16 Storage Barn w/ Loft — Brown/White — IN STOCK",
+    desc: `12x16 Storage Barn — Brown w/ White Trim — IN STOCK
+
+Classic barn style with gambrel roof and full loft. 192 sq ft on the main floor PLUS loft storage overhead. Brown with white trim — looks like it belongs in your backyard.
+
+GREAT FOR:
+• Lawn equipment + seasonal storage
+• Workshop with overhead parts storage
+• Garden supplies + tools organized
+• Kids' outdoor gear, bikes, toys
+
+SPECS:
+📐 12' x 16' (192 sq ft + loft)
+🎨 Brown w/ White Trim
+🏗️ Gambrel Roof
+🚪 Double Doors
+📦 Loft Included
+
+💰 $6,799 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "WM-400369", type: "BARN", size: "12x24", color: "Dark Brown", trim: "Cream",
+    features: ["Gambrel Roof", "Loft Included", "Double Doors", "Premium"],
+    price: 10399,
+    title: "12x24 Premium Barn w/ Loft — Dark Brown/Cream — IN STOCK",
+    desc: `12x24 Premium Storage Barn — Dark Brown w/ Cream Trim — IN STOCK
+
+This is the biggest barn on the lot. 288 sq ft main floor + full loft overhead. Premium build quality, dark brown with cream trim. Gambrel roof gives you maximum headroom and loft space.
+
+PERFECT FOR:
+• Workshop + tool storage in one building
+• Riding mower, trailer, ATV parking
+• Home gym / man cave / she-shed
+• Serious storage for serious stuff
+
+SPECS:
+📐 12' x 24' (288 sq ft + loft)
+🎨 Dark Brown w/ Cream Trim
+🏗️ Gambrel Roof
+🚪 Double Doors
+⭐ Premium Build
+
+💰 $10,399 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "400027", type: "BARN", size: "10x14", color: "Hunter Green", trim: "Standard",
+    features: ["Gambrel Roof", "Loft Included", "Double Doors"],
+    price: 5499,
+    title: "10x14 Barn w/ Loft — Hunter Green — IN STOCK",
+    desc: `10x14 Storage Barn — Hunter Green — IN STOCK
+
+Mid-size barn that's bigger than a shed but won't eat your whole yard. 140 sq ft + loft. Hunter green blends with landscaping. Gambrel roof gives you that classic barn look plus overhead storage.
+
+USE IT FOR:
+• Lawn mower + yard equipment
+• Workbench + tool organization
+• Holiday decorations + seasonal gear
+• Outdoor furniture off-season
+
+SPECS:
+📐 10' x 14' (140 sq ft + loft)
+🎨 Hunter Green
+🏗️ Gambrel Roof + Loft
+🚪 Double Doors
+
+💰 $5,499 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "400034", type: "GARDEN", size: "10x16", color: "Aqua/Teal", trim: "White",
+    features: ["Flower Box", "Double Doors", "Windows"],
+    price: 6299,
+    title: "10x16 Garden Shed — Aqua/Teal w/ Flower Box — IN STOCK",
+    desc: `10x16 Garden Shed — Aqua/Teal w/ White Trim — IN STOCK
+
+This one gets the most compliments on the lot. Aqua/teal with white trim, built-in flower box, windows, and double doors. It's a shed that actually looks good in your yard.
+
+PERFECT FOR:
+• Gardening supplies + potting station
+• She-shed / reading nook / art studio
+• Home office with natural light
+• Storage that's pretty enough for the front yard
+
+SPECS:
+📐 10' x 16' (160 sq ft)
+🎨 Aqua/Teal w/ White Trim
+🌸 Built-in Flower Box
+🪟 Windows for natural light
+🚪 Double Doors
+
+💰 $6,299 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "WM-400310", type: "GARDEN", size: "10x12", color: "Cream", trim: "Brown",
+    features: ["Loft Areas", "Decorative Trim", "Premium"],
+    price: 5499,
+    title: "10x12 Premium Garden Shed — Cream/Brown — IN STOCK",
+    desc: `10x12 Premium Garden Shed — Cream w/ Brown Trim — IN STOCK
+
+Beautiful premium garden shed with decorative trim and loft storage areas. Cream with brown accents — looks like it was custom-built for your backyard. 120 sq ft of organized space.
+
+GREAT FOR:
+• Garden tools + supplies
+• She-shed / craft studio
+• Pool equipment + patio cushion storage
+• Upscale look that adds property value
+
+SPECS:
+📐 10' x 12' (120 sq ft)
+🎨 Cream w/ Brown Trim
+✨ Decorative Trim Details
+📦 Loft Storage Areas
+⭐ Premium Build
+
+💰 $5,499 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "302814", type: "GARDEN", size: "10x12", color: "Gray", trim: "White",
+    features: ["Decorative Trim", "Double Doors"],
+    price: 5199,
+    title: "10x12 Garden Shed — Gray/White — IN STOCK",
+    desc: `10x12 Garden Shed — Gray w/ White Trim — IN STOCK
+
+Clean, modern gray with white trim. Decorative trim details and double doors. 120 sq ft — the sweet spot between "too small" and "too much yard." Matches most house colors.
+
+USE IT FOR:
+• Potting bench + garden tools
+• Bikes, kayaks, seasonal gear
+• Workshop / hobby space
+• General storage upgrade from that rusty old shed
+
+SPECS:
+📐 10' x 12' (120 sq ft)
+🎨 Gray w/ White Trim
+✨ Decorative Trim
+🚪 Double Doors
+
+💰 $5,199 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "307778", type: "GREENHOUSE", size: "8x12", color: "White", trim: "Black",
+    features: ["Wood Benches", "Poly Roof", "Ventilation"],
+    price: 5999,
+    title: "8x12 Greenhouse — White/Black w/ Benches — IN STOCK",
+    desc: `8x12 Greenhouse — White w/ Black Trim — IN STOCK
+
+Ready to grow? This 8x12 greenhouse comes with built-in wood benches, poly roof panels for light diffusion, and ventilation system. White frame with black trim — looks professional.
+
+PERFECT FOR:
+• Year-round growing season in STL
+• Starting seedlings before spring
+• Herb garden + vegetables
+• Orchids, succulents, tropical plants
+
+SPECS:
+📐 8' x 12' (96 sq ft)
+🎨 White w/ Black Trim
+🪵 Built-in Wood Benches
+☀️ Poly Roof (light diffusion)
+💨 Ventilation System
+
+💰 $5,999 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "157538", type: "TOOL", size: "8x12", color: "Brown", trim: "Weathered",
+    features: ["Compact", "Tool Shed"],
+    price: 3509, clearance: true, preowned: true,
+    title: "🔥 CLEARANCE — 8x12 Tool Shed — $3,509 — PRE-OWNED",
+    desc: `🔥 CLEARANCE PRICE — 8x12 Tool Shed — ONLY $3,509
+
+Pre-owned, still solid. This is the cheapest building on the lot and it won't last. 8x12 compact tool shed in brown with weathered trim. Simple, functional, gets the job done.
+
+If you've been saying "I need a shed but I don't want to spend a fortune" — this is it.
+
+SPECS:
+📐 8' x 12' (96 sq ft)
+🎨 Brown w/ Weathered Trim
+🔧 Compact Tool Shed Design
+⚡ Pre-owned — priced to move
+
+💰 $3,509 — LOWEST PRICE ON THE LOT
+📦 FREE delivery & setup within 30 miles
+🏦 Financing still available
+
+⚠️ Clearance = first come, first served. When it's gone, it's gone.
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "143725", type: "UTILITY", size: "10x12", color: "Charcoal Gray", trim: "White",
+    features: ["Garage Door", "Gambrel Roof"],
+    price: 4409, clearance: true,
+    title: "🔥 CLEARANCE — 10x12 Utility w/ Garage Door — $4,409",
+    desc: `🔥 CLEARANCE — 10x12 Utility Shed w/ Garage Door — $4,409
+
+Clearance price on a seriously useful building. This 10x12 has a roll-up GARAGE DOOR — park your riding mower right in. Charcoal gray with white trim, gambrel roof for extra headroom.
+
+WHY THIS ONE:
+• Garage door = drive equipment straight in
+• Gambrel roof = max headroom + storage
+• Charcoal gray matches any house
+• Clearance price = save hundreds
+
+SPECS:
+📐 10' x 12' (120 sq ft)
+🎨 Charcoal Gray w/ White Trim
+🏗️ Gambrel Roof
+🚗 Roll-up Garage Door
+⚡ CLEARANCE PRICE
+
+💰 $4,409 — Won't last at this price
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "155527", type: "UTILITY", size: "10x16", color: "Tan/Beige", trim: "White",
+    features: ["Flower Box", "Double Doors", "Windows"],
+    price: 5899,
+    title: "10x16 Utility Shed — Tan/White w/ Windows — IN STOCK",
+    desc: `10x16 Utility Shed — Tan w/ White Trim — IN STOCK
+
+Solid mid-size utility shed with windows and flower box. 160 sq ft of organized storage. Tan with white trim — clean, neutral, matches everything.
+
+USE IT FOR:
+• Lawn equipment + power tools
+• Workshop with natural light
+• Seasonal storage + holiday gear
+• General "get it out of the garage" overflow
+
+SPECS:
+📐 10' x 16' (160 sq ft)
+🎨 Tan/Beige w/ White Trim
+🌸 Flower Box
+🪟 Windows
+🚪 Double Doors
+
+💰 $5,899 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "155301", type: "UTILITY", size: "10x12", color: "Blue", trim: "Cream",
+    features: ["Double Doors", "Window"],
+    price: 4699,
+    title: "10x12 Utility Shed — Blue/Cream — IN STOCK",
+    desc: `10x12 Utility Shed — Blue w/ Cream Trim — IN STOCK
+
+Stand out from the beige. This blue utility shed with cream trim adds character to your backyard while giving you 120 sq ft of real storage. Double doors for easy access.
+
+SPECS:
+📐 10' x 12' (120 sq ft)
+🎨 Blue w/ Cream Trim
+🚪 Double Doors
+🪟 Window
+
+💰 $4,699 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "308332", type: "UTILITY", size: "12x16", color: "Navy Blue", trim: "White",
+    features: ["Double Doors", "Windows", "Workshop Ready"],
+    price: 6899,
+    title: "12x16 Workshop-Ready Utility — Navy Blue/White — IN STOCK",
+    desc: `12x16 Workshop-Ready Utility Building — Navy Blue w/ White Trim — IN STOCK
+
+Serious building for serious projects. 192 sq ft, multiple windows for natural light, double doors, and workshop-ready construction. Navy blue with white trim looks professional.
+
+BUILT FOR:
+• Full workshop / woodworking space
+• Riding mower + all your yard equipment
+• She-shed / home office with room to move
+• Small business storage / inventory
+
+SPECS:
+📐 12' x 16' (192 sq ft)
+🎨 Navy Blue w/ White Trim
+🪟 Multiple Windows
+🚪 Double Doors
+🔧 Workshop-Ready Build
+
+💰 $6,899 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "400030", type: "UTILITY", size: "10x16", color: "Tan/Beige", trim: "Gray",
+    features: ["Double Doors", "Windows"],
+    price: 5699,
+    title: "10x16 Utility Shed — Tan/Gray — IN STOCK",
+    desc: `10x16 Utility Shed — Tan w/ Gray Trim — IN STOCK
+
+160 sq ft of clean, organized storage. Tan with gray trim. Windows for light, double doors for easy loading. Mid-range size that handles everything from lawn equipment to workshop tools.
+
+SPECS:
+📐 10' x 16' (160 sq ft)
+🎨 Tan/Beige w/ Gray Trim
+🚪 Double Doors
+🪟 Windows
+
+💰 $5,699 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "308457", type: "UTILITY", size: "10x20", color: "Terracotta", trim: "White",
+    features: ["Extra Deep", "Double Doors", "3 Windows"],
+    price: 7199,
+    title: "10x20 EXTRA DEEP Utility — Terracotta/White — IN STOCK",
+    desc: `10x20 Extra Deep Utility Building — Terracotta w/ White Trim — IN STOCK
+
+If you need LENGTH, this is your building. 10x20 = 200 sq ft. Extra deep for long items — ladders, lumber, kayaks, whatever doesn't fit anywhere else. Terracotta with white trim. 3 windows for great natural light.
+
+PERFECT FOR:
+• Long equipment storage (ladders, canoes, lumber)
+• Full workshop with room to walk around
+• Small business inventory
+• The "I ran out of garage space" problem
+
+SPECS:
+📐 10' x 20' (200 sq ft) — EXTRA DEEP
+🎨 Terracotta w/ White Trim
+🪟 3 Windows
+🚪 Double Doors
+
+💰 $7,199 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "302924", type: "UTILITY", size: "10x14", color: "Dark Green", trim: "Cream",
+    features: ["Gambrel Roof", "Double Doors"],
+    price: 5199,
+    title: "10x14 Utility Shed — Dark Green/Cream — IN STOCK",
+    desc: `10x14 Utility Shed — Dark Green w/ Cream Trim — IN STOCK
+
+Classic dark green that disappears into your landscaping. 140 sq ft with gambrel roof for extra headroom. Double doors. Simple, solid, practical.
+
+SPECS:
+📐 10' x 14' (140 sq ft)
+🎨 Dark Green w/ Cream Trim
+🏗️ Gambrel Roof
+🚪 Double Doors
+
+💰 $5,199 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "307777", type: "UTILITY", size: "10x16", color: "Sage Green", trim: "White",
+    features: ["Gambrel Roof", "Double Doors", "Windows"],
+    price: 5899,
+    title: "10x16 Utility Shed — Sage Green/White — IN STOCK",
+    desc: `10x16 Utility Shed — Sage Green w/ White Trim — IN STOCK
+
+Beautiful sage green with white trim. Gambrel roof for max headroom. 160 sq ft with windows and double doors. This color is trending hard in outdoor buildings right now.
+
+SPECS:
+📐 10' x 16' (160 sq ft)
+🎨 Sage Green w/ White Trim
+🏗️ Gambrel Roof
+🪟 Windows
+🚪 Double Doors
+
+💰 $5,899 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "WM-400533", type: "BARN", size: "8x12", color: "Teal", trim: "Cream",
+    features: ["Dutch Door", "Compact", "Charming", "Loft Included"],
+    price: 4199,
+    title: "8x12 Mini Barn w/ Dutch Door — Teal/Cream — IN STOCK",
+    desc: `8x12 Mini Barn — Teal w/ Cream Trim — IN STOCK
+
+Cutest building on the lot. This compact barn has a charming Dutch door (top and bottom open independently), teal color, cream trim, and a built-in loft. 96 sq ft of smart storage.
+
+GREAT FOR:
+• Garden supplies with style
+• She-shed / studio
+• Chicken coop conversion
+• Compact storage for smaller yards
+
+SPECS:
+📐 8' x 12' (96 sq ft + loft)
+🎨 Teal w/ Cream Trim
+🚪 Dutch Door
+📦 Loft Storage
+✨ Compact & Charming
+
+💰 $4,199 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "WM-400568", type: "GARDEN", size: "8x12", color: "Natural", trim: "Standard",
+    features: ["Decorative Trim", "Compact"],
+    price: 4499,
+    title: "8x12 Garden Shed — Compact w/ Decorative Trim — IN STOCK",
+    desc: `8x12 Compact Garden Shed — IN STOCK
+
+Small yard? No problem. This 8x12 garden shed fits almost anywhere and still gives you 96 sq ft of organized storage. Decorative trim details elevate it above a basic box.
+
+SPECS:
+📐 8' x 12' (96 sq ft)
+✨ Decorative Trim
+🔧 Compact Design
+
+💰 $4,499 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "308458", type: "UTILITY", size: "8x12", color: "White/Cream", trim: "Charcoal",
+    features: ["Side Door", "Budget Friendly"],
+    price: 3999,
+    title: "8x12 Utility Shed — White/Charcoal — Budget Friendly — IN STOCK",
+    desc: `8x12 Utility Shed — White/Cream w/ Charcoal Trim — IN STOCK
+
+Under $4K for a brand new shed. 96 sq ft with side door access. Clean white/cream with charcoal trim. No frills, just solid storage at a great price.
+
+SPECS:
+📐 8' x 12' (96 sq ft)
+🎨 White/Cream w/ Charcoal Trim
+🚪 Side Door
+💰 Budget-Friendly
+
+💰 $3,999 — Starting Under $4K
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "WM-400375", type: "UTILITY", size: "8x12", color: "Green", trim: "Standard",
+    features: ["Side Door", "Starter"],
+    price: 3999,
+    title: "8x12 Starter Utility Shed — Green — IN STOCK",
+    desc: `8x12 Utility Shed — Green — IN STOCK
+
+Entry-level shed at entry-level pricing. 96 sq ft, side door, green exterior. Perfect first shed or budget-friendly upgrade from that rusting metal shed in the corner of your yard.
+
+SPECS:
+📐 8' x 12' (96 sq ft)
+🎨 Green
+🚪 Side Door
+🏷️ Starter / Budget Friendly
+
+💰 $3,999
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  },
+  {
+    serial: "308729", type: "UTILITY", size: "10x12", color: "TBD", trim: "Standard",
+    features: ["Side Door", "Window"],
+    price: 4699,
+    title: "10x12 Utility Shed w/ Window — IN STOCK",
+    desc: `10x12 Utility Shed w/ Window — IN STOCK
+
+Solid 120 sq ft utility shed with side door and window. Come see it on the lot — better in person.
+
+SPECS:
+📐 10' x 12' (120 sq ft)
+🚪 Side Door
+🪟 Window
+
+💰 $4,699 — Financing Available
+📦 FREE delivery & setup within 30 miles
+🏦 0% APR | Rent-to-own | No credit check
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO
+🌐 backyardbuildingsstl.com`
+  }
+];
+
+// State
+let postedSet = new Set(JSON.parse(localStorage.getItem('shed-mp-posted') || '[]'));
+let currentFilter = 'all';
+
+function saveState() {
+  localStorage.setItem('shed-mp-posted', JSON.stringify([...postedSet]));
+  updateProgress();
+}
+
+function updateProgress() {
+  const posted = postedSet.size;
+  const total = buildings.length;
+  const remaining = total - posted;
+  const pct = Math.round((posted / total) * 100);
+  
+  document.getElementById('posted-count').textContent = posted;
+  document.getElementById('remaining-count').textContent = remaining;
+  document.getElementById('prog-text').textContent = `${posted}/${total} listed on Marketplace`;
+  document.getElementById('prog-pct').textContent = `${pct}%`;
+  document.getElementById('prog-fill').style.width = `${pct}%`;
+}
+
+function getTypeTag(b) {
+  const cls = {
+    GARAGE: 'tag-garage', BARN: 'tag-barn', GARDEN: 'tag-garden',
+    UTILITY: 'tag-utility', TOOL: 'tag-tool', GREENHOUSE: 'tag-greenhouse'
+  };
+  return `<span class="tag ${cls[b.type] || 'tag-utility'}">${b.type}</span>`;
+}
+
+function getExtraTags(b) {
+  let tags = '';
+  if (b.clearance) tags += '<span class="tag tag-clearance">CLEARANCE</span> ';
+  if (b.highlight) tags += '<span class="tag tag-highlight">⭐ HIGHLIGHT</span> ';
+  if (b.preowned) tags += '<span class="tag tag-clearance">PRE-OWNED</span> ';
+  return tags;
+}
+
+function toggleListing(serial) {
+  const body = document.getElementById('body-' + serial);
+  const icon = document.getElementById('icon-' + serial);
+  body.classList.toggle('open');
+  icon.classList.toggle('open');
+}
+
+function copyListing(serial, btn) {
+  const b = buildings.find(x => x.serial === serial);
+  navigator.clipboard.writeText(b.desc).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy Listing Text'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function copyTitle(serial, btn) {
+  const b = buildings.find(x => x.serial === serial);
+  navigator.clipboard.writeText(b.title).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy Title'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function markPosted(serial) {
+  if (postedSet.has(serial)) {
+    postedSet.delete(serial);
+  } else {
+    postedSet.add(serial);
+  }
+  saveState();
+  renderListings();
+}
+
+function filterType(type) {
+  currentFilter = type;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  renderListings();
+}
+
+function renderListings() {
+  const container = document.getElementById('listings');
+  let filtered = buildings;
+  
+  if (currentFilter === 'clearance') {
+    filtered = buildings.filter(b => b.clearance);
+  } else if (currentFilter !== 'all') {
+    filtered = buildings.filter(b => b.type === currentFilter);
+  }
+  
+  // Sort: clearance first, then by price desc (big tickets = more commission)
+  filtered.sort((a, b) => {
+    if (a.clearance && !b.clearance) return -1;
+    if (!a.clearance && b.clearance) return 1;
+    return b.price - a.price;
+  });
+  
+  container.innerHTML = filtered.map(b => {
+    const isPosted = postedSet.has(b.serial);
+    return `
+      <div class="listing-card ${isPosted ? 'posted' : ''}" data-type="${b.type}" data-serial="${b.serial}">
+        <div class="listing-header" onclick="toggleListing('${b.serial}')">
+          <div>
+            <div class="listing-meta">${getTypeTag(b)} ${getExtraTags(b)}</div>
+            <div class="listing-title">
+              <span class="expand-icon" id="icon-${b.serial}">▶</span>
+              ${b.size} ${b.color} ${b.type.charAt(0) + b.type.slice(1).toLowerCase()}
+            </div>
+          </div>
+          <div class="listing-price">$${b.price.toLocaleString()}</div>
+        </div>
+        <div class="listing-body" id="body-${b.serial}">
+          <div class="field-label">Marketplace Title</div>
+          <div class="listing-text">${b.title}</div>
+          <button class="copy-btn" onclick="event.stopPropagation(); copyTitle('${b.serial}', this)" style="margin-bottom:12px; background:#333; font-size:0.82em; padding:8px;">📋 Copy Title</button>
+          
+          <div class="field-label">Description (Copy All)</div>
+          <div class="listing-text">${b.desc}</div>
+          
+          <div class="photo-note">📸 Take 4-6 photos of this unit on your lot. Walk around it. Open the doors. Show the inside. Real photos > stock photos.</div>
+          
+          <div class="btn-row">
+            <button class="copy-btn" onclick="event.stopPropagation(); copyListing('${b.serial}', this)">📋 Copy Listing Text</button>
+            <button class="done-btn ${isPosted ? 'completed' : ''}" onclick="event.stopPropagation(); markPosted('${b.serial}')">${isPosted ? '✅ Posted' : '📤 Mark Posted'}</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  updateProgress();
+}
+
+// Initial render
+renderListings();
+</script>
+</body>
+</html>

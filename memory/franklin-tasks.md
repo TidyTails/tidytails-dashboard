@@ -7,6 +7,42 @@
 
 ## March 22, 2026 (Sunday)
 
+### 2:04 PM — 🏗️ Shed Marketplace Listing Generator — All 23 Buildings (TuffShed Pipeline)
+**Task:** The shed side has gotten ZERO Franklin attention today (8 tasks, all Tidy Tails). Marketplace DMs are the #1 shed lead source per MEMORY.md, but there was no tool to quickly list buildings. Built a complete Marketplace listing generator for all 23 buildings on the lot.
+
+**Result:** ✅ COMPLETE — `dashboard/shed-marketplace-listings.html` — 23 copy-paste listings with tracking
+
+**What Got Done:**
+1. **23 individual Marketplace listings** — each with optimized title, full description, specs, financing details, CTA
+2. **Clearance units highlighted first** — $3,509 pre-owned tool shed and $4,409 utility w/ garage door get top billing
+3. **Category filters** — Utility (10), Barns (3), Garden (3), Garages (2), Greenhouse (1), Tool Shed (1), Clearance (2)
+4. **Copy-paste workflow** — Separate "Copy Title" and "Copy Listing Text" buttons for each unit
+5. **Posted tracking** — Mark each unit as posted on Marketplace, persistent via localStorage, progress bar
+6. **Each listing includes:** size, color, features, price, financing options (0% APR, RTO, no credit check), free delivery callout, phone number, address, website
+7. **Posting tips section** — 3-5/day max, re-list every 7 days, reply within 5 minutes, $1-under pricing trick
+8. **Sortable by price** — big ticket items ($11,299 garages) show first for max revenue impact
+9. **Dashboard updated** — Added to both TODAY panel (with glow) and TOOLS panel shed section, count 27→29
+
+**Ad Copy Strategy:**
+- **Headlines use "IN STOCK" and "READY TODAY"** — the two highest-converting Marketplace phrases
+- **Clearance listings lead with 🔥** — urgency language, "when it's gone it's gone"
+- **Every listing has 3 use cases** — helps buyers imagine their specific need
+- **Financing emphasized** — 0% APR, rent-to-own, no credit check in EVERY listing (removes the "can I afford it?" objection)
+- **Free delivery callout** — removes the "how do I get it home?" objection
+- **"Come see it in person" CTA** — drives lot visits which close at higher rate than DMs
+
+**What TJ/Darius Should Do:**
+- **Post 3-5 listings per day** starting Monday (start with the 2 clearance + 2 garages = highest urgency + highest revenue)
+- **Take fresh photos** of each unit — 4-6 angles, open doors, show inside
+- **Re-list weekly** to stay at top of search results
+- **Cross-post to Craigslist and OfferUp** — same copy works
+
+**Why This Task:** Self-assessment says "stop building Tidy Tails toolkits." The shed side has 3 tools vs 20+ for Tidy Tails. Marketplace is CONFIRMED as the primary shed lead channel but there was no easy way to create listings. 23 buildings × $3,509-$11,299 = $139,977 total lot value sitting there. Getting all 23 on Marketplace takes ~1 week at 3-5/day.
+
+**Rotation:** 🏗️ Shed Business / Sales Enablement / TuffShed Pipeline
+
+---
+
 ### 1:04 PM — 🔍 Search Visibility Audit + Citation Tracker Upgrade (SEO/Monitoring)
 **Task:** Full site visibility audit — check if indexing progress since Mar 18, verify Brave search presence, audit directory listings, research new directory opportunities, update citation tracker with findings.
 
