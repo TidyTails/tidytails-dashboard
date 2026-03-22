@@ -7,6 +7,33 @@
 
 ## March 22, 2026 (Sunday)
 
+### 12:04 PM — 🔍 Competitive Intelligence Sweep — New Competitor Found + POOP 911 SEO Alert (Monitoring)
+**Task:** Live competitor monitoring sweep. Self-assessment says "competitive monitoring — market is moving." Scraped all active competitor websites, checked for dead sites, searched for new entrants.
+
+**Result:** ✅ COMPLETE — 1 new competitor profiled, 3 deaths confirmed, POOP 911 SEO escalation documented
+
+**What Got Done:**
+1. **NEW COMPETITOR DISCOVERED: Little Stinkers of MO** — Professional operation in St. Charles County (TJ's expansion zone!). Covers O'Fallon, St. Peters, St. Charles, Dardenne Prairie, Wentzville + Lincoln/Warren counties. Multiple services: dog waste, litter boxes, pet waste stations, deodorizing, playground sanitation. Two phone numbers (636-318-5766, 636-887-6626). Quote-only pricing. They check waste for health abnormalities and leave dog treats — nice differentiators. Medium-high threat in St. Charles specifically.
+2. **POOP 911 SEO ESCALATION:** Now running 4+ URL structures targeting STL with massive AI-generated content pages (~1500+ words each). Name-dropping 15+ STL landmarks. New "West Saint Louis" sub-page confirms geographic expansion. Franchise SEO budget is real.
+3. **3 DEAD COMPETITORS CONFIRMED:**
+   - Poopy Paws (poopypaws314.com) — DNS DEAD, domain gone. Was #1 Yelp.
+   - Super Scoopers (superscooperstl.com) — site down, connection fails.
+   - Pawfect Waste Solutions — still 404.
+   = Orphaned customers from all 3 are up for grabs.
+4. **STABLE (no changes):** No. 2 Crew (same pricing), Poop 2 Scoop (active, $18/wk), The Pootector (active, APAWS member), Pooey Pet Service ($100/mo biweekly).
+5. **Tidy Tails site health:** UP, loads fine, content intact.
+6. **Updated canonical competitor file** (`memory/competitor-intel-spring2026.md`) with all findings.
+
+**Key Takeaways for TJ:**
+- Little Stinkers is the new St. Charles competitor — if we expand there, we need to know their pricing (quote-only, so Jamie should mystery-shop them)
+- POOP 911 will dominate organic search. TJ can't win that fight. Win on GBP + reviews + directories instead.
+- 3 dead competitors = orphaned customers searching for new service. Those are warm leads.
+- Market count: 16 tracked, ~12-13 active, 3 dead
+
+**Rotation:** 🔍 Competitive Intelligence / Monitoring
+
+---
+
 ### 11:04 AM — 🧹 Dashboard Declutter & Index Rebuild (Maintenance)
 **Task:** Dashboard had 144 HTML files — an overwhelming wall of content TJ would never navigate. Per self-assessment: "STOP BUILDING TOOLKITS." Time to clean, not create.
 

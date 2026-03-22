@@ -175,13 +175,63 @@
 8. **Pawfect Waste Solutions customers** — 404 site, out of business. Orphaned customers.
 9. **Kitty litter service** — Super Scoopers offers this. Low-effort upsell for TJ.
 
-## Full Market Count (Mar 2026 — Updated Mar 22)
-**Total tracked competitors: 15**
-- Tier 1 (franchise): DoodyCalls, POOP 911 (2)
-- Tier 2 (established local): Poop 2 Scoop, Poopy Paws, No. 2 Crew, The Pootector (4)
-- Tier 2B (St. Charles): Super Scoopers, Yucko's (2)
-- Tier 2C (new): Pooey Pet Service (1)
-- Tier 3 (small/niche): Dirty Dog Wash, The Poo Fighterz, Pooanators, Dog Doody Defenders (4)
-- Dead: Pawfect Waste Solutions, possibly Poopy Paws (declining) (1-2)
+### NEW COMPETITOR DISCOVERED (Mar 22, 2026 — Noon Sweep)
 
-**Market density assessment:** STL pet waste market is MORE CROWDED than initially thought (14 competitors vs. original estimate of 5-7). However, many are small/part-time, several have dead websites, and nobody dominates online. The opportunity isn't less — it's just about standing out in a noisy field.
+**Little Stinkers of MO** ⚠️ NEW — ST. CHARLES EXPANSION ZONE THREAT
+- Website: littlestinkersofmo.com (professional, clean Wix-style)
+- Phone: 636-318-5766 / 636-887-6626
+- Service Area: **St. Charles County, Lincoln County, Warren County**
+  - Cities: O'Fallon, St. Peters, St. Charles, Dardenne Prairie, Wentzville, New Melle, Innsbrook, Troy, Moscow Mills, Wright City, Warrenton, Truesdale
+- Services: Dog waste removal (weekly/biweekly), litter box service, pet waste station installation & servicing, deodorizing, commercial common areas, playground sanitation
+- Pricing: QUOTE-ONLY (not published — form or call to get estimate)
+- Payment: Cash, card (Google Pay), check
+- Differentiators:
+  - Check waste for health abnormalities (nice touch — implies care beyond just scooping)
+  - Leave treats for dogs after service
+  - "Trained technicians" (implies team, not solo)
+  - Offer bucket service & playground sanitation (unique services nobody else has)
+- **Assessment:** ⚠️ MEDIUM-HIGH THREAT in St. Charles County specifically. They cover O'Fallon (where TJ has customer Greg) and the entire St. Charles expansion corridor. Professional website, multiple service lines, and they're clearly trying to be a "full-service pet waste company" not just a scooper. Quote-only pricing could mean they're flexible/competitive. The fact they cover Lincoln and Warren counties too suggests they're growing beyond just St. Charles.
+- **TJ advantages:** Pricing transparency ($70/mo flat), frequency options (monthly unique), likely cheaper. Their quote-only model means customers can't comparison shop easily.
+- **TJ risks:** They're embedded in St. Charles with more services. If they undercut on price in quotes, they win.
+
+---
+
+## POOP 911 SEO ESCALATION (Confirmed Mar 22, 2026)
+
+POOP 911 is running an aggressive multi-page SEO strategy targeting STL. They now have AT LEAST 3 separate URL structures:
+1. `/service-area/missouri/saint-louis-pooper-scooper-service` (old page)
+2. `/service-area/missouri-pet-waste-removal/saint-louis-dog-poop-clean-up` (restructured)
+3. `/locations/saint-louis-missouri-pet-waste-cleanup` (NEW — massive AI-generated content)
+4. `/service-area/missouri-pet-waste-removal/west-saint-louis-dog-poop-clean-up` (NEW — West STL sub-page)
+
+The new `/locations/` page is clearly AI-generated SEO content (~1500+ words), name-dropping local landmarks: Forest Park, Tower Grove Park, Washington University, Clayton High, Kirkwood High, Missouri Botanical Garden, STL Zoo, Busch Stadium, Gateway Arch, Delmar Loop, Soulard, Lafayette Square, Grant's Farm. Classic franchise SEO playbook — create dozens of location pages stuffed with local keywords.
+
+**Impact:** POOP 911 will increasingly dominate search results for any "{city} pooper scooper" query in STL. Their franchise SEO budget is something TJ simply can't match. This reinforces that Tidy Tails needs to win on **GBP + reviews + directory listings** (local signals), not organic content competition.
+
+---
+
+## DEAD COMPETITORS UPDATE (Confirmed Mar 22, 2026)
+
+**Poopy Paws (poopypaws314.com)** — DNS DEAD ☠️ (confirmed Mar 22). Domain no longer resolves. Was previously #1 on Yelp. Their customers are ORPHANED and looking for a new service.
+
+**Super Scoopers (superscooperstl.com)** — SITE DOWN ☠️ (confirmed Mar 22). Connection fails. Was St. Charles-based (St. Peters). Their customers may be going to Little Stinkers or POOP 911.
+
+**Pawfect Waste Solutions (pooperscooperstl.com)** — Still 404. Confirmed dead since initial tracking.
+
+**3 dead competitors = potential orphaned customers.** Especially Poopy Paws (was popular on Yelp) and Super Scoopers (was in St. Charles — exactly where Little Stinkers may be absorbing them).
+
+---
+
+## Full Market Count (Mar 2026 — Updated Mar 22, Noon)
+**Total tracked competitors: 16** (+1 from morning)
+- Tier 1 (franchise): DoodyCalls, POOP 911 (2)
+- Tier 2 (established local): Poop 2 Scoop, No. 2 Crew, The Pootector (3)
+- Tier 2B (St. Charles): Little Stinkers of MO ⚠️NEW, Yucko's (2)
+- Tier 2C (niche/newer): Pooey Pet Service (1)
+- Tier 3 (small/niche): Dirty Dog Wash, The Poo Fighterz, Pooanators, Dog Doody Defenders (4)
+- Dead/Dying: Pawfect Waste Solutions ☠️, Poopy Paws ☠️, Super Scoopers ☠️ (3)
+- Unconfirmed: Scooper Pro, Canine To 5 (Yelp-only, minimal data) (1-2)
+
+**Active competitors: ~12-13 | Dead: 3 | Market trend: consolidating**
+
+**Market density assessment:** STL pet waste market continues to evolve. 3 confirmed dead competitors creates acquisition opportunities (orphaned customers). But new entrant Little Stinkers shows the market is still attracting new players, especially in St. Charles County. POOP 911's aggressive SEO push means the franchise threat is growing online. The play for TJ remains the same: win on LOCAL signals (GBP, reviews, directories, Facebook groups) where franchises can't outspend him, and be the personality-driven local option.
