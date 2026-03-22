@@ -1,6 +1,12 @@
 # Ad Copy Archive — Shed Ads
 *Tracks previously written ads to avoid repeats*
 
+## March 22, 2026
+- **Shed-Mar154** — "Sunday Reset" — Sunday lazy day vibes, garage avoidance humor, "one less thing to ignore"
+- **Shed-Mar155** — "Backyard Season" — Spring backyard upgrade, shed as hangout/gym/workshop, Instagram format
+- **Shed-Mar156** — "Neighborhood Secret" — Social proof, cleanest garages have sheds, cost comparison math
+- **Shed-Mar157** — "Storm Season's Coming" — Missouri spring storm prep, protect outdoor items, weather angle
+
 ## March 21, 2026
 - **Shed-Mar150** — "Saturday Project" — Weekend DIY energy, shed as weekend upgrade, aspirational use cases
 - **Shed-Mar151** — "Picture This" — Garage visualization humor, "your car misses its house", transformation angle
@@ -26,6 +32,10 @@
 - **Shed-Mar141** — "The Math" — Home addition vs storage unit vs shed cost comparison
 
 ## Hooks Used (don't repeat within 2 weeks)
+- Sunday lazy day / garage avoidance
+- Backyard season / hangout space upgrade
+- Neighborhood secret / social proof
+- Spring storm prep / protect your stuff
 - Saturday DIY / weekend project energy
 - Garage visualization ("picture it empty")
 - Kids = stuff multiplication (family angle)
