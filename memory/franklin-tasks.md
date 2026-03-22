@@ -7,6 +7,32 @@
 
 ## March 22, 2026 (Sunday)
 
+### 1:04 PM — 🔍 Search Visibility Audit + Citation Tracker Upgrade (SEO/Monitoring)
+**Task:** Full site visibility audit — check if indexing progress since Mar 18, verify Brave search presence, audit directory listings, research new directory opportunities, update citation tracker with findings.
+
+**Result:** ✅ COMPLETE — Still invisible on Brave, 2 new directories added to tracker, NAP info corrected
+
+**What Got Done:**
+1. **Brave Search Audit:** `site:tidytailsstl.com` still returns ZERO results (confirmed Mar 22). Despite Google indexing since Mar 18, no Brave/external visibility yet.
+2. **Site Health:** ✅ Live, loads fast, sitemap healthy (37 URLs), robots.txt clean, SSL valid.
+3. **Directory Presence Audit:** Searched for Tidy Tails across Petworks, Thumbtack, Angi, Nextdoor, BringFido — **ZERO listings found** beyond GBP + Yelp. Competitors (Poop2Scoop) already on PetWorks.
+4. **NEW DISCOVERY: Pooper-Scooper.com** — Industry-specific directory. Missouri page is COMPLETELY EMPTY. $7/mo small listing. Tidy Tails could be the ONLY Missouri listing. Added to citation tracker as priority #1.
+5. **NEW DISCOVERY: BringFido** — Pet services directory with active STL section. Free listing. Added to citation tracker.
+6. **aPaws Membership:** Confirmed $85/yr, includes directory listing + insurance discount. Updated pricing in tracker.
+7. **Fixed NAP Consistency:** Changed email from TJ@ to info@, updated full description to say "Jamie" (not TJ) and include $70/mo flat rate differentiator.
+8. **Updated citation tracker:** 18→20 directories, refreshed "why this matters" box with Mar 22 data, fixed dynamic total count.
+
+**Key Insight:** The site is technically indexed by Google but has ZERO backlinks. Every directory submission = a backlink. The pooper-scooper.com Missouri listing being empty is a genuine opportunity — $7/mo to be the ONLY result in the state's industry directory.
+
+**What TJ/Jamie Should Do:**
+- **$7 win:** Sign up on pooper-scooper.com (5 min, $7/mo) — be the only MO listing
+- **Free wins:** BringFido, Nextdoor Business, PetWorks, Bing Places, Apple Maps
+- Citation tracker has all 20 directories with direct sign-up links
+
+**Rotation:** 🔍 SEO / Search Visibility / Monitoring
+
+---
+
 ### 12:04 PM — 🔍 Competitive Intelligence Sweep — New Competitor Found + POOP 911 SEO Alert (Monitoring)
 **Task:** Live competitor monitoring sweep. Self-assessment says "competitive monitoring — market is moving." Scraped all active competitor websites, checked for dead sites, searched for new entrants.
 
