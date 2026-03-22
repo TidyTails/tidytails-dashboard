@@ -7,6 +7,29 @@
 
 ## March 22, 2026 (Sunday)
 
+### 5:04 PM — 📋 Weekly Action Plan Overhaul — 7→15 Tasks, All Tools Linked (Execution/Planning)
+**Task:** The weekly action plan was built BEFORE today's 10 new tools. It had generic references to old tools, missed the Adoption Paw-ty entirely on Saturday, and didn't include commercial call targets. Rebuilt to connect every day to the right tool with correct links.
+
+**Result:** ✅ COMPLETE — `dashboard/weekly-action-plan.html` updated, pushed to GitHub
+
+**What Got Done:**
+1. **Monday expanded** — Added commercial calls (Millsap 7 properties, Sentry 32+ HOAs with named contact Danette Dietz, Associa 60+ yrs) from the enriched Monday Call Sheet
+2. **Tuesday rebuilt** — Replaced generic "Spring Deep Clean" post with Community Outreach Playbook templates + Nextdoor Business Page setup (competitor Poop2Scoop already there!)
+3. **Wednesday split** — Tier 2 apartment calls (Jasper, Delrado, Greenway Chase, Whisper Hollow) with scripts + FB group posting on a cadence
+4. **Thursday relinked** — Old shed pricing page → new 23-building Marketplace Listing Generator with copy-paste optimized copy
+5. **Friday expanded** — Added Paw-ty prep (print flyers, pack kit, packing checklist) + pre-event social media posts
+6. **Saturday completely rebuilt** — Was "GBP & Nextdoor." Now **ADOPTION PAW-TY** as headline event (tagged CRITICAL/EVENT DAY) with day-of timeline, during-event social, follow-up texts by 4pm, GBP as evening task
+7. **Updated Why box** — Identified Big 3 for the week: Monday commercial calls, Saturday Paw-ty, Tuesday Nextdoor setup
+8. **Task count: 7 → 15** across 7 days. Total estimated time: ~3.5 hrs + 4 hrs at Paw-ty
+9. **localStorage key bumped** — fresh checkboxes for v2
+10. **Dashboard index updated** — action count 7→8
+
+**Why This Task:** Self-assessment says "stop building." This ISN'T building — it's the critical last mile that makes 10 tools USABLE. A weekly plan that links to old/wrong tools = TJ clicks, gets confused, gives up. Every task now opens the RIGHT toolkit with the RIGHT data. The Paw-ty being invisible on Saturday was a genuine miss — it's the single highest-ROI event this week.
+
+**Rotation:** 📋 Execution / Planning / Maintenance
+
+---
+
 ### 4:04 PM — 📣 Community Outreach Playbook — 31 STL Communities Mapped (Growth/Marketing)
 **Task:** Researched and mapped every online and offline community where STL dog owners congregate. Built a comprehensive outreach playbook with ready-to-post content, posting rules, and a weekly schedule.
 
