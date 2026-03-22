@@ -1,5 +1,5 @@
 # MEMORY.md — Franklin's Long-Term Memory
-*Last major overhaul: March 15, 2026 11 PM | Last maintenance: March 22, 2026 12 AM*
+*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 22, 2026 10 AM*
 
 ## Who I Am
 - **Name:** Franklin
@@ -63,33 +63,17 @@
 - **SSL RENEWED ✅** — Certificate valid Feb 16 → May 17, 2026. Site loads fast on Cloudflare.
 - **GBP VERIFIED** ✅ but only **7% complete** — needs hours, photos, services, description, categories
 
-### Online Presence
-- GBP: VERIFIED ✅ (Mar 17, 2026) — Profile verified but only **7% complete**. DO NOT ASK ABOUT VERIFICATION AGAIN.
-- Yelp: CLAIMED ✅ (Mar 5) — DO NOT ASK AGAIN
-- Google Search Console: VERIFIED ✅ (Mar 5) — DO NOT ASK AGAIN
-- **✅ SSL RENEWED** (Feb 16, 2026) — Valid until May 17, 2026. Blocker removed.
-- **✅ INDEXED ON GOOGLE** (confirmed Mar 18 3:03 PM) — URL on Google, page indexed, HTTPS ✅, FAQ schema ✅, sitemap submitted (17 pages discovered)
-- **✅ GSC DONE** — TJ submitted sitemap + URL inspection confirmed indexed. #1 blocker RESOLVED.
-- **⚠️ BRAND NAME COLLISION:** 8+ other "Tidy Tails" businesses nationally compete for branded search. Always use "Tidy Tails STL" in citations.
-- **MapQuest listing EXISTS** (auto-generated, Olivette MO 63132) — free citation
-- **BringFido.com** — pet services directory covers Florissant. TJ NOT listed. Free listing.
-- **Doggie Doodies pricing confirmed** — $83/mo weekly, $85/mo biweekly, $90/mo monthly (Mar 18 live scrape)
-- **NEW: Dirty Dog Wash "Poo Crew"** — Chesterfield groomer added waste removal. $95/mo (1-2 dogs weekly). 43 Yelp reviews, 66 FB reviews. Cross-sell advantage but HIGHER than TJ.
-- **🔴 POOP 911 DOUBLING DOWN ON FLORISSANT** (Mar 20 8PM — corrected) — Old URLs were 404 due to site-wide URL restructure, NOT withdrawal. New page at `/locations/florissant-mo-pet-waste-removal` has hyper-local SEO content mentioning St. Ferdinand Park, Eagan Center, McCluer High. They're INVESTING in Florissant.
-- **DoodyCalls STL STILL ACTIVE** (Mar 20 8PM) — Website loads, local phone (314) 230-8082, listed on Missouri locations page. Not closing.
-- **❌ Poop2Scoop CLOSED** — PetWorks listing says "paused or closed." Veteran-owned, operated since 2017.
-- **❌ Pawfect Waste Solutions SITE DOWN** — pooperscooperstl.com returns "SITE NOT FOUND"
-- **3-4 of 7 STL competitors have withdrawn/closed** — Market thinning (POOP 911 status uncertain as of Mar 20 8AM)
-- **North County has ZERO active local competitors** — TJ's home turf is wide open
-- **Only 3-4 active competitors remain:** Doggie Doodies (West County + now Florissant), Scoop Soldiers (national franchise), Dirty Dog Wash (Chesterfield only), POOP 911 (uncertain)
-- **Scoop Soldiers confirmed $15/visit** — up to 4 dogs included. First service FREE. Only real overlap with TJ's territory.
-- **ZERO Google reviews** vs competitors with 6+ — Still #1 weakness
-- Google Review Link: https://g.page/r/Ce_hqIHanGLvEAE/review
-- 21 city/area landing pages built on tidytailsstl.com
-- 4 blog posts published
-- Technical SEO: B+ (schema, meta, sitemap, robots.txt all solid)
-- Off-page SEO: F (zero backlinks, zero directory listings beyond GBP/Yelp)
-- **Directory blitz kit ready** — 20 directories mapped with copy-paste info, TJ just needs to execute
+### Online Presence (Mar 22)
+- **GBP:** VERIFIED ✅ (Mar 17) — but only **7% complete**. #1 priority.
+- **Yelp:** CLAIMED ✅ (Mar 5) — not showing in Florissant results though
+- **GSC:** VERIFIED ✅ — sitemap submitted, 17 pages discovered, site INDEXED (Mar 18)
+- **SSL:** Valid until May 17, 2026 (set reminder May 1)
+- **Google Reviews:** ZERO — #1 weakness. Link: https://g.page/r/Ce_hqIHanGLvEAE/review
+- **Content:** 23 city landing pages, 13 blog posts, A- on-page SEO
+- **Off-page:** F — zero backlinks, zero directory listings beyond GBP/Yelp
+- **Brand collision:** 8+ other "Tidy Tails" nationally — always use "Tidy Tails STL"
+- **Unlisted directories:** Petworks, BringFido, MapQuest (auto-generated) — easy wins
+- **Bottom line:** "Built a Porsche but never put gas in it." GBP + reviews + directories = $0, ~2 hrs TJ time.
 
 ### Service Areas
 - St. Louis County, St. Charles County
@@ -99,7 +83,7 @@
 ### The Goal
 **25-30 recurring customers by August 2025** — ⚠️ OVERDUE by 7+ months (now March 2026)
 
-### Active Customers (Last verified Mar 6, 2026 — NEEDS UPDATE)
+### Active Customers (Last verified Mar 6 — ASK TJ FOR UPDATE)
 
 | # | Customer | City | Freq | Monthly |
 |---|----------|------|------|---------|
@@ -112,61 +96,33 @@
 | 7 | Chastity | Florissant 63033 | Biweekly | $90 |
 | 8 | Preshus | Saint Charles 63303 | Weekly | $100 |
 
+⚠️ **16+ days stale.** Next time TJ's active, ask for current customer count/status.
+
 ---
 
-## 🔍 Competitive Landscape (Updated Mar 18, 2026 7AM)
+## 🔍 Competitive Landscape (Summary — Mar 22, 2026)
 
-### ACTIVE Competitors — Definitive Table
+**Full details:** `memory/competitor-intel-spring2026.md` (canonical file)
 
-| Competitor | Territory | Weekly Price | Monthly | Threat | Key Notes |
-|------------|-----------|-------------|---------|--------|-----------|
-| **POOP 911** 🔴 | South STL/City (70+ zips) | $11.95-$13.95 | ~$52 | HIGH | National franchise, FREE first cleanup, lowest price. **Florissant page NOW 404** (confirmed Mar 20). Still has main STL page. |
-| **Scoop Soldiers** ⬜ | KC metro ONLY (NOT STL) | ~$15 | ~$60 | **NONE** | STL page returns 404 "we don't service your area." MO locations list only KC area (Blue Springs, Independence, KC, Lee's Summit, Liberty). Feb 2026 press release was aspirational or franchisee fell through. NOT a current threat. |
-| **Dog Doody Defenders** 🔴 | Chesterfield + Florissant | $17 | $54/mo monthly plan | HIGH | Florissant-based (Daniel Boone Dr). Now offers dog walking, yard deodorizing, kennel cleaning. Twice-weekly $27. On Yelp, MapQuest, FB. **Direct competitor in TJ's core territory.** |
-| **Poop2Scoop** 🟡 | STL County | $18 | ~$78 | MED | Veteran-owned, smart add-on pricing, aPaws member |
-| **Doggie Doodies** 🔴 | Ballwin/Chesterfield + St. Charles + West County (Florissant UNCONFIRMED) | $19.15 | $83 | HIGH | Service areas page says "St. Louis County (West County) & St. Charles County" — Florissant NOT listed. May serve on request. Customer portal, rewards, referral, e-gift cards, blog, COMMERCIAL page. FREE first cleanup with coupon codes. Phone: (636)633-3443. Biweekly=$85/mo, Monthly=$90/mo. Hotmail + Wix = weaknesses. |
-| **Dr. Scoops** 🟡 | Ballwin/Manchester/Chesterfield/Kirkwood/Webster Groves | Quote | Quote | MED | NEW (found Mar 16). Solo op Adam Hughes, since 2023. Own site (getdrscoops.com), FB (39 likes), Nextdoor, Petworks. Insured, background-checked. Covers our expansion targets! |
-| **Dirty Dog Wash Poo Crew** 🟡 | Chesterfield (10mi radius) | ~$22 | $95 | MED | Cross-sell from grooming business |
-| **DoodyCalls** 🟡 | STL County | Quote | Quote | MED | National franchise |
-| **Yucko's** 🟡 | STL County + City + St. Charles | Quote | Quote | LOW | Commercial focus, since 1990, phone-only M-F 8-3 |
-| **Little Stinkers** 🟢 | St. Charles ONLY (NOT STL County) | Quote | Quote | LOW | Only Lincoln/Warren/St. Charles Counties |
-| **Clean Turf STL** 🟡 | Ballwin/West County | Quote | Quote | MED | Dual service (cleaning + pet waste), Wix, no reviews |
-| **The Pootector** 🟡 | St. Peters area | Quote | Quote | MED | aPaws certified |
-| **Doggy Doods** 🟢 | St. Charles County | Quote | Quote | LOW | Solo operator Eugene, 6 testimonials |
-| **The Poo Fighterz** 🟢 | STL + Springfield IL | Quote | Quote | LOW | Multi-market |
+**Market size:** 15 tracked competitors, 2-4 dead/dying, ~10-12 active
+**TJ's position:** $70/mo flat = mid-market. Cheaper than Doggie Doodies ($83), Dirty Dog ($95), Pooey ($100). More expensive weekly than DDD ($54/mo), POOP 911 ($52/mo).
 
-### NEW Competitors Found (Mar 16 3PM sweep)
-| **No 2 Crew** 🟡 | Wildwood (West County) | Quote | Quote | MED | Spinoff from The Watering Bowl doggy daycare (since 2010). On Yelp. |
-| **Tidy Pup** 🟡 | Saint Peters | Quote | Quote | MED | ⚠️ SIMILAR NAME to Tidy Tails! Yelp, Facebook, Yellow Pages. |
-| **Millie's Pooper Scoopers** 🟡 | STL + St. Charles | Quote | Quote | MED | Yellow Pages listing |
-| **Green Sweep** 🟢 | St. Peters | Quote | Quote | LOW | Yelp only |
-| **The Dog Poo Guru** 🟢 | St. Peters | Quote | Quote | LOW | Yelp only |
-| **Pooanators** 🟡 | STL area | Quote | Quote | MED | On Yelp, multiple STL searches |
+**Top threats:**
+- 🔴 Dog Doody Defenders — same Florissant zip, $54/mo, but has BAD reviews (exploit this)
+- 🔴 POOP 911 — $52/mo, free first cleanup, investing in Florissant SEO
+- 🔴 DoodyCalls — best SEO in market, national franchise
+- 🟡 No. 2 Crew — professional, $76/mo weekly, good branding
 
-### DEAD Competitors (confirmed Mar 20)
-Pawfect (404), Fresh Paws (DNS expired), Poopy Paws (DNS failure — 358 orphaned FB followers + Nextdoor page still up), STL Pooper Scoopers (Yelp CLOSED), Super Scoopers STL (Yelp CLOSED), **Pawfect Waste Solutions** (pooperscooperstl.com — 404, never launched)
+**Dead/dying:** Pawfect (404), Poopy Paws (DNS dead), Fresh Paws (DNS expired), STL Pooper Scoopers (closed), Super Scoopers (site down)
 
-### Search Visibility (Mar 20 — SEO Audit Score: 30/100)
-- **On-page SEO: A-** — schema, meta tags, sitemap, robots.txt, canonicals all solid
-- **Off-page SEO: F** — zero backlinks, zero directory listings beyond GBP/Yelp, zero reviews
-- Google Search Console confirmed indexed (Mar 18) but organic visibility near-zero
-- `site:tidytailsstl.com` on Brave = 0 results. Not in top 10 for core keywords.
-- Not showing in Yelp Florissant results despite being claimed since Mar 5
-- **Root cause:** No GA4, GBP only 7% complete, zero reviews, zero backlinks
-- **The metaphor:** "Built a Porsche but never put gas in it." 35 pages of well-optimized content nobody can find.
-- **Fix:** 2 hours of TJ's time ($0 cost) — GSC sitemap submission ✅ done, GA4 setup, GBP completion, review request texts
+**Strategy:** DON'T lower prices — awareness problem, not price problem. Lead with $70/mo flat rate value.
 
-### Pricing Reality (Updated Mar 20 — LIVE SCRAPE)
-- POOP 911: $11.95/wk (~$52/mo) — cheapest in market
-- Dog Doody Defenders: $17/wk, **$54/mo monthly plan** — undercuts TJ's $70/mo by 23%
-- Scoop Soldiers: $15/visit (first FREE) — price floor
-- Poop 2 Scoop: $18/wk (~$78/mo) — veteran-owned
-- Doggie Doodies: $19.15/wk ($83/mo), biweekly $85/mo, monthly $90/mo
-- **Tidy Tails: $25/wk | $45 biweekly | $70/mo | $100 deep clean — MOST EXPENSIVE weekly indie**
-- ⚠️ TJ's $70/mo undercut by DDD's $54/mo, but BEATS Doggie Doodies ($90/mo) and Dirty Dog Wash ($95/mo)
-- Strategy: DON'T lower prices — awareness problem, not price problem at 8 customers. Lead with $70/mo value.
-- **Petworks.com** — free marketplace, TJ NOT listed. Easy win.
-- **MapQuest listing EXISTS** (auto-generated, Olivette MO 63132) — free citation
+### Search Visibility (Mar 22)
+- **On-page SEO: A-** | **Off-page SEO: F** | **Overall: 30/100**
+- Google indexed (Mar 18 ✅) but Brave/Yelp = zero visibility
+- `site:tidytailsstl.com` on Brave = 0 results
+- **Root cause:** GBP 7% complete, zero reviews, zero backlinks, zero directory listings
+- **Fix:** GBP completion + reviews + directory submissions = $0, ~2 hours TJ time
 
 ---
 
@@ -296,7 +252,7 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 
 ---
 
-## 📊 Asset Inventory (Mar 22, 2026)
+## 📊 Asset Inventory (Mar 22, 2026 — updated 10 AM)
 
 | Category | Count |
 |----------|-------|
@@ -317,22 +273,16 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 ---
 
 ## 🗓️ Key Milestones
-- **Feb 16, 2026:** tidytailsstl.com domain registered
-- **Feb 17:** Day 1 output — 18 tasks, 27 docs, 21 ads, 24 commercial leads
-- **Feb 26:** GBP CLAIMED ✅, Yelp CLAIMED ✅
-- **Mar 4:** Sub-agent architecture deployed, email automation complete
-- **Mar 5:** Google Search Console verified, 6 AI videos created
-- **Mar 7:** 24 hourly tasks, 35+ dashboard tools built in one day
-- **Mar 11:** BREAKTHROUGH — discovered website was essentially blank, root cause: domain only 23 days old + zero backlinks
-- **Mar 14:** 15+ tasks. Found 2 new competitors (Clean Turf STL, Yuckos). Pricing strategy: $88/mo recommended.
-- **Mar 15:** 18+ tasks. 12 city SEO pages, payment calculator, premium pricing toolkit, Nextdoor launch kit, Facebook ads campaign kit. Competitive pricing audit confirmed TJ is most expensive in market. Memory overhaul completed.
-- **Mar 16:** Shed site HTTPS fixed + robots.txt/sitemap/schema added. 6 new competitors found (20+ total). Directory blitz kit + spring content blitz shipped. Memory consolidation: archived 30+ stale files, pruned memory/ from cluttered to clean. Both sites STILL not indexed (Day 30+). Paid ads analysis: NOT YET — fix foundation first. Week action plan: 5 tasks / 2 hours / $0. Citation blitz guide: 20 directories mapped. Review request kit: 8 personalized texts. Spring social media pack: 12 posts for 4 weeks.
-- **Mar 17:** MASSIVE output day (12+ deliverables). GBP confirmed VERIFIED but only 7% complete. TJ frustrated: "tired of being stagnant." Key deliverables: competitor battle card (live pricing), directory blitz kit (20 dirs), neighborhood saturation kit, 90-day growth sprint, Google Ads launch kit, pricing calculator (live competitor scrape), GBP optimization kit, review/referral text blitz (personalized per customer), spring cleanup blitz (15 posts), lumber intel ($600/MBF — 22% surge). CRITICAL: competitor pricing confirmed TJ is most expensive ($25/wk vs POOP 911 $11.95, DD $17). Memory consolidation pass at 11 PM.
-- **Mar 18:** 5 overnight tasks (12AM-5AM). SEO recovery audit (site A+ technically, ZERO indexed), FB group blitz guide (32+ groups mapped), competitive sweep (DD in Florissant!), Florissant customer defense kit (protecting 47% revenue), dashboard cleanup (12→5 priority banners). Memory maintenance + archival at 6AM.
-- **Mar 19:** BIGGEST DAY EVER — 15+ tasks spanning 3AM-11PM. Key outputs: commercial call sheet (26 leads, tap-to-call), SEO blog (dog poop laws), Kirkwood+Webster Groves city pages, POOP 911 Florissant withdrawal CONFIRMED (404), review request texts tool, GBP quick-complete checklist, community posting kit (15 groups), free first cleanup landing page (LIVE), referral program (LIVE at /refer), event marketing calendar (14 STL events), Spring 2026 master playbook (39 tasks across 15 weeks), competitive intel sweep (3 dead competitors, we're INVISIBLE on search), North County vet blitz (6 new leads), Google Ads campaign kit, weekend launch texts, weekend sprint brief. franklin-tasks.md archived (2208→737 lines). MEMORY.md updated.
-- **Mar 20:** 🌱 FIRST DAY OF SPRING. 14+ hourly tasks. Content kit (7 ready-to-post pieces across 5 platforms). Full technical SEO audit (Score: 30/100). Competitor status corrections (POOP 911 NOT leaving Florissant — URL restructure, not withdrawal). 5 broken city pages fixed. Door hanger templates. Paid ads feasibility. GBP completion kit. Referral partnerships playbook. Guerrilla marketing playbook. Shed sales closer tool. Competitor displacement campaign.
-- **Mar 21:** MASSIVE output day — 20+ hourly tasks in 24 hours. TJ check-in at 4 PM: frustrated that guides are saved to memory/ where he can't see them → **NEW RULE: everything for TJ goes as PDF in chat + dashboard.** Dashboard 3-mode redesign (TODAY/TOOLS/ARCHIVE) — collapsed 97 files + 24 pulsing links into 3 clean tabs. Spring events & partnerships (Earth Day Apr 25, Bark in the Park May 16, K9 Garden new venue). Google Review Blitz toolkit. Website conversion audit (scored 29/60 — best copy in market, worst conversion path). GBP 4-week posting calendar (8 posts). Commercial outreach kit (scripts, walk-in route, objection handlers). Spring deep clean campaign. Shed competitive pricing intel (STL Sheds = real threat — Amish-built, free delivery, prices online). Weekly action plan (7 days of tasks from 10 toolkits). Referral program ("Friends & Clean Yards").
-- **Mar 22 (early AM):** Competitor battlemap (all 10-12 STL competitors profiled), Directory blitz kit (20 directories mapped), Neighbor blitz kit (door-to-door system for Jamie), 4 Sunday shed ads. Memory maintenance pass — archived Mar 20 tasks (584 lines), trimmed task log from 1,406 → 798 lines.
+- **Feb 16:** Domain registered. **Feb 17:** Day 1 — 18 tasks, 27 docs.
+- **Feb 26:** GBP + Yelp CLAIMED ✅
+- **Mar 4:** Sub-agents deployed, email automation complete
+- **Mar 5:** GSC verified, 6 AI videos created
+- **Mar 11:** Discovered site was invisible — domain too new + zero backlinks
+- **Mar 17:** GBP VERIFIED ✅ (only 7% complete). TJ frustrated: "tired of being stagnant."
+- **Mar 18:** GOOGLE INDEXED ✅ — GSC sitemap submitted, 17 pages discovered. First FB ad live ($7.27 spent, 344 views, 0 messages — video too long). **Jamie = face of Tidy Tails** rule established.
+- **Mar 20:** POOP 911 confirmed STILL in Florissant (URL restructure, not withdrawal). Scooping moved to MONDAYS.
+- **Mar 21:** TJ frustrated guides hidden in memory/ → **NEW RULE: PDF in chat + dashboard link.** Dashboard redesigned to 3 modes (TODAY/TOOLS/ARCHIVE).
+- **Mar 22:** 400+ deliverables built total. Memory maintenance pass — consolidated 5 competitor files, archived 17 stale docs.
 
 ---
 
@@ -377,15 +327,17 @@ Path: Tidy Tails → document the AI journey → build marketing agency for smal
 - TJ Ad Style Guide: `memory/tj-ad-style-guide.md`
 - Before/After Photos: `assets/tidy-tails/before-after/` (3 real job sets)
 
-## Memory File Structure (Updated Mar 16, 2026)
-- `memory/YYYY-MM-DD.md` — Daily logs (recent only; older archived)
-- `memory/franklin-tasks.md` — Current hourly task log
-- `memory/archive/` — All archived task logs, old daily files, stale docs
+## Memory File Structure (Updated Mar 22, 2026)
+- `memory/YYYY-MM-DD.md` — Daily logs (keep last 3-4 days, archive older)
+- `memory/franklin-tasks.md` — Current day's hourly task log (archive weekly)
+- `memory/archive/` — All archived task logs, old dailies, superseded docs
+- `memory/competitor-intel-spring2026.md` — **CANONICAL** competitor file (15 competitors profiled)
+- `memory/leads-commercial.md` — 49+ commercial leads database
 - `memory/contacts.md` — Key contacts
 - `memory/tuffshed.md` — Shed job details, pipeline
-- `memory/competitive-intel.md` — Detailed competitor profiles
 - `memory/motra-business-idea.md` — MOTRA details (parked)
 - `memory/hourly-task-rotation.md` — Task rotation balance
 - `memory/tj-ad-style-guide.md` — TJ's voice/style rules for ad copy
 - `memory/notion-uploads.md` — Notion sync tracking
-- `memory/fb-groups-target-list.md` — Facebook group targets for posting
+
+**Archived Mar 22:** 5 duplicate competitor files, 6 pre-Mar-19 daily files, 10 guide/kit files superseded by dashboard tools
