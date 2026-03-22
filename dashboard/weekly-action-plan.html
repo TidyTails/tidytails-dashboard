@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week of March 23 — Action Plan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; padding-bottom:3rem; }
+        a { color: var(--blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .header {
+            background: linear-gradient(135deg, #111 0%, #1a1520 50%, #111 100%);
+            border-bottom: 1px solid var(--border); padding: 2rem 1.5rem; text-align: center;
+        }
+        .header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 0.3rem; }
+        .header h1 span { color: var(--orange); }
+        .header .subtitle { color: var(--text2); font-size: 0.85rem; }
+        .header .week-range {
+            display: inline-block; margin-top: 0.75rem; padding: 0.4rem 1rem;
+            background: rgba(255,107,53,0.12); border: 1px solid rgba(255,107,53,0.25);
+            border-radius: 8px; font-weight: 700; font-size: 0.8rem; color: var(--orange);
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 1.5rem 1rem; }
+
+        /* Progress bar */
+        .progress-section { margin-bottom: 2rem; }
+        .progress-bar-bg {
+            background: var(--bg3); border-radius: 8px; height: 28px; overflow: hidden;
+            border: 1px solid var(--border); position: relative;
+        }
+        .progress-bar-fill {
+            height: 100%; background: linear-gradient(90deg, var(--orange), var(--green));
+            border-radius: 8px; transition: width 0.5s ease; min-width: 0;
+        }
+        .progress-label {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            font-size: 0.72rem; font-weight: 700; color: var(--text); text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+        .progress-stats {
+            display: flex; justify-content: space-between; margin-top: 0.4rem;
+            font-size: 0.7rem; color: var(--text2);
+        }
+
+        /* North star */
+        .north-star {
+            background: linear-gradient(135deg, rgba(255,107,53,0.08), rgba(16,185,129,0.08));
+            border: 1px solid rgba(255,107,53,0.2); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 2rem; text-align: center;
+        }
+        .north-star h3 { font-size: 0.9rem; color: var(--orange); margin-bottom: 0.5rem; }
+        .north-star .goal { font-size: 1.8rem; font-weight: 800; }
+        .north-star .goal .current { color: var(--yellow); }
+        .north-star .goal .arrow { color: var(--text3); margin: 0 0.5rem; }
+        .north-star .goal .target { color: var(--green); }
+        .north-star .caption { font-size: 0.72rem; color: var(--text2); margin-top: 0.3rem; }
+
+        /* Day cards */
+        .day-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            margin-bottom: 1rem; overflow: hidden; transition: border-color 0.2s;
+        }
+        .day-card:hover { border-color: var(--orange); }
+        .day-card.completed { border-color: var(--green); opacity: 0.7; }
+        .day-header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.9rem 1rem; cursor: pointer; user-select: none;
+        }
+        .day-header .day-name { font-weight: 700; font-size: 0.9rem; }
+        .day-header .day-date { font-size: 0.72rem; color: var(--text2); }
+        .day-header .day-tag {
+            font-size: 0.62rem; font-weight: 700; padding: 0.15rem 0.5rem;
+            border-radius: 4px; text-transform: uppercase;
+        }
+        .tag-critical { background: rgba(239,68,68,0.2); color: var(--red); }
+        .tag-high { background: rgba(255,107,53,0.15); color: var(--orange); }
+        .tag-medium { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .tag-low { background: rgba(16,185,129,0.15); color: var(--green); }
+
+        .day-body { padding: 0 1rem 1rem; display: none; }
+        .day-card.open .day-body { display: block; }
+        .day-card.open .day-header { border-bottom: 1px solid var(--border); }
+
+        .task {
+            display: flex; align-items: flex-start; gap: 0.6rem;
+            padding: 0.6rem 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+        .task:last-child { border-bottom: none; }
+        .task input[type="checkbox"] {
+            margin-top: 0.15rem; accent-color: var(--green); width: 16px; height: 16px; flex-shrink: 0;
+            cursor: pointer;
+        }
+        .task-content { flex: 1; }
+        .task-title { font-size: 0.82rem; font-weight: 600; line-height: 1.35; }
+        .task-detail { font-size: 0.72rem; color: var(--text2); margin-top: 0.15rem; line-height: 1.4; }
+        .task-link { font-size: 0.68rem; margin-top: 0.2rem; }
+        .task-time {
+            font-size: 0.62rem; color: var(--text3); font-weight: 600; white-space: nowrap;
+            background: var(--bg4); padding: 0.15rem 0.4rem; border-radius: 4px; margin-top: 0.15rem;
+        }
+        .task.done .task-title { text-decoration: line-through; color: var(--text3); }
+        .task.done .task-detail { color: var(--text3); }
+
+        .tool-link {
+            display: inline-block; margin-top: 0.4rem; padding: 0.25rem 0.6rem;
+            background: rgba(59,130,246,0.12); border-radius: 6px;
+            font-size: 0.68rem; font-weight: 600; color: var(--blue);
+        }
+        .tool-link:hover { background: rgba(59,130,246,0.2); text-decoration: none; }
+
+        /* Why section */
+        .why-box {
+            background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; margin-top: 2rem;
+        }
+        .why-box h3 { font-size: 0.85rem; color: var(--yellow); margin-bottom: 0.6rem; }
+        .why-box p { font-size: 0.76rem; color: var(--text2); line-height: 1.5; margin-bottom: 0.5rem; }
+        .why-box .math { font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: var(--green); }
+
+        /* Quick ref */
+        .quick-ref {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-top: 1.5rem;
+        }
+        .ref-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+            padding: 0.75rem; font-size: 0.72rem;
+        }
+        .ref-card .ref-label { color: var(--text3); font-size: 0.62rem; text-transform: uppercase; font-weight: 700; margin-bottom: 0.2rem; }
+        .ref-card .ref-value { font-weight: 600; }
+        .ref-card .ref-value a { color: var(--blue); }
+
+        @media (max-width: 600px) {
+            .quick-ref { grid-template-columns: 1fr; }
+            .north-star .goal { font-size: 1.4rem; }
+        }
+
+        .chevron { transition: transform 0.2s; color: var(--text3); }
+        .day-card.open .chevron { transform: rotate(90deg); }
+
+        .reset-btn {
+            display: block; margin: 1.5rem auto 0; padding: 0.4rem 1rem;
+            background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+            color: var(--text3); font-size: 0.7rem; cursor: pointer; font-family: inherit;
+        }
+        .reset-btn:hover { border-color: var(--red); color: var(--red); }
+
+        .back-link {
+            display: inline-block; margin-bottom: 0.75rem; padding: 0.3rem 0.6rem;
+            background: var(--bg3); border-radius: 6px; font-size: 0.72rem; color: var(--text2);
+        }
+        .back-link:hover { color: var(--text); text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📋 <span>This Week's</span> Game Plan</h1>
+        <div class="subtitle">The 7 actions that move the needle most</div>
+        <div class="week-range">March 23 — March 29, 2026</div>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Dashboard</a>
+
+        <!-- NORTH STAR -->
+        <div class="north-star">
+            <h3>🎯 NORTH STAR — Recurring Customers</h3>
+            <div class="goal">
+                <span class="current">8</span>
+                <span class="arrow">→</span>
+                <span class="target">10</span>
+            </div>
+            <div class="caption">+2 this month would put us at $900/mo recurring. We're 42 days from "real business" territory.</div>
+        </div>
+
+        <!-- PROGRESS -->
+        <div class="progress-section">
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progressFill" style="width: 0%"></div>
+                <div class="progress-label" id="progressLabel">0 / 7 done</div>
+            </div>
+            <div class="progress-stats">
+                <span>Week starts Monday</span>
+                <span id="progressPct">0%</span>
+            </div>
+        </div>
+
+        <!-- DAY CARDS -->
+
+        <!-- MONDAY — Scooping Day -->
+        <div class="day-card open" id="day-mon">
+            <div class="day-header" onclick="toggleDay('day-mon')">
+                <div>
+                    <div class="day-name">🐕 Monday — Scooping Day</div>
+                    <div class="day-date">March 23</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <span class="day-tag tag-critical">CRITICAL</span>
+                    <span class="chevron">▶</span>
+                </div>
+            </div>
+            <div class="day-body">
+                <div class="task" data-id="mon-1">
+                    <input type="checkbox" onchange="toggleTask('mon-1')">
+                    <div class="task-content">
+                        <div class="task-title">⭐ Jamie texts 3 customers asking for Google reviews</div>
+                        <div class="task-detail">Start with Shannon, Amanda, and Chastity (Florissant trio — if they mention "Florissant" in reviews, we dominate local search). Copy-paste texts are ready in the toolkit.</div>
+                        <a href="google-review-blitz.html" class="tool-link">📖 Open Review Blitz Toolkit</a>
+                    </div>
+                    <div class="task-time">⏱ 5 min</div>
+                </div>
+                <div class="task" data-id="mon-2">
+                    <input type="checkbox" onchange="toggleTask('mon-2')">
+                    <div class="task-content">
+                        <div class="task-title">🤝 Drop business cards at 2 Florissant vet clinics during scooping route</div>
+                        <div class="task-detail">North County Pet Grooming (9831 W Florissant) and Pet Planet (4180 N Hwy 67) are both on the scooping route. Just walk in, introduce Jamie, leave 10 cards. 2 minutes each.</div>
+                        <a href="spring-events-partnerships.html" class="tool-link">📖 Open Partnership Playbook</a>
+                    </div>
+                    <div class="task-time">⏱ 5 min</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TUESDAY -->
+        <div class="day-card" id="day-tue">
+            <div class="day-header" onclick="toggleDay('day-tue')">
+                <div>
+                    <div class="day-name">📱 Tuesday — Digital Push</div>
+                    <div class="day-date">March 24</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <span class="day-tag tag-high">HIGH</span>
+                    <span class="chevron">▶</span>
+                </div>
+            </div>
+            <div class="day-body">
+                <div class="task" data-id="tue-1">
+                    <input type="checkbox" onchange="toggleTask('tue-1')">
+                    <div class="task-content">
+                        <div class="task-title">📝 Post Spring Deep Clean offer in 3 Facebook groups</div>
+                        <div class="task-detail">$99 deep clean + $35 first month. Use the posts from the Spring Campaign toolkit — just copy, paste, post. Target: Ballwin Community, Chesterfield Neighbors, Florissant Happenings.</div>
+                        <a href="spring-deep-clean-campaign.html" class="tool-link">📖 Open Spring Campaign</a>
+                    </div>
+                    <div class="task-time">⏱ 10 min</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WEDNESDAY -->
+        <div class="day-card" id="day-wed">
+            <div class="day-header" onclick="toggleDay('day-wed')">
+                <div>
+                    <div class="day-name">📞 Wednesday — Outreach</div>
+                    <div class="day-date">March 25</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <span class="day-tag tag-high">HIGH</span>
+                    <span class="chevron">▶</span>
+                </div>
+            </div>
+            <div class="day-body">
+                <div class="task" data-id="wed-1">
+                    <input type="checkbox" onchange="toggleTask('wed-1')">
+                    <div class="task-content">
+                        <div class="task-title">📞 Jamie calls top 5 commercial leads</div>
+                        <div class="task-detail">Scripts are ready in the Commercial Outreach Kit. Top 5: McKinley Management (5 properties, ~$2K/mo potential), Boyd Management (4 properties), 1st Choice Realty, Brentwood Forest HOA, Suson Oaks HOA. Even 1 commercial close = $200-500/mo.</div>
+                        <a href="commercial-outreach-kit.html" class="tool-link">📖 Open Outreach Kit</a>
+                    </div>
+                    <div class="task-time">⏱ 30 min</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- THURSDAY -->
+        <div class="day-card" id="day-thu">
+            <div class="day-header" onclick="toggleDay('day-thu')">
+                <div>
+                    <div class="day-name">🏗️ Thursday — Shed Day</div>
+                    <div class="day-date">March 26</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <span class="day-tag tag-medium">MEDIUM</span>
+                    <span class="chevron">▶</span>
+                </div>
+            </div>
+            <div class="day-body">
+                <div class="task" data-id="thu-1">
+                    <input type="checkbox" onchange="toggleTask('thu-1')">
+                    <div class="task-content">
+                        <div class="task-title">🏗️ Post 3 shed listings on Facebook Marketplace</div>
+                        <div class="task-detail">Spring is peak shed season. Use the pitch scripts from the Competitive Pricing Intel dashboard — 5 ready-to-go scripts targeting different buyer types. Focus on WoodMaster's free delivery advantage over TuffShed's $100-375 fee.</div>
+                        <a href="shed-competitive-pricing.html" class="tool-link">📖 Open Shed Market Intel</a>
+                    </div>
+                    <div class="task-time">⏱ 15 min</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FRIDAY -->
+        <div class="day-card" id="day-fri">
+            <div class="day-header" onclick="toggleDay('day-fri')">
+                <div>
+                    <div class="day-name">🎁 Friday — Referral Launch</div>
+                    <div class="day-date">March 27</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <span class="day-tag tag-high">HIGH</span>
+                    <span class="chevron">▶</span>
+                </div>
+            </div>
+            <div class="day-body">
+                <div class="task" data-id="fri-1">
+                    <input type="checkbox" onchange="toggleTask('fri-1')">
+                    <div class="task-content">
+                        <div class="task-title">🎁 Jamie texts referral offer to all 8 customers</div>
+                        <div class="task-detail">"Friends & Clean Yards" — refer a friend, get a free visit. Their friend gets 50% off first month. Copy-paste texts ready in the toolkit. 83% of customers would refer — they just need to be asked.</div>
+                        <a href="referral-program.html" class="tool-link">📖 Open Referral Program</a>
+                    </div>
+                    <div class="task-time">⏱ 10 min</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SATURDAY -->
+        <div class="day-card" id="day-sat">
+            <div class="day-header" onclick="toggleDay('day-sat')">
+                <div>
+                    <div class="day-name">🌿 Saturday — GBP & Nextdoor</div>
+                    <div class="day-date">March 28</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <span class="day-tag tag-medium">MEDIUM</span>
+                    <span class="chevron">▶</span>
+                </div>
+            </div>
+            <div class="day-body">
+                <div class="task" data-id="sat-1">
+                    <input type="checkbox" onchange="toggleTask('sat-1')">
+                    <div class="task-content">
+                        <div class="task-title">📍 Complete GBP profile to 50%+</div>
+                        <div class="task-detail">Currently 7% complete. Add: business hours, service areas (all 8 cities), service list (weekly/biweekly/monthly/deep clean), 5 photos (yard before/after, truck, Jamie at work), business description. This alone boosts search visibility 2-3x.</div>
+                        <a href="gbp-quick-complete.html" class="tool-link">📖 Open GBP Toolkit</a>
+                    </div>
+                    <div class="task-time">⏱ 20 min</div>
+                </div>
+                <div class="task" data-id="sat-2">
+                    <input type="checkbox" onchange="toggleTask('sat-2')">
+                    <div class="task-content">
+                        <div class="task-title">📢 Post Spring Deep Clean on Nextdoor</div>
+                        <div class="task-detail">Nextdoor has hyper-local reach — neighbors see it from YOUR neighborhood. Post from the campaign toolkit. 2 Nextdoor post templates ready to go.</div>
+                        <a href="spring-deep-clean-campaign.html" class="tool-link">📖 Open Spring Campaign</a>
+                    </div>
+                    <div class="task-time">⏱ 5 min</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SUNDAY -->
+        <div class="day-card" id="day-sun">
+            <div class="day-header" onclick="toggleDay('day-sun')">
+                <div>
+                    <div class="day-name">🔄 Sunday — Review & Plan</div>
+                    <div class="day-date">March 29</div>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <span class="day-tag tag-low">LIGHT</span>
+                    <span class="chevron">▶</span>
+                </div>
+            </div>
+            <div class="day-body">
+                <div class="task" data-id="sun-1">
+                    <input type="checkbox" onchange="toggleTask('sun-1')">
+                    <div class="task-content">
+                        <div class="task-title">📊 Check review count + respond to any new reviews</div>
+                        <div class="task-detail">If anyone left reviews, respond within 24 hours (templates in toolkit). If no reviews yet, Jamie sends gentle reminder texts to the 3 who were asked Monday.</div>
+                        <a href="google-review-blitz.html" class="tool-link">📖 Open Review Blitz</a>
+                    </div>
+                    <div class="task-time">⏱ 5 min</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WHY THIS WEEK MATTERS -->
+        <div class="why-box">
+            <h3>💡 Why These 7 Actions?</h3>
+            <p>We built 10 toolkits today. This plan cherry-picks the <strong>highest-ROI action</strong> from each one. Every task is:</p>
+            <p>✅ Under 30 minutes &nbsp;|&nbsp; ✅ $0 cost &nbsp;|&nbsp; ✅ Copy-paste ready &nbsp;|&nbsp; ✅ Links to the full toolkit</p>
+            <p style="margin-top:0.75rem;"><strong>If Jamie does ONLY the Monday tasks</strong> (10 minutes total), that alone could generate 1-3 Google reviews and 2 vet clinic partnerships. Those compound forever.</p>
+            <p class="math" style="margin-top:0.5rem;">Total time this week: ~100 min | Cost: $0 | Expected: 1-3 reviews + 2-5 new leads + 1 commercial quote</p>
+        </div>
+
+        <!-- QUICK REF -->
+        <div class="quick-ref">
+            <div class="ref-card">
+                <div class="ref-label">Google Review Link</div>
+                <div class="ref-value"><a href="https://g.page/r/Ce_hqIHanGLvEAE/review" target="_blank">Direct Review Link →</a></div>
+            </div>
+            <div class="ref-card">
+                <div class="ref-label">Tidy Tails Phone</div>
+                <div class="ref-value"><a href="tel:3148507140">314-850-7140</a></div>
+            </div>
+            <div class="ref-card">
+                <div class="ref-label">Website</div>
+                <div class="ref-value"><a href="https://tidytailsstl.com" target="_blank">tidytailsstl.com</a></div>
+            </div>
+            <div class="ref-card">
+                <div class="ref-label">CRM</div>
+                <div class="ref-value"><a href="tidy-tails-crm.html">Customer Tracker →</a></div>
+            </div>
+        </div>
+
+        <button class="reset-btn" onclick="resetAll()">↻ Reset all checkboxes</button>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'weekly-plan-2026-03-23';
+
+        function loadState() {
+            try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
+        }
+        function saveState(state) { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+
+        function toggleDay(id) {
+            document.getElementById(id).classList.toggle('open');
+        }
+
+        function toggleTask(taskId) {
+            const state = loadState();
+            state[taskId] = !state[taskId];
+            saveState(state);
+            render();
+        }
+
+        function resetAll() {
+            if (confirm('Reset all checkboxes for this week?')) {
+                localStorage.removeItem(STORAGE_KEY);
+                render();
+            }
+        }
+
+        function render() {
+            const state = loadState();
+            const tasks = document.querySelectorAll('.task[data-id]');
+            let done = 0;
+            tasks.forEach(t => {
+                const id = t.dataset.id;
+                const cb = t.querySelector('input[type="checkbox"]');
+                if (state[id]) {
+                    t.classList.add('done');
+                    cb.checked = true;
+                    done++;
+                } else {
+                    t.classList.remove('done');
+                    cb.checked = false;
+                }
+            });
+            const total = tasks.length;
+            const pct = total ? Math.round((done / total) * 100) : 0;
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressLabel').textContent = done + ' / ' + total + ' done';
+            document.getElementById('progressPct').textContent = pct + '%';
+        }
+
+        render();
+    </script>
+</body>
+</html>
