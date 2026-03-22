@@ -1,5 +1,5 @@
 # Commercial Leads — Tidy Tails Pet Waste Removal
-*Last updated: March 20, 2026 9:05 AM*
+*Last updated: March 22, 2026 9:08 AM*
 *Status legend: New | Contacted | Quoted | Won | Lost*
 
 ---
@@ -668,6 +668,86 @@
 
 ## 🐕 TIER 2: Referral Partners — NEW (March 21, 2026)
 
+---
+
+## 🐕 TIER 1: Dog Businesses — NEW BATCH (March 22, 2026 — 9:00 AM)
+
+### WestInn Kennels ⭐⭐ TWO LOCATIONS — WENTZVILLE + DARDENNE PRAIRIE
+- **Type:** Dog Boarding / Daycare / Grooming / Training
+- **Locations:**
+  - Wentzville, MO — (636) 332-WOOF (9663)
+  - Dardenne Prairie, MO — (636) 441-8948
+- **Email:** westinnkennels@gmail.com
+- **Website:** westinnkennels.com
+- **Est:** 1997 (29 years in business)
+- **Why Good Fit:** Family-owned since 1997, TWO locations in St. Charles County. Boarding, daycare, grooming, AND training. Uses Dr. Sophia Yin's low-stress handling techniques = quality-focused. Outdoor exercise areas at both locations = significant waste. Both locations in TJ's territory. Landing both = steady recurring + massive referral potential.
+- **Found:** March 22, 2026
+- **Status:** New
+- **Pitch angle:** "We can handle outdoor cleanup at both locations, plus set up a referral deal where your boarding clients get 10% off their first month of yard service."
+
+### Baxter's K9 Complex ⭐ INDOOR DOG PARK + BOARDING — ST. CHARLES
+- **Type:** Dog Boarding / Daycare / Training / Indoor Dog Park
+- **Address:** 546 1st Capitol Dr, St. Charles, MO 63301 (also: 2903 N St Peters Pkwy, St. Peters)
+- **Phone:** See baxtersk9complex.com
+- **Website:** baxtersk9complex.com
+- **Reviews:** 27 Yelp reviews, 73 photos
+- **Why Good Fit:** STL's FIRST indoor dog park. Located just off MO-364 serving O'Fallon, St. Peters, St. Charles, Cottleville, Wentzville, Lake St. Louis. High volume daily. Owner Nancy is passionate about rescue dogs = community-minded.
+- **Found:** March 22, 2026
+- **Status:** New
+- **Pitch angle:** "You've got the first indoor dog park in the area — we can keep your outdoor exercise areas spotless. Plus referral partnership for residential yard cleanup."
+
+### Sorenson Kennels — PREMIUM BRAND — DEFIANCE
+- **Type:** Premium Dog Boarding / Training / Breeding
+- **Address:** 1073 Hwy DD, Defiance, MO 63341
+- **Phone:** (636) 828-5149
+- **Website:** sorensonkennels.com
+- **Est:** 1954 (72 years in business!)
+- **Reviews:** 17 Yelp reviews, 31 photos
+- **Why Good Fit:** One of the finest kennels in the country, est. 1954. Known for Golden Retriever breeding. Sits on acreage = significant outdoor areas. Premium brand = will pay for quality. Puppy buyers are ideal residential customers.
+- **Found:** March 22, 2026
+- **Status:** New
+- **Pitch angle:** "72 years of excellence. We'd love to handle outdoor waste cleanup for your grounds. Referral partnership for your puppy buyers and boarding clients."
+
+---
+
+## 🏠 TIER 1: Apartment Complexes — WEST COUNTY EXPANSION (March 22, 2026)
+
+### The Parq at Chesterfield ⭐ LUXURY — NEXT TO DOG PARK
+- **Type:** Luxury Apartment Complex
+- **Address:** 16346 Lydia Hill Dr, Chesterfield, MO 63017
+- **Phone:** (636) 536-1300
+- **Website:** theparqatchesterfield.com
+- **Rent:** $1,500-$3,098/mo (1-3 bedrooms)
+- **Reviews:** 16 Yelp reviews, 35 photos
+- **Why Good Fit:** Luxury pet-friendly apartments RIGHT NEXT TO Chesterfield Central Park / Dog Park. Affluent residents, 46 units. Dog-friendly marketing. Could bundle with Chesterfield Dog Park municipal pitch.
+- **Found:** March 22, 2026
+- **Status:** New
+- **Pitch angle:** "Your residents are right next to the Chesterfield Dog Park — professional weekly cleanup keeps your grounds as premium as your apartments."
+
+### Kensington West Apartments — BALLWIN
+- **Type:** Pet-Friendly Apartment Community
+- **Address:** Ballwin, MO 63021
+- **Phone:** See kensingtonwestapts.com
+- **Website:** kensingtonwestapts.com
+- **Why Good Fit:** Pet-friendly community in Ballwin. Near Millsap Properties' Leslie Apartments. Opens West County expansion alongside Chesterfield/Creve Coeur leads.
+- **Found:** March 22, 2026
+- **Status:** New
+- **Pitch angle:** "We're a local pet waste company already serving West County. Weekly cleanup, flat monthly rate."
+
+### ReNew Chesterfield — RECENTLY RENOVATED
+- **Type:** Renovated Apartment Community
+- **Address:** 2150 Village Green Pkwy, Chesterfield, MO 63017
+- **Phone:** See apartments.com listing
+- **Rent:** $1,269+ (610-1,050 sq ft)
+- **Why Good Fit:** Recently renovated, pet-friendly, near Parq + Chesterfield Dog Park. Could bundle all three into Chesterfield route.
+- **Found:** March 22, 2026
+- **Status:** New
+- **Pitch angle:** "You've invested in renovations — let us keep grounds matching. Building a route in Chesterfield."
+
+---
+
+## 🐕 TIER 2: Referral Partners — Previously Listed (March 21, 2026)
+
 ### Bridgeton Animal Hospital — BRIDGETON
 - **Type:** Veterinary Clinic / Referral Partner
 - **Address:** 12422 Natural Bridge Rd, Bridgeton, MO 63044
@@ -690,7 +770,7 @@
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated March 21, 2026 — 49 total leads)
+## 📊 COMMERCIAL LEAD SUMMARY (Updated March 22, 2026 — 55 total leads)
 
 | Lead | Type | Phone | Priority | Est. Monthly Value |
 |------|------|-------|----------|-------------------|
@@ -737,9 +817,15 @@
 | **Greenmar Apts** | Apt — Fenton (new territory) | See website | 🟡 MEDIUM | $200-$400 |
 | **Sunnen Station** | Loft Community — Maplewood | See website | 🟡 MEDIUM | $200-$400 |
 | **STLAA Vendor Reg** | Industry Association | stlaa.org | 🔴 STRATEGIC | $200-$500/yr → massive ROI |
+| **WestInn Kennels** | 2-Location Dog Biz | (636) 332-9663 | 🔴 HIGH (2 sites!) | $200-$400 + referrals |
+| **Baxter's K9 Complex** | Indoor Dog Park + Boarding | See website | 🔴 HIGH | $150-$300 + referrals |
+| **Sorenson Kennels** | Premium Kennel (since 1954) | (636) 828-5149 | 🟡 MEDIUM | $100-$200 + referrals |
+| **Parq at Chesterfield** | Luxury Apt — Chesterfield | (636) 536-1300 | 🔴 HIGH | $250-$450 |
+| **Kensington West** | Apt — Ballwin | See website | 🟡 MEDIUM | $200-$400 |
+| **ReNew Chesterfield** | Apt — Chesterfield | See website | 🟡 MEDIUM | $200-$400 |
 
-**Total pipeline if all won:** $8,875-$22,650/month (43 leads)
-**Realistic close rate (20-30%):** $1,775-$6,795/month in new recurring revenue
+**Total pipeline if all won:** $9,650-$24,550/month (55 leads)
+**Realistic close rate (20-30%):** $1,930-$7,365/month in new recurring revenue
 
 ### 🗺️ NORTH COUNTY VET BLITZ — THE UNTAPPED GOLDMINE
 The 6 vet clinics above serve North County dog owners who have ZERO local pooper scooper options. If Jamie visits all 6 in one afternoon with cards and flyers:

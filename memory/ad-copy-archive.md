@@ -1,7 +1,13 @@
 # Ad Copy Archive — Shed Ads
 *Tracks previously written ads to avoid repeats*
 
-## March 22, 2026
+## March 22, 2026 (Batch 2 — 9 AM)
+- **Shed-Mar158** — "The To-Do List" — Action procrastination guilt, how long on your list, cross it off
+- **Shed-Mar159** — "Spring Fever" — Perfect weather timing, garage disaster from last fall, "this IS next year"
+- **Shed-Mar160** — "Your Shed, Your Rules" — Autonomy/man cave, nobody telling you what to do, personal space
+- **Shed-Mar161** — "Quit Paying Rent" — Storage unit comparison math, own vs rent, backyard convenience
+
+## March 22, 2026 (Batch 1 — Morning Briefing)
 - **Shed-Mar154** — "Sunday Reset" — Sunday lazy day vibes, garage avoidance humor, "one less thing to ignore"
 - **Shed-Mar155** — "Backyard Season" — Spring backyard upgrade, shed as hangout/gym/workshop, Instagram format
 - **Shed-Mar156** — "Neighborhood Secret" — Social proof, cleanest garages have sheds, cost comparison math
@@ -57,3 +63,7 @@
 - Friday / weekend energy
 - Corner pile / specific clutter guilt
 - No credit check / financing spotlight
+- To-do list procrastination guilt
+- "This IS next year" spring timing
+- "Your shed, your rules" autonomy/man cave
+- Storage unit rent comparison math
