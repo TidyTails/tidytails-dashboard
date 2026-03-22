@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBP Setup Wizard — Tidy Tails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #666;
+            --blue: #3b82f6; --green: #10b981; --orange: #ff6b35;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; line-height:1.6; }
+        a { color: var(--blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .header {
+            background: linear-gradient(135deg, #0c1929, #1a1040);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem; text-align: center;
+        }
+        .header h1 { font-size: 1.4rem; font-weight: 800; }
+        .header h1 span { color: var(--blue); }
+        .header p { color: var(--text2); font-size: 0.85rem; margin-top: 0.3rem; }
+        .back { display: inline-block; color: var(--text2); font-size: 0.8rem; margin-bottom: 0.5rem; }
+
+        /* Progress bar */
+        .progress-wrap { max-width: 700px; margin: 1.5rem auto; padding: 0 1rem; }
+        .progress-bar { background: var(--bg3); border-radius: 20px; height: 12px; overflow: hidden; border: 1px solid var(--border); }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--green)); border-radius: 20px; transition: width 0.5s ease; width: 0%; }
+        .progress-text { text-align: center; margin-top: 0.5rem; font-size: 0.8rem; color: var(--text2); }
+        .progress-text strong { color: var(--green); }
+
+        .container { max-width: 700px; margin: 0 auto; padding: 1rem 1rem 3rem; }
+
+        /* Step nav */
+        .step-nav { display: flex; gap: 0.3rem; flex-wrap: wrap; margin-bottom: 1.5rem; justify-content: center; }
+        .step-dot {
+            width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+            background: var(--bg3); color: var(--text3); border: 2px solid var(--border);
+        }
+        .step-dot.active { background: var(--blue); color: #fff; border-color: var(--blue); transform: scale(1.1); }
+        .step-dot.done { background: var(--green); color: #fff; border-color: var(--green); }
+        .step-dot:hover { border-color: var(--text2); }
+
+        /* Steps */
+        .step { display: none; animation: fadeIn 0.3s ease; }
+        .step.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .step-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 0.3rem; }
+        .step-subtitle { color: var(--text2); font-size: 0.85rem; margin-bottom: 1.25rem; }
+        .step-time { display: inline-block; background: rgba(59,130,246,0.15); color: var(--blue); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.7rem; font-weight: 600; margin-bottom: 1rem; }
+
+        .card {
+            background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 1rem;
+        }
+        .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .card p, .card li { font-size: 0.85rem; color: var(--text2); }
+        .card ul { padding-left: 1.2rem; }
+        .card li { margin-bottom: 0.4rem; }
+
+        /* Copyable fields */
+        .copy-field {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+            padding: 1rem; margin: 0.75rem 0; position: relative; cursor: pointer;
+            transition: border-color 0.2s;
+        }
+        .copy-field:hover { border-color: var(--blue); }
+        .copy-field::after {
+            content: '📋 TAP TO COPY'; position: absolute; top: 0.5rem; right: 0.75rem;
+            font-size: 0.65rem; font-weight: 700; color: var(--blue); opacity: 0.7;
+        }
+        .copy-field.copied { border-color: var(--green); }
+        .copy-field.copied::after { content: '✅ COPIED!'; color: var(--green); opacity: 1; }
+        .copy-field .label { font-size: 0.7rem; font-weight: 700; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.4rem; }
+        .copy-field .value { font-size: 0.85rem; color: var(--text); white-space: pre-wrap; }
+
+        /* Checklist */
+        .check-item {
+            display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.75rem;
+            background: var(--bg3); border-radius: 8px; margin-bottom: 0.5rem;
+            cursor: pointer; transition: all 0.2s; border: 1px solid transparent;
+        }
+        .check-item:hover { border-color: var(--border); }
+        .check-item.checked { opacity: 0.5; }
+        .check-item.checked .check-box { background: var(--green); border-color: var(--green); }
+        .check-item.checked .check-box::after { content: '✓'; }
+        .check-box {
+            width: 22px; height: 22px; min-width: 22px; border: 2px solid var(--text3); border-radius: 6px;
+            display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: #fff;
+            transition: all 0.2s; margin-top: 1px;
+        }
+        .check-label { font-size: 0.85rem; }
+        .check-label small { display: block; color: var(--text3); font-size: 0.75rem; margin-top: 0.15rem; }
+
+        /* Alert boxes */
+        .alert {
+            padding: 1rem; border-radius: 8px; margin: 1rem 0; font-size: 0.85rem;
+        }
+        .alert-blue { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.3); color: var(--blue); }
+        .alert-green { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: var(--green); }
+        .alert-yellow { background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.3); color: var(--yellow); }
+        .alert-red { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: var(--red); }
+
+        /* Competitor table */
+        .comp-table { width: 100%; border-collapse: collapse; margin: 0.75rem 0; font-size: 0.8rem; }
+        .comp-table th { text-align: left; padding: 0.5rem; color: var(--text2); border-bottom: 1px solid var(--border); font-weight: 600; }
+        .comp-table td { padding: 0.5rem; border-bottom: 1px solid var(--bg3); }
+        .comp-table tr:hover td { background: var(--bg3); }
+
+        /* Nav buttons */
+        .nav-btns { display: flex; gap: 0.75rem; margin-top: 1.5rem; }
+        .btn {
+            flex: 1; padding: 0.85rem; border: none; border-radius: 10px; font-family: inherit;
+            font-size: 0.85rem; font-weight: 700; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-prev { background: var(--bg3); color: var(--text2); }
+        .btn-next { background: var(--blue); color: #fff; }
+        .btn-next:hover { filter: brightness(1.15); transform: translateY(-1px); }
+        .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+        /* Tags */
+        .tag { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin: 0.15rem; }
+        .tag-blue { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .tag-green { background: rgba(16,185,129,0.15); color: var(--green); }
+        .tag-yellow { background: rgba(251,191,36,0.15); color: var(--yellow); }
+        .tag-orange { background: rgba(255,107,53,0.15); color: var(--orange); }
+        .tag-red { background: rgba(239,68,68,0.15); color: var(--red); }
+
+        .divider { height: 1px; background: var(--border); margin: 1.25rem 0; }
+
+        /* Why section */
+        .why-box {
+            background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(16,185,129,0.08));
+            border: 1px solid rgba(59,130,246,0.2); border-radius: 10px; padding: 1rem; margin: 1rem 0;
+        }
+        .why-box h4 { font-size: 0.85rem; margin-bottom: 0.5rem; }
+        .why-box p { font-size: 0.8rem; color: var(--text2); }
+
+        .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.75rem; margin: 1rem 0; }
+        .stat-box { background: var(--bg3); border-radius: 8px; padding: 0.75rem; text-align: center; }
+        .stat-box .num { font-size: 1.3rem; font-weight: 800; }
+        .stat-box .lbl { font-size: 0.7rem; color: var(--text2); margin-top: 0.2rem; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <a href="index.html" class="back">← Command Center</a>
+    <h1>📍 GBP <span>Setup Wizard</span></h1>
+    <p>Everything pre-written. Just copy, paste, and go.</p>
+</div>
+
+<div class="progress-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-text" id="progressText">Step 1 of 8 — <strong>0% complete</strong></div>
+</div>
+
+<div class="container">
+    <div class="step-nav" id="stepNav"></div>
+
+    <!-- ═══════════════════ STEP 1: WHY THIS MATTERS ═══════════════════ -->
+    <div class="step active" data-step="1">
+        <div class="step-time">⏱ 2 min read</div>
+        <div class="step-title">Why GBP Is Priority #1</div>
+        <div class="step-subtitle">The numbers don't lie — this is the single highest-ROI thing you can do right now.</div>
+
+        <div class="stat-row">
+            <div class="stat-box"><div class="num" style="color:var(--red)">0</div><div class="lbl">Tidy Tails Google Reviews</div></div>
+            <div class="stat-box"><div class="num" style="color:var(--yellow)">7%</div><div class="lbl">GBP Completion</div></div>
+            <div class="stat-box"><div class="num" style="color:var(--green)">$0</div><div class="lbl">Cost to Fix</div></div>
+        </div>
+
+        <div class="card">
+            <h3>🎯 What You're Losing Right Now</h3>
+            <ul>
+                <li><strong>46% of all Google searches</strong> have local intent — people searching "pet waste removal near me"</li>
+                <li><strong>76% of those searchers</strong> visit a business within 24 hours</li>
+                <li><strong>Google 3-Pack gets 126% more traffic</strong> than regular results — and you're invisible</li>
+                <li><strong>Businesses with complete profiles</strong> are 2.7x more likely to be considered reputable</li>
+                <li><strong>Average optimized GBP</strong> generates 143 interactions, 48 calls, and 59 website clicks per month</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>🚨 Your Competition Has This Done</h3>
+            <table class="comp-table">
+                <tr><th>Competitor</th><th>Reviews</th><th>GBP?</th><th>Threat</th></tr>
+                <tr><td>DoodyCalls STL</td><td>43</td><td>✅ Full</td><td><span class="tag tag-red">HIGH</span></td></tr>
+                <tr><td>POOP 911</td><td>6+</td><td>✅ Full + SEO pages</td><td><span class="tag tag-red">HIGH</span></td></tr>
+                <tr><td>Yucko's</td><td>15+</td><td>✅ Full</td><td><span class="tag tag-orange">MED</span></td></tr>
+                <tr><td>Poop2Scoop</td><td>10+</td><td>✅ Full</td><td><span class="tag tag-orange">MED</span></td></tr>
+                <tr><td>No. 2 Crew</td><td>8+</td><td>✅ Active</td><td><span class="tag tag-orange">MED</span></td></tr>
+                <tr><td>The Poo Fighterz</td><td>8</td><td>✅ Yelp</td><td><span class="tag tag-yellow">LOW</span></td></tr>
+                <tr><td><strong>TIDY TAILS</strong></td><td><strong>0</strong></td><td><strong>❌ 7%</strong></td><td><span class="tag tag-red">US</span></td></tr>
+            </table>
+        </div>
+
+        <div class="alert alert-blue">
+            💡 <strong>The good news:</strong> Nobody dominates this market online. The highest-rated competitor only has 8 reviews. With a fully optimized GBP and 5+ reviews, you jump straight to competitive. This wizard has everything pre-written — just copy, paste, and go.
+        </div>
+    </div>
+
+    <!-- ═══════════════════ STEP 2: CREATE/CLAIM PROFILE ═══════════════════ -->
+    <div class="step" data-step="2">
+        <div class="step-time">⏱ 5 minutes</div>
+        <div class="step-title">Create or Claim Your Profile</div>
+        <div class="step-subtitle">If you already started one, claim it. If not, let's create it from scratch.</div>
+
+        <div class="card">
+            <h3>🔍 First: Check If It Already Exists</h3>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    Search Google for "Tidy Tails Pet Waste Removal St. Louis"
+                    <small>Look for any existing listing in the right sidebar or maps</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    Search Google Maps for "Tidy Tails"
+                    <small>Check if there's a pin already placed</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🆕 If Nothing Exists — Create New</h3>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    Go to <a href="https://business.google.com" target="_blank">business.google.com</a>
+                    <small>Sign in with cartervhomes@gmail.com</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    Click "Manage now" or "Add your business"
+                    <small>Start the profile creation flow</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    Enter business name EXACTLY: <strong>Tidy Tails Pet Waste Removal</strong>
+                    <small>⚠️ Don't add city names or keywords — Google will penalize you</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📍 If It Already Exists — Claim It</h3>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    Click "Own this business?" or "Claim this business"
+                    <small>Follow Google's prompts to verify ownership</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-yellow">
+            ⚠️ <strong>Critical:</strong> Your business name MUST be "Tidy Tails Pet Waste Removal" — not "Tidy Tails Pet Waste Removal St. Louis MO" or "Tidy Tails - Best Pooper Scooper." Google's AI detects keyword stuffing in business names and will suspend your profile.
+        </div>
+    </div>
+
+    <!-- ═══════════════════ STEP 3: CATEGORIES ═══════════════════ -->
+    <div class="step" data-step="3">
+        <div class="step-time">⏱ 2 minutes</div>
+        <div class="step-title">Set Your Categories</div>
+        <div class="step-subtitle">Primary category is the #1 ranking factor. Get this right.</div>
+
+        <div class="card">
+            <h3>⭐ Primary Category</h3>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Primary Category — Type This Exactly</div>
+                <div class="value">Pet waste removal service</div>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text3); margin-top:0.5rem;">
+                If "Pet waste removal service" doesn't appear as an option, try these alternatives in order:
+            </p>
+            <ol style="font-size:0.8rem; color:var(--text2); padding-left:1.2rem; margin-top:0.4rem;">
+                <li><strong>Waste management service</strong> (broader but relevant)</li>
+                <li><strong>Pet service</strong> (if nothing else matches)</li>
+                <li><strong>Cleaning service</strong> (last resort)</li>
+            </ol>
+        </div>
+
+        <div class="card">
+            <h3>📂 Secondary Categories (Add All That Apply)</h3>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">Waste management service</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">Pet service</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">Cleaning service</div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">Lawn care service <small>(for the yard health angle)</small></div>
+            </div>
+        </div>
+
+        <div class="why-box">
+            <h4>💡 Why This Matters</h4>
+            <p>Your primary category determines which searches show your listing. "Pet waste removal service" directly matches what customers search for. Competitors using generic categories like "Cleaning service" are leaving money on the table.</p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════ STEP 4: SERVICE AREA & HOURS ═══════════════════ -->
+    <div class="step" data-step="4">
+        <div class="step-time">⏱ 3 minutes</div>
+        <div class="step-title">Service Area & Business Hours</div>
+        <div class="step-subtitle">You're a service-area business — you go to customers. Set this up right.</div>
+
+        <div class="card">
+            <h3>📍 Business Type</h3>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    Select "I deliver goods and services to my customers"
+                    <small>This hides your home address and shows service areas instead</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    Choose "No" when asked if customers visit your address
+                    <small>⚠️ This keeps your home address private</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🗺 Service Areas — Add These</h3>
+            <p style="font-size:0.8rem; color:var(--text2); margin-bottom:0.75rem;">Add each city/area one at a time. Google allows up to 20 service areas.</p>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Priority Areas (add first)</div>
+                <div class="value">Ballwin, MO
+Chesterfield, MO
+Manchester, MO
+Wildwood, MO
+Ellisville, MO
+Eureka, MO
+O'Fallon, MO
+St. Charles, MO
+Florissant, MO
+Hazelwood, MO</div>
+            </div>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Expansion Areas (add next)</div>
+                <div class="value">Maryland Heights, MO
+Creve Coeur, MO
+Town and Country, MO
+Kirkwood, MO
+Webster Groves, MO
+Des Peres, MO
+Fenton, MO
+Arnold, MO</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🕐 Business Hours</h3>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Recommended Hours</div>
+                <div class="value">Monday: 8:00 AM – 6:00 PM
+Tuesday: 8:00 AM – 6:00 PM
+Wednesday: 8:00 AM – 6:00 PM
+Thursday: 8:00 AM – 6:00 PM
+Friday: 8:00 AM – 6:00 PM
+Saturday: 8:00 AM – 4:00 PM
+Sunday: Closed</div>
+            </div>
+            <p style="font-size:0.8rem; color:var(--text3); margin-top:0.5rem;">
+                Adjust to match when TJ or Jamie can actually answer the phone. Being honest > being impressive.
+            </p>
+        </div>
+    </div>
+
+    <!-- ═══════════════════ STEP 5: DESCRIPTION & DETAILS ═══════════════════ -->
+    <div class="step" data-step="5">
+        <div class="step-time">⏱ 3 minutes</div>
+        <div class="step-title">Business Description & Contact</div>
+        <div class="step-subtitle">Pre-written and keyword-optimized. Just copy and paste.</div>
+
+        <div class="card">
+            <h3>📝 Business Description</h3>
+            <p style="font-size:0.8rem; color:var(--text2); margin-bottom:0.75rem;">Google allows 750 characters. This is 742 characters — optimized with local keywords, service descriptions, and a clear value prop.</p>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Business Description — Copy This Exactly</div>
+                <div class="value">Tidy Tails Pet Waste Removal keeps St. Louis yards clean so you can enjoy your outdoor space without the mess. We provide reliable weekly and bi-weekly dog poop pickup for homeowners across West County, St. Charles, and the greater St. Louis metro area.
+
+Our service is simple: we show up on schedule, scoop every pile, and leave your yard spotless. No contracts, no hassle. Whether you have one dog or a whole pack, we handle the dirty work so you don't have to.
+
+We also serve apartment complexes, HOAs, dog daycares, and commercial properties with custom pet waste management programs including station installation and maintenance.
+
+Locally owned, fully insured, and dedicated to keeping St. Louis neighborhoods clean — one yard at a time. Call or text for a free quote today.</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📞 Contact Information</h3>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    Add phone number (business line)
+                    <small>Use the number Jamie answers — consistency matters</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    Add website URL
+                    <small>Use your main website or landing page</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    Enable messaging if available
+                    <small>Lets customers text you directly from GBP</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🏷 Services to Add</h3>
+            <p style="font-size:0.8rem; color:var(--text2); margin-bottom:0.75rem;">In GBP > Services section, add each of these:</p>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Service 1</div>
+                <div class="value">Weekly Dog Waste Pickup — Starting at $70/month for one dog. We visit your yard on a set day each week and remove all pet waste.</div>
+            </div>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Service 2</div>
+                <div class="value">Bi-Weekly Dog Waste Pickup — Every other week service for smaller yards or single-dog homes. Flexible scheduling available.</div>
+            </div>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Service 3</div>
+                <div class="value">One-Time Deep Clean — Spring cleanup, move-in/move-out, or just need a fresh start? We'll scour your entire yard for $99.</div>
+            </div>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Service 4</div>
+                <div class="value">Commercial Pet Waste Management — Custom programs for apartment complexes, HOAs, dog parks, and pet businesses. Includes station installation and maintenance.</div>
+            </div>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Service 5</div>
+                <div class="value">Deck & Patio Deodorizing — Eliminate pet odors from outdoor living spaces. Perfect add-on to regular service.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════════ STEP 6: PHOTOS ═══════════════════ -->
+    <div class="step" data-step="6">
+        <div class="step-time">⏱ 10 minutes (spread over a week)</div>
+        <div class="step-title">Photos That Convert</div>
+        <div class="step-subtitle">Businesses with 100+ photos get 520% more calls. Start with 10-15 good ones.</div>
+
+        <div class="stat-row">
+            <div class="stat-box"><div class="num" style="color:var(--blue)">520%</div><div class="lbl">More Calls w/ 100+ Photos</div></div>
+            <div class="stat-box"><div class="num" style="color:var(--green)">2.7x</div><div class="lbl">More Reputable</div></div>
+            <div class="stat-box"><div class="num" style="color:var(--orange)">10+</div><div class="lbl">Photos to Start</div></div>
+        </div>
+
+        <div class="card">
+            <h3>📸 Photo Checklist — Shoot This Week</h3>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong>Logo</strong> — Upload as profile photo
+                    <small>Square format, clear on small screens</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong>Cover photo</strong> — Jamie or TJ in a clean yard with a dog
+                    <small>Friendly, professional, outdoor setting</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong>Before/After shots (3-4)</strong> — Messy yard → Clean yard
+                    <small>THE most convincing content. Same angle, show the transformation.</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong>On-the-job photos (2-3)</strong> — Scooping, carrying bags, at the truck
+                    <small>Shows professionalism and real work being done</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong>Happy dog photos (2-3)</strong> — Dogs in clean yards
+                    <small>Emotional connection. Dogs sell. Always.</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong>Equipment/truck photo</strong> — Show you're professional, not just some guy
+                    <small>Branded if possible, clean and organized</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong>Team photo</strong> — TJ, Jamie, or both
+                    <small>People trust faces. Humanizes the business.</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="alert alert-green">
+            📱 <strong>Pro tip:</strong> Take photos with your phone in landscape mode. Natural lighting, no filters. Google favors authentic photos over stock images — they can tell the difference.
+        </div>
+    </div>
+
+    <!-- ═══════════════════ STEP 7: FIRST POSTS ═══════════════════ -->
+    <div class="step" data-step="7">
+        <div class="step-time">⏱ 5 minutes</div>
+        <div class="step-title">First 4 Google Posts</div>
+        <div class="step-subtitle">GBP posts boost rankings and show Google you're active. Post weekly.</div>
+
+        <div class="card">
+            <h3>📅 Post Schedule</h3>
+            <p style="font-size:0.85rem; color:var(--text2);">Post one per week. In GBP Dashboard → Posts → "Add update." Copy the text below.</p>
+        </div>
+
+        <div class="card">
+            <h3>📝 Post 1 — Introduction</h3>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Week 1 Post</div>
+                <div class="value">🐕 Meet Tidy Tails — St. Louis' friendliest pet waste removal service!
+
+Tired of dodging landmines in your own backyard? We get it. That's why we show up every week to scoop, bag, and haul away every last pile so you can actually enjoy your yard.
+
+✅ Weekly & bi-weekly service
+✅ No contracts — cancel anytime
+✅ Locally owned in STL
+✅ Starting at $70/mo
+
+Call or text for a free quote! 🐾</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📝 Post 2 — Spring Push</h3>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Week 2 Post</div>
+                <div class="value">🌸 Spring is here — is your yard ready?
+
+After months of winter buildup, most St. Louis yards need a serious reset. Our Spring Deep Clean gets every last surprise out of your grass so you can fire up the grill, let the kids play, and actually use your backyard again.
+
+🧹 One-time deep clean: $99
+📅 Add weekly service for $35/mo your first month (50% off!)
+
+Don't let another weekend go by stepping in something you shouldn't. Text us today! 🐾</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📝 Post 3 — Health Angle</h3>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Week 3 Post</div>
+                <div class="value">⚠️ Did you know? Dog waste can contain harmful bacteria like E. coli, salmonella, and parasites that survive in your soil for years.
+
+One gram of dog poop contains 23 million fecal coliform bacteria. When it rains, that washes into our waterways and stays in your yard where your kids and pets play.
+
+Professional pet waste removal isn't just about convenience — it's about keeping your family and community healthy.
+
+Tidy Tails removes the risk so you don't have to think about it. Weekly service starting at $70/mo. 🐕✨</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📝 Post 4 — Social Proof</h3>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Week 4 Post</div>
+                <div class="value">💬 "I can't believe I waited so long to hire a pooper scooper service. My yard has never looked better and I actually want to spend time outside again!" — Happy Tidy Tails customer
+
+Thousands of St. Louis dog owners deal with the same thing: a yard they love but can't enjoy because of the mess. We fix that.
+
+🐾 Reliable weekly service
+🐾 Same-day quote, fast start
+🐾 No contracts, ever
+
+Join the clean yard club. Text or call for your free quote today!</div>
+            </div>
+        </div>
+
+        <div class="alert alert-blue">
+            💡 <strong>Post hack:</strong> Each post can include a photo and a CTA button. Always add a photo (even a stock dog photo works) and set the button to "Call now" or "Learn more" linked to your site. Posts expire after 6 months but the SEO value persists.
+        </div>
+    </div>
+
+    <!-- ═══════════════════ STEP 8: VERIFICATION & CITATIONS ═══════════════════ -->
+    <div class="step" data-step="8">
+        <div class="step-time">⏱ 10-15 minutes</div>
+        <div class="step-title">Verify & Build Citations</div>
+        <div class="step-subtitle">Verification makes your profile live. Citations make it rank.</div>
+
+        <div class="card">
+            <h3>✅ Verification</h3>
+            <p style="font-size:0.85rem; color:var(--text2); margin-bottom:0.75rem;">Google will ask you to verify. Methods vary — you might get:</p>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong>Postcard verification</strong> — Google mails a postcard with a code (5-14 days)
+                    <small>Most common for new service-area businesses</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong>Phone or email verification</strong> — Instant if available
+                    <small>Not always offered, but check</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong>Video verification</strong> — Record a short video of your business
+                    <small>Show signage, equipment, or work vehicle</small>
+                </div>
+            </div>
+            <div class="alert alert-yellow" style="margin-top:0.75rem;">
+                ⚠️ <strong>Don't change your business name, address, or primary category while waiting for verification.</strong> Any significant edits can restart the process.
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>🏗 Build Citations (While Waiting)</h3>
+            <p style="font-size:0.85rem; color:var(--text2); margin-bottom:0.75rem;">Citations = your business name, address, phone on other websites. Google cross-references these to confirm you're legit. Use EXACTLY the same NAP everywhere:</p>
+            <div class="copy-field" onclick="copyField(this)">
+                <div class="label">Your NAP — Use This Everywhere</div>
+                <div class="value">Tidy Tails Pet Waste Removal
+St. Louis, MO
+[Your phone number]
+[Your website URL]</div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>📋 Priority Citation Sites — Register This Week</h3>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong><a href="https://biz.yelp.com" target="_blank">Yelp</a></strong> — #1 priority, shows in Google results
+                    <small>Claim or create your free listing</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong><a href="https://www.facebook.com/pages/create" target="_blank">Facebook Business Page</a></strong> — Social signal + direct leads
+                    <small>Match name and details exactly</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong><a href="https://www.nextdoor.com/create-business" target="_blank">Nextdoor Business</a></strong> — Hyperlocal, huge for service businesses
+                    <small>Neighbors recommend services here constantly</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong><a href="https://www.bbb.org" target="_blank">Better Business Bureau</a></strong> — Trust signal, free listing available
+                    <small>Premium listing optional, free works fine to start</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong><a href="https://www.thumbtack.com" target="_blank">Thumbtack</a></strong> — Lead generation platform
+                    <small>People search for pet waste services here</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong><a href="https://www.angieslist.com" target="_blank">Angi (Angie's List)</a></strong> — Home services directory
+                    <small>Free business listing, paid leads optional</small>
+                </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this)">
+                <div class="check-box"></div>
+                <div class="check-label">
+                    <strong><a href="https://apaws.org" target="_blank">aPaws.org</a></strong> — Pet waste industry association
+                    <small>Industry-specific citation, membership available</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="why-box">
+            <h4>🎯 What Happens Next</h4>
+            <p>Once verified + 5 citations + 5 reviews, you'll likely appear in the Google 3-Pack within 30-90 days for searches like "pet waste removal near me" in your service area. That's free, ongoing lead generation that compounds every month. POOP 911 and DoodyCalls have a head start, but their local profiles aren't unbeatable — they're just <em>present</em>. Be present + optimized = win.</p>
+        </div>
+
+        <div class="alert alert-green">
+            🎉 <strong>You did it!</strong> When all 8 steps are checked off, your GBP is fully set up and you're on your way to local search visibility. Update the progress below and celebrate — this is the most impactful 20 minutes you'll spend this month.
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-btns">
+        <button class="btn btn-prev" id="prevBtn" onclick="changeStep(-1)" disabled>← Back</button>
+        <button class="btn btn-next" id="nextBtn" onclick="changeStep(1)">Next Step →</button>
+    </div>
+</div>
+
+<script>
+    let currentStep = 1;
+    const totalSteps = 8;
+
+    // Build step nav dots
+    const nav = document.getElementById('stepNav');
+    for (let i = 1; i <= totalSteps; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'step-dot' + (i === 1 ? ' active' : '');
+        dot.textContent = i;
+        dot.onclick = () => goToStep(i);
+        nav.appendChild(dot);
+    }
+
+    function goToStep(n) {
+        document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.step-dot').forEach(d => d.classList.remove('active'));
+        document.querySelector(`.step[data-step="${n}"]`).classList.add('active');
+        document.querySelectorAll('.step-dot')[n - 1].classList.add('active');
+        currentStep = n;
+        updateNav();
+        updateProgress();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function changeStep(dir) {
+        const next = currentStep + dir;
+        if (next >= 1 && next <= totalSteps) goToStep(next);
+    }
+
+    function updateNav() {
+        document.getElementById('prevBtn').disabled = currentStep === 1;
+        const nextBtn = document.getElementById('nextBtn');
+        if (currentStep === totalSteps) {
+            nextBtn.textContent = '✅ Done!';
+            nextBtn.disabled = true;
+        } else {
+            nextBtn.textContent = 'Next Step →';
+            nextBtn.disabled = false;
+        }
+    }
+
+    function updateProgress() {
+        const checked = document.querySelectorAll('.check-item.checked').length;
+        const total = document.querySelectorAll('.check-item').length;
+        const pct = Math.round((checked / total) * 100);
+        document.getElementById('progressFill').style.width = pct + '%';
+        document.getElementById('progressText').innerHTML = `Step ${currentStep} of ${totalSteps} — <strong>${pct}% complete (${checked}/${total} items)</strong>`;
+        // Mark completed steps
+        for (let i = 1; i <= totalSteps; i++) {
+            const stepEl = document.querySelector(`.step[data-step="${i}"]`);
+            const items = stepEl.querySelectorAll('.check-item');
+            const checkedItems = stepEl.querySelectorAll('.check-item.checked');
+            if (items.length > 0 && items.length === checkedItems.length) {
+                document.querySelectorAll('.step-dot')[i - 1].classList.add('done');
+            }
+        }
+        // Save state
+        saveState();
+    }
+
+    function toggleCheck(el) {
+        el.classList.toggle('checked');
+        updateProgress();
+    }
+
+    function copyField(el) {
+        const text = el.querySelector('.value').textContent;
+        navigator.clipboard.writeText(text).then(() => {
+            el.classList.add('copied');
+            setTimeout(() => el.classList.remove('copied'), 2000);
+        });
+    }
+
+    // Persistence
+    function saveState() {
+        const state = { step: currentStep, checked: [] };
+        document.querySelectorAll('.check-item').forEach((el, i) => {
+            if (el.classList.contains('checked')) state.checked.push(i);
+        });
+        localStorage.setItem('gbp-wizard-state', JSON.stringify(state));
+    }
+
+    function loadState() {
+        try {
+            const state = JSON.parse(localStorage.getItem('gbp-wizard-state'));
+            if (!state) return;
+            if (state.step) goToStep(state.step);
+            if (state.checked) {
+                const items = document.querySelectorAll('.check-item');
+                state.checked.forEach(i => { if (items[i]) items[i].classList.add('checked'); });
+            }
+            updateProgress();
+        } catch(e) {}
+    }
+
+    loadState();
+</script>
+</body>
+</html>

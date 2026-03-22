@@ -7,6 +7,42 @@
 
 ## March 22, 2026 (Sunday)
 
+### 5:04 AM — 📍 GBP Setup Wizard — Interactive 8-Step Guided Setup (Deliverable)
+**Task:** GBP completion is at 7%. Monday Action Brief lists it as Priority #2. POOP 911 has full SEO pages. DoodyCalls has 43 reviews. Tidy Tails has ZERO search visibility. Built the definitive GBP setup tool — not another checklist, but a step-by-step interactive wizard with everything pre-written and copy-pasteable.
+
+**Result:** ✅ COMPLETE — `dashboard/gbp-setup-wizard.html` — 8-step wizard with persistent progress tracking
+
+**What Got Done:**
+1. **Research phase** — Scraped 5 GBP optimization guides (2026), Sweep&Go's pet waste GBP webinar, Google's own category recommendations, and competitor analysis for STL market
+2. **Step 1: Why This Matters** — Competitor comparison table (DoodyCalls 43 reviews, POOP 911 full SEO, Tidy Tails 0/7%), data-backed urgency (46% searches local, 76% visit within 24hrs)
+3. **Step 2: Create/Claim** — Exact instructions for claiming vs creating, with warning about keyword-stuffed names (Google AI penalty)
+4. **Step 3: Categories** — Primary: "Pet waste removal service" + 4 secondary categories with fallback options
+5. **Step 4: Service Areas** — 18 cities pre-filled (Ballwin, Chesterfield, Manchester, etc.) + business hours template
+6. **Step 5: Description** — 742-character keyword-optimized description ready to paste, 5 service listings with copy buttons
+7. **Step 6: Photos** — 7-item photo checklist with specific guidance (before/after, on-the-job, happy dogs, team)
+8. **Step 7: First 4 Posts** — 4 weeks of Google Posts pre-written (intro, spring push, health angle, social proof)
+9. **Step 8: Verification & Citations** — NAP consistency template, 7 priority citation sites with direct links (Yelp, Facebook, Nextdoor, BBB, Thumbtack, Angi, aPaws)
+10. **Interactive features** — Persistent progress bar (localStorage), tap-to-copy fields, checkbox tracking, step navigation dots
+
+**Key Research Findings Applied:**
+- Primary category = #1 ranking factor for local pack
+- Google 3-Pack gets 126% more traffic than regular results
+- Businesses with complete profiles 2.7x more likely to be considered reputable
+- 73% of consumers ignore reviews older than 1 month
+- NAP consistency across citations is non-negotiable for local SEO
+- POOP 911 is building hyper-local SEO pages (Florissant) — we need GBP + citations to compete
+
+**Dashboard Updates:**
+- Added to TODAY section as Priority #2 (with blue glow border)
+- Added to TOOLS section (GBP category)
+- Added to archive list (top of Mar 22)
+
+**Why This Task:** The old "GBP Quick-Complete Checklist" has 16 checkboxes but doesn't explain WHY each step matters or provide the actual copy to paste. This wizard is the difference between "TJ knows he should do this" and "TJ can literally do it in 20 minutes by copying what's on screen." Every field pre-written. Every service listed. Every post ready. Zero thinking required — just execution.
+
+**Rotation:** 📍 Local SEO / GBP / Visibility
+
+---
+
 ### 4:05 AM — 🔧 Dashboard Health Check & Task Log Maintenance (Housekeeping)
 **Task:** 4 AM Sunday. Per core rules: late night = maintenance, not new content. Ran a full dashboard integrity audit and continued task log archival.
 
