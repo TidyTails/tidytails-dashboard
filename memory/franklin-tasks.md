@@ -7,6 +7,30 @@
 
 ## March 22, 2026 (Sunday)
 
+### 1:04 AM — 🔍 Weekly Competitor Scan + POOP 911 Alert (Intelligence)
+**Task:** Weekly competitor scan was due (last: Mar 16). Crawled all 5 tracked competitors + search results. Found a significant change.
+
+**Result:** 🚨 POOP 911 FLORISSANT PAGE FULLY BUILT OUT — Previous "not prioritizing STL" assessment was WRONG
+
+**What Got Done:**
+1. **Crawled 5 competitor sites** — DoodyCalls, POOP 911, Poop2Scoop, Dog Doody Defenders, Yuckos
+2. **POOP 911 major change detected:** Florissant page went from thin placeholder (4+ weeks dormant) → full SEO content with hyper-local keyword targeting (St. Ferdinand Park, McCluer High, Eagan Center, Civic Center, Old St. Ferdinand Shrine)
+3. **Search results analysis:** POOP 911 now ranks #1 for "pet waste removal Florissant MO" — Tidy Tails still invisible
+4. **6 new competitors spotted on Yelp:** Poopy Paws, The Poo Fighterz, The Pootector, No 2 Crew, DooDash, Super Scoopers — need profiling
+5. **Written up:** `memory/competitors/weekly-scan-2026-03-22.md`
+
+**Key Intel:**
+- POOP 911: $11.95/wk + free first cleanup + referral program, now with real Florissant SEO content
+- DDD: $17/wk, unchanged, bad reviews still their weakness
+- Tidy Tails: ~$17.50/wk ($70/mo), ZERO search visibility, competing on trust/reliability
+- Market more crowded than battlemap shows — 6+ untracked competitors on Yelp
+
+**Why This Task:** 1 AM Sunday = research, not toolkits. Competitor scan was 6 days overdue. The POOP 911 escalation is actionable intel TJ needs — they're investing in Florissant SEO while we're still invisible. GBP + Yelp listing more urgent than ever.
+
+**Rotation:** 🔍 Competitor Intelligence / Research
+
+---
+
 ### 12:04 AM — 🧠 Memory Maintenance & Task Log Archival (Housekeeping)
 **Task:** It's midnight. Task log ballooned back to 1,406 lines. MEMORY.md hadn't been updated since Mar 20. Instead of building toolkit #96, did the thing that actually matters: cleaned house.
 
