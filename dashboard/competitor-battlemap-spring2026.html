@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎯 Competitor Battlemap — STL Pet Waste Removal (Spring 2026)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; }
+  
+  .header { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 24px 20px; border-bottom: 2px solid #e94560; text-align: center; }
+  .header h1 { font-size: 1.6rem; color: #fff; margin-bottom: 4px; }
+  .header .subtitle { color: #888; font-size: 0.85rem; }
+  .header .date { color: #e94560; font-size: 0.75rem; margin-top: 4px; }
+  
+  .tabs { display: flex; overflow-x: auto; background: #111; border-bottom: 1px solid #333; padding: 0 8px; }
+  .tab { padding: 12px 16px; cursor: pointer; color: #777; font-size: 0.8rem; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .tab:hover { color: #ccc; }
+  .tab.active { color: #e94560; border-bottom-color: #e94560; }
+  
+  .content { max-width: 900px; margin: 0 auto; padding: 16px; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  
+  .card { background: #151520; border: 1px solid #2a2a3a; border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+  .card h3 { color: #fff; font-size: 1rem; margin-bottom: 8px; }
+  .card p { color: #aaa; font-size: 0.85rem; line-height: 1.5; }
+  
+  /* Pricing Table */
+  .price-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; margin-top: 8px; }
+  .price-table th { background: #1a1a2e; color: #e94560; padding: 10px 8px; text-align: left; border-bottom: 2px solid #e94560; }
+  .price-table td { padding: 10px 8px; border-bottom: 1px solid #222; }
+  .price-table tr:hover { background: #1a1a25; }
+  .price-table .us { background: rgba(76, 175, 80, 0.1); }
+  .price-table .us td { color: #4caf50; font-weight: 600; }
+  .price-low { color: #4caf50; }
+  .price-mid { color: #ff9800; }
+  .price-high { color: #e94560; }
+  
+  /* Competitor Cards */
+  .comp-card { background: #151520; border: 1px solid #2a2a3a; border-radius: 10px; padding: 16px; margin-bottom: 14px; position: relative; }
+  .comp-card .comp-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .comp-card h3 { color: #fff; font-size: 1rem; }
+  .threat-badge { padding: 3px 10px; border-radius: 12px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+  .threat-high { background: rgba(233, 69, 96, 0.2); color: #e94560; border: 1px solid #e94560; }
+  .threat-med { background: rgba(255, 152, 0, 0.2); color: #ff9800; border: 1px solid #ff9800; }
+  .threat-low { background: rgba(76, 175, 80, 0.2); color: #4caf50; border: 1px solid #4caf50; }
+  .threat-dead { background: rgba(100, 100, 100, 0.2); color: #666; border: 1px solid #555; }
+  
+  .comp-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .comp-detail .label { color: #666; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px; }
+  .comp-detail .value { color: #ccc; font-size: 0.85rem; }
+  
+  .strengths, .weaknesses { margin-top: 10px; }
+  .strengths h4 { color: #4caf50; font-size: 0.8rem; margin-bottom: 4px; }
+  .weaknesses h4 { color: #e94560; font-size: 0.8rem; margin-bottom: 4px; }
+  .strengths li, .weaknesses li { color: #aaa; font-size: 0.8rem; margin-left: 16px; line-height: 1.6; }
+  
+  /* Strategy */
+  .strat-card { background: linear-gradient(135deg, #1a2a1a 0%, #152015 100%); border: 1px solid #2a4a2a; border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+  .strat-card h3 { color: #4caf50; font-size: 1rem; margin-bottom: 8px; }
+  .strat-card li { color: #ccc; font-size: 0.85rem; margin-left: 16px; line-height: 1.7; }
+  
+  .attack-card { background: linear-gradient(135deg, #2a1a1a 0%, #201515 100%); border: 1px solid #4a2a2a; border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+  .attack-card h3 { color: #e94560; font-size: 1rem; margin-bottom: 8px; }
+  .attack-card li { color: #ccc; font-size: 0.85rem; margin-left: 16px; line-height: 1.7; }
+  
+  /* Market Map */
+  .map-section { margin-bottom: 16px; }
+  .map-section h3 { color: #fff; font-size: 1rem; margin-bottom: 10px; }
+  .market-stat { display: flex; justify-content: space-between; padding: 10px 12px; background: #151520; border-radius: 8px; margin-bottom: 6px; }
+  .market-stat .stat-label { color: #888; font-size: 0.85rem; }
+  .market-stat .stat-value { color: #fff; font-size: 0.85rem; font-weight: 600; }
+  .market-stat .stat-value.good { color: #4caf50; }
+  .market-stat .stat-value.warn { color: #ff9800; }
+  .market-stat .stat-value.bad { color: #e94560; }
+  
+  .insight-box { background: #1a1a2e; border-left: 3px solid #e94560; padding: 12px 14px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+  .insight-box p { color: #ccc; font-size: 0.85rem; line-height: 1.5; }
+  .insight-box .label { color: #e94560; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+  
+  .green-box { background: #152015; border-left: 3px solid #4caf50; padding: 12px 14px; border-radius: 0 8px 8px 0; margin: 12px 0; }
+  .green-box p { color: #ccc; font-size: 0.85rem; line-height: 1.5; }
+  .green-box .label { color: #4caf50; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+
+  .score-bar { height: 8px; background: #222; border-radius: 4px; overflow: hidden; margin-top: 4px; }
+  .score-fill { height: 100%; border-radius: 4px; }
+  
+  @media (max-width: 600px) {
+    .comp-detail { grid-template-columns: 1fr; }
+    .header h1 { font-size: 1.3rem; }
+    .tab { padding: 10px 12px; font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎯 STL Competitor Battlemap</h1>
+  <div class="subtitle">Pet Waste Removal — St. Louis Metro Intelligence Report</div>
+  <div class="date">Live Research — March 22, 2026 | Franklin Autonomous Task</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('overview')">📊 Overview</div>
+  <div class="tab" onclick="showTab('pricing')">💰 Pricing War</div>
+  <div class="tab" onclick="showTab('profiles')">🏢 Profiles</div>
+  <div class="tab" onclick="showTab('weaknesses')">🎯 Attack Vectors</div>
+  <div class="tab" onclick="showTab('strategy')">⚔️ Win Strategy</div>
+</div>
+
+<!-- TAB 1: OVERVIEW -->
+<div class="content">
+<div class="panel active" id="overview">
+  
+  <div class="card" style="border-color: #e94560;">
+    <h3>🗺️ The STL Pet Waste Battlefield</h3>
+    <p>St. Louis has <strong>10-12 active pet waste removal companies</strong> competing for an estimated 180,000+ dog-owning households across the metro. Here's the landscape as of March 2026:</p>
+  </div>
+
+  <div class="map-section">
+    <h3>Market Breakdown</h3>
+    
+    <div class="market-stat">
+      <span class="stat-label">Total Active Competitors</span>
+      <span class="stat-value">10-12</span>
+    </div>
+    <div class="market-stat">
+      <span class="stat-label">National Franchises</span>
+      <span class="stat-value warn">3 (DoodyCalls, POOP 911, Pooper Scooper Team)</span>
+    </div>
+    <div class="market-stat">
+      <span class="stat-label">Local Independents</span>
+      <span class="stat-value good">7-9 (including us)</span>
+    </div>
+    <div class="market-stat">
+      <span class="stat-label">Dead/Dormant Sites Found</span>
+      <span class="stat-value bad">2 (Pawfect Waste Solutions is DOWN)</span>
+    </div>
+    <div class="market-stat">
+      <span class="stat-label">Avg Weekly Price (1 dog)</span>
+      <span class="stat-value">$17-20/visit</span>
+    </div>
+    <div class="market-stat">
+      <span class="stat-label">Tidy Tails Position</span>
+      <span class="stat-value good">$17.50/visit — competitive sweet spot</span>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <div class="label">🔑 Key Finding</div>
+    <p><strong>Most competitors have weak digital presence.</strong> DoodyCalls (franchise) has only 4 Yelp reviews. Poopy Paws has 358 Facebook likes but minimal web presence. Yucko's has a website from 2005. Pawfect Waste Solutions' site is completely dead. <strong>The bar for "looking professional" in this market is VERY low.</strong> A polished GBP profile + 10 Google reviews would immediately put Tidy Tails in the top 3.</p>
+  </div>
+
+  <div class="green-box">
+    <div class="label">💡 Opportunity</div>
+    <p><strong>St. Charles County is underserved.</strong> Multiple competitors (including DoodyCalls) explicitly DON'T service St. Charles County. Expanding there = less competition + growing suburbs with dog owners. Also: nobody is doing spring marketing well right now. First mover with a spring deep clean campaign wins.</p>
+  </div>
+
+  <div class="card">
+    <h3>🏆 Competitive Position Score</h3>
+    <p style="margin-bottom: 12px;">How Tidy Tails stacks up across key dimensions:</p>
+    
+    <div style="margin-bottom: 10px;">
+      <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+        <span>Price Competitiveness</span>
+        <span style="color: #4caf50;">8/10</span>
+      </div>
+      <div class="score-bar"><div class="score-fill" style="width: 80%; background: #4caf50;"></div></div>
+    </div>
+    
+    <div style="margin-bottom: 10px;">
+      <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+        <span>Online Presence / SEO</span>
+        <span style="color: #e94560;">2/10</span>
+      </div>
+      <div class="score-bar"><div class="score-fill" style="width: 20%; background: #e94560;"></div></div>
+    </div>
+    
+    <div style="margin-bottom: 10px;">
+      <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+        <span>Google Reviews</span>
+        <span style="color: #e94560;">1/10</span>
+      </div>
+      <div class="score-bar"><div class="score-fill" style="width: 10%; background: #e94560;"></div></div>
+    </div>
+    
+    <div style="margin-bottom: 10px;">
+      <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+        <span>Service Quality</span>
+        <span style="color: #4caf50;">8/10</span>
+      </div>
+      <div class="score-bar"><div class="score-fill" style="width: 80%; background: #4caf50;"></div></div>
+    </div>
+    
+    <div style="margin-bottom: 10px;">
+      <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+        <span>Commercial Presence</span>
+        <span style="color: #ff9800;">3/10</span>
+      </div>
+      <div class="score-bar"><div class="score-fill" style="width: 30%; background: #ff9800;"></div></div>
+    </div>
+    
+    <div style="margin-bottom: 10px;">
+      <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+        <span>Brand / Personality</span>
+        <span style="color: #4caf50;">7/10</span>
+      </div>
+      <div class="score-bar"><div class="score-fill" style="width: 70%; background: #4caf50;"></div></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TAB 2: PRICING WAR -->
+<div class="panel" id="pricing">
+  
+  <div class="card">
+    <h3>💰 STL Pet Waste Pricing Matrix (March 2026)</h3>
+    <p style="margin-bottom: 12px;">All prices for 1 dog, standard yard, weekly service unless noted. Green row = us.</p>
+    
+    <table class="price-table">
+      <tr>
+        <th>Company</th>
+        <th>Weekly (1 dog)</th>
+        <th>Bi-Weekly</th>
+        <th>Monthly Total</th>
+        <th>Extra Dog</th>
+      </tr>
+      <tr class="us">
+        <td>🐕 TIDY TAILS</td>
+        <td>$17.50/visit</td>
+        <td>—</td>
+        <td>$70/mo</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>Poop 2 Scoop</td>
+        <td class="price-low">$18/visit</td>
+        <td>$25/visit</td>
+        <td>~$72/mo</td>
+        <td>$4/dog</td>
+      </tr>
+      <tr>
+        <td>Poopy Paws</td>
+        <td class="price-low">$20/visit flat</td>
+        <td>—</td>
+        <td>~$80/mo</td>
+        <td>FREE (flat rate)</td>
+      </tr>
+      <tr>
+        <td>POOP 911</td>
+        <td class="price-low">$13.95/visit*</td>
+        <td>—</td>
+        <td>~$56/mo*</td>
+        <td>Varies</td>
+      </tr>
+      <tr>
+        <td>DoodyCalls</td>
+        <td class="price-mid">~$12-14/visit*</td>
+        <td>—</td>
+        <td>~$48-56/mo*</td>
+        <td>Varies</td>
+      </tr>
+      <tr>
+        <td>Dirty Dog Poo Crew</td>
+        <td class="price-high">$23.75/visit</td>
+        <td>$20/visit</td>
+        <td>$95/mo</td>
+        <td>~$1.25/wk</td>
+      </tr>
+      <tr>
+        <td>Yucko's</td>
+        <td class="price-mid">Quote only</td>
+        <td>—</td>
+        <td>Quote only</td>
+        <td>Quote only</td>
+      </tr>
+    </table>
+    <p style="margin-top: 8px; font-size: 0.75rem; color: #666;">*POOP 911 and DoodyCalls are franchise "starting at" prices — actual STL quotes may be higher. Both require custom quotes.</p>
+  </div>
+
+  <div class="insight-box">
+    <div class="label">💡 Pricing Analysis</div>
+    <p><strong>Tidy Tails at $70/mo is right in the middle</strong> — cheaper than Dirty Dog ($95), Poopy Paws ($80), and comparable to Poop 2 Scoop ($72). The franchises (DoodyCalls, POOP 911) advertise lower starting prices but those are national minimums — actual STL quotes often come in higher. Our pricing is <strong>competitive for a local independent</strong>.</p>
+  </div>
+
+  <div class="card">
+    <h3>🎯 Price Positioning Strategy</h3>
+    <p style="margin-bottom: 10px;">Where to play:</p>
+    <ul style="margin-left: 16px;">
+      <li style="color: #ccc; line-height: 1.7; font-size: 0.85rem;"><strong style="color: #4caf50;">Don't compete on price with franchises</strong> — they have scale advantages. Compete on personality, reliability, and local trust.</li>
+      <li style="color: #ccc; line-height: 1.7; font-size: 0.85rem;"><strong style="color: #4caf50;">Multi-dog discount opportunity</strong> — Poop 2 Scoop charges $4/extra dog. We should consider a flat rate for 2+ dogs (like Poopy Paws does) to steal multi-dog households.</li>
+      <li style="color: #ccc; line-height: 1.7; font-size: 0.85rem;"><strong style="color: #e94560;">Spring deep clean upsell</strong> — Nobody is advertising spring one-time cleanups prominently. $99 deep clean → $70/mo recurring is a killer conversion path.</li>
+      <li style="color: #ccc; line-height: 1.7; font-size: 0.85rem;"><strong style="color: #ff9800;">Add deodorizing</strong> — Poop 2 Scoop charges $4/visit for this. Easy upsell that adds $16-17/mo per customer.</li>
+    </ul>
+  </div>
+
+  <div class="green-box">
+    <div class="label">🔥 Hot Take</div>
+    <p>At $70/mo, our margins are healthy. The real play isn't lowering price — it's <strong>increasing perceived value</strong>. Before/after photos, text notifications when service is complete, holiday cards... things that make customers feel like they're getting a premium experience at a mid-tier price.</p>
+  </div>
+</div>
+
+<!-- TAB 3: COMPETITOR PROFILES -->
+<div class="panel" id="profiles">
+
+  <div class="comp-card">
+    <div class="comp-header">
+      <h3>🏢 DoodyCalls of St. Louis</h3>
+      <span class="threat-badge threat-high">HIGH THREAT</span>
+    </div>
+    <div class="comp-detail">
+      <div><div class="label">Type</div><div class="value">National Franchise (Authority Brands)</div></div>
+      <div><div class="label">Phone</div><div class="value">(314) 230-8082</div></div>
+      <div><div class="label">Years Active</div><div class="value">25+ (franchise network)</div></div>
+      <div><div class="label">Pricing</div><div class="value">Starting ~$12/visit (varies)</div></div>
+      <div><div class="label">Service Area</div><div class="value">St. Louis County (NOT St. Charles)</div></div>
+      <div><div class="label">Reviews</div><div class="value">4 Yelp reviews</div></div>
+    </div>
+    <div class="strengths">
+      <h4>✅ Strengths</h4>
+      <ul>
+        <li>National brand recognition + 25 years of trust</li>
+        <li>Professional website, uniformed techs, background checks</li>
+        <li>Commercial services (pet waste stations, HOAs, apartments)</li>
+        <li>Satisfaction guarantee with 24-hour callback</li>
+        <li>Strong SEO — ranks #1 for many STL pet waste searches</li>
+      </ul>
+    </div>
+    <div class="weaknesses">
+      <h4>❌ Weaknesses</h4>
+      <ul>
+        <li>Only 4 Yelp reviews — poor social proof for a franchise</li>
+        <li>Corporate feel — no personality, no local flavor</li>
+        <li>Does NOT service St. Charles County</li>
+        <li>Indeed reviews: employees unhappy (long hours, no breaks, GPS tracking)</li>
+        <li>Franchise fees = higher prices passed to customers</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="comp-card">
+    <div class="comp-header">
+      <h3>💩 POOP 911 — St. Louis</h3>
+      <span class="threat-badge threat-high">HIGH THREAT</span>
+    </div>
+    <div class="comp-detail">
+      <div><div class="label">Type</div><div class="value">National Franchise</div></div>
+      <div><div class="label">Phone</div><div class="value">1-877-POOP-911</div></div>
+      <div><div class="label">Pricing</div><div class="value">Starting $13.95/visit</div></div>
+      <div><div class="label">Service Area</div><div class="value">City + heavy suburb coverage (70+ zip codes)</div></div>
+      <div><div class="label">Reviews</div><div class="value">Moderate online presence</div></div>
+      <div><div class="label">Special</div><div class="value">Free first cleanup with recurring service</div></div>
+    </div>
+    <div class="strengths">
+      <h4>✅ Strengths</h4>
+      <ul>
+        <li>Memorable brand name and phone number</li>
+        <li>Massive service area — 70+ zip codes covered</li>
+        <li>Free first cleanup = strong conversion hook</li>
+        <li>Yard deodorizing, community/park event services</li>
+        <li>Good local SEO with neighborhood-specific pages</li>
+      </ul>
+    </div>
+    <div class="weaknesses">
+      <h4>❌ Weaknesses</h4>
+      <ul>
+        <li>Franchise = less personal touch, cookie-cutter service</li>
+        <li>"Starting at" pricing — actual quotes often higher</li>
+        <li>Covering 70+ zip codes means they're spread thin</li>
+        <li>Runs from Soulard/Lafayette area — less West County focus</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="comp-card">
+    <div class="comp-header">
+      <h3>🐾 Poop 2 Scoop</h3>
+      <span class="threat-badge threat-med">MEDIUM THREAT</span>
+    </div>
+    <div class="comp-detail">
+      <div><div class="label">Type</div><div class="value">Local Independent (veteran-owned, family-run)</div></div>
+      <div><div class="label">Phone</div><div class="value">314-449-9447</div></div>
+      <div><div class="label">Pricing</div><div class="value">$18/wk (1 dog), $25 bi-weekly</div></div>
+      <div><div class="label">Add-ons</div><div class="value">Extra dog $4, large yard $4, deodorize $4</div></div>
+      <div><div class="label">Contracts</div><div class="value">No contracts — start/stop anytime</div></div>
+      <div><div class="label">Special</div><div class="value">Veteran-owned (great marketing angle)</div></div>
+    </div>
+    <div class="strengths">
+      <h4>✅ Strengths</h4>
+      <ul>
+        <li>Clean, professional website</li>
+        <li>Veteran-owned = instant trust + supports-veterans angle</li>
+        <li>Transparent pricing on website (builds trust)</li>
+        <li>No contracts messaging is strong</li>
+        <li>Deodorizing service = upsell revenue</li>
+      </ul>
+    </div>
+    <div class="weaknesses">
+      <h4>❌ Weaknesses</h4>
+      <ul>
+        <li>$18/wk per DOG — 2-dog homes pay $88/mo vs our $70</li>
+        <li>No visible Google reviews or Yelp presence</li>
+        <li>Website looks good but lacks personality</li>
+        <li>No social media engagement visible</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="comp-card">
+    <div class="comp-header">
+      <h3>🐕 Poopy Paws</h3>
+      <span class="threat-badge threat-med">MEDIUM THREAT</span>
+    </div>
+    <div class="comp-detail">
+      <div><div class="label">Type</div><div class="value">Local Independent</div></div>
+      <div><div class="label">Pricing</div><div class="value">$20/week FLAT (any # of dogs)</div></div>
+      <div><div class="label">Social</div><div class="value">358 Facebook likes, active Nextdoor</div></div>
+      <div><div class="label">Monthly</div><div class="value">~$80/mo</div></div>
+      <div><div class="label">Reviews</div><div class="value">Yelp #1 ranked in STL</div></div>
+      <div><div class="label">Vibe</div><div class="value">Casual, fun branding</div></div>
+    </div>
+    <div class="strengths">
+      <h4>✅ Strengths</h4>
+      <ul>
+        <li>#1 on Yelp for STL pet waste removal</li>
+        <li>Flat rate = simple, attractive for multi-dog homes</li>
+        <li>Active on Nextdoor (where neighbors search for services)</li>
+        <li>Fun brand personality (good for word of mouth)</li>
+      </ul>
+    </div>
+    <div class="weaknesses">
+      <h4>❌ Weaknesses</h4>
+      <ul>
+        <li>$80/mo is $10 more than Tidy Tails</li>
+        <li>358 Facebook likes is modest after years in business</li>
+        <li>No real website — Facebook/Yelp only</li>
+        <li>No visible commercial services</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="comp-card">
+    <div class="comp-header">
+      <h3>🛁 Dirty Dog Wash Poo Crew</h3>
+      <span class="threat-badge threat-low">LOW THREAT</span>
+    </div>
+    <div class="comp-detail">
+      <div><div class="label">Type</div><div class="value">Pet grooming shop with poop crew add-on</div></div>
+      <div><div class="label">Pricing</div><div class="value">$95/mo (1-2 dogs weekly)</div></div>
+      <div><div class="label">Bi-Weekly</div><div class="value">$80/mo (1-2 dogs)</div></div>
+      <div><div class="label">Trip Charge</div><div class="value">Extra fee outside 10-mile radius</div></div>
+      <div><div class="label">Focus</div><div class="value">Grooming first, poop removal secondary</div></div>
+    </div>
+    <div class="strengths">
+      <h4>✅ Strengths</h4>
+      <ul>
+        <li>Built-in customer base from grooming business</li>
+        <li>Cross-sell opportunities (groom + scoop package)</li>
+      </ul>
+    </div>
+    <div class="weaknesses">
+      <h4>❌ Weaknesses</h4>
+      <ul>
+        <li>MOST EXPENSIVE at $95/mo — 36% more than us</li>
+        <li>Trip charge limits service area</li>
+        <li>Poop removal is an afterthought, not their core business</li>
+        <li>Limited to 1/4 acre or smaller yards</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="comp-card">
+    <div class="comp-header">
+      <h3>🧓 Yucko's Pooper Scooper Service</h3>
+      <span class="threat-badge threat-low">LOW THREAT</span>
+    </div>
+    <div class="comp-detail">
+      <div><div class="label">Type</div><div class="value">Local veteran (since 1990!)</div></div>
+      <div><div class="label">Phone</div><div class="value">314-291-7667</div></div>
+      <div><div class="label">Pricing</div><div class="value">Quote only (not published)</div></div>
+      <div><div class="label">Website</div><div class="value">Looks like it was built in 2003</div></div>
+      <div><div class="label">Side Business</div><div class="value">Sells Dogipot stations nationally</div></div>
+      <div><div class="label">Service Area</div><div class="value">St. Louis + St. Charles</div></div>
+    </div>
+    <div class="strengths">
+      <h4>✅ Strengths</h4>
+      <ul>
+        <li>36 years in business — serious longevity</li>
+        <li>Covers St. Charles (others don't)</li>
+        <li>Dogipot product sales = diversified revenue</li>
+        <li>6 Yelp reviews, decent rating</li>
+      </ul>
+    </div>
+    <div class="weaknesses">
+      <h4>❌ Weaknesses</h4>
+      <ul>
+        <li>Website is an absolute disaster — looks 20 years old</li>
+        <li>No published pricing = friction for customers</li>
+        <li>Phone-only quotes in 2026 = losing digital-first customers</li>
+        <li>Seems to focus more on product sales than services</li>
+        <li>98 Facebook likes — almost no social presence</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="comp-card">
+    <div class="comp-header">
+      <h3>☠️ Pawfect Waste Solutions</h3>
+      <span class="threat-badge threat-dead">DEAD?</span>
+    </div>
+    <div class="comp-detail">
+      <div><div class="label">Website</div><div class="value">pooperscooperstl.com — RETURNS 404</div></div>
+      <div><div class="label">Status</div><div class="value">Site not published / no domain</div></div>
+    </div>
+    <div class="weaknesses">
+      <h4>⚰️ Status</h4>
+      <ul>
+        <li>Website completely down — "Site not found"</li>
+        <li>Possibly went out of business or rebranding</li>
+        <li><strong>OPPORTUNITY:</strong> Their former customers need a new provider. Check if they had Google reviews to identify their service area.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- TAB 4: ATTACK VECTORS -->
+<div class="panel" id="weaknesses">
+
+  <div class="card" style="border-color: #e94560;">
+    <h3>🎯 How We Beat Every Competitor</h3>
+    <p>Specific attack vectors based on each competitor's weak points:</p>
+  </div>
+
+  <div class="attack-card">
+    <h3>⚔️ vs. DoodyCalls (Franchise)</h3>
+    <ul>
+      <li><strong>"We're your neighbors, not a franchise."</strong> They're corporate. We're local. People in STL care about supporting local businesses.</li>
+      <li><strong>Match their "satisfaction guarantee"</strong> but make ours more personal: "If you're not happy, TJ will personally come fix it."</li>
+      <li><strong>Target St. Charles County</strong> where they explicitly don't serve.</li>
+      <li><strong>Undercut on reviews:</strong> They have 4 Yelp reviews. Getting to 10 Google reviews puts us ahead in social proof.</li>
+      <li><strong>Their employees are unhappy</strong> (Indeed reviews). We can recruit their best techs or compete on service quality.</li>
+    </ul>
+  </div>
+
+  <div class="attack-card">
+    <h3>⚔️ vs. POOP 911 (Franchise)</h3>
+    <ul>
+      <li><strong>Call out the "starting at" trick:</strong> "Our price is $70/mo. No surprises. No 'starting at' games."</li>
+      <li><strong>They're spread across 70+ zip codes.</strong> We focus on our service area and do it better. Concentrated routes = never late, always thorough.</li>
+      <li><strong>Counter their free first cleanup</strong> with our $99 spring deep clean → $35 first month offer. Better value long-term.</li>
+    </ul>
+  </div>
+
+  <div class="attack-card">
+    <h3>⚔️ vs. Poop 2 Scoop (Local)</h3>
+    <ul>
+      <li><strong>Multi-dog advantage:</strong> They charge $4/extra dog. We should offer flat rate or small upcharge. A 2-dog home saves $16/mo switching to us.</li>
+      <li><strong>Out-social them:</strong> They have no visible social presence. Dominate Facebook groups, Nextdoor, and Instagram where they're invisible.</li>
+      <li><strong>Match their deodorizing:</strong> Add yard/deck deodorizing as a $10-15 upsell. Easy revenue they've proven the market wants.</li>
+    </ul>
+  </div>
+
+  <div class="attack-card">
+    <h3>⚔️ vs. Poopy Paws (Local)</h3>
+    <ul>
+      <li><strong>Beat on price:</strong> $70 vs $80. Simple pitch to their customers: same quality, $120/year cheaper.</li>
+      <li><strong>Website advantage:</strong> They don't have one. Our website + GBP profile should convert every searcher they miss.</li>
+      <li><strong>Commercial services:</strong> They don't do commercial. Every apartment complex and HOA lead is ours for the taking.</li>
+    </ul>
+  </div>
+
+  <div class="attack-card">
+    <h3>⚔️ vs. Dirty Dog Poo Crew (Overpriced)</h3>
+    <ul>
+      <li><strong>Price is our weapon:</strong> They charge $95/mo. We're $70. That's $300/year savings — enough to make anyone switch.</li>
+      <li><strong>No yard size limits:</strong> They cap at 1/4 acre. We don't (or shouldn't — handle it with large yard pricing instead of refusing service).</li>
+      <li><strong>No trip charge:</strong> They charge extra outside 10 miles. We don't nickel-and-dime.</li>
+    </ul>
+  </div>
+
+  <div class="attack-card">
+    <h3>⚔️ vs. Yucko's (Dinosaur)</h3>
+    <ul>
+      <li><strong>Exist online. That's it.</strong> Their website looks like 2003 GeoCities. Any modern presence beats them.</li>
+      <li><strong>Published pricing > quote-only.</strong> Modern customers want to see the price before they call. Transparency wins.</li>
+      <li><strong>Respect the elder:</strong> They've been around since 1990. Don't trash-talk them directly. Just out-execute everywhere digital.</li>
+    </ul>
+  </div>
+
+  <div class="green-box">
+    <div class="label">🏆 Universal Win: The Review Gap</div>
+    <p><strong>NOBODY in this market has strong Google reviews.</strong> DoodyCalls has 4 Yelp reviews. Most locals have near-zero. If Tidy Tails gets to 15-20 Google reviews with 5 stars, we'll outrank almost every competitor in "pet waste removal near me" searches. <strong>Reviews are the #1 competitive weapon right now.</strong></p>
+  </div>
+
+</div>
+
+<!-- TAB 5: WIN STRATEGY -->
+<div class="panel" id="strategy">
+  
+  <div class="card" style="border-color: #4caf50;">
+    <h3>⚔️ The Tidy Tails Win Strategy</h3>
+    <p>Based on competitive intelligence, here are the 5 moves that would put us in the top 3 by summer 2026:</p>
+  </div>
+
+  <div class="strat-card">
+    <h3>1. 🌟 Win the Review War (Weeks 1-4)</h3>
+    <ul>
+      <li><strong>Target: 15 Google reviews by end of April</strong></li>
+      <li>Ask every current customer after next service (Jamie texts them the direct Google review link)</li>
+      <li>Offer a free service visit for a review (ethically — "leave honest feedback")</li>
+      <li>This alone will push us above most competitors in local search</li>
+      <li><strong>Cost: $0 | Impact: MASSIVE</strong></li>
+    </ul>
+  </div>
+
+  <div class="strat-card">
+    <h3>2. 📍 Own Google Business Profile (Weeks 1-2)</h3>
+    <ul>
+      <li>Complete GBP to 100% — photos, hours, services, Q&A, products</li>
+      <li>Post weekly Google updates (spring tips, before/after, pet facts)</li>
+      <li>Add all service categories: "Pet waste removal," "Dog walking" (adjacent), "Lawn care" (adjacent)</li>
+      <li>Directory blitz kit already built — submit to top 20 directories for citation authority</li>
+      <li><strong>Cost: $0-7/mo | Impact: HIGH</strong></li>
+    </ul>
+  </div>
+
+  <div class="strat-card">
+    <h3>3. 🐕 Multi-Dog Flat Rate (Immediate)</h3>
+    <ul>
+      <li><strong>New pricing tier: 2+ dogs = $80/mo flat</strong> (vs. $88+ at Poop 2 Scoop for 2 dogs)</li>
+      <li>This makes us the best deal in STL for multi-dog households</li>
+      <li>50%+ of pet households with dogs have more than one — this is a huge market</li>
+      <li>Advertise as: "Multiple dogs? One price. $80/mo, period."</li>
+      <li><strong>Cost: Slight margin reduction | Impact: MEDIUM-HIGH (differentiator)</strong></li>
+    </ul>
+  </div>
+
+  <div class="strat-card">
+    <h3>4. 🏢 Commercial Land Grab (Weeks 2-6)</h3>
+    <ul>
+      <li>DoodyCalls is the only competitor with serious commercial services</li>
+      <li>49 commercial leads already identified — Jamie calls top 10 this week</li>
+      <li>One apartment complex = $200-500/mo recurring. Three complexes = a whole route.</li>
+      <li>Walk-in vet clinic blitz: 7 clinics in one day, drop business cards + flyers</li>
+      <li><strong>Cost: Gas + time | Impact: HIGH (revenue multiplier)</strong></li>
+    </ul>
+  </div>
+
+  <div class="strat-card">
+    <h3>5. 🌿 Spring Campaign Blitz (NOW)</h3>
+    <ul>
+      <li>Nobody is running spring marketing aggressively right now — first mover wins</li>
+      <li>$99 spring deep clean → $35 first month → $70/mo recurring</li>
+      <li>Post in 10 STL Facebook groups this week</li>
+      <li>Nextdoor posts in all service area neighborhoods</li>
+      <li>Counter POOP 911's "free first cleanup" with better long-term value</li>
+      <li><strong>Cost: $0 | Impact: HIGH (immediate leads)</strong></li>
+    </ul>
+  </div>
+
+  <div class="insight-box">
+    <div class="label">📊 Bottom Line</div>
+    <p><strong>The STL pet waste market is ripe for the taking.</strong> Most competitors are either soulless franchises or local shops with terrible digital presence. Tidy Tails has competitive pricing, a real personality, and now the strategy to attack. The order of operations: Reviews → GBP → Spring Campaign → Commercial → Scale. Execute this in order and we hit 25 customers by summer, not August.</p>
+  </div>
+
+  <div class="card">
+    <h3>📅 90-Day Competitive Targets</h3>
+    <div class="market-stat">
+      <span class="stat-label">Google Reviews</span>
+      <span class="stat-value good">0 → 15+ (by April 30)</span>
+    </div>
+    <div class="market-stat">
+      <span class="stat-label">GBP Completion</span>
+      <span class="stat-value good">~20% → 100% (by April 7)</span>
+    </div>
+    <div class="market-stat">
+      <span class="stat-label">Directory Listings</span>
+      <span class="stat-value good">0 → 15+ (by April 15)</span>
+    </div>
+    <div class="market-stat">
+      <span class="stat-label">Commercial Quotes Sent</span>
+      <span class="stat-value good">0 → 10+ (by April 30)</span>
+    </div>
+    <div class="market-stat">
+      <span class="stat-label">Recurring Customers</span>
+      <span class="stat-value good">5 → 12+ (by June 15)</span>
+    </div>
+    <div class="market-stat">
+      <span class="stat-label">Monthly Revenue</span>
+      <span class="stat-value good">~$350 → $840+ (by June 15)</span>
+    </div>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>

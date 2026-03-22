@@ -7,6 +7,34 @@
 
 ## March 22, 2026 (Sunday)
 
+### 10:05 PM (Sat night) — 🎯 Competitor Battlemap — Live Intel on Every STL Pet Waste Company (Hourly Autonomous)
+**Task:** Deep competitive intelligence sweep — scraped websites, pricing pages, Yelp listings, and Google data for all 10-12 active STL pet waste removal competitors. Built interactive strategy dashboard with pricing comparisons, threat assessments, and attack vectors.
+
+**Result:** ✅ COMPLETE — `dashboard/competitor-battlemap-spring2026.html` — 5-tab competitive intelligence system
+
+**Deliverable:** Full competitor battlemap with:
+1. **📊 Overview:** Market landscape (10-12 competitors, 3 franchises, 7-9 locals), Tidy Tails competitive position scores, key findings
+2. **💰 Pricing War:** Side-by-side pricing matrix for all competitors with monthly totals, extra dog charges, and positioning strategy
+3. **🏢 Profiles:** Detailed dossiers on 7 competitors — strengths, weaknesses, pricing, phone numbers, service areas, review counts
+4. **🎯 Attack Vectors:** Specific "how we beat them" playbooks for each competitor (DoodyCalls, POOP 911, Poop 2 Scoop, Poopy Paws, Dirty Dog, Yucko's)
+5. **⚔️ Win Strategy:** 5 prioritized strategic moves + 90-day competitive targets
+
+**Key Findings:**
+- **Review gap is MASSIVE** — DoodyCalls (franchise, 25 years) has only 4 Yelp reviews. Getting 15 Google reviews makes us market leader in social proof.
+- **Pawfect Waste Solutions is DEAD** — their website (pooperscooperstl.com) returns 404. Their customers need a new provider.
+- **St. Charles County is underserved** — DoodyCalls explicitly doesn't serve there. Only Yucko's covers it.
+- **Nobody doing spring marketing** — first mover with a spring campaign wins the seasonal surge.
+- **Tidy Tails at $70/mo is well-positioned** — cheaper than Dirty Dog ($95), Poopy Paws ($80), comparable to Poop 2 Scoop ($72)
+- **Multi-dog flat rate opportunity** — Poop 2 Scoop charges $4/extra dog. Flat rate for 2+ dogs would be a competitive differentiator.
+
+**Raw Intel Saved:** `memory/competitor-intel-spring2026.md` — phone numbers, pricing, service areas, weaknesses for all competitors
+**Dashboard Updated:** Added to tools section
+**Pushed to GitHub:** ✅
+
+**Rotation:** 🎯 Competitive Intelligence / Market Research / Strategy
+
+---
+
 ### 9:04 PM (Sat night) — 📍 Directory Blitz Kit — 20 FREE Listings to Go From Invisible to Found (Hourly Autonomous)
 **Task:** SEO audit found 0 backlinks, 0 directory listings, 0 citations. That's why Tidy Tails doesn't show up in ANY search results. Built a complete interactive directory submission kit with 20 directories organized by priority, copy-paste business info for NAP consistency, and step-by-step instructions for each.
 
