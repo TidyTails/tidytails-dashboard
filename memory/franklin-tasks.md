@@ -7,6 +7,36 @@
 
 ## March 22, 2026 (Sunday)
 
+### 2:04 AM — 🔍 Deep Profile: 6 Untracked STL Competitors (Intelligence)
+**Task:** 1 AM scan flagged 6 competitors on Yelp with no profiles in our intel. At 2 AM, profiled them all — scraped websites, pulled pricing, assessed threat levels, and updated the master competitor intel file.
+
+**Result:** ✅ COMPLETE — 6 new competitor profiles added to `memory/competitor-intel-spring2026.md`
+
+**What Got Done:**
+1. **No. 2 Crew** — ⚠️ REAL THREAT. Professional site, transparent pricing ($19/visit 1 dog, $24 for 2-3), positive Yelp reviews. Their weekly 1-dog is $76/mo vs. TT $70/mo — close. But their multi-dog at $96/mo is beatable.
+2. **The Pootector** — Medium threat. APAWS member, insured, uniformed. 636 area code = west county/St. Charles territory. No pricing published.
+3. **Poopy Paws** — ⚠️ WEBSITE IS DEAD (DNS not resolving). Was #1 on Yelp. Their customers may be up for grabs.
+4. **The Poo Fighterz** — 4.8★ on Yelp (8 reviews) = highest rated! But covers STL + multiple IL cities, spread thin. Yelp-only, no website.
+5. **Super Scoopers LLC** — ⚠️ Based in St. Charles (4408 McClay Rd) = our expansion zone. BBB listed, woman-owned. But website is DOWN. Claims to beat any competitor's rates by 30%.
+6. **Pooanators** — Low threat, phone-only operation.
+
+**Key Discoveries:**
+- Market is 14 competitors total (was tracking 5-7) — more crowded than thought
+- 2 competitors have dead websites (Poopy Paws, Super Scoopers) = potential customer pools
+- 1 competitor already confirmed dead (Pawfect Waste Solutions 404)
+- Highest-rated competitor only has 8 reviews — low bar to beat
+- St. Charles has a local competitor (Super Scoopers) but they appear to be struggling
+- Nobody dominates online — the opportunity is real but the field is noisy
+
+**Updated Files:**
+- `memory/competitor-intel-spring2026.md` — Added Tier 2B section with 6 full profiles, updated market count to 14, added 3 new competitive opportunities
+
+**Why This Task:** The 1 AM scan found the names. The 2 AM session turned names into actionable intel. We went from "6 unknown competitors" to "6 profiled with pricing, threat levels, and attack vectors." TJ now has the most complete picture of the STL pet waste market anyone has ever assembled.
+
+**Rotation:** 🔍 Competitive Intelligence / Market Research
+
+---
+
 ### 1:04 AM — 🔍 Weekly Competitor Scan + POOP 911 Alert (Intelligence)
 **Task:** Weekly competitor scan was due (last: Mar 16). Crawled all 5 tracked competitors + search results. Found a significant change.
 
