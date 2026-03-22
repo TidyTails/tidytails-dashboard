@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏘️ Neighbor Blitz Kit — Turn Every Job Into 5 New Leads | Tidy Tails</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
+  .container { max-width: 720px; margin: 0 auto; padding: 16px; }
+  
+  header { text-align: center; padding: 28px 0 20px; border-bottom: 2px solid #2a2a2a; margin-bottom: 24px; }
+  header h1 { font-size: 1.6em; background: linear-gradient(135deg, #f97316, #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 6px; }
+  header p { color: #888; font-size: 0.9em; }
+  header .stat-row { display: flex; justify-content: center; gap: 24px; margin-top: 14px; }
+  header .stat { text-align: center; }
+  header .stat .num { font-size: 1.8em; font-weight: 800; color: #f97316; }
+  header .stat .label { font-size: 0.75em; color: #888; }
+  
+  .tabs { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; -webkit-overflow-scrolling: touch; }
+  .tab { padding: 10px 16px; border-radius: 10px; background: #1a1a1a; border: 1px solid #2a2a2a; color: #888; font-size: 0.82em; cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: all 0.2s; }
+  .tab.active { background: #7c2d12; border-color: #f97316; color: #fff; }
+  .tab:hover { border-color: #555; }
+  
+  .panel { display: none; }
+  .panel.active { display: block; }
+  
+  .card { background: #111; border: 1px solid #2a2a2a; border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+  .card-header { padding: 16px; background: linear-gradient(135deg, #1a0d05, #1a1200); border-bottom: 1px solid #2a2a2a; }
+  .card-header h2 { color: #f97316; font-size: 1.1em; }
+  .card-header h3 { color: #fbbf24; font-size: 1em; margin-top: 2px; }
+  .card-header p { color: #888; font-size: 0.85em; margin-top: 4px; }
+  .card-body { padding: 16px; }
+  
+  .copy-block { background: #0d0d0d; border-left: 3px solid #f97316; padding: 14px 16px; border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 0.9em; line-height: 1.7; white-space: pre-wrap; position: relative; }
+  
+  .copy-btn { display: block; width: 100%; padding: 12px; background: #7c2d12; color: #fff; border: none; border-radius: 8px; font-size: 0.95em; font-weight: 600; cursor: pointer; margin-top: 10px; transition: background 0.2s; }
+  .copy-btn:active { background: #9a3412; }
+  .copy-btn.copied { background: #22c55e; }
+  
+  .checklist { list-style: none; }
+  .checklist li { padding: 10px 12px; border-bottom: 1px solid #1a1a1a; display: flex; align-items: flex-start; gap: 10px; font-size: 0.9em; }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] { margin-top: 3px; accent-color: #f97316; width: 18px; height: 18px; flex-shrink: 0; }
+  .checklist .checked { text-decoration: line-through; color: #666; }
+  
+  .math-box { background: #0d1a0d; border: 1px solid #166534; border-radius: 10px; padding: 16px; margin: 12px 0; }
+  .math-box h4 { color: #4ade80; margin-bottom: 8px; font-size: 0.95em; }
+  .math-box .row { display: flex; justify-content: space-between; padding: 4px 0; font-size: 0.88em; color: #aaa; }
+  .math-box .row.total { border-top: 1px solid #2a2a2a; padding-top: 8px; margin-top: 4px; color: #4ade80; font-weight: 700; }
+  
+  .route-map { background: #111; border: 1px solid #2a2a2a; border-radius: 12px; overflow: hidden; margin-bottom: 16px; }
+  .route-header { padding: 14px 16px; background: #1a0d05; border-bottom: 1px solid #2a2a2a; display: flex; justify-content: space-between; align-items: center; }
+  .route-header h3 { color: #f97316; font-size: 1em; }
+  .route-header .badge { background: #7c2d12; color: #fbbf24; padding: 4px 10px; border-radius: 20px; font-size: 0.75em; font-weight: 600; }
+  .route-body { padding: 16px; }
+  .route-body .house { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid #1a1a1a; align-items: center; }
+  .route-body .house:last-child { border-bottom: none; }
+  .route-body .house .icon { font-size: 1.4em; width: 36px; text-align: center; }
+  .route-body .house .info { flex: 1; }
+  .route-body .house .info .name { font-size: 0.9em; color: #e0e0e0; }
+  .route-body .house .info .detail { font-size: 0.78em; color: #888; }
+  
+  .print-preview { background: #fff; color: #000; border-radius: 12px; padding: 24px; margin: 16px 0; text-align: center; }
+  .print-preview h2 { color: #f97316; font-size: 1.5em; margin-bottom: 6px; }
+  .print-preview .tagline { font-size: 1.05em; color: #333; margin-bottom: 14px; }
+  .print-preview .offer-box { background: #fff7ed; border: 2px dashed #f97316; border-radius: 10px; padding: 14px; margin: 14px 0; }
+  .print-preview .offer-box .big { font-size: 1.5em; font-weight: 800; color: #ea580c; }
+  .print-preview .offer-box .sub { font-size: 0.85em; color: #666; margin-top: 2px; }
+  .print-preview .details { text-align: left; font-size: 0.88em; color: #444; margin: 14px 0; }
+  .print-preview .details li { margin: 6px 0; }
+  .print-preview .cta { font-size: 1.1em; font-weight: 700; color: #f97316; margin-top: 14px; }
+  .print-preview .phone { font-size: 1.3em; font-weight: 800; color: #000; }
+  .print-preview .url { font-size: 0.85em; color: #888; }
+  
+  .tip { background: #1a1600; border: 1px solid #fbbf2433; border-radius: 8px; padding: 10px 14px; margin: 12px 0; font-size: 0.85em; color: #fbbf24; }
+  .tip.green { background: #0d1a0d; border-color: #16653433; color: #4ade80; }
+  .tip.orange { background: #1a0d00; border-color: #f9731633; color: #f97316; }
+  
+  .tracker { background: #111; border: 1px solid #2a2a2a; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  .tracker h3 { color: #f97316; margin-bottom: 12px; font-size: 1em; }
+  .tracker .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; }
+  .tracker .day { background: #1a1a1a; border-radius: 8px; padding: 8px 4px; cursor: pointer; transition: all 0.2s; }
+  .tracker .day .dayname { font-size: 0.7em; color: #888; }
+  .tracker .day .count { font-size: 1.3em; font-weight: 700; color: #555; margin: 2px 0; }
+  .tracker .day.has-drops .count { color: #f97316; }
+  .tracker .day.today { border: 1px solid #f97316; }
+  .tracker .total-row { display: flex; justify-content: space-between; padding: 12px 0 0; border-top: 1px solid #2a2a2a; margin-top: 12px; font-size: 0.9em; }
+  .tracker .total-row .big { color: #f97316; font-weight: 700; font-size: 1.2em; }
+  
+  .alert { background: #1a0d00; border: 1px solid #f97316; border-radius: 10px; padding: 14px 16px; margin-bottom: 20px; }
+  .alert h3 { color: #f97316; font-size: 0.95em; margin-bottom: 4px; }
+  .alert p { color: #ccc; font-size: 0.88em; }
+  
+  .script-section { margin: 16px 0; }
+  .script-label { display: inline-block; background: #7c2d12; color: #fbbf24; padding: 3px 10px; border-radius: 6px; font-size: 0.75em; font-weight: 600; margin-bottom: 8px; }
+  
+  .canva-instructions { background: #0d0d0d; border: 1px solid #2a2a2a; border-radius: 10px; padding: 16px; margin: 12px 0; }
+  .canva-instructions h4 { color: #fbbf24; margin-bottom: 8px; }
+  .canva-instructions ol { padding-left: 20px; font-size: 0.88em; color: #aaa; }
+  .canva-instructions ol li { margin: 6px 0; }
+  
+  .vs-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 0.85em; }
+  .vs-table th { background: #1a1a1a; color: #f97316; padding: 8px 10px; text-align: left; border-bottom: 2px solid #2a2a2a; }
+  .vs-table td { padding: 8px 10px; border-bottom: 1px solid #1a1a1a; color: #aaa; }
+  .vs-table tr:nth-child(even) td { background: #0d0d0d; }
+  
+  footer { text-align: center; padding: 24px 0; color: #555; font-size: 0.8em; border-top: 1px solid #2a2a2a; margin-top: 24px; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <header>
+    <h1>🏘️ Neighbor Blitz Kit</h1>
+    <p>Turn every service visit into 5-10 new leads. Zero cost. Maximum impact.</p>
+    <div class="stat-row">
+      <div class="stat"><div class="num">5-10</div><div class="label">Doors per Visit</div></div>
+      <div class="stat"><div class="num">3-5%</div><div class="label">Warm Conversion</div></div>
+      <div class="stat"><div class="num">$0</div><div class="label">Cost to Start</div></div>
+    </div>
+  </header>
+
+  <div class="alert">
+    <h3>🔥 Why This Works Better Than Anything Else</h3>
+    <p>Cold door hangers get ~1% response. But <strong>neighbors of current customers convert at 3-5%</strong> because they already see the Tidy Tails truck weekly. They see Jamie working. They see the yard looking clean. The door hanger just closes the deal.</p>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('strategy')">📋 Strategy</div>
+    <div class="tab" onclick="showTab('hangers')">🚪 Door Hangers</div>
+    <div class="tab" onclick="showTab('scripts')">💬 If They Answer</div>
+    <div class="tab" onclick="showTab('routes')">📍 Route Plans</div>
+    <div class="tab" onclick="showTab('tracker')">📊 Tracker</div>
+  </div>
+
+  <!-- TAB 1: STRATEGY -->
+  <div id="strategy" class="panel active">
+    <div class="card">
+      <div class="card-header">
+        <h2>The Neighbor Blitz System</h2>
+        <p>Every service visit is a marketing event. Here's the playbook.</p>
+      </div>
+      <div class="card-body">
+        <h3 style="color:#fbbf24; margin-bottom: 12px;">How It Works</h3>
+        <ul class="checklist">
+          <li><span>🏠</span><span><strong>Step 1:</strong> Jamie finishes servicing a yard</span></li>
+          <li><span>👀</span><span><strong>Step 2:</strong> Look for houses with dog stuff visible — dog door, toys in yard, "Beware of Dog" sign, poop in the yard, fence for a dog run, food bowls on porch</span></li>
+          <li><span>🚪</span><span><strong>Step 3:</strong> Hang a door hanger on 5-10 houses on the same street and neighboring streets</span></li>
+          <li><span>📝</span><span><strong>Step 4:</strong> Log the street and count in the tracker (takes 10 seconds)</span></li>
+          <li><span>🔁</span><span><strong>Step 5:</strong> Repeat every week — same houses, different hanger design</span></li>
+        </ul>
+
+        <div class="tip">⏱️ <strong>Time per stop:</strong> 5-7 minutes extra. That's it. Jamie's already there. Walking 5 houses takes less time than scrolling Instagram.</div>
+
+        <h3 style="color:#fbbf24; margin: 20px 0 12px;">Dog House Spotting — Signs They Have a Dog</h3>
+        <ul class="checklist">
+          <li><span>🐕</span><span>Dog door installed (screen door or wall)</span></li>
+          <li><span>🦴</span><span>Dog toys, bones, or balls in the yard</span></li>
+          <li><span>🚧</span><span>Fenced yard (especially privacy fence or chain link)</span></li>
+          <li><span>💩</span><span>Visible poop in the yard (JACKPOT — perfect customer)</span></li>
+          <li><span>🥣</span><span>Water/food bowls on porch or patio</span></li>
+          <li><span>⚠️</span><span>"Beware of Dog" or dog-related signs</span></li>
+          <li><span>🐾</span><span>Dog stickers on car bumper or window</span></li>
+          <li><span>🏃</span><span>Dog walking to/from the house as Jamie arrives</span></li>
+          <li><span>🐶</span><span>Dog barking when you approach (they're home!)</span></li>
+        </ul>
+
+        <div class="math-box">
+          <h4>💰 The Math (It's Stupid Simple)</h4>
+          <div class="row"><span>Jamie services per week</span><span>~8-10 yards</span></div>
+          <div class="row"><span>Hangers dropped per yard visit</span><span>5-10</span></div>
+          <div class="row"><span>Total hangers per week</span><span>40-100</span></div>
+          <div class="row"><span>Warm conversion rate</span><span>3-5%</span></div>
+          <div class="row"><span>New leads per week</span><span>1-5</span></div>
+          <div class="row total"><span>New customers per month</span><span>2-4 🔥</span></div>
+        </div>
+
+        <div class="tip green">💡 <strong>Pro move:</strong> DoodyCalls leaves a "Your Yard Is Clean!" door hanger on the CUSTOMER's door after every visit. This confirms service AND advertises to anyone walking by. Add this to Jamie's routine too — leave a "Service Complete" hanger on the customer's door + marketing hangers on neighbors.</div>
+
+        <h3 style="color:#fbbf24; margin: 20px 0 12px;">The "Service Complete" Door Hanger (for Customers)</h3>
+        <p style="color:#aaa; font-size:0.88em; margin-bottom: 12px;">Leave this on the customer's door after every visit. Confirms service + markets to anyone who sees it.</p>
+        <div class="copy-block">✅ YOUR YARD IS CLEAN!
+
+Tidy Tails was here today.
+Your yard has been serviced.
+
+See you next week! 🐾
+
+Know someone who needs us?
+Refer a friend → You BOTH get $20 off!
+
+tidytailsstl.com | (314) XXX-XXXX</div>
+        <button class="copy-btn" onclick="copyText(this, '✅ YOUR YARD IS CLEAN!\n\nTidy Tails was here today.\nYour yard has been serviced.\n\nSee you next week! 🐾\n\nKnow someone who needs us?\nRefer a friend → You BOTH get $20 off!\n\ntidytailsstl.com | (314) XXX-XXXX')">📋 Copy Service Complete Text</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>📊 Cost Comparison: Marketing Methods</h3>
+      </div>
+      <div class="card-body">
+        <table class="vs-table">
+          <tr><th>Method</th><th>Cost</th><th>Conv. Rate</th><th>$/Customer</th></tr>
+          <tr><td>🏘️ Neighbor Blitz</td><td>$0.05-0.15/hanger</td><td>3-5%</td><td style="color:#4ade80;font-weight:700;">$2-5</td></tr>
+          <tr><td>📱 Facebook Ads</td><td>$5-15/day</td><td>1-3%</td><td>$30-80</td></tr>
+          <tr><td>🚪 Cold Door Hangers</td><td>$0.15/hanger</td><td>0.5-1%</td><td>$15-30</td></tr>
+          <tr><td>📰 Nextdoor Posts</td><td>Free</td><td>0.5-2%</td><td>Free but slow</td></tr>
+          <tr><td>🔍 Google Ads</td><td>$3-8/click</td><td>5-10%</td><td>$40-100</td></tr>
+        </table>
+        <div class="tip orange">🎯 <strong>Neighbor Blitz is the cheapest way to get a customer. Period.</strong> The only thing cheaper is referrals (which we're also doing). Stack them together and you're unstoppable.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: DOOR HANGERS -->
+  <div id="hangers" class="panel">
+    <div class="card">
+      <div class="card-header">
+        <h2>🚪 Door Hanger Designs</h2>
+        <p>4 rotating designs. Print at home or at Office Depot (~$0.10/each for B&W, ~$0.25 color).</p>
+      </div>
+      <div class="card-body">
+        <div class="tip">🖨️ <strong>Print Options:</strong> Office Depot cardstock prints = $0.25 each. Print 100 at a time. Or use Canva → download PDF → print at home on cardstock. Cut in half = 2 hangers per page.</div>
+
+        <div class="canva-instructions">
+          <h4>🎨 Quick Canva Door Hanger (FREE)</h4>
+          <ol>
+            <li>Go to canva.com → search "door hanger"</li>
+            <li>Pick any template (4"x11" or similar)</li>
+            <li>Replace text with copy below</li>
+            <li>Add Tidy Tails logo/colors (orange + green)</li>
+            <li>Download as PDF → Print on cardstock → Cut</li>
+            <li>Or send to Office Depot/Staples for pro printing</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- HANGER DESIGN 1 -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Design #1 — "Your Neighbor Uses Us" (Social Proof)</h3>
+        <p>Best for: First drop in a new neighborhood</p>
+      </div>
+      <div class="card-body">
+        <div class="print-preview">
+          <h2 style="font-size:1.3em;">🐾 TIDY TAILS</h2>
+          <div class="tagline">Pet Waste Removal — St. Louis</div>
+          <div class="offer-box">
+            <div class="big">YOUR NEIGHBOR CHOSE US</div>
+            <div class="sub">Now it's your turn to enjoy a poop-free yard.</div>
+          </div>
+          <div class="details">
+            <ul>
+              <li>✅ Weekly scooping — come home to a clean yard</li>
+              <li>✅ Starting at just $15/visit</li>
+              <li>✅ Reliable, friendly, locally owned</li>
+              <li>✅ Spring Deep Clean special available!</li>
+            </ul>
+          </div>
+          <div class="offer-box">
+            <div class="big">FIRST VISIT FREE</div>
+            <div class="sub">Try us risk-free. No contracts. Cancel anytime.</div>
+          </div>
+          <div class="cta">Text or Call Today:</div>
+          <div class="phone">(314) XXX-XXXX</div>
+          <div class="url">tidytailsstl.com</div>
+        </div>
+        <button class="copy-btn" onclick="copyText(this, 'TIDY TAILS - Pet Waste Removal\n\nYOUR NEIGHBOR CHOSE US\nNow it\'s your turn to enjoy a poop-free yard.\n\n✅ Weekly scooping — come home to a clean yard\n✅ Starting at just $15/visit\n✅ Reliable, friendly, locally owned\n✅ Spring Deep Clean special available!\n\n🎉 FIRST VISIT FREE\nTry us risk-free. No contracts. Cancel anytime.\n\nText or Call: (314) XXX-XXXX\ntidytailsstl.com')">📋 Copy Design #1 Text</button>
+      </div>
+    </div>
+
+    <!-- HANGER DESIGN 2 -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Design #2 — "We Were Next Door" (Proximity)</h3>
+        <p>Best for: Immediate neighbors (same street)</p>
+      </div>
+      <div class="card-body">
+        <div class="print-preview">
+          <h2 style="font-size:1.3em;">🐾 TIDY TAILS</h2>
+          <div class="tagline">Pet Waste Removal — St. Louis</div>
+          <div class="offer-box">
+            <div class="big">HEY NEIGHBOR! 👋</div>
+            <div class="sub">We were just next door cleaning up a yard. <br>Noticed you might have a pup too!</div>
+          </div>
+          <div class="details">
+            <ul>
+              <li>🏠 We're already on your street every week</li>
+              <li>💰 Same-street discount: <strong>$10 off first month</strong></li>
+              <li>⏱️ Takes us 10 minutes. Saves you all weekend.</li>
+              <li>🤝 Locally owned. Not a franchise.</li>
+            </ul>
+          </div>
+          <div class="offer-box">
+            <div class="big">$10 OFF YOUR FIRST MONTH</div>
+            <div class="sub">Because we're already here. Mention "NEIGHBOR" when you call.</div>
+          </div>
+          <div class="cta">Text or Call:</div>
+          <div class="phone">(314) XXX-XXXX</div>
+          <div class="url">tidytailsstl.com</div>
+        </div>
+        <button class="copy-btn" onclick="copyText(this, 'TIDY TAILS - Pet Waste Removal\n\nHEY NEIGHBOR! 👋\nWe were just next door cleaning up a yard.\nNoticed you might have a pup too!\n\n🏠 We\'re already on your street every week\n💰 Same-street discount: $10 off first month\n⏱️ Takes us 10 minutes. Saves you all weekend.\n🤝 Locally owned. Not a franchise.\n\n$10 OFF YOUR FIRST MONTH\nMention \"NEIGHBOR\" when you call.\n\nText or Call: (314) XXX-XXXX\ntidytailsstl.com')">📋 Copy Design #2 Text</button>
+      </div>
+    </div>
+
+    <!-- HANGER DESIGN 3 -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Design #3 — "Spring = Poop Season" (Seasonal Urgency)</h3>
+        <p>Best for: March-May push</p>
+      </div>
+      <div class="card-body">
+        <div class="print-preview">
+          <h2 style="font-size:1.3em;">🐾 TIDY TAILS</h2>
+          <div class="tagline">Pet Waste Removal — St. Louis</div>
+          <div class="offer-box">
+            <div class="big">SPRING IS HERE 🌱</div>
+            <div class="sub">The snow melted. The poop didn't.</div>
+          </div>
+          <div class="details">
+            <ul>
+              <li>🧹 <strong>Spring Deep Clean:</strong> We'll clear the entire winter backlog</li>
+              <li>📅 Then keep it clean weekly — starting at $15/visit</li>
+              <li>🐕 1 dog or 5 — flat rate, no surprises</li>
+              <li>😊 Your kids can actually play in the yard again</li>
+            </ul>
+          </div>
+          <div class="offer-box">
+            <div class="big">SPRING DEEP CLEAN + FREE FIRST WEEK</div>
+            <div class="sub">Limited spring spots available. Book this week.</div>
+          </div>
+          <div class="cta">Text or Call:</div>
+          <div class="phone">(314) XXX-XXXX</div>
+          <div class="url">tidytailsstl.com</div>
+        </div>
+        <button class="copy-btn" onclick="copyText(this, 'TIDY TAILS - Pet Waste Removal\n\nSPRING IS HERE 🌱\nThe snow melted. The poop didn\'t.\n\n🧹 Spring Deep Clean: We\'ll clear the entire winter backlog\n📅 Then keep it clean weekly — starting at $15/visit\n🐕 1 dog or 5 — flat rate, no surprises\n😊 Your kids can actually play in the yard again\n\nSPRING DEEP CLEAN + FREE FIRST WEEK\nLimited spring spots available. Book this week.\n\nText or Call: (314) XXX-XXXX\ntidytailsstl.com')">📋 Copy Design #3 Text</button>
+      </div>
+    </div>
+
+    <!-- HANGER DESIGN 4 -->
+    <div class="card">
+      <div class="card-header">
+        <h3>Design #4 — "The Honest One" (TJ's Voice)</h3>
+        <p>Best for: Repeat drops / building trust</p>
+      </div>
+      <div class="card-body">
+        <div class="print-preview">
+          <h2 style="font-size:1.3em;">🐾 TIDY TAILS</h2>
+          <div class="tagline">Pet Waste Removal — St. Louis</div>
+          <div class="offer-box">
+            <div class="big">NOBODY LIKES PICKING UP POOP</div>
+            <div class="sub">That's literally why we exist.</div>
+          </div>
+          <div class="details">
+            <ul>
+              <li>Look — we know it's a weird service to pay for.</li>
+              <li>But your weekends are worth more than scooping a yard.</li>
+              <li>We're local, we show up every week, and your dog loves us.</li>
+              <li>(Okay, your dog tries to eat the scooper. But still.)</li>
+            </ul>
+          </div>
+          <div class="offer-box">
+            <div class="big">TRY ONE WEEK FREE</div>
+            <div class="sub">No commitment. We'll clean your yard once. If you love it, we keep coming. If not, no hard feelings.</div>
+          </div>
+          <div class="cta">Text or Call:</div>
+          <div class="phone">(314) XXX-XXXX</div>
+          <div class="url">tidytailsstl.com</div>
+        </div>
+        <button class="copy-btn" onclick="copyText(this, 'TIDY TAILS - Pet Waste Removal\n\nNOBODY LIKES PICKING UP POOP\nThat\'s literally why we exist.\n\nLook — we know it\'s a weird service to pay for.\nBut your weekends are worth more than scooping a yard.\nWe\'re local, we show up every week, and your dog loves us.\n(Okay, your dog tries to eat the scooper. But still.)\n\nTRY ONE WEEK FREE\nNo commitment. We\'ll clean your yard once.\nIf you love it, we keep coming. If not, no hard feelings.\n\nText or Call: (314) XXX-XXXX\ntidytailsstl.com')">📋 Copy Design #4 Text</button>
+      </div>
+    </div>
+
+    <div class="tip green">♻️ <strong>Rotation Plan:</strong> Use a different design each week so the same neighbors see fresh messaging. Week 1 = Social Proof, Week 2 = Proximity, Week 3 = Seasonal, Week 4 = Honest. Then repeat.</div>
+  </div>
+
+  <!-- TAB 3: IF THEY ANSWER -->
+  <div id="scripts" class="panel">
+    <div class="card">
+      <div class="card-header">
+        <h2>💬 What To Say If Someone Opens the Door</h2>
+        <p>Most won't. But when they do — here's what Jamie says.</p>
+      </div>
+      <div class="card-body">
+        <div class="tip">🧠 <strong>Rule #1:</strong> Don't be salesy. Be neighborly. Jamie isn't selling — he's letting them know he's around. Big difference.</div>
+
+        <div class="script-section">
+          <div class="script-label">IF THEY OPEN THE DOOR (30 seconds max)</div>
+          <div class="copy-block">"Hey! I'm Jamie with Tidy Tails — I actually just finished cleaning up [your neighbor's / the yard down the street]. I noticed you might have a dog too. We do weekly poop scooping, and since I'm already on this street, figured I'd leave you some info. No pressure at all — just wanted to say hey!"</div>
+          <button class="copy-btn" onclick="copyText(this, 'Hey! I\'m Jamie with Tidy Tails — I actually just finished cleaning up your neighbor\'s yard. I noticed you might have a dog too. We do weekly poop scooping, and since I\'m already on this street, figured I\'d leave you some info. No pressure at all — just wanted to say hey!')">📋 Copy Script</button>
+        </div>
+
+        <div class="script-section">
+          <div class="script-label">IF THEY ASK "HOW MUCH?"</div>
+          <div class="copy-block">"It's $15 a visit for most yards — I come by once a week and get everything. Since I'm already servicing this street, there's no extra trip charge or anything. First visit's on us so you can see if you like it."</div>
+          <button class="copy-btn" onclick="copyText(this, 'It\'s $15 a visit for most yards — I come by once a week and get everything. Since I\'m already servicing this street, there\'s no extra trip charge or anything. First visit\'s on us so you can see if you like it.')">📋 Copy Script</button>
+        </div>
+
+        <div class="script-section">
+          <div class="script-label">IF THEY SAY "I DO IT MYSELF"</div>
+          <div class="copy-block">"Totally get it! Most people do. I just like giving people the option — saves about 30 minutes a week. If you ever get busy or go on vacation and need someone to keep up with it, just give us a call. Have a great day!"</div>
+          <button class="copy-btn" onclick="copyText(this, 'Totally get it! Most people do. I just like giving people the option — saves about 30 minutes a week. If you ever get busy or go on vacation and need someone to keep up with it, just give us a call. Have a great day!')">📋 Copy Script</button>
+        </div>
+
+        <div class="script-section">
+          <div class="script-label">IF THEY SEEM INTERESTED</div>
+          <div class="copy-block">"Awesome! I can actually start as soon as this week if you want. Want me to take a quick look at the yard and give you an exact price? Or I can just text you the details — what's easiest?"</div>
+          <button class="copy-btn" onclick="copyText(this, 'Awesome! I can actually start as soon as this week if you want. Want me to take a quick look at the yard and give you an exact price? Or I can just text you the details — what\'s easiest?')">📋 Copy Script</button>
+        </div>
+
+        <div class="script-section">
+          <div class="script-label">IF THEY SAY "NOT INTERESTED"</div>
+          <div class="copy-block">"No worries at all! Have a good one. 👋"
+
+(Don't push. Don't be weird. Just smile and leave. They know where to find you — your truck's on their street every week.)</div>
+          <button class="copy-btn" onclick="copyText(this, 'No worries at all! Have a good one!')">📋 Copy Script</button>
+        </div>
+
+        <h3 style="color:#fbbf24; margin: 20px 0 12px;">Jamie's Quick Cheat Sheet</h3>
+        <ul class="checklist">
+          <li><span>✅</span><span><strong>DO:</strong> Smile, be casual, mention you were just next door</span></li>
+          <li><span>✅</span><span><strong>DO:</strong> Wear Tidy Tails shirt/hat (recognizable, professional)</span></li>
+          <li><span>✅</span><span><strong>DO:</strong> Have business cards handy as backup</span></li>
+          <li><span>✅</span><span><strong>DO:</strong> Keep it under 30 seconds unless they want to talk</span></li>
+          <li><span>❌</span><span><strong>DON'T:</strong> Knock aggressively or ring twice</span></li>
+          <li><span>❌</span><span><strong>DON'T:</strong> Go to houses with "No Soliciting" signs</span></li>
+          <li><span>❌</span><span><strong>DON'T:</strong> Push after a "no" — you're a neighbor, not a salesman</span></li>
+          <li><span>❌</span><span><strong>DON'T:</strong> Bad-mouth competitors. Just focus on Tidy Tails.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 4: ROUTE PLANS -->
+  <div id="routes" class="panel">
+    <div class="card">
+      <div class="card-header">
+        <h2>📍 Current Service Route — Blitz Zones</h2>
+        <p>Every current customer's neighborhood is a blitz zone. Here's the plan by area.</p>
+      </div>
+      <div class="card-body">
+        <div class="tip">🗺️ <strong>Strategy:</strong> Saturate your existing service areas first. Getting 3 customers on one street means Jamie drives to ONE location and services THREE yards. Route density = more profit per hour.</div>
+      </div>
+    </div>
+
+    <div class="route-map">
+      <div class="route-header">
+        <h3>🏘️ Florissant / North County</h3>
+        <div class="badge">PRIMARY ZONE — Most Customers Here</div>
+      </div>
+      <div class="route-body">
+        <div class="house">
+          <div class="icon">⭐</div>
+          <div class="info">
+            <div class="name">Existing Customer Streets</div>
+            <div class="detail">Drop 5-10 hangers on same street + adjacent streets every visit</div>
+          </div>
+        </div>
+        <div class="house">
+          <div class="icon">🎯</div>
+          <div class="info">
+            <div class="name">High-Value Targets</div>
+            <div class="detail">Streets with fenced yards, dog-friendly signs, visible dog activity</div>
+          </div>
+        </div>
+        <div class="house">
+          <div class="icon">🏢</div>
+          <div class="info">
+            <div class="name">Charbonier Apartments (Millsap)</div>
+            <div class="detail">1975 Charbonier Rd — leave hangers on community bulletin board + in front office</div>
+          </div>
+        </div>
+        <div class="tip green">📌 <strong>Florissant goal:</strong> 5 customers on same/adjacent streets = Jamie's most efficient route. Every neighbor hanger here has the highest ROI.</div>
+      </div>
+    </div>
+
+    <div class="route-map">
+      <div class="route-header">
+        <h3>🏘️ Hazelwood / Maryland Heights</h3>
+        <div class="badge">SECONDARY ZONE</div>
+      </div>
+      <div class="route-body">
+        <div class="house">
+          <div class="icon">🎯</div>
+          <div class="info">
+            <div class="name">Neighborhood Focus</div>
+            <div class="detail">Subdivisions with HOAs (dog waste is #1 HOA complaint) — drop hangers + leave at HOA office</div>
+          </div>
+        </div>
+        <div class="house">
+          <div class="icon">🏢</div>
+          <div class="info">
+            <div class="name">Teson Garden & White Birch Apts (Millsap)</div>
+            <div class="detail">2 Teson Garden Walk & 355 Coachway Ln, Hazelwood — apartment bulletin boards</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="route-map">
+      <div class="route-header">
+        <h3>🏘️ St. Charles County</h3>
+        <div class="badge">EXPANSION ZONE — DoodyCalls Doesn't Serve Here!</div>
+      </div>
+      <div class="route-body">
+        <div class="house">
+          <div class="icon">🔥</div>
+          <div class="info">
+            <div class="name">Underserved Market</div>
+            <div class="detail">DoodyCalls explicitly doesn't serve St. Charles. Only Yucko's (outdated website, bad reviews). Wide open market.</div>
+          </div>
+        </div>
+        <div class="house">
+          <div class="icon">🏢</div>
+          <div class="info">
+            <div class="name">Cunningham, Amber Terrace, Villa Roma Apts (Millsap)</div>
+            <div class="detail">3 Millsap apartment communities in St. Charles — massive opportunity</div>
+          </div>
+        </div>
+        <div class="house">
+          <div class="icon">🐕</div>
+          <div class="info">
+            <div class="name">O'Fallon / St. Peters Subdivisions</div>
+            <div class="detail">Fastest growing suburbs in STL. Young families with dogs. Prime demographic.</div>
+          </div>
+        </div>
+        <div class="tip orange">⚡ <strong>St. Charles is the biggest growth opportunity.</strong> Once TJ gets 2-3 customers there, a neighbor blitz could snowball fast with zero competition from franchises.</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>🎯 Blitz Priority Order</h3>
+      </div>
+      <div class="card-body">
+        <ol style="padding-left:20px; font-size:0.9em; color:#aaa;">
+          <li style="margin:8px 0;"><strong style="color:#f97316;">Same street as current customers</strong> — Highest conversion. They see the truck.</li>
+          <li style="margin:8px 0;"><strong style="color:#fbbf24;">Adjacent streets (1 block away)</strong> — Still warm. Walking distance.</li>
+          <li style="margin:8px 0;"><strong style="color:#e0e0e0;">Same subdivision</strong> — Same neighborhood identity. Community feel.</li>
+          <li style="margin:8px 0;"><strong style="color:#aaa;">Apartment complexes in service area</strong> — Bulletin boards, front offices, laundry rooms.</li>
+          <li style="margin:8px 0;"><strong style="color:#888;">New subdivisions (expansion)</strong> — Cold but strategic for route building.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 5: TRACKER -->
+  <div id="tracker" class="panel">
+    <div class="tracker">
+      <h3>📊 This Week's Blitz Tracker</h3>
+      <div class="week-grid" id="weekGrid">
+        <!-- Generated by JS -->
+      </div>
+      <div class="total-row">
+        <span>Total Hangers This Week</span>
+        <span class="big" id="weekTotal">0</span>
+      </div>
+      <div class="total-row">
+        <span>Estimated Leads (3-5%)</span>
+        <span class="big" id="weekLeads">0</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>📝 Quick Log</h3>
+        <p>Jamie: log each drop after your visit. Takes 10 seconds.</p>
+      </div>
+      <div class="card-body">
+        <div style="margin-bottom:12px;">
+          <label style="font-size:0.85em;color:#888;display:block;margin-bottom:4px;">Street / Area</label>
+          <input type="text" id="logStreet" placeholder="e.g. Elm Street, Florissant" style="width:100%;padding:10px;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:8px;color:#e0e0e0;font-size:0.9em;">
+        </div>
+        <div style="margin-bottom:12px;">
+          <label style="font-size:0.85em;color:#888;display:block;margin-bottom:4px;">Hangers Dropped</label>
+          <div style="display:flex;gap:8px;">
+            <button class="count-btn" onclick="setCount(3)" style="flex:1;padding:10px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;color:#aaa;cursor:pointer;font-size:1em;">3</button>
+            <button class="count-btn" onclick="setCount(5)" style="flex:1;padding:10px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;color:#aaa;cursor:pointer;font-size:1em;">5</button>
+            <button class="count-btn" onclick="setCount(8)" style="flex:1;padding:10px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;color:#aaa;cursor:pointer;font-size:1em;">8</button>
+            <button class="count-btn" onclick="setCount(10)" style="flex:1;padding:10px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;color:#aaa;cursor:pointer;font-size:1em;">10</button>
+            <input type="number" id="logCount" value="5" min="1" max="50" style="width:60px;padding:10px;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:8px;color:#e0e0e0;font-size:0.9em;text-align:center;">
+          </div>
+        </div>
+        <div style="margin-bottom:12px;">
+          <label style="font-size:0.85em;color:#888;display:block;margin-bottom:4px;">Notes (optional)</label>
+          <input type="text" id="logNotes" placeholder="e.g. spotted 3 dog houses, one person asked for info" style="width:100%;padding:10px;background:#0d0d0d;border:1px solid #2a2a2a;border-radius:8px;color:#e0e0e0;font-size:0.9em;">
+        </div>
+        <button class="copy-btn" onclick="logDrop()" style="background:#f97316;">📝 Log This Drop</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3>📋 Drop History</h3>
+      </div>
+      <div class="card-body">
+        <div id="dropHistory" style="font-size:0.88em;color:#aaa;">
+          <p style="color:#555;text-align:center;padding:20px;">No drops logged yet. Get out there! 🏘️</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="math-box">
+      <h4>📈 Monthly Projections</h4>
+      <div class="row"><span>Target: 50 hangers/week</span><span>200/month</span></div>
+      <div class="row"><span>At 3% conversion</span><span>6 leads/month</span></div>
+      <div class="row"><span>At 50% close rate</span><span>3 new customers/month</span></div>
+      <div class="row total"><span>Revenue impact (at $70/mo each)</span><span>+$210/mo recurring 🔥</span></div>
+    </div>
+
+    <div class="tip">🎯 <strong>Weekly Goal:</strong> Jamie drops 50 hangers per week (10 per service visit, 5 visits). If he hits this consistently, that's 3 new customers per month on autopilot. At $70/mo each, that's $210 in new MRR every single month. In 6 months, that's 18 new customers and $1,260/mo added — just from door hangers.</div>
+  </div>
+
+  <footer>
+    🏘️ Neighbor Blitz Kit — Tidy Tails STL<br>
+    Built by Franklin • March 2026<br>
+    <span style="color:#f97316;">Every service visit is a marketing opportunity.</span>
+  </footer>
+</div>
+
+<script>
+// Tab switching
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Copy text
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = btn.dataset.original || '📋 Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+  if (!btn.dataset.original) btn.dataset.original = btn.textContent;
+}
+
+// Count buttons
+function setCount(n) {
+  document.getElementById('logCount').value = n;
+}
+
+// Storage
+const STORAGE_KEY = 'tidytails_blitz_tracker';
+function getData() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || { drops: [], weekCounts: {} }; }
+  catch { return { drops: [], weekCounts: {} }; }
+}
+function saveData(data) { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); }
+
+// Week grid
+function renderWeekGrid() {
+  const grid = document.getElementById('weekGrid');
+  const data = getData();
+  const today = new Date();
+  const dayOfWeek = today.getDay(); // 0=Sun
+  const monday = new Date(today);
+  monday.setDate(today.getDate() - ((dayOfWeek + 6) % 7));
+  
+  const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  let html = '';
+  let total = 0;
+  
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(monday);
+    d.setDate(monday.getDate() + i);
+    const key = d.toISOString().split('T')[0];
+    const count = data.weekCounts[key] || 0;
+    total += count;
+    const isToday = d.toDateString() === today.toDateString();
+    html += `<div class="day ${count > 0 ? 'has-drops' : ''} ${isToday ? 'today' : ''}">
+      <div class="dayname">${days[i]}</div>
+      <div class="count">${count}</div>
+    </div>`;
+  }
+  grid.innerHTML = html;
+  document.getElementById('weekTotal').textContent = total;
+  document.getElementById('weekLeads').textContent = Math.round(total * 0.04); // 4% avg
+}
+
+// Log a drop
+function logDrop() {
+  const street = document.getElementById('logStreet').value.trim();
+  const count = parseInt(document.getElementById('logCount').value) || 5;
+  const notes = document.getElementById('logNotes').value.trim();
+  
+  if (!street) { alert('Enter a street name!'); return; }
+  
+  const data = getData();
+  const today = new Date().toISOString().split('T')[0];
+  
+  data.drops.unshift({
+    date: new Date().toISOString(),
+    street: street,
+    count: count,
+    notes: notes
+  });
+  
+  data.weekCounts[today] = (data.weekCounts[today] || 0) + count;
+  saveData(data);
+  
+  document.getElementById('logStreet').value = '';
+  document.getElementById('logNotes').value = '';
+  
+  renderWeekGrid();
+  renderHistory();
+}
+
+// Render history
+function renderHistory() {
+  const data = getData();
+  const el = document.getElementById('dropHistory');
+  
+  if (data.drops.length === 0) {
+    el.innerHTML = '<p style="color:#555;text-align:center;padding:20px;">No drops logged yet. Get out there! 🏘️</p>';
+    return;
+  }
+  
+  let html = '';
+  data.drops.slice(0, 20).forEach(d => {
+    const date = new Date(d.date);
+    const timeStr = date.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' }) + ' ' + date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
+    html += `<div style="padding:8px 0;border-bottom:1px solid #1a1a1a;">
+      <div style="display:flex;justify-content:space-between;">
+        <span style="color:#f97316;font-weight:600;">${d.street}</span>
+        <span style="color:#4ade80;font-weight:600;">${d.count} hangers</span>
+      </div>
+      <div style="font-size:0.8em;color:#666;">${timeStr}${d.notes ? ' — ' + d.notes : ''}</div>
+    </div>`;
+  });
+  el.innerHTML = html;
+}
+
+// Init
+renderWeekGrid();
+renderHistory();
+</script>
+
+</body>
+</html>

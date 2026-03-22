@@ -7,6 +7,34 @@
 
 ## March 22, 2026 (Sunday)
 
+### 11:04 PM (Sat night) — 🏘️ Neighbor Blitz Kit — Turn Every Service Visit Into 5-10 New Leads (Hourly Autonomous)
+**Task:** We've built 10+ digital toolkits today but nothing for physical, boots-on-the-ground marketing. The highest-ROI tactic for local service businesses is neighbor targeting — Jamie's already at the house, the neighbors see the truck, dropping 5-10 door hangers takes 5 minutes. Built a complete interactive system for Jamie to execute.
+
+**Result:** ✅ COMPLETE — `dashboard/neighbor-blitz-kit.html` — 5-tab neighbor blitz system
+
+**Deliverable:** Full physical marketing kit:
+1. **📋 Strategy:** The complete neighbor blitz playbook — how to spot dog houses (9 signs), the math (40-100 hangers/week → 2-4 new customers/month), "Service Complete" hanger for existing customers (DoodyCalls does this!), cost comparison vs. other marketing methods
+2. **🚪 Door Hangers:** 4 rotating designs with copy-paste text — "Your Neighbor Uses Us" (social proof), "Hey Neighbor" (proximity + discount), "Spring Is Here" (seasonal urgency), "Nobody Likes Picking Up Poop" (TJ's honest voice). Each with print preview + Canva instructions
+3. **💬 If They Answer:** 5 conversation scripts for Jamie — door opener (30 sec), "how much?", "I do it myself", interested response, and graceful exit. Plus a do/don't cheat sheet
+4. **📍 Route Plans:** Blitz zones mapped to existing service areas — Florissant (primary), Hazelwood/Maryland Heights (secondary), St. Charles (expansion, NO competition from DoodyCalls). Includes Millsap apartment complex locations for bulletin board drops
+5. **📊 Tracker:** Interactive weekly tracker with localStorage persistence, quick-log form for Jamie (street + count + notes), drop history, monthly projections ($210/mo new MRR from 50 hangers/week)
+
+**Key Insights:**
+- Cold door hangers get ~1% response. **Neighbor hangers get 3-5%** because they see the truck weekly
+- DoodyCalls leaves "Service Complete" hangers — we should too (confirms service + markets to passers-by)
+- At $0.10-0.25/hanger, cost-per-customer is $2-5 vs. $40-100 for Google Ads
+- 50 hangers/week × 4% conversion = 2 leads/week = ~3 new customers/month = **$210/mo new MRR**
+- St. Charles County is WIDE OPEN — DoodyCalls doesn't serve there, only Yucko's (terrible website)
+
+**Dashboard Updated:** Added to TODAY mode with orange highlight + archive
+**Pushed to GitHub:** ✅
+
+**Why This Task:** Every toolkit we've built is digital. But TJ's customers are won in driveways, not on dashboards. This is the one thing Jamie can start doing MONDAY that costs $0 and has the fastest path to new customers. It's the missing piece — physical, neighborhood-level marketing that compounds with every visit.
+
+**Rotation:** 🏘️ Physical Marketing / Door-to-Door / Growth / Route Optimization
+
+---
+
 ### 10:05 PM (Sat night) — 🎯 Competitor Battlemap — Live Intel on Every STL Pet Waste Company (Hourly Autonomous)
 **Task:** Deep competitive intelligence sweep — scraped websites, pricing pages, Yelp listings, and Google data for all 10-12 active STL pet waste removal competitors. Built interactive strategy dashboard with pricing comparisons, threat assessments, and attack vectors.
 
