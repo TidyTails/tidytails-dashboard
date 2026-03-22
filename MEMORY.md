@@ -1,5 +1,5 @@
 # MEMORY.md — Franklin's Long-Term Memory
-*Last major overhaul: March 15, 2026 11 PM | Last maintenance: March 20, 2026 2 AM*
+*Last major overhaul: March 15, 2026 11 PM | Last maintenance: March 22, 2026 12 AM*
 
 ## Who I Am
 - **Name:** Franklin
@@ -230,11 +230,12 @@ Assets: Landing page, pitch deck (v6), one-pager, market research.
 - [ ] **Launch $7/day Facebook Ads** (30 min) — full campaign kit ready
 
 ### What Franklin Should Focus On
-- **Maintenance over creation.** 60+ tools exist. Don't build #61.
+- **STOP BUILDING TOOLKITS.** 95+ tools exist. The problem is execution, not tooling. 20+ new toolkits on Mar 21 alone — directly violating this rule.
 - **Track execution.** Which posts has TJ actually made? Which leads called? Verify.
-- **Competitive monitoring.** Market is moving — Doggie Doodies expanded, Scoop Soldiers entered.
+- **Competitive monitoring.** Market is moving — POOP 911 investing in Florissant (confirmed Mar 20).
 - **Memory cleanup.** Keep context lean for better performance.
 - Late night = systems/maintenance. Morning = briefings. Don't build more tools until existing ones are used.
+- **Hourly autonomous tasks should maintain existing assets**, not create new ones.
 
 ### What's Been Tried (and results)
 - **Door hangers:** 500+ hung, 2 leads, 1 conversion (0.2%) — didn't work
@@ -295,21 +296,21 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 
 ---
 
-## 📊 Asset Inventory (Mar 19, 2026)
+## 📊 Asset Inventory (Mar 22, 2026)
 
 | Category | Count |
 |----------|-------|
-| Dashboard tools/reports | 75+ |
-| PDFs/HTML deliverables | 350+ |
+| Dashboard tools/reports | 95+ |
+| PDFs/HTML deliverables | 400+ |
 | Tidy Tails ads written | 100+ |
-| Shed ads written | 110+ |
+| Shed ads written | 120+ |
 | Skills built | 14+ |
 | AI video concepts | 6 produced |
 | City landing pages | 23 (added Kirkwood + Webster Groves) |
 | Blog posts | 13 (synced 6 missing from live site + 1 new commercial post) |
-| Content calendar posts | 76+ copy-paste ready |
-| Commercial leads | 37 (added 6 North County vet clinics) |
-| Interactive tools | 15+ (pricing calc, review blitz, GBP kit, battle card, referral mgr, event calendar, community kit, weekend sprint, commercial call sheet, etc.) |
+| Content calendar posts | 84+ copy-paste ready |
+| Commercial leads | 49 (uncontacted) |
+| Interactive tools | 25+ (review blitz, referral mgr, competitor battlemap, directory kit, neighbor blitz, GBP calendar, conversion audit, events playbook, weekly planner, etc.) |
 | FB groups mapped | 32+ (with strategy, member counts, posting schedule) |
 | Live landing pages | 3 (free-cleanup, refer, spring-landing) |
 
@@ -329,7 +330,9 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 - **Mar 17:** MASSIVE output day (12+ deliverables). GBP confirmed VERIFIED but only 7% complete. TJ frustrated: "tired of being stagnant." Key deliverables: competitor battle card (live pricing), directory blitz kit (20 dirs), neighborhood saturation kit, 90-day growth sprint, Google Ads launch kit, pricing calculator (live competitor scrape), GBP optimization kit, review/referral text blitz (personalized per customer), spring cleanup blitz (15 posts), lumber intel ($600/MBF — 22% surge). CRITICAL: competitor pricing confirmed TJ is most expensive ($25/wk vs POOP 911 $11.95, DD $17). Memory consolidation pass at 11 PM.
 - **Mar 18:** 5 overnight tasks (12AM-5AM). SEO recovery audit (site A+ technically, ZERO indexed), FB group blitz guide (32+ groups mapped), competitive sweep (DD in Florissant!), Florissant customer defense kit (protecting 47% revenue), dashboard cleanup (12→5 priority banners). Memory maintenance + archival at 6AM.
 - **Mar 19:** BIGGEST DAY EVER — 15+ tasks spanning 3AM-11PM. Key outputs: commercial call sheet (26 leads, tap-to-call), SEO blog (dog poop laws), Kirkwood+Webster Groves city pages, POOP 911 Florissant withdrawal CONFIRMED (404), review request texts tool, GBP quick-complete checklist, community posting kit (15 groups), free first cleanup landing page (LIVE), referral program (LIVE at /refer), event marketing calendar (14 STL events), Spring 2026 master playbook (39 tasks across 15 weeks), competitive intel sweep (3 dead competitors, we're INVISIBLE on search), North County vet blitz (6 new leads), Google Ads campaign kit, weekend launch texts, weekend sprint brief. franklin-tasks.md archived (2208→737 lines). MEMORY.md updated.
-- **Mar 20:** 🌱 FIRST DAY OF SPRING. 1 AM: Built 7-piece ready-to-post content kit across 5 platforms (Facebook x3, Instagram x2, Nextdoor, GBP) — Jamie can post all in ~20 minutes. 12 AM: Full technical SEO audit — **SEO Score: 30/100** (great on-page, zero off-page). Key finding: 18 city pages patched with cross-links (+54 internal links). Root cause of zero visibility = no GSC setup + no GA4 + GBP only 7% + zero backlinks + zero reviews. "Built a Porsche but never put gas in it." 2 AM: Memory maintenance — archived 796 lines, trimmed task log 94%.
+- **Mar 20:** 🌱 FIRST DAY OF SPRING. 14+ hourly tasks. Content kit (7 ready-to-post pieces across 5 platforms). Full technical SEO audit (Score: 30/100). Competitor status corrections (POOP 911 NOT leaving Florissant — URL restructure, not withdrawal). 5 broken city pages fixed. Door hanger templates. Paid ads feasibility. GBP completion kit. Referral partnerships playbook. Guerrilla marketing playbook. Shed sales closer tool. Competitor displacement campaign.
+- **Mar 21:** MASSIVE output day — 20+ hourly tasks in 24 hours. TJ check-in at 4 PM: frustrated that guides are saved to memory/ where he can't see them → **NEW RULE: everything for TJ goes as PDF in chat + dashboard.** Dashboard 3-mode redesign (TODAY/TOOLS/ARCHIVE) — collapsed 97 files + 24 pulsing links into 3 clean tabs. Spring events & partnerships (Earth Day Apr 25, Bark in the Park May 16, K9 Garden new venue). Google Review Blitz toolkit. Website conversion audit (scored 29/60 — best copy in market, worst conversion path). GBP 4-week posting calendar (8 posts). Commercial outreach kit (scripts, walk-in route, objection handlers). Spring deep clean campaign. Shed competitive pricing intel (STL Sheds = real threat — Amish-built, free delivery, prices online). Weekly action plan (7 days of tasks from 10 toolkits). Referral program ("Friends & Clean Yards").
+- **Mar 22 (early AM):** Competitor battlemap (all 10-12 STL competitors profiled), Directory blitz kit (20 directories mapped), Neighbor blitz kit (door-to-door system for Jamie), 4 Sunday shed ads. Memory maintenance pass — archived Mar 20 tasks (584 lines), trimmed task log from 1,406 → 798 lines.
 
 ---
 
@@ -348,6 +351,8 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 12. **Pet waste = demand CREATION, not capture.** Most people don't search for it. Facebook shows them it exists. Google captures the ones who saw your FB ad then searched.
 13. **Lumber hit $600/MBF** (Mar 17) — up 22% in 11 days. 45% tariffs + 1.3B board feet removed from supply. "Today's price is tomorrow's discount" is now verifiable math.
 14. **Cron tasks compound but don't convert.** 12 deliverables in one day doesn't help if none get deployed. Future hourly tasks should skew toward maintenance/monitoring, not new content.
+15. **TJ can't access memory/ files.** Guides saved there are invisible. NEW RULE (Mar 21): Everything for TJ → PDF in Telegram chat AND dashboard link. No more hidden docs.
+16. **Dashboard redesigned to 3 modes (Mar 21).** TODAY (action items), TOOLS (organized by category), ARCHIVE (searchable). 97 files → 3 clean tabs. This is the UX layer that makes everything else usable.
 
 ---
 
