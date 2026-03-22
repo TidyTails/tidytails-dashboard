@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Monday Call Sheet — March 24, 2026</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e8e8e8; min-height: 100vh; padding: 16px; }
+  
+  .header { text-align: center; padding: 24px 0 16px; border-bottom: 2px solid #333; margin-bottom: 24px; }
+  .header h1 { font-size: 28px; font-weight: 700; color: #fff; }
+  .header .subtitle { color: #888; font-size: 14px; margin-top: 6px; }
+  .header .goal { background: linear-gradient(135deg, #1a3a1a, #1a4a1a); border: 1px solid #2d5a2d; padding: 12px 20px; border-radius: 10px; display: inline-block; margin-top: 12px; font-size: 15px; color: #7ddb7d; }
+  
+  .stats-bar { display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap; }
+  .stat { flex: 1; min-width: 100px; background: #151515; border: 1px solid #252525; border-radius: 10px; padding: 14px; text-align: center; }
+  .stat .num { font-size: 28px; font-weight: 700; color: #fff; }
+  .stat .label { font-size: 11px; color: #777; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  
+  .tips { background: #1a1a2e; border: 1px solid #2a2a4e; border-radius: 10px; padding: 16px; margin-bottom: 24px; }
+  .tips h3 { color: #8888ff; font-size: 14px; margin-bottom: 8px; }
+  .tips ul { list-style: none; padding: 0; }
+  .tips li { color: #aaa; font-size: 13px; padding: 3px 0; }
+  .tips li::before { content: "→ "; color: #6666cc; }
+  
+  .lead-card { background: #151515; border: 1px solid #252525; border-radius: 12px; padding: 20px; margin-bottom: 16px; transition: all 0.2s; position: relative; }
+  .lead-card:hover { border-color: #444; }
+  .lead-card.called { opacity: 0.5; border-color: #2d5a2d; }
+  .lead-card.called::after { content: "✅ CALLED"; position: absolute; top: 12px; right: 12px; background: #1a3a1a; color: #7ddb7d; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; }
+  
+  .lead-rank { display: inline-block; background: linear-gradient(135deg, #333, #222); color: #fff; width: 30px; height: 30px; line-height: 30px; text-align: center; border-radius: 8px; font-weight: 700; font-size: 14px; margin-right: 10px; vertical-align: middle; }
+  .lead-rank.top3 { background: linear-gradient(135deg, #4a3a00, #3a2a00); color: #ffd700; }
+  
+  .lead-name { font-size: 20px; font-weight: 700; color: #fff; display: inline; vertical-align: middle; }
+  .lead-type { color: #888; font-size: 12px; margin-top: 4px; }
+  .lead-why { color: #999; font-size: 13px; margin: 8px 0; padding: 8px 12px; background: #111; border-radius: 8px; border-left: 3px solid #444; }
+  
+  .phone-row { display: flex; align-items: center; gap: 12px; margin: 12px 0; flex-wrap: wrap; }
+  .phone-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #1a4a1a, #1a3a1a); border: 1px solid #2d5a2d; color: #7ddb7d; padding: 10px 20px; border-radius: 10px; font-size: 18px; font-weight: 700; text-decoration: none; letter-spacing: 0.5px; }
+  .phone-btn:hover { background: linear-gradient(135deg, #1a5a1a, #1a4a1a); }
+  .email-btn { display: inline-flex; align-items: center; gap: 6px; background: #1a1a2e; border: 1px solid #2a2a4e; color: #8888ff; padding: 8px 16px; border-radius: 8px; font-size: 13px; text-decoration: none; }
+  .website-btn { display: inline-flex; align-items: center; gap: 6px; background: #1a1a1a; border: 1px solid #333; color: #aaa; padding: 8px 16px; border-radius: 8px; font-size: 13px; text-decoration: none; }
+  
+  .pitch-box { background: #0d1117; border: 1px solid #1a2a3a; border-radius: 10px; padding: 14px 16px; margin: 12px 0; }
+  .pitch-label { font-size: 11px; color: #4a8aff; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; font-weight: 600; }
+  .pitch-text { color: #ccc; font-size: 14px; line-height: 1.5; font-style: italic; }
+  .pitch-text .highlight { color: #7ddb7d; font-weight: 600; font-style: normal; }
+  
+  .contact-name { color: #ffd700; font-size: 13px; font-weight: 600; margin-top: 8px; }
+  .contact-detail { color: #888; font-size: 12px; }
+  
+  .value-tag { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px; margin-left: 8px; vertical-align: middle; }
+  .value-tag.high { background: #3a1a1a; color: #ff6b6b; }
+  .value-tag.medium { background: #3a3a1a; color: #ffd700; }
+  .value-tag.hot { background: #4a1a3a; color: #ff69b4; }
+  
+  .mark-btn { background: #222; border: 1px solid #333; color: #888; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; margin-top: 10px; }
+  .mark-btn:hover { background: #2a2a2a; color: #fff; }
+  
+  .section-divider { text-align: center; padding: 20px 0 12px; color: #555; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+  
+  .footer { text-align: center; padding: 24px; color: #444; font-size: 12px; border-top: 1px solid #222; margin-top: 24px; }
+  
+  @media (max-width: 600px) {
+    .phone-btn { font-size: 16px; padding: 10px 16px; }
+    .lead-name { font-size: 17px; }
+    .stats-bar { flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📞 Monday Call Sheet</h1>
+  <div class="subtitle">Week of March 24, 2026 — Jamie's Top 10 Calls</div>
+  <div class="goal">🎯 Goal: 5 calls = 1 appointment = 1 contract by Friday</div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="num" id="total-calls">0</div><div class="label">Calls Made</div></div>
+  <div class="stat"><div class="num" id="total-leads">10</div><div class="label">Leads</div></div>
+  <div class="stat"><div class="num" id="appointments">0</div><div class="label">Appointments</div></div>
+  <div class="stat"><div class="num">$500+</div><div class="label">Potential MRR</div></div>
+</div>
+
+<div class="tips">
+  <h3>💡 Quick Tips for Jamie</h3>
+  <ul>
+    <li><strong>Best time to call:</strong> Tuesday-Thursday, 9:30-11:30 AM</li>
+    <li><strong>Introduce as:</strong> "Hi, this is Jamie with Tidy Tails Pet Waste Removal"</li>
+    <li><strong>Ask for:</strong> Property manager, maintenance director, or community manager</li>
+    <li><strong>Key stat:</strong> Pet waste is the #1 complaint in apartment communities</li>
+    <li><strong>Our edge:</strong> We're LOCAL, already servicing their neighborhood, and cheaper than every competitor</li>
+    <li><strong>Close with:</strong> "Can I stop by this week for a quick walkthrough? Takes 10 minutes."</li>
+  </ul>
+</div>
+
+<!-- ===== TIER 1: HIGHEST VALUE ===== -->
+<div class="section-divider">⭐ Tier 1 — Highest Value (One call could = multiple properties)</div>
+
+<!-- Lead 1: Millsap Properties -->
+<div class="lead-card" id="lead-1">
+  <div>
+    <span class="lead-rank top3">1</span>
+    <span class="lead-name">Millsap Properties</span>
+    <span class="value-tag hot">🔥 7 PROPERTIES</span>
+  </div>
+  <div class="lead-type">Property Management — Owns 7 apartment communities in TJ's EXACT service area</div>
+  <div class="lead-why">Manages Charbonier Apts (Florissant), Teson Garden & White Birch (Hazelwood), Leslie (Ballwin), plus 3 in St. Charles. ALL pet-friendly. One contract = up to 7 properties.</div>
+  
+  <div class="phone-row">
+    <a href="tel:+13146863337" class="phone-btn">📞 (314) 686-3337</a>
+    <a href="mailto:millsappropertymanagement@gmail.com" class="email-btn">✉️ millsappropertymanagement@gmail.com</a>
+    <a href="https://www.millsapproperties.com" target="_blank" class="website-btn">🌐 Website</a>
+  </div>
+  <div class="contact-detail">📍 P.O. Box 67, Grover, MO 63040 — Owner-operated (they own what they manage)</div>
+
+  <div class="pitch-box">
+    <div class="pitch-label">📝 What to Say</div>
+    <div class="pitch-text">"Hi, this is Jamie with Tidy Tails Pet Waste Removal. We're a local company that services apartments and communities in Florissant and Hazelwood — <span class="highlight">actually right near your Charbonier and Teson Garden properties</span>. I know pet waste in common areas is a constant headache for property managers. We handle it weekly for a flat monthly rate so your maintenance crew doesn't have to. <span class="highlight">Could I do a quick walkthrough of one of your properties this week?</span> Takes about 10 minutes and I can give you an exact quote."</div>
+  </div>
+  <button class="mark-btn" onclick="toggleCalled('lead-1')">✅ Mark as Called</button>
+</div>
+
+<!-- Lead 2: Sentry Management -->
+<div class="lead-card" id="lead-2">
+  <div>
+    <span class="lead-rank top3">2</span>
+    <span class="lead-name">Sentry Management — St. Louis</span>
+    <span class="value-tag hot">🔥 32+ HOA COMMUNITIES</span>
+  </div>
+  <div class="lead-type">HOA Management — National company, major STL presence</div>
+  <div class="lead-why">Manages 32+ HOA communities across STL County, St. Charles, O'Fallon, St. Peters, Wentzville. Serves Ballwin, Chesterfield, Florissant, Kirkwood, Manchester — ALL our areas.</div>
+  
+  <div class="phone-row">
+    <a href="tel:+13149947440" class="phone-btn">📞 (314) 994-7440</a>
+    <a href="https://www.sentrymgt.com/offices/st-louis/" target="_blank" class="website-btn">🌐 Website</a>
+  </div>
+  <div class="contact-name">🎯 Ask for: Danette Dietz — Division President, St. Louis Office</div>
+  <div class="contact-detail">📍 9666 Olive Blvd, Suite 116, St. Louis, MO 63132 — 13 employees in STL office</div>
+
+  <div class="pitch-box">
+    <div class="pitch-label">📝 What to Say</div>
+    <div class="pitch-text">"Hi, I'm trying to reach <span class="highlight">Danette Dietz</span> — I'm Jamie with Tidy Tails Pet Waste Removal. We're a local company that provides professional pet waste cleanup for HOA common areas. I know pet waste is consistently one of the <span class="highlight">top complaints HOA boards deal with</span>. We solve it — weekly service, pet waste stations maintained, one flat monthly fee per community. <span class="highlight">Could I send over a quick proposal for one of your communities to review?</span>"</div>
+  </div>
+  <button class="mark-btn" onclick="toggleCalled('lead-2')">✅ Mark as Called</button>
+</div>
+
+<!-- Lead 3: Associa Smith Management -->
+<div class="lead-card" id="lead-3">
+  <div>
+    <span class="lead-rank top3">3</span>
+    <span class="lead-name">Associa Smith Management Group</span>
+    <span class="value-tag hot">🔥 LARGEST HOA MGMT IN STL</span>
+  </div>
+  <div class="lead-type">HOA Management — Part of national Associa network, 60+ years in STL</div>
+  <div class="lead-why">Largest HOA management company in STL metro. 38 team members. Manages hundreds of HOA/condo/villa/townhome communities across STL County and St. Charles. Est. 1958.</div>
+
+  <div class="phone-row">
+    <a href="tel:+13143944200" class="phone-btn">📞 (314) 394-4200</a>
+    <a href="https://smithmgmt.com/proposal-request" target="_blank" class="email-btn">📋 Request Proposal Form</a>
+    <a href="https://smithmgmt.com" target="_blank" class="website-btn">🌐 Website</a>
+  </div>
+  <div class="contact-detail">📍 1630 Des Peres Rd, Suite 210, St. Louis, MO 63131 — Ask for Community Manager or Vendor Coordinator</div>
+
+  <div class="pitch-box">
+    <div class="pitch-label">📝 What to Say</div>
+    <div class="pitch-text">"Hi, this is Jamie with Tidy Tails Pet Waste Removal. I'm a local vendor reaching out because I know HOA communities deal with pet waste complaints constantly. We provide <span class="highlight">professional weekly common area cleanup and pet waste station maintenance</span> for a flat monthly rate. We're already servicing neighborhoods in Florissant, Ballwin, and St. Peters. <span class="highlight">Who would I talk to about getting on your approved vendor list?</span>"</div>
+  </div>
+  <button class="mark-btn" onclick="toggleCalled('lead-3')">✅ Mark as Called</button>
+</div>
+
+<!-- ===== TIER 2: APARTMENTS WITH DOG PARKS ===== -->
+<div class="section-divider">🏢 Tier 2 — Apartments with Dog Parks (Direct pitch, faster close)</div>
+
+<!-- Lead 4: Jasper Apartments -->
+<div class="lead-card" id="lead-4">
+  <div>
+    <span class="lead-rank">4</span>
+    <span class="lead-name">Jasper Apartments</span>
+    <span class="value-tag medium">✨ BRAND NEW BUILD</span>
+  </div>
+  <div class="lead-type">New apartment community — St. Peters, MO 63303</div>
+  <div class="lead-why">BRAND NEW community with dog park, pet wash room, 1-3 bedrooms. Still building vendor list = get in on ground floor. TJ already services Preshus in St. Peters.</div>
+
+  <div class="phone-row">
+    <a href="tel:+16367474411" class="phone-btn">📞 (636) 747-4411</a>
+    <a href="https://jasperlifestl.com" target="_blank" class="website-btn">🌐 Website</a>
+  </div>
+  <div class="contact-detail">📍 1000 Jasper Ln, St. Peters, MO 63303 — Ask for Property Manager</div>
+
+  <div class="pitch-box">
+    <div class="pitch-label">📝 What to Say</div>
+    <div class="pitch-text">"Congrats on the new community! I'm Jamie with Tidy Tails — we're a local pet waste removal company <span class="highlight">already servicing clients right here in St. Peters</span>. I noticed you have a beautiful dog park and pet wash room. We'd love to be your pet waste vendor — <span class="highlight">keep that dog park spotless from day one</span>. Can I stop by for a quick walkthrough?"</div>
+  </div>
+  <button class="mark-btn" onclick="toggleCalled('lead-4')">✅ Mark as Called</button>
+</div>
+
+<!-- Lead 5: Delrado Apartments -->
+<div class="lead-card" id="lead-5">
+  <div>
+    <span class="lead-rank">5</span>
+    <span class="lead-name">Delrado Apartments</span>
+    <span class="value-tag medium">📍 FLORISSANT 63031</span>
+  </div>
+  <div class="lead-type">Apartment Complex — Florissant, MO (TJ's core territory)</div>
+  <div class="lead-why">Pet-friendly with DEDICATED fenced dog park + waste station already in place. Florissant 63031 = TJ's home turf. 2-pet max per unit. Already investing in pet infrastructure.</div>
+
+  <div class="phone-row">
+    <a href="tel:+13145015599" class="phone-btn">📞 (314) 501-5599</a>
+    <a href="https://delradoapartments.com" target="_blank" class="website-btn">🌐 Website</a>
+  </div>
+  <div class="contact-detail">📍 680 Mescalero Ct, Florissant, MO 63031 — Ask for Property Manager</div>
+
+  <div class="pitch-box">
+    <div class="pitch-label">📝 What to Say</div>
+    <div class="pitch-text">"Hi, this is Jamie with Tidy Tails. We're a pet waste removal company <span class="highlight">right here in Florissant — we service several homes in your zip code</span>. I noticed you have a great dog park setup with waste stations. We can handle the actual cleanup weekly so <span class="highlight">your maintenance team doesn't have to deal with it</span>. Flat monthly rate, no contract. Can I swing by this week?"</div>
+  </div>
+  <button class="mark-btn" onclick="toggleCalled('lead-5')">✅ Mark as Called</button>
+</div>
+
+<!-- Lead 6: Greenway Chase -->
+<div class="lead-card" id="lead-6">
+  <div>
+    <span class="lead-rank">6</span>
+    <span class="lead-name">Greenway Chase Apartments</span>
+    <span class="value-tag medium">📍 FLORISSANT 63031</span>
+  </div>
+  <div class="lead-type">Apartment Complex — Near Black Jack, Florissant, MO</div>
+  <div class="lead-why">Pet-friendly with ON-SITE DOG PARK. Same zip as TJ's existing customers. Middle-class demo ($940-$1,305/mo) = dog owners who care about clean grounds.</div>
+
+  <div class="phone-row">
+    <a href="tel:+13148382879" class="phone-btn">📞 (314) 838-2879</a>
+    <a href="https://greenwaychase.com" target="_blank" class="website-btn">🌐 Website</a>
+  </div>
+  <div class="contact-detail">📍 629 Greenway Manor Dr, Florissant, MO 63031</div>
+
+  <div class="pitch-box">
+    <div class="pitch-label">📝 What to Say</div>
+    <div class="pitch-text">"Hi Jamie here from Tidy Tails Pet Waste Removal. We're <span class="highlight">already in the neighborhood servicing homes on this side of Florissant</span>. Professional weekly dog park cleanup, one flat rate, keeps your grounds looking sharp for residents. <span class="highlight">Could I do a quick 10-minute walkthrough?</span>"</div>
+  </div>
+  <button class="mark-btn" onclick="toggleCalled('lead-6')">✅ Mark as Called</button>
+</div>
+
+<!-- Lead 7: Whisper Hollow -->
+<div class="lead-card" id="lead-7">
+  <div>
+    <span class="lead-rank">7</span>
+    <span class="lead-name">Whisper Hollow Apartments</span>
+    <span class="value-tag medium">🐕 FENCED PET PARK</span>
+  </div>
+  <div class="lead-type">Apartment Complex — Maryland Heights, MO 63043</div>
+  <div class="lead-why">Fenced pet park, near Creve Coeur Lake = outdoorsy dog owners. Studio to 2-bed, cats & dogs welcome. 11 Yelp reviews = established community.</div>
+
+  <div class="phone-row">
+    <a href="tel:+13148788898" class="phone-btn">📞 (314) 878-8898</a>
+    <a href="https://rentwhisperhollow.com" target="_blank" class="website-btn">🌐 Website</a>
+  </div>
+  <div class="contact-detail">📍 12430 Whisper Hollow Dr, Maryland Heights, MO 63043</div>
+
+  <div class="pitch-box">
+    <div class="pitch-label">📝 What to Say</div>
+    <div class="pitch-text">"Your pet park is a great selling point for residents — <span class="highlight">let us keep it pristine</span>. Weekly professional service means your maintenance crew can focus on other things. We're local, we're affordable, and we handle everything. <span class="highlight">Quick walkthrough this week?</span>"</div>
+  </div>
+  <button class="mark-btn" onclick="toggleCalled('lead-7')">✅ Mark as Called</button>
+</div>
+
+<!-- ===== TIER 3: REFERRAL PARTNERS ===== -->
+<div class="section-divider">🤝 Tier 3 — Referral Partners (Lower revenue per deal, but steady referrals)</div>
+
+<!-- Lead 8: Baronwood Kennels -->
+<div class="lead-card" id="lead-8">
+  <div>
+    <span class="lead-rank">8</span>
+    <span class="lead-name">Baronwood Kennels</span>
+    <span class="value-tag medium">📍 FLORISSANT — Since 1971</span>
+  </div>
+  <div class="lead-type">Pet Boarding / Grooming / Training — Family-owned, owners live on premises</div>
+  <div class="lead-why">Family-owned kennel in FLORISSANT since 1971. Owners live on site. Indoor + outdoor kennels. Groomer named Kat on staff. Two angles: (1) clean their outdoor areas, (2) referral partnership for boarding clients who need home yard cleanup.</div>
+
+  <div class="phone-row">
+    <a href="tel:+13148382021" class="phone-btn">📞 (314) 838-2021</a>
+    <a href="tel:+13148388089" class="phone-btn">📞 (314) 838-8089</a>
+    <a href="https://baronwoodkennels.com" target="_blank" class="website-btn">🌐 Website</a>
+  </div>
+  <div class="contact-detail">📍 17220 New Halls Ferry Rd, Florissant, MO 63034 — Ask for owners (family-run)</div>
+
+  <div class="pitch-box">
+    <div class="pitch-label">📝 What to Say</div>
+    <div class="pitch-text">"Hi, I'm Jamie with Tidy Tails — we're a <span class="highlight">local Florissant pet waste removal company</span>. I was wondering about two things: first, could we clean your outdoor kennel areas weekly? And second — <span class="highlight">your boarding clients probably come home to yards full of waste</span>. What if we set up a referral deal? You mention us, we give your clients 10% off their first month."</div>
+  </div>
+  <button class="mark-btn" onclick="toggleCalled('lead-8')">✅ Mark as Called</button>
+</div>
+
+<!-- Lead 9: Happy Tails -->
+<div class="lead-card" id="lead-9">
+  <div>
+    <span class="lead-rank">9</span>
+    <span class="lead-name">Happy Tails Dog Boarding & Daycare</span>
+    <span class="value-tag medium">⭐ 52 YELP REVIEWS</span>
+  </div>
+  <div class="lead-type">Dog Boarding / Daycare / Grooming / Training — Open 24/7, since 2000</div>
+  <div class="lead-why">High-volume facility, 52 Yelp reviews, open 24/7. St. Ann location (near Maryland Heights). Lots of dogs = lots of waste. Both direct service AND referral potential. Currently hiring = growing.</div>
+
+  <div class="phone-row">
+    <a href="tel:+13142913647" class="phone-btn">📞 (314) 291-3647</a>
+    <a href="https://www.happytailsinc.com/contact/" target="_blank" class="website-btn">🌐 Website</a>
+  </div>
+  <div class="contact-detail">📍 2920 N Lindbergh Blvd, Saint Ann, MO 63074</div>
+
+  <div class="pitch-box">
+    <div class="pitch-label">📝 What to Say</div>
+    <div class="pitch-text">"Hi, I'm Jamie with Tidy Tails Pet Waste Removal. <span class="highlight">You handle the love and care, we handle the cleanup</span>. Two ideas: weekly outdoor area service for your facility, plus a referral partnership — your daycare clients get <span class="highlight">10% off their first month</span> with us for home yard cleanup. Win-win?"</div>
+  </div>
+  <button class="mark-btn" onclick="toggleCalled('lead-9')">✅ Mark as Called</button>
+</div>
+
+<!-- Lead 10: Maryland Park -->
+<div class="lead-card" id="lead-10">
+  <div>
+    <span class="lead-rank">10</span>
+    <span class="lead-name">Maryland Park Apartments</span>
+    <span class="value-tag medium">🚧 ADDING DOG PARK</span>
+  </div>
+  <div class="lead-type">Apartment Complex — Maryland Heights, MO 63043</div>
+  <div class="lead-why">Pet-friendly, ACTIVELY planning to add a dog park. Perfect timing — pitch professional waste management as part of their pet-friendly upgrade. $1,109-$2,228/mo = upscale demo.</div>
+
+  <div class="phone-row">
+    <a href="tel:+18337270379" class="phone-btn">📞 (833) 727-0379</a>
+    <a href="https://livemarylandpark.com" target="_blank" class="website-btn">🌐 Website</a>
+  </div>
+  <div class="contact-detail">📍 2170 McKelvey Rd, Maryland Heights, MO 63043</div>
+
+  <div class="pitch-box">
+    <div class="pitch-label">📝 What to Say</div>
+    <div class="pitch-text">"I saw you're <span class="highlight">adding a dog park — that's awesome</span>. I'm Jamie with Tidy Tails, a local pet waste removal company. We can handle the waste management side so <span class="highlight">it stays clean from day one</span>. Professional weekly service, one flat rate. Can I stop by for a quick look at the space?"</div>
+  </div>
+  <button class="mark-btn" onclick="toggleCalled('lead-10')">✅ Mark as Called</button>
+</div>
+
+<div class="footer">
+  🐕💩 Tidy Tails Pet Waste Removal — (314) 850-7140 — tidytailsstl.com<br>
+  <span style="color: #555;">Call sheet generated by Franklin • March 22, 2026</span><br>
+  <span style="color: #444;">Progress saves locally in your browser</span>
+</div>
+
+<script>
+  // Load saved state
+  function loadState() {
+    const state = JSON.parse(localStorage.getItem('callsheet-mar24') || '{"called":[],"appointments":0}');
+    state.called.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('called');
+    });
+    document.getElementById('total-calls').textContent = state.called.length;
+    document.getElementById('appointments').textContent = state.appointments;
+    return state;
+  }
+
+  function toggleCalled(id) {
+    const state = JSON.parse(localStorage.getItem('callsheet-mar24') || '{"called":[],"appointments":0}');
+    const el = document.getElementById(id);
+    if (state.called.includes(id)) {
+      state.called = state.called.filter(x => x !== id);
+      el.classList.remove('called');
+    } else {
+      state.called.push(id);
+      el.classList.add('called');
+    }
+    document.getElementById('total-calls').textContent = state.called.length;
+    localStorage.setItem('callsheet-mar24', JSON.stringify(state));
+  }
+
+  loadState();
+</script>
+</body>
+</html>

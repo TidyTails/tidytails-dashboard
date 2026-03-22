@@ -7,6 +7,33 @@
 
 ## March 22, 2026 (Sunday)
 
+### 7:04 AM — 📞 Monday Call Sheet — Top 10 Commercial Leads with Pitch Scripts (Deliverable)
+**Task:** 20+ commercial leads have been sitting at "New" since March 16 — zero calls made. Jamie needs a READY-TO-CALL list, not a research doc. Built a mobile-friendly call sheet with the top 10 prioritized leads, click-to-call phone numbers, named decision makers where found, and word-for-word pitch scripts.
+
+**Result:** ✅ COMPLETE — `dashboard/monday-call-sheet-mar24.html` — 10 leads, 3 tiers, pitch scripts, call tracking
+
+**What Got Done:**
+1. **Enriched top leads** — Scraped Millsap Properties (owner-operated, 7 properties), Sentry Management (found Division President: Danette Dietz, 13 STL employees, 32+ communities), Associa Smith Management (38 team members, 60+ years, proposal request form), Baronwood Kennels (family-owned since 1971, groomer named Kat), Happy Tails (24/7, currently hiring = growing)
+2. **Prioritized into 3 tiers:**
+   - Tier 1 (Highest value): Millsap (7 properties), Sentry (32+ HOAs), Associa (largest in STL)
+   - Tier 2 (Apartments with dog parks): Jasper (brand new), Delrado (Florissant), Greenway Chase (Florissant), Whisper Hollow (Maryland Heights)
+   - Tier 3 (Referral partners): Baronwood Kennels, Happy Tails, Maryland Park
+3. **Each lead has:** Click-to-call phone link, named contact (where found), website link, email link, pitch angle, and a WORD-FOR-WORD pitch script Jamie can read verbatim
+4. **Call tracking:** Mark-as-called buttons, running counter, appointment tracker — all saved in localStorage
+5. **Added to dashboard:** TODAY panel (top card with green glow), archive list
+
+**Key Intel Found:**
+- Sentry Management STL Division President = **Danette Dietz** — named contact for HOA pitch
+- Associa Smith Management has a **proposal request form** online — can submit digitally too
+- Millsap Properties is owner-operated (they own what they manage) — decision maker IS the owner
+- Happy Tails is currently hiring = growing business = more likely to outsource cleanup
+
+**Why This Task:** 20+ leads sitting untouched for 6 days. Research without action = zero revenue. This converts "we have leads" into "Jamie picks up the phone Monday and reads the script." Brave Search nearly exhausted (1,961/2,000) so enriched via direct site scraping instead. One Millsap contract = up to 7 properties. One Sentry contract = access to 32+ HOA communities. This is how we hit 25-30 customers.
+
+**Rotation:** 📞 Sales / Lead Enrichment / Outreach
+
+---
+
 ### 6:05 AM — 🔍 Competitor Intel Update + Search Visibility Audit (Intelligence/Monitoring)
 **Task:** 6 AM Sunday = monitoring, not building. Ran competitive intel scan and search visibility check. The self-assessment says "STOP BUILDING TOOLKITS" — so I checked if existing assets are even findable.
 
