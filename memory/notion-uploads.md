@@ -313,3 +313,4 @@ Chief uses this to verify sync with dashboard.
 | Time | File | Notion Folder | Dashboard Path | Status |
 |------|------|---------------|----------------|--------|
 | 00:01 | EOD Summary Mar 21 | 📋 Operations | EOD_SUMMARY_2026-03-21.pdf | ✅ |
+| 06:01 | Monday Action Brief Mar 24 | 📋 Operations | MONDAY_ACTION_BRIEF_2026-03-24.pdf | ✅ |
