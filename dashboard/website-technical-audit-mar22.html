@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔧 Website Technical Audit — March 22, 2026 | Tidy Tails</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 20px; max-width: 900px; margin: 0 auto; }
+        h1 { color: #ff6b6b; font-size: 1.8em; margin-bottom: 5px; }
+        .subtitle { color: #888; margin-bottom: 30px; }
+        .score-card { display: flex; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; }
+        .score { background: #1a1a1a; border-radius: 12px; padding: 20px; flex: 1; min-width: 150px; text-align: center; border: 1px solid #333; }
+        .score .number { font-size: 2.5em; font-weight: 800; }
+        .score .label { color: #888; font-size: 0.85em; margin-top: 5px; }
+        .green { color: #4ecdc4; }
+        .red { color: #ff6b6b; }
+        .yellow { color: #ffd93d; }
+        .orange { color: #ff8c42; }
+        
+        .section { background: #1a1a1a; border-radius: 12px; padding: 25px; margin-bottom: 20px; border-left: 4px solid #333; }
+        .section.critical { border-left-color: #ff6b6b; }
+        .section.warning { border-left-color: #ffd93d; }
+        .section.good { border-left-color: #4ecdc4; }
+        .section h2 { font-size: 1.3em; margin-bottom: 15px; }
+        .section h3 { font-size: 1.1em; margin: 15px 0 10px; color: #ccc; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 10px 0; }
+        th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #2a2a2a; font-size: 0.9em; }
+        th { color: #888; font-weight: 600; text-transform: uppercase; font-size: 0.75em; letter-spacing: 0.5px; }
+        
+        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.8em; font-weight: 600; }
+        .badge-red { background: #ff6b6b22; color: #ff6b6b; }
+        .badge-green { background: #4ecdc422; color: #4ecdc4; }
+        .badge-yellow { background: #ffd93d22; color: #ffd93d; }
+        .badge-orange { background: #ff8c4222; color: #ff8c42; }
+        
+        .action-item { background: #111; border-radius: 8px; padding: 15px; margin: 10px 0; border: 1px solid #2a2a2a; }
+        .action-item .priority { font-size: 0.75em; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 5px; }
+        .action-item .desc { line-height: 1.6; }
+        .action-item .time { color: #888; font-size: 0.85em; margin-top: 5px; }
+        
+        ul { padding-left: 20px; line-height: 1.8; }
+        code { background: #2a2a2a; padding: 2px 6px; border-radius: 3px; font-size: 0.9em; color: #4ecdc4; }
+        
+        .summary-box { background: linear-gradient(135deg, #1a1a2e, #16213e); border-radius: 12px; padding: 25px; margin-bottom: 30px; border: 1px solid #333; }
+        .summary-box h2 { color: #ff6b6b; margin-bottom: 15px; }
+        .summary-box p { line-height: 1.8; color: #ccc; }
+        
+        .fix-status { display: flex; align-items: center; gap: 8px; margin: 5px 0; }
+        .fix-status .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .dot-red { background: #ff6b6b; }
+        .dot-green { background: #4ecdc4; }
+        .dot-yellow { background: #ffd93d; }
+    </style>
+</head>
+<body>
+
+<h1>🔧 Website Technical Audit</h1>
+<p class="subtitle">tidytailsstl.com — Full crawl March 22, 2026 at 3:05 PM CT</p>
+
+<div class="summary-box">
+    <h2>⚡ Bottom Line</h2>
+    <p><strong>6 out of 37 sitemap URLs are serving HOMEPAGE content instead of their unique pages.</strong> Google is crawling these URLs and seeing duplicate content — which actively hurts SEO. The pages exist in the workspace but were never deployed to Cloudflare Pages. Plus, two blog posts are cannibalizing each other on the same keyword. These are real, fixable problems that directly impact search rankings.</p>
+</div>
+
+<div class="score-card">
+    <div class="score">
+        <div class="number green">31</div>
+        <div class="label">Pages Working ✅</div>
+    </div>
+    <div class="score">
+        <div class="number red">6</div>
+        <div class="label">Ghost Pages 👻</div>
+    </div>
+    <div class="score">
+        <div class="number yellow">2</div>
+        <div class="label">Duplicate Content</div>
+    </div>
+    <div class="score">
+        <div class="number red">0</div>
+        <div class="label">Brave Search Results</div>
+    </div>
+</div>
+
+<!-- CRITICAL: Ghost Pages -->
+<div class="section critical">
+    <h2>🚨 CRITICAL: 6 Ghost Pages (Serving Homepage Content)</h2>
+    <p>These URLs are in the sitemap and being crawled by Google, but they return the HOMEPAGE instead of unique city/landing page content. The HTML files exist in the workspace (<code>tidy-tails/website/</code>) but were <strong>never deployed</strong> to Cloudflare Pages.</p>
+    
+    <table>
+        <tr><th>URL</th><th>Expected</th><th>Actual</th><th>File Size (Live)</th></tr>
+        <tr><td><code>/olivette</code></td><td>Olivette city page</td><td><span class="badge badge-red">HOMEPAGE</span></td><td>47,079 bytes (= homepage)</td></tr>
+        <tr><td><code>/south-city</code></td><td>South City page</td><td><span class="badge badge-red">HOMEPAGE</span></td><td>47,079 bytes (= homepage)</td></tr>
+        <tr><td><code>/south-county</code></td><td>South County page</td><td><span class="badge badge-red">HOMEPAGE</span></td><td>47,079 bytes (= homepage)</td></tr>
+        <tr><td><code>/university-city</code></td><td>U City page</td><td><span class="badge badge-red">HOMEPAGE</span></td><td>47,079 bytes (= homepage)</td></tr>
+        <tr><td><code>/wentzville</code></td><td>Wentzville page</td><td><span class="badge badge-red">HOMEPAGE</span></td><td>47,079 bytes (= homepage)</td></tr>
+        <tr><td><code>/spring-clean</code></td><td>Spring Deep Clean $100 offer</td><td><span class="badge badge-red">HOMEPAGE</span></td><td>47,079 bytes (= homepage)</td></tr>
+    </table>
+    
+    <h3>Why This Hurts SEO:</h3>
+    <ul>
+        <li>Google sees 6 URLs all returning identical content → <strong>duplicate content penalty</strong></li>
+        <li>Canonical tags on ghost pages point to homepage → Google ignores these URLs entirely</li>
+        <li>Sitemap promises unique content that doesn't exist → <strong>reduces sitemap trust</strong></li>
+        <li>Someone searching "pet waste removal olivette" will get the generic homepage instead of a targeted page</li>
+        <li>The <code>/spring-clean</code> landing page is a 735-line promotional page that's completely invisible — <strong>direct lost revenue</strong></li>
+    </ul>
+    
+    <h3>Local Files That Need Deploying:</h3>
+    <table>
+        <tr><th>File</th><th>Lines</th><th>Has Unique Content?</th></tr>
+        <tr><td><code>tidy-tails/website/olivette.html</code></td><td>184</td><td><span class="badge badge-green">YES</span></td></tr>
+        <tr><td><code>tidy-tails/website/south-city.html</code></td><td>213</td><td><span class="badge badge-green">YES</span></td></tr>
+        <tr><td><code>tidy-tails/website/south-county.html</code></td><td>213</td><td><span class="badge badge-green">YES</span></td></tr>
+        <tr><td><code>tidy-tails/website/university-city.html</code></td><td>186</td><td><span class="badge badge-green">YES</span></td></tr>
+        <tr><td><code>tidy-tails/website/wentzville.html</code></td><td>206</td><td><span class="badge badge-green">YES</span></td></tr>
+        <tr><td><code>tidy-tails/website/spring-clean.html</code></td><td>735</td><td><span class="badge badge-green">YES</span></td></tr>
+    </table>
+    
+    <div class="action-item">
+        <div class="priority red">🔥 FIX REQUIRED — TJ</div>
+        <div class="desc">Deploy these 6 files to Cloudflare Pages. They're written, they're ready — they just never made it to the live site. This is the highest-impact SEO fix available right now.</div>
+        <div class="time">⏱️ 10-15 minutes if Cloudflare dashboard access is available</div>
+    </div>
+</div>
+
+<!-- WARNING: Duplicate Blog Content -->
+<div class="section warning">
+    <h2>⚠️ WARNING: Duplicate Blog Content (Keyword Cannibalization)</h2>
+    <p>Two blog posts target essentially the same keyword: "dog poop laws st louis missouri"</p>
+    
+    <table>
+        <tr><th>Post</th><th>Title</th><th>Size</th></tr>
+        <tr>
+            <td><code>/blog/dog-poop-laws-st-louis-missouri</code></td>
+            <td>Dog Poop Laws in St. Louis, Missouri: What Every Dog Owner Needs to Know</td>
+            <td>35KB</td>
+        </tr>
+        <tr>
+            <td><code>/blog/dog-poop-laws-missouri-st-louis</code></td>
+            <td>Dog Poop Laws in Missouri & St. Louis: Fines, Rules & What You Need to Know (2026)</td>
+            <td>30KB</td>
+        </tr>
+    </table>
+    
+    <h3>Why This Hurts:</h3>
+    <ul>
+        <li>Google doesn't know which one to rank → <strong>both rank lower than one combined post would</strong></li>
+        <li>Link equity splits between two pages instead of concentrating on one</li>
+        <li>This is called "keyword cannibalization" — your own pages compete against each other</li>
+    </ul>
+    
+    <div class="action-item">
+        <div class="priority yellow">📋 RECOMMENDED FIX</div>
+        <div class="desc">
+            <strong>Option A (Best):</strong> Merge content into the newer post (<code>dog-poop-laws-missouri-st-louis</code>) and add a 301 redirect from the old URL.<br>
+            <strong>Option B (Quick):</strong> Add a <code>rel="canonical"</code> tag on the older post pointing to the newer one.<br>
+            <strong>Option C (Minimal):</strong> Differentiate the older post to target a different keyword entirely (e.g., "dog waste ordinances by STL municipality").
+        </div>
+        <div class="time">⏱️ 15-30 minutes</div>
+    </div>
+</div>
+
+<!-- GOOD: What's Working -->
+<div class="section good">
+    <h2>✅ What's Working</h2>
+    
+    <h3>All 31 Live Pages Load Successfully (HTTP 200)</h3>
+    <table>
+        <tr><th>Category</th><th>Count</th><th>Status</th></tr>
+        <tr><td>Homepage</td><td>1</td><td><span class="badge badge-green">✅ Live</span></td></tr>
+        <tr><td>City pages (working)</td><td>13</td><td><span class="badge badge-green">✅ All unique content</span></td></tr>
+        <tr><td>Landing pages (refer, free-cleanup, calculator)</td><td>3</td><td><span class="badge badge-green">✅ Live</span></td></tr>
+        <tr><td>Blog index</td><td>1</td><td><span class="badge badge-green">✅ Live</span></td></tr>
+        <tr><td>Blog posts</td><td>11</td><td><span class="badge badge-green">✅ All unique titles</span></td></tr>
+    </table>
+    
+    <h3>SEO Basics in Place:</h3>
+    <ul>
+        <li>✅ SSL valid (expires May 17, 2026)</li>
+        <li>✅ Sitemap at <code>/sitemap.xml</code> — valid XML, 37 entries</li>
+        <li>✅ <code>robots.txt</code> — clean, allows all crawlers</li>
+        <li>✅ All working city pages have unique <code>&lt;title&gt;</code> tags with city name + "Pet Waste Removal"</li>
+        <li>✅ All blog posts have unique titles and content</li>
+        <li>✅ Homepage has proper meta description</li>
+        <li>✅ Cloudflare CDN — fast loads from ORD edge node</li>
+        <li>✅ Working city pages: Florissant, Ferguson, Maryland Heights, O'Fallon, St. Charles, St. Peters, Chesterfield, Ballwin, Creve Coeur, Hazelwood, Bridgeton, Kirkwood, Webster Groves</li>
+    </ul>
+</div>
+
+<!-- Search Visibility -->
+<div class="section critical">
+    <h2>🔍 Search Visibility: Still Zero on Brave</h2>
+    <p><code>site:tidytailsstl.com</code> on Brave Search returns <strong>zero results</strong> (confirmed March 22).</p>
+    <p>Searching <code>"tidy tails" pet waste removal st louis</code> on Brave returns 10 results — <strong>all OTHER "Tidy Tails" businesses</strong> (Charleston, Atlanta, Gig Harbor, Valrico FL). TJ's site is nowhere.</p>
+    
+    <h3>Brand Collision Count: 8+ Nationally</h3>
+    <ul>
+        <li>tidytailschs.com (Charleston, SC)</li>
+        <li>tidytailspetcare.com</li>
+        <li>tidiesttails.com</li>
+        <li>tidytailsfl.com (Valrico, FL)</li>
+        <li>tidytailspetwasteremoval.net</li>
+        <li>tidytailswastesolutions.com (Atlanta, GA)</li>
+        <li>Tidy Tails (Gig Harbor, WA)</li>
+        <li>tidytailsstl.com (US — that's us, invisible)</li>
+    </ul>
+    
+    <div class="action-item">
+        <div class="priority orange">📋 CONTEXT</div>
+        <div class="desc">The site IS indexed by Google (confirmed via GSC) but hasn't built enough authority for Brave or other engines. The 6 ghost pages sending duplicate content signals to Google are actively hurting this. Deploying the real pages + getting directory backlinks are the two fastest paths to visibility.</div>
+    </div>
+</div>
+
+<!-- Priority Fix Order -->
+<div class="section">
+    <h2>📋 Fix Priority Order</h2>
+    <div class="action-item">
+        <div class="priority red">1. DEPLOY 6 GHOST PAGES</div>
+        <div class="desc">Upload olivette.html, south-city.html, south-county.html, university-city.html, wentzville.html, spring-clean.html to Cloudflare Pages. These files are ready in <code>tidy-tails/website/</code>.</div>
+        <div class="time">⏱️ 10-15 min | Impact: HIGH | Cost: $0</div>
+    </div>
+    <div class="action-item">
+        <div class="priority yellow">2. FIX DUPLICATE BLOG CONTENT</div>
+        <div class="desc">Consolidate the two dog poop laws posts or add canonical tag from old → new.</div>
+        <div class="time">⏱️ 15-30 min | Impact: MEDIUM | Cost: $0</div>
+    </div>
+    <div class="action-item">
+        <div class="priority yellow">3. REMOVE GHOST URLS FROM SITEMAP (if not deploying)</div>
+        <div class="desc">If the pages won't be deployed soon, remove the 6 ghost URLs from sitemap.xml to stop Google from crawling duplicate content. Only do this if deploying isn't happening — deploying is the better fix.</div>
+        <div class="time">⏱️ 5 min | Impact: MEDIUM | Cost: $0</div>
+    </div>
+</div>
+
+<div style="text-align: center; margin-top: 30px; color: #555; font-size: 0.85em;">
+    Audit by Franklin 🐕💩 | March 22, 2026 | 37 URLs crawled, 0 errors
+</div>
+
+</body>
+</html>

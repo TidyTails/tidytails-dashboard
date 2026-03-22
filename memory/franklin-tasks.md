@@ -7,6 +7,42 @@
 
 ## March 22, 2026 (Sunday)
 
+### 3:04 PM — 🔧 Website Technical Audit — 6 Ghost Pages Found (SEO/Monitoring)
+**Task:** Full technical crawl of all 37 sitemap URLs on tidytailsstl.com. Checked HTTP status, content uniqueness, titles, meta descriptions, canonical tags, file sizes, and search visibility.
+
+**Result:** ✅ COMPLETE — `dashboard/website-technical-audit-mar22.html` — Major deployment gap discovered
+
+**What Got Done:**
+1. **Crawled all 37 sitemap URLs** — all returned HTTP 200, no 404s
+2. **DISCOVERED 6 GHOST PAGES** — /olivette, /south-city, /south-county, /university-city, /wentzville, and /spring-clean all serve HOMEPAGE content (47,079 bytes = identical to index). The HTML files exist in workspace (`tidy-tails/website/`) with unique content (184-735 lines each) but were **never deployed** to Cloudflare Pages.
+3. **Canonical tag problem** — Ghost pages have `canonical` pointing to homepage, telling Google to ignore them entirely
+4. **Duplicate blog content found** — Two posts target nearly identical keywords:
+   - `/blog/dog-poop-laws-st-louis-missouri` (35KB)
+   - `/blog/dog-poop-laws-missouri-st-louis` (30KB)
+   These cannibalize each other in Google rankings.
+5. **Brave Search: still zero** — `site:tidytailsstl.com` returns nothing. Brand search shows 8+ OTHER "Tidy Tails" businesses nationally but NOT TJ's.
+6. **31 pages verified working** — all 13 deployed city pages have unique titles, content, and meta descriptions ✅
+7. **All 11 blog posts verified** — unique content, proper titles ✅
+8. **Sitemap, robots.txt, SSL all healthy** ✅
+9. **Built comprehensive audit report** with fix priority list, deployed to dashboard
+
+**Key Findings:**
+- 🚨 `/spring-clean` is a 735-line promotional landing page ($100 deep clean offer) that's **completely invisible** — direct lost revenue
+- 🚨 5 city pages were added to sitemap but never deployed — Google crawls them, sees duplicate content, loses trust in sitemap
+- ⚠️ Duplicate dog poop laws blog posts = keyword cannibalization
+- ✅ The 31 working pages are solid — unique content, proper SEO tags
+
+**What TJ Should Do:**
+1. **Deploy 6 ghost pages to Cloudflare** (10-15 min) — files are ready, just never uploaded
+2. **Merge or canonical-tag the duplicate blog posts** (15-30 min)
+3. If can't deploy soon, remove ghost URLs from sitemap to stop the bleeding
+
+**Why This Task:** Self-assessment says "maintain existing assets, not build new ones." This is exactly that — auditing what's already built and finding that 6 pages we thought were live... aren't. The spring-clean landing page being invisible is particularly painful since it's the main seasonal offer page.
+
+**Rotation:** 🔧 SEO / Website Maintenance / Technical Audit
+
+---
+
 ### 2:04 PM — 🏗️ Shed Marketplace Listing Generator — All 23 Buildings (TuffShed Pipeline)
 **Task:** The shed side has gotten ZERO Franklin attention today (8 tasks, all Tidy Tails). Marketplace DMs are the #1 shed lead source per MEMORY.md, but there was no tool to quickly list buildings. Built a complete Marketplace listing generator for all 23 buildings on the lot.
 

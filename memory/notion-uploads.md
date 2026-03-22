@@ -314,3 +314,6 @@ Chief uses this to verify sync with dashboard.
 |------|------|---------------|----------------|--------|
 | 00:01 | EOD Summary Mar 21 | 📋 Operations | EOD_SUMMARY_2026-03-21.pdf | ✅ |
 | 06:01 | Monday Action Brief Mar 24 | 📋 Operations | MONDAY_ACTION_BRIEF_2026-03-24.pdf | ✅ |
+| 12:01 | Morning Briefing Mar 22 | 📋 Operations | MORNING_BRIEFING_2026-03-22.pdf | ✅ |
+| 12:01 | Shed Ads Mar 22 | 🏠 Shed Sales | SHED_ADS_2026-03-22.pdf | ✅ |
+| 12:01 | Commercial Leads Mar 22 | 🐕 Jamie's Hub | COMMERCIAL_LEADS_2026-03-22.pdf | ✅ |
