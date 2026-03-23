@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎁 Referral Blitz — Spring 2026</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 16px; max-width: 600px; margin: 0 auto; }
+h1 { font-size: 1.4rem; text-align: center; margin-bottom: 4px; }
+.subtitle { text-align: center; color: #888; font-size: 0.85rem; margin-bottom: 20px; }
+.offer-box { background: linear-gradient(135deg, #0a1a0a, #1a2e1a); border: 2px solid #4ecdc4; border-radius: 16px; padding: 20px; margin-bottom: 20px; text-align: center; }
+.offer-box h2 { color: #4ecdc4; font-size: 1.3rem; margin-bottom: 6px; }
+.offer-box p { color: #aaa; font-size: 0.9rem; line-height: 1.4; }
+.offer-box .deal { font-size: 1.6rem; font-weight: 800; color: #fff; margin: 10px 0; }
+.tracker { display: flex; justify-content: space-around; margin-bottom: 20px; padding: 16px; background: #1a1a1a; border-radius: 12px; border: 1px solid #333; }
+.tracker-item { text-align: center; }
+.tracker-num { font-size: 2rem; font-weight: bold; color: #4ecdc4; }
+.tracker-label { font-size: 0.75rem; color: #888; margin-top: 2px; }
+.card { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; margin-bottom: 14px; overflow: hidden; transition: all 0.3s; }
+.card.sent { border-color: #2d5a2d; opacity: 0.7; }
+.card.sent .card-header { background: #1a2e1a; }
+.card-header { background: #222; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+.card-header h3 { font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+.card-header .freq { color: #4ecdc4; font-size: 0.75rem; background: #0a2020; padding: 2px 8px; border-radius: 20px; }
+.card-body { padding: 16px; display: none; }
+.card.open .card-body { display: block; }
+.message { background: #0d1117; border: 1px solid #2a2a2a; border-radius: 8px; padding: 12px; font-size: 0.88rem; line-height: 1.5; margin-bottom: 12px; white-space: pre-wrap; }
+.actions { display: flex; gap: 8px; }
+.btn { flex: 1; padding: 12px; border: none; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.btn-copy { background: #4ecdc4; color: #000; }
+.btn-text { background: #2563eb; color: #fff; }
+.btn-done { background: #333; color: #888; font-size: 0.8rem; padding: 8px; margin-top: 8px; width: 100%; }
+.btn-done.is-sent { background: #1a3a1a; color: #4ecdc4; }
+.btn:active { transform: scale(0.97); }
+.check { color: #4ecdc4; }
+.math { background: #1a1a2e; border: 1px solid #334; border-radius: 12px; padding: 16px; margin: 20px 0; }
+.math h3 { color: #7c8cf5; margin-bottom: 10px; font-size: 0.95rem; }
+.math-row { display: flex; justify-content: space-between; padding: 6px 0; font-size: 0.85rem; border-bottom: 1px solid #222; }
+.math-row:last-child { border: none; font-weight: bold; color: #4ecdc4; }
+.tips { background: #1a1a0a; border: 1px solid #443; border-radius: 12px; padding: 16px; margin-top: 16px; }
+.tips h3 { color: #e8c547; margin-bottom: 8px; font-size: 0.95rem; }
+.tips li { color: #aaa; font-size: 0.82rem; margin-bottom: 6px; line-height: 1.4; list-style: none; padding-left: 20px; position: relative; }
+.tips li::before { content: "💡"; position: absolute; left: 0; }
+.expire { text-align: center; color: #666; font-size: 0.75rem; margin-top: 16px; }
+</style>
+</head>
+<body>
+<h1>🎁 Referral Blitz</h1>
+<p class="subtitle">Spring 2026 — Turn 8 Customers Into 15+</p>
+
+<div class="offer-box">
+    <h2>The Deal</h2>
+    <div class="deal">$25 Off for BOTH</div>
+    <p>Customer refers a friend → they BOTH get $25 off their next month. No limit. Stack referrals.</p>
+</div>
+
+<div class="tracker">
+    <div class="tracker-item">
+        <div class="tracker-num" id="sentCount">0</div>
+        <div class="tracker-label">Texts Sent</div>
+    </div>
+    <div class="tracker-item">
+        <div class="tracker-num" id="responseCount">0</div>
+        <div class="tracker-label">Responses</div>
+    </div>
+    <div class="tracker-item">
+        <div class="tracker-num" id="referralCount">0</div>
+        <div class="tracker-label">Referrals</div>
+    </div>
+</div>
+
+<div id="cards"></div>
+
+<div class="math">
+    <h3>📊 The Math (If 4 of 8 Refer 1 Each)</h3>
+    <div class="math-row"><span>New customers</span><span>4</span></div>
+    <div class="math-row"><span>New monthly revenue</span><span>$280/mo</span></div>
+    <div class="math-row"><span>Referral credits given</span><span>-$200 one-time</span></div>
+    <div class="math-row"><span>Payback period</span><span>&lt; 1 month</span></div>
+    <div class="math-row"><span>Annual impact</span><span>+$3,360/yr</span></div>
+</div>
+
+<div class="tips">
+    <h3>Pro Tips</h3>
+    <ul>
+        <li>Send all 8 texts Monday morning — people are more responsive early in the week</li>
+        <li>If no reply by Wednesday, send a quick "Did you see my text?" follow-up</li>
+        <li>When a referral calls, get them scheduled FAST — within 24 hours if possible</li>
+        <li>Post a "shoutout" on social media after the first referral converts</li>
+        <li>Shannon ($140/mo) and Amanda ($120/mo) are your best bets — biggest customers, most invested</li>
+    </ul>
+</div>
+
+<p class="expire">Offer valid through April 30, 2026</p>
+
+<script>
+const customers = [
+    { name: "Mrs. Candee", freq: "Weekly · $60/mo", city: "St. Louis 63136", msg: `Hey Mrs. Candee! 🐾 Quick question — do you have any friends or neighbors with dogs who might want their yard cleaned up? We're running a spring referral special: you AND your friend both get $25 off your next month. No catch! Just have them mention your name when they call. 😊 Thanks for being such a great customer! —Jamie, Tidy Tails`, phone: "" },
+    { name: "Jody", freq: "Biweekly · $90/mo", city: "St. Louis 63114", msg: `Hey Jody! 🐶 Hope you're enjoying this spring weather! Quick thing — if you know anyone who's tired of dealing with dog poop in their yard, send them our way! We're doing a referral deal: $25 off for you AND them. They just mention your name. Easy money! —Jamie`, phone: "" },
+    { name: "Shannon Zamarripa", freq: "Weekly · $140/mo ⭐", city: "Florissant 63031", msg: `Hey Shannon! 🌱 Spring is here and we're growing! If any of your friends or neighbors need their yards cleaned up, we'd love the referral. We're doing $25 off for both of you — just have them mention your name when they reach out. You've been with us a while and we really appreciate it! —Jamie, Tidy Tails`, phone: "" },
+    { name: "Amanda Harris", freq: "Weekly · $120/mo ⭐", city: "Florissant 63031", msg: `Hey Amanda! Hope the pups are doing great! 🐾 We're trying to grow this spring and figured we'd start with our best customers. Know anyone who needs pet waste cleanup? You both get $25 off your next month if they sign up. Just have them call or text us at 314-850-7140 and mention your name! —Jamie`, phone: "" },
+    { name: "Lawrence", freq: "Biweekly · $100/mo", city: "St. Louis 63108", msg: `Hey Lawrence! Quick heads up — we're running a spring referral deal. If you refer a friend who signs up, you both get $25 off your next month. No strings attached. If anyone in your area is looking for yard cleanup, just have them call 314-850-7140 and say you sent them! —Jamie, Tidy Tails`, phone: "" },
+    { name: "Greg", freq: "Monthly · $50/mo", city: "O'Fallon 63366", msg: `Hey Greg! 🐕 Spring cleaning season is here! If you know anyone in O'Fallon or St. Charles who needs their yard cleaned up, we're doing a referral special: $25 off for you AND them. Just have them mention your name when they call. Thanks! —Jamie, Tidy Tails`, phone: "" },
+    { name: "Chastity", freq: "Biweekly · $90/mo", city: "Florissant 63033", msg: `Hey Chastity! 🌸 Happy spring! Quick one — do you know any dog owners who'd love to have their yard professionally cleaned? We're running a referral deal this spring: $25 off for you AND your friend. Just have them call or text 314-850-7140 and mention your name. Thanks for being awesome! —Jamie`, phone: "" },
+    { name: "Preshus", freq: "Weekly · $100/mo", city: "St. Charles 63303", msg: `Hey Preshus! Hope you and the pups are loving this weather! 🐾 We're growing this spring and wanted to offer our regulars a deal: refer a friend and you BOTH get $25 off your next month. If anyone in St. Charles needs yard cleanup, just have them mention your name when they reach out. Easy peasy! —Jamie`, phone: "" }
+];
+
+const state = JSON.parse(localStorage.getItem('referralBlitz') || '{}');
+
+function render() {
+    const container = document.getElementById('cards');
+    let sent = 0, responses = 0, referrals = 0;
+    
+    container.innerHTML = customers.map((c, i) => {
+        const s = state[i] || {};
+        if (s.sent) sent++;
+        if (s.response) responses++;
+        if (s.referral) referrals++;
+        const isOpen = s.open;
+        const isSent = s.sent;
+        
+        return `
+        <div class="card ${isOpen ? 'open' : ''} ${isSent ? 'sent' : ''}" id="card-${i}">
+            <div class="card-header" onclick="toggle(${i})">
+                <h3>${isSent ? '<span class="check">✓</span>' : ''} ${c.name}</h3>
+                <span class="freq">${c.freq}</span>
+            </div>
+            <div class="card-body">
+                <div style="color:#888;font-size:0.8rem;margin-bottom:8px">📍 ${c.city}</div>
+                <div class="message">${c.msg}</div>
+                <div class="actions">
+                    <button class="btn btn-copy" onclick="copyMsg(${i})">📋 Copy Text</button>
+                    <a class="btn btn-text" href="sms:${c.phone || ''}&body=${encodeURIComponent(c.msg)}">💬 Open iMessage</a>
+                </div>
+                <button class="btn btn-done ${isSent ? 'is-sent' : ''}" onclick="markSent(${i})">
+                    ${isSent ? '✓ Sent!' : 'Mark as Sent'}
+                </button>
+            </div>
+        </div>`;
+    }).join('');
+    
+    document.getElementById('sentCount').textContent = sent;
+    document.getElementById('responseCount').textContent = responses;
+    document.getElementById('referralCount').textContent = referrals;
+}
+
+function toggle(i) {
+    state[i] = state[i] || {};
+    state[i].open = !state[i].open;
+    save();
+    render();
+}
+
+function copyMsg(i) {
+    navigator.clipboard.writeText(customers[i].msg).then(() => {
+        const btn = event.target;
+        btn.textContent = '✓ Copied!';
+        setTimeout(() => { btn.innerHTML = '📋 Copy Text'; }, 2000);
+    });
+}
+
+function markSent(i) {
+    state[i] = state[i] || {};
+    state[i].sent = !state[i].sent;
+    save();
+    render();
+}
+
+function save() {
+    localStorage.setItem('referralBlitz', JSON.stringify(state));
+}
+
+render();
+</script>
+</body>
+</html>
