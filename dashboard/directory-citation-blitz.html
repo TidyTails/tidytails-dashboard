@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Directory & Citation Blitz — Tidy Tails STL</title>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --card: #12131a;
+    --card-hover: #181924;
+    --border: #1e2030;
+    --text: #e4e4e7;
+    --text-dim: #71717a;
+    --accent: #22c55e;
+    --accent-dim: #16a34a;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --info: #3b82f6;
+    --purple: #a855f7;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 20px; max-width: 1100px; margin: 0 auto; }
+
+  .header { text-align: center; padding: 30px 0 20px; }
+  .header h1 { font-size: 2rem; margin-bottom: 8px; }
+  .header h1 span { color: var(--accent); }
+  .header .subtitle { color: var(--text-dim); font-size: 0.95rem; }
+
+  .alert-box { background: linear-gradient(135deg, #1a0a0a, #0a0a0f); border: 1px solid var(--danger); border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; }
+  .alert-box h3 { color: var(--danger); margin-bottom: 6px; font-size: 0.95rem; }
+  .alert-box p { color: var(--text-dim); font-size: 0.88rem; }
+  .alert-box .finding { color: var(--warning); font-weight: 600; }
+
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .stat-card .num { font-size: 1.8rem; font-weight: 700; }
+  .stat-card .label { font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+  .stat-card.done .num { color: var(--accent); }
+  .stat-card.pending .num { color: var(--warning); }
+  .stat-card.total .num { color: var(--info); }
+  .stat-card.impact .num { color: var(--purple); }
+
+  .copy-zone { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+  .copy-zone h3 { margin-bottom: 12px; font-size: 1rem; }
+  .copy-field { position: relative; margin-bottom: 12px; }
+  .copy-field label { font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px; }
+  .copy-field .value { background: #0d0e14; border: 1px solid var(--border); border-radius: 8px; padding: 10px 70px 10px 12px; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; min-height: 38px; }
+  .copy-btn { position: absolute; top: 22px; right: 8px; background: var(--accent-dim); color: white; border: none; border-radius: 6px; padding: 4px 12px; font-size: 0.75rem; cursor: pointer; }
+  .copy-btn:hover { background: var(--accent); }
+  .copy-btn.copied { background: #166534; }
+
+  .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+  .tab { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 8px 16px; cursor: pointer; font-size: 0.85rem; color: var(--text-dim); transition: all 0.2s; }
+  .tab:hover { border-color: var(--accent); color: var(--text); }
+  .tab.active { background: var(--accent-dim); border-color: var(--accent); color: white; }
+  .tab .count { background: rgba(255,255,255,0.15); border-radius: 10px; padding: 1px 7px; margin-left: 6px; font-size: 0.75rem; }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .dir-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 12px; transition: all 0.2s; }
+  .dir-card:hover { border-color: #2a2b3d; }
+  .dir-card.completed { border-left: 3px solid var(--accent); opacity: 0.7; }
+  .dir-card.completed .dir-name { text-decoration: line-through; }
+
+  .dir-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .dir-check { width: 20px; height: 20px; cursor: pointer; accent-color: var(--accent); }
+  .dir-name { font-weight: 600; font-size: 1rem; flex: 1; }
+  .dir-priority { font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; text-transform: uppercase; }
+  .dir-priority.critical { background: rgba(239,68,68,0.15); color: var(--danger); }
+  .dir-priority.high { background: rgba(245,158,11,0.15); color: var(--warning); }
+  .dir-priority.medium { background: rgba(59,130,246,0.15); color: var(--info); }
+  .dir-priority.low { background: rgba(113,113,122,0.15); color: var(--text-dim); }
+
+  .dir-meta { display: flex; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
+  .dir-meta span { font-size: 0.82rem; color: var(--text-dim); }
+  .dir-meta .seo { color: var(--accent); }
+
+  .dir-desc { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 10px; }
+
+  .dir-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .dir-btn { display: inline-block; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; text-decoration: none; border: 1px solid var(--border); color: var(--text); transition: all 0.2s; }
+  .dir-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .dir-btn.primary { background: var(--accent-dim); border-color: var(--accent); color: white; }
+  .dir-btn.primary:hover { background: var(--accent); }
+
+  .dir-notes { margin-top: 8px; }
+  .dir-notes textarea { width: 100%; background: #0d0e14; border: 1px solid var(--border); border-radius: 6px; padding: 8px; color: var(--text); font-size: 0.82rem; resize: vertical; min-height: 36px; font-family: inherit; }
+
+  .progress-bar { width: 100%; height: 8px; background: var(--border); border-radius: 4px; margin: 8px 0; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.3s; }
+
+  .tip-box { background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; }
+  .tip-box h4 { color: var(--info); font-size: 0.88rem; margin-bottom: 4px; }
+  .tip-box p { font-size: 0.82rem; color: var(--text-dim); }
+
+  .nap-check { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; }
+  .nap-check h4 { color: var(--warning); font-size: 0.88rem; margin-bottom: 4px; }
+  .nap-check p { font-size: 0.82rem; color: var(--text-dim); }
+
+  footer { text-align: center; padding: 30px 0 10px; color: var(--text-dim); font-size: 0.78rem; }
+  @media (max-width: 600px) {
+    body { padding: 12px; }
+    .stats-row { grid-template-columns: 1fr 1fr; }
+    .dir-meta { flex-direction: column; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📍 Directory & <span>Citation Blitz</span></h1>
+  <p class="subtitle">Fix the F-grade off-page SEO. Every listing = a backlink + a customer path.</p>
+</div>
+
+<div class="alert-box">
+  <h3>🚨 FINDING: Yelp Listing is 404</h3>
+  <p>The claimed Yelp page at <span class="finding">/biz/tidy-tails-pet-waste-removal-florissant</span> returns 404. Either the listing was removed, the URL changed, or claiming didn't stick. <strong>Action: Search Yelp for "Tidy Tails" and re-claim or create fresh.</strong></p>
+</div>
+
+<div class="nap-check">
+  <h4>📋 NAP Consistency — Use EXACTLY This on Every Listing</h4>
+  <p><strong>Name:</strong> Tidy Tails Pet Waste Removal &nbsp;|&nbsp; <strong>Address:</strong> St. Louis, MO (service area business — no street address) &nbsp;|&nbsp; <strong>Phone:</strong> (314) 850-7140 &nbsp;|&nbsp; <strong>Website:</strong> https://tidytailsstl.com</p>
+</div>
+
+<div class="stats-row">
+  <div class="stat-card done"><div class="num" id="doneCount">0</div><div class="label">Submitted</div></div>
+  <div class="stat-card pending"><div class="num" id="pendingCount">0</div><div class="label">Remaining</div></div>
+  <div class="stat-card total"><div class="num" id="totalCount">0</div><div class="label">Total Dirs</div></div>
+  <div class="stat-card impact"><div class="num">~50</div><div class="label">Est. DA Points</div></div>
+</div>
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div>
+
+<!-- Copy-Paste Zone -->
+<div class="copy-zone">
+  <h3>📝 Copy-Paste Business Info</h3>
+  <div class="copy-field">
+    <label>Business Name</label>
+    <div class="value" id="cp-name">Tidy Tails Pet Waste Removal</div>
+    <button class="copy-btn" onclick="copyField('cp-name', this)">Copy</button>
+  </div>
+  <div class="copy-field">
+    <label>Phone</label>
+    <div class="value" id="cp-phone">(314) 850-7140</div>
+    <button class="copy-btn" onclick="copyField('cp-phone', this)">Copy</button>
+  </div>
+  <div class="copy-field">
+    <label>Website</label>
+    <div class="value" id="cp-web">https://tidytailsstl.com</div>
+    <button class="copy-btn" onclick="copyField('cp-web', this)">Copy</button>
+  </div>
+  <div class="copy-field">
+    <label>Short Description (160 chars)</label>
+    <div class="value" id="cp-short">Professional pet waste removal in St. Louis. Weekly, biweekly & monthly yard cleanup. Flat $70/mo pricing. Locally owned. Free first visit!</div>
+    <button class="copy-btn" onclick="copyField('cp-short', this)">Copy</button>
+  </div>
+  <div class="copy-field">
+    <label>Long Description (for directories that allow it)</label>
+    <div class="value" id="cp-long">Tidy Tails Pet Waste Removal keeps St. Louis yards clean so you don't have to. We offer weekly, biweekly, and monthly pet waste cleanup with simple flat-rate pricing — just $70/month for unlimited visits. No contracts, no hidden fees. Serving St. Louis County, St. Charles County, O'Fallon, Florissant, Ferguson, Maryland Heights, Kirkwood, Webster Groves, and surrounding areas. Locally owned and operated. Your first visit is free — see the difference before you commit. Call or text (314) 850-7140 to get started.</div>
+    <button class="copy-btn" onclick="copyField('cp-long', this)">Copy</button>
+  </div>
+  <div class="copy-field">
+    <label>Categories / Keywords</label>
+    <div class="value" id="cp-cats">Pet Waste Removal, Dog Poop Pickup, Pooper Scooper Service, Pet Services, Yard Cleanup, Dog Waste Removal</div>
+    <button class="copy-btn" onclick="copyField('cp-cats', this)">Copy</button>
+  </div>
+  <div class="copy-field">
+    <label>Service Areas</label>
+    <div class="value" id="cp-areas">St. Louis County, St. Charles County, O'Fallon, St. Peters, Florissant, Ferguson, Maryland Heights, St. Ann, Hazelwood, Bridgeton, Kirkwood, Webster Groves, Crestwood, Maplewood, Brentwood, Shrewsbury</div>
+    <button class="copy-btn" onclick="copyField('cp-areas', this)">Copy</button>
+  </div>
+  <div class="copy-field">
+    <label>Hours</label>
+    <div class="value" id="cp-hours">Monday - Saturday: 8:00 AM - 6:00 PM | Sunday: Closed</div>
+    <button class="copy-btn" onclick="copyField('cp-hours', this)">Copy</button>
+  </div>
+  <div class="copy-field">
+    <label>Google Review Link (share with customers)</label>
+    <div class="value" id="cp-review">https://g.page/r/Ce_hqIHanGLvEAE/review</div>
+    <button class="copy-btn" onclick="copyField('cp-review', this)">Copy</button>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab('critical')">🔴 Critical <span class="count" id="tab-critical-count">0</span></div>
+  <div class="tab" onclick="showTab('high')">🟡 High <span class="count" id="tab-high-count">0</span></div>
+  <div class="tab" onclick="showTab('medium')">🔵 Medium <span class="count" id="tab-medium-count">0</span></div>
+  <div class="tab" onclick="showTab('low')">⚪ Nice-to-Have <span class="count" id="tab-low-count">0</span></div>
+  <div class="tab" onclick="showTab('all')">All</div>
+</div>
+
+<div class="tip-box">
+  <h4>💡 Submission Tips</h4>
+  <p>Work top to bottom by priority. Use the copy-paste zone above to keep NAP consistent. Most take 5-10 minutes each. <strong>Target: Complete all Critical + High within Week 1 of Spring Blitz.</strong> Jamie can knock these out in 2-3 sessions.</p>
+</div>
+
+<div id="directory-list"></div>
+
+<footer>
+  Franklin's Directory & Citation Blitz — Tool #43 | Built Mar 23, 2026<br>
+  Progress saves locally. Complete all Critical + High = massive SEO boost for $0.
+</footer>
+
+<script>
+const directories = [
+  // CRITICAL — These directly impact rankings
+  {
+    id: 'yelp',
+    name: 'Yelp',
+    priority: 'critical',
+    da: 94,
+    time: '15 min',
+    cost: 'Free',
+    category: 'General',
+    desc: '⚠️ Previous listing is 404. Need to search for existing and re-claim, or create fresh. Yelp is the #2 local directory behind Google.',
+    submitUrl: 'https://biz.yelp.com/signup_business/new',
+    searchUrl: 'https://www.yelp.com/search?find_desc=Tidy+Tails+Pet+Waste+Removal&find_loc=St.+Louis%2C+MO',
+    notes: 'Search first — may exist under different URL. If not found, create new. Add photos, hours, services.',
+  },
+  {
+    id: 'gbp-complete',
+    name: 'Google Business Profile (Complete It!)',
+    priority: 'critical',
+    da: 100,
+    time: '30 min',
+    cost: 'Free',
+    category: 'General',
+    desc: 'VERIFIED but only 7% complete. Need: hours, photos (Jamie + yards + before/after), services list, business description, service areas, Q&A.',
+    submitUrl: 'https://business.google.com/',
+    notes: 'Already verified. Just needs content filled in. This is THE #1 priority.',
+  },
+  {
+    id: 'facebook',
+    name: 'Facebook Business Page',
+    priority: 'critical',
+    da: 96,
+    time: '20 min',
+    cost: 'Free',
+    category: 'Social',
+    desc: 'If not already set up as a Business Page (not personal profile), create one. Add all business info, cover photo, CTA button.',
+    submitUrl: 'https://www.facebook.com/pages/create',
+    notes: 'Make sure it\'s a Business Page with "Pet Service" category. Enable messaging + appointment booking.',
+  },
+  {
+    id: 'nextdoor',
+    name: 'Nextdoor Business Page',
+    priority: 'critical',
+    da: 82,
+    time: '15 min',
+    cost: 'Free',
+    category: 'Local',
+    desc: 'Huge for hyperlocal reach. Neighbors recommend on Nextdoor constantly. Claim or create a business page.',
+    submitUrl: 'https://business.nextdoor.com/claim',
+    notes: 'Can target specific neighborhoods. Post weekly deals + tips. Neighbors trust Nextdoor recs.',
+  },
+  {
+    id: 'bbb',
+    name: 'Better Business Bureau (BBB)',
+    priority: 'critical',
+    da: 93,
+    time: '20 min',
+    cost: 'Free listing / $400+/yr accredited',
+    category: 'Trust',
+    desc: 'Even the free listing adds massive trust + a DA 93 backlink. Accreditation optional but powerful.',
+    submitUrl: 'https://www.bbb.org/get-listed',
+    notes: 'Free listing is fine to start. Shows up in "BBB accredited pet services near me" searches.',
+  },
+
+  // HIGH — Strong SEO value
+  {
+    id: 'apple-maps',
+    name: 'Apple Maps (Apple Business Connect)',
+    priority: 'high',
+    da: 99,
+    time: '15 min',
+    cost: 'Free',
+    category: 'Maps',
+    desc: 'Apple Maps is default on every iPhone. 50%+ of local searches on mobile. Free to claim.',
+    submitUrl: 'https://businessconnect.apple.com/',
+    notes: 'Requires Apple ID. Add photos, hours, and services.',
+  },
+  {
+    id: 'bing-places',
+    name: 'Bing Places for Business',
+    priority: 'high',
+    da: 96,
+    time: '10 min',
+    cost: 'Free',
+    category: 'Maps',
+    desc: 'Bing powers Cortana, Alexa, and DuckDuckGo results. Easy import from Google Business Profile.',
+    submitUrl: 'https://www.bingplaces.com/',
+    notes: 'Can auto-import from GBP — takes 5 minutes.',
+  },
+  {
+    id: 'thumbtack',
+    name: 'Thumbtack',
+    priority: 'high',
+    da: 80,
+    time: '20 min',
+    cost: 'Free listing, pay per lead',
+    category: 'Lead Gen',
+    desc: 'Active lead gen platform. Pet waste removal is a category. People search here when they need the service NOW.',
+    submitUrl: 'https://www.thumbtack.com/pro',
+    notes: 'Pay-per-lead model. Set budget limit. Great for one-time cleans that convert to recurring.',
+  },
+  {
+    id: 'angi',
+    name: 'Angi (Angie\'s List)',
+    priority: 'high',
+    da: 92,
+    time: '15 min',
+    cost: 'Free listing',
+    category: 'Home Services',
+    desc: 'DA 92 backlink + actual lead flow. Homeowners search Angi for all yard/home services.',
+    submitUrl: 'https://www.angi.com/pro/register',
+    notes: 'Free tier gets you listed. Reviews here carry weight.',
+  },
+  {
+    id: 'homeadvisor',
+    name: 'HomeAdvisor (now part of Angi)',
+    priority: 'high',
+    da: 90,
+    time: '15 min',
+    cost: 'Free listing, optional paid leads',
+    category: 'Home Services',
+    desc: 'Connected to Angi network. Separate listing = separate backlink. Pet waste removal is listed.',
+    submitUrl: 'https://pro.homeadvisor.com/registration/',
+    notes: 'May auto-import if Angi is done first. Verify separately.',
+  },
+  {
+    id: 'mapquest',
+    name: 'MapQuest / Yext Listing',
+    priority: 'high',
+    da: 79,
+    time: '10 min',
+    cost: 'Free',
+    category: 'Maps',
+    desc: 'Already has an auto-generated listing per MEMORY.md. Claim it to control the info.',
+    submitUrl: 'https://www.mapquest.com/my-business',
+    notes: 'Auto-generated listing exists — CLAIM IT before someone else does.',
+  },
+  {
+    id: 'yellowpages',
+    name: 'YellowPages / YP.com',
+    priority: 'high',
+    da: 86,
+    time: '10 min',
+    cost: 'Free',
+    category: 'General',
+    desc: 'Old school but still DA 86. Feeds data to many other directories.',
+    submitUrl: 'https://adsolutions.yp.com/free-listing',
+    notes: 'Data from YP syndicates to Superpages, DexKnows, and other data aggregators.',
+  },
+
+  // MEDIUM — Good SEO value, less urgent
+  {
+    id: 'foursquare',
+    name: 'Foursquare / Swarm',
+    priority: 'medium',
+    da: 89,
+    time: '10 min',
+    cost: 'Free',
+    category: 'General',
+    desc: 'Foursquare data powers Uber, Twitter, Samsung, and 100K+ apps. One listing reaches many platforms.',
+    submitUrl: 'https://foursquare.com/add-place',
+    notes: 'Foursquare is a data aggregator — this listing spreads far.',
+  },
+  {
+    id: 'hotfrog',
+    name: 'Hotfrog',
+    priority: 'medium',
+    da: 54,
+    time: '5 min',
+    cost: 'Free',
+    category: 'Business Directory',
+    desc: 'Quick free listing. Good for citation volume.',
+    submitUrl: 'https://www.hotfrog.com/AddYourBusiness.aspx',
+    notes: 'Fast signup. Add keywords in description.',
+  },
+  {
+    id: 'manta',
+    name: 'Manta',
+    priority: 'medium',
+    da: 72,
+    time: '10 min',
+    cost: 'Free',
+    category: 'Business Directory',
+    desc: 'Small business directory with decent authority.',
+    submitUrl: 'https://www.manta.com/claim',
+    notes: 'Check if auto-generated listing exists first.',
+  },
+  {
+    id: 'petworks',
+    name: 'PetWorks / Pet Service Directories',
+    priority: 'medium',
+    da: 30,
+    time: '10 min',
+    cost: 'Free',
+    category: 'Pet-Specific',
+    desc: 'Niche pet services directory. Lower DA but highly targeted.',
+    submitUrl: 'https://www.petworks.com/',
+    notes: 'Check for "list your business" option. Niche directories = relevant backlinks.',
+  },
+  {
+    id: 'bringfido',
+    name: 'BringFido',
+    priority: 'medium',
+    da: 55,
+    time: '10 min',
+    cost: 'Free',
+    category: 'Pet-Specific',
+    desc: 'Pet-focused directory. Dog owners use it. Adding listing requires submission.',
+    submitUrl: 'https://www.bringfido.com/add-listing',
+    notes: 'Submission form — may take a few days to go live.',
+  },
+  {
+    id: 'chamberofcommerce',
+    name: 'ChamberOfCommerce.com',
+    priority: 'medium',
+    da: 66,
+    time: '10 min',
+    cost: 'Free',
+    category: 'Business Directory',
+    desc: 'Not the actual STL Chamber — this is the online directory. Free listing with backlink.',
+    submitUrl: 'https://www.chamberofcommerce.com/add-business',
+    notes: 'Different from the local STL Chamber (which is paid). This is free.',
+  },
+  {
+    id: 'bark',
+    name: 'Bark.com',
+    priority: 'medium',
+    da: 73,
+    time: '10 min',
+    cost: 'Free listing, pay per lead',
+    category: 'Lead Gen',
+    desc: 'Lead gen platform like Thumbtack. Pet waste removal category exists.',
+    submitUrl: 'https://www.bark.com/en/us/company/register/',
+    notes: 'Free to list. Leads are paid. Set budget.',
+  },
+  {
+    id: 'stl-chamber',
+    name: 'St. Louis Regional Chamber',
+    priority: 'medium',
+    da: 58,
+    time: '20 min',
+    cost: '$200-500/yr',
+    category: 'Local',
+    desc: 'Paid membership but strong local authority + networking events + directory listing.',
+    submitUrl: 'https://www.stlregionalchamber.com/join',
+    notes: 'Consider after revenue grows. Great for commercial leads + credibility.',
+  },
+
+  // LOW — Nice-to-have
+  {
+    id: 'brownbook',
+    name: 'Brownbook',
+    priority: 'low',
+    da: 50,
+    time: '5 min',
+    cost: 'Free',
+    category: 'Business Directory',
+    desc: 'International business directory. Quick free listing.',
+    submitUrl: 'https://www.brownbook.net/add-company/',
+    notes: 'Fast. Just NAP + description.',
+  },
+  {
+    id: 'cylex',
+    name: 'Cylex',
+    priority: 'low',
+    da: 48,
+    time: '5 min',
+    cost: 'Free',
+    category: 'Business Directory',
+    desc: 'Another quick citation source.',
+    submitUrl: 'https://www.cylex.us.com/',
+    notes: 'Look for "Add Company" link.',
+  },
+  {
+    id: 'ezlocal',
+    name: 'EZLocal',
+    priority: 'low',
+    da: 45,
+    time: '5 min',
+    cost: 'Free',
+    category: 'Business Directory',
+    desc: 'Local business directory. Quick submission.',
+    submitUrl: 'https://www.ezlocal.com/claim-listing',
+    notes: 'Check for existing listing first.',
+  },
+  {
+    id: 'storeboard',
+    name: 'Storeboard',
+    priority: 'low',
+    da: 42,
+    time: '5 min',
+    cost: 'Free',
+    category: 'Business Directory',
+    desc: 'Simple business listing with backlink.',
+    submitUrl: 'https://www.storeboard.com/',
+    notes: 'Create account, add business.',
+  },
+  {
+    id: 'showmelocal',
+    name: 'ShowMeLocal',
+    priority: 'low',
+    da: 40,
+    time: '5 min',
+    cost: 'Free',
+    category: 'Local',
+    desc: 'Local directory focused on showing nearby businesses.',
+    submitUrl: 'https://www.showmelocal.com/AddBusiness.aspx',
+    notes: 'Quick local listing.',
+  },
+  {
+    id: 'tupalo',
+    name: 'Tupalo',
+    priority: 'low',
+    da: 44,
+    time: '5 min',
+    cost: 'Free',
+    category: 'Business Directory',
+    desc: 'European-origin directory with US presence.',
+    submitUrl: 'https://www.tupalo.co/',
+    notes: 'Add photos if possible.',
+  },
+];
+
+// State management
+const STATE_KEY = 'tt-directory-blitz';
+let state = JSON.parse(localStorage.getItem(STATE_KEY) || '{}');
+
+function saveState() {
+  localStorage.setItem(STATE_KEY, JSON.stringify(state));
+}
+
+function toggleComplete(id) {
+  state[id] = state[id] || {};
+  state[id].done = !state[id].done;
+  if (state[id].done) state[id].completedAt = new Date().toISOString();
+  saveState();
+  renderAll();
+}
+
+function saveNotes(id, value) {
+  state[id] = state[id] || {};
+  state[id].notes = value;
+  saveState();
+}
+
+function copyField(elementId, btn) {
+  const text = document.getElementById(elementId).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+  });
+}
+
+function showTab(priority) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  event.target.closest('.tab').classList.add('active');
+  renderDirectories(priority);
+}
+
+function renderDirectories(filter = 'critical') {
+  const list = document.getElementById('directory-list');
+  const filtered = filter === 'all' ? directories : directories.filter(d => d.priority === filter);
+
+  list.innerHTML = filtered.map(d => {
+    const isDone = state[d.id]?.done || false;
+    const notes = state[d.id]?.notes || '';
+    return `
+      <div class="dir-card ${isDone ? 'completed' : ''}">
+        <div class="dir-header">
+          <input type="checkbox" class="dir-check" ${isDone ? 'checked' : ''} onchange="toggleComplete('${d.id}')">
+          <span class="dir-name">${d.name}</span>
+          <span class="dir-priority ${d.priority}">${d.priority}</span>
+        </div>
+        <div class="dir-meta">
+          <span class="seo">DA ${d.da}</span>
+          <span>⏱️ ${d.time}</span>
+          <span>💰 ${d.cost}</span>
+          <span>📂 ${d.category}</span>
+        </div>
+        <div class="dir-desc">${d.desc}</div>
+        <div class="dir-actions">
+          <a href="${d.submitUrl}" target="_blank" class="dir-btn primary">Submit / Claim →</a>
+          ${d.searchUrl ? `<a href="${d.searchUrl}" target="_blank" class="dir-btn">Search First</a>` : ''}
+        </div>
+        <div class="dir-notes">
+          <textarea placeholder="Notes (e.g., submitted 3/24, pending approval...)" oninput="saveNotes('${d.id}', this.value)">${notes}</textarea>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderStats() {
+  const done = directories.filter(d => state[d.id]?.done).length;
+  const total = directories.length;
+  document.getElementById('doneCount').textContent = done;
+  document.getElementById('pendingCount').textContent = total - done;
+  document.getElementById('totalCount').textContent = total;
+  document.getElementById('progressFill').style.width = `${(done / total * 100).toFixed(0)}%`;
+
+  // Tab counts
+  ['critical', 'high', 'medium', 'low'].forEach(p => {
+    const count = directories.filter(d => d.priority === p).length;
+    document.getElementById(`tab-${p}-count`).textContent = count;
+  });
+}
+
+function renderAll() {
+  renderStats();
+  const activeTab = document.querySelector('.tab.active');
+  const filter = activeTab ? activeTab.textContent.trim().split(' ')[1]?.toLowerCase() || 'critical' : 'critical';
+  // Re-render with current filter
+  const tabText = activeTab?.textContent || '';
+  if (tabText.includes('All')) renderDirectories('all');
+  else if (tabText.includes('Nice')) renderDirectories('low');
+  else if (tabText.includes('Medium')) renderDirectories('medium');
+  else if (tabText.includes('High')) renderDirectories('high');
+  else renderDirectories('critical');
+}
+
+renderAll();
+</script>
+</body>
+</html>
