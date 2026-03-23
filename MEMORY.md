@@ -69,7 +69,10 @@
 - **GSC:** VERIFIED ✅ — sitemap submitted, 17 pages discovered, site INDEXED (Mar 18)
 - **SSL:** Valid until May 17, 2026 (set reminder May 1)
 - **Google Reviews:** ZERO — #1 weakness. Link: https://g.page/r/Ce_hqIHanGLvEAE/review
-- **Content:** 23 city landing pages (6 NOT deployed!), 12 blog posts (1 duplicate merged), A- on-page SEO
+- **Content:** 23 city landing pages (all deployed ✅ — ghost pages fixed!), 12 blog posts (1 duplicate merged), A- on-page SEO
+- **⚠️ Sitemap gap:** 4 of 6 I-44 pages missing from sitemap.xml (crestwood, maplewood, brentwood, shrewsbury) — need website repo access to fix
+- **⚠️ Title gap:** 4 I-44 pages have GENERIC title (default homepage title) instead of city-specific — needs fix
+- **⚠️ og:image:** STILL missing — social shares show no preview image
 - **Off-page:** F — zero backlinks, zero directory listings beyond GBP/Yelp
 - **Brand collision:** 8+ other "Tidy Tails" nationally — always use "Tidy Tails STL"
 - **Unlisted directories:** Petworks, BringFido, MapQuest (auto-generated) — easy wins
