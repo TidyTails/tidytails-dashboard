@@ -280,10 +280,11 @@ The new `/locations/` page is clearly AI-generated SEO content (~1500+ words), n
 - Zero mention of Poo Crew anywhere
 - **Implication:** One fewer competitor in the Chesterfield/west county market
 
-**Dog Doody Defenders still cheapest** ✅
-- Confirmed: $17/wk (1 dog), $27 bi-weekly/2x weekly, $54/mo
-- Still active, still serving Florissant area
-- TJ's $70/mo is $16 more BUT includes more value positioning
+**Dog Doody Defenders — DOMAIN DEAD** ☠️ (Mar 23 11 AM re-check)
+- dogdoodiedefenders.com — **DNS ENOTFOUND** (domain no longer resolves AT ALL)
+- Was: $17/wk (1 dog), $54/mo — cheapest in entire STL market
+- Was in same Florissant zip as TJ — direct overlap
+- **HUGE OPPORTUNITY:** Their budget-conscious customers are NOW ORPHANED and likely searching for a new provider. These are Florissant-area people who already pay for poop scooping. TJ is the obvious local replacement.
 
 ### Revised Threat Assessment (Mar 23)
 
@@ -291,7 +292,7 @@ The new `/locations/` page is clearly AI-generated SEO content (~1500+ words), n
 |------|-----------|--------|-------|
 | 1 | **DoodyCalls** | 🔴 HIGH | Best SEO, franchise $, commercial |
 | 2 | **No. 2 Crew** | 🟠 MEDIUM-HIGH | Professional, clear pricing, good brand |
-| 3 | **Dog Doody Defenders** | 🟠 MEDIUM | Cheapest in market, same Florissant zip |
+| 3 | **Dog Doody Defenders** | ☠️ DEAD | Domain DNS dead Mar 23 — was cheapest, same Florissant zip |
 | 4 | **Little Stinkers** | 🟡 MEDIUM | St. Charles threat, multi-service |
 | 5 | **Poop 2 Scoop** | 🟡 MEDIUM | Veteran-owned, competitive pricing |
 | 6 | **The Pootector** | 🟡 LOW-MED | APAWS certified, west county |
@@ -300,10 +301,12 @@ The new `/locations/` page is clearly AI-generated SEO content (~1500+ words), n
 | 9 | **Yucko's** | 🟢 LOW | 36 yrs but dated, aging out |
 | 10 | **Scoop Soldiers** | ⚪ NOT ACTIVE | STL page 404, may never come |
 
-**Dead:** Poopy Paws ☠️, Pawfect ☠️, Super Scoopers ☠️
+**Dead:** Poopy Paws ☠️, Pawfect ☠️, Super Scoopers ☠️, Dog Doody Defenders ☠️ (NEW Mar 23)
 **Likely dead:** Dirty Dog Poo Crew, Pooanators (minimal web presence)
 
 ### Key Takeaway
-**The competitive field is SHRINKING.** 3 confirmed dead, 2 more likely dead/inactive, 1 franchise never showed up, 1 franchise operator possibly folded. That's 5-7 fewer competitors than we thought. Meanwhile TJ has a live website, claimed GBP, and verified GSC.
+**The competitive field is SHRINKING FAST.** 4 confirmed dead (now including Dog Doody Defenders!), 2 more likely dead/inactive, 1 franchise never showed up, 1 franchise operator possibly folded. That's 6-8 fewer competitors than 6 months ago.
 
-**The #1 play hasn't changed:** Get GBP to 100%, get reviews, and show up where dead competitors' customers are searching. The window is WIDE OPEN.
+**Mar 23 11 AM update:** Dog Doody Defenders DNS completely dead. This is MASSIVE — they were in Florissant (TJ's home turf) and the cheapest option ($54/mo). Their budget customers are now orphaned and searching. No. 2 Crew's /st-louis page also 404 (only main site works). POOP 911 STL location still 404.
+
+**The #1 play hasn't changed:** Get GBP to 100%, get reviews, and show up where dead competitors' customers are searching. The window is WIDER THAN EVER.

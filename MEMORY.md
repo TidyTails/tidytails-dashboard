@@ -110,10 +110,10 @@
 **Market size:** 15 tracked competitors, 2-4 dead/dying, ~10-12 active
 **TJ's position:** $70/mo flat = mid-market. Cheaper than Doggie Doodies ($83), Dirty Dog ($95), Pooey ($100). More expensive weekly than DDD ($54/mo), POOP 911 ($52/mo).
 
-**Top threats (updated Mar 23):**
+**Top threats (updated Mar 23, 11 AM):**
 - 🔴 DoodyCalls — best SEO in market, national franchise, only real commercial player
-- 🟠 No. 2 Crew — professional, $76/mo weekly, good branding
-- 🟠 Dog Doody Defenders — same Florissant zip, $54/mo cheapest in market
+- 🟠 No. 2 Crew — professional, $76/mo weekly, good branding (but /st-louis page 404)
+- ☠️ Dog Doody Defenders — **DEAD** (DNS gone Mar 23). Was cheapest in market, Florissant zip. ORPHANED CUSTOMERS = opportunity!
 - 🟡 Little Stinkers — St. Charles County threat, multi-service
 
 **⚠️ MAJOR CHANGES (Mar 23 10AM scan):**
@@ -123,7 +123,7 @@
 - No. 2 Crew confirmed pricing: $19/visit (1 dog), $68/mo weekly, $35 biweekly — slightly cheaper than TJ on per-visit but TJ's $70/mo flat beats them on value
 - **Market is CONSOLIDATING** — some competitors dead but Scoop Soldiers filling the gap
 
-**Dead/dying:** Pawfect ☠️, Poopy Paws ☠️, Super Scoopers ☠️, Dirty Dog Poo Crew ❓, POOP 911 STL ❓
+**Dead/dying:** Pawfect ☠️, Poopy Paws ☠️, Super Scoopers ☠️, Dog Doody Defenders ☠️ (NEW Mar 23), Dirty Dog Poo Crew ❓, POOP 911 STL ❓
 
 **Strategy:** Window is WIDE OPEN. Get GBP to 100%, get reviews, capture orphaned customers from dead competitors.
 
