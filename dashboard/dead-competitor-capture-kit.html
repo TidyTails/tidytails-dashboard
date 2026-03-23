@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☠️ Dead Competitor Capture Kit | Tidy Tails</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
+  .container { max-width: 750px; margin: 0 auto; padding: 16px; }
+
+  header { text-align: center; padding: 28px 0 20px; border-bottom: 2px solid #dc2626; margin-bottom: 24px; }
+  header h1 { font-size: 1.6em; color: #ef4444; margin-bottom: 6px; }
+  header p { color: #888; font-size: 0.88em; line-height: 1.5; }
+
+  .opportunity-banner {
+    background: linear-gradient(135deg, #1a0808, #2a1010);
+    border: 2px solid #ef4444;
+    border-radius: 14px;
+    padding: 24px;
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .opportunity-banner .big { font-size: 2.2em; font-weight: 800; color: #ef4444; }
+  .opportunity-banner .sub { color: #f87171; font-size: 1em; margin-top: 4px; }
+  .opportunity-banner .detail { color: #888; font-size: 0.82em; margin-top: 10px; line-height: 1.5; }
+
+  .tabs { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 20px; -webkit-overflow-scrolling: touch; }
+  .tab {
+    padding: 10px 16px; border-radius: 8px; background: #1a1a1a; border: 1px solid #2a2a2a;
+    color: #888; font-size: 0.78em; cursor: pointer; white-space: nowrap; flex-shrink: 0;
+    transition: all 0.2s; font-weight: 600;
+  }
+  .tab.active { background: #7f1d1d; border-color: #ef4444; color: #fff; }
+  .tab:hover:not(.active) { border-color: #555; color: #ccc; }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .dead-card {
+    background: #111; border: 1px solid #2a2a2a; border-radius: 12px;
+    margin-bottom: 20px; overflow: hidden;
+  }
+  .dead-card-header {
+    padding: 16px 18px; display: flex; justify-content: space-between; align-items: center;
+    background: linear-gradient(135deg, #1a0808, #180d0d); border-bottom: 1px solid #2a2a2a;
+    cursor: pointer;
+  }
+  .dead-card-header h3 { color: #f87171; font-size: 1em; }
+  .dead-card-header .skull { font-size: 1.4em; }
+  .dead-card-body { padding: 16px 18px; }
+
+  .intel-row { display: flex; gap: 8px; margin-bottom: 8px; font-size: 0.85em; }
+  .intel-label { color: #666; min-width: 110px; flex-shrink: 0; }
+  .intel-value { color: #ccc; }
+  .intel-value.hot { color: #f87171; font-weight: 600; }
+
+  .action-box {
+    background: #0d0d0d; border: 1px solid #1a1a1a; border-radius: 10px;
+    padding: 14px 16px; margin-top: 14px;
+  }
+  .action-box h4 { color: #fbbf24; font-size: 0.88em; margin-bottom: 10px; }
+  .action-box ul { list-style: none; padding: 0; }
+  .action-box li { padding: 6px 0; font-size: 0.83em; color: #aaa; border-bottom: 1px solid #151515; }
+  .action-box li:last-child { border: none; }
+  .action-box li::before { content: '→ '; color: #ef4444; font-weight: 700; }
+
+  .copy-zone {
+    background: #0a0a0a; border-left: 3px solid #ef4444; border-radius: 0 8px 8px 0;
+    padding: 14px 16px; margin: 14px 0; font-size: 0.88em; line-height: 1.7;
+    white-space: pre-wrap; position: relative;
+  }
+  .copy-btn {
+    display: block; width: 100%; padding: 12px; background: #7f1d1d; color: #fff;
+    border: none; border-radius: 8px; font-size: 0.9em; font-weight: 600;
+    cursor: pointer; margin-top: 10px; transition: background 0.2s;
+  }
+  .copy-btn:active { background: #991b1b; }
+  .copy-btn.copied { background: #22c55e; color: #000; }
+
+  .priority-badge {
+    display: inline-block; padding: 3px 10px; border-radius: 4px;
+    font-size: 0.7em; font-weight: 700; text-transform: uppercase;
+  }
+  .priority-1 { background: #ef4444; color: #fff; }
+  .priority-2 { background: #f59e0b; color: #000; }
+  .priority-3 { background: #3b82f6; color: #fff; }
+
+  .revenue-est {
+    display: inline-block; background: #14532d; color: #4ade80;
+    padding: 3px 10px; border-radius: 4px; font-size: 0.75em; font-weight: 600;
+    margin-left: 8px;
+  }
+
+  .checklist-item {
+    display: flex; align-items: flex-start; gap: 10px; padding: 10px 0;
+    border-bottom: 1px solid #1a1a1a; font-size: 0.85em;
+  }
+  .checklist-item:last-child { border: none; }
+  .checklist-item input[type="checkbox"] {
+    margin-top: 3px; accent-color: #ef4444; width: 18px; height: 18px; flex-shrink: 0;
+  }
+  .checklist-item label { color: #ccc; cursor: pointer; }
+  .checklist-item label.done { text-decoration: line-through; color: #555; }
+
+  .strategy-section {
+    background: #111; border: 1px solid #2a2a2a; border-radius: 12px;
+    padding: 18px; margin-bottom: 20px;
+  }
+  .strategy-section h3 { color: #fbbf24; margin-bottom: 12px; font-size: 1em; }
+  .strategy-section p { font-size: 0.85em; color: #aaa; margin-bottom: 10px; }
+
+  .keyword-chip {
+    display: inline-block; background: #1a1a2e; border: 1px solid #3b82f6;
+    color: #93c5fd; padding: 4px 10px; border-radius: 6px; font-size: 0.75em;
+    margin: 3px; font-family: monospace;
+  }
+
+  .timeline { margin-top: 16px; }
+  .timeline-item {
+    display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid #1a1a1a;
+  }
+  .timeline-item:last-child { border: none; }
+  .timeline-day {
+    min-width: 70px; font-weight: 700; font-size: 0.85em; color: #ef4444;
+    flex-shrink: 0;
+  }
+  .timeline-task { font-size: 0.83em; color: #ccc; }
+
+  .score-meter {
+    display: flex; align-items: center; gap: 10px; margin: 10px 0;
+  }
+  .score-bar {
+    flex: 1; height: 10px; background: #2a2a2a; border-radius: 5px; overflow: hidden;
+  }
+  .score-fill { height: 100%; border-radius: 5px; }
+  .score-label { font-size: 0.8em; color: #888; min-width: 40px; }
+
+  footer { text-align: center; padding: 30px 0 20px; color: #444; font-size: 0.75em; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>☠️ Dead Competitor Capture Kit</h1>
+    <p>6 competitors dead or dying in STL. Their customers need a new provider.<br>This kit helps you scoop them up. Literally.</p>
+  </header>
+
+  <div class="opportunity-banner">
+    <div class="big">50-100+ Orphaned Customers</div>
+    <div class="sub">from 6 dead/dying competitors in your service area</div>
+    <div class="detail">At $70/mo avg, capturing just 10 = $700/mo recurring revenue.<br>These people were ALREADY paying someone. They just need YOU now.</div>
+  </div>
+
+  <div class="tabs" id="tabs">
+    <div class="tab active" onclick="showTab('targets')">☠️ Dead Targets</div>
+    <div class="tab" onclick="showTab('posts')">📝 Capture Posts</div>
+    <div class="tab" onclick="showTab('seo')">🔍 SEO Plays</div>
+    <div class="tab" onclick="showTab('plan')">📋 Action Plan</div>
+  </div>
+
+  <!-- ===== DEAD TARGETS TAB ===== -->
+  <div class="panel active" id="panel-targets">
+
+    <!-- Dog Doody Defenders -->
+    <div class="dead-card">
+      <div class="dead-card-header">
+        <div>
+          <h3>Dog Doody Defenders</h3>
+          <span class="priority-badge priority-1">PRIORITY #1</span>
+          <span class="revenue-est">$500-800/mo potential</span>
+        </div>
+        <div class="skull">💀</div>
+      </div>
+      <div class="dead-card-body">
+        <div class="intel-row"><span class="intel-label">Status:</span><span class="intel-value hot">DNS GONE — completely dead</span></div>
+        <div class="intel-row"><span class="intel-label">When died:</span><span class="intel-value">Confirmed Mar 23, 2026</span></div>
+        <div class="intel-row"><span class="intel-label">Their pricing:</span><span class="intel-value">$17/week ($54/mo) — cheapest in market</span></div>
+        <div class="intel-row"><span class="intel-label">Service area:</span><span class="intel-value hot">Florissant zip code — TJ's HOME TURF</span></div>
+        <div class="intel-row"><span class="intel-label">Est. customers:</span><span class="intel-value">15-30+ (established local business)</span></div>
+        <div class="intel-row"><span class="intel-label">Their Yelp:</span><span class="intel-value">Listed on Yelp/CityOf — profiles may still be up</span></div>
+
+        <div class="score-meter">
+          <span class="score-label">Urgency</span>
+          <div class="score-bar"><div class="score-fill" style="width:95%; background: linear-gradient(90deg, #ef4444, #dc2626);"></div></div>
+          <span class="score-label">95%</span>
+        </div>
+
+        <div class="action-box">
+          <h4>🎯 Why This Is Gold</h4>
+          <ul>
+            <li>Same zip code as TJ's existing customers (Florissant 63031/63033)</li>
+            <li>Their customers were paying $54/mo — TJ's $70/mo is a small step up for WAY better service</li>
+            <li>These people are RIGHT NOW searching "dog poop removal Florissant" and finding nothing</li>
+            <li>Their Yelp listing may still show up — customers clicking will get a dead website</li>
+            <li>Nextdoor in Florissant neighborhoods = instant access to these exact people</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Poopy Paws -->
+    <div class="dead-card">
+      <div class="dead-card-header">
+        <div>
+          <h3>Poopy Paws (poopypaws314.com)</h3>
+          <span class="priority-badge priority-1">PRIORITY #2</span>
+          <span class="revenue-est">$400-700/mo potential</span>
+        </div>
+        <div class="skull">💀</div>
+      </div>
+      <div class="dead-card-body">
+        <div class="intel-row"><span class="intel-label">Status:</span><span class="intel-value hot">DNS DEAD — 3 consecutive checks failed</span></div>
+        <div class="intel-row"><span class="intel-label">Their pricing:</span><span class="intel-value">$20/week flat, any # of dogs (~$80/mo)</span></div>
+        <div class="intel-row"><span class="intel-label">Service area:</span><span class="intel-value">Greater St. Louis</span></div>
+        <div class="intel-row"><span class="intel-label">Est. customers:</span><span class="intel-value">10-25+ (was #1 on Yelp, 358 FB likes)</span></div>
+        <div class="intel-row"><span class="intel-label">Social:</span><span class="intel-value">358 Facebook likes, was #1 on Yelp STL, active Nextdoor</span></div>
+
+        <div class="score-meter">
+          <span class="score-label">Urgency</span>
+          <div class="score-bar"><div class="score-fill" style="width:90%; background: linear-gradient(90deg, #ef4444, #f59e0b);"></div></div>
+          <span class="score-label">90%</span>
+        </div>
+
+        <div class="action-box">
+          <h4>🎯 Why This Is Gold</h4>
+          <ul>
+            <li>Was #1 ranked on Yelp for STL poop removal — had REAL customer base</li>
+            <li>358 FB likes means real brand awareness — people are looking for them</li>
+            <li>Their $80/mo pricing means customers are used to paying MORE than TJ's $70</li>
+            <li>Multi-dog owners especially screwed — they had flat rate, now what?</li>
+            <li>Active on Nextdoor = those community members are now without a provider</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- POOP 911 -->
+    <div class="dead-card">
+      <div class="dead-card-header">
+        <div>
+          <h3>POOP 911 — STL Operator</h3>
+          <span class="priority-badge priority-2">PRIORITY #3</span>
+          <span class="revenue-est">$300-500/mo potential</span>
+        </div>
+        <div class="skull">⚠️</div>
+      </div>
+      <div class="dead-card-body">
+        <div class="intel-row"><span class="intel-label">Status:</span><span class="intel-value hot">Main location page 404 — operator likely folded</span></div>
+        <div class="intel-row"><span class="intel-label">Brand:</span><span class="intel-value">National franchise (corporate SEO pages still live)</span></div>
+        <div class="intel-row"><span class="intel-label">Their pricing:</span><span class="intel-value">Starting $13.95/visit (~$56/mo weekly)</span></div>
+        <div class="intel-row"><span class="intel-label">Service area:</span><span class="intel-value">Greater St. Louis (franchise territory)</span></div>
+        <div class="intel-row"><span class="intel-label">Key detail:</span><span class="intel-value">Customers calling 877 number may get "no operator in your area"</span></div>
+
+        <div class="score-meter">
+          <span class="score-label">Urgency</span>
+          <div class="score-bar"><div class="score-fill" style="width:75%; background: linear-gradient(90deg, #f59e0b, #eab308);"></div></div>
+          <span class="score-label">75%</span>
+        </div>
+
+        <div class="action-box">
+          <h4>🎯 The Play</h4>
+          <ul>
+            <li>Corporate site still has SEO pages ranking — people find POOP 911, then discover no STL service</li>
+            <li>Anyone who searches "POOP 911 St. Louis" hits a 404 → frustrated → searches alternatives</li>
+            <li>Their "free first visit" deal trained customers to try before buying — TJ offers the same!</li>
+            <li>Deodorizer service was a differentiator — TJ could add this ($5-10/visit upsell)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pawfect Waste Solutions -->
+    <div class="dead-card">
+      <div class="dead-card-header">
+        <div>
+          <h3>Pawfect Waste Solutions</h3>
+          <span class="priority-badge priority-3">PRIORITY #4</span>
+          <span class="revenue-est">$200-400/mo potential</span>
+        </div>
+        <div class="skull">💀</div>
+      </div>
+      <div class="dead-card-body">
+        <div class="intel-row"><span class="intel-label">Status:</span><span class="intel-value hot">Website 404 — out of business</span></div>
+        <div class="intel-row"><span class="intel-label">Domain:</span><span class="intel-value">pooperscooperstl.com</span></div>
+        <div class="intel-row"><span class="intel-label">Est. customers:</span><span class="intel-value">5-15 (smaller operator)</span></div>
+        <div class="intel-row"><span class="intel-label">Key detail:</span><span class="intel-value">Domain name = highly searchable term for STL</span></div>
+      </div>
+    </div>
+
+    <!-- Super Scoopers -->
+    <div class="dead-card">
+      <div class="dead-card-header">
+        <div>
+          <h3>Super Scoopers LLC</h3>
+          <span class="priority-badge priority-3">PRIORITY #5</span>
+          <span class="revenue-est">$200-400/mo potential</span>
+        </div>
+        <div class="skull">⚠️</div>
+      </div>
+      <div class="dead-card-body">
+        <div class="intel-row"><span class="intel-label">Status:</span><span class="intel-value">Website down/unreachable</span></div>
+        <div class="intel-row"><span class="intel-label">Location:</span><span class="intel-value">St. Peters / St. Charles — TJ's expansion zone</span></div>
+        <div class="intel-row"><span class="intel-label">Their pitch:</span><span class="intel-value">"Will BEAT any local rate by 30%"</span></div>
+        <div class="intel-row"><span class="intel-label">Services:</span><span class="intel-value">Pet waste + kitty litter box service</span></div>
+        <div class="intel-row"><span class="intel-label">Key detail:</span><span class="intel-value">Woman-owned, BBB listed — had credibility</span></div>
+      </div>
+    </div>
+
+    <!-- Dirty Dog -->
+    <div class="dead-card">
+      <div class="dead-card-header">
+        <div>
+          <h3>Dirty Dog Wash Poo Crew</h3>
+          <span class="priority-badge priority-3">PRIORITY #6</span>
+          <span class="revenue-est">$100-300/mo potential</span>
+        </div>
+        <div class="skull">📉</div>
+      </div>
+      <div class="dead-card-body">
+        <div class="intel-row"><span class="intel-label">Status:</span><span class="intel-value">Dropped poop service — grooming only now</span></div>
+        <div class="intel-row"><span class="intel-label">Location:</span><span class="intel-value">Chesterfield Valley</span></div>
+        <div class="intel-row"><span class="intel-label">Their pricing:</span><span class="intel-value">Was $95/mo (most expensive in market)</span></div>
+        <div class="intel-row"><span class="intel-label">Key detail:</span><span class="intel-value">Customers paying $95/mo will LOVE TJ's $70</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== CAPTURE POSTS TAB ===== -->
+  <div class="panel" id="panel-posts">
+
+    <div class="strategy-section">
+      <h3>📣 The Strategy</h3>
+      <p>These posts don't name dead competitors directly (tacky). Instead, they position TJ as the solution for people whose "old service disappeared." Everyone in these neighborhoods knows who we're talking about.</p>
+    </div>
+
+    <!-- Post 1: Florissant Nextdoor -->
+    <div class="dead-card">
+      <div class="dead-card-header">
+        <h3>📍 Florissant Nextdoor — Capture DDD Customers</h3>
+        <span class="priority-badge priority-1">DO FIRST</span>
+      </div>
+      <div class="dead-card-body">
+        <p style="font-size:0.82em; color:#888; margin-bottom:10px;">Target: Dog Doody Defenders' orphaned customers in Florissant</p>
+        <div class="copy-zone" id="post-1">Hey Florissant dog owners 👋
+
+I've been getting a few calls lately from folks saying their old poop scooping service shut down. If that's you — I'm local and I'm taking new customers.
+
+I'm Jamie with Tidy Tails. We're based right here in Florissant and we've been serving the area for over a year.
+
+Here's what we do:
+🧹 Weekly yard cleanup — $70/month flat
+🧹 Biweekly — $45/month
+🧹 One-time deep clean — $100
+
+No contracts. No per-dog upcharges (looking at you, 2-dog and 3-dog households 😄). Same person every time.
+
+If your yard's been piling up since your old service stopped showing, we'll get it back to clean on the first visit — no extra charge.
+
+📞 314-850-7140 (call or text)
+🌐 tidytailsstl.com</div>
+        <button class="copy-btn" onclick="copyText('post-1', this)">📋 Copy Post</button>
+      </div>
+    </div>
+
+    <!-- Post 2: General Facebook Groups -->
+    <div class="dead-card">
+      <div class="dead-card-header">
+        <h3>📘 Facebook Groups — "Service Provider Gone" Angle</h3>
+        <span class="priority-badge priority-1">HIGH IMPACT</span>
+      </div>
+      <div class="dead-card-body">
+        <p style="font-size:0.82em; color:#888; margin-bottom:10px;">Post in: any STL pet or neighborhood group. Works for ALL dead competitors.</p>
+        <div class="copy-zone" id="post-2">PSA for STL dog owners:
+
+If your poop scooping service recently went MIA... you're not alone. I've heard from several people lately that their provider just vanished — no call, no text, just stopped showing up.
+
+The pet waste removal industry has a dirty secret (pun intended): a LOT of companies don't last. It's hard work and most people quit after a few months.
+
+I'm TJ with Tidy Tails. Been at this for over a year, serving Florissant, Hazelwood, Maryland Heights, Ferguson, and surrounding areas. I'm not going anywhere.
+
+If you're suddenly without a scooper:
+→ I'll match or beat your old price
+→ First visit includes a full deep clean
+→ $70/month weekly, $45 biweekly
+→ No contracts, no BS
+
+Don't let it pile up. Spring is here and it's only getting worse in the heat.
+
+📞 314-850-7140
+🌐 tidytailsstl.com</div>
+        <button class="copy-btn" onclick="copyText('post-2', this)">📋 Copy Post</button>
+      </div>
+    </div>
+
+    <!-- Post 3: Multi-dog owners -->
+    <div class="dead-card">
+      <div class="dead-card-header">
+        <h3>🐕🐕 Multi-Dog Owners — Poopy Paws Replacement</h3>
+        <span class="priority-badge priority-2">TARGETED</span>
+      </div>
+      <div class="dead-card-body">
+        <p style="font-size:0.82em; color:#888; margin-bottom:10px;">Poopy Paws had flat rate for any # of dogs. Their multi-dog customers are especially stuck.</p>
+        <div class="copy-zone" id="post-3">Got multiple dogs? Yeah, your yard is a war zone right now. 😅
+
+Most poop removal services charge per dog — $4-5 extra per pup, per visit. With 3 dogs that adds up FAST.
+
+Not us. Tidy Tails charges a flat $70/month for weekly service. 1 dog, 2 dogs, 3 dogs — same price.
+
+That's not a typo. Flat. Rate.
+
+We're one of the only services in STL that doesn't nickel-and-dime you for having a bigger pack. If you've been looking for an affordable option (or your old service disappeared), give us a shout.
+
+📞 314-850-7140
+🌐 tidytailsstl.com
+
+P.S. — Your first visit includes a full yard reset. We'll get ALL of it, no matter how bad it's gotten. 🧹</div>
+        <button class="copy-btn" onclick="copyText('post-3', this)">📋 Copy Post</button>
+      </div>
+    </div>
+
+    <!-- Post 4: Chesterfield/West County -->
+    <div class="dead-card">
+      <div class="dead-card-header">
+        <h3>🏘️ Chesterfield/West County — Dirty Dog Poo Crew Replacement</h3>
+        <span class="priority-badge priority-2">EXPANSION</span>
+      </div>
+      <div class="dead-card-body">
+        <p style="font-size:0.82em; color:#888; margin-bottom:10px;">Dirty Dog dropped poop service. Their customers paid $95/mo — TJ's $70 is a steal.</p>
+        <div class="copy-zone" id="post-4">Chesterfield/West County dog owners — quick question:
+
+Were you using a grooming shop's poop removal service that recently stopped offering it?
+
+If so, I get it. A lot of businesses try adding waste removal as a side service and realize it's harder than it looks.
+
+I ONLY do pet waste removal. It's all I do. That means:
+✅ I actually show up every week
+✅ I know where dogs hide their business
+✅ I don't cancel because I'm busy grooming
+
+$70/month for weekly service. That's probably LESS than you were paying before.
+
+I'm TJ with Tidy Tails — serving the STL metro area including West County.
+
+📞 314-850-7140
+🌐 tidytailsstl.com</div>
+        <button class="copy-btn" onclick="copyText('post-4', this)">📋 Copy Post</button>
+      </div>
+    </div>
+
+    <!-- Post 5: St. Charles -->
+    <div class="dead-card">
+      <div class="dead-card-header">
+        <h3>📍 St. Charles/St. Peters — Super Scoopers Replacement</h3>
+        <span class="priority-badge priority-3">EXPANSION</span>
+      </div>
+      <div class="dead-card-body">
+        <p style="font-size:0.82em; color:#888; margin-bottom:10px;">Super Scoopers was based in St. Peters — website is down. Existing customer Preshus is in St. Charles already.</p>
+        <div class="copy-zone" id="post-5">St. Charles / St. Peters dog parents — 
+
+If you've been trying to find a reliable poop scooping service out here, I feel you. Options are limited in St. Charles County.
+
+I'm TJ with Tidy Tails. I already service customers in St. Charles and I'm taking on new yards.
+
+What I offer:
+🧹 Weekly — $70/month flat
+🧹 Biweekly — $45/month  
+🧹 One-time cleanup — $100
+🐕 No per-dog upcharges
+📱 Text-first communication (because who answers phone calls anymore?)
+
+Locally owned. Not a franchise. I actually live in the STL area and do the work myself.
+
+Spring cleanup season is HERE. Your yard won't clean itself.
+
+📞 314-850-7140
+🌐 tidytailsstl.com</div>
+        <button class="copy-btn" onclick="copyText('post-5', this)">📋 Copy Post</button>
+      </div>
+    </div>
+
+    <!-- Post 6: Google Review Request Text -->
+    <div class="dead-card">
+      <div class="dead-card-header">
+        <h3>📱 Text to Send When Someone Says "My Old Service Closed"</h3>
+        <span class="priority-badge priority-1">SALES SCRIPT</span>
+      </div>
+      <div class="dead-card-body">
+        <p style="font-size:0.82em; color:#888; margin-bottom:10px;">When someone responds to a post saying their provider shut down:</p>
+        <div class="copy-zone" id="post-6">Hey! Sorry to hear about that — unfortunately a lot of poop removal companies don't stick around long. 
+
+I'm Jamie with Tidy Tails — we've been going strong for over a year here in STL. Quick rundown:
+
+• $70/mo weekly (flat rate, any # of dogs)
+• $45/mo biweekly
+• No contracts
+• Same person every time
+• We text you before and after every visit
+
+Want me to swing by and do a free first cleanup so you can see the quality? No commitment — just see if we're a good fit. 
+
+What's your address? 🐕</div>
+        <button class="copy-btn" onclick="copyText('post-6', this)">📋 Copy Post</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===== SEO PLAYS TAB ===== -->
+  <div class="panel" id="panel-seo">
+
+    <div class="strategy-section">
+      <h3>🔍 Capture Their Search Traffic</h3>
+      <p>When a competitor dies, their customers Google them. They hit a dead page. Then they search for alternatives. Here's how to be the alternative they find.</p>
+    </div>
+
+    <div class="strategy-section">
+      <h3>🎯 Keywords to Target</h3>
+      <p>These are searches orphaned customers are making RIGHT NOW:</p>
+      <div style="margin-top: 12px;">
+        <span class="keyword-chip">dog doody defenders florissant</span>
+        <span class="keyword-chip">poopy paws st louis</span>
+        <span class="keyword-chip">poop 911 st louis</span>
+        <span class="keyword-chip">dog poop removal florissant mo</span>
+        <span class="keyword-chip">pooper scooper service near me</span>
+        <span class="keyword-chip">dog waste removal st louis</span>
+        <span class="keyword-chip">pet waste removal florissant</span>
+        <span class="keyword-chip">dog poop cleanup hazelwood mo</span>
+        <span class="keyword-chip">poop scooping service st charles</span>
+        <span class="keyword-chip">yard cleanup dog poop near me</span>
+        <span class="keyword-chip">super scoopers st peters</span>
+        <span class="keyword-chip">pawfect waste solutions</span>
+        <span class="keyword-chip">dog poop removal maryland heights</span>
+        <span class="keyword-chip">affordable pooper scooper stl</span>
+      </div>
+    </div>
+
+    <div class="strategy-section">
+      <h3>📝 Blog Post Ideas (Free SEO)</h3>
+      <p>Write these for the Tidy Tails blog — they'll rank for competitor brand + local searches:</p>
+      <div class="action-box" style="margin-top: 10px;">
+        <ul>
+          <li><strong>"Looking for a Reliable Pooper Scooper in Florissant? We're Still Here."</strong> — targets DDD's orphaned customer searches</li>
+          <li><strong>"Why Pet Waste Removal Companies Keep Shutting Down (And Why We Won't)"</strong> — positions TJ as reliable while capturing competitor brand searches</li>
+          <li><strong>"St. Louis Dog Poop Removal Services: 2026 Guide"</strong> — comparison page where dead competitors are listed as "no longer operating" with TJ as the alternative</li>
+          <li><strong>"Switching Pet Waste Services? Here's What to Look For"</strong> — targets people actively searching for a new provider</li>
+          <li><strong>"Spring Yard Cleanup in Florissant — Your Complete Guide"</strong> — hyper-local content for DDD's exact territory</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="strategy-section">
+      <h3>🗺️ Google Business Profile Plays</h3>
+      <div class="action-box" style="margin-top: 10px;">
+        <ul>
+          <li><strong>GBP Post:</strong> "Taking on new customers! If your old pet waste removal service closed, we're here and ready to help. Free first cleanup for new customers."</li>
+          <li><strong>Q&A:</strong> Add your own Q&A — "Q: Are you still accepting new customers? A: Yes! We're taking on new weekly and biweekly customers across St. Louis County."</li>
+          <li><strong>Service categories:</strong> Make sure "pet waste removal" and "pooper scooper service" are listed as services</li>
+          <li><strong>Photos:</strong> Upload before/after yard photos — dead competitors have ZERO photos showing up</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="strategy-section">
+      <h3>💰 Paid Ads (Optional — $5-10/day budget)</h3>
+      <p>If TJ wants to invest even a tiny ad budget, competitor brand searches are CHEAP:</p>
+      <div class="action-box" style="margin-top: 10px;">
+        <ul>
+          <li><strong>Google Ads:</strong> Bid on "dog poop removal florissant" and "pooper scooper st louis" — likely $1-3/click, very low competition</li>
+          <li><strong>Facebook/IG:</strong> Target Florissant, Hazelwood, Maryland Heights — interest in dogs, homeowners, 25-55 age. $5/day = 500-1000 local impressions</li>
+          <li><strong>Nextdoor Ads:</strong> $2/day minimum — hyper-local targeting by neighborhood</li>
+          <li><strong>DON'T bid on competitor names directly</strong> — tacky and against Google policy. Target the SERVICE + LOCATION instead.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ACTION PLAN TAB ===== -->
+  <div class="panel" id="panel-plan">
+
+    <div class="strategy-section">
+      <h3>⚡ 7-Day Capture Blitz</h3>
+      <p>Execute in order. Each day builds on the last. Total time: ~2 hours spread across the week.</p>
+    </div>
+
+    <div class="dead-card">
+      <div class="dead-card-body">
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-day">Day 1<br><small>TODAY</small></div>
+            <div class="timeline-task">
+              <strong>Post on Florissant Nextdoor</strong> (capture DDD customers)<br>
+              Use Post #1 from Capture Posts tab. Post between 5-7 PM for max visibility.<br>
+              <label class="checklist-item" style="border:none; padding: 4px 0;">
+                <input type="checkbox" onchange="saveCheck('d1', this.checked)"> Posted on Florissant Nextdoor
+              </label>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 2</div>
+            <div class="timeline-task">
+              <strong>Post in 2-3 Facebook Groups</strong> (service provider gone angle)<br>
+              Use Post #2. Target Florissant Community, Hazelwood Neighbors, NoCo STL groups.<br>
+              Space posts 30+ min apart to avoid spam flags.<br>
+              <label class="checklist-item" style="border:none; padding: 4px 0;">
+                <input type="checkbox" onchange="saveCheck('d2', this.checked)"> Posted in Facebook groups
+              </label>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 3</div>
+            <div class="timeline-task">
+              <strong>Post multi-dog angle</strong> (Instagram + FB story)<br>
+              Use Post #3. Add a photo of clean yard or your truck/equipment.<br>
+              <label class="checklist-item" style="border:none; padding: 4px 0;">
+                <input type="checkbox" onchange="saveCheck('d3', this.checked)"> Multi-dog post shared
+              </label>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 4</div>
+            <div class="timeline-task">
+              <strong>GBP post + Q&A update</strong><br>
+              Post "taking new customers" update on Google Business Profile.<br>
+              Add 2-3 Q&A entries. Upload 1 before/after photo.<br>
+              <label class="checklist-item" style="border:none; padding: 4px 0;">
+                <input type="checkbox" onchange="saveCheck('d4', this.checked)"> GBP updated
+              </label>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 5</div>
+            <div class="timeline-task">
+              <strong>Post Chesterfield/West County angle</strong><br>
+              Use Post #4 if expanding west. Otherwise, re-post in new FB groups.<br>
+              <label class="checklist-item" style="border:none; padding: 4px 0;">
+                <input type="checkbox" onchange="saveCheck('d5', this.checked)"> Expansion post shared
+              </label>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 6</div>
+            <div class="timeline-task">
+              <strong>Follow up on ALL leads from the week</strong><br>
+              Anyone who commented, liked, or DM'd — text them with Post #6 template.<br>
+              <label class="checklist-item" style="border:none; padding: 4px 0;">
+                <input type="checkbox" onchange="saveCheck('d6', this.checked)"> All leads followed up
+              </label>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-day">Day 7</div>
+            <div class="timeline-task">
+              <strong>Craigslist + Repeat</strong><br>
+              Post on Craigslist (Services > Household). Re-post in any groups where first posts got engagement.<br>
+              <label class="checklist-item" style="border:none; padding: 4px 0;">
+                <input type="checkbox" onchange="saveCheck('d7', this.checked)"> Craigslist posted + cycle repeated
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="strategy-section">
+      <h3>🎯 Success Metrics</h3>
+      <div class="action-box" style="margin-top: 10px;">
+        <ul>
+          <li><strong>Week 1 goal:</strong> 3-5 inbound inquiries from orphaned customers</li>
+          <li><strong>Conversion target:</strong> 2-3 new recurring customers from this campaign alone</li>
+          <li><strong>Revenue impact:</strong> $140-210/mo recurring if 2-3 close</li>
+          <li><strong>Cost:</strong> $0 — all organic posts and free tools</li>
+          <li><strong>Time investment:</strong> ~15-20 min per day of posting/responding</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="strategy-section">
+      <h3>💡 Pro Tips</h3>
+      <div class="action-box" style="margin-top: 10px;">
+        <ul>
+          <li>DON'T name dead competitors directly — tacky and could backfire legally</li>
+          <li>DO respond to EVERY comment within 2 hours — speed wins</li>
+          <li>DO offer the free first cleanup — it's your best close tool</li>
+          <li>DO text customers, don't call — today's buyers hate phone calls</li>
+          <li>DO ask for reviews from any new customers you close — stack those Google reviews NOW</li>
+          <li>If someone says "I used to use [dead company]" — be empathetic, not smug</li>
+          <li>Mention "same person every time" — franchise orphans are tired of random technicians</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    ☠️ Dead Competitor Capture Kit — Built by Franklin, March 23, 2026<br>
+    Tool #45 | 6 dead competitors tracked | 6 ready-to-post capture campaigns
+  </footer>
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+}
+
+function copyText(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy Post'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function saveCheck(key, val) {
+  const data = JSON.parse(localStorage.getItem('capture-kit') || '{}');
+  data[key] = val;
+  localStorage.setItem('capture-kit', JSON.stringify(data));
+}
+
+// Restore checks
+document.addEventListener('DOMContentLoaded', () => {
+  const data = JSON.parse(localStorage.getItem('capture-kit') || '{}');
+  Object.keys(data).forEach(key => {
+    const items = document.querySelectorAll(`[onchange*="${key}"]`);
+    items.forEach(cb => { if (data[key]) cb.checked = true; });
+  });
+});
+</script>
+</body>
+</html>
