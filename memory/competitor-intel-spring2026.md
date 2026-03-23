@@ -1,5 +1,5 @@
 # STL Pet Waste Competitor Intelligence — Spring 2026
-*Researched: March 22, 2026 | Updated: March 23, 2026 (Scoop Soldiers entry)*
+*Researched: March 22, 2026 | Updated: March 23, 2026 8 AM (full market scan)*
 
 ## Active Competitors (10-12 total)
 
@@ -15,28 +15,26 @@
 - Indeed employee reviews are negative (long hours, GPS tracking, no breaks)
 - Best SEO in the market — ranks #1 for many searches
 
-**POOP 911 — St. Louis**
+**POOP 911 — St. Louis** ⚠️ MIXED SIGNALS (Mar 23)
 - National franchise, memorable name
 - Phone: 1-877-POOP-911
 - Pricing: Starting $13.95/visit in STL
-- Covers 70+ zip codes (huge area)
+- `/locations/missouri/st-louis/` → **404!** (was live previously)
+- `/locations/missouri/` → shows Winfield only, page template broken (blank city/state in copy)
+- `/locations/saint-louis-missouri-pet-waste-cleanup` → STILL LIVE with heavy AI-generated SEO content
+- `/service-area/missouri-pet-waste-removal/saint-louis-dog-poop-clean-up` → STILL LIVE (title only, thin page)
+- **Assessment:** Franchise operator may be struggling. Main location page dead, Missouri hub is broken. But SEO pages still ranking. Could mean their local operator folded but corporate SEO persists. This is an OPPORTUNITY — their customers searching for POOP 911 STL will hit a 404.
 - Free first cleanup with recurring service
-- Focused on city center (Soulard, Lafayette Square area)
 - Yard deodorizing service
 
-**Scoop Soldiers — St. Louis** ⚠️ NEW (Feb 2026)
-- National franchise, est. 2010, just expanded to STL (Feb 6, 2026 press release)
+**Scoop Soldiers — St. Louis** ⚠️ DOWNGRADED (Mar 23 check)
+- National franchise, est. 2010, press release claimed STL expansion Feb 2026
 - Phone: (877) 930-POOP
-- Website: scoopsoldiers.com/locations/st-louis
-- Pricing: $19.99/visit weekly (1-4 dogs), $17.99 2x/week, $24.99 bi-weekly
-- Monthly cost: ~$80/mo weekly (vs TJ's $70 flat)
-- Services: Residential + Commercial + HOA, pet waste stations, deodorizer, sanitizer
-- Actively targeting property managers (separate commercial pricing page)
-- 100% money-back guarantee
-- Partners with Valor Service Dogs (marketing angle)
-- SEO: Fresh local pages, press release coverage on news sites
-- THREAT: National brand with commercial infrastructure, but TJ beats on price ($70 vs $80) and local trust
-- COUNTER: Move fast on I-44 corridor commercial leads before they establish relationships
+- Website: scoopsoldiers.com/locations/st-louis → **NOW 404!** "We don't currently service your area"
+- scoopsoldiers.com/locations page lists states but NO Missouri/STL presence
+- **STATUS: NOT ACTIVE IN STL.** Press release was premature or they pulled out.
+- Previous assessment overblown. Threat level: LOW (may never materialize)
+- **Keep monitoring quarterly** — they could re-enter
 
 ### TIER 2: MEDIUM THREAT (Local Independents)
 
@@ -133,12 +131,16 @@
 - Can service yard whether home or not, always close/lock gates
 - **Assessment:** Medium threat. Professional but no pricing transparency. APAWS membership is a credibility play. The 636 area code suggests they're west county/St. Charles focused — potential overlap with our expansion territory.
 
-**Poopy Paws** (ALREADY TRACKED — updated)
-- Website: poopypaws314.com — NOW DEAD (DNS not resolving!)
+**Poopy Paws** ☠️ CONFIRMED DEAD (Mar 23 re-check)
+- Website: poopypaws314.com — DNS STILL DEAD (3rd consecutive check)
 - Previously: $20/week flat, any number of dogs
-- Was #1 on Yelp for STL
-- 358 Facebook likes
-- **Assessment:** MAY BE STRUGGLING. Dead website is a massive red flag. Still on Yelp but if they can't maintain a website, they may be losing customers. Their customers could be up for grabs.
+- Was #1 on Yelp for STL, 358 Facebook likes
+- **Assessment:** DEAD. Their customers are orphaned. Priority acquisition target.
+
+**Dirty Dog Wash Poo Crew** — DOWNGRADED (Mar 23)
+- dirtydogwashstl.com now shows ONLY grooming/dog wash (Chesterfield Valley)
+- No mention of poo crew service anywhere on site
+- **Assessment:** May have dropped poop removal entirely. Verify next month.
 
 **The Poo Fighterz**
 - Yelp rating: 4.8 stars (8 reviews) — HIGHEST RATED in market!
@@ -246,6 +248,57 @@ The new `/locations/` page is clearly AI-generated SEO content (~1500+ words), n
 - Dead/Dying: Pawfect Waste Solutions ☠️, Poopy Paws ☠️, Super Scoopers ☠️ (3)
 - Unconfirmed: Scooper Pro, Canine To 5 (Yelp-only, minimal data) (1-2)
 
-**Active competitors: ~12-13 | Dead: 3 | Market trend: consolidating**
+**Active competitors: ~10-11 | Dead/Inactive: 5-6 | Market trend: CONSOLIDATING FAST**
 
 **Market density assessment:** STL pet waste market continues to evolve. 3 confirmed dead competitors creates acquisition opportunities (orphaned customers). But new entrant Little Stinkers shows the market is still attracting new players, especially in St. Charles County. POOP 911's aggressive SEO push means the franchise threat is growing online. The play for TJ remains the same: win on LOCAL signals (GBP, reviews, directories, Facebook groups) where franchises can't outspend him, and be the personality-driven local option.
+
+---
+
+## 🔥 MARCH 23, 2026 — FULL MARKET SCAN SUMMARY
+
+### What Changed Overnight (Mar 22 → Mar 23)
+
+**POOP 911 STL operator may be DEAD** 💀
+- Their main STL location page (`/locations/missouri/st-louis/`) returns 404
+- Missouri hub page is broken — shows "Winfield" only with blank city/state template vars
+- Corporate SEO pages still live but thin/AI-generated
+- **Implication:** Local franchise operator may have folded. Customers hitting 404 when searching for POOP 911 STL. This is a HUGE opportunity window.
+
+**Scoop Soldiers NEVER ACTUALLY ENTERED STL** 🚫
+- Their STL page now says "we don't currently service your area"
+- Locations page shows no Missouri presence at all
+- Feb 2026 press release was either premature or they pulled back
+- **Implication:** Our Scoop Soldiers battle card is now less urgent. They may never come.
+
+**Dirty Dog Wash may have dropped poop service** ❓
+- Website now ONLY shows grooming/dog wash in Chesterfield
+- Zero mention of Poo Crew anywhere
+- **Implication:** One fewer competitor in the Chesterfield/west county market
+
+**Dog Doody Defenders still cheapest** ✅
+- Confirmed: $17/wk (1 dog), $27 bi-weekly/2x weekly, $54/mo
+- Still active, still serving Florissant area
+- TJ's $70/mo is $16 more BUT includes more value positioning
+
+### Revised Threat Assessment (Mar 23)
+
+| Rank | Competitor | Threat | Notes |
+|------|-----------|--------|-------|
+| 1 | **DoodyCalls** | 🔴 HIGH | Best SEO, franchise $, commercial |
+| 2 | **No. 2 Crew** | 🟠 MEDIUM-HIGH | Professional, clear pricing, good brand |
+| 3 | **Dog Doody Defenders** | 🟠 MEDIUM | Cheapest in market, same Florissant zip |
+| 4 | **Little Stinkers** | 🟡 MEDIUM | St. Charles threat, multi-service |
+| 5 | **Poop 2 Scoop** | 🟡 MEDIUM | Veteran-owned, competitive pricing |
+| 6 | **The Pootector** | 🟡 LOW-MED | APAWS certified, west county |
+| 7 | **POOP 911** | ⚠️ UNCERTAIN | STL operator may be dead, SEO persists |
+| 8 | **Pooey Pet** | 🟢 LOW | Expensive, niche (bi-weekly only) |
+| 9 | **Yucko's** | 🟢 LOW | 36 yrs but dated, aging out |
+| 10 | **Scoop Soldiers** | ⚪ NOT ACTIVE | STL page 404, may never come |
+
+**Dead:** Poopy Paws ☠️, Pawfect ☠️, Super Scoopers ☠️
+**Likely dead:** Dirty Dog Poo Crew, Pooanators (minimal web presence)
+
+### Key Takeaway
+**The competitive field is SHRINKING.** 3 confirmed dead, 2 more likely dead/inactive, 1 franchise never showed up, 1 franchise operator possibly folded. That's 5-7 fewer competitors than we thought. Meanwhile TJ has a live website, claimed GBP, and verified GSC.
+
+**The #1 play hasn't changed:** Get GBP to 100%, get reviews, and show up where dead competitors' customers are searching. The window is WIDE OPEN.

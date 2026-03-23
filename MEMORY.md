@@ -110,17 +110,21 @@
 **Market size:** 15 tracked competitors, 2-4 dead/dying, ~10-12 active
 **TJ's position:** $70/mo flat = mid-market. Cheaper than Doggie Doodies ($83), Dirty Dog ($95), Pooey ($100). More expensive weekly than DDD ($54/mo), POOP 911 ($52/mo).
 
-**Top threats:**
-- 🔴 Dog Doody Defenders — same Florissant zip, $54/mo, but has BAD reviews (exploit this)
-- 🔴 POOP 911 — $52/mo, free first cleanup, investing in Florissant SEO
-- 🔴 DoodyCalls — best SEO in market, national franchise
-- 🟡 No. 2 Crew — professional, $76/mo weekly, good branding
+**Top threats (updated Mar 23):**
+- 🔴 DoodyCalls — best SEO in market, national franchise, only real commercial player
+- 🟠 No. 2 Crew — professional, $76/mo weekly, good branding
+- 🟠 Dog Doody Defenders — same Florissant zip, $54/mo cheapest in market
+- 🟡 Little Stinkers — St. Charles County threat, multi-service
 
-**NEW (Feb 2026):** Scoop Soldiers — national franchise, $19.99/visit (~$80/mo weekly). Commercial + residential + HOA. TJ's $70/mo beats them.
+**⚠️ MAJOR CHANGES (Mar 23 scan):**
+- POOP 911 STL operator MAY BE DEAD — main location page 404, Missouri hub broken
+- Scoop Soldiers NEVER ENTERED STL — their page says "don't service your area"
+- Dirty Dog Wash dropped poo crew — site shows only grooming now
+- **Market is CONSOLIDATING** — 5-7 fewer active competitors than we thought
 
-**Dead/dying:** Pawfect (404), Poopy Paws (DNS dead), Fresh Paws (DNS expired), STL Pooper Scoopers (closed), Super Scoopers (site down)
+**Dead/dying:** Pawfect ☠️, Poopy Paws ☠️, Super Scoopers ☠️, Dirty Dog Poo Crew ❓, POOP 911 STL ❓
 
-**Strategy:** DON'T lower prices — awareness problem, not price problem. Lead with $70/mo flat rate value.
+**Strategy:** Window is WIDE OPEN. Get GBP to 100%, get reviews, capture orphaned customers from dead competitors.
 
 ### Search Visibility (Mar 22)
 - **On-page SEO: A-** | **Off-page SEO: F** | **Overall: 30/100**
