@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔥 Week 1 Launch Kit — Spring Blitz Day 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg:#0a0a0a;--bg2:#111;--bg3:#1a1a1a;--bg4:#242424;
+    --text:#f5f5f5;--text2:#999;--text3:#555;
+    --green:#10b981;--orange:#ff6b35;--blue:#3b82f6;
+    --yellow:#fbbf24;--red:#ef4444;--purple:#8b5cf6;
+    --cyan:#06b6d4;--pink:#ec4899;
+    --border:#2a2a2a;--radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:3rem;}
+a{color:var(--blue);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.header{
+    background:linear-gradient(135deg,#1a0a00 0%,#2a1500 40%,#1a0a00 100%);
+    border-bottom:3px solid var(--orange);padding:2rem 1.5rem;text-align:center;
+    position:relative;overflow:hidden;
+}
+.header::before{
+    content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+    background:radial-gradient(circle at 30% 50%,rgba(255,107,53,0.08),transparent 50%),
+               radial-gradient(circle at 70% 50%,rgba(16,185,129,0.06),transparent 50%);
+}
+.header *{position:relative;}
+.header h1{font-size:1.8rem;font-weight:900;letter-spacing:-0.04em;margin-bottom:0.3rem;}
+.header .accent{color:var(--orange);}
+.header .subtitle{color:var(--text2);font-size:0.85rem;max-width:500px;margin:0.5rem auto 0;}
+.header .date-badge{
+    display:inline-block;margin-top:1rem;padding:0.4rem 1.2rem;
+    background:rgba(255,107,53,0.15);border:1px solid rgba(255,107,53,0.4);
+    border-radius:8px;font-weight:700;font-size:0.8rem;color:var(--orange);
+}
+
+.container{max-width:750px;margin:0 auto;padding:1.5rem 1rem;}
+
+/* Priority banner */
+.priority-banner{
+    background:linear-gradient(135deg,#1a2e0a,#0a1a0a);
+    border:2px solid var(--green);border-radius:var(--radius);
+    padding:1.25rem;margin-bottom:1.5rem;text-align:center;
+}
+.priority-banner h2{font-size:1.1rem;color:var(--green);margin-bottom:0.5rem;}
+.priority-banner p{color:var(--text2);font-size:0.85rem;line-height:1.5;}
+.priority-banner .target{font-family:'JetBrains Mono',monospace;font-size:1.4rem;font-weight:900;color:var(--green);display:block;margin:0.5rem 0;}
+
+/* Today's checklist */
+.checklist{
+    background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);
+    padding:1.5rem;margin-bottom:1.5rem;
+}
+.checklist h3{font-size:1rem;font-weight:800;margin-bottom:1rem;display:flex;align-items:center;gap:0.5rem;}
+.check-item{
+    display:flex;align-items:flex-start;gap:0.75rem;padding:0.75rem 0;
+    border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;
+}
+.check-item:last-child{border:none;}
+.check-box{
+    width:22px;height:22px;border:2px solid var(--text3);border-radius:6px;
+    flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;
+    transition:all 0.2s;font-size:0.7rem;
+}
+.check-item.done .check-box{background:var(--green);border-color:var(--green);color:#000;}
+.check-item.done .check-label{text-decoration:line-through;opacity:0.5;}
+.check-label{font-size:0.9rem;font-weight:600;}
+.check-detail{font-size:0.78rem;color:var(--text2);margin-top:2px;line-height:1.4;}
+.check-time{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--yellow);margin-top:3px;}
+
+/* Copy blocks */
+.copy-section{
+    background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);
+    margin-bottom:1.5rem;overflow:hidden;
+}
+.copy-header{
+    padding:1rem 1.25rem;display:flex;justify-content:space-between;align-items:center;
+    border-bottom:1px solid var(--border);cursor:pointer;
+}
+.copy-header:hover{background:var(--bg3);}
+.copy-header h3{font-size:0.95rem;font-weight:800;}
+.copy-tag{
+    padding:0.2rem 0.6rem;border-radius:5px;font-size:0.7rem;font-weight:700;
+    text-transform:uppercase;letter-spacing:0.03em;
+}
+.tag-fb{background:rgba(24,119,242,0.15);color:#4299e1;}
+.tag-nd{background:rgba(139,195,74,0.15);color:#8bc34a;}
+.tag-ig{background:rgba(225,48,108,0.15);color:#ec4899;}
+.tag-gbp{background:rgba(251,191,36,0.15);color:var(--yellow);}
+.tag-text{background:rgba(255,152,0,0.15);color:#ff9800;}
+.tag-cl{background:rgba(239,68,68,0.15);color:var(--red);}
+.tag-door{background:rgba(139,92,246,0.15);color:var(--purple);}
+
+.copy-body{padding:1.25rem;display:none;}
+.copy-section.open .copy-body{display:block;}
+
+.copy-block{
+    background:#080810;border:1px solid #1a1a2a;border-radius:10px;
+    padding:1rem;margin-bottom:0.75rem;font-size:0.88rem;
+    line-height:1.6;white-space:pre-wrap;color:#ddd;
+    user-select:all;cursor:text;position:relative;
+}
+.copy-btn{
+    display:block;width:100%;padding:0.6rem;border:none;border-radius:8px;
+    font-weight:700;font-size:0.82rem;cursor:pointer;
+    background:rgba(255,255,255,0.06);color:var(--text);transition:all 0.2s;
+    margin-top:0.5rem;
+}
+.copy-btn:hover{background:rgba(255,255,255,0.1);}
+.copy-btn.copied{background:rgba(16,185,129,0.2);color:var(--green);}
+
+.copy-note{font-size:0.75rem;color:var(--text3);margin-top:0.5rem;font-style:italic;}
+.copy-label{font-size:0.75rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;}
+
+/* GBP posts */
+.gbp-post{
+    background:var(--bg3);border:1px solid var(--border);border-radius:10px;
+    padding:1rem;margin-bottom:0.75rem;
+}
+.gbp-post h4{font-size:0.85rem;color:var(--yellow);margin-bottom:0.4rem;}
+.gbp-post p{font-size:0.82rem;color:var(--text2);line-height:1.5;}
+
+/* Call scripts */
+.script-card{
+    background:var(--bg3);border:1px solid var(--border);border-radius:10px;
+    padding:1rem;margin-bottom:0.75rem;
+}
+.script-card h4{font-size:0.85rem;margin-bottom:0.5rem;}
+.script-card .line{font-size:0.82rem;color:var(--text2);line-height:1.6;margin-bottom:0.3rem;}
+.script-card .line strong{color:var(--text);}
+.script-card .objection{
+    background:rgba(239,68,68,0.08);border-left:3px solid var(--red);
+    padding:0.5rem 0.75rem;border-radius:0 6px 6px 0;margin:0.5rem 0;
+    font-size:0.78rem;color:var(--text2);
+}
+.script-card .response{
+    background:rgba(16,185,129,0.08);border-left:3px solid var(--green);
+    padding:0.5rem 0.75rem;border-radius:0 6px 6px 0;margin:0.5rem 0;
+    font-size:0.78rem;color:var(--text2);
+}
+
+/* Quick links */
+.quick-links{display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem;margin-bottom:1.5rem;}
+.ql{
+    background:var(--bg2);border:1px solid var(--border);border-radius:10px;
+    padding:0.65rem 0.85rem;display:flex;align-items:center;gap:0.5rem;
+    text-decoration:none;color:var(--text);font-size:0.78rem;font-weight:600;
+    transition:all 0.2s;
+}
+.ql:hover{background:var(--bg3);border-color:var(--orange);text-decoration:none;}
+
+/* Stats row */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;margin-bottom:1.5rem;}
+.stat-card{
+    background:var(--bg2);border:1px solid var(--border);border-radius:10px;
+    padding:0.75rem;text-align:center;
+}
+.stat-val{font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:800;}
+.stat-label{font-size:0.65rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.04em;margin-top:0.15rem;}
+
+.footer{text-align:center;color:var(--text3);font-size:0.7rem;margin-top:2rem;}
+
+@media(max-width:600px){
+    .stats-row{grid-template-columns:repeat(2,1fr);}
+    .quick-links{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🔥 Week 1 <span class="accent">Launch Kit</span></h1>
+    <div class="subtitle">Spring Blitz Day 1 — Everything you need to hit the ground running</div>
+    <div class="date-badge">Monday, March 23 · Week 1 of 6 · Goal: +2 Customers</div>
+</div>
+
+<div class="container">
+
+<!-- Priority Banner -->
+<div class="priority-banner">
+    <h2>🎯 This Week's Mission</h2>
+    <span class="target">5 → 7 Customers</span>
+    <p>Launch Spring Deep Clean promo everywhere. Get 5 Google reviews. Optimize GBP. Jamie calls the top 20 leads. Every action below moves us toward +2 this week.</p>
+</div>
+
+<!-- Today's Stats -->
+<div class="stats-row">
+    <div class="stat-card"><div class="stat-val" style="color:var(--green)">5</div><div class="stat-label">Current Customers</div></div>
+    <div class="stat-card"><div class="stat-val" style="color:var(--orange)">0</div><div class="stat-label">Google Reviews</div></div>
+    <div class="stat-card"><div class="stat-val" style="color:var(--blue)">$350</div><div class="stat-label">Current MRR</div></div>
+    <div class="stat-card"><div class="stat-val" style="color:var(--yellow)">$70</div><div class="stat-label">Budget This Wk</div></div>
+</div>
+
+<!-- TODAY'S CHECKLIST -->
+<div class="checklist">
+    <h3>✅ Monday Action Checklist</h3>
+    
+    <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div>
+            <div class="check-label">Post Spring Deep Clean on Facebook (personal + business page)</div>
+            <div class="check-detail">Copy below. Post to personal wall first (more reach), then Tidy Tails page. Add a yard photo if you have one.</div>
+            <div class="check-time">⏱ 5 min</div>
+        </div>
+    </div>
+    
+    <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div>
+            <div class="check-label">Post on Nextdoor (spring cleanup offer)</div>
+            <div class="check-detail">Nextdoor posts get local reach fast. Use the neighborhood-specific copy below.</div>
+            <div class="check-time">⏱ 3 min</div>
+        </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div>
+            <div class="check-label">Send review request texts to all 5 current customers</div>
+            <div class="check-detail">Pre-written texts below. Copy, paste into Messages, send. <strong>Reviews are the #1 unlock right now.</strong></div>
+            <div class="check-time">⏱ 10 min</div>
+        </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div>
+            <div class="check-label">Post on Google Business Profile (spring promo)</div>
+            <div class="check-detail">GBP posts boost local search ranking. Use the GBP copy below — it's formatted for the 1500 char limit.</div>
+            <div class="check-time">⏱ 5 min</div>
+        </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div>
+            <div class="check-label">Post on Craigslist (Services → Household)</div>
+            <div class="check-detail">Free listing, gets surprisingly good leads for local services. Copy below.</div>
+            <div class="check-time">⏱ 5 min</div>
+        </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div>
+            <div class="check-label">Brief Jamie on the call list (top 20 leads)</div>
+            <div class="check-detail">Share the I-44 Corridor leads dashboard link. Call script below. Target: 20 calls today, 5 appointments.</div>
+            <div class="check-time">⏱ 10 min</div>
+        </div>
+    </div>
+
+    <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div>
+            <div class="check-label">Post Instagram Reel or Story (spring promo)</div>
+            <div class="check-detail">Quick video of you in the yard or a before/after. Caption below. Stories > feed posts for engagement.</div>
+            <div class="check-time">⏱ 10 min</div>
+        </div>
+    </div>
+</div>
+
+<!-- FACEBOOK POST -->
+<div class="copy-section open" id="sec-fb">
+    <div class="copy-header" onclick="toggleSection('sec-fb')">
+        <h3>📘 Facebook Post — Spring Deep Clean</h3>
+        <span class="copy-tag tag-fb">Facebook</span>
+    </div>
+    <div class="copy-body">
+        <div class="copy-label">Personal Wall (higher reach)</div>
+        <div class="copy-block" id="fb1">🌱 Spring is here and so is that winter backyard situation... 😬
+
+If your yard looks like a minefield after months of snow and cold, you're not alone. That's literally why I started Tidy Tails.
+
+🧹 SPRING DEEP CLEAN SPECIAL — $99
+One-time full yard reset. We get every last piece so you can actually enjoy your yard again.
+
+What you get:
+✅ Complete yard sweep (yes, ALL of it)
+✅ All waste bagged & hauled away
+✅ Deodorizer treatment on problem spots
+✅ Done in 24-48 hours after booking
+
+Regular price is $149 — this is our spring launch price and it won't last.
+
+📲 Text or call: (314) XXX-XXXX
+🌐 tidytailsstl.com
+
+St. Louis County & surrounding areas. Tag someone whose yard needs this 👇</div>
+        <button class="copy-btn" onclick="copyText('fb1',this)">📋 Copy to Clipboard</button>
+        <p class="copy-note">💡 Post to personal wall first for organic reach, then share to business page. Add a photo of a clean yard if you have one.</p>
+    </div>
+</div>
+
+<!-- NEXTDOOR POST -->
+<div class="copy-section" id="sec-nd">
+    <div class="copy-header" onclick="toggleSection('sec-nd')">
+        <h3>🏡 Nextdoor Post — Neighborhood Spring Offer</h3>
+        <span class="copy-tag tag-nd">Nextdoor</span>
+    </div>
+    <div class="copy-body">
+        <div class="copy-block" id="nd1">Hey neighbors! 👋
+
+Spring is finally here, which means... it's time to deal with what winter left behind in the yard. 🐕💩
+
+I run Tidy Tails — a local pet waste removal service right here in the STL area. We do weekly/biweekly yard cleanups so you never have to think about it again.
+
+🌱 SPRING SPECIAL: $99 full yard deep clean (regularly $149)
+We'll get every last piece from the entire winter, bag it, and haul it away.
+
+After that, recurring service starts at just $70/month for weekly visits.
+
+Local, insured, and I actually show up when I say I will. 😄
+
+Drop a comment or shoot me a message if you're interested!
+
+— TJ, Tidy Tails STL</div>
+        <button class="copy-btn" onclick="copyText('nd1',this)">📋 Copy to Clipboard</button>
+        <p class="copy-note">💡 Nextdoor is gold for local services. Reply to every comment quickly — engagement boosts visibility.</p>
+    </div>
+</div>
+
+<!-- GOOGLE BUSINESS PROFILE POST -->
+<div class="copy-section" id="sec-gbp">
+    <div class="copy-header" onclick="toggleSection('sec-gbp')">
+        <h3>📍 Google Business Profile Post</h3>
+        <span class="copy-tag tag-gbp">GBP</span>
+    </div>
+    <div class="copy-body">
+        <div class="copy-label">GBP Update Post (shows in search results!)</div>
+        <div class="copy-block" id="gbp1">🌱 Spring Deep Clean Special — $99!
+
+Winter's over, but the mess isn't. Let Tidy Tails handle the dirty work.
+
+Our Spring Deep Clean includes a complete yard sweep, waste removal & haul-away, and deodorizer treatment. Book now and save $50 off our regular price.
+
+Serving St. Louis County and surrounding areas. Weekly and biweekly plans available starting at $70/mo.
+
+Call or text to book: (314) XXX-XXXX</div>
+        <button class="copy-btn" onclick="copyText('gbp1',this)">📋 Copy to Clipboard</button>
+        <p class="copy-note">💡 GBP posts show directly in Google search results. Post this + 2 more this week (Wed: pet tip, Fri: before/after).</p>
+        
+        <div class="copy-label" style="margin-top:1rem;">GBP Post #2 — Wednesday (Pet Health Tip)</div>
+        <div class="copy-block" id="gbp2">🐾 Did You Know? Dog waste left in your yard can harbor parasites like roundworm and hookworm for YEARS — even after it breaks down.
+
+Regular removal isn't just about the smell or the mess. It's about keeping your family and pets healthy.
+
+Tidy Tails provides weekly yard cleanup so you never have to worry about it. Plans from $70/mo.
+
+📲 Book a free quote today!</div>
+        <button class="copy-btn" onclick="copyText('gbp2',this)">📋 Copy to Clipboard</button>
+
+        <div class="copy-label" style="margin-top:1rem;">GBP Post #3 — Friday (Social Proof / Before-After)</div>
+        <div class="copy-block" id="gbp3">Another yard rescued! 🧹✨
+
+This Ballwin homeowner hadn't cleaned their backyard since November. We came through, cleared every last piece, and now their kids can actually play outside again.
+
+That's what Tidy Tails does — we handle the gross stuff so you get your yard back.
+
+🌱 Spring Deep Clean: $99 (limited time)
+📲 Text us to book: (314) XXX-XXXX</div>
+        <button class="copy-btn" onclick="copyText('gbp3',this)">📋 Copy to Clipboard</button>
+    </div>
+</div>
+
+<!-- CRAIGSLIST -->
+<div class="copy-section" id="sec-cl">
+    <div class="copy-header" onclick="toggleSection('sec-cl')">
+        <h3>📌 Craigslist Ad — Services → Household</h3>
+        <span class="copy-tag tag-cl">Craigslist</span>
+    </div>
+    <div class="copy-body">
+        <div class="copy-label">Title: 🐕 Pet Waste Removal — Spring Deep Clean $99 | Tidy Tails STL</div>
+        <div class="copy-block" id="cl1">TIDY TAILS — Professional Pet Waste Removal
+Serving St. Louis County & Surrounding Areas
+
+🌱 SPRING DEEP CLEAN SPECIAL — $99 (reg. $149)
+
+Winter left a mess in your yard? We'll fix that.
+
+What's included:
+• Complete yard sweep — every square foot
+• All waste bagged and hauled away (you don't touch a thing)
+• Deodorizer treatment on problem areas
+• Service completed within 24-48 hours of booking
+
+RECURRING PLANS (because life's too short to pick up poop):
+• Weekly service: $70/month (1 dog) — most popular
+• Biweekly service: $50/month (1 dog)
+• Additional dogs: +$10/month each
+
+WHY TIDY TAILS?
+✅ Locally owned & operated (not a franchise)
+✅ Reliable — we actually show up
+✅ Insured
+✅ You'll never step in it again
+
+📲 Text or Call: (314) XXX-XXXX
+🌐 tidytailsstl.com
+📧 cartervhomes@gmail.com
+
+Service Areas: Ballwin, Manchester, Ellisville, Wildwood, Chesterfield, Kirkwood, Webster Groves, Crestwood, Mehlville, Affton, and more.
+
+Tidy Tails — Your yard. Our problem. 🐕💩</div>
+        <button class="copy-btn" onclick="copyText('cl1',this)">📋 Copy to Clipboard</button>
+        <p class="copy-note">💡 Post in Services → Household. Repost every 3 days for visibility. Free listings = free leads.</p>
+    </div>
+</div>
+
+<!-- INSTAGRAM -->
+<div class="copy-section" id="sec-ig">
+    <div class="copy-header" onclick="toggleSection('sec-ig')">
+        <h3>📸 Instagram Caption — Reel/Story</h3>
+        <span class="copy-tag tag-ig">Instagram</span>
+    </div>
+    <div class="copy-body">
+        <div class="copy-label">Reel/Post Caption</div>
+        <div class="copy-block" id="ig1">Spring has arrived and so has backyard reckoning day 😂🐕💩
+
+If your yard survived winter looking like a war zone, we got you.
+
+🧹 $99 Spring Deep Clean — full yard reset
+📍 St. Louis County & surrounding areas
+📲 Link in bio to book
+
+First 10 customers get a free month upgrade to weekly service 👀
+
+#tidytails #stl #stlouis #dogmom #dogdad #petwasteRemoval #springcleaning #backyardgoals #dogsofstl #stldogs</div>
+        <button class="copy-btn" onclick="copyText('ig1',this)">📋 Copy to Clipboard</button>
+        
+        <div class="copy-label" style="margin-top:1rem;">Story Text Overlay Ideas</div>
+        <div class="copy-block" id="ig2">Slide 1: "Your yard after winter:" + 🤮 emoji
+Slide 2: "Your yard after Tidy Tails:" + ✨ emoji  
+Slide 3: "$99 Spring Deep Clean — DM to book"
+Slide 4: "First 10 customers → free month of weekly service"</div>
+        <button class="copy-btn" onclick="copyText('ig2',this)">📋 Copy to Clipboard</button>
+    </div>
+</div>
+
+<!-- REVIEW REQUEST TEXTS -->
+<div class="copy-section" id="sec-review">
+    <div class="copy-header" onclick="toggleSection('sec-review')">
+        <h3>⭐ Review Request Texts (5 Customers)</h3>
+        <span class="copy-tag tag-text">Text Message</span>
+    </div>
+    <div class="copy-body">
+        <div class="copy-label">Personalized text — swap [NAME] for each customer</div>
+        <div class="copy-block" id="rev1">Hey [NAME]! It's TJ from Tidy Tails 🐾
+
+Quick favor — would you mind leaving us a Google review? We're trying to grow the business this spring and reviews make a HUGE difference for a small local company like us.
+
+Here's the link: [INSERT GOOGLE REVIEW LINK]
+
+Even just a sentence or two would mean the world. Thanks for being one of our first customers! 🙏</div>
+        <button class="copy-btn" onclick="copyText('rev1',this)">📋 Copy to Clipboard</button>
+        <p class="copy-note">💡 Send to ALL 5 customers today. Follow up Wednesday if they haven't posted. Goal: 5 reviews this week = GBP ranking boost.</p>
+        
+        <div class="copy-label" style="margin-top:1rem;">Wednesday Follow-Up (for non-responders)</div>
+        <div class="copy-block" id="rev2">Hey [NAME]! Just bumping this — totally understand if you're busy. If you have 30 seconds, a quick Google review would really help us out. No pressure at all! 🙂
+
+[INSERT GOOGLE REVIEW LINK]</div>
+        <button class="copy-btn" onclick="copyText('rev2',this)">📋 Copy to Clipboard</button>
+    </div>
+</div>
+
+<!-- JAMIE'S CALL SCRIPT -->
+<div class="copy-section" id="sec-calls">
+    <div class="copy-header" onclick="toggleSection('sec-calls')">
+        <h3>📞 Jamie's Call Script — Top 20 Leads</h3>
+        <span class="copy-tag tag-door" style="background:rgba(6,182,212,0.15);color:var(--cyan);">Call Script</span>
+    </div>
+    <div class="copy-body">
+        <div class="script-card">
+            <h4>🏢 Commercial Properties (Apartments/HOAs)</h4>
+            <div class="line"><strong>Opening:</strong> "Hi, I'm calling from Tidy Tails — we're a local pet waste removal service. I'm reaching out because spring is here and a lot of property managers are dealing with the winter buildup in their dog areas. Do you have a minute?"</div>
+            <div class="line"><strong>Pitch:</strong> "We handle all the pet waste cleanup for apartment communities and HOAs — the dog stations, common areas, walking paths, all of it. Takes about 10 minutes for your maintenance team to show us the spots, and we handle everything from there."</div>
+            <div class="line"><strong>Offer:</strong> "We're running a spring special — free demo clean of your worst area so you can see the difference before committing to anything."</div>
+            <div class="objection">❌ "We handle it in-house" → "Totally get that. Most of our commercial clients said the same thing before they realized how much maintenance time it was eating up. The demo is free — worst case, your dog area looks great for a day."</div>
+            <div class="response">✅ "Interested" → "Great! I can have TJ out there this week. What day works — Tuesday or Thursday?"</div>
+            <div class="line"><strong>Close:</strong> "Can I grab your email to send over our pricing sheet? It's straightforward — monthly service starts at [quote based on property size]."</div>
+        </div>
+
+        <div class="script-card">
+            <h4>🏠 Residential Leads (I-44 Corridor)</h4>
+            <div class="line"><strong>Opening:</strong> "Hey! I'm Jamie with Tidy Tails, a local pet waste removal service here in [Kirkwood/Webster Groves/area]. Have you heard of us?"</div>
+            <div class="line"><strong>Pitch:</strong> "We come out weekly, clean up everything your dog leaves behind, bag it, and take it with us. You literally never have to think about it. Most customers say it's the best $70 a month they spend."</div>
+            <div class="line"><strong>Offer:</strong> "We've got a spring deep clean special going — $99 for a full yard reset, plus $20 off your first month if you sign up for recurring. Figured I'd call the neighborhood since we're already servicing the area."</div>
+            <div class="objection">❌ "Too expensive" → "I hear you. Think of it this way — that's about $2.30 per day to never step in it again. And the spring clean alone is $50 off right now."</div>
+            <div class="objection">❌ "I do it myself" → "A lot of our customers said that too! The thing is, life gets busy and it piles up. We had one customer who said she was spending her entire Saturday morning on it. Now she gets that time back."</div>
+            <div class="response">✅ "Interested" → "Awesome! Can I book a spring deep clean for this week? What's a good day — I've got openings Tuesday, Wednesday, and Thursday."</div>
+        </div>
+
+        <p class="copy-note">💡 Lead list: <a href="i44-corridor-expansion-leads.html">I-44 Corridor Leads Dashboard</a> — 13 commercial leads ready to call. Target: 20 calls, 5 appointments this week.</p>
+    </div>
+</div>
+
+<!-- DOOR HANGER SCRIPT -->
+<div class="copy-section" id="sec-door">
+    <div class="copy-header" onclick="toggleSection('sec-door')">
+        <h3>🚪 Door Hanger Copy (for printing)</h3>
+        <span class="copy-tag tag-door">Door Hanger</span>
+    </div>
+    <div class="copy-body">
+        <div class="copy-label">Front</div>
+        <div class="copy-block" id="dh1">TIRED OF STEPPING IN IT? 🐕💩
+
+Your neighbor uses Tidy Tails.
+Maybe you should too.
+
+✅ Weekly yard cleanup
+✅ All waste bagged & removed  
+✅ Starting at $70/month
+
+🌱 SPRING SPECIAL: $99 full yard deep clean
+
+Scan to book → [QR CODE]
+Or text: (314) XXX-XXXX
+
+TIDY TAILS — Your Yard. Our Problem.</div>
+        <button class="copy-btn" onclick="copyText('dh1',this)">📋 Copy to Clipboard</button>
+        
+        <div class="copy-label" style="margin-top:1rem;">Back</div>
+        <div class="copy-block" id="dh2">WHY TIDY TAILS?
+
+🏠 Locally owned (not a franchise)
+⏰ Reliable — we show up every week, same day
+🐕 $70/mo for 1 dog, $80 for 2
+🧹 Spring Deep Clean: $99 (full yard reset)
+⭐ Your neighbors love us — ask them!
+
+"Best decision I made all year. My kids can play in the yard again." — Actual Customer
+
+📲 (314) XXX-XXXX | tidytailsstl.com</div>
+        <button class="copy-btn" onclick="copyText('dh2',this)">📋 Copy to Clipboard</button>
+        <p class="copy-note">💡 Leave 10 door hangers on every service stop this week. Social proof ("your neighbor uses us") is the most powerful local marketing.</p>
+    </div>
+</div>
+
+<!-- THIS WEEK'S POSTING SCHEDULE -->
+<div class="copy-section" id="sec-schedule">
+    <div class="copy-header" onclick="toggleSection('sec-schedule')">
+        <h3>📅 This Week's Posting Schedule</h3>
+        <span class="copy-tag" style="background:rgba(16,185,129,0.15);color:var(--green);">Schedule</span>
+    </div>
+    <div class="copy-body">
+        <div class="gbp-post">
+            <h4>Monday (Today)</h4>
+            <p>✅ Facebook: Spring Deep Clean promo (personal + business page)<br>
+            ✅ Nextdoor: Neighborhood spring offer<br>
+            ✅ GBP: Spring Deep Clean post<br>
+            ✅ Craigslist: Service listing<br>
+            ✅ Instagram: Reel/Story with spring promo<br>
+            ✅ Text all 5 customers for reviews<br>
+            ✅ Jamie: Start call blitz (aim for 10+ calls today)</p>
+        </div>
+        <div class="gbp-post">
+            <h4>Wednesday</h4>
+            <p>📍 GBP: Pet health tip post (#2 above)<br>
+            📱 Instagram: Story — customer testimonial or fun dog content<br>
+            📞 Jamie: Continue calls (10 more)<br>
+            ⭐ Follow up on review requests (non-responders)</p>
+        </div>
+        <div class="gbp-post">
+            <h4>Friday</h4>
+            <p>📍 GBP: Before/after post (#3 above)<br>
+            📘 Facebook: Midweek engagement post (dog photo + soft pitch)<br>
+            📱 Instagram: Reel — "day in the life" content<br>
+            📞 Jamie: Follow up on all warm leads from the week</p>
+        </div>
+        <div class="gbp-post">
+            <h4>Saturday</h4>
+            <p>🏞️ Optional: Dog park visit (if time allows — scout for Week 3 blitz)<br>
+            📊 Week 1 review: How many inquiries? How many booked?</p>
+        </div>
+    </div>
+</div>
+
+<!-- Quick Links -->
+<div class="quick-links">
+    <a class="ql" href="spring-blitz-playbook.html">🚀 Full Blitz Playbook</a>
+    <a class="ql" href="spring-deep-clean-campaign.html">🌱 Deep Clean Campaign</a>
+    <a class="ql" href="i44-corridor-expansion-leads.html">🎯 I-44 Leads List</a>
+    <a class="ql" href="competitor-battlemap-spring2026.html">⚔️ Competitor Intel</a>
+    <a class="ql" href="review-texts-ready.html">⭐ Review Texts</a>
+    <a class="ql" href="google-review-blitz.html">📈 Review Strategy</a>
+    <a class="ql" href="index.html">🏠 Dashboard Home</a>
+    <a class="ql" href="ad-tracker.html">📊 Ad Tracker</a>
+</div>
+
+<div class="footer">
+    🔥 Spring Blitz Week 1 · Built by Franklin at 3 AM · Ship it, TJ
+</div>
+
+</div>
+
+<script>
+function toggleCheck(el) {
+    el.classList.toggle('done');
+    // Save state to localStorage
+    const items = document.querySelectorAll('.check-item');
+    const state = Array.from(items).map(i => i.classList.contains('done'));
+    localStorage.setItem('week1-checks', JSON.stringify(state));
+}
+
+// Restore check state
+(function() {
+    const saved = localStorage.getItem('week1-checks');
+    if (saved) {
+        const state = JSON.parse(saved);
+        const items = document.querySelectorAll('.check-item');
+        state.forEach((done, i) => { if (done && items[i]) items[i].classList.add('done'); });
+    }
+})();
+
+function toggleSection(id) {
+    document.getElementById(id).classList.toggle('open');
+}
+
+function copyText(id, btn) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+        btn.classList.add('copied');
+        btn.textContent = '✅ Copied!';
+        setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '📋 Copy to Clipboard'; }, 2000);
+    });
+}
+</script>
+</body>
+</html>
