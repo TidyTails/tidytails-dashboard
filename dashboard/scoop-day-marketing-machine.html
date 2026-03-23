@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐕 Monday Scoop Day — Marketing Machine</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 12px; max-width: 500px; margin: 0 auto; }
+h1 { font-size: 1.3rem; text-align: center; margin-bottom: 4px; }
+.tagline { text-align: center; color: #888; font-size: 0.8rem; margin-bottom: 16px; }
+
+/* Tabs */
+.tabs { display: flex; gap: 4px; margin-bottom: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tab { flex: 1; min-width: 0; padding: 10px 6px; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; text-align: center; font-size: 0.75rem; font-weight: 600; cursor: pointer; white-space: nowrap; }
+.tab.active { background: #1a2e1a; border-color: #4ecdc4; color: #4ecdc4; }
+
+/* Cards */
+.card { background: #1a1a1a; border: 1px solid #333; border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+.card-head { background: #222; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; }
+.card-head h3 { font-size: 0.95rem; }
+.card-head .badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+.badge-hot { background: #ff4444; color: #fff; }
+.badge-new { background: #4ecdc4; color: #000; }
+.badge-easy { background: #45b7aa; color: #000; }
+.card-body { padding: 14px; }
+
+/* Messages */
+.msg { background: #0d1117; border: 1px solid #2a2a2a; border-radius: 8px; padding: 10px; font-size: 0.85rem; line-height: 1.5; margin-bottom: 10px; white-space: pre-wrap; position: relative; }
+.msg-label { font-size: 0.7rem; color: #4ecdc4; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; font-weight: 600; }
+
+/* Buttons */
+.btn { display: block; width: 100%; padding: 12px; border: none; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; text-align: center; text-decoration: none; margin-bottom: 6px; }
+.btn-copy { background: #4ecdc4; color: #000; }
+.btn-text { background: #2563eb; color: #fff; }
+.btn-photo { background: #f59e0b; color: #000; }
+.btn-done { background: #333; color: #888; }
+.btn:active { transform: scale(0.97); opacity: 0.9; }
+
+/* Route checklist */
+.stop { display: flex; align-items: center; gap: 10px; padding: 12px 14px; border-bottom: 1px solid #222; cursor: pointer; }
+.stop:last-child { border-bottom: none; }
+.stop-check { width: 24px; height: 24px; border: 2px solid #555; border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1rem; }
+.stop.done .stop-check { background: #4ecdc4; border-color: #4ecdc4; color: #000; }
+.stop.done { opacity: 0.6; }
+.stop-info { flex: 1; }
+.stop-name { font-weight: 600; font-size: 0.9rem; }
+.stop-detail { font-size: 0.75rem; color: #888; }
+.stop-actions { display: flex; gap: 4px; }
+.stop-btn { padding: 6px 10px; border-radius: 6px; font-size: 0.7rem; font-weight: 600; border: none; cursor: pointer; }
+.stop-btn-review { background: #4ecdc4; color: #000; }
+.stop-btn-photo { background: #f59e0b; color: #000; }
+
+/* Stats bar */
+.stats { display: flex; gap: 8px; margin-bottom: 16px; }
+.stat { flex: 1; background: #1a1a1a; border: 1px solid #333; border-radius: 10px; padding: 10px; text-align: center; }
+.stat-num { font-size: 1.4rem; font-weight: bold; color: #4ecdc4; }
+.stat-label { font-size: 0.65rem; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Section */
+.section { display: none; }
+.section.active { display: block; }
+
+/* Checklist */
+.check-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid #1a1a1a; cursor: pointer; }
+.check-box { width: 20px; height: 20px; border: 2px solid #555; border-radius: 4px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; margin-top: 2px; }
+.check-item.done .check-box { background: #4ecdc4; border-color: #4ecdc4; color: #000; }
+.check-item.done .check-text { text-decoration: line-through; opacity: 0.5; }
+.check-text { font-size: 0.85rem; line-height: 1.4; }
+
+/* Tips */
+.tip { background: #1a1a2e; border: 1px solid #334; border-radius: 10px; padding: 12px; margin-bottom: 12px; }
+.tip h4 { color: #7c8cf5; font-size: 0.85rem; margin-bottom: 6px; }
+.tip p, .tip li { color: #aaa; font-size: 0.8rem; line-height: 1.5; }
+.tip ul { padding-left: 16px; }
+
+/* Alert */
+.alert { background: linear-gradient(135deg, #1a2e1a, #0a1a0a); border: 1px solid #4ecdc4; border-radius: 12px; padding: 14px; margin-bottom: 16px; text-align: center; }
+.alert h2 { color: #4ecdc4; font-size: 1rem; margin-bottom: 6px; }
+.alert p { color: #aaa; font-size: 0.8rem; line-height: 1.4; }
+
+/* Photo guide */
+.photo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.photo-card { background: #222; border-radius: 8px; padding: 10px; text-align: center; }
+.photo-card .emoji { font-size: 1.5rem; }
+.photo-card .label { font-size: 0.75rem; color: #aaa; margin-top: 4px; }
+
+.hidden { display: none; }
+.copied { background: #2d5a2d !important; }
+</style>
+</head>
+<body>
+
+<h1>🐕 Scoop Day Machine</h1>
+<p class="tagline">Turn every Monday route into reviews + content + referrals</p>
+
+<!-- Stats -->
+<div class="stats">
+    <div class="stat">
+        <div class="stat-num" id="stopsComplete">0</div>
+        <div class="stat-label">Stops Done</div>
+    </div>
+    <div class="stat">
+        <div class="stat-num" id="reviewsSent">0</div>
+        <div class="stat-label">Review Asks</div>
+    </div>
+    <div class="stat">
+        <div class="stat-num" id="photosTaken">0</div>
+        <div class="stat-label">Photos</div>
+    </div>
+    <div class="stat">
+        <div class="stat-num" id="weekStreak">0</div>
+        <div class="stat-label">Week Streak</div>
+    </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+    <div class="tab active" onclick="showTab('route')">📋 Route</div>
+    <div class="tab" onclick="showTab('texts')">💬 Texts</div>
+    <div class="tab" onclick="showTab('photos')">📸 Photos</div>
+    <div class="tab" onclick="showTab('endofday')">🌙 EOD</div>
+</div>
+
+<!-- TAB 1: Route Checklist -->
+<div id="route" class="section active">
+
+<div class="alert">
+    <h2>🎯 Today's Mission</h2>
+    <p>Scoop every yard. Text every customer. Snap 2-3 photos. Ask for 1 review. That's it.</p>
+</div>
+
+<div class="card">
+    <div class="card-head">
+        <h3>📋 Monday Route</h3>
+        <span class="badge badge-hot">SCOOP DAY</span>
+    </div>
+    <div id="routeList">
+        <!-- Stops populated by JS -->
+    </div>
+</div>
+
+<div class="tip">
+    <h4>⏱️ The 30-Second Play (At EVERY Stop)</h4>
+    <ul>
+        <li><strong>Arrive:</strong> Quick photo of the yard (before)</li>
+        <li><strong>Scoop:</strong> Do your thing 💪</li>
+        <li><strong>Done:</strong> Quick photo (after) + text "All done!" message</li>
+        <li><strong>Drive:</strong> That's it. 30 seconds of marketing per stop.</li>
+    </ul>
+</div>
+
+<div class="card">
+    <div class="card-head">
+        <h3>✅ Pre-Route Checklist</h3>
+        <span class="badge badge-easy">5 MIN</span>
+    </div>
+    <div class="card-body" id="preRoute">
+        <!-- Populated by JS -->
+    </div>
+</div>
+
+</div>
+
+<!-- TAB 2: Copy-Paste Texts -->
+<div id="texts" class="section">
+
+<div class="alert">
+    <h2>💬 Text Templates</h2>
+    <p>Copy, paste, personalize the name. Send from Jamie's phone.</p>
+</div>
+
+<!-- On My Way text -->
+<div class="card">
+    <div class="card-head">
+        <h3>🚗 On My Way Text</h3>
+        <span class="badge badge-easy">BEFORE ARRIVAL</span>
+    </div>
+    <div class="card-body">
+        <div class="msg-label">Send 5-10 min before arriving</div>
+        <div class="msg" id="msg-otw">Hey [NAME]! 👋 This is Jamie from Tidy Tails — headed your way shortly to take care of the yard. Just wanted to give you a heads up! 🐕</div>
+        <button class="btn btn-copy" onclick="copyMsg('msg-otw', this)">📋 Copy Text</button>
+    </div>
+</div>
+
+<!-- Service Complete text -->
+<div class="card">
+    <div class="card-head">
+        <h3>✅ All Done Text</h3>
+        <span class="badge badge-hot">SEND EVERY TIME</span>
+    </div>
+    <div class="card-body">
+        <div class="msg-label">Send right after scooping — while they still feel grateful</div>
+        <div class="msg" id="msg-done">Hey [NAME]! All done at your place — yard is looking great! 🐕✨ Hope [DOG NAME] enjoys the clean space. See you next [DAY]!</div>
+        <button class="btn btn-copy" onclick="copyMsg('msg-done', this)">📋 Copy Text</button>
+    </div>
+</div>
+
+<!-- Review Ask text (gentle) -->
+<div class="card">
+    <div class="card-head">
+        <h3>⭐ Review Ask (Soft)</h3>
+        <span class="badge badge-new">1 PER WEEK MIN</span>
+    </div>
+    <div class="card-body">
+        <div class="msg-label">Send to your happiest customer — pick ONE per week</div>
+        <div class="msg" id="msg-review-soft">Hey [NAME]! Quick favor — would you mind leaving us a Google review? It really helps a small business like ours get found by other dog parents in the neighborhood. Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review
+
+No pressure at all — just means the world to us! 🙏🐕</div>
+        <button class="btn btn-copy" onclick="copyMsg('msg-review-soft', this)">📋 Copy Text</button>
+        <a class="btn btn-text" href="sms:?body=Hey%20[NAME]!%20Quick%20favor%20%E2%80%94%20would%20you%20mind%20leaving%20us%20a%20Google%20review%3F%20It%20really%20helps%20a%20small%20business%20like%20ours%20get%20found%20by%20other%20dog%20parents.%20Here%27s%20the%20link%3A%20https%3A%2F%2Fg.page%2Fr%2FCe_hqIHanGLvEAE%2Freview%20%F0%9F%99%8F%F0%9F%90%95">📱 Open in Messages</a>
+    </div>
+</div>
+
+<!-- Review Ask (after milestone) -->
+<div class="card">
+    <div class="card-head">
+        <h3>⭐ Review Ask (After Milestone)</h3>
+        <span class="badge badge-new">HIGH CONVERSION</span>
+    </div>
+    <div class="card-body">
+        <div class="msg-label">After 1 month of service or customer says something nice</div>
+        <div class="msg" id="msg-review-milestone">Hey [NAME]! Can't believe it's already been [X weeks/a month] since we started — glad you and [DOG NAME] are loving the clean yard! 🐕
+
+Would you be open to dropping us a quick Google review? Even 1-2 sentences helps us a ton: https://g.page/r/Ce_hqIHanGLvEAE/review
+
+You're one of our favorite stops — thanks for being a Tidy Tails customer! 💚</div>
+        <button class="btn btn-copy" onclick="copyMsg('msg-review-milestone', this)">📋 Copy Text</button>
+    </div>
+</div>
+
+<!-- Referral Ask -->
+<div class="card">
+    <div class="card-head">
+        <h3>🏘️ Referral Ask</h3>
+        <span class="badge badge-easy">CASUAL</span>
+    </div>
+    <div class="card-body">
+        <div class="msg-label">After service — when they're happy</div>
+        <div class="msg" id="msg-referral">Hey [NAME]! Random question — do any of your neighbors have dogs? We're trying to grow in [NEIGHBORHOOD] and word of mouth is everything for a small biz like ours. If you know anyone who might need the service, we'd love the referral! First yard is always free for new customers. 🐕🏘️</div>
+        <button class="btn btn-copy" onclick="copyMsg('msg-referral', this)">📋 Copy Text</button>
+    </div>
+</div>
+
+<!-- Upsell: One-time to Recurring -->
+<div class="card">
+    <div class="card-head">
+        <h3>💰 One-Time → Recurring Pitch</h3>
+        <span class="badge badge-hot">$$$ REVENUE</span>
+    </div>
+    <div class="card-body">
+        <div class="msg-label">Send 1-2 days after a one-time cleanup</div>
+        <div class="msg" id="msg-upsell">Hey [NAME]! Hope the yard is feeling better after that deep clean! 🐕✨
+
+Just wanted to throw this out there — a lot of our one-time customers end up switching to weekly or biweekly because it's way easier to keep up with. Our weekly plan is just $25/visit and we handle everything so you never have to think about it.
+
+Want me to set you up? First regular visit would be free since you're already a customer. No commitment, cancel anytime. 💚</div>
+        <button class="btn btn-copy" onclick="copyMsg('msg-upsell', this)">📋 Copy Text</button>
+    </div>
+</div>
+
+</div>
+
+<!-- TAB 3: Photo Guide -->
+<div id="photos" class="section">
+
+<div class="alert">
+    <h2>📸 Photo Playbook</h2>
+    <p>2-3 photos per scoop day = enough content for the whole week</p>
+</div>
+
+<div class="card">
+    <div class="card-head">
+        <h3>📷 What to Shoot</h3>
+        <span class="badge badge-easy">QUICK</span>
+    </div>
+    <div class="card-body">
+        <div class="photo-grid">
+            <div class="photo-card">
+                <div class="emoji">🏡</div>
+                <div class="label">Clean Yard (Wide Shot)</div>
+            </div>
+            <div class="photo-card">
+                <div class="emoji">🐕</div>
+                <div class="label">Dog in Clean Yard</div>
+            </div>
+            <div class="photo-card">
+                <div class="emoji">🧹</div>
+                <div class="label">Equipment / Truck</div>
+            </div>
+            <div class="photo-card">
+                <div class="emoji">😊</div>
+                <div class="label">Selfie at Work</div>
+            </div>
+        </div>
+
+        <div class="tip">
+            <h4>📱 Photo Tips (30 seconds)</h4>
+            <ul>
+                <li><strong>Before:</strong> Wide shot of yard BEFORE scooping (shows the mess)</li>
+                <li><strong>After:</strong> Same angle AFTER (shows the magic)</li>
+                <li><strong>Dogs:</strong> If the dog is out, snap a pic. Dog content = gold on social</li>
+                <li><strong>Permission:</strong> Ask "Mind if I snap a photo of the yard for our page?" Most say yes.</li>
+                <li><strong>Lighting:</strong> Face the sun. Morning light is the best light.</li>
+                <li><strong>Never:</strong> Don't show poop close-up (gross). Show the CLEAN result.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-head">
+        <h3>📱 What to Post (Pick 1-2/Week)</h3>
+        <span class="badge badge-new">CONTENT IDEAS</span>
+    </div>
+    <div class="card-body">
+        <div class="msg-label">Facebook / Instagram / Nextdoor Posts</div>
+
+        <div class="msg" id="msg-post-clean">Another Monday, another batch of happy yards in [NEIGHBORHOOD]! 🐕✨
+
+This is what we do — show up every week so you never have to think about it. Your dog plays, we scoop.
+
+📱 Text Jamie at (314) 850-7140 for a free first visit
+🌐 tidytailsstl.com
+
+#TidyTailsSTL #PetWasteRemoval #StLouis #DogMom #CleanYard</div>
+        <button class="btn btn-copy" onclick="copyMsg('msg-post-clean', this)">📋 Copy Post</button>
+
+        <div class="msg" id="msg-post-dog">Met this cutie on today's route! 🐕❤️ [DOG NAME] was very interested in supervising the cleanup.
+
+Tidy Tails — we scoop the poop so your pup can enjoy a clean yard.
+
+First visit FREE → (314) 850-7140
+
+#DogsOfSTL #TidyTailsSTL #PetWasteRemoval #GoodBoy</div>
+        <button class="btn btn-copy" onclick="copyMsg('msg-post-dog', this)">📋 Copy Post</button>
+
+        <div class="msg" id="msg-post-before-after">Monday transformation 🔄✨
+
+Before: 💩💩💩
+After: 🏡✨🐕
+
+We handle the dirty work so you don't have to. Weekly service starting at just $25/visit.
+
+📱 (314) 850-7140 | tidytailsstl.com
+First visit is always FREE!
+
+#BeforeAndAfter #TidyTailsSTL #PetWasteRemoval #StLouis</div>
+        <button class="btn btn-copy" onclick="copyMsg('msg-post-before-after', this)">📋 Copy Post</button>
+
+        <div class="msg" id="msg-post-nextdoor">Hey neighbors! 👋 Just wrapped up today's scoop route through [NEIGHBORHOOD]. If your yard could use some help keeping up with your furry friends, we'd love to take that off your plate.
+
+Tidy Tails — locally owned, same person every visit, and your first cleanup is FREE.
+
+📱 Text/call Jamie: (314) 850-7140
+🌐 tidytailsstl.com</div>
+        <button class="btn btn-copy" onclick="copyMsg('msg-post-nextdoor', this)">📋 Copy Nextdoor Post</button>
+    </div>
+</div>
+
+</div>
+
+<!-- TAB 4: End of Day -->
+<div id="endofday" class="section">
+
+<div class="alert">
+    <h2>🌙 End of Day Wrap-Up</h2>
+    <p>5 minutes to turn today's route into this week's marketing</p>
+</div>
+
+<div class="card">
+    <div class="card-head">
+        <h3>✅ EOD Checklist</h3>
+        <span class="badge badge-easy">5 MIN</span>
+    </div>
+    <div class="card-body" id="eodChecklist">
+        <!-- Populated by JS -->
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-head">
+        <h3>📊 This Week's Content Calendar</h3>
+        <span class="badge badge-new">PLAN AHEAD</span>
+    </div>
+    <div class="card-body">
+        <div class="tip">
+            <h4>📅 Post Schedule From Today's Photos</h4>
+            <ul>
+                <li><strong>Monday (today):</strong> "Route day!" post with best photo → Facebook + Instagram</li>
+                <li><strong>Wednesday:</strong> Dog photo with cute caption → Instagram + Nextdoor</li>
+                <li><strong>Friday:</strong> Before/after or tip → Facebook + Nextdoor</li>
+                <li><strong>Saturday:</strong> Review screenshot (if you got one!) → Instagram Story</li>
+            </ul>
+        </div>
+        <div class="tip">
+            <h4>💡 Pro Tip: Batch It</h4>
+            <p>Take 5 photos on Monday. That's enough for the whole week. Schedule them or just set phone reminders for Wed/Fri to post.</p>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-head">
+        <h3>📝 Weekly Review Notes</h3>
+        <span class="badge badge-easy">OPTIONAL</span>
+    </div>
+    <div class="card-body">
+        <textarea id="weeklyNotes" placeholder="Anything to remember? Customer feedback, issues, new leads, route changes..." style="width:100%; min-height:100px; background:#0d1117; border:1px solid #2a2a2a; border-radius:8px; padding:10px; color:#e0e0e0; font-size:0.85rem; font-family:inherit; resize:vertical;"></textarea>
+        <button class="btn btn-copy" onclick="saveNotes()" style="margin-top:8px; background:#333; color:#4ecdc4;">💾 Save Notes</button>
+    </div>
+</div>
+
+</div>
+
+<script>
+// ===== DATA =====
+const customers = [
+    { name: 'Mrs. Candee', city: 'St. Louis 63136', freq: 'Weekly', dogs: '?', day: 'Mon' },
+    { name: 'Jody', city: 'St. Louis 63114', freq: 'Biweekly', dogs: '?', day: 'Mon' },
+    { name: 'Shannon Z.', city: 'Florissant 63031', freq: 'Weekly', dogs: '?', day: 'Mon' },
+    { name: 'Amanda H.', city: 'Florissant 63031', freq: 'Weekly', dogs: '?', day: 'Mon' },
+    { name: 'Lawrence', city: 'St. Louis 63108', freq: 'Biweekly', dogs: '?', day: 'Mon' },
+    { name: 'Greg', city: "O'Fallon 63366", freq: 'Monthly', dogs: '?', day: 'Mon' },
+    { name: 'Chastity', city: 'Florissant 63033', freq: 'Biweekly', dogs: '?', day: 'Mon' },
+    { name: 'Preshus', city: 'St. Charles 63303', freq: 'Weekly', dogs: '?', day: 'Mon' }
+];
+
+const preRouteItems = [
+    'Check equipment (bags, scooper, sanitizer)',
+    'Phone charged? Camera app ready?',
+    'Review route order — cluster nearby stops',
+    "Pick today's review ask target (happiest customer)",
+    'Check weather — bring water if hot'
+];
+
+const eodItems = [
+    'All "service complete" texts sent?',
+    'At least 1 review ask sent this week?',
+    'Sort through photos — pick best 3-5',
+    'Post 1 photo/update to Facebook or Instagram',
+    'Save notes on any customer feedback',
+    'Update route if any schedule changes',
+    'Check for any missed calls or texts'
+];
+
+// ===== STATE =====
+const today = new Date().toISOString().slice(0, 10);
+const stateKey = 'scoopDay_' + today;
+let state = JSON.parse(localStorage.getItem(stateKey) || '{}');
+if (!state.stops) state.stops = {};
+if (!state.reviews) state.reviews = {};
+if (!state.photos) state.photos = {};
+if (!state.preRoute) state.preRoute = {};
+if (!state.eod) state.eod = {};
+if (!state.notes) state.notes = '';
+
+// Week streak
+const streakKey = 'scoopDay_streak';
+let streakData = JSON.parse(localStorage.getItem(streakKey) || '{"weeks":[],"current":0}');
+
+// ===== RENDER =====
+function render() {
+    // Route list
+    const routeEl = document.getElementById('routeList');
+    routeEl.innerHTML = customers.map((c, i) => {
+        const done = state.stops[i];
+        const reviewed = state.reviews[i];
+        const photoed = state.photos[i];
+        return `
+        <div class="stop ${done ? 'done' : ''}" id="stop-${i}">
+            <div class="stop-check" onclick="toggleStop(${i})">${done ? '✓' : ''}</div>
+            <div class="stop-info" onclick="toggleStop(${i})">
+                <div class="stop-name">${c.name}</div>
+                <div class="stop-detail">${c.city} · ${c.freq}</div>
+            </div>
+            <div class="stop-actions">
+                <button class="stop-btn stop-btn-review" onclick="toggleReview(${i})" style="${reviewed ? 'opacity:0.4' : ''}" title="Review sent">⭐</button>
+                <button class="stop-btn stop-btn-photo" onclick="togglePhoto(${i})" style="${photoed ? 'opacity:0.4' : ''}" title="Photo taken">📷</button>
+            </div>
+        </div>`;
+    }).join('');
+
+    // Pre-route checklist
+    document.getElementById('preRoute').innerHTML = preRouteItems.map((item, i) => `
+        <div class="check-item ${state.preRoute[i] ? 'done' : ''}" onclick="togglePreRoute(${i})">
+            <div class="check-box">${state.preRoute[i] ? '✓' : ''}</div>
+            <div class="check-text">${item}</div>
+        </div>
+    `).join('');
+
+    // EOD checklist
+    document.getElementById('eodChecklist').innerHTML = eodItems.map((item, i) => `
+        <div class="check-item ${state.eod[i] ? 'done' : ''}" onclick="toggleEOD(${i})">
+            <div class="check-box">${state.eod[i] ? '✓' : ''}</div>
+            <div class="check-text">${item}</div>
+        </div>
+    `).join('');
+
+    // Notes
+    document.getElementById('weeklyNotes').value = state.notes;
+
+    // Stats
+    document.getElementById('stopsComplete').textContent = Object.values(state.stops).filter(Boolean).length;
+    document.getElementById('reviewsSent').textContent = Object.values(state.reviews).filter(Boolean).length;
+    document.getElementById('photosTaken').textContent = Object.values(state.photos).filter(Boolean).length;
+    document.getElementById('weekStreak').textContent = streakData.current;
+}
+
+function save() {
+    localStorage.setItem(stateKey, JSON.stringify(state));
+}
+
+// ===== ACTIONS =====
+function toggleStop(i) {
+    state.stops[i] = !state.stops[i];
+    save(); render();
+    // Auto-update streak when all done
+    const allDone = customers.every((_, idx) => state.stops[idx]);
+    if (allDone && !streakData.weeks.includes(today)) {
+        streakData.weeks.push(today);
+        streakData.current++;
+        localStorage.setItem(streakKey, JSON.stringify(streakData));
+        render();
+    }
+}
+
+function toggleReview(i) { state.reviews[i] = !state.reviews[i]; save(); render(); }
+function togglePhoto(i) { state.photos[i] = !state.photos[i]; save(); render(); }
+function togglePreRoute(i) { state.preRoute[i] = !state.preRoute[i]; save(); render(); }
+function toggleEOD(i) { state.eod[i] = !state.eod[i]; save(); render(); }
+
+function saveNotes() {
+    state.notes = document.getElementById('weeklyNotes').value;
+    save();
+    const btn = event.target;
+    btn.textContent = '✅ Saved!';
+    setTimeout(() => btn.textContent = '💾 Save Notes', 1500);
+}
+
+function showTab(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    event.target.classList.add('active');
+}
+
+function copyMsg(id, btn) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✅ Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = '📋 Copy Text'; btn.classList.remove('copied'); }, 2000);
+    });
+}
+
+// Init
+render();
+</script>
+</body>
+</html>
