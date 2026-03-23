@@ -1,6 +1,6 @@
 {
-  "lastCheck": "2026-03-22T18:03:00-05:00",
-  "checkNumber": 177,
+  "lastCheck": "2026-03-22T20:03:00-05:00",
+  "checkNumber": 178,
   "status": "issues",
   "issuesFound": 5,
   "issuesFixed": 0,
@@ -10,21 +10,21 @@
       "id": "issue-001",
       "severity": "high",
       "category": "website",
-      "description": "tidytails.html and consulting.html missing from dashboard repo — 17+ consecutive checks. Live sites load fine (200 OK). Dashboard-local gap only.",
+      "description": "tidytails.html and consulting.html missing from dashboard repo — 18+ consecutive checks. Live sites load fine (200 OK, 0.36s / 0.24s). Dashboard-local gap only.",
       "assignedTo": "franklin",
       "status": "persisting",
       "firstSeen": "2026-03-20",
-      "consecutiveChecks": 17
+      "consecutiveChecks": 18
     },
     {
       "id": "issue-002",
       "severity": "high",
       "category": "dashboard",
-      "description": "3 undersized PDFs (<100KB): MORNING_BRIEFING_2026-03-20.pdf (18KB), SHED_ADS_2026-03-20.pdf (65KB), EOD_SUMMARY_2026-03-19.pdf (21KB). Likely corrupted. Persisting 14+ checks.",
+      "description": "3 undersized PDFs (<100KB): MORNING_BRIEFING_2026-03-20.pdf (18KB), SHED_ADS_2026-03-20.pdf (65KB), EOD_SUMMARY_2026-03-19.pdf (21KB). Likely corrupted/incomplete renders. Persisting 15+ checks.",
       "assignedTo": "franklin",
       "status": "persisting",
       "firstSeen": "2026-03-20",
-      "consecutiveChecks": 14
+      "consecutiveChecks": 15
     },
     {
       "id": "issue-003",
@@ -32,23 +32,25 @@
       "category": "dashboard",
       "description": "3 SHED_ADS have .md but NO .pdf generated: 2026-03-11, 2026-03-12, 2026-03-16. Content exists but was never rendered to PDF.",
       "assignedTo": "franklin",
-      "status": "found",
-      "firstSeen": "2026-03-22"
+      "status": "persisting",
+      "firstSeen": "2026-03-22",
+      "consecutiveChecks": 2
     },
     {
       "id": "issue-004",
       "severity": "medium",
       "category": "system",
-      "description": "Video/ad creative pipeline dormant 16+ days. No new videos since Mar 6 (Remotion) / Mar 11 (campaigns). Doeboy→Nano Banana 2→Kling v3 pipeline never activated.",
+      "description": "Video/ad creative pipeline dormant 16+ days. Last Remotion output Mar 6, last campaign clip Mar 11. Doeboy→Nano Banana 2→Kling v3 pipeline never activated. No new creative in 11 days.",
       "assignedTo": "franklin",
       "status": "persisting",
-      "firstSeen": "2026-03-06"
+      "firstSeen": "2026-03-06",
+      "consecutiveChecks": 10
     },
     {
       "id": "issue-005",
       "severity": "low",
       "category": "content",
-      "description": "8 missing EOD summaries (Mar 8-10, 16-18, 20, 22) and 80+ stale research/archive files >7 days old.",
+      "description": "Multiple missing EOD summaries and 80+ stale research/archive files >7 days old. Non-blocking but reflects incomplete daily close-out process.",
       "assignedTo": "franklin",
       "status": "acknowledged"
     }
@@ -56,17 +58,17 @@
   "passedChecks": [
     "Git repo: master branch in sync — 0 unpushed commits",
     "Phone numbers CORRECT in index.html: Tidy Tails 314-850-7140 (line 245), Sheds 636-354-7406 (line 253)",
-    "Live websites both healthy: tidytailsstl.com (200 OK, 0.31s), backyardbuildingsstl.com (200 OK, 0.22s)",
-    "No broken PDF/video links in index.html (no dead hrefs)",
-    "Today's PDFs healthy: MORNING_BRIEFING_2026-03-22 (485KB), SHED_ADS_2026-03-22 (307KB), COMMERCIAL_LEADS_2026-03-22 (279KB)",
-    "MONDAY_ACTION_BRIEF_2026-03-24.pdf ready (417KB)",
-    "10+ commits today — active development: community outreach playbook, website tech audit, shed marketplace listings, weekly action plan overhaul",
-    "EOD_SUMMARY_2026-03-21.pdf current (498KB)"
+    "Live websites both healthy: tidytailsstl.com (200 OK, 0.36s), backyardbuildingsstl.com (200 OK, 0.24s)",
+    "No broken PDF/video links in index.html",
+    "Today's deliverables all present: Morning Briefing, Shed Ads, Commercial Leads, EOD Summary (all Mar 22)",
+    "Recent commits healthy: memory maintenance, SEO blog dedup, community outreach playbook, weekly action plan"
   ],
   "adCreativeAudit": {
-    "status": "no_new_creative",
-    "note": "No new video or ad creative assets since last check. Video pipeline dormant 16+ days. No audit needed this cycle."
+    "newCreativeSinceLastCheck": false,
+    "lastVideoCreated": "2026-03-11",
+    "daysSinceLastCreative": 11,
+    "note": "No new ad creative to audit. Pipeline dormant."
   },
-  "bottleneck": "PDF generation reliability. 3 corrupted PDFs + 3 missing PDFs + 8 missing EOD summaries = consistent PDF pipeline failures. This is the constraint that makes every other deliverable unreliable. Fix the PDF pipeline once → every future deliverable benefits.",
-  "compoundingImprovement": "Implement a post-generation PDF size validation check. After every PDF render, verify filesize >100KB before committing. If undersized, retry or flag immediately. This prevents corrupted PDFs from persisting for 14+ oversight cycles."
+  "bottleneck": "Video/ad creative pipeline has been dormant 16 days. The Doeboy→Nano Banana 2→Kling v3 workflow has never been activated in production. This is the single biggest constraint on ad testing velocity — we have copy but no fresh video creative to run.",
+  "compoundingImprovement": "Automate PDF size validation in the pdf-generator skill: after every render, check file size >100KB and auto-regenerate if undersized. This eliminates the recurring undersized PDF issue (15+ checks and counting) at the source instead of catching it downstream."
 }
