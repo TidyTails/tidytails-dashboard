@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lead Response System — Tidy Tails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #666;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+        a { color: var(--orange); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .header {
+            background: linear-gradient(135deg, #1a1510, #0d1a10);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 1.5rem 1.5rem; text-align: center;
+        }
+        .header h1 { font-size: 1.8rem; font-weight: 800; letter-spacing: -0.03em; }
+        .header h1 span { color: var(--green); }
+        .header p { color: var(--text2); font-size: 0.9rem; margin-top: 0.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .header .stat-row {
+            display: flex; justify-content: center; gap: 2rem; margin-top: 1.25rem; flex-wrap: wrap;
+        }
+        .header .stat { text-align: center; }
+        .header .stat-num { font-size: 1.5rem; font-weight: 800; color: var(--green); }
+        .header .stat-label { font-size: 0.7rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.05em; }
+
+        .back-link {
+            display: inline-block; margin: 1rem 1.5rem; font-size: 0.85rem;
+            color: var(--text2); transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--orange); text-decoration: none; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem 3rem; }
+
+        /* Pipeline stages */
+        .pipeline {
+            display: flex; justify-content: center; gap: 0; margin: 1.5rem 0 2rem;
+            background: var(--bg3); border-radius: var(--radius); overflow: hidden;
+            border: 1px solid var(--border); flex-wrap: wrap;
+        }
+        .pipe-btn {
+            flex: 1; min-width: 100px; padding: 0.7rem 0.5rem; font-size: 0.7rem; font-weight: 700;
+            text-align: center; cursor: pointer; transition: all 0.2s;
+            color: var(--text2); border: none; background: none; font-family: inherit;
+            text-transform: uppercase; letter-spacing: 0.04em;
+        }
+        .pipe-btn:hover { color: var(--text); background: var(--bg4); }
+        .pipe-btn.active { color: #000; background: var(--green); }
+
+        .stage { display: none; }
+        .stage.active { display: block; }
+
+        .stage-header {
+            margin-bottom: 1.5rem; padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        .stage-header h2 { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .stage-header .timing {
+            display: inline-block; padding: 0.3rem 0.75rem; border-radius: 6px;
+            font-size: 0.75rem; font-weight: 700; margin-bottom: 0.5rem;
+        }
+        .timing-urgent { background: rgba(239,68,68,0.2); color: var(--red); }
+        .timing-soon { background: rgba(251,191,36,0.2); color: var(--yellow); }
+        .timing-normal { background: rgba(59,130,246,0.2); color: var(--blue); }
+        .timing-flex { background: rgba(139,92,246,0.2); color: var(--purple); }
+
+        .stage-header p { color: var(--text2); font-size: 0.85rem; line-height: 1.5; }
+
+        .template-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            margin-bottom: 1rem; overflow: hidden;
+        }
+        .template-top {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.85rem 1rem; cursor: pointer; transition: background 0.2s;
+        }
+        .template-top:hover { background: var(--bg4); }
+        .template-title {
+            font-size: 0.85rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;
+        }
+        .template-title .channel {
+            font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 4px; font-weight: 600;
+        }
+        .ch-text { background: rgba(16,185,129,0.15); color: var(--green); }
+        .ch-email { background: rgba(59,130,246,0.15); color: var(--blue); }
+        .ch-call { background: rgba(251,191,36,0.15); color: var(--yellow); }
+        .ch-voicemail { background: rgba(139,92,246,0.15); color: var(--purple); }
+
+        .copy-btn {
+            padding: 0.35rem 0.75rem; border-radius: 6px; font-size: 0.7rem; font-weight: 700;
+            background: rgba(16,185,129,0.15); color: var(--green); border: none; cursor: pointer;
+            font-family: inherit; transition: all 0.2s;
+        }
+        .copy-btn:hover { background: rgba(16,185,129,0.3); }
+        .copy-btn.copied { background: var(--green); color: #000; }
+
+        .template-body {
+            display: none; padding: 0 1rem 1rem; border-top: 1px solid var(--border);
+        }
+        .template-body.open { display: block; padding-top: 0.75rem; }
+        .template-body pre {
+            background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+            padding: 1rem; font-size: 0.82rem; line-height: 1.6; color: var(--text);
+            white-space: pre-wrap; word-wrap: break-word; font-family: 'Inter', sans-serif;
+            overflow-x: auto;
+        }
+        .template-body .note {
+            margin-top: 0.75rem; padding: 0.6rem 0.85rem; border-radius: 8px;
+            background: rgba(251,191,36,0.08); border-left: 3px solid var(--yellow);
+            font-size: 0.78rem; color: var(--text2); line-height: 1.5;
+        }
+        .template-body .note strong { color: var(--yellow); }
+
+        /* Rules section */
+        .rules-box {
+            background: linear-gradient(135deg, rgba(255,107,53,0.08), rgba(239,68,68,0.05));
+            border: 1px solid rgba(255,107,53,0.2); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 2rem;
+        }
+        .rules-box h3 { font-size: 1rem; font-weight: 800; color: var(--orange); margin-bottom: 0.75rem; }
+        .rules-box ul { list-style: none; }
+        .rules-box li {
+            padding: 0.4rem 0; font-size: 0.82rem; color: var(--text2);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .rules-box li:last-child { border-bottom: none; }
+        .rules-box li strong { color: var(--text); }
+
+        /* Sequence timeline */
+        .sequence {
+            position: relative; padding-left: 2rem; margin: 1rem 0;
+        }
+        .sequence::before {
+            content: ''; position: absolute; left: 0.5rem; top: 0; bottom: 0;
+            width: 2px; background: var(--border);
+        }
+        .seq-item {
+            position: relative; margin-bottom: 1.5rem;
+        }
+        .seq-item::before {
+            content: ''; position: absolute; left: -1.75rem; top: 0.35rem;
+            width: 10px; height: 10px; border-radius: 50%;
+            background: var(--green); border: 2px solid var(--bg);
+        }
+        .seq-item.future::before { background: var(--bg4); border-color: var(--text3); }
+        .seq-day {
+            font-size: 0.7rem; font-weight: 700; color: var(--green);
+            text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem;
+        }
+        .seq-item.future .seq-day { color: var(--text3); }
+        .seq-desc {
+            font-size: 0.82rem; color: var(--text2); line-height: 1.5;
+        }
+
+        /* Tracker */
+        .tracker-table {
+            width: 100%; border-collapse: collapse; margin-top: 1rem;
+            font-size: 0.8rem;
+        }
+        .tracker-table th {
+            text-align: left; padding: 0.6rem 0.75rem; font-size: 0.7rem;
+            text-transform: uppercase; letter-spacing: 0.05em; color: var(--text3);
+            border-bottom: 1px solid var(--border);
+        }
+        .tracker-table td {
+            padding: 0.6rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.03);
+            color: var(--text2);
+        }
+        .tracker-table input {
+            background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+            padding: 0.35rem 0.5rem; color: var(--text); font-size: 0.8rem;
+            font-family: inherit; width: 100%;
+        }
+        .tracker-table select {
+            background: var(--bg); border: 1px solid var(--border); border-radius: 6px;
+            padding: 0.35rem 0.5rem; color: var(--text); font-size: 0.8rem;
+            font-family: inherit; width: 100%;
+        }
+        .add-lead-btn {
+            margin-top: 0.75rem; padding: 0.5rem 1.25rem; border-radius: 8px;
+            font-size: 0.8rem; font-weight: 700; background: var(--green);
+            color: #000; border: none; cursor: pointer; font-family: inherit;
+        }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.3rem; }
+            .pipe-btn { font-size: 0.6rem; padding: 0.5rem 0.25rem; min-width: 70px; }
+            .container { padding: 0 1rem 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>⚡ <span>Speed-to-Lead</span> Response System</h1>
+    <p>Every minute you wait to respond, close rate drops 10%. These templates turn leads into customers on autopilot.</p>
+    <div class="stat-row">
+        <div class="stat">
+            <div class="stat-num">&lt;5 min</div>
+            <div class="stat-label">Target Response Time</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">78%</div>
+            <div class="stat-label">Close Rate (First Responder)</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">7</div>
+            <div class="stat-label">Follow-Up Touches</div>
+        </div>
+    </div>
+</div>
+
+<a href="index.html" class="back-link">← Back to Command Center</a>
+
+<div class="container">
+
+    <!-- Golden Rules -->
+    <div class="rules-box">
+        <h3>⚡ The 5 Golden Rules</h3>
+        <ul>
+            <li><strong>1. Respond in under 5 minutes.</strong> The first company to respond wins 78% of the time. Set text notifications for quote requests.</li>
+            <li><strong>2. Always give a price.</strong> Don't say "it depends." Give a range: "Most yards like yours are $60-80/month." People hate uncertainty.</li>
+            <li><strong>3. Offer a free first visit.</strong> "Let me do your first cleanup free so you can see the difference." Zero risk = easy yes.</li>
+            <li><strong>4. Follow up 7 times.</strong> 80% of sales happen after the 5th contact. Most people quit after 1. Be the one who doesn't.</li>
+            <li><strong>5. Always book the next step.</strong> Never end a conversation without scheduling something: a quote visit, a first cleanup, a callback time.</li>
+        </ul>
+    </div>
+
+    <!-- Pipeline Navigation -->
+    <div class="pipeline">
+        <button class="pipe-btn active" onclick="showStage('instant')">⚡ Instant</button>
+        <button class="pipe-btn" onclick="showStage('quote')">💰 Quote</button>
+        <button class="pipe-btn" onclick="showStage('followup')">🔄 Follow-Up</button>
+        <button class="pipe-btn" onclick="showStage('close')">✅ Close</button>
+        <button class="pipe-btn" onclick="showStage('retain')">💎 Retain</button>
+        <button class="pipe-btn" onclick="showStage('referral')">🎁 Referral</button>
+        <button class="pipe-btn" onclick="showStage('tracker')">📊 Track</button>
+    </div>
+
+    <!-- STAGE 1: INSTANT RESPONSE -->
+    <div class="stage active" id="stage-instant">
+        <div class="stage-header">
+            <span class="timing timing-urgent">⏱ Within 5 Minutes</span>
+            <h2>⚡ Instant Response Templates</h2>
+            <p>Lead just came in — from website form, Facebook message, Nextdoor comment, or phone call. Clock is ticking. Grab the right template and fire it off.</p>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Website Quote Request</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME]! This is TJ from Tidy Tails 🐕 — got your quote request!
+
+Quick question: how many dogs and how big is the yard? (Rough guess is fine!)
+
+Most of my customers pay $60-80/month for weekly cleanups, and I'd love to come by and do your first visit FREE so you can see the difference.
+
+What day works best this week?</pre>
+                <div class="note"><strong>Pro tip:</strong> Send this within 2-3 minutes of the request. The emoji and casual tone match the brand. Always end with a question to keep the conversation going.</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Facebook/Instagram DM</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME]! Thanks for reaching out 🙌
+
+We handle all the poop scooping so you never have to think about it again. Most yards are $60-80/month for weekly service.
+
+Want me to swing by for a free first cleanup? I can come check out the yard and give you an exact price. No commitment!
+
+What area are you in?</pre>
+                <div class="note"><strong>Pro tip:</strong> On social, people expect fast + casual. Ask what area they're in to qualify (make sure they're in your service zone).</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Nextdoor Lead</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey neighbor! 👋 I'm TJ, I run Tidy Tails right here in [THEIR AREA]. We keep yards poop-free so you can actually enjoy your backyard.
+
+I'm already servicing a few homes near you — happy to add you to the route!
+
+First cleanup is on us. What's a good day for me to swing by?</pre>
+                <div class="note"><strong>Pro tip:</strong> On Nextdoor, the "neighbor" angle is GOLD. Mention you're already in their area — reduces friction and builds trust. If you know the neighborhood, name-drop it.</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-call">CALL</span> Inbound Phone Script</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>ANSWER: "Hey, this is TJ with Tidy Tails! Thanks for calling."
+
+LISTEN: Let them tell you what they need. Don't interrupt.
+
+QUALIFY: "Cool! So how many pups do you have? And roughly how big is the yard?"
+
+PRICE: "For [X] dogs on a weekly schedule, you're looking at about $[PRICE] a month. That covers everything — I come by every week, clean up the whole yard, and haul everything away."
+
+CLOSE: "Tell you what — let me come do your first visit for free. You can see how it works, make sure you're happy, and then we'll get you on the schedule. What day works this week?"
+
+IF THEY HESITATE: "No pressure at all! The free visit is zero commitment. I just want you to see the difference a clean yard makes. Most people text me after the first visit saying they wish they'd done it sooner 😄"
+
+BOOK IT: "Perfect! I'll put you down for [DAY]. I'll text you the morning of to confirm. Sound good?"</pre>
+                <div class="note"><strong>Key moves:</strong> (1) Give a specific price, not "it depends" — (2) Free first visit removes ALL risk — (3) Always book a specific day, not "sometime this week" — (4) Follow up with a confirmation text immediately after hanging up.</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-voicemail">VOICEMAIL</span> Missed Call Voicemail + Text</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>VOICEMAIL (keep under 20 sec):
+"Hey [NAME], this is TJ from Tidy Tails! Sorry I missed your call. I'll shoot you a text right now — way easier to connect that way. Talk soon!"
+
+FOLLOW-UP TEXT (send immediately):
+Hey [NAME]! Sorry I missed your call — what can I help you with? 🐕
+
+If you're looking for poop scooping, most yards are $60-80/month and your first visit is free!</pre>
+                <div class="note"><strong>Critical:</strong> ALWAYS send the text right after the voicemail. 90% of people under 40 prefer texting. The voicemail just tells them to check their texts.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 2: QUOTE -->
+    <div class="stage" id="stage-quote">
+        <div class="stage-header">
+            <span class="timing timing-soon">💰 Same Day</span>
+            <h2>💰 Quote & Pricing Templates</h2>
+            <p>They're interested. Now lock in the price and book the first visit. Be specific, be confident, make it easy to say yes.</p>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Standard Quote (After Yard Info)</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME]! Based on what you described — [X] dog(s), [SIZE] yard — here's what I'm thinking:
+
+🐕 Weekly Service: $[PRICE]/month
+(I come every [DAY], clean the entire yard, bag & haul everything away)
+
+✅ First visit is FREE — no commitment
+✅ Gate code or hidden key = you don't even need to be home
+✅ Text confirmation after every visit
+
+Want me to come by this [DAY] for the free first cleanup?</pre>
+                <div class="note"><strong>Pricing quick ref:</strong> 1 dog/standard yard = $60-70/mo | 2 dogs = $70-80/mo | 3+ dogs = $80-100/mo | Large yard add $10 | Bi-weekly = weekly price × 0.65</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Quote with Scoop Soldiers Comparison</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME]! So for [X] dog(s) on weekly service, you're looking at $[PRICE]/month.
+
+A few things that set us apart from the big franchise companies:
+• I'm local — born and raised in STL, not a franchise territory
+• You get my cell number, not a 1-800 line
+• I actually get to know your dogs (and they get to know me!)
+• Gate photos after every visit so you know the job's done
+• Free first visit to make sure you love the service
+
+When's a good day for me to come do that first cleanup?</pre>
+                <div class="note"><strong>Use when:</strong> They mention comparing prices or you know Scoop Soldiers is in their area. Don't trash-talk — just highlight what makes local better. TJ's multi-dog flat rate beats Scoop Soldiers' per-dog pricing.</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-email">EMAIL</span> Formal Quote (Commercial/PM)</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Subject: Tidy Tails Quote — Pet Waste Removal for [PROPERTY NAME]
+
+Hi [NAME],
+
+Thanks for your interest in Tidy Tails! Here's a quick overview of what we'd do for [PROPERTY NAME]:
+
+SERVICE DETAILS:
+• [X] visits per week
+• [X] pet waste stations serviced (if applicable)
+• Complete grounds walkthrough each visit
+• All waste bagged, sealed, and hauled off-site
+• Service report after each visit
+
+MONTHLY INVESTMENT: $[PRICE]/month
+(No contracts — cancel anytime with 30 days notice)
+
+FREE TRIAL: I'd love to do a complimentary first visit so you can see the quality firsthand. No obligation.
+
+I'm available [DAY/TIME] if you'd like to walk the property together and dial in the details.
+
+Best,
+TJ Halpin
+Tidy Tails STL
+[PHONE]
+tidytailsstl.com</pre>
+                <div class="note"><strong>For commercial leads:</strong> More formal tone. Emphasize reliability, reporting, and professionalism. These deals are worth $200-500/mo and referral networks.</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> One-Time Cleanup Quote</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME]! For a one-time deep clean, it depends on how long it's been:
+
+🐕 Light (1-2 weeks backed up): $75-100
+🐕 Medium (1-2 months): $100-150
+🐕 Heavy (3+ months / move-out): $150-250
+
+After the cleanup, most people realize they never want to go back to doing it themselves 😄
+
+If you want, I can set you up on weekly service after for just $[PRICE]/month — keeps it spotless forever.
+
+When should I come by?</pre>
+                <div class="note"><strong>Key strategy:</strong> One-time cleanups are the gateway drug. Always upsell to recurring. 40% of one-time customers convert to recurring when you offer right after they see the clean yard.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 3: FOLLOW-UP SEQUENCE -->
+    <div class="stage" id="stage-followup">
+        <div class="stage-header">
+            <span class="timing timing-normal">🔄 Days 1-30</span>
+            <h2>🔄 Follow-Up Sequence</h2>
+            <p>They didn't book immediately? That's normal — 80% of sales happen after the 5th follow-up. Most competitors quit after 1. This sequence is your edge.</p>
+        </div>
+
+        <div class="sequence">
+            <div class="seq-item">
+                <div class="seq-day">Same Day (2-3 hrs later)</div>
+                <div class="seq-desc">If no response to initial text — send a casual bump</div>
+            </div>
+            <div class="seq-item">
+                <div class="seq-day">Day 2</div>
+                <div class="seq-desc">Quick value-add text with social proof</div>
+            </div>
+            <div class="seq-item">
+                <div class="seq-day">Day 4</div>
+                <div class="seq-desc">Phone call attempt + voicemail</div>
+            </div>
+            <div class="seq-item">
+                <div class="seq-day">Day 7</div>
+                <div class="seq-desc">Last chance / urgency text</div>
+            </div>
+            <div class="seq-item future">
+                <div class="seq-day">Day 14</div>
+                <div class="seq-desc">Seasonal check-in</div>
+            </div>
+            <div class="seq-item future">
+                <div class="seq-day">Day 30</div>
+                <div class="seq-desc">Final "door open" message</div>
+            </div>
+            <div class="seq-item future">
+                <div class="seq-day">Day 60+</div>
+                <div class="seq-desc">Add to seasonal campaign list</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Same Day Bump (2-3 hrs later)</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME]! Just wanted to make sure my earlier text went through. No rush — just didn't want you to miss the free first visit offer! 🐕
+
+Let me know if you have any questions 👍</pre>
+                <div class="note"><strong>Tone:</strong> Light, not pushy. The "make sure it went through" excuse is universally accepted and non-awkward.</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Day 2 — Social Proof</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME]! Quick thought — I was just at a customer's house near [THEIR AREA] and their dog had the zoomies on the clean yard 😂
+
+Reminded me I still have that free first visit open for you. Want me to add you to my [DAY] route? Already in your neighborhood!</pre>
+                <div class="note"><strong>Why it works:</strong> (1) Shows you're active and busy — (2) "Near their area" = convenient for them — (3) Story makes it human, not salesy — (4) "Already in your neighborhood" reduces friction.</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-call">CALL</span> Day 4 — Phone Call Script</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>IF THEY ANSWER:
+"Hey [NAME], it's TJ from Tidy Tails! I texted you the other day about the yard cleanup — just wanted to put a voice to the name and see if you had any questions?"
+
+[Let them talk. Address concerns. Then:]
+
+"Tell you what — I'll be in your area [DAY]. Let me just swing by and do the first cleanup for free. Literally zero risk. If you love it, we'll get you on the schedule. If not, no worries. Sound fair?"
+
+IF VOICEMAIL:
+"Hey [NAME], TJ from Tidy Tails! Just following up on the free yard cleanup we talked about. I'll shoot you a text too — easier to connect that way. Hope to hear from you!"
+
+THEN TEXT:
+Hey [NAME]! Just tried to call — no worries if you're busy! Still have that free cleanup offer open for you. Just say the word 🐕</pre>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Day 7 — Gentle Urgency</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME]! Last ping from me (I promise 😄). My schedule is filling up for [MONTH] and I wanted to make sure you got locked in before I'm full.
+
+Free first cleanup is still on the table. Just text back a day that works and I'll get you on the books!
+
+Either way, no hard feelings. Hope your pups are doing great 🐾</pre>
+                <div class="note"><strong>Psychology:</strong> "Last ping" = relief of pressure. "Schedule filling up" = scarcity. "No hard feelings" = no guilt. This combo gets responses from people who felt awkward about not replying.</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Day 14 — Check-In</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME]! Hope you're having a good week. Spring is here and backyards are getting... interesting 😅
+
+If you ever want to hand off poop duty, I'm still here! Free first visit, no contract, cancel anytime.
+
+No pressure — just wanted you to know the offer stands 🐕</pre>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Day 30 — Door Open</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME]! TJ from Tidy Tails — been a few weeks so just a quick note:
+
+If yard cleanup ever becomes a headache, I'm one text away. We take care of everything so you can actually enjoy the backyard with your pup(s).
+
+Have a great [DAY OF WEEK]! 🐾</pre>
+                <div class="note"><strong>Final touch:</strong> After this, add them to your seasonal campaign list. Hit them again at the start of summer and fall. Some leads take 3-6 months. Patience pays.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 4: CLOSE -->
+    <div class="stage" id="stage-close">
+        <div class="stage-header">
+            <span class="timing timing-urgent">✅ Close the Deal</span>
+            <h2>✅ Closing & Onboarding</h2>
+            <p>They said yes (or they're close). Lock it in, set expectations, and make the first visit unforgettable.</p>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Booking Confirmation</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Awesome, you're all set! 🎉 Here's what to expect:
+
+📅 First visit (FREE): [DAY, DATE]
+⏰ I'll text you that morning to confirm
+🔑 Gate code / key location: [ASK IF NEEDED]
+🐕 Your pup(s): [NAMES]
+
+After the first visit, I'll text you a quick recap and we can lock in your weekly schedule.
+
+Looking forward to it!</pre>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Morning-Of Confirmation</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Good morning [NAME]! 🌞 Just confirming I'll be by today for your yard cleanup. Should be there between [TIME RANGE].
+
+Anything I should know? (Gate code, dogs out, etc.)
+
+See you soon! 🐕</pre>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> After First Visit — Convert to Recurring</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>All done! ✅ Your yard is looking fresh 🐕💨
+
+Here's what I cleaned up: [BRIEF DESCRIPTION / PHOTO IF POSSIBLE]
+
+So what do you think — want to keep it this clean? I can add you to my [DAY] route for $[PRICE]/month. Same service every week, no contracts.
+
+Let me know! 🙌</pre>
+                <div class="note"><strong>Critical moment:</strong> This text is where 40%+ of one-time customers become recurring. Send it RIGHT AFTER the cleanup while the yard looks amazing. A before/after photo is worth 1000 words.</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> New Customer Welcome</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Welcome to the Tidy Tails family! 🐕🎉
+
+Here's your setup:
+📅 Service day: Every [DAY]
+💰 Monthly: $[PRICE] (billed [1st/15th])
+🔑 Access: [GATE CODE / KEY SPOT]
+🐾 Pup(s): [DOG NAMES]
+
+I'll text you after each visit. If you ever need to skip a week, change your schedule, or add anything — just text me!
+
+Thanks for trusting me with your yard, [NAME]. Let's keep it clean! 💪</pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 5: RETAIN -->
+    <div class="stage" id="stage-retain">
+        <div class="stage-header">
+            <span class="timing timing-flex">💎 Ongoing</span>
+            <h2>💎 Retention & Relationship Building</h2>
+            <p>Keeping a customer costs 5x less than getting a new one. These touchpoints build loyalty and prevent churn.</p>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Post-Service Confirmation (Weekly)</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>All cleaned up at [ADDRESS]! ✅ Yard's looking great. See you next [DAY]! 🐕</pre>
+                <div class="note"><strong>Every. Single. Visit.</strong> Takes 5 seconds. Makes the customer feel seen and proves you actually showed up. Eventually add gate photos for extra trust.</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> 30-Day Check-In</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME]! You've been with Tidy Tails for a month now 🎉 How's everything going? Anything you'd like different?
+
+Also — if you're happy with the service, I'd really appreciate a Google review. Makes a HUGE difference for a small business like mine!
+
+[GOOGLE REVIEW LINK]
+
+Thanks for being awesome! 🐾</pre>
+                <div class="note"><strong>The 30-day review ask:</strong> This is your #1 review generation tool. Customers are happiest in the first month. Ask while the novelty is fresh. Make the link one tap — no searching required.</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Dog Birthday / Gotcha Day</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Happy birthday to [DOG NAME]!! 🎂🐕🎉 Hope they get extra treats today!
+
+(Your yard's looking great btw — [DOG NAME] deserves it!)</pre>
+                <div class="note"><strong>The secret weapon:</strong> Ask for dog birthdays during onboarding. One text a year = customer for life. Nobody else does this. It's unforgettable.</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Seasonal Upsell (Spring/Fall)</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME]! Spring is here and yards are getting wild 🌱
+
+Quick heads up — I'm offering deep cleans for existing customers at a discount. Full yard, garden beds, under decks, the works. $[PRICE] instead of the usual $[REG PRICE].
+
+Want me to add one to your next visit? Takes about 30 extra minutes and the yard will look brand new!</pre>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Save — Customer Wants to Cancel</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME], totally understand! Before you go, can I ask — is it a budget thing, timing, or something else?
+
+If it's budget: "What if we switched to bi-weekly? That'd bring you down to $[LOWER PRICE]/month and I can still keep the yard in good shape."
+
+If it's seasonal: "Totally get it. Want me to pause your service instead of canceling? I can restart you anytime with no setup fee."
+
+If they're leaving: "No worries at all, [NAME]. I appreciate you being a customer! If you ever want to come back, you've got a standing free visit on me. Take care! 🐾"</pre>
+                <div class="note"><strong>Save rate target: 50%+</strong> Most cancels are fixable. Bi-weekly downsell saves budget cancels. Pause saves seasonal cancels. Even if they leave, the "free visit to come back" plants a return seed.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 6: REFERRAL -->
+    <div class="stage" id="stage-referral">
+        <div class="stage-header">
+            <span class="timing timing-flex">🎁 After 60+ Days</span>
+            <h2>🎁 Referral System</h2>
+            <p>Happy customers are your best salespeople. Make it dead simple to refer and reward them for it.</p>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Referral Ask (Post-Review)</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Thanks so much for the awesome review, [NAME]! 🙏 Made my day.
+
+Quick question — know anyone else who's tired of yard duty? If you refer a friend who signs up, I'll give you a FREE month of service! 🎉
+
+Just have them mention your name when they reach out. Easy peasy!</pre>
+                <div class="note"><strong>Timing:</strong> Ask IMMEDIATELY after they leave a review. They're in peak satisfaction mode. The free month offer ($60-80 value) pays for itself 10x when you get a recurring customer.</div>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Referral Reward Confirmation</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME]! Great news — [FRIEND'S NAME] just signed up thanks to you! 🎉
+
+Your free month starts now. [NEXT MONTH] is on me! 🙌
+
+Seriously, thank you. Word of mouth is everything for a small business. You're the best! 🐾</pre>
+            </div>
+        </div>
+
+        <div class="template-card">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title"><span class="channel ch-text">TEXT</span> Neighbor Cluster Ask</span>
+                <button class="copy-btn" onclick="event.stopPropagation(); copyTemplate(this)">Copy</button>
+            </div>
+            <div class="template-body">
+                <pre>Hey [NAME]! Random question — do any of your neighbors have dogs? 🐕
+
+I'm trying to build out my route in [NEIGHBORHOOD] and it's way more efficient when I can hit a few houses on the same street. I'd give your neighbor the free first visit and knock $10/mo off YOUR bill too!
+
+Win-win if you know anyone! 🏘️</pre>
+                <div class="note"><strong>Cluster strategy:</strong> This is how you go from 5 to 25 customers efficiently. Neighbors on the same route = more revenue per hour. The $10 discount costs you nothing when you save 15 min of drive time.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STAGE 7: TRACKER -->
+    <div class="stage" id="stage-tracker">
+        <div class="stage-header">
+            <span class="timing timing-normal">📊 Pipeline</span>
+            <h2>📊 Lead Tracker</h2>
+            <p>Track every lead from first contact to closed deal. Never let one slip through the cracks.</p>
+        </div>
+
+        <div class="template-card" style="border: none; background: none;">
+            <div style="overflow-x: auto;">
+                <table class="tracker-table" id="leadTracker">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Source</th>
+                            <th>Area</th>
+                            <th>Dogs</th>
+                            <th>Stage</th>
+                            <th>Next Action</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="trackerBody">
+                    </tbody>
+                </table>
+            </div>
+            <button class="add-lead-btn" onclick="addLead()">+ Add Lead</button>
+        </div>
+
+        <div class="template-card" style="margin-top: 1.5rem;">
+            <div class="template-top" onclick="toggleTemplate(this)">
+                <span class="template-title">📋 How to Use This Tracker</span>
+            </div>
+            <div class="template-body">
+                <pre>STAGES:
+🔵 New → Just came in, need to respond
+🟡 Contacted → Initial text/call sent
+🟠 Quoted → Price given, waiting on response
+🔄 Follow-Up → In follow-up sequence (Day 2-30)
+✅ Booked → First visit scheduled
+💚 Customer → Recurring service active
+❌ Lost → Didn't convert (note why!)
+
+DAILY ROUTINE:
+1. Open this tracker every morning
+2. Check "Next Action" column
+3. Send the texts/make the calls
+4. Update the stage
+
+RULE: No lead sits in one stage for more than 3 days without a follow-up touch.</pre>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+// Stage navigation
+function showStage(id) {
+    document.querySelectorAll('.stage').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.pipe-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('stage-' + id).classList.add('active');
+    event.target.classList.add('active');
+}
+
+// Template toggle
+function toggleTemplate(el) {
+    const body = el.nextElementSibling;
+    body.classList.toggle('open');
+}
+
+// Copy template
+function copyTemplate(btn) {
+    const pre = btn.closest('.template-card').querySelector('pre');
+    navigator.clipboard.writeText(pre.textContent).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = 'Copy';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+}
+
+// Lead tracker with localStorage
+const STORAGE_KEY = 'tidytails-leads';
+
+function getLeads() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch { return []; }
+}
+
+function saveLeads(leads) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
+}
+
+function renderLeads() {
+    const tbody = document.getElementById('trackerBody');
+    const leads = getLeads();
+    tbody.innerHTML = '';
+    leads.forEach((lead, i) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td><input value="${lead.name || ''}" onchange="updateLead(${i},'name',this.value)"></td>
+            <td><select onchange="updateLead(${i},'source',this.value)">
+                <option ${lead.source==='Website'?'selected':''}>Website</option>
+                <option ${lead.source==='Facebook'?'selected':''}>Facebook</option>
+                <option ${lead.source==='Nextdoor'?'selected':''}>Nextdoor</option>
+                <option ${lead.source==='Phone'?'selected':''}>Phone</option>
+                <option ${lead.source==='Referral'?'selected':''}>Referral</option>
+                <option ${lead.source==='Door Hanger'?'selected':''}>Door Hanger</option>
+                <option ${lead.source==='Instagram'?'selected':''}>Instagram</option>
+                <option ${lead.source==='Google'?'selected':''}>Google</option>
+                <option ${lead.source==='Craigslist'?'selected':''}>Craigslist</option>
+                <option ${lead.source==='Other'?'selected':''}>Other</option>
+            </select></td>
+            <td><input value="${lead.area || ''}" onchange="updateLead(${i},'area',this.value)"></td>
+            <td><input type="number" value="${lead.dogs || ''}" style="width:50px" onchange="updateLead(${i},'dogs',this.value)"></td>
+            <td><select onchange="updateLead(${i},'stage',this.value)">
+                <option ${lead.stage==='🔵 New'?'selected':''}>🔵 New</option>
+                <option ${lead.stage==='🟡 Contacted'?'selected':''}>🟡 Contacted</option>
+                <option ${lead.stage==='🟠 Quoted'?'selected':''}>🟠 Quoted</option>
+                <option ${lead.stage==='🔄 Follow-Up'?'selected':''}>🔄 Follow-Up</option>
+                <option ${lead.stage==='✅ Booked'?'selected':''}>✅ Booked</option>
+                <option ${lead.stage==='💚 Customer'?'selected':''}>💚 Customer</option>
+                <option ${lead.stage==='❌ Lost'?'selected':''}>❌ Lost</option>
+            </select></td>
+            <td><input value="${lead.next || ''}" onchange="updateLead(${i},'next',this.value)"></td>
+            <td><input type="date" value="${lead.date || ''}" onchange="updateLead(${i},'date',this.value)"></td>
+            <td><button onclick="removeLead(${i})" style="background:none;border:none;color:var(--red);cursor:pointer;font-size:1.1rem;">×</button></td>
+        `;
+        tbody.appendChild(tr);
+    });
+}
+
+function addLead() {
+    const leads = getLeads();
+    leads.push({ name:'', source:'Website', area:'', dogs:'', stage:'🔵 New', next:'Respond!', date: new Date().toISOString().split('T')[0] });
+    saveLeads(leads);
+    renderLeads();
+}
+
+function updateLead(i, field, value) {
+    const leads = getLeads();
+    leads[i][field] = value;
+    saveLeads(leads);
+}
+
+function removeLead(i) {
+    const leads = getLeads();
+    leads.splice(i, 1);
+    saveLeads(leads);
+    renderLeads();
+}
+
+renderLeads();
+</script>
+
+</body>
+</html>
