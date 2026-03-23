@@ -1,5 +1,5 @@
 # MEMORY.md — Franklin's Long-Term Memory
-*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 22, 2026 10 AM*
+*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 22, 2026 7 PM*
 
 ## Who I Am
 - **Name:** Franklin
@@ -69,7 +69,7 @@
 - **GSC:** VERIFIED ✅ — sitemap submitted, 17 pages discovered, site INDEXED (Mar 18)
 - **SSL:** Valid until May 17, 2026 (set reminder May 1)
 - **Google Reviews:** ZERO — #1 weakness. Link: https://g.page/r/Ce_hqIHanGLvEAE/review
-- **Content:** 23 city landing pages, 13 blog posts, A- on-page SEO
+- **Content:** 23 city landing pages (6 NOT deployed!), 12 blog posts (1 duplicate merged), A- on-page SEO
 - **Off-page:** F — zero backlinks, zero directory listings beyond GBP/Yelp
 - **Brand collision:** 8+ other "Tidy Tails" nationally — always use "Tidy Tails STL"
 - **Unlisted directories:** Petworks, BringFido, MapQuest (auto-generated) — easy wins
@@ -186,7 +186,7 @@ Assets: Landing page, pitch deck (v6), one-pager, market research.
 - [ ] **Launch $7/day Facebook Ads** (30 min) — full campaign kit ready
 
 ### What Franklin Should Focus On
-- **STOP BUILDING TOOLKITS.** 95+ tools exist. The problem is execution, not tooling. 20+ new toolkits on Mar 21 alone — directly violating this rule.
+- **STOP BUILDING TOOLKITS.** 27 curated tools remain after declutter. The problem is execution, not tooling.
 - **Track execution.** Which posts has TJ actually made? Which leads called? Verify.
 - **Competitive monitoring.** Market is moving — POOP 911 investing in Florissant (confirmed Mar 20).
 - **Memory cleanup.** Keep context lean for better performance.
@@ -252,23 +252,20 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 
 ---
 
-## 📊 Asset Inventory (Mar 22, 2026 — updated 10 AM)
+## 📊 Asset Inventory (Mar 22, 2026 — updated 7 PM)
 
-| Category | Count |
-|----------|-------|
-| Dashboard tools/reports | 95+ |
-| PDFs/HTML deliverables | 400+ |
-| Tidy Tails ads written | 100+ |
-| Shed ads written | 120+ |
-| Skills built | 14+ |
-| AI video concepts | 6 produced |
-| City landing pages | 23 (added Kirkwood + Webster Groves) |
-| Blog posts | 13 (synced 6 missing from live site + 1 new commercial post) |
-| Content calendar posts | 84+ copy-paste ready |
-| Commercial leads | 49 (uncontacted) |
-| Interactive tools | 25+ (review blitz, referral mgr, competitor battlemap, directory kit, neighbor blitz, GBP calendar, conversion audit, events playbook, weekly planner, etc.) |
-| FB groups mapped | 32+ (with strategy, member counts, posting schedule) |
-| Live landing pages | 3 (free-cleanup, refer, spring-landing) |
+| Category | Count | Notes |
+|----------|-------|-------|
+| Dashboard tools (live) | 27 | Decluttered from 144→28 (index + 27 tools) |
+| Dashboard archive | 116 | All old tools preserved, not deleted |
+| City landing pages | 23 | 6 ghost pages NOT deployed to Cloudflare |
+| Blog posts | 12 | 1 duplicate merged into redirect |
+| Commercial leads | 49 | ZERO contacted |
+| Communities mapped | 31 | FB groups, dog parks, pet orgs, Reddit |
+| Competitors tracked | 16 | ~12-13 active, 3 dead |
+| Shed Marketplace listings | 23 | $139,977 total lot value |
+
+**⚠️ Brave Search API:** 1,962/2,000 monthly quota used (resets next month)
 
 ---
 
@@ -281,8 +278,9 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 - **Mar 17:** GBP VERIFIED ✅ (only 7% complete). TJ frustrated: "tired of being stagnant."
 - **Mar 18:** GOOGLE INDEXED ✅ — GSC sitemap submitted, 17 pages discovered. First FB ad live ($7.27 spent, 344 views, 0 messages — video too long). **Jamie = face of Tidy Tails** rule established.
 - **Mar 20:** POOP 911 confirmed STILL in Florissant (URL restructure, not withdrawal). Scooping moved to MONDAYS.
+- **Mar 22 AM:** Telegram Topics configured — 6 topics (General, Tidy Tails, Sheds, Accountability, Franklin Admin, MOTRA). Group ID: `-1003877675524`.
 - **Mar 21:** TJ frustrated guides hidden in memory/ → **NEW RULE: PDF in chat + dashboard link.** Dashboard redesigned to 3 modes (TODAY/TOOLS/ARCHIVE).
-- **Mar 22:** 400+ deliverables built total. Memory maintenance pass — consolidated 5 competitor files, archived 17 stale docs.
+- **Mar 22:** Dashboard declutter (144→28 files). Memory consolidated (43→21 active files). 6 ghost pages found (never deployed). Blog dedup fix. Telegram Topics configured. Paw-ty prep kit built. 19 tasks completed.
 
 ---
 
@@ -340,4 +338,4 @@ Path: Tidy Tails → document the AI journey → build marketing agency for smal
 - `memory/tj-ad-style-guide.md` — TJ's voice/style rules for ad copy
 - `memory/notion-uploads.md` — Notion sync tracking
 
-**Archived Mar 22:** 5 duplicate competitor files, 6 pre-Mar-19 daily files, 10 guide/kit files superseded by dashboard tools
+**Archived Mar 22:** 5 duplicate competitor files, 6 pre-Mar-19 daily files, 10 guide/kit files superseded by dashboard tools, Sat night task overflow

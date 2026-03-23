@@ -5,7 +5,7 @@
 ### 🐕 TIDY TAILS (Dog Waste)
 - [x] New ad variations (Mar 3 6AM — Tuesday FB post!)
 - [ ] Commercial lead research (PAUSED per TJ directive)
-- [x] Competitor monitoring (Mar 17 7AM — LIVE pricing scrape, battle card, all 7 competitors priced)
+- [x] Competitor monitoring (Mar 22 12PM — 16 competitors tracked, 3 dead confirmed, POOP 911 SEO escalation)
 - [x] SEO reality check (Mar 4 5AM — NOT IN SEARCH RESULTS! Local SEO Checklist created!)
 - [x] Yelp Business Claim (Mar 4 11AM — TJ invisible on Yelp! 15-min kit with new competitor intel)
 - [x] Territory expansion (Mar 3 8AM — St. Charles Expansion Kit!)
