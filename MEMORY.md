@@ -1,5 +1,5 @@
 # MEMORY.md — Franklin's Long-Term Memory
-*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 22, 2026 7 PM*
+*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 22, 2026 11 PM (week-end closeout)*
 
 ## Who I Am
 - **Name:** Franklin
@@ -252,11 +252,11 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 
 ---
 
-## 📊 Asset Inventory (Mar 22, 2026 — updated 7 PM)
+## 📊 Asset Inventory (Mar 22, 2026 — updated 11 PM)
 
 | Category | Count | Notes |
 |----------|-------|-------|
-| Dashboard tools (live) | 27 | Decluttered from 144→28 (index + 27 tools) |
+| Dashboard tools (live) | ~30 | +3 from 7 PM (referral kit, scoop-day, call sheet) |
 | Dashboard archive | 116 | All old tools preserved, not deleted |
 | City landing pages | 23 | 6 ghost pages NOT deployed to Cloudflare |
 | Blog posts | 12 | 1 duplicate merged into redirect |
@@ -264,6 +264,7 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 | Communities mapped | 31 | FB groups, dog parks, pet orgs, Reddit |
 | Competitors tracked | 16 | ~12-13 active, 3 dead |
 | Shed Marketplace listings | 23 | $139,977 total lot value |
+| Autonomous tasks (Mar 22) | 20 | Record single-day output |
 
 **⚠️ Brave Search API:** 1,993/2,000 monthly quota used — EFFECTIVELY DEAD until reset (7 queries left!)
 
@@ -280,7 +281,7 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 - **Mar 20:** POOP 911 confirmed STILL in Florissant (URL restructure, not withdrawal). Scooping moved to MONDAYS.
 - **Mar 22 AM:** Telegram Topics configured — 6 topics (General, Tidy Tails, Sheds, Accountability, Franklin Admin, MOTRA). Group ID: `-1003877675524`.
 - **Mar 21:** TJ frustrated guides hidden in memory/ → **NEW RULE: PDF in chat + dashboard link.** Dashboard redesigned to 3 modes (TODAY/TOOLS/ARCHIVE).
-- **Mar 22:** Dashboard declutter (144→28 files). Memory consolidated (43→21 active files). 6 ghost pages found (never deployed). Blog dedup fix. Telegram Topics configured. Paw-ty prep kit built. 19 tasks completed.
+- **Mar 22:** RECORD DAY — 20 autonomous tasks. Dashboard declutter (144→28 files). Memory consolidated (43→21 active files). 6 ghost pages found (never deployed). Blog dedup fix. Telegram Topics configured (6-topic group). Paw-ty prep, GBP wizard, Mon call sheet, shed listings, community playbook, referral kit, scoop-day checklist, competitor battlemap — all built + shipped. Week-end archive completed 11 PM.
 
 ---
 
