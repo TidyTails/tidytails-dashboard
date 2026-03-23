@@ -116,11 +116,12 @@
 - 🟠 Dog Doody Defenders — same Florissant zip, $54/mo cheapest in market
 - 🟡 Little Stinkers — St. Charles County threat, multi-service
 
-**⚠️ MAJOR CHANGES (Mar 23 scan):**
+**⚠️ MAJOR CHANGES (Mar 23 10AM scan):**
 - POOP 911 STL operator MAY BE DEAD — main location page 404, Missouri hub broken
-- Scoop Soldiers NEVER ENTERED STL — their page says "don't service your area"
+- **Scoop Soldiers IS ACTIVE IN STL** — full landing page live (corrects earlier 8AM false negative). Franchise with professional copy, targeting residential + commercial. No pricing visible. No local reviews yet.
 - Dirty Dog Wash dropped poo crew — site shows only grooming now
-- **Market is CONSOLIDATING** — 5-7 fewer active competitors than we thought
+- No. 2 Crew confirmed pricing: $19/visit (1 dog), $68/mo weekly, $35 biweekly — slightly cheaper than TJ on per-visit but TJ's $70/mo flat beats them on value
+- **Market is CONSOLIDATING** — some competitors dead but Scoop Soldiers filling the gap
 
 **Dead/dying:** Pawfect ☠️, Poopy Paws ☠️, Super Scoopers ☠️, Dirty Dog Poo Crew ❓, POOP 911 STL ❓
 

@@ -27,14 +27,19 @@
 - Free first cleanup with recurring service
 - Yard deodorizing service
 
-**Scoop Soldiers — St. Louis** ⚠️ DOWNGRADED (Mar 23 check)
-- National franchise, est. 2010, press release claimed STL expansion Feb 2026
+**Scoop Soldiers — St. Louis** ⚠️ RE-UPGRADED (Mar 23, 10 AM re-check)
+- National franchise, est. 2010 (McKinney TX), 96+ territories
 - Phone: (877) 930-POOP
-- Website: scoopsoldiers.com/locations/st-louis → **NOW 404!** "We don't currently service your area"
-- scoopsoldiers.com/locations page lists states but NO Missouri/STL presence
-- **STATUS: NOT ACTIVE IN STL.** Press release was premature or they pulled out.
-- Previous assessment overblown. Threat level: LOW (may never materialize)
-- **Keep monitoring quarterly** — they could re-enter
+- Website: scoopsoldiers.com/locations/st-louis → **NOW LIVE with full professional copy!**
+  - Full STL landing page with residential + commercial pitch
+  - "Locally owned and operated" language — likely a franchisee
+  - No pricing visible on site (custom quotes only)
+  - No contracts, satisfaction guarantee, background-checked techs
+  - Targeting HOAs, apartments, parks, playgrounds
+- **STATUS: ACTIVE IN STL.** Previous 8 AM check was wrong or page was briefly down.
+- **Threat level: MEDIUM-HIGH** — full national franchise backing, professional marketing
+- No STL reviews visible yet — still early stage
+- **Key weakness:** No pricing transparency, generic franchise copy, no local personality
 
 ### TIER 2: MEDIUM THREAT (Local Independents)
 
