@@ -317,3 +317,9 @@ Chief uses this to verify sync with dashboard.
 | 12:01 | Morning Briefing Mar 22 | 📋 Operations | MORNING_BRIEFING_2026-03-22.pdf | ✅ |
 | 12:01 | Shed Ads Mar 22 | 🏠 Shed Sales | SHED_ADS_2026-03-22.pdf | ✅ |
 | 12:01 | Commercial Leads Mar 22 | 🐕 Jamie's Hub | COMMERCIAL_LEADS_2026-03-22.pdf | ✅ |
+
+## Upload Log — Mar 23, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 00:01 | EOD Summary Mar 22 | 📋 Operations | EOD_SUMMARY_2026-03-22.pdf | ✅ |
