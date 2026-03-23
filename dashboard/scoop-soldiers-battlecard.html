@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⚔️ Scoop Soldiers Battle Card — Know Your Enemy</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; }
+  
+  .header { background: linear-gradient(135deg, #1a0a0a 0%, #2a1010 50%, #1a0a0a 100%); padding: 28px 20px; border-bottom: 3px solid #ff4444; text-align: center; position: relative; overflow: hidden; }
+  .header::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(45deg, transparent 0, transparent 10px, rgba(255,68,68,0.03) 10px, rgba(255,68,68,0.03) 20px); }
+  .header h1 { font-size: 1.6rem; color: #fff; margin-bottom: 4px; position: relative; }
+  .header .subtitle { color: #ff6666; font-size: 0.9rem; font-weight: 600; position: relative; }
+  .header .date { color: #666; font-size: 0.75rem; margin-top: 6px; position: relative; }
+  
+  .tabs { display: flex; overflow-x: auto; background: #111; border-bottom: 1px solid #333; padding: 0 8px; position: sticky; top: 0; z-index: 100; }
+  .tab { padding: 12px 14px; cursor: pointer; color: #777; font-size: 0.78rem; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .tab:hover { color: #ccc; }
+  .tab.active { color: #ff4444; border-bottom-color: #ff4444; }
+  
+  .content { max-width: 920px; margin: 0 auto; padding: 16px; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  
+  .card { background: #151520; border: 1px solid #2a2a3a; border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+  .card h3 { color: #fff; font-size: 1rem; margin-bottom: 8px; }
+  .card h4 { color: #ff6666; font-size: 0.9rem; margin: 12px 0 6px; }
+  .card p, .card li { color: #aaa; font-size: 0.85rem; line-height: 1.6; }
+  .card ul { padding-left: 18px; }
+  .card li { margin-bottom: 4px; }
+  
+  .alert-card { border-color: #ff4444; background: rgba(255,68,68,0.08); }
+  .win-card { border-color: #4caf50; background: rgba(76,175,80,0.08); }
+  .warn-card { border-color: #ff9800; background: rgba(255,152,0,0.08); }
+  .info-card { border-color: #2196f3; background: rgba(33,150,243,0.08); }
+  
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin: 12px 0; }
+  .stat { background: #1a1a2e; border-radius: 8px; padding: 12px; text-align: center; }
+  .stat .num { font-size: 1.4rem; font-weight: 700; color: #ff4444; }
+  .stat .label { font-size: 0.7rem; color: #888; margin-top: 2px; }
+  
+  .vs-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin: 12px 0; }
+  .vs-table th { background: #1a1a2e; padding: 10px 8px; text-align: left; border-bottom: 2px solid #333; }
+  .vs-table th:nth-child(2) { color: #ff4444; }
+  .vs-table th:nth-child(3) { color: #4caf50; }
+  .vs-table td { padding: 10px 8px; border-bottom: 1px solid #1e1e2e; }
+  .vs-table tr:hover { background: #1a1a25; }
+  .them { color: #ff6666; }
+  .us { color: #4caf50; font-weight: 600; }
+  
+  .script-box { background: #0d0d18; border: 1px solid #333; border-radius: 8px; padding: 14px; margin: 10px 0; font-size: 0.82rem; line-height: 1.6; }
+  .script-box .label { color: #ff9800; font-weight: 600; font-size: 0.75rem; text-transform: uppercase; margin-bottom: 6px; }
+  .script-box .line { color: #ccc; margin-bottom: 6px; }
+  .script-box .emphasis { color: #4caf50; font-weight: 600; }
+  
+  .threat-meter { background: #1a1a2e; border-radius: 8px; padding: 14px; margin: 10px 0; }
+  .threat-bar { height: 8px; border-radius: 4px; background: #222; overflow: hidden; margin-top: 6px; }
+  .threat-fill { height: 100%; border-radius: 4px; transition: width 0.5s; }
+  .threat-label { display: flex; justify-content: space-between; font-size: 0.75rem; margin-top: 4px; }
+  
+  .revenue-table { width: 100%; border-collapse: collapse; font-size: 0.78rem; margin: 10px 0; }
+  .revenue-table th { background: #1a1a2e; color: #ff9800; padding: 8px 6px; text-align: left; border-bottom: 1px solid #333; }
+  .revenue-table td { padding: 8px 6px; border-bottom: 1px solid #1a1a2e; }
+  .revenue-table .big { color: #ff4444; font-weight: 700; }
+  
+  .action-item { background: #0d1a0d; border-left: 3px solid #4caf50; padding: 10px 14px; margin: 8px 0; border-radius: 0 6px 6px 0; }
+  .action-item .priority { font-size: 0.7rem; color: #ff9800; text-transform: uppercase; font-weight: 700; }
+  .action-item .desc { color: #ccc; font-size: 0.85rem; margin-top: 4px; }
+  
+  .copy-btn { background: #2a2a3a; color: #ccc; border: none; padding: 6px 12px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; float: right; }
+  .copy-btn:hover { background: #3a3a4a; }
+  .copy-btn.copied { background: #1a3a1a; color: #4caf50; }
+  
+  .gap-tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; font-weight: 600; margin: 2px; }
+  .gap-weakness { background: rgba(255,68,68,0.2); color: #ff6666; }
+  .gap-strength { background: rgba(76,175,80,0.2); color: #4caf50; }
+  .gap-neutral { background: rgba(255,152,0,0.2); color: #ff9800; }
+
+  @media (max-width: 600px) {
+    .stat-grid { grid-template-columns: repeat(2, 1fr); }
+    .vs-table { font-size: 0.75rem; }
+    .tab { padding: 10px 10px; font-size: 0.72rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⚔️ Scoop Soldiers Battle Card</h1>
+  <div class="subtitle">Know Your Enemy. Beat Your Enemy.</div>
+  <div class="date">Deep Competitive Intel — Updated March 23, 2026</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('overview')">📋 Overview</div>
+  <div class="tab" onclick="showTab('pricing')">💰 Pricing</div>
+  <div class="tab" onclick="showTab('stl')">📍 STL Intel</div>
+  <div class="tab" onclick="showTab('strengths')">💪 Their Strengths</div>
+  <div class="tab" onclick="showTab('gaps')">🎯 Their Gaps</div>
+  <div class="tab" onclick="showTab('scripts')">🗣️ Battle Scripts</div>
+  <div class="tab" onclick="showTab('actions')">🚀 Action Plan</div>
+</div>
+
+<div class="content">
+
+<!-- OVERVIEW -->
+<div class="panel active" id="overview">
+  <div class="card alert-card">
+    <h3>🔴 Threat Assessment: MODERATE-HIGH</h3>
+    <p>Scoop Soldiers is a <strong>national franchise</strong> that has entered the St. Louis market. They're well-funded, professionally branded, and aggressively expanding. But they have franchise weaknesses TJ can exploit.</p>
+    <div class="threat-meter">
+      <div style="display: flex; justify-content: space-between; font-size: 0.8rem;">
+        <span>Threat Level</span>
+        <span style="color: #ff9800; font-weight: 700;">7/10</span>
+      </div>
+      <div class="threat-bar">
+        <div class="threat-fill" style="width: 70%; background: linear-gradient(90deg, #ff9800, #ff4444);"></div>
+      </div>
+      <div class="threat-label">
+        <span style="color: #4caf50;">Low</span>
+        <span style="color: #ff4444;">Critical</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🏢 Company Profile</h3>
+    <div class="stat-grid">
+      <div class="stat"><div class="num">2010</div><div class="label">Founded</div></div>
+      <div class="stat"><div class="num">96+</div><div class="label">Franchise Territories</div></div>
+      <div class="stat"><div class="num">16</div><div class="label">States</div></div>
+      <div class="stat"><div class="num">5.0⭐</div><div class="label">1,300+ Reviews</div></div>
+      <div class="stat"><div class="num">2019</div><div class="label">Franchising Started</div></div>
+      <div class="stat"><div class="num">$20.50</div><div class="label">Avg $/Stop</div></div>
+    </div>
+    <ul>
+      <li><strong>HQ:</strong> McKinney, TX (founders EJ McCoy + Josh Cahill)</li>
+      <li><strong>Origin:</strong> Lawn & landscape industry → pivot to pet waste</li>
+      <li><strong>Parent:</strong> White Picket Team Management (multi-brand holding company)</li>
+      <li><strong>Other brands:</strong> Chorbie (lawn), Executive Lawn Care</li>
+      <li><strong>Phone:</strong> 877-930-POOP (toll-free)</li>
+      <li><strong>Marketing:</strong> "Turning Poop Into Gold" (TPIG) takeover tour, Pet Waste Millionaire campaign</li>
+      <li><strong>Charity:</strong> Valor Service Dogs (veterans nonprofit)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📦 Service Menu</h3>
+    <ul>
+      <li><strong>Regular Scooping:</strong> 1x, 2x/week, biweekly, or custom</li>
+      <li><strong>Deodorizer Add-on:</strong> Non-toxic enzyme spray for odor elimination</li>
+      <li><strong>Sanitization Add-on:</strong> Kills bacteria, parasites (E. coli, Salmonella, Giardia, Parvo)</li>
+      <li><strong>Pet Waste Station Install:</strong> Commercial — bags, bins, maintenance</li>
+      <li><strong>One-time Cleanups:</strong> Parties, moves, spring cleanings</li>
+      <li><strong>Commercial:</strong> Apartments, HOAs, dog parks, hotels, daycares, offices</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🛡️ Their Selling Points</h3>
+    <ul>
+      <li>100% Iron-Clad Money-Back Guarantee</li>
+      <li>No contracts, no pre-payments</li>
+      <li>Uniformed, background-checked techs in marked trucks</li>
+      <li>Gate photo emailed after every visit</li>
+      <li>Text notification before arrival</li>
+      <li>Up to 4 dogs included in base price</li>
+      <li>Waste hauled away (not left on property)</li>
+      <li>National brand trust + 1,300+ reviews</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>💼 Franchise Economics (2023 FDD — Item 19)</h3>
+    <p style="margin-bottom: 8px; color: #ff9800; font-size: 0.78rem;">Company-owned outlet performance data:</p>
+    <table class="revenue-table">
+      <tr><th>Market</th><th>Annual Revenue</th><th>Stops/Year</th><th>Stops/Week</th><th>$/Stop</th></tr>
+      <tr><td class="big">Houston</td><td class="big">$1,113,450</td><td>54,246</td><td>1,043</td><td>$20.53</td></tr>
+      <tr><td>Oklahoma City</td><td>$541,687</td><td>26,190</td><td>503</td><td>$20.68</td></tr>
+      <tr><td>Atlanta</td><td>$430,694</td><td>20,951</td><td>403</td><td>$20.56</td></tr>
+      <tr><td>San Antonio</td><td>$398,929</td><td>19,466</td><td>735</td><td>$20.49</td></tr>
+      <tr><td>Las Vegas</td><td>$393,211</td><td>17,738</td><td>362</td><td>$22.17</td></tr>
+      <tr><td>Denver</td><td>$389,435</td><td>18,466</td><td>355</td><td>$21.09</td></tr>
+      <tr><td>Colorado Springs</td><td>$349,526</td><td>16,057</td><td>313</td><td>$21.77</td></tr>
+      <tr><td>Tulsa</td><td>$276,983</td><td>13,556</td><td>261</td><td>$20.43</td></tr>
+      <tr><td>Orlando</td><td>$192,897</td><td>9,511</td><td>182</td><td>$20.28</td></tr>
+      <tr><td>Nashville</td><td>$117,191</td><td>5,522</td><td>106</td><td>$21.22</td></tr>
+      <tr><td>Charlotte</td><td>$35,234</td><td>1,601</td><td>31</td><td>$19.69</td></tr>
+      <tr><td>Boulder</td><td>$7,442</td><td>367</td><td>7</td><td>$20.28</td></tr>
+    </table>
+    <p style="margin-top: 8px; font-size: 0.78rem; color: #666;">Source: Scoop Soldiers Franchise Disclosure Document, Item 19 (2023). STL not listed = likely franchisee, not company-owned.</p>
+  </div>
+</div>
+
+<!-- PRICING -->
+<div class="panel" id="pricing">
+  <div class="card">
+    <h3>💰 Price Comparison: Tidy Tails vs Scoop Soldiers</h3>
+    <table class="vs-table">
+      <tr>
+        <th>Service</th>
+        <th>Scoop Soldiers 🔴</th>
+        <th>Tidy Tails 🟢</th>
+        <th>Verdict</th>
+      </tr>
+      <tr>
+        <td>Weekly (1 dog)</td>
+        <td class="them">~$15/visit ($60/mo)</td>
+        <td class="us">$70/mo ($17.50/visit)</td>
+        <td><span class="gap-tag gap-weakness">They're cheaper</span></td>
+      </tr>
+      <tr>
+        <td>Weekly (2-4 dogs)</td>
+        <td class="them">~$15-20/visit ($60-80/mo)</td>
+        <td class="us">$70/mo flat</td>
+        <td><span class="gap-tag gap-strength">We match/beat</span></td>
+      </tr>
+      <tr>
+        <td>Bi-weekly</td>
+        <td class="them">~$18-22/visit</td>
+        <td class="us">TBD</td>
+        <td><span class="gap-tag gap-neutral">Add this tier?</span></td>
+      </tr>
+      <tr>
+        <td>2x/week</td>
+        <td class="them">~$12-15/visit ($96-120/mo)</td>
+        <td class="us">Negotiate</td>
+        <td><span class="gap-tag gap-neutral">Premium upsell</span></td>
+      </tr>
+      <tr>
+        <td>One-time cleanup</td>
+        <td class="them">Quote-based</td>
+        <td class="us">Quote-based</td>
+        <td><span class="gap-tag gap-neutral">Match</span></td>
+      </tr>
+      <tr>
+        <td>Deodorizer</td>
+        <td class="them">Add-on available</td>
+        <td class="us">Not offered yet</td>
+        <td><span class="gap-tag gap-weakness">Gap — add this</span></td>
+      </tr>
+      <tr>
+        <td>Sanitization</td>
+        <td class="them">Add-on available</td>
+        <td class="us">Not offered yet</td>
+        <td><span class="gap-tag gap-weakness">Gap — add this</span></td>
+      </tr>
+      <tr>
+        <td>Waste Stations</td>
+        <td class="them">Install + maintain</td>
+        <td class="us">Not offered yet</td>
+        <td><span class="gap-tag gap-neutral">Commercial play</span></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card win-card">
+    <h3>✅ Where We Win on Price</h3>
+    <ul>
+      <li><strong>Multi-dog households:</strong> TJ's flat $70/mo covers the yard regardless. Scoop Soldiers charges per visit and may upcharge for extra dogs</li>
+      <li><strong>No corporate overhead:</strong> Franchise fees eat 6-8% of revenue + marketing fund fees. TJ keeps all margin</li>
+      <li><strong>Flexible on custom deals:</strong> Franchise operators can't deviate much from corporate pricing. TJ can cut deals, bundle, negotiate</li>
+      <li><strong>No toll-free number middleman:</strong> Customer calls TJ directly. Faster response. More personal</li>
+    </ul>
+  </div>
+
+  <div class="card warn-card">
+    <h3>⚠️ Where We Lose on Price</h3>
+    <ul>
+      <li><strong>Single-dog weekly:</strong> Their $15/visit x 4 = ~$60/mo vs TJ's $70. They're $10/mo cheaper for the most common customer type</li>
+      <li><strong>Perception of value:</strong> Branded trucks, uniforms, gate photos, and text alerts create a premium perception even at lower price</li>
+      <li><strong>Service add-ons:</strong> Deodorizer and sanitization create upsell revenue TJ doesn't capture yet</li>
+    </ul>
+    <h4>🔧 Fix: Service Add-ons for TJ</h4>
+    <p>Deodorizer spray is cheap (~$15-30 for enzyme concentrate that makes gallons). Add as $10-15/visit add-on = instant margin boost + competitive parity. Sanitization even more so. <strong>This is easy money.</strong></p>
+  </div>
+</div>
+
+<!-- STL INTEL -->
+<div class="panel" id="stl">
+  <div class="card alert-card">
+    <h3>📍 Scoop Soldiers in St. Louis — Current Footprint</h3>
+    <div class="stat-grid">
+      <div class="stat"><div class="num" style="color: #ff9800;">NEW</div><div class="label">Market Entry</div></div>
+      <div class="stat"><div class="num" style="color: #ff9800;">2</div><div class="label">Service Area Pages</div></div>
+      <div class="stat"><div class="num" style="color: #4caf50;">SMALL</div><div class="label">Current Footprint</div></div>
+      <div class="stat"><div class="num" style="color: #ff9800;">?</div><div class="label">Active Customers</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🗺️ Confirmed STL Service Area Pages</h3>
+    <ul>
+      <li>✅ <strong>/locations/st-louis</strong> — Metro-level landing page (live, SEO content)</li>
+      <li>✅ <strong>/service-area/st-louis-mo</strong> — City-specific page (live)</li>
+      <li>✅ <strong>/service-area/chesterfield-mo</strong> — Suburb page (live)</li>
+      <li>❌ <strong>/service-area/kirkwood-mo</strong> — 404 (not served)</li>
+      <li>❌ <strong>/service-area/ballwin-mo</strong> — 404 (not served)</li>
+      <li>❌ <strong>/service-area/webster-groves-mo</strong> — Not tested, likely 404</li>
+    </ul>
+    <h4>Key Finding</h4>
+    <p>Missouri state page only shows KC-area cities (Blue Springs, Independence, KC, Lee's Summit, Liberty). <strong>STL is NOT on the Missouri hub page.</strong> This means STL is a brand-new or very early-stage franchise territory. They're building SEO presence but likely have minimal actual customers.</p>
+  </div>
+
+  <div class="card win-card">
+    <h3>🟢 Why STL Is Likely a New Franchise (Not Company-Owned)</h3>
+    <ul>
+      <li><strong>Not in FDD financials:</strong> STL isn't listed in their 2023 Item 19 revenue data = not company-owned</li>
+      <li><strong>Only 2 suburb pages:</strong> Mature markets have 10-50+ suburb pages (see Houston, Dallas)</li>
+      <li><strong>Not on Missouri hub:</strong> Only KC cities listed = STL was added later</li>
+      <li><strong>Generic SEO copy:</strong> STL page uses template content (same copy as Chesterfield with city name swapped)</li>
+      <li><strong>No STL-specific reviews visible:</strong> All reviews on their site are from other markets</li>
+    </ul>
+    <p style="margin-top: 10px; color: #4caf50; font-weight: 600;">🎯 Translation: They're planting a flag but haven't built a customer base yet. We're racing them for the same customers.</p>
+  </div>
+
+  <div class="card">
+    <h3>🗺️ Territory Overlap Analysis</h3>
+    <p>Based on their confirmed pages, Scoop Soldiers STL likely targets:</p>
+    <ul>
+      <li><strong>St. Louis City proper</strong> — confirmed</li>
+      <li><strong>Chesterfield</strong> — confirmed (West County, affluent = high-value)</li>
+      <li><strong>Likely expanding to:</strong> Creve Coeur, Wildwood, Ballwin, Maryland Heights</li>
+      <li><strong>Not yet touching:</strong> Kirkwood, Webster Groves, Crestwood, South County</li>
+    </ul>
+    <h4>🎯 TJ's Window</h4>
+    <p>The I-44 Corridor (Kirkwood, Webster Groves, Crestwood) is UNTOUCHED by Scoop Soldiers. This aligns perfectly with our expansion plan. <strong>Move fast before they build suburb pages there.</strong></p>
+  </div>
+</div>
+
+<!-- STRENGTHS -->
+<div class="panel" id="strengths">
+  <div class="card alert-card">
+    <h3>💪 Respect the Enemy — What They Do Well</h3>
+    <p>Underestimating them would be dumb. Here's what they bring:</p>
+  </div>
+
+  <div class="card">
+    <h3>🏗️ Professional Infrastructure</h3>
+    <ul>
+      <li><strong>Branded everything:</strong> Uniforms, marked trucks, professional image</li>
+      <li><strong>Gate photo system:</strong> Photo of secured gate emailed after every visit = brilliant trust builder</li>
+      <li><strong>Text before arrival:</strong> Customer always knows when they're coming</li>
+      <li><strong>National phone number:</strong> 877-930-POOP (memorable)</li>
+      <li><strong>Online booking/quoting:</strong> Zip code → instant quote flow on website</li>
+      <li><strong>Client portal:</strong> Self-serve account management</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📈 Marketing Machine</h3>
+    <ul>
+      <li><strong>SEO domination:</strong> Individual pages for every city they serve (hundreds of pages)</li>
+      <li><strong>Content marketing:</strong> Blog, health scare content (bacteria, parasites), educational</li>
+      <li><strong>Review volume:</strong> 1,300+ reviews averaging 5.0 stars on BirdEye</li>
+      <li><strong>Refer-a-friend program:</strong> Dedicated page for referrals</li>
+      <li><strong>Gift cards:</strong> Yes, they sell poop scooping gift cards. And people buy them.</li>
+      <li><strong>TPIG Tour:</strong> Founder visibility campaign = free PR</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🛡️ Trust Signals</h3>
+    <ul>
+      <li><strong>100% Money-back guarantee</strong> — removes all risk from trying them</li>
+      <li><strong>No contracts</strong> — same as TJ, but they market it harder</li>
+      <li><strong>Background-checked techs</strong> — explicitly stated and marketed</li>
+      <li><strong>Charity partner</strong> — Valor Service Dogs (veterans = emotional appeal)</li>
+      <li><strong>14+ years in business</strong> — vs TJ's ~2 years</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📦 Service Breadth</h3>
+    <ul>
+      <li><strong>Deodorizer add-on:</strong> Enzyme spray for odor elimination — TJ doesn't offer this</li>
+      <li><strong>Sanitization add-on:</strong> Kills parvo, E. coli, etc. — TJ doesn't offer this</li>
+      <li><strong>Waste station install:</strong> For commercial properties — huge differentiator</li>
+      <li><strong>Residential + Commercial:</strong> Full spectrum coverage</li>
+      <li><strong>Artificial turf cleaning:</strong> Niche but growing segment</li>
+    </ul>
+  </div>
+</div>
+
+<!-- GAPS -->
+<div class="panel" id="gaps">
+  <div class="card win-card">
+    <h3>🎯 Their Weaknesses — TJ's Opportunities</h3>
+    <p>Every Goliath has gaps. Here's where we beat them:</p>
+  </div>
+
+  <div class="card win-card">
+    <h3>1. 🏠 Franchise = Impersonal</h3>
+    <p>They're a franchise operator following a playbook. TJ IS Tidy Tails. When customers call, they get TJ (or Jamie). Not a call center. Not a franchisee running 3 other businesses. The personal touch is TJ's #1 weapon.</p>
+    <ul>
+      <li>Franchise tech turnover is high (low-wage, high-churn industry)</li>
+      <li>Customer gets a different person each time with franchises</li>
+      <li>TJ can build real relationships — "hey, noticed Buddy seems slower this week, everything ok?"</li>
+    </ul>
+  </div>
+
+  <div class="card win-card">
+    <h3>2. 🐌 Response Time</h3>
+    <p>Their quote flow: Zip code → form → wait for local franchisee to call back. TJ can respond in minutes, not hours. In service businesses, <strong>speed to lead = money.</strong></p>
+    <ul>
+      <li>National toll-free routes to a queue, then to local operator</li>
+      <li>Franchisee may not respond same-day (or even next-day)</li>
+      <li>TJ picks up the phone or texts back immediately</li>
+    </ul>
+  </div>
+
+  <div class="card win-card">
+    <h3>3. 💰 Franchise Overhead = Margin Pressure</h3>
+    <p>Franchisees pay: initial fee ($25-50K est), ongoing royalties (6-8% of revenue), marketing fund (1-2%), plus their own local costs. That overhead either gets passed to customers or squeezes service quality.</p>
+    <ul>
+      <li>TJ keeps 100% of revenue</li>
+      <li>Can undercut on price if needed while maintaining margins</li>
+      <li>Can reinvest in quality instead of corporate fees</li>
+    </ul>
+  </div>
+
+  <div class="card win-card">
+    <h3>4. 📍 Early-Stage STL Presence</h3>
+    <p>Their STL footprint is tiny. Only 2 confirmed suburb pages. No local reviews. No established reputation in STL specifically. TJ's existing customers, GBP reviews, and Nextdoor presence all matter MORE than their national brand right now.</p>
+  </div>
+
+  <div class="card win-card">
+    <h3>5. 🎯 No Local SEO Depth</h3>
+    <ul>
+      <li>Their Missouri page only shows KC cities</li>
+      <li>Generic template content on STL pages (not locally written)</li>
+      <li>No "Kirkwood," "Webster Groves," "Crestwood" pages = opportunity</li>
+      <li>TJ's Google Business Profile with real STL reviews outranks a national template page</li>
+    </ul>
+  </div>
+
+  <div class="card win-card">
+    <h3>6. 🤖 Template Everything</h3>
+    <p>Their military branding is corny to some. "Land mines," "troops," "battle" — it's heavy-handed. TJ's authentic, laid-back brand (real dude, real dog lover, local) resonates differently with STL customers who prefer genuine over gimmicky.</p>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<div class="panel" id="scripts">
+  <div class="card">
+    <h3>🗣️ Battle Scripts</h3>
+    <p>When customers mention Scoop Soldiers or ask about competitors, here's how to respond. <strong>Never trash-talk.</strong> Position, don't attack.</p>
+  </div>
+
+  <div class="card">
+    <h3>Script 1: "I was also looking at Scoop Soldiers..."</h3>
+    <div class="script-box">
+      <div class="label">TJ's Response</div>
+      <div class="line">"Yeah, I know them — they're a big national franchise. Great that you're doing your homework! Here's the thing though: <span class="emphasis">when you call Tidy Tails, you get me. I'm the owner.</span> I'm the one in your yard every week. You're not getting a rotating cast of minimum-wage employees."</div>
+      <div class="line">"I also live right here in [neighborhood]. If something ever comes up, I'm a text away and I can usually swing by same-day. With a franchise, you're calling a 1-800 number and hoping someone gets back to you."</div>
+      <div class="line">"And honestly? <span class="emphasis">Our pricing is competitive.</span> Especially if you've got multiple dogs — we don't nickel-and-dime per dog."</div>
+    </div>
+    <button class="copy-btn" onclick="copyScript(this, 1)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3>Script 2: "They're cheaper than you..."</h3>
+    <div class="script-box">
+      <div class="label">TJ's Response</div>
+      <div class="line">"I hear ya. Their per-visit rate might look lower, but let me ask — <span class="emphasis">how many dogs you got?</span> Because our $70/month covers the whole yard, no matter how many pups. With them, extra dogs can push the price up."</div>
+      <div class="line">"Also worth knowing: they're a franchise, so there's a lot of overhead baked into that price that doesn't benefit you. <span class="emphasis">With me, every dollar goes into doing the job right.</span> No franchise fees, no corporate cut."</div>
+      <div class="line">"Tell you what — try me for a month. If it's not the best service you've had, I'll refund your money. No contract, no hassle."</div>
+    </div>
+    <button class="copy-btn" onclick="copyScript(this, 2)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3>Script 3: "Why should I pick a small local company?"</h3>
+    <div class="script-box">
+      <div class="label">TJ's Response</div>
+      <div class="line">"Because <span class="emphasis">this isn't a side gig for me — this is my business, my reputation, my livelihood.</span> When I'm in your yard, I treat it like it's my own. I notice things. I know your dogs' names. I'll text you if I see something off."</div>
+      <div class="line">"With a franchise, you're a number in a system. With Tidy Tails, you're a neighbor I'm taking care of. <span class="emphasis">That's the difference.</span>"</div>
+      <div class="line">"Plus, you're supporting a local St. Louis business, not sending profits to corporate Texas."</div>
+    </div>
+    <button class="copy-btn" onclick="copyScript(this, 3)">📋 Copy</button>
+  </div>
+
+  <div class="card">
+    <h3>Script 4: Jamie's Commercial Pitch (vs Scoop Soldiers)</h3>
+    <div class="script-box">
+      <div class="label">Jamie's Commercial Script</div>
+      <div class="line">"Hi, I'm Jamie with Tidy Tails — we're a local St. Louis pet waste removal company. I know there are national franchises out there now, but here's what makes us different:"</div>
+      <div class="line">"<span class="emphasis">Same tech every visit</span> — your residents will recognize us and feel comfortable. We're not rotating random employees through your property."</div>
+      <div class="line">"<span class="emphasis">Local owner available</span> — if there's ever an issue, you're not calling an 800 number. TJ, our owner, is right here in [area]. Problems get solved fast."</div>
+      <div class="line">"<span class="emphasis">Competitive pricing without franchise markup</span> — because we don't pay franchise fees, we can be more flexible on pricing and custom plans."</div>
+      <div class="line">"Can I set up a quick walkthrough this week? Takes 10 minutes and I'll have a custom quote for you same day."</div>
+    </div>
+    <button class="copy-btn" onclick="copyScript(this, 4)">📋 Copy</button>
+  </div>
+
+  <div class="card warn-card">
+    <h3>⚠️ What NOT To Say</h3>
+    <ul>
+      <li>❌ Never say "they're bad" or "they suck" — makes you look small</li>
+      <li>❌ Never say "they're a franchise" like it's a dirty word — just note the difference in experience</li>
+      <li>❌ Never directly name-drop Scoop Soldiers unless the customer brought them up first</li>
+      <li>❌ Never compete on price alone — compete on experience, reliability, personal touch</li>
+      <li>✅ Always redirect to YOUR strengths, not their weaknesses</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ACTION PLAN -->
+<div class="panel" id="actions">
+  <div class="card alert-card">
+    <h3>🚀 Anti-Scoop Soldiers Action Plan</h3>
+    <p>Concrete steps to defend our turf and win market share before they establish a foothold.</p>
+  </div>
+
+  <div class="action-item">
+    <div class="priority">🔴 This Week — Critical</div>
+    <div class="desc"><strong>Lock down I-44 Corridor.</strong> Kirkwood, Webster Groves, Crestwood have NO Scoop Soldiers pages. Get door hangers out, Nextdoor posts up, and GBP optimized for these zip codes NOW.</div>
+  </div>
+
+  <div class="action-item">
+    <div class="priority">🔴 This Week — Critical</div>
+    <div class="desc"><strong>Speed to lead.</strong> When leads come in, respond within 5 minutes. Scoop Soldiers routes through a national funnel — TJ responding instantly is a massive advantage.</div>
+  </div>
+
+  <div class="action-item">
+    <div class="priority">🟡 This Month — High</div>
+    <div class="desc"><strong>Add deodorizer service.</strong> Buy enzyme concentrate ($20-30 on Amazon), add as $10-15/visit add-on. Instant competitive parity + 60-70% margin upsell. Easy money.</div>
+  </div>
+
+  <div class="action-item">
+    <div class="priority">🟡 This Month — High</div>
+    <div class="desc"><strong>Gate photo system.</strong> Start texting a photo of the closed/locked gate after every visit. Free to do, huge trust signal, matches their best feature.</div>
+  </div>
+
+  <div class="action-item">
+    <div class="priority">🟡 This Month — High</div>
+    <div class="desc"><strong>Review blitz.</strong> Ask every current customer for a Google review this week. Even 5-10 local STL reviews beats their 0 local reviews. Reviews are the #1 local SEO signal.</div>
+  </div>
+
+  <div class="action-item">
+    <div class="priority">🟡 This Month — High</div>
+    <div class="desc"><strong>"Local vs Corporate" positioning.</strong> Update website with messaging: "Locally owned. Not a franchise. Your neighbor, not a number." Don't mention competitors — just highlight what makes TJ different.</div>
+  </div>
+
+  <div class="action-item">
+    <div class="priority">🟢 Next 90 Days</div>
+    <div class="desc"><strong>Gift cards.</strong> Scoop Soldiers sells them. TJ should too. Holidays, birthdays, Mother's Day — "Give the gift of a clean yard." Simple to implement, surprisingly good revenue.</div>
+  </div>
+
+  <div class="action-item">
+    <div class="priority">🟢 Next 90 Days</div>
+    <div class="desc"><strong>Referral program.</strong> Match their refer-a-friend page. Offer $10 off for both referrer and new customer. Formalize what's probably already happening informally.</div>
+  </div>
+
+  <div class="action-item">
+    <div class="priority">🟢 Next 90 Days</div>
+    <div class="desc"><strong>Commercial waste stations.</strong> If going after apartments/HOAs, offering station install + maintenance is table stakes. Source stations ($50-100 each on Amazon), add as commercial upsell.</div>
+  </div>
+
+  <div class="action-item">
+    <div class="priority">🔵 Ongoing</div>
+    <div class="desc"><strong>Monitor their STL expansion.</strong> Check monthly for new service-area pages (Kirkwood, Ballwin, Webster Groves, etc.). When they pop up, we need to already be established there.</div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyScript(btn, num) {
+  const box = btn.previousElementSibling;
+  const lines = box.querySelectorAll('.line');
+  let text = '';
+  lines.forEach(l => { text += l.textContent + '\n\n'; });
+  navigator.clipboard.writeText(text.trim()).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+
+</body>
+</html>
