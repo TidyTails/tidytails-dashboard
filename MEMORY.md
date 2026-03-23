@@ -113,6 +113,8 @@
 - 🔴 DoodyCalls — best SEO in market, national franchise
 - 🟡 No. 2 Crew — professional, $76/mo weekly, good branding
 
+**NEW (Feb 2026):** Scoop Soldiers — national franchise, $19.99/visit (~$80/mo weekly). Commercial + residential + HOA. TJ's $70/mo beats them.
+
 **Dead/dying:** Pawfect (404), Poopy Paws (DNS dead), Fresh Paws (DNS expired), STL Pooper Scoopers (closed), Super Scoopers (site down)
 
 **Strategy:** DON'T lower prices — awareness problem, not price problem. Lead with $70/mo flat rate value.

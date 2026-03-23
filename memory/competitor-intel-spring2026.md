@@ -1,5 +1,5 @@
 # STL Pet Waste Competitor Intelligence — Spring 2026
-*Researched: March 22, 2026*
+*Researched: March 22, 2026 | Updated: March 23, 2026 (Scoop Soldiers entry)*
 
 ## Active Competitors (10-12 total)
 
@@ -23,6 +23,20 @@
 - Free first cleanup with recurring service
 - Focused on city center (Soulard, Lafayette Square area)
 - Yard deodorizing service
+
+**Scoop Soldiers — St. Louis** ⚠️ NEW (Feb 2026)
+- National franchise, est. 2010, just expanded to STL (Feb 6, 2026 press release)
+- Phone: (877) 930-POOP
+- Website: scoopsoldiers.com/locations/st-louis
+- Pricing: $19.99/visit weekly (1-4 dogs), $17.99 2x/week, $24.99 bi-weekly
+- Monthly cost: ~$80/mo weekly (vs TJ's $70 flat)
+- Services: Residential + Commercial + HOA, pet waste stations, deodorizer, sanitizer
+- Actively targeting property managers (separate commercial pricing page)
+- 100% money-back guarantee
+- Partners with Valor Service Dogs (marketing angle)
+- SEO: Fresh local pages, press release coverage on news sites
+- THREAT: National brand with commercial infrastructure, but TJ beats on price ($70 vs $80) and local trust
+- COUNTER: Move fast on I-44 corridor commercial leads before they establish relationships
 
 ### TIER 2: MEDIUM THREAT (Local Independents)
 
