@@ -265,7 +265,7 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 | Competitors tracked | 16 | ~12-13 active, 3 dead |
 | Shed Marketplace listings | 23 | $139,977 total lot value |
 
-**⚠️ Brave Search API:** 1,962/2,000 monthly quota used (resets next month)
+**⚠️ Brave Search API:** 1,993/2,000 monthly quota used — EFFECTIVELY DEAD until reset (7 queries left!)
 
 ---
 
