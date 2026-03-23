@@ -824,7 +824,89 @@
 | **Kensington West** | Apt — Ballwin | See website | 🟡 MEDIUM | $200-$400 |
 | **ReNew Chesterfield** | Apt — Chesterfield | See website | 🟡 MEDIUM | $200-$400 |
 
-**Total pipeline if all won:** $9,650-$24,550/month (55 leads)
+---
+
+## 🐕 TIER 1: Dog Businesses — FRANCHISE CHAINS (March 23, 2026 — 9:00 AM)
+
+### Camp Bow Wow — St. Charles ⭐ NATIONAL FRANCHISE
+- **Type:** Dog Daycare / Boarding / Grooming / Training — National Franchise
+- **Address:** St. Charles, MO
+- **Phone:** (636) 241-9341
+- **Website:** campbowwow.com/st-charles
+- **Why Good Fit:** National franchise with indoor AND outdoor play yards. Live webcams = marketing-conscious. Dogs play all day = massive waste. St. Charles is TJ's territory. Landing this opens doors to other CBW locations. Already has referral program.
+- **Found:** March 23, 2026
+- **Status:** New
+- **Pitch angle:** "Your dogs play outside all day — we handle outdoor waste so play yards stay clean. We're in St. Charles. Plus referral deal for your clients who need yard cleanup at home."
+
+### Dogtopia — Richmond/Chesterfield ⭐ NATIONAL FRANCHISE
+- **Type:** Dog Daycare / Boarding / Spa — National Franchise
+- **Address:** Chesterfield/Richmond area, MO
+- **Phone:** See website
+- **Website:** dogtopia.com/richmond-chesterfield
+- **Why Good Fit:** FIVE large indoor playrooms + spacious outdoor artificial turf area. Off-leash play all day. Separate by size/temperament. Affluent Chesterfield location. Spa + daycare + boarding = high dog volume. One location could open franchise network.
+- **Found:** March 23, 2026
+- **Status:** New
+- **Pitch angle:** "5 playrooms and outdoor turf areas — lots of dogs, lots of waste. Professional cleanup keeps the premium Dogtopia experience intact."
+
+---
+
+## 🏛️ TIER 1: Municipal — ST. CHARLES PARK DISTRICT SYSTEM (March 23, 2026)
+
+### St. Charles Park District Dog Parks ⭐⭐ 3 PARKS, 1 CONTRACT
+- **Type:** Municipal Dog Park System — 3 Locations
+- **Phone:** (636) 947-7223 (Parks Admin)
+- **Website:** stcparks.org/dog-parks
+- **Locations:**
+  - East Side Sports Complex — .84 acre with pond access
+  - River Bend Community Park — 3/4 acre with doggy water fountain
+  - James O. Breen Community Park — 2.56 acres with equipment & activity stations
+- **Total Acreage:** 4.14 acres of dog park
+- **Why Good Fit:** Three FREE public dog parks = heavy use. Currently unsupervised. One contract covers all 3. Park District actively supports dog parks (accepts donations). Municipal = stable recurring.
+- **Found:** March 23, 2026
+- **Status:** New
+- **Pitch angle:** "Over 4 acres of dog park across 3 locations. One vendor, one invoice, one flat monthly rate."
+
+---
+
+## 🐕 TIER 2: Referral Partners — MAJOR ORGANIZATIONS (March 23, 2026)
+
+### Humane Society of Missouri — North Campus ⭐ MASSIVE REFERRAL
+- **Type:** Animal Shelter / Adoption Center — Referral Partner
+- **Phone:** (314) 647-8800
+- **Website:** hsmo.org
+- **Address:** Main: 1201 Macklind Ave, STL 63110 — North Campus in Maryland Heights
+- **Why Good Fit:** LARGEST animal welfare org in MO. Thousands of dog adoptions/year. Every adoption = potential Tidy Tails customer. New pet parent info packets = perfect flyer placement. Maryland Heights campus in TJ's area.
+- **Found:** March 23, 2026
+- **Status:** New
+- **Pitch angle:** "Every adopted dog goes home to a yard. We want to be in your new pet parent welcome packet. 15% off first month for adopters."
+
+### Petco — Florissant (Hwy 67) ⭐ HIGH TRAFFIC REFERRAL
+- **Type:** Pet Retail / Grooming — Referral Partner
+- **Phone:** (314) 839-2090
+- **Address:** 175 N Hwy 67, Florissant, MO 63031
+- **Why Good Fit:** Major pet retail on Hwy 67 in TJ's core 63031 zip. Community boards. Hosts adoption events. Grooming clients = invested dog owners. Saturday events = table opportunity.
+- **Found:** March 23, 2026
+- **Status:** New
+- **Pitch angle:** "Cards at your Florissant location + table at adoption events. Local pooper scooper service. Win-win."
+
+---
+
+## 🏠 TIER 1: Villa Communities — WENTZVILLE EXPANSION (March 23, 2026)
+
+### Villas of Wentzville ⭐ NEW BUILD — WENTZVILLE
+- **Type:** Villa-Style Rental Community
+- **Phone:** (636) 332-1411
+- **Address:** Wentzville, MO 63385
+- **Why Good Fit:** Newer villa community in booming Wentzville. Individual yards + common areas. Pet-friendly. Fastest-growing city in STL metro. Pairs with Heartland View for Wentzville route. Dual pitch: common areas + individual resident service.
+- **Found:** March 23, 2026
+- **Status:** New
+- **Pitch angle:** "Common area cleanup AND individual resident service as a community perk. Building a Wentzville route now."
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated March 23, 2026 — 61 total leads)
+
+**Total pipeline if all won:** $11,050-$28,000/month (61 leads)
 **Realistic close rate (20-30%):** $1,930-$7,365/month in new recurring revenue
 
 ### 🗺️ NORTH COUNTY VET BLITZ — THE UNTAPPED GOLDMINE

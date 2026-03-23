@@ -1,6 +1,12 @@
 # Ad Copy Archive — Shed Ads
 *Tracks previously written ads to avoid repeats*
 
+## March 23, 2026 (9 AM Daily)
+- **Shed-Mar162** — "Monday Motivation" — Fresh start energy, new week same garage, do it THIS Monday
+- **Shed-Mar163** — "The Excuse Generator" — Top 5 excuses humor, objection busting, spouse joke
+- **Shed-Mar164** — "The Before & After" — Transformation visualization, garage chaos vs clean
+- **Shed-Mar165** — "Two Types of People" — Social proof, "should've done this years ago" FOMO
+
 ## March 22, 2026 (Batch 2 — 9 AM)
 - **Shed-Mar158** — "The To-Do List" — Action procrastination guilt, how long on your list, cross it off
 - **Shed-Mar159** — "Spring Fever" — Perfect weather timing, garage disaster from last fall, "this IS next year"
@@ -38,6 +44,10 @@
 - **Shed-Mar141** — "The Math" — Home addition vs storage unit vs shed cost comparison
 
 ## Hooks Used (don't repeat within 2 weeks)
+- Monday fresh start / new week energy
+- Top 5 excuses / objection busting humor
+- Before & after transformation visualization
+- Two types of people / social proof FOMO
 - Sunday lazy day / garage avoidance
 - Backyard season / hangout space upgrade
 - Neighborhood secret / social proof
