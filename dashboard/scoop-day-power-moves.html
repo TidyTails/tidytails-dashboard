@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐕 Scoop Day Power Moves — Monday Route</title>
+<style>
+:root {
+  --bg: #0a0a0a; --card: #111; --card2: #1a1a1a; --border: #2a2a2a;
+  --text: #f0f0f0; --text2: #999; --text3: #666;
+  --green: #10b981; --green-dim: rgba(16,185,129,0.12); --green-border: rgba(16,185,129,0.3);
+  --orange: #f59e0b; --orange-dim: rgba(245,158,11,0.12); --orange-border: rgba(245,158,11,0.3);
+  --blue: #3b82f6; --blue-dim: rgba(59,130,246,0.12); --blue-border: rgba(59,130,246,0.3);
+  --red: #ef4444; --red-dim: rgba(239,68,68,0.12); --red-border: rgba(239,68,68,0.3);
+  --purple: #8b5cf6; --purple-dim: rgba(139,92,246,0.12); --purple-border: rgba(139,92,246,0.3);
+  --gold: #fbbf24; --gold-dim: rgba(251,191,36,0.12);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 100px; }
+
+/* Header */
+.header {
+  background: linear-gradient(135deg, #0d1a0d, #1a2a1a);
+  border-bottom: 2px solid var(--green-border);
+  padding: 20px 16px; text-align: center;
+}
+.header h1 { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; }
+.header h1 .accent { color: var(--green); }
+.header .sub { color: var(--text2); font-size: 0.82rem; margin-top: 4px; }
+
+/* Stats bar */
+.stats-bar {
+  display: flex; gap: 8px; padding: 12px 16px; overflow-x: auto;
+  border-bottom: 1px solid var(--border); background: var(--card);
+}
+.stat-pill {
+  flex-shrink: 0; padding: 8px 14px; border-radius: 10px; text-align: center;
+  background: var(--card2); border: 1px solid var(--border); min-width: 80px;
+}
+.stat-pill .num { font-size: 1.4rem; font-weight: 800; }
+.stat-pill .label { font-size: 0.65rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+.stat-pill.green .num { color: var(--green); }
+.stat-pill.orange .num { color: var(--orange); }
+.stat-pill.blue .num { color: var(--blue); }
+.stat-pill.gold .num { color: var(--gold); }
+
+/* Container */
+.container { max-width: 640px; margin: 0 auto; padding: 16px; }
+
+/* Concept box */
+.concept {
+  background: linear-gradient(135deg, var(--green-dim), var(--blue-dim));
+  border: 1px solid var(--green-border); border-radius: 14px;
+  padding: 16px; margin-bottom: 20px;
+}
+.concept h2 { font-size: 1rem; color: var(--green); margin-bottom: 8px; }
+.concept p { font-size: 0.85rem; color: var(--text2); line-height: 1.5; }
+.concept .math {
+  display: flex; gap: 6px; align-items: center; justify-content: center;
+  margin-top: 12px; flex-wrap: wrap;
+}
+.concept .math span {
+  background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+  padding: 6px 12px; font-size: 0.82rem; font-weight: 600;
+}
+.concept .math .equals { background: none; border: none; color: var(--green); font-size: 1.2rem; }
+
+/* Customer stop card */
+.stop {
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+  margin-bottom: 14px; overflow: hidden; transition: all 0.3s;
+}
+.stop.complete { border-color: var(--green-border); background: rgba(16,185,129,0.03); }
+.stop-header {
+  padding: 14px 16px; display: flex; justify-content: space-between; align-items: center;
+  cursor: pointer; user-select: none;
+}
+.stop-header .left { display: flex; align-items: center; gap: 10px; }
+.stop-header .num {
+  width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem; font-weight: 700; background: var(--card2); border: 1px solid var(--border);
+}
+.stop.complete .num { background: var(--green); color: #000; border-color: var(--green); }
+.stop-header .name { font-weight: 700; font-size: 0.95rem; }
+.stop-header .city { color: var(--text2); font-size: 0.78rem; }
+.stop-header .arrow { color: var(--text3); font-size: 1.2rem; transition: transform 0.3s; }
+.stop.open .arrow { transform: rotate(180deg); }
+.stop-header .check-done { display: none; color: var(--green); font-size: 1.1rem; }
+.stop.complete .check-done { display: block; }
+.stop.complete .arrow { display: none; }
+
+.stop-body { display: none; padding: 0 16px 16px; }
+.stop.open .stop-body { display: block; }
+
+/* Power move items */
+.move {
+  display: flex; align-items: flex-start; gap: 10px; padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.move:last-child { border: none; }
+.move input[type="checkbox"] {
+  width: 20px; height: 20px; margin-top: 2px; accent-color: var(--green); flex-shrink: 0; cursor: pointer;
+}
+.move-content { flex: 1; }
+.move-content .title { font-size: 0.88rem; font-weight: 600; line-height: 1.3; }
+.move-content .desc { font-size: 0.78rem; color: var(--text2); margin-top: 3px; line-height: 1.4; }
+.move-content .script {
+  background: #0d1117; border: 1px solid var(--border); border-radius: 8px;
+  padding: 10px 12px; margin-top: 8px; font-size: 0.82rem; line-height: 1.5;
+  white-space: pre-wrap; position: relative;
+}
+.move-content .script .copy-btn {
+  position: absolute; top: 6px; right: 6px; background: var(--green); color: #000;
+  border: none; padding: 3px 10px; border-radius: 6px; font-size: 0.7rem;
+  font-weight: 700; cursor: pointer;
+}
+.move.done .title { text-decoration: line-through; color: var(--text3); }
+.tag {
+  display: inline-block; font-size: 0.65rem; font-weight: 700; padding: 2px 7px;
+  border-radius: 6px; margin-left: 6px; vertical-align: middle; text-transform: uppercase;
+}
+.tag-review { background: var(--gold-dim); color: var(--gold); }
+.tag-photo { background: var(--blue-dim); color: var(--blue); }
+.tag-referral { background: var(--purple-dim); color: var(--purple); }
+.tag-upsell { background: var(--orange-dim); color: var(--orange); }
+
+/* Before/After section */
+.before-after-tip {
+  background: var(--blue-dim); border: 1px solid var(--blue-border); border-radius: 12px;
+  padding: 14px; margin-bottom: 20px;
+}
+.before-after-tip h3 { color: var(--blue); font-size: 0.9rem; margin-bottom: 6px; }
+.before-after-tip p { font-size: 0.8rem; color: var(--text2); line-height: 1.5; }
+.before-after-tip ol { font-size: 0.8rem; color: var(--text2); padding-left: 18px; margin-top: 6px; line-height: 1.7; }
+
+/* Quick text section */
+.quick-text {
+  background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+  padding: 16px; margin-bottom: 14px;
+}
+.quick-text h3 { font-size: 0.95rem; margin-bottom: 10px; }
+.text-option {
+  background: #0d1117; border: 1px solid var(--border); border-radius: 8px;
+  padding: 12px; margin-bottom: 10px; font-size: 0.85rem; line-height: 1.5;
+  white-space: pre-wrap; position: relative; cursor: pointer;
+}
+.text-option .copy-btn {
+  position: absolute; top: 8px; right: 8px; background: var(--green); color: #000;
+  border: none; padding: 4px 12px; border-radius: 6px; font-size: 0.72rem;
+  font-weight: 700; cursor: pointer;
+}
+.text-option:active { background: #111; }
+
+/* End of day tally */
+.tally {
+  background: linear-gradient(135deg, #1a1a0d, #2a2a1a);
+  border: 1px solid var(--gold); border-radius: 14px;
+  padding: 20px; margin-top: 20px; text-align: center;
+}
+.tally h2 { color: var(--gold); font-size: 1.1rem; margin-bottom: 12px; }
+.tally-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.tally-item {
+  background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+  padding: 12px; text-align: center;
+}
+.tally-item .count { font-size: 2rem; font-weight: 800; }
+.tally-item .what { font-size: 0.72rem; color: var(--text2); margin-top: 2px; }
+
+/* Floating progress */
+.float-bar {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(10,10,10,0.95); backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border); padding: 10px 16px;
+  display: flex; align-items: center; gap: 12px; z-index: 100;
+}
+.float-bar .prog-track {
+  flex: 1; height: 8px; background: var(--card2); border-radius: 4px; overflow: hidden;
+}
+.float-bar .prog-fill {
+  height: 100%; background: linear-gradient(90deg, var(--orange), var(--green));
+  border-radius: 4px; transition: width 0.4s;
+}
+.float-bar .prog-text { font-size: 0.82rem; font-weight: 700; white-space: nowrap; min-width: 60px; text-align: right; }
+
+@media (max-width: 400px) {
+  .concept .math { flex-direction: column; gap: 4px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🐕 Scoop Day <span class="accent">Power Moves</span></h1>
+  <p class="sub">Turn your Monday route into a marketing machine — zero extra time</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat-pill green"><div class="num" id="stopsComplete">0</div><div class="label">Stops Done</div></div>
+  <div class="stat-pill gold"><div class="num" id="reviewsAsked">0</div><div class="label">Reviews Asked</div></div>
+  <div class="stat-pill blue"><div class="num" id="photosTaken">0</div><div class="label">GBP Photos</div></div>
+  <div class="stat-pill orange"><div class="num" id="referralsMentioned">0</div><div class="label">Referrals</div></div>
+</div>
+
+<div class="container">
+
+<div class="concept">
+  <h2>💡 The Idea</h2>
+  <p>You're already at 8 yards every Monday. Each stop = 15-20 min of face time. That's <strong>2+ hours of free marketing</strong> you're leaving on the table.</p>
+  <div class="math">
+    <span>8 stops</span>
+    <span class="equals">×</span>
+    <span>3 micro-tasks</span>
+    <span class="equals">=</span>
+    <span style="color: var(--green);">24 growth actions</span>
+  </div>
+</div>
+
+<div class="before-after-tip">
+  <h3>📸 GBP Photo Goldmine</h3>
+  <p>Google Business Profile photos get <strong>42% more direction requests</strong> and <strong>35% more website clicks</strong>. You're IN the yards — snap some!</p>
+  <ol>
+    <li><strong>Before:</strong> Quick photo of the yard with poop visible (gross = motivating)</li>
+    <li><strong>After:</strong> Same angle, pristine yard — satisfying AF</li>
+    <li><strong>Upload both</strong> to GBP under "Photos" → instant social proof</li>
+  </ol>
+  <p style="margin-top:8px;color:var(--blue);font-weight:600;">🎯 Goal: 3+ before/after pairs this Monday = 6 GBP photos</p>
+</div>
+
+<!-- STOP 1 -->
+<div class="stop" data-stop="1">
+  <div class="stop-header" onclick="toggleStop(this)">
+    <div class="left">
+      <div class="num">1</div>
+      <div><div class="name">Mrs. Candee</div><div class="city">Saint Louis 63136 · Weekly · $60/mo</div></div>
+    </div>
+    <span class="check-done">✅</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="stop-body">
+    <div class="move" data-type="review">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Ask for Google Review <span class="tag tag-review">⭐ Review</span></div>
+        <div class="desc">Loyal weekly customer — she'll do it if asked nicely</div>
+        <div class="script">"Hey Mrs. Candee! Quick favor — would you mind leaving us a Google review? It really helps small businesses like ours get found. I can text you the link right after!"<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+      </div>
+    </div>
+    <div class="move" data-type="photo">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Snap Before/After Photos <span class="tag tag-photo">📸 Photo</span></div>
+        <div class="desc">Take a wide shot before you start, then same angle after. Upload to GBP tonight.</div>
+      </div>
+    </div>
+    <div class="move" data-type="referral">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Mention Referral Program <span class="tag tag-referral">💜 Referral</span></div>
+        <div class="desc">$25 off for both — she probably knows neighbors with dogs</div>
+        <div class="script">"By the way, if you know anyone who'd want their yard cleaned, we do $25 off for both of you. Just have 'em mention your name!"<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STOP 2 -->
+<div class="stop" data-stop="2">
+  <div class="stop-header" onclick="toggleStop(this)">
+    <div class="left">
+      <div class="num">2</div>
+      <div><div class="name">Jody</div><div class="city">Saint Louis 63114 · Biweekly · $90/mo</div></div>
+    </div>
+    <span class="check-done">✅</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="stop-body">
+    <div class="move" data-type="review">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Ask for Google Review <span class="tag tag-review">⭐ Review</span></div>
+        <div class="desc">Biweekly = still sees great results. Perfect candidate.</div>
+        <div class="script">"Hey Jody! Really quick — we're trying to build up our Google reviews. Would you be willing to leave one? Takes like 30 seconds and it means the world to us."<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+      </div>
+    </div>
+    <div class="move" data-type="photo">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Snap Before/After Photos <span class="tag tag-photo">📸 Photo</span></div>
+        <div class="desc">Biweekly yards = more dramatic transformation. Great before/after material.</div>
+      </div>
+    </div>
+    <div class="move" data-type="referral">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Mention Referral Program <span class="tag tag-referral">💜 Referral</span></div>
+        <div class="desc">$25 off for both parties</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STOP 3 -->
+<div class="stop" data-stop="3">
+  <div class="stop-header" onclick="toggleStop(this)">
+    <div class="left">
+      <div class="num">3</div>
+      <div><div class="name">Shannon Zamarripa</div><div class="city">Florissant 63031 · Weekly · $140/mo</div></div>
+    </div>
+    <span class="check-done">✅</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="stop-body">
+    <div class="move" data-type="review">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Ask for Google Review <span class="tag tag-review">⭐ Review</span></div>
+        <div class="desc">Highest-paying customer ($140/mo) — clearly loves the service. PRIORITY ask.</div>
+        <div class="script">"Shannon, you've been with us a while now and I really appreciate it. Would you be open to leaving a quick Google review? As a small local business, every review is huge for us."<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+      </div>
+    </div>
+    <div class="move" data-type="photo">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Snap Before/After Photos <span class="tag tag-photo">📸 Photo</span></div>
+        <div class="desc">Multiple dogs = more dramatic cleanup. Great showcase yard.</div>
+      </div>
+    </div>
+    <div class="move" data-type="referral">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Mention Referral — Florissant Neighbors <span class="tag tag-referral">💜 Referral</span></div>
+        <div class="desc">She's in Florissant where we have multiple customers already. Cluster potential is HIGH.</div>
+        <div class="script">"We actually service a few yards in Florissant already — if any of your neighbors mention needing help, send 'em our way! $25 off for both of you."<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STOP 4 -->
+<div class="stop" data-stop="4">
+  <div class="stop-header" onclick="toggleStop(this)">
+    <div class="left">
+      <div class="num">4</div>
+      <div><div class="name">Amanda Harris</div><div class="city">Florissant 63031 · Weekly · $120/mo</div></div>
+    </div>
+    <span class="check-done">✅</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="stop-body">
+    <div class="move" data-type="review">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Ask for Google Review <span class="tag tag-review">⭐ Review</span></div>
+        <div class="desc">Another high-value Florissant customer. Her review helps local SEO.</div>
+        <div class="script">"Hey Amanda! Quick question — would you be down to leave us a Google review sometime? We're a small local biz and it really helps people find us."<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+      </div>
+    </div>
+    <div class="move" data-type="photo">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Snap Before/After Photos <span class="tag tag-photo">📸 Photo</span></div>
+        <div class="desc">Back-to-back with Shannon = efficient photo session for Florissant area.</div>
+      </div>
+    </div>
+    <div class="move" data-type="upsell">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Referral + Neighbor Cluster <span class="tag tag-referral">💜 Referral</span></div>
+        <div class="desc">Same zip as Shannon — cluster these two to minimize drive time for new signups</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STOP 5 -->
+<div class="stop" data-stop="5">
+  <div class="stop-header" onclick="toggleStop(this)">
+    <div class="left">
+      <div class="num">5</div>
+      <div><div class="name">Lawrence</div><div class="city">Saint Louis 63108 · Biweekly · $100/mo</div></div>
+    </div>
+    <span class="check-done">✅</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="stop-body">
+    <div class="move" data-type="review">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Ask for Google Review <span class="tag tag-review">⭐ Review</span></div>
+        <div class="desc">Urban STL customer — his review targets the city search market</div>
+        <div class="script">"Lawrence, real quick — would you leave us a Google review when you get a chance? Takes 30 seconds, helps us a ton. I'll text the link!"<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+      </div>
+    </div>
+    <div class="move" data-type="photo">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Snap Before/After Photos <span class="tag tag-photo">📸 Photo</span></div>
+        <div class="desc">Urban yard = different look. Good variety for GBP photo gallery.</div>
+      </div>
+    </div>
+    <div class="move" data-type="referral">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Mention Referral Program <span class="tag tag-referral">💜 Referral</span></div>
+        <div class="desc">CWE/63108 area has tons of dog owners</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STOP 6 -->
+<div class="stop" data-stop="6">
+  <div class="stop-header" onclick="toggleStop(this)">
+    <div class="left">
+      <div class="num">6</div>
+      <div><div class="name">Greg</div><div class="city">O'Fallon 63366 · Monthly · $50/mo</div></div>
+    </div>
+    <span class="check-done">✅</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="stop-body">
+    <div class="move" data-type="review">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Ask for Google Review <span class="tag tag-review">⭐ Review</span></div>
+        <div class="desc">O'Fallon = different service area. Diversifies review locations.</div>
+        <div class="script">"Hey Greg, I've got a quick ask — would you be willing to leave a Google review for us? Really helps other people in O'Fallon find us."<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+      </div>
+    </div>
+    <div class="move" data-type="upsell">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Suggest Biweekly Upgrade <span class="tag tag-upsell">📈 Upsell</span></div>
+        <div class="desc">Monthly at $50 → biweekly at $90 = nearly double revenue. Monthly yards always look worse.</div>
+        <div class="script">"Greg, just a thought — a lot of our customers who started monthly ended up switching to biweekly. The yard stays way cleaner and it's only $90/month instead of $50. No pressure, just throwing it out there!"<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+      </div>
+    </div>
+    <div class="move" data-type="photo">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Snap Before/After — Monthly Cleanup <span class="tag tag-photo">📸 Photo</span></div>
+        <div class="desc">Monthly yard = MOST dramatic before/after. A month of buildup → pristine. Best content.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STOP 7 -->
+<div class="stop" data-stop="7">
+  <div class="stop-header" onclick="toggleStop(this)">
+    <div class="left">
+      <div class="num">7</div>
+      <div><div class="name">Chastity</div><div class="city">Florissant 63033 · Biweekly · $90/mo</div></div>
+    </div>
+    <span class="check-done">✅</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="stop-body">
+    <div class="move" data-type="review">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Ask for Google Review <span class="tag tag-review">⭐ Review</span></div>
+        <div class="desc">Third Florissant customer — stacking reviews in our strongest zone</div>
+        <div class="script">"Chastity, would you do me a solid and leave us a Google review? Helps more Florissant folks find us. I'll text you the link — takes like 30 seconds!"<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+      </div>
+    </div>
+    <div class="move" data-type="photo">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Snap Before/After Photos <span class="tag tag-photo">📸 Photo</span></div>
+        <div class="desc">Biweekly = good amount of buildup for visible transformation</div>
+      </div>
+    </div>
+    <div class="move" data-type="referral">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Florissant Cluster Referral <span class="tag tag-referral">💜 Referral</span></div>
+        <div class="desc">Already 3 customers in Florissant — one more and it's a goldmine route</div>
+        <div class="script">"We're building up a nice route in Florissant — got a few customers here already. If you know anyone who hates scooping, we're doing $25 off for referrals!"<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- STOP 8 -->
+<div class="stop" data-stop="8">
+  <div class="stop-header" onclick="toggleStop(this)">
+    <div class="left">
+      <div class="num">8</div>
+      <div><div class="name">Preshus</div><div class="city">Saint Charles 63303 · Weekly · $100/mo</div></div>
+    </div>
+    <span class="check-done">✅</span>
+    <span class="arrow">▼</span>
+  </div>
+  <div class="stop-body">
+    <div class="move" data-type="review">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Ask for Google Review <span class="tag tag-review">⭐ Review</span></div>
+        <div class="desc">St. Charles review = expands our geographic review footprint</div>
+        <div class="script">"Preshus, hey! Would you mind leaving us a quick Google review? We're trying to grow in the St. Charles area and it really helps. I'll text you the link!"<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+      </div>
+    </div>
+    <div class="move" data-type="photo">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">Snap Before/After Photos <span class="tag tag-photo">📸 Photo</span></div>
+        <div class="desc">Weekly customer = consistent quality to show off</div>
+      </div>
+    </div>
+    <div class="move" data-type="referral">
+      <input type="checkbox" onchange="updateMove(this)">
+      <div class="move-content">
+        <div class="title">St. Charles Expansion Referral <span class="tag tag-referral">💜 Referral</span></div>
+        <div class="desc">Only customer in St. Charles — referrals here build a new route cluster</div>
+        <div class="script">"We'd love to get a few more customers in St. Charles so we can build a regular route out here. If anyone in your neighborhood needs help, $25 off for both of you!"<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- POST-ROUTE: Review Link Text -->
+<div class="quick-text">
+  <h3>📱 Post-Route: Text the Review Link</h3>
+  <p style="font-size:0.82rem;color:var(--text2);margin-bottom:12px;">After each stop where they said yes, send this text with the direct review link:</p>
+  
+  <div class="text-option">Hey! Thanks for agreeing to leave us a review 🙏 Here's the link — takes 30 seconds:
+
+https://g.page/r/Ce_hqIHanGLvEAE/review
+
+Even just a few words like "Great service, yard looks awesome!" goes a long way. We appreciate you! 🐾<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+
+  <div class="text-option">Quick reminder about that Google review! Here's the link whenever you get a sec:
+
+https://g.page/r/Ce_hqIHanGLvEAE/review
+
+Appreciate you so much! — Jamie @ Tidy Tails 🐕<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+</div>
+
+<!-- Post-route: GBP upload reminder -->
+<div class="quick-text">
+  <h3>📤 Tonight: Upload Photos to GBP</h3>
+  <p style="font-size:0.82rem;color:var(--text2);margin-bottom:8px;">After scooping, upload your before/after photos:</p>
+  <ol style="font-size:0.82rem;color:var(--text2);padding-left:18px;line-height:1.8;">
+    <li>Open <a href="https://business.google.com" target="_blank" style="color:var(--blue);">Google Business Profile</a></li>
+    <li>Tap "Photos" → "Add photos"</li>
+    <li>Upload all before/after pairs</li>
+    <li>Add a caption: "Before & after cleanup in [City]! 🐾"</li>
+  </ol>
+</div>
+
+<!-- End of Day Tally -->
+<div class="tally">
+  <h2>📊 Monday Scorecard</h2>
+  <div class="tally-grid">
+    <div class="tally-item"><div class="count green" id="tallyReviews">0</div><div class="what">Reviews Asked</div></div>
+    <div class="tally-item"><div class="count" style="color:var(--blue)" id="tallyPhotos">0</div><div class="what">Photos Taken</div></div>
+    <div class="tally-item"><div class="count" style="color:var(--purple)" id="tallyReferrals">0</div><div class="what">Referrals Mentioned</div></div>
+    <div class="tally-item"><div class="count" style="color:var(--orange)" id="tallyUpsells">0</div><div class="what">Upsells Pitched</div></div>
+  </div>
+  <p style="color:var(--text2);font-size:0.78rem;margin-top:12px;">🎯 Monday Goal: 5+ reviews asked, 3+ photo pairs, all referrals mentioned</p>
+</div>
+
+</div>
+
+<!-- Floating progress bar -->
+<div class="float-bar">
+  <div class="prog-track"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+  <div class="prog-text" id="progText">0 / 24</div>
+</div>
+
+<script>
+// State
+const state = {
+  reviews: 0, photos: 0, referrals: 0, upsells: 0,
+  totalMoves: 0, completedMoves: 0, completedStops: 0
+};
+
+function init() {
+  // Load saved state
+  const saved = localStorage.getItem('scoopday-state');
+  if (saved) {
+    try {
+      const s = JSON.parse(saved);
+      // Restore checkboxes
+      document.querySelectorAll('.stop').forEach((stop, si) => {
+        stop.querySelectorAll('.move input[type="checkbox"]').forEach((cb, mi) => {
+          const key = `s${si}m${mi}`;
+          if (s.checks && s.checks[key]) {
+            cb.checked = true;
+            cb.closest('.move').classList.add('done');
+          }
+        });
+      });
+    } catch(e) {}
+  }
+  
+  // Count total moves
+  state.totalMoves = document.querySelectorAll('.move').length;
+  updateAllStats();
+}
+
+function toggleStop(header) {
+  const stop = header.closest('.stop');
+  if (stop.classList.contains('complete')) return; // don't re-open completed
+  stop.classList.toggle('open');
+}
+
+function updateMove(checkbox) {
+  const move = checkbox.closest('.move');
+  move.classList.toggle('done', checkbox.checked);
+  
+  // Check if all moves in this stop are done
+  const stop = checkbox.closest('.stop');
+  const moves = stop.querySelectorAll('.move input[type="checkbox"]');
+  const allDone = Array.from(moves).every(cb => cb.checked);
+  stop.classList.toggle('complete', allDone);
+  if (allDone) stop.classList.remove('open');
+  
+  updateAllStats();
+  saveState();
+}
+
+function updateAllStats() {
+  state.reviews = 0; state.photos = 0; state.referrals = 0; state.upsells = 0;
+  state.completedMoves = 0; state.completedStops = 0;
+  
+  document.querySelectorAll('.move').forEach(move => {
+    const cb = move.querySelector('input[type="checkbox"]');
+    if (cb && cb.checked) {
+      state.completedMoves++;
+      const type = move.dataset.type;
+      if (type === 'review') state.reviews++;
+      if (type === 'photo') state.photos++;
+      if (type === 'referral') state.referrals++;
+      if (type === 'upsell') state.upsells++;
+    }
+  });
+  
+  document.querySelectorAll('.stop').forEach(stop => {
+    const moves = stop.querySelectorAll('.move input[type="checkbox"]');
+    if (Array.from(moves).every(cb => cb.checked)) state.completedStops++;
+  });
+  
+  // Update displays
+  document.getElementById('stopsComplete').textContent = state.completedStops;
+  document.getElementById('reviewsAsked').textContent = state.reviews;
+  document.getElementById('photosTaken').textContent = state.photos;
+  document.getElementById('referralsMentioned').textContent = state.referrals;
+  
+  document.getElementById('tallyReviews').textContent = state.reviews;
+  document.getElementById('tallyPhotos').textContent = state.photos;
+  document.getElementById('tallyReferrals').textContent = state.referrals;
+  document.getElementById('tallyUpsells').textContent = state.upsells;
+  
+  // Progress bar
+  const pct = state.totalMoves > 0 ? Math.round((state.completedMoves / state.totalMoves) * 100) : 0;
+  document.getElementById('progFill').style.width = pct + '%';
+  document.getElementById('progText').textContent = `${state.completedMoves} / ${state.totalMoves}`;
+}
+
+function saveState() {
+  const checks = {};
+  document.querySelectorAll('.stop').forEach((stop, si) => {
+    stop.querySelectorAll('.move input[type="checkbox"]').forEach((cb, mi) => {
+      if (cb.checked) checks[`s${si}m${mi}`] = true;
+    });
+  });
+  localStorage.setItem('scoopday-state', JSON.stringify({ checks, ts: Date.now() }));
+}
+
+function copyText(btn) {
+  const container = btn.closest('.script') || btn.closest('.text-option');
+  const text = container.childNodes[0].textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅';
+    setTimeout(() => btn.textContent = 'Copy', 1500);
+  });
+}
+
+init();
+</script>
+
+</body>
+</html>
