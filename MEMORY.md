@@ -1,5 +1,5 @@
 # MEMORY.md — Franklin's Long-Term Memory
-*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 22, 2026 11 PM (week-end closeout)*
+*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 23, 2026 5 PM (Mon EOD memory consolidation)*
 
 ## Who I Am
 - **Name:** Franklin
@@ -110,22 +110,19 @@
 **Market size:** 15 tracked competitors, 2-4 dead/dying, ~10-12 active
 **TJ's position:** $70/mo flat = mid-market. Cheaper than Doggie Doodies ($83), Dirty Dog ($95), Pooey ($100). More expensive weekly than DDD ($54/mo), POOP 911 ($52/mo).
 
-**Top threats (updated Mar 23, 11 AM):**
+**Top threats (updated Mar 23, 5 PM — triple-verified):**
 - 🔴 DoodyCalls — best SEO in market, national franchise, only real commercial player
-- 🟠 No. 2 Crew — professional, $76/mo weekly, good branding (but /st-louis page 404)
-- ☠️ Dog Doody Defenders — **DEAD** (DNS gone Mar 23). Was cheapest in market, Florissant zip. ORPHANED CUSTOMERS = opportunity!
+- 🔴 Scoop Soldiers — **CONFIRMED ACTIVE IN STL** (triple-verified Mar 23). National franchise, 96+ territories. STL = new franchisee (early-stage). $15/visit residential. No local reviews yet. Professional copy, targeting HOAs + commercial. Has services TJ doesn't: deodorizer, sanitization, waste stations.
+- 🟠 No. 2 Crew — professional, $68/mo weekly ($19/visit), good branding (but /st-louis page 404)
 - 🟡 Little Stinkers — St. Charles County threat, multi-service
 
-**⚠️ MAJOR CHANGES (Mar 23 10AM scan):**
-- POOP 911 STL operator MAY BE DEAD — main location page 404, Missouri hub broken
-- **Scoop Soldiers IS ACTIVE IN STL** — full landing page live (corrects earlier 8AM false negative). Franchise with professional copy, targeting residential + commercial. No pricing visible. No local reviews yet.
-- Dirty Dog Wash dropped poo crew — site shows only grooming now
-- No. 2 Crew confirmed pricing: $19/visit (1 dog), $68/mo weekly, $35 biweekly — slightly cheaper than TJ on per-visit but TJ's $70/mo flat beats them on value
-- **Market is CONSOLIDATING** — some competitors dead but Scoop Soldiers filling the gap
+**Dead/dying (4 confirmed ☠️, 2 likely ❓):**
+- ☠️ Dog Doody Defenders — DNS gone Mar 23. Was cheapest ($54/mo), Florissant zip = TJ's turf. 15-30 orphaned customers!
+- ☠️ Pawfect Waste Solutions, Poopy Paws (DNS dead), Super Scoopers
+- ❓ POOP 911 STL — main location page 404 (but redirects to Lake St Louis variant, may be restructuring)
+- ❓ Dirty Dog Poo Crew — site now only shows grooming
 
-**Dead/dying:** Pawfect ☠️, Poopy Paws ☠️, Super Scoopers ☠️, Dog Doody Defenders ☠️ (NEW Mar 23), Dirty Dog Poo Crew ❓, POOP 911 STL ❓
-
-**Strategy:** Window is WIDE OPEN. Get GBP to 100%, get reviews, capture orphaned customers from dead competitors.
+**Strategy:** Market consolidating = WINDOW OPEN. 50-100+ orphaned customers from dead competitors. Race Scoop Soldiers for them NOW.
 
 ### Search Visibility (Mar 22)
 - **On-page SEO: A-** | **Off-page SEO: F** | **Overall: 30/100**
@@ -266,17 +263,18 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 
 | Category | Count | Notes |
 |----------|-------|-------|
-| Dashboard tools (live) | ~30 | +3 from 7 PM (referral kit, scoop-day, call sheet) |
+| Dashboard tools (live) | ~44 | +14 from Mar 23 marathon (battlecard, CRO, capture kit, scoop machine, etc.) |
 | Dashboard archive | 116 | All old tools preserved, not deleted |
-| City landing pages | 23 | 6 ghost pages NOT deployed to Cloudflare |
+| City landing pages | 23 | 6 ghost pages NOW DEPLOYED ✅ (4 missing from sitemap though) |
 | Blog posts | 12 | 1 duplicate merged into redirect |
 | Commercial leads | 49 | ZERO contacted |
 | Communities mapped | 31 | FB groups, dog parks, pet orgs, Reddit |
-| Competitors tracked | 16 | ~12-13 active, 3 dead |
+| Competitors tracked | 15 | ~10-11 active, 4 dead, 2 likely dead |
 | Shed Marketplace listings | 23 | $139,977 total lot value |
-| Autonomous tasks (Mar 22) | 20 | Record single-day output |
+| Autonomous tasks (Mar 23) | 15+ | Another monster day |
+| Deliverables (total) | 145+ | Crossing tooling saturation — STOP BUILDING |
 
-**⚠️ Brave Search API:** 1,993/2,000 monthly quota used — EFFECTIVELY DEAD until reset (7 queries left!)
+**⚠️ Brave Search API:** Quota likely still near limit — check before batch searches
 
 ---
 
@@ -292,6 +290,7 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 - **Mar 22 AM:** Telegram Topics configured — 6 topics (General, Tidy Tails, Sheds, Accountability, Franklin Admin, MOTRA). Group ID: `-1003877675524`.
 - **Mar 21:** TJ frustrated guides hidden in memory/ → **NEW RULE: PDF in chat + dashboard link.** Dashboard redesigned to 3 modes (TODAY/TOOLS/ARCHIVE).
 - **Mar 22:** RECORD DAY — 20 autonomous tasks. Dashboard declutter (144→28 files). Memory consolidated (43→21 active files). 6 ghost pages found (never deployed). Blog dedup fix. Telegram Topics configured (6-topic group). Paw-ty prep, GBP wizard, Mon call sheet, shed listings, community playbook, referral kit, scoop-day checklist, competitor battlemap — all built + shipped. Week-end archive completed 11 PM.
+- **Mar 23:** SPRING BLITZ WEEK 1 LAUNCH. 15+ autonomous tasks. Built: Scoop Soldiers battlecard, website CRO audit (C+ grade), lead response system, speed-to-lead templates, I-44 corridor expansion leads, Spring Blitz playbook (6-week plan), Week 1 launch kit, dead competitor capture kit, competitive pricing cheat sheet, directory citation blitz (25 directories), GBP optimization package (complete copy-paste guide), shed ads Mar 24-30, scoop day marketing machine, morning briefing. Dog Doody Defenders confirmed DEAD (DNS gone). Scoop Soldiers CONFIRMED active in STL (triple-verified). Market consolidating fast. Memory archived at EOD.
 
 ---
 
