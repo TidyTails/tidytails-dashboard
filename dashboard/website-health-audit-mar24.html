@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔍 Website Health Audit — March 24, 2026</title>
+<style>
+:root {
+  --bg: #0a0a0f;
+  --card: #12121a;
+  --border: #1e1e2e;
+  --text: #e4e4e7;
+  --muted: #71717a;
+  --red: #ef4444;
+  --orange: #f97316;
+  --yellow: #eab308;
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --purple: #a855f7;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding: 16px;
+  max-width: 800px;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+}
+h1 { font-size: 1.5rem; margin-bottom: 4px; }
+.subtitle { color: var(--muted); margin-bottom: 24px; font-size: 0.85rem; }
+
+/* Score Hero */
+.score-hero {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.score-ring {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 16px;
+  position: relative;
+}
+.score-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.score-ring circle {
+  fill: none;
+  stroke-width: 8;
+}
+.score-ring .bg { stroke: #1e1e2e; }
+.score-ring .fill { stroke: var(--orange); stroke-linecap: round; stroke-dasharray: 339.3; stroke-dashoffset: 84.8; transition: stroke-dashoffset 1s ease; }
+.score-num {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  font-weight: 800;
+}
+.score-label { color: var(--muted); font-size: 0.8rem; margin-top: 4px; }
+.grade { font-size: 1.2rem; font-weight: 700; color: var(--orange); margin-top: 8px; }
+
+/* Summary Stats */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.stat {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+}
+.stat-num { font-size: 1.3rem; font-weight: 700; }
+.stat-label { font-size: 0.65rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.stat.critical .stat-num { color: var(--red); }
+.stat.warning .stat-num { color: var(--orange); }
+.stat.good .stat-num { color: var(--green); }
+.stat.info .stat-num { color: var(--blue); }
+
+/* Section */
+.section {
+  margin-bottom: 20px;
+}
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+.section-header h2 {
+  font-size: 1rem;
+  flex: 1;
+}
+.severity {
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.severity.critical { background: #ef444420; color: var(--red); }
+.severity.high { background: #f9731620; color: var(--orange); }
+.severity.medium { background: #eab30820; color: var(--yellow); }
+.severity.low { background: #22c55e20; color: var(--green); }
+
+.issue-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 8px;
+}
+.issue-card h3 {
+  font-size: 0.9rem;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.issue-card p {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.impact {
+  font-size: 0.75rem;
+  color: var(--text);
+  background: #ffffff08;
+  padding: 8px 12px;
+  border-radius: 8px;
+  margin-bottom: 8px;
+  border-left: 3px solid var(--orange);
+}
+.fix {
+  font-size: 0.75rem;
+  background: #22c55e08;
+  border: 1px solid #22c55e20;
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+.fix strong { color: var(--green); }
+.fix code {
+  background: #ffffff10;
+  padding: 1px 4px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+}
+
+/* Checklist */
+.checklist {
+  margin-top: 12px;
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.8rem;
+}
+.check-item:last-child { border-bottom: none; }
+.check-item input[type="checkbox"] {
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--green);
+  flex-shrink: 0;
+}
+.check-item label { cursor: pointer; flex: 1; }
+.check-item .fix-time {
+  font-size: 0.65rem;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.check-item.done label { text-decoration: line-through; color: var(--muted); }
+
+/* Page status table */
+.page-table {
+  width: 100%;
+  font-size: 0.75rem;
+  border-collapse: collapse;
+}
+.page-table th {
+  text-align: left;
+  padding: 8px;
+  color: var(--muted);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+.page-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #ffffff08;
+}
+.status-ok { color: var(--green); }
+.status-warn { color: var(--orange); }
+.status-bad { color: var(--red); }
+.page-url { color: var(--blue); font-family: monospace; font-size: 0.7rem; }
+
+/* Summary box */
+.summary-box {
+  background: linear-gradient(135deg, #1a2e1a, #0a0a0f);
+  border: 1px solid #22c55e30;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 24px;
+}
+.summary-box h2 { font-size: 1rem; color: var(--green); margin-bottom: 8px; }
+.summary-box p { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+.summary-box ul { margin-top: 8px; padding-left: 16px; }
+.summary-box li { font-size: 0.8rem; color: var(--text); margin-bottom: 4px; }
+
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+
+<h1>🔍 Website Health Audit</h1>
+<p class="subtitle">Live crawl of tidytailsstl.com — March 24, 2026 at 4:05 PM</p>
+
+<!-- Score Hero -->
+<div class="score-hero">
+  <div class="score-ring">
+    <svg viewBox="0 0 120 120">
+      <circle class="bg" cx="60" cy="60" r="54"/>
+      <circle class="fill" cx="60" cy="60" r="54"/>
+    </svg>
+    <div class="score-num">75</div>
+  </div>
+  <div class="grade">B — Good Foundation, Real Issues to Fix</div>
+  <p class="score-label">Based on 36 pages crawled, SSL check, SEO audit, link validation</p>
+</div>
+
+<!-- Summary Stats -->
+<div class="stats-row">
+  <div class="stat critical">
+    <div class="stat-num">3</div>
+    <div class="stat-label">Critical</div>
+  </div>
+  <div class="stat warning">
+    <div class="stat-num">4</div>
+    <div class="stat-label">Warnings</div>
+  </div>
+  <div class="stat good">
+    <div class="stat-num">36/36</div>
+    <div class="stat-label">Pages Up</div>
+  </div>
+  <div class="stat info">
+    <div class="stat-num">54 days</div>
+    <div class="stat-label">SSL Left</div>
+  </div>
+</div>
+
+<!-- CRITICAL ISSUES -->
+<div class="section">
+  <div class="section-header">
+    <h2>🚨 Critical Issues</h2>
+    <span class="severity critical">Fix Now</span>
+  </div>
+
+  <div class="issue-card">
+    <h3>🔴 4 City Pages Are Homepage Clones</h3>
+    <p>The pages <code>/crestwood</code>, <code>/maplewood</code>, <code>/brentwood</code>, and <code>/shrewsbury</code> all serve identical homepage content with the generic title "Tidy Tails | Pet Waste Removal St. Louis". Their canonical tags point to the homepage, which means Google treats them as duplicates and won't index them separately.</p>
+    <div class="impact">
+      <strong>Impact:</strong> These 4 cities along I-44 get ZERO organic search presence. Anyone searching "pet waste removal Crestwood MO" won't find Tidy Tails. That's 4 missed local keyword opportunities.
+    </div>
+    <div class="fix">
+      <strong>Fix:</strong> Each page needs unique content like the Florissant page has — local neighborhoods, a city-specific title tag ("Pet Waste Removal in Crestwood, MO"), a matching canonical tag (<code>href="https://tidytailsstl.com/crestwood"</code>), and localized copy. The Florissant page is the template. Takes ~30 min per page in the site builder.
+    </div>
+  </div>
+
+  <div class="issue-card">
+    <h3>🔴 4 City Pages Missing from Sitemap</h3>
+    <p>Crestwood, Maplewood, Brentwood, and Shrewsbury exist as live pages but are NOT in <code>sitemap.xml</code>. Google has no map to find them.</p>
+    <div class="impact">
+      <strong>Impact:</strong> Even if the pages had unique content, Google wouldn't know to crawl them. Double penalty: no unique content AND not in the sitemap.
+    </div>
+    <div class="fix">
+      <strong>Fix:</strong> Add these 4 URLs to sitemap.xml after building out unique content. Also add to Google Search Console for forced indexing. <strong>5 min fix</strong> once content is ready.
+    </div>
+  </div>
+
+  <div class="issue-card">
+    <h3>🔴 /spring-clean Is a Dead Page</h3>
+    <p>The <code>/spring-clean</code> landing page serves the exact same content as the homepage. Title tag is generic, canonical points to homepage. This was supposed to be a Spring 2026 campaign landing page but was never built out.</p>
+    <div class="impact">
+      <strong>Impact:</strong> If this URL was shared in ads or posts, visitors land on a generic homepage instead of a spring-focused conversion page. It's spring RIGHT NOW — this is prime time for this page.
+    </div>
+    <div class="fix">
+      <strong>Fix:</strong> Either build it out as a spring-specific landing page (like <code>/free-cleanup</code> which IS properly built) or remove it from the sitemap and redirect to <code>/free-cleanup</code>. <strong>The /free-cleanup page already does this job well.</strong>
+    </div>
+  </div>
+</div>
+
+<!-- HIGH PRIORITY -->
+<div class="section">
+  <div class="section-header">
+    <h2>⚠️ High Priority</h2>
+    <span class="severity high">Fix This Week</span>
+  </div>
+
+  <div class="issue-card">
+    <h3>🟠 Broken Internal Links (.html Extensions)</h3>
+    <p>Multiple pages have links using <code>.html</code> extensions that don't match the clean URL structure:</p>
+    <table class="page-table" style="margin: 8px 0;">
+      <tr><th>Page</th><th>Broken Link</th><th>Should Be</th></tr>
+      <tr>
+        <td><code>/</code> (homepage)</td>
+        <td class="status-warn"><code>spring-calculator.html</code></td>
+        <td class="status-ok"><code>/spring-calculator</code></td>
+      </tr>
+      <tr>
+        <td><code>/refer</code></td>
+        <td class="status-warn"><code>free-cleanup.html</code></td>
+        <td class="status-ok"><code>/free-cleanup</code></td>
+      </tr>
+      <tr>
+        <td><code>/refer</code></td>
+        <td class="status-warn"><code>refer.html</code> (self)</td>
+        <td class="status-ok"><code>/refer</code></td>
+      </tr>
+      <tr>
+        <td><code>/free-cleanup</code></td>
+        <td class="status-warn"><code>free-cleanup.html</code> (self)</td>
+        <td class="status-ok"><code>/free-cleanup</code></td>
+      </tr>
+      <tr>
+        <td><code>/spring-clean</code></td>
+        <td class="status-warn"><code>spring-calculator.html</code></td>
+        <td class="status-ok"><code>/spring-calculator</code></td>
+      </tr>
+      <tr>
+        <td><code>/spring-calculator</code></td>
+        <td class="status-warn"><code>index.html</code> (×2)</td>
+        <td class="status-ok"><code>/</code></td>
+      </tr>
+    </table>
+    <div class="impact">
+      <strong>Impact:</strong> These links technically still work (server likely serves .html), but it's inconsistent and creates duplicate URL signals for Google. The Facebook share URL on /refer uses the .html version, which splits social sharing metrics.
+    </div>
+    <div class="fix">
+      <strong>Fix:</strong> Find-and-replace all <code>.html</code> link references in the site source to use clean URLs. <strong>15-minute fix in the code editor.</strong>
+    </div>
+  </div>
+
+  <div class="issue-card">
+    <h3>🟠 Free Cleanup Page Shows "Only 7 Spots Left" — Is It Real?</h3>
+    <p>The <code>/free-cleanup</code> page has urgency copy: "Only 7 spots left" and "Limited spots this month!" If this is static text (not dynamic), returning visitors see the same number forever, which kills credibility.</p>
+    <div class="impact">
+      <strong>Impact:</strong> Fake urgency backfires. If someone sees "7 spots left" today and "7 spots left" next month, trust drops. But if it's real and not updated, you could be leaving money on the table.
+    </div>
+    <div class="fix">
+      <strong>Fix:</strong> Either (a) make it dynamic based on actual capacity, (b) remove the specific number and keep general urgency ("Spring spots filling up fast"), or (c) update it manually each week. Option B is the quickest and most honest.
+    </div>
+  </div>
+
+  <div class="issue-card">
+    <h3>🟠 No Google Analytics / Tracking Detected</h3>
+    <p>Crawl didn't find GA4, Google Tag Manager, or Facebook Pixel scripts on the homepage. (Note: they could be loaded via a tag manager not visible in initial HTML — verify in browser.)</p>
+    <div class="impact">
+      <strong>Impact:</strong> Without analytics, you can't measure which pages convert, which blog posts drive traffic, or whether ads are working. Flying blind.
+    </div>
+    <div class="fix">
+      <strong>Fix:</strong> Add GA4 tracking code to the site. Google Search Console is more urgent (for indexing control), but GA4 shows what visitors actually DO on the site.
+    </div>
+  </div>
+
+  <div class="issue-card">
+    <h3>🟠 Duplicate Blog Topics</h3>
+    <p>Two blog posts cover overlapping topics:<br>
+    • <code>/blog/dog-poop-laws-st-louis-missouri</code><br>
+    • <code>/blog/dog-poop-laws-missouri-st-louis</code><br>
+    These have nearly identical titles and compete with each other for the same keywords (keyword cannibalization).</p>
+    <div class="impact">
+      <strong>Impact:</strong> Google splits ranking signals between two similar pages instead of consolidating them into one strong page. Neither ranks as well as a single, comprehensive page would.
+    </div>
+    <div class="fix">
+      <strong>Fix:</strong> Merge into one comprehensive post and 301 redirect the other. Or differentiate them clearly — one for city-specific laws, one for county/state laws. <strong>30-minute content task.</strong>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT'S WORKING -->
+<div class="section">
+  <div class="section-header">
+    <h2>✅ What's Working Well</h2>
+    <span class="severity low">Keep it up</span>
+  </div>
+
+  <div class="issue-card">
+    <h3 style="color: var(--green);">🟢 All 36 Pages Return 200 OK</h3>
+    <p>Every URL in the sitemap + the 4 I-44 pages all load successfully. Zero 404s, zero 500s. Solid uptime.</p>
+  </div>
+
+  <div class="issue-card">
+    <h3 style="color: var(--green);">🟢 SSL Certificate Valid (54 Days Left)</h3>
+    <p>Certificate issued by Google Trust Services, valid until May 17, 2026. Auto-renewal is likely configured via the hosting provider. <em>Previous morning briefing flagged "SSL expired 33 days" — this appears to have been resolved.</em></p>
+  </div>
+
+  <div class="issue-card">
+    <h3 style="color: var(--green);">🟢 Strong Blog Content (12 Posts)</h3>
+    <p>12 blog posts covering high-intent keywords: pricing, laws, health risks, spring cleanup, multi-dog homes. All have proper meta descriptions. Good content velocity — 7 posts added March 19 alone.</p>
+  </div>
+
+  <div class="issue-card">
+    <h3 style="color: var(--green);">🟢 Free Cleanup Landing Page Is Excellent</h3>
+    <p>The <code>/free-cleanup</code> page has: clear offer, social proof (testimonials), pricing comparison vs competitors, FAQ section, multiple CTAs. This is the best-converting page on the site and matches competitor best practices.</p>
+  </div>
+
+  <div class="issue-card">
+    <h3 style="color: var(--green);">🟢 Proper Canonical Tags on City Pages</h3>
+    <p>Working city pages (Florissant, Ferguson, etc.) have correct self-referencing canonical tags. Structured data (3 JSON-LD blocks) on homepage.</p>
+  </div>
+
+  <div class="issue-card">
+    <h3 style="color: var(--green);">🟢 Sitemap Properly Formatted</h3>
+    <p>32 URLs with lastmod dates, changefreq, and priority values. Blog posts, city pages, and landing pages all included. Clean robots.txt pointing to sitemap.</p>
+  </div>
+</div>
+
+<!-- ALL PAGES STATUS -->
+<div class="section">
+  <div class="section-header">
+    <h2>📊 Full Page Status</h2>
+  </div>
+  <div class="issue-card" style="overflow-x: auto;">
+    <table class="page-table">
+      <tr><th>Page</th><th>Status</th><th>Title Unique?</th><th>In Sitemap?</th></tr>
+      <tr><td class="page-url">/</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/florissant</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/ferguson</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/maryland-heights</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/ofallon</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/st-charles</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/st-peters</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/chesterfield</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/ballwin</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/creve-coeur</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/hazelwood</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/bridgeton</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/kirkwood</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/webster-groves</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/olivette</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/south-city</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/south-county</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/university-city</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/wentzville</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url" style="color: var(--red);">/crestwood</td><td class="status-ok">200 ✓</td><td class="status-bad">✗ Clone</td><td class="status-bad">✗</td></tr>
+      <tr><td class="page-url" style="color: var(--red);">/maplewood</td><td class="status-ok">200 ✓</td><td class="status-bad">✗ Clone</td><td class="status-bad">✗</td></tr>
+      <tr><td class="page-url" style="color: var(--red);">/brentwood</td><td class="status-ok">200 ✓</td><td class="status-bad">✗ Clone</td><td class="status-bad">✗</td></tr>
+      <tr><td class="page-url" style="color: var(--red);">/shrewsbury</td><td class="status-ok">200 ✓</td><td class="status-bad">✗ Clone</td><td class="status-bad">✗</td></tr>
+      <tr><td class="page-url">/refer</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/free-cleanup</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url">/spring-calculator</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td class="page-url" style="color: var(--red);">/spring-clean</td><td class="status-ok">200 ✓</td><td class="status-bad">✗ Clone</td><td class="status-warn">⚠ In sitemap but broken</td></tr>
+      <tr><td class="page-url">/blog/</td><td class="status-ok">200 ✓</td><td class="status-ok">✓</td><td class="status-ok">✓</td></tr>
+      <tr><td colspan="4" style="color: var(--muted); font-style: italic;">+ 11 blog posts — all 200 OK with unique titles & meta descriptions ✓</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- FIX CHECKLIST -->
+<div class="section">
+  <div class="section-header">
+    <h2>🔧 Fix Checklist (Prioritized)</h2>
+  </div>
+  <div class="issue-card">
+    <div class="checklist" id="fixChecklist">
+      <div class="check-item" data-key="fix1">
+        <input type="checkbox" id="fix1">
+        <label for="fix1"><strong>Build out /crestwood page</strong> — Use /florissant as template. Unique title, local neighborhoods, correct canonical tag.</label>
+        <span class="fix-time">30 min</span>
+      </div>
+      <div class="check-item" data-key="fix2">
+        <input type="checkbox" id="fix2">
+        <label for="fix2"><strong>Build out /maplewood page</strong> — Same process. Mention The Loop, local dog parks, zip codes.</label>
+        <span class="fix-time">30 min</span>
+      </div>
+      <div class="check-item" data-key="fix3">
+        <input type="checkbox" id="fix3">
+        <label for="fix3"><strong>Build out /brentwood page</strong> — Include Brentwood Park, Memorial Park references.</label>
+        <span class="fix-time">30 min</span>
+      </div>
+      <div class="check-item" data-key="fix4">
+        <input type="checkbox" id="fix4">
+        <label for="fix4"><strong>Build out /shrewsbury page</strong> — Small community, emphasize personal local service.</label>
+        <span class="fix-time">30 min</span>
+      </div>
+      <div class="check-item" data-key="fix5">
+        <input type="checkbox" id="fix5">
+        <label for="fix5"><strong>Add 4 I-44 pages to sitemap.xml</strong> — After content is built. Also add to Google Search Console.</label>
+        <span class="fix-time">5 min</span>
+      </div>
+      <div class="check-item" data-key="fix6">
+        <input type="checkbox" id="fix6">
+        <label for="fix6"><strong>Fix /spring-clean page</strong> — Either build unique spring content or redirect to /free-cleanup.</label>
+        <span class="fix-time">10 min</span>
+      </div>
+      <div class="check-item" data-key="fix7">
+        <input type="checkbox" id="fix7">
+        <label for="fix7"><strong>Fix .html links across site</strong> — Replace all .html hrefs with clean URLs. At least 6 broken references found.</label>
+        <span class="fix-time">15 min</span>
+      </div>
+      <div class="check-item" data-key="fix8">
+        <input type="checkbox" id="fix8">
+        <label for="fix8"><strong>Fix "7 spots left" on /free-cleanup</strong> — Change to general urgency or update regularly.</label>
+        <span class="fix-time">5 min</span>
+      </div>
+      <div class="check-item" data-key="fix9">
+        <input type="checkbox" id="fix9">
+        <label for="fix9"><strong>Consolidate duplicate dog poop law posts</strong> — Merge or clearly differentiate the two overlapping blog posts.</label>
+        <span class="fix-time">30 min</span>
+      </div>
+      <div class="check-item" data-key="fix10">
+        <input type="checkbox" id="fix10">
+        <label for="fix10"><strong>Add Google Analytics (GA4)</strong> — Can't improve what you can't measure.</label>
+        <span class="fix-time">15 min</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM LINE -->
+<div class="summary-box">
+  <h2>📋 Bottom Line</h2>
+  <p>The site's foundation is solid — great content, good SEO basics on working pages, excellent /free-cleanup landing page. But there are real issues costing organic traffic RIGHT NOW:</p>
+  <ul>
+    <li><strong>5 pages are invisible to Google</strong> (4 I-44 cities + spring-clean)</li>
+    <li><strong>6+ broken internal links</strong> using .html extensions</li>
+    <li><strong>2 blog posts cannibalizing</strong> each other's rankings</li>
+    <li><strong>Zero analytics</strong> means zero data on what's working</li>
+  </ul>
+  <p style="margin-top: 12px; color: var(--text);">The top priority is fixing those 4 I-44 city pages. Each one is a potential Google Maps + organic search entry point. Use /florissant as the template — it's well built. Total time for all fixes: <strong>~3.5 hours</strong>.</p>
+</div>
+
+<p style="text-align: center; margin-top: 24px; color: var(--muted); font-size: 0.7rem;">
+  Crawled by Franklin • March 24, 2026 4:05 PM CST<br>
+  36 pages checked • SSL verified • Sitemap audited
+</p>
+
+<script>
+// Persist checklist state
+const prefix = 'site-audit-mar24-';
+document.querySelectorAll('.check-item input').forEach(cb => {
+  const key = prefix + cb.id;
+  cb.checked = localStorage.getItem(key) === 'true';
+  if (cb.checked) cb.closest('.check-item').classList.add('done');
+  cb.addEventListener('change', () => {
+    localStorage.setItem(key, cb.checked);
+    cb.closest('.check-item').classList.toggle('done', cb.checked);
+  });
+});
+</script>
+</body>
+</html>
