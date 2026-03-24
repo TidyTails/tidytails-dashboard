@@ -42,6 +42,11 @@
 
 ---
 
+### Tuesday 12:05 AM
+- **12:05 AM** 🔧 Midnight Maintenance + Cron Fix — Archived Mar 23 daily log. Fixed 2 broken crons (EOD Summary + Weekly Review, both failing with "Delivering to Telegram requires target <chatId>"). Previous softer "DO NOT send Telegram" prompts were being ignored — upgraded both to "ABSOLUTE RULE — NO TELEGRAM" with explicit "if you try, the entire run will ERROR" warning. Updated MEMORY.md: asset inventory refresh, lesson numbering fix, cron Telegram lesson strengthened to reflect repeated failures. Git committed + pushed. Dashboard status updated. **WHY THIS TASK:** Midnight = maintenance per MEMORY.md rules. Two crons have been silently failing (EOD = 1 error, Weekly Review = 3 consecutive errors). The previous fix attempt (Mar 23 11 PM) used softer language that agent sessions ignored. Nuclear-level instructions this time. Also needed daily log rollover for Tuesday. ✅
+
+---
+
 ### Monday 11:04 PM
 - **11:04 PM** 🔧 Cron Health Audit + Memory Consolidation — Fixed 2 broken crons (EOD Summary + Weekly Review, both failing with "Delivering to Telegram requires target <chatId>"). Root cause: agent sessions were trying to send Telegram messages internally instead of letting the cron delivery system handle it. Updated both prompts with explicit "DO NOT send Telegram" instructions. Removed 10 dead disabled one-shot crons from Feb/early March (Sunday briefings, Saturday check-ins, expired reminders). Archived Mar 22 daily log. Updated MEMORY.md with: TJ's 3 Google reviews, GBP Maps invisibility finding, Brave API quota exhaustion, cron Telegram lesson, asset inventory refresh (48 tools, 61 PDFs, 121MB dashboard). Active crons now: 10 (down from 20). All enabled crons healthy except the 2 just fixed (will verify on next runs). **WHY THIS TASK:** 11 PM = maintenance time per MEMORY.md rules. Two crons have been silently failing for days (EOD = 1 error, Weekly Review = 3 consecutive errors). Dead one-shots cluttering the cron list. Memory needs regular consolidation. This is the invisible infrastructure that keeps everything running. ✅
 

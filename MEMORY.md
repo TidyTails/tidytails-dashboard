@@ -1,5 +1,5 @@
 # MEMORY.md — Franklin's Long-Term Memory
-*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 23, 2026 11 PM (Mon late-night cron cleanup + memory consolidation)*
+*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 24, 2026 12:05 AM (Tue midnight — cron fixes, daily archive, memory review)*
 
 ## Who I Am
 - **Name:** Franklin
@@ -260,23 +260,21 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 
 ---
 
-## 📊 Asset Inventory (Mar 22, 2026 — updated 11 PM)
+## 📊 Asset Inventory (Mar 24, 2026 — updated 12 AM)
 
 | Category | Count | Notes |
 |----------|-------|-------|
-| Dashboard tools (live) | ~48 | +14 from Mar 23 marathon (battlecard, CRO, capture kit, scoop machine, review tracker, etc.) |
+| Dashboard tools (live) | ~48 | Battlecard, CRO, capture kit, scoop machine, review tracker, etc. |
 | Dashboard archive | 116 | All old tools preserved, not deleted |
-| Dashboard size | 121 MB | 48 HTML + 61 PDFs |
-| City landing pages | 23 | 6 ghost pages NOW DEPLOYED ✅ (4 missing from sitemap though) |
+| Dashboard size | ~125 MB | 48+ HTML + 61+ PDFs |
+| City landing pages | 23 | 6 ghost pages deployed ✅ (4 I-44 pages missing from sitemap) |
 | Blog posts | 12 | 1 duplicate merged into redirect |
 | Commercial leads | 49 | ZERO contacted |
-| Communities mapped | 31 | FB groups, dog parks, pet orgs, Reddit |
-| Competitors tracked | 15 | ~10-11 active, 4 dead, 2 likely dead |
+| Competitors tracked | 15 | ~10-11 active, 4 dead confirmed, 2 likely dead |
 | Shed Marketplace listings | 23 | $139,977 total lot value |
-| Autonomous tasks (Mar 23) | 15+ | Another monster day |
-| Deliverables (total) | 145+ | Crossing tooling saturation — STOP BUILDING |
+| Deliverables (total) | 155+ | **STOP BUILDING. EXECUTE.** |
 
-**⚠️ Brave Search API:** Quota likely still near limit — check before batch searches
+**⚠️ Brave Search API:** Free plan quota (2000/mo) exhausted as of Mar 23. Check before searching.
 
 ---
 
@@ -312,10 +310,10 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 12. **Pet waste = demand CREATION, not capture.** Most people don't search for it. Facebook shows them it exists. Google captures the ones who saw your FB ad then searched.
 13. **Lumber hit $600/MBF** (Mar 17) — up 22% in 11 days. 45% tariffs + 1.3B board feet removed from supply. "Today's price is tomorrow's discount" is now verifiable math.
 14. **Cron tasks compound but don't convert.** 12 deliverables in one day doesn't help if none get deployed. Future hourly tasks should skew toward maintenance/monitoring, not new content.
-15a. **Cron Telegram delivery:** Agent sessions should NOT try to send Telegram messages themselves — the cron delivery system handles it automatically from the summary output. When agents try to use `message` tool inside cron runs, it often errors with "Delivering to Telegram requires target <chatId>" and marks the whole run as failed. Fix: tell agents in the prompt to NOT send Telegram, just produce summary output.
-15b. **Brave Search API is on a free plan (2000 queries/month).** Heavy autonomous task usage exhausts it fast. Consider upgrading or rationing.
-15. **TJ can't access memory/ files.** Guides saved there are invisible. NEW RULE (Mar 21): Everything for TJ → PDF in Telegram chat AND dashboard link. No more hidden docs.
-16. **Dashboard redesigned to 3 modes (Mar 21).** TODAY (action items), TOOLS (organized by category), ARCHIVE (searchable). 97 files → 3 clean tabs. This is the UX layer that makes everything else usable.
+15. **Cron Telegram delivery:** Agent sessions MUST NOT call the message tool. Cron delivery handles Telegram automatically from summary output. Updated all cron prompts with "ABSOLUTE RULE — NO TELEGRAM" block (Mar 24). Previous softer instructions were ignored.
+16. **Brave Search API is on a free plan (2000 queries/month).** Heavy autonomous task usage exhausts it fast. Consider upgrading or rationing.
+17. **TJ can't access memory/ files.** Guides saved there are invisible. NEW RULE (Mar 21): Everything for TJ → PDF in Telegram chat AND dashboard link. No more hidden docs.
+18. **Dashboard redesigned to 3 modes (Mar 21).** TODAY (action items), TOOLS (organized by category), ARCHIVE (searchable). 97 files → 3 clean tabs. This is the UX layer that makes everything else usable.
 
 ---
 
