@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBP Completion Guide — 7% → 100%</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --green: #10b981; --blue: #3b82f6; --orange: #ff6b35;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+        
+        .header {
+            background: linear-gradient(135deg, #0a1a0a, #0a0a1a);
+            border-bottom: 2px solid var(--green);
+            padding: 1.5rem; text-align: center;
+        }
+        .header h1 { font-size: 1.4rem; font-weight: 800; }
+        .header h1 span { color: var(--green); }
+        .subtitle { color: var(--text2); font-size: 0.85rem; margin-top: 0.3rem; }
+        
+        .progress-bar-wrap {
+            max-width: 500px; margin: 1.5rem auto 0;
+            background: var(--bg3); border-radius: 20px; padding: 4px;
+            border: 1px solid var(--border);
+        }
+        .progress-bar {
+            height: 28px; border-radius: 16px; transition: width 0.8s ease;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; font-weight: 800; color: #000;
+        }
+        .progress-bar.low { background: linear-gradient(90deg, var(--red), var(--orange)); }
+        .progress-bar.mid { background: linear-gradient(90deg, var(--orange), var(--yellow)); }
+        .progress-bar.high { background: linear-gradient(90deg, var(--yellow), var(--green)); }
+        .progress-bar.done { background: linear-gradient(90deg, var(--green), #34d399); }
+        
+        .time-est {
+            text-align: center; margin-top: 0.75rem;
+            font-size: 0.8rem; color: var(--yellow); font-weight: 600;
+        }
+        
+        .container { max-width: 650px; margin: 0 auto; padding: 1.25rem; }
+        
+        .why-box {
+            background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(255,107,53,0.1));
+            border: 2px solid var(--red); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 1.5rem;
+        }
+        .why-box h2 { color: var(--red); font-size: 1rem; margin-bottom: 0.5rem; }
+        .why-box p { font-size: 0.82rem; color: var(--text2); line-height: 1.6; }
+        .why-box strong { color: var(--text); }
+        
+        .section {
+            background: var(--bg3); border: 1px solid var(--border);
+            border-radius: var(--radius); margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .section.completed { border-color: var(--green); opacity: 0.7; }
+        .section.completed .sec-header { background: rgba(16,185,129,0.1); }
+        
+        .sec-header {
+            padding: 1rem 1.25rem; cursor: pointer;
+            display: flex; align-items: center; gap: 0.75rem;
+            transition: background 0.2s;
+        }
+        .sec-header:hover { background: var(--bg4); }
+        
+        .sec-check {
+            width: 28px; height: 28px; border-radius: 50%;
+            border: 2px solid var(--border); display: flex;
+            align-items: center; justify-content: center;
+            flex-shrink: 0; cursor: pointer; transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+        .sec-check.done { background: var(--green); border-color: var(--green); }
+        
+        .sec-info { flex: 1; }
+        .sec-title { font-weight: 700; font-size: 0.9rem; display: flex; align-items: center; gap: 0.5rem; }
+        .sec-time { font-size: 0.7rem; color: var(--text2); margin-top: 0.15rem; }
+        
+        .sec-badge {
+            font-size: 0.6rem; font-weight: 700; padding: 0.15rem 0.5rem;
+            border-radius: 4px; text-transform: uppercase;
+        }
+        .b-critical { background: rgba(239,68,68,0.2); color: var(--red); }
+        .b-important { background: rgba(255,107,53,0.15); color: var(--orange); }
+        .b-nice { background: rgba(59,130,246,0.15); color: var(--blue); }
+        
+        .sec-body {
+            display: none; padding: 0 1.25rem 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+        .section.open .sec-body { display: block; }
+        .section.open .sec-arrow { transform: rotate(180deg); }
+        .sec-arrow { color: var(--text3); transition: transform 0.2s; font-size: 0.8rem; }
+        
+        .step {
+            padding: 0.75rem 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+            font-size: 0.82rem; line-height: 1.6;
+        }
+        .step:last-child { border-bottom: none; }
+        .step-num {
+            display: inline-flex; width: 22px; height: 22px; border-radius: 50%;
+            background: var(--bg4); align-items: center; justify-content: center;
+            font-size: 0.65rem; font-weight: 700; margin-right: 0.5rem;
+            color: var(--green); flex-shrink: 0;
+        }
+        .step strong { color: var(--green); }
+        .step code {
+            background: var(--bg4); padding: 0.15rem 0.4rem; border-radius: 4px;
+            font-size: 0.75rem; color: var(--yellow);
+        }
+        
+        .copy-box {
+            background: var(--bg); border: 1px solid var(--border);
+            border-radius: 8px; padding: 0.75rem 1rem; margin: 0.5rem 0;
+            font-size: 0.78rem; line-height: 1.6; position: relative;
+            color: var(--text2);
+        }
+        .copy-btn {
+            position: absolute; top: 0.5rem; right: 0.5rem;
+            background: var(--bg4); border: 1px solid var(--border);
+            color: var(--text2); padding: 0.25rem 0.6rem; border-radius: 6px;
+            font-size: 0.65rem; cursor: pointer; transition: all 0.2s;
+        }
+        .copy-btn:hover { background: var(--green); color: #000; }
+        
+        .tip {
+            background: rgba(251,191,36,0.08); border-left: 3px solid var(--yellow);
+            padding: 0.6rem 0.75rem; margin: 0.5rem 0; border-radius: 0 6px 6px 0;
+            font-size: 0.75rem; color: var(--yellow);
+        }
+        
+        .warn {
+            background: rgba(239,68,68,0.08); border-left: 3px solid var(--red);
+            padding: 0.6rem 0.75rem; margin: 0.5rem 0; border-radius: 0 6px 6px 0;
+            font-size: 0.75rem; color: var(--red);
+        }
+        
+        .celebration {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85); z-index: 1000;
+            flex-direction: column; align-items: center; justify-content: center;
+        }
+        .celebration.show { display: flex; }
+        .celebration h2 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .celebration p { color: var(--text2); font-size: 1rem; max-width: 400px; text-align: center; }
+        .celebration button {
+            margin-top: 1.5rem; background: var(--green); color: #000;
+            border: none; padding: 0.75rem 2rem; border-radius: 8px;
+            font-weight: 700; font-size: 1rem; cursor: pointer;
+        }
+        
+        .reply-section {
+            background: linear-gradient(135deg, rgba(16,185,129,0.1), rgba(59,130,246,0.08));
+            border: 2px solid var(--green); border-radius: var(--radius);
+            padding: 1.25rem; margin-top: 1.5rem;
+        }
+        .reply-section h2 { color: var(--green); font-size: 1rem; margin-bottom: 0.75rem; }
+        
+        .footer { text-align: center; padding: 2rem; color: var(--text3); font-size: 0.65rem; }
+        
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>📍 GBP: <span>7% → 100%</span></h1>
+    <p class="subtitle">Tap-by-tap guide to show up on Google Maps</p>
+    <div class="progress-bar-wrap">
+        <div class="progress-bar low" id="progressBar" style="width: 7%">7%</div>
+    </div>
+    <div class="time-est">⏱️ ~25 minutes total • Do it from your phone</div>
+</div>
+
+<div class="container">
+
+    <div class="why-box">
+        <h2>⚠️ Why This Matters MORE Than Anything Else</h2>
+        <p>You have <strong>6 reviews at 5.0 stars</strong> — that's incredible. But Google won't show you in the Map Pack (the 3 businesses people actually click) because your profile is only <strong>7% complete</strong>. You're passing the Map Pack threshold on reviews but <strong>failing on completeness</strong>.</p>
+        <p style="margin-top:0.5rem;">Every FB ad, every Nextdoor post, every door knock drives people to Google. If they search "pet waste removal near me" and <strong>you don't show up</strong>, that money and effort is wasted. Complete GBP = free, permanent lead generation.</p>
+        <p style="margin-top:0.5rem;color:var(--green);font-weight:700;">This is the single highest-ROI 25 minutes you can spend on Tidy Tails.</p>
+    </div>
+
+    <!-- SECTION 1: Business Info -->
+    <div class="section open" data-section="1" data-points="15">
+        <div class="sec-header" onclick="toggleSection(this)">
+            <div class="sec-check" id="check-1" onclick="event.stopPropagation();toggleCheck(1)"></div>
+            <div class="sec-info">
+                <div class="sec-title">
+                    1. Business Info <span class="sec-badge b-critical">Critical</span>
+                </div>
+                <div class="sec-time">⏱️ 3 minutes • From phone</div>
+            </div>
+            <span class="sec-arrow">▼</span>
+        </div>
+        <div class="sec-body">
+            <div class="step"><span class="step-num">1</span> Open the <strong>Google Maps</strong> app → search "Tidy Tails" → tap your listing</div>
+            <div class="step"><span class="step-num">2</span> Tap <strong>"Edit profile"</strong> (or the pencil icon)</div>
+            <div class="step"><span class="step-num">3</span> <strong>Business name:</strong> Make sure it says exactly: <code>Tidy Tails Pet Waste Removal</code></div>
+            <div class="step"><span class="step-num">4</span> <strong>Category:</strong> Primary should be <code>Pet Waste Removal Service</code>. Add secondary: <code>Cleaning Service</code></div>
+            <div class="step"><span class="step-num">5</span> <strong>Description:</strong> Tap to edit, paste this:</div>
+            <div class="copy-box" id="desc-text">
+                <button class="copy-btn" onclick="copyText('desc-text')">📋 Copy</button>
+                Professional pet waste removal serving St. Louis County, St. Charles, and surrounding areas. We take the dirty work off your plate so you can enjoy your yard again. Weekly, bi-weekly, and monthly service available. No contracts, satisfaction guaranteed. Locally owned and operated — same guy, same quality, every visit. Call or text for a free quote today.
+            </div>
+            <div class="step"><span class="step-num">6</span> <strong>Opening date:</strong> Enter the month/year you started (even approximate is fine)</div>
+            <div class="tip">💡 Google ranks complete profiles higher. Every field you fill = more visibility.</div>
+        </div>
+    </div>
+
+    <!-- SECTION 2: Contact Info -->
+    <div class="section" data-section="2" data-points="15">
+        <div class="sec-header" onclick="toggleSection(this)">
+            <div class="sec-check" id="check-2" onclick="event.stopPropagation();toggleCheck(2)"></div>
+            <div class="sec-info">
+                <div class="sec-title">
+                    2. Contact & Location <span class="sec-badge b-critical">Critical</span>
+                </div>
+                <div class="sec-time">⏱️ 2 minutes • From phone</div>
+            </div>
+            <span class="sec-arrow">▼</span>
+        </div>
+        <div class="sec-body">
+            <div class="step"><span class="step-num">1</span> Still in Edit profile → <strong>Phone number:</strong> Add your business phone (the one on the website)</div>
+            <div class="step"><span class="step-num">2</span> <strong>Website:</strong> <code>https://tidytailsstl.com</code></div>
+            <div class="step"><span class="step-num">3</span> <strong>Service area:</strong> Tap "Service area" → Add these areas one by one:</div>
+            <div class="copy-box" id="areas-text">
+                <button class="copy-btn" onclick="copyText('areas-text')">📋 Copy</button>
+                St. Louis County, MO<br>
+                St. Charles County, MO<br>
+                Florissant, MO<br>
+                Hazelwood, MO<br>
+                Maryland Heights, MO<br>
+                Bridgeton, MO<br>
+                Ferguson, MO<br>
+                O'Fallon, MO<br>
+                St. Peters, MO<br>
+                Chesterfield, MO<br>
+                Ballwin, MO<br>
+                Wildwood, MO
+            </div>
+            <div class="tip">💡 Service-area businesses (no storefront) should NOT have a physical address visible. Just service areas. Google knows the difference.</div>
+            <div class="step"><span class="step-num">4</span> <strong>Booking link:</strong> If you have one, add it. Otherwise skip — the website is fine.</div>
+        </div>
+    </div>
+
+    <!-- SECTION 3: Hours -->
+    <div class="section" data-section="3" data-points="10">
+        <div class="sec-header" onclick="toggleSection(this)">
+            <div class="sec-check" id="check-3" onclick="event.stopPropagation();toggleCheck(3)"></div>
+            <div class="sec-info">
+                <div class="sec-title">
+                    3. Business Hours <span class="sec-badge b-critical">Critical</span>
+                </div>
+                <div class="sec-time">⏱️ 1 minute • From phone</div>
+            </div>
+            <span class="sec-arrow">▼</span>
+        </div>
+        <div class="sec-body">
+            <div class="step"><span class="step-num">1</span> In Edit profile → <strong>Hours</strong></div>
+            <div class="step"><span class="step-num">2</span> Set your actual working hours. Suggested:</div>
+            <div class="copy-box" id="hours-text">
+                <button class="copy-btn" onclick="copyText('hours-text')">📋 Copy</button>
+                Monday: 8:00 AM – 5:00 PM<br>
+                Tuesday: 8:00 AM – 5:00 PM<br>
+                Wednesday: 8:00 AM – 5:00 PM<br>
+                Thursday: 8:00 AM – 5:00 PM<br>
+                Friday: 8:00 AM – 5:00 PM<br>
+                Saturday: 9:00 AM – 2:00 PM<br>
+                Sunday: Closed
+            </div>
+            <div class="tip">💡 Having hours set (even if approximate) is a MAJOR ranking factor. Google deprioritizes businesses without hours.</div>
+        </div>
+    </div>
+
+    <!-- SECTION 4: Services -->
+    <div class="section" data-section="4" data-points="12">
+        <div class="sec-header" onclick="toggleSection(this)">
+            <div class="sec-check" id="check-4" onclick="event.stopPropagation();toggleCheck(4)"></div>
+            <div class="sec-info">
+                <div class="sec-title">
+                    4. Services & Prices <span class="sec-badge b-important">Important</span>
+                </div>
+                <div class="sec-time">⏱️ 5 minutes • From phone</div>
+            </div>
+            <span class="sec-arrow">▼</span>
+        </div>
+        <div class="sec-body">
+            <div class="step"><span class="step-num">1</span> In Edit profile → <strong>Services</strong> (or "Products")</div>
+            <div class="step"><span class="step-num">2</span> Add each service with price:</div>
+            
+            <div class="copy-box" id="svc1">
+                <button class="copy-btn" onclick="copyText('svc1')">📋 Copy</button>
+                <strong>Weekly Pet Waste Removal</strong><br>
+                Price: $25/week<br>
+                Description: Professional weekly yard cleanup for 1-2 dogs. Same day, same time, every week. We text when done. No contracts.
+            </div>
+            <div class="copy-box" id="svc2">
+                <button class="copy-btn" onclick="copyText('svc2')">📋 Copy</button>
+                <strong>Bi-Weekly Pet Waste Removal</strong><br>
+                Price: $45/visit<br>
+                Description: Professional yard cleanup every two weeks. Great for smaller yards or single-dog households. No contracts, satisfaction guaranteed.
+            </div>
+            <div class="copy-box" id="svc3">
+                <button class="copy-btn" onclick="copyText('svc3')">📋 Copy</button>
+                <strong>Monthly Pet Waste Removal</strong><br>
+                Price: $70/month<br>
+                Description: Once-a-month thorough cleanup for low-maintenance yards. Single dog, minimal mess. Includes full yard sweep.
+            </div>
+            <div class="copy-box" id="svc4">
+                <button class="copy-btn" onclick="copyText('svc4')">📋 Copy</button>
+                <strong>One-Time Deep Clean</strong><br>
+                Price: Starting at $100<br>
+                Description: Moving out? Spring cleanup? Guests coming? We'll deep clean your entire yard in one visit. Perfect for yards that haven't been cleaned in weeks or months.
+            </div>
+            <div class="copy-box" id="svc5">
+                <button class="copy-btn" onclick="copyText('svc5')">📋 Copy</button>
+                <strong>Multi-Dog Household</strong><br>
+                Price: Starting at $35/week<br>
+                Description: 3+ dogs? We've got you. Custom pricing based on yard size and number of dogs. Same reliable weekly service.
+            </div>
+            <div class="copy-box" id="svc6">
+                <button class="copy-btn" onclick="copyText('svc6')">📋 Copy</button>
+                <strong>Commercial Pet Waste Removal</strong><br>
+                Price: Custom quote<br>
+                Description: Apartment complexes, HOAs, dog parks, vet clinics, and pet businesses. Custom service plans for common areas. Weekly or bi-weekly.
+            </div>
+            
+            <div class="tip">💡 Adding services with prices is HUGE for GBP. Google shows these directly in search results — people see pricing before they even click. Transparency = trust = calls.</div>
+        </div>
+    </div>
+
+    <!-- SECTION 5: Photos -->
+    <div class="section" data-section="5" data-points="18">
+        <div class="sec-header" onclick="toggleSection(this)">
+            <div class="sec-check" id="check-5" onclick="event.stopPropagation();toggleCheck(5)"></div>
+            <div class="sec-info">
+                <div class="sec-title">
+                    5. Photos (THE Big One) <span class="sec-badge b-critical">Critical</span>
+                </div>
+                <div class="sec-time">⏱️ 8 minutes • From phone camera roll</div>
+            </div>
+            <span class="sec-arrow">▼</span>
+        </div>
+        <div class="sec-body">
+            <div class="warn">🚨 Google says businesses with photos get <strong>42% more direction requests</strong> and <strong>35% more website clicks</strong>. You currently have near-zero photos. This is the single biggest gap.</div>
+            
+            <div class="step"><span class="step-num">1</span> In your GBP → tap <strong>"Add photos"</strong></div>
+            <div class="step"><span class="step-num">2</span> Upload these types of photos (aim for 10-15 total):</div>
+            
+            <div style="margin: 0.75rem 0;">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+                    <div style="background:var(--bg4);padding:0.75rem;border-radius:8px;">
+                        <div style="font-weight:700;font-size:0.8rem;color:var(--green);">✅ MUST HAVE</div>
+                        <ul style="font-size:0.75rem;color:var(--text2);margin-top:0.3rem;padding-left:1rem;">
+                            <li>Logo (as cover photo)</li>
+                            <li>Before/after yards (2-3)</li>
+                            <li>You on the job</li>
+                            <li>Your vehicle/equipment</li>
+                            <li>A happy dog</li>
+                        </ul>
+                    </div>
+                    <div style="background:var(--bg4);padding:0.75rem;border-radius:8px;">
+                        <div style="font-weight:700;font-size:0.8rem;color:var(--blue);">👍 NICE TO HAVE</div>
+                        <ul style="font-size:0.75rem;color:var(--text2);margin-top:0.3rem;padding-left:1rem;">
+                            <li>Team/uniform shot</li>
+                            <li>Customer yard (nice ones)</li>
+                            <li>Seasonal content</li>
+                            <li>Service area landmarks</li>
+                            <li>Business card</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="step"><span class="step-num">3</span> Set your <strong>logo</strong> as the cover photo</div>
+            <div class="step"><span class="step-num">4</span> <strong>Photo tips:</strong></div>
+            <ul style="font-size:0.78rem;color:var(--text2);padding-left:1.5rem;line-height:1.8;">
+                <li>Landscape orientation works best</li>
+                <li>Good lighting (daylight, no shadows on face)</li>
+                <li>Min 720px wide (any modern phone is fine)</li>
+                <li>No stock photos — Google can tell and it hurts ranking</li>
+                <li>Before/after is GOLD for this business — shows value instantly</li>
+            </ul>
+            
+            <div class="tip">💡 Don't have these photos yet? Take them on your NEXT scoop job. Even 5 real photos today is better than zero. You can always add more later.</div>
+        </div>
+    </div>
+
+    <!-- SECTION 6: Attributes -->
+    <div class="section" data-section="6" data-points="8">
+        <div class="sec-header" onclick="toggleSection(this)">
+            <div class="sec-check" id="check-6" onclick="event.stopPropagation();toggleCheck(6)"></div>
+            <div class="sec-info">
+                <div class="sec-title">
+                    6. Attributes & Extras <span class="sec-badge b-nice">Nice</span>
+                </div>
+                <div class="sec-time">⏱️ 2 minutes • From phone</div>
+            </div>
+            <span class="sec-arrow">▼</span>
+        </div>
+        <div class="sec-body">
+            <div class="step"><span class="step-num">1</span> In Edit profile → look for <strong>"More"</strong> or <strong>"Attributes"</strong></div>
+            <div class="step"><span class="step-num">2</span> Toggle ON everything that applies:</div>
+            <ul style="font-size:0.78rem;color:var(--text2);padding-left:1.5rem;line-height:1.8;">
+                <li>✅ Identifies as veteran-owned (if applicable)</li>
+                <li>✅ Identifies as small business</li>
+                <li>✅ Online estimates / Online appointments</li>
+                <li>✅ Free estimates</li>
+                <li>✅ LGBTQ+ friendly (shows inclusivity)</li>
+            </ul>
+            <div class="step"><span class="step-num">3</span> <strong>From the business:</strong> Add a short "from the business" description if prompted — use the description from Section 1</div>
+            <div class="tip">💡 Attributes add trust signals and help Google categorize you. More attributes = higher completeness score.</div>
+        </div>
+    </div>
+
+    <!-- SECTION 7: First Post -->
+    <div class="section" data-section="7" data-points="10">
+        <div class="sec-header" onclick="toggleSection(this)">
+            <div class="sec-check" id="check-7" onclick="event.stopPropagation();toggleCheck(7)"></div>
+            <div class="sec-info">
+                <div class="sec-title">
+                    7. Your First GBP Post <span class="sec-badge b-important">Important</span>
+                </div>
+                <div class="sec-time">⏱️ 3 minutes • From phone</div>
+            </div>
+            <span class="sec-arrow">▼</span>
+        </div>
+        <div class="sec-body">
+            <div class="step"><span class="step-num">1</span> In your GBP dashboard → tap <strong>"Add update"</strong> or <strong>"Create post"</strong></div>
+            <div class="step"><span class="step-num">2</span> Choose <strong>"What's new"</strong> or <strong>"Offer"</strong></div>
+            <div class="step"><span class="step-num">3</span> Paste this post:</div>
+            
+            <div class="copy-box" id="post1">
+                <button class="copy-btn" onclick="copyText('post1')">📋 Copy</button>
+                🐕 Spring is here — and so are the piles your dog left all winter! 💩<br><br>
+                Tidy Tails takes the dirty work off your plate. We show up weekly, clean every corner of your yard, and text you when it's done. Simple as that.<br><br>
+                ✅ Weekly service starting at $25/week<br>
+                ✅ No contracts, ever<br>
+                ✅ 100% satisfaction guaranteed<br>
+                ✅ Serving St. Louis County & St. Charles<br><br>
+                Call or text for a free quote today! 🌱
+            </div>
+            
+            <div class="step"><span class="step-num">4</span> Add a photo (before/after yard, or you working)</div>
+            <div class="step"><span class="step-num">5</span> Add a button: <strong>"Call now"</strong> or <strong>"Learn more"</strong> → link to website</div>
+            
+            <div class="tip">💡 GBP posts expire after 7 days in search results. Post weekly to stay fresh. Your April Marketing Calendar has 4 GBP posts pre-written! <a href="april-2026-marketing-calendar.html" style="color:var(--green);">Open Calendar →</a></div>
+        </div>
+    </div>
+
+    <!-- SECTION 8: Reply to Reviews -->
+    <div class="section" data-section="8" data-points="12">
+        <div class="sec-header" onclick="toggleSection(this)">
+            <div class="sec-check" id="check-8" onclick="event.stopPropagation();toggleCheck(8)"></div>
+            <div class="sec-info">
+                <div class="sec-title">
+                    8. Reply to All 6 Reviews <span class="sec-badge b-critical">Critical</span>
+                </div>
+                <div class="sec-time">⏱️ 5 minutes • From phone</div>
+            </div>
+            <span class="sec-arrow">▼</span>
+        </div>
+        <div class="sec-body">
+            <div class="warn">🚨 Replying to reviews is a RANKING FACTOR. Google literally says so. Unreplied reviews hurt your visibility. You have 6 reviews — reply to all of them.</div>
+            
+            <div class="step"><span class="step-num">1</span> In your GBP → tap <strong>"Reviews"</strong></div>
+            <div class="step"><span class="step-num">2</span> Reply to each one. Keep it personal — mention their name, something specific. Here are templates:</div>
+            
+            <div class="copy-box" id="reply1">
+                <button class="copy-btn" onclick="copyText('reply1')">📋 Copy</button>
+                <strong>Template 1 (for long-time customers):</strong><br><br>
+                Thanks so much, [NAME]! It's been awesome taking care of your yard — we appreciate you trusting us. Looking forward to keeping things spotless for you! 🐕
+            </div>
+            
+            <div class="copy-box" id="reply2">
+                <button class="copy-btn" onclick="copyText('reply2')">📋 Copy</button>
+                <strong>Template 2 (for customers who mention service quality):</strong><br><br>
+                Really appreciate the kind words, [NAME]! We take pride in being reliable and communicating well — glad that comes through. Thank you for being a valued customer! 🙌
+            </div>
+            
+            <div class="copy-box" id="reply3">
+                <button class="copy-btn" onclick="copyText('reply3')">📋 Copy</button>
+                <strong>Template 3 (general):</strong><br><br>
+                Thank you, [NAME]! Reviews like this mean the world to a small local business. We love what we do and it shows in every yard. Thanks for choosing Tidy Tails! 💚
+            </div>
+            
+            <div class="tip">💡 Personalize each reply — don't copy-paste the exact same thing to all 6. Google (and customers) notice. Swap a sentence, mention their dog's name if you know it, reference their neighborhood. 30 seconds of personalization makes each reply genuine.</div>
+        </div>
+    </div>
+
+    <!-- SECTION 9: Q&A -->
+    <div class="section" data-section="9" data-points="5">
+        <div class="sec-header" onclick="toggleSection(this)">
+            <div class="sec-check" id="check-9" onclick="event.stopPropagation();toggleCheck(9)"></div>
+            <div class="sec-info">
+                <div class="sec-title">
+                    9. Seed Your Q&A <span class="sec-badge b-nice">Nice</span>
+                </div>
+                <div class="sec-time">⏱️ 3 minutes • From phone</div>
+            </div>
+            <span class="sec-arrow">▼</span>
+        </div>
+        <div class="sec-body">
+            <div class="step"><span class="step-num">1</span> Go to your GBP listing on Google Maps</div>
+            <div class="step"><span class="step-num">2</span> Scroll to <strong>"Questions & Answers"</strong> → tap <strong>"Ask a question"</strong></div>
+            <div class="step"><span class="step-num">3</span> Ask these questions from your personal Google account, then answer them from your business account:</div>
+            
+            <div class="copy-box" id="qa1">
+                <button class="copy-btn" onclick="copyText('qa1')">📋 Copy</button>
+                <strong>Q:</strong> Do you require contracts?<br>
+                <strong>A:</strong> Nope! No contracts, ever. You can pause, adjust, or cancel anytime. We earn your business every single week.
+            </div>
+            <div class="copy-box" id="qa2">
+                <button class="copy-btn" onclick="copyText('qa2')">📋 Copy</button>
+                <strong>Q:</strong> What areas do you serve?<br>
+                <strong>A:</strong> We serve St. Louis County, St. Charles County, and surrounding areas including Florissant, Hazelwood, Maryland Heights, Chesterfield, Ballwin, O'Fallon, St. Peters, and more. Text us your zip code and we'll confirm!
+            </div>
+            <div class="copy-box" id="qa3">
+                <button class="copy-btn" onclick="copyText('qa3')">📋 Copy</button>
+                <strong>Q:</strong> How much does weekly service cost?<br>
+                <strong>A:</strong> Weekly service starts at $25/week for standard residential yards with 1-2 dogs. We also offer bi-weekly ($45/visit), monthly ($70/month), and one-time deep cleans ($100). Contact us for a custom quote!
+            </div>
+            
+            <div class="tip">💡 Seeding Q&A serves two purposes: (1) answers common questions before people call, and (2) adds keyword-rich content to your profile. Google indexes Q&A for search.</div>
+        </div>
+    </div>
+
+    <!-- REPLY TO REVIEWS BONUS -->
+    <div class="reply-section">
+        <h2>✅ After You're Done — The Payoff</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;margin-top:0.5rem;">
+            <div style="background:var(--bg3);padding:0.75rem;border-radius:8px;text-align:center;">
+                <div style="font-size:1.5rem;font-weight:800;color:var(--green);">📍</div>
+                <div style="font-size:0.75rem;color:var(--text2);margin-top:0.3rem;">Google Maps visibility within <strong style="color:var(--text)">2-4 weeks</strong></div>
+            </div>
+            <div style="background:var(--bg3);padding:0.75rem;border-radius:8px;text-align:center;">
+                <div style="font-size:1.5rem;font-weight:800;color:var(--yellow);">📞</div>
+                <div style="font-size:0.75rem;color:var(--text2);margin-top:0.3rem;">Free inbound calls <strong style="color:var(--text)">forever</strong></div>
+            </div>
+            <div style="background:var(--bg3);padding:0.75rem;border-radius:8px;text-align:center;">
+                <div style="font-size:1.5rem;font-weight:800;color:var(--orange);">🏆</div>
+                <div style="font-size:0.75rem;color:var(--text2);margin-top:0.3rem;">Top 3 result for <strong style="color:var(--text)">"pet waste removal near me"</strong></div>
+            </div>
+            <div style="background:var(--bg3);padding:0.75rem;border-radius:8px;text-align:center;">
+                <div style="font-size:1.5rem;font-weight:800;color:var(--blue);">💰</div>
+                <div style="font-size:0.75rem;color:var(--text2);margin-top:0.3rem;">Cost: <strong style="color:var(--text)">$0</strong></div>
+            </div>
+        </div>
+        <p style="font-size:0.78rem;color:var(--text2);margin-top:0.75rem;line-height:1.6;">Once your GBP hits 90%+, Google starts showing you in the Map Pack — the 3 businesses shown on every "near me" search. With 6 reviews at 5.0 stars, you'll outrank most competitors on trust. Combined with a complete profile, you become the obvious choice. This drives free leads <strong>every single day</strong> without you lifting a finger.</p>
+    </div>
+
+    <div style="text-align:center;margin-top:1.5rem;">
+        <a href="index.html" style="color:var(--text2);font-size:0.75rem;">← Back to Command Center</a>
+    </div>
+</div>
+
+<!-- Celebration overlay -->
+<div class="celebration" id="celebration">
+    <h2>🎉 GBP 100% COMPLETE!</h2>
+    <p>You just unlocked Google Maps visibility. 6 reviews + complete profile = Map Pack incoming. Free leads are on the way. 🚀</p>
+    <button onclick="document.getElementById('celebration').classList.remove('show')">LET'S GO 💪</button>
+</div>
+
+<div class="footer">Franklin • GBP Completion Guide • March 2026</div>
+
+<script>
+    const STORAGE_KEY = 'gbp-completion-v1';
+    const TOTAL_SECTIONS = 9;
+    const SECTION_WEIGHTS = { 1:15, 2:15, 3:10, 4:12, 5:18, 6:8, 7:10, 8:12, 9:5 };
+    // Total weight = 105, but we normalize to make 100 = all done, starting from 7%
+    
+    let state = loadState();
+    
+    function loadState() {
+        try {
+            const s = JSON.parse(localStorage.getItem(STORAGE_KEY));
+            return s && s.completed ? s : { completed: {} };
+        } catch { return { completed: {} }; }
+    }
+    
+    function saveState() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+    
+    function toggleSection(header) {
+        const section = header.closest('.section');
+        section.classList.toggle('open');
+    }
+    
+    function toggleCheck(num) {
+        if (state.completed[num]) {
+            delete state.completed[num];
+        } else {
+            state.completed[num] = Date.now();
+        }
+        saveState();
+        updateUI();
+    }
+    
+    function updateUI() {
+        let completedWeight = 0;
+        const totalWeight = Object.values(SECTION_WEIGHTS).reduce((a,b) => a+b, 0);
+        
+        for (let i = 1; i <= TOTAL_SECTIONS; i++) {
+            const check = document.getElementById('check-' + i);
+            const section = document.querySelector(`[data-section="${i}"]`);
+            if (state.completed[i]) {
+                check.classList.add('done');
+                check.textContent = '✓';
+                section.classList.add('completed');
+                completedWeight += SECTION_WEIGHTS[i];
+            } else {
+                check.classList.remove('done');
+                check.textContent = '';
+                section.classList.remove('completed');
+            }
+        }
+        
+        // Calculate percentage: starts at 7%, goes to 100%
+        const percent = Math.round(7 + (completedWeight / totalWeight) * 93);
+        const bar = document.getElementById('progressBar');
+        bar.style.width = percent + '%';
+        bar.textContent = percent + '%';
+        
+        bar.className = 'progress-bar';
+        if (percent < 30) bar.classList.add('low');
+        else if (percent < 60) bar.classList.add('mid');
+        else if (percent < 95) bar.classList.add('high');
+        else bar.classList.add('done');
+        
+        // Celebration at 100%
+        if (percent >= 100) {
+            document.getElementById('celebration').classList.add('show');
+        }
+    }
+    
+    function copyText(id) {
+        const el = document.getElementById(id);
+        const text = el.innerText || el.textContent;
+        // Remove the "Copy" button text
+        const cleaned = text.replace(/📋 Copy\s*/, '').trim();
+        navigator.clipboard.writeText(cleaned).then(() => {
+            const btn = el.querySelector('.copy-btn');
+            btn.textContent = '✅ Copied!';
+            setTimeout(() => btn.textContent = '📋 Copy', 2000);
+        });
+    }
+    
+    // Initialize
+    updateUI();
+</script>
+
+</body>
+</html>
