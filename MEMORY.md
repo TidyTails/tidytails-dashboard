@@ -68,7 +68,7 @@
 - **Yelp:** CLAIMED ✅ (Mar 5) — not showing in Florissant results though
 - **GSC:** VERIFIED ✅ — sitemap submitted, 17 pages discovered, site INDEXED (Mar 18)
 - **SSL:** Valid until May 17, 2026 (set reminder May 1)
-- **Google Reviews:** 3 reviews ✅ (confirmed Mar 23 by TJ) — need 5+ for Map Pack. Link: https://g.page/r/Ce_hqIHanGLvEAE/review
+- **Google Reviews:** 6 reviews ✅ 5.0 stars (confirmed Mar 24 by TJ screenshot) — PASSED 5+ threshold for Map Pack! New reviews from Shannon Zamarripa + Lawrence Johnson. Link: https://g.page/r/Ce_hqIHanGLvEAE/review
 - **⚠️ GBP INVISIBLE on Maps** — Searching "Tidy Tails STL" or "poop scoop near me" does NOT show listing. Brand collision with FL + Atlanta "Tidy Tails" businesses. Root cause: 7% profile completion. MUST complete to 100%.
 - **Content:** 23 city landing pages (all deployed ✅ — ghost pages fixed!), 12 blog posts (1 duplicate merged), A- on-page SEO
 - **⚠️ Sitemap gap:** 4 of 6 I-44 pages missing from sitemap.xml (crestwood, maplewood, brentwood, shrewsbury) — need website repo access to fix
@@ -187,7 +187,7 @@ Assets: Landing page, pitch deck (v6), one-pager, market research.
 - **SSL is FIXED** (renewed Feb 16, valid until May 17). GSC resubmission is now the #1 blocker.
 
 ### What Actually Needs to Happen (TJ's 5-Minute Wins)
-- [x] **Google reviews** — 3 reviews confirmed Mar 23. Need 5+ for Map Pack.
+- [x] **Google reviews** — 6 reviews, 5.0 stars ✅ (Mar 24). Map Pack threshold PASSED!
 - [ ] **Post 1 ad in a Facebook group** (3 min, $0) — copy-paste ready in dashboard
 - [ ] **Post on Nextdoor** (5 min, $0) — 14-day launch kit ready
 - [ ] **Submit to 5 directories** (45 min) — citation tracker ready

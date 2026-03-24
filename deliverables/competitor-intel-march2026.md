@@ -1,156 +1,172 @@
-# 🔍 STL Pet Waste Removal — Competitive Intelligence Report
-**Generated:** March 11, 2026 | **By:** Franklin
+# STL Pet Waste Removal — Competitive Intelligence Report
+## March 24, 2026
+
+### Market Overview
+10+ active competitors in St. Louis metro pet waste removal market. Market is fragmented between national franchises (POOP 911, DoodyCalls, Scoop Soldiers) and local operators (Poop 2 Scoop, No. 2 Crew, Doggie Doodies, Yucko's, etc.).
 
 ---
 
-## THE BOTTOM LINE
+## Competitor Profiles
 
-TJ, here's what matters: **Tidy Tails at $70/mo is priced RIGHT in the sweet spot.** You're cheaper than the premium guys (Dirty Dog at $95, Poopy Paws at $80) and more personal than the national franchises (POOP 911, DoodyCalls). Your multi-dog flat rate is a genuine competitive advantage that almost nobody else offers.
+### 1. POOP 911 St. Louis (HIGH THREAT)
+- **Rating:** 4.8 stars, 180 reviews (Google)
+- **Pricing:** Quote-based (not public)
+- **Website:** poop911.com
+- **Territory:** Forest Park, Soulard, Lafayette Square + wide metro
+- **Key Offer:** First cleanup FREE with recurring signup
+- **Type:** National franchise, locally owned/operated
+- **Notes:** Market leader by far. Massive review moat. Professional marketing.
 
-**But none of that matters if nobody can find you.** Every single one of these competitors is on Google, Yelp, and most directories. That's still the #1 gap.
-
----
-
-## PRICING MATRIX (Weekly Service, 1 Dog, Standard Yard)
-
-| Competitor | Per Visit | Monthly | Multi-Dog | Contracts |
-|---|---|---|---|---|
-| **POOP 911** | $11.95 | ~$48 | Extra per dog | No |
-| **Tidy Tails (US)** | $17.50 | **$70 flat** | **Included** | No |
-| **Poop 2 Scoop** | $18.00 | ~$72 | +$4/dog | No |
-| **Poopy Paws** | $20.00 | ~$80 | **Included** | No |
-| **Dirty Dog Wash** | ~$23.75 | $95 | +$5/dog | No |
-| **DoodyCalls** | Quote | Quote | Quote | No |
-| **Scoop Soldiers** | Quote | Quote | Quote | No |
-| **Yucko's** | Quote | Quote | Quote | No |
-
-### Key Takeaway
-- **POOP 911 is the price leader** at $48/mo but they're a national franchise — impersonal, big-company feel
-- **Tidy Tails is the best VALUE** for multi-dog homes. 2 dogs at Poop 2 Scoop = $88/mo. At Tidy Tails = still $70
-- **Dirty Dog Wash is premium** at $95/mo — they bundle it with their dog grooming business
-- **Poopy Paws is the Yelp darling** — #1 ranked, $20/week flat rate including all dogs
-
----
-
-## COMPETITOR DEEP DIVES
-
-### 🏆 Poopy Paws — The One to Watch
-- **Price:** $20/week, any number of dogs
-- **Yelp:** #1 ranked STL pet waste removal
-- **Since:** 2020
-- **Strength:** Simple flat pricing like ours, strong review presence
-- **Weakness:** No fancy website, appears to be a solo operator
-- **Threat Level:** HIGH — similar positioning to Tidy Tails
-
-### 🏢 POOP 911 — The National Machine
-- **Price:** Starting $11.95/visit ($48+/mo)
-- **Coverage:** 70+ zip codes in STL metro
-- **Strength:** Massive SEO, free first cleanup promo, no contracts
-- **Weakness:** Franchise feel, generic. Charges per dog.
-- **Threat Level:** MEDIUM — competes on price, not personality
-- **Notable:** Offers "first cleanup FREE" with recurring signup — TJ should consider matching this
-
-### 🐕 Poop 2 Scoop — The Established Local
-- **Price:** $18/visit weekly, $25/visit biweekly
-- **Add-ons:** +$4/extra dog, +$4 large yard, +$4 deodorize
-- **Strength:** Professional website, clear pricing, established brand
-- **Weakness:** Nickel-and-dimes with add-ons (annoying for customers)
-- **Threat Level:** MEDIUM — established but more expensive for multi-dog homes
-
-### 🛁 Dirty Dog Wash Poo Crew — The Premium Bundle
-- **Price:** $95/mo weekly (1-2 dogs), $80/mo biweekly
-- **Strength:** Cross-sells with dog grooming business, premium feel
-- **Weakness:** EXPENSIVE. $95/mo is 35% more than Tidy Tails
-- **Threat Level:** LOW — different market segment (premium clients)
-- **Notable:** Trip charge for homes 10+ miles from shop
-
-### 👴 Yucko's — The Veteran
-- **Phone:** 314-291-7667 (314-291-POOP)
-- **Since:** 1990 (36 years!)
-- **Strength:** Brand recognition, commercial + residential, fully insured
-- **Weakness:** Ancient website (seriously, it looks like 1998), no online booking
-- **Threat Level:** LOW-MEDIUM — they survive on reputation and referrals
-- **Notable:** "Professionals in Turd-Herding" — their tagline is actually hilarious
-
-### 🏢 DoodyCalls — The Franchise
+### 2. DoodyCalls of St. Louis (HIGH THREAT)
+- **Rating:** Franchise (reviews mixed across locations)
+- **Pricing:** Quote-based
+- **Website:** doodycalls.com/st-louis
 - **Phone:** (314) 230-8082
-- **Strength:** National brand (Authority Brands), commercial services, pet waste stations
-- **Weakness:** 4 Yelp reviews only, franchise markup
-- **Threat Level:** LOW — focused more on commercial/HOA than residential
+- **Territory:** Affton + wide STL metro
+- **Key Offer:** Running heavy Google Ads, 100% satisfaction guarantee
+- **Type:** National franchise (Authority Brands, 25+ years)
+- **Notes:** Part of massive Authority Brands franchise network. Trained/uniformed techs. Commercial services.
 
-### 🪖 Scoop Soldiers — New Entrant
+### 3. Doggie Doodies (HIGH THREAT — Watch Closely)
+- **Rating:** 5.0 stars, 12 reviews
+- **Pricing (Monthly billing):**
+  - 1 Dog Weekly: $83/mo ($19.15/visit effective)
+  - 2 Dog Weekly: $88/mo ($20.30/visit)
+  - 3 Dog Weekly: $100/mo ($23/visit)
+  - 4 Dog Weekly: $121/mo ($27.92/visit)
+  - Bi-weekly: $85-110/mo depending on dogs
+  - Monthly: $90-117/mo depending on dogs
+- **Website:** doggiedoodies.com
+- **Territory:** St. Charles County + West STL County (Chesterfield, Ballwin, etc.)
+- **Key Offers:** Free first cleanup, "Paw Points" rewards program, e-gift cards, referral program
+- **Type:** Local startup, growing fast
+- **Differentiators:**
+  - Background-checked techs
+  - Pre-visit photos of assigned technician
+  - Text before arrival + completion confirmation
+  - Gate photos after service
+  - Disinfected equipment between visits
+  - Customer portal with auto-pay
+  - No contracts
+- **Notes:** Most similar to Tidy Tails in size/stage. More polished website and ops. NOT in North County.
+
+### 4. No. 2 Crew STL (MEDIUM THREAT — New)
+- **Rating:** No reviews yet (brand new)
+- **Pricing:**
+  - 1 Dog Weekly: $19/visit
+  - 2-3 Dog Weekly: $24/visit
+  - 4-5 Dog Weekly: $29/visit
+  - Bi-weekly: $35/$44/$55
+  - Monthly: $68/$85/$100
+  - Extra: $5 per additional scooper pan on initial cleanup
+- **Website:** no2crew.com
+- **Territory:** STL metro (unspecified)
+- **Key Offers:** "Buy 3 Scoops, Get 1 Free" promo, running Google Ads (#1 position)
+- **Type:** Local startup
+- **Notes:** Cheapest transparent pricing alongside Poop 2 Scoop. Aggressive ad spend for a new company.
+
+### 5. Poop 2 Scoop (MEDIUM THREAT)
+- **Rating:** Not visible
+- **Pricing:**
+  - Weekly 1 Dog: $18/visit (cheapest in market)
+  - Twice Weekly: $16/visit
+  - Every Other Week: $25/visit
+  - Add-ons: +$4/extra dog, +$4 large yard, +$4 deodorize
+- **Website:** poop2scoop.com
+- **Phone:** 314-449-9447
+- **Territory:** STL + surrounding
+- **Key Offer:** 100% satisfaction guarantee, deck/yard deodorizing
+- **Type:** Local family business
+- **Notes:** #1 organic Google result. Cheapest base price. Simple clean website.
+
+### 6. Little Stinkers of MO (LOW THREAT)
+- **Rating:** 5.0 stars, 26 reviews
+- **Pricing:** Not published (free quote)
+- **Website:** littlestinkersofmo.com
+- **Territory:** Wentzville, St. Charles County, Lincoln/Warren County
+- **Type:** Family-owned
+- **Services:** Dog waste, litter boxes, pet waste stations, deodorizing
+- **Notes:** 40+ miles from TJ's territory. Commercial services include HOA stations.
+
+### 7. Scoop Soldiers (MEDIUM THREAT)
+- **Rating:** National brand (testimonials on site)
+- **Pricing:** Quote-based, "First Service Free"
 - **Website:** scoopsoldiers.com
-- **Strength:** Clean modern website, professional copy, SEO-optimized pages
-- **Weakness:** No visible pricing (red flag for customers), national franchise
-- **Threat Level:** MEDIUM — good marketing but unproven locally
-- **Notable:** Background-checked techs, satisfaction guarantee
+- **Territory:** National franchise, actively advertising in STL
+- **Type:** National franchise, est. 2010
+- **Notes:** /st-louis page 404s — may not have active local operator yet. Military branding, Valor Service Dogs partnership.
 
-### ☠️ Pawfect Waste Solutions — POSSIBLY DEAD
-- **Website:** pooperscooperstl.com → **404 ERROR (site not found)**
-- **Alt domain:** pawfectwaste.net exists but couldn't extract content
-- **Status:** May be defunct or transitioning
-- **Opportunity:** One less competitor in the market
+### 8. Yucko's Pooper Scooper (LOW THREAT)
+- **Rating:** Not visible online
+- **Pricing:** Call for quote only
+- **Phone:** 314-291-POOP (7667)
+- **Website:** yuckos.com (extremely outdated)
+- **Territory:** STL County + City, St. Charles
+- **Type:** Local veteran, est. 1990 (36 years!)
+- **Notes:** The OG of STL poop scooping. Website looks like it's from 1998. Probably has loyal long-term customer base. May be nearing retirement.
 
----
+### 9. Dr. Scoops Pet Waste Removal
+- **Rating:** 5.0 stars, 15 reviews
+- **Territory:** Ballwin, Chesterfield, Ellisville, Wildwood (West County only)
+- **Notes:** Eco-friendly focus. Good communication. Not in TJ's territory.
 
-## WHAT COMPETITORS DO THAT TJ DOESN'T (YET)
-
-### 1. Free First Cleanup
-**Who does it:** POOP 911, Scoop Soldiers
-**What it is:** Free initial yard cleanup when signing up for recurring service
-**Impact:** Lowers barrier to entry MASSIVELY. Customer thinks "I've got nothing to lose."
-**Recommendation:** TJ should offer this. It costs maybe 20 minutes of labor but could convert fence-sitters.
-
-### 2. Online Reviews
-**Who does it:** Everyone except Tidy Tails
-**The gap:** Poopy Paws is #1 on Yelp. Poop 2 Scoop has Google reviews. Tidy Tails has ZERO public reviews anywhere.
-**Recommendation:** Ask every current customer for a Google/Yelp review. Even 3-5 reviews puts TJ on the map.
-
-### 3. Professional Online Booking
-**Who does it:** Poop 2 Scoop, POOP 911, DoodyCalls, Scoop Soldiers
-**The gap:** Tidy Tails requires a phone call or text
-**Recommendation:** Not urgent, but an online quote form would capture late-night browsers
-
-### 4. Deodorizing Service
-**Who does it:** Poop 2 Scoop ($4 add-on), DoodyCalls (full service)
-**What it is:** Deck/patio deodorization treatment
-**Recommendation:** Easy upsell. $10-15 add-on per visit. Spring is perfect timing.
-
-### 5. Commercial Services
-**Who does it:** Yucko's, DoodyCalls, Dirty Dog Wash, POOP 911
-**The gap:** On hold per TJ's directive (focus on residential first)
-**Recommendation:** Keep in back pocket for when residential hits 15+ customers
+### 10. Dog Doody Defenders ☠️ DEAD
+- **Status:** DNS expired March 23, 2026
+- **Former Territory:** Florissant, North County (63031)
+- **Notes:** 15-30 orphaned customers need a new provider NOW
 
 ---
 
-## TJ'S COMPETITIVE ADVANTAGES (USE THESE IN MARKETING)
+## Pricing Comparison (Weekly, 1 Dog)
 
-1. **🏆 Best multi-dog value in STL** — $70/mo flat, no per-dog charges. A household with 3 dogs saves $28-35/mo vs competitors
-2. **🤝 Truly local & personal** — Not a franchise, not a call center. TJ answers the phone
-3. **💰 No contracts** — Industry standard, but worth emphasizing
-4. **📍 St. Louis County focus** — Not spread thin across 70 zip codes like POOP 911
-5. **⏰ Flexible scheduling** — Weekly service at a price point between budget (POOP 911) and premium (Dirty Dog)
+| Company | Per Visit | Monthly Equiv. |
+|---------|----------|----------------|
+| Poop 2 Scoop | $18 | ~$78 |
+| No. 2 Crew | $19 | ~$82 |
+| Doggie Doodies | $19.15 | $83 |
+| **TIDY TAILS** | **$25** | **~$108** |
+| DoodyCalls | Quote | Quote |
+| POOP 911 | Quote | Quote |
+| Scoop Soldiers | Quote | Quote |
 
-### Suggested Positioning Statement
-> "St. Louis's best value in pet waste removal. $70/month flat rate — no matter how many dogs. No contracts. No corporate runaround. Just clean yards and happy dogs."
-
----
-
-## 3 THINGS TJ SHOULD DO THIS WEEK
-
-1. **Text 4-5 current customers asking for a Google review** — Even 3 reviews changes everything. (Templates in `referral-blitz-march.md`)
-2. **Add "Free First Cleanup" to the offer** — Match POOP 911's proven conversion tactic. Costs 20 min, could close the deal
-3. **Get on Google Business Profile** — Every competitor is there. Tidy Tails is invisible. This is still the #1 blocker. (Guide in `get-listed-30-minutes.md`)
+**TJ's Position:** Mid-to-upper market. ~$5-7 above cheapest transparent competitors. Comparable to or below franchise pricing.
 
 ---
 
-## MARKET LANDSCAPE SUMMARY
+## Territory Map
 
-The STL pet waste removal market has **10-12 active competitors** ranging from solo operators (Poopy Paws) to national franchises (POOP 911, DoodyCalls). Pricing ranges from $48/mo (budget franchise) to $95/mo (premium). Tidy Tails at $70/mo flat rate is positioned perfectly in the value sweet spot.
+### North County (TJ's Territory) — WIDE OPEN
+- DDD: Dead ☠️
+- POOP 911: General coverage but not focused here
+- **Nobody else specifically targets North County**
+- **TJ has near-monopoly opportunity**
 
-**The market is growing.** New entrants like Scoop Soldiers and Pawfect Waste Solutions (possibly defunct already) show demand is increasing. Spring 2026 is peak season — the time to be visible is NOW.
+### West County / St. Charles — CROWDED
+- Doggie Doodies, Little Stinkers, Dr. Scoops, Dirty Dog Wash
+- 4+ competitors fighting for same customers
 
-**The #1 competitive gap isn't pricing or service quality — it's visibility.** Every competitor has Google, Yelp, and directory listings. Tidy Tails has none. Fix that, and the pricing + service quality will do the rest.
+### South County / Affton
+- DoodyCalls (Google Ads targeting)
+- Poop 2 Scoop (general metro)
+
+### City (Downtown/Soulard/Lafayette)
+- POOP 911 (specifically listed neighborhoods)
 
 ---
-*Report by Franklin | March 11, 2026*
+
+## Strategic Recommendations
+
+1. **Complete GBP immediately** — TJ is invisible on Google
+2. **Add "Free First Cleanup" offer** — Industry standard, 4/8 competitors offer it
+3. **Capture DDD orphaned customers NOW** — Time-sensitive opportunity
+4. **Implement gate photos** — Easy win stolen from Doggie Doodies playbook
+5. **Push for 10+ Google reviews** — 6 vs. 180 (POOP 911) is untenable
+6. **Consider deodorizing upsell** — 4+ competitors offer it, easy revenue add
+7. **Own "North County" in all marketing** — Territory is uncontested
+8. **Monthly billing model** — Doggie Doodies model is stickier than per-visit
+
+---
+
+*Report generated by Franklin — March 24, 2026*
+*Sources: Google Search, competitor websites, Google Maps AI Overview*
+*Next update: April 2026 (when Brave API quota resets)*
