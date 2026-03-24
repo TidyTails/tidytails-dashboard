@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Customer Onboarding Kit — Tidy Tails</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; padding-bottom:4rem; }
+        
+        .header {
+            background: linear-gradient(135deg, #111, #1a1520);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem; text-align: center;
+        }
+        .header h1 { font-size: 1.4rem; font-weight: 800; letter-spacing: -0.03em; }
+        .header h1 span { color: var(--green); }
+        .header p { color: var(--text2); font-size: 0.8rem; margin-top: 0.4rem; }
+        .back-link { display: inline-block; margin-top: 0.75rem; font-size: 0.75rem; color: var(--orange); text-decoration: none; }
+
+        .container { max-width: 700px; margin: 0 auto; padding: 1.25rem; }
+
+        /* Pipeline visual */
+        .pipeline {
+            display: flex; gap: 0; margin: 1rem 0 1.5rem; overflow-x: auto;
+            -webkit-overflow-scrolling: touch; padding-bottom: 0.5rem;
+        }
+        .pipe-step {
+            flex: 1; min-width: 70px; text-align: center; padding: 0.6rem 0.3rem;
+            font-size: 0.6rem; font-weight: 700; position: relative; cursor: pointer;
+            border: 2px solid var(--border); border-radius: 8px; margin: 0 2px;
+            transition: all 0.2s; color: var(--text2);
+        }
+        .pipe-step.active { border-color: var(--green); color: var(--green); background: rgba(16,185,129,0.08); }
+        .pipe-step .pipe-icon { font-size: 1.2rem; display: block; margin-bottom: 0.2rem; }
+        .pipe-step .pipe-count { 
+            position: absolute; top: -8px; right: -4px; background: var(--orange); color: #000;
+            font-size: 0.55rem; font-weight: 800; width: 16px; height: 16px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        /* Stage sections */
+        .stage {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            margin-bottom: 1rem; overflow: hidden;
+        }
+        .stage-header {
+            padding: 1rem 1.25rem; cursor: pointer; display: flex; align-items: center;
+            gap: 0.75rem; transition: background 0.2s;
+        }
+        .stage-header:hover { background: var(--bg4); }
+        .stage-num {
+            width: 32px; height: 32px; border-radius: 50%; display: flex;
+            align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem;
+            flex-shrink: 0;
+        }
+        .stage-info { flex: 1; }
+        .stage-title { font-weight: 700; font-size: 0.9rem; }
+        .stage-timing { font-size: 0.7rem; color: var(--text2); margin-top: 0.15rem; }
+        .stage-arrow { color: var(--text3); transition: transform 0.3s; font-size: 1.2rem; }
+        .stage.open .stage-arrow { transform: rotate(90deg); }
+        .stage-body { display: none; padding: 0 1.25rem 1.25rem; }
+        .stage.open .stage-body { display: block; }
+
+        /* Text templates */
+        .template {
+            background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+            padding: 0.85rem; margin-bottom: 0.75rem; position: relative;
+        }
+        .template-label {
+            font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+            color: var(--green); margin-bottom: 0.4rem; letter-spacing: 0.05em;
+        }
+        .template-text {
+            font-size: 0.8rem; color: var(--text); line-height: 1.6; white-space: pre-wrap;
+        }
+        .template-note {
+            font-size: 0.68rem; color: var(--yellow); margin-top: 0.5rem; font-style: italic;
+        }
+        .copy-btn {
+            position: absolute; top: 0.6rem; right: 0.6rem; background: var(--green);
+            color: #000; border: none; border-radius: 6px; padding: 0.3rem 0.7rem;
+            font-size: 0.65rem; font-weight: 700; cursor: pointer; font-family: inherit;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover { filter: brightness(1.2); }
+        .copy-btn.copied { background: var(--orange); }
+
+        /* Checklist items */
+        .check-item {
+            display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.8rem;
+        }
+        .check-item:last-child { border-bottom: none; }
+        .check-item input[type="checkbox"] {
+            width: 18px; height: 18px; accent-color: var(--green); flex-shrink: 0; margin-top: 2px;
+        }
+        .check-item.done { opacity: 0.5; text-decoration: line-through; }
+
+        /* Pro tip callouts */
+        .tip {
+            background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2);
+            border-radius: 8px; padding: 0.75rem; margin: 0.75rem 0;
+            font-size: 0.75rem; color: var(--yellow); line-height: 1.5;
+        }
+        .tip strong { color: var(--orange); }
+
+        /* Customer form */
+        .form-group { margin-bottom: 0.75rem; }
+        .form-group label { display: block; font-size: 0.7rem; font-weight: 600; color: var(--text2); margin-bottom: 0.3rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 0.6rem; background: var(--bg); border: 1px solid var(--border);
+            border-radius: 8px; color: var(--text); font-family: inherit; font-size: 0.8rem;
+        }
+        .form-group textarea { min-height: 60px; resize: vertical; }
+
+        /* Active customer tracker */
+        .customer-card {
+            background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+            padding: 0.85rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.75rem;
+        }
+        .customer-card .cust-stage {
+            font-size: 0.55rem; font-weight: 700; padding: 0.15rem 0.5rem;
+            border-radius: 4px; white-space: nowrap;
+        }
+        .cs-welcome { background: rgba(59,130,246,0.2); color: var(--blue); }
+        .cs-setup { background: rgba(251,191,36,0.2); color: var(--yellow); }
+        .cs-first { background: rgba(255,107,53,0.2); color: var(--orange); }
+        .cs-checkin { background: rgba(139,92,246,0.2); color: var(--purple); }
+        .cs-review { background: rgba(16,185,129,0.2); color: var(--green); }
+        .cs-referral { background: rgba(16,185,129,0.3); color: var(--green); }
+        .cs-locked { background: rgba(16,185,129,0.4); color: var(--green); }
+
+        .empty-state { text-align: center; padding: 2rem; color: var(--text3); font-size: 0.8rem; }
+
+        .btn {
+            display: inline-block; padding: 0.6rem 1.2rem; border-radius: 8px;
+            font-weight: 700; font-size: 0.8rem; cursor: pointer; border: none;
+            font-family: inherit; transition: all 0.2s;
+        }
+        .btn-green { background: var(--green); color: #000; }
+        .btn-orange { background: var(--orange); color: #000; }
+        .btn-red { background: var(--red); color: #fff; }
+        .btn:hover { filter: brightness(1.2); transform: translateY(-1px); }
+
+        .divider { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+
+        /* Retention stats */
+        .ret-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 1rem 0; }
+        .ret-stat { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 0.6rem; text-align: center; }
+        .ret-stat .val { font-size: 1.3rem; font-weight: 800; }
+        .ret-stat .label { font-size: 0.6rem; color: var(--text2); margin-top: 0.1rem; }
+
+        @media (max-width: 500px) {
+            .pipe-step { min-width: 55px; font-size: 0.5rem; }
+            .pipe-step .pipe-icon { font-size: 1rem; }
+            .ret-stats { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🤝 New Customer <span>Onboarding Kit</span></h1>
+    <p>Turn "sign me up" into a locked-in, review-leaving, referral machine</p>
+    <a href="index.html" class="back-link">← Back to Command Center</a>
+</div>
+
+<div class="container">
+
+    <!-- Pipeline Overview -->
+    <div class="pipeline" id="pipeline">
+        <div class="pipe-step active" data-stage="1" onclick="scrollToStage(1)">
+            <span class="pipe-icon">👋</span>Welcome
+        </div>
+        <div class="pipe-step" data-stage="2" onclick="scrollToStage(2)">
+            <span class="pipe-icon">📋</span>Setup
+        </div>
+        <div class="pipe-step" data-stage="3" onclick="scrollToStage(3)">
+            <span class="pipe-icon">🏠</span>First Visit
+        </div>
+        <div class="pipe-step" data-stage="4" onclick="scrollToStage(4)">
+            <span class="pipe-icon">✅</span>Check-in
+        </div>
+        <div class="pipe-step" data-stage="5" onclick="scrollToStage(5)">
+            <span class="pipe-icon">⭐</span>Review
+        </div>
+        <div class="pipe-step" data-stage="6" onclick="scrollToStage(6)">
+            <span class="pipe-icon">🔗</span>Referral
+        </div>
+        <div class="pipe-step" data-stage="7" onclick="scrollToStage(7)">
+            <span class="pipe-icon">🔒</span>Locked In
+        </div>
+    </div>
+
+    <!-- Retention Stats -->
+    <div class="ret-stats">
+        <div class="ret-stat"><div class="val" style="color:var(--green)" id="stat-onboarded">0</div><div class="label">Onboarded</div></div>
+        <div class="ret-stat"><div class="val" style="color:var(--blue)" id="stat-active">0</div><div class="label">In Pipeline</div></div>
+        <div class="ret-stat"><div class="val" style="color:var(--orange)" id="stat-reviews">0</div><div class="label">Reviews Asked</div></div>
+    </div>
+
+    <!-- ═══════════════ STAGE 1: WELCOME ═══════════════ -->
+    <div class="stage open" id="stage-1">
+        <div class="stage-header" onclick="toggleStage(1)">
+            <div class="stage-num" style="background:rgba(59,130,246,0.2);color:var(--blue);">1</div>
+            <div class="stage-info">
+                <div class="stage-title">Welcome & Confirm</div>
+                <div class="stage-timing">⏰ Within 5 minutes of "yes"</div>
+            </div>
+            <span class="stage-arrow">›</span>
+        </div>
+        <div class="stage-body">
+            <div class="tip">💡 <strong>Speed wins.</strong> The welcome text within 5 min of signup makes customers feel taken care of. Sets the tone for everything.</div>
+
+            <div class="template">
+                <div class="template-label">📱 Welcome Text — New Residential Customer</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hey [NAME]! 🐕 This is Jamie from Tidy Tails. Welcome aboard! Super stoked to have you.
+
+Quick recap:
+✅ Service: [Weekly/Bi-Weekly] cleanup
+✅ Day: [DAY]s
+✅ Start date: [DATE]
+✅ Rate: $[PRICE]/[week/visit]
+
+I'll text you before my first visit. If your yard has a gate code or anything I should know, just shoot it over whenever.
+
+Thanks for choosing Tidy Tails — you're gonna love having a clean yard without lifting a finger! 💪</div>
+                <div class="template-note">⚡ Customize the bracketed parts. Send within 5 min of signup.</div>
+            </div>
+
+            <div class="template">
+                <div class="template-label">📱 Welcome Text — DDD Rescue / Competitor Switch</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hey [NAME]! 🐕 Jamie from Tidy Tails here. Welcome!
+
+I know switching services can be a pain, so I want to make this as smooth as possible. Here's the plan:
+
+✅ I'll start [DAY], [DATE]
+✅ [Weekly/Bi-Weekly] service at $[PRICE]/[week/visit]
+✅ First visit includes a deep clean at no extra charge (since it's been a while!)
+
+Same reliable service you had before — just better communication. I text when I'm on the way and when I'm done. No surprises.
+
+Any gate codes or notes about your yard? Just shoot 'em over whenever.</div>
+                <div class="template-note">🎯 The free deep clean for switchers removes the "what if my yard's a mess" anxiety. Cost: ~20 extra min, worth 12+ months of revenue.</div>
+            </div>
+
+            <div class="template">
+                <div class="template-label">📱 Welcome Text — Commercial / Property Manager</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hi [NAME],
+
+Jamie from Tidy Tails — great connecting with you! Excited to start servicing [PROPERTY NAME].
+
+Quick summary:
+✅ Service: [FREQUENCY] pet waste removal
+✅ Areas: [COMMON AREAS/DOG PARK/SPECIFIC ZONES]
+✅ Start: [DATE]
+✅ Rate: $[PRICE]/[week/month]
+✅ Invoice: Monthly, sent 1st of month via email
+
+I'll do a walkthrough on my first visit and send you a quick report with any observations (like if we need signage for pet stations, etc.).
+
+What's the best way to access the property? And should I coordinate with on-site staff?
+
+Looking forward to keeping [PROPERTY] clean! 🐾</div>
+                <div class="template-note">📋 Commercial clients need more structure. The "walkthrough report" shows professionalism and opens upsell conversations.</div>
+            </div>
+
+            <div style="margin-top:1rem;">
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Welcome text sent within 5 min</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Added to CRM with service details</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Service day/time confirmed</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Pricing confirmed in writing</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ STAGE 2: SETUP ═══════════════ -->
+    <div class="stage" id="stage-2">
+        <div class="stage-header" onclick="toggleStage(2)">
+            <div class="stage-num" style="background:rgba(251,191,36,0.2);color:var(--yellow);">2</div>
+            <div class="stage-info">
+                <div class="stage-title">Pre-Visit Setup</div>
+                <div class="stage-timing">⏰ 1-2 days before first visit</div>
+            </div>
+            <span class="stage-arrow">›</span>
+        </div>
+        <div class="stage-body">
+            <div class="tip">💡 <strong>This text prevents 90% of first-visit problems.</strong> Gate codes, dog behavior, where waste goes — get it all upfront instead of guessing on-site.</div>
+
+            <div class="template">
+                <div class="template-label">📱 Pre-Visit Info Request</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hey [NAME]! Quick heads up — your first cleanup is [DAY]! 🎉
+
+A few quick questions so I can knock it out perfectly:
+
+🔑 Gate access: Unlocked, code, or hidden key?
+🐕 Will your dog(s) be out? Any quirks I should know? (nervous, jumpy, escape artist?)
+🗑️ Where should I leave bags — trash can, side of house, I take with me?
+📍 Any specific areas to focus on?
+
+That's it! I'll text you when I'm heading over and when I'm done. See you [DAY]!</div>
+            </div>
+
+            <div class="template">
+                <div class="template-label">📱 Day-Before Reminder</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hey [NAME]! Just a heads up — I'll be by tomorrow ([DAY]) for your first Tidy Tails cleanup! 🐕
+
+Make sure the gate's accessible and I'll text you when I'm done. Looking forward to it! 💪</div>
+            </div>
+
+            <div style="margin-top:1rem;">
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Gate/access info received</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Dog info noted (names, behavior)</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Waste disposal preference confirmed</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Added to route/schedule</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Day-before reminder sent</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ STAGE 3: FIRST VISIT ═══════════════ -->
+    <div class="stage" id="stage-3">
+        <div class="stage-header" onclick="toggleStage(3)">
+            <div class="stage-num" style="background:rgba(255,107,53,0.2);color:var(--orange);">3</div>
+            <div class="stage-info">
+                <div class="stage-title">First Visit & Follow-Up</div>
+                <div class="stage-timing">⏰ Day of + 2 hours after</div>
+            </div>
+            <span class="stage-arrow">›</span>
+        </div>
+        <div class="stage-body">
+            <div class="tip">💡 <strong>First impression = everything.</strong> The "on my way" + "all done" + before/after photo makes them feel like they hired a pro, not just some guy. This is what separates you from Scoop Soldiers.</div>
+
+            <div class="template">
+                <div class="template-label">📱 On My Way Text</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hey [NAME]! 🐕 Jamie here — heading to your place now. Should be there in about [X] minutes. I'll text you when I'm done!</div>
+            </div>
+
+            <div class="template">
+                <div class="template-label">📱 All Done Text (First Visit — Extra Special)</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">All done at your place! 🎉✨
+
+Your first visit recap:
+✅ Full yard cleared — [X] bags
+✅ [Any extra notes: "focused on the back corner by the fence" / "your dog was super friendly!"]
+✅ Gate secured behind me
+
+Your yard is looking great! I'll be back same time next [DAY]. Welcome to the clean yard life! 🐕💪
+
+[ATTACH: Before/after photo if you took one]</div>
+                <div class="template-note">📸 Take a before/after photo on the first visit. It's 10 seconds and makes the text 5x more impressive. Also great for social media (with permission).</div>
+            </div>
+
+            <div class="template">
+                <div class="template-label">📱 Same-Day Follow-Up (2 hours after)</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hey [NAME] — one more thing! If you noticed anything I missed or want me to adjust anything for next time, just let me know. I want to make sure this is exactly what you need. 👍</div>
+                <div class="template-note">🎯 This 10-second text does 3 things: shows you care, catches problems before they fester, and makes them think "wow this guy is thorough." Most services never follow up. Ever.</div>
+            </div>
+
+            <div style="margin-top:1rem;">
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> "On my way" text sent</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Before photo taken</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Service completed thoroughly</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> After photo taken</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> "All done" text sent with details</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Same-day follow-up sent (2hrs later)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ STAGE 4: 2-WEEK CHECK-IN ═══════════════ -->
+    <div class="stage" id="stage-4">
+        <div class="stage-header" onclick="toggleStage(4)">
+            <div class="stage-num" style="background:rgba(139,92,246,0.2);color:var(--purple);">4</div>
+            <div class="stage-info">
+                <div class="stage-title">2-Week Check-In</div>
+                <div class="stage-timing">⏰ After 2nd or 3rd visit</div>
+            </div>
+            <span class="stage-arrow">›</span>
+        </div>
+        <div class="stage-body">
+            <div class="tip">💡 <strong>This is the "churn prevention" text.</strong> Most cancellations happen in the first month because of unspoken issues. This catches them. It also sets up the review ask perfectly.</div>
+
+            <div class="template">
+                <div class="template-label">📱 2-Week Check-In</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hey [NAME]! 🐕 Jamie here — we're a couple weeks in now. Just wanted to check:
+
+1️⃣ How's the yard looking to you?
+2️⃣ Anything you want me to adjust?
+3️⃣ Is the [DAY] timing still working?
+
+I want to make sure you're 100% happy. No detail is too small! 👍</div>
+            </div>
+
+            <div class="template">
+                <div class="template-label">📱 If They Report an Issue</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Appreciate you telling me that! I'll [fix/adjust/focus on that] starting this [DAY]. You shouldn't have to worry about it — that's literally why you hired me 😄
+
+I'll check in again after my next visit to make sure it's dialed in. 👍</div>
+                <div class="template-note">⚡ Never be defensive about feedback. Thank them, fix it, follow up. This is how you create customers who never leave.</div>
+            </div>
+
+            <div class="template">
+                <div class="template-label">📱 If They Say Everything's Great</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Awesome, that's what I love to hear! 🙌 Glad it's working out. I'll keep doing my thing every [DAY] — you just enjoy the clean yard!
+
+Oh and btw — if you ever need a one-time deep clean before a party or event, just let me know. I got you! 🐕💪</div>
+                <div class="template-note">🎯 This plants the upsell seed (one-time deep cleans) without being salesy. They'll remember it.</div>
+            </div>
+
+            <div style="margin-top:1rem;">
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> 2-week check-in text sent</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Response received & addressed</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Any issues resolved</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ STAGE 5: REVIEW ASK ═══════════════ -->
+    <div class="stage" id="stage-5">
+        <div class="stage-header" onclick="toggleStage(5)">
+            <div class="stage-num" style="background:rgba(16,185,129,0.2);color:var(--green);">5</div>
+            <div class="stage-info">
+                <div class="stage-title">Review Request</div>
+                <div class="stage-timing">⏰ After 3rd-4th visit (when they're happy)</div>
+            </div>
+            <span class="stage-arrow">›</span>
+        </div>
+        <div class="stage-body">
+            <div class="tip">💡 <strong>Timing is everything.</strong> Ask AFTER a positive check-in response — never out of the blue. When they just told you "everything's great," the review ask converts at 50%+ instead of 10%.</div>
+
+            <div class="template">
+                <div class="template-label">📱 Review Ask — After Positive Check-In (Best Conversion)</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">That really means a lot! 🙏 Since you're happy with the service, would you mind leaving a quick Google review? It makes a HUGE difference for a small business like mine.
+
+Here's the link — takes about 30 seconds:
+https://g.page/r/Ce_hqIHanGLvEAE/review
+
+No pressure at all — I just really appreciate the support! 🐕</div>
+                <div class="template-note">📊 This is your highest-converting review ask. Send it IMMEDIATELY after they say something positive. Strike while the iron is hot.</div>
+            </div>
+
+            <div class="template">
+                <div class="template-label">📱 Review Ask — Standalone (If You Missed the Window)</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hey [NAME]! Quick favor — if you're happy with Tidy Tails, would you mind leaving a quick Google review? It really helps other dog owners find me.
+
+https://g.page/r/Ce_hqIHanGLvEAE/review
+
+Totally optional but I'd really appreciate it! 🙏🐕</div>
+            </div>
+
+            <div class="template">
+                <div class="template-label">📱 Thank You for Review</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Just saw your review — you're the best!! 🙏🐕 That means SO much to a small local business. Thank you [NAME]!
+
+I'll keep making sure your yard stays spotless. You've got a scooper for life! 💪</div>
+            </div>
+
+            <div style="margin-top:1rem;">
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Review ask sent</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Review received</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Review reply posted on Google</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Thank you text sent</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ STAGE 6: REFERRAL ASK ═══════════════ -->
+    <div class="stage" id="stage-6">
+        <div class="stage-header" onclick="toggleStage(6)">
+            <div class="stage-num" style="background:rgba(16,185,129,0.25);color:var(--green);">6</div>
+            <div class="stage-info">
+                <div class="stage-title">Referral Ask</div>
+                <div class="stage-timing">⏰ After 1 month or after they leave a review</div>
+            </div>
+            <span class="stage-arrow">›</span>
+        </div>
+        <div class="stage-body">
+            <div class="tip">💡 <strong>People who just left a review are in "advocate mode."</strong> The referral ask after a review converts 3x better than cold. Don't wait — ask within 1-2 days of the review.</div>
+
+            <div class="template">
+                <div class="template-label">📱 Referral Ask — After Review (Highest Conversion)</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hey [NAME], one more thing — know anyone else who hates scooping? 😄
+
+If you send anyone my way, I'll knock $10 off your next month as a thank you. No limit on referrals — tell the whole neighborhood! 🐕
+
+Just have them mention your name when they reach out. Easy peasy!</div>
+            </div>
+
+            <div class="template">
+                <div class="template-label">📱 Referral Ask — 1 Month Anniversary</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hey [NAME]! 🎉 Just realized we've been at it for a month now. How's the clean yard life treating you?
+
+Quick thing — if you know any dog owners in [AREA] who'd love this service, I'd appreciate the shout! I'll take $10 off your next month for each referral.
+
+Thanks for being awesome! 🐕💪</div>
+            </div>
+
+            <div class="template">
+                <div class="template-label">📱 When a Referral Signs Up</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hey [REFERRER NAME]! 🎉 [NEW CUSTOMER] just signed up and said you sent them — you're amazing! 
+
+$10 off your next month as promised. Keep 'em coming! 🐕🙌</div>
+            </div>
+
+            <div style="margin-top:1rem;">
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Referral ask sent</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Referral discount applied (if earned)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════════ STAGE 7: LOCKED IN ═══════════════ -->
+    <div class="stage" id="stage-7">
+        <div class="stage-header" onclick="toggleStage(7)">
+            <div class="stage-num" style="background:rgba(16,185,129,0.3);color:var(--green);">7</div>
+            <div class="stage-info">
+                <div class="stage-title">Locked In — Ongoing Retention</div>
+                <div class="stage-timing">🔄 Monthly touchpoints</div>
+            </div>
+            <span class="stage-arrow">›</span>
+        </div>
+        <div class="stage-body">
+            <div class="tip">💡 <strong>Retention > Acquisition.</strong> It costs 5x more to get a new customer than to keep one. These monthly touchpoints keep you top of mind and prevent silent churn.</div>
+
+            <div class="template">
+                <div class="template-label">📱 Monthly "Just Checking In" (Rotate These)</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hey [NAME]! Quick check — everything still looking good with the service? Just want to make sure you're happy! 🐕👍</div>
+            </div>
+
+            <div class="template">
+                <div class="template-label">📱 Seasonal Upsell — Spring/Fall Deep Clean</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hey [NAME]! 🌸 Spring's here and I'm doing deep cleans this month — a full top-to-bottom sweep beyond the regular service. $100 one-time, usually takes about an hour.
+
+Want me to add you to the list? Spots are filling up! 🐕</div>
+                <div class="template-note">📈 Seasonal upsells add $100-200/customer/year. Even if 30% say yes, that's real money. Send to ALL customers at once — batch it.</div>
+            </div>
+
+            <div class="template">
+                <div class="template-label">📱 Holiday Text (Thanksgiving/Christmas/New Year)</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Happy [HOLIDAY] [NAME]! 🐕🎄 Just want to say thanks for being a Tidy Tails customer this year. Enjoy the holiday — I'll keep your yard clean so you can focus on the good stuff!
+
+Wishing you and your pup(s) a great one! 🐾</div>
+                <div class="template-note">🎯 Holiday texts = zero effort, massive goodwill. Customers remember the businesses that treat them like people.</div>
+            </div>
+
+            <div class="template">
+                <div class="template-label">📱 Multi-Dog Upsell</div>
+                <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+                <div class="template-text">Hey [NAME]! Quick Q — do you have just the [one dog/two dogs] or did you get a new addition? 🐕🐕
+
+Just want to make sure I'm covering everything. No price change for 2 dogs on your current plan! Just want to do a thorough job. 👍</div>
+                <div class="template-note">This opens the door to premium pricing for 3+ dog households while showing you care about doing a complete job.</div>
+            </div>
+
+            <div style="margin-top:1rem;">
+                <p style="font-size:0.75rem;color:var(--text2);margin-bottom:0.5rem;font-weight:600;">Monthly Retention Cadence:</p>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Monthly check-in text</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Seasonal upsell offered (spring/fall)</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Holiday text sent</div>
+                <div class="check-item"><input type="checkbox" onchange="saveChecks()"> Re-ask for referrals (quarterly)</div>
+            </div>
+        </div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- ═══════════════ ACTIVE ONBOARDING TRACKER ═══════════════ -->
+    <h2 style="font-size:1rem;font-weight:800;margin-bottom:0.75rem;">📋 Active Onboarding Tracker</h2>
+    <p style="font-size:0.75rem;color:var(--text2);margin-bottom:1rem;">Track where each new customer is in the pipeline. Data saves in your browser.</p>
+
+    <!-- Add customer form -->
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;margin-bottom:1rem;">
+        <h3 style="font-size:0.85rem;margin-bottom:0.75rem;">➕ Add New Customer</h3>
+        <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" id="newName" placeholder="e.g., Sarah Johnson">
+        </div>
+        <div class="form-group">
+            <label>Service Type</label>
+            <select id="newService">
+                <option value="weekly">Weekly — $25/wk</option>
+                <option value="biweekly">Bi-Weekly — $45/visit</option>
+                <option value="monthly">Monthly — $70/mo</option>
+                <option value="commercial">Commercial</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Service Day</label>
+            <select id="newDay">
+                <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+                <option>Thursday</option><option>Friday</option><option>Saturday</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Notes (gate code, dog names, source)</label>
+            <textarea id="newNotes" placeholder="e.g., Gate code 1234, 2 dogs (Max & Luna), found us on Nextdoor"></textarea>
+        </div>
+        <button class="btn btn-green" onclick="addCustomer()">Add to Pipeline</button>
+    </div>
+
+    <!-- Customer list -->
+    <div id="customerList">
+        <div class="empty-state">No customers in onboarding pipeline yet.<br>Add one above when someone signs up! 🐕</div>
+    </div>
+
+    <hr class="divider">
+
+    <!-- Churn Prevention Playbook -->
+    <h2 style="font-size:1rem;font-weight:800;margin-bottom:0.75rem;">🛡️ Churn Prevention: Red Flags & Saves</h2>
+
+    <div class="template" style="border-color:var(--red);">
+        <div class="template-label" style="color:var(--red);">🚩 Red Flag: "I want to cancel"</div>
+        <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+        <div class="template-text">Hey [NAME], totally understand — no contracts means no pressure! Before you go, can I ask what's not working? 
+
+If it's something I can fix, I'd love the chance. And if not, no hard feelings at all. I appreciate you giving Tidy Tails a shot! 🐕</div>
+        <div class="template-note">⚡ 40% of cancellation requests are saveable. The key: ask WHY, then offer a specific fix. "I'll focus more on [area]" or "Let me switch you to bi-weekly at $45" beats "sorry to see you go."</div>
+    </div>
+
+    <div class="template" style="border-color:var(--red);">
+        <div class="template-label" style="color:var(--red);">🚩 Red Flag: No Response to Check-In</div>
+        <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+        <div class="template-text">Hey [NAME]! Haven't heard from you in a bit — just making sure everything's good with the service! Still cleaning up every [DAY] as usual. 
+
+If you ever need to adjust anything, I'm just a text away. 👍🐕</div>
+        <div class="template-note">Silent customers are at-risk customers. No response to 2 consecutive check-ins = schedule a call.</div>
+    </div>
+
+    <div class="template" style="border-color:var(--yellow);">
+        <div class="template-label" style="color:var(--yellow);">💡 Save: Price Objection</div>
+        <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+        <div class="template-text">Totally get it — I want to make sure this makes sense for you! A couple options:
+
+1️⃣ Switch to bi-weekly ($45/visit) — still keeps things manageable
+2️⃣ I can do monthly ($70) if that fits better
+
+What sounds right? I'd rather adjust than lose you! 🐕</div>
+        <div class="template-note">📊 Downgrading is ALWAYS better than cancellation. A bi-weekly customer paying $90/mo beats a lost customer paying $0.</div>
+    </div>
+
+    <div class="template" style="border-color:var(--yellow);">
+        <div class="template-label" style="color:var(--yellow);">💡 Save: "I'll just do it myself"</div>
+        <button class="copy-btn" onclick="copyTemplate(this)">COPY</button>
+        <div class="template-text">Ha, I've heard that one before! 😄 Tell you what — take a few weeks off and see how it goes. If you find yourself dreading it (everyone does), I'll be right here. No restart fees, no hassle.
+
+In the meantime, enjoy the yard! 🐕</div>
+        <div class="template-note">🎯 Don't fight this one. Let them try. 70% come back within 6 weeks. The "no restart fees" plants the seed for easy return.</div>
+    </div>
+
+    <hr class="divider">
+    <div style="text-align:center;padding:1rem;">
+        <button class="btn btn-orange" onclick="exportData()">📤 Export Data</button>
+        <button class="btn" style="background:var(--bg4);color:var(--text);margin-left:0.5rem;" onclick="importData()">📥 Import</button>
+    </div>
+    <div style="text-align:center;color:var(--text3);font-size:0.65rem;padding:0.5rem;">
+        Built by Franklin 🐕💩 | Tidy Tails Onboarding System v1.0
+    </div>
+</div>
+
+<script>
+// State management
+const STORAGE_KEY = 'tt-onboarding-v1';
+let state = loadState();
+
+function loadState() {
+    try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved) return JSON.parse(saved);
+    } catch(e) {}
+    return { customers: [], checks: {} };
+}
+
+function saveState() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    updateStats();
+    updatePipeline();
+}
+
+// Stage toggle
+function toggleStage(n) {
+    const el = document.getElementById('stage-' + n);
+    el.classList.toggle('open');
+}
+
+function scrollToStage(n) {
+    const el = document.getElementById('stage-' + n);
+    el.classList.add('open');
+    el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Copy template
+function copyTemplate(btn) {
+    const text = btn.parentElement.querySelector('.template-text').textContent;
+    navigator.clipboard.writeText(text.trim()).then(() => {
+        btn.textContent = 'COPIED!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = 'COPY';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+}
+
+// Checkbox persistence
+function saveChecks() {
+    const checks = {};
+    document.querySelectorAll('.check-item input').forEach((cb, i) => {
+        checks[i] = cb.checked;
+        cb.parentElement.classList.toggle('done', cb.checked);
+    });
+    state.checks = checks;
+    saveState();
+}
+
+function loadChecks() {
+    document.querySelectorAll('.check-item input').forEach((cb, i) => {
+        if (state.checks[i]) {
+            cb.checked = true;
+            cb.parentElement.classList.add('done');
+        }
+    });
+}
+
+// Customer management
+const STAGES = [
+    { key: 'welcome', label: 'Welcome', cls: 'cs-welcome' },
+    { key: 'setup', label: 'Setup', cls: 'cs-setup' },
+    { key: 'first-visit', label: '1st Visit', cls: 'cs-first' },
+    { key: 'checkin', label: 'Check-in', cls: 'cs-checkin' },
+    { key: 'review', label: 'Review Ask', cls: 'cs-review' },
+    { key: 'referral', label: 'Referral', cls: 'cs-referral' },
+    { key: 'locked', label: 'Locked In ✅', cls: 'cs-locked' }
+];
+
+function addCustomer() {
+    const name = document.getElementById('newName').value.trim();
+    if (!name) { alert('Enter a name!'); return; }
+    
+    state.customers.push({
+        id: Date.now(),
+        name: name,
+        service: document.getElementById('newService').value,
+        day: document.getElementById('newDay').value,
+        notes: document.getElementById('newNotes').value.trim(),
+        stage: 0,
+        added: new Date().toISOString(),
+        history: [{ stage: 0, date: new Date().toISOString() }]
+    });
+    
+    document.getElementById('newName').value = '';
+    document.getElementById('newNotes').value = '';
+    saveState();
+    renderCustomers();
+}
+
+function advanceCustomer(id) {
+    const c = state.customers.find(x => x.id === id);
+    if (c && c.stage < STAGES.length - 1) {
+        c.stage++;
+        c.history.push({ stage: c.stage, date: new Date().toISOString() });
+        saveState();
+        renderCustomers();
+    }
+}
+
+function removeCustomer(id) {
+    if (confirm('Remove from pipeline?')) {
+        state.customers = state.customers.filter(x => x.id !== id);
+        saveState();
+        renderCustomers();
+    }
+}
+
+function renderCustomers() {
+    const el = document.getElementById('customerList');
+    if (!state.customers.length) {
+        el.innerHTML = '<div class="empty-state">No customers in onboarding pipeline yet.<br>Add one above when someone signs up! 🐕</div>';
+        return;
+    }
+    
+    el.innerHTML = state.customers.map(c => {
+        const s = STAGES[c.stage];
+        const serviceLabel = { weekly: '$25/wk', biweekly: '$45/visit', monthly: '$70/mo', commercial: 'Commercial' }[c.service] || c.service;
+        const daysAgo = Math.floor((Date.now() - new Date(c.added).getTime()) / 86400000);
+        
+        return `<div class="customer-card">
+            <div style="flex:1;">
+                <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.3rem;">
+                    <strong style="font-size:0.85rem;">${c.name}</strong>
+                    <span class="cust-stage ${s.cls}">${s.label}</span>
+                </div>
+                <div style="font-size:0.7rem;color:var(--text2);">
+                    ${c.day}s • ${serviceLabel} • ${daysAgo}d ago${c.notes ? ' • ' + c.notes.substring(0, 40) : ''}
+                </div>
+            </div>
+            <div style="display:flex;gap:0.3rem;">
+                ${c.stage < STAGES.length - 1 ? `<button class="btn btn-green" style="padding:0.3rem 0.6rem;font-size:0.65rem;" onclick="advanceCustomer(${c.id})">Next →</button>` : '<span style="color:var(--green);font-size:0.75rem;font-weight:700;">✅</span>'}
+                <button class="btn btn-red" style="padding:0.3rem 0.5rem;font-size:0.6rem;background:transparent;color:var(--red);border:1px solid var(--red);" onclick="removeCustomer(${c.id})">✕</button>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function updateStats() {
+    const locked = state.customers.filter(c => c.stage === STAGES.length - 1).length;
+    const active = state.customers.filter(c => c.stage < STAGES.length - 1).length;
+    const reviews = state.customers.filter(c => c.stage >= 4).length;
+    
+    document.getElementById('stat-onboarded').textContent = locked;
+    document.getElementById('stat-active').textContent = active;
+    document.getElementById('stat-reviews').textContent = reviews;
+}
+
+function updatePipeline() {
+    STAGES.forEach((s, i) => {
+        const step = document.querySelector(`.pipe-step[data-stage="${i+1}"]`);
+        if (!step) return;
+        const count = state.customers.filter(c => c.stage === i).length;
+        const existing = step.querySelector('.pipe-count');
+        if (existing) existing.remove();
+        if (count > 0) {
+            const badge = document.createElement('span');
+            badge.className = 'pipe-count';
+            badge.textContent = count;
+            step.appendChild(badge);
+        }
+        step.classList.toggle('active', count > 0 || i === 0);
+    });
+}
+
+// Export/Import
+function exportData() {
+    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `tidy-tails-onboarding-${new Date().toISOString().slice(0,10)}.json`;
+    a.click();
+}
+
+function importData() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.onchange = (e) => {
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+            try {
+                state = JSON.parse(ev.target.result);
+                saveState();
+                renderCustomers();
+                loadChecks();
+                alert('Imported!');
+            } catch(err) { alert('Invalid file'); }
+        };
+        reader.readAsText(e.target.files[0]);
+    };
+    input.click();
+}
+
+// Init
+loadChecks();
+renderCustomers();
+updateStats();
+updatePipeline();
+</script>
+</body>
+</html>
