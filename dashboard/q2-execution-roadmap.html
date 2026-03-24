@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Q2 2026 — 90-Day Execution Roadmap</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; padding: 1rem; }
+        a { color: var(--blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .back { display:inline-block; padding:0.5rem 1rem; background:var(--bg3); border:1px solid var(--border); border-radius:8px; font-size:0.8rem; color:var(--text2); margin-bottom:1rem; }
+        .back:hover { color:var(--text); text-decoration:none; }
+
+        h1 { font-size:1.8rem; font-weight:800; margin-bottom:0.25rem; letter-spacing:-0.03em; }
+        h1 span { color:var(--orange); }
+        .subtitle { color:var(--text2); font-size:0.9rem; margin-bottom:1.5rem; }
+
+        .stats-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:0.75rem; margin-bottom:2rem; }
+        .stat { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; text-align:center; }
+        .stat-val { font-size:1.8rem; font-weight:800; }
+        .stat-label { font-size:0.7rem; color:var(--text2); margin-top:0.25rem; text-transform:uppercase; letter-spacing:0.05em; }
+        .stat.green .stat-val { color:var(--green); }
+        .stat.orange .stat-val { color:var(--orange); }
+        .stat.blue .stat-val { color:var(--blue); }
+        .stat.yellow .stat-val { color:var(--yellow); }
+        .stat.red .stat-val { color:var(--red); }
+
+        .progress-bar { background:var(--bg3); border-radius:20px; height:24px; overflow:hidden; margin-bottom:2rem; position:relative; border:1px solid var(--border); }
+        .progress-fill { height:100%; border-radius:20px; transition:width 0.5s; display:flex; align-items:center; justify-content:center; font-size:0.7rem; font-weight:700; min-width:60px; }
+        .progress-label { position:absolute; right:10px; top:50%; transform:translateY(-50%); font-size:0.65rem; color:var(--text2); }
+
+        .phase { margin-bottom:2rem; }
+        .phase-header { display:flex; align-items:center; gap:0.75rem; cursor:pointer; padding:1rem; background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); margin-bottom:0.5rem; }
+        .phase-header:hover { border-color:var(--orange); }
+        .phase-icon { font-size:1.5rem; }
+        .phase-title { font-weight:700; font-size:1rem; flex:1; }
+        .phase-dates { font-size:0.75rem; color:var(--text2); }
+        .phase-chevron { font-size:1.2rem; color:var(--text3); transition:transform 0.3s; }
+        .phase-header.open .phase-chevron { transform:rotate(180deg); }
+
+        .week-list { display:none; padding-left:0; }
+        .phase-header.open + .week-list { display:block; }
+
+        .week { background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; margin-bottom:0.5rem; margin-left:0.5rem; }
+        .week-title { font-weight:700; font-size:0.9rem; color:var(--orange); margin-bottom:0.75rem; display:flex; align-items:center; gap:0.5rem; }
+        .week-title .badge { font-size:0.65rem; padding:0.15rem 0.5rem; border-radius:6px; font-weight:600; }
+        .badge-tj { background:rgba(59,130,246,0.15); color:var(--blue); }
+        .badge-jamie { background:rgba(139,92,246,0.15); color:var(--purple); }
+
+        .task-group { margin-bottom:0.75rem; }
+        .task-group-label { font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.4rem; padding:0.2rem 0.5rem; border-radius:4px; display:inline-block; }
+        .tg-tj { background:rgba(59,130,246,0.1); color:var(--blue); }
+        .tg-jamie { background:rgba(139,92,246,0.1); color:var(--purple); }
+
+        .task { display:flex; align-items:flex-start; gap:0.5rem; padding:0.4rem 0; font-size:0.85rem; line-height:1.4; }
+        .task input[type="checkbox"] { margin-top:0.2rem; accent-color:var(--green); width:16px; height:16px; cursor:pointer; flex-shrink:0; }
+        .task.done label { text-decoration:line-through; color:var(--text3); }
+        .task label { cursor:pointer; flex:1; }
+        .task .time { font-size:0.7rem; color:var(--text3); white-space:nowrap; }
+
+        .checkpoint { background:linear-gradient(135deg,var(--bg2),#1a1520); border:1px solid var(--purple); border-radius:var(--radius); padding:1.25rem; margin-bottom:2rem; }
+        .checkpoint h3 { color:var(--purple); font-size:0.9rem; margin-bottom:0.75rem; }
+        .checkpoint-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:0.5rem; }
+        .cp-item { text-align:center; }
+        .cp-val { font-size:1.3rem; font-weight:800; color:var(--text); }
+        .cp-label { font-size:0.65rem; color:var(--text2); }
+
+        .truth { background:linear-gradient(135deg,#1a1111,#111); border:1px solid var(--red); border-radius:var(--radius); padding:1.5rem; margin-top:2rem; }
+        .truth h3 { color:var(--red); margin-bottom:0.5rem; }
+        .truth p { font-size:0.85rem; color:var(--text2); line-height:1.6; }
+        .truth strong { color:var(--text); }
+
+        .footer { text-align:center; color:var(--text3); font-size:0.7rem; margin-top:2rem; padding:1rem; }
+
+        @media(max-width:600px) {
+            .stats-row { grid-template-columns:repeat(2,1fr); }
+            .checkpoint-grid { grid-template-columns:repeat(2,1fr); }
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back">← Command Center</a>
+
+    <h1>Q2 <span>Execution</span> Roadmap</h1>
+    <p class="subtitle">April 1 → June 30, 2026 — 90 days to 20 customers</p>
+
+    <!-- Top Stats -->
+    <div class="stats-row">
+        <div class="stat orange">
+            <div class="stat-val" id="customers">8</div>
+            <div class="stat-label">Customers</div>
+        </div>
+        <div class="stat green">
+            <div class="stat-val" id="revenue">$750</div>
+            <div class="stat-label">Monthly Rev</div>
+        </div>
+        <div class="stat blue">
+            <div class="stat-val" id="reviews">0</div>
+            <div class="stat-label">Google Reviews</div>
+        </div>
+        <div class="stat yellow">
+            <div class="stat-val" id="directories">2</div>
+            <div class="stat-label">Directories</div>
+        </div>
+        <div class="stat red">
+            <div class="stat-val" id="weekNum">0</div>
+            <div class="stat-label">Week #</div>
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill" style="width:0%; background:linear-gradient(90deg,var(--orange),var(--green));">
+            <span id="progressText">0%</span>
+        </div>
+        <span class="progress-label">8 → 20 customers</span>
+    </div>
+
+    <!-- PHASE 1 -->
+    <div class="phase">
+        <div class="phase-header open" onclick="this.classList.toggle('open')">
+            <span class="phase-icon">🔥</span>
+            <span class="phase-title">Phase 1: Foundation</span>
+            <span class="phase-dates">April 1-27</span>
+            <span class="phase-chevron">▼</span>
+        </div>
+        <div class="week-list">
+            <!-- Week 1 -->
+            <div class="week">
+                <div class="week-title">Week 1: GET FOUND <span class="badge badge-tj">Apr 1-6</span></div>
+                <div class="task-group">
+                    <div class="task-group-label tg-tj">TJ — 45 min</div>
+                    <div class="task"><input type="checkbox" id="w1t1" onchange="saveState()"><label for="w1t1">Add business description to GBP (pre-written, 5 min)</label><span class="time">5m</span></div>
+                    <div class="task"><input type="checkbox" id="w1t2" onchange="saveState()"><label for="w1t2">Add 6 services with prices to GBP (10 min)</label><span class="time">10m</span></div>
+                    <div class="task"><input type="checkbox" id="w1t3" onchange="saveState()"><label for="w1t3">Add 29 service areas to GBP (5 min)</label><span class="time">5m</span></div>
+                    <div class="task"><input type="checkbox" id="w1t4" onchange="saveState()"><label for="w1t4">Upload 10 photos to GBP (15 min)</label><span class="time">15m</span></div>
+                    <div class="task"><input type="checkbox" id="w1t5" onchange="saveState()"><label for="w1t5">Add hours + attributes to GBP (5 min)</label><span class="time">5m</span></div>
+                    <div class="task"><input type="checkbox" id="w1t6" onchange="saveState()"><label for="w1t6">Text 5 customers for Google reviews (5 min)</label><span class="time">5m</span></div>
+                </div>
+                <div class="task-group">
+                    <div class="task-group-label tg-jamie">Jamie — 30 min</div>
+                    <div class="task"><input type="checkbox" id="w1j1" onchange="saveState()"><label for="w1j1">Post 1x Nextdoor — spring cleanup offer</label><span class="time">10m</span></div>
+                    <div class="task"><input type="checkbox" id="w1j2" onchange="saveState()"><label for="w1j2">Post 1x Facebook — neighborhood group</label><span class="time">10m</span></div>
+                    <div class="task"><input type="checkbox" id="w1j3" onchange="saveState()"><label for="w1j3">Post 1x Instagram</label><span class="time">10m</span></div>
+                </div>
+            </div>
+
+            <!-- Week 2 -->
+            <div class="week">
+                <div class="week-title">Week 2: DEAD COMPETITOR BLITZ <span class="badge badge-jamie">Apr 7-13</span></div>
+                <div class="task-group">
+                    <div class="task-group-label tg-tj">TJ — 30 min</div>
+                    <div class="task"><input type="checkbox" id="w2t1" onchange="saveState()"><label for="w2t1">Text remaining customers for reviews</label><span class="time">10m</span></div>
+                    <div class="task"><input type="checkbox" id="w2t2" onchange="saveState()"><label for="w2t2">Reply to ALL Google Q&As (pre-written)</label><span class="time">5m</span></div>
+                    <div class="task"><input type="checkbox" id="w2t3" onchange="saveState()"><label for="w2t3">Post 1 Google Business update</label><span class="time">5m</span></div>
+                </div>
+                <div class="task-group">
+                    <div class="task-group-label tg-jamie">Jamie — 45 min</div>
+                    <div class="task"><input type="checkbox" id="w2j1" onchange="saveState()"><label for="w2j1">Post "taking new customers" on 3 Nextdoor neighborhoods</label><span class="time">15m</span></div>
+                    <div class="task"><input type="checkbox" id="w2j2" onchange="saveState()"><label for="w2j2">Post dead-competitor capture ad on Facebook</label><span class="time">10m</span></div>
+                    <div class="task"><input type="checkbox" id="w2j3" onchange="saveState()"><label for="w2j3">Post on Craigslist — Services > Household</label><span class="time">10m</span></div>
+                    <div class="task"><input type="checkbox" id="w2j4" onchange="saveState()"><label for="w2j4">DM contacts whose old service disappeared</label><span class="time">10m</span></div>
+                </div>
+            </div>
+
+            <!-- Week 3 -->
+            <div class="week">
+                <div class="week-title">Week 3: DIRECTORY SUBMISSIONS <span class="badge badge-tj">Apr 14-20</span></div>
+                <div class="task-group">
+                    <div class="task-group-label tg-tj">TJ or Jamie — 45 min</div>
+                    <div class="task"><input type="checkbox" id="w3t1" onchange="saveState()"><label for="w3t1">Thumbtack — create pro account</label></div>
+                    <div class="task"><input type="checkbox" id="w3t2" onchange="saveState()"><label for="w3t2">Angi — list as service provider</label></div>
+                    <div class="task"><input type="checkbox" id="w3t3" onchange="saveState()"><label for="w3t3">Bark — respond to local leads</label></div>
+                    <div class="task"><input type="checkbox" id="w3t4" onchange="saveState()"><label for="w3t4">Nextdoor Business — claim business page</label></div>
+                    <div class="task"><input type="checkbox" id="w3t5" onchange="saveState()"><label for="w3t5">Facebook Business Page — verify complete</label></div>
+                    <div class="task"><input type="checkbox" id="w3t6" onchange="saveState()"><label for="w3t6">BBB — free listing request</label></div>
+                    <div class="task"><input type="checkbox" id="w3t7" onchange="saveState()"><label for="w3t7">MapQuest — claim listing</label></div>
+                    <div class="task"><input type="checkbox" id="w3t8" onchange="saveState()"><label for="w3t8">Yellow Pages — free listing</label></div>
+                    <div class="task"><input type="checkbox" id="w3t9" onchange="saveState()"><label for="w3t9">Manta — free business listing</label></div>
+                    <div class="task"><input type="checkbox" id="w3t10" onchange="saveState()"><label for="w3t10">PetWorks — niche directory</label></div>
+                </div>
+                <div class="task-group">
+                    <div class="task-group-label tg-jamie">Jamie — 30 min</div>
+                    <div class="task"><input type="checkbox" id="w3j1" onchange="saveState()"><label for="w3j1">3 social posts (Facebook, Nextdoor, Instagram)</label><span class="time">30m</span></div>
+                </div>
+            </div>
+
+            <!-- Week 4 -->
+            <div class="week">
+                <div class="week-title">Week 4: REFERRAL LAUNCH <span class="badge badge-jamie">Apr 21-27</span></div>
+                <div class="task-group">
+                    <div class="task-group-label tg-jamie">Jamie — 20 min</div>
+                    <div class="task"><input type="checkbox" id="w4j1" onchange="saveState()"><label for="w4j1">Text all customers referral offer ($10 off each)</label><span class="time">10m</span></div>
+                    <div class="task"><input type="checkbox" id="w4j2" onchange="saveState()"><label for="w4j2">Post referral program (Facebook + Nextdoor)</label><span class="time">5m</span></div>
+                    <div class="task"><input type="checkbox" id="w4j3" onchange="saveState()"><label for="w4j3">Post 1 Instagram story about spring yards</label><span class="time">5m</span></div>
+                </div>
+                <div class="task-group">
+                    <div class="task-group-label tg-tj">TJ — 15 min</div>
+                    <div class="task"><input type="checkbox" id="w4t1" onchange="saveState()"><label for="w4t1">Add referral mention to weekly service texts</label><span class="time">5m</span></div>
+                    <div class="task"><input type="checkbox" id="w4t2" onchange="saveState()"><label for="w4t2">Verify all 10 directory listings are live</label><span class="time">10m</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- April Checkpoint -->
+    <div class="checkpoint">
+        <h3>📍 April Checkpoint (End of Phase 1)</h3>
+        <div class="checkpoint-grid">
+            <div class="cp-item"><div class="cp-val">10-12</div><div class="cp-label">Customers</div></div>
+            <div class="cp-item"><div class="cp-val">8-10</div><div class="cp-label">Google Reviews</div></div>
+            <div class="cp-item"><div class="cp-val">$1,000+</div><div class="cp-label">Monthly Revenue</div></div>
+            <div class="cp-item"><div class="cp-val">12+</div><div class="cp-label">Directory Listings</div></div>
+        </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase">
+        <div class="phase-header" onclick="this.classList.toggle('open')">
+            <span class="phase-icon">🚀</span>
+            <span class="phase-title">Phase 2: Acceleration</span>
+            <span class="phase-dates">Apr 28 — May 25</span>
+            <span class="phase-chevron">▼</span>
+        </div>
+        <div class="week-list">
+            <div class="week">
+                <div class="week-title">Week 5: SPRING DEEP CLEAN PUSH <span class="badge badge-jamie">Apr 28 - May 4</span></div>
+                <div class="task-group">
+                    <div class="task-group-label tg-jamie">Jamie — 30 min</div>
+                    <div class="task"><input type="checkbox" id="w5j1" onchange="saveState()"><label for="w5j1">Post deep clean special ($100) on all 3 platforms</label></div>
+                    <div class="task"><input type="checkbox" id="w5j2" onchange="saveState()"><label for="w5j2">Text lapsed/one-time customers: "Spring deep clean?"</label></div>
+                    <div class="task"><input type="checkbox" id="w5j3" onchange="saveState()"><label for="w5j3">Post on 2 new Nextdoor neighborhoods</label></div>
+                </div>
+                <div class="task-group">
+                    <div class="task-group-label tg-tj">TJ</div>
+                    <div class="task"><input type="checkbox" id="w5t1" onchange="saveState()"><label for="w5t1">Follow up ALL pending April leads (call > text)</label></div>
+                    <div class="task"><input type="checkbox" id="w5t2" onchange="saveState()"><label for="w5t2">Upsell every deep clean: "Want to go weekly?"</label></div>
+                </div>
+            </div>
+            <div class="week">
+                <div class="week-title">Week 6: MULTI-DOG PUSH <span class="badge badge-tj">May 5-11</span></div>
+                <div class="task-group">
+                    <div class="task-group-label tg-jamie">Jamie — 30 min</div>
+                    <div class="task"><input type="checkbox" id="w6j1" onchange="saveState()"><label for="w6j1">Target multi-dog households on social</label></div>
+                    <div class="task"><input type="checkbox" id="w6j2" onchange="saveState()"><label for="w6j2">Post before/after photos on Instagram</label></div>
+                    <div class="task"><input type="checkbox" id="w6j3" onchange="saveState()"><label for="w6j3">Nextdoor post in new neighborhoods</label></div>
+                </div>
+                <div class="task-group">
+                    <div class="task-group-label tg-tj">TJ</div>
+                    <div class="task"><input type="checkbox" id="w6t1" onchange="saveState()"><label for="w6t1">Take 5 before/after photos on Monday route</label></div>
+                    <div class="task"><input type="checkbox" id="w6t2" onchange="saveState()"><label for="w6t2">Reply to Google Q&As and reviews personally</label></div>
+                </div>
+            </div>
+            <div class="week">
+                <div class="week-title">Week 7: COMMERCIAL DOOR KNOCK <span class="badge badge-tj">May 12-18</span></div>
+                <div class="task-group">
+                    <div class="task-group-label tg-jamie">Jamie — 30 min</div>
+                    <div class="task"><input type="checkbox" id="w7j1" onchange="saveState()"><label for="w7j1">Email/call 5 apartment complexes</label></div>
+                    <div class="task"><input type="checkbox" id="w7j2" onchange="saveState()"><label for="w7j2">Regular social posts (3x/week)</label></div>
+                </div>
+                <div class="task-group">
+                    <div class="task-group-label tg-tj">TJ</div>
+                    <div class="task"><input type="checkbox" id="w7t1" onchange="saveState()"><label for="w7t1">Drive by 3 apartments, drop off one-pager</label></div>
+                    <div class="task"><input type="checkbox" id="w7t2" onchange="saveState()"><label for="w7t2">Follow up on commercial interest</label></div>
+                </div>
+            </div>
+            <div class="week">
+                <div class="week-title">Week 8: REVIEW SPRINT <span class="badge badge-jamie">May 19-25</span></div>
+                <div class="task-group">
+                    <div class="task-group-label tg-jamie">Jamie</div>
+                    <div class="task"><input type="checkbox" id="w8j1" onchange="saveState()"><label for="w8j1">Text ALL customers for Google reviews</label></div>
+                    <div class="task"><input type="checkbox" id="w8j2" onchange="saveState()"><label for="w8j2">Social posts continue (3x/week routine)</label></div>
+                </div>
+                <div class="task-group">
+                    <div class="task-group-label tg-tj">TJ</div>
+                    <div class="task"><input type="checkbox" id="w8t1" onchange="saveState()"><label for="w8t1">Leave handwritten thank you + review link for each customer</label></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- May Checkpoint -->
+    <div class="checkpoint">
+        <h3>📍 May Checkpoint (End of Phase 2)</h3>
+        <div class="checkpoint-grid">
+            <div class="cp-item"><div class="cp-val">14-16</div><div class="cp-label">Customers</div></div>
+            <div class="cp-item"><div class="cp-val">15+</div><div class="cp-label">Google Reviews</div></div>
+            <div class="cp-item"><div class="cp-val">$1,500+</div><div class="cp-label">Monthly Revenue</div></div>
+            <div class="cp-item"><div class="cp-val">10+</div><div class="cp-label">Commercial Leads</div></div>
+        </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase">
+        <div class="phase-header" onclick="this.classList.toggle('open')">
+            <span class="phase-icon">💪</span>
+            <span class="phase-title">Phase 3: Scale</span>
+            <span class="phase-dates">May 26 — June 30</span>
+            <span class="phase-chevron">▼</span>
+        </div>
+        <div class="week-list">
+            <div class="week">
+                <div class="week-title">Weeks 9-10: SUMMER PREP CAMPAIGN <span class="badge badge-tj">May 26 - Jun 8</span></div>
+                <div class="task-group">
+                    <div class="task"><input type="checkbox" id="w9t1" onchange="saveState()"><label for="w9t1">"Summer = more poop" campaign on all platforms</label></div>
+                    <div class="task"><input type="checkbox" id="w9t2" onchange="saveState()"><label for="w9t2">Launch Facebook ads ($5-7/day, zip targeted)</label></div>
+                    <div class="task"><input type="checkbox" id="w9t3" onchange="saveState()"><label for="w9t3">Follow up ALL commercial leads from May</label></div>
+                    <div class="task"><input type="checkbox" id="w9t4" onchange="saveState()"><label for="w9t4">Evaluate: Add second route day (Wednesday)?</label></div>
+                </div>
+            </div>
+            <div class="week">
+                <div class="week-title">Weeks 11-12: NEIGHBORHOOD SATURATION <span class="badge badge-jamie">Jun 9-22</span></div>
+                <div class="task-group">
+                    <div class="task"><input type="checkbox" id="w11t1" onchange="saveState()"><label for="w11t1">Door-knock or flyer 10 neighbors per customer street</label></div>
+                    <div class="task"><input type="checkbox" id="w11t2" onchange="saveState()"><label for="w11t2">"Your neighbor uses us" social proof campaign</label></div>
+                    <div class="task"><input type="checkbox" id="w11t3" onchange="saveState()"><label for="w11t3">Push for 20 Google reviews</label></div>
+                </div>
+            </div>
+            <div class="week">
+                <div class="week-title">Week 13: Q2 REVIEW + Q3 PLAN <span class="badge badge-tj">Jun 23-30</span></div>
+                <div class="task-group">
+                    <div class="task"><input type="checkbox" id="w13t1" onchange="saveState()"><label for="w13t1">Full business review: revenue, customers, CAC, LTV</label></div>
+                    <div class="task"><input type="checkbox" id="w13t2" onchange="saveState()"><label for="w13t2">Route efficiency audit: fit 25+ in one day?</label></div>
+                    <div class="task"><input type="checkbox" id="w13t3" onchange="saveState()"><label for="w13t3">Decision: hire help or stay solo?</label></div>
+                    <div class="task"><input type="checkbox" id="w13t4" onchange="saveState()"><label for="w13t4">Plan Q3 strategy based on results</label></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- June Checkpoint -->
+    <div class="checkpoint">
+        <h3>🏁 June 30 — End of Q2</h3>
+        <div class="checkpoint-grid">
+            <div class="cp-item"><div class="cp-val">20+</div><div class="cp-label">Customers</div></div>
+            <div class="cp-item"><div class="cp-val">20+</div><div class="cp-label">Google Reviews</div></div>
+            <div class="cp-item"><div class="cp-val">$2,000+</div><div class="cp-label">Monthly Revenue</div></div>
+            <div class="cp-item"><div class="cp-val">1-2</div><div class="cp-label">Route Days/Week</div></div>
+        </div>
+    </div>
+
+    <!-- Hard Truth -->
+    <div class="truth">
+        <h3>🚨 The Hard Truth</h3>
+        <p>We have <strong>130+ deliverables and 44 dashboard tools.</strong> If TJ and Jamie execute <strong>30 minutes a day</strong> from this plan, we hit 20 customers by June. If we keep building tools without executing, we'll be at 8 customers in August.</p>
+        <p style="margin-top:0.75rem;"><strong>The bottleneck is not strategy. It's action.</strong> Everything is copy-paste ready. ~3 hours/week total. $0 cost through April.</p>
+    </div>
+
+    <!-- Editable Stats Section -->
+    <div style="margin-top:2rem; background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius); padding:1.25rem;">
+        <h3 style="font-size:0.9rem; margin-bottom:1rem; color:var(--orange);">📊 Update Your Numbers</h3>
+        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:0.75rem;">
+            <div>
+                <label style="font-size:0.7rem; color:var(--text2); display:block; margin-bottom:0.25rem;">Recurring Customers</label>
+                <input type="number" id="inputCustomers" value="8" min="0" style="width:100%; padding:0.5rem; background:var(--bg3); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:1rem;" onchange="updateStats()">
+            </div>
+            <div>
+                <label style="font-size:0.7rem; color:var(--text2); display:block; margin-bottom:0.25rem;">Monthly Revenue ($)</label>
+                <input type="number" id="inputRevenue" value="750" min="0" style="width:100%; padding:0.5rem; background:var(--bg3); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:1rem;" onchange="updateStats()">
+            </div>
+            <div>
+                <label style="font-size:0.7rem; color:var(--text2); display:block; margin-bottom:0.25rem;">Google Reviews</label>
+                <input type="number" id="inputReviews" value="0" min="0" style="width:100%; padding:0.5rem; background:var(--bg3); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:1rem;" onchange="updateStats()">
+            </div>
+            <div>
+                <label style="font-size:0.7rem; color:var(--text2); display:block; margin-bottom:0.25rem;">Directory Listings</label>
+                <input type="number" id="inputDirs" value="2" min="0" style="width:100%; padding:0.5rem; background:var(--bg3); border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:1rem;" onchange="updateStats()">
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        Built by Franklin 🐕💩 — March 23, 2026<br>
+        Checkbox progress saves to your browser. Update numbers weekly.
+    </div>
+
+    <script>
+        // Load saved state
+        function loadState() {
+            const saved = localStorage.getItem('q2-roadmap-tasks');
+            if (saved) {
+                const state = JSON.parse(saved);
+                Object.keys(state.tasks || {}).forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el) { el.checked = state.tasks[id]; el.closest('.task')?.classList.toggle('done', state.tasks[id]); }
+                });
+                if (state.stats) {
+                    document.getElementById('inputCustomers').value = state.stats.customers || 8;
+                    document.getElementById('inputRevenue').value = state.stats.revenue || 750;
+                    document.getElementById('inputReviews').value = state.stats.reviews || 0;
+                    document.getElementById('inputDirs').value = state.stats.dirs || 2;
+                }
+            }
+            updateStats();
+            updateProgress();
+        }
+
+        function saveState() {
+            const tasks = {};
+            document.querySelectorAll('.task input[type="checkbox"]').forEach(cb => {
+                tasks[cb.id] = cb.checked;
+                cb.closest('.task')?.classList.toggle('done', cb.checked);
+            });
+            const stats = {
+                customers: parseInt(document.getElementById('inputCustomers').value),
+                revenue: parseInt(document.getElementById('inputRevenue').value),
+                reviews: parseInt(document.getElementById('inputReviews').value),
+                dirs: parseInt(document.getElementById('inputDirs').value)
+            };
+            localStorage.setItem('q2-roadmap-tasks', JSON.stringify({ tasks, stats }));
+            updateProgress();
+            updateStats();
+        }
+
+        function updateStats() {
+            const c = parseInt(document.getElementById('inputCustomers').value) || 8;
+            const r = parseInt(document.getElementById('inputRevenue').value) || 750;
+            const rev = parseInt(document.getElementById('inputReviews').value) || 0;
+            const d = parseInt(document.getElementById('inputDirs').value) || 2;
+            document.getElementById('customers').textContent = c;
+            document.getElementById('revenue').textContent = '$' + r.toLocaleString();
+            document.getElementById('reviews').textContent = rev;
+            document.getElementById('directories').textContent = d;
+
+            // Calculate week number (Apr 1, 2026 = week 1)
+            const apr1 = new Date(2026, 3, 1);
+            const now = new Date();
+            const weekNum = Math.max(0, Math.min(13, Math.ceil((now - apr1) / (7 * 24 * 60 * 60 * 1000))));
+            document.getElementById('weekNum').textContent = weekNum;
+
+            // Progress bar based on customers
+            const pct = Math.min(100, Math.round(((c - 8) / 12) * 100));
+            document.getElementById('progressFill').style.width = Math.max(pct, 3) + '%';
+            document.getElementById('progressText').textContent = pct + '%';
+
+            saveState();
+        }
+
+        function updateProgress() {
+            const all = document.querySelectorAll('.task input[type="checkbox"]');
+            const done = [...all].filter(cb => cb.checked).length;
+            // Could add a tasks-completed counter here
+        }
+
+        loadState();
+    </script>
+</body>
+</html>
