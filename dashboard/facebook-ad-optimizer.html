@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FB Ad Optimizer — Tidy Tails</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #111; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #666;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; padding:1rem; }
+        .header { text-align:center; padding:1.5rem 0; border-bottom:1px solid var(--border); margin-bottom:1.5rem; }
+        .header h1 { font-size:1.6rem; font-weight:800; }
+        .header h1 span { color:var(--orange); }
+        .header p { color:var(--text2); font-size:0.85rem; margin-top:0.3rem; }
+
+        .stats-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:0.75rem; margin-bottom:1.5rem; }
+        .stat-card { background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; text-align:center; }
+        .stat-val { font-size:1.8rem; font-weight:800; }
+        .stat-label { font-size:0.7rem; color:var(--text2); text-transform:uppercase; letter-spacing:0.05em; margin-top:0.2rem; }
+        .stat-bad { color:var(--red); }
+        .stat-ok { color:var(--yellow); }
+        .stat-good { color:var(--green); }
+        .stat-target { color:var(--blue); }
+
+        .section { margin-bottom:1.5rem; }
+        .section h2 { font-size:1.1rem; font-weight:700; margin-bottom:0.75rem; display:flex; align-items:center; gap:0.5rem; }
+        .section h3 { font-size:0.9rem; font-weight:600; margin-bottom:0.5rem; color:var(--orange); }
+
+        .comparison { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; margin-bottom:1rem; }
+        .ad-card { background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; position:relative; }
+        .ad-card.winner { border-color:var(--green); }
+        .ad-card.loser { border-color:var(--red); opacity:0.85; }
+        .ad-name { font-weight:700; font-size:0.9rem; margin-bottom:0.75rem; }
+        .metric-row { display:flex; justify-content:space-between; padding:0.35rem 0; border-bottom:1px solid var(--border); font-size:0.8rem; }
+        .metric-row:last-child { border:none; }
+        .metric-label { color:var(--text2); }
+        .metric-good { color:var(--green); font-weight:600; }
+        .metric-bad { color:var(--red); font-weight:600; }
+        .metric-neutral { color:var(--text); font-weight:600; }
+        .verdict { margin-top:0.75rem; padding:0.5rem; border-radius:8px; font-size:0.75rem; font-weight:600; text-align:center; }
+        .verdict-win { background:rgba(16,185,129,0.15); color:var(--green); }
+        .verdict-lose { background:rgba(239,68,68,0.15); color:var(--red); }
+
+        .formula-box {
+            background:linear-gradient(135deg, rgba(255,107,53,0.1), rgba(59,130,246,0.1));
+            border:2px solid var(--orange); border-radius:var(--radius); padding:1.25rem;
+            text-align:center; margin:1.5rem 0;
+        }
+        .formula-box h3 { color:var(--orange); font-size:1rem; margin-bottom:0.5rem; }
+        .formula-box p { font-size:0.85rem; color:var(--text2); }
+        .formula-eq { font-size:1.1rem; font-weight:700; margin:0.5rem 0; }
+        .formula-eq span { color:var(--green); }
+
+        .concepts { display:grid; gap:0.75rem; }
+        .concept-card {
+            background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius);
+            overflow:hidden; cursor:pointer; transition:all 0.2s;
+        }
+        .concept-card:hover { border-color:var(--orange); }
+        .concept-card.expanded .concept-body { display:block; }
+        .concept-head {
+            display:flex; justify-content:space-between; align-items:center;
+            padding:0.85rem 1rem; font-weight:600; font-size:0.85rem;
+        }
+        .concept-head .num { color:var(--orange); margin-right:0.5rem; font-weight:800; }
+        .concept-head .arrow { color:var(--text3); transition:transform 0.2s; font-size:0.7rem; }
+        .concept-card.expanded .concept-head .arrow { transform:rotate(180deg); }
+        .concept-body { display:none; padding:0 1rem 1rem; }
+        .script-step { margin-bottom:0.5rem; }
+        .script-step .time { font-family:monospace; font-size:0.7rem; color:var(--orange); display:inline-block; width:4rem; }
+        .script-step .text { font-size:0.8rem; color:var(--text2); }
+        .concept-tag { display:inline-block; padding:0.15rem 0.5rem; border-radius:4px; font-size:0.65rem; font-weight:700; }
+        .tag-easy { background:rgba(16,185,129,0.15); color:var(--green); }
+        .tag-film { background:rgba(251,191,36,0.15); color:var(--yellow); }
+        .tag-quick { background:rgba(59,130,246,0.15); color:var(--blue); }
+
+        .action-list { list-style:none; }
+        .action-list li {
+            display:flex; align-items:flex-start; gap:0.75rem; padding:0.6rem 0.75rem;
+            background:var(--bg3); border:1px solid var(--border); border-radius:8px;
+            margin-bottom:0.5rem; font-size:0.8rem; transition:all 0.2s; cursor:pointer;
+        }
+        .action-list li:hover { border-color:var(--orange); }
+        .action-list li.done { opacity:0.5; text-decoration:line-through; }
+        .action-check { width:18px; height:18px; border:2px solid var(--text3); border-radius:4px; flex-shrink:0; margin-top:0.1rem; display:flex; align-items:center; justify-content:center; }
+        .action-list li.done .action-check { background:var(--green); border-color:var(--green); }
+        .action-list li.done .action-check::after { content:'✓'; color:white; font-size:0.7rem; font-weight:700; }
+        .action-pri { font-size:0.6rem; font-weight:700; padding:0.1rem 0.35rem; border-radius:3px; white-space:nowrap; }
+        .pri-now { background:rgba(239,68,68,0.2); color:var(--red); }
+        .pri-week { background:rgba(251,191,36,0.2); color:var(--yellow); }
+        .pri-later { background:rgba(59,130,246,0.2); color:var(--blue); }
+        .action-who { color:var(--text3); font-size:0.7rem; margin-left:auto; white-space:nowrap; }
+
+        .copy-btn {
+            background:var(--bg4); border:1px solid var(--border); color:var(--text2);
+            padding:0.3rem 0.6rem; border-radius:6px; font-size:0.7rem; cursor:pointer;
+            transition:all 0.2s; font-family:inherit;
+        }
+        .copy-btn:hover { border-color:var(--orange); color:var(--orange); }
+        .copy-btn.copied { border-color:var(--green); color:var(--green); }
+
+        .settings-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
+        .setting-card { background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius); padding:1rem; }
+        .setting-card h4 { font-size:0.8rem; font-weight:700; margin-bottom:0.5rem; color:var(--orange); }
+        .setting-item { font-size:0.78rem; color:var(--text2); padding:0.2rem 0; }
+        .setting-item strong { color:var(--text); }
+
+        .bar-chart { margin:0.5rem 0; }
+        .bar-row { display:flex; align-items:center; gap:0.5rem; margin-bottom:0.4rem; }
+        .bar-label { font-size:0.72rem; color:var(--text2); width:5rem; text-align:right; }
+        .bar-track { flex:1; height:20px; background:var(--bg4); border-radius:4px; overflow:hidden; position:relative; }
+        .bar-fill { height:100%; border-radius:4px; transition:width 0.5s; display:flex; align-items:center; padding-left:0.4rem; font-size:0.65rem; font-weight:700; }
+
+        .insight-box {
+            background:var(--bg3); border-left:3px solid var(--yellow); border-radius:0 var(--radius) var(--radius) 0;
+            padding:0.75rem 1rem; margin:0.75rem 0; font-size:0.8rem;
+        }
+        .insight-box strong { color:var(--yellow); }
+
+        @media (max-width:600px) {
+            .comparison { grid-template-columns:1fr; }
+            .settings-grid { grid-template-columns:1fr; }
+            .stats-row { grid-template-columns:repeat(2,1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>📊 <span>FB Ad Optimizer</span></h1>
+    <p>Data-driven playbook to cut cost per lead from $12 → $4</p>
+</div>
+
+<!-- Current Performance Stats -->
+<div class="stats-row">
+    <div class="stat-card">
+        <div class="stat-val stat-bad">$12.06</div>
+        <div class="stat-label">Cost / Lead</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-val stat-target">$4.28</div>
+        <div class="stat-label">Target (Benchmark)</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-val stat-ok">4</div>
+        <div class="stat-label">Leads (30 Days)</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-val stat-bad">$48.25</div>
+        <div class="stat-label">Spent (30 Days)</div>
+    </div>
+</div>
+
+<!-- Ad Comparison -->
+<div class="section">
+    <h2>🎬 Your Two Ads — Head to Head</h2>
+    <div class="comparison">
+        <div class="ad-card loser">
+            <div class="ad-name">Ad #1: "ENJOY A POOP-FREE YARD!!!"</div>
+            <div class="metric-row"><span class="metric-label">Length</span><span class="metric-neutral">15 sec ✅</span></div>
+            <div class="metric-row"><span class="metric-label">Plays</span><span class="metric-neutral">684</span></div>
+            <div class="metric-row"><span class="metric-label">Hook Rate</span><span class="metric-bad">32%</span></div>
+            <div class="metric-row"><span class="metric-label">Hold Rate</span><span class="metric-good">16.89%</span></div>
+            <div class="metric-row"><span class="metric-label">Avg Watch</span><span class="metric-neutral">3 sec</span></div>
+            <div class="metric-row"><span class="metric-label">Creative</span><span class="metric-bad">AI / CapCut</span></div>
+            <div class="verdict verdict-lose">❌ Weak hook kills reach</div>
+        </div>
+        <div class="ad-card winner">
+            <div class="ad-name">Ad #2: "Quick Math"</div>
+            <div class="metric-row"><span class="metric-label">Length</span><span class="metric-bad">41 sec ❌</span></div>
+            <div class="metric-row"><span class="metric-label">Plays</span><span class="metric-good">1,422</span></div>
+            <div class="metric-row"><span class="metric-label">Hook Rate</span><span class="metric-good">47% ✅</span></div>
+            <div class="metric-row"><span class="metric-label">Hold Rate</span><span class="metric-bad">2.4%</span></div>
+            <div class="metric-row"><span class="metric-label">Avg Watch</span><span class="metric-neutral">5 sec</span></div>
+            <div class="metric-row"><span class="metric-label">Creative</span><span class="metric-good">Real footage</span></div>
+            <div class="verdict verdict-win">✅ Great hook — just too long</div>
+        </div>
+    </div>
+
+    <!-- Hook Rate Comparison -->
+    <h3>Hook Rate (First 3 Seconds)</h3>
+    <div class="bar-chart">
+        <div class="bar-row">
+            <span class="bar-label">Ad #1</span>
+            <div class="bar-track">
+                <div class="bar-fill" style="width:32%;background:var(--red);">32%</div>
+            </div>
+        </div>
+        <div class="bar-row">
+            <span class="bar-label">Ad #2</span>
+            <div class="bar-track">
+                <div class="bar-fill" style="width:47%;background:var(--green);">47%</div>
+            </div>
+        </div>
+        <div class="bar-row">
+            <span class="bar-label">Good</span>
+            <div class="bar-track">
+                <div class="bar-fill" style="width:40%;background:var(--blue);opacity:0.5;">40%+</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="insight-box">
+        <strong>💡 Key Insight:</strong> Ad #2's "Quick Math" concept hooks 47% of viewers — that's ABOVE average. But at 41 seconds, only 2.4% finish. The fix isn't a new concept — it's cutting the same concept to 12 seconds.
+    </div>
+</div>
+
+<!-- The Formula -->
+<div class="formula-box">
+    <h3>🧪 THE WINNING FORMULA</h3>
+    <div class="formula-eq">
+        Ad #2's Hook (47%) + Ad #1's Length (15s) = <span>Your Next Winner</span>
+    </div>
+    <p>Take the math/numbers angle, keep it under 15 seconds, film it real, add a clear CTA</p>
+</div>
+
+<!-- New Ad Concepts -->
+<div class="section">
+    <h2>🎬 5 New Ad Concepts (Ready to Film)</h2>
+    <div class="concepts" id="concepts">
+        <div class="concept-card" onclick="toggleConcept(this)">
+            <div class="concept-head">
+                <div><span class="num">#1</span> Quick Math v2 (10-12 sec) <span class="concept-tag tag-film">📱 FILM</span></div>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="concept-body">
+                <div class="script-step"><span class="time">0-2 sec</span><span class="text"><strong>HOOK:</strong> TJ/Jamie on camera: "Quick math — how many times does your dog poop a day?"</span></div>
+                <div class="script-step"><span class="time">2-8 sec</span><span class="text"><strong>BODY:</strong> "Twice? That's 14 piles a week. 60 a month. You picking those up? Or should we?"</span></div>
+                <div class="script-step"><span class="time">8-12 sec</span><span class="text"><strong>CTA:</strong> "First visit free. Message us 👇" + text overlay</span></div>
+                <div class="insight-box"><strong>Why it works:</strong> Same hook that got 47%, compressed to 12 sec, real person on camera builds trust.</div>
+                <button class="copy-btn" onclick="event.stopPropagation();copyScript(this, 'Quick math — how many times does your dog poop a day? Twice? That\'s 14 piles a week. 60 a month. You picking those up? Or should we? First visit free. Message us.')">📋 Copy Script</button>
+            </div>
+        </div>
+
+        <div class="concept-card" onclick="toggleConcept(this)">
+            <div class="concept-head">
+                <div><span class="num">#2</span> The Shoe Test (8-10 sec) <span class="concept-tag tag-film">📱 FILM</span></div>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="concept-body">
+                <div class="script-step"><span class="time">0-2 sec</span><span class="text"><strong>HOOK:</strong> Close-up of shoe stepping near poop in grass (NOT in it)</span></div>
+                <div class="script-step"><span class="time">2-7 sec</span><span class="text"><strong>BODY:</strong> "If you've ever had THAT moment in your yard... we fix that. Every week. $17.50."</span></div>
+                <div class="script-step"><span class="time">7-10 sec</span><span class="text"><strong>CTA:</strong> "First visit free. Message us 👇"</span></div>
+                <div class="insight-box"><strong>Why it works:</strong> Visual hook = instant pattern interrupt. Universal relatable moment. Price qualifies leads upfront.</div>
+                <button class="copy-btn" onclick="event.stopPropagation();copyScript(this, 'If you\'ve ever had THAT moment in your yard... we fix that. Every week. $17.50. First visit free. Message us.')">📋 Copy Script</button>
+            </div>
+        </div>
+
+        <div class="concept-card" onclick="toggleConcept(this)">
+            <div class="concept-head">
+                <div><span class="num">#3</span> Before/After Split (10 sec) <span class="concept-tag tag-film">📱 FILM</span></div>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="concept-body">
+                <div class="script-step"><span class="time">0-2 sec</span><span class="text"><strong>HOOK:</strong> Split screen — messy yard LEFT, clean yard RIGHT</span></div>
+                <div class="script-step"><span class="time">2-7 sec</span><span class="text"><strong>BODY:</strong> "This is what $17.50 a week looks like. We come, we scoop, you enjoy your yard."</span></div>
+                <div class="script-step"><span class="time">7-10 sec</span><span class="text"><strong>CTA:</strong> "First visit's on us. Tap Message 👇"</span></div>
+                <div class="insight-box"><strong>Why it works:</strong> Visual proof beats words. The transformation IS the pitch. Dead simple.</div>
+                <button class="copy-btn" onclick="event.stopPropagation();copyScript(this, 'This is what $17.50 a week looks like. We come, we scoop, you enjoy your yard. First visit\'s on us. Tap Message.')">📋 Copy Script</button>
+            </div>
+        </div>
+
+        <div class="concept-card" onclick="toggleConcept(this)">
+            <div class="concept-head">
+                <div><span class="num">#4</span> Jamie's Intro (12 sec) <span class="concept-tag tag-film">📱 FILM</span></div>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="concept-body">
+                <div class="script-step"><span class="time">0-2 sec</span><span class="text"><strong>HOOK:</strong> Jamie smiling to camera: "How much is your time worth?"</span></div>
+                <div class="script-step"><span class="time">2-9 sec</span><span class="text"><strong>BODY:</strong> "An hour every weekend picking up poop? Or $17.50 and we handle it. I'm Jamie. Same person, every week, same day."</span></div>
+                <div class="script-step"><span class="time">9-12 sec</span><span class="text"><strong>CTA:</strong> "First visit free. Message us!"</span></div>
+                <div class="insight-box"><strong>Why it works:</strong> Jamie's face = trust. "Same person every time" is the killer differentiator vs franchises.</div>
+                <button class="copy-btn" onclick="event.stopPropagation();copyScript(this, 'How much is your time worth? An hour every weekend picking up poop? Or $17.50 and we handle it. I\'m Jamie. Same person, every week, same day. First visit free. Message us!')">📋 Copy Script</button>
+            </div>
+        </div>
+
+        <div class="concept-card" onclick="toggleConcept(this)">
+            <div class="concept-head">
+                <div><span class="num">#5</span> The Numbers — Text Only (8 sec) <span class="concept-tag tag-easy">🆓 NO FILMING</span> <span class="concept-tag tag-quick">⚡ FAST</span></div>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="concept-body">
+                <div class="script-step"><span class="time">0-2 sec</span><span class="text"><strong>HOOK:</strong> Bold text on screen: "YOUR DOG POOPS 730 TIMES A YEAR"</span></div>
+                <div class="script-step"><span class="time">2-6 sec</span><span class="text"><strong>BODY:</strong> "That's 730 land mines in your yard. We remove them all. Weekly. $17.50."</span></div>
+                <div class="script-step"><span class="time">6-8 sec</span><span class="text"><strong>CTA:</strong> "First visit FREE → Message us"</span></div>
+                <div class="insight-box"><strong>Why it works:</strong> Quick Math angle as pure text = $0 to make, 10 min to create. Great for rapid A/B testing.</div>
+                <button class="copy-btn" onclick="event.stopPropagation();copyScript(this, 'YOUR DOG POOPS 730 TIMES A YEAR. That\'s 730 land mines in your yard. We remove them all. Weekly. $17.50. First visit FREE — Message us.')">📋 Copy Script</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Campaign Settings -->
+<div class="section">
+    <h2>⚙️ Campaign Settings to Fix NOW</h2>
+    <div class="settings-grid">
+        <div class="setting-card">
+            <h4>🎯 Targeting</h4>
+            <div class="setting-item"><strong>Location:</strong> 15mi from Florissant (63031)</div>
+            <div class="setting-item"><strong>Age:</strong> 28-55</div>
+            <div class="setting-item"><strong>Interests:</strong> Dogs, Pets, Homeowner, Yard care</div>
+            <div class="setting-item"><strong>Exclude:</strong> Apartment renters, under 25</div>
+        </div>
+        <div class="setting-card">
+            <h4>📍 Placements</h4>
+            <div class="setting-item"><strong>✅ Keep:</strong> Facebook Feed, Instagram Feed</div>
+            <div class="setting-item"><strong>❌ Turn OFF:</strong> Audience Network</div>
+            <div class="setting-item"><strong>❌ Turn OFF:</strong> Messenger</div>
+            <div class="setting-item"><strong>❌ Turn OFF:</strong> Right column</div>
+        </div>
+        <div class="setting-card">
+            <h4>💰 Budget</h4>
+            <div class="setting-item"><strong>Current:</strong> ~$1.60/day</div>
+            <div class="setting-item"><strong>Keep at:</strong> $2/day until CPL < $6</div>
+            <div class="setting-item"><strong>Scale to:</strong> $5/day once optimized</div>
+            <div class="setting-item"><strong>At $4/lead:</strong> 25-37 leads/mo on $5/day</div>
+        </div>
+        <div class="setting-card">
+            <h4>📲 CTA Fix</h4>
+            <div class="setting-item" style="color:var(--red);"><strong>❌ Current:</strong> "Text TIDY to 314-850-7140"</div>
+            <div class="setting-item" style="color:var(--green);"><strong>✅ Change to:</strong> Facebook Message button</div>
+            <div class="setting-item"><strong>Why:</strong> Less friction = more conversions. Tap vs type a number.</div>
+        </div>
+    </div>
+</div>
+
+<!-- Immediate Actions -->
+<div class="section">
+    <h2>⚡ Action Items — Do This Week</h2>
+    <ul class="action-list" id="actionList">
+        <li onclick="toggleAction(this)" data-key="fb-opt-1">
+            <div class="action-check"></div>
+            <div>
+                <span class="action-pri pri-now">NOW</span>
+                Change CTA from "Text TIDY" to Facebook Message button
+            </div>
+            <span class="action-who">TJ · 5 min</span>
+        </li>
+        <li onclick="toggleAction(this)" data-key="fb-opt-2">
+            <div class="action-check"></div>
+            <div>
+                <span class="action-pri pri-now">NOW</span>
+                Turn off Audience Network + Messenger placements
+            </div>
+            <span class="action-who">TJ · 5 min</span>
+        </li>
+        <li onclick="toggleAction(this)" data-key="fb-opt-3">
+            <div class="action-check"></div>
+            <div>
+                <span class="action-pri pri-now">NOW</span>
+                Check: did any of the 4 FB leads become customers?
+            </div>
+            <span class="action-who">TJ · 2 min</span>
+        </li>
+        <li onclick="toggleAction(this)" data-key="fb-opt-4">
+            <div class="action-check"></div>
+            <div>
+                <span class="action-pri pri-week">THIS WEEK</span>
+                Film "Quick Math v2" with phone (Concept #1)
+            </div>
+            <span class="action-who">Jamie · 15 min</span>
+        </li>
+        <li onclick="toggleAction(this)" data-key="fb-opt-5">
+            <div class="action-check"></div>
+            <div>
+                <span class="action-pri pri-week">THIS WEEK</span>
+                Create "The Numbers" text ad (Concept #5 — no filming!)
+            </div>
+            <span class="action-who">TJ · 10 min</span>
+        </li>
+        <li onclick="toggleAction(this)" data-key="fb-opt-6">
+            <div class="action-check"></div>
+            <div>
+                <span class="action-pri pri-week">THIS WEEK</span>
+                Complete GBP profile (use GBP Optimization Package)
+            </div>
+            <span class="action-who">TJ · 45 min</span>
+        </li>
+        <li onclick="toggleAction(this)" data-key="fb-opt-7">
+            <div class="action-check"></div>
+            <div>
+                <span class="action-pri pri-week">THIS WEEK</span>
+                Start tracking all leads in a spreadsheet
+            </div>
+            <span class="action-who">TJ · 10 min</span>
+        </li>
+    </ul>
+</div>
+
+<!-- ROI Projections -->
+<div class="section">
+    <h2>📈 What Fixing This Gets You</h2>
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-val stat-bad">4</div>
+            <div class="stat-label">Leads Now ($48/mo)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val" style="color:var(--orange);">→</div>
+            <div class="stat-label">&nbsp;</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val stat-good">12-15</div>
+            <div class="stat-label">At $4/lead ($48/mo)</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-val stat-good">25-37</div>
+            <div class="stat-label">Scaled ($150/mo)</div>
+        </div>
+    </div>
+    <div class="insight-box">
+        <strong>💰 The math:</strong> At benchmark rates ($4.28/lead) with 30% close rate → each customer costs ~$14 to acquire. That customer pays $70/mo = <strong>5x return in month one</strong>. At current rates ($12/lead), it's $40/customer — still profitable but 3x slower growth.
+    </div>
+</div>
+
+<div style="text-align:center;padding:2rem 0;color:var(--text3);font-size:0.7rem;">
+    Built by Franklin · March 24, 2026 · Based on TJ's actual ad data
+    <br><a href="index.html" style="color:var(--orange);">← Back to Dashboard</a>
+</div>
+
+<script>
+function toggleConcept(el) { el.classList.toggle('expanded'); }
+
+function copyScript(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✅ Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = '📋 Copy Script'; btn.classList.remove('copied'); }, 2000);
+    });
+}
+
+function toggleAction(li) {
+    li.classList.toggle('done');
+    const key = li.dataset.key;
+    const state = JSON.parse(localStorage.getItem('fb-opt-actions') || '{}');
+    state[key] = li.classList.contains('done');
+    localStorage.setItem('fb-opt-actions', JSON.stringify(state));
+}
+
+// Restore action states
+document.addEventListener('DOMContentLoaded', () => {
+    const state = JSON.parse(localStorage.getItem('fb-opt-actions') || '{}');
+    document.querySelectorAll('#actionList li').forEach(li => {
+        if (state[li.dataset.key]) li.classList.add('done');
+    });
+});
+</script>
+</body>
+</html>
