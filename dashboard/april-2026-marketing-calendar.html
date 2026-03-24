@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>April 2026 Marketing Calendar — Tidy Tails</title>
+<style>
+  :root {
+    --green:#10b981; --green-d:#059669; --orange:#f59e0b; --red:#ef4444;
+    --blue:#3b82f6; --purple:#8b5cf6; --pink:#ec4899; --cyan:#06b6d4;
+    --bg:#0a0a0a; --bg2:#141414; --bg3:#1e1e1e; --bg4:#282828;
+    --text:#f5f5f5; --text2:#aaa; --text3:#666; --border:#2a2a2a;
+    --radius:12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:0;}
+
+  /* Header */
+  .header{background:linear-gradient(135deg,#065f46,#0f172a);padding:24px 20px;text-align:center;border-bottom:2px solid var(--green);}
+  .header h1{font-size:1.6em;margin-bottom:4px;}
+  .header h1 span{color:var(--green);}
+  .header .sub{color:var(--green);font-weight:600;font-size:1em;}
+  .header .meta{color:var(--text2);font-size:0.8em;margin-top:8px;}
+
+  /* Stats bar */
+  .stats-bar{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;padding:16px 20px;background:var(--bg2);border-bottom:1px solid var(--border);}
+  .stat{text-align:center;}
+  .stat-val{font-size:1.4em;font-weight:800;font-family:'Courier New',monospace;}
+  .stat-label{font-size:0.65em;text-transform:uppercase;letter-spacing:0.05em;color:var(--text3);}
+  .stat-val.g{color:var(--green);}
+  .stat-val.o{color:var(--orange);}
+  .stat-val.b{color:var(--blue);}
+  .stat-val.p{color:var(--purple);}
+
+  /* Legend */
+  .legend{display:flex;gap:16px;padding:12px 20px;flex-wrap:wrap;border-bottom:1px solid var(--border);background:var(--bg2);}
+  .legend-item{display:flex;align-items:center;gap:6px;font-size:0.8em;}
+  .legend-dot{width:12px;height:12px;border-radius:50%;}
+
+  /* Calendar grid */
+  .container{max-width:900px;margin:0 auto;padding:16px;}
+  .week-header{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:4px;text-align:center;}
+  .week-header div{font-size:0.7em;color:var(--text3);font-weight:700;text-transform:uppercase;padding:8px 0;}
+  .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;}
+
+  .cal-day{background:var(--bg2);border:1px solid var(--border);border-radius:8px;min-height:90px;padding:8px;cursor:pointer;transition:all 0.2s;position:relative;}
+  .cal-day:hover{border-color:var(--green);transform:translateY(-1px);}
+  .cal-day.empty{background:transparent;border-color:transparent;cursor:default;}
+  .cal-day.empty:hover{transform:none;}
+  .cal-day.today{border-color:var(--green);box-shadow:0 0 12px rgba(16,185,129,0.2);}
+  .cal-day .day-num{font-size:0.85em;font-weight:700;margin-bottom:4px;}
+  .cal-day .day-dots{display:flex;gap:3px;flex-wrap:wrap;}
+  .cal-day .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .cal-day .task-preview{font-size:0.6em;color:var(--text2);margin-top:4px;line-height:1.3;overflow:hidden;max-height:36px;}
+  .cal-day .check-count{position:absolute;top:6px;right:8px;font-size:0.6em;color:var(--green);font-weight:700;}
+  .cal-day.all-done{border-color:var(--green);background:rgba(16,185,129,0.08);}
+  .cal-day.all-done .day-num{color:var(--green);}
+
+  /* Day detail modal */
+  .modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:1000;padding:16px;overflow-y:auto;}
+  .modal-overlay.open{display:flex;justify-content:center;align-items:flex-start;padding-top:40px;}
+  .modal{background:var(--bg2);border:1px solid var(--border);border-radius:16px;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;position:relative;}
+  .modal-header{padding:20px 20px 12px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg2);z-index:10;border-radius:16px 16px 0 0;}
+  .modal-header h2{font-size:1.2em;}
+  .modal-header .day-type{display:inline-block;padding:2px 10px;border-radius:99px;font-size:0.75em;font-weight:600;margin-left:8px;}
+  .modal-close{position:absolute;top:16px;right:16px;background:var(--bg4);border:none;color:var(--text);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1em;display:flex;align-items:center;justify-content:center;}
+  .modal-close:hover{background:var(--red);color:white;}
+  .modal-body{padding:16px 20px 24px;}
+
+  .task-block{margin-bottom:20px;}
+  .task-block h3{font-size:0.9em;color:var(--green);margin-bottom:8px;display:flex;align-items:center;gap:8px;}
+  .task-block h3 .badge{font-size:0.7em;padding:2px 8px;border-radius:99px;font-weight:600;}
+  .badge-tj{background:var(--blue);color:white;}
+  .badge-jamie{background:var(--purple);color:white;}
+
+  .task-check{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);}
+  .task-check:last-child{border-bottom:none;}
+  .task-check input[type="checkbox"]{width:18px;height:18px;accent-color:var(--green);margin-top:2px;flex-shrink:0;cursor:pointer;}
+  .task-check.done label{text-decoration:line-through;color:var(--text3);}
+  .task-check label{cursor:pointer;font-size:0.9em;}
+
+  .copy-block{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:12px;margin:10px 0;position:relative;white-space:pre-wrap;word-wrap:break-word;font-size:0.85em;line-height:1.5;color:var(--text2);}
+  .copy-btn{position:absolute;top:8px;right:8px;background:var(--green);color:#000;border:none;padding:3px 10px;border-radius:6px;font-size:0.7em;cursor:pointer;font-weight:700;}
+  .copy-btn:hover{background:var(--green-d);}
+  .copy-btn.copied{background:var(--text3);color:white;}
+
+  .tip-box{background:rgba(245,158,11,0.1);border-left:3px solid var(--orange);padding:10px 12px;margin:10px 0;border-radius:0 8px 8px 0;font-size:0.8em;}
+  .tip-box strong{color:var(--orange);}
+
+  /* Footer */
+  .footer{text-align:center;padding:24px;color:var(--text3);font-size:0.75em;}
+
+  @media(max-width:600px){
+    .cal-grid,.week-header{grid-template-columns:repeat(7,1fr);gap:2px;}
+    .cal-day{min-height:60px;padding:4px;}
+    .cal-day .task-preview{display:none;}
+    .cal-day .day-num{font-size:0.75em;}
+    .stats-bar{grid-template-columns:repeat(2,1fr);}
+    .modal{margin:0;border-radius:0;max-height:100vh;}
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🐕 April 2026 <span>Marketing Calendar</span></h1>
+  <div class="sub">Tidy Tails — From 8 → 15 Customers</div>
+  <div class="meta">Every post pre-written. Every task assigned. Just execute.</div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-val g" id="st-done">0</div><div class="stat-label">Tasks Done</div></div>
+  <div class="stat"><div class="stat-val o" id="st-total">0</div><div class="stat-label">Total Tasks</div></div>
+  <div class="stat"><div class="stat-val b" id="st-posts">0</div><div class="stat-label">Posts Scheduled</div></div>
+  <div class="stat"><div class="stat-val p" id="st-pct">0%</div><div class="stat-label">Complete</div></div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> Facebook</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div> Instagram</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> Nextdoor</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> GBP/Reviews</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--red)"></div> Priority</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--cyan)"></div> Directory</div>
+</div>
+
+<div class="container">
+  <div class="week-header">
+    <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+  </div>
+  <div class="cal-grid" id="calGrid"></div>
+</div>
+
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle"></h2>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="footer">
+  Built by Franklin 🐕💩 | April 2026 | Tidy Tails STL<br>
+  Progress saves automatically in your browser
+</div>
+
+<script>
+// April 2026 starts on Wednesday (day index 3), has 30 days
+const YEAR=2026, MONTH=4;
+const START_DOW=3; // 0=Sun, 3=Wed
+
+// Color map
+const C={fb:'var(--blue)',ig:'var(--purple)',nd:'var(--orange)',gbp:'var(--green)',pri:'var(--red)',dir:'var(--cyan)'};
+
+// === ALL 30 DAYS OF APRIL ===
+const days = {
+  1: {
+    title: "April 1 — Q2 LAUNCH DAY 🚀",
+    who: "TJ + Jamie",
+    badge: "both",
+    dots: [C.gbp, C.pri],
+    preview: "GBP completion + review texts",
+    tasks: [
+      {
+        heading: "🔥 GBP Profile Completion",
+        who: "tj",
+        items: [
+          "Log into Google Business Profile (business.google.com)",
+          "Add business hours (Mon-Fri, or your actual schedule)",
+          "Add 5+ photos (truck, yard before/after, Jamie, logo)",
+          "Write business description (use dashboard GBP wizard)",
+          "Add all services: Weekly Cleanup, Biweekly, Monthly, Deep Clean, One-Time",
+          "Add service areas: Florissant, Hazelwood, Ferguson, Maryland Heights, O'Fallon, St. Peters",
+          "Add website link: tidytailsstl.com",
+          "Add booking link: tidytailsstl.com"
+        ]
+      },
+      {
+        heading: "⭐ Review Request Blitz — Round 1",
+        who: "jamie",
+        items: [
+          "Send review request text to your 3 longest customers (see copy below)",
+          "Track who you sent to in Review Tracker dashboard"
+        ],
+        copy: `Hey [Name]! 😊 Quick favor — would you mind leaving us a Google review? It really helps small businesses like ours get found. Here's the link, takes 30 seconds:
+
+https://g.page/r/Ce_hqIHanGLvEAE/review
+
+Thank you so much! 🐾
+— Jamie, Tidy Tails`
+      }
+    ]
+  },
+  2: {
+    title: "April 2 — Nextdoor Launch",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.nd],
+    preview: "Nextdoor intro post",
+    tasks: [
+      {
+        heading: "📣 Nextdoor Post — Spring Intro",
+        who: "jamie",
+        items: ["Post to Nextdoor (copy below)", "Respond to any comments within 24hrs"],
+        copy: `Hey neighbors! 👋 Spring is HERE and so is the yard situation we've all been ignoring 😅
+
+I'm Jamie with Tidy Tails — we're a small local pet waste removal company right here in St. Louis County.
+
+We handle the dirty work so you don't have to:
+🐕 Weekly service: $25/visit
+🐕 Monthly flat rate: $70 (most popular!)
+🐕 One-time deep clean: $100
+
+No contracts. Cancel anytime. We show up, your yard stays clean.
+
+Spring deep cleans are booking fast — your yard will thank you! 🌱
+
+📱 314-850-7140
+🌐 tidytailsstl.com`
+      }
+    ]
+  },
+  3: {
+    title: "April 3 — Facebook Week 1",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.fb],
+    preview: "FB spring cleanup post",
+    tasks: [
+      {
+        heading: "📘 Facebook Post — Spring Deep Clean Push",
+        who: "jamie",
+        items: ["Post to Tidy Tails Facebook page", "Share to personal profile too if comfortable"],
+        copy: `That moment when you finally let the dog out after winter and realize... yeah. It's bad. 😬💩
+
+Good news: that's literally why we exist.
+
+Tidy Tails Pet Waste Removal is booking spring deep cleans all month! We'll clear out MONTHS of buildup so you can actually enjoy your yard again.
+
+🐾 Deep Clean: $100 (one-time, thorough)
+🐾 Weekly service: $25/visit  
+🐾 Monthly plan: $70 flat (every week, all month)
+
+📱 Text Jamie: 314-850-7140
+🌐 tidytailsstl.com
+
+St. Louis County & surrounding areas. First visit FREE for new weekly/monthly customers!`
+      }
+    ]
+  },
+  4: {
+    title: "April 4 — Instagram + Follow-up",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.ig, C.gbp],
+    preview: "IG post + review follow-up",
+    tasks: [
+      {
+        heading: "📸 Instagram Post — Spring Vibes",
+        who: "jamie",
+        items: ["Post photo of clean yard or spring scene", "Use all hashtags below"],
+        copy: `Spring yards should be for playing, not... navigating. 🐕💩
+
+We handle the dirty work so you and your pup can enjoy the sunshine.
+
+✅ Weekly service — $25/visit
+✅ Monthly flat rate — $70
+✅ Deep clean — $100
+
+DM us or call 314-850-7140 🌱
+
+#TidyTailsSTL #PetWasteRemoval #StLouis #SpringCleaning #DogMom #DogDad #STLDogs #CleanYard #PoopScoop #LocalBusiness #SmallBusiness #StLouisCounty #Florissant #SpringVibes`
+      },
+      {
+        heading: "⭐ Review Follow-up",
+        who: "jamie",
+        items: ["Check if Day 1 review requests got responses", "Send gentle follow-up to anyone who hasn't left one yet"],
+        copy: `Hey [Name]! Just following up on that Google review — no pressure at all! If you have 30 seconds, it'd mean the world to us 🐾
+
+https://g.page/r/Ce_hqIHanGLvEAE/review`
+      }
+    ]
+  },
+  5: {
+    title: "April 5 — Rest Day",
+    who: "—",
+    badge: "",
+    dots: [],
+    preview: "No tasks today",
+    tasks: [
+      {
+        heading: "😎 Sunday Rest",
+        who: "",
+        items: ["No marketing tasks today. Enjoy the weekend!"],
+        tip: "If you get any DMs or inquiries from yesterday's posts, respond ASAP. Speed to lead!"
+      }
+    ]
+  },
+  6: {
+    title: "April 6 — Scooping Day + GBP",
+    who: "TJ + Jamie",
+    badge: "both",
+    dots: [C.gbp, C.pri],
+    preview: "Scoop day + GBP post",
+    tasks: [
+      {
+        heading: "🐕 Monday Scooping",
+        who: "tj",
+        items: ["Complete all customer routes", "Take 1-2 before/after photos (with permission) for social content"]
+      },
+      {
+        heading: "📍 GBP Post — Weekly Update",
+        who: "jamie",
+        items: ["Post an update on Google Business Profile (takes 2 min)"],
+        copy: `Spring cleaning season is in full swing! 🌱🐾
+
+Tidy Tails is booking new customers in Florissant, Hazelwood, Ferguson, Maryland Heights, and surrounding areas.
+
+Weekly service starting at $25/visit. First visit FREE for new monthly customers!
+
+📱 314-850-7140 | tidytailsstl.com`,
+        tip: "GBP posts boost your local search ranking. One post per week keeps you visible in Google Maps."
+      }
+    ]
+  },
+  7: {
+    title: "April 7 — Directory Submissions",
+    who: "TJ",
+    badge: "tj",
+    dots: [C.dir, C.dir],
+    preview: "Submit to 5 directories",
+    tasks: [
+      {
+        heading: "📂 Directory Citation Blitz — Batch 1",
+        who: "tj",
+        items: [
+          "Submit to Yelp (if not already claimed & complete)",
+          "Submit to Angi (Angie's List)",
+          "Submit to Thumbtack",
+          "Submit to HomeAdvisor",
+          "Submit to BBB (Better Business Bureau)"
+        ],
+        tip: "Use the Directory Submission Kit on the dashboard — all info is pre-filled. Just click, paste, submit. 15 minutes total."
+      }
+    ]
+  },
+  8: {
+    title: "April 8 — Facebook Multi-Dog",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.fb],
+    preview: "FB multi-dog household post",
+    tasks: [
+      {
+        heading: "📘 Facebook Post — Multi-Dog Households",
+        who: "jamie",
+        items: ["Post to Facebook page"],
+        copy: `Got multiple dogs? Yeah, that yard situation multiplies FAST. 🐕🐕🐕
+
+No judgment here. We've seen it all.
+
+Tidy Tails handles yards with 1 dog, 2 dogs, 5 dogs — doesn't matter. Same price, same thorough clean.
+
+$25/week per visit. $70/month flat rate. 
+No contracts. No surprises.
+
+The only thing you'll notice is how NICE your yard looks.
+
+📱 314-850-7140
+🌐 tidytailsstl.com
+
+Serving Florissant, Hazelwood, O'Fallon, St. Peters & more 🐾`
+      }
+    ]
+  },
+  9: {
+    title: "April 9 — Nextdoor Deep Clean",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.nd],
+    preview: "Nextdoor deep clean push",
+    tasks: [
+      {
+        heading: "📣 Nextdoor Post — Deep Clean Special",
+        who: "jamie",
+        items: ["Post to Nextdoor"],
+        copy: `Real talk: how long has it been since someone ACTUALLY cleaned your whole yard? Not just the spots you can see. The WHOLE thing.
+
+That's what our deep clean is for. $100, one visit, we get everything. Months of buildup — gone.
+
+Most people book one and then sign up for weekly because they realize how nice it is to never think about it again.
+
+Tidy Tails Pet Waste Removal
+📱 314-850-7140
+tidytailsstl.com
+
+Local. Small. We actually care about your yard. 🐾`
+      }
+    ]
+  },
+  10: {
+    title: "April 10 — IG Engagement Post",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.ig],
+    preview: "IG poll / engagement",
+    tasks: [
+      {
+        heading: "📸 Instagram Story — Poll",
+        who: "jamie",
+        items: ["Post an IG Story with a poll sticker"],
+        copy: `[STORY IDEA]
+Background: Photo of a clean green yard
+
+Poll sticker: "How often do you clean up after your dog?"
+Option A: Every day 😇
+Option B: When I remember... 😅
+
+Follow up story: "No judgment! That's what we're here for 🐾 Link in bio"`,
+        tip: "Stories with polls get 2-3x more engagement than regular stories. The algorithm loves interaction."
+      }
+    ]
+  },
+  11: {
+    title: "April 11 — Review Sprint Check",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.gbp],
+    preview: "Review progress check",
+    tasks: [
+      {
+        heading: "⭐ Review Sprint — Week 2 Push",
+        who: "jamie",
+        items: [
+          "Check Google review count (goal: 5+ total)",
+          "Send review request to 2 more customers who haven't been asked",
+          "Update Review Generation Tracker on dashboard"
+        ],
+        copy: `Hey [Name]! Hope you and [dog name] are doing well! 🐾
+
+Would you mind taking 30 seconds to leave us a Google review? We're a small local business and every review really helps other dog owners find us.
+
+https://g.page/r/Ce_hqIHanGLvEAE/review
+
+Thank you so much! — Jamie`,
+        tip: "Personalize with the dog's name. It dramatically increases response rate."
+      }
+    ]
+  },
+  12: {
+    title: "April 12 — Rest Day",
+    who: "—",
+    badge: "",
+    dots: [],
+    preview: "Enjoy the weekend",
+    tasks: [{heading:"😎 Weekend Rest",who:"",items:["No tasks. Respond to any inbound leads quickly."]}]
+  },
+  13: {
+    title: "April 13 — Scoop Day + GBP Post",
+    who: "TJ + Jamie",
+    badge: "both",
+    dots: [C.gbp, C.pri],
+    preview: "Scoop + GBP weekly post",
+    tasks: [
+      {heading:"🐕 Monday Scooping",who:"tj",items:["Complete routes","Take before/after photo if possible"]},
+      {
+        heading: "📍 GBP Post — Customer Story",
+        who: "jamie",
+        items: ["Post weekly GBP update"],
+        copy: `Another happy yard this week! 🐾
+
+Our customers tell us the same thing: "I wish I'd started this sooner."
+
+No more dodging landmines. No more weekend cleanup duty. Just a clean yard, every week.
+
+🐕 Weekly: $25/visit
+🐕 Monthly: $70 flat
+🐕 Deep clean: $100
+
+📱 314-850-7140
+tidytailsstl.com`
+      }
+    ]
+  },
+  14: {
+    title: "April 14 — Directories Batch 2",
+    who: "TJ",
+    badge: "tj",
+    dots: [C.dir, C.dir],
+    preview: "5 more directory submissions",
+    tasks: [
+      {
+        heading: "📂 Directory Batch 2",
+        who: "tj",
+        items: [
+          "Submit to Nextdoor Business Page (separate from personal)",
+          "Submit to Bark.com",
+          "Submit to Care.com (pet services)",
+          "Submit to MapQuest Business",
+          "Submit to Yellow Pages / YP.com"
+        ],
+        tip: "Each directory = a citation. Google uses citation count to rank local businesses. More citations = higher Maps placement."
+      }
+    ]
+  },
+  15: {
+    title: "April 15 — Facebook Social Proof",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.fb],
+    preview: "FB testimonial-style post",
+    tasks: [
+      {
+        heading: "📘 Facebook — Testimonial Style",
+        who: "jamie",
+        items: ["Post to Facebook page"],
+        copy: `I had a customer tell me last week: "My kids can finally play in the backyard without me doing a sweep first."
+
+That's why we do this. It's not glamorous work, but it makes a real difference for families.
+
+Tidy Tails Pet Waste Removal — serving St. Louis County since 2025.
+
+🐾 Weekly: $25/visit
+🐾 Monthly: $70 flat  
+🐾 Deep clean: $100
+
+No contracts. Local. We show up rain or shine.
+
+📱 314-850-7140 | tidytailsstl.com`
+      }
+    ]
+  },
+  16: {
+    title: "April 16 — Nextdoor Neighborhoods",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.nd],
+    preview: "Nextdoor zip-code targeted",
+    tasks: [
+      {
+        heading: "📣 Nextdoor — Zip Code Targeted",
+        who: "jamie",
+        items: ["Post to Nextdoor (target your neighborhood group)"],
+        copy: `To my 63031 / 63042 / 63033 neighbors with dogs — 
+
+You know that corner of the yard you avoid? We can fix that by Friday.
+
+Tidy Tails does pet waste removal so you don't have to. We come weekly, biweekly, or one-time. Whatever works.
+
+$25 per visit. $70/month if you want the "never think about it" plan.
+
+📱 Text Jamie: 314-850-7140
+tidytailsstl.com 🐾`
+      }
+    ]
+  },
+  17: {
+    title: "April 17 — Instagram Before/After",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.ig],
+    preview: "IG before/after reel",
+    tasks: [
+      {
+        heading: "📸 Instagram — Before/After Reel",
+        who: "jamie",
+        items: ["Post a Reel or carousel showing before/after yard", "If no photos yet, use the caption below with a clean yard photo"],
+        copy: `POV: You hired Tidy Tails and now your yard actually looks like this 🌱✨
+
+Before: 💩💩💩💩💩
+After: 🌿☀️😌
+
+Spring deep cleans are booking up fast. $100 gets your yard reset.
+
+Weekly plans start at $25/visit.
+
+Link in bio! 🐾
+
+#BeforeAndAfter #TidyTailsSTL #PoopScoop #StLouis #SpringCleanup #DogMom #DogDad #CleanYard #PetWasteRemoval #LocalBusiness`
+      }
+    ]
+  },
+  18: {
+    title: "April 18 — Mid-Month Check-in",
+    who: "TJ + Jamie",
+    badge: "both",
+    dots: [C.pri, C.gbp],
+    preview: "📊 Mid-month review",
+    tasks: [
+      {
+        heading: "📊 Mid-Month Scorecard",
+        who: "tj",
+        items: [
+          "How many new customers this month? Update CRM dashboard",
+          "How many Google reviews now? (Goal: 5+)",
+          "How many directory listings completed?",
+          "Any leads that went cold? Follow up today",
+          "Check GBP insights — any calls or direction requests?"
+        ],
+        tip: "This 15-minute check-in is crucial. If we're behind on reviews or new customers, we need to adjust the second half of the month."
+      },
+      {
+        heading: "⭐ Review Push — Anyone Left?",
+        who: "jamie",
+        items: ["If under 5 reviews, send request to remaining customers"],
+        copy: `Hi [Name]! Quick one — if you have a sec, a Google review would mean the world to us. We're trying to help more dog owners find us locally.
+
+https://g.page/r/Ce_hqIHanGLvEAE/review
+
+No worries if not! Hope [dog name] is doing great 🐾`
+      }
+    ]
+  },
+  19: {
+    title: "April 19 — Rest Day",
+    who: "—",
+    badge: "",
+    dots: [],
+    preview: "Enjoy Sunday",
+    tasks: [{heading:"😎 Rest Day",who:"",items:["No scheduled tasks. Respond to any weekend inquiries."]}]
+  },
+  20: {
+    title: "April 20 — Scoop + GBP + Referral Launch",
+    who: "TJ + Jamie",
+    badge: "both",
+    dots: [C.gbp, C.pri, C.green],
+    preview: "Scoop + GBP + referral program",
+    tasks: [
+      {heading:"🐕 Monday Scooping",who:"tj",items:["Complete routes","Mention referral program to customers in person"]},
+      {
+        heading: "📍 GBP Post — Spring Push",
+        who: "jamie",
+        items: ["Weekly GBP post"],
+        copy: `Halfway through spring and our schedule is filling up! 🌱
+
+If you've been putting off yard cleanup, now's the time. We still have spots for weekly customers in:
+📍 Florissant
+📍 Hazelwood  
+📍 Maryland Heights
+📍 O'Fallon
+📍 St. Peters
+
+$25/week. First visit FREE.
+
+📱 314-850-7140
+tidytailsstl.com`
+      },
+      {
+        heading: "🎁 LAUNCH: Referral Program",
+        who: "jamie",
+        items: ["Send referral text to ALL current customers (copy below)","This is the big growth lever — every customer becomes a recruiter"],
+        copy: `Hey [Name]! 🐾 We just launched something fun:
+
+Refer a friend to Tidy Tails and you BOTH get $10 off your next service! 
+
+Just have them mention your name when they sign up. That's it!
+
+Know anyone with a dog who hates yard duty? 😅
+
+— Jamie, Tidy Tails
+📱 314-850-7140`,
+        tip: "Referrals convert at 3-5x the rate of cold marketing. This one text blast could generate 2-4 new customers."
+      }
+    ]
+  },
+  21: {
+    title: "April 21 — Facebook Referral",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.fb],
+    preview: "FB referral announcement",
+    tasks: [
+      {
+        heading: "📘 Facebook — Referral Program Post",
+        who: "jamie",
+        items: ["Post referral announcement"],
+        copy: `🎉 NEW: Refer a friend, you BOTH save!
+
+Know someone who's tired of cleaning up after their pup? Tell them about Tidy Tails and you'll both get $10 off.
+
+No codes. No apps. Just have them mention your name.
+
+Because friends don't let friends step in it. 💩😂
+
+📱 314-850-7140
+🌐 tidytailsstl.com
+
+#TidyTailsSTL #ReferAFriend #StLouis #DogOwners #PetWaste`
+      }
+    ]
+  },
+  22: {
+    title: "April 22 — Earth Day Content",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.nd, C.ig],
+    preview: "Earth Day angle 🌍",
+    tasks: [
+      {
+        heading: "📣 Nextdoor — Earth Day Angle",
+        who: "jamie",
+        items: ["Post Earth Day themed content"],
+        copy: `Happy Earth Day! 🌍
+
+Fun fact: Dog waste is actually an environmental pollutant. It doesn't just decompose — rain washes bacteria into storm drains and local waterways.
+
+Regular cleanup isn't just about a nice yard. It's about keeping our neighborhoods clean and safe.
+
+Tidy Tails removes pet waste weekly so it doesn't end up where it shouldn't.
+
+$25/week | $70/month | 314-850-7140
+tidytailsstl.com 🐾🌱`
+      },
+      {
+        heading: "📸 Instagram — Earth Day",
+        who: "jamie",
+        items: ["Post or story with Earth Day theme"],
+        copy: `🌍 Earth Day reminder: Pet waste isn't just gross — it's an EPA-classified pollutant.
+
+We keep yards clean AND neighborhoods healthier. One scoop at a time. 🐾
+
+#EarthDay #TidyTailsSTL #PetWasteRemoval #CleanCommunity #StLouis #GoGreen #DogMom`
+      }
+    ]
+  },
+  23: {
+    title: "April 23 — Commercial Outreach",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.pri],
+    preview: "Call 3 apartment complexes",
+    tasks: [
+      {
+        heading: "🏢 Commercial Outreach — Apartments",
+        who: "jamie",
+        items: [
+          "Call/email 3 apartment complexes from the Commercial Leads dashboard",
+          "Use the script from Jamie's Outreach Hub on dashboard",
+          "Log results in CRM"
+        ],
+        tip: "One commercial account = 5-10 residential customers in revenue. Even one yes makes this the highest-ROI task of the month."
+      }
+    ]
+  },
+  24: {
+    title: "April 24 — Instagram Reel",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.ig],
+    preview: "IG fun/relatable reel",
+    tasks: [
+      {
+        heading: "📸 Instagram Reel — Relatable Content",
+        who: "jamie",
+        items: ["Post a Reel (can be simple — phone video of yard + caption overlay)"],
+        copy: `[REEL IDEA]
+Text on screen: "Things dog owners pretend don't exist:"
+Cut to: the backyard 💩
+
+Text on screen: "The solution:"
+Cut to: Tidy Tails truck/you cleaning
+
+Text: "$25/week. Problem solved."
+
+Caption: Tag a dog parent who needs this 😂🐾 #TidyTailsSTL #DogOwnerProblems #PoopScoop #STL`
+      }
+    ]
+  },
+  25: {
+    title: "April 25 — Review + Referral Check",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.gbp],
+    preview: "Review & referral status",
+    tasks: [
+      {
+        heading: "⭐ Review & Referral Check-in",
+        who: "jamie",
+        items: [
+          "How many reviews now? (Target: 5-7 by end of April)",
+          "Any referral leads come in since Apr 20 launch?",
+          "Send thank-you to anyone who left a review",
+          "Follow up with referral program non-responders"
+        ],
+        copy: `[Thank you text for reviewers]
+Hey [Name]! Just saw your Google review — THANK YOU so much! 🙌 It means the world to us. You're the best! 🐾`
+      }
+    ]
+  },
+  26: {
+    title: "April 26 — Rest Day",
+    who: "—",
+    badge: "",
+    dots: [],
+    preview: "Sunday rest",
+    tasks: [{heading:"😎 Rest Day",who:"",items:["No tasks. Recharge for the final week push."]}]
+  },
+  27: {
+    title: "April 27 — Scoop + GBP + Summer Tease",
+    who: "TJ + Jamie",
+    badge: "both",
+    dots: [C.gbp, C.pri],
+    preview: "Scoop + GBP + summer prep",
+    tasks: [
+      {heading:"🐕 Monday Scooping",who:"tj",items:["Complete routes"]},
+      {
+        heading: "📍 GBP Post — Summer Tease",
+        who: "jamie",
+        items: ["Weekly GBP post"],
+        copy: `Summer is coming and so is outdoor season! ☀️
+
+Don't let pet waste ruin your cookouts, playtime, and backyard hangs.
+
+Get on our weekly schedule now before summer fills up:
+🐾 $25/visit | $70/month flat
+🐾 First visit FREE for new customers
+
+📱 314-850-7140
+tidytailsstl.com`
+      }
+    ]
+  },
+  28: {
+    title: "April 28 — Facebook Summer Push",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.fb],
+    preview: "FB summer prep post",
+    tasks: [
+      {
+        heading: "📘 Facebook — Summer Prep",
+        who: "jamie",
+        items: ["Post summer-themed content"],
+        copy: `Summer checklist:
+☀️ Pool floats — ready
+🌭 Grill — cleaned
+🐕 Backyard — full of... yeah.
+
+Let us handle that last one.
+
+Tidy Tails comes weekly so your yard is ALWAYS ready for:
+✅ Cookouts
+✅ Kids playing
+✅ Barefoot walks
+✅ Dog zoomies without obstacles
+
+$25/week. $70/month. No brainer.
+
+📱 314-850-7140
+tidytailsstl.com 🐾`
+      }
+    ]
+  },
+  29: {
+    title: "April 29 — Nextdoor Referral Push",
+    who: "Jamie",
+    badge: "jamie",
+    dots: [C.nd],
+    preview: "Nextdoor referral reminder",
+    tasks: [
+      {
+        heading: "📣 Nextdoor — Referral Reminder",
+        who: "jamie",
+        items: ["Post referral program reminder"],
+        copy: `Quick reminder for my Tidy Tails customers and neighbors:
+
+Our refer-a-friend deal is still going! You both get $10 off when your friend signs up.
+
+If you know a dog owner who's tired of cleanup duty... send them our way! 🐾
+
+📱 314-850-7140
+tidytailsstl.com
+
+Thanks for supporting local! 🙌`
+      }
+    ]
+  },
+  30: {
+    title: "April 30 — Month End Review 📊",
+    who: "TJ + Jamie",
+    badge: "both",
+    dots: [C.pri, C.pri],
+    preview: "End-of-month scorecard",
+    tasks: [
+      {
+        heading: "📊 April Scorecard — MANDATORY",
+        who: "tj",
+        items: [
+          "Total customers now: ___ (started month at 8, target: 10-12)",
+          "New customers added in April: ___",
+          "Google reviews total: ___ (target: 5+)",
+          "Directories submitted: ___ (target: 10+)",
+          "Monthly revenue: $___",
+          "Referral program results: ___ leads, ___ conversions",
+          "Best performing platform: ___",
+          "Update CRM dashboard with all numbers"
+        ],
+        tip: "This scorecard tells us what's working and what to double down on in May. Be honest with the numbers — we can't improve what we don't measure."
+      },
+      {
+        heading: "🗓️ May Planning",
+        who: "tj",
+        items: [
+          "What worked best this month?",
+          "What fell flat?",
+          "Any new ideas from customer feedback?",
+          "Franklin will build May calendar based on these answers"
+        ]
+      }
+    ]
+  }
+};
+
+// Storage key
+const SKEY = 'tt-april-2026-cal';
+function loadState(){ try{return JSON.parse(localStorage.getItem(SKEY))||{};}catch(e){return {};} }
+function saveState(s){ localStorage.setItem(SKEY,JSON.stringify(s)); }
+
+let state = loadState();
+
+// Build calendar grid
+function buildCalendar(){
+  const grid = document.getElementById('calGrid');
+  grid.innerHTML='';
+
+  // Empty cells before April 1 (Wed = index 3)
+  for(let i=0;i<START_DOW;i++){
+    const el=document.createElement('div');
+    el.className='cal-day empty';
+    grid.appendChild(el);
+  }
+
+  for(let d=1;d<=30;d++){
+    const el=document.createElement('div');
+    el.className='cal-day';
+    const info=days[d];
+
+    // Check completion
+    const taskIds = getTaskIds(d);
+    const doneCount = taskIds.filter(id=>state[id]).length;
+    if(taskIds.length>0 && doneCount===taskIds.length) el.classList.add('all-done');
+
+    let html=`<div class="day-num">${d}</div>`;
+    if(info && info.dots.length>0){
+      html+=`<div class="day-dots">${info.dots.map(c=>`<div class="dot" style="background:${c}"></div>`).join('')}</div>`;
+    }
+    if(info && info.preview){
+      html+=`<div class="task-preview">${info.preview}</div>`;
+    }
+    if(taskIds.length>0){
+      html+=`<div class="check-count">${doneCount}/${taskIds.length}</div>`;
+    }
+    el.innerHTML=html;
+
+    if(info){
+      el.onclick=()=>openModal(d);
+    }
+    grid.appendChild(el);
+  }
+  updateStats();
+}
+
+function getTaskIds(day){
+  const info=days[day];
+  if(!info) return [];
+  const ids=[];
+  info.tasks.forEach((t,ti)=>{
+    t.items.forEach((item,ii)=>{
+      ids.push(`d${day}-t${ti}-i${ii}`);
+    });
+  });
+  return ids;
+}
+
+function updateStats(){
+  let total=0, done=0, posts=0;
+  for(let d=1;d<=30;d++){
+    const ids=getTaskIds(d);
+    total+=ids.length;
+    done+=ids.filter(id=>state[id]).length;
+    const info=days[d];
+    if(info) posts+=info.dots.length;
+  }
+  document.getElementById('st-done').textContent=done;
+  document.getElementById('st-total').textContent=total;
+  document.getElementById('st-posts').textContent=posts;
+  document.getElementById('st-pct').textContent=total>0?Math.round(done/total*100)+'%':'0%';
+}
+
+function openModal(day){
+  const info=days[day];
+  if(!info) return;
+  document.getElementById('modalTitle').innerHTML=info.title;
+  const body=document.getElementById('modalBody');
+  let html='';
+
+  info.tasks.forEach((t,ti)=>{
+    html+=`<div class="task-block">`;
+    html+=`<h3>${t.heading}`;
+    if(t.who==='tj') html+=` <span class="badge badge-tj">TJ</span>`;
+    else if(t.who==='jamie') html+=` <span class="badge badge-jamie">Jamie</span>`;
+    else if(t.who) html+=` <span class="badge" style="background:var(--orange);color:white;">${t.who}</span>`;
+    html+=`</h3>`;
+
+    t.items.forEach((item,ii)=>{
+      const id=`d${day}-t${ti}-i${ii}`;
+      const checked=state[id]?'checked':'';
+      const doneClass=state[id]?'done':'';
+      html+=`<div class="task-check ${doneClass}">
+        <input type="checkbox" id="${id}" ${checked} onchange="toggleTask('${id}',${day})">
+        <label for="${id}">${item}</label>
+      </div>`;
+    });
+
+    if(t.copy){
+      const copyId=`copy-d${day}-t${ti}`;
+      html+=`<div class="copy-block" id="${copyId}">${escHtml(t.copy)}<button class="copy-btn" onclick="copyText('${copyId}',this)">📋 Copy</button></div>`;
+    }
+    if(t.tip){
+      html+=`<div class="tip-box"><strong>💡 Tip:</strong> ${t.tip}</div>`;
+    }
+    html+=`</div>`;
+  });
+
+  body.innerHTML=html;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function toggleTask(id,day){
+  state[id]=document.getElementById(id).checked;
+  saveState(state);
+  // Update check class
+  const parent=document.getElementById(id).closest('.task-check');
+  parent.classList.toggle('done',state[id]);
+  buildCalendar();
+}
+
+function copyText(blockId,btn){
+  const el=document.getElementById(blockId);
+  const text=el.innerText.replace('📋 Copy','').replace('✅ Copied','').trim();
+  navigator.clipboard.writeText(text).then(()=>{
+    btn.textContent='✅ Copied';
+    btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='📋 Copy';btn.classList.remove('copied');},2000);
+  });
+}
+
+function escHtml(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+// Close modal on overlay click
+document.getElementById('modal').onclick=function(e){if(e.target===this)closeModal();};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
+
+buildCalendar();
+</script>
+</body>
+</html>
