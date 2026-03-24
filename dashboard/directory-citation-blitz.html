@@ -3,629 +3,787 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Directory & Citation Blitz — Tidy Tails STL</title>
+<title>🗺️ Local Citation Blitz — Tidy Tails STL</title>
 <style>
   :root {
-    --bg: #0a0a0f;
-    --card: #12131a;
-    --card-hover: #181924;
-    --border: #1e2030;
-    --text: #e4e4e7;
-    --text-dim: #71717a;
-    --accent: #22c55e;
-    --accent-dim: #16a34a;
-    --warning: #f59e0b;
-    --danger: #ef4444;
-    --info: #3b82f6;
-    --purple: #a855f7;
+    --green: #22c55e; --green-bg: #f0fdf4; --green-dark: #166534;
+    --yellow: #eab308; --yellow-bg: #fefce8;
+    --red: #ef4444; --red-bg: #fef2f2;
+    --blue: #3b82f6; --blue-bg: #eff6ff;
+    --purple: #8b5cf6; --purple-bg: #f5f3ff;
+    --gray: #6b7280; --gray-bg: #f9fafb;
+    --dark: #111827; --white: #ffffff;
+    --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,0.1);
   }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 20px; max-width: 1100px; margin: 0 auto; }
-
-  .header { text-align: center; padding: 30px 0 20px; }
-  .header h1 { font-size: 2rem; margin-bottom: 8px; }
-  .header h1 span { color: var(--accent); }
-  .header .subtitle { color: var(--text-dim); font-size: 0.95rem; }
-
-  .alert-box { background: linear-gradient(135deg, #1a0a0a, #0a0a0f); border: 1px solid var(--danger); border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; }
-  .alert-box h3 { color: var(--danger); margin-bottom: 6px; font-size: 0.95rem; }
-  .alert-box p { color: var(--text-dim); font-size: 0.88rem; }
-  .alert-box .finding { color: var(--warning); font-weight: 600; }
-
-  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 24px; }
-  .stat-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
-  .stat-card .num { font-size: 1.8rem; font-weight: 700; }
-  .stat-card .label { font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
-  .stat-card.done .num { color: var(--accent); }
-  .stat-card.pending .num { color: var(--warning); }
-  .stat-card.total .num { color: var(--info); }
-  .stat-card.impact .num { color: var(--purple); }
-
-  .copy-zone { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 24px; }
-  .copy-zone h3 { margin-bottom: 12px; font-size: 1rem; }
-  .copy-field { position: relative; margin-bottom: 12px; }
-  .copy-field label { font-size: 0.78rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.5px; display: block; margin-bottom: 4px; }
-  .copy-field .value { background: #0d0e14; border: 1px solid var(--border); border-radius: 8px; padding: 10px 70px 10px 12px; font-size: 0.88rem; white-space: pre-wrap; word-break: break-all; min-height: 38px; }
-  .copy-btn { position: absolute; top: 22px; right: 8px; background: var(--accent-dim); color: white; border: none; border-radius: 6px; padding: 4px 12px; font-size: 0.75rem; cursor: pointer; }
-  .copy-btn:hover { background: var(--accent); }
-  .copy-btn.copied { background: #166534; }
-
-  .tabs { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
-  .tab { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 8px 16px; cursor: pointer; font-size: 0.85rem; color: var(--text-dim); transition: all 0.2s; }
-  .tab:hover { border-color: var(--accent); color: var(--text); }
-  .tab.active { background: var(--accent-dim); border-color: var(--accent); color: white; }
-  .tab .count { background: rgba(255,255,255,0.15); border-radius: 10px; padding: 1px 7px; margin-left: 6px; font-size: 0.75rem; }
-
-  .section { display: none; }
-  .section.active { display: block; }
-
-  .dir-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; margin-bottom: 12px; transition: all 0.2s; }
-  .dir-card:hover { border-color: #2a2b3d; }
-  .dir-card.completed { border-left: 3px solid var(--accent); opacity: 0.7; }
-  .dir-card.completed .dir-name { text-decoration: line-through; }
-
-  .dir-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
-  .dir-check { width: 20px; height: 20px; cursor: pointer; accent-color: var(--accent); }
-  .dir-name { font-weight: 600; font-size: 1rem; flex: 1; }
-  .dir-priority { font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; font-weight: 600; text-transform: uppercase; }
-  .dir-priority.critical { background: rgba(239,68,68,0.15); color: var(--danger); }
-  .dir-priority.high { background: rgba(245,158,11,0.15); color: var(--warning); }
-  .dir-priority.medium { background: rgba(59,130,246,0.15); color: var(--info); }
-  .dir-priority.low { background: rgba(113,113,122,0.15); color: var(--text-dim); }
-
-  .dir-meta { display: flex; gap: 16px; margin-bottom: 8px; flex-wrap: wrap; }
-  .dir-meta span { font-size: 0.82rem; color: var(--text-dim); }
-  .dir-meta .seo { color: var(--accent); }
-
-  .dir-desc { font-size: 0.85rem; color: var(--text-dim); margin-bottom: 10px; }
-
-  .dir-actions { display: flex; gap: 8px; flex-wrap: wrap; }
-  .dir-btn { display: inline-block; padding: 6px 14px; border-radius: 6px; font-size: 0.8rem; text-decoration: none; border: 1px solid var(--border); color: var(--text); transition: all 0.2s; }
-  .dir-btn:hover { border-color: var(--accent); color: var(--accent); }
-  .dir-btn.primary { background: var(--accent-dim); border-color: var(--accent); color: white; }
-  .dir-btn.primary:hover { background: var(--accent); }
-
-  .dir-notes { margin-top: 8px; }
-  .dir-notes textarea { width: 100%; background: #0d0e14; border: 1px solid var(--border); border-radius: 6px; padding: 8px; color: var(--text); font-size: 0.82rem; resize: vertical; min-height: 36px; font-family: inherit; }
-
-  .progress-bar { width: 100%; height: 8px; background: var(--border); border-radius: 4px; margin: 8px 0; overflow: hidden; }
-  .progress-fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.3s; }
-
-  .tip-box { background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; }
-  .tip-box h4 { color: var(--info); font-size: 0.88rem; margin-bottom: 4px; }
-  .tip-box p { font-size: 0.82rem; color: var(--text-dim); }
-
-  .nap-check { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); border-radius: 10px; padding: 14px 18px; margin-bottom: 16px; }
-  .nap-check h4 { color: var(--warning); font-size: 0.88rem; margin-bottom: 4px; }
-  .nap-check p { font-size: 0.82rem; color: var(--text-dim); }
-
-  footer { text-align: center; padding: 30px 0 10px; color: var(--text-dim); font-size: 0.78rem; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f3f4f6; color: var(--dark); line-height: 1.5; padding: 16px; max-width: 800px; margin: 0 auto; }
+  
+  .hero { background: linear-gradient(135deg, #1e40af 0%, #7c3aed 100%); color: white; border-radius: var(--radius); padding: 24px; margin-bottom: 20px; text-align: center; }
+  .hero h1 { font-size: 1.8rem; margin-bottom: 8px; }
+  .hero p { opacity: 0.9; font-size: 0.95rem; }
+  
+  .score-ring { width: 120px; height: 120px; margin: 16px auto; position: relative; }
+  .score-ring svg { transform: rotate(-90deg); }
+  .score-ring circle { fill: none; stroke-width: 8; }
+  .score-ring .bg { stroke: rgba(255,255,255,0.2); }
+  .score-ring .fill { stroke: var(--green); stroke-linecap: round; transition: stroke-dashoffset 1s ease; }
+  .score-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
+  .score-label .num { font-size: 2rem; font-weight: 800; }
+  .score-label .sub { font-size: 0.7rem; opacity: 0.8; }
+  
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 16px 0; }
+  .stat { background: rgba(255,255,255,0.15); border-radius: 8px; padding: 12px 8px; text-align: center; }
+  .stat .val { font-size: 1.4rem; font-weight: 700; }
+  .stat .lbl { font-size: 0.7rem; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.5px; }
+  
+  .section { background: var(--white); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; box-shadow: var(--shadow); }
+  .section h2 { font-size: 1.2rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .section h3 { font-size: 1rem; margin: 16px 0 8px; color: var(--gray); }
+  
+  .alert { padding: 12px 16px; border-radius: 8px; margin-bottom: 12px; font-size: 0.9rem; }
+  .alert-red { background: var(--red-bg); border-left: 4px solid var(--red); }
+  .alert-green { background: var(--green-bg); border-left: 4px solid var(--green); }
+  .alert-blue { background: var(--blue-bg); border-left: 4px solid var(--blue); }
+  .alert-yellow { background: var(--yellow-bg); border-left: 4px solid var(--yellow); }
+  
+  .directory-card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 16px; margin-bottom: 12px; transition: all 0.2s; }
+  .directory-card.done { border-color: var(--green); background: var(--green-bg); }
+  .directory-card.done .card-header { opacity: 0.7; }
+  
+  .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .card-title { font-weight: 700; font-size: 1.05rem; }
+  .card-badges { display: flex; gap: 6px; flex-wrap: wrap; }
+  .badge { font-size: 0.65rem; padding: 2px 8px; border-radius: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; }
+  .badge-free { background: var(--green-bg); color: var(--green-dark); }
+  .badge-paid { background: var(--yellow-bg); color: #92400e; }
+  .badge-high { background: var(--red-bg); color: #991b1b; }
+  .badge-med { background: var(--blue-bg); color: #1e40af; }
+  .badge-low { background: var(--gray-bg); color: var(--gray); }
+  .badge-pet { background: var(--purple-bg); color: #6d28d9; }
+  
+  .card-meta { font-size: 0.85rem; color: var(--gray); margin-bottom: 10px; }
+  .card-url { display: block; color: var(--blue); text-decoration: none; font-size: 0.85rem; word-break: break-all; margin-bottom: 8px; }
+  .card-url:hover { text-decoration: underline; }
+  
+  .card-info { font-size: 0.85rem; margin-bottom: 10px; }
+  .card-info dt { font-weight: 600; color: var(--gray); font-size: 0.75rem; text-transform: uppercase; margin-top: 6px; }
+  .card-info dd { margin-left: 0; }
+  
+  .card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer; border: none; text-decoration: none; transition: all 0.15s; }
+  .btn-primary { background: var(--blue); color: white; }
+  .btn-primary:hover { background: #2563eb; }
+  .btn-green { background: var(--green); color: white; }
+  .btn-green:hover { background: #16a34a; }
+  .btn-outline { background: transparent; border: 1px solid #d1d5db; color: var(--dark); }
+  .btn-outline:hover { background: var(--gray-bg); }
+  .btn-sm { padding: 4px 10px; font-size: 0.8rem; }
+  
+  .copy-field { background: var(--gray-bg); border: 1px solid #e5e7eb; border-radius: 8px; padding: 10px 12px; font-size: 0.85rem; margin: 4px 0; position: relative; cursor: pointer; word-break: break-word; }
+  .copy-field:hover { background: #f3f4f6; }
+  .copy-field::after { content: '📋'; position: absolute; right: 8px; top: 50%; transform: translateY(-50%); font-size: 0.9rem; }
+  .copy-field.copied { border-color: var(--green); background: var(--green-bg); }
+  .copy-field.copied::after { content: '✅'; }
+  
+  .checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid #f3f4f6; }
+  .checklist-item:last-child { border-bottom: none; }
+  .checklist-item input[type="checkbox"] { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--green); cursor: pointer; flex-shrink: 0; }
+  .checklist-item label { cursor: pointer; font-size: 0.9rem; }
+  .checklist-item.done label { text-decoration: line-through; opacity: 0.5; }
+  
+  .nap-box { background: var(--blue-bg); border: 2px solid var(--blue); border-radius: var(--radius); padding: 20px; margin: 16px 0; }
+  .nap-box h3 { color: #1e40af; margin-bottom: 8px; }
+  .nap-field { margin-bottom: 8px; }
+  .nap-field .label { font-size: 0.75rem; font-weight: 600; color: var(--gray); text-transform: uppercase; }
+  
+  .tier-label { font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: 6px; margin-bottom: 12px; display: inline-block; }
+  .tier-1 { background: #dc2626; color: white; }
+  .tier-2 { background: var(--blue); color: white; }
+  .tier-3 { background: var(--purple); color: white; }
+  .tier-4 { background: var(--gray); color: white; }
+  
+  .progress-bar { background: #e5e7eb; border-radius: 99px; height: 8px; overflow: hidden; margin: 8px 0; }
+  .progress-fill { height: 100%; border-radius: 99px; background: linear-gradient(90deg, var(--green), #34d399); transition: width 0.5s ease; }
+  
+  .time-est { font-size: 0.8rem; color: var(--gray); display: flex; align-items: center; gap: 4px; }
+  
+  details { margin-bottom: 8px; }
+  details summary { cursor: pointer; font-weight: 600; font-size: 0.9rem; padding: 8px 0; }
+  details[open] summary { margin-bottom: 8px; }
+  
   @media (max-width: 600px) {
-    body { padding: 12px; }
-    .stats-row { grid-template-columns: 1fr 1fr; }
-    .dir-meta { flex-direction: column; gap: 4px; }
+    body { padding: 10px; }
+    .hero h1 { font-size: 1.4rem; }
+    .stats { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .stat { padding: 8px 4px; }
+    .stat .val { font-size: 1.1rem; }
   }
 </style>
 </head>
 <body>
 
-<div class="header">
-  <h1>📍 Directory & <span>Citation Blitz</span></h1>
-  <p class="subtitle">Fix the F-grade off-page SEO. Every listing = a backlink + a customer path.</p>
-</div>
-
-<div class="alert-box">
-  <h3>🚨 FINDING: Yelp Listing is 404</h3>
-  <p>The claimed Yelp page at <span class="finding">/biz/tidy-tails-pet-waste-removal-florissant</span> returns 404. Either the listing was removed, the URL changed, or claiming didn't stick. <strong>Action: Search Yelp for "Tidy Tails" and re-claim or create fresh.</strong></p>
-</div>
-
-<div class="nap-check">
-  <h4>📋 NAP Consistency — Use EXACTLY This on Every Listing</h4>
-  <p><strong>Name:</strong> Tidy Tails Pet Waste Removal &nbsp;|&nbsp; <strong>Address:</strong> St. Louis, MO (service area business — no street address) &nbsp;|&nbsp; <strong>Phone:</strong> (314) 850-7140 &nbsp;|&nbsp; <strong>Website:</strong> https://tidytailsstl.com</p>
-</div>
-
-<div class="stats-row">
-  <div class="stat-card done"><div class="num" id="doneCount">0</div><div class="label">Submitted</div></div>
-  <div class="stat-card pending"><div class="num" id="pendingCount">0</div><div class="label">Remaining</div></div>
-  <div class="stat-card total"><div class="num" id="totalCount">0</div><div class="label">Total Dirs</div></div>
-  <div class="stat-card impact"><div class="num">~50</div><div class="label">Est. DA Points</div></div>
-</div>
-<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div>
-
-<!-- Copy-Paste Zone -->
-<div class="copy-zone">
-  <h3>📝 Copy-Paste Business Info</h3>
-  <div class="copy-field">
-    <label>Business Name</label>
-    <div class="value" id="cp-name">Tidy Tails Pet Waste Removal</div>
-    <button class="copy-btn" onclick="copyField('cp-name', this)">Copy</button>
+<div class="hero">
+  <h1>🗺️ Local Citation Blitz</h1>
+  <p>Get Tidy Tails listed EVERYWHERE Google looks — $0 cost, massive SEO impact</p>
+  
+  <div class="score-ring">
+    <svg width="120" height="120" viewBox="0 0 120 120">
+      <circle class="bg" cx="60" cy="60" r="52"/>
+      <circle class="fill" id="progressRing" cx="60" cy="60" r="52" 
+        stroke-dasharray="326.7" stroke-dashoffset="326.7"/>
+    </svg>
+    <div class="score-label">
+      <div class="num" id="completedCount">0</div>
+      <div class="sub">of <span id="totalCount">0</span> listed</div>
+    </div>
   </div>
-  <div class="copy-field">
-    <label>Phone</label>
-    <div class="value" id="cp-phone">(314) 850-7140</div>
-    <button class="copy-btn" onclick="copyField('cp-phone', this)">Copy</button>
-  </div>
-  <div class="copy-field">
-    <label>Website</label>
-    <div class="value" id="cp-web">https://tidytailsstl.com</div>
-    <button class="copy-btn" onclick="copyField('cp-web', this)">Copy</button>
-  </div>
-  <div class="copy-field">
-    <label>Short Description (160 chars)</label>
-    <div class="value" id="cp-short">Professional pet waste removal in St. Louis. Weekly, biweekly & monthly yard cleanup. Flat $70/mo pricing. Locally owned. Free first visit!</div>
-    <button class="copy-btn" onclick="copyField('cp-short', this)">Copy</button>
-  </div>
-  <div class="copy-field">
-    <label>Long Description (for directories that allow it)</label>
-    <div class="value" id="cp-long">Tidy Tails Pet Waste Removal keeps St. Louis yards clean so you don't have to. We offer weekly, biweekly, and monthly pet waste cleanup with simple flat-rate pricing — just $70/month for unlimited visits. No contracts, no hidden fees. Serving St. Louis County, St. Charles County, O'Fallon, Florissant, Ferguson, Maryland Heights, Kirkwood, Webster Groves, and surrounding areas. Locally owned and operated. Your first visit is free — see the difference before you commit. Call or text (314) 850-7140 to get started.</div>
-    <button class="copy-btn" onclick="copyField('cp-long', this)">Copy</button>
-  </div>
-  <div class="copy-field">
-    <label>Categories / Keywords</label>
-    <div class="value" id="cp-cats">Pet Waste Removal, Dog Poop Pickup, Pooper Scooper Service, Pet Services, Yard Cleanup, Dog Waste Removal</div>
-    <button class="copy-btn" onclick="copyField('cp-cats', this)">Copy</button>
-  </div>
-  <div class="copy-field">
-    <label>Service Areas</label>
-    <div class="value" id="cp-areas">St. Louis County, St. Charles County, O'Fallon, St. Peters, Florissant, Ferguson, Maryland Heights, St. Ann, Hazelwood, Bridgeton, Kirkwood, Webster Groves, Crestwood, Maplewood, Brentwood, Shrewsbury</div>
-    <button class="copy-btn" onclick="copyField('cp-areas', this)">Copy</button>
-  </div>
-  <div class="copy-field">
-    <label>Hours</label>
-    <div class="value" id="cp-hours">Monday - Saturday: 8:00 AM - 6:00 PM | Sunday: Closed</div>
-    <button class="copy-btn" onclick="copyField('cp-hours', this)">Copy</button>
-  </div>
-  <div class="copy-field">
-    <label>Google Review Link (share with customers)</label>
-    <div class="value" id="cp-review">https://g.page/r/Ce_hqIHanGLvEAE/review</div>
-    <button class="copy-btn" onclick="copyField('cp-review', this)">Copy</button>
+  
+  <div class="stats">
+    <div class="stat">
+      <div class="val" id="statCurrent">2</div>
+      <div class="lbl">Current</div>
+    </div>
+    <div class="stat">
+      <div class="val" id="statTarget">20+</div>
+      <div class="lbl">Target</div>
+    </div>
+    <div class="stat">
+      <div class="val" id="statTime">~45m</div>
+      <div class="lbl">Total Time</div>
+    </div>
   </div>
 </div>
 
-<!-- Tabs -->
-<div class="tabs">
-  <div class="tab active" onclick="showTab('critical')">🔴 Critical <span class="count" id="tab-critical-count">0</span></div>
-  <div class="tab" onclick="showTab('high')">🟡 High <span class="count" id="tab-high-count">0</span></div>
-  <div class="tab" onclick="showTab('medium')">🔵 Medium <span class="count" id="tab-medium-count">0</span></div>
-  <div class="tab" onclick="showTab('low')">⚪ Nice-to-Have <span class="count" id="tab-low-count">0</span></div>
-  <div class="tab" onclick="showTab('all')">All</div>
+<!-- WHY THIS MATTERS -->
+<div class="section">
+  <h2>🧠 Why Citations = Customers</h2>
+  <div class="alert alert-red">
+    <strong>Current off-page SEO grade: F.</strong> Tidy Tails has 2 listings (GBP + Yelp). Competitors have 20-50+. Google uses citation count + consistency to rank local businesses. This is why TJ is INVISIBLE in Maps.
+  </div>
+  <div class="card-info" style="font-size:0.9rem;">
+    <p><strong>What's a citation?</strong> Any online mention of your business Name, Address, Phone (NAP). Google cross-references these to verify you're legit.</p>
+    <p style="margin-top:8px;"><strong>Why it matters:</strong></p>
+    <ul style="margin:4px 0 0 20px;">
+      <li><strong>13% of local ranking factors</strong> come from citation signals (Whitespark 2023)</li>
+      <li>Businesses with 20+ citations rank <strong>2x higher</strong> in Map Pack</li>
+      <li>Inconsistent NAP (wrong phone, old address) actively <strong>hurts</strong> rankings</li>
+      <li>Each citation = a potential <strong>backlink</strong> (F → C+ overnight)</li>
+    </ul>
+    <p style="margin-top:8px;"><strong>The math:</strong> 20 free citations × 3 min each = 1 hour of work → permanent SEO boost → more Map Pack visibility → more calls → more customers. Best ROI of anything we can do right now.</p>
+  </div>
 </div>
 
-<div class="tip-box">
-  <h4>💡 Submission Tips</h4>
-  <p>Work top to bottom by priority. Use the copy-paste zone above to keep NAP consistent. Most take 5-10 minutes each. <strong>Target: Complete all Critical + High within Week 1 of Spring Blitz.</strong> Jamie can knock these out in 2-3 sessions.</p>
+<!-- PRE-FILLED NAP INFO -->
+<div class="nap-box">
+  <h3>📋 Your NAP — Copy-Paste for Every Listing</h3>
+  <p style="font-size:0.85rem; margin-bottom:12px;">⚠️ Use these EXACTLY — any variation (St. vs Saint, different phone) hurts rankings.</p>
+  
+  <div class="nap-field">
+    <div class="label">Business Name</div>
+    <div class="copy-field" onclick="copyText(this)">Tidy Tails STL</div>
+  </div>
+  <div class="nap-field">
+    <div class="label">Owner Name (Customer-Facing)</div>
+    <div class="copy-field" onclick="copyText(this)">Jamie Carter</div>
+  </div>
+  <div class="nap-field">
+    <div class="label">Phone</div>
+    <div class="copy-field" onclick="copyText(this)">314-850-7140</div>
+  </div>
+  <div class="nap-field">
+    <div class="label">Website</div>
+    <div class="copy-field" onclick="copyText(this)">https://tidytailsstl.com</div>
+  </div>
+  <div class="nap-field">
+    <div class="label">Email</div>
+    <div class="copy-field" onclick="copyText(this)">cartervhomes@gmail.com</div>
+  </div>
+  <div class="nap-field">
+    <div class="label">Category (Primary)</div>
+    <div class="copy-field" onclick="copyText(this)">Pet Waste Removal</div>
+  </div>
+  <div class="nap-field">
+    <div class="label">Category (Alt 1)</div>
+    <div class="copy-field" onclick="copyText(this)">Pet Services</div>
+  </div>
+  <div class="nap-field">
+    <div class="label">Category (Alt 2)</div>
+    <div class="copy-field" onclick="copyText(this)">Lawn Care Service</div>
+  </div>
+  <div class="nap-field">
+    <div class="label">Service Area (Short)</div>
+    <div class="copy-field" onclick="copyText(this)">St. Louis County, MO and surrounding areas</div>
+  </div>
+  <div class="nap-field">
+    <div class="label">Service Area (Cities)</div>
+    <div class="copy-field" onclick="copyText(this)">Florissant, Ferguson, O'Fallon, St. Peters, Maryland Heights, Kirkwood, Webster Groves, Ballwin, Chesterfield, Creve Coeur, Hazelwood, Bridgeton, St. Ann</div>
+  </div>
+  <div class="nap-field">
+    <div class="label">Business Description (Short — 150 char)</div>
+    <div class="copy-field" onclick="copyText(this)">Professional pet waste removal serving St. Louis County. Weekly, biweekly & monthly plans starting at $25/week. Free first cleanup!</div>
+  </div>
+  <div class="nap-field">
+    <div class="label">Business Description (Full — 300 char)</div>
+    <div class="copy-field" onclick="copyText(this)">Tidy Tails STL provides professional pet waste removal across St. Louis County and surrounding areas. We offer weekly ($25), biweekly ($45), and monthly ($70) plans for residential yards. Commercial properties welcome. Free first cleanup for new customers. Locally owned and operated.</div>
+  </div>
+  <div class="nap-field">
+    <div class="label">Hours</div>
+    <div class="copy-field" onclick="copyText(this)">Monday - Friday: 8:00 AM - 6:00 PM, Saturday: 9:00 AM - 3:00 PM, Sunday: Closed</div>
+  </div>
+  <div class="nap-field">
+    <div class="label">Year Founded</div>
+    <div class="copy-field" onclick="copyText(this)">2024</div>
+  </div>
+  <div class="nap-field">
+    <div class="label">Payment Methods</div>
+    <div class="copy-field" onclick="copyText(this)">Cash, Venmo, Zelle, CashApp</div>
+  </div>
 </div>
 
-<div id="directory-list"></div>
+<!-- TIER 1: CRITICAL DIRECTORIES -->
+<div class="section">
+  <h2>🏢 Directory Listings</h2>
+  <p style="font-size:0.85rem; color:var(--gray); margin-bottom:16px;">Sorted by SEO impact. Tier 1 = do today. Each card has a direct submission link + time estimate.</p>
+  
+  <div class="tier-label tier-1">TIER 1 — Do TODAY (Biggest Impact)</div>
+  
+  <!-- Apple Maps -->
+  <div class="directory-card" data-id="apple-maps">
+    <div class="card-header">
+      <div>
+        <span class="card-title">🍎 Apple Maps Connect</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-high">High Impact</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 5 min • Apple Maps + Siri results • 500M+ iOS users</div>
+    <a class="card-url" href="https://mapsconnect.apple.com" target="_blank">→ mapsconnect.apple.com</a>
+    <div class="card-info">
+      <p>Sign in with Apple ID → "Add New Place" → Fill NAP → Select "Pet Services" → Submit. Shows up in Maps + Siri within 1-2 weeks. <strong>No physical address required</strong> — service-area businesses welcome.</p>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://mapsconnect.apple.com" target="_blank">Open Apple Maps →</a>
+    </div>
+  </div>
 
-<footer>
-  Franklin's Directory & Citation Blitz — Tool #43 | Built Mar 23, 2026<br>
-  Progress saves locally. Complete all Critical + High = massive SEO boost for $0.
-</footer>
+  <!-- Bing Places -->
+  <div class="directory-card" data-id="bing-places">
+    <div class="card-header">
+      <div>
+        <span class="card-title">🔍 Bing Places for Business</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-high">High Impact</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 5 min • Bing/Cortana/Edge results • Can import from GBP!</div>
+    <a class="card-url" href="https://www.bingplaces.com" target="_blank">→ bingplaces.com</a>
+    <div class="card-info">
+      <p>"Import from Google Business Profile" = 1-click setup. Or manual: sign in with Microsoft account → Add business → Fill NAP. Bing powers Alexa, DuckDuckGo, Yahoo local results too. <strong>One listing, 4 search engines.</strong></p>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.bingplaces.com" target="_blank">Open Bing Places →</a>
+    </div>
+  </div>
+
+  <!-- Facebook Page -->
+  <div class="directory-card" data-id="facebook-biz">
+    <div class="card-header">
+      <div>
+        <span class="card-title">📘 Facebook Business Page</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-high">High Impact</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 3 min (verify/update) • Already exists — needs NAP audit</div>
+    <a class="card-url" href="https://www.facebook.com/tidytailsstl" target="_blank">→ facebook.com/tidytailsstl</a>
+    <div class="card-info">
+      <p>Page exists but verify: phone = 314-850-7140, website = tidytailsstl.com, hours match, service area listed, category = "Pet Service." Facebook is the #2 citation source after GBP. Consistent NAP here is critical.</p>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.facebook.com/tidytailsstl/about" target="_blank">Edit Page Info →</a>
+    </div>
+  </div>
+
+  <!-- Nextdoor -->
+  <div class="directory-card" data-id="nextdoor-biz">
+    <div class="card-header">
+      <div>
+        <span class="card-title">🏘️ Nextdoor Business Page</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-high">High Impact</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 5 min • #1 local recommendation platform • Neighbor trust factor</div>
+    <a class="card-url" href="https://business.nextdoor.com" target="_blank">→ business.nextdoor.com</a>
+    <div class="card-info">
+      <p>Claim or create business page → Fill NAP → Add service area neighborhoods → Upload photos. Nextdoor recommendations show to neighbors + Google indexes Nextdoor pages. <strong>Huge for service-area businesses.</strong> If TJ already posts on Nextdoor, ensure there's a claimed business profile (not just personal posts).</p>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://business.nextdoor.com" target="_blank">Claim on Nextdoor →</a>
+    </div>
+  </div>
+
+  <!-- BBB -->
+  <div class="directory-card" data-id="bbb">
+    <div class="card-header">
+      <div>
+        <span class="card-title">🏛️ Better Business Bureau (BBB)</span>
+        <div class="card-badges"><span class="badge badge-free">Free Listing</span><span class="badge badge-high">High Impact</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 5 min • DA 90+ backlink • Trust signal for customers</div>
+    <a class="card-url" href="https://www.bbb.org/get-listed" target="_blank">→ bbb.org/get-listed</a>
+    <div class="card-info">
+      <p>Free listing (you do NOT need to pay for accreditation). Go to bbb.org → "Get Listed" → Fill business info. BBB has Domain Authority 90+ = one of the most powerful backlinks you can get for free. Shows up in Google results as a trust signal. <strong>Accreditation ($400+/yr) NOT needed — the free listing alone is gold.</strong></p>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.bbb.org/get-listed" target="_blank">Get Listed on BBB →</a>
+    </div>
+  </div>
+
+  <div class="tier-label tier-2">TIER 2 — Do This Week (Strong Impact)</div>
+
+  <!-- Yelp optimization -->
+  <div class="directory-card" data-id="yelp">
+    <div class="card-header">
+      <div>
+        <span class="card-title">⭐ Yelp (Optimize Existing)</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-med">Medium Impact</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 5 min • Already claimed — needs completion</div>
+    <a class="card-url" href="https://biz.yelp.com" target="_blank">→ biz.yelp.com</a>
+    <div class="card-info">
+      <p>Already claimed ✅ but likely incomplete. Log in → verify all NAP fields match exactly → add photos (yard before/after), service area, hours, description. Add "Pet Waste Removal" and "Pooper Scooper" as specialties. <strong>Complete profile + consistent NAP = citation power even with 0 reviews.</strong></p>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://biz.yelp.com" target="_blank">Optimize Yelp →</a>
+    </div>
+  </div>
+
+  <!-- Thumbtack -->
+  <div class="directory-card" data-id="thumbtack">
+    <div class="card-header">
+      <div>
+        <span class="card-title">📌 Thumbtack</span>
+        <div class="card-badges"><span class="badge badge-free">Free Profile</span><span class="badge badge-med">Medium Impact</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 5 min • Lead gen platform • People actively search for services</div>
+    <a class="card-url" href="https://www.thumbtack.com/pro" target="_blank">→ thumbtack.com/pro</a>
+    <div class="card-info">
+      <p>Free to list, pay-per-lead optional. Create pro profile → "Pet Waste Removal" → set service area → add photos and pricing. Even if you never pay for leads, the profile = citation + potential organic discovery. <strong>Thumbtack pages rank well in Google for "[service] near me" searches.</strong></p>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.thumbtack.com/pro" target="_blank">Create Thumbtack Profile →</a>
+    </div>
+  </div>
+
+  <!-- Angi (Angie's List) -->
+  <div class="directory-card" data-id="angi">
+    <div class="card-header">
+      <div>
+        <span class="card-title">🔧 Angi (Angie's List)</span>
+        <div class="card-badges"><span class="badge badge-free">Free Listing</span><span class="badge badge-med">Medium Impact</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 3 min • DA 80+ • Trusted home services directory</div>
+    <a class="card-url" href="https://www.angi.com/pro/sign-up" target="_blank">→ angi.com/pro/sign-up</a>
+    <div class="card-info">
+      <p>Free listing (paid ads optional). Sign up as pro → Select "Pet Waste Removal" or "Lawn Maintenance" → Fill NAP. Angi/HomeAdvisor merged — one signup covers both. High domain authority = strong backlink.</p>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.angi.com/pro/sign-up" target="_blank">List on Angi →</a>
+    </div>
+  </div>
+
+  <!-- Foursquare -->
+  <div class="directory-card" data-id="foursquare">
+    <div class="card-header">
+      <div>
+        <span class="card-title">📍 Foursquare / Swarm</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-med">Medium Impact</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 3 min • Powers 100K+ apps with location data</div>
+    <a class="card-url" href="https://foursquare.com/business/listings" target="_blank">→ foursquare.com/business/listings</a>
+    <div class="card-info">
+      <p>Foursquare's data feeds Apple Maps, Uber, Snapchat, Twitter, and 100K+ apps. Claim/add your business → verify → done. Even if nobody "checks in," the data propagation is massive. <strong>Hidden multiplier — one listing feeds many platforms.</strong></p>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://foursquare.com/business/listings" target="_blank">Claim on Foursquare →</a>
+    </div>
+  </div>
+
+  <!-- MapQuest -->
+  <div class="directory-card" data-id="mapquest">
+    <div class="card-header">
+      <div>
+        <span class="card-title">🗺️ MapQuest</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-med">Medium Impact</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 2 min • Auto-generated listing may already exist — claim it</div>
+    <a class="card-url" href="https://www.mapquest.com" target="_blank">→ mapquest.com (search for business)</a>
+    <div class="card-info">
+      <p>MapQuest auto-generates listings from public data. Search for "Tidy Tails STL" — if it exists, claim it and verify NAP. If not, submit new. Powered by Foursquare data, but claiming directly ensures accuracy.</p>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.mapquest.com" target="_blank">Search MapQuest →</a>
+    </div>
+  </div>
+
+  <!-- YellowPages -->
+  <div class="directory-card" data-id="yellowpages">
+    <div class="card-header">
+      <div>
+        <span class="card-title">📒 YellowPages / YP.com</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-med">Medium Impact</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 3 min • DA 80+ • Powers Superpages, DexKnows, etc.</div>
+    <a class="card-url" href="https://adsolutions.yp.com/free-listing" target="_blank">→ adsolutions.yp.com/free-listing</a>
+    <div class="card-info">
+      <p>Free basic listing. YP.com data syndicates to Superpages, DexKnows, and other Thryv-owned directories. One listing = 3-4 citations. Ignore upsell pitches — the free tier is all you need.</p>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://adsolutions.yp.com/free-listing" target="_blank">Get Free YP Listing →</a>
+    </div>
+  </div>
+
+  <div class="tier-label tier-3">TIER 3 — Pet-Specific Directories (Niche Authority)</div>
+
+  <!-- PetWorks -->
+  <div class="directory-card" data-id="petworks">
+    <div class="card-header">
+      <div>
+        <span class="card-title">🐾 PetWorks.com</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-pet">Pet Niche</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 3 min • Pet services directory • Niche relevance signal</div>
+    <a class="card-url" href="https://www.petworks.com" target="_blank">→ petworks.com</a>
+    <div class="card-info">
+      <p>Pet-specific directory. "Add Your Business" → fill details → select "Waste Removal" category. Niche directories send a strong relevance signal to Google: "this business is REALLY about pet services." Worth more than a generic directory for ranking in pet-related searches.</p>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.petworks.com" target="_blank">List on PetWorks →</a>
+    </div>
+  </div>
+
+  <!-- BringFido -->
+  <div class="directory-card" data-id="bringfido">
+    <div class="card-header">
+      <div>
+        <span class="card-title">🐕 BringFido</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-pet">Pet Niche</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 3 min • Dog-focused directory • Services section</div>
+    <a class="card-url" href="https://www.bringfido.com/add-listing" target="_blank">→ bringfido.com/add-listing</a>
+    <div class="card-info">
+      <p>Dog-centric directory and travel guide. Has a services section where pet waste removal can be listed. Good niche citation + potential referral traffic from dog owners planning trips or looking for services.</p>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.bringfido.com/add-listing" target="_blank">Add to BringFido →</a>
+    </div>
+  </div>
+
+  <!-- Rover Sitter Directory -->
+  <div class="directory-card" data-id="care-com">
+    <div class="card-header">
+      <div>
+        <span class="card-title">🏠 Care.com</span>
+        <div class="card-badges"><span class="badge badge-free">Free Profile</span><span class="badge badge-pet">Pet Niche</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 5 min • Pet care section • DA 80+</div>
+    <a class="card-url" href="https://www.care.com" target="_blank">→ care.com</a>
+    <div class="card-info">
+      <p>Has a pet care provider section. Create a free provider profile listing pet waste removal as a service. High DA site = strong backlink. Not a perfect fit but the citation value is worth 5 minutes.</p>
+    </div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.care.com" target="_blank">Create Care.com Profile →</a>
+    </div>
+  </div>
+
+  <div class="tier-label tier-4">TIER 4 — Quick Wins (2 min each)</div>
+
+  <!-- Hotfrog -->
+  <div class="directory-card" data-id="hotfrog">
+    <div class="card-header">
+      <div>
+        <span class="card-title">🐸 Hotfrog</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-low">Quick Win</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 2 min • Simple business directory</div>
+    <a class="card-url" href="https://www.hotfrog.com" target="_blank">→ hotfrog.com</a>
+    <div class="card-info"><p>Quick free listing. "Add Your Business" → NAP → done. Easy citation.</p></div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.hotfrog.com" target="_blank">Add to Hotfrog →</a>
+    </div>
+  </div>
+
+  <!-- Manta -->
+  <div class="directory-card" data-id="manta">
+    <div class="card-header">
+      <div>
+        <span class="card-title">🐟 Manta</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-low">Quick Win</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 2 min • Small business directory</div>
+    <a class="card-url" href="https://www.manta.com/add-business" target="_blank">→ manta.com/add-business</a>
+    <div class="card-info"><p>Free listing for small businesses. Quick NAP submission. Not high traffic but consistent citation.</p></div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.manta.com/add-business" target="_blank">Add to Manta →</a>
+    </div>
+  </div>
+
+  <!-- Chamberofcommerce.com -->
+  <div class="directory-card" data-id="chamber">
+    <div class="card-header">
+      <div>
+        <span class="card-title">🏢 ChamberOfCommerce.com</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-low">Quick Win</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 2 min • Local business authority signal</div>
+    <a class="card-url" href="https://www.chamberofcommerce.com/add-your-business" target="_blank">→ chamberofcommerce.com</a>
+    <div class="card-info"><p>Not the actual local chamber (that costs $$). This is the .com directory — free listing, decent DA, local authority signal.</p></div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.chamberofcommerce.com/add-your-business" target="_blank">Add Business →</a>
+    </div>
+  </div>
+
+  <!-- EZLocal -->
+  <div class="directory-card" data-id="ezlocal">
+    <div class="card-header">
+      <div>
+        <span class="card-title">📍 EZLocal</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-low">Quick Win</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 2 min • Local directory aggregator</div>
+    <a class="card-url" href="https://www.ezlocal.com/add-listing" target="_blank">→ ezlocal.com</a>
+    <div class="card-info"><p>Simple local directory. Quick add. Another consistent citation for the stack.</p></div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.ezlocal.com/add-listing" target="_blank">Add to EZLocal →</a>
+    </div>
+  </div>
+
+  <!-- Brownbook -->
+  <div class="directory-card" data-id="brownbook">
+    <div class="card-header">
+      <div>
+        <span class="card-title">📕 Brownbook</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-low">Quick Win</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 2 min • Global business directory</div>
+    <a class="card-url" href="https://www.brownbook.net/add-listing/" target="_blank">→ brownbook.net</a>
+    <div class="card-info"><p>Global directory with local listings. Quick free submission. Adds to citation count.</p></div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.brownbook.net/add-listing/" target="_blank">Add to Brownbook →</a>
+    </div>
+  </div>
+
+  <!-- Cylex -->
+  <div class="directory-card" data-id="cylex">
+    <div class="card-header">
+      <div>
+        <span class="card-title">🔗 Cylex</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-low">Quick Win</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 2 min • US business directory</div>
+    <a class="card-url" href="https://www.cylex.us.com" target="_blank">→ cylex.us.com</a>
+    <div class="card-info"><p>US business directory. Add company → NAP → category → done. Quick citation.</p></div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://www.cylex.us.com" target="_blank">Add to Cylex →</a>
+    </div>
+  </div>
+</div>
+
+<!-- BONUS: STL LOCAL -->
+<div class="section">
+  <h2>🏠 St. Louis Local Directories (Bonus)</h2>
+  <p style="font-size:0.85rem; color:var(--gray); margin-bottom:12px;">Local directories carry extra weight for "near me" searches.</p>
+
+  <div class="directory-card" data-id="stl-patch">
+    <div class="card-header">
+      <div>
+        <span class="card-title">📰 Patch.com (Florissant/Ferguson)</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-med">Local</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 3 min • Hyperlocal news + business directory</div>
+    <a class="card-url" href="https://patch.com/missouri/florissant" target="_blank">→ patch.com/missouri/florissant</a>
+    <div class="card-info"><p>Post in the business section or events. Patch has high local DA and Google indexes these pages quickly. Look for "Promote Your Business" or community board sections.</p></div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://patch.com/missouri/florissant" target="_blank">Visit Florissant Patch →</a>
+    </div>
+  </div>
+
+  <div class="directory-card" data-id="stl-craigslist">
+    <div class="card-header">
+      <div>
+        <span class="card-title">📋 Craigslist STL (Services)</span>
+        <div class="card-badges"><span class="badge badge-free">Free</span><span class="badge badge-med">Lead Gen</span></div>
+      </div>
+      <input type="checkbox" onchange="toggleCard(this)" />
+    </div>
+    <div class="card-meta">⏱️ 3 min • Services > Household • Repost every 48 hours</div>
+    <a class="card-url" href="https://stlouis.craigslist.org/search/hss" target="_blank">→ stlouis.craigslist.org (household services)</a>
+    <div class="card-info"><p>Post in Services → Household. Not a traditional citation but Google indexes CL fast. Repost every 48 hours for visibility. Use the DDD Rescue Blitz copy for maximum impact. <strong>This is also a direct lead gen channel.</strong></p></div>
+    <div class="card-actions">
+      <a class="btn btn-primary btn-sm" href="https://stlouis.craigslist.org/post" target="_blank">Post on Craigslist →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ACTION PLAN -->
+<div class="section">
+  <h2>⚡ Speed Run: 20 Citations in 45 Minutes</h2>
+  <div class="alert alert-green">
+    <strong>The play:</strong> Open this page on your phone. Start at Tier 1. For each one: tap link → sign up → paste NAP from the blue box above → submit → check it off. Don't overthink. Speed > perfection.
+  </div>
+  
+  <div style="margin-top:12px;">
+    <div class="checklist-item" data-step="speed-1">
+      <input type="checkbox" id="s1" onchange="toggleStep(this)">
+      <label for="s1"><strong>Minutes 1-15:</strong> Tier 1 — Apple Maps, Bing Places, Facebook (verify), Nextdoor, BBB</label>
+    </div>
+    <div class="checklist-item" data-step="speed-2">
+      <input type="checkbox" id="s2" onchange="toggleStep(this)">
+      <label for="s2"><strong>Minutes 15-30:</strong> Tier 2 — Yelp (optimize), Thumbtack, Angi, Foursquare, MapQuest, YellowPages</label>
+    </div>
+    <div class="checklist-item" data-step="speed-3">
+      <input type="checkbox" id="s3" onchange="toggleStep(this)">
+      <label for="s3"><strong>Minutes 30-40:</strong> Tier 3 — PetWorks, BringFido, Care.com</label>
+    </div>
+    <div class="checklist-item" data-step="speed-4">
+      <input type="checkbox" id="s4" onchange="toggleStep(this)">
+      <label for="s4"><strong>Minutes 40-45:</strong> Tier 4 — Hotfrog, Manta, Chamber, EZLocal, Brownbook, Cylex</label>
+    </div>
+    <div class="checklist-item" data-step="speed-5">
+      <input type="checkbox" id="s5" onchange="toggleStep(this)">
+      <label for="s5"><strong>Bonus 5 min:</strong> STL Local — Patch, Craigslist</label>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT HAPPENS NEXT -->
+<div class="section">
+  <h2>📈 Expected Impact Timeline</h2>
+  <div class="card-info" style="font-size:0.9rem;">
+    <p><strong>Week 1:</strong> Citations start appearing in Google's index. No ranking change yet.</p>
+    <p style="margin-top:6px;"><strong>Weeks 2-4:</strong> Google cross-references citations → NAP consistency confirmed → trust score increases. Map Pack visibility starts improving.</p>
+    <p style="margin-top:6px;"><strong>Month 2-3:</strong> Full citation impact. Combined with GBP completion (100%) and 6+ reviews, Tidy Tails should appear in Map Pack for "pet waste removal" + city searches. Off-page SEO grade: F → C+.</p>
+    <p style="margin-top:6px;"><strong>The compound effect:</strong> Each citation doesn't just help alone — they verify each other. Citation #20 makes citations #1-19 more powerful. That's why doing ALL of them matters, not just the "big" ones.</p>
+  </div>
+  
+  <div class="alert alert-blue" style="margin-top:12px;">
+    <strong>Combined with GBP completion + 6 reviews:</strong> This citation blitz is the missing third leg of the local SEO stool. GBP = your listing. Reviews = social proof. Citations = Google trusting you're real. All three together = Map Pack. 🗺️
+  </div>
+</div>
+
+<div style="text-align:center; padding:20px; color:var(--gray); font-size:0.8rem;">
+  Built by Franklin 🐕💩 • March 24, 2026 • Off-Page SEO: F → C+ in 45 minutes
+</div>
 
 <script>
-const directories = [
-  // CRITICAL — These directly impact rankings
-  {
-    id: 'yelp',
-    name: 'Yelp',
-    priority: 'critical',
-    da: 94,
-    time: '15 min',
-    cost: 'Free',
-    category: 'General',
-    desc: '⚠️ Previous listing is 404. Need to search for existing and re-claim, or create fresh. Yelp is the #2 local directory behind Google.',
-    submitUrl: 'https://biz.yelp.com/signup_business/new',
-    searchUrl: 'https://www.yelp.com/search?find_desc=Tidy+Tails+Pet+Waste+Removal&find_loc=St.+Louis%2C+MO',
-    notes: 'Search first — may exist under different URL. If not found, create new. Add photos, hours, services.',
-  },
-  {
-    id: 'gbp-complete',
-    name: 'Google Business Profile (Complete It!)',
-    priority: 'critical',
-    da: 100,
-    time: '30 min',
-    cost: 'Free',
-    category: 'General',
-    desc: 'VERIFIED but only 7% complete. Need: hours, photos (Jamie + yards + before/after), services list, business description, service areas, Q&A.',
-    submitUrl: 'https://business.google.com/',
-    notes: 'Already verified. Just needs content filled in. This is THE #1 priority.',
-  },
-  {
-    id: 'facebook',
-    name: 'Facebook Business Page',
-    priority: 'critical',
-    da: 96,
-    time: '20 min',
-    cost: 'Free',
-    category: 'Social',
-    desc: 'If not already set up as a Business Page (not personal profile), create one. Add all business info, cover photo, CTA button.',
-    submitUrl: 'https://www.facebook.com/pages/create',
-    notes: 'Make sure it\'s a Business Page with "Pet Service" category. Enable messaging + appointment booking.',
-  },
-  {
-    id: 'nextdoor',
-    name: 'Nextdoor Business Page',
-    priority: 'critical',
-    da: 82,
-    time: '15 min',
-    cost: 'Free',
-    category: 'Local',
-    desc: 'Huge for hyperlocal reach. Neighbors recommend on Nextdoor constantly. Claim or create a business page.',
-    submitUrl: 'https://business.nextdoor.com/claim',
-    notes: 'Can target specific neighborhoods. Post weekly deals + tips. Neighbors trust Nextdoor recs.',
-  },
-  {
-    id: 'bbb',
-    name: 'Better Business Bureau (BBB)',
-    priority: 'critical',
-    da: 93,
-    time: '20 min',
-    cost: 'Free listing / $400+/yr accredited',
-    category: 'Trust',
-    desc: 'Even the free listing adds massive trust + a DA 93 backlink. Accreditation optional but powerful.',
-    submitUrl: 'https://www.bbb.org/get-listed',
-    notes: 'Free listing is fine to start. Shows up in "BBB accredited pet services near me" searches.',
-  },
+const STORAGE_KEY = 'tidy-tails-citation-blitz';
 
-  // HIGH — Strong SEO value
-  {
-    id: 'apple-maps',
-    name: 'Apple Maps (Apple Business Connect)',
-    priority: 'high',
-    da: 99,
-    time: '15 min',
-    cost: 'Free',
-    category: 'Maps',
-    desc: 'Apple Maps is default on every iPhone. 50%+ of local searches on mobile. Free to claim.',
-    submitUrl: 'https://businessconnect.apple.com/',
-    notes: 'Requires Apple ID. Add photos, hours, and services.',
-  },
-  {
-    id: 'bing-places',
-    name: 'Bing Places for Business',
-    priority: 'high',
-    da: 96,
-    time: '10 min',
-    cost: 'Free',
-    category: 'Maps',
-    desc: 'Bing powers Cortana, Alexa, and DuckDuckGo results. Easy import from Google Business Profile.',
-    submitUrl: 'https://www.bingplaces.com/',
-    notes: 'Can auto-import from GBP — takes 5 minutes.',
-  },
-  {
-    id: 'thumbtack',
-    name: 'Thumbtack',
-    priority: 'high',
-    da: 80,
-    time: '20 min',
-    cost: 'Free listing, pay per lead',
-    category: 'Lead Gen',
-    desc: 'Active lead gen platform. Pet waste removal is a category. People search here when they need the service NOW.',
-    submitUrl: 'https://www.thumbtack.com/pro',
-    notes: 'Pay-per-lead model. Set budget limit. Great for one-time cleans that convert to recurring.',
-  },
-  {
-    id: 'angi',
-    name: 'Angi (Angie\'s List)',
-    priority: 'high',
-    da: 92,
-    time: '15 min',
-    cost: 'Free listing',
-    category: 'Home Services',
-    desc: 'DA 92 backlink + actual lead flow. Homeowners search Angi for all yard/home services.',
-    submitUrl: 'https://www.angi.com/pro/register',
-    notes: 'Free tier gets you listed. Reviews here carry weight.',
-  },
-  {
-    id: 'homeadvisor',
-    name: 'HomeAdvisor (now part of Angi)',
-    priority: 'high',
-    da: 90,
-    time: '15 min',
-    cost: 'Free listing, optional paid leads',
-    category: 'Home Services',
-    desc: 'Connected to Angi network. Separate listing = separate backlink. Pet waste removal is listed.',
-    submitUrl: 'https://pro.homeadvisor.com/registration/',
-    notes: 'May auto-import if Angi is done first. Verify separately.',
-  },
-  {
-    id: 'mapquest',
-    name: 'MapQuest / Yext Listing',
-    priority: 'high',
-    da: 79,
-    time: '10 min',
-    cost: 'Free',
-    category: 'Maps',
-    desc: 'Already has an auto-generated listing per MEMORY.md. Claim it to control the info.',
-    submitUrl: 'https://www.mapquest.com/my-business',
-    notes: 'Auto-generated listing exists — CLAIM IT before someone else does.',
-  },
-  {
-    id: 'yellowpages',
-    name: 'YellowPages / YP.com',
-    priority: 'high',
-    da: 86,
-    time: '10 min',
-    cost: 'Free',
-    category: 'General',
-    desc: 'Old school but still DA 86. Feeds data to many other directories.',
-    submitUrl: 'https://adsolutions.yp.com/free-listing',
-    notes: 'Data from YP syndicates to Superpages, DexKnows, and other data aggregators.',
-  },
-
-  // MEDIUM — Good SEO value, less urgent
-  {
-    id: 'foursquare',
-    name: 'Foursquare / Swarm',
-    priority: 'medium',
-    da: 89,
-    time: '10 min',
-    cost: 'Free',
-    category: 'General',
-    desc: 'Foursquare data powers Uber, Twitter, Samsung, and 100K+ apps. One listing reaches many platforms.',
-    submitUrl: 'https://foursquare.com/add-place',
-    notes: 'Foursquare is a data aggregator — this listing spreads far.',
-  },
-  {
-    id: 'hotfrog',
-    name: 'Hotfrog',
-    priority: 'medium',
-    da: 54,
-    time: '5 min',
-    cost: 'Free',
-    category: 'Business Directory',
-    desc: 'Quick free listing. Good for citation volume.',
-    submitUrl: 'https://www.hotfrog.com/AddYourBusiness.aspx',
-    notes: 'Fast signup. Add keywords in description.',
-  },
-  {
-    id: 'manta',
-    name: 'Manta',
-    priority: 'medium',
-    da: 72,
-    time: '10 min',
-    cost: 'Free',
-    category: 'Business Directory',
-    desc: 'Small business directory with decent authority.',
-    submitUrl: 'https://www.manta.com/claim',
-    notes: 'Check if auto-generated listing exists first.',
-  },
-  {
-    id: 'petworks',
-    name: 'PetWorks / Pet Service Directories',
-    priority: 'medium',
-    da: 30,
-    time: '10 min',
-    cost: 'Free',
-    category: 'Pet-Specific',
-    desc: 'Niche pet services directory. Lower DA but highly targeted.',
-    submitUrl: 'https://www.petworks.com/',
-    notes: 'Check for "list your business" option. Niche directories = relevant backlinks.',
-  },
-  {
-    id: 'bringfido',
-    name: 'BringFido',
-    priority: 'medium',
-    da: 55,
-    time: '10 min',
-    cost: 'Free',
-    category: 'Pet-Specific',
-    desc: 'Pet-focused directory. Dog owners use it. Adding listing requires submission.',
-    submitUrl: 'https://www.bringfido.com/add-listing',
-    notes: 'Submission form — may take a few days to go live.',
-  },
-  {
-    id: 'chamberofcommerce',
-    name: 'ChamberOfCommerce.com',
-    priority: 'medium',
-    da: 66,
-    time: '10 min',
-    cost: 'Free',
-    category: 'Business Directory',
-    desc: 'Not the actual STL Chamber — this is the online directory. Free listing with backlink.',
-    submitUrl: 'https://www.chamberofcommerce.com/add-business',
-    notes: 'Different from the local STL Chamber (which is paid). This is free.',
-  },
-  {
-    id: 'bark',
-    name: 'Bark.com',
-    priority: 'medium',
-    da: 73,
-    time: '10 min',
-    cost: 'Free listing, pay per lead',
-    category: 'Lead Gen',
-    desc: 'Lead gen platform like Thumbtack. Pet waste removal category exists.',
-    submitUrl: 'https://www.bark.com/en/us/company/register/',
-    notes: 'Free to list. Leads are paid. Set budget.',
-  },
-  {
-    id: 'stl-chamber',
-    name: 'St. Louis Regional Chamber',
-    priority: 'medium',
-    da: 58,
-    time: '20 min',
-    cost: '$200-500/yr',
-    category: 'Local',
-    desc: 'Paid membership but strong local authority + networking events + directory listing.',
-    submitUrl: 'https://www.stlregionalchamber.com/join',
-    notes: 'Consider after revenue grows. Great for commercial leads + credibility.',
-  },
-
-  // LOW — Nice-to-have
-  {
-    id: 'brownbook',
-    name: 'Brownbook',
-    priority: 'low',
-    da: 50,
-    time: '5 min',
-    cost: 'Free',
-    category: 'Business Directory',
-    desc: 'International business directory. Quick free listing.',
-    submitUrl: 'https://www.brownbook.net/add-company/',
-    notes: 'Fast. Just NAP + description.',
-  },
-  {
-    id: 'cylex',
-    name: 'Cylex',
-    priority: 'low',
-    da: 48,
-    time: '5 min',
-    cost: 'Free',
-    category: 'Business Directory',
-    desc: 'Another quick citation source.',
-    submitUrl: 'https://www.cylex.us.com/',
-    notes: 'Look for "Add Company" link.',
-  },
-  {
-    id: 'ezlocal',
-    name: 'EZLocal',
-    priority: 'low',
-    da: 45,
-    time: '5 min',
-    cost: 'Free',
-    category: 'Business Directory',
-    desc: 'Local business directory. Quick submission.',
-    submitUrl: 'https://www.ezlocal.com/claim-listing',
-    notes: 'Check for existing listing first.',
-  },
-  {
-    id: 'storeboard',
-    name: 'Storeboard',
-    priority: 'low',
-    da: 42,
-    time: '5 min',
-    cost: 'Free',
-    category: 'Business Directory',
-    desc: 'Simple business listing with backlink.',
-    submitUrl: 'https://www.storeboard.com/',
-    notes: 'Create account, add business.',
-  },
-  {
-    id: 'showmelocal',
-    name: 'ShowMeLocal',
-    priority: 'low',
-    da: 40,
-    time: '5 min',
-    cost: 'Free',
-    category: 'Local',
-    desc: 'Local directory focused on showing nearby businesses.',
-    submitUrl: 'https://www.showmelocal.com/AddBusiness.aspx',
-    notes: 'Quick local listing.',
-  },
-  {
-    id: 'tupalo',
-    name: 'Tupalo',
-    priority: 'low',
-    da: 44,
-    time: '5 min',
-    cost: 'Free',
-    category: 'Business Directory',
-    desc: 'European-origin directory with US presence.',
-    submitUrl: 'https://www.tupalo.co/',
-    notes: 'Add photos if possible.',
-  },
-];
-
-// State management
-const STATE_KEY = 'tt-directory-blitz';
-let state = JSON.parse(localStorage.getItem(STATE_KEY) || '{}');
-
-function saveState() {
-  localStorage.setItem(STATE_KEY, JSON.stringify(state));
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } 
+  catch { return {}; }
 }
+function saveState(state) { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 
-function toggleComplete(id) {
-  state[id] = state[id] || {};
-  state[id].done = !state[id].done;
-  if (state[id].done) state[id].completedAt = new Date().toISOString();
-  saveState();
-  renderAll();
-}
-
-function saveNotes(id, value) {
-  state[id] = state[id] || {};
-  state[id].notes = value;
-  saveState();
-}
-
-function copyField(elementId, btn) {
-  const text = document.getElementById(elementId).textContent;
+function copyText(el) {
+  const text = el.textContent.trim();
   navigator.clipboard.writeText(text).then(() => {
-    btn.textContent = 'Copied!';
-    btn.classList.add('copied');
-    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 1500);
   });
 }
 
-function showTab(priority) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-  event.target.closest('.tab').classList.add('active');
-  renderDirectories(priority);
+function toggleCard(checkbox) {
+  const card = checkbox.closest('.directory-card');
+  const id = card.dataset.id;
+  const state = loadState();
+  state[id] = checkbox.checked;
+  saveState(state);
+  card.classList.toggle('done', checkbox.checked);
+  updateProgress();
 }
 
-function renderDirectories(filter = 'critical') {
-  const list = document.getElementById('directory-list');
-  const filtered = filter === 'all' ? directories : directories.filter(d => d.priority === filter);
-
-  list.innerHTML = filtered.map(d => {
-    const isDone = state[d.id]?.done || false;
-    const notes = state[d.id]?.notes || '';
-    return `
-      <div class="dir-card ${isDone ? 'completed' : ''}">
-        <div class="dir-header">
-          <input type="checkbox" class="dir-check" ${isDone ? 'checked' : ''} onchange="toggleComplete('${d.id}')">
-          <span class="dir-name">${d.name}</span>
-          <span class="dir-priority ${d.priority}">${d.priority}</span>
-        </div>
-        <div class="dir-meta">
-          <span class="seo">DA ${d.da}</span>
-          <span>⏱️ ${d.time}</span>
-          <span>💰 ${d.cost}</span>
-          <span>📂 ${d.category}</span>
-        </div>
-        <div class="dir-desc">${d.desc}</div>
-        <div class="dir-actions">
-          <a href="${d.submitUrl}" target="_blank" class="dir-btn primary">Submit / Claim →</a>
-          ${d.searchUrl ? `<a href="${d.searchUrl}" target="_blank" class="dir-btn">Search First</a>` : ''}
-        </div>
-        <div class="dir-notes">
-          <textarea placeholder="Notes (e.g., submitted 3/24, pending approval...)" oninput="saveNotes('${d.id}', this.value)">${notes}</textarea>
-        </div>
-      </div>
-    `;
-  }).join('');
+function toggleStep(checkbox) {
+  const item = checkbox.closest('.checklist-item');
+  const step = item.dataset.step;
+  const state = loadState();
+  state[step] = checkbox.checked;
+  saveState(state);
+  item.classList.toggle('done', checkbox.checked);
 }
 
-function renderStats() {
-  const done = directories.filter(d => state[d.id]?.done).length;
-  const total = directories.length;
-  document.getElementById('doneCount').textContent = done;
-  document.getElementById('pendingCount').textContent = total - done;
-  document.getElementById('totalCount').textContent = total;
-  document.getElementById('progressFill').style.width = `${(done / total * 100).toFixed(0)}%`;
+function updateProgress() {
+  const cards = document.querySelectorAll('.directory-card');
+  const total = cards.length;
+  const done = document.querySelectorAll('.directory-card.done').length;
+  const existing = 2; // GBP + Yelp already exist
+  const completed = done + existing;
+  
+  document.getElementById('completedCount').textContent = completed;
+  document.getElementById('totalCount').textContent = total + existing;
+  
+  const pct = completed / (total + existing);
+  const ring = document.getElementById('progressRing');
+  const circ = 2 * Math.PI * 52;
+  ring.style.strokeDashoffset = circ * (1 - pct);
+}
 
-  // Tab counts
-  ['critical', 'high', 'medium', 'low'].forEach(p => {
-    const count = directories.filter(d => d.priority === p).length;
-    document.getElementById(`tab-${p}-count`).textContent = count;
+// Restore state on load
+function init() {
+  const state = loadState();
+  document.querySelectorAll('.directory-card').forEach(card => {
+    const id = card.dataset.id;
+    if (state[id]) {
+      card.classList.add('done');
+      card.querySelector('input[type="checkbox"]').checked = true;
+    }
   });
+  document.querySelectorAll('.checklist-item').forEach(item => {
+    const step = item.dataset.step;
+    if (state[step]) {
+      item.classList.add('done');
+      item.querySelector('input[type="checkbox"]').checked = true;
+    }
+  });
+  updateProgress();
 }
 
-function renderAll() {
-  renderStats();
-  const activeTab = document.querySelector('.tab.active');
-  const filter = activeTab ? activeTab.textContent.trim().split(' ')[1]?.toLowerCase() || 'critical' : 'critical';
-  // Re-render with current filter
-  const tabText = activeTab?.textContent || '';
-  if (tabText.includes('All')) renderDirectories('all');
-  else if (tabText.includes('Nice')) renderDirectories('low');
-  else if (tabText.includes('Medium')) renderDirectories('medium');
-  else if (tabText.includes('High')) renderDirectories('high');
-  else renderDirectories('critical');
-}
-
-renderAll();
+init();
 </script>
 </body>
 </html>
