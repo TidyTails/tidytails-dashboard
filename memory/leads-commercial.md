@@ -1,5 +1,5 @@
 # Commercial Leads — Tidy Tails Pet Waste Removal
-*Last updated: March 22, 2026 9:08 AM*
+*Last updated: March 24, 2026 9:00 AM*
 *Status legend: New | Contacted | Quoted | Won | Lost*
 
 ---
@@ -904,10 +904,83 @@
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated March 23, 2026 — 61 total leads)
+## 🐕 TIER 1: Dog Businesses — NEW (March 24, 2026 — 9:00 AM)
 
-**Total pipeline if all won:** $11,050-$28,000/month (61 leads)
-**Realistic close rate (20-30%):** $1,930-$7,365/month in new recurring revenue
+### Rover Oaks Pet Resort ⭐ UPSCALE — CHESTERFIELD
+- **Type:** Dog Boarding / Daycare / Grooming
+- **Address:** 17379 Edison Ave, Chesterfield, MO 63005
+- **Phone:** (636) 537-2322
+- **Website:** roveroaks.com
+- **Why Good Fit:** Upscale pet resort with large outdoor play yards. Chesterfield route bundle with Parq + ReNew. Premium brand = pays for quality. Referral potential to affluent clients.
+- **Found:** March 24, 2026
+- **Status:** New
+- **Pitch angle:** "Your dogs play outside all day — we handle outdoor waste removal. Plus referral deal for clients who need yard cleanup at home."
+
+### Paws & Play STL — SOUTH COUNTY
+- **Type:** Dog Daycare / Boarding
+- **Address:** South St. Louis County
+- **Phone:** See Google listing
+- **Why Good Fit:** Independent daycare in South County. Outdoor areas need cleanup. Opens South County territory with Turtle Creek and Greenmar leads.
+- **Found:** March 24, 2026
+- **Status:** New
+- **Pitch angle:** "Building a South County route — outdoor areas cleaned weekly, plus referral deal for daycare clients."
+
+---
+
+## 🏠 TIER 1: Apartment/Villa Communities — NEW (March 24, 2026)
+
+### The Villas at Dardenne — DARDENNE PRAIRIE
+- **Type:** Villa/Townhome Community
+- **Address:** Dardenne Prairie, MO 63368
+- **Phone:** (636) 281-2400
+- **Why Good Fit:** Pet-friendly villa community in booming Dardenne Prairie corridor. Individual yards + common areas. Pairs with WestInn Kennels route. Dual pitch: common areas + individual residents.
+- **Found:** March 24, 2026
+- **Status:** New
+- **Pitch angle:** "Common area cleanup AND individual resident service as a community perk. Building a Dardenne Prairie route."
+
+### Lakeside Crossing Apartments — SOUTH COUNTY
+- **Type:** Apartment Complex
+- **Address:** Mehlville / South County, MO
+- **Phone:** See apartments.com
+- **Why Good Fit:** Pet-friendly with walking paths and green spaces. Pairs with Turtle Creek + Greenmar for South County route cluster. Untapped territory.
+- **Found:** March 24, 2026
+- **Status:** New
+- **Pitch angle:** "Expanding into South County — professional weekly cleanup, flat rate, no contract."
+
+---
+
+## 🏛️ TIER 2: Municipal — NEW (March 24, 2026)
+
+### Creve Coeur Dog Park (Millennium Park)
+- **Type:** Municipal Dog Park
+- **Address:** Millennium Park, Creve Coeur, MO 63146
+- **Phone:** (314) 432-6000 (City Hall)
+- **Website:** crevecoeurmo.gov
+- **Why Good Fit:** Off-leash dog park in affluent Creve Coeur. Heavy use. Bundles with Kings Landing Apartments. City budget supports vendor services.
+- **Found:** March 24, 2026
+- **Status:** New
+- **Pitch angle:** "Weekly pet waste removal — cleaner park, happier residents, less work for maintenance."
+
+---
+
+## 🏢 TIER 1: Property Management — NEW (March 24, 2026)
+
+### Preferred Property Management — STL METRO
+- **Type:** Property Management Company
+- **Address:** St. Louis, MO
+- **Phone:** (314) 727-5515
+- **Website:** preferredstl.com
+- **Why Good Fit:** Manages residential rentals across STL metro. Pet-friendly properties = tenants with dogs. Offer Tidy Tails as value-add for managed properties.
+- **Found:** March 24, 2026
+- **Status:** New
+- **Pitch angle:** "Offer pet waste removal as a value-add for managed properties. Keeps yards clean, reduces complaints."
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated March 24, 2026 — 67 total leads)
+
+**Total pipeline if all won:** $12,000-$30,000/month (67 leads)
+**Realistic close rate (20-30%):** $2,100-$7,900/month in new recurring revenue
 
 ### 🗺️ NORTH COUNTY VET BLITZ — THE UNTAPPED GOLDMINE
 The 6 vet clinics above serve North County dog owners who have ZERO local pooper scooper options. If Jamie visits all 6 in one afternoon with cards and flyers:

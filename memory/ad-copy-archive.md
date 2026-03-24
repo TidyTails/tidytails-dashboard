@@ -1,6 +1,12 @@
 # Ad Copy Archive — Shed Ads
 *Tracks previously written ads to avoid repeats*
 
+## March 24, 2026 (9 AM Daily)
+- **Shed-Mar166** — "The $5 a Day Challenge" — Coffee vs shed price reframe, daily cost breakdown
+- **Shed-Mar167** — "The Garage Door Test" — Interactive question, "can you park right now?", space problem reframe
+- **Shed-Mar168** — "Tariff Warning" — Lumber/steel price urgency, tariff angle, "just math" soft sell
+- **Shed-Mar169** — "The Permission Slip" — Spouse humor, official authorization to buy, checklist format
+
 ## March 23, 2026 (9 AM Daily)
 - **Shed-Mar162** — "Monday Motivation" — Fresh start energy, new week same garage, do it THIS Monday
 - **Shed-Mar163** — "The Excuse Generator" — Top 5 excuses humor, objection busting, spouse joke
@@ -44,6 +50,10 @@
 - **Shed-Mar141** — "The Math" — Home addition vs storage unit vs shed cost comparison
 
 ## Hooks Used (don't repeat within 2 weeks)
+- Coffee price comparison / daily cost breakdown
+- Interactive garage test / "can you park right now?"
+- Tariff / material price urgency
+- Permission slip / spouse authorization humor
 - Monday fresh start / new week energy
 - Top 5 excuses / objection busting humor
 - Before & after transformation visualization
