@@ -1,5 +1,5 @@
 # MEMORY.md — Franklin's Long-Term Memory
-*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 23, 2026 5 PM (Mon EOD memory consolidation)*
+*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 23, 2026 11 PM (Mon late-night cron cleanup + memory consolidation)*
 
 ## Who I Am
 - **Name:** Franklin
@@ -68,7 +68,8 @@
 - **Yelp:** CLAIMED ✅ (Mar 5) — not showing in Florissant results though
 - **GSC:** VERIFIED ✅ — sitemap submitted, 17 pages discovered, site INDEXED (Mar 18)
 - **SSL:** Valid until May 17, 2026 (set reminder May 1)
-- **Google Reviews:** ZERO — #1 weakness. Link: https://g.page/r/Ce_hqIHanGLvEAE/review
+- **Google Reviews:** 3 reviews ✅ (confirmed Mar 23 by TJ) — need 5+ for Map Pack. Link: https://g.page/r/Ce_hqIHanGLvEAE/review
+- **⚠️ GBP INVISIBLE on Maps** — Searching "Tidy Tails STL" or "poop scoop near me" does NOT show listing. Brand collision with FL + Atlanta "Tidy Tails" businesses. Root cause: 7% profile completion. MUST complete to 100%.
 - **Content:** 23 city landing pages (all deployed ✅ — ghost pages fixed!), 12 blog posts (1 duplicate merged), A- on-page SEO
 - **⚠️ Sitemap gap:** 4 of 6 I-44 pages missing from sitemap.xml (crestwood, maplewood, brentwood, shrewsbury) — need website repo access to fix
 - **⚠️ Title gap:** 4 I-44 pages have GENERIC title (default homepage title) instead of city-specific — needs fix
@@ -263,8 +264,9 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 
 | Category | Count | Notes |
 |----------|-------|-------|
-| Dashboard tools (live) | ~44 | +14 from Mar 23 marathon (battlecard, CRO, capture kit, scoop machine, etc.) |
+| Dashboard tools (live) | ~48 | +14 from Mar 23 marathon (battlecard, CRO, capture kit, scoop machine, review tracker, etc.) |
 | Dashboard archive | 116 | All old tools preserved, not deleted |
+| Dashboard size | 121 MB | 48 HTML + 61 PDFs |
 | City landing pages | 23 | 6 ghost pages NOW DEPLOYED ✅ (4 missing from sitemap though) |
 | Blog posts | 12 | 1 duplicate merged into redirect |
 | Commercial leads | 49 | ZERO contacted |
@@ -290,7 +292,8 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 - **Mar 22 AM:** Telegram Topics configured — 6 topics (General, Tidy Tails, Sheds, Accountability, Franklin Admin, MOTRA). Group ID: `-1003877675524`.
 - **Mar 21:** TJ frustrated guides hidden in memory/ → **NEW RULE: PDF in chat + dashboard link.** Dashboard redesigned to 3 modes (TODAY/TOOLS/ARCHIVE).
 - **Mar 22:** RECORD DAY — 20 autonomous tasks. Dashboard declutter (144→28 files). Memory consolidated (43→21 active files). 6 ghost pages found (never deployed). Blog dedup fix. Telegram Topics configured (6-topic group). Paw-ty prep, GBP wizard, Mon call sheet, shed listings, community playbook, referral kit, scoop-day checklist, competitor battlemap — all built + shipped. Week-end archive completed 11 PM.
-- **Mar 23:** SPRING BLITZ WEEK 1 LAUNCH. 15+ autonomous tasks. Built: Scoop Soldiers battlecard, website CRO audit (C+ grade), lead response system, speed-to-lead templates, I-44 corridor expansion leads, Spring Blitz playbook (6-week plan), Week 1 launch kit, dead competitor capture kit, competitive pricing cheat sheet, directory citation blitz (25 directories), GBP optimization package (complete copy-paste guide), shed ads Mar 24-30, scoop day marketing machine, morning briefing. Dog Doody Defenders confirmed DEAD (DNS gone). Scoop Soldiers CONFIRMED active in STL (triple-verified). Market consolidating fast. Memory archived at EOD.
+- **Mar 23:** SPRING BLITZ WEEK 1 LAUNCH. 15+ autonomous tasks. Built: Scoop Soldiers battlecard, website CRO audit (C+ grade), lead response system, speed-to-lead templates, I-44 corridor expansion leads, Spring Blitz playbook (6-week plan), Week 1 launch kit, dead competitor capture kit, competitive pricing cheat sheet, directory citation blitz (25 directories), GBP optimization package (complete copy-paste guide), shed ads Mar 24-30, scoop day marketing machine, morning briefing, referral program kit, Q2 90-day roadmap, review generation tracker. Dog Doody Defenders confirmed DEAD (DNS gone). Scoop Soldiers CONFIRMED active in STL (triple-verified). Market consolidating fast. TJ confirmed 3 Google reviews ✅. GBP still INVISIBLE on Maps (7% complete, brand collision). TJ reported bugs: Notion PDFs not clickable (wrong URLs), shed ad cron sends summaries not copy. Both fixed. EOD cron and Weekly Review cron fixed (were failing on Telegram delivery). 10 dead one-shot crons removed. Memory archived at EOD.
+- **⚠️ Brave Search API:** Free plan quota EXHAUSTED (2000/2000) as of Mar 23. Web searches unavailable until quota resets. Impacts: competitive monitoring, security scans, morning briefing research.
 
 ---
 
@@ -309,6 +312,8 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 12. **Pet waste = demand CREATION, not capture.** Most people don't search for it. Facebook shows them it exists. Google captures the ones who saw your FB ad then searched.
 13. **Lumber hit $600/MBF** (Mar 17) — up 22% in 11 days. 45% tariffs + 1.3B board feet removed from supply. "Today's price is tomorrow's discount" is now verifiable math.
 14. **Cron tasks compound but don't convert.** 12 deliverables in one day doesn't help if none get deployed. Future hourly tasks should skew toward maintenance/monitoring, not new content.
+15a. **Cron Telegram delivery:** Agent sessions should NOT try to send Telegram messages themselves — the cron delivery system handles it automatically from the summary output. When agents try to use `message` tool inside cron runs, it often errors with "Delivering to Telegram requires target <chatId>" and marks the whole run as failed. Fix: tell agents in the prompt to NOT send Telegram, just produce summary output.
+15b. **Brave Search API is on a free plan (2000 queries/month).** Heavy autonomous task usage exhausts it fast. Consider upgrading or rationing.
 15. **TJ can't access memory/ files.** Guides saved there are invisible. NEW RULE (Mar 21): Everything for TJ → PDF in Telegram chat AND dashboard link. No more hidden docs.
 16. **Dashboard redesigned to 3 modes (Mar 21).** TODAY (action items), TOOLS (organized by category), ARCHIVE (searchable). 97 files → 3 clean tabs. This is the UX layer that makes everything else usable.
 
