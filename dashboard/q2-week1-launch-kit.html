@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Q2 Week 1 Launch Kit — Tidy Tails</title>
+<style>
+  :root {
+    --green: #22c55e;
+    --green-dark: #16a34a;
+    --orange: #f59e0b;
+    --red: #ef4444;
+    --blue: #3b82f6;
+    --purple: #8b5cf6;
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card-hover: #334155;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --border: #334155;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; padding: 16px; max-width: 800px; margin: 0 auto; }
+
+  .header { text-align: center; padding: 24px 0; border-bottom: 2px solid var(--green); margin-bottom: 24px; }
+  .header h1 { font-size: 1.8em; margin-bottom: 4px; }
+  .header .subtitle { color: var(--green); font-size: 1.1em; font-weight: 600; }
+  .header .date { color: var(--muted); font-size: 0.9em; margin-top: 8px; }
+
+  .mission-banner { background: linear-gradient(135deg, #16a34a22, #3b82f622); border: 1px solid var(--green); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center; }
+  .mission-banner h3 { color: var(--green); margin-bottom: 8px; }
+  .mission-banner .stats { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 12px; }
+  .mission-banner .stat { text-align: center; }
+  .mission-banner .stat .num { font-size: 1.4em; font-weight: 700; }
+  .mission-banner .stat .label { font-size: 0.8em; color: var(--muted); }
+
+  .day-card { background: var(--card); border-radius: 12px; margin-bottom: 16px; overflow: hidden; border: 1px solid var(--border); }
+  .day-header { padding: 14px 16px; cursor: pointer; display: flex; align-items: center; justify-content: space-between; user-select: none; }
+  .day-header:hover { background: var(--card-hover); }
+  .day-header .left { display: flex; align-items: center; gap: 12px; }
+  .day-header .emoji { font-size: 1.4em; }
+  .day-header .day-name { font-weight: 700; font-size: 1.05em; }
+  .day-header .who { font-size: 0.8em; padding: 2px 8px; border-radius: 99px; font-weight: 600; }
+  .who-tj { background: var(--blue); color: white; }
+  .who-jamie { background: var(--purple); color: white; }
+  .who-both { background: var(--orange); color: white; }
+  .day-header .time-est { color: var(--muted); font-size: 0.85em; }
+  .day-header .arrow { transition: transform 0.2s; color: var(--muted); }
+  .day-card.open .day-header .arrow { transform: rotate(180deg); }
+
+  .day-body { display: none; padding: 0 16px 16px; }
+  .day-card.open .day-body { display: block; }
+
+  .copy-block { background: #0f172a; border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin: 12px 0; position: relative; font-size: 0.9em; white-space: pre-wrap; word-wrap: break-word; }
+  .copy-btn { position: absolute; top: 8px; right: 8px; background: var(--green); color: white; border: none; padding: 4px 10px; border-radius: 6px; font-size: 0.75em; cursor: pointer; font-weight: 600; }
+  .copy-btn:hover { background: var(--green-dark); }
+  .copy-btn.copied { background: var(--muted); }
+
+  .task-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .task-item:last-child { border-bottom: none; }
+  .task-item input[type="checkbox"] { margin-top: 4px; width: 18px; height: 18px; accent-color: var(--green); flex-shrink: 0; }
+  .task-item.done label { text-decoration: line-through; color: var(--muted); }
+  .task-item label { cursor: pointer; }
+
+  .tip { background: #f59e0b18; border-left: 3px solid var(--orange); padding: 10px 12px; margin: 12px 0; border-radius: 0 8px 8px 0; font-size: 0.85em; }
+  .tip strong { color: var(--orange); }
+
+  h3 { color: var(--green); margin: 16px 0 8px; font-size: 1em; }
+  h4 { color: var(--blue); margin: 12px 0 6px; font-size: 0.95em; }
+
+  .scorecard { background: var(--card); border-radius: 12px; padding: 16px; margin: 24px 0; border: 2px solid var(--green); }
+  .scorecard h3 { margin-top: 0; }
+  .score-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .score-row:last-child { border-bottom: none; }
+  .score-target { color: var(--muted); font-size: 0.85em; }
+  .score-input { width: 60px; background: var(--bg); border: 1px solid var(--border); color: var(--text); padding: 4px 8px; border-radius: 6px; text-align: center; font-size: 1em; }
+
+  .tldr { background: linear-gradient(135deg, #ef444422, #f59e0b22); border: 2px solid var(--red); border-radius: 12px; padding: 16px; margin-top: 24px; }
+  .tldr h3 { color: var(--red); margin-top: 0; }
+  .tldr ol { padding-left: 20px; }
+  .tldr li { margin: 8px 0; }
+
+  .progress-bar { background: var(--bg); border-radius: 99px; height: 8px; margin-top: 12px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--green); border-radius: 99px; transition: width 0.5s; }
+
+  a { color: var(--blue); }
+  @media (max-width: 500px) { .mission-banner .stats { gap: 16px; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🚀 Q2 Week 1 Launch Kit</h1>
+  <div class="subtitle">April 1-6, 2026 — "GET FOUND"</div>
+  <div class="date">Mission: GBP 7% → 95%+ | 2-3 Google Reviews | 3 Social Posts</div>
+</div>
+
+<div class="mission-banner">
+  <h3>⏱️ Total Time This Week</h3>
+  <div class="stats">
+    <div class="stat"><div class="num" style="color:var(--blue)">45m</div><div class="label">TJ</div></div>
+    <div class="stat"><div class="num" style="color:var(--purple)">30m</div><div class="label">Jamie</div></div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="progressBar" style="width:0%"></div></div>
+  <div style="color:var(--muted);font-size:0.8em;margin-top:4px"><span id="progressText">0</span> of <span id="totalTasks">0</span> tasks complete</div>
+</div>
+
+<!-- TUESDAY: GBP -->
+<div class="day-card open" id="day-tue">
+  <div class="day-header" onclick="toggleDay('day-tue')">
+    <div class="left">
+      <span class="emoji">📍</span>
+      <span class="day-name">TUE APR 1 — GBP Day</span>
+      <span class="who who-tj">TJ</span>
+    </div>
+    <div><span class="time-est">~30 min</span> <span class="arrow">▼</span></div>
+  </div>
+  <div class="day-body">
+    <p style="color:var(--orange);font-weight:600;">The single most important task of Q2. Do this first.</p>
+    
+    <h4>Step 1: Business Description (5 min)</h4>
+    <div class="task-item"><input type="checkbox" id="t1" onchange="saveState()"><label for="t1">Add business description to GBP</label></div>
+    <div class="copy-block" id="gbp-desc">Tidy Tails Pet Waste Removal keeps St. Louis yards clean so you don't have to. We offer weekly, biweekly, and monthly dog poop scooping for homes across St. Louis County, St. Charles County, and surrounding areas.
+
+🐕 Why St. Louis dog owners choose us:
+• Flat monthly rate — no surprise charges
+• Same person every visit (Jamie knows your dogs by name)
+• Text-first communication — no phone tag
+• Free first visit — try us risk-free
+• No contracts — stay because you love the service
+
+Serving Florissant, O'Fallon, St. Peters, Ferguson, Maryland Heights, Kirkwood, Webster Groves, Chesterfield, and more.
+
+Call/text 314-850-7140 or visit tidytailsstl.com for a free quote.<button class="copy-btn" onclick="copyText('gbp-desc')">COPY</button></div>
+
+    <h4>Step 2: Add 6 Services (10 min)</h4>
+    <div class="task-item"><input type="checkbox" id="t2" onchange="saveState()"><label for="t2">Add all 6 services with prices</label></div>
+    <div class="copy-block" id="svc-list">Services to add:
+• Weekly Pet Waste Removal — $25/visit
+• Bi-Weekly Pet Waste Removal — $45/visit  
+• Monthly Pet Waste Removal — $70/month
+• One-Time Deep Clean — $100
+• Spring Yard Cleanup — $100
+• Commercial Pet Waste Removal — Custom quote<button class="copy-btn" onclick="copyText('svc-list')">COPY</button></div>
+
+    <h4>Step 3: Service Areas (5 min)</h4>
+    <div class="task-item"><input type="checkbox" id="t3" onchange="saveState()"><label for="t3">Add all 29 service area cities</label></div>
+    <div class="copy-block" id="areas">Florissant, Ferguson, Hazelwood, Bridgeton, Maryland Heights, Creve Coeur, Olivette, University City, Kirkwood, Webster Groves, Ballwin, Chesterfield, O'Fallon MO, St. Peters, St. Charles, Wentzville, South St. Louis City, South St. Louis County, Overland, Pine Lawn, Jennings, Berkeley, Spanish Lake, Normandy, Dellwood, Cool Valley, Black Jack, Earth City, St. Ann, Breckenridge Hills<button class="copy-btn" onclick="copyText('areas')">COPY</button></div>
+
+    <h4>Step 4: Hours & Attributes (5 min)</h4>
+    <div class="task-item"><input type="checkbox" id="t4" onchange="saveState()"><label for="t4">Set hours, phone, website, attributes</label></div>
+    <p style="font-size:0.9em">Mon-Fri 8AM-6PM, Sat 9AM-2PM, Sun Closed | Phone: 314-850-7140 | Website: tidytailsstl.com | Attributes: Locally owned, Free estimates</p>
+
+    <h4>Step 5: Upload Photos (10 min)</h4>
+    <div class="task-item"><input type="checkbox" id="t5" onchange="saveState()"><label for="t5">Upload 10 photos to GBP</label></div>
+    <p style="font-size:0.85em;color:var(--muted)">1. Jamie headshot 2. Clean yard (after) 3. Messy yard (before) 4. Work truck 5. Equipment 6. Jamie working 7. Happy dog 8. Clean grass close-up 9. Neighborhood shot 10. Logo</p>
+    <div class="tip"><strong>💡 Tip:</strong> Natural lighting, horizontal, include dogs when possible. This alone could generate 3-5 calls/month.</div>
+  </div>
+</div>
+
+<!-- TUESDAY: REVIEW TEXTS -->
+<div class="day-card" id="day-tue2">
+  <div class="day-header" onclick="toggleDay('day-tue2')">
+    <div class="left">
+      <span class="emoji">⭐</span>
+      <span class="day-name">TUE APR 1 — Review Texts</span>
+      <span class="who who-jamie">Jamie</span>
+    </div>
+    <div><span class="time-est">~5 min</span> <span class="arrow">▼</span></div>
+  </div>
+  <div class="day-body">
+    <div class="task-item"><input type="checkbox" id="t6" onchange="saveState()"><label for="t6">Get Google review link from GBP</label></div>
+    <div class="task-item"><input type="checkbox" id="t7" onchange="saveState()"><label for="t7">Text ALL current customers</label></div>
+    
+    <h4>Review Request Text:</h4>
+    <div class="copy-block" id="review-txt">Hey [NAME]! 🐕 Quick favor — would you mind leaving us a quick Google review? It really helps small businesses like ours get found. Here's the link: [REVIEW LINK]
+
+Even just a sentence or two means the world. No pressure at all! Thanks for being awesome. — Jamie<button class="copy-btn" onclick="copyText('review-txt')">COPY</button></div>
+
+    <h4>For your longest customer:</h4>
+    <div class="copy-block" id="review-loyal">Hey [NAME]! You've been with us since the beginning and I really appreciate it. 🙏 Would you mind sharing a quick Google review? Even a sentence helps us grow. Here's the link: [REVIEW LINK] — Jamie<button class="copy-btn" onclick="copyText('review-loyal')">COPY</button></div>
+
+    <h4>Follow-up (send Thursday if no response):</h4>
+    <div class="copy-block" id="review-follow">Hey [NAME]! Just bumping this in case it got buried — totally no pressure, but if you get a sec that Google review link is still here: [REVIEW LINK] 🐾 Thanks!<button class="copy-btn" onclick="copyText('review-follow')">COPY</button></div>
+  </div>
+</div>
+
+<!-- WEDNESDAY: NEXTDOOR -->
+<div class="day-card" id="day-wed">
+  <div class="day-header" onclick="toggleDay('day-wed')">
+    <div class="left">
+      <span class="emoji">🏘️</span>
+      <span class="day-name">WED APR 2 — Nextdoor Post</span>
+      <span class="who who-jamie">Jamie</span>
+    </div>
+    <div><span class="time-est">~5 min</span> <span class="arrow">▼</span></div>
+  </div>
+  <div class="day-body">
+    <div class="task-item"><input type="checkbox" id="t8" onchange="saveState()"><label for="t8">Post in top 2 Nextdoor neighborhoods</label></div>
+    <div class="copy-block" id="nextdoor-post">Hey neighbors! 👋 I'm Jamie with Tidy Tails — your local pet waste removal guy. 
+
+Spring is HERE and yards are... let's just say winter wasn't kind. 😅
+
+If your backyard has become a minefield, I can help:
+🐕 Weekly cleanup — $25/visit
+🐕 One-time deep clean — $100
+🐕 Free first visit for new customers
+
+I serve [NEIGHBORHOOD] and surrounding areas. Same person every time (that's me), no contracts, and I text you when I'm done.
+
+Questions? Shoot me a text: 314-850-7140
+tidytailsstl.com<button class="copy-btn" onclick="copyText('nextdoor-post')">COPY</button></div>
+    <div class="tip"><strong>💡 Tip:</strong> Post between 7-9 AM or 5-7 PM for best engagement. Add a photo!</div>
+  </div>
+</div>
+
+<!-- THURSDAY: FACEBOOK -->
+<div class="day-card" id="day-thu">
+  <div class="day-header" onclick="toggleDay('day-thu')">
+    <div class="left">
+      <span class="emoji">📘</span>
+      <span class="day-name">THU APR 3 — Facebook Post</span>
+      <span class="who who-jamie">Jamie</span>
+    </div>
+    <div><span class="time-est">~5 min</span> <span class="arrow">▼</span></div>
+  </div>
+  <div class="day-body">
+    <div class="task-item"><input type="checkbox" id="t9" onchange="saveState()"><label for="t9">Post in 2-3 local Facebook groups</label></div>
+    <div class="copy-block" id="fb-post">Spring cleaning season is officially here! 🌸🐕
+
+If your dog's been "decorating" the yard all winter... I get it. Life's busy.
+
+I'm Jamie from Tidy Tails — I show up weekly, clean every corner, bag it, and haul it away. You never deal with it again.
+
+✅ Free first visit
+✅ $25/week (flat rate, no contracts)
+✅ Serving Florissant, Ferguson, Hazelwood, O'Fallon + more
+
+Your first visit is on me. Text 314-850-7140 or check us out: tidytailsstl.com
+
+Your bare feet will thank you. 😂<button class="copy-btn" onclick="copyText('fb-post')">COPY</button></div>
+    <div class="tip"><strong>💡 Groups:</strong> Florissant Community, North County STL, O'Fallon/St. Peters Neighbors, St. Charles County Community</div>
+  </div>
+</div>
+
+<!-- FRIDAY: INSTAGRAM -->
+<div class="day-card" id="day-fri">
+  <div class="day-header" onclick="toggleDay('day-fri')">
+    <div class="left">
+      <span class="emoji">📸</span>
+      <span class="day-name">FRI APR 4 — Instagram Post</span>
+      <span class="who who-jamie">Jamie</span>
+    </div>
+    <div><span class="time-est">~10 min</span> <span class="arrow">▼</span></div>
+  </div>
+  <div class="day-body">
+    <div class="task-item"><input type="checkbox" id="t10" onchange="saveState()"><label for="t10">Post photo + caption on Instagram</label></div>
+    <div class="copy-block" id="ig-post">Spring in St. Louis means one thing for dog owners: it's time to face the yard. 😬
+
+That winter buildup isn't going anywhere on its own. But I will.
+
+Every week I show up, clean every inch of your yard, bag it, and take it with me. You just enjoy your clean grass.
+
+🐾 Free first visit
+🐾 $25/week — no contracts
+🐾 Serving STL County, St. Charles + beyond
+
+Link in bio or text me: 314-850-7140
+
+#StLouis #DogMom #DogDad #PetWasteRemoval #PooperScooper #TidyTails #SpringCleaning #STL #FlorissantMO #StCharlesMO #DogLife #BackyardGoals #LocalBusiness #SmallBusinessSTL<button class="copy-btn" onclick="copyText('ig-post')">COPY</button></div>
+    <div class="tip"><strong>💡 Tip:</strong> Use a Reel (even 10 sec of scooping = 3x reach). Post 11AM-1PM or 7-9PM. Reply to every comment within 1 hour.</div>
+  </div>
+</div>
+
+<!-- SATURDAY: GBP POSTS -->
+<div class="day-card" id="day-sat">
+  <div class="day-header" onclick="toggleDay('day-sat')">
+    <div class="left">
+      <span class="emoji">📝</span>
+      <span class="day-name">SAT APR 5 — GBP Posts + Q&A</span>
+      <span class="who who-tj">TJ</span>
+    </div>
+    <div><span class="time-est">~10 min</span> <span class="arrow">▼</span></div>
+  </div>
+  <div class="day-body">
+    <div class="task-item"><input type="checkbox" id="t11" onchange="saveState()"><label for="t11">Post spring special as GBP update</label></div>
+    <div class="copy-block" id="gbp-update">🌸 Spring Special — Free First Visit!
+
+Winter's over and yards need help. We're offering a FREE first visit for new customers this spring.
+
+✅ Weekly, biweekly, or one-time cleanup
+✅ Flat rates — no surprise fees
+✅ We bag it and haul it away
+
+Text 314-850-7140 or visit tidytailsstl.com to claim your free visit!<button class="copy-btn" onclick="copyText('gbp-update')">COPY</button></div>
+
+    <div class="task-item"><input type="checkbox" id="t12" onchange="saveState()"><label for="t12">Seed 4 Q&As on GBP</label></div>
+    <h4>Q&A #1: Pricing</h4>
+    <div class="copy-block" id="qa1">Q: How much does pet waste removal cost?
+A: Our most popular plan is weekly cleanup at $25/visit. We also offer bi-weekly ($45/visit), monthly ($70/month), and one-time deep cleans ($100). Flat rates, no hidden fees, no contracts. Text us at 314-850-7140 for a free quote!<button class="copy-btn" onclick="copyText('qa1')">COPY</button></div>
+
+    <h4>Q&A #2: Service Areas</h4>
+    <div class="copy-block" id="qa2">Q: What areas do you serve?
+A: We serve most of St. Louis County, St. Charles County, and surrounding areas — including Florissant, Ferguson, O'Fallon, St. Peters, Chesterfield, Kirkwood, Webster Groves, Maryland Heights, and more. Text 314-850-7140 to check!<button class="copy-btn" onclick="copyText('qa2')">COPY</button></div>
+
+    <h4>Q&A #3: Home Required?</h4>
+    <div class="copy-block" id="qa3">Q: Do I need to be home?
+A: Nope! Most customers aren't home during service. Just make sure we can access your yard (unlocked gate or provide a code) and we'll text you when we're done. Easy!<button class="copy-btn" onclick="copyText('qa3')">COPY</button></div>
+
+    <h4>Q&A #4: Free Estimate</h4>
+    <div class="copy-block" id="qa4">Q: Do you offer a free estimate?
+A: Yes! Your first visit is actually free — no obligation. We'll come clean your yard so you can see the quality before committing to anything. Text 314-850-7140 to schedule.<button class="copy-btn" onclick="copyText('qa4')">COPY</button></div>
+  </div>
+</div>
+
+<!-- SUNDAY: CHECKPOINT -->
+<div class="day-card" id="day-sun">
+  <div class="day-header" onclick="toggleDay('day-sun')">
+    <div class="left">
+      <span class="emoji">✅</span>
+      <span class="day-name">SUN APR 6 — Week 1 Checkpoint</span>
+      <span class="who who-both">Both</span>
+    </div>
+    <div><span class="time-est">~5 min</span> <span class="arrow">▼</span></div>
+  </div>
+  <div class="day-body">
+    <div class="task-item"><input type="checkbox" id="t13" onchange="saveState()"><label for="t13">Verify GBP at 95%+ completion</label></div>
+    <div class="task-item"><input type="checkbox" id="t14" onchange="saveState()"><label for="t14">Count new Google reviews</label></div>
+    <div class="task-item"><input type="checkbox" id="t15" onchange="saveState()"><label for="t15">Confirm 3 social posts are live</label></div>
+    <div class="task-item"><input type="checkbox" id="t16" onchange="saveState()"><label for="t16">Check for inbound leads</label></div>
+    <div class="task-item"><input type="checkbox" id="t17" onchange="saveState()"><label for="t17">Screenshot GBP stats (Performance tab)</label></div>
+  </div>
+</div>
+
+<!-- SCORECARD -->
+<div class="scorecard">
+  <h3>📊 Week 1 Scorecard</h3>
+  <div class="score-row"><span>GBP Completion</span><span class="score-target">Target: 95%+</span><input type="number" class="score-input" id="s1" placeholder="%" onchange="saveState()"></div>
+  <div class="score-row"><span>New Google Reviews</span><span class="score-target">Target: 2-3</span><input type="number" class="score-input" id="s2" placeholder="#" onchange="saveState()"></div>
+  <div class="score-row"><span>Social Posts Published</span><span class="score-target">Target: 3</span><input type="number" class="score-input" id="s3" placeholder="#" onchange="saveState()"></div>
+  <div class="score-row"><span>GBP Updates Posted</span><span class="score-target">Target: 1</span><input type="number" class="score-input" id="s4" placeholder="#" onchange="saveState()"></div>
+  <div class="score-row"><span>Q&As Seeded</span><span class="score-target">Target: 4</span><input type="number" class="score-input" id="s5" placeholder="#" onchange="saveState()"></div>
+  <div class="score-row"><span>Inbound Leads</span><span class="score-target">Target: 1-2</span><input type="number" class="score-input" id="s6" placeholder="#" onchange="saveState()"></div>
+  <div class="score-row"><span>New Customers Signed</span><span class="score-target">Target: 0-1</span><input type="number" class="score-input" id="s7" placeholder="#" onchange="saveState()"></div>
+</div>
+
+<!-- TL;DR -->
+<div class="tldr">
+  <h3>⚡ If You Can Only Do 3 Things</h3>
+  <ol>
+    <li><strong>Complete GBP</strong> (TJ, 30 min Tuesday — #1 priority of Q2)</li>
+    <li><strong>Text customers for reviews</strong> (Jamie, 5 min Tuesday)</li>
+    <li><strong>Post on Nextdoor</strong> (Jamie, 5 min Wednesday)</li>
+  </ol>
+  <p style="color:var(--muted);margin-top:8px;font-size:0.9em">Those three things move the needle more than anything else this week.</p>
+</div>
+
+<div style="text-align:center;color:var(--muted);font-size:0.8em;padding:24px 0">
+  <a href="index.html">← Back to Dashboard</a> · Created by Franklin · March 23, 2026
+</div>
+
+<script>
+  const STORAGE_KEY = 'q2-week1-state';
+
+  function toggleDay(id) {
+    document.getElementById(id).classList.toggle('open');
+  }
+
+  function copyText(id) {
+    const el = document.getElementById(id);
+    const btn = el.querySelector('.copy-btn');
+    const text = el.textContent.replace('COPY','').replace('COPIED','').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'COPIED';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'COPY'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  function saveState() {
+    const state = {};
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => { state[cb.id] = cb.checked; });
+    document.querySelectorAll('.score-input').forEach(inp => { state[inp.id] = inp.value; });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    updateProgress();
+  }
+
+  function loadState() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    Object.entries(state).forEach(([k,v]) => {
+      const el = document.getElementById(k);
+      if (!el) return;
+      if (el.type === 'checkbox') { el.checked = v; if (v) el.closest('.task-item')?.classList.add('done'); }
+      else el.value = v;
+    });
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const cbs = document.querySelectorAll('input[type="checkbox"]');
+    const total = cbs.length;
+    let done = 0;
+    cbs.forEach(cb => {
+      if (cb.checked) { done++; cb.closest('.task-item')?.classList.add('done'); }
+      else { cb.closest('.task-item')?.classList.remove('done'); }
+    });
+    document.getElementById('totalTasks').textContent = total;
+    document.getElementById('progressText').textContent = done;
+    document.getElementById('progressBar').style.width = (total ? (done/total*100) : 0) + '%';
+  }
+
+  loadState();
+  updateProgress();
+</script>
+</body>
+</html>
