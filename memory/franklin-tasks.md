@@ -11,6 +11,13 @@
 
 ---
 
+## March 23, 2026 (Monday) — evening
+
+### Monday 7:05 PM
+- **7:05 PM** 🐕 Tidy Tails Referral Program Kit — "Friends Don't Let Friends Step In It" — Created complete referral program: dual-sided $10 off (referrer + new customer), 4 text templates for Jamie to send current customers, 3 social posts (Facebook, Nextdoor, Instagram), simple tracking system (name-drop or Google Sheet), 5-day deployment checklist, ROI projections (2,000% conservative). Math: $20 referral cost vs $420 LTV = 4.8% acquisition cost. 10-20x cheaper than paid ads. With 8 current customers each referring 0.5-1 person, could add 4-8 new customers in 3 months. Includes future upgrade ideas (referral cards, yard signs, QR codes). Deliverable: `deliverables/tidy-tails-referral-program.md`. **WHY THIS TASK:** We have 8 recurring customers and spring is peak acquisition season. Referrals are the cheapest, highest-converting growth channel for service businesses. Every happy customer is a potential salesperson — we just weren't giving them the tools. This kit makes it copy-paste easy for Jamie. ✅
+
+---
+
 ## March 24, 2026 (Tuesday)
 
 ### Monday 5:04 PM (logged retroactively for today)
