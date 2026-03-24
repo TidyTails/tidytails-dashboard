@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⭐ Review Generation Tracker — Tidy Tails STL</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 20px; max-width: 900px; margin: 0 auto; }
+        
+        h1 { color: #fbbf24; font-size: 1.8em; margin-bottom: 5px; }
+        .subtitle { color: #888; margin-bottom: 20px; font-size: 0.95em; }
+        
+        .goal-box { background: linear-gradient(135deg, #1a1a0a, #2a1a0a); border: 2px solid #fbbf24; border-radius: 12px; padding: 20px; margin-bottom: 25px; text-align: center; }
+        .goal-box h2 { color: #fbbf24; font-size: 1.4em; }
+        .goal-stars { font-size: 2.5em; margin: 10px 0; }
+        .goal-box p { color: #bbb; font-size: 0.9em; }
+        
+        .progress-section { background: #1a1a2e; border: 1px solid #333; border-radius: 12px; padding: 20px; margin-bottom: 25px; }
+        .progress-section h3 { color: #4ade80; margin-bottom: 12px; }
+        .bar-track { background: #2a2a3e; border-radius: 8px; height: 28px; overflow: hidden; margin-bottom: 8px; }
+        .bar-fill { background: linear-gradient(90deg, #fbbf24, #f59e0b); height: 100%; border-radius: 8px; transition: width 0.5s ease; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.85em; color: #000; min-width: 40px; }
+        .progress-stats { display: flex; justify-content: space-between; color: #888; font-size: 0.85em; }
+        
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 25px; }
+        .stat-card { background: #1a1a2e; border: 1px solid #2a2a3e; border-radius: 10px; padding: 15px; text-align: center; }
+        .stat-num { font-size: 1.8em; font-weight: 800; }
+        .stat-label { color: #888; font-size: 0.75em; margin-top: 4px; }
+        
+        .review-link-box { background: #0a1a10; border: 2px solid #4ade80; border-radius: 12px; padding: 20px; margin-bottom: 25px; text-align: center; }
+        .review-link-box h3 { color: #4ade80; margin-bottom: 8px; }
+        .review-link { font-family: monospace; font-size: 0.85em; color: #22d3ee; word-break: break-all; }
+        .copy-link-btn { background: #4ade80; color: #000; border: none; padding: 8px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 10px; font-size: 0.9em; }
+        .copy-link-btn:hover { background: #22d3ee; }
+        
+        .customer-section { margin-bottom: 30px; }
+        .customer-section h2 { color: #e0e0e0; margin-bottom: 15px; font-size: 1.2em; }
+        
+        .customer-card { background: #1a1a2e; border: 1px solid #2a2a3e; border-radius: 12px; padding: 18px; margin-bottom: 12px; transition: all 0.3s; }
+        .customer-card.reviewed { border-color: #4ade80; background: #0a1a10; }
+        .customer-card.asked { border-color: #fbbf24; background: #1a1a0a; }
+        .customer-card.declined { border-color: #ef4444; background: #1a0a0a; opacity: 0.6; }
+        
+        .card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 8px; }
+        .customer-name { font-weight: bold; font-size: 1.1em; }
+        .customer-detail { color: #888; font-size: 0.8em; }
+        
+        .status-btns { display: flex; gap: 6px; flex-wrap: wrap; }
+        .status-btn { padding: 5px 12px; border-radius: 6px; border: 1px solid #333; background: #2a2a3e; color: #bbb; cursor: pointer; font-size: 0.75em; font-weight: bold; transition: all 0.2s; }
+        .status-btn:hover { border-color: #888; }
+        .status-btn.active-not-asked { background: #333; color: #fff; border-color: #666; }
+        .status-btn.active-asked { background: #fbbf24; color: #000; border-color: #fbbf24; }
+        .status-btn.active-reviewed { background: #4ade80; color: #000; border-color: #4ade80; }
+        .status-btn.active-declined { background: #ef4444; color: #fff; border-color: #ef4444; }
+        
+        .text-template { background: #111; border: 1px solid #333; border-radius: 8px; padding: 12px; margin-top: 10px; position: relative; }
+        .text-template p { font-size: 0.85em; line-height: 1.6; color: #ccc; }
+        .text-template .template-label { font-size: 0.7em; color: #4ade80; font-weight: bold; text-transform: uppercase; margin-bottom: 5px; }
+        .copy-text-btn { position: absolute; top: 8px; right: 8px; background: #4ade80; color: #000; border: none; padding: 4px 10px; border-radius: 5px; cursor: pointer; font-size: 0.75em; font-weight: bold; }
+        .copy-text-btn:hover { background: #22d3ee; }
+        .copy-text-btn.copied { background: #666; color: #fff; }
+        
+        .follow-up { margin-top: 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+        .follow-up label { color: #888; font-size: 0.8em; }
+        .follow-up input { background: #111; border: 1px solid #333; color: #fff; padding: 5px 10px; border-radius: 5px; font-size: 0.8em; }
+        .follow-up .note-input { flex: 1; min-width: 150px; }
+        
+        .tips-box { background: linear-gradient(135deg, #1a0a2e, #0a1a2e); border: 1px solid #a855f7; border-radius: 12px; padding: 20px; margin: 25px 0; }
+        .tips-box h3 { color: #a855f7; margin-bottom: 10px; }
+        .tips-box ul { padding-left: 20px; color: #bbb; font-size: 0.85em; line-height: 2; }
+        .tips-box li strong { color: #e0e0e0; }
+        
+        .timeline { margin-top: 25px; }
+        .timeline h3 { color: #22d3ee; margin-bottom: 15px; }
+        .timeline-item { display: flex; gap: 15px; padding: 10px 0; border-bottom: 1px solid #1a1a2e; }
+        .timeline-day { background: #1a1a2e; border-radius: 8px; padding: 8px 12px; text-align: center; min-width: 60px; }
+        .timeline-day .day-num { font-weight: bold; font-size: 1.1em; color: #22d3ee; }
+        .timeline-day .day-label { font-size: 0.65em; color: #888; }
+        .timeline-content { flex: 1; }
+        .timeline-content h4 { font-size: 0.9em; margin-bottom: 4px; }
+        .timeline-content p { font-size: 0.8em; color: #999; }
+        
+        .reset-btn { background: #333; color: #888; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.8em; margin-top: 20px; }
+        .reset-btn:hover { background: #444; color: #fff; }
+        
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            h1 { font-size: 1.4em; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+            .status-btns { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <h1>⭐ Review Generation Tracker</h1>
+    <p class="subtitle">Goal: 5 Google reviews in 30 days. Track every ask, follow-up, and win.</p>
+    
+    <div class="goal-box">
+        <h2>TARGET: 5 Reviews by April 22</h2>
+        <div class="goal-stars" id="goalStars">☆☆☆☆☆</div>
+        <p>You have 8 happy customers. You need 5 to leave a review. That's a 63% conversion rate — very doable with personal asks.</p>
+    </div>
+    
+    <div class="progress-section">
+        <h3>📊 Review Progress</h3>
+        <div class="bar-track">
+            <div class="bar-fill" id="reviewBar">0/5</div>
+        </div>
+        <div class="progress-stats">
+            <span id="reviewCount">0 reviews collected</span>
+            <span id="daysLeft">30 days remaining</span>
+        </div>
+    </div>
+    
+    <div class="stats-row">
+        <div class="stat-card"><div class="stat-num" style="color:#fbbf24" id="statAsked">0</div><div class="stat-label">Asked</div></div>
+        <div class="stat-card"><div class="stat-num" style="color:#4ade80" id="statReviewed">0</div><div class="stat-label">Reviewed</div></div>
+        <div class="stat-card"><div class="stat-num" style="color:#888" id="statPending">8</div><div class="stat-label">Not Asked</div></div>
+        <div class="stat-card"><div class="stat-num" style="color:#22d3ee" id="statRate">0%</div><div class="stat-label">Conversion</div></div>
+    </div>
+    
+    <div class="review-link-box">
+        <h3>📎 Your Google Review Link</h3>
+        <p class="review-link">https://g.page/r/Ce_hqIHanGLvEAE/review</p>
+        <br>
+        <button class="copy-link-btn" onclick="copyReviewLink()">📋 Copy Review Link</button>
+    </div>
+    
+    <div class="customer-section">
+        <h2>👥 Customer Review Tracker</h2>
+        <div id="customerCards"></div>
+    </div>
+    
+    <div class="tips-box">
+        <h3>💡 Review Ask Best Practices</h3>
+        <ul>
+            <li><strong>Text > Email.</strong> 90%+ open rate vs 20% for email. Always text.</li>
+            <li><strong>Ask right after service.</strong> The yard is clean, they're happy — that's the moment.</li>
+            <li><strong>Make it personal.</strong> Use their name, mention their dog's name if you know it.</li>
+            <li><strong>One tap = done.</strong> The review link goes straight to the review form. No searching.</li>
+            <li><strong>Don't ask twice in one week.</strong> One ask + one follow-up (5-7 days later) max.</li>
+            <li><strong>Thank them!</strong> When someone leaves a review, text a genuine thank you.</li>
+            <li><strong>Respond to every review</strong> on Google within 24 hours — shows you care.</li>
+            <li><strong>Don't offer incentives</strong> for reviews — violates Google's policy and can get reviews removed.</li>
+        </ul>
+    </div>
+    
+    <div class="timeline">
+        <h3>📅 30-Day Review Sprint Plan</h3>
+        <div class="timeline-item">
+            <div class="timeline-day"><div class="day-num">1-2</div><div class="day-label">START</div></div>
+            <div class="timeline-content">
+                <h4>Ask your 3 happiest customers</h4>
+                <p>Shannon, Amanda, and Preshus are weekly customers — they love the service. Text them first. Personal message + review link.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-day"><div class="day-num">3-5</div><div class="day-label">EXPAND</div></div>
+            <div class="timeline-content">
+                <h4>Ask Mrs. Candee and Jody</h4>
+                <p>Long-time customers who know the value. Personal text after their next service day.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-day"><div class="day-num">7</div><div class="day-label">FOLLOW UP</div></div>
+            <div class="timeline-content">
+                <h4>Follow up with anyone who hasn't reviewed</h4>
+                <p>Gentle nudge: "Hey [name], just checking — were you able to find the review link okay? No pressure at all!"</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-day"><div class="day-num">8-14</div><div class="day-label">ROUND 2</div></div>
+            <div class="timeline-content">
+                <h4>Ask remaining customers</h4>
+                <p>Lawrence, Greg, Chastity — even if they haven't been customers as long, every review counts.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-day"><div class="day-num">14</div><div class="day-label">CHECK</div></div>
+            <div class="timeline-content">
+                <h4>Midpoint check — how many reviews?</h4>
+                <p>If 3+, you're on track. If &lt;3, consider asking family/friends who've seen the service in action.</p>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-day"><div class="day-num">15-30</div><div class="day-label">RESPOND</div></div>
+            <div class="timeline-content">
+                <h4>Reply to every review + celebrate!</h4>
+                <p>Professional, grateful response to each review. Share on social media. Update GBP with fresh photos.</p>
+            </div>
+        </div>
+    </div>
+    
+    <button class="reset-btn" onclick="resetAll()">🔄 Reset All Progress</button>
+    
+    <script>
+        const customers = [
+            { name: "Shannon Zamarripa", city: "Florissant 63031", freq: "Weekly", monthly: "$140", dog: "their pups", priority: "high" },
+            { name: "Amanda Harris", city: "Florissant 63031", freq: "Weekly", monthly: "$120", dog: "the dogs", priority: "high" },
+            { name: "Preshus", city: "St. Charles 63303", freq: "Weekly", monthly: "$100", dog: "your fur babies", priority: "high" },
+            { name: "Mrs. Candee", city: "St. Louis 63136", freq: "Weekly", monthly: "$60", dog: "your pup", priority: "medium" },
+            { name: "Jody", city: "St. Louis 63114", freq: "Biweekly", monthly: "$90", dog: "your dogs", priority: "medium" },
+            { name: "Lawrence", city: "St. Louis 63108", freq: "Biweekly", monthly: "$100", dog: "your dog", priority: "medium" },
+            { name: "Chastity", city: "Florissant 63033", freq: "Biweekly", monthly: "$90", dog: "your pup", priority: "low" },
+            { name: "Greg", city: "O'Fallon 63366", freq: "Monthly", monthly: "$50", dog: "your dog", priority: "low" },
+        ];
+        
+        const STORAGE_KEY = "tidytails-reviews";
+        const REVIEW_LINK = "https://g.page/r/Ce_hqIHanGLvEAE/review";
+        
+        function loadState() {
+            try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
+            catch { return {}; }
+        }
+        function saveState(s) { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
+        
+        function getStatus(i) { return (loadState()[i] || {}).status || "not-asked"; }
+        function getNote(i) { return (loadState()[i] || {}).note || ""; }
+        function getDate(i) { return (loadState()[i] || {}).date || ""; }
+        
+        function setStatus(i, status) {
+            const state = loadState();
+            if (!state[i]) state[i] = {};
+            state[i].status = status;
+            if (status !== "not-asked" && !state[i].date) state[i].date = new Date().toLocaleDateString();
+            saveState(state);
+            render();
+        }
+        
+        function setNote(i, note) {
+            const state = loadState();
+            if (!state[i]) state[i] = {};
+            state[i].note = note;
+            saveState(state);
+        }
+        
+        function copyReviewLink() {
+            navigator.clipboard.writeText(REVIEW_LINK);
+            const btn = document.querySelector('.copy-link-btn');
+            btn.textContent = '✅ Copied!';
+            setTimeout(() => btn.textContent = '📋 Copy Review Link', 2000);
+        }
+        
+        function copyText(el) {
+            const template = el.closest('.text-template');
+            const text = template.querySelector('.template-text').textContent.trim();
+            navigator.clipboard.writeText(text);
+            el.textContent = '✅';
+            el.classList.add('copied');
+            setTimeout(() => { el.textContent = 'Copy'; el.classList.remove('copied'); }, 2000);
+        }
+        
+        function generateText(c) {
+            return `Hey ${c.name.split(' ')[0]}! 😊 It's Jamie from Tidy Tails. I hope you and ${c.dog} are doing great! I have a quick favor — would you mind leaving us a Google review? It really helps small businesses like ours get found by neighbors who need the same service. Here's the link — takes about 30 seconds:\n\n${REVIEW_LINK}\n\nTotally no pressure, and thank you so much for being a customer! 🐾`;
+        }
+        
+        function generateFollowUp(c) {
+            return `Hey ${c.name.split(' ')[0]}! Just wanted to check in — were you able to find that review link okay? No worries at all if you haven't gotten to it. Here it is again just in case:\n\n${REVIEW_LINK}\n\nThank you! 🐾`;
+        }
+        
+        function generateThankYou(c) {
+            return `${c.name.split(' ')[0]}, THANK YOU so much for leaving that review! 🙏 It means the world to us as a small local business. You're the best! 🐾`;
+        }
+        
+        function render() {
+            const container = document.getElementById('customerCards');
+            let html = '';
+            let asked = 0, reviewed = 0, notAsked = 0;
+            
+            customers.forEach((c, i) => {
+                const status = getStatus(i);
+                const note = getNote(i);
+                const date = getDate(i);
+                
+                if (status === 'reviewed') reviewed++;
+                else if (status === 'asked' || status === 'declined') asked++;
+                else notAsked++;
+                
+                const statusClass = status === 'reviewed' ? 'reviewed' : status === 'asked' ? 'asked' : status === 'declined' ? 'declined' : '';
+                const priorityEmoji = c.priority === 'high' ? '🔥' : c.priority === 'medium' ? '⭐' : '📌';
+                
+                html += `
+                <div class="customer-card ${statusClass}">
+                    <div class="card-header">
+                        <div>
+                            <span class="customer-name">${priorityEmoji} ${c.name}</span>
+                            <div class="customer-detail">${c.city} · ${c.freq} · ${c.monthly}/mo${date ? ' · Asked: ' + date : ''}</div>
+                        </div>
+                        <div class="status-btns">
+                            <button class="status-btn ${status === 'not-asked' ? 'active-not-asked' : ''}" onclick="setStatus(${i},'not-asked')">Not Asked</button>
+                            <button class="status-btn ${status === 'asked' ? 'active-asked' : ''}" onclick="setStatus(${i},'asked')">Asked</button>
+                            <button class="status-btn ${status === 'reviewed' ? 'active-reviewed' : ''}" onclick="setStatus(${i},'reviewed')">✅ Reviewed!</button>
+                            <button class="status-btn ${status === 'declined' ? 'active-declined' : ''}" onclick="setStatus(${i},'declined')">Declined</button>
+                        </div>
+                    </div>
+                    
+                    ${status === 'not-asked' ? `
+                    <div class="text-template">
+                        <div class="template-label">📱 Text Template — First Ask</div>
+                        <p class="template-text">${generateText(c)}</p>
+                        <button class="copy-text-btn" onclick="copyText(this)">Copy</button>
+                    </div>` : ''}
+                    
+                    ${status === 'asked' ? `
+                    <div class="text-template">
+                        <div class="template-label">📱 Text Template — Follow-Up (send 5-7 days after first ask)</div>
+                        <p class="template-text">${generateFollowUp(c)}</p>
+                        <button class="copy-text-btn" onclick="copyText(this)">Copy</button>
+                    </div>` : ''}
+                    
+                    ${status === 'reviewed' ? `
+                    <div class="text-template">
+                        <div class="template-label">💛 Text Template — Thank You</div>
+                        <p class="template-text">${generateThankYou(c)}</p>
+                        <button class="copy-text-btn" onclick="copyText(this)">Copy</button>
+                    </div>` : ''}
+                    
+                    <div class="follow-up">
+                        <label>Notes:</label>
+                        <input class="note-input" type="text" placeholder="e.g., asked after Monday service..." value="${note}" onchange="setNote(${i}, this.value)">
+                    </div>
+                </div>`;
+            });
+            
+            container.innerHTML = html;
+            
+            // Update stats
+            const totalAsked = asked + reviewed;
+            document.getElementById('statAsked').textContent = totalAsked;
+            document.getElementById('statReviewed').textContent = reviewed;
+            document.getElementById('statPending').textContent = notAsked;
+            document.getElementById('statRate').textContent = totalAsked > 0 ? Math.round((reviewed / totalAsked) * 100) + '%' : '0%';
+            
+            // Update progress bar
+            const pct = Math.round((reviewed / 5) * 100);
+            const bar = document.getElementById('reviewBar');
+            bar.style.width = Math.max(pct, 8) + '%';
+            bar.textContent = `${reviewed}/5`;
+            document.getElementById('reviewCount').textContent = `${reviewed} review${reviewed !== 1 ? 's' : ''} collected`;
+            
+            // Update stars
+            let stars = '';
+            for (let s = 0; s < 5; s++) stars += s < reviewed ? '★' : '☆';
+            document.getElementById('goalStars').textContent = stars;
+            
+            // Days remaining
+            const target = new Date('2026-04-22');
+            const now = new Date();
+            const days = Math.max(0, Math.ceil((target - now) / 86400000));
+            document.getElementById('daysLeft').textContent = reviewed >= 5 ? '🎉 GOAL MET!' : `${days} days remaining`;
+        }
+        
+        function resetAll() {
+            if (confirm('Reset all review tracking? This cannot be undone.')) {
+                localStorage.removeItem(STORAGE_KEY);
+                render();
+            }
+        }
+        
+        render();
+    </script>
+</body>
+</html>

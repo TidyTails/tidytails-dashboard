@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directory Submission Kit — Tidy Tails STL</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #e0e0e0; padding: 20px; max-width: 900px; margin: 0 auto; }
+        
+        h1 { color: #4ade80; font-size: 1.8em; margin-bottom: 5px; }
+        .subtitle { color: #888; margin-bottom: 20px; font-size: 0.95em; }
+        
+        .progress-bar { background: #1a1a2e; border-radius: 12px; padding: 20px; margin-bottom: 25px; border: 1px solid #333; }
+        .progress-bar h2 { color: #4ade80; margin-bottom: 10px; }
+        .bar-track { background: #2a2a3e; border-radius: 8px; height: 24px; overflow: hidden; margin-bottom: 8px; }
+        .bar-fill { background: linear-gradient(90deg, #4ade80, #22d3ee); height: 100%; border-radius: 8px; transition: width 0.5s ease; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8em; color: #000; }
+        .progress-stats { display: flex; justify-content: space-between; color: #888; font-size: 0.85em; }
+        
+        .copy-block { background: #111; border: 1px solid #333; border-radius: 8px; padding: 15px; margin: 15px 0; position: relative; font-family: monospace; font-size: 0.85em; line-height: 1.6; white-space: pre-wrap; }
+        .copy-btn { position: absolute; top: 8px; right: 8px; background: #4ade80; color: #000; border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; font-size: 0.8em; font-weight: bold; }
+        .copy-btn:hover { background: #22d3ee; }
+        .copy-btn.copied { background: #666; color: #fff; }
+        
+        .tier { margin-bottom: 30px; }
+        .tier-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; padding: 12px 15px; border-radius: 8px; }
+        .tier-1 .tier-header { background: linear-gradient(135deg, #064e3b, #0a2a1a); border: 1px solid #4ade80; }
+        .tier-2 .tier-header { background: linear-gradient(135deg, #713f12, #1a1a0a); border: 1px solid #eab308; }
+        .tier-3 .tier-header { background: linear-gradient(135deg, #1e3a5f, #0a1a2e); border: 1px solid #3b82f6; }
+        .tier-4 .tier-header { background: linear-gradient(135deg, #2a2a2a, #1a1a1a); border: 1px solid #666; }
+        .tier-stl .tier-header { background: linear-gradient(135deg, #4a1942, #1a0a1a); border: 1px solid #c084fc; }
+        .tier-header h2 { font-size: 1.2em; }
+        .tier-header .badge { font-size: 0.75em; padding: 3px 8px; border-radius: 12px; font-weight: bold; }
+        .tier-1 .badge { background: #4ade80; color: #000; }
+        .tier-2 .badge { background: #eab308; color: #000; }
+        .tier-3 .badge { background: #3b82f6; color: #fff; }
+        .tier-4 .badge { background: #666; color: #fff; }
+        .tier-stl .badge { background: #c084fc; color: #000; }
+        
+        .directory-card { background: #1a1a2e; border: 1px solid #2a2a3e; border-radius: 10px; padding: 15px; margin-bottom: 12px; transition: all 0.3s; }
+        .directory-card.completed { border-color: #4ade80; background: #0a1a10; }
+        .directory-card.completed .card-title { text-decoration: line-through; color: #888; }
+        
+        .card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+        .card-checkbox { width: 22px; height: 22px; accent-color: #4ade80; cursor: pointer; }
+        .card-title { font-weight: bold; font-size: 1.05em; flex: 1; }
+        .card-time { color: #888; font-size: 0.8em; background: #2a2a3e; padding: 3px 8px; border-radius: 10px; }
+        .card-why { color: #999; font-size: 0.85em; margin: 8px 0; padding-left: 34px; }
+        .card-url { padding-left: 34px; }
+        .card-url a { color: #22d3ee; text-decoration: none; font-size: 0.85em; }
+        .card-url a:hover { text-decoration: underline; }
+        .card-steps { padding-left: 34px; margin-top: 8px; }
+        .card-steps summary { color: #4ade80; cursor: pointer; font-size: 0.85em; }
+        .card-steps ol { padding-left: 20px; margin-top: 8px; color: #bbb; font-size: 0.85em; line-height: 1.8; }
+        
+        .speed-run { background: linear-gradient(135deg, #1a0a2e, #0a1a2e); border: 2px solid #a855f7; border-radius: 12px; padding: 20px; margin: 30px 0; }
+        .speed-run h2 { color: #a855f7; margin-bottom: 10px; }
+        .speed-run p { color: #bbb; font-size: 0.9em; margin-bottom: 15px; }
+        .speed-list { list-style: none; }
+        .speed-list li { padding: 8px 0; border-bottom: 1px solid #2a2a3e; color: #ddd; display: flex; align-items: center; gap: 8px; }
+        .speed-list li:last-child { border-bottom: none; }
+        .speed-num { background: #a855f7; color: #000; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 0.8em; flex-shrink: 0; }
+        
+        .nap-warning { background: #2a1a0a; border: 2px solid #f59e0b; border-radius: 12px; padding: 20px; margin: 25px 0; }
+        .nap-warning h3 { color: #f59e0b; margin-bottom: 10px; }
+        .nap-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .nap-table td { padding: 8px; border-bottom: 1px solid #333; font-size: 0.9em; }
+        .nap-table td:first-child { color: #888; width: 100px; }
+        .nap-table td:last-child { color: #4ade80; font-family: monospace; }
+        
+        .reset-btn { background: #333; color: #888; border: none; padding: 8px 16px; border-radius: 6px; cursor: pointer; font-size: 0.8em; margin-top: 20px; }
+        .reset-btn:hover { background: #444; color: #fff; }
+        
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            h1 { font-size: 1.4em; }
+            .card-top { flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+    <h1>📋 Directory Submission Kit</h1>
+    <p class="subtitle">Go from Off-Page F → C+ in one sitting. All free. ~60 min total.</p>
+    
+    <div class="progress-bar">
+        <h2>📊 Progress</h2>
+        <div class="bar-track">
+            <div class="bar-fill" id="progressFill">0%</div>
+        </div>
+        <div class="progress-stats">
+            <span id="completedCount">0 of 25 directories</span>
+            <span id="timeEstimate">~60 min remaining</span>
+        </div>
+    </div>
+    
+    <h2 style="color:#e0e0e0; margin-bottom:10px;">📝 Copy-Paste Business Info</h2>
+    <p style="color:#888; margin-bottom:10px; font-size:0.9em;">Keep these open — paste into every directory form:</p>
+    
+    <div class="copy-block" id="biz-info">Business Name: Tidy Tails STL
+Category: Pet Waste Removal / Pet Services
+Phone: (314) 850-7140
+Website: https://tidytailsstl.com
+Email: cartervhomes@gmail.com
+Address: Florissant, MO 63031
+Hours: Mon-Sat 8AM-6PM, Sun Closed
+Owner: Jamie Carter<button class="copy-btn" onclick="copyBlock('biz-info')">Copy</button></div>
+    
+    <div class="copy-block" id="short-desc">Professional pet waste removal in St. Louis. Weekly, biweekly & monthly plans starting at $25/visit. Free first visit! 🐕💩<button class="copy-btn" onclick="copyBlock('short-desc')">Copy</button></div>
+    
+    <div class="copy-block" id="long-desc">Tidy Tails STL provides professional pet waste removal across St. Louis County and St. Charles County. We offer weekly ($25/visit), biweekly ($45), and flat-rate monthly ($70) plans — plus one-time deep cleans ($100). Locally owned by Jamie Carter. No contracts. No hidden fees. Free first visit for new customers. Call or text (314) 850-7140.<button class="copy-btn" onclick="copyBlock('long-desc')">Copy</button></div>
+    
+    <div class="copy-block" id="service-areas">St. Louis County, St. Charles County, O'Fallon, St. Peters, Florissant, Ferguson, Maryland Heights, St. Anne, Kirkwood, Webster Groves, Hazelwood, Bridgeton, Overland, Creve Coeur, Chesterfield<button class="copy-btn" onclick="copyBlock('service-areas')">Copy</button></div>
+    
+    <div class="copy-block" id="keywords">pet waste removal, dog poop pickup, pooper scooper, yard cleaning, pet waste cleanup, dog waste removal, St. Louis, STL, Florissant, O'Fallon, St. Charles, pet services<button class="copy-btn" onclick="copyBlock('keywords')">Copy</button></div>
+    
+    <div class="nap-warning">
+        <h3>⚠️ NAP Consistency = Rankings</h3>
+        <p style="color:#ddd; font-size:0.9em;">Every listing MUST match exactly. One wrong phone number can tank local SEO.</p>
+        <table class="nap-table">
+            <tr><td>Name</td><td>Tidy Tails STL</td></tr>
+            <tr><td>Phone</td><td>(314) 850-7140</td></tr>
+            <tr><td>Website</td><td>https://tidytailsstl.com</td></tr>
+            <tr><td>City/State</td><td>Florissant, MO 63031</td></tr>
+        </table>
+    </div>
+    
+    <div class="speed-run">
+        <h2>⚡ 30-Minute Speed Run</h2>
+        <p>Only have half an hour? Do these 5 in order:</p>
+        <ul class="speed-list">
+            <li><span class="speed-num">1</span> Bing Places (import from Google) — 5 min</li>
+            <li><span class="speed-num">2</span> Apple Business Connect — 10 min</li>
+            <li><span class="speed-num">3</span> Facebook Business Page — 10 min</li>
+            <li><span class="speed-num">4</span> Nextdoor Business — 5 min</li>
+            <li><span class="speed-num">5</span> YP.com — 5 min</li>
+        </ul>
+    </div>
+    
+    <div id="directories"></div>
+    
+    <button class="reset-btn" onclick="resetAll()">🔄 Reset All Progress</button>
+    
+    <script>
+        const directories = [
+            { tier: 1, name: "Apple Business Connect", url: "https://businessconnect.apple.com", time: "10 min", why: "Every iPhone user's default maps. ~55% of US smartphones.", steps: ["Sign in with Apple ID", "Search for business or Add New", "Fill all fields from copy-paste block above", "Upload logo + 3-5 photos", "Add services with pricing", "Verify (phone or postcard)"] },
+            { tier: 1, name: "Bing Places for Business", url: "https://www.bingplaces.com", time: "5 min", why: "Powers Bing, Cortana, voice search. Can import directly from Google!", steps: ["Sign in with Microsoft account", "Choose 'Import from Google Business Profile'", "Review imported info, fix gaps", "Verify"] },
+            { tier: 1, name: "Facebook Business Page", url: "https://www.facebook.com/pages/create", time: "15 min", why: "Social proof + Facebook search visibility. Enables Marketplace posting.", steps: ["Create page as 'Local Business'", "Category: 'Pet Service'", "Fill all fields from copy-paste block", "Upload profile pic + cover photo", "Add services with pricing", "Fill About with long description", "Enable messaging"] },
+            { tier: 1, name: "Nextdoor Business Page", url: "https://business.nextdoor.com", time: "10 min", why: "THE platform for local service discovery. Neighbors trust it.", steps: ["Create free business page", "Category: Pet Services", "Fill all fields", "Add service area (specific neighborhoods)", "Respond to pet-related posts"] },
+            { tier: 1, name: "Thumbtack", url: "https://www.thumbtack.com/join", time: "10 min", why: "Active lead gen — people searching for pet waste removal.", steps: ["Sign up as a pro", "Service: Pet Waste Removal", "Set service area", "Set pricing", "⚠️ Set weekly budget cap (pay-per-lead)"] },
+            { tier: 2, name: "Angi (Angie's List)", url: "https://www.angi.com/for-business", time: "10 min", why: "Trusted home services platform, good citation authority.", steps: ["Claim or create listing", "Fill all business info", "Choose Pet Services category", "Free listing (skip premium)"] },
+            { tier: 2, name: "BBB", url: "https://www.bbb.org/get-listed", time: "10 min", why: "Strong trust signal. Free listing available.", steps: ["Submit business for free listing", "Fill all fields", "Skip accreditation ($400+/yr) — free listing is fine"] },
+            { tier: 2, name: "YP.com (Yellow Pages)", url: "https://www.yp.com/free-listing", time: "5 min", why: "Old-school but strong citation source for Google.", steps: ["Add free basic listing", "Category: Pet Waste Removal", "Fill all fields"] },
+            { tier: 2, name: "Manta", url: "https://www.manta.com/claim", time: "5 min", why: "Business directory with decent domain authority.", steps: ["Search for business or add new", "Claim listing", "Fill all fields"] },
+            { tier: 2, name: "MapQuest", url: "https://business.mapquest.com", time: "5 min", why: "Auto-generated listing already exists — claim it!", steps: ["Search for Tidy Tails STL", "Claim auto-generated listing", "Update all fields to match NAP exactly"] },
+            { tier: 3, name: "BringFido", url: "https://www.bringfido.com/add-a-listing", time: "5 min", why: "Pet-specific directory. Already auto-listed — claim it.", steps: ["Search for existing listing", "Claim and update", "Add services and description"] },
+            { tier: 3, name: "PetWorks / PetSit.com", url: "https://www.petsit.com", time: "5 min", why: "Pet services directory, decent niche authority.", steps: ["Search for listing or create new", "Fill all fields", "Add service descriptions"] },
+            { tier: 3, name: "Rover.com", url: "https://www.rover.com/become-a-sitter/", time: "10 min", why: "Massive pet platform. May list under related services.", steps: ["Sign up as service provider", "List under relevant pet service category", "Set service area and pricing"] },
+            { tier: 3, name: "Care.com", url: "https://www.care.com/enroll-business", time: "10 min", why: "Large service marketplace with pet care section.", steps: ["Enroll as business", "Select pet services category", "Fill all business details"] },
+            { tier: 4, name: "Foursquare", url: "https://business.foursquare.com", time: "5 min", why: "Powers location data for Uber, Samsung, Twitter.", steps: ["Claim or create listing", "Fill all business info", "Verify"] },
+            { tier: 4, name: "Hotfrog", url: "https://www.hotfrog.com", time: "5 min", why: "Free business directory, quick citation.", steps: ["Create free listing", "Fill all fields"] },
+            { tier: 4, name: "Cylex", url: "https://www.cylex.us.com", time: "5 min", why: "Local business directory, free listing.", steps: ["Add business", "Fill all fields from copy-paste block"] },
+            { tier: 4, name: "EZlocal", url: "https://www.ezlocal.com/signup", time: "5 min", why: "Simple local directory, free tier.", steps: ["Sign up", "Add business listing", "Fill all fields"] },
+            { tier: 4, name: "Merchant Circle", url: "https://www.merchantcircle.com", time: "5 min", why: "Small business community/directory.", steps: ["Create account", "Add business", "Fill all fields"] },
+            { tier: 4, name: "Alignable", url: "https://www.alignable.com", time: "10 min", why: "LinkedIn for local businesses. Networking + directory.", steps: ["Sign up", "Create business profile", "Connect with local businesses", "Fill all fields"] },
+            { tier: "stl", name: "STL.News Business Directory", url: "#", time: "5 min", why: "St. Louis-specific, hyper-local citation.", steps: ["Search 'STL News business directory submit'", "Submit listing", "Fill all fields"] },
+            { tier: "stl", name: "Explore St. Louis", url: "https://explorestlouis.com", time: "5 min", why: "Official STL tourism/business site.", steps: ["Look for business listings section", "Submit listing", "Fill all fields"] },
+            { tier: "stl", name: "STL Chamber of Commerce", url: "https://www.stlregionalchamber.com", time: "10 min", why: "Local business credibility. Check if free listing available.", steps: ["Research membership options", "Submit free listing if available", "Fill all business details"] },
+        ];
+        
+        const tierLabels = { 1: "🟢 TIER 1 — Do First (Highest Impact)", 2: "🟡 TIER 2 — Do Next (Good Citations)", 3: "🔵 TIER 3 — Pet-Specific Directories", 4: "⚪ TIER 4 — General Directories", stl: "🏠 STL-Specific Directories" };
+        const tierClasses = { 1: "tier-1", 2: "tier-2", 3: "tier-3", 4: "tier-4", stl: "tier-stl" };
+        
+        const STORAGE_KEY = "tidytails-directories";
+        
+        function loadState() {
+            try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } 
+            catch { return {}; }
+        }
+        
+        function saveState(state) { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+        
+        function copyBlock(id) {
+            const el = document.getElementById(id);
+            const text = el.innerText.replace('Copy', '').replace('Copied!', '').trim();
+            navigator.clipboard.writeText(text);
+            const btn = el.querySelector('.copy-btn');
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        }
+        
+        function updateProgress() {
+            const state = loadState();
+            const completed = Object.values(state).filter(v => v).length;
+            const total = directories.length;
+            const pct = Math.round((completed / total) * 100);
+            
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressFill').textContent = pct + '%';
+            document.getElementById('completedCount').textContent = `${completed} of ${total} directories`;
+            
+            const remaining = directories.filter((d, i) => !state[i]);
+            const minRemaining = remaining.reduce((sum, d) => sum + parseInt(d.time), 0);
+            document.getElementById('timeEstimate').textContent = completed === total ? '🎉 All done!' : `~${minRemaining} min remaining`;
+            
+            // Update card styles
+            directories.forEach((d, i) => {
+                const card = document.getElementById(`card-${i}`);
+                if (card) {
+                    card.classList.toggle('completed', !!state[i]);
+                }
+            });
+        }
+        
+        function toggleDirectory(index) {
+            const state = loadState();
+            state[index] = !state[index];
+            saveState(state);
+            updateProgress();
+        }
+        
+        function resetAll() {
+            if (confirm('Reset all progress? This cannot be undone.')) {
+                localStorage.removeItem(STORAGE_KEY);
+                document.querySelectorAll('.card-checkbox').forEach(cb => cb.checked = false);
+                updateProgress();
+            }
+        }
+        
+        function render() {
+            const container = document.getElementById('directories');
+            const state = loadState();
+            let html = '';
+            let currentTier = null;
+            
+            directories.forEach((d, i) => {
+                if (d.tier !== currentTier) {
+                    if (currentTier !== null) html += '</div>';
+                    currentTier = d.tier;
+                    html += `<div class="tier ${tierClasses[d.tier]}">
+                        <div class="tier-header">
+                            <h2>${tierLabels[d.tier]}</h2>
+                        </div>`;
+                }
+                
+                const checked = state[i] ? 'checked' : '';
+                const completedClass = state[i] ? 'completed' : '';
+                
+                html += `
+                <div class="directory-card ${completedClass}" id="card-${i}">
+                    <div class="card-top">
+                        <input type="checkbox" class="card-checkbox" ${checked} onchange="toggleDirectory(${i})">
+                        <span class="card-title">${d.name}</span>
+                        <span class="card-time">⏱ ${d.time}</span>
+                    </div>
+                    <div class="card-why">${d.why}</div>
+                    <div class="card-url"><a href="${d.url}" target="_blank">${d.url}</a></div>
+                    <details class="card-steps">
+                        <summary>Steps ▸</summary>
+                        <ol>${d.steps.map(s => `<li>${s}</li>`).join('')}</ol>
+                    </details>
+                </div>`;
+            });
+            
+            html += '</div>';
+            container.innerHTML = html;
+            updateProgress();
+        }
+        
+        render();
+    </script>
+</body>
+</html>

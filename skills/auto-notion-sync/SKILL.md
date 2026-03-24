@@ -42,6 +42,9 @@ Based on content/filename, pick the appropriate Notion folder from the table abo
 ```
 
 ### Step 2: Create Notion Page
+⚠️ CORRECT PDF URL: `https://tidytails.github.io/tidytails-dashboard/dashboard/pdfs/[FILENAME].pdf`
+❌ WRONG URL: `https://tidytails.github.io/tidytails-dashboard/pdfs/[FILENAME].pdf` (404!)
+
 ```bash
 mcporter call notion API-post-page --args '{
   "parent": {"page_id": "[FOLDER_ID]"},
@@ -50,7 +53,7 @@ mcporter call notion API-post-page --args '{
   },
   "children": [
     {"type": "paragraph", "paragraph": {"rich_text": [{"type": "text", "text": {"content": "[DESCRIPTION]"}}]}},
-    {"type": "paragraph", "paragraph": {"rich_text": [{"type": "text", "text": {"content": "📄 Dashboard PDF: https://tidytails.github.io/tidytails-dashboard/pdfs/[FILENAME].pdf"}}]}}
+    {"type": "bookmark", "bookmark": {"url": "https://tidytails.github.io/tidytails-dashboard/dashboard/pdfs/[FILENAME].pdf"}}
   ]
 }'
 ```
@@ -74,13 +77,13 @@ For any new PDF, run this pattern:
 # 1. Determine folder based on content
 FOLDER_ID="30bccdb3-7d1f-8119-b8e5-f1d746e3471f"  # Tidy Tails example
 
-# 2. Create page
+# 2. Create page (NOTE: URL must include /dashboard/ in path!)
 mcporter call notion API-post-page --args '{
   "parent": {"page_id": "'$FOLDER_ID'"},
   "properties": {"title": [{"text": {"content": "YOUR TITLE"}}]},
   "children": [
     {"type": "paragraph", "paragraph": {"rich_text": [{"type": "text", "text": {"content": "YOUR DESCRIPTION"}}]}},
-    {"type": "paragraph", "paragraph": {"rich_text": [{"type": "text", "text": {"content": "📄 PDF: https://tidytails.github.io/tidytails-dashboard/pdfs/YOUR_FILE.pdf"}}]}}
+    {"type": "bookmark", "bookmark": {"url": "https://tidytails.github.io/tidytails-dashboard/dashboard/pdfs/YOUR_FILE.pdf"}}
   ]
 }'
 

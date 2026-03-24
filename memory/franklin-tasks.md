@@ -25,6 +25,11 @@
 
 ---
 
+### Monday 9:04 PM
+- **9:04 PM** 🚀 Q2 Week 1 Launch Kit (Apr 1-6) — Created the day-by-day execution playbook that turns the 90-day roadmap into actual copy-paste actions. Every single text, social post, GBP field, Q&A seed, and follow-up is pre-written. Interactive dashboard version (`dashboard/q2-week1-launch-kit.html`) with progress tracking, copy buttons, and scorecard. Covers: Tue=GBP completion + review text blitz, Wed=Nextdoor post, Thu=Facebook post, Fri=Instagram post, Sat=GBP updates + Q&A seeding, Sun=checkpoint scorecard. Total time: TJ 45 min + Jamie 30 min for the entire week. TL;DR section (if slammed, do these 3 things). Also audited tidytailsstl.com and scoopsoldiers.com live — site is solid (18 city pages, 8 blog posts, referral page), Scoop Soldiers still active with full STL landing page. Added as #1 glowing alert on dashboard index. **WHY THIS TASK:** Q2 starts in 8 days. The roadmap says WHAT to do but Jamie and TJ need the exact texts and scripts to execute without thinking. This kit eliminates every excuse. April 1st, open it, follow it. Done. ✅
+
+---
+
 ## March 24, 2026 (Tuesday)
 
 ### Monday 5:04 PM (logged retroactively for today)
