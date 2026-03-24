@@ -1,5 +1,5 @@
 # MEMORY.md — Franklin's Long-Term Memory
-*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 24, 2026 12:05 AM (Tue midnight — cron fixes, daily archive, memory review)*
+*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 24, 2026 1:04 AM (cron fix v3, memory cleanup, duplicate removal, lessons update)*
 
 ## Who I Am
 - **Name:** Franklin
@@ -85,7 +85,7 @@
 - **Best expansion targets:** Kirkwood + Webster Groves (I-44 Corridor, 15,500+ dog-owning households)
 
 ### The Goal
-**25-30 recurring customers by August 2025** — ⚠️ OVERDUE by 7+ months (now March 2026)
+**25-30 recurring customers** — original target was Aug 2025, now 7+ months overdue (March 2026). Still the north star. Q2 2026 roadmap targets 20 customers by June.
 
 ### Active Customers (Last verified Mar 6 — ASK TJ FOR UPDATE)
 
@@ -187,11 +187,12 @@ Assets: Landing page, pitch deck (v6), one-pager, market research.
 - **SSL is FIXED** (renewed Feb 16, valid until May 17). GSC resubmission is now the #1 blocker.
 
 ### What Actually Needs to Happen (TJ's 5-Minute Wins)
-- [ ] **Text 5 customers for Google reviews** (5 min, $0)
+- [x] **Google reviews** — 3 reviews confirmed Mar 23. Need 5+ for Map Pack.
 - [ ] **Post 1 ad in a Facebook group** (3 min, $0) — copy-paste ready in dashboard
 - [ ] **Post on Nextdoor** (5 min, $0) — 14-day launch kit ready
 - [ ] **Submit to 5 directories** (45 min) — citation tracker ready
-- [ ] **Launch $7/day Facebook Ads** (30 min) — full campaign kit ready
+- [ ] **Complete GBP to 100%** (30 min) — GBP wizard ready. HIGHEST PRIORITY.
+- [ ] **Launch $7/day Facebook Ads** (30 min) — full campaign kit ready (AFTER GBP + reviews)
 
 ### What Franklin Should Focus On
 - **STOP BUILDING TOOLKITS.** 27 curated tools remain after declutter. The problem is execution, not tooling.
@@ -291,7 +292,8 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 - **Mar 21:** TJ frustrated guides hidden in memory/ → **NEW RULE: PDF in chat + dashboard link.** Dashboard redesigned to 3 modes (TODAY/TOOLS/ARCHIVE).
 - **Mar 22:** RECORD DAY — 20 autonomous tasks. Dashboard declutter (144→28 files). Memory consolidated (43→21 active files). 6 ghost pages found (never deployed). Blog dedup fix. Telegram Topics configured (6-topic group). Paw-ty prep, GBP wizard, Mon call sheet, shed listings, community playbook, referral kit, scoop-day checklist, competitor battlemap — all built + shipped. Week-end archive completed 11 PM.
 - **Mar 23:** SPRING BLITZ WEEK 1 LAUNCH. 15+ autonomous tasks. Built: Scoop Soldiers battlecard, website CRO audit (C+ grade), lead response system, speed-to-lead templates, I-44 corridor expansion leads, Spring Blitz playbook (6-week plan), Week 1 launch kit, dead competitor capture kit, competitive pricing cheat sheet, directory citation blitz (25 directories), GBP optimization package (complete copy-paste guide), shed ads Mar 24-30, scoop day marketing machine, morning briefing, referral program kit, Q2 90-day roadmap, review generation tracker. Dog Doody Defenders confirmed DEAD (DNS gone). Scoop Soldiers CONFIRMED active in STL (triple-verified). Market consolidating fast. TJ confirmed 3 Google reviews ✅. GBP still INVISIBLE on Maps (7% complete, brand collision). TJ reported bugs: Notion PDFs not clickable (wrong URLs), shed ad cron sends summaries not copy. Both fixed. EOD cron and Weekly Review cron fixed (were failing on Telegram delivery). 10 dead one-shot crons removed. Memory archived at EOD.
-- **⚠️ Brave Search API:** Free plan quota EXHAUSTED (2000/2000) as of Mar 23. Web searches unavailable until quota resets. Impacts: competitive monitoring, security scans, morning briefing research.
+- **⚠️ Brave Search API:** Free plan quota EXHAUSTED (2000/2000) as of Mar 23. Resets monthly. Impacts: competitive monitoring, security scans, morning briefing research, hourly tasks. Consider upgrading ($5/mo for 5000 queries) or rationing harder.
+- **Mar 24:** Memory maintenance + cron fix (v3). EOD and Weekly Review crons still failing despite "nuclear" Telegram warnings in prompts. New approach: removed ALL Telegram mentions from prompts entirely. Theory: mentioning Telegram at all (even "don't use it") triggers the agent to try. Working crons (Morning Briefing, Shed Ads) never mention Telegram and work fine.
 
 ---
 
@@ -310,10 +312,11 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 12. **Pet waste = demand CREATION, not capture.** Most people don't search for it. Facebook shows them it exists. Google captures the ones who saw your FB ad then searched.
 13. **Lumber hit $600/MBF** (Mar 17) — up 22% in 11 days. 45% tariffs + 1.3B board feet removed from supply. "Today's price is tomorrow's discount" is now verifiable math.
 14. **Cron tasks compound but don't convert.** 12 deliverables in one day doesn't help if none get deployed. Future hourly tasks should skew toward maintenance/monitoring, not new content.
-15. **Cron Telegram delivery:** Agent sessions MUST NOT call the message tool. Cron delivery handles Telegram automatically from summary output. Updated all cron prompts with "ABSOLUTE RULE — NO TELEGRAM" block (Mar 24). Previous softer instructions were ignored.
+15. **Cron Telegram delivery:** The LESS you mention Telegram in cron prompts, the better. "ABSOLUTE RULE — NO TELEGRAM" was IGNORED across 4+ attempts. New approach (Mar 24 1AM): removed all Telegram mentions entirely. Working crons never mention Telegram. The word itself seems to trigger agent sessions to try calling the message tool.
 16. **Brave Search API is on a free plan (2000 queries/month).** Heavy autonomous task usage exhausts it fast. Consider upgrading or rationing.
 17. **TJ can't access memory/ files.** Guides saved there are invisible. NEW RULE (Mar 21): Everything for TJ → PDF in Telegram chat AND dashboard link. No more hidden docs.
 18. **Dashboard redesigned to 3 modes (Mar 21).** TODAY (action items), TOOLS (organized by category), ARCHIVE (searchable). 97 files → 3 clean tabs. This is the UX layer that makes everything else usable.
+19. **1 AM = maintenance, not creation.** Don't build new content at 1 AM. Fix crons, clean memory, archive logs. Save creation for daytime crons.
 
 ---
 
