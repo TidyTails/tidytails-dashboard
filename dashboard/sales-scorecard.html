@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>📊 Daily Sales Scorecard | Tidy Tails</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg:#0a0a0a; --bg2:#111; --bg3:#1a1a1a; --bg4:#242424;
+    --text:#f5f5f5; --text2:#999; --text3:#555;
+    --orange:#ff6b35; --green:#10b981; --blue:#3b82f6;
+    --yellow:#fbbf24; --red:#ef4444; --purple:#8b5cf6;
+    --border:#2a2a2a; --radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-tap-highlight-color:transparent;}
+a{color:var(--orange);text-decoration:none;}
+
+.header{background:linear-gradient(135deg,#0d1a10,#1a1510);border-bottom:1px solid var(--border);padding:1.25rem 1.5rem;text-align:center;position:sticky;top:0;z-index:100;backdrop-filter:blur(12px);}
+.header h1{font-size:1.35rem;font-weight:800;letter-spacing:-0.03em;}
+.header h1 span{color:var(--green);}
+.header-sub{color:var(--text2);font-size:0.8rem;margin-top:0.25rem;}
+.header-nav{display:flex;justify-content:center;gap:0.5rem;margin-top:0.75rem;}
+.header-nav a{padding:0.35rem 0.75rem;border-radius:8px;font-size:0.75rem;font-weight:600;background:rgba(16,185,129,0.12);color:var(--green);transition:all 0.2s;}
+.header-nav a:hover{filter:brightness(1.3);}
+
+.container{max-width:600px;margin:0 auto;padding:1rem;}
+
+/* Today's Score */
+.score-hero{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:1rem;text-align:center;}
+.score-date{font-size:0.8rem;color:var(--text2);margin-bottom:0.5rem;}
+.score-ring{position:relative;width:140px;height:140px;margin:0 auto 1rem;}
+.score-ring svg{transform:rotate(-90deg);}
+.score-ring .bg-ring{fill:none;stroke:var(--bg4);stroke-width:10;}
+.score-ring .fg-ring{fill:none;stroke:var(--green);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset 0.8s ease, stroke 0.3s;}
+.score-number{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'JetBrains Mono',monospace;font-size:2.2rem;font-weight:800;}
+.score-label{font-size:0.75rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.1em;}
+.score-streak{margin-top:0.75rem;font-size:0.85rem;font-weight:600;}
+.streak-fire{color:var(--orange);}
+.streak-ice{color:var(--blue);}
+
+/* Activity Grid */
+.activity-section{margin-bottom:1.5rem;}
+.section-title{font-size:0.9rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;}
+.section-title .count{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text2);background:var(--bg4);padding:0.1rem 0.5rem;border-radius:4px;}
+
+.activity-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:0.85rem 1rem;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.75rem;transition:all 0.2s;}
+.activity-card:active{transform:scale(0.98);}
+.activity-icon{font-size:1.3rem;width:36px;text-align:center;flex-shrink:0;}
+.activity-info{flex:1;min-width:0;}
+.activity-name{font-weight:700;font-size:0.9rem;}
+.activity-target{font-size:0.75rem;color:var(--text2);}
+.activity-counter{display:flex;align-items:center;gap:0.4rem;flex-shrink:0;}
+.counter-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:var(--bg3);color:var(--text);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;font-family:'Inter',sans-serif;font-weight:700;-webkit-tap-highlight-color:transparent;}
+.counter-btn:hover{background:var(--bg4);}
+.counter-btn:active{background:var(--green);color:#000;border-color:var(--green);}
+.counter-btn.minus:active{background:var(--red);border-color:var(--red);}
+.counter-val{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:800;min-width:28px;text-align:center;}
+.counter-val.hit{color:var(--green);}
+.counter-val.zero{color:var(--text3);}
+
+/* Quick Log */
+.quick-log{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;margin-bottom:1.5rem;}
+.quick-log h3{font-size:0.85rem;font-weight:700;margin-bottom:0.75rem;display:flex;align-items:center;gap:0.5rem;}
+.log-input-row{display:flex;gap:0.5rem;}
+.log-input{flex:1;padding:0.6rem 0.75rem;background:var(--bg3);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:'Inter',sans-serif;font-size:0.9rem;}
+.log-input:focus{outline:none;border-color:var(--green);}
+.log-btn{padding:0.6rem 1rem;background:var(--green);color:#000;border:none;border-radius:8px;font-family:'Inter',sans-serif;font-weight:700;cursor:pointer;font-size:0.85rem;}
+.log-btn:active{filter:brightness(0.9);}
+.log-entries{margin-top:0.75rem;max-height:200px;overflow-y:auto;}
+.log-entry{padding:0.5rem 0;border-bottom:1px solid var(--border);font-size:0.82rem;display:flex;justify-content:space-between;align-items:center;}
+.log-entry:last-child{border-bottom:none;}
+.log-time{color:var(--text3);font-family:'JetBrains Mono',monospace;font-size:0.7rem;flex-shrink:0;}
+.log-text{flex:1;margin:0 0.5rem;}
+.log-delete{cursor:pointer;color:var(--text3);font-size:0.7rem;padding:0.2rem;}
+.log-delete:hover{color:var(--red);}
+
+/* Weekly Chart */
+.chart-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;margin-bottom:1.5rem;}
+.chart-section h3{font-size:0.85rem;font-weight:700;margin-bottom:0.75rem;}
+.chart-row{display:flex;align-items:center;gap:0.5rem;margin-bottom:0.4rem;}
+.chart-day{font-size:0.7rem;color:var(--text2);width:32px;font-weight:600;flex-shrink:0;}
+.chart-bar-bg{flex:1;height:24px;background:var(--bg4);border-radius:4px;overflow:hidden;position:relative;}
+.chart-bar{height:100%;border-radius:4px;transition:width 0.5s ease;display:flex;align-items:center;padding-left:6px;}
+.chart-bar-val{font-family:'JetBrains Mono',monospace;font-size:0.65rem;font-weight:700;color:#000;white-space:nowrap;}
+.chart-target-line{position:absolute;right:0;top:0;bottom:0;width:2px;background:var(--orange);opacity:0.6;}
+
+/* Milestones */
+.milestones{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;margin-bottom:1.5rem;}
+.milestones h3{font-size:0.85rem;font-weight:700;margin-bottom:0.75rem;}
+.milestone{display:flex;align-items:center;gap:0.75rem;padding:0.6rem 0;border-bottom:1px solid var(--border);}
+.milestone:last-child{border-bottom:none;}
+.ms-icon{font-size:1.2rem;width:30px;text-align:center;}
+.ms-info{flex:1;}
+.ms-name{font-weight:600;font-size:0.85rem;}
+.ms-desc{font-size:0.75rem;color:var(--text2);}
+.ms-status{font-family:'JetBrains Mono',monospace;font-size:0.75rem;font-weight:700;flex-shrink:0;}
+.ms-done{color:var(--green);}
+.ms-progress{color:var(--yellow);}
+.ms-locked{color:var(--text3);}
+
+/* History */
+.history-section{margin-bottom:2rem;}
+.history-day{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:0.85rem 1rem;margin-bottom:0.5rem;display:flex;align-items:center;justify-content:space-between;cursor:pointer;transition:all 0.2s;}
+.history-day:hover{border-color:var(--green);}
+.history-date{font-weight:700;font-size:0.85rem;}
+.history-score{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:800;}
+.history-acts{font-size:0.75rem;color:var(--text2);}
+
+/* Toast */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);padding:0.75rem 1.5rem;border-radius:8px;font-weight:600;z-index:9999;opacity:0;transition:all 0.3s ease;pointer-events:none;font-size:0.85rem;}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+.toast-green{background:var(--green);color:#000;}
+.toast-orange{background:var(--orange);color:#fff;}
+
+/* Tab bar */
+.tab-bar{display:flex;gap:0;background:var(--bg2);border-bottom:1px solid var(--border);position:sticky;top:62px;z-index:99;}
+.tab-btn{flex:1;padding:0.7rem;font-family:'Inter',sans-serif;font-size:0.8rem;font-weight:700;background:transparent;color:var(--text2);border:none;cursor:pointer;border-bottom:3px solid transparent;text-align:center;transition:all 0.2s;}
+.tab-btn.active{color:var(--green);border-bottom-color:var(--green);}
+.tab-btn:hover:not(.active){color:var(--text);}
+.tab-content{display:none;}
+.tab-content.active{display:block;}
+
+/* Confetti */
+@keyframes confetti-fall{0%{transform:translateY(-10px) rotate(0deg);opacity:1;}100%{transform:translateY(100vh) rotate(720deg);opacity:0;}}
+.confetti{position:fixed;top:-10px;width:8px;height:8px;border-radius:2px;z-index:10000;animation:confetti-fall 2s ease-out forwards;pointer-events:none;}
+
+@media(max-width:400px){
+    .counter-btn{width:32px;height:32px;font-size:1rem;}
+    .score-ring{width:120px;height:120px;}
+    .score-number{font-size:1.8rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+    <h1>📊 Daily Sales <span>Scorecard</span></h1>
+    <div class="header-sub">Track the activities that drive growth</div>
+    <div class="header-nav">
+        <a href="index.html">← Dashboard</a>
+        <a href="tidy-tails-crm.html">👥 CRM</a>
+        <a href="april-2026-marketing-calendar.html">📅 Calendar</a>
+    </div>
+</div>
+
+<div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('today')">📊 Today</button>
+    <button class="tab-btn" onclick="switchTab('week')">📈 This Week</button>
+    <button class="tab-btn" onclick="switchTab('history')">🗂 History</button>
+</div>
+
+<!-- TODAY TAB -->
+<div class="tab-content active" id="tab-today">
+<div class="container">
+
+    <!-- Score Ring -->
+    <div class="score-hero">
+        <div class="score-date" id="todayDate"></div>
+        <div class="score-ring">
+            <svg width="140" height="140" viewBox="0 0 140 140">
+                <circle class="bg-ring" cx="70" cy="70" r="60"/>
+                <circle class="fg-ring" id="scoreRing" cx="70" cy="70" r="60" stroke-dasharray="377" stroke-dashoffset="377"/>
+            </svg>
+            <div class="score-number" id="scoreNumber">0</div>
+        </div>
+        <div class="score-label">Today's Score</div>
+        <div class="score-streak" id="streakDisplay"></div>
+    </div>
+
+    <!-- Outreach Activities -->
+    <div class="activity-section">
+        <div class="section-title">🎯 Outreach <span class="count" id="outreachCount">0 / 5</span></div>
+
+        <div class="activity-card" data-key="doors_knocked">
+            <div class="activity-icon">🚪</div>
+            <div class="activity-info">
+                <div class="activity-name">Doors Knocked</div>
+                <div class="activity-target">Target: 10/day on blitz days</div>
+            </div>
+            <div class="activity-counter">
+                <button class="counter-btn minus" onclick="decrement('doors_knocked')">−</button>
+                <div class="counter-val zero" id="val_doors_knocked">0</div>
+                <button class="counter-btn" onclick="increment('doors_knocked')">+</button>
+            </div>
+        </div>
+
+        <div class="activity-card" data-key="flyers_distributed">
+            <div class="activity-icon">📄</div>
+            <div class="activity-info">
+                <div class="activity-name">Flyers / Door Hangers</div>
+                <div class="activity-target">Target: 20/week</div>
+            </div>
+            <div class="activity-counter">
+                <button class="counter-btn minus" onclick="decrement('flyers_distributed')">−</button>
+                <div class="counter-val zero" id="val_flyers_distributed">0</div>
+                <button class="counter-btn" onclick="increment('flyers_distributed')">+</button>
+            </div>
+        </div>
+
+        <div class="activity-card" data-key="nextdoor_posts">
+            <div class="activity-icon">🏘️</div>
+            <div class="activity-info">
+                <div class="activity-name">Nextdoor Posts</div>
+                <div class="activity-target">Target: 3/week</div>
+            </div>
+            <div class="activity-counter">
+                <button class="counter-btn minus" onclick="decrement('nextdoor_posts')">−</button>
+                <div class="counter-val zero" id="val_nextdoor_posts">0</div>
+                <button class="counter-btn" onclick="increment('nextdoor_posts')">+</button>
+            </div>
+        </div>
+
+        <div class="activity-card" data-key="fb_posts">
+            <div class="activity-icon">📱</div>
+            <div class="activity-info">
+                <div class="activity-name">Facebook / IG Posts</div>
+                <div class="activity-target">Target: 3/week</div>
+            </div>
+            <div class="activity-counter">
+                <button class="counter-btn minus" onclick="decrement('fb_posts')">−</button>
+                <div class="counter-val zero" id="val_fb_posts">0</div>
+                <button class="counter-btn" onclick="increment('fb_posts')">+</button>
+            </div>
+        </div>
+
+        <div class="activity-card" data-key="gbp_posts">
+            <div class="activity-icon">📍</div>
+            <div class="activity-info">
+                <div class="activity-name">GBP Posts / Updates</div>
+                <div class="activity-target">Target: 1/week</div>
+            </div>
+            <div class="activity-counter">
+                <button class="counter-btn minus" onclick="decrement('gbp_posts')">−</button>
+                <div class="counter-val zero" id="val_gbp_posts">0</div>
+                <button class="counter-btn" onclick="increment('gbp_posts')">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Follow-Up Activities -->
+    <div class="activity-section">
+        <div class="section-title">📞 Follow-Ups <span class="count" id="followupCount">0 / 3</span></div>
+
+        <div class="activity-card" data-key="follow_up_texts">
+            <div class="activity-icon">💬</div>
+            <div class="activity-info">
+                <div class="activity-name">Lead Follow-Up Texts</div>
+                <div class="activity-target">Target: 3/day</div>
+            </div>
+            <div class="activity-counter">
+                <button class="counter-btn minus" onclick="decrement('follow_up_texts')">−</button>
+                <div class="counter-val zero" id="val_follow_up_texts">0</div>
+                <button class="counter-btn" onclick="increment('follow_up_texts')">+</button>
+            </div>
+        </div>
+
+        <div class="activity-card" data-key="calls_made">
+            <div class="activity-icon">📞</div>
+            <div class="activity-info">
+                <div class="activity-name">Calls Made</div>
+                <div class="activity-target">Target: 5/day</div>
+            </div>
+            <div class="activity-counter">
+                <button class="counter-btn minus" onclick="decrement('calls_made')">−</button>
+                <div class="counter-val zero" id="val_calls_made">0</div>
+                <button class="counter-btn" onclick="increment('calls_made')">+</button>
+            </div>
+        </div>
+
+        <div class="activity-card" data-key="quotes_sent">
+            <div class="activity-icon">💰</div>
+            <div class="activity-info">
+                <div class="activity-name">Quotes Sent</div>
+                <div class="activity-target">Target: 2/day</div>
+            </div>
+            <div class="activity-counter">
+                <button class="counter-btn minus" onclick="decrement('quotes_sent')">−</button>
+                <div class="counter-val zero" id="val_quotes_sent">0</div>
+                <button class="counter-btn" onclick="increment('quotes_sent')">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reviews & Referrals -->
+    <div class="activity-section">
+        <div class="section-title">⭐ Reviews & Referrals <span class="count" id="reviewCount">0</span></div>
+
+        <div class="activity-card" data-key="review_asks">
+            <div class="activity-icon">⭐</div>
+            <div class="activity-info">
+                <div class="activity-name">Review Requests Sent</div>
+                <div class="activity-target">Ask every customer after service</div>
+            </div>
+            <div class="activity-counter">
+                <button class="counter-btn minus" onclick="decrement('review_asks')">−</button>
+                <div class="counter-val zero" id="val_review_asks">0</div>
+                <button class="counter-btn" onclick="increment('review_asks')">+</button>
+            </div>
+        </div>
+
+        <div class="activity-card" data-key="reviews_received">
+            <div class="activity-icon">🌟</div>
+            <div class="activity-info">
+                <div class="activity-name">Reviews Received</div>
+                <div class="activity-target">Goal: 5+ total on Google</div>
+            </div>
+            <div class="activity-counter">
+                <button class="counter-btn minus" onclick="decrement('reviews_received')">−</button>
+                <div class="counter-val zero" id="val_reviews_received">0</div>
+                <button class="counter-btn" onclick="increment('reviews_received')">+</button>
+            </div>
+        </div>
+
+        <div class="activity-card" data-key="referral_asks">
+            <div class="activity-icon">🤝</div>
+            <div class="activity-info">
+                <div class="activity-name">Referral Asks</div>
+                <div class="activity-target">Ask happy customers for referrals</div>
+            </div>
+            <div class="activity-counter">
+                <button class="counter-btn minus" onclick="decrement('referral_asks')">−</button>
+                <div class="counter-val zero" id="val_referral_asks">0</div>
+                <button class="counter-btn" onclick="increment('referral_asks')">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Commercial -->
+    <div class="activity-section">
+        <div class="section-title">🏢 Commercial Outreach <span class="count" id="commercialCount">0</span></div>
+
+        <div class="activity-card" data-key="commercial_contacts">
+            <div class="activity-icon">🏢</div>
+            <div class="activity-info">
+                <div class="activity-name">Commercial Contacts Made</div>
+                <div class="activity-target">Property mgrs, HOAs, apartments</div>
+            </div>
+            <div class="activity-counter">
+                <button class="counter-btn minus" onclick="decrement('commercial_contacts')">−</button>
+                <div class="counter-val zero" id="val_commercial_contacts">0</div>
+                <button class="counter-btn" onclick="increment('commercial_contacts')">+</button>
+            </div>
+        </div>
+
+        <div class="activity-card" data-key="commercial_proposals">
+            <div class="activity-icon">📋</div>
+            <div class="activity-info">
+                <div class="activity-name">Commercial Proposals Sent</div>
+                <div class="activity-target">1 commercial = 5-10 residential</div>
+            </div>
+            <div class="activity-counter">
+                <button class="counter-btn minus" onclick="decrement('commercial_proposals')">−</button>
+                <div class="counter-val zero" id="val_commercial_proposals">0</div>
+                <button class="counter-btn" onclick="increment('commercial_proposals')">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Log -->
+    <div class="quick-log">
+        <h3>📝 Quick Notes</h3>
+        <div class="log-input-row">
+            <input class="log-input" id="logInput" type="text" placeholder="Lead name, what happened, hot prospect..." maxlength="200">
+            <button class="log-btn" onclick="addLogEntry()">Add</button>
+        </div>
+        <div class="log-entries" id="logEntries"></div>
+    </div>
+
+</div>
+</div>
+
+<!-- WEEK TAB -->
+<div class="tab-content" id="tab-week">
+<div class="container">
+
+    <div class="chart-section">
+        <h3>📈 This Week's Activity</h3>
+        <div id="weekChart"></div>
+    </div>
+
+    <!-- Weekly Totals -->
+    <div class="chart-section">
+        <h3>🔢 Weekly Totals</h3>
+        <div id="weeklyTotals" style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;"></div>
+    </div>
+
+    <!-- Milestones -->
+    <div class="milestones">
+        <h3>🏆 Milestones</h3>
+        <div id="milestoneList"></div>
+    </div>
+
+</div>
+</div>
+
+<!-- HISTORY TAB -->
+<div class="tab-content" id="tab-history">
+<div class="container">
+    <div class="history-section">
+        <div class="section-title">🗂 Past Days</div>
+        <div id="historyList"></div>
+    </div>
+    <div style="text-align:center;margin:1rem 0;">
+        <button class="log-btn" onclick="exportAll()" style="background:var(--blue);">📤 Export All Data</button>
+        <button class="log-btn" onclick="document.getElementById('importFile').click()" style="background:var(--purple);margin-left:0.5rem;">📥 Import</button>
+        <input type="file" id="importFile" accept=".json" style="display:none" onchange="importAll(event)">
+    </div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── DATA STRUCTURE ───
+const ACTIVITIES = [
+    'doors_knocked','flyers_distributed','nextdoor_posts','fb_posts','gbp_posts',
+    'follow_up_texts','calls_made','quotes_sent',
+    'review_asks','reviews_received','referral_asks',
+    'commercial_contacts','commercial_proposals'
+];
+
+const TARGETS = {
+    doors_knocked:10, flyers_distributed:5, nextdoor_posts:1, fb_posts:1, gbp_posts:1,
+    follow_up_texts:3, calls_made:5, quotes_sent:2,
+    review_asks:2, reviews_received:1, referral_asks:1,
+    commercial_contacts:2, commercial_proposals:1
+};
+
+const POINTS = {
+    doors_knocked:1, flyers_distributed:1, nextdoor_posts:3, fb_posts:2, gbp_posts:3,
+    follow_up_texts:2, calls_made:2, quotes_sent:5,
+    review_asks:3, reviews_received:10, referral_asks:3,
+    commercial_contacts:3, commercial_proposals:8
+};
+
+const MILESTONES = [
+    {name:'First Step',desc:'Log your first activity',icon:'👣',check:d=>d.totalActivities>=1},
+    {name:'Hustle Mode',desc:'Score 20+ in a single day',icon:'🔥',check:d=>d.bestDay>=20},
+    {name:'Review Machine',desc:'Get 5 Google reviews total',icon:'⭐',check:d=>d.totalReviews>=5},
+    {name:'Door Warrior',desc:'Knock 50 doors total',icon:'🚪',check:d=>d.totalDoors>=50},
+    {name:'Quote King',desc:'Send 20 quotes total',icon:'💰',check:d=>d.totalQuotes>=20},
+    {name:'7-Day Streak',desc:'Log activities 7 days in a row',icon:'🔥',check:d=>d.streak>=7},
+    {name:'Commercial Closer',desc:'Send 5 commercial proposals',icon:'🏢',check:d=>d.totalCommercial>=5},
+    {name:'Century Club',desc:'Score 100+ total points',icon:'💯',check:d=>d.totalScore>=100},
+    {name:'Social Pro',desc:'Make 20 social posts total',icon:'📱',check:d=>d.totalSocial>=20},
+    {name:'Thousand Club',desc:'Score 1000+ total points',icon:'🏆',check:d=>d.totalScore>=1000},
+];
+
+// ─── STORAGE ───
+function getKey(date){return 'scorecard_'+date;}
+function today(){return new Date().toISOString().slice(0,10);}
+function getTodayData(){
+    const d = localStorage.getItem(getKey(today()));
+    if(d) return JSON.parse(d);
+    const fresh = {date:today(),activities:{},logs:[]};
+    ACTIVITIES.forEach(a=>fresh.activities[a]=0);
+    return fresh;
+}
+function saveTodayData(data){localStorage.setItem(getKey(today()),JSON.stringify(data));}
+function getAllDates(){
+    const dates=[];
+    for(let i=0;i<localStorage.length;i++){
+        const k=localStorage.key(i);
+        if(k.startsWith('scorecard_2'))dates.push(k.replace('scorecard_',''));
+    }
+    return dates.sort().reverse();
+}
+function getDayData(date){
+    const d=localStorage.getItem(getKey(date));
+    return d?JSON.parse(d):null;
+}
+
+// ─── SCORING ───
+function calcScore(activities){
+    let score=0;
+    ACTIVITIES.forEach(a=>{score+=((activities[a]||0)*POINTS[a]);});
+    return score;
+}
+function calcTotalActivities(activities){
+    let t=0;
+    ACTIVITIES.forEach(a=>{t+=(activities[a]||0);});
+    return t;
+}
+function getMaxPossibleScore(){
+    let m=0;
+    ACTIVITIES.forEach(a=>{m+=(TARGETS[a]*POINTS[a]);});
+    return m;
+}
+
+// ─── RENDERING ───
+let currentData = getTodayData();
+
+function render(){
+    // Date
+    const d = new Date(today()+'T12:00:00');
+    document.getElementById('todayDate').textContent = d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});
+
+    // Activities
+    const acts = currentData.activities;
+    ACTIVITIES.forEach(a=>{
+        const el = document.getElementById('val_'+a);
+        if(!el) return;
+        const v = acts[a]||0;
+        el.textContent = v;
+        el.className = 'counter-val '+(v>0?'hit':'zero');
+    });
+
+    // Section counts
+    const outreach = (acts.doors_knocked||0)+(acts.flyers_distributed||0)+(acts.nextdoor_posts||0)+(acts.fb_posts||0)+(acts.gbp_posts||0);
+    document.getElementById('outreachCount').textContent = outreach+' / 5 types';
+    const followup = (acts.follow_up_texts||0)+(acts.calls_made||0)+(acts.quotes_sent||0);
+    document.getElementById('followupCount').textContent = followup+' done';
+    const review = (acts.review_asks||0)+(acts.reviews_received||0)+(acts.referral_asks||0);
+    document.getElementById('reviewCount').textContent = review+' done';
+    const commercial = (acts.commercial_contacts||0)+(acts.commercial_proposals||0);
+    document.getElementById('commercialCount').textContent = commercial+' done';
+
+    // Score ring
+    const score = calcScore(acts);
+    const maxScore = getMaxPossibleScore();
+    const pct = Math.min(score/maxScore,1);
+    const ring = document.getElementById('scoreRing');
+    const circ = 2*Math.PI*60; // ~377
+    ring.style.strokeDashoffset = circ*(1-pct);
+    ring.style.stroke = pct>=1?'var(--orange)':pct>=0.5?'var(--green)':pct>=0.25?'var(--yellow)':'var(--text3)';
+    document.getElementById('scoreNumber').textContent = score;
+
+    // Streak
+    renderStreak();
+
+    // Logs
+    renderLogs();
+
+    saveTodayData(currentData);
+}
+
+function renderStreak(){
+    const dates = getAllDates();
+    let streak = 0;
+    const todayStr = today();
+    for(let i=0;i<dates.length;i++){
+        const dd = getDayData(dates[i]);
+        if(!dd || calcTotalActivities(dd.activities)===0){
+            if(dates[i]===todayStr) continue; // today can still be zero
+            break;
+        }
+        streak++;
+    }
+    const el = document.getElementById('streakDisplay');
+    if(streak>=2){
+        el.innerHTML = '<span class="streak-fire">🔥 '+streak+'-day streak!</span>';
+    } else if(streak===1){
+        el.innerHTML = '<span class="streak-fire">🔥 Keep it going tomorrow!</span>';
+    } else {
+        el.innerHTML = '<span class="streak-ice">Start your streak — log an activity!</span>';
+    }
+}
+
+function renderLogs(){
+    const el = document.getElementById('logEntries');
+    const logs = currentData.logs||[];
+    if(!logs.length){el.innerHTML='<div style="font-size:0.8rem;color:var(--text3);padding:0.5rem 0;">No notes yet today</div>';return;}
+    el.innerHTML = logs.map((l,i)=>`
+        <div class="log-entry">
+            <span class="log-time">${l.time}</span>
+            <span class="log-text">${esc(l.text)}</span>
+            <span class="log-delete" onclick="deleteLog(${i})">✕</span>
+        </div>
+    `).join('');
+}
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+// ─── INTERACTIONS ───
+function increment(key){
+    currentData.activities[key]=(currentData.activities[key]||0)+1;
+    render();
+    // Check for milestone unlocks
+    checkMilestones();
+}
+function decrement(key){
+    if((currentData.activities[key]||0)>0){
+        currentData.activities[key]--;
+        render();
+    }
+}
+function addLogEntry(){
+    const input = document.getElementById('logInput');
+    const text = input.value.trim();
+    if(!text) return;
+    const now = new Date();
+    const time = now.toLocaleTimeString('en-US',{hour:'numeric',minute:'2-digit'});
+    if(!currentData.logs) currentData.logs=[];
+    currentData.logs.unshift({time,text});
+    input.value='';
+    render();
+    showToast('Note saved','green');
+}
+function deleteLog(i){
+    currentData.logs.splice(i,1);
+    render();
+}
+
+// Enter key for log
+document.getElementById('logInput').addEventListener('keydown',e=>{if(e.key==='Enter')addLogEntry();});
+
+// ─── TABS ───
+function switchTab(tab){
+    document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.getElementById('tab-'+tab).classList.add('active');
+    document.querySelectorAll('.tab-btn')[['today','week','history'].indexOf(tab)].classList.add('active');
+    if(tab==='week') renderWeek();
+    if(tab==='history') renderHistory();
+}
+
+// ─── WEEK TAB ───
+function getWeekDates(){
+    const d = new Date();
+    const day = d.getDay();
+    const mon = new Date(d);
+    mon.setDate(d.getDate()-(day===0?6:day-1));
+    const dates=[];
+    for(let i=0;i<7;i++){
+        const dd = new Date(mon);
+        dd.setDate(mon.getDate()+i);
+        dates.push(dd.toISOString().slice(0,10));
+    }
+    return dates;
+}
+
+function renderWeek(){
+    const dates = getWeekDates();
+    const dayNames = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+    const maxScore = getMaxPossibleScore();
+
+    let chartHTML='';
+    let weekTotals = {};
+    ACTIVITIES.forEach(a=>weekTotals[a]=0);
+
+    dates.forEach((date,i)=>{
+        const dd = getDayData(date);
+        const score = dd ? calcScore(dd.activities) : 0;
+        const pct = Math.min((score/maxScore)*100,100);
+        const isToday = date===today();
+        const color = score===0?'var(--bg4)':pct>=70?'var(--green)':pct>=40?'var(--yellow)':'var(--orange)';
+
+        chartHTML+=`<div class="chart-row">
+            <div class="chart-day" style="${isToday?'color:var(--green);font-weight:800;':''}">${dayNames[i]}</div>
+            <div class="chart-bar-bg">
+                <div class="chart-bar" style="width:${Math.max(pct,2)}%;background:${color};">
+                    ${score>0?`<span class="chart-bar-val">${score}</span>`:''}
+                </div>
+            </div>
+        </div>`;
+
+        if(dd){ACTIVITIES.forEach(a=>{weekTotals[a]+=(dd.activities[a]||0);});}
+    });
+    document.getElementById('weekChart').innerHTML=chartHTML;
+
+    // Weekly totals
+    const labels = {
+        doors_knocked:'🚪 Doors',flyers_distributed:'📄 Flyers',nextdoor_posts:'🏘️ Nextdoor',
+        fb_posts:'📱 FB/IG',gbp_posts:'📍 GBP',follow_up_texts:'💬 Texts',
+        calls_made:'📞 Calls',quotes_sent:'💰 Quotes',review_asks:'⭐ Review Asks',
+        reviews_received:'🌟 Reviews Got',referral_asks:'🤝 Referrals',
+        commercial_contacts:'🏢 Commercial',commercial_proposals:'📋 Proposals'
+    };
+    let totalsHTML='';
+    ACTIVITIES.forEach(a=>{
+        const v=weekTotals[a];
+        totalsHTML+=`<div style="background:var(--bg3);border-radius:8px;padding:0.5rem;text-align:center;">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:800;color:${v>0?'var(--green)':'var(--text3)'};">${v}</div>
+            <div style="font-size:0.7rem;color:var(--text2);">${labels[a]||a}</div>
+        </div>`;
+    });
+    document.getElementById('weeklyTotals').innerHTML=totalsHTML;
+
+    // Milestones
+    renderMilestones();
+}
+
+function renderMilestones(){
+    const stats = calcLifetimeStats();
+    let html='';
+    MILESTONES.forEach(m=>{
+        const done = m.check(stats);
+        html+=`<div class="milestone">
+            <div class="ms-icon">${m.icon}</div>
+            <div class="ms-info"><div class="ms-name">${m.name}</div><div class="ms-desc">${m.desc}</div></div>
+            <div class="ms-status ${done?'ms-done':'ms-locked'}">${done?'✅':'🔒'}</div>
+        </div>`;
+    });
+    document.getElementById('milestoneList').innerHTML=html;
+}
+
+function calcLifetimeStats(){
+    const dates = getAllDates();
+    let totalScore=0, bestDay=0, totalReviews=0, totalDoors=0, totalQuotes=0, totalCommercial=0, totalSocial=0, totalActivities=0;
+    let streak=0;
+    const todayStr=today();
+
+    dates.forEach(date=>{
+        const dd = getDayData(date);
+        if(!dd) return;
+        const s = calcScore(dd.activities);
+        const ta = calcTotalActivities(dd.activities);
+        totalScore+=s;
+        if(s>bestDay) bestDay=s;
+        totalReviews+=(dd.activities.reviews_received||0);
+        totalDoors+=(dd.activities.doors_knocked||0);
+        totalQuotes+=(dd.activities.quotes_sent||0);
+        totalCommercial+=(dd.activities.commercial_proposals||0);
+        totalSocial+=(dd.activities.nextdoor_posts||0)+(dd.activities.fb_posts||0)+(dd.activities.gbp_posts||0);
+        totalActivities+=ta;
+    });
+
+    // Streak calc
+    for(let i=0;i<dates.length;i++){
+        const dd=getDayData(dates[i]);
+        if(!dd||calcTotalActivities(dd.activities)===0){
+            if(dates[i]===todayStr)continue;
+            break;
+        }
+        streak++;
+    }
+
+    return {totalScore,bestDay,totalReviews,totalDoors,totalQuotes,totalCommercial,totalSocial,totalActivities,streak};
+}
+
+function checkMilestones(){
+    const stats = calcLifetimeStats();
+    const unlocked = JSON.parse(localStorage.getItem('scorecard_milestones')||'[]');
+    MILESTONES.forEach(m=>{
+        if(m.check(stats)&&!unlocked.includes(m.name)){
+            unlocked.push(m.name);
+            localStorage.setItem('scorecard_milestones',JSON.stringify(unlocked));
+            showToast('🏆 Milestone: '+m.name,'orange');
+            launchConfetti();
+        }
+    });
+}
+
+// ─── HISTORY TAB ───
+function renderHistory(){
+    const dates = getAllDates();
+    const el = document.getElementById('historyList');
+    if(!dates.length){el.innerHTML='<div style="color:var(--text3);text-align:center;padding:2rem;">No history yet — start logging!</div>';return;}
+    let html='';
+    dates.forEach(date=>{
+        const dd = getDayData(date);
+        if(!dd) return;
+        const score = calcScore(dd.activities);
+        const total = calcTotalActivities(dd.activities);
+        const d = new Date(date+'T12:00:00');
+        const dateStr = d.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'});
+        const color = score===0?'var(--text3)':score>=30?'var(--green)':score>=15?'var(--yellow)':'var(--orange)';
+        html+=`<div class="history-day" onclick="viewDay('${date}')">
+            <div><div class="history-date">${dateStr}</div><div class="history-acts">${total} activities</div></div>
+            <div class="history-score" style="color:${color}">${score}</div>
+        </div>`;
+    });
+    el.innerHTML=html;
+}
+
+function viewDay(date){
+    const dd = getDayData(date);
+    if(!dd) return;
+    const labels = {
+        doors_knocked:'Doors Knocked',flyers_distributed:'Flyers',nextdoor_posts:'Nextdoor Posts',
+        fb_posts:'FB/IG Posts',gbp_posts:'GBP Posts',follow_up_texts:'Follow-Up Texts',
+        calls_made:'Calls Made',quotes_sent:'Quotes Sent',review_asks:'Review Asks',
+        reviews_received:'Reviews Got',referral_asks:'Referral Asks',
+        commercial_contacts:'Commercial Contacts',commercial_proposals:'Commercial Proposals'
+    };
+    let details = '';
+    ACTIVITIES.forEach(a=>{
+        if((dd.activities[a]||0)>0) details+=`${labels[a]}: ${dd.activities[a]}\n`;
+    });
+    if(dd.logs&&dd.logs.length) details+='\nNotes:\n'+dd.logs.map(l=>l.time+' — '+l.text).join('\n');
+    alert(details||'No activities logged this day');
+}
+
+// ─── EXPORT / IMPORT ───
+function exportAll(){
+    const dates = getAllDates();
+    const data = {};
+    dates.forEach(d=>{data[d]=getDayData(d);});
+    data._milestones = JSON.parse(localStorage.getItem('scorecard_milestones')||'[]');
+    const blob = new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href=url; a.download='tidy-tails-scorecard-'+today()+'.json'; a.click();
+    URL.revokeObjectURL(url);
+    showToast('Data exported!','green');
+}
+
+function importAll(event){
+    const file = event.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = e=>{
+        try{
+            const data = JSON.parse(e.target.result);
+            Object.keys(data).forEach(k=>{
+                if(k==='_milestones'){localStorage.setItem('scorecard_milestones',JSON.stringify(data[k]));return;}
+                localStorage.setItem('scorecard_'+k,JSON.stringify(data[k]));
+            });
+            currentData = getTodayData();
+            render();
+            showToast('Data imported!','green');
+        }catch(err){showToast('Invalid file','orange');}
+    };
+    reader.readAsText(file);
+}
+
+// ─── UTILS ───
+function showToast(msg,type){
+    const t=document.getElementById('toast');
+    t.textContent=msg;
+    t.className='toast toast-'+type+' show';
+    setTimeout(()=>{t.classList.remove('show');},2000);
+}
+
+function launchConfetti(){
+    const colors=['#ff6b35','#10b981','#3b82f6','#fbbf24','#8b5cf6','#ef4444'];
+    for(let i=0;i<30;i++){
+        const c=document.createElement('div');
+        c.className='confetti';
+        c.style.left=Math.random()*100+'vw';
+        c.style.background=colors[Math.floor(Math.random()*colors.length)];
+        c.style.animationDelay=Math.random()*0.5+'s';
+        c.style.width=(4+Math.random()*8)+'px';
+        c.style.height=(4+Math.random()*8)+'px';
+        document.body.appendChild(c);
+        setTimeout(()=>c.remove(),2500);
+    }
+}
+
+// ─── INIT ───
+render();
+</script>
+</body>
+</html>
