@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚨 DDD Rescue Blitz — Capture Orphaned Customers | Tidy Tails</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
+  .container { max-width: 700px; margin: 0 auto; padding: 16px; padding-bottom: 100px; }
+
+  header { text-align: center; padding: 24px 0 16px; border-bottom: 2px solid #ef4444; margin-bottom: 20px; }
+  header h1 { font-size: 1.5em; color: #ef4444; margin-bottom: 4px; }
+  header p { color: #888; font-size: 0.88em; }
+  .urgency-badge { display: inline-block; background: #ef4444; color: #fff; padding: 4px 14px; border-radius: 20px; font-size: 0.8em; font-weight: 700; animation: pulse 2s infinite; margin-top: 8px; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+
+  .opportunity-box {
+    background: linear-gradient(135deg, #1a0808, #2a1010);
+    border: 2px solid #ef4444; border-radius: 14px;
+    padding: 20px; text-align: center; margin-bottom: 24px;
+  }
+  .opportunity-box .big { font-size: 2em; font-weight: 800; color: #ef4444; }
+  .opportunity-box .sub { color: #f87171; font-size: 1em; margin-top: 4px; }
+  .opportunity-box .detail { color: #888; font-size: 0.82em; margin-top: 10px; line-height: 1.5; }
+  .opp-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 16px; }
+  .opp-stat { background: #0a0a0a; border-radius: 8px; padding: 10px; }
+  .opp-stat .num { font-size: 1.4em; font-weight: 800; color: #fbbf24; }
+  .opp-stat .label { font-size: 0.7em; color: #888; }
+
+  .tabs { display: flex; gap: 4px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; -webkit-overflow-scrolling: touch; }
+  .tab {
+    padding: 10px 14px; border-radius: 8px; background: #1a1a1a; border: 1px solid #2a2a2a;
+    color: #888; font-size: 0.78em; cursor: pointer; white-space: nowrap; flex-shrink: 0;
+    transition: all 0.2s; font-weight: 600;
+  }
+  .tab.active { background: #7f1d1d; border-color: #ef4444; color: #fff; }
+  .tab:hover:not(.active) { border-color: #555; color: #ccc; }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .post-card {
+    background: #111; border: 1px solid #2a2a2a; border-radius: 12px;
+    margin-bottom: 16px; overflow: hidden;
+  }
+  .post-header {
+    padding: 14px 16px; background: linear-gradient(135deg, #0d1117, #151520);
+    border-bottom: 1px solid #2a2a2a; display: flex; justify-content: space-between; align-items: center;
+  }
+  .post-header h3 { font-size: 0.95em; color: #e0e0e0; }
+  .platform-badge { padding: 3px 10px; border-radius: 4px; font-size: 0.7em; font-weight: 700; }
+  .badge-nextdoor { background: #166534; color: #4ade80; }
+  .badge-facebook { background: #1e3a5f; color: #60a5fa; }
+  .badge-gbp { background: #78350f; color: #fbbf24; }
+  .badge-flyer { background: #581c87; color: #c084fc; }
+  .badge-craigslist { background: #4a1d96; color: #a78bfa; }
+
+  .post-body {
+    padding: 16px; font-size: 0.88em; white-space: pre-wrap; line-height: 1.7; color: #ccc;
+  }
+  .post-note {
+    padding: 10px 16px; background: #0d0d0d; border-top: 1px solid #1a1a1a;
+    font-size: 0.78em; color: #666;
+  }
+  .post-note strong { color: #fbbf24; }
+
+  .copy-btn {
+    display: block; width: 100%; padding: 14px; background: #7f1d1d; color: #fff;
+    border: none; border-radius: 0 0 12px 12px; font-size: 0.95em; font-weight: 600;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .copy-btn:active { background: #991b1b; }
+  .copy-btn.copied { background: #22c55e; color: #000; }
+
+  .checklist {
+    background: #111; border: 1px solid #2a2a2a; border-radius: 12px;
+    padding: 18px; margin-bottom: 16px;
+  }
+  .checklist h3 { color: #fbbf24; font-size: 1em; margin-bottom: 14px; }
+  .check-item {
+    display: flex; align-items: flex-start; gap: 10px; padding: 10px 0;
+    border-bottom: 1px solid #1a1a1a; font-size: 0.85em;
+  }
+  .check-item:last-child { border: none; }
+  .check-item input[type="checkbox"] {
+    margin-top: 2px; accent-color: #ef4444; width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;
+  }
+  .check-item label { color: #ccc; cursor: pointer; }
+  .check-item label.done { text-decoration: line-through; color: #555; }
+  .check-item .time-est { color: #666; font-size: 0.8em; margin-left: 4px; }
+
+  .intel-box {
+    background: #0d1117; border: 1px solid #1e3a5f; border-radius: 12px;
+    padding: 18px; margin-bottom: 16px;
+  }
+  .intel-box h3 { color: #60a5fa; font-size: 1em; margin-bottom: 12px; }
+  .intel-row { display: flex; gap: 8px; margin-bottom: 6px; font-size: 0.83em; }
+  .intel-label { color: #666; min-width: 120px; flex-shrink: 0; }
+  .intel-value { color: #ccc; }
+  .intel-value.hot { color: #f87171; font-weight: 600; }
+
+  .script-box {
+    background: #0a0a0a; border-left: 3px solid #fbbf24; border-radius: 0 8px 8px 0;
+    padding: 14px 16px; margin: 14px 0; font-size: 0.85em; line-height: 1.7;
+    white-space: pre-wrap; color: #ccc;
+  }
+  .script-box .speaker { color: #fbbf24; font-weight: 700; }
+
+  .warning-box {
+    background: #1a1600; border: 1px solid #fbbf2444; border-radius: 10px;
+    padding: 14px 16px; margin-bottom: 16px; font-size: 0.83em; color: #fbbf24;
+  }
+
+  .progress-ring-container { text-align: center; margin: 20px 0; }
+  .progress-text { font-size: 2em; font-weight: 800; color: #ef4444; }
+  .progress-sub { color: #888; font-size: 0.85em; }
+
+  .bottom-bar {
+    position: fixed; bottom: 0; left: 0; right: 0; background: #111;
+    border-top: 2px solid #ef4444; padding: 12px 16px; text-align: center;
+    z-index: 100;
+  }
+  .bottom-bar .count { font-size: 1.1em; font-weight: 700; color: #ef4444; }
+  .bottom-bar .hint { font-size: 0.75em; color: #888; margin-top: 2px; }
+
+  .section-title { color: #e0e0e0; font-size: 1.1em; margin: 20px 0 12px; padding-bottom: 8px; border-bottom: 1px solid #2a2a2a; }
+
+  .neighborhood-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .hood-chip {
+    background: #1a1a2e; border: 1px solid #3b82f6; color: #93c5fd;
+    padding: 4px 10px; border-radius: 6px; font-size: 0.75em; font-family: monospace;
+  }
+
+  a { color: #60a5fa; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>🚨 DDD Rescue Blitz</h1>
+  <p>Dog Doody Defenders is DEAD. Their customers need a new scooper.</p>
+  <div class="urgency-badge">⏰ TIME-SENSITIVE — Every day = lost customers</div>
+</header>
+
+<div class="opportunity-box">
+  <div class="big">15-30 Orphaned Customers</div>
+  <div class="sub">Florissant & North County — YOUR turf</div>
+  <div class="detail">Dog Doody Defenders' website DNS died March 23. These people are googling for a replacement RIGHT NOW. Scoop Soldiers (new franchise) is hunting the same turf.</div>
+  <div class="opp-stats">
+    <div class="opp-stat"><div class="num">$1.5K+</div><div class="label">Monthly Revenue</div></div>
+    <div class="opp-stat"><div class="num">63031</div><div class="label">Primary Zip</div></div>
+    <div class="opp-stat"><div class="num">48hrs</div><div class="label">Window</div></div>
+  </div>
+</div>
+
+<!-- Intel Box -->
+<div class="intel-box">
+  <h3>🔍 What We Know About DDD</h3>
+  <div class="intel-row"><span class="intel-label">Business:</span><span class="intel-value">Dog Doody Defenders</span></div>
+  <div class="intel-row"><span class="intel-label">Status:</span><span class="intel-value hot">☠️ DNS DEAD — website gone</span></div>
+  <div class="intel-row"><span class="intel-label">Last Active:</span><span class="intel-value">~March 2026 (DNS lapsed)</span></div>
+  <div class="intel-row"><span class="intel-label">Service Area:</span><span class="intel-value">Florissant, Hazelwood, N. County</span></div>
+  <div class="intel-row"><span class="intel-label">Pricing Was:</span><span class="intel-value">~$54/month (cheapest in market)</span></div>
+  <div class="intel-row"><span class="intel-label">Est. Customers:</span><span class="intel-value hot">15-30 residential</span></div>
+  <div class="intel-row"><span class="intel-label">Key Zips:</span><span class="intel-value">63031, 63033, 63042</span></div>
+  <div class="intel-row"><span class="intel-label">Our Advantage:</span><span class="intel-value hot">We already serve Florissant (Shannon, Amanda, Chastity)</span></div>
+</div>
+
+<div class="neighborhood-chips">
+  <span class="hood-chip">Florissant 63031</span>
+  <span class="hood-chip">Florissant 63033</span>
+  <span class="hood-chip">Hazelwood 63042</span>
+  <span class="hood-chip">Ferguson 63135</span>
+  <span class="hood-chip">Dellwood 63136</span>
+  <span class="hood-chip">Black Jack 63033</span>
+</div>
+
+<!-- Warning -->
+<div class="warning-box">
+  ⚠️ <strong>DO NOT mention DDD by name</strong> in any post. Don't trash-talk them. Just position yourself as "the reliable local option." People will connect the dots.
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab('nextdoor')">📍 Nextdoor</div>
+  <div class="tab" onclick="showTab('facebook')">📘 Facebook</div>
+  <div class="tab" onclick="showTab('gbp')">📍 GBP Post</div>
+  <div class="tab" onclick="showTab('craigslist')">📋 Craigslist</div>
+  <div class="tab" onclick="showTab('flyer')">📄 Flyer Copy</div>
+  <div class="tab" onclick="showTab('scripts')">📞 Scripts</div>
+  <div class="tab" onclick="showTab('plan')">✅ Action Plan</div>
+</div>
+
+<!-- NEXTDOOR TAB -->
+<div class="panel active" id="tab-nextdoor">
+  <h2 class="section-title">📍 Nextdoor Posts — Florissant & N. County</h2>
+  <p style="font-size:0.83em; color:#888; margin-bottom:14px;">Post to Florissant, Hazelwood, and surrounding neighborhoods. Space these 2-3 days apart for natural reach.</p>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Post #1 — The Helpful Neighbor</h3>
+      <span class="platform-badge badge-nextdoor">NEXTDOOR</span>
+    </div>
+    <div class="post-body">Hey Florissant neighbors! 👋
+
+I've been seeing a few people in the area mention they lost their poop scooping service recently. If that's you — we've got you covered!
+
+I'm Jamie with Tidy Tails STL. We're a local, family-run pet waste removal service already serving several families right here in Florissant.
+
+🐾 Weekly, biweekly, or monthly cleanups
+🐾 $70/month flat rate — no hidden fees, no contracts
+🐾 Same-day response, flexible scheduling
+🐾 We actually show up (every. single. week.)
+
+We know how fast the yard situation gets out of hand, especially with spring here. If you need someone reliable, shoot me a message or text 📱 314-850-7140.
+
+Happy to answer any questions! 🐕</div>
+    <div class="post-note"><strong>Best time to post:</strong> Tuesday or Wednesday evening (6-8 PM). Nextdoor engagement peaks mid-week.</div>
+    <button class="copy-btn" onclick="copyPost(this)">📋 Copy Post</button>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Post #2 — The Spring Rescue</h3>
+      <span class="platform-badge badge-nextdoor">NEXTDOOR</span>
+    </div>
+    <div class="post-body">Spring is here and yards are... rough. 😅
+
+If your dog's been "decorating" the backyard all winter and you're dreading cleanup — don't grab the shovel. That's literally our job.
+
+Tidy Tails STL — local, reliable pet waste removal right here in Florissant.
+
+✅ First cleanup includes a deep clean at no extra charge
+✅ $70/month flat — cheaper than most competitors
+✅ Already serving families in your neighborhood
+✅ Text Jamie at 314-850-7140
+
+Your dog made the mess. We'll make it disappear. 🐕💩</div>
+    <div class="post-note"><strong>Best time to post:</strong> Thursday or Friday (people thinking about weekend plans). Wait 3 days after Post #1.</div>
+    <button class="copy-btn" onclick="copyPost(this)">📋 Copy Post</button>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Post #3 — The Recommendation Ask</h3>
+      <span class="platform-badge badge-nextdoor">NEXTDOOR</span>
+    </div>
+    <div class="post-body">Quick question for dog owners in the area —
+
+Does anyone use a poop scooping service? Looking to expand our routes in Florissant/Hazelwood and wanted to see if there's interest.
+
+We're Tidy Tails STL — been serving North County for a while now. Weekly, biweekly, or monthly. $70/month flat rate.
+
+If you know anyone who could use help with their yard, feel free to share! Or text Jamie at 314-850-7140. 🐾</div>
+    <div class="post-note"><strong>Strategy:</strong> Framed as a question = 3-5x more engagement on Nextdoor. People love to recommend AND ask for services. This triggers the algorithm.</div>
+    <button class="copy-btn" onclick="copyPost(this)">📋 Copy Post</button>
+  </div>
+</div>
+
+<!-- FACEBOOK TAB -->
+<div class="panel" id="tab-facebook">
+  <h2 class="section-title">📘 Facebook Group Posts</h2>
+  <p style="font-size:0.83em; color:#888; margin-bottom:14px;">Target groups: "Florissant Neighbors," "North County Community," "Florissant MO Buy/Sell/Trade," "Hazelwood Community." Post 1 per group per week max.</p>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>FB Post #1 — The Group Introduction</h3>
+      <span class="platform-badge badge-facebook">FACEBOOK</span>
+    </div>
+    <div class="post-body">Hi everyone! 👋 I'm Jamie with Tidy Tails STL — we're a local pet waste removal service here in the Florissant area.
+
+I know spring cleanup season hits different when you have dogs 😅 If your yard's gotten away from you (no judgment, it happens!) we do weekly, biweekly, and monthly cleanups.
+
+What makes us different:
+→ $70/month flat rate (no contracts, cancel anytime)
+→ First visit includes a FREE deep clean of your whole yard
+→ Already serving multiple families in Florissant
+→ Locally owned — not a franchise, not a corporation
+
+Text or call 314-850-7140 if you want a clean yard without the work! 🐾
+
+tidytailsstl.com</div>
+    <div class="post-note"><strong>Target groups:</strong> Search "Florissant" + "community" or "neighbors" on Facebook. Also try "North County Moms" type groups — dog owners with kids LOVE this service.</div>
+    <button class="copy-btn" onclick="copyPost(this)">📋 Copy Post</button>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>FB Post #2 — The Before/After Angle</h3>
+      <span class="platform-badge badge-facebook">FACEBOOK</span>
+    </div>
+    <div class="post-body">POV: Your dog used your backyard as a bathroom all winter and now spring is here 🫠
+
+We're Tidy Tails STL and we literally scoop poop for a living. No shame — it's more common than you think.
+
+🐾 We serve Florissant, Hazelwood, Ferguson & surrounding areas
+🐾 $70/month flat — that's less than $2.50/day for a clean yard
+🐾 Free deep clean on your first visit
+🐾 We show up. Every time. Rain or shine.
+
+Your kids deserve a clean yard. Your dog doesn't care. We're the middle ground. 😂
+
+📱 314-850-7140 | tidytailsstl.com</div>
+    <div class="post-note"><strong>Pro tip:</strong> If TJ has ANY before/after photos, attach them. Visual proof = 5x engagement on FB.</div>
+    <button class="copy-btn" onclick="copyPost(this)">📋 Copy Post</button>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>FB Post #3 — The "Lost Your Service?" Rescue</h3>
+      <span class="platform-badge badge-facebook">FACEBOOK</span>
+    </div>
+    <div class="post-body">Hey North County dog owners 🐕
+
+If your poop scooping service recently went MIA, you're not alone — we've been getting a lot of calls from people in the area looking for a new one.
+
+Tidy Tails STL is here and we're not going anywhere. Locally owned, serving Florissant and surrounding areas.
+
+→ $70/month flat rate
+→ Weekly, biweekly, or monthly options
+→ First cleanup = deep clean included
+→ No contracts — stay because you want to, not because you have to
+
+📱 Text Jamie: 314-850-7140
+🌐 tidytailsstl.com
+
+Happy to give your yard the fresh start it deserves! 🐾</div>
+    <div class="post-note"><strong>⚡ This is the money post.</strong> Directly targets DDD orphans without naming them. The phrase "service went MIA" will resonate with people actively looking. Post this one FIRST.</div>
+    <button class="copy-btn" onclick="copyPost(this)">📋 Copy Post</button>
+  </div>
+</div>
+
+<!-- GBP TAB -->
+<div class="panel" id="tab-gbp">
+  <h2 class="section-title">📍 Google Business Profile Post</h2>
+  <p style="font-size:0.83em; color:#888; margin-bottom:14px;">Post this as an "Update" on your GBP listing. Helps with local search visibility AND captures anyone searching for alternatives.</p>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>GBP Update — Spring Availability</h3>
+      <span class="platform-badge badge-gbp">GBP POST</span>
+    </div>
+    <div class="post-body">🌷 Spring Yard Rescue — Florissant & North County
+
+Looking for reliable pet waste removal? Tidy Tails STL is accepting new clients in Florissant, Hazelwood, Ferguson, and surrounding areas!
+
+✅ $70/month flat rate — no contracts
+✅ Free deep clean on first visit
+✅ Weekly, biweekly, or monthly service
+✅ Locally owned & operated
+
+📞 Call or text: 314-850-7140
+🌐 tidytailsstl.com
+
+Your yard deserves a fresh start this spring! 🐾</div>
+    <div class="post-note"><strong>GBP Tips:</strong> Keep under 300 words. Include a photo if possible (clean yard, truck, logo). Add a "Call now" button if the option appears. Post every 7 days for maximum visibility boost.</div>
+    <button class="copy-btn" onclick="copyPost(this)">📋 Copy Post</button>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>GBP Offer Post — First Month Special</h3>
+      <span class="platform-badge badge-gbp">GBP OFFER</span>
+    </div>
+    <div class="post-body">🐕 New Customer Spring Special!
+
+Sign up for weekly or biweekly service and get your first deep clean FREE (a $100 value).
+
+Tidy Tails STL serves Florissant, Hazelwood, Ferguson, Dellwood, Black Jack, and surrounding North County areas.
+
+$70/month flat rate • No contracts • Cancel anytime
+
+📱 Text Jamie: 314-850-7140</div>
+    <div class="post-note"><strong>Post as "Offer" type</strong> on GBP if available. Offers get a special display treatment in search results. Include start/end date (make it 2 weeks from now to create urgency).</div>
+    <button class="copy-btn" onclick="copyPost(this)">📋 Copy Post</button>
+  </div>
+</div>
+
+<!-- CRAIGSLIST TAB -->
+<div class="panel" id="tab-craigslist">
+  <h2 class="section-title">📋 Craigslist Ad</h2>
+  <p style="font-size:0.83em; color:#888; margin-bottom:14px;">Post in Services > Household. Craigslist is free and still gets traffic for local services. Re-post every 48 hours for visibility.</p>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Craigslist — Pet Waste Removal Florissant</h3>
+      <span class="platform-badge badge-craigslist">CRAIGSLIST</span>
+    </div>
+    <div class="post-body">🐕 Pet Waste Removal — Florissant, Hazelwood & North County
+
+Tired of stepping in it? We handle the dirty work so you don't have to.
+
+TIDY TAILS STL — Local pet waste removal service accepting new clients.
+
+WHAT WE DO:
+• Weekly, biweekly, or monthly yard cleanups
+• First visit includes a full deep clean (winter buildup? No problem)
+• We bag it, haul it, leave your yard spotless
+
+PRICING:
+• $70/month flat rate — no hidden fees
+• No contracts — cancel anytime
+• One-time deep cleans: $100
+
+SERVICE AREAS:
+Florissant, Hazelwood, Ferguson, Dellwood, Black Jack, Jennings, Bellefontaine Neighbors, St. Ann, Bridgeton, Maryland Heights, Overland, and more.
+
+WHY US:
+→ Locally owned (not a franchise — your neighbor, not a corporation)
+→ Reliable — we show up every scheduled visit, rain or shine
+→ Already serving multiple families in Florissant
+→ Insured
+
+📱 Text or call Jamie: 314-850-7140
+🌐 tidytailsstl.com
+
+Your dog doesn't care about your yard. We do.</div>
+    <div class="post-note"><strong>Title suggestion:</strong> "Pet Waste Removal — Florissant/Hazelwood/N. County — $70/mo Flat Rate" | Category: Services > Household | Re-post every 48 hrs</div>
+    <button class="copy-btn" onclick="copyPost(this)">📋 Copy Post</button>
+  </div>
+</div>
+
+<!-- FLYER TAB -->
+<div class="panel" id="tab-flyer">
+  <h2 class="section-title">📄 Door Hanger / Flyer Copy</h2>
+  <p style="font-size:0.83em; color:#888; margin-bottom:14px;">Print and distribute in Florissant neighborhoods where DDD served. Focus on 63031 and 63033 zip codes. 50-100 flyers = $15-20 at FedEx/Staples.</p>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Door Hanger — Front</h3>
+      <span class="platform-badge badge-flyer">FLYER</span>
+    </div>
+    <div class="post-body">NEED A NEW POOP SCOOPER?
+
+We're right here in your neighborhood.
+
+🐾 TIDY TAILS STL 🐾
+Pet Waste Removal
+
+✓ $70/month flat rate
+✓ Free deep clean — first visit
+✓ Weekly, biweekly, or monthly
+✓ No contracts. Cancel anytime.
+✓ Locally owned. Not a franchise.
+
+Your yard, clean. Every week.
+
+📱 TEXT JAMIE: 314-850-7140
+🌐 tidytailsstl.com</div>
+    <div class="post-note"><strong>Design tip:</strong> Use Canva (free) for a quick door hanger template. Green + white color scheme. Add the Tidy Tails logo if available. Standard door hanger size: 4.25" x 11"</div>
+    <button class="copy-btn" onclick="copyPost(this)">📋 Copy Post</button>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Door Hanger — Back</h3>
+      <span class="platform-badge badge-flyer">FLYER</span>
+    </div>
+    <div class="post-body">WHY FLORISSANT FAMILIES CHOOSE US:
+
+"I've tried other services. These guys actually show up."
+
+→ Already serving families on your street
+→ Same tech every visit — no strangers in your yard
+→ We text when we're done (with a photo!)
+→ Spring deep clean included FREE with signup
+
+SWITCHING IS EASY:
+1. Text Jamie at 314-850-7140
+2. We come check your yard (free)
+3. Pick your schedule
+4. Done. Clean yard. Every week.
+
+🐕 TIDY TAILS STL
+tidytailsstl.com | 314-850-7140
+
+— Serving Florissant, Hazelwood, Ferguson & all of North County —</div>
+    <div class="post-note"><strong>Distribution strategy:</strong> Focus on streets with fenced backyards (visible from sidewalk = dog owners). Hit 2-3 blocks around Shannon and Amanda's area if TJ is already scooping there on Mondays.</div>
+    <button class="copy-btn" onclick="copyPost(this)">📋 Copy Post</button>
+  </div>
+</div>
+
+<!-- SCRIPTS TAB -->
+<div class="panel" id="tab-scripts">
+  <h2 class="section-title">📞 Response Scripts</h2>
+  <p style="font-size:0.83em; color:#888; margin-bottom:14px;">When DDD orphans reach out (and they will), here's exactly what Jamie says:</p>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Script: "My old service stopped responding"</h3>
+    </div>
+    <div class="script-box"><span class="speaker">JAMIE:</span> Oh no! That's frustrating — especially when the yard doesn't wait. 😅
+
+We're Tidy Tails STL and we serve several families right in your area. I'd love to help you out!
+
+Quick questions:
+• How many dogs do you have?
+• How big is the yard?
+• Were you on weekly or biweekly?
+
+Our flat rate is $70/month for weekly service — and since you've probably got some buildup, your first visit includes a full deep clean at no extra charge. 
+
+Want me to come take a look this week?</div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Script: "How are you different from [old service]?"</h3>
+    </div>
+    <div class="script-box"><span class="speaker">JAMIE:</span> Great question! A few things:
+
+1. We're locally owned — it's just us, not a franchise. You'll get the same person every visit.
+2. $70/month flat — that's our price, no surprises. No "first 3 months then it goes up" stuff.
+3. We text you when we're done each visit. You know it's handled.
+4. No contracts — you stay because the yard's clean, not because you signed something.
+
+And honestly? We just show up. Every week. That's the bar, and it's wild how many services can't clear it. 😄</div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Script: "Your price is higher than what I was paying"</h3>
+    </div>
+    <div class="script-box"><span class="speaker">JAMIE:</span> Totally hear you. Our $70/month is a flat rate — no extra fees for holidays, no "large yard" upcharge, nothing.
+
+When you break it down, that's $16.25 per visit for weekly service. And your first visit is a full deep clean included — most places charge $100+ for that separately.
+
+Plus, no contract. If it's not working, you just text me and you're done. No awkward phone calls, no cancellation fees.
+
+Want to try a month and see how it goes?</div>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <h3>Script: Voicemail / Text Follow-up</h3>
+    </div>
+    <div class="script-box"><span class="speaker">TEXT FROM JAMIE:</span> Hey [name]! This is Jamie from Tidy Tails STL 🐾 Thanks for reaching out about poop scooping! 
+
+I'd love to help get your yard back in shape. We serve several families in Florissant already so your area is right on our route.
+
+$70/month flat rate, first deep clean is free! No contracts.
+
+When works for a quick look at your yard? I can usually swing by within a day or two. 😊</div>
+  </div>
+</div>
+
+<!-- ACTION PLAN TAB -->
+<div class="panel" id="tab-plan">
+  <h2 class="section-title">✅ DDD Rescue — 7-Day Action Plan</h2>
+
+  <div class="checklist" id="checklist-week1">
+    <h3>🔴 Day 1-2 (TODAY/TOMORROW) — Launch the Net</h3>
+    <div class="check-item">
+      <input type="checkbox" id="c1" onchange="saveChecklist()">
+      <label for="c1">Post FB #3 ("lost your service?") in Florissant Facebook groups <span class="time-est">(10 min)</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c2" onchange="saveChecklist()">
+      <label for="c2">Post Nextdoor #1 ("Helpful Neighbor") to Florissant neighborhoods <span class="time-est">(5 min)</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c3" onchange="saveChecklist()">
+      <label for="c3">Post GBP Update (spring availability) <span class="time-est">(5 min)</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c4" onchange="saveChecklist()">
+      <label for="c4">Post Craigslist ad (Household Services) <span class="time-est">(10 min)</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c5" onchange="saveChecklist()">
+      <label for="c5">Ask Shannon & Amanda if they know anyone who lost their scooper <span class="time-est">(2 min each)</span></label>
+    </div>
+  </div>
+
+  <div class="checklist" id="checklist-week1b">
+    <h3>🟡 Day 3-4 — Second Wave</h3>
+    <div class="check-item">
+      <input type="checkbox" id="c6" onchange="saveChecklist()">
+      <label for="c6">Post Nextdoor #2 ("Spring Rescue") <span class="time-est">(5 min)</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c7" onchange="saveChecklist()">
+      <label for="c7">Post FB #1 (group introduction) in a different FB group <span class="time-est">(5 min)</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c8" onchange="saveChecklist()">
+      <label for="c8">Re-post Craigslist ad (refresh listing) <span class="time-est">(5 min)</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c9" onchange="saveChecklist()">
+      <label for="c9">Print 50 door hangers at FedEx/Staples (~$15) <span class="time-est">(30 min)</span></label>
+    </div>
+  </div>
+
+  <div class="checklist" id="checklist-week1c">
+    <h3>🟢 Day 5-7 — Distribute & Follow Up</h3>
+    <div class="check-item">
+      <input type="checkbox" id="c10" onchange="saveChecklist()">
+      <label for="c10">Distribute door hangers during Monday scoop route in Florissant <span class="time-est">(20 min)</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c11" onchange="saveChecklist()">
+      <label for="c11">Post Nextdoor #3 ("Recommendation Ask") <span class="time-est">(5 min)</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c12" onchange="saveChecklist()">
+      <label for="c12">Post GBP Offer (first month special) <span class="time-est">(5 min)</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c13" onchange="saveChecklist()">
+      <label for="c13">Follow up with any leads that came in <span class="time-est">(varies)</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c14" onchange="saveChecklist()">
+      <label for="c14">Log results: how many inquiries, signups, sources <span class="time-est">(5 min)</span></label>
+    </div>
+  </div>
+
+  <div class="warning-box">
+    💡 <strong>Total time commitment: ~2 hours spread across 7 days.</strong> Most actions are 5-10 minutes of copy-pasting from this page. The door hangers are the biggest time investment but also the highest conversion rate for local services.
+  </div>
+
+  <div style="background:#111; border:1px solid #2a2a2a; border-radius:12px; padding:18px; margin-top:16px;">
+    <h3 style="color:#4ade80; margin-bottom:12px;">📊 Results Tracker</h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+      <div>
+        <label style="font-size:0.8em; color:#888;">Inquiries Received</label>
+        <input type="number" id="inquiries" value="0" min="0" style="width:100%; padding:8px; background:#0a0a0a; border:1px solid #333; border-radius:6px; color:#fff; font-size:1.1em;" onchange="saveResults()">
+      </div>
+      <div>
+        <label style="font-size:0.8em; color:#888;">New Signups</label>
+        <input type="number" id="signups" value="0" min="0" style="width:100%; padding:8px; background:#0a0a0a; border:1px solid #333; border-radius:6px; color:#fff; font-size:1.1em;" onchange="saveResults()">
+      </div>
+      <div>
+        <label style="font-size:0.8em; color:#888;">From Nextdoor</label>
+        <input type="number" id="from-nextdoor" value="0" min="0" style="width:100%; padding:8px; background:#0a0a0a; border:1px solid #333; border-radius:6px; color:#fff; font-size:1em;" onchange="saveResults()">
+      </div>
+      <div>
+        <label style="font-size:0.8em; color:#888;">From Facebook</label>
+        <input type="number" id="from-facebook" value="0" min="0" style="width:100%; padding:8px; background:#0a0a0a; border:1px solid #333; border-radius:6px; color:#fff; font-size:1em;" onchange="saveResults()">
+      </div>
+      <div>
+        <label style="font-size:0.8em; color:#888;">From Flyers</label>
+        <input type="number" id="from-flyers" value="0" min="0" style="width:100%; padding:8px; background:#0a0a0a; border:1px solid #333; border-radius:6px; color:#fff; font-size:1em;" onchange="saveResults()">
+      </div>
+      <div>
+        <label style="font-size:0.8em; color:#888;">From Other</label>
+        <input type="number" id="from-other" value="0" min="0" style="width:100%; padding:8px; background:#0a0a0a; border:1px solid #333; border-radius:6px; color:#fff; font-size:1em;" onchange="saveResults()">
+      </div>
+    </div>
+    <textarea id="results-notes" placeholder="Notes: which posts worked, what people said, lead names..." style="width:100%; padding:10px; background:#0a0a0a; border:1px solid #333; border-radius:6px; color:#ccc; font-size:0.85em; margin-top:10px; min-height:80px; resize:vertical;" onchange="saveResults()"></textarea>
+  </div>
+</div>
+
+<!-- Bottom bar -->
+<div class="bottom-bar">
+  <div class="count" id="progress-count">0 / 14 actions complete</div>
+  <div class="hint">Copy → Paste → Post → Check off. That's it.</div>
+</div>
+
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyPost(btn) {
+  const body = btn.closest('.post-card').querySelector('.post-body');
+  const text = body.textContent.trim();
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.classList.add('copied');
+      btn.textContent = '✅ Copied!';
+      setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '📋 Copy Post'; }, 2000);
+    });
+  } else {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.classList.add('copied');
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '📋 Copy Post'; }, 2000);
+  }
+}
+
+// Checklist persistence
+function saveChecklist() {
+  const state = {};
+  for (let i = 1; i <= 14; i++) {
+    const cb = document.getElementById('c' + i);
+    if (cb) {
+      state['c' + i] = cb.checked;
+      const label = cb.nextElementSibling;
+      if (label) label.classList.toggle('done', cb.checked);
+    }
+  }
+  localStorage.setItem('ddd-rescue-checklist', JSON.stringify(state));
+  updateProgress();
+}
+
+function loadChecklist() {
+  try {
+    const state = JSON.parse(localStorage.getItem('ddd-rescue-checklist') || '{}');
+    for (const [id, checked] of Object.entries(state)) {
+      const cb = document.getElementById(id);
+      if (cb) {
+        cb.checked = checked;
+        const label = cb.nextElementSibling;
+        if (label) label.classList.toggle('done', checked);
+      }
+    }
+  } catch(e) {}
+  updateProgress();
+}
+
+function updateProgress() {
+  let done = 0;
+  for (let i = 1; i <= 14; i++) {
+    const cb = document.getElementById('c' + i);
+    if (cb && cb.checked) done++;
+  }
+  document.getElementById('progress-count').textContent = done + ' / 14 actions complete';
+}
+
+function saveResults() {
+  const results = {
+    inquiries: document.getElementById('inquiries').value,
+    signups: document.getElementById('signups').value,
+    nextdoor: document.getElementById('from-nextdoor').value,
+    facebook: document.getElementById('from-facebook').value,
+    flyers: document.getElementById('from-flyers').value,
+    other: document.getElementById('from-other').value,
+    notes: document.getElementById('results-notes').value
+  };
+  localStorage.setItem('ddd-rescue-results', JSON.stringify(results));
+}
+
+function loadResults() {
+  try {
+    const r = JSON.parse(localStorage.getItem('ddd-rescue-results') || '{}');
+    if (r.inquiries) document.getElementById('inquiries').value = r.inquiries;
+    if (r.signups) document.getElementById('signups').value = r.signups;
+    if (r.nextdoor) document.getElementById('from-nextdoor').value = r.nextdoor;
+    if (r.facebook) document.getElementById('from-facebook').value = r.facebook;
+    if (r.flyers) document.getElementById('from-flyers').value = r.flyers;
+    if (r.other) document.getElementById('from-other').value = r.other;
+    if (r.notes) document.getElementById('results-notes').value = r.notes;
+  } catch(e) {}
+}
+
+loadChecklist();
+loadResults();
+</script>
+</body>
+</html>
