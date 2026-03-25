@@ -1,208 +1,138 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-18 8:05 PM CST*
+*Last updated: 2026-03-25 8:15 AM CST — by Franklin*
 
 ---
 
 ## 🐕 DOG WASTE (Tidy Tails)
 
-### 🚨 CRITICAL — FIX TODAY
-- [ ] **SSL Certificate EXPIRED** — Website has been DOWN since Feb 19 (26 days). THIS is why Google won't index. Every visitor sees "connection not private" warning. **15-minute fix in GoDaddy dashboard.** See `deliverables/URGENT-website-down-ssl-expired-march17.md`
-  - Status: GoDaddy cert expired Feb 19, 2026. Site loads over HTTP but HTTPS is broken.
-  - Owner: TJ (requires GoDaddy login)
-  - Action: GoDaddy Dashboard → SSL → Renew/Re-enable → Then submit to Google Search Console
-  - **This unblocks ALL SEO, citations, and online visibility work**
+### 📊 Business Snapshot
+| Metric | Value |
+|--------|-------|
+| **Active Customers** | **8** |
+| **Monthly Revenue** | **~$750** |
+| **Goal** | 25-30 recurring |
+| **Progress** | **32%** (8/25) |
+| **Google Reviews** | **6** (5.0 ★) |
+| **Active Competitors** | **3** (7+ dead) |
 
-### 🔥 In Progress
-- [ ] **Nextdoor Launch** — 🔴 Page STILL NOT claimed. Updated launch kit with fresh 4-week content plan ready. 20 min to launch, $0 cost.
-  - Status: UPDATED kit at `deliverables/nextdoor-launch-kit-march2026.md`. Poop2Scoop has 3 recs, we have 0.
-  - Owner: TJ/Jamie (setup) — Franklin (content ready)
-  - Action: Go to business.nextdoor.com → create page → copy-paste description → post intro → text customers for recs
+### 🚨 #1 PRIORITY: Complete Google Business Profile
+**GBP is only 7% complete. TJ is INVISIBLE on Google Maps.** 7+ competitors are dead. Their customers are searching right now and can't find us. Every day this stays incomplete = lost customers.
 
-- [x] **Google Indexing** — ✅ FIXED March 18! Sitemap submitted, 17 pages discovered, homepage indexed. SEO is GO.
-  - Status: DONE — URL is on Google, page indexed, HTTPS working, FAQ schema detected
-  - Next: Focus on getting 5 Google reviews by April 1 to appear in Local Pack
+**What to do (45-60 min, $0):**
+1. Add business hours
+2. Upload 5+ photos (yard before/after, truck, uniform)
+3. Write business description (copy-paste ready in `deliverables/gbp-complete-optimization-package.md`)
+4. Add all service categories
+5. Add service areas (all cities we cover)
+6. Turn on messaging
+7. Post a Google Business update
 
-- [ ] **Spring Marketing Push** — FB group posts, spring-themed content
-  - Status: **2-week content pack ready!** 13 posts for Mar 14-28 + 3 IG posts + posting schedule
-  - File: `ready-to-post/spring-2026-tidy-tails-content-pack.md`
-  - Companion: `dashboard/marketing/facebook-group-posting-guide.md` (WHERE to post)
-  - Owner: TJ (posting) + Franklin (content ready ✅)
+**This single action unblocks everything else. Do it today.**
 
-- [ ] **Ad Creative Pipeline** — AI video ads for social media
-  - Status: 6 videos produced (Mar 5). fal.ai credits exhausted.
-  - Remaining: Split Screen Walk (#9), Landmine Map, Calendar X, Dog Stare, Excuse Pile, Zoom Out
-  - Owner: Basquiat (needs fal.ai credits topped up)
+### 🔥 THIS WEEK — The 7-Day Blitz Sprint
+A complete day-by-day execution plan is ready: `deliverables/7-day-customer-blitz-sprint.md`
 
-### 📋 THIS WEEK'S PLAYBOOK (Mar 12-16) — NEW
-- [ ] **Thu: Google Business Profile** (30 min) 🔴 — Follow `get-listed-30-minutes.md`
-- [ ] **Thu: Yelp Business Page** (15 min) 🔴 — Follow `get-listed-30-minutes.md`
-- [ ] **Thu: Post "The Thaw" social post** (5 min) — From `spring-social-blitz-march11.md`
-- [ ] **Fri: Text 4 customers for referrals** (20 min) 🔴 — Templates in `referral-program-kit.md`
-- [ ] **Fri: Ask 2 customers for Google reviews** (10 min)
-- [ ] **Fri: Set up Nextdoor business page** (10 min) — Guide in `nextdoor-playbook.md`
-- [ ] **Sat: Post in 2 Facebook groups** (10 min) — From `spring-social-blitz-march11.md`
-- [ ] **Sat: Text remaining 4 customers for referrals** (15 min)
-- [ ] **Mon: Send 3 TuffShed follow-up texts** (15 min) — From `shed-pipeline-followup-sequence.md`
-- [ ] **Mon: Check GBP verification status** (5 min)
-- Full playbook: `deliverables/weekly-execution-playbook-mar11.md`
+| Day | Task | Time | Cost |
+|-----|------|------|------|
+| **1 (TODAY)** | GBP completion | 45-60 min | $0 |
+| 2 | Top 5 directory submissions | 20-25 min | $0 |
+| 3 | Nextdoor orphaned customer posts | 15 min | $0 |
+| 4 | Facebook group blitz | 20 min | $0 |
+| 5 | Review generation kickstart | 15 min | $0 |
+| 6 | Remaining directory submissions | 25-30 min | $0 |
+| 7 | Google Posts + results check | 20 min | $0 |
 
-### 🔴 HIGH PRIORITY — New Intel (Mar 12)
-- [ ] **CALL DoodyCalls STL: (314) 230-8082** — They're NOT listed in franchise directory anymore. May be closing. If yes → capture their commercial clients (apartments, HOAs).
-- [ ] **CALL Poopy Paws: (314) 783-1781** — Website is dead (DNS failure). Check if Charlie is still operating. If dead → his customers need a new service.
-- [ ] **CAPTURE Super Scoopers STL Customers** — Confirmed DEAD (Mar 13): website down, Yelp CLOSED. Based in St. Peters. Their STL/St. Charles/Lincoln county customers need a provider. Check their Yelp/FB for people asking about alternatives.
-- [ ] **FIX WEBSITE INDEXING** — Domain is only 26 days old (NOT 6+ months). 0 indexed pages is normal. Build backlinks to accelerate. See `deliverables/google-indexing-acceleration-march14.md`
-- [ ] **Get 15 Google Reviews by April 14** — Complete review generation system built! Dashboard: `2026-03-14-REVIEW-GENERATION-SYSTEM.html`. Copy-paste texts, post-service automation, response templates, QR code strategy, progress tracker. First to 15 reviews OWNS local search. **START THIS WEEKEND: text all 4-5 customers (10 min).**
+**Total: ~3 hours across 7 days. $0. All content pre-written and copy-paste ready.**
+**Expected: 10-20 leads in 30 days, 3-5 new recurring customers.**
 
-### 📣 PAID ADVERTISING (New — Mar 13)
-- [ ] **SET UP FACEBOOK ADS** — $350/month could generate 5-8 new customers/month. No STL competitors running FB ads. Full guide: `dashboard/2026-03-13-PAID-AD-STRATEGY.html`
-- [ ] **ADD GOOGLE ADS** — $150/month complement. Start after FB ads are running. Keywords: "pet waste removal St. Louis"
-- [ ] **REVISIT LSAs LATER** — Pet waste isn't a direct category. Need 20+ reviews and insurance docs first.
-- Research: `research/2026-03-13-PAID-ADVERTISING-STRATEGY.md` — Real data from Swoop Scoop (7-fig, 10K+ leads) and Fresh Start ($200K year 1)
+### 💀 MAJOR OPPORTUNITY: 7+ Competitors Are Dead
+The STL pet waste market has COLLAPSED. Only 3 active competitors remain:
 
-### 🗓️ SPRING EVENTS (New — Mar 13)
-- [ ] **📞 CALL COLE IMBS: 314-951-1567** — Bark in the Park vendor booth (May 16). Largest pet festival in Midwest. 5,000-10,000 dog owners. Spots fill up.
-- [ ] **🥚 Register for Treats Unleashed Egg Hunt (Apr 4)** — Ladue. Referral partner play. Eventbrite link in dashboard.
-- [ ] **🐾 Attend Crestwood Vet Paw-ty (Mar 28)** — Vet partnership + new adopters. Register on Eventbrite.
-- [ ] **🏠 Attend Mattress Dogzzz Grand Opening (Mar 21)** — Creve Coeur affluent area. 11420 Olive Blvd.
-- [ ] **🖨️ Print 200+ business cards** — Need for all events. Vistaprint: 250 for ~$15.
-- Full calendar: `dashboard/2026-03-13-SPRING-PET-EVENTS.html` | Research: `research/2026-03-13-SPRING-PET-EVENTS-CALENDAR.md`
+| Competitor | Status | Price |
+|------------|--------|-------|
+| Poop 2 Scoop | ✅ Active | $18/wk |
+| No. 2 Crew | ⚠️ Partially broken site | Unknown |
+| Dog Doody Defenders | ⚠️ Resurrected | $17/visit |
+| ~~Doggie Doodies STL~~ | ☠️ DNS DEAD | — |
+| ~~DoodyCalls MO~~ | ☠️ Gone from MO | — |
+| ~~POOP 911 MO~~ | ☠️ Gone from MO | — |
+| ~~Super Scoopers~~ | ☠️ All pages 404 | — |
+| ~~Poopy Paws~~ | ☠️ DNS DEAD | — |
+| ~~Dirty Dog Poo Crew~~ | ☠️ DNS DEAD | — |
+| ~~Little Stinkers~~ | ☠️ DNS DEAD | — |
 
-### 💀 DEAD COMPETITOR CAPTURE (New — Mar 14)
-- [ ] **POST IN ST. CHARLES COUNTY FB GROUPS** — "The Switch" template targets Super Scoopers' orphaned customers. Copy-paste ready.
-- [ ] **POST IN SOUTH CITY/COUNTY FB GROUPS** — "Spring Rescue" template targets Poopy Paws' abandoned customers. Copy-paste ready.
-- [ ] **SEARCH FB FOR DEAD COMPETITOR MENTIONS** — Reply to anyone asking about Super Scoopers, Poopy Paws, or Fresh Paws with capture template.
-- [x] **BUILD CITY PAGES: /south-county, /south-city, /wentzville** — SEO capture for dead competitor territories ✅ (Mar 14, 3PM)
-- **Poopy Paws UPGRADED TO DEAD** — Website DNS failure confirmed Mar 14. Previously "wounded." 358 FB likes, served South City/County/North County.
-- **NEW COMPETITOR: Little Stinkers of MO** — Moving into Super Scoopers' old St. Charles County territory. Need to act fast.
-- Full campaign: `deliverables/dead-competitor-capture-campaign-march14.md` | Dashboard: `2026-03-14-DEAD-COMPETITOR-CAPTURE.html`
+**75-150 orphaned customers are searching for a new provider RIGHT NOW.**
+- Copy-paste acquisition posts ready: `deliverables/competitor-down-acquisition-campaign.md`
+- 8 posts across Nextdoor, FB groups, GBP, and FB Page
+- **Time: 40 min. Cost: $0. Expected: 5-15 warm leads in 2 weeks.**
 
-### ⭐ REVIEW GENERATION SYSTEM (New — Mar 14)
-- [ ] **THIS WEEKEND: Text all 4-5 current customers** — Use Template A or B from dashboard. 10 minutes.
-- [ ] **THIS WEEKEND: Text 3-5 friends/family** — Anyone who's seen your work. 5 minutes.
-- [ ] **Set phone reminder: "Send review text" after every service visit**
-- [ ] **Respond to ALL reviews within 24 hours** — Use response templates in dashboard
-- [ ] **Order business cards with QR code** — Back side: "Scan for Google Review ⭐". Combine with event card order.
-- Full system: `dashboard/2026-03-14-REVIEW-GENERATION-SYSTEM.html` | Playbook: `deliverables/google-review-generation-system-march14.md`
+### 🤝 Referral Partners — The Goldmine
+15 enriched leads with VERIFIED phone numbers ready for outreach:
+- **9 Dog Daycares/Boarding** (Kennelwood = 8 locations!)
+- **6 Senior Living Communities** (residents can't physically clean up = high retention)
+- Full database: `deliverables/enriched-referral-partners-march25-2026.md`
+
+**Top 5 calls to make today:**
+1. Happy Tails (St. Ann) — 314-291-3647
+2. Kennelwood Pet Resorts — 314-429-2100
+3. Watering Bowl — 636-486-2606
+4. Petropolis Chesterfield — 636-537-2322
+5. Silver Maple — 314-965-1630
+
+**Revenue potential: $630-$1,120/mo from referral network alone.**
+
+### 📋 Directory Submission Package
+22 directories ready for submission. Copy-paste descriptions included.
+- Guide: `deliverables/directory-submission-package.md`
+- **Top 5 (20 min):** Nextdoor, Facebook Business, Thumbtack, Angi, BBB
+- **Time for all 22:** ~60 min. $0.
+
+### 🌐 Website Status
+- **Site:** tidytailsstl.com ✅ Live, SSL valid until May 17
+- **Google Search Console:** Verified ✅, 17 pages discovered
+- **Google Reviews:** 6 reviews, 5.0 ★ — PASSED 5+ threshold for Map Pack
+- **City Pages:** 26 landing pages deployed
+- **Blog:** 12 posts live
+- **⚠️ NO ANALYTICS** — Zero tracking (no GA4, no FB Pixel). Install GA4 BEFORE the Blitz Sprint so we can measure results. 15-minute setup.
+- **⚠️ GBP INVISIBLE** on Maps — Brand collision with FL/ATL "Tidy Tails." Fix = complete profile to 100%.
+
+### 🗓️ Upcoming Events
+- [ ] **Mar 28 — Crestwood Vet Adoption Paw-ty** — Network with vet, meet new adopters
+- [ ] **Apr 4 — Treats Unleashed Egg Hunt** (Ladue) — Referral partner play
+- [ ] **May 16 — Bark in the Park** — Largest pet festival in Midwest. 5,000-10,000 dog owners. **CALL COLE IMBS: 314-951-1567** for vendor booth.
+- [ ] **Print 200+ business cards** before Mar 28 — Vistaprint ~$15
 
 ### ✅ Recently Completed
-- [x] **⭐ Google Review Generation System** — Complete 30-day system: 0→15 reviews. Copy-paste texts for every scenario (personal ask, post-service, new customer, referral combo), post-service automation guide, review response templates (5-star/4-star/negative), QR code strategy, printable service completion card design, progress tracker with localStorage. Dashboard + full playbook. ✅ (Mar 14, 7PM)
-- [x] **💰 Paid Ads Playbook** — Full strategy: Facebook Ads ($10-20/day), Google Ads ($5-10/day), LSAs, Nextdoor ads. 9 ready-to-use ad variations, 4-phase budget plan ($0→$1K/month), ROI math ($500/month → 10 new customers/month), competitor ad intel (nobody running sophisticated ads in STL). ✅ (Mar 14, 6PM)
-- [x] **🏠 Late March Shed Ad Campaign** — 6 FB Marketplace ads + 3 IG captions for Mar 17-23. Fresh tariff urgency (35% duty, new review opened Mar 9), March Madness hook, Spring Equinox, tax refund final push. Updated battlecard with new competitor intel (Cardinal Portable Sheds, STL Sheds content marketing). No active promo = sell urgency + financing. ✅ (Mar 14, 4PM)
-- [x] **🌐 Dead Competitor Territory SEO Pages** — 3 new city pages (South County, South City, Wentzville) targeting orphaned customers from dead Poopy Paws and Super Scoopers. "Switching provider?" alerts, full SEO, cross-linked all 21 city pages. ✅ (Mar 14, 3PM)
-- [x] **💀 Dead Competitor Capture Campaign** — Verified 5 dead competitors, upgraded Poopy Paws to DEAD, discovered NEW competitor (Little Stinkers of MO), built copy-paste FB/Nextdoor posts, territory maps, weekend action checklist. $0 cost, 3-12 new customers potential. Dashboard + full research. ✅ (Mar 14, 2:30 PM)
-- [x] **🔍 Google Indexing Deep Audit** — Found real root cause: domain only 26 days old, not 6+ months. Technical SEO is solid. Corrected task board misdiagnosis. ✅ (Mar 14, 11AM)
-- [x] **🛠️ Operations Toolkit** — Sweep&Go CRM, aPaws membership, industry benchmarks, liability insurance gap. ✅ (Mar 14, 9AM)
-- [x] **🚀 Facebook Ads Launch Kit** — Complete campaign with 4 variations, Meta Ads setup, targeting, follow-up scripts. ✅ (Mar 14, 8AM)
-- [x] **🗓️ Spring Pet Events Calendar** — 14 events researched (Mar-Jul), networking scripts, ROI estimates, vendor booth contact for Bark in the Park. Interactive dashboard + full research report. ✅ (Mar 13, 11PM)
-- [x] **🔍 LIVE Spring Competitive Intel Update** — Full market re-scan: Poop 2 Scoop still $18/week (39% cheaper), POOP 911 offering "1st free," Scoop Soldiers expanding aggressively (Cleveland acquisition + Cincinnati launch), **Super Scoopers STL confirmed DEAD** (website down, Yelp CLOSED) = new capture opportunity. `site:tidytailsstl.com` STILL 0 results. Industry benchmarks: 75% contribution margin, $60 CAC target. ✅ (Mar 13, 11AM)
-- [x] **🌐 4 Missing City Pages Built** — Kirkwood, Webster Groves, Olivette, University City. Full SEO: unique content, neighborhoods, schema markup, sitemap updated, all cross-links added. ✅ (Mar 13, 4AM)
-- [x] **💰 Paid Advertising Strategy** — Researched FB Ads, Google Ads, LSAs with real data from 7-figure pet waste companies. $500/month plan → 5-8 new customers/month. Dashboard + full research report. ✅ (Mar 13, 2AM)
-- [x] **🔍 Live Competitive Intel Spring 2026** — Full market scan: 3 competitors dead (Pawfect, Fresh Paws, Poopy Paws website), DoodyCalls possibly leaving STL, pricing gap analysis ($25 vs $18 Poop2Scoop), strategic capture plan. Deliverable: `competitive-intel-spring-2026-LIVE.md` ✅ (Mar 12, 12PM)
-- [x] **🔄 Customer Onboarding & Retention System** — 7-stage lifecycle, 15+ templates, churn detection, referral program. ✅ (Mar 12, 11AM)
-- [x] **📊 Real-Data Growth Playbook** — Researched how real operators grew (Erica Krupin: 200 customers from FB groups, William Milliken: 7-figures from FB ads). 7-day sprint plan. ✅ (Mar 12, 10AM)
-- [x] **🏠 Mid-March Shed Ad Blitz** — 6 Marketplace ads + 3 IG captions. Tax refund, spring cleaning, Mother's Day angles. ✅ (Mar 12, 9AM)
-- [x] **🤝 Referral Partner Database** — 20 pet businesses with contacts, addresses, pitch scripts, priority rankings. ✅ (Mar 12, 8AM)
-- [x] **⭐ Review Generation System** — Templates, tracking, strategy for turning customers into reviews. ✅ (Mar 12, 7AM)
-- [x] **🏗️ Dashboard Index Rebuild** — Reorganized 38 tools into 6 searchable categories with search bar, collapsible sections, priority banner, contextual badges, and Quick Reference. Added 6 missing items. ✅ (Mar 9, 2AM)
-- [x] **🎯 Spring Neighborhood Targeting Guide** — 12 neighborhoods analyzed and tiered, 4-week campaign plan targeting Kirkwood/Webster/Ballwin triangle. Dashboard at `/2026-03-09-NEIGHBORHOOD-TARGETING.html` ✅ (Mar 9, 1AM)
-- [x] **🔍 Live Visibility Audit** — 0/6 searches found Tidy Tails. 5 competitor deep-dives with pricing. Dashboard at `/2026-03-09-VISIBILITY-AUDIT.html` ✅ (Mar 9, 12AM)
-- [x] **⭐ Google Review Request System** — 6 copy-paste request templates + 3 response templates. Dashboard at `/2026-03-09-REVIEW-REQUEST-SYSTEM.html` ✅ (Mar 8, 11PM)
-- [x] **🏗️ Shed Sales Follow-Up System** — Complete text/email sequences for all 27 leads. 3 pipeline stages (quoted, pre-quote, post-install), copy-paste templates with one-click copy, timing cadences, pro tips. Dashboard tool at `/2026-03-08-SHED-FOLLOW-UP.html` ✅ (Mar 8, 10PM)
-- [x] **📍 GBP Posts — 4 Weeks Ready** — 5 copy-paste posts (Mar 10–Apr 7) with keyword targeting, photo tips, CTA buttons. Dashboard tool at `/2026-03-08-GBP-POSTS.html` ✅ (Mar 8, 9PM)
-- [x] **📇 Directory Listing Blitz Kit** — Copy-paste kit for 10 directories (8 remaining). Pre-written descriptions, step-by-step walkthroughs, 75 min total. GBP + Yelp already done. ✅ (Mar 8, 8PM)
-- [x] **🚀 Monday Action Plan** — Consolidated all 7 Sunday playbooks into ONE prioritized checklist. 9 actions ranked by impact/effort. "Do #1-3 Monday" = 45 min. ✅ (Mar 8, 7PM)
-- [x] **SEO Infrastructure Fix** — Fixed broken canonical URLs, created sitemap.xml + robots.txt + .nojekyll, verified all live ✅ (Mar 8, 6PM)
-- [x] **Customer-Facing Landing Page** — Full landing page with pricing, FAQ, structured data, CTAs. Live at `/landing.html` ✅ (Mar 8, 5PM)
-- [x] **Shed Competitive Pricing Cheat Sheet** — 7 competitors, 3 size tiers, objection scripts for TJ's 12 active leads ✅ (Mar 8, 4PM)
-- [x] **Spring Events & Networking Playbook** — 5 events, Treats Unleashed partnership strategy, week-by-week checklist ✅ (Mar 8, 3PM)
-- [x] **Customer Rescue Playbook** — Copy-paste posts for Nextdoor/Facebook targeting dead competitors' orphaned customers. 9 posts, specific group links, DM scripts. 50 min → $300-500/mo potential ✅ (Mar 8)
-- [x] **Google Visibility Playbook** — 4-tier plan from invisible to page 1, with copy-paste GBP description and review templates ✅ (Mar 8)
-- [x] **Live Competitive Intel** — Confirmed 2 competitors dead (Fresh Paws, Pawfect), Doggie Doodies pricing analysis ✅ (Mar 8)
-- [x] **Weekly Review & Action Plan** — Honest assessment: 0 customer growth despite 35+ tools. Top 3 actions for the week ✅ (Mar 8)
-- [x] **Print Marketing Kit** — Door hangers, flyers, yard signs, biz cards, leave-behinds — all print-ready ✅ (Mar 7)
-- [x] **Competitor Battle Cards** — 9 competitors profiled with live data, kill scripts, pricing ✅ (Mar 7)
-- [x] **Commercial Leads Pack** — 40 leads with phone numbers across 4 categories ✅ (Mar 7)
-- [x] **Google Business Profile** — CLAIMED + COMPLETED ✅ (Feb 26)
-- [x] **Yelp Business Page** — CLAIMED + COMPLETED ✅ (Mar 5)
-- [x] **Google Search Console** — VERIFIED + SUBMITTED ✅ (Mar 5)
-- [x] **Jamie's Outreach Hub** — 36 copy-paste scripts, live on dashboard ✅ (Mar 5)
-- [x] **Winter Reheat Scripts** — 4 text variations for dormant customers ✅ (Mar 5)
-- [x] **6 AI Video Ads** — Produced via Basquiat ✅ (Mar 5)
-- [x] **Shed Marketplace Kit** — 23 unit-specific FB Marketplace listings, ready to copy-paste ✅ (Mar 6)
-- [x] **Competitor Intel Update** — Doggie Doodies found, pricing matrix updated ✅ (Mar 6)
-- [x] **Spring Neighborhood Blitz Kit** — Print flyer PDF (3 pages: door hangers, flyer, leave-behind cards) + Nextdoor/FB posts + weekend action plan ✅ (Mar 6)
-- [x] **Customer Referral Program v2** — 7 scripts, ROI math, launch plan ✅ (Mar 5)
-- [x] **Free Platform Listing Blitz** — 6 platforms identified ✅ (Mar 6)
-- [x] **Website** — tidytailsstl.com live, SSL, mobile responsive ✅
-- [x] **Email Automation** — darius@backyardbuildingsstl.com operational ✅
-
-### 📝 To Do (TJ Action Required)
-**📋 START HERE → `content/2026-03-09-MONDAY-ACTION-PLAN.md`** — One page, 9 actions, prioritized. Do #1-3 Monday (45 min).
-
-#### 🔴 Monday (45 min)
-- [ ] **🔥 Text 3 customers for Google reviews** — #1 PRIORITY. 0 reviews = invisible. Copy-paste template in Monday Action Plan.
-- [ ] **Post Nextdoor rescue post** — Target dead competitors' orphaned customers in Wildwood/Chesterfield/Ballwin (15 min)
-- [ ] **Post in 2 Facebook groups** — Same rescue strategy, different platform (20 min)
-
-#### 🟡 Tue-Thu (60-90 min)
-- [ ] **Optimize GBP** — Photos, description, service areas, messaging (30 min)
-- [ ] **Claim Yelp + Thumbtack + Apple Maps** — Free directory listings (20 min)
-- [ ] **Post 3 social media posts** — Mon/Wed/Fri, content ready in spring social week file
-
-#### 🟢 If Time
-- [ ] **Email HSMO re: Bark in the Park vendor booth** — May 16, spots fill up (10 min)
-- [ ] **Visit nearest Treats Unleashed** — Drop 20 business cards/flyers (20 min)
-- [ ] **Mark March 28 Adoption Paw-ty on calendar** — Print 50 biz cards before then
-
-#### Backlog
-- [ ] Launch referral program — Scripts ready, just needs announcement
-- [ ] Top up fal.ai credits — Need credits for remaining video ads
-- [ ] Winter reheat texts — Send Jamie's scripts to dormant winter customers
-- [ ] Print spring flyers & door-hang — PDF ready at `dashboard/pdfs/SPRING-FLYER-KIT-2026.pdf`
-
-### 🎯 Goal Tracking
-- **Target:** 25-30 recurring customers by Aug 2025 (OVERDUE)
-- **Current:** 4-5 recurring
-- **Gap:** Need 20-25 more customers
-- **Strategy:** Free marketing first (FB groups, GBP, Yelp, Nextdoor), then paid ads
-
-### 🔍 Competitive Landscape (Updated Mar 6)
-| Competitor | Weekly Price | Monthly | Threat |
-|------------|-------------|---------|--------|
-| Poop2Scoop | $18 | N/A | 🔴 Cheapest |
-| Poopy Paws | $20 | N/A | 🟡 |
-| Tidy Tails (TJ) | $25 | **$70** | — |
-| Doggie Doodies | N/A | $72 | 🔴 NEW, professional |
-| DoodyCalls | Quote | N/A | 🟡 Franchise |
-| POOP 911 | Quote | N/A | 🟡 Free first clean |
-
-**TJ's edge:** Only $70/month plan in market. Local owner. Personal service.
+- [x] **SSL Renewed** — Valid through May 17, 2026 ✅
+- [x] **GBP Verified** ✅ (Mar 17)
+- [x] **GSC Verified + Indexed** ✅ (Mar 18)
+- [x] **6 Google Reviews** ✅ (5.0 ★)
+- [x] **TJ Posted in FB Groups** ✅ (Mar 24) — First execution of marketing playbook!
+- [x] **26 City Landing Pages** deployed with full SEO ✅
+- [x] **Competitor Intel Updated** ✅ (Mar 25 — 7+ confirmed dead)
+- [x] **7-Day Blitz Sprint Plan** created ✅ (Mar 25)
+- [x] **Directory Submission Package** created ✅ (Mar 25)
+- [x] **Orphaned Customer Campaign** created ✅ (Mar 25)
+- [x] **Referral Partner Database** enriched with phone numbers ✅ (Mar 25)
+- [x] **Website Conversion Audit** completed ✅ (Mar 25)
+- [x] **Website SEO Sprint** — og:image added, 4 missing city pages built ✅ (Mar 25)
 
 ---
 
 ## 🏠 SHEDS (TuffShed / WoodMaster)
 
-### 🔥 In Progress
-- [ ] **Shed Sales CRM** — Live at tidytails.github.io/tidytails-dashboard/crm/
-  - Status: Operational
-  - Owner: TJ
-
-- [ ] **Email Automation** — darius@backyardbuildingsstl.com working
-  - Status: Can send automated follow-ups to shed leads
-  - Owner: Franklin
-
-### ✅ Done
-- [x] **Payment Calculator** — Interactive financing/RTO/cash calculator for backyardbuildingsstl.com ✅ (Mar 15, 11AM)
-  - Sliders for price, term, APR. All 23 buildings with monthly payment overlays. RTO no-credit-check option.
-  - Live: `backyard-buildings-stl/calculator.html` | Linked from main site
-  - TJ can drop link in every Marketplace post: "See your monthly payment →"
-- [x] **Late March Ad Campaign** — 6 FB Marketplace ads + 3 IG posts for Mar 17-23. Tariff urgency angles, March Madness, Spring Equinox, tax refund. No active promo = lean on tariff urgency + financing. ✅ (Mar 14, 4PM)
+### Current Status
+- **Pipeline:** ~12 quoted, ~15 pre-quote (as of Feb 16 — ask TJ for update)
+- **Current Promos:** Financing options only (9.99% APR, 6-mo no interest, RTO/lease)
+- **CRM:** Live at dashboard `/crm/`
+- **Calculator:** Live at `backyard-buildings-stl/calculator.html`
 
 ### 📝 To Do
+- [ ] **Get pipeline update from TJ** — Last data is 5+ weeks old
 - [ ] **HTTPS enforcement** for backyardbuildingsstl.com
-- [ ] **Follow-up emails** for Fenton shed leads (due Sun Mar 9)
-- [ ] Daily ad copy generation (paused — need TJ direction on current promos)
+- [ ] **New ad copy** — Need TJ direction on current promos/inventory
+- [ ] **Follow-up sequence** for aged leads
 
 ---
 
@@ -210,17 +140,29 @@
 
 ### ✅ Operational
 - Dashboard: tidytails.github.io/tidytails-dashboard/ ✅
+- Website: tidytailsstl.com ✅ (SSL valid through May 17)
 - Email: darius@backyardbuildingsstl.com ✅
-- Website: tidytailsstl.com ✅
-- Chief oversight: Running every 2 hours ✅
+- Google Search Console: Verified + indexed ✅
+- Telegram HQ: Forum topics live (7 topics) ✅
 - Git: Synced ✅
 
-### ✅ Recently Fixed (Mar 7 5PM)
-- ~~23 placeholder phone numbers in 4 tools~~ → All replaced with 314-850-7140
-- ~~4 PDFs not linked from dashboard~~ → All 6 PDFs now linked in index.html
-- All dashboard links verified ✅ (35/35 passing)
+### ⚠️ Known Issues
+- fal.ai credits exhausted (video ad production paused)
+- Brave Search API quota hit (2000/2000) — web research limited until reset
+- backyardbuildingsstl.com SSL may show browser warning
+- No GA4 or FB Pixel on tidytailsstl.com
 
-### ⚠️ Issues
-- Google indexing: 0 pages indexed (submitted Mar 5, waiting)
-- fal.ai: Credits exhausted
-- backyardbuildingsstl.com SSL cert issue (HTTPS may show browser warning)
+---
+
+## 💡 NEWS & IDEAS
+
+### 🔥 WAXR (New Venture)
+- Mobile detailing marketplace — TJ targeting $1.5M seed round
+- Competitive intel completed: 6 of 10 platforms dead, only 2 real competitors remain
+- Neither competitor has AI quality verification (WAXR differentiator)
+- waxr.io needs cleanup (shows "WARX" typo)
+- Full intel: `deliverables/waxr-competitive-intel-march25-2026.md`
+
+---
+
+*Generated by Franklin 🐕💩 | Updated every session*
