@@ -26,6 +26,16 @@
   - Updated MEMORY.md competitive landscape section
   - **TJ ACTION NEEDED:** GBP completion is even MORE urgent now. Every day those orphaned customers are Googling and TJ isn't showing up.
 
+### Wednesday 8:00 AM — Self-Directed Work: SEO Fixes (8 AM Autonomous Block)
+- **8:00 AM** 🌐 Website SEO Sprint — Executed 5 concrete tasks:
+  1. **Created 4 missing I-44 city pages** — crestwood.html, maplewood.html, brentwood.html, shrewsbury.html. Each with unique content, neighborhoods, structured data, geo tags, blog cross-links.
+  2. **Added og:image + twitter:image to ALL 22 existing pages** — Social shares now show preview image instead of blank. 21 files patched.
+  3. **Updated sitemap.xml** — 4 new city URLs added. Total: 22 city pages in sitemap.
+  4. **Cross-linked all 18 existing pages** — Updated service-areas-nav to include the 4 new cities for internal linking boost.
+  5. **Committed + pushed** — 27 files, deployed to GitHub Pages.
+  - ⚠️ **DEPLOYMENT GAP FOUND:** Live site serves generic homepage at /crestwood URL. New pages need to be deployed to actual website hosting (not just dashboard repo). TJ needs to confirm hosting setup.
+  - **Total impact:** 22 → 26 city pages, og:image on all pages, improved internal linking, sitemap coverage complete.
+
 ### Wednesday 2:05 AM — Directory Submission Package: Off-Page SEO Attack (Hourly Task)
 - **2:05 AM** 📋 Directory Submission Package — Created comprehensive, copy-paste-ready directory submission guide at `deliverables/directory-submission-package.md`.
   - **WHY:** Off-page SEO is an F. Zero directory listings beyond GBP/Yelp. With 7+ competitors dead, this is the highest-ROI free marketing action.
