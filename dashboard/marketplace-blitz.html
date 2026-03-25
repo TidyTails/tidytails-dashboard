@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏠 Spring Marketplace Blitz — 23 Shed Listings</title>
+<style>
+:root{--bg:#0f1419;--card:#1a2332;--card-hover:#1e2a3a;--accent:#4ecdc4;--accent2:#ff6b6b;--gold:#ffd93d;--text:#e8eaed;--muted:#8b95a5;--green:#00c853;--border:#2a3545;--shadow:0 4px 24px rgba(0,0,0,.4)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;padding:16px;max-width:800px;margin:0 auto}
+.hero{text-align:center;padding:32px 16px;margin-bottom:24px}
+.hero h1{font-size:28px;margin-bottom:8px}
+.hero p{color:var(--muted);font-size:15px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.stat{background:var(--card);border-radius:12px;padding:16px;text-align:center}
+.stat .num{font-size:24px;font-weight:700;color:var(--accent)}
+.stat .lbl{font-size:12px;color:var(--muted);margin-top:4px}
+.progress-bar{background:var(--card);border-radius:20px;height:32px;overflow:hidden;margin:20px 0;position:relative}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:20px;transition:width .5s;display:flex;align-items:center;justify-content:flex-end;padding-right:12px;font-weight:700;font-size:13px;min-width:fit-content}
+.progress-text{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:13px;font-weight:600;color:var(--muted)}
+.filter-row{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0}
+.filter-btn{background:var(--card);border:1px solid var(--border);color:var(--text);padding:8px 14px;border-radius:8px;cursor:pointer;font-size:13px;transition:.2s}
+.filter-btn.active{background:var(--accent);color:#000;border-color:var(--accent);font-weight:600}
+.listing{background:var(--card);border-radius:16px;padding:20px;margin:16px 0;border:1px solid var(--border);transition:.2s}
+.listing:hover{border-color:var(--accent);transform:translateY(-1px)}
+.listing.posted{opacity:.6;border-color:var(--green)}
+.listing.posted .badge-posted{display:inline-block}
+.listing-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:12px}
+.listing-num{background:var(--accent);color:#000;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0}
+.listing-info{flex:1}
+.listing-title{font-weight:700;font-size:16px;margin-bottom:4px}
+.listing-meta{color:var(--muted);font-size:13px;display:flex;gap:12px;flex-wrap:wrap}
+.listing-price{font-size:22px;font-weight:800;color:var(--gold);white-space:nowrap}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.badge{font-size:11px;padding:3px 8px;border-radius:6px;font-weight:600}
+.badge-type{background:#1e3a5f;color:#5dade2}
+.badge-clearance{background:#5c2020;color:#ff6b6b}
+.badge-featured{background:#4a3800;color:var(--gold)}
+.badge-posted{background:#1a3d1a;color:var(--green);display:none}
+.listing-desc{background:#111820;border-radius:10px;padding:14px;margin:12px 0;font-size:14px;line-height:1.7;white-space:pre-wrap;word-wrap:break-word;max-height:0;overflow:hidden;transition:max-height .4s ease}
+.listing.expanded .listing-desc{max-height:600px}
+.listing-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{padding:10px 16px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:13px;transition:.2s;display:flex;align-items:center;gap:6px}
+.btn-expand{background:var(--border);color:var(--text)}
+.btn-copy{background:var(--accent);color:#000}
+.btn-copy:hover{background:#5ee6dc}
+.btn-posted{background:transparent;border:1px solid var(--green);color:var(--green)}
+.btn-posted.is-posted{background:var(--green);color:#000}
+.copied{animation:flash .3s}
+@keyframes flash{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+.day-header{background:linear-gradient(135deg,#1a2332,#1e3040);border-radius:12px;padding:16px;margin:24px 0 12px;border-left:4px solid var(--accent);display:flex;justify-content:space-between;align-items:center}
+.day-header h2{font-size:16px}
+.day-header .day-count{color:var(--muted);font-size:13px}
+.tip{background:#1a2820;border:1px solid #2a4535;border-radius:10px;padding:14px;margin:16px 0;font-size:13px;color:#8fbf9f}
+.tip strong{color:var(--accent)}
+.total-bar{background:var(--card);border-radius:12px;padding:16px;margin:24px 0;text-align:center}
+.total-bar .big{font-size:28px;font-weight:800;color:var(--gold)}
+</style>
+</head>
+<body>
+
+<div class="hero">
+<h1>🏠 Spring Marketplace Blitz</h1>
+<p>23 copy-paste Facebook Marketplace listings for every shed on the lot</p>
+</div>
+
+<div class="stats">
+<div class="stat"><div class="num" id="totalListings">23</div><div class="lbl">Listings</div></div>
+<div class="stat"><div class="num" id="postedCount">0</div><div class="lbl">Posted</div></div>
+<div class="stat"><div class="num" id="totalValue">$143K</div><div class="lbl">Inventory Value</div></div>
+</div>
+
+<div class="progress-bar">
+<div class="progress-fill" id="progressFill" style="width:0%">0%</div>
+</div>
+
+<div class="tip">💡 <strong>Posting Strategy:</strong> 3-5 per day over 5 days. Start with high-ticket items (garages) and clearance deals. Marketplace rewards fresh, frequent posts. Renew every 7 days.</div>
+
+<div class="filter-row">
+<button class="filter-btn active" data-filter="all">All (23)</button>
+<button class="filter-btn" data-filter="GARAGE">Garages (2)</button>
+<button class="filter-btn" data-filter="BARN">Barns (4)</button>
+<button class="filter-btn" data-filter="GARDEN">Gardens (4)</button>
+<button class="filter-btn" data-filter="UTILITY">Utility (10)</button>
+<button class="filter-btn" data-filter="GREENHOUSE">Greenhouse (1)</button>
+<button class="filter-btn" data-filter="clearance">Clearance (2)</button>
+<button class="filter-btn" data-filter="posted">✅ Posted</button>
+<button class="filter-btn" data-filter="unposted">⬜ Not Posted</button>
+</div>
+
+<div id="listingsContainer"></div>
+
+<div class="total-bar">
+<div>Total Inventory Value</div>
+<div class="big">$143,977</div>
+<div style="color:var(--muted);font-size:13px;margin-top:4px">Average: $6,260/building — One sale covers months of marketing</div>
+</div>
+
+<script>
+const LISTINGS=[
+{id:1,day:1,type:"GARAGE",serial:"WM-400657",title:"12x24 Detached Garage with Loft — $11,299 | FREE Delivery",price:11299,size:"12x24",color:"Charcoal/White",features:["Gambrel Roof","Loft","Premium","Double Doors"],featured:true,desc:`Your garage is full of everything except your car. Sound familiar?
+
+This 12x24 detached garage fixes that.
+
+✅ Gambrel roof with full loft (double your storage)
+✅ Premium build — charcoal with white trim
+✅ Double doors for easy access
+✅ Big enough for a car, workshop, or both
+
+💥 FREE delivery & setup within 30 miles
+🤑 Financing available — rent-to-own or traditional, no credit check
+
+This thing is built like a tank. Come see it on the lot.
+
+No pressure — just options.
+
+📞 Call/Text Darius: 636-354-7406
+📍 5520 Westwood Dr, St. Charles`},
+{id:2,day:1,type:"GARAGE",serial:"400108",title:"12x24 Detached Garage with Loft — $11,299 | Financing Available",price:11299,size:"12x24",color:"Taupe/White",features:["Gambrel Roof","Loft","Double Doors"],featured:true,desc:`If you haven't parked in your garage since '22… this is the fix.
+
+12x24 detached garage — taupe with white trim. Clean. Classic.
+
+What you get:
+✅ Gambrel roof with built-in loft
+✅ Double doors — drive a mower right in
+✅ 288 sq ft of real space
+✅ Looks good next to any house
+
+💥 FREE delivery & setup
+🤑 As low as ~$280/mo with financing
+
+Two of these on the lot right now. Whoever calls first gets to pick color.
+
+📞 Call/Text Darius: 636-354-7406`},
+{id:3,day:2,type:"BARN",serial:"WM-400369",title:"12x24 Premium Barn with Loft — $10,399 | FREE Delivery",price:10399,size:"12x24",color:"Dark Brown/Cream",features:["Gambrel Roof","Loft","Double Doors","Premium"],desc:`This is the big one. 12x24 barn — dark brown with cream trim.
+
+Gambrel roof. Loft included. Double doors. Premium build.
+
+That's 288 square feet of "I should've done this years ago."
+
+✅ Workshop? Yes.
+✅ Extra garage? Yes.
+✅ Man cave nobody can complain about? Absolutely.
+
+💥 FREE delivery & setup within 30 miles
+🤑 Financing — rent-to-own, traditional, no credit check
+
+No pressure. Come see it in person.
+
+📞 Darius: 636-354-7406
+📍 St. Charles lot — open Mon-Sat`},
+{id:4,day:2,type:"UTILITY",serial:"308457",title:"10x20 Utility Shed — $7,199 | EXTRA DEEP, 3 Windows",price:7199,size:"10x20",color:"Terracotta/White",features:["Extra Deep","Double Doors","3 Windows"],desc:`When people say "I need a BIG shed" — this is what I show them.
+
+10x20. Terracotta with white trim. Three windows. Double doors.
+
+200 square feet. That's a small apartment.
+
+✅ Extra deep — park a riding mower AND still have workshop space
+✅ 3 windows = actual daylight (revolutionary concept)
+✅ Double doors for equipment access
+✅ This is the one contractors buy
+
+💥 FREE delivery & setup
+🤑 ~$180/mo financing
+
+📞 Darius: 636-354-7406`},
+{id:5,day:2,type:"UTILITY",serial:"308332",title:"12x16 Workshop-Ready Utility — $6,899 | Navy Blue Beauty",price:6899,size:"12x16",color:"Navy Blue/White",features:["Double Doors","Windows","Workshop Ready"],desc:`Navy blue with white trim. Windows. Double doors. Workshop-ready.
+
+12x16 = 192 sq ft. That's enough for a legit workspace — not just "stuff storage."
+
+Woodworkers. Mechanics. DIYers. This is your building.
+
+✅ Workshop-ready — bring your bench and tools
+✅ Windows for natural light
+✅ 192 sq ft on the floor
+✅ Navy/white looks sharp
+
+💥 FREE delivery & setup
+🤑 ~$173/mo with financing
+
+📞 Darius: 636-354-7406`},
+{id:6,day:2,type:"GARDEN",serial:"400034",title:"10x16 Garden Shed — $6,299 | Flower Box + Windows",price:6299,size:"10x16",color:"Aqua/Teal/White",features:["Flower Box","Double Doors","Windows"],desc:`This one stops people in their tracks.
+
+10x16 garden shed — aqua/teal with white trim. Flower box. Windows. Double doors.
+
+It's a shed that doesn't look like a shed. It looks like something off Pinterest.
+
+✅ 160 sq ft — room for tools AND a workspace
+✅ Flower box built in (instant curb appeal)
+✅ Windows = natural light
+✅ Double doors for easy access
+
+💥 FREE delivery & setup
+🤑 ~$158/mo with financing
+
+📞 Darius: 636-354-7406`},
+{id:7,day:3,type:"BARN",serial:"WM-4003819",title:"12x16 Barn with Loft — $6,799 | Great Workshop Size",price:6799,size:"12x16",color:"Brown/White",features:["Gambrel Roof","Double Doors","Loft Included"],desc:`12x16 barn. Brown with white trim. Gambrel roof with loft.
+
+This is the size where people go "oh wow, it's bigger than I thought."
+
+192 sq ft on the floor + loft overhead = you're not running out of room.
+
+✅ Double doors — fits riding mowers, workbenches, all of it
+✅ Loft = seasonal storage you don't have to trip over
+✅ Built solid — this isn't a kit from the internet
+
+💥 FREE delivery & setup
+🤑 ~$170/mo with financing
+
+📞 Call/Text Darius: 636-354-7406`},
+{id:8,day:3,type:"GREENHOUSE",serial:"307778",title:"8x12 Greenhouse — $5,999 | Wood Benches, Poly Roof",price:5999,size:"8x12",color:"White/Black",features:["Wood Benches","Poly Roof","Ventilation"],desc:`OK this one's different. 8x12 greenhouse. White frame. Black trim. Polycarbonate roof.
+
+Built-in wood benches. Ventilation. This is NOT a flimsy hobby greenhouse.
+
+If you grow anything — tomatoes, herbs, flowers, starts — this extends your season by months.
+
+✅ Wood benches included (not sold separately)
+✅ Poly roof = light + insulation
+✅ Ventilation built in
+✅ 96 sq ft growing space
+
+💥 FREE delivery & setup
+🤑 ~$150/mo financing
+
+Only one on the lot. 🌱
+
+📞 Darius: 636-354-7406`},
+{id:9,day:3,type:"UTILITY",serial:"307777",title:"10x16 Utility Shed — $5,899 | Sage Green + Gambrel Roof",price:5899,size:"10x16",color:"Sage Green/White",features:["Gambrel Roof","Double Doors","Windows"],desc:`Sage green. White trim. Gambrel roof. Windows. Double doors.
+
+This is the shed your neighborhood association actually approves of.
+
+✅ 160 sq ft — handles everything from garage overflow to seasonal storage
+✅ Gambrel roof = extra headroom (you can stand up in this thing)
+✅ Windows for light
+✅ Sage green = subtle, classy, "I planned this"
+
+💥 FREE delivery within 30 miles
+🤑 ~$148/mo financing
+
+📞 Darius: 636-354-7406`},
+{id:10,day:3,type:"UTILITY",serial:"155527",title:'10x16 Utility Shed with Flower Box — $5,899 | Sharp Looking',price:5899,size:"10x16",color:"Tan/Beige/White",features:["Flower Box","Double Doors","Windows"],desc:`Same size, same price as a plain utility — but this one has a flower box, windows, and double doors.
+
+Tan/beige with white trim. 10x16.
+
+It's the "my wife picked it" shed. And she's right.
+
+✅ Flower box = instant charm
+✅ Windows = not a dark cave
+✅ Double doors = easy loading
+✅ 160 sq ft
+
+💥 FREE delivery & setup
+🤑 ~$148/mo financing
+
+📞 Call/Text Darius: 636-354-7406`},
+{id:11,day:4,type:"UTILITY",serial:"400030",title:'10x16 Utility Shed — $5,699 | Tan/Gray Classic',price:5699,size:"10x16",color:"Tan/Gray",features:["Double Doors","Windows"],desc:`10x16 utility shed. Tan with gray trim. Windows. Double doors.
+
+Nothing fancy. Just 160 sq ft of solid, well-built storage.
+
+Sometimes you don't need the Pinterest-worthy shed. You need the one that handles business.
+
+✅ Double doors — ride-on mower fits easy
+✅ Windows for airflow
+✅ Neutral colors match any property
+✅ Built to last — not a big-box kit
+
+💥 FREE delivery & setup
+🤑 ~$143/mo financing
+
+📞 Darius: 636-354-7406`},
+{id:12,day:4,type:"GARDEN",serial:"WM-400310",title:'10x12 Premium Garden Shed — $5,499 | Decorative Trim + Loft',price:5499,size:"10x12",color:"Cream/Brown",features:["Loft Areas","Decorative Trim","Premium"],desc:`If your backyard needs a glow-up, start here.
+
+10x12 garden shed — cream with brown trim. Decorative details. Loft areas. Premium build.
+
+This is the one people order custom for $7K+ and wonder why they didn't just buy one in stock.
+
+✅ Premium construction
+✅ Loft for extra storage
+✅ Decorative trim — looks expensive because it is
+✅ 120 sq ft of organized space
+
+💥 FREE delivery within 30 miles
+🤑 ~$140/mo financing
+
+📞 Darius: 636-354-7406`},
+{id:13,day:4,type:"BARN",serial:"400027",title:'10x14 Barn with Loft — $5,499 | Perfect Starter',price:5499,size:"10x14",color:"Hunter Green",features:["Gambrel Roof","Loft Included","Double Doors"],desc:`Not ready for a massive barn? This 10x14 is the sweet spot.
+
+Hunter green. Gambrel roof. Loft included. Double doors.
+
+Big enough for all your yard stuff + room to work.
+Small enough that your HOA won't lose their mind.
+
+✅ 140 sq ft + loft storage
+✅ Double doors for easy loading
+✅ Gambrel roof = classic barn look
+
+💥 FREE delivery within 30 miles
+🤑 ~$140/mo financing
+
+📞 Darius: 636-354-7406`},
+{id:14,day:4,type:"GARDEN",serial:"302814",title:'10x12 Garden Shed — $5,199 | Clean Modern Look',price:5199,size:"10x12",color:"Gray/White",features:["Decorative Trim","Double Doors"],desc:`Gray with white trim. Double doors. Decorative detail.
+
+This is the shed that doesn't scream "SHED" from the street. It looks intentional.
+
+✅ 120 sq ft — tools, lawn gear, bikes, holiday décor
+✅ Double doors = no squeezing stuff through a tiny opening
+✅ Decorative trim gives it real curb appeal
+✅ Gray/white = matches literally any house
+
+💥 FREE delivery & setup
+🤑 ~$130/mo financing available
+
+📞 Darius: 636-354-7406`},
+{id:15,day:4,type:"UTILITY",serial:"302924",title:'10x14 Utility Shed — $5,199 | Gambrel Roof, Dark Green',price:5199,size:"10x14",color:"Dark Green/Cream",features:["Gambrel Roof","Double Doors"],desc:`Dark green with cream trim. Gambrel roof. Double doors. 10x14.
+
+This is the "Goldilocks" size — not too big, not too small. 140 sq ft that actually works.
+
+✅ Gambrel roof = more headroom than flat-top sheds
+✅ Double doors for equipment
+✅ Classic color combo
+✅ Perfect for lawn tools + holiday storage
+
+💥 FREE delivery within 30 miles
+🤑 ~$130/mo financing
+
+📞 Darius: 636-354-7406`},
+{id:16,day:5,type:"UTILITY",serial:"155301",title:'10x12 Utility Shed — $4,699 | Blue/Cream, Window',price:4699,size:"10x12",color:"Blue/Cream",features:["Double Doors","Window"],desc:`Blue with cream trim. Window. Double doors. 10x12.
+
+Clean looking. Practical. Gets the job done.
+
+If you just need a solid shed that holds your stuff and doesn't fall apart in 2 years — this is it.
+
+✅ 120 sq ft
+✅ Double doors
+✅ Window for light
+✅ No-nonsense build quality
+
+💥 FREE delivery & setup
+🤑 ~$118/mo financing
+
+📞 Darius: 636-354-7406`},
+{id:17,day:5,type:"UTILITY",serial:"308729",title:'10x12 Utility Shed — $4,699 | Side Door + Window',price:4699,size:"10x12",color:"TBD",features:["Side Door","Window"],noPhoto:true,desc:`10x12 utility with side door and window. Simple. Solid.
+
+Side door entry means you can put this right up against a fence and still get in easy.
+
+✅ 120 sq ft
+✅ Side door (space-saving design)
+✅ Window
+✅ Perfect backyard fit
+
+💥 FREE delivery within 30 miles
+🤑 ~$118/mo financing
+
+📞 Call/Text Darius: 636-354-7406
+⚠️ Need to shoot a photo of this one on the lot`},
+{id:18,day:5,type:"GARDEN",serial:"WM-400568",title:'8x12 Garden Shed — $4,499 | Compact & Charming',price:4499,size:"8x12",color:"Unknown",features:["Decorative Trim","Compact"],desc:`Small yard? Small budget? This 8x12 garden shed hits both.
+
+Decorative trim. Compact footprint. Built just as solid as the big ones.
+
+✅ 96 sq ft — perfect for tools, garden supplies, seasonal storage
+✅ Decorative trim = not an eyesore
+✅ Fits in tight backyard spaces
+✅ Quality you can feel when you open the door
+
+💥 FREE delivery & setup
+🤑 ~$115/mo with financing
+
+📞 Call/Text Darius: 636-354-7406`},
+{id:19,day:1,type:"BARN",serial:"WM-400533",title:'8x12 Dutch Door Barn — $4,199 | Cutest Shed on the Lot',price:4199,size:"8x12",color:"Teal/Cream",features:["Dutch Door","Compact","Charming","Loft Included"],desc:`I'm just gonna say it — this is the cutest building on the lot.
+
+8x12 teal barn with a Dutch door. Cream trim. Loft included.
+
+People come to look at the big ones and end up buying this. Every time.
+
+✅ Dutch door (top opens separately — yes, it's as cool as it sounds)
+✅ Compact but fits MORE than you think
+✅ Loft for seasonal stuff
+✅ She-shed? Craft room? Potting shed? All of the above.
+
+💥 FREE delivery & setup
+🤑 ~$105/mo with financing
+
+📞 Call/Text Darius: 636-354-7406`},
+{id:20,day:1,type:"UTILITY",serial:"143725",title:'10x12 Utility w/ GARAGE DOOR — $4,409 | CLEARANCE',price:4409,size:"10x12",color:"Charcoal Gray/White",features:["Garage Door","Gambrel Roof"],clearance:true,desc:`🏷️ CLEARANCE PRICE — this one needs to go.
+
+10x12 charcoal gray with white trim. Gambrel roof. And here's the kicker — it has a GARAGE DOOR.
+
+Most sheds this size don't have that. This one does.
+
+✅ Garage door = drive equipment straight in
+✅ Gambrel roof = extra headroom
+✅ 120 sq ft
+✅ Clearance priced — not gonna last
+
+💥 FREE delivery & setup
+🤑 ~$110/mo financing
+
+Seriously, this is the deal of the lot.
+
+📞 Darius: 636-354-7406`},
+{id:21,day:5,type:"UTILITY",serial:"308458",title:'8x12 Utility Shed — $3,999 | Budget-Friendly Starter',price:3999,size:"8x12",color:"White/Cream/Charcoal",features:["Side Door","Budget Friendly"],desc:`Under four grand for a legit shed. Not a kit. Not a pop-up tent from Amazon.
+
+8x12 white/cream with charcoal trim. Side door entry.
+
+✅ 96 sq ft — lawn mower, tools, holiday boxes = done
+✅ Budget-friendly without being "cheap"
+✅ Side door saves space
+✅ Charcoal trim keeps it looking clean
+
+💥 FREE delivery & setup
+🤑 ~$100/mo with financing — that's less than a storage unit
+
+📞 Darius: 636-354-7406`},
+{id:22,day:5,type:"UTILITY",serial:"WM-400375",title:'8x12 Utility Shed — $3,999 | Starter Shed, Side Door',price:3999,size:"8x12",color:"Green",features:["Side Door","Starter"],desc:`Your first shed doesn't have to cost $10K.
+
+8x12 green utility with side door. $3,999. Done.
+
+✅ 96 sq ft of real storage
+✅ Side door entry
+✅ Green blends into the yard
+✅ Same build quality as the big ones — just smaller
+
+💥 FREE delivery
+🤑 ~$100/mo financing — cancel that storage unit
+
+📞 Call/Text Darius: 636-354-7406`},
+{id:23,day:1,type:"TOOL",serial:"157538",title:'8x12 Tool Shed — $3,509 | LOWEST PRICE, Pre-Owned',price:3509,size:"8x12",color:"Brown/Weathered",features:["Compact","Tool Shed"],clearance:true,preowned:true,desc:`$3,509. That's it. Cheapest building on the lot.
+
+8x12 pre-owned tool shed. Brown with weathered trim. Compact. Functional.
+
+Been used, but built to last — these things don't wear out.
+
+✅ Under $3,600
+✅ 96 sq ft
+✅ Perfect for basic storage
+✅ Pre-owned = broken in, not broken
+
+💥 FREE delivery & setup
+🤑 ~$88/mo with financing
+
+If you've been waiting for the right price, this is your sign.
+
+📞 Darius: 636-354-7406`}
+];
+
+const state=JSON.parse(localStorage.getItem('marketplace-blitz')||'{"posted":[]}');
+function save(){localStorage.setItem('marketplace-blitz',JSON.stringify(state))}
+
+function togglePosted(id){
+const i=state.posted.indexOf(id);
+if(i===-1)state.posted.push(id);else state.posted.splice(i,1);
+save();render();
+}
+
+function copyDesc(id){
+const l=LISTINGS.find(x=>x.id===id);
+navigator.clipboard.writeText(l.title+'\n\n'+l.desc).then(()=>{
+const btn=document.querySelector(`[data-copy="${id}"]`);
+btn.textContent='✅ Copied!';
+btn.classList.add('copied');
+setTimeout(()=>{btn.textContent='📋 Copy Listing';btn.classList.remove('copied')},1500);
+});
+}
+
+function toggleExpand(id){
+document.querySelector(`[data-listing="${id}"]`).classList.toggle('expanded');
+}
+
+let currentFilter='all';
+function setFilter(f){
+currentFilter=f;
+document.querySelectorAll('.filter-btn').forEach(b=>b.classList.toggle('active',b.dataset.filter===f));
+render();
+}
+
+function render(){
+const c=document.getElementById('listingsContainer');
+let filtered=LISTINGS;
+if(currentFilter==='posted')filtered=LISTINGS.filter(l=>state.posted.includes(l.id));
+else if(currentFilter==='unposted')filtered=LISTINGS.filter(l=>!state.posted.includes(l.id));
+else if(currentFilter==='clearance')filtered=LISTINGS.filter(l=>l.clearance);
+else if(currentFilter!=='all')filtered=LISTINGS.filter(l=>l.type===currentFilter);
+
+// Group by day
+const days={};
+filtered.sort((a,b)=>a.day-b.day||b.price-a.price).forEach(l=>{
+if(!days[l.day])days[l.day]=[];
+days[l.day].push(l);
+});
+
+let html='';
+for(const [day,items] of Object.entries(days)){
+html+=`<div class="day-header"><h2>📅 Day ${day}</h2><span class="day-count">${items.length} listings</span></div>`;
+items.forEach(l=>{
+const isPosted=state.posted.includes(l.id);
+html+=`<div class="listing ${isPosted?'posted':''}" data-listing="${l.id}">
+<div class="listing-header">
+<div class="listing-num">${l.id}</div>
+<div class="listing-info">
+<div class="listing-title">${l.title}</div>
+<div class="listing-meta">
+<span>${l.size}</span>
+<span>${l.color}</span>
+<span>#${l.serial}</span>
+</div>
+</div>
+<div class="listing-price">$${l.price.toLocaleString()}</div>
+</div>
+<div class="badges">
+<span class="badge badge-type">${l.type}</span>
+${l.featured?'<span class="badge badge-featured">⭐ FEATURED</span>':''}
+${l.clearance?'<span class="badge badge-clearance">🏷️ CLEARANCE</span>':''}
+${l.preowned?'<span class="badge badge-clearance">PRE-OWNED</span>':''}
+${l.noPhoto?'<span class="badge badge-clearance">📷 NEEDS PHOTO</span>':''}
+<span class="badge badge-posted">✅ POSTED</span>
+${l.features.map(f=>'<span class="badge" style="background:#1e2a3a;color:#8b95a5">'+f+'</span>').join('')}
+</div>
+<div class="listing-desc">${l.desc}</div>
+<div class="listing-actions">
+<button class="btn btn-expand" onclick="toggleExpand(${l.id})">👁️ Preview</button>
+<button class="btn btn-copy" data-copy="${l.id}" onclick="copyDesc(${l.id})">📋 Copy Listing</button>
+<button class="btn btn-posted ${isPosted?'is-posted':''}" onclick="togglePosted(${l.id})">${isPosted?'✅ Posted':'⬜ Mark Posted'}</button>
+</div>
+</div>`;
+});
+}
+c.innerHTML=html;
+
+// Update stats
+const posted=state.posted.length;
+document.getElementById('postedCount').textContent=posted;
+const pct=Math.round((posted/23)*100);
+const fill=document.getElementById('progressFill');
+fill.style.width=pct+'%';
+fill.textContent=pct+'%';
+}
+
+document.querySelectorAll('.filter-btn').forEach(b=>b.addEventListener('click',()=>setFilter(b.dataset.filter)));
+render();
+</script>
+</body>
+</html>

@@ -1,6 +1,9 @@
 # Ad Copy Archive — Shed Ads
 *Tracks previously written ads to avoid repeats*
 
+## March 24, 2026 (7 PM — Spring Marketplace Blitz)
+- **Shed-BLITZ-01 through BLITZ-23** — 23 individual Facebook Marketplace listings, one per shed in inventory. NOT rotation ads — these are PRODUCT LISTINGS with specific serial numbers, sizes, colors, prices, and unique descriptions. Interactive dashboard at `dashboard/marketplace-blitz.html`. Text versions at `ready-to-post/shed-marketplace-listings/listings.md`.
+
 ## March 24, 2026 (9 AM Daily)
 - **Shed-Mar166** — "The $5 a Day Challenge" — Coffee vs shed price reframe, daily cost breakdown
 - **Shed-Mar167** — "The Garage Door Test" — Interactive question, "can you park right now?", space problem reframe
