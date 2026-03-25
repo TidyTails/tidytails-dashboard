@@ -6,6 +6,9 @@
     <title>Tidy Tails CRM | Customer Tracker</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-database-compat.js"></script>
     <style>
         :root {
             --bg:#0a0a0a; --bg2:#141414; --bg3:#1a1a1a; --bg4:#242424;
@@ -23,6 +26,10 @@
         .header h1 span{color:var(--green);}
         .header-meta{font-size:0.7rem;color:var(--text3);margin-top:2px;}
         .header-actions{display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;}
+        .sync-status{font-size:0.7rem;padding:0.25rem 0.5rem;border-radius:4px;font-weight:600;}
+        .sync-live{background:rgba(16,185,129,0.15);color:var(--green);}
+        .sync-offline{background:rgba(239,68,68,0.15);color:var(--red);}
+        .sync-saving{background:rgba(251,191,36,0.15);color:var(--yellow);}
         .btn{padding:0.5rem 1rem;border-radius:8px;font-family:'Inter',sans-serif;font-weight:600;font-size:0.85rem;cursor:pointer;border:none;transition:all 0.2s;display:flex;align-items:center;gap:0.4rem;}
         .btn-green{background:var(--green);color:#000;}
         .btn-green:hover{filter:brightness(1.1);transform:translateY(-1px);}
@@ -215,6 +222,12 @@
         .btn-add-route:hover{filter:brightness(1.1);}
         .btn-add-route:active{transform:scale(0.98);}
 
+        /* Loading overlay */
+        .loading-overlay{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;}
+        .loading-spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--green);border-radius:50%;animation:spin 0.8s linear infinite;}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .loading-text{color:var(--text2);font-size:0.9rem;}
+
         @media(max-width:600px){
             .form-row{grid-template-columns:1fr;}
             .goal-stats{grid-template-columns:1fr 1fr;}
@@ -229,16 +242,24 @@
     </style>
 </head>
 <body>
+    <!-- Loading screen while Firebase connects -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Connecting to CRM...</div>
+    </div>
+
     <div class="header">
         <div class="header-inner">
             <div>
                 <h1>🐕 Tidy Tails <span>CRM</span></h1>
-                <div class="header-meta" id="lastUpdated"></div>
+                <div class="header-meta">
+                    <span id="lastUpdated"></span>
+                    <span class="sync-status sync-live" id="syncStatus">🟢 Live Sync</span>
+                </div>
             </div>
             <div class="header-actions">
                 <button class="btn btn-green" onclick="openAddModal()">+ Add</button>
                 <button class="btn btn-ghost btn-sm" onclick="exportData()" title="Export backup">📤 Export</button>
-                <button class="btn btn-ghost btn-sm" onclick="copyExport()" title="Copy data to clipboard">📋 Copy</button>
                 <button class="btn btn-ghost btn-sm" onclick="document.getElementById('importInput').click()" title="Import backup">📥 Import</button>
                 <button class="btn btn-ghost btn-sm" onclick="refreshAll()" title="Refresh">🔄</button>
                 <a href="index.html" class="btn btn-ghost btn-sm">← Dashboard</a>
@@ -256,7 +277,6 @@
     <!-- CUSTOMERS TAB -->
     <div class="tab-content active" id="tab-customers">
     <div class="container">
-        <!-- Info banner (shown when defaults loaded) -->
         <div class="info-banner" id="defaultBanner" style="display:none;">
             <span>ℹ️ Loaded default data — add your customers or import a backup</span>
             <span class="dismiss" onclick="this.parentElement.style.display='none'">✕</span>
@@ -267,28 +287,28 @@
             <div class="goal-header">
                 <div class="goal-title">🎯 Goal: 25 Customers by August 2025</div>
                 <div class="goal-numbers">
-                    <span class="goal-current" id="goalCurrent">8</span>
+                    <span class="goal-current" id="goalCurrent">0</span>
                     <span class="goal-target">/ 25</span>
                 </div>
             </div>
             <div class="progress-bar">
-                <div class="progress-fill" id="progressFill" style="width:32%">32%</div>
+                <div class="progress-fill" id="progressFill" style="width:0%">0%</div>
             </div>
             <div class="goal-stats">
                 <div class="goal-stat">
-                    <div class="goal-stat-val green" id="statActive">8</div>
+                    <div class="goal-stat-val green" id="statActive">0</div>
                     <div class="goal-stat-label">Active</div>
                 </div>
                 <div class="goal-stat">
-                    <div class="goal-stat-val orange" id="statNeeded">17</div>
+                    <div class="goal-stat-val orange" id="statNeeded">25</div>
                     <div class="goal-stat-label">Still Need</div>
                 </div>
                 <div class="goal-stat">
-                    <div class="goal-stat-val yellow" id="statMonthlyRev">$750</div>
+                    <div class="goal-stat-val yellow" id="statMonthlyRev">$0</div>
                     <div class="goal-stat-label">Monthly Rev</div>
                 </div>
                 <div class="goal-stat">
-                    <div class="goal-stat-val red" id="statGap">$1,750</div>
+                    <div class="goal-stat-val red" id="statGap">$2,500</div>
                     <div class="goal-stat-label">Monthly Gap</div>
                 </div>
             </div>
@@ -297,15 +317,15 @@
         <!-- REVENUE -->
         <div class="rev-grid">
             <div class="rev-card">
-                <div class="rev-val" style="color:var(--green)" id="revWeekly">$175</div>
+                <div class="rev-val" style="color:var(--green)" id="revWeekly">$0</div>
                 <div class="rev-label">Weekly Revenue</div>
             </div>
             <div class="rev-card">
-                <div class="rev-val" style="color:var(--green)" id="revMonthly">$750</div>
+                <div class="rev-val" style="color:var(--green)" id="revMonthly">$0</div>
                 <div class="rev-label">Monthly Revenue</div>
             </div>
             <div class="rev-card">
-                <div class="rev-val" style="color:var(--yellow)" id="revAnnual">$9,000</div>
+                <div class="rev-val" style="color:var(--yellow)" id="revAnnual">$0</div>
                 <div class="rev-label">Annual (Projected)</div>
             </div>
         </div>
@@ -313,7 +333,7 @@
         <!-- CUSTOMER TABLE -->
         <div class="table-wrap">
             <div class="table-header">
-                <div class="table-title">👥 Customers (<span id="customerCount">8</span>)</div>
+                <div class="table-title">👥 Customers (<span id="customerCount">0</span>)</div>
             </div>
             <div style="overflow-x:auto;">
                 <table>
@@ -343,7 +363,6 @@
     <!-- SCHEDULE TAB -->
     <div class="tab-content" id="tab-schedule">
     <div class="container">
-        <!-- Checklist Mode (hidden until started) -->
         <div id="checklistMode" style="display:none;">
             <div class="checklist-header">
                 <div class="checklist-progress" id="checklistProgress">0/0 yards done</div>
@@ -357,19 +376,14 @@
             <div id="checklistStops"></div>
         </div>
 
-        <!-- Normal Schedule View -->
         <div id="scheduleView">
             <div class="schedule-controls">
                 <div class="day-selector" id="daySelector"></div>
             </div>
             <div class="schedule-summary" id="scheduleSummary"></div>
-
-            <!-- + Add to Route button -->
             <button class="btn-add-route" id="addToRouteBtn" onclick="openCustomerPicker()">➕ Add to Route</button>
-
             <div class="route-actions" id="routeActions"></div>
             <div class="stop-list" id="stopList"></div>
-
             <div class="unassigned-section" id="unassignedSection" style="display:none;">
                 <div class="unassigned-title">⚠️ Unassigned Customers</div>
                 <div id="unassignedList"></div>
@@ -378,7 +392,6 @@
     </div>
     </div>
 
-    <!-- Day Change Menu (hidden) -->
     <div class="day-change-menu" id="dayChangeMenu" style="display:none;"></div>
 
     <!-- ADD CUSTOMER MODAL -->
@@ -454,7 +467,7 @@
         </div>
     </div>
 
-    <!-- CUSTOMER PICKER MODAL (for schedule) -->
+    <!-- CUSTOMER PICKER MODAL -->
     <div class="picker-overlay" id="pickerOverlay">
         <div class="picker-modal">
             <div class="picker-header">
@@ -468,12 +481,49 @@
     <div class="toast" id="toast"></div>
 
     <script>
+        // ============================================
+        // FIREBASE INIT
+        // ============================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyDibGaTlDBcCt8Yc3Ptppi-k2Yk6zwib2E",
+            authDomain: "tidytails-crm.firebaseapp.com",
+            databaseURL: "https://tidytails-crm-default-rtdb.firebaseio.com",
+            projectId: "tidytails-crm",
+            storageBucket: "tidytails-crm.firebasestorage.app",
+            messagingSenderId: "404406120439",
+            appId: "1:404406120439:web:e057614ec5ed62b13d08f2"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+        const customersRef = db.ref('customers');
+        const scheduleRef = db.ref('schedule');
+        const checklistRef = db.ref('checklist');
+
+        // ============================================
+        // STATE
+        // ============================================
         const GOAL = 25;
         const TARGET_MONTHLY = 2500;
+        let customers = [];
+        let schedule = null;
         let editingId = null;
         let lastSavedTimestamp = null;
+        let firebaseReady = false;
+        let suppressNextCustomerSync = false;
+        let suppressNextScheduleSync = false;
 
-        // Default customers with lastCleaned field
+        const DAYS = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
+        const DAY_LABELS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        const FREQ_ORDER = ['weekly','biweekly','monthly','onetime'];
+        const FREQ_LABELS = {weekly:'Weekly',biweekly:'Biweekly',monthly:'Monthly',onetime:'One-Time'};
+        const EST_TIME_PER_STOP = 20;
+        const EST_DRIVE_BETWEEN = 10;
+        let selectedDay = DAYS[new Date().getDay()];
+        let checklistActive = false;
+        let completedStops = new Set();
+        let dayChangeCustomerId = null;
+
+        // Default customers
         const defaultCustomers = [
             {id:1,name:"Mrs. Candee",address:"10220 Pannell Dr",city:"Saint Louis",zip:"63136",freq:"weekly",price:15,phone:"",notes:"",added:"2026-03-06",lastCleaned:null},
             {id:2,name:"Jody",address:"9110 Leenora Ave",city:"Saint Louis",zip:"63114",freq:"biweekly",price:45,phone:"",notes:"",added:"2026-03-06",lastCleaned:null},
@@ -485,26 +535,200 @@
             {id:8,name:"Preshus",address:"1785 Sun Drop Dr",city:"Saint Charles",zip:"63303",freq:"weekly",price:25,phone:"",notes:"",added:"2026-03-06",lastCleaned:null}
         ];
 
+        const defaultSchedule = {};
+        DAYS.forEach(d => defaultSchedule[d] = []);
+        defaultSchedule.sunday = defaultCustomers.map(c => c.id);
+
         // ============================================
-        // DATA PERSISTENCE
+        // FIREBASE DATA LAYER
         // ============================================
-        let loadedDefaults = false;
-        let customers = JSON.parse(localStorage.getItem('tidyTailsCustomers'));
-        if (!customers || customers.length === 0) {
-            customers = JSON.parse(JSON.stringify(defaultCustomers));
-            localStorage.setItem('tidyTailsCustomers', JSON.stringify(customers));
-            loadedDefaults = true;
-        } else {
-            // Ensure all customers have lastCleaned field
-            customers.forEach(c => { if (c.lastCleaned === undefined) c.lastCleaned = null; });
+        function setSyncStatus(status) {
+            const el = document.getElementById('syncStatus');
+            if (status === 'live') {
+                el.textContent = '🟢 Live Sync';
+                el.className = 'sync-status sync-live';
+            } else if (status === 'saving') {
+                el.textContent = '💾 Saving...';
+                el.className = 'sync-status sync-saving';
+            } else {
+                el.textContent = '🔴 Offline';
+                el.className = 'sync-status sync-offline';
+            }
         }
 
         function persistCustomers() {
-            localStorage.setItem('tidyTailsCustomers', JSON.stringify(customers));
-            updateTimestamp();
-            showToast('✅ Saved');
+            setSyncStatus('saving');
+            // Convert array to object keyed by id for Firebase
+            const data = {};
+            customers.forEach(c => { data[c.id] = c; });
+            customersRef.set(data).then(() => {
+                setSyncStatus('live');
+                updateTimestamp();
+                showToast('✅ Saved & synced');
+            }).catch(err => {
+                console.error('Save failed:', err);
+                setSyncStatus('offline');
+                showToast('❌ Save failed — check connection');
+            });
         }
 
+        function persistSchedule(sched) {
+            // Firebase doesn't store empty arrays, so ensure all days exist
+            const data = {};
+            DAYS.forEach(d => { data[d] = sched[d] && sched[d].length > 0 ? sched[d] : [0]; });
+            // Use [0] as sentinel for empty arrays since Firebase drops them
+            scheduleRef.set(data).then(() => {
+                setSyncStatus('live');
+                showToast('✅ Saved');
+            }).catch(err => {
+                console.error('Schedule save failed:', err);
+                showToast('❌ Save failed');
+            });
+        }
+
+        function persistChecklist() {
+            const today = new Date().toISOString().split('T')[0];
+            checklistRef.set({
+                date: today,
+                completed: [...completedStops]
+            });
+        }
+
+        // Migrate localStorage data to Firebase on first load
+        function migrateFromLocalStorage() {
+            const localCustomers = JSON.parse(localStorage.getItem('tidyTailsCustomers'));
+            const localSchedule = JSON.parse(localStorage.getItem('tidyTailsSchedule'));
+
+            if (localCustomers && localCustomers.length > 0) {
+                console.log('Migrating', localCustomers.length, 'customers from localStorage to Firebase...');
+                customers = localCustomers;
+                customers.forEach(c => { if (c.lastCleaned === undefined) c.lastCleaned = null; });
+                persistCustomers();
+
+                if (localSchedule) {
+                    DAYS.forEach(d => { if (!localSchedule[d]) localSchedule[d] = []; });
+                    persistSchedule(localSchedule);
+                }
+
+                // Clear localStorage after successful migration
+                localStorage.removeItem('tidyTailsCustomers');
+                localStorage.removeItem('tidyTailsSchedule');
+                localStorage.removeItem('tidyTailsChecklistProgress');
+                showToast('📦 Migrated local data to cloud!');
+                return true;
+            }
+            return false;
+        }
+
+        // ============================================
+        // FIREBASE REAL-TIME LISTENERS
+        // ============================================
+        let initialLoadDone = false;
+        let customersLoaded = false;
+        let scheduleLoaded = false;
+
+        function checkInitialLoad() {
+            if (customersLoaded && scheduleLoaded && !initialLoadDone) {
+                initialLoadDone = true;
+                firebaseReady = true;
+                document.getElementById('loadingOverlay').style.display = 'none';
+                render();
+                if (document.querySelector('.tab-btn:nth-child(2)').classList.contains('active')) {
+                    renderSchedule();
+                }
+            }
+        }
+
+        // Listen for customer changes (real-time sync)
+        customersRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                // Convert Firebase object back to array
+                customers = Object.values(data);
+                customers.forEach(c => { if (c.lastCleaned === undefined) c.lastCleaned = null; });
+                customersLoaded = true;
+            } else {
+                // No data in Firebase — check localStorage for migration
+                if (!customersLoaded) {
+                    const migrated = migrateFromLocalStorage();
+                    if (!migrated) {
+                        // First time ever — seed with defaults
+                        customers = JSON.parse(JSON.stringify(defaultCustomers));
+                        persistCustomers();
+                        persistSchedule(defaultSchedule);
+                        document.getElementById('defaultBanner').style.display = 'flex';
+                    }
+                    customersLoaded = true;
+                } else {
+                    customers = [];
+                }
+            }
+            checkInitialLoad();
+            if (firebaseReady) {
+                render();
+                updateTimestamp();
+                setSyncStatus('live');
+            }
+        }, (err) => {
+            console.error('Firebase customers error:', err);
+            setSyncStatus('offline');
+            // Fallback to defaults
+            customers = JSON.parse(JSON.stringify(defaultCustomers));
+            customersLoaded = true;
+            checkInitialLoad();
+        });
+
+        // Listen for schedule changes
+        scheduleRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                schedule = {};
+                DAYS.forEach(d => {
+                    const arr = data[d] || [];
+                    // Filter out sentinel [0] values
+                    schedule[d] = Array.isArray(arr) ? arr.filter(id => id !== 0) : [];
+                });
+            } else {
+                schedule = JSON.parse(JSON.stringify(defaultSchedule));
+            }
+            scheduleLoaded = true;
+            checkInitialLoad();
+            if (firebaseReady && document.querySelector('.tab-btn:nth-child(2)').classList.contains('active')) {
+                renderSchedule();
+            }
+        }, (err) => {
+            console.error('Firebase schedule error:', err);
+            schedule = JSON.parse(JSON.stringify(defaultSchedule));
+            scheduleLoaded = true;
+            checkInitialLoad();
+        });
+
+        // Listen for checklist changes
+        checklistRef.on('value', (snapshot) => {
+            const data = snapshot.val();
+            if (data) {
+                const today = new Date().toISOString().split('T')[0];
+                if (data.date === today && data.completed) {
+                    completedStops = new Set(data.completed);
+                } else {
+                    completedStops = new Set();
+                }
+                if (checklistActive) renderChecklist();
+            }
+        });
+
+        // Connection state monitoring
+        db.ref('.info/connected').on('value', (snap) => {
+            if (snap.val() === true) {
+                setSyncStatus('live');
+            } else {
+                setSyncStatus('offline');
+            }
+        });
+
+        // ============================================
+        // HELPERS
+        // ============================================
         function updateTimestamp() {
             lastSavedTimestamp = new Date();
             const el = document.getElementById('lastUpdated');
@@ -512,105 +736,24 @@
             const m = String(lastSavedTimestamp.getMinutes()).padStart(2,'0');
             const ampm = h >= 12 ? 'PM' : 'AM';
             const h12 = h % 12 || 12;
-            el.textContent = `Last updated: ${h12}:${m} ${ampm}`;
+            el.textContent = `Last synced: ${h12}:${m} ${ampm} · `;
         }
 
-        function exportData() {
-            const data = JSON.stringify(customers, null, 2);
-            // Mobile-friendly: open in new tab so user can copy or save
-            try {
-                const blob = new Blob([data], {type:'application/json'});
-                const url = URL.createObjectURL(blob);
-                // Try download link first
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'tidytails-crm-backup.json';
-                a.style.display = 'none';
-                document.body.appendChild(a);
-                a.click();
-                setTimeout(() => {
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                }, 500);
-                showToast('📤 Backup downloaded!');
-            } catch(e) {
-                // Fallback: copy to clipboard
-                navigator.clipboard.writeText(data).then(() => {
-                    showToast('📋 Data copied to clipboard — paste into a note to save!');
-                }).catch(() => {
-                    // Last resort: open in new window
-                    const w = window.open('', '_blank');
-                    if (w) {
-                        w.document.write('<pre style="word-wrap:break-word;white-space:pre-wrap;">' + data.replace(/</g,'&lt;') + '</pre>');
-                        w.document.title = 'CRM Backup — Select All & Copy';
-                        showToast('📄 Opened backup in new tab — copy the text!');
-                    } else {
-                        alert('Backup data:\n\n' + data.substring(0, 2000) + '\n\n(Copy this text)');
-                    }
-                });
-            }
+        function getMonthlyValue(c) {
+            if (c.freq === 'weekly') return c.price * 4;
+            if (c.freq === 'biweekly') return c.price * 2;
+            if (c.freq === 'monthly') return c.price;
+            return c.price;
         }
 
-        // Also add a "Copy to Clipboard" export as a more reliable mobile option
-        function copyExport() {
-            const data = JSON.stringify(customers, null, 2);
-            navigator.clipboard.writeText(data).then(() => {
-                showToast('📋 CRM data copied to clipboard!');
-            }).catch(() => {
-                // Textarea fallback for older browsers
-                const ta = document.createElement('textarea');
-                ta.value = data;
-                ta.style.position = 'fixed';
-                ta.style.opacity = '0';
-                document.body.appendChild(ta);
-                ta.select();
-                document.execCommand('copy');
-                document.body.removeChild(ta);
-                showToast('📋 CRM data copied to clipboard!');
-            });
-        }
-
-        function importData(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const imported = JSON.parse(e.target.result);
-                    if (!Array.isArray(imported)) throw new Error('Invalid format');
-                    customers = imported;
-                    customers.forEach(c => { if (c.lastCleaned === undefined) c.lastCleaned = null; });
-                    persistCustomers();
-                    render();
-                    showToast('📥 Data imported successfully!');
-                } catch(err) {
-                    alert('Invalid JSON file. Please use a Tidy Tails backup file.');
-                }
-            };
-            reader.readAsText(file);
-            event.target.value = '';
-        }
-
-        function refreshAll() {
-            customers = JSON.parse(localStorage.getItem('tidyTailsCustomers')) || [];
-            render();
-            showToast('🔄 Refreshed');
-        }
-
-        // ============================================
-        // LAST CLEANED LOGIC
-        // ============================================
         function getLastCleanedStatus(customer) {
             if (!customer.lastCleaned) return { text: 'Never', cssClass: 'lc-gray', status: 'none' };
             const now = new Date();
             const cleaned = new Date(customer.lastCleaned);
             const diffMs = now - cleaned;
             const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-
-            // Format date
             const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
             const text = months[cleaned.getMonth()] + ' ' + cleaned.getDate();
-
             let cssClass = 'lc-green';
             if (customer.freq === 'weekly') {
                 if (diffDays > 8) cssClass = 'lc-red';
@@ -622,30 +765,88 @@
                 if (diffDays > 35) cssClass = 'lc-red';
                 else if (diffDays > 28) cssClass = 'lc-yellow';
             }
-
             return { text, cssClass, status: cssClass.replace('lc-',''), diffDays };
         }
 
-        // ============================================
-        // REVENUE HELPERS
-        // ============================================
-        function getMonthlyValue(c) {
-            if (c.freq === 'weekly') return c.price * 4;
-            if (c.freq === 'biweekly') return c.price * 2;
-            if (c.freq === 'monthly') return c.price;
-            return c.price; // one-time
+        function getCustomerById(id) { return customers.find(c => c.id === id); }
+
+        function escHtml(str) {
+            return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.remove('show');
+            void t.offsetWidth;
+            t.classList.add('show');
+            clearTimeout(t._timer);
+            t._timer = setTimeout(() => t.classList.remove('show'), 2000);
         }
 
         // ============================================
-        // RENDER
+        // EXPORT / IMPORT
         // ============================================
-        const FREQ_ORDER = ['weekly','biweekly','monthly','onetime'];
-        const FREQ_LABELS = {weekly:'Weekly',biweekly:'Biweekly',monthly:'Monthly',onetime:'One-Time'};
+        function exportData() {
+            const data = JSON.stringify(customers, null, 2);
+            try {
+                const blob = new Blob([data], {type:'application/json'});
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'tidytails-crm-backup.json';
+                a.style.display = 'none';
+                document.body.appendChild(a);
+                a.click();
+                setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 500);
+                showToast('📤 Backup downloaded!');
+            } catch(e) {
+                navigator.clipboard.writeText(data).then(() => {
+                    showToast('📋 Data copied to clipboard!');
+                }).catch(() => {
+                    alert('Backup data:\n\n' + data.substring(0, 2000));
+                });
+            }
+        }
 
+        function importData(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (!Array.isArray(imported)) throw new Error('Invalid format');
+                    if (!confirm(`Import ${imported.length} customers? This will replace all current data.`)) return;
+                    customers = imported;
+                    customers.forEach(c => { if (c.lastCleaned === undefined) c.lastCleaned = null; });
+                    persistCustomers();
+                    render();
+                    showToast('📥 Imported & synced to cloud!');
+                } catch(err) {
+                    alert('Invalid JSON file. Please use a Tidy Tails backup file.');
+                }
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        function refreshAll() {
+            // Force re-read from Firebase
+            customersRef.once('value').then(snap => {
+                const data = snap.val();
+                if (data) customers = Object.values(data);
+                render();
+                showToast('🔄 Refreshed from cloud');
+            });
+        }
+
+        // ============================================
+        // RENDER — CUSTOMERS
+        // ============================================
         function render() {
+            if (!firebaseReady) return;
             const body = document.getElementById('customerBody');
-
-            // Group by frequency
             const groups = {};
             FREQ_ORDER.forEach(f => groups[f] = []);
             customers.forEach(c => {
@@ -662,18 +863,17 @@
                     <span class="group-label">── ${FREQ_LABELS[freq]} ──</span>
                     <span class="group-stats">${group.length} customer${group.length>1?'s':''} • $${groupMonthly}/mo</span>
                 </td></tr>`;
-
                 group.forEach(c => {
                     const monthly = getMonthlyValue(c);
                     const freqClass = 'freq-' + c.freq;
                     const lc = getLastCleanedStatus(c);
                     html += `<tr onclick="openEditModal(${c.id})" style="cursor:pointer">
-                        <td><div class="customer-name">${c.name}</div><div class="customer-area">${c.phone||''}</div></td>
+                        <td><div class="customer-name">${escHtml(c.name)}</div><div class="customer-area">${escHtml(c.phone||'')}</div></td>
                         <td><span class="last-cleaned ${lc.cssClass}">${lc.text}</span></td>
                         <td><span class="freq-badge ${freqClass}">${FREQ_LABELS[c.freq]||c.freq}</span></td>
                         <td>$${c.price}</td>
                         <td><strong>$${monthly}</strong>/mo</td>
-                        <td style="color:var(--text3);font-size:0.8rem;">${c.notes||''}</td>
+                        <td style="color:var(--text3);font-size:0.8rem;">${escHtml(c.notes||'')}</td>
                     </tr>`;
                 });
             });
@@ -711,9 +911,9 @@
             });
             document.getElementById('areaGrid').innerHTML = Object.entries(areas).map(([city, names]) =>
                 `<div class="area-card">
-                    <div class="area-name">📍 ${city}</div>
+                    <div class="area-name">📍 ${escHtml(city)}</div>
                     <div class="area-count">${names.length} customer${names.length>1?'s':''}</div>
-                    <div class="area-customers">${names.join(', ')}</div>
+                    <div class="area-customers">${names.map(n => escHtml(n)).join(', ')}</div>
                 </div>`
             ).join('');
 
@@ -745,7 +945,6 @@
             persistCustomers();
             render();
             closeAddModal();
-            // Clear form
             ['addName','addAddress','addCity','addZip','addPrice','addPhone','addNotes'].forEach(id => document.getElementById(id).value = '');
         }
 
@@ -789,10 +988,6 @@
             document.getElementById('editModal').classList.add('active');
         }
 
-        function escHtml(str) {
-            return str.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-        }
-
         function markCleanedToday() {
             document.getElementById('editLastCleaned').value = new Date().toISOString().split('T')[0];
         }
@@ -825,63 +1020,9 @@
             closeEditModal();
         }
 
-        function showToast(msg) {
-            const t = document.getElementById('toast');
-            t.textContent = msg;
-            t.classList.remove('show');
-            // Force reflow
-            void t.offsetWidth;
-            t.classList.add('show');
-            clearTimeout(t._timer);
-            t._timer = setTimeout(() => t.classList.remove('show'), 2000);
-        }
-
         // ============================================
-        // SCHEDULE & ROUTE SYSTEM
+        // TABS
         // ============================================
-        const DAYS = ['sunday','monday','tuesday','wednesday','thursday','friday','saturday'];
-        const DAY_LABELS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-        const EST_TIME_PER_STOP = 20;
-        const EST_DRIVE_BETWEEN = 10;
-        let selectedDay = DAYS[new Date().getDay()];
-        let checklistActive = false;
-        let completedStops = new Set();
-        let dayChangeCustomerId = null;
-
-        function getSchedule() {
-            let sched = JSON.parse(localStorage.getItem('tidyTailsSchedule'));
-            if (!sched) {
-                sched = {};
-                DAYS.forEach(d => sched[d] = []);
-                sched.sunday = customers.map(c => c.id);
-                localStorage.setItem('tidyTailsSchedule', JSON.stringify(sched));
-            }
-            DAYS.forEach(d => { if (!sched[d]) sched[d] = []; });
-            return sched;
-        }
-
-        function saveSchedule(sched) {
-            localStorage.setItem('tidyTailsSchedule', JSON.stringify(sched));
-            showToast('✅ Saved');
-        }
-
-        function getCustomerById(id) { return customers.find(c => c.id === id); }
-
-        function syncSchedule() {
-            const sched = getSchedule();
-            const allIds = customers.map(c => c.id);
-            const scheduledIds = new Set();
-            DAYS.forEach(d => {
-                sched[d] = sched[d].filter(id => {
-                    if (allIds.includes(id)) { scheduledIds.add(id); return true; }
-                    return false;
-                });
-            });
-            allIds.forEach(id => { if (!scheduledIds.has(id)) sched.sunday.push(id); });
-            localStorage.setItem('tidyTailsSchedule', JSON.stringify(sched));
-            return sched;
-        }
-
         function switchTab(tab) {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
@@ -895,7 +1036,40 @@
             }
         }
 
+        // ============================================
+        // SCHEDULE & ROUTE
+        // ============================================
+        function getSchedule() {
+            if (!schedule) {
+                schedule = {};
+                DAYS.forEach(d => schedule[d] = []);
+                schedule.sunday = customers.map(c => c.id);
+            }
+            DAYS.forEach(d => { if (!schedule[d]) schedule[d] = []; });
+            return schedule;
+        }
+
+        function saveSchedule(sched) {
+            schedule = sched;
+            persistSchedule(sched);
+        }
+
+        function syncSchedule() {
+            const sched = getSchedule();
+            const allIds = customers.map(c => c.id);
+            const scheduledIds = new Set();
+            DAYS.forEach(d => {
+                sched[d] = sched[d].filter(id => {
+                    if (allIds.includes(id)) { scheduledIds.add(id); return true; }
+                    return false;
+                });
+            });
+            // Don't auto-assign unassigned to sunday — let user decide
+            return sched;
+        }
+
         function renderSchedule() {
+            if (!firebaseReady) return;
             const sched = syncSchedule();
             renderDaySelector(sched);
             renderDayView(sched);
@@ -958,8 +1132,8 @@
                          ontouchstart="touchDragStart(event)" ontouchmove="touchDragMove(event)" ontouchend="touchDragEnd(event)">
                         <div class="stop-num">${i + 1}</div>
                         <div class="stop-info">
-                            <div class="stop-name">${c.name}</div>
-                            <div class="stop-addr">${c.address}, ${c.city} ${c.zip}</div>
+                            <div class="stop-name">${escHtml(c.name)}</div>
+                            <div class="stop-addr">${escHtml(c.address)}, ${escHtml(c.city)} ${escHtml(c.zip)}</div>
                             <div class="stop-meta">
                                 <span class="stop-price">$${c.price}</span>
                                 <span class="stop-time">~${EST_TIME_PER_STOP} min</span>
@@ -974,7 +1148,7 @@
                 `).join('');
             }
 
-            // Unassigned customers
+            // Unassigned
             const allScheduledIds = new Set();
             DAYS.forEach(d => sched[d].forEach(id => allScheduledIds.add(id)));
             const unassigned = customers.filter(c => !allScheduledIds.has(c.id));
@@ -984,7 +1158,7 @@
                 document.getElementById('unassignedList').innerHTML = unassigned.map(c => `
                     <div class="unassigned-card" onclick="assignToDay(${c.id}, '${selectedDay}')">
                         <span>➕</span>
-                        <span><strong>${c.name}</strong> — ${c.city||''} — $${c.price} <span class="freq-badge freq-${c.freq}" style="margin-left:4px;">${FREQ_LABELS[c.freq]||c.freq}</span></span>
+                        <span><strong>${escHtml(c.name)}</strong> — ${escHtml(c.city||'')} — $${c.price} <span class="freq-badge freq-${c.freq}" style="margin-left:4px;">${FREQ_LABELS[c.freq]||c.freq}</span></span>
                     </div>
                 `).join('');
             } else {
@@ -993,27 +1167,21 @@
         }
 
         // ============================================
-        // CUSTOMER PICKER (for adding to route)
+        // CUSTOMER PICKER
         // ============================================
         function openCustomerPicker() {
             const sched = getSchedule();
             const dayLabel = selectedDay.charAt(0).toUpperCase() + selectedDay.slice(1);
             document.getElementById('pickerTitle').textContent = `Add to ${dayLabel}'s Route`;
-
-            // Build customer-to-day map
             const customerDayMap = {};
             DAYS.forEach(d => sched[d].forEach(id => { customerDayMap[id] = d; }));
-
             const alreadyOnThisDay = new Set(sched[selectedDay]);
-
-            // Sort: unscheduled first, then by name
             const sorted = [...customers].sort((a,b) => {
                 const aOn = alreadyOnThisDay.has(a.id) ? 1 : 0;
                 const bOn = alreadyOnThisDay.has(b.id) ? 1 : 0;
                 if (aOn !== bOn) return aOn - bOn;
                 return a.name.localeCompare(b.name);
             });
-
             document.getElementById('pickerList').innerHTML = sorted.map(c => {
                 const onDay = customerDayMap[c.id];
                 const isOnThisDay = alreadyOnThisDay.has(c.id);
@@ -1025,33 +1193,27 @@
                 }
                 return `<div class="picker-item" onclick="pickerAddCustomer(${c.id}, ${isOnThisDay}, '${onDay||''}')" style="${isOnThisDay?'opacity:0.5;':''}">
                     <div class="picker-item-info">
-                        <div class="picker-item-name">${c.name}</div>
-                        <div class="picker-item-detail">${c.city||''} • $${c.price}/visit</div>
+                        <div class="picker-item-name">${escHtml(c.name)}</div>
+                        <div class="picker-item-detail">${escHtml(c.city||'')} • $${c.price}/visit</div>
                         ${scheduledText}
                     </div>
                     <span class="freq-badge freq-${c.freq}">${FREQ_LABELS[c.freq]||c.freq}</span>
                 </div>`;
             }).join('');
-
             document.getElementById('pickerOverlay').classList.add('active');
         }
 
-        function closeCustomerPicker() {
-            document.getElementById('pickerOverlay').classList.remove('active');
-        }
+        function closeCustomerPicker() { document.getElementById('pickerOverlay').classList.remove('active'); }
 
         function pickerAddCustomer(id, isOnThisDay, currentDay) {
-            if (isOnThisDay) return; // Already on this day
+            if (isOnThisDay) return;
             const sched = getSchedule();
             const dayLabel = selectedDay.charAt(0).toUpperCase() + selectedDay.slice(1);
-
             if (currentDay && currentDay !== selectedDay) {
                 const currentDayLabel = currentDay.charAt(0).toUpperCase() + currentDay.slice(1);
                 if (!confirm(`Already on ${currentDayLabel} — move to ${dayLabel}?`)) return;
-                // Remove from current day
                 sched[currentDay] = sched[currentDay].filter(x => x !== id);
             }
-
             if (!sched[selectedDay].includes(id)) {
                 sched[selectedDay].push(id);
             }
@@ -1158,11 +1320,9 @@
             const sched = getSchedule();
             let currentDay = '';
             DAYS.forEach(d => { if (sched[d].includes(customerId)) currentDay = d; });
-
             menu.innerHTML = DAYS.map(d =>
                 `<button class="${d === currentDay ? 'current-day' : ''}" onclick="moveToDay(${customerId}, '${d}')">${d.charAt(0).toUpperCase() + d.slice(1)} ${d === currentDay ? '✓' : ''}</button>`
             ).join('');
-
             const rect = event.target.getBoundingClientRect();
             menu.style.top = Math.min(rect.bottom + 4, window.innerHeight - 300) + 'px';
             menu.style.left = Math.min(rect.left, window.innerWidth - 180) + 'px';
@@ -1229,11 +1389,7 @@
         function startChecklist() {
             checklistActive = true;
             completedStops = new Set();
-            const saved = JSON.parse(localStorage.getItem('tidyTailsChecklistProgress'));
-            const today = new Date().toISOString().split('T')[0];
-            if (saved && saved.date === today) {
-                saved.completed.forEach(id => completedStops.add(id));
-            }
+            // Load from Firebase (already synced via listener)
             document.getElementById('scheduleView').style.display = 'none';
             document.getElementById('checklistMode').style.display = 'block';
             renderChecklist();
@@ -1243,7 +1399,7 @@
             checklistActive = false;
             document.getElementById('scheduleView').style.display = 'block';
             document.getElementById('checklistMode').style.display = 'none';
-            localStorage.removeItem('tidyTailsChecklistProgress');
+            checklistRef.remove();
             renderSchedule();
         }
 
@@ -1252,17 +1408,13 @@
                 completedStops.delete(id);
             } else {
                 completedStops.add(id);
-                // Also update lastCleaned for this customer
                 const c = customers.find(x => x.id === id);
                 if (c) {
                     c.lastCleaned = new Date().toISOString().split('T')[0];
                     persistCustomers();
                 }
             }
-            localStorage.setItem('tidyTailsChecklistProgress', JSON.stringify({
-                date: new Date().toISOString().split('T')[0],
-                completed: [...completedStops]
-            }));
+            persistChecklist();
             renderChecklist();
         }
 
@@ -1292,8 +1444,8 @@
                 return `<div class="check-card ${isDone ? 'done' : ''}" onclick="toggleCheckStop(${c.id})">
                     <div class="check-icon">${isDone ? '✅' : ''}</div>
                     <div class="check-info">
-                        <div class="check-name">${c.name}</div>
-                        <div class="check-addr">${c.address}, ${c.city}</div>
+                        <div class="check-name">${escHtml(c.name)}</div>
+                        <div class="check-addr">${escHtml(c.address)}, ${escHtml(c.city)}</div>
                     </div>
                     <div class="check-price">$${c.price}</div>
                 </div>`;
@@ -1315,12 +1467,19 @@
         }
 
         // ============================================
-        // INIT
+        // TIMEOUT: If Firebase doesn't connect in 5s, show anyway
         // ============================================
-        render();
-        if (loadedDefaults) {
-            document.getElementById('defaultBanner').style.display = 'flex';
-        }
+        setTimeout(() => {
+            if (!initialLoadDone) {
+                console.warn('Firebase timeout — loading with defaults');
+                if (customers.length === 0) customers = JSON.parse(JSON.stringify(defaultCustomers));
+                if (!schedule) schedule = JSON.parse(JSON.stringify(defaultSchedule));
+                customersLoaded = true;
+                scheduleLoaded = true;
+                checkInitialLoad();
+                setSyncStatus('offline');
+            }
+        }, 5000);
     </script>
 </body>
 </html>
