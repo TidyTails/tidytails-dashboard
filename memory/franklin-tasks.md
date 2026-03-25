@@ -48,6 +48,22 @@
   - **EXPECTED IMPACT:** 5-15 warm leads in first 2 weeks, 1-3 new recurring customers (conservative)
   - **KEY INSIGHT:** Doggie Doodies customers (South County) are most vulnerable — 5.0★ service with 12 reviews just died. DoodyCalls served West County affluent areas. Post in those Nextdoor neighborhoods specifically.
 
+### Wednesday 5:04 AM — Website Conversion Audit: The Invisible Gap (Hourly Task)
+- **5:04 AM** 🔍 Website Conversion Audit — Full audit of tidytailsstl.com at `deliverables/website-conversion-audit.md`.
+  - **THE BIG FINDING: ZERO ANALYTICS.** No Google Analytics, no Facebook Pixel, no tracking of any kind. TJ is completely blind to how much traffic the site gets, where it comes from, and whether anyone converts.
+  - **WHY THIS MATTERS NOW:** We've created 15+ marketing deliverables (directory submissions, Nextdoor campaigns, competitor acquisition posts, etc.) that will drive traffic to this site. Without GA4, all that effort generates invisible results.
+  - **Site Strengths (A-grade):** Copy, pricing transparency, FAQ, schema markup, location pages, blog content, Spring Calculator. The content sells well.
+  - **Critical Fixes (all $0):**
+    1. 🚨 Install GA4 (15 min) — Must do BEFORE executing the 7-Day Blitz Sprint
+    2. 🚨 Add OG:image for social sharing (5 min) — Every Nextdoor/FB share currently shows blank preview
+    3. 🚨 Install Facebook Pixel (10 min) — Retargeting + ad measurement
+    4. ⚠️ Add thank-you page for form conversion tracking (15 min)
+    5. ⚠️ Add customer testimonials section (20 min) — Zero social proof currently
+    6. ⚠️ Add "Text Us" CTA to homepage (5 min) — Location pages have it, homepage doesn't
+  - **Total fix time: ~2.5 hours, $0 cost**
+  - **Grade: B+ content, F measurement. Fix the F first.**
+  - **TJ ACTION:** Install GA4 as literal Day 0 of the Blitz Sprint. Everything else is marketing in the dark without it.
+
 ### Wednesday 4:05 AM — 7-Day Customer Blitz Sprint: The Master Execution Plan (Hourly Task)
 - **4:05 AM** 🚀 7-Day Customer Blitz Sprint — Created the definitive one-week execution plan at `deliverables/7-day-customer-blitz-sprint.md`.
   - **WHY:** We have 15+ deliverables (GBP package, directory submission guide, acquisition campaign, review system, competitor intel) but no single unified action plan. TJ needs ONE document that says "do this today, do this tomorrow."
