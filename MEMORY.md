@@ -1,5 +1,5 @@
 # MEMORY.md — Franklin's Long-Term Memory
-*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 24, 2026 1:04 AM (cron fix v3, memory cleanup, duplicate removal, lessons update)*
+*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 24, 2026 11:04 PM (full-day consolidation — WAXR added, Telegram topics mapped, review count updated, asset inventory updated)*
 
 ## Who I Am
 - **Name:** Franklin
@@ -55,13 +55,14 @@
 - Average customer value: ~$100/month
 - **$70/month flat rate = UNIQUE** — no competitor offers this
 
-### Current State (Mar 18, 2026)
+### Current State (Mar 24, 2026)
 - **~8 recurring customers** (per customer table below, TJ hasn't confirmed churn)
 - Solo operation, wife does scheduling
 - Revenue: ~$750/month at peak, likely lower now
-- Sunday scooping day — all customers on Sunday
+- **Monday scooping day** (changed from Sunday, Mar 20)
 - **SSL RENEWED ✅** — Certificate valid Feb 16 → May 17, 2026. Site loads fast on Cloudflare.
 - **GBP VERIFIED** ✅ but only **7% complete** — needs hours, photos, services, description, categories
+- **⚠️ TJ POSTED IN FB GROUPS for the first time (Mar 24)** — first confirmed execution of marketing playbook!
 
 ### Online Presence (Mar 22)
 - **GBP:** VERIFIED ✅ (Mar 17) — but only **7% complete**. #1 priority.
@@ -70,6 +71,7 @@
 - **SSL:** Valid until May 17, 2026 (set reminder May 1)
 - **Google Reviews:** 6 reviews ✅ 5.0 stars (confirmed Mar 24 by TJ screenshot) — PASSED 5+ threshold for Map Pack! New reviews from Shannon Zamarripa + Lawrence Johnson. Link: https://g.page/r/Ce_hqIHanGLvEAE/review
 - **⚠️ GBP INVISIBLE on Maps** — Searching "Tidy Tails STL" or "poop scoop near me" does NOT show listing. Brand collision with FL + Atlanta "Tidy Tails" businesses. Root cause: 7% profile completion. MUST complete to 100%.
+- **Telegram HQ Topics LIVE ✅** (Mar 24) — Bot wired to all 7 topics, privacy OFF, admin granted, requireMention false
 - **Content:** 23 city landing pages (all deployed ✅ — ghost pages fixed!), 12 blog posts (1 duplicate merged), A- on-page SEO
 - **⚠️ Sitemap gap:** 4 of 6 I-44 pages missing from sitemap.xml (crestwood, maplewood, brentwood, shrewsbury) — need website repo access to fix
 - **⚠️ Title gap:** 4 I-44 pages have GENERIC title (default homepage title) instead of city-specific — needs fix
@@ -111,17 +113,22 @@
 **Market size:** 15 tracked competitors, 2-4 dead/dying, ~10-12 active
 **TJ's position:** $70/mo flat = mid-market. Cheaper than Doggie Doodies ($83), Dirty Dog ($95), Pooey ($100). More expensive weekly than DDD ($54/mo), POOP 911 ($52/mo).
 
-**Top threats (updated Mar 23, 5 PM — triple-verified):**
+**Top threats (updated Mar 24, 6 PM — live pricing verified):**
 - 🔴 DoodyCalls — best SEO in market, national franchise, only real commercial player
 - 🔴 Scoop Soldiers — **CONFIRMED ACTIVE IN STL** (triple-verified Mar 23). National franchise, 96+ territories. STL = new franchisee (early-stage). $15/visit residential. No local reviews yet. Professional copy, targeting HOAs + commercial. Has services TJ doesn't: deodorizer, sanitization, waste stations.
-- 🟠 No. 2 Crew — professional, $68/mo weekly ($19/visit), good branding (but /st-louis page 404)
-- 🟡 Little Stinkers — St. Charles County threat, multi-service
+- 🟠 Poop 2 Scoop — $18/wk (cheapest), #1 organic Google
+- 🟠 No. 2 Crew — $19/wk, #1 Google Ad position
+- 🟠 Doggie Doodies — $19.15/wk ($83/mo), 5.0★ 12 reviews, best ops (gate photos, Paw Points, e-gift cards)
+- 🟡 Little Stinkers — St. Charles County only, not a direct threat
 
-**Dead/dying (4 confirmed ☠️, 2 likely ❓):**
-- ☠️ Dog Doody Defenders — DNS gone Mar 23. Was cheapest ($54/mo), Florissant zip = TJ's turf. 15-30 orphaned customers!
+**Dead/dying (4+ confirmed ☠️):**
+- ☠️ Dog Doody Defenders — DNS gone Mar 23. 15-30 orphaned customers in Florissant!
 - ☠️ Pawfect Waste Solutions, Poopy Paws (DNS dead), Super Scoopers
-- ❓ POOP 911 STL — main location page 404 (but redirects to Lake St Louis variant, may be restructuring)
+- ❓ POOP 911 STL — Missouri page 404, not on locations list (may be GONE — was showing as active Mar 20 but Mar 24 crawl says otherwise)
+- ❓ DoodyCalls STL — Missouri page shows ZERO active locations
 - ❓ Dirty Dog Poo Crew — site now only shows grooming
+
+**⚠️ BOMBSHELL (Mar 24):** POOP 911 + DoodyCalls + DDD = potentially 3 major competitors gone in one month. Only 3 clearly active: Poop 2 Scoop, No. 2 Crew, Doggie Doodies. North County has ZERO competition.
 
 **Strategy:** Market consolidating = WINDOW OPEN. 50-100+ orphaned customers from dead competitors. Race Scoop Soldiers for them NOW.
 
@@ -165,7 +172,19 @@
 
 ---
 
-## 💡 Parked Business Ideas
+## 💡 Other Ventures & Parked Ideas
+
+### WAXR — Mobile Detailing Marketplace (NEW Mar 24)
+- **What:** Tech-first mobile detailing marketplace (think Uber for car detailing)
+- **Website:** waxr.io (built on Lovable.dev)
+- **Partner:** TJ's brother
+- **Market:** $2.6-3.1B US, 11% CAGR, NO dominant consumer platform
+- **Competitive gap:** Spiffy ($90.8M raised) pivoted to dealer SaaS → consumer vacuum
+- **Moat:** Quality-gated hybrid labor + AI photo verification + dynamic pricing
+- **Funding target:** $1.5M seed, 18-month runway
+- **Assets:** Full business plan + competitive analysis in `waxr/WAXR/`
+- **Google Drive:** https://drive.google.com/drive/folders/10r_hpfrUo83kKHpO5i2JDHxV5_tgY_uB
+- **Full details:** `memory/waxr-business.md`
 
 ### MOTRA (Parked Feb 23, updated Mar 6)
 Mobile fleet care replacing 40-50% of robotaxi depot operations. "Depot replacement."
@@ -174,33 +193,46 @@ Assets: Landing page, pitch deck (v6), one-pager, market research.
 **To resume:** "Let's pick up MOTRA"
 **Full details:** `memory/motra-business-idea.md`
 
+### AI Content Creation (NEW Mar 24)
+- TJ exploring content creation lane: "blue collar guy using AI"
+- HQ topic created (thread 92)
+- No assets yet — early concept stage
+
+**⚠️ TJ now has FOUR active ventures:** Tidy Tails, TuffShed/WoodMaster, WAXR, AI Content Creation. Plus MOTRA parked. Bandwidth management is critical.
+
 ---
 
 ## 🚨 CRITICAL SELF-ASSESSMENT (Mar 15, 2026)
 
 ### The Build vs Deploy Canyon
-- **130+ deliverables built** in 5 weeks. 60+ dashboard tools. 320+ PDFs/HTML assets.
+- **180+ deliverables built** in 5 weeks. 65+ dashboard tools. 350+ PDFs/HTML assets.
 - **Still ~8 customers.** Goal was 25-30 by Aug 2025 — now 7+ months overdue.
-- **ZERO confirmed post deployments.** ZERO confirmed review requests sent. ZERO directory listings beyond GBP/Yelp (which TJ did himself).
-- Mar 17 alone: 12+ deliverables in one day. Mar 18 overnight: 5 more. Cron is a content factory but execution is TJ's bottleneck.
+- **FIRST CONFIRMED FB GROUP POST Mar 24** ✅ — after 5 weeks, TJ finally executed marketing playbook!
+- **6 Google reviews at 5.0★** ✅ — Map Pack threshold passed! (TJ executed this himself)
+- **ZERO confirmed directory listings** beyond GBP/Yelp (which TJ did himself).
+- Mar 24 alone: 20+ hourly tasks, 17 new dashboard tools. The cron is a content factory running far ahead of execution.
 - The honest answer: TJ needs 30 minutes executing, not Franklin spending 30 hours building.
-- **SSL is FIXED** (renewed Feb 16, valid until May 17). GSC resubmission is now the #1 blocker.
+- **POSITIVE SIGN:** TJ posting in FB groups + getting reviews = execution starting. Don't kill momentum with more tools.
+- **SSL is FIXED** (renewed Feb 16, valid until May 17).
 
 ### What Actually Needs to Happen (TJ's 5-Minute Wins)
 - [x] **Google reviews** — 6 reviews, 5.0 stars ✅ (Mar 24). Map Pack threshold PASSED!
-- [ ] **Post 1 ad in a Facebook group** (3 min, $0) — copy-paste ready in dashboard
+- [x] **Post in a Facebook group** ✅ (Mar 24) — TJ's first confirmed post! Need to track results.
 - [ ] **Post on Nextdoor** (5 min, $0) — 14-day launch kit ready
 - [ ] **Submit to 5 directories** (45 min) — citation tracker ready
-- [ ] **Complete GBP to 100%** (30 min) — GBP wizard ready. HIGHEST PRIORITY.
+- [ ] **Complete GBP to 100%** (30 min) — GBP wizard ready. HIGHEST PRIORITY. Step-by-step guide sent to TidyTails HQ topic.
 - [ ] **Launch $7/day Facebook Ads** (30 min) — full campaign kit ready (AFTER GBP + reviews)
+- [ ] **Make 3 commercial calls** (15 min) — tap-to-call sheet with scripts ready
 
 ### What Franklin Should Focus On
-- **STOP BUILDING TOOLKITS.** 27 curated tools remain after declutter. The problem is execution, not tooling.
-- **Track execution.** Which posts has TJ actually made? Which leads called? Verify.
-- **Competitive monitoring.** Market is moving — POOP 911 investing in Florissant (confirmed Mar 20).
-- **Memory cleanup.** Keep context lean for better performance.
+- **STOP BUILDING TOOLKITS.** 65+ tools, 180+ deliverables. The canyon between building and execution is GRAND CANYON sized.
+- **Track execution.** TJ posted in FB groups (Mar 24) — FOLLOW UP on results! Which groups? How many leads?
+- **Support WAXR when asked** — but don't let it distract from Tidy Tails core goal (25-30 customers).
+- **Competitive monitoring.** Market is moving — POOP 911 investing in Florissant (confirmed Mar 20). Scoop Soldiers confirmed active.
+- **Memory cleanup.** Keep context lean for better performance. Hourly tasks log needs weekly archiving.
 - Late night = systems/maintenance. Morning = briefings. Don't build more tools until existing ones are used.
 - **Hourly autonomous tasks should maintain existing assets**, not create new ones.
+- **Wednesday action sheet is ready** — 5 actions, 72 minutes, $0. Push TJ to execute it.
 
 ### What's Been Tried (and results)
 - **Door hangers:** 500+ hung, 2 leads, 1 conversion (0.2%) — didn't work
@@ -261,19 +293,21 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 
 ---
 
-## 📊 Asset Inventory (Mar 24, 2026 — updated 12 AM)
+## 📊 Asset Inventory (Mar 24, 2026 — updated 11 PM)
 
 | Category | Count | Notes |
 |----------|-------|-------|
-| Dashboard tools (live) | ~48 | Battlecard, CRO, capture kit, scoop machine, review tracker, etc. |
+| Dashboard tools (live) | ~65 | Mar 24 alone added 17 new tools (scorecard, growth tracker, outreach kit, etc.) |
 | Dashboard archive | 116 | All old tools preserved, not deleted |
-| Dashboard size | ~125 MB | 48+ HTML + 61+ PDFs |
+| Dashboard size | ~150 MB | 65+ HTML + 61+ PDFs |
 | City landing pages | 23 | 6 ghost pages deployed ✅ (4 I-44 pages missing from sitemap) |
 | Blog posts | 12 | 1 duplicate merged into redirect |
-| Commercial leads | 49 | ZERO contacted |
+| Commercial leads | 61+ | ZERO contacted (enriched with contact names Mar 24) |
 | Competitors tracked | 15 | ~10-11 active, 4 dead confirmed, 2 likely dead |
-| Shed Marketplace listings | 23 | $139,977 total lot value |
-| Deliverables (total) | 155+ | **STOP BUILDING. EXECUTE.** |
+| Shed Marketplace listings | 23 | $143,977 total lot value |
+| Shed content calendar | 45 posts | April 2026 full calendar across FB/IG/Marketplace/GBP |
+| Deliverables (total) | 180+ | **STOP BUILDING. EXECUTE.** |
+| Hourly tasks (Mar 24) | 20+ | Biggest single-day output ever |
 
 **⚠️ Brave Search API:** Free plan quota (2000/mo) exhausted as of Mar 23. Check before searching.
 
@@ -288,12 +322,13 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 - **Mar 17:** GBP VERIFIED ✅ (only 7% complete). TJ frustrated: "tired of being stagnant."
 - **Mar 18:** GOOGLE INDEXED ✅ — GSC sitemap submitted, 17 pages discovered. First FB ad live ($7.27 spent, 344 views, 0 messages — video too long). **Jamie = face of Tidy Tails** rule established.
 - **Mar 20:** POOP 911 confirmed STILL in Florissant (URL restructure, not withdrawal). Scooping moved to MONDAYS.
-- **Mar 22 AM:** Telegram Topics configured — 6 topics (General, Tidy Tails, Sheds, Accountability, Franklin Admin, MOTRA). Group ID: `-1003877675524`.
+- **Mar 22 AM:** Telegram Topics configured — 6 topics initially. Group ID: `-1003877675524`.
+- **Mar 24 PM:** Telegram HQ fully wired — privacy OFF, bot admin, requireMention false. Topic map: 2=TidyTails, 3=Sheds, 4=Daily Accountability, 5=Franklin Admin, 6=Motra, 91=WAXR, 92=AI Content Creation.
 - **Mar 21:** TJ frustrated guides hidden in memory/ → **NEW RULE: PDF in chat + dashboard link.** Dashboard redesigned to 3 modes (TODAY/TOOLS/ARCHIVE).
 - **Mar 22:** RECORD DAY — 20 autonomous tasks. Dashboard declutter (144→28 files). Memory consolidated (43→21 active files). 6 ghost pages found (never deployed). Blog dedup fix. Telegram Topics configured (6-topic group). Paw-ty prep, GBP wizard, Mon call sheet, shed listings, community playbook, referral kit, scoop-day checklist, competitor battlemap — all built + shipped. Week-end archive completed 11 PM.
 - **Mar 23:** SPRING BLITZ WEEK 1 LAUNCH. 15+ autonomous tasks. Built: Scoop Soldiers battlecard, website CRO audit (C+ grade), lead response system, speed-to-lead templates, I-44 corridor expansion leads, Spring Blitz playbook (6-week plan), Week 1 launch kit, dead competitor capture kit, competitive pricing cheat sheet, directory citation blitz (25 directories), GBP optimization package (complete copy-paste guide), shed ads Mar 24-30, scoop day marketing machine, morning briefing, referral program kit, Q2 90-day roadmap, review generation tracker. Dog Doody Defenders confirmed DEAD (DNS gone). Scoop Soldiers CONFIRMED active in STL (triple-verified). Market consolidating fast. TJ confirmed 3 Google reviews ✅. GBP still INVISIBLE on Maps (7% complete, brand collision). TJ reported bugs: Notion PDFs not clickable (wrong URLs), shed ad cron sends summaries not copy. Both fixed. EOD cron and Weekly Review cron fixed (were failing on Telegram delivery). 10 dead one-shot crons removed. Memory archived at EOD.
 - **⚠️ Brave Search API:** Free plan quota EXHAUSTED (2000/2000) as of Mar 23. Resets monthly. Impacts: competitive monitoring, security scans, morning briefing research, hourly tasks. Consider upgrading ($5/mo for 5000 queries) or rationing harder.
-- **Mar 24:** Cron fix saga continued. Weekly Review FIXED (v4) — root cause was missing `to` chatId in delivery config. EOD cron FIXED (v5) — complete prompt rewrite: removed ALL mentions of messaging/Telegram/send, restructured as clear numbered steps, explicit "DO NOT call messaging tools" at end. Previous attempts (v1-v4) failed because any mention of Telegram triggered agents to use the message tool. OpenClaw updated to 2026.3.23-2 overnight (patch-level, auto-approved).
+- **Mar 24:** BIGGEST DAY EVER. 20+ hourly tasks. TJ's first confirmed FB group post (EXECUTION BREAKTHROUGH). Google reviews hit 6 (5.0★ — Map Pack eligible). Telegram HQ topics fully wired (7 topics, bot admin, privacy off). New tools: sales scorecard, revenue tracker, DDD rescue blitz, commercial outreach kit, GBP completion guide, onboarding kit, competitor intel report, Google Ads launchpad, pricing intel, citation blitz v2, website audit, call sheet, April shed content calendar (45 posts), Marketplace blitz (23 listings), Wednesday action sheet. Cron fixes: EOD v5+v6 (removed all Telegram mentions from prompts), Weekly Review v4 (missing chatId). OpenClaw updated to 2026.3.23-2. WAXR business venture introduced (mobile detailing marketplace, TJ + brother). AI Content Creation topic added. iMessage screenshot generator built (capability unlocked). **⚠️ 65+ dashboard tools now — the build/execute gap is wider than ever.**
 
 ---
 
@@ -317,6 +352,9 @@ TJ wants red glowing eyes when working! Update `dashboard/status.json`:
 17. **TJ can't access memory/ files.** Guides saved there are invisible. NEW RULE (Mar 21): Everything for TJ → PDF in Telegram chat AND dashboard link. No more hidden docs.
 18. **Dashboard redesigned to 3 modes (Mar 21).** TODAY (action items), TOOLS (organized by category), ARCHIVE (searchable). 97 files → 3 clean tabs. This is the UX layer that makes everything else usable.
 19. **1 AM = maintenance, not creation.** Don't build new content at 1 AM. Fix crons, clean memory, archive logs. Save creation for daytime crons.
+20. **Execution > Tools, always.** Mar 24 proved it: TJ's one Facebook group post + 3 review requests outweighed 20 hourly tasks building dashboards. When TJ does 30 minutes of work, it's worth more than Franklin doing 24 hours. Protect and amplify TJ's execution windows.
+21. **Telegram topic wiring needs 3 things:** Privacy mode OFF (BotFather), bot admin with manage_topics, requireMention: false in config. Missing ANY ONE = silent failure.
+22. **iMessage screenshot capability unlocked.** HTML→Puppeteer pipeline at iPhone 15 Pro resolution. Can generate realistic iOS screenshots for social proof mockups, testimonials, etc.
 
 ---
 
