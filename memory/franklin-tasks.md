@@ -48,6 +48,20 @@
   - **EXPECTED IMPACT:** 5-15 warm leads in first 2 weeks, 1-3 new recurring customers (conservative)
   - **KEY INSIGHT:** Doggie Doodies customers (South County) are most vulnerable — 5.0★ service with 12 reviews just died. DoodyCalls served West County affluent areas. Post in those Nextdoor neighborhoods specifically.
 
+### Wednesday 6:05 AM — WAXR Competitive Intelligence: Live Crawl Verification (Hourly Task)
+- **6:05 AM** 🔍 WAXR Competitor Deep Dive — Live-crawled all 10 known mobile detailing platforms. Full report at `deliverables/waxr-competitive-intel-march25-2026.md`.
+  - **PIVOTED from Tidy Tails work** — 6 hours of TT marketing content overnight. WAXR is the new venture needing intel for $1.5M seed pitch.
+  - **MAJOR FINDINGS:**
+    - ☠️ **6 of 10 platforms DEAD/ZOMBIE:** Cherry, Washe, Wype, NuWash (all 404/DNS dead), Squeegy (zombie loading page)
+    - 🔴 **Spiffy ($90.8M raised) = 100% B2B NOW** — "Mobile Service Operating System for Dealers." Zero consumer marketplace. Confirmed.
+    - 🔴 **MobileWash CONTRACTED to NYC only** — was "dominant in SoCal," now branded as "NYC's premier." Massive geographic retreat.
+    - ✅ **Only 2 real consumer marketplaces:** Washos (booking + membership) and Panda Hub (100+ cities, 12K reviews, Deloitte #7)
+    - ⚠️ **NEITHER competitor has:** AI quality verification, GPS tracking, dynamic pricing, OR tiered detailers — ALL WAXR differentiators
+  - **Investor pitch ammo:** "Of 10 platforms, 6 dead, 1 pivoted, 1 contracted. Only 2 remain — neither with AI quality verification."
+  - **WAXR site note:** waxr.io currently shows "WARX" (typo) and just a Lovable badge. Needs cleanup before investor meetings.
+  - Updated `memory/waxr-business.md` competitive landscape section
+  - **Deliverable includes:** Full competitor matrix, pricing data, objection handling scripts, pitch deck update recommendations
+
 ### Wednesday 5:04 AM — Website Conversion Audit: The Invisible Gap (Hourly Task)
 - **5:04 AM** 🔍 Website Conversion Audit — Full audit of tidytailsstl.com at `deliverables/website-conversion-audit.md`.
   - **THE BIG FINDING: ZERO ANALYTICS.** No Google Analytics, no Facebook Pixel, no tracking of any kind. TJ is completely blind to how much traffic the site gets, where it comes from, and whether anyone converts.

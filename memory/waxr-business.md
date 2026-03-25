@@ -41,12 +41,14 @@
 - NPS > 60, <5% no-show rate
 - SOM target: $540K ARR
 
-## Competitive Landscape
-- **Spiffy** — $90.8M raised, pivoting to dealer SaaS, franchise lawsuits
-- **Washos** — most active consumer marketplace, quality issues
-- **MobileWash** — dominant in SoCal, labor lawsuit, AI routing pilot (+33% productivity)
-- **Panda Hub** — promising newer entrant, 100+ cities
-- **Dead:** Cherry (Founders Fund), Washe, Squeegy, Wype
+## Competitive Landscape (UPDATED March 25, 2026 — Live Crawl)
+- **Spiffy** — $90.8M raised, **FULLY PIVOTED to dealer B2B SaaS** — "Mobile Service Operating System for Dealers." Zero consumer presence. CONFIRMED.
+- **Washos** — ✅ LIVE, most active consumer marketplace. Pricing: $45-$199+. Has membership (30% off). Still no AI quality verification, no GPS tracking, no dynamic pricing.
+- **MobileWash** — ⚠️ CONTRACTED to NYC ONLY. Was "dominant in SoCal." Now "New York City's premier mobile car wash." May have abandoned most markets due to labor lawsuit.
+- **Panda Hub** — ✅ LIVE, 100+ cities, 12,423 reviews (4.9★), 70K+ drivers. **Deloitte #7 Companies to Watch 2025.** Closest to WAXR model but no AI verification, no GPS, no dynamic pricing. Pricing page 404'd.
+- **Dead (confirmed March 2026):** Cherry (Founders Fund) ☠️, Washe ☠️, Wype ☠️, NuWash ☠️, Squeegy ⚠️ (zombie — "getting things ready" page)
+- **Score:** 6 dead/zombie, 1 pivoted B2B, 1 contracted to 1 city. Only 2 real consumer competitors.
+- **Full report:** `deliverables/waxr-competitive-intel-march25-2026.md`
 
 ## Key Insight
 Every failed marketplace neglected supply-side quality. WAXR solves the detailer FIRST, then launches demand.
