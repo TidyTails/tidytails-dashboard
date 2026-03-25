@@ -6,6 +6,36 @@
 
 ## March 25, 2026 (Wednesday)
 
+### Wednesday 3:04 PM — Commercial Services Page + Call Script (Hourly Task)
+- **3:04 PM** 🏢 Commercial Conversion Infrastructure — Built two deliverables that bridge the gap between our 73 commercial leads and actual revenue:
+  1. **Commercial Services Page** (`tidy-tails/website/commercial.html`) — Full standalone page at `/commercial` for apartment complexes, HOAs, property managers, and dog businesses.
+     - **WHY:** We have 73 commercial leads with zero contacted. When TJ calls Millsap Properties or Renewal Heights and they Google "Tidy Tails STL," there was NO commercial page. They'd see a residential site and bounce. Now they see a page that speaks their language.
+     - **WHAT'S ON IT:**
+       - Hero with "#1 Complaint" hook and free walkthrough CTA
+       - 6 pain points property managers feel (resident complaints, maintenance drain, empty dog parks, liability, prospect turnoffs, fine system failures)
+       - 3 service tiers (common area cleanup, waste station maintenance, resident perk program)
+       - 8 client types we serve (apartments, HOAs, property managers, dog parks, villas, senior living, boarding, vet clinics)
+       - 3-tier transparent pricing ($150/mo small, $250/mo mid, $400/mo large)
+       - 3-step process (walkthrough → quote → service)
+       - 6 "why us" differentiators
+       - Full commercial service schema markup for Google
+       - Mobile-responsive, matches main site design
+     - Added "Commercial" link to main site header nav
+     - Added to sitemap.xml with 0.9 priority
+  2. **Commercial Call Script Cheat Sheet** (`deliverables/commercial-call-script-cheatsheet.md`) — Print-and-call reference for TJ/Jamie.
+     - **WHY:** Email templates exist but no PHONE scripts. TJ is a caller, not an emailer. This is the tool that matches how he works.
+     - **WHAT'S IN IT:**
+       - Opening scripts for 4 types: apartments, HOA management, dog daycares, vet clinics
+       - Response branches for "maintenance handles it," "we have a service," "not an issue"
+       - Objection handling: cost, existing vendor, need board approval, "sounds expensive," fines/DNA
+       - Quick stats card (5.0★, no contracts, local owner)
+       - Post-call tracking checklist
+       - Top 5 calls to make RIGHT NOW with phone numbers
+     - **KEY INSIGHT:** The goal of every call is to schedule a FREE WALKTHROUGH, not close on the phone. The script is designed around that single objective.
+  - Updated task board with both new deliverables ✅
+  - Committed + pushed to GitHub ✅
+  - **TJ ACTION:** Print the call script. Call Millsap Properties first: (314) 686-3337. Seven pet-friendly properties in your exact service area.
+
 ### Wednesday 2:05 PM — Spring/Summer Event Marketing Playbook (Hourly Task)
 - **2:05 PM** 📅 Event Marketing Playbook — Researched and built complete 4-event spring/summer marketing playbook at `deliverables/spring-summer-event-marketing-playbook-2026.md`.
   - **WHY:** The task board had "Bark in the Park" as a bullet point with zero research, zero strategy, zero details. TJ had a contact name (Cole Imbs) but no actual event info. With 7+ competitors dead and the goal of 25-30 customers by August, events are the highest-ROI channel available — and nobody was working on it beyond the Crestwood event Saturday.
