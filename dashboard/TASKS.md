@@ -108,6 +108,8 @@ Leads are worthless without fast follow-up. Complete system for converting every
 - **NEW: Floating Text CTA** — Mobile "Text Us" button ✅
 - **NEW: Thank-you page** — Form redirects to `/thank-you` with conversion tracking placeholders ✅
 - **NEW: Review schema markup** — Aggregate rating structured data for rich snippets ✅
+- **NEW: Commercial Services Page** — `/commercial` — Full page for apartment complexes, HOAs, property managers. Pricing tiers, service descriptions, schema markup, "Free Walkthrough" CTA. Added to main site nav + sitemap ✅
+- **NEW: Commercial Call Script Cheat Sheet** — `deliverables/commercial-call-script-cheatsheet.md` — Print-and-call scripts for apartments, HOAs, daycares, vet clinics. Objection handling, top 5 numbers to call ✅
 - **⚠️ VERIFY TESTIMONIALS** — TJ should confirm review text matches real Google reviews or swap in actual ones
 - **⚠️ NO ANALYTICS** — Zero tracking (no GA4, no FB Pixel). Install GA4 BEFORE the Blitz Sprint so we can measure results. 15-minute setup.
 - **⚠️ GBP INVISIBLE** on Maps — Brand collision with FL/ATL "Tidy Tails." Fix = complete profile to 100%.
