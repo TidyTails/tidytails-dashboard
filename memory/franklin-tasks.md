@@ -6,6 +6,26 @@
 
 ## March 25, 2026 (Wednesday)
 
+### Wednesday 5:04 PM — Pricing & Revenue Optimization Strategy (Hourly Task)
+- **5:04 PM** 💰 Pricing & Revenue Optimization — Created comprehensive pricing strategy at `deliverables/pricing-revenue-optimization-spring2026.md`.
+  - **WHY:** We've built 20+ marketing deliverables to GET customers. Zero work on MAXIMIZING revenue per customer. With 7+ competitors dead and only 3 active, TJ has pricing power he's not using. And offering only weekly service loses every price-sensitive lead.
+  - **WHAT'S INCLUDED:**
+    - **3 new service tiers:** Weekly $75/mo (+$5 increase), EOW $49/mo (new tier), Monthly $39/mo (entry point)
+    - **Add-on services:** Yard deodorizing (+$20/mo, ~90% margin), initial deep clean ($99-149), event cleanup ($49-79), patio sanitize (+$10)
+    - **Spring Reset Package:** $129 = deep clean + deodorize + first month weekly. Seasonal promotion copy included.
+    - **Prepay discounts:** 3-month $199 (12% off), 6-month $379 (16% off), annual $699 (22% off). Cash flow + retention tool.
+    - **Commercial pricing tiers:** Small $150/mo, Medium $250/mo, Large $400/mo
+    - **Price increase roadmap:** Triggers at 12, 18, 25, 30 customers with notice templates
+    - **Revenue projections:** Current pricing at 25 customers = $1,750/mo. Optimized = $2,200/mo. Delta = $450/mo ($5,400/yr).
+  - **KEY INSIGHT:** The biggest revenue leak isn't marketing — it's only having ONE option. Monthly service tier ($39/mo) captures customers who think weekly is too much. 30% upgrade to weekly within 6 months (industry data). A $39 customer is infinitely better than a $0 lost lead.
+  - **MARKET POSITION:** TJ's $70/mo ($17.50/visit) is already competitive. DDD=$17, P2S=$18+add-ons, No2Crew=$19. The cheap national franchises (POOP 911 $11.95, DoodyCalls $12-14) are DEAD. TJ can safely move to $75/mo.
+  - **TJ QUICK WINS:**
+    1. Add EOW + monthly to website (15 min) — stop losing leads
+    2. Text 8 customers about deodorizing (10 min) — +$80/mo
+    3. Post Spring Reset to GBP + FB (5 min)
+  - Updated task board ✅
+  - Committed + pushed to GitHub ✅
+
 ### Wednesday 4:05 PM — Paid Ads Launch Guide: The Accelerator (Hourly Task)
 - **4:05 PM** 💰 Paid Ads Launch Guide — Created comprehensive paid advertising playbook at `deliverables/paid-ads-launch-guide-spring2026.md`.
   - **WHY:** We've built 20+ organic marketing deliverables (directories, GBP posts, Nextdoor community posts, event kits, referral partners) — ALL free, ALL slow to build momentum. The single fastest path to 25-30 customers is paid acquisition. With 7+ competitors dead, ad costs are at historic lows (less competition = cheaper bids). AND we have 2 video ads sitting idle that need distribution.

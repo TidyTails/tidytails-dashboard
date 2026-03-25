@@ -107,6 +107,21 @@ Organic marketing alone won't hit 25-30 customers by August. Paid ads are the mi
 - **⚠️ PREREQUISITE:** Install Facebook Pixel on tidytailsstl.com FIRST (10 min)
 - **TJ START HERE:** Set up Facebook Business Manager + install Pixel (30 min total)
 
+### 💰 NEW: Pricing & Revenue Optimization Strategy
+Stop leaving money on the table. With 7+ competitors dead, we have pricing power.
+- **Full guide:** `deliverables/pricing-revenue-optimization-spring2026.md`
+- **3 new tiers:** Weekly $75/mo | EOW $49/mo | Monthly $39/mo
+- **Add-ons:** Deodorizing (+$20/mo), deep clean ($99-149), event cleanup ($49-79)
+- **Spring Reset Package:** $129 = deep clean + deodorize + first month weekly
+- **Prepay discounts:** 3-month $199, 6-month $379, annual $699
+- **Commercial pricing:** $150-400/mo per account (1 account = 3-5 residential)
+- **Revenue impact:** +$5,400-9,000/yr at same customer counts from smarter pricing alone
+- **Quick wins TODAY:**
+  1. Add EOW + monthly tiers to website (15 min) — stops losing price-sensitive leads
+  2. Text 8 customers about deodorizing add-on (10 min) — potential +$80/mo
+  3. Post Spring Reset package to GBP + Facebook (5 min)
+- **Price increase roadmap:** At 12 customers → $75 for new. At 18 → all $75. At 25 → $85 for new.
+
 ### 📋 Directory Submission Package
 22 directories ready for submission. Copy-paste descriptions included.
 - Guide: `deliverables/directory-submission-package.md`
