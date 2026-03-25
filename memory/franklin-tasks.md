@@ -6,6 +6,31 @@
 
 ## March 25, 2026 (Wednesday)
 
+### Wednesday 2:05 PM — Spring/Summer Event Marketing Playbook (Hourly Task)
+- **2:05 PM** 📅 Event Marketing Playbook — Researched and built complete 4-event spring/summer marketing playbook at `deliverables/spring-summer-event-marketing-playbook-2026.md`.
+  - **WHY:** The task board had "Bark in the Park" as a bullet point with zero research, zero strategy, zero details. TJ had a contact name (Cole Imbs) but no actual event info. With 7+ competitors dead and the goal of 25-30 customers by August, events are the highest-ROI channel available — and nobody was working on it beyond the Crestwood event Saturday.
+  - **KEY FINDINGS:**
+    - 🆕 **DISCOVERED: Arch Bark** — April 18, Gateway Arch National Park, 10 AM-2 PM. NEW event TJ didn't know about. Dog event at the Arch = prime foot traffic.
+    - 🔥 **Bark in the Park VERIFIED:** May 16, Tower Grove Park, 8 AM-2 PM. **31st annual. Presented by PURINA. FREE to attend.** 5,000-10,000 attendees. Organizer = Humane Society of Missouri. Contact: bark@hsmo.org / 314-951-1565 (NOT Cole Imbs — that number may be old).
+    - Registration live at: https://p2p.onecause.com/bark2026
+    - Vendor booth info NOT on website — TJ needs to email/call HSMO directly
+  - **WHAT'S IN THE PLAYBOOK:**
+    - Complete 4-event calendar (Crestwood Mar 28, Treats Apr 4, Arch Bark Apr 18, Bark in the Park May 16)
+    - Verified event details with dates, locations, registration links
+    - Vendor booth strategy with budget breakdown ($75 must-haves, $105 nice-to-haves)
+    - Booth layout diagram
+    - Pitch scripts and conversation flows for booth AND guerrilla approaches
+    - 3-touch follow-up text sequence (day-of, Tuesday, Friday)
+    - ROI projections: Conservative 4 new customers ($4,800-$9,600/yr), Optimistic 8-12 new customers
+    - Master checklist with week-by-week action items through May
+    - Email template for vendor booth inquiry (copy-paste ready)
+  - **CRITICAL TJ ACTIONS:**
+    1. Email bark@hsmo.org THIS WEEK for vendor booth (template provided)
+    2. Register for Arch Bark on Eventbrite
+    3. Print 200+ business cards before Saturday
+  - Updated task board with detailed event sections and HSMO contact info ✅
+  - Committed + pushed to GitHub ✅
+
 ### Wednesday 1:04 PM — Crestwood Paw-ty Event Prep Kit (Hourly Task)
 - **1:04 PM** 🐾 Event Prep Kit — Created complete event preparation guide for Saturday's Crestwood Vet Adoption Paw-ty at `deliverables/crestwood-pawty-event-kit-march28.md`.
   - **WHY:** Event is 3 DAYS AWAY (Saturday, March 28). No prep materials existed. This is TJ's first in-person lead gen opportunity — new dog adopters are the PERFECT customer (just got a dog, haven't thought about poop cleanup yet). One event can yield 2+ recurring customers ($140/mo = $1,680/yr) at $0 cost.

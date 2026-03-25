@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-25 11:04 AM CST — by Franklin*
+*Last updated: 2026-03-25 2:10 PM CST — by Franklin*
 
 ---
 
@@ -126,9 +126,25 @@ Leads are worthless without fast follow-up. Complete system for converting every
 - **Goal: 15+ conversations, 8+ phone numbers, 2+ conversions**
 - **Prep needed by Friday:** Print cards + flyers (~30 min, ~$15)
 
-#### Coming Up
+#### 🆕 Apr 18: ARCH BARK — Gateway Arch National Park
+- **NEW EVENT FOUND!** Saturday, April 18, 10 AM - 2 PM
+- Location: North Gateway at Gateway Arch National Park
+- Register on Eventbrite: `https://www.eventbrite.com/e/arch-bark-tickets-1985374472492`
+- Strategy: Guerrilla marketing — bring dog, business cards, spring flyers, work the crowd
+- **Goal: 15-30 cards distributed, 8-15 phone numbers**
+
+#### 🔥🔥 May 16: BARK IN THE PARK — THE BIG ONE
+- **31st annual, presented by PURINA** — 5,000-10,000 attendees
+- Location: Turkish Pavilion, Tower Grove Park
+- **FREE to attend** (walk + festival), 5K is $35
+- Register: `https://p2p.onecause.com/bark2026`
+- **⚠️ EMAIL bark@hsmo.org THIS WEEK for vendor booth** (template in playbook)
+- **⚠️ CALL 314-951-1565 if no response by Apr 2**
+- Full event marketing playbook: `deliverables/spring-summer-event-marketing-playbook-2026.md`
+- **Projected: 4-12 new recurring customers from this ONE event**
+
+#### Other Coming Up
 - [ ] **Apr 4 — Treats Unleashed Egg Hunt** (Ladue) — Referral partner play
-- [ ] **May 16 — Bark in the Park** — Largest pet festival in Midwest. 5,000-10,000 dog owners. **CALL COLE IMBS: 314-951-1567** for vendor booth.
 - [ ] **Print 200+ business cards** before Mar 28 — Vistaprint ~$15
 
 ### ✅ Recently Completed
@@ -150,6 +166,7 @@ Leads are worthless without fast follow-up. Complete system for converting every
 - [x] **April-May GBP Post Calendar** created ✅ (Mar 25) — 8 posts, copy-paste ready
 - [x] **Lead Response & Follow-Up System** created ✅ (Mar 25) — Text templates, call scripts, objection handlers, tracking
 - [x] **Crestwood Paw-ty Event Kit** created ✅ (Mar 25) — Scripts, flyers, follow-up templates, vet relationship strategy
+- [x] **Spring/Summer Event Marketing Playbook** created ✅ (Mar 25) — 4 events mapped, Bark in the Park intel, booth strategy, ROI projections
 
 ---
 
