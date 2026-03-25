@@ -48,4 +48,20 @@
   - **EXPECTED IMPACT:** 5-15 warm leads in first 2 weeks, 1-3 new recurring customers (conservative)
   - **KEY INSIGHT:** Doggie Doodies customers (South County) are most vulnerable — 5.0★ service with 12 reviews just died. DoodyCalls served West County affluent areas. Post in those Nextdoor neighborhoods specifically.
 
+### Wednesday 4:05 AM — 7-Day Customer Blitz Sprint: The Master Execution Plan (Hourly Task)
+- **4:05 AM** 🚀 7-Day Customer Blitz Sprint — Created the definitive one-week execution plan at `deliverables/7-day-customer-blitz-sprint.md`.
+  - **WHY:** We have 15+ deliverables (GBP package, directory submission guide, acquisition campaign, review system, competitor intel) but no single unified action plan. TJ needs ONE document that says "do this today, do this tomorrow."
+  - **WHAT:** Day-by-day, step-by-step sprint plan that consolidates all prior work:
+    - **Day 1:** GBP optimization (45-60 min, $0) — THE #1 priority
+    - **Day 2:** Top 5 directory submissions (20-25 min, $0)
+    - **Day 3:** Nextdoor orphaned customer posts (15 min, $0)
+    - **Day 4:** Facebook group blitz (20 min, $0)
+    - **Day 5:** Review generation kickstart (15 min, $0)
+    - **Day 6:** Remaining directory submissions (25-30 min, $0)
+    - **Day 7:** Google Posts + results recon (20 min, $0)
+  - **TOTAL:** ~3 hours across 7 days. $0 spent. Every piece of content pre-written and copy-paste ready.
+  - **EXPECTED RESULTS:** 10-20 leads in 30 days, 3-5 new recurring customers, $210-350/mo added revenue
+  - **KEY INSIGHT:** All the research and content creation is DONE. The gap isn't information — it's execution. This plan bridges that gap.
+  - **IF TIME IS LIMITED:** Days 1, 3, and 5 alone (GBP + Nextdoor + Reviews) could generate 5-10 leads in 2 weeks.
+
 *Previous: `memory/archive/franklin-tasks-mar24-full.md` (20+ tasks)*

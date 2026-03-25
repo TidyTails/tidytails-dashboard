@@ -70,6 +70,8 @@
 - **GSC:** VERIFIED ✅ — sitemap submitted, 17 pages discovered, site INDEXED (Mar 18)
 - **SSL:** Valid until May 17, 2026 (set reminder May 1)
 - **Google Reviews:** 6 reviews ✅ 5.0 stars (confirmed Mar 24 by TJ screenshot) — PASSED 5+ threshold for Map Pack! New reviews from Shannon Zamarripa + Lawrence Johnson. Link: https://g.page/r/Ce_hqIHanGLvEAE/review
+- **Telegram HQ Group** — Forum topics LIVE (Mar 24). Bot admin + privacy OFF + requireMention false.
+  - Thread 2=TidyTails, 3=Sheds, 4=Daily Accountability, 5=Franklin Admin, 6=Motra, 91=WAXR, 92=AI Content Creation
 - **⚠️ GBP INVISIBLE on Maps** — Searching "Tidy Tails STL" or "poop scoop near me" does NOT show listing. Brand collision with FL + Atlanta "Tidy Tails" businesses. Root cause: 7% profile completion. MUST complete to 100%.
 - **Telegram HQ Topics LIVE ✅** (Mar 24) — Bot wired to all 7 topics, privacy OFF, admin granted, requireMention false
 - **Content:** 23 city landing pages (all deployed ✅ — ghost pages fixed!), 12 blog posts (1 duplicate merged), A- on-page SEO
@@ -185,6 +187,20 @@
 - **Assets:** Full business plan + competitive analysis in `waxr/WAXR/`
 - **Google Drive:** https://drive.google.com/drive/folders/10r_hpfrUo83kKHpO5i2JDHxV5_tgY_uB
 - **Full details:** `memory/waxr-business.md`
+
+### WAXR — Mobile Detailing Marketplace (Added Mar 24)
+TJ + his brother. Tech-first mobile detailing platform (waxr.io, built on Lovable.dev).
+- **Market:** $2.6-3.1B, 11% CAGR, no dominant consumer platform
+- **Edge:** Quality-gated tiers, AI photo verification, dynamic pricing, B2B fleet anchors
+- **Revenue:** 25% take on $60-299 jobs, fleet subs $800-5K/mo, ceramic upsells 60% margin
+- **Seeking:** $1.5M seed, 18-month runway
+- **Spiffy vacuum:** $90.8M raised but pivoted to dealer SaaS + franchise lawsuits
+- **Docs:** `memory/waxr-business.md`, `waxr/WAXR/` (biz plan, competitive analysis, web app)
+- **HQ Topic:** Thread 91
+
+### AI Content Creation (Added Mar 24)
+New topic in HQ. TJ hasn't detailed the plan yet — follow up.
+- **HQ Topic:** Thread 92
 
 ### MOTRA (Parked Feb 23, updated Mar 6)
 Mobile fleet care replacing 40-50% of robotaxi depot operations. "Depot replacement."
