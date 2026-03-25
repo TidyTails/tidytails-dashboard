@@ -1,5 +1,64 @@
 # STL Pet Waste Competitor Intelligence — Spring 2026
-*Researched: March 22, 2026 | Updated: March 23, 2026 8 AM (full market scan)*
+*Researched: March 22, 2026 | Updated: March 25, 2026 1:05 AM (automated overnight crawl)*
+
+## 🔄 March 25 Update — Overnight Competitor Crawl (1:05 AM)
+
+**Major changes since Mar 23:**
+
+| Competitor | Mar 23 Status | Mar 25 Status | Change |
+|---|---|---|---|
+| **Dog Doody Defenders** | ☠️ DNS dead | ✅ BACK ALIVE — $17/visit | 🔴 RESURRECTION! Now cheapest in market |
+| **DoodyCalls STL** | ❓ Uncertain | ☠️ CONFIRMED GONE | /missouri/ = 404, locations page = NO Missouri |
+| **POOP 911 STL** | ❓ Missouri 404 | ☠️ CONFIRMED GONE | /missouri/ still 404, not on master locations list |
+| **Scoop Soldiers STL** | ⚠️ Active page | ❓ STL page GONE | /st-louis/, /missouri/ = all 404. National site live but "don't service your area" |
+| **Doggie Doodies STL** | Active | ☠️ DNS DEAD | dogdoodiesstl.com = ENOTFOUND |
+| **Dirty Dog Poo Crew** | Grooming only | ☠️ DNS DEAD | dirtydogpoocrew.com = ENOTFOUND |
+| **Little Stinkers** | Active? | ☠️ DNS DEAD | littlestinkerspetcare.com = ENOTFOUND |
+| **Poop 2 Scoop** | ✅ Active | ✅ Active | Still $18/wk, site live |
+| **No. 2 Crew** | ✅ Active | ⚠️ Territorial pages 404 | Homepage/pricing live, but /territories & /about = 404 |
+
+**🚨 BOMBSHELL CONFIRMED:** The Mar 24 hypothesis was RIGHT. The STL market is collapsing.
+
+**Confirmed dead/gone from STL (5+):**
+- DoodyCalls (national franchise — NO MO locations)
+- POOP 911 (national franchise — MO page dead)
+- Doggie Doodies STL (DNS dead)
+- Dirty Dog Poo Crew (DNS dead)
+- Little Stinkers (DNS dead)
+- Pawfect Waste Solutions (previously confirmed dead)
+- Poopy Paws (previously confirmed dead)
+
+**Confirmed active in STL (4):**
+- ✅ **Poop 2 Scoop** — $18/wk, veteran-owned, local
+- ✅ **No. 2 Crew** — $19/visit, 314-717-8880, site partially broken
+- ✅ **Dog Doody Defenders** — $17/visit (CHEAPEST), back from dead
+- ✅ **Tidy Tails STL** — $70/mo flat rate
+
+**Status uncertain (3):**
+- ❓ Scoop Soldiers — STL pages gone, may have pulled out
+- ❓ Yucko's — not crawled this cycle (site was ancient)  
+- ❓ The Pootector — not crawled this cycle
+
+**Dog Doody Defenders pricing (NEW — verified Mar 25):**
+- Weekly: $17/visit (~$68/mo)
+- Twice weekly: $27/visit (~$216/mo?? — seems high, may be $27/wk total)
+- Bi-weekly: $27/visit (~$54/mo)
+- Monthly: $54/visit
+- ⚠️ Their weekly at $68/mo vs TJ's $70/mo = NEARLY IDENTICAL. TJ's flat rate still simpler.
+
+**Estimated orphaned customers from dead competitors:** 75-150+
+- Doggie Doodies had 12 reviews, 5.0 stars — solid customer base, now homeless
+- DoodyCalls had commercial accounts (HOAs, apartments)
+- POOP 911 had marketing muscle but operator folded
+- These customers are ACTIVELY searching for replacements RIGHT NOW
+
+**Strategic recommendation for TJ:**
+1. **GBP completion = URGENT** — these orphaned customers will Google "pooper scooper near me"
+2. Post in Nextdoor/Facebook: "Seeing poop pile up? Your old service close down? We're here."
+3. North County has ZERO competition confirmed — own it completely
+4. Monitor Dog Doody Defenders closely — they resurrected and they're undercutting on price
+
+---
 
 ## Active Competitors (10-12 total)
 

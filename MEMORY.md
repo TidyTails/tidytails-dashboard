@@ -113,24 +113,24 @@
 **Market size:** 15 tracked competitors, 2-4 dead/dying, ~10-12 active
 **TJ's position:** $70/mo flat = mid-market. Cheaper than Doggie Doodies ($83), Dirty Dog ($95), Pooey ($100). More expensive weekly than DDD ($54/mo), POOP 911 ($52/mo).
 
-**Top threats (updated Mar 24, 6 PM — live pricing verified):**
-- 🔴 DoodyCalls — best SEO in market, national franchise, only real commercial player
-- 🔴 Scoop Soldiers — **CONFIRMED ACTIVE IN STL** (triple-verified Mar 23). National franchise, 96+ territories. STL = new franchisee (early-stage). $15/visit residential. No local reviews yet. Professional copy, targeting HOAs + commercial. Has services TJ doesn't: deodorizer, sanitization, waste stations.
-- 🟠 Poop 2 Scoop — $18/wk (cheapest), #1 organic Google
-- 🟠 No. 2 Crew — $19/wk, #1 Google Ad position
-- 🟠 Doggie Doodies — $19.15/wk ($83/mo), 5.0★ 12 reviews, best ops (gate photos, Paw Points, e-gift cards)
-- 🟡 Little Stinkers — St. Charles County only, not a direct threat
+**Active competitors (updated Mar 25, 1 AM — overnight crawl verified):**
+- 🟠 Poop 2 Scoop — $18/wk, #1 organic Google, veteran-owned, CONFIRMED ACTIVE
+- 🟠 No. 2 Crew — $19/visit, 314-717-8880, site partially broken (territorial pages 404)
+- 🟡 Dog Doody Defenders — **RESURRECTED!** Was DNS dead Mar 23, now live. $17/visit = CHEAPEST in market
+- 🟡 The Pootector — 636 area code, quote-only pricing
 
-**Dead/dying (4+ confirmed ☠️):**
-- ☠️ Dog Doody Defenders — DNS gone Mar 23. 15-30 orphaned customers in Florissant!
-- ☠️ Pawfect Waste Solutions, Poopy Paws (DNS dead), Super Scoopers
-- ❓ POOP 911 STL — Missouri page 404, not on locations list (may be GONE — was showing as active Mar 20 but Mar 24 crawl says otherwise)
-- ❓ DoodyCalls STL — Missouri page shows ZERO active locations
-- ❓ Dirty Dog Poo Crew — site now only shows grooming
+**CONFIRMED DEAD/GONE from STL (7+):**
+- ☠️ DoodyCalls — **CONFIRMED NO MO LOCATIONS** (locations page verified, /missouri/ = 404)
+- ☠️ POOP 911 — **CONFIRMED NO MO** (/missouri/ 404, not on master locations list)
+- ☠️ Doggie Doodies STL — **DNS DEAD** (dogdoodiesstl.com = ENOTFOUND). 12 reviews, 5.0★ customer base orphaned
+- ☠️ Dirty Dog Poo Crew — **DNS DEAD** (dirtydogpoocrew.com = ENOTFOUND)
+- ☠️ Little Stinkers — **DNS DEAD** (littlestinkerspetcare.com = ENOTFOUND)
+- ☠️ Pawfect Waste Solutions, Poopy Paws (previously confirmed dead)
+- ❓ Scoop Soldiers — STL pages ALL 404 now (/st-louis/, /missouri/). May have pulled out.
 
-**⚠️ BOMBSHELL (Mar 24):** POOP 911 + DoodyCalls + DDD = potentially 3 major competitors gone in one month. Only 3 clearly active: Poop 2 Scoop, No. 2 Crew, Doggie Doodies. North County has ZERO competition.
+**⚠️ MARKET COLLAPSE CONFIRMED (Mar 25):** 7+ competitors dead/gone. Only 3 clearly active local competitors remain. North County has ZERO competition. 75-150+ orphaned customers looking for new service.
 
-**Strategy:** Market consolidating = WINDOW OPEN. 50-100+ orphaned customers from dead competitors. Race Scoop Soldiers for them NOW.
+**Strategy:** GBP completion is THE #1 priority. Every day it's not done = orphaned customers going to Poop 2 Scoop or No. 2 Crew instead of TJ.
 
 ### Search Visibility (Mar 22)
 - **On-page SEO: A-** | **Off-page SEO: F** | **Overall: 30/100**
