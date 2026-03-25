@@ -48,6 +48,17 @@
   - **EXPECTED IMPACT:** 5-15 warm leads in first 2 weeks, 1-3 new recurring customers (conservative)
   - **KEY INSIGHT:** Doggie Doodies customers (South County) are most vulnerable — 5.0★ service with 12 reviews just died. DoodyCalls served West County affluent areas. Post in those Nextdoor neighborhoods specifically.
 
+### Wednesday 7:04 AM — Enriched Referral Partner Database: Dog Daycares + Senior Living (Hourly Task)
+- **7:04 AM** 🤝 Referral Partner Lead Enrichment — Created comprehensive, phone-verified referral partner database at `deliverables/enriched-referral-partners-march25-2026.md`.
+  - **WHY:** Existing lead list had dog daycares listed but ZERO phone numbers (skill requires mandatory phone). Senior living was completely unresearched — and it's a goldmine (seniors who can't physically do cleanup = high retention, recurring revenue).
+  - **WHAT:** 15 leads across 2 verticals:
+    - **9 Dog Daycares/Boarding** — ALL with verified phone numbers: Watering Bowl (636-486-2606), Kennelwood (314-429-2100, 8 locations!), Happy Tails (314-291-3647), Petropolis Chesterfield (636-537-2322), Petropolis St. Charles (636-537-3634), Silver Maple (314-965-1630), Pets & Company, No Leash Needed (7 locations)
+    - **6 Senior Living Communities** — NEW VERTICAL: Delmar Gardens (4 STL campuses), Brookdale, Sunrise (explicitly pet-friendly!)
+  - **ALSO INCLUDES:** 3-phase outreach strategy, revenue projections (9-16 new customers/month from 13 active partners), call scripts, Top 5 calls to make today
+  - **REVENUE POTENTIAL:** $630-$1,120/mo added revenue from referral network alone
+  - **KEY INSIGHT:** Senior living is the untapped goldmine — residents can't physically clean up, won't give up pets, facilities have grounds budgets, and one activity director can unlock 10-20 individual customers.
+  - **TJ ACTION:** Make 5 calls today. Script and phone numbers ready. Start with Happy Tails (St. Ann) — closest to current service area, 25 years trusted.
+
 ### Wednesday 6:05 AM — WAXR Competitive Intelligence: Live Crawl Verification (Hourly Task)
 - **6:05 AM** 🔍 WAXR Competitor Deep Dive — Live-crawled all 10 known mobile detailing platforms. Full report at `deliverables/waxr-competitive-intel-march25-2026.md`.
   - **PIVOTED from Tidy Tails work** — 6 hours of TT marketing content overnight. WAXR is the new venture needing intel for $1.5M seed pitch.
