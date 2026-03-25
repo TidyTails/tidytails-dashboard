@@ -35,4 +35,17 @@
   - **EXPECTED IMPACT:** 20+ backlinks, off-page SEO from F to C+, direct leads from Nextdoor/Thumbtack/Angi within 1-2 weeks, orphaned customer capture.
   - **Capitalizes on 1 AM finding:** 7+ dead competitors = 75-150 orphaned customers actively searching.
 
+### Wednesday 3:04 AM — "Competitor Down" Customer Acquisition Campaign (Hourly Task)
+- **3:04 AM** 🎯 Orphaned Customer Capture Campaign — Created complete, copy-paste-ready acquisition campaign at `deliverables/competitor-down-acquisition-campaign.md`.
+  - **WHY:** 7+ competitors dead = 75-150 orphaned customers actively searching. This is the single highest-ROI marketing action right now, and it costs $0.
+  - **WHAT:** 8 ready-to-post pieces of content across 4 platforms:
+    - 2 Nextdoor posts (PSA-style + seasonal angle)
+    - 3 Facebook group posts (pet groups, community groups, service groups)
+    - 2 Google Business Profile posts (What's New + Offer)
+    - 1 Facebook Page pinned post
+  - **ALSO INCLUDES:** Targeting strategy by dead competitor territory, posting schedule, pro tips, expected results
+  - **TIME FOR TJ:** ~40 min to post everything. $0 cost.
+  - **EXPECTED IMPACT:** 5-15 warm leads in first 2 weeks, 1-3 new recurring customers (conservative)
+  - **KEY INSIGHT:** Doggie Doodies customers (South County) are most vulnerable — 5.0★ service with 12 reviews just died. DoodyCalls served West County affluent areas. Post in those Nextdoor neighborhoods specifically.
+
 *Previous: `memory/archive/franklin-tasks-mar24-full.md` (20+ tasks)*
