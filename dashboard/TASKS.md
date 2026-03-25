@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-25 8:15 AM CST — by Franklin*
+*Last updated: 2026-03-25 11:04 AM CST — by Franklin*
 
 ---
 
@@ -16,19 +16,16 @@
 | **Google Reviews** | **6** (5.0 ★) |
 | **Active Competitors** | **3** (7+ dead) |
 
-### 🚨 #1 PRIORITY: Complete Google Business Profile
-**GBP is only 7% complete. TJ is INVISIBLE on Google Maps.** 7+ competitors are dead. Their customers are searching right now and can't find us. Every day this stays incomplete = lost customers.
+### ✅ GBP Nearly Complete! (was #1 priority — almost done)
+**TJ confirmed GBP is nearly 100% complete as of this morning.** This was the single biggest blocker. Now we shift to FEEDING it with consistent content.
 
-**What to do (45-60 min, $0):**
-1. Add business hours
-2. Upload 5+ photos (yard before/after, truck, uniform)
-3. Write business description (copy-paste ready in `deliverables/gbp-complete-optimization-package.md`)
-4. Add all service categories
-5. Add service areas (all cities we cover)
-6. Turn on messaging
-7. Post a Google Business update
+**Next step: Start posting.** April-May GBP posting calendar ready:
+- `deliverables/april-may-gbp-post-calendar-2026.md` — 8 posts, copy-paste ready
+- Schedule: Every Monday + Thursday, ~3 min each
+- Themes: Spring allergies → Earth Day → Referral push → Memorial Day prep
+- Includes offers, referral promos, and seasonal hooks
 
-**This single action unblocks everything else. Do it today.**
+**Also:** Install GA4 so we can actually measure what GBP drives. 15 minutes, $0.
 
 ### 🔥 THIS WEEK — The 7-Day Blitz Sprint
 A complete day-by-day execution plan is ready: `deliverables/7-day-customer-blitz-sprint.md`
@@ -124,6 +121,8 @@ The STL pet waste market has COLLAPSED. Only 3 active competitors remain:
 - [x] **Website Conversion Audit** completed ✅ (Mar 25)
 - [x] **Website SEO Sprint** — og:image added, 4 missing city pages built ✅ (Mar 25)
 - [x] **Website Conversion Boost** — Testimonials, spring promo, text CTA, thank-you page, review schema ✅ (Mar 25)
+- [x] **GBP Nearly 100% Complete** ✅ (Mar 25) — TJ confirmed! Was 7%, now almost done.
+- [x] **April-May GBP Post Calendar** created ✅ (Mar 25) — 8 posts, copy-paste ready
 
 ---
 

@@ -88,6 +88,21 @@
   - **EXPECTED IMPACT:** 5-15 warm leads in first 2 weeks, 1-3 new recurring customers (conservative)
   - **KEY INSIGHT:** Doggie Doodies customers (South County) are most vulnerable — 5.0★ service with 12 reviews just died. DoodyCalls served West County affluent areas. Post in those Nextdoor neighborhoods specifically.
 
+### Wednesday 11:04 AM — April-May GBP Post Calendar: Feed the Beast (Hourly Task)
+- **11:04 AM** 📍 GBP Post Calendar — Created 4-week posting calendar for April 10 – May 8 at `deliverables/april-may-gbp-post-calendar-2026.md`.
+  - **WHY:** GBP is nearly 100% complete (TJ confirmed this morning). The old content calendar expired April 9. With the profile live, the #1 move now is CONSISTENT POSTING to signal to Google this is an active business and start appearing in the local 3-pack.
+  - **WHAT:** 8 copy-paste-ready posts across 4 weeks:
+    - **Week 1 (Apr 10-16):** Spring allergies angle + 50% off first clean offer
+    - **Week 2 (Apr 17-23):** Earth Day eco angle (EPA stats, environmental messaging)
+    - **Week 3 (Apr 24-30):** Neighbor referral push + $10 off referral offer
+    - **Week 4 (May 1-8):** Memorial Day summer preview + free deodorizing offer
+  - **EACH POST INCLUDES:** Full copy-paste text, CTA button type, photo instructions, offer details where applicable
+  - **TIME:** ~3 min per post, ~24 min total for all 8 posts across 4 weeks
+  - **COST:** $0
+  - **EXPECTED:** 200-500 impressions/week, 5-15 direct actions/week once momentum builds
+  - **ALSO:** Updated task board to reflect GBP near-completion, shifted priority from "complete GBP" to "start posting + install GA4"
+  - **TJ ACTION:** Start posting April 10. Copy text → paste into GBP → add a photo → done. 3 minutes.
+
 ### Wednesday 7:04 AM — Enriched Referral Partner Database: Dog Daycares + Senior Living (Hourly Task)
 - **7:04 AM** 🤝 Referral Partner Lead Enrichment — Created comprehensive, phone-verified referral partner database at `deliverables/enriched-referral-partners-march25-2026.md`.
   - **WHY:** Existing lead list had dog daycares listed but ZERO phone numbers (skill requires mandatory phone). Senior living was completely unresearched — and it's a goldmine (seniors who can't physically do cleanup = high retention, recurring revenue).
