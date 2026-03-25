@@ -141,6 +141,7 @@ Stop leaving money on the table. With 7+ competitors dead, we have pricing power
 - **NEW: Review schema markup** — Aggregate rating structured data for rich snippets ✅
 - **NEW: Commercial Services Page** — `/commercial` — Full page for apartment complexes, HOAs, property managers. Pricing tiers, service descriptions, schema markup, "Free Walkthrough" CTA. Added to main site nav + sitemap ✅
 - **NEW: Commercial Call Script Cheat Sheet** — `deliverables/commercial-call-script-cheatsheet.md` — Print-and-call scripts for apartments, HOAs, daycares, vet clinics. Objection handling, top 5 numbers to call ✅
+- **NEW: Spring Special Landing Page** — `/spring` — Dedicated conversion page for ALL paid ads, GBP posts, event flyers, and social media links. Tiered pricing (Weekly $75, EOW $49, Monthly $39), Spring Reset Package ($129), 5.0★ social proof, FAQ/objection handling, SMS CTAs. Mobile-optimized with floating text button. Added to sitemap ✅
 - **⚠️ VERIFY TESTIMONIALS** — TJ should confirm review text matches real Google reviews or swap in actual ones
 - **⚠️ NO ANALYTICS** — Zero tracking (no GA4, no FB Pixel). Install GA4 BEFORE the Blitz Sprint so we can measure results. 15-minute setup.
 - **⚠️ GBP INVISIBLE** on Maps — Brand collision with FL/ATL "Tidy Tails." Fix = complete profile to 100%.
@@ -201,6 +202,7 @@ Stop leaving money on the table. With 7+ competitors dead, we have pricing power
 - [x] **Crestwood Paw-ty Event Kit** created ✅ (Mar 25) — Scripts, flyers, follow-up templates, vet relationship strategy
 - [x] **Spring/Summer Event Marketing Playbook** created ✅ (Mar 25) — 4 events mapped, Bark in the Park intel, booth strategy, ROI projections
 - [x] **Paid Ads Launch Guide** created ✅ (Mar 25) — Facebook/IG, Nextdoor, Google Search. Video ads ready, copy-paste templates, targeting, budgets, ROI projections
+- [x] **Spring Special Landing Page** built ✅ (Mar 25) — `/spring` — Conversion page for all campaigns, tiered pricing, Spring Reset $129 package, social proof, SMS CTAs
 
 ---
 

@@ -6,6 +6,35 @@
 
 ## March 25, 2026 (Wednesday)
 
+### Wednesday 6:05 PM — Spring Special Landing Page: The Conversion Funnel (Hourly Task)
+- **6:05 PM** 🌸 Spring Special Landing Page — Built dedicated conversion landing page at `tidy-tails/website/spring.html` (live at `/spring`).
+  - **WHY:** We have 20+ marketing deliverables that drive traffic — paid ads, GBP posts, Nextdoor campaigns, event flyers, directory listings — but they ALL point to the homepage. A homepage has navigation, multiple CTAs, blog links, city pages — distractions. A landing page has ONE job: convert. Rule #1 of paid ads: never send traffic to your homepage. We needed a focused `/spring` URL that every campaign can link to.
+  - **WHAT'S ON IT:**
+    - **Hero:** "First Cleanup FREE" headline with SMS CTA (pre-fills text message)
+    - **Urgency bar:** "Only 12 openings left" scarcity trigger
+    - **Social proof section:** 5.0★ rating, 3 customer review cards with locations
+    - **3-step How It Works:** Text → We Show Up → Enjoy Your Yard
+    - **3-tier pricing cards:** Monthly $39/mo, Weekly $75/mo (popular, highlighted), EOW $49/mo — each with SMS CTA pre-filled for that tier
+    - **Spring Reset Package:** $129 bundle (deep clean + deodorize + first month weekly) with crossed-out $189 value
+    - **FAQ accordion:** 7 questions that handle every common objection (don't need to be home, no contracts, rain policy, "only one dog," bad yard, service area, how free cleanup works)
+    - **Final CTA:** Text + Call buttons
+    - **Floating mobile CTA:** Green "Text Us Now" button appears after scroll on mobile
+  - **DESIGN DETAILS:**
+    - Matches main site design language (same green palette, orange CTAs, cream background)
+    - Zero navigation — no header nav, no footer links. One purpose: convert.
+    - Every CTA is `sms:` link pre-filled with relevant message (Spring Special, specific tier, Reset Package)
+    - Mobile-first responsive — cards stack, floating CTA shows, touch-friendly
+    - Schema.org Offer markup for the Spring Special (valid through May 31, 2026)
+  - **INTEGRATION:** This page is now the destination URL for:
+    - All paid Facebook/Instagram ads (from the paid ads guide)
+    - All GBP posts (from the April-May calendar)
+    - All Nextdoor/Facebook group posts (from the orphaned customer campaign)
+    - Event flyers and business cards (QR code → /spring)
+    - Directory listing CTAs
+  - Added to sitemap.xml with 0.9 priority ✅
+  - Updated task board ✅
+  - **TJ ACTION:** Deploy to Cloudflare. Link all campaigns to tidytailsstl.com/spring instead of homepage.
+
 ### Wednesday 5:04 PM — Pricing & Revenue Optimization Strategy (Hourly Task)
 - **5:04 PM** 💰 Pricing & Revenue Optimization — Created comprehensive pricing strategy at `deliverables/pricing-revenue-optimization-spring2026.md`.
   - **WHY:** We've built 20+ marketing deliverables to GET customers. Zero work on MAXIMIZING revenue per customer. With 7+ competitors dead and only 3 active, TJ has pricing power he's not using. And offering only weekly service loses every price-sensitive lead.
