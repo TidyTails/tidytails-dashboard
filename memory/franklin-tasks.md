@@ -26,4 +26,13 @@
   - Updated MEMORY.md competitive landscape section
   - **TJ ACTION NEEDED:** GBP completion is even MORE urgent now. Every day those orphaned customers are Googling and TJ isn't showing up.
 
+### Wednesday 2:05 AM — Directory Submission Package: Off-Page SEO Attack (Hourly Task)
+- **2:05 AM** 📋 Directory Submission Package — Created comprehensive, copy-paste-ready directory submission guide at `deliverables/directory-submission-package.md`.
+  - **WHY:** Off-page SEO is an F. Zero directory listings beyond GBP/Yelp. With 7+ competitors dead, this is the highest-ROI free marketing action.
+  - **WHAT:** 22-directory checklist across 4 tiers (high-impact, citations, pet-specific, local STL), master copy-paste business info block, short & long descriptions, speed-run priority order, tracking table.
+  - **KEY DIRECTORIES:** Nextdoor (critical for local), Facebook Business, Thumbtack, Angi, BBB, Apple Maps, Bing Places, BringFido, Alignable, + 13 more.
+  - **TIME FOR TJ/JAMIE:** ~45-60 min total, 20 min for top 5. $0 cost.
+  - **EXPECTED IMPACT:** 20+ backlinks, off-page SEO from F to C+, direct leads from Nextdoor/Thumbtack/Angi within 1-2 weeks, orphaned customer capture.
+  - **Capitalizes on 1 AM finding:** 7+ dead competitors = 75-150 orphaned customers actively searching.
+
 *Previous: `memory/archive/franklin-tasks-mar24-full.md` (20+ tasks)*
