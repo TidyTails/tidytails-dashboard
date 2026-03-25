@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔥 This Week's Calls — Top 10 Priority</title>
+<style>
+  :root {
+    --bg: #0a0a0a; --card: #141414; --border: #222;
+    --green: #22c55e; --yellow: #eab308; --red: #ef4444;
+    --blue: #3b82f6; --purple: #a855f7; --text: #e5e5e5;
+    --muted: #737373;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 16px; padding-bottom: 100px; }
+  
+  .header { text-align: center; margin-bottom: 24px; }
+  .header h1 { font-size: 1.5rem; margin-bottom: 4px; }
+  .header .subtitle { color: var(--muted); font-size: 0.85rem; }
+  .header .week { color: var(--blue); font-size: 0.9rem; font-weight: 600; margin-top: 8px; }
+  
+  .stats-row { display: flex; gap: 8px; margin-bottom: 20px; }
+  .stat { flex: 1; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 12px; text-align: center; }
+  .stat .num { font-size: 1.5rem; font-weight: 700; }
+  .stat .label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat.called .num { color: var(--green); }
+  .stat.remaining .num { color: var(--yellow); }
+  .stat.pipeline .num { color: var(--blue); }
+  
+  .progress-bar { background: var(--card); border-radius: 8px; height: 8px; margin-bottom: 24px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--blue)); border-radius: 8px; transition: width 0.5s; }
+  
+  .lead-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 16px; margin-bottom: 12px; transition: all 0.3s; }
+  .lead-card.called { opacity: 0.5; border-color: var(--green); }
+  .lead-card.called .rank { background: var(--green); }
+  
+  .lead-top { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
+  .rank { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.85rem; flex-shrink: 0; }
+  .rank.hot { background: var(--red); color: white; }
+  .rank.warm { background: var(--yellow); color: black; }
+  .rank.med { background: var(--blue); color: white; }
+  
+  .lead-info h3 { font-size: 1rem; margin-bottom: 2px; }
+  .lead-type { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .lead-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+  .tag { font-size: 0.7rem; padding: 3px 8px; border-radius: 20px; background: rgba(255,255,255,0.05); color: var(--muted); }
+  .tag.territory { color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+  .tag.dogpark { color: var(--purple); border: 1px solid rgba(168,85,247,0.3); }
+  .tag.decision-maker { color: var(--yellow); border: 1px solid rgba(234,179,8,0.3); }
+  .tag.new-build { color: var(--blue); border: 1px solid rgba(59,130,246,0.3); }
+  
+  .contact-name { font-size: 0.85rem; color: var(--yellow); margin-bottom: 4px; }
+  .contact-name span { color: var(--muted); font-size: 0.75rem; }
+  
+  .script-box { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px; margin-bottom: 12px; font-size: 0.82rem; line-height: 1.5; color: #d4d4d4; }
+  .script-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 6px; }
+  
+  .actions { display: flex; gap: 8px; }
+  .btn { flex: 1; padding: 12px; border-radius: 10px; border: none; font-size: 0.85rem; font-weight: 600; cursor: pointer; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .btn-call { background: var(--green); color: black; }
+  .btn-done { background: rgba(255,255,255,0.08); color: var(--text); }
+  .btn-done.is-done { background: rgba(34,197,94,0.2); color: var(--green); }
+  
+  .why-box { margin-top: 10px; font-size: 0.78rem; color: var(--muted); line-height: 1.4; }
+  .why-box strong { color: var(--text); }
+  
+  .revenue-potential { background: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(59,130,246,0.1)); border: 1px solid rgba(34,197,94,0.2); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: center; }
+  .revenue-potential .big { font-size: 1.8rem; font-weight: 700; color: var(--green); }
+  .revenue-potential .sub { font-size: 0.8rem; color: var(--muted); }
+  
+  .tips { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 20px; }
+  .tips h3 { font-size: 0.9rem; margin-bottom: 10px; }
+  .tips li { font-size: 0.82rem; color: #a3a3a3; margin-bottom: 6px; padding-left: 4px; }
+  
+  @media (max-width: 400px) { body { padding: 12px; } .lead-card { padding: 14px; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🔥 This Week's Calls</h1>
+  <div class="subtitle">Top 10 Priority — Ranked by Close Probability</div>
+  <div class="week">Week of March 24, 2026</div>
+</div>
+
+<div class="stats-row">
+  <div class="stat called"><div class="num" id="calledCount">0</div><div class="label">Called</div></div>
+  <div class="stat remaining"><div class="num" id="remainCount">10</div><div class="label">Remaining</div></div>
+  <div class="stat pipeline"><div class="num">$4K-8K</div><div class="label">MRR Potential</div></div>
+</div>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill" style="width: 0%"></div></div>
+
+<div class="revenue-potential">
+  <div class="big">$48K - $96K/yr</div>
+  <div class="sub">Total annual revenue potential from these 10 leads alone</div>
+</div>
+
+<div class="tips">
+  <h3>⚡ Before You Call</h3>
+  <ul>
+    <li>Best time: <strong>Tue-Thu, 9-11 AM</strong> (property managers are in office)</li>
+    <li>Ask for the person by name when we have one</li>
+    <li>If voicemail: leave message + follow up with email same day</li>
+    <li>Goal: <strong>schedule a walkthrough</strong>, not close on the phone</li>
+    <li>Track results: tap ✅ after each call</li>
+  </ul>
+</div>
+
+<div id="leads">
+
+<!-- LEAD 1 -->
+<div class="lead-card" data-id="1">
+  <div class="lead-top">
+    <div class="rank hot">1</div>
+    <div class="lead-info">
+      <h3>Jasper Apartments</h3>
+      <div class="lead-type">Brand New Apartment Complex — St. Peters</div>
+    </div>
+  </div>
+  <div class="lead-meta">
+    <span class="tag new-build">🆕 New Build</span>
+    <span class="tag dogpark">🐕 Dog Park</span>
+    <span class="tag territory">📍 TJ's Territory</span>
+  </div>
+  <div class="script-box">
+    <div class="script-label">📞 30-Second Script</div>
+    "Hi, I'm calling from Tidy Tails — we're a local pet waste removal company here in St. Peters. I noticed your new community has a dog park and pet wash room, which is awesome. We'd love to be your pet waste vendor from day one — keep that brand new dog park looking sharp. We already service the St. Peters area. Could I schedule a quick walkthrough to show you what we do?"
+  </div>
+  <div class="actions">
+    <a href="tel:+16367474411" class="btn btn-call">📞 (636) 747-4411</a>
+    <button class="btn btn-done" onclick="toggleDone(1)">✅ Done</button>
+  </div>
+  <div class="why-box"><strong>Why #1:</strong> Brand new = no existing vendor. They're building their vendor list RIGHT NOW. Dog park + pet wash room = dog-heavy community. St. Peters = TJ's turf (Preshus is there). Highest close probability because there's no incumbent to displace.</div>
+</div>
+
+<!-- LEAD 2 -->
+<div class="lead-card" data-id="2">
+  <div class="lead-top">
+    <div class="rank hot">2</div>
+    <div class="lead-info">
+      <h3>Millsap Properties</h3>
+      <div class="lead-type">Property Management — 7 Apartment Communities</div>
+    </div>
+  </div>
+  <div class="lead-meta">
+    <span class="tag territory">📍 Florissant + Hazelwood</span>
+    <span class="tag dogpark">🏢 7 Properties</span>
+    <span class="tag decision-maker">💰 Highest Revenue</span>
+  </div>
+  <div class="script-box">
+    <div class="script-label">📞 30-Second Script</div>
+    "Hi, I'm TJ with Tidy Tails — we're a pet waste removal company based right here in Florissant. I noticed you manage several pet-friendly communities in Florissant and Hazelwood — Charbonier, Teson Garden, White Birch. We already service homes in that exact area. I'd love to talk about keeping your common areas clean for residents. One vendor, one invoice for all your properties. Got a few minutes?"
+  </div>
+  <div class="actions">
+    <a href="tel:+13146863337" class="btn btn-call">📞 (314) 686-3337</a>
+    <button class="btn btn-done" onclick="toggleDone(2)">✅ Done</button>
+  </div>
+  <div class="why-box"><strong>Why #2:</strong> ONE contract = 7 properties. Three are in Florissant/Hazelwood (TJ's home turf). All communities are pet-friendly. This is the single highest-revenue lead in the entire pipeline. Even landing 2-3 of the 7 properties = $500-1,500/mo.</div>
+</div>
+
+<!-- LEAD 3 -->
+<div class="lead-card" data-id="3">
+  <div class="lead-top">
+    <div class="rank hot">3</div>
+    <div class="lead-info">
+      <h3>TreeStone Properties</h3>
+      <div class="lead-type">Boutique HOA Management — Chesterfield</div>
+    </div>
+  </div>
+  <div class="lead-meta">
+    <span class="tag decision-maker">👤 Ask for Melanie</span>
+    <span class="tag territory">🏘️ Multiple HOAs</span>
+  </div>
+  <div class="contact-name">👤 Melanie <span>(verified contact — melanie@treestoneproperties.com)</span></div>
+  <div class="script-box">
+    <div class="script-label">📞 30-Second Script</div>
+    "Hi, could I speak with Melanie? ... Hi Melanie, this is TJ from Tidy Tails — we're a local pet waste removal company. I know HOAs get pet waste complaints constantly, especially in spring. We offer professional weekly cleanup for common areas at a flat monthly rate. We're local, owner-operated, and already servicing communities in North County and St. Charles. Could I send you some info or set up a quick call?"
+  </div>
+  <div class="actions">
+    <a href="tel:+16367339021" class="btn btn-call">📞 (636) 733-9021</a>
+    <button class="btn btn-done" onclick="toggleDone(3)">✅ Done</button>
+  </div>
+  <div class="why-box"><strong>Why #3:</strong> Boutique firm = faster decisions than big corporates. We have a NAME (Melanie). Small firms are more likely to try a local vendor. One relationship here opens doors to all their managed communities. Email backup: melanie@treestoneproperties.com</div>
+</div>
+
+<!-- LEAD 4 -->
+<div class="lead-card" data-id="4">
+  <div class="lead-top">
+    <div class="rank hot">4</div>
+    <div class="lead-info">
+      <h3>Fields of Florissant (Senior Living)</h3>
+      <div class="lead-type">Senior Living Community — 88+ Units</div>
+    </div>
+  </div>
+  <div class="lead-meta">
+    <span class="tag decision-maker">👤 Ask for Shay Leach</span>
+    <span class="tag territory">📍 Florissant 63033</span>
+  </div>
+  <div class="contact-name">👤 Shay Leach <span>(Community Relations Liaison)</span></div>
+  <div class="script-box">
+    <div class="script-label">📞 30-Second Script</div>
+    "Hi, could I speak with Shay Leach? ... Hi Shay, this is TJ from Tidy Tails — we're a pet waste removal company right here in Florissant. I know a lot of your residents love their pets but might need a little help keeping up with yard cleanup. We offer affordable weekly service — could be a great value-add amenity for your community. Could I stop by for a quick tour and chat?"
+  </div>
+  <div class="actions">
+    <a href="tel:+13148310988" class="btn btn-call">📞 (314) 831-0988</a>
+    <button class="btn btn-done" onclick="toggleDone(4)">✅ Done</button>
+  </div>
+  <div class="why-box"><strong>Why #4:</strong> Named contact (Shay Leach, Community Relations). Florissant = home turf. Seniors with pets genuinely need this service — physical limitations. Totally untapped market segment that no competitor is targeting. 88+ units = high volume potential.</div>
+</div>
+
+<!-- LEAD 5 -->
+<div class="lead-card" data-id="5">
+  <div class="lead-top">
+    <div class="rank warm">5</div>
+    <div class="lead-info">
+      <h3>Sentry Management — STL Office</h3>
+      <div class="lead-type">HOA Management — 32+ Communities</div>
+    </div>
+  </div>
+  <div class="lead-meta">
+    <span class="tag decision-maker">👤 Ask for Danette Dietz</span>
+    <span class="tag territory">🏘️ 32+ HOA Communities</span>
+  </div>
+  <div class="contact-name">👤 Danette Dietz <span>(Division President, STL Office)</span></div>
+  <div class="script-box">
+    <div class="script-label">📞 30-Second Script</div>
+    "Hi, I'm trying to reach Danette Dietz... Hi Danette, this is TJ from Tidy Tails — we do pet waste removal for communities across North County and St. Charles. I know pet waste in common areas is one of the top HOA complaints. We offer professional weekly cleanup — one vendor, one invoice, cleaner communities. Could I send you a proposal to share with your board members?"
+  </div>
+  <div class="actions">
+    <a href="tel:+13149947440" class="btn btn-call">📞 (314) 994-7440</a>
+    <button class="btn btn-done" onclick="toggleDone(5)">✅ Done</button>
+  </div>
+  <div class="why-box"><strong>Why #5:</strong> NAMED Division President — Danette Dietz (found on their website). 32+ communities = massive pipeline. Longer sales cycle but one yes from Danette could open 5-10 communities at once. Located at 9666 Olive Blvd, Ste 116, 63132.</div>
+</div>
+
+<!-- LEAD 6 -->
+<div class="lead-card" data-id="6">
+  <div class="lead-top">
+    <div class="rank warm">6</div>
+    <div class="lead-info">
+      <h3>Greenway Chase Apartments</h3>
+      <div class="lead-type">Apartment Complex — Florissant 63031</div>
+    </div>
+  </div>
+  <div class="lead-meta">
+    <span class="tag dogpark">🐕 On-Site Dog Park</span>
+    <span class="tag territory">📍 Florissant 63031</span>
+  </div>
+  <div class="script-box">
+    <div class="script-label">📞 30-Second Script</div>
+    "Hi, I'm TJ with Tidy Tails — we do pet waste removal right here in Florissant. I noticed you have a dog park on site — love that. We actually service homes right in your neighborhood already. I'd love to keep your dog park and grounds clean for residents. Professional weekly service, one flat rate. Can I stop by and show you what we do?"
+  </div>
+  <div class="actions">
+    <a href="tel:+13148382879" class="btn btn-call">📞 (314) 838-2879</a>
+    <button class="btn btn-done" onclick="toggleDone(6)">✅ Done</button>
+  </div>
+  <div class="why-box"><strong>Why #6:</strong> Florissant 63031 — same zip as Shannon and Amanda. On-site dog park = proven dog-owner density. Middle-class rents ($940-$1,305). Proximity makes route efficiency great. Easy add to existing Florissant route.</div>
+</div>
+
+<!-- LEAD 7 -->
+<div class="lead-card" data-id="7">
+  <div class="lead-top">
+    <div class="rank warm">7</div>
+    <div class="lead-info">
+      <h3>Baronwood Kennels</h3>
+      <div class="lead-type">Pet Boarding/Grooming — Florissant</div>
+    </div>
+  </div>
+  <div class="lead-meta">
+    <span class="tag territory">📍 Florissant 63034</span>
+    <span class="tag dogpark">🤝 Referral Partner</span>
+  </div>
+  <div class="script-box">
+    <div class="script-label">📞 30-Second Script</div>
+    "Hi, I'm TJ — I run Tidy Tails, a pet waste removal company here in Florissant. I had two ideas: first, we could clean your outdoor kennel areas weekly — keep things fresh for your boarding guests. Second, I bet a lot of your clients come home from vacation to a backyard full of dog poop. We could do a referral deal — you recommend us, we take care of their yards. Sound interesting?"
+  </div>
+  <div class="actions">
+    <a href="tel:+13148382021" class="btn btn-call">📞 (314) 838-2021</a>
+    <button class="btn btn-done" onclick="toggleDone(7)">✅ Done</button>
+  </div>
+  <div class="why-box"><strong>Why #7:</strong> Family-owned since 1971 = community trust. Two revenue angles: direct service (clean their grounds) + referral pipeline (their clients need yard cleanup). Owners live on premises = easy to reach. Florissant = home turf. Groomer Kat is a named contact too.</div>
+</div>
+
+<!-- LEAD 8 -->
+<div class="lead-card" data-id="8">
+  <div class="lead-top">
+    <div class="rank med">8</div>
+    <div class="lead-info">
+      <h3>Capital at St. Charles</h3>
+      <div class="lead-type">Apartment Complex — All Breeds Welcome</div>
+    </div>
+  </div>
+  <div class="lead-meta">
+    <span class="tag new-build">🐕 All Breeds, No Limits</span>
+    <span class="tag dogpark">🐕 Dog Park + Pet Stations</span>
+  </div>
+  <div class="script-box">
+    <div class="script-label">📞 30-Second Script</div>
+    "Hi, I'm TJ from Tidy Tails — pet waste removal. I love that you welcome all breeds with no weight limits — that's rare and your residents probably appreciate it. With that many dogs, keeping the grounds clean is a real challenge. We do professional weekly cleanup for apartment communities in St. Charles County. Can I come by for a quick walkthrough?"
+  </div>
+  <div class="actions">
+    <a href="tel:+16362443400" class="btn btn-call">📞 (636) 244-3400</a>
+    <button class="btn btn-done" onclick="toggleDone(8)">✅ Done</button>
+  </div>
+  <div class="why-box"><strong>Why #8:</strong> No breed restrictions = MORE dogs per unit than typical complexes. Dog park + pet stations = they invest in pet infrastructure. Managed by Eighteen Capital Group — could open doors to other properties. Spring specials running = they're responsive right now.</div>
+</div>
+
+<!-- LEAD 9 -->
+<div class="lead-card" data-id="9">
+  <div class="lead-top">
+    <div class="rank med">9</div>
+    <div class="lead-info">
+      <h3>Happy Tails Dog Boarding</h3>
+      <div class="lead-type">Boarding/Daycare — St. Ann</div>
+    </div>
+  </div>
+  <div class="lead-meta">
+    <span class="tag territory">📍 St. Ann 63074</span>
+    <span class="tag dogpark">🤝 Referral Partner</span>
+  </div>
+  <div class="script-box">
+    <div class="script-label">📞 30-Second Script</div>
+    "Hi, this is TJ from Tidy Tails — we do pet waste removal in St. Louis County. You guys have been around since 2000, that's impressive. I had an idea: your boarding and daycare clients probably come home to messy yards. We could set up a referral deal — you recommend us, your clients get 10% off their first month. Win-win. Plus, we could handle your outdoor area cleanup too."
+  </div>
+  <div class="actions">
+    <a href="tel:+13142913647" class="btn btn-call">📞 (314) 291-3647</a>
+    <button class="btn btn-done" onclick="toggleDone(9)">✅ Done</button>
+  </div>
+  <div class="why-box"><strong>Why #9:</strong> Open 24/7 since 2000 = established, high-volume. 52 Yelp reviews = big client base for referrals. Indoor-outdoor facility = needs grounds cleanup. St. Ann is right next to Maryland Heights. Two revenue streams: direct service + referral partnership.</div>
+</div>
+
+<!-- LEAD 10 -->
+<div class="lead-card" data-id="10">
+  <div class="lead-top">
+    <div class="rank med">10</div>
+    <div class="lead-info">
+      <h3>Westchester Village Apartments</h3>
+      <div class="lead-type">Large Community — O'Fallon</div>
+    </div>
+  </div>
+  <div class="lead-meta">
+    <span class="tag dogpark">🐕 Dog Park + Lake Trail</span>
+    <span class="tag new-build">🏢 Large Community</span>
+  </div>
+  <div class="script-box">
+    <div class="script-label">📞 30-Second Script</div>
+    "Hi, this is TJ from Tidy Tails — pet waste removal for apartment communities. Your property is beautiful — the dog park, the walking trail around the lake, the outdoor areas. That's a lot of ground to keep clean with pet owners walking their dogs daily. We offer professional weekly service, one flat monthly rate. Could I schedule a walkthrough?"
+  </div>
+  <div class="actions">
+    <a href="tel:+16362727500" class="btn btn-call">📞 (636) 272-7500</a>
+    <button class="btn btn-done" onclick="toggleDone(10)">✅ Done</button>
+  </div>
+  <div class="why-box"><strong>Why #10:</strong> Dog park + walking trail around private lake = massive outdoor area. 1-3 bedrooms = families with dogs. O'Fallon = growing suburb, easy highway access. Large enough community to justify $300-500/mo contract. Lake trail means dogs walking daily = constant waste accumulation.</div>
+</div>
+
+</div>
+
+<div class="tips" style="margin-top: 20px;">
+  <h3>📊 After Each Call — Log It</h3>
+  <ul>
+    <li><strong>Reached decision maker?</strong> → Schedule walkthrough</li>
+    <li><strong>Got voicemail?</strong> → Leave message + send follow-up email same day</li>
+    <li><strong>Wrong person?</strong> → Ask who handles vendor/maintenance decisions</li>
+    <li><strong>"Send me info"</strong> → That's a WIN. Email within 1 hour.</li>
+    <li><strong>"Not interested"</strong> → Ask "Is there someone else who might be?" or "Can I check back in spring?"</li>
+  </ul>
+</div>
+
+<div class="tips">
+  <h3>🎯 The Goal This Week</h3>
+  <ul>
+    <li>Make <strong>3 calls minimum</strong> — that's 15 minutes</li>
+    <li>Get <strong>1 walkthrough scheduled</strong> — that's a win</li>
+    <li>Send <strong>2 follow-up emails</strong> — for voicemails</li>
+    <li>Even 1 commercial contract = $200-800/mo recurring</li>
+  </ul>
+</div>
+
+<script>
+const STATE_KEY = 'callSheet_mar24';
+
+function loadState() {
+  try { return JSON.parse(localStorage.getItem(STATE_KEY)) || {}; } 
+  catch { return {}; }
+}
+
+function saveState(state) {
+  localStorage.setItem(STATE_KEY, JSON.stringify(state));
+}
+
+function toggleDone(id) {
+  const state = loadState();
+  state[id] = !state[id];
+  saveState(state);
+  render();
+}
+
+function render() {
+  const state = loadState();
+  let called = 0;
+  document.querySelectorAll('.lead-card').forEach(card => {
+    const id = parseInt(card.dataset.id);
+    if (state[id]) {
+      card.classList.add('called');
+      card.querySelector('.btn-done').classList.add('is-done');
+      card.querySelector('.btn-done').textContent = '✅ Called!';
+      called++;
+    } else {
+      card.classList.remove('called');
+      card.querySelector('.btn-done').classList.remove('is-done');
+      card.querySelector('.btn-done').textContent = '✅ Done';
+    }
+  });
+  document.getElementById('calledCount').textContent = called;
+  document.getElementById('remainCount').textContent = 10 - called;
+  document.getElementById('progressFill').style.width = (called * 10) + '%';
+}
+
+render();
+</script>
+
+</body>
+</html>

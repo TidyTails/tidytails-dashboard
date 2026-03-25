@@ -60,7 +60,7 @@
 ### Sentry Management — St. Louis Office
 - **Type:** HOA Management Company
 - **Address:** 9666 Olive Blvd, Ste 116, Saint Louis, MO 63132
-- **Contact:** Local office manager
+- **Contact:** Danette Dietz, Division President (verified from website Mar 24, 2026)
 - **Phone:** (314) 994-7440
 - **Website:** sentrymgt.com/offices/st-louis
 - **Why Good Fit:** National HOA management company with a massive STL presence — recently added 32 communities to their portfolio. Serves St. Louis County, St. Charles County (O'Fallon, St. Peters, Wentzville), and more. Same pitch as Smith Management — HOAs NEED pet waste solutions for common areas.
