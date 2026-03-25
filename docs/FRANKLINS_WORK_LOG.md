@@ -593,3 +593,18 @@
 Days 4-7 = "Frustration Mode" — peak time to capture orphaned customers. Window closes in ~10 days.
 
 **Impact:** TJ wakes up to accurate briefing emphasizing time-sensitive opportunity.
+
+---
+
+## Mar 25, 2026 - 12:04 AM | Midnight Maintenance & Archive
+
+**Task:** Archive Mar 24's massive logs, set up clean Wednesday
+
+**Deliverables:**
+- ✅ Archived Mar 24 task log (28KB, 20+ tasks) → `memory/archive/franklin-tasks-mar24-full.md`
+- ✅ Archived Mar 24 daily log (20KB, 303 lines) → `memory/archive/2026-03-24-full.md`
+- ✅ Created Mar 24 summary (1.8KB) — key events preserved, 90% token reduction
+- ✅ Created clean Mar 25 task log and daily log
+- ✅ Dashboard status updated
+
+**Impact:** Token-lean context for all Wednesday sessions. Per lesson #19: midnight = maintenance, not creation.
