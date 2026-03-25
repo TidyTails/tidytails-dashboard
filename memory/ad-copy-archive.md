@@ -1,6 +1,9 @@
 # Ad Copy Archive — Shed Ads
 *Tracks previously written ads to avoid repeats*
 
+## March 24, 2026 (9 PM — April Content Calendar)
+- **45 posts for April 1-30** — Full 30-day shed content calendar across Facebook (daily), Instagram (3×/wk), Marketplace (2×/wk), GBP (weekly). Interactive dashboard at `dashboard/shed-april-content-calendar.html`. Text version at `ready-to-post/shed-april-content-calendar.md`. New hooks: April Fools garage joke, $150/mo storage comparison, weekend warrior, Saturday lot day, silent winner, Monday reset + treadmill joke, tax refund deadline, cost of later (lumber math), hail math, spouse test/sigh, "why did I wait" social proof, emoji before/after, Sunday daydream (288 sqft), three things stealing garage, mid-month inventory check, neighbor effect, shed size guide, rain season prep, DIY dad fantasy, RTO explainer, Sunday math problem, 10-minute fix, Earth Day angle, honest ad, 3 reasons scrolling past, pet owner special, she-shed pitch, name your shed engagement, shed vs everything math, two-car garage family story, May urgency, budget starter, April report card, final soft close.
+
 ## March 24, 2026 (7 PM — Spring Marketplace Blitz)
 - **Shed-BLITZ-01 through BLITZ-23** — 23 individual Facebook Marketplace listings, one per shed in inventory. NOT rotation ads — these are PRODUCT LISTINGS with specific serial numbers, sizes, colors, prices, and unique descriptions. Interactive dashboard at `dashboard/marketplace-blitz.html`. Text versions at `ready-to-post/shed-marketplace-listings/listings.md`.
 

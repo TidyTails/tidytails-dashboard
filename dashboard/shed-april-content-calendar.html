@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>April Shed Content Calendar — 30 Days of Posts</title>
+<style>
+  :root {
+    --purple:#8b5cf6; --purple-d:#7c3aed; --orange:#f59e0b; --red:#ef4444;
+    --blue:#3b82f6; --green:#10b981; --pink:#ec4899; --cyan:#06b6d4;
+    --bg:#0a0a0a; --bg2:#141414; --bg3:#1e1e1e; --bg4:#282828;
+    --text:#f5f5f5; --text2:#aaa; --text3:#666; --border:#2a2a2a;
+    --radius:12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:0;}
+
+  .header{background:linear-gradient(135deg,#2e1065,#0f172a);padding:24px 20px;text-align:center;border-bottom:2px solid var(--purple);}
+  .header h1{font-size:1.5em;margin-bottom:4px;}
+  .header h1 span{color:var(--purple);}
+  .header .sub{color:var(--purple);font-weight:600;font-size:0.95em;}
+  .header .meta{color:var(--text2);font-size:0.78em;margin-top:8px;}
+
+  .stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:14px 20px;background:var(--bg2);border-bottom:1px solid var(--border);}
+  .stat{text-align:center;}
+  .stat-val{font-size:1.3em;font-weight:800;font-family:'Courier New',monospace;}
+  .stat-label{font-size:0.62em;text-transform:uppercase;letter-spacing:0.05em;color:var(--text3);}
+
+  .progress-wrap{padding:12px 20px;background:var(--bg2);border-bottom:1px solid var(--border);}
+  .progress-bar{height:8px;background:var(--bg4);border-radius:8px;overflow:hidden;}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--purple),var(--pink));border-radius:8px;transition:width 0.5s;}
+  .progress-text{font-size:0.72em;color:var(--text2);margin-top:4px;text-align:center;}
+
+  .filter-bar{display:flex;gap:8px;padding:12px 20px;flex-wrap:wrap;border-bottom:1px solid var(--border);background:var(--bg2);}
+  .filter-btn{padding:6px 14px;border-radius:20px;font-size:0.75em;font-weight:600;cursor:pointer;border:1px solid var(--border);background:var(--bg3);color:var(--text2);transition:all 0.2s;}
+  .filter-btn:hover{border-color:var(--purple);color:var(--text);}
+  .filter-btn.active{background:var(--purple);color:#fff;border-color:var(--purple);}
+
+  .container{max-width:700px;margin:0 auto;padding:16px;}
+
+  .day-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;transition:all 0.2s;}
+  .day-card:hover{border-color:var(--purple);}
+  .day-card.posted{opacity:0.6;}
+  .day-card.posted .day-header{background:rgba(16,185,129,0.1);}
+
+  .day-header{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:var(--bg3);cursor:pointer;}
+  .day-left{display:flex;align-items:center;gap:10px;}
+  .day-num{font-size:1.3em;font-weight:800;color:var(--purple);min-width:32px;}
+  .day-info{display:flex;flex-direction:column;}
+  .day-name{font-size:0.85em;font-weight:700;}
+  .day-platform{font-size:0.65em;color:var(--text2);margin-top:1px;}
+  .platform-tag{display:inline-block;padding:1px 6px;border-radius:4px;font-size:0.62em;font-weight:700;margin-right:4px;}
+  .tag-fb{background:rgba(59,130,246,0.2);color:var(--blue);}
+  .tag-ig{background:rgba(236,72,153,0.2);color:var(--pink);}
+  .tag-mp{background:rgba(139,92,246,0.2);color:var(--purple);}
+  .tag-gbp{background:rgba(16,185,129,0.2);color:var(--green);}
+
+  .day-right{display:flex;align-items:center;gap:8px;}
+  .post-btn{padding:4px 10px;border-radius:6px;font-size:0.7em;font-weight:700;border:none;cursor:pointer;transition:all 0.2s;}
+  .post-btn.mark{background:rgba(16,185,129,0.15);color:var(--green);}
+  .post-btn.mark:hover{background:var(--green);color:#fff;}
+  .post-btn.unmark{background:rgba(239,68,68,0.15);color:var(--red);}
+  .chevron{color:var(--text3);font-size:1em;transition:transform 0.2s;}
+  .day-card.open .chevron{transform:rotate(180deg);}
+
+  .day-body{display:none;padding:16px;border-top:1px solid var(--border);}
+  .day-card.open .day-body{display:block;}
+
+  .post-hook{font-size:0.72em;font-weight:700;color:var(--orange);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.04em;}
+  .post-content{background:var(--bg3);border-radius:8px;padding:14px;font-size:0.85em;line-height:1.7;white-space:pre-wrap;margin-bottom:10px;border-left:3px solid var(--purple);}
+  .post-tip{font-size:0.7em;color:var(--text3);padding:8px 12px;background:var(--bg4);border-radius:6px;margin-top:8px;}
+  .post-tip strong{color:var(--orange);}
+  .copy-btn{width:100%;padding:10px;border-radius:8px;font-size:0.8em;font-weight:700;border:none;cursor:pointer;background:rgba(139,92,246,0.15);color:var(--purple);transition:all 0.2s;margin-top:8px;}
+  .copy-btn:hover{background:var(--purple);color:#fff;}
+  .copy-btn.copied{background:var(--green);color:#fff;}
+
+  .section-title{font-size:0.8em;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:0.05em;padding:16px 0 8px;border-bottom:1px solid var(--border);margin-bottom:12px;}
+
+  .tip-box{background:linear-gradient(135deg,rgba(139,92,246,0.1),rgba(236,72,153,0.05));border:1px solid rgba(139,92,246,0.3);border-radius:var(--radius);padding:16px;margin-bottom:16px;}
+  .tip-box h3{font-size:0.85em;color:var(--purple);margin-bottom:6px;}
+  .tip-box p{font-size:0.78em;color:var(--text2);line-height:1.6;}
+  .tip-box ul{font-size:0.78em;color:var(--text2);padding-left:16px;margin-top:6px;}
+
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.5;}}
+  .pulse{animation:pulse 2s infinite;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏠 April <span>Shed Content</span> Calendar</h1>
+  <div class="sub">30 Days × 45 Posts — Copy-Paste Ready</div>
+  <div class="meta">Facebook • Instagram • Marketplace • GBP | Contact: Darius 636-354-7406</div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-val" style="color:var(--purple)" id="totalPosts">45</div><div class="stat-label">Total Posts</div></div>
+  <div class="stat"><div class="stat-val" style="color:var(--green)" id="postedCount">0</div><div class="stat-label">Posted</div></div>
+  <div class="stat"><div class="stat-val" style="color:var(--orange)" id="remainCount">45</div><div class="stat-label">Remaining</div></div>
+  <div class="stat"><div class="stat-val" style="color:var(--pink)" id="pctDone">0%</div><div class="stat-label">Complete</div></div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <div class="progress-text" id="progressText">0 of 45 posts published</div>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All (45)</button>
+  <button class="filter-btn" data-filter="fb" style="--c:var(--blue)">Facebook</button>
+  <button class="filter-btn" data-filter="ig" style="--c:var(--pink)">Instagram</button>
+  <button class="filter-btn" data-filter="mp" style="--c:var(--purple)">Marketplace</button>
+  <button class="filter-btn" data-filter="gbp" style="--c:var(--green)">GBP</button>
+  <button class="filter-btn" data-filter="pending">⏳ Not Posted</button>
+</div>
+
+<div class="container">
+
+<div class="tip-box">
+  <h3>📅 April Posting Strategy</h3>
+  <p>Peak shed season. Tax refunds hitting, spring projects starting, garage cleanouts happening.</p>
+  <ul>
+    <li><strong>Facebook:</strong> 1 post/day (mix of humor, social proof, specific inventory)</li>
+    <li><strong>Instagram:</strong> 3× week (visual-first — shed photos, reels ideas, stories)</li>
+    <li><strong>Marketplace:</strong> Rotate 3-5 listings/day from the 23-listing blitz</li>
+    <li><strong>GBP:</strong> 1 post/week (Google loves fresh posts, helps local SEO)</li>
+    <li><strong>Best times:</strong> FB 7-9 AM & 5-7 PM | IG 11 AM-1 PM | MP mornings</li>
+  </ul>
+</div>
+
+<div id="postsContainer"></div>
+
+</div>
+
+<script>
+const POSTS = [
+  // === WEEK 1: April 1-7 ===
+  {day:1,dow:"Wednesday",platforms:["fb"],hook:"April Fools — Your Garage Is the Joke",content:`April Fools Day but your garage has been the joke since 2019.
+
+That "I'll clean it out this weekend" energy? It's been 6 years of weekends, my friend.
+
+Here's the plot twist: you don't need to organize the garage.
+
+You need a SHED.
+
+Move the overflow → park the car → close the door → feel like a human again.
+
+We've got 23 buildings on the lot right now. From $3,500 to $11,000. FREE delivery. Financing if you need it (no credit check for rent-to-own).
+
+The only joke is how long you waited.
+
+📞 Call/Text Darius: 636-354-7406
+📍 5520 Westwood Dr, St. Charles`,tip:"Post at 8 AM. April Fools hook grabs attention. Image: messy garage photo if you have one, otherwise hero shot of cleanest shed on lot."},
+
+  {day:1,dow:"Wednesday",platforms:["ig"],hook:"April Fools Carousel",content:`The biggest prank you've pulled on yourself: "I'll organize the garage next weekend" — for 6 years straight 😂
+
+Swipe for the real solution →
+
+Slide 1: 🚗 Your car. Outside. In April hail. Again.
+Slide 2: 📦 Your garage. Zero floor visible.
+Slide 3: 🏠 A shed. The answer. Starting at $3,509.
+Slide 4: 🔑 FREE delivery. No credit check financing. Done.
+
+We've got 23 buildings ready to go. From cute garden sheds to full-size garages with lofts.
+
+Stop pranking yourself. DM or call Darius 📞 636-354-7406
+
+#AprilFools #STL #ShedLife #Sheds #StorageSolutions #StCharlesMO #GarageGoals #TuffShed #WoodMaster #SpringProjects`,tip:"Carousel post gets 3× engagement. Use 4 slides: problem → worse → solution → CTA."},
+
+  {day:2,dow:"Thursday",platforms:["fb"],hook:"The $150/Month Question",content:`Quick math:
+
+Storage unit: $150/month. Every month. Forever.
+That's $1,800/year for a concrete box you drive to.
+
+A shed in YOUR backyard: starts at $150/month rent-to-own.
+Walk out your door. It's right there.
+
+AND after 36 months? You OWN it. Storage unit? Still renting.
+
+We deliver free. Set it up free. You never leave your yard.
+
+23 buildings on the lot — garden sheds to full garages.
+
+📞 Darius: 636-354-7406
+📍 5520 Westwood Dr, St. Charles`,tip:"Storage unit comparison is the #1 closer. Real math wins over emotional appeals every time. Post 6-7 PM."},
+
+  {day:2,dow:"Thursday",platforms:["mp"],hook:"Marketplace: Garden Shed Special",content:`🌿 Brand New Garden Shed — Perfect for Spring
+Starting at $3,509 | FREE Delivery
+
+Spring is here. Your yard tools are in a pile by the back door.
+
+These garden sheds are compact, good-looking, and actually built to last (not that Costco plastic stuff).
+
+✅ Wood construction — real building, not a kit
+✅ FREE delivery & setup within 30 miles
+✅ Financing available — no credit check for rent-to-own
+✅ Multiple colors and sizes on the lot
+
+Come see them. No salespeople. No pressure.
+
+📞 Call/Text Darius: 636-354-7406
+📍 St. Charles, MO`,tip:"List under Storage & Organization. Use 'Brand New' and 'FREE Delivery' in title — highest click-throughs."},
+
+  {day:3,dow:"Friday",platforms:["fb"],hook:"Weekend Warrior Energy",content:`Weekend's coming. You know what separates a good weekend from a great one?
+
+Walking into a clean garage.
+
+You know what makes that possible? Not spending 4 hours organizing. Just... moving stuff to a shed.
+
+We've got everything from $3,509 garden sheds to $11,299 garages with lofts.
+
+Come by the lot this weekend — St. Charles, 5520 Westwood Dr.
+
+No appointment needed. No hard sell. Just buildings and answers.
+
+📞 Darius: 636-354-7406`,tip:"Friday PM post (4-6 PM). Weekend energy = browsing + buying mood. Drive lot traffic."},
+
+  {day:4,dow:"Saturday",platforms:["fb"],hook:"Saturday Lot Day",content:`🏠 LOT IS OPEN TODAY
+
+23 buildings. $3,509 to $11,299.
+
+Garden sheds. Utility barns. Full-size garages with lofts.
+
+Come walk through them. Bring coffee. Bring the spouse. Bring the tape measure.
+
+FREE delivery within 30 miles.
+Financing: rent-to-own (no credit check) or traditional.
+We can usually deliver within a week.
+
+📍 5520 Westwood Dr, St. Charles
+📞 Darius: 636-354-7406
+
+Open air lot — no appointment needed. Just show up.`,tip:"Saturday 8-9 AM post. People plan their day early. Short + direct wins."},
+
+  {day:4,dow:"Saturday",platforms:["ig"],hook:"Saturday Lot Tour",content:`POV: Your weekend just got productive 🏠
+
+23 buildings on the lot. Walk through. Pick your favorite.
+
+From $3,509 garden sheds to $11,299 garages with lofts.
+
+FREE delivery • Financing available • No appointment needed
+
+📍 St. Charles, MO
+📞 636-354-7406
+
+Save this for when you're ready → 📌
+
+#SaturdayVibes #ShedShopping #STL #StCharles #Sheds #BackyardGoals #StorageSolutions #HomeImprovement #SpringProjects #WeekendProject`,tip:"Reel idea: walk-through of 3-4 different sheds on the lot. 15-30 seconds. Music: upbeat weekend vibe."},
+
+  {day:5,dow:"Sunday",platforms:["fb"],hook:"The Silent Winner",content:`Nobody brags about buying a shed.
+
+But the guy with the cleanest garage on the block? He's got one.
+
+The family that actually uses their backyard in summer? They moved the clutter.
+
+The woman who turned her she-shed into a home office? Best decision she made in 2025.
+
+It's not the sexiest purchase. But 6 months later, every single person says the same thing:
+
+"Should've done this years ago."
+
+23 buildings on the lot. Let's find yours.
+
+📞 Darius: 636-354-7406`,tip:"Sunday = reflective/aspirational content. Storytelling > direct sell. Post 10 AM-12 PM."},
+
+  {day:6,dow:"Monday",platforms:["fb"],hook:"Monday Reset: Garage Edition",content:`Every Monday you tell yourself "this is the week I get organized."
+
+Every Saturday you rearrange the same boxes and call it progress.
+
+What if you just... moved the stuff?
+
+Garden shed: $3,509. Delivered free. In your yard by next week.
+
+That's less than the treadmill you bought in January (that's also in the garage).
+
+New week. New you. For real this time.
+
+📞 Darius: 636-354-7406
+📍 5520 Westwood Dr, St. Charles`,tip:"Monday morning, 7-8 AM. 'Fresh start' energy. Treadmill joke hits every time."},
+
+  {day:6,dow:"Monday",platforms:["mp"],hook:"Marketplace: Barn with Loft",content:`12x24 Premium Barn with LOFT — $10,399 | FREE Delivery & Setup
+
+This isn't a shed. This is a building.
+
+288 square feet. Gambrel roof with a full loft above. Double doors so you can drive a mower, ATV, or golf cart right in.
+
+Use the main floor for storage/workshop. Use the loft for seasonal stuff, holiday decorations, whatever.
+
+✅ Premium build — painted, trimmed, ready
+✅ FREE delivery & setup within 30 miles
+✅ Financing: rent-to-own or traditional
+✅ On the lot NOW — come walk through it
+
+📞 Darius: 636-354-7406
+📍 St. Charles, MO`,tip:"Loft barns are the #2 seller after garages. 'This isn't a shed' reframe elevates the product."},
+
+  {day:7,dow:"Tuesday",platforms:["fb"],hook:"The Tax Refund Deadline",content:`If you got your tax refund and it's still sitting in your account "for something important"...
+
+A shed is something important.
+
+Not in a boring adulting way. In a "my backyard finally looks right" way. In a "I can park my car in the garage again" way.
+
+Refund season doesn't last. Our inventory is moving fast this spring.
+
+23 buildings. $3,509 to $11,299. Come see them.
+
+📞 Darius: 636-354-7406`,tip:"Tax refund season winds down in April. Urgency + permission to spend."},
+
+  {day:7,dow:"Tuesday",platforms:["gbp"],hook:"GBP: Spring Inventory Update",content:`🏠 Spring Inventory: 23 Buildings Ready for Delivery
+
+Looking for backyard storage in St. Charles County?
+
+We've got 23 buildings on our lot right now:
+• Garden sheds from $3,509
+• Utility barns from $4,199
+• Premium barns with lofts from $5,499
+• Full-size garages from $11,299
+
+FREE delivery & setup within 30 miles. Financing available — rent-to-own with no credit check.
+
+Visit us at 5520 Westwood Dr, St. Charles MO or call Darius at 636-354-7406.`,tip:"GBP posts boost local rankings. Keep it informational — Google rewards useful content over salesy copy."},
+
+  // === WEEK 2: April 8-14 ===
+  {day:8,dow:"Wednesday",platforms:["fb"],hook:"The Real Cost of 'Later'",content:`Lumber prices went up 12% last year.
+Steel prices up 8%.
+Delivery costs? Don't ask.
+
+Every month you wait, your shed costs more.
+
+That $4,000 garden shed? It was $3,600 two years ago.
+That $11,000 garage? Was $9,500.
+
+This isn't a scare tactic. It's a spreadsheet.
+
+Our lot is priced at TODAY's cost. Once these sell, the next batch will cost more.
+
+23 buildings. Current prices. Come while the math works.
+
+📞 Darius: 636-354-7406`,tip:"Material cost urgency is real and verifiable. Not fake scarcity — actual economics. Post AM."},
+
+  {day:8,dow:"Wednesday",platforms:["ig"],hook:"Behind the Scenes: Lot Tour",content:`Ever wonder what 23 sheds in one place looks like? 🏠
+
+Come walk the lot. Here's what's waiting:
+
+🔨 Garages with lofts (park the car AND store everything)
+🏚️ Barns with double doors (workshop dreams)
+🌿 Garden sheds (compact + adorable)
+🏡 Utility barns (the Goldilocks option)
+
+All prices on-site. No sales pressure.
+FREE delivery. Financing available.
+
+📍 5520 Westwood Dr, St. Charles
+📞 636-354-7406
+
+Drop a 🏠 if you'd buy one today
+
+#SheddTour #STL #BackyardStorage #Sheds #ShedLife #HomeImprovement #SpringUpgrade #StCharlesMO #MissouriLife #StorageSolutions`,tip:"Engagement bait with the emoji ask. Gets algorithm boost. Best as a reel/walkthrough video."},
+
+  {day:9,dow:"Thursday",platforms:["fb"],hook:"The Hail Math",content:`Missouri spring = hail season.
+
+Average hail damage repair on a car: $2,500-$4,500.
+A garage shed that fits your car: $11,299.
+
+One bad storm and you've paid for the garage.
+Two bad storms? You're ahead.
+
+Meanwhile your car sits in the driveway because the garage is full of... what exactly? Christmas decorations from 2018?
+
+Protect the investment. Move the junk. Park the car.
+
+📞 Darius: 636-354-7406`,tip:"Missouri hail season is April-June. This angle has real urgency. Post before any storm forecast."},
+
+  {day:9,dow:"Thursday",platforms:["mp"],hook:"Marketplace: Greenhouse Special",content:`🌱 Brand New Greenhouse — $5,999 | Perfect for Garden Season
+FREE Delivery & Setup
+
+Garden season is GO. This greenhouse is ready.
+
+Not a hardware store kit — this is a real wood-frame greenhouse with actual headroom and workspace.
+
+✅ Built to last (not a wind gust away from collapse)
+✅ FREE delivery & setup
+✅ Financing available
+✅ On the lot — come walk through it
+
+Grow tomatoes, herbs, flowers, whatever. Year-round.
+
+📞 Darius: 636-354-7406
+📍 St. Charles, MO`,tip:"Greenhouses sell to a different audience (gardeners). April is peak planting interest."},
+
+  {day:10,dow:"Friday",platforms:["fb"],hook:"The Spouse Test",content:`How to know if you need a shed:
+
+Step 1: Ask your spouse if the garage is organized.
+Step 2: Listen to the sigh.
+Step 3: Call Darius.
+
+Every marriage has a "stuff" problem. A shed solves it without therapy.
+
+Garden sheds from $3,509. Delivered free. Set up free. Marriage saved: priceless.
+
+📞 636-354-7406
+
+(Happy wife, happy life. But also happy husband who can finally find his tools.)`,tip:"Spouse humor is universally relatable. Works for both genders. Friday afternoon for weekend browsing."},
+
+  {day:11,dow:"Saturday",platforms:["fb"],hook:"Customer Proof",content:`The #1 thing people say after getting their shed delivered:
+
+"Why didn't I do this sooner?"
+
+Not "wow great purchase."
+Not "thanks for the shed."
+
+"WHY DID I WAIT."
+
+Every. Single. Time.
+
+Don't be May-You looking back at April-You thinking "I should've just done it."
+
+23 buildings on the lot. Come see them today.
+
+📞 Darius: 636-354-7406
+📍 Open today — 5520 Westwood Dr, St. Charles`,tip:"Social proof without needing actual testimonials. The universal 'why did I wait' sentiment IS the testimonial."},
+
+  {day:11,dow:"Saturday",platforms:["ig"],hook:"Garage Before/After Vision",content:`Your garage RIGHT NOW: 📦📦🎄🛷🚲📦🏌️📦
+
+Your garage AFTER a shed: 🚗 ✨
+
+That's it. That's the post.
+
+Starting at $3,509 • FREE delivery • Financing available
+
+📞 636-354-7406
+📍 St. Charles, MO
+
+Tag someone who needs to see this 👇
+
+#GarageGoals #Before #After #ShedLife #STL #SpringCleaning #HomeUpgrade #Organization #StCharlesMO #SheShed #ManCave`,tip:"Simple visual posts get shared more than long copy. The emoji 'before/after' is thumb-stopping."},
+
+  {day:12,dow:"Sunday",platforms:["fb"],hook:"The Sunday Daydream",content:`Sunday morning thought:
+
+What would you do with an extra 288 square feet?
+
+Home gym. Art studio. Workshop. Music room. Home office. She-shed. Man cave. Craft room. Photography studio. Gaming den.
+
+A 12x24 barn gives you that. In your backyard. Without a contractor, permit, or $50K addition.
+
+Starting at $5,499 with a loft. Delivered free.
+
+What would YOUR shed be?
+
+📞 Darius: 636-354-7406`,tip:"Sunday = aspirational. Get people dreaming about use cases. Ask the question — comments drive reach."},
+
+  {day:13,dow:"Monday",platforms:["fb"],hook:"The Three Things Stealing Your Garage",content:`Three things that stole your garage:
+
+1. Holiday decorations (yes, ALL the Halloweens too)
+2. Sports equipment from activities your kids quit in 2022
+3. That "I'll sell it on Marketplace" pile that's been there since COVID
+
+Those three things don't need a 400 sq ft garage. They need a shed.
+
+Move the three. Park the car. Weekend: fixed.
+
+📞 Darius: 636-354-7406`,tip:"Specificity sells. Vague 'clutter' is forgettable. 'Sports equipment from activities your kids quit' is FELT."},
+
+  {day:13,dow:"Monday",platforms:["mp"],hook:"Marketplace: Utility Barn",content:`10x16 Utility Barn — $4,199 | Dutch Door Detail | FREE Delivery
+
+This is our cutest building. I'm sorry, but it is.
+
+The dutch door alone sells it. Open the top, leave the bottom closed. It's a vibe.
+
+✅ 160 sq ft of real storage
+✅ Wood build — painted and trimmed
+✅ FREE delivery & setup within 30 miles
+✅ Rent-to-own financing: ~$130/mo, no credit check
+
+Perfect for garden tools, backyard storage, or the cutest she-shed in your neighborhood.
+
+📞 Darius: 636-354-7406
+📍 St. Charles, MO`,tip:"Lean into personality. 'Cutest building' is a real selling point for she-shed buyers."},
+
+  {day:14,dow:"Tuesday",platforms:["fb"],hook:"April Halfway — Inventory Check",content:`📊 April Inventory Update:
+
+We started the month with 23 buildings.
+
+They're moving. Spring does that.
+
+If you've been "thinking about it" — now's the window. Once these sell, the next shipment comes in at higher prices (materials don't get cheaper).
+
+What's still on the lot:
+🏠 Garages with lofts — from $11,299
+🏚️ Premium barns — from $5,499
+🌿 Garden sheds — from $3,509
+🏡 Utility barns — from $4,199
+🌱 Greenhouse — $5,999
+
+FREE delivery. Financing. No pressure.
+
+📞 Darius: 636-354-7406`,tip:"Mid-month inventory update creates soft urgency. Update actual numbers if some have sold."},
+
+  {day:14,dow:"Tuesday",platforms:["gbp"],hook:"GBP: April Financing Spotlight",content:`💰 Shed Financing Options — No Credit Check Available
+
+Looking for backyard storage but not ready to pay upfront? We offer multiple financing options:
+
+• Rent-to-Own: No credit check, low monthly payments, own it after 36 months
+• Traditional Financing: Competitive rates for qualified buyers
+• Cash/Check: Best price, no middleman
+
+Garden sheds from $3,509 (~$110/mo RTO)
+Barns from $4,199 (~$130/mo RTO)
+Garages from $11,299 (~$280/mo RTO)
+
+FREE delivery & setup within 30 miles of St. Charles.
+
+Visit our lot at 5520 Westwood Dr or call 636-354-7406.`,tip:"GBP Week 2 — financing focus. 'No credit check' is a Google search term people use."},
+
+  // === WEEK 3: April 15-21 ===
+  {day:15,dow:"Wednesday",platforms:["fb"],hook:"The Neighbor Effect",content:`Your neighbor bought a shed last month.
+
+You know because their garage door is actually OPEN now. With a CAR inside.
+
+Meanwhile you're backing out of the driveway because your garage has become a museum of Things You Might Need Someday.
+
+The neighbor effect is real. First one on the block gets a shed. Then everyone else realizes they need one too.
+
+Be the first one. Not the fifth.
+
+📞 Darius: 636-354-7406`,tip:"Social proof + competitive neighbor energy. Works especially well in suburban areas. Post evening."},
+
+  {day:15,dow:"Wednesday",platforms:["ig"],hook:"Shed Size Guide",content:`Which shed size are you? 🏠
+
+🌿 8x10 ($3,509) — Garden tools, seasonal decor
+→ "I need a little extra space"
+
+🏡 10x16 ($4,199) — Mowers, bikes, holiday stuff
+→ "My garage needs to breathe"
+
+🏚️ 12x16 ($5,499) — Workshop, she-shed, serious storage
+→ "I need a whole second building"
+
+🏠 12x24 ($11,299) — Garage replacement, car + storage, loft
+→ "I'm never cleaning my garage again"
+
+Save this post for when you're ready 📌
+
+FREE delivery • Financing • No credit check RTO
+
+📞 636-354-7406
+
+#ShedSizeGuide #Sheds #StorageSolutions #STL #BackyardGoals #HomeUpgrade #SpringProjects #StCharlesMO`,tip:"Size guide = educational content. Gets saved/shared because it's useful. Carousel format ideal."},
+
+  {day:16,dow:"Thursday",platforms:["fb"],hook:"Rain Season Prep",content:`April showers bring... wet lawn mowers, rusty tools, and warped holiday decorations.
+
+Everything sitting in your driveway or against the side of the house? Spring rain doesn't care about your plans to "move it later."
+
+A shed keeps your stuff dry. Novel concept.
+
+Garden sheds from $3,509. Delivered before the next storm.
+
+📞 Darius: 636-354-7406`,tip:"Weather hook works best when timed with actual rain in the forecast. Check weather before posting."},
+
+  {day:16,dow:"Thursday",platforms:["mp"],hook:"Marketplace: 12x24 Garage",content:`12x24 Detached Garage with LOFT — $11,299 | FREE Delivery
+
+Your car deserves better than the driveway.
+
+This is a real garage. 288 sq ft on the main floor, plus a full loft above for storage.
+
+✅ Gambrel roof with overhead loft
+✅ Double doors — fit a car, mower, ATV, whatever
+✅ Premium build — painted, trimmed, professional
+✅ FREE delivery & setup within 30 miles
+✅ Financing: ~$280/mo rent-to-own, no credit check
+
+Two colors available on the lot right now: charcoal and taupe. Come see both.
+
+📞 Darius: 636-354-7406
+📍 St. Charles, MO`,tip:"Garages are the highest-ticket item. Lead with the loft — that's the wow factor."},
+
+  {day:17,dow:"Friday",platforms:["fb"],hook:"The DIY Dad Fantasy",content:`Every dad has The Vision:
+
+"I'm gonna build a workbench... get all my tools organized... maybe a little shop out back..."
+
+And every dad has The Reality:
+
+A drill on the washing machine, screws in a coffee can, and sawhorses blocking the minivan.
+
+Skip to the good part. Get the shed. Build the workbench INSIDE the shed. Live the dream.
+
+Barns with double doors starting at $4,199. Garages with lofts from $11,299.
+
+📞 Darius: 636-354-7406`,tip:"Dad/workshop angle is underused but has huge market. Friday afternoon = weekend planning mode."},
+
+  {day:18,dow:"Saturday",platforms:["fb"],hook:"Saturday: Come Walk the Lot",content:`☀️ Beautiful Saturday in St. Charles.
+
+The lot is open. The buildings are here. The coffee is... well, you'll have to bring your own.
+
+Come walk through 20+ sheds, barns, and garages. Bring the family. Let the kids pick colors. Actually measure something for once instead of guessing.
+
+No appointment. No hovering salespeople. Just buildings and price tags.
+
+📍 5520 Westwood Dr, St. Charles
+📞 Darius: 636-354-7406
+
+See you out here. 👋`,tip:"Saturday lot traffic post. 8 AM. Light, friendly, low-pressure. Adjust for weather."},
+
+  {day:18,dow:"Saturday",platforms:["ig"],hook:"Quick Tip: Rent-to-Own Explained",content:`PSA: You do NOT need perfect credit to own a shed 🏠
+
+Our rent-to-own program:
+✅ No credit check
+✅ Low monthly payments
+✅ Own it after 36 months
+✅ Early payoff = save money
+✅ Delivered & set up FREE
+
+Example:
+$4,199 barn → ~$130/month
+$11,299 garage → ~$280/month
+
+That's less than most storage units. And you OWN it at the end.
+
+DM for details or call Darius 📞 636-354-7406
+
+#RentToOwn #NoCreditCheck #Sheds #Financing #STL #BackyardStorage #SmartMoney #StCharlesMO #HomeImprovement #ShedFinancing`,tip:"Educational/financial content gets saved by people who aren't ready to buy yet but will be."},
+
+  {day:19,dow:"Sunday",platforms:["fb"],hook:"The Sunday Math Problem",content:`Sunday math problem:
+
+Home addition: $30,000-$80,000 + permits + 3 months of contractors
+Renting a storage unit: $150-250/month × forever
+A shed in your backyard: $3,509-$11,299 + FREE delivery + done in a day
+
+I'll let you check your work.
+
+📞 Darius: 636-354-7406`,tip:"Cost comparison is always effective. Sunday = contemplative. Simple format gets shares."},
+
+  {day:20,dow:"Monday",platforms:["fb"],hook:"Monday Motivation: The 10-Minute Fix",content:`You know what takes 10 minutes?
+
+Calling Darius, picking a shed, and scheduling delivery.
+
+You know what takes 10 weekends?
+
+Trying to "organize the garage" for the 47th time.
+
+One phone call vs 47 lost Saturdays. The math isn't hard.
+
+📞 Darius: 636-354-7406
+
+New week. Make the call.`,tip:"Monday motivation + direct CTA. Short copy performs well early in the week."},
+
+  {day:20,dow:"Monday",platforms:["mp"],hook:"Marketplace: Clearance Barn",content:`🔥 CLEARANCE: Garden Barn with Garage Door — $4,409 | Below Cost!
+
+This one's priced to move. Garden barn with an actual roll-up garage door — not something you see on most sheds.
+
+Perfect for lawn equipment, small workshop, or anyone who hates swinging doors.
+
+✅ Roll-up garage door (drive your mower right in)
+✅ Premium construction
+✅ FREE delivery & setup
+✅ Financing available
+
+Clearance price = first come, first served. This one won't restock at this price.
+
+📞 Darius: 636-354-7406
+📍 St. Charles, MO`,tip:"Clearance + garage door is a unique feature worth calling out. Creates real urgency."},
+
+  {day:21,dow:"Tuesday",platforms:["fb"],hook:"Earth Day Angle",content:`🌍 Happy Earth Day
+
+Real talk: a backyard shed is actually one of the greener storage options.
+
+No driving to a storage unit (gas, emissions, time).
+No building an addition (concrete, excavation, waste).
+Wood construction. In your yard. Walk to it.
+
+Plus our greenhouse ($5,999) literally helps you grow your own food.
+
+Not preaching. Just saying — if you need storage, a shed is the move for more reasons than one.
+
+📞 Darius: 636-354-7406`,tip:"Earth Day is April 22 but post the day before for awareness. Don't be preachy — keep it light."},
+
+  {day:21,dow:"Tuesday",platforms:["gbp"],hook:"GBP: Spring Delivery Schedule",content:`🚛 Spring Delivery Schedule — Slots Filling Up
+
+Spring is our busiest season! Current delivery timeline:
+
+• Most buildings delivered within 5-7 business days
+• FREE delivery & professional setup within 30 miles
+• We handle everything — site prep guidance, delivery, leveling, setup
+
+Available now:
+• Garden sheds, utility barns, premium barns, garages, greenhouse
+• Prices from $3,509 to $11,299
+• Rent-to-own and traditional financing
+
+Schedule a delivery: Call Darius at 636-354-7406
+Visit the lot: 5520 Westwood Dr, St. Charles MO`,tip:"GBP Week 3 — delivery/logistics focus. Answers the 'how does this work' question that stops people from calling."},
+
+  // === WEEK 4: April 22-28 ===
+  {day:22,dow:"Wednesday",platforms:["fb"],hook:"The Honest Ad",content:`Honest shed ad:
+
+We sell storage buildings.
+They're made of wood.
+They sit in your backyard.
+You put stuff in them.
+
+That's it. No magic. No life-changing transformation (okay, maybe a little).
+
+But here's what nobody tells you: the RELIEF of moving all that crap out of your garage is genuinely one of the best feelings in home ownership.
+
+23 buildings. Free delivery. Financing available.
+
+📞 Darius: 636-354-7406`,tip:"'Honest ad' format cuts through noise. People are tired of hype. Authenticity sells."},
+
+  {day:22,dow:"Wednesday",platforms:["ig"],hook:"3 Reasons You're Scrolling Past Shed Ads",content:`3 reasons you keep scrolling past shed ads (and why you should stop) 🏠
+
+1️⃣ "I can't afford it right now"
+→ $110/month rent-to-own. No credit check.
+
+2️⃣ "I don't have room"
+→ Garden sheds start at 8x10. That's smaller than your bathroom.
+
+3️⃣ "I'll do it next year"
+→ Prices go UP. Every year. That's not sales talk, that's lumber.
+
+Stop scrolling. Start calling. 📞 636-354-7406
+
+#ObjectionHandling #Sheds #STL #StorageSolutions #BackyardGoals #NoCreditCheck #ShedLife #StCharlesMO #SpringProjects #SmartBuy`,tip:"Objection-handling content is top-of-funnel gold. Saves well. Addresses real hesitations."},
+
+  {day:23,dow:"Thursday",platforms:["fb"],hook:"The Pet Owner Special",content:`Dog owner? Cat owner? Both?
+
+You know what takes up space? Pet stuff.
+Crates. Bags of food. Kennels from that one trip. The dog bed they rejected. Three different leash systems.
+
+A garden shed handles all of it AND your regular storage.
+
+Starting at $3,509 with FREE delivery.
+
+Your pets have taken over the house. Don't let them take the garage too.
+
+📞 Darius: 636-354-7406`,tip:"Pet owners are a massive audience. Cross-pollinate with Tidy Tails audience. Evening post."},
+
+  {day:23,dow:"Thursday",platforms:["mp"],hook:"Marketplace: She-Shed Ready",content:`✨ She-Shed Ready: 10x16 Barn — $5,499 | Your Own Space
+FREE Delivery & Setup
+
+This one has she-shed written all over it.
+
+10x16 with a gambrel roof and loft. Enough room for a desk, a chair, some plants, and absolutely zero children.
+
+✅ Loft for storage/reading nook
+✅ Windows for natural light
+✅ Wood build — insulate it, wire it, make it yours
+✅ FREE delivery & setup
+✅ Financing from ~$170/month
+
+Your house has enough people in it. This one's just for you.
+
+📞 Darius: 636-354-7406
+📍 St. Charles, MO`,tip:"She-shed market is huge and underserved. Women make or influence 80% of home buying decisions."},
+
+  {day:24,dow:"Friday",platforms:["fb"],hook:"Friday Fun: Name Your Shed",content:`If you got a shed, what would you name it?
+
+Some actual names I've heard:
+🏠 "The Man Cave"
+💅 "The She Shed"
+🔨 "The Shop"
+🎮 "The Fortress of Solitude"
+📚 "The Library"
+🏋️ "The Gym Nobody Knows About"
+🎨 "Studio B"
+🍺 "The Office" (wink)
+
+Drop your shed name below. Best one gets... respect.
+
+📞 When you're ready to name your own: 636-354-7406`,tip:"Engagement post. Gets comments = algorithm boost = organic reach. Friday afternoon vibes."},
+
+  {day:25,dow:"Saturday",platforms:["fb"],hook:"Last Saturday of April",content:`Last Saturday of April.
+
+You told yourself you'd handle the storage situation this spring.
+
+April's almost gone. May will fly by. Then it's summer and you're too hot to care.
+
+The lot is open today. 20+ buildings. Come find yours.
+
+No appointment. No pressure. Just answers.
+
+📍 5520 Westwood Dr, St. Charles
+📞 Darius: 636-354-7406`,tip:"End-of-month urgency. Light pressure. Saturday AM post for lot traffic."},
+
+  {day:25,dow:"Saturday",platforms:["ig"],hook:"Shed vs Everything Else",content:`Shed money vs everything else money 💸
+
+❌ Storage unit: $150/mo forever (never own it)
+❌ Home addition: $40,000+ (permits, months of mess)
+❌ Doing nothing: $0 now, $2,500 in hail damage later
+✅ Backyard shed: $3,509-$11,299 (own it, use it, done)
+
+The math always wins. 🏠
+
+📞 636-354-7406 | FREE delivery
+
+#ShedMath #StorageSolutions #SmartMoney #STL #BackyardGoals #Sheds #HomeImprovement #RentToOwn #StCharlesMO #SpringSale`,tip:"Comparison graphics perform well. Could be a simple designed image with the math side by side."},
+
+  {day:26,dow:"Sunday",platforms:["fb"],hook:"Sunday Story: The Two-Car Garage Family",content:`Story time:
+
+Family of four. Two-car garage. Zero cars parked inside.
+
+One side: bikes, scooters, basketballs, camping gear, a kayak that's been used twice.
+Other side: Christmas stuff since October, a broken treadmill, and 14 Amazon boxes they haven't broken down.
+
+They got a 12x16 barn. Moved everything seasonal and sporting out.
+
+Now they park both cars inside. The kids ride bikes from the shed. The treadmill went on Marketplace (for $50, but still).
+
+True story. Happens every week.
+
+📞 Darius: 636-354-7406`,tip:"Sunday storytelling. Specific details make it feel real. This IS a common scenario — it doesn't need to be a specific customer."},
+
+  {day:27,dow:"Monday",platforms:["fb"],hook:"May is Coming — Last Call April",content:`May is coming. You know what happens in May?
+
+It gets hot. Fast.
+
+And suddenly "I'll deal with the garage this weekend" becomes "I'll deal with it in the fall."
+
+Fall becomes next spring. Next spring becomes next fall. It's a cycle.
+
+Break the cycle this week. April still has some fight left.
+
+📞 Darius: 636-354-7406
+
+23 buildings. Free delivery. Let's go.`,tip:"End-of-April urgency. The heat angle is real for Missouri — people stop doing projects when it hits 90°."},
+
+  {day:27,dow:"Monday",platforms:["mp"],hook:"Marketplace: Budget Starter Shed",content:`💰 Budget-Friendly Shed — Starting at $3,509 | FREE Delivery
+
+Don't need a barn? Don't want to spend five figures?
+
+This garden shed is the starter option that still gets the job done:
+
+✅ Compact footprint — fits in small yards
+✅ Wood construction (real building, not plastic)
+✅ FREE delivery & setup
+✅ Rent-to-own from ~$110/month — no credit check
+
+Perfect for: garden tools, seasonal decorations, bikes, pool stuff, yard equipment.
+
+First shed > no shed.
+
+📞 Darius: 636-354-7406
+📍 St. Charles, MO`,tip:"Budget option targets the 60% of shoppers who aren't ready for big ticket. $110/mo is very approachable."},
+
+  {day:28,dow:"Tuesday",platforms:["fb"],hook:"April Report Card",content:`April Report Card for your garage:
+
+Organization: F
+Car storage: F (it's in the driveway)
+Finding things: D- (you found the rake, barely)
+Spouse satisfaction: F
+Curb appeal: C (the door stays closed, so people can't see)
+
+Overall: F
+
+The good news? You can fix this with one phone call and zero weekends of organizing.
+
+May starts Thursday. New month, new grade.
+
+📞 Darius: 636-354-7406`,tip:"Report card format is engaging and shareable. Self-deprecating humor that every homeowner relates to."},
+
+  {day:28,dow:"Tuesday",platforms:["gbp"],hook:"GBP: May Preview + Financing",content:`🏠 May Shed Season: Pre-Order Now for Priority Delivery
+
+Spring is our busiest time! Get ahead of the May rush:
+
+Current inventory highlights:
+• 2 detached garages with lofts ($11,299 each)
+• Premium barns from $5,499
+• Garden sheds starting at $3,509
+• One greenhouse at $5,999
+
+Financing: Rent-to-own (no credit check) or traditional financing available.
+Delivery: FREE within 30 miles, typically 5-7 business days.
+
+Don't wait until everyone else is shopping in May.
+
+📞 636-354-7406
+📍 5520 Westwood Dr, St. Charles MO`,tip:"GBP Week 4 — forward-looking urgency. May preview creates FOMO without being pushy."},
+
+  // === WEEK 5: April 29-30 ===
+  {day:29,dow:"Wednesday",platforms:["fb"],hook:"One Day Left in April",content:`One day left in April.
+
+31 days of you thinking about a shed.
+31 days of scrolling past these posts.
+31 days of your car in the driveway.
+
+Tomorrow it's May. Then June. Then "maybe next year."
+
+Or... you call today. Pick a building. We deliver it this week.
+
+Your choice.
+
+📞 Darius: 636-354-7406`,tip:"Second-to-last day urgency. Direct, no humor. The seriousness stands out after a month of lighter posts."},
+
+  {day:29,dow:"Wednesday",platforms:["ig"],hook:"April Recap Reel",content:`April in review 🏠
+
+We posted 30 days of shed content.
+23 buildings sat on the lot.
+Spring flew by.
+Your garage is still... your garage.
+
+May starts tomorrow. New month, same opportunity.
+
+Come see us → 📍 5520 Westwood Dr, St. Charles
+Call Darius → 📞 636-354-7406
+
+Let's make May the month you finally did the thing.
+
+#AprilRecap #ShedSeason #STL #MayGoals #BackyardStorage #Sheds #HomeImprovement #StCharlesMO #SpringCleaning #DoTheThing`,tip:"Recap/wrap-up reels perform well. Quick montage of best shed photos from the month."},
+
+  {day:30,dow:"Thursday",platforms:["fb"],hook:"Final April Post — The Invitation",content:`Last post of April.
+
+No clever hook. No guilt trip. No urgency scam.
+
+Just this:
+
+We have 23 buildings on a lot in St. Charles. They range from $3,509 to $11,299. We deliver them for free and set them up.
+
+If you want more space, less clutter, and your garage back — come see us. Or call. Or text.
+
+No pressure. Never has been, never will be.
+
+📞 Darius: 636-354-7406
+📍 5520 Westwood Dr, St. Charles
+
+See you in May. 🏠`,tip:"End on a quiet, genuine note. After 30 days of content, the soft close is the strongest close."}
+];
+
+// State
+let state = JSON.parse(localStorage.getItem('shed-apr-cal') || '{}');
+if (!state.posted) state.posted = {};
+
+function save() { localStorage.setItem('shed-apr-cal', JSON.stringify(state)); }
+
+function render() {
+  const container = document.getElementById('postsContainer');
+  const activeFilter = document.querySelector('.filter-btn.active')?.dataset.filter || 'all';
+  
+  let html = '';
+  let currentWeek = 0;
+  
+  POSTS.forEach((post, i) => {
+    const week = Math.ceil(post.day / 7);
+    if (week !== currentWeek) {
+      currentWeek = week;
+      const weekStart = (week - 1) * 7 + 1;
+      const weekEnd = Math.min(week * 7, 30);
+      html += `<div class="section-title">Week ${week}: April ${weekStart}-${weekEnd}</div>`;
+    }
+    
+    const id = `post-${i}`;
+    const isPosted = state.posted[id];
+    const platforms = post.platforms;
+    
+    // Filter
+    if (activeFilter === 'pending' && isPosted) return;
+    if (activeFilter !== 'all' && activeFilter !== 'pending' && !platforms.includes(activeFilter)) return;
+    
+    const platformTags = platforms.map(p => {
+      const labels = {fb:'Facebook',ig:'Instagram',mp:'Marketplace',gbp:'GBP'};
+      const cls = {fb:'tag-fb',ig:'tag-ig',mp:'tag-mp',gbp:'tag-gbp'};
+      return `<span class="platform-tag ${cls[p]}">${labels[p]}</span>`;
+    }).join('');
+    
+    html += `
+      <div class="day-card ${isPosted ? 'posted' : ''}" id="card-${i}">
+        <div class="day-header" onclick="toggle(${i})">
+          <div class="day-left">
+            <div class="day-num">${post.day}</div>
+            <div class="day-info">
+              <div class="day-name">${post.hook}</div>
+              <div class="day-platform">${platformTags} ${post.dow}</div>
+            </div>
+          </div>
+          <div class="day-right">
+            <button class="post-btn ${isPosted ? 'unmark' : 'mark'}" onclick="event.stopPropagation();togglePosted('${id}',${i})">
+              ${isPosted ? '↩ Undo' : '✅ Posted'}
+            </button>
+            <span class="chevron">▼</span>
+          </div>
+        </div>
+        <div class="day-body">
+          <div class="post-hook">${post.hook}</div>
+          <div class="post-content" id="content-${i}">${post.content}</div>
+          <button class="copy-btn" onclick="copyPost(${i})">📋 Copy Post Text</button>
+          <div class="post-tip"><strong>💡 Tip:</strong> ${post.tip}</div>
+        </div>
+      </div>`;
+  });
+  
+  container.innerHTML = html;
+  updateStats();
+}
+
+function toggle(i) {
+  document.getElementById(`card-${i}`).classList.toggle('open');
+}
+
+function togglePosted(id, i) {
+  state.posted[id] = !state.posted[id];
+  if (!state.posted[id]) delete state.posted[id];
+  save();
+  render();
+}
+
+function copyPost(i) {
+  const text = POSTS[i].content;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelectorAll('.copy-btn')[Array.from(document.querySelectorAll('.day-card')).findIndex(c => c.querySelector(`#content-${i}`))];
+    if (btn) { btn.textContent = '✅ Copied!'; btn.classList.add('copied'); setTimeout(() => { btn.textContent = '📋 Copy Post Text'; btn.classList.remove('copied'); }, 2000); }
+  });
+}
+
+function updateStats() {
+  const total = POSTS.length;
+  const posted = Object.keys(state.posted).length;
+  const remain = total - posted;
+  const pct = Math.round((posted / total) * 100);
+  
+  document.getElementById('totalPosts').textContent = total;
+  document.getElementById('postedCount').textContent = posted;
+  document.getElementById('remainCount').textContent = remain;
+  document.getElementById('pctDone').textContent = pct + '%';
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = `${posted} of ${total} posts published`;
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    render();
+  });
+});
+
+render();
+</script>
+</body>
+</html>
