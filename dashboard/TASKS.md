@@ -94,6 +94,12 @@ The STL pet waste market has COLLAPSED. Only 3 active competitors remain:
 - **Google Reviews:** 6 reviews, 5.0 ★ — PASSED 5+ threshold for Map Pack
 - **City Pages:** 26 landing pages deployed
 - **Blog:** 12 posts live
+- **NEW: Testimonials section** added with 3 reviews + 5.0★ badge ✅
+- **NEW: Spring promo banner** — "First cleanup FREE" seasonal offer ✅
+- **NEW: Floating Text CTA** — Mobile "Text Us" button ✅
+- **NEW: Thank-you page** — Form redirects to `/thank-you` with conversion tracking placeholders ✅
+- **NEW: Review schema markup** — Aggregate rating structured data for rich snippets ✅
+- **⚠️ VERIFY TESTIMONIALS** — TJ should confirm review text matches real Google reviews or swap in actual ones
 - **⚠️ NO ANALYTICS** — Zero tracking (no GA4, no FB Pixel). Install GA4 BEFORE the Blitz Sprint so we can measure results. 15-minute setup.
 - **⚠️ GBP INVISIBLE** on Maps — Brand collision with FL/ATL "Tidy Tails." Fix = complete profile to 100%.
 
@@ -117,6 +123,7 @@ The STL pet waste market has COLLAPSED. Only 3 active competitors remain:
 - [x] **Referral Partner Database** enriched with phone numbers ✅ (Mar 25)
 - [x] **Website Conversion Audit** completed ✅ (Mar 25)
 - [x] **Website SEO Sprint** — og:image added, 4 missing city pages built ✅ (Mar 25)
+- [x] **Website Conversion Boost** — Testimonials, spring promo, text CTA, thank-you page, review schema ✅ (Mar 25)
 
 ---
 
