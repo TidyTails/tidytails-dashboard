@@ -6,6 +6,39 @@
 
 ## March 25, 2026 (Wednesday)
 
+### Wednesday 4:05 PM — Paid Ads Launch Guide: The Accelerator (Hourly Task)
+- **4:05 PM** 💰 Paid Ads Launch Guide — Created comprehensive paid advertising playbook at `deliverables/paid-ads-launch-guide-spring2026.md`.
+  - **WHY:** We've built 20+ organic marketing deliverables (directories, GBP posts, Nextdoor community posts, event kits, referral partners) — ALL free, ALL slow to build momentum. The single fastest path to 25-30 customers is paid acquisition. With 7+ competitors dead, ad costs are at historic lows (less competition = cheaper bids). AND we have 2 video ads sitting idle that need distribution.
+  - **WHAT'S INCLUDED:**
+    - **Facebook/Instagram Ads** (Priority #1):
+      - Complete campaign structure: 3 ad sets by geography (West County, South County/Doggie Doodies territory, Central/North County)
+      - Targeting templates: dog owners, homeowners, age 25-65, specific zip codes
+      - 3 copy-paste ad copy templates (2 video, 1 static image backup)
+      - Lead form setup with custom questions (# dogs, zip code)
+      - Budget tiers: Starter $5/day, Growth $10/day, Aggressive $20/day
+      - Weekly optimization routine (15 min/week)
+    - **Nextdoor Ads** (Priority #2):
+      - Local Deal templates (Spring Cleanup, New Dog Owner)
+      - Neighborhood targeting by dead competitor territories
+      - Budget: $50-75/mo starting
+    - **Google Search Ads** (Priority #3):
+      - 12+ keyword phrases including dead competitor names (people still search for them!)
+      - Negative keyword list to avoid wasting money
+      - 2 responsive search ad templates
+      - All 6 ad extension types configured
+      - Conversion tracking setup instructions
+    - **ROI Projections:**
+      - $150/mo → 3-6 new customers/mo (hit 25 by July)
+      - $300/mo → 5-11 new customers/mo (hit 25 by JUNE — 2 months early!)
+      - Payback: Month 1 revenue covers ad spend. Month 2+ is pure profit.
+    - **4-week launch sequence** with daily action items
+    - **Common mistakes to avoid** (don't boost posts, don't set-and-forget, don't skip the Pixel)
+    - **Quick reference card** for printing
+  - **KEY INSIGHT:** This was THE gap. We have video ads with no distribution, a completed GBP with no amplification, and a dead competitor landscape with no one bidding on those keywords. $5/day on Facebook could generate first leads in 48-72 hours.
+  - **PREREQUISITE:** Install Facebook Pixel on tidytailsstl.com (10 min). Must happen before any ad spend.
+  - Updated task board with paid ads section + completed item ✅
+  - Committed + pushed to GitHub ✅
+
 ### Wednesday 3:04 PM — Commercial Services Page + Call Script (Hourly Task)
 - **3:04 PM** 🏢 Commercial Conversion Infrastructure — Built two deliverables that bridge the gap between our 73 commercial leads and actual revenue:
   1. **Commercial Services Page** (`tidy-tails/website/commercial.html`) — Full standalone page at `/commercial` for apartment complexes, HOAs, property managers, and dog businesses.

@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-25 2:10 PM CST — by Franklin*
+*Last updated: 2026-03-25 4:10 PM CST — by Franklin*
 
 ---
 
@@ -91,6 +91,22 @@ Leads are worthless without fast follow-up. Complete system for converting every
 - **Weekly review routine** — 15 min every Sunday
 - **⚠️ CRITICAL:** Run this SIMULTANEOUSLY with the 7-Day Blitz Sprint. Sprint drives leads in, this system converts them.
 
+### 💰 NEW: Paid Ads Launch Guide — The Accelerator
+Organic marketing alone won't hit 25-30 customers by August. Paid ads are the missing piece.
+- **Complete guide:** `deliverables/paid-ads-launch-guide-spring2026.md`
+- **3 platforms:** Facebook/Instagram (video ads ready!), Nextdoor Local Deals, Google Search Ads
+- **Budget:** Start at $150/mo ($5/day Facebook), scale to $300/mo
+- **Video ads ready to deploy:** "Get Your Yard Back" + "The Party Panic" — just upload and go
+- **Copy-paste ad copy** for all 3 platforms — headlines, descriptions, CTAs, all done
+- **Targeting templates** — specific St. Louis zip codes, dog owner interests, homeowner behaviors
+- **Competitor capture keywords** — bid on dead competitor names (Doggie Doodies, DoodyCalls, POOP 911)
+- **Lead form templates** — auto-fill name/phone/email from Facebook
+- **Weekly optimization routine** — 15 min/week to check + scale winners
+- **ROI projection:** $150/mo → 3-6 new customers/mo. $300/mo → 5-11 new customers/mo.
+- **The math:** At $300/mo, we could hit 25 customers by JUNE (2 months ahead of August goal)
+- **⚠️ PREREQUISITE:** Install Facebook Pixel on tidytailsstl.com FIRST (10 min)
+- **TJ START HERE:** Set up Facebook Business Manager + install Pixel (30 min total)
+
 ### 📋 Directory Submission Package
 22 directories ready for submission. Copy-paste descriptions included.
 - Guide: `deliverables/directory-submission-package.md`
@@ -169,6 +185,7 @@ Leads are worthless without fast follow-up. Complete system for converting every
 - [x] **Lead Response & Follow-Up System** created ✅ (Mar 25) — Text templates, call scripts, objection handlers, tracking
 - [x] **Crestwood Paw-ty Event Kit** created ✅ (Mar 25) — Scripts, flyers, follow-up templates, vet relationship strategy
 - [x] **Spring/Summer Event Marketing Playbook** created ✅ (Mar 25) — 4 events mapped, Bark in the Park intel, booth strategy, ROI projections
+- [x] **Paid Ads Launch Guide** created ✅ (Mar 25) — Facebook/IG, Nextdoor, Google Search. Video ads ready, copy-paste templates, targeting, budgets, ROI projections
 
 ---
 
