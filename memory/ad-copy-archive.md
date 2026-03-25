@@ -1,6 +1,12 @@
 # Ad Copy Archive — Shed Ads
 *Tracks previously written ads to avoid repeats*
 
+## March 25, 2026 (9 AM Daily)
+- **Shed-Mar170** — "The Honest Neighbor" — Trust/relatability, no gimmicks, real person pitch
+- **Shed-Mar171** — "The Wednesday What-If" — Daydream/aspirational, personal space fantasy, closet space humor
+- **Shed-Mar172** — "The Real Estate Play" — Investment angle, resale value, smart money move
+- **Shed-Mar173** — "The Spring Clean Guilt Trip" — Spring cleaning humor, "same thing last March", space problem
+
 ## March 24, 2026 (9 PM — April Content Calendar)
 - **45 posts for April 1-30** — Full 30-day shed content calendar across Facebook (daily), Instagram (3×/wk), Marketplace (2×/wk), GBP (weekly). Interactive dashboard at `dashboard/shed-april-content-calendar.html`. Text version at `ready-to-post/shed-april-content-calendar.md`. New hooks: April Fools garage joke, $150/mo storage comparison, weekend warrior, Saturday lot day, silent winner, Monday reset + treadmill joke, tax refund deadline, cost of later (lumber math), hail math, spouse test/sigh, "why did I wait" social proof, emoji before/after, Sunday daydream (288 sqft), three things stealing garage, mid-month inventory check, neighbor effect, shed size guide, rain season prep, DIY dad fantasy, RTO explainer, Sunday math problem, 10-minute fix, Earth Day angle, honest ad, 3 reasons scrolling past, pet owner special, she-shed pitch, name your shed engagement, shed vs everything math, two-car garage family story, May urgency, budget starter, April report card, final soft close.
 
@@ -56,6 +62,10 @@
 - **Shed-Mar141** — "The Math" — Home addition vs storage unit vs shed cost comparison
 
 ## Hooks Used (don't repeat within 2 weeks)
+- Honest neighbor / no gimmicks trust build
+- Wednesday what-if / personal space daydream
+- Real estate / resale value investment angle
+- Spring cleaning guilt trip / "same thing last March"
 - Coffee price comparison / daily cost breakdown
 - Interactive garage test / "can you park right now?"
 - Tariff / material price urgency

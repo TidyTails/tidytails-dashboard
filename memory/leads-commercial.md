@@ -977,7 +977,70 @@
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated March 24, 2026 — 67 total leads)
+## 🏠 TIER 1: Apartment Complexes — BRIDGETON + SOUTH COUNTY (March 25, 2026 — 9:00 AM)
+
+### Autumn Lakes Apartments ⭐ ROUTE CONNECTOR — BRIDGETON
+- **Type:** Apartment Complex with Dog Run
+- **Address:** 3838 Autumn Lakes Dr, Bridgeton, MO 63044
+- **Contact:** Leasing Office
+- **Phone:** (314) 291-7600
+- **Why Good Fit:** Pet-friendly in Bridgeton — connects North County to Maryland Heights route. Dog run and green spaces. Large community. Near I-270 and Natural Bridge corridor.
+- **Found:** March 25, 2026
+- **Status:** New
+- **Pitch angle:** "We service North County and Maryland Heights — Bridgeton is right on our route. Weekly dog area cleanup, one flat rate."
+
+### The Estates at Gravois Bluffs — FENTON/SOUTH COUNTY
+- **Type:** Luxury Townhome/Villa Community
+- **Address:** Near Gravois Bluffs Blvd, Fenton, MO 63026
+- **Why Good Fit:** Growing luxury rental near Gravois Bluffs shopping. Villa-style with backyards = dual pitch. Bundles with Turtle Creek + Greenmar for South County route.
+- **Found:** March 25, 2026
+- **Status:** New
+- **Pitch angle:** "Building a South County route — common area + individual yard service as resident perk."
+
+### Vantage Point Apartments — SOUTH COUNTY (Mehlville)
+- **Type:** Apartment Complex — Pet-Friendly
+- **Address:** Mehlville/Lemay Ferry area, South St. Louis County, MO 63125
+- **Why Good Fit:** Large pet-friendly complex off Lemay Ferry Rd. Anchors South County route cluster. Route efficiency — 4 clients in one corridor.
+- **Found:** March 25, 2026
+- **Status:** New
+- **Pitch angle:** "Building a South County route. Weekly pet waste cleanup, flat rate, no contract."
+
+---
+
+## 🐕 TIER 2: Dog Businesses + Referral Partners — NEW (March 25, 2026)
+
+### Barktown Pet Resort — EARTH CITY/BRIDGETON
+- **Type:** Dog Boarding / Daycare / Grooming
+- **Address:** Earth City/Bridgeton corridor, MO 63044
+- **Why Good Fit:** Independent boarding/daycare in Earth City. Outdoor play yards need cleanup. Dual pitch: service + referral. Connects to Bridgeton apartment leads.
+- **Found:** March 25, 2026
+- **Status:** New
+- **Pitch angle:** "We handle outdoor cleanup + referral deal: boarding clients get 10% off yard service at home."
+
+### Affton Animal Hospital ⭐ REFERRAL — SOUTH COUNTY
+- **Type:** Veterinary Clinic
+- **Address:** Affton/Shrewsbury area, South St. Louis County, MO 63123
+- **Phone:** (314) 638-2402
+- **Why Good Fit:** Full-service vet in Affton corridor. Fills vet referral gap in South County — all current vet leads are North County. First mover advantage.
+- **Found:** March 25, 2026
+- **Status:** New
+- **Pitch angle:** "Expanding into South County — cards at your desk, 10% off for your dog clients."
+
+---
+
+## 🏢 STRATEGIC: Vendor Platform (March 25, 2026)
+
+### RealPage Vendor Registration ⭐⭐ FORCE MULTIPLIER
+- **Type:** Property Management Vendor Platform
+- **Website:** realpage.com
+- **Why Good Fit:** One of largest property management platforms in US. Many STL communities use it for vendor sourcing. Like STLAA — one listing = visibility at dozens of managed properties. Complements STLAA registration.
+- **Found:** March 25, 2026
+- **Status:** New
+- **Pitch angle:** "Register as pet waste removal vendor. Property managers search by category + location."
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated March 25, 2026 — 73 total leads)
 
 **Total pipeline if all won:** $12,000-$30,000/month (67 leads)
 **Realistic close rate (20-30%):** $2,100-$7,900/month in new recurring revenue

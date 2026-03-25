@@ -65,14 +65,14 @@
 - **⚠️ TJ POSTED IN FB GROUPS for the first time (Mar 24)** — first confirmed execution of marketing playbook!
 
 ### Online Presence (Mar 22)
-- **GBP:** VERIFIED ✅ (Mar 17) — but only **7% complete**. #1 priority.
+- **GBP:** VERIFIED ✅ (Mar 17) — **near-complete** ✅ (TJ confirmed Mar 25). Was 7%, now almost done.
 - **Yelp:** CLAIMED ✅ (Mar 5) — not showing in Florissant results though
 - **GSC:** VERIFIED ✅ — sitemap submitted, 17 pages discovered, site INDEXED (Mar 18)
 - **SSL:** Valid until May 17, 2026 (set reminder May 1)
 - **Google Reviews:** 6 reviews ✅ 5.0 stars (confirmed Mar 24 by TJ screenshot) — PASSED 5+ threshold for Map Pack! New reviews from Shannon Zamarripa + Lawrence Johnson. Link: https://g.page/r/Ce_hqIHanGLvEAE/review
 - **Telegram HQ Group** — Forum topics LIVE (Mar 24). Bot admin + privacy OFF + requireMention false.
   - Thread 2=TidyTails, 3=Sheds, 4=Daily Accountability, 5=Franklin Admin, 6=Motra, 91=WAXR, 92=AI Content Creation
-- **⚠️ GBP INVISIBLE on Maps** — Searching "Tidy Tails STL" or "poop scoop near me" does NOT show listing. Brand collision with FL + Atlanta "Tidy Tails" businesses. Root cause: 7% profile completion. MUST complete to 100%.
+- **GBP near-complete** ✅ (Mar 25) — TJ finished most of the profile. Was invisible on Maps due to 7% completion. Should start showing up now that profile is filled out.
 - **Telegram HQ Topics LIVE ✅** (Mar 24) — Bot wired to all 7 topics, privacy OFF, admin granted, requireMention false
 - **Content:** 23 city landing pages (all deployed ✅ — ghost pages fixed!), 12 blog posts (1 duplicate merged), A- on-page SEO
 - **⚠️ Sitemap gap:** 4 of 6 I-44 pages missing from sitemap.xml (crestwood, maplewood, brentwood, shrewsbury) — need website repo access to fix
@@ -132,7 +132,7 @@
 
 **⚠️ MARKET COLLAPSE CONFIRMED (Mar 25):** 7+ competitors dead/gone. Only 3 clearly active local competitors remain. North County has ZERO competition. 75-150+ orphaned customers looking for new service.
 
-**Strategy:** GBP completion is THE #1 priority. Every day it's not done = orphaned customers going to Poop 2 Scoop or No. 2 Crew instead of TJ.
+**Strategy:** GBP now near-complete ✅ (Mar 25). Next priorities: directory submissions, Nextdoor, and $7/day FB ads to capture orphaned customers before Poop 2 Scoop or No. 2 Crew do.
 
 ### Search Visibility (Mar 22)
 - **On-page SEO: A-** | **Off-page SEO: F** | **Overall: 30/100**
@@ -236,7 +236,7 @@ Assets: Landing page, pitch deck (v6), one-pager, market research.
 - [x] **Post in a Facebook group** ✅ (Mar 24) — TJ's first confirmed post! Need to track results.
 - [ ] **Post on Nextdoor** (5 min, $0) — 14-day launch kit ready
 - [ ] **Submit to 5 directories** (45 min) — citation tracker ready
-- [ ] **Complete GBP to 100%** (30 min) — GBP wizard ready. HIGHEST PRIORITY. Step-by-step guide sent to TidyTails HQ topic.
+- [x] **Complete GBP to ~100%** ✅ (Mar 25) — TJ confirmed near-complete. Huge win!
 - [ ] **Launch $7/day Facebook Ads** (30 min) — full campaign kit ready (AFTER GBP + reviews)
 - [ ] **Make 3 commercial calls** (15 min) — tap-to-call sheet with scripts ready
 
