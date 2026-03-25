@@ -79,6 +79,18 @@ The STL pet waste market has COLLAPSED. Only 3 active competitors remain:
 
 **Revenue potential: $630-$1,120/mo from referral network alone.**
 
+### 🎯 Lead Response & Follow-Up System (NEW)
+Leads are worthless without fast follow-up. Complete system for converting every lead:
+- **Guide:** `deliverables/lead-response-system-march2026.md`
+- **5-minute response rule** — 78% buy from first responder
+- **Copy-paste text templates** for every scenario: new lead, follow-up, booking, upsell, review ask
+- **Phone scripts** for inbound calls, orphaned customers, referral partner outreach
+- **Objection handlers** for the 5 most common pushbacks
+- **Follow-up cadence:** Day 0 → Day 1 → Day 3 → Day 7 → Day 14 (5 touches minimum)
+- **Lead tracking spreadsheet format** — simple Google Sheet template
+- **Weekly review routine** — 15 min every Sunday
+- **⚠️ CRITICAL:** Run this SIMULTANEOUSLY with the 7-Day Blitz Sprint. Sprint drives leads in, this system converts them.
+
 ### 📋 Directory Submission Package
 22 directories ready for submission. Copy-paste descriptions included.
 - Guide: `deliverables/directory-submission-package.md`
@@ -101,7 +113,20 @@ The STL pet waste market has COLLAPSED. Only 3 active competitors remain:
 - **⚠️ GBP INVISIBLE** on Maps — Brand collision with FL/ATL "Tidy Tails." Fix = complete profile to 100%.
 
 ### 🗓️ Upcoming Events
-- [ ] **Mar 28 — Crestwood Vet Adoption Paw-ty** — Network with vet, meet new adopters
+
+#### 🔥 THIS SATURDAY: Crestwood Vet Adoption Paw-ty (Mar 28)
+**Complete event prep kit ready:** `deliverables/crestwood-pawty-event-kit-march28.md`
+- Conversation scripts (opener, transition, close, objection handlers)
+- Spring promo flyer template (print 50+)
+- Sign-up sheet format
+- Same-day follow-up text templates
+- Vet clinic relationship strategy
+- Day-of timeline
+- Event scorecard to track results
+- **Goal: 15+ conversations, 8+ phone numbers, 2+ conversions**
+- **Prep needed by Friday:** Print cards + flyers (~30 min, ~$15)
+
+#### Coming Up
 - [ ] **Apr 4 — Treats Unleashed Egg Hunt** (Ladue) — Referral partner play
 - [ ] **May 16 — Bark in the Park** — Largest pet festival in Midwest. 5,000-10,000 dog owners. **CALL COLE IMBS: 314-951-1567** for vendor booth.
 - [ ] **Print 200+ business cards** before Mar 28 — Vistaprint ~$15
@@ -123,6 +148,8 @@ The STL pet waste market has COLLAPSED. Only 3 active competitors remain:
 - [x] **Website Conversion Boost** — Testimonials, spring promo, text CTA, thank-you page, review schema ✅ (Mar 25)
 - [x] **GBP Nearly 100% Complete** ✅ (Mar 25) — TJ confirmed! Was 7%, now almost done.
 - [x] **April-May GBP Post Calendar** created ✅ (Mar 25) — 8 posts, copy-paste ready
+- [x] **Lead Response & Follow-Up System** created ✅ (Mar 25) — Text templates, call scripts, objection handlers, tracking
+- [x] **Crestwood Paw-ty Event Kit** created ✅ (Mar 25) — Scripts, flyers, follow-up templates, vet relationship strategy
 
 ---
 

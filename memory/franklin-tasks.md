@@ -6,6 +6,23 @@
 
 ## March 25, 2026 (Wednesday)
 
+### Wednesday 1:04 PM — Crestwood Paw-ty Event Prep Kit (Hourly Task)
+- **1:04 PM** 🐾 Event Prep Kit — Created complete event preparation guide for Saturday's Crestwood Vet Adoption Paw-ty at `deliverables/crestwood-pawty-event-kit-march28.md`.
+  - **WHY:** Event is 3 DAYS AWAY (Saturday, March 28). No prep materials existed. This is TJ's first in-person lead gen opportunity — new dog adopters are the PERFECT customer (just got a dog, haven't thought about poop cleanup yet). One event can yield 2+ recurring customers ($140/mo = $1,680/yr) at $0 cost.
+  - **WHAT'S INCLUDED:**
+    - **Pre-event checklist:** Business cards, sign-up sheet, QR codes, spring promo flyer template
+    - **Printable spring promo flyer** — half-sheet format with pricing, spring special, QR code placeholder
+    - **Conversation scripts:** Natural opener (pet the dog first, pitch second), transition to service, 3 different closes
+    - **Objection handlers:** "I can do it myself," "too expensive," "only one small dog" — all with tested responses
+    - **Vet relationship strategy:** How to approach hosting vet, what to say, Monday follow-up template (this relationship alone could yield 5-15 customers/year)
+    - **Same-day follow-up texts:** Saturday evening template, Tuesday nudge, pricing response — all copy-paste ready
+    - **Day-of timeline:** Arrive early → work the room → thank vet → text leads that night
+    - **Event scorecard:** Track conversations, cards given, numbers collected, conversions
+  - **WHY THIS OVER OTHER TASKS:** We've created 15+ online marketing deliverables. The event is the ONE offline opportunity this week. In local service businesses, face-to-face trust > digital marketing. Plus it's time-sensitive — can't prep after Saturday.
+  - **MINIMUM VIABLE PREP:** Print 50 flyers + business cards, review scripts once, show up. 30 min total.
+  - Updated task board with prominent event section ✅
+  - Committed + pushed to GitHub ✅
+
 ### Wednesday 9:06 AM — Website Conversion Boost: Ship Real Improvements (Hourly Task)
 - **9:06 AM** 🌐 Website Conversion Sprint — Implemented 5 high-impact conversion improvements to tidytailsstl.com:
   1. **🌸 Spring Promo Banner** — Sticky orange banner at top: "Spring Special: Book weekly service → First cleanup FREE!" with dismiss button. Creates urgency + seasonal hook.
