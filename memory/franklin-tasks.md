@@ -6,6 +6,32 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 5:04 PM — Shed Spring Command Center (Hourly Task)
+- **5:04 PM** 🏠 Shed Spring Command Center — Consolidated ALL shed sales tools into one interactive page.
+  - **WHY:** Today was 7 Tidy Tails tasks, ZERO shed tasks. TJ works at TuffShed 9-5 M-F, spring is peak selling season, and there's a 27-lead pipeline (~$16,500 potential) spread across 15+ files. The shed business was being neglected.
+  - **WHAT WAS BUILT:**
+    1. **Interactive command center** (`dashboard/shed-spring-command-center.html`):
+       - **Pipeline tracker** — 12 quoted + 15 pre-quote leads with editable names, status cycling (new→contacted→quoted→won→lost), last-contact dates, localStorage persistence
+       - **This week's ads** — 5 Marketplace ads (Apr 1-11) with expandable cards and copy-paste text blocks
+       - **Follow-up sequences** — 8 copy-paste texts across 2 sequences (quoted leads: 4-text/14-day, pre-quote leads: 4-text/14-day) + phone call script
+       - **Payment calculator** — Live calc with 4 financing options (0%/6mo, 9.99%/120mo, 9.99%/60mo, 9.99%/36mo), down payment field, total interest display
+       - **Objection handling** — 7 common objections with copy-paste responses (tariffs, pricing, DIY, competitors, "need to think")
+       - **Weekly schedule** — Mon/Wed/Fri/Sun rhythm with checkboxes, April goals, time estimates (50 min/week total)
+       - **Urgency ticker** — Tariff data (35.19%), lead times, tax refund angle, no active promo context
+       - **Pipeline math** — "12 quoted × 25% close = 3 sales = $16,500" right at the top
+       - **Market context** — STL shed pricing averages, per-sq-ft comparisons, competitor pricing
+    2. **Dashboard index updated** — New "Shed HQ" quick link + top card in Shed Business section (7 items now)
+    3. **Customer count fixed** — Updated from ~8 to 10 (TJ confirmed Mar 26)
+  - **WHY THIS OVER OTHER TASKS:**
+    - 7 straight Tidy Tails tasks today — shed business completely ignored
+    - TJ is AT TuffShed right now (5 PM on a Thursday). This is immediately useful.
+    - 27 leads in pipeline but scattered across 15+ files. Nobody would dig through all that.
+    - Spring = peak shed season. Every day without follow-up = lower close rate.
+    - One page replaces: shed-pipeline-followup-sequence.md, shed-spring-sales-battlecard, shed-marketplace-ads-mar31-apr6.md, shed-marketplace-ads-apr7-30.md, shed-urgency-closer.html, shed-competitive-pricing.html
+    - Brave API still exhausted — can't do web research, so building tools > researching
+  - **IMPACT:** If TJ texts 3 quoted leads this week using the follow-up texts, at 25% close rate that's ~$5,500 in sales. The pipeline math is RIGHT THERE to motivate action.
+  - Committed + pushed to GitHub ✅
+
 ### Thursday 4:04 PM — Local Directory Submission Kit: 30 Free Citations (Hourly Task)
 - **4:04 PM** 🔗 Directory Submission Kit — Built the definitive off-page SEO action plan.
   - **WHY:** On-page SEO is A-. Off-page SEO is **F**. We have exactly 2 citations (GBP + Yelp). Competitors ranking in the Map Pack have 30-50+. Every directory listing = a backlink + NAP citation = Google ranking signal. This is the #1 thing holding us back from Map Pack visibility, and it costs $0.
