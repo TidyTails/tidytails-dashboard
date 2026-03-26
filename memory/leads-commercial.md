@@ -1040,7 +1040,87 @@
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated March 25, 2026 — 73 total leads)
+## 🎪 EVENT / SPONSORSHIP — NEW (March 26, 2026)
+
+### Purina Farms / Purina Events ⭐⭐ BRAND PLAY — GRAY SUMMIT
+- **Type:** Event Sponsorship + Vendor Booth
+- **Address:** 200 Checkerboard Drive, Gray Summit, MO 63039
+- **Phone:** (314) 982-3232
+- **Website:** purina.com/purina-farms
+- **Why Good Fit:** Massive dog events — breed shows, AKC competitions, pet festivals. Thousands of dog owners per event. 100th anniversary year (2026) = MORE events. Currently doing performances at St. Louis Union Station too. Brand exposure + hundreds of qualified dog owner contacts per event.
+- **Found:** March 26, 2026
+- **Status:** New
+- **Pitch angle:** "We'd love to be a vendor/sponsor at your upcoming events. We'll set up a booth, hand out waste bags with our branding, and offer show specials."
+
+---
+
+## 🏥 TIER 2: Vet Referral Partners — GEOGRAPHIC GAP FILLS (March 26, 2026)
+
+### Companion Animal Hospital — CHESTERFIELD (West County Gap)
+- **Type:** Veterinary Clinic — Referral Partner
+- **Address:** 14353 Manchester Rd, Chesterfield, MO 63017
+- **Phone:** (636) 227-4600
+- **Website:** companionanimalstl.com
+- **Why Good Fit:** Full-service vet on Manchester Rd — heart of West County. Fills the WEST COUNTY vet referral gap. All current vet leads are North County. Pairs with Parq at Chesterfield, ReNew, Rover Oaks.
+- **Found:** March 26, 2026
+- **Status:** New
+- **Pitch angle:** "Building our West County route — cards at your desk, 10% off first month for your dog clients."
+
+### St. Peters Animal Hospital — ST. PETERS (St. Charles County Gap)
+- **Type:** Veterinary Clinic — Referral Partner
+- **Address:** 3960 N St. Peters Pkwy, St. Peters, MO 63376
+- **Phone:** (636) 397-1150
+- **Website:** stpetersanimalhospital.com
+- **Why Good Fit:** Prime location on St Peters Pkwy. TJ already has customer in St. Peters. No vet referral partners in St. Peters/St. Charles yet despite multiple apartment/business leads there.
+- **Found:** March 26, 2026
+- **Status:** New
+- **Pitch angle:** "We already service yards in St. Peters — cards at your desk, 10% off first month for your dog owners."
+
+---
+
+## 🏠 TIER 1: Villa Communities — SOUTH COUNTY (March 26, 2026)
+
+### Villas at Romaine Creek — FENTON/VALLEY PARK
+- **Type:** Villa-Style Rental Community w/ Private Yards
+- **Address:** Romaine Creek Rd, Fenton/Valley Park, MO 63026
+- **Phone:** (636) 326-1800
+- **Website:** villasatromainecreek.com
+- **Why Good Fit:** Villa-style with private backyards, attached garages, patios. Pet-friendly. South County route cluster. Dual pitch — common areas AND individual resident yards.
+- **Found:** March 26, 2026
+- **Status:** New
+- **Pitch angle:** "Common area service AND individual resident yard cleanup as a community perk. Building our South County route."
+
+---
+
+## 🏢 TIER 1: Property Management — NEW (March 26, 2026)
+
+### BluSky Property Management — STL METRO
+- **Type:** Property Management Company
+- **Address:** St. Louis, MO
+- **Phone:** (314) 669-2088
+- **Website:** bluskypropertymanagement.com
+- **Why Good Fit:** Manages residential rentals across STL metro. Pet-friendly properties in portfolio. One vendor relationship = multiple locations. Focus on tenant satisfaction and property preservation.
+- **Found:** March 26, 2026
+- **Status:** New
+- **Pitch angle:** "Pet waste on rental properties causes complaints and lawn damage. Weekly service, one invoice, flat rate per property."
+
+---
+
+## 🏛️ TIER 2: Municipal — NEW (March 26, 2026)
+
+### Cottleville Dog Park — CITY OF COTTLEVILLE
+- **Type:** Municipal Dog Park
+- **Address:** Cottleville Community Park, Cottleville, MO 63304
+- **Phone:** (636) 498-6565
+- **Website:** cottlevillemo.com
+- **Why Good Fit:** Growing suburb between St. Charles and O'Fallon. Active dog park. Pairs with Baxter's K9, Capital at St. Charles, and St. Charles Park District for complete county route.
+- **Found:** March 26, 2026
+- **Status:** New
+- **Pitch angle:** "Weekly dog park cleanup, one flat monthly rate, frees up your parks crew."
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated March 26, 2026 — 79 total leads)
 
 **Total pipeline if all won:** $12,000-$30,000/month (67 leads)
 **Realistic close rate (20-30%):** $2,100-$7,900/month in new recurring revenue

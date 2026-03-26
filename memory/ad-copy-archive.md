@@ -1,6 +1,12 @@
 # Ad Copy Archive — Shed Ads
 *Tracks previously written ads to avoid repeats*
 
+## March 26, 2026 (9 AM Daily)
+- **Shed-Mar174** — "The Quiet Spot" — Mental health/escape, need a spot, peace and quiet angle
+- **Shed-Mar175** — "The 10-Minute Walk" — Storage unit vs backyard convenience, stop driving across town
+- **Shed-Mar176** — "The Spring Project List" — Seasonal checklist humor, cross something off today
+- **Shed-Mar177** — "The Dog Owner Special" — Pet owner stuff accumulation, garage reclaim
+
 ## March 25, 2026 (9 AM Daily)
 - **Shed-Mar170** — "The Honest Neighbor" — Trust/relatability, no gimmicks, real person pitch
 - **Shed-Mar171** — "The Wednesday What-If" — Daydream/aspirational, personal space fantasy, closet space humor
@@ -103,3 +109,7 @@
 - "This IS next year" spring timing
 - "Your shed, your rules" autonomy/man cave
 - Storage unit rent comparison math
+- Mental health / escape / "need a spot" peace angle
+- Storage unit 10-minute drive vs backyard convenience
+- Spring project checklist humor / cross it off
+- Dog owner stuff accumulation / pet gear overload
