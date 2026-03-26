@@ -145,7 +145,7 @@ Stop leaving money on the table. With 7+ competitors dead, we have pricing power
 - **Google Search Console:** Verified ✅, 17 pages discovered
 - **Google Reviews:** 6 reviews, 5.0 ★ — PASSED 5+ threshold for Map Pack
 - **City Pages:** 26 landing pages deployed
-- **Blog:** 12 posts live
+- **Blog:** 13 posts live (newest: "Pet Waste Removal Companies in St. Louis — Who's Still Operating in 2026?" — competitor-capture SEO post targeting ALL dead competitor brand names)
 - **NEW: Testimonials section** added with 3 reviews + 5.0★ badge ✅
 - **NEW: Spring promo banner** — "First cleanup FREE" seasonal offer ✅
 - **NEW: Floating Text CTA** — Mobile "Text Us" button ✅
