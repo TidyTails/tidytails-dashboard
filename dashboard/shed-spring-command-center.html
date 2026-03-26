@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏠 Shed Spring Command Center — Q2 2026</title>
+<style>
+  :root {
+    --bg: #0a0a0f; --card: #111118; --card2: #16161f;
+    --amber: #f59e0b; --amber2: #d97706; --amber-bg: rgba(245,158,11,0.08);
+    --green: #22c55e; --green-bg: rgba(34,197,94,0.08);
+    --red: #ef4444; --red-bg: rgba(239,68,68,0.08);
+    --blue: #3b82f6; --blue-bg: rgba(59,130,246,0.08);
+    --purple: #a78bfa; --purple-bg: rgba(167,139,250,0.08);
+    --text: #e2e8f0; --muted: #94a3b8; --dim: #475569;
+    --border: #1e293b; --border2: #2d3748;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 80px; }
+
+  /* Header */
+  .header { text-align: center; padding: 24px 16px 16px; background: linear-gradient(180deg, rgba(245,158,11,0.06), transparent); }
+  .header h1 { font-size: 1.5em; font-weight: 800; color: var(--amber); letter-spacing: -0.02em; }
+  .header .sub { color: var(--muted); font-size: 0.85em; margin-top: 4px; }
+
+  /* Stats Row */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 0 12px; margin: 16px 0; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 8px; text-align: center; }
+  .stat .num { font-size: 1.6em; font-weight: 800; }
+  .stat .lbl { font-size: 0.68em; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .stat.amber .num { color: var(--amber); }
+  .stat.green .num { color: var(--green); }
+  .stat.red .num { color: var(--red); }
+  .stat.blue .num { color: var(--blue); }
+
+  /* Container */
+  .container { max-width: 700px; margin: 0 auto; padding: 0 12px; }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 0; background: var(--card); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tab { flex: 1; min-width: 0; padding: 10px 8px; text-align: center; font-size: 0.75em; font-weight: 700; color: var(--dim); cursor: pointer; transition: all 0.2s; border: none; background: none; font-family: inherit; white-space: nowrap; }
+  .tab:hover { color: var(--muted); background: var(--card2); }
+  .tab.active { color: var(--bg); background: var(--amber); }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* Section Headers */
+  .sec { display: flex; align-items: center; gap: 8px; margin: 20px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .sec:first-child { margin-top: 0; }
+  .sec h2 { font-size: 0.95em; font-weight: 700; }
+  .sec .cnt { font-size: 0.65em; color: var(--muted); background: var(--card2); padding: 2px 8px; border-radius: 4px; }
+
+  /* Cards */
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 10px; transition: border-color 0.2s; }
+  .card:hover { border-color: var(--amber); }
+  .card-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+  .card h3 { font-size: 0.88em; font-weight: 700; }
+  .card p { font-size: 0.8em; color: var(--muted); line-height: 1.5; }
+  .card .meta { font-size: 0.68em; color: var(--dim); margin-top: 6px; }
+
+  /* Tags */
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.62em; font-weight: 700; text-transform: uppercase; }
+  .tag-hot { background: var(--red-bg); color: var(--red); }
+  .tag-warm { background: var(--amber-bg); color: var(--amber); }
+  .tag-cold { background: var(--blue-bg); color: var(--blue); }
+  .tag-done { background: var(--green-bg); color: var(--green); }
+  .tag-new { background: var(--purple-bg); color: var(--purple); }
+
+  /* Copy Block */
+  .copy-block { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin: 8px 0; font-size: 0.78em; line-height: 1.55; color: var(--text); cursor: pointer; position: relative; transition: all 0.2s; white-space: pre-wrap; }
+  .copy-block:hover { border-color: var(--amber); }
+  .copy-block::after { content: '📋 Tap to copy'; position: absolute; top: 8px; right: 8px; font-size: 0.7em; color: var(--dim); }
+  .copy-block.copied { border-color: var(--green); }
+  .copy-block.copied::after { content: '✅ Copied!'; color: var(--green); }
+
+  /* Lead Row */
+  .lead-row { display: flex; align-items: center; gap: 8px; padding: 10px 14px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 6px; }
+  .lead-row .lead-name { flex: 1; font-size: 0.85em; font-weight: 600; }
+  .lead-row .lead-status { font-size: 0.72em; color: var(--muted); }
+  .lead-row .lead-action { padding: 4px 10px; border-radius: 6px; font-size: 0.72em; font-weight: 700; border: none; cursor: pointer; font-family: inherit; }
+  .lead-row .btn-text { background: var(--amber-bg); color: var(--amber); }
+  .lead-row .btn-done { background: var(--green-bg); color: var(--green); }
+
+  /* Calculator */
+  .calc { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; }
+  .calc label { font-size: 0.78em; font-weight: 600; color: var(--muted); display: block; margin-bottom: 4px; }
+  .calc input, .calc select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 0.9em; font-family: inherit; margin-bottom: 12px; -webkit-appearance: none; }
+  .calc input:focus, .calc select:focus { outline: none; border-color: var(--amber); }
+  .calc-result { background: linear-gradient(135deg, var(--amber-bg), rgba(245,158,11,0.03)); border: 1px solid rgba(245,158,11,0.2); border-radius: 10px; padding: 16px; text-align: center; margin-top: 8px; }
+  .calc-result .big { font-size: 2em; font-weight: 800; color: var(--amber); }
+  .calc-result .desc { font-size: 0.78em; color: var(--muted); margin-top: 4px; }
+
+  /* Urgency Ticker */
+  .ticker { background: linear-gradient(135deg, var(--red-bg), rgba(239,68,68,0.03)); border: 1px solid rgba(239,68,68,0.2); border-radius: var(--radius); padding: 14px; margin-bottom: 16px; }
+  .ticker h3 { font-size: 0.85em; color: var(--red); margin-bottom: 6px; }
+  .ticker ul { list-style: none; padding: 0; }
+  .ticker li { font-size: 0.78em; color: var(--muted); padding: 3px 0; padding-left: 20px; position: relative; line-height: 1.5; }
+  .ticker li::before { content: '🔥'; position: absolute; left: 0; font-size: 0.8em; }
+
+  /* Ad Card */
+  .ad-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 12px; }
+  .ad-card-head { padding: 12px 14px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); cursor: pointer; }
+  .ad-card-head:hover { background: var(--card2); }
+  .ad-card-head h3 { font-size: 0.85em; font-weight: 700; }
+  .ad-card-head .date { font-size: 0.72em; color: var(--amber); font-weight: 600; }
+  .ad-card-body { padding: 14px; display: none; }
+  .ad-card-body.open { display: block; }
+
+  /* Checklist */
+  .check-item { display: flex; align-items: flex-start; gap: 8px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .check-item:last-child { border-bottom: none; }
+  .check-item input[type="checkbox"] { margin-top: 3px; accent-color: var(--amber); width: 16px; height: 16px; cursor: pointer; }
+  .check-item label { font-size: 0.82em; line-height: 1.5; cursor: pointer; }
+  .check-item label .time { color: var(--dim); font-size: 0.85em; }
+
+  /* Scroll to top */
+  .scroll-top { position: fixed; bottom: 20px; right: 20px; width: 44px; height: 44px; border-radius: 50%; background: var(--amber); color: var(--bg); border: none; font-size: 1.2em; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.3); display: none; z-index: 99; }
+
+  @media (max-width: 400px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .tabs { flex-wrap: nowrap; }
+    .tab { font-size: 0.68em; padding: 8px 4px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏠 Shed Command Center</h1>
+  <div class="sub">TuffShed + WoodMaster • Q2 2026 • Spring Selling Season</div>
+</div>
+
+<div class="stats">
+  <div class="stat amber"><div class="num" id="pipelineTotal">27</div><div class="lbl">Pipeline</div></div>
+  <div class="stat green"><div class="num" id="quotedCount">12</div><div class="lbl">Quoted</div></div>
+  <div class="stat blue"><div class="num" id="preQuoteCount">15</div><div class="lbl">Pre-Quote</div></div>
+  <div class="stat red"><div class="num">35%</div><div class="lbl">Tariff ↑</div></div>
+</div>
+
+<div class="container">
+
+  <div class="ticker">
+    <h3>⚡ URGENCY LEVERS — Use in EVERY conversation</h3>
+    <ul>
+      <li><strong>Lumber tariffs at 35.19%</strong> — doubled in last year. Commerce Dept review open, could go HIGHER. Final ruling Jan 2027.</li>
+      <li><strong>Spring install slots filling</strong> — current lead time 4-6 weeks. By May: 6-8+ weeks.</li>
+      <li><strong>Tax refunds hitting now</strong> — avg $3,100. Perfect down payment or full cash on smaller sheds.</li>
+      <li><strong>No active TuffShed promo</strong> — next one might drop April/May, but base prices likely UP by then. Today's price = tomorrow's discount.</li>
+    </ul>
+  </div>
+
+  <div class="tabs">
+    <button class="tab active" onclick="showPanel('pipeline')">📋 Pipeline</button>
+    <button class="tab" onclick="showPanel('ads')">📱 This Week</button>
+    <button class="tab" onclick="showPanel('followup')">💬 Follow-Up</button>
+    <button class="tab" onclick="showPanel('calc')">🧮 Calculator</button>
+    <button class="tab" onclick="showPanel('objections')">🛡️ Objections</button>
+    <button class="tab" onclick="showPanel('weekly')">📅 Schedule</button>
+  </div>
+
+  <!-- ======================== PIPELINE ======================== -->
+  <div class="panel active" id="panel-pipeline">
+    <div class="sec"><h2>🔴 Quoted Leads — Ready to Close</h2><span class="cnt">12 leads</span></div>
+    <p style="font-size:0.78em;color:var(--muted);margin-bottom:12px;">These got a price. Follow up 3+ times = 25-30% close rate. Tap a name to track follow-ups.</p>
+
+    <div id="quoted-leads">
+      <!-- Populated by JS -->
+    </div>
+
+    <div class="sec"><h2>🟡 Pre-Quote Leads — Need Quote First</h2><span class="cnt">15 leads</span></div>
+    <p style="font-size:0.78em;color:var(--muted);margin-bottom:12px;">Showed interest but no quote yet. Get their size/use case → generate quote in 5 min.</p>
+
+    <div id="prequote-leads">
+      <!-- Populated by JS -->
+    </div>
+
+    <div class="card" style="margin-top:16px; border-color: rgba(245,158,11,0.3); background: var(--amber-bg);">
+      <h3 style="color:var(--amber);">💡 Pipeline Math</h3>
+      <p style="margin-top:6px;">
+        <strong>12 quoted × 25% close rate = 3 sales.</strong><br>
+        Average shed: ~$5,500. 3 sales = <strong>$16,500 potential revenue</strong> sitting in this pipeline right now.<br><br>
+        <strong>But only if you follow up.</strong> Each day without a text = lower close rate. Hit 2-3 leads today.
+      </p>
+    </div>
+  </div>
+
+  <!-- ======================== ADS ======================== -->
+  <div class="panel" id="panel-ads">
+    <div class="sec"><h2>📱 This Week's Marketplace Ads</h2><span class="cnt">Mar 31 – Apr 6</span></div>
+    <p style="font-size:0.78em;color:var(--muted);margin-bottom:12px;">Copy-paste ready for Facebook Marketplace + Instagram. Tap to expand, tap text to copy.</p>
+
+    <div class="ad-card">
+      <div class="ad-card-head" onclick="toggleAd(this)">
+        <h3>🤡 AD 1: April Fool's — The Garage Joke</h3>
+        <span class="date">Tue Apr 1</span>
+      </div>
+      <div class="ad-card-body">
+        <p style="font-size:0.72em;color:var(--dim);margin-bottom:8px;">Title: Storage Shed — $149/mo | The Biggest Joke Is Your Garage Right Now</p>
+        <div class="copy-block" onclick="copyText(this)">Happy April Fool's Day! 🎉
+
+Here's the best joke I've heard all year:
+
+"Yeah, my car fits in the garage."
+
+😂😂😂
+
+Be honest — when's the last time you actually parked in there? Between the bikes, holiday decorations, tools, camping gear, lawn equipment, and that treadmill you swore you'd use...
+
+Your "two-car garage" is a zero-car storage unit.
+
+The punchline? A shed costs less than one month of a storage unit rental. And it's in your backyard.
+
+🔥 0% interest — 6 months to pay
+🚚 FREE delivery & setup (takes ~2 hours)
+💰 Rent-to-own — no credit check
+💵 As low as $149/mo
+
+No joke: dozens on the lot right now. Come see them.
+
+Text Darius: 636-354-7406
+IG: @reddshedredemption</div>
+      </div>
+    </div>
+
+    <div class="ad-card">
+      <div class="ad-card-head" onclick="toggleAd(this)">
+        <h3>🐣 AD 2: Easter Sunday — Backyard Upgrade</h3>
+        <span class="date">Fri Apr 4</span>
+      </div>
+      <div class="ad-card-body">
+        <p style="font-size:0.72em;color:var(--dim);margin-bottom:8px;">Title: TuffShed 10x12 — $4,499 | Get Your Backyard Ready for Easter</p>
+        <div class="copy-block" onclick="copyText(this)">Easter's this weekend. Family coming over.
+
+You know what they're gonna see when they pull up? Your backyard.
+
+The kids' bikes thrown everywhere. The lawnmower sitting out. The grill with a cover that blew off three weeks ago and you still haven't fixed it.
+
+Here's the play: get a shed, get everything out of sight, and let the backyard breathe.
+
+TuffShed. Factory-built. Delivered assembled. Set up in 2 hours. Done.
+
+🔥 0% interest — 6 months to pay
+🚚 FREE delivery & setup
+💰 As low as $149/mo
+✅ Rent-to-own — no credit check
+
+Dozens on the lot. Come walk through them this week.
+
+Text Darius: 636-354-7406
+IG: @reddshedredemption</div>
+      </div>
+    </div>
+
+    <div class="ad-card">
+      <div class="ad-card-head" onclick="toggleAd(this)">
+        <h3>📦 AD 3: Spring Cleaning Season</h3>
+        <span class="date">Sun Apr 6</span>
+      </div>
+      <div class="ad-card-body">
+        <p style="font-size:0.72em;color:var(--dim);margin-bottom:8px;">Title: Storage Shed — $4,499+ | Spring Cleaning Without a Shed Is Just Rearranging</p>
+        <div class="copy-block" onclick="copyText(this)">Spring cleaning weekend. 💪
+
+You spent 4 hours reorganizing the garage. Feels great. Everything has a place.
+
+Give it two weeks. It'll look exactly like it did before.
+
+You know why? Because you don't have a space problem. You have a STORAGE problem. And no amount of reorganizing fixes that.
+
+A shed gives you 120+ square feet of dedicated storage. Tools, seasonal stuff, equipment, holiday decorations — OUT of the garage, INTO the shed. Garage is for your car again.
+
+TuffShed. Professional installation. Factory quality. Delivered to your backyard.
+
+🔥 0% interest for 6 months
+💰 9.99% APR up to 120 months
+✅ Rent-to-own — no credit check needed
+🚚 FREE delivery & setup
+
+Sizes from 8x8 to 16x24. Wood or steel. Painted to match your house.
+
+Text Darius: 636-354-7406
+IG: @reddshedredemption</div>
+      </div>
+    </div>
+
+    <div class="sec" style="margin-top:24px;"><h2>📅 April 7-30 Ads</h2><span class="cnt">4 more</span></div>
+    <p style="font-size:0.78em;color:var(--muted);margin-bottom:12px;">Next batch ready in <code>deliverables/shed-marketplace-ads-apr7-30.md</code></p>
+
+    <div class="ad-card">
+      <div class="ad-card-head" onclick="toggleAd(this)">
+        <h3>💰 Tax Refund — Last Call</h3>
+        <span class="date">Tue Apr 8</span>
+      </div>
+      <div class="ad-card-body">
+        <div class="copy-block" onclick="copyText(this)">Your tax refund is sitting in your account right now.
+
+In two weeks it'll be gone. Groceries, bills, subscriptions, "treating yourself" on Amazon... poof.
+
+OR — you could put it toward something that actually adds value to your property.
+
+A TuffShed isn't just storage. It's:
+📦 Getting your garage back
+🏡 Adding $5-8K in property value
+🔒 Keeping your stuff secure (not under a tarp)
+🛠️ A workshop, office, studio, or man cave
+
+And with financing, your refund could be the ONLY money out of pocket.
+
+🔥 0% interest — 6 months to pay
+💰 9.99% APR up to 120 months
+✅ Rent-to-own — no credit check
+🚚 Free delivery & setup
+
+Dozens on the lot. Come walk through them.
+
+Text Darius: 636-354-7406
+IG: @reddshedredemption</div>
+      </div>
+    </div>
+
+    <div class="ad-card">
+      <div class="ad-card-head" onclick="toggleAd(this)">
+        <h3>🏗️ The Tarp Guy</h3>
+        <span class="date">Fri Apr 11</span>
+      </div>
+      <div class="ad-card-body">
+        <div class="copy-block" onclick="copyText(this)">You know the tarp guy.
+
+He's got a lawnmower under one tarp. A grill under another. Maybe some lumber, a kayak, and Christmas decorations all under the same blue tarp that blew off twice last month.
+
+The neighbors see it. You see it. Your wife DEFINITELY sees it.
+
+A shed fixes this in one delivery.
+
+TuffShed. Built in a factory. Delivered fully assembled. Set up in your yard in about 2 hours.
+
+Sizes from 8x8 to 16x24. Wood or steel. Painted to match your house.
+
+🔥 0% interest — paid in 6 months
+💰 As low as $149/mo
+🚚 FREE delivery & setup
+✅ Rent-to-own — no credit check
+
+Come see them in person. Way better than a tarp.
+
+Text Darius: 636-354-7406</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================== FOLLOW-UP ======================== -->
+  <div class="panel" id="panel-followup">
+    <div class="sec"><h2>💬 Quoted Lead Follow-Up Texts</h2><span class="cnt">4-text sequence</span></div>
+    <p style="font-size:0.78em;color:var(--muted);margin-bottom:12px;">Replace [Name] and [size/model]. Send over 14 days. Each text is copy-paste ready.</p>
+
+    <div class="card">
+      <div class="card-head">
+        <h3>Text 1: Casual Check-In <span class="tag tag-hot">Day 1</span></h3>
+      </div>
+      <div class="copy-block" onclick="copyText(this)">Hey [Name]! Darius here from TuffShed. Just checking in on that [size/model] we quoted. Spring's our busy season and install slots are starting to fill up — wanted to make sure you don't end up waiting til summer if you're still thinking about it. No rush, just keeping you in the loop 👍</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h3>Text 2: Value Add <span class="tag tag-warm">Day 3</span></h3>
+      </div>
+      <div class="copy-block" onclick="copyText(this)">Hey [Name] — one more thing I forgot to mention. We've got 0% interest for 6 months right now. So if you're planning to pay it off quick, you're literally paying zero extra. Just wanted to make sure you knew about that option. Have a good weekend!</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h3>Text 3: Soft Urgency <span class="tag tag-warm">Day 7</span></h3>
+      </div>
+      <div class="copy-block" onclick="copyText(this)">Hey [Name], not trying to bug you — just a heads up that lumber costs are trending up this year and we're locking in current pricing for orders placed this month. Once material costs go up, so do building prices. If you're on the fence, sooner is genuinely better than later on this one. Let me know if you have any questions!</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h3>Text 4: Permission to Say No <span class="tag tag-cold">Day 14</span></h3>
+      </div>
+      <div class="copy-block" onclick="copyText(this)">Hey [Name] — Darius again. Totally understand if the timing isn't right. Just wanted to circle back one last time on that [size/model]. If you've decided to hold off, no hard feelings at all — just let me know so I can close out your file. And if something changes down the road, you've got my number. Take care! 🤙</div>
+    </div>
+
+    <div class="sec"><h2>💬 Pre-Quote Lead Texts</h2><span class="cnt">4-text sequence</span></div>
+
+    <div class="card">
+      <div class="card-head">
+        <h3>Text 1: Easy Next Step <span class="tag tag-hot">Day 1</span></h3>
+      </div>
+      <div class="copy-block" onclick="copyText(this)">Hey [Name]! Darius from TuffShed. Looks like we connected about a shed but I don't think we got a chance to put together your quote yet. What size building were you thinking? I can get you exact pricing in about 5 minutes. No commitment, just so you know what you're working with.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h3>Text 2: Use Case Prompt <span class="tag tag-warm">Day 3</span></h3>
+      </div>
+      <div class="copy-block" onclick="copyText(this)">Hey [Name] — just following up. Quick question: what's the main thing you're looking to store/use the building for? (Garage overflow, workshop, home office, etc.) That helps me nail down the right size and features so I'm not just throwing numbers at you.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h3>Text 3: Social Proof <span class="tag tag-warm">Day 7</span></h3>
+      </div>
+      <div class="copy-block" onclick="copyText(this)">Hey [Name] — been getting a ton of orders this month. Spring always brings people out of the woodwork (pun intended 😄). If you're still considering a building, I'd love to get your quote together before our install schedule gets too backed up. Takes 5 min — just need your zip code and rough size you're thinking.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-head">
+        <h3>Text 4: Final Nudge <span class="tag tag-cold">Day 14</span></h3>
+      </div>
+      <div class="copy-block" onclick="copyText(this)">Hey [Name], I know life gets busy. If a shed is still on your radar, I'm here whenever you're ready. If not, totally cool — just didn't want you to think I forgot about you. Have a great week!</div>
+    </div>
+
+    <div class="sec"><h2>📞 Phone Script — High-Value Leads</h2></div>
+    <div class="card">
+      <h3>Opening (warm, natural)</h3>
+      <div class="copy-block" onclick="copyText(this)">"Hey [Name], it's Darius from TuffShed — you'd reached out about a [shed/garage]. Just wanted to give you a quick call instead of another text. Got about 2 minutes?"</div>
+      <p style="margin-top:8px;"><strong>Hit these 5 points:</strong></p>
+      <ol style="font-size:0.8em;color:var(--muted);padding-left:20px;line-height:1.8;">
+        <li><strong>Ask about their project</strong> — "What are you trying to solve?"</li>
+        <li><strong>Match to product</strong> — "Based on that, a [size] would be perfect"</li>
+        <li><strong>Handle price</strong> — "0% for 6 months = free loan"</li>
+        <li><strong>Create urgency</strong> — "Lumber tariffs doubled. Install calendar filling."</li>
+        <li><strong>Soft close</strong> — "Want me to put together a quick quote? 5 min, zero obligation."</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ======================== CALCULATOR ======================== -->
+  <div class="panel" id="panel-calc">
+    <div class="sec"><h2>🧮 Quick Payment Calculator</h2></div>
+    <p style="font-size:0.78em;color:var(--muted);margin-bottom:12px;">Pull this up with a customer to show monthly payments instantly.</p>
+
+    <div class="calc">
+      <label>Shed Price ($)</label>
+      <input type="number" id="calcPrice" value="5000" min="1000" max="50000" step="100" oninput="calculate()">
+
+      <label>Financing Option</label>
+      <select id="calcOption" onchange="calculate()">
+        <option value="0-6">🔥 0% Interest — 6 months</option>
+        <option value="9.99-120" selected>💰 9.99% APR — 120 months</option>
+        <option value="9.99-60">📋 9.99% APR — 60 months</option>
+        <option value="9.99-36">⚡ 9.99% APR — 36 months</option>
+      </select>
+
+      <label>Down Payment ($) — 10% minimum</label>
+      <input type="number" id="calcDown" value="500" min="0" step="50" oninput="calculate()">
+
+      <div class="calc-result">
+        <div class="big" id="calcResult">$59</div>
+        <div class="desc" id="calcDesc">per month for 120 months</div>
+        <div class="desc" id="calcTotal" style="margin-top:8px;font-size:0.72em;"></div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px;">
+      <h3>💡 Quick Reference — Monthly at 9.99% / 120 months</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;">
+        <div style="background:var(--bg);padding:10px;border-radius:8px;text-align:center;">
+          <div style="font-size:0.72em;color:var(--dim);">$4,000 shed</div>
+          <div style="font-size:1.1em;font-weight:800;color:var(--amber);">~$48/mo</div>
+        </div>
+        <div style="background:var(--bg);padding:10px;border-radius:8px;text-align:center;">
+          <div style="font-size:0.72em;color:var(--dim);">$5,000 shed</div>
+          <div style="font-size:1.1em;font-weight:800;color:var(--amber);">~$59/mo</div>
+        </div>
+        <div style="background:var(--bg);padding:10px;border-radius:8px;text-align:center;">
+          <div style="font-size:0.72em;color:var(--dim);">$7,500 shed</div>
+          <div style="font-size:1.1em;font-weight:800;color:var(--amber);">~$89/mo</div>
+        </div>
+        <div style="background:var(--bg);padding:10px;border-radius:8px;text-align:center;">
+          <div style="font-size:0.72em;color:var(--dim);">$10,000 shed</div>
+          <div style="font-size:1.1em;font-weight:800;color:var(--amber);">~$119/mo</div>
+        </div>
+      </div>
+      <p style="margin-top:10px;text-align:center;font-size:0.75em;color:var(--dim);">
+        <strong>Per-day framing:</strong> $5K shed = $1.37/day • $7.5K = $2.05/day • $10K = $2.74/day<br>
+        "Less than a cup of coffee for something that lasts decades."
+      </p>
+    </div>
+
+    <div class="card" style="margin-top:12px;">
+      <h3>📊 Market Context — STL Shed Prices (shedhub.com)</h3>
+      <p style="margin-top:6px;">
+        <strong>Market average:</strong> $6,568 – $6,908<br>
+        <strong>Average per sq ft:</strong> $32.31<br>
+        <strong>TuffShed 10x12 range:</strong> $4,898 – $6,135 ($40-51/sqft)<br>
+        <strong>STL Sheds (Amish):</strong> $4,093 – $6,242 for 10x12<br><br>
+        <em>"Our price per square foot is competitive with what's out there. But you're getting TuffShed quality and warranty."</em>
+      </p>
+    </div>
+  </div>
+
+  <!-- ======================== OBJECTIONS ======================== -->
+  <div class="panel" id="panel-objections">
+    <div class="sec"><h2>🛡️ Objection Handling — Tap to Copy Response</h2></div>
+
+    <div class="card">
+      <h3>"I need to think about it"</h3>
+      <div class="copy-block" onclick="copyText(this)">"Totally understand. The only thing I'd say is — and I'm not trying to pressure you — lumber tariffs doubled in the last year and there's a new review happening right now. The price you see today might not be the price in 60 days. Take your time, but don't be surprised if it goes up. Can I send you a quote so you have the numbers in front of you?"</div>
+    </div>
+
+    <div class="card">
+      <h3>"That's more expensive than I expected"</h3>
+      <div class="copy-block" onclick="copyText(this)">"I hear you. The market average for a shed in St. Louis right now is around $6,500-$7,000. We're at or below that. And with 0% financing, you're spreading that cost over 6 months with no interest. It works out to about $[X] a month — less than a gym membership for something that adds real value to your property."</div>
+    </div>
+
+    <div class="card">
+      <h3>"I found cheaper online / at [competitor]"</h3>
+      <div class="copy-block" onclick="copyText(this)">"For sure, there are cheaper sheds out there. The difference is — TuffShed is professionally installed, comes with a warranty, uses real lumber, and it's here in 4-5 weeks. Some of those online sheds? They ship in a box and you're building it yourself on a Saturday. Different product entirely. But hey, if budget's the main thing, I can show you our most affordable options."</div>
+    </div>
+
+    <div class="card">
+      <h3>"I'll wait for a sale"</h3>
+      <div class="copy-block" onclick="copyText(this)">"I get that. The last promo was $1,000 off and it ended February 11th. The next one? Nobody knows — could be April, could be summer. But here's the thing: even if there's a promo later, the base prices could be higher because of tariffs. You might save $500 on a promo but pay $800 more in base price. Today's price is today's price, and I can lock that in with 0% financing right now."</div>
+    </div>
+
+    <div class="card">
+      <h3>"My wife/husband needs to see it"</h3>
+      <div class="copy-block" onclick="copyText(this)">"100%. Can we schedule a time for you both to come check out the display? Even if you're just looking, it helps to see the quality in person. Saturday mornings are usually good — want me to put you down for around 10?"</div>
+    </div>
+
+    <div class="card">
+      <h3>"I want to build it myself / DIY"</h3>
+      <div class="copy-block" onclick="copyText(this)">"Respect that. A lot of handy people think about it. Just keep in mind — a basic DIY shed takes most people 2-3 full weekends, plus materials run about 70-80% of what we charge installed. So you're saving maybe 20% but spending 40+ hours of your weekends. With us, you order today and it shows up done. No trips to Home Depot, no YouTube tutorials, no fights with your significant other about why the door doesn't close right."</div>
+    </div>
+
+    <div class="card">
+      <h3>"Can you match [competitor's] price?"</h3>
+      <div class="copy-block" onclick="copyText(this)">"I can't match apples to oranges, but let me show you what you're actually getting for the money. If we're comparing the same specs, I'm confident in our value. What's the quote they gave you? Let me see what I can do."</div>
+    </div>
+
+    <div class="sec" style="margin-top:24px;"><h2>🏆 Upsell Opportunities</h2></div>
+    <div class="card">
+      <h3>Size Upgrade — Biggest ROI</h3>
+      <div class="copy-block" onclick="copyText(this)">"One thing I tell everybody — nobody ever says 'I wish I bought a smaller shed.' The jump from 10x12 to 12x16 is about $1,000-1,500 more but gives you 60% more space. Over 20 years, that's pennies a day for not running out of room."</div>
+    </div>
+    <div class="card">
+      <h3>Beyond Storage — Close Bigger Deals</h3>
+      <p>Push beyond "storage" for higher-value builds:</p>
+      <ul style="font-size:0.82em;color:var(--muted);padding-left:20px;line-height:1.8;margin-top:6px;">
+        <li><strong>Home office / workshop</strong> — $8K-$15K builds</li>
+        <li><strong>She-shed / man cave</strong> — Emotional purchase, less price sensitive</li>
+        <li><strong>ADU (rental unit)</strong> — Rental income angle, top-tier builds</li>
+        <li><strong>Garage</strong> — 12x24 range, $9K-$12K, strong demand</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ======================== WEEKLY SCHEDULE ======================== -->
+  <div class="panel" id="panel-weekly">
+    <div class="sec"><h2>📅 Weekly Posting & Follow-Up Schedule</h2></div>
+    <p style="font-size:0.78em;color:var(--muted);margin-bottom:12px;">Consistency > intensity. 3 posts + 3 follow-ups per week = pipeline stays warm.</p>
+
+    <div class="card">
+      <h3>🗓️ Weekly Rhythm</h3>
+      <div style="margin-top:8px;">
+        <div class="check-item">
+          <input type="checkbox" id="w-mon" onchange="saveChecks()">
+          <label for="w-mon"><strong>Monday</strong> — Post Marketplace ad #1 <span class="time">(5 min)</span> + Follow up 2 quoted leads <span class="time">(10 min)</span></label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" id="w-wed" onchange="saveChecks()">
+          <label for="w-wed"><strong>Wednesday</strong> — Follow up 2 pre-quote leads <span class="time">(10 min)</span> + Check Marketplace DMs <span class="time">(5 min)</span></label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" id="w-fri" onchange="saveChecks()">
+          <label for="w-fri"><strong>Friday</strong> — Post Marketplace ad #2 <span class="time">(5 min)</span> + Follow up 2 leads <span class="time">(10 min)</span></label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" id="w-sun" onchange="saveChecks()">
+          <label for="w-sun"><strong>Sunday</strong> — Post Instagram @reddshedredemption <span class="time">(5 min)</span></label>
+        </div>
+      </div>
+      <p style="margin-top:10px;font-size:0.78em;color:var(--amber);font-weight:600;">
+        Total: ~50 min/week • 2 Marketplace ads + 1 IG post + 6 follow-ups
+      </p>
+    </div>
+
+    <div class="card" style="margin-top:12px;">
+      <h3>📊 This Week's Targets (Mar 31 – Apr 6)</h3>
+      <div style="margin-top:8px;">
+        <div class="check-item">
+          <input type="checkbox" id="t1" onchange="saveChecks()">
+          <label for="t1">Post April Fool's ad on Marketplace <span class="time">(Tue Apr 1)</span></label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" id="t2" onchange="saveChecks()">
+          <label for="t2">Follow up 3 hottest quoted leads</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" id="t3" onchange="saveChecks()">
+          <label for="t3">Post Easter weekend ad <span class="time">(Fri Apr 4)</span></label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" id="t4" onchange="saveChecks()">
+          <label for="t4">Text 3 pre-quote leads to get quotes out</label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" id="t5" onchange="saveChecks()">
+          <label for="t5">Post Spring Cleaning ad + IG <span class="time">(Sun Apr 6)</span></label>
+        </div>
+        <div class="check-item">
+          <input type="checkbox" id="t6" onchange="saveChecks()">
+          <label for="t6">Check for new TuffShed April promos</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px; border-color: rgba(34,197,94,0.3); background: var(--green-bg);">
+      <h3 style="color:var(--green);">🎯 April Goals</h3>
+      <ul style="font-size:0.82em;color:var(--muted);padding-left:20px;line-height:1.8;margin-top:6px;">
+        <li>Close <strong>3 quoted leads</strong> = ~$16,500 revenue</li>
+        <li>Convert <strong>5 pre-quote → quoted</strong> (grow pipeline)</li>
+        <li>Post <strong>8 Marketplace ads</strong> (2/week)</li>
+        <li>Post <strong>4 IG posts</strong> @reddshedredemption</li>
+        <li>Follow up <strong>every lead at least 2x</strong></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<button class="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" id="scrollBtn">↑</button>
+
+<div style="text-align:center;padding:24px;color:var(--dim);font-size:0.68em;">
+  Shed Spring Command Center • Built by Franklin 🐕💩 • Mar 26, 2026<br>
+  Contact: Darius — 636-354-7406 • IG: @reddshedredemption
+</div>
+
+<script>
+// Tab switching
+function showPanel(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Copy to clipboard
+function copyText(el) {
+  const text = el.textContent.replace('📋 Tap to copy','').replace('✅ Copied!','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 2000);
+  });
+}
+
+// Toggle ad body
+function toggleAd(el) {
+  const body = el.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+// Calculator
+function calculate() {
+  const price = parseFloat(document.getElementById('calcPrice').value) || 0;
+  const down = parseFloat(document.getElementById('calcDown').value) || 0;
+  const option = document.getElementById('calcOption').value;
+  const [rateStr, termStr] = option.split('-');
+  const rate = parseFloat(rateStr);
+  const term = parseInt(termStr);
+  const principal = Math.max(price - down, 0);
+
+  let monthly, totalPaid;
+  if (rate === 0) {
+    monthly = principal / term;
+    totalPaid = principal;
+  } else {
+    const r = rate / 100 / 12;
+    monthly = principal * (r * Math.pow(1+r, term)) / (Math.pow(1+r, term) - 1);
+    totalPaid = monthly * term;
+  }
+
+  document.getElementById('calcResult').textContent = '$' + Math.round(monthly);
+  document.getElementById('calcDesc').textContent = `per month for ${term} months`;
+  const interest = totalPaid - principal;
+  document.getElementById('calcTotal').textContent = rate === 0
+    ? `Total: $${principal.toLocaleString()} (zero interest if paid in ${term} months)`
+    : `Financed: $${principal.toLocaleString()} • Total paid: $${Math.round(totalPaid).toLocaleString()} • Interest: $${Math.round(interest).toLocaleString()}`;
+}
+
+// Pipeline management with localStorage
+const STORE_KEY = 'shed-pipeline-v1';
+const CHECKS_KEY = 'shed-checks-v1';
+
+function getStore() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; } catch { return {}; }
+}
+function setStore(data) { localStorage.setItem(STORE_KEY, JSON.stringify(data)); }
+
+function renderLeads() {
+  const store = getStore();
+  const quotedEl = document.getElementById('quoted-leads');
+  const preQuoteEl = document.getElementById('prequote-leads');
+
+  // Default placeholder leads (user adds real names)
+  const quoted = store.quoted || Array.from({length:12}, (_,i) => ({name: `Lead ${i+1}`, status: 'new', lastContact: null}));
+  const preQuote = store.preQuote || Array.from({length:15}, (_,i) => ({name: `Lead ${i+1}`, status: 'new', lastContact: null}));
+
+  function renderGroup(leads, container, type) {
+    container.innerHTML = leads.map((lead, idx) => {
+      const statusColors = {new:'tag-hot', contacted:'tag-warm', quoted:'tag-warm', closed:'tag-done', dead:'tag-cold'};
+      const statusLabels = {new:'New', contacted:'Contacted', quoted:'Quoted', closed:'Won ✅', dead:'Lost'};
+      return `
+        <div class="lead-row" style="${lead.status==='closed'?'opacity:0.5;':''}${lead.status==='dead'?'opacity:0.3;':''}">
+          <span class="tag ${statusColors[lead.status]||'tag-hot'}" style="min-width:70px;text-align:center;">${statusLabels[lead.status]||lead.status}</span>
+          <span class="lead-name" contenteditable="true" onblur="updateLeadName('${type}',${idx},this.textContent)">${lead.name}</span>
+          <span class="lead-status">${lead.lastContact ? 'Last: '+lead.lastContact : ''}</span>
+          <button class="lead-action btn-text" onclick="cycleStatus('${type}',${idx})">↻</button>
+        </div>`;
+    }).join('');
+  }
+
+  renderGroup(quoted, quotedEl, 'quoted');
+  renderGroup(preQuote, preQuoteEl, 'preQuote');
+
+  // Update counts
+  const activeQuoted = quoted.filter(l => l.status !== 'closed' && l.status !== 'dead').length;
+  const activePreQuote = preQuote.filter(l => l.status !== 'closed' && l.status !== 'dead').length;
+  document.getElementById('quotedCount').textContent = activeQuoted;
+  document.getElementById('preQuoteCount').textContent = activePreQuote;
+  document.getElementById('pipelineTotal').textContent = activeQuoted + activePreQuote;
+}
+
+function updateLeadName(type, idx, name) {
+  const store = getStore();
+  if (!store[type]) store[type] = type === 'quoted'
+    ? Array.from({length:12}, (_,i) => ({name:`Lead ${i+1}`, status:'new', lastContact:null}))
+    : Array.from({length:15}, (_,i) => ({name:`Lead ${i+1}`, status:'new', lastContact:null}));
+  store[type][idx].name = name.trim();
+  setStore(store);
+}
+
+function cycleStatus(type, idx) {
+  const store = getStore();
+  if (!store[type]) store[type] = type === 'quoted'
+    ? Array.from({length:12}, (_,i) => ({name:`Lead ${i+1}`, status:'new', lastContact:null}))
+    : Array.from({length:15}, (_,i) => ({name:`Lead ${i+1}`, status:'new', lastContact:null}));
+  const statuses = ['new','contacted','quoted','closed','dead'];
+  const current = statuses.indexOf(store[type][idx].status);
+  store[type][idx].status = statuses[(current+1) % statuses.length];
+  const today = new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'});
+  store[type][idx].lastContact = today;
+  setStore(store);
+  renderLeads();
+}
+
+// Checkbox persistence
+function saveChecks() {
+  const checks = {};
+  document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+    checks[cb.id] = cb.checked;
+  });
+  localStorage.setItem(CHECKS_KEY, JSON.stringify(checks));
+}
+
+function loadChecks() {
+  try {
+    const checks = JSON.parse(localStorage.getItem(CHECKS_KEY)) || {};
+    Object.entries(checks).forEach(([id, val]) => {
+      const el = document.getElementById(id);
+      if (el) el.checked = val;
+    });
+  } catch {}
+}
+
+// Scroll button
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollBtn').style.display = window.scrollY > 300 ? 'block' : 'none';
+});
+
+// Init
+calculate();
+renderLeads();
+loadChecks();
+</script>
+</body>
+</html>
