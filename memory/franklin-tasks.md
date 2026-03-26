@@ -6,6 +6,42 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 6:04 AM — Hot 10 Commercial Call Playbook (Hourly Task)
+- **6:04 AM** 📞 Hot 10 Commercial Call Playbook — Built Jamie's prioritized call sheet at `deliverables/hot-10-commercial-call-playbook.md`.
+  - **WHY:** We have 60+ commercial leads at "New" status = ZERO revenue. Every lead was researched, qualified, and logged — but nobody's called any of them. The leads file is 1,100+ lines long. Jamie can't read that and know who to call first. This playbook picks the 10 highest-impact calls, ranks them, and gives Jamie word-for-word scripts.
+  - **WHAT'S INCLUDED:**
+    - **10 prioritized calls** ranked by revenue potential and route efficiency:
+      1. Millsap Properties — 7 apartment communities, $500-$1,500/mo potential
+      2. Associa Smith Management — dozens of HOAs, $300-$2,000+/mo
+      3. Renewal Heights — 411-unit apartment complex, Ferguson
+      4. No Leash Needed — 8-location dog business chain
+      5. Delrado Apartments — Florissant home turf, dog park
+      6. The Watering Bowl — 3-location cage-free daycare
+      7. Greenway Chase — Florissant dog park, same zip as existing customers
+      8. Sentry Management — 32+ HOA communities
+      9. Jasper Apartments — brand new build, no existing vendor
+      10. Cortona at Forest Park — luxury market, $300-$500/mo
+    - **Word-for-word phone scripts** for each call — customized to the specific business
+    - **Objection handlers** for 6 common pushbacks ("we handle it in-house", "no budget", "send me info", etc.)
+    - **Best call windows** — Tuesday-Thursday 9:30-11:30 AM or 2-4 PM
+    - **Call tracking table** with checkboxes
+    - **Revenue projection** — landing just 3 of these = $1,300-$2,200/mo additional = $15,600-$26,400/yr
+    - **Two-week execution plan** — calls 1-5 this week, 6-10 next week + follow-ups
+  - **IMPACT:** This turns 1,100 lines of lead research into a 90-minute action session. Jamie picks up the phone, reads the script, tracks the result. No analysis paralysis, no scrolling through a massive leads file.
+  - Committed + pushed to GitHub ✅
+
+### Thursday 5:04 AM — Skipped (Off-Hours)
+- **5:04 AM** 💤 No task executed. 5 AM — still dead time. Already shipped 3 big deliverables tonight (calculator, 132 FAQ snippets, April content pack). Next meaningful cycle: 7-8 AM for morning briefing prep. No point burning credits on busy-work when TJ's asleep and nothing is time-sensitive.
+
+### Thursday 4:05 AM — Skipped (Off-Hours)
+- **4:05 AM** 💤 No task executed. 4 AM — still dead time. Already shipped 3 big deliverables tonight (calculator, 132 FAQ snippets, April content pack). Next meaningful cycle: 7-8 AM for morning briefing prep.
+
+### Thursday 3:04 AM — Skipped (Off-Hours)
+- **3:04 AM** 💤 No task executed. 3 AM — same rationale as 2 AM. Already shipped heavy deliverables tonight (calculator, 132 FAQ snippets). Next meaningful cycle: 7-8 AM for morning briefing prep.
+
+### Thursday 2:05 AM — Skipped (Off-Hours)
+- **2:05 AM** 💤 No task executed. 2 AM is dead time — no leads to contact, no ads to post, TJ's asleep. Already shipped a calculator (12 AM) and 132 FAQ snippets (1 AM) tonight. Burning credits on busy-work at 2 AM isn't "high-impact," it's waste. Next meaningful cycle: 7-8 AM when morning briefing prep makes sense.
+
 ### Thursday 1:04 AM — FAQ Rich Snippets: 22 City Pages × 6 FAQs = 132 SEO Questions (Hourly Task)
 - **1:04 AM** 🔍 FAQ Schema Blitz — Added localized FAQ sections + FAQPage structured data to ALL 22 city/service area pages.
   - **WHY:** None of the 22 city pages had FAQ schema. Google serves FAQ rich snippets directly in search results — they're click magnets that take up 2-3× more screen real estate than a normal listing. When someone googles "pet waste removal Florissant MO," our listing will show expandable Q&A right in the search results. ZERO competitors have this on their city pages. It's free, permanent, and compounds — Google crawls it once and serves it forever.
