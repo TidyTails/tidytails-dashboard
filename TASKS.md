@@ -1,128 +1,109 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-17 08:00 CST*
+*Last updated: 2026-03-26 08:00 CST — Franklin*
 
 ---
 
 ## 🐕 DOG WASTE (Tidy Tails)
 
-### 🔥 In Progress
-- [ ] **🚨 Google Indexing — DAY 31+, STILL ZERO PAGES** — Confirmed Mar 17
-  - Domain age: ~31 days. On-page SEO: B+. Off-page SEO: **F**
-  - **ROOT CAUSE:** Only 2 citations (GBP + Yelp). Zero backlinks. Google has no external trust signals.
-  - **🆕 FIX: CITATION BLITZ GUIDE READY** → `memory/citation-blitz-guide.md`
-    - 20 directories researched, verified, prioritized by impact
-    - **Speed Run (40 min):** Bing Places, Apple Business Connect, MapQuest, Nextdoor, Petworks = 5 new citations
-    - **Full guide (3-4 hrs over a week):** 20 total citations → should trigger indexing
-    - MapQuest already has auto-generated listing — just needs claiming
-  - **⚠️ CRITICAL:** Every week unindexed = lost organic leads during SPRING PEAK SEASON
-  - Owner: TJ (speed run tonight = 40 min)
+### Current State
+- **Customers:** ~8 recurring (last verified Mar 6 — 20 DAYS STALE, ask TJ)
+- **Revenue:** ~$750/month estimated
+- **Goal:** 25-30 recurring by Aug 2025 (12+ months overdue — still the north star)
+- **GBP:** Near-complete ✅ (Mar 25) — TJ confirmed
+- **Google Reviews:** 6 at 5.0★ — Map Pack eligible ✅
+- **Google Indexed:** ✅ (since Mar 18)
+- **Website:** 22 city pages + 11 blog posts live, SSL valid until May 17
+- **Competitors:** Only 3 active local competitors remain (market collapse)
 
-- [ ] **Spring Marketing Push — THIS IS THE WEEK** 🌸
-  - **St. Patrick's Day TOMORROW (Mar 17)** — Post ready: `dashboard/campaigns/tidy-tails/2026-03-13-WEEK13-CONTENT-CALENDAR.md`
-  - **First Day of Spring FRIDAY (Mar 20)** — Big push day, post in ALL groups
-  - **Week 13 Calendar:** Mon/Wed/Fri posts, all copy-paste ready
-  - Fresh Paws customer grab still ready (Wildwood/Ballwin area — their customers are stranded)
-  - **2-week content pack:** `ready-to-post/spring-2026-tidy-tails-content-pack.md`
-  - Owner: TJ (posting, 3 min each) + Franklin (content creation ✅ DONE)
+### 🔥 #1 Priority: GET MORE CUSTOMERS
+Everything else is noise until customer count moves.
 
-- [ ] **Ad Creative Pipeline** — AI video ads for social media
-  - Status: 6 videos produced (Mar 5). fal.ai credits exhausted.
-  - Remaining: Split Screen Walk (#9), Landmine Map, Calendar X, Dog Stare, Excuse Pile, Zoom Out
-  - Owner: Basquiat (needs fal.ai credits topped up)
+### ✅ Foundation (DONE)
+- [x] Website live + SSL + mobile responsive
+- [x] GBP claimed + verified + near-complete
+- [x] Google indexed (17 pages discovered)
+- [x] Yelp claimed
+- [x] GSC verified + sitemap submitted
+- [x] 6 Google reviews at 5.0★
+- [x] 22 city pages deployed (4 I-44 corridor pages added Mar 25)
+- [x] og:image tags on all pages
+- [x] First FB group post (Mar 24)
+- [x] 2 AI video ads produced (Mar 25)
+- [x] Email automation operational
 
-### ✅ Recently Completed
-- [x] **Google Business Profile** — CLAIMED + COMPLETED ✅ (Feb 26)
-- [x] **Yelp Business Page** — CLAIMED + COMPLETED ✅ (Mar 5)
-- [x] **Google Search Console** — VERIFIED + SUBMITTED ✅ (Mar 5)
-- [x] **Jamie's Outreach Hub** — 36 copy-paste scripts, live on dashboard ✅ (Mar 5)
-- [x] **Winter Reheat Scripts** — 4 text variations for dormant customers ✅ (Mar 5)
-- [x] **6 AI Video Ads** — Produced via Basquiat ✅ (Mar 5)
-- [x] **Competitor Intel Update** — Doggie Doodies found, pricing matrix updated ✅ (Mar 6)
-- [x] **Week 12 FB + GBP Posts** — 5 FB posts + 3 GBP posts created ✅ (Mar 10)
-- [x] **New Blog Post** — Spring Cleaning Checklist for STL Dog Owners (SEO) ✅ (Mar 10)
-- [x] **Google Indexing Escalation Guide** — Step-by-step for TJ ✅ (Mar 10)
-- [x] **Customer Referral Program v2** — 7 scripts, ROI math, launch plan ✅ (Mar 5)
-- [x] **Free Platform Listing Blitz** — 6 platforms identified ✅ (Mar 6)
-- [x] **Website** — tidytailsstl.com live, SSL, mobile responsive ✅
-- [x] **Email Automation** — darius@backyardbuildingsstl.com operational ✅
+### 📝 TJ/Jamie Action Items (ranked by ROI)
+1. **🔥 Post in 2-3 FB groups this week** — Fresh posts ready: `ready-to-post/spring-2026-week-of-mar26.md` (5 min each)
+2. **🔥 Post on Nextdoor** (5 min, $0) — Highest ROI untapped channel
+3. **Submit to 5 directories** (45 min) — Bing Places, Apple Business Connect, MapQuest, Petworks, BringFido
+4. **Get 2 more Google reviews** (5 min) — Goal: 8+ reviews. Scripts ready.
+5. **Update customer list** — Is it still 8? Any churn? Any new from FB posts?
+6. **Launch $7/day Facebook Ads** — Foundation is now ready (GBP done, reviews done, site indexed)
+7. **Make 3 commercial calls** — Jamie's Hot 10 playbook ready
 
-### 📝 To Do (TJ Action Required)
-- [ ] **🔥 Post Fresh Paws grab campaign** — Their customers are STRANDED. Post in Wildwood/Ballwin groups TODAY
-  - Campaign: `dashboard/campaigns/tidy-tails/2026-03-07-FRESH-PAWS-GRAB.md`
-- [ ] **Post Saturday FB group posts** — 5 fresh posts ready (3 min each)
-  - Posts: `dashboard/campaigns/tidy-tails/2026-03-07-SATURDAY-FB-POSTS.md`
-- [ ] **Print door hangers** — Leave on doors while scooping tomorrow (Sunday)
-  - Text: `dashboard/campaigns/tidy-tails/2026-03-07-DOOR-HANGER-TEXT.md`
-- [ ] **Text 2 customers for Google reviews** — GBP needs reviews for ranking
-  - **NEW: Review request scripts ready** → `dashboard/marketing/review-request-scripts.md`
-  - Copy-paste texts, priority list (Shannon → Amanda → Jody), tips on timing
-  - Goal: 5 reviews by end of March
-- [ ] **Launch referral program** — Scripts ready, just needs announcement
-- [ ] **Top up fal.ai credits** — Need credits for remaining video ads
-- [ ] **List on free platforms** — Thumbtack, Angi, Yelp ads, Nextdoor business, HomeAdvisor, Bark
-- [ ] **Winter reheat texts** — Send Jamie's scripts to dormant winter customers
+### ⚠️ Website Issues (Need Deploy Access)
+- 5 city pages have GENERIC titles: olivette, south-city, south-county, university-city, wentzville
+  - Files are correct in repo but live site shows homepage title
+  - Needs Cloudflare Pages redeploy
+- These pages rank poorly because Google sees duplicate titles
 
-### 🎯 Goal Tracking
-- **Target:** 25-30 recurring customers by Aug 2025 (OVERDUE)
-- **Current:** 4-5 recurring
-- **Gap:** Need 20-25 more customers
-- **Strategy:** Free marketing first (FB groups, GBP, Yelp, Nextdoor), then paid ads
+### 📊 Competitive Landscape (Mar 26)
+| Competitor | Status | Price | Threat |
+|------------|--------|-------|--------|
+| Poop 2 Scoop | ✅ Active | $18/wk | 🔴 #1 organic, cheapest |
+| No. 2 Crew | ✅ Active | $19/visit | 🟡 Site partially broken |
+| The Pootector | ✅ Active | Quote only | 🟡 636 area |
+| Dog Doody Defenders | ☠️ DNS DEAD (confirmed Mar 26) | — | Gone |
+| DoodyCalls | ☠️ No MO locations | — | Gone |
+| POOP 911 | ☠️ No MO locations | — | Gone |
+| 4+ others | ☠️ DNS dead | — | Gone |
 
-### 🔍 Competitive Landscape (Updated Mar 12)
-| Competitor | Weekly Price | Monthly | Threat |
-|------------|-------------|---------|--------|
-| Poop2Scoop | $18 | N/A | 🔴 Cheapest |
-| Poopy Paws | $20 | N/A | 🟡 |
-| Tidy Tails (TJ) | $25 | **$70** | — |
-| Doggie Doodies | N/A | $72 | 🔴 NEW, professional |
-| DoodyCalls | Quote | N/A | 🟡 Franchise |
-| POOP 911 | Quote | N/A | 🟡 Free first clean |
-
-**TJ's edge:** Only $70/month plan in market. Local owner. Personal service.
+**North County has ZERO local competitors.** 75-150+ orphaned customers from dead competitors.
 
 ---
 
 ## 🏠 SHEDS (TuffShed / WoodMaster)
 
-### 🔥 In Progress
-- [ ] **Shed Sales CRM** — Live at tidytails.github.io/tidytails-dashboard/crm/
-  - Status: Operational
-  - Owner: TJ
-
-- [ ] **Email Automation** — darius@backyardbuildingsstl.com working
-  - Status: Can send automated follow-ups to shed leads
-  - Owner: Franklin
+### Current State
+- Pipeline: ~12 quoted, ~15 pre-quote
+- Website: backyardbuildingsstl.com (Cloudflare)
+- Lot: 5520 Westwood Dr, Saint Charles
+- Phone: 636-354-7406 (Darius)
+- Shed CRM: live on dashboard
 
 ### 📝 To Do
-- [ ] **🔥 List ALL 23 units on ShedHub.com** — Free shed marketplace, 6-8 competitors already listed, TJ has ZERO. Each unit gets its own indexed page. Fastest path to online leads. (30 min)
-- [ ] **🔥 Post 5 FB Marketplace listings TODAY** — Greenhouse, Aqua Garden, Navy Workshop, Teal Barn, Charcoal Garage. Copy ready. (15 min)
-- [ ] **Add monthly RTO pricing to all ads** — Competitors lead with "$XX/mo" not "$X,XXX cash". Remove sticker shock. (5 min per ad)
-- [ ] **Create GBP for Backyard Buildings STL** — Separate from Tidy Tails. Add all 23 unit photos. (15 min)
-- [ ] **Cross-post to Craigslist STL** — Free, still gets big-ticket traffic. Farm & Garden + For Sale. (10 min)
-- [ ] **HTTPS enforcement** for backyardbuildingsstl.com
-- [ ] **Follow-up emails** for Fenton shed leads (due Sun Mar 9)
-- [ ] Daily ad copy generation (paused — need TJ direction on current promos)
+- [ ] **List ALL 23 units on ShedHub.com** (30 min — free, each gets indexed page)
+- [ ] **Post 5 FB Marketplace listings** (15 min)
+- [ ] **Add monthly RTO pricing to all ads** (competitors lead with $/mo)
+- [ ] **Create separate GBP for Backyard Buildings STL** (15 min)
+- [ ] **Cross-post to Craigslist STL** (10 min)
+- [ ] April content calendar ready (45 posts across FB/IG/Marketplace/GBP)
 
-### 🔍 Shed Competitive Intel (Updated Mar 16)
-- **backyardbuildingsstl.com NOT INDEXED** — same as tidytailsstl.com
-- **8+ active competitors** in STL area
-- **TJ's pricing is competitive** but invisible online
-- **Biggest gap:** Not on ShedHub.com (free marketplace with Google ranking)
-- **Unique differentiator:** Greenhouse ($5,999) — no STL competitor has one
-- Full analysis: `marketing/2026-03-16-SHED-COMPETITIVE-ANALYSIS.md`
+---
+
+## 🚀 OTHER VENTURES
+
+### WAXR (Mobile Detailing Marketplace)
+- Status: Business plan + competitive analysis complete
+- Website: waxr.io (Lovable.dev)
+- Next: TJ + brother deciding on direction
+- Seeking: $1.5M seed
+
+### AI Content Creation
+- Status: Early concept (thread 92 in HQ)
+- No assets yet
+
+### MOTRA (Parked)
+- To resume: "Let's pick up MOTRA"
 
 ---
 
 ## ⚙️ SYSTEMS
-
-### ✅ Operational
-- Dashboard: tidytails.github.io/tidytails-dashboard/ ✅
-- Email: darius@backyardbuildingsstl.com ✅
-- Website: tidytailsstl.com ✅
-- Chief oversight: Running every 2 hours ✅
-- Git: Synced ✅
-
-### ⚠️ Issues
-- Google indexing: 0 pages indexed (submitted Mar 5, waiting)
-- fal.ai: Credits exhausted
+- Dashboard: ✅ tidytails.github.io/tidytails-dashboard/
+- Website: ✅ tidytailsstl.com (SSL valid until May 17)
+- Email: ✅ darius@backyardbuildingsstl.com
+- Chief Oversight: ✅ Running every 2 hours
+- Git: ✅ Synced
+- Video pipeline: ✅ 2 new ads produced Mar 25
+- fal.ai: Budget allocated (TJ confirmed Mar 25)
+- Brave Search API: ⚠️ Quota exhausted (resets monthly)
