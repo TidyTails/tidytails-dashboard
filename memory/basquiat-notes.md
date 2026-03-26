@@ -13,9 +13,15 @@
 - These are NEW images, not existing product photos
 - Model: Nano Banana 2 on fal.ai
 
-**Step 3: BASQUIAT runs Kling v3 Standard on fal.ai**
+**Step 3: BASQUIAT runs Kling v1 Standard on fal.ai**
+- Endpoint: `fal-ai/kling-video/v1/standard/image-to-video` ← ONLY THIS ONE
+- ⚠️ NOT v2, NOT v3 — v1 Standard = the good videos. Other versions = distorted faces.
 - Takes the 3 Nano Banana images → Animates each into a 5-sec video clip
 - Cinematic motion (pan, zoom, orbit, etc.)
+
+**Step 4 (NEW — MANDATORY): ADD MUSIC/SOUND**
+- Every video MUST have background music before delivery
+- Add via ffmpeg during final assembly
 
 **Step 4: Combine 3 clips into one ~15 sec video**
 
@@ -25,6 +31,25 @@
 - ❌ DO NOT make slideshows
 - ❌ DO NOT skip the Doeboy prompt step
 - ❌ DO NOT generate images yourself — Doeboy writes the prompts, you execute
+- ❌ DO NOT use any Kling endpoint other than v1 Standard (v2/v3 = distorted faces)
+- ❌ DO NOT put text/words on vehicles, uniforms, or equipment (AI mangles text)
+- ❌ DO NOT show close-up human faces or dog faces head-on (distortion guaranteed)
+- ❌ DO NOT deliver videos without music/sound
+
+### ✅ SHOT COMPOSITION RULES:
+- People at MID/WIDE distance only — silhouettes, backs turned, hands-only, feet-only
+- Dogs from BEHIND or at distance — tail wagging, running away, NOT face-on
+- Focus on THE YARD, not people/animals
+- Grass stays SAME COLOR — only poop disappears
+
+### 🔍 QUALITY GATE — CHECK BEFORE DELIVERY:
+1. No distorted faces (human or animal)
+2. No mangled text on any object
+3. Grass color consistent across frames
+4. Audio/music present
+5. Story clear without explanation
+6. Correct endpoint used (v1 Standard)
+**If ANY fail → re-generate. Don't deliver garbage.**
 
 ### API Details:
 - **Platform:** https://fal.ai

@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-25 7:10 PM CST — by Franklin*
+*Last updated: 2026-03-25 8:05 PM CST — by Franklin*
 
 ---
 
@@ -78,6 +78,18 @@ The STL pet waste market has COLLAPSED. Only 3 active competitors remain:
 5. Silver Maple — 314-965-1630
 
 **Revenue potential: $630-$1,120/mo from referral network alone.**
+
+### 💸 NEW: Customer Revenue Maximizer Kit — Upsell the 8 You Have
+The fastest revenue isn't new customers. It's the 8 you already have.
+- **Complete kit:** `deliverables/customer-revenue-maximizer-kit.md`
+- **6 copy-paste text templates:** deodorizing upsell, deep clean, Spring Reset bundle, review request, referral ask, pre-event cleanup
+- **20 minutes of texting** — split over 2 nights
+- **Conservative projection:** +$135/mo ongoing + $200-300 one-time + 3 new Google reviews
+- **Optimistic projection:** +$250/mo ongoing + $650-850 one-time + 5 reviews (→ 11 total = Map Pack domination)
+- **Objection handlers** for every scenario
+- **Tracking grid** for all 8 customers
+- **⚠️ DO THIS BEFORE SPENDING ON ADS.** Free, 20 min, revenue within 48 hours.
+- **TJ START HERE:** Tonight, text all 8 customers the deodorizing upsell + review request. Tomorrow, deep clean + referral ask.
 
 ### 🎯 Lead Response & Follow-Up System (NEW)
 Leads are worthless without fast follow-up. Complete system for converting every lead:
@@ -203,6 +215,7 @@ Stop leaving money on the table. With 7+ competitors dead, we have pricing power
 - [x] **Spring/Summer Event Marketing Playbook** created ✅ (Mar 25) — 4 events mapped, Bark in the Park intel, booth strategy, ROI projections
 - [x] **Paid Ads Launch Guide** created ✅ (Mar 25) — Facebook/IG, Nextdoor, Google Search. Video ads ready, copy-paste templates, targeting, budgets, ROI projections
 - [x] **Spring Special Landing Page** built ✅ (Mar 25) — `/spring` — Conversion page for all campaigns, tiered pricing, Spring Reset $129 package, social proof, SMS CTAs
+- [x] **Customer Revenue Maximizer Kit** created ✅ (Mar 25) — 6 copy-paste text templates for upsells, reviews, referrals. 20 min execution, +$135-250/mo projected
 
 ---
 

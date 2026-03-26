@@ -6,6 +6,28 @@
 
 ## March 25, 2026 (Wednesday)
 
+### Wednesday 8:05 PM — Customer Revenue Maximizer Kit (Hourly Task)
+- **8:05 PM** 💸 Customer Revenue Maximizer Kit — Created complete upsell/referral/review text message kit at `deliverables/customer-revenue-maximizer-kit.md`.
+  - **WHY:** We spent the entire day (13+ hours, 12+ deliverables) building marketing for NEW customers. Not a single deliverable targeted the 8 customers we ALREADY HAVE. Existing customers are the fastest, cheapest, highest-trust revenue source available. A 20-minute texting session can generate more immediate revenue than a $150/mo ad budget.
+  - **WHAT'S INCLUDED:**
+    - **6 copy-paste text message templates:**
+      1. Yard deodorizing upsell (+$20/mo) — enzyme treatment add-on, zero extra appointments
+      2. Spring deep clean ($99-149) — one-time deep yard reset
+      3. Spring Reset Package ($129 bundle) — premium upsell for top customers
+      4. Google review request — with follow-up template, timing tips
+      5. Referral ask with incentive ($25 off next month + first cleanup free for friend)
+      6. Pre-event yard cleanup ($35 add-on) — template for Easter, Memorial Day, July 4th
+    - **Objection handlers** for every template (the "let me think about it," "is it different?", "I'm already on weekly" responses)
+    - **Execution plan:** 20 min total, split over 2 nights (don't overwhelm customers with 4 texts at once)
+    - **Tracking grid** for all 8 customers × 5 actions
+    - **Timing tips:** Send 6-8 PM weekdays, personalize names, wait 3 days before follow-up
+  - **REVENUE PROJECTIONS:**
+    - Conservative: +$135/mo ongoing + $198-298 one-time + 3 new reviews
+    - Optimistic: +$250/mo ongoing + $654-854 one-time + 5 new reviews (→ 11 total = Map Pack dominance)
+  - **KEY INSIGHT:** Every marketing deliverable today targets strangers. This targets friends. Trust already earned, zero cost, revenue within 48 hours. The 8 customers we have ARE the marketing machine.
+  - Updated task board ✅
+  - Committed + pushed to GitHub ✅
+
 ### Wednesday 7:04 PM — Shed Ads Week 2: March 31 - April 6 (Hourly Task)
 - **7:04 PM** 🏠 Shed Marketplace Ads Batch — Created next week's complete ad package at `deliverables/shed-marketplace-ads-mar31-apr6.md`.
   - **WHY:** Current shed ads (Mar 24-30) expire Sunday. Without a next batch, the posting cadence breaks. Darius/TJ had NO copy ready for Q2 Week 1. Consistency is what builds Marketplace algorithm favor — missing a week resets momentum.
