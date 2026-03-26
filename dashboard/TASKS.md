@@ -86,6 +86,25 @@ The STL pet waste market has COLLAPSED. Only 3 active competitors remain:
 **Jamie's time:** ~3 min per review ask. Total: ~30 min over 4 weeks.
 **Why now:** Paw-ty Saturday = perfect launch moment. Ask attendees + existing customers simultaneously.
 
+### 🐾 NEW: Paw-ty Landing Page + QR Print Kit (Mar 26)
+**One QR code does EVERYTHING at Saturday's event.** Scan → sign-up form, pricing, referral link, review link, new adopter deal. All in one page.
+
+**What's ready:**
+- **Landing page:** `tidy-tails/website/pawty.html` → `tidytailsstl.com/pawty`
+  - Hero with event details + free cleanup offer
+  - Quick action cards: Sign up, Refer, Review, Calculator
+  - Pricing tiers with "Paw-ty Specials" framing
+  - New adopter section ($35/mo × 3 months deal)
+  - Sign-up form that stores leads + shows success message
+  - Mobile-first, fast, no external dependencies
+- **Printable QR flyer:** `deliverables/pawty-qr-flyer-printable.html`
+  - Page 1: Table tent (fold and stand on booth table)
+  - Page 2: 4 business-card-size handouts (cut and hand out)
+  - Page 3: Full-page flyer (post on wall or hand to people)
+  - All QR codes point to `/pawty` — auto-generated via API
+- **TJ ACTION:** Open the flyer file in browser → Cmd+P → Print. Cut cards. Done. 5 minutes.
+- **WHY:** Without this, Jamie collects names on a paper clipboard. With this, attendees sign up on their phones AND we get their phone number + zip + interest level instantly. Digital > paper. Plus QR codes look professional.
+
 ### 🚪 NEW: Door Hanger & Yard Sign Kit — Offline Marketing Launch
 You service ~8 yards/week = 40-80 neighbor households who see your truck but get ZERO touchpoint. This kit fixes that.
 - **Kit:** `deliverables/door-hanger-yard-sign-kit.md`

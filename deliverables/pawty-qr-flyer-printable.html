@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print: Paw-ty QR Code Table Signs</title>
+    <style>
+        @page { margin: 0.5in; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #333;
+            background: white;
+        }
+
+        .print-instructions {
+            background: #fffde7;
+            border: 2px solid #f9a825;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 20px;
+            font-size: 0.9rem;
+        }
+        .print-instructions h3 { color: #f57f17; margin-bottom: 6px; }
+        .print-instructions ul { padding-left: 20px; }
+        .print-instructions li { margin-bottom: 4px; }
+        @media print { .print-instructions { display: none; } }
+
+        /* ---- TABLE TENT (half-page, folded) ---- */
+        .tent {
+            width: 7.5in;
+            height: 5in;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            margin: 20px auto;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            page-break-after: always;
+            position: relative;
+        }
+        @media print { .tent { border: none; } }
+
+        .tent .badge {
+            background: #e07b39;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 800;
+            padding: 4px 16px;
+            border-radius: 50px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .tent h1 {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #1e3d1a;
+            line-height: 1.15;
+            margin-bottom: 6px;
+        }
+        .tent h1 .gold { color: #d4a853; }
+
+        .tent .subtitle {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 16px;
+        }
+
+        .tent .qr-box {
+            background: white;
+            border: 3px solid #2d5a27;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: inline-block;
+        }
+        .tent .qr-placeholder {
+            width: 160px;
+            height: 160px;
+            background: #f0f0f0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: #999;
+        }
+        /* Use QR code API */
+        .tent .qr-placeholder img {
+            width: 160px;
+            height: 160px;
+        }
+
+        .tent .scan-text {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #2d5a27;
+            margin-bottom: 4px;
+        }
+        .tent .scan-sub {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .tent .offers {
+            display: flex;
+            gap: 24px;
+            margin-top: 14px;
+            font-size: 0.85rem;
+        }
+        .tent .offer-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .tent .offer-item .check {
+            color: #2d5a27;
+            font-weight: 800;
+        }
+
+        .tent .bottom-bar {
+            position: absolute;
+            bottom: 12px;
+            left: 24px;
+            right: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: #999;
+        }
+        .tent .bottom-bar .phone {
+            font-weight: 700;
+            color: #2d5a27;
+            font-size: 0.85rem;
+        }
+
+        /* ---- BUSINESS CARD SIZE (cut into 4) ---- */
+        .card-sheet {
+            width: 7.5in;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            page-break-after: always;
+        }
+
+        .biz-card {
+            width: 3.5in;
+            height: 2in;
+            border: 1px dashed #ddd;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        @media print {
+            .biz-card { border: 1px solid #eee; }
+        }
+
+        .biz-card h3 {
+            font-size: 0.85rem;
+            font-weight: 900;
+            color: #1e3d1a;
+            margin-bottom: 2px;
+        }
+        .biz-card .tagline {
+            font-size: 0.65rem;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .biz-card .mini-qr {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 6px;
+        }
+        .biz-card .mini-qr img {
+            width: 70px;
+            height: 70px;
+        }
+        .biz-card .card-cta {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #2d5a27;
+        }
+        .biz-card .card-phone {
+            font-size: 0.6rem;
+            color: #999;
+            margin-top: 2px;
+        }
+
+        /* ---- HANDOUT FLYER (full page) ---- */
+        .flyer {
+            width: 7.5in;
+            min-height: 9.5in;
+            margin: 20px auto;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 32px;
+            text-align: center;
+            page-break-after: always;
+        }
+        @media print { .flyer { border: none; } }
+
+        .flyer .top-banner {
+            background: #2d5a27;
+            color: white;
+            margin: -32px -32px 24px;
+            padding: 24px;
+            border-radius: 6px 6px 0 0;
+        }
+        .flyer .top-banner h1 {
+            font-size: 2rem;
+            font-weight: 900;
+        }
+        .flyer .top-banner .sub {
+            font-size: 1rem;
+            opacity: 0.85;
+            margin-top: 4px;
+        }
+
+        .flyer .big-qr {
+            margin: 24px auto;
+            width: 200px;
+            height: 200px;
+        }
+        .flyer .big-qr img {
+            width: 200px;
+            height: 200px;
+        }
+
+        .flyer .scan-label {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #2d5a27;
+            margin-bottom: 8px;
+        }
+        .flyer .scan-desc {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .flyer .benefits {
+            text-align: left;
+            max-width: 400px;
+            margin: 0 auto 24px;
+        }
+        .flyer .benefit {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 1rem;
+        }
+        .flyer .benefit .emoji { font-size: 1.4rem; }
+        .flyer .benefit strong { color: #1e3d1a; }
+
+        .flyer .pricing-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 24px 0;
+            flex-wrap: wrap;
+        }
+        .flyer .price-box {
+            background: #f0f7ed;
+            border: 2px solid #2d5a27;
+            border-radius: 12px;
+            padding: 16px 20px;
+            text-align: center;
+        }
+        .flyer .price-box .amount {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #2d5a27;
+        }
+        .flyer .price-box .desc {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .flyer .price-box.free {
+            background: #fff5eb;
+            border-color: #e07b39;
+        }
+        .flyer .price-box.free .amount { color: #e07b39; }
+
+        .flyer .footer-bar {
+            margin-top: 24px;
+            padding-top: 16px;
+            border-top: 2px solid #2d5a27;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .flyer .footer-bar .brand {
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: #1e3d1a;
+        }
+        .flyer .footer-bar .phone {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: #2d5a27;
+        }
+        .flyer .footer-bar .url {
+            font-size: 0.85rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Print Instructions (hidden when printing) -->
+    <div class="print-instructions">
+        <h3>🖨️ Printing Instructions for TJ</h3>
+        <ul>
+            <li><strong>Page 1:</strong> Table tent sign — fold in half and stand on table. Good for the booth.</li>
+            <li><strong>Page 2:</strong> 4 business-card-size handouts — cut along dotted lines. Hand to people as they walk by.</li>
+            <li><strong>Page 3:</strong> Full-page flyer — post on wall or hand out. All info in one place.</li>
+            <li><strong>QR codes</strong> all point to <code>tidytailsstl.com/pawty</code> — sign-up form, deals, referral, reviews ALL in one scan.</li>
+            <li><strong>To print:</strong> Ctrl+P (or Cmd+P on Mac) → select pages you want → Print!</li>
+            <li>⚠️ <strong>IMPORTANT:</strong> Before printing, generate the QR code images. Go to <a href="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://tidytailsstl.com/pawty" target="_blank">this link</a> and verify the QR code works. The QR codes below use an API that generates them live.</li>
+        </ul>
+    </div>
+
+    <!-- PAGE 1: Table Tent -->
+    <div class="tent">
+        <div class="badge">🐾 Adoption Paw-ty Special</div>
+        <h1>Your Yard. <span class="gold">Clean.</span><br>Every Week.</h1>
+        <p class="subtitle">Professional pet waste removal starting at $25/week</p>
+        
+        <div class="qr-box">
+            <div class="qr-placeholder">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://tidytailsstl.com/pawty&color=1e3d1a" alt="QR Code - Scan for free cleanup">
+            </div>
+        </div>
+        
+        <p class="scan-text">📱 Scan for FREE First Cleanup</p>
+        <p class="scan-sub">Sign up in 30 seconds — no commitment</p>
+
+        <div class="offers">
+            <div class="offer-item"><span class="check">✓</span> Free first visit</div>
+            <div class="offer-item"><span class="check">✓</span> No contracts</div>
+            <div class="offer-item"><span class="check">✓</span> 5.0 ★ on Google</div>
+        </div>
+
+        <div class="bottom-bar">
+            <span>🐕 tidytailsstl.com</span>
+            <span class="phone">📞 314-850-7140</span>
+        </div>
+    </div>
+
+    <!-- PAGE 2: Business Card Handouts (4 per sheet) -->
+    <div class="card-sheet">
+        <div class="biz-card">
+            <h3>🐾 Tidy Tails</h3>
+            <div class="tagline">Pet Waste Removal · St. Louis</div>
+            <div class="mini-qr">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=https://tidytailsstl.com/pawty&color=1e3d1a" alt="QR">
+            </div>
+            <div class="card-cta">Scan → FREE First Cleanup!</div>
+            <div class="card-phone">Text Jamie: 314-850-7140</div>
+        </div>
+        <div class="biz-card">
+            <h3>🐾 Tidy Tails</h3>
+            <div class="tagline">Pet Waste Removal · St. Louis</div>
+            <div class="mini-qr">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=https://tidytailsstl.com/pawty&color=1e3d1a" alt="QR">
+            </div>
+            <div class="card-cta">Scan → FREE First Cleanup!</div>
+            <div class="card-phone">Text Jamie: 314-850-7140</div>
+        </div>
+        <div class="biz-card">
+            <h3>🐾 Tidy Tails</h3>
+            <div class="tagline">Pet Waste Removal · St. Louis</div>
+            <div class="mini-qr">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=https://tidytailsstl.com/pawty&color=1e3d1a" alt="QR">
+            </div>
+            <div class="card-cta">Scan → FREE First Cleanup!</div>
+            <div class="card-phone">Text Jamie: 314-850-7140</div>
+        </div>
+        <div class="biz-card">
+            <h3>🐾 Tidy Tails</h3>
+            <div class="tagline">Pet Waste Removal · St. Louis</div>
+            <div class="mini-qr">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=70x70&data=https://tidytailsstl.com/pawty&color=1e3d1a" alt="QR">
+            </div>
+            <div class="card-cta">Scan → FREE First Cleanup!</div>
+            <div class="card-phone">Text Jamie: 314-850-7140</div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: Full Flyer -->
+    <div class="flyer">
+        <div class="top-banner">
+            <h1>🐾 Tidy Tails</h1>
+            <div class="sub">Professional Pet Waste Removal — St. Louis & St. Charles</div>
+        </div>
+
+        <div class="big-qr">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://tidytailsstl.com/pawty&color=1e3d1a" alt="QR Code">
+        </div>
+
+        <p class="scan-label">📱 Scan for Your FREE First Cleanup</p>
+        <p class="scan-desc">Sign up in 30 seconds · No commitment · No contracts</p>
+
+        <div class="benefits">
+            <div class="benefit">
+                <span class="emoji">🏡</span>
+                <span><strong>Clean yard, every week.</strong> We pick up so you don't have to.</span>
+            </div>
+            <div class="benefit">
+                <span class="emoji">⏰</span>
+                <span><strong>Save 39+ hours/year.</strong> That's a whole work week back.</span>
+            </div>
+            <div class="benefit">
+                <span class="emoji">⭐</span>
+                <span><strong>5.0 stars on Google.</strong> 10+ families trust us with their yards.</span>
+            </div>
+            <div class="benefit">
+                <span class="emoji">🤝</span>
+                <span><strong>Refer a friend →</strong> You both get a FREE month of service.</span>
+            </div>
+        </div>
+
+        <div class="pricing-row">
+            <div class="price-box free">
+                <div class="amount">FREE</div>
+                <div class="desc">First Cleanup</div>
+            </div>
+            <div class="price-box">
+                <div class="amount">$25/wk</div>
+                <div class="desc">1 Dog Weekly</div>
+            </div>
+            <div class="price-box">
+                <div class="amount">$70/mo</div>
+                <div class="desc">Biweekly Plan</div>
+            </div>
+        </div>
+
+        <div class="footer-bar">
+            <div>
+                <div class="brand">🐾 Tidy Tails</div>
+                <div class="url">tidytailsstl.com</div>
+            </div>
+            <div>
+                <div class="phone">📞 314-850-7140</div>
+                <div class="url">Text Jamie anytime</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

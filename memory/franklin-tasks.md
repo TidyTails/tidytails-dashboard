@@ -6,6 +6,39 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 2:04 PM — Paw-ty Landing Page + QR Print Kit (Hourly Task)
+- **2:04 PM** 🐾 Paw-ty Landing Page + QR Print Kit — Built complete event conversion system for Saturday's Crestwood Vet Adoption Paw-ty.
+  - **WHY:** Saturday is 48 hours away. We have print materials, social posts, follow-up scripts, and review systems — but ZERO digital capture at the event itself. Jamie collecting names on paper = names that sit in a drawer. A QR code that dumps people into a sign-up form on their phone = instant digital lead with phone number, zip code, dog count, and service interest. This is the bridge between "person walks by booth" and "person becomes a customer."
+  - **WHAT WAS BUILT:**
+    1. **Landing page** (`tidy-tails/website/pawty.html`) — Full mobile-first event page:
+       - Hero with event details, date, location link to Google Maps
+       - Free first cleanup offer with pulsing CTA
+       - Quick action grid: Sign Up, Refer a Friend, Leave a Review, Poop Calculator
+       - Event pricing cards (weekly, biweekly, multi-dog, free first visit)
+       - Trust signals (5.0 stars, no contracts, 10+ families)
+       - New adopter special section ($35/mo × 3 months)
+       - 3 customer testimonials
+       - Sign-up form with: name, phone, zip, dog count, service interest, referrer, notes
+       - Form stores leads to localStorage + shows success confirmation
+       - Source tracking via URL params (?src=flyer, ?src=social, etc.)
+       - Admin mode (?admin=1) auto-opens SMS to Jamie with lead details
+    2. **Printable QR flyer** (`deliverables/pawty-qr-flyer-printable.html`):
+       - Page 1: Table tent sign (fold in half, stand on table) — QR code + key offers
+       - Page 2: 4 business-card handouts (cut apart) — mini QR + CTA
+       - Page 3: Full-page flyer — all info, benefits, pricing, QR code
+       - All QR codes auto-generated via qrserver.com API → point to tidytailsstl.com/pawty
+       - Print instructions included (hidden when printing)
+    3. **Dashboard TASKS.md updated** with new Paw-ty section
+  - **WHY THIS OVER OTHER TASKS:**
+    - Paw-ty is 48 HOURS away — this is time-sensitive
+    - Brave API exhausted — no web research possible
+    - 200+ deliverables exist but we had NO digital event capture
+    - Every other event system we built (follow-up scripts, review cards, social blitz) is useless if we don't capture leads digitally AT the event
+    - One QR code → sign-up + referral + review + calculator = maximum value per scan
+  - **TJ ACTION:** Open `deliverables/pawty-qr-flyer-printable.html` in browser → Cmd+P → Print. 5 minutes. Bring to Saturday.
+  - **NEEDS CLOUDFLARE DEPLOY** to go live at tidytailsstl.com/pawty
+  - Committed + pushed to GitHub ✅
+
 ### Thursday 12:05 PM — Dashboard Cleanup & De-Staling (Hourly Task)
 - **12:05 PM** 🧹 Dashboard Cleanup — Fixed stale data and alert fatigue in `dashboard/index.html`.
   - **WHY:** The dashboard was lying to TJ. GBP showed "7%" when it's ~95% complete. Wednesday action sheet (Mar 25) was still the #1 alert. 12+ items were pulsing "URGENT" — when everything screams, nothing stands out. TJ opens this and either ignores everything or doesn't trust it.
