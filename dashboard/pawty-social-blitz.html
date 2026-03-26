@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐾 Paw-ty Social Media Blitz | Tidy Tails</title>
+<style>
+  :root {
+    --green: #2d6a4f; --green-light: #40916c; --orange: #e76f51;
+    --cream: #fefae0; --dark: #1b1b1b; --gray: #6c757d;
+    --card-bg: #fff; --border: #e0e0e0;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--cream); color: var(--dark); line-height: 1.6; }
+  .header { background: linear-gradient(135deg, var(--green), var(--green-light)); color: white; padding: 2rem; text-align: center; }
+  .header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+  .header p { opacity: 0.9; font-size: 1.1rem; }
+  .countdown { background: var(--orange); color: white; text-align: center; padding: 1rem; font-size: 1.3rem; font-weight: 700; }
+  .container { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+  .schedule { display: grid; gap: 1rem; margin: 1.5rem 0; }
+  .day-card { background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .day-header { padding: 0.75rem 1rem; font-weight: 700; font-size: 1.1rem; color: white; }
+  .day-thu .day-header { background: var(--orange); }
+  .day-fri .day-header { background: #e9c46a; color: var(--dark); }
+  .day-sat .day-header { background: var(--green); }
+  .day-sun .day-header { background: #264653; }
+  .day-mon .day-header { background: var(--green-light); }
+  .day-body { padding: 1rem; }
+  .post-block { background: #f8f9fa; border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; border-left: 4px solid var(--green); }
+  .post-block:last-child { margin-bottom: 0; }
+  .post-block h4 { color: var(--green); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+  .post-block .platform { display: inline-block; background: var(--green); color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: 600; }
+  .post-block .platform.ig { background: #c13584; }
+  .post-block .platform.nd { background: #00b246; }
+  .post-block .platform.txt { background: var(--orange); }
+  .copy-text { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 0.75rem; margin-top: 0.5rem; font-size: 0.9rem; white-space: pre-wrap; max-height: 200px; overflow-y: auto; cursor: pointer; position: relative; }
+  .copy-text:hover { border-color: var(--green); }
+  .copy-text::after { content: '📋 Click to copy'; position: absolute; top: 4px; right: 8px; font-size: 0.7rem; background: var(--green); color: white; padding: 2px 6px; border-radius: 3px; opacity: 0; transition: opacity 0.2s; }
+  .copy-text:hover::after { opacity: 1; }
+  .copied::after { content: '✅ Copied!' !important; opacity: 1 !important; background: var(--green-light) !important; }
+  .checklist { margin: 1.5rem 0; }
+  .check-item { display: flex; align-items: flex-start; gap: 0.75rem; padding: 0.6rem 0; border-bottom: 1px solid #f0f0f0; }
+  .check-item input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--green); margin-top: 2px; flex-shrink: 0; }
+  .check-item label { cursor: pointer; }
+  .check-item .time { color: var(--gray); font-size: 0.85rem; }
+  .section-title { font-size: 1.4rem; color: var(--green); margin: 2rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--green); }
+  .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; margin: 1rem 0; }
+  .photo-card { background: var(--card-bg); border-radius: 8px; padding: 1rem; text-align: center; border: 2px dashed var(--border); }
+  .photo-card .emoji { font-size: 2rem; margin-bottom: 0.5rem; }
+  .photo-card p { font-size: 0.85rem; color: var(--gray); }
+  .tip-box { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+  .tip-box h4 { color: #856404; }
+  .progress-bar { background: #e9ecef; border-radius: 20px; height: 24px; overflow: hidden; margin: 1rem 0; }
+  .progress-fill { background: linear-gradient(90deg, var(--green), var(--green-light)); height: 100%; border-radius: 20px; transition: width 0.5s; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.8rem; font-weight: 600; }
+  .back-link { display: inline-block; margin-bottom: 1rem; color: var(--green); text-decoration: none; font-weight: 600; }
+  .back-link:hover { text-decoration: underline; }
+  @media (max-width: 600px) {
+    .header h1 { font-size: 1.5rem; }
+    .photo-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🐾 Paw-ty Social Media Blitz</h1>
+  <p>Crestwood Vet Adoption Paw-ty — Saturday March 28, 2026</p>
+</div>
+
+<div class="countdown" id="countdown">⏰ Event in 2 days!</div>
+
+<div class="container">
+  <a href="index.html" class="back-link">← Back to Dashboard</a>
+
+  <h2 class="section-title">📋 Master Checklist</h2>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progress" style="width: 0%">0 / 10</div>
+  </div>
+  <div class="checklist" id="checklist">
+    <div class="check-item"><input type="checkbox" id="c1" onchange="updateProgress()"><label for="c1"><strong>THU 5-6 PM:</strong> Post teaser in Facebook groups</label></div>
+    <div class="check-item"><input type="checkbox" id="c2" onchange="updateProgress()"><label for="c2"><strong>THU 5-6 PM:</strong> Post teaser on Nextdoor</label></div>
+    <div class="check-item"><input type="checkbox" id="c3" onchange="updateProgress()"><label for="c3"><strong>THU/FRI:</strong> Text existing customers referral ask</label></div>
+    <div class="check-item"><input type="checkbox" id="c4" onchange="updateProgress()"><label for="c4"><strong>FRI 12-1 PM:</strong> Countdown post on Facebook + Instagram</label></div>
+    <div class="check-item"><input type="checkbox" id="c5" onchange="updateProgress()"><label for="c5"><strong>FRI 7-9 PM:</strong> 3 Instagram Stories (prep night)</label></div>
+    <div class="check-item"><input type="checkbox" id="c6" onchange="updateProgress()"><label for="c6"><strong>SAT (arrive):</strong> "We're Here!" post on Facebook</label></div>
+    <div class="check-item"><input type="checkbox" id="c7" onchange="updateProgress()"><label for="c7"><strong>SAT (during):</strong> 3-4 Instagram Stories throughout</label></div>
+    <div class="check-item"><input type="checkbox" id="c8" onchange="updateProgress()"><label for="c8"><strong>SUN 10-12:</strong> Recap post on Facebook + Instagram</label></div>
+    <div class="check-item"><input type="checkbox" id="c9" onchange="updateProgress()"><label for="c9"><strong>SUN 10-12:</strong> Recap on Nextdoor</label></div>
+    <div class="check-item"><input type="checkbox" id="c10" onchange="updateProgress()"><label for="c10"><strong>MON 5-6 PM:</strong> Social proof post in Facebook groups</label></div>
+  </div>
+
+  <h2 class="section-title">📅 Day-by-Day Posts</h2>
+  <div class="schedule">
+
+    <!-- THURSDAY -->
+    <div class="day-card day-thu">
+      <div class="day-header">🔥 THURSDAY (Today) — Pre-Event Buzz</div>
+      <div class="day-body">
+        <div class="post-block">
+          <h4><span class="platform">Facebook</span> Group Teaser</h4>
+          <p>Post in: Crestwood Community, South County Dog Owners, STL Pet Parents</p>
+          <div class="copy-text" onclick="copyText(this)">🐾 Heading to the Crestwood Vet Adoption Paw-ty this Saturday?
+
+We'll be there! Tidy Tails is St. Louis's pet waste removal service — we scoop your yard so you never have to.
+
+Stop by our table and grab a FREE first cleanup coupon 🎉
+
+📍 Crestwood Veterinary Clinic
+🗓️ Saturday, March 28th
+
+Whether you're adopting a new pup or just bringing your best friend out for the fun — come say hi to Jamie!
+
+Spring is THE time yards get nasty. We're here to fix that. $25/week, $70/month flat rate, no contracts.
+
+🐕 tidytailsstl.com | 📱 314-850-7140</div>
+        </div>
+        <div class="post-block">
+          <h4><span class="platform nd">Nextdoor</span> Neighborhood Post</h4>
+          <div class="copy-text" onclick="copyText(this)">Any dog owners heading to the Crestwood Vet Adoption Paw-ty Saturday? 🐾
+
+My name's Jamie and I run Tidy Tails — we're a local pet waste removal service here in STL. We'll have a table at the event and I'd love to meet some neighbors!
+
+If you stop by, I've got free first cleanup coupons and info about our spring special:
+
+→ Weekly service: $25/week
+→ Biweekly: $45
+→ Monthly flat rate: $70 (nobody else offers this!)
+
+We service all of South County, West County, and most of STL County. Been in business over a year with a 5.0 Google rating ⭐
+
+See you Saturday! 🐕💩</div>
+        </div>
+        <div class="post-block">
+          <h4><span class="platform txt">Text</span> Customer Referral Ask</h4>
+          <p>Send to all 8 existing customers:</p>
+          <div class="copy-text" onclick="copyText(this)">Hey [NAME]! Quick heads up — Tidy Tails will be at the Crestwood Vet Adoption Paw-ty this Saturday! 🐾 If you know anyone who could use yard cleanup service, send them our way. We're giving a FREE first cleanup to anyone who mentions your name. Thanks for being awesome! — Jamie</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FRIDAY -->
+    <div class="day-card day-fri">
+      <div class="day-header">📣 FRIDAY — Build Anticipation</div>
+      <div class="day-body">
+        <div class="post-block">
+          <h4><span class="platform">Facebook</span> <span class="platform ig">Instagram</span> Countdown</h4>
+          <div class="copy-text" onclick="copyText(this)">TOMORROW! 🐾
+
+Tidy Tails will be at the Crestwood Vet Adoption Paw-ty tomorrow and we're bringing:
+
+✅ Free first cleanup coupons
+✅ Spring special pricing ($70/month flat — that's less than $2.50/day for a poop-free yard)
+✅ Good vibes and dog treats
+
+Whether you're adopting, browsing, or just out with your pup — stop by our table!
+
+📍 Crestwood Veterinary Clinic
+🗓️ Saturday, March 28th
+
+Tag a friend who's tired of stepping in it 😂💩
+
+#CrestwoodPawty #TidyTailsSTL #PetWasteRemoval #StLouisDogs #SpringCleaning #AdoptDontShop</div>
+          <div class="tip-box"><h4>📸 Photo tip:</h4> Lay out your print materials on a table and snap a pic. Shows you're prepared and professional.</div>
+        </div>
+        <div class="post-block">
+          <h4><span class="platform ig">Instagram</span> Stories (3 slides, Friday evening)</h4>
+          <p><strong>Story 1:</strong> Photo of materials laid out → "Getting ready for tomorrow's Paw-ty! 🐾" + Location sticker</p>
+          <p><strong>Story 2:</strong> Close-up of flyer → "Free first cleanup for anyone who stops by 👀"</p>
+          <p><strong>Story 3:</strong> Quick selfie video → "Hey! Jamie from Tidy Tails — if you're coming to the Crestwood adoption event tomorrow, come find our table!"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SATURDAY -->
+    <div class="day-card day-sat">
+      <div class="day-header">🎉 SATURDAY — Event Day!</div>
+      <div class="day-body">
+        <div class="post-block">
+          <h4><span class="platform">Facebook</span> "We're Here!" (post when you arrive)</h4>
+          <div class="copy-text" onclick="copyText(this)">We're HERE! 🐾🎉
+
+Come find Tidy Tails at the Crestwood Vet Adoption Paw-ty! Jamie's got the table set up and ready to chat about keeping your yard clean this spring.
+
+🎁 FREE first cleanup for everyone who signs up today
+💰 Spring special: $70/month flat rate (no contracts, cancel anytime)
+
+📍 Crestwood Veterinary Clinic — here until [END TIME]!</div>
+        </div>
+        <div class="post-block">
+          <h4><span class="platform ig">Instagram</span> Stories (post throughout event)</h4>
+          <p><strong>Arrival:</strong> Table setup photo → "Set up and ready! Come find us 🐾"</p>
+          <p><strong>Mid-event:</strong> Dogs being cute → "So many good boys and girls today 🐕❤️"</p>
+          <p><strong>Sign-ups:</strong> Sheet filling up (blur names) → Poll: "Is YOUR yard ready for spring?"</p>
+          <p><strong>Closing:</strong> Selfie video → "Amazing turnout! Text 314-850-7140 and mention the Paw-ty for a free cleanup!"</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUNDAY -->
+    <div class="day-card day-sun">
+      <div class="day-header">📷 SUNDAY — Recap & Convert</div>
+      <div class="day-body">
+        <div class="post-block">
+          <h4><span class="platform">Facebook</span> <span class="platform ig">Instagram</span> Event Recap</h4>
+          <p>⭐ <strong>This is the MOST IMPORTANT post.</strong> Photos + social proof + CTA = lead magnet.</p>
+          <div class="copy-text" onclick="copyText(this)">What an AMAZING day at the Crestwood Adoption Paw-ty! 🐾❤️
+
+Thank you to everyone who stopped by the Tidy Tails table yesterday — and to Crestwood Vet for putting on such a great event!
+
+We met so many awesome dog owners (and even more awesome dogs 🐕).
+
+If we chatted yesterday, keep an eye on your phone — Jamie will be reaching out this week to get you scheduled for your FREE first cleanup!
+
+Missed the event? No worries — our Spring Special is still running:
+→ $25/week | $45 biweekly | $70/month flat rate
+→ First cleanup FREE
+→ Text Jamie: 314-850-7140
+
+Your yard deserves better this spring. Let us handle the dirty work 💩✨
+
+#TidyTailsSTL #CrestwoodPawty #PetWasteRemoval #StLouisDogs #SpringSpecial</div>
+        </div>
+        <div class="post-block">
+          <h4><span class="platform nd">Nextdoor</span> Recap</h4>
+          <div class="copy-text" onclick="copyText(this)">Great meeting so many neighbors at the Crestwood Adoption Paw-ty yesterday!
+
+If we chatted at the Tidy Tails table, thanks for stopping by! I'll be reaching out this week to schedule your free first cleanup.
+
+For anyone who couldn't make it — our Spring Special is running through April:
+• $25/week, $70/month flat rate, no contracts
+• First cleanup is always FREE
+• We service Crestwood, Webster, Kirkwood, South County, and beyond
+
+Text me anytime: 314-850-7140
+
+— Jamie, Tidy Tails 🐾</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MONDAY -->
+    <div class="day-card day-mon">
+      <div class="day-header">💪 MONDAY — Social Proof Follow-Up</div>
+      <div class="day-body">
+        <div class="post-block">
+          <h4><span class="platform">Facebook</span> Groups — Story Post</h4>
+          <div class="copy-text" onclick="copyText(this)">Just got back from the Crestwood Adoption Paw-ty this weekend and WOW — I had no idea how many people are dealing with the same thing 😂
+
+Multiple conversations went like this:
+"How many dogs do you have?"
+"Three."
+"And you're picking up the yard yourself?"
+"...I've been meaning to."
+
+If that's you, no judgment. That's literally why Tidy Tails exists. We come once a week (or biweekly, or monthly) and handle ALL of it. $25/week, first cleanup free.
+
+Spring is when yards go from "eh" to "oh no" FAST. Three dogs × seven days × spring rain = a minefield. 💩
+
+Text Jamie: 314-850-7140 or check us out at tidytailsstl.com
+
+5.0 stars on Google ⭐ | Locally owned | No contracts</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">📸 Photo Shot List for Saturday</h2>
+  <div class="photo-grid">
+    <div class="photo-card"><div class="emoji">📐</div><strong>Table Setup</strong><p>Wide shot before anyone arrives</p></div>
+    <div class="photo-card"><div class="emoji">📄</div><strong>Materials Close-up</strong><p>Flyers, cards, sign-up sheet</p></div>
+    <div class="photo-card"><div class="emoji">😊</div><strong>Jamie at Table</strong><p>Smiling, welcoming</p></div>
+    <div class="photo-card"><div class="emoji">🐕</div><strong>Dog Interaction</strong><p>Petting a dog, giving treats</p></div>
+    <div class="photo-card"><div class="emoji">📝</div><strong>Sign-Up Sheet</strong><p>Filling up (blur names later)</p></div>
+    <div class="photo-card"><div class="emoji">👥</div><strong>Wide Event Shot</strong><p>Shows crowd and energy</p></div>
+    <div class="photo-card"><div class="emoji">😂</div><strong>Fun Candid</strong><p>Dog being goofy, cute moment</p></div>
+    <div class="photo-card"><div class="emoji">🤳</div><strong>End-of-Day Selfie</strong><p>Tired but happy = authentic</p></div>
+  </div>
+
+  <div class="tip-box" style="margin-top: 2rem;">
+    <h4>💡 Pro Tips</h4>
+    <ul style="margin-top: 0.5rem; padding-left: 1.2rem;">
+      <li><strong>Reply to EVERY comment</strong> — even "Thanks! 🐾" boosts reach</li>
+      <li><strong>Tag Crestwood Vet's page</strong> — they'll likely share it</li>
+      <li><strong>Sunday recap = MOST important post</strong> — more leads come from this than the event itself</li>
+      <li><strong>Take 15-20 photos minimum</strong> — you can never have too many options</li>
+    </ul>
+  </div>
+
+  <p style="text-align: center; color: var(--gray); margin-top: 2rem; font-size: 0.85rem;">
+    Built by Franklin | March 26, 2026 | Pairs with: Event Follow-Up System, Print Materials, Event Prep Kit
+  </p>
+</div>
+
+<script>
+function updateProgress() {
+  const checks = document.querySelectorAll('#checklist input[type="checkbox"]');
+  const done = [...checks].filter(c => c.checked).length;
+  const pct = Math.round((done / checks.length) * 100);
+  const bar = document.getElementById('progress');
+  bar.style.width = pct + '%';
+  bar.textContent = done + ' / ' + checks.length;
+  // Save to localStorage
+  const state = [...checks].map(c => c.checked);
+  localStorage.setItem('pawty-blitz-progress', JSON.stringify(state));
+}
+// Restore state
+(function() {
+  const saved = localStorage.getItem('pawty-blitz-progress');
+  if (saved) {
+    const state = JSON.parse(saved);
+    const checks = document.querySelectorAll('#checklist input[type="checkbox"]');
+    checks.forEach((c, i) => { if (state[i]) c.checked = true; });
+    updateProgress();
+  }
+})();
+
+function copyText(el) {
+  navigator.clipboard.writeText(el.textContent.trim()).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 1500);
+  });
+}
+</script>
+</body>
+</html>

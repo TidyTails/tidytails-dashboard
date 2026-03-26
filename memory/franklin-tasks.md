@@ -6,6 +6,34 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 11:04 AM — Paw-ty Social Media Blitz (Hourly Task)
+- **11:04 AM** 📱 Paw-ty Social Media Blitz — Built complete 5-day social media campaign at `deliverables/pawty-social-media-blitz-march2026.md` + interactive HTML dashboard at `dashboard/pawty-social-blitz.html`.
+  - **WHY:** Saturday's Crestwood Vet Adoption Paw-ty is 48 hours away. We built print materials (8 AM), a follow-up system (9 AM), and did memory maintenance (10 AM). But we had ZERO social media promotion for the event. Nobody knows TJ/Jamie will be there. If Jamie posts TODAY and FRIDAY, that drives foot traffic to the table → more sign-ups → more conversions through the follow-up system we already built.
+  - **WHAT'S INCLUDED:**
+    1. **10 copy-paste posts** across 5 days (Thu → Mon) covering Facebook Groups, Instagram, Instagram Stories, and Nextdoor
+    2. **Thursday pre-event teasers** — Facebook groups + Nextdoor neighborhood post
+    3. **Customer referral text template** — ask existing 8 customers to send friends to the event
+    4. **Friday countdown post** — Facebook + Instagram + 3 IG Story scripts
+    5. **Saturday "We're Here!" post** — live from event + 4 IG Story moments
+    6. **Sunday recap post** — THE most important post (photos + social proof + CTA). More leads come from this than the event itself.
+    7. **Monday social proof post** — story-format engagement post for Facebook groups
+    8. **Photo shot list** — 8 specific shots to take Saturday (table setup, dog interactions, sign-up sheet filling up, etc.)
+    9. **Jamie's master checklist** — 10 items with timestamps
+    10. **Pro tips** — reply to every comment, tag the vet clinic, Sunday recap is #1 priority
+  - **HTML DASHBOARD VERSION:** Interactive page with click-to-copy text blocks, progress tracker with localStorage persistence, color-coded day cards, photo shot grid, and pro tips. Added to dashboard index with RED highlight + pulse animation (most urgent item).
+  - **WHY THIS OVER OTHER TASKS:**
+    - Print materials (8 AM) = what TJ brings. Follow-up system (9 AM) = what happens after. THIS = what drives people TO the table.
+    - An event booth with no promotion is like opening a store with no sign. The social posts turn "we'll have a table" into "everyone knows we're there."
+    - The Sunday recap post alone could generate more leads than the event itself — people who DIDN'T attend see photos, social proof, and a CTA.
+    - Customer referral texts are $0 and 4 minutes — if even 1 customer tells a friend, that's $840+/year.
+  - **COMPLETE SATURDAY PACKAGE NOW:**
+    - ✅ Print materials (flyers, business cards, sign-up sheet, vet one-pager)
+    - ✅ Event prep kit (packing list, scripts, conversation starters)
+    - ✅ Post-event follow-up system (72-hour text sequence)
+    - ✅ Social media blitz (pre/during/post event promotion) ← NEW
+    - All that's left: TJ prints materials and Jamie posts the first teaser at 5 PM today
+  - Committed + pushed to GitHub ✅
+
 ### Thursday 10:05 AM — Memory Maintenance & System Health Check (Hourly Task)
 - **10:05 AM** 🧹 Memory Maintenance — The only responsible use of this hour.
   - **WHY:** Task log was 586 lines (unreadable). MEMORY.md was stale (last updated Mar 24). Future sessions were burning tokens re-reading a novel. Brave API is exhausted so no web research possible anyway.
