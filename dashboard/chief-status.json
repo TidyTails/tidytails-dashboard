@@ -1,21 +1,21 @@
 {
-  "lastCheck": "2026-03-26T02:03:00-05:00",
-  "checkNumber": 217,
+  "lastCheck": "2026-03-26T04:03:00-05:00",
+  "checkNumber": 218,
   "status": "issues",
   "issuesFound": 4,
-  "issuesFixed": 1,
-  "issuesPending": 3,
-  "northStar": "25-30 recurring customers by August 2025 (target passed — currently ~8 customers). Spring peak ACTIVE. 22 city pages + calculator built but deployment status unclear. Need to verify GitHub Pages serves from master branch.",
-  "biggestBottleneck": "UNDERSIZED PDFs: 5 PDFs consistently generating under 100KB (some as low as 18KB). These are likely broken/empty — TJ gets a bad link, trust erodes. 25th consecutive check. Also: video pipeline dormant 21+ days during spring peak.",
-  "compoundingImprovement": "PDF generation QA gate: add a post-generation size check to the pdf-generator skill. If output < 100KB, regenerate with fallback template. Prevents broken deliverables from ever reaching the dashboard. One-time fix, permanent quality improvement.",
+  "issuesFixed": 0,
+  "issuesPending": 4,
+  "northStar": "25-30 recurring customers by August 2025 (target date passed — currently ~8 customers). Spring peak ACTIVE. 22 city pages + calculator + FAQ schema built on master branch but main branch is 96 commits behind — if GitHub Pages deploys from main, NONE of this is live.",
+  "biggestBottleneck": "DEPLOYMENT GAP: main branch is 96 commits behind master. All recent work (calculator, FAQ schema, city pages, competitor capture posts, content packs) may be invisible to the public. This is the #1 constraint — everything else we build is wasted if it's not deployed. 10th consecutive check flagging this.",
+  "compoundingImprovement": "Merge master → main OR switch GitHub Pages to deploy from master. One command fixes this permanently and ensures every future push goes live automatically. Also: add a post-push deployment verification step to Franklin's workflow so this never drifts again.",
   "adCreativeAudit": {
     "newCreativeFound": false,
-    "note": "No new creative since last check (#216). Mar 25 video batch remains REJECTED (22/60). Remotion videos from Mar 6 unchanged (20 days old, violate TOOLS.md). Campaign videos from Mar 11 unchanged (15 days old). Video pipeline dormant 21+ days. No active video ad pipeline for spring peak.",
+    "note": "No new creative since last check (#217). Mar 25 video batch remains REJECTED (22/60). Remotion videos from Mar 6 unchanged (20 days old, violate TOOLS.md). Campaign videos from Mar 11 unchanged (15 days old). Video pipeline dormant 21+ days during spring peak. No active video ad pipeline.",
     "existingIssues": [
       "Mar 25 video batch (Get Your Yard Back, Party Panic): REJECTED 22/60 — no audio, wrong endpoint, face distortion",
       "Remotion videos: 20 days old, all use Remotion (against TOOLS.md rules)",
       "Campaign videos: 15 days old, no refresh since Mar 11",
-      "Video pipeline dormant for 21+ days during spring peak"
+      "Video pipeline dormant 21+ days during spring peak — zero new ads being produced"
     ]
   },
   "phoneVerification": {
@@ -23,60 +23,53 @@
       "tidyTails": "314-850-7140 ✅ CORRECT",
       "sheds": "636-354-7406 ✅ CORRECT"
     },
-    "siteIndexHtml": {
-      "tidyTails": "314-850-7140 ✅ CORRECT (fixed since last check)",
-      "status": "pass"
-    },
     "landingHtml": {
       "tidyTails": "314-850-7140 ✅ CORRECT"
-    }
+    },
+    "tidyTailsWebsite": "No phone number found in tidy-tails/website/ directory — needs verification",
+    "status": "partial-pass"
   },
   "issues": [
     {
       "id": "issue-001",
-      "severity": "high",
-      "category": "content",
-      "description": "5 PDFs under 100KB — likely generation failures: MORNING_BRIEFING_2026-03-25 (18KB), MORNING_BRIEFING_2026-03-20 (18KB), EOD_SUMMARY_2026-03-24 (18KB), EOD_SUMMARY_2026-03-19 (21KB), SHED_ADS_2026-03-20 (65KB). Expected 200-600KB for proper PDFs.",
+      "severity": "critical",
+      "category": "deployment",
+      "description": "main branch is 96 commits behind master. If GitHub Pages deploys from main, the public site is missing: calculator, FAQ schema, 22 city pages, competitor capture posts, April content pack, and more. All recent work potentially invisible. 10th consecutive check.",
       "assignedTo": "franklin",
       "status": "persisting",
-      "firstSeen": "2026-03-20",
-      "consecutiveChecks": 25
+      "firstSeen": "2026-03-24",
+      "consecutiveChecks": 10,
+      "fix": "Run: git checkout main && git merge master && git push origin main — OR switch GitHub Pages to deploy from master branch"
     },
     {
       "id": "issue-002",
       "severity": "high",
-      "category": "creative",
-      "description": "Video pipeline dormant 21+ days. Last good creative Mar 6 (Kling v1 Standard batch). Mar 25 batch REJECTED (22/60). Remotion videos exist but violate TOOLS.md rules. No active video ad pipeline during spring peak.",
+      "category": "content",
+      "description": "5 PDFs under 100KB — likely generation failures: MORNING_BRIEFING_2026-03-25 (18KB), MORNING_BRIEFING_2026-03-20 (18KB), EOD_SUMMARY_2026-03-24 (18KB), EOD_SUMMARY_2026-03-19 (21KB), SHED_ADS_2026-03-20 (65KB). Expected 200-600KB for proper PDFs. 26th consecutive check.",
       "assignedTo": "franklin",
       "status": "persisting",
-      "firstSeen": "2026-03-06",
-      "consecutiveChecks": 48
+      "firstSeen": "2026-03-20",
+      "consecutiveChecks": 26
     },
     {
       "id": "issue-003",
-      "severity": "medium",
-      "category": "website",
-      "description": "main branch is 59 commits behind master. If GitHub Pages serves from main, the deployed site is severely outdated (missing calculator, FAQ schema, city pages, etc). Need to verify which branch GitHub Pages uses and either switch to master or merge.",
+      "severity": "high",
+      "category": "creative",
+      "description": "Video pipeline dormant 21+ days. Last good creative Mar 5 (Kling v1 Standard batch). Mar 25 batch REJECTED (22/60). No active video ad pipeline during spring peak — prime season being wasted without fresh ad content.",
       "assignedTo": "franklin",
-      "status": "needs-investigation",
-      "firstSeen": "2026-03-25",
-      "consecutiveChecks": 3
+      "status": "persisting",
+      "firstSeen": "2026-03-06",
+      "consecutiveChecks": 49
     },
     {
       "id": "issue-004",
-      "severity": "low",
-      "category": "content",
-      "description": "Stale research files (19 days): competitor intelligence, SEO audit, referral blitz, Google review system. These may need refresh if strategies have evolved.",
+      "severity": "medium",
+      "category": "website",
+      "description": "tidy-tails/website/ directory has no phone number (314-850-7140). If this is customer-facing content, contact info is missing. tidytails.html and consulting.html do not exist as standalone files.",
       "assignedTo": "franklin",
-      "status": "monitoring",
-      "firstSeen": "2026-03-26"
-    }
-  ],
-  "resolved": [
-    {
-      "id": "issue-resolved-001",
-      "description": "site/index.html phone number: 314-850-7140 now present and correct. Was flagged missing in check #216.",
-      "resolvedAt": "2026-03-26T02:03:00-05:00"
+      "status": "found",
+      "firstSeen": "2026-03-26",
+      "consecutiveChecks": 1
     }
   ]
 }
