@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>💰 Revenue Optimizer — Tidy Tails</title>
+<style>
+  :root {
+    --green: #22c55e; --green-bg: #f0fdf4; --green-dark: #166534;
+    --yellow: #eab308; --yellow-bg: #fefce8; --yellow-dark: #854d0e;
+    --red: #ef4444; --red-bg: #fef2f2; --red-dark: #991b1b;
+    --blue: #3b82f6; --blue-bg: #eff6ff;
+    --purple: #8b5cf6; --purple-bg: #f5f3ff;
+    --orange: #f97316; --orange-bg: #fff7ed;
+    --dark: #111827; --white: #ffffff; --gray: #6b7280;
+    --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f3f4f6; color: var(--dark); line-height: 1.5; padding: 16px; max-width: 800px; margin: 0 auto; }
+  
+  .hero { background: linear-gradient(135deg, #059669 0%, #0d9488 50%, #0891b2 100%); color: white; border-radius: var(--radius); padding: 24px; margin-bottom: 20px; text-align: center; }
+  .hero h1 { font-size: 1.6rem; margin-bottom: 4px; }
+  .hero p { opacity: 0.9; font-size: 0.9rem; }
+  
+  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
+  .metric { background: var(--white); border-radius: 10px; padding: 14px 10px; text-align: center; box-shadow: var(--shadow); }
+  .metric .val { font-size: 1.6rem; font-weight: 800; }
+  .metric .lbl { font-size: 0.7rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; }
+  .metric.green .val { color: var(--green-dark); }
+  .metric.yellow .val { color: var(--yellow-dark); }
+  .metric.red .val { color: var(--red-dark); }
+  
+  .section { background: var(--white); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; box-shadow: var(--shadow); }
+  .section h2 { font-size: 1.15rem; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .section h3 { font-size: 0.95rem; margin: 14px 0 8px; color: var(--gray); }
+  
+  .customer-card { border: 1px solid #e5e7eb; border-radius: 10px; padding: 14px; margin-bottom: 10px; transition: all 0.2s; }
+  .customer-card:hover { border-color: var(--blue); }
+  .customer-card.upsell-hot { border-left: 4px solid var(--red); }
+  .customer-card.upsell-warm { border-left: 4px solid var(--yellow); }
+  .customer-card.retain { border-left: 4px solid var(--green); }
+  
+  .cc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+  .cc-name { font-weight: 700; font-size: 1rem; }
+  .cc-badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; font-weight: 600; }
+  .badge-upsell { background: var(--red-bg); color: var(--red-dark); }
+  .badge-warm { background: var(--yellow-bg); color: var(--yellow-dark); }
+  .badge-retain { background: var(--green-bg); color: var(--green-dark); }
+  
+  .cc-details { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; font-size: 0.8rem; margin-bottom: 10px; }
+  .cc-detail { text-align: center; }
+  .cc-detail .d-val { font-weight: 700; }
+  .cc-detail .d-lbl { color: var(--gray); font-size: 0.7rem; }
+  
+  .text-template { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px; margin: 8px 0; font-size: 0.85rem; position: relative; cursor: pointer; }
+  .text-template:hover { background: #f3f4f6; }
+  .text-template::after { content: '📋 Tap to copy'; position: absolute; top: 8px; right: 8px; font-size: 0.65rem; color: var(--gray); background: white; padding: 2px 6px; border-radius: 4px; }
+  .text-template.copied { border-color: var(--green); }
+  .text-template.copied::after { content: '✅ Copied!'; color: var(--green-dark); }
+  
+  .impact-bar { display: flex; align-items: center; gap: 8px; margin: 6px 0; }
+  .impact-fill { height: 8px; border-radius: 4px; transition: width 0.5s; }
+  .impact-label { font-size: 0.75rem; color: var(--gray); min-width: 80px; }
+  .impact-amount { font-size: 0.8rem; font-weight: 700; min-width: 60px; text-align: right; }
+  
+  .timeline { margin-top: 12px; }
+  .tl-item { display: flex; gap: 12px; margin-bottom: 14px; }
+  .tl-dot { width: 12px; height: 12px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
+  .tl-content { flex: 1; }
+  .tl-week { font-weight: 700; font-size: 0.85rem; }
+  .tl-action { font-size: 0.8rem; color: #374151; }
+  .tl-check { cursor: pointer; }
+  .tl-check.done { text-decoration: line-through; opacity: 0.5; }
+  
+  .scenario { border: 1px solid #e5e7eb; border-radius: 10px; padding: 14px; margin-bottom: 10px; }
+  .scenario-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+  .scenario-detail { font-size: 0.8rem; color: var(--gray); }
+  .scenario-impact { font-size: 1.2rem; font-weight: 800; margin-top: 6px; }
+  
+  .tip { display: flex; gap: 8px; align-items: flex-start; padding: 8px 0; border-bottom: 1px solid #f3f4f6; font-size: 0.85rem; }
+  .tip:last-child { border-bottom: none; }
+  .tip-icon { font-size: 1rem; flex-shrink: 0; }
+  
+  .cta-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--white); border-top: 2px solid var(--green); padding: 12px 16px; text-align: center; z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); }
+  .cta-bar a { display: inline-block; background: var(--green); color: white; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+  
+  .back-link { display: inline-block; margin-bottom: 12px; color: var(--blue); text-decoration: none; font-size: 0.85rem; }
+  .back-link:hover { text-decoration: underline; }
+  
+  body { padding-bottom: 80px; }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">← Back to Dashboard</a>
+
+<div class="hero">
+  <h1>💰 Customer Revenue Optimizer</h1>
+  <p>Grow revenue from your existing 10 customers — faster and cheaper than finding new ones</p>
+</div>
+
+<div class="metrics">
+  <div class="metric green">
+    <div class="val">~$800</div>
+    <div class="lbl">Current MRR</div>
+  </div>
+  <div class="metric yellow">
+    <div class="val">+$200</div>
+    <div class="lbl">Upsell Potential</div>
+  </div>
+  <div class="metric red">
+    <div class="val">3</div>
+    <div class="lbl">Upsell Targets</div>
+  </div>
+</div>
+
+<!-- UPSELL TARGETS -->
+<div class="section">
+  <h2>🔴 Upsell Opportunities</h2>
+  
+  <div class="customer-card upsell-hot">
+    <div class="cc-header">
+      <span class="cc-name">Greg</span>
+      <span class="cc-badge badge-upsell">🔥 HOT UPSELL</span>
+    </div>
+    <div class="cc-details">
+      <div class="cc-detail"><div class="d-val">Monthly</div><div class="d-lbl">Frequency</div></div>
+      <div class="cc-detail"><div class="d-val">$50</div><div class="d-lbl">Current</div></div>
+      <div class="cc-detail"><div class="d-val">$90</div><div class="d-lbl">Target</div></div>
+      <div class="cc-detail"><div class="d-val" style="color:var(--green)">+$40</div><div class="d-lbl">Uplift/mo</div></div>
+    </div>
+    <h3>📱 Text Jamie Can Send (tap to copy):</h3>
+    <div class="text-template" onclick="copyText(this)">Hey Greg! Spring's hitting hard — wanted to check in. How's the yard looking between visits? With the warmer weather, things pile up faster than winter. A lot of our families switched to biweekly this time of year and love the difference. Want me to add a mid-month visit? Same $45/visit rate 👍</div>
+    <div class="text-template" onclick="copyText(this)">Hey Greg! Quick heads up — spring is peak poop season 😅 Warmer temps = more time outside = more buildup between visits. I've got availability to bump you to every-other-week. Keeps the yard way cleaner and it's only $45/visit ($90/mo vs $70 monthly). Want me to slot you in?</div>
+  </div>
+
+  <div class="customer-card upsell-warm">
+    <div class="cc-header">
+      <span class="cc-name">Lawrence</span>
+      <span class="cc-badge badge-warm">🟡 WARM</span>
+    </div>
+    <div class="cc-details">
+      <div class="cc-detail"><div class="d-val">Biweekly</div><div class="d-lbl">Frequency</div></div>
+      <div class="cc-detail"><div class="d-val">$100</div><div class="d-lbl">Current</div></div>
+      <div class="cc-detail"><div class="d-val">$120+</div><div class="d-lbl">Target</div></div>
+      <div class="cc-detail"><div class="d-val" style="color:var(--green)">+$20+</div><div class="d-lbl">Uplift/mo</div></div>
+    </div>
+    <div class="text-template" onclick="copyText(this)">Hey Lawrence! Just finished up — yard's looking great 👍 I will say, there was quite a bit built up from the two weeks. If you ever want to try weekly for a month to see the difference, it's about $30/week and way easier to maintain. Totally up to you, just wanted to mention it!</div>
+  </div>
+
+  <div class="customer-card upsell-warm">
+    <div class="cc-header">
+      <span class="cc-name">Jody</span>
+      <span class="cc-badge badge-warm">🟡 WARM</span>
+    </div>
+    <div class="cc-details">
+      <div class="cc-detail"><div class="d-val">Biweekly</div><div class="d-lbl">Frequency</div></div>
+      <div class="cc-detail"><div class="d-val">$90</div><div class="d-lbl">Current</div></div>
+      <div class="cc-detail"><div class="d-val">$100+</div><div class="d-lbl">Target</div></div>
+      <div class="cc-detail"><div class="d-val" style="color:var(--green)">+$10+</div><div class="d-lbl">Uplift/mo</div></div>
+    </div>
+    <div class="text-template" onclick="copyText(this)">Hey Jody! Spring is HERE 🌸 Just a heads up — I'm seeing a lot more volume this time of year. If the yard's getting ahead of you between visits, I've got spots open for weekly service. $25/week. No contracts — try it for a month and see how it feels!</div>
+  </div>
+
+  <div class="customer-card upsell-warm">
+    <div class="cc-header">
+      <span class="cc-name">Chastity</span>
+      <span class="cc-badge badge-warm">🟡 WARM</span>
+    </div>
+    <div class="cc-details">
+      <div class="cc-detail"><div class="d-val">Biweekly</div><div class="d-lbl">Frequency</div></div>
+      <div class="cc-detail"><div class="d-val">$90</div><div class="d-lbl">Current</div></div>
+      <div class="cc-detail"><div class="d-val">$100+</div><div class="d-lbl">Target</div></div>
+      <div class="cc-detail"><div class="d-val" style="color:var(--green)">+$10+</div><div class="d-lbl">Uplift/mo</div></div>
+    </div>
+    <div class="text-template" onclick="copyText(this)">Hey Chastity! Spring is HERE 🌸 Just a heads up — I'm seeing a lot more volume this time of year. If the yard's getting ahead of you between visits, I've got spots open for weekly service. $25/week. No contracts — try it for a month and see how it feels!</div>
+  </div>
+
+  <h3>📊 Revenue Impact If All Upsells Land:</h3>
+  <div class="impact-bar">
+    <div class="impact-label">Greg</div>
+    <div style="flex:1; background:#f3f4f6; border-radius:4px; overflow:hidden;"><div class="impact-fill" style="width:50%; background:var(--red);"></div></div>
+    <div class="impact-amount">+$40/mo</div>
+  </div>
+  <div class="impact-bar">
+    <div class="impact-label">Lawrence</div>
+    <div style="flex:1; background:#f3f4f6; border-radius:4px; overflow:hidden;"><div class="impact-fill" style="width:25%; background:var(--yellow);"></div></div>
+    <div class="impact-amount">+$20/mo</div>
+  </div>
+  <div class="impact-bar">
+    <div class="impact-label">Jody</div>
+    <div style="flex:1; background:#f3f4f6; border-radius:4px; overflow:hidden;"><div class="impact-fill" style="width:12.5%; background:var(--yellow);"></div></div>
+    <div class="impact-amount">+$10/mo</div>
+  </div>
+  <div class="impact-bar">
+    <div class="impact-label">Chastity</div>
+    <div style="flex:1; background:#f3f4f6; border-radius:4px; overflow:hidden;"><div class="impact-fill" style="width:12.5%; background:var(--yellow);"></div></div>
+    <div class="impact-amount">+$10/mo</div>
+  </div>
+  <div class="impact-bar" style="font-weight:700; border-top: 2px solid #e5e7eb; padding-top: 8px; margin-top: 8px;">
+    <div class="impact-label">TOTAL</div>
+    <div style="flex:1"></div>
+    <div class="impact-amount" style="color:var(--green-dark); font-size:1rem;">+$80/mo</div>
+  </div>
+</div>
+
+<!-- RETENTION ZONE -->
+<div class="section">
+  <h2>🟢 Retain & Nurture (Top Customers)</h2>
+  <p style="font-size:0.85rem; color:var(--gray); margin-bottom:12px;">These are at max tier. Goal: keep them happy, get referrals.</p>
+  
+  <div class="customer-card retain">
+    <div class="cc-header">
+      <span class="cc-name">Shannon Zamarripa</span>
+      <span class="cc-badge badge-retain">⭐ TOP CUSTOMER</span>
+    </div>
+    <div class="cc-details">
+      <div class="cc-detail"><div class="d-val">Weekly</div><div class="d-lbl">Frequency</div></div>
+      <div class="cc-detail"><div class="d-val">$140</div><div class="d-lbl">Monthly</div></div>
+      <div class="cc-detail"><div class="d-val">3+</div><div class="d-lbl">Dogs</div></div>
+      <div class="cc-detail"><div class="d-val">Florissant</div><div class="d-lbl">City</div></div>
+    </div>
+  </div>
+
+  <div class="customer-card retain">
+    <div class="cc-header">
+      <span class="cc-name">Amanda Harris</span>
+      <span class="cc-badge badge-retain">⭐ TOP CUSTOMER</span>
+    </div>
+    <div class="cc-details">
+      <div class="cc-detail"><div class="d-val">Weekly</div><div class="d-lbl">Frequency</div></div>
+      <div class="cc-detail"><div class="d-val">$120</div><div class="d-lbl">Monthly</div></div>
+      <div class="cc-detail"><div class="d-val">2-3</div><div class="d-lbl">Dogs</div></div>
+      <div class="cc-detail"><div class="d-val">Florissant</div><div class="d-lbl">City</div></div>
+    </div>
+  </div>
+
+  <div class="customer-card retain">
+    <div class="cc-header">
+      <span class="cc-name">Preshus</span>
+      <span class="cc-badge badge-retain">✅ SOLID</span>
+    </div>
+    <div class="cc-details">
+      <div class="cc-detail"><div class="d-val">Weekly</div><div class="d-lbl">Frequency</div></div>
+      <div class="cc-detail"><div class="d-val">$100</div><div class="d-lbl">Monthly</div></div>
+      <div class="cc-detail"><div class="d-val">2</div><div class="d-lbl">Dogs</div></div>
+      <div class="cc-detail"><div class="d-val">St. Charles</div><div class="d-lbl">City</div></div>
+    </div>
+  </div>
+
+  <div class="customer-card retain">
+    <div class="cc-header">
+      <span class="cc-name">Mrs. Candee</span>
+      <span class="cc-badge badge-retain">✅ SOLID</span>
+    </div>
+    <div class="cc-details">
+      <div class="cc-detail"><div class="d-val">Weekly</div><div class="d-lbl">Frequency</div></div>
+      <div class="cc-detail"><div class="d-val">$60</div><div class="d-lbl">Monthly</div></div>
+      <div class="cc-detail"><div class="d-val">1</div><div class="d-lbl">Dogs</div></div>
+      <div class="cc-detail"><div class="d-val">St. Louis</div><div class="d-lbl">City</div></div>
+    </div>
+  </div>
+
+  <h3>📱 Quarterly Check-In + Referral Ask (tap to copy):</h3>
+  <div class="text-template" onclick="copyText(this)">Hey [NAME]! Just wanted to say thanks for being one of our earliest customers — really means a lot. Everything going well with the service? Anything we can do better? We're always trying to improve 🙌</div>
+  <div class="text-template" onclick="copyText(this)">That's awesome to hear! Hey — real quick. Know anyone in [CITY] who could use what we do? If they sign up, you BOTH get a free month. No pressure at all, just wanted to throw it out there 🐕</div>
+</div>
+
+<!-- 90-DAY TIMELINE -->
+<div class="section">
+  <h2>📅 90-Day Action Timeline</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--red);"></div>
+      <div class="tl-content">
+        <div class="tl-week">Week 1 (Mar 27 – Apr 2)</div>
+        <div class="tl-action tl-check" onclick="toggleDone(this)" data-key="w1a">☐ Text Greg (Option A) after next service</div>
+        <div class="tl-action tl-check" onclick="toggleDone(this)" data-key="w1b">☐ If no response in 3 days → Option B</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--yellow);"></div>
+      <div class="tl-content">
+        <div class="tl-week">Week 2 (Apr 3 – Apr 9)</div>
+        <div class="tl-action tl-check" onclick="toggleDone(this)" data-key="w2a">☐ Post-service nudge to Lawrence</div>
+        <div class="tl-action tl-check" onclick="toggleDone(this)" data-key="w2b">☐ Post-service nudge to Chastity</div>
+        <div class="tl-action tl-check" onclick="toggleDone(this)" data-key="w2c">☐ Spring weather text to Jody</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--green);"></div>
+      <div class="tl-content">
+        <div class="tl-week">Weeks 3-4 (Apr 10 – Apr 23)</div>
+        <div class="tl-action tl-check" onclick="toggleDone(this)" data-key="w3a">☐ Quarterly check-in: Shannon</div>
+        <div class="tl-action tl-check" onclick="toggleDone(this)" data-key="w3b">☐ Quarterly check-in: Amanda</div>
+        <div class="tl-action tl-check" onclick="toggleDone(this)" data-key="w3c">☐ Quarterly check-in: Preshus & Mrs. Candee</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--purple);"></div>
+      <div class="tl-content">
+        <div class="tl-week">Month 2 — May (Referral Push)</div>
+        <div class="tl-action tl-check" onclick="toggleDone(this)" data-key="m2a">☐ Referral ask to positive check-in responders</div>
+        <div class="tl-action tl-check" onclick="toggleDone(this)" data-key="m2b">☐ Re-nudge Greg if still monthly</div>
+        <div class="tl-action tl-check" onclick="toggleDone(this)" data-key="m2c">☐ Summer preview texts to all biweekly/monthly</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot" style="background:var(--orange);"></div>
+      <div class="tl-content">
+        <div class="tl-week">Month 3 — June (Summer Lock-In)</div>
+        <div class="tl-action tl-check" onclick="toggleDone(this)" data-key="m3a">☐ "Summer schedule filling up" urgency text</div>
+        <div class="tl-action tl-check" onclick="toggleDone(this)" data-key="m3b">☐ Loyalty surprise for longest customer</div>
+        <div class="tl-action tl-check" onclick="toggleDone(this)" data-key="m3c">☐ Review ask to anyone without one</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCENARIOS -->
+<div class="section">
+  <h2>📊 Revenue Scenarios</h2>
+  
+  <div class="scenario" style="border-left: 4px solid var(--gray);">
+    <div class="scenario-name">Conservative (1 upsell)</div>
+    <div class="scenario-detail">Greg monthly → biweekly</div>
+    <div class="scenario-impact" style="color:var(--gray);">+$40/mo → +$480/yr</div>
+  </div>
+  
+  <div class="scenario" style="border-left: 4px solid var(--yellow);">
+    <div class="scenario-name">Moderate (2-3 upsells)</div>
+    <div class="scenario-detail">Greg + one biweekly → weekly</div>
+    <div class="scenario-impact" style="color:var(--yellow-dark);">+$80-100/mo → +$960-1,200/yr</div>
+  </div>
+  
+  <div class="scenario" style="border-left: 4px solid var(--green);">
+    <div class="scenario-name">🎯 Best Case (3+ upsells + referral)</div>
+    <div class="scenario-detail">Greg + two biweekly upgrades + one referral conversion</div>
+    <div class="scenario-impact" style="color:var(--green-dark);">+$190-270/mo → +$2,280-3,240/yr</div>
+  </div>
+</div>
+
+<!-- TIPS -->
+<div class="section">
+  <h2>⚡ Golden Rules</h2>
+  <div class="tip"><span class="tip-icon">✅</span> Text AFTER a service — they just saw the value</div>
+  <div class="tip"><span class="tip-icon">✅</span> One customer per week — don't be salesy</div>
+  <div class="tip"><span class="tip-icon">✅</span> Lead with yard quality, not "pay more"</div>
+  <div class="tip"><span class="tip-icon">✅</span> Frame as "try it for a month" — low commitment</div>
+  <div class="tip"><span class="tip-icon">❌</span> Don't text on weekends (personal time)</div>
+  <div class="tip"><span class="tip-icon">❌</span> Don't pitch multiple customers the same week</div>
+  <div class="tip"><span class="tip-icon">❌</span> Don't make them feel bad about current plan</div>
+  <div class="tip"><span class="tip-icon">💡</span> Losing 1 customer at $100/mo = need 2 new ones to recover</div>
+</div>
+
+<div class="cta-bar">
+  <a href="sms:+13148507140">📱 Open Jamie's Texts</a>
+</div>
+
+<script>
+function copyText(el) {
+  const text = el.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 2000);
+  }).catch(() => {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 2000);
+  });
+}
+
+function toggleDone(el) {
+  const key = el.dataset.key;
+  const isDone = el.classList.toggle('done');
+  el.textContent = (isDone ? '☑ ' : '☐ ') + el.textContent.substring(2);
+  
+  // Save state
+  const state = JSON.parse(localStorage.getItem('upsell-timeline') || '{}');
+  state[key] = isDone;
+  localStorage.setItem('upsell-timeline', JSON.stringify(state));
+}
+
+// Restore state on load
+document.addEventListener('DOMContentLoaded', () => {
+  const state = JSON.parse(localStorage.getItem('upsell-timeline') || '{}');
+  document.querySelectorAll('.tl-check').forEach(el => {
+    const key = el.dataset.key;
+    if (state[key]) {
+      el.classList.add('done');
+      el.textContent = '☑ ' + el.textContent.substring(2);
+    }
+  });
+});
+</script>
+
+</body>
+</html>

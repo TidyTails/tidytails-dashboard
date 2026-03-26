@@ -6,6 +6,36 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 3:04 PM — Customer Revenue Optimizer (Hourly Task)
+- **3:04 PM** 💰 Customer Revenue Optimizer — Built upsell & retention playbook + interactive dashboard page.
+  - **WHY:** Today was 7 straight Paw-ty tasks. Time for something different. We have 10 customers but spend 100% of energy on acquisition. The cheapest revenue growth is upselling existing customers: one text to Greg could mean +$40/mo (+$480/yr). Zero acquisition cost. Brave API is still exhausted (no web research possible), so this is strategy + execution work that requires zero external APIs.
+  - **WHAT WAS BUILT:**
+    1. **Full playbook** (`deliverables/customer-upsell-retention-playbook-march2026.md`):
+       - Revenue snapshot of all 8 verified customers with upsell potential ratings
+       - Greg = #1 target: monthly ($50) → biweekly ($90) = +$40/mo. 3 text templates for Jamie.
+       - Lawrence, Jody, Chastity = biweekly → weekly targets. Post-service nudge templates.
+       - Retention touches for top 4 (Shannon, Amanda, Preshus, Mrs. Candee): quarterly check-in + referral ask templates
+       - Multi-dog upsell seed text
+       - 90-day action calendar: Week 1 = Greg, Week 2 = biweekly nudges, Weeks 3-4 = retention, Month 2 = referrals, Month 3 = summer lock-in
+       - Revenue impact scenarios: Conservative +$40/mo to Best Case +$270/mo
+       - Golden rules (text after service, one customer/week, lead with value not price)
+    2. **Interactive dashboard page** (`dashboard/customer-revenue-optimizer.html`):
+       - Revenue metrics: current MRR ~$800, upsell potential +$200, 3 targets
+       - Color-coded customer cards: red (hot upsell), yellow (warm), green (retain)
+       - Tap-to-copy text templates for every customer
+       - Revenue impact bars
+       - 90-day timeline with localStorage checkboxes
+       - Revenue scenarios (conservative/moderate/best case)
+       - Golden rules section
+    3. **Dashboard index updated** — New quick link + Sales & CRM card (count 8→9)
+  - **WHY THIS OVER OTHER TASKS:**
+    - 7 Paw-ty tasks today — diminishing returns on event prep
+    - Acquisition is expensive ($50-100/customer). Upselling is free ($0 + one text).
+    - Moving Greg alone = revenue equivalent of gaining half a new customer
+    - If 2-3 upsells land over next 90 days = +$960-1,200/yr from ZERO marketing spend
+    - This is the kind of "work on the business" thinking we've been skipping
+  - Committed + pushed to GitHub ✅
+
 ### Thursday 2:04 PM — Paw-ty Landing Page + QR Print Kit (Hourly Task)
 - **2:04 PM** 🐾 Paw-ty Landing Page + QR Print Kit — Built complete event conversion system for Saturday's Crestwood Vet Adoption Paw-ty.
   - **WHY:** Saturday is 48 hours away. We have print materials, social posts, follow-up scripts, and review systems — but ZERO digital capture at the event itself. Jamie collecting names on paper = names that sit in a drawer. A QR code that dumps people into a sign-up form on their phone = instant digital lead with phone number, zip code, dog count, and service interest. This is the bridge between "person walks by booth" and "person becomes a customer."
