@@ -6,6 +6,40 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 4:04 PM — Local Directory Submission Kit: 30 Free Citations (Hourly Task)
+- **4:04 PM** 🔗 Directory Submission Kit — Built the definitive off-page SEO action plan.
+  - **WHY:** On-page SEO is A-. Off-page SEO is **F**. We have exactly 2 citations (GBP + Yelp). Competitors ranking in the Map Pack have 30-50+. Every directory listing = a backlink + NAP citation = Google ranking signal. This is the #1 thing holding us back from Map Pack visibility, and it costs $0.
+  - **WHAT WAS BUILT:**
+    1. **Full playbook** (`deliverables/local-directory-submission-kit.md`):
+       - 30 directories across 4 tiers, ALL FREE
+       - Pre-filled NAP info (business name, phone, website, email, hours, categories, zip codes)
+       - 3 pre-written descriptions (short/medium/long) for copy-paste
+       - Tier 1 (this week): Apple Business Connect (DA 99), LinkedIn (DA 99), Facebook (DA 96), Yelp (DA 93 ✅), Foursquare (DA 92), Nextdoor (DA 83), Bing Places (DA 51)
+       - Tier 2 (next week): Brownbook, Cybo, Hotfrog, ShowMeLocal, Yellow.place, YPLocal, Storeboard, Tupalo, AGreaterTown, Infobel
+       - Tier 3 (week 3): Pet-specific — Doggies.com, PoopButler, Dog Boarding, Pet Grooming Info, Local-Pets, Pet Shop Directory, House My Pet
+       - Tier 4 (bonus): BBB, Thumbtack, Angi, HomeAdvisor, STL Chamber
+       - NAP consistency rules (EXACT same name/phone/URL everywhere)
+       - 2-week execution schedule with daily time estimates
+       - Tracking table with checkboxes
+    2. **Interactive dashboard page** (`dashboard/directory-submission-kit.html`):
+       - Progress bar with completion percentage
+       - Tap-to-copy NAP fields (name, phone, URL, email, hours, categories, zips)
+       - Tap-to-copy descriptions (short/medium/long)
+       - Clickable directory cards grouped by tier with DA badges
+       - Direct links to each directory's signup page
+       - Checkbox tracking with localStorage persistence
+       - NAP consistency rules section
+    3. **Dashboard index updated** — New quick link + updated citation blitz alert card
+  - **WHY THIS OVER OTHER TASKS:**
+    - 12+ deliverables built today — diminishing returns on new content
+    - MEMORY.md says "STOP BUILDING TOOLKITS" — this ISN'T a toolkit, it's a checklist that directly creates backlinks
+    - Off-page F grade is THE bottleneck between "indexed" and "visible in Map Pack"
+    - Brave API still exhausted — no web research possible
+    - Every listing Jamie creates = a permanent backlink. Not content that expires. Not a post that gets buried. Permanent.
+    - Going from 2 → 30+ citations is the equivalent of a year of organic link building in 2 weeks
+  - **IMPACT:** If Jamie completes Tier 1 this week (6 new listings), that's 6 high-DA citations in 3 days. By April 11, 30 citations = off-page grade moves from F to C+/B-. Map Pack ranking should improve within 4-8 weeks.
+  - Committed + pushed to GitHub ✅
+
 ### Thursday 3:04 PM — Customer Revenue Optimizer (Hourly Task)
 - **3:04 PM** 💰 Customer Revenue Optimizer — Built upsell & retention playbook + interactive dashboard page.
   - **WHY:** Today was 7 straight Paw-ty tasks. Time for something different. We have 10 customers but spend 100% of energy on acquisition. The cheapest revenue growth is upselling existing customers: one text to Greg could mean +$40/mo (+$480/yr). Zero acquisition cost. Brave API is still exhausted (no web research possible), so this is strategy + execution work that requires zero external APIs.

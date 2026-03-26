@@ -75,7 +75,7 @@
   - Thread 2=TidyTails, 3=Sheds, 4=Daily Accountability, 5=Franklin Admin, 6=Motra, 91=WAXR, 92=AI Content Creation
 - **Content:** 23 city landing pages (all deployed ✅), 13 blog posts, A- on-page SEO
 - **⚠️ DEPLOYMENT GAP:** /spring, /calculator, /commercial all built but NOT deployed to live site — they all return homepage. TJ needs to push these to Cloudflare.
-- **⚠️ 5 city pages still have generic titles** (olivette, south-city, south-county, university-city, wentzville) — need Cloudflare redeploy
+- **5 city pages FIXED ✅** (olivette, south-city, south-county, university-city, wentzville) — deployed Mar 26, indexing requested in GSC
 - **Off-page:** F — zero backlinks, zero directory listings beyond GBP/Yelp
 - **Brand collision:** 8+ other "Tidy Tails" nationally — always use "Tidy Tails STL"
 - **Bottom line:** GBP done, reviews done, next is directories + paid ads. Deployment gap is the hidden blocker.
@@ -224,8 +224,9 @@ Assets: Landing page, pitch deck (v6), one-pager, market research.
 - [x] **Post in a Facebook group** ✅ (Mar 24)
 - [x] **Complete GBP to ~100%** ✅ (Mar 25)
 - [ ] **PRINT for Saturday Paw-ty** (20 min) — flyers, cards, sign-up sheets, vet one-pager. TONIGHT.
-- [ ] **Deploy /spring, /calculator, /commercial to Cloudflare** — 3 built pages invisible on live site
-- [ ] **Post on Nextdoor** (5 min, $0) — 14-day launch kit ready
+- [x] **Deploy 5 city pages to Cloudflare** ✅ (Mar 26) — pushed to repo, auto-deployed, GSC indexing requested
+- [ ] **Deploy /spring, /calculator, /commercial to Cloudflare** — 3 built pages still invisible on live site
+- [x] **Post on Nextdoor** ✅ (TJ confirmed Mar 26 — already posting)
 - [ ] **Submit to 5 directories** (45 min) — citation tracker ready
 - [ ] **Launch $7/day Facebook Ads** (30 min) — full campaign kit ready
 - [ ] **Make 3 commercial calls** (15 min) — Hot 10 call playbook + scripts ready
