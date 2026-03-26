@@ -6,6 +6,30 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 8:05 AM — Print-Ready Event Materials for Saturday's Crestwood Paw-ty (Hourly Task)
+- **8:05 AM** 🖨️ Print-Ready Event Materials — Built 4 HTML print files at `deliverables/printables/`:
+  - **WHY:** Saturday's Crestwood Vet Adoption Paw-ty is 48 hours away. We had an event prep KIT (strategy doc with ASCII art flyer mockups) but ZERO actual printable materials. TJ can't hand someone a markdown file. He needs to open a file, hit Print, cut the paper, and walk out the door. That gap is now closed.
+  - **WHAT WAS BUILT:**
+    1. **Event flyer** (`event-flyer-spring2026.html`) — Professional half-sheet with green/orange branding, spring promo hero, 3-tier pricing grid, 5.0★ social proof bar, phone/website CTA, QR code placeholder. Prints 2-up for efficiency.
+    2. **Sign-up sheet** (`event-signup-sheet.html`) — 15-row table with columns for Name, Phone, Email, # Dogs, Neighborhood, Interest Level. Promo bar header, pricing footer, interest code legend. Professional enough that people feel comfortable writing their info.
+    3. **Business cards** (`business-cards-8up.html`) — 8 standard 3.5"×2" cards per letter page. Green brand header, Jamie's name + title, phone, website, 5.0★ rating, orange "First Cleanup FREE" badge. Print instructions included. Cut along dashed lines.
+    4. **Vet partnership one-pager** (`vet-partnership-one-pager.html`) — THE most important piece. Professional leave-behind for the hosting vet clinic. Two-column layout: "What We Do" + "Why Vets Recommend Us" (parasite reduction, giardia/parvo prevention). 3-step partnership process. Stats bar. Green CTA footer. This one piece could yield 2-5 referrals/month if the vet puts our cards at the front desk.
+  - **ALSO:** README with print instructions, Saturday prep checklist, and tips.
+  - **ALL HTML** — no special software. Open in Chrome → Print → Done. Works on any computer.
+  - **WHY THIS OVER OTHER TASKS:**
+    - Saturday is 48 hours away. This is time-critical.
+    - Every other marketing deliverable we've built is DIGITAL. Saturday is TJ's first IN-PERSON event. He needs PHYSICAL materials.
+    - The vet partnership one-pager alone could be worth $840-4,200/year in referrals (1-5 customers from one relationship).
+    - 10 minutes of printing → professional presence at the event. Without these, TJ shows up empty-handed.
+  - **TJ ACTION:** Print TONIGHT or Friday morning. Don't wait until Saturday.
+    - 25 sheets of flyers (50 half-sheets)
+    - 2 sign-up sheets
+    - 3 pages of business cards on cardstock (24 cards)
+    - 2 vet partnership one-pagers
+    - Generate QR code at qr-code-generator.com → tape onto flyers
+  - Updated task board with printables section under Saturday event ✅
+  - Committed + pushed to GitHub ✅
+
 ### Thursday 7:04 AM — Door Hanger & Yard Sign Kit (Hourly Task)
 - **7:04 AM** 🚪 Door Hanger & Yard Sign Kit — Built complete offline marketing kit at `deliverables/door-hanger-yard-sign-kit.md`.
   - **WHY:** We have 50+ digital deliverables but ZERO physical/offline marketing materials. TJ services ~8 yards per week = 40-80 neighbor households who see the truck but get zero touchpoint. Door hangers are the #1 highest-converting marketing tool for local home services (1-3% conversion rate), and TJ is ALREADY ON THE STREET. This is the lowest-effort, highest-ROI gap in the entire marketing system.
