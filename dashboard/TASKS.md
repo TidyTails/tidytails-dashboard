@@ -216,14 +216,20 @@ Interactive tool at `/calculator` — visitors input their dogs, cleanup frequen
 #### 🔥 THIS SATURDAY: Crestwood Vet Adoption Paw-ty (Mar 28)
 **Complete event prep kit ready:** `deliverables/crestwood-pawty-event-kit-march28.md`
 - Conversation scripts (opener, transition, close, objection handlers)
-- Spring promo flyer template (print 50+)
-- Sign-up sheet format
 - Same-day follow-up text templates
 - Vet clinic relationship strategy
 - Day-of timeline
 - Event scorecard to track results
 - **Goal: 15+ conversations, 8+ phone numbers, 2+ conversions**
-- **Prep needed by Friday:** Print cards + flyers (~30 min, ~$15)
+
+**🖨️ PRINT-READY MATERIALS — READY NOW:** `deliverables/printables/`
+- **Event flyer** (`event-flyer-spring2026.html`) — Half-sheet, spring promo, pricing, social proof. Print 50+.
+- **Sign-up sheet** (`event-signup-sheet.html`) — 15-row table, professional layout. Print 2.
+- **Business cards** (`business-cards-8up.html`) — 8 cards per letter page, cut along lines. Print 3+ pages on cardstock.
+- **Vet partnership one-pager** (`vet-partnership-one-pager.html`) — Leave-behind for Crestwood vet. THE relationship that matters most. Print 2.
+- **How:** Open any file in Chrome → Print → Set margins to "Minimum" → Uncheck headers/footers → Done.
+- **Total time:** 10 min to print everything. **~$3 in paper/ink.**
+- **⚠️ DO THIS TONIGHT (Thursday) OR FRIDAY MORNING. Don't wait until Saturday.**
 
 #### 🆕 Apr 18: ARCH BARK — Gateway Arch National Park
 - **NEW EVENT FOUND!** Saturday, April 18, 10 AM - 2 PM
