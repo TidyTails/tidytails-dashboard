@@ -243,3 +243,28 @@
   - **TOTAL:** 23 ready-to-post pieces of content. ~53 minutes total posting time across the entire month. $0 cost.
   - **TJ ACTION:** Start posting Monday 3/31 with Post #1. 3 minutes. Copy → paste → photo → done.
 
+
+### Thursday 1:04 PM — Google Review Growth System: 6→15 Reviews in 4 Weeks (Hourly Task)
+- **1:04 PM** 🌟 Google Review Growth System — Built complete review generation engine for Tidy Tails.
+  - **WHY:** We have 10 recurring customers but only 6 Google reviews. Reviews are the #1 ranking factor for Google Map Pack (the 3-pack that gets 90% of clicks for "pet waste removal near me"). Competitors have 15-20 reviews. Getting to 15 reviews could put us IN the Map Pack for many zip codes. This is the single highest-leverage thing Jamie can do with 3 minutes per customer. The Paw-ty on Saturday is the perfect launch moment.
+  - **WHAT WAS BUILT:**
+    1. **Upgraded review funnel page** (`tidy-tails/website/review.html`) — Complete redesign with sentiment gate:
+       - Customer sees "How's your yard looking?" with 4 emoji buttons
+       - Happy (😍/😊) → routes to Google Review with writing tips + Google SVG logo
+       - Unhappy (😐/😕) → routes to text Jamie privately (PROTECTS our 5.0 rating)
+       - After leaving Google review → thank you screen on return
+       - Direct link support: `?go=google` skips the gate for repeat/confident customers
+       - Mobile-first design, branded green/orange, smooth animations
+    2. **Complete playbook** (`deliverables/review-growth-system.md`) containing:
+       - 5 copy-paste text templates for Jamie (post-service, long-time customer, after compliment, Paw-ty, gentle nudge)
+       - 4-week review blitz plan (Week 1: Paw-ty launch, Week 2: existing customers, Week 3: follow-up, Week 4: momentum)
+       - Review response templates (5-star, 4-star, 3-star)
+       - Paw-ty review card print design (front/back with QR code instructions)
+       - Best practices (timing, personalization, no incentives, respond to all, 2-3/week cadence)
+       - The math: why 15 reviews = Map Pack competitive, 20 = Map Pack likely
+    3. **Dashboard updated** — TASKS.md updated with customer count (8→10), review target, and full review system section
+  - **IMPACT:** If Jamie sends 2-3 review asks per week for 4 weeks, we should add 6-10 new reviews. Going from 6→15 reviews at 5.0 stars would be a massive Map Pack signal. Combined with near-complete GBP, this could get us into the 3-pack for multiple zip codes.
+  - **JAMIE'S TIME:** ~3 min per ask (copy template → swap name → send). ~30 min total over 4 weeks.
+  - **TJ ACTION:** Print QR code cards for Saturday Paw-ty. Jamie starts texting Monday.
+  - Updated dashboard task board ✅
+  - Committed + pushed to GitHub ✅

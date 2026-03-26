@@ -56,7 +56,7 @@
 - **$70/month flat rate = UNIQUE** — no competitor offers this
 
 ### Current State (Mar 26, 2026)
-- **~8 recurring customers** (per customer table below, TJ hasn't confirmed churn — 20+ days stale!)
+- **10 recurring customers** ✅ (TJ confirmed Mar 26 — up from ~8!)
 - Solo operation, wife does scheduling
 - Revenue: ~$750/month at peak, likely lower now
 - **Monday scooping day** (changed from Sunday, Mar 20)

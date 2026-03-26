@@ -9,11 +9,11 @@
 ### 📊 Business Snapshot
 | Metric | Value |
 |--------|-------|
-| **Active Customers** | **8** |
-| **Monthly Revenue** | **~$750** |
+| **Active Customers** | **10** ✅ (TJ confirmed Mar 26) |
+| **Monthly Revenue** | **~$900** (est.) |
 | **Goal** | 25-30 recurring |
-| **Progress** | **32%** (8/25) |
-| **Google Reviews** | **6** (5.0 ★) |
+| **Progress** | **40%** (10/25) |
+| **Google Reviews** | **6** (5.0 ★) → **TARGET: 15 by Apr 24** |
 | **Active Competitors** | **3** (7+ dead) |
 
 ### ✅ GBP Nearly Complete! (was #1 priority — almost done)
@@ -71,6 +71,20 @@ The STL pet waste market has COLLAPSED. Only 3 active competitors remain:
 - Copy-paste acquisition posts ready: `deliverables/competitor-down-acquisition-campaign.md`
 - 8 posts across Nextdoor, FB groups, GBP, and FB Page
 - **Time: 40 min. Cost: $0. Expected: 5-15 warm leads in 2 weeks.**
+
+### 🌟 NEW: Google Review Growth System (Mar 26)
+**6 reviews → 15+ in 4 weeks.** Reviews are the #1 Map Pack ranking factor. We have 10 customers and only 6 reviews — that's leaving SEO juice on the table.
+
+**What's ready:**
+- **Smart review funnel page** at `tidytailsstl.com/review` — sentiment gate sends happy customers to Google, unhappy ones to Jamie's phone privately (protects our 5.0 rating)
+- **5 copy-paste text templates** for Jamie — post-service, long-time customer, after compliment, Paw-ty, gentle nudge
+- **4-week blitz plan** — 2-3 asks per week, timed to avoid Google spam flags
+- **Review response templates** — for replying to every review within 24h
+- **Paw-ty review cards** — print design for Saturday's event
+
+**Full playbook:** `deliverables/review-growth-system.md`
+**Jamie's time:** ~3 min per review ask. Total: ~30 min over 4 weeks.
+**Why now:** Paw-ty Saturday = perfect launch moment. Ask attendees + existing customers simultaneously.
 
 ### 🚪 NEW: Door Hanger & Yard Sign Kit — Offline Marketing Launch
 You service ~8 yards/week = 40-80 neighbor households who see your truck but get ZERO touchpoint. This kit fixes that.
