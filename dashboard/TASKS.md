@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-26 1:04 AM CST — by Franklin*
+*Last updated: 2026-03-26 6:04 AM CST — by Franklin*
 
 ---
 
@@ -71,6 +71,26 @@ The STL pet waste market has COLLAPSED. Only 3 active competitors remain:
 - Copy-paste acquisition posts ready: `deliverables/competitor-down-acquisition-campaign.md`
 - 8 posts across Nextdoor, FB groups, GBP, and FB Page
 - **Time: 40 min. Cost: $0. Expected: 5-15 warm leads in 2 weeks.**
+
+### 📞 NEW: Hot 10 Commercial Call Playbook — Jamie's Priority Sheet
+60+ commercial leads at "New" status = ZERO revenue. This playbook turns the leads file into action.
+- **Playbook:** `deliverables/hot-10-commercial-call-playbook.md`
+- **10 highest-impact calls** ranked by revenue potential:
+  1. Millsap Properties (7 apartments) — $500-$1,500/mo
+  2. Associa Smith Mgmt (dozens of HOAs) — $300-$2,000+/mo
+  3. Renewal Heights (411 units, Ferguson) — $300-$500/mo
+  4. No Leash Needed (8 locations) — $300-$750/mo
+  5. Delrado Apartments (Florissant home turf) — $200-$400/mo
+  6. The Watering Bowl (3 locations) — $300-$750/mo
+  7. Greenway Chase (Florissant dog park) — $200-$400/mo
+  8. Sentry Management (32+ HOAs) — $300-$2,000+/mo
+  9. Jasper Apartments (brand new build) — $200-$400/mo
+  10. Cortona at Forest Park (luxury) — $300-$500/mo
+- **Word-for-word phone scripts** for each call
+- **Objection handlers** for 6 common pushbacks
+- **Call tracking table** with checkboxes
+- **Revenue projection:** Landing 3 of these = **$1,300-$2,200/mo additional** ($15,600-$26,400/yr)
+- **JAMIE START HERE:** Call #1-5 this Thursday/Friday afternoon. 90 min total.
 
 ### 🤝 Referral Partners — The Goldmine
 15 enriched leads with VERIFIED phone numbers ready for outreach:
@@ -234,6 +254,7 @@ Interactive tool at `/calculator` — visitors input their dogs, cleanup frequen
 - [x] **Paid Ads Launch Guide** created ✅ (Mar 25) — Facebook/IG, Nextdoor, Google Search. Video ads ready, copy-paste templates, targeting, budgets, ROI projections
 - [x] **Spring Special Landing Page** built ✅ (Mar 25) — `/spring` — Conversion page for all campaigns, tiered pricing, Spring Reset $129 package, social proof, SMS CTAs
 - [x] **Customer Revenue Maximizer Kit** created ✅ (Mar 25) — 6 copy-paste text templates for upsells, reviews, referrals. 20 min execution, +$135-250/mo projected
+- [x] **Hot 10 Commercial Call Playbook** created ✅ (Mar 26) — Jamie's priority call sheet with scripts, objection handlers, and tracking
 
 ---
 
