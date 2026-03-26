@@ -4,6 +4,43 @@
 
 ---
 
+## March 26, 2026 (Thursday)
+
+### Thursday 12:05 AM — Pet Waste Cost Calculator: The Silent Salesman (Hourly Task)
+- **12:05 AM** 🧮 Pet Waste Cost Calculator — Built interactive conversion tool at `tidy-tails/website/calculator.html` (live at `/calculator`).
+  - **WHY:** Every deliverable we've built requires TJ to DO something — post, text, call, show up. The calculator is different: it works 24/7 with ZERO effort. Visitor arrives → answers 4 questions → sees the math → texts Jamie. No human needed. It's also a unique differentiator — NONE of the 3 remaining competitors have an interactive tool. It makes the invisible cost visible. People think DIY is "free" — the calculator shows it costs $1,000-3,000/year in time + supplies.
+  - **WHAT IT DOES:**
+    - **4 inputs:** Dog count (1-4+), cleanup frequency (1-7×/week via slider), time per session (5-45 min via slider), yard size (small/medium/large)
+    - **DIY column (red):** Calculates hours/year, bags/supplies cost, time value at avg STL wage ($27.50/hr), total real cost
+    - **Tidy Tails column (green):** Shows 0 hours, $0 supplies, weekly price, annual cost
+    - **Savings banner:** Dollar savings + hours of life back
+    - **Fun facts chips:** Piles/year, pounds of poop/year, bacteria per gram, "that's a full work week"
+    - **CTA section:** SMS pre-filled with "I used the poop calculator," call button, Spring Special badge
+    - **Social proof bar:** 5.0★ Google, 6 reviews, locally owned
+  - **DESIGN:**
+    - Matches main site (green/orange/cream CSS vars, same font stack)
+    - Mobile-optimized (stacks to single column, touch-friendly selectors)
+    - Animated results reveal (slideUp)
+    - Floating SMS CTA appears on scroll
+    - Clean header with logo + text CTA
+  - **SEO:**
+    - Schema.org WebApplication structured data
+    - Open Graph + Twitter cards
+    - Canonical URL, geo meta tags
+    - Added to sitemap.xml (0.8 priority)
+    - Added to main site navigation ("💩 Calculator")
+  - **MATH BEHIND IT (sample: 2 dogs, medium yard, 3×/week, 15 min):**
+    - DIY: 39 hours/year, ~$30 supplies, ~$1,073 time value = ~$1,103 total
+    - Tidy Tails: $25/week = $1,300/year
+    - But the HOURS saved is what sells it — nobody wants to spend 39 hours on poop
+  - **MARKETING ANGLES THIS ENABLES:**
+    - GBP post: "Curious what poop costs you? → tidytailsstl.com/calculator"
+    - Facebook/Nextdoor: "I calculated how much time I waste on dog poop... the answer hurt 💩"
+    - Ad campaigns: Link to calculator instead of homepage — it pre-qualifies leads
+  - Updated sitemap.xml ✅
+  - Added to main site nav ✅
+  - Updated task board ✅
+
 ### Wednesday 11:04 PM — April Content Pack: 23 Posts Ready to Go (Hourly Task)
 - **11:04 PM** 📱 April 2026 Full Social Media & Shed Ad Pack — Created two deliverables covering ALL of April:
   - **Tidy Tails Social:** `deliverables/april-2026-social-media-pack.md` — 16 scheduled posts + 4 bonus posts across Facebook, Nextdoor, and Instagram

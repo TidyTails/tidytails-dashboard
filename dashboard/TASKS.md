@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-25 8:05 PM CST — by Franklin*
+*Last updated: 2026-03-26 12:05 AM CST — by Franklin*
 
 ---
 
@@ -147,6 +147,16 @@ Stop leaving money on the table. With 7+ competitors dead, we have pricing power
 - Guide: `deliverables/directory-submission-package.md`
 - **Top 5 (20 min):** Nextdoor, Facebook Business, Thumbtack, Angi, BBB
 - **Time for all 22:** ~60 min. $0.
+
+### 🧮 NEW: Pet Waste Cost Calculator — The Silent Salesman
+Interactive tool at `/calculator` — visitors input their dogs, cleanup frequency, yard size → see the REAL cost of DIY vs. hiring Tidy Tails.
+- **What it shows:** DIY hours/year, bag costs, time value (at $27.50 avg STL wage), vs. Tidy Tails annual cost
+- **Why it works:** Makes the invisible cost visible. People think "it's free to do it myself" — the calculator proves it costs $1,000-3,000/year in time + supplies
+- **Conversion features:** SMS CTA pre-filled with "I used the poop calculator," Spring Special badge, floating text button, fun facts (274 lbs of poop/dog/year, 23M bacteria per gram)
+- **Design:** Matches main site (green/orange/cream palette), mobile-optimized, animated results reveal
+- **SEO:** Schema.org WebApplication markup, added to sitemap, linked from main nav
+- **ZERO COMPETITORS HAVE THIS.** Not Poop 2 Scoop, not Dog Doody Defenders, not No. 2 Crew.
+- **TJ ACTION:** Deploy to Cloudflare. Link from GBP posts and social media ("Curious what poop costs you? → tidytailsstl.com/calculator")
 
 ### 🌐 Website Status
 - **Site:** tidytailsstl.com ✅ Live, SSL valid until May 17
