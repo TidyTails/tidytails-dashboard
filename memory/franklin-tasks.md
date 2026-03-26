@@ -6,6 +6,31 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 9:07 AM — Event Follow-Up Conversion System (Hourly Task)
+- **9:07 AM** 🔥 Post-Event Follow-Up System — Built complete lead conversion pipeline at `deliverables/event-follow-up-conversion-system.md` + interactive HTML dashboard at `dashboard/event-follow-up-system.html`.
+  - **WHY:** Saturday's Paw-ty is 48 hours away. We built print materials (8 AM task) and an event prep kit, but had ZERO post-event follow-up system. Sign-up sheets without follow-up = wasted event. Research shows businesses that follow up within 4 hours win 78% of deals. Without this, Jamie collects 20 names on paper and they sit in a drawer.
+  - **WHAT'S INCLUDED:**
+    1. **72-hour conversion timeline** — Day 0 through Day 7, specific actions each day
+    2. **Copy-paste text templates** for 3 lead tiers (🔥 Hot / 🟡 Warm / 🔵 Cool) — personalized scripts Jamie texts Saturday evening
+    3. **Monday value-add text** — Question-based re-opener for non-responders
+    4. **Wednesday urgency nudge** — Scarcity angle (filling Monday route for April)
+    5. **Saturday last-touch text** — Graceful final outreach
+    6. **Vet clinic partnership follow-up track** — Thank-you email Monday, $10 coffee gift card Friday, monthly card drops
+    7. **Monthly nurture sequence** — April/May/June drip texts for non-converters (3 months then stop)
+    8. **Lead tracking spreadsheet format** — Name, phone, dogs, neighborhood, interest level, text status, result
+    9. **Revenue projections** — Conservative $2,040/yr to best-case $5,100/yr from one event
+    10. **Jamie's complete checklist** — Before/during/after event with interactive checkboxes
+    11. **Mindset notes** — "Follow-up is NOT pushy" coaching for Jamie
+  - **HTML DASHBOARD VERSION** — Beautiful interactive page with timeline visualization, color-coded templates, checkboxes, revenue math cards. Added to dashboard index with orange highlight border.
+  - **WHY THIS OVER OTHER TASKS:**
+    - Saturday is 48 hours away. This is the MISSING PIECE between "attend event" and "get customers."
+    - Without it: 20 names on paper → drawer → forgotten → $0.
+    - With it: 20 names → 4-hour follow-up → 72-hour sequence → 3-5 paying customers → $3,000-5,000/year.
+    - The print materials (previous task) get people to the sign-up sheet. This system converts the sign-up sheet into revenue.
+  - Updated TASKS.md with Saturday event items as top priorities ✅
+  - Added to dashboard index with prominent orange highlight ✅
+  - Committed + pushed to GitHub ✅
+
 ### Thursday 8:05 AM — Print-Ready Event Materials for Saturday's Crestwood Paw-ty (Hourly Task)
 - **8:05 AM** 🖨️ Print-Ready Event Materials — Built 4 HTML print files at `deliverables/printables/`:
   - **WHY:** Saturday's Crestwood Vet Adoption Paw-ty is 48 hours away. We had an event prep KIT (strategy doc with ASCII art flyer mockups) but ZERO actual printable materials. TJ can't hand someone a markdown file. He needs to open a file, hit Print, cut the paper, and walk out the door. That gap is now closed.

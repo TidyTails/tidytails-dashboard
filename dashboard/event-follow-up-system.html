@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Follow-Up System | Tidy Tails HQ</title>
+    <style>
+        :root {
+            --green: #2d6a4f;
+            --green-light: #40916c;
+            --orange: #e76f51;
+            --cream: #fefae0;
+            --dark: #1b1b1b;
+            --gray: #6b7280;
+            --red: #dc2626;
+            --yellow: #f59e0b;
+            --blue: #3b82f6;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8f9fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+        .header p { opacity: 0.9; font-size: 1.1rem; }
+        .container { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+
+        .alert {
+            background: var(--orange);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+            font-size: 1.1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .card h2 {
+            color: var(--green);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--green), var(--orange));
+            border-radius: 2px;
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--cream);
+            border-radius: 10px;
+            border-left: 3px solid var(--green);
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 1.2rem;
+            width: 14px;
+            height: 14px;
+            background: var(--green);
+            border-radius: 50%;
+            border: 3px solid white;
+        }
+        .timeline-item.urgent::before { background: var(--red); }
+        .timeline-item.urgent { border-left-color: var(--red); }
+        .timeline-item h3 {
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        .timeline-item .day-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--green);
+            margin-bottom: 0.3rem;
+        }
+        .timeline-item.urgent .day-label { color: var(--red); }
+
+        .text-template {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            position: relative;
+        }
+        .text-template .label {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            background: white;
+            padding: 0 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            font-family: -apple-system, sans-serif;
+            border-radius: 4px;
+        }
+        .label-hot { color: var(--red); border: 1px solid var(--red); }
+        .label-warm { color: var(--yellow); border: 1px solid var(--yellow); }
+        .label-cool { color: var(--blue); border: 1px solid var(--blue); }
+
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+        }
+        .badge-hot { background: #fef2f2; color: var(--red); }
+        .badge-warm { background: #fffbeb; color: var(--yellow); }
+        .badge-cool { background: #eff6ff; color: var(--blue); }
+
+        .checklist { list-style: none; }
+        .checklist li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f3f4f6;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+        .checklist li:last-child { border-bottom: none; }
+        .checklist input[type="checkbox"] {
+            margin-top: 0.2rem;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--green);
+        }
+
+        .math-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .math-card {
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .math-card.best { background: #dcfce7; border: 2px solid var(--green); }
+        .math-card.mid { background: #fef3c7; border: 2px solid var(--yellow); }
+        .math-card.low { background: #fee2e2; border: 2px solid var(--red); }
+        .math-card .big { font-size: 1.8rem; font-weight: 800; }
+        .math-card .small { font-size: 0.85rem; color: var(--gray); }
+        .math-card .label { position: static; font-size: 0.8rem; font-weight: 700; display: block; margin-bottom: 0.3rem; }
+
+        .mindset {
+            background: linear-gradient(135deg, #fef3c7, #fde68a);
+            padding: 1rem 1.2rem;
+            border-radius: 8px;
+            margin: 0.5rem 0;
+            font-style: italic;
+        }
+
+        .vet-section {
+            background: linear-gradient(135deg, #ecfdf5, #d1fae5);
+            border: 2px solid var(--green-light);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        .vet-section h3 { color: var(--green); margin-bottom: 0.75rem; }
+
+        .nav-back {
+            display: inline-block;
+            margin-bottom: 1rem;
+            color: var(--green);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .nav-back:hover { text-decoration: underline; }
+
+        @media (max-width: 600px) {
+            .header h1 { font-size: 1.5rem; }
+            .container { padding: 1rem; }
+            .math-box { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🐾 Event Follow-Up Conversion System</h1>
+        <p>Crestwood Vet Paw-ty → Paying Customers</p>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="nav-back">← Back to Dashboard</a>
+
+        <div class="alert">
+            ⚡ SATURDAY IS 48 HOURS AWAY — Print materials + save text templates NOW
+        </div>
+
+        <!-- Revenue Math -->
+        <div class="card">
+            <h2>💰 What This Event Is Worth</h2>
+            <p>One free event + $15 in printing + disciplined follow-up =</p>
+            <div class="math-box">
+                <div class="math-card best">
+                    <div class="label">Best Case</div>
+                    <div class="big">$5,100<span style="font-size:0.9rem">/yr</span></div>
+                    <div class="small">5 customers × $85/mo</div>
+                </div>
+                <div class="math-card mid">
+                    <div class="label">Realistic</div>
+                    <div class="big">$3,400<span style="font-size:0.9rem">/yr</span></div>
+                    <div class="small">3-4 customers × $85/mo</div>
+                </div>
+                <div class="math-card low">
+                    <div class="label">Worst Case</div>
+                    <div class="big">$2,040<span style="font-size:0.9rem">/yr</span></div>
+                    <div class="small">2 customers × $85/mo</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- The 72-Hour Timeline -->
+        <div class="card">
+            <h2>⏰ The 72-Hour Conversion Window</h2>
+            <p style="margin-bottom:1rem; color: var(--gray);">Speed kills. The business that follows up within 4 hours wins the customer.</p>
+
+            <div class="timeline">
+                <div class="timeline-item urgent">
+                    <div class="day-label">Saturday Evening (Within 4 Hours!)</div>
+                    <h3>Text ALL Sign-Ups — Personalized by Interest</h3>
+                    <p>At the event, mark each sign-up: <span class="badge badge-hot">🔥 Hot</span> <span class="badge badge-warm">🟡 Warm</span> <span class="badge badge-cool">🔵 Cool</span></p>
+
+                    <div class="text-template">
+                        <span class="label label-hot">🔥 HOT — Asked about pricing</span>
+Hey [Name]! This is Jamie from Tidy Tails — great meeting you at the Paw-ty today! 🐾
+
+You mentioned wanting to get your yard cleaned up. I'd love to get you on the schedule!
+
+✅ First cleanup FREE (no strings)
+📅 Weekly: $25/wk | Biweekly: $45 | Monthly: $70 flat
+
+When works best for your first cleanup? I've got spots open this week!</div>
+
+                    <div class="text-template">
+                        <span class="label label-warm">🟡 WARM — Interested but no commit</span>
+Hey [Name]! Jamie from Tidy Tails here — loved meeting you (and [dog's name]!) at the Paw-ty today 🐾
+
+Just wanted to say thanks for stopping by! If you ever want to try our service, your first cleanup is on us — totally free, no commitment.
+
+Just text back whenever you're ready!</div>
+
+                    <div class="text-template">
+                        <span class="label label-cool">🔵 COOL — Just signed the sheet</span>
+Hey [Name]! This is Jamie from Tidy Tails — thanks for stopping by our table at the Paw-ty today! 🐾
+
+If you ever need your yard cleaned up, we do pet waste removal starting at $25/week. First one's free!
+
+Have a great weekend! 🐕</div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="day-label">Sunday (Day 1)</div>
+                    <h3>Social Proof — Post Event Recap</h3>
+                    <p>Post photos from the event on Facebook + Instagram. Tag the vet clinic. <strong>NO follow-up texts today.</strong> Let Saturday's texts breathe.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="day-label">Monday (Day 2)</div>
+                    <h3>The Value Add — Re-Open Conversations</h3>
+                    <p>Text Hot + Warm non-responders only:</p>
+                    <div class="text-template">Hey [Name]! Quick question — how many dogs do you have? Just want to make sure I give you the right quote. Most of our customers in [neighborhood] pay around $70/month for worry-free yards. 🐕</div>
+                    <p style="margin-top:0.5rem; font-size:0.9rem; color: var(--gray);">It's a question, not a pitch. People respond to questions.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="day-label">Wednesday (Day 4)</div>
+                    <h3>The Urgency Nudge — Hot Leads Only</h3>
+                    <div class="text-template">Hey [Name]! Heads up — I'm filling up my Monday route for April and wanted to make sure you got a spot if interested. No pressure at all! 😊</div>
+                    <p style="margin-top:0.5rem; font-size:0.9rem; color: var(--gray);">Scarcity + no pressure. The "filling up" is real.</p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="day-label">Saturday (Day 7)</div>
+                    <h3>The Last Touch — Everyone</h3>
+                    <div class="text-template">Hey [Name]! Happy Saturday 🐾 Just checking in one last time from the Paw-ty. If pet waste removal is ever on your radar, we're here! First cleanup is always free. Have a great weekend!</div>
+                    <p style="margin-top:0.5rem; font-size:0.9rem; color: var(--gray);">After this: move to monthly nurture. Don't keep texting.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vet Follow-Up -->
+        <div class="card">
+            <h2>🏥 Vet Clinic Partnership Follow-Up</h2>
+            <p style="margin-bottom:1rem;">This is potentially MORE valuable than individual sign-ups. One vet = 2-5 referrals/month for years.</p>
+
+            <div class="vet-section">
+                <h3>Monday — Thank You Email</h3>
+                <div class="text-template">Hi [Clinic Name] team —
+
+Thank you SO much for having us at Saturday's Paw-ty! It was such a fun event.
+
+I left business cards and a partnership one-pager at the front desk. If you'd like to recommend us to clients, we'd love to work together! We do professional pet waste removal — keeps yards clean and reduces parasite exposure (giardia, roundworm, etc.).
+
+— Jamie, Tidy Tails STL
+314-850-7140 | tidytailsstl.com</div>
+
+                <h3 style="margin-top:1rem;">Friday — The $10 Move</h3>
+                <p>Drop off a <strong>$10 coffee gift card</strong> for front desk staff + 20 more business cards. Front desk staff are the ones who recommend services. Make them like you. <strong>Highest-ROI $10 you'll ever spend.</strong></p>
+
+                <h3 style="margin-top:1rem;">Monthly — Stay Top of Mind</h3>
+                <p>Stop by once/month with fresh cards. Ask "has anyone asked about yard cleanup?" Simple. Consistent. Compounding.</p>
+            </div>
+        </div>
+
+        <!-- Monthly Nurture -->
+        <div class="card">
+            <h2>📱 Monthly Nurture Texts (Non-Converters)</h2>
+            <p style="margin-bottom:1rem; color: var(--gray);">One text per month. Stop after 3 months of no response.</p>
+
+            <div class="text-template">
+                <span class="label label-warm">April</span>
+Spring cleaning your house? Don't forget the yard! 🐾 Tidy Tails pet waste removal — first cleanup free. Text back if you want to try it out! — Jamie</div>
+
+            <div class="text-template">
+                <span class="label label-warm">May</span>
+Summer's coming and the poop isn't cleaning itself 😅 Friendly reminder — we do weekly, biweekly, or monthly yard cleanups. $25/wk. Text me to give it a shot! — Jamie</div>
+
+            <div class="text-template">
+                <span class="label label-warm">June</span>
+BBQ season! 🌭🐕 Nothing kills a backyard hangout like stepping in... you know. We handle the cleanup so you can enjoy your yard. First one's free! — Jamie</div>
+        </div>
+
+        <!-- Checklist -->
+        <div class="card">
+            <h2>✅ Jamie's Complete Checklist</h2>
+
+            <h3 style="margin-bottom:0.5rem; color: var(--orange);">Before Saturday</h3>
+            <ul class="checklist">
+                <li><input type="checkbox"> Print sign-up sheets (2 copies)</li>
+                <li><input type="checkbox"> Print flyers (25 sheets = 50 half-sheets)</li>
+                <li><input type="checkbox"> Print business cards (3 pages = 24 cards on cardstock)</li>
+                <li><input type="checkbox"> Print vet partnership one-pager (2 copies)</li>
+                <li><input type="checkbox"> Charge phone fully</li>
+                <li><input type="checkbox"> Save text templates in phone Notes app</li>
+                <li><input type="checkbox"> Generate QR code at qr-code-generator.com → tape on flyers</li>
+            </ul>
+
+            <h3 style="margin: 1rem 0 0.5rem; color: var(--orange);">During Saturday</h3>
+            <ul class="checklist">
+                <li><input type="checkbox"> Collect names + phones on sign-up sheet</li>
+                <li><input type="checkbox"> Mark interest: 🔥 Hot / 🟡 Warm / 🔵 Cool</li>
+                <li><input type="checkbox"> Note dog names and neighborhoods</li>
+                <li><input type="checkbox"> Give one-pager to vet office manager</li>
+                <li><input type="checkbox"> Take 3-5 photos for social media</li>
+            </ul>
+
+            <h3 style="margin: 1rem 0 0.5rem; color: var(--red);">Saturday Evening (CRITICAL)</h3>
+            <ul class="checklist">
+                <li><input type="checkbox"> Enter all sign-ups into tracking sheet</li>
+                <li><input type="checkbox"> Sort into Hot / Warm / Cool</li>
+                <li><input type="checkbox"> Send personalized texts to ALL sign-ups</li>
+            </ul>
+
+            <h3 style="margin: 1rem 0 0.5rem; color: var(--orange);">Next Week</h3>
+            <ul class="checklist">
+                <li><input type="checkbox"> Sunday: Post event recap on FB + IG</li>
+                <li><input type="checkbox"> Monday: Text hot/warm non-responders</li>
+                <li><input type="checkbox"> Monday: Send vet thank-you email</li>
+                <li><input type="checkbox"> Wednesday: Urgency nudge to hot leads</li>
+                <li><input type="checkbox"> Friday: Coffee gift card + cards at vet</li>
+                <li><input type="checkbox"> Saturday: Final touch to all non-responders</li>
+            </ul>
+        </div>
+
+        <!-- Mindset -->
+        <div class="card">
+            <h2>🧠 Mindset Notes for Jamie</h2>
+            <div class="mindset">
+                💡 <strong>Follow-up is NOT pushy.</strong> These people literally wrote down their phone number at your booth. They want to hear from you.
+            </div>
+            <div class="mindset">
+                ⚡ <strong>Speed wins.</strong> The business that follows up within 4 hours gets the customer. Wait until Monday and you lose them.
+            </div>
+            <div class="mindset">
+                🎯 <strong>Personalize everything.</strong> "Hey Jane, loved meeting Biscuit!" beats "Dear valued lead" every single time.
+            </div>
+            <div class="mindset">
+                🏥 <strong>The vet is the long game.</strong> One partnership = 2-5 referrals/month for YEARS. Invest in that relationship.
+            </div>
+            <div class="mindset">
+                🤷 <strong>Don't take silence personally.</strong> People are busy. The seed is planted. They may convert in 2 months when the yard gets bad enough.
+            </div>
+        </div>
+
+        <p style="text-align:center; color: var(--gray); margin-top: 2rem; font-size: 0.85rem;">
+            Built by Franklin | Tidy Tails HQ | March 26, 2026
+        </p>
+    </div>
+</body>
+</html>

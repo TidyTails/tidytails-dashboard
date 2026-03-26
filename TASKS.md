@@ -33,13 +33,15 @@ Everything else is noise until customer count moves.
 - [x] Email automation operational
 
 ### 📝 TJ/Jamie Action Items (ranked by ROI)
-1. **🔥 Post in 2-3 FB groups this week** — Fresh posts ready: `ready-to-post/spring-2026-week-of-mar26.md` (5 min each)
-2. **🔥 Post on Nextdoor** (5 min, $0) — Highest ROI untapped channel
-3. **Submit to 5 directories** (45 min) — Bing Places, Apple Business Connect, MapQuest, Petworks, BringFido
-4. **Get 2 more Google reviews** (5 min) — Goal: 8+ reviews. Scripts ready.
-5. **Update customer list** — Is it still 8? Any churn? Any new from FB posts?
-6. **Launch $7/day Facebook Ads** — Foundation is now ready (GBP done, reviews done, site indexed)
-7. **Make 3 commercial calls** — Jamie's Hot 10 playbook ready
+1. **🔥🔥 SATURDAY: Print event materials TONIGHT** — All files in `deliverables/printables/` — open → print → done
+2. **🔥🔥 SATURDAY: Save follow-up text templates** — `dashboard/event-follow-up-system.html` has copy-paste texts for Hot/Warm/Cool leads
+3. **🔥 Post in 2-3 FB groups this week** — Fresh posts ready: `ready-to-post/spring-2026-week-of-mar26.md` (5 min each)
+4. **🔥 Post on Nextdoor** (5 min, $0) — Highest ROI untapped channel
+5. **Submit to 5 directories** (45 min) — Bing Places, Apple Business Connect, MapQuest, Petworks, BringFido
+6. **Get 2 more Google reviews** (5 min) — Goal: 8+ reviews. Scripts ready.
+7. **Update customer list** — Is it still 8? Any churn? Any new from FB posts?
+8. **Launch $7/day Facebook Ads** — Foundation is now ready (GBP done, reviews done, site indexed)
+9. **Make 3 commercial calls** — Jamie's Hot 10 playbook ready
 
 ### ⚠️ Website Issues (Need Deploy Access)
 - 5 city pages have GENERIC titles: olivette, south-city, south-county, university-city, wentzville
