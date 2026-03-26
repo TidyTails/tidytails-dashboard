@@ -6,6 +6,32 @@
 
 ## March 25, 2026 (Wednesday)
 
+### Wednesday 7:04 PM — Shed Ads Week 2: March 31 - April 6 (Hourly Task)
+- **7:04 PM** 🏠 Shed Marketplace Ads Batch — Created next week's complete ad package at `deliverables/shed-marketplace-ads-mar31-apr6.md`.
+  - **WHY:** Current shed ads (Mar 24-30) expire Sunday. Without a next batch, the posting cadence breaks. Darius/TJ had NO copy ready for Q2 Week 1. Consistency is what builds Marketplace algorithm favor — missing a week resets momentum.
+  - **WHAT'S INCLUDED:**
+    - **7 Facebook Marketplace ads** — one per day, each with a unique angle:
+      1. April Fool's Day humor (garage joke — shareable, funny)
+      2. Q2 fresh start psychology (new quarter energy)
+      3. Tax refund timing (avg refund $3,100 — perfect for down payment)
+      4. Easter weekend family prep (yard shame motivator)
+      5. Workshop/project season (DIY buyer audience)
+      6. She-shed/man cave lifestyle (enjoyment buyers, not just storage)
+      7. Tariff price reality (35.19% duty — "today's price IS the deal")
+    - **3 Instagram captions** for @reddshedredemption (Tue/Thu/Sat cadence)
+    - **Full posting schedule** with exact dates and platforms
+    - **Talk track** for "I'll wait until after Easter" objection
+    - **Key selling angles** summary for the week
+    - All ads include financing options (0%, RTO, 9.99% APR) and Darius contact
+  - **DESIGN CHOICES:**
+    - April Fool's ad leads the week — humor gets shared, broadens reach beyond storage-seekers
+    - Tax refund ad on Thursday = payday alignment for many
+    - Easter prep on Friday = weekend planning mindset
+    - Double Saturday post (workshop + lifestyle) = max weekend traffic
+    - Sunday close with tariff urgency = decision pressure before new week
+  - Updated task board with new ads section under Sheds ✅
+  - Committed + pushed to GitHub ✅
+
 ### Wednesday 6:05 PM — Spring Special Landing Page: The Conversion Funnel (Hourly Task)
 - **6:05 PM** 🌸 Spring Special Landing Page — Built dedicated conversion landing page at `tidy-tails/website/spring.html` (live at `/spring`).
   - **WHY:** We have 20+ marketing deliverables that drive traffic — paid ads, GBP posts, Nextdoor campaigns, event flyers, directory listings — but they ALL point to the homepage. A homepage has navigation, multiple CTAs, blog links, city pages — distractions. A landing page has ONE job: convert. Rule #1 of paid ads: never send traffic to your homepage. We needed a focused `/spring` URL that every campaign can link to.

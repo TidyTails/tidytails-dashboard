@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-25 4:10 PM CST — by Franklin*
+*Last updated: 2026-03-25 7:10 PM CST — by Franklin*
 
 ---
 
@@ -214,10 +214,15 @@ Stop leaving money on the table. With 7+ competitors dead, we have pricing power
 - **CRM:** Live at dashboard `/crm/`
 - **Calculator:** Live at `backyard-buildings-stl/calculator.html`
 
+### 📝 Fresh Ad Copy — Ready to Post
+- **This week (Mar 24-30):** `deliverables/shed-marketplace-ads-mar24-30.md` — 7 Marketplace ads + 3 IG posts
+- **NEW: Next week (Mar 31 - Apr 6):** `deliverables/shed-marketplace-ads-mar31-apr6.md` — 7 Marketplace ads + 3 IG posts ✅
+  - April Fool's garage joke, Q2 fresh start, tax refund timing, Easter prep, workshop/lifestyle angles, tariff urgency
+  - Full posting schedule included — one ad per day, IG on Tue/Thu/Sat
+
 ### 📝 To Do
 - [ ] **Get pipeline update from TJ** — Last data is 5+ weeks old
 - [ ] **HTTPS enforcement** for backyardbuildingsstl.com
-- [ ] **New ad copy** — Need TJ direction on current promos/inventory
 - [ ] **Follow-up sequence** for aged leads
 
 ---
