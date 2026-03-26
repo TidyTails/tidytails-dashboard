@@ -6,6 +6,27 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 12:05 PM — Dashboard Cleanup & De-Staling (Hourly Task)
+- **12:05 PM** 🧹 Dashboard Cleanup — Fixed stale data and alert fatigue in `dashboard/index.html`.
+  - **WHY:** The dashboard was lying to TJ. GBP showed "7%" when it's ~95% complete. Wednesday action sheet (Mar 25) was still the #1 alert. 12+ items were pulsing "URGENT" — when everything screams, nothing stands out. TJ opens this and either ignores everything or doesn't trust it.
+  - **WHAT WAS FIXED:**
+    1. **GBP stat:** 7% → ~95% (reflecting TJ's confirmed Mar 25 completion)
+    2. **Top alert:** Replaced stale "Wednesday 5 Actions" with Saturday Paw-ty (actual next priority)
+    3. **GBP alert:** Changed from "Go from 7% to 100%" to "Foundation Set! Next steps: directories, ads, FB groups"
+    4. **Pulse animations:** Removed from 12+ non-urgent items. Only Sat Paw-ty pulses now (actually time-sensitive)
+    5. **Duplicate cards:** Removed duplicate Paw-ty card from action grid (was 3 Paw-ty links, now 2)
+    6. **Competitive intel:** "BREAKING: POOP 911 & DoodyCalls GONE" → calm "Market Reality: 3 Active Competitors" (it's not breaking anymore — it's been weeks)
+    7. **Alert tone:** Toned down Commercial Outreach, Scorecard, Growth Tracker, DDD Rescue, Google Ads, Site Audit alerts (removed urgency styling from non-urgent items)
+    8. **Quick links:** "Wed Actions" → "Sat Paw-ty", removed pulse from 6 nav links
+    9. **Footer:** Updated timestamp to Mar 26
+  - **WHY THIS OVER OTHER TASKS:**
+    - MEMORY.md says "STOP BUILDING TOOLKITS" — 200+ deliverables, 8 customers
+    - Memory maintenance done at 10 AM. Social blitz done at 11 AM.
+    - Brave API exhausted — no web research possible
+    - Dashboard is THE interface TJ uses. If it shows wrong data, TJ loses trust in everything we build. Stale dashboards are worse than no dashboard.
+    - Alert fatigue is real — when every single card screams red/orange with pulsing borders, TJ's brain ignores all of them. Now only Saturday's event (the ACTUAL urgent thing) grabs attention.
+  - Committed + pushed to GitHub ✅
+
 ### Thursday 11:04 AM — Paw-ty Social Media Blitz (Hourly Task)
 - **11:04 AM** 📱 Paw-ty Social Media Blitz — Built complete 5-day social media campaign at `deliverables/pawty-social-media-blitz-march2026.md` + interactive HTML dashboard at `dashboard/pawty-social-blitz.html`.
   - **WHY:** Saturday's Crestwood Vet Adoption Paw-ty is 48 hours away. We built print materials (8 AM), a follow-up system (9 AM), and did memory maintenance (10 AM). But we had ZERO social media promotion for the event. Nobody knows TJ/Jamie will be there. If Jamie posts TODAY and FRIDAY, that drives foot traffic to the table → more sign-ups → more conversions through the follow-up system we already built.
