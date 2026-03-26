@@ -392,4 +392,18 @@
   - **KEY INSIGHT:** All the research and content creation is DONE. The gap isn't information — it's execution. This plan bridges that gap.
   - **IF TIME IS LIMITED:** Days 1, 3, and 5 alone (GBP + Nextdoor + Reviews) could generate 5-10 leads in 2 weeks.
 
+### Wednesday 10:04 PM — Live Competitive Landscape Crawl: STL Is WIDE OPEN (Hourly Task)
+- **10:04 PM** 🔍 Live Competitor Verification — Crawled all 10 known STL pet waste competitors. Full report at `deliverables/stl-competitor-landscape-march26-2026.md`.
+  - **WHY:** Last scan was early morning Mar 25. Needed fresh verification before TJ starts the 7-Day Blitz Sprint. If market conditions changed, strategy needs adjusting.
+  - **MAJOR FINDINGS:**
+    - ☠️ **9 of 10 competitors confirmed DEAD/GONE:** Doggie Doodies (DNS dead), POOP 911 MO (404), Scoop Soldiers STL ("we don't service your area"), Pet Butler (never had STL location), Swoop Dog Poop (DNS dead), Poop Patrol (dead), Dirty Dog Poo Crew, Little Stinkers, Pawfect Waste Solutions (all DNS dead)
+    - ⚠️ **DoodyCalls STL: LIKELY ZOMBIE.** Landing page exists but NOT listed on corporate locations directory. MO page empty. Pricing/service-areas pages redirect to generic locations. 70% chance dead franchise with orphaned webpage.
+    - ✅ **Tidy Tails may be the ONLY dedicated pet waste removal service in the entire STL metro**
+  - **STRATEGIC IMPLICATIONS:**
+    - **Pricing power:** $70/mo is underpriced with zero competition. New customer rate could be $80-90/mo.
+    - **SEO vacuum:** Dead competitors = weakened search. GBP optimization will dominate.
+    - **150-300 orphaned customers** across dead competitors, still looking or letting yards pile up
+    - **Positioning:** "The only dedicated pet waste removal service in St. Louis" is factually true
+  - **TJ ACTION:** Call DoodyCalls STL at (314) 230-8082 to confirm dead. If dead → update all marketing to "only service in STL" positioning.
+
 *Previous: `memory/archive/franklin-tasks-mar24-full.md` (20+ tasks)*
