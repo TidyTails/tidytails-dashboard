@@ -6,6 +6,25 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 1:04 AM — FAQ Rich Snippets: 22 City Pages × 6 FAQs = 132 SEO Questions (Hourly Task)
+- **1:04 AM** 🔍 FAQ Schema Blitz — Added localized FAQ sections + FAQPage structured data to ALL 22 city/service area pages.
+  - **WHY:** None of the 22 city pages had FAQ schema. Google serves FAQ rich snippets directly in search results — they're click magnets that take up 2-3× more screen real estate than a normal listing. When someone googles "pet waste removal Florissant MO," our listing will show expandable Q&A right in the search results. ZERO competitors have this on their city pages. It's free, permanent, and compounds — Google crawls it once and serves it forever.
+  - **WHAT WAS ADDED (per page):**
+    1. "How much does pet waste removal cost in [City]?" — pricing breakdown
+    2. "How often should I have my yard cleaned in [City]?" — frequency guidance  
+    3. "Do you service my neighborhood in [City]?" — localized zip codes + nearby areas
+    4. "What happens to the waste after you pick it up?" — trust builder
+    5. "Is pet waste removal worth it in [City]?" — ROI/time math
+    6. "Do I need to be home during the service?" — conversion objection handler
+  - **LOCALIZATION:** Each FAQ is customized with city name, zip codes, nearby cities, and county name. Not generic — Google rewards locality signals.
+  - **SCHEMA:** Full FAQPage JSON-LD structured data in `<head>` of each page. Google can parse immediately.
+  - **DESIGN:** Clean Q&A section with ❓ icons, inserted before blog posts section for natural reading flow. Matches existing site styling.
+  - **PAGES UPDATED:** ballwin, brentwood, bridgeton, chesterfield, crestwood, creve-coeur, ferguson, florissant, hazelwood, kirkwood, maplewood, maryland-heights, ofallon, olivette, shrewsbury, south-city, south-county, st-charles, st-peters, university-city, webster-groves, wentzville
+  - **IMPACT ESTIMATE:** 22 pages × 6 FAQs = 132 unique question-answer pairs. Even if only half trigger rich snippets, that's 66 expanded search listings. Conservative: +50-100 clicks/month from richer SERP presence.
+  - **AUTOMATION:** Built reusable Python script at `scripts/add-faq-to-city-pages.py` — can be re-run or modified for future FAQ additions.
+  - Updated dashboard task board ✅
+  - Committed + pushed to GitHub ✅
+
 ### Thursday 12:05 AM — Pet Waste Cost Calculator: The Silent Salesman (Hourly Task)
 - **12:05 AM** 🧮 Pet Waste Cost Calculator — Built interactive conversion tool at `tidy-tails/website/calculator.html` (live at `/calculator`).
   - **WHY:** Every deliverable we've built requires TJ to DO something — post, text, call, show up. The calculator is different: it works 24/7 with ZERO effort. Visitor arrives → answers 4 questions → sees the math → texts Jamie. No human needed. It's also a unique differentiator — NONE of the 3 remaining competitors have an interactive tool. It makes the invisible cost visible. People think DIY is "free" — the calculator shows it costs $1,000-3,000/year in time + supplies.

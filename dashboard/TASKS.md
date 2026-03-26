@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-26 12:05 AM CST — by Franklin*
+*Last updated: 2026-03-26 1:04 AM CST — by Franklin*
 
 ---
 
@@ -162,7 +162,7 @@ Interactive tool at `/calculator` — visitors input their dogs, cleanup frequen
 - **Site:** tidytailsstl.com ✅ Live, SSL valid until May 17
 - **Google Search Console:** Verified ✅, 17 pages discovered
 - **Google Reviews:** 6 reviews, 5.0 ★ — PASSED 5+ threshold for Map Pack
-- **City Pages:** 26 landing pages deployed
+- **City Pages:** 26 landing pages deployed — **NOW WITH FAQ RICH SNIPPETS** (22 pages × 6 FAQs = 132 localized questions + FAQPage schema)
 - **Blog:** 13 posts live (newest: "Pet Waste Removal Companies in St. Louis — Who's Still Operating in 2026?" — competitor-capture SEO post targeting ALL dead competitor brand names)
 - **NEW: Testimonials section** added with 3 reviews + 5.0★ badge ✅
 - **NEW: Spring promo banner** — "First cleanup FREE" seasonal offer ✅
