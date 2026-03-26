@@ -1,6 +1,6 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-26 6:04 AM CST — by Franklin*
+*Last updated: 2026-03-26 7:04 AM CST — by Franklin*
 
 ---
 
@@ -72,7 +72,22 @@ The STL pet waste market has COLLAPSED. Only 3 active competitors remain:
 - 8 posts across Nextdoor, FB groups, GBP, and FB Page
 - **Time: 40 min. Cost: $0. Expected: 5-15 warm leads in 2 weeks.**
 
-### 📞 NEW: Hot 10 Commercial Call Playbook — Jamie's Priority Sheet
+### 🚪 NEW: Door Hanger & Yard Sign Kit — Offline Marketing Launch
+You service ~8 yards/week = 40-80 neighbor households who see your truck but get ZERO touchpoint. This kit fixes that.
+- **Kit:** `deliverables/door-hanger-yard-sign-kit.md`
+- **3 door hanger designs** (copy-paste ready for Canva/VistaPrint):
+  - Version A: "We Were Just Next Door" (social proof)
+  - Version B: "Spring Cleanup Special" (seasonal urgency)
+  - Version C: "Problem Awareness" (pain point)
+- **Yard sign design** — place in customer's yard during every visit (free advertising)
+- **3-minute routine:** Hang 5 doors after every cleanup. Already on the street = zero extra trips.
+- **Cost:** $80-105 total (250 hangers + 3 yard signs)
+- **ROI:** Land just 1 customer = $840/year = **800-1,050% return**
+- **Projection:** 40 hangers/week × 1.5% conversion = 2-3 leads/month = 1-2 new customers
+- **Quick start:** Print 20 on cardstock at Staples TODAY while waiting for bulk order
+- **EVERY service visit should include this.** It's 3 minutes of effort for potentially your best marketing channel.
+
+### 📞 Hot 10 Commercial Call Playbook — Jamie's Priority Sheet
 60+ commercial leads at "New" status = ZERO revenue. This playbook turns the leads file into action.
 - **Playbook:** `deliverables/hot-10-commercial-call-playbook.md`
 - **10 highest-impact calls** ranked by revenue potential:

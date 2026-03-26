@@ -6,6 +6,25 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 7:04 AM — Door Hanger & Yard Sign Kit (Hourly Task)
+- **7:04 AM** 🚪 Door Hanger & Yard Sign Kit — Built complete offline marketing kit at `deliverables/door-hanger-yard-sign-kit.md`.
+  - **WHY:** We have 50+ digital deliverables but ZERO physical/offline marketing materials. TJ services ~8 yards per week = 40-80 neighbor households who see the truck but get zero touchpoint. Door hangers are the #1 highest-converting marketing tool for local home services (1-3% conversion rate), and TJ is ALREADY ON THE STREET. This is the lowest-effort, highest-ROI gap in the entire marketing system.
+  - **WHAT'S INCLUDED:**
+    - **3 door hanger designs** with complete front/back copy:
+      - Version A: "We Were Just Next Door" (social proof / neighbor angle)
+      - Version B: "Spring Cleanup Special" (seasonal urgency)
+      - Version C: "Problem Awareness" (pain point / lifestyle upgrade)
+    - **Yard sign design** — 18"×24" corrugated plastic, place during every service visit
+    - **3-minute execution routine** — hang 5 doors after every cleanup, no extra trips
+    - **Print ordering guide** — 5 providers compared (Canva Print, VistaPrint, GotPrint, UPrinting, Staples)
+    - **DIY option** for immediate start while waiting for print delivery
+    - **Tracking system** — simple phone notes log + "how'd you hear about us" tracking
+    - **ROI projection** — $80-105 total investment → 800-1,050% ROI from just 1 new customer ($840/yr)
+    - **Lead response template** — copy-paste text for when door hanger leads text in
+    - **Quick start checklist** — 8 steps from today to first hanger on a door
+  - **IMPACT:** 40 door hangers/week × 1.5% conversion = 2-3 new leads/month = 1-2 new customers/month at $0 ongoing cost. This is the offline version of the digital blitz — but with higher trust (neighbor social proof) and zero ad spend.
+  - Committed + pushed to GitHub ✅
+
 ### Thursday 6:04 AM — Hot 10 Commercial Call Playbook (Hourly Task)
 - **6:04 AM** 📞 Hot 10 Commercial Call Playbook — Built Jamie's prioritized call sheet at `deliverables/hot-10-commercial-call-playbook.md`.
   - **WHY:** We have 60+ commercial leads at "New" status = ZERO revenue. Every lead was researched, qualified, and logged — but nobody's called any of them. The leads file is 1,100+ lines long. Jamie can't read that and know who to call first. This playbook picks the 10 highest-impact calls, ranks them, and gives Jamie word-for-word scripts.
