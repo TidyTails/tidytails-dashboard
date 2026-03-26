@@ -4,6 +4,23 @@
 
 ---
 
+### Wednesday 11:04 PM — April Content Pack: 23 Posts Ready to Go (Hourly Task)
+- **11:04 PM** 📱 April 2026 Full Social Media & Shed Ad Pack — Created two deliverables covering ALL of April:
+  - **Tidy Tails Social:** `deliverables/april-2026-social-media-pack.md` — 16 scheduled posts + 4 bonus posts across Facebook, Nextdoor, and Instagram
+    - Week 1: New Month/Spring Reset
+    - Week 2: "Only One Left" positioning + Tax Refund
+    - Week 3: Multi-Dog Families + Rainy Season
+    - Week 4: Earth Day + Health Angle + Month-End Push
+    - Bonus posts: The Math, The Comparison, New Puppy, Moving
+    - Platform tips, hashtags, photo instructions, tracking table
+  - **Shed Ads:** `deliverables/shed-marketplace-ads-apr7-30.md` — 7 Marketplace ads covering April 7-30
+    - Pairs with existing `shed-marketplace-ads-mar31-apr6.md` for full month coverage
+    - Angles: Tax Refund Last Call, The Tarp Guy, Lumber Tariffs, Spring Projects, She-Shed/Home Office, TuffShed vs Cheap, End of Month Push
+    - All include current financing (0%, 9.99% APR, RTO) and tariff context
+  - **WHY NOW:** Current social posts (Mar 24-30) expire Sunday. GBP calendar doesn't start until Apr 10. That's a 10-day content gap right when TJ has momentum (first FB group post on Mar 24!). This closes the gap completely.
+  - **TOTAL:** 23 ready-to-post pieces of content. ~53 minutes total posting time across the entire month. $0 cost.
+  - **TJ ACTION:** Start posting Monday 3/31 with Post #1. 3 minutes. Copy → paste → photo → done.
+
 ## March 25, 2026 (Wednesday)
 
 ### Wednesday 9:04 PM — Dead Competitor SEO Blog Post (Hourly Task)

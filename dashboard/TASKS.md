@@ -27,6 +27,14 @@
 
 **Also:** Install GA4 so we can actually measure what GBP drives. 15 minutes, $0.
 
+### 📱 APRIL CONTENT — FULLY LOADED (23 Posts Ready)
+**NEW (Mar 25 11PM):** Complete April content pack created:
+- **16 Tidy Tails social posts** (FB + Nextdoor + IG) — `deliverables/april-2026-social-media-pack.md`
+- **7 Shed Marketplace ads** (Apr 7-30) — `deliverables/shed-marketplace-ads-apr7-30.md`
+- **Plus** existing shed ads (Mar 31-Apr 6) and GBP posts (Apr 10-May 8)
+- **Total: 23+ pieces of content, ~53 min posting time, $0 cost**
+- **Start Monday 3/31 with Post #1.** No gap between March and April content.
+
 ### 🔥 THIS WEEK — The 7-Day Blitz Sprint
 A complete day-by-day execution plan is ready: `deliverables/7-day-customer-blitz-sprint.md`
 
