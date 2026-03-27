@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tidy Tails — Commercial Service Proposal</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  
+  /* SCREEN STYLES */
+  body { 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; 
+    background: #f0f4f8; 
+    color: #1a1a2e; 
+    line-height: 1.6;
+  }
+
+  .editor-bar {
+    background: #1a1a2e;
+    color: #fff;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+  }
+  .editor-bar h2 { font-size: 0.95em; color: #22c55e; }
+  .editor-controls { display: flex; gap: 10px; flex-wrap: wrap; }
+  .editor-controls input, .editor-controls select {
+    background: #2a2a3e;
+    border: 1px solid #3a3a5e;
+    color: #fff;
+    padding: 7px 12px;
+    border-radius: 8px;
+    font-size: 0.82em;
+    min-width: 160px;
+  }
+  .editor-controls input::placeholder { color: #888; }
+  .btn-print {
+    background: #22c55e;
+    color: #000;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 0.88em;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-print:hover { background: #16a34a; color: #fff; }
+
+  .proposal-wrap {
+    max-width: 800px;
+    margin: 24px auto;
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.12);
+  }
+
+  /* HEADER */
+  .prop-header {
+    background: linear-gradient(135deg, #064e3b 0%, #0a7a5a 50%, #059669 100%);
+    color: #fff;
+    padding: 40px 48px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .prop-header::after {
+    content: '🐕💩';
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 4em;
+    opacity: 0.15;
+  }
+  .prop-header .brand { font-size: 2em; font-weight: 900; letter-spacing: -0.5px; }
+  .prop-header .tagline { font-size: 0.9em; opacity: 0.85; margin-top: 4px; }
+  .prop-header .doc-label {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: #fff;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.75em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 16px;
+  }
+
+  /* BODY */
+  .prop-body { padding: 40px 48px; }
+
+  .to-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding-bottom: 28px;
+    border-bottom: 2px solid #e5e7eb;
+  }
+  .to-block .to-col label { 
+    font-size: 0.7em; 
+    font-weight: 800; 
+    text-transform: uppercase; 
+    letter-spacing: 1px;
+    color: #6b7280; 
+    display: block; 
+    margin-bottom: 6px; 
+  }
+  .to-block .to-col .val { 
+    font-size: 1.05em; 
+    font-weight: 700; 
+    color: #111827; 
+  }
+  .to-block .to-col .sub { 
+    font-size: 0.85em; 
+    color: #6b7280; 
+    margin-top: 2px;
+  }
+
+  /* SECTION STYLES */
+  .section { margin-bottom: 32px; }
+  .section h2 {
+    font-size: 1em;
+    font-weight: 800;
+    color: #064e3b;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #d1fae5;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section h2 .icon { font-size: 1.1em; }
+
+  /* PROBLEM BOX */
+  .problem-box {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-left: 4px solid #ef4444;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+  .problem-box h3 { color: #b91c1c; font-size: 0.9em; font-weight: 700; margin-bottom: 8px; }
+  .problem-box ul { list-style: none; }
+  .problem-box ul li { font-size: 0.875em; color: #374151; margin-bottom: 6px; padding-left: 18px; position: relative; }
+  .problem-box ul li::before { content: '⚠'; position: absolute; left: 0; }
+
+  /* SOLUTION BOX */
+  .solution-box {
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-left: 4px solid #22c55e;
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .solution-box h3 { color: #15803d; font-size: 0.9em; font-weight: 700; margin-bottom: 10px; }
+  .solution-box ul { list-style: none; }
+  .solution-box ul li { font-size: 0.875em; color: #374151; margin-bottom: 7px; padding-left: 24px; position: relative; }
+  .solution-box ul li::before { content: '✅'; position: absolute; left: 0; font-size: 0.85em; }
+
+  /* PRICING TABLE */
+  .pricing-table { width: 100%; border-collapse: collapse; }
+  .pricing-table th {
+    background: #064e3b;
+    color: #fff;
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 0.8em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .pricing-table th:last-child { text-align: right; }
+  .pricing-table td {
+    padding: 13px 16px;
+    font-size: 0.88em;
+    border-bottom: 1px solid #e5e7eb;
+  }
+  .pricing-table tr:last-child td { border-bottom: none; }
+  .pricing-table tr:nth-child(even) td { background: #f9fafb; }
+  .pricing-table td.price { 
+    text-align: right; 
+    font-weight: 800; 
+    color: #064e3b; 
+    font-size: 1em;
+  }
+  .pricing-table td.note { color: #6b7280; font-size: 0.8em; }
+  .recommended-row td { background: #d1fae5 !important; }
+  .recommended-row td.price { color: #065f46; }
+  .rec-badge {
+    display: inline-block;
+    background: #22c55e;
+    color: #fff;
+    font-size: 0.65em;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* CUSTOM QUOTE SECTION */
+  .custom-quote {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-left: 4px solid #f59e0b;
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-top: 16px;
+  }
+  .custom-quote h3 { color: #92400e; font-size: 0.9em; font-weight: 700; margin-bottom: 6px; }
+  .custom-quote p { font-size: 0.85em; color: #374151; }
+  .custom-quote .quote-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px dashed #fde68a;
+    font-size: 0.88em;
+  }
+  .custom-quote .quote-line:last-child { border-bottom: none; font-weight: 700; }
+  .custom-quote .quote-label { color: #374151; }
+  .custom-quote .quote-val { color: #064e3b; font-weight: 700; }
+
+  /* WHY US */
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .why-card {
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px;
+  }
+  .why-card .why-icon { font-size: 1.4em; margin-bottom: 8px; }
+  .why-card h4 { font-size: 0.88em; font-weight: 700; color: #111827; margin-bottom: 4px; }
+  .why-card p { font-size: 0.82em; color: #4b5563; line-height: 1.5; }
+
+  /* TERMS */
+  .terms-list { list-style: none; }
+  .terms-list li { 
+    font-size: 0.875em; 
+    color: #374151; 
+    margin-bottom: 8px; 
+    padding-left: 22px; 
+    position: relative; 
+  }
+  .terms-list li::before { content: '→'; position: absolute; left: 0; color: #22c55e; font-weight: 800; }
+
+  /* CTA */
+  .cta-block {
+    background: linear-gradient(135deg, #064e3b, #065f46);
+    color: #fff;
+    border-radius: 12px;
+    padding: 28px 32px;
+    text-align: center;
+  }
+  .cta-block h3 { font-size: 1.2em; font-weight: 900; margin-bottom: 8px; }
+  .cta-block p { font-size: 0.875em; opacity: 0.85; margin-bottom: 20px; }
+  .cta-contact { 
+    display: flex; 
+    gap: 16px; 
+    justify-content: center; 
+    flex-wrap: wrap;
+  }
+  .cta-contact a { 
+    display: inline-block;
+    background: #22c55e; 
+    color: #000; 
+    text-decoration: none;
+    font-weight: 800; 
+    font-size: 0.95em;
+    padding: 12px 24px;
+    border-radius: 10px;
+  }
+  .cta-contact .secondary-cta {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-weight: 700;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+  }
+
+  /* FOOTER */
+  .prop-footer {
+    background: #f9fafb;
+    border-top: 1px solid #e5e7eb;
+    padding: 20px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.78em;
+    color: #9ca3af;
+  }
+  .prop-footer strong { color: #374151; }
+
+  /* EDITABLE FIELDS */
+  [contenteditable] {
+    border-bottom: 2px dashed #22c55e;
+    display: inline;
+    min-width: 40px;
+    outline: none;
+    cursor: text;
+    transition: background 0.2s;
+    padding: 0 2px;
+  }
+  [contenteditable]:focus { background: #d1fae5; border-bottom-color: #065f46; border-radius: 4px; }
+  [contenteditable]:empty::before { content: attr(data-placeholder); color: #9ca3af; font-style: italic; }
+
+  /* PRINT STYLES */
+  @media print {
+    .editor-bar { display: none !important; }
+    body { background: #fff; }
+    .proposal-wrap { 
+      margin: 0; 
+      border-radius: 0; 
+      box-shadow: none; 
+      max-width: 100%;
+    }
+    .prop-body { padding: 32px 40px; }
+    .prop-header { padding: 32px 40px; }
+    .prop-header::after { opacity: 0.08; }
+    [contenteditable] { border-bottom: none; }
+    .cta-contact a { background: #064e3b !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- EDITOR BAR (screen only) -->
+<div class="editor-bar">
+  <h2>✏️ Commercial Proposal Builder</h2>
+  <div class="editor-controls">
+    <input type="text" id="propName" placeholder="Property name..." onkeyup="updateField('prop-name', this.value)" />
+    <input type="text" id="propContact" placeholder="Contact name..." onkeyup="updateField('prop-contact', this.value)" />
+    <select id="propType" onchange="updatePropType(this.value)">
+      <option value="">Property type...</option>
+      <option value="Apartment Complex">Apartment Complex</option>
+      <option value="HOA Community">HOA Community</option>
+      <option value="Property Management">Property Management Co.</option>
+      <option value="Dog Daycare / Boarding">Dog Daycare / Boarding</option>
+      <option value="Veterinary Clinic">Veterinary Clinic</option>
+      <option value="Senior Living Community">Senior Living Community</option>
+      <option value="Municipal / Park District">Municipal / Park District</option>
+    </select>
+    <button class="btn-print" onclick="window.print()">🖨️ Print / Save PDF</button>
+  </div>
+</div>
+
+<!-- PROPOSAL DOCUMENT -->
+<div class="proposal-wrap">
+
+  <!-- HEADER -->
+  <div class="prop-header">
+    <div class="brand">Tidy Tails Pet Waste Removal</div>
+    <div class="tagline">St. Louis County's Trusted Commercial Pet Waste Professionals</div>
+    <div class="doc-label">Service Proposal</div>
+  </div>
+
+  <!-- BODY -->
+  <div class="prop-body">
+
+    <!-- TO/FROM -->
+    <div class="to-block">
+      <div class="to-col">
+        <label>Prepared For</label>
+        <div class="val" id="prop-name" contenteditable="true" data-placeholder="Property Name">Property Name</div>
+        <div class="sub" id="prop-contact" contenteditable="true" data-placeholder="Contact Name / Title">Contact Name / Title</div>
+        <div class="sub" id="prop-address" contenteditable="true" data-placeholder="Address / City, MO">Address / City, MO</div>
+      </div>
+      <div class="to-col">
+        <label>From</label>
+        <div class="val">Tidy Tails Pet Waste Removal</div>
+        <div class="sub">TJ Halpin, Owner / Operator</div>
+        <div class="sub">(314) 850-7140</div>
+        <div class="sub">tidytails.com</div>
+        <div class="sub" id="prop-date" style="margin-top:8px; font-size:0.8em; color:#9ca3af;"></div>
+      </div>
+    </div>
+
+    <!-- THE PROBLEM -->
+    <div class="section">
+      <h2><span class="icon">⚠️</span> The Challenge</h2>
+      <div class="problem-box">
+        <h3>Pet waste is the #1 complaint in pet-friendly communities</h3>
+        <ul>
+          <li>Unmanaged pet waste creates health hazards — parasites, bacteria, and pathogens that survive in soil for weeks</li>
+          <li>Resident complaints about pet waste damage community reputation and increase turnover</li>
+          <li>Liability exposure increases when grounds aren't maintained (slip hazards, children's play areas)</li>
+          <li>Maintenance staff time is wasted on cleanup instead of higher-value tasks</li>
+          <li id="prop-problem-custom" contenteditable="true" data-placeholder="Add a property-specific pain point (e.g. '411 units with an active dog park generates substantial daily waste volume')">Add a property-specific pain point here</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- THE SOLUTION -->
+    <div class="section">
+      <h2><span class="icon">✅</span> Our Solution</h2>
+      <div class="solution-box">
+        <h3>Professional, reliable pet waste removal — on your schedule</h3>
+        <ul>
+          <li>Complete grounds coverage — dog park, common grassy areas, walking paths, pet stations</li>
+          <li>All waste double-bagged and properly disposed in designated receptacles</li>
+          <li>Service log provided after every visit — you know exactly what was done</li>
+          <li>Pet waste station restocking available (bags, liners) — one vendor, zero hassle</li>
+          <li>Fully insured, locally owned and operated — responsive, accountable, professional</li>
+          <li>No long-term contracts — cancel anytime with 30 days notice</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="section">
+      <h2><span class="icon">💰</span> Service Pricing</h2>
+      
+      <table class="pricing-table">
+        <thead>
+          <tr>
+            <th>Service Tier</th>
+            <th>Coverage</th>
+            <th>Frequency</th>
+            <th style="text-align:right;">Monthly Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Essential</strong><br><span class="note">Small community or single area</span></td>
+            <td>Up to 1 acre / 50 units</td>
+            <td>1x per week</td>
+            <td class="price">$150 – $200/mo</td>
+          </tr>
+          <tr class="recommended-row">
+            <td><strong>Professional</strong> <span class="rec-badge">Most Popular</span><br><span class="note">Mid-size complex with dog park</span></td>
+            <td>Up to 3 acres / 150 units</td>
+            <td>2x per week</td>
+            <td class="price">$300 – $450/mo</td>
+          </tr>
+          <tr>
+            <td><strong>Premium</strong><br><span class="note">Large community with multiple areas</span></td>
+            <td>3+ acres / 150+ units</td>
+            <td>3x per week</td>
+            <td class="price">$500 – $750/mo</td>
+          </tr>
+          <tr>
+            <td><strong>Multi-Property</strong><br><span class="note">2+ properties under one agreement</span></td>
+            <td>Per property</td>
+            <td>Customized</td>
+            <td class="price">10–15% discount</td>
+          </tr>
+          <tr>
+            <td><strong>Station Maintenance Add-On</strong><br><span class="note">Restock waste bags & liners</span></td>
+            <td>Per station</td>
+            <td>Weekly</td>
+            <td class="price">+$50 – $75/mo</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="custom-quote">
+        <h3>📋 Custom Quote for <span id="prop-name-2" style="font-style:italic;">this property</span></h3>
+        <p style="font-size:0.82em; color:#6b7280; margin-bottom:12px;">Based on your property details, here's our recommended scope:</p>
+        <div class="quote-line">
+          <span class="quote-label" id="ql-1" contenteditable="true" data-placeholder="Service area (e.g. Dog park + 3 common areas)">Service area (e.g. Dog park + 3 common areas)</span>
+          <span class="quote-val" id="qv-1" contenteditable="true" data-placeholder="~2 acres">~2 acres</span>
+        </div>
+        <div class="quote-line">
+          <span class="quote-label" id="ql-2" contenteditable="true" data-placeholder="Visit frequency">Visit frequency</span>
+          <span class="quote-val" id="qv-2" contenteditable="true" data-placeholder="2x per week">2x per week</span>
+        </div>
+        <div class="quote-line">
+          <span class="quote-label" id="ql-3" contenteditable="true" data-placeholder="Station maintenance (optional)">Station maintenance (optional)</span>
+          <span class="quote-val" id="qv-3" contenteditable="true" data-placeholder="3 stations — included">3 stations — included</span>
+        </div>
+        <div class="quote-line">
+          <span class="quote-label"><strong>Total Monthly Investment</strong></span>
+          <span class="quote-val" style="font-size:1.2em;" id="qv-total" contenteditable="true" data-placeholder="$XXX/month">$XXX/month</span>
+        </div>
+        <p style="font-size:0.78em; color:#92400e; margin-top:10px;">
+          💡 <em>This quote reflects your property specifics. We can refine the scope on a quick 15-minute walkthrough.</em>
+        </p>
+      </div>
+    </div>
+
+    <!-- WHY TIDY TAILS -->
+    <div class="section">
+      <h2><span class="icon">🏆</span> Why Tidy Tails</h2>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">📍</div>
+          <h4>Locally Owned & Operated</h4>
+          <p>We're based right here in St. Louis County. Not a national franchise — when you call, you reach the owner. Fast response, real accountability.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🛡️</div>
+          <h4>Fully Insured</h4>
+          <p>Fully insured for commercial work. You're covered. We take the liability off your maintenance team's plate.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">📋</div>
+          <h4>Service Documentation</h4>
+          <p>After every service, you get a visit log. Know exactly when we came and what was cleaned. No guessing, no gaps.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">🔓</div>
+          <h4>No Long-Term Contracts</h4>
+          <p>Monthly service, cancel with 30 days notice. We earn your business every single visit — not by locking you in.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">💰</div>
+          <h4>Better Value Than In-House</h4>
+          <p>When you factor in staff time, supplies, and disposal — professional service often costs LESS and frees your team for higher-value work.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">⭐</div>
+          <h4>Already In Your Area</h4>
+          <p id="prop-local-note" contenteditable="true" data-placeholder="We already service properties near [CITY]. Adding your community means efficient routing and reliable scheduling.">We already service properties near [CITY]. Adding your community means efficient routing and reliable scheduling.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- TERMS -->
+    <div class="section">
+      <h2><span class="icon">📄</span> Service Terms</h2>
+      <ul class="terms-list">
+        <li>Month-to-month agreement — cancel with 30 days written notice</li>
+        <li>Service begins within <strong contenteditable="true" data-placeholder="5–10 business days">5–10 business days</strong> of agreement signing</li>
+        <li>Invoiced monthly via email — ACH, check, or card accepted</li>
+        <li>Service log emailed after every visit; resident-facing signage available upon request</li>
+        <li>One-time complimentary property walkthrough before service begins to assess scope</li>
+        <li>Weather delays rescheduled within 48 hours at no charge</li>
+        <li id="prop-terms-custom" contenteditable="true" data-placeholder="Add any custom term here (optional)">Add any custom term here (optional)</li>
+      </ul>
+    </div>
+
+    <!-- NEXT STEPS / CTA -->
+    <div class="cta-block">
+      <h3>Ready to Keep Your Grounds Spotless?</h3>
+      <p>Let's schedule a quick walkthrough — 15 minutes to assess your property and confirm pricing. No obligation.</p>
+      <div class="cta-contact">
+        <a href="tel:3148507140">📞 (314) 850-7140</a>
+        <div class="secondary-cta">✉️ cartervhomes@gmail.com</div>
+      </div>
+      <p style="margin-top:16px; font-size:0.78em; opacity:0.65;">
+        This proposal is valid for <strong contenteditable="true" data-placeholder="30 days">30 days</strong> from the date above. Questions? Call or text TJ directly.
+      </p>
+    </div>
+
+  </div><!-- /prop-body -->
+
+  <!-- FOOTER -->
+  <div class="prop-footer">
+    <span><strong>Tidy Tails Pet Waste Removal</strong> · St. Louis County, MO</span>
+    <span>(314) 850-7140 · tidytails.com</span>
+    <span>Locally Owned · Fully Insured</span>
+  </div>
+
+</div><!-- /proposal-wrap -->
+
+<script>
+  // Set today's date
+  const today = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  document.getElementById('prop-date').textContent = 'Date: ' + today;
+
+  function updateField(id, val) {
+    const el = document.getElementById(id);
+    if (el && val.trim()) {
+      el.textContent = val;
+      // Mirror to prop-name-2
+      if (id === 'prop-name') {
+        const el2 = document.getElementById('prop-name-2');
+        if (el2) el2.textContent = val;
+      }
+    }
+  }
+
+  function updatePropType(val) {
+    if (!val) return;
+    // Update the local note
+    const localNotes = {
+      'Apartment Complex': 'We already service properties nearby and are building a dedicated apartment route in your zip code. Adding your community means reliable weekly scheduling.',
+      'HOA Community': 'We work with HOAs throughout St. Louis County. Pet waste in common areas is one of the most frequent resident complaints — we solve it completely.',
+      'Property Management': 'One vendor relationship covers all your pet-friendly properties. We invoice per-property, so your accounting stays clean and simple.',
+      'Dog Daycare / Boarding': 'High dog volume means significant daily waste. We handle outdoor cleanup so your team can focus on the animals — not the aftermath.',
+      'Veterinary Clinic': 'We service vet clinic outdoor areas and would love to set up a referral partnership — your clients get 10% off their first month of residential service.',
+      'Senior Living Community': 'Many seniors rely on pets for companionship but struggle with yard cleanup. We offer both common-area service and individual resident accounts.',
+      'Municipal / Park District': 'We offer competitive municipal pricing and can provide the documentation you need for a vendor agreement. Flat monthly rate, no per-visit billing complexity.'
+    };
+    const el = document.getElementById('prop-local-note');
+    if (el && localNotes[val]) {
+      el.textContent = localNotes[val];
+    }
+  }
+
+  // Pre-loaded proposal templates for specific known leads
+  const knownLeads = {
+    'millsap': {
+      name: 'Millsap Properties', contact: 'Main Office', address: 'P.O. Box 67, Grover, MO 63040',
+      problem: '7 pet-friendly apartment communities across TJ\'s service area — Florissant, Hazelwood, Ballwin, and St. Charles. Managing waste across all 7 properties with maintenance staff creates ongoing costs and inconsistency.',
+      localNote: 'We already service residents in Florissant 63031 and Hazelwood 63042 — literally down the street from Charbonier and Teson Garden. Your properties are already on our route.',
+      q1: 'Dog parks + common areas across 7 properties', qv1: '~6-8 total acres',
+      q2: 'Visit frequency per property', qv2: '1-2x per week each',
+      q3: 'Station maintenance (bag restocking)', qv3: 'Available add-on',
+      total: '$800 – $1,400/mo (bundle discount applied)'
+    }
+  };
+
+  // Quick-fill for known leads
+  window.loadLead = function(key) {
+    const l = knownLeads[key];
+    if (!l) return;
+    document.getElementById('prop-name').textContent = l.name;
+    document.getElementById('prop-contact').textContent = l.contact;
+    document.getElementById('prop-address').textContent = l.address;
+    document.getElementById('prop-name-2').textContent = l.name;
+    document.getElementById('prop-problem-custom').textContent = l.problem;
+    document.getElementById('prop-local-note').textContent = l.localNote;
+    document.getElementById('ql-1').textContent = l.q1;
+    document.getElementById('qv-1').textContent = l.qv1;
+    document.getElementById('ql-2').textContent = l.q2;
+    document.getElementById('qv-2').textContent = l.qv2;
+    document.getElementById('ql-3').textContent = l.q3;
+    document.getElementById('qv-3').textContent = l.qv3;
+    document.getElementById('qv-total').textContent = l.total;
+    document.getElementById('propName').value = l.name;
+  };
+
+  // Add Millsap quick-fill button to editor bar
+  const bar = document.querySelector('.editor-controls');
+  const btn = document.createElement('button');
+  btn.className = 'btn-print';
+  btn.style.background = '#f59e0b';
+  btn.style.color = '#000';
+  btn.textContent = '⚡ Load Millsap';
+  btn.onclick = () => loadLead('millsap');
+  bar.insertBefore(btn, bar.querySelector('.btn-print'));
+</script>
+
+</body>
+</html>
