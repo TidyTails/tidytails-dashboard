@@ -6,6 +6,39 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 9:04 PM — Dashboard Accuracy Pass + Competitor Intel Fix (Hourly Task)
+- **9:04 PM** 🔧 Dashboard Accuracy Pass — Fixed stale data across dashboard index + competitor intel page.
+  - **WHY:** After 8+ hourly tasks today, the dashboard accumulated contradictions and stale data. The competitor intel page still showed POOP 911 as "180 reviews, market leader" and Doggie Doodies as "closest comp and biggest watch-out" — both are DEAD. The dashboard index had duplicate quick links, stale customer counts (8 instead of 10), and the Paw-ty alert said "36 hours away" when it's now 13 hours. This kind of stale data erodes trust — if TJ sees "POOP 911 dominates" when they know POOP 911 is gone, they stop trusting the dashboard.
+  - **WHAT WAS FIXED:**
+    1. **Competitor Intel page** (`dashboard/competitor-intel-march2026.html`):
+       - Key findings rewritten: "10+ active competitors" → "Only 3 active competitors remain"
+       - Score cards fixed: GBP 7% → ~95%, added "Active Competitors: 3" card
+       - Dead competitors section: new visual grid showing all 7+ dead competitors with context
+       - Pricing table: dead competitors greyed out with strikethrough, active ones marked with ✅
+       - Territory map: completely rewritten to reflect current reality (not 2025 landscape)
+       - Strategic opportunities: updated all 6 — no more "Complete GBP TODAY" (it's done), replaced with current actions (directory blitz, orphan capture, Google Ads, North County lockdown)
+       - Action items: all 5 rewritten to match current state
+       - Removed all references to POOP 911 as active market leader, DoodyCalls as high threat, Doggie Doodies as closest comp
+    2. **Dashboard index** (`dashboard/index.html`):
+       - Removed duplicate CRM quick link
+       - Paw-ty alert: "36 HOURS AWAY" → "~13 HOURS AWAY!"
+       - Merged duplicate competitor alerts (Market Reality + Competitor Intel = one card)
+       - Fixed customer counts: "8 personalized texts" → "10", "8 customers" → "10" throughout
+       - Fixed spring blitz: "5→15 customers" → "10→20 customers"
+       - Fixed revenue tracker: "8 → 30" → "10 → 30"
+       - Updated competitor intel card description in Tools panel
+       - Updated footer timestamp
+    3. **Q2 Roadmap** — Fixed "8 customers in August" → "10 customers"
+  - **WHY THIS OVER OTHER TASKS:**
+    - Brave API exhausted — no web research possible
+    - 9 PM Thursday night — not a time to build new tools
+    - MEMORY.md says "maintain, don't create" — this is pure maintenance
+    - Dashboard credibility matters: if data is stale, TJ stops opening it
+    - The competitor intel page was the most-stale high-traffic page — any time TJ checks competition, they'd see wrong info
+    - 13 small fixes across 3 files > 1 new tool nobody asked for
+  - **IMPACT:** Dashboard now accurately reflects reality. Competitor intel goes from "misleading" to "current." No more cognitive dissonance for TJ seeing dead competitors listed as threats. Trust in the dashboard maintained.
+  - Committed + pushed to GitHub ✅
+
 ### Thursday 8:05 PM — Mobile Paw-ty Lead Tracker App (Hourly Task)
 - **8:05 PM** 📱 Mobile Lead Tracker App — Built the field tool Jamie actually needs at Saturday's event.
   - **WHY:** We had a follow-up system (markdown doc + dashboard reference page) with great text templates, but Jamie would have to manually type every personalized text. Paper sign-up sheet → phone Notes → remember to text → copy templates → swap [Name]? Nobody does that. The tool that does the work FOR you is the tool that gets used.
