@@ -6,6 +6,30 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 10:04 PM — Customer Referral Engine (Hourly Task)
+- **10:04 PM** 🔗 Referral Engine Dashboard — Built the #1 zero-cost growth tool for getting from 10 to 20+ customers.
+  - **WHY:** 10 PM Thursday, Paw-ty is Saturday, event tools are locked in. The biggest growth lever NOW is referrals from existing happy customers. Referrals convert 3-5× better than cold leads, cost $0 in ad spend, and we have 10 satisfied customers who've never been systematically asked. This is how we double the customer base without spending a dime.
+  - **WHAT WAS BUILT:**
+    1. **Referral Engine dashboard** (`dashboard/referral-engine.html`):
+       - **Referral Math banner** — Visual: 10 customers × 2 referrals each = 20 customers by summer
+       - **Reward tiers** — 1 referral = free week, 3 = free month, 5+ = lifetime 15% off
+       - **Customer Cards tab** — All 10 customers with personalized referral ask texts, follow-up scripts, and status tracking (Not Asked / Asked / Got a Name / Converted). Priority-ranked: Shannon, Amanda, Preshus first (longest/most loyal), then Mrs. Candee, Greg, Lawrence, Jody, Chastity
+       - **Referral Tracker tab** — Add incoming referrals by name/phone/referrer, track status (New → Contacted → Signed Up / Lost)
+       - **Leaderboard tab** — Gamified: which customer is bringing the most referrals? Medals for top referrers
+       - **Extra Scripts tab** — 7 situational scripts: in-person at the door, post-service text, email template, post-event, social proof combo (review + referral), Nextdoor/FB share template
+       - **Revenue Projections tab** — Conservative (+$255/mo from 3 referrals), Moderate (+$510/mo from 6), Aggressive (+$850/mo from 10). ROI math: $21 cost per referral reward vs $1,020 customer LTV = 48.5× return
+       - **localStorage persistence** — all status tracking and referral data persists on phone
+    2. **Dashboard index updated** — New "🔗 REFERRALS" pulsing quick link, new card in Sales & CRM section (top position), section count 9→10
+  - **WHY THIS OVER OTHER TASKS:**
+    - Event prep is done (QR flyers, lead tracker, follow-up system, Paw-ty prep kit all built)
+    - 10 PM = not a time to do web research or build complex tools
+    - Referrals are the single highest-ROI growth channel available RIGHT NOW
+    - Jamie can start texting customers THIS WEEK — not dependent on any external platform or spend
+    - The math: even 3 referral conversions = +$255/mo = +$2,937/year. For $63 in free weeks.
+    - Every competitor analysis says the same thing: market is wide open. The bottleneck isn't competition — it's getting the word out. Referrals solve that.
+  - **IMPACT:** Jamie opens this on her phone, taps Shannon's card, copies the personalized text, sends it. Repeat for all 10 customers over the next week. If even 30% respond with a name, that's 3+ warm leads with built-in trust. This is how you go from 10 to 15-20 customers without spending a dollar on ads.
+  - Committed + pushed to GitHub ✅
+
 ### Thursday 9:04 PM — Dashboard Accuracy Pass + Competitor Intel Fix (Hourly Task)
 - **9:04 PM** 🔧 Dashboard Accuracy Pass — Fixed stale data across dashboard index + competitor intel page.
   - **WHY:** After 8+ hourly tasks today, the dashboard accumulated contradictions and stale data. The competitor intel page still showed POOP 911 as "180 reviews, market leader" and Doggie Doodies as "closest comp and biggest watch-out" — both are DEAD. The dashboard index had duplicate quick links, stale customer counts (8 instead of 10), and the Paw-ty alert said "36 hours away" when it's now 13 hours. This kind of stale data erodes trust — if TJ sees "POOP 911 dominates" when they know POOP 911 is gone, they stop trusting the dashboard.
