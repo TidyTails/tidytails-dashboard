@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🔥 Post-Paw-ty Follow-Up Engine | Tidy Tails</title>
+    <style>
+        :root {
+            --green: #16a34a; --green-dark: #15803d; --green-bg: #f0fdf4;
+            --orange: #ea580c; --orange-bg: #fff7ed;
+            --blue: #2563eb; --blue-bg: #eff6ff;
+            --purple: #7c3aed; --purple-bg: #f5f3ff;
+            --red: #dc2626; --red-bg: #fef2f2;
+            --yellow: #eab308; --yellow-bg: #fefce8;
+            --dark: #1a1a1a; --gray: #6b7280; --gray-light: #f3f4f6;
+            --white: #ffffff; --shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f0f2f5; color: var(--dark);
+            min-height: 100vh; padding-bottom: 80px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #dc2626, #ea580c);
+            color: white; padding: 1rem; text-align: center;
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header h1 { font-size: 1.2rem; font-weight: 800; }
+        .header .subtitle { font-size: 0.75rem; opacity: 0.9; margin-top: 2px; }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 8px; padding: 12px; background: var(--white);
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .stat-box { text-align: center; }
+        .stat-num { font-size: 1.4rem; font-weight: 800; }
+        .stat-label { font-size: 0.6rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-hot .stat-num { color: var(--red); }
+        .stat-warm .stat-num { color: var(--orange); }
+        .stat-cool .stat-num { color: var(--blue); }
+        .stat-won .stat-num { color: var(--green); }
+
+        /* Tabs */
+        .tabs {
+            display: flex; background: var(--white); border-bottom: 2px solid #e5e7eb;
+            overflow-x: auto; -webkit-overflow-scrolling: touch;
+        }
+        .tab {
+            flex: 1; min-width: 80px; padding: 10px 8px; text-align: center;
+            font-size: 0.7rem; font-weight: 600; color: var(--gray);
+            border-bottom: 2px solid transparent; cursor: pointer;
+            transition: all 0.2s; white-space: nowrap;
+        }
+        .tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+        .tab .tab-icon { font-size: 1.1rem; display: block; margin-bottom: 2px; }
+
+        /* Content */
+        .content { padding: 12px; display: none; }
+        .content.active { display: block; }
+
+        /* Cards */
+        .card {
+            background: var(--white); border-radius: 12px; padding: 16px;
+            margin-bottom: 12px; box-shadow: var(--shadow);
+        }
+        .card-title { font-size: 0.85rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+
+        /* Lead Cards */
+        .lead-card {
+            background: var(--white); border-radius: 12px; padding: 14px;
+            margin-bottom: 10px; box-shadow: var(--shadow);
+            border-left: 4px solid var(--gray);
+            position: relative;
+        }
+        .lead-card.hot { border-left-color: var(--red); }
+        .lead-card.warm { border-left-color: var(--orange); }
+        .lead-card.cool { border-left-color: var(--blue); }
+        .lead-card.won { border-left-color: var(--green); background: var(--green-bg); }
+        .lead-card.lost { border-left-color: var(--gray); opacity: 0.5; }
+
+        .lead-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .lead-name { font-weight: 700; font-size: 0.95rem; }
+        .lead-heat {
+            font-size: 0.65rem; font-weight: 700; padding: 2px 8px;
+            border-radius: 20px; text-transform: uppercase;
+        }
+        .heat-hot { background: var(--red-bg); color: var(--red); }
+        .heat-warm { background: var(--orange-bg); color: var(--orange); }
+        .heat-cool { background: var(--blue-bg); color: var(--blue); }
+        .heat-won { background: var(--green-bg); color: var(--green); }
+        .heat-lost { background: var(--gray-light); color: var(--gray); }
+
+        .lead-details { font-size: 0.75rem; color: var(--gray); margin-bottom: 8px; }
+        .lead-details span { margin-right: 12px; }
+
+        .lead-stage { font-size: 0.7rem; color: var(--gray); margin-bottom: 8px; }
+        .stage-dots { display: flex; gap: 4px; margin-top: 4px; }
+        .stage-dot {
+            width: 28px; height: 6px; border-radius: 3px; background: #e5e7eb;
+        }
+        .stage-dot.done { background: var(--green); }
+        .stage-dot.current { background: var(--orange); animation: pulse 1.5s infinite; }
+
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+
+        .lead-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+        .lead-btn {
+            padding: 6px 12px; border-radius: 8px; font-size: 0.7rem; font-weight: 600;
+            border: none; cursor: pointer; display: flex; align-items: center; gap: 4px;
+        }
+        .btn-text { background: var(--green-bg); color: var(--green-dark); }
+        .btn-call { background: var(--blue-bg); color: var(--blue); }
+        .btn-done { background: var(--green); color: white; }
+        .btn-skip { background: var(--gray-light); color: var(--gray); }
+        .btn-lost { background: var(--red-bg); color: var(--red); }
+
+        /* Sequence Display */
+        .seq-step {
+            background: var(--white); border-radius: 10px; padding: 12px;
+            margin-bottom: 8px; box-shadow: var(--shadow);
+        }
+        .seq-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+        .seq-day { font-weight: 700; font-size: 0.8rem; }
+        .seq-type { font-size: 0.65rem; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+        .type-text { background: var(--green-bg); color: var(--green); }
+        .type-call { background: var(--blue-bg); color: var(--blue); }
+        .type-social { background: var(--purple-bg); color: var(--purple); }
+
+        .seq-msg {
+            font-size: 0.8rem; line-height: 1.5; background: var(--gray-light);
+            border-radius: 8px; padding: 10px; margin-top: 6px;
+            white-space: pre-wrap; position: relative;
+        }
+        .copy-btn {
+            position: absolute; top: 6px; right: 6px; background: var(--white);
+            border: 1px solid #e5e7eb; border-radius: 6px; padding: 4px 8px;
+            font-size: 0.65rem; cursor: pointer; font-weight: 600;
+        }
+        .copy-btn.copied { background: var(--green); color: white; border-color: var(--green); }
+
+        /* Import Panel */
+        .import-panel {
+            background: var(--orange-bg); border-radius: 12px; padding: 16px;
+            margin-bottom: 12px; border: 2px dashed var(--orange);
+        }
+        .import-panel h3 { font-size: 0.85rem; margin-bottom: 8px; color: var(--orange); }
+
+        /* Form */
+        .form-group { margin-bottom: 10px; }
+        .form-label { font-size: 0.7rem; font-weight: 600; color: var(--gray); margin-bottom: 4px; display: block; }
+        .form-input, .form-select {
+            width: 100%; padding: 10px 12px; border: 1px solid #e5e7eb;
+            border-radius: 8px; font-size: 0.85rem; font-family: inherit;
+        }
+        .form-input:focus, .form-select:focus { outline: none; border-color: var(--orange); }
+
+        .add-btn {
+            width: 100%; padding: 12px; background: var(--orange);
+            color: white; border: none; border-radius: 10px;
+            font-size: 0.9rem; font-weight: 700; cursor: pointer;
+        }
+
+        /* Timeline */
+        .timeline { position: relative; padding-left: 20px; }
+        .timeline::before {
+            content: ''; position: absolute; left: 6px; top: 0; bottom: 0;
+            width: 2px; background: #e5e7eb;
+        }
+        .tl-item { position: relative; margin-bottom: 12px; padding-left: 16px; }
+        .tl-item::before {
+            content: ''; position: absolute; left: -17px; top: 4px;
+            width: 10px; height: 10px; border-radius: 50%; background: var(--green);
+        }
+        .tl-item.pending::before { background: var(--orange); }
+        .tl-item.future::before { background: #e5e7eb; }
+        .tl-time { font-size: 0.65rem; color: var(--gray); }
+        .tl-text { font-size: 0.8rem; font-weight: 500; }
+
+        /* Bottom Nav */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: var(--white); border-top: 1px solid #e5e7eb;
+            display: flex; padding: 8px 0 env(safe-area-inset-bottom, 8px);
+            z-index: 100;
+        }
+        .nav-item {
+            flex: 1; text-align: center; padding: 4px;
+            font-size: 0.6rem; color: var(--gray); cursor: pointer;
+        }
+        .nav-item.active { color: var(--orange); }
+        .nav-item .nav-icon { font-size: 1.2rem; display: block; }
+
+        /* Badge */
+        .badge {
+            display: inline-block; background: var(--red); color: white;
+            font-size: 0.6rem; font-weight: 700; padding: 1px 5px;
+            border-radius: 10px; margin-left: 4px; vertical-align: top;
+        }
+
+        /* Filter bar */
+        .filter-bar {
+            display: flex; gap: 6px; margin-bottom: 12px; overflow-x: auto;
+            padding-bottom: 4px;
+        }
+        .filter-btn {
+            padding: 6px 12px; border-radius: 20px; font-size: 0.7rem;
+            font-weight: 600; border: 1px solid #e5e7eb; background: var(--white);
+            cursor: pointer; white-space: nowrap;
+        }
+        .filter-btn.active { background: var(--orange); color: white; border-color: var(--orange); }
+
+        /* Checklist */
+        .check-item {
+            display: flex; align-items: center; gap: 10px; padding: 10px;
+            background: var(--white); border-radius: 8px; margin-bottom: 6px;
+            box-shadow: var(--shadow); cursor: pointer;
+        }
+        .check-item.done { opacity: 0.5; }
+        .check-box {
+            width: 22px; height: 22px; border-radius: 6px; border: 2px solid #d1d5db;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+        }
+        .check-item.done .check-box { background: var(--green); border-color: var(--green); color: white; }
+        .check-text { font-size: 0.8rem; font-weight: 500; }
+
+        .empty-state { text-align: center; padding: 40px 20px; color: var(--gray); }
+        .empty-state .empty-icon { font-size: 3rem; margin-bottom: 12px; }
+
+        /* Modal */
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5); z-index: 200; align-items: flex-end;
+            justify-content: center;
+        }
+        .modal-overlay.show { display: flex; }
+        .modal {
+            background: var(--white); border-radius: 16px 16px 0 0;
+            width: 100%; max-width: 500px; max-height: 80vh;
+            overflow-y: auto; padding: 20px; padding-bottom: calc(20px + env(safe-area-inset-bottom));
+        }
+        .modal-title { font-size: 1rem; font-weight: 700; margin-bottom: 16px; display: flex; justify-content: space-between; }
+        .modal-close { background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--gray); }
+
+        /* Responsive */
+        @media (min-width: 600px) {
+            body { max-width: 500px; margin: 0 auto; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🔥 Post-Paw-ty Follow-Up Engine</h1>
+    <div class="subtitle">Convert Saturday's leads → paying customers</div>
+</div>
+
+<div class="stats-bar">
+    <div class="stat-box stat-hot">
+        <div class="stat-num" id="stat-hot">0</div>
+        <div class="stat-label">🔥 Hot</div>
+    </div>
+    <div class="stat-box stat-warm">
+        <div class="stat-num" id="stat-warm">0</div>
+        <div class="stat-label">🟡 Warm</div>
+    </div>
+    <div class="stat-box stat-cool">
+        <div class="stat-num" id="stat-cool">0</div>
+        <div class="stat-label">🔵 Cool</div>
+    </div>
+    <div class="stat-box stat-won">
+        <div class="stat-num" id="stat-won">0</div>
+        <div class="stat-label">✅ Won</div>
+    </div>
+</div>
+
+<div class="tabs">
+    <div class="tab active" data-tab="pipeline" onclick="switchTab('pipeline')">
+        <span class="tab-icon">📋</span>Pipeline
+    </div>
+    <div class="tab" data-tab="today" onclick="switchTab('today')">
+        <span class="tab-icon">⚡</span>Today<span class="badge" id="today-badge">0</span>
+    </div>
+    <div class="tab" data-tab="scripts" onclick="switchTab('scripts')">
+        <span class="tab-icon">💬</span>Scripts
+    </div>
+    <div class="tab" data-tab="add" onclick="switchTab('add')">
+        <span class="tab-icon">➕</span>Add
+    </div>
+    <div class="tab" data-tab="results" onclick="switchTab('results')">
+        <span class="tab-icon">📊</span>Results
+    </div>
+</div>
+
+<!-- PIPELINE TAB -->
+<div class="content active" id="tab-pipeline">
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterLeads('all')">All</button>
+        <button class="filter-btn" onclick="filterLeads('hot')">🔥 Hot</button>
+        <button class="filter-btn" onclick="filterLeads('warm')">🟡 Warm</button>
+        <button class="filter-btn" onclick="filterLeads('cool')">🔵 Cool</button>
+        <button class="filter-btn" onclick="filterLeads('won')">✅ Won</button>
+        <button class="filter-btn" onclick="filterLeads('lost')">❌ Lost</button>
+    </div>
+    <div id="pipeline-list"></div>
+    <div class="empty-state" id="pipeline-empty" style="display:none;">
+        <div class="empty-icon">🎪</div>
+        <h3>No leads yet!</h3>
+        <p style="font-size:0.8rem;margin-top:8px;">Add leads from Saturday's Paw-ty using the ➕ tab, or import from the Pocket Guide</p>
+    </div>
+</div>
+
+<!-- TODAY TAB -->
+<div class="content" id="tab-today">
+    <div class="card" style="background: var(--orange-bg); border: 1px solid var(--orange);">
+        <div class="card-title">⚡ Today's Follow-Up Queue</div>
+        <p style="font-size:0.75rem;color:var(--gray);">These leads need action today based on the 7-day sequence</p>
+    </div>
+    <div id="today-list"></div>
+    <div class="empty-state" id="today-empty" style="display:none;">
+        <div class="empty-icon">✅</div>
+        <h3>All caught up!</h3>
+        <p style="font-size:0.8rem;margin-top:8px;">No follow-ups due today. Great work!</p>
+    </div>
+</div>
+
+<!-- SCRIPTS TAB -->
+<div class="content" id="tab-scripts">
+    <div class="card">
+        <div class="card-title">📋 7-Day Follow-Up Sequence</div>
+        <p style="font-size:0.75rem;color:var(--gray);margin-bottom:12px;">Proven sequence — each step customized with lead's name and details</p>
+    </div>
+
+    <div class="seq-step">
+        <div class="seq-header">
+            <span class="seq-day">Day 0 — Same Day (Saturday)</span>
+            <span class="seq-type type-text">📱 Text</span>
+        </div>
+        <p style="font-size:0.75rem;color:var(--gray);">Send within 2 hours of meeting. Be personal!</p>
+        <div class="seq-msg">Hey {name}! It was great meeting you at the Paw-ty today 🐾 This is TJ from Tidy Tails. I'd love to get your yard looking spotless — want me to set up a time for your first cleanup?<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+    </div>
+
+    <div class="seq-step">
+        <div class="seq-header">
+            <span class="seq-day">Day 1 — Sunday</span>
+            <span class="seq-type type-text">📱 Text</span>
+        </div>
+        <p style="font-size:0.75rem;color:var(--gray);">Quick value-add follow up. Don't be pushy.</p>
+        <div class="seq-msg">Hey {name}! Hope you and {dog_name} are enjoying the weekend 🐶 Just wanted to let you know — if you sign up this week, your first cleanup is on us! No strings. Just want to show you how clean your yard can be.<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+    </div>
+
+    <div class="seq-step">
+        <div class="seq-header">
+            <span class="seq-day">Day 3 — Tuesday</span>
+            <span class="seq-type type-call">📞 Call</span>
+        </div>
+        <p style="font-size:0.75rem;color:var(--gray);">Quick 60-second call. If voicemail, leave a friendly one and follow up with text.</p>
+        <div class="seq-msg">CALL SCRIPT:
+"Hey {name}, it's TJ from Tidy Tails — we met at the Crestwood Vet Paw-ty on Saturday. Just wanted to check in and see if you had any questions about our service. We're running a special this week — first cleanup free if you start a weekly or biweekly plan. Any interest?"
+
+IF VOICEMAIL → send text:
+Hey {name}! Tried to give you a quick call — just following up from the Paw-ty. First cleanup is free this week if you want to try us out! Let me know 🙂<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+    </div>
+
+    <div class="seq-step">
+        <div class="seq-header">
+            <span class="seq-day">Day 5 — Thursday</span>
+            <span class="seq-type type-text">📱 Text</span>
+        </div>
+        <p style="font-size:0.75rem;color:var(--gray);">Social proof + urgency. Last soft push.</p>
+        <div class="seq-msg">Hey {name}! Quick update — we picked up 3 new customers from the Paw-ty this week 🎉 Your neighbors are already loving the clean yards. We've still got a couple spots open in your area this week. Want me to add you to the schedule?<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+    </div>
+
+    <div class="seq-step">
+        <div class="seq-header">
+            <span class="seq-day">Day 7 — Saturday</span>
+            <span class="seq-type type-text">📱 Text</span>
+        </div>
+        <p style="font-size:0.75rem;color:var(--gray);">Final attempt. Respectful close — leave the door open.</p>
+        <div class="seq-msg">Hey {name}! Just wanted to follow up one last time — we're wrapping up our Paw-ty special this weekend. If the timing isn't right, totally get it! But if you ever need your yard cleaned up, you've got my number 🐾 Have a great weekend!<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+    </div>
+
+    <div class="card" style="background: var(--purple-bg);">
+        <div class="card-title">🧠 Pro Tips</div>
+        <ul style="font-size:0.75rem; line-height: 1.8; padding-left: 16px;">
+            <li><strong>Hot leads:</strong> Text AND call on Day 0. Don't wait.</li>
+            <li><strong>New adopter special:</strong> If they just adopted, mention "We know the first weeks are crazy — one less thing to worry about!"</li>
+            <li><strong>Multiple dogs:</strong> Reference their dog count — "With {dog_count} dogs, that yard fills up fast!"</li>
+            <li><strong>Referred by vet:</strong> "Dr. [Name] recommended us — we service a lot of their clients!"</li>
+            <li><strong>If they say 'not right now':</strong> Set a 30-day reminder. People's situations change.</li>
+            <li><strong>ALWAYS personalize.</strong> Use their dog's name. Mention something specific from your conversation.</li>
+        </ul>
+    </div>
+</div>
+
+<!-- ADD LEAD TAB -->
+<div class="content" id="tab-add">
+    <div class="import-panel">
+        <h3>📲 Import from Pocket Guide</h3>
+        <p style="font-size:0.75rem;margin-bottom:10px;">If Jamie captured leads in the Pocket Guide during the event, paste the exported data here:</p>
+        <textarea id="import-data" class="form-input" rows="3" placeholder="Paste exported JSON here..."></textarea>
+        <button class="add-btn" style="margin-top:8px;background:var(--orange);" onclick="importLeads()">Import Leads</button>
+    </div>
+
+    <div class="card">
+        <div class="card-title">➕ Add Lead Manually</div>
+        <div class="form-group">
+            <label class="form-label">Name *</label>
+            <input class="form-input" id="add-name" placeholder="Full name">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Phone *</label>
+            <input class="form-input" id="add-phone" type="tel" placeholder="(314) 555-0123">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Dog Name(s)</label>
+            <input class="form-input" id="add-dogs" placeholder="Buddy, Max">
+        </div>
+        <div class="form-group">
+            <label class="form-label"># of Dogs</label>
+            <select class="form-select" id="add-dogcount">
+                <option value="1">1 dog</option>
+                <option value="2">2 dogs</option>
+                <option value="3">3 dogs</option>
+                <option value="4">4+ dogs</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Area/Zip</label>
+            <input class="form-input" id="add-area" placeholder="Crestwood, 63126">
+        </div>
+        <div class="form-group">
+            <label class="form-label">Heat Level</label>
+            <select class="form-select" id="add-heat">
+                <option value="hot">🔥 Hot — Ready to sign up</option>
+                <option value="warm" selected>🟡 Warm — Interested, needs follow-up</option>
+                <option value="cool">🔵 Cool — Casual interest</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Notes</label>
+            <textarea class="form-input" id="add-notes" rows="2" placeholder="New adopter, met at vet booth, etc."></textarea>
+        </div>
+        <div class="form-group">
+            <label class="form-label">Service Interest</label>
+            <select class="form-select" id="add-service">
+                <option value="weekly">Weekly</option>
+                <option value="biweekly" selected>Biweekly</option>
+                <option value="onetime">One-time cleanup</option>
+                <option value="unsure">Not sure yet</option>
+            </select>
+        </div>
+        <button class="add-btn" onclick="addLead()">🐾 Add Lead to Pipeline</button>
+    </div>
+</div>
+
+<!-- RESULTS TAB -->
+<div class="content" id="tab-results">
+    <div class="card">
+        <div class="card-title">📊 Conversion Dashboard</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+            <div style="text-align:center;padding:12px;background:var(--green-bg);border-radius:8px;">
+                <div style="font-size:1.5rem;font-weight:800;color:var(--green);" id="result-rate">0%</div>
+                <div style="font-size:0.65rem;color:var(--gray);">CONVERSION RATE</div>
+            </div>
+            <div style="text-align:center;padding:12px;background:var(--blue-bg);border-radius:8px;">
+                <div style="font-size:1.5rem;font-weight:800;color:var(--blue);" id="result-revenue">$0</div>
+                <div style="font-size:0.65rem;color:var(--gray);">EST. MONTHLY REV</div>
+            </div>
+            <div style="text-align:center;padding:12px;background:var(--orange-bg);border-radius:8px;">
+                <div style="font-size:1.5rem;font-weight:800;color:var(--orange);" id="result-annual">$0</div>
+                <div style="font-size:0.65rem;color:var(--gray);">EST. ANNUAL REV</div>
+            </div>
+            <div style="text-align:center;padding:12px;background:var(--purple-bg);border-radius:8px;">
+                <div style="font-size:1.5rem;font-weight:800;color:var(--purple);" id="result-total">0</div>
+                <div style="font-size:0.65rem;color:var(--gray);">TOTAL LEADS</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">📈 Funnel Breakdown</div>
+        <div id="funnel-display"></div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">🕐 Activity Log</div>
+        <div class="timeline" id="activity-log"></div>
+    </div>
+
+    <div style="display:flex;gap:8px;margin-top:12px;">
+        <button class="add-btn" style="background:var(--blue);font-size:0.8rem;" onclick="exportData()">📤 Export All Data</button>
+        <button class="add-btn" style="background:var(--red);font-size:0.8rem;" onclick="clearAll()">🗑️ Reset All</button>
+    </div>
+</div>
+
+<!-- Detail Modal -->
+<div class="modal-overlay" id="lead-modal">
+    <div class="modal">
+        <div class="modal-title">
+            <span id="modal-lead-name">Lead Details</span>
+            <button class="modal-close" onclick="closeModal()">✕</button>
+        </div>
+        <div id="modal-content"></div>
+    </div>
+</div>
+
+<script>
+// ===== DATA LAYER =====
+const STORAGE_KEY = 'tidytails_followup_leads';
+const LOG_KEY = 'tidytails_followup_log';
+
+const SEQUENCE = [
+    { day: 0, label: 'Same Day Text', type: 'text', desc: 'Intro text within 2 hours' },
+    { day: 1, label: 'Day 1 Follow-Up', type: 'text', desc: 'Value-add + free cleanup offer' },
+    { day: 3, label: 'Day 3 Call', type: 'call', desc: 'Quick phone call + voicemail text' },
+    { day: 5, label: 'Day 5 Social Proof', type: 'text', desc: 'Others signed up — FOMO push' },
+    { day: 7, label: 'Day 7 Final', type: 'text', desc: 'Respectful close, leave door open' }
+];
+
+const PRICING = { weekly: 75, biweekly: 50, onetime: 100, unsure: 50 };
+
+function getLeads() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+    catch { return []; }
+}
+function saveLeads(leads) { localStorage.setItem(STORAGE_KEY, JSON.stringify(leads)); }
+
+function getLog() {
+    try { return JSON.parse(localStorage.getItem(LOG_KEY) || '[]'); }
+    catch { return []; }
+}
+function addLog(text) {
+    const log = getLog();
+    log.unshift({ time: Date.now(), text });
+    if (log.length > 100) log.length = 100;
+    localStorage.setItem(LOG_KEY, JSON.stringify(log));
+}
+
+// ===== TABS =====
+function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+    document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+    document.getElementById(`tab-${tab}`).classList.add('active');
+    if (tab === 'pipeline') renderPipeline();
+    if (tab === 'today') renderToday();
+    if (tab === 'results') renderResults();
+}
+
+// ===== RENDER PIPELINE =====
+let currentFilter = 'all';
+function filterLeads(filter) {
+    currentFilter = filter;
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    event.target.classList.add('active');
+    renderPipeline();
+}
+
+function renderPipeline() {
+    const leads = getLeads();
+    const container = document.getElementById('pipeline-list');
+    const empty = document.getElementById('pipeline-empty');
+
+    let filtered = leads;
+    if (currentFilter !== 'all') filtered = leads.filter(l => l.heat === currentFilter);
+
+    if (filtered.length === 0) {
+        container.innerHTML = '';
+        empty.style.display = 'block';
+        return;
+    }
+    empty.style.display = 'none';
+
+    // Sort: hot first, then warm, cool, won, lost
+    const heatOrder = { hot: 0, warm: 1, cool: 2, won: 3, lost: 4 };
+    filtered.sort((a, b) => (heatOrder[a.heat] || 5) - (heatOrder[b.heat] || 5));
+
+    container.innerHTML = filtered.map(lead => {
+        const stage = getCurrentStage(lead);
+        const stageDots = SEQUENCE.map((s, i) => {
+            const completed = (lead.completedSteps || []).includes(i);
+            const isCurrent = i === stage && lead.heat !== 'won' && lead.heat !== 'lost';
+            return `<div class="stage-dot ${completed ? 'done' : ''} ${isCurrent ? 'current' : ''}"></div>`;
+        }).join('');
+
+        return `
+        <div class="lead-card ${lead.heat}" onclick="openLeadDetail('${lead.id}')">
+            <div class="lead-header">
+                <span class="lead-name">${lead.name}</span>
+                <span class="lead-heat heat-${lead.heat}">${lead.heat}</span>
+            </div>
+            <div class="lead-details">
+                <span>📱 ${lead.phone || 'No phone'}</span>
+                <span>🐕 ${lead.dogs || lead.dogCount + ' dog(s)'}</span>
+                ${lead.area ? `<span>📍 ${lead.area}</span>` : ''}
+            </div>
+            <div class="lead-stage">
+                Stage: ${stage < SEQUENCE.length ? SEQUENCE[stage].label : 'Sequence Complete'}
+                <div class="stage-dots">${stageDots}</div>
+            </div>
+        </div>`;
+    }).join('');
+
+    updateStats();
+}
+
+function getCurrentStage(lead) {
+    const completed = lead.completedSteps || [];
+    for (let i = 0; i < SEQUENCE.length; i++) {
+        if (!completed.includes(i)) return i;
+    }
+    return SEQUENCE.length;
+}
+
+// ===== RENDER TODAY =====
+function renderToday() {
+    const leads = getLeads().filter(l => l.heat !== 'won' && l.heat !== 'lost');
+    const container = document.getElementById('today-list');
+    const empty = document.getElementById('today-empty');
+
+    const today = new Date();
+    const todayActions = [];
+
+    leads.forEach(lead => {
+        const addedDate = new Date(lead.addedAt);
+        const daysSince = Math.floor((today - addedDate) / (1000 * 60 * 60 * 24));
+        const currentStage = getCurrentStage(lead);
+
+        if (currentStage >= SEQUENCE.length) return;
+
+        const nextStep = SEQUENCE[currentStage];
+        if (daysSince >= nextStep.day) {
+            todayActions.push({ lead, step: nextStep, stepIndex: currentStage, daysSince, overdue: daysSince > nextStep.day });
+        }
+    });
+
+    if (todayActions.length === 0) {
+        container.innerHTML = '';
+        empty.style.display = 'block';
+        document.getElementById('today-badge').textContent = '0';
+        return;
+    }
+    empty.style.display = 'none';
+    document.getElementById('today-badge').textContent = todayActions.length;
+
+    // Sort overdue first
+    todayActions.sort((a, b) => (b.overdue ? 1 : 0) - (a.overdue ? 1 : 0));
+
+    container.innerHTML = todayActions.map(({ lead, step, stepIndex, overdue }) => {
+        const msgTemplate = getMessageForStep(stepIndex, lead);
+        return `
+        <div class="card" style="${overdue ? 'border-left: 4px solid var(--red);' : 'border-left: 4px solid var(--orange);'}">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;">
+                <span style="font-weight:700;font-size:0.9rem;">${lead.name}</span>
+                ${overdue ? '<span style="font-size:0.65rem;color:var(--red);font-weight:700;">⚠️ OVERDUE</span>' : ''}
+            </div>
+            <div style="font-size:0.75rem;color:var(--gray);margin-bottom:8px;">
+                ${step.label} — ${step.desc}
+            </div>
+            <div class="seq-msg" style="font-size:0.75rem;">${msgTemplate}<button class="copy-btn" onclick="event.stopPropagation();copyText(this)">Copy</button></div>
+            <div class="lead-actions" style="margin-top:8px;">
+                ${step.type === 'text' ? `<button class="lead-btn btn-text" onclick="event.stopPropagation();sendText('${lead.phone}','${lead.id}',${stepIndex})">📱 Open Text</button>` : ''}
+                ${step.type === 'call' ? `<button class="lead-btn btn-call" onclick="event.stopPropagation();makeCall('${lead.phone}')">📞 Call</button>` : ''}
+                <button class="lead-btn btn-done" onclick="event.stopPropagation();completeStep('${lead.id}',${stepIndex})">✅ Done</button>
+                <button class="lead-btn btn-skip" onclick="event.stopPropagation();completeStep('${lead.id}',${stepIndex})">⏭ Skip</button>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function getMessageForStep(stepIndex, lead) {
+    const name = lead.name.split(' ')[0];
+    const dogName = lead.dogs || 'your pup';
+    const dogCount = lead.dogCount || 1;
+
+    const templates = [
+        `Hey ${name}! It was great meeting you at the Paw-ty today 🐾 This is TJ from Tidy Tails. I'd love to get your yard looking spotless — want me to set up a time for your first cleanup?`,
+        `Hey ${name}! Hope you and ${dogName} are enjoying the weekend 🐶 Just wanted to let you know — if you sign up this week, your first cleanup is on us! No strings. Just want to show you how clean your yard can be.`,
+        `CALL SCRIPT: "Hey ${name}, it's TJ from Tidy Tails — we met at the Crestwood Vet Paw-ty on Saturday. Just checking in — we're running a first-cleanup-free special this week. Any interest?"\n\nIF VOICEMAIL → text: Hey ${name}! Tried to call — just following up from the Paw-ty. First cleanup free this week! Let me know 🙂`,
+        `Hey ${name}! Quick update — we picked up 3 new customers from the Paw-ty this week 🎉 Your neighbors are already loving the clean yards. Still got a couple spots open — want me to add you?`,
+        `Hey ${name}! Last follow-up from me — our Paw-ty special wraps up this weekend. If the timing isn't right, totally get it! You've got my number whenever you need a clean yard 🐾 Have a great weekend!`
+    ];
+    return templates[stepIndex] || '';
+}
+
+// ===== ACTIONS =====
+function sendText(phone, leadId, stepIndex) {
+    if (phone) {
+        const lead = getLeads().find(l => l.id === leadId);
+        const msg = encodeURIComponent(getMessageForStep(stepIndex, lead));
+        window.open(`sms:${phone}&body=${msg}`, '_self');
+    }
+}
+
+function makeCall(phone) {
+    if (phone) window.open(`tel:${phone}`, '_self');
+}
+
+function completeStep(leadId, stepIndex) {
+    const leads = getLeads();
+    const lead = leads.find(l => l.id === leadId);
+    if (!lead) return;
+
+    if (!lead.completedSteps) lead.completedSteps = [];
+    if (!lead.completedSteps.includes(stepIndex)) {
+        lead.completedSteps.push(stepIndex);
+        addLog(`✅ Completed "${SEQUENCE[stepIndex].label}" for ${lead.name}`);
+    }
+
+    // Check if all steps done
+    if (lead.completedSteps.length >= SEQUENCE.length && lead.heat !== 'won') {
+        // Sequence complete but not converted
+        lead.heat = 'cool';
+    }
+
+    saveLeads(leads);
+    renderToday();
+    updateStats();
+}
+
+function markWon(leadId) {
+    const leads = getLeads();
+    const lead = leads.find(l => l.id === leadId);
+    if (lead) {
+        lead.heat = 'won';
+        lead.wonAt = Date.now();
+        addLog(`🎉 ${lead.name} CONVERTED to customer!`);
+        saveLeads(leads);
+        renderPipeline();
+        renderToday();
+        closeModal();
+    }
+}
+
+function markLost(leadId) {
+    const leads = getLeads();
+    const lead = leads.find(l => l.id === leadId);
+    if (lead) {
+        lead.heat = 'lost';
+        addLog(`❌ ${lead.name} marked as lost`);
+        saveLeads(leads);
+        renderPipeline();
+        renderToday();
+        closeModal();
+    }
+}
+
+function changeHeat(leadId, newHeat) {
+    const leads = getLeads();
+    const lead = leads.find(l => l.id === leadId);
+    if (lead) {
+        lead.heat = newHeat;
+        addLog(`🔄 ${lead.name} changed to ${newHeat}`);
+        saveLeads(leads);
+        renderPipeline();
+    }
+}
+
+// ===== ADD LEAD =====
+function addLead() {
+    const name = document.getElementById('add-name').value.trim();
+    const phone = document.getElementById('add-phone').value.trim();
+    if (!name) { alert('Name is required!'); return; }
+
+    const lead = {
+        id: 'lead_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
+        name,
+        phone,
+        dogs: document.getElementById('add-dogs').value.trim(),
+        dogCount: document.getElementById('add-dogcount').value,
+        area: document.getElementById('add-area').value.trim(),
+        heat: document.getElementById('add-heat').value,
+        notes: document.getElementById('add-notes').value.trim(),
+        service: document.getElementById('add-service').value,
+        addedAt: Date.now(),
+        completedSteps: [],
+        source: 'pawty'
+    };
+
+    const leads = getLeads();
+    leads.push(lead);
+    saveLeads(leads);
+    addLog(`➕ Added ${name} (${lead.heat}) from Paw-ty`);
+
+    // Clear form
+    ['add-name','add-phone','add-dogs','add-area','add-notes'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('add-heat').value = 'warm';
+    document.getElementById('add-service').value = 'biweekly';
+
+    alert(`✅ ${name} added to pipeline!`);
+    switchTab('pipeline');
+}
+
+// ===== IMPORT =====
+function importLeads() {
+    const raw = document.getElementById('import-data').value.trim();
+    if (!raw) { alert('Paste exported data first!'); return; }
+
+    try {
+        let data = JSON.parse(raw);
+        if (!Array.isArray(data)) data = [data];
+
+        const existing = getLeads();
+        let count = 0;
+
+        data.forEach(item => {
+            // Handle pocket guide format
+            const lead = {
+                id: 'lead_' + Date.now() + '_' + Math.random().toString(36).substr(2, 6),
+                name: item.name || item.Name || '',
+                phone: item.phone || item.Phone || '',
+                dogs: item.dogs || item.dogName || item.dog_name || '',
+                dogCount: item.dogCount || item.dog_count || '1',
+                area: item.area || item.zip || item.Area || '',
+                heat: (item.heat || item.heatLevel || 'warm').toLowerCase(),
+                notes: item.notes || item.Notes || '',
+                service: item.service || 'biweekly',
+                addedAt: Date.now(),
+                completedSteps: [],
+                source: 'pawty-import'
+            };
+            if (lead.name) { existing.push(lead); count++; }
+        });
+
+        saveLeads(existing);
+        addLog(`📲 Imported ${count} leads from Pocket Guide`);
+        document.getElementById('import-data').value = '';
+        alert(`✅ Imported ${count} leads!`);
+        switchTab('pipeline');
+    } catch (e) {
+        alert('❌ Invalid data format. Make sure it\'s valid JSON.');
+    }
+}
+
+// ===== LEAD DETAIL MODAL =====
+function openLeadDetail(leadId) {
+    const lead = getLeads().find(l => l.id === leadId);
+    if (!lead) return;
+
+    document.getElementById('modal-lead-name').textContent = lead.name;
+
+    const stage = getCurrentStage(lead);
+    const daysSinceAdd = Math.floor((Date.now() - lead.addedAt) / (1000 * 60 * 60 * 24));
+
+    document.getElementById('modal-content').innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
+            <div style="background:var(--gray-light);padding:10px;border-radius:8px;">
+                <div style="font-size:0.65rem;color:var(--gray);">PHONE</div>
+                <div style="font-size:0.85rem;font-weight:600;">${lead.phone || 'N/A'}</div>
+            </div>
+            <div style="background:var(--gray-light);padding:10px;border-radius:8px;">
+                <div style="font-size:0.65rem;color:var(--gray);">DOG(S)</div>
+                <div style="font-size:0.85rem;font-weight:600;">${lead.dogs || lead.dogCount + ' dog(s)'}</div>
+            </div>
+            <div style="background:var(--gray-light);padding:10px;border-radius:8px;">
+                <div style="font-size:0.65rem;color:var(--gray);">AREA</div>
+                <div style="font-size:0.85rem;font-weight:600;">${lead.area || 'N/A'}</div>
+            </div>
+            <div style="background:var(--gray-light);padding:10px;border-radius:8px;">
+                <div style="font-size:0.65rem;color:var(--gray);">INTEREST</div>
+                <div style="font-size:0.85rem;font-weight:600;">${lead.service || 'Unsure'}</div>
+            </div>
+        </div>
+
+        ${lead.notes ? `<div style="background:var(--yellow-bg);padding:10px;border-radius:8px;margin-bottom:12px;font-size:0.8rem;">📝 ${lead.notes}</div>` : ''}
+
+        <div style="font-size:0.75rem;color:var(--gray);margin-bottom:12px;">
+            Added ${daysSinceAdd} day(s) ago · Stage ${Math.min(stage + 1, SEQUENCE.length)} of ${SEQUENCE.length}
+        </div>
+
+        <div style="font-size:0.8rem;font-weight:700;margin-bottom:8px;">Follow-Up Progress</div>
+        ${SEQUENCE.map((s, i) => {
+            const done = (lead.completedSteps || []).includes(i);
+            return `<div class="check-item ${done ? 'done' : ''}" onclick="toggleStep('${lead.id}', ${i})">
+                <div class="check-box">${done ? '✓' : ''}</div>
+                <div>
+                    <div class="check-text">${s.label}</div>
+                    <div style="font-size:0.65rem;color:var(--gray);">${s.desc}</div>
+                </div>
+            </div>`;
+        }).join('')}
+
+        <div style="display:flex;gap:8px;margin-top:16px;">
+            ${lead.heat !== 'won' ? `<button class="add-btn" style="background:var(--green);" onclick="markWon('${lead.id}')">🎉 Mark as Won</button>` : ''}
+            ${lead.heat !== 'lost' ? `<button class="add-btn" style="background:var(--red);" onclick="markLost('${lead.id}')">❌ Mark as Lost</button>` : ''}
+        </div>
+
+        ${lead.heat !== 'won' && lead.heat !== 'lost' ? `
+        <div style="display:flex;gap:6px;margin-top:8px;">
+            <button class="lead-btn" style="background:var(--red-bg);color:var(--red);flex:1;" onclick="changeHeat('${lead.id}','hot');closeModal();">Set 🔥 Hot</button>
+            <button class="lead-btn" style="background:var(--orange-bg);color:var(--orange);flex:1;" onclick="changeHeat('${lead.id}','warm');closeModal();">Set 🟡 Warm</button>
+            <button class="lead-btn" style="background:var(--blue-bg);color:var(--blue);flex:1;" onclick="changeHeat('${lead.id}','cool');closeModal();">Set 🔵 Cool</button>
+        </div>` : ''}
+    `;
+
+    document.getElementById('lead-modal').classList.add('show');
+}
+
+function toggleStep(leadId, stepIndex) {
+    const leads = getLeads();
+    const lead = leads.find(l => l.id === leadId);
+    if (!lead) return;
+    if (!lead.completedSteps) lead.completedSteps = [];
+
+    const idx = lead.completedSteps.indexOf(stepIndex);
+    if (idx >= 0) lead.completedSteps.splice(idx, 1);
+    else lead.completedSteps.push(stepIndex);
+
+    saveLeads(leads);
+    openLeadDetail(leadId);
+    updateStats();
+}
+
+function closeModal() {
+    document.getElementById('lead-modal').classList.remove('show');
+}
+
+// ===== RESULTS =====
+function renderResults() {
+    const leads = getLeads();
+    const won = leads.filter(l => l.heat === 'won');
+    const lost = leads.filter(l => l.heat === 'lost');
+    const active = leads.filter(l => l.heat !== 'won' && l.heat !== 'lost');
+
+    // Conversion rate
+    const total = leads.length;
+    const rate = total > 0 ? Math.round((won.length / total) * 100) : 0;
+    document.getElementById('result-rate').textContent = rate + '%';
+    document.getElementById('result-total').textContent = total;
+
+    // Revenue estimate
+    const monthlyRev = won.reduce((sum, l) => sum + (PRICING[l.service] || 50), 0);
+    document.getElementById('result-revenue').textContent = '$' + monthlyRev;
+    document.getElementById('result-annual').textContent = '$' + (monthlyRev * 12).toLocaleString();
+
+    // Funnel
+    const funnel = document.getElementById('funnel-display');
+    const stages = [
+        { label: 'Total Leads', count: total, color: 'var(--blue)', pct: 100 },
+        { label: '🔥 Hot', count: leads.filter(l => l.heat === 'hot').length, color: 'var(--red)', pct: total > 0 ? (leads.filter(l => l.heat === 'hot').length / total * 100) : 0 },
+        { label: '🟡 Warm', count: leads.filter(l => l.heat === 'warm').length, color: 'var(--orange)', pct: total > 0 ? (leads.filter(l => l.heat === 'warm').length / total * 100) : 0 },
+        { label: '✅ Converted', count: won.length, color: 'var(--green)', pct: total > 0 ? (won.length / total * 100) : 0 },
+        { label: '❌ Lost', count: lost.length, color: 'var(--gray)', pct: total > 0 ? (lost.length / total * 100) : 0 },
+    ];
+    funnel.innerHTML = stages.map(s => `
+        <div style="margin-bottom:8px;">
+            <div style="display:flex;justify-content:space-between;font-size:0.75rem;margin-bottom:4px;">
+                <span>${s.label}</span><span style="font-weight:700;">${s.count}</span>
+            </div>
+            <div style="background:#e5e7eb;border-radius:4px;height:8px;overflow:hidden;">
+                <div style="background:${s.color};height:100%;width:${s.pct}%;border-radius:4px;transition:width 0.3s;"></div>
+            </div>
+        </div>
+    `).join('');
+
+    // Activity log
+    const log = getLog();
+    const logEl = document.getElementById('activity-log');
+    if (log.length === 0) {
+        logEl.innerHTML = '<p style="font-size:0.75rem;color:var(--gray);text-align:center;">No activity yet</p>';
+    } else {
+        logEl.innerHTML = log.slice(0, 20).map(entry => {
+            const d = new Date(entry.time);
+            const timeStr = d.toLocaleDateString() + ' ' + d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            return `<div class="tl-item"><div class="tl-time">${timeStr}</div><div class="tl-text">${entry.text}</div></div>`;
+        }).join('');
+    }
+}
+
+// ===== STATS =====
+function updateStats() {
+    const leads = getLeads();
+    document.getElementById('stat-hot').textContent = leads.filter(l => l.heat === 'hot').length;
+    document.getElementById('stat-warm').textContent = leads.filter(l => l.heat === 'warm').length;
+    document.getElementById('stat-cool').textContent = leads.filter(l => l.heat === 'cool').length;
+    document.getElementById('stat-won').textContent = leads.filter(l => l.heat === 'won').length;
+}
+
+// ===== UTILITIES =====
+function copyText(btn) {
+    const msg = btn.parentElement.textContent.replace('Copy', '').replace('Copied!', '').trim();
+    navigator.clipboard.writeText(msg).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    });
+}
+
+function exportData() {
+    const data = { leads: getLeads(), log: getLog(), exportedAt: new Date().toISOString() };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = `pawty-followup-${new Date().toISOString().split('T')[0]}.json`;
+    a.click(); URL.revokeObjectURL(url);
+}
+
+function clearAll() {
+    if (confirm('⚠️ This will delete ALL leads and activity. Are you sure?')) {
+        if (confirm('Really? This cannot be undone.')) {
+            localStorage.removeItem(STORAGE_KEY);
+            localStorage.removeItem(LOG_KEY);
+            renderPipeline();
+            renderToday();
+            renderResults();
+        }
+    }
+}
+
+// ===== INIT =====
+renderPipeline();
+updateStats();
+
+// Update today badge
+const todayLeads = getLeads().filter(l => l.heat !== 'won' && l.heat !== 'lost');
+let todayCount = 0;
+todayLeads.forEach(lead => {
+    const daysSince = Math.floor((Date.now() - lead.addedAt) / (1000 * 60 * 60 * 24));
+    const stage = getCurrentStage(lead);
+    if (stage < SEQUENCE.length && daysSince >= SEQUENCE[stage].day) todayCount++;
+});
+document.getElementById('today-badge').textContent = todayCount;
+</script>
+
+</body>
+</html>
