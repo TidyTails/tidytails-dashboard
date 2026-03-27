@@ -6,6 +6,26 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 8:05 PM — Mobile Paw-ty Lead Tracker App (Hourly Task)
+- **8:05 PM** 📱 Mobile Lead Tracker App — Built the field tool Jamie actually needs at Saturday's event.
+  - **WHY:** We had a follow-up system (markdown doc + dashboard reference page) with great text templates, but Jamie would have to manually type every personalized text. Paper sign-up sheet → phone Notes → remember to text → copy templates → swap [Name]? Nobody does that. The tool that does the work FOR you is the tool that gets used.
+  - **WHAT WAS BUILT:**
+    1. **Mobile-first lead tracker** (`dashboard/pawty-lead-tracker.html`):
+       - **Capture tab** — Add leads at the booth: name, phone, dog names, # dogs, neighborhood (autocomplete for STL areas), interest level (🔥 Hot / 🟡 Warm / 🔵 Cool), notes. One-tap add.
+       - **Leads tab** — Filter by interest level or status. Set status: Booked / Replied / Lost. Tap-to-call phone numbers. Delete with confirmation.
+       - **Follow-Up tab** — THE KEY FEATURE: auto-generates personalized texts for each lead at each follow-up stage (Sat evening, Monday, Wednesday, next Saturday). Texts use lead's first name, dog names, and neighborhood. One-tap Copy or one-tap Open SMS (pre-fills the text message app). Mark each as "Sent" to track progress. Includes vet clinic follow-up track.
+       - **Results tab** — Conversion rate, monthly/annual revenue from booked leads, pipeline breakdown bars, revenue projections, export all leads as text.
+       - **localStorage persistence** — works completely offline at the event. Data stays on the phone.
+    2. **Dashboard updated** — New "📱 LEAD TRACKER" quick link (pulsing orange), Paw-ty alert card updated to feature the tracker prominently.
+  - **WHY THIS OVER OTHER TASKS:**
+    - Saturday is 36 hours away. This is the difference between "Jamie texts 5 people and gives up" and "Jamie texts 30 people with personalized messages within 4 hours."
+    - The follow-up system content was already written. What was missing was the DELIVERY VEHICLE — the phone-friendly tool that makes it frictionless.
+    - Existing page was a static reference guide. This is an interactive app Jamie uses at the booth and for 14 days after.
+    - The revenue math: if this app gets Jamie to follow up with 20 leads instead of 5, and 3 convert instead of 1, that's +$170/month = +$2,040/year. From one tool.
+    - 8 PM Thursday = last chance to build anything before the event.
+  - **IMPACT:** Jamie opens this on her phone Saturday morning. At the booth, she adds each person as they sign up. Saturday evening, she switches to Follow-Up tab and every personalized text is waiting — copy, paste, send. Monday, Wednesday, next Saturday — same thing. The 14-day follow-up sequence goes from "I'll remember to text them" to "the app tells me who to text and what to say."
+  - Committed + pushed to GitHub ✅
+
 ### Thursday 7:04 PM — QR Fix + Dashboard Cleanup (Hourly Task)
 - **7:04 PM** 🔧 Critical QR Fix + Dashboard De-Staling — Fixed broken Paw-ty QR codes + cleaned dashboard.
   - **WHY:** Saturday Paw-ty is 36 hours away. The QR flyers built at 2 PM pointed to `tidytailsstl.com/pawty` which returns the HOMEPAGE (not deployed to Cloudflare). If TJ printed those flyers, every QR scan would land on the homepage with no event info, no sign-up form, no deals. Total waste.
