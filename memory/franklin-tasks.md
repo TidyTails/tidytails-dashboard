@@ -141,6 +141,29 @@
 
 ---
 
+### Friday 4:06 PM — Paw-ty Follow-Up Engine (Hourly Task)
+- **4:06 PM** 📲 Built complete Paw-ty post-event lead conversion engine
+  - **File:** `dashboard/pawty-followup-engine.html` — 5-tab mobile-first app
+  - **Timeline tab:** Exactly when to text each lead type — Hot (within 2 hrs), Warm (Sun AM + Wed), Cool (Mon/Tue once). Color-coded with reasoning for each touchpoint
+  - **Scripts tab:** 10 copy-paste texts covering every scenario:
+    - Hot Text #1 (same-day warm hello) + Variant (no dog name)
+    - Hot Text #2 (Sat afternoon setup, if no reply)
+    - Sunday Closer (magic conversion window)
+    - Last Call (Mon/Tue final touch with graceful exit)
+    - Warm Text #1 (Sunday low-pressure opener with full pricing)
+    - Warm Text #2 (Wed value drop — gives info, no ask)
+    - Cool Text (single Mon/Tue reminder, then release)
+    - Sign-Up Confirmation (onboarding text with info collection)
+  - **Leads tab:** Quick-add form (name, phone, dog, area, heat level, notes), lead cards with tap-to-call/text/convert, stats bar (total/hot/converted)
+  - **Objections tab:** 8 handlers for "need to think", "too expensive", "small dog", "cancel", "big yard", "kids do it", "new/timing", "how legit are you" — all with context tips
+  - **Close It tab:** Conversion checklist (8 items), the math breakdown ($420/yr per customer, 2 converts = 40% of monthly goal from one weekend), next events pipeline (STLAA, dog parks, vet blitz, next Paw-ty)
+  - **Goal banner** tracks real-time conversion progress toward 25-customer goal
+  - **Dashboard:** Added pulsing blue "📲 FOLLOW-UP ENGINE" quick link + dedicated alert card above GBP card, updated Paw-ty alert row to include direct link
+  - **Why this task:** Paw-ty is 18 hours away. All the pre-event tools are done. The post-event gap was exactly defined: no structured follow-up cadence, no copy-paste texts, no timing guide. Most leads die in the 48-hour window after an event from "I'll text them later" procrastination. This removes every excuse to not close.
+  - Committed + pushed ✅
+
+---
+
 ### Friday 3:04 PM — Weekend Shed Ad Drop (Hourly Task)
 - **3:04 PM** 🏠 Built complete TuffShed Weekend Ad Drop for Mar 28–30 (prime browsing season)
   - **File:** `ready-to-post/shed-weekend-drop-mar28.html` — 4-tab copy-paste-ready drop
