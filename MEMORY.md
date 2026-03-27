@@ -231,6 +231,13 @@ Assets: Landing page, pitch deck (v6), one-pager, market research.
 - [ ] **Launch $7/day Facebook Ads** (30 min) — full campaign kit ready
 - [ ] **Make 3 commercial calls** (15 min) — Hot 10 call playbook + scripts ready
 
+### PDF Generation Standard (March 26, 2026)
+- **Standard file:** `standards/pdf-generation.md`
+- **Rule:** ALWAYS generate PDFs from local HTML via localhost server, NEVER from GitHub Pages URLs
+- **Validation:** Every PDF must be >50KB or it's broken (404 screenshots are ~18KB)
+- **All cron tasks updated** to follow this standard (morning briefing, shed ads, hourly tasks)
+- **Root cause:** Cron tasks were opening GitHub Pages URLs → got 404 → screenshot'd the 404 → shipped as "PDF" for weeks
+
 ### What Franklin Should Focus On
 - **STOP BUILDING TOOLKITS.** 65+ tools, 200+ deliverables. The canyon is GRAND CANYON sized.
 - **Maintain, don't create.** Hourly tasks = memory cleanup, site health checks, status updates. NOT new deliverables.

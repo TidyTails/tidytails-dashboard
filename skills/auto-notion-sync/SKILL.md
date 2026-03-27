@@ -45,6 +45,11 @@ Based on content/filename, pick the appropriate Notion folder from the table abo
 ⚠️ CORRECT PDF URL: `https://tidytails.github.io/tidytails-dashboard/dashboard/pdfs/[FILENAME].pdf`
 ❌ WRONG URL: `https://tidytails.github.io/tidytails-dashboard/pdfs/[FILENAME].pdf` (404!)
 
+⚠️ **CRITICAL: PDF links MUST use `bookmark` blocks, NOT plain text.**
+- Plain text URLs in paragraphs are NOT clickable in Notion
+- The `bookmark` block type renders as a clickable card/link
+- NEVER put a URL as plain text in a paragraph — TJ can't click it
+
 ```bash
 mcporter call notion API-post-page --args '{
   "parent": {"page_id": "[FOLDER_ID]"},
@@ -56,6 +61,16 @@ mcporter call notion API-post-page --args '{
     {"type": "bookmark", "bookmark": {"url": "https://tidytails.github.io/tidytails-dashboard/dashboard/pdfs/[FILENAME].pdf"}}
   ]
 }'
+```
+
+### ❌ WRONG (plain text — NOT clickable):
+```json
+{"type": "paragraph", "paragraph": {"rich_text": [{"type": "text", "text": {"content": "PDF: https://example.com/file.pdf"}}]}}
+```
+
+### ✅ RIGHT (bookmark block — CLICKABLE):
+```json
+{"type": "bookmark", "bookmark": {"url": "https://example.com/file.pdf"}}
 ```
 
 ### Step 3: Log the Upload
@@ -77,7 +92,7 @@ For any new PDF, run this pattern:
 # 1. Determine folder based on content
 FOLDER_ID="30bccdb3-7d1f-8119-b8e5-f1d746e3471f"  # Tidy Tails example
 
-# 2. Create page (NOTE: URL must include /dashboard/ in path!)
+# 2. Create page — MUST use bookmark block for clickable PDF link!
 mcporter call notion API-post-page --args '{
   "parent": {"page_id": "'$FOLDER_ID'"},
   "properties": {"title": [{"text": {"content": "YOUR TITLE"}}]},
@@ -86,9 +101,32 @@ mcporter call notion API-post-page --args '{
     {"type": "bookmark", "bookmark": {"url": "https://tidytails.github.io/tidytails-dashboard/dashboard/pdfs/YOUR_FILE.pdf"}}
   ]
 }'
+# ⚠️ NEVER put URLs as plain text in paragraphs — they won't be clickable!
 
 # 3. Log it
 echo "| $(date +%H:%M) | YOUR TITLE | 🐕 Tidy Tails | pdfs/YOUR_FILE.pdf | ✅ |" >> memory/notion-uploads.md
+```
+
+## ⚠️ EOD & Briefing Deliverable Lists — MUST INCLUDE LINKS
+
+When creating EOD summaries or any Notion page that lists deliverables:
+- **NEVER** list deliverables as plain comma-separated text
+- **ALWAYS** create individual bullet items with clickable links to the dashboard tool
+- Each deliverable gets its own `bulleted_list_item` with a `link` in the rich_text
+
+### ✅ RIGHT (each deliverable is a clickable bullet):
+```json
+{"type": "bulleted_list_item", "bulleted_list_item": {"rich_text": [
+  {"type": "text", "text": {"content": "Directory Submission Kit — ", "link": null}, "annotations": {"bold": true}},
+  {"type": "text", "text": {"content": "Open on Dashboard →", "link": {"url": "https://tidytails.github.io/tidytails-dashboard/dashboard/directory-submission-kit.html"}}}
+]}}
+```
+
+### ❌ WRONG (text dump, nothing clickable):
+```json
+{"type": "bulleted_list_item", "bulleted_list_item": {"rich_text": [
+  {"type": "text", "text": {"content": "Directory Submission Kit, Event Prep, Paid Ads Guide..."}}
+]}}
 ```
 
 ## Integration with Hourly Tasks
