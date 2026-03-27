@@ -141,6 +141,25 @@
 
 ---
 
+### Friday 6:06 PM — New Customer Onboarding Kit (Hourly Task)
+- **6:06 PM** 🐾 Built complete new customer onboarding system for turning Paw-ty leads into recurring customers
+  - **File:** `dashboard/new-customer-onboarding.html` — 6-tab mobile-first onboarding hub
+  - **Tab 1 — Close Flow:** 5-step sequence (confirm yes → collect 3 must-haves → send text immediately → quote confidently → set first service date). Psychology notes: 48-hour window, text > call, use dog's name.
+  - **Tab 2 — Intake Info:** Stage 1 (4 required at-event fields) + Stage 2 (6 follow-up text fields). Full pricing table (1-4 dogs, weekly/biweekly/one-time). Quick-add customer form saves to localStorage.
+  - **Tab 3 — Text Scripts:** 6 copy-paste-ready texts with timestamps:
+    - Text #1: Confirmation (send AT event, while they watch)
+    - Text #2: Intake (Sunday 10-11 AM — address, gate code, dog name)
+    - Text #3: Schedule confirmation (specific date + day)
+    - Text #4: Day-of "on my way" + "all done" with referral seed
+    - Text #5: First payment request (end of month 1)
+    - Text #6: Referral ask (after 2nd service — highest satisfaction window)
+  - **Tab 4 — Schedule:** 6 route days with area labels, tap-to-select, scheduling rules (cluster geographically, offer specific days not open-ended, first service within 7 days)
+  - **Tab 5 — Checklist:** 19 checkboxes across 4 phases (At-Event, Day After, First Service, Long-Term Retention) — localStorage persistence
+  - **Tab 6 — Objections:** 8 handlers ("need to think", "expensive", "small dog", "do it myself", "cancel?", "partner approval", "area?", "legit?") + universal close script
+  - **Dashboard:** Added pulsing green "🐾 ONBOARDING KIT" quick link + green alert card above Proposal Builder
+  - **Why this task:** The Paw-ty is tomorrow morning. Every other tool handles pre-event prep or post-event follow-up for warm leads. The missing piece is the exact playbook for the 90-second window when someone says "yes." Without a clear close sequence and instant confirmation text, those warm leads go cold before Sunday. This is the last-mile conversion layer.
+  - Committed + pushed ✅
+
 ### Friday 5:04 PM — Commercial Proposal Builder (Hourly Task)
 - **5:04 PM** 📄 Built a print-ready commercial service proposal tool for TJ to send after Monday's commercial calls
   - **File:** `dashboard/commercial-proposal-template.html` — 1-page professional proposal generator
