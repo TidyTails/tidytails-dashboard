@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Tidy Tails | New Customer Onboarding Kit</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:#0a0a0a; --bg2:#141414; --bg3:#1a1a1a; --bg4:#242424;
+      --text:#f5f5f5; --text2:#999; --text3:#555;
+      --green:#10b981; --orange:#ff6b35; --blue:#3b82f6;
+      --yellow:#fbbf24; --red:#ef4444; --purple:#8b5cf6;
+      --teal:#14b8a6; --border:#2a2a2a; --radius:12px;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+    /* HEADER */
+    .header{background:var(--bg2);border-bottom:2px solid var(--green);padding:1rem 1.25rem;position:sticky;top:0;z-index:100;}
+    .header-inner{max-width:800px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+    .header h1{font-size:1.1rem;font-weight:800;}
+    .header h1 span{color:var(--green);}
+    .header-sub{font-size:0.7rem;color:var(--text3);margin-top:2px;}
+    .customer-count{background:rgba(16,185,129,0.15);color:var(--green);font-size:0.75rem;font-weight:700;padding:0.35rem 0.75rem;border-radius:20px;font-family:'JetBrains Mono',monospace;}
+
+    /* TABS */
+    .tabs{display:flex;gap:0;border-bottom:1px solid var(--border);background:var(--bg2);overflow-x:auto;scrollbar-width:none;}
+    .tabs::-webkit-scrollbar{display:none;}
+    .tab{padding:0.85rem 1.1rem;font-size:0.78rem;font-weight:600;cursor:pointer;color:var(--text3);border-bottom:2px solid transparent;white-space:nowrap;transition:all 0.2s;}
+    .tab.active{color:var(--green);border-bottom-color:var(--green);}
+    .tab:hover:not(.active){color:var(--text2);}
+
+    /* CONTENT */
+    .container{max-width:800px;margin:0 auto;padding:1.25rem;}
+    .section{display:none;}
+    .section.active{display:block;}
+
+    /* CARDS */
+    .card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1rem;}
+    .card-title{font-size:0.85rem;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.85rem;display:flex;align-items:center;gap:0.5rem;}
+    .card-title span{font-size:1rem;}
+
+    /* STEP FLOW */
+    .step-flow{display:flex;flex-direction:column;gap:0.85rem;}
+    .step{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem 1.1rem;position:relative;padding-left:3rem;}
+    .step-num{position:absolute;left:0.85rem;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:var(--green);color:#000;font-weight:800;font-size:0.8rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .step.warning .step-num{background:var(--yellow);color:#000;}
+    .step.alert .step-num{background:var(--red);color:#fff;}
+    .step-title{font-weight:700;font-size:0.9rem;margin-bottom:0.35rem;}
+    .step-body{font-size:0.82rem;color:var(--text2);line-height:1.6;}
+    .step-body strong{color:var(--text);}
+    .step-timing{font-size:0.7rem;color:var(--orange);font-weight:700;margin-top:0.5rem;font-family:'JetBrains Mono',monospace;}
+
+    /* TEXT SCRIPTS */
+    .script-block{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:0.85rem;}
+    .script-label{font-size:0.7rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.6rem;display:flex;align-items:center;justify-content:space-between;}
+    .script-label .timing{color:var(--orange);}
+    .script-text{font-size:0.83rem;line-height:1.7;color:var(--text);background:var(--bg4);border-radius:8px;padding:0.85rem;border-left:3px solid var(--green);position:relative;}
+    .script-text .placeholder{color:var(--yellow);}
+    .copy-btn{position:absolute;top:0.5rem;right:0.5rem;background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:6px;padding:0.25rem 0.5rem;font-size:0.65rem;font-weight:600;cursor:pointer;transition:all 0.2s;}
+    .copy-btn:hover{color:var(--green);border-color:var(--green);}
+    .copy-btn.copied{color:var(--green);border-color:var(--green);}
+
+    /* INTAKE FORM GUIDE */
+    .intake-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+    @media(max-width:560px){.intake-grid{grid-template-columns:1fr;}}
+    .intake-item{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.85rem;}
+    .intake-item .label{font-size:0.7rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.35rem;}
+    .intake-item .value{font-size:0.82rem;color:var(--text2);line-height:1.5;}
+    .intake-item.required .label{color:var(--green);}
+    .intake-item.required{border-color:rgba(16,185,129,0.3);}
+
+    /* SCHEDULE PICKER */
+    .schedule-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.65rem;margin-bottom:0.85rem;}
+    @media(max-width:480px){.schedule-grid{grid-template-columns:1fr;}}
+    .schedule-day{background:var(--bg3);border:2px solid var(--border);border-radius:8px;padding:0.75rem;cursor:pointer;transition:all 0.2s;text-align:center;}
+    .schedule-day.selected{border-color:var(--green);background:rgba(16,185,129,0.1);}
+    .schedule-day .day-name{font-weight:700;font-size:0.9rem;margin-bottom:0.2rem;}
+    .schedule-day .day-note{font-size:0.7rem;color:var(--text3);}
+
+    /* PRICING TABLE */
+    .pricing-table{width:100%;border-collapse:collapse;font-size:0.8rem;}
+    .pricing-table th{background:var(--bg4);color:var(--text2);text-align:left;padding:0.6rem 0.75rem;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;}
+    .pricing-table td{padding:0.65rem 0.75rem;border-bottom:1px solid var(--border);}
+    .pricing-table tr:last-child td{border-bottom:none;}
+    .pricing-table .highlight{color:var(--green);font-weight:700;}
+    .pricing-table .note{color:var(--text3);font-size:0.7rem;}
+
+    /* CHECKLIST */
+    .checklist{display:flex;flex-direction:column;gap:0.5rem;}
+    .check-item{display:flex;align-items:flex-start;gap:0.6rem;padding:0.65rem 0.85rem;background:var(--bg3);border-radius:8px;border:1px solid var(--border);cursor:pointer;transition:all 0.2s;}
+    .check-item.done{opacity:0.5;}
+    .check-item.done .check-label{text-decoration:line-through;}
+    .check-box{width:20px;height:20px;border-radius:4px;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all 0.2s;margin-top:1px;}
+    .check-item.done .check-box{background:var(--green);border-color:var(--green);}
+    .check-label{font-size:0.82rem;line-height:1.5;}
+    .check-note{font-size:0.7rem;color:var(--text3);margin-top:0.2rem;}
+
+    /* OBJECTIONS */
+    .objection{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:0.75rem;}
+    .objection-q{font-weight:700;font-size:0.85rem;color:var(--yellow);margin-bottom:0.5rem;}
+    .objection-a{font-size:0.82rem;color:var(--text2);line-height:1.6;}
+    .objection-a strong{color:var(--text);}
+
+    /* ALERT BANNERS */
+    .banner{border-radius:10px;padding:0.85rem 1rem;margin-bottom:0.85rem;font-size:0.82rem;line-height:1.6;display:flex;gap:0.75rem;align-items:flex-start;}
+    .banner-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px;}
+    .banner.green{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);}
+    .banner.yellow{background:rgba(251,191,36,0.1);border:1px solid rgba(251,191,36,0.3);}
+    .banner.orange{background:rgba(255,107,53,0.1);border:1px solid rgba(255,107,53,0.3);}
+    .banner.blue{background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.3);}
+
+    /* GOAL TRACKER */
+    .goal-bar{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.25rem;margin-bottom:1rem;}
+    .goal-nums{display:flex;align-items:baseline;gap:0.5rem;margin-bottom:0.6rem;}
+    .goal-current{font-size:2.2rem;font-weight:800;color:var(--green);font-family:'JetBrains Mono',monospace;}
+    .goal-of{font-size:1rem;color:var(--text3);}
+    .goal-target{font-size:1.3rem;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--text2);}
+    .goal-label{font-size:0.7rem;color:var(--text3);margin-bottom:0.6rem;}
+    .progress{height:18px;background:var(--bg4);border-radius:9px;overflow:hidden;}
+    .progress-fill{height:100%;background:linear-gradient(90deg,var(--green),#34d399);border-radius:9px;display:flex;align-items:center;padding-right:6px;justify-content:flex-end;font-size:0.65rem;font-weight:800;color:#000;}
+
+    /* QUICK NAV */
+    .quick-nav{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+    .qn-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);border-radius:8px;padding:0.45rem 0.85rem;font-size:0.75rem;font-weight:600;cursor:pointer;text-decoration:none;transition:all 0.2s;}
+    .qn-btn:hover{color:var(--text);border-color:var(--text3);}
+
+    /* SUCCESS STATE */
+    .success-flash{background:rgba(16,185,129,0.15);border:1px solid var(--green);border-radius:8px;padding:0.65rem 0.85rem;font-size:0.8rem;color:var(--green);font-weight:600;display:none;margin-bottom:0.5rem;}
+    .success-flash.show{display:block;}
+
+    /* CUSTOMER CARD */
+    .customer-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:0.75rem;}
+    .customer-card input,.customer-card select,.customer-card textarea{width:100%;background:var(--bg4);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:0.6rem 0.75rem;font-size:0.82rem;font-family:'Inter',sans-serif;margin-bottom:0.6rem;outline:none;}
+    .customer-card input:focus,.customer-card select:focus,.customer-card textarea:focus{border-color:var(--green);}
+    .customer-card label{font-size:0.7rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:0.3rem;}
+    .field-row{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;}
+    @media(max-width:480px){.field-row{grid-template-columns:1fr;}}
+    .btn{padding:0.6rem 1.1rem;border-radius:8px;font-family:'Inter',sans-serif;font-weight:700;font-size:0.82rem;cursor:pointer;border:none;transition:all 0.2s;display:inline-flex;align-items:center;gap:0.4rem;}
+    .btn-green{background:var(--green);color:#000;}
+    .btn-green:hover{filter:brightness(1.1);}
+    .btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border);}
+    .btn-ghost:hover{border-color:var(--text3);color:var(--text);}
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div>
+      <h1>🐾 <span>Tidy Tails</span> — New Customer Onboarding</h1>
+      <div class="header-sub">Turn a "yes" into a recurring customer. Fast.</div>
+    </div>
+    <div class="customer-count" id="custCount">10 / 25 🎯</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('flow')">① Close Flow</div>
+  <div class="tab" onclick="switchTab('intake')">② Intake Info</div>
+  <div class="tab" onclick="switchTab('texts')">③ Text Scripts</div>
+  <div class="tab" onclick="switchTab('schedule')">④ Schedule It</div>
+  <div class="tab" onclick="switchTab('checklist')">⑤ Checklist</div>
+  <div class="tab" onclick="switchTab('objections')">⑥ Objections</div>
+</div>
+
+<div class="container">
+
+  <!-- ① CLOSE FLOW -->
+  <div class="section active" id="section-flow">
+    <div class="banner green">
+      <div class="banner-icon">🎯</div>
+      <div>When someone says "yes" — even a soft yes — follow this exact flow. Speed is the job. The faster they're in the system, the more likely they stick.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>⚡</span> The 5-Step Close Sequence</div>
+      <div class="step-flow">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-title">Confirm the "Yes" Out Loud</div>
+          <div class="step-body">
+            Say: <strong>"Awesome — let me get you set up right now. Takes 2 minutes."</strong><br>
+            Don't wait. Don't say "I'll have someone reach out." Do it immediately. 
+            If they have a dog in their arms, you have their full attention for exactly 90 seconds.
+          </div>
+          <div class="step-timing">⏱ Do this within 10 seconds of hearing "yes"</div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-title">Collect the 3 Must-Haves</div>
+          <div class="step-body">
+            Only ask these three, in order:<br>
+            <strong>① Name</strong> — "What's your name?"<br>
+            <strong>② Phone</strong> — "Best number for texts?" (almost everyone texts)<br>
+            <strong>③ Address or neighborhood</strong> — "And roughly what area are you in?"<br><br>
+            <em>Everything else can come via text. Don't overwhelm them at the table.</em>
+          </div>
+          <div class="step-timing">⏱ Takes 60 seconds. Stop at 3.</div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-title">Send the Confirmation Text Immediately</div>
+          <div class="step-body">
+            Pull out your phone. Send the <strong>Confirmation Text</strong> (Tab ③) while they're still standing there.<br>
+            They see the text arrive — this locks it in psychologically. Now it's real to them.
+          </div>
+          <div class="step-timing">⏱ Send before they walk away</div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-title">Quote Pricing (Confidently, No Apology)</div>
+          <div class="step-body">
+            Say the price out loud. Don't trail off. Don't add "but it depends."<br>
+            <strong>1 dog, weekly = $35/mo. 2 dogs = $45/mo. One-time = $75-100.</strong><br>
+            If they pause: <em>"We do a flat rate — no surprises on the bill, ever."</em>
+          </div>
+          <div class="step-timing">⏱ Say it once, clearly, then move on</div>
+        </div>
+
+        <div class="step">
+          <div class="step-num">5</div>
+          <div class="step-title">Set the First Service Date</div>
+          <div class="step-body">
+            Don't leave it open-ended. Suggest a day: <strong>"We can get you on the schedule for [specific day]. Does that work?"</strong><br>
+            If they say "I need to check" → "No worries — I'll follow up in that text I just sent."<br>
+            Log them in the Follow-Up Engine as "Warm" if no date is set.
+          </div>
+          <div class="step-timing">⏱ Always leave with a date OR a follow-up plan</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🧠</span> Psychology Notes</div>
+      <div class="step-flow">
+        <div class="step warning">
+          <div class="step-num" style="top:1.2rem;transform:none;">⚡</div>
+          <div style="padding-top:0.1rem;">
+            <div class="step-title">The 48-Hour Window</div>
+            <div class="step-body">Interest drops ~60% per day after an event. A "yes" at 10 AM Saturday is worth $0 by Monday night if you haven't texted. Send the confirmation text IN PERSON.</div>
+          </div>
+        </div>
+        <div class="step warning">
+          <div class="step-num" style="top:1.2rem;transform:none;">💬</div>
+          <div style="padding-top:0.1rem;">
+            <div class="step-title">Text &gt; Call</div>
+            <div class="step-body">90% of people in this demographic prefer texts to calls. Always start with text. Offer to call only if they ask or if 2 texts go unanswered.</div>
+          </div>
+        </div>
+        <div class="step warning">
+          <div class="step-num" style="top:1.2rem;transform:none;">🐕</div>
+          <div style="padding-top:0.1rem;">
+            <div class="step-title">Use the Dog's Name</div>
+            <div class="step-body">If you learn their dog's name at the Paw-ty, use it in the first text. "Can't wait to keep Biscuit's yard clean!" — this makes it personal and memorable.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quick-nav">
+      <a href="pawty-followup-engine.html" class="qn-btn">📲 Follow-Up Engine</a>
+      <a href="pawty-pocket-guide.html" class="qn-btn">📋 Pocket Guide</a>
+      <a href="tidy-tails-crm.html" class="qn-btn">🗂️ CRM</a>
+      <a href="commercial-proposal-template.html" class="qn-btn">📄 Proposal Builder</a>
+    </div>
+  </div>
+
+  <!-- ② INTAKE INFO -->
+  <div class="section" id="section-intake">
+    <div class="banner blue">
+      <div class="banner-icon">📋</div>
+      <div>Collect info in 2 stages: <strong>minimal at signup</strong> (name/phone/address), then <strong>full intake via text</strong> the next day. Don't overwhelm them upfront.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>✅</span> Stage 1 — Get At Signup (Required)</div>
+      <div class="intake-grid">
+        <div class="intake-item required">
+          <div class="label">✅ Full Name</div>
+          <div class="value">First + last. Write it down or add to phone contacts immediately.</div>
+        </div>
+        <div class="intake-item required">
+          <div class="label">✅ Cell Phone</div>
+          <div class="value">Confirm: "Best number for texts?" Add to phone NOW while they watch.</div>
+        </div>
+        <div class="intake-item required">
+          <div class="label">✅ Address / Neighborhood</div>
+          <div class="value">Full address ideal; neighborhood OK if they're hesitant. Need for routing.</div>
+        </div>
+        <div class="intake-item required">
+          <div class="label">✅ # of Dogs</div>
+          <div class="value">Determines price tier. 1 dog = $35/mo, 2 = $45/mo, 3+ = $55/mo (weekly).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>📬</span> Stage 2 — Intake Text (Send Next Day)</div>
+      <div class="intake-grid">
+        <div class="intake-item">
+          <div class="label">Dog Name(s)</div>
+          <div class="value">Makes communication personal. "Can't wait to serve Biscuit!"</div>
+        </div>
+        <div class="intake-item">
+          <div class="label">Gate Code / Yard Access</div>
+          <div class="value">Critical. Ask: "Any gate code or special access notes for your yard?"</div>
+        </div>
+        <div class="intake-item">
+          <div class="label">Service Frequency</div>
+          <div class="value">Weekly (default), biweekly, or one-time. Confirm which plan they're on.</div>
+        </div>
+        <div class="intake-item">
+          <div class="label">Preferred Service Day</div>
+          <div class="value">Ask: "Is there a day that works best — morning vs afternoon preference?"</div>
+        </div>
+        <div class="intake-item">
+          <div class="label">Email (Optional)</div>
+          <div class="value">For invoice if they want one. Most don't need it. Don't push.</div>
+        </div>
+        <div class="intake-item">
+          <div class="label">How They Prefer to Pay</div>
+          <div class="value">Venmo (@TidyTailsStL) or check. No cash — keeps it professional.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>💰</span> Pricing Quick Reference</div>
+      <table class="pricing-table">
+        <thead>
+          <tr><th>Dogs</th><th>Weekly</th><th>Biweekly</th><th>One-Time</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1 dog</td>
+            <td class="highlight">$35/mo</td>
+            <td>$25/mo</td>
+            <td class="note">$75</td>
+          </tr>
+          <tr>
+            <td>2 dogs</td>
+            <td class="highlight">$45/mo</td>
+            <td>$35/mo</td>
+            <td class="note">$90</td>
+          </tr>
+          <tr>
+            <td>3 dogs</td>
+            <td class="highlight">$55/mo</td>
+            <td>$45/mo</td>
+            <td class="note">$110</td>
+          </tr>
+          <tr>
+            <td>4+ dogs</td>
+            <td class="highlight">$65/mo</td>
+            <td>$55/mo</td>
+            <td class="note">$130+</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="font-size:0.72rem;color:var(--text3);margin-top:0.75rem;">
+        🎪 Paw-ty Promo: First Visit FREE + $35/mo for 3 months (1 dog weekly). Mention PAW-TY by April 15.
+      </div>
+    </div>
+
+    <!-- QUICK INTAKE FORM -->
+    <div class="card">
+      <div class="card-title"><span>📝</span> Quick Add New Customer</div>
+      <div id="successMsg" class="success-flash">✅ Customer saved! Add them to CRM when you get back.</div>
+      <div class="customer-card">
+        <div class="field-row">
+          <div>
+            <label>Full Name *</label>
+            <input type="text" id="cName" placeholder="Jane Smith">
+          </div>
+          <div>
+            <label>Phone *</label>
+            <input type="tel" id="cPhone" placeholder="(314) 555-1234">
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <label>Address / Neighborhood *</label>
+            <input type="text" id="cAddr" placeholder="Kirkwood, 123 Oak St...">
+          </div>
+          <div>
+            <label>Dog Count *</label>
+            <select id="cDogs">
+              <option value="1">1 dog — $35/mo</option>
+              <option value="2">2 dogs — $45/mo</option>
+              <option value="3">3 dogs — $55/mo</option>
+              <option value="4+">4+ dogs — $65/mo</option>
+            </select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div>
+            <label>Frequency</label>
+            <select id="cFreq">
+              <option value="weekly">Weekly</option>
+              <option value="biweekly">Biweekly</option>
+              <option value="one-time">One-Time</option>
+            </select>
+          </div>
+          <div>
+            <label>Source</label>
+            <select id="cSource">
+              <option value="pawty-mar28">Paw-ty (Mar 28)</option>
+              <option value="referral">Referral</option>
+              <option value="facebook">Facebook</option>
+              <option value="nextdoor">Nextdoor</option>
+              <option value="google">Google</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label>Dog Name(s) + Notes</label>
+          <textarea id="cNotes" rows="2" placeholder="Dog: Biscuit. Gate code: 1234. Prefers Tuesday mornings."></textarea>
+        </div>
+        <button class="btn btn-green" onclick="saveCustomer()">💾 Save Customer</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ TEXT SCRIPTS -->
+  <div class="section" id="section-texts">
+    <div class="banner green">
+      <div class="banner-icon">💬</div>
+      <div>All texts should come from <strong>(314) 850-7140</strong>. Yellow = fill in. Green = personalization wins. Copy the whole text, paste in Messages.</div>
+    </div>
+
+    <!-- TEXT 1: CONFIRMATION -->
+    <div class="card">
+      <div class="card-title"><span>1️⃣</span> Confirmation Text — Send IMMEDIATELY at signup</div>
+      <div class="script-block">
+        <div class="script-label">
+          <span>At the Event (send while they watch)</span>
+          <span class="timing">SAME DAY — Within 2 min</span>
+        </div>
+        <div class="script-text">
+          <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+          Hey <span class="placeholder">[Name]</span>! This is TJ with Tidy Tails 🐾 So pumped to have you on board! We'll get <span class="placeholder">[dog name or "your pup"]</span>'s yard sparkling clean.<br><br>I'll follow up tomorrow with a couple quick questions about your yard — takes 2 min. Talk soon! 💩✨
+        </div>
+      </div>
+      <div class="script-block">
+        <div class="script-label">
+          <span>Variant — If no dog name yet</span>
+          <span class="timing">SAME DAY</span>
+        </div>
+        <div class="script-text">
+          <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+          Hey <span class="placeholder">[Name]</span>! TJ here from Tidy Tails 🐾 You're officially on the list — I'll follow up tomorrow to get your yard on the schedule. Talk soon!
+        </div>
+      </div>
+    </div>
+
+    <!-- TEXT 2: INTAKE -->
+    <div class="card">
+      <div class="card-title"><span>2️⃣</span> Intake Text — Next Morning (10–11 AM)</div>
+      <div class="script-block">
+        <div class="script-label">
+          <span>Full intake — send Sunday morning after Paw-ty</span>
+          <span class="timing">Sunday 10–11 AM</span>
+        </div>
+        <div class="script-text">
+          <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+          Hey <span class="placeholder">[Name]</span>! Quick questions to get you on the schedule 👇<br><br>1. Full address?<br>2. Any gate code or yard access info?<br>3. Dog's name? 🐕<br>4. Prefer a specific day of the week?<br><br>Once I have these I'll confirm your first service date. (We do <span class="placeholder">[weekly @ $35/mo or their plan]</span> — first visit is FREE!)
+        </div>
+      </div>
+    </div>
+
+    <!-- TEXT 3: SCHEDULE CONFIRM -->
+    <div class="card">
+      <div class="card-title"><span>3️⃣</span> Schedule Confirmation — After intake info received</div>
+      <div class="script-block">
+        <div class="script-label">
+          <span>Send once you have address + day preference</span>
+          <span class="timing">Same day as intake reply</span>
+        </div>
+        <div class="script-text">
+          <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+          Perfect! You're on the schedule for <span class="placeholder">[Day, e.g. "Wednesdays"]</span> starting <span class="placeholder">[date, e.g. "April 2nd"]</span>. First visit is on us 🎉<br><br>I'll shoot you a text when I'm heading over, and another when I'm done. Any questions before then, I'm easy to reach at this number. Welcome to Tidy Tails!
+        </div>
+      </div>
+    </div>
+
+    <!-- TEXT 4: DAY-OF -->
+    <div class="card">
+      <div class="card-title"><span>4️⃣</span> Day-Of Texts — Keep them in the loop</div>
+      <div class="script-block">
+        <div class="script-label">
+          <span>On my way</span>
+          <span class="timing">Morning of first service</span>
+        </div>
+        <div class="script-text">
+          <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+          Hey <span class="placeholder">[Name]</span> — heading to <span class="placeholder">[dog name]</span>'s yard now! Be done in about <span class="placeholder">[20–30]</span> min. 🐾
+        </div>
+      </div>
+      <div class="script-block">
+        <div class="script-label">
+          <span>All done</span>
+          <span class="timing">Immediately after service</span>
+        </div>
+        <div class="script-text">
+          <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+          All clean! 💩✅ <span class="placeholder">[Dog name]</span>'s yard is good to go. See ya next <span class="placeholder">[day]</span>!<br><br>PS — if you know anyone with a dog in the area, send 'em our way. First month free for any referral that signs up 🙌
+        </div>
+      </div>
+    </div>
+
+    <!-- TEXT 5: FIRST PAYMENT -->
+    <div class="card">
+      <div class="card-title"><span>5️⃣</span> First Payment Request — End of Month 1</div>
+      <div class="script-block">
+        <div class="script-label">
+          <span>Send ~4 weeks after first service</span>
+          <span class="timing">End of first month</span>
+        </div>
+        <div class="script-text">
+          <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+          Hey <span class="placeholder">[Name]</span>! First month down 🎉 Hope you've been loving the clean yard. When you get a chance, Venmo is @TidyTailsStL — <span class="placeholder">[$35]</span> for <span class="placeholder">[Month]</span>. No rush, just whenever's convenient. Thanks! 🐾
+        </div>
+      </div>
+    </div>
+
+    <!-- TEXT 6: REFERRAL ASK -->
+    <div class="card">
+      <div class="card-title"><span>6️⃣</span> Referral Ask — After 2nd Service</div>
+      <div class="script-block">
+        <div class="script-label">
+          <span>Send after 2nd completed service — high satisfaction window</span>
+          <span class="timing">~2 weeks in</span>
+        </div>
+        <div class="script-text">
+          <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+          Hey <span class="placeholder">[Name]</span>! Hope <span class="placeholder">[dog name]</span> is loving the clean yard. Quick ask — if you know any neighbors with dogs who'd want the same service, I'd love an intro. I do a free month for anyone who sends me a paying customer. Just forward this number or have them text me! 🙏
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ SCHEDULE -->
+  <div class="section" id="section-schedule">
+    <div class="banner yellow">
+      <div class="banner-icon">📅</div>
+      <div>Get new customers on a route day ASAP. The sooner they have a confirmed date, the lower the churn risk. Open slots below are rough — adjust based on current routes.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>📍</span> Current Route Days (Rough)</div>
+      <div class="schedule-grid" id="dayGrid">
+        <div class="schedule-day" onclick="selectDay(this)">
+          <div class="day-name">Monday</div>
+          <div class="day-note" id="mon-note">North County Route</div>
+        </div>
+        <div class="schedule-day" onclick="selectDay(this)">
+          <div class="day-name">Tuesday</div>
+          <div class="day-note" id="tue-note">South County / Kirkwood</div>
+        </div>
+        <div class="schedule-day" onclick="selectDay(this)">
+          <div class="day-name">Wednesday</div>
+          <div class="day-note" id="wed-note">Central / Maplewood</div>
+        </div>
+        <div class="schedule-day" onclick="selectDay(this)">
+          <div class="day-name">Thursday</div>
+          <div class="day-note" id="thu-note">West County / Chesterfield</div>
+        </div>
+        <div class="schedule-day" onclick="selectDay(this)">
+          <div class="day-name">Friday</div>
+          <div class="day-note" id="fri-note">Flexible / Overflow</div>
+        </div>
+        <div class="schedule-day" onclick="selectDay(this)">
+          <div class="day-name">Saturday</div>
+          <div class="day-note" id="sat-note">Events / One-Times Only</div>
+        </div>
+      </div>
+      <div style="font-size:0.72rem;color:var(--text3);margin-top:0.5rem;">Tap a day to highlight. Routes are flexible — add new customers to nearest geographic cluster.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🗓️</span> Upcoming First Services — Paw-ty Converts</div>
+      <div id="upcomingServices" style="font-size:0.82rem;color:var(--text2);">
+        <div style="color:var(--text3);font-style:italic;padding:0.75rem 0;">No services scheduled yet. Add customers in Tab ② to track them here.</div>
+      </div>
+      <div id="upcomingList" style="display:none;"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>💡</span> Scheduling Rules of Thumb</div>
+      <div class="step-flow">
+        <div class="step">
+          <div class="step-num">📍</div>
+          <div>
+            <div class="step-title">Cluster by Geography</div>
+            <div class="step-body">Add customers to the route day that matches their area. Driving 30 min between stops kills your hourly rate. Keep routes tight.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">📅</div>
+          <div>
+            <div class="step-title">Offer Specific Days, Not Open-Ended</div>
+            <div class="step-body">Don't say "what day works?" — say "We're in your area on Tuesdays, does that work?" Customers with open choices ghost.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">⚡</div>
+          <div>
+            <div class="step-title">First Service Within 1 Week</div>
+            <div class="step-body">Don't let the first service slip past 7 days from signup. The longer the gap, the higher the cancel risk. If their preferred day is 10+ days out, offer the sooner route day instead.</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">🕐</div>
+          <div>
+            <div class="step-title">Morning vs Afternoon Ask</div>
+            <div class="step-body">Some people work from home and don't want strangers in the yard mid-call. Ask: "Morning (8–11 AM) or afternoon (1–4 PM)?" Then stick to it.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ CHECKLIST -->
+  <div class="section" id="section-checklist">
+    <div class="banner green">
+      <div class="banner-icon">✅</div>
+      <div>Your master onboarding checklist per new customer. Tap items as you complete them. Persists locally.</div>
+    </div>
+
+    <div id="clGoalTracker" class="goal-bar">
+      <div class="goal-nums">
+        <div class="goal-current" id="clCurrent">10</div>
+        <div class="goal-of">of</div>
+        <div class="goal-target">25</div>
+      </div>
+      <div class="goal-label">recurring customers → goal: 25 by August 2025</div>
+      <div class="progress">
+        <div class="progress-fill" style="width:40%" id="clBar">40%</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>⚡</span> At-Event Checklist (Paw-ty or In-Person)</div>
+      <div class="checklist" id="cl-event">
+        <div class="check-item" onclick="toggleCheck(this)" data-id="ev1">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Got name + phone + neighborhood</div><div class="check-note">Minimum viable info. Don't leave without these.</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="ev2">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Added them to phone contacts immediately</div><div class="check-note">Name + "Tidy Tails Lead" in notes</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="ev3">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Sent confirmation text while they watched</div><div class="check-note">Tab ③ → Text #1. The most important step.</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="ev4">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Quoted price clearly and confidently</div><div class="check-note">Say it out loud. No trailing off.</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="ev5">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Left with date OR follow-up plan</div><div class="check-note">Either a day confirmed or "I'll text you Sunday morning"</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>📬</span> Day After Checklist</div>
+      <div class="checklist" id="cl-after">
+        <div class="check-item" onclick="toggleCheck(this)" data-id="da1">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Added customer to CRM (tidy-tails-crm.html)</div><div class="check-note">Status: "Pending First Service"</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="da2">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Sent intake text (Sunday 10–11 AM)</div><div class="check-note">Tab ③ → Text #2. Get address, gate code, dog name.</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="da3">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Got intake info back from customer</div><div class="check-note">If no reply by Sunday afternoon, text again Monday.</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="da4">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Confirmed first service date via text</div><div class="check-note">Tab ③ → Text #3. Specific date + day of week.</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="da5">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Added to route schedule (correct day)</div><div class="check-note">Cluster by geography. Within 7 days of signup.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🐾</span> First Service Checklist</div>
+      <div class="checklist" id="cl-first">
+        <div class="check-item" onclick="toggleCheck(this)" data-id="fs1">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Texted "on my way" before arriving</div><div class="check-note">Tab ③ → Text #4a. Set expectations.</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="fs2">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Completed the clean thoroughly (first impressions)</div><div class="check-note">This is not the time to rush. They're judging everything.</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="fs3">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Texted "all done" with referral ask</div><div class="check-note">Tab ③ → Text #4b. Plant the referral seed early.</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="fs4">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Updated CRM: "Active" status</div><div class="check-note">Move from "Pending" to "Active Recurring"</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="fs5">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Added Google Review reminder to 2-week follow-up</div><div class="check-note">After 2nd service: "Would mean the world if you left us a quick review" + link</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>💰</span> Long-Term Retention</div>
+      <div class="checklist" id="cl-retain">
+        <div class="check-item" onclick="toggleCheck(this)" data-id="rt1">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Sent referral ask after 2nd service</div><div class="check-note">Tab ③ → Text #6. 2-week mark = highest satisfaction window.</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="rt2">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Sent first payment request end of month 1</div><div class="check-note">Tab ③ → Text #5. Casual, no pressure tone.</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="rt3">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Asked for Google Review</div><div class="check-note">After 2nd+ service: link to Google Business Profile</div></div>
+        </div>
+        <div class="check-item" onclick="toggleCheck(this)" data-id="rt4">
+          <div class="check-box">✓</div>
+          <div><div class="check-label">Checked in after first 30 days</div><div class="check-note">"How's everything going? Any feedback?" — locks in loyalty.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑥ OBJECTIONS -->
+  <div class="section" id="section-objections">
+    <div class="banner orange">
+      <div class="banner-icon">🛡️</div>
+      <div>These are the objections that kill conversions. Handle them fast, with confidence — then get back to closing.</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>💬</span> Close Objections — Handle & Move On</div>
+
+      <div class="objection">
+        <div class="objection-q">❓ "I need to think about it."</div>
+        <div class="objection-a">
+          <strong>Totally fine!</strong> "Here's what I'll do — I'll shoot you a text in a day or two. If it's not for you, just let me know and no hard feelings. Deal?" Then send the confirmation text anyway. Most people don't say no when they've committed to a soft yes.<br><br>
+          <em>Key: Lower the commitment threshold. Make it easy to say "yes for now."</em>
+        </div>
+      </div>
+
+      <div class="objection">
+        <div class="objection-q">❓ "It seems a little expensive."</div>
+        <div class="objection-a">
+          "Here's a way to think about it — you're probably spending $8–10 at Starbucks a couple times a week, right? This is literally less than that, and you get your yard back every single week. Plus first visit's on me." <br><br>
+          If still hesitant: offer biweekly ($25/mo) as a starting point.
+        </div>
+      </div>
+
+      <div class="objection">
+        <div class="objection-q">❓ "My dog is small — there's not much to pick up."</div>
+        <div class="objection-a">
+          "Totally hear you — but even little dogs do their thing every single day. And honestly, it's about the yard as much as the amount. Nobody wants to think about it at all. That's the whole point." Then show the biweekly pricing.
+        </div>
+      </div>
+
+      <div class="objection">
+        <div class="objection-q">❓ "I can just do it myself."</div>
+        <div class="objection-a">
+          "100% — a lot of people say that. Our best customers said the same thing before they started. The truth is it just never happens consistently. When the weather sucks, when life gets busy — the yard wins. We're the insurance against that."
+        </div>
+      </div>
+
+      <div class="objection">
+        <div class="objection-q">❓ "Can I cancel if I need to?"</div>
+        <div class="objection-a">
+          <strong>"Absolutely. No contracts, ever."</strong> Just text us and we'll stop. That's it. No cancellation fee, no notice period. We keep customers by doing a great job, not by trapping them.
+        </div>
+      </div>
+
+      <div class="objection">
+        <div class="objection-q">❓ "I want to ask my spouse / partner first."</div>
+        <div class="objection-a">
+          "Of course! I'll text you the info right now so you have it handy when you talk. Sound good?" → Send confirmation text. Gives them something tangible to show their partner. Moves it forward without pressure.
+        </div>
+      </div>
+
+      <div class="objection">
+        <div class="objection-q">❓ "Do you serve [their neighborhood]?"</div>
+        <div class="objection-a">
+          "Yep! We cover all of St. Louis County and surrounding areas. What's your neighborhood?" — then confirm. We're mobile. Don't say no unless it's truly 40+ miles out.
+        </div>
+      </div>
+
+      <div class="objection">
+        <div class="objection-q">❓ "How do I know you're legit?"</div>
+        <div class="objection-a">
+          "Totally fair question. We're a local St. Louis business — here's our website: tidytailsstl.com. We also have Google reviews you can check. We've been in business for [X time] and all our customers know my personal cell." — hand them your card or show the site on your phone.
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span>🎯</span> The Universal Close After Any Objection</div>
+      <div class="script-block">
+        <div class="script-label"><span>Use after handling any objection</span></div>
+        <div class="script-text">
+          <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+          "Here's what — let me grab your number and shoot you a quick text with the info right now. No pressure, and if it's not the right time, totally fine. But this way you've got everything and can decide on your own timeline. Sound good?"
+        </div>
+      </div>
+      <div style="font-size:0.78rem;color:var(--text2);padding-top:0.25rem;line-height:1.6;">
+        This works because it: lowers the commitment (just a text), keeps momentum (you're doing something), and gets their number in your phone regardless.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// TAB SWITCHING
+function switchTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('section-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// COPY SCRIPTS
+function copyScript(btn) {
+  const block = btn.parentElement;
+  const text = block.innerText.replace(/^Copy\n?/, '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// CHECKLIST
+function toggleCheck(item) {
+  item.classList.toggle('done');
+  saveChecks();
+}
+function saveChecks() {
+  const state = {};
+  document.querySelectorAll('.check-item').forEach(item => {
+    state[item.dataset.id] = item.classList.contains('done');
+  });
+  localStorage.setItem('onboarding-checks', JSON.stringify(state));
+}
+function loadChecks() {
+  const state = JSON.parse(localStorage.getItem('onboarding-checks') || '{}');
+  document.querySelectorAll('.check-item').forEach(item => {
+    if (state[item.dataset.id]) item.classList.add('done');
+  });
+}
+
+// DAY SELECTION
+function selectDay(el) {
+  document.querySelectorAll('.schedule-day').forEach(d => d.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+// SAVE CUSTOMER
+const customers = JSON.parse(localStorage.getItem('onboarding-customers') || '[]');
+function saveCustomer() {
+  const name = document.getElementById('cName').value.trim();
+  const phone = document.getElementById('cPhone').value.trim();
+  if (!name || !phone) { alert('Name and phone required!'); return; }
+  const c = {
+    id: Date.now(),
+    name,
+    phone,
+    address: document.getElementById('cAddr').value.trim(),
+    dogs: document.getElementById('cDogs').value,
+    freq: document.getElementById('cFreq').value,
+    source: document.getElementById('cSource').value,
+    notes: document.getElementById('cNotes').value.trim(),
+    addedAt: new Date().toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'})
+  };
+  customers.push(c);
+  localStorage.setItem('onboarding-customers', JSON.stringify(customers));
+  document.getElementById('cName').value = '';
+  document.getElementById('cPhone').value = '';
+  document.getElementById('cAddr').value = '';
+  document.getElementById('cNotes').value = '';
+  const msg = document.getElementById('successMsg');
+  msg.classList.add('show');
+  setTimeout(() => msg.classList.remove('show'), 3000);
+  updateUpcoming();
+}
+
+function updateUpcoming() {
+  const list = document.getElementById('upcomingList');
+  const placeholder = document.getElementById('upcomingServices');
+  if (customers.length === 0) { list.style.display='none'; placeholder.style.display='block'; return; }
+  placeholder.style.display='none'; list.style.display='block';
+  list.innerHTML = customers.map(c => `
+    <div style="background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.75rem;margin-bottom:0.6rem;font-size:0.82rem;">
+      <strong>${c.name}</strong> — ${c.dogs} dog(s), ${c.freq}<br>
+      <span style="color:var(--text3);">${c.phone} · ${c.address||'Area TBD'} · Added ${c.addedAt}</span>
+    </div>
+  `).join('');
+}
+
+// INIT
+loadChecks();
+updateUpcoming();
+</script>
+</body>
+</html>
