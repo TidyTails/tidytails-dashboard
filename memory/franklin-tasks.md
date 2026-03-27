@@ -31,6 +31,21 @@
 
 ## March 27, 2026 (Friday)
 
+### Friday 1:04 AM — Paw-ty Pocket Guide (Hourly Task)
+- **1:04 AM** 📱 Built mobile-first field card for Jamie at Saturday's Paw-ty
+  - **5-tab app:** Pricing, Scripts, Objections, Lead Capture, Checklist
+  - **Pricing tab:** Full rate card (1-4+ dogs, weekly/biweekly/one-time) + competitor comparison showing we're cheapest
+  - **Scripts tab:** 5 expandable scripts — Opener, Transition, Close, Vet Pitch, New Adopter Special
+  - **Objections tab:** 7 handlers — "do it myself", "expensive", "one small dog", "let me think", "yard isn't big", "kids do it", "can I cancel"
+  - **Lead Capture:** Quick-add form with name/phone/dogs/area/heat level, real-time stats, export/share buttons
+  - **Checklist:** Pre-event packing, at-event tasks, post-event follow-up schedule with dates
+  - All data in localStorage — works offline at the event
+  - Added to dashboard index as top quick link
+  - File: `dashboard/pawty-pocket-guide.html`
+  - Committed + pushed ✅
+
+---
+
 ### Friday 12:04 AM — North County Conquest Campaign (Hourly Task)
 - **12:04 AM** 🎯 Built complete North County market takeover campaign for week of March 30
   - **5 FB group posts** — city-specific copy for Florissant, Hazelwood, Bridgeton, Ferguson (Jamie-voiced)
