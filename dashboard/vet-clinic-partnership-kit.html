@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>🏥 Vet Clinic Partnership Kit | Tidy Tails</title>
+<style>
+  :root {
+    --green: #16a34a; --green-dark: #15803d; --green-bg: #f0fdf4; --green-light: #22c55e;
+    --blue: #2563eb; --blue-bg: #eff6ff; --blue-light: #60a5fa;
+    --orange: #ea580c; --orange-bg: #fff7ed;
+    --red: #dc2626; --red-bg: #fef2f2;
+    --purple: #7c3aed; --purple-bg: #f5f3ff;
+    --yellow: #ca8a04; --yellow-bg: #fefce8;
+    --dark: #0f172a; --text: #1e293b; --muted: #64748b;
+    --border: #e2e8f0; --bg: #f1f5f9; --white: #ffffff;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, var(--green-dark), #0f766e);
+    color: white;
+    padding: 20px 16px 16px;
+    text-align: center;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .header h1 { font-size: 1.2rem; font-weight: 800; letter-spacing: -0.3px; }
+  .header .sub { font-size: 0.72rem; opacity: 0.85; margin-top: 3px; }
+
+  /* ── STATS BAR ── */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); border-bottom: 1px solid var(--border); }
+  .stat { background: white; padding: 10px 8px; text-align: center; }
+  .stat-num { font-size: 1.5rem; font-weight: 800; line-height: 1; }
+  .stat-lbl { font-size: 0.58rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+  .stat.visited .stat-num { color: var(--green); }
+  .stat.pending .stat-num { color: var(--orange); }
+  .stat.callback .stat-num { color: var(--blue); }
+  .stat.won .stat-num { color: var(--purple); }
+
+  /* ── TABS ── */
+  .tabs { display: flex; background: white; border-bottom: 2px solid var(--border); overflow-x: auto; }
+  .tab {
+    flex: 1; min-width: 72px; padding: 10px 6px;
+    text-align: center; font-size: 0.68rem; font-weight: 700;
+    color: var(--muted); border-bottom: 3px solid transparent;
+    cursor: pointer; transition: all 0.2s; white-space: nowrap;
+  }
+  .tab .ti { font-size: 1rem; display: block; margin-bottom: 2px; }
+  .tab.active { color: var(--green); border-bottom-color: var(--green); }
+
+  /* ── PANELS ── */
+  .panel { display: none; padding: 12px; padding-bottom: 80px; }
+  .panel.active { display: block; }
+
+  /* ── CARDS ── */
+  .card {
+    background: white; border-radius: 12px; padding: 16px;
+    margin-bottom: 12px; box-shadow: var(--shadow);
+  }
+  .card-title {
+    font-size: 0.85rem; font-weight: 700; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 6px; color: var(--dark);
+  }
+
+  /* ── VET CLINIC CARDS ── */
+  .vet-card {
+    background: white; border-radius: 14px; overflow: hidden;
+    margin-bottom: 14px; box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+  }
+  .vet-header {
+    padding: 14px 16px; display: flex; justify-content: space-between;
+    align-items: flex-start; cursor: pointer;
+    background: linear-gradient(135deg, #f8fafc, #f0fdf4);
+    border-bottom: 1px solid var(--border);
+  }
+  .vet-name { font-weight: 800; font-size: 0.95rem; color: var(--dark); margin-bottom: 2px; }
+  .vet-meta { font-size: 0.72rem; color: var(--muted); }
+  .vet-status {
+    font-size: 0.65rem; font-weight: 700; padding: 4px 10px;
+    border-radius: 20px; white-space: nowrap; flex-shrink: 0; margin-left: 8px;
+  }
+  .status-pending { background: var(--orange-bg); color: var(--orange); }
+  .status-visited { background: var(--green-bg); color: var(--green); }
+  .status-callback { background: var(--blue-bg); color: var(--blue); }
+  .status-won { background: var(--purple-bg); color: var(--purple); }
+
+  .vet-body { padding: 16px; display: none; }
+  .vet-card.open .vet-body { display: block; }
+
+  /* ── DETAIL ROWS ── */
+  .detail-row { display: flex; gap: 8px; margin-bottom: 10px; flex-wrap: wrap; }
+  .detail-badge {
+    font-size: 0.72rem; padding: 4px 10px; border-radius: 20px;
+    font-weight: 600; background: var(--bg); color: var(--dark);
+    border: 1px solid var(--border);
+  }
+  .detail-badge.hot { background: var(--orange-bg); border-color: #fed7aa; color: var(--orange); }
+  .detail-badge.new { background: var(--blue-bg); border-color: #bfdbfe; color: var(--blue); }
+
+  /* ── ANGLE BOX ── */
+  .angle-box {
+    background: #f0fdf4; border: 1px solid #bbf7d0;
+    border-radius: 10px; padding: 12px; margin-bottom: 12px;
+  }
+  .angle-box .angle-label { font-size: 0.65rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .angle-box p { font-size: 0.82rem; color: #166534; line-height: 1.5; }
+
+  /* ── ACTION BUTTONS ── */
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+  .btn {
+    padding: 8px 14px; border-radius: 8px; font-size: 0.75rem;
+    font-weight: 700; border: none; cursor: pointer;
+    text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+    transition: opacity 0.15s;
+  }
+  .btn:active { opacity: 0.7; }
+  .btn-green { background: var(--green); color: white; }
+  .btn-blue { background: var(--blue); color: white; }
+  .btn-orange { background: var(--orange); color: white; }
+  .btn-ghost { background: var(--bg); color: var(--dark); border: 1px solid var(--border); }
+  .btn-sm { padding: 6px 10px; font-size: 0.68rem; }
+
+  /* ── STATUS SELECTOR ── */
+  .status-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+  .status-btn {
+    padding: 6px 12px; border-radius: 20px; border: 2px solid var(--border);
+    font-size: 0.68rem; font-weight: 700; cursor: pointer;
+    background: white; color: var(--muted); transition: all 0.2s;
+  }
+  .status-btn.sel-pending { border-color: var(--orange); color: var(--orange); background: var(--orange-bg); }
+  .status-btn.sel-visited { border-color: var(--green); color: var(--green); background: var(--green-bg); }
+  .status-btn.sel-callback { border-color: var(--blue); color: var(--blue); background: var(--blue-bg); }
+  .status-btn.sel-won { border-color: var(--purple); color: var(--purple); background: var(--purple-bg); }
+
+  /* ── NOTES ── */
+  .notes-input {
+    width: 100%; border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px; font-size: 0.8rem; font-family: inherit;
+    color: var(--dark); background: var(--bg); resize: none; min-height: 60px;
+    margin-top: 10px;
+  }
+  .notes-save { font-size: 0.7rem; color: var(--green); margin-top: 4px; display: none; }
+
+  /* ── SCRIPT BLOCKS ── */
+  .script-block {
+    background: #f8fafc; border: 1px solid var(--border);
+    border-left: 3px solid var(--green); border-radius: 8px;
+    padding: 12px; margin-bottom: 12px; position: relative;
+  }
+  .script-label {
+    font-size: 0.65rem; font-weight: 700; color: var(--green);
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;
+  }
+  .script-text { font-size: 0.82rem; line-height: 1.6; color: var(--dark); }
+  .script-note { font-size: 0.72rem; color: var(--muted); margin-top: 6px; font-style: italic; }
+  .copy-btn {
+    position: absolute; top: 10px; right: 10px;
+    padding: 4px 10px; border-radius: 6px;
+    background: var(--green); color: white;
+    border: none; font-size: 0.65rem; font-weight: 700;
+    cursor: pointer;
+  }
+  .copy-btn.copied { background: var(--muted); }
+
+  /* ── EMAIL TEMPLATE ── */
+  .email-block {
+    background: white; border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px; margin-bottom: 12px;
+  }
+  .email-field { margin-bottom: 10px; }
+  .email-field label { font-size: 0.65rem; font-weight: 700; color: var(--muted); text-transform: uppercase; display: block; margin-bottom: 3px; }
+  .email-field .val { font-size: 0.82rem; color: var(--dark); line-height: 1.5; padding: 8px; background: var(--bg); border-radius: 6px; }
+
+  /* ── LEAVE-BEHIND ── */
+  .leave-behind {
+    background: white; border: 2px solid var(--green);
+    border-radius: 14px; overflow: hidden; margin-bottom: 16px;
+  }
+  .lb-header {
+    background: var(--green); color: white; padding: 12px 16px;
+    font-weight: 800; font-size: 1rem; text-align: center;
+  }
+  .lb-body { padding: 16px; }
+  .lb-tagline { font-size: 0.9rem; font-weight: 700; color: var(--dark); margin-bottom: 10px; }
+  .lb-points { list-style: none; margin-bottom: 12px; }
+  .lb-points li { font-size: 0.8rem; padding: 4px 0; color: var(--dark); }
+  .lb-points li::before { content: "✅ "; }
+  .lb-offer {
+    background: #fef9c3; border: 2px dashed #eab308;
+    border-radius: 10px; padding: 12px; text-align: center;
+    margin-bottom: 12px;
+  }
+  .lb-offer .offer-text { font-size: 1.05rem; font-weight: 900; color: #92400e; margin-bottom: 4px; }
+  .lb-offer .offer-fine { font-size: 0.7rem; color: #78716c; }
+  .lb-contact { text-align: center; padding: 10px; background: var(--bg); border-radius: 8px; }
+  .lb-contact .phone { font-size: 1.3rem; font-weight: 900; color: var(--green); }
+  .lb-contact .sub { font-size: 0.7rem; color: var(--muted); }
+
+  /* ── PARTNER PITCH ── */
+  .partner-box {
+    background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+    border: 1px solid #c4b5fd; border-radius: 12px;
+    padding: 14px; margin-bottom: 12px;
+  }
+  .partner-box .partner-label { font-size: 0.7rem; font-weight: 700; color: var(--purple); text-transform: uppercase; margin-bottom: 6px; }
+  .partner-box p { font-size: 0.82rem; color: #3730a3; line-height: 1.5; }
+
+  /* ── PRINT STYLES ── */
+  @media print {
+    .header, .tabs, .stats, .nav-bar { display: none !important; }
+    .panel { display: block !important; }
+    .panel:not(#panel-print) { display: none !important; }
+    .vet-body { display: block !important; }
+    body { background: white; padding: 0; }
+    .card, .leave-behind { box-shadow: none; break-inside: avoid; }
+  }
+
+  /* ── NAV BAR ── */
+  .nav-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: white; border-top: 1px solid var(--border);
+    padding: 8px 16px 12px;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 200;
+  }
+  .nav-bar .phone-big { font-size: 1.1rem; font-weight: 900; color: var(--green); }
+  .nav-bar .nav-sub { font-size: 0.65rem; color: var(--muted); }
+  .nav-bar .print-btn {
+    padding: 8px 16px; background: var(--green); color: white;
+    border: none; border-radius: 8px; font-size: 0.75rem;
+    font-weight: 700; cursor: pointer;
+  }
+
+  /* ── CHECKLIST ── */
+  .check-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-item input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; accent-color: var(--green); }
+  .check-item label { font-size: 0.82rem; color: var(--dark); cursor: pointer; line-height: 1.4; }
+  .check-item.done label { text-decoration: line-through; color: var(--muted); }
+
+  /* ── DIVIDERS ── */
+  .section-label {
+    font-size: 0.65rem; font-weight: 800; color: var(--muted);
+    text-transform: uppercase; letter-spacing: 1.5px;
+    margin: 16px 0 8px;
+  }
+  .highlight-box {
+    background: var(--yellow-bg); border: 1px solid #fde68a;
+    border-radius: 10px; padding: 12px; margin-bottom: 12px;
+  }
+  .highlight-box p { font-size: 0.82rem; color: #78350f; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏥 Vet Clinic Partnership Kit</h1>
+  <div class="sub">Tidy Tails · Vet Blitz Week: Mar 30 – Apr 3 · (314) 850-7140</div>
+</div>
+
+<div class="stats" id="stats-bar">
+  <div class="stat visited"><div class="stat-num" id="cnt-visited">0</div><div class="stat-lbl">Visited</div></div>
+  <div class="stat pending"><div class="stat-num" id="cnt-pending">6</div><div class="stat-lbl">Pending</div></div>
+  <div class="stat callback"><div class="stat-num" id="cnt-callback">0</div><div class="stat-lbl">Callback</div></div>
+  <div class="stat won"><div class="stat-num" id="cnt-won">0</div><div class="stat-lbl">Partners</div></div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('clinics')" id="tab-clinics"><span class="ti">🏥</span>Clinics</div>
+  <div class="tab" onclick="switchTab('scripts')" id="tab-scripts"><span class="ti">💬</span>Scripts</div>
+  <div class="tab" onclick="switchTab('emails')" id="tab-emails"><span class="ti">📧</span>Email</div>
+  <div class="tab" onclick="switchTab('leavebehind')" id="tab-leavebehind"><span class="ti">📄</span>Leave-Behind</div>
+  <div class="tab" onclick="switchTab('checklist')" id="tab-checklist"><span class="ti">✅</span>Checklist</div>
+</div>
+
+<!-- ════════════════════════════════ CLINICS ════════════════════════════════ -->
+<div class="panel active" id="panel-clinics">
+
+  <div class="highlight-box" style="margin-bottom:12px;">
+    <p><strong>🎯 The Play:</strong> Walk in, ask for the practice manager or office manager. Leave behind a one-page flyer. Pitch them on putting it in their waiting room + recommending Tidy Tails to clients. If they agree → they get <strong>1 free month of service</strong> as a thank-you.</p>
+  </div>
+
+  <!-- CLINIC 1: Cross Keys Animal Hospital -->
+  <div class="vet-card" id="vc-1">
+    <div class="vet-header" onclick="toggleVet(1)">
+      <div>
+        <div class="vet-name">Cross Keys Animal Hospital</div>
+        <div class="vet-meta">📍 St. Louis, MO · Day 1 Target (Mon Mar 30)</div>
+      </div>
+      <span class="vet-status status-pending" id="vs-1">Pending</span>
+    </div>
+    <div class="vet-body" id="vb-1">
+      <div class="detail-row">
+        <span class="detail-badge hot">Day 1 — Monday</span>
+        <span class="detail-badge">South St. Louis</span>
+      </div>
+      <div class="angle-box">
+        <div class="angle-label">📣 Your Pitch Angle</div>
+        <p>Cross Keys is in a dense residential zip — lots of dog owners who'd love a clean yard but haven't heard of us. Frame it as: "You're the first vet in this area to offer your clients this perk. They'll appreciate you for it."</p>
+      </div>
+      <div class="actions">
+        <a href="https://maps.google.com?q=Cross+Keys+Animal+Hospital+St+Louis+MO" target="_blank" class="btn btn-blue btn-sm">📍 Get Directions</a>
+        <a href="tel:3148507140" class="btn btn-green btn-sm">📞 (314) 850-7140</a>
+      </div>
+      <div class="section-label">Status</div>
+      <div class="status-row">
+        <button class="status-btn sel-pending" onclick="setStatus(1,'pending')">📋 Pending</button>
+        <button class="status-btn" onclick="setStatus(1,'visited')">✅ Visited</button>
+        <button class="status-btn" onclick="setStatus(1,'callback')">📞 Callback</button>
+        <button class="status-btn" onclick="setStatus(1,'won')">🎉 Partner!</button>
+      </div>
+      <textarea class="notes-input" id="notes-1" placeholder="Notes from visit..." oninput="saveNotes(1)"></textarea>
+      <div class="notes-save" id="nsave-1">✅ Saved</div>
+    </div>
+  </div>
+
+  <!-- CLINIC 2: Gateway City Animal Hospital -->
+  <div class="vet-card" id="vc-2">
+    <div class="vet-header" onclick="toggleVet(2)">
+      <div>
+        <div class="vet-name">Gateway City Animal Hospital</div>
+        <div class="vet-meta">📍 St. Louis, MO · Day 1 Target (Mon Mar 30)</div>
+      </div>
+      <span class="vet-status status-pending" id="vs-2">Pending</span>
+    </div>
+    <div class="vet-body" id="vb-2">
+      <div class="detail-row">
+        <span class="detail-badge hot">Day 1 — Monday</span>
+        <span class="detail-badge">Central St. Louis</span>
+      </div>
+      <div class="angle-box">
+        <div class="angle-label">📣 Your Pitch Angle</div>
+        <p>Gateway City serves a mix of urban + suburban clients. Focus on the <em>quality of life</em> angle — "Your clients love their dogs. This makes their home life better. It's an easy recommendation." Ask if they have a community board for local business cards.</p>
+      </div>
+      <div class="actions">
+        <a href="https://maps.google.com?q=Gateway+City+Animal+Hospital+St+Louis+MO" target="_blank" class="btn btn-blue btn-sm">📍 Get Directions</a>
+        <a href="tel:3148507140" class="btn btn-green btn-sm">📞 (314) 850-7140</a>
+      </div>
+      <div class="section-label">Status</div>
+      <div class="status-row">
+        <button class="status-btn sel-pending" onclick="setStatus(2,'pending')">📋 Pending</button>
+        <button class="status-btn" onclick="setStatus(2,'visited')">✅ Visited</button>
+        <button class="status-btn" onclick="setStatus(2,'callback')">📞 Callback</button>
+        <button class="status-btn" onclick="setStatus(2,'won')">🎉 Partner!</button>
+      </div>
+      <textarea class="notes-input" id="notes-2" placeholder="Notes from visit..." oninput="saveNotes(2)"></textarea>
+      <div class="notes-save" id="nsave-2">✅ Saved</div>
+    </div>
+  </div>
+
+  <!-- CLINIC 3: Baronwood Animal Hospital -->
+  <div class="vet-card" id="vc-3">
+    <div class="vet-header" onclick="toggleVet(3)">
+      <div>
+        <div class="vet-name">Baronwood Animal Hospital</div>
+        <div class="vet-meta">📍 Florissant/North County area · Day 1 Target (Mon Mar 30)</div>
+      </div>
+      <span class="vet-status status-pending" id="vs-3">Pending</span>
+    </div>
+    <div class="vet-body" id="vb-3">
+      <div class="detail-row">
+        <span class="detail-badge hot">Day 1 — Monday</span>
+        <span class="detail-badge new">North County</span>
+        <span class="detail-badge">Zero Competitors Here</span>
+      </div>
+      <div class="angle-box">
+        <div class="angle-label">📣 Your Pitch Angle</div>
+        <p><strong>North County = zero competition.</strong> Lead with that: "We're literally the only pet waste service actively operating in Florissant right now. Your clients have no other option — you'd be connecting them with the only game in town." This is a genuinely exclusive referral.</p>
+      </div>
+      <div class="actions">
+        <a href="https://maps.google.com?q=Baronwood+Animal+Hospital+Florissant+MO" target="_blank" class="btn btn-blue btn-sm">📍 Get Directions</a>
+        <a href="tel:3148507140" class="btn btn-green btn-sm">📞 (314) 850-7140</a>
+      </div>
+      <div class="section-label">Status</div>
+      <div class="status-row">
+        <button class="status-btn sel-pending" onclick="setStatus(3,'pending')">📋 Pending</button>
+        <button class="status-btn" onclick="setStatus(3,'visited')">✅ Visited</button>
+        <button class="status-btn" onclick="setStatus(3,'callback')">📞 Callback</button>
+        <button class="status-btn" onclick="setStatus(3,'won')">🎉 Partner!</button>
+      </div>
+      <textarea class="notes-input" id="notes-3" placeholder="Notes from visit..." oninput="saveNotes(3)"></textarea>
+      <div class="notes-save" id="nsave-3">✅ Saved</div>
+    </div>
+  </div>
+
+  <!-- CLINIC 4: Ferguson Animal Hospital -->
+  <div class="vet-card" id="vc-4">
+    <div class="vet-header" onclick="toggleVet(4)">
+      <div>
+        <div class="vet-name">Ferguson Animal Hospital</div>
+        <div class="vet-meta">📍 Ferguson, MO · Day 2 Target (Tue Apr 1)</div>
+      </div>
+      <span class="vet-status status-pending" id="vs-4">Pending</span>
+    </div>
+    <div class="vet-body" id="vb-4">
+      <div class="detail-row">
+        <span class="detail-badge">Day 2 — Tuesday</span>
+        <span class="detail-badge new">North County</span>
+      </div>
+      <div class="angle-box">
+        <div class="angle-label">📣 Your Pitch Angle</div>
+        <p>Ferguson is family-oriented. Lean into the <em>kids and yard safety</em> angle: "Families with dogs and young kids especially love this — no worrying about the kids stepping in something." Position it as a health &amp; safety service, not just a convenience.</p>
+      </div>
+      <div class="actions">
+        <a href="https://maps.google.com?q=Ferguson+Animal+Hospital+Ferguson+MO" target="_blank" class="btn btn-blue btn-sm">📍 Get Directions</a>
+        <a href="tel:3148507140" class="btn btn-green btn-sm">📞 (314) 850-7140</a>
+      </div>
+      <div class="section-label">Status</div>
+      <div class="status-row">
+        <button class="status-btn sel-pending" onclick="setStatus(4,'pending')">📋 Pending</button>
+        <button class="status-btn" onclick="setStatus(4,'visited')">✅ Visited</button>
+        <button class="status-btn" onclick="setStatus(4,'callback')">📞 Callback</button>
+        <button class="status-btn" onclick="setStatus(4,'won')">🎉 Partner!</button>
+      </div>
+      <textarea class="notes-input" id="notes-4" placeholder="Notes from visit..." oninput="saveNotes(4)"></textarea>
+      <div class="notes-save" id="nsave-4">✅ Saved</div>
+    </div>
+  </div>
+
+  <!-- CLINIC 5: Halls Ferry Animal Hospital -->
+  <div class="vet-card" id="vc-5">
+    <div class="vet-header" onclick="toggleVet(5)">
+      <div>
+        <div class="vet-name">Halls Ferry Animal Hospital</div>
+        <div class="vet-meta">📍 St. Louis / North County · Day 2 Target (Tue Apr 1)</div>
+      </div>
+      <span class="vet-status status-pending" id="vs-5">Pending</span>
+    </div>
+    <div class="vet-body" id="vb-5">
+      <div class="detail-row">
+        <span class="detail-badge">Day 2 — Tuesday</span>
+        <span class="detail-badge new">North County</span>
+      </div>
+      <div class="angle-box">
+        <div class="angle-label">📣 Your Pitch Angle</div>
+        <p>Halls Ferry is along a major corridor — diverse client mix. Emphasize the <em>no-contract, flexible</em> nature: "No commitment required — clients try it once for $35, love it, and stay." It's low-risk for them to recommend. Ask about putting cards at check-out.</p>
+      </div>
+      <div class="actions">
+        <a href="https://maps.google.com?q=Halls+Ferry+Animal+Hospital+St+Louis+MO" target="_blank" class="btn btn-blue btn-sm">📍 Get Directions</a>
+        <a href="tel:3148507140" class="btn btn-green btn-sm">📞 (314) 850-7140</a>
+      </div>
+      <div class="section-label">Status</div>
+      <div class="status-row">
+        <button class="status-btn sel-pending" onclick="setStatus(5,'pending')">📋 Pending</button>
+        <button class="status-btn" onclick="setStatus(5,'visited')">✅ Visited</button>
+        <button class="status-btn" onclick="setStatus(5,'callback')">📞 Callback</button>
+        <button class="status-btn" onclick="setStatus(5,'won')">🎉 Partner!</button>
+      </div>
+      <textarea class="notes-input" id="notes-5" placeholder="Notes from visit..." oninput="saveNotes(5)"></textarea>
+      <div class="notes-save" id="nsave-5">✅ Saved</div>
+    </div>
+  </div>
+
+  <!-- CLINIC 6: Normandy Animal Hospital -->
+  <div class="vet-card" id="vc-6">
+    <div class="vet-header" onclick="toggleVet(6)">
+      <div>
+        <div class="vet-name">Normandy Animal Hospital</div>
+        <div class="vet-meta">📍 Normandy, MO · Day 2 Target (Tue Apr 1)</div>
+      </div>
+      <span class="vet-status status-pending" id="vs-6">Pending</span>
+    </div>
+    <div class="vet-body" id="vb-6">
+      <div class="detail-row">
+        <span class="detail-badge">Day 2 — Tuesday</span>
+        <span class="detail-badge new">North County</span>
+      </div>
+      <div class="angle-box">
+        <div class="angle-label">📣 Your Pitch Angle</div>
+        <p>Normandy is a tight-knit community. Word of mouth travels fast here. If you can get the staff on board personally — "Do any of you have dogs? You'd be first in line for the deal" — they become genuine advocates, not just a bulletin board drop.</p>
+      </div>
+      <div class="actions">
+        <a href="https://maps.google.com?q=Normandy+Animal+Hospital+Normandy+MO" target="_blank" class="btn btn-blue btn-sm">📍 Get Directions</a>
+        <a href="tel:3148507140" class="btn btn-green btn-sm">📞 (314) 850-7140</a>
+      </div>
+      <div class="section-label">Status</div>
+      <div class="status-row">
+        <button class="status-btn sel-pending" onclick="setStatus(6,'pending')">📋 Pending</button>
+        <button class="status-btn" onclick="setStatus(6,'visited')">✅ Visited</button>
+        <button class="status-btn" onclick="setStatus(6,'callback')">📞 Callback</button>
+        <button class="status-btn" onclick="setStatus(6,'won')">🎉 Partner!</button>
+      </div>
+      <textarea class="notes-input" id="notes-6" placeholder="Notes from visit..." oninput="saveNotes(6)"></textarea>
+      <div class="notes-save" id="nsave-6">✅ Saved</div>
+    </div>
+  </div>
+
+</div><!-- /panel-clinics -->
+
+<!-- ════════════════════════════════ SCRIPTS ════════════════════════════════ -->
+<div class="panel" id="panel-scripts">
+
+  <div class="card">
+    <div class="card-title">💬 Scripts — What to Say</div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-bottom:14px;">Walk in casual. Smile. Ask for the office manager or practice manager. You're not selling — you're offering their clients a perk.</p>
+  </div>
+
+  <div class="section-label">At the Front Desk</div>
+
+  <div class="script-block">
+    <div class="script-label">🚪 Opening — Walk Up to Receptionist</div>
+    <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+    <div class="script-text">"Hey! My name's [Jamie/TJ] — I run Tidy Tails, we're a local pet waste removal service. I'm not here to sell anything to you guys — I actually wanted to talk to whoever handles community partnerships or the practice manager. We're offering local vet clinics a really easy way to add value for their dog-owner clients. Is that person available for just 2-3 minutes?"</div>
+    <div class="script-note">If they say the manager is busy → "No worries! Can I leave some materials and your name so I can follow up?" Then get the manager's first name and best time to call.</div>
+  </div>
+
+  <div class="section-label">With the Practice / Office Manager</div>
+
+  <div class="script-block">
+    <div class="script-label">🎯 The Core Pitch (30-45 seconds)</div>
+    <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+    <div class="script-text">"So we scoop yards — weekly or biweekly, $35-70 a month depending on how many dogs. We're local, no contracts, and honestly most people who try it never quit. 
+
+What I'm offering vet clinics is this: if you recommend us to your clients — even just put our flyers in your waiting room — we'll give you one free month of service for your staff member who has a dog, or a free initial cleanup for whoever needs it. Zero cost to the clinic, easy win for your clients.
+
+We're working with a handful of other vets in the area doing this. Your clients are already coming in asking how to care for their dogs better — this is one more easy answer."</div>
+    <div class="script-note">Key: don't rush. Pause after "no contracts" — they expect a catch. When it doesn't come, it builds trust.</div>
+  </div>
+
+  <div class="script-block">
+    <div class="script-label">❓ Objection: "We don't usually promote outside businesses"</div>
+    <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+    <div class="script-text">"Totally understand — and I'm not asking you to endorse us or put up a banner. Even just a stack of cards at the checkout counter works. Your clients will pick it up if they need it, and it costs you nothing. If it helps one family, it was worth it, right?"</div>
+  </div>
+
+  <div class="script-block">
+    <div class="script-label">❓ Objection: "We already have someone for that" or "We've heard of you"</div>
+    <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+    <div class="script-text">"Oh perfect — then you know it's a real service people use. We're just making sure clients in THIS neighborhood know we're available, because honestly a lot of them don't even know this exists. Mind if we leave some cards? If even two or three clients sign up, they'll feel good about the recommendation."</div>
+  </div>
+
+  <div class="script-block">
+    <div class="script-label">✅ The Close — When They Say Yes</div>
+    <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+    <div class="script-text">"That's awesome — thank you! Here's our leave-behind sheet with all the details, and a stack of cards clients can grab. And just to confirm — is there a dog owner on staff who'd want that free month? I want to make sure you guys actually get the perk, not just the paperwork. 
+
+I'll follow up in a week or two to see if you're getting any calls from this. What's the best way to reach you?"</div>
+    <div class="script-note">Get their name, a phone or email, and the staff member's name. This turns a flyer drop into a real relationship.</div>
+  </div>
+
+  <div class="section-label">Phone Follow-Up (after leaving materials)</div>
+
+  <div class="script-block">
+    <div class="script-label">📞 3-5 Day Follow-Up Call</div>
+    <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+    <div class="script-text">"Hey [name], this is [TJ/Jamie] from Tidy Tails — I stopped by last [Mon/Tue] and left some flyers. Just wanted to check in and see if you had any questions, and if you'd taken us up on the free service offer yet. Even if nobody's called yet — don't worry, sometimes it takes a few weeks. I just want to make sure you feel good about recommending us when it comes up."</div>
+  </div>
+
+</div><!-- /panel-scripts -->
+
+<!-- ════════════════════════════════ EMAIL ════════════════════════════════ -->
+<div class="panel" id="panel-emails">
+
+  <div class="card">
+    <div class="card-title">📧 Email Templates</div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-bottom:4px;">Use these <em>after</em> an in-person visit if they give you an email, or if you can find their contact page online before going in.</p>
+  </div>
+
+  <div class="section-label">Cold Outreach (Before Visit)</div>
+  <div class="email-block">
+    <div class="email-field">
+      <label>Subject Line</label>
+      <div class="val">Free perk for your clients (local dog owners) — quick ask</div>
+    </div>
+    <div class="email-field">
+      <label>Body</label>
+      <div class="val">Hi [Practice Manager Name],<br><br>
+I'm TJ with Tidy Tails, a local pet waste removal service in the St. Louis area. Quick ask — would you be open to keeping a few of our flyers in your waiting room? No cost or commitment on your end.<br><br>
+In exchange, we offer the vet clinic a <strong>free month of service</strong> as a thank-you whenever a client signs up and mentions your clinic.<br><br>
+We serve dog owners who want a cleaner yard — exactly the people already walking through your door. Happy to drop by at a convenient time, or mail you materials.<br><br>
+Thanks for considering it!<br><br>
+TJ Halpin<br>
+Tidy Tails Pet Waste Removal<br>
+(314) 850-7140 | tidytailsstl.com</div>
+    </div>
+    <button class="btn btn-green btn-sm" onclick="copyEmail('cold')">📋 Copy Body</button>
+  </div>
+
+  <div class="section-label">Follow-Up After Visit</div>
+  <div class="email-block">
+    <div class="email-field">
+      <label>Subject Line</label>
+      <div class="val">Great meeting you — flyers + free service info inside</div>
+    </div>
+    <div class="email-field">
+      <label>Body</label>
+      <div class="val">Hi [Name],<br><br>
+So nice meeting you earlier! As promised, here's a quick overview of the partnership:<br><br>
+🐾 <strong>What we do:</strong> Scoop dog waste from yards — weekly or biweekly, starting at $35/mo<br>
+🎁 <strong>Your perk:</strong> One free month of service for any staff member with a dog (just say you're from [Clinic Name])<br>
+📋 <strong>Your clients' deal:</strong> No contracts, first visit satisfaction guaranteed<br><br>
+I left flyers and business cards with you — no worries if they take a few weeks to generate interest. We'll follow up lightly.<br><br>
+If you have any questions or want more materials, just reply here or call (314) 850-7140.<br><br>
+Thanks again!<br>
+TJ Halpin · Tidy Tails · tidytailsstl.com</div>
+    </div>
+    <button class="btn btn-green btn-sm" onclick="copyEmail('followup')">📋 Copy Body</button>
+  </div>
+
+  <div class="partner-box">
+    <div class="partner-label">💜 The Partnership Offer (say clearly)</div>
+    <p>Any vet clinic that puts our flyers in their waiting room gets: <strong>1 free month of pet waste removal</strong> for a staff member with a dog. No catch. We verify it when they sign up and say "[Clinic Name] referred me." Simple.</p>
+  </div>
+
+</div><!-- /panel-emails -->
+
+<!-- ════════════════════════════════ LEAVE-BEHIND ════════════════════════════════ -->
+<div class="panel" id="panel-leavebehind">
+
+  <div class="card">
+    <div class="card-title">📄 Leave-Behind Material</div>
+    <p style="font-size:0.78rem;color:var(--muted);margin-bottom:4px;">Print this tab or the half-sheet version. Leave 5-10 copies per clinic. Ask if they have a community board or checkout counter where clients can grab them.</p>
+  </div>
+
+  <div class="leave-behind">
+    <div class="lb-header">🐾 Tidy Tails — Pet Waste Removal · St. Louis</div>
+    <div class="lb-body">
+      <div class="lb-tagline">Your dog deserves a clean yard. You deserve to enjoy it.</div>
+      <ul class="lb-points">
+        <li>Weekly &amp; biweekly pickup — starting at $35/mo</li>
+        <li>No contracts — cancel any time</li>
+        <li>Locally owned &amp; operated in St. Louis</li>
+        <li>Gates latched, text notification when done</li>
+        <li>1–4+ dogs serviced — flat monthly rate</li>
+        <li>95% 5-star Google rating</li>
+      </ul>
+      <div class="lb-offer">
+        <div class="offer-text">🎁 First Visit FREE — Try Before You Commit</div>
+        <div class="offer-fine">Mention PAW-TY or [Clinic Name] when you call · Expires April 30, 2026</div>
+      </div>
+      <div class="lb-contact">
+        <div class="phone">(314) 850-7140</div>
+        <div class="sub">tidytailsstl.com · Text or call anytime</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">What to Bring on Your Visit</div>
+  <div class="card">
+    <div class="card-title">🎒 Blitz Day Bag</div>
+    <ul style="font-size:0.82rem;line-height:2;list-style:none;">
+      <li>☑️ 30-50 printed leave-behind flyers (half sheets)</li>
+      <li>☑️ 30+ business cards</li>
+      <li>☑️ This app open on your phone (for notes)</li>
+      <li>☑️ Clean-looking folder or envelope to hand over</li>
+      <li>☑️ Friendly vibe — you're doing THEM a favor</li>
+    </ul>
+  </div>
+
+  <div class="section-label">How to Ask About the Community Board</div>
+  <div class="script-block" style="margin-top:0;">
+    <div class="script-label">💬 Quick Ask</div>
+    <div class="script-text">"Do you guys have a community board or a spot near checkout where you display local businesses? Even a small stack of cards would be awesome — I don't need a whole display."</div>
+  </div>
+
+  <div class="highlight-box">
+    <p><strong>💡 Pro tip:</strong> Leave-behinds only work if they're in a high-traffic spot. Always confirm WHERE they'll put them. "By the door" is fine. "In the back office" is useless. Ask specifically.</p>
+  </div>
+
+  <div style="text-align:center;margin-top:16px;">
+    <button class="btn btn-green" onclick="window.print()">🖨️ Print Leave-Behind</button>
+  </div>
+
+</div><!-- /panel-leavebehind -->
+
+<!-- ════════════════════════════════ CHECKLIST ════════════════════════════════ -->
+<div class="panel" id="panel-checklist">
+
+  <div class="card" style="margin-bottom:12px;">
+    <div class="card-title">✅ Vet Blitz Checklist</div>
+    <p style="font-size:0.78rem;color:var(--muted);">Complete all items before, during, and after the blitz week (Mar 30 – Apr 3).</p>
+  </div>
+
+  <div class="section-label">Before You Go (Prep — Do Tonight or Sun)</div>
+  <div class="card">
+    <div class="check-item" id="ci-prep-1">
+      <input type="checkbox" id="c-prep-1" onchange="checkToggle('prep-1')">
+      <label for="c-prep-1">Print 50 leave-behind half-sheets (use pawty-print-flyer.html or this page's leave-behind tab)</label>
+    </div>
+    <div class="check-item" id="ci-prep-2">
+      <input type="checkbox" id="c-prep-2" onchange="checkToggle('prep-2')">
+      <label for="c-prep-2">Count out 30+ business cards and put in a folder/envelope</label>
+    </div>
+    <div class="check-item" id="ci-prep-3">
+      <input type="checkbox" id="c-prep-3" onchange="checkToggle('prep-3')">
+      <label for="c-prep-3">Bookmark this app on Jamie's phone (add to home screen)</label>
+    </div>
+    <div class="check-item" id="ci-prep-4">
+      <input type="checkbox" id="c-prep-4" onchange="checkToggle('prep-4')">
+      <label for="c-prep-4">Review the opening script + objection handlers one time</label>
+    </div>
+    <div class="check-item" id="ci-prep-5">
+      <input type="checkbox" id="c-prep-5" onchange="checkToggle('prep-5')">
+      <label for="c-prep-5">Look up addresses + directions for Day 1 clinics (Cross Keys, Gateway City, Baronwood)</label>
+    </div>
+  </div>
+
+  <div class="section-label">Day 1 — Monday March 30</div>
+  <div class="card">
+    <div class="check-item" id="ci-d1-1">
+      <input type="checkbox" id="c-d1-1" onchange="checkToggle('d1-1')">
+      <label for="c-d1-1">Visit Cross Keys Animal Hospital — leave flyers + get contact</label>
+    </div>
+    <div class="check-item" id="ci-d1-2">
+      <input type="checkbox" id="c-d1-2" onchange="checkToggle('d1-2')">
+      <label for="c-d1-2">Visit Gateway City Animal Hospital — leave flyers + get contact</label>
+    </div>
+    <div class="check-item" id="ci-d1-3">
+      <input type="checkbox" id="c-d1-3" onchange="checkToggle('d1-3')">
+      <label for="c-d1-3">Visit Baronwood Animal Hospital — lead with "zero competitors in North County" angle</label>
+    </div>
+    <div class="check-item" id="ci-d1-4">
+      <input type="checkbox" id="c-d1-4" onchange="checkToggle('d1-4')">
+      <label for="c-d1-4">Log notes for each clinic in this app while in parking lot</label>
+    </div>
+    <div class="check-item" id="ci-d1-5">
+      <input type="checkbox" id="c-d1-5" onchange="checkToggle('d1-5')">
+      <label for="c-d1-5">Update clinic statuses (Visited / Callback / Won) in Clinics tab</label>
+    </div>
+  </div>
+
+  <div class="section-label">Day 2 — Tuesday April 1</div>
+  <div class="card">
+    <div class="check-item" id="ci-d2-1">
+      <input type="checkbox" id="c-d2-1" onchange="checkToggle('d2-1')">
+      <label for="c-d2-1">Visit Ferguson Animal Hospital — kids + yard safety angle</label>
+    </div>
+    <div class="check-item" id="ci-d2-2">
+      <input type="checkbox" id="c-d2-2" onchange="checkToggle('d2-2')">
+      <label for="c-d2-2">Visit Halls Ferry Animal Hospital — no-contract, try-once angle</label>
+    </div>
+    <div class="check-item" id="ci-d2-3">
+      <input type="checkbox" id="c-d2-3" onchange="checkToggle('d2-3')">
+      <label for="c-d2-3">Visit Normandy Animal Hospital — staff-first approach</label>
+    </div>
+    <div class="check-item" id="ci-d2-4">
+      <input type="checkbox" id="c-d2-4" onchange="checkToggle('d2-4')">
+      <label for="c-d2-4">Log notes for all Day 2 clinics</label>
+    </div>
+  </div>
+
+  <div class="section-label">Follow-Up (by Fri Apr 4)</div>
+  <div class="card">
+    <div class="check-item" id="ci-fu-1">
+      <input type="checkbox" id="c-fu-1" onchange="checkToggle('fu-1')">
+      <label for="c-fu-1">Call back any "Callback" status clinics — ask if they put materials out</label>
+    </div>
+    <div class="check-item" id="ci-fu-2">
+      <input type="checkbox" id="c-fu-2" onchange="checkToggle('fu-2')">
+      <label for="c-fu-2">Send follow-up email to any clinic that gave an email address</label>
+    </div>
+    <div class="check-item" id="ci-fu-3">
+      <input type="checkbox" id="c-fu-3" onchange="checkToggle('fu-3')">
+      <label for="c-fu-3">Confirm free month of service for any Won clinic staff member</label>
+    </div>
+    <div class="check-item" id="ci-fu-4">
+      <input type="checkbox" id="c-fu-4" onchange="checkToggle('fu-4')">
+      <label for="c-fu-4">Update TJ on results — wins, callbacks, and "not interested"</label>
+    </div>
+    <div class="check-item" id="ci-fu-5">
+      <input type="checkbox" id="c-fu-5" onchange="checkToggle('fu-5')">
+      <label for="c-fu-5">Add any new vet clinics discovered during visits to the list</label>
+    </div>
+  </div>
+
+  <div class="partner-box" style="margin-top:12px;">
+    <div class="partner-label">🏆 Blitz Goal</div>
+    <p><strong>6 clinics visited, 3+ actively displaying materials, 1+ staff partner signed up for free service.</strong> If 1 in 3 clinics refers even 2 clients, that's 4 new customers — nearly +40% to current roster from one week of work.</p>
+  </div>
+
+</div><!-- /panel-checklist -->
+
+<!-- ── BOTTOM NAV ── -->
+<div class="nav-bar">
+  <div>
+    <div class="phone-big">(314) 850-7140</div>
+    <div class="nav-sub">Tidy Tails · tidytailsstl.com</div>
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ Print</button>
+</div>
+
+<script>
+const VET_COUNT = 6;
+
+// ── Tab switching ──
+function switchTab(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+
+// ── Toggle vet card ──
+function toggleVet(id) {
+  const card = document.getElementById('vc-' + id);
+  card.classList.toggle('open');
+}
+
+// ── Status management ──
+function setStatus(id, status) {
+  const data = getVetData();
+  data[id] = data[id] || {};
+  data[id].status = status;
+  saveVetData(data);
+
+  // Update badge
+  const badge = document.getElementById('vs-' + id);
+  const labels = { pending: '📋 Pending', visited: '✅ Visited', callback: '📞 Callback', won: '🎉 Partner!' };
+  badge.textContent = labels[status];
+  badge.className = 'vet-status status-' + status;
+
+  // Update status buttons
+  const card = document.getElementById('vc-' + id);
+  card.querySelectorAll('.status-btn').forEach(b => {
+    const s = b.getAttribute('onclick').match(/'(\w+)'\)$/)[1];
+    b.className = 'status-btn' + (s === status ? ' sel-' + status : '');
+  });
+
+  updateStats();
+}
+
+// ── Notes ──
+function saveNotes(id) {
+  const data = getVetData();
+  data[id] = data[id] || {};
+  data[id].notes = document.getElementById('notes-' + id).value;
+  saveVetData(data);
+  const save = document.getElementById('nsave-' + id);
+  save.style.display = 'block';
+  setTimeout(() => { save.style.display = 'none'; }, 1200);
+}
+
+// ── Stats ──
+function updateStats() {
+  const data = getVetData();
+  let visited = 0, pending = 0, callback = 0, won = 0;
+  for (let i = 1; i <= VET_COUNT; i++) {
+    const s = (data[i] && data[i].status) || 'pending';
+    if (s === 'visited') visited++;
+    else if (s === 'pending') pending++;
+    else if (s === 'callback') callback++;
+    else if (s === 'won') won++;
+  }
+  document.getElementById('cnt-visited').textContent = visited;
+  document.getElementById('cnt-pending').textContent = pending;
+  document.getElementById('cnt-callback').textContent = callback;
+  document.getElementById('cnt-won').textContent = won;
+}
+
+// ── Checklist ──
+function checkToggle(id) {
+  const cb = document.getElementById('c-' + id);
+  const row = document.getElementById('ci-' + id);
+  if (cb.checked) row.classList.add('done');
+  else row.classList.remove('done');
+  
+  const checks = JSON.parse(localStorage.getItem('vet-checks') || '{}');
+  checks[id] = cb.checked;
+  localStorage.setItem('vet-checks', JSON.stringify(checks));
+}
+
+// ── Copy script ──
+function copyScript(btn) {
+  const block = btn.closest('.script-block');
+  const text = block.querySelector('.script-text').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 1500);
+  });
+}
+
+function copyEmail(type) {
+  const blocks = document.querySelectorAll('.email-block');
+  const idx = type === 'cold' ? 0 : 1;
+  const text = blocks[idx].querySelector('.val:last-of-type').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Email body copied! Paste into Gmail or your mail app.');
+  });
+}
+
+// ── Storage ──
+function getVetData() {
+  return JSON.parse(localStorage.getItem('vet-clinic-data') || '{}');
+}
+function saveVetData(data) {
+  localStorage.setItem('vet-clinic-data', JSON.stringify(data));
+}
+
+// ── RESTORE STATE ON LOAD ──
+window.addEventListener('DOMContentLoaded', () => {
+  const data = getVetData();
+  for (let i = 1; i <= VET_COUNT; i++) {
+    if (data[i]) {
+      if (data[i].status) setStatus(i, data[i].status);
+      if (data[i].notes) document.getElementById('notes-' + i).value = data[i].notes;
+    }
+  }
+
+  // Restore checklist
+  const checks = JSON.parse(localStorage.getItem('vet-checks') || '{}');
+  Object.entries(checks).forEach(([id, checked]) => {
+    const cb = document.getElementById('c-' + id);
+    const row = document.getElementById('ci-' + id);
+    if (cb && checked) { cb.checked = true; row.classList.add('done'); }
+  });
+
+  updateStats();
+});
+</script>
+</body>
+</html>
