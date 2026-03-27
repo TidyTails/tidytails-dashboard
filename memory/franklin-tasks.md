@@ -141,6 +141,21 @@
 
 ---
 
+### Friday 5:04 PM — Commercial Proposal Builder (Hourly Task)
+- **5:04 PM** 📄 Built a print-ready commercial service proposal tool for TJ to send after Monday's commercial calls
+  - **File:** `dashboard/commercial-proposal-template.html` — 1-page professional proposal generator
+  - **What it does:**
+    - In-browser editor bar: type property name + contact, choose property type → auto-populates relevant copy
+    - ⚡ "Load Millsap" button — one click pre-fills Millsap Properties (Monday's #1 priority call) with custom pitch, pricing $800-$1,400/mo bundle
+    - Customizable pricing table: Essential ($150-200), Professional ($300-450), Premium ($500-750), Multi-Property (10-15% off), Station Maintenance add-on
+    - Problem box (pet waste = #1 complaint), Solution box (6 service points), Why Tidy Tails (6 cards), Terms (no-contract), CTA with phone + email
+    - All text fields are in-line editable (contenteditable) — just click and type
+    - Print/PDF button hides editor bar and prints clean proposal
+    - Auto-fills property type-specific language (e.g. "cage-free daycare" for dog daycares, "HOA common area complaints" for HOAs)
+  - **Dashboard:** Added pulsing green "📄 PROPOSAL BUILDER" quick link + alert card above Call Sheet in Today panel
+  - **Why this task:** We have 79 commercial leads and calls starting Monday. The gap: after a good conversation, property managers expect something in writing. A professional PDF proposal is the difference between "sounds interesting" and a signed contract. Every other tool is built — this is the conversion closer.
+  - Committed + pushed ✅
+
 ### Friday 4:06 PM — Paw-ty Follow-Up Engine (Hourly Task)
 - **4:06 PM** 📲 Built complete Paw-ty post-event lead conversion engine
   - **File:** `dashboard/pawty-followup-engine.html` — 5-tab mobile-first app
