@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🔗 Referral Engine — Tidy Tails</title>
+<style>
+  :root {
+    --bg:#0a0a0a; --bg2:#111; --bg3:#1a1a1a; --bg4:#242424;
+    --text:#f5f5f5; --text2:#999; --text3:#666;
+    --green:#10b981; --green-dim:rgba(16,185,129,0.15);
+    --orange:#ff6b35; --orange-dim:rgba(255,107,53,0.12);
+    --blue:#3b82f6; --blue-dim:rgba(59,130,246,0.12);
+    --purple:#8b5cf6; --purple-dim:rgba(139,92,246,0.12);
+    --yellow:#fbbf24; --yellow-dim:rgba(251,191,36,0.12);
+    --red:#ef4444; --red-dim:rgba(239,68,68,0.12);
+    --border:#2a2a2a; --radius:12px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding:0 0 100px;}
+  a{color:var(--green);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+
+  .header{background:linear-gradient(135deg,#064e3b,#1e1b4b);padding:24px 20px;text-align:center;border-bottom:2px solid var(--green);}
+  .header .back{display:inline-block;color:var(--text2);font-size:0.8rem;margin-bottom:8px;}
+  .header h1{font-size:1.6rem;font-weight:800;}
+  .header h1 span{color:var(--green);}
+  .header .sub{color:var(--text2);font-size:0.88rem;margin-top:4px;}
+
+  .container{max-width:800px;margin:0 auto;padding:16px;}
+
+  /* Stats row */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
+  .stat{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px 10px;text-align:center;}
+  .stat .val{font-size:1.5rem;font-weight:800;font-family:'Courier New',monospace;}
+  .stat .lbl{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.5px;color:var(--text3);}
+  .stat.g .val{color:var(--green);}
+  .stat.o .val{color:var(--orange);}
+  .stat.b .val{color:var(--blue);}
+  .stat.p .val{color:var(--purple);}
+
+  /* Why banner */
+  .why-banner{background:linear-gradient(135deg,var(--green-dim),var(--blue-dim));border:1px solid rgba(16,185,129,0.3);border-radius:var(--radius);padding:18px 20px;margin-bottom:20px;}
+  .why-banner h2{font-size:1.1rem;color:var(--green);margin-bottom:8px;}
+  .why-banner .math{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:12px 0;}
+  .why-banner .math-item{text-align:center;}
+  .why-banner .math-item .num{font-size:1.8rem;font-weight:800;color:var(--text);}
+  .why-banner .math-item .desc{font-size:0.75rem;color:var(--text2);}
+  .why-banner .bottom{font-size:0.82rem;color:var(--text2);margin-top:8px;text-align:center;font-style:italic;}
+
+  /* Incentive card */
+  .incentive{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:20px;}
+  .incentive h2{font-size:1.1rem;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+  .incentive .tiers{display:grid;gap:12px;}
+  .tier{background:var(--bg2);border:1px solid var(--border);border-radius:10px;padding:14px;display:flex;gap:14px;align-items:center;}
+  .tier .icon{font-size:2rem;min-width:44px;text-align:center;}
+  .tier .info h3{font-size:0.95rem;margin-bottom:2px;}
+  .tier .info p{font-size:0.8rem;color:var(--text2);}
+  .tier .info .highlight{color:var(--green);font-weight:700;}
+
+  /* Tabs */
+  .tabs{display:flex;gap:4px;overflow-x:auto;padding-bottom:8px;margin-bottom:20px;-webkit-overflow-scrolling:touch;}
+  .tab{padding:10px 16px;border-radius:8px;background:var(--bg3);border:1px solid var(--border);color:var(--text2);font-size:0.8rem;cursor:pointer;white-space:nowrap;flex-shrink:0;font-weight:600;transition:all 0.2s;}
+  .tab.active{background:rgba(16,185,129,0.15);border-color:var(--green);color:var(--green);}
+  .tab:hover:not(.active){border-color:#555;color:var(--text);}
+
+  .panel{display:none;}
+  .panel.active{display:block;}
+
+  /* Customer referral cards */
+  .ref-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);margin-bottom:14px;overflow:hidden;}
+  .ref-card-head{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;cursor:pointer;}
+  .ref-card-head:hover{background:var(--bg4);}
+  .ref-card-head h3{font-size:0.95rem;}
+  .ref-card-head .badges{display:flex;gap:6px;align-items:center;}
+  .badge{font-size:0.68rem;padding:3px 8px;border-radius:20px;font-weight:600;}
+  .badge-hot{background:var(--red-dim);color:#f87171;}
+  .badge-warm{background:var(--yellow-dim);color:#fbbf24;}
+  .badge-cool{background:var(--blue-dim);color:#60a5fa;}
+  .badge-asked{background:var(--green-dim);color:var(--green);}
+  .badge-count{background:var(--purple-dim);color:#a78bfa;font-size:0.75rem;}
+  .ref-card-body{padding:0 16px 16px;display:none;}
+  .ref-card.open .ref-card-body{display:block;}
+  .ref-card .chevron{transition:transform 0.2s;color:var(--text3);}
+  .ref-card.open .chevron{transform:rotate(180deg);}
+
+  .ref-info{font-size:0.82rem;color:var(--text2);margin-bottom:10px;line-height:1.6;}
+  .ref-info strong{color:var(--text);}
+
+  /* Text templates */
+  .text-tmpl{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:12px;margin:8px 0;font-size:0.85rem;cursor:pointer;position:relative;line-height:1.5;transition:border-color 0.2s;}
+  .text-tmpl:hover{border-color:var(--green);}
+  .text-tmpl .copy-hint{position:absolute;top:8px;right:8px;font-size:0.65rem;color:var(--text3);background:var(--bg3);padding:2px 6px;border-radius:4px;}
+  .text-tmpl.copied{border-color:var(--green);}
+  .text-tmpl.copied .copy-hint{color:var(--green);}
+  .text-tmpl-label{font-size:0.7rem;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;font-weight:600;}
+
+  /* Status tracking */
+  .status-row{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap;}
+  .status-btn{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg2);color:var(--text2);font-size:0.75rem;cursor:pointer;transition:all 0.2s;}
+  .status-btn:hover{border-color:var(--green);color:var(--text);}
+  .status-btn.active{background:var(--green);color:white;border-color:var(--green);}
+
+  /* Tracker panel */
+  .tracker-table{width:100%;border-collapse:collapse;font-size:0.82rem;}
+  .tracker-table th{text-align:left;padding:10px 12px;border-bottom:2px solid var(--border);color:var(--text2);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.5px;}
+  .tracker-table td{padding:10px 12px;border-bottom:1px solid var(--border);}
+  .tracker-table tr:hover td{background:var(--bg4);}
+  .tracker-input{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:6px 10px;color:var(--text);font-size:0.82rem;width:100%;}
+  .tracker-input:focus{outline:none;border-color:var(--green);}
+
+  .add-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;margin:12px 0;}
+  .add-btn{background:var(--green);color:white;border:none;border-radius:8px;padding:8px 16px;font-weight:700;cursor:pointer;font-size:0.82rem;}
+  .add-btn:hover{opacity:0.9;}
+
+  /* Leaderboard */
+  .leader-row{display:flex;align-items:center;gap:14px;padding:12px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:10px;margin-bottom:8px;}
+  .leader-rank{font-size:1.5rem;min-width:36px;text-align:center;}
+  .leader-info{flex:1;}
+  .leader-name{font-weight:700;font-size:0.95rem;}
+  .leader-detail{font-size:0.78rem;color:var(--text2);}
+  .leader-count{font-size:1.4rem;font-weight:800;color:var(--green);min-width:40px;text-align:center;}
+
+  /* Revenue projections */
+  .proj-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px;}
+  .proj-card h3{font-size:0.9rem;margin-bottom:6px;}
+  .proj-card .proj-val{font-size:1.8rem;font-weight:800;margin:4px 0;}
+  .proj-card .proj-detail{font-size:0.78rem;color:var(--text2);}
+  .proj-card.green{border-left:4px solid var(--green);}
+  .proj-card.green .proj-val{color:var(--green);}
+  .proj-card.orange{border-left:4px solid var(--orange);}
+  .proj-card.orange .proj-val{color:var(--orange);}
+  .proj-card.purple{border-left:4px solid var(--purple);}
+  .proj-card.purple .proj-val{color:var(--purple);}
+
+  /* Social proof */
+  .proof-card{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px;}
+  .proof-card .quote{font-style:italic;color:var(--text);font-size:0.9rem;margin-bottom:8px;line-height:1.5;}
+  .proof-card .attribution{font-size:0.78rem;color:var(--text2);}
+
+  /* Responsive */
+  @media(max-width:600px){
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .why-banner .math{grid-template-columns:1fr;}
+    .add-row{grid-template-columns:1fr 1fr;gap:6px;}
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="index.html" class="back">← Dashboard</a>
+  <h1>🔗 Referral <span>Engine</span></h1>
+  <p class="sub">Turn 10 happy customers into 20+ — zero ad spend required</p>
+</div>
+
+<div class="container">
+
+<!-- Stats -->
+<div class="stats">
+  <div class="stat g"><div class="val" id="totalCustomers">10</div><div class="lbl">Customers</div></div>
+  <div class="stat o"><div class="val" id="totalAsked">0</div><div class="lbl">Asked</div></div>
+  <div class="stat b"><div class="val" id="totalReferred">0</div><div class="lbl">Referrals</div></div>
+  <div class="stat p"><div class="val" id="totalConverted">0</div><div class="lbl">Converted</div></div>
+</div>
+
+<!-- Why Referrals -->
+<div class="why-banner">
+  <h2>📊 The Referral Math</h2>
+  <div class="math">
+    <div class="math-item">
+      <div class="num">10</div>
+      <div class="desc">Happy customers right now</div>
+    </div>
+    <div class="math-item">
+      <div class="num">×2</div>
+      <div class="desc">Each refers 1-2 neighbors</div>
+    </div>
+    <div class="math-item">
+      <div class="num">=20</div>
+      <div class="desc">Customers by summer 🎯</div>
+    </div>
+  </div>
+  <div class="bottom">Referrals convert at 3-5× the rate of cold leads. Zero cost. Highest trust. This is the #1 growth lever.</div>
+</div>
+
+<!-- Incentive Program -->
+<div class="incentive">
+  <h2>🎁 Referral Rewards (Tell Customers This)</h2>
+  <div class="tiers">
+    <div class="tier">
+      <div class="icon">🎉</div>
+      <div class="info">
+        <h3>1 Referral = <span class="highlight">FREE Week of Service</span></h3>
+        <p>Their friend signs up → they get one week free. Simple. Easy to explain at the door.</p>
+      </div>
+    </div>
+    <div class="tier">
+      <div class="icon">⭐</div>
+      <div class="info">
+        <h3>3 Referrals = <span class="highlight">FREE Month of Service</span></h3>
+        <p>Power referrers get a whole month free. That's $85-170 in value. They'll hustle for this.</p>
+      </div>
+    </div>
+    <div class="tier">
+      <div class="icon">👑</div>
+      <div class="info">
+        <h3>5+ Referrals = <span class="highlight">Lifetime 15% Off</span></h3>
+        <p>VIP status. Permanent discount. Only achievable by true fans — and they're your marketing army.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Tabs -->
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('customers')">📋 Customer Cards</div>
+  <div class="tab" onclick="switchTab('tracker')">📊 Referral Tracker</div>
+  <div class="tab" onclick="switchTab('leaderboard')">🏆 Leaderboard</div>
+  <div class="tab" onclick="switchTab('scripts')">💬 Extra Scripts</div>
+  <div class="tab" onclick="switchTab('projections')">📈 Revenue Impact</div>
+</div>
+
+<!-- PANEL: Customer Cards -->
+<div class="panel active" id="panel-customers">
+
+<!-- Shannon -->
+<div class="ref-card" data-customer="shannon">
+  <div class="ref-card-head" onclick="toggleCard(this)">
+    <h3>🐾 Shannon</h3>
+    <div class="badges">
+      <span class="badge badge-hot">🔥 Ask First</span>
+      <span class="badge badge-count" id="badge-shannon">0 referrals</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="ref-card-body">
+    <div class="ref-info">
+      <strong>Service:</strong> Weekly | <strong>Dogs:</strong> 2 | <strong>Since:</strong> Early customer<br>
+      <strong>Why ask first:</strong> Longest customer, most loyal. If anyone's gonna refer friends, it's Shannon. Probably knows neighbors with dogs.
+    </div>
+    <div class="text-tmpl-label">📱 Referral Ask Text</div>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      Hey Shannon! 😊 Quick question — do you know anyone in your neighborhood who could use yard cleanup help? We're offering a FREE week of service for every friend you refer who signs up. Just thought I'd ask since you've been with us the longest! 🐾
+    </div>
+    <div class="text-tmpl-label">📱 Follow-Up (if they say "let me think")</div>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      No rush at all! If anyone ever mentions needing yard help, just send them our way. Here's our number they can text: (your number). And you'd get a free week for each person! 🎉
+    </div>
+    <div class="status-row">
+      <button class="status-btn" onclick="setStatus(this,'shannon','not-asked')">Not Asked</button>
+      <button class="status-btn" onclick="setStatus(this,'shannon','asked')">Asked ✓</button>
+      <button class="status-btn" onclick="setStatus(this,'shannon','got-name')">Got a Name!</button>
+      <button class="status-btn" onclick="setStatus(this,'shannon','converted')">Referral Signed Up! 🎉</button>
+    </div>
+  </div>
+</div>
+
+<!-- Amanda -->
+<div class="ref-card" data-customer="amanda">
+  <div class="ref-card-head" onclick="toggleCard(this)">
+    <h3>🐾 Amanda</h3>
+    <div class="badges">
+      <span class="badge badge-hot">🔥 Ask First</span>
+      <span class="badge badge-count" id="badge-amanda">0 referrals</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="ref-card-body">
+    <div class="ref-info">
+      <strong>Service:</strong> Weekly | <strong>Dogs:</strong> Multiple | <strong>Since:</strong> Early customer<br>
+      <strong>Why ask first:</strong> High-frequency service, very engaged. Dog people know dog people. Her friends/neighbors probably have the same problem.
+    </div>
+    <div class="text-tmpl-label">📱 Referral Ask Text</div>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      Hey Amanda! Hope you and the pups are doing great 🐕 Quick question — know anyone else who's tired of cleaning up their yard? We're giving a FREE week of service for every referral. Just pass along our name! 💚
+    </div>
+    <div class="text-tmpl-label">📱 Follow-Up (if they say "let me think")</div>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      Totally understand! If it ever comes up naturally — like at the dog park or with neighbors — just mention us. They can text us at (your number) and you get a free week! Easy peasy 🐾
+    </div>
+    <div class="status-row">
+      <button class="status-btn" onclick="setStatus(this,'amanda','not-asked')">Not Asked</button>
+      <button class="status-btn" onclick="setStatus(this,'amanda','asked')">Asked ✓</button>
+      <button class="status-btn" onclick="setStatus(this,'amanda','got-name')">Got a Name!</button>
+      <button class="status-btn" onclick="setStatus(this,'amanda','converted')">Referral Signed Up! 🎉</button>
+    </div>
+  </div>
+</div>
+
+<!-- Preshus -->
+<div class="ref-card" data-customer="preshus">
+  <div class="ref-card-head" onclick="toggleCard(this)">
+    <h3>🐾 Preshus</h3>
+    <div class="badges">
+      <span class="badge badge-hot">🔥 Ask First</span>
+      <span class="badge badge-count" id="badge-preshus">0 referrals</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="ref-card-body">
+    <div class="ref-info">
+      <strong>Service:</strong> Weekly | <strong>Dogs:</strong> Multiple<br>
+      <strong>Why ask first:</strong> Consistent, reliable customer. Great relationship. The kind of person who tells friends about services they love.
+    </div>
+    <div class="text-tmpl-label">📱 Referral Ask Text</div>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      Hey Preshus! Just wanted to say thanks for being such a great customer 🙏 If you know anyone who needs yard cleanup help, we'd love the referral — and you'd get a FREE week of service for each one! 🐾💚
+    </div>
+    <div class="status-row">
+      <button class="status-btn" onclick="setStatus(this,'preshus','not-asked')">Not Asked</button>
+      <button class="status-btn" onclick="setStatus(this,'preshus','asked')">Asked ✓</button>
+      <button class="status-btn" onclick="setStatus(this,'preshus','got-name')">Got a Name!</button>
+      <button class="status-btn" onclick="setStatus(this,'preshus','converted')">Referral Signed Up! 🎉</button>
+    </div>
+  </div>
+</div>
+
+<!-- Mrs. Candee -->
+<div class="ref-card" data-customer="candee">
+  <div class="ref-card-head" onclick="toggleCard(this)">
+    <h3>🐾 Mrs. Candee</h3>
+    <div class="badges">
+      <span class="badge badge-warm">🟡 Great Candidate</span>
+      <span class="badge badge-count" id="badge-candee">0 referrals</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="ref-card-body">
+    <div class="ref-info">
+      <strong>Service:</strong> Weekly | <strong>Dogs:</strong> Multiple<br>
+      <strong>Why great candidate:</strong> Established customer. Likely has a strong neighborhood social network — the kind of person who talks to other pet owners at church, at the store, etc.
+    </div>
+    <div class="text-tmpl-label">📱 Referral Ask Text</div>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      Hi Mrs. Candee! Hope you're doing well 😊 I wanted to let you know about our referral program — if you refer a friend or neighbor who signs up, you get a FREE week of service! Do you know anyone who might be interested? 🐾
+    </div>
+    <div class="status-row">
+      <button class="status-btn" onclick="setStatus(this,'candee','not-asked')">Not Asked</button>
+      <button class="status-btn" onclick="setStatus(this,'candee','asked')">Asked ✓</button>
+      <button class="status-btn" onclick="setStatus(this,'candee','got-name')">Got a Name!</button>
+      <button class="status-btn" onclick="setStatus(this,'candee','converted')">Referral Signed Up! 🎉</button>
+    </div>
+  </div>
+</div>
+
+<!-- Greg -->
+<div class="ref-card" data-customer="greg">
+  <div class="ref-card-head" onclick="toggleCard(this)">
+    <h3>🐾 Greg</h3>
+    <div class="badges">
+      <span class="badge badge-warm">🟡 Great Candidate</span>
+      <span class="badge badge-count" id="badge-greg">0 referrals</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="ref-card-body">
+    <div class="ref-info">
+      <strong>Service:</strong> Monthly | <strong>Dogs:</strong> Yard cleanup<br>
+      <strong>Why great candidate:</strong> Monthly customer = knows the value. Good upsell target too. If he refers someone, it validates the service for him and might push him to upgrade.
+    </div>
+    <div class="text-tmpl-label">📱 Referral Ask Text</div>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      Hey Greg! Quick heads up — we just launched a referral program. Refer a friend who signs up and you get a FREE week of service. Know anyone in your area who might need yard cleanup? 🐾
+    </div>
+    <div class="status-row">
+      <button class="status-btn" onclick="setStatus(this,'greg','not-asked')">Not Asked</button>
+      <button class="status-btn" onclick="setStatus(this,'greg','asked')">Asked ✓</button>
+      <button class="status-btn" onclick="setStatus(this,'greg','got-name')">Got a Name!</button>
+      <button class="status-btn" onclick="setStatus(this,'greg','converted')">Referral Signed Up! 🎉</button>
+    </div>
+  </div>
+</div>
+
+<!-- Lawrence -->
+<div class="ref-card" data-customer="lawrence">
+  <div class="ref-card-head" onclick="toggleCard(this)">
+    <h3>🐾 Lawrence</h3>
+    <div class="badges">
+      <span class="badge badge-warm">🟡 Great Candidate</span>
+      <span class="badge badge-count" id="badge-lawrence">0 referrals</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="ref-card-body">
+    <div class="ref-info">
+      <strong>Service:</strong> Biweekly | <strong>Dogs:</strong> Multiple<br>
+      <strong>Why great candidate:</strong> Consistent biweekly customer. Knows the service well, good relationship.
+    </div>
+    <div class="text-tmpl-label">📱 Referral Ask Text</div>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      Hey Lawrence! Do you know anyone else dealing with yard cleanup? We're offering a FREE week for every referral who signs up. You've been great to work with and we'd love more customers like you! 🐾
+    </div>
+    <div class="status-row">
+      <button class="status-btn" onclick="setStatus(this,'lawrence','not-asked')">Not Asked</button>
+      <button class="status-btn" onclick="setStatus(this,'lawrence','asked')">Asked ✓</button>
+      <button class="status-btn" onclick="setStatus(this,'lawrence','got-name')">Got a Name!</button>
+      <button class="status-btn" onclick="setStatus(this,'lawrence','converted')">Referral Signed Up! 🎉</button>
+    </div>
+  </div>
+</div>
+
+<!-- Jody -->
+<div class="ref-card" data-customer="jody">
+  <div class="ref-card-head" onclick="toggleCard(this)">
+    <h3>🐾 Jody</h3>
+    <div class="badges">
+      <span class="badge badge-warm">🟡 Great Candidate</span>
+      <span class="badge badge-count" id="badge-jody">0 referrals</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="ref-card-body">
+    <div class="ref-info">
+      <strong>Service:</strong> Biweekly | <strong>Dogs:</strong> Multiple<br>
+      <strong>Why great candidate:</strong> Reliable biweekly customer. Good candidate for casual ask.
+    </div>
+    <div class="text-tmpl-label">📱 Referral Ask Text</div>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      Hey Jody! Spring's here and backyards are getting wild 😂 If you know anyone who needs help keeping up with their dogs' mess, send them our way! You'd get a FREE week of service for each referral. 🐾🎉
+    </div>
+    <div class="status-row">
+      <button class="status-btn" onclick="setStatus(this,'jody','not-asked')">Not Asked</button>
+      <button class="status-btn" onclick="setStatus(this,'jody','asked')">Asked ✓</button>
+      <button class="status-btn" onclick="setStatus(this,'jody','got-name')">Got a Name!</button>
+      <button class="status-btn" onclick="setStatus(this,'jody','converted')">Referral Signed Up! 🎉</button>
+    </div>
+  </div>
+</div>
+
+<!-- Chastity -->
+<div class="ref-card" data-customer="chastity">
+  <div class="ref-card-head" onclick="toggleCard(this)">
+    <h3>🐾 Chastity</h3>
+    <div class="badges">
+      <span class="badge badge-cool">🔵 Ask When Ready</span>
+      <span class="badge badge-count" id="badge-chastity">0 referrals</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="ref-card-body">
+    <div class="ref-info">
+      <strong>Service:</strong> Biweekly | <strong>Dogs:</strong> Multiple<br>
+      <strong>Why ask when ready:</strong> Good customer, may respond well to a more casual ask timed after a great service visit.
+    </div>
+    <div class="text-tmpl-label">📱 Referral Ask Text</div>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      Hey Chastity! Hope the yard's looking good 🐾 Just a heads up — if you ever mention us to friends or neighbors and they sign up, you get a FREE week on us! No pressure, just a thank you for being awesome 💚
+    </div>
+    <div class="status-row">
+      <button class="status-btn" onclick="setStatus(this,'chastity','not-asked')">Not Asked</button>
+      <button class="status-btn" onclick="setStatus(this,'chastity','asked')">Asked ✓</button>
+      <button class="status-btn" onclick="setStatus(this,'chastity','got-name')">Got a Name!</button>
+      <button class="status-btn" onclick="setStatus(this,'chastity','converted')">Referral Signed Up! 🎉</button>
+    </div>
+  </div>
+</div>
+
+<!-- Customer 9 -->
+<div class="ref-card" data-customer="customer9">
+  <div class="ref-card-head" onclick="toggleCard(this)">
+    <h3>🐾 Customer 9</h3>
+    <div class="badges">
+      <span class="badge badge-cool">🔵 Ask When Ready</span>
+      <span class="badge badge-count" id="badge-customer9">0 referrals</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="ref-card-body">
+    <div class="ref-info">
+      <strong>Service:</strong> TBD | <strong>Note:</strong> Update with customer details when confirmed<br>
+    </div>
+    <div class="text-tmpl-label">📱 Generic Referral Ask</div>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      Hey! Just wanted to let you know — if you refer a friend to Tidy Tails who signs up, you get a FREE week of service. Know anyone who could use yard cleanup help? 🐾
+    </div>
+    <div class="status-row">
+      <button class="status-btn" onclick="setStatus(this,'customer9','not-asked')">Not Asked</button>
+      <button class="status-btn" onclick="setStatus(this,'customer9','asked')">Asked ✓</button>
+      <button class="status-btn" onclick="setStatus(this,'customer9','got-name')">Got a Name!</button>
+      <button class="status-btn" onclick="setStatus(this,'customer9','converted')">Referral Signed Up! 🎉</button>
+    </div>
+  </div>
+</div>
+
+<!-- Customer 10 -->
+<div class="ref-card" data-customer="customer10">
+  <div class="ref-card-head" onclick="toggleCard(this)">
+    <h3>🐾 Customer 10</h3>
+    <div class="badges">
+      <span class="badge badge-cool">🔵 Ask When Ready</span>
+      <span class="badge badge-count" id="badge-customer10">0 referrals</span>
+      <span class="chevron">▼</span>
+    </div>
+  </div>
+  <div class="ref-card-body">
+    <div class="ref-info">
+      <strong>Service:</strong> TBD | <strong>Note:</strong> Update with customer details when confirmed<br>
+    </div>
+    <div class="text-tmpl-label">📱 Generic Referral Ask</div>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      Hey! We're running a referral special — refer someone to Tidy Tails and you get a FREE week when they sign up. Any friends with dogs who hate yard cleanup? 😂🐾
+    </div>
+    <div class="status-row">
+      <button class="status-btn" onclick="setStatus(this,'customer10','not-asked')">Not Asked</button>
+      <button class="status-btn" onclick="setStatus(this,'customer10','asked')">Asked ✓</button>
+      <button class="status-btn" onclick="setStatus(this,'customer10','got-name')">Got a Name!</button>
+      <button class="status-btn" onclick="setStatus(this,'customer10','converted')">Referral Signed Up! 🎉</button>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- PANEL: Referral Tracker -->
+<div class="panel" id="panel-tracker">
+  <h2 style="font-size:1.1rem;margin-bottom:14px;">📊 Track Incoming Referrals</h2>
+  <p style="font-size:0.82rem;color:var(--text2);margin-bottom:16px;">Add each referred person here. Track them from lead → contact → signed up.</p>
+  
+  <div class="add-row">
+    <input class="tracker-input" id="ref-name" placeholder="Referred person's name">
+    <input class="tracker-input" id="ref-by" placeholder="Referred by">
+    <input class="tracker-input" id="ref-phone" placeholder="Phone (optional)">
+    <button class="add-btn" onclick="addReferral()">+ Add</button>
+  </div>
+
+  <div style="overflow-x:auto;margin-top:12px;">
+    <table class="tracker-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Referred By</th>
+          <th>Phone</th>
+          <th>Status</th>
+          <th>Date Added</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="referral-tbody">
+        <!-- Dynamic rows -->
+      </tbody>
+    </table>
+  </div>
+  <p id="no-referrals" style="text-align:center;color:var(--text3);padding:24px;font-size:0.85rem;">No referrals tracked yet. Start asking customers! 🚀</p>
+</div>
+
+<!-- PANEL: Leaderboard -->
+<div class="panel" id="panel-leaderboard">
+  <h2 style="font-size:1.1rem;margin-bottom:14px;">🏆 Referral Leaderboard</h2>
+  <p style="font-size:0.82rem;color:var(--text2);margin-bottom:16px;">Which customers are bringing in the most referrals? Share this with your top referrers — people love competition!</p>
+  <div id="leaderboard-list">
+    <p style="text-align:center;color:var(--text3);padding:24px;font-size:0.85rem;">Leaderboard updates as referrals come in. Start asking! 🏅</p>
+  </div>
+</div>
+
+<!-- PANEL: Extra Scripts -->
+<div class="panel" id="panel-scripts">
+  <h2 style="font-size:1.1rem;margin-bottom:14px;">💬 Referral Scripts for Every Situation</h2>
+  
+  <div style="margin-bottom:20px;">
+    <h3 style="font-size:0.9rem;color:var(--green);margin-bottom:8px;">🚪 In-Person (At the Door After Service)</h3>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      "Hey, yard looks great! Quick thing — if you know anyone else in the neighborhood who's tired of dealing with this, we'd love the referral. And you'd get a free week for each person who signs up!"
+    </div>
+  </div>
+
+  <div style="margin-bottom:20px;">
+    <h3 style="font-size:0.9rem;color:var(--green);margin-bottom:8px;">📱 Text After a Great Service Visit</h3>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      All cleaned up! 🐾✨ Hey, just a thought — know anyone else dealing with the poop situation? We're giving a FREE week for every referral who signs up. Easy way to save on your service! 💚
+    </div>
+  </div>
+
+  <div style="margin-bottom:20px;">
+    <h3 style="font-size:0.9rem;color:var(--green);margin-bottom:8px;">📧 Email / Monthly Check-In</h3>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      Hi [Name]! Spring is here and we're growing fast. We'd love your help — for every friend, family member, or neighbor you refer who becomes a Tidy Tails customer, you'll receive a FREE week of service. 3 referrals = a full FREE month! Just have them mention your name when they sign up. Thank you for being part of the Tidy Tails family! 🐾
+    </div>
+  </div>
+
+  <div style="margin-bottom:20px;">
+    <h3 style="font-size:0.9rem;color:var(--green);margin-bottom:8px;">🎉 Post-Event (After Paw-ty)</h3>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      So great meeting you at the Paw-ty! 🐶 Quick reminder — we have a referral program! Know any other pet parents? Refer them to Tidy Tails and you BOTH get a deal. Win-win! Text us anytime at (your number). 🐾
+    </div>
+  </div>
+
+  <div style="margin-bottom:20px;">
+    <h3 style="font-size:0.9rem;color:var(--orange);margin-bottom:8px;">💪 The "Social Proof" Ask (Use When They Compliment You)</h3>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      That means a lot, thank you! 🙏 If you wouldn't mind, two things that would really help us grow: 1) Leave us a quick Google review (takes 30 seconds!) and 2) If you know anyone else who needs this, we'll give you a free week for the referral. You've been awesome to work with! 💚
+    </div>
+  </div>
+
+  <div style="margin-bottom:20px;">
+    <h3 style="font-size:0.9rem;color:var(--purple);margin-bottom:8px;">🏘️ Nextdoor / Facebook Group Post (For Customers to Share)</h3>
+    <div class="text-tmpl" onclick="copyText(this)">
+      <span class="copy-hint">📋 Tap to copy</span>
+      Hey neighbors! If anyone's tired of dealing with dog poop in their yard, I've been using Tidy Tails and they're AMAZING. Seriously — they come every week, clean up everything, and it's so affordable. Check them out at tidytailsstl.com 🐾 (Tell them [Your Name] sent you — we both get a deal!)
+    </div>
+  </div>
+</div>
+
+<!-- PANEL: Revenue Projections -->
+<div class="panel" id="panel-projections">
+  <h2 style="font-size:1.1rem;margin-bottom:14px;">📈 Revenue Impact of Referrals</h2>
+  
+  <div class="proj-card green">
+    <h3>Conservative: 3 Referral Conversions</h3>
+    <div class="proj-val">+$255/mo</div>
+    <div class="proj-detail">3 new weekly customers × $85/mo avg = $255/mo additional revenue. Minus 3 free weeks given ($63 value) = net +$192/mo in Month 1, then +$255/mo ongoing. <strong>Annual: +$2,937</strong></div>
+  </div>
+
+  <div class="proj-card orange">
+    <h3>Moderate: 6 Referral Conversions</h3>
+    <div class="proj-val">+$510/mo</div>
+    <div class="proj-detail">6 new customers × $85/mo = $510/mo. That's 16 total customers — halfway to the 25-30 goal. Minus 6 free weeks ($126) = net +$384/mo Month 1. <strong>Annual: +$5,874</strong></div>
+  </div>
+
+  <div class="proj-card purple">
+    <h3>Aggressive: 10 Referral Conversions</h3>
+    <div class="proj-val">+$850/mo</div>
+    <div class="proj-detail">Every customer refers one. 20 total customers — 80% to goal. This is the dream scenario and it's totally possible if Jamie asks consistently. <strong>Annual: +$9,810</strong></div>
+  </div>
+
+  <div style="background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:16px;margin-top:16px;">
+    <h3 style="font-size:0.9rem;color:var(--yellow);margin-bottom:8px;">💡 Cost of Referral Program</h3>
+    <p style="font-size:0.82rem;color:var(--text2);line-height:1.6;">
+      <strong>Free week value:</strong> ~$21 per referral reward (one week of service)<br>
+      <strong>Customer acquisition cost via referral:</strong> $21<br>
+      <strong>Customer lifetime value:</strong> $85/mo × 12 months = <span style="color:var(--green);font-weight:700;">$1,020</span><br>
+      <strong>ROI per referral:</strong> $1,020 ÷ $21 = <span style="color:var(--green);font-weight:700;">48.5× return</span><br><br>
+      Compare to Facebook Ads: $7/day = $210/mo for maybe 2-3 leads. Referrals are literally 10× more cost-effective.
+    </p>
+  </div>
+</div>
+
+</div>
+
+<script>
+// State management
+const STATE_KEY = 'tidytails_referral_engine';
+
+function getState() {
+  try {
+    return JSON.parse(localStorage.getItem(STATE_KEY)) || { statuses: {}, referrals: [] };
+  } catch { return { statuses: {}, referrals: [] }; }
+}
+
+function saveState(state) {
+  localStorage.setItem(STATE_KEY, JSON.stringify(state));
+}
+
+// Tab switching
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t => {
+    if (t.textContent.toLowerCase().includes(id.substring(0,4))) t.classList.add('active');
+  });
+}
+
+// Card toggle
+function toggleCard(el) {
+  el.closest('.ref-card').classList.toggle('open');
+}
+
+// Copy text
+function copyText(el) {
+  const text = el.innerText.replace('📋 Tap to copy', '').replace('✅ Copied!', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add('copied');
+    el.querySelector('.copy-hint').textContent = '✅ Copied!';
+    setTimeout(() => {
+      el.classList.remove('copied');
+      el.querySelector('.copy-hint').textContent = '📋 Tap to copy';
+    }, 2000);
+  });
+}
+
+// Status tracking
+function setStatus(btn, customer, status) {
+  const state = getState();
+  state.statuses[customer] = status;
+  saveState(state);
+  
+  // Update UI
+  btn.parentElement.querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  updateStats();
+}
+
+// Add referral
+function addReferral() {
+  const name = document.getElementById('ref-name').value.trim();
+  const by = document.getElementById('ref-by').value.trim();
+  const phone = document.getElementById('ref-phone').value.trim();
+  
+  if (!name || !by) { alert('Need at least a name and who referred them!'); return; }
+  
+  const state = getState();
+  state.referrals.push({
+    name, referredBy: by, phone, status: 'new',
+    date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+  });
+  saveState(state);
+  
+  document.getElementById('ref-name').value = '';
+  document.getElementById('ref-by').value = '';
+  document.getElementById('ref-phone').value = '';
+  
+  renderReferrals();
+  updateStats();
+}
+
+function updateReferralStatus(index, status) {
+  const state = getState();
+  state.referrals[index].status = status;
+  saveState(state);
+  renderReferrals();
+  updateStats();
+}
+
+function deleteReferral(index) {
+  if (!confirm('Delete this referral?')) return;
+  const state = getState();
+  state.referrals.splice(index, 1);
+  saveState(state);
+  renderReferrals();
+  updateStats();
+}
+
+function renderReferrals() {
+  const state = getState();
+  const tbody = document.getElementById('referral-tbody');
+  const noMsg = document.getElementById('no-referrals');
+  
+  if (state.referrals.length === 0) {
+    tbody.innerHTML = '';
+    noMsg.style.display = 'block';
+    return;
+  }
+  
+  noMsg.style.display = 'none';
+  const statusColors = { new: '#3b82f6', contacted: '#fbbf24', 'signed-up': '#10b981', lost: '#ef4444' };
+  
+  tbody.innerHTML = state.referrals.map((r, i) => `
+    <tr>
+      <td style="font-weight:600;">${r.name}</td>
+      <td>${r.referredBy}</td>
+      <td>${r.phone ? '<a href="tel:' + r.phone + '" style="color:var(--green);">' + r.phone + '</a>' : '—'}</td>
+      <td>
+        <select onchange="updateReferralStatus(${i}, this.value)" style="background:var(--bg3);color:${statusColors[r.status]};border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:0.78rem;font-weight:600;">
+          <option value="new" ${r.status==='new'?'selected':''}>🔵 New</option>
+          <option value="contacted" ${r.status==='contacted'?'selected':''}>🟡 Contacted</option>
+          <option value="signed-up" ${r.status==='signed-up'?'selected':''}>✅ Signed Up!</option>
+          <option value="lost" ${r.status==='lost'?'selected':''}>❌ Lost</option>
+        </select>
+      </td>
+      <td style="color:var(--text3);font-size:0.78rem;">${r.date}</td>
+      <td><button onclick="deleteReferral(${i})" style="background:none;border:none;color:var(--text3);cursor:pointer;font-size:1rem;" title="Delete">🗑️</button></td>
+    </tr>
+  `).join('');
+}
+
+function updateStats() {
+  const state = getState();
+  
+  // Count asked
+  const asked = Object.values(state.statuses).filter(s => s !== 'not-asked').length;
+  document.getElementById('totalAsked').textContent = asked;
+  
+  // Count referrals
+  document.getElementById('totalReferred').textContent = state.referrals.length;
+  
+  // Count converted
+  const converted = state.referrals.filter(r => r.status === 'signed-up').length;
+  document.getElementById('totalConverted').textContent = converted;
+  
+  // Update badges
+  const customers = ['shannon','amanda','preshus','candee','greg','lawrence','jody','chastity','customer9','customer10'];
+  customers.forEach(c => {
+    const badge = document.getElementById('badge-' + c);
+    if (badge) {
+      const count = state.referrals.filter(r => r.referredBy.toLowerCase().includes(c)).length;
+      badge.textContent = count + ' referral' + (count !== 1 ? 's' : '');
+    }
+  });
+  
+  // Update leaderboard
+  renderLeaderboard();
+  
+  // Restore status buttons
+  customers.forEach(c => {
+    const status = state.statuses[c];
+    if (status) {
+      const card = document.querySelector(`[data-customer="${c}"]`);
+      if (card) {
+        card.querySelectorAll('.status-btn').forEach(btn => {
+          btn.classList.remove('active');
+          if (btn.textContent.toLowerCase().includes(status.replace('-', ' ').substring(0, 4))) {
+            btn.classList.add('active');
+          }
+        });
+      }
+    }
+  });
+}
+
+function renderLeaderboard() {
+  const state = getState();
+  const list = document.getElementById('leaderboard-list');
+  
+  if (state.referrals.length === 0) {
+    list.innerHTML = '<p style="text-align:center;color:var(--text3);padding:24px;font-size:0.85rem;">Leaderboard updates as referrals come in. Start asking! 🏅</p>';
+    return;
+  }
+  
+  // Count by referrer
+  const counts = {};
+  state.referrals.forEach(r => {
+    const by = r.referredBy;
+    counts[by] = (counts[by] || 0) + 1;
+  });
+  
+  const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+  const medals = ['🥇', '🥈', '🥉'];
+  
+  list.innerHTML = sorted.map(([name, count], i) => {
+    const converted = state.referrals.filter(r => r.referredBy === name && r.status === 'signed-up').length;
+    return `
+      <div class="leader-row">
+        <div class="leader-rank">${medals[i] || (i + 1)}</div>
+        <div class="leader-info">
+          <div class="leader-name">${name}</div>
+          <div class="leader-detail">${converted} converted of ${count} referred</div>
+        </div>
+        <div class="leader-count">${count}</div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Init
+document.addEventListener('DOMContentLoaded', () => {
+  renderReferrals();
+  updateStats();
+});
+</script>
+
+</body>
+</html>
