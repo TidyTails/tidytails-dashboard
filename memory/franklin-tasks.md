@@ -6,6 +6,34 @@
 
 ## March 26, 2026 (Thursday)
 
+### Thursday 7:04 PM — QR Fix + Dashboard Cleanup (Hourly Task)
+- **7:04 PM** 🔧 Critical QR Fix + Dashboard De-Staling — Fixed broken Paw-ty QR codes + cleaned dashboard.
+  - **WHY:** Saturday Paw-ty is 36 hours away. The QR flyers built at 2 PM pointed to `tidytailsstl.com/pawty` which returns the HOMEPAGE (not deployed to Cloudflare). If TJ printed those flyers, every QR scan would land on the homepage with no event info, no sign-up form, no deals. Total waste.
+  - **WHAT WAS FIXED:**
+    1. **QR flyer URLs updated** — All 8 QR code references in `deliverables/pawty-qr-flyer-printable.html` now point to the working GitHub Pages backup: `tidytails.github.io/tidytails-dashboard/tidy-tails/website/pawty.html`. QR codes work RIGHT NOW. ✅
+    2. **Dashboard redirect** — Created `dashboard/pawty.html` redirect page for shorter share URLs.
+    3. **Deployment guide** — Created `deliverables/DEPLOY-GUIDE-5MIN.md` with 3 options (Cloudflare dashboard, git push, wrangler CLI) so TJ can deploy the 4 missing pages whenever ready.
+    4. **Dashboard cleanup** (`dashboard/index.html`):
+       - Removed 5 stale alert cards: "6 Competitors DEAD" (duplicate), "Week 1 Launch Kit Starts TODAY" (weeks old), "Weekly Wrap Mar 17-22" (stale), "Scoop Soldiers Active" (already in market card), "Monday Briefing" (linked to Mar 23)
+       - Fixed GBP card: "7% → 100%" → "~95% ✅ Done"
+       - Fixed reviews card: removed "complete GBP (7%)" → added directories as next action
+       - Fixed revenue tracker: "8 customers" → "10 customers"
+       - Fixed competitor intel card: removed references to dead competitors as if they're active market leaders
+       - Fixed pricing reference: replaced dead competitors with actual 3 active ones
+       - Trimmed quick links from 18 → 8 (most important only)
+       - Updated Paw-ty alert with QR flyer link + "36 hours away" urgency
+       - Updated footer timestamp
+       - Net: removed 26 lines of stale content, 5 fewer alert cards
+    5. **Site audit confirmed:** /spring, /calculator, /commercial, /pawty ALL still return homepage on tidytailsstl.com. This is the 17th+ time this has been flagged. QR workaround bypasses this for Saturday.
+  - **WHY THIS OVER OTHER TASKS:**
+    - MEMORY.md says "maintain, don't create" — this is 100% maintenance
+    - Broken QR codes for a Saturday event = actual lost leads. This was urgent.
+    - 7 tasks already done today — dashboard was accumulating stale data from all of them
+    - Brave API exhausted — no web research possible
+    - Thursday 7 PM = no new toolkits, no new deliverables. Fix what's broken.
+  - **IMPACT:** If TJ prints flyers tonight, QR codes actually work now. Dashboard shows correct data. No more "POOP 911 market leader" when they're dead. Quick links reduced from 18 (overwhelming) to 8 (usable).
+  - Committed + pushed to GitHub ✅
+
 ### Thursday 5:04 PM — Shed Spring Command Center (Hourly Task)
 - **5:04 PM** 🏠 Shed Spring Command Center — Consolidated ALL shed sales tools into one interactive page.
   - **WHY:** Today was 7 Tidy Tails tasks, ZERO shed tasks. TJ works at TuffShed 9-5 M-F, spring is peak selling season, and there's a 27-lead pipeline (~$16,500 potential) spread across 15+ files. The shed business was being neglected.
