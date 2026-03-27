@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🐾 Paw-ty Lead Tracker | Tidy Tails</title>
+    <style>
+        :root {
+            --green: #2d6a4f;
+            --green-light: #40916c;
+            --green-bg: #ecfdf5;
+            --orange: #e76f51;
+            --cream: #fefae0;
+            --dark: #1b1b1b;
+            --gray: #6b7280;
+            --gray-light: #f3f4f6;
+            --red: #dc2626;
+            --red-bg: #fef2f2;
+            --yellow: #f59e0b;
+            --yellow-bg: #fffbeb;
+            --blue: #3b82f6;
+            --blue-bg: #eff6ff;
+            --purple: #8b5cf6;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f0f2f5;
+            color: var(--dark);
+            line-height: 1.5;
+            min-height: 100vh;
+            padding-bottom: 80px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--green), var(--green-light));
+            color: white;
+            padding: 1.25rem 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+        .header h1 { font-size: 1.4rem; }
+        .header .subtitle { font-size: 0.85rem; opacity: 0.9; margin-top: 0.15rem; }
+
+        /* Stats Bar */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+            padding: 0.75rem 1rem;
+            background: white;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .stat { text-align: center; }
+        .stat .num { font-size: 1.5rem; font-weight: 800; }
+        .stat .label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--gray); }
+        .stat.hot .num { color: var(--red); }
+        .stat.warm .num { color: var(--yellow); }
+        .stat.cool .num { color: var(--blue); }
+        .stat.total .num { color: var(--green); }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: white;
+            border-bottom: 2px solid #e5e7eb;
+            position: sticky;
+            top: 72px;
+            z-index: 99;
+        }
+        .tab {
+            flex: 1;
+            padding: 0.75rem 0.25rem;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray);
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s;
+        }
+        .tab.active {
+            color: var(--green);
+            border-bottom-color: var(--green);
+            background: var(--green-bg);
+        }
+        .tab .tab-icon { font-size: 1.1rem; display: block; margin-bottom: 0.1rem; }
+
+        /* Content */
+        .content { padding: 1rem; max-width: 600px; margin: 0 auto; }
+        .panel { display: none; }
+        .panel.active { display: block; }
+
+        /* Add Lead Form */
+        .form-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.25rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 1rem;
+        }
+        .form-card h2 {
+            font-size: 1.1rem;
+            color: var(--green);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .form-group { margin-bottom: 0.75rem; }
+        .form-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--gray);
+            margin-bottom: 0.25rem;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.65rem 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s;
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+
+        .interest-picker {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+        .interest-btn {
+            padding: 0.6rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+        }
+        .interest-btn.selected-hot { border-color: var(--red); background: var(--red-bg); color: var(--red); }
+        .interest-btn.selected-warm { border-color: var(--yellow); background: var(--yellow-bg); color: #b45309; }
+        .interest-btn.selected-cool { border-color: var(--blue); background: var(--blue-bg); color: var(--blue); }
+
+        .btn-add {
+            width: 100%;
+            padding: 0.85rem;
+            background: var(--green);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: transform 0.1s;
+        }
+        .btn-add:active { transform: scale(0.97); }
+
+        /* Lead Cards */
+        .lead-card {
+            background: white;
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+            border-left: 4px solid var(--gray);
+            position: relative;
+        }
+        .lead-card.hot { border-left-color: var(--red); }
+        .lead-card.warm { border-left-color: var(--yellow); }
+        .lead-card.cool { border-left-color: var(--blue); }
+        .lead-card.converted { border-left-color: var(--green); background: var(--green-bg); }
+
+        .lead-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.4rem;
+        }
+        .lead-name { font-size: 1.1rem; font-weight: 700; }
+        .lead-badge {
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .lead-badge.hot { background: var(--red-bg); color: var(--red); }
+        .lead-badge.warm { background: var(--yellow-bg); color: #b45309; }
+        .lead-badge.cool { background: var(--blue-bg); color: var(--blue); }
+        .lead-badge.converted { background: var(--green-bg); color: var(--green); }
+
+        .lead-details {
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+        .lead-details span { margin-right: 0.75rem; }
+
+        .lead-actions {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+        }
+        .lead-action-btn {
+            padding: 0.35rem 0.65rem;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 1px solid #e5e7eb;
+            background: white;
+            transition: all 0.15s;
+        }
+        .lead-action-btn:active { transform: scale(0.95); }
+        .lead-action-btn.primary { background: var(--green); color: white; border-color: var(--green); }
+        .lead-action-btn.danger { color: var(--red); border-color: var(--red); }
+        .lead-action-btn.done { background: var(--green-bg); color: var(--green); border-color: var(--green); }
+
+        /* Follow-up panel */
+        .followup-day {
+            background: white;
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .followup-day h3 {
+            font-size: 0.95rem;
+            color: var(--green);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .followup-day.urgent h3 { color: var(--red); }
+        .followup-day .desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 0.75rem; }
+
+        .followup-lead {
+            background: var(--gray-light);
+            border-radius: 10px;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+        }
+        .followup-lead-name { font-weight: 700; font-size: 0.9rem; margin-bottom: 0.3rem; }
+        .followup-text {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 0.75rem;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            margin-bottom: 0.4rem;
+        }
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.35rem 0.75rem;
+            background: var(--green);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+        .copy-btn.copied { background: #16a34a; }
+
+        /* Text message button */
+        .sms-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.35rem 0.75rem;
+            background: var(--blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            margin-left: 0.3rem;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: var(--gray);
+        }
+        .empty-state .icon { font-size: 3rem; margin-bottom: 0.5rem; }
+        .empty-state h3 { color: var(--dark); margin-bottom: 0.25rem; }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--dark);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            z-index: 200;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        /* Delete confirm */
+        .delete-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .delete-overlay.show { display: flex; }
+        .delete-box {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            max-width: 320px;
+            text-align: center;
+        }
+        .delete-box h3 { margin-bottom: 0.5rem; }
+        .delete-box p { color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem; }
+        .delete-box .btns { display: flex; gap: 0.5rem; }
+        .delete-box .btns button {
+            flex: 1;
+            padding: 0.65rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-cancel { background: var(--gray-light); color: var(--dark); }
+        .btn-delete { background: var(--red); color: white; }
+
+        /* Conversion badge */
+        .conversion-rate {
+            text-align: center;
+            padding: 1rem;
+            background: white;
+            border-radius: 14px;
+            margin-bottom: 1rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+        }
+        .conversion-rate .big { font-size: 2rem; font-weight: 800; color: var(--green); }
+        .conversion-rate .sub { font-size: 0.85rem; color: var(--gray); }
+
+        /* Filter row */
+        .filter-row {
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 0.4rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: 2px solid #e5e7eb;
+            background: white;
+            transition: all 0.15s;
+        }
+        .filter-btn.active { background: var(--green); color: white; border-color: var(--green); }
+
+        /* Section title */
+        .section-title {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            padding-left: 0.25rem;
+        }
+
+        /* Notes */
+        .notes-input {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-family: inherit;
+            resize: none;
+            margin-top: 0.4rem;
+        }
+
+        @media (max-width: 380px) {
+            .stats-bar { grid-template-columns: repeat(2, 1fr); }
+            .interest-picker { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🐾 Paw-ty Lead Tracker</h1>
+    <div class="subtitle">Crestwood Vet — Saturday March 28</div>
+</div>
+
+<div class="stats-bar" id="statsBar">
+    <div class="stat total"><div class="num" id="statTotal">0</div><div class="label">Total</div></div>
+    <div class="stat hot"><div class="num" id="statHot">0</div><div class="label">🔥 Hot</div></div>
+    <div class="stat warm"><div class="num" id="statWarm">0</div><div class="label">🟡 Warm</div></div>
+    <div class="stat cool"><div class="num" id="statCool">0</div><div class="label">🔵 Cool</div></div>
+</div>
+
+<div class="tabs">
+    <button class="tab active" data-tab="capture" onclick="switchTab('capture')">
+        <span class="tab-icon">➕</span> Capture
+    </button>
+    <button class="tab" data-tab="leads" onclick="switchTab('leads')">
+        <span class="tab-icon">📋</span> Leads
+    </button>
+    <button class="tab" data-tab="followup" onclick="switchTab('followup')">
+        <span class="tab-icon">💬</span> Follow-Up
+    </button>
+    <button class="tab" data-tab="results" onclick="switchTab('results')">
+        <span class="tab-icon">📊</span> Results
+    </button>
+</div>
+
+<div class="content">
+
+    <!-- CAPTURE TAB -->
+    <div class="panel active" id="panel-capture">
+        <div class="form-card">
+            <h2>➕ Add New Lead</h2>
+            <div class="form-group">
+                <label>Name *</label>
+                <input type="text" id="leadName" placeholder="Jane Smith" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label>Phone *</label>
+                <input type="tel" id="leadPhone" placeholder="314-555-1234" autocomplete="off">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Dog Name(s)</label>
+                    <input type="text" id="leadDogs" placeholder="Biscuit, Max" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label># of Dogs</label>
+                    <input type="number" id="leadDogCount" placeholder="2" min="1" max="20">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Neighborhood</label>
+                <input type="text" id="leadNeighborhood" placeholder="Crestwood, Kirkwood..." autocomplete="off" list="neighborhoodList">
+                <datalist id="neighborhoodList">
+                    <option value="Crestwood">
+                    <option value="Kirkwood">
+                    <option value="Webster Groves">
+                    <option value="Sunset Hills">
+                    <option value="Affton">
+                    <option value="Mehlville">
+                    <option value="Fenton">
+                    <option value="Ballwin">
+                    <option value="Manchester">
+                    <option value="Maplewood">
+                    <option value="Brentwood">
+                    <option value="Creve Coeur">
+                    <option value="Wildwood">
+                    <option value="Chesterfield">
+                    <option value="Oakville">
+                    <option value="Florissant">
+                    <option value="St. Charles">
+                    <option value="O'Fallon">
+                </datalist>
+            </div>
+            <div class="form-group">
+                <label>Interest Level *</label>
+                <div class="interest-picker">
+                    <div class="interest-btn" data-level="hot" onclick="selectInterest('hot')">
+                        🔥 Hot<br><small>Asked pricing</small>
+                    </div>
+                    <div class="interest-btn" data-level="warm" onclick="selectInterest('warm')">
+                        🟡 Warm<br><small>Interested</small>
+                    </div>
+                    <div class="interest-btn" data-level="cool" onclick="selectInterest('cool')">
+                        🔵 Cool<br><small>Just browsed</small>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Notes</label>
+                <textarea class="notes-input" id="leadNotes" rows="2" placeholder="Anything Jamie noticed..."></textarea>
+            </div>
+            <button class="btn-add" onclick="addLead()">✅ Add Lead</button>
+        </div>
+
+        <div style="text-align:center; padding: 0.5rem;">
+            <span style="font-size:0.8rem; color:var(--gray);">💾 All data saved on this phone — works offline!</span>
+        </div>
+    </div>
+
+    <!-- LEADS TAB -->
+    <div class="panel" id="panel-leads">
+        <div class="filter-row">
+            <button class="filter-btn active" data-filter="all" onclick="filterLeads('all')">All</button>
+            <button class="filter-btn" data-filter="hot" onclick="filterLeads('hot')">🔥 Hot</button>
+            <button class="filter-btn" data-filter="warm" onclick="filterLeads('warm')">🟡 Warm</button>
+            <button class="filter-btn" data-filter="cool" onclick="filterLeads('cool')">🔵 Cool</button>
+            <button class="filter-btn" data-filter="converted" onclick="filterLeads('converted')">✅ Booked</button>
+        </div>
+        <div id="leadsList"></div>
+    </div>
+
+    <!-- FOLLOW-UP TAB -->
+    <div class="panel" id="panel-followup">
+        <div id="followupContent"></div>
+    </div>
+
+    <!-- RESULTS TAB -->
+    <div class="panel" id="panel-results">
+        <div id="resultsContent"></div>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="delete-overlay" id="deleteOverlay">
+    <div class="delete-box">
+        <h3>Delete Lead?</h3>
+        <p id="deleteName">Remove this lead permanently?</p>
+        <div class="btns">
+            <button class="btn-cancel" onclick="closeDelete()">Cancel</button>
+            <button class="btn-delete" id="btnConfirmDelete">Delete</button>
+        </div>
+    </div>
+</div>
+
+<script>
+// ==================== DATA ====================
+const STORAGE_KEY = 'pawty-leads-2026';
+let leads = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+let selectedInterest = null;
+let activeFilter = 'all';
+let deleteTarget = null;
+
+function save() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(leads));
+    updateStats();
+}
+
+// ==================== TABS ====================
+function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelector(`.tab[data-tab="${tab}"]`).classList.add('active');
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById(`panel-${tab}`).classList.add('active');
+
+    if (tab === 'leads') renderLeads();
+    if (tab === 'followup') renderFollowUp();
+    if (tab === 'results') renderResults();
+}
+
+// ==================== INTEREST PICKER ====================
+function selectInterest(level) {
+    selectedInterest = level;
+    document.querySelectorAll('.interest-btn').forEach(b => {
+        b.className = 'interest-btn';
+        if (b.dataset.level === level) b.classList.add(`selected-${level}`);
+    });
+}
+
+// ==================== ADD LEAD ====================
+function addLead() {
+    const name = document.getElementById('leadName').value.trim();
+    const phone = document.getElementById('leadPhone').value.trim();
+    if (!name || !phone || !selectedInterest) {
+        showToast('⚠️ Name, phone, and interest level required');
+        return;
+    }
+
+    const lead = {
+        id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+        name,
+        phone,
+        dogs: document.getElementById('leadDogs').value.trim(),
+        dogCount: parseInt(document.getElementById('leadDogCount').value) || 1,
+        neighborhood: document.getElementById('leadNeighborhood').value.trim(),
+        interest: selectedInterest,
+        notes: document.getElementById('leadNotes').value.trim(),
+        addedAt: new Date().toISOString(),
+        followups: {},  // { 'sat-eve': true, 'mon': true, etc. }
+        status: 'new',  // new, contacted, responded, booked, lost
+        convertedAt: null
+    };
+
+    leads.unshift(lead);
+    save();
+
+    // Clear form
+    document.getElementById('leadName').value = '';
+    document.getElementById('leadPhone').value = '';
+    document.getElementById('leadDogs').value = '';
+    document.getElementById('leadDogCount').value = '';
+    document.getElementById('leadNeighborhood').value = '';
+    document.getElementById('leadNotes').value = '';
+    selectedInterest = null;
+    document.querySelectorAll('.interest-btn').forEach(b => b.className = 'interest-btn');
+
+    showToast(`✅ ${name} added!`);
+    document.getElementById('leadName').focus();
+}
+
+// ==================== RENDER LEADS ====================
+function renderLeads() {
+    const container = document.getElementById('leadsList');
+    let filtered = leads;
+    if (activeFilter === 'converted') filtered = leads.filter(l => l.status === 'booked');
+    else if (activeFilter !== 'all') filtered = leads.filter(l => l.interest === activeFilter);
+
+    if (filtered.length === 0) {
+        container.innerHTML = `<div class="empty-state"><div class="icon">📋</div><h3>No leads yet</h3><p>Add leads from the Capture tab</p></div>`;
+        return;
+    }
+
+    container.innerHTML = filtered.map(l => {
+        const badgeClass = l.status === 'booked' ? 'converted' : l.interest;
+        const badgeText = l.status === 'booked' ? '✅ BOOKED' :
+            l.interest === 'hot' ? '🔥 Hot' :
+            l.interest === 'warm' ? '🟡 Warm' : '🔵 Cool';
+        const cardClass = l.status === 'booked' ? 'converted' : l.interest;
+        const statusText = l.status === 'responded' ? ' · 💬 Responded' :
+            l.status === 'contacted' ? ' · 📨 Contacted' :
+            l.status === 'lost' ? ' · ❌ Lost' : '';
+
+        return `<div class="lead-card ${cardClass}">
+            <div class="lead-header">
+                <div class="lead-name">${esc(l.name)}</div>
+                <span class="lead-badge ${badgeClass}">${badgeText}</span>
+            </div>
+            <div class="lead-details">
+                <span>📱 <a href="tel:${esc(l.phone)}" style="color:var(--blue);text-decoration:none">${esc(l.phone)}</a></span>
+                ${l.dogs ? `<span>🐕 ${esc(l.dogs)}</span>` : ''}
+                ${l.neighborhood ? `<span>📍 ${esc(l.neighborhood)}</span>` : ''}
+                ${statusText}
+            </div>
+            ${l.notes ? `<div style="font-size:0.8rem;color:var(--gray);margin-bottom:0.5rem;font-style:italic">"${esc(l.notes)}"</div>` : ''}
+            <div class="lead-actions">
+                ${l.status !== 'booked' ? `<button class="lead-action-btn primary" onclick="setStatus('${l.id}','booked')">✅ Booked!</button>` : ''}
+                ${l.status !== 'responded' && l.status !== 'booked' ? `<button class="lead-action-btn" onclick="setStatus('${l.id}','responded')">💬 Replied</button>` : ''}
+                ${l.status !== 'lost' && l.status !== 'booked' ? `<button class="lead-action-btn" onclick="setStatus('${l.id}','lost')">❌ Lost</button>` : ''}
+                <button class="lead-action-btn danger" onclick="confirmDelete('${l.id}')">🗑️</button>
+            </div>
+        </div>`;
+    }).join('');
+}
+
+function filterLeads(filter) {
+    activeFilter = filter;
+    document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.toggle('active', b.dataset.filter === filter);
+    });
+    renderLeads();
+}
+
+function setStatus(id, status) {
+    const lead = leads.find(l => l.id === id);
+    if (!lead) return;
+    lead.status = status;
+    if (status === 'booked') lead.convertedAt = new Date().toISOString();
+    save();
+    renderLeads();
+    if (status === 'booked') showToast(`🎉 ${lead.name} BOOKED! Let's go!`);
+}
+
+function confirmDelete(id) {
+    deleteTarget = id;
+    const lead = leads.find(l => l.id === id);
+    document.getElementById('deleteName').textContent = `Remove ${lead?.name || 'this lead'}?`;
+    document.getElementById('deleteOverlay').classList.add('show');
+}
+function closeDelete() { document.getElementById('deleteOverlay').classList.remove('show'); deleteTarget = null; }
+document.getElementById('btnConfirmDelete').onclick = () => {
+    if (deleteTarget) {
+        leads = leads.filter(l => l.id !== deleteTarget);
+        save();
+        renderLeads();
+        closeDelete();
+        showToast('🗑️ Lead removed');
+    }
+};
+
+// ==================== FOLLOW-UP TEXTS ====================
+const FOLLOWUP_SCHEDULE = [
+    {
+        key: 'sat-eve',
+        title: '⚡ Saturday Evening — First Touch',
+        desc: 'Send within 4 hours of event! Speed wins.',
+        day: 0,
+        targets: ['hot', 'warm', 'cool'],
+        urgent: true
+    },
+    {
+        key: 'monday',
+        title: '📱 Monday — The Value Add',
+        desc: 'Re-open the conversation with a question. Hot + Warm only.',
+        day: 2,
+        targets: ['hot', 'warm'],
+        urgent: false
+    },
+    {
+        key: 'wednesday',
+        title: '🔔 Wednesday — Urgency Nudge',
+        desc: 'Scarcity + no pressure. Hot leads who haven\'t responded.',
+        day: 4,
+        targets: ['hot'],
+        urgent: false
+    },
+    {
+        key: 'next-sat',
+        title: '👋 Saturday (Day 7) — Last Touch',
+        desc: 'Final check-in. After this, move to monthly nurture.',
+        day: 7,
+        targets: ['hot', 'warm', 'cool'],
+        urgent: false
+    }
+];
+
+function getFollowUpText(lead, stage) {
+    const name = lead.name.split(' ')[0]; // first name
+    const dogRef = lead.dogs ? ` (and ${lead.dogs}!)` : '';
+    const hoodRef = lead.neighborhood ? ` in ${lead.neighborhood}` : '';
+
+    if (stage === 'sat-eve') {
+        if (lead.interest === 'hot') {
+            return `Hey ${name}! This is Jamie from Tidy Tails — great meeting you${dogRef} at the Paw-ty today! 🐾\n\nYou mentioned wanting to get your yard cleaned up. I'd love to get you on the schedule!\n\n✅ First cleanup FREE (no strings)\n📅 Weekly: $25/wk | Biweekly: $45 | Monthly: $70 flat\n\nWhen works best for your first cleanup? I've got spots open this week!`;
+        } else if (lead.interest === 'warm') {
+            return `Hey ${name}! Jamie from Tidy Tails here — loved meeting you${dogRef} at the Paw-ty today 🐾\n\nJust wanted to say thanks for stopping by! If you ever want to try our service, your first cleanup is on us — totally free, no commitment.\n\nJust text back whenever you're ready!`;
+        } else {
+            return `Hey ${name}! This is Jamie from Tidy Tails — thanks for stopping by our table at the Paw-ty today! 🐾\n\nIf you ever need your yard cleaned up, we do pet waste removal starting at $25/week. First one's free!\n\nHave a great weekend! 🐕`;
+        }
+    } else if (stage === 'monday') {
+        return `Hey ${name}! Quick question — how many dogs do you have? Just want to make sure I give you the right quote. Most of our customers${hoodRef} pay around $70/month for worry-free yards. 🐕`;
+    } else if (stage === 'wednesday') {
+        return `Hey ${name}! Heads up — I'm filling up my Monday route for April and wanted to make sure you got a spot if you're interested. No pressure at all! Just didn't want you to miss out. 😊`;
+    } else if (stage === 'next-sat') {
+        return `Hey ${name}! Happy Saturday 🐾 Just checking in one last time from the Paw-ty last week. If pet waste removal is ever on your radar, we're here! First cleanup is always free. Have a great weekend!`;
+    }
+    return '';
+}
+
+function renderFollowUp() {
+    const container = document.getElementById('followupContent');
+    if (leads.length === 0) {
+        container.innerHTML = `<div class="empty-state"><div class="icon">💬</div><h3>No leads to follow up</h3><p>Add leads first, then personalized texts appear here</p></div>`;
+        return;
+    }
+
+    let html = '';
+    FOLLOWUP_SCHEDULE.forEach(stage => {
+        const eligibleLeads = leads.filter(l =>
+            stage.targets.includes(l.interest) &&
+            l.status !== 'booked' &&
+            l.status !== 'lost' &&
+            !l.followups[stage.key]
+        );
+
+        const completedLeads = leads.filter(l =>
+            stage.targets.includes(l.interest) && l.followups[stage.key]
+        );
+
+        html += `<div class="followup-day ${stage.urgent ? 'urgent' : ''}">
+            <h3>${stage.title}
+                <span style="margin-left:auto;font-size:0.75rem;font-weight:400;color:var(--gray)">
+                    ${completedLeads.length}/${eligibleLeads.length + completedLeads.length} done
+                </span>
+            </h3>
+            <div class="desc">${stage.desc}</div>`;
+
+        if (eligibleLeads.length === 0 && completedLeads.length === 0) {
+            html += `<div style="font-size:0.85rem;color:var(--gray);padding:0.5rem 0">No leads for this stage</div>`;
+        }
+
+        eligibleLeads.forEach(lead => {
+            const text = getFollowUpText(lead, stage.key);
+            const smsBody = encodeURIComponent(text);
+            const smsLink = `sms:${lead.phone}?&body=${smsBody}`;
+            html += `<div class="followup-lead">
+                <div class="followup-lead-name">
+                    <span class="lead-badge ${lead.interest}" style="font-size:0.65rem;margin-right:0.3rem">${lead.interest === 'hot' ? '🔥' : lead.interest === 'warm' ? '🟡' : '🔵'}</span>
+                    ${esc(lead.name)} ${lead.dogs ? `· 🐕 ${esc(lead.dogs)}` : ''}
+                </div>
+                <div class="followup-text">${esc(text)}</div>
+                <button class="copy-btn" onclick="copyText(this, \`${text.replace(/`/g,'\\`').replace(/\\/g,'\\\\')}\`)">📋 Copy</button>
+                <a class="sms-btn" href="${smsLink}">💬 Open SMS</a>
+                <button class="lead-action-btn done" style="margin-left:0.3rem" onclick="markFollowup('${lead.id}','${stage.key}')">✅ Sent</button>
+            </div>`;
+        });
+
+        if (completedLeads.length > 0) {
+            html += `<div style="margin-top:0.5rem;font-size:0.8rem;color:var(--green);font-weight:600">✅ Done: ${completedLeads.map(l => esc(l.name)).join(', ')}</div>`;
+        }
+
+        html += `</div>`;
+    });
+
+    // Vet Clinic Section
+    html += `<div class="followup-day" style="border-left:3px solid var(--purple);margin-top:0.5rem">
+        <h3 style="color:var(--purple)">🏥 Vet Clinic Follow-Up (Separate Track)</h3>
+        <div class="desc">One vet partnership = 2-5 referrals/month for YEARS</div>
+        <div class="followup-lead">
+            <div class="followup-lead-name">Monday — Thank You Email</div>
+            <div class="followup-text">Hi [Clinic Name] team —\n\nThank you SO much for having us at Saturday's Paw-ty! It was such a fun event.\n\nI left business cards and a partnership one-pager at the front desk. If you'd like to recommend us to clients, we'd love to work together!\n\n— Jamie, Tidy Tails STL\n314-850-7140 | tidytailsstl.com</div>
+            <button class="copy-btn" onclick="copyText(this, this.closest('.followup-lead').querySelector('.followup-text').textContent)">📋 Copy</button>
+        </div>
+        <div style="font-size:0.85rem; margin-top:0.5rem; padding:0.5rem; background:var(--cream); border-radius:8px">
+            <strong>Friday:</strong> Drop off $10 coffee gift card + 20 more business cards. Highest-ROI $10 ever spent! ☕
+        </div>
+    </div>`;
+
+    container.innerHTML = html;
+}
+
+function markFollowup(leadId, stageKey) {
+    const lead = leads.find(l => l.id === leadId);
+    if (!lead) return;
+    lead.followups[stageKey] = new Date().toISOString();
+    if (lead.status === 'new') lead.status = 'contacted';
+    save();
+    renderFollowUp();
+    showToast(`📨 ${lead.name.split(' ')[0]} — ${stageKey} marked sent`);
+}
+
+// ==================== RESULTS ====================
+function renderResults() {
+    const container = document.getElementById('resultsContent');
+    const total = leads.length;
+    const booked = leads.filter(l => l.status === 'booked').length;
+    const responded = leads.filter(l => l.status === 'responded').length;
+    const contacted = leads.filter(l => l.status === 'contacted').length;
+    const lost = leads.filter(l => l.status === 'lost').length;
+    const pending = leads.filter(l => l.status === 'new').length;
+    const rate = total > 0 ? Math.round((booked / total) * 100) : 0;
+    const monthlyRev = booked * 85;
+    const yearlyRev = monthlyRev * 12;
+
+    const hot = leads.filter(l => l.interest === 'hot').length;
+    const warm = leads.filter(l => l.interest === 'warm').length;
+    const cool = leads.filter(l => l.interest === 'cool').length;
+
+    container.innerHTML = `
+        <div class="conversion-rate">
+            <div class="big">${rate}%</div>
+            <div class="sub">Conversion Rate (${booked} of ${total} leads)</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:1rem">
+            <div class="form-card" style="text-align:center;margin:0">
+                <div style="font-size:1.8rem;font-weight:800;color:var(--green)">$${monthlyRev}</div>
+                <div style="font-size:0.8rem;color:var(--gray)">Monthly Revenue</div>
+            </div>
+            <div class="form-card" style="text-align:center;margin:0">
+                <div style="font-size:1.8rem;font-weight:800;color:var(--green)">$${yearlyRev.toLocaleString()}</div>
+                <div style="font-size:0.8rem;color:var(--gray)">Annual Revenue</div>
+            </div>
+        </div>
+
+        <div class="form-card">
+            <h2>📊 Pipeline Breakdown</h2>
+            <div style="display:grid;gap:0.5rem">
+                ${statusBar('🔥 Hot', hot, total, 'var(--red)')}
+                ${statusBar('🟡 Warm', warm, total, 'var(--yellow)')}
+                ${statusBar('🔵 Cool', cool, total, 'var(--blue)')}
+            </div>
+        </div>
+
+        <div class="form-card">
+            <h2>📈 Follow-Up Progress</h2>
+            <div style="display:grid;gap:0.5rem">
+                ${statusBar('✅ Booked', booked, total, 'var(--green)')}
+                ${statusBar('💬 Responded', responded, total, '#8b5cf6')}
+                ${statusBar('📨 Contacted', contacted, total, 'var(--blue)')}
+                ${statusBar('⏳ Pending', pending, total, 'var(--gray)')}
+                ${statusBar('❌ Lost', lost, total, 'var(--red)')}
+            </div>
+        </div>
+
+        <div class="form-card">
+            <h2>🎯 Revenue Projections</h2>
+            <p style="font-size:0.85rem;color:var(--gray);margin-bottom:0.75rem">Based on $85/month average customer value</p>
+            <div style="display:grid;gap:0.4rem">
+                <div style="display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid #f3f4f6">
+                    <span>If ${Math.max(Math.ceil(total * 0.33), booked)} convert (33%)</span>
+                    <strong style="color:var(--green)">$${(Math.max(Math.ceil(total * 0.33), booked) * 85 * 12).toLocaleString()}/yr</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:1px solid #f3f4f6">
+                    <span>If ${Math.max(Math.ceil(total * 0.2), booked)} convert (20%)</span>
+                    <strong>$${(Math.max(Math.ceil(total * 0.2), booked) * 85 * 12).toLocaleString()}/yr</strong>
+                </div>
+                <div style="display:flex;justify-content:space-between;padding:0.4rem 0">
+                    <span>Actual so far</span>
+                    <strong style="color:${booked > 0 ? 'var(--green)' : 'var(--gray)'}">$${yearlyRev.toLocaleString()}/yr</strong>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-card" style="text-align:center">
+            <h2>📤 Export Leads</h2>
+            <button class="btn-add" style="max-width:250px;margin:0.5rem auto" onclick="exportLeads()">📋 Copy All as Text</button>
+        </div>
+    `;
+}
+
+function statusBar(label, count, total, color) {
+    const pct = total > 0 ? Math.round((count/total)*100) : 0;
+    return `<div>
+        <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:0.2rem">
+            <span>${label}</span><span style="font-weight:700">${count}</span>
+        </div>
+        <div style="height:8px;background:#f3f4f6;border-radius:4px;overflow:hidden">
+            <div style="height:100%;width:${pct}%;background:${color};border-radius:4px;transition:width 0.3s"></div>
+        </div>
+    </div>`;
+}
+
+function exportLeads() {
+    const lines = leads.map(l =>
+        `${l.name} | ${l.phone} | ${l.interest} | ${l.dogs || '-'} | ${l.neighborhood || '-'} | ${l.status} | Notes: ${l.notes || '-'}`
+    );
+    const text = `PAWTY LEADS (${leads.length} total)\n${'='.repeat(40)}\n${lines.join('\n')}`;
+    navigator.clipboard.writeText(text).then(() => showToast('📋 Copied all leads!'));
+}
+
+// ==================== UTILITIES ====================
+function updateStats() {
+    document.getElementById('statTotal').textContent = leads.length;
+    document.getElementById('statHot').textContent = leads.filter(l => l.interest === 'hot').length;
+    document.getElementById('statWarm').textContent = leads.filter(l => l.interest === 'warm').length;
+    document.getElementById('statCool').textContent = leads.filter(l => l.interest === 'cool').length;
+}
+
+function copyText(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+        btn.classList.add('copied');
+        btn.textContent = '✅ Copied!';
+        setTimeout(() => { btn.classList.remove('copied'); btn.textContent = '📋 Copy'; }, 2000);
+    });
+}
+
+function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+function esc(str) {
+    const d = document.createElement('div');
+    d.textContent = str;
+    return d.innerHTML;
+}
+
+// Init
+updateStats();
+</script>
+</body>
+</html>
