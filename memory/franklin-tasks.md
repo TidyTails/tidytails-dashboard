@@ -31,6 +31,26 @@
 
 ## March 27, 2026 (Friday)
 
+### Friday 12:07 PM — Week of March 30 Battle Plan (Hourly Task)
+- **12:07 PM** ⚔️ Built a comprehensive day-by-day battle plan for the week of March 30
+  - **File:** `dashboard/battle-plan-week-mar30.html` — dark-mode HTML command center
+  - **What it covers:**
+    - Saturday: Paw-ty execution checklist + same-day text scripts
+    - Sunday: follow-up protocol for Paw-ty leads + pre-Monday prep
+    - Monday: North County Campaign launch (NC-1 FB post, Millsap call, Renewal Heights call, Vet Blitz Day 1: Cross Keys + Gateway City + Baronwood)
+    - Tuesday: NC-2 Hazelwood post + HOA calls (Associa Smith, Sentry) + Vet Blitz Day 2 (Ferguson AH, Halls Ferry, Normandy)
+    - Wednesday: Dog business partnerships (No Leash Needed, Watering Bowl, Camp Bow Wow) + retail card drops
+    - Thursday: NC-4 post + last-call Paw-ty leads + shed Marketplace refresh
+    - Friday: NC-5 "Lost your service?" hook + STLAA vendor registration + weekly scorecard
+  - **Priority Call Sheet:** Top 10 commercial leads with tap-to-call phones + custom 30-sec script for each
+  - **Scoreboard:** 5 win-checklist items tracking week's goals (2 Paw-ty converts, vet blitz complete, commercial callback, +5 customers)
+  - **All checkboxes** persist in localStorage
+  - Added as top pulsing green quick link on dashboard + green alert card at top of Today panel
+  - **Why this task:** All the tools are built. All the content is ready. The missing piece is a unified "here's exactly what to do on each day" guide. This turns 12+ separate files into one coherent game plan TJ opens Monday morning.
+  - Committed + pushed ✅
+
+---
+
 ### Friday 11:05 AM — Paw-ty Print Flyer + Phone # Fix (Hourly Task)
 - **11:05 AM** 🖨️ Built print-ready half-sheet flyer for Jamie to print TONIGHT for tomorrow's Crestwood Vet Adoption Paw-ty (Sat Mar 28, 10 AM)
   - **File:** `dashboard/pawty-print-flyer.html` — 2 flyers per page (landscape half-sheet), home printer ready
