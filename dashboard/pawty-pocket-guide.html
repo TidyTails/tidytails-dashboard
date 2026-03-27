@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>🐾 Paw-ty Pocket Guide | Jamie's Field Card</title>
+    <style>
+        :root {
+            --green: #16a34a;
+            --green-dark: #15803d;
+            --green-bg: #f0fdf4;
+            --orange: #ea580c;
+            --orange-bg: #fff7ed;
+            --blue: #2563eb;
+            --blue-bg: #eff6ff;
+            --purple: #7c3aed;
+            --purple-bg: #f5f3ff;
+            --red: #dc2626;
+            --red-bg: #fef2f2;
+            --dark: #1a1a1a;
+            --gray: #6b7280;
+            --gray-light: #f3f4f6;
+            --white: #ffffff;
+            --shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f0f2f5;
+            color: var(--dark);
+            line-height: 1.5;
+            min-height: 100vh;
+            padding-bottom: 100px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #16a34a, #059669);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+        }
+        .header h1 { font-size: 1.3rem; font-weight: 800; }
+        .header p { font-size: 0.8rem; opacity: 0.9; margin-top: 2px; }
+
+        /* Tab Navigation */
+        .tabs {
+            display: flex;
+            background: var(--white);
+            border-bottom: 2px solid #e5e7eb;
+            position: sticky;
+            top: 56px;
+            z-index: 99;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .tab {
+            flex: 1;
+            min-width: fit-content;
+            padding: 0.7rem 0.5rem;
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray);
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .tab.active {
+            color: var(--green);
+            border-bottom-color: var(--green);
+            background: var(--green-bg);
+        }
+        .tab-icon { font-size: 1.1rem; display: block; margin-bottom: 2px; }
+
+        /* Content */
+        .container { padding: 0.75rem; max-width: 500px; margin: 0 auto; }
+        .panel { display: none; }
+        .panel.active { display: block; }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            box-shadow: var(--shadow);
+        }
+        .card-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        /* Pricing Table */
+        .price-grid {
+            display: grid;
+            gap: 0.5rem;
+        }
+        .price-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.4rem;
+            align-items: center;
+        }
+        .price-header {
+            font-size: 0.65rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--gray);
+            letter-spacing: 0.5px;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .price-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .price-value {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--green-dark);
+            text-align: center;
+        }
+        .price-monthly {
+            font-size: 0.75rem;
+            color: var(--gray);
+            text-align: right;
+        }
+
+        /* Expandable Sections */
+        .expandable {
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            margin-bottom: 0.5rem;
+            overflow: hidden;
+        }
+        .expand-header {
+            padding: 0.8rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: var(--white);
+            border: none;
+            width: 100%;
+            text-align: left;
+            color: var(--dark);
+        }
+        .expand-header:active { background: var(--gray-light); }
+        .expand-arrow {
+            transition: transform 0.2s;
+            font-size: 0.8rem;
+            color: var(--gray);
+        }
+        .expandable.open .expand-arrow { transform: rotate(180deg); }
+        .expand-body {
+            display: none;
+            padding: 0 1rem 1rem;
+            font-size: 0.82rem;
+            line-height: 1.6;
+            color: #374151;
+            background: #fafafa;
+        }
+        .expandable.open .expand-body { display: block; }
+
+        /* Script blocks */
+        .script {
+            background: var(--blue-bg);
+            border-left: 3px solid var(--blue);
+            padding: 0.7rem;
+            border-radius: 0 8px 8px 0;
+            margin: 0.5rem 0;
+            font-size: 0.82rem;
+            font-style: italic;
+        }
+
+        /* Quick Lead Form */
+        .form-group {
+            margin-bottom: 0.75rem;
+        }
+        .form-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray);
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 0.7rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            background: var(--white);
+            color: var(--dark);
+            -webkit-appearance: none;
+        }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--green);
+            box-shadow: 0 0 0 3px rgba(22,163,74,0.15);
+        }
+        .form-textarea { min-height: 60px; resize: vertical; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+
+        /* Heat buttons */
+        .heat-btns { display: flex; gap: 0.4rem; }
+        .heat-btn {
+            flex: 1;
+            padding: 0.6rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: var(--white);
+            text-align: center;
+            transition: all 0.15s;
+        }
+        .heat-btn.selected { color: white; }
+        .heat-btn[data-heat="hot"].selected { background: var(--red); border-color: var(--red); }
+        .heat-btn[data-heat="warm"].selected { background: var(--orange); border-color: var(--orange); }
+        .heat-btn[data-heat="cool"].selected { background: var(--blue); border-color: var(--blue); }
+
+        /* Buttons */
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 0.85rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.15s;
+        }
+        .btn-green { background: var(--green); color: white; }
+        .btn-green:active { background: var(--green-dark); }
+        .btn-outline {
+            background: transparent;
+            color: var(--green);
+            border: 2px solid var(--green);
+        }
+        .btn-outline:active { background: var(--green-bg); }
+        .btn-red { background: var(--red); color: white; }
+        .btn-red:active { background: #b91c1c; }
+
+        /* Lead list items */
+        .lead-item {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 0.75rem;
+            margin-bottom: 0.5rem;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .lead-info h4 { font-size: 0.9rem; margin-bottom: 2px; }
+        .lead-info p { font-size: 0.75rem; color: var(--gray); }
+        .lead-heat {
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 0.2rem 0.5rem;
+            border-radius: 20px;
+            color: white;
+        }
+        .heat-hot { background: var(--red); }
+        .heat-warm { background: var(--orange); }
+        .heat-cool { background: var(--blue); }
+
+        /* Badge counter */
+        .lead-count {
+            background: var(--red);
+            color: white;
+            font-size: 0.65rem;
+            font-weight: 700;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 4px;
+        }
+
+        /* Competitor quick compare */
+        .compare-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.3rem;
+            font-size: 0.78rem;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        .compare-row:last-child { border-bottom: none; }
+        .compare-header { font-weight: 700; color: var(--gray); font-size: 0.7rem; }
+        .us { color: var(--green-dark); font-weight: 700; }
+
+        /* Checklist */
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f3f4f6;
+            font-size: 0.85rem;
+        }
+        .checklist-item:last-child { border-bottom: none; }
+        .check-box {
+            width: 22px;
+            height: 22px;
+            border: 2px solid #d1d5db;
+            border-radius: 6px;
+            flex-shrink: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            transition: all 0.15s;
+        }
+        .check-box.checked {
+            background: var(--green);
+            border-color: var(--green);
+            color: white;
+        }
+
+        /* Stat cards */
+        .stat-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .stat-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 0.7rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--green-dark);
+        }
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--gray);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Copy button */
+        .copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            background: var(--green-bg);
+            color: var(--green);
+            border: 1px solid var(--green);
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        .copy-btn:active { background: var(--green); color: white; }
+
+        /* Floating action */
+        .fab {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: var(--green);
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 16px rgba(22,163,74,0.4);
+            z-index: 200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .fab:active { transform: scale(0.95); }
+
+        /* Empty state */
+        .empty { text-align: center; padding: 2rem 1rem; color: var(--gray); }
+        .empty-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 90px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--dark);
+            color: white;
+            padding: 0.7rem 1.2rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 300;
+            opacity: 0;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Highlight promo */
+        .promo-banner {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #78350f;
+            padding: 0.7rem 1rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🐾 Paw-ty Pocket Guide</h1>
+    <p>Saturday March 28 — Crestwood Vet Adoption Paw-ty</p>
+</div>
+
+<div class="tabs">
+    <button class="tab active" onclick="showTab('pricing')">
+        <span class="tab-icon">💰</span>Pricing
+    </button>
+    <button class="tab" onclick="showTab('scripts')">
+        <span class="tab-icon">🗣️</span>Scripts
+    </button>
+    <button class="tab" onclick="showTab('objections')">
+        <span class="tab-icon">🛡️</span>Objections
+    </button>
+    <button class="tab" onclick="showTab('capture')">
+        <span class="tab-icon">📝</span>Leads <span id="leadBadge" class="lead-count" style="display:none">0</span>
+    </button>
+    <button class="tab" onclick="showTab('checklist')">
+        <span class="tab-icon">✅</span>Checklist
+    </button>
+</div>
+
+<div class="container">
+
+    <!-- ========== PRICING TAB ========== -->
+    <div id="pricing" class="panel active">
+        <div class="promo-banner">🌸 SPRING SPECIAL: First Cleanup FREE! 🌸</div>
+
+        <div class="card">
+            <div class="card-title">🐕 Residential Pricing</div>
+            <div class="price-grid">
+                <div class="price-row">
+                    <span class="price-header">Dogs</span>
+                    <span class="price-header" style="text-align:center">Per Visit</span>
+                    <span class="price-header" style="text-align:right">Monthly</span>
+                </div>
+                <div class="price-row" style="border-bottom:1px solid #f3f4f6; padding-bottom:0.4rem;">
+                    <span style="font-size:0.7rem;font-weight:700;color:var(--gray);">WEEKLY</span>
+                    <span></span><span></span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">1 dog</span>
+                    <span class="price-value">$15</span>
+                    <span class="price-monthly">$60/mo</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">2 dogs</span>
+                    <span class="price-value">$18</span>
+                    <span class="price-monthly">$72/mo</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">3 dogs</span>
+                    <span class="price-value">$22</span>
+                    <span class="price-monthly">$88/mo</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">4+ dogs</span>
+                    <span class="price-value">$25+</span>
+                    <span class="price-monthly">$100+/mo</span>
+                </div>
+                <div class="price-row" style="border-top:1px solid #f3f4f6; padding-top:0.5rem; margin-top:0.3rem;">
+                    <span style="font-size:0.7rem;font-weight:700;color:var(--gray);">BIWEEKLY</span>
+                    <span></span><span></span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">1 dog</span>
+                    <span class="price-value">$20</span>
+                    <span class="price-monthly">$40/mo</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">2 dogs</span>
+                    <span class="price-value">$25</span>
+                    <span class="price-monthly">$50/mo</span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">3+ dogs</span>
+                    <span class="price-value">$30+</span>
+                    <span class="price-monthly">$60+/mo</span>
+                </div>
+                <div class="price-row" style="border-top:1px solid #f3f4f6; padding-top:0.5rem; margin-top:0.3rem;">
+                    <span style="font-size:0.7rem;font-weight:700;color:var(--gray);">ONE-TIME</span>
+                    <span></span><span></span>
+                </div>
+                <div class="price-row">
+                    <span class="price-label">Initial cleanup</span>
+                    <span class="price-value">$50-150</span>
+                    <span class="price-monthly">by yard size</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🆚 How We Compare</div>
+            <div class="compare-row">
+                <span class="compare-header">Company</span>
+                <span class="compare-header">Weekly (1 dog)</span>
+                <span class="compare-header">Reviews</span>
+            </div>
+            <div class="compare-row">
+                <span class="us">🐾 Tidy Tails</span>
+                <span class="us">$15/visit</span>
+                <span class="us">5.0★ (6)</span>
+            </div>
+            <div class="compare-row">
+                <span>Poop 2 Scoop</span>
+                <span>$18/visit</span>
+                <span>4.8★</span>
+            </div>
+            <div class="compare-row">
+                <span>No. 2 Crew</span>
+                <span>$19/visit</span>
+                <span>4.5★</span>
+            </div>
+            <div class="compare-row">
+                <span>Pootector</span>
+                <span>Quote only</span>
+                <span>?</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">⭐ Quick Selling Points</div>
+            <ul style="list-style:none; font-size:0.85rem;">
+                <li style="padding:0.3rem 0;">✅ <strong>Cheapest in STL</strong> — $15/visit, nobody beats it</li>
+                <li style="padding:0.3rem 0;">✅ <strong>Perfect 5.0★</strong> on Google (6 reviews)</li>
+                <li style="padding:0.3rem 0;">✅ <strong>First cleanup FREE</strong> — zero risk to try</li>
+                <li style="padding:0.3rem 0;">✅ <strong>All of STL County</strong> — we come to you</li>
+                <li style="padding:0.3rem 0;">✅ <strong>Text to schedule</strong> — no phone tag</li>
+                <li style="padding:0.3rem 0;">✅ <strong>Same person every time</strong> — not a revolving door</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ========== SCRIPTS TAB ========== -->
+    <div id="scripts" class="panel">
+        <div class="card" style="background:var(--orange-bg); border:2px solid var(--orange);">
+            <div class="card-title" style="color:var(--orange);">💡 Golden Rule</div>
+            <p style="font-size:0.85rem;"><strong>Lead with the DOG, not the pitch.</strong> Pet the dog. Ask its name. Let them talk. THEN mention Tidy Tails naturally.</p>
+        </div>
+
+        <div class="expandable open">
+            <button class="expand-header" onclick="toggleExpand(this)">
+                <span>👋 The Opener (start every conversation here)</span>
+                <span class="expand-arrow">▼</span>
+            </button>
+            <div class="expand-body">
+                <div class="script">
+                    "Hey, what a beautiful [breed]! Just adopted today? Congrats!"
+                </div>
+                <p><em>Let them gush about their dog for 30 sec...</em></p>
+                <div class="script">
+                    "I'm Jamie from Tidy Tails — we do pet waste cleanup right here in Crestwood. Just wanted to say hey and give you my card in case you ever need help keeping the yard clean. Most of my customers are people who just got tired of doing it themselves."
+                </div>
+            </div>
+        </div>
+
+        <div class="expandable">
+            <button class="expand-header" onclick="toggleExpand(this)">
+                <span>🔄 The Transition (they seem interested)</span>
+                <span class="expand-arrow">▼</span>
+            </button>
+            <div class="expand-body">
+                <div class="script">
+                    "Yeah, so basically I come by once a week — or every other week — and clean up everything. Most yards take about 10 minutes. You never have to think about it again."
+                </div>
+                <div class="script">
+                    "Starting at $15 a visit, and right now first cleanup is free for new customers. Just to let you see how it works."
+                </div>
+            </div>
+        </div>
+
+        <div class="expandable">
+            <button class="expand-header" onclick="toggleExpand(this)">
+                <span>🎯 The Close (get the number!)</span>
+                <span class="expand-arrow">▼</span>
+            </button>
+            <div class="expand-body">
+                <div class="script">
+                    "Let me grab your number real quick and I'll shoot you a text this week with pricing for your area. No pressure at all — just so you have it when you're ready."
+                </div>
+                <p style="margin:0.5rem 0; font-weight:600;">OR the card close:</p>
+                <div class="script">
+                    "Here's my card — text me anytime. I'll send you a quote in like 2 minutes flat."
+                </div>
+            </div>
+        </div>
+
+        <div class="expandable">
+            <button class="expand-header" onclick="toggleExpand(this)">
+                <span>🩺 The Vet Pitch (IMPORTANT — bigger play)</span>
+                <span class="expand-arrow">▼</span>
+            </button>
+            <div class="expand-body">
+                <p style="margin-bottom:0.5rem; font-weight:600; color:var(--purple);">One vet who recommends you = 2-5 new customers/month on autopilot!</p>
+                <div class="script">
+                    "Hey, I'm Jamie with Tidy Tails — we do pet waste removal here in Crestwood. Thanks for hosting this event, it's awesome."
+                </div>
+                <p style="margin:0.5rem 0;"><em>Chat for a minute, then:</em></p>
+                <div class="script">
+                    "I'd love to leave some cards or flyers at your front desk if that's cool. A lot of my customers are new pet owners who hear about us through their vet. Happy to return the favor — I always recommend a good vet to my customers."
+                </div>
+            </div>
+        </div>
+
+        <div class="expandable">
+            <button class="expand-header" onclick="toggleExpand(this)">
+                <span>🐶 New Adopter Special Script</span>
+                <span class="expand-arrow">▼</span>
+            </button>
+            <div class="expand-body">
+                <div class="script">
+                    "Congrats on the new family member! Just a heads up — within about 2-3 weeks, you're gonna realize the yard situation gets real fast. When that happens, text me. First cleanup is free and I'll get you all caught up."
+                </div>
+                <p style="margin-top:0.5rem;"><strong>Why this works:</strong> Plants the seed without being pushy. They WILL remember you in 3 weeks when the yard is a mess.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== OBJECTIONS TAB ========== -->
+    <div id="objections" class="panel">
+        <div class="card" style="background:var(--purple-bg); border:2px solid var(--purple);">
+            <div class="card-title" style="color:var(--purple);">🧠 Objection Rule</div>
+            <p style="font-size:0.85rem;"><strong>Agree first, then redirect.</strong> Never argue. "Totally get it" → pivot → reframe the value.</p>
+        </div>
+
+        <div class="expandable">
+            <button class="expand-header" onclick="toggleExpand(this)">
+                <span>💪 "I can just do it myself"</span>
+                <span class="expand-arrow">▼</span>
+            </button>
+            <div class="expand-body">
+                <div class="script">
+                    "Oh totally, most people do! I did too before I started this. But the folks who switch to a service always say the same thing: 'Why didn't I do this sooner?' It's like mowing — you CAN do it, but it's way nicer when someone else handles it."
+                </div>
+            </div>
+        </div>
+
+        <div class="expandable">
+            <button class="expand-header" onclick="toggleExpand(this)">
+                <span>💸 "That seems expensive"</span>
+                <span class="expand-arrow">▼</span>
+            </button>
+            <div class="expand-body">
+                <div class="script">
+                    "Totally get it. Most customers pay about $60-70 a month — less than a gym membership or a couple takeout dinners. And your yard stays clean every single week without you thinking about it."
+                </div>
+                <p style="margin-top:0.5rem;"><strong>Anchor to:</strong> Netflix ($15), gym ($40), meal kit ($60), lawn care ($120+). We're cheaper than all of those.</p>
+            </div>
+        </div>
+
+        <div class="expandable">
+            <button class="expand-header" onclick="toggleExpand(this)">
+                <span>🐕 "I only have one small dog"</span>
+                <span class="expand-arrow">▼</span>
+            </button>
+            <div class="expand-body">
+                <div class="script">
+                    "You'd be surprised — I have customers with just one dog. It still adds up faster than you think, especially in spring when it rains and you can't get out there. And honestly, the small-dog yards are my fastest jobs."
+                </div>
+            </div>
+        </div>
+
+        <div class="expandable">
+            <button class="expand-header" onclick="toggleExpand(this)">
+                <span>🤔 "Let me think about it"</span>
+                <span class="expand-arrow">▼</span>
+            </button>
+            <div class="expand-body">
+                <div class="script">
+                    "Absolutely — no rush at all. Here's my card. And remember, first cleanup is free whenever you're ready. Most people just text me and we get it scheduled in a day or two."
+                </div>
+                <p style="margin-top:0.5rem;"><strong>Key:</strong> Still get their number! "Let me grab your number so I can send you our info" — then they're a warm lead for follow-up.</p>
+            </div>
+        </div>
+
+        <div class="expandable">
+            <button class="expand-header" onclick="toggleExpand(this)">
+                <span>🏠 "My yard isn't that big"</span>
+                <span class="expand-arrow">▼</span>
+            </button>
+            <div class="expand-body">
+                <div class="script">
+                    "That's actually our sweet spot! Most of our yards are standard-size. Takes us about 10 minutes — in and out. It's the convenience people love. You'd probably be on our lowest tier — $15 a visit."
+                </div>
+            </div>
+        </div>
+
+        <div class="expandable">
+            <button class="expand-header" onclick="toggleExpand(this)">
+                <span>🧒 "My kids do it" / "That's their chore"</span>
+                <span class="expand-arrow">▼</span>
+            </button>
+            <div class="expand-body">
+                <div class="script">
+                    "Ha, I hear that! How's that going for you? ...Yeah, that's what most parents tell me. We can be the backup plan — when the kids 'forget' for two weeks straight, just text me and I'll get it caught up."
+                </div>
+            </div>
+        </div>
+
+        <div class="expandable">
+            <button class="expand-header" onclick="toggleExpand(this)">
+                <span>❓ "What if I want to cancel?"</span>
+                <span class="expand-arrow">▼</span>
+            </button>
+            <div class="expand-body">
+                <div class="script">
+                    "Zero commitment. No contracts. Just text me and say 'pause' or 'cancel' — done. Most people stick around because it's so easy, but you're never locked in."
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== LEAD CAPTURE TAB ========== -->
+    <div id="capture" class="panel">
+        <div class="stat-row" id="leadStats">
+            <div class="stat-card">
+                <div class="stat-value" id="totalLeads">0</div>
+                <div class="stat-label">Total Leads</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="hotLeads" style="color:var(--red)">0</div>
+                <div class="stat-label">🔥 Hot</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="warmLeads" style="color:var(--orange)">0</div>
+                <div class="stat-label">🟡 Warm</div>
+            </div>
+        </div>
+
+        <div class="card" id="leadForm">
+            <div class="card-title">➕ Quick Add Lead</div>
+            <div class="form-group">
+                <label class="form-label">Name *</label>
+                <input type="text" class="form-input" id="leadName" placeholder="First + Last" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Phone *</label>
+                <input type="tel" class="form-input" id="leadPhone" placeholder="314-555-1234">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Dog(s)</label>
+                    <input type="text" class="form-input" id="leadDogs" placeholder="Name(s), breed">
+                </div>
+                <div class="form-group">
+                    <label class="form-label"># of Dogs</label>
+                    <select class="form-select" id="leadDogCount">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4+">4+</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Neighborhood / Zip</label>
+                <input type="text" class="form-input" id="leadArea" placeholder="Crestwood, 63126...">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Interest Level *</label>
+                <div class="heat-btns">
+                    <button class="heat-btn" data-heat="hot" onclick="selectHeat(this)">🔥 Hot</button>
+                    <button class="heat-btn" data-heat="warm" onclick="selectHeat(this)">🟡 Warm</button>
+                    <button class="heat-btn" data-heat="cool" onclick="selectHeat(this)">🔵 Cool</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Notes</label>
+                <textarea class="form-textarea" id="leadNotes" placeholder="New adopter, interested in weekly, asked about pricing..."></textarea>
+            </div>
+            <button class="btn btn-green" onclick="saveLead()">💾 Save Lead</button>
+        </div>
+
+        <div id="leadList"></div>
+
+        <div style="margin-top:0.75rem; display:flex; gap:0.5rem;">
+            <button class="btn btn-outline" style="flex:1" onclick="exportLeads()">📋 Copy All Leads</button>
+            <button class="btn btn-outline" style="flex:1" onclick="shareLeads()">📤 Share via Text</button>
+        </div>
+        <button class="btn" style="background:#f3f4f6; color:var(--red); margin-top:0.5rem; font-size:0.8rem;" onclick="clearLeads()">🗑️ Clear All Leads</button>
+    </div>
+
+    <!-- ========== CHECKLIST TAB ========== -->
+    <div id="checklist" class="panel">
+        <div class="card">
+            <div class="card-title">📦 Before Leaving the House</div>
+            <div id="prepChecklist">
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Business cards (200+)</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Printed flyers (50+)</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Sign-up sheet (printed)</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>QR code printouts</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Phone charged 100%</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Tidy Tails shirt/hat</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Dog treats in bowl</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Candy bowl + cards</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Pen / Sharpie for notes</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🎯 At the Event</div>
+            <div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Arrive 15 min early</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Find vet/organizer — introduce yourself</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Set up table area (if available)</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Talk to 15+ people</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Collect 8+ phone numbers</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Pitch vet on referral partnership</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Leave cards at front desk</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Take photo for social media</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Thank organizer before leaving</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">📱 After the Event (Same Day!)</div>
+            <div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Text ALL leads within 4 hours</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Post event photo to FB + Instagram</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Log lead count + notes</span></div>
+                <div class="checklist-item"><div class="check-box" onclick="toggleCheck(this)"></div><span>Fill out Event Scorecard</span></div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-title">🔄 Follow-Up Schedule</div>
+            <ul style="list-style:none; font-size:0.85rem;">
+                <li style="padding:0.4rem 0; border-bottom:1px solid #f3f4f6;">📅 <strong>Saturday evening:</strong> Text ALL sign-ups (use Follow-Up System)</li>
+                <li style="padding:0.4rem 0; border-bottom:1px solid #f3f4f6;">📅 <strong>Tuesday:</strong> Re-text anyone who didn't reply</li>
+                <li style="padding:0.4rem 0; border-bottom:1px solid #f3f4f6;">📅 <strong>Monday:</strong> Thank-you text to vet clinic</li>
+                <li style="padding:0.4rem 0;">📅 <strong>April 11:</strong> 2-week conversion check — how many became customers?</li>
+            </ul>
+        </div>
+
+        <div class="card" style="background:var(--green-bg); border: 2px solid var(--green);">
+            <div class="card-title" style="color:var(--green-dark);">🎯 Event Goals</div>
+            <ul style="list-style:none; font-size:0.85rem;">
+                <li style="padding:0.3rem 0;">🎯 Talk to <strong>15+ people</strong></li>
+                <li style="padding:0.3rem 0;">🎯 Collect <strong>8+ phone numbers</strong></li>
+                <li style="padding:0.3rem 0;">🎯 Give out <strong>30+ cards/flyers</strong></li>
+                <li style="padding:0.3rem 0;">🎯 Establish <strong>vet referral partnership</strong></li>
+                <li style="padding:0.3rem 0;">🎯 Convert <strong>2+ leads to paying customers</strong> within 14 days</li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<!-- Floating Add Lead button (shows on non-capture tabs) -->
+<button class="fab" id="fabBtn" onclick="showTab('capture')" title="Add Lead">+</button>
+
+<!-- Toast notification -->
+<div class="toast" id="toast"></div>
+
+<script>
+    // Tab switching
+    function showTab(id) {
+        document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        event.target.closest('.tab')?.classList.add('active') ||
+            document.querySelector(`.tab[onclick*="${id}"]`).classList.add('active');
+        document.getElementById('fabBtn').style.display = id === 'capture' ? 'none' : 'flex';
+    }
+
+    // Expandable sections
+    function toggleExpand(btn) {
+        btn.closest('.expandable').classList.toggle('open');
+    }
+
+    // Checklist
+    function toggleCheck(el) {
+        el.classList.toggle('checked');
+        el.textContent = el.classList.contains('checked') ? '✓' : '';
+        saveChecklist();
+    }
+
+    function saveChecklist() {
+        const checks = [];
+        document.querySelectorAll('.check-box').forEach(cb => checks.push(cb.classList.contains('checked')));
+        localStorage.setItem('pawtyChecklist', JSON.stringify(checks));
+    }
+
+    function loadChecklist() {
+        const saved = JSON.parse(localStorage.getItem('pawtyChecklist') || '[]');
+        document.querySelectorAll('.check-box').forEach((cb, i) => {
+            if (saved[i]) { cb.classList.add('checked'); cb.textContent = '✓'; }
+        });
+    }
+
+    // Heat selection
+    let selectedHeat = '';
+    function selectHeat(btn) {
+        document.querySelectorAll('.heat-btn').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        selectedHeat = btn.dataset.heat;
+    }
+
+    // Lead management
+    function getLeads() {
+        return JSON.parse(localStorage.getItem('pawtyLeads2026') || '[]');
+    }
+
+    function saveLead() {
+        const name = document.getElementById('leadName').value.trim();
+        const phone = document.getElementById('leadPhone').value.trim();
+        if (!name || !phone) { showToast('❌ Need name + phone!'); return; }
+        if (!selectedHeat) { showToast('❌ Pick interest level!'); return; }
+
+        const lead = {
+            id: Date.now(),
+            name,
+            phone,
+            dogs: document.getElementById('leadDogs').value.trim(),
+            dogCount: document.getElementById('leadDogCount').value,
+            area: document.getElementById('leadArea').value.trim(),
+            heat: selectedHeat,
+            notes: document.getElementById('leadNotes').value.trim(),
+            time: new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })
+        };
+
+        const leads = getLeads();
+        leads.unshift(lead);
+        localStorage.setItem('pawtyLeads2026', JSON.stringify(leads));
+
+        // Reset form
+        document.getElementById('leadName').value = '';
+        document.getElementById('leadPhone').value = '';
+        document.getElementById('leadDogs').value = '';
+        document.getElementById('leadDogCount').value = '1';
+        document.getElementById('leadArea').value = '';
+        document.getElementById('leadNotes').value = '';
+        document.querySelectorAll('.heat-btn').forEach(b => b.classList.remove('selected'));
+        selectedHeat = '';
+
+        renderLeads();
+        showToast(`✅ ${name} saved!`);
+        document.getElementById('leadName').focus();
+    }
+
+    function renderLeads() {
+        const leads = getLeads();
+        const list = document.getElementById('leadList');
+        const badge = document.getElementById('leadBadge');
+
+        // Update stats
+        document.getElementById('totalLeads').textContent = leads.length;
+        document.getElementById('hotLeads').textContent = leads.filter(l => l.heat === 'hot').length;
+        document.getElementById('warmLeads').textContent = leads.filter(l => l.heat === 'warm').length;
+
+        // Badge
+        if (leads.length > 0) {
+            badge.style.display = 'inline-flex';
+            badge.textContent = leads.length;
+        } else {
+            badge.style.display = 'none';
+        }
+
+        if (leads.length === 0) {
+            list.innerHTML = '<div class="empty"><div class="empty-icon">📝</div><p>No leads yet — get out there!</p></div>';
+            return;
+        }
+
+        list.innerHTML = leads.map(l => `
+            <div class="lead-item">
+                <div class="lead-info">
+                    <h4>${l.name}</h4>
+                    <p>${l.phone} · ${l.dogCount} dog${l.dogCount > 1 ? 's' : ''} ${l.dogs ? '(' + l.dogs + ')' : ''} · ${l.time}</p>
+                    ${l.area ? `<p>📍 ${l.area}</p>` : ''}
+                    ${l.notes ? `<p style="font-style:italic; margin-top:2px;">${l.notes}</p>` : ''}
+                </div>
+                <div>
+                    <span class="lead-heat heat-${l.heat}">${l.heat === 'hot' ? '🔥 HOT' : l.heat === 'warm' ? '🟡 WARM' : '🔵 COOL'}</span>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    function exportLeads() {
+        const leads = getLeads();
+        if (leads.length === 0) { showToast('No leads to export'); return; }
+        const text = `PAWS-TY LEADS — ${new Date().toLocaleDateString()}\n${'='.repeat(40)}\n\n` +
+            leads.map((l, i) => `${i + 1}. ${l.name} | ${l.phone} | ${l.heat.toUpperCase()}\n   Dogs: ${l.dogCount} ${l.dogs ? '(' + l.dogs + ')' : ''} | Area: ${l.area || 'n/a'}\n   ${l.notes || 'No notes'}`).join('\n\n');
+
+        navigator.clipboard?.writeText(text).then(() => showToast('📋 Copied to clipboard!')).catch(() => {
+            // Fallback
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand('copy');
+            document.body.removeChild(ta);
+            showToast('📋 Copied!');
+        });
+    }
+
+    function shareLeads() {
+        const leads = getLeads();
+        if (leads.length === 0) { showToast('No leads to share'); return; }
+        const text = `Paw-ty Leads (${leads.length} total):\n\n` +
+            leads.map(l => `${l.heat === 'hot' ? '🔥' : l.heat === 'warm' ? '🟡' : '🔵'} ${l.name} - ${l.phone} (${l.dogCount} dog${l.dogCount > 1 ? 's' : ''})${l.notes ? ' — ' + l.notes : ''}`).join('\n');
+
+        if (navigator.share) {
+            navigator.share({ title: 'Paw-ty Leads', text }).catch(() => {});
+        } else {
+            navigator.clipboard?.writeText(text).then(() => showToast('📋 Copied — paste into text!')).catch(() => showToast('Use Copy All instead'));
+        }
+    }
+
+    function clearLeads() {
+        if (confirm('Delete ALL leads? This cannot be undone!')) {
+            localStorage.removeItem('pawtyLeads2026');
+            renderLeads();
+            showToast('🗑️ Leads cleared');
+        }
+    }
+
+    // Toast
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2500);
+    }
+
+    // Init
+    loadChecklist();
+    renderLeads();
+</script>
+
+</body>
+</html>
