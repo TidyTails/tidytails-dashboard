@@ -138,3 +138,23 @@
   - **Gap filled:** The existing FB Optimizer had concepts/scripts but no Ads Manager-formatted copy. This is the "open Ads Manager and paste" layer that was missing.
   - Committed + pushed ✅
 
+
+---
+
+### Friday 3:04 PM — Weekend Shed Ad Drop (Hourly Task)
+- **3:04 PM** 🏠 Built complete TuffShed Weekend Ad Drop for Mar 28–30 (prime browsing season)
+  - **File:** `ready-to-post/shed-weekend-drop-mar28.html` — 4-tab copy-paste-ready drop
+  - **5 FB Marketplace listings** with timing schedule (spread Sat–Sun, 3–4 hrs apart):
+    - Ad #1 (Sat 8–9 AM): **Tariff Lock** — "Lumber/steel tariffs hit April 2 — genuinely the best time to buy" (honest urgency, TJ's brand voice)
+    - Ad #2 (Sat 12–1 PM): **"Done Stepping Over Stuff"** — humor hook, garage chaos
+    - Ad #3 (Sat 3–5 PM): **Most Popular Size** — 8x10 social proof, $139/mo
+    - Ad #4 (Sun morning): **Custom Build** — workshop/she shed/gym, trust builder
+    - Ad #5 (Sun afternoon): **Weekend Close** — final push with all prices, tariff deadline
+  - **3 Instagram captions** for @reddshedredemption — tariff urgency, garage wake-up, she shed
+  - **Checklist tab** with timing grid (Sat AM/PM, Sun) + localStorage persistence
+  - **Strategy tab** explains tariff hook (April 2 is real), how to handle "how much are prices going up?" objection, hooks used (don't repeat)
+  - **Objection script** copy-pasted if someone challenges the tariff claim
+  - **Dashboard:** Added 🏠 SHED WEEKEND DROP as pulsing orange quick link in header
+  - **Ad archive:** Updated with Shed-Mar142 through Shed-Mar146 + 3 IG entries
+  - **Why this task:** It's 3 PM Friday — peak weekend Marketplace browsing kicks off in hours. The April 2 tariff deadline is a genuinely timely hook that gives TJ authentic urgency without manufactured BS. 5 listings spread over 2 days = max weekend reach.
+  - Committed + pushed ✅

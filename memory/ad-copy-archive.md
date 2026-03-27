@@ -113,3 +113,19 @@
 - Storage unit 10-minute drive vs backyard convenience
 - Spring project checklist humor / cross it off
 - Dog owner stuff accumulation / pet gear overload
+
+## March 28, 2026 — Weekend Shed Drop (5 Marketplace + 3 Instagram)
+- **Shed-Mar142** — "Tariff Lock" (Ad #1) — Lumber/steel tariffs April 2, lock in prices now
+- **Shed-Mar143** — "Done Stepping Over Stuff" (Ad #2) — Humor / garage chaos hook
+- **Shed-Mar144** — "Most Popular Size" (Ad #3) — Social proof, 8x10, $139/mo
+- **Shed-Mar145** — "Custom Workshop / She Shed" (Ad #4) — Built your way, trust builder
+- **Shed-Mar146** — "Weekend Closing Push" (Ad #5) — Final urgency, all sizes + monthly prices
+- **Shed-IG-Mar28-A** — Instagram tariff urgency caption
+- **Shed-IG-Mar28-B** — Instagram garage wake-up caption
+- **Shed-IG-Mar28-C** — Instagram she shed / workshop angle
+
+## Hooks Used (March 28 — don't repeat 2 weeks)
+- April tariff / lumber+steel price-lock urgency (NEW — expires April 7)
+- "Most popular size in STL this spring" social proof (8x10)
+- Weekend closing push with exact monthly prices
+- She shed / workshop / custom build angle
