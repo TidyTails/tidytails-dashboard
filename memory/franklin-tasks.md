@@ -31,6 +31,18 @@
 
 ## March 27, 2026 (Friday)
 
+### Friday 11:05 AM — Paw-ty Print Flyer + Phone # Fix (Hourly Task)
+- **11:05 AM** 🖨️ Built print-ready half-sheet flyer for Jamie to print TONIGHT for tomorrow's Crestwood Vet Adoption Paw-ty (Sat Mar 28, 10 AM)
+  - **File:** `dashboard/pawty-print-flyer.html` — 2 flyers per page (landscape half-sheet), home printer ready
+  - **Content:** "First Visit FREE + $35/mo for 3 months" offer, all USPs ($70 flat/no contracts/local), (314) 850-7140, "Mention PAW-TY by April 15" urgency hook
+  - **Print instructions banner:** Shows on screen with big "Print Now" button, hidden when printing
+  - **Bug fix:** Corrected wrong phone number in `adoption-pawty-prep.html` — was (314) 310-8650, now (314) 850-7140
+  - **Dashboard:** Added 🖨️ PRINT FLYERS as top pulsing red quick link; updated Paw-ty alert to prominently feature print reminder + phone fix note
+  - **Why this task:** Paw-ty is in ~23 hours. All the digital tools (pocket guide, lead tracker, follow-up engine) are built. The physical leave-behind that converts warm contacts into paying customers wasn't ready. This is the last mile before the event.
+  - Committed + pushed ✅
+
+---
+
 ### Friday 1:04 AM — Paw-ty Pocket Guide (Hourly Task)
 - **1:04 AM** 📱 Built mobile-first field card for Jamie at Saturday's Paw-ty
   - **5-tab app:** Pricing, Scripts, Objections, Lead Capture, Checklist
