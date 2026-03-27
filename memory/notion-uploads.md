@@ -350,3 +350,19 @@ Chief uses this to verify sync with dashboard.
 | 12:01 | Morning Briefing Mar 26 | 📋 Operations | MORNING_BRIEFING_2026-03-26.pdf | ✅ |
 | 12:01 | Shed Ads Mar 26 | 🏠 Shed Sales | SHED_ADS_2026-03-26.pdf | ✅ |
 | 12:01 | Commercial Leads Mar 26 | 🐕 Jamie's Hub | COMMERCIAL_LEADS_2026-03-26.pdf | ✅ |
+
+## Upload Log — Mar 27, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 00:01 | EOD Summary Mar 26 | 📋 Operations | EOD_SUMMARY_2026-03-26.pdf | ✅ |
+| 00:01 | Customer Revenue Optimizer | 🐕 Tidy Tails | CUSTOMER-REVENUE-OPTIMIZER.pdf | ✅ |
+| 00:01 | Directory Submission Kit | 🐕 Tidy Tails | DIRECTORY-SUBMISSION-KIT.pdf | ✅ |
+| 00:01 | Event Follow-Up System | 🐕 Tidy Tails | EVENT-FOLLOW-UP-SYSTEM.pdf | ✅ |
+| 00:01 | Pawty Palooza Business Cards | 🐕 Tidy Tails | PAWTY-BUSINESS-CARDS.pdf | ✅ |
+| 00:01 | Pawty Palooza Flyer | 🐕 Tidy Tails | PAWTY-FLYER.pdf | ✅ |
+| 00:01 | Pawty Palooza QR Flyer | 🐕 Tidy Tails | PAWTY-QR-FLYER.pdf | ✅ |
+| 00:01 | Pawty Palooza Sign-Up Sheet | 🐕 Tidy Tails | PAWTY-SIGNUP-SHEET.pdf | ✅ |
+| 00:01 | Pawty Palooza Social Blitz | 🐕 Tidy Tails | PAWTY-SOCIAL-BLITZ.pdf | ✅ |
+| 00:01 | Shed Spring Command Center | 🏠 Shed Sales | SHED-SPRING-COMMAND-CENTER.pdf | ✅ |
+| 00:01 | Vet Partnership One-Pager | 🐕 Tidy Tails | VET-PARTNERSHIP-ONE-PAGER.pdf | ✅ |

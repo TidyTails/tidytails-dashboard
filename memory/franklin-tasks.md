@@ -29,6 +29,23 @@
 
 ---
 
+## March 27, 2026 (Friday)
+
+### Friday 12:04 AM — North County Conquest Campaign (Hourly Task)
+- **12:04 AM** 🎯 Built complete North County market takeover campaign for week of March 30
+  - **5 FB group posts** — city-specific copy for Florissant, Hazelwood, Bridgeton, Ferguson (Jamie-voiced)
+  - **2 Nextdoor post templates** — intro + seasonal angle
+  - **Door hanger copy** (front + back) — print-ready for 50-unit drop
+  - **7-day action plan** — daily tasks for Jamie (15 min/day) + TJ tasks
+  - **"Lost your service?" hook** — directly targets orphaned customers from dead competitors
+  - **FB group finder guide** — search terms for joining North County groups
+  - **Target:** 3-5 new leads, 2 recurring customers by April 7
+  - **WHY:** North County has ZERO active competitors. 75-150 orphaned customers up for grabs.
+  - Files: `ready-to-post/north-county-conquest-week-mar30.md`, `ready-to-post/north-county-fb-groups-guide.md`
+  - Committed + pushed ✅
+
+---
+
 ### Thursday 11:04 PM — Late Night Maintenance Pass (Hourly Task)
 - **11:04 PM** 🧹 Docs Maintenance — Fixed stale data across TASKS.md, MEMORY.md, and archived bloated task log.
   - **TASKS.md:** Customer count ~8→10, added 3 completed items (Nextdoor, city pages, Paw-ty prep), fixed website issues section, updated Paw-ty action item, added referral asks to action list
