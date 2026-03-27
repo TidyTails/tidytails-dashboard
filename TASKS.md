@@ -7,9 +7,9 @@
 ## 🐕 DOG WASTE (Tidy Tails)
 
 ### Current State
-- **Customers:** ~8 recurring (last verified Mar 6 — 20 DAYS STALE, ask TJ)
-- **Revenue:** ~$750/month estimated
-- **Goal:** 25-30 recurring by Aug 2025 (12+ months overdue — still the north star)
+- **Customers:** 10 recurring ✅ (TJ confirmed Mar 26)
+- **Revenue:** ~$850-900/month estimated
+- **Goal:** 25-30 recurring (original Aug 2025, now targeting 20 by June 2026)
 - **GBP:** Near-complete ✅ (Mar 25) — TJ confirmed
 - **Google Reviews:** 6 at 5.0★ — Map Pack eligible ✅
 - **Google Indexed:** ✅ (since Mar 18)
@@ -31,23 +31,24 @@ Everything else is noise until customer count moves.
 - [x] First FB group post (Mar 24)
 - [x] 2 AI video ads produced (Mar 25)
 - [x] Email automation operational
+- [x] Nextdoor posting started (TJ confirmed Mar 26)
+- [x] 5 city page titles fixed + deployed (Mar 26)
+- [x] Paw-ty event materials complete (QR flyers, lead tracker, follow-up system)
 
 ### 📝 TJ/Jamie Action Items (ranked by ROI)
-1. **🔥🔥 SATURDAY: Print event materials TONIGHT** — All files in `deliverables/printables/` — open → print → done
-2. **🔥🔥 SATURDAY: Save follow-up text templates** — `dashboard/event-follow-up-system.html` has copy-paste texts for Hot/Warm/Cool leads
-3. **🔥 Post in 2-3 FB groups this week** — Fresh posts ready: `ready-to-post/spring-2026-week-of-mar26.md` (5 min each)
-4. **🔥 Post on Nextdoor** (5 min, $0) — Highest ROI untapped channel
-5. **Submit to 5 directories** (45 min) — Bing Places, Apple Business Connect, MapQuest, Petworks, BringFido
-6. **Get 2 more Google reviews** (5 min) — Goal: 8+ reviews. Scripts ready.
-7. **Update customer list** — Is it still 8? Any churn? Any new from FB posts?
-8. **Launch $7/day Facebook Ads** — Foundation is now ready (GBP done, reviews done, site indexed)
-9. **Make 3 commercial calls** — Jamie's Hot 10 playbook ready
+1. **🔥🔥 SATURDAY MAR 28: Crestwood Vet Paw-ty** — Print materials, bring lead tracker, follow up aggressively
+2. **🔥 Post in 2-3 FB groups this week** — Fresh posts ready: `ready-to-post/spring-2026-week-of-mar26.md` (5 min each)
+3. **🔥 Post on Nextdoor** — TJ already posting ✅ — keep consistent cadence
+4. **Submit to 5 directories** (45 min) — Bing Places, Apple Business Connect, MapQuest, Petworks, BringFido
+5. **Get 2 more Google reviews** (5 min) — Goal: 8+ reviews. Scripts ready.
+6. **Launch $7/day Facebook Ads** — Foundation is now ready (GBP done, reviews done, site indexed)
+7. **Make 3 commercial calls** — Jamie's Hot 10 playbook ready
+8. **Start referral asks** — Referral engine dashboard ready, 10 customers to ask
 
 ### ⚠️ Website Issues (Need Deploy Access)
-- 5 city pages have GENERIC titles: olivette, south-city, south-county, university-city, wentzville
-  - Files are correct in repo but live site shows homepage title
-  - Needs Cloudflare Pages redeploy
-- These pages rank poorly because Google sees duplicate titles
+- ~~5 city pages generic titles~~ → FIXED ✅ (deployed Mar 26, GSC indexing requested)
+- **3 key pages NOT deployed:** /spring, /calculator, /commercial all return homepage
+  - Files exist in repo but NOT on live site — needs Cloudflare push
 
 ### 📊 Competitive Landscape (Mar 26)
 | Competitor | Status | Price | Threat |

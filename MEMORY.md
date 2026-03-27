@@ -1,5 +1,5 @@
 # MEMORY.md — Franklin's Long-Term Memory
-*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 26, 2026 10:10 AM (task archive, milestone update, stale data cleanup)*
+*Last major overhaul: March 22, 2026 10 AM | Last maintenance: March 26, 2026 11:04 PM (TASKS.md refresh, customer table fix, task log archive, duplicate cleanup)*
 
 ## Who I Am
 - **Name:** Franklin
@@ -88,7 +88,7 @@
 ### The Goal
 **25-30 recurring customers** — original target was Aug 2025, now 7+ months overdue (March 2026). Still the north star. Q2 2026 roadmap targets 20 customers by June.
 
-### Active Customers (Last verified Mar 6 — ASK TJ FOR UPDATE)
+### Active Customers (10 confirmed — TJ verified Mar 26)
 
 | # | Customer | City | Freq | Monthly |
 |---|----------|------|------|---------|
@@ -100,8 +100,9 @@
 | 6 | Greg | O'Fallon 63366 | Monthly | $50 |
 | 7 | Chastity | Florissant 63033 | Biweekly | $90 |
 | 8 | Preshus | Saint Charles 63303 | Weekly | $100 |
+| 9-10 | *(2 new — need names from TJ)* | — | — | — |
 
-⚠️ **16+ days stale.** Next time TJ's active, ask for current customer count/status.
+📋 **10 total confirmed Mar 26.** Need details on customers 9 & 10 next time TJ's active.
 
 ---
 
@@ -123,12 +124,13 @@
 
 **Strategy:** GBP done ✅. Next: directory submissions + Nextdoor posts + $7/day FB ads to capture orphaned customers.
 
-### Search Visibility (Mar 22)
-- **On-page SEO: A-** | **Off-page SEO: F** | **Overall: 30/100**
+### Search Visibility (Updated Mar 26)
+- **On-page SEO: A-** | **Off-page SEO: F** | **Overall: 40/100**
 - Google indexed (Mar 18 ✅) but Brave/Yelp = zero visibility
-- `site:tidytailsstl.com` on Brave = 0 results
-- **Root cause:** GBP 7% complete, zero reviews, zero backlinks, zero directory listings
-- **Fix:** GBP completion + reviews + directory submissions = $0, ~2 hours TJ time
+- **GBP: Near-complete ✅** (was 7%, now ~95% — TJ confirmed Mar 25)
+- **Reviews: 6 at 5.0★** — Map Pack eligible
+- **Still missing:** Zero backlinks, zero directory listings beyond GBP/Yelp
+- **Next fix:** Directory submissions (5 directories, ~45 min TJ time)
 
 ---
 
@@ -165,19 +167,7 @@
 
 ## 💡 Other Ventures & Parked Ideas
 
-### WAXR — Mobile Detailing Marketplace (NEW Mar 24)
-- **What:** Tech-first mobile detailing marketplace (think Uber for car detailing)
-- **Website:** waxr.io (built on Lovable.dev)
-- **Partner:** TJ's brother
-- **Market:** $2.6-3.1B US, 11% CAGR, NO dominant consumer platform
-- **Competitive gap:** Spiffy ($90.8M raised) pivoted to dealer SaaS → consumer vacuum
-- **Moat:** Quality-gated hybrid labor + AI photo verification + dynamic pricing
-- **Funding target:** $1.5M seed, 18-month runway
-- **Assets:** Full business plan + competitive analysis in `waxr/WAXR/`
-- **Google Drive:** https://drive.google.com/drive/folders/10r_hpfrUo83kKHpO5i2JDHxV5_tgY_uB
-- **Full details:** `memory/waxr-business.md`
-
-### WAXR — Mobile Detailing Marketplace (Added Mar 24)
+### WAXR — Mobile Detailing Marketplace (Mar 24)
 TJ + his brother. Tech-first mobile detailing platform (waxr.io, built on Lovable.dev).
 - **Market:** $2.6-3.1B, 11% CAGR, no dominant consumer platform
 - **Edge:** Quality-gated tiers, AI photo verification, dynamic pricing, B2B fleet anchors
@@ -185,11 +175,8 @@ TJ + his brother. Tech-first mobile detailing platform (waxr.io, built on Lovabl
 - **Seeking:** $1.5M seed, 18-month runway
 - **Spiffy vacuum:** $90.8M raised but pivoted to dealer SaaS + franchise lawsuits
 - **Docs:** `memory/waxr-business.md`, `waxr/WAXR/` (biz plan, competitive analysis, web app)
+- **Google Drive:** https://drive.google.com/drive/folders/10r_hpfrUo83kKHpO5i2JDHxV5_tgY_uB
 - **HQ Topic:** Thread 91
-
-### AI Content Creation (Added Mar 24)
-New topic in HQ. TJ hasn't detailed the plan yet — follow up.
-- **HQ Topic:** Thread 92
 
 ### MOTRA (Parked Feb 23, updated Mar 6)
 Mobile fleet care replacing 40-50% of robotaxi depot operations. "Depot replacement."
@@ -198,7 +185,7 @@ Assets: Landing page, pitch deck (v6), one-pager, market research.
 **To resume:** "Let's pick up MOTRA"
 **Full details:** `memory/motra-business-idea.md`
 
-### AI Content Creation (NEW Mar 24)
+### AI Content Creation (Mar 24)
 - TJ exploring content creation lane: "blue collar guy using AI"
 - HQ topic created (thread 92)
 - No assets yet — early concept stage
