@@ -100,3 +100,41 @@
   - **franklin-tasks.md:** Archived 498-line log to `memory/archive/franklin-tasks-mar26.md`, replaced with summary table (28 lines)
   - **Archived:** `memory/2026-03-23.md` → archive (keeping 3 most recent daily files)
   - All stale "~8 customers" references now say "10 confirmed"
+
+---
+
+### Friday 2:07 PM — Vet Clinic Partnership Kit (Hourly Task)
+- **2:07 PM** 🏥 Built complete Vet Blitz Partnership Kit for Jamie's clinic outreach week of Mar 30
+  - **File:** `dashboard/vet-clinic-partnership-kit.html` — 5-tab mobile-first field app
+  - **6 Clinics pre-loaded** with tap-to-directions, status tracker (Pending/Visited/Callback/Won), per-clinic pitch angle, and notes:
+    - Day 1 (Mon Mar 30): Cross Keys AH, Gateway City AH, Baronwood AH (North County = zero competitors)
+    - Day 2 (Tue Apr 1): Ferguson AH, Halls Ferry AH, Normandy AH
+  - **Scripts tab:** Opening walk-in → receptionist, 30-sec manager pitch, 3 objection handlers, close script, 3-5 day follow-up call
+  - **Email tab:** Cold outreach template + post-visit follow-up email — both copy-paste ready
+  - **Leave-Behind tab:** Print-ready one-pager with "First Visit FREE" offer, printable from browser; prompt on how to place materials for maximum visibility
+  - **Checklist tab:** 20 items covering prep night, Day 1, Day 2, and follow-up through Apr 4
+  - **Partnership perk:** Any clinic that puts flyers in waiting room = 1 free month for a staff dog owner (zero cost to clinic, big goodwill)
+  - **Stats bar:** Real-time visited/pending/callback/partners count — localStorage persists across sessions
+  - **Dashboard:** Added 🏥 VET BLITZ KIT as pulsing green quick link + green alert card in Today panel
+  - **Why this task:** The battle plan calls out the vet blitz but until now Jamie had no field-ready tool with clinic-specific angles, scripts pre-loaded, and status tracking. This is the missing execution layer.
+  - Committed + pushed ✅
+
+---
+
+### Friday 1:04 PM — FB Ad Launch Pack (Hourly Task)
+- **1:04 PM** 🚀 Built complete Facebook Ads Manager Launch Pack — 5 copy-paste-ready ads for Monday launch
+  - **File:** `dashboard/fb-ad-launch-pack-mar30.html`
+  - **5 ads written and formatted:**
+    - Ad #1: Quick Math ("Your dog poops 730x/year") — no filming, launch-ready TODAY
+    - Ad #2: Spring Urgency ("Winter buildup" seasonal hook) — A/B test partner
+    - Ad #3: Local Trust ("We're not a franchise") — needs Jamie photo for max impact
+    - Ad #4: Coffee Math ("$17.50 vs $25 Starbucks/week") — great retargeting angle
+    - Ad #5: North County Launch ("Zero competitors in Florissant") — separate ad set
+  - **5 tabs:** Ad Copy (all fields formatted for Ads Manager), Targeting (interests, zips, exclusions), Launch Steps (9-step walkthrough), Budget (scaling thresholds), Rank (launch order)
+  - **Primary text, headline, description, CTA** — all copy-paste buttons work
+  - **North County targeting** — zip codes for Florissant/Hazelwood/Ferguson/Bridgeton ready to paste
+  - **Budget math:** $7/day → 2 customers/week → $280/mo new MRR → 40x ROAS in 90 days
+  - **Dashboard:** Added "🚀 FB AD LAUNCH PACK" as pulsing quick link + feature alert card above FB Optimizer section
+  - **Gap filled:** The existing FB Optimizer had concepts/scripts but no Ads Manager-formatted copy. This is the "open Ads Manager and paste" layer that was missing.
+  - Committed + pushed ✅
+
