@@ -2,6 +2,33 @@
 
 ---
 
+### Saturday 4:06 PM — 3 Tidy Tails Video Ads (Issue-001 RESOLVED) (Hourly Task)
+- **4:06 PM** 🎬 Broke the 62-check video dormancy streak — fully executed the Nano Banana → Kling v1 Standard pipeline for the first time
+  - **Files:** `dashboard/videos/` — 3 final MP4s with audio
+  - **Dashboard viewer:** `dashboard/video-ads-mar28.html` — download links, QA status, usage notes
+  - **Why this task:** Chief Oversight issue-001 flagged video pipeline DORMANT for 62 consecutive checks (29+ days). FB Ads launch is Monday Mar 30. Launching with ZERO video creative was leaving 30-40% ad performance on the table. This was the #1 critical unresolved issue.
+  - **Pipeline executed (per TOOLS.md):**
+    - Doeboy wrote 3 cinematic prompts (no close faces, dogs from behind, yard as star)
+    - Nano Banana generated 3 reference frames (~1.6-1.9MB each)
+    - Kling v1 Standard animated each to 5.1-second clips (~6-7MB each)
+    - ffmpeg added ambient audio background to all 3 (audio was mandatory)
+  - **3 ads produced:**
+    1. **The Barefoot Test** — Pure yard, golden hour, poop visible, zero people. "Would you walk barefoot in YOUR yard?" (Required 1 regen — v1 AI generated a child's face, violated face rule. v2 is pure yard shot, QA PASS ✅)
+    2. **The Window View** — Golden retriever from behind, looking through glass door at poop-filled backyard. "Let them back outside." QA PASS ✅ (first try)
+    3. **The Count** — Before/after split: messy yard → worker from behind carrying waste bags. "3 dogs. 7 days. We got every one." QA PASS ✅ (first try)
+  - **QA gate passed for all 3:** No distorted faces, no mangled text, consistent grass color, audio present, story clear, correct endpoint (Kling v1 Standard)
+  - **Format:** 960×960 square (optimal for FB/IG feed + stories), H.264, ~6-9MB each
+  - **Cost:** ~$2.20-2.40 total (~$0.75 per final ad)
+  - **Endpoint bug fixed:** TOOLS.md said `fal-ai/nano-banana/v2` but actual endpoint is `fal-ai/nano-banana`. Corrected in generate_videos.py for future runs.
+  - **Dashboard:** Added pulsing purple "🎬 3 VIDEO ADS READY — WATCH BEFORE MONDAY" quick link to index.html
+  - **For Monday FB Ads launch:** Ad 2 (Window View) and Ad 3 (The Count) are strongest — immediate use. All 3 available as image ads and video creative.
+  - **Next organic post:** Ad 3 before/after split works as standalone Nextdoor/Facebook post RIGHT NOW (no ad budget needed)
+  - Committed + pushed ✅ (issue-001 RESOLVED)
+
+---
+
+---
+
 ### Saturday 3:04 PM — Central County SEO Blog Post (Hourly Task)
 - **3:04 PM** 🏙️ Wrote and published full SEO blog post targeting Central County St. Louis — the inner-ring affluent suburbs that had ZERO editorial Tidy Tails content
   - **File:** `tidy-tails/website/blog/pooper-scooper-central-county-st-louis.html`
