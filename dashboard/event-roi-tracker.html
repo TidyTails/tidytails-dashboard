@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Event ROI Tracker — Tidy Tails</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
+
+        .header {
+            background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);
+            padding: 1.5rem 1.5rem 1rem;
+            text-align: center;
+            border-bottom: 3px solid #818cf8;
+        }
+        .header h1 { font-size: 1.7rem; color: #818cf8; margin-bottom: 0.2rem; }
+        .header .subtitle { color: #a5b4fc; font-size: 0.9rem; }
+
+        .summary-bar {
+            display: flex; justify-content: center; gap: 1.5rem; padding: 1rem;
+            background: #111; border-bottom: 1px solid #333; flex-wrap: wrap;
+        }
+        .sum-stat { text-align: center; }
+        .sum-num { font-size: 1.6rem; font-weight: 800; }
+        .sum-label { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+        .sum-num.green { color: #4ade80; }
+        .sum-num.blue { color: #60a5fa; }
+        .sum-num.yellow { color: #fbbf24; }
+        .sum-num.purple { color: #a78bfa; }
+
+        .tabs { display: flex; border-bottom: 2px solid #333; background: #111; overflow-x: auto; }
+        .tab { padding: 0.8rem 1.2rem; cursor: pointer; white-space: nowrap; color: #888; font-size: 0.85rem; font-weight: 600; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+        .tab:hover { color: #ccc; }
+        .tab.active { color: #818cf8; border-bottom-color: #818cf8; }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .container { max-width: 960px; margin: 0 auto; padding: 1rem; }
+
+        /* ── Event Cards ── */
+        .event-card {
+            background: #111; border: 1px solid #333; border-radius: 12px; margin-bottom: 1rem;
+            overflow: hidden; transition: border-color 0.2s;
+        }
+        .event-card:hover { border-color: #555; }
+        .event-card.tier-s { border-left: 4px solid #4ade80; }
+        .event-card.tier-a { border-left: 4px solid #60a5fa; }
+        .event-card.tier-b { border-left: 4px solid #fbbf24; }
+        .event-card.tier-c { border-left: 4px solid #f87171; }
+        .event-card.tier-pending { border-left: 4px solid #888; }
+
+        .card-header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 1.2rem; cursor: pointer;
+        }
+        .card-title { font-size: 1rem; font-weight: 700; }
+        .card-meta { font-size: 0.75rem; color: #888; margin-top: 0.15rem; }
+        .card-badges { display: flex; gap: 0.4rem; align-items: center; flex-wrap: wrap; }
+        .badge { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 700; white-space: nowrap; }
+        .badge-roi-s { background: #14532d; color: #4ade80; }
+        .badge-roi-a { background: #1e3a5f; color: #60a5fa; }
+        .badge-roi-b { background: #451a03; color: #fbbf24; }
+        .badge-roi-c { background: #450a0a; color: #f87171; }
+        .badge-roi-p { background: #1a1a1a; color: #888; }
+        .badge-status { background: #1e1b4b; color: #a5b4fc; }
+        .badge-type { background: #1a1a1a; color: #aaa; }
+        .expand-icon { color: #888; font-size: 1.2rem; transition: transform 0.2s; }
+        .event-card.expanded .expand-icon { transform: rotate(180deg); }
+
+        .card-body { display: none; padding: 0 1.2rem 1.2rem; }
+        .event-card.expanded .card-body { display: block; }
+
+        .metrics-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 0.6rem; margin: 0.8rem 0;
+        }
+        .metric-box {
+            background: #1a1a1a; border-radius: 8px; padding: 0.7rem 0.8rem;
+            border: 1px solid #2a2a2a; text-align: center;
+        }
+        .metric-box .m-val { font-size: 1.3rem; font-weight: 800; }
+        .metric-box .m-label { font-size: 0.68rem; color: #888; text-transform: uppercase; margin-top: 0.1rem; }
+
+        .roi-bar-wrap { margin: 0.5rem 0; }
+        .roi-bar-label { display: flex; justify-content: space-between; font-size: 0.75rem; color: #888; margin-bottom: 0.2rem; }
+        .roi-bar-track { height: 8px; background: #222; border-radius: 4px; overflow: hidden; }
+        .roi-bar-fill { height: 100%; border-radius: 4px; transition: width 0.8s; }
+
+        .section-label { font-size: 0.7rem; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.08em; margin: 0.8rem 0 0.4rem; }
+
+        .insights-list { list-style: none; }
+        .insights-list li { font-size: 0.82rem; color: #ccc; padding: 0.3rem 0; padding-left: 1.2rem; position: relative; }
+        .insights-list li::before { content: '→'; position: absolute; left: 0; color: #818cf8; }
+
+        /* ── Add Event Form ── */
+        .form-card { background: #111; border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+        .form-title { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; color: #a5b4fc; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+        .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+        .form-group label { font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+        .form-group input, .form-group select, .form-group textarea {
+            background: #1a1a1a; border: 1px solid #333; color: #e0e0e0; border-radius: 6px;
+            padding: 0.5rem 0.7rem; font-size: 0.85rem; font-family: inherit;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: #818cf8;
+        }
+        .form-full { grid-column: 1 / -1; }
+        .btn { padding: 0.6rem 1.2rem; border-radius: 8px; border: none; cursor: pointer; font-size: 0.85rem; font-weight: 700; transition: all 0.2s; }
+        .btn-primary { background: #4f46e5; color: white; }
+        .btn-primary:hover { background: #6366f1; }
+        .btn-danger { background: #7f1d1d; color: #fca5a5; font-size: 0.75rem; padding: 0.3rem 0.7rem; }
+        .btn-danger:hover { background: #991b1b; }
+
+        /* ── Leaderboard ── */
+        .leaderboard-table { width: 100%; border-collapse: collapse; }
+        .leaderboard-table th { text-align: left; padding: 0.6rem 0.8rem; font-size: 0.7rem; color: #888; text-transform: uppercase; border-bottom: 1px solid #333; }
+        .leaderboard-table td { padding: 0.7rem 0.8rem; font-size: 0.82rem; border-bottom: 1px solid #1a1a1a; }
+        .leaderboard-table tr:hover td { background: #111; }
+        .rank-badge { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; font-size: 0.75rem; font-weight: 800; }
+        .rank-1 { background: #fbbf24; color: #000; }
+        .rank-2 { background: #9ca3af; color: #000; }
+        .rank-3 { background: #b45309; color: #fff; }
+        .rank-n { background: #1a1a1a; color: #888; }
+
+        /* ── Calculator Tab ── */
+        .calc-card { background: #111; border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-bottom: 1rem; }
+        .calc-title { font-size: 1rem; font-weight: 700; color: #a5b4fc; margin-bottom: 1rem; }
+        .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+        .calc-result-box { background: #1a1a1a; border-radius: 8px; padding: 1rem; text-align: center; }
+        .calc-result-num { font-size: 2rem; font-weight: 800; }
+        .calc-result-label { font-size: 0.75rem; color: #888; }
+        .calc-input-row { display: flex; flex-direction: column; gap: 0.25rem; }
+        .calc-input-row label { font-size: 0.75rem; color: #888; }
+        .calc-input-row input { background: #1a1a1a; border: 1px solid #333; color: #e0e0e0; border-radius: 6px; padding: 0.5rem 0.7rem; font-size: 0.9rem; }
+        .calc-input-row input:focus { outline: none; border-color: #818cf8; }
+
+        .verdict { padding: 1rem; border-radius: 8px; text-align: center; font-weight: 700; margin-top: 1rem; }
+        .verdict.s { background: #14532d; color: #4ade80; }
+        .verdict.a { background: #1e3a5f; color: #60a5fa; }
+        .verdict.b { background: #451a03; color: #fbbf24; }
+        .verdict.c { background: #450a0a; color: #f87171; }
+
+        /* ── Insights Tab ── */
+        .insight-card { background: #111; border: 1px solid #333; border-radius: 10px; padding: 1.2rem; margin-bottom: 0.8rem; }
+        .insight-card h3 { font-size: 0.9rem; color: #a5b4fc; margin-bottom: 0.5rem; }
+        .insight-card p, .insight-card li { font-size: 0.82rem; color: #ccc; line-height: 1.6; }
+        .insight-card ul { padding-left: 1.2rem; }
+
+        .empty-state { text-align: center; padding: 3rem 1rem; color: #555; }
+        .empty-state .icon { font-size: 3rem; margin-bottom: 0.5rem; }
+
+        @media (max-width: 600px) {
+            .form-grid, .calc-grid { grid-template-columns: 1fr; }
+            .summary-bar { gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>📊 Event ROI Tracker</h1>
+    <div class="subtitle">Track every event, measure what works, double down on winners</div>
+</div>
+
+<div class="summary-bar" id="summaryBar">
+    <div class="sum-stat">
+        <div class="sum-num green" id="totalEvents">0</div>
+        <div class="sum-label">Events Tracked</div>
+    </div>
+    <div class="sum-stat">
+        <div class="sum-num blue" id="totalLeads">0</div>
+        <div class="sum-label">Total Leads</div>
+    </div>
+    <div class="sum-stat">
+        <div class="sum-num yellow" id="totalConverts">0</div>
+        <div class="sum-label">Converts</div>
+    </div>
+    <div class="sum-stat">
+        <div class="sum-num purple" id="totalRevenue">$0</div>
+        <div class="sum-label">LTV Generated</div>
+    </div>
+    <div class="sum-stat">
+        <div class="sum-num green" id="avgRoi">0x</div>
+        <div class="sum-label">Avg ROAS</div>
+    </div>
+</div>
+
+<div class="tabs">
+    <div class="tab active" onclick="switchTab('events')">📅 All Events</div>
+    <div class="tab" onclick="switchTab('leaderboard')">🏆 Leaderboard</div>
+    <div class="tab" onclick="switchTab('calculator')">🧮 Pre-Event Calculator</div>
+    <div class="tab" onclick="switchTab('add')">➕ Log Event</div>
+    <div class="tab" onclick="switchTab('insights')">💡 Insights</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TAB 1: All Events                           -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="tab-events" class="tab-content active">
+<div class="container">
+    <div id="eventsContainer" style="margin-top:1rem;"></div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TAB 2: Leaderboard                          -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="tab-leaderboard" class="tab-content">
+<div class="container">
+    <div style="margin-top:1rem;">
+        <div class="form-card" style="padding:1rem;">
+            <div style="font-size:0.8rem; color:#888; margin-bottom:0.5rem;">Sort by:</div>
+            <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+                <button class="btn btn-primary" style="font-size:0.75rem; padding:0.4rem 0.8rem;" onclick="renderLeaderboard('roas')">ROAS</button>
+                <button class="btn" style="font-size:0.75rem; padding:0.4rem 0.8rem; background:#1a1a1a; color:#ccc;" onclick="renderLeaderboard('converts')">Converts</button>
+                <button class="btn" style="font-size:0.75rem; padding:0.4rem 0.8rem; background:#1a1a1a; color:#ccc;" onclick="renderLeaderboard('leads')">Leads</button>
+                <button class="btn" style="font-size:0.75rem; padding:0.4rem 0.8rem; background:#1a1a1a; color:#ccc;" onclick="renderLeaderboard('cpl')">Cost/Lead</button>
+                <button class="btn" style="font-size:0.75rem; padding:0.4rem 0.8rem; background:#1a1a1a; color:#ccc;" onclick="renderLeaderboard('ltv')">LTV</button>
+            </div>
+        </div>
+        <div id="leaderboardContainer"></div>
+    </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TAB 3: Pre-Event Calculator                 -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="tab-calculator" class="tab-content">
+<div class="container" style="margin-top:1rem;">
+    <div class="calc-card">
+        <div class="calc-title">🧮 Should I Do This Event?</div>
+        <p style="font-size:0.82rem; color:#888; margin-bottom:1rem;">Plug in your estimates before committing. Get the break-even math and ROI projection.</p>
+
+        <div class="calc-grid">
+            <div class="calc-input-row">
+                <label>Booth / Entry Fee ($)</label>
+                <input type="number" id="c_fee" value="0" oninput="runCalc()" min="0">
+            </div>
+            <div class="calc-input-row">
+                <label>Materials / Print Cost ($)</label>
+                <input type="number" id="c_materials" value="15" oninput="runCalc()" min="0">
+            </div>
+            <div class="calc-input-row">
+                <label>Drive Time + Event Hours</label>
+                <input type="number" id="c_hours" value="4" oninput="runCalc()" min="0.5" step="0.5">
+            </div>
+            <div class="calc-input-row">
+                <label>Your Hourly Value ($/hr)</label>
+                <input type="number" id="c_hourly" value="30" oninput="runCalc()" min="0">
+            </div>
+            <div class="calc-input-row">
+                <label>Expected Attendees</label>
+                <input type="number" id="c_attend" value="200" oninput="runCalc()" min="1">
+            </div>
+            <div class="calc-input-row">
+                <label>% Who Are Dog Owners</label>
+                <input type="number" id="c_dogpct" value="70" oninput="runCalc()" min="1" max="100">
+            </div>
+            <div class="calc-input-row">
+                <label>Lead Conversion Rate (%)</label>
+                <input type="number" id="c_leadrate" value="5" oninput="runCalc()" min="0" max="100">
+            </div>
+            <div class="calc-input-row">
+                <label>Close Rate (leads → pays) (%)</label>
+                <input type="number" id="c_closerate" value="25" oninput="runCalc()" min="0" max="100">
+            </div>
+            <div class="calc-input-row">
+                <label>Avg Monthly Revenue / Customer ($)</label>
+                <input type="number" id="c_mrr" value="70" oninput="runCalc()" min="0">
+            </div>
+            <div class="calc-input-row">
+                <label>Avg Customer Lifespan (months)</label>
+                <input type="number" id="c_lifespan" value="18" oninput="runCalc()" min="1">
+            </div>
+        </div>
+    </div>
+
+    <div class="calc-card" id="calcResults">
+        <div class="calc-title">📈 Projection</div>
+        <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap:0.6rem; margin-bottom:1rem;">
+            <div class="calc-result-box">
+                <div class="calc-result-num" id="r_cost" style="color:#f87171;">$0</div>
+                <div class="calc-result-label">Total Investment</div>
+            </div>
+            <div class="calc-result-box">
+                <div class="calc-result-num" id="r_leads" style="color:#60a5fa;">0</div>
+                <div class="calc-result-label">Expected Leads</div>
+            </div>
+            <div class="calc-result-box">
+                <div class="calc-result-num" id="r_converts" style="color:#fbbf24;">0</div>
+                <div class="calc-result-label">Expected Converts</div>
+            </div>
+            <div class="calc-result-box">
+                <div class="calc-result-num" id="r_ltv" style="color:#4ade80;">$0</div>
+                <div class="calc-result-label">Expected LTV</div>
+            </div>
+            <div class="calc-result-box">
+                <div class="calc-result-num" id="r_roas" style="color:#a78bfa;">0x</div>
+                <div class="calc-result-label">ROAS</div>
+            </div>
+            <div class="calc-result-box">
+                <div class="calc-result-num" id="r_cpl" style="color:#fb923c;">$0</div>
+                <div class="calc-result-label">Cost Per Lead</div>
+            </div>
+        </div>
+        <div style="font-size:0.8rem; color:#888; margin-bottom:0.4rem;">Break-even: need <span id="r_breakeven" style="color:#fbbf24; font-weight:700;">0</span> customer(s) to cover costs</div>
+        <div id="calcVerdict" class="verdict b">Loading...</div>
+    </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TAB 4: Log Event                            -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="tab-add" class="tab-content">
+<div class="container" style="margin-top:1rem;">
+    <div class="form-card">
+        <div class="form-title">➕ Log a New Event (or update an existing one)</div>
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Event Name *</label>
+                <input type="text" id="f_name" placeholder="e.g. Crestwood Vet Paw-ty">
+            </div>
+            <div class="form-group">
+                <label>Date *</label>
+                <input type="date" id="f_date">
+            </div>
+            <div class="form-group">
+                <label>Event Type</label>
+                <select id="f_type">
+                    <option value="Dog/Pet Event">Dog/Pet Event</option>
+                    <option value="Farmer's Market">Farmer's Market</option>
+                    <option value="Community Event">Community Event</option>
+                    <option value="Vet/Business Partnership">Vet/Business Partnership</option>
+                    <option value="HOA/Apartment Outreach">HOA/Apartment Outreach</option>
+                    <option value="Door Hanger Drop">Door Hanger Drop</option>
+                    <option value="FB/Social Campaign">FB/Social Campaign</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Location / Neighborhood</label>
+                <input type="text" id="f_location" placeholder="e.g. Crestwood, MO">
+            </div>
+            <div class="form-group">
+                <label>Booth / Entry Fee ($)</label>
+                <input type="number" id="f_fee" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label>Materials / Supplies ($)</label>
+                <input type="number" id="f_materials" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label>Hours Invested (total)</label>
+                <input type="number" id="f_hours" value="4" min="0" step="0.5">
+            </div>
+            <div class="form-group">
+                <label>Estimated Attendees</label>
+                <input type="number" id="f_attend" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label>Conversations / Contacts</label>
+                <input type="number" id="f_contacts" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label>Leads Captured (name+phone)</label>
+                <input type="number" id="f_leads" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label>Signed Up On The Spot</label>
+                <input type="number" id="f_spot" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label>Total Converts (within 2 weeks)</label>
+                <input type="number" id="f_converts" value="0" min="0">
+            </div>
+            <div class="form-group">
+                <label>Avg Monthly Revenue / Customer ($)</label>
+                <input type="number" id="f_mrr" value="70" min="0">
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <select id="f_status">
+                    <option value="Upcoming">Upcoming</option>
+                    <option value="Complete">Complete</option>
+                    <option value="In Progress">In Progress</option>
+                </select>
+            </div>
+            <div class="form-group form-full">
+                <label>Notes / Key Takeaways</label>
+                <textarea id="f_notes" rows="3" placeholder="What worked? What didn't? Weather, foot traffic, vibe..."></textarea>
+            </div>
+        </div>
+        <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <button class="btn btn-primary" onclick="saveEvent()">💾 Save Event</button>
+            <button class="btn" style="background:#1a1a1a; color:#ccc;" onclick="clearForm()">Clear</button>
+        </div>
+        <div id="formMsg" style="margin-top:0.5rem; font-size:0.82rem; color:#4ade80; display:none;"></div>
+    </div>
+
+    <div class="form-card" style="padding:1rem 1.5rem;">
+        <div style="font-size:0.8rem; color:#888; font-weight:700; margin-bottom:0.5rem;">⚡ QUICK LOAD — Pre-fill from upcoming events</div>
+        <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+            <button class="btn" style="background:#1e1b4b; color:#a5b4fc; font-size:0.75rem; padding:0.4rem 0.8rem;" onclick="quickLoad('pawty')">🐾 Paw-ty (Mar 28)</button>
+            <button class="btn" style="background:#1e1b4b; color:#a5b4fc; font-size:0.75rem; padding:0.4rem 0.8rem;" onclick="quickLoad('archbark')">🌉 Arch Bark (Apr 18)</button>
+            <button class="btn" style="background:#1e1b4b; color:#a5b4fc; font-size:0.75rem; padding:0.4rem 0.8rem;" onclick="quickLoad('bitp')">🏆 Bark in the Park (May 16)</button>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TAB 5: Insights                             -->
+<!-- ═══════════════════════════════════════════ -->
+<div id="tab-insights" class="tab-content">
+<div class="container" style="margin-top:1rem;">
+    <div id="insightsContainer"></div>
+</div>
+</div>
+
+
+<script>
+// ═══════════════════════════════════════════════════════
+// DATA
+// ═══════════════════════════════════════════════════════
+const STORAGE_KEY = 'tt_event_roi_v2';
+const LTV_MONTHS = 18; // default avg customer lifespan
+
+function loadData() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch(e) { return []; }
+}
+function saveData(data) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+}
+
+// Seed Paw-ty data on first load
+function initSeedData() {
+    const data = loadData();
+    if (data.length > 0) return;
+    const seed = [
+        {
+            id: 'evt_pawty_mar28',
+            name: 'Crestwood Vet Adoption Paw-ty',
+            date: '2026-03-28',
+            type: 'Dog/Pet Event',
+            location: 'Crestwood, MO',
+            fee: 0,
+            materials: 15,
+            hours: 5,
+            attend: 150,
+            contacts: 0,
+            leads: 0,
+            spot: 0,
+            converts: 0,
+            mrr: 70,
+            status: 'In Progress',
+            notes: 'Free vendor table at Crestwood Animal Hospital. Dog adoption event. TJ + Jamie on-site 10 AM – 2 PM. Using Paw-ty Pocket Guide + Lead Tracker. UPDATE THIS after event with real leads/converts!'
+        },
+        {
+            id: 'evt_archbark_apr18',
+            name: 'Arch Bark Spring Festival',
+            date: '2026-04-18',
+            type: 'Dog/Pet Event',
+            location: 'Gateway Arch, St. Louis',
+            fee: 0,
+            materials: 25,
+            hours: 6,
+            attend: 500,
+            contacts: 0,
+            leads: 0,
+            spot: 0,
+            converts: 0,
+            mrr: 70,
+            status: 'Upcoming',
+            notes: 'Free admission, Gateway Arch backdrop. ~500 dog owners. South city = new territory for us. No dominant competitor. Goal: 5-8 leads → 2-3 converts.'
+        },
+        {
+            id: 'evt_bitp_may16',
+            name: 'Bark in the Park (HSMO)',
+            date: '2026-05-16',
+            type: 'Dog/Pet Event',
+            location: 'Tower Grove Park, St. Louis',
+            fee: 207,
+            materials: 80,
+            hours: 8,
+            attend: 2000,
+            contacts: 0,
+            leads: 0,
+            spot: 0,
+            converts: 0,
+            mrr: 70,
+            status: 'Upcoming',
+            notes: "HSMO flagship event. 1,000–5,000 dog owners. Vendor booth required (est. $207–520). Two-person strategy. Raffle giveaway for phone capture. This single event could push us from 15→22+ customers. REGISTER AT hsmo.org ASAP!"
+        }
+    ];
+    saveData(seed);
+}
+
+// ═══════════════════════════════════════════════════════
+// CALCULATIONS
+// ═══════════════════════════════════════════════════════
+function calcEventMetrics(ev) {
+    const totalCost = (ev.fee || 0) + (ev.materials || 0) + ((ev.hours || 0) * 30);
+    const ltv = (ev.converts || 0) * (ev.mrr || 70) * LTV_MONTHS;
+    const roas = totalCost > 0 ? ltv / totalCost : 0;
+    const cpl = (ev.leads || 0) > 0 ? totalCost / ev.leads : 0;
+    const closeRate = (ev.leads || 0) > 0 ? ((ev.converts || 0) / ev.leads) * 100 : 0;
+    return { totalCost, ltv, roas, cpl, closeRate };
+}
+
+function getRoasTier(roas, status) {
+    if (status === 'Upcoming') return 'pending';
+    if (roas >= 10) return 's';
+    if (roas >= 5) return 'a';
+    if (roas >= 2) return 'b';
+    return 'c';
+}
+
+function tierLabel(tier) {
+    if (tier === 's') return '🏆 S-Tier (10x+)';
+    if (tier === 'a') return '🥇 A-Tier (5-10x)';
+    if (tier === 'b') return '🥈 B-Tier (2-5x)';
+    if (tier === 'c') return '⚠️ C-Tier (<2x)';
+    return '📅 Upcoming';
+}
+
+// ═══════════════════════════════════════════════════════
+// RENDER EVENTS
+// ═══════════════════════════════════════════════════════
+function renderEvents() {
+    const data = loadData();
+    const container = document.getElementById('eventsContainer');
+
+    if (data.length === 0) {
+        container.innerHTML = `<div class="empty-state"><div class="icon">📊</div><p>No events logged yet. Go to the <strong>Log Event</strong> tab to add your first event.</p></div>`;
+        return;
+    }
+
+    // Sort: In Progress first, then Upcoming, then Complete (newest first)
+    const sorted = [...data].sort((a, b) => {
+        const order = { 'In Progress': 0, 'Upcoming': 1, 'Complete': 2 };
+        if (order[a.status] !== order[b.status]) return order[a.status] - order[b.status];
+        return new Date(b.date) - new Date(a.date);
+    });
+
+    container.innerHTML = sorted.map(ev => {
+        const m = calcEventMetrics(ev);
+        const tier = getRoasTier(m.roas, ev.status);
+
+        const roasPct = Math.min(m.roas / 20 * 100, 100);
+        const roasColor = tier === 's' ? '#4ade80' : tier === 'a' ? '#60a5fa' : tier === 'b' ? '#fbbf24' : tier === 'c' ? '#f87171' : '#666';
+        const roasBarColor = roasColor;
+
+        const convLabel = ev.status !== 'Upcoming' ? `${ev.converts || 0} converts` : 'Upcoming';
+
+        return `
+        <div class="event-card tier-${tier}" id="card_${ev.id}">
+            <div class="card-header" onclick="toggleCard('${ev.id}')">
+                <div>
+                    <div class="card-title">${ev.name}</div>
+                    <div class="card-meta">${formatDate(ev.date)} · ${ev.location || '—'} · ${ev.type}</div>
+                </div>
+                <div class="card-badges">
+                    <span class="badge badge-roi-${tier}">${tier === 'pending' ? '📅 Upcoming' : m.roas.toFixed(1) + 'x ROAS'}</span>
+                    <span class="badge badge-status">${ev.status}</span>
+                    <span class="expand-icon">▼</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="metrics-grid">
+                    <div class="metric-box">
+                        <div class="m-val" style="color:#f87171;">$${m.totalCost}</div>
+                        <div class="m-label">Total Invested</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="m-val" style="color:#60a5fa;">${ev.leads || 0}</div>
+                        <div class="m-label">Leads</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="m-val" style="color:#fbbf24;">${ev.converts || 0}</div>
+                        <div class="m-label">Converts</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="m-val" style="color:#4ade80;">$${m.ltv.toLocaleString()}</div>
+                        <div class="m-label">LTV Generated</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="m-val" style="color:${roasColor};">${m.roas > 0 ? m.roas.toFixed(1) + 'x' : '—'}</div>
+                        <div class="m-label">ROAS</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="m-val" style="color:#fb923c;">${m.cpl > 0 ? '$' + m.cpl.toFixed(0) : '—'}</div>
+                        <div class="m-label">Cost / Lead</div>
+                    </div>
+                </div>
+
+                ${ev.status !== 'Upcoming' ? `
+                <div class="roi-bar-wrap">
+                    <div class="roi-bar-label"><span>ROAS Score</span><span>${tierLabel(tier)}</span></div>
+                    <div class="roi-bar-track">
+                        <div class="roi-bar-fill" style="width:${roasPct}%; background:${roasBarColor};"></div>
+                    </div>
+                </div>` : ''}
+
+                <div class="section-label">Investment Breakdown</div>
+                <div style="font-size:0.8rem; color:#888;">
+                    Booth fee: <strong style="color:#ccc;">$${ev.fee || 0}</strong> · 
+                    Materials: <strong style="color:#ccc;">$${ev.materials || 0}</strong> · 
+                    Time (${ev.hours}h × $30): <strong style="color:#ccc;">$${(ev.hours || 0) * 30}</strong>
+                </div>
+
+                ${ev.notes ? `
+                <div class="section-label">Notes</div>
+                <div style="font-size:0.82rem; color:#aaa; background:#1a1a1a; padding:0.6rem 0.8rem; border-radius:6px;">${ev.notes}</div>
+                ` : ''}
+
+                <div style="margin-top:1rem; display:flex; gap:0.5rem; flex-wrap:wrap;">
+                    <button class="btn btn-primary" style="font-size:0.75rem; padding:0.4rem 0.8rem;" onclick="editEvent('${ev.id}')">✏️ Update Results</button>
+                    <button class="btn btn-danger" onclick="deleteEvent('${ev.id}')">🗑 Delete</button>
+                </div>
+            </div>
+        </div>`;
+    }).join('');
+
+    updateSummaryBar(data);
+}
+
+function toggleCard(id) {
+    const card = document.getElementById('card_' + id);
+    card.classList.toggle('expanded');
+}
+
+function formatDate(d) {
+    if (!d) return '—';
+    const dt = new Date(d + 'T12:00:00');
+    return dt.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
+function updateSummaryBar(data) {
+    const completed = data.filter(e => e.status !== 'Upcoming');
+    const totalLeads = completed.reduce((s, e) => s + (e.leads || 0), 0);
+    const totalConverts = completed.reduce((s, e) => s + (e.converts || 0), 0);
+    const totalLTV = completed.reduce((s, e) => s + calcEventMetrics(e).ltv, 0);
+    const totalCost = completed.reduce((s, e) => s + calcEventMetrics(e).totalCost, 0);
+    const avgRoas = totalCost > 0 ? totalLTV / totalCost : 0;
+
+    document.getElementById('totalEvents').textContent = data.length;
+    document.getElementById('totalLeads').textContent = totalLeads;
+    document.getElementById('totalConverts').textContent = totalConverts;
+    document.getElementById('totalRevenue').textContent = '$' + totalLTV.toLocaleString();
+    document.getElementById('avgRoi').textContent = avgRoas > 0 ? avgRoas.toFixed(1) + 'x' : '—';
+}
+
+// ═══════════════════════════════════════════════════════
+// LEADERBOARD
+// ═══════════════════════════════════════════════════════
+let lbSort = 'roas';
+function renderLeaderboard(sortBy) {
+    lbSort = sortBy || lbSort;
+    const data = loadData().filter(e => e.status !== 'Upcoming');
+    const container = document.getElementById('leaderboardContainer');
+
+    if (data.length === 0) {
+        container.innerHTML = `<div class="empty-state"><div class="icon">🏆</div><p>No completed events yet. Data will appear here after you log results.</p></div>`;
+        return;
+    }
+
+    const withMetrics = data.map(e => ({ ...e, ...calcEventMetrics(e) }));
+
+    let sorted;
+    if (lbSort === 'roas') sorted = withMetrics.sort((a, b) => b.roas - a.roas);
+    else if (lbSort === 'converts') sorted = withMetrics.sort((a, b) => (b.converts || 0) - (a.converts || 0));
+    else if (lbSort === 'leads') sorted = withMetrics.sort((a, b) => (b.leads || 0) - (a.leads || 0));
+    else if (lbSort === 'cpl') sorted = withMetrics.sort((a, b) => (a.cpl || 999) - (b.cpl || 999));
+    else if (lbSort === 'ltv') sorted = withMetrics.sort((a, b) => b.ltv - a.ltv);
+
+    const rankClass = i => i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : 'rank-n';
+
+    container.innerHTML = `
+    <div style="overflow-x:auto;">
+    <table class="leaderboard-table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Event</th>
+                <th>Date</th>
+                <th>Cost</th>
+                <th>Leads</th>
+                <th>Converts</th>
+                <th>LTV</th>
+                <th>ROAS</th>
+                <th>$/Lead</th>
+            </tr>
+        </thead>
+        <tbody>
+            ${sorted.map((ev, i) => `
+            <tr>
+                <td><span class="rank-badge ${rankClass(i)}">${i + 1}</span></td>
+                <td><strong>${ev.name}</strong><br><span style="font-size:0.72rem; color:#888;">${ev.type}</span></td>
+                <td style="color:#888;">${formatDate(ev.date)}</td>
+                <td style="color:#f87171;">$${ev.totalCost}</td>
+                <td style="color:#60a5fa;">${ev.leads || 0}</td>
+                <td style="color:#fbbf24;">${ev.converts || 0}</td>
+                <td style="color:#4ade80;">$${ev.ltv.toLocaleString()}</td>
+                <td style="color:${ev.roas >= 5 ? '#4ade80' : ev.roas >= 2 ? '#fbbf24' : '#f87171'}; font-weight:700;">${ev.roas > 0 ? ev.roas.toFixed(1) + 'x' : '—'}</td>
+                <td style="color:#fb923c;">${ev.cpl > 0 ? '$' + ev.cpl.toFixed(0) : '—'}</td>
+            </tr>`).join('')}
+        </tbody>
+    </table>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// PRE-EVENT CALCULATOR
+// ═══════════════════════════════════════════════════════
+function runCalc() {
+    const fee = parseFloat(document.getElementById('c_fee').value) || 0;
+    const materials = parseFloat(document.getElementById('c_materials').value) || 0;
+    const hours = parseFloat(document.getElementById('c_hours').value) || 0;
+    const hourly = parseFloat(document.getElementById('c_hourly').value) || 30;
+    const attend = parseFloat(document.getElementById('c_attend').value) || 0;
+    const dogPct = parseFloat(document.getElementById('c_dogpct').value) || 70;
+    const leadRate = parseFloat(document.getElementById('c_leadrate').value) || 5;
+    const closeRate = parseFloat(document.getElementById('c_closerate').value) || 25;
+    const mrr = parseFloat(document.getElementById('c_mrr').value) || 70;
+    const lifespan = parseFloat(document.getElementById('c_lifespan').value) || 18;
+
+    const totalCost = fee + materials + (hours * hourly);
+    const dogAttend = attend * (dogPct / 100);
+    const leads = Math.round(dogAttend * (leadRate / 100));
+    const converts = Math.round(leads * (closeRate / 100));
+    const ltv = converts * mrr * lifespan;
+    const roas = totalCost > 0 ? ltv / totalCost : 0;
+    const cpl = leads > 0 ? totalCost / leads : 0;
+    const breakeven = mrr > 0 ? Math.ceil(totalCost / (mrr * lifespan)) : 0;
+
+    document.getElementById('r_cost').textContent = '$' + totalCost.toFixed(0);
+    document.getElementById('r_leads').textContent = leads;
+    document.getElementById('r_converts').textContent = converts;
+    document.getElementById('r_ltv').textContent = '$' + ltv.toLocaleString();
+    document.getElementById('r_roas').textContent = roas > 0 ? roas.toFixed(1) + 'x' : '—';
+    document.getElementById('r_cpl').textContent = cpl > 0 ? '$' + cpl.toFixed(0) : '—';
+    document.getElementById('r_breakeven').textContent = breakeven;
+
+    const vEl = document.getElementById('calcVerdict');
+    if (roas >= 10) { vEl.className = 'verdict s'; vEl.textContent = '🏆 S-TIER — Do this every time. 10x+ return.'; }
+    else if (roas >= 5) { vEl.className = 'verdict a'; vEl.textContent = '🥇 A-TIER — Solid ROI. Worth the time and cost.'; }
+    else if (roas >= 2) { vEl.className = 'verdict b'; vEl.textContent = '🥈 B-TIER — Marginal but okay. Look for ways to improve lead capture.'; }
+    else if (converts === 0) { vEl.className = 'verdict c'; vEl.textContent = '⚠️ Need at least ' + breakeven + ' convert(s) to break even. Adjust your approach or skip it.'; }
+    else { vEl.className = 'verdict c'; vEl.textContent = '⚠️ C-TIER — Low ROI. Only worth it if it opens doors to a bigger opportunity.'; }
+}
+
+// ═══════════════════════════════════════════════════════
+// ADD / EDIT / DELETE
+// ═══════════════════════════════════════════════════════
+let editingId = null;
+
+function saveEvent() {
+    const name = document.getElementById('f_name').value.trim();
+    const date = document.getElementById('f_date').value;
+    if (!name || !date) { showFormMsg('Event name and date are required.', '#f87171'); return; }
+
+    const ev = {
+        id: editingId || ('evt_' + Date.now()),
+        name,
+        date,
+        type: document.getElementById('f_type').value,
+        location: document.getElementById('f_location').value.trim(),
+        fee: parseFloat(document.getElementById('f_fee').value) || 0,
+        materials: parseFloat(document.getElementById('f_materials').value) || 0,
+        hours: parseFloat(document.getElementById('f_hours').value) || 0,
+        attend: parseFloat(document.getElementById('f_attend').value) || 0,
+        contacts: parseFloat(document.getElementById('f_contacts').value) || 0,
+        leads: parseFloat(document.getElementById('f_leads').value) || 0,
+        spot: parseFloat(document.getElementById('f_spot').value) || 0,
+        converts: parseFloat(document.getElementById('f_converts').value) || 0,
+        mrr: parseFloat(document.getElementById('f_mrr').value) || 70,
+        status: document.getElementById('f_status').value,
+        notes: document.getElementById('f_notes').value.trim()
+    };
+
+    const data = loadData();
+    if (editingId) {
+        const idx = data.findIndex(e => e.id === editingId);
+        if (idx !== -1) data[idx] = ev;
+    } else {
+        data.push(ev);
+    }
+    saveData(data);
+    editingId = null;
+    clearForm();
+    showFormMsg('✅ Event saved!', '#4ade80');
+    renderAll();
+}
+
+function editEvent(id) {
+    const data = loadData();
+    const ev = data.find(e => e.id === id);
+    if (!ev) return;
+    editingId = id;
+    document.getElementById('f_name').value = ev.name;
+    document.getElementById('f_date').value = ev.date;
+    document.getElementById('f_type').value = ev.type;
+    document.getElementById('f_location').value = ev.location || '';
+    document.getElementById('f_fee').value = ev.fee || 0;
+    document.getElementById('f_materials').value = ev.materials || 0;
+    document.getElementById('f_hours').value = ev.hours || 0;
+    document.getElementById('f_attend').value = ev.attend || 0;
+    document.getElementById('f_contacts').value = ev.contacts || 0;
+    document.getElementById('f_leads').value = ev.leads || 0;
+    document.getElementById('f_spot').value = ev.spot || 0;
+    document.getElementById('f_converts').value = ev.converts || 0;
+    document.getElementById('f_mrr').value = ev.mrr || 70;
+    document.getElementById('f_status').value = ev.status;
+    document.getElementById('f_notes').value = ev.notes || '';
+    switchTab('add');
+    window.scrollTo(0, 0);
+    showFormMsg('✏️ Editing: ' + ev.name + ' — update and save.', '#fbbf24');
+}
+
+function deleteEvent(id) {
+    if (!confirm('Delete this event?')) return;
+    const data = loadData().filter(e => e.id !== id);
+    saveData(data);
+    renderAll();
+}
+
+function clearForm() {
+    editingId = null;
+    ['f_name', 'f_date', 'f_location', 'f_notes'].forEach(id => { const el = document.getElementById(id); if (el) el.value = ''; });
+    document.getElementById('f_fee').value = 0;
+    document.getElementById('f_materials').value = 0;
+    document.getElementById('f_hours').value = 4;
+    document.getElementById('f_attend').value = 0;
+    document.getElementById('f_contacts').value = 0;
+    document.getElementById('f_leads').value = 0;
+    document.getElementById('f_spot').value = 0;
+    document.getElementById('f_converts').value = 0;
+    document.getElementById('f_mrr').value = 70;
+    document.getElementById('f_status').value = 'Upcoming';
+    document.getElementById('f_type').value = 'Dog/Pet Event';
+}
+
+function showFormMsg(msg, color) {
+    const el = document.getElementById('formMsg');
+    el.textContent = msg;
+    el.style.color = color;
+    el.style.display = 'block';
+    setTimeout(() => { el.style.display = 'none'; }, 4000);
+}
+
+function quickLoad(type) {
+    clearForm();
+    if (type === 'pawty') {
+        document.getElementById('f_name').value = 'Crestwood Vet Adoption Paw-ty';
+        document.getElementById('f_date').value = '2026-03-28';
+        document.getElementById('f_type').value = 'Dog/Pet Event';
+        document.getElementById('f_location').value = 'Crestwood, MO';
+        document.getElementById('f_fee').value = 0;
+        document.getElementById('f_materials').value = 15;
+        document.getElementById('f_hours').value = 5;
+        document.getElementById('f_attend').value = 150;
+        document.getElementById('f_status').value = 'In Progress';
+    } else if (type === 'archbark') {
+        document.getElementById('f_name').value = 'Arch Bark Spring Festival';
+        document.getElementById('f_date').value = '2026-04-18';
+        document.getElementById('f_type').value = 'Dog/Pet Event';
+        document.getElementById('f_location').value = 'Gateway Arch, St. Louis';
+        document.getElementById('f_fee').value = 0;
+        document.getElementById('f_materials').value = 25;
+        document.getElementById('f_hours').value = 6;
+        document.getElementById('f_attend').value = 500;
+        document.getElementById('f_status').value = 'Upcoming';
+    } else if (type === 'bitp') {
+        document.getElementById('f_name').value = 'Bark in the Park (HSMO)';
+        document.getElementById('f_date').value = '2026-05-16';
+        document.getElementById('f_type').value = 'Dog/Pet Event';
+        document.getElementById('f_location').value = 'Tower Grove Park, St. Louis';
+        document.getElementById('f_fee').value = 207;
+        document.getElementById('f_materials').value = 80;
+        document.getElementById('f_hours').value = 8;
+        document.getElementById('f_attend').value = 2000;
+        document.getElementById('f_status').value = 'Upcoming';
+    }
+    showFormMsg('✅ Pre-filled! Add your real results and save.', '#a5b4fc');
+}
+
+// ═══════════════════════════════════════════════════════
+// INSIGHTS
+// ═══════════════════════════════════════════════════════
+function renderInsights() {
+    const data = loadData();
+    const container = document.getElementById('insightsContainer');
+    const completed = data.filter(e => e.status !== 'Upcoming');
+    const upcoming = data.filter(e => e.status === 'Upcoming');
+
+    const totalLeads = completed.reduce((s, e) => s + (e.leads || 0), 0);
+    const totalConverts = completed.reduce((s, e) => s + (e.converts || 0), 0);
+    const totalCost = completed.reduce((s, e) => s + calcEventMetrics(e).totalCost, 0);
+    const totalLTV = completed.reduce((s, e) => s + calcEventMetrics(e).ltv, 0);
+    const overallRoas = totalCost > 0 ? totalLTV / totalCost : 0;
+    const overallClose = totalLeads > 0 ? (totalConverts / totalLeads * 100).toFixed(0) : 0;
+
+    // Best performer
+    let bestEv = null;
+    if (completed.length > 0) {
+        bestEv = completed.map(e => ({ ...e, ...calcEventMetrics(e) })).sort((a, b) => b.roas - a.roas)[0];
+    }
+
+    container.innerHTML = `
+    <div class="insight-card" style="margin-top:1rem; border-color:#4f46e5;">
+        <h3>📊 Overall Event Performance</h3>
+        ${completed.length === 0 ? '<p style="color:#888;">No completed events yet. Results will appear here as you log outcomes.</p>' : `
+        <ul>
+            <li><strong>${completed.length}</strong> completed event(s) tracked</li>
+            <li>Total leads captured: <strong style="color:#60a5fa;">${totalLeads}</strong></li>
+            <li>Total converts: <strong style="color:#fbbf24;">${totalConverts}</strong></li>
+            <li>Total LTV generated: <strong style="color:#4ade80;">$${totalLTV.toLocaleString()}</strong></li>
+            <li>Total invested: <strong style="color:#f87171;">$${totalCost}</strong></li>
+            <li>Overall ROAS: <strong style="color:#a78bfa;">${overallRoas > 0 ? overallRoas.toFixed(1) + 'x' : '—'}</strong></li>
+            <li>Overall close rate: <strong>${overallClose}%</strong> of leads converted to paying</li>
+        </ul>`}
+    </div>
+
+    ${bestEv ? `
+    <div class="insight-card" style="border-color:#4ade80;">
+        <h3>🏆 Best Performing Event: ${bestEv.name}</h3>
+        <ul>
+            <li>ROAS: <strong style="color:#4ade80;">${bestEv.roas.toFixed(1)}x</strong></li>
+            <li>${bestEv.converts} convert(s) → $${bestEv.ltv.toLocaleString()} LTV from $${bestEv.totalCost} invested</li>
+            <li>Cost per lead: $${bestEv.cpl > 0 ? bestEv.cpl.toFixed(0) : '—'}</li>
+            <li><strong>Do this event again</strong> — it's your highest-return channel.</li>
+        </ul>
+    </div>` : ''}
+
+    <div class="insight-card">
+        <h3>📅 Upcoming Events (${upcoming.length})</h3>
+        ${upcoming.length === 0 ? '<p style="color:#888;">No upcoming events logged.</p>' : `
+        <ul>
+            ${upcoming.map(e => {
+                const m = calcEventMetrics(e);
+                return `<li><strong>${e.name}</strong> — ${formatDate(e.date)} · Est. cost: $${m.totalCost} · ${e.location || '—'}</li>`;
+            }).join('')}
+        </ul>`}
+    </div>
+
+    <div class="insight-card">
+        <h3>💡 Event Strategy Guide</h3>
+        <ul class="insights-list" style="list-style:none; padding:0;">
+            <li style="padding:0.25rem 0 0.25rem 1.2rem;">S-Tier events (10x+) = dog-specific events with 200+ attendees, no booth fee, and strong scripts. Replicate these.</li>
+            <li style="padding:0.25rem 0 0.25rem 1.2rem;">Your best metric isn't leads — it's <strong>cost per convert</strong>. A small event with 0 cost and 2 converts beats a $500 booth with 50 leads and 1 close.</li>
+            <li style="padding:0.25rem 0 0.25rem 1.2rem;">Follow-up is where 70% of converts happen. Track leads in real time at the event (use the Lead Tracker), then text within 2 hours.</li>
+            <li style="padding:0.25rem 0 0.25rem 1.2rem;">Close rate benchmark: 20–30% of qualified leads (name+phone) should convert within 2 weeks. Below 15% = improve follow-up scripts. Above 40% = you're underselling, charge more.</li>
+            <li style="padding:0.25rem 0 0.25rem 1.2rem;">Referrals from events (people who got your card and recommended you to a friend) often aren't tracked. Ask new signups "how did you hear about us?" to capture dark attribution.</li>
+            <li style="padding:0.25rem 0 0.25rem 1.2rem;">Bark in the Park (May 16) is a tier 1 opportunity. At 2,000 attendees and a paid booth, you need 3+ converts just to break even — but 7 converts makes it a 5x+ event. Worth it at scale.</li>
+        </ul>
+    </div>
+
+    <div class="insight-card">
+        <h3>🎯 What Makes a Good Event?</h3>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.8rem; margin-top:0.5rem;">
+            <div style="background:#14532d20; border:1px solid #14532d; border-radius:8px; padding:0.8rem;">
+                <div style="color:#4ade80; font-weight:700; font-size:0.8rem; margin-bottom:0.4rem;">✅ HIGH SIGNAL</div>
+                <div style="font-size:0.78rem; color:#ccc; line-height:1.7;">
+                    Dog-specific audience<br>
+                    Free or &lt;$50 entry<br>
+                    200+ dog owners<br>
+                    No dominant local competitor<br>
+                    Neighborhood you want to expand into<br>
+                    Outdoor, dog-walking setting
+                </div>
+            </div>
+            <div style="background:#450a0a20; border:1px solid #450a0a; border-radius:8px; padding:0.8rem;">
+                <div style="color:#f87171; font-weight:700; font-size:0.8rem; margin-bottom:0.4rem;">⚠️ LOW SIGNAL</div>
+                <div style="font-size:0.78rem; color:#ccc; line-height:1.7;">
+                    General community event<br>
+                    $200+ booth fee<br>
+                    &lt;100 attendees<br>
+                    Area already well-covered<br>
+                    Indoor only<br>
+                    No time for conversations
+                </div>
+            </div>
+        </div>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════
+// TABS + INIT
+// ═══════════════════════════════════════════════════════
+function switchTab(name) {
+    document.querySelectorAll('.tab').forEach((t, i) => {
+        const names = ['events', 'leaderboard', 'calculator', 'add', 'insights'];
+        t.classList.toggle('active', names[i] === name);
+    });
+    document.querySelectorAll('.tab-content').forEach(el => {
+        el.classList.toggle('active', el.id === 'tab-' + name);
+    });
+    if (name === 'leaderboard') renderLeaderboard(lbSort);
+    if (name === 'insights') renderInsights();
+}
+
+function renderAll() {
+    renderEvents();
+    renderLeaderboard(lbSort);
+    renderInsights();
+}
+
+// Init
+initSeedData();
+renderAll();
+runCalc();
+</script>
+</body>
+</html>
