@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>💰 Profit Command Center | Tidy Tails</title>
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --surface: #1a1a1a;
+    --surface2: #222;
+    --surface3: #2a2a2a;
+    --border: #333;
+    --accent: #22c55e;
+    --accent2: #f59e0b;
+    --accent3: #3b82f6;
+    --accent4: #a855f7;
+    --red: #ef4444;
+    --text: #e5e5e5;
+    --muted: #888;
+    --white: #fff;
+    --green-dark: #15803d;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, #0a2a1a 0%, #0d0d0d 60%, #0a1a2a 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 20px 16px 16px;
+    text-align: center;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .header h1 { font-size: 20px; font-weight: 900; color: var(--white); }
+  .header .sub { color: var(--muted); font-size: 12px; margin-top: 4px; }
+  .live-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: #000;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 20px;
+    margin-left: 8px;
+    animation: pulse-badge 2s ease-in-out infinite;
+  }
+  @keyframes pulse-badge { 0%,100%{opacity:1;} 50%{opacity:.6;} }
+
+  /* ── SUMMARY BAR ── */
+  .summary-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .summary-cell {
+    background: var(--surface);
+    padding: 12px 8px;
+    text-align: center;
+  }
+  .summary-cell .val {
+    font-size: 1.4rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .summary-cell .lbl {
+    font-size: 0.58rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 3px;
+  }
+  .val.green { color: var(--accent); }
+  .val.amber { color: var(--accent2); }
+  .val.blue  { color: var(--accent3); }
+  .val.red   { color: var(--red); }
+
+  /* ── TABS ── */
+  .tabs {
+    display: flex;
+    background: var(--surface);
+    border-bottom: 2px solid var(--border);
+    overflow-x: auto;
+  }
+  .tab {
+    flex: 1;
+    min-width: 76px;
+    padding: 10px 6px;
+    text-align: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--muted);
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: all .2s;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .tab .ti { font-size: 1.1rem; display: block; margin-bottom: 2px; }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); background: rgba(34,197,94,.06); }
+
+  /* ── PANE ── */
+  .pane { display: none; padding: 16px; }
+  .pane.active { display: block; }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card-title .badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 12px;
+    margin-left: auto;
+  }
+  .badge.green  { background: rgba(34,197,94,.15); color: var(--accent); }
+  .badge.amber  { background: rgba(245,158,11,.15); color: var(--accent2); }
+  .badge.blue   { background: rgba(59,130,246,.15); color: var(--accent3); }
+  .badge.red    { background: rgba(239,68,68,.15); color: var(--red); }
+  .badge.purple { background: rgba(168,85,247,.15); color: var(--accent4); }
+
+  /* ── INPUTS ── */
+  .input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .input-row.three { grid-template-columns: 1fr 1fr 1fr; }
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .input-group label {
+    font-size: 11px;
+    color: var(--muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  .input-group input, .input-group select {
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 8px 10px;
+    width: 100%;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .input-group input:focus, .input-group select:focus {
+    border-color: var(--accent);
+  }
+  .input-group .prefix {
+    position: relative;
+  }
+  .input-group .prefix input {
+    padding-left: 22px;
+  }
+  .input-group .prefix::before {
+    content: '$';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  /* ── RESULTS ── */
+  .result-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .result-grid.three { grid-template-columns: 1fr 1fr 1fr; }
+  .result-box {
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+  }
+  .result-box .r-val {
+    font-size: 1.5rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .result-box .r-lbl {
+    font-size: 10px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-top: 4px;
+  }
+  .result-box.highlight { border-color: var(--accent); background: rgba(34,197,94,.08); }
+  .result-box.amber-hi  { border-color: var(--accent2); background: rgba(245,158,11,.08); }
+  .result-box.red-hi    { border-color: var(--red); background: rgba(239,68,68,.08); }
+  .result-box.blue-hi   { border-color: var(--accent3); background: rgba(59,130,246,.08); }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 14px 0;
+  }
+
+  /* ── TABLE ── */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    background: var(--surface3);
+    color: var(--muted);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  td {
+    padding: 10px 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--surface2); }
+  .td-green { color: var(--accent); }
+  .td-amber { color: var(--accent2); }
+  .td-red   { color: var(--red); }
+  .td-blue  { color: var(--accent3); }
+
+  /* ── SCENARIO CARDS ── */
+  .scenario-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .scenario-card {
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 10px;
+    text-align: center;
+  }
+  .scenario-card.best { border-color: var(--accent); }
+  .scenario-card.base { border-color: var(--accent2); }
+  .scenario-card.worst { border-color: var(--red); }
+  .scenario-card .s-title {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  .scenario-card.best .s-title { color: var(--accent); }
+  .scenario-card.base .s-title { color: var(--accent2); }
+  .scenario-card.worst .s-title { color: var(--red); }
+  .scenario-card .s-val {
+    font-size: 1.4rem;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .scenario-card .s-sub {
+    font-size: 10px;
+    color: var(--muted);
+  }
+
+  /* ── PROFIT METER ── */
+  .profit-meter {
+    background: var(--surface3);
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 12px 0;
+    height: 24px;
+    position: relative;
+  }
+  .profit-meter-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--red) 0%, var(--accent2) 40%, var(--accent) 70%, #16a34a 100%);
+    transition: width .5s ease;
+    border-radius: 8px;
+  }
+  .profit-meter-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 11px;
+    font-weight: 800;
+    color: var(--white);
+    text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  }
+
+  /* ── MILESTONE ROW ── */
+  .milestones {
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    margin-top: 12px;
+  }
+  .milestone {
+    flex-shrink: 0;
+    background: var(--surface3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
+    text-align: center;
+    min-width: 90px;
+  }
+  .milestone.current { border-color: var(--accent2); background: rgba(245,158,11,.08); }
+  .milestone.target  { border-color: var(--accent); background: rgba(34,197,94,.08); }
+  .milestone .m-num { font-size: 1.4rem; font-weight: 900; }
+  .milestone .m-lbl { font-size: 10px; color: var(--muted); }
+  .milestone.current .m-num { color: var(--accent2); }
+  .milestone.target .m-num  { color: var(--accent); }
+
+  /* ── CALC BUTTON ── */
+  .calc-btn {
+    width: 100%;
+    background: var(--accent);
+    color: #000;
+    font-size: 14px;
+    font-weight: 900;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 12px;
+    letter-spacing: 0.3px;
+    transition: opacity .2s;
+  }
+  .calc-btn:active { opacity: .8; }
+
+  /* ── INFO BOX ── */
+  .info-box {
+    background: var(--surface3);
+    border-left: 3px solid var(--accent3);
+    border-radius: 6px;
+    padding: 10px 12px;
+    margin: 10px 0;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .info-box strong { color: var(--text); }
+
+  /* ── VERDICT BOX ── */
+  .verdict {
+    border-radius: 8px;
+    padding: 14px;
+    margin-top: 14px;
+    font-size: 13px;
+    line-height: 1.6;
+    font-weight: 600;
+  }
+  .verdict.good   { background: rgba(34,197,94,.1);   border: 1px solid var(--accent);  color: #86efac; }
+  .verdict.warn   { background: rgba(245,158,11,.1);  border: 1px solid var(--accent2); color: #fcd34d; }
+  .verdict.bad    { background: rgba(239,68,68,.1);   border: 1px solid var(--red);     color: #fca5a5; }
+  .verdict-title  { font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+
+  /* ── BREAK-EVEN MARKER ── */
+  .breakeven-track {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0;
+  }
+  .breakeven-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .breakeven-dot.green { background: var(--accent); }
+  .breakeven-dot.red   { background: var(--red); }
+  .breakeven-dot.amber { background: var(--accent2); }
+
+  /* ── SECTION HEADER ── */
+  .section-hdr {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--muted);
+    margin: 16px 0 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .section-hdr::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── INSIGHT ROW ── */
+  .insight {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+  }
+  .insight:last-child { border-bottom: none; }
+  .insight .icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+  .insight .text { flex: 1; line-height: 1.5; }
+  .insight .text strong { color: var(--white); }
+
+  /* ── RANGE SLIDER ── */
+  input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: var(--border);
+    border-radius: 3px;
+    outline: none;
+    margin: 8px 0;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(34,197,94,.4);
+  }
+
+  /* ── TOGGLE ── */
+  .toggle-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .toggle-row:last-child { border-bottom: none; }
+  .toggle {
+    width: 44px; height: 24px;
+    background: var(--border);
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    transition: background .2s;
+  }
+  .toggle.on { background: var(--accent); }
+  .toggle::after {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    background: var(--white);
+    border-radius: 50%;
+    top: 3px; left: 3px;
+    transition: left .2s;
+  }
+  .toggle.on::after { left: 23px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>💰 Profit Command Center <span class="live-badge">LIVE CALC</span></h1>
+  <div class="sub">Know your numbers. Make every decision smarter.</div>
+</div>
+
+<!-- LIVE SUMMARY BAR -->
+<div class="summary-bar">
+  <div class="summary-cell">
+    <div class="val green" id="sum-mrr">$0</div>
+    <div class="lbl">Monthly Rev</div>
+  </div>
+  <div class="summary-cell">
+    <div class="val amber" id="sum-profit">$0</div>
+    <div class="lbl">Net Profit</div>
+  </div>
+  <div class="summary-cell">
+    <div class="val blue" id="sum-margin">0%</div>
+    <div class="lbl">Margin</div>
+  </div>
+  <div class="summary-cell">
+    <div class="val green" id="sum-cust">10</div>
+    <div class="lbl">Customers</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab(0)"><span class="ti">📊</span>Unit Economics</div>
+  <div class="tab" onclick="showTab(1)"><span class="ti">📈</span>Growth Scenarios</div>
+  <div class="tab" onclick="showTab(2)"><span class="ti">📣</span>Ad ROI</div>
+  <div class="tab" onclick="showTab(3)"><span class="ti">🚗</span>Route Math</div>
+  <div class="tab" onclick="showTab(4)"><span class="ti">💡</span>Insights</div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 0 — UNIT ECONOMICS -->
+<!-- ══════════════════════════════════════════ -->
+<div class="pane active" id="pane-0">
+
+  <div class="card">
+    <div class="card-title">📦 Your Business Right Now</div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>Active Customers</label>
+        <input type="number" id="ue-customers" value="10" min="1" max="200" oninput="calcAll()">
+      </div>
+      <div class="input-group">
+        <label>Avg Monthly Revenue / Customer</label>
+        <div class="prefix"><input type="number" id="ue-avg-rev" value="55" min="1" oninput="calcAll()"></div>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>Weekly Customers</label>
+        <input type="number" id="ue-weekly" value="4" min="0" oninput="calcAll()">
+      </div>
+      <div class="input-group">
+        <label>Biweekly Customers</label>
+        <input type="number" id="ue-biweekly" value="6" min="0" oninput="calcAll()">
+      </div>
+    </div>
+    <div class="result-grid">
+      <div class="result-box highlight">
+        <div class="r-val green" id="ue-mrr">$0</div>
+        <div class="r-lbl">Monthly Revenue</div>
+      </div>
+      <div class="result-box">
+        <div class="r-val green" id="ue-arr">$0</div>
+        <div class="r-lbl">Annual Run Rate</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💸 Monthly Expenses</div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>Supplies (bags, gloves)</label>
+        <div class="prefix"><input type="number" id="exp-supplies" value="40" min="0" oninput="calcAll()"></div>
+      </div>
+      <div class="input-group">
+        <label>Fuel / Vehicle</label>
+        <div class="prefix"><input type="number" id="exp-fuel" value="120" min="0" oninput="calcAll()"></div>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>Marketing / Ads</label>
+        <div class="prefix"><input type="number" id="exp-marketing" value="0" min="0" oninput="calcAll()"></div>
+      </div>
+      <div class="input-group">
+        <label>Software / Tools</label>
+        <div class="prefix"><input type="number" id="exp-software" value="30" min="0" oninput="calcAll()"></div>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>Insurance</label>
+        <div class="prefix"><input type="number" id="exp-insurance" value="75" min="0" oninput="calcAll()"></div>
+      </div>
+      <div class="input-group">
+        <label>Other</label>
+        <div class="prefix"><input type="number" id="exp-other" value="25" min="0" oninput="calcAll()"></div>
+      </div>
+    </div>
+    <div class="result-grid three">
+      <div class="result-box red-hi">
+        <div class="r-val red" id="ue-expenses">$0</div>
+        <div class="r-lbl">Total Expenses</div>
+      </div>
+      <div class="result-box highlight">
+        <div class="r-val green" id="ue-profit">$0</div>
+        <div class="r-lbl">Net Profit / Mo</div>
+      </div>
+      <div class="result-box amber-hi">
+        <div class="r-val amber" id="ue-margin">0%</div>
+        <div class="r-lbl">Margin</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">👤 Per-Customer Economics</div>
+    <div class="result-grid">
+      <div class="result-box highlight">
+        <div class="r-val green" id="pc-rev-mo">$0</div>
+        <div class="r-lbl">Revenue / Mo</div>
+      </div>
+      <div class="result-box">
+        <div class="r-val green" id="pc-rev-yr">$0</div>
+        <div class="r-lbl">Revenue / Year</div>
+      </div>
+      <div class="result-box amber-hi">
+        <div class="r-val amber" id="pc-profit">$0</div>
+        <div class="r-lbl">Profit / Mo</div>
+      </div>
+      <div class="result-box blue-hi">
+        <div class="r-val blue" id="pc-time">~0 min</div>
+        <div class="r-lbl">Time / Mo</div>
+      </div>
+    </div>
+    <div class="info-box">
+      ⏱️ Assumes <strong>~15 min per visit</strong> (drive + scoop + notes). Adjust in Route Math tab for precision.
+    </div>
+    <div id="ue-verdict" class="verdict good">
+      <div class="verdict-title">📊 Business Health</div>
+      Run the calculator to see your verdict.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚖️ Break-Even Analysis</div>
+    <div class="info-box">
+      Break-even = the minimum customers to cover all fixed costs. Every customer above that is <strong>pure profit</strong>.
+    </div>
+    <div class="result-grid">
+      <div class="result-box red-hi">
+        <div class="r-val red" id="be-customers">0</div>
+        <div class="r-lbl">Break-Even Customers</div>
+      </div>
+      <div class="result-box highlight">
+        <div class="r-val green" id="be-surplus">0</div>
+        <div class="r-lbl">Profit-Generating Customers</div>
+      </div>
+    </div>
+    <div class="profit-meter">
+      <div class="profit-meter-fill" id="be-bar" style="width:0%"></div>
+      <div class="profit-meter-label" id="be-bar-label">Calculating...</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 1 — GROWTH SCENARIOS -->
+<!-- ══════════════════════════════════════════ -->
+<div class="pane" id="pane-1">
+
+  <div class="card">
+    <div class="card-title">🎯 Revenue at Every Milestone <span class="badge green">Based on your inputs</span></div>
+    <div class="milestones" id="milestone-row">
+      <!-- generated by JS -->
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 Full P&amp;L by Customer Count</div>
+    <div class="info-box">
+      Expenses scale up as you grow (more fuel, more supplies, maybe part-time labor). This table models that realistically.
+    </div>
+    <div style="overflow-x:auto;">
+      <table id="growth-table">
+        <thead>
+          <tr>
+            <th>Customers</th>
+            <th>MRR</th>
+            <th>Expenses</th>
+            <th>Profit</th>
+            <th>Margin</th>
+            <th>$/hr Earned</th>
+          </tr>
+        </thead>
+        <tbody id="growth-tbody">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏆 Your 25-Customer Goal</div>
+    <div class="scenario-grid">
+      <div class="scenario-card best">
+        <div class="s-title">🔥 Best Case</div>
+        <div class="s-val" id="sc25-best-mrr" style="color:var(--accent)">$0</div>
+        <div class="s-sub">MRR at 25 customers</div>
+        <hr class="divider">
+        <div class="s-val" id="sc25-best-profit" style="color:var(--accent);font-size:1.1rem">$0</div>
+        <div class="s-sub">Net profit/mo</div>
+      </div>
+      <div class="scenario-card base">
+        <div class="s-title">📊 Base Case</div>
+        <div class="s-val" id="sc25-base-mrr" style="color:var(--accent2)">$0</div>
+        <div class="s-sub">MRR at 25 customers</div>
+        <hr class="divider">
+        <div class="s-val" id="sc25-base-profit" style="color:var(--accent2);font-size:1.1rem">$0</div>
+        <div class="s-sub">Net profit/mo</div>
+      </div>
+      <div class="scenario-card worst">
+        <div class="s-title">😬 Worst Case</div>
+        <div class="s-val" id="sc25-worst-mrr" style="color:var(--red)">$0</div>
+        <div class="s-sub">MRR at 25 customers</div>
+        <hr class="divider">
+        <div class="s-val" id="sc25-worst-profit" style="color:var(--red);font-size:1.1rem">$0</div>
+        <div class="s-sub">Net profit/mo</div>
+      </div>
+    </div>
+    <div class="info-box" style="margin-top:12px">
+      <strong>Best:</strong> avg $65/customer, expenses scale slowly (Jamie helps, routes efficient)<br>
+      <strong>Base:</strong> avg $55/customer (your current), normal scaling<br>
+      <strong>Worst:</strong> avg $45/customer (heavy discounting), expenses run hot
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⏱️ Time to Goal: How Fast Can We Get to 25?</div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>New Customers / Month (avg)</label>
+        <input type="number" id="gs-monthly-adds" value="3" min="1" max="20" oninput="calcGrowthSpeed()">
+      </div>
+      <div class="input-group">
+        <label>Churn Rate (% leave/mo)</label>
+        <input type="number" id="gs-churn" value="5" min="0" max="50" oninput="calcGrowthSpeed()">
+      </div>
+    </div>
+    <div class="result-grid">
+      <div class="result-box highlight">
+        <div class="r-val green" id="gs-months">0 mo</div>
+        <div class="r-lbl">Months to 25</div>
+      </div>
+      <div class="result-box">
+        <div class="r-val amber" id="gs-target-date">—</div>
+        <div class="r-lbl">Target Month</div>
+      </div>
+      <div class="result-box blue-hi">
+        <div class="r-val blue" id="gs-net-adds">0</div>
+        <div class="r-lbl">Net Adds / Month</div>
+      </div>
+      <div class="result-box">
+        <div class="r-val" id="gs-aug-customers" style="color:var(--accent4)">0</div>
+        <div class="r-lbl">Customers by Aug 2026</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 2 — AD ROI -->
+<!-- ══════════════════════════════════════════ -->
+<div class="pane" id="pane-2">
+
+  <div class="card">
+    <div class="card-title">📣 Facebook Ad ROI Calculator</div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>Monthly Ad Budget</label>
+        <div class="prefix"><input type="number" id="ad-budget" value="200" min="1" oninput="calcAdROI()"></div>
+      </div>
+      <div class="input-group">
+        <label>Cost Per Click (avg)</label>
+        <div class="prefix"><input type="number" id="ad-cpc" value="1.50" min="0.01" step="0.10" oninput="calcAdROI()"></div>
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>Landing Page Conv. Rate</label>
+        <input type="number" id="ad-lp-cvr" value="5" min="0.1" max="100" step="0.5" oninput="calcAdROI()">
+        <label style="color:var(--muted);font-size:10px">% of clicks → lead</label>
+      </div>
+      <div class="input-group">
+        <label>Lead → Customer Rate</label>
+        <input type="number" id="ad-close-rate" value="30" min="1" max="100" oninput="calcAdROI()">
+        <label style="color:var(--muted);font-size:10px">% of leads you close</label>
+      </div>
+    </div>
+    <div class="result-grid two">
+      <div class="result-box">
+        <div class="r-val blue" id="ad-clicks">0</div>
+        <div class="r-lbl">Clicks / Month</div>
+      </div>
+      <div class="result-box">
+        <div class="r-val amber" id="ad-leads">0</div>
+        <div class="r-lbl">Leads / Month</div>
+      </div>
+      <div class="result-box highlight">
+        <div class="r-val green" id="ad-customers">0</div>
+        <div class="r-lbl">New Customers / Month</div>
+      </div>
+      <div class="result-box amber-hi">
+        <div class="r-val amber" id="ad-cac">$0</div>
+        <div class="r-lbl">Cost Per Customer (CAC)</div>
+      </div>
+    </div>
+    <div class="section-hdr">Return on Ad Spend</div>
+    <div class="result-grid">
+      <div class="result-box blue-hi">
+        <div class="r-val blue" id="ad-ltv">$0</div>
+        <div class="r-lbl">Customer LTV (12 mo)</div>
+      </div>
+      <div class="result-box highlight">
+        <div class="r-val green" id="ad-roas">0x</div>
+        <div class="r-lbl">12-Month ROAS</div>
+      </div>
+      <div class="result-box">
+        <div class="r-val green" id="ad-payback">0 mo</div>
+        <div class="r-lbl">CAC Payback Period</div>
+      </div>
+      <div class="result-box highlight">
+        <div class="r-val green" id="ad-net-return">$0</div>
+        <div class="r-lbl">Net 12-Mo Return</div>
+      </div>
+    </div>
+    <div id="ad-verdict" class="verdict good" style="margin-top:12px">
+      Adjust inputs to see your ad verdict.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 Budget Comparison Table</div>
+    <div class="info-box">
+      What happens at different ad budgets with your current conversion rates?
+    </div>
+    <div style="overflow-x:auto;">
+      <table id="ad-compare-table">
+        <thead>
+          <tr>
+            <th>Budget/Mo</th>
+            <th>Customers/Mo</th>
+            <th>CAC</th>
+            <th>12-Mo Revenue</th>
+            <th>ROAS</th>
+          </tr>
+        </thead>
+        <tbody id="ad-compare-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎯 Referral vs Ads: Head-to-Head</div>
+    <div class="info-box">
+      Referrals = <strong>$0 CAC</strong>. But they're not free — they need prompting, reward cash, and your time. Real comparison below.
+    </div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead><tr><th>Channel</th><th>CAC</th><th>Monthly Capacity</th><th>Quality</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>Referrals</td><td class="td-green">$10–20</td><td>1–3/mo</td><td class="td-green">High (trusted)</td><td class="td-green">Do first</td></tr>
+          <tr><td>Nextdoor</td><td class="td-green">$0</td><td>1–2/mo</td><td class="td-green">High (local)</td><td class="td-green">Always on</td></tr>
+          <tr><td>Events (Paw-ty)</td><td class="td-blue">$15–30</td><td>1–4/event</td><td class="td-blue">High (warm)</td><td class="td-blue">Monthly</td></tr>
+          <tr><td id="ads-row-cac" colspan="1">FB Ads</td><td class="td-amber" id="ads-cac-live">—</td><td class="td-amber" id="ads-cust-live">—</td><td class="td-amber">Medium</td><td class="td-amber" id="ads-verdict-live">—</td></tr>
+          <tr><td>Vet Clinics</td><td class="td-blue">$0</td><td>1–3/mo</td><td class="td-green">High (referred)</td><td class="td-blue">Long game</td></tr>
+          <tr><td>Commercial</td><td class="td-amber">Time-heavy</td><td>1–2/quarter</td><td class="td-blue">Medium</td><td class="td-amber">Worth pursuing</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 3 — ROUTE MATH -->
+<!-- ══════════════════════════════════════════ -->
+<div class="pane" id="pane-3">
+
+  <div class="card">
+    <div class="card-title">🚗 Route Efficiency Calculator</div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>Minutes per stop (on-site)</label>
+        <input type="number" id="rt-onsite" value="12" min="1" oninput="calcRoute()">
+      </div>
+      <div class="input-group">
+        <label>Avg drive between stops (min)</label>
+        <input type="number" id="rt-drive" value="8" min="1" oninput="calcRoute()">
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>Route days per week</label>
+        <input type="number" id="rt-days" value="5" min="1" max="7" oninput="calcRoute()">
+      </div>
+      <div class="input-group">
+        <label>Max hours/day you're comfortable</label>
+        <input type="number" id="rt-max-hours" value="4" min="1" max="12" oninput="calcRoute()">
+      </div>
+    </div>
+    <div class="input-row">
+      <div class="input-group">
+        <label>Miles per stop (avg)</label>
+        <input type="number" id="rt-miles" value="3" min="0.5" step="0.5" oninput="calcRoute()">
+      </div>
+      <div class="input-group">
+        <label>Fuel cost per mile</label>
+        <div class="prefix"><input type="number" id="rt-fuel-rate" value="0.21" min="0.01" step="0.01" oninput="calcRoute()"></div>
+      </div>
+    </div>
+
+    <div class="result-grid">
+      <div class="result-box highlight">
+        <div class="r-val green" id="rt-max-stops">0</div>
+        <div class="r-lbl">Max Stops/Week</div>
+      </div>
+      <div class="result-box">
+        <div class="r-val amber" id="rt-weekly-hours">0 hrs</div>
+        <div class="r-lbl">Weekly Field Hours</div>
+      </div>
+      <div class="result-box blue-hi">
+        <div class="r-val blue" id="rt-fuel-cost">$0</div>
+        <div class="r-lbl">Fuel Cost / Month</div>
+      </div>
+      <div class="result-box">
+        <div class="r-val green" id="rt-hourly-rate">$0/hr</div>
+        <div class="r-lbl">Effective Hourly Rate</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📍 Route Capacity by Customer Count</div>
+    <div class="info-box">
+      Weekly customers ≠ total customers. Most customers are biweekly, meaning you service them 2x/month. This table shows how many total accounts you can handle.
+    </div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Total Accounts</th>
+            <th>Weekly Stops</th>
+            <th>Biweekly Stops</th>
+            <th>Hrs/Week</th>
+            <th>Fuel/Mo</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="route-capacity-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🧠 Route Intelligence Tips</div>
+    <div class="insight">
+      <div class="icon">📍</div>
+      <div class="text"><strong>Cluster within zip codes.</strong> Each mile you save = $0.21 back in your pocket + 3-4 min of time. Target: 3 stops per zip before moving on.</div>
+    </div>
+    <div class="insight">
+      <div class="icon">📅</div>
+      <div class="text"><strong>Day-of-week optimization.</strong> Mon/Tue = North County. Wed = South City. Thu/Fri = West County. Never criss-cross the map in one day.</div>
+    </div>
+    <div class="insight">
+      <div class="icon">📦</div>
+      <div class="text"><strong>Batch at 15 customers.</strong> That's when you hit the route wall. Solution: dedicated Jamie day, zone split, or biweekly-only policy for outliers.</div>
+    </div>
+    <div class="insight">
+      <div class="icon">💰</div>
+      <div class="text"><strong>Outliers cost more than they earn.</strong> A customer 20 min from anyone else costs ~$8/visit in extra fuel + drive time. Price them at $75+/mo or politely redirect.</div>
+    </div>
+    <div class="insight">
+      <div class="icon">🗓️</div>
+      <div class="text"><strong>Offer two specific days, not open-ended.</strong> "I service your area Mondays and Thursdays — which works?" closes faster and builds route density.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- TAB 4 — INSIGHTS -->
+<!-- ══════════════════════════════════════════ -->
+<div class="pane" id="pane-4">
+
+  <div class="card">
+    <div class="card-title">💡 Key Business Insights <span class="badge blue">Auto-Generated</span></div>
+    <div id="insights-container">
+      <!-- populated by JS -->
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🎯 Pricing Power Analysis</div>
+    <div class="info-box">
+      You're currently at ~$55/customer avg. Here's what each $5 price increase is worth.
+    </div>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead><tr><th>Avg Price</th><th>MRR @ 10</th><th>MRR @ 20</th><th>MRR @ 25</th><th>Annual @ 25</th></tr></thead>
+        <tbody id="pricing-power-tbody"></tbody>
+      </table>
+    </div>
+    <div class="info-box" style="margin-top:12px">
+      💡 <strong>Moving from $55 → $65 avg</strong> (upsell multi-dog, premium neighborhoods) adds <strong id="pricing-upside">$0</strong>/year in revenue at 25 customers. No new customers needed.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏆 What Moves the Needle Most?</div>
+    <div class="insight">
+      <div class="icon">1️⃣</div>
+      <div class="text"><strong>Referrals first, always.</strong> CAC ~$15. Conversion rate ~60% (they already trust you). Fastest path to next 3-5 customers with zero ad spend.</div>
+    </div>
+    <div class="insight">
+      <div class="icon">2️⃣</div>
+      <div class="text"><strong>Google reviews compound for free.</strong> Going from 6 → 20 reviews could triple organic monthly signups. That's $0 CAC, forever.</div>
+    </div>
+    <div class="insight">
+      <div class="icon">3️⃣</div>
+      <div class="text"><strong>Upsell before acquiring.</strong> One $45/mo biweekly customer upgrading to $70/mo weekly = same revenue as a whole new customer. No new route stops.</div>
+    </div>
+    <div class="insight">
+      <div class="icon">4️⃣</div>
+      <div class="text"><strong>Route density drives margin.</strong> Each stop added within an existing zone costs ~$2 in fuel vs ~$8 for a new zone. Fill your zones before opening new ones.</div>
+    </div>
+    <div class="insight">
+      <div class="icon">5️⃣</div>
+      <div class="text"><strong>Churn kills compounding.</strong> Losing 1 customer/month = 12 customers/year you have to replace just to stay flat. Winning on retention &gt; acquisition.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📊 Your Real Hourly Rate Right Now</div>
+    <div class="info-box">
+      Most solo operators don't know their true hourly rate (including admin, sales, and route time). Here's yours:
+    </div>
+    <div id="hourly-breakdown">
+      <!-- populated by JS -->
+    </div>
+  </div>
+</div>
+
+<script>
+// ── HELPERS ──────────────────────────────────────────────────────────────
+const $  = id => document.getElementById(id);
+const fmt = (n, d=0) => '$' + n.toFixed(d).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const fmtN = (n, d=0) => n.toFixed(d).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+
+// ── TAB SWITCHER ──────────────────────────────────────────────────────────
+function showTab(idx) {
+  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', i===idx));
+  document.querySelectorAll('.pane').forEach((p,i) => p.classList.toggle('active', i===idx));
+}
+
+// ── MAIN CALC ─────────────────────────────────────────────────────────────
+function calcAll() {
+  const customers = parseFloat($('ue-customers').value) || 0;
+  const avgRev    = parseFloat($('ue-avg-rev').value)   || 0;
+  const weekly    = parseFloat($('ue-weekly').value)    || 0;
+  const biweekly  = parseFloat($('ue-biweekly').value)  || 0;
+
+  const supplies  = parseFloat($('exp-supplies').value)  || 0;
+  const fuel      = parseFloat($('exp-fuel').value)      || 0;
+  const mktg      = parseFloat($('exp-marketing').value) || 0;
+  const software  = parseFloat($('exp-software').value)  || 0;
+  const insurance = parseFloat($('exp-insurance').value) || 0;
+  const other     = parseFloat($('exp-other').value)     || 0;
+
+  const mrr = customers * avgRev;
+  const arr = mrr * 12;
+  const totalExp = supplies + fuel + mktg + software + insurance + other;
+  const profit = mrr - totalExp;
+  const margin = mrr > 0 ? (profit / mrr * 100) : 0;
+
+  // per customer
+  const pcRevMo = avgRev;
+  const pcRevYr = avgRev * 12;
+  const pcProfit = mrr > 0 ? profit / customers : 0;
+  const pcTime = 30; // ~30 min/mo for biweekly
+
+  // break even
+  const beCustomers = avgRev > 0 ? Math.ceil(totalExp / avgRev) : 0;
+  const beSurplus = Math.max(0, customers - beCustomers);
+  const beBarPct = beCustomers > 0 ? clamp((customers / beCustomers) * 100, 0, 100) : 0;
+
+  // update DOM
+  $('ue-mrr').textContent     = fmt(mrr);
+  $('ue-arr').textContent     = fmt(arr);
+  $('ue-expenses').textContent= fmt(totalExp);
+  $('ue-profit').textContent  = fmt(profit);
+  $('ue-margin').textContent  = margin.toFixed(0) + '%';
+
+  $('pc-rev-mo').textContent  = fmt(pcRevMo);
+  $('pc-rev-yr').textContent  = fmt(pcRevYr);
+  $('pc-profit').textContent  = fmt(pcProfit);
+  $('pc-time').textContent    = '~30 min';
+
+  $('be-customers').textContent = beCustomers;
+  $('be-surplus').textContent   = beSurplus;
+  $('be-bar').style.width       = beBarPct + '%';
+  $('be-bar-label').textContent = customers >= beCustomers ? '✅ Profitable' : `Need ${beCustomers - customers} more`;
+
+  // verdict
+  const vEl = $('ue-verdict');
+  if (margin >= 55) {
+    vEl.className = 'verdict good';
+    vEl.innerHTML = `<div class="verdict-title">💰 Healthy Margins</div>You're running at ${margin.toFixed(0)}% margin — that's solid for a solo service business. Focus on growing customer count; your unit economics are working.`;
+  } else if (margin >= 30) {
+    vEl.className = 'verdict warn';
+    vEl.innerHTML = `<div class="verdict-title">⚠️ Margins Need Work</div>At ${margin.toFixed(0)}%, you're profitable but thin. Look at upselling existing customers and tightening fuel/supply costs before scaling hard with ads.`;
+  } else if (margin > 0) {
+    vEl.className = 'verdict bad';
+    vEl.innerHTML = `<div class="verdict-title">🚨 Margin Warning</div>Only ${margin.toFixed(0)}% margin means scaling right now amplifies a problem, not a strength. Audit your biggest expense line or raise prices $5–10/customer before growing.`;
+  } else {
+    vEl.className = 'verdict bad';
+    vEl.innerHTML = `<div class="verdict-title">🔴 Not Yet Profitable</div>Expenses exceed revenue. This is normal at low customer counts — your break-even is ${beCustomers} customers. Get there first, then scale.`;
+  }
+
+  // summary bar
+  $('sum-mrr').textContent    = fmt(mrr);
+  $('sum-profit').textContent = fmt(profit);
+  $('sum-margin').textContent = margin.toFixed(0) + '%';
+  $('sum-cust').textContent   = customers;
+  $('sum-profit').className   = 'val ' + (profit >= 0 ? 'amber' : 'red');
+
+  // growth scenarios
+  calcGrowthTable(avgRev, totalExp, customers);
+  calcGrowthSpeed();
+  // insights
+  calcInsights(mrr, profit, margin, customers, avgRev, totalExp, pcRevMo, pcRevYr, beCustomers, beSurplus);
+  // pricing power table
+  buildPricingTable(customers);
+  // update route hourly
+  calcRoute();
+}
+
+// ── GROWTH TABLE ──────────────────────────────────────────────────────────
+function scaledExpenses(baseExp, n) {
+  // expenses scale roughly: base + $8/customer (supplies, fuel, etc.)
+  return baseExp + (n * 8);
+}
+
+function calcGrowthTable(avgRev, baseExp, currentN) {
+  const milestones = [currentN, 12, 15, 18, 20, 22, 25, 30];
+  const unique = [...new Set(milestones.map(m => Math.max(m, 1)))].sort((a,b)=>a-b);
+
+  // milestone pills
+  const mr = $('milestone-row');
+  mr.innerHTML = unique.map(n => {
+    const mrr = n * avgRev;
+    const exp = scaledExpenses(baseExp, n);
+    const p = mrr - exp;
+    const isCurrent = n === currentN;
+    const isTarget  = n === 25;
+    let cls = isCurrent ? 'milestone current' : (isTarget ? 'milestone target' : 'milestone');
+    return `<div class="${cls}">
+      <div class="m-num">${n}</div>
+      <div class="m-lbl" style="font-size:9px;color:var(--muted)">customers</div>
+      <div style="font-size:12px;font-weight:800;color:${p>=0?'var(--accent)':'var(--red)'};margin-top:4px">${fmt(mrr)}</div>
+      <div style="font-size:10px;color:var(--muted)">MRR</div>
+    </div>`;
+  }).join('');
+
+  // growth P&L table
+  const rows = [8,10,12,15,18,20,22,25,28,30];
+  const tbody = $('growth-tbody');
+  tbody.innerHTML = '';
+  const minutesPerStop = parseFloat($('rt-onsite').value)||12;
+  const driveMin = parseFloat($('rt-drive').value)||8;
+  rows.forEach(n => {
+    const mrr = n * avgRev;
+    const exp = scaledExpenses(baseExp, n);
+    const p = mrr - exp;
+    const margin = mrr > 0 ? (p/mrr*100) : 0;
+    // estimate weekly hours: mix 40% weekly, 60% biweekly
+    const weeklyStops = Math.round(n * 0.4);
+    const biweeklyStops = Math.round(n * 0.6);
+    const totalMonthlyStops = weeklyStops * 4 + biweeklyStops * 2;
+    const totalMonthlyMin = totalMonthlyStops * (minutesPerStop + driveMin);
+    const hrPerMonth = totalMonthlyMin / 60;
+    const hrlyRate = hrPerMonth > 0 ? p / hrPerMonth : 0;
+    const isCurrent = n === currentN;
+    tbody.innerHTML += `<tr${isCurrent?' style="background:rgba(245,158,11,.08)"':''}>
+      <td style="${isCurrent?'color:var(--accent2);font-weight:900':''}">${n}${isCurrent?' ← now':''}</td>
+      <td class="td-green">${fmt(mrr)}</td>
+      <td class="td-red">${fmt(exp)}</td>
+      <td class="${p>=0?'td-green':'td-red'}">${fmt(p)}</td>
+      <td class="${margin>=50?'td-green':margin>=30?'td-amber':'td-red'}">${margin.toFixed(0)}%</td>
+      <td class="${hrlyRate>=20?'td-green':'td-amber'}">${fmt(hrlyRate)}</td>
+    </tr>`;
+  });
+
+  // 25-customer scenarios
+  const baseAvgRev = avgRev;
+  const base25 = {mrr: 25 * baseAvgRev, exp: scaledExpenses(baseExp, 25)};
+  const best25 = {mrr: 25 * (baseAvgRev + 10), exp: scaledExpenses(baseExp, 25) * 0.9};
+  const worst25= {mrr: 25 * (baseAvgRev - 10), exp: scaledExpenses(baseExp, 25) * 1.1};
+  $('sc25-best-mrr').textContent  = fmt(best25.mrr);
+  $('sc25-best-profit').textContent= fmt(best25.mrr - best25.exp);
+  $('sc25-base-mrr').textContent  = fmt(base25.mrr);
+  $('sc25-base-profit').textContent= fmt(base25.mrr - base25.exp);
+  $('sc25-worst-mrr').textContent = fmt(worst25.mrr);
+  $('sc25-worst-profit').textContent=fmt(worst25.mrr - worst25.exp);
+}
+
+function calcGrowthSpeed() {
+  const currentN = parseFloat($('ue-customers').value) || 10;
+  const adds = parseFloat($('gs-monthly-adds').value) || 3;
+  const churnPct = parseFloat($('gs-churn').value) || 5;
+  const churnRate = churnPct / 100;
+  const target = 25;
+
+  let n = currentN;
+  let months = 0;
+  while (n < target && months < 120) {
+    n = n + adds - (n * churnRate);
+    months++;
+  }
+
+  // August 2026 = 5 months from March 28, 2026
+  let nAug = currentN;
+  for (let m=0; m<5; m++) { nAug = nAug + adds - (nAug * churnRate); }
+
+  const targetDate = new Date(2026, 2, 28); // March 28
+  targetDate.setMonth(targetDate.getMonth() + months);
+  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const dateStr = months < 120 ? `${monthNames[targetDate.getMonth()]} ${targetDate.getFullYear()}` : '12+ months';
+
+  const netAdds = adds - (currentN * churnRate);
+
+  $('gs-months').textContent       = months < 120 ? months + ' mo' : '12+ mo';
+  $('gs-target-date').textContent  = dateStr;
+  $('gs-net-adds').textContent     = netAdds.toFixed(1);
+  $('gs-aug-customers').textContent= Math.round(nAug);
+}
+
+// ── AD ROI ──────────────────────────────────────────────────────────────
+function calcAdROI() {
+  const budget    = parseFloat($('ad-budget').value) || 200;
+  const cpc       = parseFloat($('ad-cpc').value)    || 1.5;
+  const lpCvr     = parseFloat($('ad-lp-cvr').value) / 100 || 0.05;
+  const closeRate = parseFloat($('ad-close-rate').value) / 100 || 0.3;
+  const avgRev    = parseFloat($('ue-avg-rev').value) || 55;
+
+  const clicks    = budget / cpc;
+  const leads     = clicks * lpCvr;
+  const customers = leads * closeRate;
+  const cac       = customers > 0 ? budget / customers : 0;
+  const ltv12     = avgRev * 12;
+  const roas      = cac > 0 ? ltv12 / cac : 0;
+  const payback   = avgRev > 0 ? cac / avgRev : 0;
+  const netReturn = customers * ltv12 - budget;
+
+  $('ad-clicks').textContent   = Math.round(clicks);
+  $('ad-leads').textContent    = leads.toFixed(1);
+  $('ad-customers').textContent= customers.toFixed(1);
+  $('ad-cac').textContent      = fmt(cac);
+  $('ad-ltv').textContent      = fmt(ltv12);
+  $('ad-roas').textContent     = roas.toFixed(1) + 'x';
+  $('ad-payback').textContent  = payback.toFixed(1) + ' mo';
+  $('ad-net-return').textContent = fmt(netReturn);
+
+  const vEl = $('ad-verdict');
+  if (roas >= 5 && cac < avgRev * 3) {
+    vEl.className = 'verdict good';
+    vEl.innerHTML = `<div class="verdict-title">💰 Strong Ad ROI</div>${roas.toFixed(1)}x ROAS means every dollar in returns ${fmt(roas)} over 12 months. CAC payback in ${payback.toFixed(1)} months. <strong>Run these ads.</strong>`;
+  } else if (roas >= 2) {
+    vEl.className = 'verdict warn';
+    vEl.innerHTML = `<div class="verdict-title">⚠️ Marginal ROI</div>${roas.toFixed(1)}x ROAS — profitable but not amazing. Improve your landing page CVR (currently ${(lpCvr*100).toFixed(0)}%) or close rate (${(closeRate*100).toFixed(0)}%) before scaling budget.`;
+  } else {
+    vEl.className = 'verdict bad';
+    vEl.innerHTML = `<div class="verdict-title">🚨 Losing Money on Ads</div>At ${roas.toFixed(1)}x ROAS, you'll lose money before customers pay back. Lower CPC target or dramatically improve your close rate first.`;
+  }
+
+  // update comparison table
+  const budgets = [100, 200, 300, 500, 750, 1000];
+  const tbody = $('ad-compare-tbody');
+  tbody.innerHTML = '';
+  budgets.forEach(b => {
+    const c = Math.round((b/cpc) * lpCvr * closeRate * 10) / 10;
+    const ca = c > 0 ? b/c : 0;
+    const rev12 = c * ltv12;
+    const r = ca > 0 ? ltv12/ca : 0;
+    const isCurrent = b === budget;
+    tbody.innerHTML += `<tr${isCurrent?' style="background:rgba(245,158,11,.1)"':''}>
+      <td style="${isCurrent?'color:var(--accent2);font-weight:900':''}">${fmt(b)}${isCurrent?' ←':''}</td>
+      <td class="td-green">${c.toFixed(1)}</td>
+      <td class="${ca<avgRev*3?'td-green':'td-amber'}">${fmt(ca)}</td>
+      <td class="td-green">${fmt(rev12)}</td>
+      <td class="${r>=5?'td-green':r>=2?'td-amber':'td-red'}">${r.toFixed(1)}x</td>
+    </tr>`;
+  });
+
+  // channel comparison row update
+  const c = customers;
+  $('ad-cac-live').textContent  = cac > 0 ? fmt(cac) : '—';
+  $('ads-cust-live').textContent= c.toFixed(1) + '/mo';
+  $('ads-verdict-live').textContent = roas >= 5 ? 'Run it ✅' : roas >= 2 ? 'Watch it ⚠️' : 'Not yet 🚨';
+}
+
+// ── ROUTE MATH ──────────────────────────────────────────────────────────
+function calcRoute() {
+  const onsite   = parseFloat($('rt-onsite').value)    || 12;
+  const drive    = parseFloat($('rt-drive').value)     || 8;
+  const days     = parseFloat($('rt-days').value)      || 5;
+  const maxHrs   = parseFloat($('rt-max-hours').value) || 4;
+  const miles    = parseFloat($('rt-miles').value)     || 3;
+  const fuelRate = parseFloat($('rt-fuel-rate').value) || 0.21;
+  const customers= parseFloat($('ue-customers').value) || 10;
+  const avgRev   = parseFloat($('ue-avg-rev').value)   || 55;
+  const totalExp = (parseFloat($('exp-supplies').value)||0) + (parseFloat($('exp-fuel').value)||0) +
+    (parseFloat($('exp-marketing').value)||0) + (parseFloat($('exp-software').value)||0) +
+    (parseFloat($('exp-insurance').value)||0) + (parseFloat($('exp-other').value)||0);
+
+  const minPerStop  = onsite + drive;
+  const stopsPerDay = Math.floor((maxHrs * 60) / minPerStop);
+  const maxStopsWk  = stopsPerDay * days;
+  const weeklyHrs   = (maxStopsWk * minPerStop) / 60;
+  const monthlyFuel = maxStopsWk * miles * fuelRate * 4;
+
+  const mrr = customers * avgRev;
+  const profit = mrr - totalExp;
+  const weeklyHrsActual = (customers * 0.4 * 4 + customers * 0.6 * 2) * minPerStop / 60 / 4;
+  const hrlyRate = weeklyHrsActual > 0 ? profit / (weeklyHrsActual * 4) : 0;
+
+  $('rt-max-stops').textContent  = maxStopsWk;
+  $('rt-weekly-hours').textContent = weeklyHrs.toFixed(1) + ' hrs';
+  $('rt-fuel-cost').textContent  = fmt(monthlyFuel);
+  $('rt-hourly-rate').textContent= fmt(hrlyRate) + '/hr';
+
+  // capacity table
+  const counts = [8, 10, 12, 15, 18, 20, 22, 25, 28, 30];
+  const tbody = $('route-capacity-tbody');
+  tbody.innerHTML = '';
+  counts.forEach(n => {
+    const wk = Math.round(n * 0.4);
+    const bw = Math.round(n * 0.6);
+    const totalWeeklyStops = wk + Math.ceil(bw / 2);
+    const hrs = (totalWeeklyStops * minPerStop) / 60;
+    const fuel = (totalWeeklyStops * miles * fuelRate * 4);
+    const overCap = totalWeeklyStops > maxStopsWk;
+    const isCurrent = n === customers;
+    tbody.innerHTML += `<tr${isCurrent?' style="background:rgba(245,158,11,.1)"':''}>
+      <td style="${isCurrent?'color:var(--accent2);font-weight:900':''}">${n}${isCurrent?' ← now':''}</td>
+      <td>${wk}/wk</td>
+      <td>${bw} (${Math.ceil(bw/2)}/wk)</td>
+      <td class="${hrs>maxHrs*days*0.8?'td-red':hrs>maxHrs*days*0.6?'td-amber':'td-green'}">${hrs.toFixed(1)}</td>
+      <td>${fmt(fuel)}</td>
+      <td class="${overCap?'td-red':'td-green'}">${overCap?'⚠️ Over cap':'✅ OK'}</td>
+    </tr>`;
+  });
+
+  // update hourly breakdown in insights tab
+  buildHourlyBreakdown(customers, avgRev, totalExp, weeklyHrsActual);
+}
+
+function buildHourlyBreakdown(customers, avgRev, totalExp, fieldHrsPerWeek) {
+  const mrr = customers * avgRev;
+  const profit = mrr - totalExp;
+  const adminHrs = 3; // weekly estimate
+  const salesHrs = 2;
+  const totalHrsWk = fieldHrsPerWeek + adminHrs + salesHrs;
+  const totalHrsMo = totalHrsWk * 4;
+  const trueHrlyRate = totalHrsMo > 0 ? profit / totalHrsMo : 0;
+
+  const el = $('hourly-breakdown');
+  el.innerHTML = `
+    <div style="overflow-x:auto;">
+      <table>
+        <thead><tr><th>Activity</th><th>Hours/Week</th><th>Hours/Month</th></tr></thead>
+        <tbody>
+          <tr><td>Route work (field)</td><td class="td-amber">${fieldHrsPerWeek.toFixed(1)}</td><td>${(fieldHrsPerWeek*4).toFixed(1)}</td></tr>
+          <tr><td>Admin, invoicing, scheduling</td><td class="td-blue">~3</td><td>~12</td></tr>
+          <tr><td>Sales / outreach / events</td><td class="td-blue">~2</td><td>~8</td></tr>
+          <tr style="background:var(--surface3)"><td><strong>Total</strong></td><td class="td-amber"><strong>${totalHrsWk.toFixed(1)}</strong></td><td><strong>${totalHrsMo.toFixed(1)}</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="result-grid" style="margin-top:12px">
+      <div class="result-box${trueHrlyRate>=30?' highlight':''}">
+        <div class="r-val ${trueHrlyRate>=30?'green':trueHrlyRate>=15?'amber':'red'}">${fmt(trueHrlyRate)}</div>
+        <div class="r-lbl">True Hourly Rate (incl. all time)</div>
+      </div>
+      <div class="result-box">
+        <div class="r-val green">${fmt(mrr > 0 ? mrr / (fieldHrsPerWeek*4) : 0)}</div>
+        <div class="r-lbl">Revenue Hourly Rate (field only)</div>
+      </div>
+    </div>
+    <div class="info-box" style="margin-top:10px">
+      ${trueHrlyRate >= 30 ? '✅ <strong>Solid hourly rate.</strong> You\'re earning more than most trades. The key is scaling customers without proportionally scaling your time.' 
+        : trueHrlyRate >= 15 ? '⚠️ <strong>Getting there.</strong> Each new customer improves your hourly rate since fixed costs stay the same. Add 5 customers and this number jumps significantly.'
+        : '🚨 <strong>Under $15/hr true rate.</strong> This is often the case at low customer counts — fixed expenses are too high relative to revenue. Break-even is your priority.'}
+    </div>
+  `;
+}
+
+// ── INSIGHTS ──────────────────────────────────────────────────────────────
+function calcInsights(mrr, profit, margin, customers, avgRev, expenses, pcRevMo, pcRevYr, beCustomers, beSurplus) {
+  const insights = [];
+
+  if (margin < 40) {
+    insights.push({icon:'🚨', text:`<strong>Margin is thin at ${margin.toFixed(0)}%.</strong> Average service businesses should hit 50-65%. Before adding more customers, identify which expense line to cut. Fuel and supplies are the levers.`});
+  } else {
+    insights.push({icon:'💰', text:`<strong>Solid ${margin.toFixed(0)}% margin.</strong> You're in good shape unit-economics-wise. Scaling customers will amplify this.`});
+  }
+
+  if (customers < beCustomers) {
+    insights.push({icon:'⚠️', text:`<strong>Not yet at break-even.</strong> You need ${beCustomers} customers to cover fixed costs — you're at ${customers}. Focus 100% on acquisition before optimizing other things.`});
+  } else {
+    insights.push({icon:'✅', text:`<strong>Above break-even by ${beSurplus} customers.</strong> Every new customer from here is pure profit margin expansion. Great position to scale from.`});
+  }
+
+  const priceImpact25 = (avgRev + 10) * 25 * 12 - avgRev * 25 * 12;
+  insights.push({icon:'💡', text:`<strong>Pricing lever is huge.</strong> Raising average customer value by just $10/month (biweekly→weekly, multi-dog rate) = <strong>${fmt(priceImpact25)}/year extra revenue</strong> at 25 customers. No new customers needed.`});
+
+  const churnCost = avgRev * 12; // lifetime lost per churned customer
+  insights.push({icon:'🔄', text:`<strong>One lost customer = ${fmt(churnCost)} in lifetime revenue.</strong> At ${customers} customers, even 1 per month churn = 12 customers/year to replace (just to stay flat). Retention > acquisition.`});
+
+  const nextMilestone = [12, 15, 18, 20, 25].find(n => n > customers) || 30;
+  const mrrAtNext = nextMilestone * avgRev;
+  const profitAtNext = mrrAtNext - (expenses + nextMilestone * 8);
+  insights.push({icon:'🎯', text:`<strong>Next milestone: ${nextMilestone} customers.</strong> That unlocks ${fmt(mrrAtNext)}/month MRR and ~${fmt(profitAtNext)}/month net profit. You're ${nextMilestone - customers} customers away.`});
+
+  const el = $('insights-container');
+  el.innerHTML = insights.map(i => `
+    <div class="insight">
+      <div class="icon">${i.icon}</div>
+      <div class="text">${i.text}</div>
+    </div>`).join('');
+}
+
+// ── PRICING POWER TABLE ──────────────────────────────────────────────────
+function buildPricingTable(currentN) {
+  const prices = [40, 45, 50, 55, 60, 65, 70, 75, 80];
+  const tbody = $('pricing-power-tbody');
+  const totalExp = (parseFloat($('exp-supplies').value)||0)+(parseFloat($('exp-fuel').value)||0)+
+    (parseFloat($('exp-marketing').value)||0)+(parseFloat($('exp-software').value)||0)+
+    (parseFloat($('exp-insurance').value)||0)+(parseFloat($('exp-other').value)||0);
+  tbody.innerHTML = '';
+  const avgRev = parseFloat($('ue-avg-rev').value)||55;
+  prices.forEach(p => {
+    const mrr10 = 10*p, mrr20=20*p, mrr25=25*p;
+    const isCurrent = p===avgRev;
+    tbody.innerHTML += `<tr${isCurrent?' style="background:rgba(245,158,11,.1)"':''}>
+      <td style="${isCurrent?'color:var(--accent2);font-weight:900':''}">$${p}${isCurrent?' ← now':''}</td>
+      <td class="${mrr10-totalExp>0?'td-green':'td-red'}">${fmt(mrr10)}</td>
+      <td class="td-green">${fmt(mrr20)}</td>
+      <td class="td-green">${fmt(mrr25)}</td>
+      <td class="td-green">${fmt(mrr25*12)}</td>
+    </tr>`;
+  });
+  // pricing upside
+  const upside = (avgRev+10)*25*12 - avgRev*25*12;
+  $('pricing-upside').textContent = fmt(upside);
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────
+calcAll();
+calcAdROI();
+calcRoute();
+</script>
+</body>
+</html>
