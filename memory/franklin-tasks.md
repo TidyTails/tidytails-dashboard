@@ -2,6 +2,31 @@
 
 ---
 
+### Saturday 6:07 AM — Paw-ty Day Zero Morning Launch Command (Hourly Task)
+- **6:07 AM** 🐾 Built the Paw-ty Day Zero morning launch command center — the missing "you just woke up, here's exactly what to do" guide for the 4 hours before TJ walks into Crestwood Vet
+  - **File:** `dashboard/pawty-day-zero.html` — mobile-first countdown command center
+  - **Why this task:** It's Paw-ty morning. Every pre-event tool is built (pocket guide, lead tracker, flyer, follow-up engine, onboarding kit, scripts, battle map, etc.). The gap: no single guide for the 6 AM → 10 AM launch window telling TJ *exactly* what to do *right now*. Without a sequenced morning guide, TJ opens 7 tabs, gets overwhelmed, forgets to print flyers, leaves without charging his phone, or skips the critical referral texts. One page fixes all of that.
+  - **What's built:**
+    - **Live countdown timer** to 10:00 AM event start (hours, minutes, seconds — ticking in real time)
+    - **Overall progress bar** tracking all 15 morning tasks with localStorage persistence
+    - **Win targets row:** 3-5 leads, 1-2 signed up on the spot, 4-5 flyers to vendor neighbors
+    - **4-Phase Timeline:**
+      - NOW–7 AM: Print flyers (with direct link), charge phone, bookmark pocket guide
+      - 7–8 AM: Send referral texts to 10 customers (direct link to Live Amplifier), post pre-event FB, pack bag
+      - 8–9 AM: Review 3 key scripts, open lead tracker on phone, map the address, set personal goal
+      - 9:30 AM: Leave, parking lot selfie for IG story, introduce to other vendor tables
+    - **Pack list** with 8 items and check-off dots (localStorage persisted)
+    - **3 Scripts to Know Cold:** Opener (walking up to dog owner), Close (after interest), Price Objection ($2.30/day reframe) — all with copy buttons
+    - **4 Quick Tools:** Pocket Guide, Lead Tracker, Onboarding Kit, Follow-Up Engine — all links to the exact right tool
+    - **Key Info Card:** Address, time, phone number, offer, audience territory notes
+    - **48-Hour Window reminder** at bottom with links to Follow-Up Engine + Sunday Power Hour
+    - **Sticky status ticker** at bottom with live countdown
+  - **Dashboard:** Added as #1 quick link — pulsing red, biggest font, most visible link in the header
+  - **Why this is better than existing tools:** The existing tools are deep reference documents (5+ tabs each). This is a *sequenced workflow* with checkboxes, time buckets, and links to the right tools exactly when they're needed. The target user is TJ at 6 AM still groggy with 4 hours to go — this removes every friction between him and a productive morning.
+  - Committed + pushed ✅
+
+---
+
 ### Saturday 5:04 AM — Next Events Command Center (Hourly Task)
 - **5:04 AM** 🎪 Built full prep kits for the two biggest upcoming events — Arch Bark (Apr 18) and Bark in the Park (May 16)
   - **File:** `dashboard/next-events-command-center.html` — 2-event hub with dedicated tabs per event
