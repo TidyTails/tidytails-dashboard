@@ -210,6 +210,27 @@
 
 ---
 
+---
+
+### Saturday 8:06 AM — Paw-ty Day Morning Briefing (Hourly Task)
+- **8:06 AM** 🎪 Generated full Morning Briefing for Paw-ty Day — the most actionable briefing of the campaign
+  - **File:** `dashboard/docs/MORNING_BRIEFING_2026-03-28.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-03-28.pdf` (964KB ✅)
+  - **Why this task:** It's 8 AM on Paw-ty Day. TJ wakes up to this briefing with a clear countdown to 9:30 AM departure. Every other tool is built — the briefing synthesizes everything into one "open this first" document.
+  - **Briefing covers:**
+    - **Paw-ty Execution:** Minute-by-minute morning timeline (8 AM print flyers → 9:30 AM leave), pack list, win targets (3 leads minimum / 1-2 sign-ups on the spot / 5+ leads ideal), opener script, all tool links
+    - **Tidy Tails status:** 10 customers, 15 to goal. Priority ranking: Paw-ty → Sunday Power Hour → North County → Vet Blitz → Reviews
+    - **Week of March 30 calendar:** 6-day grid from Paw-ty through Arch Bark (Apr 18, 21 days away)
+    - **Sheds:** Tariff deadline April 2, weekend Marketplace drop, ShedHub kit, Millsap call Monday
+    - **Systems:** All green — 22 pages indexed, GBP 95%, SSL valid
+    - **News + Ideas:** Realtor pre-listing clean-up pitch (Idea #1), Paw-ty Kit licensing (Idea #2)
+    - **Franklin's task list:** Realtor Partnership Kit, Event ROI Calculator, Arch Bark registration reminder, Bark in the Park HSMO registration
+    - **Mindset section:** Lead with dog's name, $2.30/day reframe, every "maybe" is Sunday's win, enjoy the energy
+    - **Quick access tool panel:** 15 tool links for phone bookmark before departure
+  - **Validated:** 964KB, starts %PDF-, multi-page ✅
+  - Committed + pushed ✅
+
+---
+
 ## March 26, 2026 (Thursday) — Summary
 
 ### Completed Tasks (12 total)
