@@ -743,3 +743,29 @@
   - **Dashboard:** Added "📊 EVENT ROI TRACKER" purple quick link in header + new card at top of Events section grid
   - **Key insight:** Today's Paw-ty cost ~$165 in time ($0 booth + $15 materials + 5h × $30). Break-even = 1 customer. If TJ gets 2-3 converts (base case), it's a 7-13x event. Log the results tonight to start building the benchmark.
   - Committed + pushed ✅
+
+---
+
+### Saturday 6:07 PM — North County Print Kit (Hourly Task)
+- **6:07 PM** 🖨️ Built print-ready door hanger + business card kit for Monday's North County conquest campaign
+  - **File:** `dashboard/north-county-print-kit.html` — full print-ready HTML with screen dashboard + print CSS
+  - **Why this task:** It's 6 PM Saturday post-Paw-ty. North County campaign launches Monday. Digital assets exist (5 FB posts, 2 Nextdoor templates, battle plan, vet blitz kit) but the physical print materials were MISSING — the conquest plan explicitly called for 50 door hangers as part of the attack. Without print-ready materials, TJ/Jamie would have to build it from scratch Monday morning or skip physical outreach entirely.
+  - **What's built:**
+    - **Hanger A — Standard** (front + back, 2-up per 8.5×11 sheet, print 25 = 50 hangers):
+      - Front: Dark green, "Your Yard Deserves Better" headline, FREE first cleanup badge, 5 USPs (flat $70/mo, no contracts, 1-5 dogs same price, text notifications, local), phone + web CTA
+      - Back: White, Why Choose Us (5 checkmarks with competitor comparison), pricing table (weekly/monthly/biweekly/one-time), 4-step process, service area footer
+    - **Hanger B — Orphaned Customer variant** (print 10-15 sheets = 20-30 hangers):
+      - Front: Deep purple/indigo, "Did Your Poop Scoop Service Disappear?" headline, "Free Catch-Up Cleanup" offer, "We'll try to match your old schedule" — directly targets Dog Doody Defenders former customers
+      - Back: "You Shouldn't Have to Go Back to DIY" — empathy-first framing, switching is easy (text "SWITCHING"), same pricing table
+    - **Business Cards** (10-up per sheet, front dark green + back white):
+      - Front: Jamie Dabrowski, Owner & Operator, phone, website
+      - Back: "FREE First Cleanup" large, pricing chips ($70/mo flat, weekly/biweekly, 1-5 dogs same price), contact
+    - **Dashboard view:** 5-tab interface (Strategy, Hanger A, Hanger B, Business Cards, Checklist). Each print tab has "Print This Page" button that programmatically shows only the correct print element. Stats bar (50 hangers to drop, 2 variants, 10 biz card sheets, 0 competitors).
+    - **10-step deployment checklist** with localStorage persistence: buy cardstock, test print, print A/B fronts + backs, print biz cards, cut, pack for Monday scoop day, vet blitz drops, log callbacks.
+    - **All @media print rules** hide screen UI, show only the selected print element.
+  - **Who uses it:** TJ grabs this Sunday night or Monday morning, prints on cardstock at home or Staples, cuts, loads in the truck.
+  - **Targeting intelligence in strategy tab:** Look for dog toys, fenced yards, "Beware of Dog" signs, dog runs, dog bowls — 90% dog owner probability. Skip apartments with no yard access.
+  - **Orphan hanger deployment note:** Focus 63031 zip (Florissant central) — where Dog Doody Defenders was most active before DNS death.
+  - **ROI projection:** 50 hangers × 2% response rate = 1 customer. 1 customer = $840/yr LTV. Print cost = $8-12. ROAS = 70-105x.
+  - Dashboard quick link added (pulsing green, prominent) ✅
+  - Committed + pushed ✅
