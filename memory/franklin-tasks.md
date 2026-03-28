@@ -2,6 +2,32 @@
 
 ---
 
+### Saturday 2:06 AM — April 2026 Content Calendar (Hourly Task)
+- **2:06 AM** 📅 Built unified April Content Calendar — 30 days of copy-paste posts for BOTH businesses in one dashboard
+  - **File:** `dashboard/april-content-calendar.html` — dark-mode calendar command center
+  - **Why this task:** All event/conversion tools are built. Paw-ty is 8 hours away. The next highest-compounding gap: TJ has no unified "what do I post today" view for April. Scattered files (tidy-tails-mar31-apr6, shed-april-content-calendar.md, north-county-conquest) exist but require TJ to remember to open them. Without a single calendar, posting becomes ad hoc (2-3x/week) instead of disciplined (daily). A daily content machine compounds into brand awareness, algorithm momentum, and more inbound leads every week.
+  - **What's built:**
+    - **30 posts across 4 weeks** covering Tidy Tails + TuffShed/WoodMaster
+    - **Platforms covered:** Facebook, Instagram, Nextdoor, Google Business Profile, FB Marketplace
+    - **Smart hooks built in:** April Fools (Apr 1), Tariff Deadline (Apr 2), Earth Day (Apr 22), Mother's Day preview (Apr 14/24), Tax Refund season (Apr 7), North County launch posts (Apr 7-12)
+    - **Both businesses synthesized:** Dog waste removal + shed sales in one calendar, no overlap, different voice per business
+    - **Filter bar:** All posts / 🐕 Tidy Tails only / 🏠 Sheds only / Not Posted Yet / ✅ Posted
+    - **Progress stats:** Live counter (0/30 posted), business breakdown (dog/shed count), animated progress bar
+    - **Week-by-week sections:** Week 1 (Mar 31–Apr 6), Week 2 (Apr 7–13), Week 3 (Apr 14–20), Week 4 (Apr 21–30)
+    - **Per-post features:** Expand/collapse body text, 1-click copy to clipboard, "Mark Done" toggle with localStorage persistence
+    - **Today banner:** Links to Paw-ty tools for Saturday morning context
+  - **Post highlights:**
+    - "The only joke is how long you waited" (Apr 1 shed post = huge engagement potential)
+    - Multi-dog households — no per-dog fees differentiator (Apr 2 dog post)
+    - Earth Day EPA pet waste angle (Apr 22 — educational, high virality)
+    - Mother's Day she shed + gift subscription (Apr 14/24)
+    - North County orphaned customer capture (Apr 7-12)
+    - April Progress Check-In — authentic behind-the-scenes (Apr 24)
+  - **Dashboard:** Added "📅 APRIL CONTENT CALENDAR" blue quick link in header
+  - Committed + pushed ✅
+
+---
+
 ### Saturday 1:04 AM — Shed Directory Submission Kit (Hourly Task)
 - **1:04 AM** 📂 Built complete shed directory submission kit — all 23 units ready for 4 free platforms
   - **File:** `dashboard/shed-directory-submission-kit.html` — 5-tab submission command center
