@@ -5,6 +5,25 @@
 
 ---
 
+### Saturday 12:06 AM — Sunday Morning Power Hour Guide (Hourly Task)
+- **12:06 AM** ☀️ Built the "Sunday Morning Power Hour" — a 5-step conversion guide for TJ/Jamie on Sunday morning to close Paw-ty leads before the 48-hour window expires
+  - **File:** `dashboard/sunday-morning-power-hour.html` — mobile-first 5-step guide
+  - **The gap filled:** Every pre-event, at-event, and post-event tool exists (pocket guide, lead tracker, follow-up engine, referral engine, review sprint kit, battle plan, onboarding kit). What was missing: a SINGLE synthesis guide for Sunday morning that tells TJ "open THIS, do THIS first." Without it, he might open 7 different tools and get paralyzed or skip the 48-hour window entirely.
+  - **5 Steps:**
+    - Step 1 — Text Hot Leads RIGHT NOW (2 scripts: hot/"yes" leads + warm/"maybe" leads — 5 min, highest ROI)
+    - Step 2 — Send Referral Texts to 10 Customers (personalized ask + referral math: $40 spend → $960/yr return)
+    - Step 3 — Google Review Blitz (Shannon + Amanda + Chastity + Greg = priority; 6→10 reviews unlocks Map Pack)
+    - Step 4 — Post Paw-ty Recap on FB + Nextdoor (recap post converts people who missed live posts — statistically highest-converting)
+    - Step 5 — Lock in Week of Mar 30 Plan (5 min Sunday = 3x more productive Monday)
+  - **Features:** Progress bar (0/5 steps), collapse/expand per step, copy-paste scripts per step, tool links to all related tools, localStorage checkboxes throughout, 48-hour urgency window banner
+  - **Math card:** 10 customers asked → 2-3 referral leads → $960/yr revenue for $40 spend
+  - **Win summary:** "2-3 Paw-ty converts + 2-3 referral leads + 4-5 new reviews = 13-18 customers by April from one 60-min session"
+  - **Dashboard:** Added pulsing amber "☀️ SUNDAY POWER HOUR — CLOSE LEADS NOW" as #1 quick link + new gold alert card at top of Today panel (above Battle Plan card)
+  - **Why this task at midnight:** It's 12 AM Saturday going into Sunday. All the building is done. The Paw-ty is in 10 hours. The conversion window opens the moment TJ gets home Sunday afternoon. Having the Sunday guide READY before he wakes up means he can open it immediately after the event while the leads are still hot. One synthesized tool > 7 separate tools he might not remember to use.
+  - Committed + pushed ✅
+
+---
+
 ### Saturday 11:04 PM — Profit Command Center (Hourly Task)
 - **11:04 PM** 💰 Built interactive business intelligence dashboard so TJ knows his unit economics at every decision point
   - **File:** `dashboard/profit-command-center.html` — 5-tab live calculator, dark-mode
