@@ -1,0 +1,1269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🎪 Next Events Command Center — Tidy Tails</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0a0a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+  .header {
+    background: linear-gradient(135deg, #0a1a2a, #1a0a2a);
+    border-bottom: 2px solid #3b82f6;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .header h1 { font-size: 1.6rem; color: #fff; }
+  .header .sub { color: #94a3b8; font-size: 0.9rem; margin-top: 0.3rem; }
+
+  .event-nav {
+    display: flex;
+    gap: 0;
+    background: #111;
+    border-bottom: 1px solid #333;
+    overflow-x: auto;
+  }
+  .event-tab {
+    flex: 1;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+    min-width: 160px;
+    font-weight: 600;
+  }
+  .event-tab.active { border-bottom-color: #4ade80; color: #4ade80; background: #0a1a0a; }
+  .event-tab:not(.active):hover { background: #1a1a1a; }
+  .event-tab .event-tab-date { font-size: 0.75rem; color: #64748b; font-weight: 400; }
+
+  .event-panel { display: none; padding: 1.5rem; max-width: 900px; margin: 0 auto; }
+  .event-panel.active { display: block; }
+
+  /* COUNTDOWN BANNERS */
+  .countdown-banner {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    border: 1px solid;
+  }
+  .countdown-banner.urgent { background: #1a0505; border-color: #ef4444; }
+  .countdown-banner.medium { background: #1a1505; border-color: #f59e0b; }
+  .countdown-banner .days { font-size: 2.5rem; font-weight: 800; }
+  .countdown-banner.urgent .days { color: #ef4444; }
+  .countdown-banner.medium .days { color: #f59e0b; }
+  .countdown-banner .countdown-info h3 { font-size: 1rem; }
+  .countdown-banner .countdown-info p { color: #94a3b8; font-size: 0.85rem; margin-top: 0.2rem; }
+
+  /* TABS WITHIN EVENT */
+  .tabs {
+    display: flex;
+    background: #111;
+    border-radius: 8px;
+    padding: 4px;
+    margin-bottom: 1.5rem;
+    gap: 4px;
+    overflow-x: auto;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: 0.5rem 0.8rem;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: #888;
+    cursor: pointer;
+    font-size: 0.8rem;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .tab-btn.active { background: #1e3a1e; color: #4ade80; }
+  .tab-btn:not(.active):hover { background: #1a1a1a; color: #e0e0e0; }
+
+  .sub-panel { display: none; }
+  .sub-panel.active { display: block; }
+
+  /* CARDS */
+  .card {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .card h3 { color: #4ade80; font-size: 1rem; margin-bottom: 0.8rem; }
+  .card h4 { color: #60a5fa; font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+  }
+  .stat-box {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 0.8rem;
+    text-align: center;
+  }
+  .stat-num { font-size: 1.6rem; font-weight: 800; color: #4ade80; }
+  .stat-num.amber { color: #f59e0b; }
+  .stat-num.blue { color: #60a5fa; }
+  .stat-num.red { color: #ef4444; }
+  .stat-label { font-size: 0.75rem; color: #64748b; margin-top: 0.2rem; }
+
+  /* ACTION ITEMS */
+  .action-list { list-style: none; }
+  .action-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid #1a1a1a;
+    font-size: 0.9rem;
+  }
+  .action-list li:last-child { border-bottom: none; }
+  .action-num {
+    background: #1e3a1e;
+    color: #4ade80;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .action-num.red { background: #3a1010; color: #ef4444; }
+  .action-num.amber { background: #3a2a00; color: #f59e0b; }
+
+  /* CHECKLIST */
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] {
+    width: 18px; height: 18px;
+    accent-color: #4ade80;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .checklist label { cursor: pointer; font-size: 0.88rem; }
+  .checklist label.checked { text-decoration: line-through; color: #555; }
+  .check-cost { color: #f59e0b; font-size: 0.8rem; margin-left: auto; flex-shrink: 0; }
+
+  /* SCRIPTS */
+  .script-block {
+    background: #0a1a0a;
+    border: 1px solid #1e3a1e;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  .script-block .script-label {
+    color: #4ade80;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.5rem;
+  }
+  .script-block .script-text {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #d0d0d0;
+    white-space: pre-wrap;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    background: #1e3a1e;
+    border: none;
+    border-radius: 6px;
+    color: #4ade80;
+    padding: 0.3rem 0.7rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover { background: #2a4a2a; }
+  .copy-btn.copied { background: #1a3a1a; color: #86efac; }
+
+  /* TIMELINE */
+  .timeline-steps { position: relative; padding-left: 2rem; }
+  .timeline-steps::before {
+    content: '';
+    position: absolute;
+    left: 0.8rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #222;
+  }
+  .timeline-step {
+    position: relative;
+    margin-bottom: 1.2rem;
+  }
+  .timeline-step::before {
+    content: '';
+    position: absolute;
+    left: -1.45rem;
+    top: 0.35rem;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #4ade80;
+    border: 2px solid #0a0a0a;
+  }
+  .timeline-step.urgent::before { background: #ef4444; box-shadow: 0 0 8px #ef4444; }
+  .timeline-step.done::before { background: #555; }
+  .timeline-step .step-date { color: #4ade80; font-size: 0.8rem; font-weight: 700; }
+  .timeline-step.urgent .step-date { color: #ef4444; }
+  .timeline-step .step-title { font-size: 0.95rem; font-weight: 600; color: #fff; }
+  .timeline-step .step-detail { font-size: 0.85rem; color: #94a3b8; margin-top: 0.2rem; }
+
+  /* BUDGET TABLE */
+  .budget-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  .budget-table th { background: #1a1a1a; color: #94a3b8; padding: 0.5rem 0.7rem; text-align: left; border-bottom: 1px solid #333; }
+  .budget-table td { padding: 0.5rem 0.7rem; border-bottom: 1px solid #1a1a1a; }
+  .budget-table tr:hover td { background: #111; }
+  .budget-total td { color: #4ade80; font-weight: 700; border-top: 1px solid #333; }
+  .budget-roi { color: #4ade80; }
+  .budget-warn { color: #f59e0b; }
+
+  /* GOAL BANNER */
+  .goal-banner {
+    background: linear-gradient(135deg, #0a1a0a, #0a0a1a);
+    border: 1px solid #4ade80;
+    border-radius: 12px;
+    padding: 1.2rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  .goal-banner .goal-title { color: #4ade80; font-size: 1rem; font-weight: 700; }
+  .goal-banner .goal-math { font-size: 1.3rem; font-weight: 800; color: #fff; margin: 0.5rem 0; }
+  .goal-banner .goal-detail { color: #94a3b8; font-size: 0.85rem; }
+
+  /* BOOTH SECTION */
+  .booth-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .booth-item {
+    background: #0a1a0a;
+    border: 1px solid #1e3a1e;
+    border-radius: 8px;
+    padding: 0.8rem;
+  }
+  .booth-item h4 { color: #4ade80; font-size: 0.85rem; margin-bottom: 0.4rem; }
+  .booth-item p, .booth-item li { font-size: 0.83rem; color: #94a3b8; }
+  .booth-item ul { padding-left: 1rem; }
+  .booth-item li { margin-bottom: 0.2rem; }
+
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin: 0.1rem;
+  }
+  .badge-free { background: #1e3a1e; color: #4ade80; }
+  .badge-hot { background: #3a1010; color: #ef4444; }
+  .badge-cost { background: #3a2a00; color: #f59e0b; }
+  .badge-vendor { background: #1a1a3a; color: #818cf8; }
+
+  .alert-box {
+    background: #1a0505;
+    border: 1px solid #ef4444;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.88rem;
+  }
+  .alert-box h4 { color: #ef4444; margin-bottom: 0.3rem; }
+
+  .info-box {
+    background: #051a10;
+    border: 1px solid #16a34a;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    font-size: 0.88rem;
+    color: #86efac;
+  }
+
+  .section-title {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b;
+    margin-bottom: 0.8rem;
+    margin-top: 1.5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid #222;
+  }
+
+  .progress-bar-outer {
+    background: #1a1a1a;
+    border-radius: 999px;
+    height: 8px;
+    margin: 0.5rem 0;
+  }
+  .progress-bar-inner {
+    background: linear-gradient(90deg, #4ade80, #22d3ee);
+    border-radius: 999px;
+    height: 100%;
+    transition: width 0.4s ease;
+  }
+
+  .reg-link-box {
+    background: #0a0a1a;
+    border: 1px solid #3b82f6;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .reg-link-box p { font-size: 0.88rem; color: #93c5fd; }
+  .reg-link-btn {
+    background: #1d4ed8;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .reg-link-btn:hover { background: #2563eb; }
+
+  @media (max-width: 600px) {
+    .stat-row { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎪 Next Events Command Center</h1>
+  <p class="sub">Your two biggest upcoming events — Arch Bark & Bark in the Park — fully prepped and ready to execute</p>
+</div>
+
+<!-- EVENT SELECTOR -->
+<div class="event-nav">
+  <div class="event-tab active" onclick="switchEvent('archbark')">
+    🏛️ Arch Bark
+    <div class="event-tab-date">Saturday, April 18</div>
+  </div>
+  <div class="event-tab" onclick="switchEvent('barkpark')">
+    🏃 Bark in the Park
+    <div class="event-tab-date">Saturday, May 16</div>
+  </div>
+</div>
+
+<!-- =================== ARCH BARK =================== -->
+<div class="event-panel active" id="panel-archbark">
+
+  <div class="countdown-banner urgent" style="margin-top:1.5rem;">
+    <div class="days" id="archbark-days">21</div>
+    <div class="countdown-info">
+      <h3>Days Until Arch Bark 2026</h3>
+      <p>Saturday, April 18 · Gateway Arch National Park · FREE admission</p>
+    </div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-num">FREE</div><div class="stat-label">Cost to Attend</div></div>
+    <div class="stat-box"><div class="stat-num amber">500+</div><div class="stat-label">Est. Dog Owners</div></div>
+    <div class="stat-box"><div class="stat-num">100</div><div class="stat-label">Cards to Bring</div></div>
+    <div class="stat-box"><div class="stat-num blue">5-8</div><div class="stat-label">Leads Target</div></div>
+  </div>
+
+  <div class="tabs" id="ab-tabs">
+    <button class="tab-btn active" onclick="switchSubTab('archbark', 'plan')">📋 Action Plan</button>
+    <button class="tab-btn" onclick="switchSubTab('archbark', 'strategy')">🎯 Strategy</button>
+    <button class="tab-btn" onclick="switchSubTab('archbark', 'scripts')">💬 Scripts</button>
+    <button class="tab-btn" onclick="switchSubTab('archbark', 'dayof')">📅 Day-Of</button>
+    <button class="tab-btn" onclick="switchSubTab('archbark', 'checklist')">✅ Checklist</button>
+  </div>
+
+  <!-- PLAN -->
+  <div class="sub-panel active" id="archbark-plan">
+
+    <div class="alert-box">
+      <h4>⚠️ REGISTER NOW — Don't Wait</h4>
+      <p>Eventbrite registration is open. This is a popular event — sign up even if it's free so they have your name. Takes 2 minutes.</p>
+    </div>
+
+    <div class="reg-link-box">
+      <p>🎟️ <strong>Eventbrite Registration</strong> — Free tickets, 2 min to complete</p>
+      <a href="https://www.eventbrite.com/e/arch-bark-tickets-1985374472492" target="_blank" class="reg-link-btn">Register →</a>
+    </div>
+
+    <p class="section-title">Week-by-Week Action Plan</p>
+
+    <div class="timeline-steps">
+      <div class="timeline-step urgent">
+        <div class="step-date">NOW (this week, Mar 28–Apr 4)</div>
+        <div class="step-title">Register + Prep Begins</div>
+        <div class="step-detail">Register on Eventbrite (free). Order/print Tidy Tails business cards — you need 100+ for this event. Confirm Jamie can attend (two people = 2x coverage).</div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-date">Week 2 (Apr 5–11)</div>
+        <div class="step-title">Materials & Script Practice</div>
+        <div class="step-detail">Print 100 business cards + 50 flyers. Prep 3-pack "leave-behind" bags (card + flyer + business card). Do a 10-minute script run-through with Jamie — feel natural, not rehearsed. Check Google Maps for parking near North Gateway.</div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-date">Week 3 (Apr 12–17)</div>
+        <div class="step-title">Final Prep</div>
+        <div class="step-detail">Confirm all materials packed. Post "We'll be at Arch Bark Saturday!" on FB/Instagram (builds hype, gets engagement, potential pre-event inquiries). Charge phone/battery pack. Set alarms for 8:30 AM departure.</div>
+      </div>
+      <div class="timeline-step urgent">
+        <div class="step-date">Sat Apr 18 — EVENT DAY</div>
+        <div class="step-title">Execute the Plan</div>
+        <div class="step-detail">Arrive by 9:45 AM. 10 AM–2 PM: work the crowd. Goal: 5–8 qualified leads with phone numbers. Post 2–3 Instagram/Facebook Stories live from the event.</div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-date">Sun Apr 19 — Follow-up</div>
+        <div class="step-title">48-Hour Close Window</div>
+        <div class="step-detail">Text ALL leads using the follow-up scripts (Sunday AM is the golden window). Aim for 2+ conversions by Wednesday. Post event recap on FB/Nextdoor.</div>
+      </div>
+    </div>
+
+    <div class="goal-banner" style="margin-top:1.5rem;">
+      <div class="goal-title">🎯 Event Goal</div>
+      <div class="goal-math">5–8 leads → 2–3 new customers = +$1,680–2,520/yr</div>
+      <div class="goal-detail">At $70/mo avg × 24-month LTV. Zero ad spend. Just showing up.</div>
+    </div>
+
+  </div>
+
+  <!-- STRATEGY -->
+  <div class="sub-panel" id="archbark-strategy">
+    <div class="card">
+      <h3>🗺️ The Arch Bark Situation</h3>
+      <p style="color:#94a3b8; font-size:0.88rem; line-height:1.6;">
+        Arch Bark is a smaller, more curated dog event than Bark in the Park — typically 200-600 attendees. The Gateway Arch backdrop makes it photo-friendly and social-media-ready. Attendees skew toward urban/near-south-city dog owners. Different zip code from your current customer base (Florissant cluster) — so every lead here is genuinely additive, not overlap.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🎯 What Makes This Event Different</h3>
+      <ul style="list-style:disc; padding-left:1.2rem; font-size:0.88rem; line-height:1.8; color:#d0d0d0;">
+        <li><strong>Outdoor festival vibe</strong> — people are relaxed, lingering, open to conversation</li>
+        <li><strong>Dog-centric crowd</strong> — everyone there loves dogs and probably hates picking up poop</li>
+        <li><strong>Not a competitor event</strong> — you're a local business, not a vendor; more authentic</li>
+        <li><strong>Social content goldmine</strong> — Arch backdrop = instant shareable photos for your feed</li>
+        <li><strong>Smaller = better conversations</strong> — higher depth per lead vs. massive events</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>📍 Territory Angle</h3>
+      <p style="color:#94a3b8; font-size:0.88rem; margin-bottom:0.8rem;">
+        Arch Bark draws from south city, downtown, Midtown, Soulard, Maplewood, etc. These aren't your current North County customers — they're NEW territory. Use this language:
+      </p>
+      <div class="info-box">
+        "We just launched service in this area! I'm TJ — trying to grow my route in south city so I can stop driving 45 minutes between stops. If you're in [neighborhood], I'll actually be nearby every week."
+      </div>
+      <p style="color:#94a3b8; font-size:0.85rem;">The "local route density" angle makes your pitch feel genuinely personal to their neighborhood.</p>
+    </div>
+
+    <div class="card">
+      <h3>👫 2-Person Strategy</h3>
+      <p style="color:#94a3b8; font-size:0.88rem; line-height:1.6;">
+        Bring Jamie. Split the crowd. One works the 5K/running crowd (active people = responsible dog owners). One works the festival area near vendors. Double your card distribution. Reconnect every 30 min to share what's working.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>📱 Social Angle — This Event Is Content Gold</h3>
+      <ul style="list-style:disc; padding-left:1.2rem; font-size:0.88rem; line-height:1.8; color:#d0d0d0;">
+        <li>Arch backdrop = brand photography you'd pay $300+ for at a shoot</li>
+        <li>Post IG Story: "We're at Arch Bark! Find us and get a free yard cleanup 🐕"</li>
+        <li>Photo caption: "Beautiful day at the Arch with 500 of St. Louis's best dogs 🐾 We keep St. Louis yards clean — first cleanup FREE, DM us to start"</li>
+        <li>This content will perform on Instagram <em>and</em> Facebook for weeks after the event</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <div class="sub-panel" id="archbark-scripts">
+
+    <div class="script-block">
+      <div class="script-label">Opener — Cold Approach (walk up to anyone with a dog)</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"Hey, cute dog! What's the name?"
+
+[They respond]
+
+"Love it. I'm TJ — I run a pet waste removal company out here called Tidy Tails. Basically I come clean up your yard once a week so you can actually enjoy being outside with [dog name]. Here's my card — first cleanup is always free."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label">Transition — Move from Small Talk to Business (if they engage)</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"Yeah, we've got about 10 customers right now and I'm trying to grow my route in south city. It's a flat $70 a month — weekly cleanups, text you when we're done, you don't have to think about it. You got a yard at home?"
+
+[If yes]: "What neighborhood are you in? I'd love to add you to the route."
+[If apartment]: "Got it — if you ever move to a place with a yard, grab my card. People tell me they wish they'd started earlier."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label">Close — When They're Interested</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"The easiest way to try it is the free first cleanup — no card required, no commitment. Just text the word 'YARD' to (314) 850-7140 and I'll set it up. Takes 30 seconds."
+
+OR
+
+"Can I grab your number real quick? I'll text you tonight so you have mine, and we can figure out a time for your free cleanup."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label">Objection — "How much does it cost?"</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"Flat $70 a month — weekly cleanups, any number of dogs. No per-dog fees, no contract, cancel any time. That's less than a Starbucks run a week to never deal with it again. And the first one's free so you can see if it's even worth it."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label">Objection — "I just have one small dog"</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"Totally! Honestly a lot of my customers have small dogs — it's not about the volume, it's about not spending your Sunday afternoon scooping. Same $70, same weekly service. Worth it to a lot of people just for the time back."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label">Post-Event Follow-Up Text (send Sunday morning)</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">Hey [Name]! It's TJ from Tidy Tails — we talked at Arch Bark yesterday with [dog name] 🐾 Wanted to follow up on that free yard cleanup. Want to get that scheduled for next week? Just takes a couple minutes — what neighborhood are you in?</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label">IG Story Caption (post LIVE from the event)</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">We're at Arch Bark 2026 🏛️🐕 Come find us — mention you saw this Story and get your first yard cleanup FREE. (314) 850-7140 | tidytailsstl.com</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label">Facebook Post — Night Before (Apr 17)</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">See you tomorrow at Arch Bark! 🏛️🐕
+
+We'll be there with the Tidy Tails crew, business cards in hand. If you see us, say hi — and grab a card for a FREE first yard cleanup.
+
+We keep St. Louis yards clean so you and your pup can actually enjoy the backyard. $70/mo flat, no contracts, weekly service.
+
+Who else is heading to the Arch tomorrow? 👇</div>
+    </div>
+
+  </div>
+
+  <!-- DAY OF -->
+  <div class="sub-panel" id="archbark-dayof">
+    <div class="card">
+      <h3>📅 April 18 — Full Day Timeline</h3>
+      <div class="timeline-steps">
+        <div class="timeline-step">
+          <div class="step-date">8:30 AM</div>
+          <div class="step-title">Wake Up & Pack</div>
+          <div class="step-detail">Business cards (100+), flyers (50), phone charger/battery pack, water, snacks. Wear something Tidy Tails branded if you have it — even a green shirt works.</div>
+        </div>
+        <div class="timeline-step urgent">
+          <div class="step-date">9:00 AM</div>
+          <div class="step-title">Post Pre-Event Hype on Social</div>
+          <div class="step-detail">Facebook + Instagram: "We're heading to Arch Bark today! Come find us for a free yard cleanup." This primes your existing followers and gives you event content before you arrive.</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-date">9:45 AM — Arrive Early</div>
+          <div class="step-title">Scope the Layout</div>
+          <div class="step-detail">Arrive 15 min before 10 AM start. Walk the whole space before crowds arrive. Find the highest-traffic choke points: entrance, water stations, activity areas. Position yourself there.</div>
+        </div>
+        <div class="timeline-step urgent">
+          <div class="step-date">10:00 AM – 12:00 PM</div>
+          <div class="step-title">🔥 Peak Crowd — Work Hard</div>
+          <div class="step-detail">The first 2 hours are the highest density. Aim for 1 conversation every 3-4 minutes. Target people who are stopped/seated/watching activities — not people rushing through. Try to get phone number for every interested person.</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-date">11:30 AM</div>
+          <div class="step-title">Post Mid-Event Story</div>
+          <div class="step-detail">Instagram Story: photo with a dog (ask permission), Arch in background. "Still here at Arch Bark! Come find me." Tags, location pin.</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-date">12:00–2:00 PM</div>
+          <div class="step-title">Wind Down — Quality Over Quantity</div>
+          <div class="step-detail">Deeper conversations with lingering attendees. These are the people most likely to convert — they're not in a rush. Capture the last few leads. Leave by 2 PM.</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-date">2:30 PM — Home</div>
+          <div class="step-title">Log Leads While Fresh</div>
+          <div class="step-detail">Open the lead tracker app or a notes doc. Enter every name + number + notes while it's all in your head. Don't wait until Sunday morning — memory fades fast.</div>
+        </div>
+        <div class="timeline-step urgent">
+          <div class="step-date">Sunday Apr 19, 9–11 AM</div>
+          <div class="step-title">🔥 Follow-Up Texts — Golden Window</div>
+          <div class="step-detail">Text EVERY lead using the follow-up script. Sunday morning = highest open rate + best mood. Don't wait until Monday — the window to convert is 48 hours max.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📸 Content Capture Checklist</h3>
+      <ul style="list-style:disc; padding-left:1.2rem; font-size:0.88rem; line-height:2; color:#d0d0d0;">
+        <li>Wide shot of crowd + Arch in background (brand image)</li>
+        <li>Photo with an especially cute dog (ask permission) — Instagram gold</li>
+        <li>Action shot: you talking to dog owner (have someone take this)</li>
+        <li>Selfie at the Arch: "Beautiful day building a business 🐾"</li>
+        <li>IG Story: "Looking for dog owners at Arch Bark — free cleanup!" with location tag</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="sub-panel" id="archbark-checklist">
+    <div class="card">
+      <h3>✅ Master Checklist — Arch Bark</h3>
+      <ul class="checklist" id="ab-checklist">
+        <li>
+          <input type="checkbox" id="ab1" onchange="saveCheck('ab',this)">
+          <label for="ab1">Register on Eventbrite (free — 2 min)</label>
+          <span class="check-cost">$0</span>
+        </li>
+        <li>
+          <input type="checkbox" id="ab2" onchange="saveCheck('ab',this)">
+          <label for="ab2">Confirm Jamie is attending (2x coverage)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="ab3" onchange="saveCheck('ab',this)">
+          <label for="ab3">Order/print business cards (100+ needed)</label>
+          <span class="check-cost">~$15</span>
+        </li>
+        <li>
+          <input type="checkbox" id="ab4" onchange="saveCheck('ab',this)">
+          <label for="ab4">Print 50 half-sheet flyers (use pawty-print-flyer.html)</label>
+          <span class="check-cost">~$3</span>
+        </li>
+        <li>
+          <input type="checkbox" id="ab5" onchange="saveCheck('ab',this)">
+          <label for="ab5">Post pre-event hype on FB + Instagram (1 week out)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="ab6" onchange="saveCheck('ab',this)">
+          <label for="ab6">Run through scripts with Jamie (10 min)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="ab7" onchange="saveCheck('ab',this)">
+          <label for="ab7">Post night-before teaser on social (Apr 17)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="ab8" onchange="saveCheck('ab',this)">
+          <label for="ab8">Pack bag: cards, flyers, battery pack, water, snacks</label>
+        </li>
+        <li>
+          <input type="checkbox" id="ab9" onchange="saveCheck('ab',this)">
+          <label for="ab9">Arrive by 9:45 AM — scope the layout</label>
+        </li>
+        <li>
+          <input type="checkbox" id="ab10" onchange="saveCheck('ab',this)">
+          <label for="ab10">Post IG/FB Story live from event</label>
+        </li>
+        <li>
+          <input type="checkbox" id="ab11" onchange="saveCheck('ab',this)">
+          <label for="ab11">Log all leads within 30 min of leaving</label>
+        </li>
+        <li>
+          <input type="checkbox" id="ab12" onchange="saveCheck('ab',this)">
+          <label for="ab12">Send follow-up texts Sunday morning (9–11 AM)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="ab13" onchange="saveCheck('ab',this)">
+          <label for="ab13">Post event recap on FB + Nextdoor (Sunday or Monday)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="ab14" onchange="saveCheck('ab',this)">
+          <label for="ab14">Log event results (leads, conversations, conversions)</label>
+        </li>
+      </ul>
+      <div style="margin-top:1rem;">
+        <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:#64748b; margin-bottom:0.3rem;">
+          <span>Progress</span>
+          <span id="ab-check-count">0 / 14</span>
+        </div>
+        <div class="progress-bar-outer">
+          <div class="progress-bar-inner" id="ab-progress" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end archbark panel -->
+
+<!-- =================== BARK IN THE PARK =================== -->
+<div class="event-panel" id="panel-barkpark">
+
+  <div class="countdown-banner medium" style="margin-top:1.5rem;">
+    <div class="days" id="barkpark-days">49</div>
+    <div class="countdown-info">
+      <h3>Days Until Bark in the Park 2026</h3>
+      <p>Saturday, May 16 · Tower Grove Park · HSMO's flagship event · 1,000–5,000 attendees</p>
+    </div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="stat-num red">HUGE</div><div class="stat-label">Event Scale</div></div>
+    <div class="stat-box"><div class="stat-num amber">1-5K</div><div class="stat-label">Dog Owners</div></div>
+    <div class="stat-box"><div class="stat-num">200</div><div class="stat-label">Cards to Bring</div></div>
+    <div class="stat-box"><div class="stat-num blue">10-20</div><div class="stat-label">Leads Target</div></div>
+  </div>
+
+  <div class="tabs" id="bp-tabs">
+    <button class="tab-btn active" onclick="switchSubTab('barkpark', 'plan')">📋 Action Plan</button>
+    <button class="tab-btn" onclick="switchSubTab('barkpark', 'vendor')">🏪 Vendor Booth</button>
+    <button class="tab-btn" onclick="switchSubTab('barkpark', 'strategy')">🎯 Strategy</button>
+    <button class="tab-btn" onclick="switchSubTab('barkpark', 'scripts')">💬 Scripts</button>
+    <button class="tab-btn" onclick="switchSubTab('barkpark', 'budget')">💰 Budget</button>
+    <button class="tab-btn" onclick="switchSubTab('barkpark', 'checklist')">✅ Checklist</button>
+  </div>
+
+  <!-- PLAN -->
+  <div class="sub-panel active" id="barkpark-plan">
+
+    <div class="alert-box">
+      <h4>⚠️ CRITICAL: Vendor Registration May Already Be Open</h4>
+      <p>HSMO typically opens vendor/booth registration 6–8 weeks before the event. With May 16 as the date, that window opened in late March. <strong>Check this week.</strong> Popular vendor slots fill fast. Go to hsmo.org or search "Bark in the Park 2026 vendor" to find the registration link.</p>
+    </div>
+
+    <div class="reg-link-box">
+      <p>🌐 Check <strong>hsmo.org/bark-in-the-park</strong> or Google "Bark in the Park St. Louis 2026 vendor registration"</p>
+      <a href="https://www.hsmo.org/bark-in-the-park" target="_blank" class="reg-link-btn">Check Registration →</a>
+    </div>
+
+    <div class="goal-banner">
+      <div class="goal-title">🎯 THIS is the event that can get you to 25 customers</div>
+      <div class="goal-math">10–15 leads → 4–6 new customers = +$3,360–5,040/yr</div>
+      <div class="goal-detail">At $70/mo avg × 24-month LTV. If you're at 15 customers heading in, this event can push you past 20 in a single Saturday.</div>
+    </div>
+
+    <p class="section-title">Month-by-Month Action Plan</p>
+
+    <div class="timeline-steps">
+      <div class="timeline-step urgent">
+        <div class="step-date">NOW — Week of Mar 28</div>
+        <div class="step-title">🔥 Research Vendor Registration</div>
+        <div class="step-detail">Go to hsmo.org and find the Bark in the Park 2026 vendor page. Check if booth registration is open and what the cost is. If open, register immediately — popular booths fill in the first week. Typical cost: $75–150 for non-profit rate or $150–300 commercial.</div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-date">April 1–14</div>
+        <div class="step-title">Design & Order Booth Materials</div>
+        <div class="step-detail">If booth: Order pop-up banner ($60–80 on Vistaprint), tablecloth, folding table (if not provided). Get 200+ business cards printed. Design a giveaway (free 1st cleanup = $0 cost, massive value for leads). Consider a giveaway bowl for cards = raffle angle.</div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-date">April 15–30</div>
+        <div class="step-title">Pre-Event Social Promotion</div>
+        <div class="step-detail">Post twice before the event: "We'll be at Bark in the Park May 16!" — once 3 weeks out, once 1 week out. This gets engagement, shows growth, and sometimes pre-generates leads who look you up early. Join HSMO Facebook event and comment as Tidy Tails.</div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-date">May 1–15</div>
+        <div class="step-title">Final Prep Week</div>
+        <div class="step-detail">Confirm all materials. Pack the night before. Coordinate logistics with Jamie (who works which section, when to check in with each other). Set up morning logistics (parking near Tower Grove, arrival time, load-in for vendor booth if applicable).</div>
+      </div>
+      <div class="timeline-step urgent">
+        <div class="step-date">Sat May 16 — EVENT DAY</div>
+        <div class="step-title">Execute the Plan</div>
+        <div class="step-detail">Arrive 45 min early for booth setup (if vendor). Two-person coverage: one at booth, one roaming. Goal: 10–20 qualified leads with phone numbers. Post 3–5 Stories throughout the day.</div>
+      </div>
+      <div class="timeline-step">
+        <div class="step-date">Sun May 17</div>
+        <div class="step-title">48-Hour Close Window</div>
+        <div class="step-detail">Text ALL leads Sunday morning. This is the golden conversion window. Expect 30–50% to convert with good follow-up.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VENDOR -->
+  <div class="sub-panel" id="barkpark-vendor">
+
+    <div class="card">
+      <h3>🏪 Should You Get a Vendor Booth?</h3>
+      <p style="color:#4ade80; font-size:1.1rem; font-weight:700; margin-bottom:0.5rem;">YES — 100% worth it at this event.</p>
+      <p style="color:#94a3b8; font-size:0.88rem; line-height:1.6;">
+        Bark in the Park is HSMO's biggest annual event. A vendor booth = a physical presence that signals legitimacy, gives you a base to operate from, and attracts leads who seek you out vs. you approaching them. The ROI math is easy: if a $200 booth gets you 4 customers, that's $6,720 in LTV. The booth pays for itself before the event is over.
+      </p>
+    </div>
+
+    <div class="booth-grid">
+      <div class="booth-item">
+        <h4>📐 What You Need (Booth)</h4>
+        <ul>
+          <li>6ft folding table</li>
+          <li>2 chairs</li>
+          <li>Pop-up banner (backdrop)</li>
+          <li>Tablecloth (green or branded)</li>
+          <li>Battery pack + phone stand</li>
+          <li>Trash bag</li>
+        </ul>
+      </div>
+      <div class="booth-item">
+        <h4>🎁 Giveaways That Work</h4>
+        <ul>
+          <li><strong>Free first cleanup</strong> — write it on a card, hand it out</li>
+          <li>Business cards (100+)</li>
+          <li>Branded poop bags (cheap, on-brand, funny)</li>
+          <li>Raffle: sign up for a free month</li>
+          <li>QR code sign-up sheet for your list</li>
+        </ul>
+      </div>
+      <div class="booth-item">
+        <h4>🖥️ Booth Layout</h4>
+        <ul>
+          <li>Banner behind you (brand name + logo + phone)</li>
+          <li>Flyers fanned out on table</li>
+          <li>Sign-up sheet or tablet</li>
+          <li>Card bowl + raffle box</li>
+          <li>"FIRST CLEANUP FREE" printed big</li>
+          <li>Stand OUT front — don't sit behind the table</li>
+        </ul>
+      </div>
+      <div class="booth-item">
+        <h4>👗 What to Wear</h4>
+        <ul>
+          <li>Matching shirts (2 people, same color)</li>
+          <li>Name tags (first names only)</li>
+          <li>Green/Tidy Tails brand colors</li>
+          <li>Comfortable shoes — you'll stand 5 hours</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>📋 Booth Materials Order List</h3>
+      <p style="color:#94a3b8; font-size:0.85rem; margin-bottom:0.8rem;">Order by April 14 so everything arrives before May 1 (time for reprints if needed).</p>
+      <table class="budget-table">
+        <thead>
+          <tr><th>Item</th><th>Source</th><th>Est. Cost</th><th>Timeline</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>200 business cards</td><td>Vistaprint / Canva Print</td><td>$20–35</td><td>Order by Apr 14</td></tr>
+          <tr><td>Pop-up banner (retractable, 33"x80")</td><td>Vistaprint / Canva Print</td><td>$60–90</td><td>Order by Apr 14</td></tr>
+          <tr><td>Tablecloth (6ft, solid green)</td><td>Amazon</td><td>$12–20</td><td>Order by Apr 28</td></tr>
+          <tr><td>Branded poop bags (100-pk)</td><td>Amazon (custom)</td><td>$25–40</td><td>Order by Apr 21</td></tr>
+          <tr><td>50 half-sheet flyers (printed)</td><td>Home printer / FedEx Office</td><td>$5–15</td><td>Apr 30 – May 10</td></tr>
+          <tr><td>Vendor booth fee</td><td>hsmo.org</td><td>$75–300</td><td>Register NOW</td></tr>
+          <tr class="budget-total"><td colspan="2">Total (with booth)</td><td>~$200–500</td><td></td></tr>
+          <tr class="budget-total"><td colspan="2">Total (no booth)</td><td>~$50–100</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="info-box">
+      💡 <strong>If vendor registration is closed or too expensive:</strong> You can still guerrilla-attend as a regular guest. Bring a dog if you have one (or borrow one from a friend — seriously). Walk the crowd, hand out cards, approach conversations naturally. No booth ≠ no impact.
+    </div>
+  </div>
+
+  <!-- STRATEGY -->
+  <div class="sub-panel" id="barkpark-strategy">
+
+    <div class="card">
+      <h3>🗺️ Why This Event is Different</h3>
+      <p style="color:#94a3b8; font-size:0.88rem; line-height:1.6; margin-bottom:0.8rem;">
+        Bark in the Park isn't just a big event — it's <em>the</em> event. HSMO's flagship draws dog owners from every zip code in St. Louis. Unlike your current Florissant cluster, this crowd is city-wide. One Saturday here could add customers in zip codes you'd never reach otherwise. With your current 10-15 customers by May, you need 10–15 more to hit August goals. This event can close that gap.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🎯 Two-Person Event Strategy</h3>
+      <div class="timeline-steps">
+        <div class="timeline-step">
+          <div class="step-date">Person 1 (TJ) — Booth Anchor</div>
+          <div class="step-title">Hold down the booth + close warm leads</div>
+          <div class="step-detail">Stay at the booth. Greet walk-ups. Focus on closing people who stop — they've already self-selected as interested. You're the closer. Hand out raffle entries, collect phone numbers, do the sign-up sheet.</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-date">Person 2 (Jamie) — Roamer</div>
+          <div class="step-title">Work the crowd, drive traffic back to booth</div>
+          <div class="step-detail">Roam the event. When someone is interested, walk them to the booth. When not at booth, hand out cards and capture phone numbers in a notes app. "We've got a booth over there — come check it out, we're doing a giveaway."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>🎁 Raffle / Giveaway Strategy</h3>
+      <p style="color:#94a3b8; font-size:0.88rem; line-height:1.6;">
+        Run a simple raffle: "Put your card in the bowl to win a FREE month of service ($70 value)." 
+        This does three things:
+      </p>
+      <ul style="list-style:disc; padding-left:1.2rem; font-size:0.88rem; line-height:1.8; color:#d0d0d0; margin-top:0.5rem;">
+        <li>Creates a reason to stop at your booth (curiosity/free stuff)</li>
+        <li>Gives you everyone's business card = phone number + email</li>
+        <li>Makes everyone feel like they might win something from you</li>
+        <li>Draw the winner live at 1 PM — announce on IG Stories for content</li>
+        <li>Even "losers" get: "No worries — here's a free first cleanup card anyway." Everyone wins something.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h3>📱 Social Content Plan — 5 Posts From This Event</h3>
+      <ul style="list-style:none; font-size:0.88rem; line-height:1.8; color:#d0d0d0;">
+        <li><strong>1 week before:</strong> "We'll be at Bark in the Park May 16! Come find us 🐾" — FB + IG</li>
+        <li><strong>Night before:</strong> "See you tomorrow at Tower Grove! Find our booth for a free cleanup 🏃" — IG Story</li>
+        <li><strong>Morning of, booth setup:</strong> Time-lapse or photo of setting up — "Booth day! 😤🐕" — IG Story</li>
+        <li><strong>Mid-event:</strong> Photo of crowd + cute dog — "This is why we do this" — IG + FB</li>
+        <li><strong>Event recap (Sunday):</strong> "What a day. 200+ conversations, 12 new leads, and one very tired dog cleanup crew." — highest engagement post of the week</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <div class="sub-panel" id="barkpark-scripts">
+
+    <div class="script-block">
+      <div class="script-label">Booth Opening Line — When Someone Walks Up</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"Hey! Cute dog — what's the name?"
+
+[They respond]
+
+"Love it. We're Tidy Tails — we do weekly yard cleanups so you can actually enjoy hanging outside with [dog name]. First cleanup is always free. Want to try it?"</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label">Raffle Pitch — At the Booth</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"We're doing a giveaway — free month of yard service, $70 value. Just drop your business card or write your name and number on this sheet. We draw at 1 PM.
+
+And even if you don't win, everyone who enters gets a card for a free first cleanup — so you can't really lose."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label">Roamer Script — Walking the Crowd</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"Hey — you guys have a yard at home?"
+
+[If yes]: "We've got a booth right over there — come check it out. We're giving away a free month of yard cleanup service. I'm Jamie, I work for Tidy Tails — we handle the dog waste so you don't have to."
+
+[If they can't come to the booth]: "No worries, here's a card. First cleanup is free — just text TJ at the number on there."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label">Objection — "How much is it?"</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"$70 a month, flat rate. Any number of dogs, weekly service. No contracts. We text you when we're done. First one is always free so you can see if it's even worth it — and it usually is."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label">Closing the Lead — Get the Number</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">"I'd love to add you to the route. What neighborhood are you in?"
+
+[They respond]
+
+"Perfect. Can I grab your number real quick? I'll text you so you have mine, and we can get that free cleanup scheduled. Takes 30 seconds."</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label">Post-Event Follow-Up Text (Sunday Morning)</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">Hey [Name]! This is TJ from Tidy Tails — we talked at Bark in the Park yesterday 🐾 Really enjoyed meeting you and [dog name]! Wanted to follow up on that free yard cleanup. What neighborhood are you in? I can usually get out within the week.</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label">Raffle Winner Announcement (Live at 1 PM)</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">🎉 And our winner of the FREE month of Tidy Tails service is... [Name]! Congrats! 
+
+For everyone else — you all get a free FIRST cleanup anyway. Come grab a card or text (314) 850-7140 to get scheduled. Thanks for coming out today — this city's dog community is incredible 🐾</div>
+    </div>
+
+    <div class="script-block">
+      <div class="script-label">Facebook Post — Event Recap (Sunday)</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy</button>
+      <div class="script-text">What an incredible day at Bark in the Park 2026 🏃🐕
+
+I don't say this enough but this city's dog community is something else. Got to meet hundreds of you and your pups today — it's exactly why I started Tidy Tails.
+
+If you stopped by our booth and we didn't get to connect, text me at (314) 850-7140 or DM here. First cleanup is still free 🐾
+
+Special shoutout to HSMO for putting this event together year after year. You guys make this city better for dogs and humans alike.
+
+See you next year (but also, hopefully as a customer way before then 😄)
+
+— TJ, Tidy Tails 🐕💩</div>
+    </div>
+
+  </div>
+
+  <!-- BUDGET -->
+  <div class="sub-panel" id="barkpark-budget">
+    <div class="card">
+      <h3>💰 Bark in the Park Budget Breakdown</h3>
+
+      <h4 style="margin-bottom:0.5rem; margin-top:1rem;">Option A — Vendor Booth (Recommended)</h4>
+      <table class="budget-table">
+        <thead>
+          <tr><th>Item</th><th>Cost</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Vendor booth registration</td><td>$75–$300</td><td>Check hsmo.org — HSMO member discount possible</td></tr>
+          <tr><td>Pop-up retractable banner</td><td>$60–$90</td><td>Vistaprint, use in future events too</td></tr>
+          <tr><td>200 business cards</td><td>$20–$35</td><td>Vistaprint or Canva Print</td></tr>
+          <tr><td>Tablecloth (branded or solid green)</td><td>$12–$20</td><td>Amazon, reusable</td></tr>
+          <tr><td>Branded poop bags (novelty giveaway)</td><td>$25–$40</td><td>On-brand, memorable, cheap</td></tr>
+          <tr><td>50 flyers (printed)</td><td>$5–$15</td><td>Home printer or FedEx Office</td></tr>
+          <tr><td>Misc (tape, markers, raffle box)</td><td>$10–$20</td><td>Dollar store</td></tr>
+          <tr class="budget-total"><td><strong>TOTAL</strong></td><td><strong>$207–$520</strong></td><td class="budget-roi">Pays back with 1 customer signup ($1,680 LTV)</td></tr>
+        </tbody>
+      </table>
+
+      <h4 style="margin-bottom:0.5rem; margin-top:1.5rem;">Option B — Guerrilla Attend (No Booth)</h4>
+      <table class="budget-table">
+        <thead>
+          <tr><th>Item</th><th>Cost</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>200 business cards</td><td>$20–$35</td></tr>
+          <tr><td>50 flyers</td><td>$5–$15</td></tr>
+          <tr><td>Event registration (free walk)</td><td>$0</td></tr>
+          <tr class="budget-total"><td><strong>TOTAL</strong></td><td><strong>$25–$50</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3>📊 ROI Projection</h3>
+      <table class="budget-table">
+        <thead>
+          <tr><th>Scenario</th><th>Leads</th><th>Conversions</th><th>MRR Added</th><th>12-Mo Revenue</th><th>ROI</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>🐢 Conservative</td><td>8</td><td>2</td><td>+$140</td><td>$1,680</td><td class="budget-roi">3–8x</td></tr>
+          <tr><td>📊 Base Case</td><td>15</td><td>4</td><td>+$280</td><td>$3,360</td><td class="budget-roi">7–16x</td></tr>
+          <tr><td>🚀 Best Case</td><td>25</td><td>7</td><td>+$490</td><td>$5,880</td><td class="budget-roi">11–28x</td></tr>
+        </tbody>
+      </table>
+      <p style="color:#64748b; font-size:0.8rem; margin-top:0.5rem;">Assumes $70/mo avg, 24-month LTV. Does not include referrals from new customers (multiplier effect).</p>
+    </div>
+
+    <div class="goal-banner">
+      <div class="goal-title">The math is simple</div>
+      <div class="goal-math">$300 booth → 4 customers → $3,360/yr</div>
+      <div class="goal-detail">That's an 11x return in the first year. The booth cost is the cheapest part of the day.</div>
+    </div>
+  </div>
+
+  <!-- CHECKLIST -->
+  <div class="sub-panel" id="barkpark-checklist">
+    <div class="card">
+      <h3>✅ Master Checklist — Bark in the Park</h3>
+      <ul class="checklist" id="bp-checklist">
+        <li>
+          <input type="checkbox" id="bp1" onchange="saveCheck('bp',this)">
+          <label for="bp1">Check HSMO vendor registration (hsmo.org)</label>
+          <span class="check-cost">Do now</span>
+        </li>
+        <li>
+          <input type="checkbox" id="bp2" onchange="saveCheck('bp',this)">
+          <label for="bp2">Register for vendor booth (if open)</label>
+          <span class="check-cost">$75–300</span>
+        </li>
+        <li>
+          <input type="checkbox" id="bp3" onchange="saveCheck('bp',this)">
+          <label for="bp3">Confirm Jamie attending (full day commitment)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="bp4" onchange="saveCheck('bp',this)">
+          <label for="bp4">Order pop-up retractable banner (Vistaprint)</label>
+          <span class="check-cost">~$75 — by Apr 14</span>
+        </li>
+        <li>
+          <input type="checkbox" id="bp5" onchange="saveCheck('bp',this)">
+          <label for="bp5">Order 200 business cards</label>
+          <span class="check-cost">~$25 — by Apr 14</span>
+        </li>
+        <li>
+          <input type="checkbox" id="bp6" onchange="saveCheck('bp',this)">
+          <label for="bp6">Order tablecloth + branded poop bags</label>
+          <span class="check-cost">~$40 — by Apr 28</span>
+        </li>
+        <li>
+          <input type="checkbox" id="bp7" onchange="saveCheck('bp',this)">
+          <label for="bp7">Post "We'll be at Bark in the Park" (3 weeks out — Apr 25)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="bp8" onchange="saveCheck('bp',this)">
+          <label for="bp8">Print 50+ flyers (May 10)</label>
+          <span class="check-cost">~$10</span>
+        </li>
+        <li>
+          <input type="checkbox" id="bp9" onchange="saveCheck('bp',this)">
+          <label for="bp9">Post "See you tomorrow at Bark in the Park!" (May 15)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="bp10" onchange="saveCheck('bp',this)">
+          <label for="bp10">Arrive 45 min early for booth setup (May 16)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="bp11" onchange="saveCheck('bp',this)">
+          <label for="bp11">Post live IG/FB Stories from event (3 minimum)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="bp12" onchange="saveCheck('bp',this)">
+          <label for="bp12">Run raffle — draw winner at 1 PM</label>
+        </li>
+        <li>
+          <input type="checkbox" id="bp13" onchange="saveCheck('bp',this)">
+          <label for="bp13">Log all leads same day</label>
+        </li>
+        <li>
+          <input type="checkbox" id="bp14" onchange="saveCheck('bp',this)">
+          <label for="bp14">Send follow-up texts Sunday morning (May 17)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="bp15" onchange="saveCheck('bp',this)">
+          <label for="bp15">Post event recap on FB + Nextdoor (May 17–18)</label>
+        </li>
+        <li>
+          <input type="checkbox" id="bp16" onchange="saveCheck('bp',this)">
+          <label for="bp16">Log event results (leads, conversions, ROI)</label>
+        </li>
+      </ul>
+      <div style="margin-top:1rem;">
+        <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:#64748b; margin-bottom:0.3rem;">
+          <span>Progress</span>
+          <span id="bp-check-count">0 / 16</span>
+        </div>
+        <div class="progress-bar-outer">
+          <div class="progress-bar-inner" id="bp-progress" style="width:0%"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end barkpark panel -->
+
+<script>
+  // =================== NAVIGATION ===================
+  function switchEvent(event) {
+    document.querySelectorAll('.event-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.event-panel').forEach(p => p.classList.remove('active'));
+    event === 'archbark'
+      ? document.querySelector('.event-tab:first-child').classList.add('active')
+      : document.querySelector('.event-tab:last-child').classList.add('active');
+    document.getElementById('panel-' + event).classList.add('active');
+  }
+
+  function switchSubTab(eventId, tabId) {
+    const panel = document.getElementById('panel-' + eventId);
+    panel.querySelectorAll('.sub-panel').forEach(p => p.classList.remove('active'));
+    panel.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(eventId + '-' + tabId).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // =================== COUNTDOWN ===================
+  function updateCountdowns() {
+    const now = new Date();
+    const archBarkDate = new Date('2026-04-18T10:00:00-05:00');
+    const barkParkDate = new Date('2026-05-16T09:00:00-05:00');
+
+    const abDays = Math.ceil((archBarkDate - now) / (1000 * 60 * 60 * 24));
+    const bpDays = Math.ceil((barkParkDate - now) / (1000 * 60 * 60 * 24));
+
+    const abEl = document.getElementById('archbark-days');
+    const bpEl = document.getElementById('barkpark-days');
+
+    if (abEl) abEl.textContent = abDays > 0 ? abDays : '🎉';
+    if (bpEl) bpEl.textContent = bpDays > 0 ? bpDays : '🎉';
+  }
+  updateCountdowns();
+
+  // =================== COPY SCRIPTS ===================
+  function copyScript(btn) {
+    const block = btn.parentElement;
+    const text = block.querySelector('.script-text').textContent;
+    navigator.clipboard.writeText(text.trim()).then(() => {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  // =================== CHECKLISTS ===================
+  function saveCheck(prefix, checkbox) {
+    const id = checkbox.id;
+    localStorage.setItem('necc_' + id, checkbox.checked);
+    updateLabel(checkbox);
+    updateChecklistProgress(prefix);
+  }
+
+  function updateLabel(checkbox) {
+    const label = checkbox.parentElement.querySelector('label');
+    if (checkbox.checked) {
+      label.classList.add('checked');
+    } else {
+      label.classList.remove('checked');
+    }
+  }
+
+  function updateChecklistProgress(prefix) {
+    const list = document.getElementById(prefix + '-checklist');
+    if (!list) return;
+    const boxes = list.querySelectorAll('input[type=checkbox]');
+    const checked = Array.from(boxes).filter(b => b.checked).length;
+    const total = boxes.length;
+    const pct = total > 0 ? Math.round(checked / total * 100) : 0;
+    const countEl = document.getElementById(prefix + '-check-count');
+    const progEl = document.getElementById(prefix + '-progress');
+    if (countEl) countEl.textContent = checked + ' / ' + total;
+    if (progEl) progEl.style.width = pct + '%';
+  }
+
+  function loadChecks(prefix) {
+    const list = document.getElementById(prefix + '-checklist');
+    if (!list) return;
+    list.querySelectorAll('input[type=checkbox]').forEach(cb => {
+      const saved = localStorage.getItem('necc_' + cb.id);
+      if (saved === 'true') {
+        cb.checked = true;
+        updateLabel(cb);
+      }
+    });
+    updateChecklistProgress(prefix);
+  }
+
+  // Fix subtab switching
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      const panel = this.closest('.event-panel');
+      panel.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Init
+  loadChecks('ab');
+  loadChecks('bp');
+</script>
+
+</body>
+</html>
