@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>🐾 PAW-TY DAY ZERO — Mar 28 Launch</title>
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --card: #111;
+    --border: #1e1e1e;
+    --green: #00d4aa;
+    --amber: #f59e0b;
+    --red: #ef4444;
+    --blue: #3b82f6;
+    --purple: #8b5cf6;
+    --text: #f0f0f0;
+    --sub: #888;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 40px;
+  }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #0d1b2a 0%, #1a0a2e 50%, #0a1a0d 100%);
+    padding: 24px 20px 20px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle at 50% 50%, rgba(0,212,170,0.06) 0%, transparent 60%);
+    animation: glow 4s ease-in-out infinite alternate;
+  }
+  @keyframes glow { from { opacity: 0.5; } to { opacity: 1; } }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(0,212,170,0.15);
+    border: 1px solid var(--green);
+    color: var(--green);
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-size: 1.9rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 6px;
+    position: relative;
+  }
+  .hero-sub {
+    font-size: 0.9rem;
+    color: var(--sub);
+    margin-bottom: 16px;
+  }
+
+  /* COUNTDOWN */
+  .countdown-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 4px 0 10px;
+  }
+  .cd-block {
+    text-align: center;
+  }
+  .cd-num {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--amber);
+    line-height: 1;
+    min-width: 52px;
+    display: block;
+    font-variant-numeric: tabular-nums;
+  }
+  .cd-label {
+    font-size: 0.65rem;
+    color: var(--sub);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .cd-sep {
+    font-size: 1.8rem;
+    color: var(--border);
+    font-weight: 900;
+    line-height: 1.1;
+    align-self: flex-start;
+    margin-top: 4px;
+  }
+
+  .event-banner {
+    background: rgba(239,68,68,0.12);
+    border: 1px solid rgba(239,68,68,0.3);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    color: #fca5a5;
+    margin-top: 6px;
+    position: relative;
+  }
+  .event-banner strong { color: var(--red); }
+
+  /* PHASE TIMELINE */
+  .section { padding: 0 16px; margin-top: 20px; }
+  .section-title {
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sub);
+    margin-bottom: 10px;
+  }
+
+  .phase-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .phase-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+  }
+  .phase-meta { flex: 1; }
+  .phase-time {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--amber);
+    letter-spacing: 0.05em;
+  }
+  .phase-title-text {
+    font-size: 0.95rem;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .phase-toggle {
+    font-size: 1rem;
+    color: var(--sub);
+    transition: transform 0.2s;
+  }
+  .phase-toggle.open { transform: rotate(90deg); }
+
+  .phase-body {
+    display: none;
+    padding: 0 14px 14px;
+  }
+  .phase-body.open { display: block; }
+
+  .task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    cursor: pointer;
+  }
+  .task-item:last-child { border-bottom: none; }
+  .task-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 6px;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-top: 1px;
+  }
+  .task-item.done .task-check {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .task-item.done .task-check::after {
+    content: '✓';
+    font-size: 0.75rem;
+    color: #000;
+    font-weight: 900;
+  }
+  .task-item.done .task-text {
+    text-decoration: line-through;
+    color: var(--sub);
+  }
+  .task-text { font-size: 0.9rem; line-height: 1.4; }
+  .task-sub { font-size: 0.75rem; color: var(--sub); margin-top: 2px; }
+  .task-badge {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 20px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .badge-hot { background: rgba(239,68,68,0.2); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+  .badge-quick { background: rgba(0,212,170,0.15); color: var(--green); border: 1px solid rgba(0,212,170,0.2); }
+
+  /* PACK LIST */
+  .pack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .pack-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .pack-item.packed {
+    background: rgba(0,212,170,0.08);
+    border-color: rgba(0,212,170,0.3);
+  }
+  .pack-item.packed .pack-name { text-decoration: line-through; color: var(--sub); }
+  .pack-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--sub);
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .pack-item.packed .pack-dot {
+    background: var(--green);
+    border-color: var(--green);
+  }
+  .pack-name { font-size: 0.82rem; font-weight: 600; }
+
+  /* SCRIPTS */
+  .script-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .script-header {
+    padding: 12px 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+  .script-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--amber);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .script-name { font-size: 0.95rem; font-weight: 800; margin-top: 2px; }
+  .script-body {
+    display: none;
+    padding: 0 14px 14px;
+  }
+  .script-body.open { display: block; }
+  .script-text {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    white-space: pre-line;
+    margin-top: 2px;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+    padding: 9px;
+    background: rgba(59,130,246,0.15);
+    border: 1px solid rgba(59,130,246,0.3);
+    border-radius: 8px;
+    color: var(--blue);
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { background: rgba(59,130,246,0.25); }
+  .copy-btn.copied { background: rgba(0,212,170,0.15); border-color: rgba(0,212,170,0.3); color: var(--green); }
+
+  /* QUICK TOOLS */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .tool-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 12px;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+    display: block;
+  }
+  .tool-card:hover { border-color: rgba(0,212,170,0.4); transform: translateY(-1px); }
+  .tool-icon { font-size: 1.4rem; margin-bottom: 6px; }
+  .tool-name { font-size: 0.82rem; font-weight: 800; line-height: 1.2; }
+  .tool-desc { font-size: 0.72rem; color: var(--sub); margin-top: 3px; }
+  .tool-card.hot { border-color: rgba(239,68,68,0.3); background: rgba(239,68,68,0.06); }
+  .tool-card.go { border-color: rgba(0,212,170,0.3); background: rgba(0,212,170,0.06); }
+
+  /* KEY INFO */
+  .info-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .info-row {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    align-items: flex-start;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-key {
+    font-size: 0.7rem;
+    color: var(--sub);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 700;
+    min-width: 70px;
+    flex-shrink: 0;
+    padding-top: 2px;
+  }
+  .info-val { font-size: 0.9rem; font-weight: 600; }
+  .info-val a { color: var(--blue); text-decoration: none; }
+
+  /* WIN TARGETS */
+  .target-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+  .target-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 10px;
+    text-align: center;
+  }
+  .target-num { font-size: 1.6rem; font-weight: 900; color: var(--green); line-height: 1; }
+  .target-label { font-size: 0.68rem; color: var(--sub); margin-top: 4px; line-height: 1.3; }
+
+  /* PROGRESS BAR */
+  .progress-strip {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: var(--sub);
+    margin-bottom: 6px;
+  }
+  .progress-bar {
+    height: 6px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--green), #00ff88);
+    border-radius: 3px;
+    width: 33%;
+    transition: width 0.3s;
+  }
+
+  /* STATUS TICKER */
+  .status-ticker {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(10,10,10,0.95);
+    border-top: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    backdrop-filter: blur(8px);
+    z-index: 100;
+  }
+  .ticker-time { font-size: 1rem; font-weight: 900; color: var(--amber); }
+  .ticker-label { font-size: 0.7rem; color: var(--sub); }
+  .ticker-status { font-size: 0.8rem; color: var(--green); font-weight: 700; text-align: right; }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.6; }
+  }
+  .pulse { animation: pulse 1.5s infinite; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">🐾 PAW-TY DAY — SAT MAR 28</div>
+  <h1>Morning Launch<br><span style="color:var(--green);">Command</span></h1>
+  <p class="hero-sub">Crestwood Vet Adoption Paw-ty • 10:00 AM</p>
+
+  <div class="countdown-wrap">
+    <div class="cd-block"><span class="cd-num" id="cd-h">--</span><span class="cd-label">hrs</span></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-block"><span class="cd-num" id="cd-m">--</span><span class="cd-label">min</span></div>
+    <div class="cd-sep">:</div>
+    <div class="cd-block"><span class="cd-num" id="cd-s">--</span><span class="cd-label">sec</span></div>
+  </div>
+
+  <div class="event-banner">
+    📍 <strong>Crestwood Vet Clinic</strong> — 9645 Watson Rd, Crestwood, MO 63126<br>
+    Setup 9:30 AM • Event 10 AM–2 PM • (314) 850-7140
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="section" style="margin-top:16px;">
+  <div class="section-title">Morning Progress</div>
+  <div class="progress-strip">
+    <div class="progress-label">
+      <span id="done-count">0 tasks done</span>
+      <span id="done-pct">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+  </div>
+</div>
+
+<!-- WIN TARGETS -->
+<div class="section">
+  <div class="section-title">Win Targets Today</div>
+  <div class="target-grid">
+    <div class="target-card">
+      <div class="target-num">3–5</div>
+      <div class="target-label">Leads captured with phone #</div>
+    </div>
+    <div class="target-card">
+      <div class="target-num">1–2</div>
+      <div class="target-label">Signed up on the spot</div>
+    </div>
+    <div class="target-card">
+      <div class="target-num">4–5</div>
+      <div class="target-label">Flyers distributed to other booths</div>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE TIMELINE -->
+<div class="section">
+  <div class="section-title">4-Hour Pre-Launch Timeline</div>
+
+  <!-- Phase 1: NOW -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="togglePhase(this)">
+      <div class="phase-icon">🔥</div>
+      <div class="phase-meta">
+        <div class="phase-time">NOW — 7:00 AM</div>
+        <div class="phase-title-text">First things first</div>
+      </div>
+      <div class="phase-toggle open">▶</div>
+    </div>
+    <div class="phase-body open">
+      <div class="task-item" onclick="toggleTask(this)" data-id="t1">
+        <div class="task-check"></div>
+        <div><div class="task-text">☕ Get coffee, check phone for any overnight leads <span class="task-badge badge-quick">2 min</span></div></div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)" data-id="t2">
+        <div class="task-check"></div>
+        <div><div class="task-text">🖨️ Print flyers — 20-30 copies <span class="task-badge badge-hot">DO THIS NOW</span></div><div class="task-sub">Open <a href="pawty-print-flyer.html" style="color:var(--blue)">pawty-print-flyer.html</a> → Print button → 2 per page landscape</div></div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)" data-id="t3">
+        <div class="task-check"></div>
+        <div><div class="task-text">📱 Charge phone to 100% — you need this all day <span class="task-badge badge-hot">CRITICAL</span></div></div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)" data-id="t4">
+        <div class="task-check"></div>
+        <div><div class="task-text">🐕 Open Pocket Guide on phone — bookmark it <span class="task-badge badge-quick">30 sec</span></div><div class="task-sub"><a href="pawty-pocket-guide.html" style="color:var(--blue)">pawty-pocket-guide.html</a> — your event field card</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 2: 7-8 AM -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="togglePhase(this)">
+      <div class="phase-icon">📣</div>
+      <div class="phase-meta">
+        <div class="phase-time">7:00 — 8:00 AM</div>
+        <div class="phase-title-text">Warm up the audience</div>
+      </div>
+      <div class="phase-toggle">▶</div>
+    </div>
+    <div class="phase-body">
+      <div class="task-item" onclick="toggleTask(this)" data-id="t5">
+        <div class="task-check"></div>
+        <div><div class="task-text">💬 Send referral texts to current customers <span class="task-badge badge-hot">HIGH ROI</span></div><div class="task-sub">Open <a href="saturday-live-amplifier.html" style="color:var(--blue)">Saturday Live Amplifier</a> → Tab 1 → text all 10</div></div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)" data-id="t6">
+        <div class="task-check"></div>
+        <div><div class="task-text">📱 Post Pre-Event FB story/post <span class="task-badge badge-quick">5 min</span></div><div class="task-sub">Copy from Amplifier → Tab 2 → "Pre-Event Post (8–9 AM)"</div></div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)" data-id="t7">
+        <div class="task-check"></div>
+        <div><div class="task-text">📦 Pack everything in the bag (see pack list below)</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 3: 8-9 AM -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="togglePhase(this)">
+      <div class="phase-icon">🚗</div>
+      <div class="phase-meta">
+        <div class="phase-time">8:00 — 9:00 AM</div>
+        <div class="phase-title-text">Lock and load</div>
+      </div>
+      <div class="phase-toggle">▶</div>
+    </div>
+    <div class="phase-body">
+      <div class="task-item" onclick="toggleTask(this)" data-id="t8">
+        <div class="task-check"></div>
+        <div><div class="task-text">🗂️ Review your 3 key scripts one time (2 min)</div><div class="task-sub">Opener, Close, Price objection — see Scripts tab below</div></div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)" data-id="t9">
+        <div class="task-check"></div>
+        <div><div class="task-text">📱 Open Lead Tracker on phone — ready to capture</div><div class="task-sub"><a href="pawty-lead-tracker.html" style="color:var(--blue)">pawty-lead-tracker.html</a> — loads offline</div></div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)" data-id="t10">
+        <div class="task-check"></div>
+        <div><div class="task-text">📍 Know the address: 9645 Watson Rd, Crestwood 63126 <span class="task-badge badge-quick">Map it now</span></div></div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)" data-id="t11">
+        <div class="task-check"></div>
+        <div><div class="task-text">🎯 Set your personal goal: "I'm walking out with 5 leads"</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Phase 4: 9:30 AM -->
+  <div class="phase-card">
+    <div class="phase-header" onclick="togglePhase(this)">
+      <div class="phase-icon">🎪</div>
+      <div class="phase-meta">
+        <div class="phase-time">9:30 AM — DRIVE + SETUP</div>
+        <div class="phase-title-text">Arrive early, own the room</div>
+      </div>
+      <div class="phase-toggle">▶</div>
+    </div>
+    <div class="phase-body">
+      <div class="task-item" onclick="toggleTask(this)" data-id="t12">
+        <div class="task-check"></div>
+        <div><div class="task-text">🚗 Leave by 9:15 — 15 min to set up before crowds</div></div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)" data-id="t13">
+        <div class="task-check"></div>
+        <div><div class="task-text">📸 Take a parking lot selfie/shot for IG Story (9:45 AM post)</div><div class="task-sub">"Heading into the Crestwood Vet Paw-ty — dogs, love, and clean yards ☀️"</div></div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)" data-id="t14">
+        <div class="task-check"></div>
+        <div><div class="task-text">👋 Introduce yourself to other vendor tables — trade flyers</div><div class="task-sub">Pet groomers, walkers, trainers = warm referral sources</div></div>
+      </div>
+      <div class="task-item" onclick="toggleTask(this)" data-id="t15">
+        <div class="task-check"></div>
+        <div><div class="task-text">📱 Post IG Story from parking lot before walking in</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PACK LIST -->
+<div class="section">
+  <div class="section-title">Pack List — Don't Leave Without These</div>
+  <div class="pack-grid">
+    <div class="pack-item" onclick="togglePack(this)" data-id="p1">
+      <div class="pack-dot"></div>
+      <div class="pack-name">🖨️ 25 Flyers</div>
+    </div>
+    <div class="pack-item" onclick="togglePack(this)" data-id="p2">
+      <div class="pack-dot"></div>
+      <div class="pack-name">📱 Phone (100%)</div>
+    </div>
+    <div class="pack-item" onclick="togglePack(this)" data-id="p3">
+      <div class="pack-dot"></div>
+      <div class="pack-name">🔌 Portable Charger</div>
+    </div>
+    <div class="pack-item" onclick="togglePack(this)" data-id="p4">
+      <div class="pack-dot"></div>
+      <div class="pack-name">💳 Business Cards</div>
+    </div>
+    <div class="pack-item" onclick="togglePack(this)" data-id="p5">
+      <div class="pack-dot"></div>
+      <div class="pack-name">🖊️ Pen + Notepad</div>
+    </div>
+    <div class="pack-item" onclick="togglePack(this)" data-id="p6">
+      <div class="pack-dot"></div>
+      <div class="pack-name">💧 Water Bottle</div>
+    </div>
+    <div class="pack-item" onclick="togglePack(this)" data-id="p7">
+      <div class="pack-dot"></div>
+      <div class="pack-name">🎟️ Promo Offer Ready</div>
+    </div>
+    <div class="pack-item" onclick="togglePack(this)" data-id="p8">
+      <div class="pack-dot"></div>
+      <div class="pack-name">😊 Good Energy</div>
+    </div>
+  </div>
+</div>
+
+<!-- QUICK SCRIPTS -->
+<div class="section">
+  <div class="section-title">3 Scripts to Know Cold</div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <div>
+        <div class="script-label">Opener</div>
+        <div class="script-name">Walking up to someone with a dog</div>
+      </div>
+      <span style="color:var(--sub)">▶</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">"Hey, cute dog! Is that a [breed]?
+[let them talk]
+Do you have a backyard for them? We actually do dog waste removal for a bunch of neighborhoods out here — flat rate, no per-dog fees, cancel anytime. Here's our card — first cleanup's free."</div>
+      <button class="copy-btn" onclick="copyScript(this, 'Hey, cute dog! Is that a [breed]?\n[let them talk]\nDo you have a backyard for them? We actually do dog waste removal for a bunch of neighborhoods out here — flat rate, no per-dog fees, cancel anytime. Here\'s our card — first cleanup\'s free.')">Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <div>
+        <div class="script-label">Close</div>
+        <div class="script-name">After they show interest</div>
+      </div>
+      <span style="color:var(--sub)">▶</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">"So it's $70 flat per month — doesn't matter if you have one dog or three, same price. We come out weekly, text you when we're on the way and when we're done, and you can cancel anytime — no contracts. Want me to grab your number and get you started? First cleanup is on us."</div>
+      <button class="copy-btn" onclick="copyScript(this, 'So it\'s $70 flat per month — doesn\'t matter if you have one dog or three, same price. We come out weekly, text you when we\'re on the way and when we\'re done, and you can cancel anytime — no contracts. Want me to grab your number and get you started? First cleanup is on us.')">Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <div>
+        <div class="script-label">Price Objection</div>
+        <div class="script-name">"That seems like a lot"</div>
+      </div>
+      <span style="color:var(--sub)">▶</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">"I totally get it. Think of it this way — it's about $2.30 a day, less than a Starbucks drink. You never step in anything, your yard is always ready for the kids or guests, and you just don't have to think about it anymore. Most of our customers say they should've started sooner."</div>
+      <button class="copy-btn" onclick="copyScript(this, 'I totally get it. Think of it this way — it\'s about $2.30 a day, less than a Starbucks drink. You never step in anything, your yard is always ready for the kids or guests, and you just don\'t have to think about it anymore. Most of our customers say they should\'ve started sooner.')">Copy Script</button>
+    </div>
+  </div>
+</div>
+
+<!-- KEY TOOLS -->
+<div class="section">
+  <div class="section-title">4 Tools to Have Open on Your Phone</div>
+  <div class="tools-grid">
+    <a href="pawty-pocket-guide.html" class="tool-card hot">
+      <div class="tool-icon">📱</div>
+      <div class="tool-name">Pocket Guide</div>
+      <div class="tool-desc">Scripts, pricing, objections — all at-event resources</div>
+    </a>
+    <a href="pawty-lead-tracker.html" class="tool-card hot">
+      <div class="tool-icon">📋</div>
+      <div class="tool-name">Lead Tracker</div>
+      <div class="tool-desc">Capture names + phones instantly as you meet people</div>
+    </a>
+    <a href="new-customer-onboarding.html" class="tool-card go">
+      <div class="tool-icon">🐾</div>
+      <div class="tool-name">Onboarding Kit</div>
+      <div class="tool-desc">For when someone says YES — follow right through</div>
+    </a>
+    <a href="pawty-followup-engine.html" class="tool-card go">
+      <div class="tool-icon">📲</div>
+      <div class="tool-name">Follow-Up Engine</div>
+      <div class="tool-desc">48-hr follow-up texts — run on the way home tonight</div>
+    </a>
+  </div>
+</div>
+
+<!-- KEY INFO CARD -->
+<div class="section">
+  <div class="section-title">Event Details</div>
+  <div class="info-card">
+    <div class="info-row">
+      <div class="info-key">Event</div>
+      <div class="info-val">Crestwood Vet Adoption Paw-ty</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">Address</div>
+      <div class="info-val"><a href="https://maps.google.com/?q=9645+Watson+Rd,+Crestwood+MO+63126" target="_blank">9645 Watson Rd, Crestwood MO 63126</a></div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">Time</div>
+      <div class="info-val">10:00 AM – 2:00 PM (arrive 9:30)</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">Your Phone</div>
+      <div class="info-val">(314) 850-7140</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">Offer</div>
+      <div class="info-val">First Visit FREE + $35/mo for 3 months intro</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">Audience</div>
+      <div class="info-val">Dog owners + adopters — Crestwood/Webster Groves/Kirkwood area (south county)</div>
+    </div>
+    <div class="info-row">
+      <div class="info-key">After Event</div>
+      <div class="info-val">Text hot leads within 2 hours. Use Follow-Up Engine tonight.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SUNDAY REMINDER -->
+<div class="section" style="margin-bottom:80px;">
+  <div class="section-title">Tonight + Tomorrow</div>
+  <div style="background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:12px;padding:14px;">
+    <div style="font-size:0.9rem;font-weight:800;color:var(--amber);margin-bottom:8px;">⏰ The 48-Hour Window Opens Tonight</div>
+    <div style="font-size:0.84rem;color:#d1d5db;line-height:1.6;">
+      Hot leads (<strong style="color:#fff">said yes or "very interested"</strong>) → text within 2 hours of leaving.<br>
+      Warm leads → text Sunday morning.<br>
+      Use <a href="pawty-followup-engine.html" style="color:var(--blue)">Follow-Up Engine</a> for copy-paste texts.<br>
+      Sunday morning: run the <a href="sunday-morning-power-hour.html" style="color:var(--amber)">☀️ Sunday Power Hour</a> to close everything.
+    </div>
+  </div>
+</div>
+
+<!-- STICKY BOTTOM -->
+<div class="status-ticker">
+  <div>
+    <div class="ticker-label">Until Paw-ty</div>
+    <div class="ticker-time" id="ticker-time">--:--:--</div>
+  </div>
+  <div class="ticker-status pulse" id="ticker-status">🟢 You got this, TJ</div>
+</div>
+
+<script>
+// Task checkboxes
+const taskState = JSON.parse(localStorage.getItem('pawty-day-zero-tasks') || '{}');
+
+function toggleTask(el) {
+  const id = el.dataset.id;
+  el.classList.toggle('done');
+  taskState[id] = el.classList.contains('done');
+  localStorage.setItem('pawty-day-zero-tasks', JSON.stringify(taskState));
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = document.querySelectorAll('.task-item').length;
+  const done = document.querySelectorAll('.task-item.done').length;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('done-count').textContent = `${done} tasks done`;
+  document.getElementById('done-pct').textContent = `${pct}%`;
+  document.getElementById('progress-fill').style.width = `${pct}%`;
+}
+
+// Restore task state
+document.querySelectorAll('.task-item').forEach(el => {
+  if (taskState[el.dataset.id]) el.classList.add('done');
+});
+updateProgress();
+
+// Pack list
+const packState = JSON.parse(localStorage.getItem('pawty-day-zero-pack') || '{}');
+function togglePack(el) {
+  const id = el.dataset.id;
+  el.classList.toggle('packed');
+  packState[id] = el.classList.contains('packed');
+  localStorage.setItem('pawty-day-zero-pack', JSON.stringify(packState));
+}
+document.querySelectorAll('.pack-item').forEach(el => {
+  if (packState[el.dataset.id]) el.classList.add('packed');
+});
+
+// Phase toggle
+function togglePhase(header) {
+  const body = header.nextElementSibling;
+  const toggle = header.querySelector('.phase-toggle');
+  const isOpen = body.classList.toggle('open');
+  toggle.classList.toggle('open', isOpen);
+}
+
+// Script toggle
+function toggleScript(header) {
+  const body = header.parentElement.querySelector('.script-body');
+  body.classList.toggle('open');
+  const arrow = header.querySelector('span');
+  arrow.textContent = body.classList.contains('open') ? '▼' : '▶';
+}
+
+// Copy button
+function copyScript(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy Script';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// Countdown
+function updateCountdown() {
+  const now = new Date();
+  const target = new Date(now);
+  target.setHours(10, 0, 0, 0);
+  if (target <= now) {
+    document.getElementById('cd-h').textContent = '00';
+    document.getElementById('cd-m').textContent = '00';
+    document.getElementById('cd-s').textContent = '00';
+    document.getElementById('ticker-time').textContent = 'EVENT IS LIVE 🎪';
+    document.getElementById('ticker-status').textContent = '🎯 Go get those leads!';
+    return;
+  }
+  const diff = target - now;
+  const h = Math.floor(diff / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-h').textContent = String(h).padStart(2, '0');
+  document.getElementById('cd-m').textContent = String(m).padStart(2, '0');
+  document.getElementById('cd-s').textContent = String(s).padStart(2, '0');
+  document.getElementById('ticker-time').textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
+</script>
+</body>
+</html>
