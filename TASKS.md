@@ -50,18 +50,23 @@ Everything else is noise until customer count moves.
 - **3 key pages NOT deployed:** /spring, /calculator, /commercial all return homepage
   - Files exist in repo but NOT on live site — needs Cloudflare push
 
-### 📊 Competitive Landscape (Mar 26)
-| Competitor | Status | Price | Threat |
-|------------|--------|-------|--------|
-| Poop 2 Scoop | ✅ Active | $18/wk | 🔴 #1 organic, cheapest |
-| No. 2 Crew | ✅ Active | $19/visit | 🟡 Site partially broken |
-| The Pootector | ✅ Active | Quote only | 🟡 636 area |
-| Dog Doody Defenders | ☠️ DNS DEAD (confirmed Mar 26) | — | Gone |
-| DoodyCalls | ☠️ No MO locations | — | Gone |
-| POOP 911 | ☠️ No MO locations | — | Gone |
-| 4+ others | ☠️ DNS dead | — | Gone |
+### 📊 Competitive Landscape (Mar 28 — UPDATED)
+| Competitor | Status | Reviews | Price | Threat |
+|------------|--------|---------|-------|--------|
+| Poop2Scoop | ✅ Active | 5.0★ (39) | $18/wk | 🔴 #1 organic, cheapest, veteran-owned |
+| POOP 911 St. Louis | ✅ Active (franchise) | 4.8★ (180) | ~$25-30/wk est. | 🔴 Most reviews, national brand |
+| POOP 911 St. Charles | ✅ Active (franchise) | 4.8★ (145) | ~$25-30/wk est. | 🟡 St. Charles focus |
+| No. 2 Crew | ✅ Active | Unknown | $19/visit | 🟡 Site broken, per-visit fees |
+| CL Pro Pet Services | ✅ Active | 5.0★ (20) | Quote only | 🟡 St. Charles + overlaps Florissant |
+| Dr. Scoops | ✅ Active | 5.0★ (15) | Quote only | 🟢 636 area, likely west county |
+| Scoop the Lou | ✅ Active | 5.0★ (7) | Quote only | 🟡 New, growing, community angle |
+| LJJ Pet Waste Removal | ✅ Active | 5.0★ (5) | Unknown | 🟢 Solo operator, no website |
+| Dog Doody Defenders | ☠️ DNS DEAD | — | — | Gone |
+| The Pootector | ⚠️ Unclear | — | — | Site loads but no clear pricing/territory |
 
-**North County has ZERO local competitors.** 75-150+ orphaned customers from dead competitors.
+**⚠️ NOTE: Old docs said POOP 911 had "no MO locations" — WRONG. They have 3 active listings.**
+**North County (Florissant/Hazelwood/Ferguson) still has NO dominant active competitor.** → Priority target.
+→ Full battle intel: `dashboard/competitor-battle-map-mar28.html`
 
 ---
 

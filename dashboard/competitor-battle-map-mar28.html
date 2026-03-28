@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🗺️ Competitor Battle Map — Tidy Tails STL</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0d1117;
+    --card: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --green: #3fb950;
+    --red: #f85149;
+    --yellow: #e3b341;
+    --blue: #58a6ff;
+    --purple: #a371f7;
+    --orange: #f0883e;
+    --teal: #39d353;
+    --dim-red: #2d1215;
+    --dim-green: #0f2d16;
+    --dim-yellow: #2d230a;
+    --dim-blue: #0d2149;
+  }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
+
+  .header {
+    background: linear-gradient(135deg, #1a0a2e 0%, #0d1f3d 100%);
+    border-bottom: 2px solid var(--border);
+    padding: 20px 24px;
+  }
+  .header-top { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; }
+  .header-sub { color: var(--muted); font-size: 0.85rem; }
+  .updated-badge {
+    background: var(--dim-yellow);
+    border: 1px solid var(--yellow);
+    color: var(--yellow);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: auto;
+  }
+
+  .alert-banner {
+    background: #1a2000;
+    border: 1px solid #6e7a00;
+    border-left: 4px solid #c8d400;
+    padding: 12px 20px;
+    margin: 16px 24px;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    color: #e0eb4f;
+  }
+  .alert-banner strong { color: #f5f500; }
+
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 16px 32px; }
+
+  /* Stats bar */
+  .stats-bar {
+    display: flex;
+    gap: 12px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 18px;
+    flex: 1;
+    min-width: 140px;
+    text-align: center;
+  }
+  .stat-num { font-size: 1.8rem; font-weight: 800; }
+  .stat-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+  .green { color: var(--green); }
+  .red { color: var(--red); }
+  .yellow { color: var(--yellow); }
+  .blue { color: var(--blue); }
+  .orange { color: var(--orange); }
+
+  /* Tabs */
+  .tabs { display: flex; gap: 6px; margin: 20px 0 16px; flex-wrap: wrap; }
+  .tab {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.15s;
+  }
+  .tab:hover { border-color: var(--blue); color: var(--blue); }
+  .tab.active { background: var(--blue); border-color: var(--blue); color: #fff; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* Competitor cards */
+  .competitor-grid { display: grid; gap: 14px; }
+
+  .comp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .comp-card.threat-high { border-left: 4px solid var(--red); }
+  .comp-card.threat-med { border-left: 4px solid var(--yellow); }
+  .comp-card.threat-low { border-left: 4px solid var(--green); }
+
+  .comp-header {
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    cursor: pointer;
+  }
+  .comp-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .comp-main { flex: 1; }
+  .comp-name { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; }
+  .comp-tagline { color: var(--muted); font-size: 0.82rem; }
+  .comp-meta {
+    display: flex;
+    gap: 10px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+  .badge-red { background: var(--dim-red); border: 1px solid var(--red); color: var(--red); }
+  .badge-yellow { background: var(--dim-yellow); border: 1px solid var(--yellow); color: var(--yellow); }
+  .badge-green { background: var(--dim-green); border: 1px solid var(--green); color: var(--green); }
+  .badge-blue { background: var(--dim-blue); border: 1px solid var(--blue); color: var(--blue); }
+  .badge-purple { background: #1a0f2d; border: 1px solid var(--purple); color: var(--purple); }
+
+  .comp-expand { color: var(--muted); font-size: 1.2rem; margin-top: 4px; flex-shrink: 0; }
+
+  .comp-detail {
+    padding: 0 20px 20px;
+    display: none;
+    border-top: 1px solid var(--border);
+    margin-top: 0;
+    padding-top: 16px;
+  }
+  .comp-detail.open { display: block; }
+
+  .detail-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .detail-box {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+  }
+  .detail-box h4 { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .detail-box p, .detail-box li { font-size: 0.84rem; line-height: 1.5; }
+  .detail-box ul { padding-left: 16px; }
+
+  .pricing-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin-top: 6px; }
+  .pricing-table th { text-align: left; color: var(--muted); font-weight: 600; padding: 4px 8px; border-bottom: 1px solid var(--border); }
+  .pricing-table td { padding: 5px 8px; border-bottom: 1px solid #1a2028; }
+  .pricing-table tr:last-child td { border-bottom: none; }
+  .cheaper { color: var(--red); font-weight: 700; }
+  .same { color: var(--yellow); }
+  .pricier { color: var(--green); font-weight: 700; }
+
+  .vs-us {
+    background: linear-gradient(135deg, #0a1f0a 0%, #0d2149 100%);
+    border: 1px solid #1a4a1a;
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-top: 6px;
+  }
+  .vs-us h4 { font-size: 0.72rem; color: #3fb950; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .vs-us ul { list-style: none; padding: 0; }
+  .vs-us li { font-size: 0.84rem; padding: 3px 0; }
+  .vs-us li::before { content: "✅ "; }
+  .vs-us li.neg::before { content: "⚠️ "; }
+
+  /* Pricing compare table */
+  .price-compare {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .price-compare table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+  .price-compare th {
+    background: #1a2133;
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  .price-compare td { padding: 10px 14px; border-bottom: 1px solid #1a2028; }
+  .price-compare tr:hover td { background: #1a2133; }
+  .price-compare .us-row td { background: #0d2149; font-weight: 700; }
+  .price-compare .us-row:hover td { background: #0f2a58; }
+  .highlight-best { color: var(--green); font-weight: 700; }
+  .highlight-worst { color: var(--red); }
+
+  /* Territory map */
+  .territory-list { display: grid; gap: 8px; }
+  .territory-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .territory-name { font-weight: 600; font-size: 0.9rem; flex: 1; }
+  .territory-competitors { font-size: 0.8rem; color: var(--muted); }
+  .territory-us { font-size: 0.75rem; color: var(--green); font-weight: 700; margin-left: auto; }
+  .status-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot-red { background: var(--red); }
+  .dot-yellow { background: var(--yellow); }
+  .dot-green { background: var(--green); }
+  .dot-blue { background: var(--blue); }
+
+  /* Battle scripts */
+  .script-list { display: grid; gap: 12px; }
+  .script-item {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .script-trigger {
+    padding: 12px 16px;
+    background: #1a2133;
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .script-body {
+    padding: 14px 16px;
+    display: none;
+  }
+  .script-body.open { display: block; }
+  .script-text {
+    background: #0a1520;
+    border: 1px solid #1a3a5a;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.84rem;
+    line-height: 1.6;
+    color: #a8d4f5;
+    margin-bottom: 10px;
+    position: relative;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: #1a3a5a;
+    border: none;
+    color: var(--blue);
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+  .copy-btn:hover { background: #2a4a6a; }
+  .script-note { font-size: 0.78rem; color: var(--muted); }
+
+  /* Opportunities */
+  .opportunity-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .opp-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .opp-card h3 { font-size: 0.95rem; margin-bottom: 8px; }
+  .opp-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; margin-bottom: 10px; }
+  .opp-action {
+    background: var(--dim-green);
+    border: 1px solid var(--green);
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  .section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  @media (max-width: 600px) {
+    .header { padding: 16px; }
+    .header h1 { font-size: 1.3rem; }
+    .detail-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <span style="font-size:2rem;">🗺️</span>
+    <div>
+      <h1>Competitor Battle Map</h1>
+      <div class="header-sub">Tidy Tails STL — Live Competitive Intelligence</div>
+    </div>
+    <div class="updated-badge">Updated Mar 28, 2026</div>
+  </div>
+</div>
+
+<div class="alert-banner">
+  ⚠️ <strong>Intel Update:</strong> The competitive landscape is MORE crowded than previously documented. POOP 911 IS active in St. Louis (180 reviews). 7 active players confirmed. North County and South County remain our best open lanes. Old documentation was wrong — use THIS file.
+</div>
+
+<div class="container">
+
+  <div class="stats-bar">
+    <div class="stat-card">
+      <div class="stat-num red">7</div>
+      <div class="stat-label">Active Competitors</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num green">6</div>
+      <div class="stat-label">Tidy Tails Reviews</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num yellow">$18</div>
+      <div class="stat-label">Cheapest Rival (Poop2Scoop)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num blue">$25</div>
+      <div class="stat-label">Our Weekly (1 dog)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num orange">$70/mo</div>
+      <div class="stat-label">Our Flat Rate (UNIQUE)</div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showTab('all-comps')">🎯 All Competitors</div>
+    <div class="tab" onclick="showTab('pricing')">💰 Pricing War</div>
+    <div class="tab" onclick="showTab('territory')">📍 Territory Map</div>
+    <div class="tab" onclick="showTab('scripts')">💬 Battle Scripts</div>
+    <div class="tab" onclick="showTab('opportunities')">🚀 Opportunities</div>
+  </div>
+
+  <!-- ALL COMPETITORS TAB -->
+  <div class="panel active" id="tab-all-comps">
+    <div class="competitor-grid">
+
+      <!-- Poop2Scoop -->
+      <div class="comp-card threat-high">
+        <div class="comp-header" onclick="toggleDetail('p2s')">
+          <div class="comp-icon">🔴</div>
+          <div class="comp-main">
+            <div class="comp-name">Poop2Scoop Pet Waste Removal</div>
+            <div class="comp-tagline">poop2scoop.com · (314) 449-9447 · Veteran-owned</div>
+            <div class="comp-meta">
+              <span class="badge badge-red">THREAT: HIGH</span>
+              <span class="badge badge-yellow">⭐ 5.0 (39 reviews)</span>
+              <span class="badge badge-red">Cheapest: $18/wk</span>
+              <span class="badge badge-blue">#1 Organic Search</span>
+            </div>
+          </div>
+          <div class="comp-expand" id="p2s-arrow">▼</div>
+        </div>
+        <div class="comp-detail" id="p2s-detail">
+          <div class="detail-grid">
+            <div class="detail-box">
+              <h4>📋 Pricing</h4>
+              <table class="pricing-table">
+                <tr><th>Service</th><th>1 Dog</th><th>+Dog</th></tr>
+                <tr><td>Weekly</td><td class="cheaper">$18/visit</td><td>+$4</td></tr>
+                <tr><td>Twice/Wk</td><td class="cheaper">$16/visit</td><td>+$4</td></tr>
+                <tr><td>Biweekly</td><td class="cheaper">$25/visit</td><td>+$4</td></tr>
+                <tr><td>Large yard</td><td>+$4</td><td>—</td></tr>
+                <tr><td>Deodorize</td><td>+$4/deck</td><td>—</td></tr>
+              </table>
+            </div>
+            <div class="detail-box">
+              <h4>💪 Their Strengths</h4>
+              <ul>
+                <li>Cheapest in market ($18/wk)</li>
+                <li>Veteran-owned badge (trust signal)</li>
+                <li>39 Google reviews at 5.0★</li>
+                <li>#1 organic search ranking</li>
+                <li>Commercial services offered</li>
+                <li>100% satisfaction guarantee</li>
+                <li>No long-term contracts</li>
+              </ul>
+            </div>
+            <div class="detail-box">
+              <h4>😬 Their Weaknesses</h4>
+              <ul>
+                <li>DNS was dead — site unreliable history</li>
+                <li>Per-visit model (no flat $70/mo like us)</li>
+                <li>No mention of service areas → unknown territory</li>
+                <li>No transparent "monthly" rate (requires math)</li>
+                <li>Website looks dated</li>
+              </ul>
+            </div>
+          </div>
+          <div class="vs-us">
+            <h4>How We Beat Them at the Paw-ty</h4>
+            <ul>
+              <li>Our $70/month FLAT RATE is predictable — no math needed</li>
+              <li>Their biweekly math: $25x26/yr = $650/yr. Our biweekly: $45x26/yr = $1,170... Wait — push MONTHLY FLAT</li>
+              <li>We're LOCAL and personal — they're volume-focused</li>
+              <li>Jamie IS the face. Poop2Scoop is just "John." Local familiarity wins.</li>
+              <li class="neg">Don't lead with price. Lead with reliability and flat rate simplicity.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- POOP 911 St. Louis -->
+      <div class="comp-card threat-high">
+        <div class="comp-header" onclick="toggleDetail('p911')">
+          <div class="comp-icon">🔴</div>
+          <div class="comp-main">
+            <div class="comp-name">POOP 911 St. Louis</div>
+            <div class="comp-tagline">poop911.com · (314) 449-9632 · National franchise</div>
+            <div class="comp-meta">
+              <span class="badge badge-red">THREAT: HIGH</span>
+              <span class="badge badge-yellow">⭐ 4.8 (180 reviews)</span>
+              <span class="badge badge-red">National brand</span>
+              <span class="badge badge-purple">POOP 911 St. Charles too</span>
+            </div>
+          </div>
+          <div class="comp-expand" id="p911-arrow">▼</div>
+        </div>
+        <div class="comp-detail" id="p911-detail">
+          <div class="detail-grid">
+            <div class="detail-box">
+              <h4>💪 Their Strengths</h4>
+              <ul>
+                <li>180 reviews at 4.8★ — by far the most reviewed</li>
+                <li>National franchise brand recognition</li>
+                <li>TWO locations: St. Louis (314) + St. Charles (314)</li>
+                <li>Professional systems, likely uniform, branded trucks</li>
+                <li>Opens 8 AM — professional hours</li>
+              </ul>
+            </div>
+            <div class="detail-box">
+              <h4>😬 Their Weaknesses</h4>
+              <ul>
+                <li>FRANCHISE — corporate, not local/personal</li>
+                <li>Franchise fees = higher prices to cover overhead</li>
+                <li>4.8★ not 5.0★ — 180 reviews means some complaints</li>
+                <li>National customer service = not Jamie answering texts at 9 PM</li>
+                <li>Can't match our personal touch/community angle</li>
+              </ul>
+            </div>
+          </div>
+          <div class="vs-us">
+            <h4>How We Beat Them</h4>
+            <ul>
+              <li>We are LOCAL. They are corporate. "Big franchise vs. your neighbor" is a winning frame.</li>
+              <li>Our money stays in St. Louis. Theirs goes to corporate.</li>
+              <li>Jamie texts you directly. POOP 911 has a call center.</li>
+              <li>We'll ALWAYS answer. Franchises have office hours.</li>
+              <li class="neg">Don't match their pricing — we can't win on volume. Win on relationship.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- No. 2 Crew -->
+      <div class="comp-card threat-med">
+        <div class="comp-header" onclick="toggleDetail('n2c')">
+          <div class="comp-icon">🟡</div>
+          <div class="comp-main">
+            <div class="comp-name">No. 2 Crew</div>
+            <div class="comp-tagline">no2crew.com · (314) 717-8880</div>
+            <div class="comp-meta">
+              <span class="badge badge-yellow">THREAT: MEDIUM</span>
+              <span class="badge badge-yellow">⭐ Unknown reviews</span>
+              <span class="badge badge-yellow">$19/visit (1 dog)</span>
+              <span class="badge badge-red">Site partially broken</span>
+            </div>
+          </div>
+          <div class="comp-expand" id="n2c-arrow">▼</div>
+        </div>
+        <div class="comp-detail" id="n2c-detail">
+          <div class="detail-grid">
+            <div class="detail-box">
+              <h4>📋 Pricing</h4>
+              <table class="pricing-table">
+                <tr><th>Dogs</th><th>Weekly</th><th>Biweekly</th><th>Monthly</th></tr>
+                <tr><td>1 dog</td><td class="cheaper">$19/visit</td><td class="cheaper">$35</td><td class="cheaper">$68</td></tr>
+                <tr><td>2-3 dogs</td><td class="cheaper">$24/visit</td><td class="cheaper">$44</td><td class="cheaper">$85</td></tr>
+                <tr><td>4-5 dogs</td><td class="cheaper">$29/visit</td><td class="cheaper">$55</td><td class="same">$100</td></tr>
+                <tr><td colspan="4" style="color:var(--yellow);font-size:0.75rem;padding-top:6px;">⚠️ +$5 per extra scooper pan at initial visit</td></tr>
+              </table>
+            </div>
+            <div class="detail-box">
+              <h4>💪 Their Strengths</h4>
+              <ul>
+                <li>Competitive pricing vs. us</li>
+                <li>"Firm handshakes" — no contracts messaging</li>
+                <li>Price listed publicly (transparent)</li>
+              </ul>
+            </div>
+            <div class="detail-box">
+              <h4>😬 Their Weaknesses</h4>
+              <ul>
+                <li>Site is partially broken (/about returns 404)</li>
+                <li>Email: info@no2crew.com — impersonal</li>
+                <li>Variable add-on charges at initial visit (confusing)</li>
+                <li>Per-visit pricing = unpredictable bills</li>
+                <li>No community angle, no "face" to the brand</li>
+              </ul>
+            </div>
+          </div>
+          <div class="vs-us">
+            <h4>How We Beat No. 2 Crew</h4>
+            <ul>
+              <li>Their "every 4 weeks for $68" is confusing. Our "$70/flat" is dead simple.</li>
+              <li>Their initial visit has hidden fees (+$5/pan). We don't surprise people.</li>
+              <li>Jamie has a face and a name. No. 2 Crew is invisible.</li>
+              <li>Their broken website signals they're not prioritizing the business.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- CL Professional Pet Services -->
+      <div class="comp-card threat-low">
+        <div class="comp-header" onclick="toggleDetail('clp')">
+          <div class="comp-icon">🟡</div>
+          <div class="comp-main">
+            <div class="comp-name">CL Professional Pet Services</div>
+            <div class="comp-tagline">clpropetservices.com · (636) 375-4342 · 33 S Hillview Dr, St. Charles</div>
+            <div class="comp-meta">
+              <span class="badge badge-yellow">THREAT: MEDIUM</span>
+              <span class="badge badge-yellow">⭐ 5.0 (20 reviews)</span>
+              <span class="badge badge-blue">St. Charles focus</span>
+              <span class="badge badge-green">Limited ST. Louis presence</span>
+            </div>
+          </div>
+          <div class="comp-expand" id="clp-arrow">▼</div>
+        </div>
+        <div class="comp-detail" id="clp-detail">
+          <div class="detail-grid">
+            <div class="detail-box">
+              <h4>💪 Their Strengths</h4>
+              <ul>
+                <li>5.0★ 20 reviews (strong reputation)</li>
+                <li>APAWS certified (professional association)</li>
+                <li>Serves St. Charles + St. Louis counties</li>
+                <li>Deodorizer service add-on</li>
+                <li>"Up to 2 free visits" promo</li>
+                <li>Friendly tone/branding</li>
+              </ul>
+            </div>
+            <div class="detail-box">
+              <h4>😬 Their Weaknesses</h4>
+              <ul>
+                <li>St. Charles-focused (different turf)</li>
+                <li>Opens 7:30 AM (more limited hours)</li>
+                <li>No public pricing listed</li>
+                <li>Competing in St. Charles, not our core North County market</li>
+              </ul>
+            </div>
+          </div>
+          <div class="vs-us">
+            <h4>Territory Overlap</h4>
+            <ul>
+              <li>They serve Chesterfield/Ballwin area (zip 63005, 63017, 63011, 63021)</li>
+              <li>Low direct overlap with our Florissant/Hazelwood North County push</li>
+              <li class="neg">Watch: they serve 63031, 63033, 63034 (Florissant!) — overlapping our territory</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dr. Scoops -->
+      <div class="comp-card threat-low">
+        <div class="comp-header" onclick="toggleDetail('drs')">
+          <div class="comp-icon">🟢</div>
+          <div class="comp-main">
+            <div class="comp-name">Dr. Scoops Pet Waste Removal</div>
+            <div class="comp-tagline">getdrscoops.com · (636) 299-0674</div>
+            <div class="comp-meta">
+              <span class="badge badge-green">THREAT: LOW</span>
+              <span class="badge badge-yellow">⭐ 5.0 (15 reviews)</span>
+              <span class="badge badge-green">636 area code — likely west</span>
+            </div>
+          </div>
+          <div class="comp-expand" id="drs-arrow">▼</div>
+        </div>
+        <div class="comp-detail" id="drs-detail">
+          <div class="detail-grid">
+            <div class="detail-box">
+              <h4>💪 Their Strengths</h4>
+              <ul>
+                <li>5.0★ 15 reviews</li>
+                <li>Opens 9 AM — standard pro hours</li>
+                <li>"Always on time, prices more than fair" review</li>
+              </ul>
+            </div>
+            <div class="detail-box">
+              <h4>😬 Their Weaknesses</h4>
+              <ul>
+                <li>636 area code suggests west county/St. Charles area</li>
+                <li>Small review count (15) — relatively new or small</li>
+                <li>No public pricing</li>
+                <li>Limited brand presence</li>
+              </ul>
+            </div>
+          </div>
+          <div class="vs-us">
+            <h4>Assessment</h4>
+            <ul>
+              <li>Low direct threat — likely west of our territory</li>
+              <li>Monitor but don't prioritize counter-strategy</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scoop the Lou -->
+      <div class="comp-card threat-med">
+        <div class="comp-header" onclick="toggleDetail('stl')">
+          <div class="comp-icon">🟡</div>
+          <div class="comp-main">
+            <div class="comp-name">Scoop the Lou</div>
+            <div class="comp-tagline">scoopthelou.com · (314) 310-7849 · Open 24 hours</div>
+            <div class="comp-meta">
+              <span class="badge badge-yellow">THREAT: MEDIUM</span>
+              <span class="badge badge-yellow">⭐ 5.0 (7 reviews)</span>
+              <span class="badge badge-green">New — low reviews</span>
+              <span class="badge badge-purple">Community employment angle</span>
+            </div>
+          </div>
+          <div class="comp-expand" id="stl-arrow">▼</div>
+        </div>
+        <div class="comp-detail" id="stl-detail">
+          <div class="detail-grid">
+            <div class="detail-box">
+              <h4>💪 Their Strengths</h4>
+              <ul>
+                <li>5.0★ 7 reviews — new but clean</li>
+                <li>"Open 24 hours" is a differentiator</li>
+                <li>Strong community angle (employment mission)</li>
+                <li>Serves HOAs and communities</li>
+                <li>Automated payment system</li>
+                <li>Good website copy / brand voice</li>
+                <li>Quote form — instant response promise ("text within 30 min")</li>
+              </ul>
+            </div>
+            <div class="detail-box">
+              <h4>😬 Their Weaknesses</h4>
+              <ul>
+                <li>Only 7 reviews — very new</li>
+                <li>No public pricing (quote form only)</li>
+                <li>Smaller scale = capacity questions</li>
+                <li>314 area code but unclear territory</li>
+                <li>Website subpages (pricing, services) broken/empty</li>
+              </ul>
+            </div>
+          </div>
+          <div class="vs-us">
+            <h4>How We Beat Scoop the Lou</h4>
+            <ul>
+              <li>We have PRICING on our site — they force you through a form</li>
+              <li>We have 6 reviews; they have 7 — nearly equal, we can catch up fast</li>
+              <li>Jamie + TJ are IN the community already. Their "community employment" is marketing copy.</li>
+              <li class="neg">Watch: they are growing and have good brand instincts. Accelerate our review count NOW.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- LJJ Pet Waste Removal -->
+      <div class="comp-card threat-low">
+        <div class="comp-header" onclick="toggleDetail('ljj')">
+          <div class="comp-icon">🟢</div>
+          <div class="comp-main">
+            <div class="comp-name">LJJ Pet Waste Removal Service</div>
+            <div class="comp-tagline">(314) 701-8722 · No website listed</div>
+            <div class="comp-meta">
+              <span class="badge badge-green">THREAT: LOW</span>
+              <span class="badge badge-yellow">⭐ 5.0 (5 reviews)</span>
+              <span class="badge badge-green">No website — informal</span>
+              <span class="badge badge-green">Open 24 hrs — micro op</span>
+            </div>
+          </div>
+          <div class="comp-expand" id="ljj-arrow">▼</div>
+        </div>
+        <div class="comp-detail" id="ljj-detail">
+          <div class="detail-grid">
+            <div class="detail-box">
+              <h4>Assessment</h4>
+              <ul>
+                <li>5 reviews, no website — solo operator</li>
+                <li>"Open 24 hours" = individual, not a company</li>
+                <li>Low threat to structured business like ours</li>
+                <li>May be serving a niche or small territory</li>
+              </ul>
+            </div>
+          </div>
+          <div class="vs-us">
+            <h4>Bottom Line</h4>
+            <ul>
+              <li>Not worth counter-strategy. They're a solo gig worker, not a competitor.</li>
+              <li>If they ever poach a lead, our professionalism / website / reviews close it.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PRICING WAR TAB -->
+  <div class="panel" id="tab-pricing">
+    <div class="section-title">💰 Real Pricing Comparison — 1 Dog, Weekly</div>
+    <div class="price-compare" style="margin-bottom:20px;">
+      <table>
+        <tr>
+          <th>Company</th>
+          <th>Weekly (1 dog)</th>
+          <th>Monthly (est.)</th>
+          <th>Biweekly</th>
+          <th>Notes</th>
+        </tr>
+        <tr>
+          <td style="color:var(--red);font-weight:700;">Poop2Scoop</td>
+          <td class="highlight-worst">$18/visit</td>
+          <td class="highlight-worst">~$72/mo</td>
+          <td>$25/visit</td>
+          <td>+$4/dog, +$4 large yard</td>
+        </tr>
+        <tr>
+          <td style="color:var(--yellow);font-weight:700;">No. 2 Crew</td>
+          <td class="highlight-worst">$19/visit</td>
+          <td class="highlight-worst">~$76/mo</td>
+          <td>$35/visit</td>
+          <td>+$5/pan initial visit</td>
+        </tr>
+        <tr class="us-row">
+          <td>✅ Tidy Tails STL</td>
+          <td>$25/visit</td>
+          <td class="highlight-best">$70/mo FLAT</td>
+          <td>$45/visit</td>
+          <td>Flat $70/mo is OUR edge</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);">POOP 911</td>
+          <td>~$25-30/visit</td>
+          <td>~$100+/mo est.</td>
+          <td>est.</td>
+          <td>Franchise — likely more expensive</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);">Scoop the Lou</td>
+          <td>Quote required</td>
+          <td>Quote required</td>
+          <td>Quote required</td>
+          <td>No public pricing — friction</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);">CL Pro Pet Services</td>
+          <td>Quote required</td>
+          <td>Quote required</td>
+          <td>Quote required</td>
+          <td>No public pricing</td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);">Dr. Scoops</td>
+          <td>Quote required</td>
+          <td>Quote required</td>
+          <td>Quote required</td>
+          <td>No public pricing</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="section-title">🧠 Pricing Strategy Insights</div>
+    <div class="opportunity-grid">
+      <div class="opp-card" style="border-color:var(--green);">
+        <h3 style="color:var(--green);">✅ Our $70 Flat Rate Is Our #1 Weapon</h3>
+        <p>4 of 7 competitors don't publish prices. 2 charge per-visit with add-ons. Nobody else offers a simple flat monthly rate. This is a real differentiator at the event — lead with the simplicity angle.</p>
+        <div class="opp-action">Script: "We don't nickel-and-dime. $70/month, one dog, every week. That's it."</div>
+      </div>
+      <div class="opp-card" style="border-color:var(--yellow);">
+        <h3 style="color:var(--yellow);">⚠️ We're NOT the Cheapest</h3>
+        <p>Poop2Scoop at $18/wk = ~$72/mo is marginally cheaper than our $70 flat rate. Don't lead with price. Lead with simplicity, reliability, and Jamie being your personal contact.</p>
+        <div class="opp-action">Reframe: "We're not the cheapest, we're the most reliable. There's a difference."</div>
+      </div>
+      <div class="opp-card" style="border-color:var(--blue);">
+        <h3 style="color:var(--blue);">💡 Multi-Dog Pricing Is Our Edge</h3>
+        <p>No. 2 Crew charges $24/visit for 2-3 dogs. We charge $40/mo for 2 dogs. For multi-dog households, we win on value clearly. Target 2+ dog families hard.</p>
+        <div class="opp-action">Script: "2 dogs? We're $40/month flat. No. 2 Crew charges $24 every single visit."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TERRITORY MAP TAB -->
+  <div class="panel" id="tab-territory">
+    <div class="section-title">📍 Who's Where in St. Louis Metro</div>
+    <div class="territory-list">
+
+      <div class="territory-item">
+        <div class="status-dot dot-red"></div>
+        <div>
+          <div class="territory-name">South St. Louis County (I-44 Corridor)</div>
+          <div class="territory-competitors">Poop2Scoop (main territory) · POOP 911 St. Louis · No. 2 Crew</div>
+        </div>
+        <div class="territory-us">🟡 We service, heavy competition</div>
+      </div>
+
+      <div class="territory-item">
+        <div class="status-dot dot-yellow"></div>
+        <div>
+          <div class="territory-name">Florissant / Hazelwood (North County)</div>
+          <div class="territory-competitors">CL Pro (zips 63031-63034) · No named competitor dominates</div>
+        </div>
+        <div class="territory-us">🟢 OUR PRIORITY TERRITORY</div>
+      </div>
+
+      <div class="territory-item">
+        <div class="status-dot dot-green"></div>
+        <div>
+          <div class="territory-name">Ferguson / Bridgeton / Normandy</div>
+          <div class="territory-competitors">No active competitor confirmed</div>
+        </div>
+        <div class="territory-us">🟢 OPEN LANE</div>
+      </div>
+
+      <div class="territory-item">
+        <div class="status-dot dot-yellow"></div>
+        <div>
+          <div class="territory-name">Crestwood / Webster Groves (Event Area)</div>
+          <div class="territory-competitors">Possible POOP 911 and Poop2Scoop overlap</div>
+        </div>
+        <div class="territory-us">🟡 Paw-ty is HERE today</div>
+      </div>
+
+      <div class="territory-item">
+        <div class="status-dot dot-red"></div>
+        <div>
+          <div class="territory-name">St. Charles County</div>
+          <div class="territory-competitors">CL Pro (main base) · POOP 911 St. Charles · Dr. Scoops</div>
+        </div>
+        <div class="territory-us">🔴 Heavy competition — not priority</div>
+      </div>
+
+      <div class="territory-item">
+        <div class="status-dot dot-yellow"></div>
+        <div>
+          <div class="territory-name">Chesterfield / Ballwin / Ellisville</div>
+          <div class="territory-competitors">CL Pro (serves these zips) · Possible POOP 911</div>
+        </div>
+        <div class="territory-us">🟡 Reachable but not priority</div>
+      </div>
+
+      <div class="territory-item">
+        <div class="status-dot dot-green"></div>
+        <div>
+          <div class="territory-name">South County (Mehlville, Concord, Arnold)</div>
+          <div class="territory-competitors">Scoop the Lou (claims to serve) · Otherwise sparse</div>
+        </div>
+        <div class="territory-us">🟡 Good expansion opportunity</div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:20px;">
+      <div class="section-title">🎯 Territory Playbook</div>
+      <div class="opportunity-grid">
+        <div class="opp-card" style="border-color:var(--green);">
+          <h3 style="color:var(--green);">🟢 Own North County NOW</h3>
+          <p>Florissant, Hazelwood, Ferguson, Bridgeton. CL Pro overlaps on a few zips but isn't dominant. No 2 Crew and Poop2Scoop aren't advertising here. North County Conquest campaign is already built and ready to execute Mon Mar 30.</p>
+          <div class="opp-action">Action: Execute North County FB posts Mon–Fri. 5 posts, city-specific copy ready.</div>
+        </div>
+        <div class="opp-card" style="border-color:var(--blue);">
+          <h3 style="color:var(--blue);">📍 Today's Paw-ty: Crestwood</h3>
+          <p>Crestwood is in the heart of South STL County — Poop2Scoop's probable home turf. We can still WIN by being personal, being present, and offering the flat $70 rate. Don't mention competitors by name.</p>
+          <div class="opp-action">Focus: Flat rate simplicity + Jamie is your personal contact + local family business.</div>
+        </div>
+        <div class="opp-card" style="border-color:var(--yellow);">
+          <h3 style="color:var(--yellow);">🔜 South County Expansion</h3>
+          <p>Scoop the Lou claims to serve this area but has minimal presence. Once North County is established (6 customers), South County (Mehlville, Concord, Arnold) is the next logical cluster to target.</p>
+          <div class="opp-action">Timeline: April–May 2026 expansion push after North County base is built.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BATTLE SCRIPTS TAB -->
+  <div class="panel" id="tab-scripts">
+    <div class="section-title">💬 Field Scripts — For Jamie at the Paw-ty & Beyond</div>
+    <div class="script-list">
+
+      <div class="script-item">
+        <div class="script-trigger" onclick="toggleScript('s1')">
+          😤 "I already use [competitor]. Why should I switch?" <span id="s1-arrow">▼</span>
+        </div>
+        <div class="script-body" id="s1-body">
+          <div class="script-text">
+            <button class="copy-btn" onclick="copyScript('s1-text')">Copy</button>
+            <span id="s1-text">Oh totally understand — if they're doing a good job, stick with them! The main thing people love about us is we keep it super simple: $70/month flat, one dog, weekly service. No calculating visits, no surprise charges. And I'm literally the one you text if anything ever comes up — no 1-800 number, no call center. But honestly, if you're happy where you are, that's great.</span>
+          </div>
+          <div class="script-note">💡 Don't badmouth competitors. Let our simplicity and personal service sell itself. The "I'm literally the one" line is powerful.</div>
+        </div>
+      </div>
+
+      <div class="script-item">
+        <div class="script-trigger" onclick="toggleScript('s2')">
+          💰 "Poop2Scoop is only $18 a week — you're more expensive" <span id="s2-arrow">▼</span>
+        </div>
+        <div class="script-body" id="s2-body">
+          <div class="script-text">
+            <button class="copy-btn" onclick="copyScript('s2-text')">Copy</button>
+            <span id="s2-text">Yeah, they're great at $18 a visit. But think about how that adds up: 52 weeks × $18 = $936 a year. We're $70 a month — that's $840 a year, and your bills are the same every single month. No math, no surprises. And there's no per-dog upcharge — if you ever get a second dog, we figure it out.</span>
+          </div>
+          <div class="script-note">💡 The annual math WINS — we're actually cheaper than Poop2Scoop annually if they have any add-ons or large yard. Lead with the $840/yr figure.</div>
+        </div>
+      </div>
+
+      <div class="script-item">
+        <div class="script-trigger" onclick="toggleScript('s3')">
+          🏢 "Is this a big company or a small operation?" <span id="s3-arrow">▼</span>
+        </div>
+        <div class="script-body" id="s3-body">
+          <div class="script-text">
+            <button class="copy-btn" onclick="copyScript('s3-text')">Copy</button>
+            <span id="s3-text">We're local — just me and my husband. We started Tidy Tails about a year ago right here in St. Louis County. We know the neighborhoods, we're IN your community, and you get my direct number — not a call center. People love that when something comes up — gate code change, vacation hold, whatever — you just text me directly and it's handled.</span>
+          </div>
+          <div class="script-note">💡 "Local family operation" is our trump card against POOP 911's franchise structure. Use it.</div>
+        </div>
+      </div>
+
+      <div class="script-item">
+        <div class="script-trigger" onclick="toggleScript('s4')">
+          🤷 "I've never heard of Tidy Tails. Are you legit?" <span id="s4-arrow">▼</span>
+        </div>
+        <div class="script-body" id="s4-body">
+          <div class="script-text">
+            <button class="copy-btn" onclick="copyScript('s4-text')">Copy</button>
+            <span id="s4-text">Totally fair question! We've been operating for about a year. We have 10 regular customers in St. Louis County right now, and six 5-star Google reviews. You can look us up — Tidy Tails STL on Google. We're not a franchise, we're your neighbors. And honestly the best proof is our customers — I'm happy to connect you with one if that helps.</span>
+          </div>
+          <div class="script-note">💡 Credibility stack: 10 customers + 6 five-star reviews + offer a reference. Don't apologize for being new — frame it as invested and personal.</div>
+        </div>
+      </div>
+
+      <div class="script-item">
+        <div class="script-trigger" onclick="toggleScript('s5')">
+          🔄 "We had a service before but they went out of business" <span id="s5-arrow">▼</span>
+        </div>
+        <div class="script-body" id="s5-body">
+          <div class="script-text">
+            <button class="copy-btn" onclick="copyScript('s5-text')">Copy</button>
+            <span id="s5-text">Oh man, that's been happening a lot lately — a bunch of services in St. Louis just shut down. We've actually picked up several customers from that exact situation. We'd love to be your new go-to. First visit is free right now — we want to earn your trust before you commit to anything.</span>
+          </div>
+          <div class="script-note">💡 HUGE opportunity — this is the North County orphaned customer angle. Many of these people are at events exactly because they're shopping around. Strike while hot.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- OPPORTUNITIES TAB -->
+  <div class="panel" id="tab-opportunities">
+    <div class="section-title">🚀 Competitive Gaps We Can Exploit</div>
+    <div class="opportunity-grid">
+
+      <div class="opp-card" style="border-color:var(--green);">
+        <h3 style="color:var(--green);">🏆 Only Flat-Rate in the Market</h3>
+        <p>Every competitor either doesn't publish pricing or charges per-visit. Our $70/mo flat rate is the ONLY predictable monthly subscription model. This is a real positioning win for budget-conscious families.</p>
+        <div class="opp-action">Action: Make "$70/month, no surprises" the tagline. Add it to all ads, flyers, GBP description.</div>
+      </div>
+
+      <div class="opp-card" style="border-color:var(--green);">
+        <h3 style="color:var(--green);">📞 No Competitor Offers Personal Text Access</h3>
+        <p>POOP 911 is corporate. Poop2Scoop is "John." No. 2 Crew has info@. Nobody is offering "text Jamie directly" at any hour. This is our people-business angle that no franchise can match.</p>
+        <div class="opp-action">Action: "Text Jamie directly — not a call center." Add to every touchpoint.</div>
+      </div>
+
+      <div class="opp-card" style="border-color:var(--blue);">
+        <h3 style="color:var(--blue);">🗺️ North County Has Zero Dominant Player</h3>
+        <p>Florissant, Hazelwood, Ferguson, Bridgeton: no competitor is running active ads here. CL Pro overlaps a few zips but isn't marketing aggressively. This is our biggest geographic opportunity.</p>
+        <div class="opp-action">Action: North County Conquest campaign launches Monday. 5 city-specific posts ready.</div>
+      </div>
+
+      <div class="opp-card" style="border-color:var(--purple);">
+        <h3 style="color:var(--purple);">📱 No Competitor Has an Active Social Presence</h3>
+        <p>None of our competitors have active Facebook, Instagram, or Nextdoor marketing visible. The market is social-dark. Every post we make, every event we attend, is unopposed reach.</p>
+        <div class="opp-action">Action: Keep consistent FB/IG/Nextdoor cadence. Even 3 posts/week outpaces all competitors combined.</div>
+      </div>
+
+      <div class="opp-card" style="border-color:var(--yellow);">
+        <h3 style="color:var(--yellow);">⭐ Google Reviews Race is Wide Open</h3>
+        <p>Poop2Scoop has 39 reviews. POOP 911 has 180 (but they're a big franchise). Among LOCAL operators, nobody has locked up reviews dominance. Getting to 15-20 reviews at 5.0★ would make us the clear #1 local choice.</p>
+        <div class="opp-action">Action: Review Sprint Kit — send texts Sunday to all 10 customers. Goal: 10 reviews by Tuesday.</div>
+      </div>
+
+      <div class="opp-card" style="border-color:var(--orange);">
+        <h3 style="color:var(--orange);">🏢 Commercial Is Untapped by Locals</h3>
+        <p>Poop2Scoop mentions commercial. POOP 911 franchise does it systematically. But no LOCAL independent is actively pitching property managers with proposals and custom quotes. This is white space for April.</p>
+        <div class="opp-action">Action: Commercial Proposal Builder is ready. Millsap Properties call Monday — use it.</div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:24px;">
+      <div class="section-title">📋 Priority Counter-Strategy (This Week)</div>
+      <div class="opp-card" style="border-color:var(--border); max-width:100%;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.84rem;">
+          <tr style="border-bottom:1px solid var(--border);">
+            <th style="text-align:left; padding:8px; color:var(--muted);">Priority</th>
+            <th style="text-align:left; padding:8px; color:var(--muted);">Action</th>
+            <th style="text-align:left; padding:8px; color:var(--muted);">Counters</th>
+            <th style="text-align:left; padding:8px; color:var(--muted);">When</th>
+          </tr>
+          <tr style="border-bottom:1px solid #1a2028;">
+            <td style="padding:8px; color:var(--green); font-weight:700;">🔥#1</td>
+            <td style="padding:8px;">Google Review Sprint</td>
+            <td style="padding:8px; color:var(--muted);">Poop2Scoop (39), Scoop the Lou (7)</td>
+            <td style="padding:8px; color:var(--yellow);">Sunday after Paw-ty</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1a2028;">
+            <td style="padding:8px; color:var(--green); font-weight:700;">🔥#2</td>
+            <td style="padding:8px;">North County Conquest Campaign</td>
+            <td style="padding:8px; color:var(--muted);">CL Pro in Florissant zips</td>
+            <td style="padding:8px; color:var(--yellow);">Monday Mar 30</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1a2028;">
+            <td style="padding:8px; color:var(--yellow); font-weight:700;">#3</td>
+            <td style="padding:8px;">Launch FB Ads ($7/day)</td>
+            <td style="padding:8px; color:var(--muted);">POOP 911's brand awareness</td>
+            <td style="padding:8px; color:var(--muted);">Monday Apr 6</td>
+          </tr>
+          <tr style="border-bottom:1px solid #1a2028;">
+            <td style="padding:8px; color:var(--yellow); font-weight:700;">#4</td>
+            <td style="padding:8px;">Directory Listings (ShedHub etc)</td>
+            <td style="padding:8px; color:var(--muted);">Poop2Scoop's organic ranking</td>
+            <td style="padding:8px; color:var(--muted);">This week</td>
+          </tr>
+          <tr>
+            <td style="padding:8px; color:var(--blue); font-weight:700;">#5</td>
+            <td style="padding:8px;">Commercial Outreach — Millsap</td>
+            <td style="padding:8px; color:var(--muted);">POOP 911's commercial footprint</td>
+            <td style="padding:8px; color:var(--muted);">Monday Mar 30</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function toggleDetail(id) {
+    const detail = document.getElementById(id + '-detail');
+    const arrow = document.getElementById(id + '-arrow');
+    const isOpen = detail.classList.contains('open');
+    detail.classList.toggle('open', !isOpen);
+    arrow.textContent = isOpen ? '▼' : '▲';
+  }
+
+  function toggleScript(id) {
+    const body = document.getElementById(id + '-body');
+    const arrow = document.getElementById(id + '-arrow');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    arrow.textContent = isOpen ? '▼' : '▲';
+  }
+
+  function copyScript(id) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = event.target;
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 1500);
+    });
+  }
+</script>
+</body>
+</html>
