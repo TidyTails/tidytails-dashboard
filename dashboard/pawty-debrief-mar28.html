@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐾 Paw-ty Debrief — March 28</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a12; color: #e2e8f0; min-height: 100vh; padding: 20px; }
+  .header { text-align: center; padding: 24px 16px; background: linear-gradient(135deg, #1a0a2e, #0a1a2e); border-radius: 16px; margin-bottom: 24px; border: 1px solid #00d4aa33; }
+  .header h1 { font-size: 1.8em; font-weight: 900; color: #00d4aa; }
+  .header p { color: #94a3b8; margin-top: 6px; font-size: 0.9em; }
+  .section { background: #12121e; border-radius: 12px; padding: 20px; margin-bottom: 16px; border: 1px solid #1e1e3a; }
+  .section h2 { font-size: 1em; font-weight: 800; color: #00d4aa; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .stat-box { background: #1a1a2e; border-radius: 10px; padding: 14px; text-align: center; border: 1px solid #2d2d4e; }
+  .stat-num { font-size: 2em; font-weight: 900; color: #00d4aa; display: block; }
+  .stat-label { font-size: 0.7em; color: #64748b; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  input[type="number"], input[type="text"], textarea, select { width: 100%; background: #1a1a2e; border: 1px solid #2d2d4e; border-radius: 8px; color: #e2e8f0; padding: 10px 12px; font-size: 0.9em; margin-bottom: 10px; font-family: inherit; }
+  textarea { min-height: 80px; resize: vertical; }
+  label { font-size: 0.8em; color: #94a3b8; display: block; margin-bottom: 4px; font-weight: 600; }
+  .lead-entry { background: #1a1a2e; border-radius: 10px; padding: 14px; margin-bottom: 10px; border: 1px solid #2d2d4e; }
+  .lead-entry.hot { border-color: #ef4444; }
+  .lead-entry.warm { border-color: #f59e0b; }
+  .lead-entry.cold { border-color: #3b82f6; }
+  .lead-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .btn { background: #00d4aa; color: #000; border: none; border-radius: 8px; padding: 10px 16px; font-weight: 800; cursor: pointer; font-size: 0.85em; width: 100%; margin-top: 8px; }
+  .btn:hover { background: #00b894; }
+  .btn-secondary { background: transparent; border: 1px solid #00d4aa; color: #00d4aa; }
+  .btn-red { background: #ef4444; color: #fff; }
+  .verdict-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; }
+  .verdict-btn { flex: 1; min-width: 80px; padding: 10px; border-radius: 8px; border: 2px solid #2d2d4e; background: transparent; color: #94a3b8; cursor: pointer; font-weight: 700; font-size: 0.8em; text-align: center; }
+  .verdict-btn.active-hot { border-color: #ef4444; background: rgba(239,68,68,0.15); color: #ef4444; }
+  .verdict-btn.active-warm { border-color: #f59e0b; background: rgba(245,158,11,0.15); color: #f59e0b; }
+  .verdict-btn.active-cold { border-color: #3b82f6; background: rgba(59,130,246,0.15); color: #3b82f6; }
+  .verdict-btn.active-converted { border-color: #10b981; background: rgba(16,185,129,0.15); color: #10b981; }
+  .win-box { background: rgba(0,212,170,0.08); border: 2px solid #00d4aa; border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+  .win-box h3 { color: #00d4aa; font-size: 0.9em; margin-bottom: 8px; }
+  .checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid #1e1e3a; cursor: pointer; }
+  .checklist-item:last-child { border: none; }
+  .check-circle { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #2d2d4e; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+  .checklist-item.done .check-circle { background: #00d4aa; border-color: #00d4aa; }
+  .checklist-item.done .check-circle::after { content: '✓'; color: #000; font-size: 0.7em; font-weight: 900; }
+  .checklist-item.done .check-text { text-decoration: line-through; color: #64748b; }
+  .check-text { font-size: 0.85em; }
+  .tonight-urgency { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.4); border-radius: 8px; padding: 12px; margin-bottom: 12px; font-size: 0.8em; color: #fca5a5; }
+  .footer { text-align: center; color: #475569; font-size: 0.75em; margin-top: 24px; }
+  #leads-container .no-leads { color: #475569; font-size: 0.85em; text-align: center; padding: 20px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🐾 Paw-ty Debrief</h1>
+  <p>Crestwood Vet Adoption Paw-ty — March 28, 2026</p>
+  <p style="color: #f59e0b; font-weight: 700; margin-top: 8px;">Fill this out TONIGHT while it's fresh. Takes 10 min.</p>
+</div>
+
+<!-- Win Numbers -->
+<div class="section">
+  <h2>📊 The Numbers</h2>
+  <p style="font-size:0.8em; color:#64748b; margin-bottom:12px;">Quick count — best guess is fine.</p>
+  <div class="stat-row">
+    <div class="stat-box">
+      <input type="number" id="stat-people" min="0" value="0" style="text-align:center; font-size:1.8em; font-weight:900; color:#00d4aa; border:none; background:transparent; width:100%; padding:0;" oninput="updateStats()">
+      <span class="stat-label">people talked to</span>
+    </div>
+    <div class="stat-box">
+      <input type="number" id="stat-numbers" min="0" value="0" style="text-align:center; font-size:1.8em; font-weight:900; color:#f59e0b; border:none; background:transparent; width:100%; padding:0;" oninput="updateStats()">
+      <span class="stat-label">numbers/emails got</span>
+    </div>
+    <div class="stat-box">
+      <input type="number" id="stat-flyers" min="0" value="0" style="text-align:center; font-size:1.8em; font-weight:900; color:#3b82f6; border:none; background:transparent; width:100%; padding:0;" oninput="updateStats()">
+      <span class="stat-label">flyers handed out</span>
+    </div>
+    <div class="stat-box">
+      <input type="number" id="stat-signups" min="0" value="0" style="text-align:center; font-size:1.8em; font-weight:900; color:#10b981; border:none; background:transparent; width:100%; padding:0;" oninput="updateStats()">
+      <span class="stat-label">signed up on spot</span>
+    </div>
+  </div>
+
+  <div id="win-verdict" class="win-box" style="display:none">
+    <h3>🎯 Franklin's Take</h3>
+    <p id="verdict-text" style="font-size:0.85em; color:#e2e8f0;"></p>
+  </div>
+</div>
+
+<!-- Lead Log -->
+<div class="section">
+  <h2>🙋 Lead Log — Enter Each Person</h2>
+  <p style="font-size:0.8em; color:#64748b; margin-bottom:12px;">Add everyone you talked to who showed any interest. Even "maybes."</p>
+
+  <div id="leads-container">
+    <p class="no-leads">No leads added yet. Hit the button below.</p>
+  </div>
+
+  <button class="btn btn-secondary" onclick="addLead()">+ Add a Lead</button>
+</div>
+
+<!-- Vet Relationship -->
+<div class="section">
+  <h2>🏥 The Vet Clinic — Referral Partner?</h2>
+  <div class="tonight-urgency">⚠️ The vet relationship is worth MORE than any single lead. A vet who recommends you = 2-5 new customers per month, forever.</div>
+  
+  <label>Did you meet anyone on staff at the clinic?</label>
+  <textarea id="vet-contact" placeholder="Name, role, how they seemed, what you said..."></textarea>
+  
+  <label>Did they mention referring customers or doing it again?</label>
+  <div class="verdict-row">
+    <button class="verdict-btn" id="vet-yes" onclick="vetVerdict('yes')">✅ Yes!</button>
+    <button class="verdict-btn" id="vet-maybe" onclick="vetVerdict('maybe')">🤷 Maybe</button>
+    <button class="verdict-btn" id="vet-no" onclick="vetVerdict('no')">❌ No</button>
+    <button class="verdict-btn" id="vet-skip" onclick="vetVerdict('skip')">Didn't get to it</button>
+  </div>
+  
+  <label>What's the follow-up action?</label>
+  <textarea id="vet-followup" placeholder="e.g. Call Monday morning, ask for Dr. Smith, mention the event..."></textarea>
+</div>
+
+<!-- Wins + Lessons -->
+<div class="section">
+  <h2>⚡ What Worked</h2>
+  <textarea id="what-worked" placeholder="What got people interested? What line/script worked best? What surprised you?"></textarea>
+</div>
+
+<div class="section">
+  <h2>🤔 What to Do Differently</h2>
+  <textarea id="what-different" placeholder="What felt awkward? What would you change? What did you forget to bring?"></textarea>
+</div>
+
+<!-- Tonight's Follow-Up Checklist -->
+<div class="section">
+  <h2>🔥 Tonight's Follow-Up Checklist</h2>
+  <div class="tonight-urgency">⏰ The 48-hour window is everything. People forget fast. Touch every hot lead tonight or tomorrow morning max.</div>
+
+  <div id="followup-checklist">
+    <div class="checklist-item" onclick="toggleCheck(this)">
+      <div class="check-circle"></div>
+      <span class="check-text">Text every "hot" lead within 2 hours of leaving ("Hey [NAME]! TJ from Tidy Tails — so great meeting you and [DOG]! Let's get your yard sorted 🐾")</span>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)">
+      <div class="check-circle"></div>
+      <span class="check-text">Add all leads to the <a href="tidy-tails-crm.html" style="color:#00d4aa">CRM</a> with source = "Paw-ty Mar 28"</span>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)">
+      <div class="check-circle"></div>
+      <span class="check-text">Post a "Thanks for coming out!" story on Facebook / Nextdoor with 1 photo from the event</span>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)">
+      <div class="check-circle"></div>
+      <span class="check-text">Text "warm" leads by tomorrow morning (Sunday)</span>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)">
+      <div class="check-circle"></div>
+      <span class="check-text">If vet contact was positive — send a thank-you text/email tonight</span>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)">
+      <div class="check-circle"></div>
+      <span class="check-text">Report back to Franklin: how many leads, any signed up, what the vet said</span>
+    </div>
+  </div>
+</div>
+
+<!-- Hot Lead Text Template -->
+<div class="section">
+  <h2>💬 Copy-Paste Follow-Up Text (Hot Leads)</h2>
+  <div style="background:#1a1a2e; border-radius:8px; padding:14px; font-size:0.85em; color:#e2e8f0; border:1px solid #2d2d4e; margin-bottom:8px; line-height:1.6;">
+    Hey [NAME]! This is TJ from Tidy Tails 🐾 — great meeting you and [DOG] at the Paw-ty today! Just wanted to follow up and get you that first cleanup booked. We're doing a spring special — first service FREE when you sign up for weekly or biweekly. You in? Just reply and we'll get you set up. 314-850-7140
+  </div>
+  <button class="btn" onclick="copyTemplate()">📋 Copy This Text</button>
+</div>
+
+<!-- Overall Rating -->
+<div class="section">
+  <h2>🏆 Overall: How'd It Go?</h2>
+  <div class="verdict-row">
+    <button class="verdict-btn" id="rating-fire" onclick="setRating('fire')">🔥 FIRE</button>
+    <button class="verdict-btn" id="rating-good" onclick="setRating('good')">👍 Good</button>
+    <button class="verdict-btn" id="rating-ok" onclick="setRating('ok')">😐 OK</button>
+    <button class="verdict-btn" id="rating-bad" onclick="setRating('bad')">😬 Rough</button>
+  </div>
+  <label>Anything else Franklin should know?</label>
+  <textarea id="extra-notes" placeholder="Other thoughts, ideas, context..."></textarea>
+</div>
+
+<button class="btn" onclick="saveDebrief()" style="margin-bottom:8px;">💾 Save Debrief</button>
+<div id="save-confirmation" style="display:none; text-align:center; color:#00d4aa; font-size:0.85em; margin-top:8px; font-weight:700;">✅ Saved! Great work today.</div>
+
+<div class="footer">
+  🐾 Tidy Tails · Paw-ty Debrief Tool · Franklin · Mar 28, 2026<br>
+  <a href="index.html" style="color:#00d4aa; text-decoration:none;">← Dashboard</a> · 
+  <a href="pawty-followup-engine.html" style="color:#00d4aa; text-decoration:none;">Follow-Up Engine →</a>
+</div>
+
+<script>
+let leads = [];
+let leadCount = 0;
+let vetVerdictVal = null;
+let ratingVal = null;
+
+function addLead() {
+  leadCount++;
+  const id = leadCount;
+  const container = document.getElementById('leads-container');
+  const noLeads = container.querySelector('.no-leads');
+  if (noLeads) noLeads.remove();
+
+  const el = document.createElement('div');
+  el.className = 'lead-entry';
+  el.id = 'lead-' + id;
+  el.innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+      <strong style="color:#e2e8f0; font-size:0.85em;">Lead #${id}</strong>
+      <button onclick="removeLead(${id})" style="background:rgba(239,68,68,0.2); border:none; color:#ef4444; border-radius:6px; padding:4px 8px; font-size:0.75em; cursor:pointer;">Remove</button>
+    </div>
+    <div class="lead-grid">
+      <div>
+        <label>Name</label>
+        <input type="text" placeholder="First name is fine" oninput="saveLeadData(${id})">
+      </div>
+      <div>
+        <label>Dog Name</label>
+        <input type="text" placeholder="Dog's name" oninput="saveLeadData(${id})">
+      </div>
+      <div>
+        <label>Phone / Contact</label>
+        <input type="text" placeholder="Phone or FB name" oninput="saveLeadData(${id})">
+      </div>
+      <div>
+        <label>Neighborhood</label>
+        <input type="text" placeholder="City or subdivision" oninput="saveLeadData(${id})">
+      </div>
+    </div>
+    <label>Temperature</label>
+    <div class="verdict-row" id="temp-${id}">
+      <button class="verdict-btn" onclick="setTemp(${id}, 'converted')">✅ Signed Up!</button>
+      <button class="verdict-btn" onclick="setTemp(${id}, 'hot')">🔥 Hot</button>
+      <button class="verdict-btn" onclick="setTemp(${id}, 'warm')">🌡️ Warm</button>
+      <button class="verdict-btn" onclick="setTemp(${id}, 'cold')">❄️ Cold</button>
+    </div>
+    <label>Notes</label>
+    <textarea placeholder="# of dogs, service interest, what they said, any context..." oninput="saveLeadData(${id})"></textarea>
+  `;
+  container.appendChild(el);
+}
+
+function removeLead(id) {
+  document.getElementById('lead-' + id).remove();
+}
+
+function setTemp(leadId, temp) {
+  const row = document.getElementById('temp-' + leadId);
+  row.querySelectorAll('.verdict-btn').forEach(b => b.className = 'verdict-btn');
+  const map = { converted: 'active-converted', hot: 'active-hot', warm: 'active-warm', cold: 'active-cold' };
+  event.target.className = 'verdict-btn ' + (map[temp] || '');
+  const entry = document.getElementById('lead-' + leadId);
+  entry.className = 'lead-entry ' + (temp === 'converted' ? 'hot' : temp);
+}
+
+function saveLeadData(id) { /* auto-save handled by save button */ }
+
+function vetVerdict(val) {
+  vetVerdictVal = val;
+  ['yes','maybe','no','skip'].forEach(v => {
+    const btn = document.getElementById('vet-' + v);
+    btn.className = 'verdict-btn' + (v === val ? ' active-' + (v === 'yes' ? 'converted' : v === 'maybe' ? 'warm' : v === 'no' ? 'hot' : '') : '');
+  });
+}
+
+function setRating(val) {
+  ratingVal = val;
+  ['fire','good','ok','bad'].forEach(v => {
+    document.getElementById('rating-' + v).className = 'verdict-btn' + (v === val ? ' active-' + (v === 'fire' || v === 'good' ? 'converted' : v === 'ok' ? 'warm' : 'hot') : '');
+  });
+}
+
+function updateStats() {
+  const p = parseInt(document.getElementById('stat-people').value) || 0;
+  const n = parseInt(document.getElementById('stat-numbers').value) || 0;
+  const s = parseInt(document.getElementById('stat-signups').value) || 0;
+  
+  if (p > 0) {
+    let text = '';
+    const convRate = p > 0 ? Math.round((n/p)*100) : 0;
+    if (s > 0) text = `🎉 ${s} signed up on the spot! That's ${(s * 1200).toLocaleString()}/year in potential revenue. Excellent day.`;
+    else if (n >= 5) text = `Solid. ${n} numbers from ${p} conversations (${convRate}% capture rate). Follow up within 48 hours — 2-3 of those should convert.`;
+    else if (n >= 2) text = `Got ${n} contacts. Make sure you text them tonight while they remember who you are.`;
+    else if (p > 0) text = `Had conversations. Now it's about what happens in the follow-up window.`;
+    
+    const box = document.getElementById('win-verdict');
+    box.style.display = 'block';
+    document.getElementById('verdict-text').textContent = text;
+  }
+}
+
+function toggleCheck(item) {
+  item.classList.toggle('done');
+}
+
+function copyTemplate() {
+  const text = "Hey [NAME]! This is TJ from Tidy Tails 🐾 — great meeting you and [DOG] at the Paw-ty today! Just wanted to follow up and get you that first cleanup booked. We're doing a spring special — first service FREE when you sign up for weekly or biweekly. You in? Just reply and we'll get you set up. 314-850-7140";
+  navigator.clipboard.writeText(text).then(() => {
+    event.target.textContent = '✅ Copied!';
+    setTimeout(() => { event.target.textContent = '📋 Copy This Text'; }, 2000);
+  });
+}
+
+function saveDebrief() {
+  const data = {
+    date: '2026-03-28',
+    stats: {
+      people: document.getElementById('stat-people').value,
+      numbers: document.getElementById('stat-numbers').value,
+      flyers: document.getElementById('stat-flyers').value,
+      signups: document.getElementById('stat-signups').value
+    },
+    vetContact: document.getElementById('vet-contact').value,
+    vetVerdict: vetVerdictVal,
+    vetFollowup: document.getElementById('vet-followup').value,
+    whatWorked: document.getElementById('what-worked').value,
+    whatDifferent: document.getElementById('what-different').value,
+    rating: ratingVal,
+    extraNotes: document.getElementById('extra-notes').value
+  };
+  localStorage.setItem('pawty-debrief-mar28', JSON.stringify(data));
+  document.getElementById('save-confirmation').style.display = 'block';
+}
+
+// Load saved data
+window.onload = function() {
+  const saved = localStorage.getItem('pawty-debrief-mar28');
+  if (saved) {
+    const data = JSON.parse(saved);
+    if (data.stats) {
+      document.getElementById('stat-people').value = data.stats.people || 0;
+      document.getElementById('stat-numbers').value = data.stats.numbers || 0;
+      document.getElementById('stat-flyers').value = data.stats.flyers || 0;
+      document.getElementById('stat-signups').value = data.stats.signups || 0;
+      updateStats();
+    }
+    if (data.vetContact) document.getElementById('vet-contact').value = data.vetContact;
+    if (data.vetFollowup) document.getElementById('vet-followup').value = data.vetFollowup;
+    if (data.whatWorked) document.getElementById('what-worked').value = data.whatWorked;
+    if (data.whatDifferent) document.getElementById('what-different').value = data.whatDifferent;
+    if (data.extraNotes) document.getElementById('extra-notes').value = data.extraNotes;
+    if (data.vetVerdict) vetVerdict(data.vetVerdict);
+    if (data.rating) setRating(data.rating);
+  }
+};
+</script>
+</body>
+</html>
