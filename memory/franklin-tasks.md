@@ -258,6 +258,34 @@
   - **Why this task:** It's 3 PM Friday — peak weekend Marketplace browsing kicks off in hours. The April 2 tariff deadline is a genuinely timely hook that gives TJ authentic urgency without manufactured BS. 5 listings spread over 2 days = max weekend reach.
   - Committed + pushed ✅
 
+### Friday 10:06 PM — TuffShed Marketplace Lead Response Kit (Hourly Task)
+- **10:06 PM** 💬 Built complete Marketplace inquiry-to-close response system for TuffShed/WoodMaster leads
+  - **File:** `dashboard/shed-lead-response-kit.html` — 5-tab mobile-first response kit
+  - **Tab 1 — Scripts (8 total):**
+    - Script #1: Generic first reply (qualify fast, ask size/timeline)
+    - Script #2: Tariff hook opener (use for all inquiries through April — genuine urgency, pre-tariff inventory)
+    - Script #3: Size quote template (2-option good/better + monthly payment, ask about yard access)
+    - Script #4: Financing pitch (storage unit math comparison, $[MONTHLY]/mo framing, financing link offer)
+    - Script #5: 24-hour follow-up (no re-pitch, open a new door — photo offer)
+    - Script #6: 72-hour last touch (graceful exit, keep door open)
+    - Script #7: "Can I see one?" (send to lot, offer to meet there to close in person)
+    - Script #8: Closed! Install confirmation (what happens next, access question, hype builder)
+  - **Tab 2 — Objections (7 handlers):**
+    - "Too expensive / cheaper on Amazon" → DIY vs built product distinction + financing pivot
+    - "Let me think / check with spouse" → offer written summary + soft urgency (spring slots filling)
+    - "I need to measure first" → ballpark is fine, crew measures day-of, offer photo assessment
+    - "Do I need a permit?" → know local rules, ask their city, be helpful not evasive
+    - "What's the lead time?" → use real lead times as honest urgency, offer to check open dates
+    - "Will my HOA allow it?" → know common HOA criteria, offer to review their guidelines
+    - "Can I customize?" → enthusiasm! Upgrade sell — loft, shelves, skylights, electrical rough-in, ask use case
+  - **Tab 3 — Close It:** 5-step close process (qualify → quote → handle objection → real urgency → make it easy), response timeline (5 min / same convo / +24hr / +72hr / +30 day re-engage), full pricing quick-reference table (6x8 through 12x24 for both WoodMaster and TuffShed + monthly estimates)
+  - **Tab 4 — Leads:** Quick-add tracker with name, contact, size, heat level (hot/warm/cold), notes. Status updates (new → replied → quoted → closed). Tap-to-text. Stats bar (total/hot/quoted/closed). All localStorage persisted.
+  - **Tab 5 — Tariff:** Tariff situation explainer, 3 tariff-specific scripts (proactive opener, "how much will prices go up?" honest answer, "I'll wait and see" closer), weekend Marketplace checklist (8 items)
+  - **Speed banner** at top: "Reply within 5 minutes = 2x close rate"
+  - **Dashboard:** Added pulsing amber "💬 SHED LEAD RESPONDER" quick link + full alert card above Shed grid + new grid card
+  - **Why this task:** It's 10 PM Friday. Shed weekend ads are live (5 listings scheduled Sat–Sun). When TJ gets inquiries tomorrow morning, he needs to reply FAST with the right words. Until now there was no structured response system — just winging it. This closes that gap. The tariff urgency window (April 2026) is real and time-limited. This kit is the difference between "sounds interesting" and a signed contract.
+  - Committed + pushed ✅
+
 ### Friday 9:04 PM — Google Review Sprint Kit (Hourly Task)
 - **9:04 PM** ⭐ Built comprehensive Google Review Sprint Kit — the free SEO lever that compounds into Map Pack dominance
   - **File:** `dashboard/review-sprint-kit.html` — 5-tab review management hub

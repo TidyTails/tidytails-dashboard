@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏠 TuffShed Lead Response Kit</title>
+<style>
+  :root {
+    --bg: #0a0a0f; --card: #111118; --card2: #16161f; --card3: #1c1c26;
+    --amber: #f59e0b; --amber2: #d97706; --amber-bg: rgba(245,158,11,0.08);
+    --amber-glow: rgba(245,158,11,0.15);
+    --green: #22c55e; --green-bg: rgba(34,197,94,0.08);
+    --red: #ef4444; --red-bg: rgba(239,68,68,0.08);
+    --blue: #3b82f6; --blue-bg: rgba(59,130,246,0.08);
+    --purple: #a78bfa; --purple-bg: rgba(167,139,250,0.08);
+    --orange: #fb923c; --orange-bg: rgba(251,146,60,0.08);
+    --text: #e2e8f0; --muted: #94a3b8; --dim: #475569;
+    --border: #1e293b; --border2: #2d3748;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 80px; }
+
+  .header {
+    text-align: center; padding: 20px 16px 16px;
+    background: linear-gradient(180deg, rgba(245,158,11,0.08), transparent);
+    border-bottom: 1px solid var(--border);
+  }
+  .header h1 { font-size: 1.4em; font-weight: 800; color: var(--amber); letter-spacing: -0.02em; }
+  .header .sub { color: var(--muted); font-size: 0.8em; margin-top: 4px; }
+
+  .speed-banner {
+    background: linear-gradient(135deg, rgba(245,158,11,0.12), rgba(251,146,60,0.08));
+    border: 1px solid rgba(245,158,11,0.25); border-radius: 10px;
+    margin: 12px; padding: 10px 14px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .speed-banner .icon { font-size: 1.4em; flex-shrink: 0; }
+  .speed-banner .text { font-size: 0.78em; color: var(--amber); font-weight: 600; line-height: 1.4; }
+  .speed-banner .text span { color: var(--text); font-weight: 400; }
+
+  /* Stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 0 12px; margin: 0 0 16px; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 8px; text-align: center; }
+  .stat .num { font-size: 1.4em; font-weight: 800; }
+  .stat .lbl { font-size: 0.62em; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .stat.amber .num { color: var(--amber); }
+  .stat.green .num { color: var(--green); }
+  .stat.blue .num { color: var(--blue); }
+  .stat.orange .num { color: var(--orange); }
+
+  /* Tabs */
+  .tabs-wrap { padding: 0 12px; }
+  .tabs { display: flex; gap: 0; background: var(--card); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 16px; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tab { flex: 1; min-width: 0; padding: 10px 6px; text-align: center; font-size: 0.7em; font-weight: 700; color: var(--dim); cursor: pointer; transition: all 0.2s; border: none; background: none; font-family: inherit; white-space: nowrap; }
+  .tab:hover { color: var(--muted); background: var(--card2); }
+  .tab.active { color: var(--bg); background: var(--amber); }
+
+  .panel { display: none; padding: 0 12px; }
+  .panel.active { display: block; }
+
+  /* Section headers */
+  .sec { display: flex; align-items: center; gap: 8px; margin: 20px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .sec .label { font-size: 0.72em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+
+  /* Script cards */
+  .script-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    margin-bottom: 12px; overflow: hidden;
+  }
+  .script-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 14px 10px; cursor: pointer; user-select: none;
+  }
+  .script-header:hover { background: var(--card2); }
+  .script-title { font-size: 0.82em; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .script-title .num { 
+    width: 22px; height: 22px; border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75em; font-weight: 800; flex-shrink: 0;
+  }
+  .script-body { padding: 0 14px 14px; display: none; }
+  .script-body.open { display: block; }
+  .script-meta { font-size: 0.7em; color: var(--muted); margin-bottom: 8px; }
+  
+  .msg-box {
+    background: var(--card3); border: 1px solid var(--border2); border-radius: 8px;
+    padding: 12px; font-size: 0.78em; line-height: 1.6; color: var(--text);
+    white-space: pre-wrap; word-break: break-word; margin-bottom: 8px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  .msg-box .placeholder { color: var(--amber); font-weight: 700; }
+
+  .copy-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--amber-bg); color: var(--amber); border: 1px solid rgba(245,158,11,0.2);
+    border-radius: 6px; padding: 5px 12px; font-size: 0.72em; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; font-family: inherit;
+  }
+  .copy-btn:hover { background: var(--amber-glow); transform: translateY(-1px); }
+  .copy-btn.copied { background: rgba(34,197,94,0.15); color: var(--green); border-color: rgba(34,197,94,0.25); }
+
+  /* Trigger tags */
+  .trigger-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 8px; }
+  .trigger-tag {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 3px 8px; border-radius: 12px; font-size: 0.65em; font-weight: 600;
+    background: rgba(59,130,246,0.12); color: #60a5fa; border: 1px solid rgba(59,130,246,0.2);
+  }
+
+  /* Objection handlers */
+  .objection {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    margin-bottom: 10px; overflow: hidden;
+  }
+  .obj-header { 
+    padding: 10px 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+  }
+  .obj-header:hover { background: var(--card2); }
+  .obj-question { font-size: 0.8em; font-weight: 700; color: var(--amber); }
+  .obj-body { padding: 0 14px 12px; display: none; font-size: 0.78em; line-height: 1.5; }
+  .obj-body.open { display: block; }
+  .obj-tone { 
+    display: inline-flex; padding: 2px 8px; border-radius: 10px; font-size: 0.65em; font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  /* Lead tracker */
+  .lead-form { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 14px; margin-bottom: 16px; }
+  .lead-form h3 { font-size: 0.82em; font-weight: 700; margin-bottom: 10px; color: var(--amber); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 8px; }
+  .form-row.full { grid-template-columns: 1fr; }
+  input, select, textarea {
+    background: var(--card3); border: 1px solid var(--border2); border-radius: 8px;
+    color: var(--text); padding: 8px 10px; font-size: 0.78em; font-family: inherit;
+    width: 100%; outline: none; transition: border-color 0.2s;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--amber); }
+  select option { background: var(--card3); }
+  .form-label { font-size: 0.68em; color: var(--muted); margin-bottom: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .add-btn {
+    width: 100%; padding: 10px; background: var(--amber); color: var(--bg);
+    border: none; border-radius: 8px; font-size: 0.8em; font-weight: 800;
+    cursor: pointer; transition: all 0.2s; font-family: inherit;
+  }
+  .add-btn:hover { background: var(--amber2); transform: translateY(-1px); }
+
+  /* Lead cards */
+  .lead-list { margin-top: 12px; }
+  .lead-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 14px; margin-bottom: 8px; display: flex; align-items: flex-start; gap: 12px;
+  }
+  .lead-info { flex: 1; min-width: 0; }
+  .lead-name { font-size: 0.82em; font-weight: 700; }
+  .lead-details { font-size: 0.72em; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+  .lead-heat { 
+    flex-shrink: 0; padding: 3px 8px; border-radius: 12px; font-size: 0.65em; font-weight: 800;
+    text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .heat-hot { background: rgba(239,68,68,0.15); color: var(--red); }
+  .heat-warm { background: rgba(245,158,11,0.15); color: var(--amber); }
+  .heat-cold { background: rgba(71,85,105,0.3); color: var(--dim); }
+  .lead-actions { display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap; }
+  .lead-btn {
+    padding: 4px 10px; border-radius: 6px; font-size: 0.65em; font-weight: 700;
+    cursor: pointer; border: 1px solid; transition: all 0.2s; text-decoration: none;
+    display: inline-flex; align-items: center; gap: 3px; background: transparent;
+    font-family: inherit;
+  }
+  .lb-text { border-color: rgba(59,130,246,0.3); color: var(--blue); }
+  .lb-text:hover { background: rgba(59,130,246,0.1); }
+  .lb-quote { border-color: rgba(245,158,11,0.3); color: var(--amber); }
+  .lb-quote:hover { background: var(--amber-bg); }
+  .lb-close { border-color: rgba(34,197,94,0.3); color: var(--green); }
+  .lb-close:hover { background: var(--green-bg); }
+  .lb-del { border-color: rgba(239,68,68,0.2); color: var(--red); }
+  .lb-del:hover { background: var(--red-bg); }
+  .lead-status { font-size: 0.65em; font-weight: 700; text-transform: uppercase; margin-left: auto; }
+  .s-new { color: var(--blue); }
+  .s-replied { color: var(--amber); }
+  .s-quoted { color: var(--orange); }
+  .s-closed { color: var(--green); }
+
+  /* Closing guide */
+  .step-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    margin-bottom: 10px; padding: 14px;
+    display: flex; gap: 12px; align-items: flex-start;
+  }
+  .step-num {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--amber-bg);
+    border: 2px solid var(--amber); color: var(--amber); font-size: 0.78em; font-weight: 800;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .step-content { flex: 1; }
+  .step-title { font-size: 0.82em; font-weight: 700; margin-bottom: 4px; }
+  .step-body { font-size: 0.75em; color: var(--muted); line-height: 1.5; }
+  .step-highlight { 
+    margin-top: 6px; padding: 6px 10px; background: var(--amber-bg); 
+    border-radius: 6px; border-left: 3px solid var(--amber);
+    font-size: 0.72em; line-height: 1.4; color: var(--text); font-style: italic;
+  }
+
+  /* Pricing quick-ref */
+  .price-table { width: 100%; border-collapse: collapse; font-size: 0.78em; margin-bottom: 12px; }
+  .price-table th { 
+    background: var(--card3); padding: 8px 10px; text-align: left; 
+    color: var(--amber); font-size: 0.7em; text-transform: uppercase; letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--border2);
+  }
+  .price-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); color: var(--text); line-height: 1.3; }
+  .price-table tr:hover td { background: var(--card2); }
+  .price-table .best { color: var(--green); font-weight: 700; }
+
+  /* Checklist */
+  .check-item { 
+    display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; 
+    border-radius: 8px; cursor: pointer; transition: background 0.15s; margin-bottom: 4px;
+    background: var(--card); border: 1px solid var(--border);
+  }
+  .check-item:hover { background: var(--card2); }
+  .check-item input[type="checkbox"] { width: 16px; height: 16px; margin-top: 1px; flex-shrink: 0; accent-color: var(--amber); cursor: pointer; }
+  .check-item label { font-size: 0.78em; cursor: pointer; line-height: 1.4; }
+  .check-item.done label { color: var(--dim); text-decoration: line-through; }
+
+  /* Info boxes */
+  .info-box {
+    border-radius: 10px; padding: 12px 14px; margin-bottom: 12px;
+    font-size: 0.78em; line-height: 1.5;
+  }
+  .info-amber { background: var(--amber-bg); border: 1px solid rgba(245,158,11,0.2); }
+  .info-green { background: var(--green-bg); border: 1px solid rgba(34,197,94,0.2); }
+  .info-blue { background: var(--blue-bg); border: 1px solid rgba(59,130,246,0.2); }
+  .info-red { background: var(--red-bg); border: 1px solid rgba(239,68,68,0.2); }
+  .info-box strong { color: var(--amber); }
+  .info-green strong { color: var(--green); }
+  .info-blue strong { color: var(--blue); }
+  .info-red strong { color: var(--red); }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 20px; }
+  .timeline::before { content: ''; position: absolute; left: 7px; top: 0; bottom: 0; width: 2px; background: var(--border2); }
+  .tl-item { position: relative; margin-bottom: 14px; }
+  .tl-item::before { content: ''; position: absolute; left: -17px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--amber); border: 2px solid var(--bg); }
+  .tl-time { font-size: 0.65em; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
+  .tl-action { font-size: 0.78em; font-weight: 600; margin-bottom: 2px; }
+  .tl-note { font-size: 0.72em; color: var(--muted); line-height: 1.4; }
+
+  /* Empty state */
+  .empty { text-align: center; padding: 30px; color: var(--dim); font-size: 0.8em; }
+  .empty .icon { font-size: 2em; margin-bottom: 8px; }
+
+  .divider { height: 1px; background: var(--border); margin: 16px 0; }
+
+  /* Pulse animations */
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+  .live { animation: pulse 2s ease-in-out infinite; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header h1">🏠 TuffShed Lead Response Kit</div>
+  <div class="sub">Turn Marketplace inquiries into signed contracts • TJ's conversion playbook</div>
+</div>
+
+<div class="speed-banner">
+  <div class="icon">⚡</div>
+  <div class="text">
+    Reply within 5 minutes = 2x close rate. <span>After 1 hour, 80% of leads ghost you. Speed is the #1 closer.</span>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat amber">
+    <div class="num" id="stat-total">0</div>
+    <div class="lbl">Total Leads</div>
+  </div>
+  <div class="stat orange">
+    <div class="num" id="stat-hot">0</div>
+    <div class="lbl">Hot</div>
+  </div>
+  <div class="stat blue">
+    <div class="num" id="stat-quoted">0</div>
+    <div class="lbl">Quoted</div>
+  </div>
+  <div class="stat green">
+    <div class="num" id="stat-closed">0</div>
+    <div class="lbl">Closed</div>
+  </div>
+</div>
+
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab active" onclick="switchTab('scripts')">📝 Scripts</button>
+    <button class="tab" onclick="switchTab('objections')">🥊 Objections</button>
+    <button class="tab" onclick="switchTab('close')">💰 Close It</button>
+    <button class="tab" onclick="switchTab('leads')">📋 Leads</button>
+    <button class="tab" onclick="switchTab('tariff')">🚨 Tariff</button>
+  </div>
+</div>
+
+<!-- ===== TAB 1: SCRIPTS ===== -->
+<div class="panel active" id="panel-scripts">
+
+  <div class="info-amber">
+    <strong>📬 First Message Rule:</strong> Qualify fast — ask one question (size, timeline, or location). Don't dump the whole catalog. Get them talking and you'll close naturally.
+  </div>
+
+  <!-- Script 1: Initial inquiry -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <div class="script-title">
+        <div class="script-num" style="width:22px;height:22px;border-radius:50%;background:rgba(245,158,11,0.15);border:1px solid var(--amber);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:0.7em;font-weight:800;flex-shrink:0;">1</div>
+        📬 First Reply — Generic Inquiry (They messaged first)
+      </div>
+      <span style="color:var(--dim);font-size:0.7em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="trigger-tags">
+        <span class="trigger-tag">👍 "Is this available?"</span>
+        <span class="trigger-tag">💬 "Interested"</span>
+        <span class="trigger-tag">💬 General inquiry</span>
+      </div>
+      <div class="script-meta">Goal: Qualify size + timeline. Keep it short. Reply fast.</div>
+      <div class="msg-box">Hey! Thanks for reaching out 👋 Yes still available. What size are you thinking? We carry everything from 6x8 up to 12x24 — all built on-site, no assembly. Are you looking to set something up soon or just pricing it out?</div>
+      <button class="copy-btn" onclick="copyText(this, `Hey! Thanks for reaching out 👋 Yes still available. What size are you thinking? We carry everything from 6x8 up to 12x24 — all built on-site, no assembly. Are you looking to set something up soon or just pricing it out?`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <!-- Script 2: Tariff urgency opener -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <div class="script-title">
+        <div class="script-num" style="width:22px;height:22px;border-radius:50%;background:rgba(245,158,11,0.15);border:1px solid var(--amber);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:0.7em;font-weight:800;flex-shrink:0;">2</div>
+        🚨 Tariff Hook Reply (Use ASAP — urgent through April)
+      </div>
+      <span style="color:var(--dim);font-size:0.7em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="trigger-tags">
+        <span class="trigger-tag">💬 Any inquiry</span>
+        <span class="trigger-tag">⏰ Before April 15</span>
+        <span class="trigger-tag">🙋 "How much?"</span>
+      </div>
+      <div class="script-meta">Goal: Create genuine urgency with tariff info. Don't overplay it — keep it factual.</div>
+      <div class="msg-box">Hey, good timing on reaching out — lumber and steel tariffs went into effect April 2nd so our current pricing is locked in from before the increase. We're still working through pre-tariff inventory but it won't last. What size are you thinking? I can get you a number real quick.</div>
+      <button class="copy-btn" onclick="copyText(this, `Hey, good timing on reaching out — lumber and steel tariffs went into effect April 2nd so our current pricing is locked in from before the increase. We're still working through pre-tariff inventory but it won't last. What size are you thinking? I can get you a number real quick.`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <!-- Script 3: They gave size / send quote -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <div class="script-title">
+        <div class="script-num" style="width:22px;height:22px;border-radius:50%;background:rgba(245,158,11,0.15);border:1px solid var(--amber);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:0.7em;font-weight:800;flex-shrink:0;">3</div>
+        📐 They Gave a Size — Send Quote + Options
+      </div>
+      <span style="color:var(--dim);font-size:0.7em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="trigger-tags">
+        <span class="trigger-tag">💬 "8x10"</span>
+        <span class="trigger-tag">💬 "10x12"</span>
+        <span class="trigger-tag">💬 Any size given</span>
+      </div>
+      <div class="script-meta">Customize the size + price. Don't give one number — give a range with good/better. Always include the monthly option.</div>
+      <div class="msg-box">Perfect, [SIZE] is actually one of our most popular. Here's what we've got:
+
+🏠 [SIZE] WoodMaster (wood siding) — $[PRICE]
+🏠 [SIZE] TuffShed TR-700 (steel siding, lasts longer) — $[PRICE_UP]
+
+Both include:
+✅ On-site custom build (we build it in your backyard)
+✅ 12-month warranty
+✅ Free delivery + setup included
+
+Financing starts around $[MONTHLY]/mo if you'd rather not pay all upfront.
+
+What's your backyard situation like — flat, sloped, fence access? Just want to make sure setup goes smooth.</div>
+      <button class="copy-btn" onclick="copyText(this, `Perfect, [SIZE] is actually one of our most popular. Here's what we've got:\n\n🏠 [SIZE] WoodMaster (wood siding) — $[PRICE]\n🏠 [SIZE] TuffShed TR-700 (steel siding, lasts longer) — $[PRICE_UP]\n\nBoth include:\n✅ On-site custom build (we build it in your backyard)\n✅ 12-month warranty\n✅ Free delivery + setup included\n\nFinancing starts around $[MONTHLY]/mo if you'd rather not pay all upfront.\n\nWhat's your backyard situation like — flat, sloped, fence access? Just want to make sure setup goes smooth.`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <!-- Script 4: Financing closer -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <div class="script-title">
+        <div class="script-num" style="width:22px;height:22px;border-radius:50%;background:rgba(245,158,11,0.15);border:1px solid var(--amber);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:0.7em;font-weight:800;flex-shrink:0;">4</div>
+        💳 Financing Pitch — When Price is the Stall
+      </div>
+      <span style="color:var(--dim);font-size:0.7em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="trigger-tags">
+        <span class="trigger-tag">💬 "Too much"</span>
+        <span class="trigger-tag">💬 "Let me think"</span>
+        <span class="trigger-tag">💬 Silence after quote</span>
+      </div>
+      <div class="script-meta">Flip the frame: it's not $[X] — it's $[X]/month. Also remind them that renting storage costs more.</div>
+      <div class="msg-box">Totally get it — that number looks bigger upfront. But most of our customers finance and end up around $[MONTHLY]/mo. 
+
+Quick math: a 10x10 storage unit in St. Louis runs $90-130/mo. You'd pay for the shed in 12-18 months and own it forever. Plus it adds actual value to your home.
+
+We can usually get approved same day. Want me to send you the financing link to check your rate? No commitment, just takes 2 minutes.</div>
+      <button class="copy-btn" onclick="copyText(this, `Totally get it — that number looks bigger upfront. But most of our customers finance and end up around $[MONTHLY]/mo. \n\nQuick math: a 10x10 storage unit in St. Louis runs $90-130/mo. You'd pay for the shed in 12-18 months and own it forever. Plus it adds actual value to your home.\n\nWe can usually get approved same day. Want me to send you the financing link to check your rate? No commitment, just takes 2 minutes.`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <!-- Script 5: Follow-up 24hrs -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <div class="script-title">
+        <div class="script-num" style="width:22px;height:22px;border-radius:50%;background:rgba(245,158,11,0.15);border:1px solid var(--amber);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:0.7em;font-weight:800;flex-shrink:0;">5</div>
+        ⏰ Follow-Up — No Reply (24 hrs later)
+      </div>
+      <span style="color:var(--dim);font-size:0.7em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="trigger-tags">
+        <span class="trigger-tag">⏰ 24 hours no reply</span>
+        <span class="trigger-tag">💬 Ghosted after quote</span>
+      </div>
+      <div class="script-meta">Short. Casual. Open a new door — don't re-pitch, just re-open the conversation.</div>
+      <div class="msg-box">Hey — just following up to see if you had any questions on the shed. Happy to send photos of recent installs in the area if that's helpful 📸</div>
+      <button class="copy-btn" onclick="copyText(this, `Hey — just following up to see if you had any questions on the shed. Happy to send photos of recent installs in the area if that's helpful 📸`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <!-- Script 6: 72hr last touch -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <div class="script-title">
+        <div class="script-num" style="width:22px;height:22px;border-radius:50%;background:rgba(245,158,11,0.15);border:1px solid var(--amber);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:0.7em;font-weight:800;flex-shrink:0;">6</div>
+        🚪 Last Touch — 72 hrs, Still No Reply
+      </div>
+      <span style="color:var(--dim);font-size:0.7em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="trigger-tags">
+        <span class="trigger-tag">⏰ 72 hours no reply</span>
+        <span class="trigger-tag">💬 Final follow-up</span>
+      </div>
+      <div class="script-meta">Leave the door open. No guilt, no pressure. One text, then move on.</div>
+      <div class="msg-box">Hey — totally fine if the timing's not right. Just wanted to say we're still here when you're ready. Spring is our busiest season so lead times fill up fast — feel free to reach back out whenever. Thanks for the interest! 🏠</div>
+      <button class="copy-btn" onclick="copyText(this, `Hey — totally fine if the timing's not right. Just wanted to say we're still here when you're ready. Spring is our busiest season so lead times fill up fast — feel free to reach back out whenever. Thanks for the interest! 🏠`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <!-- Script 7: They want to see in person -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <div class="script-title">
+        <div class="script-num" style="width:22px;height:22px;border-radius:50%;background:rgba(245,158,11,0.15);border:1px solid var(--amber);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:0.7em;font-weight:800;flex-shrink:0;">7</div>
+        👀 They Want to See One In Person
+      </div>
+      <span style="color:var(--dim);font-size:0.7em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="trigger-tags">
+        <span class="trigger-tag">💬 "Can I see one?"</span>
+        <span class="trigger-tag">💬 "Is there a showroom?"</span>
+        <span class="trigger-tag">💬 "Where are you located?"</span>
+      </div>
+      <div class="script-meta">Send them to the lot. Bonus: offer to meet there so you can close in person.</div>
+      <div class="msg-box">Yeah absolutely — we've got display models you can walk through. We're at [LOT ADDRESS]. Open [HOURS].
+
+If you let me know when you're thinking of coming by, I can make sure to be there to walk you through everything and answer questions. Sometimes I can knock a bit off when we're closing in person too 😄
+
+What days work for you?</div>
+      <button class="copy-btn" onclick="copyText(this, `Yeah absolutely — we've got display models you can walk through. We're at [LOT ADDRESS]. Open [HOURS].\n\nIf you let me know when you're thinking of coming by, I can make sure to be there to walk you through everything and answer questions. Sometimes I can knock a bit off when we're closing in person too 😄\n\nWhat days work for you?`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <!-- Script 8: Confirmation / Schedule Install -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <div class="script-title">
+        <div class="script-num" style="width:22px;height:22px;border-radius:50%;background:rgba(245,158,11,0.15);border:1px solid var(--amber);color:var(--amber);display:flex;align-items:center;justify-content:center;font-size:0.7em;font-weight:800;flex-shrink:0;">8</div>
+        ✅ Closed! — Install Confirmation Text
+      </div>
+      <span style="color:var(--dim);font-size:0.7em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="trigger-tags">
+        <span class="trigger-tag">🎉 Deposit paid</span>
+        <span class="trigger-tag">📝 Contract signed</span>
+      </div>
+      <div class="script-meta">Send immediately after deposit. Confirms details, builds excitement, sets expectations.</div>
+      <div class="msg-box">Awesome — you're locked in! 🎉 Here's what happens next:
+
+📋 You'll get a confirmation email with your order details
+🗓️ Install date: [DATE] — our crew typically arrives between [TIME_WINDOW]
+📐 Day before: someone will call to confirm access and any last details
+
+Your address is [ADDRESS] — is gate access straightforward or anything we should know?
+
+We appreciate the business. Stoked for you to see this thing go up — they build fast. Any questions between now and [DATE] just text me here.</div>
+      <button class="copy-btn" onclick="copyText(this, `Awesome — you're locked in! 🎉 Here's what happens next:\n\n📋 You'll get a confirmation email with your order details\n🗓️ Install date: [DATE] — our crew typically arrives between [TIME_WINDOW]\n📐 Day before: someone will call to confirm access and any last details\n\nYour address is [ADDRESS] — is gate access straightforward or anything we should know?\n\nWe appreciate the business. Stoked for you to see this thing go up — they build fast. Any questions between now and [DATE] just text me here.`)">📋 Copy</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== TAB 2: OBJECTIONS ===== -->
+<div class="panel" id="panel-objections">
+
+  <div class="info-blue">
+    <strong>Strategy:</strong> Don't fight objections — redirect them. Understand what they're really saying, then give them a path forward. Most objections are stalls, not no's.
+  </div>
+
+  <div class="objection">
+    <div class="obj-header" onclick="toggleObj(this)">
+      <div class="obj-question">💰 "It's too expensive / cheaper on Amazon"</div>
+      <span style="color:var(--dim);font-size:0.8em;">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-tone" style="background:rgba(59,130,246,0.12);color:#60a5fa;">Stay calm. Educate. Pivot to value.</div>
+      <p style="margin-bottom:8px;">Those Amazon/Home Depot kits are DIY — you're buying a pile of parts and 3 weekends of your life. We build it on-site, it's done in a day, and it's warrantied for 12 months.</p>
+      <p style="margin-bottom:8px;">Also compare total cost: the Amazon kit + materials + your time vs. a built, delivered, warrantied structure. They're not the same product.</p>
+      <div class="msg-box" style="margin-top:8px;">Totally fair comparison to make. The difference is ours is built on-site by a crew — done in one day, full 12-month warranty, and built to your exact yard. The Amazon stuff you're assembling yourself with whatever lumber they ship. Different product, honestly. But if budget's the issue, financing gets most people under $[MONTHLY]/mo.</div>
+      <button class="copy-btn" onclick="copyText(this, `Totally fair comparison to make. The difference is ours is built on-site by a crew — done in one day, full 12-month warranty, and built to your exact yard. The Amazon stuff you're assembling yourself with whatever lumber they ship. Different product, honestly. But if budget's the issue, financing gets most people under $[MONTHLY]/mo.`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="obj-header" onclick="toggleObj(this)">
+      <div class="obj-question">🤔 "Let me think about it / I'll check with my spouse"</div>
+      <span style="color:var(--dim);font-size:0.8em;">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-tone" style="background:rgba(245,158,11,0.12);color:var(--amber);">Acknowledge. Give them info. Create soft urgency. Don't push.</div>
+      <p style="margin-bottom:8px;">This is real — don't dismiss it. Give them something to think about together, and add a real (not fake) urgency signal.</p>
+      <div class="msg-box" style="margin-top:8px;">Of course — makes total sense to loop them in. If it helps, I can send you a quick breakdown with sizing options and monthly payment estimates so you have something concrete to share? That way you're not just talking numbers from memory.
+
+Also just worth mentioning — spring is when we fill up fastest. I can't hold pricing forever, but I can give you a few days before I need to move the slot.</div>
+      <button class="copy-btn" onclick="copyText(this, `Of course — makes total sense to loop them in. If it helps, I can send you a quick breakdown with sizing options and monthly payment estimates so you have something concrete to share? That way you're not just talking numbers from memory.\n\nAlso just worth mentioning — spring is when we fill up fastest. I can't hold pricing forever, but I can give you a few days before I need to move the slot.`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="obj-header" onclick="toggleObj(this)">
+      <div class="obj-question">📐 "I need to measure my yard first"</div>
+      <span style="color:var(--dim);font-size:0.8em;">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-tone" style="background:rgba(34,197,94,0.12);color:var(--green);">Helpful. Remove the friction. Offer to help.</div>
+      <div class="msg-box" style="margin-top:8px;">No problem at all — totally makes sense to check. Quick tip: you don't need to be exact — ballpark it and we'll confirm during the site visit before we build. The crew does a quick measure the morning of. 
+
+If you can snap a photo of the area you're thinking about, I can also eyeball whether a certain size makes sense. Saves you the hassle of measuring yourself.</div>
+      <button class="copy-btn" onclick="copyText(this, `No problem at all — totally makes sense to check. Quick tip: you don't need to be exact — ballpark it and we'll confirm during the site visit before we build. The crew does a quick measure the morning of. \n\nIf you can snap a photo of the area you're thinking about, I can also eyeball whether a certain size makes sense. Saves you the hassle of measuring yourself.`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="obj-header" onclick="toggleObj(this)">
+      <div class="obj-question">🏘️ "Do I need a permit?"</div>
+      <span style="color:var(--dim);font-size:0.8em;">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-tone" style="background:rgba(59,130,246,0.12);color:#60a5fa;">Be helpful and honest. Know the local rules.</div>
+      <p style="margin-bottom:8px;">In most St. Louis County municipalities, sheds under 200 sq ft don't require a permit. Some cities do require one. Best to check with your city — most have it on their website.</p>
+      <div class="msg-box" style="margin-top:8px;">Good question — it depends on your city. Most St. Louis County municipalities don't require a permit for sheds under 200 sq ft (which covers most of our popular sizes), but a few do. Quick Google of "[your city] shed permit" usually gives you the answer in 2 minutes. We can't pull permits for customers, but we can tell you what most of our St. Louis area customers have run into. What city are you in?</div>
+      <button class="copy-btn" onclick="copyText(this, `Good question — it depends on your city. Most St. Louis County municipalities don't require a permit for sheds under 200 sq ft (which covers most of our popular sizes), but a few do. Quick Google of \"[your city] shed permit\" usually gives you the answer in 2 minutes. We can't pull permits for customers, but we can tell you what most of our St. Louis area customers have run into. What city are you in?`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="obj-header" onclick="toggleObj(this)">
+      <div class="obj-question">⏱️ "What's the lead time / when can you do it?"</div>
+      <span style="color:var(--dim);font-size:0.8em;">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-tone" style="background:rgba(245,158,11,0.12);color:var(--amber);">Use real lead times as urgency. Don't make them up.</div>
+      <div class="msg-box" style="margin-top:8px;">Right now we're booking [X] weeks out — spring is our busiest season by a lot. If you want a specific date in [MONTH], locking it in sooner is better. We hold dates with a deposit and the rest is due on install day. Want me to check what dates I've got open?</div>
+      <button class="copy-btn" onclick="copyText(this, `Right now we're booking [X] weeks out — spring is our busiest season by a lot. If you want a specific date in [MONTH], locking it in sooner is better. We hold dates with a deposit and the rest is due on install day. Want me to check what dates I've got open?`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="obj-header" onclick="toggleObj(this)">
+      <div class="obj-question">🏠 "Will my HOA allow it?"</div>
+      <span style="color:var(--dim);font-size:0.8em;">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-tone" style="background:rgba(59,130,246,0.12);color:#60a5fa;">Be real. Help them navigate it. Don't dodge.</div>
+      <div class="msg-box" style="margin-top:8px;">That's worth checking before you order — I always tell people that upfront. Most HOAs have restrictions on colors, roof styles, and placement (usually needs to be behind the back fence line). TuffShed and WoodMaster both come in neutral colors and traditional styles that pass most HOA reviews. If you can share your HOA guidelines, I can also tell you what's likely to fly. What subdivision are you in?</div>
+      <button class="copy-btn" onclick="copyText(this, `That's worth checking before you order — I always tell people that upfront. Most HOAs have restrictions on colors, roof styles, and placement (usually needs to be behind the back fence line). TuffShed and WoodMaster both come in neutral colors and traditional styles that pass most HOA reviews. If you can share your HOA guidelines, I can also tell you what's likely to fly. What subdivision are you in?`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="objection">
+    <div class="obj-header" onclick="toggleObj(this)">
+      <div class="obj-question">🔧 "Can I customize it / add electrical / add loft?"</div>
+      <span style="color:var(--dim);font-size:0.8em;">▼</span>
+    </div>
+    <div class="obj-body">
+      <div class="obj-tone" style="background:rgba(34,197,94,0.12);color:var(--green);">Enthusiasm! Upgrades = bigger ticket. Let them dream.</div>
+      <div class="msg-box" style="margin-top:8px;">Oh yeah — that's where it gets fun. We can do:
+• Loft storage kits (doubles your usable space)
+• Shelving packages (pre-drilled, easy)  
+• Window or skylight add-ons
+• We can also leave rough-in for electrical — you'd hire an electrician to finish, but we make sure the structure is ready
+
+What are you trying to use it for? Workshop, storage, she-shed, gym? Knowing the use case helps me spec the right options.</div>
+      <button class="copy-btn" onclick="copyText(this, `Oh yeah — that's where it gets fun. We can do:\n• Loft storage kits (doubles your usable space)\n• Shelving packages (pre-drilled, easy)  \n• Window or skylight add-ons\n• We can also leave rough-in for electrical — you'd hire an electrician to finish, but we make sure the structure is ready\n\nWhat are you trying to use it for? Workshop, storage, she-shed, gym? Knowing the use case helps me spec the right options.`)">📋 Copy</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== TAB 3: CLOSE IT ===== -->
+<div class="panel" id="panel-close">
+
+  <div class="sec"><span class="label">📍 The 5-Step Close</span></div>
+
+  <div class="step-card">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <div class="step-title">Qualify Fast (First 2 msgs)</div>
+      <div class="step-body">Ask one question: size, use case, or timeline. Get them talking. Never pitch everything upfront — you need to know what they actually want before you quote.</div>
+      <div class="step-highlight">"What size are you thinking?" — the one question that opens everything.</div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <div class="step-title">Send a Specific Quote (Not "it depends")</div>
+      <div class="step-body">Give them 2 options — good/better. Always show the monthly payment alongside the total. Include what's included (delivery, install, warranty). Make it concrete.</div>
+      <div class="step-highlight">Concrete beats vague. A price range = indecision. Two options = a choice.</div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <div class="step-title">Handle the Real Objection</div>
+      <div class="step-body">Price, timeline, spouse, permit — find out what's actually blocking them and address it directly. Most stalls are info problems, not true objections.</div>
+      <div class="step-highlight">"Is it the price, the timing, or something else?" — let them tell you what's really going on.</div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">4</div>
+    <div class="step-content">
+      <div class="step-title">Create Real Urgency</div>
+      <div class="step-body">Use honest urgency signals: spring lead times filling up, tariff pricing locked in, deposit holds the date. Never fake it — one "gotcha" and you lose the sale and your reputation.</div>
+      <div class="step-highlight">Truth-based urgency closes. Fake urgency destroys trust.</div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-num">5</div>
+    <div class="step-content">
+      <div class="step-title">Make It Easy to Say Yes</div>
+      <div class="step-body">Offer the financing link. Offer to come to their place. Offer to meet at the lot. Remove every "I need to" friction point. The easier you make the next step, the more people take it.</div>
+      <div class="step-highlight">"I can send you the financing link right now — takes 2 minutes, no commitment to check."</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec"><span class="label">📅 Response Timeline — Don't Let Leads Die</span></div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time">⚡ Within 5 minutes</div>
+      <div class="tl-action">First reply sent</div>
+      <div class="tl-note">This is the window. Reply under 5 min = 2x close rate vs. under 1 hour. Under 1 hour = 8x vs. under 24 hours. Speed IS the competitive advantage.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">📐 Same convo</div>
+      <div class="tl-action">Qualify + quote</div>
+      <div class="tl-note">Get to a specific price in the same conversation if possible. "I'll get back to you on that" loses leads at ~40% rate.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">⏰ +24 hours (if no reply)</div>
+      <div class="tl-action">First follow-up</div>
+      <div class="tl-note">Short, casual, open a new angle (photo offer, question about their yard). Not a re-pitch.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">⏰ +72 hours (if still no reply)</div>
+      <div class="tl-action">Final touch + release</div>
+      <div class="tl-note">Graceful exit. Keep the door open. Move on. One text, not three — don't become spam.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time">🔄 +30 days</div>
+      <div class="tl-action">Re-engagement (optional)</div>
+      <div class="tl-note">If you have their number, a quick "hey still have that [size] in stock, are you still thinking about it?" converts 10-15% of people who ghosted initially. Timing changed.</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec"><span class="label">💰 Quick Pricing Reference</span></div>
+  <table class="price-table">
+    <thead>
+      <tr>
+        <th>Size</th>
+        <th>WoodMaster</th>
+        <th>TuffShed</th>
+        <th>Monthly (est.)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>6×8 (48 sq ft)</td><td>~$1,800</td><td>~$2,100</td><td>~$95–115/mo</td></tr>
+      <tr><td>8×10 (80 sq ft)</td><td>~$2,400</td><td>~$2,800</td><td class="best">~$125–145/mo ⭐</td></tr>
+      <tr><td>10×12 (120 sq ft)</td><td>~$3,200</td><td>~$3,700</td><td>~$165–185/mo</td></tr>
+      <tr><td>10×16 (160 sq ft)</td><td>~$4,100</td><td>~$4,800</td><td>~$210–245/mo</td></tr>
+      <tr><td>12×20 (240 sq ft)</td><td>~$5,500</td><td>~$6,400</td><td>~$280–320/mo</td></tr>
+      <tr><td>12×24 (288 sq ft)</td><td>~$6,800</td><td>~$8,000</td><td>~$350–400/mo</td></tr>
+    </tbody>
+  </table>
+  <div class="info-amber" style="font-size:0.72em;">⚠️ Prices vary by options, delivery zone, and current inventory. Use as ballpark for conversations — confirm exact pricing at the lot or with TuffShed system.</div>
+
+</div>
+
+<!-- ===== TAB 4: LEADS ===== -->
+<div class="panel" id="panel-leads">
+
+  <div class="lead-form">
+    <h3>+ Add Marketplace Lead</h3>
+    <div class="form-row">
+      <div>
+        <div class="form-label">Name</div>
+        <input type="text" id="lead-name" placeholder="First name or username">
+      </div>
+      <div>
+        <div class="form-label">Phone / Messenger</div>
+        <input type="text" id="lead-contact" placeholder="(314) or FB username">
+      </div>
+    </div>
+    <div class="form-row">
+      <div>
+        <div class="form-label">Size Interested In</div>
+        <input type="text" id="lead-size" placeholder="e.g. 10x12, unsure">
+      </div>
+      <div>
+        <div class="form-label">Heat Level</div>
+        <select id="lead-heat">
+          <option value="hot">🔥 Hot (ready to buy)</option>
+          <option value="warm" selected>🌡️ Warm (researching)</option>
+          <option value="cold">❄️ Cold (early stage)</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row full">
+      <div>
+        <div class="form-label">Notes</div>
+        <input type="text" id="lead-notes" placeholder="City, use case, objection, timing...">
+      </div>
+    </div>
+    <button class="add-btn" onclick="addLead()">➕ Add Lead</button>
+  </div>
+
+  <div id="lead-list" class="lead-list">
+    <div class="empty" id="empty-leads">
+      <div class="icon">📋</div>
+      <div>No leads yet — add your first one above</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== TAB 5: TARIFF ===== -->
+<div class="panel" id="panel-tariff">
+
+  <div class="info-red" style="margin-bottom:16px;">
+    <strong>🚨 Tariff Update (Apr 2026):</strong> Steel and lumber tariffs went into effect April 2nd. Use this as a real, honest urgency hook — pre-tariff inventory is real and will run out.
+  </div>
+
+  <div class="sec"><span class="label">📊 The Tariff Situation</span></div>
+
+  <div class="info-amber">
+    <strong>What happened:</strong> US tariffs on imported steel + lumber took effect April 2, 2026. TuffShed and WoodMaster both use steel and dimensional lumber. Manufacturers are passing increased material costs through to dealers.
+    <br><br>
+    <strong>What it means for TJ:</strong> Pre-tariff inventory (already built/ordered) can still sell at current pricing. New builds ordered after inventory clears will cost more. The window to sell at current prices is real — 4 to 8 weeks depending on volume.
+  </div>
+
+  <div class="sec"><span class="label">💬 Tariff Scripts</span></div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <div class="script-title">🚨 Proactive Tariff Opener (Use for all new inquiries through April)</div>
+      <span style="color:var(--dim);font-size:0.7em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="msg-box">Hey, appreciate you reaching out. Real talk — lumber and steel tariffs just hit April 2nd, so I've been honest with everyone: the pricing I'm quoting right now is from pre-tariff inventory. It won't last forever but I do still have stock. What size are you thinking?</div>
+      <button class="copy-btn" onclick="copyText(this, `Hey, appreciate you reaching out. Real talk — lumber and steel tariffs just hit April 2nd, so I've been honest with everyone: the pricing I'm quoting right now is from pre-tariff inventory. It won't last forever but I do still have stock. What size are you thinking?`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <div class="script-title">💬 "How much will prices go up?" — Be Honest</div>
+      <span style="color:var(--dim);font-size:0.7em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="msg-box">Honest answer: I don't have an exact number because manufacturer pricing hasn't been set yet for post-tariff builds. Industry estimates are in the 8-15% range for steel-sided structures, a bit less for wood. On a $3,500 shed that's $280-525 more. The safest move is to lock in now if you're already thinking about it.</div>
+      <button class="copy-btn" onclick="copyText(this, `Honest answer: I don't have an exact number because manufacturer pricing hasn't been set yet for post-tariff builds. Industry estimates are in the 8-15% range for steel-sided structures, a bit less for wood. On a $3,500 shed that's $280-525 more. The safest move is to lock in now if you're already thinking about it.`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <div class="script-title">🎯 Close the "I'll wait and see" customer</div>
+      <span style="color:var(--dim);font-size:0.7em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="msg-box">Totally your call — just want to be straight with you. Most people who say they'll wait on shed pricing end up paying more. It's like waiting on appliances after a tariff announcement — the prices go up, not down. I'm not trying to rush you, but if the math works today, it's probably the better day to do it.</div>
+      <button class="copy-btn" onclick="copyText(this, `Totally your call — just want to be straight with you. Most people who say they'll wait on shed pricing end up paying more. It's like waiting on appliances after a tariff announcement — the prices go up, not down. I'm not trying to rush you, but if the math works today, it's probably the better day to do it.`)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec"><span class="label">✅ Marketplace Response Checklist</span></div>
+
+  <div id="tariff-checklist">
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox">
+      <label>Run weekend ad drop (5 listings, 3-4 hrs apart Sat–Sun)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox">
+      <label>Set Marketplace notifications to instant — reply under 5 min</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox">
+      <label>Include tariff hook in first reply to all new inquiries (through April)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox">
+      <label>Quote with 2 options (good/better) + monthly payment in every quote</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox">
+      <label>Send first follow-up to un-replied leads (>24 hrs)</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox">
+      <label>Send final-touch to 3-day ghosts</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox">
+      <label>Add any new leads to the Leads tab above</label>
+    </div>
+    <div class="check-item" onclick="toggleCheck(this)">
+      <input type="checkbox">
+      <label>Saturday refresh: repost top 2 performing listings at noon</label>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // Tab switching
+  function switchTab(name) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    event.target.classList.add('active');
+    document.getElementById('panel-' + name).classList.add('active');
+  }
+
+  // Toggle script body
+  function toggleScript(header) {
+    const body = header.nextElementSibling;
+    body.classList.toggle('open');
+    header.querySelector('span').textContent = body.classList.contains('open') ? '▲' : '▼';
+  }
+
+  // Toggle objection body
+  function toggleObj(header) {
+    const body = header.nextElementSibling;
+    body.classList.toggle('open');
+    header.querySelector('span').textContent = body.classList.contains('open') ? '▲' : '▼';
+  }
+
+  // Copy text
+  function copyText(btn, text) {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✅ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = '📋 Copy';
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  // Checklist toggle
+  function toggleCheck(item) {
+    const cb = item.querySelector('input');
+    if (event.target !== cb) cb.checked = !cb.checked;
+    item.classList.toggle('done', cb.checked);
+    saveChecks();
+  }
+  function saveChecks() {
+    const checks = Array.from(document.querySelectorAll('#tariff-checklist .check-item input')).map(cb => cb.checked);
+    localStorage.setItem('shed-lead-checks', JSON.stringify(checks));
+  }
+  function loadChecks() {
+    const saved = JSON.parse(localStorage.getItem('shed-lead-checks') || '[]');
+    const items = document.querySelectorAll('#tariff-checklist .check-item');
+    saved.forEach((v, i) => {
+      if (items[i]) {
+        items[i].querySelector('input').checked = v;
+        items[i].classList.toggle('done', v);
+      }
+    });
+  }
+
+  // Lead tracker
+  function addLead() {
+    const name = document.getElementById('lead-name').value.trim();
+    const contact = document.getElementById('lead-contact').value.trim();
+    const size = document.getElementById('lead-size').value.trim();
+    const heat = document.getElementById('lead-heat').value;
+    const notes = document.getElementById('lead-notes').value.trim();
+    if (!name) { alert('Add a name or username'); return; }
+
+    const leads = JSON.parse(localStorage.getItem('shed-leads') || '[]');
+    leads.push({ id: Date.now(), name, contact, size, heat, notes, status: 'new', added: new Date().toLocaleDateString() });
+    localStorage.setItem('shed-leads', JSON.stringify(leads));
+    ['lead-name','lead-contact','lead-size','lead-notes'].forEach(id => document.getElementById(id).value = '');
+    document.getElementById('lead-heat').value = 'warm';
+    renderLeads();
+  }
+
+  function updateStatus(id, newStatus) {
+    const leads = JSON.parse(localStorage.getItem('shed-leads') || '[]');
+    const lead = leads.find(l => l.id === id);
+    if (lead) {
+      lead.status = newStatus;
+      localStorage.setItem('shed-leads', JSON.stringify(leads));
+      renderLeads();
+    }
+  }
+
+  function deleteLead(id) {
+    if (!confirm('Remove this lead?')) return;
+    const leads = JSON.parse(localStorage.getItem('shed-leads') || '[]').filter(l => l.id !== id);
+    localStorage.setItem('shed-leads', JSON.stringify(leads));
+    renderLeads();
+  }
+
+  function renderLeads() {
+    const leads = JSON.parse(localStorage.getItem('shed-leads') || '[]');
+    const list = document.getElementById('lead-list');
+    const empty = document.getElementById('empty-leads');
+    
+    // Update stats
+    document.getElementById('stat-total').textContent = leads.length;
+    document.getElementById('stat-hot').textContent = leads.filter(l => l.heat === 'hot').length;
+    document.getElementById('stat-quoted').textContent = leads.filter(l => l.status === 'quoted').length;
+    document.getElementById('stat-closed').textContent = leads.filter(l => l.status === 'closed').length;
+    
+    if (leads.length === 0) {
+      empty.style.display = 'block';
+      list.innerHTML = '';
+      list.appendChild(empty);
+      return;
+    }
+    
+    empty.style.display = 'none';
+    const statusLabel = { new: '🆕 New', replied: '💬 Replied', quoted: '📐 Quoted', closed: '✅ Closed' };
+    const statusClass = { new: 's-new', replied: 's-replied', quoted: 's-quoted', closed: 's-closed' };
+    
+    list.innerHTML = leads.map(l => `
+      <div class="lead-card">
+        <div class="lead-info">
+          <div class="lead-name">${l.name}</div>
+          <div class="lead-details">
+            ${l.size ? `📐 ${l.size}` : ''} ${l.contact ? `• ${l.contact}` : ''} ${l.notes ? `<br>${l.notes}` : ''}<br>
+            <span style="color:var(--dim);font-size:0.9em;">Added ${l.added}</span>
+          </div>
+          <div class="lead-actions">
+            ${l.contact && l.contact.startsWith('(') ? `<a href="sms:${l.contact.replace(/\D/g,'')}" class="lead-btn lb-text">💬 Text</a>` : ''}
+            <button class="lead-btn lb-quote" onclick="updateStatus(${l.id}, 'quoted')">📐 Quoted</button>
+            <button class="lead-btn lb-close" onclick="updateStatus(${l.id}, 'closed')">✅ Closed</button>
+            <button class="lead-btn lb-del" onclick="deleteLead(${l.id})">🗑️</button>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+          <span class="lead-heat heat-${l.heat}">${l.heat === 'hot' ? '🔥 Hot' : l.heat === 'warm' ? '🌡️ Warm' : '❄️ Cold'}</span>
+          <span class="lead-status ${statusClass[l.status]}">${statusLabel[l.status]}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Init
+  loadChecks();
+  renderLeads();
+</script>
+
+</body>
+</html>
