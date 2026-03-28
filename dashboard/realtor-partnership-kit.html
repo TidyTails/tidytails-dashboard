@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Realtor Partnership Kit — Tidy Tails</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0a0a0a; --bg2:#111; --bg3:#1a1a1a; --bg4:#242424;
+  --text:#f5f5f5; --text2:#999; --text3:#555;
+  --orange:#ff6b35; --green:#10b981; --blue:#3b82f6;
+  --yellow:#fbbf24; --red:#ef4444; --purple:#8b5cf6;
+  --teal:#14b8a6; --border:#2a2a2a; --radius:12px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+a { text-decoration:none; color:inherit; }
+
+.header {
+  background:linear-gradient(135deg,var(--bg2),#0f1a14);
+  border-bottom:1px solid var(--border);
+  padding:1.25rem 1.5rem 1rem; text-align:center;
+}
+.header h1 { font-size:1.4rem; font-weight:800; letter-spacing:-0.03em; }
+.header h1 span { color:var(--teal); }
+.header p { color:var(--text2); font-size:0.8rem; margin-top:0.3rem; }
+
+.why-card {
+  background:linear-gradient(135deg,rgba(20,184,166,0.12),rgba(16,185,129,0.06));
+  border:1px solid rgba(20,184,166,0.3);
+  border-radius:var(--radius); padding:1rem 1.25rem;
+  margin:1rem; font-size:0.82rem; line-height:1.6;
+}
+.why-card strong { color:var(--teal); }
+
+/* Tabs */
+.tabs { display:flex; overflow-x:auto; gap:0; margin:0;
+  background:var(--bg2); border-bottom:1px solid var(--border); }
+.tab { flex:none; padding:0.75rem 1.1rem; font-size:0.78rem; font-weight:600;
+  cursor:pointer; color:var(--text2); border-bottom:2px solid transparent; transition:all 0.2s;
+  white-space:nowrap; }
+.tab:hover { color:var(--text); }
+.tab.active { color:var(--teal); border-bottom-color:var(--teal); }
+
+.panel { display:none; padding:1rem; }
+.panel.active { display:block; }
+
+/* Copy button */
+.copy-btn {
+  display:inline-block; padding:0.3rem 0.7rem; border-radius:6px;
+  font-size:0.7rem; font-weight:700; cursor:pointer;
+  background:rgba(20,184,166,0.15); color:var(--teal); border:1px solid rgba(20,184,166,0.3);
+  transition:all 0.2s; user-select:none;
+}
+.copy-btn:hover { background:rgba(20,184,166,0.3); }
+.copy-btn.copied { background:rgba(16,185,129,0.2); color:var(--green); border-color:var(--green); }
+
+/* Script cards */
+.script-card {
+  background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius);
+  margin-bottom:0.75rem; overflow:hidden;
+}
+.script-head {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:0.75rem 1rem; cursor:pointer;
+}
+.script-head:hover { background:var(--bg4); }
+.script-title { font-weight:700; font-size:0.82rem; }
+.script-meta { font-size:0.7rem; color:var(--text2); }
+.script-body {
+  display:none; padding:1rem; border-top:1px solid var(--border);
+  background:var(--bg2);
+}
+.script-body.open { display:block; }
+.script-text {
+  font-family:'JetBrains Mono',monospace; font-size:0.72rem;
+  line-height:1.7; color:var(--text); white-space:pre-wrap;
+  background:rgba(0,0,0,0.3); padding:0.75rem; border-radius:8px;
+  margin-bottom:0.5rem; border-left:3px solid var(--teal);
+}
+.fill-note { font-size:0.68rem; color:var(--yellow); font-style:italic; margin-bottom:0.5rem; }
+
+/* Prospect cards */
+.prospect-card {
+  background:var(--bg3); border:1px solid var(--border); border-radius:var(--radius);
+  padding:0.9rem 1rem; margin-bottom:0.6rem;
+}
+.prospect-name { font-weight:700; font-size:0.85rem; margin-bottom:0.2rem; }
+.prospect-meta { font-size:0.72rem; color:var(--text2); margin-bottom:0.5rem; }
+.prospect-angle { font-size:0.75rem; color:var(--teal); font-style:italic; margin-bottom:0.5rem; }
+.tag { display:inline-block; padding:0.15rem 0.5rem; border-radius:4px;
+  font-size:0.6rem; font-weight:700; text-transform:uppercase; margin-right:0.3rem; }
+.t-green { background:rgba(16,185,129,0.15); color:var(--green); }
+.t-orange { background:rgba(255,107,53,0.15); color:var(--orange); }
+.t-blue { background:rgba(59,130,246,0.15); color:var(--blue); }
+.t-yellow { background:rgba(251,191,36,0.15); color:var(--yellow); }
+.t-teal { background:rgba(20,184,166,0.15); color:var(--teal); }
+
+/* Status tracker */
+.status-select {
+  padding:0.3rem 0.5rem; border-radius:6px; font-size:0.7rem; font-weight:600;
+  border:1px solid var(--border); background:var(--bg4); color:var(--text);
+  cursor:pointer;
+}
+.status-bar {
+  display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;
+  margin:0.75rem 0; padding:0.75rem; background:var(--bg3);
+  border-radius:var(--radius); border:1px solid var(--border);
+}
+.stat-pill { text-align:center; }
+.stat-num { font-size:1.3rem; font-weight:800; }
+.stat-label { font-size:0.62rem; color:var(--text2); text-transform:uppercase; }
+
+/* Checklist */
+.check-item {
+  display:flex; align-items:flex-start; gap:0.75rem;
+  padding:0.6rem 0; border-bottom:1px solid var(--border);
+}
+.check-item:last-child { border-bottom:none; }
+.check-box {
+  width:18px; height:18px; border-radius:4px; border:2px solid var(--text3);
+  flex-shrink:0; cursor:pointer; transition:all 0.2s; margin-top:1px;
+}
+.check-box.done { background:var(--teal); border-color:var(--teal); }
+.check-label { font-size:0.8rem; line-height:1.5; }
+.check-label.done { text-decoration:line-through; color:var(--text3); }
+
+/* ROI box */
+.roi-box {
+  background:linear-gradient(135deg,rgba(20,184,166,0.1),rgba(16,185,129,0.05));
+  border:1px solid rgba(20,184,166,0.25); border-radius:var(--radius);
+  padding:1rem 1.25rem; margin-bottom:0.75rem;
+}
+.roi-box h3 { font-size:0.85rem; font-weight:700; color:var(--teal); margin-bottom:0.5rem; }
+.roi-box p { font-size:0.78rem; line-height:1.6; color:var(--text2); }
+.roi-box strong { color:var(--text); }
+.big-number { font-size:2rem; font-weight:800; color:var(--teal); line-height:1; }
+
+/* Email compose box */
+.email-box {
+  background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius);
+  padding:1rem; margin-bottom:0.75rem;
+}
+.email-subject { font-size:0.72rem; color:var(--text3); margin-bottom:0.25rem; text-transform:uppercase; font-weight:600; }
+.email-subj-val { font-weight:700; color:var(--yellow); font-size:0.85rem; margin-bottom:0.75rem; }
+
+/* Leave behind */
+.leave-behind-print {
+  background:#fff; color:#111; border-radius:var(--radius);
+  padding:1.5rem; font-family:'Inter',sans-serif; margin-bottom:0.75rem;
+  max-width:500px;
+}
+.lb-header { font-size:1.1rem; font-weight:800; color:#1a1a1a; margin-bottom:0.25rem; }
+.lb-sub { font-size:0.75rem; color:#555; margin-bottom:1rem; padding-bottom:0.75rem; border-bottom:2px solid #14b8a6; }
+.lb-section { margin-bottom:0.75rem; }
+.lb-section h4 { font-size:0.7rem; font-weight:700; color:#14b8a6; text-transform:uppercase; margin-bottom:0.25rem; }
+.lb-section p { font-size:0.75rem; color:#333; line-height:1.55; }
+.lb-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.5rem; }
+.lb-point { background:#f5f5f5; border-radius:6px; padding:0.4rem 0.6rem; font-size:0.7rem; color:#333; }
+.lb-footer { font-size:0.68rem; color:#777; border-top:1px solid #eee; padding-top:0.5rem; margin-top:0.75rem; text-align:center; }
+
+.section-head { font-size:0.75rem; font-weight:700; color:var(--text3); text-transform:uppercase; letter-spacing:0.08em; margin:1.25rem 0 0.5rem; }
+
+@media print {
+  .no-print { display:none !important; }
+  .leave-behind-print { box-shadow:none; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏡 <span>Realtor Partnership Kit</span></h1>
+  <p>Turn real estate agents into a year-round referral machine for Tidy Tails</p>
+</div>
+
+<div class="why-card no-print">
+  <strong>Why realtors?</strong> A realtor with 10-20 active listings per year needs <em>every yard with dogs to be spotless</em> before listing photos and open houses. One realtor partnership = 5-10 new cleanups + potential recurring customers. It's the highest-leverage B2B referral channel after vets. <strong>Cost: $0.</strong>
+</div>
+
+<div class="tabs no-print">
+  <div class="tab active" onclick="showTab('strategy',this)">🎯 Strategy</div>
+  <div class="tab" onclick="showTab('prospects',this)">📋 Prospects</div>
+  <div class="tab" onclick="showTab('scripts',this)">💬 Scripts</div>
+  <div class="tab" onclick="showTab('email',this)">📧 Email</div>
+  <div class="tab" onclick="showTab('leavebehind',this)">🖨️ Leave-Behind</div>
+  <div class="tab" onclick="showTab('checklist',this)">✅ Checklist</div>
+</div>
+
+<!-- ===================== STRATEGY ===================== -->
+<div id="tab-strategy" class="panel active">
+
+  <div class="roi-box">
+    <h3>💰 The Math</h3>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;margin-bottom:0.75rem;">
+      <div style="text-align:center;">
+        <div class="big-number">1</div>
+        <div style="font-size:0.65rem;color:var(--text2);">Realtor partner</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="big-number">8</div>
+        <div style="font-size:0.65rem;color:var(--text2);">referrals/yr (avg)</div>
+      </div>
+      <div style="text-align:center;">
+        <div class="big-number" style="color:var(--green);">$5.6k</div>
+        <div style="font-size:0.65rem;color:var(--text2);">annual LTV</div>
+      </div>
+    </div>
+    <p>8 referred clients × $70/mo × 10mo avg retention = <strong>$5,600/year from one realtor relationship.</strong> Land 3 realtor partners and that's <strong>$16,800/year in compounding revenue</strong> — at zero ad spend. This is the highest LTV channel in the funnel.</p>
+  </div>
+
+  <div class="section-head">Why Realtors Need Us</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:1rem;">
+    <div class="prospect-card" style="border-color:rgba(20,184,166,0.2);">
+      <div class="prospect-name" style="font-size:0.78rem;color:var(--teal);">📸 Listing Photos</div>
+      <div style="font-size:0.73rem;color:var(--text2);line-height:1.5;">Yard must be clean before photographer arrives. One pile in a listing photo = embarrassment + lower offers. Realtors will pay for peace of mind.</div>
+    </div>
+    <div class="prospect-card" style="border-color:rgba(20,184,166,0.2);">
+      <div class="prospect-name" style="font-size:0.78rem;color:var(--teal);">🏡 Open Houses</div>
+      <div style="font-size:0.73rem;color:var(--text2);line-height:1.5;">Buyers tour the backyard. Nothing kills a showing faster than a smelly yard. Realtors who serve dog owners need a go-to cleanup service.</div>
+    </div>
+    <div class="prospect-card" style="border-color:rgba(20,184,166,0.2);">
+      <div class="prospect-name" style="font-size:0.78rem;color:var(--teal);">📦 New Owner Gift</div>
+      <div style="font-size:0.73rem;color:var(--text2);line-height:1.5);">"One free cleanup as a closing gift from your realtor" — turns a $70 gesture into a potential $840/yr recurring customer.</div>
+    </div>
+    <div class="prospect-card" style="border-color:rgba(20,184,166,0.2);">
+      <div class="prospect-name" style="font-size:0.78rem;color:var(--teal);">🐕 Dog-Owner Clients</div>
+      <div style="font-size:0.73rem;color:var(--text2);line-height:1.5;">~50% of St. Louis homebuyers with kids have a dog. Realtors who work with families are constantly serving dog households.</div>
+    </div>
+  </div>
+
+  <div class="section-head">The Offer to Realtors</div>
+  <div class="roi-box">
+    <h3>🤝 Preferred Realtor Partner Program</h3>
+    <p style="margin-bottom:0.5rem;">Give realtors a referral card or digital link. When they send a client:</p>
+    <ul style="padding-left:1rem;font-size:0.78rem;color:var(--text2);line-height:2;">
+      <li><strong style="color:var(--teal);">Client gets:</strong> First cleanup FREE (no obligation, no contract)</li>
+      <li><strong style="color:var(--teal);">Realtor gets:</strong> $25 credit per converted recurring client (or just goodwill — most don't want money, they want a reliable partner)</li>
+      <li><strong style="color:var(--teal);">Pre-listing special:</strong> Same/next-day cleanup before photos — priority scheduling for partners</li>
+    </ul>
+  </div>
+
+  <div class="section-head">Best Realtor Profiles to Target</div>
+  <div class="prospect-card">
+    <div style="font-size:0.78rem;line-height:1.7;color:var(--text2);">
+      <strong style="color:var(--text);">1. Dog-friendly realtors</strong> — look for agents who post about their own pets on social. They GET it immediately.<br>
+      <strong style="color:var(--text);">2. High-volume suburban agents</strong> — St. Louis County, South County, North County. Volume = more dog-owner clients.<br>
+      <strong style="color:var(--text);">3. Realtors at open houses</strong> — walk up, introduce, leave a card. They're standing there, bored, with nothing but time.<br>
+      <strong style="color:var(--text);">4. RE/MAX, Coldwell Banker, Keller Williams offices</strong> — present at team meetings or leave materials with office manager.<br>
+      <strong style="color:var(--text);">5. Facebook "St. Louis Real Estate" group members</strong> — post value first, DM realtors who engage.
+    </div>
+  </div>
+
+  <div class="section-head">Timeline</div>
+  <div style="font-size:0.78rem;line-height:2;color:var(--text2);">
+    <strong style="color:var(--text);">Week 1 (Mar 31–Apr 4):</strong> Email 10 realtors using template + leave materials at 2 offices<br>
+    <strong style="color:var(--text);">Week 2 (Apr 7–11):</strong> Follow up with anyone who opened / reply to replies<br>
+    <strong style="color:var(--text);">Month 2:</strong> Attend 1-2 open houses and introduce in person<br>
+    <strong style="color:var(--text);">Ongoing:</strong> Every listing photo cleanup is a word-of-mouth node with a new family
+  </div>
+</div>
+
+<!-- ===================== PROSPECTS ===================== -->
+<div id="tab-prospects" class="panel">
+
+  <div class="status-bar">
+    <div class="stat-pill"><div class="stat-num" id="cnt-total">10</div><div class="stat-label">Prospects</div></div>
+    <div class="stat-pill"><div class="stat-num" id="cnt-contacted" style="color:var(--blue);">0</div><div class="stat-label">Contacted</div></div>
+    <div class="stat-pill"><div class="stat-num" id="cnt-replied" style="color:var(--yellow);">0</div><div class="stat-label">Replied</div></div>
+    <div class="stat-pill"><div class="stat-num" id="cnt-partner" style="color:var(--teal);">0</div><div class="stat-label">Partners ✅</div></div>
+  </div>
+
+  <div style="font-size:0.72rem;color:var(--text3);margin-bottom:0.75rem;text-align:center;">
+    ℹ️ These are real estate offices + agent profile types to target. Research actual names via Zillow/Realtor.com agent search for your territory.
+  </div>
+
+  <!-- Prospect template cards -->
+  <div class="prospect-card" id="prospect-0">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="prospect-name">RE/MAX Results — South County Office</div>
+        <div class="prospect-meta">South County St. Louis · High-volume suburban market</div>
+        <div class="prospect-angle">Heavy dog-owner clientele in Crestwood, Affton, Fenton territory — same market as Paw-ty</div>
+        <div><span class="tag t-orange">Cold</span><span class="tag t-teal">Office Drop-In</span><span class="tag t-blue">Email</span></div>
+      </div>
+      <select class="status-select" onchange="updateStatus(0,this.value)">
+        <option value="new">Pending</option>
+        <option value="contacted">Contacted</option>
+        <option value="replied">Replied</option>
+        <option value="partner">Partner ✅</option>
+        <option value="pass">Pass</option>
+      </select>
+    </div>
+    <div style="font-size:0.7rem;color:var(--text3);margin-top:0.5rem;">📍 Search: "RE/MAX Results South County" · Ask to leave materials with office manager · Best pitch: pre-listing urgency</div>
+  </div>
+
+  <div class="prospect-card" id="prospect-1">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="prospect-name">Coldwell Banker Realty — Kirkwood/Webster Area</div>
+        <div class="prospect-meta">Central South County · Lots of established family neighborhoods</div>
+        <div class="prospect-angle">Dog-friendly suburbs, active listings in Glendale, Kirkwood, Webster Groves — strong dog-owner density</div>
+        <div><span class="tag t-orange">Cold</span><span class="tag t-teal">Office Drop-In</span></div>
+      </div>
+      <select class="status-select" onchange="updateStatus(1,this.value)">
+        <option value="new">Pending</option>
+        <option value="contacted">Contacted</option>
+        <option value="replied">Replied</option>
+        <option value="partner">Partner ✅</option>
+        <option value="pass">Pass</option>
+      </select>
+    </div>
+    <div style="font-size:0.7rem;color:var(--text3);margin-top:0.5rem;">🐕 Bonus: Search Zillow for "Kirkwood" listings by agents — find ones with dogs in profile photos → highest conversion rate</div>
+  </div>
+
+  <div class="prospect-card" id="prospect-2">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="prospect-name">Keller Williams Realty STL — Multiple Offices</div>
+        <div class="prospect-meta">Largest agent network in STL · Multiple suburban offices</div>
+        <div class="prospect-angle">KW agents are highly entrepreneurial — they appreciate vendor partnerships more than big-box brands</div>
+        <div><span class="tag t-orange">Cold</span><span class="tag t-blue">Email Blast</span><span class="tag t-yellow">Meeting Request</span></div>
+      </div>
+      <select class="status-select" onchange="updateStatus(2,this.value)">
+        <option value="new">Pending</option>
+        <option value="contacted">Contacted</option>
+        <option value="replied">Replied</option>
+        <option value="partner">Partner ✅</option>
+        <option value="pass">Pass</option>
+      </select>
+    </div>
+    <div style="font-size:0.7rem;color:var(--text3);margin-top:0.5rem;">💡 Ask to speak at a team meeting for 5 minutes — KW offices often let vendor partners present to agents. One presentation = 15 contacts at once</div>
+  </div>
+
+  <div class="prospect-card" id="prospect-3">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="prospect-name">Berkshire Hathaway HomeServices — St. Louis County</div>
+        <div class="prospect-meta">Premium market · Higher-end homes = bigger yards = more dogs</div>
+        <div class="prospect-angle">Luxury listings need immaculate yards. These agents are highly motivated to avoid embarrassing listing photos</div>
+        <div><span class="tag t-orange">Cold</span><span class="tag t-blue">Email</span></div>
+      </div>
+      <select class="status-select" onchange="updateStatus(3,this.value)">
+        <option value="new">Pending</option>
+        <option value="contacted">Contacted</option>
+        <option value="replied">Replied</option>
+        <option value="partner">Partner ✅</option>
+        <option value="pass">Pass</option>
+      </select>
+    </div>
+    <div style="font-size:0.7rem;color:var(--text3);margin-top:0.5rem;">🏆 Pitch: "We make sure your listing photos are picture-perfect — no yard surprises on photo day"</div>
+  </div>
+
+  <div class="prospect-card" id="prospect-4">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="prospect-name">Dielmann Sotheby's International Realty</div>
+        <div class="prospect-meta">High-end St. Louis market · Premium service expectations</div>
+        <div class="prospect-angle">Sotheby's clients expect white-glove service — a cleanup partner fits their "team of vendors" model perfectly</div>
+        <div><span class="tag t-orange">Cold</span><span class="tag t-blue">Email</span></div>
+      </div>
+      <select class="status-select" onchange="updateStatus(4,this.value)">
+        <option value="new">Pending</option>
+        <option value="contacted">Contacted</option>
+        <option value="replied">Replied</option>
+        <option value="partner">Partner ✅</option>
+        <option value="pass">Pass</option>
+      </select>
+    </div>
+    <div style="font-size:0.7rem;color:var(--text3);margin-top:0.5rem;">📧 Best approach: personal email to individual agents found via their website agent directory</div>
+  </div>
+
+  <div class="prospect-card" id="prospect-5">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="prospect-name">Dog-Loving Realtors on Facebook</div>
+        <div class="prospect-meta">Facebook / Instagram search · "St. Louis Realtor" + dog posts</div>
+        <div class="prospect-angle">Search FB for St. Louis realtors who post about their dogs — these are your warmest leads. They immediately "get it"</div>
+        <div><span class="tag t-green">Warm-ish</span><span class="tag t-blue">DM</span></div>
+      </div>
+      <select class="status-select" onchange="updateStatus(5,this.value)">
+        <option value="new">Pending</option>
+        <option value="contacted">Contacted</option>
+        <option value="replied">Replied</option>
+        <option value="partner">Partner ✅</option>
+        <option value="pass">Pass</option>
+      </select>
+    </div>
+    <div style="font-size:0.7rem;color:var(--text3);margin-top:0.5rem;">🔍 Search: "St. Louis realtor" on Instagram → filter to accounts with dog photos in feed → DM with personal note about their dog</div>
+  </div>
+
+  <div class="prospect-card" id="prospect-6">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="prospect-name">Realtors at Open Houses (In-Person)</div>
+        <div class="prospect-meta">Weekend open houses in South County / West County</div>
+        <div class="prospect-angle">Walk in as a "neighbor scoping the market." Chat, then leave a card. Most productive in-person channel bar none</div>
+        <div><span class="tag t-green">In-Person</span><span class="tag t-yellow">Weekend Tactic</span></div>
+      </div>
+      <select class="status-select" onchange="updateStatus(6,this.value)">
+        <option value="new">Pending</option>
+        <option value="contacted">Contacted</option>
+        <option value="replied">Replied</option>
+        <option value="partner">Partner ✅</option>
+        <option value="pass">Pass</option>
+      </select>
+    </div>
+    <div style="font-size:0.7rem;color:var(--text3);margin-top:0.5rem;">📅 Zillow → Open Houses → This Weekend → South County. Visit 3-4 on a Sunday afternoon. Leave a card after a genuine conversation.</div>
+  </div>
+
+  <div class="prospect-card" id="prospect-7">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="prospect-name">Century 21 Advantage — South / West County</div>
+        <div class="prospect-meta">Mid-market volume · Active in family suburbs</div>
+        <div class="prospect-angle">High volume = more dog-household listings. Pre-listing cleanup is an easy, obvious sell</div>
+        <div><span class="tag t-orange">Cold</span><span class="tag t-teal">Office Drop-In</span></div>
+      </div>
+      <select class="status-select" onchange="updateStatus(7,this.value)">
+        <option value="new">Pending</option>
+        <option value="contacted">Contacted</option>
+        <option value="replied">Replied</option>
+        <option value="partner">Partner ✅</option>
+        <option value="pass">Pass</option>
+      </select>
+    </div>
+    <div style="font-size:0.7rem;color:var(--text3);margin-top:0.5rem;">🎯 Drop in with a folder of leave-behinds and ask: "Is there a good way to share this with your agents?" — office managers are the gatekeepers</div>
+  </div>
+
+  <div class="prospect-card" id="prospect-8">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="prospect-name">Redfin Agents — St. Louis Metro</div>
+        <div class="prospect-meta">Tech-forward realtors · High volume per agent</div>
+        <div class="prospect-angle">Redfin agents handle more transactions than traditional agents — more exposure to dog-owner clients</div>
+        <div><span class="tag t-orange">Cold</span><span class="tag t-blue">Email</span></div>
+      </div>
+      <select class="status-select" onchange="updateStatus(8,this.value)">
+        <option value="new">Pending</option>
+        <option value="contacted">Contacted</option>
+        <option value="replied">Replied</option>
+        <option value="partner">Partner ✅</option>
+        <option value="pass">Pass</option>
+      </select>
+    </div>
+    <div style="font-size:0.7rem;color:var(--text3);margin-top:0.5rem;">📧 Contact via Redfin.com → Find agents → St. Louis → individual agent email addresses are usually public</div>
+  </div>
+
+  <div class="prospect-card" id="prospect-9">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+      <div>
+        <div class="prospect-name">St. Louis Association of Realtors (SLAR)</div>
+        <div class="prospect-meta">Industry association · Access to ~7,000 STL realtors</div>
+        <div class="prospect-angle">SLAR has vendor partner programs and a newsletter. One featured mention = thousands of agent eyeballs</div>
+        <div><span class="tag t-yellow">Long Play</span><span class="tag t-blue">Email</span></div>
+      </div>
+      <select class="status-select" onchange="updateStatus(9,this.value)">
+        <option value="new">Pending</option>
+        <option value="contacted">Contacted</option>
+        <option value="replied">Replied</option>
+        <option value="partner">Partner ✅</option>
+        <option value="pass">Pass</option>
+      </select>
+    </div>
+    <div style="font-size:0.7rem;color:var(--text3);margin-top:0.5rem;">🌐 <a href="https://stlrealtors.com" target="_blank" style="color:var(--teal);">stlrealtors.com</a> → Membership → Affiliate/Vendor Programs. Ask about "preferred vendor" listing for home service companies.</div>
+  </div>
+</div>
+
+<!-- ===================== SCRIPTS ===================== -->
+<div id="tab-scripts" class="panel">
+
+  <!-- In-person opener -->
+  <div class="script-card">
+    <div class="script-head" onclick="toggleScript(this)">
+      <div>
+        <div class="script-title">🤝 In-Person Opener (Office Drop-In)</div>
+        <div class="script-meta">Ask for the office manager first, then pitch agents · 90 seconds</div>
+      </div>
+      <span style="color:var(--text3);font-size:0.8rem;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="fill-note">Fill in: [YOUR NAME]</div>
+      <div class="script-text">Hi, I'm [YOUR NAME] with Tidy Tails — we do pet waste removal in St. Louis County.
+
+I work with a lot of dog owners in [SOUTH COUNTY / NORTH COUNTY / etc.] and I wanted to introduce myself to the agents here.
+
+We've noticed realtors deal with the yard situation a lot — you know, listing photos come up and the yard needs to be spotless. We do same-day or next-day cleanups before photo day, and we also give new homeowners a free first cleanup as a welcome gift.
+
+Would you mind leaving a few of these cards for the agents? Anything we do for their clients is free the first time, no strings attached.</div>
+      <button class="copy-btn" onclick="copyScript(this, `Hi, I'm [YOUR NAME] with Tidy Tails — we do pet waste removal in St. Louis County.\n\nI work with a lot of dog owners in [SOUTH COUNTY / NORTH COUNTY / etc.] and I wanted to introduce myself to the agents here.\n\nWe've noticed realtors deal with the yard situation a lot — you know, listing photos come up and the yard needs to be spotless. We do same-day or next-day cleanups before photo day, and we also give new homeowners a free first cleanup as a welcome gift.\n\nWould you mind leaving a few of these cards for the agents? Anything we do for their clients is free the first time, no strings attached.`)">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- Open house intro -->
+  <div class="script-card">
+    <div class="script-head" onclick="toggleScript(this)">
+      <div>
+        <div class="script-title">🏡 Open House — Walk-Up Intro</div>
+        <div class="script-meta">Walk in, tour, chat with agent, leave card · Casual and natural</div>
+      </div>
+      <span style="color:var(--text3);font-size:0.8rem;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">*[After touring the house, at the end, casual conversation]*
+
+Hey, random question — do you work with a lot of clients who have dogs? I run a pet waste removal service in this area and I've started partnering with a few agents.
+
+Basically, before listing photos or open houses, we'll come out and clean up the yard — same day if needed. And for new buyers who have dogs, we give them a free first cleanup as a welcome gift from their realtor. Costs the agent nothing.
+
+*[Hand them a card]*
+
+Might be useful — feel free to throw it in your buyer packet.</div>
+      <button class="copy-btn" onclick="copyScript(this, `*[After touring the house, at the end, casual conversation]*\n\nHey, random question — do you work with a lot of clients who have dogs? I run a pet waste removal service in this area and I've started partnering with a few agents.\n\nBasically, before listing photos or open houses, we'll come out and clean up the yard — same day if needed. And for new buyers who have dogs, we give them a free first cleanup as a welcome gift from their realtor. Costs the agent nothing.\n\n*[Hand them a card]*\n\nMight be useful — feel free to throw it in your buyer packet.`)">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- DM script (social) -->
+  <div class="script-card">
+    <div class="script-head" onclick="toggleScript(this)">
+      <div>
+        <div class="script-title">📱 Facebook/Instagram DM (Dog-Loving Realtor)</div>
+        <div class="script-meta">For realtors who post about their own dogs · High open rate</div>
+      </div>
+      <span style="color:var(--text3);font-size:0.8rem;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="fill-note">Fill in: [DOG NAME from their post], [BREED if visible]</div>
+      <div class="script-text">Hey [NAME]! Saw [DOG NAME] on your page — [he/she] is adorable 🐾
+
+I run Tidy Tails, a pet waste removal service in St. Louis County, and I've been reaching out to a few dog-friendly realtors about a quick partnership idea.
+
+Basically: when you have sellers with dogs, we do a yard cleanup before listing photos — makes the yard look great. And for buyers with dogs, we give them a free first cleanup as a little welcome gift from you. Zero cost to you, just a nice touch.
+
+Worth a 5-minute call? Happy to explain more.</div>
+      <button class="copy-btn" onclick="copyScript(this, `Hey [NAME]! Saw [DOG NAME] on your page — [he/she] is adorable 🐾\n\nI run Tidy Tails, a pet waste removal service in St. Louis County, and I've been reaching out to a few dog-friendly realtors about a quick partnership idea.\n\nBasically: when you have sellers with dogs, we do a yard cleanup before listing photos — makes the yard look great. And for buyers with dogs, we give them a free first cleanup as a little welcome gift from you. Zero cost to you, just a nice touch.\n\nWorth a 5-minute call? Happy to explain more.`)">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- KW team meeting pitch -->
+  <div class="script-card">
+    <div class="script-head" onclick="toggleScript(this)">
+      <div>
+        <div class="script-title">🎤 Team Meeting Pitch (KW / Office Presentation)</div>
+        <div class="script-meta">5-minute office presentation · Have cards ready to hand out · High-leverage</div>
+      </div>
+      <span style="color:var(--text3);font-size:0.8rem;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Hey everyone — thanks for having me. I'll keep this quick.
+
+I'm [NAME] with Tidy Tails. We pick up dog waste in St. Louis County. That's the whole business.
+
+*[Pause for the chuckle]*
+
+Here's why this matters for you: how many of you have had a seller with a dog where the yard was... a situation before listing photos?
+
+*[Wait for hands / reactions]*
+
+That's what we fix. We do same-day and next-day cleanups. You call us, we're there before the photographer. Yard looks great, photos look great, no awkward conversation with your seller.
+
+Second thing: for buyers with dogs, give them one of these cards. We do their first cleanup free. They're getting into a new house, their dog's in a new yard — it's a $0 gesture from you that they'll actually remember.
+
+We don't charge you anything. This is just a vendor partnership. Here are my cards — would love to be your go-to for this.
+
+Questions?</div>
+      <button class="copy-btn" onclick="copyScript(this, `Hey everyone — thanks for having me. I'll keep this quick.\n\nI'm [NAME] with Tidy Tails. We pick up dog waste in St. Louis County. That's the whole business.\n\n*[Pause for the chuckle]*\n\nHere's why this matters for you: how many of you have had a seller with a dog where the yard was... a situation before listing photos?\n\n*[Wait for hands / reactions]*\n\nThat's what we fix. We do same-day and next-day cleanups. You call us, we're there before the photographer. Yard looks great, photos look great, no awkward conversation with your seller.\n\nSecond thing: for buyers with dogs, give them one of these cards. We do their first cleanup free. They're getting into a new house, their dog's in a new yard — it's a $0 gesture from you that they'll actually remember.\n\nWe don't charge you anything. This is just a vendor partnership. Here are my cards — would love to be your go-to for this.\n\nQuestions?`)">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- Phone follow-up -->
+  <div class="script-card">
+    <div class="script-head" onclick="toggleScript(this)">
+      <div>
+        <div class="script-title">📞 Phone Follow-Up (After Email Outreach)</div>
+        <div class="script-meta">Call 3-5 days after emailing · Keep it under 60 seconds</div>
+      </div>
+      <span style="color:var(--text3);font-size:0.8rem;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="fill-note">Fill in: [REALTOR NAME]</div>
+      <div class="script-text">Hey [NAME], this is [YOUR NAME] with Tidy Tails — I sent you a quick email a few days ago about a realtor partnership thing. Just wanted to make sure it didn't get buried.
+
+30-second version: we do pet waste removal in St. Louis County. For your sellers with dogs, we clean the yard before listing photos. For your buyers with dogs, they get their first cleanup free — it's a nice touch.
+
+Zero cost to you. Is this something worth a quick conversation, or not really your thing?</div>
+      <button class="copy-btn" onclick="copyScript(this, `Hey [NAME], this is [YOUR NAME] with Tidy Tails — I sent you a quick email a few days ago about a realtor partnership thing. Just wanted to make sure it didn't get buried.\n\n30-second version: we do pet waste removal in St. Louis County. For your sellers with dogs, we clean the yard before listing photos. For your buyers with dogs, they get their first cleanup free — it's a nice touch.\n\nZero cost to you. Is this something worth a quick conversation, or not really your thing?`)">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- Objection handlers -->
+  <div class="section-head">Objection Handlers</div>
+  <div class="prospect-card">
+    <div style="font-size:0.78rem;line-height:2;color:var(--text2);">
+      <strong style="color:var(--teal);">"My clients don't really have dogs"</strong> → "Totally get it — the ones who do are the ones who actually need this most, so even 1-2 a year makes it worth having the contact saved. I'll leave one card just in case."<br>
+      <strong style="color:var(--teal);">"I already have a service"</strong> → "Perfect, always good to have a backup. We do same-day which a lot of services can't, so if you ever need a last-minute before photos I'm your call."<br>
+      <strong style="color:var(--teal);">"I'll keep your card but I don't really send referrals"</strong> → "No worries — honestly you don't even have to call it a referral. Just pass the card when it's relevant. No reporting, no formal anything."<br>
+      <strong style="color:var(--teal);">"How much does it cost?"</strong> → "For their first visit, it's free. After that $70/month flat — one price no matter the dog count. We try to make it a no-brainer."
+    </div>
+  </div>
+</div>
+
+<!-- ===================== EMAIL ===================== -->
+<div id="tab-email" class="panel">
+
+  <div class="email-box">
+    <div class="email-subject">SUBJECT LINE</div>
+    <div class="email-subj-val">Quick idea for your dog-owning clients 🐕</div>
+    <div class="script-text" style="margin-top:0.5rem;">Hi [NAME],
+
+I came across your listings and wanted to reach out with a quick idea.
+
+I run Tidy Tails, a pet waste removal service in St. Louis County. We work with a few real estate agents as a preferred vendor — specifically for two situations that come up a lot:
+
+1. **Before listing photos** — We do same-day yard cleanups so there are no "surprises" in your listing photos. One call and we're there.
+
+2. **For new buyers with dogs** — We give their first cleanup free as a welcome gift from you. It's a small thing that buyers actually remember.
+
+Zero cost to you. No formal agreement needed. I just want to be your go-to call when one of these situations comes up.
+
+Would you be open to a 5-minute call, or should I just leave you some cards to pass along when relevant?
+
+Thanks,
+TJ Halpin
+Tidy Tails — St. Louis County
+(314) 850-7140
+tidytailsstl.com</div>
+    <button class="copy-btn" onclick="copyScript(this, `Hi [NAME],\n\nI came across your listings and wanted to reach out with a quick idea.\n\nI run Tidy Tails, a pet waste removal service in St. Louis County. We work with a few real estate agents as a preferred vendor — specifically for two situations that come up a lot:\n\n1. Before listing photos — We do same-day yard cleanups so there are no surprises in your listing photos. One call and we're there.\n\n2. For new buyers with dogs — We give their first cleanup free as a welcome gift from you. It's a small thing that buyers actually remember.\n\nZero cost to you. No formal agreement needed. I just want to be your go-to call when one of these situations comes up.\n\nWould you be open to a 5-minute call, or should I just leave you some cards to pass along when relevant?\n\nThanks,\nTJ Halpin\nTidy Tails — St. Louis County\n(314) 850-7140\ntidytailsstl.com`)">📋 Copy Full Email</button>
+  </div>
+
+  <div class="email-box" style="border-color:rgba(20,184,166,0.2);">
+    <div class="email-subject">FOLLOW-UP EMAIL (Day 5-7, if no reply)</div>
+    <div class="email-subj-val">Re: Quick idea for your dog-owning clients</div>
+    <div class="script-text" style="margin-top:0.5rem;">Hey [NAME],
+
+Just circling back on my earlier email. Keeping this short:
+
+We do pet waste removal before listing photos and for new buyers with dogs in St. Louis County. First cleanup is free. No cost to you to refer.
+
+If this ever becomes relevant, you'll be glad you have my number: (314) 850-7140.
+
+Happy to send a few cards if you want something physical to pass along.
+
+— TJ, Tidy Tails</div>
+    <button class="copy-btn" onclick="copyScript(this, `Hey [NAME],\n\nJust circling back on my earlier email. Keeping this short:\n\nWe do pet waste removal before listing photos and for new buyers with dogs in St. Louis County. First cleanup is free. No cost to you to refer.\n\nIf this ever becomes relevant, you'll be glad you have my number: (314) 850-7140.\n\nHappy to send a few cards if you want something physical to pass along.\n\n— TJ, Tidy Tails`)">📋 Copy Follow-Up</button>
+  </div>
+
+  <div class="email-box" style="border-color:rgba(59,130,246,0.2);">
+    <div class="email-subject">SLAR / OFFICE MANAGER PITCH (Introduce yourself to the org)</div>
+    <div class="email-subj-val">Preferred Vendor Inquiry — Pet Waste Removal for Dog-Owning Clients</div>
+    <div class="script-text" style="margin-top:0.5rem;">Hi,
+
+My name is TJ Halpin. I own Tidy Tails, a pet waste removal service in St. Louis County.
+
+I'm reaching out to ask about your preferred vendor or affiliate partner program. I work with a number of dog-owning families in the south and north county areas, and I've been building relationships with real estate agents who regularly work with similar clients.
+
+The partnership is simple: for sellers with dogs, we clean up the yard before listing photos (same-day if needed). For buyers with dogs, their first cleanup is free — a nice welcome gift from their agent that costs the agent nothing.
+
+I'd love to learn more about how to connect with agents in your network, whether through a vendor listing, newsletter feature, or just a direct introduction.
+
+Thank you for your time.
+
+TJ Halpin
+Tidy Tails
+(314) 850-7140
+tidytailsstl.com</div>
+    <button class="copy-btn" onclick="copyScript(this, `Hi,\n\nMy name is TJ Halpin. I own Tidy Tails, a pet waste removal service in St. Louis County.\n\nI'm reaching out to ask about your preferred vendor or affiliate partner program. I work with a number of dog-owning families in the south and north county areas, and I've been building relationships with real estate agents who regularly work with similar clients.\n\nThe partnership is simple: for sellers with dogs, we clean up the yard before listing photos (same-day if needed). For buyers with dogs, their first cleanup is free — a nice welcome gift from their agent that costs the agent nothing.\n\nI'd love to learn more about how to connect with agents in your network, whether through a vendor listing, newsletter feature, or just a direct introduction.\n\nThank you for your time.\n\nTJ Halpin\nTidy Tails\n(314) 850-7140\ntidytailsstl.com`)">📋 Copy SLAR Email</button>
+  </div>
+</div>
+
+<!-- ===================== LEAVE-BEHIND ===================== -->
+<div id="tab-leavebehind" class="panel">
+  <div style="margin-bottom:0.75rem;font-size:0.78rem;color:var(--text2);">
+    ℹ️ Print this out to leave with office managers or hand to agents. Designed to print cleanly on letter paper (half-page or full-page).
+  </div>
+
+  <button class="copy-btn" onclick="window.print()" style="margin-bottom:1rem;font-size:0.78rem;padding:0.5rem 1rem;">🖨️ Print Leave-Behind</button>
+
+  <div class="leave-behind-print">
+    <div class="lb-header">🐕 Tidy Tails — St. Louis Pet Waste Removal</div>
+    <div class="lb-sub">Preferred Vendor Partner for Real Estate Agents</div>
+
+    <div class="lb-section">
+      <h4>For Your Sellers With Dogs</h4>
+      <p>Need the yard spotless before listing photos or an open house? We do <strong>same-day and next-day yard cleanups</strong>. One call and we're there. No standing waste, no embarrassing photos, no awkward conversation with your seller.</p>
+    </div>
+
+    <div class="lb-section">
+      <h4>For Your Buyers With Dogs</h4>
+      <p>Give new homeowners a <strong>free first yard cleanup</strong> as a welcome gift from you. It's a small gesture they'll actually remember — and it costs you nothing.</p>
+    </div>
+
+    <div class="lb-section">
+      <h4>Why Agents Like Working With Us</h4>
+      <div class="lb-grid">
+        <div class="lb-point">✅ Same-day availability</div>
+        <div class="lb-point">✅ Text confirmation + photo proof</div>
+        <div class="lb-point">✅ $70/flat rate — no per-dog fees</div>
+        <div class="lb-point">✅ Local, not a franchise</div>
+        <div class="lb-point">✅ First visit always free</div>
+        <div class="lb-point">✅ No referral paperwork</div>
+      </div>
+    </div>
+
+    <div class="lb-footer">
+      TJ Halpin · (314) 850-7140 · tidytailsstl.com · cartervhomes@gmail.com
+    </div>
+  </div>
+
+  <div style="font-size:0.72rem;color:var(--text3);margin-top:0.5rem;">
+    💡 Tip: Print 10-15 copies. Leave 3-5 at each office you visit. Place with the office manager, not just the front desk. Ask "Is there a place agents pick up vendor materials?"
+  </div>
+</div>
+
+<!-- ===================== CHECKLIST ===================== -->
+<div id="tab-checklist" class="panel">
+
+  <div style="font-size:0.78rem;color:var(--text2);margin-bottom:0.75rem;line-height:1.6;">
+    Full outreach checklist — do this over the next 2 weeks and you'll have 3+ realtor relationships warm.
+  </div>
+
+  <!-- Progress bar -->
+  <div style="margin-bottom:1rem;">
+    <div style="display:flex;justify-content:space-between;font-size:0.72rem;color:var(--text2);margin-bottom:0.3rem;">
+      <span>Progress</span><span id="check-progress-label">0 / 18</span>
+    </div>
+    <div style="background:var(--bg4);border-radius:100px;height:6px;">
+      <div id="check-progress-bar" style="background:var(--teal);height:6px;border-radius:100px;width:0%;transition:width 0.3s;"></div>
+    </div>
+  </div>
+
+  <div class="section-head">Week 1 — Preparation (Mar 31–Apr 4)</div>
+  <div id="checklist">
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c0"></div><div class="check-label" id="cl0">Print 15 copies of the leave-behind (Print tab above)</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c1"></div><div class="check-label" id="cl1">Identify 3 real estate offices within 15 min of your route</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c2"></div><div class="check-label" id="cl2">Find 5 dog-friendly realtors on Instagram/Facebook (search: "St. Louis realtor" + dog photos)</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c3"></div><div class="check-label" id="cl3">Draft personalized DMs for 3 dog-loving realtors using the script above</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c4"></div><div class="check-label" id="cl4">Email 5 individual agents using the cold email template</div></div>
+
+    <div class="section-head" style="margin-top:1rem;">Week 1 — Execution</div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c5"></div><div class="check-label" id="cl5">Drop into Office #1 with materials — leave with office manager</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c6"></div><div class="check-label" id="cl6">Drop into Office #2 with materials</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c7"></div><div class="check-label" id="cl7">Send 3 DMs to dog-loving realtors on social</div></div>
+
+    <div class="section-head" style="margin-top:1rem;">Week 2 — Follow-Up & Expansion (Apr 7–11)</div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c8"></div><div class="check-label" id="cl8">Follow up with all email prospects who haven't replied (use follow-up template)</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c9"></div><div class="check-label" id="cl9">Call 3 realtors who opened email but didn't reply (30-sec phone script)</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c10"></div><div class="check-label" id="cl10">Drop into Office #3 with materials</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c11"></div><div class="check-label" id="cl11">Email SLAR (St. Louis Association of Realtors) about vendor/affiliate program</div></div>
+
+    <div class="section-head" style="margin-top:1rem;">Weekend Tactic — Open Houses</div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c12"></div><div class="check-label" id="cl12">Visit 3 open houses in South County on a Saturday or Sunday</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c13"></div><div class="check-label" id="cl13">Use open house script — leave card with agent after natural conversation</div></div>
+
+    <div class="section-head" style="margin-top:1rem;">Long Game — Ongoing</div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c14"></div><div class="check-label" id="cl14">Check if any Paw-ty leads from today are realtors → prioritize partnership conversation</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c15"></div><div class="check-label" id="cl15">Ask existing customers if any work in real estate → warm intro request</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c16"></div><div class="check-label" id="cl16">Request to present at one KW or RE/MAX team meeting in April</div></div>
+    <div class="check-item"><div class="check-box" onclick="toggleCheck(this)" id="c17"></div><div class="check-label" id="cl17">Add "Realtor Partner" offer to tidytailsstl.com (contact page or dedicated landing)</div></div>
+  </div>
+</div>
+
+<script>
+function showTab(id, el) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  el.classList.add('active');
+}
+
+function toggleScript(head) {
+  const body = head.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+function copyScript(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy Script'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Prospect status
+const statusCounts = { new:10, contacted:0, replied:0, partner:0, pass:0 };
+let statuses = JSON.parse(localStorage.getItem('realtor-statuses') || '{}');
+
+function updateStatus(idx, val) {
+  statuses[idx] = val;
+  localStorage.setItem('realtor-statuses', JSON.stringify(statuses));
+  recalcStats();
+}
+
+function recalcStats() {
+  let contacted=0, replied=0, partner=0;
+  for(let k in statuses) {
+    if(statuses[k]==='contacted') contacted++;
+    else if(statuses[k]==='replied') replied++;
+    else if(statuses[k]==='partner') partner++;
+  }
+  document.getElementById('cnt-contacted').textContent = contacted;
+  document.getElementById('cnt-replied').textContent = replied;
+  document.getElementById('cnt-partner').textContent = partner;
+}
+
+// Restore statuses on load
+window.addEventListener('load', () => {
+  for(let k in statuses) {
+    const sel = document.querySelector(`#prospect-${k} .status-select`);
+    if(sel) sel.value = statuses[k];
+  }
+  recalcStats();
+  loadChecks();
+});
+
+// Checklist
+const TOTAL_CHECKS = 18;
+let checks = JSON.parse(localStorage.getItem('realtor-checks') || '{}');
+
+function loadChecks() {
+  for(let i=0; i<TOTAL_CHECKS; i++) {
+    if(checks[i]) {
+      document.getElementById('c'+i).classList.add('done');
+      document.getElementById('cl'+i).classList.add('done');
+    }
+  }
+  updateProgress();
+}
+
+function toggleCheck(el) {
+  const id = el.id.replace('c','');
+  el.classList.toggle('done');
+  document.getElementById('cl'+id).classList.toggle('done');
+  checks[id] = el.classList.contains('done');
+  localStorage.setItem('realtor-checks', JSON.stringify(checks));
+  updateProgress();
+}
+
+function updateProgress() {
+  const done = Object.values(checks).filter(Boolean).length;
+  document.getElementById('check-progress-label').textContent = `${done} / ${TOTAL_CHECKS}`;
+  document.getElementById('check-progress-bar').style.width = (done/TOTAL_CHECKS*100) + '%';
+}
+</script>
+</body>
+</html>
