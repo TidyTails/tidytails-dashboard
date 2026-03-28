@@ -2,6 +2,31 @@
 
 ---
 
+### Saturday 2:07 PM — Post-Paw-ty Conversion Sprint Guide (Hourly Task)
+- **2:07 PM** 🔥 Built "PAW-TY JUST ENDED — DO THIS NOW" guide — the 2-5 PM conversion sprint for the exact window TJ is in RIGHT NOW driving home from the event
+  - **File:** `dashboard/pawty-post-event-NOW.html` — single-page mobile-first action guide
+  - **Why this task:** It's 2:07 PM. The Paw-ty just ended. The 48-hour conversion window is OPEN. The highest post of any event — the "victory recap" — gets maximum organic reach between 2-5 PM. Hot leads who said "yes" at the event expect a text TODAY. All the tools exist but they're spread across 7 files. TJ driving home doesn't have time to figure out which one to open. This collapses everything into 4 sequential steps for the next 3 hours.
+  - **What's built:**
+    - **Live urgency header** with live clock + hours left today
+    - **Step 1 (red / do NOW):** Victory Recap Post — Facebook, Nextdoor, Instagram story. 3 copy-paste posts with hashtags. Why: 2-5 PM recap posts convert people who were at the event but didn't stop. Highest reach window of the day.
+    - **Step 2 (red / do TODAY):** Text Hot Leads — 3 scripts: signed up on the spot (send NOW), said yes/interested (send TODAY), no dog name version (fallback). Clear rule: "hot leads text TODAY, warm leads text Sunday."
+    - **Step 3 (amber / Sunday AM):** Warm lead scripts — "maybe" leads, price-hesitation leads, cool leads. Sunday 9-11 AM timing guide with "why Sunday morning" psychology.
+    - **Step 4 (amber / this weekend):** Ask 3 customers for Google reviews — Shannon, Amanda, Chastity (Florissant = North County Map Pack signal). Personalized texts for each. Direct link to Google review page.
+    - **Win Math card:** 1 convert = $840/yr, 3 converts = $2,520/yr, 3 converts + referrals = $5,040/yr, ROAS = 30×
+    - **Sunday plan card** linking directly to Sunday Morning Power Hour tool
+    - **8 quick links** to every related tool (Follow-Up Engine, Onboarding Kit, Review Sprint, Referral Engine, Debrief, ROI Tracker, Sunday Guide, Battle Plan)
+    - **Progress bar** tracking 0/4 steps with motivational messages
+    - **All copy buttons** with click-to-copy
+    - **Done checkboxes** with localStorage persistence
+    - Auto-opens Step 1 on first load (first impression = momentum)
+  - **Dashboard:** Added pulsing red "🔥 PAW-TY DONE — DO THIS NOW (2–5 PM WINDOW)" as new #1 quick link — fastest pulse (0.6s), highest priority styling, above the debrief link
+  - **Committed + pushed ✅**
+  - **Why the timing:** The 2-5 PM "victory recap" post is the #1 thing TJ can do in the next 3 hours. It converts people who were AT the event but didn't stop. It surfaces Tidy Tails in their feed while "Crestwood Vet Paw-ty" is still top of mind. Without a guide pointing TJ to this exact action, he might rest, scroll, or skip to Sunday. The window closes at ~5 PM when algorithm reach drops.
+
+---
+
+---
+
 ### Saturday 1:04 PM — Nextdoor Playbook (Hourly Task)
 - **1:04 PM** 🏘️ Built full Nextdoor Neighborhood Playbook — the missing structured channel system for the highest-ROI free acquisition channel
   - **File:** `dashboard/nextdoor-playbook.html` — 5-tab Nextdoor command center
