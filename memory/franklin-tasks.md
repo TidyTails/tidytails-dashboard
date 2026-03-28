@@ -2,6 +2,32 @@
 
 ---
 
+### Saturday 3:04 AM — Competitor Battle Map (Hourly Task)
+- **3:04 AM** 🗺️ Built live Competitor Battle Map with corrected intel — competitive landscape was MORE crowded than our docs showed
+  - **File:** `dashboard/competitor-battle-map-mar28.html` — 5-tab battle intelligence HQ
+  - **Key finding:** Old documentation said "POOP 911 has no MO locations" — COMPLETELY WRONG. POOP 911 has 3 active St. Louis listings with 180, 145, and 20 reviews respectively. We've been operating with false intel.
+  - **Full competitor count:** 8 active players (was tracking 3):
+    - 🔴 Poop2Scoop: $18/wk, 5.0★ (39), veteran-owned, #1 organic — CHEAPEST
+    - 🔴 POOP 911 St. Louis: 4.8★ (180), national franchise — MOST REVIEWED
+    - 🔴 POOP 911 St. Charles: 4.8★ (145)
+    - 🟡 No. 2 Crew: $19/visit, site broken, hidden fees
+    - 🟡 CL Pro Pet Services: 5.0★ (20), St. Charles, overlaps Florissant zips
+    - 🟡 Scoop the Lou: 5.0★ (7), new, growing, community angle
+    - 🟢 Dr. Scoops: 5.0★ (15), likely west county
+    - 🟢 LJJ Pet Waste: 5.0★ (5), solo operator, no website
+  - **Intelligence tabs:**
+    - **All Competitors:** Expandable cards per rival with pricing, strengths, weaknesses, "how we beat them"
+    - **Pricing War:** Real price comparison table — we ARE $7/mo cheaper than Poop2Scoop annually (flat $840/yr vs their $936/yr if weekly)
+    - **Territory Map:** North County still open — no dominant player in Florissant/Hazelwood/Ferguson
+    - **Battle Scripts:** 5 copy-paste field responses for Jamie at today's Paw-ty (competitor switch, price objection, "legit?" question, orphaned customer angle)
+    - **Opportunities:** 6 gap analysis cards — flat rate uniqueness, personal text access, North County gap, social void, reviews race, commercial white space
+  - **TASKS.md:** Updated competitive landscape table from 3→8 players with corrected POOP 911 status
+  - **Dashboard:** Added "🗺️ COMPETITOR BATTLE MAP" quick link
+  - **Critical insight:** Our $70/mo flat rate is the ONLY predictable monthly subscription in the market. Everyone else is per-visit or quote-only. This is our strongest differentiator heading into today's Paw-ty.
+  - Committed + pushed ✅
+
+---
+
 ### Saturday 2:06 AM — April 2026 Content Calendar (Hourly Task)
 - **2:06 AM** 📅 Built unified April Content Calendar — 30 days of copy-paste posts for BOTH businesses in one dashboard
   - **File:** `dashboard/april-content-calendar.html` — dark-mode calendar command center
