@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏠 Shed Directory Submission Kit — All 23 Units</title>
+<style>
+  :root {
+    --bg: #0a0a0f; --card: #111118; --card2: #16161f; --card3: #1a1a25;
+    --amber: #f59e0b; --amber2: #d97706; --amber-bg: rgba(245,158,11,0.08);
+    --green: #22c55e; --green-bg: rgba(34,197,94,0.08);
+    --red: #ef4444; --red-bg: rgba(239,68,68,0.08);
+    --blue: #3b82f6; --blue-bg: rgba(59,130,246,0.08);
+    --purple: #a78bfa; --purple-bg: rgba(167,139,250,0.08);
+    --teal: #14b8a6; --teal-bg: rgba(20,184,166,0.08);
+    --text: #e2e8f0; --muted: #94a3b8; --dim: #475569;
+    --border: #1e293b; --border2: #2d3748;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 80px; }
+
+  .header { text-align: center; padding: 24px 16px 16px; background: linear-gradient(180deg, rgba(245,158,11,0.08), transparent); border-bottom: 1px solid var(--border); }
+  .header h1 { font-size: 1.5em; font-weight: 800; color: var(--amber); }
+  .header .sub { color: var(--muted); font-size: 0.85em; margin-top: 6px; }
+
+  .progress-bar { background: var(--card); border-bottom: 1px solid var(--border); padding: 12px 16px; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 0.75em; color: var(--muted); margin-bottom: 6px; }
+  .progress-track { background: var(--border); border-radius: 99px; height: 8px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--amber), var(--amber2)); border-radius: 99px; transition: width 0.5s; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 12px 12px 0; max-width: 700px; margin: 0 auto; }
+  .stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 8px; text-align: center; }
+  .stat .num { font-size: 1.5em; font-weight: 800; }
+  .stat .lbl { font-size: 0.63em; color: var(--muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .stat.amber .num { color: var(--amber); }
+  .stat.green .num { color: var(--green); }
+  .stat.blue .num { color: var(--blue); }
+  .stat.purple .num { color: var(--purple); }
+
+  .container { max-width: 700px; margin: 0 auto; padding: 0 12px; }
+
+  .tabs { display: flex; gap: 0; background: var(--card); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); margin: 12px 0; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .tab { flex: 1; min-width: 0; padding: 10px 8px; text-align: center; font-size: 0.72em; font-weight: 700; color: var(--dim); cursor: pointer; transition: all 0.2s; border: none; background: none; font-family: inherit; white-space: nowrap; }
+  .tab.active { color: var(--bg); background: var(--amber); }
+  .tab:hover:not(.active) { color: var(--muted); background: var(--card2); }
+
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  .sec { display: flex; align-items: center; gap: 8px; margin: 20px 0 10px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .sec h2 { font-size: 0.9em; font-weight: 700; }
+  .badge { font-size: 0.65em; padding: 2px 8px; border-radius: 4px; font-weight: 700; }
+  .badge-amber { background: var(--amber-bg); color: var(--amber); }
+  .badge-green { background: var(--green-bg); color: var(--green); }
+  .badge-blue { background: var(--blue-bg); color: var(--blue); }
+  .badge-red { background: var(--red-bg); color: var(--red); }
+
+  .info-box { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 12px; }
+  .info-box.amber { border-color: rgba(245,158,11,0.3); background: var(--amber-bg); }
+  .info-box.green { border-color: rgba(34,197,94,0.3); background: var(--green-bg); }
+  .info-box h3 { font-size: 0.85em; font-weight: 700; margin-bottom: 6px; }
+  .info-box p, .info-box li { font-size: 0.78em; color: var(--muted); line-height: 1.6; }
+  .info-box ul { padding-left: 16px; }
+  .info-box li { margin-bottom: 3px; }
+
+  /* Unit Cards */
+  .unit-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); margin-bottom: 12px; overflow: hidden; transition: border-color 0.2s; }
+  .unit-card.done { border-color: rgba(34,197,94,0.4); }
+  .unit-card-head { display: flex; align-items: center; gap: 10px; padding: 12px 14px; cursor: pointer; }
+  .unit-card-head:hover { background: var(--card2); }
+  .unit-num { width: 28px; height: 28px; border-radius: 50%; background: var(--amber-bg); border: 1px solid rgba(245,158,11,0.3); display: flex; align-items: center; justify-content: center; font-size: 0.75em; font-weight: 800; color: var(--amber); flex-shrink: 0; }
+  .unit-num.done { background: var(--green-bg); border-color: rgba(34,197,94,0.3); color: var(--green); }
+  .unit-info { flex: 1; }
+  .unit-info h3 { font-size: 0.88em; font-weight: 700; }
+  .unit-info .meta { font-size: 0.72em; color: var(--muted); margin-top: 2px; }
+  .unit-price { font-size: 0.9em; font-weight: 800; color: var(--amber); }
+  .unit-price.clearance { color: var(--green); }
+  .chevron { font-size: 0.75em; color: var(--dim); transition: transform 0.2s; }
+  .unit-card.open .chevron { transform: rotate(90deg); }
+  .unit-body { display: none; padding: 0 14px 14px; }
+  .unit-card.open .unit-body { display: block; }
+
+  .copy-block { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin: 8px 0; font-size: 0.76em; line-height: 1.6; color: var(--text); cursor: pointer; position: relative; transition: all 0.2s; white-space: pre-wrap; font-family: 'SF Mono', 'Monaco', monospace; }
+  .copy-block:hover { border-color: var(--amber); }
+  .copy-block::after { content: '📋 Tap to copy'; position: absolute; top: 8px; right: 10px; font-size: 0.75em; color: var(--dim); font-family: -apple-system, sans-serif; }
+  .copy-block.copied { border-color: var(--green); }
+  .copy-block.copied::after { content: '✅ Copied!'; color: var(--green); }
+  .copy-label { font-size: 0.7em; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 10px; margin-bottom: 2px; }
+
+  .submit-check { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  .submit-check:last-child { border-bottom: none; }
+  .submit-check input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--amber); cursor: pointer; }
+  .submit-check label { font-size: 0.8em; cursor: pointer; }
+  .submit-check label .platform { font-weight: 700; color: var(--amber); }
+  .submit-check label .sub { font-size: 0.85em; color: var(--muted); margin-left: 4px; }
+
+  .btn { display: inline-block; padding: 8px 16px; border-radius: 8px; font-size: 0.78em; font-weight: 700; border: none; cursor: pointer; font-family: inherit; transition: all 0.15s; text-decoration: none; }
+  .btn-amber { background: var(--amber); color: #000; }
+  .btn-amber:hover { background: var(--amber2); }
+  .btn-green { background: var(--green-bg); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+  .btn-blue { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(59,130,246,0.3); }
+
+  .platform-guide { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 10px; }
+  .platform-guide h3 { font-size: 0.85em; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+  .platform-guide ol, .platform-guide ul { padding-left: 18px; }
+  .platform-guide li { font-size: 0.78em; color: var(--muted); line-height: 1.7; }
+  .platform-guide a { color: var(--amber); text-decoration: none; }
+  .platform-guide a:hover { text-decoration: underline; }
+
+  .table { width: 100%; border-collapse: collapse; font-size: 0.76em; }
+  .table th { background: var(--card2); padding: 8px 10px; text-align: left; font-size: 0.75em; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); border-bottom: 1px solid var(--border); }
+  .table td { padding: 8px 10px; border-bottom: 1px solid var(--border); color: var(--muted); }
+  .table tr:last-child td { border-bottom: none; }
+  .table tr:hover td { background: var(--card2); }
+  .table .price { color: var(--amber); font-weight: 700; }
+  .table .done { color: var(--green); }
+  .table .pend { color: var(--dim); }
+
+  .urgency { background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(245,158,11,0.03)); border: 1px solid rgba(245,158,11,0.3); border-radius: var(--radius); padding: 14px 16px; margin-bottom: 16px; }
+  .urgency h3 { font-size: 0.85em; font-weight: 700; color: var(--amber); margin-bottom: 6px; }
+  .urgency p { font-size: 0.78em; color: var(--muted); line-height: 1.6; }
+  .urgency strong { color: var(--text); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏠 Shed Directory Submission Kit</h1>
+  <div class="sub">ShedHub • Craigslist • ShedRow • Facebook • Marketplace — All 23 Units Ready</div>
+</div>
+
+<div class="progress-bar container">
+  <div class="progress-label">
+    <span>Submission Progress</span>
+    <span id="progressCount">0 / 23 submitted</span>
+  </div>
+  <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+</div>
+
+<div class="stats container" style="margin-top:12px;">
+  <div class="stat amber"><div class="num">23</div><div class="lbl">Total Units</div></div>
+  <div class="stat green"><div class="num" id="submittedCount">0</div><div class="lbl">Submitted</div></div>
+  <div class="stat blue"><div class="num">4</div><div class="lbl">Platforms</div></div>
+  <div class="stat purple"><div class="num">$0</div><div class="lbl">Cost</div></div>
+</div>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('overview')">📋 Overview</button>
+    <button class="tab" onclick="showTab('shedhub')">🌐 ShedHub</button>
+    <button class="tab" onclick="showTab('craigslist')">📰 Craigslist</button>
+    <button class="tab" onclick="showTab('shedrow')">🏘️ ShedRow</button>
+    <button class="tab" onclick="showTab('all-listings')">📦 All Listings</button>
+  </div>
+
+  <!-- OVERVIEW TAB -->
+  <div id="tab-overview" class="panel active">
+    <div class="urgency">
+      <h3>⏰ Why This Matters Now (April 2026 Tariffs)</h3>
+      <p>April 2, 2026 tariffs on lumber and steel will <strong>push shed prices 15-25% higher</strong>. Every free directory listing you put up TODAY will be found by buyers searching during the post-tariff price shock. The people who find these listings in April and May will be looking to <strong>buy at current prices</strong>. Set it up now, harvest leads all spring.</p>
+    </div>
+
+    <div class="info-box amber">
+      <h3>🎯 What You're Submitting</h3>
+      <ul>
+        <li><strong>ShedHub.com</strong> — Free. Each shed gets its own indexed Google page. 23 pages = 23 free organic landing pages.</li>
+        <li><strong>Craigslist STL</strong> — Free. Most viewed local marketplace for sheds. Each ad runs 30 days.</li>
+        <li><strong>ShedRow.com</strong> — Free shed dealer directory. One dealer profile + up to 50 listings.</li>
+        <li><strong>Facebook Marketplace</strong> — Free. High local intent traffic, links directly to your phone.</li>
+      </ul>
+    </div>
+
+    <div class="info-box green">
+      <h3>✅ Total Time Investment</h3>
+      <ul>
+        <li><strong>ShedHub:</strong> ~45 min to list all 23 (2 min each once you're in the flow)</li>
+        <li><strong>Craigslist:</strong> ~30 min for top 8 units (focus high-ticket + clearance)</li>
+        <li><strong>ShedRow:</strong> ~20 min dealer registration + basic listings</li>
+        <li><strong>FB Marketplace:</strong> Already doing this ✅ — batch the remaining ones</li>
+        <li><strong>Total:</strong> ~2 hrs, one time, generates passive leads all spring/summer</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h3>📊 What Info You Need Per Listing</h3>
+      <ul>
+        <li>Unit ID / Model number</li>
+        <li>Size (e.g. 10×16)</li>
+        <li>Type (Utility, Barn, Garden, Greenhouse, Garage)</li>
+        <li>Color</li>
+        <li>Price (cash + monthly RTO option)</li>
+        <li>Features (doors, windows, loft, etc.)</li>
+        <li>1-3 photos from the lot</li>
+        <li>Contact: 636-354-7406 (Darius) | backyardbuildingsstl.com</li>
+      </ul>
+    </div>
+
+    <div class="sec"><h2>📍 Business Info to Copy-Paste</h2></div>
+    <div class="copy-label">Dealer Name & Contact</div>
+    <div class="copy-block" onclick="copyThis(this)">Backyard Buildings STL — TuffShed & WoodMaster
+Lot: 5520 Westwood Dr, Saint Charles, MO 63304
+Phone: 636-354-7406
+Website: backyardbuildingsstl.com
+Hours: 7 days a week, by appointment
+Instagram: @reddshedredemption</div>
+
+    <div class="copy-label">Boilerplate Description Footer (add to every listing)</div>
+    <div class="copy-block" onclick="copyThis(this)">Backyard Buildings STL is Saint Charles County's local TuffShed & WoodMaster dealer. All buildings are professionally installed — no DIY, no kits, no assembly required. On-site at our lot in Saint Charles for viewing. Financing available: 0% for 6 months or RTO from $59/mo. No credit check required. 636-354-7406.</div>
+
+    <div class="copy-label">Tariff Urgency Hook (add to all listings through April 2)</div>
+    <div class="copy-block" onclick="copyThis(this)">⚠️ PRE-TARIFF PRICING: New lumber & steel tariffs take effect April 2. Sheds ordered before then lock in current pricing. This unit is in stock and ready to install.</div>
+  </div>
+
+  <!-- SHEDHUB TAB -->
+  <div id="tab-shedhub" class="panel">
+    <div class="platform-guide">
+      <h3>🌐 ShedHub.com — Step-by-Step</h3>
+      <ol>
+        <li>Go to <a href="https://shedhub.com/register" target="_blank">shedhub.com/register</a> → create dealer account</li>
+        <li>Select "Dealer/Manufacturer" account type</li>
+        <li>Enter: Backyard Buildings STL, Saint Charles MO, 636-354-7406</li>
+        <li>Once approved (usually same day), go to your dashboard → "Add Listing"</li>
+        <li>Category: select building type, enter size, price, features, upload 2-3 photos</li>
+        <li>Each listing gets its own indexed URL — submit sitemap to Google for faster indexing</li>
+        <li>Pro tip: Use "In Stock at Saint Charles, MO lot" in every description for local SEO</li>
+      </ol>
+    </div>
+
+    <div class="sec"><h2>Priority Units for ShedHub <span class="badge badge-amber">Submit First</span></h2></div>
+    <p style="font-size:0.78em;color:var(--muted);margin-bottom:12px;">Lead with premium units ($8K+) and unique/specialty ones (greenhouse, garden, barn). They get more engagement and anchor the price perception of your whole inventory.</p>
+
+    <div class="info-box">
+      <h3>🥇 Tier 1 — Premium + Unique (Submit First)</h3>
+      <ul>
+        <li>WM-400369 — 12×24 Dark Brown Barn w/ Loft ($10,399) — highest ticket</li>
+        <li>WM-400657 — 12×24 Charcoal Garage w/ Loft ($11,299)</li>
+        <li>400108 — 12×24 Taupe Garage w/ Loft ($11,299)</li>
+        <li>307778 — 8×12 Greenhouse White/Black ($5,999) — unique, low competition</li>
+        <li>400034 — 10×16 Aqua/Teal Garden ($6,299) — eye-catching color</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h3>🥈 Tier 2 — Mid-Range Volume Sellers</h3>
+      <ul>
+        <li>308332 — 12×16 Navy Workshop ($6,899)</li>
+        <li>308457 — 10×20 Terracotta Deep Storage ($7,199)</li>
+        <li>WM-4003819 — 12×16 Brown Barn ($6,799)</li>
+        <li>400027 — 10×14 Hunter Green Barn ($5,499)</li>
+        <li>307777 — 10×16 Sage Green Gambrel ($5,899)</li>
+        <li>400030 — 10×16 Tan Utility ($5,699)</li>
+        <li>400108 — 10×16 Tan ($5,899)</li>
+      </ul>
+    </div>
+
+    <div class="info-box">
+      <h3>🥉 Tier 3 — Entry-Level + Clearance</h3>
+      <ul>
+        <li>143725 — 10×12 Charcoal Clearance ($4,409) — PRICE HOOK</li>
+        <li>157538 — 8×12 Brown Tool Shed Pre-Owned ($3,509) — lowest price point</li>
+        <li>308458 — 8×12 White Budget Utility ($3,999)</li>
+        <li>WM-400375 — 8×12 Green Starter ($3,999)</li>
+        <li>All remaining 10×12 utility units</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CRAIGSLIST TAB -->
+  <div id="tab-craigslist" class="panel">
+    <div class="platform-guide">
+      <h3>📰 Craigslist STL — Step-by-Step</h3>
+      <ol>
+        <li>Go to <a href="https://stlouis.craigslist.org/post" target="_blank">stlouis.craigslist.org/post</a></li>
+        <li>Category: For Sale → Farm + Garden (sheds typically go here)</li>
+        <li>OR: For Sale → Materials (for the greenhouse)</li>
+        <li>Title: keep under 70 chars, lead with size and price</li>
+        <li>Post 1 ad every 48 hours max (avoid account flag)</li>
+        <li>Each ad runs 30 days, then re-post</li>
+        <li>Renew every 2 weeks to stay near top of results</li>
+      </ol>
+    </div>
+
+    <div class="sec"><h2>Top 8 Craigslist Ads — Ready to Post <span class="badge badge-green">Copy-Paste</span></h2></div>
+
+    <div class="copy-label">🔥 Ad #1 — The Price Hook (Clearance Unit)</div>
+    <div class="copy-block" onclick="copyThis(this)">10x12 Storage Shed — $4,409 — Saint Charles MO
+
+Brand new TuffShed at clearance pricing. Charcoal/gray color with gambrel roof and garage door. Professionally installed on your property — no assembly required.
+
+⚠️ PRE-TARIFF PRICE: Order before April 2 to lock in current pricing.
+
+✅ In Stock at our Saint Charles lot — ready to view today
+✅ Financing from $79/mo — no credit check required
+✅ Professionally installed (not a kit)
+✅ 636-354-7406 — call or text Darius
+
+Backyard Buildings STL — Saint Charles, MO
+TuffShed & WoodMaster Dealer | backyardbuildingsstl.com</div>
+
+    <div class="copy-label">🔥 Ad #2 — Greenhouse (Unique, Low Competition)</div>
+    <div class="copy-block" onclick="copyThis(this)">8x12 Greenhouse — $5,999 — Saint Charles MO
+
+Professional greenhouse with poly roof, wood benches, and ventilation system. White/black color scheme. One of a kind — only 1 available.
+
+Perfect for:
+• Year-round gardening
+• Starting seedlings early
+• Protecting plants from Missouri winters
+
+✅ In Stock at our Saint Charles lot — view today
+✅ Professionally installed — no tools needed
+✅ Financing available from $99/mo
+✅ 636-354-7406 — text or call Darius
+
+Backyard Buildings STL | backyardbuildingsstl.com</div>
+
+    <div class="copy-label">🔥 Ad #3 — Premium 12x24 Garage/Barn</div>
+    <div class="copy-block" onclick="copyThis(this)">12x24 Barn Garage w/ Loft — $10,399 — Saint Charles MO
+
+Our flagship unit. 12x24 dark brown WoodMaster barn-style building with:
+• Full loft (doubles your storage)
+• Gambrel roof for maximum interior height
+• Double barn doors
+• Exterior premium finish
+
+This is a serious building — workshop, garage, she-shed, or man cave level.
+
+⚠️ TARIFF NOTICE: Lumber/steel prices going up April 2. This price locked until then.
+
+✅ On lot in Saint Charles — come see it
+✅ 0% financing for 6 months OR RTO from $149/mo
+✅ Professionally installed
+✅ 636-354-7406 — Darius
+
+backyardbuildingsstl.com</div>
+
+    <div class="copy-label">🔥 Ad #4 — 12x24 Garage (2 Available)</div>
+    <div class="copy-block" onclick="copyThis(this)">12x24 Storage Garage w/ Loft — $11,299 — Saint Charles MO
+
+Two 12x24 garage-style buildings available. Choose from:
+• Charcoal gray with gambrel roof + loft (WM-400657)
+• Taupe/neutral with gambrel roof + loft + garage door (400108)
+
+Both professionally installed. Think of it as an extra garage — without the permits.
+
+$11,299 each. Financing: $0 down, from $169/mo.
+⚠️ Pre-tariff pricing through April 2.
+
+636-354-7406 — Darius
+Backyard Buildings STL | Saint Charles, MO</div>
+
+    <div class="copy-label">🔥 Ad #5 — Teal Garden Shed (Eye-Catcher)</div>
+    <div class="copy-block" onclick="copyThis(this)">10x16 Garden Shed — Aqua/Teal — $6,299 — Saint Charles MO
+
+This one stops people in their tracks. Aqua/teal TuffShed with flower box, double doors, and windows. Perfect for:
+• She-shed / garden retreat
+• Tool storage with charm
+• Backyard focal point
+
+One in stock. Hard to find this color elsewhere.
+
+✅ View at our Saint Charles lot
+✅ Financing from $99/mo — no credit check
+✅ Professionally installed
+✅ 636-354-7406 — Darius
+
+backyardbuildingsstl.com</div>
+
+    <div class="copy-label">🔥 Ad #6 — Navy Workshop (12x16)</div>
+    <div class="copy-block" onclick="copyThis(this)">12x16 Workshop Shed — Navy Blue — $6,899 — Saint Charles MO
+
+Not your average storage shed. 12x16 navy blue TuffShed built for working in, not just storing. Double doors, windows on two sides, plenty of natural light. Size is perfect for a real workshop.
+
+✅ In stock at Saint Charles lot
+✅ Professionally installed
+✅ Financing from $109/mo
+✅ 636-354-7406 — Darius
+
+Backyard Buildings STL | Saint Charles, MO</div>
+
+    <div class="copy-label">🔥 Ad #7 — 10x20 Deep Storage</div>
+    <div class="copy-block" onclick="copyThis(this)">10x20 Storage Shed — Extra Deep — $7,199 — Saint Charles MO
+
+Need to fit something LONG? This 10x20 terracotta utility shed has 3 windows and double doors. Perfect for:
+• Boat/kayak/canoe storage
+• Motorcycle storage
+• Long lumber / seasonal equipment
+
+⚠️ Pre-tariff pricing — order before April 2.
+
+636-354-7406 — Darius
+Backyard Buildings STL | backyardbuildingsstl.com</div>
+
+    <div class="copy-label">🔥 Ad #8 — Budget Starter</div>
+    <div class="copy-block" onclick="copyThis(this)">8x12 Starter Shed — From $3,509 — Saint Charles MO
+
+Need a shed but budget is tight? We have 3 eight-by-twelve units starting at $3,509:
+• Pre-owned brown tool shed: $3,509 ← best deal
+• White utility with side door: $3,999
+• Green starter utility: $3,999
+
+All professionally installed. All in stock.
+
+Financing from $59/mo — no credit check required.
+
+636-354-7406 — Darius
+Backyard Buildings STL | Saint Charles, MO</div>
+  </div>
+
+  <!-- SHEDROW TAB -->
+  <div id="tab-shedrow" class="panel">
+    <div class="platform-guide">
+      <h3>🏘️ ShedRow.com — Step-by-Step</h3>
+      <ol>
+        <li>Go to <a href="https://shedrow.com" target="_blank">shedrow.com</a> → "Add Your Business"</li>
+        <li>Create a dealer profile: Backyard Buildings STL, Saint Charles MO</li>
+        <li>Upload your logo/storefront photo</li>
+        <li>Add business hours and service area (St. Louis Metro + Saint Charles County)</li>
+        <li>Add individual listings from the "Manage Inventory" section</li>
+        <li>ShedRow syndicates to multiple search networks automatically</li>
+      </ol>
+    </div>
+
+    <div class="copy-label">Business Description for ShedRow Profile</div>
+    <div class="copy-block" onclick="copyThis(this)">Backyard Buildings STL is Saint Charles County's local TuffShed and WoodMaster authorized dealer. We carry 20+ buildings in stock on our Saint Charles lot — utility sheds, barn-style buildings, garden sheds, greenhouses, and garage-style structures. Every building is professionally installed on your property. We serve the entire St. Louis Metro area including Saint Charles, O'Fallon, Chesterfield, Florissant, Hazelwood, and surrounding communities. Financing available with no credit check required — rent-to-own from $59/month.</div>
+
+    <div class="copy-label">Service Area Keywords (add to tags/categories)</div>
+    <div class="copy-block" onclick="copyThis(this)">Saint Charles MO, O'Fallon MO, Chesterfield MO, St. Louis MO, Florissant MO, Hazelwood MO, Wentzville MO, Lake Saint Louis MO, Ballwin MO, Manchester MO, Webster Groves MO, Kirkwood MO, Fenton MO, Arnold MO</div>
+
+    <div class="sec"><h2>Other Directories to Hit <span class="badge badge-blue">30 Min Each</span></h2></div>
+
+    <div class="platform-guide">
+      <h3>📍 Google Business Profile (FREE — Highest ROI)</h3>
+      <ol>
+        <li>If not yet created: <a href="https://business.google.com" target="_blank">business.google.com</a> → "Add business"</li>
+        <li>Business name: Backyard Buildings STL</li>
+        <li>Category: "Shed Builder" or "Storage Building Supplier"</li>
+        <li>Address: 5520 Westwood Dr, Saint Charles, MO 63304</li>
+        <li>Phone: 636-354-7406 | Website: backyardbuildingsstl.com</li>
+        <li>Add photos: 10+ photos of units from the lot</li>
+        <li>Set hours + products section with pricing</li>
+        <li>This shows in Google Maps when people search "sheds near me" — the #1 discovery source</li>
+      </ol>
+    </div>
+
+    <div class="platform-guide">
+      <h3>🏠 Facebook Business Page (FREE)</h3>
+      <ol>
+        <li>If not yet done: Create a Page for Backyard Buildings STL (separate from personal)</li>
+        <li>Link it to @reddshedredemption Instagram</li>
+        <li>Enable Facebook Marketplace listings directly from the Page</li>
+        <li>Post 1-2 units per week as organic Page posts (auto-feeds some visibility)</li>
+      </ol>
+    </div>
+
+    <div class="platform-guide">
+      <h3>🔨 BuilderAds.com / ShedBuilderPro (Check)</h3>
+      <ol>
+        <li>Search these to see if they have free dealer listings</li>
+        <li>Lesser known = less competition = easier to rank for "sheds saint charles mo"</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ALL LISTINGS TAB -->
+  <div id="tab-all-listings" class="panel">
+    <div class="sec"><h2>All 23 Units — Submission Tracker <span class="badge badge-amber">Check Off As You Go</span></h2></div>
+    <p style="font-size:0.78em;color:var(--muted);margin-bottom:12px;">Tap a unit to see its ready-to-copy listing. Check the boxes as you submit to each platform.</p>
+
+    <div id="unitList"></div>
+  </div>
+</div>
+
+<script>
+const inventory = [
+  { id: "WM-400657", type: "Garage", size: "12×24", color: "Charcoal", price: 11299, rto: 169, highlight: true, features: "Gambrel Roof, Loft Included, Premium", tier: 1 },
+  { id: "400108",    type: "Garage", size: "12×24", color: "Taupe", price: 11299, rto: 169, highlight: true, features: "Gambrel Roof, Loft Included, Garage Door", tier: 1 },
+  { id: "WM-400369", type: "Barn",   size: "12×24", color: "Dark Brown", price: 10399, rto: 149, highlight: true, features: "Gambrel Roof, Loft Included, Premium", tier: 1 },
+  { id: "308457",    type: "Utility", size: "10×20", color: "Terracotta", price: 7199, rto: 109, features: "Extra Deep, 3 Windows", tier: 2 },
+  { id: "308332",    type: "Utility", size: "12×16", color: "Navy Blue", price: 6899, rto: 109, features: "Double Doors, Windows, Workshop", tier: 2 },
+  { id: "WM-4003819",type: "Barn",   size: "12×16", color: "Brown", price: 6799, rto: 99, features: "Gambrel Roof, Double Doors, Loft Included", tier: 2 },
+  { id: "400034",    type: "Garden", size: "10×16", color: "Aqua/Teal", price: 6299, rto: 99, features: "Flower Box, Double Doors, Windows", tier: 2 },
+  { id: "307778",    type: "Greenhouse", size: "8×12", color: "White/Black", price: 5999, rto: 99, features: "Wood Benches, Poly Roof, Ventilation", tier: 1 },
+  { id: "307777",    type: "Utility", size: "10×16", color: "Sage Green", price: 5899, rto: 89, features: "Gambrel Roof, Windows", tier: 2 },
+  { id: "155527",    type: "Utility", size: "10×16", color: "Tan/Beige", price: 5899, rto: 89, features: "Flower Box, Double Doors, Windows", tier: 2 },
+  { id: "400030",    type: "Utility", size: "10×16", color: "Tan/Beige", price: 5699, rto: 89, features: "Double Doors, Windows", tier: 2 },
+  { id: "WM-400310", type: "Garden", size: "10×12", color: "Cream/Brown", price: 5499, rto: 79, features: "Loft Areas, Dormer, Premium", tier: 2 },
+  { id: "400027",    type: "Barn",   size: "10×14", color: "Hunter Green", price: 5499, rto: 79, features: "Gambrel Roof, Loft Included", tier: 2 },
+  { id: "302814",    type: "Garden", size: "10×12", color: "Gray", price: 5199, rto: 79, features: "Decorative Trim, Double Doors", tier: 2 },
+  { id: "302924",    type: "Utility", size: "10×14", color: "Dark Green", price: 5199, rto: 79, features: "Gambrel Roof, Double Doors", tier: 2 },
+  { id: "WM-400568", type: "Garden", size: "8×12", color: "Teal/Unknown", price: 4499, rto: 69, features: "Decorative Trim, Compact", tier: 3 },
+  { id: "WM-400533", type: "Barn",   size: "8×12", color: "Teal", price: 4199, rto: 65, features: "Dutch Door, Compact, Loft Included", tier: 3 },
+  { id: "155301",    type: "Utility", size: "10×12", color: "Blue", price: 4699, rto: 75, features: "Double Doors, Window", tier: 3 },
+  { id: "308729",    type: "Utility", size: "10×12", color: "Unknown", price: 4699, rto: 75, features: "Side Door, Window", tier: 3 },
+  { id: "143725",    type: "Utility", size: "10×12", color: "Charcoal", price: 4409, rto: 69, clearance: true, features: "Garage Door, Gambrel Roof", tier: 3 },
+  { id: "308458",    type: "Utility", size: "8×12", color: "White/Cream", price: 3999, rto: 63, features: "Side Door, Budget Friendly", tier: 3 },
+  { id: "WM-400375", type: "Utility", size: "8×12", color: "Green", price: 3999, rto: 63, features: "Side Door, Starter", tier: 3 },
+  { id: "157538",    type: "Tool",    size: "8×12", color: "Brown", price: 3509, rto: 59, clearance: true, preowned: true, features: "Compact, Tool Shed", tier: 3 }
+];
+
+const typeEmoji = { Garage: '🚗', Barn: '🏚️', Garden: '🌺', Greenhouse: '🌿', Utility: '🏠', Tool: '🔧' };
+const tierColor = { 1: 'var(--amber)', 2: 'var(--blue)', 3: 'var(--muted)' };
+const tierLabel = { 1: 'Priority', 2: 'Mid-Tier', 3: 'Volume' };
+
+function getListingText(u) {
+  const rtoNote = `Financing from $${u.rto}/mo — no credit check required.`;
+  const tariff = `⚠️ Pre-tariff pricing through April 2 — order now to lock in this price.`;
+  const clearanceNote = u.clearance ? '\n🔖 CLEARANCE PRICING — limited time.' : '';
+  const preowned = u.preowned ? '\n(Pre-owned unit — inspected and ready)' : '';
+  return `${u.type} Shed — ${u.size} — ${u.color} — $${u.price.toLocaleString()} — Saint Charles MO
+
+${typeEmoji[u.type]} ${u.size} ${u.type} building in ${u.color}
+${clearanceNote}${preowned}
+
+Features: ${u.features}
+
+${tariff}
+
+✅ In stock at our Saint Charles lot — view today
+✅ Professionally installed — no assembly required
+✅ ${rtoNote}
+✅ 636-354-7406 — call or text Darius
+✅ backyardbuildingsstl.com
+
+Unit ID: ${u.id}
+Backyard Buildings STL | TuffShed & WoodMaster Dealer | Saint Charles, MO`;
+}
+
+function buildUnitCards() {
+  const container = document.getElementById('unitList');
+  inventory.forEach((u, i) => {
+    const key = `shed_submit_${u.id}`;
+    const platforms = ['shedhub', 'craigslist', 'shedrow', 'fbmkt'];
+    const platLabels = ['ShedHub', 'Craigslist', 'ShedRow', 'FB Marketplace'];
+    const submitted = platforms.filter(p => localStorage.getItem(`${key}_${p}`) === '1').length;
+    const allDone = submitted === 4;
+
+    const card = document.createElement('div');
+    card.className = `unit-card ${allDone ? 'done' : ''}`;
+    card.id = `unit-card-${i}`;
+    card.innerHTML = `
+      <div class="unit-card-head" onclick="toggleUnit(${i})">
+        <div class="unit-num ${allDone ? 'done' : ''}" id="unitNum${i}">${allDone ? '✓' : i+1}</div>
+        <div class="unit-info">
+          <h3>${typeEmoji[u.type]} ${u.size} ${u.type} — ${u.color} ${u.clearance ? '<span class="badge badge-green">Clearance</span>' : ''}</h3>
+          <div class="meta">ID: ${u.id} · <span style="color:${tierColor[u.tier]};font-weight:700;">${tierLabel[u.tier]}</span> · ${submitted}/4 platforms</div>
+        </div>
+        <div class="unit-price ${u.clearance ? 'clearance' : ''}">$${u.price.toLocaleString()}</div>
+        <div class="chevron">▶</div>
+      </div>
+      <div class="unit-body">
+        <div class="copy-label">Full Listing Text (all platforms)</div>
+        <div class="copy-block" onclick="copyThis(this)">${getListingText(u)}</div>
+
+        <div class="copy-label">Short Title (Craigslist/Marketplace headline)</div>
+        <div class="copy-block" onclick="copyThis(this)">${u.size} ${u.type} Shed — ${u.color} — $${u.price.toLocaleString()} — Saint Charles MO${u.clearance ? ' 🔖CLEARANCE' : ''}</div>
+
+        <div class="copy-label">Platform Checklist</div>
+        ${platforms.map((p, j) => `
+          <div class="submit-check">
+            <input type="checkbox" id="${key}_${p}" ${localStorage.getItem(`${key}_${p}`) === '1' ? 'checked' : ''}
+              onchange="markPlatform('${key}','${p}',this.checked,${i})">
+            <label for="${key}_${p}">
+              <span class="platform">${platLabels[j]}</span>
+              <span class="sub">— tap to mark submitted</span>
+            </label>
+          </div>`).join('')}
+      </div>`;
+    container.appendChild(card);
+  });
+  updateProgress();
+}
+
+function toggleUnit(i) {
+  const card = document.getElementById(`unit-card-${i}`);
+  card.classList.toggle('open');
+}
+
+function markPlatform(key, platform, checked, unitIdx) {
+  localStorage.setItem(`${key}_${platform}`, checked ? '1' : '0');
+  const platforms = ['shedhub', 'craigslist', 'shedrow', 'fbmkt'];
+  const submitted = platforms.filter(p => localStorage.getItem(`${key}_${p}`) === '1').length;
+  const allDone = submitted === 4;
+  const card = document.getElementById(`unit-card-${unitIdx}`);
+  const numEl = document.getElementById(`unitNum${unitIdx}`);
+  card.classList.toggle('done', allDone);
+  numEl.classList.toggle('done', allDone);
+  numEl.textContent = allDone ? '✓' : (unitIdx + 1);
+  card.querySelector('.meta').innerHTML = `ID: ${inventory[unitIdx].id} · <span style="color:${tierColor[inventory[unitIdx].tier]};font-weight:700;">${tierLabel[inventory[unitIdx].tier]}</span> · ${submitted}/4 platforms`;
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = inventory.length;
+  let fullyDone = 0;
+  inventory.forEach(u => {
+    const key = `shed_submit_${u.id}`;
+    const platforms = ['shedhub', 'craigslist', 'shedrow', 'fbmkt'];
+    const submitted = platforms.filter(p => localStorage.getItem(`${key}_${p}`) === '1').length;
+    if (submitted === 4) fullyDone++;
+  });
+  document.getElementById('progressFill').style.width = `${(fullyDone/total)*100}%`;
+  document.getElementById('progressCount').textContent = `${fullyDone} / ${total} fully submitted`;
+  document.getElementById('submittedCount').textContent = fullyDone;
+}
+
+function showTab(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(`tab-${name}`).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyThis(el) {
+  const text = el.innerText.replace(/📋 Tap to copy|✅ Copied!/, '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 2000);
+  });
+}
+
+buildUnitCards();
+</script>
+</body>
+</html>
