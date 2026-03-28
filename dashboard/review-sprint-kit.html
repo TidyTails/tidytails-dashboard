@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>⭐ Google Review Sprint Kit — Tidy Tails</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0a;
+  --card: #111118;
+  --card2: #16161f;
+  --border: #2a2a3a;
+  --yellow: #f59e0b;
+  --green: #22c55e;
+  --blue: #3b82f6;
+  --red: #ef4444;
+  --orange: #f97316;
+  --purple: #a855f7;
+  --text: #e0e0e0;
+  --muted: #888;
+}
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+/* HEADER */
+.header { background: linear-gradient(135deg, #1a1a00 0%, #111108 100%); padding: 20px; border-bottom: 2px solid var(--yellow); }
+.header h1 { font-size: 1.5em; color: #fff; margin-bottom: 4px; }
+.header p { color: var(--muted); font-size: 0.85em; }
+
+/* PROGRESS BANNER */
+.progress-banner { background: linear-gradient(135deg, #1a1500 0%, #0f1200 100%); border: 1px solid var(--yellow); padding: 20px; margin: 16px; border-radius: 12px; }
+.progress-banner h2 { color: var(--yellow); font-size: 1em; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+.milestones { display: flex; gap: 0; overflow-x: auto; }
+.milestone { flex: 1; min-width: 60px; text-align: center; padding: 10px 4px; position: relative; }
+.milestone::after { content: '→'; position: absolute; right: -8px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 0.9em; }
+.milestone:last-child::after { display: none; }
+.m-num { font-size: 1.4em; font-weight: 800; }
+.m-label { font-size: 0.65em; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+.m-impact { font-size: 0.6em; color: var(--yellow); margin-top: 2px; }
+.milestone.done .m-num { color: var(--green); }
+.milestone.current .m-num { color: var(--yellow); }
+.milestone.future .m-num { color: #444; }
+.progress-bar { height: 8px; background: #222; border-radius: 4px; margin-top: 16px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, var(--green), var(--yellow)); border-radius: 4px; width: 24%; transition: width 1s; }
+.progress-text { text-align: center; font-size: 0.8em; color: var(--muted); margin-top: 6px; }
+
+/* WHY BOX */
+.why-box { margin: 0 16px 16px; background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+.why-box h3 { color: var(--yellow); margin-bottom: 10px; font-size: 0.9em; text-transform: uppercase; letter-spacing: 1px; }
+.why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.why-item { background: var(--card2); border-radius: 8px; padding: 10px; }
+.why-item .wi-num { font-size: 1.6em; font-weight: 800; color: var(--yellow); }
+.why-item .wi-text { font-size: 0.75em; color: var(--muted); line-height: 1.3; margin-top: 2px; }
+
+/* TABS */
+.tabs { display: flex; background: #111; border-bottom: 1px solid var(--border); overflow-x: auto; }
+.tab { padding: 12px 18px; cursor: pointer; color: var(--muted); font-size: 0.82em; font-weight: 600; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; }
+.tab:hover { color: #ccc; }
+.tab.active { color: var(--yellow); border-bottom-color: var(--yellow); }
+
+/* CONTENT */
+.content { padding: 16px; max-width: 800px; margin: 0 auto; }
+.section { display: none; }
+.section.active { display: block; }
+
+/* CUSTOMER CARDS */
+.customer-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 14px; transition: all 0.2s; }
+.customer-card.reviewed { border-color: var(--green); background: #0a1a0a; }
+.customer-card.reviewed .c-name { color: var(--green); }
+.customer-card.sent { border-color: var(--yellow); }
+.c-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+.c-name { font-size: 1.05em; font-weight: 700; color: #fff; }
+.c-meta { font-size: 0.75em; color: var(--muted); margin-top: 2px; }
+.c-status-badge { font-size: 0.7em; padding: 3px 8px; border-radius: 20px; font-weight: 600; background: #222; color: var(--muted); cursor: pointer; }
+.c-status-badge.sent-b { background: var(--yellow); color: #000; }
+.c-status-badge.reviewed-b { background: var(--green); color: #000; }
+.c-status-badge.declined-b { background: #333; color: #888; }
+.text-box { background: #0a0a0f; border-radius: 8px; padding: 12px; font-size: 0.82em; color: #ccc; line-height: 1.6; position: relative; border-left: 3px solid var(--yellow); margin-bottom: 10px; }
+.copy-btn { display: block; width: 100%; padding: 9px; background: var(--yellow); color: #000; border: none; border-radius: 6px; font-size: 0.8em; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.copy-btn:hover { background: #d97706; }
+.copy-btn.copied { background: var(--green); color: #fff; }
+.timing-chip { display: inline-flex; align-items: center; gap: 4px; background: #1a1a2e; border: 1px solid #3b82f6; color: var(--blue); font-size: 0.7em; padding: 3px 8px; border-radius: 20px; margin-bottom: 8px; }
+.status-btns { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+.sbtn { padding: 6px 12px; border-radius: 6px; font-size: 0.75em; font-weight: 600; cursor: pointer; border: none; transition: all 0.2s; }
+.sbtn-sent { background: #1a1500; border: 1px solid var(--yellow); color: var(--yellow); }
+.sbtn-sent:hover, .sbtn-sent.active { background: var(--yellow); color: #000; }
+.sbtn-reviewed { background: #0a1a0a; border: 1px solid var(--green); color: var(--green); }
+.sbtn-reviewed:hover, .sbtn-reviewed.active { background: var(--green); color: #000; }
+.sbtn-declined { background: #1a0a0a; border: 1px solid #444; color: #888; }
+.sbtn-declined:hover, .sbtn-declined.active { background: #333; color: #ccc; }
+
+/* STATS BAR */
+.stats-bar { display: flex; gap: 10px; margin-bottom: 16px; overflow-x: auto; flex-wrap: wrap; }
+.stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; min-width: 90px; text-align: center; flex: 1; }
+.stat .sn { font-size: 1.6em; font-weight: 800; }
+.stat .sl { font-size: 0.7em; color: var(--muted); margin-top: 2px; }
+.stat.yellow .sn { color: var(--yellow); }
+.stat.green .sn { color: var(--green); }
+.stat.blue .sn { color: var(--blue); }
+
+/* STRATEGY */
+.strat-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+.strat-card h3 { color: #fff; font-size: 0.95em; margin-bottom: 10px; }
+.strat-card ul { list-style: none; padding: 0; }
+.strat-card li { padding: 7px 0; border-bottom: 1px solid var(--border); font-size: 0.83em; color: var(--text); line-height: 1.4; }
+.strat-card li:last-child { border: none; }
+.strat-card li::before { content: '→ '; color: var(--yellow); font-weight: 700; }
+.highlight { color: var(--yellow); font-weight: 600; }
+.green-text { color: var(--green); }
+.phase-box { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+.phase-box h4 { color: var(--yellow); font-size: 0.85em; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px; }
+.phase-box p { font-size: 0.82em; color: var(--muted); line-height: 1.5; }
+.phase-box .p-step { font-size: 0.82em; color: #ccc; line-height: 1.6; }
+
+/* RESPONSE TEMPLATES */
+.resp-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+.resp-card h3 { color: var(--green); font-size: 0.9em; margin-bottom: 4px; }
+.resp-card .r-subtitle { font-size: 0.75em; color: var(--muted); margin-bottom: 10px; }
+.resp-card .r-note { font-size: 0.75em; color: var(--blue); background: #0a0f1a; border: 1px solid var(--blue); border-radius: 6px; padding: 8px; margin-bottom: 10px; line-height: 1.4; }
+
+/* MAP PACK INFO */
+.mappack-card { background: linear-gradient(135deg, #0a1500 0%, #060d00 100%); border: 1px solid var(--green); border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+.mappack-card h3 { color: var(--green); margin-bottom: 10px; font-size: 1em; }
+.mp-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid #1a2a1a; font-size: 0.83em; }
+.mp-row:last-child { border: none; }
+.mp-icon { font-size: 1.1em; flex-shrink: 0; }
+.mp-text { color: var(--text); line-height: 1.4; }
+.mp-text strong { color: var(--green); }
+
+/* CTA BANNER */
+.cta-banner { background: linear-gradient(135deg, var(--yellow) 0%, #d97706 100%); border-radius: 12px; padding: 16px; margin-bottom: 14px; text-align: center; }
+.cta-banner h3 { color: #000; font-size: 1em; margin-bottom: 6px; }
+.cta-banner p { color: #333; font-size: 0.82em; margin-bottom: 10px; }
+.cta-link { display: inline-block; background: #000; color: #fff; padding: 10px 24px; border-radius: 8px; font-weight: 700; font-size: 0.85em; text-decoration: none; }
+
+/* BLITZ TAB */
+.blitz-step { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 10px; display: flex; gap: 12px; }
+.blitz-num { width: 32px; height: 32px; border-radius: 50%; background: var(--yellow); color: #000; font-weight: 800; font-size: 0.9em; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.blitz-body { flex: 1; }
+.blitz-title { font-weight: 700; font-size: 0.9em; color: #fff; margin-bottom: 4px; }
+.blitz-text { font-size: 0.8em; color: var(--muted); line-height: 1.4; }
+.blitz-time { font-size: 0.72em; color: var(--yellow); margin-top: 4px; }
+.section-title { font-size: 0.85em; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin: 16px 0 10px; }
+.sunday-box { background: linear-gradient(135deg, #0a1500, #060d00); border: 2px solid var(--green); border-radius: 12px; padding: 16px; margin-bottom: 14px; }
+.sunday-box h3 { color: var(--green); margin-bottom: 8px; font-size: 0.95em; }
+.sunday-box p { font-size: 0.82em; color: var(--muted); line-height: 1.5; }
+
+@media (max-width: 600px) {
+  .why-grid { grid-template-columns: 1fr 1fr; }
+  .milestones { gap: 0; }
+  .milestone .m-num { font-size: 1.1em; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>⭐ Google Review Sprint Kit</h1>
+  <p>From 6 → 25 reviews: The free SEO lever that beats every competitor in the Map Pack</p>
+</div>
+
+<!-- PROGRESS BANNER -->
+<div class="progress-banner">
+  <h2>📈 Review Milestone Tracker</h2>
+  <div class="milestones">
+    <div class="milestone done">
+      <div class="m-num">6</div>
+      <div class="m-label">TODAY</div>
+      <div class="m-impact">Starting point</div>
+    </div>
+    <div class="milestone current">
+      <div class="m-num">10</div>
+      <div class="m-label">THIS WEEK</div>
+      <div class="m-impact">Map Pack eligible</div>
+    </div>
+    <div class="milestone future">
+      <div class="m-num">15</div>
+      <div class="m-label">APRIL</div>
+      <div class="m-impact">Top 3 possible</div>
+    </div>
+    <div class="milestone future">
+      <div class="m-num">20</div>
+      <div class="m-label">MAY</div>
+      <div class="m-impact">Sustained #1</div>
+    </div>
+    <div class="milestone future">
+      <div class="m-num">25</div>
+      <div class="m-label">JUNE</div>
+      <div class="m-impact">Untouchable</div>
+    </div>
+  </div>
+  <div class="progress-bar"><div class="progress-fill"></div></div>
+  <div class="progress-text">Currently at 6 reviews — need 4 more to hit Map Pack threshold</div>
+</div>
+
+<!-- WHY BOX -->
+<div class="why-box">
+  <h3>⚡ Why Reviews = Free Customers (Not Just Vanity)</h3>
+  <div class="why-grid">
+    <div class="why-item">
+      <div class="wi-num">3x</div>
+      <div class="wi-text">More clicks from Map Pack position #1 vs #3. Reviews = ranking.</div>
+    </div>
+    <div class="why-item">
+      <div class="wi-num">$0</div>
+      <div class="wi-text">Cost per new customer when they find you via Google search + reviews</div>
+    </div>
+    <div class="why-item">
+      <div class="wi-num">72%</div>
+      <div class="wi-text">Of consumers trust online reviews as much as personal recommendations</div>
+    </div>
+    <div class="why-item">
+      <div class="wi-num">~10</div>
+      <div class="wi-text">Warm customers right now who trust TJ and would leave 5 stars if ASKED</div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('customers')">👥 10 Customers</div>
+  <div class="tab" onclick="switchTab('blitz')">🚀 Weekend Blitz</div>
+  <div class="tab" onclick="switchTab('strategy')">📋 Strategy</div>
+  <div class="tab" onclick="switchTab('responses')">💬 Responses</div>
+  <div class="tab" onclick="switchTab('mappack')">🗺️ Map Pack 101</div>
+</div>
+
+<!-- ============ CUSTOMERS TAB ============ -->
+<div id="tab-customers" class="content section active">
+  <div class="stats-bar">
+    <div class="stat yellow"><div class="sn" id="stat-sent">0</div><div class="sl">Texts Sent</div></div>
+    <div class="stat green"><div class="sn" id="stat-reviewed">0</div><div class="sl">Reviewed ⭐</div></div>
+    <div class="stat blue"><div class="sn" id="stat-remaining">10</div><div class="sl">To Ask</div></div>
+    <div class="stat yellow"><div class="sn" id="stat-total">6</div><div class="sl">Total Reviews</div></div>
+  </div>
+
+  <div class="cta-banner">
+    <h3>🔗 Your Google Review Link</h3>
+    <p>Send this link in every review request text</p>
+    <a class="cta-link" href="https://g.page/r/Ce_hqIHanGLvEAE/review" target="_blank">⭐ Open Review Page →</a>
+  </div>
+
+  <!-- MRS. CANDEE -->
+  <div class="customer-card" id="card-0">
+    <div class="c-header">
+      <div>
+        <div class="c-name">1. Mrs. Candee</div>
+        <div class="c-meta">63136 • Weekly • $60/mo • ~1 year customer</div>
+      </div>
+      <span class="c-status-badge" id="badge-0">Not sent</span>
+    </div>
+    <div class="timing-chip">⏱️ Best time: After Tuesday/Wednesday service</div>
+    <div class="text-box" id="text-0">Hi Mrs. Candee! This is TJ from Tidy Tails 🐾 Just wanted to say — it's been so great taking care of your yard this year. If you've been happy with our service, would you mind dropping us a quick Google review? It takes about 60 seconds and honestly helps more than anything else for a small local business like ours. Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review — No pressure at all, and thank you either way! 🙏</div>
+    <button class="copy-btn" onclick="copyText(0)">📋 Copy Text</button>
+    <div class="status-btns">
+      <button class="sbtn sbtn-sent" onclick="setStatus(0,'sent')">✓ Text Sent</button>
+      <button class="sbtn sbtn-reviewed" onclick="setStatus(0,'reviewed')">⭐ They Reviewed!</button>
+      <button class="sbtn sbtn-declined" onclick="setStatus(0,'declined')">✗ Declined</button>
+    </div>
+  </div>
+
+  <!-- JODY -->
+  <div class="customer-card" id="card-1">
+    <div class="c-header">
+      <div>
+        <div class="c-name">2. Jody</div>
+        <div class="c-meta">63114 • Biweekly • $90/mo • Midtown area</div>
+      </div>
+      <span class="c-status-badge" id="badge-1">Not sent</span>
+    </div>
+    <div class="timing-chip">⏱️ Best time: After next service visit</div>
+    <div class="text-box" id="text-1">Hey Jody! TJ here from Tidy Tails. We've really appreciated having you as a customer — honestly some of our most loyal folks are in your area. If you've got 60 seconds, a Google review would mean the world to us. It's the #1 thing that helps new dog owners find us. Link: https://g.page/r/Ce_hqIHanGLvEAE/review — Thanks a ton either way! 🐕</div>
+    <button class="copy-btn" onclick="copyText(1)">📋 Copy Text</button>
+    <div class="status-btns">
+      <button class="sbtn sbtn-sent" onclick="setStatus(1,'sent')">✓ Text Sent</button>
+      <button class="sbtn sbtn-reviewed" onclick="setStatus(1,'reviewed')">⭐ They Reviewed!</button>
+      <button class="sbtn sbtn-declined" onclick="setStatus(1,'declined')">✗ Declined</button>
+    </div>
+  </div>
+
+  <!-- SHANNON -->
+  <div class="customer-card" id="card-2">
+    <div class="c-header">
+      <div>
+        <div class="c-name">3. Shannon Zamarripa</div>
+        <div class="c-meta">Florissant 63031 • Weekly • $140/mo • HIGH VALUE</div>
+      </div>
+      <span class="c-status-badge" id="badge-2">Not sent</span>
+    </div>
+    <div class="timing-chip">⏱️ Best time: Weekend — she's warm and vocal on social</div>
+    <div class="text-box" id="text-2">Shannon! TJ from Tidy Tails. You're honestly one of our best customers and we really appreciate you 🙏 Quick favor — would you leave us a Google review? We're trying to grow in Florissant and reviews are everything for showing up in search. Takes 60 seconds: https://g.page/r/Ce_hqIHanGLvEAE/review — You'd be helping other dog owners in the neighborhood find reliable service. Thank you!! 🐾</div>
+    <button class="copy-btn" onclick="copyText(2)">📋 Copy Text</button>
+    <div class="status-btns">
+      <button class="sbtn sbtn-sent" onclick="setStatus(2,'sent')">✓ Text Sent</button>
+      <button class="sbtn sbtn-reviewed" onclick="setStatus(2,'reviewed')">⭐ They Reviewed!</button>
+      <button class="sbtn sbtn-declined" onclick="setStatus(2,'declined')">✗ Declined</button>
+    </div>
+  </div>
+
+  <!-- AMANDA HARRIS -->
+  <div class="customer-card" id="card-3">
+    <div class="c-header">
+      <div>
+        <div class="c-name">4. Amanda Harris</div>
+        <div class="c-meta">Florissant 63031 • Weekly • $120/mo • Florissant cluster</div>
+      </div>
+      <span class="c-status-badge" id="badge-3">Not sent</span>
+    </div>
+    <div class="timing-chip">⏱️ Best time: Same day as Shannon — double the Florissant reviews</div>
+    <div class="text-box" id="text-3">Hey Amanda! This is TJ with Tidy Tails 🐾 Hope the yard's been looking clean! I have a small favor — we're trying to grow in Florissant and a Google review would help a TON. Takes literally a minute: https://g.page/r/Ce_hqIHanGLvEAE/review — No pressure, but if you've been happy with the service I'd love to hear about it! Thank you! 😊</div>
+    <button class="copy-btn" onclick="copyText(3)">📋 Copy Text</button>
+    <div class="status-btns">
+      <button class="sbtn sbtn-sent" onclick="setStatus(3,'sent')">✓ Text Sent</button>
+      <button class="sbtn sbtn-reviewed" onclick="setStatus(3,'reviewed')">⭐ They Reviewed!</button>
+      <button class="sbtn sbtn-declined" onclick="setStatus(3,'declined')">✗ Declined</button>
+    </div>
+  </div>
+
+  <!-- LAWRENCE -->
+  <div class="customer-card" id="card-4">
+    <div class="c-header">
+      <div>
+        <div class="c-name">5. Lawrence</div>
+        <div class="c-meta">63108 • Biweekly • $100/mo • Midtown/CWE</div>
+      </div>
+      <span class="c-status-badge" id="badge-4">Not sent</span>
+    </div>
+    <div class="timing-chip">⏱️ Best time: After a recent service</div>
+    <div class="text-box" id="text-4">Hey Lawrence, it's TJ from Tidy Tails! Quick ask — if you've been happy with the service, would you leave us a Google review? We're a small local business and reviews are honestly how people find us. Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review — Should take about 60 seconds. Really appreciate it 🙏</div>
+    <button class="copy-btn" onclick="copyText(4)">📋 Copy Text</button>
+    <div class="status-btns">
+      <button class="sbtn sbtn-sent" onclick="setStatus(4,'sent')">✓ Text Sent</button>
+      <button class="sbtn sbtn-reviewed" onclick="setStatus(4,'reviewed')">⭐ They Reviewed!</button>
+      <button class="sbtn sbtn-declined" onclick="setStatus(4,'declined')">✗ Declined</button>
+    </div>
+  </div>
+
+  <!-- GREG -->
+  <div class="customer-card" id="card-5">
+    <div class="c-header">
+      <div>
+        <div class="c-name">6. Greg</div>
+        <div class="c-meta">O'Fallon 63366 • Monthly • $50/mo • Upsell target</div>
+      </div>
+      <span class="c-status-badge" id="badge-5">Not sent</span>
+    </div>
+    <div class="timing-chip">⏱️ Best time: Right after next service visit — anchor to positive moment</div>
+    <div class="text-box" id="text-5">Hey Greg! TJ from Tidy Tails — just wanted to make sure everything's looking good out there 🐕 Quick favor: would you leave us a Google review? Even just a sentence or two means a lot for a local business. Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review — Thanks a ton, man!</div>
+    <button class="copy-btn" onclick="copyText(5)">📋 Copy Text</button>
+    <div class="status-btns">
+      <button class="sbtn sbtn-sent" onclick="setStatus(5,'sent')">✓ Text Sent</button>
+      <button class="sbtn sbtn-reviewed" onclick="setStatus(5,'reviewed')">⭐ They Reviewed!</button>
+      <button class="sbtn sbtn-declined" onclick="setStatus(5,'declined')">✗ Declined</button>
+    </div>
+  </div>
+
+  <!-- CHASTITY -->
+  <div class="customer-card" id="card-6">
+    <div class="c-header">
+      <div>
+        <div class="c-name">7. Chastity</div>
+        <div class="c-meta">Florissant 63033 • Biweekly • $90/mo • North County</div>
+      </div>
+      <span class="c-status-badge" id="badge-6">Not sent</span>
+    </div>
+    <div class="timing-chip">⏱️ Best time: With Shannon + Amanda — 3 Florissant reviews at once</div>
+    <div class="text-box" id="text-6">Hi Chastity! TJ here from Tidy Tails 🐾 We really appreciate you being a customer out in Florissant! Quick favor — could you leave us a Google review? We're trying to grow in North County and reviews are huge for that. Takes 60 seconds: https://g.page/r/Ce_hqIHanGLvEAE/review — Thank you so much! 🙏</div>
+    <button class="copy-btn" onclick="copyText(6)">📋 Copy Text</button>
+    <div class="status-btns">
+      <button class="sbtn sbtn-sent" onclick="setStatus(6,'sent')">✓ Text Sent</button>
+      <button class="sbtn sbtn-reviewed" onclick="setStatus(6,'reviewed')">⭐ They Reviewed!</button>
+      <button class="sbtn sbtn-declined" onclick="setStatus(6,'declined')">✗ Declined</button>
+    </div>
+  </div>
+
+  <!-- PRESHUS -->
+  <div class="customer-card" id="card-7">
+    <div class="c-header">
+      <div>
+        <div class="c-name">8. Preshus</div>
+        <div class="c-meta">Saint Charles 63303 • Weekly • $100/mo • West county</div>
+      </div>
+      <span class="c-status-badge" id="badge-7">Not sent</span>
+    </div>
+    <div class="timing-chip">⏱️ Best time: After next weekly visit — she's a strong weekly customer</div>
+    <div class="text-box" id="text-7">Hey Preshus! TJ from Tidy Tails 🐕 Hope the pups are doing great! I have a small ask — if you've been happy with your service, would you leave us a Google review? It's the #1 way new customers find us in Saint Charles. Link: https://g.page/r/Ce_hqIHanGLvEAE/review — 60 seconds and it makes a huge difference. Thanks so much! ❤️</div>
+    <button class="copy-btn" onclick="copyText(7)">📋 Copy Text</button>
+    <div class="status-btns">
+      <button class="sbtn sbtn-sent" onclick="setStatus(7,'sent')">✓ Text Sent</button>
+      <button class="sbtn sbtn-reviewed" onclick="setStatus(7,'reviewed')">⭐ They Reviewed!</button>
+      <button class="sbtn sbtn-declined" onclick="setStatus(7,'declined')">✗ Declined</button>
+    </div>
+  </div>
+
+  <!-- CUSTOMERS 9 & 10 -->
+  <div class="customer-card" id="card-8">
+    <div class="c-header">
+      <div>
+        <div class="c-name">9. New Customer (TBD)</div>
+        <div class="c-meta">Details pending — ask TJ for name/city</div>
+      </div>
+      <span class="c-status-badge" id="badge-8">Not sent</span>
+    </div>
+    <div class="timing-chip">⏱️ Best time: After first successful service — reviews from new customers are POWERFUL</div>
+    <div class="text-box" id="text-8">Hey [NAME]! This is TJ from Tidy Tails — just checking in after your [first/recent] service! Hope everything looked great 🐾 If you're happy so far, would you mind leaving us a quick Google review? For a small local business it makes a huge difference. Here's the link: https://g.page/r/Ce_hqIHanGLvEAE/review — Thanks so much and we'll see you next time!</div>
+    <button class="copy-btn" onclick="copyText(8)">📋 Copy Text</button>
+    <div class="status-btns">
+      <button class="sbtn sbtn-sent" onclick="setStatus(8,'sent')">✓ Text Sent</button>
+      <button class="sbtn sbtn-reviewed" onclick="setStatus(8,'reviewed')">⭐ They Reviewed!</button>
+      <button class="sbtn sbtn-declined" onclick="setStatus(8,'declined')">✗ Declined</button>
+    </div>
+  </div>
+
+  <div class="customer-card" id="card-9">
+    <div class="c-header">
+      <div>
+        <div class="c-name">10. New Customer (TBD)</div>
+        <div class="c-meta">Details pending — ask TJ for name/city</div>
+      </div>
+      <span class="c-status-badge" id="badge-9">Not sent</span>
+    </div>
+    <div class="timing-chip">⏱️ Best time: After first successful service</div>
+    <div class="text-box" id="text-9">Hey [NAME]! TJ here from Tidy Tails 🐕 Just wanted to make sure your first service went well! If you're happy, we'd love a quick Google review — it's the main way local pet owners find us. Takes 60 seconds: https://g.page/r/Ce_hqIHanGLvEAE/review — Thanks so much, really appreciate you!</div>
+    <button class="copy-btn" onclick="copyText(9)">📋 Copy Text</button>
+    <div class="status-btns">
+      <button class="sbtn sbtn-sent" onclick="setStatus(9,'sent')">✓ Text Sent</button>
+      <button class="sbtn sbtn-reviewed" onclick="setStatus(9,'reviewed')">⭐ They Reviewed!</button>
+      <button class="sbtn sbtn-declined" onclick="setStatus(9,'declined')">✗ Declined</button>
+    </div>
+  </div>
+
+  <!-- PAW-TY LEADS BLURB -->
+  <div class="phase-box" style="margin-top: 20px;">
+    <h4>🎪 After the Paw-ty — Review Asks for New Customers</h4>
+    <div class="p-step">Add Paw-ty converts here as they sign up. The BEST time to ask for a review is after their FIRST service when they're still in the honeymoon phase. Set a reminder for 3 days after their first visit.</div>
+  </div>
+</div>
+
+<!-- ============ BLITZ TAB ============ -->
+<div id="tab-blitz" class="content section">
+  <div class="sunday-box">
+    <h3>🚀 Sunday March 29 = Review Blitz Day</h3>
+    <p>Paw-ty is Saturday. Sunday afternoon you'll have energy, fresh momentum, and 10 warm customers. That's the moment. Do this whole blitz in one 20-minute sitting while the Paw-ty energy is still fresh.</p>
+  </div>
+
+  <p class="section-title">THE PLAN (20 minutes Sunday)</p>
+
+  <div class="blitz-step">
+    <div class="blitz-num">1</div>
+    <div class="blitz-body">
+      <div class="blitz-title">Hit Shannon, Amanda, Chastity first (Florissant cluster)</div>
+      <div class="blitz-text">All 3 are in Florissant. Send all 3 texts within 5 minutes. Three Florissant reviews at once sends a location signal to Google that your business is active in that area. That boosts North County ranking before your Monday campaign even starts.</div>
+      <div class="blitz-time">⏱️ Time: 5 min | Impact: 3 Florissant reviews = North County Map Pack signal</div>
+    </div>
+  </div>
+
+  <div class="blitz-step">
+    <div class="blitz-num">2</div>
+    <div class="blitz-body">
+      <div class="blitz-title">Text Preshus (Saint Charles)</div>
+      <div class="blitz-text">She's weekly and paying $100/mo — highly likely to leave a glowing review. One Saint Charles review expands your geographic footprint in Google's eyes.</div>
+      <div class="blitz-time">⏱️ Time: 2 min | Impact: West county coverage</div>
+    </div>
+  </div>
+
+  <div class="blitz-step">
+    <div class="blitz-num">3</div>
+    <div class="blitz-body">
+      <div class="blitz-title">Text Mrs. Candee, Jody, Lawrence, Greg</div>
+      <div class="blitz-text">Round out the existing base. Even if only half respond this week, that's 5–6 new reviews. The most important thing is to SEND the texts — only people you ask will review.</div>
+      <div class="blitz-time">⏱️ Time: 5 min | Impact: 2-4 more reviews likely</div>
+    </div>
+  </div>
+
+  <div class="blitz-step">
+    <div class="blitz-num">4</div>
+    <div class="blitz-body">
+      <div class="blitz-title">Respond to every review within 24 hours</div>
+      <div class="blitz-text">Google factors in owner engagement. A quick personalized response (NOT copy-paste) signals you're active. Use the templates in the Responses tab — personalize with their dog's name or neighborhood.</div>
+      <div class="blitz-time">⏱️ Time: 2 min per review | Impact: SEO + customer retention</div>
+    </div>
+  </div>
+
+  <div class="blitz-step">
+    <div class="blitz-num">5</div>
+    <div class="blitz-body">
+      <div class="blitz-title">Build review asking into every service visit going forward</div>
+      <div class="blitz-text">After EVERY "all done" text: wait 2 hours, then send a review ask. Not in the same text — that's pushy. Make it the standard close for every new customer after their 2nd visit. Add it to the Onboarding Kit checklist.</div>
+      <div class="blitz-time">⏱️ Time: 60 sec per visit | Impact: Compounding — 2–3 reviews/month forever</div>
+    </div>
+  </div>
+
+  <div class="phase-box">
+    <h4>📅 Review Timeline Projection</h4>
+    <div class="p-step">
+      <strong style="color: var(--green)">Sunday Mar 29:</strong> Send 10 texts → expect 4–6 reviews by Tuesday (6 → 10–12 total) ⭐<br><br>
+      <strong style="color: var(--yellow)">April (new customers):</strong> Paw-ty converts + North County leads → 2–3 new reviews/month → 13–15 reviews by May 1<br><br>
+      <strong style="color: var(--blue)">May–June:</strong> Ongoing ask system → 18–25 reviews by summer → Map Pack #1 position locked<br><br>
+      <strong style="color: var(--orange)">Note:</strong> Google typically shows review velocity — 4–6 reviews arriving in one week sends a strong freshness signal.
+    </div>
+  </div>
+</div>
+
+<!-- ============ STRATEGY TAB ============ -->
+<div id="tab-strategy" class="content section">
+
+  <div class="strat-card">
+    <h3>📏 The Timing Rules</h3>
+    <ul>
+      <li><span class="highlight">BEST: 2–4 hours after service</span> — they just saw clean yard, satisfaction is peak. Don't ask IN the "all done" text — wait 2 hrs.</li>
+      <li><span class="highlight">GOOD: Day after service</span> — still fresh, still in their head when they let the dogs out</li>
+      <li><span class="highlight">OK: Weekend mornings</span> — people are relaxed, check phones casually, more likely to tap a link</li>
+      <li><span class="highlight">BAD: Monday mornings, Friday afternoons</span> — work mode, phone buried, ignored</li>
+      <li><span class="highlight">NEVER: Same text as service update</span> — feels robotic. Separate text, 2+ hours later</li>
+    </ul>
+  </div>
+
+  <div class="strat-card">
+    <h3>✍️ What Makes a Review Ask That Actually Works</h3>
+    <ul>
+      <li><span class="highlight">Use their name</span> — "Hey Shannon" beats "Dear Valued Customer" infinitely</li>
+      <li><span class="highlight">Make it specific</span> — "We're trying to grow in Florissant" feels real, not a mass blast</li>
+      <li><span class="highlight">Give them permission to say no</span> — "No pressure" lowers resistance and paradoxically increases conversion</li>
+      <li><span class="highlight">Explain the WHY</span> — "It's how dog owners in your neighborhood find us" = they feel like they're helping, not doing you a favor</li>
+      <li><span class="highlight">One click to the link</span> — the link goes directly to the review form. Zero friction.</li>
+      <li><span class="highlight">Don't ask via email</span> — text has 98% open rate vs 22% email. Always text.</li>
+    </ul>
+  </div>
+
+  <div class="strat-card">
+    <h3>🔄 Building It Into the Routine</h3>
+    <ul>
+      <li><span class="highlight">After every 2nd service</span> for new customers — they've experienced the value twice, trust is established</li>
+      <li><span class="highlight">After every referral</span> — if they sent someone, they love you. 90%+ conversion rate.</li>
+      <li><span class="highlight">After a compliment via text</span> — "Oh they're great!" → "That means so much! Would you put that in a Google review?"</li>
+      <li><span class="highlight">After seasonal upsell conversation</span> — warm moment after discussing extra service</li>
+      <li><span class="highlight">Track in the Customers tab above</span> — who's been asked, who reviewed, who declined. Don't ask twice.</li>
+    </ul>
+  </div>
+
+  <div class="strat-card">
+    <h3>🚫 What NOT to Do</h3>
+    <ul>
+      <li>❌ Don't offer discounts or gifts for reviews — Google ToS violation, can get reviews removed</li>
+      <li>❌ Don't ask multiple times to the same person — one ask, one follow-up max</li>
+      <li>❌ Don't copy-paste the exact same text to everyone — Google and customers notice</li>
+      <li>❌ Don't ask in person at the event before they've experienced the service — reviews need to be genuine</li>
+      <li>❌ Don't ignore reviews when they come in — respond within 24 hours every time</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ RESPONSES TAB ============ -->
+<div id="tab-responses" class="content section">
+
+  <div class="resp-card">
+    <h3>⭐⭐⭐⭐⭐ — 5-Star Response</h3>
+    <div class="r-subtitle">Use within 24 hours. Personalize with their name/dog/neighborhood.</div>
+    <div class="r-note">💡 Tip: Google looks for owner engagement. Responses that include service keywords (pet waste, yard, dog) and location names (Florissant, Saint Louis) have extra SEO value.</div>
+    <div class="text-box" id="r-0">Thank you so much, [NAME]! We genuinely love taking care of [dog name]'s yard and it means everything to hear that you've been happy. We're working hard to serve more families in [their neighborhood/city] and reviews like yours help us reach them. We'll see you next service! 🐾 — TJ & the Tidy Tails team</div>
+    <button class="copy-btn" onclick="copyResp(0)">📋 Copy Response</button>
+  </div>
+
+  <div class="resp-card">
+    <h3>⭐⭐⭐⭐⭐ — Short / Enthusiastic Review</h3>
+    <div class="r-subtitle">When they write "Great service! 5 stars!" Keep response equally energetic.</div>
+    <div class="text-box" id="r-1">That made our day, [NAME]! 😄 We put a lot of work into making sure every yard is spotless — so glad it shows. Looking forward to keeping your space clean for [your dog / the pups] all season. Thanks for the love! — TJ, Tidy Tails 🐕</div>
+    <button class="copy-btn" onclick="copyResp(1)">📋 Copy Response</button>
+  </div>
+
+  <div class="resp-card">
+    <h3>⭐⭐⭐⭐ — 4-Star Response</h3>
+    <div class="r-subtitle">Acknowledge, then gently invite them to share what could be better.</div>
+    <div class="text-box" id="r-2">Thanks so much for the review, [NAME]! We really appreciate it. We're always working to improve — if there's anything specific we could do better, feel free to text me directly at 314-850-7140. We want to earn that 5th star! 🙏 — TJ, Tidy Tails</div>
+    <button class="copy-btn" onclick="copyResp(2)">📋 Copy Response</button>
+  </div>
+
+  <div class="resp-card">
+    <h3>⭐⭐⭐ or below — Lower Rating Response</h3>
+    <div class="r-subtitle">Stay calm. Acknowledge publicly. Take it private. Never argue.</div>
+    <div class="r-note">⚠️ Don't apologize without knowing what happened. Ask privately. A resolved complaint often turns into a 5-star update.</div>
+    <div class="text-box" id="r-3">Hi [NAME] — thank you for the feedback. We take every review seriously and I'd like to learn more about your experience. Please text me directly at 314-850-7140 so I can make it right. — TJ, Tidy Tails</div>
+    <button class="copy-btn" onclick="copyResp(3)">📋 Copy Response</button>
+  </div>
+
+  <div class="resp-card">
+    <h3>🔄 Follow-Up Text: After They Review</h3>
+    <div class="r-subtitle">Optional but powerful — sending a thank-you text after they review cements loyalty.</div>
+    <div class="text-box" id="r-4">Hey [NAME]! Just saw your Google review — that genuinely means a lot. Thank you! 🙏 It's exactly what helps us grow and keep doing this. Appreciate you! ⭐</div>
+    <button class="copy-btn" onclick="copyResp(4)">📋 Copy Response</button>
+  </div>
+
+  <div class="resp-card">
+    <h3>📬 Follow-Up Text: If No Response After 3 Days</h3>
+    <div class="r-subtitle">Send once only. Keep it brief and low-pressure.</div>
+    <div class="text-box" id="r-5">Hey [NAME]! Just wanted to bump this up in case my last text got buried 😊 If you get a minute, the Google review link is: https://g.page/r/Ce_hqIHanGLvEAE/review — No worries if not, just appreciate you either way! 🐾</div>
+    <button class="copy-btn" onclick="copyResp(5)">📋 Copy Response</button>
+  </div>
+</div>
+
+<!-- ============ MAP PACK TAB ============ -->
+<div id="tab-mappack" class="content section">
+
+  <div class="mappack-card">
+    <h3>🗺️ What Is the Map Pack and Why Does It Matter?</h3>
+    <div class="mp-row">
+      <div class="mp-icon">📍</div>
+      <div class="mp-text">The "Map Pack" is the box of 3 businesses Google shows at the top of local search results — above the website links. When someone in Florissant searches "dog poop cleanup near me," the Map Pack gets <strong>60-70% of all clicks</strong>.</div>
+    </div>
+    <div class="mp-row">
+      <div class="mp-icon">⭐</div>
+      <div class="mp-text"><strong>Reviews are the #1 ranking factor</strong> for Map Pack position. More reviews + higher rating = higher placement. Google confirmed this publicly. No shortcuts.</div>
+    </div>
+    <div class="mp-row">
+      <div class="mp-icon">📊</div>
+      <div class="mp-text">Tidy Tails currently has <strong>6 reviews at 5.0★</strong>. Main competitor Poop 2 Scoop has more reviews. Getting to <strong>15–20 reviews</strong> at 5 stars would likely push Tidy Tails into the Map Pack top 3 in most STL zip codes.</div>
+    </div>
+    <div class="mp-row">
+      <div class="mp-icon">🆓</div>
+      <div class="mp-text">Unlike Google Ads ($7/day), <strong>Map Pack ranking is free and permanent</strong>. One Map Pack position = 3–5 inbound leads per month at zero cost. Forever.</div>
+    </div>
+    <div class="mp-row">
+      <div class="mp-icon">🏆</div>
+      <div class="mp-text">With <strong>only 3 active competitors left in STL</strong>, the bar to dominate the Map Pack is lower than it's ever been. 20 reviews at 5 stars could be unchallenged for years.</div>
+    </div>
+  </div>
+
+  <div class="strat-card">
+    <h3>📈 Review Milestones and What Each Unlocks</h3>
+    <ul>
+      <li><span class="highlight">10 reviews (this week):</span> Map Pack eligibility confirmed. Google starts recommending you in more local searches.</li>
+      <li><span class="highlight">15 reviews (April):</span> Top 3 Map Pack position becomes achievable in Florissant, Crestwood, and surrounding areas.</li>
+      <li><span class="highlight">20 reviews (May):</span> Likely #1 or #2 in Map Pack for primary zip codes. Poop 2 Scoop gets buried if they're not actively collecting reviews.</li>
+      <li><span class="highlight">25 reviews (June):</span> Dominant position across all service zip codes. Organic leads become a reliable channel without ongoing ad spend.</li>
+      <li><span class="highlight">Ongoing velocity:</span> Getting 2–3 new reviews per month signals to Google that the business is actively growing. This sustains ranking even as competition may eventually return.</li>
+    </ul>
+  </div>
+
+  <div class="strat-card">
+    <h3>🔑 Other Map Pack Ranking Factors (You're Already Doing These)</h3>
+    <ul>
+      <li><span class="green-text">✅ GBP 95% complete</span> — all fields filled, photos added, categories set</li>
+      <li><span class="green-text">✅ Google indexed</span> — website is crawled and indexed (Mar 18)</li>
+      <li><span class="green-text">✅ Consistent NAP</span> — Name/Address/Phone match across listings</li>
+      <li><span class="highlight">→ Reviews are now the bottleneck.</span> Everything else is in place.</li>
+      <li>🔜 Directory citations (Yelp, Thumbtack, Apple Maps) — helps but secondary to reviews</li>
+      <li>🔜 Regular GBP posts (1–2x/week) — signals active business</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+const REVIEW_LINK = 'https://g.page/r/Ce_hqIHanGLvEAE/review';
+const texts = [
+  `Hi Mrs. Candee! This is TJ from Tidy Tails 🐾 Just wanted to say — it's been so great taking care of your yard this year. If you've been happy with our service, would you mind dropping us a quick Google review? It takes about 60 seconds and honestly helps more than anything else for a small local business like ours. Here's the link: ${REVIEW_LINK} — No pressure at all, and thank you either way! 🙏`,
+  `Hey Jody! TJ here from Tidy Tails. We've really appreciated having you as a customer — honestly some of our most loyal folks are in your area. If you've got 60 seconds, a Google review would mean the world to us. It's the #1 thing that helps new dog owners find us. Link: ${REVIEW_LINK} — Thanks a ton either way! 🐕`,
+  `Shannon! TJ from Tidy Tails. You're honestly one of our best customers and we really appreciate you 🙏 Quick favor — would you leave us a Google review? We're trying to grow in Florissant and reviews are everything for showing up in search. Takes 60 seconds: ${REVIEW_LINK} — You'd be helping other dog owners in the neighborhood find reliable service. Thank you!! 🐾`,
+  `Hey Amanda! This is TJ with Tidy Tails 🐾 Hope the yard's been looking clean! I have a small favor — we're trying to grow in Florissant and a Google review would help a TON. Takes literally a minute: ${REVIEW_LINK} — No pressure, but if you've been happy with the service I'd love to hear about it! Thank you! 😊`,
+  `Hey Lawrence, it's TJ from Tidy Tails! Quick ask — if you've been happy with the service, would you leave us a Google review? We're a small local business and reviews are honestly how people find us. Here's the link: ${REVIEW_LINK} — Should take about 60 seconds. Really appreciate it 🙏`,
+  `Hey Greg! TJ from Tidy Tails — just wanted to make sure everything's looking good out there 🐕 Quick favor: would you leave us a Google review? Even just a sentence or two means a lot for a local business. Here's the link: ${REVIEW_LINK} — Thanks a ton, man!`,
+  `Hi Chastity! TJ here from Tidy Tails 🐾 We really appreciate you being a customer out in Florissant! Quick favor — could you leave us a Google review? We're trying to grow in North County and reviews are huge for that. Takes 60 seconds: ${REVIEW_LINK} — Thank you so much! 🙏`,
+  `Hey Preshus! TJ from Tidy Tails 🐕 Hope the pups are doing great! I have a small ask — if you've been happy with your service, would you leave us a Google review? It's the #1 way new customers find us in Saint Charles. Link: ${REVIEW_LINK} — 60 seconds and it makes a huge difference. Thanks so much! ❤️`,
+  `Hey [NAME]! This is TJ from Tidy Tails — just checking in after your [first/recent] service! Hope everything looked great 🐾 If you're happy so far, would you mind leaving us a quick Google review? For a small local business it makes a huge difference. Here's the link: ${REVIEW_LINK} — Thanks so much and we'll see you next time!`,
+  `Hey [NAME]! TJ here from Tidy Tails 🐕 Just wanted to make sure your first service went well! If you're happy, we'd love a quick Google review — it's the main way local pet owners find us. Takes 60 seconds: ${REVIEW_LINK} — Thanks so much, really appreciate you!`
+];
+
+const resps = [
+  `Thank you so much, [NAME]! We genuinely love taking care of [dog name]'s yard and it means everything to hear that you've been happy. We're working hard to serve more families in [their neighborhood/city] and reviews like yours help us reach them. We'll see you next service! 🐾 — TJ & the Tidy Tails team`,
+  `That made our day, [NAME]! 😄 We put a lot of work into making sure every yard is spotless — so glad it shows. Looking forward to keeping your space clean for [your dog / the pups] all season. Thanks for the love! — TJ, Tidy Tails 🐕`,
+  `Thanks so much for the review, [NAME]! We really appreciate it. We're always working to improve — if there's anything specific we could do better, feel free to text me directly at 314-850-7140. We want to earn that 5th star! 🙏 — TJ, Tidy Tails`,
+  `Hi [NAME] — thank you for the feedback. We take every review seriously and I'd like to learn more about your experience. Please text me directly at 314-850-7140 so I can make it right. — TJ, Tidy Tails`,
+  `Hey [NAME]! Just saw your Google review — that genuinely means a lot. Thank you! 🙏 It's exactly what helps us grow and keep doing this. Appreciate you! ⭐`,
+  `Hey [NAME]! Just wanted to bump this up in case my last text got buried 😊 If you get a minute, the Google review link is: ${REVIEW_LINK} — No worries if not, just appreciate you either way! 🐾`
+];
+
+function switchTab(name) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyText(idx) {
+  navigator.clipboard.writeText(texts[idx]);
+  const btn = event.target;
+  btn.textContent = '✓ Copied!';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = '📋 Copy Text'; btn.classList.remove('copied'); }, 2000);
+}
+
+function copyResp(idx) {
+  navigator.clipboard.writeText(resps[idx]);
+  const btn = event.target;
+  btn.textContent = '✓ Copied!';
+  btn.classList.add('copied');
+  setTimeout(() => { btn.textContent = '📋 Copy Response'; btn.classList.remove('copied'); }, 2000);
+}
+
+function setStatus(idx, status) {
+  const key = 'review_status_' + idx;
+  const prev = localStorage.getItem(key);
+  if (prev === status) {
+    localStorage.removeItem(key);
+    updateCardStatus(idx, null);
+  } else {
+    localStorage.setItem(key, status);
+    updateCardStatus(idx, status);
+  }
+  updateStats();
+}
+
+function updateCardStatus(idx, status) {
+  const card = document.getElementById('card-' + idx);
+  const badge = document.getElementById('badge-' + idx);
+  card.className = 'customer-card';
+  badge.className = 'c-status-badge';
+  if (!status) { badge.textContent = 'Not sent'; return; }
+  if (status === 'sent') { card.classList.add('sent'); badge.classList.add('sent-b'); badge.textContent = '📤 Text Sent'; }
+  else if (status === 'reviewed') { card.classList.add('reviewed'); badge.classList.add('reviewed-b'); badge.textContent = '⭐ Reviewed!'; }
+  else if (status === 'declined') { badge.classList.add('declined-b'); badge.textContent = '✗ Declined'; }
+}
+
+function updateStats() {
+  let sent = 0, reviewed = 0, remaining = 0;
+  for (let i = 0; i < 10; i++) {
+    const s = localStorage.getItem('review_status_' + i);
+    if (s === 'sent') sent++;
+    else if (s === 'reviewed') { reviewed++; sent++; }
+    else remaining++;
+  }
+  document.getElementById('stat-sent').textContent = sent;
+  document.getElementById('stat-reviewed').textContent = reviewed;
+  document.getElementById('stat-remaining').textContent = remaining;
+  document.getElementById('stat-total').textContent = 6 + reviewed;
+  const pct = Math.round(((6 + reviewed) / 25) * 100);
+  document.querySelector('.progress-fill').style.width = pct + '%';
+  document.querySelector('.progress-text').textContent = `Currently at ${6 + reviewed} reviews — ${Math.max(0, 25 - 6 - reviewed)} more to hit 25-review milestone`;
+}
+
+// Init from storage
+window.addEventListener('load', () => {
+  for (let i = 0; i < 10; i++) {
+    const s = localStorage.getItem('review_status_' + i);
+    if (s) updateCardStatus(i, s);
+  }
+  updateStats();
+});
+</script>
+</body>
+</html>
