@@ -2,6 +2,32 @@
 
 ---
 
+### Saturday 5:04 AM — Next Events Command Center (Hourly Task)
+- **5:04 AM** 🎪 Built full prep kits for the two biggest upcoming events — Arch Bark (Apr 18) and Bark in the Park (May 16)
+  - **File:** `dashboard/next-events-command-center.html` — 2-event hub with dedicated tabs per event
+  - **Why this task:** It's Paw-ty day. Everything for TODAY is locked. The next highest-ROI uncovered gap: Arch Bark is only 21 days away and Bark in the Park is the biggest dog event in St. Louis (1,000–5,000 attendees). Zero dedicated prep existed for either. Vendor registration for Bark in the Park is likely open NOW — if TJ doesn't check this week, he may miss the booth window.
+  - **Arch Bark (Apr 18 — 21 days):**
+    - Free admission, ~500 dog owners, Gateway Arch backdrop
+    - Action plan with week-by-week milestones (register → materials → social → execute)
+    - 5-tab kit: Action Plan, Strategy, Scripts (7 copy-paste), Day-Of Timeline, Checklist (14 items)
+    - Live countdown, territory angle (south city = new customers, not overlap with North County cluster)
+    - Social content plan including the Arch backdrop photography angle (worth $300+ alone)
+    - **Goal: 5–8 leads → 2–3 new customers = $1,680–2,520/yr LTV**
+  - **Bark in the Park (May 16 — 49 days):**
+    - HSMO flagship event, 1,000–5,000 dog owners, Tower Grove Park
+    - VENDOR BOOTH STRATEGY — full breakdown of materials, costs, layout, two-person strategy
+    - Raffle giveaway angle (everyone who enters gets a card = phone number capture)
+    - Budget breakdown: booth option ($207–520) vs. guerrilla option ($25–50)
+    - ROI projection: conservative (2 converts/$1,680) → base (4/$3,360) → best (7/$5,880)
+    - 6-tab kit: Action Plan, Vendor Booth, Strategy, Scripts (7 copy-paste), Budget, Checklist (16 items)
+    - Month-by-month timeline: register now → order materials Apr 14 → pre-event social → execute
+    - **This single event could push TJ from 15 → 22+ customers and hit the August goal early**
+  - **Dashboard:** Added pulsing green "🎪 NEXT 2 EVENTS — PREP NOW" quick link in header + new card in Events section
+  - **Critical action item surfaced:** HSMO vendor registration for Bark in the Park may already be open — TJ needs to check hsmo.org this week or risk missing it
+  - Committed + pushed ✅
+
+---
+
 ### Saturday 4:06 AM — First Service WOW Kit (Hourly Task)
 - **4:06 AM** ⭐ Built the First Service WOW Kit — the retention playbook that turns brand-new Paw-ty converts into loyal $1,680 lifetime customers
   - **File:** `dashboard/first-service-wow-kit.html` — 5-tab service experience guide
