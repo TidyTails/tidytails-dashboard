@@ -5,6 +5,21 @@
 
 ---
 
+### Saturday 11:04 PM — Profit Command Center (Hourly Task)
+- **11:04 PM** 💰 Built interactive business intelligence dashboard so TJ knows his unit economics at every decision point
+  - **File:** `dashboard/profit-command-center.html` — 5-tab live calculator, dark-mode
+  - **Tab 1 — Unit Economics:** Live P&L with customer count, avg revenue, and 6 expense line items. Auto-calculates MRR, ARR, net profit, margin, per-customer economics ($rev/mo, $rev/yr, $profit/mo, time/mo), break-even customer count with progress meter, and a health verdict (green/amber/red) based on margin percentage.
+  - **Tab 2 — Growth Scenarios:** Milestone pills (8-30 customers) showing MRR at each level. Full P&L table across all milestones with margin %, effective hourly rate (factoring in time per stop). Three-scenario 25-customer forecast (best/base/worst — different avg prices + expense scaling). Time-to-goal calculator: input monthly customer adds + churn rate → get months to 25, target month, net adds/mo, and customers by August 2026.
+  - **Tab 3 — Ad ROI:** FB ad calculator — input budget/CPC/landing page CVR/close rate → outputs clicks, leads, customers/mo, CAC, LTV, ROAS, payback period, net 12-month return. Budget comparison table ($100-$1,000/mo). Channel head-to-head (referrals vs Nextdoor vs events vs FB ads vs vet clinics vs commercial) with live FB ad CAC populated from calculator.
+  - **Tab 4 — Route Math:** Capacity calculator based on minutes/stop + drive time + days/week + max hours/day → max stops/week, weekly field hours, fuel cost/month, effective hourly rate. Route capacity table (8-30 customers) showing weekly stops, biweekly breakdown, hours/week, fuel, and OK/over-cap status. 5 route intelligence tips (clustering, day-of-week optimization, outlier pricing).
+  - **Tab 5 — Insights:** Auto-generated business health callouts based on current P&L inputs. Pricing power table ($40-$80 avg price → MRR at 10/20/25 customers). Top 5 levers that move the needle. True hourly rate breakdown (field + admin + sales hours = real effective rate).
+  - **Live summary bar:** Sticky header shows current MRR / Net Profit / Margin % / Customer count — updates instantly with any input change.
+  - **Dashboard:** Added "💰 PROFIT CALCULATOR" quick link + new "Business Intelligence" section above Sales & CRM
+  - **Why this task:** It's 11 PM Friday, Paw-ty is in 11 hours, every event/execution tool is built. But TJ has been making pricing, ad spend, and growth decisions without a real P&L model. One wrong move (over-spending on ads before break-even, mis-pricing outlier customers, not knowing his true hourly rate) can erase months of customer growth. This tool fixes the blind spot permanently — open it once and you know exactly where you stand.
+  - Committed + pushed ✅
+
+---
+
 ## March 26, 2026 (Thursday) — Summary
 
 ### Completed Tasks (12 total)
