@@ -257,3 +257,16 @@
   - **Ad archive:** Updated with Shed-Mar142 through Shed-Mar146 + 3 IG entries
   - **Why this task:** It's 3 PM Friday — peak weekend Marketplace browsing kicks off in hours. The April 2 tariff deadline is a genuinely timely hook that gives TJ authentic urgency without manufactured BS. 5 listings spread over 2 days = max weekend reach.
   - Committed + pushed ✅
+
+### Friday 9:04 PM — Google Review Sprint Kit (Hourly Task)
+- **9:04 PM** ⭐ Built comprehensive Google Review Sprint Kit — the free SEO lever that compounds into Map Pack dominance
+  - **File:** `dashboard/review-sprint-kit.html` — 5-tab review management hub
+  - **Tab 1 — 10 Customers:** All 10 active customers with individually-personalized review request texts (tailored to each customer's city, frequency, relationship duration). Copy-button + 3-state status tracker (Sent/Reviewed/Declined) with localStorage persistence. Stats bar shows total reviews live-updated.
+  - **Tab 2 — Weekend Blitz:** 5-step Sunday blitz plan (do AFTER the Paw-ty while momentum is hot). Step 1: Shannon + Amanda + Chastity simultaneously → 3 Florissant reviews = North County Map Pack signal. Timeline projection: 6 → 10-12 reviews by Tuesday, 13-15 by May, 18-25 by summer.
+  - **Tab 3 — Strategy:** When to ask (2-4 hrs after service = peak, not in the "all done" text), what makes asks convert (use name, explain WHY, give permission to say no, direct link), how to build it into every service going forward. What NOT to do (no incentives = ToS violation, don't ask twice, don't ignore reviews).
+  - **Tab 4 — Responses:** 6 copy-paste response templates: 5-star response (personalized with name/dog/location keywords for SEO), short/enthusiastic 5-star, 4-star (invite improvement privately), 3-star or below (take offline), thank-you follow-up, 3-day no-response bump.
+  - **Tab 5 — Map Pack 101:** Why reviews = free customers (3x click difference, $0 cost vs $7/day ads), milestone tracker (10 = Map Pack eligible → 15 = top 3 → 20 = #1 → 25 = untouchable), other ranking factors TJ is already doing (GBP 95%, indexed, NAP consistent), reviews are THE bottleneck.
+  - **Progress banner:** Visual milestone tracker (6 → 10 → 15 → 20 → 25) with animated progress bar that updates as reviews are logged
+  - **Dashboard:** Added pulsing yellow "⭐ REVIEW SPRINT" quick link + replaced old review-texts-ready.html card with new comprehensive Sprint Kit card (prominent, animated)
+  - **Why this task:** Friday 9 PM, Paw-ty is tomorrow. All event tools are built. The single highest-ROI FREE lever left: going from 6 → 10+ Google reviews. With only 3 active competitors left in STL, 20 reviews at 5 stars would lock Map Pack #1 position for years — zero ongoing ad spend. Sunday after the Paw-ty is the PERFECT moment to send 10 texts while energy is high and customers are in our heads. This kit makes it impossible to forget or procrastinate.
+  - Committed + pushed ✅
