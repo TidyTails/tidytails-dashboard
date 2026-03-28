@@ -2,6 +2,34 @@
 
 ---
 
+### Saturday 12:06 PM — West County SEO Blog Post (Hourly Task)
+- **12:06 PM** 🌳 Wrote and published full SEO blog post targeting West County St. Louis — the highest-income market segment with no existing editorial coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-west-county-st-louis.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-west-county-st-louis`
+  - **Why this task:** North County blog (7 AM) → South County blog (11 AM) → West County is the natural completion of the geographic triangle. West County (Chesterfield, Ballwin, Creve Coeur, Town & Country, Wildwood) has the highest household incomes in the entire St. Louis metro. High-income homeowners with large yards and multiple dogs are the ideal Tidy Tails customer — they have money, they're busy, and they care about their yard looking good. Zero editorial blog content existed for this segment. Three city pages (Chesterfield, Ballwin, Creve Coeur) existed but no long-form content targeting the full West County area.
+  - **What's in the post (~2,400 words):**
+    - Hero with stats bar: $70/mo flat, 0 contracts, 5★, Local STL
+    - 6-city area grid: Chesterfield (63005/63017), Ballwin (63011/63021), Creve Coeur (63141/63146), Town & Country (63131), Wildwood (63005/63038), Ellisville (63011/63028)
+    - Why West County specifically (larger lots = more accumulation, dual-income households, landscaper problem, grandkids angle)
+    - $2.30/day reframe callout
+    - 5-step service process (text → on my way → whole yard → photo confirmation → consistent weekly)
+    - Full pricing table (1-2 dogs $70 → 4+ dogs $90, biweekly, one-time)
+    - Honest "note on larger properties" (West County lots tend to run big)
+    - 4-column comparison table: Tidy Tails vs National Franchise vs Craigslist vs DIY
+    - 2 testimonials (Chesterfield 3-dog family, Ballwin landscaper problem)
+    - 8-question FAQ targeting exact West County searches
+    - "Is it worth it?" honest decision guide
+    - Cross-links to South County and North County posts (internal linking triangle)
+  - **Schema markup:** BlogPosting + FAQPage + LocalBusiness with areaServed for 7 West County cities
+  - **Target keywords:** "pooper scooper Chesterfield MO", "dog poop pickup Ballwin", "pet waste removal Creve Coeur", "pooper scooper Town and Country MO", "pooper scooper Wildwood MO", "pooper scooper West County St. Louis"
+  - **Blog index:** Added West County card as #1 post (newest first), added to JSON-LD blogPost array
+  - **Sitemap:** Added to sitemap.xml (now 14 blog posts + 1 West County blog post = 15 total editorial pages)
+  - **Internal linking:** West County post links to South County and North County posts; South and North County posts will naturally link back via sidebar/related articles
+  - **Why West County matters:** Chesterfield is one of the wealthiest suburbs in Missouri. Households there don't price-shop $70/mo. They buy on trust, convenience, and professionalism. This blog post hits all three: transparent pricing, "we text before every visit" reliability angle, and the landscaper problem resolution that resonates with well-maintained-yard homeowners. Compounds forever.
+  - Committed + pushed ✅
+
+---
+
 ### Saturday 11:04 AM — South County SEO Blog Post (Hourly Task)
 - **11:04 AM** 🏡 Wrote and published full SEO blog post targeting South County St. Louis — the exact territory TJ is in RIGHT NOW at the Crestwood Vet Paw-ty
   - **File:** `tidy-tails/website/blog/pooper-scooper-south-county-st-louis.html`
