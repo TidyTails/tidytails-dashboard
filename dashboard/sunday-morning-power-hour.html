@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>☀️ Sunday Morning Power Hour — Mar 29</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #e0e0e0; min-height: 100vh; }
+
+.hero { background: linear-gradient(135deg, #1a1a0a 0%, #2a1a00 50%, #1a0a0a 100%); padding: 24px 20px 20px; border-bottom: 3px solid #f59e0b; }
+.hero-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.hero-badge { background: #f59e0b; color: #000; font-size: 0.7em; font-weight: 800; padding: 4px 10px; border-radius: 20px; text-transform: uppercase; letter-spacing: 1px; }
+.hero h1 { font-size: 1.6em; color: #fff; margin-bottom: 4px; }
+.hero p { color: #999; font-size: 0.85em; }
+.hero-timer { font-size: 1em; color: #f59e0b; font-weight: 700; margin-top: 8px; }
+
+.window-bar { background: #1a1000; border: 1px solid #f59e0b; border-radius: 8px; padding: 12px 16px; margin: 16px 20px; display: flex; align-items: center; gap: 12px; }
+.window-bar .icon { font-size: 1.4em; }
+.window-bar .text { font-size: 0.85em; color: #f59e0b; line-height: 1.4; }
+.window-bar strong { color: #fff; }
+
+.progress-bar-section { padding: 16px 20px 0; }
+.progress-label { font-size: 0.75em; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: flex; justify-content: space-between; }
+.progress-track { background: #222; border-radius: 8px; height: 8px; overflow: hidden; }
+.progress-fill { background: linear-gradient(90deg, #f59e0b, #22c55e); height: 100%; border-radius: 8px; width: 0%; transition: width 0.5s ease; }
+
+.steps-container { padding: 20px; max-width: 700px; margin: 0 auto; }
+
+.step-card { background: #111; border: 2px solid #222; border-radius: 14px; margin-bottom: 16px; overflow: hidden; transition: all 0.2s; }
+.step-card.done { border-color: #22c55e; opacity: 0.7; }
+.step-card.active-step { border-color: #f59e0b; box-shadow: 0 0 20px rgba(245, 158, 11, 0.2); }
+
+.step-header { padding: 16px 20px; cursor: pointer; display: flex; align-items: center; gap: 16px; }
+.step-num { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1em; font-weight: 800; flex-shrink: 0; transition: all 0.2s; }
+.step-num.todo { background: #333; color: #888; }
+.step-num.doing { background: #f59e0b; color: #000; }
+.step-num.done-num { background: #22c55e; color: #000; }
+
+.step-info { flex: 1; }
+.step-title { font-size: 1em; font-weight: 700; color: #fff; margin-bottom: 2px; }
+.step-meta { font-size: 0.75em; color: #888; display: flex; gap: 10px; }
+.step-time { color: #f59e0b; font-weight: 600; }
+.step-impact { color: #22c55e; font-weight: 600; }
+
+.step-check { width: 28px; height: 28px; border: 2px solid #444; border-radius: 6px; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.2em; transition: all 0.2s; }
+.step-check.checked { background: #22c55e; border-color: #22c55e; }
+
+.step-body { padding: 0 20px 20px; border-top: 1px solid #222; }
+.step-why { background: #1a1a00; border-left: 3px solid #f59e0b; padding: 10px 14px; margin: 14px 0 16px; border-radius: 0 8px 8px 0; font-size: 0.82em; color: #ccc; line-height: 1.5; }
+.step-why strong { color: #f59e0b; }
+
+.action-group { margin-bottom: 16px; }
+.action-label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 1px; color: #888; margin-bottom: 8px; }
+
+.text-block { background: #1a1a2e; border: 1px solid #2a2a4e; border-radius: 8px; padding: 14px; margin-bottom: 8px; position: relative; }
+.text-block .recipient { font-size: 0.7em; color: #888; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+.text-block .recipient strong { color: #a78bfa; }
+.text-block .msg { font-size: 0.85em; color: #ddd; line-height: 1.55; white-space: pre-wrap; }
+.text-block .heat { position: absolute; top: 10px; right: 10px; font-size: 0.65em; padding: 2px 8px; border-radius: 10px; font-weight: 700; }
+.heat-hot { background: #e94560; color: #fff; }
+.heat-warm { background: #f59e0b; color: #000; }
+
+.copy-btn { background: #2a2a4e; border: 1px solid #3a3a6e; color: #a78bfa; padding: 7px 14px; border-radius: 6px; font-size: 0.75em; font-weight: 600; cursor: pointer; margin-top: 8px; display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s; }
+.copy-btn:hover { background: #3a3a6e; }
+.copy-btn.copied { background: #22c55e; color: #000; border-color: #22c55e; }
+
+.checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid #1a1a2e; cursor: pointer; }
+.checklist-item:last-child { border-bottom: none; }
+.check-box { width: 20px; height: 20px; border: 2px solid #444; border-radius: 4px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+.check-box.checked { background: #22c55e; border-color: #22c55e; color: #000; font-size: 0.8em; }
+.checklist-item.item-done .check-box { background: #22c55e; border-color: #22c55e; }
+.checklist-item.item-done .item-text { text-decoration: line-through; color: #666; }
+.item-text { font-size: 0.85em; color: #ccc; line-height: 1.4; }
+.item-sub { font-size: 0.75em; color: #666; }
+
+.tool-link { display: flex; align-items: center; gap: 10px; padding: 10px 14px; background: #151520; border: 1px solid #2a2a3a; border-radius: 8px; margin-bottom: 8px; text-decoration: none; color: #ccc; transition: all 0.2s; }
+.tool-link:hover { border-color: #f59e0b; color: #fff; }
+.tool-link .tl-icon { font-size: 1.2em; }
+.tool-link .tl-text { flex: 1; font-size: 0.83em; }
+.tool-link .tl-text strong { display: block; color: #fff; }
+.tool-link .tl-text span { color: #888; font-size: 0.9em; }
+.tool-link .tl-arrow { color: #666; font-size: 0.8em; }
+
+.divider { border: none; border-top: 1px solid #222; margin: 16px 0; }
+
+.tip-box { background: #0f1a0f; border: 1px solid #22c55e33; border-radius: 8px; padding: 12px 16px; margin: 10px 0 14px; }
+.tip-box p { font-size: 0.82em; color: #86efac; line-height: 1.5; }
+.tip-box p strong { color: #22c55e; }
+
+.math-card { background: #1a0a00; border: 1px solid #f59e0b44; border-radius: 8px; padding: 14px 16px; margin: 12px 0; }
+.math-card h4 { color: #f59e0b; font-size: 0.85em; margin-bottom: 10px; }
+.math-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #2a1a00; font-size: 0.82em; }
+.math-row:last-child { border-bottom: none; font-weight: 700; color: #22c55e; }
+.math-row .label { color: #999; }
+.math-row .value { color: #fff; }
+.math-row.total .label, .math-row.total .value { color: #22c55e; font-size: 1em; }
+
+.bottom-banner { background: linear-gradient(135deg, #1a1a0a, #0a1a0a); border-top: 2px solid #22c55e; padding: 20px; text-align: center; margin-top: 20px; }
+.bottom-banner h3 { color: #22c55e; font-size: 1em; margin-bottom: 6px; }
+.bottom-banner p { color: #888; font-size: 0.82em; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-badge">☀️ Sunday Mar 29</div>
+    <div class="hero-badge" style="background:#22c55e;">Power Hour</div>
+  </div>
+  <h1>Sunday Morning Power Hour</h1>
+  <p>Paw-ty is DONE. Now convert leads before the window closes. 60 minutes = 3 customers.</p>
+  <div class="hero-timer">⏰ Best window: 9 AM – 11 AM Sunday</div>
+</div>
+
+<div class="window-bar">
+  <span class="icon">🚨</span>
+  <div class="text">
+    <strong>The 48-Hour Rule:</strong> Hot leads from Saturday go cold by Monday morning if you don't text by 11 AM Sunday. After that, your close rate drops by 60%. Do this first.
+  </div>
+</div>
+
+<div class="progress-bar-section">
+  <div class="progress-label">
+    <span>Steps completed</span>
+    <span id="progress-text">0 / 5</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="progress-fill"></div>
+  </div>
+</div>
+
+<div class="steps-container">
+
+  <!-- STEP 1: Hot lead texts -->
+  <div class="step-card active-step" id="card-1">
+    <div class="step-header" onclick="toggleBody(1)">
+      <div class="step-num doing" id="num-1">1</div>
+      <div class="step-info">
+        <div class="step-title">🔥 Text Hot Leads — RIGHT NOW</div>
+        <div class="step-meta">
+          <span class="step-time">⏱ 5 min</span>
+          <span class="step-impact">💰 Highest ROI</span>
+        </div>
+      </div>
+      <div class="step-check" id="check-1" onclick="markDone(event, 1)">✓</div>
+    </div>
+    <div class="step-body" id="body-1" style="display:block;">
+      <div class="step-why">
+        <strong>Why first:</strong> Anyone who said "yes" or "I'm interested" at the Paw-ty is at peak excitement RIGHT NOW. Sunday morning they're home, coffee in hand, thinking about it. Text them before their Monday brain kicks in and says "eh, I'll look into it later."
+      </div>
+
+      <div class="action-group">
+        <div class="action-label">🔥 For HOT leads (said yes, gave number, showed strong interest)</div>
+
+        <div class="text-block">
+          <div class="recipient">To: <strong>[HOT LEAD NAME]</strong> — follow up on Paw-ty "yes"</div>
+          <div class="heat heat-hot">🔥 HOT</div>
+          <div class="msg">Hey [Name]! It's Jamie from Tidy Tails — we met at the adoption event yesterday 🐾
+
+Just wanted to follow up! When would be a good time to do your first cleanup? We have spots open this week — Tuesday or Thursday work great for [their area].
+
+Also need your address and gate code if you have one. Once I have that, you're on the schedule! 🙌</div>
+          <button class="copy-btn" onclick="copyText(this, 'Hey [Name]! It\'s Jamie from Tidy Tails — we met at the adoption event yesterday 🐾\n\nJust wanted to follow up! When would be a good time to do your first cleanup? We have spots open this week — Tuesday or Thursday work great for [their area].\n\nAlso need your address and gate code if you have one. Once I have that, you\'re on the schedule! 🙌')">📋 Copy Text</button>
+        </div>
+
+        <div class="text-block">
+          <div class="recipient">To: <strong>[WARM LEAD]</strong> — "maybe" / "sounds interesting"</div>
+          <div class="heat heat-warm">🌡️ WARM</div>
+          <div class="msg">Hey [Name]! Jamie from Tidy Tails — great meeting you at yesterday's event!
+
+No pressure at all — just wanted to drop our pricing in case you're still thinking about it:
+• 1 dog: $35-40/mo (biweekly)
+• 2 dogs: $45-50/mo (biweekly)  
+• First visit is FREE 🎉
+
+We cover [their area]. Shoot me any questions! 🐶</div>
+          <button class="copy-btn" onclick="copyText(this, 'Hey [Name]! Jamie from Tidy Tails — great meeting you at yesterday\'s event!\n\nNo pressure at all — just wanted to drop our pricing in case you\'re still thinking about it:\n• 1 dog: $35-40/mo (biweekly)\n• 2 dogs: $45-50/mo (biweekly)  \n• First visit is FREE 🎉\n\nWe cover [their area]. Shoot me any questions! 🐶')">📋 Copy Text</button>
+        </div>
+      </div>
+
+      <div class="tip-box">
+        <p><strong>Pro tip:</strong> Use the Follow-Up Engine for all your lead cards — it tracks who you texted and shows the full timeline. But DO the texts here first before you open anything else.</p>
+      </div>
+
+      <a class="tool-link" href="pawty-followup-engine.html">
+        <span class="tl-icon">📲</span>
+        <div class="tl-text">
+          <strong>Paw-ty Follow-Up Engine</strong>
+          <span>All leads, full scripts, status tracker, timeline guide</span>
+        </div>
+        <span class="tl-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- STEP 2: Referral texts to existing customers -->
+  <div class="step-card" id="card-2">
+    <div class="step-header" onclick="toggleBody(2)">
+      <div class="step-num todo" id="num-2">2</div>
+      <div class="step-info">
+        <div class="step-title">💬 Send Referral Texts to Current Customers</div>
+        <div class="step-meta">
+          <span class="step-time">⏱ 10-15 min</span>
+          <span class="step-impact">💰 $0 cost, pure revenue</span>
+        </div>
+      </div>
+      <div class="step-check" id="check-2" onclick="markDone(event, 2)">✓</div>
+    </div>
+    <div class="step-body" id="body-2" style="display:none;">
+      <div class="step-why">
+        <strong>Why now:</strong> Sunday morning is the perfect time for a personal text — not too early, not lost in a workday. Your customers' dogs were probably out in the yard this morning. That's when they're thinking about this stuff. If you sent these Friday night, skip the ones you already did.
+      </div>
+
+      <div class="action-group">
+        <div class="action-label">Referral text — send to each customer who hasn't been asked yet</div>
+        <div class="text-block">
+          <div class="recipient">To: <strong>Shannon, Amanda, Mrs. Candee, Jody, Lawrence, Greg, Chastity, Preshus</strong></div>
+          <div class="msg">Hey [Name]! Hope your weekend is going great ☀️
+
+Quick favor — if you know anyone with dogs who hates cleaning up the yard, I'd love the referral. We'll give them their FIRST visit free, and you get $20 credit on your next invoice 🙌
+
+Thanks for being such an awesome customer — see you [next service day]! 🐾</div>
+          <button class="copy-btn" onclick="copyText(this, 'Hey [Name]! Hope your weekend is going great ☀️\n\nQuick favor — if you know anyone with dogs who hates cleaning up the yard, I\'d love the referral. We\'ll give them their FIRST visit free, and you get $20 credit on your next invoice 🙌\n\nThanks for being such an awesome customer — see you [next service day]! 🐾')">📋 Copy Text</button>
+        </div>
+      </div>
+
+      <div class="math-card">
+        <h4>📊 Referral Math — Why This is Huge</h4>
+        <div class="math-row"><span class="label">Cost to you</span><span class="value">$20 credit per referral</span></div>
+        <div class="math-row"><span class="label">10 customers asked</span><span class="value">= maybe 2-3 referrals</span></div>
+        <div class="math-row"><span class="label">2 new customers</span><span class="value">= ~$80/mo new revenue</span></div>
+        <div class="math-row"><span class="label">Cost (2 x $20 credit)</span><span class="value">= $40 one-time</span></div>
+        <div class="math-row total"><span class="label">Annual ROI</span><span class="value">$960/yr for $40 spend</span></div>
+      </div>
+
+      <a class="tool-link" href="referral-engine-dashboard.html">
+        <span class="tl-icon">🔗</span>
+        <div class="tl-text">
+          <strong>Referral Engine Dashboard</strong>
+          <span>All 10 customer cards with personalized text copy</span>
+        </div>
+        <span class="tl-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- STEP 3: Google Review Blitz -->
+  <div class="step-card" id="card-3">
+    <div class="step-header" onclick="toggleBody(3)">
+      <div class="step-num todo" id="num-3">3</div>
+      <div class="step-info">
+        <div class="step-title">⭐ Google Review Blitz — Target 10+ Reviews</div>
+        <div class="step-meta">
+          <span class="step-time">⏱ 10 min</span>
+          <span class="step-impact">🗺️ Free Map Pack ranking</span>
+        </div>
+      </div>
+      <div class="step-check" id="check-3" onclick="markDone(event, 3)">✓</div>
+    </div>
+    <div class="step-body" id="body-3" style="display:none;">
+      <div class="step-why">
+        <strong>Why now:</strong> You're at 6 reviews. Map Pack eligibility kicks in stronger at 10-15 reviews. Sending asks while Paw-ty energy is high (customers see you posting, feel the momentum) = highest response rate. Shannon and Amanda in Florissant are the priority — their local reviews are geographic SEO gold.
+      </div>
+
+      <div class="action-group">
+        <div class="action-label">⭐ Priority review asks — do THESE first</div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box">✓</div>
+          <div class="item-text">
+            Shannon (Florissant) — longest customer, most likely to write a detailed review
+            <div class="item-sub">Mention: "You've been with us from the beginning — means the world if you'd leave a review!"</div>
+          </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box">✓</div>
+          <div class="item-text">
+            Amanda Harris (Florissant) — 2 reviews from same zip = strong North County SEO signal
+            <div class="item-sub">Mention: "One minute on Google means everything for a small local business"</div>
+          </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box">✓</div>
+          <div class="item-text">
+            Chastity — great engagement energy, likely to leave enthusiastic review
+          </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box">✓</div>
+          <div class="item-text">
+            Greg — longest tenure after Shannon, high satisfaction
+          </div>
+        </div>
+      </div>
+
+      <div class="text-block">
+        <div class="recipient">Review ask text — personalize with name</div>
+        <div class="msg">Hey [Name]! Quick favor — would you mind leaving us a Google review? 
+
+We're a small local business and reviews make a huge difference in helping other dog owners find us. Literally takes 1 minute: 
+
+👉 google.com/search?q=Tidy+Tails+STL
+
+Just click "Write a review" and say whatever you honestly think! Really appreciate you 🐾</div>
+        <button class="copy-btn" onclick="copyText(this, 'Hey [Name]! Quick favor — would you mind leaving us a Google review? \n\nWe\'re a small local business and reviews make a huge difference in helping other dog owners find us. Literally takes 1 minute: \n\n👉 google.com/search?q=Tidy+Tails+STL\n\nJust click \"Write a review\" and say whatever you honestly think! Really appreciate you 🐾')">📋 Copy Text</button>
+      </div>
+
+      <div class="tip-box">
+        <p><strong>Goal:</strong> 6 reviews → 10 reviews by Tuesday. <strong>10 reviews = Map Pack eligible.</strong> At 15 reviews you're competing for top 3. At 20 you're probably #1 in North County. This is your cheapest customer acquisition channel — forever.</p>
+      </div>
+
+      <a class="tool-link" href="review-sprint-kit.html">
+        <span class="tl-icon">⭐</span>
+        <div class="tl-text">
+          <strong>Review Sprint Kit</strong>
+          <span>All 10 customers, personalized texts, response templates</span>
+        </div>
+        <span class="tl-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- STEP 4: Social posts -->
+  <div class="step-card" id="card-4">
+    <div class="step-header" onclick="toggleBody(4)">
+      <div class="step-num todo" id="num-4">4</div>
+      <div class="step-info">
+        <div class="step-title">📣 Post the Paw-ty Recap — Social + Nextdoor</div>
+        <div class="step-meta">
+          <span class="step-time">⏱ 5-10 min</span>
+          <span class="step-impact">📣 Converts people who missed event</span>
+        </div>
+      </div>
+      <div class="step-check" id="check-4" onclick="markDone(event, 4)">✓</div>
+    </div>
+    <div class="step-body" id="body-4" style="display:none;">
+      <div class="step-why">
+        <strong>Why this matters:</strong> The post-event recap is statistically the highest-converting post of any event — people who scrolled past the live posts stop at the recap because it validates the event was real and fun. "We had 20 dogs show up!" creates FOMO and social proof simultaneously. Post by noon Sunday max.
+      </div>
+
+      <div class="action-group">
+        <div class="action-label">FB/IG recap post — post with best photo from event</div>
+        <div class="text-block">
+          <div class="msg">What a morning! 🐾☀️
+
+Huge thank you to everyone who stopped by the Crestwood Vet adoption event — we met so many amazing pups (and their humans)!
+
+If you missed us, we're Tidy Tails — your local St. Louis pooper scooper service. We handle the gross part so you can actually enjoy your backyard.
+
+📍 We cover [Crestwood / Sunset Hills / South County / North County — list your areas]
+🐶 1 dog from $35/mo | First visit FREE
+📞 (314) 850-7140
+
+DM us or comment below — happy to chat! 🙌
+
+#TidyTails #StLouis #DogLife #PetWaste #LocalBusiness #CrestwoodMO</div>
+          <button class="copy-btn" onclick="copyText(this, 'What a morning! 🐾☀️\n\nHuge thank you to everyone who stopped by the Crestwood Vet adoption event — we met so many amazing pups (and their humans)!\n\nIf you missed us, we\'re Tidy Tails — your local St. Louis pooper scooper service. We handle the gross part so you can actually enjoy your backyard.\n\n📍 We cover [your areas]\n🐶 1 dog from $35/mo | First visit FREE\n📞 (314) 850-7140\n\nDM us or comment below — happy to chat! 🙌\n\n#TidyTails #StLouis #DogLife #PetWaste #LocalBusiness #CrestwoodMO')">📋 Copy</button>
+        </div>
+
+        <div class="action-label" style="margin-top:14px;">Nextdoor post — Crestwood / Sunset Hills / South County</div>
+        <div class="text-block">
+          <div class="msg">Had a great time at the Crestwood Vet adoption event this morning meeting neighbors! 🐾
+
+We're Tidy Tails — a local pet waste removal service based right here in St. Louis County. We serve [local neighborhoods].
+
+If you've got dogs and hate the yard cleanup, we handle it for you on a weekly or biweekly schedule.
+
+First visit is FREE — happy to answer any questions! Drop a comment or message me directly.</div>
+          <button class="copy-btn" onclick="copyText(this, 'Had a great time at the Crestwood Vet adoption event this morning meeting neighbors! 🐾\n\nWe\'re Tidy Tails — a local pet waste removal service based right here in St. Louis County. We serve [local neighborhoods].\n\nIf you\'ve got dogs and hate the yard cleanup, we handle it for you on a weekly or biweekly schedule.\n\nFirst visit is FREE — happy to answer any questions! Drop a comment or message me directly.')">📋 Copy</button>
+        </div>
+      </div>
+
+      <a class="tool-link" href="saturday-live-amplifier.html">
+        <span class="tl-icon">📣</span>
+        <div class="tl-text">
+          <strong>Saturday Live Amplifier</strong>
+          <span>More post variants, hashtag banks, photo tips, full timeline</span>
+        </div>
+        <span class="tl-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- STEP 5: Week ahead prep -->
+  <div class="step-card" id="card-5">
+    <div class="step-header" onclick="toggleBody(5)">
+      <div class="step-num todo" id="num-5">5</div>
+      <div class="step-info">
+        <div class="step-title">🗓️ Lock in Week of Mar 30 Plan — 5 Min</div>
+        <div class="step-meta">
+          <span class="step-time">⏱ 5 min</span>
+          <span class="step-impact">🎯 Sets up the whole week</span>
+        </div>
+      </div>
+      <div class="step-check" id="check-5" onclick="markDone(event, 5)">✓</div>
+    </div>
+    <div class="step-body" id="body-5" style="display:none;">
+      <div class="step-why">
+        <strong>Why bother:</strong> Sunday is the best day to set your week's intention. If you don't decide "this is what Monday looks like" before Sunday ends, Monday becomes reactive instead of proactive. 5 minutes now = 3x more productive week.
+      </div>
+
+      <div class="action-group">
+        <div class="action-label">This week's top priorities (ranked)</div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box">✓</div>
+          <div class="item-text">
+            <strong>Monday:</strong> Call Millsap Properties — (314) 686-3337 — 7 pet-friendly properties, highest-value lead
+            <div class="item-sub">Script: "We service Florissant and Hazelwood — we're literally down the street from Charbonier Apartments"</div>
+          </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box">✓</div>
+          <div class="item-text">
+            <strong>Monday:</strong> Post North County FB Group post #1 (Florissant) — 5 min
+            <div class="item-sub">File: ready-to-post/north-county-conquest-week-mar30.md</div>
+          </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box">✓</div>
+          <div class="item-text">
+            <strong>Mon–Tue:</strong> Vet Blitz — Day 1 (Cross Keys AH, Gateway City AH, Baronwood AH)
+            <div class="item-sub">File: dashboard/vet-clinic-partnership-kit.html</div>
+          </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box">✓</div>
+          <div class="item-text">
+            <strong>Mon–Sun:</strong> Reply to all Marketplace shed inquiries within 5 min (tariff angle — April 2 deadline)
+            <div class="item-sub">File: dashboard/shed-lead-response-kit.html</div>
+          </div>
+        </div>
+        <div class="checklist-item" onclick="toggleCheck(this)">
+          <div class="check-box">✓</div>
+          <div class="item-text">
+            <strong>Wed follow-up:</strong> Anyone who didn't reply to Sunday texts → one more gentle touch
+          </div>
+        </div>
+      </div>
+
+      <a class="tool-link" href="battle-plan-week-mar30.html">
+        <span class="tl-icon">⚔️</span>
+        <div class="tl-text">
+          <strong>Week of Mar 30 Battle Plan</strong>
+          <span>Day-by-day tasks, call sheet, priority commercial leads</span>
+        </div>
+        <span class="tl-arrow">→</span>
+      </a>
+
+      <a class="tool-link" href="april-growth-roadmap.html">
+        <span class="tl-icon">🗺️</span>
+        <div class="tl-text">
+          <strong>Apr–Aug Growth Roadmap</strong>
+          <span>5-month strategic plan, channel rankings, milestone tracker</span>
+        </div>
+        <span class="tl-arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Win summary -->
+  <div style="background:#0f1a0f; border:2px solid #22c55e; border-radius:14px; padding:20px; margin-top:8px; text-align:center;">
+    <div style="font-size:2em; margin-bottom:8px;">🏆</div>
+    <h3 style="color:#22c55e; font-size:1em; margin-bottom:8px;">If You Do All 5 Steps</h3>
+    <div style="display:flex; justify-content:center; gap:20px; flex-wrap:wrap; margin-bottom:12px;">
+      <div>
+        <div style="font-size:1.5em; font-weight:800; color:#22c55e;">2-3</div>
+        <div style="font-size:0.7em; color:#888;">Paw-ty converts</div>
+      </div>
+      <div>
+        <div style="font-size:1.5em; font-weight:800; color:#f59e0b;">2-3</div>
+        <div style="font-size:0.7em; color:#888;">Referral leads</div>
+      </div>
+      <div>
+        <div style="font-size:1.5em; font-weight:800; color:#a78bfa;">4-5</div>
+        <div style="font-size:0.7em; color:#888;">New reviews</div>
+      </div>
+      <div>
+        <div style="font-size:1.5em; font-weight:800; color:#e94560;">13-18</div>
+        <div style="font-size:0.7em; color:#888;">Customers by Apr</div>
+      </div>
+    </div>
+    <p style="font-size:0.8em; color:#86efac;">One power hour → 60% of your April customer goal. That's the math. Now go get it. 🐾</p>
+  </div>
+
+</div>
+
+<div class="bottom-banner">
+  <h3>⏰ Do This by 11 AM Sunday — Not "Later"</h3>
+  <p>Hot leads are warm for 48 hours. After that, they've moved on. You've already done the hard work (event, tools, prep). This is just 60 minutes to close the loop.</p>
+</div>
+
+<script>
+// Load saved state from localStorage
+const STATE_KEY = 'sunday-power-hour-state';
+let state = JSON.parse(localStorage.getItem(STATE_KEY) || '{}');
+
+function saveState() {
+  localStorage.setItem(STATE_KEY, JSON.stringify(state));
+}
+
+function toggleBody(n) {
+  const body = document.getElementById(`body-${n}`);
+  body.style.display = body.style.display === 'none' ? 'block' : 'none';
+}
+
+function markDone(e, n) {
+  e.stopPropagation();
+  const check = document.getElementById(`check-${n}`);
+  const num = document.getElementById(`num-${n}`);
+  const card = document.getElementById(`card-${n}`);
+  const isDone = check.classList.toggle('checked');
+  
+  state[`step-${n}`] = isDone;
+  saveState();
+
+  if (isDone) {
+    num.className = 'step-num done-num';
+    num.textContent = '✓';
+    card.classList.add('done');
+    card.classList.remove('active-step');
+  } else {
+    num.className = 'step-num todo';
+    num.textContent = n;
+    card.classList.remove('done');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = 5;
+  const done = Object.values(state).filter(v => v === true).length;
+  document.getElementById('progress-text').textContent = `${done} / ${total}`;
+  document.getElementById('progress-fill').style.width = `${(done / total) * 100}%`;
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('item-done');
+  const box = el.querySelector('.check-box');
+  box.classList.toggle('checked');
+  if (box.classList.contains('checked')) box.textContent = '✓';
+  else box.textContent = '';
+}
+
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.classList.add('copied');
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.textContent = '📋 Copy Text';
+    }, 2000);
+  });
+}
+
+// Restore saved state
+document.addEventListener('DOMContentLoaded', () => {
+  Object.keys(state).forEach(key => {
+    if (state[key] === true) {
+      const n = key.replace('step-', '');
+      const check = document.getElementById(`check-${n}`);
+      const num = document.getElementById(`num-${n}`);
+      const card = document.getElementById(`card-${n}`);
+      if (check) {
+        check.classList.add('checked');
+        num.className = 'step-num done-num';
+        num.textContent = '✓';
+        card.classList.add('done');
+        card.classList.remove('active-step');
+      }
+    }
+  });
+  updateProgress();
+});
+</script>
+</body>
+</html>
