@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📣 Saturday Live Amplifier — Tidy Tails</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #0d1117;
+    color: #e6edf3;
+    min-height: 100vh;
+  }
+  header {
+    background: linear-gradient(135deg, #1a7f37 0%, #0ea5e9 100%);
+    padding: 20px 16px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  }
+  header h1 { font-size: 1.4rem; font-weight: 800; }
+  header p { font-size: 0.8rem; opacity: 0.9; margin-top: 4px; }
+  .event-banner {
+    background: #1a7f37;
+    border: 2px solid #3fb950;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 16px;
+    text-align: center;
+  }
+  .event-banner .event-title { font-size: 1.1rem; font-weight: 700; color: #3fb950; }
+  .event-banner .event-details { font-size: 0.85rem; color: #7ee787; margin-top: 4px; }
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    background: #161b22;
+    border-bottom: 2px solid #30363d;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    padding: 12px 16px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    color: #8b949e;
+    transition: all 0.2s;
+  }
+  .tab.active {
+    color: #e6edf3;
+    border-bottom-color: #58a6ff;
+    background: #0d1117;
+  }
+  .panel { display: none; padding: 16px; }
+  .panel.active { display: block; }
+  .section-header {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #8b949e;
+    margin: 20px 0 10px;
+  }
+  .post-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+  }
+  .post-card .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .post-card .post-type {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .type-fb { background: #1877f222; color: #58a6ff; border: 1px solid #1877f244; }
+  .type-ig { background: #e1306c22; color: #f85149; border: 1px solid #e1306c44; }
+  .type-story { background: #833ab422; color: #d2a8ff; border: 1px solid #833ab444; }
+  .type-next { background: #00b85022; color: #3fb950; border: 1px solid #00b85044; }
+  .post-card .timing {
+    font-size: 0.72rem;
+    color: #f0883e;
+    font-weight: 600;
+  }
+  .post-card .post-body {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #c9d1d9;
+    white-space: pre-wrap;
+    background: #0d1117;
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid #21262d;
+  }
+  .post-card .tip {
+    font-size: 0.78rem;
+    color: #7ee787;
+    margin-top: 8px;
+    padding: 6px 10px;
+    background: #1a7f3720;
+    border-radius: 6px;
+    border-left: 3px solid #3fb950;
+  }
+  .copy-btn {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    background: #21262d;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    color: #e6edf3;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover, .copy-btn:active { background: #388bfd; border-color: #388bfd; }
+  .copy-btn.copied { background: #1a7f37; border-color: #3fb950; }
+  .ref-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .ref-card .customer-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: #e6edf3;
+    margin-bottom: 4px;
+  }
+  .ref-card .customer-meta {
+    font-size: 0.75rem;
+    color: #8b949e;
+    margin-bottom: 10px;
+  }
+  .ref-card .text-body {
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: #c9d1d9;
+    white-space: pre-wrap;
+    background: #0d1117;
+    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid #21262d;
+  }
+  .ref-card .sent-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .ref-card .sent-check {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    border: 2px solid #30363d;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+  .ref-card .sent-check.checked { background: #1a7f37; border-color: #3fb950; }
+  .ref-card .sent-label { font-size: 0.78rem; color: #8b949e; }
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .stat-box {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    padding: 14px 10px;
+    text-align: center;
+  }
+  .stat-box .num { font-size: 1.8rem; font-weight: 800; }
+  .stat-box .lbl { font-size: 0.68rem; color: #8b949e; margin-top: 2px; }
+  .timeline {
+    position: relative;
+    padding-left: 24px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 0; bottom: 0;
+    width: 2px;
+    background: #30363d;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -20px; top: 4px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: #58a6ff;
+    border: 2px solid #0d1117;
+  }
+  .timeline-item.green::before { background: #3fb950; }
+  .timeline-item.orange::before { background: #f0883e; }
+  .timeline-item.purple::before { background: #d2a8ff; }
+  .timeline-item .t-time {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #58a6ff;
+    margin-bottom: 2px;
+  }
+  .timeline-item.green .t-time { color: #3fb950; }
+  .timeline-item.orange .t-time { color: #f0883e; }
+  .timeline-item.purple .t-time { color: #d2a8ff; }
+  .timeline-item .t-text {
+    font-size: 0.85rem;
+    color: #c9d1d9;
+    line-height: 1.5;
+  }
+  .photo-tips {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .photo-tips h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; }
+  .photo-tips ul { list-style: none; }
+  .photo-tips ul li {
+    font-size: 0.85rem;
+    color: #c9d1d9;
+    padding: 6px 0;
+    border-bottom: 1px solid #21262d;
+    display: flex; align-items: flex-start; gap: 8px;
+  }
+  .photo-tips ul li:last-child { border-bottom: none; }
+  .photo-tips ul li::before { content: '📸'; flex-shrink: 0; }
+  .alert {
+    background: #f0883e22;
+    border: 1px solid #f0883e44;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 0.82rem;
+    color: #f0883e;
+    margin-bottom: 14px;
+  }
+  .alert strong { display: block; margin-bottom: 4px; }
+  .hashtags {
+    background: #0d1117;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.82rem;
+    color: #58a6ff;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📣 Saturday Live Amplifier</h1>
+  <p>Paw-ty Social Content + Referral Texts — Fire These Off TODAY</p>
+</header>
+
+<div class="event-banner">
+  <div class="event-title">🐾 Crestwood Vet Adoption Paw-ty — Saturday Mar 28, 10 AM</div>
+  <div class="event-details">Crestwood Animal Hospital • Jamie + TJ on-site • First Visit FREE offer</div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('tonight')">📱 Tonight: Referrals</div>
+  <div class="tab" onclick="showTab('live')">🔴 Live Posts</div>
+  <div class="tab" onclick="showTab('photos')">📸 Photo Tips</div>
+  <div class="tab" onclick="showTab('timeline')">⏰ Timeline</div>
+  <div class="tab" onclick="showTab('hashtags')">🏷️ Tags</div>
+</div>
+
+<!-- TONIGHT: REFERRALS -->
+<div class="panel active" id="panel-tonight">
+
+  <div class="alert">
+    <strong>⚡ Send These TONIGHT (Friday, 7–9 PM)</strong>
+    Your 10 current customers love you. Tonight, while the Paw-ty is top of mind for YOU, ask them to spread the word. Best time: Friday evening when people are relaxed.
+  </div>
+
+  <div class="section-header">Referral Stats</div>
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="num" style="color:#3fb950" id="sent-count">0</div>
+      <div class="lbl">Texts Sent</div>
+    </div>
+    <div class="stat-box">
+      <div class="num" style="color:#58a6ff">10</div>
+      <div class="lbl">Customers</div>
+    </div>
+    <div class="stat-box">
+      <div class="num" style="color:#f0883e">15</div>
+      <div class="lbl">Goal = 25</div>
+    </div>
+  </div>
+
+  <div class="section-header">Text Each Customer (Tap name to copy, check when sent)</div>
+
+  <!-- Customer 1: Mrs. Candee -->
+  <div class="ref-card" id="rc-1">
+    <div class="customer-name">Mrs. Candee</div>
+    <div class="customer-meta">Saint Louis 63136 • Weekly • $60/mo</div>
+    <div class="text-body" id="txt-1">Hey Mrs. Candee! 😊 We're at the Crestwood Vet Paw-ty tomorrow morning — it's been so fun connecting with other dog owners. I just wanted to say thank you for being such a great customer. If you know anyone in your neighborhood who's been meaning to get yard service set up, send 'em our way! I'll give them their first visit free and you'll get a $20 credit on your next month. — Jamie @ Tidy Tails 🐾</div>
+    <div class="sent-btn">
+      <div class="sent-check" onclick="toggleSent(1)" id="sc-1">✓</div>
+      <div class="sent-label">Mark as sent</div>
+      <button class="copy-btn" style="margin:0;flex:1" onclick="copyText('txt-1', this)">Copy Text</button>
+    </div>
+  </div>
+
+  <!-- Customer 2: Jody -->
+  <div class="ref-card" id="rc-2">
+    <div class="customer-name">Jody</div>
+    <div class="customer-meta">Saint Louis 63114 • Biweekly • $90/mo</div>
+    <div class="text-body" id="txt-2">Hi Jody! We've got a booth at the Crestwood Vet Adoption Paw-ty tomorrow — excited to meet more dog families 🐕 Quick favor: if any of your neighbors or friends have been talking about yard cleanup, we'd love a referral! First cleanup is on us for them, and you get $20 off your next service. Just have them mention your name. Thanks so much! — Jamie, Tidy Tails</div>
+    <div class="sent-btn">
+      <div class="sent-check" onclick="toggleSent(2)" id="sc-2">✓</div>
+      <div class="sent-label">Mark as sent</div>
+      <button class="copy-btn" style="margin:0;flex:1" onclick="copyText('txt-2', this)">Copy Text</button>
+    </div>
+  </div>
+
+  <!-- Customer 3: Shannon -->
+  <div class="ref-card" id="rc-3">
+    <div class="customer-name">Shannon Zamarripa</div>
+    <div class="customer-meta">Florissant 63031 • Weekly • $140/mo</div>
+    <div class="text-body" id="txt-3">Hey Shannon! 🐾 Shannon with 3+ dogs — if ANYONE understands yard chaos, it's you 😂 We're tabling at the Crestwood Vet Paw-ty tomorrow and I'm thinking your Florissant neighbors could use us. If you have friends or neighbors who'd want a clean yard, send them our way! They get their first visit free, you get $20 off. That's like almost half a month's discount if you refer 3 people 😄 — Jamie @ Tidy Tails</div>
+    <div class="sent-btn">
+      <div class="sent-check" onclick="toggleSent(3)" id="sc-3">✓</div>
+      <div class="sent-label">Mark as sent</div>
+      <button class="copy-btn" style="margin:0;flex:1" onclick="copyText('txt-3', this)">Copy Text</button>
+    </div>
+  </div>
+
+  <!-- Customer 4: Amanda Harris -->
+  <div class="ref-card" id="rc-4">
+    <div class="customer-name">Amanda Harris</div>
+    <div class="customer-meta">Florissant 63031 • Weekly • $120/mo</div>
+    <div class="text-body" id="txt-4">Hi Amanda! We're at the Crestwood Vet Paw-ty tomorrow (so excited!) and I was thinking — you and Shannon are both in Florissant, so we're already in your area every single week. If any of your neighbors or friends want yard service, we'd love to add them to our Florissant route! They get their first visit FREE, you get $20 off next month. — Jamie, Tidy Tails 🐕</div>
+    <div class="sent-btn">
+      <div class="sent-check" onclick="toggleSent(4)" id="sc-4">✓</div>
+      <div class="sent-label">Mark as sent</div>
+      <button class="copy-btn" style="margin:0;flex:1" onclick="copyText('txt-4', this)">Copy Text</button>
+    </div>
+  </div>
+
+  <!-- Customer 5: Lawrence -->
+  <div class="ref-card" id="rc-5">
+    <div class="customer-name">Lawrence</div>
+    <div class="customer-meta">Saint Louis 63108 • Biweekly • $100/mo</div>
+    <div class="text-body" id="txt-5">Hey Lawrence! Just wanted to say hi — we're doing a booth at the Crestwood Vet Paw-ty tomorrow morning. Fun stuff! Quick ask: if you know anyone in your neighborhood who wants yard service, we'd love the referral. First visit is free for them, $20 credit for you. The city yards are our favorite to work anyway 😄 — Jamie @ Tidy Tails</div>
+    <div class="sent-btn">
+      <div class="sent-check" onclick="toggleSent(5)" id="sc-5">✓</div>
+      <div class="sent-label">Mark as sent</div>
+      <button class="copy-btn" style="margin:0;flex:1" onclick="copyText('txt-5', this)">Copy Text</button>
+    </div>
+  </div>
+
+  <!-- Customer 6: Greg -->
+  <div class="ref-card" id="rc-6">
+    <div class="customer-name">Greg</div>
+    <div class="customer-meta">O'Fallon 63366 • Monthly • $50/mo</div>
+    <div class="text-body" id="txt-6">Hey Greg! Hope you've been enjoying a cleaner yard 🙂 We're doing a fun event tomorrow at Crestwood Vet — meeting lots of dog families. Quick ask: if any friends or neighbors in O'Fallon have been wanting yard cleanup, we'd love to take care of them. First visit free, and you'd get $20 off your next service. Just have them mention your name! — Jamie @ Tidy Tails</div>
+    <div class="sent-btn">
+      <div class="sent-check" onclick="toggleSent(6)" id="sc-6">✓</div>
+      <div class="sent-label">Mark as sent</div>
+      <button class="copy-btn" style="margin:0;flex:1" onclick="copyText('txt-6', this)">Copy Text</button>
+    </div>
+  </div>
+
+  <!-- Customer 7: Chastity -->
+  <div class="ref-card" id="rc-7">
+    <div class="customer-name">Chastity</div>
+    <div class="customer-meta">Florissant 63033 • Biweekly • $90/mo</div>
+    <div class="text-body" id="txt-7">Hi Chastity! Quick one — we're at the Crestwood Vet Adoption Paw-ty tomorrow if you want to stop by with the pup! 🐕 Also: if you have any Florissant neighbors or friends who want a yard they can actually enjoy, we'd love a referral. They get their first visit FREE and you get $20 off your next service. Win-win! — Jamie @ Tidy Tails 🐾</div>
+    <div class="sent-btn">
+      <div class="sent-check" onclick="toggleSent(7)" id="sc-7">✓</div>
+      <div class="sent-label">Mark as sent</div>
+      <button class="copy-btn" style="margin:0;flex:1" onclick="copyText('txt-7', this)">Copy Text</button>
+    </div>
+  </div>
+
+  <!-- Customer 8: Preshus -->
+  <div class="ref-card" id="rc-8">
+    <div class="customer-name">Preshus</div>
+    <div class="customer-meta">Saint Charles 63303 • Weekly • $100/mo</div>
+    <div class="text-body" id="txt-8">Hey Preshus! Hope the yard's been looking good 🐕✨ We're doing a booth at the Crestwood Vet Paw-ty tomorrow — such a fun morning. If you know any Saint Charles dog owners who'd want their yard cleaned weekly, we're literally already in your neighborhood. First visit free for them, $20 credit for you. Easy referral! — Jamie @ Tidy Tails</div>
+    <div class="sent-btn">
+      <div class="sent-check" onclick="toggleSent(8)" id="sc-8">✓</div>
+      <div class="sent-label">Mark as sent</div>
+      <button class="copy-btn" style="margin:0;flex:1" onclick="copyText('txt-8', this)">Copy Text</button>
+    </div>
+  </div>
+
+  <!-- Customer 9 (generic) -->
+  <div class="ref-card" id="rc-9">
+    <div class="customer-name">New Customer #9</div>
+    <div class="customer-meta">Recently added — personalize name/city before sending</div>
+    <div class="text-body" id="txt-9">Hey [NAME]! We're at the Crestwood Vet Paw-ty tomorrow — having such a great time meeting dog families in the area 🐾 Quick ask: if you have any neighbors or friends who've been wanting their yard cleaned up, we'd love a referral! They get their first visit FREE, and you'll get $20 off your next service. Just have them mention your name. — Jamie @ Tidy Tails</div>
+    <div class="sent-btn">
+      <div class="sent-check" onclick="toggleSent(9)" id="sc-9">✓</div>
+      <div class="sent-label">Mark as sent</div>
+      <button class="copy-btn" style="margin:0;flex:1" onclick="copyText('txt-9', this)">Copy Text</button>
+    </div>
+  </div>
+
+  <!-- Customer 10 (generic) -->
+  <div class="ref-card" id="rc-10">
+    <div class="customer-name">New Customer #10</div>
+    <div class="customer-meta">Recently added — personalize name/city before sending</div>
+    <div class="text-body" id="txt-10">Hey [NAME]! We've got a booth at the Crestwood Vet Paw-ty tomorrow — it's been so fun! Just wanted to say we really appreciate your business 🙏 If you know anyone who wants a yard their dog — and FAMILY — can actually enjoy without the landmines, send them our way. First visit FREE for anyone you refer. You get $20 off your next service. — Jamie @ Tidy Tails 🐕💩</div>
+    <div class="sent-btn">
+      <div class="sent-check" onclick="toggleSent(10)" id="sc-10">✓</div>
+      <div class="sent-label">Mark as sent</div>
+      <button class="copy-btn" style="margin:0;flex:1" onclick="copyText('txt-10', this)">Copy Text</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- LIVE POSTS -->
+<div class="panel" id="panel-live">
+
+  <div class="alert">
+    <strong>🔴 Post These FROM the Event (Tomorrow Mar 28)</strong>
+    Real-time social content amplifies reach 3-5x over post-event recaps. Post as things happen — live = authentic.
+  </div>
+
+  <div class="section-header">Before Leaving (7:30–9:30 AM) — Hype Posts</div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <span class="post-type type-fb">Facebook</span>
+      <span class="timing">Post 8–9 AM Before Leaving</span>
+    </div>
+    <div class="post-body" id="post-fb-1">🐾 We'll see you at the Crestwood Vet Adoption Paw-ty today!
+
+Starting at 10 AM — stop by and meet us, grab some info, or just bring your dog for the fun 🐕
+
+We're running a special just for today: **first yard cleanup visit FREE** when you sign up before April 15.
+
+📍 Crestwood Animal Hospital
+🕙 10 AM — stop by anytime!
+
+#TidyTailsSTL #PawtyDay #StLouisDogs #CrestwoodVet #PetWasteRemoval</div>
+    <div class="tip">💡 Add a quick "heading to the Paw-ty" selfie/car photo for engagement. Even a blurry one gets +40% reach.</div>
+    <button class="copy-btn" onclick="copyText('post-fb-1', this)">📋 Copy Facebook Post</button>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <span class="post-type type-story">Instagram Story</span>
+      <span class="timing">Post 9:45 AM (In Car / Parking Lot)</span>
+    </div>
+    <div class="post-body" id="post-story-1">Story text (type over photo):
+
+"WE'RE HERE 🐾🎉"
+
+"Crestwood Vet Adoption Paw-ty"
+"Come say hi! First visit FREE today only 👇"
+
+(Use the "Location" sticker: Crestwood Animal Hospital)
+(Add a countdown sticker: "Event starts in" → 10:00 AM)</div>
+    <div class="tip">💡 Use Boomerang of Jamie waving from the parking lot. Stories with movement get 2x the views.</div>
+    <button class="copy-btn" onclick="copyText('post-story-1', this)">📋 Copy Story Text</button>
+  </div>
+
+  <div class="section-header">At the Event (10 AM–Noon) — Live Engagement</div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <span class="post-type type-ig">Instagram + Facebook</span>
+      <span class="timing">Post 10:30–11 AM (When It's Busy)</span>
+    </div>
+    <div class="post-body" id="post-live-1">Look at all these dogs 😍🐕🐕🐕
+
+We're at the Crestwood Vet Adoption Paw-ty right now and it is PACKED with the cutest pups in St. Louis.
+
+If you've been putting off getting your yard cleaned up — come chat with us before you leave! We'll give you your first visit absolutely free.
+
+We're the only local, family-run pet waste removal company in St. Louis County. No franchise. No BS. Just a clean yard your family can actually use. 🌿
+
+📞 314-850-7140 | tidytailsstl.com
+
+#TidyTailsSTL #StLouisDogs #PawParty #PetWasteRemoval #CrestwoodMO #DogMomSTL #DogDadSTL</div>
+    <div class="tip">💡 Snap a wide-angle photo of the event crowd (with dogs!). Don't close-up faces without permission. The busier it looks = the more FOMO it creates online.</div>
+    <button class="copy-btn" onclick="copyText('post-live-1', this)">📋 Copy Live Post</button>
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <span class="post-type type-story">Instagram Story</span>
+      <span class="timing">Post Mid-Event (Any Time)</span>
+    </div>
+    <div class="post-body" id="post-story-2">Option A (if someone signs up):
+"WE JUST GOT A NEW CUSTOMER 🎉🐾"
+"[X] families with clean yards and counting"
+"Come grab our last-chance deal before we're full!"
+
+Option B (just energy):
+"The dogs are LOVING it today"
+"Come find us if you want a yard your dog deserves 🌿"
+(Film a cute dog walking by — caption: "This is our client now" or "Future Tidy Tails client?? 😂")</div>
+    <div class="tip">💡 The "future client" joke with a random cute dog always goes viral. Dogs + humor = shares.</div>
+    <button class="copy-btn" onclick="copyText('post-story-2', this)">📋 Copy Story Options</button>
+  </div>
+
+  <div class="section-header">Nextdoor — Local Boost While At Event</div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <span class="post-type type-next">Nextdoor</span>
+      <span class="timing">Post 10–11 AM (While There)</span>
+    </div>
+    <div class="post-body" id="post-nextdoor">Hi Crestwood neighbors! 👋
+
+We're at the Crestwood Vet Adoption Paw-ty today with Tidy Tails — St. Louis's local pet waste removal service.
+
+We're offering **first yard cleanup FREE** to anyone who signs up today or this week. No contracts, no commitments.
+
+We service all of St. Louis County — Crestwood, Kirkwood, Webster Groves, and surrounding neighborhoods.
+
+Give us a call or text at (314) 850-7140 if you want to chat. Happy to answer any questions!
+
+— Jamie, Tidy Tails</div>
+    <div class="tip">💡 Post in the Crestwood neighborhood specifically. Nextdoor locals see this differently than FB — leads tend to convert higher because they're nearby.</div>
+    <button class="copy-btn" onclick="copyText('post-nextdoor', this)">📋 Copy Nextdoor Post</button>
+  </div>
+
+  <div class="section-header">Post-Event Victory Lap (1–4 PM)</div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <span class="post-type type-fb">Facebook + Instagram</span>
+      <span class="timing">Post 1–3 PM After Event</span>
+    </div>
+    <div class="post-body" id="post-recap">What a morning. 🐾❤️
+
+We had the BEST time at the Crestwood Vet Adoption Paw-ty today — thank you to everyone who stopped by, chatted, and brought their dogs to say hi.
+
+If we met today and you're still thinking it over, no pressure — but our first visit FREE offer lasts through April 15 if you decide you're ready for a yard your family can actually enjoy.
+
+📞 Text or call: 314-850-7140
+🌐 tidytailsstl.com
+
+We're a local family-run service. No franchise. Your yard, our problem. 🐕💩
+
+#TidyTailsSTL #StLouisDogs #PetWasteRemoval #LocalSTL #DogMom #DogDad #CrestwoodSTL</div>
+    <div class="tip">💡 Pair with your best photo from the event. A photo of Jamie with a dog = highest engagement. Selfie with dog ears filter works too.</div>
+    <button class="copy-btn" onclick="copyText('post-recap', this)">📋 Copy Recap Post</button>
+  </div>
+
+</div>
+
+<!-- PHOTO TIPS -->
+<div class="panel" id="panel-photos">
+
+  <div class="photo-tips">
+    <h3>📸 What to Shoot at the Event</h3>
+    <ul>
+      <li>Table setup with flyers and signage — before anyone arrives (clean, intentional shot)</li>
+      <li>Jamie with a dog — any dog, any size. Pure engagement gold.</li>
+      <li>Wide shot of event crowd — shows energy, creates FOMO</li>
+      <li>Close-up of hands showing flyer or "First Visit FREE" text</li>
+      <li>Any adopted dog with new family — heartwarming, shareable, on-brand</li>
+      <li>The yard bag / tools if you brought them — shows what you do</li>
+      <li>Any funny/cute dog moment — always goes viral if you caption it right</li>
+      <li>Quick 15-sec video of Jamie talking to camera ("We're live at the Paw-ty!")</li>
+    </ul>
+  </div>
+
+  <div class="photo-tips">
+    <h3>❌ What NOT to Shoot</h3>
+    <ul>
+      <li>Close-ups of strangers' faces without asking permission first</li>
+      <li>Kids — never without explicit parent permission</li>
+      <li>Anything messy or off-brand (empty tables, downtime, etc.)</li>
+      <li>Your phone screen or other screens (looks amateur)</li>
+    </ul>
+  </div>
+
+  <div class="photo-tips">
+    <h3>🎥 Reels / Video Content to Create</h3>
+    <ul>
+      <li>"We're live at the Paw-ty!" — 10-sec Jamie to-camera hype clip</li>
+      <li>Slow pan of event showing all the dogs — music = automatic engagement</li>
+      <li>"Meet one of our newest customers!" — if someone consents, short intro</li>
+      <li>Boomerang: Jamie fanning out flyers or signing someone up</li>
+      <li>Time-lapse of table setup if you arrive early</li>
+    </ul>
+  </div>
+
+  <div class="photo-tips">
+    <h3>🔑 Caption Formula That Works</h3>
+    <ul>
+      <li>Hook (1 line): something funny, surprising, or relatable about dogs</li>
+      <li>Context (1-2 lines): what you're doing / where</li>
+      <li>Offer (1 line): First visit FREE, $35/mo promo</li>
+      <li>CTA (1 line): "Text us at 314-850-7140" or "Link in bio"</li>
+      <li>Hashtags: 5-8 is enough. Quality > quantity.</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- TIMELINE -->
+<div class="panel" id="panel-timeline">
+
+  <div class="section-header">Your Saturday Game Plan</div>
+
+  <div class="timeline">
+    <div class="timeline-item orange">
+      <div class="t-time">Tonight (7–9 PM) — RIGHT NOW</div>
+      <div class="t-text">Send referral texts to all 10 customers. Use the "Tonight: Referrals" tab. Takes ~20 min. This is your lowest-effort, highest-return move of the whole weekend.</div>
+    </div>
+    <div class="timeline-item green">
+      <div class="t-time">Saturday 8–9 AM</div>
+      <div class="t-text">Post the Facebook "heading to the Paw-ty" post + Instagram hype story. Get momentum before you even arrive.</div>
+    </div>
+    <div class="timeline-item green">
+      <div class="t-time">Saturday 9:45 AM</div>
+      <div class="t-text">Instagram Story from parking lot: "WE'RE HERE 🐾" — shoot a quick Boomerang of Jamie waving.</div>
+    </div>
+    <div class="timeline-item green">
+      <div class="t-time">Saturday 10:00 AM — Event Starts</div>
+      <div class="t-text">Set up table. Get flyers out. Pocket Guide app is your best friend. BE Jamie's warm backup — let her lead convos.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="t-time">Saturday 10:30–11:00 AM</div>
+      <div class="t-text">When the crowd builds, shoot the live event photo + post to Instagram AND Facebook simultaneously. Post on Nextdoor (Crestwood neighborhood).</div>
+    </div>
+    <div class="timeline-item purple">
+      <div class="t-time">Mid-Event (Anytime)</div>
+      <div class="t-text">Drop mid-event Story — if someone signs up, celebrate it publicly. If not, post a cute dog video with the "future client?" joke.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="t-time">Saturday Noon–1 PM</div>
+      <div class="t-text">Wrap up, count leads. Hot leads (said "yes" / "almost yes") — text them BEFORE you leave the parking lot. Use the Follow-Up Engine.</div>
+    </div>
+    <div class="timeline-item orange">
+      <div class="t-time">Saturday 1–3 PM</div>
+      <div class="t-text">Post the recap "What a morning" post to Facebook + Instagram. This is the one that catches people who didn't see the live posts. Pair with your best photo from the event.</div>
+    </div>
+    <div class="timeline-item green">
+      <div class="t-time">Saturday 4–8 PM (Magic Window)</div>
+      <div class="t-text">Text all HOT leads from event. They said yes — lock it in before the weekend buzz wears off. See the Follow-Up Engine for exact scripts.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="t-time">Sunday 10–11 AM</div>
+      <div class="t-text">Sunday morning follow-up to WARM leads (interested but not ready). This is statistically the best time to convert fence-sitters.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- HASHTAGS -->
+<div class="panel" id="panel-hashtags">
+
+  <div class="section-header">Tidy Tails Brand Hashtags (Always Use)</div>
+  <div class="hashtags">
+    #TidyTailsSTL &nbsp; #PetWasteRemoval &nbsp; #StLouisDogs &nbsp; #StLouisPets &nbsp; #LocalSTL &nbsp; #STLDogMom &nbsp; #STLDogDad
+  </div>
+
+  <div class="section-header" style="margin-top:20px">Event-Specific (Use Tomorrow)</div>
+  <div class="hashtags">
+    #PawtyDay &nbsp; #AdoptionPawty &nbsp; #CrestwoodVet &nbsp; #CrestwoodMO &nbsp; #CrestwoodSTL &nbsp; #DogAdoption &nbsp; #RescueDog &nbsp; #AdoptDontShop
+  </div>
+
+  <div class="section-header" style="margin-top:20px">Neighborhood Targeting</div>
+  <div class="hashtags">
+    #KirkwoodMO &nbsp; #WebsterGroves &nbsp; #GlenEcho &nbsp; #Des PeresSTL &nbsp; #BallwinMO &nbsp; #ManchesterMO &nbsp; #SaintLouisCounty
+  </div>
+
+  <div class="section-header" style="margin-top:20px">Viral/Engagement Boosters</div>
+  <div class="hashtags">
+    #DogMom &nbsp; #DogDad &nbsp; #DogLife &nbsp; #DogsOfInstagram &nbsp; #DogTax &nbsp; #CleanYard &nbsp; #BackyardGoals &nbsp; #HappyDogs
+  </div>
+
+  <div class="section-header" style="margin-top:20px">💡 Hashtag Strategy</div>
+  <div class="photo-tips">
+    <ul>
+      <li>Facebook: 3-5 hashtags max. More looks spammy.</li>
+      <li>Instagram: 8-12 hashtags. Mix big (#DogMom = 40M) with small (#TidyTailsSTL = yours).</li>
+      <li>Nextdoor: NO hashtags. Just write naturally.</li>
+      <li>Stories: 1-3 hashtags MAX or use the Location sticker instead.</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+  function showTab(id) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function copyText(id, btn) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      const original = btn.textContent;
+      btn.textContent = '✅ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = original;
+        btn.classList.remove('copied');
+      }, 2000);
+    });
+  }
+
+  // Referral sent tracking
+  const sentState = JSON.parse(localStorage.getItem('refSent') || '{}');
+  
+  function toggleSent(n) {
+    const el = document.getElementById('sc-' + n);
+    sentState[n] = !sentState[n];
+    localStorage.setItem('refSent', JSON.stringify(sentState));
+    applyState();
+    updateCount();
+  }
+
+  function applyState() {
+    for (let i = 1; i <= 10; i++) {
+      const el = document.getElementById('sc-' + i);
+      if (el) {
+        if (sentState[i]) {
+          el.classList.add('checked');
+          el.style.color = '#fff';
+          const card = document.getElementById('rc-' + i);
+          if (card) card.style.opacity = '0.6';
+        } else {
+          el.classList.remove('checked');
+          el.style.color = '';
+          const card = document.getElementById('rc-' + i);
+          if (card) card.style.opacity = '1';
+        }
+      }
+    }
+  }
+
+  function updateCount() {
+    const count = Object.values(sentState).filter(Boolean).length;
+    document.getElementById('sent-count').textContent = count;
+  }
+
+  applyState();
+  updateCount();
+</script>
+
+</body>
+</html>
