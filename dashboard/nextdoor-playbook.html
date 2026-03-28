@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nextdoor Playbook — Tidy Tails</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0a0a0a; --bg2:#111; --bg3:#1a1a1a; --bg4:#242424; --bg5:#2d2d2d;
+  --text:#f5f5f5; --text2:#999; --text3:#555;
+  --orange:#ff6b35; --green:#10b981; --blue:#3b82f6;
+  --yellow:#fbbf24; --red:#ef4444; --purple:#8b5cf6; --teal:#14b8a6;
+  --nd: #00b347; /* Nextdoor green */
+  --border:#2a2a2a; --radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+a{text-decoration:none;color:inherit;}
+
+.header{background:linear-gradient(135deg,#001a0a,#0a0f0a);border-bottom:1px solid #0f3a1f;padding:1.25rem 1.5rem;text-align:center;}
+.header h1{font-size:1.4rem;font-weight:800;letter-spacing:-0.03em;}
+.header h1 span{color:var(--nd);}
+.header p{color:var(--text2);font-size:0.78rem;margin-top:0.3rem;}
+
+/* URGENT BANNER */
+.urgent-banner{background:linear-gradient(135deg,rgba(0,179,71,0.2),rgba(16,185,129,0.15));border:1px solid rgba(0,179,71,0.4);border-radius:var(--radius);margin:1rem 1rem 0;padding:0.85rem 1rem;display:flex;align-items:center;gap:0.75rem;}
+.urgent-banner .pulse{width:10px;height:10px;background:var(--nd);border-radius:50%;animation:pulse 1.2s infinite;flex-shrink:0;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.5;transform:scale(1.4);}}
+.urgent-banner strong{color:var(--nd);font-size:0.85rem;}
+.urgent-banner span{color:var(--text2);font-size:0.78rem;}
+
+/* TABS */
+.tab-bar{display:flex;gap:0;background:var(--bg3);border-bottom:1px solid var(--border);overflow-x:auto;padding:0 1rem;}
+.tab-btn{padding:0.75rem 1rem;font-size:0.78rem;font-weight:700;white-space:nowrap;cursor:pointer;border:none;background:none;color:var(--text2);border-bottom:2px solid transparent;transition:all 0.2s;font-family:'Inter',sans-serif;}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:var(--nd);border-bottom-color:var(--nd);}
+
+.tab-content{display:none;padding:1.25rem;}
+.tab-content.active{display:block;}
+
+/* CARDS */
+.card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;margin-bottom:0.75rem;}
+.card.nd{border-left:3px solid var(--nd);}
+.card.urgent{border-left:3px solid var(--red);}
+.card.hot{border-left:3px solid var(--orange);}
+.card.cool{border-left:3px solid var(--blue);}
+.card-title{font-weight:700;font-size:0.85rem;margin-bottom:0.5rem;display:flex;align-items:center;gap:0.5rem;}
+.card-desc{color:var(--text2);font-size:0.77rem;line-height:1.5;}
+
+/* POST BLOCKS */
+.post-block{background:var(--bg4);border:1px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:1rem;}
+.post-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;flex-wrap:wrap;gap:0.5rem;}
+.post-label{font-weight:700;font-size:0.8rem;color:var(--nd);}
+.post-timing{font-size:0.72rem;color:var(--text2);font-family:'JetBrains Mono',monospace;}
+.post-body{background:var(--bg5);border:1px solid var(--border);border-radius:8px;padding:0.85rem;font-size:0.82rem;line-height:1.6;white-space:pre-wrap;word-break:break-word;}
+.post-meta{display:flex;gap:0.5rem;margin-top:0.6rem;flex-wrap:wrap;align-items:center;}
+.badge{padding:0.15rem 0.5rem;border-radius:4px;font-size:0.62rem;font-weight:700;text-transform:uppercase;}
+.b-green{background:rgba(16,185,129,0.15);color:var(--green);}
+.b-nd{background:rgba(0,179,71,0.15);color:var(--nd);}
+.b-orange{background:rgba(255,107,53,0.15);color:var(--orange);}
+.b-red{background:rgba(239,68,68,0.15);color:var(--red);}
+.b-blue{background:rgba(59,130,246,0.15);color:var(--blue);}
+.b-yellow{background:rgba(251,191,36,0.15);color:var(--yellow);}
+.b-purple{background:rgba(139,92,246,0.15);color:var(--purple);}
+
+/* COPY BTN */
+.copy-btn{background:rgba(0,179,71,0.15);color:var(--nd);border:1px solid rgba(0,179,71,0.3);border-radius:6px;padding:0.35rem 0.75rem;font-size:0.72rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;margin-left:auto;}
+.copy-btn:hover{background:rgba(0,179,71,0.3);}
+.copy-btn.copied{background:rgba(16,185,129,0.2);color:var(--green);}
+
+/* POSTED TOGGLE */
+.posted-btn{background:var(--bg4);color:var(--text2);border:1px solid var(--border);border-radius:6px;padding:0.3rem 0.65rem;font-size:0.7rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:all 0.2s;}
+.posted-btn.done{background:rgba(16,185,129,0.2);color:var(--green);border-color:rgba(16,185,129,0.3);}
+
+/* STATS BAR */
+.stats-bar{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;}
+.stat-box{background:var(--bg3);border:1px solid var(--border);border-radius:10px;padding:0.75rem 1rem;flex:1;min-width:90px;text-align:center;}
+.stat-num{font-size:1.5rem;font-weight:800;font-family:'JetBrains Mono',monospace;}
+.stat-label{font-size:0.68rem;color:var(--text2);margin-top:0.2rem;}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;}
+@media(max-width:600px){.grid-2{grid-template-columns:1fr;}}
+
+/* SECTION HEAD */
+.sec-head{font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text3);margin:1.25rem 0 0.5rem;border-bottom:1px solid var(--border);padding-bottom:0.4rem;}
+
+/* ACCORDION */
+.accordion-btn{width:100%;background:var(--bg4);border:1px solid var(--border);border-radius:8px;padding:0.75rem 1rem;font-size:0.8rem;font-weight:600;color:var(--text);text-align:left;cursor:pointer;font-family:'Inter',sans-serif;margin-bottom:0.4rem;display:flex;justify-content:space-between;align-items:center;transition:all 0.2s;}
+.accordion-btn:hover{border-color:var(--nd);}
+.accordion-body{display:none;background:var(--bg5);border:1px solid var(--border);border-radius:0 0 8px 8px;padding:0.85rem;margin-top:-0.4rem;margin-bottom:0.75rem;font-size:0.8rem;line-height:1.65;color:var(--text2);}
+.accordion-body.open{display:block;}
+.accordion-body strong{color:var(--text);}
+
+/* PROGRESS */
+.progress-track{background:var(--bg4);border-radius:20px;height:6px;overflow:hidden;margin-top:0.4rem;}
+.progress-fill{height:100%;background:var(--nd);border-radius:20px;transition:width 0.5s;}
+
+/* NEIGHBORHOOD TAGS */
+.nbhd-tag{display:inline-block;padding:0.15rem 0.5rem;border-radius:4px;font-size:0.68rem;font-weight:600;background:rgba(0,179,71,0.12);color:var(--nd);margin-right:0.3rem;margin-bottom:0.25rem;}
+
+/* TIMELINE */
+.timeline-item{display:flex;gap:0.75rem;margin-bottom:0.85rem;align-items:flex-start;}
+.timeline-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.75rem;font-weight:700;flex-shrink:0;margin-top:0.1rem;}
+.td-hot{background:rgba(239,68,68,0.2);color:var(--red);}
+.td-warm{background:rgba(251,191,36,0.15);color:var(--yellow);}
+.td-cool{background:rgba(59,130,246,0.15);color:var(--blue);}
+.td-nd{background:rgba(0,179,71,0.15);color:var(--nd);}
+.timeline-text strong{font-size:0.82rem;display:block;margin-bottom:0.2rem;}
+.timeline-text p{font-size:0.75rem;color:var(--text2);line-height:1.5;}
+
+/* BACK LINK */
+.back-link{display:inline-flex;align-items:center;gap:0.4rem;padding:0.5rem 1rem;background:var(--bg3);border:1px solid var(--border);border-radius:8px;font-size:0.75rem;color:var(--text2);margin:0.75rem 0 0 0;}
+.back-link:hover{color:var(--text);}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏘️ <span>Nextdoor</span> Playbook — Tidy Tails</h1>
+  <p>Post-Paw-ty recap live NOW · Long-term neighborhood acquisition strategy</p>
+</div>
+
+<div class="urgent-banner">
+  <div class="pulse"></div>
+  <div>
+    <strong>⚡ POST NOW — Paw-ty Recap (1–3 PM Window)</strong><br>
+    <span>You just got back from Crestwood Vet. This is the exact window when a recap post converts people who saw you but didn't stop. Post in the next 2 hours. → Jump to <button onclick="switchTab('fire')" style="background:none;border:none;color:var(--nd);font-weight:700;cursor:pointer;font-size:0.78rem;padding:0;text-decoration:underline;">🔥 Fire Now tab</button></span>
+  </div>
+</div>
+
+<div style="padding:0 1rem;">
+  <a href="index.html" class="back-link">← Command Center</a>
+</div>
+
+<!-- STATS BAR -->
+<div style="padding:0.75rem 1.25rem 0;">
+  <div class="stats-bar">
+    <div class="stat-box">
+      <div class="stat-num" id="stat-posted" style="color:var(--nd)">0</div>
+      <div class="stat-label">Posts Fired</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num" style="color:var(--orange)">32</div>
+      <div class="stat-label">Posts Ready</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num" style="color:var(--yellow)">8</div>
+      <div class="stat-label">Neighborhoods</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num" style="color:var(--green)" id="stat-leads">0</div>
+      <div class="stat-label">Leads Generated</div>
+    </div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('fire')">🔥 Fire Now</button>
+  <button class="tab-btn" onclick="switchTab('weekly')">📅 Weekly Engine</button>
+  <button class="tab-btn" onclick="switchTab('posts')">📝 Post Library</button>
+  <button class="tab-btn" onclick="switchTab('strategy')">🧠 Strategy</button>
+  <button class="tab-btn" onclick="switchTab('replies')">💬 Reply Scripts</button>
+</div>
+
+<!-- ==============================
+     TAB 1: FIRE NOW
+============================== -->
+<div class="tab-content active" id="tab-fire">
+
+  <div class="card urgent" style="margin-bottom:1rem;">
+    <div class="card-title">🔥 Post These TODAY — Right Now</div>
+    <div class="card-desc">It's 1–3 PM Saturday. You just left Crestwood Vet. The Paw-ty crowd is home, scrolling Nextdoor. A recap post RIGHT NOW hits them while Tidy Tails is still fresh. This is the #1 conversion window of the weekend.</div>
+  </div>
+
+  <!-- POST A — Crestwood/Sunset Hills recap -->
+  <div class="post-block">
+    <div class="post-header">
+      <div>
+        <div class="post-label">Post A — Crestwood & Sunset Hills Nextdoor</div>
+        <div class="post-timing">🕐 Post NOW (1–3 PM today) · Most important post of the day</div>
+      </div>
+      <button class="posted-btn" id="posted-fire-a" onclick="togglePosted('fire-a')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-fire-a">If you were at the Crestwood Vet adoption event this morning — hey, that was us with the Tidy Tails table! 🐾
+
+We're the local dog poop removal service. Not a franchise, just me — I live here in the area and clean up yards every week.
+
+For anyone who grabbed a flyer or chatted with us: the First Visit FREE offer is still going through April 15.
+
+We service Crestwood, Sunset Hills, Kirkwood, Webster Groves, and surrounding areas. Flat rate — $70/month for 1-2 dogs, no contracts, no per-visit fees. You just pay one number every month.
+
+Text or call: (314) 850-7140
+Or book at: tidytailsstl.com
+
+If you adopted a dog today, the first visit is on us — no strings attached. Congrats on the new family member. 🐶</div>
+    <div class="post-meta">
+      <span class="badge b-red">🔥 Post Right Now</span>
+      <span class="badge b-nd">Nextdoor</span>
+      <span class="badge b-green">Event Recap</span>
+      <span class="badge b-orange">First Visit Free Offer</span>
+      <button class="copy-btn" onclick="copyPost('body-fire-a', this)">📋 Copy Post</button>
+    </div>
+  </div>
+
+  <!-- POST B — Kirkwood/Webster (broader south county) -->
+  <div class="post-block">
+    <div class="post-header">
+      <div>
+        <div class="post-label">Post B — Kirkwood & Webster Groves Nextdoor</div>
+        <div class="post-timing">🕑 Post 2–4 PM today or Sunday morning · 2nd highest value</div>
+      </div>
+      <button class="posted-btn" id="posted-fire-b" onclick="togglePosted('fire-b')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-fire-b">Hey neighbors — just did the Crestwood Vet adoption event this morning and wanted to introduce myself to the Kirkwood/Webster side too.
+
+I run Tidy Tails — local dog waste removal. This is my full-time gig, not a side hustle. Weekly or biweekly service, I text you before I come and again when I'm done with a yard photo so you can see the difference.
+
+Flat pricing: $70/month for 1-2 dogs. That's it. No "per pile" fees, no contracts, no surprises.
+
+Why people hire us:
+✅ You stop dreading mowing the lawn
+✅ Kids can actually use the backyard
+✅ You stop doing the "shoe check" every time you go outside
+
+First visit is FREE if you sign up this month.
+
+📞 (314) 850-7140 · tidytailsstl.com</div>
+    <div class="post-meta">
+      <span class="badge b-orange">Post Today or Tomorrow AM</span>
+      <span class="badge b-nd">Nextdoor</span>
+      <span class="badge b-green">Soft Intro</span>
+      <button class="copy-btn" onclick="copyPost('body-fire-b', this)">📋 Copy Post</button>
+    </div>
+  </div>
+
+  <!-- POST C — North County (Florissant/Hazelwood) -->
+  <div class="post-block">
+    <div class="post-header">
+      <div>
+        <div class="post-label">Post C — Florissant & Hazelwood Nextdoor</div>
+        <div class="post-timing">📅 Schedule for Sunday or Monday · North County Conquest timing</div>
+      </div>
+      <button class="posted-btn" id="posted-fire-c" onclick="togglePosted('fire-c')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-fire-c">Honest question for anyone with dogs in Florissant or Hazelwood: are you having trouble finding a reliable pet waste service right now?
+
+A lot of people in the area have been reaching out after their old service disappeared or stopped showing up consistently. I started getting calls from North County this spring and decided to officially add Florissant and Hazelwood to my route.
+
+I'm TJ with Tidy Tails — local, not a franchise. I've been cleaning up yards in the STL area for over a year. 
+
+What I do:
+→ Show up every week on the same day
+→ Text before I come and after I'm done
+→ Send a yard photo when finished (so you know it's actually clean)
+→ Flat $70/month — 1-2 dogs, no contracts
+
+If you're in between services right now or just tired of doing it yourself, I'll do the first visit free so you can see what it's like.
+
+📞 (314) 850-7140 · tidytailsstl.com</div>
+    <div class="post-meta">
+      <span class="badge b-blue">Sunday or Monday</span>
+      <span class="badge b-nd">Nextdoor</span>
+      <span class="badge b-purple">Orphaned Customer Hook</span>
+      <button class="copy-btn" onclick="copyPost('body-fire-c', this)">📋 Copy Post</button>
+    </div>
+  </div>
+
+  <!-- POST D — Spring cleanup hook (evergreen, any neighborhood) -->
+  <div class="post-block">
+    <div class="post-header">
+      <div>
+        <div class="post-label">Post D — Spring Cleanup (Any Neighborhood)</div>
+        <div class="post-timing">📅 Use any time this week · Evergreen seasonal hook</div>
+      </div>
+      <button class="posted-btn" id="posted-fire-d" onclick="togglePosted('fire-d')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-fire-d">Spring tax in St. Louis: everything that accumulated under the snow all winter is now very, very visible. 😅
+
+I'm TJ — I run Tidy Tails, a local dog waste removal service. Every March I get a wave of people who open their back door for the first time since November and... yeah.
+
+One-time deep clean: $45 flat (1-2 dogs)
+Or skip the annual panic and go weekly: $70/month
+
+I text when I'm on my way and send a yard photo when done. Local, not a franchise. Been doing this in the STL area for over a year.
+
+Spring slots are going fast — first visit is free if you want to try weekly service.
+
+📞 (314) 850-7140</div>
+    <div class="post-meta">
+      <span class="badge b-yellow">Any Time This Week</span>
+      <span class="badge b-nd">Nextdoor</span>
+      <span class="badge b-green">Spring Seasonal</span>
+      <button class="copy-btn" onclick="copyPost('body-fire-d', this)">📋 Copy Post</button>
+    </div>
+  </div>
+
+  <!-- Quick timing guide -->
+  <div class="card nd">
+    <div class="card-title">📋 Today's Fire Order</div>
+    <div style="margin-top:0.5rem;">
+      <div class="timeline-item">
+        <div class="timeline-dot td-hot">1</div>
+        <div class="timeline-text">
+          <strong>1–3 PM TODAY → Post A (Crestwood/Sunset Hills)</strong>
+          <p>Paw-ty recap while the event is fresh. Highest urgency. Anyone who met you and Googled "that dog poop guy" → finds this post.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot td-warm">2</div>
+        <div class="timeline-text">
+          <strong>3–5 PM today or Sunday AM → Post B (Kirkwood/Webster)</strong>
+          <p>Adjacent neighborhoods to South County. Same event halo, different community board. Spreads the reach.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot td-cool">3</div>
+        <div class="timeline-text">
+          <strong>Sunday or Monday → Post C (Florissant/Hazelwood)</strong>
+          <p>North County conquest timing. Don't post same day as A & B — space it out for algorithm freshness.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot td-nd">4</div>
+        <div class="timeline-text">
+          <strong>Any time this week → Post D (Spring Cleanup)</strong>
+          <p>Evergreen seasonal hook. Rotate through any neighborhood you're not already in. Never goes stale in March.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==============================
+     TAB 2: WEEKLY ENGINE
+============================== -->
+<div class="tab-content" id="tab-weekly">
+
+  <div class="card nd">
+    <div class="card-title">📅 The Weekly Nextdoor Cadence (15 min/week)</div>
+    <div class="card-desc">TJ is "already posting" on Nextdoor — this turns that into a system. One post per neighborhood, rotated weekly, 8 neighborhoods = 8 weeks of unique content before you repeat. The algorithm rewards consistent activity in the same community.</div>
+  </div>
+
+  <div class="sec-head">8 Neighborhood Rotation — Post 1x Each Per Month</div>
+
+  <div class="grid-2">
+    <div class="card">
+      <div class="card-title">🏘️ Crestwood / Sunset Hills</div>
+      <div class="card-desc">South County home base. Paw-ty event was here. Post 1-2x/month. Highest conversion zone right now.</div>
+      <div style="margin-top:0.5rem;"><span class="nbhd-tag">63126</span><span class="nbhd-tag">63127</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🏡 Kirkwood / Webster Groves</div>
+      <div class="card-desc">Adjacent to South County. High dog-owner density, suburban yards, middle-to-upper income. Strong fit.</div>
+      <div style="margin-top:0.5rem;"><span class="nbhd-tag">63122</span><span class="nbhd-tag">63119</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌳 Chesterfield / Ballwin</div>
+      <div class="card-desc">West County premium. Large lots, multiple dogs, dual-income households. Highest income = least price-sensitive.</div>
+      <div style="margin-top:0.5rem;"><span class="nbhd-tag">63017</span><span class="nbhd-tag">63011</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🦊 Creve Coeur / Town & Country</div>
+      <div class="card-desc">Ultra-premium West County. Low Nextdoor noise = easier to get seen. Worth testing even without current customers here.</div>
+      <div style="margin-top:0.5rem;"><span class="nbhd-tag">63141</span><span class="nbhd-tag">63131</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🏙️ Florissant / Hazelwood</div>
+      <div class="card-desc">North County conquest territory. Zero dominant competitors. "Orphaned customer" hook resonates hardest here. Priority for week of March 30.</div>
+      <div style="margin-top:0.5rem;"><span class="nbhd-tag">63031</span><span class="nbhd-tag">63042</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🌆 Ferguson / Bridgeton</div>
+      <div class="card-desc">North County expansion zone. Same conquest strategy. Lower-income = price sensitivity higher, lead with value & simplicity.</div>
+      <div style="margin-top:0.5rem;"><span class="nbhd-tag">63135</span><span class="nbhd-tag">63044</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🐾 Mehlville / Oakville</div>
+      <div class="card-desc">Deep South County. High dog ownership, family neighborhoods, somewhat underserved. Good adjacent expansion zone after current clusters fill.</div>
+      <div style="margin-top:0.5rem;"><span class="nbhd-tag">63125</span><span class="nbhd-tag">63129</span></div>
+    </div>
+    <div class="card">
+      <div class="card-title">🔵 Wildwood / Ellisville</div>
+      <div class="card-desc">Outer West County. Larger lots = more accumulation. Less competition this far out. Route-math only makes sense if you cluster 3+ customers here.</div>
+      <div style="margin-top:0.5rem;"><span class="nbhd-tag">63005</span><span class="nbhd-tag">63011</span></div>
+    </div>
+  </div>
+
+  <div class="sec-head">Weekly Schedule (Rotate Neighborhoods)</div>
+  <div class="card">
+    <table style="width:100%;border-collapse:collapse;font-size:0.78rem;">
+      <thead>
+        <tr style="color:var(--text2);">
+          <th style="text-align:left;padding:0.4rem 0.5rem;border-bottom:1px solid var(--border);">Week</th>
+          <th style="text-align:left;padding:0.4rem 0.5rem;border-bottom:1px solid var(--border);">Post Focus</th>
+          <th style="text-align:left;padding:0.4rem 0.5rem;border-bottom:1px solid var(--border);">Hook Type</th>
+          <th style="text-align:left;padding:0.4rem 0.5rem;border-bottom:1px solid var(--border);">Best Day</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td style="padding:0.4rem 0.5rem;">Mar 28–31</td><td style="padding:0.4rem 0.5rem;color:var(--green);">🐾 Crestwood + Kirkwood</td><td style="padding:0.4rem 0.5rem;">Paw-ty recap + Spring cleanup</td><td style="padding:0.4rem 0.5rem;">Sat (TODAY)</td></tr>
+        <tr style="background:rgba(255,255,255,0.02);"><td style="padding:0.4rem 0.5rem;">Apr 1–7</td><td style="padding:0.4rem 0.5rem;color:var(--nd);">🏙️ Florissant + Hazelwood</td><td style="padding:0.4rem 0.5rem;">Orphaned customer + North County launch</td><td style="padding:0.4rem 0.5rem;">Mon/Tue</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Apr 8–14</td><td style="padding:0.4rem 0.5rem;color:var(--orange);">🌳 Chesterfield + Ballwin</td><td style="padding:0.4rem 0.5rem;">Large yard / premium service angle</td><td style="padding:0.4rem 0.5rem;">Wed/Thu</td></tr>
+        <tr style="background:rgba(255,255,255,0.02);"><td style="padding:0.4rem 0.5rem;">Apr 15–21</td><td style="padding:0.4rem 0.5rem;">🦊 Creve Coeur / TC</td><td style="padding:0.4rem 0.5rem;">Before-listing prep / realtor angle</td><td style="padding:0.4rem 0.5rem;">Mon</td></tr>
+        <tr><td style="padding:0.4rem 0.5rem;">Apr 22–28</td><td style="padding:0.4rem 0.5rem;">🐾 Mehlville + Oakville</td><td style="padding:0.4rem 0.5rem;">Earth Day / eco angle + spring cleanup</td><td style="padding:0.4rem 0.5rem;">Earth Day 4/22</td></tr>
+        <tr style="background:rgba(255,255,255,0.02);"><td style="padding:0.4rem 0.5rem;">May</td><td style="padding:0.4rem 0.5rem;">Rotate all — post 2x/mo each</td><td style="padding:0.4rem 0.5rem;">Summer prep, Mother's Day she shed angle</td><td style="padding:0.4rem 0.5rem;">Weekends</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="sec-head">Nextdoor Algo Rules (What Actually Works)</div>
+  <div class="card">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.75rem;font-size:0.78rem;">
+      <div>
+        <div style="color:var(--green);font-weight:700;margin-bottom:0.4rem;">✅ DO</div>
+        <ul style="list-style:none;color:var(--text2);line-height:1.8;">
+          <li>• Post as yourself, first person ("I'm TJ...")</li>
+          <li>• Mention the specific neighborhood in the post</li>
+          <li>• Use a conversational opening, not "Introducing!"</li>
+          <li>• Include a real phone number (not just a website)</li>
+          <li>• Reply to every comment within 2 hours</li>
+          <li>• Post in Neighborhood > For Sale/Free section OR General</li>
+          <li>• Space posts 5–7 days apart per neighborhood</li>
+          <li>• Start with a question or relatable scenario</li>
+        </ul>
+      </div>
+      <div>
+        <div style="color:var(--red);font-weight:700;margin-bottom:0.4rem;">❌ DON'T</div>
+        <ul style="list-style:none;color:var(--text2);line-height:1.8;">
+          <li>• Don't post the same copy to multiple neighborhoods</li>
+          <li>• Don't use "Introducing my business!" openers</li>
+          <li>• Don't post more than 1x/week per community</li>
+          <li>• Don't ignore comments (kills visibility)</li>
+          <li>• Don't use all caps or excessive emojis</li>
+          <li>• Don't post and ghost — check for replies</li>
+          <li>• Don't lead with price in the first sentence</li>
+          <li>• Don't make it sound like an ad — sound like a neighbor</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==============================
+     TAB 3: POST LIBRARY
+============================== -->
+<div class="tab-content" id="tab-posts">
+
+  <div class="card nd" style="margin-bottom:1rem;">
+    <div class="card-title">📝 32 Ready-to-Post Nextdoor Variations</div>
+    <div class="card-desc">All posts are written in TJ's voice. Each targets a specific angle or neighborhood. Copy, drop in your local community board, and post. Rotate — never post the same copy twice in the same neighborhood within 90 days.</div>
+  </div>
+
+  <div class="sec-head">🌱 Spring / Seasonal Hooks (Use March–May)</div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Spring-1 — "Winter Reveal"</div></div>
+      <button class="posted-btn" id="posted-lib-s1" onclick="togglePosted('lib-s1')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-s1">The snow finally melted and... well. Winter does a number on a backyard when you've got dogs.
+
+I run Tidy Tails — local pet waste removal. I do a one-time deep clean for $45 or weekly service at $70/month. I text before I come, send a photo when done.
+
+If your yard is in recovery mode right now, I'm happy to do the first visit free.
+
+📞 (314) 850-7140</div>
+    <div class="post-meta">
+      <span class="badge b-green">Spring</span><span class="badge b-nd">Any Neighborhood</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-s1', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Spring-2 — "Spring Tax"</div></div>
+      <button class="posted-btn" id="posted-lib-s2" onclick="togglePosted('lib-s2')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-s2">There's a St. Louis tradition I call the Spring Tax — it's when you open the back door in March and realize you've got 4 months of frozen deposits waiting for you. 😅
+
+I'm TJ — I run Tidy Tails. I do weekly dog waste removal for $70/month flat rate. No per-pile fees, no contracts, one number every month.
+
+First visit free if you want to see what it looks like.
+
+📞 (314) 850-7140 · tidytailsstl.com</div>
+    <div class="post-meta">
+      <span class="badge b-green">Spring</span><span class="badge b-nd">Any Neighborhood</span><span class="badge b-yellow">Humor Hook</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-s2', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Spring-3 — "Cookout Season Coming"</div></div>
+      <button class="posted-btn" id="posted-lib-s3" onclick="togglePosted('lib-s3')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-s3">Anyone else already thinking about backyard cookouts but then remembering the yard situation with two dogs? 😬
+
+I do weekly dog waste removal. $70/month, flat rate. Yard is clean every week, consistently, before your guests arrive.
+
+Local service — I'm in the [NEIGHBORHOOD] area. Text me if you want to try it free first.
+
+📞 (314) 850-7140</div>
+    <div class="post-meta">
+      <span class="badge b-green">Spring</span><span class="badge b-orange">Cookout Season</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-s3', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="sec-head">🏠 Neighborhood-Specific Intros</div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Intro-1 — General Neighbor Intro</div></div>
+      <button class="posted-btn" id="posted-lib-i1" onclick="togglePosted('lib-i1')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-i1">Hey [NEIGHBORHOOD] — quick intro.
+
+I'm TJ. I run Tidy Tails, a dog waste removal service. Weekly cleanups, $70/month flat (1-2 dogs), no contracts.
+
+The short version of why people hire me: you get your backyard back. The shoe check every time you walk outside gets old. Kids can play out there again. Mowing without obstacle mode is a thing.
+
+I text you before I come and send a yard photo when I'm done so you can see the difference.
+
+First visit is free — no pressure to sign up after.
+
+📞 (314) 850-7140 · tidytailsstl.com</div>
+    <div class="post-meta">
+      <span class="badge b-nd">Any Neighborhood</span><span class="badge b-blue">Evergreen</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-i1', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Intro-2 — "Multi-Dog Household"</div></div>
+      <button class="posted-btn" id="posted-lib-i2" onclick="togglePosted('lib-i2')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-i2">Anyone else in the "we have three dogs and deeply regret all our life choices" club? No? Just us? 😂
+
+I'm TJ — I run a dog waste removal service. $70/month for 1-2 dogs, $80 for 3, $90 for 4+. Flat rate, no contracts.
+
+Most of my customers have multiple dogs. It's the math that eventually wins — at some point the yard just can't keep up on its own. 
+
+Serving [NEIGHBORHOOD] and surrounding areas. First visit free.
+
+📞 (314) 850-7140</div>
+    <div class="post-meta">
+      <span class="badge b-nd">Any Neighborhood</span><span class="badge b-yellow">Multi-Dog Humor</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-i2', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Intro-3 — North County / Orphaned Customer</div></div>
+      <button class="posted-btn" id="posted-lib-i3" onclick="togglePosted('lib-i3')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-i3">Posting in [FLORISSANT/HAZELWOOD] because I've had a lot of people reach out from this area after their old pet waste service went away.
+
+I'm TJ — I run Tidy Tails. I officially added North County to my route this spring because the demand is there and there's not a reliable service covering it.
+
+Weekly: $70/month flat · Biweekly: $50/month · One-time deep clean: $45
+
+Local, not a franchise. Been doing this in STL for over a year.
+
+If you're in between services or just looking for a reliable replacement, I'll do the first visit free.
+
+📞 (314) 850-7140</div>
+    <div class="post-meta">
+      <span class="badge b-purple">Orphaned Customers</span><span class="badge b-nd">Florissant/Hazelwood</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-i3', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="sec-head">🎯 Pain-Point Hooks</div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Pain-1 — "The Shoe Check"</div></div>
+      <button class="posted-btn" id="posted-lib-p1" onclick="togglePosted('lib-p1')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-p1">If you've ever walked to your car in the dark and heard that sound... you know.
+
+I do weekly dog waste removal. $70/month. You stop doing the shoe check. Your yard is clean every week. That's it.
+
+First visit free. 📞 (314) 850-7140</div>
+    <div class="post-meta">
+      <span class="badge b-orange">Pain Point</span><span class="badge b-nd">Any Neighborhood</span><span class="badge b-green">Short Post</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-p1', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Pain-2 — "Mow Without Thinking"</div></div>
+      <button class="posted-btn" id="posted-lib-p2" onclick="togglePosted('lib-p2')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-p2">Mowing season is almost here. You know what makes mowing significantly less enjoyable? Having to do the pre-mow scan first.
+
+I do weekly dog waste removal — $70/month. Show up, clean the whole yard, text you a photo. You just mow.
+
+📞 (314) 850-7140 · First visit free</div>
+    <div class="post-meta">
+      <span class="badge b-orange">Pain Point</span><span class="badge b-green">Spring Timing</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-p2', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Pain-3 — "Kid Tested"</div></div>
+      <button class="posted-btn" id="posted-lib-p3" onclick="togglePosted('lib-p3')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-p3">Scenario: kid runs outside to play. You immediately yell "WATCH WHERE YOU'RE—" ... too late.
+
+I do weekly dog waste removal. $70/month flat, no contracts. Kids can use the backyard again without a hazmat briefing.
+
+First visit free. Local service in [NEIGHBORHOOD] area.
+
+📞 (314) 850-7140</div>
+    <div class="post-meta">
+      <span class="badge b-orange">Pain Point</span><span class="badge b-yellow">Humor</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-p3', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="sec-head">💰 Price & Value Anchors</div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Value-1 — "$2.30/Day" Math</div></div>
+      <button class="posted-btn" id="posted-lib-v1" onclick="togglePosted('lib-v1')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-v1">Dog waste removal math that surprised me when I laid it out:
+
+$70/month ÷ 30 days = $2.33/day
+
+Less than a soda. Your yard stays clean all month. Weekly service.
+
+I'm TJ — I run Tidy Tails. Flat rate, no contracts, I text before I come and send a yard photo when done.
+
+First visit is free if you want to try it.
+📞 (314) 850-7140</div>
+    <div class="post-meta">
+      <span class="badge b-green">Price Anchor</span><span class="badge b-nd">Any Neighborhood</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-v1', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Value-2 — "Flat Rate vs Per-Visit"</div></div>
+      <button class="posted-btn" id="posted-lib-v2" onclick="togglePosted('lib-v2')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-v2">Difference between us and other dog waste services in St. Louis:
+
+Most charge $18-22 per visit. If you have them come weekly, that's $72-88/month and it varies.
+
+I charge $70/month. Flat. One number. Every month. Doesn't go up if your dog is having a productive week.
+
+Local owner, not a franchise. Serving [NEIGHBORHOOD] area.
+
+📞 (314) 850-7140 · tidytailsstl.com</div>
+    <div class="post-meta">
+      <span class="badge b-green">Price Anchor</span><span class="badge b-orange">Competitor Contrast</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-v2', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="sec-head">⭐ Social Proof Hooks</div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Proof-1 — "Review Shoutout"</div></div>
+      <button class="posted-btn" id="posted-lib-pr1" onclick="togglePosted('lib-pr1')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-pr1">Got a review this week that made my day: "I didn't realize how much mental real estate the dog poop situation was taking up until it was just... gone."
+
+I'm TJ — Tidy Tails, weekly dog waste removal in the STL area. $70/month flat. No contracts.
+
+📞 (314) 850-7140 · First visit free</div>
+    <div class="post-meta">
+      <span class="badge b-blue">Social Proof</span><span class="badge b-nd">Any Neighborhood</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-pr1', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Proof-2 — "Real Customer Story"</div></div>
+      <button class="posted-btn" id="posted-lib-pr2" onclick="togglePosted('lib-pr2')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-pr2">One of my [KIRKWOOD/FLORISSANT/AREA] customers texted me last week: "My kids are actually playing in the backyard again."
+
+That's the whole business case in one sentence.
+
+I do weekly dog waste removal — $70/month, no contracts. Text before I come, photo when done.
+
+📞 (314) 850-7140</div>
+    <div class="post-meta">
+      <span class="badge b-blue">Social Proof</span><span class="badge b-green">Kids Angle</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-pr2', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="sec-head">🐕 New Dog / Adopter Angle</div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Adopt-1 — "New Dog Owner"</div></div>
+      <button class="posted-btn" id="posted-lib-a1" onclick="togglePosted('lib-a1')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-a1">If you recently adopted a dog (hi Crestwood Vet Paw-ty folks 👋) — welcome to the backyard management era of your life.
+
+For anyone who wants to skip straight to "clean yard, no problem": I do weekly dog waste removal for $70/month. First cleanup is free, no obligation.
+
+I'm TJ — I run Tidy Tails. Local, not a franchise. Text or call: 📞 (314) 850-7140</div>
+    <div class="post-meta">
+      <span class="badge b-nd">Post-Paw-ty</span><span class="badge b-green">New Adopters</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-a1', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Adopt-2 — "Second Dog" Upgrade</div></div>
+      <button class="posted-btn" id="posted-lib-a2" onclick="togglePosted('lib-a2')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-a2">There's a moment with a second dog where you realize the math has changed. What was manageable with one is... not with two.
+
+I do weekly dog waste removal — $70/month for 1-2 dogs, $80 for 3. Flat rate, no per-pile tracking nonsense.
+
+Local in [NEIGHBORHOOD]. First visit free.
+
+📞 (314) 850-7140</div>
+    <div class="post-meta">
+      <span class="badge b-nd">Any Neighborhood</span><span class="badge b-orange">Multi-Dog</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-a2', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="sec-head">🌿 Earth Day / Environmental Angle (Use April 22)</div>
+
+  <div class="post-block">
+    <div class="post-header">
+      <div><div class="post-label">Earth-1 — Earth Day EPA Angle</div></div>
+      <button class="posted-btn" id="posted-lib-e1" onclick="togglePosted('lib-e1')">☐ Mark Posted</button>
+    </div>
+    <div class="post-body" id="body-lib-e1">Earth Day random fact: the EPA classifies dog waste as an environmental pollutant in the same category as industrial waste and oil spills. It's one of the top contributors to water quality issues in suburban watersheds.
+
+None of this is to make you feel bad — your dog can't clean up after themselves. But it is a good reminder that regular pickup isn't just about your yard. It's about the stormwater that runs off into the creek behind it.
+
+I run Tidy Tails — weekly pickup, $70/month. Happy Earth Day.
+
+📞 (314) 850-7140</div>
+    <div class="post-meta">
+      <span class="badge b-green">Earth Day</span><span class="badge b-blue">Educational</span>
+      <button class="copy-btn" onclick="copyPost('body-lib-e1', this)">📋 Copy</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==============================
+     TAB 4: STRATEGY
+============================== -->
+<div class="tab-content" id="tab-strategy">
+
+  <div class="sec-head">Why Nextdoor is the #1 Channel Right Now</div>
+  <div class="grid-2">
+    <div class="card nd">
+      <div class="card-title">🆓 $0 Cost Forever</div>
+      <div class="card-desc">No ad budget needed. Every lead from Nextdoor is free. A $70/month customer from Nextdoor has $1,260 LTV with zero acquisition cost. Compare: FB ads CAC is $40-80. Nextdoor CAC is $0.</div>
+    </div>
+    <div class="card nd">
+      <div class="card-title">📍 Hyper-Local Trust</div>
+      <div class="card-desc">Nextdoor users are verified by address. "A neighbor posted this" reads 10x more credible than a Facebook ad to the same person. The trust transfer is automatic.</div>
+    </div>
+    <div class="card nd">
+      <div class="card-title">🔁 Virality Built-In</div>
+      <div class="card-desc">One "Does anyone know a good dog waste service?" comment can trigger 3-10 replies, all recommending you. This is free word-of-mouth at neighborhood scale.</div>
+    </div>
+    <div class="card nd">
+      <div class="card-title">📈 Compounds Over Time</div>
+      <div class="card-desc">Consistent posting builds "that's the local dog poop guy" brand recognition. After 3-4 months, you become the automatic recommendation when anyone asks. It stacks.</div>
+    </div>
+  </div>
+
+  <div class="sec-head">The Nextdoor Flywheel (3-Stage Model)</div>
+  <div class="card">
+    <div class="timeline-item">
+      <div class="timeline-dot td-hot" style="background:rgba(255,107,53,0.2);color:var(--orange);">1</div>
+      <div class="timeline-text">
+        <strong>Stage 1: Awareness (Month 1–2) → Post + Reply</strong>
+        <p>Post 1-2x/week across neighborhoods. Goal: become the name that shows up. Don't expect immediate conversions — you're buying recognition at $0 cost. Reply to EVERY comment within 2 hours. Nextdoor shows active commenters higher in feeds.</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot td-warm" style="background:rgba(0,179,71,0.15);color:var(--nd);">2</div>
+      <div class="timeline-text">
+        <strong>Stage 2: Recommendation Engine (Month 2–4) → Ask for Mentions</strong>
+        <p>Once 2-3 customers are on Nextdoor, ask them to mention you when anyone in the neighborhood asks about dog services. One organic recommendation is worth 10 ads. Text: "Hey [name], if you ever see someone on Nextdoor asking about dog waste pickup, would you mind dropping my name? 🙌"</p>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot td-cool" style="background:rgba(59,130,246,0.15);color:var(--blue);">3</div>
+      <div class="timeline-text">
+        <strong>Stage 3: Default Brand (Month 4+) → You Become the Answer</strong>
+        <p>Tidy Tails becomes the neighborhood's default answer for "who does dog waste removal?" You barely have to post — customers post for you. Focus on quality and reviews to reinforce the loop.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec-head">Handling "Does anyone know a good dog poop service?" Posts</div>
+  <div class="card hot">
+    <div class="card-title">🔔 Set Up Keyword Alerts</div>
+    <div class="card-desc" style="margin-bottom:0.75rem;">Nextdoor doesn't have keyword alerts natively, but you can check it 1x/day or ask Jamie to watch for these search terms in the app:</div>
+    <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+      <span class="nbhd-tag">dog waste</span>
+      <span class="nbhd-tag">dog poop</span>
+      <span class="nbhd-tag">pooper scooper</span>
+      <span class="nbhd-tag">pet waste</span>
+      <span class="nbhd-tag">yard cleanup</span>
+      <span class="nbhd-tag">dog service</span>
+      <span class="nbhd-tag">scoop</span>
+    </div>
+    <div style="margin-top:0.75rem;color:var(--text2);font-size:0.77rem;">When you see a post asking: reply within 1 hour. Speed wins. Being 3rd to reply converts almost as well as being 1st.</div>
+  </div>
+
+  <div class="sec-head">What Success Looks Like (Milestones)</div>
+  <div class="card">
+    <div style="font-size:0.78rem;">
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.6rem;">
+        <span style="background:rgba(255,107,53,0.2);color:var(--orange);padding:0.2rem 0.5rem;border-radius:4px;font-size:0.65rem;font-weight:700;white-space:nowrap;">MONTH 1</span>
+        <span style="color:var(--text2);">10–15 posts across 4 neighborhoods. 3–5 comment threads. 1–2 leads. One conversion = break even on all time spent.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.6rem;">
+        <span style="background:rgba(0,179,71,0.15);color:var(--nd);padding:0.2rem 0.5rem;border-radius:4px;font-size:0.65rem;font-weight:700;white-space:nowrap;">MONTH 2</span>
+        <span style="color:var(--text2);">2–4 customers from Nextdoor. Start getting tagged in "recommendations" posts. Posting drops to 1x/week — the brand is doing work for you.</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:0.6rem;">
+        <span style="background:rgba(59,130,246,0.15);color:var(--blue);padding:0.2rem 0.5rem;border-radius:4px;font-size:0.65rem;font-weight:700;white-space:nowrap;">MONTH 3+</span>
+        <span style="color:var(--text2);">Customers recommending you unprompted. 5–8 Nextdoor customers total. This channel alone = $4,200–6,720 annual recurring at zero cost.</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==============================
+     TAB 5: REPLY SCRIPTS
+============================== -->
+<div class="tab-content" id="tab-replies">
+
+  <div class="card nd" style="margin-bottom:1rem;">
+    <div class="card-title">💬 Reply Scripts — For Comments on Your Posts + Recommendation Threads</div>
+    <div class="card-desc">How you reply to comments is as important as the post itself. Nextdoor's algorithm surfaces posts with active comment threads. Every reply you write extends the post's reach. Never ignore a comment — even a thumbs up deserves a reply.</div>
+  </div>
+
+  <div class="sec-head">When Someone Comments "How much?"</div>
+  <div class="post-block">
+    <div class="post-body" id="reply-1">$70/month for 1-2 dogs — weekly service. $80 for 3, $90 for 4+. No contracts, no per-visit fees. Just one flat number every month. First visit is free if you want to give it a shot! 📞 (314) 850-7140</div>
+    <div class="post-meta"><button class="copy-btn" onclick="copyPost('reply-1', this)">📋 Copy</button></div>
+  </div>
+
+  <div class="sec-head">When Someone Tags You in a "Recommendations" Thread</div>
+  <div class="post-block">
+    <div class="post-body" id="reply-2">Hey [NAME], thanks for the tag! 👋 [TO PERSON ASKING] — happy to help! We service [NEIGHBORHOOD] area. $70/month flat, first visit is free so you can see what it looks like. Text me at (314) 850-7140 whenever you're ready!</div>
+    <div class="post-meta"><button class="copy-btn" onclick="copyPost('reply-2', this)">📋 Copy</button></div>
+  </div>
+
+  <div class="sec-head">When Someone Says "I've been thinking about this"</div>
+  <div class="post-block">
+    <div class="post-body" id="reply-3">Honestly the first visit being free removes all the risk — if you're on the fence, just let me do one visit and you can decide from there. Most people who try it don't go back! Text me any time: (314) 850-7140 🐾</div>
+    <div class="post-meta"><button class="copy-btn" onclick="copyPost('reply-3', this)">📋 Copy</button></div>
+  </div>
+
+  <div class="sec-head">When Someone Says "My yard isn't that big / I only have one small dog"</div>
+  <div class="post-block">
+    <div class="post-body" id="reply-4">No worries — small yard, small dog is actually the easiest setup! Same flat $70/month. The service is really about consistency — having it taken care of every week so it never piles up. Free first visit if you want to try it with no commitment. 😊</div>
+    <div class="post-meta"><button class="copy-btn" onclick="copyPost('reply-4', this)">📋 Copy</button></div>
+  </div>
+
+  <div class="sec-head">When Someone Asks "Are you legit / do you have reviews?"</div>
+  <div class="post-block">
+    <div class="post-body" id="reply-5">Yep! You can check us out on Google — search Tidy Tails STL. Over a year in business, all 5-star reviews from real customers in the area. I'm TJ — local, not a franchise. Happy to give you a few customer contacts if you want a reference before signing up. 📞 (314) 850-7140</div>
+    <div class="post-meta"><button class="copy-btn" onclick="copyPost('reply-5', this)">📋 Copy</button></div>
+  </div>
+
+  <div class="sec-head">When Someone Says "I do it myself / too expensive"</div>
+  <div class="post-block">
+    <div class="post-body" id="reply-6">Totally fair! It's $2.33/day to never think about it — but for people who stay on top of it themselves, it's definitely not necessary. If your situation ever changes (more dogs, busier schedule, etc.) we're here! First visit always free to try. 🐾</div>
+    <div class="post-meta"><button class="copy-btn" onclick="copyPost('reply-6', this)">📋 Copy</button></div>
+  </div>
+
+  <div class="sec-head">When Someone Asks "Do you service [specific area]?"</div>
+  <div class="post-block">
+    <div class="post-body" id="reply-7">Yes! [AREA] is on our route. Drop me a text at (314) 850-7140 and I can confirm your specific street — if it works with our existing stops it's a yes for sure. First visit free to start!</div>
+    <div class="post-meta"><button class="copy-btn" onclick="copyPost('reply-7', this)">📋 Copy</button></div>
+  </div>
+
+  <div class="sec-head">Thank-You Reply (after positive comment on your post)</div>
+  <div class="post-block">
+    <div class="post-body" id="reply-8">Thanks [NAME]! Really appreciate that — means a lot coming from a neighbor. If you ever need us or know someone who does, feel free to send them my way! 🙏</div>
+    <div class="post-meta"><button class="copy-btn" onclick="copyPost('reply-8', this)">📋 Copy</button></div>
+  </div>
+
+</div>
+
+<script>
+// Tab switching
+function switchTab(id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  const tabs = ['fire','weekly','posts','strategy','replies'];
+  const idx = tabs.indexOf(id);
+  document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+}
+
+// Copy post
+function copyPost(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Toggle posted
+function togglePosted(id) {
+  const btn = document.getElementById('posted-' + id);
+  const key = 'nd_posted_' + id;
+  const isDone = localStorage.getItem(key) === '1';
+  if (isDone) {
+    localStorage.removeItem(key);
+    btn.textContent = '☐ Mark Posted';
+    btn.classList.remove('done');
+  } else {
+    localStorage.setItem(key, '1');
+    btn.textContent = '✅ Posted';
+    btn.classList.add('done');
+  }
+  updateStats();
+}
+
+// Stats
+function updateStats() {
+  let posted = 0;
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith('nd_posted_') && localStorage.getItem(key) === '1') posted++;
+  }
+  document.getElementById('stat-posted').textContent = posted;
+}
+
+// Leads tracker (simple prompt)
+document.getElementById('stat-leads').addEventListener('click', () => {
+  const cur = parseInt(localStorage.getItem('nd_leads') || '0');
+  const n = prompt('How many leads have come from Nextdoor?', cur);
+  if (n !== null && !isNaN(parseInt(n))) {
+    localStorage.setItem('nd_leads', parseInt(n));
+    document.getElementById('stat-leads').textContent = parseInt(n);
+  }
+});
+
+// Restore on load
+document.addEventListener('DOMContentLoaded', () => {
+  updateStats();
+  const leads = localStorage.getItem('nd_leads');
+  if (leads) document.getElementById('stat-leads').textContent = leads;
+
+  // Restore posted state
+  const allIds = ['fire-a','fire-b','fire-c','fire-d',
+    'lib-s1','lib-s2','lib-s3','lib-i1','lib-i2','lib-i3',
+    'lib-p1','lib-p2','lib-p3','lib-v1','lib-v2','lib-pr1','lib-pr2',
+    'lib-a1','lib-a2','lib-e1'];
+  allIds.forEach(id => {
+    if (localStorage.getItem('nd_posted_' + id) === '1') {
+      const btn = document.getElementById('posted-' + id);
+      if (btn) { btn.textContent = '✅ Posted'; btn.classList.add('done'); }
+    }
+  });
+});
+</script>
+</body>
+</html>

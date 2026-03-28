@@ -2,6 +2,30 @@
 
 ---
 
+### Saturday 1:04 PM — Nextdoor Playbook (Hourly Task)
+- **1:04 PM** 🏘️ Built full Nextdoor Neighborhood Playbook — the missing structured channel system for the highest-ROI free acquisition channel
+  - **File:** `dashboard/nextdoor-playbook.html` — 5-tab Nextdoor command center
+  - **Why this task:** It's 1 PM — Paw-ty just ended. TJ is driving home with fresh leads. The exact 1-3 PM window when a post-event Nextdoor recap converts people who met him but didn't stop is RIGHT NOW. Plus TJ is "already posting" on Nextdoor without a system — this turns ad hoc into an engine.
+  - **What's built:**
+    - **Tab 1 — Fire Now (4 posts, timed for today):**
+      - Post A: Crestwood/Sunset Hills Paw-ty recap — "that was us with the Tidy Tails table" — post RIGHT NOW (1-3 PM window)
+      - Post B: Kirkwood/Webster Groves intro — adjacent south county, post 3-5 PM or Sunday AM
+      - Post C: Florissant/Hazelwood orphaned customer hook — post Sunday/Monday for North County launch timing
+      - Post D: Spring cleanup evergreen hook — use any neighborhood this week
+      - Priority timeline guide showing when to post each one for maximum algorithm reach
+    - **Tab 2 — Weekly Engine:** 8 neighborhood rotation system (Crestwood/Sunset Hills, Kirkwood/Webster, Chesterfield/Ballwin, Creve Coeur/Town & Country, Florissant/Hazelwood, Ferguson/Bridgeton, Mehlville/Oakville, Wildwood/Ellisville). Weekly schedule grid through May. DO/DON'T Nextdoor algorithm rules (16 total). 15 min/week cadence.
+    - **Tab 3 — Post Library (32 posts):** Spring/seasonal hooks (3), Neighborhood intros (3), Pain-point hooks (3 — shoe check, mow season, kids), Price/value anchors (2 — $2.30/day math, flat vs per-visit comparison), Social proof (2), New dog/adopter angle (2), Earth Day (1 — EPA angle). All with Mark Posted toggles, localStorage persisted.
+    - **Tab 4 — Strategy:** Why Nextdoor is #1 channel ($0 cost, hyper-local trust, built-in virality, compounds). 3-stage Nextdoor flywheel (Awareness → Recommendation Engine → Default Brand). Keyword alert list (7 terms to watch for). Success milestones (Month 1: 1-2 leads → Month 2: 2-4 customers → Month 3+: passive recommendations).
+    - **Tab 5 — Reply Scripts (8):** "How much?", recommendation thread tag, "I've been thinking about this", "small yard / small dog", "legit / reviews?", "I do it myself", "do you service [area]?", thank-you reply.
+  - **Stats bar:** Posts Fired / Posts Ready (32) / Neighborhoods (8) / Leads Generated — all with localStorage tracking
+  - **Dashboard:** Added pulsing green "🏘️ NEXTDOOR PLAYBOOK — POST NOW" quick link in header + top alert card above Sunday Power Hour (timed for 1 PM window)
+  - **Why Nextdoor wins right now:** $0 CAC vs $40-80 for FB ads. Verified-address users = higher intent than Facebook. One comment thread extends reach exponentially. TJ's existing customer base can organically recommend him when neighbors ask — that flywheel is worth activating now, not in 3 months. 5 Nextdoor customers at $70/mo × 18 months = $6,300 LTV at zero acquisition cost.
+  - Committed + pushed ✅
+
+---
+
+---
+
 ### Saturday 12:06 PM — West County SEO Blog Post (Hourly Task)
 - **12:06 PM** 🌳 Wrote and published full SEO blog post targeting West County St. Louis — the highest-income market segment with no existing editorial coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-west-county-st-louis.html`
