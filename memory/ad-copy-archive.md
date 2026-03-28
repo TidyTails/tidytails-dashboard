@@ -114,6 +114,18 @@
 - Spring project checklist humor / cross it off
 - Dog owner stuff accumulation / pet gear overload
 
+## March 28, 2026 — 9 AM Daily (4 Ads)
+- **Shed-Mar178** — "The Wet Season Warning" — April rain prep, stuff outside, zero effort shed solves it
+- **Shed-Mar179** — "The Garage Audit" — Funny inventory list of what's in a typical STL garage, car outside
+- **Shed-Mar180** — "The Car Called" — Car's POV humor, garage taken over, hail urgency, no credit check
+- **Shed-Mar181** — "The Saturday Negotiation" — Procrastination loop humor, "maybe next weekend" relatable bit
+
+## Hooks Used (March 28 9AM — don't repeat 2 weeks)
+- April rain / wet season / stuff exposed outside
+- Funny garage inventory list (treadmill, old bikes, cousin's stuff)
+- Car's POV / "my car called" humor
+- Saturday morning procrastination negotiation loop
+
 ## March 28, 2026 — Weekend Shed Drop (5 Marketplace + 3 Instagram)
 - **Shed-Mar142** — "Tariff Lock" (Ad #1) — Lumber/steel tariffs April 2, lock in prices now
 - **Shed-Mar143** — "Done Stepping Over Stuff" (Ad #2) — Humor / garage chaos hook

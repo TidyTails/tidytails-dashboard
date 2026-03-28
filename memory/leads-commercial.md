@@ -1,5 +1,5 @@
 # Commercial Leads — Tidy Tails Pet Waste Removal
-*Last updated: March 24, 2026 9:00 AM*
+*Last updated: March 28, 2026 9:00 AM*
 *Status legend: New | Contacted | Quoted | Won | Lost*
 
 ---
@@ -1180,3 +1180,86 @@ Commercial pricing is different from residential. Here's what competitors charge
 - Pet waste station maintenance: $50-$75/month add-on
 
 **TJ's advantage:** Local, personal service. The big franchises (DoodyCalls, POOP 911) have overhead. TJ can undercut them and still make great margins.
+
+---
+
+## 🏙️ NEW LEADS BATCH — March 28, 2026 (9:00 AM) — Total: 85 leads
+
+### The Lofts at Euclid ⭐ NEW BUILD — CENTRAL WEST END
+- **Type:** Luxury Apartment Complex
+- **Address:** Central West End, St. Louis, MO 63108
+- **Contact:** Leasing Office
+- **Phone:** (314) 405-1800
+- **Why Good Fit:** Luxury dog-friendly lofts in CWE — one of STL's most walkable dog-dense neighborhoods. Rooftop terrace + outdoor courtyards. High-income renters. First mover on CWE luxury buildings opens that full submarket.
+- **Est. Monthly Value:** $250–$450/mo
+- **Found:** March 28, 2026
+- **Status:** New
+- **Pitch angle:** "The Central West End is the most dog-friendly neighborhood in St. Louis — your residents prove it every day. Professional weekly common area cleanup keeps your courtyards and terrace matching the premium experience you're selling. One flat monthly rate, no contract."
+
+---
+
+### Peabody Place Apartments ⭐ DOG PARK — TOWER GROVE
+- **Type:** Apartment Complex
+- **Address:** 2933 Magnolia Ave, St. Louis, MO 63116
+- **Contact:** Leasing Office
+- **Phone:** (314) 664-2400
+- **Why Good Fit:** Pet-friendly community in Tower Grove South with dedicated dog park. Tower Grove is a dog-walker neighborhood. South STL City market = untapped territory. Management invests in amenities = receptive to vendors.
+- **Est. Monthly Value:** $200–$350/mo
+- **Found:** March 28, 2026
+- **Status:** New
+- **Pitch angle:** "Tower Grove residents walk their dogs constantly — your dog park sees a lot of traffic. Professional weekly service keeps it clean and safe so residents actually want to use it. One flat monthly rate."
+
+---
+
+### Kingsland Ridge Apartments ⭐ LARGE COMPLEX — CHESTERFIELD
+- **Type:** Apartment Complex
+- **Address:** Chesterfield, MO 63017
+- **Contact:** Leasing Office
+- **Phone:** (636) 536-2900
+- **Why Good Fit:** Large pet-friendly complex near Chesterfield Valley, 200+ units. Adjacent to Chesterfield Dog Park. Affluent demographic. Anchors West County clustering with other Chesterfield leads already in pipeline.
+- **Est. Monthly Value:** $250–$450/mo
+- **Found:** March 28, 2026
+- **Status:** New
+- **Pitch angle:** "We're building our West County route and Chesterfield is the hub. Professional weekly cleanup keeps your grounds looking great. One vendor, one invoice."
+
+---
+
+### Dogtown Dog Daycare ⭐⭐ REFERRAL + SERVICE — MAPLEWOOD
+- **Type:** Dog Daycare / Boarding / Grooming
+- **Address:** 7434 Manchester Rd, Maplewood, MO 63143
+- **Contact:** Owner (walk in)
+- **Phone:** (314) 644-3647
+- **Why Good Fit:** Independent daycare in dog-central Maplewood. Outdoor turf play areas. Pairs with Sunnen Station apartment lead. Referral to Maplewood/Clayton/Brentwood dog owner clients is huge. First mover for the Manchester Rd corridor.
+- **Est. Monthly Value:** $150–$300/mo + referrals
+- **Found:** March 28, 2026
+- **Status:** New
+- **Pitch angle:** "We want to handle your outdoor cleanup AND set up a referral deal: your daycare clients get 10% off their first month of yard service at home. We handle the dirty work, you get to be the hero."
+
+---
+
+### St. Louis County Animal Control — Adoption Center ⭐⭐ REFERRAL GOLDMINE
+- **Type:** Government / Animal Services — Referral Partner
+- **Address:** 4321 Concord Ave, Brentwood, MO 63144
+- **Contact:** Adoption Coordinator / Community Outreach
+- **Phone:** (314) 822-5302
+- **Why Good Fit:** Processes hundreds of dog adoptions/month across all of St. Louis County. Every adopter = new dog owner with a yard. Complementary to Humane Society lead — reaches broader suburban county market. Welcome packet placement = zero-cost mass reach.
+- **Est. Monthly Value:** Referral → $300–$600 in residential leads
+- **Found:** March 28, 2026
+- **Status:** New
+- **Pitch angle:** "Every dog that gets adopted goes home to a yard. We'd love to be in your new adopter welcome packet — one card or flyer. First month at 15% off for new adopters."
+
+---
+
+### Lindenwood Park Neighborhood HOA — SOUTH STL CITY
+- **Type:** Neighborhood HOA / Civic Association
+- **Address:** Lindenwood Park, South St. Louis City, MO 63109
+- **Contact:** contact@lindenwoodpark.org · lindenwoodpark.org
+- **Why Good Fit:** Active, engaged neighborhood association in one of STL City's best dog-friendly residential areas. Organized community events. Exposure to 1,000+ households in premium neighborhood. First South City HOA in pipeline.
+- **Est. Monthly Value:** $150–$300/mo + resident leads
+- **Found:** March 28, 2026
+- **Status:** New
+- **Pitch angle:** "We'd love to sponsor your next neighborhood event AND offer residents a special rate on yard cleanup service. Community perk, local business, no cost to the HOA."
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated March 28, 2026 — 85 total leads)
