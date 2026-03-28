@@ -2,6 +2,34 @@
 
 ---
 
+### Saturday 7:04 AM — North County SEO Blog Post (Hourly Task)
+- **7:04 AM** 🏘️ Wrote and published full SEO blog post targeting North County St. Louis — the market gap with ZERO dominant competitor
+  - **File:** `tidy-tails/website/blog/pooper-scooper-north-county-st-louis.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-north-county-st-louis`
+  - **Why this task:** It's Paw-ty morning — all event execution tools are built. The North County Conquest campaign (week of Mar 30) has FB group posts and door hangers, but zero editorial SEO content targeting those cities. North County (Florissant, Hazelwood, Ferguson, Bridgeton) has NO dominant competitor in dog waste removal, meaning anyone searching "pooper scooper Florissant" right now finds nobody — or maybe nothing. This blog post fills that gap and compounds forever.
+  - **What's in the post (~2,200 words):**
+    - Hero intro: honest framing about North County being underserved by pet waste services
+    - Why national franchises deprioritized North County (route math explanation)
+    - 4-city area grid: Florissant, Hazelwood, Ferguson, Bridgeton with zip codes and context
+    - Step-by-step what service actually looks like (the "on my way" text + photo angle)
+    - Full pricing table (flat $70–90/mo by dog count)
+    - Comparison table vs national franchise vs Craigslist
+    - 2 testimonials (Florissant customer)
+    - 6-question FAQ section targeting exact searches ("is there a pooper scooper in Florissant?", "what happened to my old service?")
+    - Spring cleanup CTA for winter buildup
+    - "Is it worth it?" honest decision guide
+    - Sidebar: service area zip codes, quick pricing, 4 related articles
+  - **Schema markup:** BlogPosting + FAQPage + LocalBusiness with city-specific areaServed
+  - **Target keywords:** "pooper scooper Florissant MO", "dog poop pickup Hazelwood", "pet waste removal Ferguson", "pooper scooper North County St. Louis"
+  - **Orphaned customer angle:** Explicitly addresses "what happened to my old service?" — captures former franchise customers who've been unserved
+  - **Blog index:** Added new card as first post (newest first)
+  - **Sitemap:** Added to sitemap.xml (now 13 blog posts total)
+  - Committed + pushed ✅
+
+---
+
+---
+
 ### Saturday 6:07 AM — Paw-ty Day Zero Morning Launch Command (Hourly Task)
 - **6:07 AM** 🐾 Built the Paw-ty Day Zero morning launch command center — the missing "you just woke up, here's exactly what to do" guide for the 4 hours before TJ walks into Crestwood Vet
   - **File:** `dashboard/pawty-day-zero.html` — mobile-first countdown command center
