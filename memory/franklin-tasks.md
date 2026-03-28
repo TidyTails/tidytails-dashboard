@@ -2,6 +2,31 @@
 
 ---
 
+### Saturday 5:04 PM — Deployment Gap FIXED: /spring, /calculator, /commercial Now Live (Hourly Task)
+- **5:04 PM** 🚀 Fixed the long-standing deployment gap — 3 key pages + 5 blog posts now live on tidytailsstl.com
+  - **Root cause found:** Two separate repos. `TidyTails/tidytails-dashboard` (our workspace) ≠ `TidyTails/tidytails-website` (Cloudflare Pages deployment). Pages existed in dashboard repo but never pushed to website repo.
+  - **Pages deployed to tidytailsstl.com:**
+    - `/spring` — Spring Special landing page (was returning homepage for weeks — KEY FB Ads landing page for Monday launch!)
+    - `/calculator` — Pet Waste Cost Calculator (24/7 lead capture tool)
+    - `/commercial` — Commercial Services page (Millsap pitch support)
+    - `/pawty` — Paw-ty event landing page
+    - `/thank-you` — Form confirmation page
+  - **Blog posts deployed (5 new — total now 18):**
+    - `/blog/pooper-scooper-north-county-st-louis` (Florissant/Hazelwood/Ferguson/Bridgeton)
+    - `/blog/pooper-scooper-south-county-st-louis` (Crestwood/Kirkwood/Webster Groves/Mehlville)
+    - `/blog/pooper-scooper-west-county-st-louis` (Chesterfield/Ballwin/Creve Coeur/Town & Country)
+    - `/blog/pooper-scooper-central-county-st-louis` (Clayton/Ladue/University City/Maplewood)
+    - `/blog/pet-waste-removal-companies-st-louis`
+  - **All verified LIVE:** Titles confirmed serving correct content (not homepage fallback) ✅
+  - **TASKS.md:** Deployment gap marked RESOLVED, root cause documented for future reference
+  - **FB Ads Monday launch:** `/spring` landing page now confirmed live — Monday's $7/day campaign can use it ✅
+  - **Sitemap updated:** 18 blog posts + all pages reflected
+  - **Both repos pushed:** tidytails-website + tidytails-dashboard ✅
+  - **Why this was #1 priority:** The `/spring` page is the planned landing page for Monday's FB Ads launch. Running ads to a URL that serves the homepage destroys conversion rate and wastes budget. The calculator was also blocking 24/7 organic lead capture. This was a BLOCKER that needed to ship before Monday 9 AM.
+  - **Key lesson for future Franklin:** When deploying website changes, push to `TidyTails/tidytails-website` repo. Dashboard repo = tools/docs only.
+
+---
+
 ### Saturday 4:06 PM — 3 Tidy Tails Video Ads (Issue-001 RESOLVED) (Hourly Task)
 - **4:06 PM** 🎬 Broke the 62-check video dormancy streak — fully executed the Nano Banana → Kling v1 Standard pipeline for the first time
   - **Files:** `dashboard/videos/` — 3 final MP4s with audio
