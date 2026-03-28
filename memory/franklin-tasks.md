@@ -31,6 +31,25 @@
 
 ## March 27, 2026 (Friday)
 
+### Friday 8:06 PM — April–August 2026 Growth Roadmap (Hourly Task)
+- **8:06 PM** 🗺️ Built comprehensive 5-tab growth roadmap: 10 customers today → 25-30 by August
+  - **File:** `dashboard/april-growth-roadmap.html` — dark-mode strategic command center
+  - **Header + Progress bar:** Visual customer milestone tracker (10→13→16→18→22→27 across Mar–Aug) with month-by-month fill bars
+  - **Tab 1 — April (Week-by-Week):** 4 collapsible week cards with day-by-day tasks, focus chips, and win conditions per week:
+    - Week 1 (Mar 28–Apr 4): Paw-ty close + North County launch + vet blitz
+    - Week 2 (Apr 5-11): FB Ads live + referral push + North County posts 4-5
+    - Week 3 (Apr 12-18): Orphaned competitor customer capture + Nextdoor blitz
+    - Week 4 (Apr 19-30): Double down winners + book May event + April scorecard
+    - April-end win conditions: 13-15 customers, FB ads running, 1 commercial lead, $1,100-1,500 MRR
+  - **Tab 2 — May–Jun:** Monthly channel stacks, weekly targets, 3-scenario forecasting (best/base/worst for June)
+  - **Tab 3 — Channels:** 7 acquisition channels ranked by cost-per-customer with hot/warm/cool badges — referrals ($0) → events ($15-30) → Nextdoor ($0) → FB ads ($40-80) → GBP (free) → commercial (slow) → directories (setup once)
+  - **Tab 4 — Shed:** Month-by-month shed playbook (tariff → Mother's Day → Father's Day → summer → back-to-school), Marketplace cadence table, April priority checklist for pipeline + website seasonal hook
+  - **Tab 5 — Blockers:** 5 named blockers with specific fixes (Deployment Gap = top priority, 10 min fix; Execution Velocity; Route Wall at 15 customers; Churn; FB Ads patience); 2 upside accelerators (viral Nextdoor post, one commercial client)
+  - **Critical 7-Day Actions checklist:** 6 highest-ROI moves for this exact week (referral texts tonight, Paw-ty follow-up Sunday, push deployment gap pages, Millsap call, ask Shannon/Amanda for Nextdoor testimonial, book May event)
+  - **Dashboard:** Added "🗺️ APR–AUG ROADMAP" quick link in header (purple)
+  - **Why this task:** At 8 PM Friday with Paw-ty tomorrow, all event execution tools exist. What was missing: the STRATEGIC VIEW for the next 5 months — week-by-week milestones so TJ/Jamie don't just react but execute against a plan. This is the "north star" document that makes every other tool make sense.
+  - Committed + pushed ✅
+
 ### Friday 7:04 PM — Saturday Live Amplifier (Hourly Task)
 - **7:04 PM** 📣 Built complete Saturday event amplification kit — the last missing piece before tomorrow's Paw-ty
   - **File:** `dashboard/saturday-live-amplifier.html` — 5-tab mobile-first kit
