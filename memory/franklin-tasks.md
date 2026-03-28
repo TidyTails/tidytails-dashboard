@@ -2,6 +2,34 @@
 
 ---
 
+### Saturday 3:04 PM — Central County SEO Blog Post (Hourly Task)
+- **3:04 PM** 🏙️ Wrote and published full SEO blog post targeting Central County St. Louis — the inner-ring affluent suburbs that had ZERO editorial Tidy Tails content
+  - **File:** `tidy-tails/website/blog/pooper-scooper-central-county-st-louis.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-central-county-st-louis`
+  - **Why this task:** The geographic content triangle was complete: North, South, West County all had dedicated blog posts. Central County (Clayton, Ladue, University City, Maplewood, Richmond Heights, Brentwood) had zero long-form editorial coverage — and these are some of the wealthiest inner-ring suburbs in Missouri. High-income, dual-professional households with dogs and small fenced yards: the exact customer who pays $70/mo without price-shopping. Fills the final gap in the St. Louis County SEO coverage map.
+  - **What's in the post (~2,500 words):**
+    - Hero with stats bar: $70/mo flat, 0 contracts, 5★, Local STL
+    - 6-city area grid: Clayton (63105), Ladue (63124), University City (63130/63132), Richmond Heights (63117), Maplewood (63143), Brentwood (63144)
+    - Why Central County falls through national franchise cracks (route density math)
+    - Small yard callout: "same $70/mo regardless of yard size — compact urban yards are a great deal for you"
+    - 5-step service process (text → on my way → whole yard → all done text → consistent schedule)
+    - Full pricing table (1-4+ dogs, weekly/biweekly/one-time)
+    - 4-column comparison table: Tidy Tails vs National Franchise vs DIY vs Craigslist
+    - Central County yard reality section (alley gates, shared spaces, leaf-heavy seasons, fenced patios)
+    - 2 testimonials (Clayton and Maplewood dog owners)
+    - 8-question FAQ targeting exact Central County searches
+    - "Is it worth it?" honest decision guide
+    - Cross-links to all 3 other county posts (internal linking now connects all 4)
+  - **Schema markup:** BlogPosting + FAQPage + LocalBusiness with 8 Central County cities in areaServed
+  - **Target keywords:** "pooper scooper Clayton MO", "dog poop pickup Ladue", "pet waste removal University City", "pooper scooper Maplewood MO", "pooper scooper Richmond Heights", "pooper scooper Central County St. Louis"
+  - **Blog index:** Added Central County card as #1 post (newest first) + added to JSON-LD blogPost array
+  - **Sitemap:** Added to sitemap.xml (now 16 blog posts + pages total)
+  - **Internal linking:** All 4 county posts now cross-link to each other — complete geographic interlinking for SEO authority flow
+  - **Why Central County matters:** Clayton is home to the St. Louis County courthouse, major law firms, and the highest commercial density in the county. Ladue is one of the wealthiest municipalities in Missouri by per-capita income. University City has one of the most dense dog-owner cultures in the area. These aren't price shoppers — they're $70/mo customers who want a reliable local operator and aren't going to call 5 services. First to show up in their search = first to get their business. Compounds forever.
+  - Committed + pushed ✅
+
+---
+
 ### Saturday 2:07 PM — Post-Paw-ty Conversion Sprint Guide (Hourly Task)
 - **2:07 PM** 🔥 Built "PAW-TY JUST ENDED — DO THIS NOW" guide — the 2-5 PM conversion sprint for the exact window TJ is in RIGHT NOW driving home from the event
   - **File:** `dashboard/pawty-post-event-NOW.html` — single-page mobile-first action guide
