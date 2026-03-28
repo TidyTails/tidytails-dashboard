@@ -369,3 +369,11 @@ Chief uses this to verify sync with dashboard.
 | 00:01 | Pawty Palooza Social Blitz | 🐕 Tidy Tails | PAWTY-SOCIAL-BLITZ.pdf | ✅ |
 | 00:01 | Shed Spring Command Center | 🏠 Shed Sales | SHED-SPRING-COMMAND-CENTER.pdf | ✅ |
 | 00:01 | Vet Partnership One-Pager | 🐕 Tidy Tails | VET-PARTNERSHIP-ONE-PAGER.pdf | ✅ |
+
+## Upload Log — Mar 28, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 12:01 | Morning Briefing Mar 28 | 📋 Operations | MORNING_BRIEFING_2026-03-28.pdf | ✅ |
+| 12:01 | Shed Ads Mar 28 | 🏠 Shed Sales | SHED_ADS_2026-03-28.pdf | ✅ |
+| 12:01 | Commercial Leads Mar 28 | 🐕 Jamie's Hub | COMMERCIAL_LEADS_2026-03-28.pdf | ✅ |
