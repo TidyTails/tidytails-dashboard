@@ -2,6 +2,32 @@
 
 ---
 
+### Saturday 11:04 AM — South County SEO Blog Post (Hourly Task)
+- **11:04 AM** 🏡 Wrote and published full SEO blog post targeting South County St. Louis — the exact territory TJ is in RIGHT NOW at the Crestwood Vet Paw-ty
+  - **File:** `tidy-tails/website/blog/pooper-scooper-south-county-st-louis.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-south-county-st-louis`
+  - **Why this task:** TJ is at Crestwood Vet Adoption Paw-ty RIGHT NOW. Anyone who meets him there and Googles "pooper scooper Crestwood" would have found zero editorial content — just the city page. This blog post fills that gap with ~2,300 words of full-funnel SEO content targeting 8 South County zip codes. It compounds forever. North County blog (7 AM) tackled the expansion market; this one targets the existing event territory.
+  - **What's in the post:**
+    - Hero callout: "Yes, we come to South County" above the fold
+    - Why South County is under-served (route math, franchise deprioritization)
+    - 4-city area grid: Crestwood (63126), Kirkwood (63122), Webster Groves (63119), Mehlville (63125)
+    - Step-by-step how the service works (5 process steps with icons)
+    - Full pricing table (1-4+ dogs, weekly/biweekly/one-time)
+    - Comparison table vs national franchise vs DIY vs Craigslist
+    - Spring urgency angle ("the snow is gone, everything that accumulated over winter is now visible")
+    - 2 testimonials (Crestwood customer + Kirkwood customer)
+    - Honest "Is it worth it?" section
+    - 7-question FAQ section targeting exact searches ("pooper scooper Crestwood", "do you service Mehlville", etc.)
+    - CTA box + step-by-step how to start (very low friction)
+  - **Schema markup:** BlogPosting + FAQPage + LocalBusiness with all 8 South County cities in areaServed
+  - **Target keywords:** "pooper scooper Crestwood MO", "dog poop pickup Kirkwood", "pet waste removal Webster Groves", "pooper scooper Mehlville MO", "pooper scooper South County St. Louis"
+  - **Blog index:** Added new card as first post (newest first)
+  - **Sitemap:** Added to sitemap.xml (now 14 blog posts total)
+  - **Why South County right now:** TJ is at Crestwood Vet Paw-ty today. People meeting him will Google. This page needs to exist. North County had the conquest angle (no competitors). South County has the event timing angle — Paw-ty attendees Googling will find this page, building trust and making conversion faster. Compounds forever after today.
+  - Committed + pushed ✅
+
+---
+
 ### Saturday 9:09 AM — Realtor Partnership Kit (Hourly Task)
 - **9:09 AM** 🏡 Built complete Realtor Partnership Kit — the highest-LTV zero-cost referral channel that was completely untapped
   - **File:** `dashboard/realtor-partnership-kit.html` — 6-tab interactive partnership hub
@@ -540,4 +566,23 @@
   - **Progress banner:** Visual milestone tracker (6 → 10 → 15 → 20 → 25) with animated progress bar that updates as reviews are logged
   - **Dashboard:** Added pulsing yellow "⭐ REVIEW SPRINT" quick link + replaced old review-texts-ready.html card with new comprehensive Sprint Kit card (prominent, animated)
   - **Why this task:** Friday 9 PM, Paw-ty is tomorrow. All event tools are built. The single highest-ROI FREE lever left: going from 6 → 10+ Google reviews. With only 3 active competitors left in STL, 20 reviews at 5 stars would lock Map Pack #1 position for years — zero ongoing ad spend. Sunday after the Paw-ty is the PERFECT moment to send 10 texts while energy is high and customers are in our heads. This kit makes it impossible to forget or procrastinate.
+  - Committed + pushed ✅
+
+---
+
+### Saturday 10:06 AM — Event ROI Tracker (Hourly Task)
+- **10:06 AM** 📊 Built the Event ROI Tracker — the missing "which events are actually worth it" decision tool
+  - **File:** `dashboard/event-roi-tracker.html` — 5-tab interactive ROI command center
+  - **Why this task:** It's Paw-ty morning — TJ is at the event right now. Every event *execution* tool exists (pocket guide, lead tracker, follow-up engine, battle plan, day-zero guide, social amplifier). What was missing: a way to measure what actually happened, compare events against each other, and decide in advance whether a future event is worth the time and cost. Without this, TJ is flying blind on whether the Paw-ty ROI justifies doing it again vs. spending that same 5 hours on something else.
+  - **What's built:**
+    - **Tab 1 — All Events:** Cards for every tracked event, color-coded by ROAS tier (S/A/B/C), expandable with full metric breakdown (cost, leads, converts, LTV, ROAS, cost/lead), ROI progress bar, notes section. Edit/delete per event. Sorted: In Progress → Upcoming → Complete.
+    - **Tab 2 — Leaderboard:** Ranked table of completed events sortable by ROAS, converts, leads, cost-per-lead, or LTV. Gold/silver/bronze rank badges. The "which event should I repeat?" answer in one view.
+    - **Tab 3 — Pre-Event Calculator:** 10-input model (fee, materials, hours, attendees, dog owner %, lead rate, close rate, avg MRR, lifespan). Outputs: total cost, expected leads, expected converts, projected LTV, ROAS, cost-per-lead, break-even customer count. Verdict badge: S/A/B/C tier with plain-English recommendation.
+    - **Tab 4 — Log Event:** Full form with all fields (fee, materials, hours, attendees, contacts, leads, spot sign-ups, converts, status, notes). Quick-load buttons pre-fill Paw-ty / Arch Bark / Bark in the Park. Edit/update existing events.
+    - **Tab 5 — Insights:** Auto-generated summary (total leads, converts, LTV, ROAS across all events), best performer callout, upcoming event cost estimates, event strategy guide (what makes a high-signal event vs. low-signal), close rate benchmarks, attribution note.
+  - **Pre-loaded events:** Paw-ty (Mar 28, In Progress), Arch Bark (Apr 18, Upcoming), Bark in the Park (May 16, Upcoming)
+  - **LTV model:** Calculates at $70/mo × 18-month avg lifespan = $1,260 per convert. Editable per event.
+  - **ROAS tiers:** S=10x+, A=5-10x, B=2-5x, C=<2x — color-coded throughout
+  - **Dashboard:** Added "📊 EVENT ROI TRACKER" purple quick link in header + new card at top of Events section grid
+  - **Key insight:** Today's Paw-ty cost ~$165 in time ($0 booth + $15 materials + 5h × $30). Break-even = 1 customer. If TJ gets 2-3 converts (base case), it's a 7-13x event. Log the results tonight to start building the benchmark.
   - Committed + pushed ✅
