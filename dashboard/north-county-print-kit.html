@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🖨️ North County Print Kit — Door Hangers + Business Cards</title>
+
+<!-- SCREEN STYLES (dashboard view) -->
+<style>
+  :root {
+    --bg: #0a0a0f; --card: #111118; --card2: #16161f;
+    --green: #22c55e; --green-bg: rgba(34,197,94,0.08);
+    --amber: #f59e0b; --amber-bg: rgba(245,158,11,0.08);
+    --blue: #3b82f6; --blue-bg: rgba(59,130,246,0.08);
+    --red: #ef4444; --red-bg: rgba(239,68,68,0.08);
+    --text: #e2e8f0; --muted: #94a3b8; --dim: #475569;
+    --border: #1e293b; --radius: 12px;
+  }
+  @media screen {
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 60px; }
+    .screen-header { text-align: center; padding: 24px 16px 16px; background: linear-gradient(180deg, rgba(34,197,94,0.06), transparent); }
+    .screen-header h1 { font-size: 1.5em; font-weight: 900; color: var(--green); }
+    .screen-header p { color: var(--muted); font-size: 0.85em; margin-top: 4px; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+    .alert { background: var(--amber-bg); border: 1px solid rgba(245,158,11,0.4); border-radius: var(--radius); padding: 14px 16px; margin: 12px 0; font-size: 0.85em; line-height: 1.6; }
+    .alert strong { color: var(--amber); }
+    .section-header { display: flex; align-items: center; gap: 10px; margin: 24px 0 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    .section-header h2 { font-size: 1em; font-weight: 800; }
+    .print-preview { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; margin-bottom: 16px; }
+    .print-preview h3 { font-size: 0.9em; font-weight: 700; color: var(--amber); margin-bottom: 8px; }
+    .print-preview p { font-size: 0.82em; color: var(--muted); line-height: 1.6; }
+    .btn { display: inline-block; padding: 10px 20px; border-radius: 8px; font-weight: 800; font-size: 0.85em; cursor: pointer; border: none; font-family: inherit; }
+    .btn-print { background: var(--green); color: #000; }
+    .btn-print:hover { background: #16a34a; }
+    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px; }
+    .tip { background: var(--blue-bg); border: 1px solid rgba(59,130,246,0.3); border-radius: 8px; padding: 10px 14px; font-size: 0.78em; color: #93c5fd; margin-top: 10px; line-height: 1.6; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 16px 0; }
+    .stat { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 12px 8px; text-align: center; }
+    .stat .num { font-size: 1.5em; font-weight: 900; }
+    .stat .lbl { font-size: 0.65em; color: var(--muted); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .stat.green .num { color: var(--green); }
+    .stat.amber .num { color: var(--amber); }
+    .stat.blue .num { color: var(--blue); }
+    .stat.red .num { color: var(--red); }
+    .checklist-wrap { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; margin-bottom: 16px; }
+    .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); cursor: pointer; }
+    .check-item:last-child { border: none; }
+    .check-box { width: 20px; height: 20px; border-radius: 5px; border: 2px solid var(--dim); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+    .check-item.done .check-box { background: var(--green); border-color: var(--green); }
+    .check-item.done .check-box::after { content: '✓'; font-size: 0.75em; font-weight: 900; color: #000; }
+    .check-item.done .check-label { text-decoration: line-through; color: var(--dim); }
+    .check-label { font-size: 0.83em; line-height: 1.5; }
+    .check-sub { font-size: 0.72em; color: var(--muted); margin-top: 2px; }
+    .tab-bar { display: flex; background: var(--card); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 16px; overflow-x: auto; }
+    .tab { flex: 1; min-width: 0; padding: 10px 8px; text-align: center; font-size: 0.72em; font-weight: 700; color: var(--dim); cursor: pointer; border: none; background: none; font-family: inherit; white-space: nowrap; transition: all 0.15s; }
+    .tab.active { color: #000; background: var(--green); }
+    .panel { display: none; }
+    .panel.active { display: block; }
+  }
+  @media print { .screen-header, .container > .alert, .section-header, .print-preview, .btn-row, .tip, .stats, .checklist-wrap, .tab-bar, .print-instructions { display: none !important; } }
+</style>
+
+<!-- PRINT STYLES -->
+<style>
+  @media print {
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: white; color: #1a1a1a; font-family: Arial, Helvetica, sans-serif; }
+  }
+
+  /* ===========================
+     DOOR HANGER — FRONT
+     3.5" × 8.5" (doubled to 7" wide, cut in half)
+     Print on cardstock, cut vertically
+     =========================== */
+  .page-hangers-front, .page-hangers-back,
+  .page-orphan-front, .page-orphan-back,
+  .page-biz-cards {
+    display: none;
+  }
+  @media print {
+    .page-hangers-front, .page-hangers-back,
+    .page-orphan-front, .page-orphan-back,
+    .page-biz-cards {
+      display: block;
+    }
+  }
+
+  .door-hanger-sheet {
+    width: 7in;
+    height: 8.5in;
+    display: flex;
+    gap: 0;
+    page-break-after: always;
+    margin: 0;
+    padding: 0.25in;
+  }
+  .door-hanger {
+    width: 3.25in;
+    height: 8in;
+    border: 1.5px dashed #ccc;
+    display: flex;
+    flex-direction: column;
+    padding: 0.3in 0.25in;
+    margin: 0 0.1in;
+    position: relative;
+    overflow: hidden;
+    page-break-inside: avoid;
+  }
+
+  /* Hole punch guide */
+  .hole-guide {
+    width: 0.4in;
+    height: 0.4in;
+    border-radius: 50%;
+    border: 1.5px dashed #999;
+    margin: 0 auto 0.2in;
+    flex-shrink: 0;
+  }
+
+  /* FRONT hanger */
+  .hanger-front {
+    background: linear-gradient(160deg, #14532d 0%, #166534 40%, #15803d 100%);
+    color: white;
+    border-color: #166534;
+  }
+  .hanger-front .logo-area {
+    text-align: center;
+    margin-bottom: 0.15in;
+  }
+  .hanger-front .paw { font-size: 2.2em; display: block; }
+  .hanger-front .brand { font-size: 1.3em; font-weight: 900; letter-spacing: -0.02em; color: #86efac; }
+  .hanger-front .tagline { font-size: 0.55em; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+  .hanger-front .headline { font-size: 1.25em; font-weight: 900; text-align: center; line-height: 1.2; margin: 0.15in 0 0.1in; color: white; }
+  .hanger-front .sub { font-size: 0.58em; text-align: center; color: rgba(255,255,255,0.85); line-height: 1.5; margin-bottom: 0.15in; }
+  .hanger-front .offer-badge {
+    background: #fef08a;
+    color: #1a1a1a;
+    border-radius: 8px;
+    padding: 0.12in 0.15in;
+    text-align: center;
+    margin-bottom: 0.15in;
+  }
+  .offer-badge .offer-big { font-size: 1em; font-weight: 900; color: #166534; }
+  .offer-badge .offer-small { font-size: 0.5em; color: #374151; margin-top: 2px; }
+  .hanger-front .feature-list { list-style: none; margin-bottom: 0.15in; }
+  .hanger-front .feature-list li { font-size: 0.55em; padding: 3px 0; display: flex; align-items: center; gap: 6px; line-height: 1.4; }
+  .hanger-front .feature-list li::before { content: '✓'; background: #86efac; color: #14532d; border-radius: 50%; width: 14px; height: 14px; display: inline-flex; align-items: center; justify-content: center; font-size: 0.7em; font-weight: 900; flex-shrink: 0; }
+  .hanger-front .cta-block { background: rgba(255,255,255,0.15); border-radius: 6px; padding: 0.1in; text-align: center; margin-top: auto; }
+  .hanger-front .cta-phone { font-size: 1.05em; font-weight: 900; color: #fef08a; letter-spacing: 0.02em; }
+  .hanger-front .cta-web { font-size: 0.5em; color: rgba(255,255,255,0.8); margin-top: 3px; }
+  .cut-line {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 100%;
+    border-right: 1px dashed #bbb;
+    pointer-events: none;
+  }
+
+  /* BACK hanger */
+  .hanger-back {
+    background: white;
+    color: #1a1a1a;
+    border-color: #166534;
+  }
+  .hanger-back .logo-area { text-align: center; margin-bottom: 0.1in; }
+  .hanger-back .brand { font-size: 1.1em; font-weight: 900; color: #166534; }
+  .hanger-back .section-title { font-size: 0.7em; font-weight: 900; color: #166534; text-transform: uppercase; letter-spacing: 0.05em; margin: 0.12in 0 0.06in; border-bottom: 1.5px solid #166534; padding-bottom: 3px; }
+  .hanger-back .why-list { list-style: none; margin-bottom: 0.1in; }
+  .hanger-back .why-list li { font-size: 0.53em; padding: 4px 0; display: flex; align-items: flex-start; gap: 5px; line-height: 1.4; border-bottom: 0.5px solid #e5e7eb; }
+  .hanger-back .why-list li:last-child { border: none; }
+  .hanger-back .why-list li .check { color: #166534; font-weight: 900; font-size: 0.9em; flex-shrink: 0; margin-top: 1px; }
+  .hanger-back .steps { margin-bottom: 0.1in; }
+  .hanger-back .step { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 4px; font-size: 0.53em; line-height: 1.4; }
+  .hanger-back .step-num { background: #166534; color: white; border-radius: 50%; width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; font-size: 0.85em; font-weight: 900; flex-shrink: 0; margin-top: 1px; }
+  .hanger-back .service-area { font-size: 0.48em; color: #6b7280; line-height: 1.6; text-align: center; margin-top: auto; padding-top: 0.1in; border-top: 0.5px solid #e5e7eb; }
+  .hanger-back .cta-block { background: #f0fdf4; border: 1.5px solid #166534; border-radius: 6px; padding: 0.1in; text-align: center; margin: 0.12in 0; }
+  .hanger-back .cta-phone { font-size: 1em; font-weight: 900; color: #166534; }
+  .hanger-back .cta-web { font-size: 0.5em; color: #374151; margin-top: 2px; }
+  .pricing-table { width: 100%; border-collapse: collapse; font-size: 0.48em; margin-bottom: 0.1in; }
+  .pricing-table th { background: #166534; color: white; padding: 4px 6px; text-align: left; font-size: 1em; }
+  .pricing-table td { padding: 4px 6px; border-bottom: 0.5px solid #e5e7eb; }
+  .pricing-table tr:last-child td { border: none; }
+  .pricing-table .price { font-weight: 900; color: #166534; }
+
+  /* ORPHAN VARIANT — front has different headline */
+  .hanger-orphan-front { background: linear-gradient(160deg, #1e1b4b 0%, #312e81 40%, #3730a3 100%); }
+  .hanger-orphan-front .brand { color: #a5b4fc; }
+  .hanger-orphan-front .headline { color: white; }
+  .hanger-orphan-front .offer-badge { background: #e0e7ff; }
+  .hanger-orphan-front .offer-big { color: #1e1b4b; }
+  .hanger-orphan-front .feature-list li::before { background: #a5b4fc; color: #1e1b4b; }
+  .hanger-orphan-front .cta-phone { color: #e0e7ff; }
+
+  /* BUSINESS CARD SHEET */
+  .biz-card-sheet {
+    width: 7.5in;
+    height: 10in;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    page-break-after: always;
+    padding: 0.5in;
+    align-content: flex-start;
+  }
+  .biz-card {
+    width: 3.5in;
+    height: 2in;
+    border: 1px dashed #ccc;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0.15in 0.2in;
+    page-break-inside: avoid;
+  }
+  .biz-card-front { background: linear-gradient(135deg, #14532d, #166534); color: white; }
+  .bc-paw { font-size: 1.4em; }
+  .bc-brand { font-size: 0.9em; font-weight: 900; color: #86efac; letter-spacing: -0.01em; }
+  .bc-tag { font-size: 0.35em; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.08em; }
+  .bc-name { font-size: 0.7em; font-weight: 800; margin: 0.06in 0 0.02in; }
+  .bc-role { font-size: 0.38em; color: rgba(255,255,255,0.7); margin-bottom: 0.08in; }
+  .bc-phone { font-size: 0.58em; font-weight: 700; color: #fef08a; }
+  .bc-web { font-size: 0.38em; color: rgba(255,255,255,0.7); }
+  .biz-card-back { background: white; border-color: #166534; }
+  .bc-offer-big { font-size: 0.95em; font-weight: 900; color: #166534; line-height: 1.1; }
+  .bc-offer-sub { font-size: 0.38em; color: #6b7280; margin: 3px 0 6px; }
+  .bc-feature-row { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 4px; }
+  .bc-chip { font-size: 0.33em; background: #f0fdf4; color: #166534; border: 0.5px solid #bbf7d0; border-radius: 4px; padding: 2px 5px; font-weight: 700; }
+  .bc-contact { font-size: 0.38em; color: #374151; font-weight: 700; margin-top: 4px; }
+  .bc-contact span { color: #166534; }
+</style>
+</head>
+<body>
+
+<!-- =================== SCREEN VIEW =================== -->
+<div class="screen-header">
+  <h1>🖨️ North County Print Kit</h1>
+  <p>Door Hangers + Business Cards — Ready to print Monday morning</p>
+</div>
+
+<div class="container">
+  <div class="alert">
+    <strong>📋 Print Instructions:</strong> Use the tabs below to select which item to print. Click "Print This Page" button → uncheck "Headers & Footers" in browser print dialog → select correct paper size. Print on <strong>cardstock (80lb+)</strong> for hangers, regular paper for biz cards at Staples/FedEx.
+  </div>
+
+  <div class="stats">
+    <div class="stat green"><div class="num">50</div><div class="lbl">Hangers to Drop</div></div>
+    <div class="stat amber"><div class="num">2</div><div class="lbl">Hanger Variants</div></div>
+    <div class="stat blue"><div class="num">10</div><div class="lbl">Biz Card Sheets</div></div>
+    <div class="stat red"><div class="num">0</div><div class="lbl">Competitors</div></div>
+  </div>
+
+  <div class="tab-bar" id="tabs">
+    <button class="tab active" onclick="switchTab('info')">📋 Strategy</button>
+    <button class="tab" onclick="switchTab('hanger1')">🟢 Hanger A (Standard)</button>
+    <button class="tab" onclick="switchTab('hanger2')">🟣 Hanger B (Orphan)</button>
+    <button class="tab" onclick="switchTab('bizcards')">💳 Business Cards</button>
+    <button class="tab" onclick="switchTab('checklist')">✅ Checklist</button>
+  </div>
+
+  <!-- INFO TAB -->
+  <div class="panel active" id="panel-info">
+    <div class="print-preview">
+      <h3>🎯 Why Door Hangers + When to Use Them</h3>
+      <p>North County (Florissant, Hazelwood, Ferguson, Bridgeton) has <strong>ZERO active competitors</strong> — Dog Doody Defenders is DNS dead. There are an estimated 75-150 households that had pet waste service and lost their provider. These people are <em>already sold</em> on the concept — they just need someone to show up.</p>
+      <p style="margin-top:8px;">Door hangers reach these people directly when the FB group posts might miss them. Take 30-50 hangers when driving to/from a Monday scoop and drop them on homes that have dog toys, dog signs, fenced yards, or "Beware of Dog" signs.</p>
+    </div>
+    <div class="print-preview">
+      <h3>🟢 Hanger A — Standard (Use for most neighborhoods)</h3>
+      <p><strong>Best for:</strong> General Florissant/Hazelwood neighborhoods. Homeowners who may or may not have had prior service. Front: "Your Yard Deserves Better" — Back: pricing, how it works, full feature comparison.</p>
+    </div>
+    <div class="print-preview">
+      <h3>🟣 Hanger B — Orphaned Customer (Use near Dog Doody Defenders territory)</h3>
+      <p><strong>Best for:</strong> Florissant/Hazelwood homes that may have had Dog Doody Defenders service (the defunct competitor). Front: "Did Your Poop Scoop Service Disappear?" — direct, empathetic, immediately converts existing buyers. High conversion when targeted correctly.</p>
+    </div>
+    <div class="print-preview">
+      <h3>💳 Business Cards — Leave with vet offices, dog daycares, neighbors</h3>
+      <p>Print 100-200 on cardstock. Leave with: Baronwood AH, Cross Keys AH, Gateway City AH (Monday vet blitz), plus at any North County dog-related business. Fits in mailboxes too (more subtle than a hanger).</p>
+    </div>
+    <div class="tip">
+      <strong>⚡ Targeting tip:</strong> Look for these as you drive: dog toys in yard, fenced backyard, "Beware of Dog" signs, dog door, multiple dog bowls on porch, chain/dog run in yard. Hit those houses first — 90% probability of dog owner. Skip apartments with no yard access.
+    </div>
+  </div>
+
+  <!-- HANGER A TAB -->
+  <div class="panel" id="panel-hanger1">
+    <div class="print-preview">
+      <h3>🟢 Hanger A — Standard ("Your Yard Deserves Better")</h3>
+      <p>2 hangers per sheet. Print on 8.5×11 cardstock, cut vertically down the center. Fold top tab over door handle. Print 25 sheets = 50 hangers.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-print" onclick="printHangerFront()">🖨️ Print Front Side (25 sheets)</button>
+      <button class="btn btn-print" onclick="printHangerBack()">🖨️ Print Back Side (flip same 25 sheets)</button>
+    </div>
+    <div class="tip">
+      <strong>💡 Print tip:</strong> Print ALL fronts first. Let dry 30 sec. Re-feed same paper, flip horizontally (NOT vertically) to print backs. Test with 1 sheet first to confirm alignment.
+    </div>
+  </div>
+
+  <!-- HANGER B TAB -->
+  <div class="panel" id="panel-hanger2">
+    <div class="print-preview">
+      <h3>🟣 Hanger B — Orphaned Customer ("Did Your Poop Scoop Service Disappear?")</h3>
+      <p>Same print process as Hanger A. Print 10-15 sheets = 20-30 orphan-targeted hangers. Deploy in areas where Dog Doody Defenders was most active (central Florissant, Hazelwood near Hwy 270).</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-print" onclick="printOrphanFront()">🖨️ Print Front Side (Orphan)</button>
+      <button class="btn btn-print" onclick="printOrphanBack()">🖨️ Print Back Side (Orphan)</button>
+    </div>
+    <div class="tip">
+      <strong>📍 Where to drop orphan hangers:</strong> Florissant zip 63031 (Dog Doody Defenders was most active here per their old Google listing). Look for older, established neighborhoods where residents are more likely to have had recurring service before.
+    </div>
+  </div>
+
+  <!-- BIZ CARDS TAB -->
+  <div class="panel" id="panel-bizcards">
+    <div class="print-preview">
+      <h3>💳 Business Cards (10 cards per sheet)</h3>
+      <p>Print on cardstock. 1 sheet = 10 cards. Print 10-20 sheets = 100-200 cards. Leave with vet offices, daycares, dog parks, and in Paw-ty follow-up envelopes. QR code links to tidytailsstl.com.</p>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn-print" onclick="printBizCards()">🖨️ Print Business Cards (10 per sheet)</button>
+    </div>
+  </div>
+
+  <!-- CHECKLIST TAB -->
+  <div class="panel" id="panel-checklist">
+    <div class="checklist-wrap" id="checklist">
+      <div style="font-size:0.8em; font-weight:700; color:var(--green); margin-bottom:12px;">📋 Print + Deploy Checklist</div>
+
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div><div class="check-label">Buy cardstock (80lb) — Staples/Office Depot</div><div class="check-sub">$10-15 for 50 sheets. 67lb at minimum. Regular paper = limp, looks cheap.</div></div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div><div class="check-label">Test print 1 hanger sheet first</div><div class="check-sub">Confirm front/back alignment before printing all 25 sheets.</div></div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div><div class="check-label">Print 25 sheets Hanger A front + back</div><div class="check-sub">= 50 standard hangers. Cut on dashed line vertically.</div></div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div><div class="check-label">Print 10-15 sheets Hanger B (orphan variant)</div><div class="check-sub">= 20-30 orphan hangers. Deploy in Florissant 63031 neighborhoods specifically.</div></div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div><div class="check-label">Print 10 sheets business cards</div><div class="check-sub">= 100 cards. Leave at vet offices (Monday blitz), daycares, and carry always.</div></div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div><div class="check-label">Cut all hangers (cut vertically, fold hole tab at top)</div><div class="check-sub">Scissors or paper cutter. Stack 5-10 sheets, cut once. Quick!</div></div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div><div class="check-label">Monday: Pack 25 standard + 10 orphan hangers for scoop day</div><div class="check-sub">Drop on your way through Florissant/Hazelwood neighborhoods. 1 min per house.</div></div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div><div class="check-label">Leave business cards at Baronwood AH, Cross Keys AH, Gateway City AH (Monday vet blitz)</div><div class="check-sub">Ask the receptionist to keep them at the front desk. Leave 10-15 per location.</div></div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div><div class="check-label">Tuesday: Hit Hazelwood/Ferguson neighborhoods with remaining 25 hangers</div><div class="check-sub">Focus: fenced yards, dog toys visible, multi-family streets. 30-min drive-and-drop.</div></div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box"></div>
+        <div><div class="check-label">Log any callbacks/texts from hangers in CRM</div><div class="check-sub">Note "hanger - Florissant" in source field so we can track ROI on print vs digital.</div></div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+
+<!-- =================== PRINT PAGES =================== -->
+
+<!-- HANGER A FRONT (2-up) -->
+<div class="page-hangers-front" id="print-hanger-front">
+  <div class="door-hanger-sheet">
+    <!-- Hanger 1 -->
+    <div class="door-hanger hanger-front">
+      <div class="hole-guide"></div>
+      <div class="logo-area">
+        <span class="paw">🐾</span>
+        <div class="brand">Tidy Tails</div>
+        <div class="tagline">Pet Waste Removal · St. Louis</div>
+      </div>
+      <div class="headline">Your Yard<br>Deserves Better.</div>
+      <div class="sub">We're the neighborhood's pet waste removal service — and spring cleanup is on us.</div>
+      <div class="offer-badge">
+        <div class="offer-big">FREE First Cleanup</div>
+        <div class="offer-small">No catch. No contract. Just a clean yard.</div>
+      </div>
+      <ul class="feature-list">
+        <li>$70/month flat — not per visit</li>
+        <li>1 dog or 5 dogs — same price</li>
+        <li>No contracts. Cancel anytime.</li>
+        <li>We text when we're on the way</li>
+        <li>Locally owned &amp; operated in STL</li>
+      </ul>
+      <div class="cta-block">
+        <div class="cta-phone">📱 314-850-7140</div>
+        <div class="cta-web">tidytailsstl.com</div>
+      </div>
+      <div class="cut-line"></div>
+    </div>
+    <!-- Hanger 2 (duplicate) -->
+    <div class="door-hanger hanger-front">
+      <div class="hole-guide"></div>
+      <div class="logo-area">
+        <span class="paw">🐾</span>
+        <div class="brand">Tidy Tails</div>
+        <div class="tagline">Pet Waste Removal · St. Louis</div>
+      </div>
+      <div class="headline">Your Yard<br>Deserves Better.</div>
+      <div class="sub">We're the neighborhood's pet waste removal service — and spring cleanup is on us.</div>
+      <div class="offer-badge">
+        <div class="offer-big">FREE First Cleanup</div>
+        <div class="offer-small">No catch. No contract. Just a clean yard.</div>
+      </div>
+      <ul class="feature-list">
+        <li>$70/month flat — not per visit</li>
+        <li>1 dog or 5 dogs — same price</li>
+        <li>No contracts. Cancel anytime.</li>
+        <li>We text when we're on the way</li>
+        <li>Locally owned &amp; operated in STL</li>
+      </ul>
+      <div class="cta-block">
+        <div class="cta-phone">📱 314-850-7140</div>
+        <div class="cta-web">tidytailsstl.com</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HANGER A BACK (2-up) -->
+<div class="page-hangers-back" id="print-hanger-back">
+  <div class="door-hanger-sheet">
+    <!-- Hanger 1 Back -->
+    <div class="door-hanger hanger-back">
+      <div class="hole-guide"></div>
+      <div class="logo-area">
+        <div class="brand">🐾 Tidy Tails</div>
+      </div>
+      <div class="section-title">Why Choose Us</div>
+      <ul class="why-list">
+        <li><span class="check">✓</span> <span><strong>$70/month flat rate</strong> — other services charge $18-25 PER VISIT. That's $72-100/month with the same 4 visits.</span></li>
+        <li><span class="check">✓</span> <span><strong>No contracts, ever</strong> — stay because you love the service, not because you're locked in.</span></li>
+        <li><span class="check">✓</span> <span><strong>Free first cleanup</strong> — experience the difference before spending a dime.</span></li>
+        <li><span class="check">✓</span> <span><strong>1 dog or 4 dogs</strong> — same flat price. No per-dog fees.</span></li>
+        <li><span class="check">✓</span> <span><strong>Locally owned</strong> — not a franchise. Real people, real phone, real accountability.</span></li>
+      </ul>
+      <div class="section-title">Pricing</div>
+      <table class="pricing-table">
+        <tr><th>Plan</th><th>Price</th><th>Per Visit</th></tr>
+        <tr><td>Weekly</td><td class="price">$25/wk</td><td>$25</td></tr>
+        <tr><td>Monthly Flat</td><td class="price">$70/mo</td><td>~$17.50</td></tr>
+        <tr><td>Biweekly</td><td class="price">$45/2wk</td><td>$22.50</td></tr>
+        <tr><td>One-Time</td><td class="price">$100</td><td>—</td></tr>
+      </table>
+      <div class="section-title">How It Works</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><span>Text or call us to get started — takes 2 minutes</span></div>
+        <div class="step"><div class="step-num">2</div><span>We confirm your schedule (weekly or biweekly)</span></div>
+        <div class="step"><div class="step-num">3</div><span>We text when we're on the way, clean your yard, text when done</span></div>
+        <div class="step"><div class="step-num">4</div><span>Enjoy your backyard again!</span></div>
+      </div>
+      <div class="cta-block">
+        <div class="cta-phone">📱 314-850-7140</div>
+        <div class="cta-web">Text or call • tidytailsstl.com</div>
+      </div>
+      <div class="service-area">Serving: Florissant · Hazelwood · Ferguson · Bridgeton · Berkeley · Overland · North County STL</div>
+    </div>
+    <!-- Hanger 2 Back (duplicate) -->
+    <div class="door-hanger hanger-back">
+      <div class="hole-guide"></div>
+      <div class="logo-area">
+        <div class="brand">🐾 Tidy Tails</div>
+      </div>
+      <div class="section-title">Why Choose Us</div>
+      <ul class="why-list">
+        <li><span class="check">✓</span> <span><strong>$70/month flat rate</strong> — other services charge $18-25 PER VISIT. That's $72-100/month with the same 4 visits.</span></li>
+        <li><span class="check">✓</span> <span><strong>No contracts, ever</strong> — stay because you love the service, not because you're locked in.</span></li>
+        <li><span class="check">✓</span> <span><strong>Free first cleanup</strong> — experience the difference before spending a dime.</span></li>
+        <li><span class="check">✓</span> <span><strong>1 dog or 4 dogs</strong> — same flat price. No per-dog fees.</span></li>
+        <li><span class="check">✓</span> <span><strong>Locally owned</strong> — not a franchise. Real people, real phone, real accountability.</span></li>
+      </ul>
+      <div class="section-title">Pricing</div>
+      <table class="pricing-table">
+        <tr><th>Plan</th><th>Price</th><th>Per Visit</th></tr>
+        <tr><td>Weekly</td><td class="price">$25/wk</td><td>$25</td></tr>
+        <tr><td>Monthly Flat</td><td class="price">$70/mo</td><td>~$17.50</td></tr>
+        <tr><td>Biweekly</td><td class="price">$45/2wk</td><td>$22.50</td></tr>
+        <tr><td>One-Time</td><td class="price">$100</td><td>—</td></tr>
+      </table>
+      <div class="section-title">How It Works</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><span>Text or call us to get started — takes 2 minutes</span></div>
+        <div class="step"><div class="step-num">2</div><span>We confirm your schedule (weekly or biweekly)</span></div>
+        <div class="step"><div class="step-num">3</div><span>We text when we're on the way, clean your yard, text when done</span></div>
+        <div class="step"><div class="step-num">4</div><span>Enjoy your backyard again!</span></div>
+      </div>
+      <div class="cta-block">
+        <div class="cta-phone">📱 314-850-7140</div>
+        <div class="cta-web">Text or call • tidytailsstl.com</div>
+      </div>
+      <div class="service-area">Serving: Florissant · Hazelwood · Ferguson · Bridgeton · Berkeley · Overland · North County STL</div>
+    </div>
+  </div>
+</div>
+
+<!-- HANGER B FRONT (Orphaned Customer variant) -->
+<div class="page-orphan-front" id="print-orphan-front">
+  <div class="door-hanger-sheet">
+    <div class="door-hanger hanger-front hanger-orphan-front">
+      <div class="hole-guide"></div>
+      <div class="logo-area">
+        <span class="paw">🐾</span>
+        <div class="brand">Tidy Tails</div>
+        <div class="tagline">Pet Waste Removal · St. Louis</div>
+      </div>
+      <div class="headline">Did Your<br>Poop Scoop<br>Service<br>Disappear?</div>
+      <div class="sub">You're not alone. Several St. Louis pet waste services closed recently. We're here to fill the gap — and we're not going anywhere.</div>
+      <div class="offer-badge">
+        <div class="offer-big">Free Catch-Up Cleanup</div>
+        <div class="offer-small">We'll undo the backlog. No charge for new customers.</div>
+      </div>
+      <ul class="feature-list">
+        <li>$70/month flat — cancel anytime</li>
+        <li>We'll try to match your old schedule</li>
+        <li>1 dog or 5 dogs — same price</li>
+        <li>Locally owned, North County focus</li>
+        <li>Text us today — start this week</li>
+      </ul>
+      <div class="cta-block">
+        <div class="cta-phone">📱 314-850-7140</div>
+        <div class="cta-web">tidytailsstl.com</div>
+      </div>
+      <div class="cut-line"></div>
+    </div>
+    <div class="door-hanger hanger-front hanger-orphan-front">
+      <div class="hole-guide"></div>
+      <div class="logo-area">
+        <span class="paw">🐾</span>
+        <div class="brand">Tidy Tails</div>
+        <div class="tagline">Pet Waste Removal · St. Louis</div>
+      </div>
+      <div class="headline">Did Your<br>Poop Scoop<br>Service<br>Disappear?</div>
+      <div class="sub">You're not alone. Several St. Louis pet waste services closed recently. We're here to fill the gap — and we're not going anywhere.</div>
+      <div class="offer-badge">
+        <div class="offer-big">Free Catch-Up Cleanup</div>
+        <div class="offer-small">We'll undo the backlog. No charge for new customers.</div>
+      </div>
+      <ul class="feature-list">
+        <li>$70/month flat — cancel anytime</li>
+        <li>We'll try to match your old schedule</li>
+        <li>1 dog or 5 dogs — same price</li>
+        <li>Locally owned, North County focus</li>
+        <li>Text us today — start this week</li>
+      </ul>
+      <div class="cta-block">
+        <div class="cta-phone">📱 314-850-7140</div>
+        <div class="cta-web">tidytailsstl.com</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HANGER B BACK (same back as Hanger A — reuse same print) -->
+<div class="page-orphan-back" id="print-orphan-back">
+  <div class="door-hanger-sheet">
+    <div class="door-hanger hanger-back">
+      <div class="hole-guide"></div>
+      <div class="logo-area"><div class="brand">🐾 Tidy Tails</div></div>
+      <div class="section-title">You Shouldn't Have to Go Back to DIY</div>
+      <ul class="why-list">
+        <li><span class="check">✓</span> <span><strong>$70/month flat</strong> — if your old service was per-visit, you'll probably save money with us</span></li>
+        <li><span class="check">✓</span> <span><strong>Free catch-up clean</strong> — we'll tackle whatever built up while you were without service</span></li>
+        <li><span class="check">✓</span> <span><strong>Same-day availability</strong> possible — text us and we'll see if we can get you on this week's route</span></li>
+        <li><span class="check">✓</span> <span><strong>Established local company</strong> — not a new startup. Real reviews, real customers, real reliability.</span></li>
+        <li><span class="check">✓</span> <span><strong>No contracts</strong> — ever. Stay as long as you love it.</span></li>
+      </ul>
+      <div class="section-title">Pricing — Same as Before, Probably Better</div>
+      <table class="pricing-table">
+        <tr><th>Plan</th><th>Price</th><th>Per Visit</th></tr>
+        <tr><td>Weekly</td><td class="price">$25/wk</td><td>$25</td></tr>
+        <tr><td>Monthly Flat ⭐</td><td class="price">$70/mo</td><td>~$17.50</td></tr>
+        <tr><td>Biweekly</td><td class="price">$45/2wk</td><td>$22.50</td></tr>
+        <tr><td>One-Time Deep Clean</td><td class="price">$100</td><td>—</td></tr>
+      </table>
+      <div class="section-title">Switching is Easy</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><span>Text "SWITCHING" to 314-850-7140</span></div>
+        <div class="step"><div class="step-num">2</div><span>We match your old schedule (or pick a new day)</span></div>
+        <div class="step"><div class="step-num">3</div><span>First cleanup is FREE — we clear the backlog</span></div>
+        <div class="step"><div class="step-num">4</div><span>Normal service starts next visit</span></div>
+      </div>
+      <div class="cta-block">
+        <div class="cta-phone">📱 314-850-7140</div>
+        <div class="cta-web">Text "SWITCHING" to get started today</div>
+      </div>
+      <div class="service-area">Serving: Florissant · Hazelwood · Ferguson · Bridgeton · Berkeley · Overland · North County STL</div>
+    </div>
+    <div class="door-hanger hanger-back">
+      <div class="hole-guide"></div>
+      <div class="logo-area"><div class="brand">🐾 Tidy Tails</div></div>
+      <div class="section-title">You Shouldn't Have to Go Back to DIY</div>
+      <ul class="why-list">
+        <li><span class="check">✓</span> <span><strong>$70/month flat</strong> — if your old service was per-visit, you'll probably save money with us</span></li>
+        <li><span class="check">✓</span> <span><strong>Free catch-up clean</strong> — we'll tackle whatever built up while you were without service</span></li>
+        <li><span class="check">✓</span> <span><strong>Same-day availability</strong> possible — text us and we'll see if we can get you on this week's route</span></li>
+        <li><span class="check">✓</span> <span><strong>Established local company</strong> — not a new startup. Real reviews, real customers, real reliability.</span></li>
+        <li><span class="check">✓</span> <span><strong>No contracts</strong> — ever. Stay as long as you love it.</span></li>
+      </ul>
+      <div class="section-title">Pricing</div>
+      <table class="pricing-table">
+        <tr><th>Plan</th><th>Price</th><th>Per Visit</th></tr>
+        <tr><td>Weekly</td><td class="price">$25/wk</td><td>$25</td></tr>
+        <tr><td>Monthly Flat ⭐</td><td class="price">$70/mo</td><td>~$17.50</td></tr>
+        <tr><td>Biweekly</td><td class="price">$45/2wk</td><td>$22.50</td></tr>
+        <tr><td>One-Time</td><td class="price">$100</td><td>—</td></tr>
+      </table>
+      <div class="section-title">Switching is Easy</div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><span>Text "SWITCHING" to 314-850-7140</span></div>
+        <div class="step"><div class="step-num">2</div><span>We match your old schedule (or pick a new day)</span></div>
+        <div class="step"><div class="step-num">3</div><span>First cleanup is FREE — we clear the backlog</span></div>
+        <div class="step"><div class="step-num">4</div><span>Normal service starts next visit</span></div>
+      </div>
+      <div class="cta-block">
+        <div class="cta-phone">📱 314-850-7140</div>
+        <div class="cta-web">Text "SWITCHING" to get started today</div>
+      </div>
+      <div class="service-area">Serving: Florissant · Hazelwood · Ferguson · Bridgeton · Berkeley · Overland · North County STL</div>
+    </div>
+  </div>
+</div>
+
+<!-- BUSINESS CARDS (10-up) -->
+<div class="page-biz-cards" id="print-biz-cards">
+  <div class="biz-card-sheet">
+    <!-- 5 front + 5 back per row for duplex. Doing 10 fronts then flip for backs -->
+    <!-- Row 1 -->
+    <div class="biz-card biz-card-front">
+      <div class="bc-paw">🐾</div>
+      <div class="bc-brand">Tidy Tails</div>
+      <div class="bc-tag">Pet Waste Removal · St. Louis</div>
+      <div class="bc-name">Jamie Dabrowski</div>
+      <div class="bc-role">Owner &amp; Operator</div>
+      <div class="bc-phone">📱 314-850-7140</div>
+      <div class="bc-web">tidytailsstl.com</div>
+    </div>
+    <div class="biz-card biz-card-back">
+      <div class="bc-offer-big">FREE First<br>Cleanup 🐕</div>
+      <div class="bc-offer-sub">No contracts. Cancel anytime.</div>
+      <div class="bc-feature-row">
+        <span class="bc-chip">$70/mo Flat</span>
+        <span class="bc-chip">Weekly or Biweekly</span>
+        <span class="bc-chip">1-5 Dogs Same Price</span>
+      </div>
+      <div class="bc-contact">📱 <span>314-850-7140</span> · tidytailsstl.com</div>
+    </div>
+    <!-- Row 2 -->
+    <div class="biz-card biz-card-front">
+      <div class="bc-paw">🐾</div>
+      <div class="bc-brand">Tidy Tails</div>
+      <div class="bc-tag">Pet Waste Removal · St. Louis</div>
+      <div class="bc-name">Jamie Dabrowski</div>
+      <div class="bc-role">Owner &amp; Operator</div>
+      <div class="bc-phone">📱 314-850-7140</div>
+      <div class="bc-web">tidytailsstl.com</div>
+    </div>
+    <div class="biz-card biz-card-back">
+      <div class="bc-offer-big">FREE First<br>Cleanup 🐕</div>
+      <div class="bc-offer-sub">No contracts. Cancel anytime.</div>
+      <div class="bc-feature-row">
+        <span class="bc-chip">$70/mo Flat</span>
+        <span class="bc-chip">Weekly or Biweekly</span>
+        <span class="bc-chip">1-5 Dogs Same Price</span>
+      </div>
+      <div class="bc-contact">📱 <span>314-850-7140</span> · tidytailsstl.com</div>
+    </div>
+    <!-- Row 3 -->
+    <div class="biz-card biz-card-front">
+      <div class="bc-paw">🐾</div>
+      <div class="bc-brand">Tidy Tails</div>
+      <div class="bc-tag">Pet Waste Removal · St. Louis</div>
+      <div class="bc-name">Jamie Dabrowski</div>
+      <div class="bc-role">Owner &amp; Operator</div>
+      <div class="bc-phone">📱 314-850-7140</div>
+      <div class="bc-web">tidytailsstl.com</div>
+    </div>
+    <div class="biz-card biz-card-back">
+      <div class="bc-offer-big">FREE First<br>Cleanup 🐕</div>
+      <div class="bc-offer-sub">No contracts. Cancel anytime.</div>
+      <div class="bc-feature-row">
+        <span class="bc-chip">$70/mo Flat</span>
+        <span class="bc-chip">Weekly or Biweekly</span>
+        <span class="bc-chip">1-5 Dogs Same Price</span>
+      </div>
+      <div class="bc-contact">📱 <span>314-850-7140</span> · tidytailsstl.com</div>
+    </div>
+    <!-- Row 4 -->
+    <div class="biz-card biz-card-front">
+      <div class="bc-paw">🐾</div>
+      <div class="bc-brand">Tidy Tails</div>
+      <div class="bc-tag">Pet Waste Removal · St. Louis</div>
+      <div class="bc-name">Jamie Dabrowski</div>
+      <div class="bc-role">Owner &amp; Operator</div>
+      <div class="bc-phone">📱 314-850-7140</div>
+      <div class="bc-web">tidytailsstl.com</div>
+    </div>
+    <div class="biz-card biz-card-back">
+      <div class="bc-offer-big">FREE First<br>Cleanup 🐕</div>
+      <div class="bc-offer-sub">No contracts. Cancel anytime.</div>
+      <div class="bc-feature-row">
+        <span class="bc-chip">$70/mo Flat</span>
+        <span class="bc-chip">Weekly or Biweekly</span>
+        <span class="bc-chip">1-5 Dogs Same Price</span>
+      </div>
+      <div class="bc-contact">📱 <span>314-850-7140</span> · tidytailsstl.com</div>
+    </div>
+    <!-- Row 5 -->
+    <div class="biz-card biz-card-front">
+      <div class="bc-paw">🐾</div>
+      <div class="bc-brand">Tidy Tails</div>
+      <div class="bc-tag">Pet Waste Removal · St. Louis</div>
+      <div class="bc-name">Jamie Dabrowski</div>
+      <div class="bc-role">Owner &amp; Operator</div>
+      <div class="bc-phone">📱 314-850-7140</div>
+      <div class="bc-web">tidytailsstl.com</div>
+    </div>
+    <div class="biz-card biz-card-back">
+      <div class="bc-offer-big">FREE First<br>Cleanup 🐕</div>
+      <div class="bc-offer-sub">No contracts. Cancel anytime.</div>
+      <div class="bc-feature-row">
+        <span class="bc-chip">$70/mo Flat</span>
+        <span class="bc-chip">Weekly or Biweekly</span>
+        <span class="bc-chip">1-5 Dogs Same Price</span>
+      </div>
+      <div class="bc-contact">📱 <span>314-850-7140</span> · tidytailsstl.com</div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  function switchTab(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + id).classList.add('active');
+    event.target.classList.add('active');
+    saveState();
+  }
+
+  function toggleCheck(el) {
+    el.classList.toggle('done');
+    saveState();
+  }
+
+  const STORAGE_KEY = 'north-county-print-kit-v1';
+
+  function saveState() {
+    const state = {};
+    document.querySelectorAll('.check-item').forEach((el, i) => {
+      state['check_' + i] = el.classList.contains('done');
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function loadState() {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return;
+    const state = JSON.parse(raw);
+    document.querySelectorAll('.check-item').forEach((el, i) => {
+      if (state['check_' + i]) el.classList.add('done');
+    });
+  }
+
+  function printHangerFront() {
+    document.querySelectorAll('.page-hangers-front, .page-hangers-back, .page-orphan-front, .page-orphan-back, .page-biz-cards').forEach(el => el.style.display = 'none');
+    document.getElementById('print-hanger-front').style.display = 'block';
+    window.print();
+    setTimeout(() => {
+      document.getElementById('print-hanger-front').style.display = '';
+    }, 1000);
+  }
+  function printHangerBack() {
+    document.querySelectorAll('.page-hangers-front, .page-hangers-back, .page-orphan-front, .page-orphan-back, .page-biz-cards').forEach(el => el.style.display = 'none');
+    document.getElementById('print-hanger-back').style.display = 'block';
+    window.print();
+    setTimeout(() => {
+      document.getElementById('print-hanger-back').style.display = '';
+    }, 1000);
+  }
+  function printOrphanFront() {
+    document.querySelectorAll('.page-hangers-front, .page-hangers-back, .page-orphan-front, .page-orphan-back, .page-biz-cards').forEach(el => el.style.display = 'none');
+    document.getElementById('print-orphan-front').style.display = 'block';
+    window.print();
+    setTimeout(() => {
+      document.getElementById('print-orphan-front').style.display = '';
+    }, 1000);
+  }
+  function printOrphanBack() {
+    document.querySelectorAll('.page-hangers-front, .page-hangers-back, .page-orphan-front, .page-orphan-back, .page-biz-cards').forEach(el => el.style.display = 'none');
+    document.getElementById('print-orphan-back').style.display = 'block';
+    window.print();
+    setTimeout(() => {
+      document.getElementById('print-orphan-back').style.display = '';
+    }, 1000);
+  }
+  function printBizCards() {
+    document.querySelectorAll('.page-hangers-front, .page-hangers-back, .page-orphan-front, .page-orphan-back, .page-biz-cards').forEach(el => el.style.display = 'none');
+    document.getElementById('print-biz-cards').style.display = 'block';
+    window.print();
+    setTimeout(() => {
+      document.getElementById('print-biz-cards').style.display = '';
+    }, 1000);
+  }
+
+  loadState();
+</script>
+</body>
+</html>
