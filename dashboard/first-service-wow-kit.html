@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐾 First Service WOW Kit — Tidy Tails</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { 
+    background: #0f0f13; 
+    color: #e8e8ec; 
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+  }
+  
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    padding: 24px 20px 20px;
+    border-bottom: 2px solid #00d4aa;
+  }
+  .header h1 { 
+    font-size: 22px; 
+    font-weight: 800; 
+    color: #00d4aa;
+    margin-bottom: 4px;
+  }
+  .header p { font-size: 14px; color: #a0a0b0; }
+  
+  /* STAT BAR */
+  .stat-bar {
+    display: flex;
+    gap: 12px;
+    padding: 14px 20px;
+    background: #16161f;
+    border-bottom: 1px solid #2a2a3a;
+    overflow-x: auto;
+  }
+  .stat { 
+    text-align: center; 
+    min-width: 80px;
+    background: #1e1e2e;
+    border-radius: 10px;
+    padding: 8px 12px;
+  }
+  .stat-val { font-size: 20px; font-weight: 800; color: #00d4aa; }
+  .stat-lbl { font-size: 10px; color: #666; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+  
+  /* TABS */
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    background: #16161f;
+    border-bottom: 1px solid #2a2a3a;
+    padding: 0 8px;
+    gap: 4px;
+  }
+  .tab {
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #666;
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    transition: all 0.2s;
+  }
+  .tab.active { color: #00d4aa; border-bottom-color: #00d4aa; }
+  .tab:hover { color: #e8e8ec; }
+  
+  /* PANELS */
+  .panel { display: none; padding: 20px; max-width: 700px; margin: 0 auto; }
+  .panel.active { display: block; }
+  
+  /* CARDS */
+  .card {
+    background: #1e1e2e;
+    border-radius: 14px;
+    padding: 18px;
+    margin-bottom: 14px;
+    border: 1px solid #2a2a3a;
+  }
+  .card.highlight { border-color: #00d4aa44; background: #1a2a2a; }
+  .card.warn { border-color: #ff6b2b44; background: #1f1a15; }
+  .card.gold { border-color: #f5b042; background: #1f1c12; }
+  .card h3 { 
+    font-size: 15px; 
+    font-weight: 700; 
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card p { font-size: 13px; color: #a0a0b0; line-height: 1.6; }
+  
+  /* STEPS */
+  .step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 18px;
+    align-items: flex-start;
+  }
+  .step-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #00d4aa;
+    color: #000;
+    font-weight: 800;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .step-num.orange { background: #ff6b2b; }
+  .step-num.gold { background: #f5b042; color: #000; }
+  .step-num.purple { background: #9b59b6; }
+  .step-content { flex: 1; }
+  .step-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .step-desc { font-size: 13px; color: #a0a0b0; line-height: 1.5; }
+  
+  /* SCRIPT BOX */
+  .script-box {
+    background: #0f0f1a;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 14px;
+    margin-top: 10px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #c8e6c9;
+    position: relative;
+    font-family: 'Courier New', monospace;
+  }
+  .script-box .placeholder { color: #f5b042; font-weight: 700; }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #00d4aa22;
+    color: #00d4aa;
+    border: 1px solid #00d4aa44;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { background: #00d4aa33; }
+  .copy-btn.copied { background: #00d4aa; color: #000; }
+  
+  /* CHECKLIST */
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid #1a1a2a;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-item input[type="checkbox"] {
+    width: 18px; height: 18px;
+    accent-color: #00d4aa;
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .check-item label {
+    font-size: 13px;
+    color: #c0c0d0;
+    cursor: pointer;
+    line-height: 1.5;
+  }
+  .check-item label.done { text-decoration: line-through; color: #555; }
+  .check-note { font-size: 11px; color: #666; margin-top: 2px; display: block; }
+  
+  /* PHASE HEADER */
+  .phase-header {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #666;
+    margin: 20px 0 10px;
+    padding: 6px 10px;
+    background: #16161f;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  /* BADGE */
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge.green { background: #00d4aa22; color: #00d4aa; border: 1px solid #00d4aa44; }
+  .badge.orange { background: #ff6b2b22; color: #ff6b2b; border: 1px solid #ff6b2b44; }
+  .badge.gold { background: #f5b04222; color: #f5b042; border: 1px solid #f5b04244; }
+  .badge.purple { background: #9b59b622; color: #9b59b6; border: 1px solid #9b59b644; }
+  
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { 
+    background: #16161f; 
+    padding: 10px 12px; 
+    text-align: left; 
+    font-size: 11px; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+    color: #666;
+  }
+  td { padding: 10px 12px; border-bottom: 1px solid #1e1e2e; color: #c0c0d0; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #1a1a28; }
+  
+  /* TIPS */
+  .tip {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .tip.green { background: #00d4aa11; border-left: 3px solid #00d4aa; color: #a0e0d0; }
+  .tip.orange { background: #ff6b2b11; border-left: 3px solid #ff6b2b; color: #e0b090; }
+  .tip.gold { background: #f5b04211; border-left: 3px solid #f5b042; color: #e0c890; }
+  
+  /* ACCORDION */
+  .accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 4px 0;
+  }
+  .accordion-body { display: none; margin-top: 10px; }
+  .accordion-body.open { display: block; }
+  .chevron { transition: transform 0.2s; color: #666; font-size: 12px; }
+  .chevron.open { transform: rotate(180deg); }
+  
+  /* DIVIDER */
+  .divider { height: 1px; background: #2a2a3a; margin: 16px 0; }
+  
+  /* MATH CARD */
+  .math-card {
+    background: #0f0f1a;
+    border-radius: 10px;
+    padding: 14px;
+    margin-top: 12px;
+    border: 1px solid #f5b04233;
+  }
+  .math-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    font-size: 13px;
+    border-bottom: 1px solid #1a1a28;
+  }
+  .math-row:last-child { border-bottom: none; }
+  .math-row .label { color: #a0a0b0; }
+  .math-row .value { font-weight: 700; }
+  .math-row .value.green { color: #00d4aa; }
+  .math-row .value.gold { color: #f5b042; }
+  
+  /* EMOJI BANNER */
+  .banner {
+    background: linear-gradient(135deg, #00d4aa22, #0f3460);
+    border: 1px solid #00d4aa44;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .banner .big { font-size: 28px; margin-bottom: 8px; }
+  .banner h2 { font-size: 16px; font-weight: 800; margin-bottom: 6px; }
+  .banner p { font-size: 13px; color: #a0d0c0; }
+  
+  /* SCROLL HINT */
+  .scroll-hint { 
+    font-size: 11px; 
+    color: #444; 
+    text-align: center; 
+    padding: 12px;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:.4} 50%{opacity:1} }
+  
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 24px;
+    color: #444;
+    font-size: 12px;
+    border-top: 1px solid #1e1e2e;
+    margin-top: 16px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>🐾 First Service WOW Kit</h1>
+  <p>Turn new customers into loyal fans (and referral machines) from day one</p>
+</div>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat">
+    <div class="stat-val">10</div>
+    <div class="stat-lbl">Current</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">25</div>
+    <div class="stat-lbl">Target</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$70</div>
+    <div class="stat-lbl">Avg Mo.</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">2+yrs</div>
+    <div class="stat-lbl">Avg LTV</div>
+  </div>
+  <div class="stat">
+    <div class="stat-val">$1,680</div>
+    <div class="stat-lbl">LTV/cust</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="switchTab('the-sequence')">🚀 The Sequence</div>
+  <div class="tab" onclick="switchTab('prep')">📋 Pre-Service Prep</div>
+  <div class="tab" onclick="switchTab('texts')">💬 Text Scripts</div>
+  <div class="tab" onclick="switchTab('moments')">⭐ WOW Moments</div>
+  <div class="tab" onclick="switchTab('checklist')">✅ Full Checklist</div>
+</div>
+
+<!-- ==================== TAB 1: THE SEQUENCE ==================== -->
+<div id="panel-the-sequence" class="panel active">
+
+  <div class="banner">
+    <div class="big">🎯</div>
+    <h2>The First 7 Days Determine Everything</h2>
+    <p>New customers make their "stay or cancel" decision within 2 services. A great first experience turns a $70/mo signup into a $1,680 lifetime customer who refers 1-2 friends. A bad first experience costs you both.</p>
+  </div>
+
+  <div class="card highlight">
+    <h3>💡 The Core Insight</h3>
+    <p>Customers don't pay for "poop removal." They pay for <strong style="color:#00d4aa">peace of mind</strong>. Your job on service #1 isn't just to clean the yard — it's to make them feel like they made the right decision. Every touch point from signup to first completion should reinforce: <em>"I hired the right person."</em></p>
+  </div>
+
+  <div class="phase-header">📅 Day 0 — Signup (At Event or Via Text)</div>
+
+  <div class="step">
+    <div class="step-num">1</div>
+    <div class="step-content">
+      <div class="step-title">Instant Confirmation Text (While They're Still Watching)</div>
+      <div class="step-desc">Send this the moment they say yes — ideally before they walk away. Seeing a text arrive in real-time builds trust instantly. Use the <a href="new-customer-onboarding.html" style="color:#00d4aa">Onboarding Kit</a> for the script.</div>
+      <div class="script-box">
+        Hey <span class="placeholder">[NAME]</span>! This is TJ from Tidy Tails 🐾 — so pumped to start taking care of <span class="placeholder">[DOG NAME]</span>'s yard! I'll text you Sunday/Monday to grab your address and get you on the schedule. First service coming up fast — talk soon! 🙌
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Hey [NAME]! This is TJ from Tidy Tails 🐾 — so pumped to start taking care of [DOG NAME]\'s yard! I\'ll text you Sunday/Monday to grab your address and get you on the schedule. First service coming up fast — talk soon! 🙌')">📋 Copy Text</button>
+    </div>
+  </div>
+
+  <div class="phase-header">📅 Day 1 — Intake (Day After Signup)</div>
+
+  <div class="step">
+    <div class="step-num">2</div>
+    <div class="step-content">
+      <div class="step-title">Intake Text — Collect the 4 Essentials</div>
+      <div class="step-desc">Address, gate access, dog name(s), preferred service day. Keep it casual — not a form, a conversation.</div>
+      <div class="script-box">
+        Hey <span class="placeholder">[NAME]</span>! TJ from Tidy Tails 🐾 — ready to get you started! Quick stuff I need:<br><br>
+        1️⃣ Your address<br>
+        2️⃣ Gate code or access instructions<br>
+        3️⃣ Your dog(s) name(s)<br>
+        4️⃣ Any day of week preference? I'm in your area <span class="placeholder">[DAYS]</span><br><br>
+        Once I have this I'll lock in your first service date!
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Hey [NAME]! TJ from Tidy Tails 🐾 — ready to get you started! Quick stuff I need:\n\n1️⃣ Your address\n2️⃣ Gate code or access instructions\n3️⃣ Your dog(s) name(s)\n4️⃣ Any day of week preference?\n\nOnce I have this I\'ll lock in your first service date!')">📋 Copy Text</button>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num">3</div>
+    <div class="step-content">
+      <div class="step-title">Lock the Date (Reply Same Day)</div>
+      <div class="step-desc">Don't leave it open-ended. Give them a specific day. "I'll add you to my <span class="placeholder">[DAY]</span> route" feels professional and committed.</div>
+      <div class="script-box">
+        Perfect! I've got you locked in for <span class="placeholder">[DAY, DATE]</span> — I'll shoot you a text when I'm heading over so you know it's happening. Looking forward to meeting <span class="placeholder">[DOG NAME]</span>'s yard! 😄
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Perfect! I\'ve got you locked in for [DAY, DATE] — I\'ll shoot you a text when I\'m heading over so you know it\'s happening. Looking forward to meeting [DOG NAME]\'s yard! 😄')">📋 Copy Text</button>
+    </div>
+  </div>
+
+  <div class="phase-header">🐾 First Service Day — The WOW Window</div>
+
+  <div class="step">
+    <div class="step-num orange">4</div>
+    <div class="step-content">
+      <div class="step-title">On My Way Text (30–60 Min Before)</div>
+      <div class="step-desc">This one touch makes you feel like a pro. No other service provider does this. It also prevents the "did they come?" anxiety.</div>
+      <div class="script-box">
+        Hey <span class="placeholder">[NAME]</span>! Heading to <span class="placeholder">[DOG NAME]</span>'s yard soon — should be there around <span class="placeholder">[TIME]</span>. Just wanted to give you a heads up 👍
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Hey [NAME]! Heading to [DOG NAME]\'s yard soon — should be there around [TIME]. Just wanted to give you a heads up 👍')">📋 Copy Text</button>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-num orange">5</div>
+    <div class="step-content">
+      <div class="step-title">All Done Text + Photo (Immediately After)</div>
+      <div class="step-desc">
+        Send within 5 minutes of finishing. Include a photo of the clean yard — this is the <strong style="color:#f5b042">single most powerful trust-builder</strong> you can do. No other competitor does this. It's physical proof of value and gives them something to screenshot and share.
+        <br><br>
+        <span class="badge gold">💡 PRO TIP</span> Mention something specific — a note about the yard, the dog you saw, the gate. Specificity = care = retention.
+      </div>
+      <div class="script-box">
+        Hey <span class="placeholder">[NAME]</span>! All done at your place 🐾✅ — <span class="placeholder">[DOG NAME]</span>'s yard is spotless. <span class="placeholder">[Optional: "Found a good amount back by the fence — totally normal for first visits, it'll be lighter from here on."]</span><br><br>
+        [📸 Attach clean yard photo]<br><br>
+        You're all set for next <span class="placeholder">[DAY]</span>. Any questions, just text me!
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Hey [NAME]! All done at your place 🐾✅ — [DOG NAME]\'s yard is spotless.\n\n[📸 Attach clean yard photo]\n\nYou\'re all set for next [DAY]. Any questions, just text me!')">📋 Copy Text</button>
+    </div>
+  </div>
+
+  <div class="phase-header">📅 Day 3-4 — The Check-In (Often Skipped — Don't Skip)</div>
+
+  <div class="step">
+    <div class="step-num gold">6</div>
+    <div class="step-content">
+      <div class="step-title">The 3-Day Check-In (Optional But Powerful)</div>
+      <div class="step-desc">Only 2-3 sentences. Not a sales pitch — a human moment. This is what locks in the first 3-month retention window.</div>
+      <div class="script-box">
+        Hey <span class="placeholder">[NAME]</span>! Just checking in — how'd the yard look after the first visit? Everything good with <span class="placeholder">[DOG NAME]</span>? 😄
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Hey [NAME]! Just checking in — how\'d the yard look after the first visit? Everything good with [DOG NAME]? 😄')">📋 Copy Text</button>
+    </div>
+  </div>
+
+  <div class="phase-header">⭐ After Service #2 — The Referral + Review Ask</div>
+
+  <div class="step">
+    <div class="step-num purple">7</div>
+    <div class="step-content">
+      <div class="step-title">Referral + Review Ask (Highest Satisfaction Window)</div>
+      <div class="step-desc">After service #2 is the sweet spot — they've experienced the value twice, they're satisfied, and they're not yet in "this is just normal" autopilot mode. Don't wait for month 3.</div>
+      <div class="script-box">
+        Hey <span class="placeholder">[NAME]</span>! Done with <span class="placeholder">[DOG NAME]</span>'s yard again 🐾 — looking great over there!<br><br>
+        Two quick asks if you're up for it:<br>
+        ⭐ A Google review would mean the world — it helps local folks find us: <span class="placeholder">[LINK]</span><br>
+        🐕 Know any neighbors with dogs? If you refer someone who signs up, I'll throw in a free month for you!<br><br>
+        No pressure either way — just happy you're a customer 🙌
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Hey [NAME]! Done with [DOG NAME]\'s yard again 🐾 — looking great over there!\n\nTwo quick asks if you\'re up for it:\n⭐ A Google review would mean the world: [LINK]\n🐕 Know any neighbors with dogs? If you refer someone who signs up, I\'ll throw in a free month for you!\n\nNo pressure either way — just happy you\'re a customer 🙌')">📋 Copy Text</button>
+    </div>
+  </div>
+
+  <div class="card gold">
+    <h3>💰 Why This Matters — The Math</h3>
+    <div class="math-card">
+      <div class="math-row">
+        <span class="label">Avg monthly charge</span>
+        <span class="value gold">$70/mo</span>
+      </div>
+      <div class="math-row">
+        <span class="label">Avg customer retention (goal)</span>
+        <span class="value">24 months</span>
+      </div>
+      <div class="math-row">
+        <span class="label">Lifetime value per customer</span>
+        <span class="value green">$1,680</span>
+      </div>
+      <div class="math-row">
+        <span class="label">Referral value (1 friend brings 1)</span>
+        <span class="value green">+$1,680</span>
+      </div>
+      <div class="math-row">
+        <span class="label">Combined value of a happy customer</span>
+        <span class="value gold" style="font-size:16px">$3,360</span>
+      </div>
+    </div>
+    <p style="margin-top:12px; font-size:12px; color:#888;">A 5-minute WOW experience on service day #1 that locks in a 2-year customer and one referral = <strong style="color:#f5b042">$3,360 in revenue</strong>. The "on my way" text + yard photo costs 3 minutes.</p>
+  </div>
+
+</div>
+
+<!-- ==================== TAB 2: PREP ==================== -->
+<div id="panel-prep" class="panel">
+
+  <div class="card">
+    <h3>🧠 Know Before You Go</h3>
+    <p>Before pulling up to a first-service address, know these cold:</p>
+  </div>
+
+  <div class="phase-header">📋 Customer Profile Checklist (Pull From Intake)</div>
+
+  <div class="card highlight">
+    <div style="margin-bottom: 12px;">
+      <div class="check-item">
+        <input type="checkbox" id="p1">
+        <label for="p1"><strong>Dog name(s)</strong> — Use it in every text. "Apollo" not "your dog."<span class="check-note">People will literally cancel a service if they feel like you don't know their dog.</span></label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="p2">
+        <label for="p2"><strong>Number of dogs</strong> — More dogs = more piles, manage expectations<span class="check-note">First visits with 3+ dogs can take longer. Be accurate on first-visit pricing.</span></label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="p3">
+        <label for="p3"><strong>Gate code / access instructions</strong> — Know this before you leave, not when you're in the driveway</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="p4">
+        <label for="p4"><strong>Yard size / layout notes</strong> (if given) — Narrow side yard? Deck to check under?</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="p5">
+        <label for="p5"><strong>Customer's name</strong> — Use it. "Hey Shannon!" not "Hey!"</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="p6">
+        <label for="p6"><strong>Confirmed service day</strong> — They know you're coming today?</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-header">🛠️ Supply Check (Night Before)</div>
+
+  <div class="card">
+    <div>
+      <div class="check-item">
+        <input type="checkbox" id="s1">
+        <label for="s1">Enough bags for number of dogs + extra<span class="check-note">Rule: Bring 2x what you think you need. First visits always have more than expected.</span></label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="s2">
+        <label for="s2">Scooper or rake — clean and ready</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="s3">
+        <label for="s3">Phone charged — you need to send the "on my way" text AND the yard photo</label>
+      </div>
+      <div class="check-item">
+        <input type="checkbox" id="s4">
+        <label for="s4">Address confirmed in maps — don't waste 10 min figuring out a gate</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase-header">⚡ First-Visit Expectations (Set With New Customers)</div>
+
+  <div class="card warn">
+    <h3 style="color:#ff6b2b">⚠️ The "First Visit Is Different" Talk</h3>
+    <p style="margin-bottom: 10px;">Most first visits have WAY more waste than subsequent visits — especially if the yard hasn't been cleaned in weeks. Set this expectation before you arrive so customers don't think you're complaining.</p>
+    <div class="script-box">
+      Just a heads up — first visits often take a little longer because we're doing a full baseline clean. After that, each service is much faster since we're just maintaining. The yard will look great after today! 🙌
+    </div>
+    <button class="copy-btn" onclick="copyText(this, 'Just a heads up — first visits often take a little longer because we\'re doing a full baseline clean. After that, each service is much faster since we\'re just maintaining. The yard will look great after today! 🙌')">📋 Copy Text</button>
+  </div>
+
+  <div class="tip green">
+    💡 <strong>Tip:</strong> Consider sending the "first visit is different" text 1-2 hours before your first service. It prevents the "why did this take so long?" question and positions you as thorough, not slow.
+  </div>
+
+  <div class="tip gold">
+    📸 <strong>The Yard Photo:</strong> Before you send the "all done" text, take 15 seconds to take a clean yard photo from a flattering angle. Make the yard look as big and green as possible. This photo should make the customer think "damn, that looks great."
+  </div>
+
+  <div class="tip orange">
+    🔴 <strong>Never do this:</strong> Don't show up without texting first. Don't skip the "all done" message. Don't leave without taking a photo. These 3 things are the entire WOW experience — they take 5 minutes combined.
+  </div>
+
+</div>
+
+<!-- ==================== TAB 3: TEXTS ==================== -->
+<div id="panel-texts" class="panel">
+
+  <div class="card">
+    <h3>📱 Complete Text Sequence — First 2 Weeks</h3>
+    <p>All 8 texts in order. Copy and customize. <span class="badge gold">🔑 KEY</span> items are the highest-impact ones — don't skip these.</p>
+  </div>
+
+  <!-- Text 1 -->
+  <div class="card highlight">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div>
+        <span class="badge green">T-0 · SIGNUP</span>
+        <strong style="display:block; margin-top:6px; font-size:14px">🎉 Instant Confirmation <span class="badge gold">🔑 KEY</span></strong>
+      </div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="accordion-body open" style="display:block;">
+      <p style="font-size:12px; color:#666; margin-bottom:8px;">Send while they're still at the event / still in conversation. Don't wait.</p>
+      <div class="script-box">
+        Hey <span class="placeholder">[NAME]</span>! This is TJ from Tidy Tails 🐾 — so excited to start taking care of <span class="placeholder">[DOG NAME]</span>'s yard! I'll text you tomorrow to get your info and lock in your first service. Welcome to the crew! 🙌
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Hey [NAME]! This is TJ from Tidy Tails 🐾 — so excited to start taking care of [DOG NAME]\'s yard! I\'ll text you tomorrow to get your info and lock in your first service. Welcome to the crew! 🙌')">📋 Copy</button>
+    </div>
+  </div>
+
+  <!-- Text 2 -->
+  <div class="card">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div>
+        <span class="badge orange">T+1 DAY · INTAKE</span>
+        <strong style="display:block; margin-top:6px; font-size:14px">📋 Intake — Collect Address + Info</strong>
+      </div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="script-box">
+        Hey <span class="placeholder">[NAME]</span>! TJ here from Tidy Tails — ready to get you going! I just need a few quick things:<br><br>
+        📍 Your address<br>
+        🔑 Gate code / how to get in the yard<br>
+        🐕 Dog name(s) (love knowing who I'm cleaning up after lol)<br>
+        📅 Any day preference? I'm in your area on <span class="placeholder">[DAYS]</span>
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Hey [NAME]! TJ here from Tidy Tails — ready to get you going! I just need a few quick things:\n\n📍 Your address\n🔑 Gate code / how to get in the yard\n🐕 Dog name(s)\n📅 Any day preference?')">📋 Copy</button>
+    </div>
+  </div>
+
+  <!-- Text 3 -->
+  <div class="card">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div>
+        <span class="badge orange">T+1 DAY · SCHEDULE</span>
+        <strong style="display:block; margin-top:6px; font-size:14px">📅 Date Confirmation</strong>
+      </div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="script-box">
+        Perfect, got everything! You're locked in for <span class="placeholder">[DATE, DAY]</span>. I'll give you a heads up about 30 min before I head over. Can't wait to get <span class="placeholder">[DOG NAME]</span>'s yard looking clean! 🐾
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Perfect, got everything! You\'re locked in for [DATE, DAY]. I\'ll give you a heads up about 30 min before I head over. Can\'t wait to get [DOG NAME]\'s yard looking clean! 🐾')">📋 Copy</button>
+    </div>
+  </div>
+
+  <!-- Text 4 -->
+  <div class="card highlight">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div>
+        <span class="badge green">SERVICE DAY</span>
+        <strong style="display:block; margin-top:6px; font-size:14px">🚗 On My Way <span class="badge gold">🔑 KEY</span></strong>
+      </div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="accordion-body open" style="display:block;">
+      <p style="font-size:12px; color:#666; margin-bottom:8px;">30-60 min before arrival. Literally no other service provider does this. This alone generates compliments.</p>
+      <div class="script-box">
+        Hey <span class="placeholder">[NAME]</span>! Heading your way — should be there around <span class="placeholder">[TIME]</span>. Just wanted to give you a heads up 🙂
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Hey [NAME]! Heading your way — should be there around [TIME]. Just wanted to give you a heads up 🙂')">📋 Copy</button>
+    </div>
+  </div>
+
+  <!-- Text 5 -->
+  <div class="card highlight">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div>
+        <span class="badge green">SERVICE DAY</span>
+        <strong style="display:block; margin-top:6px; font-size:14px">✅ All Done + Photo <span class="badge gold">🔑 KEY</span></strong>
+      </div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="accordion-body open" style="display:block;">
+      <p style="font-size:12px; color:#666; margin-bottom:8px;">Send within 5 min of finishing. Include yard photo. This is THE most important text.</p>
+      <div class="script-box">
+        Hey <span class="placeholder">[NAME]</span>! All done 🐾✅ — got every bit of it. <span class="placeholder">[DOG NAME]</span>'s yard is clean and ready to enjoy!<br><br>
+        [📸 Photo]<br><br>
+        See you next <span class="placeholder">[DAY]</span>! 👋
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Hey [NAME]! All done 🐾✅ — got every bit of it. [DOG NAME]\'s yard is clean and ready to enjoy!\n\n[📸 Photo]\n\nSee you next [DAY]! 👋')">📋 Copy</button>
+      <div class="tip gold" style="margin-top:10px">
+        💡 <strong>First-visit variation:</strong> Add "First visits always have a lot — yours was solid! It'll be a lighter load from here." This manages expectations and frames the work positively.
+      </div>
+    </div>
+  </div>
+
+  <!-- Text 6 -->
+  <div class="card">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div>
+        <span class="badge purple">T+3 DAYS</span>
+        <strong style="display:block; margin-top:6px; font-size:14px">💬 3-Day Check-In</strong>
+      </div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="script-box">
+        Hey <span class="placeholder">[NAME]</span>! Just checking in — how's the yard looking? Everything good with <span class="placeholder">[DOG NAME]</span>? 😄
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Hey [NAME]! Just checking in — how\'s the yard looking? Everything good with [DOG NAME]? 😄')">📋 Copy</button>
+    </div>
+  </div>
+
+  <!-- Text 7 -->
+  <div class="card">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div>
+        <span class="badge gold">SERVICE #2</span>
+        <strong style="display:block; margin-top:6px; font-size:14px">⭐ Review + Referral Ask</strong>
+      </div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <p style="font-size:12px; color:#666; margin-bottom:8px;">After the "all done" text for service #2. This is the sweet spot — they've experienced value twice, still impressed, not yet in autopilot.</p>
+      <div class="script-box">
+        Also — two quick asks if you're up for it 😊<br><br>
+        ⭐ Leaving us a Google review would help so much — really helps other dog owners find us: <span class="placeholder">[LINK]</span><br><br>
+        🐕 And if you know any neighbors with dogs who might want this, let 'em know! Anyone you refer who signs up = a free month for you. No pressure either way — just really glad you're a customer 🙏
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Also — two quick asks if you\'re up for it 😊\n\n⭐ Leaving us a Google review would help so much: [LINK]\n\n🐕 And if you know any neighbors with dogs — anyone you refer who signs up = a free month for you. No pressure — just really glad you\'re a customer 🙏')">📋 Copy</button>
+    </div>
+  </div>
+
+  <!-- Text 8 -->
+  <div class="card">
+    <div class="accordion-header" onclick="toggleAccordion(this)">
+      <div>
+        <span class="badge purple">END OF MONTH 1</span>
+        <strong style="display:block; margin-top:6px; font-size:14px">💳 First Payment Request</strong>
+      </div>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="accordion-body">
+      <div class="script-box">
+        Hey <span class="placeholder">[NAME]</span>! End of the month — just sending over the invoice for <span class="placeholder">[MONTH]</span> service 🐾<br><br>
+        Total: <span class="placeholder">$[AMOUNT]</span> — Venmo/CashApp/Zelle all work, whatever's easiest for you. Thanks so much! 🙏
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'Hey [NAME]! End of the month — just sending over the invoice for [MONTH] service 🐾\n\nTotal: $[AMOUNT] — Venmo/CashApp/Zelle all work, whatever\'s easiest for you. Thanks so much! 🙏')">📋 Copy</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== TAB 4: WOW MOMENTS ==================== -->
+<div id="panel-moments" class="panel">
+
+  <div class="banner">
+    <div class="big">⭐</div>
+    <h2>The 5 WOW Moments That Create Raving Fans</h2>
+    <p>These are the moments customers text their friends about. None of them cost money. All of them cost attention.</p>
+  </div>
+
+  <div class="card highlight">
+    <h3>🥇 WOW #1: The Instant Confirmation Text</h3>
+    <p><strong style="color:#00d4aa">What it is:</strong> A text that arrives while the customer is still looking at you (or within 60 seconds of hanging up).</p>
+    <p style="margin-top:8px;"><strong style="color:#00d4aa">Why it works:</strong> The speed signals competence. It says "I'm already on this." Most service businesses don't follow up for days. You follow up in 60 seconds. That gap IS the differentiator.</p>
+    <p style="margin-top:8px;"><strong style="color:#666">Cost:</strong> 30 seconds. ROI: First impression locked in permanently.</p>
+  </div>
+
+  <div class="card highlight">
+    <h3>🥈 WOW #2: The Yard Photo</h3>
+    <p><strong style="color:#00d4aa">What it is:</strong> A photo of the clean yard sent with the "all done" text.</p>
+    <p style="margin-top:8px;"><strong style="color:#00d4aa">Why it works:</strong> Most customers can't see the results of their service without walking outside. The photo brings it to them instantly. It's also the one thing they'll screenshot and send to a friend when they say "look what I hired."</p>
+    <p style="margin-top:8px;">Framing: Take from a low angle so the yard looks expansive and clean. Bright green grass, no visible waste, maybe some sunlight. Make it look like an ad.</p>
+    <p style="margin-top:8px;"><strong style="color:#666">Cost:</strong> 15 seconds. ROI: Virality + retention + reviews.</p>
+  </div>
+
+  <div class="card highlight">
+    <h3>🥉 WOW #3: Using the Dog's Name Every Time</h3>
+    <p><strong style="color:#00d4aa">What it is:</strong> "Got Apollo's yard looking great!" vs "Got your dog's yard looking great!"</p>
+    <p style="margin-top:8px;"><strong style="color:#00d4aa">Why it works:</strong> Dogs are family. People don't hire "a service" — they hire someone to take care of their family member. Knowing the dog's name signals that you're not treating this like a transaction.</p>
+    <p style="margin-top:8px;">This alone has generated spontaneous 5-star reviews for service businesses. "He remembered my dog's name after one visit!"</p>
+    <p style="margin-top:8px;"><strong style="color:#666">Cost:</strong> Zero. Keep a note. Write it down.</p>
+  </div>
+
+  <div class="card">
+    <h3>4️⃣ WOW #4: The Heads-Up Text</h3>
+    <p><strong style="color:#00d4aa">What it is:</strong> "Heading your way, should be there around [time]"</p>
+    <p style="margin-top:8px;"><strong style="color:#00d4aa">Why it works:</strong> Customers don't like wondering "did they come?" This text eliminates anxiety. It makes you feel like a professional — like a dentist who sends reminders, not a Craigslist handyman who shows up whenever.</p>
+    <p style="margin-top:8px;"><strong style="color:#666">Cost:</strong> 20 seconds. ROI: Feels 10x more professional immediately.</p>
+  </div>
+
+  <div class="card">
+    <h3>5️⃣ WOW #5: The 3-Day Check-In</h3>
+    <p><strong style="color:#00d4aa">What it is:</strong> "Just checking in — how's the yard looking? Everything good with Apollo?"</p>
+    <p style="margin-top:8px;"><strong style="color:#00d4aa">Why it works:</strong> Nobody does this. Not Amazon, not your internet provider, not the last service company someone hired. A quick check-in 3 days after the first service signals genuine care — not just a transaction. This is the moment customers become fans, not just customers.</p>
+    <p style="margin-top:8px;">Even if they reply "Looks great, thanks!" — you've made a deposit in the relationship bank that will pay dividends for 2 years.</p>
+    <p style="margin-top:8px;"><strong style="color:#666">Cost:</strong> 30 seconds. ROI: Retention anchor. Cancellation prevention.</p>
+  </div>
+
+  <div class="card warn">
+    <h3>❌ The 5 Moments That KILL Retention</h3>
+    <div style="margin-top:10px;">
+      <div class="tip orange">❌ <strong>No "all done" text</strong> — Customer wonders if you even came. Trust dies fast.</div>
+      <div class="tip orange">❌ <strong>Showing up without notice</strong> — Feels invasive. Especially for people working from home.</div>
+      <div class="tip orange">❌ <strong>Calling the dog "your dog"</strong> — Signals you don't care enough to remember their name.</div>
+      <div class="tip orange">❌ <strong>Waiting a week to respond to a question</strong> — One slow reply can trigger a mental "should I cancel?" spiral.</div>
+      <div class="tip orange">❌ <strong>Inconsistent scheduling</strong> — "I thought you were coming Wednesday" is how you lose a customer.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ==================== TAB 5: CHECKLIST ==================== -->
+<div id="panel-checklist" class="panel">
+
+  <div class="card">
+    <h3>✅ Complete First Customer Lifecycle Checklist</h3>
+    <p>Use this for every new customer. Start fresh for each — they all deserve the same WOW.</p>
+  </div>
+
+  <div class="phase-header">🎪 At-Event / Signup</div>
+  <div class="card">
+    <div class="check-item">
+      <input type="checkbox" id="c1" onchange="saveCheck(this)">
+      <label for="c1"><strong>Confirm full name + best phone number</strong></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c2" onchange="saveCheck(this)">
+      <label for="c2"><strong>Note dog name(s)</strong> — use it in every future text<span class="check-note">Also note number of dogs — affects pricing/time</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c3" onchange="saveCheck(this)">
+      <label for="c3"><strong>Ask general area</strong> — confirm you service their city</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c4" onchange="saveCheck(this)">
+      <label for="c4"><strong>Quote confidently</strong> — state the price, don't apologize for it</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c5" onchange="saveCheck(this)">
+      <label for="c5"><strong>Send instant confirmation text BEFORE walking away</strong> <span class="badge gold">🔑</span><span class="check-note">This is the #1 most important step. Don't skip.</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c6" onchange="saveCheck(this)">
+      <label for="c6"><strong>Add to CRM / contact list</strong> — name, dog, phone, service area</label>
+    </div>
+  </div>
+
+  <div class="phase-header">📅 Day After — Intake</div>
+  <div class="card">
+    <div class="check-item">
+      <input type="checkbox" id="c7" onchange="saveCheck(this)">
+      <label for="c7"><strong>Send intake text</strong> — address, gate, dog names, day preference</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c8" onchange="saveCheck(this)">
+      <label for="c8"><strong>Reply same day with confirmed date</strong><span class="check-note">Don't let 24 hours pass without a date on the calendar</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c9" onchange="saveCheck(this)">
+      <label for="c9"><strong>Confirm gate access works before service day</strong> — test the code if needed</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c10" onchange="saveCheck(this)">
+      <label for="c10"><strong>Add to route</strong> — cluster geographically with other stops that day</label>
+    </div>
+  </div>
+
+  <div class="phase-header">🐾 First Service Day</div>
+  <div class="card">
+    <div class="check-item">
+      <input type="checkbox" id="c11" onchange="saveCheck(this)">
+      <label for="c11"><strong>Send "on my way" text 30-60 min before arrival</strong> <span class="badge gold">🔑</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c12" onchange="saveCheck(this)">
+      <label for="c12"><strong>Do a thorough first-visit baseline clean</strong> — don't rush, this sets the tone<span class="check-note">First visits take longer — expected and okay. Quality matters more than speed here.</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c13" onchange="saveCheck(this)">
+      <label for="c13"><strong>Take a clean yard photo before leaving</strong> — from a flattering angle <span class="badge gold">🔑</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c14" onchange="saveCheck(this)">
+      <label for="c14"><strong>Send "all done" text WITH photo within 5 min of finishing</strong> <span class="badge gold">🔑</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c15" onchange="saveCheck(this)">
+      <label for="c15"><strong>Mention the dog by name in the "all done" text</strong></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c16" onchange="saveCheck(this)">
+      <label for="c16"><strong>Confirm next service date in the text</strong> — "See you next [DAY]!"</label>
+    </div>
+  </div>
+
+  <div class="phase-header">💬 Days 2–7 — The Follow-Through</div>
+  <div class="card">
+    <div class="check-item">
+      <input type="checkbox" id="c17" onchange="saveCheck(this)">
+      <label for="c17"><strong>Send 3-day check-in text</strong> — "How's the yard looking?"<span class="check-note">Even if they don't reply, the gesture registers</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c18" onchange="saveCheck(this)">
+      <label for="c18"><strong>Reply within 4 hours to any customer message</strong></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c19" onchange="saveCheck(this)">
+      <label for="c19"><strong>Note any feedback in CRM</strong> — gate issues, schedule changes, etc.</label>
+    </div>
+  </div>
+
+  <div class="phase-header">⭐ After Service #2 — Activate the Network</div>
+  <div class="card">
+    <div class="check-item">
+      <input type="checkbox" id="c20" onchange="saveCheck(this)">
+      <label for="c20"><strong>Send referral + review ask after "all done" text #2</strong><span class="check-note">This is the highest-satisfaction window. Don't wait for month 3.</span></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c21" onchange="saveCheck(this)">
+      <label for="c21"><strong>Confirm they know the referral incentive (free month)</strong></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c22" onchange="saveCheck(this)">
+      <label for="c22"><strong>Track if they leave a review</strong> — respond to it within 24 hours</label>
+    </div>
+  </div>
+
+  <div class="phase-header">💳 End of Month 1</div>
+  <div class="card">
+    <div class="check-item">
+      <input type="checkbox" id="c23" onchange="saveCheck(this)">
+      <label for="c23"><strong>Send invoice text on last business day of the month</strong></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c24" onchange="saveCheck(this)">
+      <label for="c24"><strong>Accept Venmo, CashApp, Zelle — whatever is easiest for them</strong></label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c25" onchange="saveCheck(this)">
+      <label for="c25"><strong>Note payment received date</strong> — track slow payers early</label>
+    </div>
+  </div>
+
+  <div style="text-align:center; margin: 20px 0;">
+    <div id="progress-bar-wrap" style="background:#1e1e2e; border-radius:100px; height:12px; overflow:hidden; margin-bottom:6px;">
+      <div id="progress-bar" style="background: linear-gradient(90deg,#00d4aa,#0f3460); height:100%; width:0%; transition:width 0.4s; border-radius:100px;"></div>
+    </div>
+    <span id="progress-label" style="font-size:13px; color:#666;">0 / 25 completed</span>
+    <br><br>
+    <button onclick="clearChecks()" style="background:#1e1e2e; color:#666; border:1px solid #333; border-radius:8px; padding:8px 16px; font-size:13px; cursor:pointer;">Reset All</button>
+  </div>
+
+</div>
+
+<div class="footer">
+  🐾 Tidy Tails — First Service WOW Kit · Built by Franklin · Mar 28, 2026<br>
+  <a href="index.html" style="color:#00d4aa; text-decoration:none;">← Back to Dashboard</a>
+</div>
+
+<script>
+function switchTab(id) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.target.classList.add('active');
+  updateProgress();
+}
+
+function toggleAccordion(header) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.chevron');
+  body.classList.toggle('open');
+  body.style.display = body.classList.contains('open') ? 'block' : 'none';
+  chevron.classList.toggle('open');
+}
+
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function saveCheck(el) {
+  const checks = {};
+  document.querySelectorAll('input[type="checkbox"]').forEach(c => {
+    checks[c.id] = c.checked;
+    if (c.checked) {
+      c.nextElementSibling && c.nextElementSibling.classList.add('done');
+    } else {
+      c.nextElementSibling && c.nextElementSibling.classList.remove('done');
+    }
+  });
+  try { localStorage.setItem('wow_kit_checks', JSON.stringify(checks)); } catch(e) {}
+  updateProgress();
+}
+
+function loadChecks() {
+  try {
+    const checks = JSON.parse(localStorage.getItem('wow_kit_checks') || '{}');
+    Object.entries(checks).forEach(([id, val]) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.checked = val;
+        if (val && el.nextElementSibling) el.nextElementSibling.classList.add('done');
+      }
+    });
+  } catch(e) {}
+  updateProgress();
+}
+
+function clearChecks() {
+  document.querySelectorAll('input[type="checkbox"]').forEach(c => {
+    c.checked = false;
+    if (c.nextElementSibling) c.nextElementSibling.classList.remove('done');
+  });
+  try { localStorage.removeItem('wow_kit_checks'); } catch(e) {}
+  updateProgress();
+}
+
+function updateProgress() {
+  const all = document.querySelectorAll('#panel-checklist input[type="checkbox"]');
+  const done = document.querySelectorAll('#panel-checklist input[type="checkbox"]:checked');
+  const pct = all.length ? (done.length / all.length * 100) : 0;
+  const bar = document.getElementById('progress-bar');
+  const lbl = document.getElementById('progress-label');
+  if (bar) bar.style.width = pct + '%';
+  if (lbl) lbl.textContent = done.length + ' / ' + all.length + ' completed';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadChecks();
+});
+</script>
+
+</body>
+</html>
