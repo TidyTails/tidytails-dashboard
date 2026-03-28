@@ -31,6 +31,29 @@
 
 ## March 27, 2026 (Friday)
 
+### Friday 7:04 PM — Saturday Live Amplifier (Hourly Task)
+- **7:04 PM** 📣 Built complete Saturday event amplification kit — the last missing piece before tomorrow's Paw-ty
+  - **File:** `dashboard/saturday-live-amplifier.html` — 5-tab mobile-first kit
+  - **Tab 1 — Tonight: Referrals (🔥 MOST IMPORTANT):** Pre-written referral texts for ALL 10 current customers with customer-specific copy:
+    - Mrs. Candee, Jody, Shannon (Florissant angle — "already in your area"), Amanda Harris (Florissant cluster angle), Lawrence, Greg, Chastity, Preshus (Saint Charles angle), + 2 generic templates for customers 9/10
+    - Each text: First Visit FREE for referral, $20 credit for current customer
+    - "Mark as sent" checkboxes with localStorage persistence + sent counter
+    - Total time investment: ~20 min, potential payoff: $200+/month
+  - **Tab 2 — Live Posts:** 7 ready-to-fire posts for tomorrow:
+    - FB pre-event post (8–9 AM before leaving)
+    - Instagram Story from parking lot (9:45 AM)
+    - FB + IG live event post with photo guidance (10:30–11 AM when crowd peaks)
+    - Mid-event Story (if someone signs up OR cute dog moment)
+    - Nextdoor Crestwood post (10–11 AM during event)
+    - Post-event victory recap (1–3 PM) — the one that converts people who missed the live posts
+    - All copy-paste buttons + character-appropriate hashtags
+  - **Tab 3 — Photo Tips:** What to shoot, what to avoid, Reels ideas, caption formula
+  - **Tab 4 — Timeline:** Full Saturday game plan from 7 PM tonight → Sunday follow-up
+  - **Tab 5 — Hashtags:** Brand, event-specific, neighborhood-targeting, and viral hashtag banks with platform-specific count guidance
+  - **Dashboard:** Added pulsing red "📣 TONIGHT: REFERRAL TEXTS + PAW-TY SOCIAL" as top quick link + bright red/yellow alert card at top of Today panel (above Paw-ty card)
+  - **Why this task:** Every pre-event tool is built. What was missing: (1) tonight's referral texts — the lowest-effort/highest-ROI move with customers who already trust us, and (2) social content TJ/Jamie can actually post IN THE MOMENT without writing anything. Both gaps closed.
+  - Committed + pushed ✅
+
 ### Friday 12:07 PM — Week of March 30 Battle Plan (Hourly Task)
 - **12:07 PM** ⚔️ Built a comprehensive day-by-day battle plan for the week of March 30
   - **File:** `dashboard/battle-plan-week-mar30.html` — dark-mode HTML command center
