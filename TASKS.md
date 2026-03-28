@@ -34,6 +34,9 @@ Everything else is noise until customer count moves.
 - [x] Nextdoor posting started (TJ confirmed Mar 26)
 - [x] 5 city page titles fixed + deployed (Mar 26)
 - [x] Paw-ty event materials complete (QR flyers, lead tracker, follow-up system)
+- [x] /spring, /calculator, /commercial pages deployed to live site (Mar 28)
+- [x] 4 county SEO blog posts deployed live (N/S/W/Central — Mar 28)
+- [x] 18 blog posts total indexed
 
 ### 📝 TJ/Jamie Action Items (ranked by ROI)
 1. **🔥🔥 SATURDAY MAR 28: Crestwood Vet Paw-ty** — Print materials, bring lead tracker, follow up aggressively
@@ -45,10 +48,12 @@ Everything else is noise until customer count moves.
 7. **Make 3 commercial calls** — Jamie's Hot 10 playbook ready
 8. **Start referral asks** — Referral engine dashboard ready, 10 customers to ask
 
-### ⚠️ Website Issues (Need Deploy Access)
+### ✅ Website Issues (ALL RESOLVED)
 - ~~5 city pages generic titles~~ → FIXED ✅ (deployed Mar 26, GSC indexing requested)
-- **3 key pages NOT deployed:** /spring, /calculator, /commercial all return homepage
-  - Files exist in repo but NOT on live site — needs Cloudflare push
+- ~~3 key pages NOT deployed: /spring, /calculator, /commercial~~ → FIXED ✅ (deployed Mar 28 — were in wrong repo!)
+- **Deployment gap root cause:** Website is on `TidyTails/tidytails-website` repo, NOT `tidytails-dashboard` repo. Future website changes must be pushed to tidytails-website.
+- **Also deployed Mar 28:** 4 county SEO blog posts (N/S/W/Central), /pawty, /thank-you, /pet-waste-removal-companies blog — all live ✅
+- **Blog count:** 18 posts live | **Pages:** 25+ indexed
 
 ### 📊 Competitive Landscape (Mar 28 — UPDATED)
 | Competitor | Status | Reviews | Price | Threat |
