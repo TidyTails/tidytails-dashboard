@@ -1,5 +1,23 @@
 # Franklin's Hourly Tasks Log
 
+---
+
+### Saturday 1:04 AM — Shed Directory Submission Kit (Hourly Task)
+- **1:04 AM** 📂 Built complete shed directory submission kit — all 23 units ready for 4 free platforms
+  - **File:** `dashboard/shed-directory-submission-kit.html` — 5-tab submission command center
+  - **Why this task:** Paw-ty is in 9 hours — all event/Tidy Tails tools are built. The unchecked item on TASKS.md with the highest long-term compounding ROI was "List ALL 23 units on ShedHub.com." Free directory listings = indexed Google pages = passive organic shed leads with ZERO recurring cost. The April 2 tariff deadline makes listings posted NOW especially valuable — buyers will be price-hunting hard in April/May and these listings will already be indexed.
+  - **What it covers:**
+    - **Overview tab:** Business info boilerplate (Backyard Buildings STL, 636-354-7406), tariff urgency hook, submission checklist, total time investment breakdown (~2 hrs one-time)
+    - **ShedHub tab:** Step-by-step registration guide + tiered submission order (Tier 1: premium/unique first — greenhouse, garages, teal barn; Tier 2: mid-range; Tier 3: entry/clearance)
+    - **Craigslist tab:** 8 complete copy-paste ads (price hook clearance, greenhouse, 12x24 barn, 12x24 garages, teal garden, navy workshop, 10x20 deep storage, 3-unit budget bundle) — all formatted with tariff urgency hook
+    - **ShedRow tab:** Step-by-step dealer registration, service area keyword list, Google Business Profile instructions, FB Business Page guide
+    - **All Listings tab:** All 23 units with individual listing text, short headline, and 4-platform submission tracker (ShedHub/Craigslist/ShedRow/FB Marketplace) with localStorage persistence and progress bar (0-23/fully submitted)
+  - **Tariff hook:** Every listing includes "⚠️ Pre-tariff pricing through April 2" — real urgency that converts
+  - **Dashboard:** Added as teal card in Sheds section (above Lead Response Kit) + pulsing quick link in header
+  - Committed + pushed ✅
+
+
+
 *Timestamp | Area | Task | Result*
 *Full archive: memory/archive/franklin-tasks-mar26.md*
 
