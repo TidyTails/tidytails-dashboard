@@ -2,6 +2,35 @@
 
 ---
 
+### Sunday 5:04 PM — Ballwin, MO Dedicated Blog Post (Hourly Task)
+- **5:04 PM** 🏡 Wrote and published dedicated blog post for Ballwin, MO — the largest West County city without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-ballwin-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-ballwin-mo`
+  - **Why this task:** West County is a major Tidy Tails service area. Chesterfield got a dedicated post earlier today, but Ballwin — which is ADJACENT to Chesterfield, has ~30K population, spans two zip codes (63011 & 63021), and has some of the largest residential lots in St. Louis County — had zero dedicated editorial blog coverage. Anyone searching "pooper scooper Ballwin MO" or "dog poop pickup 63011" would hit the umbrella West County post, which ranks lower for Ballwin-specific queries. With the biggest remaining coverage gap in West County, Ballwin was the obvious 5 PM task.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Ballwin, MO — Flat Rate, No Contracts, Texts Every Visit"
+    - **Stats row:** $70/month flat, 0 contracts, 63011 & 63021 coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Ballwin Park/Central, Kehrs Mill/Pond Area, Route 100 Corridor, Manchester Rd/North Ballwin, Near Ellisville/South Ballwin, "Text Your Address"
+    - **5 reasons Ballwin dog owners use Tidy Tails:** Big lots = more ground, dual-income households, winter accumulation, yard usability, multi-dog flat rate math
+    - **Ballwin Dog Math callout:** 2 dogs × 300 deposits = 600/yr, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY
+    - **Two testimonials:** Rachel M. (Kehrs Mill, 3 dogs, weekly), Kevin S. (Central Ballwin 63011, 2 dogs)
+    - **Ballwin-specific sections:** Large lots efficiency, HOA/neighbor dynamics, spring cleanup, gate access in subdivisions, pre-listing home cleanup
+    - **7-question FAQ** with FAQPage schema: Is there a pooper scooper in Ballwin?, How much?, 63021 coverage?, Need to be home?, Spring cleanup?, Contract?, How do I know you came?
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Ballwin/Chesterfield/Ellisville/Manchester/Wildwood/Creve Coeur/Town and Country in areaServed + geo coordinates (38.5953, -90.5521)
+  - **Target keywords:** "pooper scooper Ballwin MO", "dog poop pickup Ballwin", "pet waste removal Ballwin Missouri", "pooper scooper 63011", "pooper scooper 63021", "dog waste service Ballwin"
+  - **Cross-links:**
+    - `blog/pooper-scooper-west-county-st-louis.html`: Added "📍 Ballwin Dedicated Guide →" as first item in Related Articles sidebar (above Chesterfield)
+    - `ballwin.html` city page: Added "📍 BALLWIN POOPER SCOOPER GUIDE" as green-bordered featured article card (first in Related Articles)
+    - `blog/index.html`: Added Ballwin as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 68 total URLs, 35 blog posts
+  - **Blog count: 35 posts total** ✅
+  - Committed + pushed to both tidytails-dashboard (1269a12b) AND tidytails-website (5fd007c) → Cloudflare Pages ✅
+
+---
+
 ### Sunday 2:07 PM — Crestwood, MO Dedicated Blog Post (Hourly Task)
 - **2:07 PM** 🏡 Wrote and published dedicated blog post for Crestwood, MO — the Paw-ty event city with zero dedicated editorial coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-crestwood-mo.html`
