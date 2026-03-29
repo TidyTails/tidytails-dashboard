@@ -2,6 +2,42 @@
 
 ---
 
+### Sunday 4:05 AM — O'Fallon, MO Dedicated Blog Post (Hourly Task)
+- **4:05 AM** 📍 Wrote and published dedicated blog post for O'Fallon, MO — the only city in St. Charles County with zero dedicated editorial blog coverage despite being Missouri's 3rd-largest city
+  - **File:** `tidy-tails/website/blog/pooper-scooper-ofallon-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-ofallon-mo`
+  - **Why this task:** The St. Charles County blog post covers O'Fallon, St. Peters, Wentzville, and St. Charles in one umbrella post. But O'Fallon alone is Missouri's 3rd-largest city at 90k+ residents (fastest-growing in the state) — it deserves its own dedicated page that ranks higher for city-specific queries like "pooper scooper O'Fallon MO" and "dog poop pickup 63366." City-specific posts rank significantly better for city-specific searches than umbrella county posts. This was the most glaring dedicated city content gap remaining in the St. Charles County coverage.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Finally — weekly dog poop pickup that actually shows up. Flat rate, no contracts, text before every visit."
+    - **Stats row:** $70/month flat, 0 contracts, Both Zips (63366 & 63368), 5★
+    - **6-area neighborhood grid:** Central O'Fallon (63366), South O'Fallon (63366), Northwest O'Fallon (63368), Lake St. Louis Border (63367/63368), Dardenne Prairie Area (63368), "Not Sure? Text Us"
+    - **Callout:** Both zip codes covered — same flat price (no zip code surcharges)
+    - **Why O'Fallon homeowners call us:** Big yards, busy schedules, HOA expectations, spring thaw reality, multi-dog households
+    - **O'Fallon Dog Math callout:** 300 deposits/dog/year, two dogs × one winter = 150 piles all surfacing at once in March
+    - **5-step service process:** Text us → On My Way text → We clean whole yard → All Done text → Same day every week
+    - **"On My Way" Text callout:** Nobody else in St. Charles County does this consistently — single biggest differentiator
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **7-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — O'Fallon coverage, monthly cost, texts, local owner, contracts, flat rate, reliability
+    - **Annual cost comparison callout:** National franchise $1,040-1,300/yr vs Tidy Tails $840/yr — saves $200-460/year
+    - **Three customer stories:** Spring Thaw Revelation, Weekend Reclaim, "New Dog" Moment — all O'Fallon-specific
+    - **2 testimonials:** Kevin M. (63366, 2 labs), Melissa D. (63368, golden retriever)
+    - **Honest "is weekly service worth it?" guide** — both yes/no cases covered transparently
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in O'Fallon?", "How much does it cost?", "New subdivisions?", "Do I need to be home?", "Spring cleanup?", "Contracts?", "Both zip codes?"
+  - **Schema markup:** BlogPosting + FAQPage (7 questions) + LocalBusiness with 63366 + 63368 in areaServed + geo coordinates (38.8114, -90.6998)
+  - **Target keywords:** "pooper scooper O'Fallon MO", "dog poop pickup O'Fallon", "pet waste removal O'Fallon Missouri", "pooper scooper 63366", "dog waste service O'Fallon", "pooper scooper near me O'Fallon"
+  - **Cross-links:**
+    - `blog/pooper-scooper-st-charles-county-missouri.html`: Added "📍 O'Fallon Dedicated Guide →" as first item in Related Guides sidebar
+    - `ofallon.html` city page: Added "📍 O'Fallon Pooper Scooper Guide" as 4th article card in Related Articles section
+    - `blog/index.html`: Added as 2nd card (newest first, after South City post) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9)
+  - **Blog count: 25 posts total** ✅
+  - **Why O'Fallon is the right gap to fill at 4 AM:** The previous 3 hourly tasks were South City (city-specific editorial), Florissant (city-specific editorial), and St. Charles County (county umbrella). The pattern was clear: city-specific content gaps are the highest-ROI remaining SEO work. O'Fallon is Missouri's 3rd-largest city and the most populous in St. Charles County — it was the only major city in the county with no dedicated editorial coverage. Someone searching "pooper scooper O'Fallon MO" would previously only find the umbrella county post (which ranks lower for city-specific queries) or the city service page (which is short-form, not editorial). This post fills that gap and compounds forever.
+  - Committed + pushed to both repos ✅ (tidytails-dashboard + TidyTails/tidytails-website/master → Cloudflare Pages)
+
+---
+
+---
+
 ### Sunday 3:04 AM — South City St. Louis Blog Post (Hourly Task)
 - **3:04 AM** 🏙️ Wrote and published dedicated blog post for South City St. Louis — the first editorial content targeting the City itself (not the County suburbs)
   - **File:** `tidy-tails/website/blog/pooper-scooper-south-city-st-louis.html`
