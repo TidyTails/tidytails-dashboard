@@ -2,6 +2,24 @@
 
 ---
 
+### Saturday 7:04 PM — Monday Launch Command Center (Hourly Task)
+- **7:04 PM** 🚀 Built the "Monday Is Go Day" command center — synthesizing 3 simultaneous campaign launches into one step-by-step guide
+  - **File:** `dashboard/monday-launch-command.html` — 6-tab mobile-first launch command
+  - **Why this task:** Monday March 30 is the most execution-dense single day of the year. Four campaigns converge simultaneously: (1) FB Ads launch for the first time, (2) North County conquest campaign NC-1 post, (3) Vet Blitz Day 1 (3 Florissant clinics), (4) Paw-ty hot lead follow-ups in their 48-hour window. Each has its own tool (FB Ad Launch Pack, North County file, Vet Blitz Kit, Follow-Up Engine). The problem: TJ opens 4 tools at 8 AM with no unified "do THIS first, then THIS" sequence and loses 30 minutes re-reading docs. This guide is the synthesized execution layer.
+  - **What's built:**
+    - **Tab 1 — Timeline:** Full Sunday evening → Monday morning → Monday afternoon timeline with exact times (8 AM = FB Ads, 8:30 AM = NC-1 post, 9 AM = Vet Blitz, 11 AM = Millsap call). Live countdown to Monday 8 AM.
+    - **Tab 2 — FB Ads:** Complete 12-step Meta Ads Manager walkthrough — no improvising, just click and paste. Campaign creation (Leads objective, $7/day), Ad Set (South County zips + dog owner interests), Instant Form setup, all 3 ad copy sets paste-ready with one-click copy. Rejection guide for 5 common rejection reasons. Budget scaling table (when to go from $7 → $10 → $15 → $20/day).
+    - **Tab 3 — North County:** All 5 FB group posts (NC-1 through NC-5, one per day Mon-Fri) + 2 Nextdoor templates. All copy-paste. Day-of posting schedule. FB group finding guide.
+    - **Tab 4 — Vet Blitz:** 6 clinics with address + status tracker, the 3-minute walk-in script, partnership offer pitch for engaged clinics. Day 1 (Mon: Cross Keys, Gateway City, Baronwood) + Day 2 (Tue: Ferguson AH, Halls Ferry, Normandy).
+    - **Tab 5 — Follow-Ups:** Hot lead (48-hr window), warm lead last touch, and sign-up confirmation texts all copy-paste ready. Link to full Follow-Up Engine.
+    - **Tab 6 — Checklist:** 18-item master checklist spanning Sunday night → Monday morning → Monday afternoon. localStorage persistence, progress bar.
+  - **Dashboard:** Added pulsing purple "🚀 MONDAY IS GO DAY — FB ADS + NC LAUNCH + VET BLITZ" as #1 quick link in header (largest text, 0.9s pulse, can't miss it)
+  - **Why this is the right task at 7 PM Saturday:** All 3 individual campaign tools exist (FB Ad Pack, Vet Kit, Battle Plan). What was missing was the unified "you have 3 things launching simultaneously at 8 AM Monday — here's the exact sequence." Without it, TJ would start by re-reading the battle plan, then the FB ad pack, then realize he forgot to print vet flyers the night before, then forget the Nextdoor post. This removes every excuse to not execute cleanly.
+  - **Key feature:** The FB Ads tab is a full Ads Manager tutorial — literally "Step 1: Go to business.facebook.com/adsmanager → click +Create." No assumed knowledge. TJ has never run ads before. This gets him from zero to "campaign In Review" in 20 minutes.
+  - Committed + pushed ✅
+
+---
+
 ### Saturday 5:04 PM — Deployment Gap FIXED: /spring, /calculator, /commercial Now Live (Hourly Task)
 - **5:04 PM** 🚀 Fixed the long-standing deployment gap — 3 key pages + 5 blog posts now live on tidytailsstl.com
   - **Root cause found:** Two separate repos. `TidyTails/tidytails-dashboard` (our workspace) ≠ `TidyTails/tidytails-website` (Cloudflare Pages deployment). Pages existed in dashboard repo but never pushed to website repo.
