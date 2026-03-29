@@ -2,6 +2,42 @@
 
 ---
 
+### Sunday 2:07 PM — Crestwood, MO Dedicated Blog Post (Hourly Task)
+- **2:07 PM** 🏡 Wrote and published dedicated blog post for Crestwood, MO — the Paw-ty event city with zero dedicated editorial coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-crestwood-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-crestwood-mo`
+  - **Why this task:** Today's Paw-ty was at **Crestwood Vet Adoption Event** in Crestwood, MO. Kirkwood ✅ and Webster Groves ✅ both got dedicated posts in the overnight sprint. But Crestwood — the ACTUAL event city, the city where TJ shook hands and handed out flyers TODAY — had ZERO dedicated editorial blog coverage. Anyone who met TJ at the Paw-ty and Googles "pooper scooper Crestwood MO" or "dog poop pickup 63126" would have landed on the South County umbrella post — not a Crestwood-specific page. That's a conversion leak that needed to close the same day as the event. City-specific posts consistently outrank umbrella county posts for city-specific queries. The window between "someone met us at the event" and "they Google to verify we're real" is exactly where this post does its work.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Crestwood, MO — Flat Rate, No Contracts, Texts Every Visit"
+    - **Stats row:** $70/month flat, 0 contracts, 63126 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Watson Road Corridor, Sappington / Gravois Area, Whitecliff / South Crestwood, Near Kirkwood Border (Big Bend area), Near Sunset Hills / South 63126, "Not Sure? Text Us"
+    - **All of 63126 callout:** One flat price, no zone fees, no "we don't service that block" situations
+    - **Why Crestwood dog owners use Tidy Tails:** 5 real reasons — neighborhood yard pride, busy commuter households (many work in Clayton), kids' safety in the yard, multi-dog flat rate advantage, post-winter spring reveal
+    - **Crestwood Dog Math callout:** 300 deposits/dog/year, two dogs + STL winter = 150+ surfacing in March, $2.30/day math
+    - **5-step service process** with emphasis on "On My Way" + "All Done" text
+    - **"On My Way" Text callout:** No other service in South County does this consistently
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300)
+    - **Annual savings callout:** $96-460 cheaper per year vs national franchise
+    - **Two testimonials:** Sarah M. (Watson Road, 2 dogs, kids play space), Jason W. (Sappington, 1 dog, Clayton commuter)
+    - **Is it worth it? decision guide** — yes/no cases covered
+    - **Crestwood-specific sections:** Post-winter spring cleanup, kids in the yard safety angle, pre-listing home cleanup, gate access on older homes, landscaper coordination
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Crestwood?", "How much?", "All neighborhoods including Sappington/Whitecliff?", "Need to be home?", "Spring cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7 questions) + LocalBusiness with Crestwood, Kirkwood, Webster Groves, Sunset Hills, Glendale, Shrewsbury, Oakland, Mehlville in areaServed + geo coordinates (38.5595, -90.3887)
+  - **Target keywords:** "pooper scooper Crestwood MO", "dog poop pickup Crestwood", "pet waste removal Crestwood Missouri", "pooper scooper 63126", "dog waste service Crestwood", "pooper scooper near me Crestwood"
+  - **Cross-links:**
+    - `blog/pooper-scooper-south-county-st-louis.html`: Added "📍 Crestwood Dedicated Guide →" as first item in Related Articles sidebar (before Webster Groves, before Kirkwood — it's the event city)
+    - `crestwood.html` city page: Added "📍 Crestwood Pooper Scooper Guide" as first (green-bordered featured) article card in Related Articles section
+    - `blog/index.html`: Added as new card (before Webster Groves card, newest first) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), updated total count to 67 URLs (34 blog posts)
+  - **Blog count: 34 posts total** ✅
+  - **Why Crestwood at 2 PM over other options:** The Monday morning briefing (1 PM task) already synthesized everything for tomorrow's launch. The SEO content sprint has now covered every major market zone except the event city itself. Crestwood was the obvious and time-sensitive gap — the one city where TJ physically was today, met people, and handed out flyers. Any Paw-ty attendee who Googles "pooper scooper Crestwood" now finds a dedicated, city-specific 2,600-word page instead of the umbrella South County post. It speaks directly to their neighborhood (Watson Road, Sappington, Whitecliff), mentions the $2.30/day math that converts price-hesitant leads, and explains the service in the same voice they heard at the event. Compounds forever.
+  - Committed + pushed to tidytails-dashboard ✅
+
+---
+
+---
+
 ### Sunday 1:04 PM — Monday March 30 Launch Day Morning Briefing PDF (Hourly Task)
 - **1:04 PM** 🚀 Built and delivered the Monday March 30 Launch Day Briefing — the "open this first at 7 AM Monday" synthesis document for the biggest single execution day of the year
   - **File:** `dashboard/pdfs/MORNING_BRIEFING_2026-03-30.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-03-30.pdf` (618KB ✅)
