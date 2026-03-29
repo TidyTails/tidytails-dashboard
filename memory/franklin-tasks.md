@@ -2,6 +2,42 @@
 
 ---
 
+### Sunday 12:07 PM — Webster Groves, MO Dedicated Blog Post (Hourly Task)
+- **12:07 PM** 🏡 Wrote and published dedicated blog post for Webster Groves, MO — the last major South County city without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-webster-groves-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-webster-groves-mo`
+  - **Why this task:** Kirkwood got a dedicated post at 7 AM. Webster Groves is Kirkwood's immediate neighbor — same South County market, same audience, same dog culture — but had ZERO dedicated editorial coverage. Just a short-form city service page (`webster-groves.html`). Anyone searching "pooper scooper Webster Groves MO" or "dog poop pickup 63119" would land on the umbrella South County post, which ranks lower for city-specific queries. Webster Groves is one of the most beloved inner-ring suburbs in the St. Louis metro — tree-lined streets, historic homes, real downtown on Lockwood Avenue — and its dedicated dog owner population deserved a dedicated SEO page. With TJ having just done an event in neighboring Crestwood, any South County prospect who searches Webster Groves specifically will now find a page that speaks directly to their neighborhood.
+  - **What's in the post (~2,650 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Webster Groves, MO — Flat Rate, No Contracts, Texts Every Visit"
+    - **Stats row:** $70/month flat, 0 contracts, 63119 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Old Webster / Lockwood Ave, Tuxedo Park, Webster Hills / Rock Hill Border, Near Webster University, Big Bend / Elm Ave Corridor, "Text Your Address"
+    - **Full coverage callout:** All of 63119 — no "we don't service that block" situations
+    - **Why Webster Groves dog owners use Tidy Tails:** 5 reasons — dual-income professional households, older homes with gate logistics, spring cleanup reality, $2.30/day math, multi-dog households
+    - **Webster Groves Dog Math callout:** 300 deposits/dog/year, two dogs + STL winter = 150+ surfacing in March
+    - **5-step service process** with emphasis on "On My Way" + "All Done" text
+    - **"On My Way" Text callout:** No other service in South County does this consistently
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300)
+    - **Annual savings callout:** $96-460 cheaper per year vs national franchise
+    - **Two testimonials:** Michelle S. (Tuxedo Park, 2 dogs, weekly), David K. (Old Webster, 1 dog, old-fence access)
+    - **Is it worth it? decision guide** — yes/no cases covered
+    - **Webster Groves-specific sections:** Post-winter spring cleanup, older home gate logistics, pre-listing home cleanup, landscaper coordination, multi-dog households
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Webster Groves?", "How much?", "All neighborhoods?", "Need to be home?", "Spring cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7 questions) + LocalBusiness with 8 South County cities in areaServed + geo coordinates (38.5887, -90.3556)
+  - **Target keywords:** "pooper scooper Webster Groves MO", "dog poop pickup Webster Groves", "pet waste removal Webster Groves Missouri", "pooper scooper 63119", "dog waste service Webster Groves", "pooper scooper near me Webster Groves"
+  - **Cross-links:**
+    - `blog/pooper-scooper-south-county-st-louis.html`: Added "📍 Webster Groves Dedicated Guide →" as first item in Related Articles sidebar (before Kirkwood)
+    - `webster-groves.html` city page: Added "📍 Webster Groves Pooper Scooper Guide" as first (green-bordered featured) article card in Related Articles section
+    - `blog/index.html`: Added as new card in grid (before Kirkwood card) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), updated total count to 33 posts
+  - **Blog count: 33 posts total** ✅
+  - **Why Webster Groves at 12 PM:** Every major North County city now has a dedicated post (Florissant, Hazelwood, Ferguson, Bridgeton). Every major St. Charles County city has one (O'Fallon, Wentzville, St. Peters). Kirkwood got its South County dedicated post at 7 AM. Webster Groves was the obvious next gap: it shares the same zip code cluster (63119 vs 63122), the same South County Google search market, and the same affluent-professional dog-owner demographic as Kirkwood. Anyone in Webster Groves Googling "pooper scooper Webster Groves" would previously land on the South County umbrella post. Now they land on a 2,650-word page written specifically for their neighborhood. Compounds forever.
+  - Committed + pushed to both repos ✅ (tidytails-dashboard via git push + tidytails-website via clone/push for all 5 changed files → Cloudflare Pages)
+
+---
+
+---
+
 ### Sunday 11:04 AM — Bridgeton, MO Dedicated Blog Post (Hourly Task)
 - **11:04 AM** 🏙️ Wrote and published dedicated blog post for Bridgeton, MO — the last remaining North County city in the NC campaign without dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-bridgeton-mo.html`
