@@ -1454,3 +1454,34 @@
     - `sitemap.xml`: Added new URL (priority 0.9)
   - **Blog count: 35 posts total** ✅
   - Committed + pushed to both repos ✅ (tidytails-dashboard + tidytails-website → Cloudflare Pages)
+
+---
+
+### Sunday 6:07 PM — Wildwood, MO Dedicated Blog Post (Hourly Task)
+- **6:07 PM** 🏡 Wrote and published dedicated blog post for Wildwood, MO — the last major West County city without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-wildwood-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-wildwood-mo`
+  - **Why this task:** Chesterfield ✅ (6 AM) and Ballwin ✅ (5 PM) both have dedicated West County posts. Wildwood — Missouri's largest municipality by area, covering both 63040 and 63038, with some of the largest residential lots in St. Louis County and a strong multi-dog household profile — had ZERO dedicated editorial blog coverage. Anyone searching "pooper scooper Wildwood MO" or "dog poop pickup 63040" would land on the umbrella West County post. That's a conversion leak. Wildwood also has the strongest "big yard, same flat price" angle of any city in the service area — a unique differentiator that competitors without flat pricing can't match.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Wildwood, MO — Flat Rate, No Contracts, Texts Every Visit. Big yards welcome — same $70/month either way."
+    - **Stats row:** $70/month flat, 0 contracts, 63040 & 63038 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Wildwood Town Center area (63040), Glencoe/Pond area (63040), Allenton/Moseley Rd corridor (63040), Near Chesterfield Valley border (63040/63005), Grover/Pacific area (63040/63038), "Text Your Address"
+    - **Same Flat Price callout:** Wildwood is West County's largest municipality — flat $70/month doesn't increase for bigger yards. Half-acre in Glencoe pays same as quarter-acre near Town Center.
+    - **5 reasons Wildwood dog owners call us:** Big yards mean more accumulation, commute eats weekends, landscaper coordination (schedule before lawn crew day), multiple dogs at flat rate, spring is brutal on large rural-edge lots
+    - **Wildwood Dog Math callout:** 300 deposits/dog/year, 3-4 month Missouri winter = 75-90 surfacing in March, two dogs = 150-180 piles in spring reveal, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **"On My Way" text callout:** no other West County service does this consistently
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300), big yard surcharge (none vs often yes), landscaper coordination (included vs no)
+    - **Annual savings callout:** $96-460 cheaper per year vs national franchise
+    - **Two testimonials:** Sarah T. (Wildwood 63040, 2 labs, half-acre, clean spring reveal), Mike R. (Glencoe area, 3 dogs, "On My Way" text stands out)
+    - **Wildwood-specific sections:** Large lots and extended coverage, landscaper coordination (schedule before crew day), post-winter spring cleanup (bigger lots accumulate more under tree cover), gate access on larger properties, pre-listing cleanup
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Wildwood?", "How much?", "All of Wildwood including Glencoe and Pond?", "Need to be home?", "Extra charge for large yards?", "Spring cleanup?", "Contracts?"
+  - **Schema markup:** BlogPosting + FAQPage (7 questions) + LocalBusiness with Wildwood, Chesterfield, Ballwin, Ellisville, Glencoe, Pacific in areaServed + geo coordinates (38.5895, -90.6626)
+  - **Target keywords:** "pooper scooper Wildwood MO", "dog poop pickup Wildwood", "pet waste removal Wildwood Missouri", "pooper scooper 63040", "pooper scooper 63038", "dog waste service Wildwood", "pooper scooper near me Wildwood"
+  - **Cross-links:**
+    - `blog/pooper-scooper-west-county-st-louis.html`: Added "📍 Wildwood Dedicated Guide →" as FIRST item in Related Articles sidebar (before Ballwin, before Chesterfield — it's the newest)
+    - `blog/index.html`: Added Wildwood as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 69 total URLs, 36 blog posts
+  - **Blog count: 36 posts total** ✅
+  - Committed + pushed to both tidytails-dashboard (10d67344) AND tidytails-website (7ad225f) → Cloudflare Pages ✅
