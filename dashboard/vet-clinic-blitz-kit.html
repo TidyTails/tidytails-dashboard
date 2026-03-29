@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐾 Vet Clinic Blitz Kit — Tidy Tails</title>
+<style>
+  :root {
+    --bg:#0a0a0a; --bg2:#141414; --bg3:#1e1e1e;
+    --text:#f5f5f5; --text2:#aaa; --text3:#555;
+    --border:#252525; --green:#10b981; --orange:#ff6b35;
+    --yellow:#fbbf24; --red:#ef4444; --blue:#3b82f6;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);line-height:1.5;}
+  .header{background:linear-gradient(135deg,#052e16,#0f172a);padding:24px 20px;text-align:center;border-bottom:2px solid var(--green);}
+  .header h1{font-size:1.6em;font-weight:900;}
+  .header .sub{color:var(--green);font-size:0.85em;font-weight:700;margin-top:4px;}
+  .header .meta{color:var(--text3);font-size:0.75em;margin-top:8px;}
+  .back{display:inline-block;margin:14px 16px 0;padding:6px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:8px;font-size:0.8em;color:var(--text2);text-decoration:none;}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;padding:14px 16px;background:var(--bg2);border-bottom:1px solid var(--border);}
+  .stat{text-align:center;}
+  .stat-val{font-size:1.5em;font-weight:900;font-family:'Courier New',monospace;}
+  .stat-lbl{font-size:0.6em;text-transform:uppercase;color:var(--text3);letter-spacing:0.05em;}
+
+  .script-box{margin:16px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  .script-head{background:rgba(255,107,53,0.1);border-bottom:1px solid var(--border);padding:12px 16px;display:flex;align-items:center;gap:8px;}
+  .script-head h2{font-size:0.9em;font-weight:800;color:var(--orange);}
+  .script-body{padding:14px 16px;}
+  .script-line{font-size:0.85em;line-height:1.7;color:var(--text2);}
+  .script-line strong{color:var(--text);}
+  .script-line .say{background:rgba(16,185,129,0.1);border-left:3px solid var(--green);padding:8px 12px;margin:8px 0;border-radius:0 6px 6px 0;font-style:italic;color:var(--text);}
+  .tip-box{background:rgba(251,191,36,0.08);border-left:3px solid var(--yellow);padding:10px 12px;margin:10px 0;border-radius:0 6px 6px 0;font-size:0.8em;color:var(--text2);}
+  .tip-box strong{color:var(--yellow);}
+
+  .clinic-card{margin:16px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  .clinic-head{padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;}
+  .clinic-head h3{font-size:0.9em;font-weight:800;flex:1;}
+  .clinic-priority{padding:3px 10px;border-radius:99px;font-size:0.65em;font-weight:700;text-transform:uppercase;white-space:nowrap;}
+  .p-high{background:rgba(239,68,68,0.15);color:var(--red);}
+  .p-med{background:rgba(251,191,36,0.15);color:var(--yellow);}
+  .visited{border-color:var(--green) !important;}
+  .visited .clinic-head{background:rgba(16,185,129,0.05);}
+  .check-btn{width:28px;height:28px;border-radius:50%;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:0.8em;cursor:pointer;flex-shrink:0;transition:all 0.2s;background:transparent;color:var(--text3);}
+  .visited .check-btn{background:var(--green);border-color:var(--green);color:#000;}
+  .clinic-body{display:none;padding:0 16px 16px;border-top:1px solid var(--border);}
+  .clinic-card.open .clinic-body{display:block;}
+  .info-row{display:flex;gap:8px;align-items:flex-start;padding:5px 0;font-size:0.82em;border-bottom:1px solid var(--bg3);}
+  .info-row:last-child{border:none;}
+  .info-label{color:var(--text3);min-width:70px;flex-shrink:0;font-size:0.85em;}
+  .info-val{color:var(--text2);}
+  .info-val a{color:var(--blue);text-decoration:none;}
+  .pitch-section{margin-top:12px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:8px;padding:12px;}
+  .pitch-section h4{font-size:0.75em;text-transform:uppercase;letter-spacing:0.05em;color:var(--green);margin-bottom:6px;}
+  .pitch-text{font-size:0.82em;line-height:1.6;color:var(--text);}
+  .notes-label{font-size:0.75em;color:var(--text3);margin-top:10px;margin-bottom:4px;}
+  .notes-input{width:100%;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:8px;font-size:0.8em;color:var(--text);resize:vertical;min-height:50px;}
+  .notes-input:focus{outline:none;border-color:var(--green);}
+
+  .leave-behind{margin:16px;background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:16px;}
+  .leave-behind h2{font-size:0.9em;font-weight:800;color:var(--yellow);margin-bottom:10px;}
+  .lb-item{font-size:0.82em;padding:6px 0;border-bottom:1px solid var(--bg3);color:var(--text2);display:flex;gap:8px;align-items:flex-start;}
+  .lb-item:last-child{border:none;}
+  .lb-item::before{content:"•";color:var(--green);flex-shrink:0;margin-top:1px;}
+
+  .progress-bar-wrap{background:var(--bg3);border-radius:100px;height:6px;margin:4px 0;}
+  .progress-bar-fill{height:100%;background:var(--green);border-radius:100px;transition:width 0.3s;}
+
+  .footer{text-align:center;padding:24px;color:var(--text3);font-size:0.75em;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🐾 Vet Clinic Blitz Kit</h1>
+  <div class="sub">North County Referral Blitz — Highest ROI Move This Week</div>
+  <div class="meta">6 clinics · ~3 hours · $0 cost · 600-1,200 dog owner eyeballs</div>
+</div>
+<a href="index.html" class="back">← Dashboard</a>
+
+<div class="stats">
+  <div class="stat"><div class="stat-val" id="visited-count" style="color:var(--green)">0</div><div class="stat-lbl">Visited</div></div>
+  <div class="stat"><div class="stat-val" style="color:var(--orange)">6</div><div class="stat-lbl">Total</div></div>
+  <div class="stat"><div class="stat-val" id="pct" style="color:var(--yellow)">0%</div><div class="stat-lbl">Done</div></div>
+</div>
+
+<!-- Walk-in Script -->
+<div class="script-box">
+  <div class="script-head">
+    <span>💬</span><h2>Walk-In Script (30 seconds)</h2>
+  </div>
+  <div class="script-body">
+    <div class="script-line">Ask to speak with the <strong>office manager or front desk lead</strong>. Keep it quick.</div>
+    <div class="script-line say">
+      "Hey! I'm TJ — I run Tidy Tails, a local pet waste removal service right here in [Florissant/North County]. We clean up dog poop from yards — weekly service. We're building our route and I wanted to introduce ourselves. A lot of your clients have dogs and yards — would you be okay leaving some of our cards at your desk? We'd give your clients 10% off their first month. Local business helping local dogs."
+    </div>
+    <div class="tip-box">
+      <strong>💡 Tips:</strong> Smile, be quick, don't oversell. Leave 10-20 cards + 1-2 flyers. If they say yes, ask for the office manager's name and if there's an email to follow up. If they're busy, just leave the materials and your business card. A YES takes 2 minutes.
+    </div>
+    <div class="tip-box">
+      <strong>🎁 Offer:</strong> Tell them their referred clients get <strong>10% off first month</strong>. Low bar. Easy yes. If the manager seems interested personally, mention you could handle waste removal for their outdoor/kennel areas too.
+    </div>
+  </div>
+</div>
+
+<!-- Clinics -->
+<div id="clinics"></div>
+
+<!-- What to Leave Behind -->
+<div class="leave-behind">
+  <h2>📋 What to Bring to Each Clinic</h2>
+  <div class="lb-item">Business cards (10-20 per clinic) — front and back, phone number prominent</div>
+  <div class="lb-item">1-page flyer with: service description, pricing ($X/week), phone number, website, "10% off first month for new clients"</div>
+  <div class="lb-item">QR code on flyer linking to tidytailsstl.com — easy for clients to scan and sign up</div>
+  <div class="lb-item">Your own business card to leave with the manager in case they want to refer you themselves</div>
+  <div class="lb-item"><strong>Optional:</strong> Small branded zip bag with waste bags + your card inside. Easy gift, memorable, on-brand</div>
+  <div class="lb-item">Notes from this app: jot down the manager's name and any reactions after each visit</div>
+</div>
+
+<div class="footer">
+  Built by Franklin 🐕💩 | Tidy Tails STL<br>Progress saves automatically
+</div>
+
+<script>
+const CLINICS = [
+  {
+    id: 'cross-keys',
+    name: 'Cross Keys Animal Clinic',
+    priority: 'high',
+    address: '2685 N Hwy 67, Florissant, MO 63033',
+    phone: '(314) 837-4617',
+    website: 'crosskeysanimalclinic.com',
+    why: 'TJ\'s core 63033 territory, on Hwy 67, open Saturdays. Start here — it\'s closest to home base.',
+    pitch: 'We\'re the local Florissant pooper scooper service — can we leave some cards for your dog clients? They\'d love us. 10% off first month.',
+    order: 1
+  },
+  {
+    id: 'gateway-city',
+    name: 'Gateway City Animal Clinic',
+    priority: 'high',
+    address: '10436 W Florissant Ave, St. Louis, MO 63136',
+    phone: '(314) 868-7387',
+    website: 'Yelp listing',
+    why: 'Right at the Florissant/Ferguson border on W Florissant Ave. Open late (7pm Tue-Thu) = serves working families. 13 Yelp reviews.',
+    pitch: 'Fellow local business on W Florissant — can we drop off cards for your dog owner clients? We do weekly yard cleanup so they don\'t have to. 10% off first month.',
+    order: 2
+  },
+  {
+    id: 'ferguson',
+    name: 'Ferguson Animal Hospital',
+    priority: 'high',
+    address: '483 Airport Rd, Ferguson, MO 63135',
+    phone: '(314) 524-0707',
+    website: 'fergusonanimal.com',
+    why: 'Full-service vet in Ferguson. Their clients are North County dog owners — zero local pooper scooper options for them. First mover advantage.',
+    pitch: 'We\'re Tidy Tails — local Florissant pet waste removal. Can we leave cards at your front desk? Your dog owner clients would love us. 10% off first month.',
+    order: 3
+  },
+  {
+    id: 'halls-ferry',
+    name: 'Halls Ferry Animal Hospital',
+    priority: 'high',
+    address: '10050 Halls Ferry Rd, St. Louis, MO 63136',
+    phone: '(314) 868-8584',
+    website: 'halls-hospital.edan.io',
+    why: 'Serves Spanish Lake, Black Jack, and North County dog owners. Known for friendly staff and good prices. High dog owner traffic.',
+    pitch: 'Your clients love their dogs — we help them keep their yards clean. Can we set up a referral partnership? Cards at your desk, 10% discount for your clients.',
+    order: 4
+  },
+  {
+    id: 'normandy',
+    name: 'Normandy Animal Hospital & Urgent Care',
+    priority: 'high',
+    address: '7626 Florissant Rd, St. Louis, MO 63121',
+    phone: '(314) 383-4677',
+    website: 'normandyvet.com',
+    why: 'Urgent care = highest foot traffic of any vet on the list. 25 Yelp reviews = strong community presence. Serves Normandy, Jennings, North County.',
+    pitch: 'You see a lot of dog owners every day — especially at urgent care. We\'d love to be the yard cleanup service you recommend. Cards at your desk, mutual referrals. 10% off for your clients.',
+    order: 5
+  },
+  {
+    id: 'baronwood',
+    name: 'Baronwood Kennels',
+    priority: 'med',
+    address: '17220 New Halls Ferry Rd, Florissant, MO 63034',
+    phone: '(314) 838-2021',
+    website: 'baronwoodkennels.com',
+    why: 'Family-owned kennel since 1971 in Florissant — TJ\'s core territory. DUAL pitch: (1) hire TJ to clean their outdoor kennel areas, (2) referral partnership with boarding clients.',
+    pitch: 'We\'re a local Florissant pet waste company. Can we clean your outdoor areas weekly? Also — your boarding clients probably need yard cleanup at home. Let\'s set up a referral deal.',
+    order: 6
+  }
+];
+
+const KEY = 'tt-vet-blitz-v1';
+
+function load() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || {}; } catch { return {}; }
+}
+function save(data) {
+  localStorage.setItem(KEY, JSON.stringify(data));
+}
+
+function render() {
+  const data = load();
+  const container = document.getElementById('clinics');
+  container.innerHTML = '';
+
+  let visitedCount = 0;
+  CLINICS.forEach(c => {
+    const visited = data[c.id + '_visited'];
+    const notes = data[c.id + '_notes'] || '';
+    if (visited) visitedCount++;
+
+    const card = document.createElement('div');
+    card.className = 'clinic-card' + (visited ? ' visited' : '');
+    card.id = 'card-' + c.id;
+    card.innerHTML = `
+      <div class="clinic-head" onclick="toggleCard('${c.id}')">
+        <div style="font-size:0.75em;color:var(--text3);min-width:18px;">${c.order}</div>
+        <h3>${c.name}</h3>
+        <div class="clinic-priority ${c.priority === 'high' ? 'p-high' : 'p-med'}">${c.priority === 'high' ? '🔴 Priority' : '🟡 Key Stop'}</div>
+        <button class="check-btn" onclick="event.stopPropagation(); toggleVisited('${c.id}')">${visited ? '✓' : ''}</button>
+      </div>
+      <div class="clinic-body">
+        <div class="info-row"><div class="info-label">Address</div><div class="info-val"><a href="https://maps.google.com/?q=${encodeURIComponent(c.address)}" target="_blank">${c.address} 📍</a></div></div>
+        <div class="info-row"><div class="info-label">Phone</div><div class="info-val"><a href="tel:${c.phone.replace(/[^0-9]/g,'')}">${c.phone}</a></div></div>
+        <div class="info-row"><div class="info-label">Why</div><div class="info-val">${c.why}</div></div>
+        <div class="pitch-section">
+          <h4>🎤 Your Pitch</h4>
+          <div class="pitch-text">"${c.pitch}"</div>
+        </div>
+        <div class="notes-label">Notes from this visit:</div>
+        <textarea class="notes-input" placeholder="Manager name, reaction, follow-up needed..." onchange="saveNotes('${c.id}', this.value)">${notes}</textarea>
+      </div>
+    `;
+    container.appendChild(card);
+  });
+
+  document.getElementById('visited-count').textContent = visitedCount;
+  document.getElementById('pct').textContent = Math.round(visitedCount / CLINICS.length * 100) + '%';
+}
+
+function toggleCard(id) {
+  const card = document.getElementById('card-' + id);
+  card.classList.toggle('open');
+}
+
+function toggleVisited(id) {
+  const data = load();
+  data[id + '_visited'] = !data[id + '_visited'];
+  save(data);
+  render();
+}
+
+function saveNotes(id, val) {
+  const data = load();
+  data[id + '_notes'] = val;
+  save(data);
+}
+
+render();
+</script>
+</body>
+</html>
