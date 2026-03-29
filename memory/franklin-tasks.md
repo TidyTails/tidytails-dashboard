@@ -2,6 +2,29 @@
 
 ---
 
+### Saturday 9:04 PM — Sunday Morning Briefing PDF (Hourly Task)
+- **9:04 PM** 📋 Built the Sunday March 29 Morning Briefing — the "day after Paw-ty, day before launch" action guide
+  - **File:** `dashboard/pdfs/MORNING_BRIEFING_2026-03-29.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-03-29.pdf` (1.05MB ✅)
+  - **Why this task:** It's 9 PM Saturday. The Paw-ty just ended. Monday is 11 hours away with 3 simultaneous campaigns launching. This is the highest-gap moment of the entire Saturday build: all the tools exist, but TJ has no single "open this at 6 AM Sunday" guide synthesizing what to actually do when he wakes up. The 48-hour Paw-ty window closes Sunday afternoon. Without a clear "do this first" briefing, he might waste Sunday and miss 2-3 converts that would have said yes.
+  - **What's in the briefing:**
+    - **Alert bar:** "48-HOUR WINDOW IS CLOSING — text hot leads BEFORE breakfast"
+    - **Stats row:** 10 customers → goal 25, ~8h to Monday launch, $840 LTV per convert
+    - **Priority 1 (RIGHT NOW):** Hot lead text + warm lead text scripts, copy-paste ready
+    - **Priority 2 (9-11 AM):** Referral texts to all 10 customers + review ask script (Shannon/Amanda/Chastity)
+    - **Priority 3 (tonight):** Monday launch prep — print vet flyers, stage FB ad copy, NC-1 post, Millsap call confirm
+    - **Full Sunday game plan timeline:** 6 AM → 8 AM → 9-11 AM → 11 AM-1 PM → 1-3 PM → 7-9 PM → 9-10 PM with exact tasks for each window
+    - **Win math card:** $840/convert × 3 converts = $2,520 at $0 cost today
+    - **Sheds section:** 2 Marketplace posts (Sunday), Millsap call, tariff deadline April 2
+    - **Quick tool reference table:** 8 tools with exact file paths
+    - **Mindset section:** "Yesterday was building the pipeline. Today is converting it."
+    - **Progress bar:** 6 reviews → 25 reviews (Map Pack #1 dominance)
+  - **PDF validated:** 1.05MB ✅, starts %PDF- ✅, multi-page ✅
+  - **Dashboard:** Added pulsing green "📋 SUNDAY BRIEFING — CLOSE PAW-TY LEADS TODAY" as #1 quick link in header
+  - **Why this is the right 9 PM task:** All execution tools were built during the day (war room, launch command, follow-up engine, Nextdoor playbook, etc.). The missing piece at 9 PM was the synthesis layer — the thing TJ opens at 6 AM Sunday that says "do THIS, then THIS, then THIS." Without it, he opens 7 tabs, gets paralyzed, and sends texts at noon instead of 7 AM. The difference between a 7 AM text and a noon text is measurable in conversion rate. This is the last-mile close guide.
+  - Committed + pushed ✅
+
+---
+
 ### Saturday 8:05 PM — April War Room (Hourly Task)
 - **8:05 PM** ⚔️ Built the April War Room — the missing daily "is it working?" view for all 4 campaigns launching Monday
   - **File:** `dashboard/april-war-room.html` — 5-tab live campaign tracker
