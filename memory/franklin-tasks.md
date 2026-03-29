@@ -2,6 +2,42 @@
 
 ---
 
+### Sunday 10:06 AM — St. Peters, MO Dedicated Blog Post (Hourly Task)
+- **10:06 AM** 🏘️ Wrote and published dedicated blog post for St. Peters, MO — the only major St. Charles County city with no dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-st-peters-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-st-peters-mo`
+  - **Why this task:** All North County cities (Florissant, Hazelwood, Ferguson) have dedicated posts. St. Charles County cities — O'Fallon and Wentzville — have dedicated posts. But St. Peters, Missouri's 7th largest city at ~80k residents and 100% of the 63376 zip code, had ONLY a short-form city service page (`st-peters.html`). Zero dedicated editorial coverage. Anyone searching "pooper scooper St. Peters MO" or "dog poop pickup 63376" would land on the generic St. Charles County umbrella post, not a St. Peters-specific result. City-specific posts consistently outrank umbrella county posts for city-specific queries. With the NC campaign launching Monday (and St. Charles County being actively targeted), this was the most glaring remaining dedicated city content gap.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in St. Peters, MO — Flat Rate, Local Owner, No Contracts"
+    - **Stats row:** $70/month flat, 0 contracts, 63376 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Mexico Road Corridor (central St. Peters), Cave Springs/Hwy 370 (newer builds), Dardenne Prairie Corridor (HOA neighborhoods), Mid Rivers Mall Area (north St. Peters), Harvester/South St. Peters (established), "Not Sure? Text Address"
+    - **Single zip callout:** All of St. Peters is in 63376 — no zip surcharges, no coverage gaps
+    - **Why St. Peters dog owners call us:** 5 real reasons — dual-income commuter households (Clayton/downtown), HOA pressure in newer subdivisions, spring brutal after STL winter, multi-dog households, previous service disappeared
+    - **St. Peters Dog Math callout:** 300 deposits/dog/year, two dogs + STL winter = 150+ surfacing in March, $2.30/day math
+    - **5-step service process** with emphasis on "On My Way" text + "All Done" confirmation
+    - **"On My Way" Text callout:** No other service in St. Charles County does this consistently
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300)
+    - **Annual savings callout:** $96-460 cheaper per year vs national franchise
+    - **St. Peters-specific sections:** HOA yards and common areas, spring cleanup after Missouri winter, gate access, commuter households
+    - **Two testimonials:** Rachel T. (63376, 2 labs, previous service dropped her), Kevin M. (Dardenne Prairie, 3 dogs, HOA compliance)
+    - **Is it worth it? decision guide** — yes/no/one-time cases covered
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in St. Peters?", "How much?", "All neighborhoods including new subdivisions?", "Need to be home?", "Spring cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7 questions) + LocalBusiness with O'Fallon, Wentzville, St. Charles, Cottleville, Lake St. Louis in areaServed + geo coordinates (38.7881, -90.6293)
+  - **Target keywords:** "pooper scooper St. Peters MO", "dog poop pickup St. Peters", "pet waste removal St. Peters Missouri", "pooper scooper 63376", "dog waste service St. Peters", "pooper scooper near me St. Peters"
+  - **Cross-links:**
+    - `blog/pooper-scooper-st-charles-county-missouri.html`: Added "📍 St. Peters Dedicated Guide →" as third item in Related Guides sidebar (after O'Fallon and Wentzville)
+    - `st-peters.html` city page: Added "📍 St. Peters Pooper Scooper Guide" as first article card in Related Articles section (above generic articles)
+    - `blog/index.html`: Added as new card (first in grid, newest first) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), updated total count to 31 posts
+  - **Blog count: 31 posts total** ✅
+  - **Why St. Peters over other options at 10 AM:** The North County dedicated posts (Florissant, Hazelwood, Ferguson) were written overnight in sequence. St. Peters is the fourth major city in the St. Charles County conquest zone — and the only one with NO dedicated editorial coverage. O'Fallon got its post at 4 AM (90k+ residents, MO's 3rd largest city). Wentzville got its post at 5 AM (fastest-growing city in MO). St. Peters (~80k residents, 7th largest in MO) was the obvious next gap. Anyone from St. Peters who sees TJ's content on Facebook or Nextdoor and searches "pooper scooper St. Peters" or "dog poop pickup 63376" would now find a dedicated, city-specific 2,600-word post instead of the generic St. Charles County umbrella. The HOA angle is especially strong here (Dardenne Prairie subdivisions are heavily HOA-governed). Compounds forever.
+  - Committed + pushed to both repos ✅ (tidytails-dashboard via git push + tidytails-website via clone/push for all 5 changed files → Cloudflare Pages)
+
+---
+
+---
+
 ### Sunday 9:11 AM — Ferguson, MO Dedicated Blog Post (Hourly Task)
 - **9:11 AM** 🏙️ Wrote and published dedicated blog post for Ferguson, MO — the last remaining North County city without dedicated editorial blog coverage before tomorrow's NC-1 launch
   - **File:** `tidy-tails/website/blog/pooper-scooper-ferguson-mo.html`
