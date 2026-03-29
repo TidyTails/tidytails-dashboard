@@ -2,6 +2,36 @@
 
 ---
 
+### Sunday 3:04 AM — South City St. Louis Blog Post (Hourly Task)
+- **3:04 AM** 🏙️ Wrote and published dedicated blog post for South City St. Louis — the first editorial content targeting the City itself (not the County suburbs)
+  - **File:** `tidy-tails/website/blog/pooper-scooper-south-city-st-louis.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-south-city-st-louis`
+  - **Why this task:** At 3 AM Sunday, with Monday launch hours away, the highest-value remaining SEO gap was South City St. Louis. All 4 County quadrants had dedicated blog posts. St. Charles County had a blog post. Florissant had a dedicated post. But the City of St. Louis itself — which is legally and geographically separate from the County — had zero editorial coverage. Tower Grove, Soulard, Benton Park, Dogtown, Dutchtown, Carondelet: these are high-density urban dog neighborhoods with ~12 neighborhoods and their own distinct ZIP codes (63104, 63109, 63110, 63111, 63116, 63118, 63139). Someone in Soulard Googling "pooper scooper near me" or "dog poop pickup South City St. Louis" would find nothing from us. This post fills that gap.
+  - **What's in the post (~2,600 words):**
+    - **Stats row:** $70 flat/month, 0 contracts, 12+ City neighborhoods, 5★, STL Local Owner
+    - **12-neighborhood coverage grid:** Tower Grove South (63116), Tower Grove East (63110), Soulard (63104), Benton Park (63104), The Hill (63139), Dogtown (63139), Dutchtown (63111), Carondelet (63111), Fox Park/McKinley Heights (63104), Compton Heights (63116), Gravois Park (63116), Other South City Zips — each with ZIP and neighborhood-specific notes
+    - **Why South City is different section:** Small yards (avg ~20x40 ft), alley/gate access logistics, the renter situation (tenant can hire directly without landlord), shared yards in multi-unit buildings
+    - **South City Dog Math callout:** 300 deposits/dog/year in ~800 sq ft = 1 pile per 2.6 sq ft of usable yard
+    - **How service works in South City:** 6-step process, emphasized "On My Way" text (biggest differentiator)
+    - **Full pricing table:** Weekly/biweekly/one-time, 1-4+ dogs, per-visit math
+    - **Tidy Tails vs. National Franchise vs. Craigslist** comparison table — 7 factors including alley access handling, which we win on that others can't claim
+    - **For Renters section:** Dedicated to the large renter population — can hire independently, shared yard splitting ($35 each), move-and-cancel policy
+    - **South City-specific situations:** Post-winter spring cleanup, courtyard/walled garden access, HOA/neighbor complaints
+    - **7-question FAQ** with FAQPage schema: City vs County distinction, alley access, tenant hiring, cost, cost-splitting, contracts, one-time cleanup
+    - **Two CTAs:** phone + text
+    - **Schema markup:** BlogPosting + FAQPage (7 questions) + LocalBusiness with 12 areaServed entries
+  - **Target keywords:** "pooper scooper South City St. Louis", "dog poop pickup Tower Grove", "pet waste removal Soulard", "dog waste service Dogtown STL", "pooper scooper 63116", "dog poop pickup St. Louis City", "pet waste removal Benton Park"
+  - **Cross-links:**
+    - `south-city.html`: Added new "📍 South City Pooper Scooper Guide" blog card in Related Articles section (4th card)
+    - `service-areas.html`: Added new blog card in the county/area guides grid (now 8 cards)
+    - `blog/index.html`: Added as #1 post (newest first, before Florissant) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9)
+  - **Blog count: 24 posts total** ✅
+  - **Why the City/County distinction matters:** St. Louis City is legally separate from St. Louis County — they're different geographic and political entities. This confuses people (and search engines). Residents of Soulard who Google "St. Louis dog poop pickup" might land on our County coverage posts and assume they're not served. A City-specific post with City ZIP codes removes that ambiguity and captures City-specific search queries that would never surface on a County post.
+  - Committed + pushed to tidytails-dashboard ✅ (→ Cloudflare Pages)
+
+---
+
 ### Sunday 2:06 AM — Florissant Dedicated Blog Post (Hourly Task)
 - **2:06 AM** 📍 Wrote and published dedicated blog post for Florissant, MO — timed exactly for Monday's North County Facebook campaign launch
   - **File:** `tidy-tails/website/blog/pooper-scooper-florissant-mo.html`
