@@ -2,6 +2,44 @@
 
 ---
 
+### Sunday 11:04 AM — Bridgeton, MO Dedicated Blog Post (Hourly Task)
+- **11:04 AM** 🏙️ Wrote and published dedicated blog post for Bridgeton, MO — the last remaining North County city in the NC campaign without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-bridgeton-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-bridgeton-mo`
+  - **Why this task:** With the North County conquest campaign launching TOMORROW (Monday March 30), all four named cities finally have dedicated editorial posts: Florissant ✅ (2 AM), Hazelwood ✅ (8 AM), Ferguson ✅ (9 AM), and now Bridgeton ✅ (11 AM). The `bridgeton.html` city page existed but there was ZERO long-form editorial coverage for anyone searching "pooper scooper Bridgeton MO" or "dog poop pickup 63044." NC-5 fires Friday April 3 specifically targeting Bridgeton — this post needs to be indexed and ranking before that post goes live. Same pattern that worked for Florissant/Hazelwood/Ferguson.
+  - **What's in the post (~2,600 words):**
+    - **Orphaned customer alert:** "Lost your dog poop service in Bridgeton? Text 'SWITCHING' at (314) 850-7140" — directly targets former franchise/local service customers in 63044
+    - **Hero:** "Weekly Dog Poop Pickup in Bridgeton, MO — Flat Rate, No Contracts, Local Owner"
+    - **Stats row:** $70/month flat, 0 contracts, 63044 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Old St. Charles Rock Rd Corridor, Taussig Rd/Natural Bridge Area, Airport Corridor (near Lambert), Bridgeton/Hazelwood Border, McDonnell Blvd Area, "Text Your Address"
+    - **Single zip callout:** All of Bridgeton is 63044 — no zip surcharges
+    - **Why Bridgeton dog owners call us:** 5 reasons — shift workers (Lambert/hospital/warehouse), existing service disappeared, multi-dog households, kids in yard safety, spring winter thaw reveal
+    - **Bridgeton Dog Math callout:** 300 deposits/dog/year, two dogs + STL winter = 150+ surfacing in March, $2.30/day math
+    - **5-step service process** with emphasis on "On My Way" + "All Done" text
+    - **"On My Way" Text callout:** No other service in North County does this consistently
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — Bridgeton coverage (dedicated vs sporadic), annual cost ($840 vs $936-1,300)
+    - **Annual savings callout:** $96-460 cheaper per year vs national franchise
+    - **Two testimonials:** Marcus W. (63044, 3 dogs, orphaned customer), Carla D. (Old St. Charles Rock Rd, 2 dogs, night shift worker)
+    - **Is it worth it? decision guide** — yes/no cases covered
+    - **Bridgeton-specific sections:** Gate access on older homes, shift workers/irregular schedules, post-winter spring cleanup, multi-dog households
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Bridgeton?", "How much?", "What happened to my old service?", "All of 63044 including near airport?", "Need to be home?", "Spring cleanup?", "Contracts?"
+  - **Schema markup:** BlogPosting + FAQPage (7 questions) + LocalBusiness with Bridgeton, Florissant, Hazelwood, Ferguson, Maryland Heights, Berkeley, Normandy in areaServed + geo coordinates (38.7648, -90.4118)
+  - **Target keywords:** "pooper scooper Bridgeton MO", "dog poop pickup Bridgeton", "pet waste removal Bridgeton Missouri", "pooper scooper 63044", "dog waste service Bridgeton", "pooper scooper near me Bridgeton"
+  - **Cross-links:**
+    - `blog/pooper-scooper-north-county-st-louis.html`: Added "📍 Bridgeton Dedicated Guide →" as fourth item in Related Articles sidebar (after Florissant, Hazelwood, Ferguson)
+    - `bridgeton.html` city page: Added "📍 Bridgeton Pooper Scooper Guide" as first (featured) article card in Related Articles section
+    - `blog/index.html`: Added as new card (second in grid, after St. Peters) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), updated total count to 32 posts
+  - **Blog count: 32 posts total** ✅
+  - **North County campaign coverage: ALL 4 CITIES COMPLETE** — Florissant ✅ Hazelwood ✅ Ferguson ✅ Bridgeton ✅
+  - **Why Bridgeton at 11 AM:** The NC-1 post fires tomorrow morning targeting Florissant AND Hazelwood. NC-5 targets Bridgeton specifically on Friday April 3. Anyone from Bridgeton who sees TJ's North County content this week and Googles "pooper scooper Bridgeton" would previously land on the umbrella North County post — which ranks lower for city-specific queries and doesn't have city-specific signals (63044 callout, Lambert shift worker angle, Old St. Charles Rock Rd area notes). The dedicated post fills that gap before NC-5 fires. The orphaned customer hook is especially strong in 63044 — Bridgeton has been underserved by pet waste companies for years. Compounds forever.
+  - Committed + pushed to both repos ✅ (tidytails-dashboard via git push + tidytails-website via clone/push for all 5 changed files → Cloudflare Pages)
+
+---
+
+---
+
 ### Sunday 10:06 AM — St. Peters, MO Dedicated Blog Post (Hourly Task)
 - **10:06 AM** 🏘️ Wrote and published dedicated blog post for St. Peters, MO — the only major St. Charles County city with no dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-st-peters-mo.html`
