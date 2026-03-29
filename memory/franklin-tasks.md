@@ -2,6 +2,40 @@
 
 ---
 
+### Sunday 5:04 AM — Wentzville, MO Dedicated Blog Post (Hourly Task)
+- **5:04 AM** 🏗️ Wrote and published dedicated blog post for Wentzville, MO — Missouri's fastest-growing city, the last major St. Charles County city without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-wentzville-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-wentzville-mo`
+  - **Why this task:** The city-specific content pattern from the overnight sprint (Florissant at 2 AM, South City at 3 AM, O'Fallon at 4 AM) pointed to one remaining gap: Wentzville. The St. Charles County umbrella post covers it broadly, and a `wentzville.html` city service page exists — but no dedicated editorial blog post. Wentzville is Missouri's fastest-growing city (Hwy 40/I-70 corridor, 63385), heavy new subdivision construction, massive HOA-governed neighborhoods, and young dual-income families with multiple dogs — the ideal Tidy Tails customer. City-specific posts rank better than umbrella county posts for queries like "pooper scooper Wentzville MO" and "dog poop pickup 63385."
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Wentzville, MO — Finally, a Service That Shows Up"
+    - **Stats row:** $70/month flat, 0 contracts, 63385 served, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Wentzville Station (south), Crossings at Dardenne (east), Autumn Woods/Copper Ridge (central), Hawk Ridge/Prairie Wind (north/west), Historic Wentzville (core), "Not Sure? Text Your Address" (all 63385)
+    - **New subdivision callout:** Wentzville adds hundreds of homes/year — we confirm any new stop within 24 hours
+    - **Why Wentzville dog owners choose Tidy Tails:** bigger lots + more accumulation (flat price doesn't change), HOA pressure is real, two working parents + multiple dogs, commute eats weekends, spring brutal after winter
+    - **Wentzville Dog Math callout:** 300 deposits/dog/year, two dogs + St. Louis winter = 150+ piles surfacing in March, $2.30/day math
+    - **5-step service process** (text → On My Way → whole yard → All Done → same day every week)
+    - **"On My Way" text callout:** no other service in St. Charles County sends this consistently
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — Wentzville coverage, monthly cost, texts, local owner, new subdivisions, contracts, annual cost
+    - **Annual savings callout:** POOP 911 $936-1,300/yr vs Tidy Tails $840/yr — $96-460 cheaper per year
+    - **Two testimonials:** Ryan B. (Wentzville Station, 3 dogs, 4 months clean service), Michelle T. (Hawk Ridge, new build, fast onboarding)
+    - **Is it worth it decision guide** — both yes/no cases covered
+    - **One-time spring cleanup section** — $75, no commitment, text "spring cleanup Wentzville"
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Wentzville?", "How much?", "New subdivisions?", "Do I need to be home?", "Spring cleanup?", "Contracts?", "HOA yards?"
+  - **Schema markup:** BlogPosting + FAQPage (7 questions) + LocalBusiness with 6 St. Charles County cities in areaServed + geo coordinates (38.8114, -91.0226)
+  - **Target keywords:** "pooper scooper Wentzville MO", "dog poop pickup Wentzville", "pet waste removal Wentzville Missouri", "pooper scooper 63385", "dog waste service Wentzville", "pooper scooper near me Wentzville"
+  - **Cross-links:**
+    - `blog/pooper-scooper-st-charles-county-missouri.html`: Added "📍 Wentzville Dedicated Guide →" as 2nd item in Related Guides sidebar
+    - `wentzville.html` city page: Added "📍 Wentzville Pooper Scooper Guide" as first article card in Related Articles section
+    - `blog/index.html`: Added as new card (between O'Fallon and Florissant) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9)
+  - **Blog count: 26 posts total** ✅
+  - **Why Wentzville at 5 AM:** After O'Fallon at 4 AM, the next most glaring St. Charles County dedicated content gap was Wentzville. It's the fastest-growing city in Missouri — population accelerating from ~50k to 90k+ in the past decade — almost entirely new subdivisions with fenced yards, multiple dogs per household, and HOA requirements. The `wentzville.html` city page exists but is short-form. The St. Charles County umbrella post mentions Wentzville in passing. A dedicated 2,600-word post targeting "pooper scooper Wentzville MO" directly is the missing SEO layer for any 63385 resident searching that query. Compounds forever.
+  - Committed + pushed to both repos ✅ (tidytails-dashboard via git push + tidytails-website via GitHub API for all 5 changed files)
+
+---
+
 ### Sunday 4:05 AM — O'Fallon, MO Dedicated Blog Post (Hourly Task)
 - **4:05 AM** 📍 Wrote and published dedicated blog post for O'Fallon, MO — the only city in St. Charles County with zero dedicated editorial blog coverage despite being Missouri's 3rd-largest city
   - **File:** `tidy-tails/website/blog/pooper-scooper-ofallon-mo.html`
