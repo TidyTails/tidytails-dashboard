@@ -879,3 +879,27 @@
   - **ROI projection:** 50 hangers × 2% response rate = 1 customer. 1 customer = $840/yr LTV. Print cost = $8-12. ROAS = 70-105x.
   - Dashboard quick link added (pulsing green, prominent) ✅
   - Committed + pushed ✅
+
+---
+
+### Sunday 12:05 AM — Service Areas Hub Page (Hourly Task)
+- **12:05 AM** 📍 Built and deployed `/service-areas` — the geographic anchor page that was the last major SEO gap
+  - **File:** `tidy-tails/website/service-areas.html` (50KB)
+  - **URL:** `https://tidytailsstl.com/service-areas`
+  - **Why this task:** After 20 blog posts, 20+ city pages, and 4 county blog posts — there was still no single hub URL that mapped the full service territory, linked all the county content, and captured "pet waste removal near me St. Louis" as a standalone destination. Every search for that phrase either hits the homepage (generic) or a specific county blog. A `/service-areas` hub is the anchor the whole site was missing.
+  - **What's in the page:**
+    - **Hero section:** 4 stats (25+ cities, $70 flat, 0 contracts, 5★) + call CTA + free cleanup link
+    - **4 County Cards:** North/South/West/Central — each with city pills (green = has dedicated page), chip with positioning, footer with county blog link. North County card includes "No Dominant Franchise — We're Your Local Option" positioning.
+    - **Full City Grid (27 cities):** All served cities with zip codes. Green-highlighted = city page exists. Non-page cities link to the phone number.
+    - **"Not sure?" callout** — text your address to confirm coverage
+    - **How It Works (5 steps):** Call → On My Way text → Full yard cleaned → All Done text → Same day every week
+    - **6 County Blog Cards:** All 4 county guides + comparison post + companies overview — internal link hub
+    - **Pricing Strip:** $70/wk, $45/biweekly, $90/4+ dogs, $75 one-time
+    - **7-Question FAQ** targeting: "What areas does Tidy Tails serve?", "Do you service North/South/West County?", "What zip codes?", "pet waste removal near me", coverage outside main area
+  - **Schema markup:** LocalBusiness with 27-city areaServed + BreadcrumbList + FAQPage (6 questions)
+  - **Target queries:** "pet waste removal near me St. Louis", "pooper scooper service areas St. Louis", "does Tidy Tails service [city]", "dog waste removal St. Louis County coverage"
+  - **Homepage nav:** Added "Service Areas" link between home/commercial
+  - **Sitemap:** Added /service-areas (priority 0.95) + 3 missing blog posts that weren't listed
+  - **Why this is the right 12 AM task:** The blog content ecosystem is now complete (20 posts). The city pages exist (20+). The 4 county deep-dives are live. The missing layer was the connective tissue — a URL that unifies all of it and answers "do you serve my neighborhood?" directly. This page becomes the answer to any "near me" query AND the hub that passes PageRank to every city page and county blog via internal links. One page that compounds the value of 40+ pages already built. SEO value: 9.5/10. Effort: 1 hour.
+  - **Blog count:** 20 posts + 1 hub page = complete content architecture ✅
+  - Committed + pushed to both repos ✅ (tidytails-dashboard + tidytails-website/Cloudflare Pages)
