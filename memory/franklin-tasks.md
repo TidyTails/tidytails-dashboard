@@ -1395,3 +1395,33 @@
   - **Key UX decisions:** Made it phone-friendly (sticky tabs, large copy buttons, all scripts accessible without scrolling). Jamie can keep "Responses" tab open during the day and copy-paste to comments in <5 seconds.
   - **Gap this fills:** Battle plan has the strategy. Posts file has the content. Groups guide has the list. But none of them have the RESPONSE scripts — which is what converts commenters to customers. And none of them put it all in one place. This does.
   - Committed + pushed → `993fe8c0` ✅
+
+---
+
+### Sunday 4:06 PM — Mehlville & Oakville Dedicated Blog Post (Hourly Task)
+- **4:06 PM** 🏡 Wrote and published dedicated blog post for Mehlville & Oakville, MO — the largest remaining South County zip codes without dedicated editorial coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-mehlville-oakville-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-mehlville-oakville-mo`
+  - **Why this task:** With 34 blog posts live and every named city in the North County campaign covered (Florissant, Hazelwood, Ferguson, Bridgeton), plus Kirkwood, Webster Groves, Crestwood, and the St. Charles County cities — the last major South County gap was Mehlville (63125) and Oakville (63129). Together these two zips hold more dog-owning households than Kirkwood and Webster Groves combined. Anyone searching "pooper scooper Mehlville MO" or "dog poop pickup Oakville" would land on the South County umbrella post, not a dedicated result. Now they land on a 2,600-word dedicated page.
+  - **What's in the post:**
+    - **Hero:** "Weekly Dog Poop Pickup in Mehlville & Oakville, MO — Flat Rate, No Contracts, Texts Every Visit"
+    - **Stats row:** $70/month flat, 0 contracts, 63125 & 63129 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Mehlville Core, Bohl Creek / Bern, Oakville Core, Oakville Heights / Ravines, Near Arnold / Jeffco Border, "Text Your Address"
+    - **Both zips callout:** Same flat price for 63125 and 63129 — no zip surcharges
+    - **Why Mehlville & Oakville dog owners call us:** 5 reasons — nobody reliably covers the area, bigger yards (same flat price), both households commute, spring reveal is brutal, kids coming back outside
+    - **Dog Math callout:** 300 deposits/dog/year, 3-4 month winter = 75-100 surfacing in March, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300)
+    - **Two testimonials:** Donna L. (Oakville, 2 labs, big yard), Kevin R. (Mehlville, 1 dog, night shift hospital worker)
+    - **Specific South County situations:** Spring catch-up, shift workers, big Oakville yards, multiple dogs, gate access on older Mehlville homes
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Mehlville?", "How much?", "All of Oakville including near Arnold?", "Need to be home?", "Spring cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7 questions) + LocalBusiness with Mehlville, Oakville, Crestwood, Kirkwood, Webster Groves, Sunset Hills, Lemay, Arnold in areaServed + geo coordinates (38.5175, -90.3218)
+  - **Target keywords:** "pooper scooper Mehlville MO", "dog poop pickup Mehlville", "pooper scooper 63125", "pooper scooper Oakville MO", "pooper scooper 63129", "dog poop pickup Oakville", "pet waste removal Mehlville Missouri"
+  - **Cross-links:**
+    - `blog/pooper-scooper-south-county-st-louis.html`: Added "📍 Mehlville & Oakville Dedicated Guide →" in Related Articles sidebar
+    - `service-areas.html`: Mehlville city pill now links to dedicated post instead of just calling
+    - `blog/index.html`: Added as new card (first in grid, newest first) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9)
+  - **Blog count: 35 posts total** ✅
+  - Committed + pushed to both repos ✅ (tidytails-dashboard + tidytails-website → Cloudflare Pages)
