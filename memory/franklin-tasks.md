@@ -2,6 +2,40 @@
 
 ---
 
+### Sunday 8:07 AM — Hazelwood, MO Dedicated Blog Post (Hourly Task)
+- **8:07 AM** 🏘️ Wrote and published dedicated blog post for Hazelwood, MO — the second-largest North County city and the most critical SEO gap for tomorrow's campaign launch
+  - **File:** `tidy-tails/website/blog/pooper-scooper-hazelwood-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-hazelwood-mo`
+  - **Why this task:** North County campaign (NC-1) launches TOMORROW (Monday March 30). TJ's first Facebook group post targets Florissant AND Hazelwood groups. NC-2 (Tuesday) goes specifically to Hazelwood FB groups. The Florissant dedicated blog post was written overnight (2 AM, 29 hours ago). Hazelwood had the same gap: a city service page (`hazelwood.html`) exists, and the North County umbrella post mentions it — but there's ZERO dedicated editorial post for anyone Googling "pooper scooper Hazelwood MO" or "dog poop pickup 63042." This is the exact same pattern that made the Florissant post valuable: city-specific posts outrank umbrella county posts for city-specific queries. With Hazelwood FB group posts firing tomorrow, this post needs to be live when people Google after seeing TJ's content.
+  - **What's in the post (~2,600 words):**
+    - **Orphaned customer alert:** "Lost your old dog poop service in North County? Text 'SWITCHING' at (314) 850-7140" — directly targets former franchise customers in 63042
+    - **Hero:** "Weekly Dog Poop Pickup in Hazelwood, MO — Finally a local service that actually comes to 63042"
+    - **Stats row:** $70/month flat, 0 contracts, 63042 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Central Hazelwood/Dunn Rd Corridor, Hazelwood South/Lindbergh-Florissant Rd, Hazelwood West/McDonnell Blvd, Missouri Bottom/North Hazelwood, Historic Hazelwood/Core Streets, "Text Your Address"
+    - **Why Hazelwood dog owners call us:** 5 real reasons — time constraints (early shift workers), North County being ignored by franchises, spring thaw brutality, multi-dog households, kids + yard safety
+    - **Hazelwood Dog Math callout:** 300 deposits/dog/year, two dogs + STL winter = 150+ surfacing in March, $2.30/day math
+    - **5-step service process** with emphasis on "On My Way" text + "All Done" confirmation
+    - **"On My Way" Text callout:** No other service in North County does this consistently — #1 differentiator
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — Hazelwood coverage (we win), flat rate, texts, local owner, contracts, annual cost ($840 vs $936-1,300)
+    - **Annual savings callout:** $96-460 cheaper per year vs national franchises
+    - **Hazelwood-specific sections:** Early shift workers, post-winter spring cleanup, multi-dog households, gate access on older/mid-century homes
+    - **Two testimonials:** Marcus W. (Central Hazelwood, 2 labs, night shift worker), Denise K. (Lindbergh/Florissant Rd, 3 dogs, found via FB group)
+    - **Is it worth it? decision guide** — yes/no cases covered honestly
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Hazelwood?", "How much?", "All of 63042 including McDonnell Blvd?", "Need to be home?", "Spring cleanup?", "What happened to my old service?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7 questions) + LocalBusiness with Hazelwood, Florissant, Ferguson, Bridgeton, Berkeley, Maryland Heights in areaServed + geo coordinates (38.7717, -90.3707)
+  - **Target keywords:** "pooper scooper Hazelwood MO", "dog poop pickup Hazelwood", "pet waste removal Hazelwood Missouri", "pooper scooper 63042", "dog waste service Hazelwood", "pooper scooper near me Hazelwood"
+  - **Cross-links:**
+    - `blog/pooper-scooper-north-county-st-louis.html`: Added "📍 Hazelwood Dedicated Guide →" as second item in Related Articles sidebar (after Florissant)
+    - `hazelwood.html` city page: Added "📍 Hazelwood Pooper Scooper Guide" as first article card in Related Articles section
+    - `blog/index.html`: Added as new card (first in grid, newest first) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9)
+  - **Blog count: 29 posts total** ✅
+  - **Why Hazelwood over other options at 8 AM:** The Florissant post was timed for yesterday's North County campaign preparation. But NC-2 fires tomorrow specifically at Hazelwood Facebook groups. Anyone from Hazelwood who sees TJ's post and Googles "pooper scooper Hazelwood MO" would previously land on the North County umbrella post — which ranks lower for city-specific queries and doesn't have the city-specific signals (63042 zip code callout, early-shift worker angle, mid-century gate access notes, Dunn Road/McDonnell corridor area grid) that validate Hazelwood coverage and build trust. The Hazelwood dedicated post fills that gap before the campaign fires. Same pattern that made Florissant, O'Fallon, Wentzville, Chesterfield, and Kirkwood work — each city-specific post outranks the umbrella county post for city-specific queries. Compounds forever.
+  - Committed + pushed to both repos ✅ (tidytails-dashboard via git push + tidytails-website via clone/push for all 5 changed files → Cloudflare Pages)
+
+---
+
 ### Sunday 7:04 AM — Kirkwood, MO Dedicated Blog Post (Hourly Task)
 - **7:04 AM** 🏡 Wrote and published dedicated blog post for Kirkwood, MO — the highest-value remaining South County city gap with no dedicated editorial coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-kirkwood-mo.html`
