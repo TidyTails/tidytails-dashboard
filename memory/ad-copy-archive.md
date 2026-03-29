@@ -114,6 +114,18 @@
 - Spring project checklist humor / cross it off
 - Dog owner stuff accumulation / pet gear overload
 
+## March 29, 2026 — 9 AM Daily (4 Ads)
+- **Shed-Mar182** — "The Sunday Visitor" — Easter/family gathering angle, garage disaster with company coming, no-pressure soft close
+- **Shed-Mar183** — "The April Price Check" — Tariff follow-up, lumber/steel prices, window closing, just math angle
+- **Shed-Mar184** — "The Treadmill Confession" — Garage gym equipment humor, car outside in Missouri, reclaim the garage
+- **Shed-Mar185** — "The April List" — Spring to-do checklist humor, cross something off, one less thing on the list
+
+## Hooks Used (March 29 9AM — don't repeat 2 weeks)
+- Easter/family gathering / company's coming today / garage disaster
+- April tariff price-lock follow-up (updated framing from March 28 tariff angle)
+- Gym equipment in garage humor (treadmill + elliptical + dumbbells + car outside)
+- Spring to-do checklist / cross it off / April task list
+
 ## March 28, 2026 — 9 AM Daily (4 Ads)
 - **Shed-Mar178** — "The Wet Season Warning" — April rain prep, stuff outside, zero effort shed solves it
 - **Shed-Mar179** — "The Garage Audit" — Funny inventory list of what's in a typical STL garage, car outside

@@ -1262,4 +1262,62 @@ Commercial pricing is different from residential. Here's what competitors charge
 
 ---
 
+---
+
+## 🏙️ NEW LEADS BATCH — March 29, 2026 (9:00 AM) — Total: 90 leads
+
+### Park Clayton Residences ⭐ LUXURY — CLAYTON
+- **Type:** Luxury Apartment Complex
+- **Address:** 8025 Forsyth Blvd, Clayton, MO 63105
+- **Contact:** Leasing Office
+- **Phone:** (314) 725-8800
+- **Why Good Fit:** High-rise luxury apartments in Clayton — STL's most affluent suburb. Pet-friendly with common courtyard areas. Zero local pooper scooper presence in Clayton. First mover opportunity in the highest-income zip code in STL metro.
+- **Est. Monthly Value:** $250–$500/mo
+- **Found:** March 29, 2026
+- **Status:** New
+- **Pitch angle:** "Clayton residents expect premium everything — we bring that same standard to pet waste management. Professional weekly service keeps your courtyard and common areas matching the luxury experience you're selling. One flat monthly rate."
+
+### Frontenac Place Assisted Living ⭐ SENIOR PET ANGLE
+- **Type:** Senior Living / Independent Villas
+- **Address:** 10030 Ladue Rd, Frontenac, MO 63131
+- **Contact:** Main Office
+- **Phone:** (314) 993-3800
+- **Why Good Fit:** Senior living community in affluent Frontenac. Pet therapy programs and companion animals common. Residents often physically unable to do yard cleanup. Same angle as Fields of Florissant but higher-income market. Pairs with West County route.
+- **Est. Monthly Value:** $200–$400/mo
+- **Found:** March 29, 2026
+- **Status:** New
+- **Pitch angle:** "Your residents love their companion animals. We can make sure keeping their pet doesn't become a burden. Weekly yard cleanup so they stay active and independent longer."
+
+### Canine Country Club STL ⭐⭐ DAYCARE + BOARDING — O'FALLON
+- **Type:** Dog Daycare / Boarding / Grooming
+- **Address:** O'Fallon / St. Peters corridor, MO 63366
+- **Contact:** Check Google listing
+- **Why Good Fit:** Independent dog daycare/boarding in booming O'Fallon/St. Peters. Outdoor play yards generate significant daily waste. TJ already has clients in St. Peters. Strong referral potential.
+- **Est. Monthly Value:** $175–$350/mo + referrals
+- **Found:** March 29, 2026
+- **Status:** New
+- **Pitch angle:** "Your staff handles the love — we handle the cleanup. Plus, boarding clients get 10% off yard service at home. Referral deal."
+
+### The Reserve at Westport — MARYLAND HEIGHTS
+- **Type:** Apartment Complex
+- **Address:** Maryland Heights, MO 63043 (Westport corridor)
+- **Contact:** See apartments.com
+- **Why Good Fit:** Pet-friendly in TJ's active Maryland Heights service area. Adds to existing Whisper Hollow + Maryland Park cluster for efficient routing.
+- **Est. Monthly Value:** $200–$400/mo
+- **Found:** March 29, 2026
+- **Status:** New
+- **Pitch angle:** "We already service Maryland Heights. Adding your property to the route keeps costs efficient. Professional weekly cleanup, one flat rate."
+
+### Kirkwood Animal Hospital ⭐ VET REFERRAL — SOUTH COUNTY
+- **Type:** Veterinary Clinic — Referral Partner
+- **Address:** Kirkwood / Webster Groves area, MO 63122
+- **Phone:** (314) 821-4500 (verify)
+- **Why Good Fit:** Fills South County vet referral gap. Kirkwood is one of STL's most dog-loving communities. Pairs with Sunnen Station, Maplewood, Greenmar for South County route build.
+- **Est. Monthly Value:** Referral → $200–$400/mo in residential leads
+- **Found:** March 29, 2026
+- **Status:** New
+- **Pitch angle:** "Kirkwood dog owners are the perfect fit for Tidy Tails. Cards at your desk, 10% off first month for your clients. We do the dirty work, you're the hero."
+
+---
+
 ## 📊 COMMERCIAL LEAD SUMMARY (Updated March 28, 2026 — 85 total leads)
