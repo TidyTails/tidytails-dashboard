@@ -1378,3 +1378,20 @@
   - **Why this is the right 12 AM task:** The blog content ecosystem is now complete (20 posts). The city pages exist (20+). The 4 county deep-dives are live. The missing layer was the connective tissue — a URL that unifies all of it and answers "do you serve my neighborhood?" directly. This page becomes the answer to any "near me" query AND the hub that passes PageRank to every city page and county blog via internal links. One page that compounds the value of 40+ pages already built. SEO value: 9.5/10. Effort: 1 hour.
   - **Blog count:** 20 posts + 1 hub page = complete content architecture ✅
   - Committed + pushed to both repos ✅ (tidytails-dashboard + tidytails-website/Cloudflare Pages)
+
+---
+
+### Sunday 3:04 PM — North County Launch Command (Hourly Task)
+- **3:04 PM** 🚀 Built the North County Launch Command — the one-stop kit for Monday's campaign kickoff
+  - **File:** `dashboard/north-county-launch-command.html`
+  - **Why this task:** It's Sunday 3 PM. North County conquest launches TOMORROW (Monday March 30). All the raw content existed (5 FB posts in `ready-to-post/north-county-conquest-week-mar30.md`, the FB groups guide, the battle plan) but it was scattered across 3+ files. TJ/Jamie need ONE place to go Monday morning at 7 AM and execute. No hunting, no context switching.
+  - **What's built:**
+    - **Tab 1 — Tonight:** Sunday night prep checklist — join 7 Facebook groups (with tap-to-mark-joined tracker), print door hangers, follow up on Paw-ty leads, set 6:45 AM alarm. Countdown timer to Monday 7 AM launch. Critical warning about FB group approval timing.
+    - **Tab 2 — Posts:** All 5 campaign posts (NC-1 through NC-5, Mon-Fri) + Nextdoor post, one-tap copy buttons, target groups listed per post, day/time guidance. Every post is copy-paste ready.
+    - **Tab 3 — Responses:** 10 response scripts for every scenario: "how much?", "I can do it myself", "what area do you cover?", "used to have service that disappeared", billing questions, one-time cleanup, inbound call script, DM opener, follow-up text. One-tap copy on each.
+    - **Tab 4 — Leads:** Full lead tracker — log name/handle, source (which post), contact info, notes, status (hot/warm/follow-up/won/dead). Stats bar: total leads, hot count, wins. localStorage persistence.
+    - **Tab 5 — Strategy:** Why North County wins (zero competitors, 75-150 orphaned customers, spring timing), full Mon-Fri schedule, week goals (3-5 leads, 1-2 customers, 50 hangers, 5+ commercial contacts), neighborhood targeting with zipcodes.
+  - **Dashboard:** Replaced old "Print Kit" pulse link with new "🚀 NORTH COUNTY LAUNCH COMMAND" (most prominent quick link), kept Print Kit as secondary link
+  - **Key UX decisions:** Made it phone-friendly (sticky tabs, large copy buttons, all scripts accessible without scrolling). Jamie can keep "Responses" tab open during the day and copy-paste to comments in <5 seconds.
+  - **Gap this fills:** Battle plan has the strategy. Posts file has the content. Groups guide has the list. But none of them have the RESPONSE scripts — which is what converts commenters to customers. And none of them put it all in one place. This does.
+  - Committed + pushed → `993fe8c0` ✅
