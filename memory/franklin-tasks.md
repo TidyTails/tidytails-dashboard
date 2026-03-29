@@ -2,6 +2,32 @@
 
 ---
 
+### Saturday 10:07 PM — Winter Dog Poop Cleanup Blog Post (Hourly Task)
+- **10:07 PM** ❄️ Wrote and published "Winter Dog Poop Cleanup in St. Louis: The Thaw Reveal Guide" — the highest-conversion search intent we were missing
+  - **File:** `tidy-tails/website/blog/winter-dog-poop-cleanup-st-louis.html`
+  - **URL:** `https://tidytailsstl.com/blog/winter-dog-poop-cleanup-st-louis`
+  - **Why this task:** It's late March. St. Louis snow just melted. The single highest-intent search moment of the year for pet waste services is RIGHT NOW: people walking into their backyard for the first time and seeing 3 months of winter accumulation all at once. All 18 existing blog posts are either geographic (county coverage) or evergreen (health risks, laws, cost). None specifically targeted this moment — the winter thaw reveal — which is the exact emotional trigger that converts browsers into paying customers. This post is timed perfectly.
+  - **What's in the post (~2,800 words):**
+    - Hook that nails the emotional moment: "The snow melted. You let the dog out. You looked at your backyard. It's not pretty."
+    - **The Winter Waste Math card** — visual calculator showing 150 lbs / 300 piles per dog over an STL winter. Two dogs = 600 piles / 300 lbs. The number that makes people put down their shovel and call us.
+    - **Stats row:** 300 deposits per dog / 150 lbs per dog / 3-5 hours DIY time (2 dogs) / $0 cost of calling us
+    - What winter poop actually does to lawns (grass death, bacterial contamination, fly attraction, odor season)
+    - EPA groundwater callout box — positions picking up as civic responsibility, not just personal preference
+    - 6-step cleanup guide (pick the right day, gear up, grid sections, decomposed waste, lawn recovery, weekly maintenance setup)
+    - DIY vs. Tidy Tails comparison table — transparent, honest, converts at the moment of maximum frustration
+    - "When to Call a Professional" list — gives permission to hire out without feeling lazy
+    - St. Louis-specific tips: March rain problem, fescue recovery, mosquito season, drainage
+    - 6-question FAQ with FAQPage schema — captures long-tail searches
+    - Two CTAs: phone call + spring specials page link
+  - **Schema markup:** BlogPosting + FAQPage with 6 questions targeting exact winter cleanup searches
+  - **Target keywords:** "winter dog poop cleanup St. Louis", "dog poop winter buildup", "spring thaw dog poop", "how much dog poop accumulates winter", "clean up winter dog waste Missouri", "pooper scooper St. Louis spring"
+  - **Internal linking:** Added to blog/index.html as #1 post (newest). Added to sitemap.xml. Cross-linked from spring-yard-cleanup-st-louis.html (now 3 related articles vs 2).
+  - **Why the timing is perfect:** Late March in St. Louis is peak "thaw reveal" season. This post should index and rank for exactly the queries people are typing tonight and this week. Unlike the 4 county posts (always-on) or the general spring cleanup post (generic guide), this one hits the specific emotional moment when conversion intent is highest. The winter waste math (300 piles per dog) is the hook — nobody knows that number until they read it. Then they call.
+  - **Blog count:** 19 posts total ✅
+  - Committed + pushed ✅ (both posts + sitemap + blog index)
+
+---
+
 ### Saturday 9:04 PM — Sunday Morning Briefing PDF (Hourly Task)
 - **9:04 PM** 📋 Built the Sunday March 29 Morning Briefing — the "day after Paw-ty, day before launch" action guide
   - **File:** `dashboard/pdfs/MORNING_BRIEFING_2026-03-29.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-03-29.pdf` (1.05MB ✅)
