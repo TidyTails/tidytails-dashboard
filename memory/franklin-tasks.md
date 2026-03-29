@@ -2,6 +2,23 @@
 
 ---
 
+### Saturday 8:05 PM — April War Room (Hourly Task)
+- **8:05 PM** ⚔️ Built the April War Room — the missing daily "is it working?" view for all 4 campaigns launching Monday
+  - **File:** `dashboard/april-war-room.html` — 5-tab live campaign tracker
+  - **Why this task:** Every execution tool is built (Monday Launch Command, FB Ad Pack, NC Conquest, Vet Blitz Kit, Paw-ty Follow-Up Engine, etc.). The gap: after TJ hits GO on Monday, there's no single place to check "what's actually working?" Without tracking, he might run FB Ads for 2 weeks and not know the CPL is $40 vs. $80. He might not realize North County posts are generating leads while vet clinics aren't. He needs a scoreboard.
+  - **5 Tabs:**
+    - **Campaigns:** 4 campaign cards (FB Ads, North County, Vet Blitz, Paw-ty) each with live metrics (leads/converts/spend/status). KPI row: total leads, total converts, MRR. Pace-to-goal calculator. Revenue scorecards (current MRR, projected at 25 customers, LTV, review count). One "Update Stats" modal updates everything — takes 2 min.
+    - **Weekly:** Week-by-week scorecard table (projected vs actual new customers). Velocity bar chart showing 8-week customer growth. Monthly milestone table (Mar→Aug) with target customer counts and MRR projections.
+    - **Channels:** All 7 acquisition channels ranked by ROI with live lead counts (Nextdoor, Events, Referrals, FB Ads, Vet Clinics, Realtor Partners, SEO/Google). Each with status chip (HIGHEST ROI / LAUNCHING MON / COMPOUNDING) and link to relevant tool.
+    - **Events:** Pipeline with live day countdowns (Arch Bark: 21 days, Bark in the Park: 49 days, July 4th events). Big red alert: register for BITP at hsmo.org NOW. Strategy insights.
+    - **Actions:** Priority-sorted next actions tonight (fire 🔥), Sunday AM, Monday morning, this week. With tool links and checkboxes persisted in localStorage.
+  - **Pace card:** Sets verdict automatically — if monthly adds ≥ required pace → "ON PACE ✅", below 70% → "BEHIND 🔴". Required pace: 3 new/month to hit 25 by August.
+  - **Dashboard:** Added pulsing blue "⚔️ APRIL WAR ROOM — TRACK ALL 4 CAMPAIGNS" quick link in header + featured alert card above FB Ad Launch Pack
+  - **Why this is the right 8 PM task:** All 4 campaigns launch in ~36 hours. The tools exist. The missing piece is the feedback loop. Without measurement, execution is blind. This is the instrument panel TJ checks every morning from now through August. One 2-min update per day is the difference between "why am I not growing?" and "North County is +3 leads this week, vet clinics are zero — I'll double down on NC and drop the vet angle."
+  - Committed + pushed ✅
+
+---
+
 ### Saturday 7:04 PM — Monday Launch Command Center (Hourly Task)
 - **7:04 PM** 🚀 Built the "Monday Is Go Day" command center — synthesizing 3 simultaneous campaign launches into one step-by-step guide
   - **File:** `dashboard/monday-launch-command.html` — 6-tab mobile-first launch command
