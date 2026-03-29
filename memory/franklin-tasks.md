@@ -2,6 +2,41 @@
 
 ---
 
+### Sunday 1:04 AM — St. Charles County SEO Blog Post (Hourly Task)
+- **1:04 AM** 🏘️ Wrote and published full SEO blog post targeting St. Charles County — the fastest-growing county in Missouri with zero editorial coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-st-charles-county-missouri.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-st-charles-county-missouri`
+  - **Why this task:** All 4 St. Louis County quadrants had dedicated blog posts (North/South/West/Central). St. Charles County — which has FOUR existing city pages (O'Fallon, St. Peters, Wentzville, St. Charles) and over 400,000 residents — had ZERO editorial content. O'Fallon is Missouri's 3rd largest city. Wentzville is the fastest-growing city in the state. POOP 911 has an active St. Charles listing (proving search intent exists). This was the most glaring geographic content gap on the site.
+  - **What's in the post (~2,500 words):**
+    - Hero with stats: $70 flat/month, 0 contracts, 5★, Local STL
+    - "Serving St. Charles County, MO" badge with callout: same flat price, no county surcharge
+    - 6-city area grid: O'Fallon (63366/63368), St. Peters (63376), Wentzville (63385), St. Charles (63301-63304), Cottleville (63338), Lake St. Louis & Dardenne Prairie (63367/63368)
+    - **Growth callout card:** 400k+ county population, #1 fastest-growing MO county, ~38% households own dogs, $70 flat same as everywhere
+    - Why St. Charles County families use Tidy Tails: 5 real reasons (working families, HOA letters, fenced yards going to waste, old service quit)
+    - New homeowner math callout: "$70/mo is less than 2% of your mortgage payment on the house you bought specifically for the backyard"
+    - 5-step service process with icons
+    - Pricing table (1-4+ dogs, weekly/biweekly/one-time)
+    - Honest comparison table: Tidy Tails vs National Franchise vs Craigslist vs DIY — includes "St. Charles County routes: ✓ Dedicated" vs competitors "Sporadic"
+    - Competitor math callout: POOP 911 at $20/visit = $1,040/yr vs our $840/yr flat — $200/yr cheaper for same frequency
+    - "New Subdivision Reality" section: HOA neighborhoods in O'Fallon, Wentzville, Cottleville — explains why these areas are a natural route fit
+    - 2 testimonials (O'Fallon 2-lab household, St. Peters new neighbor referral)
+    - "Is it worth it?" decision guide (both yes/no cases)
+    - 8-question FAQ with FAQPage schema
+    - Cross-links to all 4 St. Louis County posts + service-areas hub
+    - Sidebar with area list, quick pricing, related guides
+  - **Schema markup:** BlogPosting + FAQPage (8 questions) + LocalBusiness with 7 St. Charles County cities in areaServed
+  - **Target keywords:** "pooper scooper O'Fallon MO", "dog poop pickup St Peters Missouri", "pet waste removal Wentzville MO", "pooper scooper St Charles County", "dog waste service St Charles MO"
+  - **service-areas.html:** Added new St. Charles County blog card in the county guides section (now 7 blog cards total — was 6)
+  - **blog/index.html:** Added new card as #1 post (newest first) + added to JSON-LD blogPost array
+  - **sitemap.xml:** Added new URL (now 22 blog posts total)
+  - **Why St. Charles County matters:** 400k+ residents in the fastest-growing county in Missouri. O'Fallon specifically has gone from 50k to 90k+ in 15 years — all subdivisions, all fenced yards, all dog owners. The POOP 911 St. Charles listing (145 reviews) proves search intent exists and someone is getting those customers. Now we have content to compete for those searches. This blog post is the missing editorial layer above the 4 existing city pages. It compounds forever.
+  - **Why this is the right 1 AM task:** Monday launch is hours away (FB ads, North County campaign, vet blitz). All execution tools are built. The single highest-value gap remaining in the content architecture was St. Charles County editorial coverage. Every hour without this post is an hour where someone in O'Fallon Googles "pooper scooper near me" and we don't show up in results for that county at all. This post is the fix. 21 blog posts total ✅
+  - Committed + pushed to both repos ✅ (tidytails-dashboard + tidytails-website/Cloudflare Pages)
+
+---
+
+---
+
 ### Saturday 11:04 PM — "Best Pooper Scooper St. Louis 2026" Comparison Post (Hourly Task)
 - **11:04 PM** 🏆 Wrote and published the highest-intent comparison post in the entire content funnel
   - **File:** `tidy-tails/website/blog/best-pooper-scooper-service-st-louis.html`
