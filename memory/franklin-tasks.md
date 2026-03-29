@@ -2,6 +2,32 @@
 
 ---
 
+### Saturday 11:04 PM — "Best Pooper Scooper St. Louis 2026" Comparison Post (Hourly Task)
+- **11:04 PM** 🏆 Wrote and published the highest-intent comparison post in the entire content funnel
+  - **File:** `tidy-tails/website/blog/best-pooper-scooper-service-st-louis.html`
+  - **URL:** `https://tidytailsstl.com/blog/best-pooper-scooper-service-st-louis`
+  - **Why this task:** All event tools are built. Monday launch is set. The single most valuable uncovered content gap: a comparison post for buyers who see TJ's FB ad or Nextdoor post and then Google "best pooper scooper St. Louis" before making a decision. This is the #1 last-mile conversion search — the moment right before someone picks up the phone. Zero comparison content existed on the site. This post captures that query AND positions Tidy Tails as the honest, transparent choice in a crowded market.
+  - **What's in the post (~2,800 words):**
+    - **Stats row:** 8 active services / $70-90 typical monthly cost / $2.30/day math / 730 poops/year per dog
+    - **Who's actually operating:** Service cards for 5 active players with pricing, type, and coverage summary. Plus callout on 2 services that appear active but may not be (No. 2 Crew broken site, The Pootector unclear)
+    - **Side-by-side comparison table:** All 5 services with monthly cost, local vs franchise badge, reviews, coverage area, and contract status. Tidy Tails highlighted as featured row.
+    - **Individual scorecards:** Honest 5-dot scores for Tidy Tails (with real weaknesses acknowledged — fewer reviews, newer), Poop2Scoop (great South County, limited elsewhere), POOP 911 (most reviews, higher price, less local feel)
+    - **What to actually look for (6 questions):** Address coverage first, flat-rate vs per-visit, communication/texts, snow policy, cancellation policy, pricing stability
+    - **The Communication Test callout:** Text any service before signing up. Response speed during sales = response speed during service. This positions TJ's fast-reply style as a differentiator.
+    - **North County gap section:** Explicit call-out that North County is underserved. Captures buyers who've been frustrated searching.
+    - **Decision matrix table:** "If you're in North County → Tidy Tails / South County → Tidy Tails or Poop2Scoop / West County → Tidy Tails or Dr. Scoops / want most reviews → POOP 911 / want cheapest per-week South County → Poop2Scoop" — honest, wins by being the most helpful
+    - **6-question FAQ** with FAQPage schema: best service, how much does it cost, is there service in Florissant/Hazelwood, contracts, how you know they showed up, one-time cleanup
+    - **Full-county coverage area callout:** All 13 cities listed
+  - **SEO target queries:** "best pooper scooper St. Louis", "pooper scooper service comparison St. Louis", "dog waste removal service St. Louis", "is Tidy Tails good", "Poop2Scoop vs Tidy Tails"
+  - **Schema markup:** BlogPosting + FAQPage (6 questions) + LocalBusiness with all 13 service area cities
+  - **Why honest comparison wins:** The temptation was to write a fluff post pretending no competitors exist. Instead: name every real competitor, acknowledge weaknesses, give a straight decision guide. This approach wins because: (1) buyers trust sources that acknowledge alternatives — it reads as authoritative, not promotional; (2) Google ranks comprehensive comparison content highly; (3) for every query where Tidy Tails isn't the best answer (e.g., South County buyer who values veteran-owned + cheapest price), we still send them to Poop2Scoop instead of losing them entirely — and they remember we were honest.
+  - **Blog count:** 20 posts total ✅
+  - Committed + pushed to both repos ✅ (dashboard + TidyTails/tidytails-website)
+
+---
+
+---
+
 ### Saturday 10:07 PM — Winter Dog Poop Cleanup Blog Post (Hourly Task)
 - **10:07 PM** ❄️ Wrote and published "Winter Dog Poop Cleanup in St. Louis: The Thaw Reveal Guide" — the highest-conversion search intent we were missing
   - **File:** `tidy-tails/website/blog/winter-dog-poop-cleanup-st-louis.html`
