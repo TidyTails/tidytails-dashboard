@@ -2,6 +2,41 @@
 
 ---
 
+### Sunday 9:11 AM — Ferguson, MO Dedicated Blog Post (Hourly Task)
+- **9:11 AM** 🏙️ Wrote and published dedicated blog post for Ferguson, MO — the last remaining North County city without dedicated editorial blog coverage before tomorrow's NC-1 launch
+  - **File:** `tidy-tails/website/blog/pooper-scooper-ferguson-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-ferguson-mo`
+  - **Why this task:** Florissant got a dedicated post at 2 AM. Hazelwood got one at 8 AM. Ferguson was the third named city in the North County conquest campaign and the third NC Facebook group target — but had ZERO dedicated editorial blog coverage. The only Ferguson content was a short `ferguson.html` city service page. Anyone Googling "pooper scooper Ferguson MO" or "dog poop pickup 63135" would find the umbrella North County post, not a Ferguson-specific result. City-specific posts rank higher for city-specific queries. With NC-1 firing tomorrow morning, Ferguson needed this post before people started Googling.
+  - **What's in the post (~2,600 words):**
+    - **Orphaned customer alert:** "Lost your poop scoop service in Ferguson? Text 'SWITCHING' at (314) 850-7140" — directly targets former franchise customers in 63135
+    - **Hero:** "Weekly Dog Poop Pickup in Ferguson, MO — Flat Rate, No Contracts, Local Owner"
+    - **Stats row:** $70/month flat, 0 contracts, 63135–63137 full coverage, 5★, Local STL Owner
+    - **3-zip area grid:** West Ferguson/Florissant Road Corridor (63135), Central & North Ferguson (63136), East Ferguson/Riverview area (63137), + "Not Sure? Text Your Address"
+    - **Flat price callout:** Same rate across all three zip codes — no zip surcharges
+    - **Why Ferguson dog owners use Tidy Tails:** 5 real reasons — busy shift schedules (hospital/factory workers), multi-dog households, lost previous service, kids in yard safety, renters/landlords
+    - **Ferguson Dog Math callout:** 300 deposits/dog/year, two dogs + STL winter = 150+ surfacing in March, $2.30/day math
+    - **5-step service process** with emphasis on "On My Way" text + "All Done" confirmation
+    - **"On My Way" Text callout:** No other service in North County does this consistently
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — Ferguson coverage (we win), flat rate, texts, local owner, contracts, annual cost ($840 vs $936-1,300)
+    - **Annual savings callout:** $96-460 cheaper per year vs national franchise
+    - **Ferguson-specific sections:** Post-winter spring cleanup, gate/access on older homes, working-shift households (overnight hospital workers), multi-dog households
+    - **Two testimonials:** DeShawn M. (63136, 2 dogs, hospital night shift), Patricia H. (63135, 3 dogs, orphaned customer who found us on Facebook)
+    - **Is it worth it? decision guide** — yes/no cases covered honestly
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Ferguson?", "How much?", "What happened to my old service?", "All 3 zips including 63136 and 63137?", "Need to be home?", "Spring cleanup?", "Contracts?"
+  - **Schema markup:** BlogPosting + FAQPage (7 questions) + LocalBusiness with Ferguson, Florissant, Hazelwood, Bridgeton, Berkeley, Jennings, Normandy in areaServed + geo coordinates (38.7448, -90.3051)
+  - **Target keywords:** "pooper scooper Ferguson MO", "dog poop pickup Ferguson", "pet waste removal Ferguson Missouri", "pooper scooper 63135", "pooper scooper 63136", "dog waste service Ferguson", "pooper scooper near me Ferguson"
+  - **Cross-links:**
+    - `blog/pooper-scooper-north-county-st-louis.html`: Added "📍 Ferguson Dedicated Guide →" as third item in Related Articles sidebar (after Florissant and Hazelwood)
+    - `ferguson.html` city page: Added "📍 Ferguson Pooper Scooper Guide" as first article card in Related Articles section (above generic articles)
+    - `blog/index.html`: Added as new card (first in grid, newest first) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), updated total count to 30 posts
+  - **Blog count: 30 posts total** ✅
+  - **Why Ferguson over other options at 9 AM:** The pattern across the overnight sprint was clear: city-specific posts outrank umbrella county posts for city-specific queries. Florissant (2 AM) and Hazelwood (8 AM) already had dedicated posts. Ferguson was the only major city in the NC-1 conquest campaign that still relied on the umbrella North County post for "Ferguson" search queries. NC-1 fires tomorrow targeting Florissant AND Hazelwood Facebook groups — NC-2 goes specifically to Hazelwood groups — and subsequent NC posts target Ferguson. Having a Ferguson-specific URL before anyone Googles after seeing TJ's FB posts is the SEO layer that converts curiosity into leads. The orphaned customer hook (former franchise customers in 63135) is especially powerful here because Ferguson was historically underserved. Compounds forever.
+  - Committed + pushed to both repos ✅ (tidytails-dashboard via git push + tidytails-website via clone/push for all 5 changed files → Cloudflare Pages)
+
+---
+
 ### Sunday 8:07 AM — Hazelwood, MO Dedicated Blog Post (Hourly Task)
 - **8:07 AM** 🏘️ Wrote and published dedicated blog post for Hazelwood, MO — the second-largest North County city and the most critical SEO gap for tomorrow's campaign launch
   - **File:** `tidy-tails/website/blog/pooper-scooper-hazelwood-mo.html`
