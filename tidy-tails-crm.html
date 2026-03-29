@@ -853,7 +853,6 @@
             if (!sched) {
                 sched = {};
                 DAYS.forEach(d => sched[d] = []);
-                sched.sunday = customers.map(c => c.id);
                 localStorage.setItem('tidyTailsSchedule', JSON.stringify(sched));
             }
             DAYS.forEach(d => { if (!sched[d]) sched[d] = []; });
@@ -870,14 +869,10 @@
         function syncSchedule() {
             const sched = getSchedule();
             const allIds = customers.map(c => c.id);
-            const scheduledIds = new Set();
+            // Only remove IDs that no longer exist as customers — do NOT auto-add unscheduled ones back
             DAYS.forEach(d => {
-                sched[d] = sched[d].filter(id => {
-                    if (allIds.includes(id)) { scheduledIds.add(id); return true; }
-                    return false;
-                });
+                sched[d] = sched[d].filter(id => allIds.includes(id));
             });
-            allIds.forEach(id => { if (!scheduledIds.has(id)) sched.sunday.push(id); });
             localStorage.setItem('tidyTailsSchedule', JSON.stringify(sched));
             return sched;
         }
