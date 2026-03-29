@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>⚔️ April War Room | Tidy Tails</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060810;
+    --bg2: #0d1117;
+    --bg3: #161b27;
+    --bg4: #1e2433;
+    --text: #e8ecf4;
+    --text2: #8892a4;
+    --text3: #4a5568;
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --orange: #f97316;
+    --yellow: #fbbf24;
+    --red: #ef4444;
+    --purple: #a855f7;
+    --teal: #14b8a6;
+    --pink: #ec4899;
+    --border: #1e2433;
+    --radius: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 60px; }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #060810, #0d1528, #060810);
+    border-bottom: 2px solid var(--blue);
+    padding: 20px 16px 16px;
+    text-align: center;
+  }
+  .header-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.4);
+    color: var(--blue); font-size: 0.7rem; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px; letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .header h1 { font-size: 1.7rem; font-weight: 900; line-height: 1.1; }
+  .header h1 span { color: var(--blue); }
+  .header .sub { color: var(--text2); font-size: 0.78rem; margin-top: 6px; }
+  
+  /* GOAL BANNER */
+  .goal-banner {
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .goal-stat { text-align: center; }
+  .goal-stat .val { font-size: 1.5rem; font-weight: 900; }
+  .goal-stat .lbl { font-size: 0.65rem; color: var(--text2); font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+  .goal-track { flex: 1; min-width: 200px; }
+  .goal-track .label { font-size: 0.7rem; color: var(--text2); margin-bottom: 6px; display: flex; justify-content: space-between; }
+  .goal-bar { height: 10px; background: var(--bg3); border-radius: 5px; overflow: hidden; }
+  .goal-fill { height: 100%; background: linear-gradient(90deg, var(--blue), var(--purple)); border-radius: 5px; transition: width 0.6s ease; }
+
+  /* TABS */
+  .tabs-wrap { background: var(--bg2); border-bottom: 1px solid var(--border); overflow-x: auto; }
+  .tabs { display: flex; min-width: max-content; padding: 0 8px; }
+  .tab-btn {
+    padding: 12px 16px; font-size: 0.75rem; font-weight: 700; color: var(--text2);
+    border: none; background: none; cursor: pointer; white-space: nowrap;
+    border-bottom: 2px solid transparent; transition: all 0.15s; letter-spacing: 0.04em;
+  }
+  .tab-btn.active { color: var(--text); border-bottom-color: var(--blue); }
+  .tab-btn:hover:not(.active) { color: var(--text); }
+
+  /* PANELS */
+  .panel { display: none; padding: 16px; }
+  .panel.active { display: block; }
+
+  /* SECTION HEADERS */
+  .section-hdr {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .section-hdr h2 { font-size: 0.85rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+  .section-hdr .hint { font-size: 0.7rem; color: var(--text2); }
+
+  /* CAMPAIGN CARDS */
+  .campaign-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px; }
+  @media (max-width: 400px) { .campaign-grid { grid-template-columns: 1fr; } }
+  .campaign-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    cursor: pointer;
+  }
+  .campaign-card:active { opacity: 0.85; }
+  .campaign-card .c-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .campaign-card .c-name { font-size: 0.8rem; font-weight: 700; }
+  .campaign-card .c-status { font-size: 0.6rem; font-weight: 800; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+  .s-live { background: rgba(34,197,94,0.2); color: var(--green); }
+  .s-pending { background: rgba(251,191,36,0.2); color: var(--yellow); }
+  .s-prep { background: rgba(59,130,246,0.2); color: var(--blue); }
+  .s-closed { background: rgba(100,116,139,0.2); color: var(--text2); }
+  .campaign-card .c-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .metric-pill { background: var(--bg4); border-radius: 8px; padding: 6px 8px; text-align: center; }
+  .metric-pill .m-val { font-size: 1.1rem; font-weight: 900; line-height: 1; }
+  .metric-pill .m-lbl { font-size: 0.58rem; color: var(--text2); font-weight: 600; text-transform: uppercase; margin-top: 2px; letter-spacing: 0.06em; }
+  .campaign-card .c-desc { font-size: 0.68rem; color: var(--text2); margin-top: 8px; line-height: 1.5; }
+
+  /* KPI ROW */
+  .kpi-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 20px; }
+  .kpi-box { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 10px; text-align: center; }
+  .kpi-box .k-val { font-size: 1.6rem; font-weight: 900; line-height: 1; }
+  .kpi-box .k-lbl { font-size: 0.6rem; color: var(--text2); font-weight: 600; text-transform: uppercase; margin-top: 4px; letter-spacing: 0.07em; }
+  .kpi-box .k-delta { font-size: 0.65rem; font-weight: 700; margin-top: 3px; }
+  .delta-up { color: var(--green); }
+  .delta-flat { color: var(--text2); }
+  .delta-down { color: var(--red); }
+
+  /* EDIT BUTTONS */
+  .edit-btn {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--bg4); border: 1px solid var(--border);
+    color: var(--text2); font-size: 0.7rem; font-weight: 600;
+    padding: 5px 10px; border-radius: 8px; cursor: pointer;
+    transition: all 0.15s;
+  }
+  .edit-btn:hover { color: var(--text); border-color: var(--blue); }
+
+  /* INPUT ROWS */
+  .input-row { display: flex; align-items: center; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); }
+  .input-row:last-child { border-bottom: none; }
+  .input-row label { font-size: 0.75rem; font-weight: 600; color: var(--text2); }
+  .input-row input {
+    width: 80px; background: var(--bg4); border: 1px solid var(--border);
+    border-radius: 8px; color: var(--text); font-size: 0.85rem; font-weight: 700;
+    padding: 5px 8px; text-align: right; outline: none;
+    font-family: 'Inter', sans-serif;
+  }
+  .input-row input:focus { border-color: var(--blue); }
+  .save-btn {
+    width: 100%; margin-top: 12px; background: var(--blue); border: none;
+    color: #fff; font-size: 0.8rem; font-weight: 700; padding: 10px;
+    border-radius: 10px; cursor: pointer; font-family: 'Inter', sans-serif;
+    transition: opacity 0.15s;
+  }
+  .save-btn:hover { opacity: 0.85; }
+
+  /* MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.85); z-index: 100;
+    align-items: flex-end; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--bg2); border: 1px solid var(--border);
+    border-radius: 16px 16px 0 0; padding: 20px 16px 40px;
+    width: 100%; max-width: 500px;
+    max-height: 90vh; overflow-y: auto;
+  }
+  .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .modal-title { font-size: 1rem; font-weight: 800; }
+  .modal-close { background: var(--bg4); border: none; color: var(--text2); font-size: 1.2rem; width: 32px; height: 32px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .modal-section { font-size: 0.7rem; color: var(--text2); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin: 14px 0 6px; }
+
+  /* WEEKLY TABLE */
+  .week-table { width: 100%; border-collapse: collapse; font-size: 0.72rem; margin-bottom: 20px; }
+  .week-table th { background: var(--bg3); padding: 8px 6px; text-align: left; font-weight: 700; font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text2); border-bottom: 1px solid var(--border); }
+  .week-table td { padding: 8px 6px; border-bottom: 1px solid var(--border); }
+  .week-table tr:last-child td { border-bottom: none; }
+  .week-table .editable { color: var(--blue); cursor: pointer; font-weight: 700; }
+  .week-table .editable:hover { text-decoration: underline; }
+  .win-row td { background: rgba(34,197,94,0.05); }
+  .goal-row td { background: rgba(168,85,247,0.05); font-weight: 700; }
+  .today-row td { background: rgba(59,130,246,0.08); }
+
+  /* CHANNEL CARDS */
+  .channel-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .channel-item { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; display: flex; align-items: center; gap: 12px; }
+  .channel-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .channel-info { flex: 1; min-width: 0; }
+  .channel-name { font-size: 0.8rem; font-weight: 700; }
+  .channel-sub { font-size: 0.65rem; color: var(--text2); margin-top: 2px; }
+  .channel-metrics { display: flex; gap: 8px; margin-top: 6px; }
+  .cm { background: var(--bg4); border-radius: 6px; padding: 3px 7px; font-size: 0.65rem; font-weight: 700; }
+  .channel-cta { flex-shrink: 0; }
+
+  /* VELOCITY CHART */
+  .velocity-chart { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 20px; }
+  .vc-title { font-size: 0.75rem; font-weight: 700; margin-bottom: 12px; }
+  .vc-bars { display: flex; align-items: flex-end; gap: 4px; height: 80px; }
+  .vc-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .vc-bar { width: 100%; border-radius: 4px 4px 0 0; transition: height 0.5s ease; min-height: 2px; }
+  .vc-lbl { font-size: 0.55rem; color: var(--text2); font-weight: 600; }
+  .vc-val { font-size: 0.6rem; font-weight: 700; }
+
+  /* EVENTS */
+  .event-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .event-item { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 14px; display: grid; grid-template-columns: 48px 1fr auto; gap: 12px; align-items: center; }
+  .event-date-box { background: var(--bg4); border-radius: 8px; padding: 6px; text-align: center; }
+  .event-date-box .e-day { font-size: 1.3rem; font-weight: 900; line-height: 1; }
+  .event-date-box .e-mon { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text2); font-weight: 700; }
+  .event-info .e-name { font-size: 0.82rem; font-weight: 700; }
+  .event-info .e-sub { font-size: 0.65rem; color: var(--text2); margin-top: 2px; }
+  .event-info .e-chips { display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap; }
+  .chip { font-size: 0.58rem; padding: 2px 7px; border-radius: 10px; font-weight: 700; }
+  .chip-green { background: rgba(34,197,94,0.2); color: var(--green); }
+  .chip-blue { background: rgba(59,130,246,0.2); color: var(--blue); }
+  .chip-yellow { background: rgba(251,191,36,0.2); color: var(--yellow); }
+  .chip-orange { background: rgba(249,115,22,0.2); color: var(--orange); }
+  .chip-red { background: rgba(239,68,68,0.2); color: var(--red); }
+  .chip-gray { background: rgba(100,116,139,0.2); color: var(--text2); }
+  .event-days { text-align: right; }
+  .event-days .days-num { font-size: 1.2rem; font-weight: 900; color: var(--yellow); }
+  .event-days .days-lbl { font-size: 0.55rem; color: var(--text2); text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* INSIGHTS */
+  .insight-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; }
+  .insight-item { background: var(--bg3); border-left: 3px solid; border-radius: 0 var(--radius) var(--radius) 0; padding: 10px 14px; }
+  .insight-item .i-title { font-size: 0.78rem; font-weight: 700; margin-bottom: 3px; }
+  .insight-item .i-body { font-size: 0.68rem; color: var(--text2); line-height: 1.5; }
+
+  /* PACE CARD */
+  .pace-card { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; margin-bottom: 20px; }
+  .pace-title { font-size: 0.75rem; font-weight: 700; margin-bottom: 10px; }
+  .pace-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid var(--border); font-size: 0.75rem; }
+  .pace-row:last-child { border-bottom: none; }
+  .pace-row .p-lbl { color: var(--text2); }
+  .pace-row .p-val { font-weight: 700; }
+  .pace-verdict { margin-top: 10px; padding: 8px 12px; border-radius: 8px; font-size: 0.75rem; font-weight: 700; text-align: center; }
+  .verdict-green { background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+  .verdict-yellow { background: rgba(251,191,36,0.15); color: var(--yellow); border: 1px solid rgba(251,191,36,0.3); }
+  .verdict-red { background: rgba(239,68,68,0.15); color: var(--red); border: 1px solid rgba(239,68,68,0.3); }
+
+  /* SCORECARD */
+  .scorecard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 20px; }
+  .sc-box { background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px; }
+  .sc-box .sc-title { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text2); margin-bottom: 6px; }
+  .sc-box .sc-score { font-size: 2rem; font-weight: 900; line-height: 1; }
+  .sc-box .sc-max { font-size: 0.8rem; color: var(--text2); font-weight: 600; }
+  .sc-box .sc-bar { height: 4px; background: var(--bg4); border-radius: 2px; margin-top: 8px; overflow: hidden; }
+  .sc-box .sc-fill { height: 100%; border-radius: 2px; transition: width 0.5s ease; }
+
+  /* NEXT ACTIONS */
+  .actions-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 20px; }
+  .action-item { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+  .action-item.done { opacity: 0.5; text-decoration: line-through; }
+  .action-check { width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 5px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; transition: all 0.15s; margin-top: 1px; }
+  .action-item.done .action-check { background: var(--green); border-color: var(--green); color: #fff; }
+  .action-item .a-text { font-size: 0.76rem; line-height: 1.5; }
+  .action-item .a-tag { font-size: 0.6rem; color: var(--text2); display: block; margin-top: 2px; }
+  .action-priority { font-size: 0.6rem; padding: 1px 6px; border-radius: 6px; font-weight: 800; flex-shrink: 0; margin-left: auto; align-self: flex-start; }
+  .p-fire { background: rgba(239,68,68,0.2); color: var(--red); }
+  .p-high { background: rgba(249,115,22,0.2); color: var(--orange); }
+  .p-med { background: rgba(59,130,246,0.2); color: var(--blue); }
+
+  /* STICKY CTA */
+  .sticky-bar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--bg2); border-top: 1px solid var(--border);
+    padding: 10px 16px; z-index: 50;
+    display: flex; gap: 8px;
+  }
+  .sticky-bar a {
+    flex: 1; text-align: center; padding: 10px;
+    border-radius: 10px; font-size: 0.75rem; font-weight: 700;
+    text-decoration: none; color: #fff;
+    background: var(--bg3); border: 1px solid var(--border);
+  }
+  .sticky-bar a.primary { background: var(--blue); border-color: var(--blue); }
+  .sticky-bar a:hover { opacity: 0.85; }
+
+  /* UTILS */
+  .mb4 { margin-bottom: 4px; }
+  .mt8 { margin-top: 8px; }
+  .text-green { color: var(--green); }
+  .text-yellow { color: var(--yellow); }
+  .text-red { color: var(--red); }
+  .text-blue { color: var(--blue); }
+  .text-orange { color: var(--orange); }
+  .text-purple { color: var(--purple); }
+  .sep { height: 1px; background: var(--border); margin: 16px 0; }
+  .notice { background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); border-radius: 10px; padding: 10px 14px; font-size: 0.72rem; color: var(--text2); margin-bottom: 16px; line-height: 1.5; }
+
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.7} }
+  .pulse { animation: pulse 1.5s infinite; }
+  @keyframes glow { 0%,100%{box-shadow:0 0 10px rgba(34,197,94,0.3)} 50%{box-shadow:0 0 25px rgba(34,197,94,0.6)} }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-eyebrow">⚔️ Command Center</div>
+  <h1>April <span>War Room</span></h1>
+  <p class="sub" id="liveDate">Loading date...</p>
+</div>
+
+<!-- GOAL BANNER -->
+<div class="goal-banner">
+  <div class="goal-stat">
+    <div class="val text-green" id="currentCustomers">10</div>
+    <div class="lbl">Customers</div>
+  </div>
+  <div class="goal-track">
+    <div class="label">
+      <span>Progress to 25</span>
+      <span id="pctLbl">40%</span>
+    </div>
+    <div class="goal-bar">
+      <div class="goal-fill" id="goalFill" style="width:40%"></div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin-top:5px;font-size:0.58rem;color:var(--text2);">
+      <span>Now: 10</span>
+      <span>Jun: 20</span>
+      <span>Aug: 25</span>
+    </div>
+  </div>
+  <div class="goal-stat">
+    <div class="val text-yellow" id="daysToAug">~120</div>
+    <div class="lbl">Days Left</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs-wrap">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('campaigns')">📊 Campaigns</button>
+    <button class="tab-btn" onclick="showTab('weekly')">📅 Weekly</button>
+    <button class="tab-btn" onclick="showTab('channels')">📡 Channels</button>
+    <button class="tab-btn" onclick="showTab('events')">🎪 Events</button>
+    <button class="tab-btn" onclick="showTab('actions')">⚡ Actions</button>
+  </div>
+</div>
+
+<!-- ===== TAB 1: CAMPAIGNS ===== -->
+<div class="panel active" id="tab-campaigns">
+  <div class="notice">
+    📌 <strong>Monday March 30:</strong> 4 campaigns launch simultaneously. Track them here. Update numbers daily — takes 2 min.
+  </div>
+  
+  <!-- KPI Row -->
+  <div class="kpi-row">
+    <div class="kpi-box">
+      <div class="k-val text-green" id="kpi-leads">—</div>
+      <div class="k-lbl">Total Leads</div>
+      <div class="k-delta delta-flat" id="kpi-leads-delta">this week</div>
+    </div>
+    <div class="kpi-box">
+      <div class="k-val text-blue" id="kpi-converts">—</div>
+      <div class="k-lbl">Converts</div>
+      <div class="k-delta delta-flat" id="kpi-converts-delta">this month</div>
+    </div>
+    <div class="kpi-box">
+      <div class="k-val text-orange" id="kpi-mrr">$850</div>
+      <div class="k-lbl">MRR</div>
+      <div class="k-delta delta-flat" id="kpi-mrr-delta">baseline</div>
+    </div>
+  </div>
+
+  <!-- Campaign Cards -->
+  <div class="section-hdr">
+    <h2>🚀 Monday Launch Campaigns</h2>
+    <button class="edit-btn" onclick="openModal('update-modal')">✏️ Update</button>
+  </div>
+  
+  <div class="campaign-grid">
+    <!-- FB Ads -->
+    <div class="campaign-card" onclick="openModal('fb-modal')">
+      <div class="c-head">
+        <div class="c-name">📘 FB Ads</div>
+        <div class="c-status s-pending" id="fb-status">PENDING</div>
+      </div>
+      <div class="c-metrics">
+        <div class="metric-pill">
+          <div class="m-val text-blue" id="fb-spend">$0</div>
+          <div class="m-lbl">Spent</div>
+        </div>
+        <div class="metric-pill">
+          <div class="m-val text-green" id="fb-leads">0</div>
+          <div class="m-lbl">Leads</div>
+        </div>
+        <div class="metric-pill">
+          <div class="m-val text-yellow" id="fb-cpl">—</div>
+          <div class="m-lbl">CPL</div>
+        </div>
+        <div class="metric-pill">
+          <div class="m-val text-orange" id="fb-converts">0</div>
+          <div class="m-lbl">Converts</div>
+        </div>
+      </div>
+      <div class="c-desc">$7/day → /spring page → Instant Form. Target: South County dog owners.</div>
+    </div>
+
+    <!-- North County -->
+    <div class="campaign-card" onclick="openModal('nc-modal')">
+      <div class="c-head">
+        <div class="c-name">📍 North County</div>
+        <div class="c-status s-pending" id="nc-status">PENDING</div>
+      </div>
+      <div class="c-metrics">
+        <div class="metric-pill">
+          <div class="m-val text-purple" id="nc-posts">0/5</div>
+          <div class="m-lbl">Posts</div>
+        </div>
+        <div class="metric-pill">
+          <div class="m-val text-green" id="nc-leads">0</div>
+          <div class="m-lbl">Leads</div>
+        </div>
+        <div class="metric-pill">
+          <div class="m-val" id="nc-hangers">0</div>
+          <div class="m-lbl">Hangers</div>
+        </div>
+        <div class="metric-pill">
+          <div class="m-val text-orange" id="nc-converts">0</div>
+          <div class="m-lbl">Converts</div>
+        </div>
+      </div>
+      <div class="c-desc">5 FB group posts Mon–Fri + 50 door hangers + 2 Nextdoor posts. Florissant/Hazelwood.</div>
+    </div>
+
+    <!-- Vet Blitz -->
+    <div class="campaign-card" onclick="openModal('vet-modal')">
+      <div class="c-head">
+        <div class="c-name">🏥 Vet Blitz</div>
+        <div class="c-status s-pending" id="vet-status">PENDING</div>
+      </div>
+      <div class="c-metrics">
+        <div class="metric-pill">
+          <div class="m-val text-teal" id="vet-visited">0/6</div>
+          <div class="m-lbl">Visited</div>
+        </div>
+        <div class="metric-pill">
+          <div class="m-val text-yellow" id="vet-partners">0</div>
+          <div class="m-lbl">Partners</div>
+        </div>
+        <div class="metric-pill">
+          <div class="m-val text-orange" id="vet-callbacks">0</div>
+          <div class="m-lbl">Callbacks</div>
+        </div>
+        <div class="metric-pill">
+          <div class="m-val text-green" id="vet-converts">0</div>
+          <div class="m-lbl">Referrals</div>
+        </div>
+      </div>
+      <div class="c-desc">6 North County clinics. Day 1 Mon: Cross Keys, Gateway City, Baronwood.</div>
+    </div>
+
+    <!-- Paw-ty Closes -->
+    <div class="campaign-card" onclick="openModal('pawty-modal')">
+      <div class="c-head">
+        <div class="c-name">🐾 Paw-ty Closes</div>
+        <div class="c-status s-live pulse" id="pawty-status">ACTIVE</div>
+      </div>
+      <div class="c-metrics">
+        <div class="metric-pill">
+          <div class="m-val text-yellow" id="pawty-leads">0</div>
+          <div class="m-lbl">Leads</div>
+        </div>
+        <div class="metric-pill">
+          <div class="m-val text-green" id="pawty-converts">0</div>
+          <div class="m-lbl">Converts</div>
+        </div>
+        <div class="metric-pill">
+          <div class="m-val" id="pawty-hot">0</div>
+          <div class="m-lbl">Hot</div>
+        </div>
+        <div class="metric-pill">
+          <div class="m-val text-red" id="pawty-window">48h</div>
+          <div class="m-lbl">Window</div>
+        </div>
+      </div>
+      <div class="c-desc">Crestwood Vet Paw-ty. Hot leads close by Sun PM. Warm leads by Tue.</div>
+    </div>
+  </div>
+
+  <!-- Pace Card -->
+  <div class="section-hdr">
+    <h2>📈 Pace to Goal</h2>
+    <button class="edit-btn" onclick="openModal('goal-modal')">⚙️ Set Goal</button>
+  </div>
+  <div class="pace-card">
+    <div class="pace-title">Goal: 25 customers by August 31, 2026</div>
+    <div class="pace-row">
+      <span class="p-lbl">Current customers</span>
+      <span class="p-val text-green" id="pace-current">10</span>
+    </div>
+    <div class="pace-row">
+      <span class="p-lbl">Needed to goal</span>
+      <span class="p-val" id="pace-needed">15 more</span>
+    </div>
+    <div class="pace-row">
+      <span class="p-lbl">Months remaining</span>
+      <span class="p-val" id="pace-months">~5</span>
+    </div>
+    <div class="pace-row">
+      <span class="p-lbl">Required pace</span>
+      <span class="p-val text-yellow" id="pace-required">3 new/month</span>
+    </div>
+    <div class="pace-row">
+      <span class="p-lbl">Current monthly adds</span>
+      <span class="p-val" id="pace-actual">—</span>
+    </div>
+    <div class="pace-verdict verdict-yellow" id="pace-verdict">
+      📊 Set your monthly adds to see pace verdict
+    </div>
+  </div>
+
+  <!-- MRR Tracker -->
+  <div class="section-hdr">
+    <h2>💰 Revenue Tracker</h2>
+  </div>
+  <div class="scorecard-grid">
+    <div class="sc-box">
+      <div class="sc-title">Current MRR</div>
+      <div class="sc-score text-green"><span id="sc-mrr">$850</span><span class="sc-max" style="font-size:0.8rem;">/mo</span></div>
+      <div class="sc-bar"><div class="sc-fill" id="sc-mrr-fill" style="width:34%;background:var(--green);"></div></div>
+      <div style="font-size:0.6rem;color:var(--text2);margin-top:4px;">$850 → $2,500 goal</div>
+    </div>
+    <div class="sc-box">
+      <div class="sc-title">Projected MRR @ 25</div>
+      <div class="sc-score text-purple">$1,750<span class="sc-max">/mo</span></div>
+      <div class="sc-bar"><div class="sc-fill" style="width:70%;background:var(--purple);"></div></div>
+      <div style="font-size:0.6rem;color:var(--text2);margin-top:4px;">$1,750 → $2,500 target</div>
+    </div>
+    <div class="sc-box">
+      <div class="sc-title">LTV per Customer</div>
+      <div class="sc-score text-yellow">$1,260</div>
+      <div style="font-size:0.6rem;color:var(--text2);margin-top:8px;">$70/mo × 18 mo avg</div>
+    </div>
+    <div class="sc-box">
+      <div class="sc-title">Reviews</div>
+      <div class="sc-score text-orange"><span id="sc-reviews">6</span><span class="sc-max">/25</span></div>
+      <div class="sc-bar"><div class="sc-fill" id="sc-reviews-fill" style="width:24%;background:var(--orange);"></div></div>
+      <div style="font-size:0.6rem;color:var(--text2);margin-top:4px;">Goal: 25 for Map Pack #1</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB 2: WEEKLY ===== -->
+<div class="panel" id="tab-weekly">
+  <div class="section-hdr">
+    <h2>📅 Week-by-Week Scorecard</h2>
+    <button class="edit-btn" onclick="openModal('weekly-edit-modal')">✏️ Log Week</button>
+  </div>
+  
+  <table class="week-table">
+    <thead>
+      <tr>
+        <th>Week</th>
+        <th>New</th>
+        <th>Total</th>
+        <th>Leads</th>
+        <th>Win?</th>
+      </tr>
+    </thead>
+    <tbody id="weekTableBody">
+      <!-- Populated by JS -->
+    </tbody>
+  </table>
+
+  <!-- Velocity Chart -->
+  <div class="velocity-chart">
+    <div class="vc-title">📊 Customer Growth Velocity</div>
+    <div class="vc-bars" id="vcBars">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
+  <div class="notice">
+    💡 <strong>Required velocity:</strong> 3 new customers/month = 0.75/week average to hit 25 by August. Peak months (May Bark in Park, June referrals) could do 4-5/month.
+  </div>
+
+  <!-- Monthly targets -->
+  <div class="section-hdr">
+    <h2>🎯 Monthly Targets</h2>
+  </div>
+  <table class="week-table">
+    <thead>
+      <tr>
+        <th>Month</th>
+        <th>Target</th>
+        <th>Actual</th>
+        <th>MRR</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="monthTableBody">
+      <!-- Populated by JS -->
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== TAB 3: CHANNELS ===== -->
+<div class="panel" id="tab-channels">
+  <div class="section-hdr">
+    <h2>📡 Acquisition Channels</h2>
+    <span class="hint">Ranked by ROI</span>
+  </div>
+
+  <div class="channel-list">
+    <div class="channel-item">
+      <div class="channel-icon">🏘️</div>
+      <div class="channel-info">
+        <div class="channel-name">Nextdoor</div>
+        <div class="channel-sub">$0 cost · Hyper-local · Verified addresses</div>
+        <div class="channel-metrics">
+          <div class="cm text-green">$0 CAC</div>
+          <div class="cm" id="nd-leads-chip">0 leads</div>
+          <div class="cm chip chip-green">HIGHEST ROI</div>
+        </div>
+      </div>
+      <div class="channel-cta">
+        <a href="nextdoor-playbook.html" style="font-size:0.65rem;color:var(--blue);text-decoration:none;font-weight:700;">Playbook →</a>
+      </div>
+    </div>
+
+    <div class="channel-item">
+      <div class="channel-icon">🐾</div>
+      <div class="channel-info">
+        <div class="channel-name">Events</div>
+        <div class="channel-sub">Paw-ty (done) · Arch Bark (Apr 18) · Bark in Park (May 16)</div>
+        <div class="channel-metrics">
+          <div class="cm">$15-30 CAC</div>
+          <div class="cm" id="ev-leads-chip">0 leads</div>
+          <div class="cm chip chip-blue">3 UPCOMING</div>
+        </div>
+      </div>
+      <div class="channel-cta">
+        <a href="event-roi-tracker.html" style="font-size:0.65rem;color:var(--blue);text-decoration:none;font-weight:700;">ROI →</a>
+      </div>
+    </div>
+
+    <div class="channel-item">
+      <div class="channel-icon">👥</div>
+      <div class="channel-info">
+        <div class="channel-name">Referrals</div>
+        <div class="channel-sub">10 customers → ask for referrals · $0 acquisition cost</div>
+        <div class="channel-metrics">
+          <div class="cm text-green">$0 CAC</div>
+          <div class="cm" id="ref-leads-chip">0 leads</div>
+          <div class="cm chip chip-yellow">$40 bonus</div>
+        </div>
+      </div>
+      <div class="channel-cta">
+        <a href="referral-engine.html" style="font-size:0.65rem;color:var(--blue);text-decoration:none;font-weight:700;">Engine →</a>
+      </div>
+    </div>
+
+    <div class="channel-item">
+      <div class="channel-icon">📘</div>
+      <div class="channel-info">
+        <div class="channel-name">Facebook Ads</div>
+        <div class="channel-sub">$7/day · Launching Monday · /spring landing page</div>
+        <div class="channel-metrics">
+          <div class="cm">$40-80 CAC est.</div>
+          <div class="cm" id="fb-chip-leads">0 leads</div>
+          <div class="cm chip chip-orange">LAUNCHING MON</div>
+        </div>
+      </div>
+      <div class="channel-cta">
+        <a href="fb-ad-launch-pack-mar30.html" style="font-size:0.65rem;color:var(--blue);text-decoration:none;font-weight:700;">Launch →</a>
+      </div>
+    </div>
+
+    <div class="channel-item">
+      <div class="channel-icon">🏥</div>
+      <div class="channel-info">
+        <div class="channel-name">Vet Clinics</div>
+        <div class="channel-sub">6 North County clinics · Week of Mar 30 · Passive referral machine</div>
+        <div class="channel-metrics">
+          <div class="cm">$0 CAC (if placed)</div>
+          <div class="cm" id="vet-chip">0/6 visited</div>
+          <div class="cm chip chip-blue">LAUNCHING MON</div>
+        </div>
+      </div>
+      <div class="channel-cta">
+        <a href="vet-clinic-partnership-kit.html" style="font-size:0.65rem;color:var(--blue);text-decoration:none;font-weight:700;">Kit →</a>
+      </div>
+    </div>
+
+    <div class="channel-item">
+      <div class="channel-icon">🏡</div>
+      <div class="channel-info">
+        <div class="channel-name">Realtor Partners</div>
+        <div class="channel-sub">Pre-listing cleanup · Untapped channel · $5,600 LTV/partner</div>
+        <div class="channel-metrics">
+          <div class="cm">$0 CAC</div>
+          <div class="cm" id="re-chip">0 partners</div>
+          <div class="cm chip chip-gray">BUILD THIS WEEK</div>
+        </div>
+      </div>
+      <div class="channel-cta">
+        <a href="realtor-partnership-kit.html" style="font-size:0.65rem;color:var(--blue);text-decoration:none;font-weight:700;">Kit →</a>
+      </div>
+    </div>
+
+    <div class="channel-item">
+      <div class="channel-icon">🌐</div>
+      <div class="channel-info">
+        <div class="channel-name">Google / SEO</div>
+        <div class="channel-sub">18 blog posts · 25+ pages indexed · GBP 95% complete</div>
+        <div class="channel-metrics">
+          <div class="cm text-green">$0 ongoing</div>
+          <div class="cm" id="seo-chip">6 reviews</div>
+          <div class="cm chip chip-green">COMPOUNDING</div>
+        </div>
+      </div>
+      <div class="channel-cta">
+        <a href="https://tidytailsstl.com" target="_blank" style="font-size:0.65rem;color:var(--blue);text-decoration:none;font-weight:700;">Site →</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Channel Update -->
+  <div class="section-hdr">
+    <h2>📊 Update Channel Stats</h2>
+  </div>
+  <div style="background:var(--bg3);border:1px solid var(--border);border-radius:var(--radius);padding:14px;">
+    <div class="input-row">
+      <label>Nextdoor leads this month</label>
+      <input type="number" id="input-nd-leads" value="0" min="0">
+    </div>
+    <div class="input-row">
+      <label>Referral leads this month</label>
+      <input type="number" id="input-ref-leads" value="0" min="0">
+    </div>
+    <div class="input-row">
+      <label>Event leads total</label>
+      <input type="number" id="input-ev-leads" value="0" min="0">
+    </div>
+    <div class="input-row">
+      <label>Realtor partners</label>
+      <input type="number" id="input-re-partners" value="0" min="0">
+    </div>
+    <div class="input-row">
+      <label>Google reviews</label>
+      <input type="number" id="input-reviews" value="6" min="0">
+    </div>
+    <button class="save-btn" onclick="saveChannelStats()">Save Channel Stats</button>
+  </div>
+</div>
+
+<!-- ===== TAB 4: EVENTS ===== -->
+<div class="panel" id="tab-events">
+  <div class="section-hdr">
+    <h2>🎪 Event Pipeline</h2>
+  </div>
+
+  <div class="event-list">
+    <!-- Paw-ty -->
+    <div class="event-item">
+      <div class="event-date-box" style="border:1px solid var(--green);">
+        <div class="e-day text-green">28</div>
+        <div class="e-mon">MAR</div>
+      </div>
+      <div class="event-info">
+        <div class="e-name">Crestwood Vet Adoption Paw-ty</div>
+        <div class="e-sub">Crestwood · 10 AM–2 PM · FREE</div>
+        <div class="e-chips">
+          <span class="chip chip-green">✅ COMPLETE</span>
+          <span class="chip chip-blue">48h window open</span>
+          <span class="chip chip-yellow">Close leads NOW</span>
+        </div>
+      </div>
+      <div class="event-days">
+        <div class="days-num text-green">✓</div>
+        <div class="days-lbl">Done</div>
+      </div>
+    </div>
+
+    <!-- Arch Bark -->
+    <div class="event-item">
+      <div class="event-date-box" style="border:1px solid var(--blue);">
+        <div class="e-day text-blue">18</div>
+        <div class="e-mon">APR</div>
+      </div>
+      <div class="event-info">
+        <div class="e-name">Arch Bark</div>
+        <div class="e-sub">Gateway Arch · Free event · ~500 dog owners</div>
+        <div class="e-chips">
+          <span class="chip chip-blue">21 days away</span>
+          <span class="chip chip-yellow">Register ASAP</span>
+          <span class="chip chip-orange">$0 booth fee</span>
+        </div>
+      </div>
+      <div class="event-days">
+        <div class="days-num" id="archBarkDays">21</div>
+        <div class="days-lbl">Days</div>
+      </div>
+    </div>
+
+    <!-- Bark in the Park -->
+    <div class="event-item">
+      <div class="event-date-box" style="border:1px solid var(--yellow);">
+        <div class="e-day text-yellow">16</div>
+        <div class="e-mon">MAY</div>
+      </div>
+      <div class="event-info">
+        <div class="e-name">Bark in the Park</div>
+        <div class="e-sub">HSMO · Tower Grove Park · 1,000–5,000 attendees</div>
+        <div class="e-chips">
+          <span class="chip chip-yellow">49 days away</span>
+          <span class="chip chip-red">Register NOW</span>
+          <span class="chip chip-orange">Booth: $207–520</span>
+        </div>
+      </div>
+      <div class="event-days">
+        <div class="days-num text-yellow" id="barkParkDays">49</div>
+        <div class="days-lbl">Days</div>
+      </div>
+    </div>
+
+    <!-- 4th of July -->
+    <div class="event-item">
+      <div class="event-date-box" style="border:1px solid var(--red);">
+        <div class="e-day text-red">4</div>
+        <div class="e-mon">JUL</div>
+      </div>
+      <div class="event-info">
+        <div class="e-name">4th of July Events</div>
+        <div class="e-sub">Various venues · Find local dog-friendly events</div>
+        <div class="e-chips">
+          <span class="chip chip-gray">~98 days away</span>
+          <span class="chip chip-gray">Research in May</span>
+        </div>
+      </div>
+      <div class="event-days">
+        <div class="days-num text-red" id="july4Days">98</div>
+        <div class="days-lbl">Days</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Event Insights -->
+  <div class="section-hdr">
+    <h2>💡 Event Strategy</h2>
+  </div>
+  <div class="insight-list">
+    <div class="insight-item" style="border-color:var(--red);">
+      <div class="i-title text-red">🚨 URGENT: Register for Bark in the Park NOW</div>
+      <div class="i-body">HSMO vendor registration for May 16 may already be open. Booths sell out months ahead. Go to hsmo.org this week or risk missing the biggest dog event in STL. 5,000 attendees = potential 7+ converts = $5,880 LTV from one day.</div>
+    </div>
+    <div class="insight-item" style="border-color:var(--blue);">
+      <div class="i-title text-blue">📸 Arch Bark = Free Arch Backdrop Content</div>
+      <div class="i-body">The Gateway Arch background alone is worth attending. Photos with dogs at the Arch = viral Instagram/Nextdoor content that positions Tidy Tails as the "local STL brand." Zero other pet service is doing this.</div>
+    </div>
+    <div class="insight-item" style="border-color:var(--green);">
+      <div class="i-title text-green">📊 Log event results in Event ROI Tracker</div>
+      <div class="i-body">After every event, log the actual metrics: cost, leads, converts, LTV. Builds the "which events are worth repeating" decision database. After 3 events you'll know your average CPL and can plan 2027 event calendar with data.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TAB 5: NEXT ACTIONS ===== -->
+<div class="panel" id="tab-actions">
+  <div class="notice" style="background:rgba(239,68,68,0.08);border-color:rgba(239,68,68,0.2);color:var(--text2);">
+    ⚡ <strong>It's Saturday night.</strong> These are ranked by time-sensitivity and ROI. Hit the fires first.
+  </div>
+
+  <div class="section-hdr">
+    <h2>🔥 Tonight / Tomorrow</h2>
+  </div>
+  <div class="actions-list" id="actions-urgent">
+    <div class="action-item" id="a1" onclick="toggleAction('a1')">
+      <div class="action-check" id="a1-check"></div>
+      <div style="flex:1">
+        <div class="a-text">Text hot Paw-ty leads NOW (tonight Sat PM). They said yes — send the "Can't wait to help with [Dog Name]'s yard!" text while energy is high.</div>
+        <span class="a-tag">⏰ 48-hour window open · tool: pawty-followup-engine.html</span>
+      </div>
+      <div class="action-priority p-fire">🔥 FIRE</div>
+    </div>
+    <div class="action-item" id="a2" onclick="toggleAction('a2')">
+      <div class="action-check" id="a2-check"></div>
+      <div style="flex:1">
+        <div class="a-text">Send referral texts to existing 10 customers tonight (Sat PM). "Hey [Name], I was at the Paw-ty today — if you know any dog owners who need service, you both get a month free." 20 min max.</div>
+        <span class="a-tag">⚡ highest ROI free action · tool: saturday-live-amplifier.html</span>
+      </div>
+      <div class="action-priority p-fire">🔥 FIRE</div>
+    </div>
+    <div class="action-item" id="a3" onclick="toggleAction('a3')">
+      <div class="action-check" id="a3-check"></div>
+      <div style="flex:1">
+        <div class="a-text">Post Paw-ty victory recap on Facebook + Nextdoor + Instagram (Sat 2-5 PM is peak, but tonight still works). This converts people who were at the event but didn't stop.</div>
+        <span class="a-tag">🎯 stat: recap posts peak at 2-5 PM same day · tool: pawty-post-event-NOW.html</span>
+      </div>
+      <div class="action-priority p-fire">🔥 FIRE</div>
+    </div>
+  </div>
+
+  <div class="section-hdr" style="margin-top:20px;">
+    <h2>☀️ Sunday Morning (9-11 AM)</h2>
+  </div>
+  <div class="actions-list" id="actions-sunday">
+    <div class="action-item" id="a4" onclick="toggleAction('a4')">
+      <div class="action-check" id="a4-check"></div>
+      <div style="flex:1">
+        <div class="a-text">Text warm Paw-ty leads Sunday AM. "Hey [Name]! Met you at the Paw-ty yesterday..." — use Sunday Morning Power Hour guide for exact scripts and timing.</div>
+        <span class="a-tag">tool: sunday-morning-power-hour.html</span>
+      </div>
+      <div class="action-priority p-high">🟠 HIGH</div>
+    </div>
+    <div class="action-item" id="a5" onclick="toggleAction('a5')">
+      <div class="action-check" id="a5-check"></div>
+      <div style="flex:1">
+        <div class="a-text">Ask Shannon, Amanda, Chastity for Google reviews Sunday AM. 3 Florissant reviews = North County Map Pack signal. Scripts ready in Review Sprint Kit.</div>
+        <span class="a-tag">tool: review-sprint-kit.html</span>
+      </div>
+      <div class="action-priority p-high">🟠 HIGH</div>
+    </div>
+    <div class="action-item" id="a6" onclick="toggleAction('a6')">
+      <div class="action-check" id="a6-check"></div>
+      <div style="flex:1">
+        <div class="a-text">Print 50 door hangers (25 standard + 25 orphaned customer variant) Sunday evening for Monday North County drop. Cardstock + 10 min at home printer.</div>
+        <span class="a-tag">tool: north-county-print-kit.html</span>
+      </div>
+      <div class="action-priority p-high">🟠 HIGH</div>
+    </div>
+  </div>
+
+  <div class="section-hdr" style="margin-top:20px;">
+    <h2>🚀 Monday Morning (8-9 AM)</h2>
+  </div>
+  <div class="actions-list">
+    <div class="action-item" id="a7" onclick="toggleAction('a7')">
+      <div class="action-check" id="a7-check"></div>
+      <div style="flex:1">
+        <div class="a-text">Launch FB Ads in Ads Manager. $7/day budget, leads objective, /spring landing page. 12-step walkthrough in the Monday Launch Command. Takes 20 min.</div>
+        <span class="a-tag">⏰ launch by 8:30 AM Monday · tool: monday-launch-command.html → FB Ads tab</span>
+      </div>
+      <div class="action-priority p-high">🟠 HIGH</div>
+    </div>
+    <div class="action-item" id="a8" onclick="toggleAction('a8')">
+      <div class="action-check" id="a8-check"></div>
+      <div style="flex:1">
+        <div class="a-text">Post NC-1 Facebook group post (Florissant Community group). 3 min. Copy from North County Conquest file.</div>
+        <span class="a-tag">target: 8:30 AM Monday · tool: battle-plan-week-mar30.html</span>
+      </div>
+      <div class="action-priority p-med">🔵 MED</div>
+    </div>
+    <div class="action-item" id="a9" onclick="toggleAction('a9')">
+      <div class="action-check" id="a9-check"></div>
+      <div style="flex:1">
+        <div class="a-text">Vet Blitz Day 1 — Cross Keys Animal Hospital, Gateway City AH, Baronwood AH. North County zero competitors = strongest pitch angle. Scripts in kit.</div>
+        <span class="a-tag">target: 9 AM Monday · tool: vet-clinic-partnership-kit.html</span>
+      </div>
+      <div class="action-priority p-med">🔵 MED</div>
+    </div>
+    <div class="action-item" id="a10" onclick="toggleAction('a10')">
+      <div class="action-check" id="a10-check"></div>
+      <div style="flex:1">
+        <div class="a-text">Call Millsap Properties Monday AM. Commercial accounts = $800-1,400/mo. Proposal template ready to send after the call.</div>
+        <span class="a-tag">tool: commercial-proposal-template.html → Load Millsap button</span>
+      </div>
+      <div class="action-priority p-med">🔵 MED</div>
+    </div>
+  </div>
+
+  <div class="section-hdr" style="margin-top:20px;">
+    <h2>📅 This Week (By Friday)</h2>
+  </div>
+  <div class="actions-list">
+    <div class="action-item" id="a11" onclick="toggleAction('a11')">
+      <div class="action-check" id="a11-check"></div>
+      <div style="flex:1">
+        <div class="a-text">Register for Bark in the Park (HSMO) vendor booth. May 16. 1,000–5,000 attendees. This is the biggest dog event in STL — booths may already be selling. Check hsmo.org.</div>
+        <span class="a-tag">🚨 could miss it if you wait · tool: next-events-command-center.html</span>
+      </div>
+      <div class="action-priority p-fire">🔥 FIRE</div>
+    </div>
+    <div class="action-item" id="a12" onclick="toggleAction('a12')">
+      <div class="action-check" id="a12-check"></div>
+      <div style="flex:1">
+        <div class="a-text">Contact 3 dog-loving realtors on social for partnership pitch. Office drop-in at RE/MAX Results South County + Coldwell Banker Kirkwood. Scripts ready.</div>
+        <span class="a-tag">tool: realtor-partnership-kit.html</span>
+      </div>
+      <div class="action-priority p-med">🔵 MED</div>
+    </div>
+    <div class="action-item" id="a13" onclick="toggleAction('a13')">
+      <div class="action-check" id="a13-check"></div>
+      <div style="flex:1">
+        <div class="a-text">Drop 50 door hangers in Florissant/Hazelwood during Monday-Tuesday scoop rounds. Add on to existing route stops — zero extra drive time.</div>
+        <span class="a-tag">tool: north-county-print-kit.html</span>
+      </div>
+      <div class="action-priority p-med">🔵 MED</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CAMPAIGN MODALS ===== -->
+
+<!-- Update Modal -->
+<div class="modal-overlay" id="update-modal" onclick="closeModal('update-modal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-title">📊 Update Campaign Stats</div>
+      <button class="modal-close" onclick="closeModal('update-modal')">×</button>
+    </div>
+    <p style="font-size:0.7rem;color:var(--text2);margin-bottom:12px;">Update any time. Takes 2 min. Gives you a clear picture of what's working.</p>
+    <div class="modal-section">👥 Overall</div>
+    <div class="input-row"><label>Total customers</label><input type="number" id="u-customers" value="10" min="0"></div>
+    <div class="input-row"><label>Google reviews</label><input type="number" id="u-reviews" value="6" min="0"></div>
+    <div class="input-row"><label>MRR ($)</label><input type="number" id="u-mrr" value="850" min="0"></div>
+    <div class="modal-section">📘 FB Ads</div>
+    <div class="input-row"><label>Ad spend ($)</label><input type="number" id="u-fb-spend" value="0" min="0"></div>
+    <div class="input-row"><label>Leads from FB</label><input type="number" id="u-fb-leads" value="0" min="0"></div>
+    <div class="input-row"><label>Converts from FB</label><input type="number" id="u-fb-converts" value="0" min="0"></div>
+    <div class="modal-section">📍 North County</div>
+    <div class="input-row"><label>Posts published (0-5)</label><input type="number" id="u-nc-posts" value="0" min="0" max="5"></div>
+    <div class="input-row"><label>Leads from NC</label><input type="number" id="u-nc-leads" value="0" min="0"></div>
+    <div class="input-row"><label>Door hangers dropped</label><input type="number" id="u-nc-hangers" value="0" min="0"></div>
+    <div class="modal-section">🏥 Vet Blitz</div>
+    <div class="input-row"><label>Clinics visited (0-6)</label><input type="number" id="u-vet-visited" value="0" min="0" max="6"></div>
+    <div class="input-row"><label>Partners confirmed</label><input type="number" id="u-vet-partners" value="0" min="0"></div>
+    <div class="modal-section">🐾 Paw-ty</div>
+    <div class="input-row"><label>Leads from Paw-ty</label><input type="number" id="u-pawty-leads" value="0" min="0"></div>
+    <div class="input-row"><label>Converts from Paw-ty</label><input type="number" id="u-pawty-converts" value="0" min="0"></div>
+    <div class="input-row"><label>Hot leads (haven't replied)</label><input type="number" id="u-pawty-hot" value="0" min="0"></div>
+    <button class="save-btn" onclick="saveAllStats()">💾 Save All Stats</button>
+  </div>
+</div>
+
+<!-- Weekly Edit Modal -->
+<div class="modal-overlay" id="weekly-edit-modal" onclick="closeModal('weekly-edit-modal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-title">📅 Log Week Results</div>
+      <button class="modal-close" onclick="closeModal('weekly-edit-modal')">×</button>
+    </div>
+    <div class="modal-section">Week of...</div>
+    <div class="input-row"><label>New customers added</label><input type="number" id="w-new" value="0" min="0"></div>
+    <div class="input-row"><label>Total leads this week</label><input type="number" id="w-leads" value="0" min="0"></div>
+    <div class="input-row"><label>Week label (e.g. "Mar 30")</label><input type="text" id="w-label" value="Mar 30" style="width:120px;text-align:right;"></div>
+    <button class="save-btn" onclick="logWeek()">Log This Week</button>
+  </div>
+</div>
+
+<!-- Goal Modal -->
+<div class="modal-overlay" id="goal-modal" onclick="closeModal('goal-modal')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div class="modal-title">⚙️ Goal Settings</div>
+      <button class="modal-close" onclick="closeModal('goal-modal')">×</button>
+    </div>
+    <div class="modal-section">Targets</div>
+    <div class="input-row"><label>Goal customers</label><input type="number" id="g-goal" value="25" min="1"></div>
+    <div class="input-row"><label>Current customers</label><input type="number" id="g-current" value="10" min="0"></div>
+    <div class="input-row"><label>Avg monthly adds</label><input type="number" id="g-monthly" value="0" min="0"></div>
+    <button class="save-btn" onclick="saveGoals()">Save Goals</button>
+  </div>
+</div>
+
+<!-- STICKY BAR -->
+<div class="sticky-bar">
+  <a href="monday-launch-command.html" class="primary">🚀 Monday Command</a>
+  <a href="april-growth-roadmap.html">🗺️ Roadmap</a>
+  <a href="index.html">🏠 Dashboard</a>
+</div>
+
+<script>
+// ============ DATA STORE ============
+const STORE_KEY = 'warroom_v1';
+
+function loadData() {
+  try {
+    const raw = localStorage.getItem(STORE_KEY);
+    if (raw) return JSON.parse(raw);
+  } catch(e) {}
+  return {
+    customers: 10,
+    reviews: 6,
+    mrr: 850,
+    goal: 25,
+    monthlyAdds: 0,
+    fb: { spend: 0, leads: 0, converts: 0, status: 'pending' },
+    nc: { posts: 0, leads: 0, hangers: 0, converts: 0, status: 'pending' },
+    vet: { visited: 0, partners: 0, callbacks: 0, converts: 0, status: 'pending' },
+    pawty: { leads: 0, converts: 0, hot: 0, status: 'live' },
+    channels: { nd: 0, ref: 0, ev: 0, re: 0 },
+    weeks: [],
+    actions: {}
+  };
+}
+
+function saveData(d) {
+  localStorage.setItem(STORE_KEY, JSON.stringify(d));
+}
+
+let data = loadData();
+
+// ============ TABS ============
+function showTab(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// ============ MODALS ============
+function openModal(id) {
+  // Populate inputs from data
+  if (id === 'update-modal') {
+    document.getElementById('u-customers').value = data.customers;
+    document.getElementById('u-reviews').value = data.reviews;
+    document.getElementById('u-mrr').value = data.mrr;
+    document.getElementById('u-fb-spend').value = data.fb.spend;
+    document.getElementById('u-fb-leads').value = data.fb.leads;
+    document.getElementById('u-fb-converts').value = data.fb.converts;
+    document.getElementById('u-nc-posts').value = data.nc.posts;
+    document.getElementById('u-nc-leads').value = data.nc.leads;
+    document.getElementById('u-nc-hangers').value = data.nc.hangers;
+    document.getElementById('u-vet-visited').value = data.vet.visited;
+    document.getElementById('u-vet-partners').value = data.vet.partners;
+    document.getElementById('u-pawty-leads').value = data.pawty.leads;
+    document.getElementById('u-pawty-converts').value = data.pawty.converts;
+    document.getElementById('u-pawty-hot').value = data.pawty.hot;
+  }
+  if (id === 'goal-modal') {
+    document.getElementById('g-goal').value = data.goal;
+    document.getElementById('g-current').value = data.customers;
+    document.getElementById('g-monthly').value = data.monthlyAdds;
+  }
+  document.getElementById(id).classList.add('open');
+}
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+// ============ SAVE FUNCTIONS ============
+function saveAllStats() {
+  data.customers = +document.getElementById('u-customers').value;
+  data.reviews = +document.getElementById('u-reviews').value;
+  data.mrr = +document.getElementById('u-mrr').value;
+  data.fb.spend = +document.getElementById('u-fb-spend').value;
+  data.fb.leads = +document.getElementById('u-fb-leads').value;
+  data.fb.converts = +document.getElementById('u-fb-converts').value;
+  data.nc.posts = +document.getElementById('u-nc-posts').value;
+  data.nc.leads = +document.getElementById('u-nc-leads').value;
+  data.nc.hangers = +document.getElementById('u-nc-hangers').value;
+  data.vet.visited = +document.getElementById('u-vet-visited').value;
+  data.vet.partners = +document.getElementById('u-vet-partners').value;
+  data.pawty.leads = +document.getElementById('u-pawty-leads').value;
+  data.pawty.converts = +document.getElementById('u-pawty-converts').value;
+  data.pawty.hot = +document.getElementById('u-pawty-hot').value;
+  
+  // Auto-set statuses
+  data.fb.status = data.fb.spend > 0 ? 'live' : 'pending';
+  data.nc.status = data.nc.posts > 0 ? 'live' : 'pending';
+  data.vet.status = data.vet.visited > 0 ? 'live' : 'pending';
+  
+  saveData(data);
+  renderAll();
+  closeModal('update-modal');
+  showSaved();
+}
+
+function saveChannelStats() {
+  data.channels.nd = +document.getElementById('input-nd-leads').value;
+  data.channels.ref = +document.getElementById('input-ref-leads').value;
+  data.channels.ev = +document.getElementById('input-ev-leads').value;
+  data.channels.re = +document.getElementById('input-re-partners').value;
+  data.reviews = +document.getElementById('input-reviews').value;
+  saveData(data);
+  renderAll();
+  showSaved();
+}
+
+function saveGoals() {
+  data.goal = +document.getElementById('g-goal').value;
+  data.customers = +document.getElementById('g-current').value;
+  data.monthlyAdds = +document.getElementById('g-monthly').value;
+  saveData(data);
+  renderAll();
+  closeModal('goal-modal');
+  showSaved();
+}
+
+function logWeek() {
+  const newCustomers = +document.getElementById('w-new').value;
+  const leads = +document.getElementById('w-leads').value;
+  const label = document.getElementById('w-label').value || 'Week';
+  data.weeks.push({ label, newCustomers, leads, date: Date.now() });
+  saveData(data);
+  renderWeekly();
+  closeModal('weekly-edit-modal');
+  showSaved();
+}
+
+function showSaved() {
+  // Simple flash feedback
+  const btn = document.querySelector('.save-btn');
+  if (btn) { const orig = btn.textContent; btn.textContent = '✅ Saved!'; setTimeout(() => btn.textContent = orig, 1500); }
+}
+
+// ============ ACTIONS ============
+function toggleAction(id) {
+  if (!data.actions) data.actions = {};
+  data.actions[id] = !data.actions[id];
+  saveData(data);
+  renderActions();
+}
+
+function renderActions() {
+  const ids = ['a1','a2','a3','a4','a5','a6','a7','a8','a9','a10','a11','a12','a13'];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    const check = document.getElementById(id + '-check');
+    if (!el || !check) return;
+    const done = data.actions && data.actions[id];
+    el.classList.toggle('done', done);
+    check.textContent = done ? '✓' : '';
+  });
+}
+
+// ============ RENDER ============
+function renderAll() {
+  // Goal banner
+  const pct = Math.min(100, Math.round((data.customers / data.goal) * 100));
+  document.getElementById('currentCustomers').textContent = data.customers;
+  document.getElementById('pctLbl').textContent = pct + '%';
+  document.getElementById('goalFill').style.width = pct + '%';
+  
+  // KPI row
+  const totalLeads = data.fb.leads + data.nc.leads + data.pawty.leads + data.channels.nd + data.channels.ref;
+  const totalConverts = data.fb.converts + data.nc.converts + data.pawty.converts;
+  document.getElementById('kpi-leads').textContent = totalLeads || '—';
+  document.getElementById('kpi-converts').textContent = totalConverts || '—';
+  document.getElementById('kpi-mrr').textContent = '$' + data.mrr.toLocaleString();
+  
+  // Campaign cards
+  // FB
+  document.getElementById('fb-spend').textContent = '$' + data.fb.spend;
+  document.getElementById('fb-leads').textContent = data.fb.leads;
+  document.getElementById('fb-converts').textContent = data.fb.converts;
+  const fbCpl = data.fb.leads > 0 ? '$' + Math.round(data.fb.spend / data.fb.leads) : '—';
+  document.getElementById('fb-cpl').textContent = fbCpl;
+  const fbStatusEl = document.getElementById('fb-status');
+  fbStatusEl.textContent = data.fb.status === 'live' ? 'LIVE' : 'PENDING';
+  fbStatusEl.className = 'c-status ' + (data.fb.status === 'live' ? 's-live' : 's-pending');
+
+  // NC
+  document.getElementById('nc-posts').textContent = data.nc.posts + '/5';
+  document.getElementById('nc-leads').textContent = data.nc.leads;
+  document.getElementById('nc-hangers').textContent = data.nc.hangers;
+  document.getElementById('nc-converts').textContent = data.nc.converts;
+  const ncStatusEl = document.getElementById('nc-status');
+  ncStatusEl.textContent = data.nc.status === 'live' ? 'LIVE' : 'PENDING';
+  ncStatusEl.className = 'c-status ' + (data.nc.status === 'live' ? 's-live' : 's-pending');
+
+  // Vet
+  document.getElementById('vet-visited').textContent = data.vet.visited + '/6';
+  document.getElementById('vet-partners').textContent = data.vet.partners;
+  document.getElementById('vet-callbacks').textContent = data.vet.callbacks || 0;
+  document.getElementById('vet-converts').textContent = data.vet.converts;
+  const vetStatusEl = document.getElementById('vet-status');
+  vetStatusEl.textContent = data.vet.status === 'live' ? 'LIVE' : 'PENDING';
+  vetStatusEl.className = 'c-status ' + (data.vet.status === 'live' ? 's-live' : 's-pending');
+
+  // Pawty
+  document.getElementById('pawty-leads').textContent = data.pawty.leads;
+  document.getElementById('pawty-converts').textContent = data.pawty.converts;
+  document.getElementById('pawty-hot').textContent = data.pawty.hot;
+  
+  // Pace Card
+  document.getElementById('pace-current').textContent = data.customers;
+  const needed = Math.max(0, data.goal - data.customers);
+  document.getElementById('pace-needed').textContent = needed + ' more';
+  const now = new Date();
+  const aug31 = new Date('2026-08-31');
+  const monthsLeft = Math.max(0, (aug31 - now) / (1000 * 60 * 60 * 24 * 30));
+  document.getElementById('pace-months').textContent = '~' + Math.round(monthsLeft);
+  const reqPace = monthsLeft > 0 ? (needed / monthsLeft).toFixed(1) : '—';
+  document.getElementById('pace-required').textContent = reqPace + ' new/month';
+  
+  if (data.monthlyAdds > 0) {
+    document.getElementById('pace-actual').textContent = data.monthlyAdds + '/month';
+    const verdictEl = document.getElementById('pace-verdict');
+    if (data.monthlyAdds >= reqPace) {
+      verdictEl.className = 'pace-verdict verdict-green';
+      verdictEl.textContent = '✅ ON PACE — You\'ll hit ' + data.goal + ' by August at this rate!';
+    } else if (data.monthlyAdds >= reqPace * 0.7) {
+      verdictEl.className = 'pace-verdict verdict-yellow';
+      verdictEl.textContent = '⚠️ SLIGHTLY BEHIND — Need ' + reqPace + '/mo, getting ' + data.monthlyAdds + '. Push harder in May.';
+    } else {
+      verdictEl.className = 'pace-verdict verdict-red';
+      verdictEl.textContent = '🔴 BEHIND PACE — Need ' + reqPace + '/mo. Double down on referrals + events.';
+    }
+  } else {
+    document.getElementById('pace-actual').textContent = '— (set in ⚙️)';
+  }
+
+  // Scorecards
+  document.getElementById('sc-mrr').textContent = '$' + data.mrr.toLocaleString();
+  document.getElementById('sc-mrr-fill').style.width = Math.min(100, (data.mrr / 2500) * 100) + '%';
+  document.getElementById('sc-reviews').textContent = data.reviews;
+  document.getElementById('sc-reviews-fill').style.width = Math.min(100, (data.reviews / 25) * 100) + '%';
+
+  // Channels tab chips
+  document.getElementById('nd-leads-chip').textContent = data.channels.nd + ' leads';
+  document.getElementById('ev-leads-chip').textContent = data.channels.ev + ' leads';
+  document.getElementById('ref-leads-chip').textContent = data.channels.ref + ' leads';
+  document.getElementById('fb-chip-leads').textContent = data.fb.leads + ' leads';
+  document.getElementById('vet-chip').textContent = data.vet.visited + '/6 visited';
+  document.getElementById('re-chip').textContent = data.channels.re + ' partners';
+  document.getElementById('seo-chip').textContent = data.reviews + ' reviews';
+  
+  // Populate channel update inputs from data
+  document.getElementById('input-nd-leads').value = data.channels.nd;
+  document.getElementById('input-ref-leads').value = data.channels.ref;
+  document.getElementById('input-ev-leads').value = data.channels.ev;
+  document.getElementById('input-re-partners').value = data.channels.re;
+  document.getElementById('input-reviews').value = data.reviews;
+
+  renderActions();
+}
+
+function renderWeekly() {
+  // Build week table with some pre-seeded projected rows
+  const tbody = document.getElementById('weekTableBody');
+  const now = new Date();
+  
+  const weeks = [
+    { label: 'Mar 28 (Paw-ty)', projected: 1, goal: 1 },
+    { label: 'Mar 30 (Launch)', projected: 2, goal: 2 },
+    { label: 'Apr 6', projected: 1, goal: 1 },
+    { label: 'Apr 13', projected: 1, goal: 1 },
+    { label: 'Apr 18 (Arch Bark)', projected: 2, goal: 2 },
+    { label: 'Apr 27', projected: 1, goal: 1 },
+    { label: 'May 16 (BITP)', projected: 3, goal: 3 },
+    { label: 'Jun', projected: 3, goal: 3 },
+    { label: 'Jul', projected: 2, goal: 2 },
+    { label: 'Aug (Goal)', projected: 2, goal: 2 },
+  ];
+
+  // Merge with actual logged weeks
+  const logged = {};
+  (data.weeks || []).forEach(w => { logged[w.label] = w; });
+
+  let runningTotal = data.customers;
+  let rows = '';
+  
+  // Header total before any weeks
+  const startCustomers = 10;
+  runningTotal = startCustomers;
+
+  weeks.forEach((w, i) => {
+    const actual = logged[w.label];
+    const newVal = actual ? actual.newCustomers : null;
+    const leadsVal = actual ? actual.leads : null;
+    runningTotal += (newVal !== null ? newVal : 0);
+    
+    const isGoal = runningTotal >= data.goal;
+    const rowClass = isGoal ? 'goal-row' : (i === 1 ? 'today-row' : (actual ? 'win-row' : ''));
+    
+    rows += `<tr class="${rowClass}">
+      <td style="font-weight:${i===1?'700':'400'}">${w.label}${i===1?' 🚀':''}</td>
+      <td style="color:${newVal!==null?'var(--green)':'var(--text3)'}">${newVal !== null ? '+' + newVal : 'proj: +' + w.projected}</td>
+      <td style="font-weight:700">${newVal !== null ? runningTotal : '—'}</td>
+      <td style="color:${leadsVal!==null?'var(--yellow)':'var(--text3)'}">${leadsVal !== null ? leadsVal : '—'}</td>
+      <td>${isGoal ? '🎯' : (newVal !== null ? (newVal >= w.goal ? '✅' : '⚠️') : '')}</td>
+    </tr>`;
+  });
+
+  tbody.innerHTML = rows;
+
+  // Month table
+  const mtbody = document.getElementById('monthTableBody');
+  const months = [
+    { m: 'March', target: 11, mrr: 850+70 },
+    { m: 'April', target: 14, mrr: 1050 },
+    { m: 'May', target: 18, mrr: 1330 },
+    { m: 'June', target: 21, mrr: 1540 },
+    { m: 'July', target: 23, mrr: 1680 },
+    { m: 'August', target: 25, mrr: 1820 },
+  ];
+  
+  let mrows = '';
+  months.forEach(m => {
+    const isCurrent = new Date().toLocaleString('default', {month:'long'}) === m.m;
+    mrows += `<tr class="${isCurrent ? 'today-row' : ''}">
+      <td style="font-weight:${isCurrent?'700':'400'}">${m.m}${isCurrent?' ◀':''}</td>
+      <td>${m.target}</td>
+      <td style="color:var(--text3)">—</td>
+      <td style="color:var(--text2)">$${m.mrr}</td>
+      <td style="color:var(--text3)">—</td>
+    </tr>`;
+  });
+  mtbody.innerHTML = mrows;
+
+  // Velocity chart
+  const vcBars = document.getElementById('vcBars');
+  const chartWeeks = weeks.slice(0, 8);
+  const maxProj = Math.max(...chartWeeks.map(w => w.projected + 1));
+  
+  vcBars.innerHTML = chartWeeks.map((w, i) => {
+    const actual = logged[w.label];
+    const val = actual ? actual.newCustomers : w.projected;
+    const height = Math.round((val / maxProj) * 70);
+    const color = actual ? 'var(--green)' : (i === 1 ? 'var(--blue)' : 'var(--bg4)');
+    const label = w.label.split(' ')[0];
+    return `<div class="vc-col">
+      <div class="vc-val">${val}</div>
+      <div class="vc-bar" style="height:${height}px;background:${color};"></div>
+      <div class="vc-lbl">${label}</div>
+    </div>`;
+  }).join('');
+}
+
+// ============ DATE / TIME ============
+function updateDate() {
+  const now = new Date();
+  const opts = { weekday: 'long', month: 'long', day: 'numeric' };
+  document.getElementById('liveDate').textContent = now.toLocaleDateString('en-US', opts) + ' · Tracking April → August 2026';
+  
+  // Calculate event days
+  const archBark = new Date('2026-04-18');
+  const barkPark = new Date('2026-05-16');
+  const july4 = new Date('2026-07-04');
+  
+  const abDays = Math.ceil((archBark - now) / (1000 * 60 * 60 * 24));
+  const bpDays = Math.ceil((barkPark - now) / (1000 * 60 * 60 * 24));
+  const j4Days = Math.ceil((july4 - now) / (1000 * 60 * 60 * 24));
+  const aug31 = new Date('2026-08-31');
+  const daysLeft = Math.ceil((aug31 - now) / (1000 * 60 * 60 * 24));
+  
+  const abEl = document.getElementById('archBarkDays');
+  const bpEl = document.getElementById('barkParkDays');
+  const j4El = document.getElementById('july4Days');
+  if (abEl) abEl.textContent = abDays > 0 ? abDays : '✓';
+  if (bpEl) bpEl.textContent = bpDays > 0 ? bpDays : '✓';
+  if (j4El) j4El.textContent = j4Days > 0 ? j4Days : '✓';
+  document.getElementById('daysToAug').textContent = daysLeft > 0 ? daysLeft : '✓';
+}
+
+// ============ INIT ============
+document.addEventListener('DOMContentLoaded', () => {
+  updateDate();
+  renderAll();
+  renderWeekly();
+});
+</script>
+</body>
+</html>
