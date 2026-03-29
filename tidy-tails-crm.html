@@ -1023,11 +1023,11 @@
                 } else if (onDay) {
                     scheduledText = `<div class="picker-item-scheduled">📅 On ${onDay.charAt(0).toUpperCase()+onDay.slice(1)}</div>`;
                 }
-                return `<div class="picker-item" onclick="pickerAddCustomer(${c.id}, ${isOnThisDay}, '${onDay||''}')" style="${isOnThisDay?'opacity:0.5;':''}">
+                return `<div class="picker-item" onclick="pickerAddCustomer(${c.id}, ${isOnThisDay}, '${onDay||''}')" style="${isOnThisDay?'background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.3);':''}">
                     <div class="picker-item-info">
                         <div class="picker-item-name">${c.name}</div>
                         <div class="picker-item-detail">${c.city||''} • $${c.price}/visit</div>
-                        ${scheduledText}
+                        ${isOnThisDay ? `<div class="picker-item-scheduled" style="color:#ff5050;">✕ Tap to remove from ${dayLabel}</div>` : scheduledText}
                     </div>
                     <span class="freq-badge freq-${c.freq}">${FREQ_LABELS[c.freq]||c.freq}</span>
                 </div>`;
@@ -1041,8 +1041,15 @@
         }
 
         function pickerAddCustomer(id, isOnThisDay, currentDay) {
-            if (isOnThisDay) return; // Already on this day
             const sched = getSchedule();
+            if (isOnThisDay) {
+                // Remove from this day
+                sched[selectedDay] = sched[selectedDay].filter(x => x !== id);
+                saveSchedule(sched);
+                closeCustomerPicker();
+                renderSchedule();
+                return;
+            }
             const dayLabel = selectedDay.charAt(0).toUpperCase() + selectedDay.slice(1);
 
             if (currentDay && currentDay !== selectedDay) {
@@ -1183,7 +1190,7 @@
 
         function removeFromDay(customerId) {
             const sched = getSchedule();
-            DAYS.forEach(d => { sched[d] = sched[d].filter(id => id !== customerId); });
+            sched[selectedDay] = sched[selectedDay].filter(id => id !== customerId);
             saveSchedule(sched);
             renderSchedule();
         }
