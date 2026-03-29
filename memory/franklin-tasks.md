@@ -2,6 +2,40 @@
 
 ---
 
+### Sunday 2:06 AM — Florissant Dedicated Blog Post (Hourly Task)
+- **2:06 AM** 📍 Wrote and published dedicated blog post for Florissant, MO — timed exactly for Monday's North County Facebook campaign launch
+  - **File:** `tidy-tails/website/blog/pooper-scooper-florissant-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-florissant-mo`
+  - **Why this task:** Monday at 8:30 AM, TJ fires NC-1 — the first North County Facebook group post targeting Florissant/Hazelwood/Ferguson. The North County blog post (pooper-scooper-north-county-st-louis) covers 4 cities in one post. Anyone who sees TJ's Monday Facebook post and Googles "pooper scooper Florissant MO" — the single highest-search-volume North County query — would previously land on a 4-city county post, not a dedicated Florissant page. Dedicated city blog posts rank higher for city-specific searches. This was the most targeted SEO gap to fill before the North County launch.
+  - **What's in the post (~2,500 words):**
+    - **Orphaned customer alert box** — "Lost your previous service in Florissant? Text us 'switching' and we'll match your old schedule" — directly targets Dog Doody Defenders former customers in 63031
+    - **3-zip coverage grid:** 63031 (south Florissant/Harlem Ave), 63033 (central/north Florissant/Hwy 270), 63034 (Florissant Valley/Charbonier) — with area descriptions
+    - **Hero stats row:** $70 flat/month, 0 contracts, 3 zips, 5★
+    - **Why Florissant specifically lost its service** — explains franchise route math, positions Tidy Tails as the local fix
+    - **"On My Way" text callout** — the service differentiator that gets mentioned most in testimonials
+    - **5-step service process** with icons
+    - **Full pricing table** — 1-4+ dogs, weekly/biweekly/one-time
+    - **Comparison table** — Tidy Tails vs National Franchise vs Craigslist vs DIY, includes "Serves Florissant?" column — we win on all 3 relevant columns
+    - **Florissant yard specifics** — gate access patterns, multi-dog households, winter accumulation, HOA letters — shows local knowledge that builds trust
+    - **"Florissant Dog Math" callout** — 300 deposits/dog/year, $0.23 per deposit managed, 26 hours/year of Sunday afternoon labor
+    - **2 testimonials** — Shannon K. (63031, 2 labs) + Marcus T. (63033, 3 dogs, switched from DIY)
+    - **Decision guide** — yes/no/one-time matrix
+    - **7-question FAQ** with FAQPage schema — "is there a service in Florissant?", "what happened to my old service?", "all three zip codes?", "do I need to be home?", "spring cleanup?", "contracts?"
+  - **Schema markup:** BlogPosting + FAQPage (7 questions) + LocalBusiness with 3 Florissant zip codes in areaServed + geo coordinates
+  - **Target keywords:** "pooper scooper Florissant MO", "dog poop pickup Florissant", "pooper scooper 63031", "pet waste removal Florissant Missouri", "lost pooper scooper service Florissant"
+  - **Cross-links:**
+    - North County blog post: added Florissant post as first Related Article (sidebar)
+    - florissant.html city page: added "📍 Florissant Pooper Scooper Guide" card in Related Articles section
+    - blog/index.html: added as #1 post (newest first) + JSON-LD blogPost array
+    - sitemap.xml: added /blog/pooper-scooper-florissant-mo (priority 0.9)
+  - **Blog count: 23 posts total** ✅
+  - **Why the timing matters:** Monday's NC-1 post is specifically for Florissant FB groups. The window between "someone sees TJ's post" and "they Google to verify it's real" is where this post does its work. Without a Florissant-specific URL, they'd land on the multi-city North County post — which ranks lower for Florissant-specific queries and doesn't have the city-specific validation signals (zip code callout, gate access notes, local yard patterns) that build trust and close the tab-to-call conversion. This is the SEO layer directly under Monday's paid/organic social push.
+  - Committed + pushed to both repos ✅ (tidytails-dashboard + TidyTails/tidytails-website/master → Cloudflare Pages)
+
+---
+
+---
+
 ### Sunday 1:04 AM — St. Charles County SEO Blog Post (Hourly Task)
 - **1:04 AM** 🏘️ Wrote and published full SEO blog post targeting St. Charles County — the fastest-growing county in Missouri with zero editorial coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-st-charles-county-missouri.html`
