@@ -2,6 +2,41 @@
 
 ---
 
+### Sunday 6:05 AM — Chesterfield, MO Dedicated Blog Post (Hourly Task)
+- **6:05 AM** 🏡 Wrote and published dedicated blog post for Chesterfield, MO — West County's most affluent city and the highest-value dedicated city content gap remaining on the site
+  - **File:** `tidy-tails/website/blog/pooper-scooper-chesterfield-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-chesterfield-mo`
+  - **Why this task:** With 26 blog posts live, all major county areas and several city-specific posts published (Florissant, O'Fallon, Wentzville, South City), the pattern is clear: city-specific posts outrank county umbrella posts for city-specific queries. Chesterfield is the most glaring remaining gap: ~52,000 residents, highest household incomes in the St. Louis metro, both 63005 and 63017 zip codes served, and only the generic West County umbrella post covering it. Someone searching "pooper scooper Chesterfield MO" would land on a multi-city post. That's a conversion leak.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Chesterfield, MO — Flat Rate, No Contracts, Local Owner"
+    - **Stats row:** $70/month flat, 0 contracts, 63005 & 63017 served, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Chesterfield Valley (63005), Kehrs Mill/Baxter Rd Corridor (63005), Long Trails/Strecker Rd Area (63005), Chesterfield/Town & Country Border (63017), Wild Horse Creek/Olive Blvd Area (63017), "Not Sure? Text Your Address" (all 63005/63017)
+    - **Gated entry callout:** Several Chesterfield neighborhoods have gated entries — we handle gate codes at no extra charge, handle all access logistics
+    - **Why Chesterfield dog owners choose Tidy Tails:** 5 reasons unique to Chesterfield — large lots (bigger accumulation, same flat price), professional landscapers on property (we schedule before crew day), dual-income professional households, grandkids/entertaining angle, HOA compliance in gated subdivisions
+    - **The Chesterfield Yard Math callout:** 300 deposits/dog/year spread across large lots, 2 dogs + St. Louis winter = 150+ piles across half an acre, $2.30/day math
+    - **Landscaper coordination callout:** Chesterfield-specific section — we schedule before your lawn crew so mowing day doesn't become a disaster
+    - **5-step service process** (text → On My Way text → whole yard → All Done text → same day every week)
+    - **"On My Way" Text callout:** No other service in West County sends this consistently
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — includes "Landscaper Coordination" and "Flat Rate (no yard size fee)" columns that we win on
+    - **Annual savings callout:** National franchise $936-1,300/yr vs Tidy Tails $840/yr — $96-460 cheaper per year
+    - **Two testimonials:** Karen H. (63005, 3 dogs, landscaper scheduling), David M. (63005, 2 dogs, referral flywheel)
+    - **Is it worth it? decision guide** — both yes/no cases covered
+    - **Chesterfield-specific situations section:** Post-winter spring cleanup, pre-landscaping clean day, property sale prep (realtor angle!), vacation hold policy
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Chesterfield?", "How much?", "Large properties/gated communities?", "Do I need to be home?", "Landscaper coordination?", "Spring cleanup?", "Contracts?"
+  - **Schema markup:** BlogPosting + FAQPage (7 questions) + LocalBusiness with Chesterfield, Ballwin, Creve Coeur, Town & Country, Wildwood, Ellisville in areaServed + geo coordinates (38.6631, -90.5771)
+  - **Target keywords:** "pooper scooper Chesterfield MO", "dog poop pickup Chesterfield", "pet waste removal Chesterfield Missouri", "pooper scooper 63005", "pooper scooper 63017", "dog waste service Chesterfield", "pooper scooper near me Chesterfield"
+  - **Cross-links:**
+    - `blog/pooper-scooper-west-county-st-louis.html`: Added "📍 Chesterfield Dedicated Guide →" as first item in Related Articles sidebar
+    - `chesterfield.html` city page: Added "📍 Chesterfield Pooper Scooper Guide" as first article card in Related Articles section
+    - `blog/index.html`: Added as new card (first in grid, newest first) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9)
+  - **Blog count: 27 posts total** ✅
+  - **Why Chesterfield is the right 6 AM gap:** After writing Wentzville at 5 AM (fastest-growing St. Charles city), the next highest-value dedicated city gap was Chesterfield — the highest-income West County city with the most affluent demographics. Chesterfield homeowners don't price-shop $70/mo. They buy on reliability, communication, and trust. The landscaper coordination angle (unique to this market) is a genuine differentiator that no other pet waste post in the metro targets. The pre-listing cleanup angle also opens a realtor referral channel. Compounds forever.
+  - Committed + pushed to both repos ✅ (tidytails-dashboard via git push + tidytails-website via GitHub API for all 5 changed files → Cloudflare Pages)
+
+---
+
 ### Sunday 5:04 AM — Wentzville, MO Dedicated Blog Post (Hourly Task)
 - **5:04 AM** 🏗️ Wrote and published dedicated blog post for Wentzville, MO — Missouri's fastest-growing city, the last major St. Charles County city without dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-wentzville-mo.html`
