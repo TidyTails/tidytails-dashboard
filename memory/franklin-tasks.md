@@ -2,6 +2,39 @@
 
 ---
 
+### Sunday 7:04 AM — Kirkwood, MO Dedicated Blog Post (Hourly Task)
+- **7:04 AM** 🏡 Wrote and published dedicated blog post for Kirkwood, MO — the highest-value remaining South County city gap with no dedicated editorial coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-kirkwood-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-kirkwood-mo`
+  - **Why this task:** With 27 blog posts live across county umbrellas (North/South/West/Central/St. Charles), city-specific posts (Florissant, O'Fallon, Chesterfield, Wentzville, South City), and evergreen content — the next most glaring gap was a Kirkwood-dedicated post. Kirkwood is arguably the most dog-forward community in South County: Kirkwood Park, the Farmer's Market, a strong community culture, and an active dog owner demographic. The South County umbrella post covers it, but someone searching "pooper scooper Kirkwood MO" deserves a dedicated result. TJ was just at a vet event in Crestwood — anyone who met him there and Googles Kirkwood-specific queries will now find us.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Kirkwood, MO — Flat Rate, Local Owner, Texts Every Visit"
+    - **Stats row:** $70/month flat, 0 contracts, 63122 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Downtown Kirkwood/Denny Park, Woodlawn/Meramec Hills, North Kirkwood/Kirkwood Park area, Greentree/Big Bend Corridor, Historic Core/Train Station area, "Not Sure? Text Us"
+    - **Kirkwood Dog Math callout:** 300 deposits/dog/year, two dogs + St. Louis winter = 150+ piles, $2.30/day math
+    - **Landscaper coordination callout:** Many Kirkwood properties use lawn crews — we schedule before mowing day at no charge
+    - **"On My Way" text callout:** No other service in South County sends this consistently
+    - **5-step service process:** Text → On My Way → Whole yard → All Done text → Same day every week
+    - **Full pricing table:** Weekly 1–2 dogs $70/mo, 3–4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936–1,300), local owner, flat rate, texts, contracts
+    - **Annual savings callout:** $96–460 cheaper per year vs national franchise
+    - **Two testimonials:** Laura K. (Woodlawn, 2 labs, weekly), Tom R. (Near Kirkwood Park, switched from Craigslist)
+    - **Is it worth it? decision guide** — yes/no cases covered honestly
+    - **Kirkwood-specific situations:** Post-winter spring cleanup, pre-listing for home sales (realtor angle!), landscaper coordination, older-home gate logistics
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Kirkwood?", "How much?", "All neighborhoods covered?", "Do I need to be home?", "One-time cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7 questions) + LocalBusiness with Kirkwood, Webster Groves, Crestwood, Glendale, Shrewsbury, Sunset Hills, Oakland, Brentwood in areaServed + geo coordinates (38.5834, -90.4068)
+  - **Target keywords:** "pooper scooper Kirkwood MO", "dog poop pickup Kirkwood", "pet waste removal Kirkwood Missouri", "pooper scooper 63122", "dog waste service Kirkwood", "pooper scooper near me Kirkwood"
+  - **Cross-links:**
+    - `blog/pooper-scooper-south-county-st-louis.html`: Added "📍 Kirkwood Dedicated Guide →" as first item in Related Articles sidebar
+    - `kirkwood.html` city page: Added "📍 Kirkwood Pooper Scooper Guide" as first article card in Related Articles section
+    - `blog/index.html`: Added as new card (first in grid, newest first) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9)
+  - **Blog count: 28 posts total** ✅
+  - **Why Kirkwood at 7 AM:** After a Saturday night sprint (posts for Florissant, South City, O'Fallon, Wentzville, Chesterfield), the next morning's most obvious city-specific gap was Kirkwood. It's the flagship South County city — historic, affluent, strong dog culture, and TJ was literally just doing an event in the adjacent Crestwood neighborhood. Anyone from Kirkwood who saw the Paw-ty posts and searches "pooper scooper Kirkwood" will now find a dedicated page instead of the umbrella South County post. The pre-listing cleanup angle also opens the realtor referral channel here, same as Chesterfield. Compounds forever.
+  - Committed + pushed to both repos ✅ (tidytails-dashboard via git push + tidytails-website via clone/push for all 5 changed files → Cloudflare Pages)
+
+---
+
 ### Sunday 6:05 AM — Chesterfield, MO Dedicated Blog Post (Hourly Task)
 - **6:05 AM** 🏡 Wrote and published dedicated blog post for Chesterfield, MO — West County's most affluent city and the highest-value dedicated city content gap remaining on the site
   - **File:** `tidy-tails/website/blog/pooper-scooper-chesterfield-mo.html`
