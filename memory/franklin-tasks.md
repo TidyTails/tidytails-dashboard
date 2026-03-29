@@ -2,6 +2,29 @@
 
 ---
 
+### Sunday 1:04 PM — Monday March 30 Launch Day Morning Briefing PDF (Hourly Task)
+- **1:04 PM** 🚀 Built and delivered the Monday March 30 Launch Day Briefing — the "open this first at 7 AM Monday" synthesis document for the biggest single execution day of the year
+  - **File:** `dashboard/pdfs/MORNING_BRIEFING_2026-03-30.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-03-30.pdf` (618KB ✅)
+  - **Why this task:** It's 1 PM Sunday. Tomorrow (March 30) is the convergence point where 4 simultaneous campaigns launch: (1) North County FB + Nextdoor campaign NC-1 post, (2) Facebook Ads Manager launch ($7/day), (3) Vet Blitz Day 1 (3 North County clinics), (4) Paw-ty follow-up window final closure. Every individual tool exists but TJ needs a single "open this at 7 AM" document that tells him exactly what to do in what order. The Sunday briefing (already delivered at 12:07 PM) covered today. This one covers tomorrow. Built from the same HTML template pattern for consistent delivery quality.
+  - **What's in the briefing:**
+    - **Header:** "Launch Day. Four Campaigns. One Day." — red gradient, launch badge, urgency framing
+    - **KPI bar:** 10 customers / 25 goal / $700 MRR / 4 campaigns live today / 3 days to tariff deadline
+    - **Priority 1 (FIRE):** Paw-ty follow-up window closes Monday — copy-paste final touch text for warm leads before 9 AM
+    - **Priority 2 (8:30 AM):** NC-1 Facebook group post fully written and ready to paste — both the FB group version AND the Nextdoor version. NC week grid showing all 5 days (Mon NC-1 → Fri NC-5). 4 target groups listed.
+    - **Priority 3 (9 AM):** FB Ads 5-step launch sequence (Ads Manager → Lead objective → South County zips → Ad #1 Quick Math → submit). Two-column context cards.
+    - **Priority 4 (afternoon):** Vet Blitz Day 1 — Cross Keys AH + Gateway City AH + Baronwood AH with addresses, pitch angle per clinic, 30-second walk-in script, partnership offer language. Day 2 preview (Ferguson AH + Halls Ferry).
+    - **Priority 5:** Millsap Properties commercial call — 30-second phone opener ready to paste.
+    - **TuffShed/WoodMaster:** Tariff banner (3 days to April 2), 3 shed action items (Marketplace post with tariff hook, reply to open inquiries, post tariff-urgency social).
+    - **Monday Master Checklist:** Two-column morning/afternoon split with 10 checkboxes covering all campaigns.
+    - **Win Math card:** Paw-ty convert ($840 LTV) + NC-1 leads ($1,680 pipeline) + FB Ads (live Tue) + 3 vet clinics (referral channels) + shed sale ($3k-8k commission) = "Best Monday of 2026"
+    - **9-tool quick reference grid:** Monday Launch Command, Paw-ty Follow-Up Engine, NC Conquest file, FB Ad Launch Pack, Vet Blitz Kit, Shed Lead Responder, April War Room, Commercial Proposal, Growth Roadmap
+    - **Mindset closer:** "Today is the day you stop building and start executing."
+  - **PDF validated:** 618KB ✅, starts %PDF- ✅
+  - **Why Monday briefing over other 1 PM options:** The 13 dedicated city blog posts written today (Kirkwood, Webster Groves, Bridgeton, Ferguson, Hazelwood, St. Peters, O'Fallon, Wentzville, Chesterfield, Florissant, South City, St. Charles County) have saturated the primary SEO content gaps. The website has 33 blog posts, all major North/South/West/Central/St. Charles County areas covered with city-specific posts. The highest remaining gap at 1 PM Sunday is not more content — it's making sure TJ executes cleanly tomorrow when the campaigns actually fire. The NC-1 post text, FB Ads sequence, and vet clinic addresses are all in one document he can scroll through on his phone at 7 AM. This is the bridge from "all tools built" to "campaigns actually live."
+  - Committed + pushed to tidytails-dashboard ✅
+
+---
+
 ### Sunday 12:07 PM — Webster Groves, MO Dedicated Blog Post (Hourly Task)
 - **12:07 PM** 🏡 Wrote and published dedicated blog post for Webster Groves, MO — the last major South County city without dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-webster-groves-mo.html`
