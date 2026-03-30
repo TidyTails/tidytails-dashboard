@@ -153,3 +153,15 @@
 - "Most popular size in STL this spring" social proof (8x10)
 - Weekend closing push with exact monthly prices
 - She shed / workshop / custom build angle
+
+## March 29, 2026 — End of Month Promo Push (4 Urgency Ads)
+- **Shed-EOM-01** — "Clock Is Ticking" — Hard deadline 3/31, free upgrades checklist, neighborly no-pressure close
+- **Shed-EOM-02** — "Last Two Days" — Short form / Instagram, "the garage isn't getting any emptier", sign emoji
+- **Shed-EOM-03** — "The Free Upgrade Math" — Math reframe ($500 more next week), just math angle, soft shrug
+- **Shed-EOM-04** — "The Honest Nudge" — PSA format, "I'd feel bad if you came in Wednesday", warm lead DM tone
+
+## Hooks Used (March 29 EOM — don't repeat 2 weeks)
+- Hard deadline countdown (March 31 / "Clock Is Ticking") — urgency close
+- "Last 2 days" Instagram short form with soft CTA
+- Free upgrade dollar math ($250–$750 you'd pay next week)
+- PSA / "honest nudge" format for warm leads and DMs
