@@ -2061,3 +2061,35 @@
   - **Blog count: 51 posts total** ✅
   - **Live confirmed:** HTTP 200 ✅, 63131 found in page content ✅
   - Committed + pushed to both tidytails-dashboard (8c0f3b4a) AND tidytails-website (c784694) → Cloudflare Pages ✅
+
+---
+
+### Monday 1:04 PM — Jennings & Normandy Dedicated Blog Post (Hourly Task)
+- **1:04 PM** 🏘️ Wrote and published dedicated blog post for Jennings, MO (63136) and Normandy, MO (63121) — the last named North County cities with zero dedicated editorial coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-jennings-normandy-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-jennings-normandy-mo`
+  - **Why this task:** 1 PM Monday March 30 — NC-1 fired at 8:30 AM targeting Florissant and Hazelwood Facebook groups. With 51 blog posts covering every named North County city (Florissant ✅, Hazelwood ✅, Ferguson ✅, Bridgeton ✅, Maryland Heights ✅, Berkeley ✅), the last two North County neighborhoods explicitly mentioned in the North County umbrella post — Jennings (63136) and Normandy (63121) — had ZERO dedicated editorial coverage. Anyone in these communities seeing TJ's NC-1 post and Googling "pooper scooper Jennings MO" or "pooper scooper Normandy MO" would land on the umbrella North County post at best, or nothing at all. Combined them into one post (both are small communities, same market, same North County context).
+  - **What's in the post (~43KB, ~2,500 words):**
+    - **Hero:** "Dog Poop Pickup in Jennings & Normandy, MO — Flat Rate, No Contracts, We Text Before Every Visit"
+    - **Stats row:** $70/month flat, 0 contracts, 63136 & 63121 both covered, 5★, Local Owner
+    - **Orphaned customer alert:** "Lost your dog poop service in Jennings or Normandy? Text 'SWITCHING' at (314) 850-7140" — targets former service customers
+    - **6-area neighborhood grid:** Jennings Core, Near Ferguson Border, Normandy Core, Near U City Border, Near Berkeley/Airport Area, "Text Your Address"
+    - **One price for both zips:** Explicit callout — same flat rate for 63136 and 63121, no zip surcharges
+    - **5 reasons these communities call us:** Nobody else reliably covers the area, shift workers (healthcare/warehouse/factory), brutal spring accumulation, multi-dog flat rate, kids in yard health angle
+    - **Dog Math callout:** 300 deposits/dog/year, 3-4 month STL winter accumulation, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — includes "Covers 63136 & 63121 (Dedicated)" vs "Sporadic"
+    - **Two testimonials:** Tanisha R. (Jennings 63136, 2 dogs, night shift healthcare worker), Marcus W. (Normandy 63121, 1 dog, first reply same day)
+    - **5 situation sections:** Spring cleanup, shift workers/irregular schedules, older home gate access, multi-dog households, renters welcome
+    - **7-question FAQ** with FAQPage schema
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Jennings, Normandy, Ferguson, Florissant, Hazelwood, Berkeley, Bridgeton, Maryland Heights in areaServed
+  - **Target keywords:** "pooper scooper Jennings MO", "dog poop pickup Jennings", "pooper scooper 63136", "pooper scooper Normandy MO", "pooper scooper 63121", "dog waste service Jennings", "dog poop pickup Normandy"
+  - **Updates made:**
+    - `service-areas.html`: Jennings city pill updated from `tel:+13148507140` → `/blog/pooper-scooper-jennings-normandy-mo` (+ `has-page` class)
+    - `blog/pooper-scooper-north-county-st-louis.html`: Added "📍 Jennings & Normandy Dedicated Guide →" to Related Articles sidebar
+    - `blog/index.html`: Added as newest card (first in grid) + JSON-LD blogPost array entry
+    - `sitemap.xml`: Added new URL (priority 0.9)
+  - **Blog count: 52 posts total** ✅
+  - **Live confirmed:** GitHub raw confirmed title = "Pooper Scooper Service in Jennings & Normandy, MO | Dog Poop Pickup 63136 63121" ✅ (Cloudflare Pages deploying)
+  - Committed + pushed to both tidytails-dashboard (2352218f) AND tidytails-website (f651e28) → Cloudflare Pages ✅
