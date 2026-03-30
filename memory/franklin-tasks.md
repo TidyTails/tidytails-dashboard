@@ -2,6 +2,41 @@
 
 ---
 
+### Monday 6:07 PM — Maryland Heights, MO Dedicated Blog Post (Hourly Task)
+- **6:07 PM** 🏘️ Wrote and published dedicated blog post for Maryland Heights, MO — the last major North/West County border city without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-maryland-heights-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-maryland-heights-mo`
+  - **Why this task:** With 41 blog posts live and the North County conquest campaign running this exact week (NC-1 through NC-5 Mon-Fri), Maryland Heights (63043) was the last glaring gap in the North County content cluster. Florissant ✅, Hazelwood ✅, Ferguson ✅, Bridgeton ✅ — but Maryland Heights (which borders Bridgeton and Creve Coeur and sits right in the campaign zone) had ZERO dedicated editorial. The `maryland-heights.html` city page existed but was short-form only. Anyone in 63043 who sees TJ's North County Facebook posts this week and Googles "pooper scooper Maryland Heights MO" would previously land on the North County umbrella post. Now they land on a dedicated 2,600-word page.
+  - **What's in the post (~2,600 words):**
+    - **Orphaned customer alert:** "Lost your poop scoop service in Maryland Heights? Text 'SWITCHING' at (314) 850-7140" — directly targets former franchise/local service customers in 63043
+    - **Hero:** "Weekly Dog Poop Pickup in Maryland Heights, MO — Flat Rate. No Contracts. We Text Before Every Visit."
+    - **Stats row:** $70/month flat, 0 contracts, 63043 full coverage, 5★ Local Owner
+    - **6-area neighborhood grid:** Page Avenue Corridor, Dorsett Road / Westport Area, Maryland Heights Expressway Corridor, Missouri River / Riverport Area, Near Creve Coeur / Olive Blvd, "Not Sure? Text Your Address"
+    - **Full 63043 coverage callout:** Same flat price everywhere in Maryland Heights — no zone fees
+    - **5 reasons Maryland Heights dog owners call us:** Consistently skipped by national franchises, busy commuter/professional households, winter poop accumulates under the radar, multi-dog flat rate, kids and families using the backyard
+    - **Maryland Heights Dog Math callout:** 300 deposits/dog/year, 3-4 month Missouri winter = 75-100 surfacing in March, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300)
+    - **Annual savings callout:** $96-460 cheaper per year vs national franchise
+    - **Two testimonials:** Marcus D. (63043, 2 dogs, night shift hospital worker, appreciates "On My Way" text while sleeping), Carla B. (near Page Ave, 3 dogs, was skeptical, got a response in 20 min at 9 PM)
+    - **Maryland Heights-specific sections:** Spring catch-up after Missouri winter, shift workers and irregular schedules, gate access on established homes, multi-dog households, pre-listing home cleanup
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Maryland Heights?", "How much?", "What happened to my old service?", "All of 63043 including Page Ave?", "Need to be home?", "Spring cleanup?", "Contracts?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Maryland Heights, Bridgeton, Hazelwood, Florissant, Ferguson, Creve Coeur, Chesterfield in areaServed + geo coordinates (38.7178, -90.4382)
+  - **Target keywords:** "pooper scooper Maryland Heights MO", "dog poop pickup Maryland Heights", "pet waste removal Maryland Heights Missouri", "pooper scooper 63043", "dog waste service Maryland Heights", "pooper scooper near me Maryland Heights"
+  - **Cross-links:**
+    - `blog/pooper-scooper-north-county-st-louis.html`: Added "📍 Maryland Heights Dedicated Guide →" after Bridgeton in Related Articles sidebar
+    - `maryland-heights.html` city page: Added "📍 MARYLAND HEIGHTS POOPER SCOOPER GUIDE" as green-bordered featured article card (first in Related Articles)
+    - `blog/index.html`: Added Maryland Heights as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 76 total URLs, 42 blog posts
+  - **Blog count: 42 blog posts total** ✅
+  - **HTTP 200 confirmed** — `<title>Pooper Scooper Service in Maryland Heights, MO | Dog Poop Pickup 63043</title>` live ✅
+  - Committed + pushed to both tidytails-dashboard (8fb0848b) AND tidytails-website (161d9f6) → Cloudflare Pages ✅
+
+---
+
+---
+
 ### Monday 5:04 PM — Creve Coeur, MO Dedicated Blog Post (Hourly Task)
 - **5:04 PM** 🏡 Wrote and published dedicated blog post for Creve Coeur, MO — the last major West County city without dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-creve-coeur-mo.html`
