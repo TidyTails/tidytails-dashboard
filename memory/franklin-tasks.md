@@ -2,6 +2,38 @@
 
 ---
 
+### Monday 10:08 AM — Berkeley, MO Dedicated Blog Post (Hourly Task)
+- **10:08 AM** 🏙️ Wrote and published dedicated blog post for Berkeley, MO — a zero-coverage North County city sitting dead-center in today's NC-1 campaign footprint
+  - **File:** `tidy-tails/website/blog/pooper-scooper-berkeley-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-berkeley-mo`
+  - **Why this task:** 10 AM Monday March 30 — NC-1 fired at 8:30 AM targeting Florissant and Hazelwood Facebook groups. Berkeley (63134) sits geographically between Hazelwood (63042) to the west and Ferguson (63135) to the south — it's in the direct path of every NC campaign post. Florissant ✅ Hazelwood ✅ Ferguson ✅ Bridgeton ✅ Maryland Heights ✅ — but Berkeley, despite being listed as a served city on service-areas.html, had ZERO dedicated editorial blog coverage. Anyone in Berkeley seeing TJ's NC-1 post and Googling "pooper scooper Berkeley MO" or "dog poop pickup 63134" would find nothing specific — just the umbrella North County post at best. The service-areas.html city pill for Berkeley was also still linking to the phone number instead of any page. Both gaps fixed.
+  - **What's in the post (~44KB, ~2,600 words):**
+    - **Orphaned customer alert:** "Lost your dog poop service in Berkeley? Text 'SWITCHING' to (314) 850-7140" — targets the very common North County "service disappeared" scenario
+    - **Hero:** "Weekly Dog Poop Pickup in Berkeley, MO — Flat Rate, No Contracts, Texts Every Visit. Serving all of 63134 — between Hazelwood and Ferguson, we're here."
+    - **Stats row:** $70/month flat, 0 contracts, 63134 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Airport Road / North Berkeley, Natural Bridge Rd / Central Berkeley, Near Hazelwood Border (West), Near Ferguson Border (South), McDonnell Blvd / West Side, "Text Your Address"
+    - **Single-zip callout:** All of Berkeley is 63134 — no zone fees, no surcharges
+    - **5 reasons Berkeley dog owners call us:** Previous service disappeared (most common), shift workers (airport/healthcare/warehouse — Lambert corridor), multi-dog households, kids back in the yard, spring thaw reveal
+    - **Berkeley Dog Math callout:** 300 deposits/dog/year, 2 dogs + STL winter = 150+ piles surfacing now, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY
+    - **Two testimonials:** Denise H. (63134, 2 dogs, service disappeared), Terrence B. (Airport Road, 1 dog, rotating airport shifts)
+    - **Berkeley-specific sections:** Gate access on older homes (1950s-70s construction), shift workers / irregular schedules, post-winter catch-up cleanup, multi-dog households, **renters welcome** (can hire independently)
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Berkeley?", "How much?", "What happened to my old service?", "All of 63134 including near Hazelwood and Bridgeton?", "Need to be home?", "Spring cleanup?", "Contracts?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Berkeley, Hazelwood, Bridgeton, Florissant, Ferguson, Maryland Heights, Normandy in areaServed + geo coordinates (38.7523, -90.3273)
+  - **Target keywords:** "pooper scooper Berkeley MO", "dog poop pickup Berkeley", "pet waste removal Berkeley Missouri", "pooper scooper 63134", "dog waste service Berkeley", "pooper scooper near me Berkeley"
+  - **Updates made:**
+    - `blog/pooper-scooper-north-county-st-louis.html`: Added "📍 Berkeley Dedicated Guide →" in Related Articles sidebar (after Maryland Heights)
+    - `blog/index.html`: Added Berkeley as newest card (first in grid) + JSON-LD blogPost array entry
+    - `sitemap.xml`: Added new URL (priority 0.9), 50 blog posts total
+    - `service-areas.html`: Berkeley city pill updated from `tel:+13148507140` → `/blog/pooper-scooper-berkeley-mo` (+ `has-page` class)
+  - **Blog count: 50 posts total** ✅
+  - **Live confirmed:** HTTP 200 ✅, title = "Pooper Scooper Service in Berkeley, MO | Dog Poop Pickup 63134" ✅
+  - Committed + pushed to both tidytails-dashboard (1cf57c84) AND tidytails-website (b1e0da0) → Cloudflare Pages ✅
+
+---
+
 ### Monday 9:08 AM — Affton, MO Dedicated Blog Post (Hourly Task)
 - **9:08 AM** 🏡 Wrote and published dedicated blog post for Affton, MO — the last named South County city in the service area without dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-affton-mo.html`
