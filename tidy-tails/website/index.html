@@ -1362,10 +1362,26 @@
                     <textarea id="message" name="message" placeholder="Gate code, yard size, questions..."></textarea>
                 </div>
                 
-                <button type="submit" class="submit-btn">Get My Free Quote →</button>
+                <button type="submit" class="submit-btn" onclick="notifyJamie(event)">Get My Free Quote →</button>
                 
                 <p class="form-note">We respond within 24 hours (usually much faster).</p>
             </form>
+            <script>
+            function notifyJamie(e) {
+                // Grab form values for the notification
+                var name = document.getElementById('name').value || 'Unknown';
+                var phone = document.getElementById('phone').value || 'No phone';
+                var service = document.getElementById('service').value || '';
+                var address = document.getElementById('address').value || 'No address';
+                var msg = '🐕 NEW LEAD! ' + name + ' | ' + phone + ' | ' + service + ' | ' + address;
+                // Fire-and-forget SMS via ntfy.sh (free push service)
+                fetch('https://ntfy.sh/tidytailsstl-leads', {
+                    method: 'POST',
+                    body: msg,
+                    headers: { 'Title': 'New Quote Request!', 'Priority': 'high', 'Tags': 'dog' }
+                }).catch(function(){});
+            }
+            </script>
         </div>
     </section>
     
