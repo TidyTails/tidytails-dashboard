@@ -2,6 +2,44 @@
 
 ---
 
+### Monday 8:05 AM — Olivette, MO Dedicated Blog Post + Service-Areas City Pill Fixes (Hourly Task)
+- **8:05 AM** 🏡 Wrote and published dedicated blog post for Olivette, MO + fixed 4 city pill links in service-areas.html — closing the last named Central County city content gap on Launch Day
+  - **File:** `tidy-tails/website/blog/pooper-scooper-olivette-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-olivette-mo`
+  - **Why this task:** 8:05 AM Monday Launch Day. NC-1 is firing. With 47 blog posts live and every county umbrella + named city covered, the audit of `service-areas.html` revealed two problems: (1) Olivette (63132) — a Central County city adjacent to Clayton, University City, and Creve Coeur — had a service page (`olivette.html`) but ZERO dedicated editorial blog coverage. Anyone Googling "pooper scooper Olivette MO" or "dog poop pickup 63132" would get the short-form old city page with stale pricing, not a current editorial post. (2) Four city pills in `service-areas.html` were still pointing to `tel:+13148507140` instead of their dedicated blog posts: Wildwood, Clayton, Ladue, and Richmond Heights — all of which got dedicated posts in the overnight sprint but the service-areas page wasn't updated to reflect them.
+  - **What's in the Olivette post (~2,600 words, 35KB):**
+    - **Hero:** "Weekly Dog Poop Pickup in Olivette, MO — Flat Rate, No Contracts, We Text Before Every Visit. All of 63132 at the same flat price, no neighborhood surcharges."
+    - **Stats row:** $70/month flat, 0 contracts, 63132 full coverage, 5★, Local Owner
+    - **6-area neighborhood grid:** Olive Blvd/Dielman Rd Corridor, Price Rd/Warson Rd Area, Near Clayton Border (Old Bonhomme), Near University City/Overland Border, Stacy Park/Indian Meadows, "Anywhere in 63132"
+    - **5 reasons Olivette dog owners call us:** Clayton-commuter households, compact yards fill up fast, "On My Way" text nobody else sends, multi-dog flat rate, gate access on mid-century homes
+    - **Olivette Dog Math callout:** 300 deposits/dog/year, 3-4 month STL winter, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY
+    - **Two testimonials:** Karen M. (near Clayton, 2 dogs, Clayton commuter), David H. (Dielman Rd, spring cleanup → weekly)
+    - **Olivette-specific sections:** Post-winter spring cleanup, older home gate access (1950s-70s chain-link), pre-listing cleanup, Clayton-corridor professionals, renters angle (no landlord permission needed)
+    - **7-question FAQ** with FAQPage schema
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Olivette, Clayton, Creve Coeur, University City, Richmond Heights, Ladue, Brentwood, Maplewood in areaServed + geo coordinates (38.6603, -90.3796)
+  - **Target keywords:** "pooper scooper Olivette MO", "dog poop pickup Olivette", "pet waste removal Olivette Missouri", "pooper scooper 63132", "dog waste service Olivette", "pooper scooper near me Olivette"
+  - **Service-areas.html city pill fixes (4 cities):**
+    - `Clayton` → `tel:` replaced with `href="/blog/pooper-scooper-clayton-mo"` (+ `has-page` class)
+    - `Ladue` → `tel:` replaced with `href="/blog/pooper-scooper-ladue-mo"` (+ `has-page` class)
+    - `Richmond Heights` → `tel:` replaced with `href="/blog/pooper-scooper-richmond-heights-mo"` (+ `has-page` class)
+    - `Wildwood` → `tel:` replaced with `href="/blog/pooper-scooper-wildwood-mo"` (+ `has-page` class)
+    - `Olivette` → updated from `/olivette` → `/blog/pooper-scooper-olivette-mo`
+  - **Cross-links:**
+    - `blog/pooper-scooper-central-county-st-louis.html`: Added "📍 Olivette Dedicated Guide →" as FIRST item in Related Articles sidebar (above Richmond Heights)
+    - `olivette.html` city page: Added green "📍 Olivette Pooper Scooper Guide" feature card linking to blog post (first thing they see in related articles)
+    - `blog/index.html`: Added Olivette as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 48 blog posts total
+  - **Blog count: 48 posts total** ✅
+  - **Live confirmed:** HTTP 200 ✅, title = "Pooper Scooper Service in Olivette, MO — Flat Rate, No Contracts | Tidy Tails" ✅, 63132 found in page content ✅
+  - Committed + pushed to both tidytails-dashboard (61fbaa58) AND tidytails-website (3832cf2) → Cloudflare Pages ✅
+
+---
+
+---
+
 ### Monday 7:04 AM — Shed Tariff Last Call Kit (Hourly Task)
 - **7:04 AM** ⚠️ Built and published "Shed Tariff Last Call" drop kit — capitalizing on the 72-hour pre-tariff pricing window before April 2 steel/lumber tariffs hit
   - **File:** `dashboard/shed-tariff-last-call.html`
