@@ -2,6 +2,43 @@
 
 ---
 
+### Monday 6:07 AM — Easter Yard Cleanup Blog Post (Hourly Task)
+- **6:07 AM** 🐣 Wrote and published dedicated Easter egg hunt yard cleanup blog post — the highest-conversion seasonal content gap before a 6-day deadline
+  - **File:** `tidy-tails/website/blog/easter-egg-hunt-yard-cleanup-dogs-st-louis.html`
+  - **URL:** `https://tidytailsstl.com/blog/easter-egg-hunt-yard-cleanup-dogs-st-louis`
+  - **Why this task:** It's 6:07 AM Launch Day (NC-1 fires at 8:30 AM). 46 blog posts already live — every county umbrella and every major city in the service area has dedicated coverage. The highest-impact remaining content gap was seasonal and time-critical: Easter is April 5, exactly 6 days away. Parents with dogs are Googling "how to clean yard before Easter egg hunt" RIGHT NOW. Zero competitors have this content. Zero existing Tidy Tails content targeted the Easter keyword. A health-focused parenting angle (dog waste + kids touching the ground = E. coli, roundworm risk) converts differently than the typical yard maintenance post — it triggers urgency because it's about kids' safety during a specific high-visibility holiday event. This post captures the decision-maker (parent) at the exact moment their motivation is highest (the week before Easter when they realize the yard is still a disaster from winter).
+  - **What's in the post (~46KB, ~2,400 words):**
+    - **Urgency banner:** "🐣 Easter is April 5 — 6 days away. Pre-Easter yard cleanups filling fast. → Book Now" (purple gradient, visible above fold)
+    - **Hero:** "Easter Egg Hunt With Dogs? Clean That Yard First." — direct, conversational, problem-first
+    - **Stats row:** Easter April 5 / ~100 piles/dog since winter / 2+ hrs DIY cleanup / One-time clean $75
+    - **The Easter Yard Math callout:** 300 deposits/dog/year, 4-month winter = 100+ piles surfacing at once, $2.30/day math
+    - **Health risk callout (CRITICAL angle):** E. coli, salmonella, roundworm, other pathogens — kids hunting eggs on the ground are at real risk. Toddlers touching grass → touching mouths. Not a "gross" problem — a health problem. Cites EPA framing.
+    - **5-step pre-Easter cleanup guide:** Grid sweep 1-2 days before, dog goes again overnight so morning-of isn't enough, crouch-level check (kids hunt at that height), handwashing reminder, no-hunt zone near dog's favorite spots
+    - **Two-scenario card:** ❌ "The Deal With It Easter" (stepped in something, toddler touched face, cleaning shoes instead of taking photos) vs ✅ "The Actually Cleaned Easter" (kids run free, egg hunt 30 min no incident, in the photos, Grandma is impressed)
+    - **The Grandma Test callout:** "Would you let grandparents sit on a lawn chair in your backyard right now?" — the permission trigger that makes people book
+    - **DIY vs Tidy Tails comparison table:** Time (2-3 hrs vs 20-30 min), Easter weekend stolen (yes vs none), gets everything (probably not vs full grid sweep), cost ($0+time vs from $75), commitment after (none vs none)
+    - **One-time cleanup CTA:** $75, no contracts, "On My Way" + "All Done" texts, 4-step how it works
+    - **Pivot to weekly:** "Most customers discover after their pre-Easter cleanup that the yard is so much better they don't want to go back to managing it themselves." $70/mo flat, no contracts, first cleanup FREE
+    - **Full pricing strip:** One-time $75, weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, bi-weekly $45/visit
+    - **$2.30/day callout:** "Less than a gas station coffee."
+    - **Full service area list:** All 6 zones with city examples
+    - **7-question FAQ with FAQPage schema:** "How do I clean my yard before Easter with dogs?", "Is dog poop dangerous for kids at an Easter egg hunt?", "How much does a one-time yard cleanup cost?", "How long does it take to clean a yard after a St. Louis winter?", "Can I start weekly service before Easter and cancel after?", "Do you do same-week Easter cleanups?", "What areas of St. Louis do you serve?"
+    - **Sticky sidebar:** One-time $75 pricing card with purple CTA + weekly $70/mo card with free first cleanup + related articles
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with 16 cities in areaServed
+  - **Target keywords:** "Easter egg hunt dog poop", "yard cleanup Easter dogs", "clean yard before Easter", "dog waste Easter St. Louis", "Easter backyard cleanup dogs", "pooper scooper before Easter", "pre-Easter yard cleanup St. Louis"
+  - **Cross-links:**
+    - `blog/spring-yard-cleanup-st-louis.html`: Added "🐣 Easter Egg Hunt With Dogs? Clean That Yard First." as FIRST item in Related Articles (before Winter Thaw, How Often, Health Risks — Easter is the most time-sensitive)
+    - `blog/index.html`: Added Easter card as #1 post (first in grid, newest first) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq — it's a seasonal post), 47 blog posts total
+  - **Why Easter over other options at 6 AM:** Every geographic gap is covered — all 46 blog posts hit every county umbrella and every named city in the service area. The remaining high-value content gaps are seasonal, not geographic. Easter is 6 days away. The search window for "clean yard before Easter" and "dog poop Easter egg hunt" is THIS WEEK — it opens around March 30 and closes April 4. After April 5, this post becomes a 2027 evergreen that compounds every spring. But right now, it's live content capturing the exact moment when a parent realizes "we have an egg hunt in 6 days and the yard is still wrecked from winter." That's the highest-urgency conversion trigger in the pet waste removal calendar.
+  - **Validated live:** curl confirmed HTTP 200 ✅ at tidytailsstl.com/blog/easter-egg-hunt-yard-cleanup-dogs-st-louis
+  - **Blog count: 47 posts total** ✅
+  - Committed + pushed to both tidytails-dashboard (e89acb7f) AND tidytails-website (0170c4c) → Cloudflare Pages ✅
+
+---
+
+---
+
 ### Monday 5:04 AM — Richmond Heights, MO Dedicated Blog Post (Hourly Task)
 - **5:04 AM** 🏘️ Wrote and published dedicated blog post for Richmond Heights, MO — the last named Central County city without dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-richmond-heights-mo.html`
