@@ -63,7 +63,7 @@
 - **SSL RENEWED ✅** — Certificate valid Feb 16 → May 17, 2026. Site loads fast on Cloudflare.
 - **GBP NEAR-COMPLETE ✅** (TJ confirmed Mar 25) — was 7%, now almost done. Should start showing in Maps.
 - **⚠️ TJ POSTED IN FB GROUPS for the first time (Mar 24)** — first confirmed execution of marketing playbook!
-- **🐾 SATURDAY MAR 28: Crestwood Vet Adoption Paw-ty** — Event prep materials + follow-up system built. TJ needs to PRINT materials tonight/Friday.
+- **🐾 Crestwood Vet Paw-ty (Mar 28)** — TJ did NOT attend (family wedding). Disregard all follow-up materials. TJ likes events idea — keep flagging spring events.
 
 ### Online Presence (Mar 22)
 - **GBP:** NEAR-COMPLETE ✅ (TJ confirmed Mar 25). Was 7%, now almost done. Should show in Maps now.
