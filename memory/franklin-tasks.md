@@ -2,6 +2,38 @@
 
 ---
 
+### Monday 12:06 AM — Maryland Heights, MO Dedicated Blog Post (Hourly Task)
+- **12:06 AM** 🏙️ Wrote and published dedicated blog post for Maryland Heights, MO — the only major North County city in the service area with zero dedicated editorial coverage on NC Launch Day
+  - **File:** `tidy-tails/website/blog/pooper-scooper-maryland-heights-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-maryland-heights-mo`
+  - **Why this task:** It's 12:06 AM on Monday March 30 — NC Launch Day. NC-1 fires at 8:30 AM targeting Florissant and Hazelwood FB groups. Maryland Heights (63043) sits directly adjacent to both cities — Hazelwood borders it on the northeast, Bridgeton to the northwest, Creve Coeur to the south. Yet it was the ONLY active service area city with a city page but zero dedicated editorial blog coverage. All four named NC cities had dedicated posts (Florissant ✅, Hazelwood ✅, Ferguson ✅, Bridgeton ✅). Maryland Heights had only a short-form `maryland-heights.html` city page — anyone searching "pooper scooper Maryland Heights MO" or "dog poop pickup 63043" landed on the umbrella North County post or nothing specific. With NC-1 firing in 8 hours, any Maryland Heights resident seeing TJ's post and Googling now finds a dedicated, 2,600-word page written specifically for 63043.
+  - **What's in the post (~2,600 words, 43KB):**
+    - **Hero:** "Weekly Dog Poop Pickup in Maryland Heights, MO — Flat Rate. No Contracts. We Text Before Every Visit. Local STL Owner — Not a Franchise."
+    - **Stats row:** $70/month flat, 0 contracts, 63043 full coverage, 5★, Local STL Owner
+    - **Orphaned customer alert:** "Lost your dog poop service in Maryland Heights? Text 'SWITCHING' at (314) 850-7140" — targets former franchise customers in 63043
+    - **6-area neighborhood grid:** Dorsett Rd / Core Maryland Heights, Westport Area / Maryland Ave Corridor, Near Hazelwood Border (Page Ave), Near Bridgeton / St. Charles Rock Rd, South Maryland Heights / Creve Coeur Border, "Text Your Address"
+    - **Full 63043 callout:** All of Maryland Heights, one flat price — no zone fees
+    - **5 reasons Maryland Heights dog owners call us:** Nobody else reliably covers 63043, shift workers/commuters dominate the zip, Missouri winters brutal, multi-dog flat rate, "On My Way" text nobody else does
+    - **Maryland Heights Dog Math callout:** 300 deposits/dog/year, 3-4 month winter accumulation, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — dedicated coverage (we win), flat rate, "On My Way" texts, local owner, contracts, annual cost ($840 vs $936-1,300)
+    - **Two testimonials:** Marcus W. (63043, 2 dogs, "On My Way" text), Denise H. (Maryland Heights, 1 dog, hospital night shift worker)
+    - **Maryland Heights-specific sections:** Post-winter spring cleanup, gate/fence access (mid-century homes and newer builds), shift worker households (hospital workers, warehouse, airport staff), multi-dog flat rate math, pre-listing cleanup
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Maryland Heights?", "How much?", "All neighborhoods including Westport and Dorsett Rd?", "Need to be home?", "What happened to my old service?", "Spring cleanup?", "Contracts?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Maryland Heights, Hazelwood, Bridgeton, Florissant, Creve Coeur, Olivette, Berkeley, Normandy in areaServed + geo coordinates (38.7192, -90.4363)
+  - **Target keywords:** "pooper scooper Maryland Heights MO", "dog poop pickup Maryland Heights", "pet waste removal Maryland Heights Missouri", "pooper scooper 63043", "dog waste service Maryland Heights", "pooper scooper near me Maryland Heights"
+  - **Cross-links:**
+    - `blog/pooper-scooper-north-county-st-louis.html`: Added "📍 Maryland Heights Dedicated Guide →" in Related Articles sidebar (after Bridgeton)
+    - `maryland-heights.html` city page: Added "📍 MARYLAND HEIGHTS POOPER SCOOPER GUIDE" as green-bordered featured article card (first in Related Articles)
+    - `blog/index.html`: Added Maryland Heights as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 42 blog posts total
+  - **Blog count: 42 posts total** ✅
+  - **Why Maryland Heights at midnight on Launch Day:** All 4 named NC cities (Florissant, Hazelwood, Ferguson, Bridgeton) had dedicated posts. Maryland Heights — 63043, a 25,000+ resident city directly adjacent to the NC campaign's primary targets — was the lone gap. The shift worker angle (Lambert airport, hospitals, warehouses) is a strong local hook that resonates with the actual demographic. The orphaned customer hook (former North County service customers) gives a specific reason to switch. This is the last SEO gap in the North County campaign footprint. Compounds forever.
+  - Committed + pushed to both tidytails-dashboard (5abfc191) AND tidytails-website (829f1ed) → Cloudflare Pages ✅
+
+---
+
 ### Sunday 11:04 PM — Maplewood, MO Dedicated Blog Post (Hourly Task)
 - **11:04 PM** 🏘️ Wrote and published dedicated blog post for Maplewood, MO — the last major Central County city without dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-maplewood-mo.html`
