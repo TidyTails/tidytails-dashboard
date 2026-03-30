@@ -2,6 +2,36 @@
 
 ---
 
+### Sunday 7:04 PM — Clayton, MO Dedicated Blog Post (Hourly Task)
+- **7:04 PM** 🏙️ Wrote and published dedicated blog post for Clayton, MO — the crown jewel of Central County and the last major city in the service area without a dedicated editorial post
+  - **File:** `tidy-tails/website/blog/pooper-scooper-clayton-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-clayton-mo`
+  - **Why this task:** With 36 blog posts live covering every county (North/South/West/Central/St. Charles), and every major city in those counties now with dedicated posts (Florissant, Hazelwood, Ferguson, Bridgeton, Kirkwood, Webster Groves, Crestwood, Ballwin, Wildwood, Chesterfield, Mehlville/Oakville, O'Fallon, Wentzville, St. Peters), the last major gap was Central County's individual cities. Clayton is the crown jewel — the county seat of St. Louis County, home to law firms, financial institutions, and some of the highest-earning households in Missouri. Anyone searching "pooper scooper Clayton MO" or "dog poop pickup 63105" previously landed on the generic Central County umbrella post. That's a conversion leak for what is probably the highest-value demographic in the service area. Clayton residents don't price-shop $70/month — they buy on reliability, professionalism, and ease. This post speaks their language.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Clayton, MO — Flat Rate. No Contracts. We Text Before Every Visit. Local Owner — Not a Franchise."
+    - **Stats row:** $70/month flat, 0 contracts, 63105 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Clayton Core / Forsyth Blvd, Near Forest Park / DeMun, Wydown / Ellenwood Corridor, Near Richmond Heights Border, Near Ladue Border (northwest 63105), "Text Your Address"
+    - **Full 63105 callout:** Flat $70/month whether you're in the Clayton commercial core or near the Ladue border — no neighborhood surcharges
+    - **5 reasons Clayton dog owners call us:** Long professional hours, maintained-yard expectations (neighbors/HOA notice), flat rate math, the "On My Way" text (nobody else does this), no lock-in
+    - **Clayton Dog Math callout:** 300 deposits/dog/year, 4-month Missouri winter = 150+ surfacing in March, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300)
+    - **Two testimonials:** Jennifer L. (63105, 2 dogs, works in Clayton downtown, appreciates the texts), David K. (Wydown Corridor, switched from national franchise, values direct text access to TJ)
+    - **Clayton-specific sections:** Pre-listing cleanup for home sales (realtor angle!), compact yards + gate access, post-winter spring cleanup, professional households with dog walkers or landscapers
+    - **"Is it worth it?" decision guide** — honest yes/no cases
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Clayton?", "How much?", "All neighborhoods including Wydown and DeMun?", "Need to be home?", "Spring cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Clayton, Ladue, University City, Richmond Heights, Maplewood, Brentwood, Olivette, Shrewsbury in areaServed + geo coordinates (38.6437, -90.3520)
+  - **Target keywords:** "pooper scooper Clayton MO", "dog poop pickup Clayton", "pet waste removal Clayton Missouri", "pooper scooper 63105", "dog waste service Clayton", "pooper scooper near me Clayton"
+  - **Cross-links:**
+    - `blog/pooper-scooper-central-county-st-louis.html`: Added "📍 Clayton Dedicated Guide →" as FIRST item in Related Articles sidebar
+    - `blog/index.html`: Added Clayton as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 70 total URLs, 37 blog posts
+  - **Blog count: 37 posts total** ✅
+  - Committed + pushed to both tidytails-dashboard (a668b3a2) AND tidytails-website (b485013) → Cloudflare Pages ✅
+
+---
+
 ### Sunday 5:04 PM — Ballwin, MO Dedicated Blog Post (Hourly Task)
 - **5:04 PM** 🏡 Wrote and published dedicated blog post for Ballwin, MO — the largest West County city without dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-ballwin-mo.html`
