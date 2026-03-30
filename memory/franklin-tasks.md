@@ -2,6 +2,37 @@
 
 ---
 
+### Monday 5:04 AM — Richmond Heights, MO Dedicated Blog Post (Hourly Task)
+- **5:04 AM** 🏘️ Wrote and published dedicated blog post for Richmond Heights, MO — the last named Central County city without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-richmond-heights-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-richmond-heights-mo`
+  - **Why this task:** 5:04 AM on Launch Day (March 30, 2026). 45 blog posts live. Every Central County city now has a dedicated post EXCEPT Richmond Heights: Clayton ✅, Ladue ✅, University City ✅, Maplewood ✅, Brentwood ✅ — but Richmond Heights (63117), bordered on all sides by cities with dedicated posts, had nothing. Anyone searching "pooper scooper Richmond Heights MO" or "dog poop pickup 63117" would land on the umbrella Central County post — which mentions Richmond Heights 3 times but is not ranked for city-specific queries. With NC-1 firing at 8:30 AM and all 4 primary campaign tools live, the highest-ROI uncovered SEO gap was closing the last named Central County city hole before the day's organic search traffic starts.
+  - **What's in the post (~43KB, ~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Richmond Heights, MO — Flat Rate, No Contracts, We Text Before Every Visit. Local STL Owner — Not a Franchise. All of 63117 covered at the same flat price."
+    - **Stats row:** $70/month flat, 0 contracts, 63117 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Dale Ave/Galleria Area, Wise Ave/Central 63117, Near Clayton/East 63117, Near Maplewood/South 63117, Near Brentwood/West 63117, "Text Your Address"
+    - **Clayton Commuter angle:** Richmond Heights is effectively a bedroom community for Clayton's professional corridor — this is the core ICP (identity-aligned customer profile) for 63117. Long days, late arrivals home, no bandwidth for yard work on weekends.
+    - **Compact yard math callout:** 63117 lots average 400–900 sq ft fenced. 300 deposits/dog/year, two dogs = 600 piles in a small space, $2.30/day math
+    - **Older home gate access section:** Richmond Heights has mid-century housing stock — period fencing, chain-link with wire latches, side-gate passages. We document all of it.
+    - **Pre-listing cleanup section:** Realtor angle for sellers in 63117.
+    - **"On My Way" text callout:** No other service in Richmond Heights or Central County does this consistently.
+    - **5-step service process:** Text → On My Way → Full yard → All Done text → Same day every week
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/visit, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300), flat rate (no yard-size fee), local owner
+    - **$96-$460 annual savings banner**
+    - **Two testimonials:** Melissa K. (Dale Ave, 2 dogs, Clayton commuter, weekly), Jason W. (near Maplewood border, 1 dog, old gate, spring cleanup → weekly convert)
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Richmond Heights?", "How much?", "All neighborhoods including near Clayton and Maplewood?", "Need to be home?", "Spring cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Richmond Heights, Clayton, Maplewood, Brentwood, University City, Ladue, Shrewsbury, Webster Groves in areaServed + geo coordinates (38.6279, -90.3382)
+  - **Target keywords:** "pooper scooper Richmond Heights MO", "dog poop pickup Richmond Heights", "pet waste removal Richmond Heights Missouri", "pooper scooper 63117", "dog waste service Richmond Heights", "pooper scooper near me Richmond Heights"
+  - **Cross-links:**
+    - `blog/pooper-scooper-central-county-st-louis.html`: Added "📍 Richmond Heights Dedicated Guide →" as FIRST item in Related Articles sidebar (before Brentwood, before Maplewood)
+    - `blog/index.html`: Added Richmond Heights as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 46 blog posts total
+  - **Blog count: 46 posts total** ✅
+  - Committed + pushed to both tidytails-dashboard (25dd2003) AND tidytails-website (acb3333) → Cloudflare Pages ✅
+
+---
+
 ### Monday 3:04 AM — Pre-Launch Day Critical Fixes (Hourly Task)
 - **3:04 AM** 🚨 Fixed 2 critical issues blocking Monday's 8 AM FB Ads launch — both were flagged by Chief Oversight but had not been resolved
   - **Why this task:** It's 3 AM on Launch Day — FB Ads fire at 8-9 AM, North County posts at 8:30 AM. Chief check #260 (2:03 AM) flagged two unresolved CRITICAL issues that would have degraded or broken the launch:
