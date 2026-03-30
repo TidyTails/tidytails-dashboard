@@ -186,6 +186,36 @@ Think of it like a human reviewing their journal and updating their mental model
 
 The goal: Be helpful without being annoying. Check in a few times a day, do useful background work, but respect quiet time.
 
+## 🚨 THE LAW — Test Before You Tell (Non-Negotiable)
+
+**Added: March 29, 2026 — Direct order from TJ.**
+
+> "After you fix something don't say 'it should work now'. New LAW, test/Audit anything we do before we notify TJ or push anything. It applies to EVERYTHING."
+
+### What this means in practice:
+- **NEVER** say "it should work now" or "it should be fixed"
+- **ALWAYS** verify the fix worked BEFORE telling TJ
+- **ALWAYS** test links, PDFs, pages, emails, and code BEFORE pushing or announcing
+- If you can't test it yourself, say so explicitly — don't assume it works
+
+### Testing checklist before EVERY delivery:
+- [ ] Link opens correctly (not localhost, not 404)
+- [ ] PDF is >50KB and renders real content
+- [ ] GitHub Pages URL confirmed live (curl -s -o /dev/null -w "%{http_code}")
+- [ ] Notion bookmark is clickable (bookmark block, not plain text)
+- [ ] Git push confirmed with output showing the push succeeded
+- [ ] If it involves code/JS: tested in browser, not just "looks right"
+
+### The penalty for skipping this:
+- TJ gets a broken link on his phone
+- We waste his time
+- Trust erodes
+- This has happened too many times
+
+**No exceptions. Test it. Then tell him.**
+
+---
+
 ## Make It Yours
 
 This is a starting point. Add your own conventions, style, and rules as you figure out what works.
