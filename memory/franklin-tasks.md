@@ -2,6 +2,39 @@
 
 ---
 
+### Monday 9:08 AM — Affton, MO Dedicated Blog Post (Hourly Task)
+- **9:08 AM** 🏡 Wrote and published dedicated blog post for Affton, MO — the last named South County city in the service area without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-affton-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-affton-mo`
+  - **Why this task:** 9 AM Monday Launch Day. NC-1 has fired at 8:30 AM. 48 blog posts live covering every county umbrella and 23+ named cities. The audit of remaining SEO gaps flagged Affton (63123) — a mid-century South County neighborhood adjacent to the Paw-ty event city (Crestwood), with active routes running through it, but ZERO dedicated editorial blog coverage. Anyone who met TJ at the Crestwood Vet Paw-ty and Googles "pooper scooper Affton MO" or "dog poop pickup 63123" would find nothing dedicated. The `service-areas.html` city pill for Affton was linking to the generic South County page — now updated to point at the dedicated post. The South County umbrella post's Related Articles sidebar now has Affton as the first link.
+  - **What's in the Affton post (~2,600 words, 40KB):**
+    - **Hero:** "Weekly Dog Poop Pickup in Affton, MO — Flat Rate. No Contracts. We Text Before Every Visit. Local STL Owner — Not a Franchise. All of 63123 covered at the same flat price."
+    - **Stats row:** $70/month flat, 0 contracts, 63123 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Gravois Road Corridor, MacKenzie Road Area, Near Crestwood Border (63123/63126), Tesson Ferry / South 63123, Near Shrewsbury / North 63123, "Text Your Address"
+    - **5 reasons Affton dog owners call us:** National franchises skip 63123, spring accumulation brutal, multi-dog flat rate, working-shift households (no time for weekends), "On My Way" text differentiator
+    - **Affton Dog Math callout:** 300 deposits/dog/year, 3-4 month winter = 75-100 surfacing in March, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300)
+    - **$96-$460 annual savings banner**
+    - **Two testimonials:** Michelle R. (Affton 63123, 2 dogs, weekly Thursday), Brandon K. (near MacKenzie Rd, 1 dog, spring cleanup → weekly convert)
+    - **Affton-specific sections:** Post-winter spring cleanup, older home gate access (mid-century chain-link), two-family/rental properties (renter-friendly angle), working-shift households, pre-listing yard cleanup, multi-dog households
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Affton?", "How much?", "All of 63123 including near Crestwood and Mehlville?", "Need to be home?", "Spring cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Affton, Crestwood, Kirkwood, Webster Groves, Mehlville, Oakville, Shrewsbury, Sunset Hills in areaServed + geo coordinates (38.5509, -90.3282)
+  - **Target keywords:** "pooper scooper Affton MO", "dog poop pickup Affton", "pet waste removal Affton Missouri", "pooper scooper 63123", "dog waste service Affton", "pooper scooper near me Affton"
+  - **Updates made:**
+    - `service-areas.html`: Affton city pill updated from `/south-county` → `/blog/pooper-scooper-affton-mo` (+ `has-page` class already present, now correctly linked)
+    - `blog/pooper-scooper-south-county-st-louis.html`: Added "📍 Affton Dedicated Guide →" as FIRST item in Related Articles sidebar
+    - `blog/index.html`: Added Affton as newest card (first in grid) + JSON-LD blogPost array entry
+    - `sitemap.xml`: Added new URL (priority 0.9), 49 blog posts total
+  - **Blog count: 49 posts total** ✅
+  - **Live confirmed:** GitHub raw confirmed title = "Pooper Scooper Service in Affton, MO | Dog Poop Pickup 63123" ✅
+  - Committed + pushed to both tidytails-dashboard (658eea3c) AND tidytails-website (9c5aafe) → Cloudflare Pages ✅
+
+---
+
+---
+
 ### Monday 8:05 AM — Olivette, MO Dedicated Blog Post + Service-Areas City Pill Fixes (Hourly Task)
 - **8:05 AM** 🏡 Wrote and published dedicated blog post for Olivette, MO + fixed 4 city pill links in service-areas.html — closing the last named Central County city content gap on Launch Day
   - **File:** `tidy-tails/website/blog/pooper-scooper-olivette-mo.html`
