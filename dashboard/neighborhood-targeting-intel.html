@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏘️ Neighborhood Saturation Kit — Tidy Tails</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d27;
+    --accent: #22c55e;
+    --accent2: #3b82f6;
+    --accent3: #f59e0b;
+    --danger: #ef4444;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --border: #2d3348;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+  
+  .header {
+    background: linear-gradient(135deg, #1e3a5f 0%, #0f1117 100%);
+    padding: 24px 16px;
+    text-align: center;
+    border-bottom: 2px solid var(--accent);
+  }
+  .header h1 { font-size: 24px; margin-bottom: 4px; }
+  .header .subtitle { color: var(--muted); font-size: 14px; }
+  
+  .tabs {
+    display: flex;
+    overflow-x: auto;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab {
+    flex: 0 0 auto;
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  
+  .content { padding: 16px; max-width: 800px; margin: 0 auto; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+  
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .card h2 { font-size: 18px; margin-bottom: 12px; }
+  .card h3 { font-size: 15px; margin-bottom: 8px; color: var(--accent2); }
+  
+  .cluster {
+    border-left: 4px solid var(--accent);
+    padding-left: 12px;
+    margin-bottom: 16px;
+  }
+  .cluster.hot { border-color: var(--danger); }
+  .cluster.warm { border-color: var(--accent3); }
+  .cluster.cool { border-color: var(--accent2); }
+  
+  .cluster-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .cluster-name { font-size: 17px; font-weight: 700; }
+  .badge {
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 20px;
+    font-weight: 700;
+  }
+  .badge.hot { background: rgba(239,68,68,0.2); color: var(--danger); }
+  .badge.warm { background: rgba(245,158,11,0.2); color: var(--accent3); }
+  .badge.cool { background: rgba(59,130,246,0.2); color: var(--accent2); }
+  
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .stat {
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+  }
+  .stat-value { font-size: 20px; font-weight: 800; color: var(--accent); }
+  .stat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; }
+  
+  .copybox {
+    background: #0d1117;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 8px 0;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--accent);
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .copy-btn.copied { background: var(--accent3); }
+  
+  .checklist { list-style: none; }
+  .checklist li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .checklist input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    flex-shrink: 0;
+    accent-color: var(--accent);
+  }
+  .checklist .done { text-decoration: line-through; color: var(--muted); }
+  
+  .week-card {
+    background: rgba(34,197,94,0.08);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  .week-card.orange {
+    background: rgba(245,158,11,0.08);
+    border-color: rgba(245,158,11,0.2);
+  }
+  .week-card.blue {
+    background: rgba(59,130,246,0.08);
+    border-color: rgba(59,130,246,0.2);
+  }
+  .week-card.purple {
+    background: rgba(168,85,247,0.08);
+    border-color: rgba(168,85,247,0.2);
+  }
+  .week-num { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+  .week-card.orange .week-num { color: var(--accent3); }
+  .week-card.blue .week-num { color: var(--accent2); }
+  .week-card.purple .week-num { color: #a855f7; }
+  
+  .tip {
+    background: rgba(245,158,11,0.1);
+    border-left: 3px solid var(--accent3);
+    padding: 10px 12px;
+    margin: 12px 0;
+    font-size: 13px;
+    border-radius: 0 8px 8px 0;
+  }
+  
+  .math {
+    background: rgba(34,197,94,0.1);
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 12px 0;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .math strong { color: var(--accent); }
+  
+  .progress-bar {
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    height: 8px;
+    margin: 12px 0;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 20px;
+    transition: width 0.5s;
+  }
+  
+  .nav-row { display: flex; gap: 8px; margin-top: 8px; }
+  .nav-row select {
+    flex: 1;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  p { margin-bottom: 8px; font-size: 14px; line-height: 1.5; }
+  ul { padding-left: 20px; margin-bottom: 12px; }
+  li { font-size: 14px; line-height: 1.5; margin-bottom: 4px; }
+  
+  @media (max-width: 480px) {
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .header h1 { font-size: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏘️ Neighborhood Saturation Kit</h1>
+  <div class="subtitle">Turn TJ's existing route into a customer magnet — Spring 2026</div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('overview')">📊 Clusters</button>
+  <button class="tab" onclick="showTab('scripts')">💬 Scripts</button>
+  <button class="tab" onclick="showTab('referral')">🤝 Referral</button>
+  <button class="tab" onclick="showTab('signs')">🪧 Signs</button>
+  <button class="tab" onclick="showTab('nextdoor')">📱 Nextdoor</button>
+  <button class="tab" onclick="showTab('plan')">📅 4-Week Plan</button>
+  <button class="tab" onclick="showTab('tracker')">✅ Tracker</button>
+</div>
+
+<div class="content">
+
+<!-- ==================== CLUSTERS TAB ==================== -->
+<div id="overview" class="panel active">
+  <div class="card">
+    <h2>🎯 The Strategy: Route Density = Profit</h2>
+    <p>Every customer on the same street as an existing customer costs almost <strong>zero extra drive time</strong>. That's pure profit. We're going to saturate the neighborhoods you already service.</p>
+    
+    <div class="math">
+      <strong>Current:</strong> 8 customers across 6 zip codes = lots of driving<br>
+      <strong>Goal:</strong> 3-5 new customers IN EXISTING NEIGHBORHOODS<br>
+      <strong>Impact:</strong> Each new neighbor customer = ~$70-140/mo at near-zero marginal cost<br>
+      <strong>Spring timing:</strong> Yards thawing, poop piling up, people THINKING about this right now
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🔥 Customer Clusters (Priority Order)</h2>
+    
+    <div class="cluster hot">
+      <div class="cluster-header">
+        <span class="cluster-name">🥇 Florissant 63031</span>
+        <span class="badge hot">HOT ZONE</span>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-value">2</div><div class="stat-label">Customers</div></div>
+        <div class="stat"><div class="stat-value">$260</div><div class="stat-label">Monthly Rev</div></div>
+        <div class="stat"><div class="stat-value">52K</div><div class="stat-label">Population</div></div>
+      </div>
+      <p><strong>Customers:</strong> Shannon Zamarripa (weekly, $140/mo) + Amanda Harris (weekly, $120/mo)</p>
+      <p><strong>Why #1:</strong> Two weekly customers = TJ is ALREADY there every Sunday. Highest frequency, most familiar. Florissant is 52K+ people, tons of subdivisions with dogs, moderate-income families who value convenience.</p>
+      <p><strong>Target subdivisions:</strong> Florissant Old Town, Cross Keys, Paddock Village area, Waterford, Koch Park area, St. Ferdinand Park neighborhoods</p>
+      <p><strong>Dog density:</strong> HIGH — suburban single-family homes, fenced backyards, family area = lots of dogs</p>
+      <div class="tip">💡 <strong>Power move:</strong> After finishing Shannon and Amanda's yards, spend 30 min dropping door hangers on their streets and the 2-3 surrounding blocks. You're literally RIGHT THERE.</div>
+    </div>
+
+    <div class="cluster hot">
+      <div class="cluster-header">
+        <span class="cluster-name">🥈 Florissant 63033</span>
+        <span class="badge hot">HOT ZONE</span>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-value">1</div><div class="stat-label">Customers</div></div>
+        <div class="stat"><div class="stat-value">$90</div><div class="stat-label">Monthly Rev</div></div>
+        <div class="stat"><div class="stat-value">50K+</div><div class="stat-label">Population</div></div>
+      </div>
+      <p><strong>Customer:</strong> Chastity (biweekly, $90/mo)</p>
+      <p><strong>Why #2:</strong> Adjacent to 63031 — same Sunday route, minimal extra drive time. Large subdivisions, pet-friendly apartments (Crossing at Northpointe, Sugar Pines, Paddock Village). Mix of single-family + apartments = both residential and commercial opps.</p>
+      <p><strong>Target areas:</strong> Hazelwood border neighborhoods, Cross Keys area, subdivisions off Lindbergh Blvd</p>
+      <div class="tip">💡 <strong>Apartment complexes nearby:</strong> Sugar Pines Apartments, Crossing at Northpointe, Paddock Village — all pet-friendly. Even if commercial is paused, you can post on their community boards as a resident service.</div>
+    </div>
+
+    <div class="cluster warm">
+      <div class="cluster-header">
+        <span class="cluster-name">🥉 North St. Louis (63114 / 63136)</span>
+        <span class="badge warm">WARM</span>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-value">2</div><div class="stat-label">Customers</div></div>
+        <div class="stat"><div class="stat-value">$150</div><div class="stat-label">Monthly Rev</div></div>
+        <div class="stat"><div class="stat-value">2</div><div class="stat-label">Zip Codes</div></div>
+      </div>
+      <p><strong>Customers:</strong> Jody in 63114 (biweekly, $90/mo) + Mrs. Candee in 63136 (weekly, $60/mo)</p>
+      <p><strong>Why warm:</strong> Two customers in adjacent north county zips. Less subdivision density than Florissant but still viable. Focus door hangers within a 5-block radius of each customer.</p>
+      <p><strong>63114 (Overland/St. Ann area):</strong> Mix of residential, good dog owner density</p>
+      <p><strong>63136 (Jennings/Castle Point):</strong> Mrs. Candee's area, target immediate neighbors</p>
+    </div>
+
+    <div class="cluster cool">
+      <div class="cluster-header">
+        <span class="cluster-name">St. Charles 63303 / O'Fallon 63366</span>
+        <span class="badge cool">EXPAND LATER</span>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-value">2</div><div class="stat-label">Customers</div></div>
+        <div class="stat"><div class="stat-value">$150</div><div class="stat-label">Monthly Rev</div></div>
+        <div class="stat"><div class="stat-value">30+</div><div class="stat-label">Min Drive</div></div>
+      </div>
+      <p><strong>Customers:</strong> Preshus in St. Charles (weekly, $100/mo) + Greg in O'Fallon (monthly, $50/mo)</p>
+      <p><strong>Why later:</strong> These are further from the core Florissant cluster. Still worth door hangers when you're out there, but don't prioritize special trips just for marketing. Wait until you have 2-3 more in St. Charles County before saturating.</p>
+    </div>
+
+    <div class="cluster cool">
+      <div class="cluster-header">
+        <span class="cluster-name">Central STL 63108</span>
+        <span class="badge cool">NICHE</span>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-value">1</div><div class="stat-label">Customers</div></div>
+        <div class="stat"><div class="stat-value">$100</div><div class="stat-label">Monthly Rev</div></div>
+        <div class="stat"><div class="stat-value">Urban</div><div class="stat-label">Type</div></div>
+      </div>
+      <p><strong>Customer:</strong> Lawrence (biweekly, $100/mo)</p>
+      <p><strong>Note:</strong> Central Corridor / Shaw / Tower Grove area. More urban, smaller yards. Good for Nextdoor posts but door hangers are less efficient in mixed residential/commercial areas.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== SCRIPTS TAB ==================== -->
+<div id="scripts" class="panel">
+  <div class="card">
+    <h2>💬 Door-to-Door Scripts</h2>
+    <p>Use these when you're finishing a customer's yard and knock on a few neighbor doors. Keep it casual — you're a neighbor, not a salesman.</p>
+  </div>
+
+  <div class="card">
+    <h3>🔥 The "I'm Already Here" Script (Best One)</h3>
+    <p><em>Use when you're literally on their street after finishing a customer's yard.</em></p>
+    <div class="copybox">Hey! I'm TJ — I actually just finished cleaning up [your neighbor's / a yard] right down the street. I do pet waste removal in this area every Sunday. 
+
+Figured I'd introduce myself since I'm already here. If you've got dogs, I can take care of the yard so you don't have to deal with it. Most folks around here do the $70 a month flat rate — I come out weekly and handle everything.
+
+No pressure at all. Here's my card if you ever want to give it a try.<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+    <div class="tip">💡 Don't say the customer's name for privacy. "Your neighbor" or "a yard down the street" works great.</div>
+  </div>
+
+  <div class="card">
+    <h3>😊 The "Spring Cleanup" Opener</h3>
+    <p><em>Use during March-April when yards are thawing and poop is accumulating from winter.</em></p>
+    <div class="copybox">Hey there! I'm TJ with Tidy Tails — I do pet waste removal around here. 
+
+Spring's hit and I know a lot of yards got pretty rough over the winter. I'm running a spring cleanup special — one-time deep clean for $100, or if you want to start regular service it's just $70 a month for weekly cleanups.
+
+I'm already out here every Sunday servicing a few homes on this street. Figured I'd see if anyone else could use the help!<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+  </div>
+
+  <div class="card">
+    <h3>📝 The "Nobody Home" Door Hanger Note</h3>
+    <p><em>Quick handwritten note on the door hanger when no one answers.</em></p>
+    <div class="copybox">Hey! I'm TJ — I clean up dog waste for homes in this neighborhood every Sunday. Your neighbor [down the street / on this block] has been using me for a while.
+
+Spring special: First cleanup FREE with any monthly plan.
+
+Text me anytime → 314-850-7140
+tidytailsstl.com
+
+🐕💩 Tidy Tails<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+  </div>
+
+  <div class="card">
+    <h3>💬 Text Follow-Up (After Leaving Door Hanger)</h3>
+    <p><em>If someone texts or calls from the door hanger:</em></p>
+    <div class="copybox">Hey! Thanks for reaching out 🙌 Yeah I'm out in your neighborhood every Sunday already — one of your neighbors has been using me for a while so I figured I'd spread the word.
+
+For a yard with [1-2 dogs] I do $70/month flat — that's weekly cleanup, rain or shine. Or if you just want a one-time spring deep clean it's $100.
+
+Want me to swing by this Sunday and take a look?<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+  </div>
+
+  <div class="card">
+    <h3>🙅 Common Objections + Responses</h3>
+    
+    <p><strong>"I can just do it myself"</strong></p>
+    <div class="copybox">For sure! Most people can. But honestly, most of my customers told me the same thing at first. Then they realized they were spending their whole Saturday on it when they could be doing literally anything else. $70 a month is less than $20 a week — cheaper than a pizza to never think about it again.<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+
+    <p><strong>"That's too expensive"</strong></p>
+    <div class="copybox">I totally get it. Here's how I look at it though — $70 a month breaks down to like $17 a week. That's less than most people spend at Starbucks. And you never have to step in it, smell it, or think about it. Plus I'm already on your street every week so there's no trip charge or anything.<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+
+    <p><strong>"Let me think about it"</strong></p>
+    <div class="copybox">Absolutely, no rush. Tell you what — I'm going to be out here Sunday anyway. If you want, I'll do your first cleanup free so you can see how it looks. No commitment. If you like it, we'll set something up. If not, no worries at all.<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+  </div>
+</div>
+
+<!-- ==================== REFERRAL TAB ==================== -->
+<div id="referral" class="panel">
+  <div class="card">
+    <h2>🤝 Neighbor Referral Program</h2>
+    <p>Your best salespeople are your current customers. They already trust you, their neighbors see your truck, and word-of-mouth is THE #1 acquisition channel for local services.</p>
+    
+    <div class="math">
+      <strong>The math:</strong> If each of your 8 customers refers just ONE neighbor...<br>
+      8 new customers × $70/mo average = <strong>$560/month in new recurring revenue</strong><br>
+      Cost: $200 in referral credits = <strong>2.8x return in month ONE alone</strong>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>💰 The Offer</h3>
+    <p><strong>For the referrer:</strong> $25 off their next month's service</p>
+    <p><strong>For the new customer:</strong> First cleanup FREE (spring deep clean value: $100)</p>
+    <p><strong>Why this works:</strong> The referrer feels appreciated. The new customer has zero risk. You get a recurring customer for the cost of one free cleanup.</p>
+    
+    <div class="tip">💡 $25 credit is better than cash because: (1) it keeps them as a customer another month, (2) it feels like MORE than $25 because it's off an existing bill, (3) it costs you less than cash since you're already on the route.</div>
+  </div>
+
+  <div class="card">
+    <h3>📱 Referral Ask Texts — Personalized</h3>
+    <p><em>Send these to each customer individually. Personalized >> mass text.</em></p>
+    
+    <p><strong>Shannon (Florissant 63031 — weekly, $140/mo):</strong></p>
+    <div class="copybox">Hey Shannon! Quick question — you know anyone on your street or in your neighborhood who has dogs and hates dealing with the yard? 
+
+I'm trying to grow the route in your area and figured since I'm already there every Sunday, your neighbors would get the best deal. I'll give them their first cleanup free AND knock $25 off your next month.
+
+No pressure at all — just thought I'd ask! 🐕<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+
+    <p><strong>Amanda (Florissant 63031 — weekly, $120/mo):</strong></p>
+    <div class="copybox">Hey Amanda! Since I'm already in your area every Sunday, I'm looking to pick up a couple more yards nearby. Know anyone with dogs who might want the help?
+
+If you send someone my way, I'll take $25 off your next month AND give them their first cleanup on me. Win-win! Let me know 😊<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+
+    <p><strong>Chastity (Florissant 63033 — biweekly, $90/mo):</strong></p>
+    <div class="copybox">Hey Chastity! I'm growing the route around your neighborhood and was wondering if you know any neighbors with dogs? 
+
+I'll give them their first cleanup free and take $25 off your bill. I'm already out that way for you so it works out perfect. Just have them text me at 314-850-7140!<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+
+    <p><strong>Mrs. Candee (63136 — weekly):</strong></p>
+    <div class="copybox">Hi Mrs. Candee! Hope you and the pups are doing well 😊 Quick question — do any of your neighbors have dogs? I'm looking to add a couple more yards in your area since I'm already there every week.
+
+If anyone's interested, their first cleanup would be free, and I'd take $25 off your next bill as a thank you. No pressure at all!<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+
+    <p><strong>Jody (63114 — biweekly):</strong></p>
+    <div class="copybox">Hey Jody! I'm picking up more yards in your area and thought I'd ask — know anyone nearby who'd want their yard cleaned up? Dogs make it rough this time of year lol
+
+Free first cleanup for them, $25 off for you. Just have them hit me up: 314-850-7140<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+
+    <p><strong>Preshus (St. Charles 63303 — weekly):</strong></p>
+    <div class="copybox">Hey Preshus! Know anyone in St. Charles with dogs who hates yard duty? I'm trying to build up the route out your way.
+
+Free first cleanup for anyone you send my way, and I'll knock $25 off your next month. Easy money! 😄<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+
+    <p><strong>Lawrence (63108 — biweekly):</strong></p>
+    <div class="copybox">Hey Lawrence! Growing the business and looking for more clients in your area. If you know any dog owners who might want the help, send them my way — free first cleanup for them, $25 off your next bill.
+
+Text me or have them reach out: 314-850-7140. Appreciate you! 🙏<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+
+    <p><strong>Greg (O'Fallon 63366 — monthly):</strong></p>
+    <div class="copybox">Hey Greg! Looking to pick up more yards in O'Fallon. Any neighbors or friends with dogs who might want professional cleanup?
+
+Free first visit for them and $25 off your next service. Just have them text 314-850-7140!<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+  </div>
+</div>
+
+<!-- ==================== SIGNS TAB ==================== -->
+<div id="signs" class="panel">
+  <div class="card">
+    <h2>🪧 Yard Sign Strategy</h2>
+    <p>Yard signs in customers' yards are the most powerful neighborhood marketing tool. Every neighbor driving by sees it, every dog walker notices it, and it screams social proof.</p>
+  </div>
+
+  <div class="card">
+    <h3>📋 The Ask (Text to Customers)</h3>
+    <p><em>Ask your top customers if you can put a sign in their yard. Offer something in return.</em></p>
+    <div class="copybox">Hey [Name]! Quick favor — would you mind if I put a small yard sign in your front yard? Just a little "Yard Cleaned by Tidy Tails" sign with my number.
+
+I'll knock $10 off your next month as a thank you. It helps me get the word out to your neighbors and I'll keep it small and tasteful. Totally cool if not!<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+
+    <div class="tip">💡 <strong>Priority placement:</strong> Shannon and Amanda in Florissant 63031 are the #1 targets for signs. Two signs on the same block or nearby streets = neighborhood domination. Ask them FIRST.</div>
+  </div>
+
+  <div class="card">
+    <h3>🎨 Sign Design Specs</h3>
+    <p><strong>Size:</strong> 18" × 24" corrugated plastic (standard yard sign)</p>
+    <p><strong>Color:</strong> Green background, white text (on brand, visible from road)</p>
+    <p><strong>Text:</strong></p>
+    <div class="copybox">🐕 TIDY TAILS
+Pet Waste Removal
+
+Your Neighbors Love Us!
+TEXT: 314-850-7140
+
+tidytailsstl.com<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+    
+    <p><strong>Where to order:</strong></p>
+    <ul>
+      <li><strong>VistaPrint:</strong> ~$15-20 for 5 signs with stakes — cheapest option</li>
+      <li><strong>BuildASign.com:</strong> ~$8-12 each, bulk discounts at 10+</li>
+      <li><strong>Local print shop:</strong> Check Minuteman Press or FastSigns in Florissant</li>
+    </ul>
+    
+    <div class="math">
+      <strong>Cost:</strong> ~$60-80 for 5 signs with metal stakes<br>
+      <strong>Visibility:</strong> Each sign gets 50-100+ impressions per DAY from neighbors, delivery drivers, dog walkers<br>
+      <strong>ROI:</strong> ONE new customer from a sign = 12+ months of revenue from a $15 investment
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📍 Placement Priority</h3>
+    <ul class="checklist">
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Shannon's yard (Florissant 63031) — highest traffic, weekly customer</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Amanda's yard (Florissant 63031) — same area, doubles coverage</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Mrs. Candee's yard (63136) — weekly customer, good visibility</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Chastity's yard (Florissant 63033) — expands Florissant coverage</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Preshus's yard (St. Charles 63303) — seeds St. Charles growth</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== NEXTDOOR TAB ==================== -->
+<div id="nextdoor" class="panel">
+  <div class="card">
+    <h2>📱 Nextdoor Neighborhood Posts</h2>
+    <p>Nextdoor is the #1 platform for local service recommendations. Claim your business page (free) and post in each neighborhood where you have customers. Posts from "your neighborhood" get massive organic reach.</p>
+    
+    <div class="tip">💡 <strong>First:</strong> Claim your free Nextdoor Business Page at business.nextdoor.com. This is in the Directory Submission Kit already, but if you haven't done it yet, do it NOW. It's free and takes 5 minutes.</div>
+  </div>
+
+  <div class="card">
+    <h3>🏘️ Post #1: The Introduction (Post First)</h3>
+    <p><em>Post this in your home neighborhood feed. Warm, genuine, not salesy.</em></p>
+    <div class="copybox">Hey neighbors! 👋 I'm TJ — I run Tidy Tails, a pet waste removal service right here in the area. I've been cleaning yards for a few homes in this neighborhood every Sunday and figured I should finally introduce myself on here.
+
+If you've got dogs and hate dealing with the yard (who doesn't lol), I handle all of it — weekly, biweekly, or monthly. Most people do the $70/month flat rate for weekly service.
+
+Spring is here and I know those yards are rough after winter. Happy to do a free estimate or answer any questions. Text me anytime: 314-850-7140
+
+🐕 tidytailsstl.com<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+  </div>
+
+  <div class="card">
+    <h3>🌸 Post #2: Spring Cleanup (Seasonal Hook)</h3>
+    <div class="copybox">Spring cleaning time! 🌸 And I don't mean the house...
+
+If your backyard looks like a minefield after this winter, you're not alone. I'm TJ with Tidy Tails — I do pet waste removal for homes in this area every week.
+
+Running a spring special: one-time deep clean for $100, or start monthly service at $70/month and I'll throw in the first cleanup free.
+
+Already have a few customers right here in the neighborhood so I'm in the area every Sunday anyway. Text 314-850-7140 or check out tidytailsstl.com
+
+Your shoes will thank you 😂<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+  </div>
+
+  <div class="card">
+    <h3>🐾 Post #3: The Value Play (Post Week 2)</h3>
+    <div class="copybox">Real talk for fellow dog parents 🐕
+
+I started Tidy Tails because I got tired of the "I'll pick it up this weekend" lie I kept telling myself. Sound familiar? 😂
+
+Here's what $70/month gets you:
+✅ Weekly professional cleanup
+✅ Every pile, every corner of the yard
+✅ Comes out to less than $18/week
+✅ You never step in it again
+
+I service several homes right here in this neighborhood already. Happy to add a few more to the Sunday route.
+
+Text TJ: 314-850-7140
+tidytailsstl.com<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+  </div>
+
+  <div class="card">
+    <h3>📣 Post #4: Social Proof Ask</h3>
+    <p><em>Post this AFTER you get a couple of Nextdoor recommendations or Google reviews.</em></p>
+    <div class="copybox">Huge thank you to everyone who's reached out since I posted here! 🙏 I've added a few new yards to the weekly route and it's been awesome meeting more neighbors.
+
+If anyone else has dogs and wants their yard handled, I still have a few open spots on Sundays. $70/month flat — I come every week rain or shine.
+
+And if you're a current customer, I'd really appreciate a recommendation here on Nextdoor. It helps more than you'd think!
+
+TJ — Tidy Tails 🐕
+314-850-7140<button class="copy-btn" onclick="copyText(this)">Copy</button></div>
+  </div>
+
+  <div class="card">
+    <h3>⏰ Posting Schedule</h3>
+    <ul>
+      <li><strong>Best days:</strong> Tuesday–Thursday (people are home, scrolling)</li>
+      <li><strong>Best times:</strong> 6-8 PM (after work, checking Nextdoor)</li>
+      <li><strong>Frequency:</strong> 1 post per week MAX — don't spam</li>
+      <li><strong>Engage:</strong> Reply to EVERY comment within 1 hour. Be helpful, not pushy.</li>
+      <li><strong>Ask for recs:</strong> After 2 weeks, ask happy customers to leave a Nextdoor recommendation</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== 4-WEEK PLAN TAB ==================== -->
+<div id="plan" class="panel">
+  <div class="card">
+    <h2>📅 4-Week Neighborhood Saturation Plan</h2>
+    <p>One action per day, 15-30 min each. All centered on your existing route.</p>
+  </div>
+
+  <div class="week-card">
+    <div class="week-num">Week 1: Foundation (Mar 17-23)</div>
+    <ul class="checklist">
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Mon:</strong> Claim Nextdoor Business Page (5 min)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Tue:</strong> Send referral texts to Shannon + Amanda (Florissant HOT ZONE) — use scripts from Referral tab</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Wed:</strong> Post Introduction (#1) on Nextdoor</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Thu:</strong> Send referral texts to Chastity + Mrs. Candee + Jody</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Fri:</strong> Order yard signs (VistaPrint — 5 pack) + print 50 door hangers</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Sun:</strong> After routes — drop 20 door hangers near Shannon + Amanda's blocks in Florissant 63031</span></li>
+    </ul>
+  </div>
+
+  <div class="week-card orange">
+    <div class="week-num">Week 2: Expand (Mar 24-30)</div>
+    <ul class="checklist">
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Mon:</strong> Follow up on any referral leads from Week 1</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Tue:</strong> Send referral texts to Preshus, Lawrence, Greg</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Wed:</strong> Post Spring Cleanup (#2) on Nextdoor</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Thu:</strong> Ask Shannon + Amanda about yard signs (use script from Signs tab)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Sun:</strong> Drop 20 door hangers near Chastity's area (Florissant 63033) + knock on 5 doors near Amanda</span></li>
+    </ul>
+  </div>
+
+  <div class="week-card blue">
+    <div class="week-num">Week 3: Intensify (Mar 31-Apr 6)</div>
+    <ul class="checklist">
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Mon:</strong> Place yard signs at any customers who said yes</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Tue:</strong> Post in 2-3 local Facebook groups (Florissant community, Hazelwood, North County)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Wed:</strong> Post Value Play (#3) on Nextdoor</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Thu:</strong> Send Google Review request to all customers (use Review Request Kit)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Sun:</strong> Drop remaining door hangers in 63114/63136 areas near Jody + Mrs. Candee</span></li>
+    </ul>
+  </div>
+
+  <div class="week-card purple">
+    <div class="week-num">Week 4: Harvest (Apr 7-13)</div>
+    <ul class="checklist">
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Mon:</strong> Follow up ALL leads — text anyone who showed interest but didn't sign up</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Tue:</strong> Post Social Proof (#4) on Nextdoor (if you have reviews/recs to reference)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Wed:</strong> Evaluate results — how many leads? Conversions? What worked?</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Thu:</strong> Double down on what worked — order more signs, plan door hanger round 2</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span><strong>Sun:</strong> Service new customers! 🎉 Drop hangers at any NEW customer neighborhoods</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🎯 Realistic Targets</h3>
+    <div class="math">
+      <strong>Referral texts to 8 customers:</strong> Expect 2-3 to actually refer someone → 1-2 new customers<br>
+      <strong>50 door hangers:</strong> Expect 2-3% response rate → 1-2 inquiries → 1 customer<br>
+      <strong>Nextdoor posts (4 over 4 weeks):</strong> Expect 1-3 inquiries → 1-2 customers<br>
+      <strong>Yard signs (ongoing):</strong> 1-2 inquiries per month per sign<br><br>
+      <strong>4-week total: 3-5 new customers = $210-350/month in new recurring revenue</strong><br>
+      <strong>Cost: ~$80 (signs) + $20 (hangers) + your time = ~$100 total</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== TRACKER TAB ==================== -->
+<div id="tracker" class="panel">
+  <div class="card">
+    <h2>✅ Campaign Progress Tracker</h2>
+    <div id="progressText">0 of 24 tasks complete</div>
+    <div class="progress-bar"><div class="progress-fill" id="progressBar" style="width: 0%"></div></div>
+  </div>
+
+  <div class="card">
+    <h3>🤝 Referral Texts Sent</h3>
+    <ul class="checklist" id="referralTracker">
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Shannon Zamarripa (Florissant 63031)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Amanda Harris (Florissant 63031)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Chastity (Florissant 63033)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Mrs. Candee (63136)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Jody (63114)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Preshus (St. Charles 63303)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Lawrence (63108)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Greg (O'Fallon 63366)</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🪧 Yard Signs</h3>
+    <ul class="checklist" id="signTracker">
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Signs ordered</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Asked Shannon about sign placement</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Asked Amanda about sign placement</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Asked Mrs. Candee about sign placement</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Asked Chastity about sign placement</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Sign placed — Location: ___</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📱 Nextdoor & Social</h3>
+    <ul class="checklist" id="socialTracker">
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Nextdoor Business Page claimed</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Post #1: Introduction — posted</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Post #2: Spring Cleanup — posted</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Post #3: Value Play — posted</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Post #4: Social Proof — posted</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Facebook group post(s) — posted</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📬 Door Hangers Dropped</h3>
+    <ul class="checklist" id="hangerTracker">
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Door hangers printed (50+)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Florissant 63031 — Shannon's block (10-15 hangers)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Florissant 63031 — Amanda's block (10-15 hangers)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Florissant 63033 — Chastity's area (10-15 hangers)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>63114/63136 — Jody + Mrs. Candee areas (10 hangers each)</span></li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🎉 New Leads / Customers from Campaign</h3>
+    <ul class="checklist" id="leadTracker">
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Lead 1: _________________ (Source: ___)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Lead 2: _________________ (Source: ___)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Lead 3: _________________ (Source: ___)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Lead 4: _________________ (Source: ___)</span></li>
+      <li><input type="checkbox" onchange="saveChecklist()"><span>Lead 5: _________________ (Source: ___)</span></li>
+    </ul>
+  </div>
+</div>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyText(btn) {
+  const text = btn.parentElement.textContent.replace('Copy','').replace('Copied!','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function saveChecklist() {
+  const checks = [];
+  document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb, i) => {
+    checks.push(cb.checked);
+    const span = cb.nextElementSibling;
+    if (span) { cb.checked ? span.classList.add('done') : span.classList.remove('done'); }
+  });
+  localStorage.setItem('saturation-kit-checks', JSON.stringify(checks));
+  updateProgress();
+}
+
+function loadChecklist() {
+  const saved = JSON.parse(localStorage.getItem('saturation-kit-checks') || '[]');
+  document.querySelectorAll('.checklist input[type="checkbox"]').forEach((cb, i) => {
+    if (saved[i]) {
+      cb.checked = true;
+      const span = cb.nextElementSibling;
+      if (span) span.classList.add('done');
+    }
+  });
+  updateProgress();
+}
+
+function updateProgress() {
+  const all = document.querySelectorAll('.checklist input[type="checkbox"]');
+  const done = document.querySelectorAll('.checklist input[type="checkbox"]:checked');
+  const pct = all.length ? Math.round((done.length / all.length) * 100) : 0;
+  document.getElementById('progressBar').style.width = pct + '%';
+  document.getElementById('progressText').textContent = done.length + ' of ' + all.length + ' tasks complete (' + pct + '%)';
+}
+
+loadChecklist();
+</script>
+</body>
+</html>

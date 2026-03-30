@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tidy Tails — Competitor Battle Card</title>
+<style>
+  :root {
+    --green: #2d6a4f;
+    --green-light: #40916c;
+    --green-bg: #d8f3dc;
+    --red: #d00000;
+    --red-bg: #fee2e2;
+    --orange: #e85d04;
+    --orange-bg: #fff3e0;
+    --blue: #023e8a;
+    --blue-bg: #e0f2fe;
+    --bg: #f8faf9;
+    --card: #ffffff;
+    --text: #1b1b1b;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 12px;
+    -webkit-text-size-adjust: 100%;
+  }
+  .header {
+    background: linear-gradient(135deg, var(--green), var(--green-light));
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  .header h1 { font-size: 18px; margin-bottom: 4px; }
+  .header .subtitle { font-size: 12px; opacity: 0.85; }
+  .updated { text-align: center; font-size: 11px; color: var(--muted); margin-bottom: 12px; }
+
+  /* Tab navigation */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 12px;
+    overflow-x: auto;
+  }
+  .tab {
+    flex: 1;
+    padding: 8px 4px;
+    border: none;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    background: var(--card);
+    border: 1px solid var(--border);
+    white-space: nowrap;
+    min-width: 0;
+  }
+  .tab.active { background: var(--green); color: white; border-color: var(--green); }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* Cards */
+  .card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .card h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card p, .card li { font-size: 13px; line-height: 1.5; }
+  .card ul { padding-left: 18px; }
+  .card li { margin-bottom: 4px; }
+
+  /* Competitor rows */
+  .comp-row {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    gap: 8px;
+  }
+  .comp-row.us {
+    background: var(--green-bg);
+    border-color: var(--green-light);
+  }
+  .comp-name {
+    flex: 1;
+    font-weight: 600;
+    font-size: 13px;
+  }
+  .comp-price {
+    text-align: right;
+    font-size: 12px;
+    line-height: 1.3;
+  }
+  .comp-price .weekly { font-weight: 700; font-size: 14px; }
+  .comp-price .monthly { color: var(--muted); font-size: 11px; }
+  .threat { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; }
+  .threat.high { background: var(--red-bg); color: var(--red); }
+  .threat.med { background: var(--orange-bg); color: var(--orange); }
+  .threat.low { background: var(--blue-bg); color: var(--blue); }
+
+  /* Objection handler */
+  .objection {
+    background: var(--green-bg);
+    border-left: 3px solid var(--green);
+    padding: 10px 12px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 8px;
+  }
+  .objection .q {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+  .objection .a {
+    font-size: 13px;
+    color: var(--green);
+    line-height: 1.5;
+  }
+
+  /* Spring intel */
+  .intel {
+    background: var(--blue-bg);
+    border-left: 3px solid var(--blue);
+    padding: 10px 12px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 8px;
+  }
+  .intel h4 { font-size: 13px; color: var(--blue); margin-bottom: 4px; }
+  .intel p, .intel li { font-size: 12px; }
+
+  .win-tag {
+    display: inline-block;
+    background: var(--green);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 4px;
+  }
+  .lose-tag {
+    display: inline-block;
+    background: var(--red);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    margin-left: 4px;
+  }
+
+  .highlight-box {
+    background: #fef9c3;
+    border: 1px solid #fbbf24;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .highlight-box strong { color: var(--green); }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    margin-top: 4px;
+  }
+
+  .copy-btn {
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 8px;
+  }
+  .copy-btn:active { opacity: 0.8; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🐕💩 Competitor Battle Card</h1>
+  <div class="subtitle">Pulled on calls? Check pricing. Handle objections. Close deals.</div>
+</div>
+<div class="updated">Live data — March 17, 2026 | Tap tabs to navigate</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('pricing')">💰 Pricing</button>
+  <button class="tab" onclick="showTab('objections')">🛡️ Objections</button>
+  <button class="tab" onclick="showTab('spring')">🌱 Spring Intel</button>
+  <button class="tab" onclick="showTab('weaknesses')">🎯 Weaknesses</button>
+</div>
+
+<!-- ========== PRICING TAB ========== -->
+<div id="pricing" class="tab-content active">
+
+  <div class="highlight-box">
+    💡 <strong>Your $70/mo flat rate is your BEST weapon.</strong> Only Doggie Doodies and Dirty Dog compete at monthly — and they charge $90-$95. You're 22-26% cheaper for monthly customers.
+  </div>
+
+  <div class="section-label">Weekly Service (1 Dog)</div>
+
+  <div class="comp-row">
+    <div class="comp-name">POOP 911 <span class="threat high">HIGH</span></div>
+    <div class="comp-price">
+      <div class="weekly">$11.95/wk</div>
+      <div class="monthly">~$52/mo</div>
+    </div>
+  </div>
+
+  <div class="comp-row">
+    <div class="comp-name">Dog Doody Defenders <span class="threat high">HIGH</span></div>
+    <div class="comp-price">
+      <div class="weekly">$17/visit</div>
+      <div class="monthly">~$74/mo</div>
+    </div>
+  </div>
+
+  <div class="comp-row">
+    <div class="comp-name">Poop2Scoop <span class="threat med">MED</span></div>
+    <div class="comp-price">
+      <div class="weekly">$18/visit</div>
+      <div class="monthly">~$78/mo</div>
+    </div>
+  </div>
+
+  <div class="comp-row">
+    <div class="comp-name">Doggie Doodies <span class="threat high">HIGH</span></div>
+    <div class="comp-price">
+      <div class="weekly">$19.15/wk</div>
+      <div class="monthly">$83/mo billed</div>
+    </div>
+  </div>
+
+  <div class="comp-row">
+    <div class="comp-name">Dirty Dog Poo Crew <span class="threat med">MED</span></div>
+    <div class="comp-price">
+      <div class="weekly">$95/mo</div>
+      <div class="monthly">(1-2 dogs)</div>
+    </div>
+  </div>
+
+  <div class="comp-row us">
+    <div class="comp-name">🐕 TIDY TAILS (YOU)</div>
+    <div class="comp-price">
+      <div class="weekly">$25/visit</div>
+      <div class="monthly">~$108/mo</div>
+    </div>
+  </div>
+
+  <div class="section-label">Monthly Service (1 Dog)</div>
+
+  <div class="comp-row">
+    <div class="comp-name">Dog Doody Defenders</div>
+    <div class="comp-price">
+      <div class="weekly">$54/visit</div>
+      <div class="monthly">once/month</div>
+    </div>
+  </div>
+
+  <div class="comp-row us">
+    <div class="comp-name">🐕 TIDY TAILS <span class="win-tag">CHEAPEST</span></div>
+    <div class="comp-price">
+      <div class="weekly">$70/mo</div>
+      <div class="monthly">flat rate</div>
+    </div>
+  </div>
+
+  <div class="comp-row">
+    <div class="comp-name">Doggie Doodies</div>
+    <div class="comp-price">
+      <div class="weekly">$90/mo</div>
+      <div class="monthly">once/month</div>
+    </div>
+  </div>
+
+  <div class="comp-row">
+    <div class="comp-name">Dirty Dog Poo Crew</div>
+    <div class="comp-price">
+      <div class="weekly">$80/mo</div>
+      <div class="monthly">biweekly</div>
+    </div>
+  </div>
+
+  <div class="section-label">Free First Cleanup?</div>
+  <div class="card">
+    <ul>
+      <li>✅ POOP 911 — FREE first with recurring signup</li>
+      <li>✅ Doggie Doodies — FREE first with coupon code</li>
+      <li>❌ Everyone else — No free cleanup</li>
+      <li>🤔 <strong>TJ: Consider matching this.</strong> "Sign up for weekly and your first cleanup is on us."</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ========== OBJECTIONS TAB ========== -->
+<div id="objections" class="tab-content">
+
+  <div class="section-label">When They Compare You to Competitors</div>
+
+  <div class="objection">
+    <div class="q">🗣️ "POOP 911 is only $12 a week..."</div>
+    <div class="a">💬 "They're a national franchise — you're getting whoever they send that day. I'm the owner. I'm the one in your yard every single time. Same person, same quality, same eyes on your property. You know who's back there with your dogs. That's worth more than saving a few bucks to a 1-800 number."</div>
+  </div>
+
+  <div class="objection">
+    <div class="q">🗣️ "Doggie Doodies is cheaper per week..."</div>
+    <div class="a">💬 "Check the fine print — their $83/month is backyard OR front yard only. Both yards? Call for a quote. Plus they use a hotmail email address and a Wix website. I answer my own phone, I text you when I'm done, and you've got my personal number. Try that with them."</div>
+  </div>
+
+  <div class="objection">
+    <div class="q">🗣️ "I found someone cheaper on Nextdoor..."</div>
+    <div class="a">💬 "I see those posts too — most are someone who does it for a month and quits. I've been running Tidy Tails for over a year, I'm insured, and I'm here every week rain or shine. Consistency is worth more than a deal that disappears."</div>
+  </div>
+
+  <div class="objection">
+    <div class="q">🗣️ "Can you match their price?"</div>
+    <div class="a">💬 "I can't race to the bottom — I'd rather give you better service than a lower price. But here's what I can do: your first cleanup is free when you sign up for weekly, and if you're ever not 100% happy, I'll come back and make it right. No contract, cancel anytime."</div>
+  </div>
+
+  <div class="objection">
+    <div class="q">🗣️ "I'll just do it myself..."</div>
+    <div class="a">💬 "Totally get it — that's what most of my customers said before they called me. The math usually works out to about $2.30 a day. That's less than a coffee. You get your weekends back, your yard stays clean for the kids, and you never have to think about it. Once people try it, nobody goes back."</div>
+  </div>
+
+  <div class="objection">
+    <div class="q">🗣️ "Do you do one-time cleanups?"</div>
+    <div class="a">💬 "Absolutely — spring cleanups start at $75 depending on yard size and how many dogs. And here's the deal: if you sign up for weekly service after, the cleanup is FREE. Most people do because once they see the difference, they don't want to go back."</div>
+  </div>
+
+  <div class="section-label">Your Closing Lines</div>
+  <div class="card">
+    <ul>
+      <li>🎯 "I can start as early as this Sunday. Want me to add you to the route?"</li>
+      <li>🎯 "Let me do the first one free so you can see the difference."</li>
+      <li>🎯 "No contract, no commitment. Try it for a month."</li>
+      <li>🎯 "I'm already in your neighborhood on Sundays — I can swing by."</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ========== SPRING INTEL TAB ========== -->
+<div id="spring" class="tab-content">
+
+  <div class="highlight-box">
+    🌱 <strong>Spring window is NOW.</strong> Snow melt = poop explosion = highest demand all year. Every competitor is pushing spring content. You need to be posting THIS WEEK.
+  </div>
+
+  <div class="section-label">What Competitors Are Doing RIGHT NOW</div>
+
+  <div class="intel">
+    <h4>🔴 Doggie Doodies — MOST AGGRESSIVE</h4>
+    <ul>
+      <li>Publishing blog posts every week (Feb 11, Feb 18 latest)</li>
+      <li>"Spring Dog Toy Safety Tips" — content marketing play</li>
+      <li>FREE first cleanup with coupon codes (WEEKLY1DOG, BIWEEKLY1DOG)</li>
+      <li>Expanded to Kirkwood, Creve Coeur, MD Heights, Eureka, Valley Park</li>
+      <li>Added COMMERCIAL page (HOAs, waste stations, installations)</li>
+      <li>E-gift cards + referral program + rewards program</li>
+      <li>Customer portal with auto-pay</li>
+    </ul>
+  </div>
+
+  <div class="intel">
+    <h4>🔴 POOP 911 — Price Leader</h4>
+    <ul>
+      <li>$11.95/wk — still the cheapest in STL by far</li>
+      <li>Free first cleanup with recurring signup</li>
+      <li>National SEO dominance (70+ zip code pages)</li>
+      <li>Local operator pushing "I'm a pet parent serving pet families"</li>
+    </ul>
+  </div>
+
+  <div class="intel">
+    <h4>🔴 Scoop Soldiers — New Entrant</h4>
+    <ul>
+      <li>Just expanded to STL (Feb 2026)</li>
+      <li>Got a National Law Review press release for SEO</li>
+      <li>Full STL service area page with local copy</li>
+      <li>100% money-back guarantee messaging</li>
+      <li>Targeting residential AND commercial</li>
+    </ul>
+  </div>
+
+  <div class="intel">
+    <h4>🟡 Dr. Scoops — Quiet Threat</h4>
+    <ul>
+      <li>Solo op Adam Hughes, Ballwin/Manchester/Chesterfield area</li>
+      <li>Clean professional site (NOT Wix)</li>
+      <li>Background-checked, insured messaging</li>
+      <li>On Petworks + Nextdoor + Facebook</li>
+      <li>Covers TJ's Kirkwood/Webster Groves expansion targets</li>
+    </ul>
+  </div>
+
+  <div class="intel">
+    <h4>🔴 Dog Doody Defenders — Price Disruptor</h4>
+    <ul>
+      <li>Only $17/wk — veteran-owned messaging</li>
+      <li>Florissant + Chesterfield = TJ's exact territory</li>
+      <li>Offers deodorizing, kennel cleaning, dog walking</li>
+      <li>On Yelp, MapQuest, own website</li>
+    </ul>
+  </div>
+
+  <div class="section-label">🎯 TJ's Counter-Moves (This Week)</div>
+  <div class="card">
+    <h3>Priority 1: Post Spring Ads NOW</h3>
+    <ul>
+      <li>FB Marketplace → Spring cleanup $75 (free with weekly signup)</li>
+      <li>Nextdoor → "Snow's melting. Guess what it left behind?" post</li>
+      <li>FB Groups → Dog owner groups in Florissant, St. Charles, O'Fallon</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Priority 2: Match the Free First Cleanup</h3>
+    <ul>
+      <li>POOP 911 and Doggie Doodies both offer it</li>
+      <li>TJ should too: "First cleanup FREE with weekly signup"</li>
+      <li>Cost: ~30 min of labor. ROI: $100/mo recurring customer</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Priority 3: Get 3 Google Reviews</h3>
+    <ul>
+      <li>TJ has ZERO reviews. Dog Doody Defenders has 6+.</li>
+      <li>Text each current customer the Google review link</li>
+      <li>Link: g.page/r/Ce_hqIHanGLvEAE/review</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ========== WEAKNESSES TAB ========== -->
+<div id="weaknesses" class="tab-content">
+
+  <div class="section-label">Competitor Weak Spots to Exploit</div>
+
+  <div class="card">
+    <h3>🎯 Doggie Doodies</h3>
+    <ul>
+      <li>Uses <strong>hotmail email</strong> (doggiedoodiesstl@hotmail.com) — looks unprofessional</li>
+      <li>Built on <strong>Wix</strong> — limited SEO ceiling</li>
+      <li>Pricing is <strong>backyard OR front yard only</strong> — both costs extra</li>
+      <li>No personal touch — employees, not owner</li>
+      <li>Coupon code system = friction (WEEKLY1DOG etc.)</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🎯 POOP 911</h3>
+    <ul>
+      <li><strong>National franchise</strong> — you don't know who's in your yard</li>
+      <li>Generic corporate feel — templated city pages</li>
+      <li>No local personality or community connection</li>
+      <li>If local operator quits, service disruption</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🎯 Scoop Soldiers</h3>
+    <ul>
+      <li><strong>Brand new to STL</strong> — no reviews, no reputation yet</li>
+      <li>National franchise — same "rotating stranger" problem</li>
+      <li>No transparent pricing on website — quote-only</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🎯 Dog Doody Defenders</h3>
+    <ul>
+      <li><strong>Basic website</strong> — minimal info, no blog, no content</li>
+      <li>Contact form only — no online booking</li>
+      <li>No customer portal or auto-pay</li>
+      <li>Limited services listed</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🎯 Dr. Scoops</h3>
+    <ul>
+      <li><strong>Solo operator</strong> — capacity limited, may not scale</li>
+      <li>Only 1 testimonial on website</li>
+      <li>No transparent pricing — quote only</li>
+      <li>Facebook only 39 likes</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>🎯 Dirty Dog Poo Crew</h3>
+    <ul>
+      <li><strong>Most expensive</strong> — $95/mo for 1-2 dogs weekly</li>
+      <li>Side hustle to dog grooming — not primary focus</li>
+      <li>Limited to 10-mile radius of Chesterfield shop</li>
+    </ul>
+  </div>
+
+  <div class="section-label">🟢 TJ's Unique Advantages</div>
+  <div class="card" style="background: var(--green-bg);">
+    <ul>
+      <li>✅ <strong>Owner-operated</strong> — same person every visit</li>
+      <li>✅ <strong>$70/mo flat rate</strong> — cheapest monthly in STL</li>
+      <li>✅ <strong>No contracts</strong> — cancel anytime</li>
+      <li>✅ <strong>Personal phone/text</strong> — direct to TJ</li>
+      <li>✅ <strong>North County foothold</strong> — Florissant, St. Charles (less competition)</li>
+      <li>✅ <strong>12+ years sales experience</strong> — closes on the phone</li>
+      <li>✅ <strong>We haul waste away</strong> — some competitors leave it</li>
+    </ul>
+  </div>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(el => el.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+
+</body>
+</html>

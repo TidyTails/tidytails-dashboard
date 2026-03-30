@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💰 Premium Pricing Toolkit | Tidy Tails</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a; --bg2: #141414; --bg3: #1a1a1a; --bg4: #242424;
+            --text: #f5f5f5; --text2: #999; --text3: #555;
+            --orange: #ff6b35; --green: #10b981; --blue: #3b82f6;
+            --yellow: #fbbf24; --red: #ef4444; --purple: #8b5cf6;
+            --teal: #14b8a6; --pink: #ec4899;
+            --border: #2a2a2a; --radius: 12px;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Inter',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; }
+
+        .header {
+            background: linear-gradient(135deg, #1a1410 0%, #1a1520 50%, #101a15 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 2rem 1.5rem; text-align: center;
+        }
+        .header h1 { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.03em; }
+        .header h1 span { color: var(--orange); }
+        .header .subtitle { color: var(--text2); font-size: 0.9rem; margin-top: 0.35rem; max-width: 550px; margin-left: auto; margin-right: auto; line-height: 1.5; }
+        .header .tagline {
+            display: inline-block; margin-top: 1rem; padding: 0.5rem 1.25rem;
+            background: rgba(255,107,53,0.12); border: 1px solid rgba(255,107,53,0.25);
+            border-radius: 8px; font-weight: 700; color: var(--orange); font-size: 0.85rem;
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 1.5rem; }
+
+        .nav-tabs {
+            display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem; border-bottom: 1px solid var(--border);
+        }
+        .nav-tab {
+            padding: 0.6rem 1.1rem; border-radius: 8px 8px 0 0; font-size: 0.82rem;
+            font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.2s;
+            background: transparent; color: var(--text2); border: 1px solid transparent;
+            border-bottom: none;
+        }
+        .nav-tab:hover { color: var(--text); background: var(--bg3); }
+        .nav-tab.active {
+            color: var(--orange); background: var(--bg3);
+            border-color: var(--border); border-bottom: 2px solid var(--orange);
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        .card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 1rem;
+        }
+        .card-title {
+            font-weight: 700; font-size: 1rem; margin-bottom: 0.5rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+
+        .objection-card {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 1rem; transition: all 0.2s;
+        }
+        .objection-card:hover { border-color: var(--orange); }
+        .objection-header {
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; gap: 1rem;
+        }
+        .objection-q {
+            font-weight: 700; font-size: 0.95rem; color: var(--red);
+            flex: 1;
+        }
+        .objection-toggle {
+            font-size: 1.2rem; color: var(--text3); transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+        .objection-card.open .objection-toggle { transform: rotate(180deg); }
+        .objection-body {
+            display: none; margin-top: 1rem; padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+        .objection-card.open .objection-body { display: block; }
+
+        .response-block {
+            background: var(--bg4); border-radius: 8px; padding: 1rem;
+            margin-bottom: 0.75rem; position: relative;
+        }
+        .response-label {
+            font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.05em; margin-bottom: 0.5rem;
+        }
+        .response-label.text { color: var(--blue); }
+        .response-label.call { color: var(--green); }
+        .response-label.inperson { color: var(--purple); }
+        .response-text {
+            font-size: 0.88rem; line-height: 1.6; color: var(--text);
+        }
+        .response-text em { color: var(--yellow); font-style: normal; font-weight: 600; }
+
+        .copy-btn {
+            position: absolute; top: 0.75rem; right: 0.75rem;
+            background: rgba(255,255,255,0.08); border: 1px solid var(--border);
+            color: var(--text2); padding: 0.3rem 0.6rem; border-radius: 6px;
+            font-size: 0.7rem; cursor: pointer; transition: all 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+        .copy-btn:hover { background: var(--orange); color: white; border-color: var(--orange); }
+        .copy-btn.copied { background: var(--green); color: white; border-color: var(--green); }
+
+        .value-calc {
+            background: linear-gradient(135deg, var(--bg3) 0%, #1a2020 100%);
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.5rem; margin-bottom: 1rem;
+        }
+        .calc-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0.6rem 0; border-bottom: 1px solid var(--border);
+        }
+        .calc-row:last-child { border-bottom: none; }
+        .calc-label { font-size: 0.85rem; color: var(--text2); }
+        .calc-value {
+            font-family: 'JetBrains Mono', monospace; font-weight: 700;
+            font-size: 0.95rem;
+        }
+        .calc-value.green { color: var(--green); }
+        .calc-value.orange { color: var(--orange); }
+        .calc-value.yellow { color: var(--yellow); }
+
+        .slider-group { margin: 1rem 0; }
+        .slider-group label {
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.85rem; margin-bottom: 0.5rem;
+        }
+        .slider-group label span { color: var(--orange); font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+        input[type="range"] {
+            width: 100%; -webkit-appearance: none; appearance: none;
+            height: 6px; border-radius: 3px; background: var(--bg4);
+            outline: none;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none;
+            width: 20px; height: 20px; border-radius: 50%;
+            background: var(--orange); cursor: pointer;
+        }
+
+        .compare-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+            margin-top: 1rem;
+        }
+        @media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+
+        .compare-col {
+            border-radius: var(--radius); padding: 1.25rem;
+            border: 1px solid var(--border);
+        }
+        .compare-col.budget { background: linear-gradient(135deg, #1a1414 0%, var(--bg3) 100%); }
+        .compare-col.premium { background: linear-gradient(135deg, #141a10 0%, var(--bg3) 100%); border-color: var(--green); }
+        .compare-col h3 {
+            font-size: 0.9rem; font-weight: 700; margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+        }
+        .compare-col.budget h3 { color: var(--red); }
+        .compare-col.premium h3 { color: var(--green); }
+        .compare-item {
+            display: flex; gap: 0.5rem; font-size: 0.82rem; padding: 0.35rem 0;
+            color: var(--text2); line-height: 1.4;
+        }
+        .compare-item .icon { flex-shrink: 0; }
+
+        .reframe-card {
+            background: linear-gradient(135deg, var(--bg3) 0%, #1a1815 100%);
+            border: 1px solid rgba(255,107,53,0.3); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 1rem; text-align: center;
+        }
+        .reframe-card .big-num {
+            font-family: 'JetBrains Mono', monospace; font-size: 2.5rem;
+            font-weight: 800; color: var(--green); margin: 0.5rem 0;
+        }
+        .reframe-card .context { color: var(--text2); font-size: 0.85rem; }
+
+        .text-template {
+            background: var(--bg4); border-radius: 8px; padding: 1rem;
+            margin-bottom: 0.75rem; position: relative; font-size: 0.88rem;
+            line-height: 1.6; border-left: 3px solid var(--blue);
+        }
+
+        .section-title {
+            font-size: 1.15rem; font-weight: 700; margin: 1.5rem 0 1rem;
+            padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+
+        .tip-box {
+            background: rgba(251,191,36,0.08); border: 1px solid rgba(251,191,36,0.2);
+            border-radius: 8px; padding: 1rem; margin: 1rem 0;
+            font-size: 0.82rem; color: var(--yellow); line-height: 1.5;
+        }
+        .tip-box strong { color: var(--yellow); }
+
+        .stat-row {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem; margin: 1rem 0;
+        }
+        .stat-box {
+            background: var(--bg4); border-radius: 8px; padding: 1rem; text-align: center;
+        }
+        .stat-box .num {
+            font-family: 'JetBrains Mono', monospace; font-size: 1.5rem;
+            font-weight: 800; color: var(--orange);
+        }
+        .stat-box .label { font-size: 0.72rem; color: var(--text2); margin-top: 0.25rem; }
+
+        .back-link {
+            display: inline-block; margin-bottom: 1rem; color: var(--text2);
+            text-decoration: none; font-size: 0.82rem; transition: color 0.2s;
+        }
+        .back-link:hover { color: var(--orange); }
+
+        .badge {
+            display: inline-block; padding: 0.12rem 0.45rem; border-radius: 4px;
+            font-size: 0.62rem; font-weight: 700; text-transform: uppercase;
+        }
+        .badge-new { background: rgba(251,191,36,0.2); color: var(--yellow); }
+
+        .closing-framework {
+            background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.25rem; margin-bottom: 1rem;
+        }
+        .step {
+            display: flex; gap: 1rem; padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .step:last-child { border-bottom: none; }
+        .step-num {
+            flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+            background: var(--orange); color: white; display: flex;
+            align-items: center; justify-content: center; font-weight: 800;
+            font-size: 0.8rem;
+        }
+        .step-content { flex: 1; }
+        .step-title { font-weight: 700; font-size: 0.88rem; margin-bottom: 0.25rem; }
+        .step-desc { font-size: 0.82rem; color: var(--text2); line-height: 1.5; }
+        .step-script {
+            background: var(--bg4); border-radius: 6px; padding: 0.75rem;
+            margin-top: 0.5rem; font-size: 0.82rem; line-height: 1.5;
+            font-style: italic; color: var(--text);
+            position: relative;
+        }
+
+        .footer { text-align: center; padding: 2rem; color: var(--text3); font-size: 0.75rem; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>💰 <span>Premium Pricing</span> Toolkit</h1>
+        <p class="subtitle">You're the most expensive option in STL. Here's how to make that your biggest selling point.</p>
+        <div class="tagline">🎯 Turn "you're too expensive" into "when can you start?"</div>
+    </div>
+
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Command Center</a>
+
+        <div class="stat-row">
+            <div class="stat-box">
+                <div class="num">$3.57</div>
+                <div class="label">Per Day Cost</div>
+            </div>
+            <div class="stat-box">
+                <div class="num">45min</div>
+                <div class="label">Avg DIY Time/Week</div>
+            </div>
+            <div class="stat-box">
+                <div class="num">$25</div>
+                <div class="label">Per Visit</div>
+            </div>
+            <div class="stat-box">
+                <div class="num">100%</div>
+                <div class="label">Satisfaction Rate</div>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <div class="nav-tab active" data-tab="objections">🛡️ Objection Killers</div>
+            <div class="nav-tab" data-tab="value">📊 Value Calculator</div>
+            <div class="nav-tab" data-tab="compare">⚖️ Budget vs Premium</div>
+            <div class="nav-tab" data-tab="closing">🤝 Closing Framework</div>
+            <div class="nav-tab" data-tab="texts">💬 Text Templates</div>
+        </div>
+
+        <!-- ═══════════ TAB 1: OBJECTION KILLERS ═══════════ -->
+        <div class="tab-content active" id="tab-objections">
+
+            <div class="tip-box">
+                <strong>💡 Golden Rule:</strong> Never apologize for your price. Never lead with discounts. The prospect chose to call YOU — they already want clean yards. Your job is to show them the value, not cut a deal.
+            </div>
+
+            <div class="objection-card open">
+                <div class="objection-header" onclick="toggleObjection(this)">
+                    <div class="objection-q">🚫 "That's more than other companies I've looked at"</div>
+                    <div class="objection-toggle">▼</div>
+                </div>
+                <div class="objection-body">
+                    <div class="response-block">
+                        <div class="response-label call">📞 On a call</div>
+                        <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                        <div class="response-text">
+                            "Totally fair — I know there are cheaper options out there. Here's what I've found though: the lower-priced companies are usually running 30-40 yards a day with hired crews. That means they're in and out fast, and sometimes corners get cut. With me, I'm the owner, and I'm the one in your yard every single time. I know your dogs by name. I know where they like to go. I text you a photo when I'm done. Most of my customers switched <em>from</em> those cheaper services because they weren't getting what they paid for."
+                        </div>
+                    </div>
+                    <div class="response-block">
+                        <div class="response-label text">💬 Via text</div>
+                        <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                        <div class="response-text">
+                            "I hear you! Here's the thing — with Tidy Tails, I'm the owner and I'm the one in your yard every visit. No random crews. I'll know your dogs by name and text you a completion photo every time. My customers tell me that consistency is worth more than saving a few bucks 🐕💪"
+                        </div>
+                    </div>
+                    <div class="tip-box">
+                        <strong>Key pivot:</strong> Shift from PRICE to VALUE. Owner-operated = consistency, accountability, trust. The budget companies can't offer that at scale.
+                    </div>
+                </div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-header" onclick="toggleObjection(this)">
+                    <div class="objection-q">🚫 "I found someone for $12/week" (POOP 911)</div>
+                    <div class="objection-toggle">▼</div>
+                </div>
+                <div class="objection-body">
+                    <div class="response-block">
+                        <div class="response-label call">📞 On a call</div>
+                        <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                        <div class="response-text">
+                            "Yeah, POOP 911 is the cheapest out there — they're a franchise out of Orlando. Their model is volume: lots of yards, fast turnover, rotating technicians. Check their Google reviews and you'll see a pattern — missed visits, different people every time, hard to get someone on the phone. For some people that works fine! But if you want the same person every time, someone who actually cares about doing a thorough job and communicates with you, that's what you get with me. It's a <em>$13/week difference</em> for a completely different experience."
+                        </div>
+                    </div>
+                    <div class="response-block">
+                        <div class="response-label text">💬 Via text</div>
+                        <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                        <div class="response-text">
+                            "Yep, they're a big franchise — they've got the lowest price for a reason. Different tech every time, no photos, hard to reach. I'm local, owner-operated, and you get my personal number. For about $2/day more you get someone who actually knows your yard and dogs. Happy to do a free first cleanup so you can see the difference! 🐕"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-header" onclick="toggleObjection(this)">
+                    <div class="objection-q">🚫 "Doggie Doodies is $83/month and you're $108"</div>
+                    <div class="objection-toggle">▼</div>
+                </div>
+                <div class="objection-body">
+                    <div class="response-block">
+                        <div class="response-label call">📞 On a call</div>
+                        <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                        <div class="response-text">
+                            "Doggie Doodies is solid — they're legitimate. But here's the difference: they've got a team of technicians, so you're getting whoever's on the schedule that day. With me, it's always me. Same person, same day, same quality every single week. I also do a full property walk — front yard, side yard, back yard, along the fence line — not just the obvious spots. And I'll text you when I'm done with a photo. That <em>$25/month difference</em> is basically <em>83 cents a day</em> for a personal service vs. a rotation."
+                        </div>
+                    </div>
+                    <div class="response-block">
+                        <div class="response-label text">💬 Via text</div>
+                        <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                        <div class="response-text">
+                            "They're a good company! The difference is I'm the owner — always the same face in your yard, always thorough, always a photo when I'm done. That $25/mo difference works out to about 83 cents a day for a personal service vs. a rotating crew. Want me to do a free first visit so you can compare? 🐕"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-header" onclick="toggleObjection(this)">
+                    <div class="objection-q">🚫 "I can just do it myself"</div>
+                    <div class="objection-toggle">▼</div>
+                </div>
+                <div class="objection-body">
+                    <div class="response-block">
+                        <div class="response-label call">📞 On a call</div>
+                        <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                        <div class="response-text">
+                            "Absolutely — and honestly, a lot of people do for a while. Then life gets busy. Kids have soccer, it rains for a week, you work late... and suddenly your yard's a minefield. Most of my customers started as DIYers. What got them was the <em>time</em> — about 45 minutes a week between finding it, bagging it, and getting it to the trash. That's almost <em>40 hours a year</em> you could spend with your family, walking the dogs, literally anything else. For about $3.50 a day, you never think about it again."
+                        </div>
+                    </div>
+                    <div class="response-block">
+                        <div class="response-label text">💬 Via text</div>
+                        <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                        <div class="response-text">
+                            "Totally get it! Most of my customers started that way too. It's about 45min/week and 40 hrs/year of scooping. For $3.50/day you get that time back + a yard your kids can actually run around in barefoot 😂 Want to try a free first cleanup?"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-header" onclick="toggleObjection(this)">
+                    <div class="objection-q">🚫 "Can you match their price?"</div>
+                    <div class="objection-toggle">▼</div>
+                </div>
+                <div class="objection-body">
+                    <div class="response-block">
+                        <div class="response-label call">📞 On a call</div>
+                        <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                        <div class="response-text">
+                            "I appreciate you asking — and honestly, I can't. If I dropped my price to match the franchises, I'd have to run more yards per day, which means less time in each yard, which means a worse job. I'd rather have fewer customers who get an amazing service than a ton of customers who get a mediocre one. That said, I do offer a <em>multi-dog discount</em> and a <em>referral credit</em> — and if you go biweekly instead of weekly, that drops the monthly cost too. But I won't cut corners to cut price."
+                        </div>
+                    </div>
+                    <div class="response-block">
+                        <div class="response-label text">💬 Via text</div>
+                        <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                        <div class="response-text">
+                            "I appreciate that! Honestly I can't match franchise prices — if I did I'd have to rush through yards to make it work, and that's not how I operate. I do have multi-dog discounts + referral credits though. And I always offer a free first cleanup so you can see the quality before committing 🐕✨"
+                        </div>
+                    </div>
+                    <div class="tip-box">
+                        <strong>⚠️ Never discount to match.</strong> You CAN offer: free first cleanup, referral credits ($10 off next service), multi-dog discounts, or biweekly option. These preserve your value while giving the prospect a win.
+                    </div>
+                </div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-header" onclick="toggleObjection(this)">
+                    <div class="objection-q">🚫 "Let me think about it" / "I'll get back to you"</div>
+                    <div class="objection-toggle">▼</div>
+                </div>
+                <div class="objection-body">
+                    <div class="response-block">
+                        <div class="response-label call">📞 On a call</div>
+                        <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                        <div class="response-text">
+                            "Totally understand — it's your money and you should feel good about it. Quick question though: is it the price specifically, or is there something else I can help answer? Sometimes people want to think about it and really they just have one more question. <em>[If price:]</em> Here's what I'd suggest — let me come do your first cleanup for free. No commitment. If you don't love it, you owe me nothing. That way you're comparing apples to apples instead of just numbers on a website."
+                        </div>
+                    </div>
+                    <div class="response-block">
+                        <div class="response-label text">💬 Follow-up text (send next day)</div>
+                        <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                        <div class="response-text">
+                            "Hey [Name]! Just following up — totally no pressure. I had a thought: what if I swing by and do your first cleanup free? Zero commitment. That way you can see exactly what you're getting before deciding. Spring's the best time to get ahead of it! 🐕"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="objection-card">
+                <div class="objection-header" onclick="toggleObjection(this)">
+                    <div class="objection-q">🚫 "I only have one small dog, it's not worth it"</div>
+                    <div class="objection-toggle">▼</div>
+                </div>
+                <div class="objection-body">
+                    <div class="response-block">
+                        <div class="response-label call">📞 On a call</div>
+                        <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                        <div class="response-text">
+                            "I get that! But here's what's surprising — even one small dog produces about <em>275 pounds of waste per year</em>. That's more than most people realize. And with one dog, it's actually trickier because the piles are smaller and harder to spot, so they build up in places you don't even see. A lot of my one-dog customers tell me they're shocked at what I find the first visit. At $25/week, that's less than a coffee a day to never worry about it."
+                        </div>
+                    </div>
+                    <div class="response-block">
+                        <div class="response-label text">💬 Via text</div>
+                        <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                        <div class="response-text">
+                            "Even one small pup makes ~275lbs of waste a year 😳 And the small ones are sneakier about where they go! I've had one-dog customers shocked at what I find on the first visit. It's less than a coffee a day to never think about it again ☕🐕"
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ TAB 2: VALUE CALCULATOR ═══════════ -->
+        <div class="tab-content" id="tab-value">
+
+            <h3 class="section-title">📊 Show Prospects What They're Really Paying For</h3>
+            <p style="color: var(--text2); font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                Use this during calls or in-person quotes. Walk them through the math — it reframes the conversation from "cost" to "investment."
+            </p>
+
+            <div class="value-calc">
+                <h4 style="font-weight: 700; margin-bottom: 1rem; color: var(--orange);">🔧 Customize for This Prospect</h4>
+
+                <div class="slider-group">
+                    <label>Number of dogs: <span id="dogCount">2</span></label>
+                    <input type="range" id="dogs" min="1" max="5" value="2" oninput="updateCalc()">
+                </div>
+                <div class="slider-group">
+                    <label>Estimated hourly wage: <span id="wageDisplay">$30</span></label>
+                    <input type="range" id="wage" min="15" max="75" value="30" step="5" oninput="updateCalc()">
+                </div>
+                <div class="slider-group">
+                    <label>Frequency: <span id="freqDisplay">Weekly</span></label>
+                    <input type="range" id="freq" min="1" max="2" value="1" oninput="updateCalc()">
+                </div>
+            </div>
+
+            <div class="value-calc">
+                <h4 style="font-weight: 700; margin-bottom: 1rem;">💰 The Real Math</h4>
+
+                <div class="calc-row">
+                    <div class="calc-label">DIY time per week</div>
+                    <div class="calc-value" id="diyTime">50 min</div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-label">Hours per year scooping</div>
+                    <div class="calc-value orange" id="yearHours">43 hrs</div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-label">Value of your time (per year)</div>
+                    <div class="calc-value orange" id="timeValue">$1,300</div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-label">Tidy Tails cost per year</div>
+                    <div class="calc-value" id="ttCost">$1,300</div>
+                </div>
+                <div class="calc-row" style="padding-top: 1rem;">
+                    <div class="calc-label" style="font-weight: 700; color: var(--text);">Net value to you per year</div>
+                    <div class="calc-value green" id="netValue" style="font-size: 1.2rem;">+$0</div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-label">Cost per day</div>
+                    <div class="calc-value green" id="perDay">$3.57</div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-label">Waste removed per year</div>
+                    <div class="calc-value yellow" id="wasteYear">550 lbs</div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; margin: 1rem 0;">
+                <div class="reframe-card">
+                    <div class="context">Less than a</div>
+                    <div class="big-num" id="coffeeCompare">☕</div>
+                    <div class="context">daily coffee</div>
+                </div>
+                <div class="reframe-card">
+                    <div class="context">Get back</div>
+                    <div class="big-num" id="weekendCompare" style="font-size: 1.8rem;">5+</div>
+                    <div class="context">full weekends/yr</div>
+                </div>
+                <div class="reframe-card">
+                    <div class="context">No more</div>
+                    <div class="big-num" style="font-size: 1.8rem;">🤢</div>
+                    <div class="context">shoe surprises</div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <strong>🎯 How to use this:</strong> On a call, say "Let me run some quick numbers for you..." and walk through the time value. For someone making $30/hr with 2 dogs, they're spending $1,300/year in TIME doing something they hate. Our service basically pays for itself.
+            </div>
+        </div>
+
+        <!-- ═══════════ TAB 3: BUDGET VS PREMIUM ═══════════ -->
+        <div class="tab-content" id="tab-compare">
+
+            <h3 class="section-title">⚖️ What "Cheaper" Actually Gets You</h3>
+            <p style="color: var(--text2); font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                Pull this up when a prospect is comparing you to POOP 911, Doggie Doodies, or any budget option.
+            </p>
+
+            <div class="compare-grid">
+                <div class="compare-col budget">
+                    <h3>❌ Budget Service ($50-85/mo)</h3>
+                    <div class="compare-item"><span class="icon">👤</span> Different technician each visit</div>
+                    <div class="compare-item"><span class="icon">🏃</span> Rush job — high volume model</div>
+                    <div class="compare-item"><span class="icon">📵</span> Hard to reach customer service</div>
+                    <div class="compare-item"><span class="icon">😶</span> No completion notifications</div>
+                    <div class="compare-item"><span class="icon">🗺️</span> Might miss hidden spots</div>
+                    <div class="compare-item"><span class="icon">📋</span> Cookie-cutter service</div>
+                    <div class="compare-item"><span class="icon">⏰</span> Vague service windows</div>
+                    <div class="compare-item"><span class="icon">🔄</span> High employee turnover</div>
+                    <div class="compare-item"><span class="icon">🏢</span> Franchise/corporate owned</div>
+                    <div class="compare-item"><span class="icon">💬</span> "Call our 1-800 number"</div>
+                </div>
+                <div class="compare-col premium">
+                    <h3>✅ Tidy Tails ($108/mo)</h3>
+                    <div class="compare-item"><span class="icon">👨‍💼</span> Same person (TJ) every time</div>
+                    <div class="compare-item"><span class="icon">🔍</span> Thorough — full property walk</div>
+                    <div class="compare-item"><span class="icon">📱</span> Text TJ directly anytime</div>
+                    <div class="compare-item"><span class="icon">📸</span> Completion photo every visit</div>
+                    <div class="compare-item"><span class="icon">🐕</span> Knows your dogs by name</div>
+                    <div class="compare-item"><span class="icon">✨</span> Personalized to your yard</div>
+                    <div class="compare-item"><span class="icon">📅</span> Consistent day and time</div>
+                    <div class="compare-item"><span class="icon">💯</span> Owner's reputation on the line</div>
+                    <div class="compare-item"><span class="icon">🏠</span> Local, St. Louis owned</div>
+                    <div class="compare-item"><span class="icon">💬</span> "Hey TJ, quick question..."</div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 1.5rem;">
+                <div class="card-title">💡 The Difference in Dollar Terms</div>
+                <div class="calc-row">
+                    <div class="calc-label">Monthly premium over cheapest (POOP 911)</div>
+                    <div class="calc-value" style="color: var(--text);">+$56/mo</div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-label">Daily premium</div>
+                    <div class="calc-value green">$1.87/day</div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-label">Monthly premium over Doggie Doodies</div>
+                    <div class="calc-value" style="color: var(--text);">+$25/mo</div>
+                </div>
+                <div class="calc-row">
+                    <div class="calc-label">Daily premium</div>
+                    <div class="calc-value green">$0.83/day</div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <strong>🗣️ The one-liner:</strong> "For less than a dollar a day more, you get the owner in your yard every time instead of whoever showed up that day."
+            </div>
+
+            <h3 class="section-title">📈 Why Premium Wins Long-Term</h3>
+
+            <div class="card">
+                <div class="response-text" style="font-size: 0.85rem; line-height: 1.7;">
+                    <p><strong>1. Budget customers churn.</strong> The #1 reason people cancel pet waste service is inconsistency — missed visits, poor quality, can't reach anyone. That's exactly what budget services produce. You don't have that problem.</p>
+                    <br>
+                    <p><strong>2. Premium customers refer.</strong> People who value quality talk about it. Your best marketing channel is word-of-mouth from happy customers who feel they're getting a premium experience.</p>
+                    <br>
+                    <p><strong>3. The math works.</strong> At $25/week you need 25 customers for ~$2,500/month. At $12/week (POOP 911 price) you'd need 52 customers for the same revenue. Half the customers = half the drive time, half the wear on your truck, and way more time to deliver great service.</p>
+                    <br>
+                    <p><strong>4. Owner-operated is the moat.</strong> POOP 911 and Doggie Doodies literally cannot offer what you offer — one person, every time, who cares. As they scale, they get LESS personal. As you scale (up to your capacity), you maintain it.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ TAB 4: CLOSING FRAMEWORK ═══════════ -->
+        <div class="tab-content" id="tab-closing">
+
+            <h3 class="section-title">🤝 The 5-Step Premium Close</h3>
+            <p style="color: var(--text2); font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                Use this framework for every prospect conversation. It naturally guides them from curiosity to commitment without ever feeling pushy.
+            </p>
+
+            <div class="closing-framework">
+                <div class="step">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <div class="step-title">Connect — Learn About Their Dogs</div>
+                        <div class="step-desc">Start with the dogs, not the service. Names, breeds, how many, how long they've had them. This builds rapport AND gives you info for the quote.</div>
+                        <div class="step-script">
+                            <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                            "Tell me about your pups! How many do you have, and are they mostly using the backyard?"
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <div class="step-title">Discover — Find Their Pain Point</div>
+                        <div class="step-desc">Everyone has a specific trigger that made them look you up. Find it. It's your closing ammo.</div>
+                        <div class="step-script">
+                            <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                            "What made you start looking into this? Was it just getting behind on it, or did something specific happen?" <em>[Common answers: stepped in it, kids can't play outside, having a party, just tired of doing it]</em>
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <div class="step-title">Differentiate — Plant the Owner-Operated Seed</div>
+                        <div class="step-desc">Don't trash competitors. Just casually mention what makes you different. Let them connect the dots.</div>
+                        <div class="step-script">
+                            <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                            "So here's how I work — I'm the owner and I do every single cleanup myself. No crews, no rotation. I'll be in your yard every [DAY] around the same time. When I'm done I text you a photo so you know it's handled. Most people tell me that consistency is what they were missing."
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">4</div>
+                    <div class="step-content">
+                        <div class="step-title">Quote — Price with Confidence</div>
+                        <div class="step-desc">State the price clearly, then immediately reframe it. Never pause awkwardly after saying the number.</div>
+                        <div class="step-script">
+                            <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                            "For [X] dogs on a weekly schedule, it's $[PRICE] per visit. That works out to about $[DAILY] a day — less than a coffee — and you literally never think about poop again. I also do a free first cleanup so you can see exactly what you're getting."
+                        </div>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-num">5</div>
+                    <div class="step-content">
+                        <div class="step-title">Close — Free First Cleanup</div>
+                        <div class="step-desc">The free first cleanup is your secret weapon. It removes ALL risk. Use it every single time.</div>
+                        <div class="step-script">
+                            <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                            "Here's what I'd suggest — let me come out and do your first cleanup free. You see the quality, you see how I communicate, and if you love it we get you on the schedule. If not, your yard's clean and you owe me nothing. Sound good? What day works best?"
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tip-box">
+                <strong>🔑 Key insight:</strong> "What day works best?" is an assumptive close — you're not asking IF, you're asking WHEN. This works because the free cleanup already removed the risk. There's literally no reason to say no.
+            </div>
+
+            <h3 class="section-title">⚡ Quick Closes for Common Scenarios</h3>
+
+            <div class="card">
+                <div class="card-title">🏠 At Their Door (Canvassing)</div>
+                <div class="response-block">
+                    <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                    <div class="response-text">
+                        "Hey! I'm TJ with Tidy Tails — I do pet waste cleanup around [NEIGHBORHOOD]. I noticed you've got a pup! [Chat about dog briefly.] I'm offering a free first cleanup for your neighbors. Takes about 15 minutes and your yard'll be spotless. Can I swing by [DAY]?"
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">💬 Text Inquiry (Lead Responds to Ad)</div>
+                <div class="response-block">
+                    <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                    <div class="response-text">
+                        "Hey [Name]! Thanks for reaching out 🐕 Quick question — how many pups do you have and what area are you in? I'll get you a quick quote!"
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-title">📞 Cold Call (From Leads List)</div>
+                <div class="response-block">
+                    <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                    <div class="response-text">
+                        "Hi, is this [Name]? Hey, I'm TJ with Tidy Tails — we do pet waste cleanup in [AREA]. I know this is kind of a random call, but I'm expanding my routes in your neighborhood and wanted to offer a free first cleanup to a few homes. Do you happen to have any dogs?"
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════ TAB 5: TEXT TEMPLATES ═══════════ -->
+        <div class="tab-content" id="tab-texts">
+
+            <h3 class="section-title">💬 Copy-Paste Text Templates</h3>
+            <p style="color: var(--text2); font-size: 0.85rem; margin-bottom: 1.5rem; line-height: 1.5;">
+                Ready to send. Just fill in [brackets]. Every template ends with a question to keep the conversation going.
+            </p>
+
+            <h4 style="color: var(--orange); font-size: 0.9rem; font-weight: 700; margin: 1.5rem 0 0.75rem;">📨 First Response to Inquiry</h4>
+
+            <div class="text-template">
+                <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                Hey [Name]! Thanks for reaching out about Tidy Tails 🐕 I'm TJ, the owner — I do all the cleanups myself so you always get the same person and the same quality. Quick q: how many pups do you have?
+            </div>
+
+            <h4 style="color: var(--orange); font-size: 0.9rem; font-weight: 700; margin: 1.5rem 0 0.75rem;">💰 Quote Delivery</h4>
+
+            <div class="text-template">
+                <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                Hey [Name]! So for [X] dogs on a weekly schedule, it's $[PRICE]/visit. That's about $[DAILY]/day to never think about poop again 😂 I always do the first cleanup free so you can see the quality before committing. Want me to swing by [DAY]?
+            </div>
+
+            <h4 style="color: var(--orange); font-size: 0.9rem; font-weight: 700; margin: 1.5rem 0 0.75rem;">🔄 Follow-Up (No Response After 2 Days)</h4>
+
+            <div class="text-template">
+                <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                Hey [Name]! Just checking back in — no pressure at all. The offer for a free first cleanup still stands whenever you're ready. Spring's a great time to get caught up! 🌱🐕
+            </div>
+
+            <h4 style="color: var(--orange); font-size: 0.9rem; font-weight: 700; margin: 1.5rem 0 0.75rem;">🔄 Follow-Up #2 (5 Days, Last Touch)</h4>
+
+            <div class="text-template">
+                <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                Hey [Name]! Last nudge from me 😊 If you ever want to try a free cleanup, just text me. I'm in [AREA] every [DAY] so it's easy to add you. Have a great week! 🐕
+            </div>
+
+            <h4 style="color: var(--orange); font-size: 0.9rem; font-weight: 700; margin: 1.5rem 0 0.75rem;">⭐ After First Free Cleanup</h4>
+
+            <div class="text-template">
+                <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                Hey [Name]! Your yard is all clean 🐕✨ [Mention something specific — e.g., "found quite a few along the fence line!" or "Luna was supervising the whole time 😂"]. How does it look? If you want to keep it this way, I can get you on the weekly schedule starting [DAY]. Just let me know!
+            </div>
+
+            <h4 style="color: var(--orange); font-size: 0.9rem; font-weight: 700; margin: 1.5rem 0 0.75rem;">🎉 Welcome / First Paid Visit Confirmation</h4>
+
+            <div class="text-template">
+                <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                Awesome, you're all set! 🎉 I'll be by every [DAY] to keep things clean. You'll get a text with a photo when I'm done each visit. And you've got my number if you ever need anything. Welcome to Tidy Tails! 🐕💪
+            </div>
+
+            <h4 style="color: var(--orange); font-size: 0.9rem; font-weight: 700; margin: 1.5rem 0 0.75rem;">📣 Referral Ask (After 3+ Visits)</h4>
+
+            <div class="text-template">
+                <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                Hey [Name]! Hope [Dog names] are doing great 🐕 Quick favor — if you know any neighbors or friends with dogs who hate scooping, I'd love an intro. I'll give you $10 off your next visit for any referral that signs up. Just have them mention your name! 🙌
+            </div>
+
+            <h4 style="color: var(--orange); font-size: 0.9rem; font-weight: 700; margin: 1.5rem 0 0.75rem;">⭐ Google Review Ask</h4>
+
+            <div class="text-template">
+                <button class="copy-btn" onclick="copyResponse(this)">Copy</button>
+                Hey [Name]! Quick favor that would mean a lot — if you've been happy with the service, would you mind leaving a quick Google review? It really helps a small business like mine. Here's the link: [REVIEW LINK] Even just a sentence or two makes a huge difference. Thanks! 🙏
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 Texting rules:</strong> Keep it under 3 sentences when possible. Always end with a question OR a clear next step. Use emojis sparingly (1-2 per text). Sound like a real person, not a business. Never double-text — wait at least 2 days between follow-ups.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer">
+        <p>💰 Premium Pricing Toolkit — Built by Franklin for TJ | March 15, 2026</p>
+        <p style="margin-top: 0.5rem;">You're not expensive. You're worth it. 🐕</p>
+    </div>
+
+    <script>
+        // Tab navigation
+        document.querySelectorAll('.nav-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Objection accordion
+        function toggleObjection(header) {
+            const card = header.closest('.objection-card');
+            card.classList.toggle('open');
+        }
+
+        // Copy response
+        function copyResponse(btn) {
+            const block = btn.closest('.response-block, .text-template, .step-script');
+            const textEl = block.querySelector('.response-text') || block;
+            let text = textEl.innerText.replace('Copy', '').trim();
+            navigator.clipboard.writeText(text).then(() => {
+                btn.classList.add('copied');
+                btn.textContent = '✓ Copied';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    btn.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+
+        // Value calculator
+        function updateCalc() {
+            const dogs = parseInt(document.getElementById('dogs').value);
+            const wage = parseInt(document.getElementById('wage').value);
+            const freq = parseInt(document.getElementById('freq').value);
+
+            document.getElementById('dogCount').textContent = dogs;
+            document.getElementById('wageDisplay').textContent = '$' + wage;
+            document.getElementById('freqDisplay').textContent = freq === 1 ? 'Weekly' : 'Biweekly';
+
+            // Time calc: ~25 min base + 10 min per additional dog
+            const minPerWeek = 25 + (dogs - 1) * 12;
+            const hrsPerYear = (minPerWeek * 52) / 60;
+            const timeValueYear = hrsPerYear * wage;
+
+            // Price: $25/visit for 1 dog, +$5 per additional dog
+            const pricePerVisit = 25 + (dogs - 1) * 5;
+            const visitsPerYear = freq === 1 ? 52 : 26;
+            const ttCostYear = pricePerVisit * visitsPerYear;
+            const perDay = ttCostYear / 365;
+
+            const netValue = timeValueYear - ttCostYear;
+            const wastePerDog = 275; // lbs/year
+
+            document.getElementById('diyTime').textContent = minPerWeek + ' min';
+            document.getElementById('yearHours').textContent = Math.round(hrsPerYear) + ' hrs';
+            document.getElementById('timeValue').textContent = '$' + Math.round(timeValueYear).toLocaleString();
+            document.getElementById('ttCost').textContent = '$' + Math.round(ttCostYear).toLocaleString();
+            document.getElementById('netValue').textContent = (netValue >= 0 ? '+' : '') + '$' + Math.round(netValue).toLocaleString();
+            document.getElementById('netValue').className = 'calc-value ' + (netValue >= 0 ? 'green' : 'orange');
+            document.getElementById('perDay').textContent = '$' + perDay.toFixed(2);
+            document.getElementById('wasteYear').textContent = (dogs * wastePerDog).toLocaleString() + ' lbs';
+        }
+
+        // Initial calc
+        updateCalc();
+    </script>
+</body>
+</html>
