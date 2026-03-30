@@ -2,6 +2,40 @@
 
 ---
 
+### Monday 3:04 PM — St. Charles, MO Dedicated Blog Post (Hourly Task)
+- **3:04 PM** 🏛️ Wrote and published dedicated blog post for St. Charles, MO — the county seat with three zip codes and zero dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-st-charles-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-st-charles-mo`
+  - **Why this task:** With 38 blog posts live covering all St. Charles County cities (O'Fallon ✅, St. Peters ✅, Wentzville ✅) plus the county umbrella post — St. Charles CITY (the county seat) had ZERO dedicated editorial coverage. Anyone searching "pooper scooper St. Charles MO" or "dog poop pickup 63301" would land on the St. Charles County umbrella post, not a city-specific page. St. Charles has three distinct zip codes (63301 Historic Main Street area, 63303 South/Mid Rivers corridor, 63304 West St. Charles/Cottleville border) — each with different neighborhood character and dog owner profiles. A dedicated post with city-specific signals outranks the umbrella county post for city-specific queries.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in St. Charles, MO — Flat Rate. No Contracts. We Text Before Every Visit. All three zip codes covered — 63301, 63303, and 63304."
+    - **Stats row:** $70/month flat, 0 contracts, 63301 · 63303 · 63304 full coverage, 5★ Local Owner
+    - **6-area neighborhood grid:** Historic Main Street / Downtown (63301), Frenchtown / Mid-City (63301), South St. Charles / Droste Rd Corridor (63303), Mid Rivers / Cave Springs Area (63303), West St. Charles / Cottleville Border (63304), "Not sure? Text your address"
+    - **All three zips callout:** Same $70/month flat rate for 63301, 63303, and 63304 — no zip surcharges
+    - **5 reasons St. Charles dog owners call us:** County seat with no dominant local scooper, commuter households, Missouri winter accumulation, multi-dog flat rate math, "On My Way" text nobody else does
+    - **St. Charles Dog Math callout:** 300 deposits/dog/year, 3-4 month Missouri winter = 75-90 surfacing in March, two dogs = 150-180 piles, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300), all three St. Charles zips coverage
+    - **Savings callout:** $96-460 cheaper per year vs national franchise
+    - **Two testimonials:** Lisa M. (63303, 2 dogs, kids in yard), Brandon K. (63301, 1 dog, travels M-Th for work, appreciates texts)
+    - **St. Charles-specific sections:** Post-winter spring cleanup, Historic/older home gate access, HOA neighborhoods (west side/Cottleville border), multi-dog households, dog-friendly river trail culture, pre-listing cleanup
+    - **Is it worth it? decision guide** — yes/no cases covered
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in St. Charles?", "How much?", "All three zips including 63303 and 63304?", "Need to be home?", "Spring cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with St. Charles, O'Fallon, St. Peters, Wentzville, Cottleville, Lake St. Louis, Dardenne Prairie in areaServed + geo coordinates (38.7881, -90.4974)
+  - **Target keywords:** "pooper scooper St. Charles MO", "dog poop pickup St. Charles", "pet waste removal St. Charles Missouri", "pooper scooper 63301", "pooper scooper 63303", "pooper scooper 63304", "dog waste service St. Charles"
+  - **Cross-links:**
+    - `blog/pooper-scooper-st-charles-county-missouri.html`: Added "📍 St. Charles City Dedicated Guide →" as FIRST item in Related Guides sidebar (above O'Fallon, Wentzville, St. Peters)
+    - `st-charles.html` city page: Added "📍 ST. CHARLES DEDICATED GUIDE" as green-bordered featured article card (first in Related Articles)
+    - `blog/index.html`: Added St. Charles as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 72 total URLs, 39 blog posts
+  - **Blog count: 39 posts total** ✅
+  - Committed + pushed to both tidytails-dashboard (586b518c) AND tidytails-website (8af69e7) → Cloudflare Pages ✅
+
+---
+
+---
+
 ### Sunday 7:04 PM — Clayton, MO Dedicated Blog Post (Hourly Task)
 - **7:04 PM** 🏙️ Wrote and published dedicated blog post for Clayton, MO — the crown jewel of Central County and the last major city in the service area without a dedicated editorial post
   - **File:** `tidy-tails/website/blog/pooper-scooper-clayton-mo.html`
