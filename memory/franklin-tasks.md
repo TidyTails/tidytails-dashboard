@@ -2,6 +2,38 @@
 
 ---
 
+### Monday 1:04 AM — Brentwood, MO Dedicated Blog Post (Hourly Task)
+- **1:04 AM** 🏡 Wrote and published dedicated blog post for Brentwood, MO — the last major Central County city without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-brentwood-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-brentwood-mo`
+  - **Why this task:** It's 1:04 AM on Monday March 30 — NC-1 Launch Day. 42 blog posts live. All 4 named North County campaign cities have dedicated posts (Florissant ✅, Hazelwood ✅, Ferguson ✅, Bridgeton ✅). The Central County city cluster got waves of coverage last night: Maplewood ✅ (11 PM), Creve Coeur ✅ (10 PM), Ladue ✅ (9 PM), University City ✅ (8 PM), Clayton ✅ (7 PM). But Brentwood — 63144, adjacent to Clayton (63105) and Maplewood (63143), with its own city page but zero long-form editorial blog coverage — was the last named Central County city in the gap. Anyone searching "pooper scooper Brentwood MO" or "dog poop pickup 63144" would land on the umbrella Central County post, not a dedicated result. Closed that gap.
+  - **What's in the post (~2,600 words, 42KB):**
+    - **Hero:** "Weekly Dog Poop Pickup in Brentwood, MO — Flat Rate. No Contracts. We Text Before Every Visit. Local STL Owner — Not a Franchise."
+    - **Stats row:** $70/month flat, 0 contracts, 63144 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Brentwood Core / Eager Road Corridor, Near Maplewood / Manchester Ave Border, Near Clayton / North Brentwood, Near Richmond Heights / West Side, Residential Streets / Older Neighborhoods, "Text Your Address"
+    - **Full 63144 callout:** All of Brentwood — same flat price, no neighborhood surcharges
+    - **5 reasons Brentwood dog owners call us:** One flat price (no small yard discount games), dual-income commuter households, compact yards accumulate fast, "On My Way" text nobody else sends, gate access on mid-century homes
+    - **Brentwood Dog Math callout:** 300 deposits/dog/year, two dogs + STL winter = 150+ surfacing in March, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300)
+    - **Two testimonials:** Sarah K. (Brentwood 63144, 2 dogs, "On My Way" text sold her), Marcus T. (Brentwood, 1 dog, spring cleanup convert)
+    - **Brentwood-specific sections:** Post-winter spring cleanup, compact yard management, pre-listing home cleanup (realtor angle), gate access on mid-century homes, multi-dog flat rate math
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Brentwood?", "How much?", "All neighborhoods including near Manchester and Clayton?", "Need to be home?", "Spring cleanup only?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Brentwood, Maplewood, Clayton, Richmond Heights, Shrewsbury, Webster Groves, University City, Ladue in areaServed + geo coordinates (38.6195, -90.3493)
+  - **Target keywords:** "pooper scooper Brentwood MO", "dog poop pickup Brentwood", "pet waste removal Brentwood Missouri", "pooper scooper 63144", "dog waste service Brentwood", "pooper scooper near me Brentwood"
+  - **Cross-links:**
+    - `blog/pooper-scooper-central-county-st-louis.html`: Added "📍 Brentwood Dedicated Guide →" as FIRST item in Related Articles sidebar (above Maplewood, Ladue, University City, Clayton)
+    - `brentwood.html` city page: Added "📍 BRENTWOOD POOPER SCOOPER GUIDE" as green-bordered featured article card (first in Related Articles)
+    - `blog/index.html`: Added Brentwood as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 43 blog posts total
+  - **Blog count: 43 posts total** ✅
+  - Committed + pushed to both tidytails-dashboard (90e9fd35) AND tidytails-website (3798b52) → Cloudflare Pages ✅
+
+---
+
+---
+
 ### Monday 12:06 AM — Maryland Heights, MO Dedicated Blog Post (Hourly Task)
 - **12:06 AM** 🏙️ Wrote and published dedicated blog post for Maryland Heights, MO — the only major North County city in the service area with zero dedicated editorial coverage on NC Launch Day
   - **File:** `tidy-tails/website/blog/pooper-scooper-maryland-heights-mo.html`
