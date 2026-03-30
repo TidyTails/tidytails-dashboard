@@ -1,20 +1,21 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-26 08:00 CST — Franklin*
+*Last updated: 2026-03-30 08:00 CST — Franklin*
 
 ---
 
 ## 🐕 DOG WASTE (Tidy Tails)
 
 ### Current State
-- **Customers:** 10 recurring ✅ (TJ confirmed Mar 26)
-- **Revenue:** ~$850-900/month estimated
+- **Customers:** 11 recurring ✅ (TJ confirmed Mar 29 — up from 10!)
+- **Revenue:** ~$900-950/month estimated
 - **Goal:** 25-30 recurring (original Aug 2025, now targeting 20 by June 2026)
 - **GBP:** Near-complete ✅ (Mar 25) — TJ confirmed
 - **Google Reviews:** 6 at 5.0★ — Map Pack eligible ✅
 - **Google Indexed:** ✅ (since Mar 18)
-- **Website:** 22 city pages + 11 blog posts live, SSL valid until May 17
-- **Competitors:** Only 3 active local competitors remain (market collapse)
+- **Website:** 25+ city pages + 18 blog posts live, SSL valid until May 17
+- **Competitors:** Only 3-4 active local competitors remain (market collapse)
+- **Monday Mar 30:** North County week begins — zero competitors in Florissant/Hazelwood/Ferguson
 
 ### 🔥 #1 Priority: GET MORE CUSTOMERS
 Everything else is noise until customer count moves.
@@ -38,15 +39,15 @@ Everything else is noise until customer count moves.
 - [x] 4 county SEO blog posts deployed live (N/S/W/Central — Mar 28)
 - [x] 18 blog posts total indexed
 
-### 📝 TJ/Jamie Action Items (ranked by ROI)
-1. **🔥🔥 SATURDAY MAR 28: Crestwood Vet Paw-ty** — Print materials, bring lead tracker, follow up aggressively
-2. **🔥 Post in 2-3 FB groups this week** — Fresh posts ready: `ready-to-post/spring-2026-week-of-mar26.md` (5 min each)
-3. **🔥 Post on Nextdoor** — TJ already posting ✅ — keep consistent cadence
-4. **Submit to 5 directories** (45 min) — Bing Places, Apple Business Connect, MapQuest, Petworks, BringFido
-5. **Get 2 more Google reviews** (5 min) — Goal: 8+ reviews. Scripts ready.
-6. **Launch $7/day Facebook Ads** — Foundation is now ready (GBP done, reviews done, site indexed)
-7. **Make 3 commercial calls** — Jamie's Hot 10 playbook ready
-8. **Start referral asks** — Referral engine dashboard ready, 10 customers to ask
+### 📝 TJ/Jamie Action Items — Week of Mar 30 (ranked by ROI)
+1. **🔥🔥 PAW-TY FOLLOW-UPS DUE TODAY** — Text/call everyone from Saturday. Dashboard: `dashboard/pawty-followup-engine.html`. First 48h = highest conversion window.
+2. **🔥 North County FB posts — TODAY** — Post NC-1 in Florissant groups NOW. File: `ready-to-post/north-county-conquest-week-mar30.md`. Zero competitors. This is the goldmine.
+3. **🔥 Monday Nextdoor post** — `ready-to-post/tidy-tails-mar31-apr6/mon-nextdoor-spring-reminder.txt` — copy/paste, 60 seconds
+4. **Submit to 5 directories** (45 min) — Bing Places, Apple Business Connect, MapQuest, Petworks, BringFido. Still zero beyond GBP/Yelp.
+5. **Get 2 more Google reviews** (5 min) — Goal: 8+. Scripts ready. Ask your best 3 existing customers.
+6. **Launch $7/day Facebook Ads** — Full launch pack ready: `dashboard/fb-ad-launch-pack-mar30.html`. Monday is launch day.
+7. **Make 3 commercial calls** — Jamie's Hot 10 playbook ready. 73 leads, 0 called yet.
+8. **Start referral asks** — 11 customers on record. Referral engine ready. Ask 2-3 this week.
 
 ### ✅ Website Issues (ALL RESOLVED)
 - ~~5 city pages generic titles~~ → FIXED ✅ (deployed Mar 26, GSC indexing requested)
