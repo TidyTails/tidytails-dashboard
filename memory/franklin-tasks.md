@@ -2,6 +2,42 @@
 
 ---
 
+### Sunday 10:07 PM — Creve Coeur, MO Dedicated Blog Post (Hourly Task)
+- **10:07 PM** 🏡 Wrote and published dedicated blog post for Creve Coeur, MO — the last major West County city without dedicated editorial blog coverage, closing out the West County content map the night before the NC campaign launches
+  - **File:** `tidy-tails/website/blog/pooper-scooper-creve-coeur-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-creve-coeur-mo`
+  - **Why this task:** With 39 blog posts live covering all county umbrellas (North/South/West/Central/St. Charles) and all major cities in those counties, Creve Coeur was the last named city in the West County service area without a dedicated editorial post. A `creve-coeur.html` city page existed but zero long-form blog content. Creve Coeur (63141/63146) sits between Chesterfield and Clayton/Ladue — it's one of the more affluent municipalities in the metro, with professional households, landscaping crews, and multi-dog properties. Anyone searching "pooper scooper Creve Coeur MO" or "dog poop pickup 63141" would land on the generic West County umbrella post — not a dedicated result. With the North County campaign launching tomorrow (March 30), West County secondary spillover searches need to resolve to dedicated city pages. Creve Coeur was the gap.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Creve Coeur, MO — Flat Rate. No Contracts. We Text Before Every Visit. Local Owner — Not a Franchise."
+    - **Stats row:** $70/month flat, 0 contracts, 63141 & 63146 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Creve Coeur Lake Area / North CC (63141), Conway Rd / Central CC (63141), Ladue Rd / South CC (63141), Clayton Rd / East CC (63146), Near Town & Country / West Border, "Text Your Address"
+    - **Both zips callout:** 63141 and 63146 — same flat $70/month, no zip surcharges
+    - **5 reasons Creve Coeur dog owners use Tidy Tails:** Professional households/commuters, landscaper coordination (at no extra charge), large lots same flat price, post-winter spring reveal, "On My Way" text nobody else does
+    - **Creve Coeur Dog Math callout:** 300 deposits/dog/year, Missouri winter = 3-4 months accumulation, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **"On My Way" text callout:** No other service in Creve Coeur or surrounding area does this consistently
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — including Landscaper Coordination column, annual cost ($840 vs $936-1,300)
+    - **Two testimonials:** Karen H. (63141 Conway Rd, 2 dogs, landscaper coordination), David M. (63146 Clayton Rd corridor, 3 dogs, switched from franchise)
+    - **Creve Coeur-specific sections:** Landscaper coordination (standard for the market), post-winter spring cleanup, large lot management, pre-listing cleanup (realtor angle), gate access on older homes, multi-dog flat rate math
+    - **Is it worth it? decision guide** — yes/no cases covered
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Creve Coeur?", "How much?", "All of Creve Coeur including 63146?", "Need to be home?", "Can you coordinate with my landscaper?", "Spring cleanup?", "Contracts?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Creve Coeur, Chesterfield, Town and Country, Ladue, Olivette, Maryland Heights, Ballwin, Wildwood in areaServed + geo coordinates (38.6606, -90.4474)
+  - **Target keywords:** "pooper scooper Creve Coeur MO", "dog poop pickup Creve Coeur", "pet waste removal Creve Coeur Missouri", "pooper scooper 63141", "pooper scooper 63146", "dog waste service Creve Coeur", "pooper scooper near me Creve Coeur"
+  - **Cross-links:**
+    - `blog/pooper-scooper-west-county-st-louis.html`: Added "📍 Creve Coeur Dedicated Guide →" as FIRST item in Related Articles sidebar (newest entry)
+    - `creve-coeur.html` city page: Added "📍 CREVE COEUR POOPER SCOOPER GUIDE" as green-bordered featured article card (first in Related Articles)
+    - `blog/index.html`: Added Creve Coeur as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9)
+  - **Blog count: 40 posts total** ✅
+  - **Why Creve Coeur at 10 PM:** All major city dedicated posts are now in place — every named West County city has a dedicated editorial page. Chesterfield ✅ Ballwin ✅ Wildwood ✅ Creve Coeur ✅ (now). The landscaper coordination angle is particularly strong in Creve Coeur — it's a real differentiator that competitors without flat-rate pricing and relationship-based scheduling can't easily replicate. The Clayton Road / 63146 coverage callout specifically prevents the "do you even serve my neighborhood?" confusion that kills conversions. Compounds forever.
+  - Committed + pushed to both tidytails-dashboard (e41b4167) AND tidytails-website (ba6a291) → Cloudflare Pages ✅
+
+---
+
+
+---
+
 ### Sunday 9:04 PM — Ladue, MO Dedicated Blog Post (Hourly Task)
 - **9:04 PM** 🏡 Wrote and published dedicated blog post for Ladue, MO — one of Missouri's wealthiest municipalities and the last major Central County city without dedicated editorial coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-ladue-mo.html`
