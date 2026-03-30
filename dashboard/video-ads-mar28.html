@@ -19,7 +19,7 @@
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--dark); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-  
+
   header {
     background: linear-gradient(135deg, #0f4c1e 0%, #1e293b 100%);
     border-bottom: 1px solid var(--green);
@@ -40,7 +40,7 @@
   h1 { font-size: 28px; font-weight: 800; color: #fff; }
   h1 span { color: var(--green); }
   .subtitle { color: var(--muted); font-size: 14px; margin-top: 6px; }
-  
+
   .stats-bar {
     display: flex;
     gap: 24px;
@@ -52,7 +52,7 @@
   .stat { text-align: center; }
   .stat-val { font-size: 22px; font-weight: 800; color: var(--green); }
   .stat-lbl { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
-  
+
   .alert {
     margin: 20px 32px;
     background: rgba(34, 197, 94, 0.1);
@@ -63,26 +63,45 @@
     color: #86efac;
   }
   .alert strong { color: var(--green); }
-  
-  .container { max-width: 1400px; margin: 0 auto; padding: 24px 32px; }
-  
+
+  .container { max-width: 960px; margin: 0 auto; padding: 24px 32px; }
+
   .section-title {
     font-size: 18px;
     font-weight: 700;
     color: var(--text);
-    margin-bottom: 20px;
+    margin-bottom: 16px;
     display: flex;
     align-items: center;
     gap: 8px;
   }
-  
-  .video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-    gap: 24px;
+
+  /* ── ACCORDION STYLES ── */
+  .accordion-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .ctrl-btn {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .ctrl-btn:hover { background: rgba(255,255,255,0.12); color: var(--text); }
+
+  .video-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
     margin-bottom: 40px;
   }
-  
+
   .video-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -90,17 +109,32 @@
     overflow: hidden;
   }
   .video-card.pass { border-color: var(--green); }
-  .video-card.processing { border-color: var(--amber); }
-  
+
+  /* Header row — always visible, acts as toggle */
   .video-header {
     padding: 16px 20px;
-    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+    gap: 12px;
   }
-  .video-name { font-size: 16px; font-weight: 700; }
+  .video-header:hover { background: rgba(255,255,255,0.03); }
+  .video-header-left { display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0; }
+  .video-thumb {
+    width: 52px;
+    height: 52px;
+    border-radius: 8px;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid var(--border);
+    background: #000;
+  }
+  .video-title-block { min-width: 0; }
+  .video-name { font-size: 15px; font-weight: 700; }
   .video-concept { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .video-header-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
   .qa-badge {
     display: inline-flex;
     align-items: center;
@@ -112,11 +146,26 @@
     white-space: nowrap;
   }
   .qa-pass { background: rgba(34, 197, 94, 0.15); color: var(--green); border: 1px solid var(--green); }
-  .qa-processing { background: rgba(245, 158, 11, 0.15); color: var(--amber); border: 1px solid var(--amber); }
-  
+  .toggle-icon {
+    font-size: 18px;
+    color: var(--muted);
+    transition: transform 0.25s ease;
+    width: 22px;
+    text-align: center;
+  }
+  .video-card.open .toggle-icon { transform: rotate(180deg); }
+
+  /* Expandable body */
+  .video-body {
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.35s ease;
+  }
+  .video-card.open .video-body { max-height: 900px; }
+
   .video-player {
     background: #000;
-    padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -124,41 +173,23 @@
   .video-player video {
     width: 100%;
     display: block;
-    border-radius: 0;
+    max-height: 420px;
   }
-  .video-placeholder {
-    height: 240px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 8px;
-    color: var(--muted);
-    font-size: 13px;
-    background: rgba(245, 158, 11, 0.05);
-  }
-  .spinner {
-    width: 32px;
-    height: 32px;
-    border: 3px solid var(--border);
-    border-top-color: var(--amber);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  
+
   .video-meta {
-    padding: 16px 20px;
+    padding: 14px 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
+    border-top: 1px solid var(--border);
   }
-  .meta-item { }
   .meta-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); }
   .meta-val { font-size: 13px; font-weight: 600; color: var(--text); margin-top: 2px; }
-  
+
   .qa-checklist {
-    padding: 0 20px 16px;
+    padding: 0 20px 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
   }
   .qa-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 8px; }
   .qa-item {
@@ -169,14 +200,14 @@
     color: var(--text);
     padding: 3px 0;
   }
-  .qa-item .pass-icon { color: var(--green); font-size: 14px; }
-  .qa-item .fail-icon { color: var(--red); font-size: 14px; }
-  
+  .pass-icon { color: var(--green); font-size: 14px; }
+
   .action-buttons {
     display: flex;
     gap: 8px;
-    padding: 0 20px 16px;
+    padding: 12px 20px 16px;
     flex-wrap: wrap;
+    border-top: 1px solid var(--border);
   }
   .btn {
     display: inline-flex;
@@ -193,9 +224,8 @@
   }
   .btn:hover { opacity: 0.8; }
   .btn-green { background: var(--green); color: #000; }
-  .btn-blue { background: var(--blue); color: #fff; }
   .btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
-  
+
   .pipeline-card {
     background: var(--card);
     border: 1px solid var(--border);
@@ -222,7 +252,7 @@
   }
   .pipe-step .pipe-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
   .pipe-arrow { color: var(--muted); font-size: 18px; }
-  
+
   .usage-card {
     background: rgba(245, 158, 11, 0.05);
     border: 1px solid rgba(245, 158, 11, 0.3);
@@ -234,7 +264,7 @@
   .usage-items { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
   .usage-item { font-size: 12px; color: var(--muted); }
   .usage-item strong { color: var(--text); }
-  
+
   .next-steps {
     background: var(--card);
     border: 1px solid var(--border);
@@ -266,13 +296,21 @@
     flex-shrink: 0;
     margin-top: 1px;
   }
-  
+
   footer {
     text-align: center;
     padding: 24px;
     color: var(--muted);
     font-size: 12px;
     border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 600px) {
+    .container { padding: 16px; }
+    header { padding: 16px; }
+    .stats-bar { padding: 12px 16px; gap: 16px; }
+    .alert { margin: 12px 16px; }
+    .qa-badge { display: none; }
   }
 </style>
 </head>
@@ -285,221 +323,178 @@
 </header>
 
 <div class="stats-bar">
-  <div class="stat">
-    <div class="stat-val">3</div>
-    <div class="stat-lbl">Videos Generated</div>
-  </div>
-  <div class="stat">
-    <div class="stat-val">2</div>
-    <div class="stat-lbl">QA ✅ PASS</div>
-  </div>
-  <div class="stat">
-    <div class="stat-val">1</div>
-    <div class="stat-lbl">Regen (face rule)</div>
-  </div>
-  <div class="stat">
-    <div class="stat-val">5.1s</div>
-    <div class="stat-lbl">Each Clip</div>
-  </div>
-  <div class="stat">
-    <div class="stat-val">960px</div>
-    <div class="stat-lbl">Square Format</div>
-  </div>
-  <div class="stat">
-    <div class="stat-val">62</div>
-    <div class="stat-lbl">Days Dormant (broken ✅)</div>
-  </div>
+  <div class="stat"><div class="stat-val">3</div><div class="stat-lbl">Videos Generated</div></div>
+  <div class="stat"><div class="stat-val">2</div><div class="stat-lbl">QA ✅ PASS</div></div>
+  <div class="stat"><div class="stat-val">1</div><div class="stat-lbl">Regen (face rule)</div></div>
+  <div class="stat"><div class="stat-val">5.1s</div><div class="stat-lbl">Each Clip</div></div>
+  <div class="stat"><div class="stat-val">960px</div><div class="stat-lbl">Square Format</div></div>
+  <div class="stat"><div class="stat-val">62</div><div class="stat-lbl">Days Dormant (fixed ✅)</div></div>
 </div>
 
 <div class="container">
-  
+
   <div class="alert">
-    <strong>🔥 VIDEO PIPELINE RESTORED</strong> — This was check #243's #1 critical issue. 62 consecutive overnight checks flagged zero video creative as the biggest bottleneck before FB Ads Monday launch. Today: 3 ads generated, 2 QA passed, Ad 1 regenerated per face-rule.
-    <br><br>
-    <strong>For FB Ads Monday (Mar 30):</strong> Use Ad 2 (Window View) and Ad 3 (The Count) in the image-to-video format. These cleared QA. Ad 1 replacement loading — all 3 ready for ad set testing.
+    <strong>🔥 VIDEO PIPELINE RESTORED</strong> — All 3 ads generated, QA passed. Use <strong>Ad 2 (Window View)</strong> and <strong>Ad 3 (The Count)</strong> for FB Ads Monday launch. Tap any row below to expand.
   </div>
 
   <div class="pipeline-card">
     <div class="pipeline-title">🔧 Pipeline: Doeboy → Basquiat</div>
     <div class="pipeline-steps">
-      <div class="pipe-step">
-        <div class="pipe-label">Step 1 — Doeboy</div>
-        3 Cinematic Prompts
-      </div>
+      <div class="pipe-step"><div class="pipe-label">Step 1 — Doeboy</div>3 Cinematic Prompts</div>
       <div class="pipe-arrow">→</div>
-      <div class="pipe-step">
-        <div class="pipe-label">Step 2 — Basquiat</div>
-        Nano Banana (Image)
-      </div>
+      <div class="pipe-step"><div class="pipe-label">Step 2 — Basquiat</div>Nano Banana (Image)</div>
       <div class="pipe-arrow">→</div>
-      <div class="pipe-step">
-        <div class="pipe-label">Step 3 — Basquiat</div>
-        Kling v1 Standard (Video)
-      </div>
+      <div class="pipe-step"><div class="pipe-label">Step 3 — Basquiat</div>Kling v1 Standard (Video)</div>
       <div class="pipe-arrow">→</div>
-      <div class="pipe-step">
-        <div class="pipe-label">Step 4 — Basquiat</div>
-        ffmpeg + Ambient Audio
-      </div>
+      <div class="pipe-step"><div class="pipe-label">Step 4 — Basquiat</div>ffmpeg + Ambient Audio</div>
       <div class="pipe-arrow">→</div>
-      <div class="pipe-step">
-        <div class="pipe-label">Step 5 — QA Gate</div>
-        Face/Text/Grass Check
-      </div>
+      <div class="pipe-step"><div class="pipe-label">Step 5 — QA Gate</div>Face/Text/Grass Check</div>
     </div>
   </div>
 
   <h2 class="section-title">📹 Video Ads</h2>
 
-  <div class="video-grid">
-
-    <!-- AD 2: Window View — PASS -->
-    <div class="video-card pass">
-      <div class="video-header">
-        <div>
-          <div class="video-name">🐕 The Window View</div>
-          <div class="video-concept">"Let them back outside."</div>
-        </div>
-        <span class="qa-badge qa-pass">✅ QA PASS</span>
-      </div>
-      <div class="video-player">
-        <video controls playsinline loop muted>
-          <source src="videos/ad2_window_view_final.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="video-meta">
-        <div class="meta-item">
-          <div class="meta-label">Format</div>
-          <div class="meta-val">960×960 Square (FB/IG)</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Duration</div>
-          <div class="meta-val">5.1s + Audio</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">File Size</div>
-          <div class="meta-val">7.3 MB</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Concept</div>
-          <div class="meta-val">Emotional dog POV</div>
-        </div>
-      </div>
-      <div class="qa-checklist">
-        <div class="qa-title">QA Gate</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> No distorted human faces</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Dog from behind only (no close face)</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Grass color consistent</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> No mangled text on objects</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Audio present</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Story clear (dog wants out, yard has poop)</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Correct endpoint (Kling v1 Standard)</div>
-      </div>
-      <div class="action-buttons">
-        <a href="videos/ad2_window_view_final.mp4" class="btn btn-green" download>⬇️ Download</a>
-        <a href="videos/ad2_window_view_frame.jpg" class="btn btn-outline" download>🖼️ Keyframe</a>
-      </div>
-    </div>
-
-    <!-- AD 3: The Count — PASS -->
-    <div class="video-card pass">
-      <div class="video-header">
-        <div>
-          <div class="video-name">🧹 The Count</div>
-          <div class="video-concept">"3 dogs. 7 days. We got every one."</div>
-        </div>
-        <span class="qa-badge qa-pass">✅ QA PASS</span>
-      </div>
-      <div class="video-player">
-        <video controls playsinline loop muted>
-          <source src="videos/ad3_before_after_final.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="video-meta">
-        <div class="meta-item">
-          <div class="meta-label">Format</div>
-          <div class="meta-val">960×960 Square (FB/IG)</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Duration</div>
-          <div class="meta-val">5.1s + Audio</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">File Size</div>
-          <div class="meta-val">6.3 MB</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Concept</div>
-          <div class="meta-val">Before/After + Worker</div>
-        </div>
-      </div>
-      <div class="qa-checklist">
-        <div class="qa-title">QA Gate</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Worker seen from behind only (no face)</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Clear before/after yard split</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Grass color consistent</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> No mangled text</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Audio present</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Story crystal clear (messy → professional)</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Correct endpoint (Kling v1 Standard)</div>
-      </div>
-      <div class="action-buttons">
-        <a href="videos/ad3_before_after_final.mp4" class="btn btn-green" download>⬇️ Download</a>
-        <a href="videos/ad3_before_after_frame.jpg" class="btn btn-outline" download>🖼️ Keyframe</a>
-      </div>
-    </div>
-
-    <!-- AD 1: Barefoot v2 — Processing -->
-    <div class="video-card pass" id="ad1-card">
-      <div class="video-header">
-        <div>
-          <div class="video-name">🦶 The Barefoot Test (v2)</div>
-          <div class="video-concept">"Would you walk barefoot in YOUR yard?"</div>
-        </div>
-        <span class="qa-badge qa-pass" id="ad1-badge">✅ QA PASS</span>
-      </div>
-      <div class="video-player">
-        <video controls playsinline loop muted>
-          <source src="videos/ad1_barefoot_final.mp4" type="video/mp4">
-        </video>
-      </div>
-      <div class="video-meta">
-        <div class="meta-item">
-          <div class="meta-label">Format</div>
-          <div class="meta-val">960×960 Square</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">Iteration</div>
-          <div class="meta-val">v2 — Pure yard shot</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">v1 Issue</div>
-          <div class="meta-val">Child face visible → Regenerated</div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-label">v2 Fix</div>
-          <div class="meta-val">No humans/animals</div>
-        </div>
-      </div>
-      <div class="qa-checklist">
-        <div class="qa-title">QA Gate — v2</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> No people in frame</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Clean backyard with poop visible</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Grass consistent, natural green</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> No text/objects in frame</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Audio present</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> v1 face violation fixed</div>
-        <div class="qa-item"><span class="pass-icon">✅</span> Correct endpoint (Kling v1 Standard)</div>
-      </div>
-      <div class="action-buttons">
-        <a href="videos/ad1_barefoot_final.mp4" class="btn btn-green" download>⬇️ Download v2</a>
-        <a href="videos/ad1_barefoot_v2_frame.jpg" class="btn btn-outline" download>🖼️ Keyframe v2</a>
-      </div>
-    </div>
-
+  <div class="accordion-controls">
+    <button class="ctrl-btn" onclick="expandAll()">▼ Expand All</button>
+    <button class="ctrl-btn" onclick="collapseAll()">▲ Collapse All</button>
   </div>
 
-  <!-- Usage Costs -->
+  <div class="video-accordion">
+
+    <!-- AD 2: Window View — open by default -->
+    <div class="video-card pass open" id="card-ad2">
+      <div class="video-header" onclick="toggleCard('card-ad2')">
+        <div class="video-header-left">
+          <img class="video-thumb" src="videos/ad2_window_view_thumb.jpg" alt="Window View thumbnail">
+          <div class="video-title-block">
+            <div class="video-name">🐕 The Window View</div>
+            <div class="video-concept">"Let them back outside."</div>
+          </div>
+        </div>
+        <div class="video-header-right">
+          <span class="qa-badge qa-pass">✅ QA PASS</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+      </div>
+      <div class="video-body">
+        <div class="video-player">
+          <video controls playsinline loop muted>
+            <source src="videos/ad2_window_view_final.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-meta">
+          <div class="meta-item"><div class="meta-label">Format</div><div class="meta-val">960×960 Square (FB/IG)</div></div>
+          <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-val">5.1s + Audio</div></div>
+          <div class="meta-item"><div class="meta-label">File Size</div><div class="meta-val">7.3 MB</div></div>
+          <div class="meta-item"><div class="meta-label">Concept</div><div class="meta-val">Emotional dog POV</div></div>
+        </div>
+        <div class="qa-checklist">
+          <div class="qa-title">QA Gate</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> No distorted human faces</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Dog from behind only (no close face)</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Grass color consistent</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> No mangled text on objects</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Audio present</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Story clear (dog wants out, yard has poop)</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Correct endpoint (Kling v1 Standard)</div>
+        </div>
+        <div class="action-buttons">
+          <a href="videos/ad2_window_view_final.mp4" class="btn btn-green" download>⬇️ Download</a>
+          <a href="videos/ad2_window_view_frame.jpg" class="btn btn-outline" download>🖼️ Keyframe</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- AD 3: The Count — collapsed by default -->
+    <div class="video-card pass" id="card-ad3">
+      <div class="video-header" onclick="toggleCard('card-ad3')">
+        <div class="video-header-left">
+          <img class="video-thumb" src="videos/ad3_before_after_thumb.jpg" alt="The Count thumbnail">
+          <div class="video-title-block">
+            <div class="video-name">🧹 The Count</div>
+            <div class="video-concept">"3 dogs. 7 days. We got every one."</div>
+          </div>
+        </div>
+        <div class="video-header-right">
+          <span class="qa-badge qa-pass">✅ QA PASS</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+      </div>
+      <div class="video-body">
+        <div class="video-player">
+          <video controls playsinline loop muted>
+            <source src="videos/ad3_before_after_final.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-meta">
+          <div class="meta-item"><div class="meta-label">Format</div><div class="meta-val">960×960 Square (FB/IG)</div></div>
+          <div class="meta-item"><div class="meta-label">Duration</div><div class="meta-val">5.1s + Audio</div></div>
+          <div class="meta-item"><div class="meta-label">File Size</div><div class="meta-val">6.3 MB</div></div>
+          <div class="meta-item"><div class="meta-label">Concept</div><div class="meta-val">Before/After + Worker</div></div>
+        </div>
+        <div class="qa-checklist">
+          <div class="qa-title">QA Gate</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Worker seen from behind only (no face)</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Clear before/after yard split</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Grass color consistent</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> No mangled text</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Audio present</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Story crystal clear (messy → professional)</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Correct endpoint (Kling v1 Standard)</div>
+        </div>
+        <div class="action-buttons">
+          <a href="videos/ad3_before_after_final.mp4" class="btn btn-green" download>⬇️ Download</a>
+          <a href="videos/ad3_before_after_frame.jpg" class="btn btn-outline" download>🖼️ Keyframe</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- AD 1: Barefoot v2 — collapsed by default -->
+    <div class="video-card pass" id="card-ad1">
+      <div class="video-header" onclick="toggleCard('card-ad1')">
+        <div class="video-header-left">
+          <img class="video-thumb" src="videos/ad1_barefoot_thumb.jpg" alt="Barefoot Test thumbnail">
+          <div class="video-title-block">
+            <div class="video-name">🦶 The Barefoot Test (v2)</div>
+            <div class="video-concept">"Would you walk barefoot in YOUR yard?"</div>
+          </div>
+        </div>
+        <div class="video-header-right">
+          <span class="qa-badge qa-pass">✅ QA PASS</span>
+          <span class="toggle-icon">▼</span>
+        </div>
+      </div>
+      <div class="video-body">
+        <div class="video-player">
+          <video controls playsinline loop muted>
+            <source src="videos/ad1_barefoot_final.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-meta">
+          <div class="meta-item"><div class="meta-label">Format</div><div class="meta-val">960×960 Square</div></div>
+          <div class="meta-item"><div class="meta-label">Iteration</div><div class="meta-val">v2 — Pure yard shot</div></div>
+          <div class="meta-item"><div class="meta-label">v1 Issue</div><div class="meta-val">Child face visible → Regenerated</div></div>
+          <div class="meta-item"><div class="meta-label">v2 Fix</div><div class="meta-val">No humans/animals</div></div>
+        </div>
+        <div class="qa-checklist">
+          <div class="qa-title">QA Gate — v2</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> No people in frame</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Clean backyard with poop visible</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Grass consistent, natural green</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> No text/objects in frame</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Audio present</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> v1 face violation fixed</div>
+          <div class="qa-item"><span class="pass-icon">✅</span> Correct endpoint (Kling v1 Standard)</div>
+        </div>
+        <div class="action-buttons">
+          <a href="videos/ad1_barefoot_final.mp4" class="btn btn-green" download>⬇️ Download v2</a>
+          <a href="videos/ad1_barefoot_v2_frame.jpg" class="btn btn-outline" download>🖼️ Keyframe v2</a>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /video-accordion -->
+
   <div class="usage-card">
     <div class="usage-title">💸 Cost Breakdown (Estimated)</div>
     <div class="usage-items">
@@ -510,7 +505,6 @@
     </div>
   </div>
 
-  <!-- Next Steps -->
   <div class="next-steps">
     <h3 class="section-title">🚀 What To Do With These — Monday Launch</h3>
     <ul class="step-list">
@@ -520,19 +514,19 @@
       </li>
       <li>
         <span class="step-num">2</span>
-        <div><strong>Add captions in FB Ads Manager</strong> — "Would you walk barefoot?" / "Let them back outside." / "3 dogs, 7 days, 42 piles. We got every one." Short text overlays drive up retention 2x on mobile (silent autoplay).</div>
+        <div><strong>Add captions in FB Ads Manager</strong> — "Would you walk barefoot?" / "Let them back outside." / "3 dogs, 7 days, 42 piles. We got every one." Short text overlays drive up retention 2x on mobile.</div>
       </li>
       <li>
         <span class="step-num">3</span>
-        <div><strong>Use the keyframe images as static ad backup</strong> — Even if video underperforms Week 1, the keyframe images (especially Window View dog and before/after) work as standalone image ads in the same ad set.</div>
+        <div><strong>Use keyframe images as static ad backup</strong> — Even if video underperforms Week 1, the keyframe images work as standalone image ads in the same ad set.</div>
       </li>
       <li>
         <span class="step-num">4</span>
-        <div><strong>Post Ad 3 (The Count) as organic content</strong> — "3 dogs, 7 days, 42 piles. We got every one." works on Facebook, Instagram, and Nextdoor right now, before the ad set launches. Warm up the algorithm.</div>
+        <div><strong>Post Ad 3 (The Count) as organic content</strong> — "3 dogs, 7 days, 42 piles. We got every one." works on Facebook, Instagram, and Nextdoor right now, before the ad set launches.</div>
       </li>
       <li>
         <span class="step-num">5</span>
-        <div><strong>Film a 15-sec iPhone video</strong> next service — With this AI pipeline now proven and running, the next step is: real iPhone footage of TJ/Jamie doing a real service yard walk → runs through same Kling pipeline for authentic-AI hybrid creative.</div>
+        <div><strong>Film a 15-sec iPhone video</strong> next service — Real footage + this AI pipeline = authentic-AI hybrid creative for the next batch.</div>
       </li>
     </ul>
   </div>
@@ -543,6 +537,19 @@
   Generated by Franklin (Basquiat video pipeline) — March 28, 2026 4:40 PM CST<br>
   Pipeline: Doeboy prompts → Nano Banana v2 images → Kling v1 Standard 5-sec clips → ffmpeg ambient audio → QA gate
 </footer>
+
+<script>
+  function toggleCard(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+  function expandAll() {
+    document.querySelectorAll('.video-card').forEach(c => c.classList.add('open'));
+  }
+  function collapseAll() {
+    document.querySelectorAll('.video-card').forEach(c => c.classList.remove('open'));
+  }
+</script>
 
 </body>
 </html>
