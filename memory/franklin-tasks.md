@@ -2,6 +2,40 @@
 
 ---
 
+### Monday 3:04 AM — Pre-Launch Day Critical Fixes (Hourly Task)
+- **3:04 AM** 🚨 Fixed 2 critical issues blocking Monday's 8 AM FB Ads launch — both were flagged by Chief Oversight but had not been resolved
+  - **Why this task:** It's 3 AM on Launch Day — FB Ads fire at 8-9 AM, North County posts at 8:30 AM. Chief check #260 (2:03 AM) flagged two unresolved CRITICAL issues that would have degraded or broken the launch:
+
+  **Issue 1 — spring.html WRONG PRICING (issue-019) ✅ RESOLVED:**
+  - `spring.html` is the FB Ads landing page. It showed `$25/visit` (weekly), `$45/visit` (biweekly), `$70/visit` (monthly) — completely wrong pricing that contradicts every blog post, the NC conquest posts, and TJ's verbal pitch
+  - A prospect clicking the FB ad, seeing "$70/month flat" in the ad copy, landing on a page showing "$25/visit" would immediately bail thinking we were bait-and-switching
+  - **Fix:** Replaced all 4 pricing cards with correct flat monthly rates:
+    - Weekly 1-2 dogs: **$70/mo** ("That's just $2.30 a day")
+    - Weekly 3-4 dogs: **$80/mo** ("Still a flat monthly rate")
+    - Bi-weekly: $45/visit (correct as-is)
+    - One-time: $75+ (corrected from $100)
+  - Also fixed Twitter meta description ("from $25/visit" → "from $70/month flat")
+  - Also fixed FAQ mention of "$75/mo" → "$70/mo"
+  - **Pushed to both repos:** `tidy-tails/website` (dashboard repo, commit `0b44fe80`) + `/tmp/tidytails-website` (Cloudflare Pages repo, commit `a1c390c`) → live on tidytailsstl.com ✅
+
+  **Issue 2 — VIDEO AD CAPTIONS MISSING (issue-003) ✅ RESOLVED:**
+  - 3 video ads (Barefoot Test, Window View, The Count) had been production-ready since Mar 28 but had no caption scripts for FB's silent autoplay — Chief rated them 37/60 without captions (DO NOT SHIP)
+  - 85% of Facebook video plays are silent — captions are the HOOK that communicates the message
+  - **Fix:** Added complete "📝 Caption Scripts" section to `dashboard/video-ads-mar28.html` with:
+    - **Per ad (all 3):** Primary Text, In-Video Caption Script (timestamped, 5-second format), Headline, Link Description
+    - **Copy buttons:** All 8 fields per ad have 1-click copy-to-clipboard buttons
+    - **8-step FB Ads Manager walkthrough:** Auto-generate → edit → paste scripts → set CTA button to /spring
+    - **Launch order:** Ad 2 (Window View) → Ad 3 (The Count) → Ad 1 (Barefoot) as A/B test Week 2
+  - **Caption scripts written (highlights):**
+    - Ad 2 (Window View): "Your dog is staring at that door for a reason." | "Let them back outside. 🐾" | Headline: "Let them back outside. First cleanup FREE."
+    - Ad 3 (The Count): "3 dogs. 7 days. 42 piles. We got every one. ✅" | "$70/mo flat. No contracts."
+    - Ad 1 (Barefoot): "Would you walk barefoot in YOUR yard?" | "300 deposits per dog. Per year." | "$2.30 a day to never deal with it again."
+  - **Chief status updated:** Both issue-003 and issue-019 marked `resolved` with resolution notes
+  - **Pushed:** Dashboard repo commit `0ee09d12` ✅
+  - **Impact of doing this at 3 AM:** TJ wakes up in ~4 hours to launch. He would have uploaded wrong-price landing page to $7/day ad spend and shipped 3 muted video ads with no caption text. This would have wasted the first day of the campaign and eroded the spring.html conversion rate. Fixed before he wakes up.
+
+---
+
 ### Monday 2:06 AM — St. Charles City, MO Dedicated Blog Post (Hourly Task)
 - **2:06 AM** 🏛️ Wrote and published dedicated blog post for St. Charles, MO — the county seat and only St. Charles County city with a city page but zero dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-st-charles-mo.html`
