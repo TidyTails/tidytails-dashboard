@@ -2026,3 +2026,38 @@
     - `sitemap.xml`: Added new URL (priority 0.9), 45 blog posts total
   - **Blog count: 45 posts total** ✅
   - Committed + pushed to both tidytails-dashboard (dc8b8976) AND tidytails-website (36dacbb) → Cloudflare Pages ✅
+
+---
+
+### Monday 12:09 PM — Town and Country, MO Dedicated Blog Post (Hourly Task)
+- **12:09 PM** 🏡 Wrote and published dedicated blog post for Town and Country, MO — the last named West County city without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-town-and-country-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-town-and-country-mo`
+  - **Why this task:** 12 PM Monday March 30 — NC-1 is live, 50 blog posts published. The blog audit showed every named city in North/South/Central/St. Charles County has a dedicated post. In West County: Chesterfield ✅, Ballwin ✅, Creve Coeur ✅, Wildwood ✅, Ladue ✅ — but Town and Country (63131), one of Missouri's wealthiest municipalities, had ZERO dedicated editorial coverage. The service-areas.html city pill linked to tel: instead of a blog post. Anyone in Town & Country who sees TJ's content and Googles "pooper scooper Town and Country MO" or "dog poop pickup 63131" would find nothing specific. Fixed it.
+  - **What's in the post (~49KB, ~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Town and Country, MO — Flat Rate. No Contracts. We Text Before Every Visit. Large lots welcome — same $70/month whether it's a half-acre or a full acre."
+    - **Stats row:** $70/month flat, 0 contracts, 63131 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Mason/Conway Road Corridor, Near Ladue Border, Kehrs Mill/Near Chesterfield, Des Peres/Greensfelder Area, Near Creve Coeur Border, "Text Your Address"
+    - **Key differentiators for this market:**
+      - **No yard-size surcharge** — Town and Country has some of the largest residential lots in St. Louis County; flat rate means this market is an especially good deal vs. per-acre competitors
+      - **Landscaper coordination included** — many T&C properties use regular lawn crews; we schedule before mowing day at no extra charge
+      - **"On My Way" text** — nobody else in West County does this consistently
+    - **5 reasons T&C dog owners call us:** Flat price on big lots, dual-income professional households, landscaper coordination built in, "On My Way" text, spring reveal on estate lots is overwhelming
+    - **T&C Dog Math callout:** 300 deposits/dog/year, Missouri winter = 3-4 months, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** includes "Flat Rate (no yard-size fee)" and "Landscaper Coordination" columns — we win on both
+    - **$96-$460 annual savings banner**
+    - **Two testimonials:** Karen H. (T&C 63131, 2 goldens, full acre, flat rate surprised her), David W. (3 dogs, landscaper scheduling was the selling point)
+    - **T&C-specific sections:** Landscaper coordination, large lot management (full grid sweep), post-winter spring cleanup, pre-listing cleanup, multi-dog flat rate math, gate/property access
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Town and Country?", "How much?", "Extra charge for large yards?", "Need to be home?", "Landscaper coordination?", "One-time spring cleanup?", "Contracts?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Town and Country, Chesterfield, Ladue, Creve Coeur, Ballwin, Wildwood, Ellisville, Des Peres in areaServed + geo coordinates (38.6340, -90.4651)
+  - **Target keywords:** "pooper scooper Town and Country MO", "dog poop pickup Town and Country", "pet waste removal Town and Country Missouri", "pooper scooper 63131", "dog waste service Town and Country"
+  - **Updates made:**
+    - `service-areas.html`: Town & Country city pill updated from `tel:+13148507140` → `/blog/pooper-scooper-town-and-country-mo` (+ `has-page` class)
+    - `blog/pooper-scooper-west-county-st-louis.html`: Added "📍 Town and Country Dedicated Guide →" as FIRST item in Related Articles sidebar
+    - `blog/index.html`: Added Town and Country as newest card (first in grid) + JSON-LD blogPost array entry
+    - `sitemap.xml`: Added new URL (priority 0.9), 51 blog posts total
+  - **Blog count: 51 posts total** ✅
+  - **Live confirmed:** HTTP 200 ✅, 63131 found in page content ✅
+  - Committed + pushed to both tidytails-dashboard (8c0f3b4a) AND tidytails-website (c784694) → Cloudflare Pages ✅
