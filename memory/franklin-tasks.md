@@ -2,6 +2,39 @@
 
 ---
 
+### Sunday 9:04 PM — Ladue, MO Dedicated Blog Post (Hourly Task)
+- **9:04 PM** 🏡 Wrote and published dedicated blog post for Ladue, MO — one of Missouri's wealthiest municipalities and the last major Central County city without dedicated editorial coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-ladue-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-ladue-mo`
+  - **Why this task:** With 38 blog posts live, all major city content gaps across North/South/West/St. Charles County covered, and the two newest Central County posts (Clayton at 7 PM, University City at 8 PM) complete — Ladue was the last named Central County city without dedicated editorial coverage. Ladue (63124) is one of the wealthiest municipalities in Missouri by per-capita income. Residents don't price-shop $70/month. The existing Central County umbrella post mentions it, but anyone searching "pooper scooper Ladue MO" or "dog poop pickup 63124" would land on a generic county post — not a dedicated 63124 result. City-specific posts consistently outrank umbrella county posts for city-specific queries. This post closes the gap.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Ladue, MO — Flat Rate. No Contracts. We Text Before Every Visit. Big yards welcome — same $70/month either way."
+    - **Stats row:** $70/month flat, 0 contracts, 63124 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** McKnight Rd / Core Ladue, Spoede Rd Corridor, Warson Rd / Price Rd, Near Creve Coeur Border, Near Town & Country Border, "Text Your Address"
+    - **Full 63124 callout:** Whether on McKnight, Spoede, near Clayton border, or near Town & Country — same flat price, no zone fees
+    - **5 reasons Ladue dog owners use Tidy Tails:** Larger lots flat rate advantage, professional households without time for Sunday yard detail, landscaper coordination included, yard presentation matters in Ladue, spring reveal on large lots
+    - **Ladue Dog Math callout:** 300 deposits/dog/year, two dogs + 3-4 month winter = 150-200 surfacing in March, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **"On My Way" text callout:** No other Central County service does this consistently
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — including Landscaper Coordination column and annual cost ($840 vs $936-1,300)
+    - **Two testimonials:** Karen H. (Ladue 63124, 2 goldens, half-acre, landscaper coordination), David M. (Ladue, 2 dogs, flat-rate finding)
+    - **Ladue-specific sections:** Large lots no extra charge, gate and access logistics, pre-listing cleanup (realtor angle), post-winter spring cleanup, multi-dog households
+    - **Is it worth it? decision guide** — yes/no/one-time cases covered honestly
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Ladue?", "How much?", "All of Ladue including larger lots near Town & Country?", "Need to be home?", "Landscaper coordination?", "Spring cleanup?", "Contracts?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Ladue, Clayton, University City, Creve Coeur, Town and Country, Olivette, Richmond Heights, Brentwood in areaServed + geo coordinates (38.6445, -90.3871)
+  - **Target keywords:** "pooper scooper Ladue MO", "dog poop pickup Ladue", "pet waste removal Ladue Missouri", "pooper scooper 63124", "dog waste service Ladue", "pooper scooper near me Ladue"
+  - **Cross-links:**
+    - `blog/pooper-scooper-central-county-st-louis.html`: Added "📍 Ladue Dedicated Guide →" as FIRST item in Related Articles sidebar (before Clayton, before University City)
+    - `blog/index.html`: Added Ladue as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 72 total URLs, 39 blog posts
+  - **Blog count: 39 posts total** ✅
+  - Committed + pushed to both tidytails-dashboard (d0220f21) AND tidytails-website (50638cf) → Cloudflare Pages ✅
+
+---
+
+---
+
 ### Sunday 7:04 PM — Clayton, MO Dedicated Blog Post (Hourly Task)
 - **7:04 PM** 🏙️ Wrote and published dedicated blog post for Clayton, MO — the crown jewel of Central County and the last major city in the service area without a dedicated editorial post
   - **File:** `tidy-tails/website/blog/pooper-scooper-clayton-mo.html`
