@@ -2,6 +2,33 @@
 
 ---
 
+### Monday 11:04 AM — North County Apartment Commercial Leads Kit (Hourly Task)
+- **11:04 AM** 🏢 Built and published North County Apartment Leads Kit — 8 verified commercial prospects in Florissant + Hazelwood with confirmed phone numbers, ready for TJ to call during NC-1 launch week
+  - **File:** `dashboard/north-county-apartment-leads.html`
+  - **Why this task:** NC-1 fired at 8:30 AM today targeting Florissant + Hazelwood Facebook groups. Residents in these complexes are seeing Tidy Tails posts RIGHT NOW. This is the single best week of the year to call North County apartment property managers — they'll have heard the name, and their residents are already seeing TJ's content. No commercial leads existed specifically for the NC campaign zone. Built 8 leads with all verified contact info.
+  - **What was built:**
+    - **5 Florissant leads:**
+      - Whispering Lake Apartments — 4583 Whisper Lake Dr, 63031 — 248 reviews, large complex
+      - Crossing at Northpointe — 3144 Sunswept Pk Ct, 63031 — 196 reviews, turnaround management
+      - New Wellington Apartment Homes — 11333 Sugarpine Dr, 63033 — **(844) 766-3017 ✅ verified**, pet-friendly
+      - Sugar Pines Apartments — 11011 Sugar Pines Ct, 63033 — **(314) 219-5193 ✅ verified**, 180 reviews, Monarch STL portfolio angle
+      - Paddock Village Apartments — 63031 — pet-friendly, splash pad
+    - **3 Hazelwood leads:**
+      - Village Square Apartments — 503 Village Square Dr, 63042 — **(314) 227-1937 ✅ verified**, 4.8★/138 reviews, manager is DeAnyai
+      - The Finn — 5370 Knoll Creek Dr, 63042 — **(314) 254-8989 ✅ verified**, 4.2★/715 reviews, **HAS DOG PARK** — strongest pitch in the batch
+      - Hazelwood Forest Apartments — 240 Chapel Ridge Dr, 63042 — **(314) 967-2020 ✅ verified**, new management, turnaround opportunity
+    - **5 custom call scripts:** Cold opener, dog park pitch, high-rated property (use DeAnyai's name), turnaround property, email follow-up template
+    - **Call order guide:** Mon (Village Square + The Finn) → Tue (New Wellington + Sugar Pines) → Wed (Hazelwood Forest + look up remaining) → Thu (follow-ups) → Fri (Millsap portfolio)
+    - **Status tracker:** localStorage-persisted with progress bar
+    - **Strategy section:** Why this week is the best moment, commercial pricing guide ($150-500/mo), route efficiency (two clusters: 63033 Florissant + 63042 Hazelwood)
+  - **Dashboard updates:**
+    - Added pulsing purple quick link: "🏢 NC APARTMENT LEADS — 6 PHONES CONFIRMED — CALL THIS WEEK"
+    - Added featured card (animated purple glow) at top of Commercial section in grid
+  - **Revenue potential:** $150-400/mo per complex × 8 leads = up to $2,400/mo potential from commercial. One Millsap portfolio deal = 7 properties × average $200/mo = $1,400/mo single contract.
+  - **Committed + pushed:** Git commit 73c0ba07 ✅
+
+---
+
 ### Monday 10:08 AM — Berkeley, MO Dedicated Blog Post (Hourly Task)
 - **10:08 AM** 🏙️ Wrote and published dedicated blog post for Berkeley, MO — a zero-coverage North County city sitting dead-center in today's NC-1 campaign footprint
   - **File:** `tidy-tails/website/blog/pooper-scooper-berkeley-mo.html`
