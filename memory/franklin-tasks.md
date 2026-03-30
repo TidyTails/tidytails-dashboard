@@ -2,6 +2,40 @@
 
 ---
 
+### Monday 4:06 PM — Ladue, MO Dedicated Blog Post (Hourly Task)
+- **4:06 PM** 🏡 Wrote and published dedicated blog post for Ladue, MO — the highest-income zip in Missouri and the last major Central County gap without dedicated editorial coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-ladue-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-ladue-mo`
+  - **Why this task:** With Launch Day in full swing (North County FB campaign live, FB Ads running, vet blitz ongoing), all four Central County named cities were covered except Ladue. Clayton ✅ (yesterday). University City ✅ (yesterday). But Ladue — the highest per-capita income zip code in Missouri, home to estate-size properties, landscapers on every lawn, and dual-income professionals who buy on reliability not price — had zero dedicated editorial coverage. Anyone searching "pooper scooper Ladue MO" or "dog poop pickup 63124" would land on the Central County umbrella post, not a dedicated result. This is exactly the demographic who doesn't price-shop $70/month. They buy on trust, communication, and "you just show up without me having to think about it."
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Ladue, MO — Flat Rate. No Contracts. We Text Before Every Visit. Local Owner — Not a Franchise."
+    - **Stats row:** $70/month flat, 0 contracts, 63124 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Ladue Core / McKnight Rd, Clayton Road Corridor, Warson Road / River Des Peres, Near Frontenac / Creve Coeur Border, Olivette / Richmond Heights Border, "Text Your Address"
+    - **All of 63124 callout:** Flat $70/month whether you're on a half-acre wooded lot or a quarter-acre near the Clayton border — no yard size fees.
+    - **5 reasons Ladue homeowners use Tidy Tails:** Larger yards mean more accumulation (flat price doesn't change), busy professionals want it delegated, landscaper coordination (schedule before crew day), spring reveal on large wooded lots, "On My Way" text nobody else does
+    - **Ladue Dog Math callout:** 300 deposits/dog/year, two dogs on large lot + STL winter = 600 deposits, $2.30/day math
+    - **5-step service process** with emphasis on "On My Way" + "All Done" text
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300), flat rate (no yard size fee), landscaper coordination column (we win)
+    - **Annual savings callout:** $96-460 cheaper per year vs national franchise
+    - **Two testimonials:** Patricia M. (Ladue Core, 2 goldens, 3/4-acre, weekly service), Robert K. (Clayton Road Corridor, landscaper coordination every Thursday)
+    - **Ladue-specific sections:** Large wooded lots, landscaper coordination, estate gate access logistics, post-winter spring cleanup on large lots, pre-listing yard cleanup
+    - **Is it worth it? decision guide** — yes/no cases covered
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Ladue?", "How much?", "Do you cover large wooded lots?", "Need to be home?", "Spring cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Ladue, Clayton, Olivette, Creve Coeur, University City, Town and Country, Frontenac, Chesterfield in areaServed + geo coordinates (38.6426, -90.3817)
+  - **Target keywords:** "pooper scooper Ladue MO", "dog poop pickup Ladue", "pet waste removal Ladue Missouri", "pooper scooper 63124", "dog waste service Ladue", "pooper scooper near me Ladue"
+  - **Cross-links:**
+    - `blog/pooper-scooper-central-county-st-louis.html`: Added "📍 Ladue Dedicated Guide →" as FIRST item in Related Articles sidebar (above University City, above Clayton)
+    - `blog/index.html`: Added Ladue as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 74 total URLs, 40 blog posts
+  - **Blog count: 40 posts total** ✅
+  - **HTTP 200 confirmed** — site live, 43KB file ✅
+  - Committed + pushed to both tidytails-dashboard (8bb2a55e) AND tidytails-website (2133d5c) → Cloudflare Pages ✅
+
+---
+
+---
+
 ### Monday 3:04 PM — St. Charles, MO Dedicated Blog Post (Hourly Task)
 - **3:04 PM** 🏛️ Wrote and published dedicated blog post for St. Charles, MO — the county seat with three zip codes and zero dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-st-charles-mo.html`
