@@ -1,7 +1,7 @@
 # Poop 911 — Competitor Intel
 
 **URL:** https://www.poop911.com/
-**Last Captured:** 2026-03-23
+**Last Captured:** 2026-03-30
 **Threat Level:** 🔴 HIGH (national brand, NOW ACTIVE IN STL!)
 
 ---
