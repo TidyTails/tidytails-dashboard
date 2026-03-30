@@ -2,6 +2,42 @@
 
 ---
 
+### Monday 2:06 PM — Ellisville & Manchester Blog Post + Service-Areas City Pill Fixes (Hourly Task)
+- **2:06 PM** 🌳 Wrote and published dedicated blog post for Ellisville & Manchester, MO — the last named West County cities without dedicated editorial blog coverage — plus fixed 3 remaining `tel:` city pills in service-areas.html
+  - **File:** `tidy-tails/website/blog/pooper-scooper-ellisville-manchester-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-ellisville-manchester-mo`
+  - **Why this task:** 2 PM Monday March 30 — NC-1 fired at 8:30 AM, 53 blog posts live. Audit of `service-areas.html` showed 7 remaining city pills still pointing to `tel:+13148507140` instead of dedicated blog posts. Two of the most significant were Ellisville (63011) and Manchester (63011) — adjacent West County communities between Ballwin and Wildwood with active dog owner populations and ZERO dedicated editorial coverage. Oakville also had a dedicated post (mehlville-oakville) but the pill wasn't connected. This task: (1) wrote dedicated 34KB blog post for Ellisville + Manchester, (2) fixed Oakville pill, (3) fixed Ellisville + Manchester pills.
+  - **What's in the post (~2,600 words, 34KB):**
+    - **Hero:** "Dog Poop Pickup in Ellisville & Manchester, MO — Flat Rate. No Contracts. We Text Before Every Visit. Local STL Owner Serving All of West County."
+    - **Stats row:** $70/month flat, 0 contracts, Ellisville & Manchester covered, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Ellisville Core, Near Ballwin/Kehrs Mill, Manchester Core/Manchester Rd, Near Des Peres/South 63011, Near Wildwood/West 63011, "Text Your Address"
+    - **5 reasons these communities call us:** Nobody reliable has routes here, flat rate regardless of yard size, "On My Way" text nobody else does, dual-income households, multi-dog flat rate
+    - **West County Dog Math callout:** 300 deposits/dog/year, Missouri winter = 3-4 months accumulation, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300), flat rate (no yard surcharge), local owner
+    - **Landscaper coordination section:** West County has high landscaping service density — we schedule before mowing day at no extra charge
+    - **Two testimonials:** Sarah K. (Ellisville 63011, 2 dogs, consistent service), Brian W. (Manchester, 3 dogs, flat rate math)
+    - **6 situation cards:** Post-winter cleanup, larger yards flat rate, landscaper coordination, multi-dog flat rate, gate access on older homes, pre-listing cleanup
+    - **7-question FAQ** with FAQPage schema
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Ellisville, Manchester, Ballwin, Chesterfield, Wildwood, Des Peres, Clarkson Valley, Town and Country in areaServed + geo coordinates (38.5928, -90.5882)
+  - **Target keywords:** "pooper scooper Ellisville MO", "dog poop pickup Ellisville", "pooper scooper Manchester MO", "dog poop pickup Manchester", "pooper scooper 63011", "dog waste service Ellisville", "pooper scooper near me Ellisville"
+  - **service-areas.html fixes (3 pills):**
+    - `Oakville` → updated from `tel:` to `/blog/pooper-scooper-mehlville-oakville-mo` (+ `has-page` class) — had dedicated post but wasn't linked
+    - `Ellisville` → updated from `tel:` to `/blog/pooper-scooper-ellisville-manchester-mo` (+ `has-page` class)
+    - `Manchester` → updated from `tel:` to `/blog/pooper-scooper-ellisville-manchester-mo` (+ `has-page` class)
+    - Also fixed: `Mehlville` pill already had correct URL but was missing `has-page` class — fixed
+  - **Cross-links:**
+    - `blog/pooper-scooper-west-county-st-louis.html`: Added "📍 Ellisville & Manchester Dedicated Guide →" as FIRST item in Related Articles sidebar (above Town and Country)
+    - `blog/index.html`: Added Ellisville & Manchester as newest card (first in grid) + JSON-LD blogPost array entry
+    - `sitemap.xml`: Added new URL (priority 0.9), 54 blog posts total
+  - **Blog count: 54 posts total** ✅
+  - Committed + pushed to both tidytails-dashboard (0436acd6) AND tidytails-website (1db5eb4) → Cloudflare Pages ✅
+
+---
+
+---
+
 ### Monday 11:04 AM — North County Apartment Commercial Leads Kit (Hourly Task)
 - **11:04 AM** 🏢 Built and published North County Apartment Leads Kit — 8 verified commercial prospects in Florissant + Hazelwood with confirmed phone numbers, ready for TJ to call during NC-1 launch week
   - **File:** `dashboard/north-county-apartment-leads.html`
