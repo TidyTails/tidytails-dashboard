@@ -1777,3 +1777,33 @@
     - `sitemap.xml`: Added new URL (priority 0.9), 71 total URLs, 38 blog posts
   - **Blog count: 38 posts total** ✅
   - Committed + pushed to both tidytails-dashboard (60a3463f) AND tidytails-website (0bc1076) → Cloudflare Pages ✅
+
+---
+
+### Monday 4:07 AM — Sunset Hills, MO Dedicated Blog Post (Hourly Task)
+- **4:07 AM** 🌅 Wrote and published dedicated blog post for Sunset Hills, MO — the last named South County city in the active service area without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-sunset-hills-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-sunset-hills-mo`
+  - **Why this task:** 4 AM Monday, Launch Day (NC-1 fires at 8:30 AM). 44 blog posts live covering every county umbrella and 22+ dedicated city posts. But Sunset Hills — explicitly listed as a served city in `service-areas.html`, adjacent to the Paw-ty event city (Crestwood), and 100% of the 63128 zip code — had ZERO dedicated editorial blog coverage. The `service-areas.html` city pill previously linked to `tel:+13148507140` (phone number) rather than a dedicated blog post. Anyone who met TJ at the Crestwood Vet Paw-ty and Googles "pooper scooper Sunset Hills MO" or "dog poop pickup 63128" would find nothing dedicated — just the South County umbrella post at best. Closed that gap before Monday's campaigns fire.
+  - **What's in the post (~2,600 words, 46.6KB):**
+    - **Hero:** "Weekly Dog Poop Pickup in Sunset Hills, MO — Flat Rate, No Contracts, Texts Every Visit. Same flat $70/month whether your yard is a quarter-acre or a half-acre."
+    - **Stats row:** $70/month flat, 0 contracts, 63128 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Gravois Road Corridor, Sappington Road / Central 63128, Watson Road / North Sunset Hills, Near Laumeier / South 63128, Near Kirkwood / East 63128, "Text Your Address"
+    - **Key differentiator:** Flat rate regardless of yard size — Sunset Hills has larger lots than most of South County, and competing services often charge yard-size premiums. We don't.
+    - **5 reasons Sunset Hills dog owners call us:** Larger lots (flat rate advantage), professional households commuting to Clayton, landscaper coordination (built-in, no extra charge), multi-dog flat rate math, kids in the yard safety
+    - **Sunset Hills Dog Math callout:** 300 deposits/dog/year, 3-4 month Missouri winter, two dogs = 600 piles on a half-acre, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Includes "Flat Rate (no yard size fee)" column — we win, competitors often charge per-size
+    - **Two testimonials:** Linda K. (Gravois Rd, 2 dogs, half-acre, no size surcharge surprised her), Robert T. (Sappington, 1 dog, landscaper coordination sold him)
+    - **Specific Sunset Hills situations:** Large lot management (full grid every visit), pre-listing cleanup, landscaper coordination, gate access on established properties, spring cleanup after winter accumulation
+    - **7-question FAQ** with FAQPage schema including "Is the price the same for larger Sunset Hills properties?" — directly addresses the key objection for this market
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Sunset Hills, Crestwood, Kirkwood, Webster Groves, Affton, Mehlville, Shrewsbury, Oakville in areaServed + geo coordinates (38.5334, -90.4074)
+  - **Target keywords:** "pooper scooper Sunset Hills MO", "dog poop pickup Sunset Hills", "pet waste removal Sunset Hills Missouri", "pooper scooper 63128", "dog waste service Sunset Hills", "pooper scooper near me Sunset Hills"
+  - **Cross-links:**
+    - `blog/pooper-scooper-south-county-st-louis.html`: Added "📍 Sunset Hills Dedicated Guide →" as FIRST item in Related Articles sidebar (before Crestwood)
+    - `service-areas.html`: Sunset Hills city pill updated from `tel:+13148507140` → `/blog/pooper-scooper-sunset-hills-mo` (now links to dedicated page instead of phone)
+    - `blog/index.html`: Added Sunset Hills as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 45 blog posts total
+  - **Blog count: 45 posts total** ✅
+  - Committed + pushed to both tidytails-dashboard (dc8b8976) AND tidytails-website (36dacbb) → Cloudflare Pages ✅

@@ -386,6 +386,14 @@ Chief uses this to verify sync with dashboard.
 | 12:01 | Shed Ads Mar 29 | 🏠 Shed Sales | SHED_ADS_2026-03-29.pdf | ✅ |
 | 12:01 | Commercial Leads Mar 29 | 🐕 Jamie's Hub | COMMERCIAL_LEADS_2026-03-29.pdf | ✅ |
 
+## Upload Log — Mar 29, 2026 (late sync)
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 00:01 | Commercial Outreach Kit Mar 29 | 🐕 Jamie's Hub | COMMERCIAL-OUTREACH-KIT-2026-03-29.pdf | ✅ |
+| 00:01 | North County Commercial Blitz Mar 29 | 🐕 Jamie's Hub | NORTH_COUNTY_COMMERCIAL_BLITZ_2026-03-29.pdf | ✅ |
+| 00:01 | Shed Ads EOM Mar 29 | 🏠 Shed Sales | SHED_ADS_EOM_2026-03-29.pdf | ✅ |
+
 ## Upload Log — Mar 30, 2026
 
 | Time | File | Notion Folder | Dashboard Path | Status |
