@@ -1320,4 +1320,62 @@ Commercial pricing is different from residential. Here's what competitors charge
 
 ---
 
+## 🏙️ NEW LEADS BATCH — March 30, 2026 (9:00 AM) — Total: 95 leads
+
+### The Sanctuary Pet Resort ⭐ WEST COUNTY — BALLWIN
+- **Type:** Dog Boarding / Daycare / Grooming
+- **Address:** Ballwin / Ellisville area, MO 63011
+- **Phone:** Verify via Google listing
+- **Why Good Fit:** Independent luxury boarding/daycare in Ballwin — upscale West County clientele. Outdoor play yards generate daily waste. Client demographic = West County homeowners. Pairs with Parq at Chesterfield, ReNew Chesterfield, and Rover Oaks for a full West County route.
+- **Est. Monthly Value:** $200–$400 + referrals
+- **Found:** March 30, 2026
+- **Status:** New
+- **Pitch angle:** "Your dogs play outside all day — we handle outdoor waste removal so your staff can focus on the animals. Plus referral deal: boarding clients get 10% off their first month of yard cleanup at home."
+
+### Monarch at the Lakes ⭐⭐ LUXURY — ST. PETERS
+- **Type:** Luxury Apartment Complex with Dog Park + Walking Trails
+- **Address:** Mid Rivers area, St. Peters, MO 63376
+- **Contact:** Leasing Office
+- **Phone:** (636) 441-3200 (verify)
+- **Why Good Fit:** Large luxury apartment community in St. Peters with dedicated dog park and walking trails around lake. TJ already has customer (Preshus) in St. Peters. Luxury market = premium pricing accepted.
+- **Est. Monthly Value:** $250–$450/mo
+- **Found:** March 30, 2026
+- **Status:** New
+- **Pitch angle:** "We already service yards in St. Peters — your dog park and trail areas would fit right into our route. Professional weekly cleanup, one flat monthly rate, no contract."
+
+### Greater St. Louis Dog Show Club ⭐ STRATEGIC — EVENTS/SPONSORSHIP
+- **Type:** AKC-affiliated Dog Show / Events Organization
+- **Contact:** Via stlouiskennelclub.com or AKC affiliate network
+- **Website:** stlouiskennelclub.com
+- **Why Good Fit:** STL metro AKC dog shows draw hundreds of the most dedicated dog owners. Vendor booth or sponsorship = 50–100 leads per event. Zero local pooper scooper competitors attending. First mover wins the referral network.
+- **Est. Monthly Value:** Brand exposure → $500–$1,000 in residential leads per event
+- **Found:** March 30, 2026
+- **Status:** New
+- **Pitch angle:** "We'd love to sponsor or vendor at your upcoming events. Branded waste bags, special rate for attendees. Dog show folks talk — one great impression snowballs."
+
+### Waterford Crossing Apartments ⭐⭐ DOG PARK — O'FALLON
+- **Type:** Apartment Complex with Dog Park
+- **Address:** O'Fallon, MO 63366
+- **Contact:** Leasing Office
+- **Phone:** (636) 695-1200 (verify)
+- **Why Good Fit:** Large pet-friendly apartment community in O'Fallon with dedicated dog park. O'Fallon = St. Charles County's largest, fastest-growing suburb. Pairs with Westchester Village (O'Fallon) for dual-stop routing efficiency.
+- **Est. Monthly Value:** $250–$400/mo
+- **Found:** March 30, 2026
+- **Status:** New
+- **Pitch angle:** "We're building our O'Fallon route now. Professional dog park cleanup weekly — one flat monthly rate, zero contracts."
+
+### Midwest Veterinary Referral Center ⭐ VET REFERRAL — CHESTERFIELD
+- **Type:** Veterinary Specialist / Referral Center
+- **Address:** Chesterfield, MO 63017
+- **Contact:** Main Office
+- **Phone:** (636) 227-2600 (verify)
+- **Website:** mvrc-stl.com
+- **Why Good Fit:** Specialist vet in Chesterfield — serves the most dedicated dog owners in the metro. People who drive to a specialist WILL pay for yard cleanup. Fills remaining gap in West County vet referral network. Referral center clients come from all over STL metro.
+- **Est. Monthly Value:** Referral → $200–$400/mo in leads
+- **Found:** March 30, 2026
+- **Status:** New
+- **Pitch angle:** "Your clients love their dogs more than most — they drove across town to see a specialist. Cards at your front desk, 10% off first month for your patients' owners."
+
+---
+
 ## 📊 COMMERCIAL LEAD SUMMARY (Updated March 28, 2026 — 85 total leads)

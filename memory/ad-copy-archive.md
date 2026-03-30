@@ -114,6 +114,18 @@
 - Spring project checklist humor / cross it off
 - Dog owner stuff accumulation / pet gear overload
 
+## March 30, 2026 — 9 AM Daily (4 Ads)
+- **Shed-Mar186** — "The Tax Refund Sequel" — Tax refund reinvestment angle, adds home value, pays for itself in storage savings
+- **Shed-Mar187** — "The Carpool Lane" — Morning commute habit / car in driveway every day / garage has lost its identity
+- **Shed-Mar188** — "The Monday Upgrade" — "What it really becomes" use-case reframe with workshop/gym/office/man cave specifics
+- **Shed-Mar189** — "The Spring Monday PSA" — PSA format with 3-weekend transformation timeline (delivery → organized → park inside)
+
+## Hooks Used (March 30 9AM — don't repeat 2 weeks)
+- Tax refund reinvestment (new framing — not "spend your refund" but "invest it in home value")
+- Morning commute / car in driveway habit / garage identity loss
+- "What it really becomes" use-case reframe with specific examples per persona
+- 3-weekend transformation timeline (Weekend 1: delivered, Weekend 2: organized, Weekend 3: car inside)
+
 ## March 29, 2026 — 9 AM Daily (4 Ads)
 - **Shed-Mar182** — "The Sunday Visitor" — Easter/family gathering angle, garage disaster with company coming, no-pressure soft close
 - **Shed-Mar183** — "The April Price Check" — Tariff follow-up, lumber/steel prices, window closing, just math angle
