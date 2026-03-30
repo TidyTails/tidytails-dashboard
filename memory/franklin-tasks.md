@@ -2,6 +2,37 @@
 
 ---
 
+### Sunday 11:04 PM — Maplewood, MO Dedicated Blog Post (Hourly Task)
+- **11:04 PM** 🏘️ Wrote and published dedicated blog post for Maplewood, MO — the last major Central County city without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-maplewood-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-maplewood-mo`
+  - **Why this task:** With 40 blog posts live covering all county umbrellas and every major city in North/South/West/Central County, the last named Central County city without a dedicated editorial post was Maplewood (63143). Clayton ✅, Ladue ✅, University City ✅, Creve Coeur ✅ — but Maplewood, the hip inner-ring suburb with dense dog ownership, compact fenced yards, and a walkable community around Manchester Ave, had only a short-form `maplewood.html` city page. Anyone searching "pooper scooper Maplewood MO" or "dog poop pickup 63143" landed on the Central County umbrella post. The compact yard math angle (300sq ft fills up faster = more urgency, more value) is a unique angle not covered in any other Central County post. Closes the last named Central County gap at 11 PM the night before Monday's major campaign launch.
+  - **What's in the post (~2,600 words, 40KB):**
+    - **Hero:** "Weekly Dog Poop Pickup in Maplewood, MO — Flat Rate. No Contracts. We Text Before Every Visit."
+    - **Stats row:** $70/month flat, 0 contracts, all of 63143, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Manchester Ave Corridor, Sutton Ave / Near Brentwood, Near Richmond Heights border, Schiller / Greenwood Area, Near Webster Groves / Shrewsbury, "Text Your Address"
+    - **All of 63143 callout:** Same flat price everywhere in Maplewood, no zone fees
+    - **5 reasons Maplewood dog owners use Tidy Tails:** Compact yards fill up faster, Manchester scene means people actually use their yards, dual-income no-time households, old fence/gate quirks are normal for us, multi-dog households at flat rate
+    - **Maplewood Dog Math callout:** 300 deposits/dog/year in a 400sq ft yard = ~1 pile per 1.3 sq ft every week, two dogs = 600/year, $1.40 per cleanup math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **"On My Way" text callout:** No other service in Maplewood or Central County does this consistently
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300)
+    - **Two testimonials:** Meg R. (63143 near Manchester, 2 dogs, "On My Way" text sold her), Chris V. (south Maplewood, 1 dog, fence latch solved)
+    - **Maplewood-specific sections:** Post-winter spring cleanup, older home gate access (1940s-1960s chain-link), compact yard efficiency (flat price benefits urban yards), pre-listing cleanup, dog walker coordination
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Maplewood?", "How much?", "All neighborhoods including Manchester and Sutton?", "Need to be home?", "Spring cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Maplewood, Richmond Heights, Brentwood, Clayton, Webster Groves, Shrewsbury, Oakland, Kirkwood in areaServed + geo coordinates (38.6131, -90.3243)
+  - **Target keywords:** "pooper scooper Maplewood MO", "dog poop pickup Maplewood", "pet waste removal Maplewood Missouri", "pooper scooper 63143", "dog waste service Maplewood", "pooper scooper near me Maplewood"
+  - **Cross-links:**
+    - `blog/pooper-scooper-central-county-st-louis.html`: Added "📍 Maplewood Dedicated Guide →" as FIRST item in Related Articles sidebar (above Ladue, University City, Clayton)
+    - `maplewood.html` city page: Added "📍 MAPLEWOOD POOPER SCOOPER GUIDE" as green-bordered featured article card (first in Related Articles)
+    - `blog/index.html`: Added Maplewood as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 41 blog posts total
+  - **Blog count: 41 posts total** ✅
+  - Committed + pushed to both tidytails-dashboard (6dd0ad4a) AND tidytails-website (81e791d) → Cloudflare Pages ✅
+
+---
+
 ### Sunday 10:07 PM — Creve Coeur, MO Dedicated Blog Post (Hourly Task)
 - **10:07 PM** 🏡 Wrote and published dedicated blog post for Creve Coeur, MO — the last major West County city without dedicated editorial blog coverage, closing out the West County content map the night before the NC campaign launches
   - **File:** `tidy-tails/website/blog/pooper-scooper-creve-coeur-mo.html`
