@@ -2,6 +2,27 @@
 
 ---
 
+### Monday 7:04 AM — Shed Tariff Last Call Kit (Hourly Task)
+- **7:04 AM** ⚠️ Built and published "Shed Tariff Last Call" drop kit — capitalizing on the 72-hour pre-tariff pricing window before April 2 steel/lumber tariffs hit
+  - **File:** `dashboard/shed-tariff-last-call.html`
+  - **Why this task:** It's 7:04 AM on Launch Day (NC-1 fires at 8:30 AM). All 47 blog posts are live. Tidy Tails campaign tools are complete. The single highest-urgency uncovered gap at this exact moment: the April 2 tariff deadline is 72 hours away — the biggest legitimate shed sales urgency hook of the year — and there was no fresh drop kit built for Monday morning. Monday AM is prime Marketplace browsing (people who saw weekend listings but didn't pull the trigger are back on their phones). Four Marketplace listings + 3 social posts + 6 response scripts = a full-day shed sales blitz that capitalizes on the window before it closes Wednesday.
+  - **What's in the kit:**
+    - **Listing 1 (7-8 AM — Fire Now):** "72 Hours Left — Pre-Tariff Shed Pricing Ends Wednesday April 2" — honest overview of all 23 units in stock with real prices, direct tariff framing, conversational TJ voice
+    - **Listing 2 (10-11 AM):** The 12x24 garages — two units ($11,299 each, Charcoal + Taupe) — highest commission, targets serious buyers
+    - **Listing 3 (1-2 PM):** "These Sheds Actually Look Good in Your Yard" — the color/aesthetic standouts: aqua 10x16, navy 12x16, terracotta 10x20, white greenhouse, teal barn, sage green — drives Instagram engagement
+    - **Listing 4 (3-4 PM):** Entry-point angle — 8x12 and 10x12 starting from $3,509 — catches afternoon price-sensitive browsers
+    - **3 Social Posts:** FB Page (morning urgency), Instagram (visual/color focus with hashtag bank), FB Group post (casual community tone for STL Buy/Sell/Trade groups)
+    - **6 Response Scripts:** First reply, "how much are prices going up?" (honest answer), "let me think/checking with spouse," "I need to measure first," financing pitch, setting up next steps
+    - **Strategy tab:** Full inventory highlights (8 key units called out), posting schedule grid, tips that close deals
+    - **Live countdown timer:** Days/hours/mins to April 2 deadline — updates every minute
+    - **Checklist:** 12 items through Wednesday's final push
+  - **Dashboard:** Added pulsing red `⚠️ SHED TARIFF LAST CALL — 72 HRS LEFT (APR 2)` as top-tier quick link (replaced old weekend drop) + featured alert card in Shed Business section with direct link
+  - **Key insight:** The tariff hook is genuine — steel and lumber are both in the executive order scope. Using it honestly (not manufactured urgency) is TJ's brand and actually converts better. The kit explicitly tells TJ to fire Listing 1 before 8 AM, then focus on Tidy Tails launch, and come back to shed replies at noon — priority sequencing baked in.
+  - **Validated:** File confirmed written (33,621 bytes). Git pushed to tidytails-dashboard (f265a3ce) ✅
+  - **Blog count:** 47 Tidy Tails posts (no change this hour) ✅
+
+---
+
 ### Monday 6:07 AM — Easter Yard Cleanup Blog Post (Hourly Task)
 - **6:07 AM** 🐣 Wrote and published dedicated Easter egg hunt yard cleanup blog post — the highest-conversion seasonal content gap before a 6-day deadline
   - **File:** `tidy-tails/website/blog/easter-egg-hunt-yard-cleanup-dogs-st-louis.html`
