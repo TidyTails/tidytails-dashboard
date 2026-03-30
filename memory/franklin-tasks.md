@@ -2,6 +2,39 @@
 
 ---
 
+### Monday 5:04 PM — Creve Coeur, MO Dedicated Blog Post (Hourly Task)
+- **5:04 PM** 🏡 Wrote and published dedicated blog post for Creve Coeur, MO — the last major West County city without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-creve-coeur-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-creve-coeur-mo`
+  - **Why this task:** With 40 blog posts live covering all county umbrellas and every major individual city — Chesterfield ✅, Ballwin ✅, Wildwood ✅ — the last significant West/Central County gap was Creve Coeur. It has a short-form city service page (`creve-coeur.html`) and is mentioned in the West County umbrella post, but zero dedicated long-form editorial. Creve Coeur splits across two zip codes (63141: Olive Blvd, Creve Coeur Lake, Spoede/Conway; 63146: Ballas Rd, Lindbergh, Chesterfield/Town & Country border) and has ~24k residents in high-income households. Anyone searching "pooper scooper Creve Coeur MO" or "dog poop pickup 63141" would land on the West County umbrella post — which ranks lower for city-specific queries and has none of the city-specific signals (dual zip coverage callout, landscaper coordination angle, Creve Coeur Lake proximity, Ballas Road neighborhood grid) that build trust and close the conversion.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Creve Coeur, MO — Flat Rate. No Contracts. We Text Before Every Visit. Both zip codes covered — 63141 and 63146 — same price either way."
+    - **Stats row:** $70/month flat, 0 contracts, 63141 & 63146 full coverage, 5★ Local Owner
+    - **6-area neighborhood grid:** Olive Blvd Corridor (63141), Spoede Road / Conway Area (63141), Creve Coeur Lake / Craig Rd (63141), Ballas Road / Lindbergh Corridor (63146), Near Chesterfield / Westport Plaza (63146), "Not Sure Which Zip? Text Address"
+    - **Both zips callout:** Same flat $70/month for 63141 and 63146 — no zip surcharges, no coverage gaps
+    - **5 reasons Creve Coeur dog owners use Tidy Tails:** Busy professional households, larger yards at flat price, landscaper coordination (schedule before mowing day), St. Louis winter accumulation, the "On My Way" text nobody else sends
+    - **Creve Coeur Dog Math callout:** 300 deposits/dog/year, two dogs + STL winter = 150-200 surfacing in March on larger lots, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300), flat rate (no yard size fee), landscaper coordination (we win)
+    - **Annual savings callout:** $96-460 cheaper per year vs national franchise
+    - **Two testimonials:** Karen M. (63146 Ballas Rd, 2 goldens, quarterly snow service, texts angle), David R. (63141, landscaper coordination Tuesday/Thursday scheduling)
+    - **Creve Coeur-specific sections:** Larger lots at flat price, landscaper coordination, post-winter spring cleanup, gate access on established Spoede/Conway homes, pre-listing cleanup for home sales
+    - **Is it worth it? decision guide** — yes/no cases covered
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Creve Coeur?", "How much?", "All of Creve Coeur including 63146?", "Need to be home?", "Spring cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Creve Coeur, Chesterfield, Wildwood, Ballwin, Town and Country, Olivette, Maryland Heights, Ladue in areaServed + geo coordinates (38.6601, -90.4399)
+  - **Target keywords:** "pooper scooper Creve Coeur MO", "dog poop pickup Creve Coeur", "pet waste removal Creve Coeur Missouri", "pooper scooper 63141", "pooper scooper 63146", "dog waste service Creve Coeur"
+  - **Cross-links:**
+    - `blog/pooper-scooper-west-county-st-louis.html`: Added "📍 Creve Coeur Dedicated Guide →" as FIRST item in Related Articles sidebar (above Wildwood, above Ballwin, above Chesterfield)
+    - `creve-coeur.html` city page: Added "📍 CREVE COEUR POOPER SCOOPER GUIDE" as green-bordered featured article card (first in Related Articles)
+    - `blog/index.html`: Added Creve Coeur as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 75 total URLs, 41 blog posts
+  - **Blog count: 41 posts total** ✅
+  - **HTTP 200 confirmed** — site live ✅
+  - Committed + pushed to both tidytails-dashboard (512205fa) AND tidytails-website (89d69e4) → Cloudflare Pages ✅
+
+---
+
 ### Monday 4:06 PM — Ladue, MO Dedicated Blog Post (Hourly Task)
 - **4:06 PM** 🏡 Wrote and published dedicated blog post for Ladue, MO — the highest-income zip in Missouri and the last major Central County gap without dedicated editorial coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-ladue-mo.html`
