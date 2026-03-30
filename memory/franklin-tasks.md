@@ -1515,3 +1515,34 @@
     - `sitemap.xml`: Added new URL (priority 0.9), 69 total URLs, 36 blog posts
   - **Blog count: 36 posts total** ✅
   - Committed + pushed to both tidytails-dashboard (10d67344) AND tidytails-website (7ad225f) → Cloudflare Pages ✅
+
+---
+
+### Sunday 8:07 PM — University City, MO Dedicated Blog Post (Hourly Task)
+- **8:07 PM** 🎓 Wrote and published dedicated blog post for University City, MO — the last major Central County city without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-university-city-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-university-city-mo`
+  - **Why this task:** With 37 blog posts live covering all county umbrellas (North/South/West/Central/St. Charles) and every major city in those counties, the last significant dedicated city content gap in Central County was University City. Clayton ✅ (covered at 7 PM). But University City — 63130 AND 63132, home to The Loop, Wash U faculty, Parkview, Heman Park, dense dog ownership per square mile — had only a short-form `university-city.html` service page and was mentioned in the Central County umbrella post. No dedicated 2,600-word editorial. Anyone searching "pooper scooper University City MO" or "dog poop pickup 63130" would land on the umbrella post — which ranks lower for city-specific queries and doesn't have U City-specific signals (The Loop density angle, compact yard math, Wash U commuter households, renter-friendly section, 63132 coverage callout).
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in University City, MO — Flat Rate. No Contracts. We Text Before Every Visit."
+    - **Stats row:** $70/month flat, 0 contracts, 63130 & 63132 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** The Loop / Delmar Corridor, Parkview, University Heights, Heman / Ruth Park Area, Olivette Border, "Anywhere in 63130 / 63132"
+    - **Both zips callout:** Whether you're in 63130 or 63132, same flat $70/month. No zip surcharges.
+    - **5 reasons U City dog owners use Tidy Tails:** Dense yards fill up faster (compact yard math), Wash U/commuter households, spring brutal on smaller yards, multi-dog flat rate, "On My Way" text nobody else does
+    - **U City Dog Math callout:** 300 deposits/dog/year in smaller fenced yards, Missouri winter = 75-100 surfacing in March, two dogs = 150-200, $2.30/day
+    - **5-step service process** with emphasis on "On My Way" + "All Done" text
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300)
+    - **Two testimonials:** Rachel B. (Parkview, 2 dogs, Wash U teacher, weekly Wednesday service), David M. (Loop area, 1 dog, spring thaw convert)
+    - **U City–specific sections:** Post-winter spring cleanup, older home gate access (1920s-1950s homes), shared yards/adjacent properties, dog walker coordination, pre-listing cleanup, **renter-friendly section** (renters can hire independently — big angle for Wash U area)
+    - **Is it worth it? decision guide** — yes/no cases covered
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in University City?", "How much?", "All neighborhoods including 63132?", "Need to be home?", "Spring cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with University City, Clayton, Olivette, Richmond Heights, Maplewood, Brentwood, Shrewsbury, Ladue in areaServed + geo coordinates (38.6635, -90.3349)
+  - **Target keywords:** "pooper scooper University City MO", "dog poop pickup University City", "pet waste removal University City Missouri", "pooper scooper 63130", "pooper scooper 63132", "dog waste service University City", "pooper scooper near me University City"
+  - **Cross-links:**
+    - `blog/pooper-scooper-central-county-st-louis.html`: Added "📍 University City Dedicated Guide →" as FIRST item in Related Articles sidebar (before Clayton)
+    - `university-city.html` city page: Added "📍 UNIVERSITY CITY POOPER SCOOPER GUIDE" as green-bordered featured article card (first in Related Articles)
+    - `blog/index.html`: Added University City as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 71 total URLs, 38 blog posts
+  - **Blog count: 38 posts total** ✅
+  - Committed + pushed to both tidytails-dashboard (60a3463f) AND tidytails-website (0bc1076) → Cloudflare Pages ✅
