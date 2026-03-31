@@ -2390,3 +2390,28 @@
   - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/commercial-calling-hub.html
   - **Git commit:** `f5e8b92c` ✅ pushed to tidytails-dashboard
   - **Revenue math:** 3 closes × $250/mo avg = $750/mo new commercial MRR = 10.7 residential equivalents. Closes the August goal in one commercial batch if base case converts.
+
+---
+
+### Tuesday 5:04 PM — April 1 Morning Briefing PDF (Hourly Task)
+- **5:04 PM** 📋 Built and published the **April 1 Morning Briefing** — the most content-dense single day of the entire spring campaign
+  - **File:** `dashboard/pdfs/MORNING_BRIEFING_2026-04-01.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-04-01.pdf` (578KB ✅)
+  - **Dashboard:** Updated quick link from "Mon Briefing" to pulsing green "APR 1 BRIEFING — READ FIRST"
+  - **Why this task:** April 1 is genuinely the most action-packed single day of the spring campaign: (1) April Fools Day = highest-engagement shed hook of the year ("No, this isn't a joke"), (2) Tariff LAST DAY (April 2 effective date — shed urgency closes forever tonight), (3) NC-3 North County campaign day — Bridgeton orphaned customer post, (4) Easter 4 days away = peak yard cleanup urgency, (5) FB Ads at 48-hour check-in point. Without a tight briefing, TJ opens 8 different tools and loses the day. The briefing collapses it all into one sequenced document he can open at 7 AM.
+  - **What's in the briefing:**
+    - **Tariff Last Call section:** April 2 means pre-tariff shed prices die tonight. Exact script for texting all open Marketplace leads. "This is NOT a joke" framing that works because TJ's brand is honest urgency, not manufactured fear.
+    - **Today's Game Plan (7-step timeline):** 7 AM shed Listing 1 → 8 AM NC-3 Bridgeton post → 9 AM Easter April Fools dog post → 10 AM-noon commercial top 5 calls → noon FB Ads check-in → 1 PM shed Listing 2 + Easter "48hr warning" → 4 PM shed Listing 4 + reply blitz. Every hour accounted for.
+    - **Easter Sprint section:** 4 days out, April Fools dual-hook content ready. Referral text scripts for all current customers. One-time → monthly LTV math ($75 → $840).
+    - **NC-3 Bridgeton post copy-pasted:** Orphaned customer hook, full script ready to paste. Bridgeton 63044, "did your poop scoop service disappear?" — converts at 40-60% for reply-first leads.
+    - **Shed full detail:** 4-listing schedule from Blitz Kit with timing, 3 key objection scripts for April Fools day, explicit note to STOP using tariff angle after midnight tonight (authenticity = brand).
+    - **Commercial calls:** Top 5 numbers with exact pitch angle per property, 30-second call opener script, ROI math (1 commercial = 3.6 residential equivalents).
+    - **FB Ads 48-hour check-in:** What healthy looks like (300-1k impressions, 1+ lead), 3 quick fixes if something's wrong, "don't panic at day 2" reminder.
+    - **Master checklist:** 18 items across 4 time blocks (morning/late morning/afternoon/evening). Print and cross off.
+    - **Win math:** Shed ($100-600 commission), dog ($840 LTV), commercial ($1,800-3,600/yr).
+    - **Rest-of-week preview:** Thu (tariff messaging ends, NC-4 Ferguson, Easter "Last 2 Days"), Fri (NC-5 final, Easter Eve prep), Sat (panic close day), Sun (victory lap content).
+    - **8-tool quick reference panel** at bottom.
+  - **PDF validated:** 578KB ✅, starts %PDF- ✅
+  - **Git commit:** `2705dee5` ✅ pushed to tidytails-dashboard
+  - **GH Pages:** 03-31 confirmed live (200 OK). 04-01 deploying (Pages typically 2-5 min lag after push).
+  - **Why this over other options at 5 PM Tuesday:** The search quota was exhausted, so research-heavy tasks (new commercial leads, web scraping) weren't possible. The existing toolkit is comprehensive — 57 blog posts, all city pills linked, Easter Sprint Kit, April 1 Blitz Kit, NC campaign tools, Commercial Calling Hub, all built. The one missing piece at 5 PM Tuesday is the *synthesis layer* — the "open this at 7 AM Wednesday and execute" document that tells TJ what to do first, second, and third on the most consequential single day of the spring campaign. The April 1 briefing also has a short shelf life — by tomorrow night it's stale. Building it the night before means TJ sees it when it's actionable, not after the fact.
+
