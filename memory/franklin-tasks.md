@@ -2,6 +2,45 @@
 
 ---
 
+### Tuesday 6:07 AM — St. Ann + Des Peres/Frontenac Blog Posts + Zero tel: City Pills (Hourly Task)
+- **6:07 AM** 🎯 Published dedicated blog posts for St. Ann (63074) and Des Peres & Frontenac — the last 4 unnamed city pills in service-areas.html now link to dedicated blog posts. **0 `tel:` city pills remaining.** 57 blog posts total.
+  - **Why this task:** NC-2 fires today targeting Hazelwood Facebook groups. St. Ann sits directly between Hazelwood, Bridgeton, and Maryland Heights — anyone in St. Ann seeing TJ's NC-2 content and Googling "pooper scooper St. Ann MO" or "dog poop pickup 63074" now finds a dedicated 2,500-word post. Des Peres and Frontenac were the last two named cities in service-areas.html still linking to `tel:` — both got a combined post emphasizing flat rate + landscaper coordination (the angle for affluent West County lot owners). Lemay (unincorporated, shares 63125 with Mehlville) now points at the existing Mehlville/Oakville post.
+  - **Files created:**
+    - `tidy-tails/website/blog/pooper-scooper-st-ann-mo.html` — 28KB, St. Ann 63074 dedicated post
+      - Orphaned customer alert (text "SWITCHING")
+      - Lambert airport/shift worker angle (strong local hook)
+      - 6-area neighborhood grid covering all of 63074
+      - 7-question FAQPage schema
+      - Full pricing table, comparison table, 2 testimonials
+      - "On My Way" text differentiator callout
+    - `tidy-tails/website/blog/pooper-scooper-des-peres-frontenac-mo.html` — 27KB, Des Peres + Frontenac combined post
+      - Flat rate on large lots = biggest hook for these communities
+      - Landscaper coordination built in
+      - 6-area neighborhood grid
+      - 7-question FAQPage schema
+      - Full pricing table, comparison table, 2 testimonials
+  - **Files updated:**
+    - `service-areas.html` — 4 remaining `tel:` city pills → dedicated blog links:
+      - St. Ann → `/blog/pooper-scooper-st-ann-mo` (+ `has-page` class)
+      - Lemay → `/blog/pooper-scooper-mehlville-oakville-mo` (Lemay = unincorporated 63125)
+      - Des Peres → `/blog/pooper-scooper-des-peres-frontenac-mo` (+ `has-page` class)
+      - Frontenac → `/blog/pooper-scooper-des-peres-frontenac-mo` (+ `has-page` class)
+    - `blog/pooper-scooper-north-county-st-louis.html` — Added St. Ann Dedicated Guide → to Related Articles
+    - `blog/pooper-scooper-west-county-st-louis.html` — Added Des Peres & Frontenac Dedicated Guide → to Related Articles
+    - `blog/index.html` — Added St. Ann + Des Peres/Frontenac as newest cards (first in grid) + JSON-LD blogPost entries
+    - `sitemap.xml` — Added both new URLs (priority 0.9), 57 blog posts total
+  - **Target keywords:**
+    - St. Ann: "pooper scooper St. Ann MO", "dog poop pickup St. Ann", "pooper scooper 63074", "dog waste service St. Ann Missouri"
+    - Des Peres: "pooper scooper Des Peres MO", "dog poop pickup Des Peres", "pooper scooper Frontenac MO", "dog waste service Des Peres"
+  - **Live confirmed:** Both new posts HTTP 200 ✅. service-areas.html city pills confirmed live with correct blog links ✅
+  - **Blog count: 57 posts total** ✅ **City pills with tel:: 0** ✅
+  - Committed + pushed to both tidytails-dashboard (0bbdb806) AND tidytails-website (10ba7c6) → Cloudflare Pages ✅
+
+---
+
+
+---
+
 ### Tuesday 5:04 AM — Shrewsbury Blog Post + Service-Areas Pill Fixes (Hourly Task)
 - **5:04 AM** 🏘️ Wrote and published dedicated blog post for Shrewsbury, MO (55th post) + fixed 14 service-areas.html city pills to point at full blog posts instead of old short-form city pages
   - **File:** `tidy-tails/website/blog/pooper-scooper-shrewsbury-mo.html`
