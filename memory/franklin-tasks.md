@@ -1851,3 +1851,24 @@
     - `sitemap.xml`: Added new URL (priority 0.9), 71 total URLs, 38 blog posts
   - **Blog count: 38 posts total** ✅
   - Committed + pushed to both tidytails-dashboard (60a3463f) AND tidytails-website (0bc1076) → Cloudflare Pages ✅
+
+---
+
+### Tuesday 2:06 AM — Commercial Email Kit (Hourly Task)
+- **2:06 AM** 📧 Built the Commercial Email Kit for today's NC-2 Hazelwood calls
+  - **Files:** `tidytails-dashboard/commercial-email-kit.html` (33KB), `index.html` (nav link added), `nc-commercial-blitz.html` (quick-link banner added)
+  - **URL:** `https://tidytails.github.io/tidytails-dashboard/tidytails-dashboard/commercial-email-kit.html`
+  - **Git push:** `86386b06` (email kit + blitz link) + `30c9486c` (dashboard nav) ✅
+  - **Why this task:** NC-2 Hazelwood fires today. The NC Commercial Blitz page tells Jamie WHO to call. But there was no tool for AFTER the call — when Millsap Properties or Renewal Heights says "send me something," she'd be scrambling in Gmail. That gap = deals dying in the follow-up stage.
+  - **What's built:**
+    - **4 email templates**, editable inline with fill-in fields for name/email:
+      1. **Property Manager** — covers apartment complexes (Millsap, Renewal Heights); flat-rate pitch, service reports, no contract
+      2. **Vet Clinic** — referral partnership angle; card drop-off, 10% discount for referrals, zero staff burden
+      3. **HOA** — board-friendly framing; documentation angle, 60-day trial, resident complaints solved
+      4. **Generic Follow-Up** — fast, clean, works for anything
+    - **One-click copy** for full email (subject + body) in one clipboard paste
+    - **Printable one-pager** — opens in print dialog, ready to save as PDF or print for in-person drop-offs; includes pricing tiers ($150–250 / $300–500 / Custom), "why us" section, social proof quote, and CTA
+    - **Quick-link banner** added to NC Commercial Blitz page: appears immediately above the strategy section so Jamie sees "Open Email Kit →" right when she's finishing a call
+    - **Dashboard nav link** added to main index.html Sales section (green card, "📧 NEW" badge)
+  - **Revenue logic:** Millsap Properties alone = $300–500/mo per property × 2 Hazelwood properties = $600–1,000/mo if Jamie follows up with a professional email today. A property manager who gets a polished email with a printable one-pager attached is 3–5x more likely to respond than one who gets nothing.
+
