@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌱 Spring Blitz — Tidy Tails</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --bg: #0a0d14;
+    --card: #111420;
+    --card2: #181d2e;
+    --border: #1e2540;
+    --text: #e2e8f0;
+    --dim: #8b95aa;
+    --green: #22c55e;
+    --green-dim: #15803d;
+    --blue: #3b82f6;
+    --amber: #f59e0b;
+    --red: #ef4444;
+    --purple: #a855f7;
+    --teal: #14b8a6;
+    --orange: #f97316;
+    --pink: #ec4899;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+
+  .header {
+    background: linear-gradient(135deg, #052e16 0%, #14532d 50%, #166534 100%);
+    padding: 20px 16px 16px;
+    text-align: center;
+    border-bottom: 2px solid #22c55e;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::before {
+    content: '🌱';
+    position: absolute;
+    font-size: 120px;
+    opacity: 0.06;
+    top: -20px;
+    right: -10px;
+  }
+  .header h1 { font-size: 1.6rem; font-weight: 900; color: #fff; }
+  .header .subtitle { color: #86efac; font-size: 0.85rem; margin-top: 4px; }
+  .header .badge {
+    display: inline-block;
+    background: #22c55e;
+    color: #052e16;
+    font-weight: 800;
+    font-size: 0.72rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .back-btn {
+    display: block;
+    text-align: center;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    color: var(--dim);
+    text-decoration: none;
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+
+  .urgency-bar {
+    background: linear-gradient(90deg, #7f1d1d, #991b1b, #7f1d1d);
+    padding: 8px 16px;
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #fca5a5;
+    border-bottom: 1px solid #ef4444;
+  }
+
+  .section {
+    padding: 14px 12px 6px;
+  }
+  .section-title {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .offer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .offer-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+  }
+  .offer-card.featured {
+    border-color: var(--green);
+    background: linear-gradient(160deg, #052e16, #111420);
+    grid-column: 1 / -1;
+  }
+  .offer-card .emoji { font-size: 1.6rem; display: block; margin-bottom: 6px; }
+  .offer-card .offer-title { font-size: 0.85rem; font-weight: 700; color: var(--text); }
+  .offer-card .offer-price { font-size: 1.2rem; font-weight: 900; color: var(--green); margin: 4px 0; }
+  .offer-card .offer-desc { font-size: 0.72rem; color: var(--dim); line-height: 1.4; }
+  .offer-card.featured .offer-price { font-size: 1.5rem; }
+  .offer-card.featured .offer-title { font-size: 1rem; }
+
+  .template-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+  .template-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .template-platform {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .platform-badge {
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .platform-nextdoor { background: #34d399; color: #064e3b; }
+  .platform-facebook { background: #3b82f6; color: #eff6ff; }
+  .platform-instagram { background: linear-gradient(135deg, #f59e0b, #ec4899); color: #fff; }
+  .platform-text { background: #a78bfa; color: #1e1b4b; }
+  .platform-door { background: #f97316; color: #431407; }
+  .template-label { font-size: 0.85rem; font-weight: 700; }
+  .copy-btn {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    color: var(--dim);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .copy-btn:hover, .copy-btn.copied { background: var(--green-dim); border-color: var(--green); color: #fff; }
+
+  .template-body {
+    padding: 12px 14px;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--text);
+    white-space: pre-wrap;
+    font-family: inherit;
+    background: #0d1018;
+    border-radius: 0 0 12px 12px;
+  }
+
+  .template-note {
+    padding: 8px 14px;
+    font-size: 0.72rem;
+    color: var(--amber);
+    background: rgba(245, 158, 11, 0.07);
+    border-top: 1px solid rgba(245, 158, 11, 0.15);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .checklist {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+  .checklist-title {
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-bottom: 1px solid var(--border);
+    background: var(--card2);
+  }
+  .checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.8rem;
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .checklist-item input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--green); flex-shrink: 0; }
+  .checklist-item .item-label { flex: 1; }
+  .checklist-item .item-meta { font-size: 0.7rem; color: var(--dim); }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .stat-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 8px;
+    text-align: center;
+  }
+  .stat-num { font-size: 1.4rem; font-weight: 900; }
+  .stat-num.green { color: var(--green); }
+  .stat-num.amber { color: var(--amber); }
+  .stat-num.red { color: var(--red); }
+  .stat-label { font-size: 0.65rem; color: var(--dim); margin-top: 2px; line-height: 1.3; }
+
+  .tip-box {
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    border-radius: 10px;
+    padding: 10px 12px;
+    font-size: 0.78rem;
+    color: #93c5fd;
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+  .tip-box strong { color: #bfdbfe; }
+
+  .neighborhood-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+  .neighborhood-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 12px;
+  }
+  .neighborhood-card.hot { border-color: #f97316; }
+  .neighborhood-card.warm { border-color: #fbbf24; }
+  .neighborhood-name { font-size: 0.85rem; font-weight: 700; margin-bottom: 2px; }
+  .neighborhood-reason { font-size: 0.7rem; color: var(--dim); line-height: 1.4; }
+  .heat-dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  .hot .heat-dot { background: #f97316; }
+  .warm .heat-dot { background: #fbbf24; }
+
+  .action-btn {
+    display: block;
+    width: 100%;
+    background: var(--green-dim);
+    border: 1px solid var(--green);
+    color: #fff;
+    text-align: center;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 6px 12px 12px;
+  }
+
+  .footer {
+    padding: 20px 12px;
+    text-align: center;
+    color: var(--dim);
+    font-size: 0.72rem;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<a href="../index.html" class="back-btn">← Back to Dashboard</a>
+
+<div class="header">
+  <h1>🌱 Spring Blitz</h1>
+  <div class="subtitle">End of March — Prime Season. Win Now.</div>
+  <div class="badge">April 2026 Push</div>
+</div>
+
+<div class="urgency-bar">
+  🚨 Spring thaw is HERE — this is the #1 conversion window of the year. Dog owners are OUTSIDE seeing the damage.
+</div>
+
+<!-- THE MATH -->
+<div class="section">
+  <div class="section-title">📊 The Gap</div>
+  <div class="stat-row">
+    <div class="stat-box">
+      <div class="stat-num red">4–5</div>
+      <div class="stat-label">Current Recurring Customers</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num amber">25–30</div>
+      <div class="stat-label">Goal by August 2025</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num green">20–25</div>
+      <div class="stat-label">Customers to Close in ~4 Months</div>
+    </div>
+  </div>
+  <div class="tip-box">
+    <strong>Spring logic:</strong> Dog owners spent all winter ignoring the yard. Now it's warming up, they're opening the back door, and they're horrified. The pain is <em>maximum right now.</em> Post on Nextdoor today — they're already scrolling looking for a solution.
+  </div>
+</div>
+
+<!-- SPRING OFFER FRAMEWORK -->
+<div class="section">
+  <div class="section-title">💰 Spring Offers to Run</div>
+  <div class="offer-grid">
+    <div class="offer-card featured">
+      <span class="emoji">🎯</span>
+      <div class="offer-title">Spring Cleanup + Subscribe Deal</div>
+      <div class="offer-price">$49 First Month</div>
+      <div class="offer-desc">One-time spring cleanup ($75 value) FREE when they start weekly service. First month at $49, then $70/mo. Locks them in. One call to close.</div>
+    </div>
+    <div class="offer-card">
+      <span class="emoji">🐾</span>
+      <div class="offer-title">Refer-a-Neighbor</div>
+      <div class="offer-price">FREE Month</div>
+      <div class="offer-desc">Current customers get a free month when they refer. Neighbor gets 10% off first 3 months.</div>
+    </div>
+    <div class="offer-card">
+      <span class="emoji">🏠</span>
+      <div class="offer-title">Spring Cleanup Only</div>
+      <div class="offer-price">$75–$99</div>
+      <div class="offer-desc">For people not ready to commit. Upsell to recurring at the visit. ~25% convert.</div>
+    </div>
+  </div>
+</div>
+
+<!-- HOT NEIGHBORHOODS -->
+<div class="section">
+  <div class="section-title">📍 Target Neighborhoods NOW</div>
+  <div class="neighborhood-grid">
+    <div class="neighborhood-card hot">
+      <div class="neighborhood-name"><span class="heat-dot"></span>Florissant</div>
+      <div class="neighborhood-reason">TJ's home turf. Dense dog ownership. Spring = big thaw. Already has name recognition here.</div>
+    </div>
+    <div class="neighborhood-card hot">
+      <div class="neighborhood-name"><span class="heat-dot"></span>Hazelwood</div>
+      <div class="neighborhood-reason">Active service area. Millsap properties here. Nextdoor very active for this zip.</div>
+    </div>
+    <div class="neighborhood-card hot">
+      <div class="neighborhood-name"><span class="heat-dot"></span>St. Peters / O'Fallon</div>
+      <div class="neighborhood-reason">TJ already has clients there. Word of mouth ready to amplify. New subdivisions = new dog owners.</div>
+    </div>
+    <div class="neighborhood-card warm">
+      <div class="neighborhood-name"><span class="heat-dot"></span>Maryland Heights</div>
+      <div class="neighborhood-reason">Active target area. Whisper Hollow complex lead. Growing route density.</div>
+    </div>
+    <div class="neighborhood-card warm">
+      <div class="neighborhood-name"><span class="heat-dot"></span>Ferguson</div>
+      <div class="neighborhood-reason">Underserved. Pet-friendly community vibe. Nextdoor engagement tends to be high.</div>
+    </div>
+    <div class="neighborhood-card warm">
+      <div class="neighborhood-name"><span class="heat-dot"></span>Webster Groves / Kirkwood</div>
+      <div class="neighborhood-reason">High disposable income. Dog-obsessed community. Premium pricing holds here.</div>
+    </div>
+  </div>
+</div>
+
+<!-- NEXTDOOR TEMPLATES -->
+<div class="section">
+  <div class="section-title">🏘️ Nextdoor Templates</div>
+
+  <div class="template-card">
+    <div class="template-header">
+      <div class="template-platform">
+        <span class="platform-badge platform-nextdoor">Nextdoor</span>
+        <span class="template-label">Spring Thaw Hook</span>
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'nd1')">Copy</button>
+    </div>
+    <div class="template-body" id="nd1">Hey neighbors — I know some of you are opening up the back door this week and realizing the yard did NOT survive the winter 😅
+
+Tidy Tails does professional dog waste removal in [YOUR NEIGHBORHOOD]. We've been scooping yards in Florissant/Hazelwood/St. Peters (delete to match) for over a year and our clients genuinely love not having to think about it.
+
+🌱 Spring Cleanup + Recurring Offer this week only:
+→ First month $49 (includes your spring cleanup — that's normally $75 by itself)
+→ After that it's just $70/month, weekly service
+→ We send a text when we arrive + when we leave
+→ No contracts, cancel anytime
+
+Honestly, at less than $2.50 a day you won't think twice about it by May.
+
+If you've got 2-3 dogs or a yard that got buried this winter, DM me or text 636-354-7406. Happy to do a free estimate.
+
+— Darius, Tidy Tails</div>
+    <div class="template-note">⚠️ Change the neighborhood name to whatever Nextdoor group you're posting in. Post once per neighborhood group, not all at once.</div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-header">
+      <div class="template-platform">
+        <span class="platform-badge platform-nextdoor">Nextdoor</span>
+        <span class="template-label">Problem → Solution</span>
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'nd2')">Copy</button>
+    </div>
+    <div class="template-body" id="nd2">Quick question for the dog owners in [YOUR NEIGHBORHOOD]:
+
+How's the yard looking after winter? 🐶
+
+If the answer is "I'm scared to check" — I can help with that.
+
+I run Tidy Tails, a local dog waste removal service. Weekly service, you never have to deal with it. $70/month for 1-2 dogs.
+
+What you're actually paying for:
+✅ Never stepping in it again
+✅ Kids can actually use the yard
+✅ Yard smells like a yard, not a kennel
+✅ Text when we arrive, text when we leave
+
+Spring cleanup included free when you start this week.
+
+Text me: 636-354-7406
+— Darius</div>
+    <div class="template-note">⚠️ Works especially well in family-heavy neighborhoods. The "kids can use the yard" line converts parents.</div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-header">
+      <div class="template-platform">
+        <span class="platform-badge platform-nextdoor">Nextdoor</span>
+        <span class="template-label">Short & Punchy</span>
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'nd3')">Copy</button>
+    </div>
+    <div class="template-body" id="nd3">Dog owners — spring cleanup season is here.
+
+$75 to have someone else deal with all of it. That's it. That's the post.
+
+Tidy Tails | 636-354-7406 | tidytailsstl.com</div>
+    <div class="template-note">⚠️ Post this one if you've already done a longer post in the same group. Brevity cuts through when people have seen the pitch before.</div>
+  </div>
+</div>
+
+<!-- FACEBOOK TEMPLATES -->
+<div class="section">
+  <div class="section-title">📘 Facebook Templates</div>
+
+  <div class="template-card">
+    <div class="template-header">
+      <div class="template-platform">
+        <span class="platform-badge platform-facebook">Facebook</span>
+        <span class="template-label">Community Group Post</span>
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'fb1')">Copy</button>
+    </div>
+    <div class="template-body" id="fb1">🐾 Florissant / Hazelwood / St. Peters dog owners — this one's for you.
+
+Spring is here and so is everything your dogs left in the yard all winter.
+
+Tidy Tails is a local pet waste removal service running in your area. We scoop weekly, you never think about it again.
+
+💥 Spring special running right now:
+• First month $49 (includes your spring cleanup cleanup, normally $75)
+• After that: $70/month weekly, $45/month bi-weekly
+• Multi-dog households welcome — only $10 more per extra dog
+• We text you when we arrive + when we're done
+
+No contracts. Local company. Real results.
+
+DM us or text 636-354-7406 to get started this week.
+
+#TidyTails #DogOwners #Florissant #Hazelwood #StPeters #PetWasteRemoval #SpringCleaning</div>
+    <div class="template-note">⚠️ Post in local buy/sell groups and neighborhood groups. Tag your actual service area in the hashtags.</div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-header">
+      <div class="template-platform">
+        <span class="platform-badge platform-facebook">Facebook</span>
+        <span class="template-label">Marketplace Ad</span>
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'fb2')">Copy</button>
+    </div>
+    <div class="template-body" id="fb2">Pet Waste Removal — Weekly & Bi-Weekly Service | $70/mo
+
+Tired of dealing with it? Let us handle it.
+
+Tidy Tails picks up all dog waste from your yard on a set weekly schedule. You get a text when we arrive and a text when we leave.
+
+Service areas: Florissant, Hazelwood, Maryland Heights, O'Fallon, St. Peters, Ferguson + surrounding
+
+Pricing:
+• Weekly 1-2 dogs: $70/month
+• Weekly 3-4 dogs: $80/month
+• Bi-weekly: $45/month
+• One-time spring cleanup: $75
+
+Spring offer: Free cleanup included with first month sign-up this week.
+
+Text Darius: 636-354-7406</div>
+    <div class="template-note">⚠️ List this on Facebook Marketplace under "Services" category. Refresh it every 7 days to stay at the top.</div>
+  </div>
+</div>
+
+<!-- INSTAGRAM TEMPLATES -->
+<div class="section">
+  <div class="section-title">📸 Instagram Captions</div>
+
+  <div class="template-card">
+    <div class="template-header">
+      <div class="template-platform">
+        <span class="platform-badge platform-instagram">Instagram</span>
+        <span class="template-label">Spring Hook</span>
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'ig1')">Copy</button>
+    </div>
+    <div class="template-body" id="ig1">Spring is here. Your yard is not ready. 🌱💩
+
+Every single dog in St. Louis spent the last 3 months adding to a pile your lawn mower will discover in T-minus 30 days.
+
+Unless you call us first.
+
+Tidy Tails — weekly dog waste removal for St. Louis area dog owners. $70/month. Less than a cup of coffee a day.
+
+Spring special running now: First month $49, spring cleanup included free.
+
+Text us: 636-354-7406
+Link in bio: tidytailsstl.com
+
+#TidyTails #StLouis #DogMom #DogDad #PetWaste #SpringCleaning #PooperScooper #STLDogs #Florissant #Hazelwood</div>
+    <div class="template-note">⚠️ Pair with a "before" yard photo or a video clip. Relatable spring content gets shared.</div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-header">
+      <div class="template-platform">
+        <span class="platform-badge platform-instagram">Instagram</span>
+        <span class="template-label">Value Stack</span>
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'ig2')">Copy</button>
+    </div>
+    <div class="template-body" id="ig2">For $70/month you get:
+
+✅ Never stepping in dog poop again
+✅ Kids back in the yard
+✅ BBQ season without the smell
+✅ A text when we arrive + when we leave
+✅ Local. Professional. Actually reliable.
+
+That's Tidy Tails. St. Louis pet waste removal.
+
+Spring cleanup special going on NOW — text 636-354-7406
+
+#TidyTails #STLDogs #DogOwner #PetCare #YardCare #SpringVibes</div>
+    <div class="template-note">⚠️ Use as a story or Reel cover card. Clean format = high shares.</div>
+  </div>
+</div>
+
+<!-- TEXT TEMPLATES -->
+<div class="section">
+  <div class="section-title">📱 Text Message Scripts</div>
+
+  <div class="tip-box">
+    <strong>Who to text:</strong> Anyone who ever inquired, asked for pricing, or said "maybe later." Spring is the trigger to re-open those conversations. Also text current customers asking for referrals.
+  </div>
+
+  <div class="template-card">
+    <div class="template-header">
+      <div class="template-platform">
+        <span class="platform-badge platform-text">Text</span>
+        <span class="template-label">Past Inquiry Re-engage</span>
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'sms1')">Copy</button>
+    </div>
+    <div class="template-body" id="sms1">Hey [NAME]! Darius from Tidy Tails. You reached out a while back about dog waste cleanup — just wanted to check in since spring just hit.
+
+Running a special this week: first month $49, spring cleanup included free (normally $75 just for that). After that it's $70/mo.
+
+Still interested? Happy to get you on the schedule this week. 🐾</div>
+    <div class="template-note">⚠️ Personalize the name. Send between 10am–6pm. Keep it casual, not salesy.</div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-header">
+      <div class="template-platform">
+        <span class="platform-badge platform-text">Text</span>
+        <span class="template-label">Current Customer Referral Ask</span>
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'sms2')">Copy</button>
+    </div>
+    <div class="template-body" id="sms2">Hey [NAME]! Hope the yard's looking good 😄
+
+Quick favor — if you know any neighbors or friends with dogs who could use our service, I'm running a spring referral deal: you get a FREE month, they get 10% off their first 3 months.
+
+Just have them text me and mention your name. No pressure — just thought I'd ask since spring's prime time for us.
+
+Thanks! — Darius</div>
+    <div class="template-note">⚠️ Send to every current customer. This is your fastest path to new signups — warm referrals close 3x more than cold outreach.</div>
+  </div>
+
+  <div class="template-card">
+    <div class="template-header">
+      <div class="template-platform">
+        <span class="platform-badge platform-text">Text</span>
+        <span class="template-label">Cold Neighbor Text (after flyers)</span>
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'sms3')">Copy</button>
+    </div>
+    <div class="template-body" id="sms3">Hey! This is Darius with Tidy Tails — I left a flyer at your door earlier. We do weekly dog waste removal in your neighborhood starting at $70/month.
+
+Spring special: first month $49, your spring cleanup is free.
+
+Any questions just reply here or call 636-354-7406. No pressure! 🐾</div>
+    <div class="template-note">⚠️ Only text if you have a legitimate prior contact point (flyer drop, Nextdoor comment). Cold texting without context can backfire.</div>
+  </div>
+</div>
+
+<!-- DOOR HANGER COPY -->
+<div class="section">
+  <div class="section-title">🚪 Door Hanger Copy</div>
+
+  <div class="template-card">
+    <div class="template-header">
+      <div class="template-platform">
+        <span class="platform-badge platform-door">Print</span>
+        <span class="template-label">Spring Door Hanger</span>
+      </div>
+      <button class="copy-btn" onclick="copyText(this, 'door1')">Copy</button>
+    </div>
+    <div class="template-body" id="door1">YOUR YARD NEEDS HELP.
+(Your dog agrees.)
+
+Tidy Tails handles dog waste removal weekly
+so you never have to think about it again.
+
+🌱 SPRING SPECIAL — This Week Only:
+First Month $49 (includes spring cleanup)
+Then just $70/month — weekly service
+
+✅ Text when we arrive + when we leave
+✅ Local. Reliable. No contracts.
+✅ 2 dogs? Still flat rate.
+
+Text or call Darius:
+636-354-7406
+
+tidytailsstl.com</div>
+    <div class="template-note">⚠️ Print on cardstock. 4"x11" door hanger format. Target streets where you already have 1-2 customers — cluster routing saves drive time.</div>
+  </div>
+</div>
+
+<!-- DAILY EXECUTION CHECKLIST -->
+<div class="section">
+  <div class="section-title">✅ Daily Spring Blitz Checklist</div>
+  <div class="checklist">
+    <div class="checklist-title">🌅 Every Day This Week (10 min max)</div>
+    <div class="checklist-item">
+      <input type="checkbox">
+      <span class="item-label">Post in 1 Nextdoor group (rotate neighborhoods daily)</span>
+      <span class="item-meta">5 min</span>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox">
+      <span class="item-label">Post in 1 Facebook neighborhood group</span>
+      <span class="item-meta">2 min</span>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox">
+      <span class="item-label">Refresh Facebook Marketplace listing</span>
+      <span class="item-meta">1 min</span>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox">
+      <span class="item-label">Send referral text to 1 current customer</span>
+      <span class="item-meta">2 min</span>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox">
+      <span class="item-label">Re-engage 1 past inquiry with spring offer text</span>
+      <span class="item-meta">2 min</span>
+    </div>
+  </div>
+
+  <div class="checklist">
+    <div class="checklist-title">📅 This Week (One-Time)</div>
+    <div class="checklist-item">
+      <input type="checkbox">
+      <span class="item-label">Drop door hangers on 2 streets near existing customers</span>
+      <span class="item-meta">Cluster routing</span>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox">
+      <span class="item-label">Post 2 Instagram posts/Reels from the templates above</span>
+      <span class="item-meta">Paired with video content</span>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox">
+      <span class="item-label">Refresh Google Business listing with spring offer</span>
+      <span class="item-meta">Posts tab in GMB</span>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox">
+      <span class="item-label">Text ALL current customers referral deal</span>
+      <span class="item-meta">Free month incentive</span>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox">
+      <span class="item-label">Ask 1 happy customer for a Google review</span>
+      <span class="item-meta">Social proof multiplier</span>
+    </div>
+  </div>
+</div>
+
+<!-- CONVERSION MATH -->
+<div class="section">
+  <div class="section-title">🧮 Conversion Math</div>
+  <div class="tip-box">
+    <strong>If TJ posts in 5 Nextdoor groups this week:</strong><br>
+    Average Nextdoor reach per post: ~200-500 neighbors<br>
+    Engagement rate for local services: ~2-4%<br>
+    → 10-20 interested replies<br>
+    → Close rate on warm spring lead: ~25-30%<br>
+    → <strong>3-6 new customers from one week of posting</strong><br><br>
+
+    At $70/mo × 6 customers = <strong>$420/mo in new MRR</strong><br>
+    That's $5,040 over 12 months from one week's work.
+  </div>
+</div>
+
+<div class="section">
+  <a href="../tidytails-dashboard/tidytails-dashboard/jamie-commercial-calls.html" class="action-btn">📞 Commercial Calls Tool →</a>
+  <a href="../tidytails-dashboard/tidytails-dashboard/commercial-email-kit.html" class="action-btn">📧 Commercial Email Kit →</a>
+  <a href="../2026-03-06-SPRING-REFERRAL-BLITZ.html" class="action-btn">🤝 Referral Blitz →</a>
+</div>
+
+<div class="footer">
+  Built by Franklin · Tidy Tails HQ · Spring 2026<br>
+  <span style="color: var(--green)">🌱 Spring is the closing window. Hit it hard.</span>
+</div>
+
+<script>
+function copyText(btn, id) {
+  const el = document.getElementById(id);
+  const text = el.innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  }).catch(() => {
+    // fallback
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = 'Copy';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+</script>
+</body>
+</html>
