@@ -2129,3 +2129,26 @@
   - **Blog count: 52 posts total** ✅
   - **Live confirmed:** GitHub raw confirmed title = "Pooper Scooper Service in Jennings & Normandy, MO | Dog Poop Pickup 63136 63121" ✅ (Cloudflare Pages deploying)
   - Committed + pushed to both tidytails-dashboard (2352218f) AND tidytails-website (f651e28) → Cloudflare Pages ✅
+
+---
+
+### Tuesday 4:06 AM — Spring Copy Kit (Hourly Task)
+- **4:06 AM** 🌱 Built the Spring Copy Kit for April residential push
+  - **File:** `dashboard/spring-blitz-copy-kit.html` (28KB)
+  - **URL:** `https://tidytails.github.io/tidytails-dashboard/dashboard/spring-blitz-copy-kit.html` ✅ (200 OK, last-modified 09:32 UTC)
+  - **Index:** Added to main index.html as "🌱 NEW Spring Copy Kit" card in Marketing section
+  - **Git push:** `152d5c5a` (main branch) ✅
+  - **Why this task:** Spring thaw is peak conversion window. TJ needs to post on Nextdoor/Facebook/Instagram TODAY. There was no tool with actual ready-to-paste post text — the existing Spring Blitz Playbook has strategy but zero copy-paste content.
+  - **What's built:**
+    - **Urgency framing:** Gap tracker (4-5 customers → 25-30 goal), conversion math showing 3-6 customers from one week of Nextdoor posts
+    - **Spring offer framework:** $49 first month + free spring cleanup, refer-a-neighbor (free month), spring cleanup only ($75)
+    - **Hot neighborhood targets:** Florissant, Hazelwood, St. Peters/O'Fallon, Maryland Heights, Ferguson, Webster Groves/Kirkwood
+    - **3 Nextdoor templates:** Spring thaw hook, problem→solution, short & punchy — all with one-click copy
+    - **2 Facebook templates:** Community group post + Marketplace listing
+    - **2 Instagram captions:** Spring hook + value stack
+    - **3 text message scripts:** Past inquiry re-engage, current customer referral ask, post-flyer follow-up
+    - **Door hanger copy:** Print-ready 4"x11" spring special design
+    - **Daily execution checklist:** 5 tasks per day (10 min max), one-time weekly tasks
+    - **Conversion math:** 5 Nextdoor posts → 10-20 leads → 3-6 new customers = $420/mo MRR from one week
+  - **Revenue logic:** $49 first month offer is psychologically priced to close spring fence-sitters. Spring cleanup included = removes the biggest objection ("I don't know if it's worth it yet"). This is the highest-conversion window of the year.
+  - **Note:** Discovered workspace IS the tidytails-dashboard git repo (shared .git dir). Dashboard files live in `dashboard/` subdir. GH Pages serves from repo root on main branch.
