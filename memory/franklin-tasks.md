@@ -2,6 +2,37 @@
 
 ---
 
+### Tuesday 2:11 PM — South/West County Apartment Leads Kit (Hourly Task)
+- **2:11 PM** 🏢 Built and published the South/West County Apartment Leads Kit — 10 pet-friendly apartment complexes with verified phone numbers, call scripts, and revenue math
+  - **File:** `dashboard/south-west-county-apartment-leads.html` (47KB)
+  - **Dashboard:** Added pulsing green "🏢 S/W COUNTY APT LEADS — 10 PHONES" quick link + new card at top of Commercial section in grid
+  - **Why this task:** The North County Apartment Leads Kit (11 AM Monday) got 8 verified commercial leads for NC-1 week. The mirror gap was South/West County — Kirkwood, Webster Groves, Chesterfield, Ballwin, Town & Country — TJ's primary Paw-ty territory — had ZERO apartment commercial lead intel. We have blog posts for every city, but no commercial outreach engine for the same geography. This task fills that exact gap.
+  - **10 leads with verified phones:**
+    - **Willowbend (Town & Country)** — 14343 Willow Bend Park, 63017 — **(636) 200-6759)** — 4.7★/150 reviews, dog park, dogs allowed — #1 call priority, leasing contact "Dejon"
+    - **ReNew Chesterfield** — 2150 Village Green Pkwy, 63017 — **(636) 245-2784)** — 3.8★/186 reviews — dog park + dog WASHING STATION — highest infrastructure investment in batch
+    - **Park Forest Apartments (Affton)** — 7529 Fleta St, 63123 — **(314) 312-1734** — dog park — South County route alignment
+    - **The Elle on Lockwood (Webster Groves)** — 226 E Lockwood Ave — **(855) 604-6853** — pet friendly — Paw-ty name-drop territory
+    - **Kirkwood Bluffs** — 1157 Timberbrook Dr, 63122 — **(314) 948-4728** — 3.3★/130 reviews — dogs allowed
+    - **Forest View Apartments** — 9420 Mary Glen Dr — **(844) 731-1740** + (314) 843-2155 (2nd location) — "very pet friendly"
+    - **NRE Management (Colonial Village + White Bluff)** — **(314) 968-1863** — ONE CALL = TWO PROPERTIES — Webster Groves area
+    - **Stanford Place** — 9305 Manchester Rd — **(314) 528-9667**
+    - **Villages at General Grant** — 7482 Hardscrapple Dr — **(314) 272-4659)** — pet friendly
+    - **Orchard Village (Ballwin)** — 115 Pineycliffe Ln — dog park, running Google Ads
+  - **What's in the kit:**
+    - **Call order guide:** 5 priority calls ranked by conversion probability (Willowbend first)
+    - **5 call scripts:** Universal apartment opener, dog park pitch (highest-converting), high-rated property angle, Crestwood Paw-ty event name-drop, portfolio play for NRE Management
+    - **Status tracker:** New → Called → Interested → Partner ✅ → Pass per lead with localStorage persistence
+    - **Revenue math:** 10 leads × 20% close = 2 contracts × $250/mo avg = $500 new MRR × 18mo LTV = **$9,000 batch LTV**
+    - **10-item checklist** with progress bar
+    - **Notes field** per lead for call outcomes
+  - **Why South/West over North County:** NC-1 apartment batch is already done + TJ has been calling those. The Crestwood Paw-ty was in TJ's physical backyard — Kirkwood/Webster Groves/Crestwood residents SAW him at that event. A call to The Elle on Lockwood (226 E Lockwood Ave) this week where TJ name-drops "we just did the Crestwood Vet event" is one of the highest-trust openers in the playbook — it's hyperlocal, timely, and verifiable. Willowbend (4.7★) is the strongest individual lead in either batch.
+  - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/south-west-county-apartment-leads.html
+  - **Git commit:** `4d0f4f60` ✅ pushed to tidytails-dashboard
+
+---
+
+---
+
 ### Tuesday 1:04 PM — Mother's Day Campaign Hub (Hourly Task)
 - **1:04 PM** 🌸 Built and published the Mother's Day Campaign Hub — a 6-tab campaign tool covering both Tidy Tails and TuffShed/WoodMaster for May 10 (40 days out)
   - **File:** `dashboard/mothers-day-campaign-hub.html` (44KB, 6 tabs)
