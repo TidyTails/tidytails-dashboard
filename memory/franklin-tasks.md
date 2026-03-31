@@ -2,6 +2,51 @@
 
 ---
 
+### Tuesday 6:07 PM — Post-Tariff Shed Sales Playbook (Hourly Task)
+- **6:07 PM** 🏠 Built and published the Post-Tariff Shed Sales Playbook — the April 2 → June messaging strategy that replaces the tariff urgency hook the moment it expires at midnight tonight
+  - **File:** `dashboard/shed-post-tariff-playbook.html` (54KB, 5 tabs)
+  - **Dashboard:** Replaced the pulsing "APR 1 LAST DAY — TARIFF BLITZ KIT" quick link with new pulsing amber "🏠 POST-TARIFF SHED PLAYBOOK — APR 2 → JUNE" as the top shed quick link. Archived the Apr 1 Blitz Kit card with greyed styling. Added new Post-Tariff Playbook as featured card in Shed Business section (6 cards now).
+  - **Why this task:** It's 6 PM Tuesday March 31. The April 1 tariff blitz kit covers tonight and tomorrow. But when TJ wakes up April 2, he has NO messaging — the tariff hook is dead and nothing exists to replace it. He'll open the dashboard and find tools that no longer apply. This playbook fills the entire April–June window with non-expiring hooks, listings, and campaigns that compound going forward.
+  - **What's built:**
+    - **Tab 1 — 6 New Hooks (replaces tariff urgency):**
+      - 🌱 Spring Project Season (April–May) — "this is the year they finally do it" — perpetual conversion angle
+      - 💸 Tax Refund Season (April) — avg refund $3,170 → $3,509 clearance shed = the math works. Converts fence-sitters with cash
+      - ☀️ Summer Entertaining & Backyard Goals (May–June) — grill season, outdoor gear, clutter → shed as "backyard complete" purchase
+      - 🌸 She Shed & Workshop Season (April–May) — Mother's Day May 10, "finally doing it" gift angle, LOW price sensitivity
+      - 🏷️ Clearance / Repo Units (always) — gateway drug strategy: start at $3,509, upsell to $5,599
+      - 🤝 "Better Than You Expected" Honest Pivot — for buyers who assumed prices skyrocketed and stayed on sidelines. TJ's brand = honesty. This pulls them back in.
+    - **Tab 2 — 8 Complete Marketplace Listings (April–June):**
+      - Listing 1: Spring Project Opener (Apr 2–7) — overview of all 23 units, new language
+      - Listing 2: Tax Refund CTA (Apr 7–15) — refund + financing angle
+      - Listing 3: She Shed / Mother's Day (Apr 21–May 7)
+      - Listing 4: Workshop / Garage Push (anytime — highest commission, 12x24 garages $11,299)
+      - Listing 5: Father's Day Preview (May 25–Jun 8)
+      - Listing 6: Summer Backyard Goals (Jun 1–20)
+      - Listing 7: Clearance Pusher (always) — $3,509 and $4,409 units
+      - Listing 8: Honest Price Update (Apr 2–5) — "tariff happened, here's what it actually meant"
+    - **Tab 3 — Father's Day Campaign (June 15):**
+      - Why Father's Day works (workshop/garage gift = "finally doing it" — very low price resistance)
+      - 4 copy-paste posts: Week 1 seed (May 25), Week 2 specifics (Jun 1), Last Call (Jun 8), Post-Day Bounce (Jun 16)
+      - Revenue math: 2 garage + 2 mid-range closes = $1,500–$2,500 campaign income
+      - Checklist: 6 items from May 25 through Jun 16
+    - **Tab 4 — 7 Response Scripts:**
+      - "Did I miss the deadline?" — most common April question, transparent close
+      - "Why should I buy now?" — no urgency hook, honest spring value answer
+      - "How much did prices go up?" — specific transparency that builds trust
+      - "Let me think / wait until fall" — seasonal pivot ("fall installs miss summer")
+      - First-touch inquiry response — post-tariff era standard qualifier
+      - Reactivate cold leads from March — "prices settled better than expected" text
+      - Financing pitch — 10x14 barn at $5,099 = under $150/mo on 48-month term
+    - **Tab 5 — April–June Content Calendar:**
+      - Full timeline Apr 2 through Jun 20 with 12 specific dates, hooks, and post descriptions
+      - Coordinated with Mother's Day (May 10) and Father's Day (Jun 15)
+      - Weekly execution checklist: 8 items covering core habits (2 posts/week, clearance every 2 weeks, sub-5-min reply time)
+  - **Why this beats the tariff hook long-term:** Urgency hooks have expiration dates. Every hook in this playbook is PERMANENTLY TRUE — spring is always spring, Father's Day is always Father's Day, clearance units are always a deal. The honest pivot hook specifically leverages TJ's brand strength (transparency) to pull back buyers who sat out the tariff window. None of these expire.
+  - **Live confirmed:** Commit `2ade301f` on origin/main ✅ — GH Pages deploying (confirmed push to tidytails-dashboard, prior pages same commit pattern = 2–3 min to live)
+  - **Git commit:** `2ade301f` ✅ pushed to tidytails-dashboard
+
+---
+
 ### Tuesday 2:11 PM — South/West County Apartment Leads Kit (Hourly Task)
 - **2:11 PM** 🏢 Built and published the South/West County Apartment Leads Kit — 10 pet-friendly apartment complexes with verified phone numbers, call scripts, and revenue math
   - **File:** `dashboard/south-west-county-apartment-leads.html` (47KB)
