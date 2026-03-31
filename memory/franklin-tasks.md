@@ -2,6 +2,51 @@
 
 ---
 
+### Tuesday 5:04 AM — Shrewsbury Blog Post + Service-Areas Pill Fixes (Hourly Task)
+- **5:04 AM** 🏘️ Wrote and published dedicated blog post for Shrewsbury, MO (55th post) + fixed 14 service-areas.html city pills to point at full blog posts instead of old short-form city pages
+  - **File:** `tidy-tails/website/blog/pooper-scooper-shrewsbury-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-shrewsbury-mo`
+  - **Why this task:** 5 AM Tuesday March 31. 54 blog posts live. Audit of service-areas.html showed 14 city pills with `has-page` class still linking to old short-form city pages (`/florissant`, `/hazelwood`, `/chesterfield`, `/kirkwood`, etc.) instead of the rich 2,600-word dedicated blog posts that have been live for days/weeks. A visitor clicking "Florissant" in the county card was landing on the old `florissant.html` city page (stale pricing, no schema, not converting) instead of the full dedicated Florissant blog post. This is a CRO (conversion rate) leak and an SEO internal-link mismatch — both fixed. Plus Shrewsbury was the last named South County suburb without any dedicated editorial coverage.
+  - **What's in the Shrewsbury post (~26KB, ~2,500 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Shrewsbury, MO — Flat Rate. No Contracts. We Text Before Every Visit. All of 63119 — near Webster Groves, Maplewood, Crestwood, Rock Hill."
+    - **Stats row:** $70/month flat, 0 contracts, 63119 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Shrewsbury Core / Watson Road, Near Webster Groves Border, Near Maplewood Border, Near Crestwood / Rock Hill, Shrewsbury Station Area (Metro-Link corridor), "Text Your Address"
+    - **5 reasons Shrewsbury dog owners call us:** Nobody reliable covering 63119, commuter households (Metro-Link station = downtown + Clayton workers), compact yards fill fast, "On My Way" text differentiator, flat rate regardless of yard or dog count
+    - **Shrewsbury Dog Math callout:** 300 deposits/dog/year, 3-4 month STL winter accumulation, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/visit, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — dedicated 63119 coverage (we win), flat rate, texts, local owner, annual cost ($840 vs $936-1,300)
+    - **$96-$460 annual savings banner**
+    - **Two testimonials:** Jennifer M. (Shrewsbury 63119, 2 dogs, weekly), Chris T. (Watson Rd, spring cleanup → weekly convert)
+    - **6 situation cards:** Post-winter spring cleanup, commuter households, older home gate access, multi-dog flat rate, pre-listing cleanup, kids in yard health angle
+    - **7-question FAQ** with FAQPage schema
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Shrewsbury, Webster Groves, Maplewood, Crestwood, Kirkwood, Oakland, Rock Hill, Brentwood in areaServed + geo coordinates (38.5831, -90.3326)
+  - **Target keywords:** "pooper scooper Shrewsbury MO", "dog poop pickup Shrewsbury", "pooper scooper 63119", "dog waste service Shrewsbury", "pet waste removal Shrewsbury Missouri"
+  - **Service-areas.html pill fixes (14 pills updated to blog posts):**
+    - `Florissant` → `/blog/pooper-scooper-florissant-mo`
+    - `Hazelwood` → `/blog/pooper-scooper-hazelwood-mo`
+    - `Ferguson` → `/blog/pooper-scooper-ferguson-mo`
+    - `Bridgeton` → `/blog/pooper-scooper-bridgeton-mo`
+    - `Maryland Heights` → `/blog/pooper-scooper-maryland-heights-mo`
+    - `Crestwood` → `/blog/pooper-scooper-crestwood-mo`
+    - `Kirkwood` → `/blog/pooper-scooper-kirkwood-mo`
+    - `Webster Groves` → `/blog/pooper-scooper-webster-groves-mo`
+    - `Shrewsbury` → `/blog/pooper-scooper-shrewsbury-mo` (new)
+    - `Chesterfield` → `/blog/pooper-scooper-chesterfield-mo`
+    - `Ballwin` → `/blog/pooper-scooper-ballwin-mo`
+    - `Creve Coeur` → `/blog/pooper-scooper-creve-coeur-mo`
+    - `University City` → `/blog/pooper-scooper-university-city-mo`
+    - `Maplewood` → `/blog/pooper-scooper-maplewood-mo`
+    - `Brentwood` → `/blog/pooper-scooper-brentwood-mo`
+  - **Cross-links:**
+    - `blog/pooper-scooper-south-county-st-louis.html`: Added "📍 Shrewsbury Dedicated Guide →" as FIRST item in Related Articles sidebar
+    - `blog/index.html`: Added Shrewsbury as newest card (first in grid) + JSON-LD blogPost array entry
+    - `sitemap.xml`: Added new URL (priority 0.9), **55 blog posts total**
+  - **Blog count: 55 posts total** ✅
+  - Committed + pushed to both tidytails-dashboard (785592a2) AND tidytails-website (5823ca4) → Cloudflare Pages ✅
+
+---
+
 ### Monday 2:06 PM — Ellisville & Manchester Blog Post + Service-Areas City Pill Fixes (Hourly Task)
 - **2:06 PM** 🌳 Wrote and published dedicated blog post for Ellisville & Manchester, MO — the last named West County cities without dedicated editorial blog coverage — plus fixed 3 remaining `tel:` city pills in service-areas.html
   - **File:** `tidy-tails/website/blog/pooper-scooper-ellisville-manchester-mo.html`
