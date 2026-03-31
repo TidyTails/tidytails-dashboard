@@ -2,6 +2,40 @@
 
 ---
 
+### Monday 8:07 PM — Brentwood, MO Dedicated Blog Post (Hourly Task)
+- **8:07 PM** 🏡 Wrote and published dedicated blog post for Brentwood, MO — the last major inner-ring Central County city with a city page but zero dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-brentwood-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-brentwood-mo`
+  - **Why this task:** With 43 blog posts live covering every major county cluster and nearly all named cities, the audit revealed three remaining city pages with zero dedicated editorial: Brentwood (63144), Olivette (63132-ish overlap), and Shrewsbury. Brentwood was the strongest gap: it has its own `brentwood.html` city page, sits at the intersection of Maplewood (63143 ✅) and Clayton (63105 ✅) — both of which now have dedicated posts — and 63144 is a fully distinct, searchable ZIP code. Anyone searching "pooper scooper Brentwood MO" or "dog poop pickup 63144" would land on the Central County umbrella post. That page doesn't have the Brentwood-specific signals (Brentwood Blvd corridor, Hanley Road, McKnight area, proximity to Clayton and Maplewood borders) that validate coverage and close the conversion. Now they land on a dedicated 2,600-word page.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Brentwood, MO — Flat Rate. No Contracts. We Text Before Every Visit."
+    - **Stats row:** $70/month flat, 0 contracts, 63144 full coverage, 5★, Local Owner
+    - **6-area neighborhood grid:** Brentwood Blvd Corridor, Hanley Road / Laclede Station, McKnight Road Area, Near Maplewood Border, Richmond Heights Boundary, "Text Your Address"
+    - **Full 63144 callout:** One zip, one flat price — Brentwood Blvd to the Richmond Heights border
+    - **5 reasons Brentwood dog owners call us:** Compact yards fill up faster, professional households (Clayton commuters), Missouri winter doesn't forgive, multi-dog flat rate math, "On My Way" text nobody else does
+    - **Brentwood Dog Math callout:** 300 deposits/dog/year, compact yard = 1 pile per 2 sq ft by year's end, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300)
+    - **Annual savings callout:** $96-460 cheaper per year vs national franchise
+    - **Two testimonials:** Sarah M. (Hanley Road, 2 dogs, weekly), Chris R. (McKnight area, 1 dog, switched from national franchise)
+    - **Brentwood-specific sections:** Spring cleanup, compact yards + gate access, kids in the yard, landscaper coordination (schedule before crew day), pre-listing home cleanup
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Brentwood?", "How much?", "All of 63144 including Brentwood Blvd?", "Need to be home?", "Spring cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Brentwood, Maplewood, Clayton, Richmond Heights, University City, Ladue, Webster Groves, Shrewsbury in areaServed + geo coordinates (38.6195, -90.3465)
+  - **Target keywords:** "pooper scooper Brentwood MO", "dog poop pickup Brentwood", "pet waste removal Brentwood Missouri", "pooper scooper 63144", "dog waste service Brentwood", "pooper scooper near me Brentwood"
+  - **Cross-links:**
+    - `blog/pooper-scooper-central-county-st-louis.html`: Added "📍 Brentwood Dedicated Guide →" as FIRST item in Related Articles sidebar (before Maplewood)
+    - `brentwood.html` city page: Added "📍 BRENTWOOD POOPER SCOOPER GUIDE" as green-bordered featured article card (first in Helpful Articles)
+    - `blog/index.html`: Added Brentwood as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 78 total URLs, 44 blog posts
+  - **Blog count: 44 blog posts total** ✅
+  - **HTTP 200 confirmed** — `<title>Pooper Scooper Service in Brentwood, MO — Flat Rate, No Contracts | Tidy Tails</title>` live ✅
+  - Committed + pushed to both tidytails-dashboard (d681a7d5) AND tidytails-website (87a776f) → Cloudflare Pages ✅
+
+---
+
+---
+
 ### Monday 7:04 PM — Maplewood, MO Dedicated Blog Post (Hourly Task)
 - **7:04 PM** 🏡 Wrote and published dedicated blog post for Maplewood, MO — the last major Central County city with a city page but no dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-maplewood-mo.html`
