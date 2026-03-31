@@ -2,6 +2,25 @@
 
 ---
 
+### Tuesday 12:08 AM — North County Commercial Blitz Kit (Hourly Task)
+- **12:08 AM** 🎯 Built the NC Commercial Blitz Kit — day-by-day synchronized attack pairing NC-week social posts with commercial calls in the same neighborhood each day
+  - **File:** `tidytails-dashboard/nc-commercial-blitz.html` (53KB)
+  - **URL:** `https://tidytails.github.io/tidytails-dashboard/tidytails-dashboard/nc-commercial-blitz.html` (deploying)
+  - **Why this task:** It's 12 AM Tuesday, NC-2 Hazelwood post fires today. We have 90+ commercial leads but no tool synchronizing them with the NC campaign timing. The highest-value insight: if Jamie posts in Hazelwood FB groups AND calls Millsap Properties' Hazelwood apartments on the same day, the property manager gets two brand impressions in one afternoon. That's not luck — that's a system. No tool existed for this.
+  - **What's built:**
+    - **5 tabs:** NC-2 Tuesday (TODAY), NC-3 Wednesday, NC-4 Thursday, NC-5 Friday, Strategy
+    - **TODAY tab (NC-2 Hazelwood):** Shows exact NC-2 post preview + 5 commercial leads to call: Millsap Hazelwood properties (Teson Garden + White Birch), Ferguson Animal Hospital, Gateway City Animal Clinic, Maryland Heights Dogport, Aventura at Maryland Oaks — all with one-tap calling, pitch angles, mark-called tracking
+    - **Wednesday tab (NC-3 Ferguson):** Renewal Heights Apartments (411 units + dog park), Halls Ferry AH, Normandy AH — all Ferguson/North County
+    - **Thursday tab (NC-4 Florissant Deep Dive):** Delrado Apartments, Greenway Chase, Baronwood Kennels, Florissant Dog Park (city), Fields of Florissant senior living
+    - **Friday tab (NC-5 Orphaned Customer):** Millsap final follow-up, Cross Keys animal clinic drop-in, week scorecard with auto-verdict
+    - **Strategy tab:** Full overview table mapping each day's post → commercial calls → win condition, master phone script, commercial revenue projections ($800–1,200/mo if NC wins)
+    - **Features:** tap-to-call buttons, mark-called tracking (localStorage), per-day checklists with progress bar, week scorecard with smart verdict (Crusher / Solid / Building / Below Target)
+    - **Revenue upside:** Millsap Properties alone (7 properties) = $2,100–3,500/mo. Renewal Heights (411 units) = $400–600/mo. This week's commercial blitz could add $800–1,200/mo in recurring MRR if 1-2 deals land.
+  - **Dashboard link added:** Amber pulsing card at top of Sales section — "TODAY = NC-2 Hazelwood" callout visible on load
+  - **Git pushed:** `70a65a01` to `TidyTails/tidytails-dashboard` ✅
+
+---
+
 ### Monday 11:04 PM — Dashboard TODAY Panel Refresh for Tuesday April 1 (Hourly Task)
 - **11:04 PM** 🔧 Refreshed the dashboard TODAY panel — fixed 4-consecutive-check staleness flag from Chief Oversight
   - **File:** `dashboard/index.html`
