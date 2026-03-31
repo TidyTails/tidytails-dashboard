@@ -2,6 +2,44 @@
 
 ---
 
+### Tuesday 1:04 PM — Mother's Day Campaign Hub (Hourly Task)
+- **1:04 PM** 🌸 Built and published the Mother's Day Campaign Hub — a 6-tab campaign tool covering both Tidy Tails and TuffShed/WoodMaster for May 10 (40 days out)
+  - **File:** `dashboard/mothers-day-campaign-hub.html` (44KB, 6 tabs)
+  - **Dashboard:** Added pulsing pink "🌸 MOTHER'S DAY HUB — 40 DAYS OUT" as new quick link + featured card in Marketing grid
+  - **Why this task:** Easter Sprint Kit built at 12:13 PM. April 1 Shed Blitz Kit built at 7:04 AM. All 57 blog posts live. Every campaign tool exists. The next major seasonal hook with zero existing tooling is **Mother's Day — May 10**. Building it now gives TJ 6 weeks to execute (vs. 5 days for Easter when the sprint kit finally got built). Mother's Day uniquely works for BOTH businesses simultaneously: Tidy Tails (gift cleanups) + TuffShed/WoodMaster (she sheds). It's the second-highest seasonal conversion window after Easter and it opens a new buyer audience (husbands, adult children) that isn't typically targeted.
+  - **What's built:**
+    - **Tab 1 — Strategy:** Why Mother's Day works for both businesses, win math (~$5-6K potential: 5 gift cleanups + 3 monthly converts + she shed commissions), campaign window timeline Apr 7 → May 10. Two ICPs: (1) husband buying "yard cleanup" for wife who does all dog poop, (2) husband/adult kid buying she shed as the "finally doing it" gift.
+    - **Tab 2 — Tidy Tails Posts (7 copy-paste):**
+      - "She Got the Dog" Nextdoor + FB Group hook (Apr 7 seed)
+      - "She Deserves Her Yard Back" FB Page + IG (Apr 10-12)
+      - "Husband Angle" FB — highest engagement potential (Apr 14)
+      - Instagram short caption — clean and punchy (Apr 14)
+      - "Adult Kids Buying for Mom" Nextdoor (Apr 17-18)
+      - "Last 2 Weeks" urgency FB post (Apr 28)
+      - "Last Call" Nextdoor (May 4-6)
+      - GBP post for Google Business Profile
+    - **Tab 3 — Shed Posts (6 copy-paste):**
+      - She Shed Marketplace listing — gift framing (Apr 7)
+      - "She's Earned It" FB Page + IG (Apr 10-12)
+      - Instagram she shed visual caption (Apr 14)
+      - Mid-range she shed Marketplace listing — specific units (Apr 14)
+      - "Husband Angle" FB — most converting she shed post (Apr 14)
+      - "Last 2 Weeks" urgency Marketplace listing (Apr 28)
+      - 3 response scripts: interested inquiry, "is it really a gift?", permit questions
+    - **Tab 4 — Text Scripts (5):**
+      - Tidy Tails: Text existing 11 customers — gift referral ask
+      - Tidy Tails: Reactivate cold leads from March/April
+      - Tidy Tails: Gift buyer confirmation text
+      - Shed: Text Marketplace she shed inquirers
+      - Shed: Reactivate old shed leads
+    - **Tab 5 — Timeline:** Week-by-week execution grid Apr 7 → May 10 with specific actions per date window for both businesses
+    - **Tab 6 — Checklist:** 20 items across 4 phases (Setup, Main Campaign, Urgency Push, Last Call) with localStorage persistence + progress bar
+  - **Win math:** 5 gift cleanups ($375) + 3 monthly converts ($3,780 LTV) + 1 she shed mid-range ($400-600 commission) + 1 she shed larger ($600-900) = ~$5,000-6,000 Mother's Day month upside
+  - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/mothers-day-campaign-hub.html
+  - **Git commit:** `4232cbae` ✅ pushed to tidytails-dashboard
+
+---
+
 ### Tuesday 12:13 PM — Easter Sprint Kit (Hourly Task)
 - **12:13 PM** 🐣 Built and published the Easter Sprint Kit — a 5-day conversion campaign targeting the April 5 Easter egg hunt urgency window
   - **File:** `dashboard/easter-sprint-kit.html` (43KB)
