@@ -2368,3 +2368,25 @@
     - **Conversion math:** 5 Nextdoor posts → 10-20 leads → 3-6 new customers = $420/mo MRR from one week
   - **Revenue logic:** $49 first month offer is psychologically priced to close spring fence-sitters. Spring cleanup included = removes the biggest objection ("I don't know if it's worth it yet"). This is the highest-conversion window of the year.
   - **Note:** Discovered workspace IS the tidytails-dashboard git repo (shared .git dir). Dashboard files live in `dashboard/` subdir. GH Pages serves from repo root on main branch.
+
+---
+
+### Tuesday 3:04 PM — Commercial Calling Hub (Hourly Task)
+- **3:04 PM** 📞 Built and published the **Commercial Calling Hub** — unified all 18 apartment leads (8 North County + 10 South/West County) into one priority-ranked, call-ready dashboard
+  - **File:** `dashboard/commercial-calling-hub.html` (62KB)
+  - **Dashboard:** Replaced the two separate apartment kits' quick links with a single pulsing purple **"📞 COMMERCIAL CALLING HUB — 18 LEADS — CALL NOW"** as the primary quick link + featured card at the top of the Commercial section
+  - **Why this task:** It's 3 PM Tuesday — the absolute best commercial calling window of the week. Property managers are at desks until 5 PM. Two separate kits existed (NC apartments built Monday 11 AM, S/W County apartments built Tuesday 2 PM) but they were siloed. No unified call order, no cross-batch priority ranking, no way to see all 18 leads in one view. A rep calling from two separate tools wastes time and loses the thread. The unified hub merges everything, ranks by conversion probability, and gets TJ from "open laptop" to "dialing" in under 30 seconds.
+  - **Priority structure (4 tiers):**
+    - **🔴 Call First (Top 5):** Willowbend (Dejon, 636-200-6759, 4.7★ Town & Country), The Finn (dog park, 314-254-8989, 715 reviews Hazelwood), Village Square (DeAnyai, 314-227-1937, 4.8★), ReNew Chesterfield (dog wash station, 636-245-2784), NRE Portfolio (314-968-1863, 2 Webster Groves properties in one call)
+    - **🟠 Call Today (5):** Hazelwood Forest (new management), New Wellington (Florissant NC territory), Park Forest (dog park Affton), Sugar Pines (Monarch STL portfolio), The Elle on Lockwood (Paw-ty name-drop)
+    - **🟡 Call This Week (5):** Kirkwood Bluffs, Stanford Place, Villages at General Grant, Forest View (2 locations), Crossing at Northpointe
+    - **⚫ Research First (3):** Orchard Village, Whispering Lake, Paddock Village (phones not yet confirmed)
+  - **What's in the hub:**
+    - **Call Queue tab:** All 18 leads with expandable cards — tap opens phone + pitch + why-this-pitch-angle + notes field. Color-coded by priority. Status cycling (New → Called → Interested → Partner ✅ → Pass). localStorage persistence.
+    - **Scripts tab:** 7 copy-paste scripts — Universal cold opener, Dog Park pitch (highest-converting), Portfolio multi-property play, "We already have someone" objection handler, Price/quote script, Voicemail script, Follow-up text after calling
+    - **Revenue Math tab:** Conversion scenarios (bear 1 close = $1,800/yr, base 3 closes = $9,000/yr, bull 5 closes = $16,800/yr), per-contract math table, "Why Commercial Changes the Math" explainer (1 apartment contract = 3.6 residential customers at $70/mo)
+    - **Checklist tab:** 12-item checklist split into Right Now (Top 5 calls), Today (Before 5 PM), and This Week
+  - **Floating status bar:** Fixed bottom bar shows called count, interested count, pipeline MRR — live-updates as TJ marks statuses
+  - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/commercial-calling-hub.html
+  - **Git commit:** `f5e8b92c` ✅ pushed to tidytails-dashboard
+  - **Revenue math:** 3 closes × $250/mo avg = $750/mo new commercial MRR = 10.7 residential equivalents. Closes the August goal in one commercial batch if base case converts.
