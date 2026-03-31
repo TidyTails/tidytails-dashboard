@@ -386,6 +386,12 @@ Chief uses this to verify sync with dashboard.
 | 12:01 | Shed Ads Mar 29 | 🏠 Shed Sales | SHED_ADS_2026-03-29.pdf | ✅ |
 | 12:01 | Commercial Leads Mar 29 | 🐕 Jamie's Hub | COMMERCIAL_LEADS_2026-03-29.pdf | ✅ |
 
+## Upload Log — Mar 31, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 00:01 | Morning Briefing Mar 31 | 📋 Operations | MORNING_BRIEFING_2026-03-31.pdf | ✅ |
+
 ## Upload Log — Mar 30, 2026
 
 | Time | File | Notion Folder | Dashboard Path | Status |
