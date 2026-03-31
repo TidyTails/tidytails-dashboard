@@ -177,3 +177,14 @@
 - "Last 2 days" Instagram short form with soft CTA
 - Free upgrade dollar math ($250–$750 you'd pay next week)
 - PSA / "honest nudge" format for warm leads and DMs
+
+## March 31, 2026 — Last Day Promo (4 Ads)
+- **Shed-Mar31-01** — "Last Day" — 12mo same as cash + 50% off financing ends tonight, honest no-pressure close
+- **Shed-Mar31-02** — "The April Math" — Price breakdown, 12mo = $350/mo zero interest, April = standard pricing
+- **Shed-Mar31-03** — Short & Punchy — Instagram/quick post, bullet checklist, ends tonight
+- **Shed-Mar31-04** — "The Honest One" — DM/text warm lead script referencing specific shed they looked at
+
+## Hooks Used (March 31 — don't repeat 2 weeks)
+- Last day / tonight urgency (12mo same as cash + 50% off financing combo)
+- April math / pricing breakdown (350/mo for 12mo = zero interest)
+- Honest DM script targeting warm pipeline leads by name

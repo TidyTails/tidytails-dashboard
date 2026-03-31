@@ -402,3 +402,9 @@ Chief uses this to verify sync with dashboard.
 | 18:02 | Shed Ads Mar 30 | 🏠 Shed Sales | SHED_ADS_2026-03-30.pdf | ✅ |
 | 18:02 | Commercial Leads Mar 30 | 🐕 Jamie's Hub | COMMERCIAL_LEADS_2026-03-30.pdf | ✅ |
 | 18:02 | Shed Commercial Leads Mar 30 | 🐕 Jamie's Hub | SHED_COMMERCIAL_LEADS_2026-03-30.pdf | ✅ |
+
+## Upload Log — Mar 31, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 12:01 | Shed Ads Mar 31 | 🏠 Shed Sales | SHED_ADS_2026-03-31.pdf | ✅ |
