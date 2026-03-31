@@ -2,6 +2,38 @@
 
 ---
 
+### Monday 9:04 PM — Olivette, MO Dedicated Blog Post (Hourly Task)
+- **9:04 PM** 🏡 Wrote and published dedicated blog post for Olivette, MO — the LAST remaining city page in the entire service area without dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-olivette-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-olivette-mo`
+  - **Why this task:** With 45 blog posts live covering every county umbrella and every named city — Olivette was the LAST holdout. Every city page now has a dedicated editorial post. Olivette (63132) had a short-form city service page but zero long-form editorial. Anyone searching "pooper scooper Olivette MO" or "dog poop pickup 63132" would land on the Central County umbrella post. Olivette is notable: entirely within Ladue School District, borders Creve Coeur/University City/Ladue, high-income dual-professional households, and tends to fall through franchise route cracks. That's exactly the demographic that converts at $70/month without price-shopping.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Olivette, MO — Flat Rate. No Contracts. We Text Before Every Visit. Local owner. Not a franchise. Same $70/month whether you have one dog or two."
+    - **Stats row:** $70/month flat, 0 contracts, 63132 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Olive Blvd Corridor, Groby Road / North Olivette, Near University City Border, Near Creve Coeur Border, Price Road / South Olivette, "Text Your Address"
+    - **All of 63132 callout:** One flat price throughout — no neighborhood surcharges
+    - **5 reasons Olivette dog owners call us:** Nobody reliably covers 63132 (franchise route gaps), busy dual-income households, Ladue SD zone = yard standards matter, winter accumulation, "On My Way" text nobody else sends
+    - **Olivette Dog Math callout:** 300 deposits/dog/year, two dogs + Missouri winter = 150-200 surfacing in March, $2.30/day
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300)
+    - **Annual savings callout:** $96-460 cheaper per year vs national franchise
+    - **Two testimonials:** Michelle T. (Olive Blvd area, 2 dogs, weekly Tuesday service), Robert K. (near Ladue border, 2 goldens, $70/month best recurring spend)
+    - **Olivette-specific sections:** Post-winter spring cleanup, older home gate access (Mid-Century homes), dual-income households with irregular schedules, landscaper coordination (mowing day timing), pre-listing home cleanup
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Olivette?", "How much?", "All of 63132 including Ladue SD side?", "Need to be home?", "Spring cleanup?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Olivette, University City, Creve Coeur, Ladue, Clayton, Overland, Brentwood, Richmond Heights in areaServed + geo coordinates (38.6626, -90.3793)
+  - **Target keywords:** "pooper scooper Olivette MO", "dog poop pickup Olivette", "pet waste removal Olivette Missouri", "pooper scooper 63132", "dog waste service Olivette", "pooper scooper near me Olivette"
+  - **Cross-links:**
+    - `blog/pooper-scooper-central-county-st-louis.html`: Added "📍 Olivette Dedicated Guide →" as FIRST item in Related Articles sidebar (before Brentwood, before Maplewood)
+    - `olivette.html` city page: Added "📍 OLIVETTE POOPER SCOOPER GUIDE" as green-bordered featured article card (first in Helpful Articles)
+    - `blog/index.html`: Added Olivette as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 79 total URLs, 46 blog posts
+  - **Blog count: 46 blog posts total** ✅ — EVERY CITY PAGE NOW HAS DEDICATED EDITORIAL
+  - **HTTP 200 confirmed** — `https://tidytailsstl.com/blog/pooper-scooper-olivette-mo` live ✅
+  - Committed + pushed to both tidytails-dashboard (a531f6d0) AND tidytails-website (92d58a6) → Cloudflare Pages ✅
+
+---
+
 ### Monday 8:07 PM — Brentwood, MO Dedicated Blog Post (Hourly Task)
 - **8:07 PM** 🏡 Wrote and published dedicated blog post for Brentwood, MO — the last major inner-ring Central County city with a city page but zero dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-brentwood-mo.html`
