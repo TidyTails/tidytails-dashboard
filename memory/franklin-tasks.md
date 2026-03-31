@@ -2,6 +2,39 @@
 
 ---
 
+### Tuesday 7:04 AM — April 1 Last Day Shed Blitz Kit (Hourly Task)
+- **7:04 AM** 🚨 Built and published the April 1 Last Day Blitz Kit for TuffShed/WoodMaster — the most time-sensitive shed sales opportunity of the year
+  - **File:** `dashboard/shed-april1-last-day-blitz.html` (37KB)
+  - **Why this task:** It's 7:04 AM Tuesday April 1 — the last full day before April 2 tariff deadline. Blog content is maxed at 57 posts with all city pills fixed. The single highest-impact remaining gap: TJ needs a complete April 1 execution kit that combines two rare hooks simultaneously: (1) April Fools Day — a disarming social angle that drives engagement, and (2) the actual tariff deadline on April 2 — genuine urgency that converts fence-sitters. No tool existed for this day specifically.
+  - **What's built:**
+    - **Live countdown timer** to April 2 midnight (hours/mins/secs — ticking in real time, sticky at top)
+    - **4 timed Marketplace listings:**
+      - Listing 1 (7-8 AM): "April Fools Day — But These Prices Are Real" — the full 23-unit inventory overview with April Fools disarming hook. Most shareable listing of the year.
+      - Listing 2 (10-11 AM): Two 12x24 WoodMaster garages ($11,299 each) — highest commission, serious buyer target
+      - Listing 3 (1-2 PM): Visual standouts (Aqua Teal, Navy, Sage Green, Teal Barn, Natural Wood) — Instagram/visual angle, high engagement
+      - Listing 4 (4-5 PM): Entry level $3,509-$4,699 — afternoon budget-sensitive browsers
+    - **3 social posts:** FB Page morning (April Fools hook), Instagram caption with hashtag bank, FB Buy/Sell Group evening "Last Call"
+    - **6 response scripts:**
+      - "Is this a joke?" — the #1 question today, answer honestly and close
+      - "How much will prices really go up?" — honest answer that builds trust
+      - "Let me think / check spouse" — fence-sitter close with urgency framing
+      - "I'll wait until next week" — graceful but clear real-cost explanation
+      - First-touch replies ("how much?" / "interested") — fast qualifier
+      - Availability confirm — for when someone asks about specific unit
+    - **Full inventory grid** — all 23 units with prices, colors, serial numbers
+    - **Win math card** — commission projections per sale type (garages ~$500-800, mid-range ~$250-450)
+    - **12-item checklist** with localStorage persistence and progress bar — timed schedule 7 AM through 9 PM
+  - **Dashboard:** Added pulsing red `🚨 APR 1 LAST DAY — TARIFF BLITZ KIT` as #1 quick link (fastest pulse, highest priority) + featured alert card at top of Shed Business section
+  - **Why April Fools + Tariff = best shed day of the year:**
+    - April Fools creates natural social engagement ("Wait, is this real?") — every "is this a joke?" comment is free viral reach
+    - The tariff deadline is real (April 2 executive order, steel + lumber in scope) — honest urgency converts better than manufactured urgency
+    - TJ's brand voice is "I'll be straight with you" — this combination lets him be maximally honest AND maximally urgent at the same time
+    - The morning listing literally starts "No, this isn't a joke." — that line alone generates more engagement than any shed headline we've written
+    - Window closes at midnight — every hour of posting today adds up
+  - **Committed + pushed to tidytails-dashboard:** `0e88da51` ✅
+
+---
+
 ### Tuesday 6:07 AM — St. Ann + Des Peres/Frontenac Blog Posts + Zero tel: City Pills (Hourly Task)
 - **6:07 AM** 🎯 Published dedicated blog posts for St. Ann (63074) and Des Peres & Frontenac — the last 4 unnamed city pills in service-areas.html now link to dedicated blog posts. **0 `tel:` city pills remaining.** 57 blog posts total.
   - **Why this task:** NC-2 fires today targeting Hazelwood Facebook groups. St. Ann sits directly between Hazelwood, Bridgeton, and Maryland Heights — anyone in St. Ann seeing TJ's NC-2 content and Googling "pooper scooper St. Ann MO" or "dog poop pickup 63074" now finds a dedicated 2,500-word post. Des Peres and Frontenac were the last two named cities in service-areas.html still linking to `tel:` — both got a combined post emphasizing flat rate + landscaper coordination (the angle for affluent West County lot owners). Lemay (unincorporated, shares 63125 with Mehlville) now points at the existing Mehlville/Oakville post.
