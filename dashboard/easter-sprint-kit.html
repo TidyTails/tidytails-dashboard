@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐣 Easter Sprint Kit — 5 Days to Close the Yard</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d26;
+    --card2: #22263a;
+    --border: #2d3148;
+    --purple: #a78bfa;
+    --green: #34d399;
+    --yellow: #fbbf24;
+    --orange: #f97316;
+    --red: #ef4444;
+    --blue: #60a5fa;
+    --pink: #f472b6;
+    --teal: #2dd4bf;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
+
+  .hero {
+    background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #ec4899 100%);
+    padding: 24px 20px 20px;
+    text-align: center;
+  }
+  .hero-badge { background: rgba(255,255,255,0.2); display: inline-block; padding: 4px 14px; border-radius: 100px; font-size: 13px; font-weight: 600; margin-bottom: 8px; letter-spacing: 0.05em; }
+  .hero h1 { font-size: 26px; font-weight: 800; line-height: 1.2; }
+  .hero p { margin-top: 8px; opacity: 0.9; font-size: 15px; }
+  
+  .countdown-bar {
+    background: rgba(0,0,0,0.4);
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 14px;
+  }
+  .countdown-grid { display: flex; justify-content: center; gap: 16px; margin-top: 6px; }
+  .countdown-cell { text-align: center; }
+  .countdown-num { font-size: 28px; font-weight: 800; color: var(--yellow); font-variant-numeric: tabular-nums; }
+  .countdown-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat { padding: 10px 8px; text-align: center; border-right: 1px solid var(--border); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-size: 18px; font-weight: 800; color: var(--yellow); }
+  .stat-label { font-size: 11px; color: var(--muted); margin-top: 2px; }
+
+  .tabs { display: flex; background: var(--card); border-bottom: 1px solid var(--border); overflow-x: auto; }
+  .tab { padding: 11px 16px; font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; color: var(--muted); }
+  .tab.active { color: var(--text); border-bottom-color: var(--purple); }
+
+  .pane { display: none; padding: 16px; max-width: 700px; margin: 0 auto; }
+  .pane.active { display: block; }
+
+  .section-head { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); font-weight: 700; margin: 20px 0 10px; }
+  .section-head:first-child { margin-top: 0; }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+  .card-title { font-size: 15px; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .card p { font-size: 14px; color: var(--muted); line-height: 1.5; }
+
+  .day-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+  .day-header { padding: 12px 16px; display: flex; align-items: center; gap: 10px; cursor: pointer; }
+  .day-date { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; }
+  .day-title { font-size: 15px; font-weight: 700; }
+  .day-chip { margin-left: auto; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 100px; }
+  .chip-fire { background: rgba(239,68,68,0.2); color: var(--red); }
+  .chip-hot { background: rgba(251,191,36,0.2); color: var(--yellow); }
+  .chip-warm { background: rgba(52,211,153,0.2); color: var(--green); }
+  .chip-done { background: rgba(148,163,184,0.15); color: var(--muted); }
+  .day-body { padding: 0 16px 16px; display: none; }
+  .day-body.open { display: block; }
+
+  .script-card { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; margin-top: 12px; }
+  .script-header { padding: 10px 14px; display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .platform-badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 100px; }
+  .platform-fb { background: rgba(96,165,250,0.2); color: var(--blue); }
+  .platform-nd { background: rgba(52,211,153,0.2); color: var(--green); }
+  .platform-ig { background: rgba(244,114,182,0.2); color: var(--pink); }
+  .platform-text { background: rgba(167,139,250,0.2); color: var(--purple); }
+  .script-body { padding: 0 14px 12px; display: none; }
+  .script-body.open { display: block; }
+  .script-text { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; font-size: 13px; line-height: 1.6; white-space: pre-wrap; color: var(--text); margin-bottom: 8px; }
+
+  .copy-btn { background: var(--purple); color: white; border: none; border-radius: 8px; padding: 8px 16px; font-size: 13px; font-weight: 700; cursor: pointer; transition: opacity 0.2s; width: 100%; }
+  .copy-btn:hover { opacity: 0.85; }
+  .copy-btn.copied { background: var(--green); }
+
+  .checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; background: var(--card); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; cursor: pointer; }
+  .checklist-item.done { opacity: 0.5; text-decoration: line-through; }
+  .check-box { width: 20px; height: 20px; border: 2px solid var(--border); border-radius: 6px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 12px; transition: all 0.2s; margin-top: 1px; }
+  .checklist-item.done .check-box { background: var(--green); border-color: var(--green); }
+  .check-label { font-size: 14px; line-height: 1.4; flex: 1; }
+  .check-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .win-card { background: linear-gradient(135deg, #312e81, #1e3a5f); border: 1px solid rgba(167,139,250,0.3); border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+  .win-title { font-size: 15px; font-weight: 800; color: var(--yellow); margin-bottom: 8px; }
+  .win-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 14px; }
+  .win-row:last-child { border-bottom: none; }
+  .win-val { font-weight: 700; color: var(--green); }
+
+  .alert-bar { background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.3); border-radius: 10px; padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start; margin-bottom: 14px; }
+  .alert-icon { font-size: 18px; flex-shrink: 0; }
+  .alert-body { font-size: 13px; line-height: 1.5; color: var(--text); }
+  .alert-body strong { color: var(--yellow); }
+
+  .inline-note { font-size: 12px; color: var(--muted); font-style: italic; }
+
+  @media (max-width: 480px) {
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">🐣 EASTER SPRINT — TUESDAY MAR 31 → SATURDAY APR 4</div>
+  <h1>5 Days to Close the Yard<br>Before Easter Sunday</h1>
+  <p>Easter is April 5. Parents are Googling "clean yard for Easter" RIGHT NOW. This is your highest-conversion week until Mother's Day. Work it.</p>
+</div>
+
+<div class="countdown-bar">
+  <div>⏳ Easter countdown</div>
+  <div class="countdown-grid">
+    <div class="countdown-cell"><div class="countdown-num" id="cd-days">0</div><div class="countdown-label">Days</div></div>
+    <div class="countdown-cell"><div class="countdown-num" id="cd-hours">0</div><div class="countdown-label">Hours</div></div>
+    <div class="countdown-cell"><div class="countdown-num" id="cd-mins">0</div><div class="countdown-label">Mins</div></div>
+    <div class="countdown-cell"><div class="countdown-num" id="cd-secs">0</div><div class="countdown-label">Secs</div></div>
+  </div>
+</div>
+
+<div class="stats-row">
+  <div class="stat"><div class="stat-num">Apr 5</div><div class="stat-label">Easter Sunday</div></div>
+  <div class="stat"><div class="stat-num">$75</div><div class="stat-label">One-time close</div></div>
+  <div class="stat"><div class="stat-num">$840</div><div class="stat-label">LTV if converts</div></div>
+  <div class="stat"><div class="stat-num">5 days</div><div class="stat-label">Window left</div></div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('posts')">📬 Posts by Day</div>
+  <div class="tab" onclick="showTab('referrals')">📲 Customer Texts</div>
+  <div class="tab" onclick="showTab('responses')">💬 Replies</div>
+  <div class="tab" onclick="showTab('checklist')">✅ Checklist</div>
+  <div class="tab" onclick="showTab('math')">💰 Win Math</div>
+</div>
+
+<!-- TAB 1: POSTS BY DAY -->
+<div class="pane active" id="pane-posts">
+
+  <div class="alert-bar" style="margin-top:16px">
+    <div class="alert-icon">🐣</div>
+    <div class="alert-body"><strong>Easter is Sunday April 5 — 5 days away.</strong> This is the exact moment when parents are realizing the yard is still wrecked from winter and they have an egg hunt in a week. Post today. Post Thursday. The window closes Saturday night.</div>
+  </div>
+
+  <!-- TUESDAY MAR 31 -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(this)">
+      <div>
+        <div class="day-date">Tuesday Mar 31</div>
+        <div class="day-title">🔥 Fire Today — "The Yard Reveal"</div>
+      </div>
+      <div class="day-chip chip-fire">FIRE NOW</div>
+    </div>
+    <div class="day-body">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Best post timing: 11 AM – 2 PM. Target: Nextdoor (Crestwood/Kirkwood/Florissant), Facebook community groups. The "yard reveal" hook captures the exact moment people walk outside and see winter's leftovers for the first time.</p>
+
+      <div class="script-card">
+        <div class="script-header" onclick="toggleScript(this)">
+          <span class="platform-badge platform-nd">Nextdoor</span>
+          The Yard Reveal — South County
+          <span style="margin-left:auto;font-size:16px">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-text">Went in the backyard this morning. The snow is gone. The poop... is not.
+
+If you've got dogs, you know exactly what I'm talking about. Three months of deposits all showing up at once.
+
+My name's TJ — I run Tidy Tails, a local dog waste removal service in the south county area. Flat $70/month, no contracts, I text you before every visit so you know I was there.
+
+With Easter this Sunday, I've been getting a lot of calls this week from parents who need a one-time cleanup before the egg hunt. Starting at $75 for a single visit.
+
+If your yard is in spring thaw recovery mode, drop a comment or text me at (314) 850-7140 and I'll get you sorted before the kids are back outside. 🐾
+
+Serving Crestwood, Kirkwood, Webster Groves, Sunset Hills, Affton, and surrounding areas.</div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="script-header" onclick="toggleScript(this)">
+          <span class="platform-badge platform-nd">Nextdoor</span>
+          The Yard Reveal — North County
+          <span style="margin-left:auto;font-size:16px">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-text">Went in the backyard this morning. Snow's melted. Everything that's been buried since December... hasn't.
+
+My name's TJ — I run Tidy Tails, local dog waste removal in the north county area. Flat $70/month, no contracts, I text you a heads-up before every visit.
+
+Easter is Sunday and I've had a handful of families reach out about getting the yard done before the egg hunt. One-time cleanup starts at $75 — no commitment after that.
+
+If your yard needs a reset before the holiday, text me at (314) 850-7140 or drop a comment. 🐣
+
+Serving Florissant, Hazelwood, Ferguson, Bridgeton, Maryland Heights, and surrounding areas.</div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="script-header" onclick="toggleScript(this)">
+          <span class="platform-badge platform-fb">Facebook Group</span>
+          Easter Egg Hunt Warning — Community Tone
+          <span style="margin-left:auto;font-size:16px">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-text">🚨 Easter alert for dog owners 🚨
+
+Easter is THIS SUNDAY. If your dog has been using the backyard all winter and you haven't had a chance to clean it up... now is the time.
+
+Toddlers hunting eggs at ground level + winter poop buildup = not a fun Sunday for anyone.
+
+I'm TJ with Tidy Tails — local dog waste removal. I do one-time cleanups starting at $75 and can usually get to you before the weekend. No contracts, no hassle.
+
+Been getting a lot of calls this week. If you need it done this week, text (314) 850-7140 and I'll work you in.
+
+(Serving Florissant, Hazelwood, Crestwood, Kirkwood, Webster Groves, Affton, and surrounding St. Louis area.)</div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="script-header" onclick="toggleScript(this)">
+          <span class="platform-badge platform-ig">Instagram Story</span>
+          Before/After Tease
+          <span style="margin-left:auto;font-size:16px">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-text">Caption for Story slide:
+
+"Easter's Sunday. Your backyard is not ready. 🐣💩
+
+One-time cleanup from $75. Text us before it's too late — (314) 850-7140"
+
+[Post before/after yard photo if you have one, or just spring yard photo with dog in it]
+
+Hashtags: #StLouis #TidyTails #EasterWeekend #PetWasteRemoval #DogMom #DogDad #SpringCleaning #STLdogs</div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WEDNESDAY APR 1 -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(this)">
+      <div>
+        <div class="day-date">Wednesday Apr 1 — April Fools</div>
+        <div class="day-title">😂 The Joke Post — High Engagement</div>
+      </div>
+      <div class="day-chip chip-hot">HIGH ENG.</div>
+    </div>
+    <div class="day-body">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px">April Fools is your second-best day for organic reach this week. Play with the "it's not a joke" angle. High share potential. Tariff deadline is ALSO April 2 (shed), so this is your biggest dual-business post day.</p>
+
+      <div class="script-card">
+        <div class="script-header" onclick="toggleScript(this)">
+          <span class="platform-badge platform-fb">Facebook</span>
+          April Fools "Not a Joke" Post
+          <span style="margin-left:auto;font-size:16px">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-text">April Fools Day post that is 100% NOT a joke:
+
+✅ Your dog has pooped approximately 90 times since January 1st
+✅ Easter is in 4 days
+✅ Those are the same yard
+
+Tidy Tails — local dog waste removal. One-time Easter cleanup from $75. Monthly service from $70/month flat.
+
+Not a prank. Text (314) 850-7140 to get it done before Sunday. 🐣💩
+
+#AprilFools #NotAJoke #Easter #TidyTails #StLouis</div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="script-header" onclick="toggleScript(this)">
+          <span class="platform-badge platform-nd">Nextdoor</span>
+          April Fools — Short & Punchy
+          <span style="margin-left:auto;font-size:16px">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-text">April Fools.
+
+Everything is a lie today. Except this: Easter is Sunday, your dog's been using the backyard since December, and the egg hunt is in 4 days.
+
+One-time yard cleanup $75. Text TJ at (314) 850-7140.
+
+Not a joke. 🐣</div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THURSDAY APR 3 -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(this)">
+      <div>
+        <div class="day-date">Thursday Apr 3</div>
+        <div class="day-title">⏰ "48 Hours Left" Urgency Push</div>
+      </div>
+      <div class="day-chip chip-hot">URGENCY</div>
+    </div>
+    <div class="day-body">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px">This is your final high-conversion post before the Easter window closes. Timing: 10 AM – 1 PM. This is the "last call" that converts fence-sitters who saw Tuesday's post but haven't texted yet.</p>
+
+      <div class="script-card">
+        <div class="script-header" onclick="toggleScript(this)">
+          <span class="platform-badge platform-nd">Nextdoor</span>
+          48-Hour Countdown
+          <span style="margin-left:auto;font-size:16px">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-text">48 hours until Easter.
+
+If you've been putting off the yard cleanup — this is the text you needed.
+
+I'm TJ from Tidy Tails, local dog waste removal. I've been doing spring cleanups all week for families ahead of Easter and I have a couple slots left for tomorrow (Friday).
+
+$75 one-time cleanup. No commitment after. I'll do the whole yard, you'll be able to walk outside Sunday morning and not think about it.
+
+Text (314) 850-7140 if you want in. First come, first served on open slots. 🐾
+
+(Serving Florissant, Hazelwood, Crestwood, Kirkwood, Webster Groves, Affton, and surrounding areas.)</div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="script-header" onclick="toggleScript(this)">
+          <span class="platform-badge platform-fb">Facebook Group</span>
+          Friday Slots — Scarcity Close
+          <span style="margin-left:auto;font-size:16px">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-text">Last few Friday slots before Easter 🐣
+
+I've been doing spring cleanups all week and have a couple open spots on Friday for anyone who still needs their yard done before the holiday.
+
+$75 one-time cleanup. You don't need to be home. I text when I'm on the way and when I'm done.
+
+Easter egg hunt in your backyard? Let's make sure it's actually pleasant. Text me at (314) 850-7140 today to grab a Friday slot.
+
+— TJ, Tidy Tails 🐾</div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SATURDAY APR 4 -->
+  <div class="day-card">
+    <div class="day-header" onclick="toggleDay(this)">
+      <div>
+        <div class="day-date">Saturday Apr 4 — Day Before Easter</div>
+        <div class="day-title">🌅 "Tomorrow Is Easter" Final Push</div>
+      </div>
+      <div class="day-chip chip-warm">SAME-DAY</div>
+    </div>
+    <div class="day-body">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px">Post by 9 AM Saturday. Some people will see this and panic-book same-day. Even if you can't do same-day, take their info for the next day or for a future weekly signup. Every "yes" is LTV money.</p>
+
+      <div class="script-card">
+        <div class="script-header" onclick="toggleScript(this)">
+          <span class="platform-badge platform-nd">Nextdoor</span>
+          Easter Eve — Panic Booker Hook
+          <span style="margin-left:auto;font-size:16px">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-text">Tomorrow is Easter. 
+
+If you just walked outside and realized the yard isn't ready for an egg hunt — you're not alone. I've had 4 people text me this week saying the same thing.
+
+I'm TJ with Tidy Tails. I'm taking a couple same-day slots this morning if you need it done today. $75 for a full yard cleanup.
+
+Text (314) 850-7140. If I can't get to you today, I'll get you on the schedule for next week and we'll make sure this doesn't happen again.
+
+Happy Easter, St. Louis. 🐣🐾</div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+        </div>
+      </div>
+
+      <div class="script-card">
+        <div class="script-header" onclick="toggleScript(this)">
+          <span class="platform-badge platform-ig">Instagram</span>
+          Easter Eve Grid Post
+          <span style="margin-left:auto;font-size:16px">▼</span>
+        </div>
+        <div class="script-body">
+          <div class="script-text">Tomorrow's the egg hunt. Is the yard ready? 🐣
+
+One-time cleanup $75 — or join the weekly crew at $70/mo flat.
+
+Text (314) 850-7140
+
+#TidyTails #StLouis #EasterWeekend #DogMom #DogDad #SpringCleaning #PetWasteRemoval #STLdogs #EasterEggHunt</div>
+          <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 2: CUSTOMER TEXTS -->
+<div class="pane" id="pane-referrals">
+
+  <div class="alert-bar" style="margin-top:16px">
+    <div class="alert-icon">📲</div>
+    <div class="alert-body"><strong>Send these TODAY (Tuesday).</strong> Easter is the best natural reason to text your existing customers and ask for a referral. Every customer you have knows at least 3-5 other dog owners. One text = $840 in potential LTV.</div>
+  </div>
+
+  <div class="section-head">Referral Texts to Current Customers</div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px">Fill in [NAME] and [DOG NAME] before sending. Send 2-3 today, 2-3 tomorrow. Don't blast all 11 at once.</p>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <span class="platform-badge platform-text">Text</span>
+      Easter Referral Ask — Version 1 (casual)
+      <span style="margin-left:auto;font-size:16px">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Hey [NAME]! With Easter coming up Sunday, figured a few of your neighbors might be in the same boat we were before you started — yard full of winter poop, egg hunt coming up fast. 
+
+If anyone you know is dealing with that, have 'em text me. I'm doing cleanups this week and I'll take care of them. 🐣
+
+— TJ, Tidy Tails</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <span class="platform-badge platform-text">Text</span>
+      Easter Referral Ask — Version 2 (with offer)
+      <span style="margin-left:auto;font-size:16px">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Hey [NAME]! Easter's this Sunday. If you've got any friends or neighbors with dogs who need their yard cleaned up before the holiday, send 'em my way — I've got a few openings this week for one-time cleanups.
+
+And if they end up signing up for regular service, I'll knock a month off your bill as a thank-you. 🙌
+
+— TJ, Tidy Tails (314) 850-7140</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <span class="platform-badge platform-text">Text</span>
+      Easter Referral — With Dog Name (personal)
+      <span style="margin-left:auto;font-size:16px">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Hey [NAME]! [DOG NAME]'s yard is good to go for Easter 😄 — but figured some of your dog-owner friends might not be. Easter egg hunt + winter yard buildup = a rough Sunday morning.
+
+If anyone needs a pre-Easter cleanup, send 'em my way. I'll take care of them. (314) 850-7140 🐣
+
+— TJ, Tidy Tails</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <div class="section-head" style="margin-top:20px">Who to Text First (highest ROI)</div>
+
+  <div class="card">
+    <div class="card-title">1. Shannon (Florissant) — Send TODAY</div>
+    <p>North County cluster anchor. Any referral from Shannon = another Florissant customer → route efficiency. Use Dog Name version if you know her dog's name.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">2. Amanda Harris (Florissant) — Send TODAY</div>
+    <p>Same cluster as Shannon. Two Florissant referrals in the same week = momentum in the North County corridor. High LTV territory.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">3. Chastity — Send TODAY</div>
+    <p>Use Version 2 (with month-off offer). She's been a customer long enough that she'll feel good about referring someone.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">4. Greg — Send WEDNESDAY</div>
+    <p>Greg's the upsell candidate. Use Version 1 (casual). If he mentions other dog owners in his area, that's a route cluster seed.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">5-11. Remaining customers — Send THURSDAY</div>
+    <p>Space them out. 3 texts Tue, 3 texts Wed, remaining Thu. Don't blast everyone at once — feels spammy. Personalize with name/dog name where possible.</p>
+  </div>
+
+</div>
+
+<!-- TAB 3: RESPONSES -->
+<div class="pane" id="pane-responses">
+
+  <div class="section-head" style="margin-top:16px">Inbound Response Scripts</div>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:14px">Copy-paste these for the most common responses you'll get this week. Reply within 5 minutes = 2x close rate.</p>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <span class="platform-badge platform-text">Reply</span>
+      "How much / interested" — One-time cleanup
+      <span style="margin-left:auto;font-size:16px">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Hey! One-time yard cleanup is $75 — I do the whole yard, bag everything up and take it with me. You don't even have to be home. I send a heads-up when I'm on the way and a text when I'm all done.
+
+What's the address? I'll let you know what slots I have open this week before Easter. 🐾</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <span class="platform-badge platform-text">Reply</span>
+      "How much / interested" — Monthly service
+      <span style="margin-left:auto;font-size:16px">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Hey! Monthly service is $70/month flat — that covers weekly visits for up to 2 dogs. 3-4 dogs is $80/month, same deal. No contracts, cancel anytime.
+
+I also text before every visit so you know I was there. First cleanup is free when you sign up.
+
+How many dogs do you have and what's your address? I'll get you on the schedule. 🐾</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <span class="platform-badge platform-text">Reply</span>
+      "Can you do it by Easter / this week?"
+      <span style="margin-left:auto;font-size:16px">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Absolutely — that's exactly what I'm focused on this week. I've got spots open [Wednesday/Thursday/Friday] depending on your area.
+
+What's your address? I'll confirm which day works for your zone and lock it in. 🐣</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <span class="platform-badge platform-text">Reply</span>
+      "Can you come Saturday?" (day before Easter)
+      <span style="margin-left:auto;font-size:16px">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Yeah, I can make Saturday work — I keep a few same-day/next-day spots open for exactly this situation. 
+
+$75 for the full yard. Text me your address and I'll confirm a time. The whole thing usually takes 20-30 minutes and you don't need to be home. 🐾</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <span class="platform-badge platform-text">Reply</span>
+      "Would you do monthly after?" (one-time → recurring)
+      <span style="margin-left:auto;font-size:16px">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">100%. Lots of people start with a one-time cleanup and then realize they never want to deal with it again. 😄
+
+If you want to convert to monthly after, I just swap you onto the weekly schedule — same flat $70/month. First month free on monthly service. No contracts either way.
+
+Let's get the Easter cleanup done first and you can decide after. What's your address?</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <span class="platform-badge platform-text">Reply</span>
+      "Let me think about it / I'll get back to you"
+      <span style="margin-left:auto;font-size:16px">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">No pressure at all — totally understand. Just so you know, my open slots this week are going quick with Easter coming up, so if you do decide to go for it, sooner is better to guarantee before Sunday.
+
+Either way, my number's (314) 850-7140. Just text me when you're ready. 🐾</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <span class="platform-badge platform-text">Reply</span>
+      "$75 is too much / can you do less?"
+      <span style="margin-left:auto;font-size:16px">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">I hear you — $75 is what it takes for me to make a full yard run worthwhile. 
+
+What I can do: if you sign up for monthly service ($70/month), the first cleanup is FREE and you're already covered for Easter AND every week going forward. Over a year that's $840 vs paying $75 every time you need it.
+
+Most people who sign up monthly say they should've done it months ago. Interested in going that route instead?</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+    </div>
+  </div>
+
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript(this)">
+      <span class="platform-badge platform-text">Reply</span>
+      "Do you cover [area]?"
+      <span style="margin-left:auto;font-size:16px">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Yes! What's the address? I cover most of St. Louis County — Florissant, Hazelwood, Ferguson, Crestwood, Kirkwood, Webster Groves, Affton, Chesterfield, Ballwin, and surrounding areas.
+
+Text me the address and I'll confirm coverage + get you on the schedule before Easter. 🐾</div>
+      <button class="copy-btn" onclick="copyScript(this)">Copy to Clipboard</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- TAB 4: CHECKLIST -->
+<div class="pane" id="pane-checklist">
+  
+  <div class="section-head" style="margin-top:16px">Tuesday March 31 — Fire Today</div>
+  
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c1">
+    <div class="check-box">✓</div>
+    <div class="check-label">Post Nextdoor Yard Reveal in South County neighborhoods
+      <div class="check-sub">Crestwood, Kirkwood, Webster Groves, Sunset Hills, Affton — post 11 AM–2 PM</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c2">
+    <div class="check-box">✓</div>
+    <div class="check-label">Post Nextdoor Yard Reveal in North County neighborhoods
+      <div class="check-sub">Florissant, Hazelwood, Ferguson groups — post same window</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c3">
+    <div class="check-box">✓</div>
+    <div class="check-label">Post Facebook Community Group version
+      <div class="check-sub">STL Buy/Sell dog groups, community groups in your area</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c4">
+    <div class="check-box">✓</div>
+    <div class="check-label">Send Easter referral texts to Shannon + Amanda + Chastity
+      <div class="check-sub">Use "Easter Referral — With Dog Name" version. Send today.</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c5">
+    <div class="check-box">✓</div>
+    <div class="check-label">Post Easter-themed Instagram Story or reel
+      <div class="check-sub">Use caption from the IG Story tab. 🐣 + yard photo if you have one.</div>
+    </div>
+  </div>
+
+  <div class="section-head">Wednesday April 1 — April Fools + Tariff Day</div>
+  
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c6">
+    <div class="check-box">✓</div>
+    <div class="check-label">Post April Fools "Not A Joke" on Facebook
+      <div class="check-sub">Highest-engagement post of the week. Fire 9–11 AM.</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c7">
+    <div class="check-box">✓</div>
+    <div class="check-label">Post April Fools short version on Nextdoor
+      <div class="check-sub">Keep it punchy — 5 lines max. Post 11 AM.</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c8">
+    <div class="check-box">✓</div>
+    <div class="check-label">Send Easter referral texts to Greg + 2 more customers
+      <div class="check-sub">Spread the referral asks over Tue/Wed/Thu — don't blast all 11 at once.</div>
+    </div>
+  </div>
+
+  <div class="section-head">Thursday April 3 — 48-Hour Warning</div>
+  
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c9">
+    <div class="check-box">✓</div>
+    <div class="check-label">Post "48 Hours Left / Friday Slots" on Nextdoor
+      <div class="check-sub">The scarcity/urgency close. Best timing: 10 AM–noon.</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c10">
+    <div class="check-box">✓</div>
+    <div class="check-label">Post "Friday Slots" on Facebook Groups
+      <div class="check-sub">Same message, different framing for FB audience.</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c11">
+    <div class="check-box">✓</div>
+    <div class="check-label">Send remaining referral texts to last 5-6 customers
+      <div class="check-sub">Send Thursday AM so replies come in during the day.</div>
+    </div>
+  </div>
+
+  <div class="section-head">Saturday April 4 — Easter Eve</div>
+  
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c12">
+    <div class="check-box">✓</div>
+    <div class="check-label">Post "Tomorrow Is Easter" on Nextdoor — 8–9 AM
+      <div class="check-sub">Early morning catches people when the panic hits. Same-day cleanup offer.</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c13">
+    <div class="check-box">✓</div>
+    <div class="check-label">Post Easter Eve grid photo on Instagram
+      <div class="check-sub">Simple caption from the IG tab. Post by 9 AM.</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c14">
+    <div class="check-box">✓</div>
+    <div class="check-label">Follow up on any unanswered inbound messages from the week
+      <div class="check-sub">One last "slots still open today" nudge to fence-sitters.</div>
+    </div>
+  </div>
+
+  <div class="section-head">After Easter — Convert One-Timers to Monthly</div>
+  
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c15">
+    <div class="check-box">✓</div>
+    <div class="check-label">Text every one-time Easter cleanup customer after service
+      <div class="check-sub">Use the one-time → monthly conversion script in the Responses tab.</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)" data-id="c16">
+    <div class="check-box">✓</div>
+    <div class="check-label">Ask Easter customers for a Google review
+      <div class="check-sub">Highest satisfaction window = within 24-48 hours of service. 6 reviews → 8+.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 5: WIN MATH -->
+<div class="pane" id="pane-math">
+
+  <div style="margin-top:16px">
+  <div class="win-card">
+    <div class="win-title">🐣 Easter Week Revenue Scenarios</div>
+    <div class="win-row"><span>One-time cleanups (conservative — 3)</span><span class="win-val">$225</span></div>
+    <div class="win-row"><span>One-time cleanups (realistic — 6)</span><span class="win-val">$450</span></div>
+    <div class="win-row"><span>One-time cleanups (strong — 10)</span><span class="win-val">$750</span></div>
+    <div class="win-row"><span>One-timers that convert to monthly (50%)</span><span class="win-val">3-5 new customers</span></div>
+    <div class="win-row"><span>LTV per monthly convert ($70/mo × 18 mo)</span><span class="win-val">$1,260</span></div>
+    <div class="win-row"><span>If 3 converts → LTV</span><span class="win-val">$3,780</span></div>
+    <div class="win-row"><span>If 5 converts → LTV</span><span class="win-val">$6,300</span></div>
+  </div>
+
+  <div class="win-card" style="background: linear-gradient(135deg, #052e16, #064e3b);">
+    <div class="win-title">📲 Referral Math</div>
+    <div class="win-row"><span>Texts sent to existing customers (11)</span><span class="win-val">11</span></div>
+    <div class="win-row"><span>Expected referrals generated (10-20%)</span><span class="win-val">1-2 leads</span></div>
+    <div class="win-row"><span>LTV per referral customer</span><span class="win-val">$1,260</span></div>
+    <div class="win-row"><span>Cost of sending those texts</span><span class="win-val">$0</span></div>
+    <div class="win-row"><span>ROAS</span><span class="win-val">∞</span></div>
+  </div>
+
+  <div class="win-card" style="background: linear-gradient(135deg, #1e1b4b, #312e81);">
+    <div class="win-title">💰 Total Easter Week Upside</div>
+    <div class="win-row"><span>Direct one-time revenue (6 cleanups)</span><span class="win-val">$450</span></div>
+    <div class="win-row"><span>3 monthly converts (3 × $1,260 LTV)</span><span class="win-val">$3,780</span></div>
+    <div class="win-row"><span>1 referral convert ($1,260 LTV)</span><span class="win-val">$1,260</span></div>
+    <div class="win-row"><span>🎯 Total upside from one week of posts</span><span class="win-val" style="color:var(--yellow)">$5,490</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🔑 The Conversion Key</div>
+    <p>The one-time cleanup is the <strong>foot in the door</strong>. People who hire you once for Easter and are happy will say "I never want to do this again." That's your monthly signup. <strong>The goal this week isn't $75 — it's $1,260 LTV.</strong> Every Easter cleanup is a trial for your monthly service. Treat it that way.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📅 What Comes After Easter</div>
+    <p>Mother's Day is May 11. Earth Day is April 22. Keep the seasonal hooks going. Easter → Earth Day → Mother's Day = 6 weeks of built-in conversion content requiring zero creativity. Ride the calendar.</p>
+  </div>
+  </div>
+</div>
+
+<script>
+// Countdown to Easter Sunday April 5, 2026
+function updateCountdown() {
+  const target = new Date('2026-04-05T08:00:00-05:00').getTime();
+  const now = Date.now();
+  const diff = target - now;
+  if (diff <= 0) {
+    document.getElementById('cd-days').textContent = '0';
+    document.getElementById('cd-hours').textContent = '0';
+    document.getElementById('cd-mins').textContent = '0';
+    document.getElementById('cd-secs').textContent = '0';
+    return;
+  }
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  const mins = Math.floor((diff % 3600000) / 60000);
+  const secs = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent = days;
+  document.getElementById('cd-hours').textContent = String(hours).padStart(2,'0');
+  document.getElementById('cd-mins').textContent = String(mins).padStart(2,'0');
+  document.getElementById('cd-secs').textContent = String(secs).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+function showTab(name) {
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('pane-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleDay(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+  const first = header.querySelector('.day-chip');
+  if (first && first.textContent === 'FIRE NOW') {
+    // auto-open fire posts
+  }
+}
+
+// Auto-open today's post (Tuesday Mar 31 = first day-card)
+document.querySelectorAll('.day-card')[0].querySelector('.day-body').classList.add('open');
+
+function toggleScript(header) {
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+function copyScript(btn) {
+  const text = btn.previousElementSibling.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Checklist persistence
+function toggleCheck(item) {
+  item.classList.toggle('done');
+  const id = item.dataset.id;
+  const done = JSON.parse(localStorage.getItem('easter_checks') || '{}');
+  done[id] = item.classList.contains('done');
+  localStorage.setItem('easter_checks', JSON.stringify(done));
+}
+
+(function restoreChecks() {
+  const done = JSON.parse(localStorage.getItem('easter_checks') || '{}');
+  document.querySelectorAll('.checklist-item').forEach(item => {
+    if (done[item.dataset.id]) item.classList.add('done');
+  });
+})();
+</script>
+
+</body>
+</html>
