@@ -2,6 +2,24 @@
 
 ---
 
+### Tuesday 3:04 AM — Caption Burnin: 3 Video Ads (Hourly Task)
+- **3:04 AM** 🎬 Burned text captions directly into all 3 Tidy Tails video ads — resolves Chief Oversight's 5-consecutive-flag "FB captions blocking video launch" HIGH issue
+  - **Files:** `dashboard/videos/ad1_barefoot_captioned.mp4`, `ad2_window_view_captioned.mp4`, `ad3_before_after_captioned.mp4`
+  - **Dashboard:** `https://tidytails.github.io/tidytails-dashboard/dashboard/video-ads-mar28.html` ✅ (200 OK)
+  - **Why this task:** Chief Oversight had flagged "FB captions still blocking 3 video ads" as a HIGH issue for 5 consecutive checks (since at least Mar 30 check #262). The problem: 85% of Facebook/Instagram video plays without sound on mobile. Without burned-in captions, the message is invisible to most viewers. The videos existed and QA-passed since Mar 28 but were never usable for actual ads without captions. This was a hard blocker to deploying the FB ad creative.
+  - **Technical approach:** `ffmpeg` on this machine was built without `libfreetype` (no `drawtext` filter). Solution: Python + Pillow to generate transparent PNG overlay frames with white text + black stroke + semi-transparent rounded background, then `ffmpeg overlay` filter to composite PNG onto video. This worked without any missing filter dependencies.
+  - **3 captioned videos produced:**
+    1. **ad1_barefoot_captioned.mp4** (3.0MB) — "Would you walk barefoot / in YOUR yard?" — 2-line overlay
+    2. **ad2_window_view_captioned.mp4** (1.8MB) — "Let them back outside." — strong emotional hook ⭐
+    3. **ad3_before_after_captioned.mp4** (2.0MB) — "3 dogs. 7 days. / We got every one." — social proof ⭐
+  - **All validated:** 960x960 H264 video + AAC audio 44100Hz, 5.1 seconds, captions baked — plays with or without sound
+  - **dashboard/video-ads-mar28.html updated:** New "CAPTIONED VERSIONS — USE THESE" section at top with inline video players, download links, usage instructions for FB Ads Manager + Nextdoor organic
+  - **dashboard/index.html updated:** Added pulsing purple "🎬 3 VIDEO ADS — CAPTIONS READY" quick link to header
+  - **Chief issue-001:** Resolved — 5-check HIGH flag cleared. Caption blocker eliminated.
+  - **Git pushed:** `156fb6f9` to `TidyTails/tidytails-dashboard` ✅
+
+---
+
 ### Tuesday 12:08 AM — North County Commercial Blitz Kit (Hourly Task)
 - **12:08 AM** 🎯 Built the NC Commercial Blitz Kit — day-by-day synchronized attack pairing NC-week social posts with commercial calls in the same neighborhood each day
   - **File:** `tidytails-dashboard/nc-commercial-blitz.html` (53KB)
