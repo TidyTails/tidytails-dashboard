@@ -2,6 +2,32 @@
 
 ---
 
+### Monday 10:06 PM — Tuesday March 31 Morning Briefing PDF (Hourly Task)
+- **10:06 PM** 📋 Built and delivered the Tuesday March 31 Morning Briefing — Day 2 of the North County campaign, last day of tariff urgency, Vet Blitz Day 2
+  - **File:** `dashboard/pdfs/MORNING_BRIEFING_2026-03-31.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-03-31.pdf` (536KB ✅)
+  - **Why this task:** It's 10 PM Monday — all 46 blog posts are live covering every city in the service area. Content is saturated. The highest-value hourly task is making sure TJ has a clear Day 2 playbook when he wakes up at 6 AM. Day 2 is where most campaigns die — energy drops, nobody posts NC-2, vet blitz stops at Day 1. This briefing prevents that.
+  - **What's in the briefing:**
+    - **Header:** "Day 2. Keep Moving." — blue gradient, "Day 2 of 5 — North County Campaign" badge
+    - **TARIFF COUNTDOWN:** Giant "1" — ONE DAY UNTIL TARIFF DEADLINE. Can't miss it. Shed action is mandatory today.
+    - **KPI bar:** 10 customers / 25 goal / 2 days to tariff / NC Day 2
+    - **Alert:** April Fool's tomorrow — draft the "only joke is how long you waited" shed post tonight
+    - **Priority 1:** Final Paw-ty warm lead follow-up — last credible touch before the window closes completely. Copy-paste script included.
+    - **Priority 2 (NC-2):** Full copy-paste Hazelwood FB groups post + Nextdoor variant. Target groups listed. Reminder to check FB Ads Manager status (should be in review or active by now).
+    - **Priority 3 (Vet Blitz Day 2):** Ferguson AH + Halls Ferry AH + Normandy AH — each with pitch angle. 30-second walk-in script copy-paste ready.
+    - **Priority 4 (Tariff / Sheds):** Tariff Marketplace post copy-paste ready. Open inquiry follow-up nudge. April Fool's post drafted to schedule for tomorrow 7-8 AM.
+    - **Tuesday Master Checklist:** 12-item grid covering all priorities
+    - **NC Campaign Week at a Glance:** Mon ✅ → Tue TODAY → Wed/Thu/Fri upcoming
+    - **Win Math:** 1 Paw-ty convert + 1 vet placement + 1 shed sale + NC-2 leads = $10,000+ potential day
+    - **9-tool quick reference grid**
+    - **Mindset closer:** "Day 1 plants the seed. Day 2 is when most people quit. Don't quit on Day 2."
+  - **PDF validated:** 536KB ✅, starts %PDF- ✅
+  - **Dashboard:** Added pulsing blue "📋 TUESDAY BRIEFING — NC-2 + VET DAY 2 + TARIFF FINAL DAY" as #1 quick link
+  - Committed + pushed to tidytails-dashboard (4dc2387f + de0401c5) ✅
+
+---
+
+---
+
 ### Monday 9:04 PM — Olivette, MO Dedicated Blog Post (Hourly Task)
 - **9:04 PM** 🏡 Wrote and published dedicated blog post for Olivette, MO — the LAST remaining city page in the entire service area without dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-olivette-mo.html`
