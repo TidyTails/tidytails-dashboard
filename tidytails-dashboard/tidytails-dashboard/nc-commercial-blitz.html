@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NC Commercial Blitz — Tidy Tails</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root {
+    --bg: #0a0d14;
+    --card: #111420;
+    --card2: #181d2e;
+    --border: #1e2540;
+    --text: #e2e8f0;
+    --dim: #8b95aa;
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --amber: #f59e0b;
+    --red: #ef4444;
+    --purple: #a855f7;
+    --teal: #14b8a6;
+    --orange: #f97316;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; min-height: 100vh; }
+
+  .header {
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .header h1 { font-size: 1.4rem; font-weight: 800; }
+  .header h1 span { color: #22c55e; }
+  .header p { color: var(--dim); font-size: 0.8rem; margin-top: 4px; }
+
+  .strategy-banner {
+    background: linear-gradient(90deg, rgba(59,130,246,0.15), rgba(34,197,94,0.10));
+    border-left: 3px solid var(--blue);
+    margin: 16px;
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.82rem;
+    color: #93c5fd;
+  }
+  .strategy-banner strong { color: white; }
+
+  /* Day tabs */
+  .tabs { display: flex; gap: 0; margin: 0 16px 16px; overflow-x: auto; border-bottom: 2px solid var(--border); }
+  .tab {
+    padding: 10px 14px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: var(--dim);
+    white-space: nowrap;
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+  }
+  .tab:hover { color: var(--text); }
+  .tab.active { color: white; border-bottom-color: var(--green); }
+  .tab .day-badge { display: block; font-size: 0.65rem; color: var(--dim); margin-top: 2px; }
+  .tab.today .day-badge { color: var(--amber); }
+  .tab.today { color: var(--amber); }
+
+  /* Day panels */
+  .panel { display: none; padding: 0 16px 40px; }
+  .panel.active { display: block; }
+
+  /* Campaign post card */
+  .post-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .platform-badge {
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .fb { background: rgba(59,130,246,0.2); color: #93c5fd; }
+  .nd { background: rgba(34,197,94,0.2); color: #86efac; }
+  .post-title { font-weight: 700; font-size: 0.95rem; }
+  .post-time { color: var(--dim); font-size: 0.75rem; margin-left: auto; }
+
+  .post-preview {
+    background: var(--card2);
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 0.8rem;
+    color: var(--dim);
+    line-height: 1.5;
+    border-left: 3px solid var(--blue);
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+
+  .post-groups {
+    font-size: 0.75rem;
+    color: var(--dim);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+  }
+  .post-groups span { font-weight: 600; color: var(--text); }
+  .group-chip {
+    background: rgba(59,130,246,0.15);
+    border: 1px solid rgba(59,130,246,0.3);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 0.7rem;
+    color: #93c5fd;
+  }
+
+  /* Section headers */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 20px 0 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .section-header .line { flex: 1; height: 1px; background: var(--border); }
+
+  /* Lead cards */
+  .lead-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    transition: border-color 0.2s;
+  }
+  .lead-card:hover { border-color: rgba(34,197,94,0.4); }
+  .lead-card.called { border-color: rgba(34,197,94,0.5); opacity: 0.7; }
+  
+  .lead-top {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .tier-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .tier-1 { background: var(--red); }
+  .tier-2 { background: var(--amber); }
+  .tier-ref { background: var(--teal); }
+
+  .lead-name { font-weight: 700; font-size: 0.92rem; }
+  .lead-type { color: var(--dim); font-size: 0.72rem; margin-top: 2px; }
+  .lead-priority { margin-left: auto; font-size: 0.68rem; color: var(--amber); font-weight: 700; }
+
+  .lead-detail {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 12px;
+    font-size: 0.75rem;
+    color: var(--dim);
+    margin-bottom: 8px;
+  }
+  .lead-detail .val { color: var(--text); font-weight: 500; }
+
+  .pitch-box {
+    background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(59,130,246,0.05));
+    border: 1px solid rgba(34,197,94,0.2);
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-size: 0.75rem;
+    color: #86efac;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+  .pitch-box strong { color: white; display: block; margin-bottom: 4px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  .lead-actions {
+    display: flex;
+    gap: 8px;
+  }
+  .btn-call {
+    flex: 1;
+    padding: 8px;
+    background: rgba(34,197,94,0.15);
+    border: 1px solid rgba(34,197,94,0.4);
+    border-radius: 6px;
+    color: var(--green);
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+  }
+  .btn-call:hover { background: rgba(34,197,94,0.25); }
+  .btn-mark {
+    padding: 8px 12px;
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--dim);
+    font-size: 0.75rem;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .btn-mark:hover { border-color: var(--green); color: var(--green); }
+  .btn-mark.done { background: rgba(34,197,94,0.15); border-color: var(--green); color: var(--green); }
+
+  /* Script block */
+  .script-block {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+  .script-block h3 { font-size: 0.85rem; font-weight: 700; margin-bottom: 10px; color: var(--amber); }
+  .script-text {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: var(--dim);
+  }
+  .script-text em { color: #93c5fd; font-style: italic; }
+  .script-text strong { color: var(--text); }
+
+  /* Today banner */
+  .today-banner {
+    background: linear-gradient(90deg, rgba(245,158,11,0.15), rgba(249,115,22,0.08));
+    border: 1px solid rgba(245,158,11,0.3);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 16px;
+    font-size: 0.8rem;
+    color: var(--amber);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .today-banner strong { color: white; }
+
+  /* Win math */
+  .win-card {
+    background: linear-gradient(135deg, #052e16, #064e3b);
+    border: 1px solid rgba(34,197,94,0.3);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+  }
+  .win-card h4 { color: var(--green); font-size: 0.8rem; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .win-row { display: flex; justify-content: space-between; font-size: 0.78rem; padding: 4px 0; border-bottom: 1px solid rgba(34,197,94,0.1); }
+  .win-row:last-child { border-bottom: none; font-weight: 700; color: var(--green); }
+  .win-row .label { color: var(--dim); }
+
+  /* Stats bar */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin: 0 16px 16px;
+  }
+  .stat-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+  }
+  .stat-num { font-size: 1.3rem; font-weight: 900; color: var(--green); }
+  .stat-lbl { font-size: 0.65rem; color: var(--dim); text-transform: uppercase; margin-top: 2px; }
+
+  /* Copy button */
+  .copy-wrap { position: relative; }
+  .copy-btn {
+    position: absolute;
+    top: 8px; right: 8px;
+    background: rgba(59,130,246,0.15);
+    border: 1px solid rgba(59,130,246,0.3);
+    border-radius: 4px;
+    color: #93c5fd;
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    cursor: pointer;
+  }
+  .copy-btn:hover { background: rgba(59,130,246,0.3); }
+
+  /* Checklist */
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-item input[type=checkbox] { margin-top: 2px; accent-color: var(--green); width: 16px; height: 16px; }
+  .check-item .check-label { flex: 1; }
+  .check-item .check-note { color: var(--dim); font-size: 0.72rem; margin-top: 2px; }
+
+  /* Progress */
+  .progress-bar {
+    background: var(--card2);
+    border-radius: 4px;
+    height: 4px;
+    margin: 12px 0 6px;
+    overflow: hidden;
+  }
+  .progress-fill { height: 100%; background: var(--green); border-radius: 4px; transition: width 0.3s; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🎯 NC Week <span>Commercial Blitz</span></h1>
+  <p>North County Conquest Campaign — March 31–April 4, 2026</p>
+</div>
+
+<div style="background:#0a1a0a;border:1px solid #166534;border-radius:10px;padding:12px 16px;margin:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+  <span style="font-size:0.75em;color:#86efac;font-weight:700;">📧 AFTER THE CALL:</span>
+  <span style="font-size:0.78em;color:#aaa;">They say "send me something"?</span>
+  <a href="commercial-email-kit.html" style="background:#22c55e;color:#000;font-weight:800;font-size:0.75em;padding:7px 14px;border-radius:7px;text-decoration:none;">Open Email Kit →</a>
+  <span style="font-size:0.72em;color:#555;">4 ready-to-send templates + printable one-pager</span>
+</div>
+
+<div class="strategy-banner">
+  <strong>⚡ The Strategy:</strong> Every day this week, a North County FB post fires. While the social algorithm works, Jamie calls the commercial leads IN THAT SAME NEIGHBORHOOD. Double impression. Same brand, two touchpoints, one day. 
+  When a property manager Googles Tidy Tails after the call — they find the Hazelwood blog post and the Facebook group. That's not luck. That's a system.
+</div>
+
+<div class="stats-bar" id="statsBar">
+  <div class="stat-box">
+    <div class="stat-num" id="stat-called">0</div>
+    <div class="stat-lbl">Called</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num" id="stat-total">15</div>
+    <div class="stat-lbl">NC Targets</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num" style="color: var(--amber);">$800</div>
+    <div class="stat-lbl">Min Contract</div>
+  </div>
+  <div class="stat-box">
+    <div class="stat-num" style="color: var(--blue);">0</div>
+    <div class="stat-lbl" id="stat-won">Warm Leads</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab today active" data-tab="tue" onclick="switchTab('tue')">
+    📱 NC-2 Tuesday
+    <span class="day-badge">TODAY — Mar 31</span>
+  </div>
+  <div class="tab" data-tab="wed" onclick="switchTab('wed')">
+    📱 NC-3 Wednesday
+    <span class="day-badge">Apr 1</span>
+  </div>
+  <div class="tab" data-tab="thu" onclick="switchTab('thu')">
+    📱 NC-4 Thursday
+    <span class="day-badge">Apr 2</span>
+  </div>
+  <div class="tab" data-tab="fri" onclick="switchTab('fri')">
+    📱 NC-5 Friday
+    <span class="day-badge">Apr 3</span>
+  </div>
+  <div class="tab" data-tab="strategy" onclick="switchTab('strategy')">
+    📊 Strategy
+    <span class="day-badge">Full Playbook</span>
+  </div>
+</div>
+
+<!-- TUESDAY NC-2 -->
+<div class="panel active" id="panel-tue">
+  <div class="today-banner">
+    🔥 <strong>TODAY IS NC-2 — HAZELWOOD & BRIDGETON DAY.</strong> Post in Hazelwood Community Group + Bridgeton MO Neighbors at 6–8 PM. Call the leads below during business hours.
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <span class="platform-badge fb">Facebook</span>
+      <div class="post-title">NC-2 — Hazelwood/Bridgeton Post</div>
+      <div class="post-time">🕕 6–8 PM today</div>
+    </div>
+    <div class="post-preview">
+      "Quick poll for Hazelwood & Bridgeton dog owners: How many times have you said 'I'll clean the yard this weekend' and then... didn't? 😂 No shame. Life gets busy. That's literally why we exist. I'm Jamie — I run Tidy Tails, a pooper scooper service right here in the STL area..."
+    </div>
+    <div class="post-groups">
+      <span>Post to:</span>
+      <div class="group-chip">Hazelwood Community Group</div>
+      <div class="group-chip">Bridgeton MO Neighbors</div>
+      <div class="group-chip">North County Buy Sell Trade</div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span>📞 HAZELWOOD CALLS — Do These Today</span>
+    <div class="line"></div>
+  </div>
+
+  <!-- Millsap Properties — Teson Garden & White Birch are in Hazelwood -->
+  <div class="lead-card" id="lead-millsap-hazelwood">
+    <div class="lead-top">
+      <div class="tier-dot tier-1"></div>
+      <div>
+        <div class="lead-name">Millsap Properties — Hazelwood Portfolio</div>
+        <div class="lead-type">Property Management · Teson Garden + White Birch Apartments</div>
+      </div>
+      <div class="lead-priority">⭐ TOP PRIORITY</div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">(314) 686-3337</span></div>
+      <div>Email: <span class="val">millsappropertymanagement@gmail.com</span></div>
+      <div>Teson Garden: <span class="val">2 Teson Garden Walk, Hazelwood 63042</span></div>
+      <div>White Birch: <span class="val">355 Coachway Ln, Hazelwood 63042</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Today's Hook</strong>
+      "We just had a ton of Hazelwood residents reach out after seeing our Facebook post — your timing is perfect. We service Charbonier in Florissant and would love to add Teson Garden and White Birch. One call, two properties, same flat rate."
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3146863337" class="btn-call">📞 Call (314) 686-3337</a>
+      <button class="btn-mark" onclick="markCalled('lead-millsap-hazelwood', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <!-- Ferguson Animal Hospital — crosses into Hazelwood search -->
+  <div class="lead-card" id="lead-ferguson-ah">
+    <div class="lead-top">
+      <div class="tier-dot tier-ref"></div>
+      <div>
+        <div class="lead-name">Ferguson Animal Hospital</div>
+        <div class="lead-type">Vet Clinic — Referral Partner · Ferguson/Hazelwood border</div>
+      </div>
+      <div class="lead-priority">VET BLITZ</div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">(314) 524-0707</span></div>
+      <div>Address: <span class="val">483 Airport Rd, Ferguson 63135</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Hazelwood Day Hook</strong>
+      "Hey, this is Jamie with Tidy Tails — we're the local dog waste removal service right here in North County. I was wondering if we could leave some cards or a small flyer in your waiting area? We give 10% off the first month to any of your clients who mention your clinic. Totally free for you — just a referral thing."
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3145240707" class="btn-call">📞 Call (314) 524-0707</a>
+      <button class="btn-mark" onclick="markCalled('lead-ferguson-ah', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <!-- Gateway City Animal Clinic -->
+  <div class="lead-card" id="lead-gateway-city">
+    <div class="lead-top">
+      <div class="tier-dot tier-ref"></div>
+      <div>
+        <div class="lead-name">Gateway City Animal Clinic</div>
+        <div class="lead-type">Vet Clinic — Referral Partner · Florissant/Ferguson border (W. Florissant Ave)</div>
+      </div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">(314) 868-7387</span></div>
+      <div>Address: <span class="val">10436 W Florissant Ave, St. Louis 63136</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Pitch</strong>
+      "I'm Jamie with Tidy Tails — we're the local pooper scooper service covering all of North County. We just launched our Hazelwood/Florissant push this week. Could we drop off some cards for your waiting room? Your clients with dogs are exactly who we serve — first month 10% off if they mention you."
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3148687387" class="btn-call">📞 Call (314) 868-7387</a>
+      <button class="btn-mark" onclick="markCalled('lead-gateway-city', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span>📞 BRIDGETON AREA CALLS</span>
+    <div class="line"></div>
+  </div>
+
+  <!-- Maryland Heights Dogport — Bridgeton adjacent -->
+  <div class="lead-card" id="lead-mh-dogport">
+    <div class="lead-top">
+      <div class="tier-dot tier-2"></div>
+      <div>
+        <div class="lead-name">Maryland Heights Dogport</div>
+        <div class="lead-type">City Dog Park — Municipal Contract · Maryland Heights 63043</div>
+      </div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">(314) 738-2599</span></div>
+      <div>Address: <span class="val">McKelvey Woods Ct, Maryland Heights 63043</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Hook</strong>
+      "Hi, this is Jamie with Tidy Tails Pet Waste Removal. We're a local service covering the Maryland Heights and Bridgeton area. I was looking at the Dogport — any chance you work with outside vendors for the waste stations or cleanup? We'd love to put together a proposal for the Parks department."
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3147382599" class="btn-call">📞 Call (314) 738-2599</a>
+      <button class="btn-mark" onclick="markCalled('lead-mh-dogport', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <!-- Aventura at Maryland Oaks -->
+  <div class="lead-card" id="lead-aventura-marylandoaks">
+    <div class="lead-top">
+      <div class="tier-dot tier-1"></div>
+      <div>
+        <div class="lead-name">Aventura at Maryland Oaks</div>
+        <div class="lead-type">Luxury Apartment Complex w/ Off-Leash Dog Park · Maryland Heights 63043</div>
+      </div>
+      <div class="lead-priority">BUNDLE DEAL</div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">(314) 682-5755</span></div>
+      <div>Address: <span class="val">2100 East Aventura Way, Maryland Heights 63043</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Hook</strong>
+      "Hi, this is Jamie with Tidy Tails — we're a local pet waste removal company right here in Maryland Heights. Your dog park is a huge draw for residents — I'd love to talk about weekly professional cleanup to keep it in great shape. One flat rate, no contract. Is the property manager available?"
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3146825755" class="btn-call">📞 Call (314) 682-5755</a>
+      <button class="btn-mark" onclick="markCalled('lead-aventura-marylandoaks', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span>📝 NC-2 DAY CHECKLIST</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="post-card">
+    <div id="tue-checks">
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('tue-1',this)"> <div class="check-label">Post NC-2 in Hazelwood Community Group <div class="check-note">Best time: 6–8 PM</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('tue-2',this)"> <div class="check-label">Post NC-2 in Bridgeton MO Neighbors <div class="check-note">Same post, same time window</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('tue-3',this)"> <div class="check-label">Post NC-2 in North County Buy Sell Trade <div class="check-note">One more group for reach</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('tue-4',this)"> <div class="check-label">Call Millsap Properties re: Hazelwood properties <div class="check-note">(314) 686-3337 — highest LTV call today</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('tue-5',this)"> <div class="check-label">Call Ferguson Animal Hospital <div class="check-note">Referral cards for waiting room</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('tue-6',this)"> <div class="check-label">Call Gateway City Animal Clinic <div class="check-note">Vet Blitz Day 2 option — or just the call is fine</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('tue-7',this)"> <div class="check-label">Call Aventura at Maryland Oaks <div class="check-note">Dog park commercial lead — could bundle with Hawk Ridge</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('tue-8',this)"> <div class="check-label">Reply to any comments/DMs from NC-1 Monday post <div class="check-note">Don't leave comments hanging — reply fast</div></div></label>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="tue-progress" style="width:0%"></div>
+    </div>
+    <div style="text-align:right; font-size:0.72rem; color: var(--dim);" id="tue-progress-text">0 of 8 done</div>
+  </div>
+
+  <div class="win-card">
+    <h4>💰 Tuesday Win Math</h4>
+    <div class="win-row"><span class="label">NC-2 post → 3 replies/DMs</span><span>→ 1 new residential customer = $840/yr LTV</span></div>
+    <div class="win-row"><span class="label">Millsap Hazelwood properties (2)</span><span>→ $300–500/mo per property if won</span></div>
+    <div class="win-row"><span class="label">1 vet referral partner</span><span>→ 2–3 residential leads/mo = $1,680–2,520/yr</span></div>
+    <div class="win-row"><span class="label">Best case Tuesday:</span><span>$2,000+ in new revenue pipeline</span></div>
+  </div>
+</div>
+
+<!-- WEDNESDAY NC-3 -->
+<div class="panel" id="panel-wed">
+  <div class="today-banner" style="background: linear-gradient(90deg, rgba(168,85,247,0.12), rgba(59,130,246,0.08)); border-color: rgba(168,85,247,0.3); color: #d8b4fe;">
+    📅 <strong>NC-3 — APRIL FOOL'S DAY + FERGUSON DAY.</strong> Post in Ferguson Community Forum + Ferguson MO Neighbors at 7–9 AM. Also post the "only joke is waiting" shed content. Call Ferguson-area commercial leads.
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <span class="platform-badge fb">Facebook</span>
+      <div class="post-title">NC-3 — Ferguson/Jennings Post</div>
+      <div class="post-time">🕖 7–9 AM Wed</div>
+    </div>
+    <div class="post-preview">
+      "Spring cleaning season is here and I've got one question for Ferguson dog owners: When's the last time your kids played in the backyard WITHOUT you doing a poop patrol first? 🤔 I'm Jamie with Tidy Tails — local pet waste removal. We're the ONLY pooper scooper service actively serving North County right now..."
+    </div>
+    <div class="post-groups">
+      <span>Post to:</span>
+      <div class="group-chip">Ferguson Community Forum</div>
+      <div class="group-chip">Ferguson MO Neighbors</div>
+      <div class="group-chip">North County Connect</div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span>📞 FERGUSON CALLS — Wednesday</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="lead-card" id="lead-renewal-heights">
+    <div class="lead-top">
+      <div class="tier-dot tier-1"></div>
+      <div>
+        <div class="lead-name">Renewal Heights Apartments</div>
+        <div class="lead-type">411-unit apartment complex with dog park · Ferguson 63136</div>
+      </div>
+      <div class="lead-priority">🐕 DOG PARK</div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">(314) 699-9923</span></div>
+      <div>Address: <span class="val">2974 Coppercreek Rd, Ferguson 63136</span></div>
+      <div>Managed by: <span class="val">Clifton River Capital</span></div>
+      <div>Units: <span class="val">411 (huge!)</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Ferguson Day Hook</strong>
+      "Hi, this is Jamie with Tidy Tails — we're a local pet waste removal service right here in North County. 411 units with a dog park is a LOT of waste to manage — we can take that entirely off your maintenance crew's plate. Professional weekly service, one flat monthly rate. Is the property manager available?"
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3146999923" class="btn-call">📞 Call (314) 699-9923</a>
+      <button class="btn-mark" onclick="markCalled('lead-renewal-heights', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <div class="lead-card" id="lead-halls-ferry-ah">
+    <div class="lead-top">
+      <div class="tier-dot tier-ref"></div>
+      <div>
+        <div class="lead-name">Halls Ferry Animal Hospital</div>
+        <div class="lead-type">Vet Clinic — Referral Partner · Spanish Lake/Black Jack area</div>
+      </div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">Look up on Google Maps</span></div>
+      <div>Address: <span class="val">10050 Halls Ferry Rd, St. Louis 63136</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Pitch</strong>
+      "Hi, this is Jamie with Tidy Tails Pet Waste Removal — we service Ferguson, Florissant, and all of North County. Would it be okay to leave some cards in your waiting area? We give 10% off to your clients who mention your clinic. Just a little referral thing — totally free for you."
+    </div>
+    <div class="lead-actions">
+      <a href="https://maps.google.com/?q=Halls+Ferry+Animal+Hospital+10050+Halls+Ferry+Rd+St+Louis+MO" target="_blank" class="btn-call">📍 Find Number on Maps</a>
+      <button class="btn-mark" onclick="markCalled('lead-halls-ferry-ah', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <div class="lead-card" id="lead-normandy-ah">
+    <div class="lead-top">
+      <div class="tier-dot tier-ref"></div>
+      <div>
+        <div class="lead-name">Normandy Animal Hospital & Urgent Care</div>
+        <div class="lead-type">Vet Clinic — Referral Partner · Normandy area</div>
+      </div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">(314) 383-4677</span></div>
+      <div>Address: <span class="val">7626 Florissant Rd, St. Louis 63121</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Pitch</strong>
+      Same referral partner script as above. Normandy/Jennings clients are exactly the North County demographic.
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3143834677" class="btn-call">📞 Call (314) 383-4677</a>
+      <button class="btn-mark" onclick="markCalled('lead-normandy-ah', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span>📝 NC-3 DAY CHECKLIST</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="post-card">
+    <div>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('wed-1',this)"> <div class="check-label">Post NC-3 in Ferguson Community Forum <div class="check-note">7–9 AM window</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('wed-2',this)"> <div class="check-label">Post NC-3 in Ferguson MO Neighbors</div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('wed-3',this)"> <div class="check-label">Post April Fool's shed content <div class="check-note">"The only joke is waiting" — tariff deadline today</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('wed-4',this)"> <div class="check-label">Call Renewal Heights Apartments (Ferguson) <div class="check-note">(314) 699-9923 — 411 units + dog park</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('wed-5',this)"> <div class="check-label">Call Halls Ferry Animal Hospital</div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('wed-6',this)"> <div class="check-label">Call Normandy Animal Hospital <div class="check-note">(314) 383-4677</div></div></label>
+    </div>
+  </div>
+</div>
+
+<!-- THURSDAY NC-4 -->
+<div class="panel" id="panel-thu">
+  <div class="today-banner" style="background: linear-gradient(90deg, rgba(249,115,22,0.12), rgba(245,158,11,0.08)); border-color: rgba(249,115,22,0.3); color: #fdba74;">
+    📅 <strong>NC-4 — BIG YARD / MULTI-DOG ANGLE.</strong> Post to any North County group or STL Dog Owners. Focus commercial calls on Florissant and multi-property leads.
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <span class="platform-badge fb">Facebook</span>
+      <div class="post-title">NC-4 — Multi-Dog / Big Yard Angle</div>
+      <div class="post-time">🕕 6–8 PM Thu</div>
+    </div>
+    <div class="post-preview">
+      "🏡 Big yard? Multiple dogs? Yeah, we get it. North County backyards aren't those little postage stamps you see in the city. Y'all have REAL yards. And when you've got 2-3 dogs running that yard all winter?..."
+    </div>
+    <div class="post-groups">
+      <span>Post to:</span>
+      <div class="group-chip">Any NC Group</div>
+      <div class="group-chip">STL Dog Owners</div>
+      <div class="group-chip">North County Connect</div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span>📞 FLORISSANT DEEP DIVE CALLS — Thursday</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="lead-card" id="lead-delrado">
+    <div class="lead-top">
+      <div class="tier-dot tier-1"></div>
+      <div>
+        <div class="lead-name">Delrado Apartments</div>
+        <div class="lead-type">Apartment w/ Fenced Dog Park · Florissant 63031</div>
+      </div>
+      <div class="lead-priority">🐕 DOG PARK</div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">(314) 501-5599</span></div>
+      <div>Address: <span class="val">680 Mescalero Ct, Florissant 63031</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Multi-Dog Thursday Hook</strong>
+      "Hi, this is Jamie with Tidy Tails — we're a local pet waste removal service right here in Florissant. We service several homes on this side of 63031 already. Your dog park has a waste station — we can do professional weekly cleanup to keep it spotless. One flat monthly rate. Is the property manager in?"
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3145015599" class="btn-call">📞 Call (314) 501-5599</a>
+      <button class="btn-mark" onclick="markCalled('lead-delrado', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <div class="lead-card" id="lead-greenway-chase">
+    <div class="lead-top">
+      <div class="tier-dot tier-1"></div>
+      <div>
+        <div class="lead-name">Greenway Chase Apartments</div>
+        <div class="lead-type">Apartment w/ On-Site Dog Park · Florissant 63031</div>
+      </div>
+      <div class="lead-priority">🐕 DOG PARK</div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">(314) 838-2879</span></div>
+      <div>Address: <span class="val">629 Greenway Manor Dr, Florissant 63031</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Hook</strong>
+      "Hey, this is Jamie with Tidy Tails — we service Florissant and we're already in this neighborhood. Your dog park is a great amenity — we can keep it spotless on a weekly schedule for one flat monthly rate. No contract. Could I speak with the property manager?"
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3148382879" class="btn-call">📞 Call (314) 838-2879</a>
+      <button class="btn-mark" onclick="markCalled('lead-greenway-chase', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <div class="lead-card" id="lead-baronwood">
+    <div class="lead-top">
+      <div class="tier-dot tier-ref"></div>
+      <div>
+        <div class="lead-name">Baronwood Kennels</div>
+        <div class="lead-type">Boarding / Referral Partner · Florissant 63034</div>
+      </div>
+      <div class="lead-priority">REFERRAL</div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">(314) 291-3647</span></div>
+      <div>Address: <span class="val">17220 New Halls Ferry Rd, Florissant 63034</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Hook</strong>
+      "Hey, this is Jamie with Tidy Tails. We're the local pooper scooper service in North County. I love what you do at Baronwood — I was wondering if you'd want to do a referral swap? Your boarding clients need yard cleanup, our residential clients need boarding. Could leave some cards, maybe cross-promote on social?"
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3142913647" class="btn-call">📞 Call (314) 291-3647</a>
+      <button class="btn-mark" onclick="markCalled('lead-baronwood', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <div class="lead-card" id="lead-florissant-dog-park">
+    <div class="lead-top">
+      <div class="tier-dot tier-2"></div>
+      <div>
+        <div class="lead-name">Florissant Dog Park Club / City of Florissant</div>
+        <div class="lead-type">City Dog Park — Municipal Contact</div>
+      </div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">(314) 921-5700</span></div>
+      <div>Ask for: <span class="val">Parks & Rec Department</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Hook</strong>
+      "Hi, I'm Jamie with Tidy Tails Pet Waste Removal. I'm looking to speak with whoever manages the dog park maintenance. We do professional weekly cleanup for parks and HOA common areas — wondering if the city has any vendor partnerships for that kind of thing."
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3149215700" class="btn-call">📞 Call (314) 921-5700</a>
+      <button class="btn-mark" onclick="markCalled('lead-florissant-dog-park', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <div class="lead-card" id="lead-fields-florissant">
+    <div class="lead-top">
+      <div class="tier-dot tier-2"></div>
+      <div>
+        <div class="lead-name">Fields of Florissant (Willow Ridge Senior Living)</div>
+        <div class="lead-type">Senior Living — Pet Companion Program · Florissant 63033</div>
+      </div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">(314) 831-0988</span></div>
+      <div>Address: <span class="val">1101 Garden Plaza Dr, Florissant 63033</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Hook</strong>
+      "Hi, this is Jamie with Tidy Tails. We're a local pet waste removal company in Florissant. I know a lot of senior communities have residents with companion animals — we specialize in making sure that doesn't become a burden. One flat monthly rate, no contract. Is there a facilities manager I could speak with?"
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3148310988" class="btn-call">📞 Call (314) 831-0988</a>
+      <button class="btn-mark" onclick="markCalled('lead-fields-florissant', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span>📝 NC-4 DAY CHECKLIST</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="post-card">
+    <div>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('thu-1',this)"> <div class="check-label">Post NC-4 (multi-dog angle) in STL Dog Owners + any NC group <div class="check-note">6–8 PM</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('thu-2',this)"> <div class="check-label">Call Delrado Apartments <div class="check-note">(314) 501-5599 — dog park</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('thu-3',this)"> <div class="check-label">Call Greenway Chase Apartments <div class="check-note">(314) 838-2879 — dog park</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('thu-4',this)"> <div class="check-label">Call Baronwood Kennels (referral swap pitch) <div class="check-note">(314) 291-3647</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('thu-5',this)"> <div class="check-label">Call City of Florissant Parks & Rec re: dog park <div class="check-note">(314) 921-5700</div></div></label>
+      <label class="check-item"><input type="checkbox" onchange="saveCheck('thu-6',this)"> <div class="check-label">Call Fields of Florissant senior living <div class="check-note">(314) 831-0988</div></div></label>
+    </div>
+  </div>
+</div>
+
+<!-- FRIDAY NC-5 -->
+<div class="panel" id="panel-fri">
+  <div class="today-banner" style="background: linear-gradient(90deg, rgba(20,184,166,0.12), rgba(59,130,246,0.08)); border-color: rgba(20,184,166,0.3); color: #5eead4;">
+    📅 <strong>NC-5 — BRIDGETON "ORPHANED CUSTOMER" HOOK.</strong> Strongest post of the week. Post in all groups. Follow up on callbacks from Mon–Thu. Measure week results.
+  </div>
+
+  <div class="post-card">
+    <div class="post-header">
+      <span class="platform-badge fb">Facebook</span>
+      <div class="post-title">NC-5 — "Lost Your Service?" Orphaned Customer Hook</div>
+      <div class="post-time">🕖 6–8 PM Fri</div>
+    </div>
+    <div class="post-preview">
+      "If you used to have a dog waste removal service in North County... you might have noticed it disappeared. Dog Doody Defenders quietly shut down. A few others pulled out of the area. You didn't do anything wrong — they just stopped showing up. We're not going anywhere. Text 'SWITCHING' to 314-850-7140 and we'll try to match your old schedule..."
+    </div>
+    <div class="post-groups">
+      <span>All groups:</span>
+      <div class="group-chip">All 5 NC Groups</div>
+      <div class="group-chip">63031/63042/63044</div>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span>📞 FOLLOW-UPS + MILSAP FINAL PUSH</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="lead-card" id="lead-millsap-final">
+    <div class="lead-top">
+      <div class="tier-dot tier-1"></div>
+      <div>
+        <div class="lead-name">Millsap Properties — Full Portfolio Follow-Up</div>
+        <div class="lead-type">If not reached Tue–Thu — final attempt Friday</div>
+      </div>
+      <div class="lead-priority">⭐ MOST IMPORTANT</div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">(314) 686-3337</span></div>
+      <div>Email: <span class="val">millsappropertymanagement@gmail.com</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Email follow-up if calls don't connect</strong>
+      Subject: "Pet Waste Removal for Your Florissant & Hazelwood Properties"<br><br>
+      Hi there — I'm Jamie with Tidy Tails Pet Waste Removal. We service homes right next to your Charbonier, Teson Garden, and White Birch communities. I'd love to put together a proposal for weekly common area and dog run cleanup across your portfolio. Flat monthly rate, no contract. I'll keep it short — 5 minutes on the phone this week? (314) 850-7140 or reply here. Thanks — Jamie
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3146863337" class="btn-call">📞 Call (314) 686-3337</a>
+      <button class="btn-mark" onclick="markCalled('lead-millsap-final', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <div class="lead-card" id="lead-cross-keys">
+    <div class="lead-top">
+      <div class="tier-dot tier-ref"></div>
+      <div>
+        <div class="lead-name">Cross Keys Animal Clinic</div>
+        <div class="lead-type">Vet Clinic — Referral Partner · Florissant Hwy 67</div>
+      </div>
+    </div>
+    <div class="lead-detail">
+      <div>Phone: <span class="val">(314) 837-4617</span></div>
+      <div>Address: <span class="val">2685 N Hwy 67, Florissant 63033</span></div>
+    </div>
+    <div class="pitch-box">
+      <strong>🎯 Drop-in / Walk-in Friday</strong>
+      If Jamie is in the area after posting or doing a scoop run — stop in physically with 10 business cards. Physical drop-in has 2x conversion rate vs. cold call for vet clinics.
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3148374617" class="btn-call">📞 Call (314) 837-4617</a>
+      <button class="btn-mark" onclick="markCalled('lead-cross-keys', this)">Mark Called</button>
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span>📊 WEEK SCORECARD — Fill In Friday</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="post-card">
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
+      <div>
+        <label style="font-size:0.72rem; color:var(--dim); display:block; margin-bottom:4px;">Social replies/DMs this week:</label>
+        <input type="number" id="score-replies" min="0" max="50" style="width:100%; padding:8px; background:var(--card2); border:1px solid var(--border); border-radius:6px; color:var(--text); font-size:0.9rem;" onchange="saveScore()">
+      </div>
+      <div>
+        <label style="font-size:0.72rem; color:var(--dim); display:block; margin-bottom:4px;">New residential leads:</label>
+        <input type="number" id="score-leads" min="0" max="20" style="width:100%; padding:8px; background:var(--card2); border:1px solid var(--border); border-radius:6px; color:var(--text); font-size:0.9rem;" onchange="saveScore()">
+      </div>
+      <div>
+        <label style="font-size:0.72rem; color:var(--dim); display:block; margin-bottom:4px;">Commercial callbacks:</label>
+        <input type="number" id="score-callbacks" min="0" max="10" style="width:100%; padding:8px; background:var(--card2); border:1px solid var(--border); border-radius:6px; color:var(--text); font-size:0.9rem;" onchange="saveScore()">
+      </div>
+      <div>
+        <label style="font-size:0.72rem; color:var(--dim); display:block; margin-bottom:4px;">New customers signed up:</label>
+        <input type="number" id="score-customers" min="0" max="10" style="width:100%; padding:8px; background:var(--card2); border:1px solid var(--border); border-radius:6px; color:var(--text); font-size:0.9rem;" onchange="saveScore()">
+      </div>
+    </div>
+    <div id="score-verdict" style="padding:10px; background:var(--card2); border-radius:6px; font-size:0.8rem; color:var(--dim); text-align:center;">Enter scores above to see week verdict</div>
+  </div>
+</div>
+
+<!-- STRATEGY TAB -->
+<div class="panel" id="panel-strategy">
+  <div class="section-header">
+    <span>🧠 WHY THIS WORKS</span>
+    <div class="line"></div>
+  </div>
+  <div class="post-card">
+    <h3 style="font-size:0.9rem; margin-bottom:12px; color:var(--green);">The Synchronized Attack Strategy</h3>
+    <p style="font-size:0.8rem; line-height:1.6; color:var(--dim); margin-bottom:12px;">
+      Standard growth playbook = post on social, OR cold call commercial. The problem: neither alone is strong enough to break through in a new market.
+    </p>
+    <p style="font-size:0.8rem; line-height:1.6; color:var(--dim); margin-bottom:12px;">
+      <strong style="color:white;">This week's play:</strong> Social posts and commercial calls hit the SAME NEIGHBORHOOD on the SAME DAY. When a property manager at Renewal Heights sees Tidy Tails in the Ferguson Community Group AND gets Jamie's call the same afternoon — they don't think "cold call." They think "these people are everywhere in my neighborhood." That's credibility from volume, not from time.
+    </p>
+    <p style="font-size:0.8rem; line-height:1.6; color:var(--dim);">
+      Zero competitors in North County means every impression matters. The goal this week isn't 100 customers — it's <strong style="color:white;">planting the flag</strong>. Tidy Tails = North County. That's the goal.
+    </p>
+  </div>
+
+  <div class="section-header">
+    <span>📋 FULL NC WEEK OVERVIEW</span>
+    <div class="line"></div>
+  </div>
+
+  <div style="overflow-x:auto;">
+    <table style="width:100%; border-collapse:collapse; font-size:0.78rem;">
+      <thead>
+        <tr style="background:var(--card2); color:var(--dim); text-align:left;">
+          <th style="padding:8px 10px; border-bottom:1px solid var(--border);">Day</th>
+          <th style="padding:8px 10px; border-bottom:1px solid var(--border);">Post Target</th>
+          <th style="padding:8px 10px; border-bottom:1px solid var(--border);">Commercial Focus</th>
+          <th style="padding:8px 10px; border-bottom:1px solid var(--border);">Win Condition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:8px 10px; color:var(--green); font-weight:700;">Mon NC-1</td>
+          <td style="padding:8px 10px;">Florissant Groups</td>
+          <td style="padding:8px 10px;">Millsap (Charbonier), Vet Blitz Day 1</td>
+          <td style="padding:8px 10px; color:var(--dim);">3+ replies, 1 callback</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border); background:rgba(245,158,11,0.05);">
+          <td style="padding:8px 10px; color:var(--amber); font-weight:700;">Tue NC-2 TODAY</td>
+          <td style="padding:8px 10px;">Hazelwood, Bridgeton</td>
+          <td style="padding:8px 10px;">Millsap (Hazelwood props), Ferguson AH, Aventura MH</td>
+          <td style="padding:8px 10px; color:var(--dim);">Millsap conversation started</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:8px 10px; color:var(--purple); font-weight:700;">Wed NC-3</td>
+          <td style="padding:8px 10px;">Ferguson, Jennings</td>
+          <td style="padding:8px 10px;">Renewal Heights (411 units), Halls Ferry AH</td>
+          <td style="padding:8px 10px; color:var(--dim);">Renewal Heights call made</td>
+        </tr>
+        <tr style="border-bottom:1px solid var(--border);">
+          <td style="padding:8px 10px; color:var(--orange); font-weight:700;">Thu NC-4</td>
+          <td style="padding:8px 10px;">All NC (multi-dog angle)</td>
+          <td style="padding:8px 10px;">Delrado, Greenway Chase, Baronwood, Fields FL</td>
+          <td style="padding:8px 10px; color:var(--dim);">2+ Florissant properties called</td>
+        </tr>
+        <tr>
+          <td style="padding:8px 10px; color:var(--teal); font-weight:700;">Fri NC-5</td>
+          <td style="padding:8px 10px;">All NC (orphaned angle)</td>
+          <td style="padding:8px 10px;">Millsap follow-up, Cross Keys drop-in, scorecard</td>
+          <td style="padding:8px 10px; color:var(--dim);">Week total: 3+ leads, 1+ commercial warm</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-header">
+    <span>📞 MASTER PHONE SCRIPT — NC COMMERCIAL</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="script-block">
+    <h3>Opening (15 seconds)</h3>
+    <div class="script-text">
+      "Hi, this is Jamie with Tidy Tails — we're a local pet waste removal company right here in <em>[Florissant / Hazelwood / Ferguson]</em>. I was hoping to speak with whoever handles property maintenance or amenities."
+    </div>
+  </div>
+
+  <div class="script-block">
+    <h3>Hook (20 seconds) — For Apartments with Dog Parks</h3>
+    <div class="script-text">
+      "We noticed <em>[Property Name]</em> is pet-friendly — <strong>that's awesome, but it also means a lot of waste to manage.</strong> We do professional weekly cleanup of dog parks and common areas for a flat monthly rate. It takes that off your maintenance crew completely. No contract."
+    </div>
+  </div>
+
+  <div class="script-block">
+    <h3>Hook (20 seconds) — For Vet Clinics</h3>
+    <div class="script-text">
+      "We're the local pooper scooper service covering all of North County. We give <strong>10% off the first month</strong> to any of your clients who mention your clinic. Could we leave some cards in your waiting room? Completely free for you — just a referral arrangement."
+    </div>
+  </div>
+
+  <div class="script-block">
+    <h3>Close</h3>
+    <div class="script-text">
+      "Would it make sense to do a quick 5-minute walkthrough this week? I can give you exact pricing for your property — and there's <strong>no contract, so there's really no risk.</strong>"
+    </div>
+  </div>
+
+  <div class="section-header">
+    <span>💰 COMMERCIAL REVENUE PROJECTIONS</span>
+    <div class="line"></div>
+  </div>
+
+  <div class="win-card">
+    <h4>North County Commercial Win Math</h4>
+    <div class="win-row"><span class="label">Millsap Properties (7 props if full deal)</span><span>$2,100–3,500/mo</span></div>
+    <div class="win-row"><span class="label">Renewal Heights alone (411 units + dog park)</span><span>$400–600/mo</span></div>
+    <div class="win-row"><span class="label">Delrado + Greenway Chase (2 apartment dog parks)</span><span>$300–500/mo combined</span></div>
+    <div class="win-row"><span class="label">3 vet clinic referrals → 2 residential/mo each</span><span>$1,680/yr in residential leads</span></div>
+    <div class="win-row"><span class="label">Full NC commercial week win:</span><span>$800–1,200/mo added MRR</span></div>
+  </div>
+</div>
+
+<script>
+  function switchTab(tab) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+    document.getElementById(`panel-${tab}`).classList.add('active');
+  }
+
+  function markCalled(id, btn) {
+    const card = document.getElementById(id);
+    card.classList.toggle('called');
+    const called = card.classList.contains('called');
+    btn.textContent = called ? '✅ Called' : 'Mark Called';
+    btn.classList.toggle('done', called);
+    const state = JSON.parse(localStorage.getItem('nc_blitz_called') || '{}');
+    state[id] = called;
+    localStorage.setItem('nc_blitz_called', JSON.stringify(state));
+    updateStats();
+  }
+
+  function saveCheck(key, el) {
+    const state = JSON.parse(localStorage.getItem('nc_blitz_checks') || '{}');
+    state[key] = el.checked;
+    localStorage.setItem('nc_blitz_checks', JSON.stringify(state));
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const state = JSON.parse(localStorage.getItem('nc_blitz_checks') || '{}');
+    const tueKeys = ['tue-1','tue-2','tue-3','tue-4','tue-5','tue-6','tue-7','tue-8'];
+    const tueDone = tueKeys.filter(k => state[k]).length;
+    const pct = Math.round(tueDone / tueKeys.length * 100);
+    const bar = document.getElementById('tue-progress');
+    const txt = document.getElementById('tue-progress-text');
+    if (bar) bar.style.width = pct + '%';
+    if (txt) txt.textContent = `${tueDone} of ${tueKeys.length} done`;
+  }
+
+  function updateStats() {
+    const called = JSON.parse(localStorage.getItem('nc_blitz_called') || '{}');
+    const count = Object.values(called).filter(v => v).length;
+    document.getElementById('stat-called').textContent = count;
+  }
+
+  function saveScore() {
+    const replies = parseInt(document.getElementById('score-replies')?.value || 0);
+    const leads = parseInt(document.getElementById('score-leads')?.value || 0);
+    const callbacks = parseInt(document.getElementById('score-callbacks')?.value || 0);
+    const customers = parseInt(document.getElementById('score-customers')?.value || 0);
+    const verdict = document.getElementById('score-verdict');
+    if (!verdict) return;
+    
+    const total = replies + leads + callbacks + (customers * 3);
+    if (total === 0) { verdict.textContent = 'Enter scores above to see week verdict'; return; }
+    
+    let msg = '';
+    if (customers >= 2 && callbacks >= 1) msg = '🏆 CRUSHER WEEK — Way ahead of target. Double down next week.';
+    else if (customers >= 1 || callbacks >= 2) msg = '✅ SOLID WEEK — On pace. NC is working. Keep the cadence.';
+    else if (leads >= 3) msg = '📈 BUILDING — Leads are coming. Close the pipeline over the weekend.';
+    else msg = '⚠️ SLOW WEEK — Below target. Check if posts got suppressed by FB. Boost one post $5.';
+    
+    verdict.textContent = msg;
+    verdict.style.color = customers >= 2 ? '#22c55e' : customers >= 1 ? '#86efac' : leads >= 3 ? '#93c5fd' : '#f87171';
+    localStorage.setItem('nc_week_score', JSON.stringify({replies, leads, callbacks, customers}));
+  }
+
+  // Load saved state
+  window.addEventListener('load', () => {
+    const called = JSON.parse(localStorage.getItem('nc_blitz_called') || '{}');
+    Object.entries(called).forEach(([id, val]) => {
+      if (!val) return;
+      const card = document.getElementById(id);
+      if (!card) return;
+      card.classList.add('called');
+      const btn = card.querySelector('.btn-mark');
+      if (btn) { btn.textContent = '✅ Called'; btn.classList.add('done'); }
+    });
+
+    const checks = JSON.parse(localStorage.getItem('nc_blitz_checks') || '{}');
+    Object.entries(checks).forEach(([key, val]) => {
+      const boxes = document.querySelectorAll('input[type=checkbox]');
+      boxes.forEach(box => {
+        if (box.getAttribute('onchange')?.includes(`'${key}'`)) box.checked = val;
+      });
+    });
+
+    const score = JSON.parse(localStorage.getItem('nc_week_score') || 'null');
+    if (score) {
+      ['replies','leads','callbacks','customers'].forEach(k => {
+        const el = document.getElementById(`score-${k}`);
+        if (el) el.value = score[k] || 0;
+      });
+      saveScore();
+    }
+
+    updateStats();
+    updateProgress();
+  });
+</script>
+
+</body>
+</html>

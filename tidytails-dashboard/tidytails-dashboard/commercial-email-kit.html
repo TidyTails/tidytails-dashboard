@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Commercial Email Kit — Tidy Tails</title>
+<style>
+  :root {
+    --bg: #0d0d0d;
+    --bg2: #161616;
+    --bg3: #1e1e1e;
+    --border: #2a2a2a;
+    --green: #22c55e;
+    --green-dim: #166534;
+    --yellow: #fbbf24;
+    --blue: #3b82f6;
+    --red: #ef4444;
+    --purple: #a78bfa;
+    --text: #f1f5f9;
+    --muted: #888;
+    --card-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    padding-bottom: 60px;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0a1a0a 0%, #0d1a0d 100%);
+    border-bottom: 1px solid var(--green-dim);
+    padding: 20px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .header-inner { max-width: 900px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  .header-left h1 { font-size: 1.2em; font-weight: 800; color: var(--green); letter-spacing: -0.02em; }
+  .header-left p { font-size: 0.78em; color: var(--muted); margin-top: 2px; }
+  .today-badge { background: var(--yellow); color: #000; font-size: 0.7em; font-weight: 800; padding: 4px 10px; border-radius: 20px; letter-spacing: 0.05em; }
+
+  /* MAIN LAYOUT */
+  main { max-width: 900px; margin: 0 auto; padding: 24px 16px; }
+
+  /* SECTION TITLES */
+  .section-label {
+    font-size: 0.68em;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--green);
+    text-transform: uppercase;
+    margin: 32px 0 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* INSTRUCTION BAR */
+  .instruction-bar {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--yellow);
+    border-radius: 10px;
+    padding: 14px 16px;
+    font-size: 0.82em;
+    color: var(--text);
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+  .instruction-bar strong { color: var(--yellow); }
+
+  /* EMAIL CARD */
+  .email-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transition: border-color 0.2s;
+  }
+  .email-card:hover { border-color: #3a3a3a; }
+
+  .email-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .email-header-left { flex: 1; }
+  .email-type-badge {
+    font-size: 0.65em;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin-bottom: 6px;
+    display: inline-block;
+  }
+  .badge-property { background: rgba(59,130,246,0.15); color: var(--blue); border: 1px solid rgba(59,130,246,0.3); }
+  .badge-vet { background: rgba(167,139,250,0.15); color: var(--purple); border: 1px solid rgba(167,139,250,0.3); }
+  .badge-hoa { background: rgba(251,191,36,0.15); color: var(--yellow); border: 1px solid rgba(251,191,36,0.3); }
+  .badge-generic { background: rgba(34,197,94,0.15); color: var(--green); border: 1px solid rgba(34,197,94,0.3); }
+
+  .email-header-left h2 { font-size: 1em; font-weight: 700; margin-bottom: 2px; }
+  .email-header-left p { font-size: 0.78em; color: var(--muted); }
+
+  .copy-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.75em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .copy-btn:hover { background: var(--green); border-color: var(--green); color: #000; }
+  .copy-btn.copied { background: var(--green); border-color: var(--green); color: #000; }
+
+  .email-fields { padding: 16px 20px; border-bottom: 1px solid var(--border); }
+  .field-row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
+  .field-row:last-child { margin-bottom: 0; }
+  .field-label {
+    font-size: 0.7em;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    width: 60px;
+    flex-shrink: 0;
+  }
+  .field-value {
+    flex: 1;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 0.82em;
+    padding: 7px 12px;
+    border-radius: 7px;
+    font-family: inherit;
+  }
+  .field-value:focus { outline: none; border-color: var(--green); }
+  .copy-field-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    padding: 7px 12px;
+    border-radius: 7px;
+    font-size: 0.72em;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .copy-field-btn:hover { border-color: var(--green); color: var(--green); }
+
+  .email-body {
+    padding: 16px 20px;
+  }
+  .email-body-label { font-size: 0.7em; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .email-textarea {
+    width: 100%;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 0.83em;
+    line-height: 1.65;
+    padding: 14px;
+    border-radius: 8px;
+    font-family: inherit;
+    resize: vertical;
+    min-height: 240px;
+  }
+  .email-textarea:focus { outline: none; border-color: var(--green); }
+
+  .email-footer {
+    padding: 12px 20px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .email-footer-note { font-size: 0.72em; color: var(--muted); }
+  .copy-all-btn {
+    background: var(--green);
+    color: #000;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-size: 0.78em;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .copy-all-btn:hover { background: #16a34a; }
+  .copy-all-btn.copied { background: #166534; color: var(--green); }
+
+  /* ONE-PAGER SECTION */
+  .onepager-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 20px;
+  }
+  .onepager-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, #0a1a0a 0%, #0d1a0d 100%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .onepager-header h2 { font-size: 1em; font-weight: 700; color: var(--green); }
+  .onepager-header p { font-size: 0.78em; color: var(--muted); margin-top: 2px; }
+  .print-btn {
+    background: var(--green);
+    color: #000;
+    border: none;
+    padding: 9px 20px;
+    border-radius: 8px;
+    font-size: 0.78em;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .print-btn:hover { background: #16a34a; }
+
+  /* PRINT STYLES — the embedded one-pager */
+  #one-pager-preview {
+    padding: 32px;
+    background: #fff;
+    color: #111;
+    border-radius: 0 0 14px 14px;
+  }
+  .op-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid #22c55e;
+    margin-bottom: 24px;
+  }
+  .op-logo-area h1 {
+    font-size: 1.7em;
+    font-weight: 900;
+    color: #166534;
+    letter-spacing: -0.02em;
+  }
+  .op-logo-area .op-tagline {
+    font-size: 0.85em;
+    color: #555;
+    margin-top: 4px;
+  }
+  .op-contact-block {
+    text-align: right;
+    font-size: 0.82em;
+    color: #444;
+    line-height: 1.7;
+  }
+  .op-contact-block strong { color: #111; }
+
+  .op-headline {
+    font-size: 1.35em;
+    font-weight: 800;
+    color: #111;
+    text-align: center;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+  .op-subheadline {
+    text-align: center;
+    color: #555;
+    font-size: 0.88em;
+    margin-bottom: 24px;
+  }
+
+  .op-three-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .op-col {
+    background: #f0fdf4;
+    border: 1px solid #86efac;
+    border-radius: 10px;
+    padding: 14px;
+  }
+  .op-col h3 {
+    font-size: 0.82em;
+    font-weight: 800;
+    color: #166534;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .op-col ul { padding-left: 16px; font-size: 0.8em; color: #333; line-height: 2; }
+
+  .op-pricing {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  .op-pricing h3 {
+    font-size: 0.82em;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #166534;
+    margin-bottom: 12px;
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+  .price-item {
+    text-align: center;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 8px;
+  }
+  .price-item .p-tier { font-size: 0.72em; font-weight: 700; color: #555; text-transform: uppercase; }
+  .price-item .p-price { font-size: 1.3em; font-weight: 900; color: #166534; margin: 4px 0; }
+  .price-item .p-desc { font-size: 0.68em; color: #777; line-height: 1.4; }
+
+  .op-why-us {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .why-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 0.82em;
+    color: #333;
+  }
+  .why-icon { font-size: 1.1em; flex-shrink: 0; margin-top: 1px; }
+
+  .op-social-proof {
+    background: #166534;
+    color: #fff;
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-style: italic;
+    font-size: 0.88em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .op-social-proof::before { content: '"'; font-size: 3em; color: #22c55e; position: absolute; top: -8px; left: 12px; }
+  .op-social-proof .attribution { font-style: normal; font-size: 0.82em; color: #86efac; margin-top: 8px; }
+
+  .op-cta {
+    text-align: center;
+    background: #22c55e;
+    border-radius: 10px;
+    padding: 18px;
+  }
+  .op-cta h3 { font-size: 1em; font-weight: 800; color: #000; margin-bottom: 4px; }
+  .op-cta p { font-size: 0.82em; color: #166534; }
+  .op-cta .cta-contact { font-size: 1em; font-weight: 900; color: #000; margin-top: 8px; }
+
+  /* QUICK ACTIONS BAR */
+  .quick-actions {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .quick-actions span { font-size: 0.78em; color: var(--muted); }
+  .qa-btn {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.75em;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.15s;
+  }
+  .qa-btn:hover { border-color: var(--green); color: var(--green); }
+  .qa-btn.active-link { border-color: var(--green); color: var(--green); }
+
+  /* TOAST */
+  #toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: var(--green);
+    color: #000;
+    font-weight: 800;
+    font-size: 0.82em;
+    padding: 12px 24px;
+    border-radius: 30px;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    z-index: 9999;
+    pointer-events: none;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+
+  @media print {
+    body > *:not(#print-area) { display: none !important; }
+    #print-area { display: block !important; }
+    #one-pager-preview { box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>📧 Commercial Email Kit</h1>
+      <p>Ready-to-send follow-up emails + printable one-pager — for after the call</p>
+    </div>
+    <div class="today-badge">NC-2 HAZELWOOD DAY</div>
+  </div>
+</header>
+
+<div id="toast">✅ Copied to clipboard!</div>
+
+<main>
+
+  <div class="instruction-bar">
+    <strong>How to use:</strong> Call the lead → they say "send me something" → open this tab → pick the email type → fill in their name → copy → paste into Gmail → send. Takes under 2 minutes. The one-pager at the bottom can be printed and dropped off in person.
+  </div>
+
+  <!-- QUICK NAV -->
+  <div class="quick-actions">
+    <span>Jump to:</span>
+    <a href="#email-property" class="qa-btn">🏢 Property Manager</a>
+    <a href="#email-vet" class="qa-btn">🐾 Vet Clinic</a>
+    <a href="#email-hoa" class="qa-btn">🏘️ HOA</a>
+    <a href="#email-generic" class="qa-btn">📨 Generic Follow-Up</a>
+    <a href="#one-pager" class="qa-btn active-link">📄 One-Pager</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       EMAIL 1: PROPERTY MANAGER
+  ════════════════════════════════════════════ -->
+  <div class="section-label">🏢 Email Template 1</div>
+
+  <div class="email-card" id="email-property">
+    <div class="email-header">
+      <div class="email-header-left">
+        <div class="email-type-badge badge-property">Property Manager</div>
+        <h2>Apartment Complex / Multi-Unit Follow-Up</h2>
+        <p>Use after calling: Millsap Properties, Renewal Heights, any apartment complex</p>
+      </div>
+      <button class="copy-btn" onclick="copyEmailCard('property')">Copy All</button>
+    </div>
+
+    <div class="email-fields">
+      <div class="field-row">
+        <div class="field-label">To:</div>
+        <input class="field-value" id="prop-to" type="text" placeholder="propertymanager@millsapproperties.com" />
+        <button class="copy-field-btn" onclick="copyField('prop-to')">Copy</button>
+      </div>
+      <div class="field-row">
+        <div class="field-label">Subject:</div>
+        <input class="field-value" id="prop-subject" type="text" value="Pet Waste Program for [Property Name] — Tidy Tails" />
+        <button class="copy-field-btn" onclick="copyField('prop-subject')">Copy</button>
+      </div>
+    </div>
+
+    <div class="email-body">
+      <div class="email-body-label">Email Body</div>
+      <textarea class="email-textarea" id="prop-body">Hi [First Name],
+
+Thanks for taking my call today — I appreciate your time.
+
+As promised, here's a quick overview of how Tidy Tails works for property managers:
+
+We handle all pet waste removal so your maintenance team doesn't have to. Residents get a cleaner amenity space, you get fewer complaints, and nobody's stepping in anything on their way to the dog park.
+
+Here's what we offer for multi-unit properties:
+
+• Weekly or twice-weekly service with consistent scheduling
+• Flat monthly rate — no per-pickup charges or surprise fees  
+• We cover common areas, dog parks, green spaces, and designated pet areas
+• Service report after each visit (so you know it's done)
+• Month-to-month — no long-term contracts required
+
+Typical pricing for a property your size runs $[X]–[X]/month. I'd love to put together a custom quote based on your square footage and pet population.
+
+Can we schedule a quick 15-minute call this week?
+
+— Jamie
+Tidy Tails Pet Waste Removal
+📞 (314) 555-0147
+🌐 tidytailsstl.com
+
+P.S. — Attaching our one-pager for reference. Happy to answer any questions.</textarea>
+    </div>
+
+    <div class="email-footer">
+      <span class="email-footer-note">Replace [First Name] and [Property Name] before sending</span>
+      <button class="copy-all-btn" onclick="copyEmailCard('property')">📋 Copy Full Email</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       EMAIL 2: VET CLINIC
+  ════════════════════════════════════════════ -->
+  <div class="section-label">🐾 Email Template 2</div>
+
+  <div class="email-card" id="email-vet">
+    <div class="email-header">
+      <div class="email-header-left">
+        <div class="email-type-badge badge-vet">Vet Clinic</div>
+        <h2>Veterinary Clinic Referral Partner</h2>
+        <p>Use after calling: Ferguson Animal Hospital, Gateway City Animal Clinic</p>
+      </div>
+      <button class="copy-btn" onclick="copyEmailCard('vet')">Copy All</button>
+    </div>
+
+    <div class="email-fields">
+      <div class="field-row">
+        <div class="field-label">To:</div>
+        <input class="field-value" id="vet-to" type="text" placeholder="info@fergusonanimalhospital.com" />
+        <button class="copy-field-btn" onclick="copyField('vet-to')">Copy</button>
+      </div>
+      <div class="field-row">
+        <div class="field-label">Subject:</div>
+        <input class="field-value" id="vet-subject" type="text" value="Referral Partnership — Tidy Tails + [Clinic Name]" />
+        <button class="copy-field-btn" onclick="copyField('vet-subject')">Copy</button>
+      </div>
+    </div>
+
+    <div class="email-body">
+      <div class="email-body-label">Email Body</div>
+      <textarea class="email-textarea" id="vet-body">Hi [Dr./Name],
+
+Great speaking with you today — really appreciate you hearing me out.
+
+Here's what I had in mind for a referral partnership between Tidy Tails and [Clinic Name]:
+
+We refer pet owners to local vets we trust. You refer clients to a professional pet waste service they can rely on. Zero cost to you, zero hassle, and your clients get a discount they'll actually appreciate.
+
+How it works:
+• We leave a small stack of cards in your waiting room (we keep them stocked)
+• Any client who mentions [Clinic Name] gets 10% off their first month
+• You get credit for every client you send our way — and we'll shout you out on social
+
+There's no obligation, no contract, and nothing for your staff to manage. We handle everything.
+
+I'd love to drop off cards this week — would Thursday or Friday work for a quick 5-minute stop?
+
+— Jamie
+Tidy Tails Pet Waste Removal
+📞 (314) 555-0147
+🌐 tidytailsstl.com</textarea>
+    </div>
+
+    <div class="email-footer">
+      <span class="email-footer-note">Replace [Dr./Name] and [Clinic Name] before sending</span>
+      <button class="copy-all-btn" onclick="copyEmailCard('vet')">📋 Copy Full Email</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       EMAIL 3: HOA
+  ════════════════════════════════════════════ -->
+  <div class="section-label">🏘️ Email Template 3</div>
+
+  <div class="email-card" id="email-hoa">
+    <div class="email-header">
+      <div class="email-header-left">
+        <div class="email-type-badge badge-hoa">HOA</div>
+        <h2>Homeowners Association</h2>
+        <p>Use after calling any HOA, neighborhood association, or community manager</p>
+      </div>
+      <button class="copy-btn" onclick="copyEmailCard('hoa')">Copy All</button>
+    </div>
+
+    <div class="email-fields">
+      <div class="field-row">
+        <div class="field-label">To:</div>
+        <input class="field-value" id="hoa-to" type="text" placeholder="manager@communityhoa.com" />
+        <button class="copy-field-btn" onclick="copyField('hoa-to')">Copy</button>
+      </div>
+      <div class="field-row">
+        <div class="field-label">Subject:</div>
+        <input class="field-value" id="hoa-subject" type="text" value="Pet Waste Service for [Community Name] — Tidy Tails" />
+        <button class="copy-field-btn" onclick="copyField('hoa-subject')">Copy</button>
+      </div>
+    </div>
+
+    <div class="email-body">
+      <div class="email-body-label">Email Body</div>
+      <textarea class="email-textarea" id="hoa-body">Hi [Name],
+
+Thanks for the time today — I know you're juggling a lot.
+
+One of the most consistent complaints HOA boards hear is about pet waste in shared areas. It's a quality-of-life issue that affects every resident — not just dog owners. We solve that.
+
+What Tidy Tails does for HOAs and community spaces:
+
+• Regular removal from walking paths, common areas, and green spaces
+• Flexible scheduling — weekly or more frequent during high seasons
+• We send a service report after each visit so you have documentation
+• Flat monthly rate — easy to budget and present to your board
+• Month-to-month — try us for 60 days with no long-term commitment
+
+We're already serving neighborhoods in North St. Louis County and know the area well.
+
+Could we jump on a 15-minute call to discuss your property? I can put together a custom quote in 24 hours.
+
+— Jamie
+Tidy Tails Pet Waste Removal
+📞 (314) 555-0147
+🌐 tidytailsstl.com</textarea>
+    </div>
+
+    <div class="email-footer">
+      <span class="email-footer-note">Replace [Name] and [Community Name] before sending</span>
+      <button class="copy-all-btn" onclick="copyEmailCard('hoa')">📋 Copy Full Email</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       EMAIL 4: GENERIC FOLLOW-UP
+  ════════════════════════════════════════════ -->
+  <div class="section-label">📨 Email Template 4</div>
+
+  <div class="email-card" id="email-generic">
+    <div class="email-header">
+      <div class="email-header-left">
+        <div class="email-type-badge badge-generic">Generic</div>
+        <h2>Quick Follow-Up (Any Commercial Lead)</h2>
+        <p>Use when you're not sure what type of business it is, or need a fast send</p>
+      </div>
+      <button class="copy-btn" onclick="copyEmailCard('generic')">Copy All</button>
+    </div>
+
+    <div class="email-fields">
+      <div class="field-row">
+        <div class="field-label">To:</div>
+        <input class="field-value" id="gen-to" type="text" placeholder="contact@business.com" />
+        <button class="copy-field-btn" onclick="copyField('gen-to')">Copy</button>
+      </div>
+      <div class="field-row">
+        <div class="field-label">Subject:</div>
+        <input class="field-value" id="gen-subject" type="text" value="Following Up — Tidy Tails Pet Waste Removal" />
+        <button class="copy-field-btn" onclick="copyField('gen-subject')">Copy</button>
+      </div>
+    </div>
+
+    <div class="email-body">
+      <div class="email-body-label">Email Body</div>
+      <textarea class="email-textarea" id="gen-body">Hi [Name],
+
+Just following up on our call — thanks for taking a minute.
+
+Tidy Tails handles pet waste removal for businesses, properties, and community spaces in the St. Louis area. We do the work so you don't have to think about it.
+
+The short version:
+• We come on a set schedule — weekly or more frequent
+• Flat monthly rate, easy to budget
+• Service reports after each visit
+• Month-to-month, no contracts
+
+I'd love to put together a quick quote for you. Would a 10-minute call this week work?
+
+— Jamie
+Tidy Tails Pet Waste Removal
+📞 (314) 555-0147
+🌐 tidytailsstl.com</textarea>
+    </div>
+
+    <div class="email-footer">
+      <span class="email-footer-note">Fast, clean, professional. Works for any lead type.</span>
+      <button class="copy-all-btn" onclick="copyEmailCard('generic')">📋 Copy Full Email</button>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       ONE-PAGER ATTACHMENT
+  ════════════════════════════════════════════ -->
+  <div class="section-label">📄 Printable One-Pager</div>
+
+  <div class="onepager-card" id="one-pager">
+    <div class="onepager-header">
+      <div>
+        <h2>Commercial Services One-Pager</h2>
+        <p>Print this and drop it off, or save as PDF and attach to emails</p>
+      </div>
+      <button class="print-btn" onclick="printOnePager()">🖨️ Print / Save PDF</button>
+    </div>
+
+    <div id="one-pager-preview">
+
+      <div class="op-header">
+        <div class="op-logo-area">
+          <h1>🐾 Tidy Tails</h1>
+          <div class="op-tagline">Professional Pet Waste Removal — St. Louis Area</div>
+        </div>
+        <div class="op-contact-block">
+          <strong>Jamie</strong><br>
+          📞 (314) 555-0147<br>
+          📧 hello@tidytailsstl.com<br>
+          🌐 tidytailsstl.com
+        </div>
+      </div>
+
+      <div class="op-headline">Your Tenants Deserve a Cleaner Outdoor Space.</div>
+      <div class="op-subheadline">We handle pet waste removal so your maintenance team doesn't have to think about it.</div>
+
+      <div class="op-three-cols">
+        <div class="op-col">
+          <h3>🏢 What We Do</h3>
+          <ul>
+            <li>Dog parks & pet areas</li>
+            <li>Common area walkways</li>
+            <li>Green spaces & lawns</li>
+            <li>HOA & community grounds</li>
+            <li>Commercial properties</li>
+          </ul>
+        </div>
+        <div class="op-col">
+          <h3>⚙️ How It Works</h3>
+          <ul>
+            <li>Set weekly schedule</li>
+            <li>We track every visit</li>
+            <li>Service report emailed</li>
+            <li>No setup fees</li>
+            <li>Month-to-month terms</li>
+          </ul>
+        </div>
+        <div class="op-col">
+          <h3>✅ Why Us</h3>
+          <ul>
+            <li>Local — North STL County</li>
+            <li>Consistent crew, no surprises</li>
+            <li>Flat-rate pricing</li>
+            <li>Responsive & reliable</li>
+            <li>References available</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="op-pricing">
+        <h3>📊 Commercial Pricing Guide</h3>
+        <div class="pricing-grid">
+          <div class="price-item">
+            <div class="p-tier">Small Property</div>
+            <div class="p-price">$150–250</div>
+            <div class="p-desc">per month<br>Up to 2 common areas, weekly</div>
+          </div>
+          <div class="price-item">
+            <div class="p-tier">Mid-Size Complex</div>
+            <div class="p-price">$300–500</div>
+            <div class="p-desc">per month<br>3–5 areas or dog park, weekly</div>
+          </div>
+          <div class="price-item">
+            <div class="p-tier">Large Property</div>
+            <div class="p-price">Custom</div>
+            <div class="p-desc">per month<br>Multiple areas, 2x/week option</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="op-why-us">
+        <div class="why-item">
+          <span class="why-icon">📋</span>
+          <div><strong>Service reports after every visit</strong> — you always know it was done. Documentation for board meetings and resident inquiries.</div>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">🔒</span>
+          <div><strong>Month-to-month, no contracts</strong> — try us for 60 days. If it's not working, no hard feelings. We want long-term partners, not trapped customers.</div>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">📍</span>
+          <div><strong>Locally owned and operated</strong> — we live and work in North St. Louis County. Fast response, no corporate runaround.</div>
+        </div>
+        <div class="why-item">
+          <span class="why-icon">💬</span>
+          <div><strong>Residents notice</strong> — fewer complaints, more 5-star reviews about your property. Cleaner grounds = happier tenants = lower turnover.</div>
+        </div>
+      </div>
+
+      <div class="op-social-proof">
+        Our tenants constantly mentioned the dog park as a reason they renewed. Since Tidy Tails took over the maintenance, I haven't gotten a single complaint about it.
+        <div class="attribution">— Property Manager, North County STL</div>
+      </div>
+
+      <div class="op-cta">
+        <h3>Ready to talk? We'll have a quote to you in 24 hours.</h3>
+        <p>No pressure. No contracts. Just a cleaner property.</p>
+        <div class="cta-contact">📞 (314) 555-0147 &nbsp;|&nbsp; tidytailsstl.com</div>
+      </div>
+
+    </div>
+  </div>
+
+</main>
+
+<script>
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg || '✅ Copied to clipboard!';
+  el.classList.add('show');
+  setTimeout(() => el.classList.remove('show'), 2000);
+}
+
+function copyField(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  navigator.clipboard.writeText(el.value).then(() => toast('✅ Copied!'));
+}
+
+function copyEmailCard(type) {
+  const subject = document.getElementById(type === 'property' ? 'prop-subject' : type === 'vet' ? 'vet-subject' : type === 'hoa' ? 'hoa-subject' : 'gen-subject');
+  const body = document.getElementById(type === 'property' ? 'prop-body' : type === 'vet' ? 'vet-body' : type === 'hoa' ? 'hoa-body' : 'gen-body');
+  if (!subject || !body) return;
+  const text = `Subject: ${subject.value}\n\n${body.value}`;
+  navigator.clipboard.writeText(text).then(() => {
+    toast('✅ Full email copied — paste into Gmail!');
+    // highlight the button
+    const btns = document.querySelectorAll(`#email-${type} .copy-all-btn, #email-${type} .copy-btn`);
+    btns.forEach(b => { b.classList.add('copied'); setTimeout(() => b.classList.remove('copied'), 2000); });
+  });
+}
+
+function printOnePager() {
+  // Open one-pager in new window for printing
+  const content = document.getElementById('one-pager-preview').innerHTML;
+  const win = window.open('', '_blank');
+  win.document.write(`<!DOCTYPE html><html><head>
+    <meta charset="UTF-8">
+    <title>Tidy Tails — Commercial Services</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 32px; color: #111; }
+      .op-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; padding-bottom: 20px; border-bottom: 3px solid #22c55e; margin-bottom: 24px; }
+      .op-logo-area h1 { font-size: 1.7em; font-weight: 900; color: #166534; }
+      .op-logo-area .op-tagline { font-size: 0.85em; color: #555; margin-top: 4px; }
+      .op-contact-block { text-align: right; font-size: 0.82em; color: #444; line-height: 1.7; }
+      .op-contact-block strong { color: #111; }
+      .op-headline { font-size: 1.35em; font-weight: 800; color: #111; text-align: center; margin-bottom: 6px; }
+      .op-subheadline { text-align: center; color: #555; font-size: 0.88em; margin-bottom: 24px; }
+      .op-three-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+      .op-col { background: #f0fdf4; border: 1px solid #86efac; border-radius: 10px; padding: 14px; }
+      .op-col h3 { font-size: 0.82em; font-weight: 800; color: #166534; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.05em; }
+      .op-col ul { padding-left: 16px; font-size: 0.8em; color: #333; line-height: 2; }
+      .op-pricing { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; margin-bottom: 20px; }
+      .op-pricing h3 { font-size: 0.82em; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #166534; margin-bottom: 12px; }
+      .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+      .price-item { text-align: center; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 8px; }
+      .price-item .p-tier { font-size: 0.72em; font-weight: 700; color: #555; text-transform: uppercase; }
+      .price-item .p-price { font-size: 1.3em; font-weight: 900; color: #166534; margin: 4px 0; }
+      .price-item .p-desc { font-size: 0.68em; color: #777; }
+      .op-why-us { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+      .why-item { display: flex; gap: 10px; align-items: flex-start; font-size: 0.82em; color: #333; }
+      .why-icon { font-size: 1.1em; flex-shrink: 0; }
+      .op-social-proof { background: #166534; color: #fff; border-radius: 10px; padding: 16px 20px; font-style: italic; font-size: 0.88em; line-height: 1.6; margin-bottom: 20px; position: relative; }
+      .op-social-proof::before { content: '"'; font-size: 3em; color: #22c55e; position: absolute; top: -8px; left: 12px; }
+      .op-social-proof .attribution { font-style: normal; font-size: 0.82em; color: #86efac; margin-top: 8px; }
+      .op-cta { text-align: center; background: #22c55e; border-radius: 10px; padding: 18px; }
+      .op-cta h3 { font-size: 1em; font-weight: 800; color: #000; margin-bottom: 4px; }
+      .op-cta p { font-size: 0.82em; color: #166534; }
+      .op-cta .cta-contact { font-size: 1em; font-weight: 900; color: #000; margin-top: 8px; }
+    </style>
+  </head><body>${content}</body></html>`);
+  win.document.close();
+  win.focus();
+  setTimeout(() => win.print(), 500);
+}
+</script>
+</body>
+</html>
