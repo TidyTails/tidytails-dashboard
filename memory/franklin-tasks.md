@@ -2,6 +2,30 @@
 
 ---
 
+### Monday 11:04 PM — Dashboard TODAY Panel Refresh for Tuesday April 1 (Hourly Task)
+- **11:04 PM** 🔧 Refreshed the dashboard TODAY panel — fixed 4-consecutive-check staleness flag from Chief Oversight
+  - **File:** `dashboard/index.html`
+  - **Why this task:** Chief Oversight had flagged the dashboard TODAY section as stale for 4 consecutive checks. It was showing March 28 Paw-ty content (Crestwood Vet event that already happened), Sunday Power Hour, and Monday Launch Command alerts — all 3-4 days expired. TJ opens this dashboard every morning. Waking up Tuesday to alerts about a Saturday event destroys trust and makes the whole tool feel unreliable.
+  - **What changed:**
+    - **Quick links:** Stripped 15 stale Paw-ty/Sunday/Monday links. Replaced with 22 clean, current links: Tuesday Briefing (prominent), April War Room, NC Launch Command, Vet Blitz Kit, Battle Plan, FB Ad Pack, Proposal Builder, April Content Calendar, Review Sprint, Referrals, Nextdoor Playbook, Shed HQ, Shed Lead Responder, Profit Calculator, Onboarding Kit, Battle Map, Directories
+    - **Stats bar:** Updated from old static stats to Tuesday-relevant: Customers / Goal / Reviews / **46 Blog Posts** / **Day 2 NC Campaign** / **TODAY (Tariff Deadline)**
+    - **Date header:** New Tuesday April 1 banner: "NC-2 Hazelwood posts · Vet Blitz Day 2 · Tariff final day · April Fool's shed angle"
+    - **Priority 1 alert:** Tuesday Morning Briefing PDF — primary CTA, pulsing blue, can't miss
+    - **Priority 2 alert:** NC-2 Hazelwood FB Post — Day 2 of 5, post before 10 AM
+    - **Priority 3 alert:** Vet Blitz Day 2 — Ferguson AH + Halls Ferry + Normandy, afternoon window
+    - **Priority 4 alert:** Tariff Deadline TODAY — last credible day for shed tariff angle + April Fool's "only joke is waiting" post
+    - **Priority 5 alert:** Final Paw-ty warm lead touch — last call script, after today move to cold list
+    - **Priority 6 alert:** April War Room — update numbers in 2 min
+    - **NC Week grid:** Visual Mon ✅ / Tue TODAY / Wed / Thu tracker
+    - **Today's Tools grid:** Apr War Room · NC Launch Command · Vet Blitz Day 2 · Shed Tariff Kit · Paw-ty Follow-Up · Apr Growth Roadmap
+    - **This Week's Tools grid:** Review Sprint · Referral Engine · Nextdoor Playbook · Commercial Outreach
+    - **Shed Business alert:** Removed expired "PROMO ENDS MARCH 31" → replaced with "April Shed Angle: Summer Build Season Is Here" 
+    - **Removed stale content:** Paw-ty print flyers, Sunday Power Hour, Saturday Live Amplifier, Monday Launch Command, MONDAY IS GO DAY, Week of March 30 battle plan header, DDD Rescue blitz, Q2 Week 1 Launch Kit language, Spring Blitz Playbook alert, I-44 Corridor/Scoop Soldiers alert, old "This Week's Actions" grid with SAT MAR 28 Paw-ty cards
+  - **Net change:** 234 lines removed, 158 lines added — cleaner, more actionable, no expired content
+  - **Git pushed:** `1d06dfe4` to `TidyTails/tidytails-dashboard` ✅
+
+---
+
 ### Monday 10:06 PM — Tuesday March 31 Morning Briefing PDF (Hourly Task)
 - **10:06 PM** 📋 Built and delivered the Tuesday March 31 Morning Briefing — Day 2 of the North County campaign, last day of tariff urgency, Vet Blitz Day 2
   - **File:** `dashboard/pdfs/MORNING_BRIEFING_2026-03-31.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-03-31.pdf` (536KB ✅)
