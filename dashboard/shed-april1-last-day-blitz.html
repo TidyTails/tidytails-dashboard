@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🚨 April 1 Last Day Blitz — TuffShed/WoodMaster</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; line-height: 1.6; }
+
+  .alert-banner {
+    background: linear-gradient(135deg, #7c2d12 0%, #b91c1c 50%, #dc2626 100%);
+    padding: 16px 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 2px solid #ef4444;
+  }
+  .alert-banner .title { font-size: 1.1em; font-weight: 900; color: #fff; letter-spacing: 0.03em; }
+  .alert-banner .sub { font-size: 0.78em; color: rgba(255,255,255,0.8); margin-top: 4px; }
+  .countdown-row { display: flex; justify-content: center; gap: 8px; margin-top: 10px; }
+  .cd-unit { background: rgba(0,0,0,0.3); border-radius: 8px; padding: 8px 12px; min-width: 60px; text-align: center; }
+  .cd-num { font-size: 1.6em; font-weight: 900; color: #fff; line-height: 1; }
+  .cd-label { font-size: 0.65em; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 1px; }
+
+  header { background: #100a00; border-bottom: 1px solid #2a1a00; padding: 16px 20px; }
+  header h1 { font-size: 1.3em; color: #fbbf24; font-weight: 800; }
+  header p { color: #888; font-size: 0.82em; margin-top: 4px; }
+
+  .stat-row { display: flex; gap: 8px; padding: 14px 16px; background: #0f0a00; border-bottom: 1px solid #1a1200; overflow-x: auto; }
+  .stat-box { background: #1a1200; border: 1px solid #2a1800; border-radius: 8px; padding: 10px 14px; text-align: center; min-width: 80px; flex-shrink: 0; }
+  .stat-num { font-size: 1.3em; font-weight: 800; color: #fbbf24; }
+  .stat-label { font-size: 0.65em; color: #888; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .tabs { display: flex; gap: 4px; padding: 12px 16px 0; background: #0a0a0a; overflow-x: auto; border-bottom: 1px solid #1a1a1a; }
+  .tab { padding: 8px 14px; border-radius: 8px 8px 0 0; background: #111; border: 1px solid #2a2a2a; border-bottom: none; color: #888; font-size: 0.8em; cursor: pointer; white-space: nowrap; transition: all 0.2s; font-family: inherit; }
+  .tab.active { background: #1a1200; border-color: #fbbf24; color: #fbbf24; font-weight: 600; }
+
+  .tab-content { display: none; padding: 16px; }
+  .tab-content.active { display: block; }
+
+  .section-head { font-size: 0.75em; font-weight: 700; color: #fbbf24; text-transform: uppercase; letter-spacing: 0.1em; margin: 20px 0 10px; border-bottom: 1px solid #2a1800; padding-bottom: 6px; }
+  .section-head:first-child { margin-top: 0; }
+
+  .listing-card {
+    background: #111;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    transition: border-color 0.2s;
+  }
+  .listing-card.hot { border-color: #ef4444; background: #150808; }
+  .listing-card.medium { border-color: #f59e0b; background: #0f0c00; }
+  .listing-card:hover { border-color: #555; }
+  .listing-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+  .listing-title { font-size: 0.88em; font-weight: 700; color: #fff; }
+  .listing-price { font-size: 1em; font-weight: 800; color: #fbbf24; white-space: nowrap; }
+  .listing-badge { font-size: 0.6em; padding: 2px 8px; border-radius: 4px; font-weight: 700; text-transform: uppercase; margin-top: 4px; display: inline-block; }
+  .badge-fire { background: rgba(239,68,68,0.2); color: #ef4444; }
+  .badge-april { background: rgba(251,191,36,0.2); color: #fbbf24; }
+  .badge-visual { background: rgba(59,130,246,0.2); color: #3b82f6; }
+  .badge-close { background: rgba(16,185,129,0.2); color: #10b981; }
+
+  .timing-chip { font-size: 0.7em; color: #aaa; margin-bottom: 8px; }
+  .timing-chip strong { color: #f59e0b; }
+
+  .listing-text { background: #0a0a0a; border: 1px solid #2a2a2a; border-radius: 8px; padding: 14px; font-size: 0.82em; line-height: 1.7; white-space: pre-wrap; margin: 10px 0 8px; color: #ccc; max-height: 260px; overflow-y: auto; }
+  .listing-text.expanded { max-height: none; }
+
+  .btn-row { display: flex; gap: 8px; }
+  .copy-btn { flex: 1; padding: 11px; background: #78350f; color: #fde68a; border: 1px solid #92400e; border-radius: 8px; font-size: 0.85em; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+  .copy-btn:hover { background: #92400e; }
+  .copy-btn.copied { background: #065f46; border-color: #047857; color: #6ee7b7; }
+  .expand-btn { padding: 11px 14px; background: transparent; color: #666; border: 1px solid #2a2a2a; border-radius: 8px; font-size: 0.82em; cursor: pointer; transition: all 0.2s; font-family: inherit; }
+  .expand-btn:hover { border-color: #555; color: #aaa; }
+
+  .note-box { background: #0f0800; border: 1px solid #fbbf24; border-radius: 8px; padding: 12px 14px; font-size: 0.8em; color: #fde68a; margin: 10px 0; }
+  .note-box strong { color: #fbbf24; }
+
+  .script-card { background: #111; border: 1px solid #2a2a2a; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+  .script-title { font-size: 0.82em; font-weight: 700; color: #f59e0b; margin-bottom: 6px; }
+  .script-context { font-size: 0.72em; color: #888; margin-bottom: 8px; font-style: italic; }
+  .script-text { background: #0a0a0a; border: 1px solid #1a1a1a; border-radius: 6px; padding: 10px 12px; font-size: 0.8em; line-height: 1.65; color: #d1d5db; white-space: pre-wrap; margin-bottom: 8px; }
+
+  .strat-card { background: #0f0f0f; border: 1px solid #1f1f1f; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+  .strat-title { font-size: 0.82em; font-weight: 700; color: #a78bfa; margin-bottom: 8px; }
+  .strat-text { font-size: 0.8em; color: #bbb; line-height: 1.6; }
+
+  .checklist-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid #1a1a1a; }
+  .checklist-item:last-child { border-bottom: none; }
+  .check-box { width: 22px; height: 22px; border: 2px solid #444; border-radius: 6px; cursor: pointer; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.2s; margin-top: 1px; }
+  .check-box.done { background: #10b981; border-color: #10b981; }
+  .check-text { flex: 1; font-size: 0.82em; color: #ccc; }
+  .check-text.done { color: #555; text-decoration: line-through; }
+  .check-time { font-size: 0.7em; color: #f59e0b; font-weight: 600; white-space: nowrap; margin-top: 2px; }
+
+  .progress-wrap { margin: 16px 0; }
+  .progress-bar-track { height: 6px; background: #1a1a1a; border-radius: 3px; overflow: hidden; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #f59e0b, #ef4444); border-radius: 3px; transition: width 0.4s; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 0.72em; color: #666; margin-top: 6px; }
+
+  .inv-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+  .inv-card { background: #111; border: 1px solid #2a2a2a; border-radius: 8px; padding: 10px 12px; font-size: 0.78em; }
+  .inv-card .inv-price { color: #fbbf24; font-weight: 700; font-size: 0.9em; }
+  .inv-card .inv-name { color: #ddd; font-weight: 600; margin-bottom: 4px; }
+  .inv-card .inv-detail { color: #888; font-size: 0.85em; }
+  .inv-card.highlight { border-color: #ef4444; background: #150808; }
+
+  .win-math { background: linear-gradient(135deg, #0f1800, #0a1200); border: 1px solid #16a34a; border-radius: 12px; padding: 16px; margin: 16px 0; }
+  .win-math h3 { color: #4ade80; font-size: 0.9em; margin-bottom: 10px; }
+  .win-row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #1a2a1a; font-size: 0.8em; }
+  .win-row:last-child { border-bottom: none; }
+  .win-label { color: #888; }
+  .win-val { color: #4ade80; font-weight: 700; }
+
+  .footer { text-align: center; padding: 30px 16px; color: #444; font-size: 0.7em; }
+</style>
+</head>
+<body>
+
+<!-- Sticky countdown alert -->
+<div class="alert-banner">
+  <div class="title">🚨 APRIL 1 — LAST FULL DAY BEFORE TARIFFS HIT</div>
+  <div class="sub">Pre-tariff pricing ends April 2 · Use the April Fools hook TODAY</div>
+  <div class="countdown-row">
+    <div class="cd-unit"><div class="cd-num" id="cd-h">--</div><div class="cd-label">Hours</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-m">--</div><div class="cd-label">Mins</div></div>
+    <div class="cd-unit"><div class="cd-num" id="cd-s">--</div><div class="cd-label">Secs</div></div>
+  </div>
+</div>
+
+<header>
+  <h1>April 1 Last Day Blitz Kit</h1>
+  <p>TuffShed / WoodMaster · 636-354-7406 · Pre-tariff closes April 2 at midnight</p>
+</header>
+
+<div class="stat-row">
+  <div class="stat-box"><div class="stat-num">23</div><div class="stat-label">Units Left</div></div>
+  <div class="stat-box"><div class="stat-num" style="color:#ef4444">1</div><div class="stat-label">Days Left</div></div>
+  <div class="stat-box"><div class="stat-num" style="color:#10b981">$3-8K</div><div class="stat-label">Commission</div></div>
+  <div class="stat-box"><div class="stat-num" style="color:#a78bfa">Apr 1</div><div class="stat-label">April Fools</div></div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('listings')">📋 Fire Now</button>
+  <button class="tab" onclick="showTab('social')">📱 Social Posts</button>
+  <button class="tab" onclick="showTab('scripts')">💬 Response Scripts</button>
+  <button class="tab" onclick="showTab('inventory')">📦 Full Inventory</button>
+  <button class="tab" onclick="showTab('checklist')">✅ Checklist</button>
+</div>
+
+<!-- TAB 1: FIRE NOW -->
+<div class="tab-content active" id="tab-listings">
+
+  <div class="note-box">
+    <strong>April 1 = BEST day of the year to post.</strong> April Fools gives you a disarming hook — "No, this isn't a joke." Every serious buyer reading that knows you're real. Plus: it's the last full day before April 2 tariffs. You have <strong>genuine urgency</strong> AND a viral social angle. This is not a coincidence — use it.
+  </div>
+
+  <div class="section-head">Listing 1 — Fire at 7-8 AM (April Fools Hook)</div>
+  <div class="listing-card hot">
+    <div class="listing-header">
+      <div>
+        <div class="listing-title">🃏 April Fools Day — But These Prices Are Real</div>
+        <div class="listing-badge badge-fire">🔥 FIRE FIRST</div>
+      </div>
+      <div class="listing-price">From $3,509</div>
+    </div>
+    <div class="timing-chip">⏰ Post at <strong>7–8 AM</strong> — catches the morning scroll before people go to work</div>
+    <div class="listing-text" id="text-1">No, this isn't a joke.
+
+I've got 23 sheds and garages sitting on the lot right now, all priced before tomorrow's tariff increase. The prices you're seeing today are the last ones I can guarantee.
+
+April 1 happens to be the last day you can lock pre-tariff pricing. That's not a bit — that's just bad timing for us and good timing for you.
+
+Here's what's on the lot:
+🏠 Garages: 2 × 12x24 WoodMaster — $11,299 (Charcoal + Taupe)
+🏡 Barns: 12x24 Dark Brown — $10,399 / 12x16 — $6,799 / Teal 8x12 — $4,199
+🌿 Garden sheds: Aqua 10x16 — $6,299 / Cream 10x12 — $5,499 / Natural 8x12 — $4,499
+🪟 Greenhouse 8x12 White — $5,999
+🔨 Utility starting at $3,509
+💡 Something for every budget
+
+Steel and lumber tariffs hit April 2. I don't control what happens after that.
+
+📞 636-354-7406 — text me the size you're looking for, I'll send you what we have</div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyText('text-1', this)">📋 Copy Listing</button>
+      <button class="expand-btn" onclick="toggleExpand('text-1', this)">Expand</button>
+    </div>
+  </div>
+
+  <div class="section-head">Listing 2 — Post at 10-11 AM (The Garage Play)</div>
+  <div class="listing-card medium">
+    <div class="listing-header">
+      <div>
+        <div class="listing-title">🚗 Two 12x24 WoodMaster Garages — Last Day Pre-Tariff</div>
+        <div class="listing-badge badge-april">💰 HIGHEST COMMISSION</div>
+      </div>
+      <div class="listing-price">$11,299 each</div>
+    </div>
+    <div class="timing-chip">⏰ Post at <strong>10–11 AM</strong> — mid-morning serious buyers checking Marketplace</div>
+    <div class="listing-text" id="text-2">Two 12x24 WoodMaster garages. Both $11,299. Both sitting on the lot right now.
+
+Charcoal gray. Taupe. Pre-built. Delivery-ready.
+
+Today is the last day at this price. Tariffs hit April 2 — steel and lumber both. I'm not going to pretend I know exactly what these will cost next week, but I know pre-tariff inventory is real.
+
+The 12x24 is the most-requested size we get. If you've been thinking about it, today's the day.
+
+📞 636-354-7406 — text me your zip code and I'll confirm delivery availability for your area
+📍 On the lot in St. Louis County — you can come see them in person</div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyText('text-2', this)">📋 Copy Listing</button>
+      <button class="expand-btn" onclick="toggleExpand('text-2', this)">Expand</button>
+    </div>
+  </div>
+
+  <div class="section-head">Listing 3 — Post at 1-2 PM (Visual Standouts)</div>
+  <div class="listing-card">
+    <div class="listing-header">
+      <div>
+        <div class="listing-title">🎨 These Sheds Actually Look Good In Your Yard</div>
+        <div class="listing-badge badge-visual">📸 IG/SOCIAL GOLD</div>
+      </div>
+      <div class="listing-price">$4,199 – $6,299</div>
+    </div>
+    <div class="timing-chip">⏰ Post at <strong>1–2 PM</strong> — lunch scroll, visual browsing peak</div>
+    <div class="listing-text" id="text-3">Not every shed has to look like a shed.
+
+Before tomorrow's tariff increase, I still have a few of the more interesting ones on the lot:
+
+🌊 Aqua/Teal Garden Shed 10x16 — $6,299
+Flower box, double doors, windows. Genuinely the most-photographed thing on the lot.
+
+🌿 Teal WoodMaster Barn 8x12 — $4,199
+Two-tone teal and cream. Stands out.
+
+🌱 Sage Green Utility 10x16 — $5,899
+Clean look. Works next to a garden.
+
+🌊 Navy Blue Utility 12x16 — $6,899
+For people who want a workshop that doesn't look like a box.
+
+🏠 Natural Wood Garden Shed 8x12 — $4,499
+Rustic/natural style. Best seller for garden spaces.
+
+These are the ones that photograph well and don't look like generic storage. All pre-tariff pricing through today.
+
+📞 636-354-7406 — text me which one you want to see more photos of</div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyText('text-3', this)">📋 Copy Listing</button>
+      <button class="expand-btn" onclick="toggleExpand('text-3', this)">Expand</button>
+    </div>
+  </div>
+
+  <div class="section-head">Listing 4 — Post at 4-5 PM (Budget Close)</div>
+  <div class="listing-card">
+    <div class="listing-header">
+      <div>
+        <div class="listing-title">💸 Entry-Level Sheds Starting at $3,509 — Last Chance</div>
+        <div class="listing-badge badge-close">✅ BUDGET CONVERTERS</div>
+      </div>
+      <div class="listing-price">$3,509 – $4,699</div>
+    </div>
+    <div class="timing-chip">⏰ Post at <strong>4–5 PM</strong> — after-work scroll, price-sensitive afternoon buyers</div>
+    <div class="listing-text" id="text-4">Last day of pre-tariff pricing. Might as well make it count.
+
+Entry-level options still on the lot:
+
+🔨 8x12 Tool Shed (Brown/Weathered) — $3,509
+Pre-owned, repo unit. Functionally perfect.
+
+🏠 8x12 White Utility — $3,999
+
+🏠 8x12 Green Utility — $3,999
+
+🏠 10x12 Charcoal Gray Utility (clearance) — $4,409
+
+🏠 10x12 Blue Utility — $4,699
+
+These are the ones that fit a smaller yard or a tighter budget. All built. All delivery-ready.
+
+Tariffs hit tomorrow (April 2). Not manufactured urgency — just calendar math.
+
+📞 636-354-7406 — tell me what you need and I'll get you the exact info</div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyText('text-4', this)">📋 Copy Listing</button>
+      <button class="expand-btn" onclick="toggleExpand('text-4', this)">Expand</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- TAB 2: SOCIAL POSTS -->
+<div class="tab-content" id="tab-social">
+
+  <div class="section-head">Facebook Page Post — Morning (April Fools Hook)</div>
+  <div class="listing-card hot">
+    <div class="listing-title">🃏 April Fools Day FB Post</div>
+    <div class="timing-chip">⏰ Post at <strong>7-8 AM</strong></div>
+    <div class="listing-text" id="social-1">April Fools Day.
+
+No, we're not joking about the tariffs.
+
+Steel and lumber tariffs are real and they hit April 2. Everything on our lot is priced before that increase. If you've been on the fence about a shed, garage, or backyard building — today is actually the last day to lock pre-tariff numbers.
+
+23 units in stock. WoodMaster garages, barns, garden sheds, greenhouse, utility storage.
+
+636-354-7406 — text us the size you're looking for.
+
+(Seriously, not a joke.)</div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyText('social-1', this)">📋 Copy Post</button>
+    </div>
+  </div>
+
+  <div class="section-head">Instagram Caption — Midday Visual Hook</div>
+  <div class="listing-card">
+    <div class="listing-title">📸 IG Caption (pair with best-looking shed photo)</div>
+    <div class="timing-chip">⏰ Post at <strong>11 AM – 1 PM</strong></div>
+    <div class="listing-text" id="social-2">April 1. Last day to laugh at this price.
+
+Tariffs hit tomorrow. These are the real pre-tariff numbers on what's still in stock. 
+
+📸 Swipe to see the aqua garden shed, teal barn, and a few others that will look incredible in your yard.
+
+Every one of these is built and delivery-ready today.
+
+636-354-7406 — ask for the full lot walkthrough.
+
+#STLSheds #BackyardBuildings #PreTariffPricing #StLouis #WoodMaster #TuffShed #SheShed #BackyardGoals #STLMarketplace #April</div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyText('social-2', this)">📋 Copy Caption</button>
+    </div>
+  </div>
+
+  <div class="section-head">Facebook Group Post — Evening "Last Call"</div>
+  <div class="listing-card">
+    <div class="listing-title">🏘️ Buy/Sell/Trade Group Post</div>
+    <div class="timing-chip">⏰ Post at <strong>7-8 PM</strong> — peak STL group browsing</div>
+    <div class="listing-text" id="social-3">Last call before tariffs hit.
+
+We have 23 WoodMaster and TuffShed buildings still on the lot — all priced at pre-tariff numbers. Starting at $3,509.
+
+Garages, barns, garden sheds, greenhouse, utility storage. Some standout colors: aqua teal, sage green, navy blue, natural wood, terracotta.
+
+If you've been looking at sheds on Marketplace and keep seeing us, this is why. We're the local dealer and tomorrow the pricing math changes.
+
+Drop a comment or text 636-354-7406 and I'll tell you exactly what's left.</div>
+    <div class="btn-row">
+      <button class="copy-btn" onclick="copyText('social-3', this)">📋 Copy Post</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- TAB 3: RESPONSE SCRIPTS -->
+<div class="tab-content" id="tab-scripts">
+
+  <div class="note-box">
+    <strong>Reply within 5 min = 2x close rate.</strong> April 1 is your best engagement day of the year. Every comment and inquiry gets a fast reply today.
+  </div>
+
+  <div class="section-head">For "Is this real or an April Fools thing?"</div>
+  <div class="script-card">
+    <div class="script-title">🃏 "Is This a Joke?" — Most Common Response Today</div>
+    <div class="script-context">Anyone who comments or messages this deserves a fast, honest reply. This is your conversion goldmine today.</div>
+    <div class="script-text">Ha — completely understand asking. The April Fools timing is genuinely coincidental.
+
+Tariffs on steel and lumber go into effect April 2 per the executive order. Everything we have on the lot is priced before that. I don't know exactly what prices will look like next week but I know what they look like today.
+
+What size were you thinking about? I can tell you exactly what we have and what it costs right now.</div>
+    <button class="copy-btn" onclick="copyText(this.previousElementSibling, this)">📋 Copy</button>
+  </div>
+
+  <div class="section-head">For "How much will prices really go up?"</div>
+  <div class="script-card">
+    <div class="script-title">📈 Honest "Price Increase" Answer</div>
+    <div class="script-context">Don't guess or inflate. Honest = trustworthy = more conversions.</div>
+    <div class="script-text">Honestly, I don't have an exact number to give you — and I'd rather not make something up.
+
+What I know: steel and lumber are both in scope for the April 2 tariff order. Historically those materials run about 15-25% of the build cost on a shed. Whether that translates to $100 or $500 more depends on how manufacturers pass it through.
+
+What I can tell you is today's price is the one I can guarantee. Want me to send you the exact current price on the size you're looking at?</div>
+    <button class="copy-btn" onclick="copyText(this.previousElementSibling, this)">📋 Copy</button>
+  </div>
+
+  <div class="section-head">For "Let me think about it" / "I need to check with my spouse"</div>
+  <div class="script-card">
+    <div class="script-title">⏳ Fence-Sitter Close</div>
+    <div class="script-context">Don't push — give them something easy to share with their partner.</div>
+    <div class="script-text">Totally makes sense. I'll send you exactly what we have in that size so you have the real numbers when you're ready to talk it through.
+
+Today is the last day of pre-tariff pricing so if it's something you want to decide in the next 24 hours, you can lock the current number. If not, I'm still here after April 2 — just can't promise the same price.
+
+What size are you most interested in? I'll send you photos and the price right now so you have something concrete to look at.</div>
+    <button class="copy-btn" onclick="copyText(this.previousElementSibling, this)">📋 Copy</button>
+  </div>
+
+  <div class="section-head">For "I'll wait until next week"</div>
+  <div class="script-card">
+    <div class="script-title">⚠️ "I'll Wait" — Graceful but Clear</div>
+    <div class="script-context">Don't beg. Give them the choice clearly and let them decide.</div>
+    <div class="script-text">Totally your call. I'll still be here next week — I just genuinely won't know what the pricing looks like until we see how manufacturers pass through the tariff increase.
+
+If you're flexible on price and timing, no problem at all. If the current price is important, today's your window.
+
+Either way, text me when you're ready and I'll show you what's on the lot at that point.</div>
+    <button class="copy-btn" onclick="copyText(this.previousElementSibling, this)">📋 Copy</button>
+  </div>
+
+  <div class="section-head">For First-Touch Replies (generic "how much?" or "interested")</div>
+  <div class="script-card">
+    <div class="script-title">🔑 Fast Qualifier Script</div>
+    <div class="script-context">Get them to tell you the size — then you can send the exact right info.</div>
+    <div class="script-text">Hey! Happy to help. We have a lot on the lot right now — what size are you looking for?
+
+And just heads up: today is the last day of pre-tariff pricing (tariffs hit tomorrow April 2). So if you're ready to move, this is the time to nail down the number.</div>
+    <button class="copy-btn" onclick="copyText(this.previousElementSibling, this)">📋 Copy</button>
+  </div>
+
+  <div class="section-head">For "Is this available?" on specific unit</div>
+  <div class="script-card">
+    <div class="script-title">✅ Availability Confirm</div>
+    <div class="script-context">If someone asks about a specific listing, confirm fast.</div>
+    <div class="script-text">Yes, still available! We have it on the lot right now.
+
+Pre-tariff pricing through today — April 2 is when that changes. Want me to confirm delivery availability for your area? Just need your zip code.</div>
+    <button class="copy-btn" onclick="copyText(this.previousElementSibling, this)">📋 Copy</button>
+  </div>
+
+</div>
+
+<!-- TAB 4: FULL INVENTORY -->
+<div class="tab-content" id="tab-inventory">
+  <div class="note-box">
+    <strong>23 units on the lot.</strong> All pre-tariff priced through April 2 midnight.
+  </div>
+
+  <div class="section-head">Premium Inventory (Highest Commission)</div>
+  <div class="inv-row">
+    <div class="inv-card highlight">
+      <div class="inv-name">12×24 Garage — Charcoal</div>
+      <div class="inv-price">$11,299</div>
+      <div class="inv-detail">WM-400657 · White trim</div>
+    </div>
+    <div class="inv-card highlight">
+      <div class="inv-name">12×24 Garage — Taupe</div>
+      <div class="inv-price">$11,299</div>
+      <div class="inv-detail">400108 · White trim</div>
+    </div>
+  </div>
+  <div class="inv-row">
+    <div class="inv-card">
+      <div class="inv-name">12×24 Barn — Dark Brown</div>
+      <div class="inv-price">$10,399</div>
+      <div class="inv-detail">WM-400369 · Cream trim</div>
+    </div>
+    <div class="inv-card">
+      <div class="inv-name">10×20 Utility — Terracotta</div>
+      <div class="inv-price">$7,199</div>
+      <div class="inv-detail">308457 · White trim</div>
+    </div>
+  </div>
+
+  <div class="section-head">Mid-Range Standouts</div>
+  <div class="inv-row">
+    <div class="inv-card">
+      <div class="inv-name">10×16 Garden — Aqua/Teal</div>
+      <div class="inv-price">$6,299</div>
+      <div class="inv-detail">400034 · Flower box, windows</div>
+    </div>
+    <div class="inv-card">
+      <div class="inv-name">12×16 Utility — Navy Blue</div>
+      <div class="inv-price">$6,899</div>
+      <div class="inv-detail">308332 · White trim</div>
+    </div>
+  </div>
+  <div class="inv-row">
+    <div class="inv-card">
+      <div class="inv-name">8×12 Greenhouse — White</div>
+      <div class="inv-price">$5,999</div>
+      <div class="inv-detail">307778 · Black trim</div>
+    </div>
+    <div class="inv-card">
+      <div class="inv-name">12×16 Barn — Brown</div>
+      <div class="inv-price">$6,799</div>
+      <div class="inv-detail">WM-4003819 · White trim</div>
+    </div>
+  </div>
+  <div class="inv-row">
+    <div class="inv-card">
+      <div class="inv-name">10×14 Barn — Hunter Green</div>
+      <div class="inv-price">$5,499</div>
+      <div class="inv-detail">400027 · Standard trim</div>
+    </div>
+    <div class="inv-card">
+      <div class="inv-name">10×16 Utility — Tan/Beige (2)</div>
+      <div class="inv-price">$5,699 / $5,899</div>
+      <div class="inv-detail">Two units · Gray/White trim</div>
+    </div>
+  </div>
+  <div class="inv-row">
+    <div class="inv-card">
+      <div class="inv-name">10×16 Utility — Sage Green</div>
+      <div class="inv-price">$5,899</div>
+      <div class="inv-detail">307777 · White trim</div>
+    </div>
+    <div class="inv-card">
+      <div class="inv-name">10×12 Garden — Cream</div>
+      <div class="inv-price">$5,499</div>
+      <div class="inv-detail">WM-400310 · Brown trim</div>
+    </div>
+  </div>
+  <div class="inv-row">
+    <div class="inv-card">
+      <div class="inv-name">10×12 Garden — Gray</div>
+      <div class="inv-price">$5,199</div>
+      <div class="inv-detail">302924 · White trim</div>
+    </div>
+    <div class="inv-card">
+      <div class="inv-name">10×14 Utility — Dark Green</div>
+      <div class="inv-price">$5,199</div>
+      <div class="inv-detail">302924 · Cream trim</div>
+    </div>
+  </div>
+
+  <div class="section-head">Entry Level / Clearance</div>
+  <div class="inv-row">
+    <div class="inv-card">
+      <div class="inv-name">8×12 Barn — Teal</div>
+      <div class="inv-price">$4,199</div>
+      <div class="inv-detail">WM-400533 · Cream trim</div>
+    </div>
+    <div class="inv-card">
+      <div class="inv-name">8×12 Garden — Natural</div>
+      <div class="inv-price">$4,499</div>
+      <div class="inv-detail">WM-400568 · Standard</div>
+    </div>
+  </div>
+  <div class="inv-row">
+    <div class="inv-card">
+      <div class="inv-name">8×12 Utility — White/Cream</div>
+      <div class="inv-price">$3,999</div>
+      <div class="inv-detail">308458 · Charcoal trim</div>
+    </div>
+    <div class="inv-card">
+      <div class="inv-name">8×12 Utility — Green</div>
+      <div class="inv-price">$3,999</div>
+      <div class="inv-detail">WM-400375 · Standard</div>
+    </div>
+  </div>
+  <div class="inv-row">
+    <div class="inv-card highlight">
+      <div class="inv-name">10×12 Utility — Charcoal (clearance)</div>
+      <div class="inv-price">$4,409 🔴 Clearance</div>
+      <div class="inv-detail">143725 · White trim</div>
+    </div>
+    <div class="inv-card highlight">
+      <div class="inv-name">8×12 Tool Shed — Brown/Weathered</div>
+      <div class="inv-price">$3,509 🔴 Clearance</div>
+      <div class="inv-detail">157538 · Pre-owned/repo</div>
+    </div>
+  </div>
+  <div class="inv-row">
+    <div class="inv-card">
+      <div class="inv-name">10×12 Utility — Blue</div>
+      <div class="inv-price">$4,699</div>
+      <div class="inv-detail">155301 · Cream trim</div>
+    </div>
+    <div class="inv-card">
+      <div class="inv-name">10×12 Utility — TBD color</div>
+      <div class="inv-price">TBD</div>
+      <div class="inv-detail">308729 · Standard</div>
+    </div>
+  </div>
+
+  <div class="win-math">
+    <h3>💰 Why Today Matters</h3>
+    <div class="win-row"><span class="win-label">1 garage sale (12x24)</span><span class="win-val">~$500-800 commission</span></div>
+    <div class="win-row"><span class="win-label">1 mid-range sale ($6k-8k)</span><span class="win-val">~$250-450 commission</span></div>
+    <div class="win-row"><span class="win-label">2 entry sales ($4k avg)</span><span class="win-val">~$200-350 commission</span></div>
+    <div class="win-row"><span class="win-label">Best-case April 1 total</span><span class="win-val">$1,000-2,000 in one day</span></div>
+    <div class="win-row"><span class="win-label">Commission YTD if you close 3-4 today</span><span class="win-val">One of your best single days</span></div>
+  </div>
+
+</div>
+
+<!-- TAB 5: CHECKLIST -->
+<div class="tab-content" id="tab-checklist">
+
+  <div class="progress-wrap">
+    <div class="progress-bar-track"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-label"><span id="progress-text">0 / 12 done</span><span id="progress-pct">0%</span></div>
+  </div>
+
+  <div class="section-head">Morning (7–9 AM)</div>
+  <div class="checklist-item" onclick="toggleCheck(this)">
+    <div class="check-box"></div>
+    <div class="check-content">
+      <div class="check-text">Post Listing 1 (April Fools Hook) to Marketplace + FB page</div>
+      <div class="check-time">7–8 AM</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)">
+    <div class="check-box"></div>
+    <div class="check-content">
+      <div class="check-text">Post Social FB Post (April Fools hook) to your page + biggest STL Buy/Sell group</div>
+      <div class="check-time">7–8 AM</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)">
+    <div class="check-box"></div>
+    <div class="check-content">
+      <div class="check-text">Reply to any overnight Marketplace inquiries with fast qualifier script</div>
+      <div class="check-time">8–9 AM</div>
+    </div>
+  </div>
+
+  <div class="section-head">Late Morning (10 AM – 12 PM)</div>
+  <div class="checklist-item" onclick="toggleCheck(this)">
+    <div class="check-box"></div>
+    <div class="check-content">
+      <div class="check-text">Post Listing 2 (12x24 Garages) to Marketplace</div>
+      <div class="check-time">10–11 AM</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)">
+    <div class="check-box"></div>
+    <div class="check-content">
+      <div class="check-text">Post Instagram caption + visual shed photos</div>
+      <div class="check-time">11 AM – 12 PM</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)">
+    <div class="check-box"></div>
+    <div class="check-content">
+      <div class="check-text">Reply to all morning comments/messages — use scripts tab</div>
+      <div class="check-time">Ongoing</div>
+    </div>
+  </div>
+
+  <div class="section-head">Afternoon (1–5 PM)</div>
+  <div class="checklist-item" onclick="toggleCheck(this)">
+    <div class="check-box"></div>
+    <div class="check-content">
+      <div class="check-text">Post Listing 3 (Visual Standouts) to Marketplace</div>
+      <div class="check-time">1–2 PM</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)">
+    <div class="check-box"></div>
+    <div class="check-content">
+      <div class="check-text">Post Listing 4 (Entry Level) to Marketplace</div>
+      <div class="check-time">4–5 PM</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)">
+    <div class="check-box"></div>
+    <div class="check-content">
+      <div class="check-text">Push warm leads from earlier this week — text "Last day at this price" update</div>
+      <div class="check-time">2–3 PM</div>
+    </div>
+  </div>
+
+  <div class="section-head">Evening (6–9 PM)</div>
+  <div class="checklist-item" onclick="toggleCheck(this)">
+    <div class="check-box"></div>
+    <div class="check-content">
+      <div class="check-text">Post FB Buy/Sell Group "Last Call" post</div>
+      <div class="check-time">7–8 PM</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)">
+    <div class="check-box"></div>
+    <div class="check-content">
+      <div class="check-text">Reply to all outstanding inquiries — use fence-sitter close script</div>
+      <div class="check-time">7–9 PM</div>
+    </div>
+  </div>
+  <div class="checklist-item" onclick="toggleCheck(this)">
+    <div class="check-box"></div>
+    <div class="check-content">
+      <div class="check-text">Log any committed buyers — confirm delivery timelines before midnight</div>
+      <div class="check-time">By 9 PM</div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">TuffShed / WoodMaster · 636-354-7406 · Pre-tariff pricing ends April 2, 2026 · Built by Franklin 🐕💩</div>
+
+<script>
+  // Countdown to April 2, 2026 midnight
+  function updateCountdown() {
+    const target = new Date('2026-04-02T00:00:00');
+    const now = new Date();
+    const diff = target - now;
+    if (diff <= 0) {
+      document.querySelector('.alert-banner .sub').textContent = '⚠️ Tariff deadline has passed';
+      return;
+    }
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  function showTab(id) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function copyText(elOrId, btn) {
+    let text;
+    if (typeof elOrId === 'string') {
+      text = document.getElementById(elOrId).textContent.trim();
+    } else {
+      text = elOrId.textContent.trim();
+    }
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = '✅ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  function toggleExpand(id, btn) {
+    const el = document.getElementById(id);
+    el.classList.toggle('expanded');
+    btn.textContent = el.classList.contains('expanded') ? 'Collapse' : 'Expand';
+  }
+
+  // Checklist logic
+  const STORAGE_KEY = 'apr1_blitz_checklist';
+  let checkedStates = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+
+  function toggleCheck(item) {
+    const box = item.querySelector('.check-box');
+    const text = item.querySelector('.check-text');
+    const idx = Array.from(document.querySelectorAll('.checklist-item')).indexOf(item);
+    checkedStates[idx] = !checkedStates[idx];
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedStates));
+    renderCheck(item, checkedStates[idx]);
+    updateProgress();
+  }
+
+  function renderCheck(item, done) {
+    const box = item.querySelector('.check-box');
+    const text = item.querySelector('.check-text');
+    box.classList.toggle('done', done);
+    box.innerHTML = done ? '✓' : '';
+    text.classList.toggle('done', done);
+  }
+
+  function updateProgress() {
+    const items = document.querySelectorAll('.checklist-item');
+    const total = items.length;
+    const done = Object.values(checkedStates).filter(Boolean).length;
+    const pct = Math.round((done / total) * 100);
+    document.getElementById('progress-fill').style.width = pct + '%';
+    document.getElementById('progress-text').textContent = done + ' / ' + total + ' done';
+    document.getElementById('progress-pct').textContent = pct + '%';
+  }
+
+  // Restore state
+  document.querySelectorAll('.checklist-item').forEach((item, idx) => {
+    if (checkedStates[idx]) renderCheck(item, true);
+  });
+  updateProgress();
+</script>
+</body>
+</html>
