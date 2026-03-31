@@ -2,6 +2,40 @@
 
 ---
 
+### Monday 7:04 PM — Maplewood, MO Dedicated Blog Post (Hourly Task)
+- **7:04 PM** 🏡 Wrote and published dedicated blog post for Maplewood, MO — the last major Central County city with a city page but no dedicated editorial blog coverage
+  - **File:** `tidy-tails/website/blog/pooper-scooper-maplewood-mo.html`
+  - **URL:** `https://tidytailsstl.com/blog/pooper-scooper-maplewood-mo`
+  - **Why this task:** With 42 blog posts live covering all county umbrellas and nearly every named city, the remaining dedicated city content gaps were Maplewood, Brentwood, Olivette, and Shrewsbury. Maplewood is the most strategically important — it has its own `maplewood.html` city page, sits at the intersection of Central/South County, has a distinct community identity (Manchester Ave, arts district, Schlafly brewery neighborhood), and attracts exactly the professional dog-owner demographic (healthcare workers, creative industries, young couples) that converts to recurring $70/month customers. Anyone searching "pooper scooper Maplewood MO" or "dog poop pickup 63143" would land on the Central County umbrella post — which doesn't have the 63143 zip callout, Manchester Ave corridor signals, or Maplewood-specific conversion angles. Now they land on a dedicated 2,600-word page.
+  - **What's in the post (~2,600 words):**
+    - **Hero:** "Weekly Dog Poop Pickup in Maplewood, MO — Flat Rate. No Contracts. We Text Before Every Visit." with full 63143 coverage callout
+    - **Stats row:** $70/month flat, 0 contracts, 63143 full coverage, 5★, Local STL Owner
+    - **6-area neighborhood grid:** Manchester Ave Corridor, Sutton Blvd/Center Ave, Greenway Chase/Laclede, Near Brentwood/Big Bend border, Schlafly/Southwest Maplewood, "Text Your Address"
+    - **Full 63143 callout:** One zip, one flat price — Manchester Ave to the Big Bend border
+    - **5 reasons Maplewood dog owners call us:** Compact yards fill up faster (math), professional households without bandwidth, spring reveal reality, multi-dog flat rate, "On My Way" text nobody else does
+    - **Maplewood Dog Math callout:** 300 deposits/dog/year, compact 20x30 yard, two dogs = 600 piles, $2.30/day math
+    - **5-step service process** with "On My Way" + "All Done" text emphasis
+    - **Full pricing table:** Weekly 1-2 dogs $70/mo, 3-4 dogs $80/mo, 5+ dogs $90/mo, Bi-Weekly $45/mo, One-Time from $75
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs Craigslist vs DIY — annual cost ($840 vs $936-1,300)
+    - **Annual savings callout:** $96-460 cheaper per year vs national franchise
+    - **Two testimonials:** Alicia R. (Manchester Ave, hospital shift worker, weekly), Marcus D. (Sutton Blvd, 2 dogs, spring thaw convert)
+    - **Maplewood-specific sections:** Small yards with high traffic (compact yard math), older homes gate access (1910s-1950s bungalows), post-winter spring cleanup, dog-walker coordination, pre-listing cleanup (realtor angle)
+    - **7-question FAQ** with FAQPage schema: "Is there a pooper scooper in Maplewood?", "How much?", "All of 63143 including Manchester/Sutton?", "Need to be home?", "Spring cleanup without weekly?", "Contracts?", "How do I know you came?"
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with Maplewood, Brentwood, Richmond Heights, Clayton, University City, Webster Groves, Shrewsbury, Kirkwood in areaServed + geo coordinates (38.6073, -90.3204)
+  - **Target keywords:** "pooper scooper Maplewood MO", "dog poop pickup Maplewood", "pet waste removal Maplewood Missouri", "pooper scooper 63143", "dog waste service Maplewood", "pooper scooper near me Maplewood"
+  - **Cross-links:**
+    - `blog/pooper-scooper-central-county-st-louis.html`: Added "📍 Maplewood Dedicated Guide →" as FIRST item in Related Articles sidebar (before Ladue, before University City, before Clayton)
+    - `maplewood.html` city page: Added "📍 MAPLEWOOD POOPER SCOOPER GUIDE" as green-bordered featured article card
+    - `blog/index.html`: Added Maplewood as newest card (first in grid) + JSON-LD blogPost array
+    - `sitemap.xml`: Added new URL (priority 0.9), 77 total URLs, 43 blog posts
+  - **Blog count: 43 blog posts total** ✅
+  - **HTTP 200 confirmed** — `<title>Pooper Scooper Service in Maplewood, MO — Flat Rate, No Contracts | Tidy Tails</title>` live ✅
+  - Committed + pushed to both tidytails-dashboard (5b444062) AND tidytails-website (516bb62) → Cloudflare Pages ✅
+
+---
+
+---
+
 ### Monday 6:07 PM — Maryland Heights, MO Dedicated Blog Post (Hourly Task)
 - **6:07 PM** 🏘️ Wrote and published dedicated blog post for Maryland Heights, MO — the last major North/West County border city without dedicated editorial blog coverage
   - **File:** `tidy-tails/website/blog/pooper-scooper-maryland-heights-mo.html`
