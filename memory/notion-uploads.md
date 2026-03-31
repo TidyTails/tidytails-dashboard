@@ -391,3 +391,7 @@ Chief uses this to verify sync with dashboard.
 | Time | File | Notion Folder | Dashboard Path | Status |
 |------|------|---------------|----------------|--------|
 | 18:01 | Morning Briefing Mar 30 | 📋 Operations | MORNING_BRIEFING_2026-03-30.pdf | ✅ |
+| 18:01 | Shed Ads Mar 30 | 🏠 Shed Sales | SHED_ADS_2026-03-30.pdf | ✅ |
+| 18:02 | Shed Commercial Leads Mar 30 | 🐕 Jamie's Hub | SHED_COMMERCIAL_LEADS_2026-03-30.pdf | ✅ |
+| 18:02 | Shed Video Scripts Mar 30 | 🏠 Shed Sales | SHED_VIDEO_SCRIPTS_2026-03-30.pdf | ✅ |
+| 18:02 | Shed Video Content Mar 30 | 🏠 Shed Sales | SHED_VIDEO_CONTENT_2026-03-30.pdf | ✅ |
