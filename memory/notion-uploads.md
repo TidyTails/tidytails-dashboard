@@ -411,3 +411,9 @@ Chief uses this to verify sync with dashboard.
 | 14:17 | Morning Briefing — March 31, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-03-31.pdf | ✅ |
 | 14:17 | Easter Sprint Kit — April 1-5, 2026 | 🐕 Tidy Tails | pdfs/EASTER_SPRINT_KIT_2026-03-31.pdf | ✅ |
 | 14:17 | Mother's Day Campaign Hub — May 10, 2026 | 🐕 Tidy Tails | pdfs/MOTHERS_DAY_CAMPAIGN_HUB_2026-03-31.pdf | ✅ |
+
+## Upload Log — Apr 1, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 18:01 | Morning Briefing — April 1, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-04-01.pdf | ✅ |
