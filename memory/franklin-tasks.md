@@ -2,6 +2,21 @@
 
 ---
 
+### Wednesday 3:04 PM — Commercial Lead Research Batch (Hourly Task)
+- **3:04 PM** 🔍 Researched and added **5 high-quality new commercial leads** to `memory/leads-commercial.md` — bringing total from 102 to **107 leads**
+  - **Why this task:** The commercial calling hub has 18 pre-prioritized leads and TJ has the tools to execute. But the pipeline of *new* leads hadn't been refreshed since April 1 at 9 AM (morning briefing batch). With Easter this Sunday and calls likely happening Thursday/Friday before the holiday, having fresh targets keeps the pipeline from going stale. Specifically targeted two uncovered verticals: (1) private/membership dog parks (which are higher-LTV referral sources than public parks) and (2) senior living communities in TJ's active South County routes. Also added a strategic referral partnership with a complementary (non-competing) pet service in TJ's core North County territory.
+  - **5 new leads added:**
+    1. **Treecourt Unleashed Dog Adventure Park** (314) 930-5753 — Private 11-acre membership dog park in Kirkwood/Valley Park. Dual pitch: outdoor service contract + referral from 100+ active members. Members pay monthly for access = proven pet-care investors = ideal Tidy Tails customers. One of the most unique lead opportunities in the entire pipeline.
+    2. **Howling Good Dog Boarding** (618) 310-6357 — Maryland Heights boarding facility. 54 Yelp photos, established operation, in TJ's active service zone. Service + referral play.
+    3. **Bark'N Good Time** (web contact) — 15-year dog walking/sitting company serving Florissant + Hazelwood. NOT a competitor. Cross-referral partnership opportunity — they walk dogs in yards we clean. Zero competitive overlap, perfect geographic alignment.
+    4. **The Rockwood Senior Living** (314) 963-0029 — Webster Groves independent living, pets allowed, $3,500–$6,195/mo residents. Seniors with dogs who can't bend over for cleanup = highest-need demo for our service. Premium market.
+    5. **Pacific Place Senior Living** (314) 961-3041 — Bethesda Health boutique independent living in Old Webster. Pet-friendly, walkable neighborhood, pathway into Bethesda Health's full senior care network.
+  - **Why senior living specifically:** Fields of Florissant (senior lead #1) has been in the pipeline since March 17 but with zero South County senior living targets. Both Rockwood and Pacific Place are in Webster Groves = pairs with existing Kirkwood/Webster Groves blog coverage and the Paw-ty event territory. Seniors with companion animals are the single highest-need + highest-ability-to-pay demographic for yard cleanup — they want it, they need help, and $70/mo is nothing relative to $3,500-$6,000/mo in rent.
+  - **Why Treecourt is the best lead in this batch:** Membership dog parks attract the segment of dog owners who invest the most in their animals. The members pay monthly dues to use the park, participate in a community platform, and clearly prioritize their dogs' quality of life. TJ pitching as "the official yard cleanup service of Treecourt members" at a lower rate ($60/mo for members vs. $70 standard) is a slam-dunk referral deal. Plus 11 acres of outdoor grounds = real service contract potential.
+  - **Total pipeline:** 107 leads. Realistic 20-30% close = 21-32 new commercial contracts potential.
+
+---
+
 ### Wednesday 2:07 PM — Post-Easter Monthly Conversion Kit (Hourly Task)
 - **2:07 PM** 🐣 Built and published the **Post-Easter Monthly Conversion Kit** — the 7-day conversion engine that turns Easter $75 one-timers into $840/yr recurring customers
   - **File:** `dashboard/post-easter-monthly-conversion-kit.html` (44KB, 6-tab app)

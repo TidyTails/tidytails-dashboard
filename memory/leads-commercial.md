@@ -1,5 +1,5 @@
 # Commercial Leads — Tidy Tails Pet Waste Removal
-*Last updated: April 1, 2026 9:00 AM*
+*Last updated: April 1, 2026 3:04 PM*
 *Status legend: New | Contacted | Quoted | Won | Lost*
 
 ---
@@ -1445,4 +1445,80 @@ Commercial pricing is different from residential. Here's what competitors charge
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated April 1, 2026 — 102 total leads)
+---
+
+## 🐕 NEW LEADS BATCH — April 1, 2026 (3:04 PM) — Total: 107 leads
+
+### Treecourt Unleashed Dog Adventure Park ⭐⭐ PRIVATE MEMBERSHIP DOG PARK — KIRKWOOD/VALLEY PARK
+- **Type:** Private Membership Dog Park (11 acres)
+- **Address:** 2499 Marshall Rd, St. Louis, MO (Valley Park/Kirkwood area)
+- **Contact:** Main Office
+- **Phone:** (314) 930-5753
+- **Website:** treecourtunleasheddogadventureparks.com
+- **Why Good Fit:** One of the most unique dog businesses in the STL metro — a private, membership-based 11-acre dog adventure park. Shallow mineral water ponds, walking trails, large open green space. Members pay monthly dues to use it. TWO pitch angles: (1) Service contract — 11 acres needs professional waste management, (2) Referral partnership — members are verified dog owners who invest monthly in their dogs. All members are paying pet care devotees = ideal Tidy Tails residential customers. Located in Kirkwood/Valley Park = South County route.
+- **Unique feature:** Members "socialize" via a community platform = TJ can sponsor a member spotlight or offer a member-exclusive rate.
+- **Est. Monthly Value:** $250–$500 service + referral pipeline from 100+ active members
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "We'd love to talk about two things — professional waste cleanup for your grounds, AND a referral deal for your members. They're already invested in their dogs. We keep their yards clean at home. Walk-in or call — happy to meet on-site."
+
+---
+
+### Howling Good Dog Boarding ⭐ BOARDING — MARYLAND HEIGHTS
+- **Type:** Dog Boarding
+- **Address:** 2854 Broadview Ave, Maryland Heights, MO 63043
+- **Contact:** Main Office
+- **Phone:** (618) 310-6357
+- **Website:** Yelp/Google listing
+- **Why Good Fit:** Dog boarding in Maryland Heights — TJ's active service territory. Established business with strong reviews on Yelp (54 photos, appears in O'Fallon + Florissant searches). High dog volume for outdoor areas. Referral potential to boarding clients who need yard cleanup at home. Maryland Heights = immediate route efficiency.
+- **Est. Monthly Value:** $150–$300 service + referrals
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "We're already servicing yards in Maryland Heights. We'd love to handle your boarding yard cleanup AND set up a referral deal — your clients get 10% off their first month at home. One call, two wins."
+
+---
+
+### Bark'N Good Time — REFERRAL PARTNER — FLORISSANT/HAZELWOOD
+- **Type:** Dog Walking / Pet Sitting Company (NOT a competitor — no yard cleanup)
+- **Address:** Florissant, MO 63031 (serves Florissant + Hazelwood)
+- **Contact:** Via barkngoodtime.com
+- **Phone:** See website (contact form)
+- **Website:** barkngoodtime.com
+- **Why Good Fit:** 15+ year local pet service company serving Florissant and Hazelwood — TJ's EXACT North County territory. They do dog walking and pet sitting but NOT yard cleanup. Potential referral PARTNERSHIP: they walk dogs in yards we clean, their clients overlap with ours perfectly. They could recommend TJ to their clients when clients ask about yard cleanup. Cross-promotional opportunity (they recommend us, we recommend them for walks/sitting). NO competitive overlap.
+- **Note:** This is a complementary partner pitch, not a service contract. Approach as a peer business owner.
+- **Est. Monthly Value:** Referral stream → $200–$500/mo in leads
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "Hey! We're Tidy Tails — local pooper scooper service also in Florissant and Hazelwood. No competition whatsoever — you walk dogs, we clean yards. Bet our clients overlap a lot. Want to swap referrals? You recommend us to people asking about yard cleanup, we recommend you to people asking about walks."
+
+---
+
+### The Rockwood Senior Living ⭐ INDEPENDENT LIVING — WEBSTER GROVES
+- **Type:** Independent Senior Living Community
+- **Address:** 100 Dunn Rd (Old Webster Groves area), Webster Groves, MO 63119
+- **Contact:** Front Desk / Activities Director
+- **Phone:** (314) 963-0029
+- **Website:** therockwood.com
+- **Why Good Fit:** Pet-friendly independent living in Old Webster Groves. Residents bring their dogs/cats. Independent living = residents often have their own patios or small yard areas. Seniors with dogs physically CANNOT always manage yard cleanup themselves. This is the highest-need demographic for pet waste removal. Premium community ($3,500–$6,195/mo) = residents who can afford $70/mo without blinking. TWO angles: (1) Resident referral — activities director endorses to dog-owning residents, (2) Common outdoor area cleanup contract.
+- **Est. Monthly Value:** $200–$400 contract + resident referrals
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "We help senior dog owners in Webster Groves keep their yards clean — without them having to bend over or spend a weekend on cleanup. Would love to leave cards with your activities director, or discuss a common area service agreement. Even 3-4 resident referrals would be worth a quick conversation."
+
+---
+
+### Pacific Place Senior Living (Bethesda Health) ⭐ INDEPENDENT LIVING — WEBSTER GROVES
+- **Type:** Boutique Independent Senior Living
+- **Address:** Webster Groves, MO 63119 (Lockwood Ave area)
+- **Contact:** Community Director
+- **Phone:** (314) 961-3041
+- **Website:** bethesdahealth.org/living-options/independent-living/pacific-place/
+- **Why Good Fit:** Boutique independent living in walkable Old Webster neighborhood. Explicitly pet-friendly. Active social seniors who value neighborhood walkability = dog owners. Bethesda Health is a major STL senior care organization — landing Pacific Place could open doors to other Bethesda communities. Small, personal community = faster decision-making than big corporate senior facilities.
+- **Est. Monthly Value:** $150–$300 service + resident referrals
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "You're in one of Webster Groves' most walkable neighborhoods — and your residents clearly love that, dogs included. We help dog-owning seniors keep their yards clean. Can we leave cards with your community director? Or discuss a small common area service agreement?"
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated April 1, 2026 — 107 total leads)
