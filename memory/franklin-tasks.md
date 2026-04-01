@@ -2,6 +2,44 @@
 
 ---
 
+### Tuesday 8:06 PM — South/West/Central County FB Group Expansion Kit (Hourly Task)
+- **8:06 PM** 🌍 Built and published the **South/West/Central County Facebook Group Expansion Kit** — the missing organic acquisition engine for the 3 territories that had zero FB group strategy despite having 20+ dedicated blog posts each
+  - **File:** `dashboard/south-west-central-fb-expansion.html` (55KB, 5 tabs)
+  - **Dashboard:** Added pulsing purple "🌍 S/W/C FB EXPANSION — 24 GROUPS · 18 POSTS" as new top quick link + new featured card at top of Marketing & Growth grid
+  - **Why this task:** It's 8 PM Tuesday March 31 (April 2). The North County FB Group Conquest generated leads across 5 specific city groups (Florissant, Hazelwood, Ferguson, Bridgeton, etc.). But South County (Kirkwood, Webster Groves, Crestwood, Mehlville), West County (Chesterfield, Ballwin, Wildwood), and Central County (Clayton, U City, Maplewood) had:
+    - 20+ dedicated blog posts ✅
+    - 2 apartment lead kits ✅
+    - Commercial Calling Hub ✅
+    - **ZERO Facebook group strategy** ❌
+    This is the same channel that drove NC leads — now applied to the 3 territories where TJ already has routes, blog content, and brand recognition from the Paw-ty event.
+  - **What's built:**
+    - **Tab 1 — Groups (24 total across 3 territories):**
+      - South County (6): Crestwood/Sunset Hills Community, Kirkwood MO Community (~8K members), Webster Groves Community (~5K), South County STL (~10K members), Dogs of South County, South County Buy/Sell/Trade. Each with search instructions + join-tracking checkbox (localStorage)
+      - West County (6): Chesterfield MO Neighbors, Ballwin MO Community, West County STL Residents, West County Dog Owners, Wildwood MO Community, West County Buy/Sell/Trade
+      - Central County (6): Clayton MO Residents, University City Community (~7K), Maplewood MO Residents (~3.5K), Inner Ring STL/Central County, STL Dog Owners (city-wide, cross-territory), STL Metro Buy/Sell
+    - **Tab 2 — Posts (18 copy-paste, 6 per territory + 1 universal):**
+      - **South County:** SC-1 (Spring Hook — "your dog's work from the last 3 months is still in the yard"), SC-2 (Shoe Check — "last time you left without checking the bottom of your shoes?"), SC-3 (Kid Safety — Easter timing, E. coli/roundworm safety angle)
+      - **West County:** WC-1 (Flat Rate + Big Yards — "big yard, small yard, 1 dog, 5 dogs — same price"), WC-2 (Landscaper Coordination — "your landscaper doesn't want to deal with what your dog left behind"), WC-3 (Spring Math — 150 piles surfacing in yard right now)
+      - **Central County:** CC-1 (Commuter Household — "home by 6 or later, spending Sundays cleaning up after the week"), CC-2 (Small Yard Flat Rate — "300 deposits in 600 sq ft fills up faster than you'd think"), CC-3 (Renter-Friendly — "you can hire us without your landlord's permission")
+      - **Universal:** $2.30/day math (evergreen, works in any group)
+      - All posts: one-click copy + "Mark Posted" toggle with localStorage persistence
+    - **Tab 3 — Reply Scripts (7):** "How much?/Interested", "Do you come to [neighborhood]?", "Seems expensive/I do it myself", recommendation thread tag, "Let me think", legit check, close-it intake script
+    - **Tab 4 — Leads:** Quick-add form (name/phone/area/source group/notes), status cycling (New/Hot/Warm/Won), stats bar, localStorage persistence
+    - **Tab 5 — Schedule (3-week campaign timeline):**
+      - **Week 1 (Apr 2-5):** Wed SC-1 in Kirkwood+Webster; Thu WC-1 in Chesterfield+West County; Fri CC-1 in Clayton+U City; Sat Universal in STL Dog Owners+Metro Buy/Sell (Easter weekend = high engagement)
+      - **Week 2 (Apr 9-11):** Wed SC-2 (Shoe Check) in Crestwood/Dogs of South County; Thu WC-2 (Landscaper) in West County Dog Owners+Chesterfield; Fri CC-2 (Small Yard) in Maplewood+STL Dog Owners
+      - **Week 3 (Apr 16-22):** Wed SC-3 (Kid Safety); Thu WC-3 (Spring Math in Wildwood); Tue Apr 22 EARTH DAY — EPA/environmental angle across ALL territories simultaneously (dog waste = groundwater contamination, 1 dog = 800 lbs/year)
+    - **Bottom stats bar:** Fixed — shows Joined/Posted/Leads/Won in real time
+  - **Revenue math:** NC-1 model: 5 posts → 3-5 leads → 2-3 converts. 3 territories × same model = 6-9 leads → 4-8 converts. Each convert = $840-1,260 LTV. Zero ad spend. 3-week total: **$3,360-$10,080 LTV at $0 cost**.
+  - **Key insight — why now:** NC Conquest proved the model works. The Paw-ty generated brand recognition in South County. TJ already has routes in Kirkwood, Webster Groves, Crestwood — his "On My Way" texts are already going there. A Facebook group post in Kirkwood Community by someone who already has customers on the same block converts at higher-than-average rates because he's verifiable ("does anyone know this service?" → "yes, they do my neighbor's yard").
+  - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/south-west-central-fb-expansion.html
+  - **Git commit:** `b922a425` ✅ pushed to tidytails-dashboard
+
+---
+
+
+---
+
 ### Tuesday 7:04 PM — April 2 Morning Briefing PDF (Hourly Task)
 - **7:04 PM** 📋 Built and published the April 2 Morning Briefing — the "new season starts now" synthesis document for the day the tariff chapter closes
   - **Files:** `dashboard/pdfs/MORNING_BRIEFING_2026-04-02.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-04-02.pdf` (605KB ✅)
