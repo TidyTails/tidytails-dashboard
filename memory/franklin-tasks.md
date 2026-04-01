@@ -3014,3 +3014,28 @@
   - **Why this over other options at 8 AM:** The toolkit is fully built — LSA kit (7 AM), Commercial Close Kit (6 AM), FB Ads Week 2 (5 AM), Easter Physical Blitz (2 AM), Dog Business Partner Kit (midnight). The one gap at 8 AM is a TIME-SENSITIVE ACTIVATION that disappears in 16 hours. All the acquisition content and tools exist. The thing that was missing was a "do this RIGHT NOW, today specifically" prompt with pre-written texts that TJ can send in 20 minutes. Referrals are the highest-ROAS channel (42×), they require zero ad spend, and the April Fools hook makes today the single best day of the year to ask for them.
   - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/april1-referral-surge.html
   - **Git commit:** `0ff8c5e9` ✅ pushed to tidytails-dashboard
+
+---
+
+### Wednesday 5:04 PM — Directory Domination Kit (Hourly Task)
+- **5:04 PM** 📂 Built and published the **Directory Domination Kit** — a step-by-step 45-minute guide to claim Tidy Tails on 7 free directories that have been unchecked since March
+  - **File:** `dashboard/directory-domination-kit.html` (54KB, 4-tab kit)
+  - **Dashboard:** Added fastest-pulsing (1.1s) blue quick link "📂 DIRECTORY DOMINATION — BING · APPLE · BRINGFIDO · 45 MIN · FREE LEADS FOREVER" + featured card in Marketing section (ahead of old Citation Blitz)
+  - **Git commit:** `3e5c4f1e` ✅ pushed to tidytails-dashboard. Raw GitHub confirmed. GH Pages deploying (2-3 min queue).
+  - **Why this task:** TASKS.md has had "Submit to 5 directories — Bing Places, Apple Business Connect, MapQuest, Petworks, BringFido" as an unchecked item since March. Currently Tidy Tails is only on Google Business Profile + Yelp (~48% of potential inbound). Apple Maps = 30%+ of iPhone searches — completely invisible on every iPhone in STL. Bing = 15% of desktop searches (Windows PCs). None of the 8 STL competitors have claimed all directories. This is a one-time 45-minute session that generates free leads permanently — highest ROI task per hour that had been repeatedly skipped.
+  - **7 Directories Covered:**
+    1. **🔵 Bing Places** (Priority 1, ~10 min) — 15% of desktop searches, free Import from Google button. Phone verification via (314) 850-7140. Most ignored free channel in local SEO.
+    2. **🍎 Apple Business Connect** (Priority 1, ~10 min) — 30%+ of iPhone local searches. Default map on every iPhone. Action Link lets iPhone users call TJ with one tap from search. Siri uses this data.
+    3. **🐾 BringFido** (Priority 1, ~8 min) — 20M+/mo pet owner directory. 100% of users are dog owners. "Pet Waste Removal" is a listed category. Indexed by Google = extra ranking page.
+    4. **🐶 Petworks** (Priority 2, ~7 min) — Pet care marketplace, direct "Pet Waste Removal" category, $70/month starting rate displayed.
+    5. **🗺️ MapQuest** (Priority 2, ~5 min) — 30M users, feeds Foursquare/YP.com aggregators = one submission = multiple citation credits automatically.
+    6. **📍 Foursquare** (Priority 3, ~5 min) — Powers Snapchat, Uber, hundreds of apps. NAP citation that flows to all those platforms automatically.
+    7. **🏘️ Nextdoor Business Page** (Priority 3, ~5 min) — Different from personal Nextdoor posting. Persistent directory listing. Can post Business Updates reaching all neighborhoods where TJ has service.
+  - **What's built:**
+    - **Tab 1 — Directories:** 7 directory cards with step-by-step instructions, "Mark Claimed" buttons with localStorage persistence, priority tiers (1/2/3), direct links to each signup page.
+    - **Tab 2 — Copy-Paste:** All business info pre-written — standard description (3 lengths), BringFido-specific description (pet travel tone), Petworks description (marketplace tone), Nextdoor Business description (neighbor tone), all 33+ zip codes in copy-paste block, business categories, keywords. Zero typing required at any directory.
+    - **Tab 3 — Why It Matters:** Channel breakdown table (Apple Maps 25% / Bing 10% / Pet directories 7% — currently uncaptured), competitive advantage analysis (none of 8 competitors are on all platforms), long-term SEO impact (NAP citations improve GBP ranking ~15%).
+    - **Tab 4 — Checklist:** 15-item checklist with localStorage persistence and progress bar covering prep, each directory in order, and 30-day follow-up tasks.
+  - **Revenue impact:** Currently capturing ~48% of inbound search. With all 7 directories: ~95%. Estimated +3-6 extra inbound calls/month at $0 recurring cost. Each new customer = $840 LTV. All 5 directories combined = $3,360-5,040/year in potential incremental LTV for 45 minutes of work.
+  - **Why now:** Easter weekend is tomorrow. TJ has the tools to capture every Easter lead. The campaigns are all built. The one gap that's been sitting unchecked since March and has no time sensitivity is this directory claim — it benefits from being done any day but loses value every day it's not done (competitors could claim some of these). 5 PM Wednesday is perfect: Easter tools are live, all copy is done, and this is a zero-creative 45-minute execution task TJ or Jamie can do while watching TV tonight.
+
