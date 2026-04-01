@@ -1,5 +1,5 @@
 # Commercial Leads — Tidy Tails Pet Waste Removal
-*Last updated: March 28, 2026 9:00 AM*
+*Last updated: April 1, 2026 9:00 AM*
 *Status legend: New | Contacted | Quoted | Won | Lost*
 
 ---
@@ -1378,4 +1378,71 @@ Commercial pricing is different from residential. Here's what competitors charge
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated March 28, 2026 — 85 total leads)
+---
+
+## 🎪 DOG PARK VENUES & ENTERTAINMENT — NEW BATCH (April 1, 2026 — 9:00 AM)
+
+### K9 Garden ⭐⭐ BRAND NEW — FOREST PARK SOUTHEAST
+- **Type:** Indoor + Outdoor Dog Park / Bar / Restaurant
+- **Address:** 4565 McRee Ave, St. Louis, MO 63110
+- **Contact:** Main Office (walk in or call)
+- **Phone:** (314) 530-9990
+- **Website:** k9garden.com
+- **Hours:** Mon–Fri 6AM–9PM · Sun 8AM–6PM
+- **Why Good Fit:** Opened January 2026 in the former Bar-K location. Indoor AND outdoor dog park, full-service café and bar. Brand new = no vendor relationships locked in. High daily dog traffic. The Rail apartments (268 units, 80% projected dog owners) is literally next door — the whole block is a dog district. Bundle K9 Garden + The Rail + Cortona at Forest Park for a tight South City route.
+- **Est. Monthly Value:** $250–$500/mo + referral pipeline from daily dog traffic
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "You just opened and you've got dogs running all day indoors and out. We keep your outdoor areas clean so your staff focuses on the experience, not the cleanup. Flat monthly rate — we handle everything."
+
+---
+
+### The Rail Apartments ⭐⭐ NEW BUILD — FOREST PARK SOUTHEAST
+- **Type:** 268-Unit Apartment Complex
+- **Address:** Forest Park Southeast, St. Louis, MO 63110 (adjacent to K9 Garden)
+- **Contact:** Search Google for leasing office
+- **Why Good Fit:** Brand new 268-unit apartment building built specifically next to Bar-K/K9 Garden to attract dog lovers. Projected 80% pet ownership = approximately 200+ dogs in one building. New = still building vendor relationships. Bundle with K9 Garden for two-stop route efficiency.
+- **Est. Monthly Value:** $300–$500/mo
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "You built around the dog park crowd — that means a lot of dogs on your grounds. We keep common areas clean. Bundle with K9 Garden next door for a volume discount."
+
+---
+
+## 🤝 REFERRAL PARTNERS — NEW (April 1, 2026)
+
+### Stray Rescue of St. Louis ⭐⭐ MASSIVE REFERRAL SOURCE
+- **Type:** Animal Rescue / Adoption Organization
+- **Address:** 2320 Pine St, St. Louis, MO 63103
+- **Contact:** Community Outreach / Adoption Coordinator
+- **Phone:** (314) 771-6121
+- **Website:** strayrescue.org
+- **Social:** 200,000+ Facebook followers
+- **Why Good Fit:** One of the most-followed rescue organizations in STL. Every dog placed = new dog owner with a yard. Their adopters are engaged, dog-devoted people who would pay for professional yard cleanup. Complements Humane Society of Missouri lead — different demographic (rescue advocates, often younger, more urban, but span all of STL metro). Welcome packet placement = zero-cost mass reach.
+- **Est. Monthly Value:** Referral source → $500–$1,000/mo in residential leads
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "We'd love to be in your new adopter packet. Every dog going to a new home deserves a clean yard. We offer 15% off first month for Stray Rescue adopters. Cards, flyers, or a quick social post — whatever works for you."
+
+### Gateway Pet Guardians ⭐ NORTH COUNTY RESCUE REFERRAL
+- **Type:** Animal Rescue / Adoption — North County Focus
+- **Address:** East St. Louis IL / serves North County STL
+- **Website:** gatewaypetguardians.com
+- **Why Good Fit:** High-volume rescue placing dogs across North St. Louis County — TJ's primary service area. Their adopters are exactly the demographic: dog-devoted North County residents, many in homes with yards. Fills the rescue referral gap for the North County territory specifically. No competitor is doing rescue referral partnerships here.
+- **Est. Monthly Value:** Referral source → $300–$700/mo in residential leads
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "We're a local North County pooper scooper company. Your adopters go home to yards — we keep those yards clean. Cards at your events, 15% off for adopters. Win-win for the dogs."
+
+---
+
+## 🏠 TIER 1: Apartment Communities — FOLLOW-UP BUNDLE (April 1, 2026)
+
+### Forest Park Southeast Bundle: K9 Garden + The Rail + Cortona
+- **Bundle Strategy:** All three are within 1.5 miles of each other in the Forest Park / South City dog district. One efficient route. Pitch as a bundle to make Tidy Tails the official pet waste service of the Forest Park dog corridor.
+- **Bundle Value:** $850–$1,500/mo total
+- **Action:** Call K9 Garden first (newest, easiest entry). Then The Rail. Then re-pitch Cortona with the "we're already on your block" angle.
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated April 1, 2026 — 102 total leads)

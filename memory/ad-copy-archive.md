@@ -1,6 +1,18 @@
 # Ad Copy Archive — Shed Ads
 *Tracks previously written ads to avoid repeats*
 
+## April 1, 2026 (9 AM Daily)
+- **Shed-Apr190** — "The April Fools Truth" — April Fools Day angle, "this one isn't a prank", truth-bomb about still not having space
+- **Shed-Apr191** — "The New Month Move" — New month/new chapter, January-through-March procrastination timeline, social proof FOMO (people who bought in Jan already have their garages back)
+- **Shed-Apr192** — "The Wednesday Decision" — Mid-week action urgency, "by Friday you could have this ordered", fast turnaround timeline visualization
+- **Shed-Apr193** — "Zero Credit, Zero Excuses" — No credit check / financing barrier removal, storage unit rent math vs own it forever
+
+## Hooks Used (April 1 — don't repeat 2 weeks)
+- April Fools Day / "this one isn't a prank" truth angle
+- January→February→March procrastination timeline / new month social proof
+- Wednesday mid-week action urgency / fast delivery timeline
+- Zero credit / "no credit check standing in your way" barrier removal
+
 ## March 26, 2026 (9 AM Daily)
 - **Shed-Mar174** — "The Quiet Spot" — Mental health/escape, need a spot, peace and quiet angle
 - **Shed-Mar175** — "The 10-Minute Walk" — Storage unit vs backyard convenience, stop driving across town
