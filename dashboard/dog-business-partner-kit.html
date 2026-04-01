@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐾 Dog Business Partner Kit | Tidy Tails</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; min-height: 100vh; }
+
+.header { background: linear-gradient(135deg, #0a1e14 0%, #0a0a1e 50%, #1a0a0a 100%); padding: 24px 20px; border-bottom: 3px solid #10b981; }
+.header h1 { font-size: 1.6em; color: #fff; margin-bottom: 4px; }
+.header p { color: #a0a0a0; font-size: 0.85em; }
+.header .badge { display: inline-block; background: #10b981; color: #000; font-size: 0.65em; padding: 3px 10px; border-radius: 4px; font-weight: 800; margin-left: 8px; vertical-align: middle; }
+
+.why-box { background: linear-gradient(135deg, #0a1e14, #0d1810); border: 2px solid #10b981; border-radius: 12px; padding: 16px 20px; margin: 16px 20px; }
+.why-box h3 { color: #10b981; font-size: 0.95em; margin-bottom: 10px; }
+.why-box .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 10px; }
+.why-box .stat { background: #0a0a0a; border-radius: 8px; padding: 10px; text-align: center; }
+.why-box .stat .num { font-size: 1.4em; font-weight: 800; color: #10b981; }
+.why-box .stat .label { font-size: 0.68em; color: #888; }
+.why-box p { font-size: 0.85em; color: #ccc; line-height: 1.5; }
+
+.tabs { display: flex; gap: 4px; padding: 12px 20px 0; background: #111; border-bottom: 1px solid #222; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tab { padding: 10px 14px; border-radius: 8px 8px 0 0; background: #1a1a1a; border: 1px solid #2a2a2a; color: #888; font-size: 0.78em; cursor: pointer; white-space: nowrap; font-weight: 600; transition: all 0.2s; }
+.tab.active { background: #064e3b; border-color: #10b981; color: #fff; border-bottom-color: #064e3b; }
+.tab:hover:not(.active) { border-color: #555; color: #ccc; }
+
+.content { padding: 20px; }
+.panel { display: none; }
+.panel.active { display: block; }
+
+/* Partner Cards */
+.partner-card { background: #111; border: 1px solid #2a2a2a; border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+.partner-card.priority-1 { border-color: #ef4444; }
+.partner-card.priority-2 { border-color: #f59e0b; }
+.partner-card.priority-3 { border-color: #10b981; }
+
+.partner-header { padding: 14px 16px; display: flex; justify-content: space-between; align-items: flex-start; cursor: pointer; }
+.partner-header:hover { background: #1a1a1a; }
+.partner-info h3 { font-size: 0.95em; color: #e0e0e0; margin-bottom: 2px; }
+.partner-info .meta { font-size: 0.78em; color: #888; }
+.priority-badge { padding: 4px 10px; border-radius: 20px; font-size: 0.72em; font-weight: 800; flex-shrink: 0; margin-left: 8px; }
+.p1 { background: #ef4444; color: #fff; }
+.p2 { background: #f59e0b; color: #000; }
+.p3 { background: #10b981; color: #000; }
+
+.partner-body { display: none; padding: 14px 16px; border-top: 1px solid #2a2a2a; }
+.partner-card.open .partner-body { display: block; }
+
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.info-item { background: #0a0a0a; border-radius: 8px; padding: 8px 10px; }
+.info-item .ilabel { font-size: 0.68em; color: #888; margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+.info-item .ival { font-size: 0.82em; color: #e0e0e0; font-weight: 600; }
+.info-item .ival a { color: #10b981; text-decoration: none; }
+
+.pitch-box { background: #0a1e14; border: 1px solid #10b98130; border-radius: 8px; padding: 12px; margin-bottom: 10px; }
+.pitch-box .pitch-label { font-size: 0.68em; color: #10b981; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; font-weight: 700; }
+.pitch-box p { font-size: 0.82em; color: #ccc; line-height: 1.5; font-style: italic; }
+
+.angle-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 10px; }
+.angle-tag { background: #1a1a1a; border: 1px solid #333; border-radius: 20px; padding: 3px 10px; font-size: 0.72em; color: #aaa; }
+.angle-tag.strong { border-color: #10b981; color: #10b981; background: #0a1e14; }
+
+.status-row { display: flex; gap: 6px; flex-wrap: wrap; }
+.status-btn { padding: 6px 12px; border-radius: 6px; font-size: 0.75em; cursor: pointer; border: 1px solid #333; background: #1a1a1a; color: #888; transition: all 0.2s; font-weight: 600; }
+.status-btn:hover { border-color: #555; color: #ccc; }
+.status-btn.active-new { background: #1a1a1a; border-color: #888; color: #fff; }
+.status-btn.active-contacted { background: #1e3a8a; border-color: #3b82f6; color: #93c5fd; }
+.status-btn.active-interested { background: #78350f; border-color: #f59e0b; color: #fcd34d; }
+.status-btn.active-partner { background: #064e3b; border-color: #10b981; color: #34d399; }
+.status-btn.active-pass { background: #3b0a0a; border-color: #ef4444; color: #fca5a5; }
+
+/* Scripts */
+.script-card { background: #0a1e14; border: 1px solid #10b98130; border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+.script-header { padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+.script-header h4 { font-size: 0.9em; color: #34d399; }
+.script-body { padding: 0 16px 14px; display: none; }
+.script-card.open .script-body { display: block; }
+.script-text { background: #0a0a0a; border-radius: 8px; padding: 12px; font-size: 0.82em; color: #ccc; line-height: 1.6; margin-bottom: 8px; white-space: pre-wrap; }
+.copy-btn { background: #10b981; color: #000; border: none; padding: 7px 16px; border-radius: 6px; font-size: 0.78em; cursor: pointer; font-weight: 700; }
+.copy-btn:active { opacity: 0.8; }
+
+/* Revenue */
+.rev-card { background: #111; border: 1px solid #2a2a2a; border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+.rev-card h4 { font-size: 0.85em; color: #10b981; margin-bottom: 10px; }
+.rev-table { width: 100%; border-collapse: collapse; font-size: 0.8em; }
+.rev-table th { background: #1a1a1a; padding: 8px 10px; text-align: left; color: #888; font-weight: 600; font-size: 0.85em; }
+.rev-table td { padding: 8px 10px; border-bottom: 1px solid #1a1a1a; color: #ccc; }
+.rev-table tr:last-child td { border-bottom: none; }
+.rev-table td.green { color: #10b981; font-weight: 700; }
+.rev-table td.gold { color: #fbbf24; font-weight: 700; }
+
+.scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 12px; }
+.scenario { background: #111; border-radius: 10px; padding: 14px; text-align: center; border: 1px solid #2a2a2a; }
+.scenario.base { border-color: #10b981; }
+.scenario .s-num { font-size: 1.6em; font-weight: 800; }
+.scenario .s-label { font-size: 0.68em; color: #888; margin-top: 2px; }
+.s-bear { color: #888; }
+.s-base { color: #10b981; }
+.s-bull { color: #fbbf24; }
+
+/* Checklist */
+.checklist-section { margin-bottom: 20px; }
+.checklist-section h4 { font-size: 0.85em; color: #10b981; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #1a1a1a; }
+.checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid #111; cursor: pointer; }
+.checklist-item:last-child { border-bottom: none; }
+.check-circle { width: 20px; height: 20px; border-radius: 50%; border: 2px solid #333; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 0.75em; transition: all 0.2s; }
+.checklist-item.done .check-circle { background: #10b981; border-color: #10b981; }
+.checklist-item.done .check-text { color: #666; text-decoration: line-through; }
+.check-text { font-size: 0.82em; color: #ccc; line-height: 1.4; }
+
+/* Progress bar */
+.progress-bar { background: #1a1a1a; border-radius: 4px; height: 6px; margin: 10px 0; overflow: hidden; }
+.progress-fill { height: 100%; background: #10b981; border-radius: 4px; transition: width 0.3s; }
+
+/* Stats bar */
+.stats-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+.stat-chip { background: #111; border: 1px solid #2a2a2a; border-radius: 8px; padding: 10px 8px; text-align: center; }
+.stat-chip .snum { font-size: 1.3em; font-weight: 800; color: #10b981; }
+.stat-chip .slabel { font-size: 0.65em; color: #888; margin-top: 2px; }
+
+/* Offer box */
+.offer-box { background: linear-gradient(135deg, #0a1e14, #0a0a14); border: 2px solid #10b981; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+.offer-box h3 { color: #10b981; font-size: 0.95em; margin-bottom: 8px; }
+.offer-box .offer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.offer-item { background: #0a0a0a; border-radius: 8px; padding: 10px; }
+.offer-item .oi-title { font-size: 0.78em; color: #10b981; font-weight: 700; margin-bottom: 4px; }
+.offer-item .oi-desc { font-size: 0.75em; color: #aaa; line-height: 1.4; }
+
+@media (max-width: 500px) {
+  .why-box .stat-row { grid-template-columns: repeat(3, 1fr); }
+  .scenario-grid { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .info-grid { grid-template-columns: 1fr; }
+  .offer-box .offer-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🐾 Dog Business Partner Kit <span class="badge">NEW CHANNEL</span></h1>
+  <p>Daycares · Boarding · Groomers · Trainers — 2 revenue angles per partner. Built: April 1, 2026</p>
+</div>
+
+<div class="why-box">
+  <h3>💡 Why This Channel Beats Apartments</h3>
+  <div class="stat-row">
+    <div class="stat"><div class="num">2x</div><div class="label">Revenue Angles</div></div>
+    <div class="stat"><div class="num">$0</div><div class="label">Ad Spend</div></div>
+    <div class="stat"><div class="num">100%</div><div class="label">Dog Owners</div></div>
+  </div>
+  <p><strong>Every client of a dog daycare is a dog owner with a yard.</strong> Dog businesses don't compete with Tidy Tails — they complement us. Angle 1: clean their outdoor play areas (direct revenue). Angle 2: refer their clients to us for home yard service (referral channel). One conversation = two revenue streams.</p>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showTab('partners')">🏢 Targets (10)</button>
+  <button class="tab" onclick="showTab('scripts')">📞 Scripts (8)</button>
+  <button class="tab" onclick="showTab('offer')">🎁 The Offer</button>
+  <button class="tab" onclick="showTab('revenue')">💰 Revenue</button>
+  <button class="tab" onclick="showTab('checklist')">✅ Checklist</button>
+</div>
+
+<!-- PARTNERS TAB -->
+<div class="panel active content" id="tab-partners">
+
+  <div class="stats-bar">
+    <div class="stat-chip"><div class="snum" id="total-count">10</div><div class="slabel">Total Leads</div></div>
+    <div class="stat-chip"><div class="snum" id="contacted-count">0</div><div class="slabel">Contacted</div></div>
+    <div class="stat-chip"><div class="snum" id="interested-count">0</div><div class="slabel">Interested</div></div>
+    <div class="stat-chip"><div class="snum" id="partner-count">0</div><div class="slabel">Partners ✅</div></div>
+  </div>
+
+  <!-- P1: Highest Priority -->
+  <p style="font-size:0.72em; color:#ef4444; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">🔴 CALL FIRST — Best Pitch Angles</p>
+
+  <!-- Happy Tails -->
+  <div class="partner-card priority-1" id="p-happy-tails">
+    <div class="partner-header" onclick="togglePartner('happy-tails')">
+      <div class="partner-info">
+        <h3>Happy Tails Pet Resort — St. Ann</h3>
+        <div class="meta">Boarding + Daycare + Grooming · St. Ann, MO (63074) · 24/7 Open Since 2000</div>
+      </div>
+      <span class="priority-badge p1">CALL #1</span>
+    </div>
+    <div class="partner-body" id="body-happy-tails">
+      <div class="info-grid">
+        <div class="info-item"><div class="ilabel">Phone</div><div class="ival"><a href="tel:+13142913647">(314) 291-3647</a></div></div>
+        <div class="info-item"><div class="ilabel">Website</div><div class="ival"><a href="https://www.happytailsinc.com" target="_blank">happytailsinc.com</a></div></div>
+        <div class="info-item"><div class="ilabel">Location</div><div class="ival">St. Ann, MO 63074</div></div>
+        <div class="info-item"><div class="ilabel">Territory Match</div><div class="ival">🟢 NC Campaign Zone</div></div>
+      </div>
+      <div class="angle-tags">
+        <span class="angle-tag strong">Outdoor Play Yards</span>
+        <span class="angle-tag strong">High Client Volume</span>
+        <span class="angle-tag">Since 2000</span>
+        <span class="angle-tag">24/7 Facility</span>
+      </div>
+      <div class="pitch-box">
+        <div class="pitch-label">🎯 Pitch Angle</div>
+        <p>"Happy Tails has been around since 2000 — you know better than anyone that outdoor play areas with dogs need constant waste management. We do professional outdoor area cleanup on a weekly schedule — takes that off your staff's plate entirely. Plus every one of your boarding and daycare clients has a dog at home. We could set up a referral program where you offer them a discount on home yard service — adds value to their membership with zero cost to you."</p>
+      </div>
+      <div class="status-row" id="status-happy-tails">
+        <button class="status-btn active-new" onclick="setStatus('happy-tails', 'new', this)">New</button>
+        <button class="status-btn" onclick="setStatus('happy-tails', 'contacted', this)">Contacted</button>
+        <button class="status-btn" onclick="setStatus('happy-tails', 'interested', this)">Interested</button>
+        <button class="status-btn" onclick="setStatus('happy-tails', 'partner', this)">Partner ✅</button>
+        <button class="status-btn" onclick="setStatus('happy-tails', 'pass', this)">Pass</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Watering Bowl -->
+  <div class="partner-card priority-1" id="p-watering-bowl">
+    <div class="partner-header" onclick="togglePartner('watering-bowl')">
+      <div class="partner-info">
+        <h3>The Watering Bowl</h3>
+        <div class="meta">Cage-Free Daycare + Training · Brentwood + South County · High-End Market</div>
+      </div>
+      <span class="priority-badge p1">CALL #2</span>
+    </div>
+    <div class="partner-body" id="body-watering-bowl">
+      <div class="info-grid">
+        <div class="info-item"><div class="ilabel">Website</div><div class="ival"><a href="https://thewateringbowl.com" target="_blank">thewateringbowl.com</a></div></div>
+        <div class="info-item"><div class="ilabel">Locations</div><div class="ival">Brentwood + South County</div></div>
+        <div class="info-item"><div class="ilabel">Territory Match</div><div class="ival">🟢 S/W/C Expansion</div></div>
+        <div class="info-item"><div class="ilabel">Contact</div><div class="ival">Call/email via site</div></div>
+      </div>
+      <div class="angle-tags">
+        <span class="angle-tag strong">Cage-Free Outdoor</span>
+        <span class="angle-tag strong">Premium Client Base</span>
+        <span class="angle-tag">Two Locations</span>
+        <span class="angle-tag">Training + Daycare</span>
+      </div>
+      <div class="pitch-box">
+        <div class="pitch-label">🎯 Pitch Angle</div>
+        <p>"The Watering Bowl's clients are exactly who we serve — dog owners in Brentwood, South County, Central County who care enough about their dog to pay premium daycare rates. Those same owners would love reliable yard service at home. We could set up a co-promo: you offer 'First cleanup free at Tidy Tails' as a perk for your daycare members, and we promote your daycare to our residential clients. Zero cost to either side, both get warm referrals."</p>
+      </div>
+      <div class="status-row" id="status-watering-bowl">
+        <button class="status-btn active-new" onclick="setStatus('watering-bowl', 'new', this)">New</button>
+        <button class="status-btn" onclick="setStatus('watering-bowl', 'contacted', this)">Contacted</button>
+        <button class="status-btn" onclick="setStatus('watering-bowl', 'interested', this)">Interested</button>
+        <button class="status-btn" onclick="setStatus('watering-bowl', 'partner', this)">Partner ✅</button>
+        <button class="status-btn" onclick="setStatus('watering-bowl', 'pass', this)">Pass</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Williamsburg Pet Hotel -->
+  <div class="partner-card priority-1" id="p-williamsburg">
+    <div class="partner-header" onclick="togglePartner('williamsburg')">
+      <div class="partner-info">
+        <h3>Williamsburg Pet Hotel & Suites</h3>
+        <div class="meta">Premium Boarding + Grooming + Pool · Chesterfield/Wildwood Area · 60+ Years</div>
+      </div>
+      <span class="priority-badge p1">CALL #3</span>
+    </div>
+    <div class="partner-body" id="body-williamsburg">
+      <div class="info-grid">
+        <div class="info-item"><div class="ilabel">Phone</div><div class="ival"><a href="tel:+16362275764">(636) 227-5764</a></div></div>
+        <div class="info-item"><div class="ilabel">Website</div><div class="ival"><a href="https://williamsburgpethotels.com" target="_blank">williamsburgpethotels.com</a></div></div>
+        <div class="info-item"><div class="ilabel">Service Area</div><div class="ival">Chesterfield, Wildwood, Town & Country, Kirkwood, Creve Coeur, Ladue</div></div>
+        <div class="info-item"><div class="ilabel">Territory Match</div><div class="ival">🟢 West County = Perfect</div></div>
+      </div>
+      <div class="angle-tags">
+        <span class="angle-tag strong">60+ Year Brand Trust</span>
+        <span class="angle-tag strong">Premium West County Clients</span>
+        <span class="angle-tag">Pool + Outdoor Areas</span>
+        <span class="angle-tag">Family-Run</span>
+      </div>
+      <div class="pitch-box">
+        <div class="pitch-label">🎯 Pitch Angle</div>
+        <p>"Williamsburg has been the go-to in Chesterfield and West County for 60 years — that's amazing. Your clients are exactly who we serve: Chesterfield, Wildwood, Town & Country, Kirkwood homeowners with dogs. We'd love to explore a simple referral arrangement — you mention Tidy Tails as a trusted home yard service recommendation, we mention Williamsburg to our residential clients. We could also provide outdoor area cleaning for your play yards on a weekly schedule. Two ways to work together."</p>
+      </div>
+      <div class="status-row" id="status-williamsburg">
+        <button class="status-btn active-new" onclick="setStatus('williamsburg', 'new', this)">New</button>
+        <button class="status-btn" onclick="setStatus('williamsburg', 'contacted', this)">Contacted</button>
+        <button class="status-btn" onclick="setStatus('williamsburg', 'interested', this)">Interested</button>
+        <button class="status-btn" onclick="setStatus('williamsburg', 'partner', this)">Partner ✅</button>
+        <button class="status-btn" onclick="setStatus('williamsburg', 'pass', this)">Pass</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Baxter's K9 -->
+  <div class="partner-card priority-1" id="p-baxters">
+    <div class="partner-header" onclick="togglePartner('baxters')">
+      <div class="partner-info">
+        <h3>Baxter's K9 Complex</h3>
+        <div class="meta">Full-Service + 15,000 sq ft Indoor/Outdoor Dog Park · St. Peters, MO</div>
+      </div>
+      <span class="priority-badge p1">CALL #4</span>
+    </div>
+    <div class="partner-body" id="body-baxters">
+      <div class="info-grid">
+        <div class="info-item"><div class="ilabel">Website</div><div class="ival"><a href="https://baxtersk9complex.com" target="_blank">baxtersk9complex.com</a></div></div>
+        <div class="info-item"><div class="ilabel">Location</div><div class="ival">St. Peters, MO (63376)</div></div>
+        <div class="info-item"><div class="ilabel">Service Area Clients</div><div class="ival">O'Fallon, St. Peters, St. Charles, Cottleville, Wentzville, Chesterfield, Creve Coeur</div></div>
+        <div class="info-item"><div class="ilabel">Facility Size</div><div class="ival">15,000 sq ft park — HIGH waste volume</div></div>
+      </div>
+      <div class="angle-tags">
+        <span class="angle-tag strong">HUGE Outdoor Area</span>
+        <span class="angle-tag strong">St. Charles Client Base</span>
+        <span class="angle-tag">Boarding + Daycare + Training</span>
+        <span class="angle-tag">Dog Park 15K sq ft</span>
+      </div>
+      <div class="pitch-box">
+        <div class="pitch-label">🎯 Pitch Angle</div>
+        <p>"A 15,000 square foot indoor/outdoor park with daily dogs — that's a significant waste management operation. We do professional outdoor area cleanup on a weekly or twice-weekly schedule, which means your staff isn't spending time on that every day. Also, your clients from O'Fallon, St. Peters, Wentzville — they all have yards at home. A referral partnership where you recommend Tidy Tails for home yard service and we mention Baxter's to our residential St. Charles clients would be mutually valuable."</p>
+      </div>
+      <div class="status-row" id="status-baxters">
+        <button class="status-btn active-new" onclick="setStatus('baxters', 'new', this)">New</button>
+        <button class="status-btn" onclick="setStatus('baxters', 'contacted', this)">Contacted</button>
+        <button class="status-btn" onclick="setStatus('baxters', 'interested', this)">Interested</button>
+        <button class="status-btn" onclick="setStatus('baxters', 'partner', this)">Partner ✅</button>
+        <button class="status-btn" onclick="setStatus('baxters', 'pass', this)">Pass</button>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:0.72em; color:#f59e0b; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin: 16px 0 8px;">🟠 CALL THIS WEEK</p>
+
+  <!-- No Leash Needed -->
+  <div class="partner-card priority-2" id="p-no-leash">
+    <div class="partner-header" onclick="togglePartner('no-leash')">
+      <div class="partner-info">
+        <h3>No Leash Needed</h3>
+        <div class="meta">Award-Winning Training + Boarding + Daycare · 8 STL/St. Charles Locations</div>
+      </div>
+      <span class="priority-badge p2">MULTI-LOCATION</span>
+    </div>
+    <div class="partner-body" id="body-no-leash">
+      <div class="info-grid">
+        <div class="info-item"><div class="ilabel">Website</div><div class="ival"><a href="https://www.noleashneeded.com/locations" target="_blank">noleashneeded.com/locations</a></div></div>
+        <div class="info-item"><div class="ilabel">Locations</div><div class="ival">8 locations — Florissant, Lake St. Louis, Chesterfield, others</div></div>
+        <div class="info-item"><div class="ilabel">Awards</div><div class="ival">Angie's List Super Service Award 5 years, A+ BBB</div></div>
+        <div class="info-item"><div class="ilabel">Opportunity</div><div class="ival">Corporate partnership = ALL 8 locations</div></div>
+      </div>
+      <div class="angle-tags">
+        <span class="angle-tag strong">8 Locations = Scale</span>
+        <span class="angle-tag strong">Florissant Location</span>
+        <span class="angle-tag">Training = Engaged Owners</span>
+        <span class="angle-tag">Premium Brand</span>
+      </div>
+      <div class="pitch-box">
+        <div class="pitch-label">🎯 Pitch Angle — Go to Florissant Location First</div>
+        <p>"I know you're a multi-location operation and any partnership needs to work at scale. I'd love to start simple — a referral card at the front desk for your Florissant location clients. Your clients are dog owners who clearly invest in their dogs. Home yard service is a natural complement. If it works at one location, it's easy to roll to all eight. What would it take to put a small card on your reception desk?"</p>
+      </div>
+      <div class="status-row" id="status-no-leash">
+        <button class="status-btn active-new" onclick="setStatus('no-leash', 'new', this)">New</button>
+        <button class="status-btn" onclick="setStatus('no-leash', 'contacted', this)">Contacted</button>
+        <button class="status-btn" onclick="setStatus('no-leash', 'interested', this)">Interested</button>
+        <button class="status-btn" onclick="setStatus('no-leash', 'partner', this)">Partner ✅</button>
+        <button class="status-btn" onclick="setStatus('no-leash', 'pass', this)">Pass</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dogtopia Rock Hill -->
+  <div class="partner-card priority-2" id="p-dogtopia">
+    <div class="partner-header" onclick="togglePartner('dogtopia')">
+      <div class="partner-info">
+        <h3>Dogtopia Rock Hill</h3>
+        <div class="meta">Premium Daycare + Boarding · Rock Hill, MO · Live Webcams + Supervised Play</div>
+      </div>
+      <span class="priority-badge p2">FRANCHISE TARGET</span>
+    </div>
+    <div class="partner-body" id="body-dogtopia">
+      <div class="info-grid">
+        <div class="info-item"><div class="ilabel">Website</div><div class="ival"><a href="https://www.dogtopia.com/rockhill-stlouis/" target="_blank">dogtopia.com/rockhill</a></div></div>
+        <div class="info-item"><div class="ilabel">Location</div><div class="ival">Rock Hill, MO (near Kirkwood/Webster Groves)</div></div>
+        <div class="info-item"><div class="ilabel">Client Base</div><div class="ival">Rock Hill, Kirkwood, Webster Groves, Shrewsbury, Brentwood</div></div>
+        <div class="info-item"><div class="ilabel">Differentiator</div><div class="ival">Live webcams = transparent/premium owner</div></div>
+      </div>
+      <div class="angle-tags">
+        <span class="angle-tag strong">Rock Hill/Kirkwood Clients</span>
+        <span class="angle-tag">Premium Price Point</span>
+        <span class="angle-tag">Franchise = Decision Maker on Site</span>
+      </div>
+      <div class="pitch-box">
+        <div class="pitch-label">🎯 Pitch Angle</div>
+        <p>"Dogtopia Rock Hill clients in Kirkwood and Webster Groves are exactly who we serve. Since you're a franchise owner, you control what's on your front desk and in your member communications. We'd love to offer your clients a first-cleanup-free promo as a membership perk — zero cost to you, real value to your clients. In exchange, we'd list Dogtopia as a recommended partner on our website and in our client texts."</p>
+      </div>
+      <div class="status-row" id="status-dogtopia">
+        <button class="status-btn active-new" onclick="setStatus('dogtopia', 'new', this)">New</button>
+        <button class="status-btn" onclick="setStatus('dogtopia', 'contacted', this)">Contacted</button>
+        <button class="status-btn" onclick="setStatus('dogtopia', 'interested', this)">Interested</button>
+        <button class="status-btn" onclick="setStatus('dogtopia', 'partner', this)">Partner ✅</button>
+        <button class="status-btn" onclick="setStatus('dogtopia', 'pass', this)">Pass</button>
+      </div>
+    </div>
+  </div>
+
+  <p style="font-size:0.72em; color:#10b981; font-weight:700; text-transform:uppercase; letter-spacing:1px; margin: 16px 0 8px;">🟢 RESEARCH PHONE + CALL THIS WEEK</p>
+
+  <!-- Arch City Dog Boarding -->
+  <div class="partner-card priority-3" id="p-arch-city">
+    <div class="partner-header" onclick="togglePartner('arch-city')">
+      <div class="partner-info">
+        <h3>Arch City Dog Boarding</h3>
+        <div class="meta">Small Boutique Boarding · Licensed · Up to 12 Dogs · St. Louis City</div>
+      </div>
+      <span class="priority-badge p3">BOUTIQUE</span>
+    </div>
+    <div class="partner-body" id="body-arch-city">
+      <div class="info-grid">
+        <div class="info-item"><div class="ilabel">Website</div><div class="ival"><a href="https://www.archcitydogboarding.com" target="_blank">archcitydogboarding.com</a></div></div>
+        <div class="info-item"><div class="ilabel">Size</div><div class="ival">12 dogs max — intimate, relationship-based</div></div>
+        <div class="info-item"><div class="ilabel">Client Type</div><div class="ival">City dwellers + South City dog owners</div></div>
+        <div class="info-item"><div class="ilabel">Phone</div><div class="ival">Check website</div></div>
+      </div>
+      <div class="pitch-box">
+        <div class="pitch-label">🎯 Pitch Angle</div>
+        <p>"Boutique boarding with 12 dogs means your clients have a personal relationship with you and trust your recommendations. We serve South City dog owners — your clients' neighborhoods. A simple referral mention from you converts at very high rates because of that trust. Happy to exchange referrals both ways."</p>
+      </div>
+      <div class="status-row" id="status-arch-city">
+        <button class="status-btn active-new" onclick="setStatus('arch-city', 'new', this)">New</button>
+        <button class="status-btn" onclick="setStatus('arch-city', 'contacted', this)">Contacted</button>
+        <button class="status-btn" onclick="setStatus('arch-city', 'interested', this)">Interested</button>
+        <button class="status-btn" onclick="setStatus('arch-city', 'partner', this)">Partner ✅</button>
+        <button class="status-btn" onclick="setStatus('arch-city', 'pass', this)">Pass</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Camp Bow Wow -->
+  <div class="partner-card priority-3" id="p-camp-bow-wow">
+    <div class="partner-header" onclick="togglePartner('camp-bow-wow')">
+      <div class="partner-info">
+        <h3>Camp Bow Wow (St. Louis area)</h3>
+        <div class="meta">Franchise Daycare + Boarding · Multiple Locations · Corporate Referral Program Possible</div>
+      </div>
+      <span class="priority-badge p3">FRANCHISE</span>
+    </div>
+    <div class="partner-body" id="body-camp-bow-wow">
+      <div class="info-grid">
+        <div class="info-item"><div class="ilabel">Research</div><div class="ival">Find STL location phone numbers via Google</div></div>
+        <div class="info-item"><div class="ilabel">Client Volume</div><div class="ival">High — franchise model, consistent clientele</div></div>
+        <div class="info-item"><div class="ilabel">Approach</div><div class="ival">Walk in vs call — visible brochure rack at desk</div></div>
+        <div class="info-item"><div class="ilabel">Ask</div><div class="ival">Leave a stack of "First Cleanup Free" cards</div></div>
+      </div>
+      <div class="pitch-box">
+        <div class="pitch-label">🎯 Pitch Angle</div>
+        <p>"Camp Bow Wow clients bring dogs in for daycare while they're at work — same clients who need yard service at home because they're never there to do it themselves. We'd love to leave a small stack of referral cards at your front desk. No formal arrangement needed — just a friendly mention that your clients get first cleanup free. We'll do the same for you."</p>
+      </div>
+      <div class="status-row" id="status-camp-bow-wow">
+        <button class="status-btn active-new" onclick="setStatus('camp-bow-wow', 'new', this)">New</button>
+        <button class="status-btn" onclick="setStatus('camp-bow-wow', 'contacted', this)">Contacted</button>
+        <button class="status-btn" onclick="setStatus('camp-bow-wow', 'interested', this)">Interested</button>
+        <button class="status-btn" onclick="setStatus('camp-bow-wow', 'partner', this)">Partner ✅</button>
+        <button class="status-btn" onclick="setStatus('camp-bow-wow', 'pass', this)">Pass</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sled & Breakfast -->
+  <div class="partner-card priority-3" id="p-sled">
+    <div class="partner-header" onclick="togglePartner('sled')">
+      <div class="partner-info">
+        <h3>Sled & Breakfast — Fenton, MO</h3>
+        <div class="meta">Dog Boarding · Fenton / South St. Louis County · Outdoor Runs</div>
+      </div>
+      <span class="priority-badge p3">SOUTH COUNTY</span>
+    </div>
+    <div class="partner-body" id="body-sled">
+      <div class="info-grid">
+        <div class="info-item"><div class="ilabel">Website</div><div class="ival"><a href="https://sledandbreakfaststl.com" target="_blank">sledandbreakfaststl.com</a></div></div>
+        <div class="info-item"><div class="ilabel">Location</div><div class="ival">Fenton, MO (South County / Jefferson County border)</div></div>
+        <div class="info-item"><div class="ilabel">Client Base</div><div class="ival">South County, Mehlville, Oakville, Arnold area</div></div>
+        <div class="info-item"><div class="ilabel">Phone</div><div class="ival">Check website</div></div>
+      </div>
+      <div class="pitch-box">
+        <div class="pitch-label">🎯 Pitch Angle</div>
+        <p>"Your Fenton location draws from Mehlville, Oakville, and South County — exactly where we have routes. Simple cross-referral: you mention Tidy Tails to clients who ask about yard services, we mention Sled & Breakfast to our clients who ask about boarding. A local South County partnership between two small businesses. No contracts."</p>
+      </div>
+      <div class="status-row" id="status-sled">
+        <button class="status-btn active-new" onclick="setStatus('sled', 'new', this)">New</button>
+        <button class="status-btn" onclick="setStatus('sled', 'contacted', this)">Contacted</button>
+        <button class="status-btn" onclick="setStatus('sled', 'interested', this)">Interested</button>
+        <button class="status-btn" onclick="setStatus('sled', 'partner', this)">Partner ✅</button>
+        <button class="status-btn" onclick="setStatus('sled', 'pass', this)">Pass</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SCRIPTS TAB -->
+<div class="panel content" id="tab-scripts">
+
+  <div class="script-card" id="s1">
+    <div class="script-header" onclick="toggleScript('s1')">
+      <h4>📞 Script 1 — Cold Call Opener (Universal)</h4>
+      <span style="color:#666; font-size:0.8em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">
+"Hi, this is TJ with Tidy Tails — we're a dog waste removal company right here in [St. Louis / Chesterfield / etc]. I know you're busy so I'll be quick.
+
+I wanted to reach out because we serve a lot of the same dog owners you do — people who care enough to invest in their dogs. I had two ideas for working together:
+
+First, we could provide weekly cleanup of your outdoor play areas and runs. Takes it off your staff's plate completely, keeps the facility clean, and is something your clients actually notice.
+
+Second, your boarding and daycare clients all have dogs at home with yards. We could set up a simple referral arrangement — they get a first cleanup free, you get to offer a useful perk to your clients at zero cost to you.
+
+Would you have 5 minutes to chat about either of those?"</div>
+      <button class="copy-btn" onclick="copyText(this, `Hi, this is TJ with Tidy Tails — we're a dog waste removal company right here in St. Louis. I know you're busy so I'll be quick.\n\nI wanted to reach out because we serve a lot of the same dog owners you do — people who care enough to invest in their dogs. I had two ideas for working together:\n\nFirst, we could provide weekly cleanup of your outdoor play areas and runs. Takes it off your staff's plate completely, keeps the facility clean, and is something your clients actually notice.\n\nSecond, your boarding and daycare clients all have dogs at home with yards. We could set up a simple referral arrangement — they get a first cleanup free, you get to offer a useful perk to your clients at zero cost to you.\n\nWould you have 5 minutes to chat about either of those?`)">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card" id="s2">
+    <div class="script-header" onclick="toggleScript('s2')">
+      <h4>🐾 Script 2 — Outdoor Area Cleaning Pitch</h4>
+      <span style="color:#666; font-size:0.8em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">
+"With [X] dogs coming through your facility every week, your outdoor runs and play areas have significant waste volume — that's just the nature of the business.
+
+We do weekly professional outdoor area cleanup for pet facilities. We come in, do a thorough grid sweep of all outdoor areas, bag and remove everything. Your staff doesn't have to touch it, it's consistent, and your clients notice the difference.
+
+Pricing depends on the size of your outdoor areas — typical pet facility contracts run $150-400/month. For a facility like yours I'd want to walk the outdoor areas and give you a real quote. Would you be open to a quick walkthrough this week?"</div>
+      <button class="copy-btn" onclick="copyText(this, 'Script copied!')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card" id="s3">
+    <div class="script-header" onclick="toggleScript('s3')">
+      <h4>🤝 Script 3 — Referral Partnership Pitch</h4>
+      <span style="color:#666; font-size:0.8em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">
+"The simplest version of working together doesn't require any contract or payment from you.
+
+Here's how it works: We give you a small stack of referral cards that say 'First cleanup free at Tidy Tails — compliments of [Business Name].' You put them at your front desk. Your clients pick them up when they're waiting.
+
+That's it. Your clients get a free first visit from a reliable local service. You get to offer a useful perk to your members without spending anything. And we get warm leads from people who are already proven dog-care investors.
+
+If it generates a few customers, we could formalize it — a standing recommendation in your new client welcome packet, mention in your newsletter, something like that. But the cards at the desk require zero commitment from either of us. Can we try that?"</div>
+      <button class="copy-btn" onclick="copyText(this, 'Script copied!')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card" id="s4">
+    <div class="script-header" onclick="toggleScript('s4')">
+      <h4>💬 Script 4 — Walk-In Opener (In Person)</h4>
+      <span style="color:#666; font-size:0.8em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">
+"Hey! I'm TJ from Tidy Tails — we do dog waste removal in St. Louis County. I know you're busy so I'll keep this short.
+
+I love what you guys do — your clients are exactly who we work with: dog owners who actually invest in their dogs. I brought something for you.
+
+[Hand them the referral cards]
+
+These are 'First Cleanup Free' cards for your clients. No commitment on your part — just put them at the front desk if you want. Your clients get a free visit, we get a warm lead. Everybody wins.
+
+If you also ever want us to do a walkthrough and quote for your outdoor areas, I'm happy to do that too. We do facility contracts for a few dog businesses in the area.
+
+Here's my card — I'll leave you to it!"</div>
+      <button class="copy-btn" onclick="copyText(this, 'Script copied!')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card" id="s5">
+    <div class="script-header" onclick="toggleScript('s5')">
+      <h4>✉️ Script 5 — Email / DM Outreach</h4>
+      <span style="color:#666; font-size:0.8em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Subject: Quick partnership idea — dog owners we both serve
+
+Hi [Name],
+
+I run Tidy Tails, a dog waste removal company serving St. Louis County. I noticed [Business Name] is in [Area] — we serve a lot of the same dog owners.
+
+Two quick ideas:
+
+1. Referral swap — I'd love to be on your recommended vendor list for home yard service. In exchange, I'd mention [Business Name] to my clients who need boarding/daycare. No formal arrangement needed — just a mention when relevant.
+
+2. Facility cleaning — If you have outdoor play areas that need regular maintenance, I'd love to quote your outdoor space. We do weekly contracts for pet facilities starting around $150/month.
+
+Either way, happy to talk. I'm a local owner, not a franchise — easy to work with.
+
+– TJ
+Tidy Tails STL
+(314) 850-7140
+tidytailsstl.com</div>
+      <button class="copy-btn" onclick="copyText(this, 'Email copied!')">📋 Copy Email</button>
+    </div>
+  </div>
+
+  <div class="script-card" id="s6">
+    <div class="script-header" onclick="toggleScript('s6')">
+      <h4>🔄 Script 6 — Objection: "We Already Have Someone"</h4>
+      <span style="color:#666; font-size:0.8em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">
+"That's totally fine — I'm not trying to displace anyone. The referral side is completely separate from that. If your clients ask you for a yard service recommendation, you could still mention us without changing your current setup at all. The referral card option doesn't require any changes on your end. That still worth putting a few cards at your desk?"</div>
+      <button class="copy-btn" onclick="copyText(this, 'Script copied!')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card" id="s7">
+    <div class="script-header" onclick="toggleScript('s7')">
+      <h4>💰 Script 7 — Facility Pricing Conversation</h4>
+      <span style="color:#666; font-size:0.8em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">
+"For outdoor area contracts at dog facilities, the pricing depends on the square footage of the outdoor space and service frequency.
+
+Typical ranges:
+- Small facility (under 2,000 sq ft outdoor) — $150-200/month weekly
+- Mid-size (2,000-5,000 sq ft) — $250-400/month weekly
+- Large outdoor park / multiple areas — Quote needed
+
+I'd want to walk the outdoor areas before committing to a price — I want to give you a real number, not a guess. A walkthrough takes about 10 minutes. Can we schedule that?"</div>
+      <button class="copy-btn" onclick="copyText(this, 'Script copied!')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <div class="script-card" id="s8">
+    <div class="script-header" onclick="toggleScript('s8')">
+      <h4>📲 Script 8 — Follow-Up Text (3-5 Days After Call)</h4>
+      <span style="color:#666; font-size:0.8em;">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="script-text">Hey [Name] — TJ from Tidy Tails. I called earlier this week about a referral partnership and facility cleaning. Still happy to drop off a few referral cards if that's easier than a full conversation. Just say the word and I'll swing by this week. No pressure either way!</div>
+      <button class="copy-btn" onclick="copyText(this, 'Text copied!')">📋 Copy Text</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- OFFER TAB -->
+<div class="panel content" id="tab-offer">
+
+  <div class="offer-box">
+    <h3>🎁 The Two-Angle Offer (Always Lead With Both)</h3>
+    <div class="offer-grid">
+      <div class="offer-item">
+        <div class="oi-title">🏢 Angle 1: Facility Contract</div>
+        <div class="oi-desc">Weekly outdoor play area + run cleanup. Staff doesn't touch waste. Keeps facility clean for clients. $150-400/month depending on size. Quote after walkthrough.</div>
+      </div>
+      <div class="offer-item">
+        <div class="oi-title">🤝 Angle 2: Referral Partnership</div>
+        <div class="oi-desc">Free referral cards at front desk — "First Cleanup Free" for their clients. Zero cost to the business. Zero formal contract needed. Both businesses cross-promote.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rev-card">
+    <h4>📋 The Leave-Behind Card Copy (Print & Bring)</h4>
+    <div style="background:#0a0a0a; border:2px dashed #333; border-radius:10px; padding:16px; text-align:center; margin-bottom:10px;">
+      <div style="font-size:1.2em; font-weight:800; color:#10b981; margin-bottom:6px;">🐾 First Yard Cleanup FREE</div>
+      <div style="font-size:0.82em; color:#ccc; margin-bottom:8px;">Compliments of [Business Name]</div>
+      <div style="font-size:0.75em; color:#888; margin-bottom:12px; line-height:1.5;">Weekly dog poop pickup · $70/month flat<br>No contracts · Local St. Louis owner · We text before every visit</div>
+      <div style="font-size:0.9em; color:#fff; font-weight:700;">(314) 850-7140 · tidytailsstl.com</div>
+      <div style="font-size:0.7em; color:#666; margin-top:6px;">Text "FREE" to claim your first visit</div>
+    </div>
+    <p style="font-size:0.78em; color:#888;">Print this as a 3x4 business card or half-sheet flyer. Bring 20-30 cards per business. Ask to leave on the front desk or in their new client welcome packet.</p>
+  </div>
+
+  <div class="rev-card">
+    <h4>🤝 What a Full Partnership Looks Like</h4>
+    <table class="rev-table">
+      <tr><th>Level</th><th>What They Do</th><th>What TJ Does</th></tr>
+      <tr><td>Level 1 (Easy)</td><td>Leave cards on front desk</td><td>Mention them to residential clients</td></tr>
+      <tr><td>Level 2 (Standard)</td><td>Include in new client welcome packet</td><td>Add them to website Partners page</td></tr>
+      <tr><td>Level 3 (Full)</td><td>Email blast to member list + social post</td><td>Co-branded content + dedicated promo</td></tr>
+      <tr><td>Level 4 (Preferred)</td><td>Facility cleaning contract + referrals</td><td>Priority scheduling + custom pricing</td></tr>
+    </table>
+  </div>
+
+</div>
+
+<!-- REVENUE TAB -->
+<div class="panel content" id="tab-revenue">
+
+  <div class="scenario-grid">
+    <div class="scenario">
+      <div class="s-num s-bear">$3,360</div>
+      <div class="s-label">Bear Case<br>2 referral converts</div>
+    </div>
+    <div class="scenario base">
+      <div class="s-num s-base">$9,240</div>
+      <div class="s-label">Base Case<br>5 converts + 1 contract</div>
+    </div>
+    <div class="scenario">
+      <div class="s-num s-bull">$21,600</div>
+      <div class="s-label">Bull Case<br>10 converts + 3 contracts</div>
+    </div>
+  </div>
+  <p style="font-size:0.72em; color:#888; text-align:center; margin:8px 0 16px;">LTV = $70/mo × 18mo avg = $1,260 per residential convert</p>
+
+  <div class="rev-card">
+    <h4>💵 Revenue Model — Two Angles</h4>
+    <table class="rev-table">
+      <tr><th>Revenue Type</th><th>Unit Value</th><th>Frequency</th><th>Annual Value</th></tr>
+      <tr>
+        <td>Referral Convert (Residential)</td>
+        <td>$70-90/mo</td>
+        <td>Per partner referral</td>
+        <td class="green">$840-1,260 LTV</td>
+      </tr>
+      <tr>
+        <td>Facility Contract (Small)</td>
+        <td>$150-200/mo</td>
+        <td>Monthly recurring</td>
+        <td class="green">$1,800-2,400/yr</td>
+      </tr>
+      <tr>
+        <td>Facility Contract (Mid)</td>
+        <td>$250-400/mo</td>
+        <td>Monthly recurring</td>
+        <td class="gold">$3,000-4,800/yr</td>
+      </tr>
+      <tr>
+        <td>Facility Contract (Large, e.g., Baxter's)</td>
+        <td>$400-700/mo</td>
+        <td>Monthly recurring</td>
+        <td class="gold">$4,800-8,400/yr</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="rev-card">
+    <h4>📊 Why Dog Businesses Beat Apartments for Referrals</h4>
+    <table class="rev-table">
+      <tr><th>Channel</th><th>Referral Quality</th><th>Close Rate</th><th>CAC</th></tr>
+      <tr><td>Dog Daycare Client Referral</td><td class="green">Very High — proven spender</td><td>30-45%</td><td class="green">~$0</td></tr>
+      <tr><td>Apartment Complex Referral</td><td>Medium — renter may not have yard</td><td>10-20%</td><td>~$0</td></tr>
+      <tr><td>Nextdoor Post</td><td>Medium — cold lead</td><td>5-15%</td><td>~$0</td></tr>
+      <tr><td>FB Ads</td><td>Low-Medium — unqualified traffic</td><td>3-8%</td><td>$40-80</td></tr>
+    </table>
+    <p style="font-size:0.78em; color:#888; margin-top:8px;">Dog daycare clients are proven pet-care investors — they already pay $30-60/day for boarding. $70/month for yard service is an easy YES for this audience.</p>
+  </div>
+
+  <div class="rev-card">
+    <h4>⏱️ Time Investment vs. Return</h4>
+    <table class="rev-table">
+      <tr><th>Action</th><th>Time</th><th>Potential Return</th></tr>
+      <tr><td>4 warm calls (P1 targets)</td><td>20 min</td><td class="green">1-2 partnerships = $2,520+ LTV/yr</td></tr>
+      <tr><td>Drop off cards at 3 businesses</td><td>45 min drive</td><td class="green">2-4 warm leads → 1-2 converts</td></tr>
+      <tr><td>One facility walkthrough + quote</td><td>30 min</td><td class="gold">$2,400-4,800/yr contract</td></tr>
+    </table>
+  </div>
+
+</div>
+
+<!-- CHECKLIST TAB -->
+<div class="panel content" id="tab-checklist">
+
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+    <span style="font-size:0.8em; color:#888;">Progress</span>
+    <span style="font-size:0.8em; color:#10b981;" id="check-progress-text">0 / 18</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="check-progress-bar" style="width:0%"></div></div>
+
+  <div class="checklist-section">
+    <h4>📋 This Week — Set Up</h4>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c1">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Print 30-40 referral cards (use "Leave-Behind Card" in the Offer tab)</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c2">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Call Happy Tails (314) 291-3647 — outdoor play areas + referral pitch</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c3">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Call Williamsburg Pet Hotel (636) 227-5764 — ask for manager/owner</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c4">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Find Baxter's K9 phone number + call — 15K sq ft park = facility contract</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c5">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Find The Watering Bowl Brentwood location phone — call or email</div>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <h4>🚶 This Week — Walk-Ins</h4>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c6">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Walk in to No Leash Needed Florissant location with referral cards</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c7">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Walk in to Dogtopia Rock Hill with referral cards + quick pitch</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c8">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Find any Camp Bow Wow STL location + drop off cards (no pitch needed)</div>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <h4>📧 This Week — Digital Outreach</h4>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c9">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Email The Watering Bowl using Script 5 (Email/DM template)</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c10">
+      <div class="check-circle">✓</div>
+      <div class="check-text">DM Arch City Dog Boarding on Facebook or Instagram</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c11">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Find Sled & Breakfast phone number and call or email</div>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <h4>📅 Follow-Up (Days 5-7)</h4>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c12">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Send Script 8 follow-up text to any businesses that didn't call back</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c13">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Schedule facility walkthrough for any businesses that expressed interest</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c14">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Update status on all 10 partner cards in this tool</div>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <h4>🔄 Ongoing Monthly</h4>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c15">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Check in with active partners — are they handing out cards?</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c16">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Ask new residential customers "how did you hear about us?" — log partner referrals</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c17">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Reciprocate — mention partner businesses to your customers when relevant</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCheck(this)" id="c18">
+      <div class="check-circle">✓</div>
+      <div class="check-text">Add new dog businesses as you discover them (groomers, trainers, vet techs)</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function showTab(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function togglePartner(id) {
+  const card = document.getElementById('p-' + id);
+  card.classList.toggle('open');
+}
+
+function toggleScript(id) {
+  const card = document.getElementById(id);
+  card.classList.toggle('open');
+}
+
+function setStatus(id, status, btn) {
+  const row = document.getElementById('status-' + id);
+  row.querySelectorAll('.status-btn').forEach(b => {
+    b.className = 'status-btn';
+  });
+  btn.className = 'status-btn active-' + status;
+  const data = JSON.parse(localStorage.getItem('db-partner-status') || '{}');
+  data[id] = status;
+  localStorage.setItem('db-partner-status', JSON.stringify(data));
+  updateStats();
+}
+
+function updateStats() {
+  const data = JSON.parse(localStorage.getItem('db-partner-status') || '{}');
+  const contacted = Object.values(data).filter(v => v === 'contacted').length;
+  const interested = Object.values(data).filter(v => v === 'interested').length;
+  const partners = Object.values(data).filter(v => v === 'partner').length;
+  document.getElementById('contacted-count').textContent = contacted;
+  document.getElementById('interested-count').textContent = interested;
+  document.getElementById('partner-count').textContent = partners;
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('done');
+  const id = el.id;
+  const checks = JSON.parse(localStorage.getItem('db-checks') || '{}');
+  checks[id] = el.classList.contains('done');
+  localStorage.setItem('db-checks', JSON.stringify(checks));
+  updateCheckProgress();
+}
+
+function updateCheckProgress() {
+  const all = document.querySelectorAll('.checklist-item');
+  const done = document.querySelectorAll('.checklist-item.done');
+  const pct = Math.round((done.length / all.length) * 100);
+  document.getElementById('check-progress-text').textContent = `${done.length} / ${all.length}`;
+  document.getElementById('check-progress-bar').style.width = pct + '%';
+}
+
+function copyText(btn, text) {
+  const scriptDiv = btn.previousElementSibling;
+  const actualText = text.includes('copied!') ? scriptDiv.textContent.trim() : text;
+  navigator.clipboard.writeText(actualText).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = actualText;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+  });
+  const orig = btn.textContent;
+  btn.textContent = '✅ Copied!';
+  setTimeout(() => btn.textContent = orig, 1500);
+}
+
+// Restore state
+window.addEventListener('DOMContentLoaded', () => {
+  const statuses = JSON.parse(localStorage.getItem('db-partner-status') || '{}');
+  Object.entries(statuses).forEach(([id, status]) => {
+    const row = document.getElementById('status-' + id);
+    if (!row) return;
+    row.querySelectorAll('.status-btn').forEach(b => b.className = 'status-btn');
+    const target = Array.from(row.querySelectorAll('.status-btn')).find(b => b.textContent.toLowerCase().includes(status.replace('-', ' ')));
+    if (target) target.className = 'status-btn active-' + status;
+  });
+  const checks = JSON.parse(localStorage.getItem('db-checks') || '{}');
+  Object.entries(checks).forEach(([id, done]) => {
+    const el = document.getElementById(id);
+    if (el && done) el.classList.add('done');
+  });
+  updateStats();
+  updateCheckProgress();
+});
+</script>
+</body>
+</html>
