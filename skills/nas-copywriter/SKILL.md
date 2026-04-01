@@ -151,6 +151,11 @@ For templates and examples, see: `references/templates.md`
 - **Pricing:** $25/wk, $45 biweekly, $70/mo, $100 one-time
 - **Voice:** Friendly, slightly humorous, local, never corporate
 - **Proof:** Never lost a customer to service issues
+- **⚠️ MANDATORY PHONE FOOTER — every Tidy Tails kit/ad/email MUST include:**
+  ```
+  📱 Text or call (314) 850-7140 — Jamie, local owner
+  ```
+  Add this as a standalone line after every CTA. No exceptions. Chief audits for this.
 
 ### TuffShed/WoodMaster (Sheds)
 - **Target:** Homeowners needing storage, St. Louis area
@@ -158,6 +163,11 @@ For templates and examples, see: `references/templates.md`
 - **Key hooks:** Financing options, no credit check rent-to-own, free delivery
 - **Voice:** Helpful, knowledgeable, low-pressure, deals-focused
 - **Contact:** Darius 636-354-7406, @reddshedredemption
+- **⚠️ MANDATORY PHONE FOOTER — every Sheds kit/ad/email MUST include:**
+  ```
+  📞 Call or text Darius: (636) 354-7406
+  ```
+  Add this as a standalone line after every CTA. No exceptions. Chief audits for this.
 
 ### Future Industries
 Apply the same framework:
@@ -210,6 +220,7 @@ Before submitting copy, verify:
 - [ ] **Conversational** — Read it aloud, does it flow?
 - [ ] **Platform-appropriate** — Fits the medium's constraints/style
 - [ ] **3-4 variations** — Different angles, not just word swaps
+- [ ] **Phone number present** — Tidy Tails: (314) 850-7140 | Sheds: (636) 354-7406 — mandatory in every deliverable
 
 ## Output Format
 
