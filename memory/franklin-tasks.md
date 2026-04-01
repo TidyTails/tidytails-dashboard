@@ -2,6 +2,40 @@
 
 ---
 
+### Wednesday 2:11 AM — Easter Physical Blitz Kit (Hourly Task)
+- **2:11 AM** 🖨️ Built and published the **Easter Physical Blitz Kit** — print-ready door hangers + neighborhood drop guide for Thu Apr 3 / Fri Apr 4
+  - **File:** `dashboard/easter-physical-blitz.html` (52KB, 5 tabs)
+  - **Dashboard:** Added pulsing purple "🖨️ EASTER DOOR HANGERS — PRINT + DROP THU/FRI" as new quick link + new featured card in Marketing section
+  - **Why this task:** It's 2 AM April 2, Easter is 3 days away. Every digital channel is covered — NC posts, S/W/C FB expansion, Easter Closer Kit, Easter Weekend Closer, April Master Calendar, FB Ads running. But ONE high-ROI channel was completely missing from the Easter playbook: **physical door hangers**. None of TJ's 8 competitors do physical blitzes. A door hanger on a fenced dog-owner yard Thursday afternoon hits a parent who is ACTIVELY thinking about their backyard before Easter — that's the highest-conversion moment of the year for pet waste removal. The Paw-ty print kit exists but it's generic and event-focused. An Easter-specific hanger kit with holiday urgency language and a defined 8-zone drop strategy was missing.
+  - **What's built:**
+    - **Tab 1 — Strategy:** Why physical matters (holiday urgency, 80% dog-owner targeting vs 20% FB), drop timeline (Wed print → Thu South County → Fri North County → Sat/Sun convert), win math (50 hangers × 3% Easter response = 1.5 leads → $840–1,305 LTV)
+    - **Tab 2 — Drop Zones (8 neighborhoods):**
+      - 🔴 Crestwood (63126) — Paw-ty city, double-tap. Watson Rd, Sappington, Whitecliff.
+      - 🔴 Kirkwood (63122) — Highest dog density South County. Kirkwood Park blocks, Woodlawn.
+      - 🔴 Florissant (63031/63033) — NC Campaign zone, zero competitors. Use Hanger B here.
+      - 🟠 Webster Groves (63119) — Paw-ty adjacent, old dog culture.
+      - 🟠 Hazelwood (63042) — NC-2 already hit FB groups, hanger = 3rd touchpoint.
+      - 🟠 Affton (63123) — Mid-century fenced yards, working-class dog owners.
+      - 🟢 Maplewood (63143) — Dense dog culture, Manchester Ave.
+      - 🟢 Mehlville (63125) — Large zip, spring cleanup urgency.
+      - **Drop tracking:** Per-neighborhood counter with localStorage persistence
+    - **Tab 3 — Print Hangers:**
+      - **Hanger A (Standard):** Purple gradient front — "Easter Egg Hunt This Weekend?" → First Cleanup FREE with EASTER25 code. White back — 5 feature bullets, pricing strip, footer CTA. 2-up per sheet, print 20–25 sheets = 40–50 hangers.
+      - **Hanger B (Orphaned Customer):** Dark indigo front — "Did Your Dog Poop Service Disappear?" → Free Catch-Up Cleanup, "SWITCHING" CTA. White back — North County service area callout, matching pricing. Print 8–12 sheets = 16–24 hangers for North County only.
+      - Print button triggers @media print — hides dashboard, shows only hanger sheets
+    - **Tab 4 — Response Scripts (6 scripts):**
+      - "How much?" / interested → qualify + close
+      - Easter panic-booker → Saturday one-time offer
+      - One-time to monthly pivot → after Easter job
+      - Orphaned customer → free catch-up + route add
+      - "Let me think" → soften + April 15 deadline
+      - Google review ask → after Easter cleanup job
+    - **Tab 5 — Checklist (18 items):** Print prep (Wed) → Drop Day 1 South County (Thu) → Drop Day 2 North County (Fri) → Convert (Sat/Sun). Progress bar with localStorage persistence.
+  - **Why this over other options at 2 AM:** Easter physical blitz is a unique, time-critical channel that doesn't exist anywhere in the current toolkit. Every other hour has built digital tools. The physical layer was completely unaddressed. 50 door hangers cost $7.50 in materials and 90 min of drive time. Return potential: $840–1,800 LTV from the Easter week alone. The hanger shows up at the exact moment a dog-owning parent is standing in their backyard thinking "I should clean this up before Sunday." None of TJ's 8 competitors are doing this. Compounds: this hanger kit can be reused for Mother's Day, summer events, and every future campaign.
+  - **Git commit:** `903a91e0` ✅ pushed to tidytails-dashboard
+
+---
+
 ### Wednesday 12:07 AM — Dog Business Partner Kit (Hourly Task)
 - **12:07 AM** 🐾 Built and published the **Dog Business Partner Kit** — the first tool targeting dog daycares, boarding facilities, and groomers as a dedicated commercial channel with two revenue angles
   - **File:** `dashboard/dog-business-partner-kit.html` (56KB, 5 tabs)
@@ -2648,3 +2682,23 @@
   - **GH Pages:** 03-31 confirmed live (200 OK). 04-01 deploying (Pages typically 2-5 min lag after push).
   - **Why this over other options at 5 PM Tuesday:** The search quota was exhausted, so research-heavy tasks (new commercial leads, web scraping) weren't possible. The existing toolkit is comprehensive — 57 blog posts, all city pills linked, Easter Sprint Kit, April 1 Blitz Kit, NC campaign tools, Commercial Calling Hub, all built. The one missing piece at 5 PM Tuesday is the *synthesis layer* — the "open this at 7 AM Wednesday and execute" document that tells TJ what to do first, second, and third on the most consequential single day of the spring campaign. The April 1 briefing also has a short shelf life — by tomorrow night it's stale. Building it the night before means TJ sees it when it's actionable, not after the fact.
 
+
+---
+
+### Wednesday 1:04 AM — Easter Weekend Closer Kit (Hourly Task)
+- **1:04 AM** 🐣 Built and published the **Easter Weekend Closer Kit** — conversion playbook for Apr 2–5
+  - **File:** `dashboard/easter-weekend-closer.html` (54KB ✅)
+  - **Dashboard:** Updated quick link from "Easter Sprint Kit" to pulsing red "🐣 EASTER CLOSER — APR 2–5 CONVERT NOW"
+  - **Why this task at 1 AM April 1:** The April 1 briefing was already built and comprehensive. The gap was the *conversion layer* — what TJ does with the leads he generates on April 1st. Once leads hit his inbox Thursday morning, he needs exact scripts, exact timing, and exact posts — not a general briefing. No tool existed for the Apr 2-5 window. The Easter Sprint Kit covered overview, not day-by-day execution.
+  - **What's in the kit:**
+    - **Thursday Apr 2 tab:** Reply to Apr 1 leads within 2 hrs, NC-4 Ferguson/Hazelwood Nextdoor launch, referral texts to all 11 customers, commercial calls (best window Thu afternoon), 2 shed listings w/spring angle, FB Ads day-3 check-in. Explicit warning: STOP tariff messaging after Apr 2.
+    - **Friday Apr 3 tab (Good Friday):** "Easter Party Rescue" FB group post (scarcity + honest backup offer), NC-5 Maryland Heights/Jennings Nextdoor, 48-hr follow-up on all Apr 1-2 maybes, Instagram Easter countdown story, shed "spring availability" listing.
+    - **Saturday Apr 4 tab:** "Last Chance" close post, personal DM blast to undecided leads (individual, not group), shed follow-up to Marketplace leads, service day photo documentation tip.
+    - **Sunday Apr 5 tab:** Warm Easter brand post (NO pitch — brand goodwill), Sunday evening win count + Mon morning prep checklist.
+    - **Follow-Up Scripts tab (7 scripts):** FB reply, 48-hr re-engage, price objection handler, "I'll think about it" closer, referral ask to current customers, commercial callback, Nextdoor/GBP DM response.
+    - **NC-4 / NC-5 Posts tab:** Ferguson/Hazelwood primary + alt post (Thu), Maryland Heights/Jennings main + orphaned customer hook (Fri). Each with zip codes embedded for hyper-local credibility.
+    - **Revenue Math tab:** Customer gap math (11→20), Easter weekend close scenarios (bear $280/mo, base $560/mo, bull $840/mo), commercial kicker math, referral ROI math ($70 cost → $840+ LTV).
+    - **UX features:** Live Easter countdown timer, localStorage task persistence, copy buttons on all scripts, floating status bar (done/total/%).
+  - **Git commit:** `0aead6a7` ✅ pushed to tidytails-dashboard
+  - **GH Pages:** 200 OK on root and existing pages — new file in deploy queue (normal 2-5 min lag)
+  - **Why Easter Closer over other options:** Leads from April 1 go cold within 24-48 hours. There's a tool for every step of acquisition (NC campaign, referral blitz, commercial hub, ad copy) but zero tool for the conversion window after a big push day. This closes the loop on everything built in the last 2 weeks.
