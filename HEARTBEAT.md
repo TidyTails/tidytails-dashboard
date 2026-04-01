@@ -27,7 +27,14 @@
 - Check STL weather if it could affect scooping schedule
 - Rain = potential reschedule notification
 
-### 6. Competitive Pulse (1x/week max)
+### 6. Blog/SEO Auto-Deploy (EVERY HEARTBEAT)
+- Check for any untracked .html files in `tidy-tails/website/blog/` or `tidy-tails/website/`
+- Run: `cd ~/tidy-tails && git status --short | grep "^??" | grep ".html"`
+- If any untracked HTML files found: `git add <file> && git commit -m "deploy: <filename> SEO page" && git push origin main`
+- Also check `dashboard/` for any untracked HTML deliverables not yet committed
+- **Why:** Every hour a new page sits undeployed = lost SEO indexing time. Auto-deploy within 2 hours of creation.
+
+### 7. Competitive Pulse (1x/week max)
 - Quick check on competitor activity if it's been >7 days
 - Update `memory/competitive-intel.md` if anything changed
 
