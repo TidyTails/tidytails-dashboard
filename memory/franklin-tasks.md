@@ -2,6 +2,35 @@
 
 ---
 
+### Tuesday 11:04 PM — April Master Calendar (Hourly Task)
+- **11:04 PM** 🗓️ Built and published the **April Master Calendar** — the missing unified daily execution calendar that merges ALL 5 simultaneous April campaigns into one tool
+  - **File:** `dashboard/april-master-calendar.html` (92KB, 5-tab app)
+  - **Dashboard:** Added pulsing teal "🗓️ APRIL MASTER CALENDAR — ALL CAMPAIGNS" as new quick link in header
+  - **Why this task:** It's 11 PM March 31. Every hourly task today built a new tool (NC Week 2 kit, Week 2 Sprint Guide, S/W/C Expansion Kit, April 2 Briefing, Post-Tariff Playbook, April 1 Blitz Kit). The tool inventory is complete. The gap at 11 PM: **no single daily calendar showing TJ exactly what to post, where, on which day, for all of April.** Five campaigns are running simultaneously starting April 1:
+    - Easter Sprint (Apr 1-5)
+    - NC Week 1 close (Apr 1-5)
+    - S/W/C FB Expansion (Apr 2 - Apr 22)
+    - NC Week 2 (Apr 7-11)
+    - 4 GBP posts (Apr 7, 14, 22, 28)
+    - Post-tariff Shed campaign (Apr 2 onward)
+    - Earth Day (Apr 22)
+    - Mother's Day ramp (Apr 7-30)
+    All of these are in 4+ separate tools. Without a unified calendar, TJ opens his laptop April 3 and has no idea which campaign fires that day. This is the synthesis layer.
+  - **What's built:**
+    - **Tab 1 — Daily Calendar:** 15 specific action days from Apr 1 → Apr 28, organized by week section. Each day has expandable action items with platform channel tags (FB GROUPS / MARKETPLACE / TEXTS / CALLS / GBP / FB ADS), toggle-to-show post text, one-click copy buttons, and check-off persistence via localStorage. Quick nav at top lets TJ jump to any day instantly.
+    - **Tab 2 — Campaigns:** 6 campaign cards (NC Week 1/2, S/W/C Expansion, Easter Sprint, GBP, Sheds) with post-by-post tracklists, completion checkboxes, and status badges. Win math grid showing $4,200-$6,720 LTV from full April execution at $0 organic ad spend.
+    - **Tab 3 — Scripts:** 6 ready-to-copy scripts (inbound inquiry response, "too expensive" handler, "let me think" handler, one-time → monthly pivot, commercial opener, Google review ask)
+    - **Tab 4 — Checklist:** 28-item master checklist across 4 phases (Week 1 setup, Easter close, NC Week 2, Earth Day/Mother's Day). Progress bar tracks completion.
+    - **Tab 5 — Tools:** 12 direct links to all related campaign tools.
+  - **Key copy-paste content included:** NC-3, NC-4, NC-5, NC-W2-1 through NC-W2-5 posts, SC-1/SC-2/SC-3, WC-1/WC-2/WC-3, CC-1/CC-2/CC-3, Easter content for every day Apr 1-5, Earth Day post, all 4 GBP posts, commercial call order with phone numbers.
+  - **Why calendar over other options at 11 PM:** The tools are all built. NC Week 2 Kit (10 PM), Week 2 Sprint (9 PM), S/W/C Expansion (8 PM), April 2 Briefing (7 PM), Post-Tariff Playbook (6 PM) — complete. The synthesis gap at 11 PM is pure execution clarity. When TJ opens his phone on April 6 and asks "what do I post today?" — this is the answer. One URL, one scroll, one copy-paste. Zero hunting through 6 different tools to figure out which campaign fires that day.
+  - **Git commit:** `306600bd` ✅ pushed to tidytails-dashboard
+  - **GH Pages:** Deploying (confirmed push, live in 2-3 min per prior pattern)
+
+---
+
+---
+
 ### Tuesday 10:09 PM — North County Week 2 Campaign Kit + GBP April Posts (Hourly Task)
 - **10:09 PM** 🏘️ Built and published the **North County Week 2 Campaign Kit** — the re-engagement and territory expansion layer for the week of April 7-11
   - **File:** `dashboard/north-county-week2-kit.html` (50KB, 5-tab app)
