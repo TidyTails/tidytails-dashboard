@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>🔥 Week 2 Sprint — April 2-8 | Tidy Tails</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #060810; --bg2: #0d1117; --bg3: #161b27; --bg4: #1e2433;
+    --text: #e8ecf4; --text2: #8892a4; --text3: #4a5568;
+    --green: #22c55e; --blue: #3b82f6; --orange: #f97316;
+    --yellow: #fbbf24; --red: #ef4444; --purple: #a855f7;
+    --teal: #14b8a6; --pink: #ec4899; --border: #1e2433; --radius: 12px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding-bottom: 80px; }
+
+  .header {
+    background: linear-gradient(135deg, #06080f, #0d1528, #06080f);
+    border-bottom: 2px solid var(--orange);
+    padding: 20px 16px 16px; text-align: center;
+  }
+  .header-eyebrow {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(249,115,22,0.15); border: 1px solid rgba(249,115,22,0.4);
+    color: var(--orange); font-size: 0.7rem; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px; letter-spacing: 0.12em;
+    text-transform: uppercase; margin-bottom: 10px;
+  }
+  .header h1 { font-size: 1.6rem; font-weight: 900; line-height: 1.1; }
+  .header h1 span { color: var(--orange); }
+  .header .sub { color: var(--text2); font-size: 0.78rem; margin-top: 6px; }
+
+  .alert-bar {
+    background: linear-gradient(90deg, rgba(249,115,22,0.2), rgba(168,85,247,0.2));
+    border-top: 1px solid rgba(249,115,22,0.4); border-bottom: 1px solid rgba(168,85,247,0.4);
+    padding: 10px 16px; text-align: center; font-size: 0.8rem; font-weight: 600;
+    color: var(--yellow);
+  }
+
+  .kpi-bar {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .kpi { background: var(--bg2); padding: 12px 8px; text-align: center; }
+  .kpi-val { font-size: 1.3rem; font-weight: 800; }
+  .kpi-lbl { font-size: 0.6rem; text-transform: uppercase; color: var(--text3); letter-spacing: 0.08em; margin-top: 2px; }
+
+  .tabs {
+    display: flex; overflow-x: auto; gap: 0;
+    background: var(--bg2); border-bottom: 2px solid var(--border);
+    scrollbar-width: none; -ms-overflow-style: none; position: sticky; top: 0; z-index: 10;
+  }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    flex: 0 0 auto; padding: 12px 16px; font-size: 0.75rem; font-weight: 600;
+    cursor: pointer; color: var(--text2); white-space: nowrap;
+    border-bottom: 2px solid transparent; transition: all 0.2s;
+  }
+  .tab.active { color: var(--orange); border-bottom-color: var(--orange); }
+  .tab:hover { color: var(--text); }
+
+  .tab-content { display: none; padding: 16px; }
+  .tab-content.active { display: block; }
+
+  .section-label {
+    font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--text3); margin: 20px 0 10px;
+  }
+
+  /* DAY CARDS */
+  .day-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+    margin-bottom: 12px; overflow: hidden;
+  }
+  .day-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 16px; cursor: pointer; user-select: none;
+  }
+  .day-header:hover { background: var(--bg3); }
+  .day-left { display: flex; align-items: center; gap: 10px; }
+  .day-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+  }
+  .day-name { font-weight: 700; font-size: 0.95rem; }
+  .day-date { font-size: 0.7rem; color: var(--text2); }
+  .day-chips { display: flex; gap: 4px; flex-wrap: wrap; }
+  .chip {
+    padding: 2px 8px; border-radius: 20px; font-size: 0.6rem; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .chip-orange { background: rgba(249,115,22,0.2); color: var(--orange); }
+  .chip-blue { background: rgba(59,130,246,0.2); color: var(--blue); }
+  .chip-green { background: rgba(34,197,94,0.2); color: var(--green); }
+  .chip-purple { background: rgba(168,85,247,0.2); color: var(--purple); }
+  .chip-red { background: rgba(239,68,68,0.2); color: var(--red); }
+  .chip-teal { background: rgba(20,184,166,0.2); color: var(--teal); }
+  .chip-yellow { background: rgba(251,191,36,0.2); color: var(--yellow); }
+  .day-chevron { color: var(--text3); font-size: 1rem; transition: transform 0.2s; }
+  .day-card.open .day-chevron { transform: rotate(180deg); }
+  .day-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border); }
+  .day-card.open .day-body { display: block; }
+
+  .task-list { list-style: none; margin: 12px 0 0; }
+  .task-item {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 10px 0; border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+  .task-item:last-child { border-bottom: none; }
+  .task-check {
+    width: 18px; height: 18px; border-radius: 4px; border: 2px solid var(--border);
+    flex-shrink: 0; margin-top: 1px; transition: all 0.2s; position: relative;
+    background: var(--bg3);
+  }
+  .task-item.done .task-check {
+    background: var(--green); border-color: var(--green);
+  }
+  .task-item.done .task-check::after {
+    content: '✓'; position: absolute; inset: 0; display: flex; align-items: center;
+    justify-content: center; font-size: 0.7rem; color: #fff; font-weight: 700;
+  }
+  .task-item.done .task-text { text-decoration: line-through; color: var(--text3); }
+  .task-text { font-size: 0.85rem; line-height: 1.4; flex: 1; }
+  .task-text strong { color: var(--text); font-weight: 600; }
+  .task-text .note { font-size: 0.72rem; color: var(--text2); display: block; margin-top: 3px; }
+  .task-priority {
+    font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+    padding: 1px 5px; border-radius: 3px; flex-shrink: 0; margin-top: 2px;
+  }
+  .pri-fire { background: rgba(239,68,68,0.2); color: var(--red); }
+  .pri-high { background: rgba(249,115,22,0.2); color: var(--orange); }
+  .pri-med { background: rgba(251,191,36,0.2); color: var(--yellow); }
+
+  /* SCRIPT CARDS */
+  .script-card {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: var(--radius);
+    margin-bottom: 12px; overflow: hidden;
+  }
+  .script-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 14px; cursor: pointer;
+  }
+  .script-header:hover { background: var(--bg4); }
+  .script-title { font-size: 0.85rem; font-weight: 600; }
+  .script-meta { font-size: 0.7rem; color: var(--text2); margin-top: 2px; }
+  .script-body { display: none; padding: 0 14px 14px; }
+  .script-card.open .script-body { display: block; }
+  .copy-box {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px; margin-top: 10px; font-size: 0.8rem; line-height: 1.5;
+    color: var(--text2); white-space: pre-wrap; word-break: break-word;
+  }
+  .copy-btn {
+    margin-top: 8px; padding: 8px 16px; background: var(--blue);
+    color: #fff; border: none; border-radius: 8px; font-size: 0.75rem;
+    font-weight: 600; cursor: pointer; transition: all 0.2s;
+  }
+  .copy-btn:hover { background: #2563eb; }
+  .copy-btn.copied { background: var(--green); }
+
+  /* PROGRESS */
+  .progress-card {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 16px; margin-bottom: 16px;
+  }
+  .progress-label { font-size: 0.75rem; font-weight: 600; margin-bottom: 8px; }
+  .progress-bar { height: 8px; background: var(--bg3); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--orange); border-radius: 4px; transition: width 0.5s; }
+  .progress-meta { font-size: 0.7rem; color: var(--text2); margin-top: 6px; }
+
+  /* WIN CARD */
+  .win-card {
+    background: linear-gradient(135deg, rgba(34,197,94,0.1), rgba(20,184,166,0.1));
+    border: 1px solid rgba(34,197,94,0.3); border-radius: var(--radius);
+    padding: 16px; margin-bottom: 12px;
+  }
+  .win-card h3 { font-size: 0.9rem; font-weight: 700; color: var(--green); margin-bottom: 8px; }
+  .win-item { font-size: 0.82rem; color: var(--text); padding: 4px 0; display: flex; gap: 8px; }
+  .win-item::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+
+  /* CHANNEL MATRIX */
+  .channel-row {
+    background: var(--bg3); border: 1px solid var(--border); border-radius: 8px;
+    padding: 12px 14px; margin-bottom: 8px;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .channel-icon { font-size: 1.3rem; flex-shrink: 0; }
+  .channel-name { font-size: 0.85rem; font-weight: 700; }
+  .channel-sub { font-size: 0.72rem; color: var(--text2); margin-top: 2px; }
+  .channel-action { font-size: 0.78rem; color: var(--text); margin-top: 6px; padding: 6px 10px; background: var(--bg4); border-radius: 6px; }
+  .channel-status {
+    margin-left: auto; flex-shrink: 0; padding: 3px 8px;
+    border-radius: 20px; font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+  }
+  .status-live { background: rgba(34,197,94,0.2); color: var(--green); }
+  .status-new { background: rgba(249,115,22,0.2); color: var(--orange); }
+  .status-follow { background: rgba(59,130,246,0.2); color: var(--blue); }
+
+  /* BACK LINK */
+  .back-link {
+    display: inline-block; margin: 16px 16px 0;
+    color: var(--text2); font-size: 0.8rem; text-decoration: none;
+    padding: 6px 12px; border: 1px solid var(--border); border-radius: 8px;
+  }
+  .back-link:hover { color: var(--orange); border-color: var(--orange); }
+
+  /* METRICS TABLE */
+  .metrics-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; }
+  .metrics-table th { padding: 8px 10px; text-align: left; color: var(--text3); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 1px solid var(--border); }
+  .metrics-table td { padding: 10px 10px; border-bottom: 1px solid var(--border); }
+  .metrics-table tr:last-child td { border-bottom: none; }
+  .metrics-table .good { color: var(--green); font-weight: 700; }
+  .metrics-table .warn { color: var(--yellow); font-weight: 700; }
+  .metrics-table .bad { color: var(--red); font-weight: 700; }
+
+  /* INSIGHT BOX */
+  .insight-box {
+    background: rgba(168,85,247,0.1); border: 1px solid rgba(168,85,247,0.3);
+    border-radius: var(--radius); padding: 14px 16px; margin-bottom: 12px;
+  }
+  .insight-box h4 { font-size: 0.8rem; font-weight: 700; color: var(--purple); margin-bottom: 6px; }
+  .insight-box p { font-size: 0.78rem; color: var(--text); line-height: 1.5; }
+
+  .checklist-progress {
+    background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 14px 16px; margin-bottom: 16px;
+  }
+  .checklist-progress .label { font-size: 0.75rem; font-weight: 600; margin-bottom: 8px; display: flex; justify-content: space-between; }
+  .checklist-progress .label span { color: var(--orange); }
+
+  @media(min-width:600px) {
+    .kpi-bar { grid-template-columns: repeat(4, 1fr); }
+    .tab { padding: 14px 20px; font-size: 0.8rem; }
+    .tab-content { padding: 20px; max-width: 700px; margin: 0 auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-eyebrow">🔥 Week 2 Sprint</div>
+  <h1>April <span>2–8</span>, 2026</h1>
+  <div class="sub">Post-tariff. Post-NC-week1. Easter close. New territory. Real customers.</div>
+</div>
+
+<div class="alert-bar">
+  🚨 Tariff urgency is DEAD as of today — pivot to spring hooks immediately. NC Week 2 = S/W/C expansion. Easter = 3 days out on Apr 2.
+</div>
+
+<div class="kpi-bar">
+  <div class="kpi">
+    <div class="kpi-val" style="color:var(--orange)">10</div>
+    <div class="kpi-lbl">Customers</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-val" style="color:var(--green)">15</div>
+    <div class="kpi-lbl">Goal by May</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-val" style="color:var(--blue)">5</div>
+    <div class="kpi-lbl">Need This Week</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-val" style="color:var(--yellow)">Apr 5</div>
+    <div class="kpi-lbl">Easter</div>
+  </div>
+</div>
+
+<a href="../index.html" class="back-link">← Dashboard</a>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('days')">📅 Daily Plan</div>
+  <div class="tab" onclick="showTab('channels')">📡 Channels</div>
+  <div class="tab" onclick="showTab('scripts')">📝 Copy-Paste</div>
+  <div class="tab" onclick="showTab('fbads')">📊 FB Ads</div>
+  <div class="tab" onclick="showTab('goals')">🎯 Win Targets</div>
+</div>
+
+<!-- TAB 1: DAILY PLAN -->
+<div id="tab-days" class="tab-content active">
+
+  <div class="checklist-progress">
+    <div class="label">Week Progress <span id="check-count">0/28 tasks done</span></div>
+    <div class="progress-bar"><div class="progress-fill" id="week-progress" style="width:0%"></div></div>
+  </div>
+
+  <div class="insight-box">
+    <h4>💡 The Week 2 Pivot</h4>
+    <p>NC Week 1 (Florissant/Hazelwood/Ferguson) is done. Week 2 = fire the South, West, and Central County FB expansion kit that's ready to go. Easter is Apr 5 — three days out on April 2. FB Ads hit their first real check-in window (Day 4–7 is the signal confirmation point). Commercial call follow-ups from this week land. The post-tariff shed hooks switch from urgency to spring/tax refund angles.</p>
+  </div>
+
+  <!-- WEDNESDAY APR 2 -->
+  <div class="day-card open" id="day-wed">
+    <div class="day-header" onclick="toggleDay('day-wed')">
+      <div class="day-left">
+        <div class="day-dot" style="background:var(--red)"></div>
+        <div>
+          <div class="day-name">Wednesday, April 2</div>
+          <div class="day-date">Tariff dies. Easter in 3 days. New hooks start TODAY.</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="day-chips">
+          <span class="chip chip-red">🚨 Pivot Day</span>
+          <span class="chip chip-orange">Easter</span>
+        </div>
+        <div class="day-chevron">▼</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <ul class="task-list">
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>🌱 Post first "spring hooks" content — NO tariff language</strong>
+            <span class="note">Fire SC-1 (South County Spring Hook — "winter's gone but the poop isn't") in Kirkwood MO Community + Webster Groves Community from the S/W/C FB Expansion Kit. This is the first day of Week 2 territory expansion.</span>
+          </div>
+          <div class="task-priority pri-fire">FIRE</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>🐣 Easter "SC-3 Kid Safety" post — Nextdoor + South County FB groups</strong>
+            <span class="note">Easter is in 3 days. E. coli/roundworm child safety angle. From the Easter Sprint Kit. South County neighborhoods = highest concentration of families with young kids. Post in Crestwood/Sunset Hills Community + Dogs of South County groups.</span>
+          </div>
+          <div class="task-priority pri-fire">FIRE</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>🏠 Shed: Post "Spring Project Season" Listing 1 (from Post-Tariff Playbook)</strong>
+            <span class="note">First post-tariff Marketplace listing — "Spring Project Season" hook with honest prices-settled language. No urgency manufactured. Trust play.</span>
+          </div>
+          <div class="task-priority pri-high">HIGH</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>📞 Commercial: Top 5 follow-up calls from this week</strong>
+            <span class="note">Willowbend (Dejon), The Finn, Village Square (DeAnyai), ReNew Chesterfield, NRE Portfolio. Tuesday is best cold call day but Wed AM works. Use Commercial Calling Hub scripts.</span>
+          </div>
+          <div class="task-priority pri-high">HIGH</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>📱 Text referral ask to customers who haven't responded yet</strong>
+            <span class="note">Anyone from the Pre-Easter referral texts who hasn't replied — one soft follow-up. "Easter weekend if any neighbors need a last-minute yard cleanup..." Uses Easter timing as natural reason to reach out.</span>
+          </div>
+          <div class="task-priority pri-med">MED</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- THURSDAY APR 3 -->
+  <div class="day-card" id="day-thu">
+    <div class="day-header" onclick="toggleDay('day-thu')">
+      <div class="day-left">
+        <div class="day-dot" style="background:var(--orange)"></div>
+        <div>
+          <div class="day-name">Thursday, April 3</div>
+          <div class="day-date">Best cold call day. Easter is Saturday. NC-5 fires.</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="day-chips">
+          <span class="chip chip-blue">NC-5 Final</span>
+          <span class="chip chip-teal">Calls</span>
+        </div>
+        <div class="day-chevron">▼</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <ul class="task-list">
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>🎯 NC-5: "Did Your Poop Scoop Service Disappear?" — Bridgeton FB groups</strong>
+            <span class="note">Final NC Week 1 post (if not already fired). Bridgeton 63044 orphaned customer hook. "Ferguson Dog Lovers" + "Bridgeton MO Community" groups. This is the last North County push.</span>
+          </div>
+          <div class="task-priority pri-fire">FIRE</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>📞 Commercial: 5 more calls from the hub (mid-tier batch)</strong>
+            <span class="note">Hazelwood Forest, New Wellington, Park Forest, Sugar Pines, The Elle on Lockwood. Thursday PM is peak decision-maker time. Use Paw-ty Crestwood name-drop for The Elle.</span>
+          </div>
+          <div class="task-priority pri-fire">FIRE</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>🌍 WC-1: West County FB groups — Flat Rate + Big Yards post</strong>
+            <span class="note">From S/W/C Expansion Kit. Chesterfield MO Neighbors + West County STL Residents. "Big yard, small yard, 1 dog, 5 dogs — same price." This is the WC territory launch day.</span>
+          </div>
+          <div class="task-priority pri-high">HIGH</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>🐣 Easter Thursday "Last 2 Days" Nextdoor post</strong>
+            <span class="note">From Easter Sprint Kit. Scarcity close — "Last few Friday slots before Easter" — converts fence-sitters who saw Tuesday/Wednesday content.</span>
+          </div>
+          <div class="task-priority pri-high">HIGH</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>📊 FB Ads: Check Day 4 metrics — confirm learning phase</strong>
+            <span class="note">Day 4 is the first signal read. Healthy: 1,000-3,000 impressions, 1+ lead, CTR >1.5%. If zero leads and zero clicks: check ad copy/audience targeting. Don't panic but do diagnose.</span>
+          </div>
+          <div class="task-priority pri-med">MED</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FRIDAY APR 4 (EASTER EVE) -->
+  <div class="day-card" id="day-fri">
+    <div class="day-header" onclick="toggleDay('day-fri')">
+      <div class="day-left">
+        <div class="day-dot" style="background:var(--yellow)"></div>
+        <div>
+          <div class="day-name">Friday, April 4 — Easter Eve</div>
+          <div class="day-date">Panic close day. Last slot availability. Last-minute converts.</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="day-chips">
+          <span class="chip chip-yellow">🐣 Easter Eve</span>
+          <span class="chip chip-green">Close</span>
+        </div>
+        <div class="day-chevron">▼</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <ul class="task-list">
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>🐣 Easter Eve panic-booker post — ALL Nextdoor neighborhoods</strong>
+            <span class="note">From Easter Sprint Kit. "Tomorrow is Easter. Same-day slots still open. $75." Converts last-minute procrastinators. Fire across Crestwood, Kirkwood, South County groups. This is statistically the highest single-day conversion day of the year for Easter hook.</span>
+          </div>
+          <div class="task-priority pri-fire">FIRE</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>📱 Reply to every inbound lead SAME DAY — Easter weekend window closes tonight</strong>
+            <span class="note">Anyone who messaged Thu/Fri gets a reply TODAY. 5-min response time during Easter eve dramatically increases close rate. Don't let leads go cold into the holiday weekend.</span>
+          </div>
+          <div class="task-priority pri-fire">FIRE</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>📱 Personal text to warm leads from Paw-ty — Easter pivot</strong>
+            <span class="note">"Hey [name], Easter's tomorrow — great time for a quick yard cleanup before the family comes over. We still have a Saturday slot if you want it." Only send to leads who showed genuine interest.</span>
+          </div>
+          <div class="task-priority pri-high">HIGH</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>🏠 Shed: Tax Refund Listing 2 (from Post-Tariff Playbook)</strong>
+            <span class="note">April 7-15 timing. Post today to get Algorithm momentum before Easter weekend browsing. "Average refund $3,170 — your shed math just changed." Works during Easter browsing weekend.</span>
+          </div>
+          <div class="task-priority pri-med">MED</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SATURDAY APR 5 (EASTER) -->
+  <div class="day-card" id="day-sat">
+    <div class="day-header" onclick="toggleDay('day-sat')">
+      <div class="day-left">
+        <div class="day-dot" style="background:var(--green)"></div>
+        <div>
+          <div class="day-name">Saturday, April 5 — Easter</div>
+          <div class="day-date">Service day + social proof. No selling — just delivering.</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="day-chips">
+          <span class="chip chip-green">🐣 Service Day</span>
+          <span class="chip chip-blue">Social Proof</span>
+        </div>
+        <div class="day-chevron">▼</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <ul class="task-list">
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>🐾 Execute same-day Easter cleanups if booked</strong>
+            <span class="note">WOW kit: On My Way text → yard photo → All Done text. These $75 jobs convert to monthly at 40-50%. Every first visit is an audition for $840/yr.</span>
+          </div>
+          <div class="task-priority pri-fire">FIRE</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>📸 Post 1 "Easter Victory" photo/story — clean yard + dog</strong>
+            <span class="note">"Happy Easter from Tidy Tails 🐣" — clean yard shot or dog-in-yard. NOT sales. Just brand presence during the highest-engagement holiday weekend of spring. Goes on FB + IG Story.</span>
+          </div>
+          <div class="task-priority pri-high">HIGH</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>📱 Text new Easter customers: one-time → monthly pivot script</strong>
+            <span class="note">"Glad we could get it done before your family arrived! If you'd ever want us on a regular schedule — weekly is $70/mo flat. Just let me know." Send SAME DAY. Strike while the wow factor is fresh.</span>
+          </div>
+          <div class="task-priority pri-high">HIGH</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- SUNDAY APR 6 -->
+  <div class="day-card" id="day-sun">
+    <div class="day-header" onclick="toggleDay('day-sun')">
+      <div class="day-left">
+        <div class="day-dot" style="background:var(--blue)"></div>
+        <div>
+          <div class="day-name">Sunday, April 6 — Post-Easter</div>
+          <div class="day-date">Victory recap. Convert one-time → monthly. Reviews ask.</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="day-chips">
+          <span class="chip chip-blue">Conversions</span>
+          <span class="chip chip-yellow">Reviews</span>
+        </div>
+        <div class="day-chevron">▼</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <ul class="task-list">
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>⭐ Google review ask — any new Easter customers + Shannon/Amanda/Chastity</strong>
+            <span class="note">Peak satisfaction window = 24-48hrs after first great service. Easter customers are at maximum appreciation right now. Use personalized review ask text (Review Sprint Kit). 6 → 10 reviews unlocks Map Pack.</span>
+          </div>
+          <div class="task-priority pri-fire">FIRE</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>📣 Post Easter "Victory Recap" — Facebook + Nextdoor</strong>
+            <span class="note">"Cleaned up [X] yards before Easter this weekend ✅" with yard photo. Social proof post that converts people who saw the ads/posts but didn't pull trigger. Schedule for 9-11 AM Sunday (highest organic reach window).</span>
+          </div>
+          <div class="task-priority pri-high">HIGH</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>📱 Follow up: One-time Easter customers → monthly offer</strong>
+            <span class="note">Any Easter one-time who hasn't replied to Saturday's text. Sunday is the warm convert window. "$70/mo flat, first regular visit is free." The math ($2.30/day) is the close.</span>
+          </div>
+          <div class="task-priority pri-high">HIGH</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>🌍 CC-1: Central County launch post — Clayton MO Residents + U City Community</strong>
+            <span class="note">From S/W/C Expansion Kit. "Home by 6 or later, spending Sundays cleaning up after the week." Commuter household angle for Clayton/U City. Sunday AM = high browse engagement for inner-ring suburb groups.</span>
+          </div>
+          <div class="task-priority pri-med">MED</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- MONDAY APR 7 -->
+  <div class="day-card" id="day-mon2">
+    <div class="day-header" onclick="toggleDay('day-mon2')">
+      <div class="day-left">
+        <div class="day-dot" style="background:var(--purple)"></div>
+        <div>
+          <div class="day-name">Monday, April 7</div>
+          <div class="day-date">FB Ads Week 2. Tax refund season opens. Commercial follow-ups.</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="day-chips">
+          <span class="chip chip-purple">Ads W2</span>
+          <span class="chip chip-teal">Tax $$$</span>
+        </div>
+        <div class="day-chevron">▼</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <ul class="task-list">
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>📊 FB Ads Week 2 optimization: check learning phase exit</strong>
+            <span class="note">Day 7 is the standard Facebook learning phase checkpoint. Should have 50+ events or be exiting learning. Check: CPL, CTR, reach. If CPL >$80 → swap to Ad #2 (Spring Urgency). If <$40 → scale $7 → $10/day.</span>
+          </div>
+          <div class="task-priority pri-fire">FIRE</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>🏠 Shed: Tax Refund Season Marketplace + IG post</strong>
+            <span class="note">April 7-15 is peak tax refund window (average $3,170 deposit this week). Listing 2 from Post-Tariff Playbook. "Most people got their refund this week. Your shed math just changed." High-intent timing — people with money act.</span>
+          </div>
+          <div class="task-priority pri-high">HIGH</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>📞 Commercial: Call anyone who was "interested, call me next week" last week</strong>
+            <span class="note">Any property manager who said "call me after Easter" or similar. Monday 10 AM is the single best call-back window. Follow-up call wins at much higher rate than cold calls.</span>
+          </div>
+          <div class="task-priority pri-high">HIGH</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>🌍 WC-2: West County "Landscaper" post — West County Dog Owners + Chesterfield</strong>
+            <span class="note">From S/W/C Expansion Kit. "Your landscaper doesn't want to deal with what your dog left behind." Chesterfield/Ballwin angle — highest landscaping service density in metro. Resonates immediately.</span>
+          </div>
+          <div class="task-priority pri-med">MED</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- TUESDAY APR 8 -->
+  <div class="day-card" id="day-tue2">
+    <div class="day-header" onclick="toggleDay('day-tue2')">
+      <div class="day-left">
+        <div class="day-dot" style="background:var(--teal)"></div>
+        <div>
+          <div class="day-name">Tuesday, April 8</div>
+          <div class="day-date">Best call day. Week 2 momentum check. Mother's Day preview.</div>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div class="day-chips">
+          <span class="chip chip-teal">Best Calls</span>
+          <span class="chip chip-pink">Mother's Day</span>
+        </div>
+        <div class="day-chevron">▼</div>
+      </div>
+    </div>
+    <div class="day-body">
+      <ul class="task-list">
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>📞 Commercial: New batch — Kirkwood Bluffs, Stanford Place, Villages at General Grant</strong>
+            <span class="note">These three are "call this week" tier from Commercial Calling Hub. Tuesday 10 AM-2 PM is statistically the best cold-call window of the week. Have the opener script ready, call from the hub.</span>
+          </div>
+          <div class="task-priority pri-fire">FIRE</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>🌸 Mother's Day preview post — seed the she shed angle (32 days out)</strong>
+            <span class="note">From Mother's Day Hub. Apr 7 seed post: "She Got the Dog" Nextdoor + FB. Planting the idea now so it percolates before the push begins Apr 14. Low effort, high compound value. She shed commissions open at $400-900.</span>
+          </div>
+          <div class="task-priority pri-high">HIGH</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>📊 Week 2 scorecard: count leads, converts, commercial callbacks</strong>
+            <span class="note">Open April War Room. Log actual numbers: leads this week, converts, commercial responses. Compare to expected pace (3 new customers/month to hit 25 by August). Are we at 11? 12? Know the number.</span>
+          </div>
+          <div class="task-priority pri-high">HIGH</div>
+        </li>
+        <li class="task-item" onclick="toggleTask(this)">
+          <div class="task-check"></div>
+          <div class="task-text"><strong>🌍 CC-2: Small Yard post — Maplewood MO Residents + STL Dog Owners</strong>
+            <span class="note">From S/W/C Expansion Kit. "300 deposits in 600 sq ft fills up faster than you'd think." Maplewood/U City/Brentwood angle — compact yards. The price math ($2.30/day) is even more compelling for small yard owners.</span>
+          </div>
+          <div class="task-priority pri-med">MED</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<!-- TAB 2: CHANNELS -->
+<div id="tab-channels" class="tab-content">
+  <div class="section-label">This Week's Channel Activation Map</div>
+
+  <div class="channel-row">
+    <div class="channel-icon">🌍</div>
+    <div style="flex:1">
+      <div class="channel-name">S/W/C FB Group Expansion</div>
+      <div class="channel-sub">24 groups across South, West, Central County — WEEK 1 OF 3</div>
+      <div class="channel-action">
+        <strong>Wed:</strong> SC-1 Kirkwood + Webster Groves<br>
+        <strong>Thu:</strong> WC-1 Chesterfield + West County<br>
+        <strong>Sun:</strong> CC-1 Clayton + U City<br>
+        <strong>Mon:</strong> WC-2 Landscaper angle<br>
+        <strong>Tue:</strong> CC-2 Small Yard<br>
+        <em>Tool: S/W/C FB Expansion Kit</em>
+      </div>
+    </div>
+    <div class="channel-status status-new">NEW</div>
+  </div>
+
+  <div class="channel-row">
+    <div class="channel-icon">🐣</div>
+    <div style="flex:1">
+      <div class="channel-name">Easter Sprint — Final Close</div>
+      <div class="channel-sub">Easter is Apr 5 — 3-day panic close window open NOW</div>
+      <div class="channel-action">
+        <strong>Wed:</strong> SC-3 Kid Safety (Nextdoor)<br>
+        <strong>Thu:</strong> "Last 2 Days" Nextdoor<br>
+        <strong>Fri:</strong> Easter Eve panic post<br>
+        <strong>Sat:</strong> Execute + social proof<br>
+        <strong>Sun:</strong> Victory recap + one-time → monthly converts
+      </div>
+    </div>
+    <div class="channel-status status-new">CLOSING</div>
+  </div>
+
+  <div class="channel-row">
+    <div class="channel-icon">📊</div>
+    <div style="flex:1">
+      <div class="channel-name">Facebook Ads</div>
+      <div class="channel-sub">$7/day — Week 1 learning phase, Week 2 optimization</div>
+      <div class="channel-action">
+        <strong>Thu:</strong> Day 4 signal check (first read)<br>
+        <strong>Mon:</strong> Learning phase exit check (Day 7)<br>
+        If CPL >$80 → swap ad creative to Ad #2<br>
+        If CPL <$40 → scale $7 → $10/day
+      </div>
+    </div>
+    <div class="channel-status status-live">LIVE</div>
+  </div>
+
+  <div class="channel-row">
+    <div class="channel-icon">📞</div>
+    <div style="flex:1">
+      <div class="channel-name">Commercial Calls</div>
+      <div class="channel-sub">18 leads in the hub — 8 called, 10 remaining</div>
+      <div class="channel-action">
+        <strong>Wed:</strong> Top 5 follow-ups (Willowbend, The Finn, Village Square, ReNew, NRE)<br>
+        <strong>Thu:</strong> Mid-tier 5 (Hazelwood Forest, New Wellington, Park Forest, Sugar Pines, The Elle)<br>
+        <strong>Mon:</strong> Follow-up callbacks from interested leads<br>
+        <strong>Tue:</strong> Week 2 fresh batch (Kirkwood Bluffs, Stanford, Villages)
+      </div>
+    </div>
+    <div class="channel-status status-follow">FOLLOW-UP</div>
+  </div>
+
+  <div class="channel-row">
+    <div class="channel-icon">⭐</div>
+    <div style="flex:1">
+      <div class="channel-name">Google Reviews</div>
+      <div class="channel-sub">6 → 10 unlocks Map Pack eligibility</div>
+      <div class="channel-action">
+        <strong>Sun Apr 6:</strong> Ask Easter customers (peak satisfaction)<br>
+        + Shannon / Amanda / Chastity personalized texts<br>
+        Target: 3-4 new reviews this week = 9-10 total
+      </div>
+    </div>
+    <div class="channel-status status-live">ACTIVE</div>
+  </div>
+
+  <div class="channel-row">
+    <div class="channel-icon">🏠</div>
+    <div style="flex:1">
+      <div class="channel-name">TuffShed/WoodMaster</div>
+      <div class="channel-sub">Post-tariff pivot — spring + tax refund hooks</div>
+      <div class="channel-action">
+        <strong>Wed:</strong> Spring Project Season Listing 1<br>
+        <strong>Fri:</strong> Tax Refund Listing 2 (average $3,170 refund timing)<br>
+        <strong>Mon:</strong> Tax Refund Season full push<br>
+        <strong>Tue:</strong> Mother's Day she shed seed post (Apr 7 start)<br>
+        <em>No tariff language after Apr 2</em>
+      </div>
+    </div>
+    <div class="channel-status status-live">LIVE</div>
+  </div>
+
+</div>
+
+<!-- TAB 3: COPY-PASTE SCRIPTS -->
+<div id="tab-scripts" class="tab-content">
+  <div class="section-label">Week 2 Copy-Paste Ready</div>
+
+  <!-- SC-1 SOUTH COUNTY SPRING -->
+  <div class="script-card" id="sc1-card">
+    <div class="script-header" onclick="toggleScript('sc1-card')">
+      <div>
+        <div class="script-title">🌱 SC-1: South County Spring Hook</div>
+        <div class="script-meta">Wed Apr 2 → Kirkwood MO Community + Webster Groves Community groups</div>
+      </div>
+      <span style="color:var(--text3)">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="copy-box" id="sc1-text">Hey South County neighbors 🐾
+
+Winter's gone — but everything your dog left behind over the last 3 months is still out there.
+
+We do weekly dog poop pickup in Kirkwood, Webster Groves, Crestwood, and the surrounding area. Flat rate — $70/month, 1 to 5 dogs, same price. No contracts, no surprises.
+
+Text before every visit. Photo when we're done. Local guy, not a franchise.
+
+If your yard is giving you that specific kind of stress right now — feel free to reach out. Happy to get it caught up.
+
+(314) 850-7140 | tidytailsstl.com</div>
+      <button class="copy-btn" onclick="copyText('sc1-text', this)">Copy Post</button>
+    </div>
+  </div>
+
+  <!-- WC-1 WEST COUNTY FLAT RATE -->
+  <div class="script-card" id="wc1-card">
+    <div class="script-header" onclick="toggleScript('wc1-card')">
+      <div>
+        <div class="script-title">🌳 WC-1: West County Flat Rate Post</div>
+        <div class="script-meta">Thu Apr 3 → Chesterfield MO Neighbors + West County STL Residents</div>
+      </div>
+      <span style="color:var(--text3)">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="copy-box" id="wc1-text">Hey West County neighbors 👋
+
+Quick question for anyone with a dog and a yard: are you still handling it yourself?
+
+We do weekly dog waste pickup in Chesterfield, Ballwin, Creve Coeur, and the surrounding areas. Big yard, small yard, 1 dog, 5 dogs — same flat $70/month. We text before we come and send a photo when we leave.
+
+Not a franchise. Local owner-operator. No contracts.
+
+Spring accumulation is real right now — happy to do a one-time catch-up or start on a weekly schedule. Reach out any time.
+
+(314) 850-7140 | tidytailsstl.com</div>
+      <button class="copy-btn" onclick="copyText('wc1-text', this)">Copy Post</button>
+    </div>
+  </div>
+
+  <!-- EASTER EVE PANIC CLOSE -->
+  <div class="script-card" id="easter-eve-card">
+    <div class="script-header" onclick="toggleScript('easter-eve-card')">
+      <div>
+        <div class="script-title">🐣 Easter Eve Panic Close Post</div>
+        <div class="script-meta">Fri Apr 4 → ALL Nextdoor neighborhoods + Facebook groups</div>
+      </div>
+      <span style="color:var(--text3)">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="copy-box" id="easter-eve-text">Tomorrow is Easter. 🐣
+
+If your backyard has been sitting since winter... now would be a good time.
+
+We still have Saturday slots open. One-time cleanup starts at $75. Text us tonight and we'll confirm a time.
+
+Your kids will be hunting eggs out there tomorrow. Let's make sure it's actually safe.
+
+📱 (314) 850-7140</div>
+      <button class="copy-btn" onclick="copyText('easter-eve-text', this)">Copy Post</button>
+    </div>
+  </div>
+
+  <!-- EASTER VICTORY RECAP -->
+  <div class="script-card" id="easter-recap-card">
+    <div class="script-header" onclick="toggleScript('easter-recap-card')">
+      <div>
+        <div class="script-title">📣 Easter Victory Recap (Post-Easter Sunday)</div>
+        <div class="script-meta">Sun Apr 6 → Facebook + Nextdoor, 9-11 AM window</div>
+      </div>
+      <span style="color:var(--text3)">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="copy-box" id="easter-recap-text">Happy Easter from Tidy Tails 🐣🐾
+
+Spent part of this week making sure some backyards were actually ready for the egg hunt. Glad we could help.
+
+If you missed it this weekend — spring is long, and the yard doesn't fix itself. Weekly service is $70/month flat (1-5 dogs, same price). We text before every visit. No contracts.
+
+Reach out any time.
+(314) 850-7140 | tidytailsstl.com</div>
+      <button class="copy-btn" onclick="copyText('easter-recap-text', this)">Copy Post</button>
+    </div>
+  </div>
+
+  <!-- ONE-TIME → MONTHLY PIVOT TEXT -->
+  <div class="script-card" id="pivot-text-card">
+    <div class="script-header" onclick="toggleScript('pivot-text-card')">
+      <div>
+        <div class="script-title">📱 One-Time → Monthly Pivot Text</div>
+        <div class="script-meta">Text to Easter one-time customers same day as service</div>
+      </div>
+      <span style="color:var(--text3)">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="copy-box" id="pivot-text">Hey [Name]! Glad we could get [Dog's Name]'s yard cleaned up before your Easter gathering. 
+
+If you ever want us on a regular schedule — weekly is $70/month flat, same price no matter how many dogs. First regular visit would be on us.
+
+Just say the word and I'll get you on the schedule. No contract, cancel any time.
+
+- TJ, Tidy Tails 🐾</div>
+      <button class="copy-btn" onclick="copyText('pivot-text', this)">Copy Text</button>
+    </div>
+  </div>
+
+  <!-- FB ADS WEEK 2 SWAP (IF NEEDED) -->
+  <div class="script-card" id="fbads-swap-card">
+    <div class="script-header" onclick="toggleScript('fbads-swap-card')">
+      <div>
+        <div class="script-title">📊 FB Ads: Week 2 Swap Creative (if CPL >$80)</div>
+        <div class="script-meta">Use in Ads Manager → replace Ad #1 with Spring Urgency</div>
+      </div>
+      <span style="color:var(--text3)">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="copy-box" id="fbads-swap-text">PRIMARY TEXT:
+Spring is here. Your yard isn't ready.
+
+If your dog's been working all winter, you know what's out there. St. Louis winters average 3-4 months of accumulation. For 2 dogs, that's 150+ piles all coming back at once.
+
+Weekly pickup. Flat $70/month. 1-5 dogs, same price. We text before every visit and send a photo when we're done. Local — not a franchise. No contracts.
+
+First cleanup is FREE →
+
+HEADLINE: The yard cleanup that does itself.
+
+LINK DESCRIPTION: $70/month flat. No contracts. Text before every visit.</div>
+      <button class="copy-btn" onclick="copyText('fbads-swap-text', this)">Copy Ad Copy</button>
+    </div>
+  </div>
+
+  <!-- GOOGLE REVIEW ASK (EASTER CUSTOMERS) -->
+  <div class="script-card" id="review-ask-card">
+    <div class="script-header" onclick="toggleScript('review-ask-card')">
+      <div>
+        <div class="script-title">⭐ Google Review Ask (Easter Customers)</div>
+        <div class="script-meta">Text Sunday Apr 6, within 48hrs of service</div>
+      </div>
+      <span style="color:var(--text3)">▼</span>
+    </div>
+    <div class="script-body">
+      <div class="copy-box" id="review-ask-text">Hey [Name]! Happy you had a clean yard for Easter 🐣 
+
+Totally optional — but if you had a good experience, a Google review would help us out a ton. We're a small local business and reviews are how people find us.
+
+Here's the link: [YOUR GOOGLE REVIEW LINK]
+
+No pressure at all — just appreciate the help if you feel like it!
+
+- TJ</div>
+      <button class="copy-btn" onclick="copyText('review-ask-text', this)">Copy Text</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- TAB 4: FB ADS -->
+<div id="tab-fbads" class="tab-content">
+  <div class="section-label">Week 1 → Week 2 Ad Performance Guide</div>
+
+  <div class="insight-box">
+    <h4>📊 When to Check, What to Look For</h4>
+    <p>Facebook's learning phase takes 50 optimization events OR 7 days (whichever comes first). At $7/day, you'll likely exit learning around Day 7-10. Don't panic in the first 3 days — algorithm is still figuring out who to show it to.</p>
+  </div>
+
+  <div class="progress-card">
+    <div class="progress-label">Key Checkpoints This Week</div>
+    <table class="metrics-table">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Check</th>
+          <th>Healthy</th>
+          <th>Action If Warn</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Day 4 (Thu)</strong></td>
+          <td>Impressions + CTR</td>
+          <td class="good">1k-3k reach, CTR >1.5%</td>
+          <td>If 0 clicks → check ad status (not rejected?)</td>
+        </tr>
+        <tr>
+          <td><strong>Day 5 (Fri)</strong></td>
+          <td>First leads?</td>
+          <td class="good">1-3 form opens</td>
+          <td>If 0 → check form load / Instant Form settings</td>
+        </tr>
+        <tr>
+          <td><strong>Day 7 (Mon)</strong></td>
+          <td>Learning phase status</td>
+          <td class="good">"Active" or exited learning</td>
+          <td>If still "Learning Limited" → increase budget to $10</td>
+        </tr>
+        <tr>
+          <td><strong>Day 10+</strong></td>
+          <td>CPL (cost per lead)</td>
+          <td class="good">$20-$50</td>
+          <td class="warn">$50-80: monitor. </td>
+        </tr>
+        <tr>
+          <td><strong>Week 2</strong></td>
+          <td>Scale decision</td>
+          <td class="good">CPL <$40 → scale to $10/day</td>
+          <td class="bad">CPL >$80 → swap ad creative</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-label">The 3 Levers You Control</div>
+
+  <div class="channel-row">
+    <div class="channel-icon">🎯</div>
+    <div>
+      <div class="channel-name">Lever 1: Budget</div>
+      <div class="channel-sub">$7 → $10 → $15 → $20/day (scale in steps)</div>
+      <div class="channel-action">Only scale when CPL is confirmed below $50 AND learning phase exited. Don't rush this.</div>
+    </div>
+  </div>
+
+  <div class="channel-row">
+    <div class="channel-icon">✏️</div>
+    <div>
+      <div class="channel-name">Lever 2: Ad Creative</div>
+      <div class="channel-sub">3 ads ready (Quick Math, Spring Urgency, Local Trust)</div>
+      <div class="channel-action">If Ad #1 (Quick Math) has CTR <1% at Day 10 → swap to Ad #2 (Spring Urgency). Don't run 2 ads simultaneously at $7/day — too small a budget to split.</div>
+    </div>
+  </div>
+
+  <div class="channel-row">
+    <div class="channel-icon">📍</div>
+    <div>
+      <div class="channel-name">Lever 3: Audience Targeting</div>
+      <div class="channel-sub">Currently: South County zips + dog owner interests</div>
+      <div class="channel-action">Week 2 option: duplicate ad set, add North County zips (63031, 63042, 63135, 63044). Same ad, new territory. This doubles potential leads at same creative cost.</div>
+    </div>
+  </div>
+
+  <div class="insight-box" style="margin-top:16px">
+    <h4>💡 North County Ad Set Opportunity</h4>
+    <p>NC Week 1 organic posts are live. Layering a $7/day paid ad targeting Florissant/Hazelwood zips in Week 2 while organic reach is still warm = double-tap strategy. The organic post makes the audience familiar; the ad converts them. Best time to try this: Monday Apr 7 when NC Week 1 posts are 5-7 days old and audience has seen the brand.</p>
+  </div>
+</div>
+
+<!-- TAB 5: WIN TARGETS -->
+<div id="tab-goals" class="tab-content">
+  <div class="win-card">
+    <h3>🏆 Week 2 Win Conditions (Apr 2-8)</h3>
+    <div class="win-item">2-3 new monthly customers (Easter + S/W/C conversion)</div>
+    <div class="win-item">3-4 new Google reviews (6 → 9-10 total = Map Pack threshold)</div>
+    <div class="win-item">5+ commercial call attempts, 1-2 "interested" callbacks</div>
+    <div class="win-item">S/W/C FB groups: Joined 8+ groups, posted in 4+ groups</div>
+    <div class="win-item">FB Ads: Learning phase status confirmed, first CPL read</div>
+    <div class="win-item">1+ shed listing sold OR 2+ serious Marketplace inquiries</div>
+    <div class="win-item">Mother's Day she shed seed post live (Apr 7)</div>
+  </div>
+
+  <div class="section-label">Revenue Math — If Week 2 Executes</div>
+
+  <div class="progress-card">
+    <div class="progress-label">Scenario: 2 New Customers This Week</div>
+    <table class="metrics-table">
+      <thead>
+        <tr><th>Source</th><th>One-Time</th><th>Monthly</th><th>LTV (18mo)</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Easter cleanup convert (1)</td>
+          <td>$75</td>
+          <td class="good">+$70/mo</td>
+          <td class="good">$1,260</td>
+        </tr>
+        <tr>
+          <td>S/W/C FB group convert (1)</td>
+          <td>—</td>
+          <td class="good">+$70/mo</td>
+          <td class="good">$1,260</td>
+        </tr>
+        <tr>
+          <td>Google review ask (3 reviews)</td>
+          <td>$0 cost</td>
+          <td colspan="2">→ Map Pack eligibility (organic traffic multiplier)</td>
+        </tr>
+        <tr>
+          <td>Commercial callback (1 interested)</td>
+          <td>—</td>
+          <td class="warn">Pipeline</td>
+          <td class="warn">$3,600/yr potential</td>
+        </tr>
+        <tr style="border-top: 2px solid var(--orange)">
+          <td><strong>Week 2 Total LTV</strong></td>
+          <td><strong>$75</strong></td>
+          <td><strong class="good">$140/mo new</strong></td>
+          <td><strong class="good">$2,520+</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="insight-box">
+    <h4>🎯 The April Milestone</h4>
+    <p><strong>Current: 10 customers</strong> → Goal by end of April: <strong>15 customers</strong>. That's 5 new customers in 4 weeks. If Week 2 brings 2-3, that leaves 2-3 for Weeks 3-4 — which is very achievable with S/W/C Week 2 posts, Earth Day content (Apr 22), and the Mother's Day campaign kicking off Apr 14.</p>
+  </div>
+
+  <div class="section-label">The 3 Highest-Leverage Moves This Week</div>
+
+  <div class="channel-row">
+    <div class="channel-icon">1️⃣</div>
+    <div>
+      <div class="channel-name">Easter Conversion (Fri-Sun)</div>
+      <div class="channel-sub">Highest emotional hook of Q1. One-time → monthly converts at 40-50%.</div>
+      <div class="channel-action">Fire Easter Eve post Friday. Service Saturday. Text the monthly offer Saturday afternoon. Ask for Google review Sunday. That's the full sequence in 3 days.</div>
+    </div>
+  </div>
+
+  <div class="channel-row">
+    <div class="channel-icon">2️⃣</div>
+    <div>
+      <div class="channel-name">S/W/C Week 1 FB Posts</div>
+      <div class="channel-sub">24 groups. First 5 posts this week. Zero cost.</div>
+      <div class="channel-action">SC-1 Kirkwood/Webster Wed → WC-1 Chesterfield Thu → CC-1 Clayton Sun → WC-2 Landscaper Mon → CC-2 Maplewood Tue. That's 5 territory launches in one week at $0.</div>
+    </div>
+  </div>
+
+  <div class="channel-row">
+    <div class="channel-icon">3️⃣</div>
+    <div>
+      <div class="channel-name">Commercial Follow-Ups</div>
+      <div class="channel-sub">18 leads. Thursday is the best cold-call day of the week.</div>
+      <div class="channel-action">Top 5 (Willowbend, The Finn, Village Square, ReNew, NRE) → mid-tier 5 Thursday. Any "interested/call after Easter" responses from last week → Monday at 10 AM. 1 commercial close = 3.6 residential equivalents.</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const STORAGE_KEY = 'tt_week2_tasks';
+
+  function getState() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { return {}; }
+  }
+
+  function saveState(state) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  }
+
+  function toggleTask(item) {
+    item.classList.toggle('done');
+    saveTaskState();
+    updateProgress();
+  }
+
+  function saveTaskState() {
+    const state = {};
+    document.querySelectorAll('.task-item').forEach((item, i) => {
+      state[i] = item.classList.contains('done');
+    });
+    saveState(state);
+  }
+
+  function loadTaskState() {
+    const state = getState();
+    document.querySelectorAll('.task-item').forEach((item, i) => {
+      if (state[i]) item.classList.add('done');
+    });
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const all = document.querySelectorAll('.task-item');
+    const done = document.querySelectorAll('.task-item.done');
+    const pct = all.length ? Math.round((done.length / all.length) * 100) : 0;
+    document.getElementById('check-count').textContent = `${done.length}/${all.length} tasks done`;
+    document.getElementById('week-progress').style.width = pct + '%';
+  }
+
+  function toggleDay(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+
+  function toggleScript(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+  }
+
+  function showTab(name) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  function copyText(id, btn) {
+    const text = document.getElementById(id).textContent.trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✓ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+        if (id.includes('sc1')) btn.textContent = 'Copy Post';
+        else if (id.includes('wc1')) btn.textContent = 'Copy Post';
+        else if (id.includes('easter')) btn.textContent = 'Copy Post';
+        else if (id.includes('swap')) btn.textContent = 'Copy Ad Copy';
+        else btn.textContent = btn.dataset.orig || 'Copy';
+      }, 2000);
+    });
+  }
+
+  // Init
+  document.addEventListener('DOMContentLoaded', () => {
+    loadTaskState();
+    // Store original button texts
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.dataset.orig = btn.textContent;
+    });
+  });
+</script>
+</body>
+</html>
