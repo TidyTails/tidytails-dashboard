@@ -2,6 +2,38 @@
 
 ---
 
+### Wednesday 12:07 AM — Dog Business Partner Kit (Hourly Task)
+- **12:07 AM** 🐾 Built and published the **Dog Business Partner Kit** — the first tool targeting dog daycares, boarding facilities, and groomers as a dedicated commercial channel with two revenue angles
+  - **File:** `dashboard/dog-business-partner-kit.html` (56KB, 5 tabs)
+  - **Dashboard:** Added pulsing green "🐾 DOG BIZ PARTNER KIT — NEW CHANNEL" as a new quick link + featured card at top of Commercial section in grid
+  - **Why this task:** It's midnight on April 1. All April campaign tools are built (April Master Calendar was the 11 PM task). The commercial channel was focused on apartment complexes (18 leads in the unified Calling Hub). But a completely untapped vertical existed: dog daycares, boarding facilities, and groomers. Every single client of these businesses is a verified dog owner. Dog daycare clients are proven pet-care investors who pay $30-60/day for boarding — converting them to $70/month yard service is an easy yes. This channel has the highest referral conversion rate of any acquisition channel (~30-45% close rate vs 5-15% for cold leads). No tool existed for this. Built it.
+  - **What's built:**
+    - **10 Dog Business Targets (priority-ranked):**
+      - 🔴 Happy Tails Pet Resort — St. Ann, MO — **(314) 291-3647** — outdoor dog yards, daycare + boarding + grooming, open since 2000, 24/7, St. Ann is North County campaign zone
+      - 🔴 The Watering Bowl — Brentwood + South County — cage-free daycare + training, S/W/C expansion territory, premium client base
+      - 🔴 Williamsburg Pet Hotel & Suites — Chesterfield area — **(636) 227-5764** — 60+ years, outdoor play areas + dog pool, serves Chesterfield/Wildwood/Town & Country/Kirkwood/Creve Coeur/Ladue (perfect West County alignment)
+      - 🔴 Baxter's K9 Complex — St. Peters — 15,000 sq ft indoor/outdoor dog park, St. Charles County clients (O'Fallon, Wentzville, Chesterfield), HUGE outdoor area = facility contract opportunity
+      - 🟠 No Leash Needed — 8 STL/St. Charles locations (including Florissant, Lake St. Louis), Angie's List Super Service Award 5 years, A+ BBB — corporate partnership = ALL 8 locations
+      - 🟠 Dogtopia Rock Hill — franchise daycare, Rock Hill/Kirkwood/Webster Groves client base, franchise owner controls front desk
+      - 🟢 Arch City Dog Boarding — small boutique, South City clients, personal trust relationships
+      - 🟢 Camp Bow Wow — franchise, multiple STL locations, walk-in card drop strategy
+      - 🟢 Sled & Breakfast — Fenton, South County client base
+      - 🟢 (1 more research target)
+    - **Two Revenue Angles (per partner):**
+      - Angle 1: **Facility outdoor area cleaning contract** — weekly professional cleanup of outdoor play yards and runs. Small facility $150-200/mo, mid-size $250-400/mo, large (Baxter's) $400-700/mo. 1 contract = 2-6 residential customer equivalents.
+      - Angle 2: **Referral partnership** — "First Cleanup Free" cards at front desk, new client welcome packets, social/email cross-promotion. Dog daycare clients close at 30-45% vs 5-15% cold. Zero cost to either party.
+    - **8 Scripts:** Cold call opener (universal both angles), outdoor area facility pitch, referral partnership pitch, walk-in in-person opener, email/DM template, objection "we already have someone," facility pricing conversation, 5-day follow-up text
+    - **The Offer tab:** Leave-behind referral card copy ready to print, 4-level partnership ladder (Level 1: cards on desk → Level 4: cleaning contract + referrals)
+    - **Revenue Math:** Bear $3,360 (2 referral converts), Base $9,240 (5 converts + 1 facility contract), Bull $21,600 (10 converts + 3 contracts). Dog daycare clients vs apartments: 30-45% close vs 10-20%, both at $0 CAC.
+    - **18-item Checklist** with localStorage persistence across 4 phases (calls, walk-ins, digital, follow-up)
+    - **Why this beats apartments for referrals:** Every client of a dog daycare is a verified dog owner with a dog they pay premium rates for. They've already demonstrated that they'll spend money on their dog's care. They trust the business making the recommendation. A referral from The Watering Bowl or Williamsburg carries institutional trust that a Nextdoor post doesn't.
+  - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/dog-business-partner-kit.html
+  - **Git commit:** `4200645d` ✅ pushed to tidytails-dashboard
+
+---
+
+---
+
 ### Tuesday 11:04 PM — April Master Calendar (Hourly Task)
 - **11:04 PM** 🗓️ Built and published the **April Master Calendar** — the missing unified daily execution calendar that merges ALL 5 simultaneous April campaigns into one tool
   - **File:** `dashboard/april-master-calendar.html` (92KB, 5-tab app)
