@@ -2,6 +2,36 @@
 
 ---
 
+### Tuesday 10:09 PM — North County Week 2 Campaign Kit + GBP April Posts (Hourly Task)
+- **10:09 PM** 🏘️ Built and published the **North County Week 2 Campaign Kit** — the re-engagement and territory expansion layer for the week of April 7-11
+  - **File:** `dashboard/north-county-week2-kit.html` (50KB, 5-tab app)
+  - **Dashboard:** Added pulsing green "🏘️ NC WEEK 2 — APR 7-11 · EARTH MONTH" as a quick link + new featured card in Marketing grid
+  - **Why this task:** It's 10 PM Tuesday March 31. All the Week 2 sprint guide, April 2 briefing, post-tariff playbook, S/W/C expansion, and Easter tools are complete. The gap: North County Week 1 ends April 3 (Fri). Zero second-wave NC content existed. The Week 1 audience is now WARM — they've seen TJ's posts but haven't acted. Week 2 is the re-engagement and territory expansion layer: new hooks, three completely new zip codes with dedicated blog posts, and Earth Day/Earth Month for the broadest organic reach of April.
+  - **What's built:**
+    - **5 Week 2 Posts (NC-W2-1 through NC-W2-5):**
+      - **Mon Apr 7 (NC-W2-1):** "30 Days In" Social Proof Close — converts fence-sitters who saved Week 1 posts. Florissant Community + North County STL.
+      - **Tue Apr 8 (NC-W2-2):** Jennings (63136) + Normandy (63121) Territory Expansion — first-ever post in these communities. Orphaned customer hook + same flat rate callout.
+      - **Wed Apr 9 (NC-W2-3):** Berkeley (63134) Expansion — shift worker angle (Lambert airport corridor). First touch in this zip. "Text BERKELEY" to confirm coverage.
+      - **Thu Apr 10 (NC-W2-4):** Earth Month EPA angle — broadest reach post of the entire April campaign. EPA classifies dog waste as non-point source pollutant. Post in ALL North County groups + Nextdoor simultaneously. Converts civic-minded homeowners who don't respond to price pitches.
+      - **Fri Apr 11 (NC-W2-5):** "$2.30/day" Price Anchor + Last Call. Converts final fence-sitters who've seen NC twice. Hazelwood + Bridgeton. "Slots in 63042 and 63044 are limited."
+    - **3 New Territories Added:**
+      - Berkeley (63134) — between Hazelwood and Ferguson, Lambert shift worker demographic, dedicated blog live
+      - Jennings (63136) — between Ferguson and U City, orphaned customer heavy, dedicated blog live  
+      - Normandy (63121) — same batch as Jennings, combined blog post live
+    - **Full NC Coverage Map:** After Week 2, 8 zip codes covered with dedicated blog posts and campaign posts
+    - **4 Google Business Profile April Posts:**
+      - Apr 7: Spring Urgency ("months of winter accumulation now visible in your yard")
+      - Apr 14: Mother's Day gift angle ("gift a month of Tidy Tails, $70 flat")
+      - Apr 22: Earth Day — same EPA angle coordinated with Thu Apr 10 social posts
+      - Apr 28: End of April push + "first cleanup free with subscription" CTA
+    - **Reply Scripts tab:** 7 scripts specific to Week 2 context (repeat observer, orphaned customer, EPA question, one-time cleanup, etc.)
+    - **Checklist tab:** 18 items across Prep / Week 2 Posts / GBP Posts / Lead Management / Win Conditions
+  - **Why NC Week 2 over other options at 10 PM:** All April 2-8 tools are synthesized in the Week 2 Sprint Guide (built at 9 PM). The specific gap at 10 PM is the campaign content layer — not the strategy, but the actual copy-paste posts for the week AFTER Easter. NC Week 1 ends April 3. The S/W/C expansion starts April 2. But nobody built the actual Week 2 posts for North County — the territory that has been warmed for a full week and is the highest-trust audience in the pipeline. Earth Day (April 22) is the highest-reach organic opportunity in the entire month — building the Earth Month angle now means it's ready to deploy 2 weeks from now with a click. Zero ad spend. 8 zip codes covered. The social proof close on Monday (NC-W2-1) specifically targets people who saved or bookmarked Week 1 posts — statistically the highest-intent non-responders in the funnel.
+  - **Git commit:** `08b93a4b` ✅ pushed to tidytails-dashboard
+  - **GH Pages:** Deploying (2-5 min lag after push)
+
+---
+
 ### Tuesday 9:04 PM — Week 2 Sprint Guide: April 2-8 (Hourly Task)
 - **9:04 PM** 🔥 Built and published the **Week 2 Sprint Guide** — the day-by-day execution plan for the 7 days immediately after the tariff chapter closes and NC Week 1 ends
   - **File:** `dashboard/week2-sprint-apr2-8.html` (56KB, 5-tab app)
