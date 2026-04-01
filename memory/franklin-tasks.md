@@ -2,6 +2,30 @@
 
 ---
 
+### Tuesday 9:04 PM — Week 2 Sprint Guide: April 2-8 (Hourly Task)
+- **9:04 PM** 🔥 Built and published the **Week 2 Sprint Guide** — the day-by-day execution plan for the 7 days immediately after the tariff chapter closes and NC Week 1 ends
+  - **File:** `dashboard/week2-sprint-apr2-8.html` (56KB, 5-tab app)
+  - **Dashboard:** Added pulsing orange "🔥 WEEK 2 — Apr 2-8 Sprint Guide" as first card in Marketing & Ads section
+  - **Why this task:** It's 9 PM Tuesday March 31. Every major tool for the existing campaigns was already built today: April 2 Morning Briefing (7 PM), Post-Tariff Shed Playbook (6 PM), S/W/C FB Expansion Kit (8 PM), Easter Sprint Kit (12 PM), Commercial Calling Hub (3 PM). The NC Week 1 posts (Mon-Fri March 30-Apr 3) will finish by Thursday. Easter is April 5. FB Ads enter Week 2 optimization window April 7. The single gap at 9 PM: **there was no unified day-by-day guide for what happens April 2-8** — the exact window where all these campaigns converge, the tariff hook dies, Easter closes, and S/W/C territory launches. Without a guide, TJ opens April 2 with 8 tools and no sequence.
+  - **What's built:**
+    - **Tab 1 — Daily Plan (28 tasks across 7 days):**
+      - **Wed Apr 2 (Pivot Day):** SC-1 South County Spring Hook (Kirkwood/Webster Groves groups), SC-3 Kid Safety Easter post, Shed Listing 1 (Spring Project Season), Top 5 commercial follow-ups, customer referral texts with Easter hook
+      - **Thu Apr 3:** NC-5 final Bridgeton orphaned customer post, 5 mid-tier commercial calls (Hazelwood Forest/New Wellington/Park Forest/Sugar Pines/The Elle), WC-1 West County Flat Rate post (Chesterfield/West County groups), Easter "Last 2 Days" Nextdoor, FB Ads Day 4 signal check
+      - **Fri Apr 4 (Easter Eve):** Easter Eve panic-booker post ALL neighborhoods, same-day reply protocol, warm Paw-ty lead personal text, Shed Tax Refund Listing 2
+      - **Sat Apr 5 (Easter):** Execute same-day cleanups, victory photo post, one-time → monthly pivot text
+      - **Sun Apr 6:** Google review ask (Easter customers + Shannon/Amanda/Chastity), Easter Victory Recap post (9-11 AM), one-time → monthly follow-up, CC-1 Central County launch (Clayton + U City)
+      - **Mon Apr 7:** FB Ads Week 2 optimization + learning phase exit check + North County ad set expansion option, Shed Tax Refund full push, commercial follow-up callbacks, WC-2 Landscaper post (West County Dog Owners)
+      - **Tue Apr 8:** Commercial new batch (Kirkwood Bluffs/Stanford/Villages), Mother's Day she shed seed post (Apr 7 start), Week 2 scorecard in War Room, CC-2 Small Yard post (Maplewood + STL Dog Owners)
+    - **Tab 2 — Channel Map:** Live status for all 6 active channels (S/W/C FB Expansion NEW / Easter Sprint CLOSING / FB Ads LIVE / Commercial FOLLOW-UP / Reviews ACTIVE / Sheds LIVE) with specific actions per channel this week
+    - **Tab 3 — Copy-Paste Scripts (7):** SC-1 South County Spring Hook, WC-1 West County Flat Rate, Easter Eve Panic Close, Easter Victory Recap, One-Time → Monthly Pivot text, FB Ads Week 2 Swap creative (if CPL >$80), Google Review Ask for Easter customers — all copy-paste with one-click buttons
+    - **Tab 4 — FB Ads:** Day-by-day check schedule (Day 4 impressions/CTR, Day 5 first leads, Day 7 learning phase exit, Day 10+ CPL). The 3 levers (budget/creative/targeting). North County ad set expansion opportunity explanation ($7/day layered on organic NC Week 1 reach = double-tap strategy). Performance table with good/warn/bad thresholds.
+    - **Tab 5 — Win Targets:** Week 2 win conditions (2-3 new customers, 3-4 reviews, 5+ commercial attempts, 8+ groups joined, FB Ads learning confirmed, 1 shed close). Revenue math if Week 2 executes: 2 converts × $1,260 LTV = $2,520 + pipeline. April milestone: 10 → 15 by end of April = 5 new in 4 weeks. Three highest-leverage moves (Easter conversion, S/W/C posts, commercial follow-ups).
+  - **Why this vs other options at 9 PM:** The tools are all built. The specific gap at 9 PM is the synthesis layer for the NEXT 7 days — not today, not next month, but the specific April 2-8 window that nobody had a plan for. The tariff hook dies April 2. NC Week 1 ends April 3. Easter hits April 5. FB Ads hit their first optimization checkpoint April 7. S/W/C Week 1 expansion needs to launch April 2. All of this happens simultaneously, with no single guide for the sequence. This guide is the answer to "what do I do first on April 2 when I wake up and everything is different."
+  - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/week2-sprint-apr2-8.html
+  - **Git commit:** `fc1fe882` ✅ pushed to tidytails-dashboard
+
+---
+
 ### Tuesday 8:06 PM — South/West/Central County FB Group Expansion Kit (Hourly Task)
 - **8:06 PM** 🌍 Built and published the **South/West/Central County Facebook Group Expansion Kit** — the missing organic acquisition engine for the 3 territories that had zero FB group strategy despite having 20+ dedicated blog posts each
   - **File:** `dashboard/south-west-central-fb-expansion.html` (55KB, 5 tabs)
