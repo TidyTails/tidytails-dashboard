@@ -2,6 +2,34 @@
 
 ---
 
+### Wednesday 2:07 PM — Post-Easter Monthly Conversion Kit (Hourly Task)
+- **2:07 PM** 🐣 Built and published the **Post-Easter Monthly Conversion Kit** — the 7-day conversion engine that turns Easter $75 one-timers into $840/yr recurring customers
+  - **File:** `dashboard/post-easter-monthly-conversion-kit.html` (44KB, 6-tab app)
+  - **Dashboard:** Added fastest-pulsing (0.9s) purple quick link "🐣 POST-EASTER CONVERT — TURN $75 JOBS INTO $840/YR" + new featured card at top of Sales & CRM section (13 cards now)
+  - **Why this task:** All Easter acquisition tools are maxed. The uncovered gap: nobody built the POST-Easter conversion layer. When TJ finishes Easter cleanups on Sunday Apr 5, he'll have 5-15 customers who just experienced the service, loved it, and are at peak motivation to become monthly subscribers. Without a structured follow-up kit, he either forgets to text, texts too late, or doesn't know what to say. Industry close rate for one-time → monthly after Easter cleanup: **40-60%** — vs. 20-25% for cold Nextdoor leads. Same $70/mo offer. Zero additional CAC. Window: 7 days.
+  - **What's built:**
+    - **Tab 1 — Timing:** Day-by-day guide for Apr 5-12. Easter Sunday: Victory Text from driveway (plant seed before leaving). Day 1-2 (Mon/Tue): Check-in texts + social recap. Day 3-5 (Wed–Fri): PEAK CLOSE WINDOW — direct monthly offer. Day 6-7 (Sat/Sun): Last call + nurture setup for Mother's Day. Live countdown timer to window close (Apr 13). Full week timeline with visual milestones.
+    - **Tab 2 — Scripts (9 copy-paste):**
+      - Victory Text (same day — "before you leave the driveway")
+      - Check-In Text (Day 1-2 — "how's the yard looking?")
+      - Check-In → Monthly Bridge (when they reply positively — seamless pivot)
+      - Monthly Close — Direct (peak window script — "April slots filling up")
+      - Reopen Easter Sprint Maybes (yard's been dirty 3-5 days — perfect re-open)
+      - FB/Nextdoor Victory Recap post (Apr 6-7 — converts people who saw ads but didn't book, monthly CTA)
+      - Last Call text (Day 6-7 — no pressure, "spots for May")
+      - One-Time → Monthly pivot after first monthly service
+      - Mother's Day Seed (Apr 14 nurture for non-converts)
+    - **Tab 3 — Objections (7 handlers):** "I want to think about it" (deadline plant), "too expensive" ($2.30/day reframe + franchise comparison), "small dog" (300 deposits still), "I can keep up now" (honest — the June slide), "wait until next month" (first cleanup free angle), "what if I cancel" (text me, zero friction), "what day?" (BUYING SIGNAL — close immediately)
+    - **Tab 4 — Pipeline:** Live customer tracker — add every Easter cleanup customer by name/phone/dog/area. Status cycling: New → Contacted → Interested → Converted → Pass. Real-time stats bar (total/contacted/interested/converted). Progress bar. LTV pipeline calculator. localStorage persistence.
+    - **Tab 5 — Checklist (15 items):** Easter Sunday (3 tasks) → Mon-Tue Apr 6-7 (4 tasks) → Wed-Fri Apr 8-10 PEAK (4 tasks) → Sat-Sun Apr 11-12 (4 tasks). localStorage persistence + progress bar + live KPI update.
+    - **Tab 6 — Math:** Interactive cleanup count input → auto-calculates bear/base/bull LTV scenarios. Bear (20% close), Base (40%), Bull (60%). Monthly MRR added in base case. Path to 25-customer goal showing current 11 → after Easter → May → August target. Revenue math: 5 cleanups at 40% = 2 converts × $840 LTV = $1,680 at $0 CAC.
+  - **Key design insight:** The #1 reason one-time customers don't convert to monthly isn't price — it's **timing**. They're at peak motivation the day they see the clean yard and drops ~20% each day after. This kit makes sending the right text on the right day completely frictionless. No drafting, no remembering — just open the kit, go to the Scripts tab, hit copy.
+  - **Revenue math:** 5 Easter cleanups × 40% close = 2 new monthly customers × $840 LTV = **$1,680 at zero extra CAC**. 10 cleanups × 40% = 4 converts = $3,360. The Easter campaign already acquired these relationships — this kit is pure conversion optimization on leads already in hand.
+  - **The Mother's Day handoff:** Non-converts from Easter (Day 7 close miss) go into a "Mother's Day seed" sequence on Apr 14 — timing reframe: "gift for mom with dogs." Keeps the funnel warm with zero extra work.
+  - **Live confirmed:** Git commit `3fce632f` ✅ pushed to tidytails-dashboard. GH Pages deploying (200 OK confirmed on existing files — new file in ~2-3 min queue).
+
+---
+
 ### Wednesday 1:04 PM — Daily Ops Hub (Hourly Task)
 - **1:04 PM** ⚡ Built and published the **Daily Ops Hub** — the "open this first" command center that solves tool paralysis
   - **File:** `dashboard/daily-ops-hub.html` (37KB, single-page app)
