@@ -2,6 +2,29 @@
 
 ---
 
+### Wednesday 5:04 AM — FB Ads Week 2 Refresh Kit (Hourly Task)
+- **5:04 AM** 📈 Built and published the **FB Ads Week 2 Refresh Kit** — post-learning-phase decision framework and creative refresh for April 6-20
+  - **File:** `dashboard/fb-ads-week2-refresh.html` (43KB, 5-tab tool)
+  - **Dashboard:** Added pulsing blue "📈 FB ADS WEEK 2 — DAY 7 DECISIONS" as new quick link (between NC Week 2 and FB Ads Launch) + new featured card at top of the FB Ads section in grid
+  - **Why this task:** It's 5 AM April 1. FB Ads launched March 30 — today is Day 3. The learning phase exits Day 7-10 (April 6-9). ALL existing tools cover ad launch and creative execution (FB Ad Launch Pack, Monday Launch Command, FB Ads Monday Launch). ZERO tools existed for what happens AFTER the learning phase — the most critical optimization window. When TJ opens Ads Manager on April 6, he had no guide for reading the metrics, making a scale/pause/swap decision, or launching the NC expansion ad set. Built it.
+  - **What's built:**
+    - **Tab 1 — Day 7-10 Decisions:** Exact metric pull sequence (CPL/CTR/CPM/Frequency/Leads), Scenario A (Scale: CPL<$25), Scenario B (Tweak: CPL $25-50), Scenario C (Hard Reset: CPL $50+/0 leads). Day-by-day calendar Apr 6-20 with specific actions. Budget scaling table ($7→$10→$14→$20/day, 20% increments only).
+    - **Tab 2 — New Creative (4 ads):**
+      - **B-1: "Done With It"** — "Every Sunday. Same 20 minutes. Same shovel." No photo needed. Shelf life: indefinite. Use as Scenario A test alongside Quick Math.
+      - **B-2: "Spring Roulette"** — "Which step is it today? 🟢🟡🔴" Curiosity hook for post-Easter. Use for Scenario B creative swap.
+      - **B-3: "Mother's Day Gift"** — "She got the dog. She does the yard." Launch Apr 14, targets husbands/adult kids. Completely different buyer segment — zero competition for this angle in STL.
+      - **B-4: "Trust Close"** — Jamie's personal pitch, "I text you before I come. I text when I'm done." For frequency 2.5+ — the proof ad for 2nd/3rd impression fence-sitters.
+    - **Tab 3 — NC Expansion Ad Set:** Step-by-step Ads Manager setup for a separate $5/day North County ad set. All 9 North County zip codes pre-formatted (63031, 63033, 63034, 63042, 63043, 63044, 63135, 63136, 63137). NC-specific ad copy with "Did your service disappear?" orphaned customer hook. Budget split scenarios based on Week 1 performance (SC performing: $10/day SC + $5/day NC; SC flat: $7+$7; SC struggling: pause SC, $10 NC only).
+    - **Tab 4 — Video Layer:** When to launch Window View vs The Count vs Barefoot Test (in that order). Launch Window View at Day 10-14 when frequency climbs. Thumb-stop rate guide (goal 30%+). 5-step video ad setup in Ads Manager. Copy-paste primary text for both video ads.
+    - **Tab 5 — Week 2 Checklist:** 18 items from Day 7 → Day 21. Includes exact budget decisions, NC expansion launch, mid-week checks, Day 14 full review, Day 21 true CAC calculation.
+    - **3-Week Forecast:** 8-15 total leads, 2-5 converts, $140-200 total spend, 6-12x ROAS. Break-even = 1 customer per week at $7/day.
+    - **Sticky status bar:** Live "Day X" counter since March 30 launch, learning phase status (Learning/Optimize/Scale), checklist progress counter.
+  - **Why this over other options at 5 AM:** Everything for April 1's execution day is built (Blitz Kit, April 1 Briefing, Easter Closer, Easter Physical Blitz, NC Week 2). The gap that existed was the post-learning-phase layer — nobody had built a "what to do on April 6 when the data is available" guide. The learning phase is the FB algorithm's most critical window. Going from learning → optimization without a decision framework means TJ either over-reacts (pauses a learning campaign) or under-reacts (keeps running a broken ad for weeks). This kit removes all ambiguity: pull these 5 numbers, match to Scenario A/B/C, execute the corresponding actions. Built it before April 6 so it's ready when TJ needs it.
+  - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/fb-ads-week2-refresh.html
+  - **Git commit:** `1f8fcfb7` ✅ pushed to tidytails-dashboard
+
+---
+
 ### Wednesday 2:11 AM — Easter Physical Blitz Kit (Hourly Task)
 - **2:11 AM** 🖨️ Built and published the **Easter Physical Blitz Kit** — print-ready door hangers + neighborhood drop guide for Thu Apr 3 / Fri Apr 4
   - **File:** `dashboard/easter-physical-blitz.html` (52KB, 5 tabs)
