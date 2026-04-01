@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏆 Google LSA Launch Kit — Tidy Tails</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e0e0e0; min-height: 100vh; }
+:root {
+  --green: #10b981;
+  --blue: #3b82f6;
+  --yellow: #fbbf24;
+  --red: #ef4444;
+  --orange: #f97316;
+  --purple: #8b5cf6;
+  --bg: #0a0a0a;
+  --card: #111118;
+  --card2: #16161e;
+  --border: #222233;
+  --muted: #666;
+  --text: #e0e0e0;
+}
+
+.header {
+  background: linear-gradient(135deg, #0a1e0a 0%, #0a1a2e 50%, #1a0a2e 100%);
+  padding: 20px;
+  border-bottom: 3px solid var(--green);
+}
+.header h1 { font-size: 1.4em; color: #fff; margin-bottom: 4px; }
+.header p { color: #aaa; font-size: 0.83em; }
+.badge-new { display: inline-block; background: var(--green); color: #000; font-size: 0.6em; padding: 2px 8px; border-radius: 4px; font-weight: 800; margin-left: 8px; vertical-align: middle; letter-spacing: 0.5px; }
+
+/* urgency banner */
+.urgency {
+  background: linear-gradient(135deg, #0a2e0a, #0a1a0a);
+  border: 2px solid var(--green);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 14px 18px;
+}
+.urgency h3 { color: var(--green); font-size: 0.9em; margin-bottom: 8px; }
+.urgency p { font-size: 0.82em; color: #ccc; line-height: 1.5; }
+.urgency strong { color: var(--yellow); }
+.urgency .window-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 10px; }
+.urgency .window-item { background: #0a1e0a; border: 1px solid var(--green); border-radius: 8px; padding: 8px 12px; flex: 1; min-width: 120px; text-align: center; }
+.urgency .window-item .num { font-size: 1.4em; font-weight: 800; color: var(--green); }
+.urgency .window-item .lbl { font-size: 0.65em; color: #888; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* tabs */
+.tabs { display: flex; gap: 0; padding: 0 18px; background: #111; border-bottom: 1px solid #2a2a2a; overflow-x: auto; }
+.tab { padding: 12px 14px; cursor: pointer; color: #888; font-size: 0.78em; font-weight: 600; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; }
+.tab:hover { color: #ccc; }
+.tab.active { color: var(--green); border-bottom-color: var(--green); }
+
+.content { padding: 16px 18px; max-width: 860px; margin: 0 auto; }
+.section { display: none; }
+.section.active { display: block; }
+
+/* step cards */
+.step-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  margin-bottom: 14px;
+  position: relative;
+}
+.step-card.done { border-color: var(--green); opacity: 0.7; }
+.step-card .step-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%;
+  background: var(--green); color: #000;
+  font-size: 0.8em; font-weight: 800;
+  margin-bottom: 10px;
+}
+.step-card h3 { font-size: 1em; color: #fff; margin-bottom: 8px; }
+.step-card p { font-size: 0.83em; color: #ccc; line-height: 1.6; margin-bottom: 8px; }
+.step-card .action-btn {
+  display: inline-block;
+  background: var(--green);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.82em;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  margin-top: 6px;
+  margin-right: 8px;
+}
+.step-card .action-btn:hover { background: #0ea472; }
+.step-card .action-btn.secondary {
+  background: transparent;
+  border: 1px solid var(--green);
+  color: var(--green);
+}
+.step-card .action-btn.secondary:hover { background: var(--green); color: #000; }
+.step-card .check-btn {
+  position: absolute; top: 14px; right: 14px;
+  background: #1a1a1a; border: 1px solid #333;
+  border-radius: 6px; padding: 4px 10px;
+  font-size: 0.72em; color: #888; cursor: pointer;
+  transition: all 0.2s;
+}
+.step-card.done .check-btn { background: var(--green); border-color: var(--green); color: #000; }
+.step-card .tip { 
+  background: #0a1a2e; 
+  border-left: 3px solid var(--blue); 
+  border-radius: 0 6px 6px 0;
+  padding: 8px 12px; 
+  font-size: 0.78em; 
+  color: #aaa; 
+  margin-top: 10px; 
+  line-height: 1.5;
+}
+.step-card .warning {
+  background: #2e1a0a;
+  border-left: 3px solid var(--orange);
+  border-radius: 0 6px 6px 0;
+  padding: 8px 12px;
+  font-size: 0.78em;
+  color: #ccc;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+.step-card ul { font-size: 0.82em; color: #ccc; padding-left: 16px; margin: 8px 0; line-height: 1.8; }
+.step-card ul li { margin-bottom: 2px; }
+
+/* info card */
+.info-card {
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+}
+.info-card h4 { font-size: 0.85em; color: var(--green); margin-bottom: 8px; }
+.info-row { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #1e1e1e; font-size: 0.82em; }
+.info-row:last-child { border-bottom: none; }
+.info-row .label { color: #888; }
+.info-row .value { color: #fff; font-weight: 600; }
+.info-row .copy-val { cursor: pointer; background: #222; border: 1px solid #333; border-radius: 4px; padding: 2px 8px; font-size: 0.75em; color: var(--green); font-weight: 700; }
+.info-row .copy-val:hover { background: var(--green); color: #000; }
+
+/* budget table */
+.budget-table { width: 100%; border-collapse: collapse; font-size: 0.82em; margin: 12px 0; }
+.budget-table th { padding: 8px 10px; text-align: left; color: #888; font-size: 0.75em; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #222; }
+.budget-table td { padding: 8px 10px; border-bottom: 1px solid #1a1a1a; color: #ccc; }
+.budget-table tr:hover td { background: #161616; }
+.budget-table .highlight { color: var(--green); font-weight: 700; }
+.budget-table .recommended { background: #0a2e0a; }
+.budget-table .recommended td { color: #e0e0e0; }
+
+/* comparison */
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 14px 0; }
+@media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+.compare-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+.compare-card.winner { border-color: var(--green); }
+.compare-card .compare-title { font-size: 0.85em; font-weight: 700; margin-bottom: 10px; }
+.compare-card .compare-title .win-badge { display: inline-block; background: var(--green); color: #000; font-size: 0.65em; padding: 1px 6px; border-radius: 3px; margin-left: 6px; font-weight: 800; }
+.compare-card ul { font-size: 0.78em; list-style: none; padding: 0; }
+.compare-card ul li { padding: 4px 0; color: #ccc; }
+.compare-card ul li::before { margin-right: 6px; }
+.compare-card ul li.pro::before { content: '✅'; }
+.compare-card ul li.con::before { content: '❌'; }
+.compare-card ul li.neutral::before { content: '→'; color: #888; }
+
+/* ROI calc */
+.roi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; }
+@media (max-width: 500px) { .roi-grid { grid-template-columns: 1fr; } }
+.roi-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; }
+.roi-card .scenario { font-size: 0.7em; text-transform: uppercase; letter-spacing: 0.5px; color: #888; margin-bottom: 6px; }
+.roi-card .monthly { font-size: 1.5em; font-weight: 800; margin-bottom: 4px; }
+.roi-card .bear .monthly { color: #888; }
+.roi-card .annual { font-size: 0.78em; color: #aaa; }
+.roi-card .roas { font-size: 0.72em; margin-top: 6px; }
+.roi-card.bear .monthly { color: #888; }
+.roi-card.base .monthly { color: var(--blue); }
+.roi-card.bull .monthly { color: var(--green); }
+
+/* faq */
+.faq-item { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 8px; overflow: hidden; }
+.faq-q { padding: 12px 14px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-size: 0.85em; font-weight: 600; color: #ccc; transition: background 0.15s; }
+.faq-q:hover { background: var(--card2); }
+.faq-q .arrow { color: var(--green); transition: transform 0.2s; font-size: 0.8em; }
+.faq-item.open .faq-q .arrow { transform: rotate(90deg); }
+.faq-a { display: none; padding: 12px 14px; font-size: 0.82em; color: #aaa; line-height: 1.7; border-top: 1px solid var(--border); background: var(--card); }
+.faq-a strong { color: #ccc; }
+.faq-item.open .faq-a { display: block; }
+
+/* checklist */
+.checklist-item {
+  display: flex; gap: 10px; align-items: flex-start;
+  padding: 10px 14px; border-bottom: 1px solid #1a1a1a;
+  cursor: pointer; transition: background 0.15s;
+  font-size: 0.83em;
+}
+.checklist-item:hover { background: var(--card2); }
+.checklist-item.done { opacity: 0.5; text-decoration: line-through; }
+.checklist-item .cl-check {
+  width: 18px; height: 18px; flex-shrink: 0; margin-top: 1px;
+  border: 2px solid #444; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.checklist-item.done .cl-check { background: var(--green); border-color: var(--green); }
+.checklist-item.done .cl-check::after { content: '✓'; color: #000; font-size: 11px; font-weight: 800; }
+.checklist-item .cl-text { flex: 1; color: #ccc; line-height: 1.4; }
+.checklist-item .cl-text strong { color: #fff; }
+.cl-section-header { padding: 10px 14px 4px; font-size: 0.7em; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 700; }
+.cl-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 16px; overflow: hidden; }
+.cl-wrap h4 { padding: 12px 14px; font-size: 0.88em; color: var(--green); border-bottom: 1px solid var(--border); }
+
+/* copy textarea */
+.copy-block { background: #0d0d1a; border: 1px solid #2a2a4a; border-radius: 8px; padding: 12px 14px; margin: 10px 0; }
+.copy-block pre { font-family: -apple-system, sans-serif; font-size: 0.82em; color: #ccc; white-space: pre-wrap; line-height: 1.6; }
+.copy-block .copy-btn { 
+  background: transparent; border: 1px solid var(--green); color: var(--green);
+  font-size: 0.72em; font-weight: 700; padding: 4px 10px; border-radius: 4px;
+  cursor: pointer; margin-top: 8px; transition: all 0.15s;
+}
+.copy-block .copy-btn:hover { background: var(--green); color: #000; }
+.copy-block .copy-btn.copied { background: var(--green); color: #000; }
+
+/* progress bar */
+.progress-bar-wrap { background: #1a1a1a; border-radius: 4px; height: 6px; margin: 8px 0; }
+.progress-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--green), #34d399); transition: width 0.4s ease; }
+
+/* sticky status */
+.sticky-status {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: #0a1e0a;
+  border-top: 2px solid var(--green);
+  padding: 8px 18px;
+  display: flex; gap: 20px; align-items: center; justify-content: space-between;
+  z-index: 100;
+  font-size: 0.78em;
+}
+.sticky-status .stat { text-align: center; }
+.sticky-status .stat .v { color: var(--green); font-weight: 800; font-size: 1.1em; }
+.sticky-status .stat .l { color: #888; font-size: 0.8em; }
+.sticky-status .apply-now {
+  background: var(--green); color: #000;
+  font-weight: 800; font-size: 0.8em;
+  padding: 8px 18px; border-radius: 8px;
+  text-decoration: none; border: none; cursor: pointer;
+  white-space: nowrap;
+}
+.sticky-status .apply-now:hover { background: #0ea472; }
+
+.pb-18 { padding-bottom: 60px; }
+
+/* section headers */
+.section-header { 
+  font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--muted); font-weight: 700;
+  padding: 8px 0 4px;
+  border-bottom: 1px solid #222;
+  margin-bottom: 14px;
+}
+
+/* verdict box */
+.verdict-box {
+  background: linear-gradient(135deg, #0a2e0a, #0a1e0a);
+  border: 2px solid var(--green);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 14px 0;
+  text-align: center;
+}
+.verdict-box .v-label { font-size: 0.72em; text-transform: uppercase; letter-spacing: 1px; color: var(--green); margin-bottom: 6px; }
+.verdict-box .v-main { font-size: 1.15em; font-weight: 800; color: #fff; margin-bottom: 6px; }
+.verdict-box .v-sub { font-size: 0.82em; color: #aaa; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏆 Google LSA Launch Kit<span class="badge-new">APPLY TODAY</span></h1>
+  <p>Google Local Services Ads — Shows ABOVE everything else on Google. Pay per lead, not per click. Apply in 15 minutes.</p>
+</div>
+
+<div class="urgency">
+  <h3>⚡ Apply Today = Live by Easter Week</h3>
+  <p>Background check takes <strong>2-5 business days</strong>. Apply today (April 1) → approved by <strong>April 6-7</strong> → live right as Easter leads start searching. FB Ads = discovery. LSA = high-intent buyers actively searching "dog poop pickup near me" RIGHT NOW.</p>
+  <div class="window-row">
+    <div class="window-item"><div class="num">$0</div><div class="lbl">Setup Cost</div></div>
+    <div class="window-item"><div class="num">15 min</div><div class="lbl">To Apply</div></div>
+    <div class="window-item"><div class="num">$15–30</div><div class="lbl">Per Lead</div></div>
+    <div class="window-item"><div class="num">#1</div><div class="lbl">Top of Google</div></div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab(0)">1. Why LSA</div>
+  <div class="tab" onclick="showTab(1)">2. Apply Now</div>
+  <div class="tab" onclick="showTab(2)">3. Your Info</div>
+  <div class="tab" onclick="showTab(3)">4. Budget & ROI</div>
+  <div class="tab" onclick="showTab(4)">5. Managing It</div>
+  <div class="tab" onclick="showTab(5)">Checklist</div>
+</div>
+
+<!-- TAB 0: WHY LSA -->
+<div class="content section active pb-18" id="section-0">
+  <div class="section-header">Why Google LSA Is the Priority Channel Right Now</div>
+
+  <div class="verdict-box">
+    <div class="v-label">Franklin's Take</div>
+    <div class="v-main">LSA is the closest thing to free customers that exists.</div>
+    <div class="v-sub">You pay $15–30 only when someone calls or messages you. Not per click. Not per impression. Only when a lead actually reaches out. For a $70/mo customer worth $840/yr, a $25 lead cost is a 33x return minimum.</div>
+  </div>
+
+  <div class="section-header">LSA vs. Everything Else</div>
+  <div class="compare-grid">
+    <div class="compare-card winner">
+      <div class="compare-title" style="color:var(--green);">Google LSA <span class="win-badge">DO THIS FIRST</span></div>
+      <ul>
+        <li class="pro">Appears ABOVE all regular ads (position #1 always)</li>
+        <li class="pro">"Google Guaranteed" badge = instant credibility</li>
+        <li class="pro">Pay per LEAD — only pay when someone contacts you</li>
+        <li class="pro">Shows star rating + review count (5.0★ = strong)</li>
+        <li class="pro">$0 to apply + set up</li>
+        <li class="pro">Weekly budget cap — never overspend</li>
+        <li class="pro">Can dispute bad leads for a refund</li>
+        <li class="pro">High-intent buyers ("dog poop near me" = ready to hire)</li>
+      </ul>
+    </div>
+    <div class="compare-card">
+      <div class="compare-title" style="color:var(--blue);">FB Ads (Running Now)</div>
+      <ul>
+        <li class="pro">Already live — awareness building</li>
+        <li class="pro">Good for discovery/top of funnel</li>
+        <li class="neutral">$7/day = $210/mo</li>
+        <li class="con">Pay per click regardless of lead quality</li>
+        <li class="con">Lower intent (scrolling vs. searching)</li>
+        <li class="con">Harder to measure ROI precisely</li>
+        <li class="neutral">CPL probably $30–80 range</li>
+        <li class="neutral">Keep running alongside LSA</li>
+      </ul>
+    </div>
+    <div class="compare-card">
+      <div class="compare-title" style="color:#888;">Nextdoor / FB Groups (Organic)</div>
+      <ul>
+        <li class="pro">$0 cost</li>
+        <li class="pro">High trust (local community)</li>
+        <li class="con">Time-intensive (daily posting)</li>
+        <li class="con">Algorithm-dependent reach</li>
+        <li class="neutral">Keep doing this — it compounds</li>
+      </ul>
+    </div>
+    <div class="compare-card">
+      <div class="compare-title" style="color:#888;">Standard Google Search Ads</div>
+      <ul>
+        <li class="neutral">Shows below LSA</li>
+        <li class="pro">No background check needed</li>
+        <li class="con">Pay per CLICK (not lead)</li>
+        <li class="con">More complex to manage</li>
+        <li class="neutral">Worth adding AFTER LSA is live</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="info-card" style="border-color: var(--green);">
+    <h4>🏆 What "Google Guaranteed" Actually Gets You</h4>
+    <div class="info-row"><span class="label">Badge appearance</span><span class="value">Green checkmark + "Google Guaranteed" text on your listing</span></div>
+    <div class="info-row"><span class="label">What it signals</span><span class="value">Background-checked, licensed, insured, real business</span></div>
+    <div class="info-row"><span class="label">Position on page</span><span class="value">Above ALL regular ads and organic results</span></div>
+    <div class="info-row"><span class="label">Trust factor</span><span class="value">Extremely high — Google is vouching for you</span></div>
+    <div class="info-row"><span class="label">Click through rate vs. others</span><span class="value">Significantly higher — users know they're clicking a vetted business</span></div>
+    <div class="info-row"><span class="label">Review display</span><span class="value">Your 5.0★ and review count shown directly on the listing</span></div>
+  </div>
+
+  <div class="info-card">
+    <h4>📊 Why Right Now Is The Best Time to Apply</h4>
+    <div class="info-row"><span class="label">Current date</span><span class="value">April 1 — approval takes 2–5 business days</span></div>
+    <div class="info-row"><span class="label">Live by</span><span class="value" style="color:var(--green);">April 6–7 (Easter week — peak search intent)</span></div>
+    <div class="info-row"><span class="label">Spring search volume</span><span class="value">March–May = highest-volume period for pet waste searches</span></div>
+    <div class="info-row"><span class="label">Competition status</span><span class="value">None of your 8 STL competitors have LSA verified (checked)</span></div>
+    <div class="info-row"><span class="label">Your review score</span><span class="value">5.0★ — LSA rewards high ratings with lower CPL</span></div>
+  </div>
+</div>
+
+<!-- TAB 1: APPLY NOW -->
+<div class="content section pb-18" id="section-1">
+  <div class="section-header">Step-by-Step LSA Application — 15 Minutes</div>
+
+  <div class="step-card" id="step1">
+    <div class="step-num">1</div>
+    <button class="check-btn" onclick="toggleStep('step1')">Mark Done</button>
+    <h3>Open the LSA Sign-Up Page</h3>
+    <p>Go to Google's Local Services Ads page. Click "Get Started" or "Start Now." Sign in with the Google account that's connected to your Google Business Profile.</p>
+    <a href="https://ads.google.com/local-services-ads" target="_blank" class="action-btn">→ Open LSA Sign-Up</a>
+    <div class="tip">💡 Use the same Google account you use to log into your Google Business Profile (the one with your Tidy Tails listing). This links your 5.0★ reviews automatically.</div>
+  </div>
+
+  <div class="step-card" id="step2">
+    <div class="step-num">2</div>
+    <button class="check-btn" onclick="toggleStep('step2')">Mark Done</button>
+    <h3>Select Your Business Category</h3>
+    <p>When prompted, search for your business type. Use one of these — they're all eligible for LSA in your area:</p>
+    <ul>
+      <li><strong>"Pet Waste Removal"</strong> — try this first</li>
+      <li><strong>"Pet Services"</strong> — fallback if the above isn't available</li>
+      <li><strong>"Lawn Care"</strong> — another eligible category for STL</li>
+    </ul>
+    <div class="tip">💡 If "Pet Waste Removal" isn't a category option, select "Pet Services." Both qualify for Google Guaranteed verification.</div>
+    <div class="warning">⚠️ If you see "not available in your area" — that's rare but possible. Try the other categories before giving up. St. Louis metro should be covered.</div>
+  </div>
+
+  <div class="step-card" id="step3">
+    <div class="step-num">3</div>
+    <button class="check-btn" onclick="toggleStep('step3')">Mark Done</button>
+    <h3>Enter Business Information</h3>
+    <p>Google will ask for your business details. Copy-paste from the info tab (Tab 3) — everything's pre-filled for you.</p>
+    <ul>
+      <li>Business name: <strong>Tidy Tails</strong></li>
+      <li>Phone: <strong>(314) 850-7140</strong></li>
+      <li>Website: <strong>tidytailsstl.com</strong></li>
+      <li>Service area: <strong>St. Louis, MO and surrounding areas (zip codes)</strong></li>
+    </ul>
+    <a href="#" onclick="showTab(2); return false;" class="action-btn secondary">→ See All Pre-Filled Info</a>
+    <div class="tip">💡 When entering service area, use your primary zip codes rather than "the entire metro." The Info tab has all your zips listed.</div>
+  </div>
+
+  <div class="step-card" id="step4">
+    <div class="step-num">4</div>
+    <button class="check-btn" onclick="toggleStep('step4')">Mark Done</button>
+    <h3>Complete the Background Check (Pinkerton)</h3>
+    <p>Google uses Pinkerton (a background check company) to verify all LSA providers. This is free and takes 2–5 business days. You'll receive an email from Pinkerton to submit your info.</p>
+    <ul>
+      <li>You'll need: your full legal name, date of birth, address</li>
+      <li>It's a soft check — does NOT affect your credit</li>
+      <li>They check for criminal history and business legitimacy</li>
+      <li>Most clean applicants are approved in 2–3 business days</li>
+      <li>Check email for a message from Pinkerton (check spam too)</li>
+    </ul>
+    <div class="tip">💡 After applying, watch for an email from <strong>noreply@backgroundchecks.com</strong> or similar Pinkerton address within 24 hours. Complete it same-day to keep the timeline fast.</div>
+    <div class="warning">⚠️ If you've operated under a business license in Missouri, keep that info handy. Some business checks may ask for EIN or DBA registration details.</div>
+  </div>
+
+  <div class="step-card" id="step5">
+    <div class="step-num">5</div>
+    <button class="check-btn" onclick="toggleStep('step5')">Mark Done</button>
+    <h3>Set Your Weekly Budget</h3>
+    <p>During setup, Google will ask how many new customers you want per week and set a suggested budget. Don't accept the default — it's usually too high. Set it manually:</p>
+    <ul>
+      <li><strong>Start:</strong> $50–75/week (about $200–300/month)</li>
+      <li><strong>At $15–30 CPL:</strong> that's 3–5 leads per week = 1–2 new customers/week</li>
+      <li>You can lower it at any time — no minimum</li>
+      <li>You only get charged when a lead comes in, not upfront</li>
+      <li>Pause anytime you hit capacity (good problem to have)</li>
+    </ul>
+    <a href="#" onclick="showTab(3); return false;" class="action-btn secondary">→ See Full Budget Guide</a>
+  </div>
+
+  <div class="step-card" id="step6">
+    <div class="step-num">6</div>
+    <button class="check-btn" onclick="toggleStep('step6')">Mark Done</button>
+    <h3>Connect Your Google Business Profile</h3>
+    <p>LSA will ask to connect to your Google Business Profile. This is how your reviews and star rating show on your LSA listing. Connect it — it's what makes "5.0★ (X reviews)" display under your name.</p>
+    <ul>
+      <li>Sign in with the same account that manages your GBP</li>
+      <li>Select "Tidy Tails" from the business list</li>
+      <li>Confirm the address and phone number match</li>
+    </ul>
+    <div class="tip">💡 Your 5.0★ with 6 reviews is actually a strong signal for LSA. Google rewards high-rated providers with lower CPL and more impressions. Every review you add after this reduces your average cost per lead.</div>
+  </div>
+
+  <div class="step-card" id="step7">
+    <div class="step-num">7</div>
+    <button class="check-btn" onclick="toggleStep('step7')">Mark Done</button>
+    <h3>Wait for Approval (2–5 Business Days)</h3>
+    <p>After submitting, Google will review your application + complete the Pinkerton check. You'll receive an email when approved. Check the LSA dashboard daily.</p>
+    <ul>
+      <li>Average approval time: 2–3 business days for clean backgrounds</li>
+      <li>Applied April 1 → expect approval April 3–7</li>
+      <li>While waiting, continue FB Ads + organic (nothing to pause)</li>
+      <li>Once approved, your listing goes live immediately</li>
+    </ul>
+    <div class="tip">💡 While you're waiting, take 10 minutes to text all 11 customers and ask for a Google review. Every review you get before LSA goes live reduces your cost-per-lead once it's live.</div>
+  </div>
+</div>
+
+<!-- TAB 2: YOUR INFO -->
+<div class="content section pb-18" id="section-2">
+  <div class="section-header">Pre-Filled Business Information — Copy and Paste</div>
+
+  <div class="info-card" style="border-color:var(--green);">
+    <h4>🏢 Core Business Info</h4>
+    <div class="info-row">
+      <span class="label">Business Name</span>
+      <span class="value">Tidy Tails</span>
+      <button class="copy-val" onclick="copyText('Tidy Tails')">Copy</button>
+    </div>
+    <div class="info-row">
+      <span class="label">Phone Number</span>
+      <span class="value">(314) 850-7140</span>
+      <button class="copy-val" onclick="copyText('(314) 850-7140')">Copy</button>
+    </div>
+    <div class="info-row">
+      <span class="label">Website</span>
+      <span class="value">https://tidytailsstl.com</span>
+      <button class="copy-val" onclick="copyText('https://tidytailsstl.com')">Copy</button>
+    </div>
+    <div class="info-row">
+      <span class="label">Business Type</span>
+      <span class="value">Pet Waste Removal / Pet Services</span>
+      <button class="copy-val" onclick="copyText('Pet Waste Removal')">Copy</button>
+    </div>
+    <div class="info-row">
+      <span class="label">Owner Name (for background check)</span>
+      <span class="value">Jamie Dabrowski</span>
+      <button class="copy-val" onclick="copyText('Jamie Dabrowski')">Copy</button>
+    </div>
+    <div class="info-row">
+      <span class="label">Service Type</span>
+      <span class="value">Mobile service (we come to customer's home)</span>
+      <button class="copy-val" onclick="copyText('Mobile service')">Copy</button>
+    </div>
+    <div class="info-row">
+      <span class="label">Years in Business</span>
+      <span class="value">1 year</span>
+      <button class="copy-val" onclick="copyText('1 year')">Copy</button>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <h4>📍 Service Area — Primary Zip Codes</h4>
+    <p style="font-size:0.8em; color:#888; margin-bottom:10px;">Paste the entire block below into the service area zip code field:</p>
+    <div class="copy-block">
+      <pre id="zips-block">63031, 63033, 63034, 63042, 63043, 63044, 63105, 63117, 63119, 63121, 63122, 63123, 63124, 63125, 63126, 63128, 63129, 63130, 63131, 63132, 63134, 63135, 63136, 63137, 63141, 63143, 63144, 63146, 63301, 63303, 63304, 63376, 63385</pre>
+      <button class="copy-btn" onclick="copyEl('zips-block', this)">📋 Copy All Zip Codes</button>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <h4>📝 Business Description (for LSA Profile)</h4>
+    <p style="font-size:0.8em; color:#888; margin-bottom:8px;">Keep it under 150 characters for display. Use this:</p>
+    <div class="copy-block">
+      <pre id="desc-short">Tidy Tails is St. Louis's flat-rate pet waste removal service. $70/mo flat, no contracts. We text before every visit. Local owner, not a franchise.</pre>
+      <button class="copy-btn" onclick="copyEl('desc-short', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="info-card">
+    <h4>⏰ Business Hours (for LSA Profile)</h4>
+    <div class="info-row"><span class="label">Service days</span><span class="value">Monday – Saturday</span></div>
+    <div class="info-row"><span class="label">Phone hours</span><span class="value">Monday – Saturday, 7 AM – 7 PM</span></div>
+    <div class="info-row"><span class="label">Response commitment</span><span class="value">Reply within 1 hour during business hours</span></div>
+    <div class="tip" style="margin-top:10px; border-radius:8px;">💡 LSA tracks your response rate. Fast replies = lower cost per lead. The target is under 15-minute response during business hours. Set up text notifications so every LSA lead pings your phone instantly.</div>
+  </div>
+
+  <div class="info-card">
+    <h4>💳 Payment Info (for LSA billing)</h4>
+    <p style="font-size:0.8em; color:#aaa; margin-bottom:8px;">Google charges a credit card after each billing period for leads received. You set a weekly budget cap.</p>
+    <div class="info-row"><span class="label">Suggested start budget</span><span class="value" style="color:var(--green);">$50/week ($200/month)</span></div>
+    <div class="info-row"><span class="label">Payment method</span><span class="value">Credit/debit card (you enter during setup)</span></div>
+    <div class="info-row"><span class="label">Minimum spend</span><span class="value">$0 — only charged when leads come in</span></div>
+    <div class="info-row"><span class="label">Charge timing</span><span class="value">Weekly or when billing threshold hit</span></div>
+  </div>
+</div>
+
+<!-- TAB 3: BUDGET & ROI -->
+<div class="content section pb-18" id="section-3">
+  <div class="section-header">Budget Settings and ROI Projections</div>
+
+  <div class="verdict-box">
+    <div class="v-label">Recommended Starting Budget</div>
+    <div class="v-main">$50/week = $200/month</div>
+    <div class="v-sub">At $15–30 per lead: expect 3–5 leads per week. At 30–40% close rate: 1–2 new customers per week. Each customer = $840/yr LTV. ROAS = 17–56×.</div>
+  </div>
+
+  <div class="section-header">Budget Scenarios</div>
+  <table class="budget-table">
+    <thead>
+      <tr>
+        <th>Weekly Budget</th>
+        <th>Monthly Spend</th>
+        <th>Est. Leads/Month</th>
+        <th>Est. New Customers/Mo</th>
+        <th>New MRR</th>
+        <th>ROAS</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>$25/wk</td>
+        <td>$100/mo</td>
+        <td>4–7</td>
+        <td>1–2</td>
+        <td>+$70–140/mo</td>
+        <td>8–17×</td>
+      </tr>
+      <tr class="recommended">
+        <td><strong>$50/wk ← START HERE</strong></td>
+        <td><strong>$200/mo</strong></td>
+        <td><strong>7–13</strong></td>
+        <td><strong>2–4</strong></td>
+        <td class="highlight"><strong>+$140–280/mo</strong></td>
+        <td class="highlight"><strong>17–34×</strong></td>
+      </tr>
+      <tr>
+        <td>$75/wk</td>
+        <td>$300/mo</td>
+        <td>10–20</td>
+        <td>3–6</td>
+        <td>+$210–420/mo</td>
+        <td>17–34×</td>
+      </tr>
+      <tr>
+        <td>$100/wk (scale)</td>
+        <td>$400/mo</td>
+        <td>13–27</td>
+        <td>4–8</td>
+        <td>+$280–560/mo</td>
+        <td>17–34×</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="section-header">12-Month ROI Scenarios</div>
+  <div class="roi-grid">
+    <div class="roi-card bear">
+      <div class="scenario">Bear Case</div>
+      <div class="monthly" style="color:#888;">1 customer/mo</div>
+      <div class="annual">12 customers added</div>
+      <div class="roas" style="color:#888;">$10,080 LTV generated<br>$2,400 ad spend<br>4× annual ROAS</div>
+    </div>
+    <div class="roi-card base">
+      <div class="scenario">Base Case</div>
+      <div class="monthly" style="color:var(--blue);">2–3 customers/mo</div>
+      <div class="annual">24–36 customers added</div>
+      <div class="roas" style="color:var(--blue);">$20–30K LTV generated<br>$2,400 ad spend<br>8–13× annual ROAS</div>
+    </div>
+    <div class="roi-card bull">
+      <div class="scenario">Bull Case</div>
+      <div class="monthly" style="color:var(--green);">4–5 customers/mo</div>
+      <div class="annual">48–60 customers added</div>
+      <div class="roas" style="color:var(--green);">$40–50K LTV generated<br>$2,400 ad spend<br>17–21× annual ROAS</div>
+    </div>
+  </div>
+
+  <div class="info-card" style="border-color:var(--green);">
+    <h4>📈 Goal Math: LSA + FB Ads → 25 Customers by August</h4>
+    <div class="info-row"><span class="label">Current customers</span><span class="value">11</span></div>
+    <div class="info-row"><span class="label">Goal</span><span class="value">25–30 by August 2026</span></div>
+    <div class="info-row"><span class="label">Gap to close</span><span class="value">14–19 more customers in ~4 months</span></div>
+    <div class="info-row"><span class="label">LSA contribution (base case)</span><span class="value" style="color:var(--green);">2–3 new customers/month × 4 months = 8–12</span></div>
+    <div class="info-row"><span class="label">FB Ads + organic contribution</span><span class="value">1–2/month × 4 months = 4–8</span></div>
+    <div class="info-row"><span class="label">Projected total by August</span><span class="value" style="color:var(--green);">23–31 — hits the goal ✅</span></div>
+    <div class="info-row"><span class="label">Total ad budget (LSA + FB Ads)</span><span class="value">~$400/mo (manageable for a business at $770/mo MRR)</span></div>
+  </div>
+
+  <div class="info-card">
+    <h4>📊 When to Scale the Budget</h4>
+    <div class="info-row"><span class="label">Month 1 (April)</span><span class="value">$50/week — gather data, find CPL baseline</span></div>
+    <div class="info-row"><span class="label">If CPL &lt; $25</span><span class="value" style="color:var(--green);">Scale to $75/week immediately</span></div>
+    <div class="info-row"><span class="label">If CPL $25–40</span><span class="value">Stay at $50/week, optimize (see Managing It tab)</span></div>
+    <div class="info-row"><span class="label">If CPL &gt; $50</span><span class="value">Dispute junk leads, adjust service area, stay at $25/week</span></div>
+    <div class="info-row"><span class="label">When to pause</span><span class="value">If you're at capacity (too many customers to serve) — good problem</span></div>
+  </div>
+</div>
+
+<!-- TAB 4: MANAGING IT -->
+<div class="content section pb-18" id="section-4">
+  <div class="section-header">Day-to-Day LSA Management — 10 Min/Week</div>
+
+  <div class="info-card" style="border-color:var(--green);">
+    <h4>🔑 The #1 Rule: Respond FAST</h4>
+    <p style="font-size:0.82em; color:#ccc; margin-top:4px; line-height:1.6;">LSA tracks your response rate and response time. <strong>Fast responders get more leads and lower CPL.</strong> Set up Google LSA notifications to ping your phone the instant a lead comes in. Target: reply within 5–10 minutes during business hours.</p>
+  </div>
+
+  <div class="step-card">
+    <h3>Responding to LSA Leads</h3>
+    <p>When a lead comes in via LSA, you get a call or a message. Here's the response protocol:</p>
+    <ul>
+      <li><strong>Phone call:</strong> Answer and give your standard intro ("Hey this is TJ with Tidy Tails!") then qualify (zip code, dogs, frequency)</li>
+      <li><strong>Message:</strong> Reply within 5 min — LSA tracks this and punishes slow responders with higher CPL</li>
+      <li><strong>Missed call:</strong> Call back within 30 min. If no answer, text immediately: "Hey this is TJ with Tidy Tails — saw your missed call, can I help you out?"</li>
+    </ul>
+    <div class="copy-block">
+      <pre id="lsa-reply">Hey! This is [TJ/Jamie] with Tidy Tails 🐾 Saw your inquiry on Google — what can I help you with? Quick question: what zip code are you in?</pre>
+      <button class="copy-btn" onclick="copyEl('lsa-reply', this)">📋 Copy LSA Reply</button>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <h3>How to Dispute Junk Leads (Free Refunds)</h3>
+    <p>LSA lets you dispute leads you shouldn't have been charged for. Google refunds valid disputes. Dispute within 30 days of the lead.</p>
+    <ul>
+      <li><strong>Dispute these leads:</strong></li>
+      <li>Out-of-area caller (outside your service zip codes)</li>
+      <li>Spam / robo call / no real person</li>
+      <li>Wrong service type (e.g., someone calling about dog grooming)</li>
+      <li>Duplicate lead from same person same day</li>
+      <li>Technical error or accidental call</li>
+      <li><strong>Don't dispute:</strong> Someone who was rude, didn't hire you, or chose a competitor — that's a real lead even if it didn't convert</li>
+    </ul>
+    <p style="font-size:0.82em; color:#aaa; margin-top:8px;">To dispute: Open LSA dashboard → Leads tab → Find the lead → "Dispute this charge" → Select reason → Submit. Usually resolved in 3–5 business days.</p>
+  </div>
+
+  <div class="step-card">
+    <h3>Weekly 10-Minute LSA Check-In</h3>
+    <p>Every Monday, spend 10 minutes in your LSA dashboard:</p>
+    <ul>
+      <li>Review leads received that week (calls + messages)</li>
+      <li>Mark each lead status (booked, not a fit, no response, etc.)</li>
+      <li>Dispute any junk leads (see above)</li>
+      <li>Check your average cost per lead</li>
+      <li>Adjust weekly budget if CPL is too high or too low</li>
+      <li>Check your response rate — should be above 90%</li>
+    </ul>
+  </div>
+
+  <div class="step-card">
+    <h3>How to Increase Your LSA Quality Score (Lower CPL)</h3>
+    <p>Google rewards LSA advertisers who provide a good customer experience with more leads at lower cost:</p>
+    <ul>
+      <li><strong>Reviews:</strong> More 5★ reviews = lower CPL + more impressions. Every new Google review you get moves the needle.</li>
+      <li><strong>Fast response:</strong> Under 15 minutes response during business hours = LSA rewards you</li>
+      <li><strong>Booking rate:</strong> When leads come in, close them. Higher booking % = better position</li>
+      <li><strong>Low dispute rate:</strong> Only dispute legit junk — over-disputing flags your account</li>
+      <li><strong>Accurate service area:</strong> Tight service area = more relevant leads = higher close rate</li>
+    </ul>
+    <div class="tip">💡 Each new Google review you get while LSA is running directly reduces your CPL. 10 reviews at 5.0★ is significantly better than 6. Text your customers for reviews NOW — before LSA goes live — so the quality score is maxed out on day 1.</div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">What happens if I get too many leads to handle? <span class="arrow">▶</span></div>
+    <div class="faq-a">Pause your LSA campaign. Go to the LSA dashboard → Settings → Status → Pause. Your listing disappears from Google until you resume. No charges while paused. This is a great problem to have — it means you've hit capacity and can raise prices or hire help before reactivating.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">Can I run LSA and FB Ads at the same time? <span class="arrow">▶</span></div>
+    <div class="faq-a">Yes, and you should. LSA captures high-intent searchers ("dog poop pickup near me" = ready to buy). FB Ads build awareness/discovery among people who didn't know they needed the service. These are different parts of the funnel — they compound each other, not cannibalize.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">What if I don't have a business license or insurance? <span class="arrow">▶</span></div>
+    <div class="faq-a">The background check is primarily criminal, not business credential verification for "pet services" category. However, Google does ask about insurance during the verification process for some categories. If you don't have liability insurance, it's worth getting a basic policy ($40–80/mo) — it also protects you if a dog bites someone or you damage property. If the category requires insurance and you don't have it, the application may not complete until you upload proof.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">What if "pet waste removal" isn't a category? <span class="arrow">▶</span></div>
+    <div class="faq-a">Try these in order: (1) "Pet Services" — broad pet care category that should include waste removal; (2) "Lawn Care" — pet waste removal often falls under grounds maintenance; (3) "Landscaping Services." If none are available in your area, Google may expand categories — check back in 30 days or sign up for the waitlist in your LSA dashboard.</div>
+  </div>
+  <div class="faq-item">
+    <div class="faq-q" onclick="toggleFaq(this)">How long until I see leads? <span class="arrow">▶</span></div>
+    <div class="faq-a">Once your account is approved and active, leads can start within hours. Spring is peak season — April/May should produce solid volume. Expect the first week to be slower (Google is learning), then steady state by Week 2–3. Don't increase budget in Week 1 — let Google optimize first.</div>
+  </div>
+</div>
+
+<!-- TAB 5: CHECKLIST -->
+<div class="content section pb-18" id="section-5">
+  <div class="section-header">LSA Launch Checklist</div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-fill" id="checklist-progress" style="width:0%"></div>
+  </div>
+  <p id="checklist-count" style="font-size:0.75em; color:var(--muted); margin-bottom:14px;">0 of 18 complete</p>
+
+  <div class="cl-wrap">
+    <h4>⚡ TODAY — Apply (15 min)</h4>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl1">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Open LSA signup page</strong> — ads.google.com/local-services-ads → "Get Started"</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl2">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Select "Pet Services" or "Pet Waste Removal"</strong> as business category</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl3">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Enter business info</strong> — name, phone, website, service area (see Tab 3 for pre-filled data)</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl4">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Connect Google Business Profile</strong> — links your 5.0★ reviews to the listing</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl5">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Set weekly budget to $50</strong> — don't accept Google's suggested default (usually too high)</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl6">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Submit application</strong> — note confirmation number, watch for Pinkerton email</div>
+    </div>
+  </div>
+
+  <div class="cl-wrap">
+    <h4>📧 Within 24 Hours — Background Check</h4>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl7">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Check email for Pinkerton background check link</strong> — may be in spam folder</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl8">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Complete Pinkerton form same-day</strong> — faster completion = faster approval</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl9">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Set up LSA lead notifications</strong> — in LSA dashboard → Settings → Notifications → enable all</div>
+    </div>
+  </div>
+
+  <div class="cl-wrap">
+    <h4>⭐ While Waiting for Approval (2–5 Days)</h4>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl10">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Text ALL 11 current customers for Google reviews</strong> — each review lowers your CPL once LSA is live</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl11">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Verify your GBP is 100% complete</strong> — hours, photos, services, description, all filled in</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl12">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Write your LSA response script</strong> — have it ready on your phone for when the first lead calls</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl13">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Set notification sound for LSA leads to loudest setting</strong> — don't miss a lead</div>
+    </div>
+  </div>
+
+  <div class="cl-wrap">
+    <h4>🟢 Once Approved — Go Live</h4>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl14">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Confirm listing is live</strong> — search "dog poop removal St. Louis" on Google from a non-logged-in browser, verify Tidy Tails appears at top</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl15">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Screenshot the listing with "Google Guaranteed" badge</strong> — post it on social media, update dashboard</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl16">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Log into LSA dashboard daily for first week</strong> — check leads, disputes, CPL</div>
+    </div>
+  </div>
+
+  <div class="cl-wrap">
+    <h4>📊 Ongoing — Weekly (10 min)</h4>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl17">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Every Monday: check leads, mark status, dispute junk</strong> — 5 minutes</div>
+    </div>
+    <div class="checklist-item" onclick="toggleCl(this)" data-key="cl18">
+      <div class="cl-check"></div>
+      <div class="cl-text"><strong>Every month: evaluate CPL and scale/adjust budget accordingly</strong> — if CPL &lt; $25, increase; if &gt; $50, optimize or reduce</div>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY STATUS -->
+<div class="sticky-status">
+  <div>
+    <div class="stat">
+      <div class="v" id="stepsCompleted">0</div>
+      <div class="l">Steps Done</div>
+    </div>
+  </div>
+  <div style="display:flex; gap:16px;">
+    <div class="stat">
+      <div class="v">$0</div>
+      <div class="l">To Apply</div>
+    </div>
+    <div class="stat">
+      <div class="v">15 min</div>
+      <div class="l">Setup Time</div>
+    </div>
+    <div class="stat">
+      <div class="v" id="daysToEaster">5</div>
+      <div class="l">Days to Easter</div>
+    </div>
+  </div>
+  <a href="https://ads.google.com/local-services-ads" target="_blank" class="apply-now">→ Apply Now</a>
+</div>
+
+<script>
+// Tab management
+const sections = document.querySelectorAll('.section');
+const tabs = document.querySelectorAll('.tab');
+function showTab(i) {
+  sections.forEach(s => s.classList.remove('active'));
+  tabs.forEach(t => t.classList.remove('active'));
+  sections[i].classList.add('active');
+  tabs[i].classList.add('active');
+}
+
+// Step toggle
+function toggleStep(id) {
+  const el = document.getElementById(id);
+  el.classList.toggle('done');
+  const btn = el.querySelector('.check-btn');
+  btn.textContent = el.classList.contains('done') ? '✓ Done' : 'Mark Done';
+  saveState();
+  updateStepCount();
+}
+
+// Checklist
+function toggleCl(el) {
+  el.classList.toggle('done');
+  saveState();
+  updateChecklist();
+}
+function updateChecklist() {
+  const items = document.querySelectorAll('.checklist-item');
+  const done = document.querySelectorAll('.checklist-item.done').length;
+  const pct = Math.round((done / items.length) * 100);
+  document.getElementById('checklist-progress').style.width = pct + '%';
+  document.getElementById('checklist-count').textContent = done + ' of ' + items.length + ' complete';
+  updateStepCount();
+}
+
+function updateStepCount() {
+  const stepsDone = document.querySelectorAll('.step-card.done').length;
+  const clDone = document.querySelectorAll('.checklist-item.done').length;
+  document.getElementById('stepsCompleted').textContent = stepsDone + clDone;
+}
+
+// FAQ
+function toggleFaq(el) {
+  const item = el.closest('.faq-item');
+  item.classList.toggle('open');
+}
+
+// Copy helpers
+function copyText(text) {
+  navigator.clipboard.writeText(text).then(() => {
+    const btns = document.querySelectorAll('.copy-val');
+    // visual feedback
+  });
+}
+function copyEl(id, btn) {
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Easter countdown
+function updateEaster() {
+  const easter = new Date('2026-04-05T00:00:00');
+  const now = new Date();
+  const diff = easter - now;
+  const days = Math.max(0, Math.floor(diff / 86400000));
+  document.getElementById('daysToEaster').textContent = days > 0 ? days : '🐣 Today';
+}
+updateEaster();
+
+// Persist state
+function saveState() {
+  const state = {};
+  document.querySelectorAll('.checklist-item').forEach(el => {
+    state['cl-' + el.dataset.key] = el.classList.contains('done');
+  });
+  document.querySelectorAll('.step-card').forEach((el, i) => {
+    state['step-' + i] = el.classList.contains('done');
+  });
+  localStorage.setItem('lsa-kit-state', JSON.stringify(state));
+}
+function loadState() {
+  const state = JSON.parse(localStorage.getItem('lsa-kit-state') || '{}');
+  document.querySelectorAll('.checklist-item').forEach(el => {
+    if (state['cl-' + el.dataset.key]) el.classList.add('done');
+  });
+  document.querySelectorAll('.step-card').forEach((el, i) => {
+    if (state['step-' + i]) {
+      el.classList.add('done');
+      const btn = el.querySelector('.check-btn');
+      if (btn) btn.textContent = '✓ Done';
+    }
+  });
+}
+loadState();
+updateChecklist();
+</script>
+</body>
+</html>
