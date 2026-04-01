@@ -2,6 +2,30 @@
 
 ---
 
+### Wednesday 1:04 PM — Daily Ops Hub (Hourly Task)
+- **1:04 PM** ⚡ Built and published the **Daily Ops Hub** — the "open this first" command center that solves tool paralysis
+  - **File:** `dashboard/daily-ops-hub.html` (37KB, single-page app)
+  - **Dashboard:** Added as #1 fastest-pulsing teal quick link — "⚡ DAILY OPS HUB — OPEN THIS FIRST · LOG LEADS · TODAY'S ACTIONS"
+  - **Why this task:** The dashboard now has 40+ pulsing quick links and 50+ tools. Every tool is excellent for its specific job — but TJ opens the dashboard and faces paralysis: which tool do I open? What do I do FIRST? There was no "start here" layer above the individual tools. Simultaneously, leads are coming in from 6+ sources (FB group replies, Nextdoor comments, ad form fills, direct texts, GBP calls, door hanger responses) with no single capture point. They're being texted back and immediately forgotten. Without a unified lead log, TJ can't answer "how many leads did I get this week?" or "who am I supposed to follow up with?"
+  - **What's built:**
+    - **Dynamic Mission Header:** Auto-updates based on time of day and date. Easter week (Apr 1-5): shows "Easter in Xd — Peak Calling Window" with appropriate morning/afternoon variants. General: "Peak Calling Hours 9 AM–2 PM" during commercial window. Time-specific framing every hour.
+    - **Live Easter Countdown:** Ticks to April 5 10 AM. Switches to "🐣 GO TIME" on Easter morning.
+    - **Revenue Progress Bar:** MRR tracker ($770 → $1,750 goal) with visual fill. Goal badge shows current vs 25-customer goal. One tap to update.
+    - **Pipeline Stats Row:** 4 live counters — New leads this week / Hot (needs reply) / Warm (follow up) / Won this month. Auto-calculated from the lead log.
+    - **Today's Top Actions (Date-Smart):** Pre-programmed action sets for every remaining Easter campaign day (Apr 1-5) PLUS a smart default set for any other day. Today (April 1) surfaces: post NC-3 Bridgeton · fire referral texts · apply for LSA · make top 5 commercial calls · post Easter GBP update. Each action has: title, sub-context, urgency tag (🔥 Do Now / 📅 Today / 📌 This Week), link to the relevant tool, and a checkbox that persists in localStorage. Future dates (Apr 2-5) have custom action sets already programmed.
+    - **Active Campaigns Panel:** 6 campaign cards with live status chips — Easter Sprint (🔥 NOW), NC Week 1 (Live), FB Ads (Watch), S/W/C FB Expansion (Live), Google LSA (Pending), Commercial Calls (Today).
+    - **Universal Lead Capture Form:** Name/handle + phone/username + source dropdown (12 options: Facebook Group, Nextdoor, FB Ad, Text, Referral, GBP/Google, Marketplace, Vet Clinic, Door Hanger, Paw-ty, Other) + heat level (New/Hot/Warm) + freeform notes. One tap to add.
+    - **Live Lead Pipeline:** Shows all logged leads sorted by priority (Hot first → New → Warm → Won → Dead). Each lead shows name, source, date added, notes preview. One-tap status cycling (New → Hot → Warm → Won → Dead → back to New). Delete button. "Archive Won" batch-removes converted leads for cleanliness.
+    - **Tool Shortcuts Grid:** 12 most-used tools with descriptions — Easter Closer, NC Week 1 Posts, Commercial Hub, S/W/C FB Expansion, Referral Surge, Google LSA, GBP Domination, FB Ads Week 2, Full CRM, April Master Calendar, Dog Biz Partners, Full Dashboard. One tap to any tool.
+    - **Quick Settings:** Inline customer count / MRR / reviews fields that save immediately to localStorage and update the goal tracker and pipeline bar.
+    - **All data persists in localStorage** — leads, action checkboxes, settings all survive across sessions.
+  - **Why this fills a real gap:** The dashboard is now the best equipped toolkit in STL for Tidy Tails' specific April playbook. But the bottleneck isn't tool quality — it's adoption. When TJ opens his phone, sees 40 pulsing links, and doesn't have 5 minutes to figure out which one to start with, he defaults to just winging it. The Daily Ops Hub is the answer to "what's the ONE URL I bookmark and open every morning?" It surfaces the right 5 actions, captures every lead from any source, and shows the pipeline at a glance — before TJ has to think about which specific tool to use.
+  - **The date-smart action logic:** Most campaign dashboards show the same links every day. This one knows it's April 1st and shows NC-3 Bridgeton + LSA application + referral texts. On April 4th it will show "Good Friday — Last Chance Easter Close." On April 6th it shows the generic defaults. TJ never has to think "which campaign is it today?" — the hub tells him.
+  - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/daily-ops-hub.html
+  - **Git commit:** `aa353395` ✅ pushed to tidytails-dashboard
+
+---
+
 ### Wednesday 12:06 PM — GBP Spring Domination Kit (Hourly Task)
 - **12:06 PM** 🗺️ Built and published the **GBP Spring Domination Kit** — a comprehensive 5-tab Google Business Profile optimization tool targeting Map Pack #1 by May
   - **File:** `dashboard/gbp-spring-domination-kit.html` (64KB, 5-tab app)
