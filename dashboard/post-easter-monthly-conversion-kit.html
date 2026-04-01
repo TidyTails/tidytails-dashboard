@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐣 Post-Easter Monthly Conversion Kit — Tidy Tails</title>
+<style>
+  :root {
+    --purple: #7c3aed;
+    --green: #16a34a;
+    --orange: #ea580c;
+    --teal: #0d9488;
+    --gold: #d97706;
+    --red: #dc2626;
+    --bg: #0f172a;
+    --card: #1e293b;
+    --card2: #263244;
+    --border: #334155;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, #4c1d95 0%, #1e3a5f 50%, #0f172a 100%); padding: 20px 16px 24px; text-align: center; border-bottom: 2px solid #7c3aed44; position: relative; }
+  .header h1 { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 6px; }
+  .header .sub { font-size: 0.85rem; color: #c4b5fd; margin-bottom: 16px; }
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; max-width: 600px; margin: 0 auto; }
+  .kpi { background: rgba(255,255,255,0.08); border-radius: 8px; padding: 10px 8px; text-align: center; }
+  .kpi .val { font-size: 1.3rem; font-weight: 800; color: #a78bfa; }
+  .kpi .lab { font-size: 0.65rem; color: #c4b5fd; margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* Urgency banner */
+  .urgency { background: linear-gradient(90deg, #7c3aed, #4c1d95); padding: 10px 16px; text-align: center; font-size: 0.85rem; font-weight: 600; color: #fff; }
+  #countdown-display { color: #fcd34d; font-weight: 700; }
+
+  /* Tabs */
+  .tabs { display: flex; overflow-x: auto; background: #0f1926; border-bottom: 1px solid var(--border); padding: 0 12px; gap: 4px; scrollbar-width: none; position: sticky; top: 0; z-index: 100; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn { padding: 12px 14px; font-size: 0.8rem; font-weight: 600; color: var(--muted); border: none; background: none; cursor: pointer; white-space: nowrap; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .tab-btn.active { color: #a78bfa; border-bottom-color: #7c3aed; }
+
+  /* Panels */
+  .panel { display: none; padding: 16px; max-width: 720px; margin: 0 auto; }
+  .panel.active { display: block; }
+
+  /* Cards */
+  .card { background: var(--card); border-radius: 12px; padding: 16px; margin-bottom: 14px; border: 1px solid var(--border); }
+  .card.hot { border-color: #dc2626; }
+  .card.green-card { border-color: #16a34a; }
+  .card.gold-card { border-color: #d97706; }
+  .card.purple-card { border-color: #7c3aed; }
+  .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+  .card p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+
+  /* Day headers */
+  .day-header { display: flex; align-items: center; gap: 10px; margin: 18px 0 10px; }
+  .day-badge { background: var(--purple); color: #fff; border-radius: 20px; padding: 4px 14px; font-size: 0.75rem; font-weight: 700; white-space: nowrap; }
+  .day-header hr { flex: 1; border: none; border-top: 1px solid var(--border); }
+
+  /* Script blocks */
+  .script-block { background: var(--card2); border-radius: 10px; padding: 14px; margin-bottom: 12px; border-left: 3px solid var(--purple); position: relative; }
+  .script-block .script-label { font-size: 0.7rem; font-weight: 700; color: #a78bfa; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .script-block .script-text { font-size: 0.85rem; color: #e2e8f0; line-height: 1.6; white-space: pre-line; }
+  .script-block.green-script { border-left-color: var(--green); }
+  .script-block.green-script .script-label { color: #4ade80; }
+  .script-block.gold-script { border-left-color: var(--gold); }
+  .script-block.gold-script .script-label { color: #fcd34d; }
+  .script-block.red-script { border-left-color: var(--red); }
+  .script-block.red-script .script-label { color: #f87171; }
+
+  .copy-btn { display: inline-flex; align-items: center; gap: 5px; background: rgba(124,58,237,0.2); color: #a78bfa; border: 1px solid #7c3aed44; border-radius: 6px; padding: 5px 12px; font-size: 0.75rem; font-weight: 600; cursor: pointer; margin-top: 8px; transition: all 0.2s; }
+  .copy-btn:hover { background: rgba(124,58,237,0.4); }
+  .copy-btn.copied { background: rgba(22,163,74,0.3); color: #4ade80; border-color: #16a34a44; }
+
+  /* Checklist */
+  .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 12px; border-radius: 8px; margin-bottom: 6px; background: var(--card2); cursor: pointer; transition: background 0.2s; }
+  .check-item:hover { background: #2d3d54; }
+  .check-item.done { opacity: 0.6; }
+  .check-item.done .check-text { text-decoration: line-through; }
+  .check-box { width: 18px; height: 18px; border-radius: 4px; border: 2px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 1px; transition: all 0.2s; }
+  .check-item.done .check-box { background: var(--green); border-color: var(--green); }
+  .check-text { font-size: 0.85rem; line-height: 1.4; }
+  .check-sub { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+
+  /* Progress */
+  .progress-bar { background: var(--border); border-radius: 999px; height: 8px; overflow: hidden; margin: 8px 0; }
+  .progress-fill { background: linear-gradient(90deg, var(--purple), var(--teal)); height: 100%; border-radius: 999px; transition: width 0.4s; }
+
+  /* Revenue math */
+  .math-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+  .math-card { background: var(--card2); border-radius: 10px; padding: 12px; text-align: center; }
+  .math-card .val { font-size: 1.4rem; font-weight: 800; }
+  .math-card .lab { font-size: 0.7rem; color: var(--muted); margin-top: 4px; }
+  .math-card.bear .val { color: #94a3b8; }
+  .math-card.base .val { color: #4ade80; }
+  .math-card.bull .val { color: #fbbf24; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before { content: ''; position: absolute; left: 8px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+  .tl-item { position: relative; margin-bottom: 16px; }
+  .tl-item::before { content: ''; position: absolute; left: -20px; top: 4px; width: 10px; height: 10px; border-radius: 50%; background: var(--purple); border: 2px solid var(--bg); }
+  .tl-item.green::before { background: var(--green); }
+  .tl-item.gold::before { background: var(--gold); }
+  .tl-item.red::before { background: var(--red); }
+  .tl-time { font-size: 0.7rem; font-weight: 700; color: #a78bfa; text-transform: uppercase; letter-spacing: 0.5px; }
+  .tl-title { font-size: 0.9rem; font-weight: 700; margin: 2px 0; }
+  .tl-sub { font-size: 0.8rem; color: var(--muted); line-height: 1.4; }
+
+  /* Sticky footer */
+  .sticky-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #0f1926; border-top: 1px solid var(--border); padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; z-index: 200; }
+  .sticky-stat { text-align: center; }
+  .sticky-stat .sv { font-size: 1.1rem; font-weight: 800; color: #a78bfa; }
+  .sticky-stat .sl { font-size: 0.65rem; color: var(--muted); }
+
+  .tag { display: inline-flex; align-items: center; border-radius: 20px; padding: 2px 10px; font-size: 0.7rem; font-weight: 700; margin-right: 4px; margin-bottom: 4px; }
+  .tag-fire { background: rgba(220,38,38,0.2); color: #f87171; border: 1px solid #dc262644; }
+  .tag-warm { background: rgba(217,119,6,0.2); color: #fcd34d; border: 1px solid #d9770644; }
+  .tag-week { background: rgba(22,163,74,0.2); color: #4ade80; border: 1px solid #16a34a44; }
+
+  .section-title { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); margin: 20px 0 10px; }
+
+  .insight-box { background: rgba(124,58,237,0.08); border: 1px solid #7c3aed44; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+  .insight-box .icon { font-size: 1.5rem; margin-bottom: 6px; }
+  .insight-box h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 6px; }
+  .insight-box p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+  @media (max-width: 400px) {
+    .kpi-row { grid-template-columns: repeat(2, 1fr); }
+    .math-grid { grid-template-columns: 1fr; }
+  }
+  .pb-safe { padding-bottom: 80px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🐣 Post-Easter Monthly Conversion Kit</h1>
+  <div class="sub">Apr 6–12: Turn $75 One-Timers Into $840/Year Recurring Customers</div>
+  <div class="kpi-row">
+    <div class="kpi"><div class="val" id="kpi-cleanups">?</div><div class="lab">Easter Cleanups</div></div>
+    <div class="kpi"><div class="val" id="kpi-window">7</div><div class="lab">Days to Convert</div></div>
+    <div class="kpi"><div class="val">$840</div><div class="lab">LTV Per Convert</div></div>
+    <div class="kpi"><div class="val" id="kpi-progress">0%</div><div class="lab">Checklist Done</div></div>
+  </div>
+</div>
+
+<div class="urgency">
+  ⚡ Conversion window: <span id="countdown-display">loading...</span> — Every day you wait, close rate drops ~20%
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('timing')">⏰ Timing</button>
+  <button class="tab-btn" onclick="showTab('scripts')">💬 Scripts</button>
+  <button class="tab-btn" onclick="showTab('objections')">🛡️ Objections</button>
+  <button class="tab-btn" onclick="showTab('pipeline')">📊 Pipeline</button>
+  <button class="tab-btn" onclick="showTab('checklist')">✅ Checklist</button>
+  <button class="tab-btn" onclick="showTab('math')">💰 Math</button>
+</div>
+
+<!-- TAB: TIMING -->
+<div id="tab-timing" class="panel active pb-safe">
+  <div class="card hot">
+    <h3>🚨 Why the Window is Closing</h3>
+    <p>After Easter cleanup, customers are in their "honeymoon phase" — the yard is clean, they're relieved, they remember exactly how bad it was. <strong style="color:#f87171;">Day 3–5 is peak conversion moment.</strong> After Day 7, they rationalize: "I can handle it myself now that it's caught up." After Day 14, they've already started DIY again. You have ONE week.</p>
+  </div>
+
+  <div class="day-header">
+    <span class="day-badge">🐣 Easter Sunday — Apr 5</span>
+    <hr>
+  </div>
+  <div class="card green-card">
+    <h3 style="color:#4ade80;">Send Victory Text Immediately After Each Cleanup</h3>
+    <p>Before you leave the driveway. While they can still see the clean yard. This text plants the monthly seed without selling.</p>
+  </div>
+
+  <div class="day-header">
+    <span class="day-badge">🔥 Day 1-2 — Mon Apr 6 / Tue Apr 7</span>
+    <hr>
+  </div>
+  <div class="card hot">
+    <h3><span class="tag tag-fire">🔥 DO NOW</span> Check-In Text</h3>
+    <p>Send check-in to EVERY Easter cleanup customer. Two goals: (1) confirm they're happy, (2) open the door to monthly. This is the lowest-friction close — they just experienced the service and loved it.</p>
+  </div>
+  <div class="card">
+    <h3>Post Easter Recap on Social</h3>
+    <p>FB + Nextdoor victory recap post converts people who saw ads but didn't book. Anchor: "slots are still available for weekly service starting next week."</p>
+  </div>
+
+  <div class="day-header">
+    <span class="day-badge">⚡ Day 3-5 — Wed Apr 8 – Fri Apr 10</span>
+    <hr>
+  </div>
+  <div class="card purple-card">
+    <h3><span class="tag tag-fire">Peak Window</span> Direct Close</h3>
+    <p>If they didn't reply to the check-in, or replied positively but didn't commit — THIS is the close window. Send the monthly offer text. Urgency: "April slots are filling up for weekly service. Want to hold your day?"</p>
+  </div>
+  <div class="card">
+    <h3>Follow up with "Maybe" leads from Easter Sprint</h3>
+    <p>People who said "let me think about it" during Apr 1–5. They've now seen the yard get dirty again for 3–5 days. That's the re-open.</p>
+  </div>
+
+  <div class="day-header">
+    <span class="day-badge">📅 Day 6-7 — Sat Apr 11 / Sun Apr 12</span>
+    <hr>
+  </div>
+  <div class="card">
+    <h3>Last Call Text</h3>
+    <p>Final light-touch text to anyone who hasn't converted. Graceful, no pressure. "Spots for this month filling up — let me know if you want to grab one." After this: move them to nurture (Mother's Day, next event).</p>
+  </div>
+
+  <div class="section-title">Full Week Timeline</div>
+  <div class="timeline">
+    <div class="tl-item green">
+      <div class="tl-time">Easter Sunday Apr 5</div>
+      <div class="tl-title">Victory Text (send same day)</div>
+      <div class="tl-sub">After each cleanup — plant the seed before you leave the driveway</div>
+    </div>
+    <div class="tl-item red">
+      <div class="tl-time">Mon–Tue Apr 6–7</div>
+      <div class="tl-title">Check-in + Social Recap</div>
+      <div class="tl-sub">How's the yard looking? + FB/Nextdoor victory post with monthly slot offer</div>
+    </div>
+    <div class="tl-item" style="--tl-color: #7c3aed">
+      <div class="tl-time">Wed–Fri Apr 8–10 🔥 PEAK</div>
+      <div class="tl-title">Direct Monthly Close</div>
+      <div class="tl-sub">Text everyone who checked in positively. Lock in their day. "Want to hold Thursdays for you?"</div>
+    </div>
+    <div class="tl-item gold">
+      <div class="tl-time">Sat–Sun Apr 11–12</div>
+      <div class="tl-title">Last Call + Nurture Setup</div>
+      <div class="tl-sub">Final light-touch text. Non-converts → Mother's Day nurture sequence</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: SCRIPTS -->
+<div id="tab-scripts" class="panel pb-safe">
+  <div class="section-title">🐣 Easter Sunday — Send after EACH cleanup</div>
+
+  <div class="script-block green-script">
+    <div class="script-label">Victory Text (send from driveway, while yard is fresh in their mind)</div>
+    <div class="script-text" id="s1">Hey [Name]! Just finished up — [Dog's Name]'s yard is looking great 🐾 Thanks for booking with us! We do weekly cleanups starting at $70/mo flat if you ever want to keep it this clean. No contracts — you can cancel anytime. Just let me know! — Jamie</div>
+    <button class="copy-btn" onclick="copyScript('s1', this)">📋 Copy</button>
+  </div>
+
+  <div class="section-title">📞 Day 1-2 (Mon Apr 6 / Tue Apr 7) — Check-In Texts</div>
+
+  <div class="script-block">
+    <div class="script-label">Check-In Text (send to ALL Easter customers)</div>
+    <div class="script-text" id="s2">Hey [Name]! It's Jamie from Tidy Tails — just checking in. How's [Dog's Name]'s yard looking after the Easter cleanup? 😊 Hoping you got to enjoy it with the fam!</div>
+    <button class="copy-btn" onclick="copyScript('s2', this)">📋 Copy</button>
+  </div>
+
+  <div class="script-block gold-script">
+    <div class="script-label">Check-In → Monthly Bridge (use when they reply positively)</div>
+    <div class="script-text" id="s3">So glad to hear it! If you want to keep it like that — we have weekly service starting at $70/mo flat. Same price no matter how many dogs or how big the yard. We'd add you to the [Day] route if you want to grab a spot before they fill up. No contract, cancel anytime. Want me to hold one for you?</div>
+    <button class="copy-btn" onclick="copyScript('s3', this)">📋 Copy</button>
+  </div>
+
+  <div class="section-title">🎯 Day 3-5 (Wed–Fri Apr 8–10) — Direct Close</div>
+
+  <div class="script-block red-script">
+    <div class="script-label">Monthly Offer Text — Direct Close (PEAK WINDOW)</div>
+    <div class="script-text" id="s4">Hey [Name]! Quick heads up — we're filling up April/May weekly routes and I wanted to reach out to our Easter customers first 🐾
+
+It's $70/mo flat — 1 dog, 5 dogs, big yard, small yard, same price. We text before we come and when we're done. No contracts.
+
+Want me to add you to [Day] cleanups starting next week? Just say the word and I'll lock in your spot.</div>
+    <button class="copy-btn" onclick="copyScript('s4', this)">📋 Copy</button>
+  </div>
+
+  <div class="script-block">
+    <div class="script-label">Reopen "Maybe" Leads from Easter Sprint</div>
+    <div class="script-text" id="s5">Hey [Name]! This is Jamie from Tidy Tails — you'd reached out about a spring cleanup before Easter. Easter's come and gone and the warm weather is here to stay 🌱 The yard is going to need regular attention from here on out. We're taking on a few new weekly customers this month — would you want to grab a spot?</div>
+    <button class="copy-btn" onclick="copyScript('s5', this)">📋 Copy</button>
+  </div>
+
+  <div class="section-title">📣 Social — Post Easter Monday / Tuesday</div>
+
+  <div class="script-block green-script">
+    <div class="script-label">FB Group / Nextdoor Victory Recap Post (Apr 6-7)</div>
+    <div class="script-text" id="s6">Hope everyone had a great Easter! 🐣
+
+We knocked out a bunch of spring/Easter cleanups this weekend — yards all across Florissant, Kirkwood, Crestwood, and the surrounding areas are clean and ready for the season.
+
+If you've been thinking about weekly service, now's a great time to get started. Warm weather = the yard gets used every day. $70/month flat — no contracts, we text before every visit.
+
+Drop a 🐾 or comment "interested" and I'll reach out to you directly. First cleanup is free with a monthly subscription.
+
+— Jamie, Tidy Tails
+
+(314) 850-7140</div>
+    <button class="copy-btn" onclick="copyScript('s6', this)">📋 Copy</button>
+  </div>
+
+  <div class="section-title">⏰ Day 6-7 — Last Call</div>
+
+  <div class="script-block gold-script">
+    <div class="script-label">Last Call (light-touch, no pressure)</div>
+    <div class="script-text" id="s7">Hey [Name] — last check-in! We're adding a few more stops for May and I wanted to give our Easter customers first shot before we open the slots up. $70/mo flat, no contracts. If you want in, just shoot me a text. Either way, hope the yard's been good to you! 🐾 — Jamie</div>
+    <button class="copy-btn" onclick="copyScript('s7', this)">📋 Copy</button>
+  </div>
+
+  <div class="script-block">
+    <div class="script-label">One-Time → Monthly Pivot After First Monthly Service</div>
+    <div class="script-text" id="s8">Hey [Name]! Just finished up [Dog's Name]'s yard — looks great 🐾 Just a heads up, you're already on the weekly schedule now. First month is $70 and I'll send an invoice at the end of the month. Let me know if you have any questions! — Jamie</div>
+    <button class="copy-btn" onclick="copyScript('s8', this)">📋 Copy</button>
+  </div>
+
+  <div class="section-title">🌸 Nurture for Non-Converters</div>
+  <div class="script-block gold-script">
+    <div class="script-label">Mother's Day Seed (send Apr 14 to all non-converts)</div>
+    <div class="script-text" id="s9">Hey [Name]! Mother's Day is May 10 — if you know a mom with dogs who deserves a clean yard, we do gift cleanups and monthly subscriptions as gifts 🌸 $70/mo is a great present honestly lol. Or if you still want to try it yourself — we're still taking new customers. Just thought of you! — Jamie</div>
+    <button class="copy-btn" onclick="copyScript('s9', this)">📋 Copy</button>
+  </div>
+</div>
+
+<!-- TAB: OBJECTIONS -->
+<div id="tab-objections" class="panel pb-safe">
+  <div class="card">
+    <h3>🤔 "I want to think about it"</h3>
+    <p style="margin-bottom:10px;">Don't push. Give them permission to pause — but plant a deadline.</p>
+    <div class="script-block">
+      <div class="script-text" id="o1">Totally understand! Take your time — no rush. Only reason I mentioned slots is we're filling up for May. If you decide you want in, just text me and I'll check availability. Either way, hope the yard stays clean! 🐾</div>
+      <button class="copy-btn" onclick="copyScript('o1', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>💰 "It's a little expensive"</h3>
+    <p style="margin-bottom:10px;">Reframe to daily cost. Then reframe to what they'd actually pay someone else.</p>
+    <div class="script-block">
+      <div class="script-text" id="o2">Totally fair! Just to put it in perspective — $70/mo is $2.30 a day. Less than a gas station coffee. And that's for ALL the visits, no extra for extra dogs or a bigger yard. The national services charge $20-25 PER visit — so if you go weekly, that's $80-100/mo. We're actually cheaper AND local. But no pressure — just wanted to make sure you had the full picture!</div>
+      <button class="copy-btn" onclick="copyScript('o2', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🐕 "I only have one small dog"</h3>
+    <div class="script-block">
+      <div class="script-text" id="o3">Yep! Same price — 1 dog or 5 dogs, small yard or big yard, $70/mo flat. We don't charge by dog or by yard size. It's the same price for everyone and honestly a smaller dog is still 300 deposits a year 😂 Less than 25 cents per cleanup at that rate.</div>
+      <button class="copy-btn" onclick="copyScript('o3', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🧹 "I can just keep up with it now"</h3>
+    <p style="margin-bottom:10px;">This is the most common post-Easter objection. They feel motivated. Acknowledge it, then be honest.</p>
+    <div class="script-block">
+      <div class="script-text" id="o4">Ha, that makes total sense — it feels manageable now that it's caught up! That's usually how it goes though — caught up by April, behind again by June when you're busy with summer stuff. We're not going anywhere, so if it gets overwhelming just reach out and we'll get you set up. Happy to help whenever you're ready! 🐾</div>
+      <button class="copy-btn" onclick="copyScript('o4', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>⏰ "I want to wait until next month"</h3>
+    <div class="script-block">
+      <div class="script-text" id="o5">Works for me! Honestly the sooner you start the more you get for your money — first cleanup is free with any monthly subscription so the first month is basically $0 in service cost. But no rush. Just let me know when you're ready and I'll add you to the route!</div>
+      <button class="copy-btn" onclick="copyScript('o5', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>❓ "What happens if I want to cancel?"</h3>
+    <div class="script-block">
+      <div class="script-text" id="o6">Super easy — just text me. No contract, no minimum term, no cancellation fee. We're not a subscription box you forget to cancel. Just text me anytime and that's it. Most customers stay because it's easier than managing it themselves, but it's genuinely no commitment.</div>
+      <button class="copy-btn" onclick="copyScript('o6', this)">📋 Copy</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📅 "What day would you come?"</h3>
+    <p style="margin-bottom:10px;">This is a BUYING SIGNAL. Close immediately.</p>
+    <div class="script-block green-script">
+      <div class="script-text" id="o7">We have [Mon/Tue/Wed/Thu/Fri] available for your area. Which day works best for you? I'll add you right now and you'll get a "We're on our way" text before each visit. First cleanup is free — want to start this week or next?</div>
+      <button class="copy-btn" onclick="copyScript('o7', this)">📋 Copy</button>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: PIPELINE -->
+<div id="tab-pipeline" class="panel pb-safe">
+  <div class="card">
+    <h3>📊 Easter Customer Pipeline</h3>
+    <p style="margin-bottom:12px;">Track every Easter cleanup customer through the conversion funnel. Update daily.</p>
+  </div>
+
+  <div style="margin-bottom:12px;">
+    <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+      <span style="font-size:0.8rem; color:var(--muted);">Conversion Progress</span>
+      <span id="pipeline-pct" style="font-size:0.8rem; font-weight:700; color:#a78bfa;">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="pipeline-bar" style="width:0%"></div></div>
+  </div>
+
+  <div style="display:grid; grid-template-columns: repeat(4,1fr); gap:8px; margin-bottom:14px;">
+    <div style="background:var(--card2); border-radius:8px; padding:10px; text-align:center;">
+      <div id="ct-total" style="font-size:1.3rem; font-weight:800; color:#a78bfa;">0</div>
+      <div style="font-size:0.65rem; color:var(--muted);">TOTAL</div>
+    </div>
+    <div style="background:var(--card2); border-radius:8px; padding:10px; text-align:center;">
+      <div id="ct-contacted" style="font-size:1.3rem; font-weight:800; color:#4ade80;">0</div>
+      <div style="font-size:0.65rem; color:var(--muted);">CONTACTED</div>
+    </div>
+    <div style="background:var(--card2); border-radius:8px; padding:10px; text-align:center;">
+      <div id="ct-interested" style="font-size:1.3rem; font-weight:800; color:#fcd34d;">0</div>
+      <div style="font-size:0.65rem; color:var(--muted);">INTERESTED</div>
+    </div>
+    <div style="background:var(--card2); border-radius:8px; padding:10px; text-align:center;">
+      <div id="ct-converted" style="font-size:1.3rem; font-weight:800; color:#f87171;">0</div>
+      <div style="font-size:0.65rem; color:var(--muted);">CONVERTED</div>
+    </div>
+  </div>
+
+  <!-- Add customer -->
+  <div class="card">
+    <h3>➕ Add Easter Customer</h3>
+    <input type="text" id="inp-name" placeholder="Name" style="width:100%; background:var(--card2); border:1px solid var(--border); color:var(--text); padding:8px 10px; border-radius:6px; font-size:0.85rem; margin-bottom:8px;">
+    <input type="text" id="inp-phone" placeholder="Phone" style="width:100%; background:var(--card2); border:1px solid var(--border); color:var(--text); padding:8px 10px; border-radius:6px; font-size:0.85rem; margin-bottom:8px;">
+    <input type="text" id="inp-dog" placeholder="Dog name(s)" style="width:100%; background:var(--card2); border:1px solid var(--border); color:var(--text); padding:8px 10px; border-radius:6px; font-size:0.85rem; margin-bottom:8px;">
+    <input type="text" id="inp-area" placeholder="City / Area" style="width:100%; background:var(--card2); border:1px solid var(--border); color:var(--text); padding:8px 10px; border-radius:6px; font-size:0.85rem; margin-bottom:8px;">
+    <button onclick="addCustomer()" style="width:100%; background:var(--purple); color:#fff; border:none; border-radius:8px; padding:10px; font-size:0.9rem; font-weight:700; cursor:pointer;">Add Customer</button>
+  </div>
+
+  <div id="pipeline-list"></div>
+</div>
+
+<!-- TAB: CHECKLIST -->
+<div id="tab-checklist" class="panel pb-safe">
+  <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
+    <span style="font-size:0.85rem; color:var(--muted);">Progress</span>
+    <span id="cl-pct" style="font-size:0.85rem; font-weight:700; color:#a78bfa;">0 / 0 done</span>
+  </div>
+  <div class="progress-bar" style="margin-bottom:16px;"><div class="progress-fill" id="cl-bar" style="width:0%"></div></div>
+
+  <div class="section-title">🐣 Easter Sunday — Do This From The Driveway</div>
+  <div class="check-item" data-id="c1" onclick="toggleCheck('c1')"><div class="check-box">✓</div><div><div class="check-text">Send Victory Text to each cleanup customer</div><div class="check-sub">Plant the monthly seed BEFORE leaving their driveway</div></div></div>
+  <div class="check-item" data-id="c2" onclick="toggleCheck('c2')"><div class="check-box">✓</div><div><div class="check-text">Log every customer in the Pipeline tab</div><div class="check-sub">Name, phone, dog, area — you'll need these for follow-up</div></div></div>
+  <div class="check-item" data-id="c3" onclick="toggleCheck('c3')"><div class="check-box">✓</div><div><div class="check-text">Post Easter Victory Recap on FB + Nextdoor (Sun evening)</div><div class="check-sub">9 PM Sunday reaches people finishing their holiday — high engagement</div></div></div>
+
+  <div class="section-title">📞 Mon–Tue Apr 6–7 — Check-In</div>
+  <div class="check-item" data-id="c4" onclick="toggleCheck('c4')"><div class="check-box">✓</div><div><div class="check-text">Text CHECK-IN to every Easter customer by Tuesday</div><div class="check-sub">Use the "Day 1-2 Check-In" script from the Scripts tab</div></div></div>
+  <div class="check-item" data-id="c5" onclick="toggleCheck('c5')"><div class="check-box">✓</div><div><div class="check-text">Reopen Easter Sprint "Maybe" leads</div><div class="check-sub">People who didn't book — yard's been dirty 3-5 days, timing is perfect</div></div></div>
+  <div class="check-item" data-id="c6" onclick="toggleCheck('c6')"><div class="check-box">✓</div><div><div class="check-text">Post Monday/Tuesday social recap</div><div class="check-sub">Victory post with "monthly slots available" CTA</div></div></div>
+  <div class="check-item" data-id="c7" onclick="toggleCheck('c7')"><div class="check-box">✓</div><div><div class="check-text">Update Pipeline status for anyone who replied to check-in</div><div class="check-sub">Hot → bridge them to monthly immediately</div></div></div>
+
+  <div class="section-title">🔥 Wed–Fri Apr 8–10 — Direct Close (PEAK WINDOW)</div>
+  <div class="check-item" data-id="c8" onclick="toggleCheck('c8')"><div class="check-box">✓</div><div><div class="check-text">Send MONTHLY CLOSE text to all positive check-in responders</div><div class="check-sub">Use the "Direct Close" script — peak conversion day</div></div></div>
+  <div class="check-item" data-id="c9" onclick="toggleCheck('c9')"><div class="check-box">✓</div><div><div class="check-text">Follow up with anyone who said "let me think" during Easter sprint</div><div class="check-sub">3-5 days out = yard is getting messy again, peak motivation to commit</div></div></div>
+  <div class="check-item" data-id="c10" onclick="toggleCheck('c10')"><div class="check-box">✓</div><div><div class="check-text">Close at least 1 customer with locked route day</div><div class="check-sub">"Want me to hold Thursdays for you?" — get a verbal yes and lock in</div></div></div>
+  <div class="check-item" data-id="c11" onclick="toggleCheck('c11')"><div class="check-box">✓</div><div><div class="check-text">Update Pipeline — move converted leads to "Won"</div></div></div>
+
+  <div class="section-title">📅 Sat–Sun Apr 11–12 — Wrap Up</div>
+  <div class="check-item" data-id="c12" onclick="toggleCheck('c12')"><div class="check-box">✓</div><div><div class="check-text">Send Last Call text to all unclosed customers</div><div class="check-sub">Light-touch, no pressure — "spots filling up for May"</div></div></div>
+  <div class="check-item" data-id="c13" onclick="toggleCheck('c13')"><div class="check-box">✓</div><div><div class="check-text">Set Mother's Day nurture reminder for non-converts (Apr 14)</div><div class="check-sub">Not lost — just different timing. MD angle: "gift for mom with dogs"</div></div></div>
+  <div class="check-item" data-id="c14" onclick="toggleCheck('c14')"><div class="check-box">✓</div><div><div class="check-text">Do post-Easter review ask from new monthly converts</div><div class="check-sub">First service = perfect time. Text the review link right after "All Done" text</div></div></div>
+  <div class="check-item" data-id="c15" onclick="toggleCheck('c15')"><div class="check-box">✓</div><div><div class="check-text">Log final conversion count in task notes</div><div class="check-sub">Track Easter close rate to improve process next year</div></div></div>
+</div>
+
+<!-- TAB: MATH -->
+<div id="tab-math" class="panel pb-safe">
+  <div class="section-title">Easter Cleanup → Monthly Conversion Scenarios</div>
+
+  <div style="margin-bottom:16px;">
+    <label style="font-size:0.8rem; color:var(--muted); display:block; margin-bottom:6px;">How many Easter cleanups did you do?</label>
+    <input type="number" id="cleanup-count" min="1" max="50" value="5" oninput="updateMath()" style="background:var(--card2); border:1px solid var(--border); color:var(--text); padding:8px 12px; border-radius:8px; font-size:1rem; width:100px;">
+  </div>
+
+  <div class="math-grid">
+    <div class="math-card bear">
+      <div class="val" id="math-bear">$840</div>
+      <div class="lab">Bear (20% close)<br>LTV Revenue</div>
+    </div>
+    <div class="math-card base">
+      <div class="val" id="math-base">$2,520</div>
+      <div class="lab">Base (40% close)<br>LTV Revenue</div>
+    </div>
+    <div class="math-card bull">
+      <div class="val" id="math-bull">$4,200</div>
+      <div class="lab">Bull (60% close)<br>LTV Revenue</div>
+    </div>
+  </div>
+
+  <div class="card gold-card">
+    <h3>📊 Revenue Math</h3>
+    <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:10px; margin-top:8px;">
+      <div style="background:var(--card2); border-radius:8px; padding:12px;">
+        <div style="font-size:0.7rem; color:var(--muted); margin-bottom:4px;">MONTHLY VALUE</div>
+        <div style="font-size:1.2rem; font-weight:800; color:#fcd34d;" id="math-monthly">$210</div>
+        <div style="font-size:0.7rem; color:var(--muted);">base case MRR added</div>
+      </div>
+      <div style="background:var(--card2); border-radius:8px; padding:12px;">
+        <div style="font-size:0.7rem; color:var(--muted); margin-bottom:4px;">LTV PER CONVERT</div>
+        <div style="font-size:1.2rem; font-weight:800; color:#4ade80;">$840</div>
+        <div style="font-size:0.7rem; color:var(--muted);">$70/mo × 12mo avg</div>
+      </div>
+      <div style="background:var(--card2); border-radius:8px; padding:12px;">
+        <div style="font-size:0.7rem; color:var(--muted); margin-bottom:4px;">CAC (EASTER)</div>
+        <div style="font-size:1.2rem; font-weight:800; color:#a78bfa;">$0</div>
+        <div style="font-size:0.7rem; color:var(--muted);">already paid for cleanup</div>
+      </div>
+      <div style="background:var(--card2); border-radius:8px; padding:12px;">
+        <div style="font-size:0.7rem; color:var(--muted); margin-bottom:4px;">TIME TO CONVERT</div>
+        <div style="font-size:1.2rem; font-weight:800; color:#f87171;">7 days</div>
+        <div style="font-size:0.7rem; color:var(--muted);">then permanently recurring</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight-box">
+    <div class="icon">💡</div>
+    <h4>Why One-Time → Monthly is Your BEST Conversion</h4>
+    <p>Easter cleanup customers are the hottest leads you'll ever have. They:<br><br>
+    1. Already paid you (trust established)<br>
+    2. Just saw how good the yard looks (emotional peak)<br>
+    3. Haven't yet rationalized DIY-ing again<br>
+    4. Know exactly what they're buying<br><br>
+    A cold Nextdoor lead closes at ~25%. An Easter cleanup customer closes at 40-60%. Same offer. Zero extra ad spend. The difference is timing — and that window is 7 days.</p>
+  </div>
+
+  <div class="section-title">Path to 25 Customers</div>
+  <div class="card">
+    <h3 style="font-size:0.85rem; margin-bottom:10px;">Current Status + Easter Impact</h3>
+    <div class="timeline">
+      <div class="tl-item green">
+        <div class="tl-time">Current</div>
+        <div class="tl-title" id="math-current">11 customers</div>
+        <div class="tl-sub">$770/mo MRR</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">After Easter Conversion (base)</div>
+        <div class="tl-title" id="math-after">14 customers</div>
+        <div class="tl-sub" id="math-after-sub">+3 converts from 5 cleanups at 40%</div>
+      </div>
+      <div class="tl-item gold">
+        <div class="tl-time">May (with Mother's Day + ongoing)</div>
+        <div class="tl-title">17–19 customers</div>
+        <div class="tl-sub">4-5 more from MD campaign + organic</div>
+      </div>
+      <div class="tl-item red">
+        <div class="tl-time">August Goal</div>
+        <div class="tl-title">25–30 customers</div>
+        <div class="tl-sub">6–11 more from Bark in the Park + summer + referrals</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sticky-bar">
+  <div class="sticky-stat"><div class="sv" id="sb-converted">0</div><div class="sl">Converted</div></div>
+  <div class="sticky-stat"><div class="sv" id="sb-cleanups">?</div><div class="sl">Cleanups</div></div>
+  <div class="sticky-stat"><div class="sv" id="sb-ltv">$0</div><div class="sl">LTV Pipeline</div></div>
+  <div class="sticky-stat"><div class="sv" id="sb-checklist">0%</div><div class="sl">Checklist</div></div>
+</div>
+
+<script>
+  // ---- Tabs ----
+  function showTab(id) {
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+  }
+
+  // ---- Copy ----
+  function copyScript(id, btn) {
+    const text = document.getElementById(id).innerText;
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = '✅ Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = '📋 Copy'; btn.classList.remove('copied'); }, 2000);
+    });
+  }
+
+  // ---- Countdown to Apr 13 (end of conversion window) ----
+  function updateCountdown() {
+    const end = new Date('2026-04-13T00:00:00-05:00');
+    const now = new Date();
+    const diff = end - now;
+    if (diff <= 0) { document.getElementById('countdown-display').textContent = 'WINDOW CLOSED'; return; }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    document.getElementById('countdown-display').textContent = `${d}d ${h}h ${m}m`;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+
+  // ---- Checklist ----
+  const checks = {};
+  function loadChecks() {
+    const saved = JSON.parse(localStorage.getItem('easter-convert-checks') || '{}');
+    Object.assign(checks, saved);
+    document.querySelectorAll('.check-item').forEach(el => {
+      const id = el.dataset.id;
+      if (checks[id]) { el.classList.add('done'); el.querySelector('.check-box').textContent = '✓'; }
+      else { el.classList.remove('done'); el.querySelector('.check-box').textContent = ''; }
+    });
+    updateChecklistProgress();
+  }
+  function toggleCheck(id) {
+    checks[id] = !checks[id];
+    localStorage.setItem('easter-convert-checks', JSON.stringify(checks));
+    loadChecks();
+  }
+  function updateChecklistProgress() {
+    const total = document.querySelectorAll('.check-item').length;
+    const done = Object.values(checks).filter(Boolean).length;
+    const pct = total ? Math.round(done / total * 100) : 0;
+    document.getElementById('cl-pct').textContent = `${done} / ${total} done`;
+    document.getElementById('cl-bar').style.width = pct + '%';
+    document.getElementById('sb-checklist').textContent = pct + '%';
+    document.getElementById('kpi-progress').textContent = pct + '%';
+  }
+  loadChecks();
+
+  // ---- Pipeline ----
+  let pipeline = JSON.parse(localStorage.getItem('easter-pipeline') || '[]');
+  const STATUS_LABELS = ['New', 'Contacted', 'Interested', 'Converted', 'Pass'];
+  const STATUS_COLORS = ['#94a3b8', '#4ade80', '#fcd34d', '#f87171', '#475569'];
+
+  function addCustomer() {
+    const name = document.getElementById('inp-name').value.trim();
+    const phone = document.getElementById('inp-phone').value.trim();
+    const dog = document.getElementById('inp-dog').value.trim();
+    const area = document.getElementById('inp-area').value.trim();
+    if (!name) return;
+    pipeline.push({ id: Date.now(), name, phone, dog, area, status: 0 });
+    savePipeline();
+    document.getElementById('inp-name').value = '';
+    document.getElementById('inp-phone').value = '';
+    document.getElementById('inp-dog').value = '';
+    document.getElementById('inp-area').value = '';
+  }
+
+  function cycleStatus(id) {
+    const c = pipeline.find(c => c.id === id);
+    if (c) { c.status = (c.status + 1) % STATUS_LABELS.length; savePipeline(); }
+  }
+  function deleteCustomer(id) {
+    pipeline = pipeline.filter(c => c.id !== id);
+    savePipeline();
+  }
+
+  function savePipeline() {
+    localStorage.setItem('easter-pipeline', JSON.stringify(pipeline));
+    renderPipeline();
+    updateStats();
+  }
+
+  function renderPipeline() {
+    const list = document.getElementById('pipeline-list');
+    if (!pipeline.length) { list.innerHTML = '<div class="card" style="text-align:center; color:var(--muted); font-size:0.85rem;">No customers added yet. Add Easter cleanup customers above.</div>'; return; }
+    list.innerHTML = pipeline.map(c => `
+      <div class="card" style="margin-bottom:10px;">
+        <div style="display:flex; align-items:flex-start; justify-content:space-between; gap:10px;">
+          <div style="flex:1;">
+            <div style="font-weight:700; font-size:0.9rem;">${c.name}${c.dog ? ' · 🐾 ' + c.dog : ''}</div>
+            <div style="font-size:0.75rem; color:var(--muted); margin-top:2px;">${c.area}${c.phone ? ' · ' + c.phone : ''}</div>
+          </div>
+          <button onclick="cycleStatus(${c.id})" style="background:rgba(${STATUS_COLORS[c.status] === '#4ade80' ? '74,222,128' : STATUS_COLORS[c.status] === '#fcd34d' ? '252,211,77' : STATUS_COLORS[c.status] === '#f87171' ? '248,113,113' : '148,163,184'},0.2); color:${STATUS_COLORS[c.status]}; border:1px solid ${STATUS_COLORS[c.status]}44; border-radius:6px; padding:4px 10px; font-size:0.75rem; font-weight:700; cursor:pointer; white-space:nowrap;">${STATUS_LABELS[c.status]}</button>
+        </div>
+        <button onclick="deleteCustomer(${c.id})" style="margin-top:6px; background:rgba(220,38,38,0.1); color:#f87171; border:1px solid #dc262622; border-radius:4px; padding:3px 8px; font-size:0.7rem; cursor:pointer;">Remove</button>
+      </div>
+    `).join('');
+  }
+
+  function updateStats() {
+    const total = pipeline.length;
+    const contacted = pipeline.filter(c => c.status >= 1).length;
+    const interested = pipeline.filter(c => c.status >= 2).length;
+    const converted = pipeline.filter(c => c.status === 3).length;
+    document.getElementById('ct-total').textContent = total;
+    document.getElementById('ct-contacted').textContent = contacted;
+    document.getElementById('ct-interested').textContent = interested;
+    document.getElementById('ct-converted').textContent = converted;
+    const pct = total ? Math.round(converted / total * 100) : 0;
+    document.getElementById('pipeline-pct').textContent = pct + '%';
+    document.getElementById('pipeline-bar').style.width = pct + '%';
+    document.getElementById('sb-converted').textContent = converted;
+    document.getElementById('sb-cleanups').textContent = total || '?';
+    document.getElementById('sb-ltv').textContent = '$' + (converted * 840).toLocaleString();
+    document.getElementById('kpi-cleanups').textContent = total || '?';
+  }
+  renderPipeline();
+  updateStats();
+
+  // ---- Math Tab ----
+  function updateMath() {
+    const n = parseInt(document.getElementById('cleanup-count').value) || 5;
+    const bear = Math.round(n * 0.2) * 840;
+    const base = Math.round(n * 0.4) * 840;
+    const bull = Math.round(n * 0.6) * 840;
+    const baseConverts = Math.round(n * 0.4);
+    const baseMRR = baseConverts * 70;
+    document.getElementById('math-bear').textContent = '$' + bear.toLocaleString();
+    document.getElementById('math-base').textContent = '$' + base.toLocaleString();
+    document.getElementById('math-bull').textContent = '$' + bull.toLocaleString();
+    document.getElementById('math-monthly').textContent = '$' + baseMRR;
+    document.getElementById('math-current').textContent = '11 customers';
+    document.getElementById('math-after').textContent = (11 + baseConverts) + ' customers';
+    document.getElementById('math-after-sub').textContent = `+${baseConverts} converts from ${n} cleanups at 40%`;
+  }
+  updateMath();
+
+  // Update KPI from cleanup count input
+  document.addEventListener('DOMContentLoaded', () => {
+    const cl = document.getElementById('cleanup-count');
+    if (cl) cl.addEventListener('input', () => {
+      document.getElementById('kpi-cleanups').textContent = cl.value || '?';
+    });
+  });
+</script>
+</body>
+</html>
