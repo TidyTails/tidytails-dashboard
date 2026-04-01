@@ -3039,3 +3039,33 @@
   - **Revenue impact:** Currently capturing ~48% of inbound search. With all 7 directories: ~95%. Estimated +3-6 extra inbound calls/month at $0 recurring cost. Each new customer = $840 LTV. All 5 directories combined = $3,360-5,040/year in potential incremental LTV for 45 minutes of work.
   - **Why now:** Easter weekend is tomorrow. TJ has the tools to capture every Easter lead. The campaigns are all built. The one gap that's been sitting unchecked since March and has no time sensitivity is this directory claim — it benefits from being done any day but loses value every day it's not done (competitors could claim some of these). 5 PM Wednesday is perfect: Easter tools are live, all copy is done, and this is a zero-creative 45-minute execution task TJ or Jamie can do while watching TV tonight.
 
+
+---
+
+### Wednesday 6:07 PM — Easter Video Ad Launch Brief (Hourly Task)
+- **6:07 PM** 🎬 Built and published the **Easter Video Ad Launch Brief** — urgent deployment guide to get 3 finished Kling v1 videos into Facebook Ads before the Easter window closes
+  - **File:** `dashboard/easter-video-ad-launch.html` (37KB, 5-tab app)
+  - **Dashboard:** Added fastest-pulsing (0.6s) red quick link "🎬 EASTER VIDEO ADS — LAUNCH NOW (36-HR WINDOW CLOSING)" as #1 link in the quick links bar + critical-alert featured card above Easter FB Ad Burst in the Marketing section
+  - **Why this task:** Chief Oversight check #281 flagged this as the most urgent issue in the system: 3 Kling v1 videos (The Window View, The Count, The Barefoot Test) have been DONE since March 28 — 4 days ago. Cost ~$2.30 each to produce. Zero deploys. Zero FB impressions. Easter is Sunday April 5. FB requires 24–48 hours to review and approve video ads. The deployment window to have these live before the Easter egg hunt urgency peaks (Thu-Fri) closes **tonight or tomorrow morning**. Every hourly check for 6 days has flagged this. Tonight is the last viable upload window. If they don't go live by Thursday AM, they're useless for Easter 2026.
+  - **What's built:**
+    - **Tab 1 — Launch Steps (8 steps):** Zero ambiguity — Step 1 "Open Ads Manager" through Step 8 "Submit + Duplicate for Ad #3." Every step has the exact UI interaction, the correct file names, and the "don't touch your learning campaign" warning hard-baked in. TJ can do this in 20 minutes.
+    - **Tab 2 — Videos + Copy:** All 3 video cards with:
+      - File names (exact, copy-paste ready)
+      - Primary text (Easter-specific, pre-written for each video)
+      - Headlines
+      - In-video captions (timestamped, formatted for FB caption editor — critical for silent autoplay)
+      - Priority tags (Launch Now / Upload Tonight / Optional)
+      - Why each video works for Easter specifically
+    - **Tab 3 — Ad Settings:** Campaign name, budget ($7/day CBO), start/end dates (Apr 2–4, auto-stops), audience targeting (copy-paste interests field), placements. Plus rejection reasons + fixes (most FB video rejections have a 5-min fix if you know what to look for).
+    - **Tab 4 — Checklist:** 12-item deployment checklist with phase tags (NOW / THU AM / THU PM / FRI / SUN). localStorage persistence. Updates sticky status bar.
+    - **Tab 5 — ROI Math:** Bear/base/bull scenarios ($840/$1,680/$3,360 LTV), why video beats image (34% more impressions, 3× dwell time, zero STL competitor is running video), what happens if he doesn't run them (misses the 4× Easter peak window).
+  - **UX decisions:**
+    - **36-hour live countdown** to Easter egg hunt — creates internal urgency every time TJ opens the page
+    - **Ads Manager link in sticky bottom bar** — can't miss it, always visible
+    - **"This is a SEPARATE campaign" warning in red** — prevents the one catastrophic mistake of touching the learning-phase campaign
+    - **File paths copy-paste ready** — includes both the relative path and the note to search Finder for "ad2_window_view"
+  - **Why this over other options at 6 PM:** The Chief has flagged video deployment as CRITICAL or HIGH in every check for 6 days. All other pipeline tools are built. The only way these videos generate ROI is if they're in Ads Manager before FB's review clock starts tonight. Tomorrow (Apr 2) is the last possible upload day — if uploaded Thursday, they may not be approved before Friday evening, which leaves only Saturday (Easter eve) for delivery — the weakest day of the window. Tonight is the optimal upload window. This brief makes a 20-minute task out of a job that's been sitting undone for 4 days.
+  - **Revenue math:** $21–30 total spend × bear case (34×) = $840 LTV per customer. Base: 2 converts = $1,680 from $25 spend = 67× ROAS. Bull: 4 converts = $3,360 from $30 spend = 112× ROAS. These videos already exist — the production cost is sunk. Running them costs $0 more to produce. Not running them is leaving $840–3,360 on the table.
+  - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/easter-video-ad-launch.html
+  - **Git commit:** `9605ab57` ✅ pushed to tidytails-dashboard
+
