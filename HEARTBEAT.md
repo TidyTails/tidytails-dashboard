@@ -27,7 +27,15 @@
 - Check STL weather if it could affect scooping schedule
 - Rain = potential reschedule notification
 
-### 6. Blog/SEO Auto-Deploy (EVERY HEARTBEAT)
+### 6. Phone Compliance Auto-Check (EVERY HEARTBEAT)
+- Run: `git -C ~/tidy-tails diff --name-only HEAD~3..HEAD 2>/dev/null | grep ".html$"` (or check dashboard/)
+- For each new .html file committed in last 24h, verify it contains at least one phone number
+- Tidy Tails pages: must contain `314-850-7140` or `850-7140`
+- Sheds pages: must contain `636-354-7406` or `354-7406`
+- If missing: add footer block `📱 Text or call (314) 850-7140 — Jamie` before `</body>` and commit
+- **Why:** Chief catches this every 2 hours. We should catch it immediately.
+
+### 7. Blog/SEO Auto-Deploy (EVERY HEARTBEAT)
 - Check for any untracked .html files in `tidy-tails/website/blog/` or `tidy-tails/website/`
 - Run: `cd ~/tidy-tails && git status --short | grep "^??" | grep ".html"`
 - If any untracked HTML files found: `git add <file> && git commit -m "deploy: <filename> SEO page" && git push origin main`
