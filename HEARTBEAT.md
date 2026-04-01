@@ -14,6 +14,7 @@
 - Check if any follow-up reminders are due (cron jobs or memory notes)
 - Check `memory/customers/database.json` for overdue check-ins (>14 days)
 - If TJ forwarded any lead screenshots recently, ensure they're logged
+- **Commercial lead cadence:** Check `memory/commercial-lead-tracker.json` — flag any leads where `last_contacted` is >7 days ago or still null (never contacted). Surface top 3 overdue leads to TJ during his active window (4-6 PM weekdays). Update `last_contacted` when TJ reports making a call.
 
 ### 3. Email Check
 - Scan for urgent unread messages
