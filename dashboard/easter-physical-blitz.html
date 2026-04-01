@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐣 Easter Physical Blitz — Door Hangers + Drop Map | Tidy Tails</title>
+<style>
+  :root {
+    --purple: #7c3aed;
+    --purple-light: #a78bfa;
+    --green: #059669;
+    --amber: #d97706;
+    --red: #dc2626;
+    --bg: #0f0f12;
+    --card: #1a1a24;
+    --border: #2d2d3d;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --egg-yellow: #fbbf24;
+    --egg-pink: #f472b6;
+    --egg-blue: #60a5fa;
+    --egg-green: #34d399;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; }
+  
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #581c87 0%, #7c3aed 50%, #a855f7 100%);
+    padding: 24px 20px 20px;
+    text-align: center;
+    border-bottom: 3px solid var(--egg-yellow);
+  }
+  .header h1 { font-size: 1.8rem; font-weight: 800; }
+  .header h1 span { color: var(--egg-yellow); }
+  .header p { color: #e9d5ff; margin-top: 8px; font-size: 0.95rem; }
+  .countdown-bar {
+    display: flex; gap: 12px; justify-content: center; margin-top: 16px; flex-wrap: wrap;
+  }
+  .countdown-chip {
+    background: rgba(0,0,0,0.4); border-radius: 8px; padding: 8px 16px;
+    font-size: 1.1rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.2);
+  }
+  .countdown-chip span { display: block; font-size: 0.65rem; font-weight: 400; color: #c4b5fd; text-transform: uppercase; letter-spacing: 0.05em; }
+  .urgency-banner {
+    background: #7f1d1d; border: 2px solid #ef4444; border-radius: 8px;
+    padding: 10px 16px; margin: 12px auto 0; max-width: 600px;
+    font-size: 0.85rem; color: #fca5a5; font-weight: 600;
+  }
+
+  /* TABS */
+  .tabs { display: flex; overflow-x: auto; background: #111118; border-bottom: 2px solid var(--border); }
+  .tab { padding: 14px 20px; cursor: pointer; font-size: 0.85rem; font-weight: 600; white-space: nowrap; color: var(--muted); border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .tab:hover { color: var(--text); background: rgba(255,255,255,0.04); }
+  .tab.active { color: var(--purple-light); border-bottom-color: var(--purple-light); }
+  .tab-content { display: none; padding: 20px; max-width: 900px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  /* CARDS */
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+  .card h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; color: var(--purple-light); }
+
+  /* PRIORITY BADGES */
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+  .badge-red { background: #7f1d1d; color: #fca5a5; }
+  .badge-amber { background: #78350f; color: #fcd34d; }
+  .badge-green { background: #064e3b; color: #6ee7b7; }
+  .badge-purple { background: #4c1d95; color: #c4b5fd; }
+
+  /* TIMELINE */
+  .timeline-item { display: flex; gap: 16px; margin-bottom: 18px; align-items: flex-start; }
+  .timeline-dot { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+  .timeline-dot.red { background: #7f1d1d; border: 2px solid #ef4444; }
+  .timeline-dot.amber { background: #78350f; border: 2px solid #f59e0b; }
+  .timeline-dot.green { background: #064e3b; border: 2px solid #10b981; }
+  .timeline-dot.purple { background: #4c1d95; border: 2px solid #a78bfa; }
+  .timeline-body h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+  .timeline-body p { font-size: 0.85rem; color: var(--muted); line-height: 1.5; }
+  .timeline-body ul { font-size: 0.85rem; color: var(--muted); margin-left: 18px; margin-top: 4px; }
+  .timeline-body ul li { margin-bottom: 3px; }
+
+  /* NEIGHBORHOODS */
+  .hood-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+  .hood-card { background: #111118; border: 1px solid var(--border); border-radius: 10px; padding: 14px; }
+  .hood-card h4 { font-size: 0.9rem; font-weight: 700; margin-bottom: 6px; }
+  .hood-card .zip { font-size: 0.75rem; color: var(--muted); margin-bottom: 8px; }
+  .hood-card .why { font-size: 0.8rem; color: #a3e635; font-style: italic; margin-bottom: 8px; }
+  .hood-card .streets { font-size: 0.78rem; color: var(--muted); }
+  .hood-card .drop-count { display: flex; align-items: center; gap: 6px; margin-top: 10px; }
+  .hood-card .drop-count input { width: 50px; background: var(--bg); border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: 4px 8px; font-size: 0.85rem; text-align: center; }
+  .hood-card .drop-count label { font-size: 0.8rem; color: var(--muted); }
+  .priority-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+  .priority-dot.high { background: #ef4444; }
+  .priority-dot.med { background: #f59e0b; }
+  .priority-dot.low { background: #10b981; }
+
+  /* PRINT AREA */
+  .print-card {
+    background: white; color: #111; border-radius: 12px; padding: 0; overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5); margin-bottom: 24px;
+  }
+  .hanger-front {
+    background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+    color: white; padding: 28px 24px 24px; text-align: center; position: relative;
+  }
+  .hanger-front .hole { width: 32px; height: 32px; border-radius: 50%; background: white; margin: 0 auto 16px; }
+  .hanger-front .headline { font-size: 1.5rem; font-weight: 900; line-height: 1.2; margin-bottom: 8px; }
+  .hanger-front .sub { font-size: 0.95rem; opacity: 0.9; margin-bottom: 16px; }
+  .hanger-front .offer-box {
+    background: var(--egg-yellow); color: #1c1917; border-radius: 12px;
+    padding: 14px; margin-bottom: 16px;
+  }
+  .hanger-front .offer-box .big { font-size: 1.4rem; font-weight: 900; }
+  .hanger-front .offer-box .small { font-size: 0.8rem; font-weight: 600; }
+  .hanger-front .egg-row { display: flex; justify-content: center; gap: 8px; margin: 10px 0; font-size: 1.8rem; }
+  .hanger-front .cta { font-size: 0.95rem; font-weight: 700; margin-top: 10px; }
+  .hanger-front .phone { font-size: 1.3rem; font-weight: 900; letter-spacing: 0.05em; }
+  .hanger-back {
+    background: white; color: #1c1917; padding: 22px 22px 24px;
+  }
+  .hanger-back .headline { font-size: 1.1rem; font-weight: 800; margin-bottom: 14px; color: #7c3aed; }
+  .hanger-back .features { margin-bottom: 14px; }
+  .hanger-back .feature-item { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 8px; font-size: 0.85rem; color: #374151; }
+  .hanger-back .feature-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: -1px; }
+  .hanger-back .price-strip {
+    background: #f9fafb; border: 2px solid #e5e7eb; border-radius: 8px;
+    padding: 12px; margin-bottom: 14px;
+  }
+  .hanger-back .price-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; padding: 3px 0; border-bottom: 1px solid #e5e7eb; }
+  .hanger-back .price-row:last-child { border-bottom: none; }
+  .hanger-back .price-row strong { color: #1c1917; }
+  .hanger-back .price-row .price { font-weight: 700; color: #7c3aed; }
+  .hanger-back .footer { background: #7c3aed; color: white; border-radius: 8px; padding: 10px 14px; text-align: center; font-size: 0.85rem; font-weight: 600; }
+  .hanger-back .footer span { display: block; font-size: 0.75rem; opacity: 0.85; margin-top: 2px; }
+  .two-up { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .print-note { background: #1a1a24; border: 1px dashed var(--purple); border-radius: 8px; padding: 12px 16px; font-size: 0.85rem; color: var(--muted); margin-bottom: 16px; }
+  .print-btn { background: var(--purple); color: white; border: none; border-radius: 8px; padding: 12px 24px; font-size: 0.9rem; font-weight: 700; cursor: pointer; display: block; margin: 0 auto 20px; }
+  .print-btn:hover { background: #6d28d9; }
+
+  /* SCRIPTS */
+  .script-block { background: #111118; border: 1px solid var(--border); border-left: 4px solid var(--purple); border-radius: 8px; padding: 14px; margin-bottom: 14px; }
+  .script-block h4 { font-size: 0.85rem; font-weight: 700; color: var(--purple-light); margin-bottom: 8px; }
+  .script-text { font-size: 0.88rem; color: #cbd5e1; line-height: 1.6; white-space: pre-wrap; }
+  .copy-btn { background: #1e1b4b; border: 1px solid #4c1d95; color: #a5b4fc; border-radius: 6px; padding: 6px 14px; font-size: 0.78rem; cursor: pointer; margin-top: 8px; font-weight: 600; }
+  .copy-btn:hover { background: #312e81; }
+  .copy-btn.copied { background: #064e3b; border-color: #065f46; color: #6ee7b7; }
+
+  /* CHECKLIST */
+  .check-group { margin-bottom: 20px; }
+  .check-group h3 { font-size: 0.9rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .check-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(45,45,61,0.5); }
+  .check-item:last-child { border-bottom: none; }
+  .check-item input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; margin-top: 2px; cursor: pointer; accent-color: var(--purple); }
+  .check-item label { font-size: 0.88rem; color: var(--text); cursor: pointer; line-height: 1.5; }
+  .check-item label.done { text-decoration: line-through; color: var(--muted); }
+  .progress-bar-wrap { background: var(--border); border-radius: 20px; height: 8px; margin-bottom: 20px; overflow: hidden; }
+  .progress-bar-fill { background: linear-gradient(90deg, var(--purple), var(--purple-light)); height: 100%; border-radius: 20px; transition: width 0.4s ease; }
+  .progress-label { font-size: 0.82rem; color: var(--muted); margin-bottom: 8px; display: flex; justify-content: space-between; }
+
+  /* WIN MATH */
+  .math-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+  .math-card { background: #111118; border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .math-card .big { font-size: 1.8rem; font-weight: 900; }
+  .math-card .lbl { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+  .math-card.green { border-color: #065f46; }
+  .math-card.green .big { color: #34d399; }
+  .math-card.amber { border-color: #92400e; }
+  .math-card.amber .big { color: #fbbf24; }
+  .math-card.purple { border-color: #4c1d95; }
+  .math-card.purple .big { color: #a78bfa; }
+
+  /* STAT BAR */
+  .stat-bar { background: #111118; border-top: 2px solid var(--border); position: sticky; bottom: 0; display: flex; justify-content: space-around; padding: 10px; flex-wrap: wrap; gap: 8px; }
+  .stat-chip { font-size: 0.8rem; font-weight: 700; color: var(--muted); }
+  .stat-chip span { color: var(--text); }
+
+  @media (max-width: 600px) {
+    .two-up { grid-template-columns: 1fr; }
+    .hood-grid { grid-template-columns: 1fr; }
+    .math-grid { grid-template-columns: 1fr 1fr; }
+    .header h1 { font-size: 1.4rem; }
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: white; color: black; }
+    .header, .tabs, .tab-content:not(#tab-print), .stat-bar { display: none !important; }
+    #tab-print { display: block !important; padding: 0 !important; }
+    .print-btn, .print-note, #tab-print > h2, #tab-print > p { display: none !important; }
+    .print-card { box-shadow: none; border: none; }
+    .two-up { page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🐣 Easter Physical <span>Blitz Kit</span></h1>
+  <p>Print door hangers · Drop Thursday & Friday · Convert before Sunday</p>
+  <div class="countdown-bar">
+    <div class="countdown-chip"><span>Easter Sunday</span>April 5</div>
+    <div class="countdown-chip" id="days-chip"><span>Days Out</span>—</div>
+    <div class="countdown-chip"><span>Drop Window</span>Thu Apr 3 + Fri Apr 4</div>
+    <div class="countdown-chip"><span>Hangers Needed</span>50–75</div>
+  </div>
+  <div class="urgency-banner">
+    🚨 Parents are Googling "clean yard before Easter" RIGHT NOW — physical hangers in fenced yards convert 3–5x better than cold FB posts during holiday weeks
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('strategy')">📋 Strategy</div>
+  <div class="tab" onclick="showTab('neighborhoods')">📍 Drop Zones</div>
+  <div class="tab" onclick="showTab('print')">🖨️ Print Hangers</div>
+  <div class="tab" onclick="showTab('scripts')">💬 Response Scripts</div>
+  <div class="tab" onclick="showTab('checklist')">✅ Checklist</div>
+</div>
+
+<!-- TAB: STRATEGY -->
+<div id="tab-strategy" class="tab-content active">
+
+  <div class="card" style="border-color: #7c3aed; border-width: 2px;">
+    <h2>🎯 Why Physical This Week</h2>
+    <p style="font-size:0.9rem; color:var(--muted); line-height:1.7;">
+      Easter is one of 3 days per year when the average homeowner is <strong style="color:var(--text)">actively thinking about their backyard</strong>. Parents set up egg hunts. Grandparents visit. Kids roll in the grass. A door hanger on Thursday or Friday hits the exact moment someone is walking around their yard saying "…I should clean this up."
+    </p>
+    <div class="math-grid" style="margin-top:16px;">
+      <div class="math-card amber">
+        <div class="big">3 days</div>
+        <div class="lbl">to Easter Sunday Apr 5</div>
+      </div>
+      <div class="math-card green">
+        <div class="big">$0</div>
+        <div class="lbl">ad spend. Just printing + driving.</div>
+      </div>
+      <div class="math-card purple">
+        <div class="big">$840</div>
+        <div class="lbl">LTV per customer converted</div>
+      </div>
+      <div class="math-card amber">
+        <div class="big">2–3%</div>
+        <div class="lbl">door hanger response rate (vs 0.1% cold mail)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📅 Physical Blitz Timeline</h2>
+    
+    <div class="timeline-item">
+      <div class="timeline-dot red">🖨️</div>
+      <div class="timeline-body">
+        <h4>Tonight (Wed Apr 1, after midnight) — PRINT</h4>
+        <ul>
+          <li>Print 40–50 copies of Hanger A (standard) on cardstock — 20–25 sheets</li>
+          <li>Print 10–15 copies of Orphan Hanger B if in North County zones</li>
+          <li>Print 1 sheet of business cards (10-up) to tuck inside hanger holes</li>
+          <li>Cut, fold, stack by zone. Takes 30 min.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot amber">🚗</div>
+      <div class="timeline-body">
+        <h4>Thursday Apr 3, 10 AM–12 PM — DROP ZONE 1 (South County)</h4>
+        <ul>
+          <li><strong>Primary target:</strong> Crestwood / Kirkwood / Webster Groves — TJ just did the Paw-ty here. These neighbors saw him at the vet event. Physical hanger = instant recognition boost.</li>
+          <li>Look for: fenced yards, dog toys visible, "Beware of Dog" signs, dog bowls on porch, dog runs</li>
+          <li>Skip: apartments, no-yard townhomes, no visible dog indicators</li>
+          <li>Goal: 25–30 hangers dropped in 90 min</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot amber">🚗</div>
+      <div class="timeline-body">
+        <h4>Thursday Apr 3, 2–4 PM OR Friday Apr 4 — DROP ZONE 2 (North County)</h4>
+        <ul>
+          <li><strong>Primary target:</strong> Florissant / Hazelwood — the NC campaign zone. Any dog-owning home seeing TJ's FB posts this week + gets a physical hanger = double-tap strategy.</li>
+          <li>Orphaned customer angle: Hang Hanger B specifically on blocks where Dog Doody Defenders used to service (older homes in 63031, chain-link fenced yards)</li>
+          <li>Goal: 25–30 more hangers</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot green">📱</div>
+      <div class="timeline-body">
+        <h4>Friday Eve & Saturday — RESPOND FAST</h4>
+        <ul>
+          <li>People text/call after finding hangers Thursday evening + Friday morning</li>
+          <li>Easter eve = panic-mode: same-day cleanup inquiries</li>
+          <li>Reply within 5 min for maximum close rate</li>
+          <li>Offer "Saturday one-time cleanup" for Easter panic-bookers</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-dot purple">🐣</div>
+      <div class="timeline-body">
+        <h4>Sunday Apr 5 (Easter) — CLOSE + CONVERT</h4>
+        <ul>
+          <li>Anyone who booked a one-time cleanup → send monthly pitch after the job</li>
+          <li>One-time $75 → "Now that you've seen what it's like, want to never deal with it again?" → Monthly $70</li>
+          <li>Ask every Easter customer for a Google review</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🐕 What Makes This Work</h2>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+      <div style="background:#111118; border-radius:8px; padding:14px; border:1px solid var(--border);">
+        <div style="font-size:1.3rem; margin-bottom:6px;">👶</div>
+        <div style="font-size:0.85rem; font-weight:700; margin-bottom:4px;">Kids + Eggs = Urgency</div>
+        <div style="font-size:0.8rem; color:var(--muted);">A parent prepping an egg hunt will book same-day if you offer it. The cost of NOT doing it (toddler face-planting near dog waste) is vivid and immediate.</div>
+      </div>
+      <div style="background:#111118; border-radius:8px; padding:14px; border:1px solid var(--border);">
+        <div style="font-size:1.3rem; margin-bottom:6px;">🎯</div>
+        <div style="font-size:0.85rem; font-weight:700; margin-bottom:4px;">Hyper-Targeted</div>
+        <div style="font-size:0.8rem; color:var(--muted);">Every hanger goes on a house with visible dog evidence. 80%+ are actual dog owners — vs. 20–30% on cold Nextdoor posts.</div>
+      </div>
+      <div style="background:#111118; border-radius:8px; padding:14px; border:1px solid var(--border);">
+        <div style="font-size:1.3rem; margin-bottom:6px;">📲</div>
+        <div style="font-size:0.85rem; font-weight:700; margin-bottom:4px;">Zero Competition</div>
+        <div style="font-size:0.8rem; color:var(--muted);">None of TJ's 8 competitors are doing physical blitzes. A hanger on the door is 100% share of mind at the moment they look at their messy yard.</div>
+      </div>
+      <div style="background:#111118; border-radius:8px; padding:14px; border:1px solid var(--border);">
+        <div style="font-size:1.3rem; margin-bottom:6px;">🔄</div>
+        <div style="font-size:0.85rem; font-weight:700; margin-bottom:4px;">Doubles the Digital</div>
+        <div style="font-size:0.8rem; color:var(--muted);">Someone who's already seen TJ's FB/Nextdoor posts AND gets a physical hanger converts at 3–5x the rate of either channel alone.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>💰 Win Math</h2>
+    <div class="math-grid">
+      <div class="math-card">
+        <div class="big" style="color:#94a3b8; font-size:1.1rem;">50 hangers</div>
+        <div class="lbl">dropped Thu/Fri at ~$0.15/ea = $7.50 materials</div>
+      </div>
+      <div class="math-card amber">
+        <div class="big">2%</div>
+        <div class="lbl">response = 1 lead per 50 hangers</div>
+      </div>
+      <div class="math-card green">
+        <div class="big">3–4%</div>
+        <div class="lbl">Easter week response (holiday urgency spike)</div>
+      </div>
+    </div>
+    <div style="background:#111118; border-radius:8px; padding:16px; margin-top:14px; font-size:0.88rem; line-height:1.7; color:var(--muted);">
+      <strong style="color:var(--text);">Conservative:</strong> 50 hangers × 2% = 1 response × 50% close = 1 one-time ($75) + 40% monthly conversion = $70/mo × 18mo avg = <strong style="color:#34d399;">$1,305 LTV from 50 hangers</strong><br><br>
+      <strong style="color:var(--text);">Base:</strong> 75 hangers × 3% = 2.25 responses × 60% close = 2 one-time ($150) → 1 monthly ($840 LTV) = <strong style="color:#34d399;">$990 return on $11 materials</strong><br><br>
+      <strong style="color:var(--text);">Bull:</strong> 75 hangers + 2 Nextdoor posts same day = 4 leads × 60% close = 3 one-time + 2 monthly → <strong style="color:#34d399;">$1,800+ Easter week</strong>
+    </div>
+  </div>
+
+</div>
+
+<!-- TAB: NEIGHBORHOODS -->
+<div id="tab-neighborhoods" class="tab-content">
+
+  <div class="card">
+    <h2>📍 Drop Zones — Prioritized</h2>
+    <p style="font-size:0.85rem; color:var(--muted); margin-bottom:16px;">
+      Hit high-priority (red dot) zones first. These have the highest dog-owner density AND the most brand recognition from TJ's existing posts. Dog identification signals to look for: fenced backyard, dog toys visible, dog house, "Beware of Dog" sign, dog kennel, multiple water bowls.
+    </p>
+    <div class="hood-grid">
+
+      <div class="hood-card" style="border-color:#7f1d1d; border-width:2px;">
+        <h4><span class="priority-dot high"></span>Crestwood (63126)</h4>
+        <div class="zip">ZIP: 63126 | South County</div>
+        <div class="why">🎯 Paw-ty city. People already know TJ's name. Hanger = double-tap.</div>
+        <div class="streets">Watson Rd corridor, Sappington Rd, Whitecliff area, Big Bend/Kirkwood border</div>
+        <div class="drop-count">
+          <input type="number" id="h-crestwood" value="0" min="0" onchange="saveDrops()">
+          <label>hangers dropped</label>
+        </div>
+      </div>
+
+      <div class="hood-card" style="border-color:#7f1d1d; border-width:2px;">
+        <h4><span class="priority-dot high"></span>Kirkwood (63122)</h4>
+        <div class="zip">ZIP: 63122 | South County</div>
+        <div class="why">🎯 Highest dog-owner density in South County. Blog post live. Easter egg hunt culture strong.</div>
+        <div class="streets">Kirkwood Park area, Woodlawn, Big Bend corridor, Denny Park blocks</div>
+        <div class="drop-count">
+          <input type="number" id="h-kirkwood" value="0" min="0" onchange="saveDrops()">
+          <label>hangers dropped</label>
+        </div>
+      </div>
+
+      <div class="hood-card" style="border-color:#7f1d1d; border-width:2px;">
+        <h4><span class="priority-dot high"></span>Florissant (63031/63033)</h4>
+        <div class="zip">ZIP: 63031 / 63033 | North County</div>
+        <div class="why">🎯 NC Campaign week 1. Zero competitors. Orphaned customers everywhere. Use Hanger B here.</div>
+        <div class="streets">Harlem Ave corridor, Howdershell Rd area, 63033 neighborhoods near Hwy 270</div>
+        <div class="drop-count">
+          <input type="number" id="h-florissant" value="0" min="0" onchange="saveDrops()">
+          <label>hangers dropped</label>
+        </div>
+      </div>
+
+      <div class="hood-card" style="border-color:#78350f; border-width:1px;">
+        <h4><span class="priority-dot med"></span>Webster Groves (63119)</h4>
+        <div class="zip">ZIP: 63119 | South County</div>
+        <div class="why">⚡ Paw-ty adjacent. Old Webster dog culture. High-income homeowners who don't price-shop.</div>
+        <div class="streets">Old Webster / Lockwood Ave, Tuxedo Park, Webster Hills, Big Bend / Elm</div>
+        <div class="drop-count">
+          <input type="number" id="h-webster" value="0" min="0" onchange="saveDrops()">
+          <label>hangers dropped</label>
+        </div>
+      </div>
+
+      <div class="hood-card" style="border-color:#78350f; border-width:1px;">
+        <h4><span class="priority-dot med"></span>Hazelwood (63042)</h4>
+        <div class="zip">ZIP: 63042 | North County</div>
+        <div class="why">⚡ NC-2 already hit Facebook groups this week. Physical hanger = 3rd touchpoint = massive close rate.</div>
+        <div class="streets">Dunn Rd, Lindbergh-Florissant Rd, McDonnell Blvd residential blocks</div>
+        <div class="drop-count">
+          <input type="number" id="h-hazelwood" value="0" min="0" onchange="saveDrops()">
+          <label>hangers dropped</label>
+        </div>
+      </div>
+
+      <div class="hood-card" style="border-color:#78350f; border-width:1px;">
+        <h4><span class="priority-dot med"></span>Affton (63123)</h4>
+        <div class="zip">ZIP: 63123 | South County</div>
+        <div class="why">⚡ Mid-century fenced yards. Lots of multi-dog households. Close to existing customer routes.</div>
+        <div class="streets">Gravois Rd corridor, MacKenzie Rd area, near Crestwood border blocks</div>
+        <div class="drop-count">
+          <input type="number" id="h-affton" value="0" min="0" onchange="saveDrops()">
+          <label>hangers dropped</label>
+        </div>
+      </div>
+
+      <div class="hood-card">
+        <h4><span class="priority-dot low"></span>Maplewood (63143)</h4>
+        <div class="zip">ZIP: 63143 | Central County</div>
+        <div class="why">🟢 Dense dog owner culture. Manchester Ave community. Small yards fill up fast.</div>
+        <div class="streets">Manchester Ave corridor, Sutton Ave, near Brentwood border</div>
+        <div class="drop-count">
+          <input type="number" id="h-maplewood" value="0" min="0" onchange="saveDrops()">
+          <label>hangers dropped</label>
+        </div>
+      </div>
+
+      <div class="hood-card">
+        <h4><span class="priority-dot low"></span>Mehlville (63125)</h4>
+        <div class="zip">ZIP: 63125 | South County</div>
+        <div class="why">🟢 Large zip, lots of working-class dog owners. Less competitive. Spring cleanup urgent.</div>
+        <div class="streets">Lemay Ferry Rd area, Mehlville core blocks, near Oakville border</div>
+        <div class="drop-count">
+          <input type="number" id="h-mehlville" value="0" min="0" onchange="saveDrops()">
+          <label>hangers dropped</label>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🐕 Dog Identification Guide</h2>
+    <p style="font-size:0.85rem; color:var(--muted); margin-bottom:14px;">Only hang where you're 80%+ confident a dog lives. This boosts response rate 3–4x vs. random drops.</p>
+    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+      <div style="background:#064e3b; border:1px solid #065f46; border-radius:8px; padding:12px; font-size:0.83rem;">
+        <div style="font-weight:700; color:#34d399; margin-bottom:6px;">✅ Strong dog signals — HANG HERE</div>
+        Fenced backyard visible · Dog run or kennel · "Beware of Dog" sign · Dog toys visible · Dog water bowl on porch · Dog door · Multiple dog bowls · Poop bags on fence
+      </div>
+      <div style="background:#7f1d1d; border:1px solid #991b1b; border-radius:8px; padding:12px; font-size:0.83rem;">
+        <div style="font-weight:700; color:#fca5a5; margin-bottom:6px;">❌ Skip these</div>
+        No fence at all · Apartment / condo · No yard access · "No Soliciting" sign · HOA-managed common entry · Already has a service truck out front · Newly vacant / for sale
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🚗 Efficient Drop Route Tips</h2>
+    <ul style="font-size:0.85rem; color:var(--muted); line-height:1.9; margin-left:18px;">
+      <li><strong style="color:var(--text);">Cluster by block, not by address.</strong> Walk both sides of a block before moving the car. 30–40 hangers per hour this way.</li>
+      <li><strong style="color:var(--text);">Afternoon drops outperform morning.</strong> People are home after 3 PM — they see it immediately and text same-day.</li>
+      <li><strong style="color:var(--text);">Fenced corner lots = jackpot.</strong> Big yards visible from two directions. If there's a fence, there's probably a dog.</li>
+      <li><strong style="color:var(--text);">Park once per block.</strong> Walk the whole block, hang 4–8 hangers, back to car. Don't idle/creep — looks suspicious.</li>
+      <li><strong style="color:var(--text);">Don't put in mailboxes.</strong> That's a federal offense. Door handles, gate handles, fence posts, front door handles only.</li>
+      <li><strong style="color:var(--text);">Photo log optional.</strong> Snap a street sign at the start of each block you finish — easy record if anyone asks what streets you covered.</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- TAB: PRINT -->
+<div id="tab-print" class="tab-content">
+
+  <h2 style="font-size:1.1rem; margin-bottom:8px; color:var(--text);">🖨️ Printable Door Hangers</h2>
+  <p style="font-size:0.85rem; color:var(--muted); margin-bottom:16px;">Print on cardstock (65lb+). Each sheet prints 2 hangers. Cut down the middle. Use the hole at the top to hang on door handles or fence posts.</p>
+
+  <div class="print-note">
+    💡 <strong>Printing tip:</strong> Select "Fit to Page" or "Scale: 100%" in print dialog. Use cardstock or heavy paper (65–110lb). Cut with scissors or paper cutter. For 50 hangers, print 25 sheets of Hanger A.
+  </div>
+  <button class="print-btn" onclick="window.print()">🖨️ Print These Hangers</button>
+
+  <!-- HANGER A: STANDARD -->
+  <div style="font-size:0.85rem; font-weight:700; color:var(--purple-light); margin-bottom:10px; text-align:center;">— HANGER A: STANDARD (Print 20–25 sheets = 40–50 hangers) —</div>
+  <div class="two-up">
+    <div class="print-card">
+      <div class="hanger-front">
+        <div class="hole"></div>
+        <div class="egg-row">🐣 🥚 🐾 🥚 🐣</div>
+        <div class="headline">Easter Egg Hunt This Weekend?</div>
+        <div class="sub">Make sure your yard is actually ready.</div>
+        <div class="offer-box">
+          <div class="big">First Cleanup FREE</div>
+          <div class="small">with any monthly service — mention EASTER25</div>
+        </div>
+        <div style="font-size:0.82rem; opacity:0.85; margin-bottom:6px;">Weekly from <strong>$70/month flat</strong><br>No contracts · No per-dog fees · Local STL owner</div>
+        <div class="cta">Text or Call Today:</div>
+        <div class="phone">(314) 850-7140</div>
+        <div style="font-size:0.78rem; margin-top:8px; opacity:0.75;">tidytailsstl.com</div>
+      </div>
+      <div class="hanger-back">
+        <div class="headline">Why Families Choose Tidy Tails</div>
+        <div class="features">
+          <div class="feature-item"><div class="feature-icon">📱</div><div><strong>"On My Way" text</strong> before every visit — no guessing when we'll arrive</div></div>
+          <div class="feature-item"><div class="feature-icon">💰</div><div><strong>$70/month flat</strong> — 1 dog or 5 dogs, same price</div></div>
+          <div class="feature-item"><div class="feature-icon">🚫</div><div><strong>No contracts</strong> — cancel any time, no questions asked</div></div>
+          <div class="feature-item"><div class="feature-icon">🏠</div><div><strong>Local owner</strong> — not a franchise, direct line to TJ</div></div>
+          <div class="feature-item"><div class="feature-icon">✅</div><div><strong>"All Done" text</strong> with confirmation after every visit</div></div>
+        </div>
+        <div class="price-strip">
+          <div class="price-row"><strong>Weekly · 1–2 dogs</strong><div class="price">$70/mo</div></div>
+          <div class="price-row"><strong>Weekly · 3–4 dogs</strong><div class="price">$80/mo</div></div>
+          <div class="price-row"><strong>Bi-Weekly</strong><div class="price">$45/visit</div></div>
+          <div class="price-row"><strong>One-Time Easter Cleanup</strong><div class="price">$75</div></div>
+        </div>
+        <div class="footer">
+          Text "EASTER25" to (314) 850-7140 for your FREE first cleanup
+          <span>Offer valid through April 15, 2026 · St. Louis area</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="print-card">
+      <div class="hanger-front">
+        <div class="hole"></div>
+        <div class="egg-row">🐣 🥚 🐾 🥚 🐣</div>
+        <div class="headline">Easter Egg Hunt This Weekend?</div>
+        <div class="sub">Make sure your yard is actually ready.</div>
+        <div class="offer-box">
+          <div class="big">First Cleanup FREE</div>
+          <div class="small">with any monthly service — mention EASTER25</div>
+        </div>
+        <div style="font-size:0.82rem; opacity:0.85; margin-bottom:6px;">Weekly from <strong>$70/month flat</strong><br>No contracts · No per-dog fees · Local STL owner</div>
+        <div class="cta">Text or Call Today:</div>
+        <div class="phone">(314) 850-7140</div>
+        <div style="font-size:0.78rem; margin-top:8px; opacity:0.75;">tidytailsstl.com</div>
+      </div>
+      <div class="hanger-back">
+        <div class="headline">Why Families Choose Tidy Tails</div>
+        <div class="features">
+          <div class="feature-item"><div class="feature-icon">📱</div><div><strong>"On My Way" text</strong> before every visit — no guessing when we'll arrive</div></div>
+          <div class="feature-item"><div class="feature-icon">💰</div><div><strong>$70/month flat</strong> — 1 dog or 5 dogs, same price</div></div>
+          <div class="feature-item"><div class="feature-icon">🚫</div><div><strong>No contracts</strong> — cancel any time, no questions asked</div></div>
+          <div class="feature-item"><div class="feature-icon">🏠</div><div><strong>Local owner</strong> — not a franchise, direct line to TJ</div></div>
+          <div class="feature-item"><div class="feature-icon">✅</div><div><strong>"All Done" text</strong> with confirmation after every visit</div></div>
+        </div>
+        <div class="price-strip">
+          <div class="price-row"><strong>Weekly · 1–2 dogs</strong><div class="price">$70/mo</div></div>
+          <div class="price-row"><strong>Weekly · 3–4 dogs</strong><div class="price">$80/mo</div></div>
+          <div class="price-row"><strong>Bi-Weekly</strong><div class="price">$45/visit</div></div>
+          <div class="price-row"><strong>One-Time Easter Cleanup</strong><div class="price">$75</div></div>
+        </div>
+        <div class="footer">
+          Text "EASTER25" to (314) 850-7140 for your FREE first cleanup
+          <span>Offer valid through April 15, 2026 · St. Louis area</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HANGER B: ORPHANED CUSTOMER -->
+  <div style="font-size:0.85rem; font-weight:700; color:#f472b6; margin: 24px 0 10px; text-align:center;">— HANGER B: ORPHANED CUSTOMER (North County only — Print 8–12 sheets = 16–24 hangers) —</div>
+  <div class="two-up">
+    <div class="print-card">
+      <div class="hanger-front" style="background:linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);">
+        <div class="hole" style="background:white;"></div>
+        <div style="font-size:1.5rem; margin-bottom:8px;">🔍</div>
+        <div class="headline" style="font-size:1.3rem;">Did Your Dog Poop Service Disappear?</div>
+        <div class="sub" style="margin-bottom:12px;">A lot of North County services stopped showing up. We're filling the gap — and we're not going anywhere.</div>
+        <div class="offer-box" style="background:#fbbf24;">
+          <div class="big" style="font-size:1.3rem;">Free Catch-Up Cleanup</div>
+          <div class="small">Text "SWITCHING" — we'll catch up from where they left off</div>
+        </div>
+        <div style="font-size:0.82rem; opacity:0.85; margin-bottom:6px; margin-top:10px;">Weekly from <strong>$70/month flat</strong> — Local STL owner</div>
+        <div class="cta">Text "SWITCHING" to:</div>
+        <div class="phone">(314) 850-7140</div>
+      </div>
+      <div class="hanger-back">
+        <div class="headline" style="color:#4c1d95;">You Shouldn't Have to Go Back to DIY</div>
+        <div class="features">
+          <div class="feature-item"><div class="feature-icon">🔄</div><div>We'll <strong>match your old schedule</strong> as closely as possible</div></div>
+          <div class="feature-item"><div class="feature-icon">📱</div><div><strong>"On My Way" text</strong> — no more guessing</div></div>
+          <div class="feature-item"><div class="feature-icon">📍</div><div>Serving all of <strong>North County</strong> — Florissant, Hazelwood, Ferguson, Bridgeton, Berkeley, Maryland Heights</div></div>
+          <div class="feature-item"><div class="feature-icon">💰</div><div><strong>$70/month flat</strong> — 1 or 5 dogs, same price</div></div>
+          <div class="feature-item"><div class="feature-icon">🚫</div><div>No contracts — try us for one month</div></div>
+        </div>
+        <div class="price-strip">
+          <div class="price-row"><strong>Weekly · 1–2 dogs</strong><div class="price">$70/mo</div></div>
+          <div class="price-row"><strong>Weekly · 3–4 dogs</strong><div class="price">$80/mo</div></div>
+          <div class="price-row"><strong>One-Time Catch-Up Cleanup</strong><div class="price">FREE*</div></div>
+        </div>
+        <div class="footer" style="background:#4c1d95;">
+          Text "SWITCHING" to (314) 850-7140 — we'll take it from here.
+          <span>*Free catch-up with any monthly service sign-up · North County STL</span>
+        </div>
+      </div>
+    </div>
+    <div class="print-card">
+      <div class="hanger-front" style="background:linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%);">
+        <div class="hole" style="background:white;"></div>
+        <div style="font-size:1.5rem; margin-bottom:8px;">🔍</div>
+        <div class="headline" style="font-size:1.3rem;">Did Your Dog Poop Service Disappear?</div>
+        <div class="sub" style="margin-bottom:12px;">A lot of North County services stopped showing up. We're filling the gap — and we're not going anywhere.</div>
+        <div class="offer-box" style="background:#fbbf24;">
+          <div class="big" style="font-size:1.3rem;">Free Catch-Up Cleanup</div>
+          <div class="small">Text "SWITCHING" — we'll catch up from where they left off</div>
+        </div>
+        <div style="font-size:0.82rem; opacity:0.85; margin-bottom:6px; margin-top:10px;">Weekly from <strong>$70/month flat</strong> — Local STL owner</div>
+        <div class="cta">Text "SWITCHING" to:</div>
+        <div class="phone">(314) 850-7140</div>
+      </div>
+      <div class="hanger-back">
+        <div class="headline" style="color:#4c1d95;">You Shouldn't Have to Go Back to DIY</div>
+        <div class="features">
+          <div class="feature-item"><div class="feature-icon">🔄</div><div>We'll <strong>match your old schedule</strong> as closely as possible</div></div>
+          <div class="feature-item"><div class="feature-icon">📱</div><div><strong>"On My Way" text</strong> — no more guessing</div></div>
+          <div class="feature-item"><div class="feature-icon">📍</div><div>Serving all of <strong>North County</strong> — Florissant, Hazelwood, Ferguson, Bridgeton, Berkeley, Maryland Heights</div></div>
+          <div class="feature-item"><div class="feature-icon">💰</div><div><strong>$70/month flat</strong> — 1 or 5 dogs, same price</div></div>
+          <div class="feature-item"><div class="feature-icon">🚫</div><div>No contracts — try us for one month</div></div>
+        </div>
+        <div class="price-strip">
+          <div class="price-row"><strong>Weekly · 1–2 dogs</strong><div class="price">$70/mo</div></div>
+          <div class="price-row"><strong>Weekly · 3–4 dogs</strong><div class="price">$80/mo</div></div>
+          <div class="price-row"><strong>One-Time Catch-Up Cleanup</strong><div class="price">FREE*</div></div>
+        </div>
+        <div class="footer" style="background:#4c1d95;">
+          Text "SWITCHING" to (314) 850-7140 — we'll take it from here.
+          <span>*Free catch-up with any monthly service sign-up · North County STL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- TAB: SCRIPTS -->
+<div id="tab-scripts" class="tab-content">
+
+  <div class="card">
+    <h2>💬 Response Scripts — Easter Week</h2>
+    <p style="font-size:0.85rem; color:var(--muted); margin-bottom:16px;">People text or call after finding hangers. Respond within 5 minutes for maximum close rate. Easter week = high urgency — don't overthink, just move fast.</p>
+  </div>
+
+  <div class="script-block">
+    <h4>📲 SCRIPT 1 — "How much?" or "Interested" (most common)</h4>
+    <div class="script-text">Hey [name]! Thanks for reaching out — great timing with Easter coming up 🐣
+
+We do weekly cleanups for $70/month flat — doesn't matter if you have 1 dog or 4, same price. First cleanup is FREE when you start a monthly service.
+
+If you just want a one-time Easter cleanup before Sunday, that's $75 — no commitment needed.
+
+What's your address? I can confirm we cover your area and get you on the schedule.</div>
+    <button class="copy-btn" onclick="copyScript(this, 'how-much')">Copy</button>
+  </div>
+
+  <div class="script-block">
+    <h4>🐣 SCRIPT 2 — Easter panic-booker (wants Saturday)</h4>
+    <div class="script-text">Hey! We actually do have a slot Saturday morning — Easter cleanup special.
+
+It's a $75 one-time job, takes me 20–30 min depending on yard size. You'll have a clean yard by Saturday afternoon for the egg hunt.
+
+What's the address? I'll lock you in today.</div>
+    <button class="copy-btn" onclick="copyScript(this, 'saturday')">Copy</button>
+  </div>
+
+  <div class="script-block">
+    <h4>💰 SCRIPT 3 — One-time to monthly pivot (after Easter job)</h4>
+    <div class="script-text">Really glad we could get you ready before Easter! How's the yard looking?
+
+Quick question — since you've seen what it's like to not deal with it, want to just never deal with it again? 
+
+$70/month, I come out once a week, text you when I'm on my way and when I'm done. First month is free since you already tried the one-time. 
+
+No contract, cancel any time. Want me to add you to the route?</div>
+    <button class="copy-btn" onclick="copyScript(this, 'pivot')">Copy</button>
+  </div>
+
+  <div class="script-block">
+    <h4>🔄 SCRIPT 4 — Orphaned customer (found Hanger B)</h4>
+    <div class="script-text">Hi [name]! Saw you texted "SWITCHING" — we get a lot of that in North County after some services shut down.
+
+Here's the deal: I'll do a free catch-up cleanup to get you current, and then put you on the weekly route at $70/month flat. 
+
+I cover all of [Florissant/Hazelwood/Ferguson — use their zip]. What's your address? I'll fit you in this week.</div>
+    <button class="copy-btn" onclick="copyScript(this, 'orphan')">Copy</button>
+  </div>
+
+  <div class="script-block">
+    <h4>🤔 SCRIPT 5 — "Let me think about it" (don't let them ghost)</h4>
+    <div class="script-text">Totally fair! Just so you have the info — the Easter special (first cleanup free with monthly) runs through April 15.
+
+No pressure at all. If you want to try it risk-free, just text me back and I'll add you. Cancel any time.
+
+Happy Easter! 🐣</div>
+    <button class="copy-btn" onclick="copyScript(this, 'think')">Copy</button>
+  </div>
+
+  <div class="script-block">
+    <h4>⭐ SCRIPT 6 — Review ask after Easter cleanup</h4>
+    <div class="script-text">Hey [name]! Hope the Easter egg hunt went great today 🐣
+
+Quick favor — if you have 30 seconds, a Google review would mean the world. It's how families like yours find us.
+
+[Review link] 
+
+Really appreciate the trust and hope we can keep your yard looking good all season!</div>
+    <button class="copy-btn" onclick="copyScript(this, 'review')">Copy</button>
+  </div>
+
+</div>
+
+<!-- TAB: CHECKLIST -->
+<div id="tab-checklist" class="tab-content">
+
+  <div style="margin-bottom:16px;">
+    <div class="progress-label">
+      <span id="progress-label-text">0 / 18 tasks complete</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+  </div>
+
+  <div class="check-group">
+    <h3>🖨️ Print Prep (Tonight / Wed Apr 1)</h3>
+    <div class="check-item">
+      <input type="checkbox" id="c1" onchange="updateProgress()">
+      <label for="c1">Buy cardstock paper (65–110lb) if not on hand — Walgreens, Office Depot, or CVS</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c2" onchange="updateProgress()">
+      <label for="c2">Open Print tab in this kit and test-print 1 sheet to confirm sizing looks right</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c3" onchange="updateProgress()">
+      <label for="c3">Print 20–25 sheets of Hanger A (standard) on cardstock</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c4" onchange="updateProgress()">
+      <label for="c4">Print 8–10 sheets of Hanger B (orphaned customer) for North County drops</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c5" onchange="updateProgress()">
+      <label for="c5">Cut sheets in half down the middle — 50 Hanger A + 16 Hanger B</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c6" onchange="updateProgress()">
+      <label for="c6">Stack and rubber-band by zone (South County batch + North County batch)</label>
+    </div>
+  </div>
+
+  <div class="check-group">
+    <h3>🚗 Thursday Apr 3 — Drop Day 1</h3>
+    <div class="check-item">
+      <input type="checkbox" id="c7" onchange="updateProgress()">
+      <label for="c7">Load hangers in car — South County batch in front seat, ready to grab</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c8" onchange="updateProgress()">
+      <label for="c8">Drop South County zone: Crestwood → Kirkwood → Webster Groves (10 AM–12 PM target)</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c9" onchange="updateProgress()">
+      <label for="c9">Log hangers dropped per neighborhood in Drop Zones tab</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c10" onchange="updateProgress()">
+      <label for="c10">Check phone every hour — respond to any same-day texts within 5 min</label>
+    </div>
+  </div>
+
+  <div class="check-group">
+    <h3>🚗 Friday Apr 4 — Drop Day 2</h3>
+    <div class="check-item">
+      <input type="checkbox" id="c11" onchange="updateProgress()">
+      <label for="c11">Drop North County zone: Florissant → Hazelwood (use Hanger B for North County)</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c12" onchange="updateProgress()">
+      <label for="c12">Also drop any remaining Hanger A in Affton / Maplewood if time allows</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c13" onchange="updateProgress()">
+      <label for="c13">Post Easter Eve "Last Chance" social post on FB + Nextdoor (use Easter Sprint Kit copy)</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c14" onchange="updateProgress()">
+      <label for="c14">Reply to ALL hanger leads from Thu/Fri — pitch Saturday one-time cleanup</label>
+    </div>
+  </div>
+
+  <div class="check-group">
+    <h3>🐣 Saturday Apr 4 + Sunday Apr 5 — Convert</h3>
+    <div class="check-item">
+      <input type="checkbox" id="c15" onchange="updateProgress()">
+      <label for="c15">Execute any Saturday Easter cleanups booked — treat each as a potential monthly customer</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c16" onchange="updateProgress()">
+      <label for="c16">After each Saturday job: send one-time → monthly pivot text (Scripts tab)</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c17" onchange="updateProgress()">
+      <label for="c17">After Easter Sunday: ask each Easter customer for a Google review (Scripts tab)</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c18" onchange="updateProgress()">
+      <label for="c18">Log results: how many hangers dropped, how many texts, how many converted → update War Room</label>
+    </div>
+  </div>
+
+</div>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="stat-chip">🖨️ Hangers Printed: <span id="stat-printed">0</span></div>
+  <div class="stat-chip">📍 Dropped: <span id="stat-dropped">0</span></div>
+  <div class="stat-chip">📅 Drop Window: <span style="color:#fbbf24;">Apr 3–4</span></div>
+  <div class="stat-chip">🐣 Easter: <span style="color:#f472b6;">Apr 5</span></div>
+</div>
+
+<script>
+// COUNTDOWN
+function updateCountdown() {
+  const easter = new Date('2026-04-05T00:00:00');
+  const now = new Date();
+  const diff = easter - now;
+  if (diff <= 0) { document.getElementById('days-chip').innerHTML = '<span>Easter Sunday</span>TODAY 🐣'; return; }
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hrs = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  document.getElementById('days-chip').innerHTML = `<span>Days Out</span>${days}d ${hrs}h`;
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+// TABS
+function showTab(id) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// COPY BUTTONS
+function copyScript(btn, key) {
+  const scriptEl = btn.previousElementSibling;
+  navigator.clipboard.writeText(scriptEl.textContent.trim()).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  }).catch(() => {
+    const ta = document.createElement('textarea');
+    ta.value = scriptEl.textContent.trim();
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// CHECKLIST
+function updateProgress() {
+  const boxes = document.querySelectorAll('.tab-content input[type="checkbox"]');
+  let done = 0;
+  boxes.forEach((cb, i) => {
+    localStorage.setItem('easter-blitz-c' + i, cb.checked ? '1' : '0');
+    const lbl = cb.nextElementSibling;
+    if (cb.checked) { done++; lbl.classList.add('done'); }
+    else { lbl.classList.remove('done'); }
+  });
+  const pct = Math.round((done / boxes.length) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label-text').textContent = done + ' / ' + boxes.length + ' tasks complete';
+  document.getElementById('progress-pct').textContent = pct + '%';
+}
+
+function loadChecklist() {
+  const boxes = document.querySelectorAll('.tab-content input[type="checkbox"]');
+  boxes.forEach((cb, i) => {
+    cb.checked = localStorage.getItem('easter-blitz-c' + i) === '1';
+  });
+  updateProgress();
+}
+
+// DROP COUNTS
+function saveDrops() {
+  const zones = ['crestwood','kirkwood','florissant','webster','hazelwood','affton','maplewood','mehlville'];
+  let total = 0;
+  zones.forEach(z => {
+    const el = document.getElementById('h-' + z);
+    if (el) { const v = parseInt(el.value) || 0; localStorage.setItem('drops-' + z, v); total += v; }
+  });
+  document.getElementById('stat-dropped').textContent = total;
+}
+
+function loadDrops() {
+  const zones = ['crestwood','kirkwood','florissant','webster','hazelwood','affton','maplewood','mehlville'];
+  let total = 0;
+  zones.forEach(z => {
+    const el = document.getElementById('h-' + z);
+    if (el) { const v = parseInt(localStorage.getItem('drops-' + z)) || 0; el.value = v; total += v; }
+  });
+  document.getElementById('stat-dropped').textContent = total;
+  
+  const printed = parseInt(localStorage.getItem('hangers-printed')) || 0;
+  document.getElementById('stat-printed').textContent = printed;
+}
+
+window.onload = function() {
+  loadChecklist();
+  loadDrops();
+};
+</script>
+</body>
+</html>
