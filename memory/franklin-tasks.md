@@ -2,6 +2,41 @@
 
 ---
 
+### Tuesday 7:04 PM — April 2 Morning Briefing PDF (Hourly Task)
+- **7:04 PM** 📋 Built and published the April 2 Morning Briefing — the "new season starts now" synthesis document for the day the tariff chapter closes
+  - **Files:** `dashboard/pdfs/MORNING_BRIEFING_2026-04-02.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-04-02.pdf` (605KB ✅)
+  - **Dashboard:** Updated pulsing quick link from "APR 1 BRIEFING — READ FIRST" → "📋 APR 2 BRIEFING — NEW SEASON"
+  - **Why this task:** It's 7 PM Tuesday March 31 — April 2 is in ~5 hours. Every hourly task today has been building new tools (Post-Tariff Playbook at 6 PM, Apartment Leads Kit at 2 PM, etc.). The missing piece is the synthesis layer — the "open this at 7 AM Wednesday" guide that tells TJ exactly what to do first on the most pivotal single day of the spring campaign:
+    - Tariff messaging DIES at midnight (must switch to spring hooks immediately)
+    - NC-4 fires (Ferguson orphaned customer post — last North County push)
+    - Easter is 3 days away (final close window — referral texts, last-minute cleanups)
+    - 18 commercial leads with 0 called (Thursday = best cold call day of the week)
+    - FB Ads Day 3 check-in
+    - Post-Tariff Shed Listing 1 goes live
+  - **What's in the briefing:**
+    - **Tariff pivot alert banner:** "Do NOT use tariff messaging after today — it's honest, not tactical"
+    - **Priority 1 (7–8 AM):** NC-4 Ferguson orphaned customer post — full copy-paste script for 63135/63136/63137 groups
+    - **Priority 2 (7–8 AM):** Post-Tariff Shed Listing 1 — "Spring Project Season" hook, honest prices-settled language
+    - **Priority 3 (9 AM–Noon):** Top 5 commercial calls with phone numbers, ask-for names, and 30-second opener script:
+      - Willowbend (Dejon, 636-200-6759)
+      - The Finn (dog park, 314-254-8989)
+      - Village Square (DeAnyai, 314-227-1937)
+      - ReNew Chesterfield (636-245-2784)
+      - NRE Portfolio (314-968-1863 — 2 properties in 1 call)
+    - **Priority 4 (Noon–2 PM):** Easter sprint — "Last 3 Days" post copy-paste + referral texts to Shannon/Amanda/Chastity with Easter hook
+    - **Priority 5 (Afternoon):** FB Ads Day 3 check-in — what healthy vs. warning signs look like
+    - **Priority 6 (Afternoon):** Tax Refund Season shed listing (avg $3,170 refund → financing math)
+    - **Rest of week preview:** Fri NC-5, Sat Easter Eve panic close, Sun victory recap
+    - **Win math:** Full execution day upside = $4,000–5,500
+    - **Mindset closer:** "The tariff chapter was a sprint. Spring is a marathon. The tools compound forever."
+    - **14-item checklist** with AM/afternoon split
+    - **6-tool quick reference grid**
+  - **PDF validated:** 605KB ✅, starts `%PDF-` ✅
+  - **Why April 2 briefing over other options at 7 PM:** All the tools are built. Post-Tariff Playbook (done at 6 PM), Easter Sprint Kit, NC campaign tools, Commercial Calling Hub, Mother's Day Hub — all complete. The gap at 7 PM is NOT more tools, it's the synthesis layer. Without a tight briefing, TJ opens April 2 with an expired tariff hook, a pile of tools, and no clear "do this first" sequence. This briefing collapses 8 tools into a 14-item ordered checklist he can work through before noon.
+  - **Git commit:** `44dba08b` ✅ pushed to tidytails-dashboard
+
+---
+
 ### Tuesday 6:07 PM — Post-Tariff Shed Sales Playbook (Hourly Task)
 - **6:07 PM** 🏠 Built and published the Post-Tariff Shed Sales Playbook — the April 2 → June messaging strategy that replaces the tariff urgency hook the moment it expires at midnight tonight
   - **File:** `dashboard/shed-post-tariff-playbook.html` (54KB, 5 tabs)
