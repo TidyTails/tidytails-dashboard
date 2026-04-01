@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>April Master Calendar | Tidy Tails</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a;--bg2:#141414;--bg3:#1c1c1c;--bg4:#242424;
+  --text:#f5f5f5;--text2:#999;--text3:#555;
+  --green:#10b981;--blue:#3b82f6;--orange:#ff6b35;
+  --yellow:#fbbf24;--red:#ef4444;--purple:#8b5cf6;
+  --pink:#ec4899;--teal:#14b8a6;--amber:#f59e0b;
+  --border:#2a2a2a;--radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* HEADER */
+.header{background:var(--bg2);border-bottom:2px solid var(--border);padding:1rem 1.5rem;position:sticky;top:0;z-index:100;}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;}
+.header h1{font-size:1.2rem;font-weight:800;}
+.header h1 span{color:var(--green);}
+.header-sub{font-size:.7rem;color:var(--text3);margin-top:2px;}
+.stats-row{display:flex;gap:.75rem;flex-wrap:wrap;}
+.stat-chip{background:var(--bg4);border:1px solid var(--border);border-radius:6px;padding:.3rem .6rem;font-size:.7rem;font-weight:600;white-space:nowrap;}
+.stat-chip.green{border-color:rgba(16,185,129,.4);color:var(--green);}
+.stat-chip.orange{border-color:rgba(255,107,53,.4);color:var(--orange);}
+.stat-chip.purple{border-color:rgba(139,92,246,.4);color:var(--purple);}
+.stat-chip.blue{border-color:rgba(59,130,246,.4);color:var(--blue);}
+
+/* TABS */
+.tabs{max-width:1200px;margin:0 auto;padding:1.25rem 1.5rem .5rem;display:flex;gap:.5rem;flex-wrap:wrap;}
+.tab{padding:.5rem 1rem;border-radius:8px;font-size:.85rem;font-weight:600;cursor:pointer;border:none;background:var(--bg3);color:var(--text2);transition:all .2s;}
+.tab.active{background:var(--green);color:#000;}
+.tab:hover:not(.active){background:var(--bg4);color:var(--text);}
+
+/* CONTENT */
+.content{max-width:1200px;margin:0 auto;padding:1rem 1.5rem 3rem;}
+.panel{display:none;}
+.panel.active{display:block;}
+
+/* LEGEND */
+.legend{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1.5rem;}
+.legend-item{display:flex;align-items:center;gap:.4rem;font-size:.75rem;}
+.legend-dot{width:10px;height:10px;border-radius:50%;}
+
+/* WEEK SECTIONS */
+.week-section{margin-bottom:2rem;}
+.week-header{display:flex;align-items:center;gap:.75rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:2px solid var(--border);}
+.week-badge{background:var(--bg4);border:1px solid var(--border);border-radius:6px;padding:.3rem .7rem;font-size:.75rem;font-weight:700;font-family:'JetBrains Mono',monospace;}
+.week-title{font-size:1rem;font-weight:700;}
+.week-focus{font-size:.75rem;color:var(--text2);margin-left:auto;}
+
+/* DAY CARDS */
+.day-grid{display:grid;gap:1rem;}
+.day-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;}
+.day-card.today{border-color:var(--yellow);box-shadow:0 0 0 1px var(--yellow);}
+.day-header{display:flex;align-items:center;gap:.75rem;padding:.75rem 1rem;background:var(--bg3);border-bottom:1px solid var(--border);}
+.day-date{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--text2);}
+.day-name{font-weight:700;font-size:.9rem;}
+.day-focus{font-size:.75rem;color:var(--text2);margin-left:auto;}
+.day-badge{font-size:.65rem;padding:.2rem .5rem;border-radius:4px;font-weight:700;}
+.badge-easter{background:rgba(139,92,246,.2);color:var(--purple);}
+.badge-nc{background:rgba(16,185,129,.2);color:var(--green);}
+.badge-swc{background:rgba(255,107,53,.2);color:var(--orange);}
+.badge-shed{background:rgba(245,158,11,.2);color:var(--amber);}
+.badge-gbp{background:rgba(59,130,246,.2);color:var(--blue);}
+.badge-earth{background:rgba(20,184,166,.2);color:var(--teal);}
+.badge-today{background:rgba(251,191,36,.3);color:var(--yellow);}
+.today-tag{background:var(--yellow);color:#000;border-radius:4px;padding:.15rem .4rem;font-size:.6rem;font-weight:800;}
+
+.actions-list{padding:.75rem 1rem;display:flex;flex-direction:column;gap:.5rem;}
+.action-item{display:flex;align-items:flex-start;gap:.75rem;padding:.6rem .75rem;background:var(--bg3);border-radius:8px;border:1px solid var(--border);}
+.action-item.done{opacity:.5;}
+.action-check{width:18px;height:18px;min-width:18px;border-radius:4px;border:2px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;margin-top:1px;transition:all .2s;}
+.action-check.checked{background:var(--green);border-color:var(--green);}
+.action-check.checked::after{content:'✓';font-size:.7rem;color:#000;font-weight:800;}
+.action-channel{font-size:.65rem;padding:.15rem .4rem;border-radius:4px;font-weight:700;white-space:nowrap;}
+.ch-fb{background:rgba(59,130,246,.2);color:var(--blue);}
+.ch-nd{background:rgba(16,185,129,.2);color:var(--green);}
+.ch-ig{background:rgba(236,72,153,.2);color:var(--pink);}
+.ch-txt{background:rgba(245,158,11,.2);color:var(--amber);}
+.ch-gbp{background:rgba(255,107,53,.2);color:var(--orange);}
+.ch-mkt{background:rgba(139,92,246,.2);color:var(--purple);}
+.ch-call{background:rgba(239,68,68,.2);color:var(--red);}
+.action-body{flex:1;}
+.action-title{font-size:.85rem;font-weight:600;}
+.action-desc{font-size:.75rem;color:var(--text2);margin-top:.15rem;}
+.action-copy-btn{background:var(--bg4);border:1px solid var(--border);border-radius:6px;padding:.25rem .6rem;font-size:.7rem;font-weight:600;cursor:pointer;color:var(--text2);transition:all .2s;white-space:nowrap;margin-top:.25rem;display:inline-block;}
+.action-copy-btn:hover{background:var(--green);color:#000;border-color:var(--green);}
+.post-text{display:none;margin-top:.5rem;background:var(--bg4);border:1px solid var(--border);border-radius:8px;padding:.75rem;font-size:.8rem;line-height:1.6;color:var(--text);white-space:pre-wrap;}
+.post-text.visible{display:block;}
+.toggle-text-btn{background:none;border:none;color:var(--text3);font-size:.7rem;cursor:pointer;padding:.15rem 0;display:flex;align-items:center;gap:.25rem;margin-top:.2rem;}
+.toggle-text-btn:hover{color:var(--text2);}
+
+/* QUICK NAV */
+.quick-nav{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;margin-bottom:1.5rem;}
+.quick-nav-title{font-size:.75rem;font-weight:700;color:var(--text2);text-transform:uppercase;margin-bottom:.75rem;}
+.nav-dates{display:flex;gap:.5rem;flex-wrap:wrap;}
+.nav-date{padding:.3rem .6rem;border-radius:6px;font-size:.75rem;font-weight:600;cursor:pointer;background:var(--bg3);border:1px solid var(--border);transition:all .2s;}
+.nav-date:hover{background:var(--bg4);}
+.nav-date.has-content{border-color:rgba(16,185,129,.3);}
+.nav-date.today{background:rgba(251,191,36,.15);border-color:var(--yellow);color:var(--yellow);}
+.nav-date.easter{border-color:rgba(139,92,246,.4);}
+
+/* CAMPAIGN SUMMARY TAB */
+.campaign-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-bottom:1.5rem;}
+.campaign-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;}
+.campaign-header{display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem;}
+.campaign-icon{font-size:1.25rem;}
+.campaign-name{font-weight:700;}
+.campaign-status{font-size:.65rem;padding:.2rem .5rem;border-radius:4px;font-weight:700;margin-left:auto;}
+.status-live{background:rgba(16,185,129,.2);color:var(--green);}
+.status-upcoming{background:rgba(59,130,246,.2);color:var(--blue);}
+.status-closing{background:rgba(239,68,68,.2);color:var(--red);}
+.campaign-dates{font-size:.75rem;color:var(--text2);margin-bottom:.5rem;}
+.campaign-posts{font-size:.8rem;line-height:1.8;}
+.campaign-posts li{list-style:none;display:flex;gap:.5rem;padding:.2rem 0;border-bottom:1px solid var(--border);}
+.campaign-posts li:last-child{border-bottom:none;}
+.post-date{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--text3);min-width:52px;}
+.post-name{font-size:.75rem;}
+.post-check-sm{width:14px;height:14px;min-width:14px;border-radius:3px;border:2px solid var(--border);cursor:pointer;margin-top:3px;transition:all .2s;}
+.post-check-sm.done{background:var(--green);border-color:var(--green);}
+
+/* WIN MATH */
+.math-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1.25rem;}
+.math-title{font-weight:700;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem;}
+.math-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;}
+.math-card{background:var(--bg3);border-radius:8px;padding:.75rem;text-align:center;}
+.math-val{font-size:1.5rem;font-weight:800;font-family:'JetBrains Mono',monospace;}
+.math-label{font-size:.7rem;color:var(--text2);margin-top:.15rem;}
+
+/* CHECKLIST TAB */
+.check-section{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:1rem;}
+.check-section-title{font-weight:700;margin-bottom:.75rem;font-size:.9rem;}
+.check-item{display:flex;align-items:flex-start;gap:.75rem;padding:.5rem .25rem;border-bottom:1px solid var(--border);cursor:pointer;}
+.check-item:last-child{border-bottom:none;}
+.check-item input[type=checkbox]{width:16px;height:16px;min-width:16px;cursor:pointer;accent-color:var(--green);margin-top:2px;}
+.check-label{font-size:.85rem;}
+.check-sub{font-size:.72rem;color:var(--text2);margin-top:.1rem;}
+.progress-bar{height:8px;background:var(--bg4);border-radius:4px;overflow:hidden;margin:1rem 0 .5rem;}
+.progress-fill{height:100%;background:var(--green);border-radius:4px;transition:width .3s;}
+.progress-label{font-size:.7rem;color:var(--text2);}
+
+/* TOOLS TAB */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.75rem;}
+.tool-link{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:1rem;text-decoration:none;color:var(--text);display:flex;align-items:center;gap:.75rem;transition:all .2s;}
+.tool-link:hover{border-color:var(--green);background:var(--bg3);}
+.tool-icon{font-size:1.5rem;}
+.tool-name{font-weight:600;font-size:.9rem;}
+.tool-desc{font-size:.72rem;color:var(--text2);margin-top:.1rem;}
+
+/* MOBILE */
+@media(max-width:640px){
+  .content,.tabs{padding:.75rem;}
+  .day-grid{gap:.75rem;}
+  .campaign-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div>
+      <h1>🗓️ April <span>Master Calendar</span></h1>
+      <div class="header-sub">All campaigns unified — NC + S/W/C + Easter + GBP + Sheds</div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-chip green">57 Blog Posts Live</div>
+      <div class="stat-chip orange">Easter: Apr 5</div>
+      <div class="stat-chip purple">24 FB Groups</div>
+      <div class="stat-chip blue">FB Ads Live</div>
+    </div>
+  </div>
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="showPanel('calendar')">📅 Daily Calendar</button>
+  <button class="tab" onclick="showPanel('campaigns')">🎯 Campaigns</button>
+  <button class="tab" onclick="showPanel('scripts')">💬 Scripts</button>
+  <button class="tab" onclick="showPanel('checklist')">✅ Checklist</button>
+  <button class="tab" onclick="showPanel('tools')">🔧 Tools</button>
+</div>
+
+<div class="content">
+
+<!-- CALENDAR PANEL -->
+<div class="panel active" id="panel-calendar">
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div> Easter Sprint</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div> North County</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div> S/W/C Expansion</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--amber)"></div> Sheds</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div> GBP Post</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div> Earth Month</div>
+  </div>
+
+  <div class="quick-nav">
+    <div class="quick-nav-title">Jump to Day</div>
+    <div class="nav-dates" id="nav-dates"></div>
+  </div>
+
+  <!-- WEEK 1: APR 1-5 -->
+  <div class="week-section" id="week-apr1">
+    <div class="week-header">
+      <div class="week-badge">Week 1</div>
+      <div class="week-title">Apr 1–5: Easter Close + Tariff Final Day</div>
+      <div class="week-focus">Close Easter leads. Shed last call. NC-3 thru NC-5.</div>
+    </div>
+    <div class="day-grid">
+
+      <!-- APR 1 -->
+      <div class="day-card" id="day-apr1">
+        <div class="day-header">
+          <div>
+            <div class="day-name">Tuesday, April 1 — April Fools + Tariff Last Day</div>
+            <div class="day-date">Today is a two-for-one hook day</div>
+          </div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <span class="day-badge badge-shed">SHED LAST CALL</span>
+            <span class="day-badge badge-easter">EASTER 4 DAYS</span>
+          </div>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr1-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-mkt">MARKETPLACE</span>
+            <div class="action-body">
+              <div class="action-title">7–8 AM: Shed Listing 1 — "April Fools. But these prices are real."</div>
+              <div class="action-desc">Full 23-unit inventory with April Fools disarming hook. Highest engagement listing of the year.</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">🎭 April Fools. But these prices are 100% real.
+
+No, I'm not joking. Yes, it IS April 1st. And yes, you can actually get a 12x16 WoodMaster barn for $4,699 right now.
+
+Tomorrow (April 2) tariff pricing kicks in on steel + lumber. Today is your last chance at pre-tariff inventory. That's not a sales line — it's just what's happening.
+
+I rep TuffShed + WoodMaster and I have 23 units on the lot right now. All sizes. All colors. Real prices, real availability.
+
+📦 Quick hits:
+• 8x12 Storage Shed — $3,509
+• 10x16 Premier Workshop — $6,399
+• 12x20 Garage — $9,699
+• 12x24 WoodMaster Barn — $11,299 (2 available)
+• 10x20 Deep Storage — $5,099
+
+Text me "SHED" for the full list + colors. Or ask any question below. I actually respond.
+
+⏰ Pre-tariff pricing ends tonight at midnight.
+
+#TuffShed #WoodMaster #StLouisShed #PoolShed #GardenShed #BackyardGoals</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr1-1-post')">Copy Post</button>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr1-2">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FACEBOOK</span>
+            <div class="action-body">
+              <div class="action-title">9 AM: Easter Dog Post — April Fools angle</div>
+              <div class="action-desc">NC-3 fires today — Bridgeton orphaned customer. Easter is 4 days away.</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">April Fools post that is 100% NOT a joke:
+
+🐶 Your dog has pooped in your yard approximately 75 times since January 1st.
+
+Easter is Sunday. Your kids will be out there on their hands and knees hunting eggs.
+
+Tidy Tails → (314) 850-7140
+First cleanup FREE with monthly service.
+One-time spring cleanup from $75.
+
+(This post is real. The poop math is real. The offer is real.)
+
+#TidyTails #StLouisDogs #EasterEggHunt #SpringCleanup</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr1-2-post')">Copy Post</button>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr1-3">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">10 AM: NC-3 Bridgeton Post — Orphaned Customer Hook</div>
+              <div class="action-desc">Post in: Bridgeton MO Community, North County STL, St. Charles Rock Rd communities</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Bridgeton neighbors —
+
+Did your dog poop pickup service disappear in the last year?
+
+You're not alone. A lot of North County homeowners lost their service and have been stuck doing it themselves ever since.
+
+I'm the owner of Tidy Tails and I specifically cover 63044. Weekly service, $70/month flat. No contracts. I text before every visit.
+
+Text "SWITCHING" to (314) 850-7140 and I'll try to match your old schedule.
+
+Or just drop a comment — happy to answer any questions.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr1-3-post')">Copy Post</button>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr1-4">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-txt">TEXTS</span>
+            <div class="action-body">
+              <div class="action-title">Noon: Text all Marketplace shed leads — Tariff Last Call</div>
+              <div class="action-desc">Anyone who inquired in March. One last touch before deadline.</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show text</button>
+              <div class="post-text">Hey [Name] — just a quick heads-up that the pre-tariff pricing on sheds ends tonight at midnight. I know you were looking at [unit]. It's still available at $[price]. If you want it at the current price, today's the last day. No pressure either way — just didn't want you to miss it. — TJ, TuffShed/WoodMaster</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr1-4-post')">Copy Text</button>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr1-5">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-mkt">MARKETPLACE</span>
+            <div class="action-body">
+              <div class="action-title">4–5 PM: Shed Listing 4 — Entry Level Close</div>
+              <div class="action-desc">8x12 and 10x12 starting $3,509. Final afternoon push. "Last few hours at these prices."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APR 2 -->
+      <div class="day-card" id="day-apr2">
+        <div class="day-header">
+          <div>
+            <div class="day-name">Wednesday, April 2 — New Season Starts</div>
+            <div class="day-date">Tariff messaging ENDS. S/W/C Expansion launches. Easter 3 days.</div>
+          </div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <span class="day-badge badge-swc">S/W/C DAY 1</span>
+            <span class="day-badge badge-easter">EASTER 3 DAYS</span>
+          </div>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr2-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">Morning: SC-1 South County Spring Hook</div>
+              <div class="action-desc">Post in: Kirkwood MO Community, Webster Groves Community, South County STL, Dogs of South County</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">South County dog owners —
+
+Your dog's work from the last 3 months is still in the yard. Winter's gone. The poop is not.
+
+Tidy Tails → weekly cleanup, $70/month flat. Kirkwood, Webster Groves, Crestwood, Sunset Hills — same price everywhere in South County.
+
+No contracts. I text before every visit.
+
+Text (314) 850-7140 or comment and I'll reach out.
+
+First cleanup FREE with a monthly plan.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr2-1-post')">Copy Post</button>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr2-2">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">Afternoon: SC-3 Kid Safety + Easter — South County Groups</div>
+              <div class="action-desc">Post in: South County STL, Kirkwood Community, Dogs of South County</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Easter is this Sunday.
+
+Your kids are going to be on their hands and knees in that yard hunting eggs.
+
+Dog waste carries E. coli and roundworm. Kids at grass-level are more at risk than adults.
+
+One-time spring cleanup: $75, no contract, we text before we come.
+
+Or start weekly service ($70/mo) and the spring cleanup is FREE.
+
+(314) 850-7140 — Tidy Tails, local South County owner
+
+#EasterSafety #SouthCountySTL #DogOwners</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr2-2-post')">Copy Post</button>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr2-3">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-mkt">MARKETPLACE</span>
+            <div class="action-body">
+              <div class="action-title">Morning: Shed Listing 1 — Spring Project Season (post-tariff hook)</div>
+              <div class="action-desc">New hook: "Prices settled better than expected. Spring is the best time to build." No more tariff urgency.</div>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr2-4">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-call">CALLS</span>
+            <div class="action-body">
+              <div class="action-title">Top 5 Commercial Calls (best day to call: Wed)</div>
+              <div class="action-desc">Willowbend (Dejon 636-200-6759) → The Finn (314-254-8989) → Village Square (DeAnyai 314-227-1937) → ReNew Chesterfield (636-245-2784) → NRE Portfolio (314-968-1863)</div>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr2-5">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-txt">TEXTS</span>
+            <div class="action-body">
+              <div class="action-title">Easter Referral Texts — Shannon, Amanda, Chastity (Florissant cluster)</div>
+              <div class="action-desc">High-priority: these 3 are in the NC campaign zone. Easter timing = maximum motivation.</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show text</button>
+              <div class="post-text">Hey [Name]! Easter is this Sunday — wanted to reach out to all my customers and ask if you know anyone who needs a spring cleanup before the holiday? The yard's gonna be full of kids and I'm booking the last few Saturday slots now. Tell them to text me at (314) 850-7140 and mention your name — first cleanup FREE if they sign up for monthly. And I'll give you a free month too. Thanks! — TJ, Tidy Tails</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr2-5-post')">Copy Text</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APR 3 -->
+      <div class="day-card" id="day-apr3">
+        <div class="day-header">
+          <div>
+            <div class="day-name">Thursday, April 3 — NC-4 + WC Day 1 + Easter "48 Hours"</div>
+            <div class="day-date">NC Week 1 final week. WC-1 West County launch. Easter 2 days.</div>
+          </div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <span class="day-badge badge-nc">NC-5 FRIDAY</span>
+            <span class="day-badge badge-swc">WC DAY 1</span>
+            <span class="day-badge badge-easter">EASTER 2 DAYS</span>
+          </div>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr3-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">NC-4 Ferguson Orphaned Customer Post</div>
+              <div class="action-desc">Post in: Ferguson MO Community, North County STL, Jennings/Normandy groups</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Ferguson + Jennings + Normandy neighbors —
+
+Spring thaw means one thing: everything your dog did from December through February is now visible.
+
+Tidy Tails covers 63135, 63136, 63137, 63121 — same flat $70/month, no contracts.
+
+Lost your old pooper scooper service? Text "SWITCHING" to (314) 850-7140 and I'll try to match your old schedule.
+
+I text before every visit. Local owner — not a franchise.
+
+First cleanup FREE with any monthly plan.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr3-1-post')">Copy Post</button>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr3-2">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">WC-1 West County Flat Rate Post</div>
+              <div class="action-desc">Post in: Chesterfield MO Neighbors, West County STL Residents, Ballwin MO Community</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">West County dog owners —
+
+Big yard, small yard, 1 dog, 5 dogs — same price. $70/month flat.
+
+Tidy Tails covers Chesterfield, Ballwin, Creve Coeur, Town & Country, Wildwood — all at the same flat rate. No yard-size surcharge, no per-dog fees.
+
+We text before every visit. Local owner — not a franchise.
+
+Text (314) 850-7140 or comment below. First cleanup FREE with monthly service.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr3-2-post')">Copy Post</button>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr3-3">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB / ND</span>
+            <div class="action-body">
+              <div class="action-title">Easter "Last 2 Days" — All neighborhoods</div>
+              <div class="action-desc">Post in all active groups. Urgency close — last Friday + Saturday slots filling.</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Easter is THIS Sunday.
+
+I have a few Friday/Saturday cleanup slots left before the holiday. If your yard hasn't been cleaned since winter, this is the window.
+
+One-time: $75, done before Sunday.
+Monthly: $70/mo, spring cleanup FREE with signup.
+
+Text (314) 850-7140 — I'm booking the last few spots today.
+
+Tidy Tails | Local St. Louis owner | (314) 850-7140</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr3-3-post')">Copy Post</button>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr3-4">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-call">CALLS</span>
+            <div class="action-body">
+              <div class="action-title">Mid-tier Commercial Calls (Thursday = good call day)</div>
+              <div class="action-desc">Hazelwood Forest (314-967-2020) → New Wellington (844-766-3017) → Sugar Pines (314-219-5193) → Park Forest (314-312-1734) → The Elle (855-604-6853)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APR 4 -->
+      <div class="day-card" id="day-apr4">
+        <div class="day-header">
+          <div>
+            <div class="day-name">Friday, April 4 — NC-5 Final + Easter Eve Panic Close</div>
+            <div class="day-date">Last full workday before Easter. Panic-booker window is open.</div>
+          </div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <span class="day-badge badge-nc">NC-5 FINAL</span>
+            <span class="day-badge badge-easter">EASTER EVE</span>
+          </div>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr4-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">NC-5 Bridgeton — $2.30/Day Final Close</div>
+              <div class="action-desc">Post in: Bridgeton MO, Hazelwood Community, North County STL</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">North County neighbors — final post this week.
+
+$2.30/day. That's what weekly dog poop pickup costs with Tidy Tails.
+
+Less than a gas station coffee to never deal with it again. No contracts, no yard-size fees, no franchises. Just a local guy who shows up every week and texts before he comes.
+
+Serving Florissant, Hazelwood, Ferguson, Bridgeton, Maryland Heights, Berkeley — same flat $70/mo everywhere.
+
+Slots in 63042 and 63044 are filling. Text (314) 850-7140 if you want in.
+
+First cleanup FREE with monthly service.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr4-1-post')">Copy Post</button>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr4-2">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">ALL GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">Easter Eve Panic Close — All territories simultaneously</div>
+              <div class="action-desc">Post in ALL active groups today. Procrastinator window is maximum.</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Tomorrow is Easter. The egg hunt is tomorrow.
+
+If your yard still has winter poop in it — I have a few Saturday morning slots left.
+
+One-time cleanup: $75. Done by noon.
+Monthly service: $70/mo. First cleanup FREE.
+
+Text (314) 850-7140 now. I'll confirm availability within the hour.
+
+Tidy Tails | St. Louis | Local owner</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr4-2-post')">Copy Post</button>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr4-3">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-txt">TEXTS</span>
+            <div class="action-body">
+              <div class="action-title">Text remaining current customers — Easter referral final ask</div>
+              <div class="action-desc">Greg, Lawrence, Preshus, remaining 4-5 customers not already texted</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APR 5 EASTER -->
+      <div class="day-card" id="day-apr5">
+        <div class="day-header">
+          <div>
+            <div class="day-name">🐣 Sunday, April 5 — EASTER</div>
+            <div class="day-date">Execute same-day cleanups. Victory photo post. One-time → monthly pivot.</div>
+          </div>
+          <span class="day-badge badge-easter">EASTER 🐰</span>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr5-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB / IG</span>
+            <div class="action-body">
+              <div class="action-title">Victory Recap Post (1–3 PM) — while the holiday is still live</div>
+              <div class="action-desc">Photo of clean yard if possible. "Another one ready for the hunt." High engagement window.</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Easter morning. Tidy yard. Happy kids.
+
+That's what this is all about. 🐣
+
+Thanks to everyone who trusted Tidy Tails this week. If you still need a cleanup — text me. I'm out here.
+
+(314) 850-7140 | TidyTailsSTL.com
+
+#TidyTails #EasterWeekend #CleanYard #StLouis #DogOwners</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr5-1-post')">Copy Post</button>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr5-2">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-txt">TEXTS</span>
+            <div class="action-body">
+              <div class="action-title">One-time → Monthly pivot texts (same-day Easter customers)</div>
+              <div class="action-desc">Send the evening of Easter. Strike while the satisfaction is hot.</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show text</button>
+              <div class="post-text">Hey [Name]! Hope Easter was great with a clean yard 🐣 If you want to keep it like this — no more Sunday afternoon poop duty ever again — I do weekly service for $70/month flat. Same deal, just recurring. First cleanup always included. Let me know and I'll add you to the schedule! — TJ, Tidy Tails</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr5-2-post')">Copy Text</button>
+            </div>
+          </div>
+
+          <div class="action-item" data-id="apr5-3">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-txt">TEXTS</span>
+            <div class="action-body">
+              <div class="action-title">Google Review Ask — Easter customers</div>
+              <div class="action-desc">Any new Easter customer — peak satisfaction moment. Also re-ask Shannon/Amanda/Chastity if not done yet.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end week 1 -->
+
+  <!-- WEEK 2: APR 7-13 -->
+  <div class="week-section" id="week-apr7">
+    <div class="week-header">
+      <div class="week-badge">Week 2</div>
+      <div class="week-title">Apr 7–13: NC Week 2 Launches + S/W/C Continues + FB Ads Check</div>
+      <div class="week-focus">NC social proof close. New territories (Berkeley, Jennings, Normandy). FB Ads Day 7 check.</div>
+    </div>
+    <div class="day-grid">
+
+      <!-- APR 6 -->
+      <div class="day-card" id="day-apr6">
+        <div class="day-header">
+          <div>
+            <div class="day-name">Sunday, April 6 — Easter Recap + CC-1 Central County Launch</div>
+          </div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <span class="day-badge badge-swc">CC DAY 1</span>
+          </div>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr6-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB / ND</span>
+            <div class="action-body">
+              <div class="action-title">Easter Victory Recap — All channels (9–11 AM)</div>
+              <div class="action-desc">Clean yard photo if you have one. "Got 3 yards ready for Easter Sunday" type post.</div>
+            </div>
+          </div>
+          <div class="action-item" data-id="apr6-2">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">CC-1 Central County Launch — Clayton/U City groups</div>
+              <div class="action-desc">Post in: Clayton MO Residents, University City Community, Inner Ring STL/Central County</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Central County dog owners —
+
+Long workdays. Late commutes. No time on weekends for yard stuff.
+
+Tidy Tails covers Clayton, University City, Richmond Heights, Maplewood, Brentwood — weekly pickup, $70/month flat. Same price for any size yard.
+
+I text before every visit. Local owner — not a franchise.
+
+Text (314) 850-7140 or comment below. First cleanup FREE with monthly service.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr6-2-post')">Copy Post</button>
+            </div>
+          </div>
+          <div class="action-item" data-id="apr6-3">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-txt">TEXTS</span>
+            <div class="action-body">
+              <div class="action-title">One-time → monthly follow-ups (any Easter customers)</div>
+              <div class="action-desc">Sunday is the last high-conversion day of the Easter window.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APR 7 -->
+      <div class="day-card" id="day-apr7">
+        <div class="day-header">
+          <div>
+            <div class="day-name">Monday, April 7 — NC Week 2 Opens + GBP Spring Post</div>
+          </div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <span class="day-badge badge-nc">NC W2-1</span>
+            <span class="day-badge badge-gbp">GBP POST</span>
+          </div>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr7-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">NC-W2-1: "30 Days In" Social Proof Close</div>
+              <div class="action-desc">Post in: Florissant Community, North County STL, Hazelwood Community groups</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">North County — checking back in after a month.
+
+Signed up a handful of Florissant and Hazelwood customers in the last few weeks. The feedback has been the same every time: "why didn't I do this sooner?"
+
+Tidy Tails | $70/mo flat | No contracts | Text before every visit
+
+If you saved one of my posts from last week but didn't reach out yet — now's a good time.
+
+(314) 850-7140 | First cleanup FREE
+
+Serving 63031, 63033, 63034, 63042 — all of North County at the same rate.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr7-1-post')">Copy Post</button>
+            </div>
+          </div>
+          <div class="action-item" data-id="apr7-2">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-gbp">GBP</span>
+            <div class="action-body">
+              <div class="action-title">GBP Post 1 — Spring Urgency</div>
+              <div class="action-desc">Google Business Profile post: Spring accumulation + first cleanup free offer.</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Spring in St. Louis means one thing for dog owners: months of winter accumulation is now visible in your yard. Tidy Tails handles weekly dog waste removal across all of St. Louis County — flat $70/month, no contracts, and we text before every visit. Book your free first cleanup at TidyTailsSTL.com or text (314) 850-7140.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr7-2-post')">Copy GBP Post</button>
+            </div>
+          </div>
+          <div class="action-item" data-id="apr7-3">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-mkt">MARKETPLACE</span>
+            <div class="action-body">
+              <div class="action-title">Mother's Day She Shed seed post — Marketplace</div>
+              <div class="action-desc">Start seeding the she shed angle. May 10 is 5 weeks out.</div>
+            </div>
+          </div>
+          <div class="action-item" data-id="apr7-4">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB ADS</span>
+            <div class="action-body">
+              <div class="action-title">FB Ads: Day 7 Check + Learning Phase Exit Verification</div>
+              <div class="action-desc">Check: Did it exit learning phase? What's CPL? If CPL &lt;$80, let it run. If &gt;$80, swap creative.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APR 8 -->
+      <div class="day-card" id="day-apr8">
+        <div class="day-header">
+          <div>
+            <div class="day-name">Tuesday, April 8 — NC-W2-2 New Territories + CC-2</div>
+          </div>
+          <span class="day-badge badge-nc">NC NEW ZIPS</span>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr8-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">NC-W2-2: Jennings (63136) + Normandy (63121) First Touch</div>
+              <div class="action-desc">Post in: Jennings-specific groups, Normandy community groups, Ferguson area groups</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Jennings and Normandy neighbors —
+
+First time posting here. I cover 63136 and 63121 with weekly dog poop pickup. $70/month flat, no contracts.
+
+A lot of homeowners in these neighborhoods lost their previous service and have been stuck doing it themselves. If that's you, text "SWITCHING" to (314) 850-7140 — I'll try to match your old schedule.
+
+Or if you've just been meaning to get this off your plate — same number, same deal.
+
+First cleanup FREE with monthly service. I text before every visit.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr8-1-post')">Copy Post</button>
+            </div>
+          </div>
+          <div class="action-item" data-id="apr8-2">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">CC-2 Small Yard Flat Rate — Maplewood + STL Dog Owners</div>
+              <div class="action-desc">Post in: Maplewood MO Residents, STL Dog Owners (city-wide), Inner Ring STL</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Maplewood and inner-ring St. Louis dog owners —
+
+Small yard, flat rate. 300 square feet fills up faster than you think when you've got a dog.
+
+Tidy Tails — $70/month, same price regardless of yard size. No per-dog fees. Clayton, Maplewood, Richmond Heights, Brentwood, University City.
+
+I text before every visit. Local owner.
+
+(314) 850-7140 | First cleanup FREE</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr8-2-post')">Copy Post</button>
+            </div>
+          </div>
+          <div class="action-item" data-id="apr8-3">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-call">CALLS</span>
+            <div class="action-body">
+              <div class="action-title">Commercial new batch — Kirkwood Bluffs, Stanford, Villages at General Grant</div>
+              <div class="action-desc">Kirkwood Bluffs (314-948-4728) → Stanford Place (314-528-9667) → Villages at General Grant (314-272-4659)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end week 2 -->
+
+  <!-- WEEK 3: APR 9-15 -->
+  <div class="week-section" id="week-apr9">
+    <div class="week-header">
+      <div class="week-badge">Week 3</div>
+      <div class="week-title">Apr 9–15: Earth Month Launch + Mother's Day Seed + Berkeley Expansion</div>
+      <div class="week-focus">EPA angle (highest organic reach of month). GBP Mother's Day. WC + SC second waves.</div>
+    </div>
+    <div class="day-grid">
+
+      <div class="day-card" id="day-apr9">
+        <div class="day-header">
+          <div><div class="day-name">Wednesday, April 9 — NC-W2-3 Berkeley + SC-2</div></div>
+          <span class="day-badge badge-nc">BERKELEY LAUNCH</span>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr9-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">NC-W2-3: Berkeley (63134) First Touch — Shift Worker Angle</div>
+              <div class="action-desc">Post in: Berkeley community groups, Airport-area neighborhood groups</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Berkeley neighbors —
+
+First time covering 63134 on my route. Tidy Tails — weekly dog poop pickup, $70/month flat, no contracts.
+
+Berkeley sits between Hazelwood and Ferguson — I already have stops in both areas, so Berkeley is a natural fit. If you've been meaning to get off the poop-duty rotation, text (314) 850-7140.
+
+Lambert corridor / shift workers especially — I work around schedules, not against them.
+
+Text "BERKELEY" to confirm I cover your specific street. First cleanup FREE with monthly service.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr9-1-post')">Copy Post</button>
+            </div>
+          </div>
+          <div class="action-item" data-id="apr9-2">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">SC-2 Shoe Check — South County 2nd Wave</div>
+              <div class="action-desc">Post in: Crestwood/Sunset Hills Community, Dogs of South County, South County Buy/Sell</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">South County — quick question.
+
+When's the last time you left your own backyard without checking the bottom of your shoes?
+
+Tidy Tails handles weekly dog waste removal across all of South County — $70/month flat. No contracts.
+
+Kirkwood, Webster Groves, Crestwood, Sunset Hills, Mehlville, Affton — same price everywhere.
+
+(314) 850-7140 | First cleanup FREE | We text before every visit</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr9-2-post')">Copy Post</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-card" id="day-apr10">
+        <div class="day-header">
+          <div><div class="day-name">Thursday, April 10 — NC-W2-4 EARTH MONTH — Biggest Organic Post of April</div></div>
+          <span class="day-badge badge-earth">🌍 EARTH MONTH</span>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr10-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">ALL GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">NC-W2-4 + ALL TERRITORIES: Earth Month EPA Post — Widest Reach of April</div>
+              <div class="action-desc">Post in ALL North County + S/W/C + Nextdoor + STL Dog Owners simultaneously. EPA angle = civic + emotional.</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">April is Earth Month — and the EPA classifies dog waste as a non-point source pollutant.
+
+Every pound of dog poop left on the ground eventually washes into storm drains and into our waterways. One dog produces about 800 lbs of waste per year.
+
+That's not a guilt trip — it's just the chemistry.
+
+Tidy Tails collects and properly bags all waste on every visit. $70/month flat. St. Louis County — all of it.
+
+Text (314) 850-7140 if you want to do good for the environment AND never deal with it yourself again.
+
+#EarthMonth #StLouisEnvironment #DogOwners #EarthDay #TidyTails</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr10-1-post')">Copy Post</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-card" id="day-apr11">
+        <div class="day-header">
+          <div><div class="day-name">Friday, April 11 — NC-W2-5 Final Close + WC-2</div></div>
+          <span class="day-badge badge-nc">NC W2 FINAL</span>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr11-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">NC-W2-5: $2.30/Day Anchor — Hazelwood + Bridgeton Final Close</div>
+              <div class="action-desc">Post in: Hazelwood Community, Bridgeton MO, North County STL</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Last post in North County for a while.
+
+$2.30/day to never deal with dog poop again. That's the math on $70/month.
+
+Tidy Tails | Florissant, Hazelwood, Ferguson, Bridgeton, Berkeley, Jennings, Maryland Heights | Same flat rate everywhere
+
+Slots in 63042 and 63044 are limited. Text (314) 850-7140.
+
+First cleanup FREE with monthly service.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr11-1-post')">Copy Post</button>
+            </div>
+          </div>
+          <div class="action-item" data-id="apr11-2">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">WC-2 Landscaper Coordination Post — West County Dog Owners</div>
+              <div class="action-desc">Post in: West County Dog Owners, Chesterfield MO Neighbors, Wildwood MO Community</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">West County dog owners with a lawn crew —
+
+Your landscaper doesn't want to deal with what your dog left behind. And they probably won't mow around it.
+
+Tidy Tails schedules your weekly pickup BEFORE your mow day — no extra charge. Chesterfield, Ballwin, Creve Coeur, Town & Country, Wildwood — flat $70/month.
+
+Text (314) 850-7140. First cleanup FREE with monthly service.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr11-2-post')">Copy Post</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-card" id="day-apr14">
+        <div class="day-header">
+          <div><div class="day-name">Tuesday, April 14 — Mother's Day GBP + SC-3 Kid Safety</div></div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <span class="day-badge badge-gbp">GBP POST</span>
+            <span class="day-badge badge-pink" style="background:rgba(236,72,153,.2);color:#ec4899;">MOTHER'S DAY SEED</span>
+          </div>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr14-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-gbp">GBP</span>
+            <div class="action-body">
+              <div class="action-title">GBP Post 2 — Mother's Day Gift Angle</div>
+              <div class="action-desc">Google Business Profile. Gift a month of Tidy Tails for Mother's Day.</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Mother's Day is May 10. If she has the dog but you do the yard work — or if she does both — a month of Tidy Tails is the gift that gives back every week. $70 flat, no contracts, we text before every visit. Gift it at TidyTailsSTL.com or text (314) 850-7140.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr14-1-post')">Copy GBP Post</button>
+            </div>
+          </div>
+          <div class="action-item" data-id="apr14-2">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB / IG</span>
+            <div class="action-body">
+              <div class="action-title">SC-3 Kid Safety — South County + Universal</div>
+              <div class="action-desc">Post in all South County groups + STL Dog Owners</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end week 3 -->
+
+  <!-- WEEK 4: APR 16-22 -->
+  <div class="week-section" id="week-apr16">
+    <div class="week-header">
+      <div class="week-badge">Week 4</div>
+      <div class="week-title">Apr 16–22: Earth Day + WC-3 + Mother's Day Ramp</div>
+      <div class="week-focus">Earth Day April 22 = highest single-day organic reach opportunity of the spring.</div>
+    </div>
+    <div class="day-grid">
+
+      <div class="day-card" id="day-apr16">
+        <div class="day-header">
+          <div><div class="day-name">Thursday, April 16 — WC-3 Spring Math + CC-3 Renter</div></div>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr16-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">WC-3 Spring Math — Wildwood MO Community + West County groups</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Wildwood and West County —
+
+Your yard has approximately 150 deposits in it right now from the winter. That's one dog for 3 months. Two dogs? Double it.
+
+Spring cleanup starting from $75. Or weekly service at $70/month flat — yard stays clean year-round.
+
+Tidy Tails | (314) 850-7140 | First cleanup FREE with monthly service</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr16-1-post')">Copy Post</button>
+            </div>
+          </div>
+          <div class="action-item" data-id="apr16-2">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">CC-3 Renter-Friendly Post — Clayton/U City/Maplewood</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">Renters in Clayton, University City, Maplewood —
+
+You can hire Tidy Tails without your landlord's permission. We clean what's in your yard or outdoor space. No permanent installation. No asking. Just done.
+
+$70/month flat. Text (314) 850-7140.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr16-2-post')">Copy Post</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="day-card" id="day-apr22">
+        <div class="day-header">
+          <div><div class="day-name">Wednesday, April 22 — 🌍 EARTH DAY — Max Organic Reach</div></div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <span class="day-badge badge-earth">EARTH DAY</span>
+            <span class="day-badge badge-gbp">GBP POST</span>
+          </div>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr22-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">ALL GROUPS</span>
+            <div class="action-body">
+              <div class="action-title">🌍 Earth Day — Post in ALL territories simultaneously</div>
+              <div class="action-desc">Coordinate NC + S/W/C + Nextdoor + STL Dog Owners + STL Metro Buy/Sell. EPA angle converts civic-minded non-price-sensitive buyers.</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">🌍 Happy Earth Day.
+
+Did you know the EPA classifies pet waste as a non-point source pollutant — in the same category as oil spills and chemical runoff?
+
+One medium dog produces ~274 lbs of waste per year. Left on the ground, it washes into storm drains, into creeks, into our water supply. It carries bacteria, roundworm, and E. coli.
+
+Picking it up isn't just about your yard. It's about your neighborhood.
+
+Tidy Tails collects and properly bags all of it, every week. $70/month flat. All of St. Louis County.
+
+(314) 850-7140 | TidyTailsSTL.com | First cleanup FREE
+
+#EarthDay #StLouisEnvironment #DogOwners #PetWaste #TidyTails #STL</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr22-1-post')">Copy Post</button>
+            </div>
+          </div>
+          <div class="action-item" data-id="apr22-2">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-gbp">GBP</span>
+            <div class="action-body">
+              <div class="action-title">GBP Post 3 — Earth Day EPA Angle</div>
+              <div class="action-desc">Same EPA angle adapted for GBP post format.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- end week 4 -->
+
+  <!-- WEEK 5: APR 28-30 -->
+  <div class="week-section" id="week-apr28">
+    <div class="week-header">
+      <div class="week-badge">Week 5</div>
+      <div class="week-title">Apr 28–30: Month-End Close + Mother's Day Urgency</div>
+      <div class="week-focus">GBP Post 4. Mother's Day 12 days out — last big push window.</div>
+    </div>
+    <div class="day-grid">
+      <div class="day-card" id="day-apr28">
+        <div class="day-header">
+          <div><div class="day-name">Tuesday, April 28 — GBP End-of-Month + Mother's Day "Last 2 Weeks"</div></div>
+          <span class="day-badge badge-gbp">GBP POST</span>
+        </div>
+        <div class="actions-list">
+          <div class="action-item" data-id="apr28-1">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-gbp">GBP</span>
+            <div class="action-body">
+              <div class="action-title">GBP Post 4 — April close + "first cleanup free" CTA</div>
+              <button class="toggle-text-btn" onclick="toggleText(this)">▶ Show post text</button>
+              <div class="post-text">April is almost done — spring is officially underway and dogs across St. Louis County have been working hard. If your yard is overdue for a cleanup, we have availability this week. First cleanup FREE with any monthly plan. Flat $70/month, no contracts. Text (314) 850-7140 or visit TidyTailsSTL.com.</div>
+              <button class="action-copy-btn" onclick="copyText(this, 'apr28-1-post')">Copy GBP Post</button>
+            </div>
+          </div>
+          <div class="action-item" data-id="apr28-2">
+            <div class="action-check" onclick="toggleCheck(this)"></div>
+            <span class="action-channel ch-fb">FB / IG</span>
+            <div class="action-body">
+              <div class="action-title">Mother's Day "Last 2 Weeks" — Husband Angle</div>
+              <div class="action-desc">Mother's Day is May 10. Start the gift angle: "she got the dog but you do the poop duty."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div><!-- end week 5 -->
+
+</div><!-- end calendar panel -->
+
+<!-- CAMPAIGNS PANEL -->
+<div class="panel" id="panel-campaigns">
+  <div class="campaign-grid">
+
+    <div class="campaign-card">
+      <div class="campaign-header">
+        <div class="campaign-icon">🏘️</div>
+        <div class="campaign-name">North County — Week 1</div>
+        <span class="campaign-status status-closing">WRAPPING</span>
+      </div>
+      <div class="campaign-dates">Mar 30 – Apr 5 | Florissant/Hazelwood/Ferguson/Bridgeton</div>
+      <ul class="campaign-posts">
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Mon 3/30</span><span class="post-name">NC-1: Florissant + Hazelwood spring hook</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Tue 3/31</span><span class="post-name">NC-2: Hazelwood groups deep-dive</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Wed 4/1</span><span class="post-name">NC-3: Bridgeton orphaned customer</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Thu 4/3</span><span class="post-name">NC-4: Ferguson + Jennings + Normandy</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Fri 4/4</span><span class="post-name">NC-5: $2.30/day final Bridgeton close</span></li>
+      </ul>
+    </div>
+
+    <div class="campaign-card">
+      <div class="campaign-header">
+        <div class="campaign-icon">🏘️</div>
+        <div class="campaign-name">North County — Week 2</div>
+        <span class="campaign-status status-upcoming">APR 7-11</span>
+      </div>
+      <div class="campaign-dates">Apr 7-11 | Re-engage + Berkeley/Jennings/Normandy expansion</div>
+      <ul class="campaign-posts">
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Mon 4/7</span><span class="post-name">NC-W2-1: "30 Days In" social proof close</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Tue 4/8</span><span class="post-name">NC-W2-2: Jennings (63136) + Normandy (63121)</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Wed 4/9</span><span class="post-name">NC-W2-3: Berkeley (63134) shift worker angle</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Thu 4/10</span><span class="post-name">NC-W2-4: Earth Month EPA — ALL GROUPS</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Fri 4/11</span><span class="post-name">NC-W2-5: $2.30/day Hazelwood + Bridgeton close</span></li>
+      </ul>
+    </div>
+
+    <div class="campaign-card">
+      <div class="campaign-header">
+        <div class="campaign-icon">🌍</div>
+        <div class="campaign-name">S/W/C FB Expansion</div>
+        <span class="campaign-status status-live">LAUNCHING APR 2</span>
+      </div>
+      <div class="campaign-dates">Apr 2 – Apr 22 | 24 groups, 3 territories, 18 posts</div>
+      <ul class="campaign-posts">
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Wed 4/2</span><span class="post-name">SC-1 Spring Hook (Kirkwood/Webster/South County)</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Thu 4/3</span><span class="post-name">WC-1 Flat Rate (Chesterfield/West County)</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Sun 4/6</span><span class="post-name">CC-1 Commuter (Clayton/U City/Inner Ring)</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Wed 4/9</span><span class="post-name">SC-2 Shoe Check (Crestwood/Dogs of SC)</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Thu 4/10</span><span class="post-name">WC-2 Landscaper (WC Dog Owners/Chesterfield)</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Tue 4/8</span><span class="post-name">CC-2 Small Yard (Maplewood/STL Dog Owners)</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Thu 4/16</span><span class="post-name">WC-3 Spring Math (Wildwood)</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Thu 4/16</span><span class="post-name">CC-3 Renter-Friendly (Clayton/U City)</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Tue 4/14</span><span class="post-name">SC-3 Kid Safety (All South County)</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Tue 4/22</span><span class="post-name">EARTH DAY — ALL territories simultaneously</span></li>
+      </ul>
+    </div>
+
+    <div class="campaign-card">
+      <div class="campaign-header">
+        <div class="campaign-icon">🐣</div>
+        <div class="campaign-name">Easter Sprint</div>
+        <span class="campaign-status status-live">CLOSES APR 5</span>
+      </div>
+      <div class="campaign-dates">Apr 1-5 | One-time cleanups → Monthly converts</div>
+      <ul class="campaign-posts">
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Tue 4/1</span><span class="post-name">April Fools + poop math post</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Wed 4/2</span><span class="post-name">SC-3 kid safety Easter cross-post</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Thu 4/3</span><span class="post-name">"Last 2 Days" urgency — all groups</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Fri 4/4</span><span class="post-name">Easter Eve panic close — all groups</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Sun 4/5</span><span class="post-name">Victory recap + one-time → monthly pivots</span></li>
+      </ul>
+    </div>
+
+    <div class="campaign-card">
+      <div class="campaign-header">
+        <div class="campaign-icon">📍</div>
+        <div class="campaign-name">Google Business Profile</div>
+        <span class="campaign-status status-live">4 POSTS PLANNED</span>
+      </div>
+      <div class="campaign-dates">Apr 7, Apr 14, Apr 22, Apr 28</div>
+      <ul class="campaign-posts">
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Apr 7</span><span class="post-name">Spring urgency + first cleanup free</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Apr 14</span><span class="post-name">Mother's Day gift angle ($70 flat)</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Apr 22</span><span class="post-name">Earth Day EPA angle</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Apr 28</span><span class="post-name">April close + first cleanup free CTA</span></li>
+      </ul>
+    </div>
+
+    <div class="campaign-card">
+      <div class="campaign-header">
+        <div class="campaign-icon">🏠</div>
+        <div class="campaign-name">TuffShed / WoodMaster</div>
+        <span class="campaign-status status-live">POST-TARIFF</span>
+      </div>
+      <div class="campaign-dates">Apr 2 onwards | Spring hooks + Mother's Day + Father's Day</div>
+      <ul class="campaign-posts">
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Apr 2</span><span class="post-name">Spring Project Season Listing 1</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Apr 7</span><span class="post-name">Tax Refund Season + She Shed seed</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Apr 14</span><span class="post-name">She Shed — Mother's Day angle</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Apr 21+</span><span class="post-name">Mother's Day she shed "husband angle"</span></li>
+        <li><div class="post-check-sm" onclick="this.classList.toggle('done')"></div><span class="post-date">Apr 28</span><span class="post-name">"Last 2 Weeks" Mother's Day urgency</span></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <!-- WIN MATH -->
+  <div class="math-section">
+    <div class="math-title">💰 April Revenue Math — Full Execution Upside</div>
+    <div class="math-grid">
+      <div class="math-card"><div class="math-val" style="color:var(--green)">$840</div><div class="math-label">per new Tidy Tails customer (LTV 12mo)</div></div>
+      <div class="math-card"><div class="math-val" style="color:var(--blue)">5–8</div><div class="math-label">expected new customers if April executes</div></div>
+      <div class="math-card"><div class="math-val" style="color:var(--purple)">$4,200–$6,720</div><div class="math-label">LTV from April campaign alone</div></div>
+      <div class="math-card"><div class="math-val" style="color:var(--amber)">$400–900</div><div class="math-label">per shed commission (Mother's Day window)</div></div>
+      <div class="math-card"><div class="math-val" style="color:var(--orange)">$0</div><div class="math-label">ad spend for S/W/C + NC organic campaigns</div></div>
+      <div class="math-card"><div class="math-val" style="color:var(--teal)">19</div><div class="math-label">customers target by Apr 30 (was 10)</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPTS PANEL -->
+<div class="panel" id="panel-scripts">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;">
+
+    <div class="check-section">
+      <div class="check-section-title">🐕 Inbound Inquiry Response</div>
+      <p style="font-size:.8rem;color:var(--text2);margin-bottom:.75rem">Someone comments or DMs asking about service</p>
+      <div style="background:var(--bg3);border-radius:8px;padding:.75rem;font-size:.82rem;line-height:1.7;">Hey [Name]! Thanks for reaching out — yes, we cover [their area]. Weekly service is $70/month flat for 1-2 dogs, no contracts. I text before every visit and send an "all done" text when I'm finished. First cleanup is FREE when you start a monthly plan. Want me to get you set up? Just need your address and your dog's name! — TJ, Tidy Tails</div>
+      <button class="action-copy-btn" style="margin-top:.5rem" onclick="copyRaw(this, `Hey [Name]! Thanks for reaching out — yes, we cover [their area]. Weekly service is $70/month flat for 1-2 dogs, no contracts. I text before every visit and send an \"all done\" text when I'm finished. First cleanup is FREE when you start a monthly plan. Want me to get you set up? Just need your address and your dog's name! — TJ, Tidy Tails`)">Copy Script</button>
+    </div>
+
+    <div class="check-section">
+      <div class="check-section-title">💸 "Too Expensive / I Do It Myself"</div>
+      <div style="background:var(--bg3);border-radius:8px;padding:.75rem;font-size:.82rem;line-height:1.7;">Totally get it! A lot of people do. The way I think about it — one dog produces about 300 deposits a year. At $70/month, that's $0.23 per deposit for someone else to deal with it entirely. Plus you get your Sundays back. But if it's not the right fit, no worries — that's why there's no contract!</div>
+      <button class="action-copy-btn" style="margin-top:.5rem" onclick="copyRaw(this, `Totally get it! A lot of people do. The way I think about it — one dog produces about 300 deposits a year. At $70/month, that's $0.23 per deposit for someone else to deal with it entirely. Plus you get your Sundays back. But if it's not the right fit, no worries — that's why there's no contract!`)">Copy Script</button>
+    </div>
+
+    <div class="check-section">
+      <div class="check-section-title">🤔 "Let Me Think / Check With Spouse"</div>
+      <div style="background:var(--bg3);border-radius:8px;padding:.75rem;font-size:.82rem;line-height:1.7;">Of course! No rush. If it helps, I don't require any contract — so there's zero risk to try it for a month. First cleanup is free, and if you decide it's not for you, just text me and we stop. No awkward calls or cancellation fees. Text me when you're ready!</div>
+      <button class="action-copy-btn" style="margin-top:.5rem" onclick="copyRaw(this, `Of course! No rush. If it helps, I don't require any contract — so there's zero risk to try it for a month. First cleanup is free, and if you decide it's not for you, just text me and we stop. No awkward calls or cancellation fees. Text me when you're ready!`)">Copy Script</button>
+    </div>
+
+    <div class="check-section">
+      <div class="check-section-title">🔄 One-Time → Monthly Pivot</div>
+      <div style="background:var(--bg3);border-radius:8px;padding:.75rem;font-size:.82rem;line-height:1.7;">Hey [Name]! How's the yard looking after the cleanup? A lot of people realize after that first visit how much nicer it is to just keep it maintained. If you want to keep it this way — weekly service is $70/month flat, no contracts, and the spring cleanup you already got counts as your first free cleanup. Let me know and I'll add you to the schedule!</div>
+      <button class="action-copy-btn" style="margin-top:.5rem" onclick="copyRaw(this, `Hey [Name]! How's the yard looking after the cleanup? A lot of people realize after that first visit how much nicer it is to just keep it maintained. If you want to keep it this way — weekly service is $70/month flat, no contracts, and the spring cleanup you already got counts as your first free cleanup. Let me know and I'll add you to the schedule!`)">Copy Script</button>
+    </div>
+
+    <div class="check-section">
+      <div class="check-section-title">🏢 Commercial Opening Line</div>
+      <div style="background:var(--bg3);border-radius:8px;padding:.75rem;font-size:.82rem;line-height:1.7;">Hi, I'm calling for [Contact Name] — I'm TJ with Tidy Tails, we do pet waste removal for apartment communities. I know dog waste complaints are usually in the top 3 resident issues. I wanted to introduce myself and see if there's a good time to talk about what we do. Do you have 2 minutes now, or should I call back at a better time?</div>
+      <button class="action-copy-btn" style="margin-top:.5rem" onclick="copyRaw(this, `Hi, I'm calling for [Contact Name] — I'm TJ with Tidy Tails, we do pet waste removal for apartment communities. I know dog waste complaints are usually in the top 3 resident issues. I wanted to introduce myself and see if there's a good time to talk about what we do. Do you have 2 minutes now, or should I call back at a better time?`)">Copy Script</button>
+    </div>
+
+    <div class="check-section">
+      <div class="check-section-title">📍 Google Review Ask (after service)</div>
+      <div style="background:var(--bg3);border-radius:8px;padding:.75rem;font-size:.82rem;line-height:1.7;">Hey [Name]! Glad [Dog's name]'s yard is staying clean 😄 Would you mind leaving us a quick Google review? It makes a huge difference for a small local business. Takes about 30 seconds: [google review link]. No worries if you'd rather not — just wanted to ask!</div>
+      <button class="action-copy-btn" style="margin-top:.5rem" onclick="copyRaw(this, `Hey [Name]! Glad [Dog's name]'s yard is staying clean 😄 Would you mind leaving us a quick Google review? It makes a huge difference for a small local business. Takes about 30 seconds: [google review link]. No worries if you'd rather not — just wanted to ask!`)">Copy Script</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- CHECKLIST PANEL -->
+<div class="panel" id="panel-checklist">
+
+  <div class="progress-bar"><div class="progress-fill" id="checklist-progress" style="width:0%"></div></div>
+  <div class="progress-label" id="checklist-label">0 / 28 items complete</div>
+
+  <div class="check-section">
+    <div class="check-section-title">🚀 Week 1 Setup (Apr 1-2)</div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">Fire April 1 shed listings 1 + 4 (Blitz Kit) <div class="check-sub">7–8 AM and 4–5 PM April 1 (last day)</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">Text all open Marketplace leads — tariff last call <div class="check-sub">Noon April 1</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">NC-3 Bridgeton post in Bridgeton groups <div class="check-sub">April 1 morning</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">SC-1 + SC-3 South County posts (April 2) <div class="check-sub">Kirkwood/Webster/South County STL groups</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">Top 5 commercial calls (April 2) <div class="check-sub">Willowbend → Finn → Village Square → ReNew → NRE</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">Easter referral texts to Shannon + Amanda + Chastity <div class="check-sub">April 2 — highest-priority NC cluster</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">Shed Listing 1 Spring Project Season (April 2) <div class="check-sub">New hook — no tariff. "Prices settled better than expected."</div></div></div>
+  </div>
+
+  <div class="check-section">
+    <div class="check-section-title">🐣 Easter Close (Apr 3-5)</div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">NC-4 Ferguson + Jennings + Normandy post (April 3) <div class="check-sub">Ferguson/Jennings community groups</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">WC-1 West County flat rate post (April 3) <div class="check-sub">Chesterfield/West County/Ballwin groups</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">"Last 2 Days" Easter urgency — ALL groups (April 3) <div class="check-sub">Post in every active group</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">NC-5 + Easter Eve panic close (April 4) <div class="check-sub">All groups simultaneously — last Friday slots</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">Text ALL remaining customers referral ask (April 3-4) <div class="check-sub">Greg, Lawrence, Preshus + remaining 4-5</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">Easter victory recap post (April 5, 1–3 PM) <div class="check-sub">Photo of clean yard if possible</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">One-time → monthly pivot texts (Easter customers) <div class="check-sub">Same-day or April 6</div></div></div>
+  </div>
+
+  <div class="check-section">
+    <div class="check-section-title">📅 NC Week 2 + S/W/C Week 2 (Apr 7-11)</div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">NC-W2-1 "30 Days In" social proof close (April 7) <div class="check-sub">Florissant/Hazelwood/North County STL</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">GBP Post 1 — Spring Urgency (April 7) <div class="check-sub">Google Business Profile</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">She Shed / Mother's Day seed post on Marketplace (April 7) <div class="check-sub">May 10 is 5 weeks out</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">FB Ads Day 7 check — learning phase exit? (April 7) <div class="check-sub">CPL target: &lt;$80. If &gt;$80, swap creative.</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">NC-W2-2 Jennings + Normandy first touch (April 8) <div class="check-sub">First-ever posts in 63136/63121</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">CC-2 Small Yard — Maplewood/STL Dog Owners (April 8) <div class="check-sub">Central County second wave</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">NC-W2-3 Berkeley 63134 launch (April 9) <div class="check-sub">First touch in Berkeley. Lambert shift worker angle.</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">SC-2 Shoe Check — South County 2nd wave (April 9)</div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">NC-W2-4 EARTH MONTH — ALL GROUPS (April 10) <div class="check-sub">🌍 Biggest organic reach day of the month. Post everywhere.</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">NC-W2-5 + WC-2 final close (April 11)</div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">Commercial second batch calls (April 8) <div class="check-sub">Kirkwood Bluffs + Stanford + Villages</div></div></div>
+  </div>
+
+  <div class="check-section">
+    <div class="check-section-title">🌍 Earth Day + Mother's Day Ramp (Apr 14-30)</div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">GBP Post 2 + Mother's Day seed post (April 14)</div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">SC-3 Kid Safety + WC-3 Spring Math (April 14-16)</div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">🌍 EARTH DAY post in ALL territories + GBP (April 22) <div class="check-sub">Highest organic reach of April. Do not skip this.</div></div></div>
+    <div class="check-item" onclick="toggleCL(this)"><input type="checkbox"> <div class="check-label">GBP Post 4 + Mother's Day "Last 2 Weeks" (April 28)</div></div>
+  </div>
+
+</div>
+
+<!-- TOOLS PANEL -->
+<div class="panel" id="panel-tools">
+  <div class="tools-grid">
+    <a class="tool-link" href="north-county-launch-command.html">
+      <div class="tool-icon">🚀</div>
+      <div><div class="tool-name">NC Launch Command</div><div class="tool-desc">All NC posts, response scripts, lead tracker</div></div>
+    </a>
+    <a class="tool-link" href="north-county-week2-kit.html">
+      <div class="tool-icon">🏘️</div>
+      <div><div class="tool-name">NC Week 2 Kit</div><div class="tool-desc">Apr 7-11 posts, new territories, GBP posts</div></div>
+    </a>
+    <a class="tool-link" href="south-west-central-fb-expansion.html">
+      <div class="tool-icon">🌍</div>
+      <div><div class="tool-name">S/W/C FB Expansion</div><div class="tool-desc">24 groups, 18 posts, 3 territories</div></div>
+    </a>
+    <a class="tool-link" href="easter-sprint-kit.html">
+      <div class="tool-icon">🐣</div>
+      <div><div class="tool-name">Easter Sprint Kit</div><div class="tool-desc">Day-by-day content Apr 1-5</div></div>
+    </a>
+    <a class="tool-link" href="week2-sprint-apr2-8.html">
+      <div class="tool-icon">🔥</div>
+      <div><div class="tool-name">Week 2 Sprint Guide</div><div class="tool-desc">Day-by-day execution Apr 2-8</div></div>
+    </a>
+    <a class="tool-link" href="commercial-calling-hub.html">
+      <div class="tool-icon">📞</div>
+      <div><div class="tool-name">Commercial Calling Hub</div><div class="tool-desc">18 leads, priority order, call scripts</div></div>
+    </a>
+    <a class="tool-link" href="mothers-day-campaign-hub.html">
+      <div class="tool-icon">🌸</div>
+      <div><div class="tool-name">Mother's Day Hub</div><div class="tool-desc">May 10 campaign — Tidy Tails + Sheds</div></div>
+    </a>
+    <a class="tool-link" href="shed-post-tariff-playbook.html">
+      <div class="tool-icon">🏠</div>
+      <div><div class="tool-name">Post-Tariff Shed Playbook</div><div class="tool-desc">Apr-Jun shed hooks, listings, scripts</div></div>
+    </a>
+    <a class="tool-link" href="april-war-room.html">
+      <div class="tool-icon">⚔️</div>
+      <div><div class="tool-name">April War Room</div><div class="tool-desc">Track all 4 campaigns, leads, MRR</div></div>
+    </a>
+    <a class="tool-link" href="nextdoor-playbook.html">
+      <div class="tool-icon">🏘️</div>
+      <div><div class="tool-name">Nextdoor Playbook</div><div class="tool-desc">8-neighborhood rotation, 32 posts</div></div>
+    </a>
+    <a class="tool-link" href="pawty-followup-engine.html">
+      <div class="tool-icon">📲</div>
+      <div><div class="tool-name">Paw-ty Follow-Up Engine</div><div class="tool-desc">Close Mar 28 leads still in window</div></div>
+    </a>
+    <a class="tool-link" href="review-sprint-kit.html">
+      <div class="tool-icon">⭐</div>
+      <div><div class="tool-name">Review Sprint Kit</div><div class="tool-desc">10 customers, personalized asks</div></div>
+    </a>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<script>
+// Panel switching
+function showPanel(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Build quick nav
+const days = [
+  {id:'apr1',label:'Apr 1',cls:'has-content today'},
+  {id:'apr2',label:'Apr 2',cls:'has-content'},
+  {id:'apr3',label:'Apr 3',cls:'has-content'},
+  {id:'apr4',label:'Apr 4',cls:'has-content'},
+  {id:'apr5',label:'Apr 5 🐣',cls:'has-content easter'},
+  {id:'apr6',label:'Apr 6',cls:'has-content'},
+  {id:'apr7',label:'Apr 7',cls:'has-content'},
+  {id:'apr8',label:'Apr 8',cls:'has-content'},
+  {id:'apr9',label:'Apr 9',cls:'has-content'},
+  {id:'apr10',label:'Apr 10 🌍',cls:'has-content'},
+  {id:'apr11',label:'Apr 11',cls:'has-content'},
+  {id:'apr14',label:'Apr 14',cls:'has-content'},
+  {id:'apr16',label:'Apr 16',cls:'has-content'},
+  {id:'apr22',label:'Apr 22 🌍',cls:'has-content'},
+  {id:'apr28',label:'Apr 28',cls:'has-content'},
+];
+const navEl = document.getElementById('nav-dates');
+days.forEach(d => {
+  const btn = document.createElement('button');
+  btn.className = 'nav-date ' + d.cls;
+  btn.textContent = d.label;
+  btn.onclick = () => {
+    const el = document.getElementById('day-' + d.id);
+    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+  };
+  navEl.appendChild(btn);
+});
+
+// Check toggle
+function toggleCheck(el) {
+  el.classList.toggle('checked');
+  const item = el.closest('.action-item');
+  item.classList.toggle('done', el.classList.contains('checked'));
+  saveChecks();
+}
+
+function toggleText(btn) {
+  const post = btn.nextElementSibling;
+  if(post && post.classList.contains('post-text')) {
+    post.classList.toggle('visible');
+    btn.textContent = post.classList.contains('visible') ? '▼ Hide post text' : '▶ Show post text';
+  }
+}
+
+function copyText(btn, id) {
+  const post = btn.previousElementSibling;
+  if(post && post.classList.contains('post-text')) {
+    navigator.clipboard.writeText(post.textContent.trim()).then(() => {
+      btn.textContent = '✓ Copied!';
+      btn.style.background = 'var(--green)';
+      btn.style.color = '#000';
+      setTimeout(() => { btn.textContent = 'Copy Post'; btn.style.background=''; btn.style.color=''; }, 1500);
+    });
+  }
+}
+
+function copyRaw(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.style.background = 'var(--green)';
+    btn.style.color = '#000';
+    setTimeout(() => { btn.textContent = 'Copy Script'; btn.style.background=''; btn.style.color=''; }, 1500);
+  });
+}
+
+// Checklist
+function toggleCL(row) {
+  const cb = row.querySelector('input[type=checkbox]');
+  cb.checked = !cb.checked;
+  saveCL();
+  updateCLProgress();
+}
+function saveCL() {
+  const states = [];
+  document.querySelectorAll('.check-item input[type=checkbox]').forEach(cb => states.push(cb.checked));
+  localStorage.setItem('apr_master_cl', JSON.stringify(states));
+}
+function loadCL() {
+  const saved = JSON.parse(localStorage.getItem('apr_master_cl') || '[]');
+  document.querySelectorAll('.check-item input[type=checkbox]').forEach((cb, i) => {
+    if(saved[i]) cb.checked = true;
+  });
+  updateCLProgress();
+}
+function updateCLProgress() {
+  const all = document.querySelectorAll('.check-item input[type=checkbox]');
+  const done = document.querySelectorAll('.check-item input[type=checkbox]:checked').length;
+  const pct = all.length ? Math.round(done/all.length*100) : 0;
+  document.getElementById('checklist-progress').style.width = pct + '%';
+  document.getElementById('checklist-label').textContent = `${done} / ${all.length} items complete`;}
+function saveChecks() {
+  const states = {};
+  document.querySelectorAll('.action-check').forEach((el, i) => {
+    states['c_' + i] = el.classList.contains('checked');
+  });
+  localStorage.setItem('apr_master_checks', JSON.stringify(states));
+}
+function loadChecks() {
+  const saved = JSON.parse(localStorage.getItem('apr_master_checks') || '{}');
+  document.querySelectorAll('.action-check').forEach((el, i) => {
+    if(saved['c_' + i]) {
+      el.classList.add('checked');
+      el.closest('.action-item').classList.add('done');
+    }
+  });
+}
+window.addEventListener('load', () => { loadCL(); loadChecks(); });
+</script>
+</body>
+</html>
