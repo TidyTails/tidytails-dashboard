@@ -2,6 +2,57 @@
 
 ---
 
+### Wednesday 12:06 PM — GBP Spring Domination Kit (Hourly Task)
+- **12:06 PM** 🗺️ Built and published the **GBP Spring Domination Kit** — a comprehensive 5-tab Google Business Profile optimization tool targeting Map Pack #1 by May
+  - **File:** `dashboard/gbp-spring-domination-kit.html` (64KB, 5-tab app)
+  - **Dashboard:** Added pulsing green "🗺️ GBP DOMINATION KIT — MAP PACK #1 BY MAY" quick link after LSA kit
+  - **Why this task:** All acquisition tools are built. Campaign tools, ad copy, commercial leads, Easter sprint, FB ads — comprehensive. But GBP was severely under-optimized. No Easter/spring post existed despite Easter being 4 days away with peak "pooper scooper near me" search traffic happening NOW. The existing `gbp-posting-calendar.html` had 8 generic posts but no Easter urgency, no Q&A population, no review response templates, and no photo strategy. GBP = free Map Pack = free inbound leads every week permanently. It's the highest-LTV zero-cost channel and it was untouched.
+  - **What's built:**
+    - **Tab 1 — Posts (8 posts, April 1 → June):**
+      - 🔴 **April 1 TODAY:** Easter Egg Hunt yard cleanup — "Easter egg hunt this Sunday? Your dogs have been using the yard all winter..." with "Book Now" CTA → /spring. This post goes live during peak Easter search traffic. Every minute it's not up is lost Map Pack signal.
+      - 🟡 **April 7:** Spring Thaw + Social Proof — "150 piles in your yard right now. $2.30/day." Post-Easter spring urgency
+      - 🟡 **April 14:** Mother's Day gift preview — "She got the dog. She also got the yard cleanup." Opens the MD conversion window 4 weeks early
+      - 🟡 **April 22:** Earth Day / EPA angle — "EPA classifies dog waste as non-point source pollutant" — highest viral/organic share potential of any post this month
+      - ⚫ **April 28:** End of month close
+      - ⚫ **May 5:** Mother's Day last call (5 days out)
+      - ⚫ **May 19:** Summer ramp — "Kids are back in the yard"
+      - ⚫ **June 9:** Father's Day gift angle
+      - All posts have 1-click copy buttons, CTA guidance, and explanation of why each post works
+    - **Tab 2 — Q&A (10 pre-populated Q&As):**
+      - Why Florissant/North County (keyword-rich, geographic coverage)
+      - How much does it cost (pricing keyword)
+      - One-time cleanups (high-intent spring query)
+      - No contract (objection pre-emption)
+      - Don't need to be home (barrier removal)
+      - Full service area (geographic coverage with all zip codes)
+      - Multiple dogs same price (differentiator)
+      - Is it worth it (honest, trust-building)
+      - What happens to the waste (process clarity)
+      - How do I know you came (accountability — "On My Way" text)
+      - Step-by-step instructions for adding Q&As in GBP included
+    - **Tab 3 — Photos:** Priority guide for before/after shots (highest converting), clean yard spring light, dog in clean yard, Jamie working, neighborhood shots. Upload tips, format guide, frequency recommendations.
+    - **Tab 4 — Review Responses (6 templates):**
+      - Standard 5-star (universal)
+      - 5-star with location keyword ("in Florissant" — SEO value in responses)
+      - 5-star from new customer
+      - 5-star multi-dog household
+      - 4-star (invite private follow-up)
+      - 3-star or below (take offline immediately)
+      - Critical note: Respond to all 6 existing reviews TODAY — free SEO boost, most competitors skip this
+    - **Tab 5 — Checklist (24 items across 4 phases):**
+      - **TODAY (3 tasks):** Post Easter GBP update, respond to all 6 reviews, add 1 photo
+      - **This Week (4 tasks):** Top 3 Q&As, all 10 Q&As, before/after photos, dog yard photo
+      - **This Month (9 tasks):** April 7/14/22/28 posts, services section update, description keywords, attributes, hit 10 reviews, hit 10 photos
+      - **Ongoing (3 habits):** Weekly post, respond to reviews within 24h, 2-4 photos/month
+      - **Milestone tracker:** 6→10→15→20 reviews + weekly posts + photos = Map Pack #1
+      - All 24 items persist in localStorage
+  - **Revenue math (in kit):** Map Pack #1 = ~3-5 inbound leads/week at $0 ad spend. 3 leads × 30% close = 1 customer/week = $1,260 LTV. 4 weeks compounding = $5,040/month in new LTV pipeline. Total investment to get there: 2 hours of work + 15 min/week forever.
+  - **Key insight — why GBP was the right gap:** Every other hourly task today built campaign-specific tools (LSA kit at 7 AM, Commercial Close Kit at 6 AM, FB Ads Week 2 at 5 AM, Easter Physical Blitz at 2 AM, Dog Business Partner Kit at midnight). All of those drive inbound from paid or organic social. GBP drives inbound from SEARCH — people who are already typing "pooper scooper near me" in Google. That's the highest-intent buyer. Google Maps is the only channel that's FREE + FOREVER + SEARCH-INTENT. With 6 reviews today and 3 weak competitors in STL, TJ is 4 reviews and weekly posting away from #1 in the Map Pack permanently. None of the campaign tools touch that lever. This kit does.
+  - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/gbp-spring-domination-kit.html
+  - **Git commit:** `94673471` ✅ pushed to tidytails-dashboard
+
+---
+
 ### Wednesday 10:09 AM — Property Management Portfolio Pitch Kit (Hourly Task)
 - **10:09 AM** 🏢 Built and published the **Property Management Portfolio Pitch Kit** — the missing multiplier play that turns one phone call into potentially 7 service contracts
   - **File:** `dashboard/property-management-portfolio-kit.html` (50KB, 5-tab kit)
