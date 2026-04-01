@@ -1,154 +1,166 @@
 {
-  "lastCheck": "2026-03-31T20:03:00-05:00",
-  "checkNumber": 271,
-  "status": "issues",
-  "issuesFound": 4,
-  "issuesFixed": 3,
-  "issuesPending": 4,
+  "lastCheck": "2026-03-31T22:03:00-05:00",
+  "checkNumber": 272,
+  "status": "critical",
+  "issuesFound": 6,
+  "issuesFixed": 0,
+  "issuesPending": 6,
   "northStar": "25-30 recurring customers by August 2026",
   "currentCustomers": 11,
   "progressToGoal": "44%",
   "deliveryVerification": {
     "telegramToDashboard": {
       "status": "pass",
-      "note": "All content from last cycle committed and live. Apr 2 Morning Briefing pre-generated (605KB), Post-Tariff Shed Playbook live, CTA footer snippet created. Branch fully synced with origin/main."
+      "note": "All content committed and live. week2-sprint-apr2-8.html and south-west-central-fb-expansion.html committed since last check. week2-sprint NOT linked in index.html (see issue-272-02)."
     },
     "hourlyUpdates": {
       "status": "pass",
-      "lastCommit": "2026-03-31T19:04:00-05:00",
-      "note": "6 commits since last Chief check (#270). All substantive content committed. heartbeat-state.json modified but uncommitted — workspace-level only, not blocking."
+      "lastCommit": "2026-03-31T21:10:00-05:00",
+      "note": "3 commits since last Chief check (#271): sticky CTA fix, FB expansion kit, Week 2 Sprint Guide. Hourly cron (delivery:none) running successfully — content producing fine."
     },
     "notionSync": {
       "status": "pass",
-      "note": "All Mar 31 + Apr 1 + Apr 2 items confirmed uploaded per previous cycle verification. No new gaps detected."
+      "note": "No new PDFs since last Notion sync. Apr 1 briefing in pdfs/ is not yet in Notion — will be caught by next notion-auto-sync run."
     }
   },
-  "issuesResolved": [
-    {
-      "id": "issue-270-01",
-      "description": "RESOLVED ✅ — mothers-day-campaign-hub.html and easter-sprint-kit.html now have tel: links. Commit 01ab0175 added sticky CTA bars to both hubs. includes/cta-footer.html reusable snippet also created.",
-      "resolvedAt": "2026-03-31T17:12:00-05:00"
-    },
-    {
-      "id": "issue-270-02",
-      "description": "RESOLVED ✅ — SHED_ADS_EOM_2026-03-29.pdf (expired promo, 69KB) removed from index.html. Not in active PDF links.",
-      "resolvedAt": "2026-03-31T17:12:00-05:00"
-    },
-    {
-      "id": "issue-270-contact-sticky",
-      "description": "RESOLVED ✅ — reusable cta-footer.html snippet created with correct tel: links for both businesses. Tidy Tails: 314-850-7140, Sheds: 636-354-7406.",
-      "resolvedAt": "2026-03-31T17:12:00-05:00"
-    }
-  ],
   "issues": [
     {
-      "id": "issue-271-01",
-      "severity": "MEDIUM",
-      "category": "dashboard",
-      "description": "index.html (main dashboard) does NOT include the new cta-footer.html snippet. The main dashboard has only ONE tel: reference buried in body text (shed honest-nudge script). No tappable sticky CTA bar on the primary nav hub. Every spoke page (easter, mothers-day, shed-blitz) has one — the hub doesn't.",
+      "id": "issue-272-CRIT-01",
+      "severity": "CRITICAL",
+      "category": "system",
+      "description": "5 scheduled cron jobs have consecutiveErrors 5-6 with 'Error: Outbound not configured for channel: telegram'. Affected jobs: 8 AM Self-Directed Tasks, 8:30 AM Morning Briefing, 9 AM Shed Ads + Commercial Leads, Franklin Weekly Review, Weekly Competitor Monitor. These jobs are silently failing delivery every run. TJ is NOT receiving scheduled morning briefings, shed ads, or weekly reports via their intended delivery path. Content IS being created by the hourly cron (delivery:none) but the SCHEDULED 8:30 AM briefing path is broken. 6 consecutive errors on some jobs = delivery dead for >12 hours.",
       "assignedTo": "franklin",
       "status": "found",
-      "foundAt": "2026-03-31T20:03:00-05:00",
+      "foundAt": "2026-03-31T22:03:00-05:00",
       "fixedAt": null,
-      "action": "Include cta-footer.html snippet in index.html before </body> so the main dashboard has a sticky call/text CTA for both businesses. Low effort — 5 min fix."
+      "action": "IMMEDIATE: Update the 5 failing cron jobs to remove channel/to from their delivery config OR switch delivery.mode to 'none' (since the hourly cron + Chief handle distribution). Root cause: cron jobs specify delivery.channel='telegram' with a specific to ID that isn't configured for outbound. This is a config mismatch. Fix: either configure telegram outbound for that channel ID, or strip the channel/to from each job's delivery field."
     },
     {
-      "id": "issue-271-02",
+      "id": "issue-272-HIGH-01",
+      "severity": "HIGH",
+      "category": "dashboard",
+      "description": "week2-sprint-apr2-8.html (56KB, Week 2 Sprint Guide Apr 2-8) was committed in the last cycle but is NOT linked anywhere in index.html. The guide contains 28 tasks across 7 days covering S/W/C FB expansion, Easter close, FB Ads optimization, and commercial follow-ups. Easter is Saturday Apr 5. TJ cannot access this sprint guide from the dashboard hub — the most important planning doc for the highest-velocity week of Q1 is invisible.",
+      "assignedTo": "franklin",
+      "status": "found",
+      "foundAt": "2026-03-31T22:03:00-05:00",
+      "fixedAt": null,
+      "action": "Add link to week2-sprint-apr2-8.html in index.html quick-links section, styled as urgent/pulsing (same treatment as easter-sprint-kit). This is a 5-minute fix. Do it before the next hourly cycle."
+    },
+    {
+      "id": "issue-272-MEDIUM-01",
       "severity": "MEDIUM",
       "category": "ad-creative",
-      "description": "Mar 28 Kling v1 batch (3 clips: ad1_barefoot, ad2_window_view, ad3_before_after) still 16:9 format and undeployed. Easter sprint is LIVE NOW (Apr 1-5). If TJ plans to run these as TikTok/Reels ads during Easter sprint, they need 9:16 crop + phone CTA overlay BEFORE campaign launch. Sprint ends Apr 5. Window is closing.",
+      "description": "Mar 28 Kling v1 Standard batch (ad1_barefoot_final.mp4 9.4MB, ad2_window_view_final.mp4 7.5MB, ad3_before_after_final.mp4 6.5MB) remains 16:9 format and undeployed. Easter sprint is LIVE Apr 1-5. TikTok/Reels require 9:16. If TJ plans to run these this week, they need ffmpeg 9:16 crop + 314-850-7140 caption overlay. Window closes Apr 5 (4 days).",
       "assignedTo": "franklin",
       "status": "found",
-      "foundAt": "2026-03-31T20:03:00-05:00",
+      "foundAt": "2026-03-31T22:03:00-05:00",
       "fixedAt": null,
-      "action": "Ask TJ if he wants the Kling clips activated for Easter sprint. If yes: ffmpeg 9:16 crop + 314-850-7140 caption overlay, ready by Apr 1 AM. If no: carry to general deployment queue."
+      "action": "Ask TJ if he wants the Kling clips activated for Easter sprint. If yes: ffmpeg 9:16 crop + 314-850-7140 overlay + ambient_bg.mp3 audio already in videos/. If no: queue for general spring deployment."
     },
     {
-      "id": "issue-271-03",
+      "id": "issue-272-MEDIUM-02",
+      "severity": "MEDIUM",
+      "category": "dashboard",
+      "description": "week2-sprint-apr2-8.html contains shed tasks (Tax Refund listings from Post-Tariff Playbook) but zero phone number references. No 636-354-7406 anywhere in the file for shed callbacks. Also: south-west-central-fb-expansion.html has the correct number (314) 850-7140 in text 12+ times but ZERO tel: tap-to-call links. On mobile, the phone numbers are unclickable.",
+      "assignedTo": "franklin",
+      "status": "found",
+      "foundAt": "2026-03-31T22:03:00-05:00",
+      "fixedAt": null,
+      "action": "Two fixes: (1) Add 636-354-7406 to week2 shed task sections. (2) Wrap (314) 850-7140 in south-west-central page with tel: links. Both files need mobile-ready contact points."
+    },
+    {
+      "id": "issue-272-LOW-01",
       "severity": "LOW",
       "category": "system",
-      "description": "consulting.html and tidytails.html don't exist as standalone files. SKILL.md checklist expects these pages. Both businesses exist as sections within index.html. Persistent since check #260+.",
+      "description": "Daily Execution Scorecard (memory/daily-execution-scorecard.md) was installed Mar 31 but shows all dashes for today's entry. The 5 PM daily execution check prompt was recommended in Check #271 but the cron was never actually created. The compounding improvement from last cycle was proposed but not implemented.",
       "assignedTo": "franklin",
       "status": "found",
-      "foundAt": "2026-03-31T20:03:00-05:00",
+      "foundAt": "2026-03-31T22:03:00-05:00",
       "fixedAt": null,
-      "action": "Either create lightweight standalone tidytails.html and consulting.html landing pages (could extract relevant sections from index.html), OR update SKILL.md to remove this check as not applicable. Clarify with TJ."
+      "action": "Create the 5 PM daily execution check cron job. Simple systemEvent that fires at 5 PM asking TJ 3 questions. Without this cron, the scorecard never gets populated. The loop stays open."
     },
     {
-      "id": "issue-271-04",
+      "id": "issue-272-LOW-02",
       "severity": "LOW",
-      "category": "content",
-      "description": "20+ HTML files are >7 days old with no updates: gbp-completion-guide.html, research/*.html, quote-generator.html, referral-program.html, etc. Most are archival/reference. Not operational blockers but contribute to dashboard sprawl.",
+      "category": "website",
+      "description": "tidytails.html and consulting.html do not exist as standalone pages. Persistent from check #260+. Both businesses exist in index.html sections only.",
       "assignedTo": "franklin",
       "status": "found",
-      "foundAt": "2026-03-31T20:03:00-05:00",
+      "foundAt": "2026-03-31T22:03:00-05:00",
       "fixedAt": null,
-      "action": "Batch: move dormant research/*.html files to an archive/ folder. Low priority — do during next maintenance cycle, not sprint week."
+      "action": "Low priority. Either create lightweight standalone pages or update SKILL.md check to 'not applicable.' Do during next maintenance cycle, not sprint week."
     }
   ],
   "adCreativeAudit": {
     "newCreativeThisCycle": false,
-    "batchName": "No new ad creative this cycle. Post-Tariff Shed Playbook contains copy-only creative (no new videos/images).",
+    "batchName": "No new ad creative generated this cycle. Week 2 Sprint Guide + S/W/C FB Expansion Kit are copy-only.",
     "phoneNumberCompliance": {
-      "sheds": "✅ 636-354-7406 — verified in shed-post-tariff-playbook.html (20+ instances), shed-april1-last-day-blitz.html (10+ instances), shed-tariff-last-call.html (7+ instances), Apr 2 briefing",
-      "tidyTails": "✅ 314-850-7140 — verified in easter-sprint-kit.html (6 instances + tel: link), mothers-day-campaign-hub.html (7 instances + tel: link)",
-      "crossContamination": "NONE DETECTED ✅ — no 314 number in shed pages, no 636 number in tidy tails pages",
-      "cta-footer.html": "✅ Both numbers correct in reusable snippet — tel:3148507140 and tel:6363547406"
+      "sheds": "✅ 636-354-7406 — verified in week2-sprint-apr2-8.html (text references to post-tariff playbook with correct number in linked docs). Direct presence: 0 instances in week2 file itself — FLAGGED as issue-272-MEDIUM-02.",
+      "tidyTails": "✅ 314-850-7140 — verified in south-west-central-fb-expansion.html (12+ instances), week2-sprint-apr2-8.html (multiple instances). Text form only in south-west page — tel: links missing.",
+      "crossContamination": "NONE DETECTED ✅ — no number mix-ups across business content",
+      "index.html": "✅ Both numbers present with tel: links in sticky CTA bar. Index is clean."
     },
     "ongoingOpenIssues": [
-      "MEDIUM: Mar 28 Kling videos are 16:9 — needs 9:16 crop before TikTok/Reels deployment. Easter sprint window closes Apr 5.",
-      "LOW: Only 1 hook variant per Kling video concept — limits A/B testing. Not blocking current deployment."
+      "MEDIUM: Mar 28 Kling videos are 16:9 — needs 9:16 crop before TikTok/Reels deployment. Easter window closes Apr 5.",
+      "MEDIUM: south-west-central-fb-expansion.html — phone numbers text-only, no tel: links.",
+      "LOW: Only 1 hook variant per Kling video concept — limits A/B testing."
     ],
-    "verdict": "Phone compliance clean across all active pages. No new creative to score this cycle."
+    "verdict": "No new creative to score this cycle. Compliance clean. Deployment readiness gap on Kling clips."
   },
   "systemHealth": {
-    "gitStatus": "✅ CLEAN — main dashboard branch up to date with origin/main. Only uncommitted file is memory/heartbeat-state.json (workspace-level, not dashboard concern).",
+    "gitStatus": "✅ CLEAN — main dashboard branch up to date with origin/main as of last push. No uncommitted changes in dashboard/.",
     "pdfLinksInIndex": {
       "MORNING_BRIEFING_2026-03-31.pdf": "444KB ✅",
-      "MORNING_BRIEFING_2026-04-02.pdf": "605KB ✅ — pre-generated, date forward",
+      "MORNING_BRIEFING_2026-04-02.pdf": "605KB ✅",
       "SHED_ADS_2026-03-31.pdf": "226KB ✅",
       "SHED_COMMERCIAL_LEADS_2026-03-30.pdf": "321KB ✅"
     },
-    "belowThresholdPdfs": [
-      "pdfs/MORNING_BRIEFING_2026-03-20.pdf — 18KB ⚠️ NOT in index.html (archival)",
-      "pdfs/MORNING_BRIEFING_2026-03-25.pdf — 18KB ⚠️ NOT in index.html (archival)",
-      "pdfs/EOD_SUMMARY_2026-03-19.pdf — 20KB ⚠️ NOT in index.html (archival)",
-      "pdfs/MORNING_BRIEFING_2026-03-26.pdf — 65KB ⚠️ NOT in index.html (archival)",
-      "pdfs/SHED_ADS_2026-03-20.pdf — 65KB ⚠️ NOT in index.html (archival)"
-    ],
+    "pdfLinksBroken": "NONE — all 4 active PDF links verified present on disk",
     "videoFiles": {
-      "klingSep28Batch": "3 final MP4s (6-9MB each) ✅ — undeployed, 16:9",
-      "remotion": "6 MP4s in remotion-videos/out/ ✅ (Mar 6 batch, archival)"
+      "klingSep28Batch": "3 final MP4s (6-9MB each) ✅ — undeployed, 16:9, needs crop for TikTok",
+      "remotion": "4 MP4s in remotion-videos/ ✅ (Mar 6 batch, archival)"
     },
     "websites": {
-      "tidytailsHtml": "NOT FOUND as standalone. tidy-tails-crm.html exists (78KB). Business present in index.html.",
-      "consultingHtml": "NOT FOUND as standalone. Consulting section present in index.html.",
-      "indexHtml": "✅ ACTIVE — main dashboard hub, all active content present",
+      "tidytailsHtml": "NOT FOUND as standalone — business present in index.html",
+      "consultingHtml": "NOT FOUND as standalone — present in index.html",
+      "indexHtml": "✅ ACTIVE — sticky CTA bar added, both tel: links correct",
       "easterSprintKit": "✅ LIVE — tel: link present, Apr 1-5 sprint active",
-      "mothersDayHub": "✅ LIVE — tel: link present, campaign running",
-      "shedApril1Blitz": "✅ LIVE — 636-354-7406 present, tariff deadline Apr 2 midnight"
+      "mothersDayHub": "✅ LIVE — tel: link present",
+      "week2SprintGuide": "✅ EXISTS — 56KB file present but NOT LINKED in index.html ❌",
+      "fbExpansionKit": "✅ LIVE — 24 groups, 18 posts, linked in index.html"
     },
-    "notionSync": "✅ PASS — All substantive content confirmed uploaded",
-    "totalHtmlPages": 120,
+    "cronJobHealth": {
+      "chiefOversight": "✅ OK — consecutiveErrors: 0",
+      "hourlyAutonomousTask": "✅ OK — consecutiveErrors: 0, delivery:none",
+      "notionAutoSync": "✅ OK — consecutiveErrors: 0",
+      "8amSelfDirected": "❌ ERROR — consecutiveErrors: 6, telegram outbound not configured",
+      "830amMorningBriefing": "❌ ERROR — consecutiveErrors: 5, telegram outbound not configured",
+      "9amShedAds": "❌ ERROR — consecutiveErrors: 5, telegram outbound not configured",
+      "3amSecurityCheck": "❌ ERROR — consecutiveErrors: 5, telegram outbound not configured",
+      "franklinWeeklyReview": "❌ ERROR — consecutiveErrors: 1, telegram outbound not configured",
+      "weeklyCompetitorMonitor": "❌ ERROR — consecutiveErrors: 1, telegram outbound not configured"
+    },
+    "notionSync": "✅ PASS — last run 6 hours ago, no new PDFs to sync",
+    "totalHtmlPages": 121,
     "totalPdfs": 85,
-    "dashboardLastModified": "2026-03-31T19:04:00-05:00",
-    "commitsSinceLastCheck": 6
+    "dashboardLastModified": "2026-03-31T21:10:00-05:00",
+    "commitsSinceLastCheck": 3
   },
   "bottleneck": {
-    "identified": "No outreach execution feedback loop",
-    "evidence": "Dashboard has 18 commercial leads in the calling hub, Easter sprint kit with social copy, 3 undeployed video ads, and a full contact script library. There is ZERO mechanism to track whether TJ is actually making the calls. The commercial calling hub lists priorities and scripts — but we have no data on: (1) how many calls/texts TJ sent today, (2) which leads converted to consultations, (3) which content is actually getting posted. We're optimizing content production while flying blind on execution. At 11/25 customers, the gap is closed by execution, not more content.",
-    "recommendation": "Install a daily execution check. A simple 5 PM cron that asks TJ: 'How many calls/texts did you make today? Any appointments set?' — log the answer in a daily tally. This surfaces the real constraint (execution rate) vs the vanity proxy (content created)."
+    "identified": "Cron delivery pipeline broken + execution feedback loop absent",
+    "evidence": "5 scheduled cron jobs silently failing with telegram delivery error for 5-6 consecutive runs. The hourly cron (delivery:none) is producing content but the morning briefing delivery at 8:30 AM — TJ's primary daily activation signal — is dead. Compounding this: Daily Execution Scorecard has no data because the daily check cron was never created. We have zero visibility into execution rate (calls, closes, posts). Without delivery + without scorecard, we're running a content production machine with no feedback loop.",
+    "recommendation": "Fix 1: Update 5 failing crons to delivery.mode='none' OR configure the telegram outbound channel. Fix 2: Create the 5 PM daily execution prompt cron. Both fixes can be done in 15 minutes. Together they restore the delivery pipeline AND install the feedback loop."
   },
   "compoundingImprovement": {
-    "suggestion": "Daily Execution Scorecard — 5 PM cron asks TJ 3 questions: (1) Calls/texts made today? (2) Appointments set? (3) Any new customers signed? Answers logged to a tally file. Chief reviews weekly. This creates the feedback loop that converts our content library into measurable pipeline data. One cron job, permanent compound visibility into what's actually converting.",
+    "suggestion": "Fix cron delivery NOW, then add the 5 PM execution check. The compound value: every morning briefing that lands = 1 activation signal for TJ. Every evening scorecard entry = 1 data point toward conversion insights. After 30 days: we know TJ's average daily activity rate, which days he's most active, which scripts are converting. This is the input data that turns our content machine into a repeatable sales system.",
     "owner": "Franklin",
-    "effort": "Low — 20 min to set up cron + tally file",
-    "compoundingMechanism": "Every day of tracking compounds into weekly/monthly conversion data. After 4 weeks we know: which scripts get callbacks, which content drives inbound texts, what days TJ calls most. Turns guesswork into a repeatable system.",
-    "priority": "HIGH — without this, we're optimizing content while flying blind on what converts"
+    "effort": "15 minutes — cron config update (batch fix all 5 jobs) + 1 new cron for 5 PM check",
+    "compoundingMechanism": "Fixed delivery = consistent activation. Scorecard = conversion data. Together they compound into a system that can self-calibrate based on what's actually working.",
+    "priority": "CRITICAL — act before the 8:30 AM delivery fails again tomorrow"
   },
   "urgencyNote": {
-    "sheds": "Tariff framing window is LIVE. Apr 2 deadline in all blitz content. TJ should be in active outreach mode tonight (Mar 31) and tomorrow. Post-tariff playbook is ready for Apr 2+ shift.",
-    "tidyTails": "Easter Sprint Apr 1-5 is LIVE. 11/25 customers — 14 more needed by August. Spring is the fastest acquisition window. Commercial calling hub with 18 leads ready to dial.",
-    "timing": "This is the highest-velocity week of Q1. Both businesses have live campaigns. Execution rate right now determines Q2 momentum."
+    "easter": "Easter is Saturday Apr 5. Easter Sprint active Apr 1-5. Week 2 Sprint Guide invisible on dashboard. Fix index.html link ASAP.",
+    "execution": "11/25 customers. 14 to go. August deadline. Spring is peak acquisition season. Execution rate unknown because scorecard isn't populated.",
+    "timing": "April 2 is the first post-tariff day for sheds. Post-Tariff Playbook live. TJ needs the Week 2 Sprint Guide to know what content to post and when."
   }
 }
