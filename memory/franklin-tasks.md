@@ -2,6 +2,47 @@
 
 ---
 
+### Wednesday 10:09 AM — Property Management Portfolio Pitch Kit (Hourly Task)
+- **10:09 AM** 🏢 Built and published the **Property Management Portfolio Pitch Kit** — the missing multiplier play that turns one phone call into potentially 7 service contracts
+  - **File:** `dashboard/property-management-portfolio-kit.html` (50KB, 5-tab kit)
+  - **Dashboard:** Added pulsing purple "🏢 PORTFOLIO PITCH KIT — 1 CALL = 7 CONTRACTS (MILLSAP)" as prominent quick link + new featured card at top of Commercial section in grid
+  - **Why this task:** It's 10 AM Wednesday — peak commercial calling window of the week. The existing toolkit has 18 individual apartment leads (Commercial Calling Hub), dog business partners, and a Commercial Close Kit. But a critical gap existed: **no tool for the property management COMPANY approach** — where TJ calls the management company that controls multiple properties and pitches them all at once. Millsap Properties manages 7 pet-friendly communities across Florissant, Ballwin, Hazelwood, and St. Charles — all inside TJ's route zone. One conversation with their portfolio manager = 7 potential contracts vs. 7 separate cold calls. The individual property approach is a 1:1 effort ratio. The portfolio company approach is a 1:7+ ratio. That's the multiplier this tool unlocks.
+  - **What's built:**
+    - **6 Property Management Companies (priority-ranked):**
+      - 🔴 **Millsap Properties** — 7 pet-friendly communities in Florissant (Charbonier, Cunningham, Teson Garden), Ballwin (White Birch), St. Charles — all in active route zone. Phone hidden on site; approach via contact form OR call individual Charbonier property (Florissant, already in zone) and ask for portfolio manager.
+      - 🔴 **UE Management** — 9 boutique communities: Soulard Spaces, South City Spaces, Square on Delmar (U City), Square at McKnight (Richmond Heights), Titchfield Court, Emerald Ridge, The Envoy, 1001 Russell, Renaissance Apartments (St. Charles). Urban premium properties where pet waste = public review risk. Contact via uemstl.com/contact.
+      - 🟠 **Mills Properties Inc.** — 40+ year operator, 2650 S Hanley Rd STL, major STL multi-family portfolio. Pitch the reliability and single-point-of-contact angle for long-tenured operators.
+      - 🟠 **NRE Management** — (314) 968-1863 (ALREADY IN CALLING HUB) — Colonial Village + White Bluff, Webster Groves. One call covers both properties. This is the fastest portfolio win available.
+      - 🔵 **West End Management & Leasing** — Central/West STL residential portfolio. Tenant retention pitch.
+      - 🔵 **Deca Property Management / Associa Smith** — HOA-focused. HOA common areas + dog parks = $200-500/mo per HOA, residual for years.
+    - **Tab 2 — 7 Scripts:**
+      - Universal Portfolio Cold Opener (phone) — navigate to portfolio/regional manager, not receptionist
+      - Millsap-specific opener — "7 pet-friendly communities, all in my route zone, one agreement"
+      - UE Management opener — "boutique properties, shared outdoor spaces, tenant review protection"
+      - Mills Properties opener — "40-year reliability story, single invoice, portfolio rate"
+      - NRE Management opener — "Colonial Village + White Bluff, combined rate, one relationship"
+      - Objection handler — "We have a maintenance team" (most common objection)
+      - Pricing conversation — how to anchor portfolio rate without quoting individual properties
+      - Follow-up email template — send within 2 hours of positive conversation
+    - **Tab 3 — Strategy:**
+      - Why portfolio play = 7× better effort/reward ratio vs. individual property calls
+      - Who to reach (portfolio manager vs. individual PM vs. maintenance director vs. receptionist)
+      - April = best month (outdoor areas = peak pet waste visibility = managers feel the pain NOW)
+      - Wednesday 10 AM = calling sweet spot
+    - **Tab 4 — Revenue Math:**
+      - Bear: $900/mo (1 company, 3 properties) = +13 residential equivalents
+      - Base: $2,400/mo (Millsap + NRE, 8 properties) = +34 residential equivalents
+      - Bull: $5,000/mo (3 companies + HOA) = exceeds August residential goal in commercial alone
+      - Millsap portfolio deal alone = $1,200/mo × 24 months = $28,800 LTV from one relationship
+      - Portfolio pricing guide: small complex $150-200/mo → mid-size $250-375/mo → large $400-700/mo, 10-15% multi-property discount
+    - **Tab 5 — 15-item Checklist:** Right now (Millsap contact form, NRE call at 314-968-1863, Charbonier call) → Today before 5 PM (UE contact form, Mills call, follow-up emails) → This week (West End, Deca, site walkthroughs) → Long game (ask residential customers about their buildings, referral network)
+  - **Key insight — why this is different from the Calling Hub:** The Calling Hub calls leasing offices at individual properties. This kit calls the MANAGEMENT COMPANY that controls multiple properties and pitches a portfolio agreement. One signed management company = potential recurring MRR from all of their pet-friendly properties. The Commercial Calling Hub is a 1:1 tool. This is a 1:7 tool.
+  - **The NRE shortcut:** NRE Management is already in the Calling Hub at (314) 968-1863. But the script there pitches them as two individual properties. This kit reframes it as a portfolio pitch — "I know you manage both Colonial Village and White Bluff, let me give you one rate for both" — a meaningfully different and stronger conversation.
+  - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/property-management-portfolio-kit.html — title confirmed "🏢 Property Management Portfolio Kit — Tidy Tails" ✅
+  - **Git commit:** `0405cdd8` ✅ pushed to tidytails-dashboard
+
+---
+
 ### Wednesday 9:11 AM — Spring.html FB Ads Landing Page Upgrade (Hourly Task)
 - **9:11 AM** 🎯 Rebuilt and deployed the **spring.html landing page** — the destination for every active FB Ad dollar — with Easter urgency and conversion improvements
   - **File:** `tidy-tails/website/spring.html` (34KB rebuilt)
