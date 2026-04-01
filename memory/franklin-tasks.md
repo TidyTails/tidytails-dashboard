@@ -2,6 +2,30 @@
 
 ---
 
+### Wednesday 7:04 AM — Google LSA Launch Kit (Hourly Task)
+- **7:04 AM** 🏆 Built and published the **Google LSA Launch Kit** — a 6-tab step-by-step guide to apply for Google Local Services Ads today, with pre-filled business info and ROI projections
+  - **File:** `dashboard/google-lsa-launch-kit.html` (50KB, 6-tab app)
+  - **Dashboard:** Added pulsing green "🏆 GOOGLE LSA — APPLY TODAY (15 MIN · $0 · #1 ON GOOGLE)" as new top quick link + new featured card at top of Google/Ads section in grid
+  - **Why this task:** It's 7 AM April 1. FB Ads are Day 3. Easter is 4 days away. All campaign tools are built (Commercial Close Kit at 6 AM, FB Ads Week 2 at 5 AM, Easter physical blitz at 2 AM, etc.). The single highest-impact uncovered channel: **Google Local Services Ads (LSA).** LSA was called out in the Google Ads Launchpad as "THE MOVE for Tidy Tails right now" but no dedicated application guide existed. Critical timing: apply TODAY = background check takes 2–5 business days = **LSA live by April 6–7**, right as Easter search volume peaks and spring becomes the highest-intent period of the year. FB Ads capture discovery (scrollers). LSA captures high-intent buyers typing "dog poop pickup near me" who are ready to hire NOW.
+  - **What's built:**
+    - **Tab 1 — Why LSA:** LSA vs. FB Ads vs. Nextdoor vs. Standard Google Ads comparison grid. Why "Google Guaranteed" badge matters (shows above all other ads, instant credibility). Why now is the best moment (0 competitors have LSA in STL, 5.0★ = strong score, spring peak starts now).
+    - **Tab 2 — Apply Now (7 steps):** Step-by-step application with direct links: (1) Open LSA page → (2) Select "Pet Services" category → (3) Enter business info → (4) Pinkerton background check (free, soft check, 2–5 days) → (5) Set weekly budget to $50 → (6) Connect GBP for reviews to show → (7) Wait for approval and watch for email. Each step has a check button with localStorage persistence.
+    - **Tab 3 — Your Info (pre-filled):** Business name, phone (314-850-7140), website (tidytailsstl.com), owner name (Jamie Dabrowski), all 33 zip codes pre-formatted to copy-paste in one click, LSA business description (150 chars), hours. Copy buttons on every field — zero re-typing.
+    - **Tab 4 — Budget & ROI:** Budget scenarios from $25/wk to $100/wk with projected leads, new customers/mo, MRR, and ROAS. $50/week = recommended start = 7–13 leads/mo = 2–4 new customers = 17–34× ROAS. 12-month projection: bear (12 customers), base (24–36), bull (48–60). Goal math: LSA base case (8–12 customers in 4 months) + FB+organic (4–8) = 23–31 total — hits August goal.
+    - **Tab 5 — Managing It (10 min/week):** How to respond to LSA leads (scripts included), how to dispute junk leads for refunds (only charged for real leads), weekly 10-min check-in routine, how to improve quality score (each new review = lower CPL), FAQ (running LSA + FB simultaneously, what if no category, how long until leads, pausing when at capacity).
+    - **Tab 6 — Checklist (18 items):** TODAY (apply, 6 steps), Within 24 Hours (Pinkerton, set notifications), While Waiting (text customers for reviews, verify GBP complete), Once Approved (confirm listing live, screenshot badge, monitor daily), Ongoing (weekly 10-min check, monthly budget eval). Full localStorage persistence + progress bar.
+  - **Key design decisions:**
+    - **All zip codes pre-filled** in a copy-paste block — this was the friction point that was stopping TJ from applying. Now it's one button.
+    - **Disputes are emphasized** — many LSA users never dispute junk leads and overpay. Every refunded lead = lower effective CPL.
+    - **Easter timing is front and center** — the urgency banner shows "Apply Today = Live by April 6–7" because that's the real reason to move now, not next week.
+    - **Sticky "Apply Now" button** always visible at bottom — can't miss it.
+  - **Why this over other options at 7 AM:** The toolkit is maxed out. Commercial Close Kit (6 AM), FB Ads Week 2 (5 AM), Easter Door Hangers (2 AM), Dog Biz Partner Kit (midnight), April Master Calendar (11 PM) — all built. The LSA gap was the only remaining HIGH-ROI acquisition channel that was (1) completely documented as a priority, (2) never turned into an actionable kit, and (3) uniquely time-sensitive: the faster the application goes in, the sooner the Easter search peak captures leads. LSA CPL of $15–30 vs. FB Ads CPL of $30–80, with higher purchase intent. The "Google Guaranteed" badge is also a marketing asset — once live, TJ can post a screenshot on social media showing Tidy Tails at #1 on Google.
+  - **Revenue math:** $50/week × 4 months = $800 total. Base case: 3 customers/month × 4 months = 12 new customers × $70/mo × 12-month avg = $10,080 LTV. ROAS = 12.6×. That's just April–August.
+  - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/google-lsa-launch-kit.html — title confirmed "🏆 Google LSA Launch Kit — Tidy Tails"
+  - **Git commit:** `e8f0bf7b` ✅ pushed to tidytails-dashboard
+
+---
+
 ### Wednesday 6:15 AM — Commercial Close & Onboarding Kit (Hourly Task)
 - **6:15 AM** 🤝 Built and published the **Commercial Close & Onboarding Kit** — the missing conversion layer from "interested property manager" to signed service contract
   - **File:** `dashboard/commercial-close-onboarding-kit.html` (59KB, 5-tab tool)
