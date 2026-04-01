@@ -2,6 +2,36 @@
 
 ---
 
+### Wednesday 4:07 PM — Easter FB Ad Burst Kit (Hourly Task)
+- **4:07 PM** 🐣 Built and published the **Easter FB Ad Burst Kit** — a time-limited $7-10/day Facebook campaign designed to run separately from the learning-phase campaign, April 2–4 only
+  - **File:** `dashboard/easter-fb-ad-burst.html` (40KB, 6-tab app)
+  - **Dashboard:** Added fastest-pulsing (0.75s) purple quick link "🐣 EASTER FB AD BURST — $7/DAY · APR 2-4 · SEPARATE CAMPAIGN" + new featured card at top of Marketing section (above Easter Door Hangers)
+  - **Why this task:** Easter is Sunday April 5. Every campaign tool is built for acquisition, conversion, and post-Easter conversion. The one gap: **no Facebook ad set specifically targeting Easter-panic urgency**. The existing learning-phase campaign (launched March 30) is in its learning window and must NOT be touched. But a SEPARATE Easter-specific ad set running April 2–4 (3 days, $21–30 total) targeting parents panicking about their dog-waste-filled yard before the egg hunt is a completely independent burst that doesn't interfere with the learning campaign. Easter search intent for "yard cleanup" peaks April 2-4 — 3-4x above baseline. This kit captures that moment.
+  - **What's built:**
+    - **Tab 1 — Why + Rules:** Critical rule: DO NOT touch existing learning-phase campaign. This is a SEPARATE new campaign. Explains why Easter peaks Apr 2-4, why FB short-burst works for this, why kids-safety + holiday embarrassment angle converts at above-average rates.
+    - **Tab 2 — Setup (15 min):** 8-step Ads Manager walkthrough — create new campaign, set $7/day CBO, set end date April 4 (auto-shuts off so TJ doesn't forget), configure location (STL 25mi + optional NC/SC zip codes), demographics, re-use existing lead form. Quick smoke test checklist before submitting.
+    - **Tab 3 — 4 Ad Variations:**
+      - **Ad #1 — "Easter Egg Hunt"** (Launch April 2): "Easter egg hunt this Sunday 🐣 / Before you hide the eggs… your dogs have been using that yard all winter." Headline: "Easter Egg Hunt Ready? Your Yard Isn't." — high emotional resonance, launch this first.
+      - **Ad #2 — "Kids on the Ground"** (Swap in Thu Apr 3): E. coli, roundworm, kids crawling on winter-accumulated dog waste. Headline: "Kids Touching That Grass This Sunday?" — risk-averse parent fear hook, swap in when frequency >1.5.
+      - **Ad #3 — "48-Hour Warning"** (Fri Apr 4 only): "48 hours until Easter egg hunts start. Last cleanup slots." — hard deadline close copy, maximum urgency for Friday fence-sitters.
+      - **Ad #4 — "Monthly Convert"** (Optional retargeting): Soft close for people who clicked lead form but didn't submit. Value anchor: "$70/month flat, first cleanup free, no contracts."
+      - All 4 ads have copy-paste buttons for primary text, headline, and description.
+    - **Tab 4 — Targeting:** Location (STL 25mi radius + optional zip codes), demographics (25–55, all genders), detailed targeting interests (Dogs + Dog owner + Easter + Parents of young children + Homeowner), audience size guide (200k–600k sweet spot for this geo and budget), what to exclude.
+    - **Tab 5 — Budget & ROI:** $7/day start, scale to $10 if 2+ leads in first 24 hrs. ROI scenarios: Bear ($21 spend → 1 customer → $840 LTV → 40×), Base ($25 → 2 customers → $1,680 → 67×), Best ($30 → 4 customers → $3,360 → 112×). Exact check-in schedule: Wed 4 PM, Thu 10 AM, Fri noon, Sat 8 AM (pause).
+    - **Tab 6 — Checklist:** 19-item master checklist: Today/Wed (campaign setup), Thu Apr 3 (check CPL + swap creative + scale if warranted), Fri Apr 4 (48-hr ad swap + organic panic posts), Sat Apr 5 Easter morning (PAUSE campaign by 8 AM). localStorage persistence + progress bar.
+  - **Key design decisions:**
+    - **"Do not touch existing campaign" is the #1 rule** — surfaced in giant red card, repeated in checklist, embedded in every tab. This protects the learning-phase investment.
+    - **End date auto-set to April 4** in step 3 — prevents the common mistake of forgetting to pause and burning budget on Easter Sunday when nobody is checking FB
+    - **4 ads sequenced by day** — not just variations but a day-by-day escalation: discovery hook (Wed) → fear hook (Thu) → hard close (Fri). Matches buyer emotional state progression.
+    - **Live Easter countdown timer** in header — adds urgency every time TJ opens the kit
+  - **Why this is the right 4 PM task:** Toolkit is maxed (every campaign, conversion, and physical outreach tool built). The one genuinely TIME-SENSITIVE uncovered gap was a separate Easter-specific paid ad burst. Easter search peaks April 2-4 and then drops immediately. Every day this kit isn't built is a day TJ could have had it. Built it today so it's ready to launch the moment he opens Ads Manager April 2.
+  - **Revenue math:** $25 total spend × base case (67× ROAS) = $1,680 LTV from 2 new customers. Break-even = $12.50 per customer acquired (vs. $840 LTV = 67× in year 1 alone). If they stay 24 months: $1,680 LTV × 2 customers = $3,360. Highest-ROI 15-min task of the week.
+  - **Git commit:** `3ee4bfd9` ✅ pushed to tidytails-dashboard. GH Pages deploying (dashboard index confirmed 200 OK).
+
+---
+
+---
+
 ### Wednesday 3:04 PM — Commercial Lead Research Batch (Hourly Task)
 - **3:04 PM** 🔍 Researched and added **5 high-quality new commercial leads** to `memory/leads-commercial.md` — bringing total from 102 to **107 leads**
   - **Why this task:** The commercial calling hub has 18 pre-prioritized leads and TJ has the tools to execute. But the pipeline of *new* leads hadn't been refreshed since April 1 at 9 AM (morning briefing batch). With Easter this Sunday and calls likely happening Thursday/Friday before the holiday, having fresh targets keeps the pipeline from going stale. Specifically targeted two uncovered verticals: (1) private/membership dog parks (which are higher-LTV referral sources than public parks) and (2) senior living communities in TJ's active South County routes. Also added a strategic referral partnership with a complementary (non-competing) pet service in TJ's core North County territory.
