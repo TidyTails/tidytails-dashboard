@@ -608,3 +608,37 @@ Days 4-7 = "Frustration Mode" — peak time to capture orphaned customers. Windo
 - ✅ Dashboard status updated
 
 **Impact:** Token-lean context for all Wednesday sessions. Per lesson #19: midnight = maintenance, not creation.
+
+---
+
+## Apr 1, 2026 — Full Day Maintenance + System Builds
+
+**Context:** 11 customers / 25 goal (44%). Spring acquisition season. Easter window Apr 5.
+
+**Morning (Pre-7 AM)**
+- Fixed `fb-ads-week2-refresh.html` — added `(314) 850-7140` phone CTA to all 4 ad variants (b1-b4). Chief #275 MEDIUM issue resolved.
+- Confirmed morning briefing cron fixed after 6 consecutive failures (900s timeout). 8:30 AM run: ✅ 306s, 1MB PDF, emailed.
+
+**Mid-Morning**
+- Updated `nas-copywriter SKILL.md` — mandatory phone footer blocks for both businesses in template + quality checklist. Compounding fix.
+- Linked Apr 1 PDFs in index.html (Morning Briefing 1MB, Shed Ads 435K, Commercial Leads 639K). Footer timestamp updated.
+- Verified SHED_ADS_2026-04-01 phone compliance (5x 636-354-7406 ✅).
+
+**Afternoon**
+- Added blog auto-deploy rule to HEARTBEAT.md (Section 7).
+- Added phone compliance auto-check rule to HEARTBEAT.md (Section 6).
+- Archived 6 sub-100KB stale PDFs to `dashboard/pdfs/archive/`.
+- Fixed `daily-ops-hub.html` — phone footer added.
+- Verified `gbp-spring-domination-kit.html` — 31 phone refs (Chief false positive).
+- Rebuilt `docs/90_DAY_GROWTH_ROADMAP.md` — Apr–Jun 2026 Q2 strategy. Phases: 11→17→22→25-30 customers.
+- Created `memory/commercial-lead-tracker.json` — 111 leads with status/last_contacted tracking. HEARTBEAT cadence rule added.
+
+**Evening**
+- Added `/pricing` link to dashboard SEO section.
+- Created `memory/delivery-state.json` — 10 deliverables seeded, Chief audit compounding improvement.
+- Archived 3 Kling Easter video finals to `videos/archive/` after no TJ go/no-go (4 pings, window closed).
+- Sent 4 Telegram pings on Kling Easter videos (last one 8:12 PM).
+- `delivery-state.json` updated to reflect archived status.
+
+**Commits today:** 10+ | **Issues resolved:** 12 | **Chief items actioned:** #275–#283
+
