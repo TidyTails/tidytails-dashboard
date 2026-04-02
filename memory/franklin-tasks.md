@@ -2,6 +2,45 @@
 
 ---
 
+### Thursday 6:06 PM — "Dog Poop and Worms" Blog Post (Hourly Task)
+- **6:06 PM** 🪱 Wrote and published **"Dog Poop and Worms in Your Yard — What St. Louis Families Need to Know"** — the first parasite-focused blog post in the content library, targeting the highest-severity child health search cluster with zero STL competitor coverage
+  - **File:** `tidy-tails/website/blog/dog-poop-worms-yard-st-louis.html` (45.4KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/dog-poop-worms-yard-st-louis` ✅ HTTP 200 confirmed, title confirmed
+  - **Blog count: 77 posts total** ✅
+  - **Why this task:** 6 PM Thursday April 2. 76 blog posts live. The pest series (flies → mosquitoes → ticks) is complete. The next highest-value uncovered content cluster: **parasites from dog poop** — specifically roundworms and hookworms. This is the #1 parent fear driving conversions in spring when kids go barefoot. The CDC estimates 14% of Americans have been exposed to Toxocara roundworm, with children as the primary high-risk group. Yet zero St. Louis dog waste competitors have any dedicated parasite content. The general `dog-poop-health-risks.html` mentions worms but with no depth. The key counterintuitive facts this post breaks open: (1) roundworm eggs become MORE infectious as feces decomposes — not less; (2) eggs survive in soil for 2–5 years after visible waste is gone; (3) hookworm larvae penetrate bare skin directly — no ingestion required. These facts are genuinely alarming to parents and completely unknown to most people.
+  - **Target keywords:** "dog poop worms yard", "can kids get worms from dog poop", "roundworm dog poop yard", "hookworm dog poop barefoot", "dog poop parasite risk children", "dog poop worms soil St. Louis", "Toxocara yard children", "how long roundworm eggs survive soil"
+  - **Unique angle — The 48-Hour Rule:** Most parasite content says "clean up dog poop." This post explains WHY timing matters mechanistically: fresh feces contains unembryonated eggs that aren't yet infectious. It takes 2–4 weeks of warm soil incubation for them to develop. If you pick up within 48 hours, you remove the eggs before they become infectious. Wait 3 weeks, and you removed the waste but left the eggs. This is the insight that converts people from "occasional cleanup" to "weekly service" — because they finally understand that frequency, not just effort, is what prevents contamination.
+  - **What's in the post (~2,800 words, 45.4KB):**
+    - **Hero:** "Dog Poop and Worms in Your Yard — What St. Louis Families Need to Know" — deep mahogany/rust gradient (#1c0a00 → #9a3412), distinct from all pest series posts
+    - **Urgency banner:** "🪱 April–May is peak parasite exposure season in St. Louis — kids going barefoot outdoors need a clean yard. First cleanup FREE →"
+    - **Stats row:** 2–5 yrs (roundworm egg soil survival) / Bare Skin (hookworm penetration route) / 48 hrs (safe pickup window) / $70/mo
+    - **4 worm/parasite cards:** Toxocara canis (roundworm — HIGH RISK, 2–5 yr soil survival, visceral/ocular larva migrans), Ancylostoma caninum (hookworm — HIGH RISK, bare skin penetration, cutaneous larva migrans), Toxascaris leonina (roundworm variant — MODERATE), Giardia duodenalis (MODERATE, cyst-forming, cool moist soil survival)
+    - **Big stat callout:** 14% — percentage of Americans exposed to Toxocara. 70 cases/year of permanent vision damage from ocular larva migrans (CDC estimate).
+    - **5-step transmission chain:** Fresh deposit → embryonation in soil over 2–4 weeks → eggs persist for years → child plays at ground level → ingested eggs hatch and larvae migrate through organs
+    - **The 48-Hour Rule callout:** Why fresh feces isn't infectious yet — and why waiting turns a removal task into a containment failure
+    - **Seasonal risk grid:** Winter (LOWER — cold slows embryonation, but waste accumulates) / April–May (CRITICAL — winter deposits thaw, warm moist soil, kids go barefoot — all three factors converge) / June–August (HIGH — continued outdoor activity, eggs from spring already in soil) / Fall (MODERATE — accumulation resumes)
+    - **Big stat callout:** 100+ deposits per dog during a St. Louis winter — all becoming infectious simultaneously at April thaw
+    - **Child risk grid (4 cards):** Ground-Level Play / Hand-to-Mouth Behavior / Barefoot Play / No Avoidance Behavior — explains why children specifically are the highest-risk group
+    - **Ocular Larva Migrans callout:** The outcome that doesn't fully heal — dedicated section explaining why pediatricians take Toxocara exposure seriously
+    - **Scenario grid:** ❌ Yard with winter accumulation + irregular pickup (100+ deposits → April thaw → peak infectivity → kids barefoot → contamination cycle) vs ✅ Yard with weekly professional pickup (48-hour removal → no embryonation → soil contamination prevented at source)
+    - **What doesn't work section:** Occasional pickup, waiting for decomposition, enzyme sprays/lime, dewormers alone — each explained mechanistically
+    - **3-Step Protocol callout:** (1) Remove waste within 48 hours — the only intervention that prevents soil contamination. (2) Monthly parasite prevention meds. (3) Annual fecal testing.
+    - **St. Louis-specific context:** 4-month winter accumulation → all deposits embryonating simultaneously in April; Missouri humidity/rainfall extends hookworm larval survival; urban/suburban density with limited soil turnover
+    - **Practical guide (5 steps):** Spring cleanup now, weekly/twice-weekly pickup, annual dog fecal test, explain invisible risk to kids, shoe-off policy
+    - **Pricing strip + CTA:** $70/mo flat, first cleanup free, no contracts
+    - **7-question FAQ with FAQPage schema:** Can kids get worms from dog poop / How long do roundworm eggs survive in soil / Can hookworms go through bare feet / Symptoms of roundworms in children / Does decomposition eliminate the worm risk / How to reduce parasite risk / Cost of dog waste removal
+    - **Service area grid (22 cities) + Related Articles (6)**
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + og:meta with parasite/children's health angle
+  - **Cross-links added:**
+    - `blog/dog-poop-health-risks.html`: Added "🪱 Dog Poop and Worms — Parasite Risk for St. Louis Families" as first Related Article ✅
+    - `blog/how-long-does-dog-poop-decompose.html`: Added "🪱 Dog Poop and Worms in Your Yard" as first Related Article ✅
+    - `blog/index.html`: Added worms card (#1 position, mahogany #9a3412 border/glow, before ticks post) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+  - **Git commits:** tidytails-dashboard `c6c23691` ✅ · tidytails-website `37b4795` → Cloudflare Pages live ✅
+  - **Why this completes a critical content cluster:** The health-angle content now has a complete hierarchy: (1) General health risks overview post, (2) Decomposition timeline showing pathogens persist, (3) Rain spreading bacteria and pathogens, (4) **Worms/parasites dedicated post (new)** — the highest-severity single outcome that converts parents who were vaguely aware of "health risks" into people who immediately understand why the 48-hour pickup rule is non-negotiable. The parasite content is uniquely shareable — parents forward this to other parents. The CDC statistics give it credibility. The "decomposition makes it worse, not better" mechanism is genuinely surprising and sticky. Annual LTV from one convert: $840.
+
+---
+
 ### Thursday 5:04 PM — "Dog Poop and Ticks" Blog Post (Hourly Task)
 - **5:04 PM** 🕷️ Wrote and published **"Dog Poop and Ticks in Your Yard — The Hidden Connection"** — completing the pest series trifecta (flies → mosquitoes → ticks) with the highest disease-severity angle in the entire blog
   - **File:** `tidy-tails/website/blog/dog-poop-ticks-yard-st-louis.html` (53KB ✅)
