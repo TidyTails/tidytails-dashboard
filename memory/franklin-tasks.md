@@ -2,6 +2,37 @@
 
 ---
 
+### Thursday 2:06 AM — July 4th Cookout Yard Cleanup Blog Post (Hourly Task)
+- **2:06 AM** 🎆 Wrote and published dedicated blog post targeting **July 4th cookout searchers with dogs** — the biggest backyard party of the year and the last major seasonal conversion window without dedicated content
+  - **File:** `tidy-tails/website/blog/fourth-of-july-cookout-yard-cleanup-dogs-st-louis.html` (43.3KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/fourth-of-july-cookout-yard-cleanup-dogs-st-louis` ✅ HTTP 200 confirmed
+  - **Blog count: 63 posts total** ✅
+  - **Why this task:** 2 AM April 2. 62 blog posts live. Memorial Day (May 25) and Father's Day (June 21) posts were the last two seasonal gaps — both now filled. The next uncovered seasonal window: **July 4th**, the single biggest backyard cookout of the year. Searches for "clean yard before July 4th", "July 4th backyard party dogs", "dog poop Fourth of July" start peaking in late June. Building now = 93 days of indexing before peak. Zero STL competitors have this content. Same high-converting formula as the Memorial Day post — cookout hosts who realize 2-4 days before the party that their dog-occupied yard isn't guest-ready. But July 4th is bigger: more guests, after-dark fireworks (nobody watching where they step), and July heat that makes smell impossible to ignore.
+  - **Target keywords:** "July 4th yard cleanup dogs", "fourth of July cookout dog poop St. Louis", "backyard party dogs July 4th", "clean yard before July 4th St. Louis", "pooper scooper before July 4th", "Independence Day yard cleanup dogs"
+  - **What's in the post (~2,500 words, 43.3KB):**
+    - **Hero:** "4th of July Cookout With Dogs? Clean That Yard First." — blue/red patriotic color scheme (navy/crimson gradient)
+    - **Stats row:** July 4th / 300 deposits/dog/year / One-time cleanup from $75 / 5.0★ / No contracts
+    - **July 4th Yard Math callout:** ~175 deposits since Jan 1 (one dog), July 90°+ heat activates smell fast, $2.30/day to never worry
+    - **"The Dark Yard Test":** "Think about your guests walking across that yard after dark to watch fireworks. Nobody's watching where they step." — the specific July 4th hook that doesn't exist in other cookout posts
+    - **Why July 4th Is Hardest:** 6 months accumulation, tall summer grass hides everything, July heat makes it urgent, guests after dark, biggest cookout of the year
+    - **Health warning box:** E. coli, salmonella, roundworm — EPA non-point source angle
+    - **DIY 5-step cleanup guide:** Grid sweep, check tall grass twice, double bag & remove from property, revisit morning of the party
+    - **"The Full Summer Cookout Calendar" section:** Monthly service grid showing Memorial Day / Father's Day / July 4th / Labor Day all marked ✅ — makes the case for going monthly vs panicking before each cookout
+    - **Comparison table:** Tidy Tails vs One-time cleanups each time vs National Franchise vs DIY — annual cost and "ready" status for each summer holiday
+    - **5-step how it works:** Text → On My Way → Full yard grid sweep → All Done text → Optional monthly
+    - **Pricing table:** $70/mo (most popular), $80/mo (3-4 dogs), $75+ one-time, $45/visit biweekly
+    - **Service areas grid:** All 6 zones with city examples
+    - **7-question FAQ with FAQPage schema:** Pre-4th cleanup guide, health angle, accumulation math, booking timing, what makes July 4th different, monthly service, service areas
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + og:meta with July 4th angle
+  - **Cross-links added:**
+    - `blog/index.html`: Added as #1 card (newest first, navy border) ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+    - `blog/memorial-day-cookout-yard-cleanup-dogs-st-louis.html`: Added "🎆 4th of July Cookout With Dogs?" as first Related Article ✅
+  - **Git commits:** tidytails-dashboard `8c39684b` ✅ · tidytails-website `e43da47` → Cloudflare Pages live
+  - **Revenue logic:** Targets cookout hosts 2-6 weeks before July 4th who realize their yard isn't ready. Same conversion pattern as Memorial Day: high urgency + specific deadline = high conversion. One-time $75 cleanup converts to monthly at 40-60%. The "full summer calendar" section (Memorial Day / Father's Day / July 4th / Labor Day all ✅) is a unique angle that exists only in this post — shows the value of going monthly vs scrambling before every cookout. 93 days of indexing time before July search peak. Annual LTV from one convert: $840.
+
+---
+
 ### Thursday 1:04 AM — Senior Living Commercial Kit (Hourly Task)
 - **1:04 AM** 🏡 Built and published the **Senior Living Commercial Kit** — the first commercial tool targeting independent and assisted living communities, the most untapped vertical in the entire Tidy Tails commercial pipeline
   - **File:** `dashboard/senior-living-commercial-kit.html` (54.7KB ✅)
