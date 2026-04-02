@@ -2,6 +2,43 @@
 
 ---
 
+### Thursday 1:04 PM — "How Long Does Dog Poop Take to Decompose?" Blog Post (Hourly Task)
+- **1:04 PM** 🔬 Wrote and published **"How Long Does Dog Poop Take to Decompose? (St. Louis Reality Check)"** — the last major myth-busting evergreen post in the content library
+  - **File:** `tidy-tails/website/blog/how-long-does-dog-poop-decompose.html` (49KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/how-long-does-dog-poop-decompose` ✅ HTTP 200 confirmed, title confirmed
+  - **Blog count: 72 posts total** ✅
+  - **Why this task:** 1 PM Thursday April 2. 71 blog posts live. Every geographic city and county is covered. Every major holiday and seasonal event is covered. The remaining gap: no dedicated post attacking the #2 conversion-killing myth — "it'll just decompose on its own." This query cluster is **year-round** (not seasonal), high-intent (people googling this are questioning their decision to skip pickup), and completely uncovered by any St. Louis competitor. No STL pet waste company has a dedicated decomposition guide.
+  - **Target keywords:** "how long does dog poop take to decompose", "does dog poop decompose naturally", "dog poop breaks down yard", "how long dog waste lasts soil", "dog poop disappear yard", "does dog poop go away on its own"
+  - **Unique angle — The Invisible Yard Problem:** The visible waste is only the beginning. Roundworm eggs survive 2–5 years AFTER the poop is gone. Giardia cysts persist for months. E. coli remains active for weeks. A yard that looks perfectly clean after winter may still have active pathogens from waste deposited months ago. This is genuinely new information to most dog owners.
+  - **What's in the post (~2,600 words, 49KB):**
+    - **Hero:** "How Long Does Dog Poop Take to Decompose? (Longer Than You Think.)" — dark blue/navy gradient, science badge
+    - **Stats row:** 9 weeks (best-case) / 6–12 months (typical) / 2–5 years (roundworm eggs in soil) / 100+ deposits per dog per winter
+    - **The Myth section:** "Dog poop is natural — it fertilizes the grass." Busted: it's highly acidic, pathogen-loaded, burns grass. Dog diet is high-protein, not plant material. Not fertilizer, never has been.
+    - **Week-by-week decomposition timeline:** Days 1–7 (flies, bacteria leaching) → Weeks 2–3 (flattening, bacteria spreading) → Weeks 4–6 (appears gone, nitrogen burning starts, roundworm eggs embedding) → Weeks 7–9 (visible waste gone in ideal conditions, soil contamination complete) → Months–Years (Toxocara survives 2–5 years, Giardia months, E. coli weeks to months)
+    - **St. Louis seasonal grid:** ❄️ Winter (barely decomposes, 3–4 months zero progress) / 🌸 Early Spring (highest-risk period, rain spreads bacteria before decomposition starts) / ☀️ Summer (fastest at 6–9 weeks but most smell + flies) / 🍂 Fall (slowing, leaves hide deposits)
+    - **The St. Louis Winter Math:** 25 deposits/dog/month × 4 months = 100 deposits per dog NOT decomposing. Two dogs = 200 deposits re-emerging at spring thaw.
+    - **Giant stat callout:** "5 years — how long Toxocara (roundworm) eggs can survive in soil after the poop is gone"
+    - **7-pathogen grid:** Toxocara (2–5 years in soil), Giardia (months in cool moist soil), E. coli (weeks to months), Salmonella (weeks to months), Campylobacter (weeks), Hookworm larvae (penetrate bare skin), Parvovirus (months to over a year)
+    - **Lawn damage section:** Dog waste is acidic + concentrated nitrogen = burns grass, kills it. Dead brown spots explained. Why it's the opposite of fertilizer.
+    - **Scenario grid:** ❌ Letting It Decompose (burn spots, bacteria spreading, flies, parasite eggs in soil years later, kids exposed) vs ✅ Weekly Pickup (zero contamination cycle, grass stays healthy, yard usable every week)
+    - **5-step practical guide:** Pick up within 48 hours / Double-bag and remove off-property / Full grid sweep / Address winter accumulation before spring rain / Weekly schedule
+    - **Service section:** Tidy Tails pricing, "On My Way" + "All Done" texts, 22-city service area
+    - **7-question FAQ with FAQPage schema:** How long decompose / Does it go away on its own / Does it decompose faster in summer / How long do pathogens survive / Does it decompose in Missouri winter / Why not fertilizer / St. Louis winter accumulation math / Cost of professional service
+    - **6 related article cards**
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + og:meta with science/myth-busting angle
+  - **Cross-links added:**
+    - `blog/index.html`: Added as new card (#1 position, purple #7c3aed border/glow, before pool post) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, monthly changefreq) ✅
+    - `blog/does-rain-wash-away-dog-poop-st-louis.html`: Added "🔬 How Long Does Dog Poop Take to Decompose?" as first Related Article ✅
+    - `blog/winter-dog-poop-cleanup-st-louis.html`: Added as first Related Article ✅
+  - **Git commits:** tidytails-dashboard `3dc4d8bc` ✅ · tidytails-website `a82e8af` → Cloudflare Pages live ✅
+  - **Why this is high-impact:** Every time someone wonders "should I bother picking up?" and searches "does dog poop just decompose," they now find Tidy Tails. The answer — 9 weeks minimum, roundworm eggs 5 years — is genuinely alarming and converts people who were passively procrastinating. It also captures the large segment of people who assumed they were doing "good enough" by letting nature handle it. Cross-links from the rain post and winter post send highly relevant organic traffic to this piece. Year-round relevance means it never goes out of date. Annual LTV from one convert: $840.
+
+---
+
+
+---
+
 ### Thursday 12:06 PM — "Opening Your Pool With Dogs?" Blog Post (Hourly Task)
 - **12:06 PM** 🏊 Wrote and published **"Opening Your Pool With Dogs? Clean That Yard First."** — the first pool-season-specific dog waste content in the entire St. Louis market
   - **File:** `tidy-tails/website/blog/dog-poop-pool-yard-st-louis.html` (41.4KB ✅)
@@ -3659,3 +3696,45 @@
       - The Watering Bowl St. Peters (STP@BESTFRIENDS.NET) — referral play, premium dog daycare clients
   - **Revenue math:** 26 emails → conservative 12% reply rate = 3 replies → 1-2 commercial contracts → $300-500/mo new commercial MRR → $3,600-6,000 LTV at $0 CAC
   - **How this contributed to the August goal:** Every commercial contract = 2-6 residential customer equivalents. Two contracts from this blast = equivalent of 4-12 residential adds toward the 25-customer target.
+
+---
+
+### Thursday 2:07 PM — Valentine's Day Gift Guide Blog Post (Hourly Task)
+- **2:07 PM** 💝 Wrote and published **"Valentine's Day Gift for Dog Owners in St. Louis — Give Them a Clean Yard"** — the first Valentine's Day content in the entire St. Louis pet waste market
+  - **File:** `tidy-tails/website/blog/valentines-day-gift-dog-owner-st-louis.html` (42.6KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/valentines-day-gift-dog-owner-st-louis` ✅ HTTP 200 confirmed
+  - **Blog count: 73 posts total** ✅
+  - **Why this task:** 2:07 PM Thursday April 2. 72 blog posts live. Full holiday series complete (Easter → Memorial Day → Father's Day → July 4th → Labor Day → Halloween → Thanksgiving → Christmas). Gift-buyer calendar complete for Mother's Day + Father's Day. ONE gap remained in the gift-buyer funnel: **Valentine's Day (February 14)**. Zero St. Louis competitors have addressed this. Zero content on the site targeted February gift searches. Valentine's Day gift searches ("gift for girlfriend with dogs", "Valentine's Day gift dog owner") start peaking January 20 and peak February 1–12 — this post now has ~9 months of indexing runway before the 2027 Valentine's Day peak.
+  - **Target keywords:** "valentines day gift dog owner St. Louis", "gift for dog owner Valentine's Day", "unique Valentine gift dog lover", "gift for wife with dogs", "gift for girlfriend with dog", "pooper scooper gift idea Valentine's Day"
+  - **Unique angle — The February Yard Problem:** Valentine's Day (February 14) falls at the end of winter, meaning any St. Louis dog yard has 3+ months of cold-preserved accumulation that hasn't decomposed at all. This is the one fact that makes this post genuinely different from the Mother's Day/Father's Day posts — it pairs the gift-buyer angle with the specific winter buildup reality of February in St. Louis. A cleanup gift in February = clearing all of fall/winter AND setting up the yard for spring.
+  - **What's in the post (~2,600 words, 42.6KB):**
+    - **Hero:** "Valentine's Day Gift for Dog Owners in St. Louis — Give Them a Clean Yard" — crimson/rose gradient (💝), distinct from Mother's Day pink
+    - **Stats row:** $70/mo flat / FREE first cleanup / 0 contracts / 5.0★ St. Louis local
+    - **3 Gift Options grid:** Monthly service ($70/mo, "BEST GIFT"), Winter Cleanup (from $75), Try It Free ($0) — covers every buyer type
+    - **Conversion hook — "300":** Giant stat card: 300 deposits per dog per year. Every single one handled by Tidy Tails.
+    - **The February Yard Situation section:** Cold preserves waste — no decomposition Oct–Feb. By Valentine's Day, 125+ deposits per dog sitting in the yard. A gift in February = clearing 3+ months of buildup in one visit, then clean weekly going into spring.
+    - **Why It Beats Flowers/Chocolates/Dinner table:** Flowers = 5-7 days / Chocolates = 1-2 days / Dinner = one night / Tidy Tails = year-round + solves a real problem + weekly reminder. The "weekly reminder" column is the conversion anchor — every "On My Way" text is a reminder of the gift.
+    - **Scenario grid:** ❌ Valentine's without this (yard chore never goes away, winter buildup, flowers lasted 5 days) vs ✅ Valentine's with this (every week — yard handled before they get home, "On My Way" text, "All Done" text)
+    - **Dog Owner Math card:** 300 deposits/year / 125+ winter accumulation / 20-30 min/week DIY / $2.30/day flat / ~26 hours/year saved
+    - **5-step how it works:** Gift buyer texts us → we schedule → "On My Way" text → yard cleaned → "All Done" text
+    - **Text demo mockup:** Visual showing exactly what the "On My Way" and "All Done" texts look like on a phone
+    - **3 Gift scripts:** For partner/spouse, card note version, text-surprise version
+    - **Pricing table:** 1-2 dogs $70/mo / 3-4 dogs $80/mo / 5+ dogs $90/mo / one-time from $75
+    - **22-city service area grid**
+    - **7-question FAQ with FAQPage schema:** Best Valentine gift for dog owners / How to gift pickup service / Does it last all year / Different address / Cost / Winter timing / What makes Tidy Tails better
+    - **Who This Is For grid (4 cards):** Partner/spouse / New homeowner / New dog owner / The dog mom/dog dad
+    - **6 related article cards:** Mother's Day gift, Father's Day gift, Christmas post, Is it worth it, Cost guide, How it works
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + og:meta with Valentine's/gift angle
+  - **Cross-links added:**
+    - `blog/index.html`: Added as new card (#1 position, crimson #be123c border/glow, before decompose post) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+    - `blog/mothers-day-gift-dog-owner-st-louis.html`: Added "💝 Valentine's Day Gift for Dog Owners" as first Related Article ✅
+    - `blog/fathers-day-gift-dog-owner-st-louis.html`: Added "💝 Valentine's Day Gift for Dog Owners" as first Related Article ✅
+  - **Git commits:** tidytails-dashboard `78d9831c` ✅ · tidytails-website `898fdb1` → Cloudflare Pages live ✅
+  - **Gift-buyer calendar now complete:** Valentine's Day (Feb 14) → Mother's Day (May 10) → Father's Day (June 21) → Christmas (Dec 25). Four gift-buyer touchpoints across the year, each capturing a different buyer audience:
+    - Valentine's: partners/spouses, boyfriend/girlfriend
+    - Mother's Day: husbands buying for dog moms, adult kids
+    - Father's Day: wives/partners buying for dog dads, adult kids
+    - Christmas: anyone buying for a dog owner in the family
+  - **Why this is high-impact:** Zero competitors have Valentine's Day content. The February gift search window (Jan 20 – Feb 12) is completely unoccupied by any St. Louis pet waste company. The post also captures a unique angle no other gift-buyer post hits: February is specifically the worst month for dog owners in St. Louis because 3+ months of cold-preserved winter buildup is in the yard. That "The February Yard Situation" section converts people who came to buy a gift but stayed to understand why February is actually the most impactful time to start service. 9 months of indexing runway before Valentine's 2027. Annual LTV from one convert: $840.
+
