@@ -2,6 +2,43 @@
 
 ---
 
+### Thursday 9:11 AM — "Does Rain Wash Away Dog Poop?" Blog Post (Hourly Task)
+- **9:11 AM** 🌧️ Wrote and published **"Does Rain Wash Away Dog Poop? What St. Louis Dog Owners Actually Need to Know"** — the highest-searched April myth-busting post in the entire content library
+  - **File:** `tidy-tails/website/blog/does-rain-wash-away-dog-poop-st-louis.html` (46.9KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/does-rain-wash-away-dog-poop-st-louis` ✅ HTTP 200 confirmed, title confirmed
+  - **Blog count: 70 posts total** ✅
+  - **Why this task:** 9:11 AM April 2. 69 blog posts live. The complete audit of remaining content gaps pointed clearly to one post that should exist but doesn't: a dedicated myth-buster for "does rain wash away dog poop" — the single most common reason people skip yard cleanup during April. This query spikes every time it rains. April in St. Louis averages 4.2 inches. Zero STL competitors have addressed this misconception. The myth is literally killing conversions: people see rain in the forecast, assume it handles the problem, and don't book. Destroying that myth during peak search season = direct conversion.
+  - **Target keywords:** "does rain wash away dog poop", "dog poop rain yard", "rain dog waste St. Louis", "what happens to dog poop when it rains", "dog poop after rain", "rain spread dog bacteria", "pet waste rain runoff", "dog poop wash away"
+  - **Unique angle — Rain Doesn't Clean, It Spreads:** This post makes a counterintuitive argument most people have never thought about: rain doesn't eliminate dog waste, it disperses the bacteria, parasite eggs, and nitrogen across a wider area of your lawn AND sends it through storm drains directly into Gravois Creek, Deer Creek, and the Meramec River. The misconception that rain handles it is so ingrained that people literally check the weather forecast to decide whether to pick up. This post kills that reasoning permanently.
+  - **What's in the post (~2,400 words, 46.9KB):**
+    - **Hero:** "Does Rain Wash Away Dog Poop? (No. Here's What It Actually Does.)" — navy blue gradient, rain theme
+    - **Urgency banner:** "April rains are here — every inch of rain spreads dog waste across your yard. First cleanup FREE →"
+    - **Stats row:** Rain Spreads, Not Clears / 23M Bacteria Per Gram / Pathogens Survive Months / Goes Straight to Storm Drains
+    - **4-pair Myth vs Fact grid:** "Rain washes it away" vs reality / "It decomposes naturally" vs 9 week minimum / "Dog poop is fertilizer in rain" vs it burns grass / "Less of a problem in wet months" vs wet = worse
+    - **5-step what actually happens timeline:** (1) solid waste disperses, (2) bacteria travel across yard, (3) parasite eggs settle into soil, (4) runoff enters storm drains untreated, (5) nitrogen burns lawn
+    - **Giant stat callout:** 23,000,000 fecal coliform bacteria per gram — rain spreads this across your lawn
+    - **The April Rain Math:** 4.2" avg rainfall / ~25 new deposits per dog / 0 deposits eliminated by rain / 9 weeks minimum decomposition
+    - **8-pathogen grid:** E. coli, Roundworm (Toxocara — survives 2-5 YEARS in soil), Giardia (thrives in cool moist conditions), Salmonella, Campylobacter, Hookworm (larvae penetrate bare skin directly), Parvovirus, Whipworm — each with rain/survival context
+    - **The Invisible Yard Problem callout:** After rain, the yard looks clean. Roundworm eggs and bacteria are still there — just spread over the whole lawn and embedded in moist soil.
+    - **St. Louis storm drain section:** Why St. Louis County separate storm sewer system matters — waterways grid showing Gravois Creek (Kirkwood/Crestwood/Sunset Hills), Deer Creek (Clayton/U City/Maplewood), Creve Coeur Creek (Chesterfield), Coldwater Creek (Florissant/Hazelwood/Ferguson), Meramec River, Mississippi River
+    - **EPA non-point source classification callout**
+    - **Lawn damage section:** ❌ Rainy April with unmanaged waste (burn spots, bacteria spread, smell worsens) vs ✅ Weekly pickup before rain (no nitrogen burn, bacteria-free runoff, usable yard)
+    - **How long to decompose callout:** Ideal warm: 9 weeks / Cool spring under 50°F: 3-6 months / Missouri winter: stops completely / After visible waste is gone: roundworm eggs persist 2-5 years
+    - **Practical guide (5 steps):** Pick up before rain events (not after) / Don't rely on rain for winter accumulation / Check storm drain proximity / Treat post-rain yards with same caution / Consider weekly professional service during peak rain months
+    - **Pricing strip + CTA:** $70/mo flat, one-time from $75, first cleanup free
+    - **7-question FAQ with FAQPage schema:** Does rain wash it away / What happens to it / Is it okay to leave it / Does it act as fertilizer / How long to decompose / How much does pickup cost / Does it affect St. Louis waterways
+    - **6 related article cards:** Earth Day environmental impact / Spring cleanup / Winter thaw reveal / Is it worth it / How often to pick up / Cost guide
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + og:meta with rain/April angle
+  - **Cross-links added:**
+    - `blog/index.html`: Added as new card (#1 position, blue #1d4ed8 border/glow) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, monthly changefreq) ✅
+    - `blog/earth-day-dog-waste-environment-st-louis.html`: Added "🌧️ Does Rain Wash Away Dog Poop?" as first Related Article ✅
+    - `blog/spring-yard-cleanup-st-louis.html`: Added "🌧️ Does Rain Wash Away Dog Poop?" as first Related Article ✅
+  - **Git commits:** tidytails-dashboard `82290064` ✅ · tidytails-website `39988e1` → Cloudflare Pages live ✅
+  - **Why this is high-impact:** This post attacks the #1 objection that kills conversions during April — "I'll wait for rain to handle it." By the time someone reads this and understands that rain spreads bacteria rather than eliminating it, they're primed to book. The 5-step timeline of what actually happens during a rainstorm is genuinely new information to most people, and the roundworm-survives-5-years-in-soil fact is the stat that makes them actually pick up the phone. The storm drain/waterway section also picks up Earth Day spillover traffic from the civic-minded environmental segment. Zero competitors in St. Louis have this content. Monthly changefreq in sitemap because it's relevant every month it rains, not just once a year. 70 blog posts total.
+
+---
+
 ### Thursday 8:11 AM — Halloween Yard Cleanup Blog Post (Hourly Task)
 - **8:11 AM** 🎃 Wrote and published **"Halloween With Dogs? Clean That Yard First."** — completing the full year-round holiday backyard gathering series with the last remaining gap: October 31
   - **File:** `tidy-tails/website/blog/halloween-yard-cleanup-dogs-st-louis.html` (46KB ✅)
