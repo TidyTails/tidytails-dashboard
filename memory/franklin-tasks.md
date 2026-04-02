@@ -2,6 +2,39 @@
 
 ---
 
+### Thursday 4:06 AM — Earth Day Dog Waste Environmental Impact Blog Post (Hourly Task)
+- **4:06 AM** 🌍 Wrote and published dedicated Earth Day blog post — **"Earth Day and Dog Waste: The Environmental Impact St. Louis Dog Owners Need to Know"** — the first environmental/civic-angle post in the entire content library
+  - **File:** `tidy-tails/website/blog/earth-day-dog-waste-environment-st-louis.html` (42.8KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/earth-day-dog-waste-environment-st-louis` ✅ HTTP 200 confirmed
+  - **Blog count: 65 posts total** ✅
+  - **Why this task:** 4 AM April 2. Earth Day is April 22 — exactly 20 days away. This post has been called out in 6+ different dashboard tools as "the highest organic reach post of April" and "the broadest reach post of the S/W/C expansion campaign" — but no dedicated blog post ever existed to back it up. Every tool mentioned the EPA angle; none of them had a 2,500-word editorial to point people to. The civic/environmental angle converts a completely different buyer than holiday and seasonal posts — it reaches dog owners who care about their neighborhood and the environment, not just convenience. With 20 days of indexing before Earth Day search traffic peaks, this post will rank for queries zero STL competitors have addressed.
+  - **Target keywords:** "dog waste environment St. Louis", "Earth Day dog poop", "pet waste pollution St. Louis", "EPA dog waste non-point source", "dog poop groundwater St. Louis", "environmental impact dog waste", "Earth Day 2026 St. Louis"
+  - **What's in the post (~2,500 words, 42.8KB):**
+    - **Hero:** "Dog Waste and the Environment: What St. Louis Dog Owners Need to Know" — dark green EPA/environmental color scheme (distinct from all other posts)
+    - **Badge:** "🌍 Earth Day — April 22, 2026" — positioned immediately above headline
+    - **Stats row:** 🌊 Reaches waterways via stormwater / 🦠 23M bacteria per gram / ⚠️ Kills grass (not fertilizer) / 📋 EPA non-point source pollutant
+    - **EPA Designation section:** Official classification as NPS pollutant under Clean Water Act, same category as oil runoff, pesticides, fertilizer — the credibility anchor that gives the whole post authority
+    - **St. Louis Waterways section:** Named waterways at risk — Gravois Creek (draining through Kirkwood, Crestwood, Sunset Hills), Deer Creek (Clayton, U City, Maplewood, Webster Groves), Creve Coeur Creek (Chesterfield, Maryland Heights), Coldwater Creek (Florissant, Hazelwood, Ferguson), Meramec River, Missouri and Mississippi Rivers. This is hyper-local content zero competitors have written.
+    - **Giant stat callout:** "23 million fecal coliform bacteria per gram of dog waste" — the number that stops people mid-scroll
+    - **Myth vs Fact grid (4 pairs):** "Dog poop breaks down naturally — it's fertilizer" → fact: kills grass, acidic, not fertilizer. "Rain washes it away" → fact: rain mobilizes it into waterways. "Small yard, one dog — can't be that much" → fact: 200k+ registered dogs in St. Louis County, aggregate is massive. "Wild animals poop everywhere" → fact: concentration factor makes urban pet waste categorically different.
+    - **Pathogen grid (8 pathogens):** E. coli, Salmonella, Campylobacter, Roundworm (Toxocara — persists in soil for YEARS), Hookworm, Giardia, Parvovirus, Whipworm — each with survival note
+    - **Warning callout:** "The Invisible Yard Problem" — pathogens persist in soil long after waste decomposes; spring yard that looks clean can still harbor active pathogens from last year
+    - **Lawn damage section:** Nitrogen overload, acid burn, dead spots — explains why it's the opposite of fertilizer
+    - **6-action grid:** What you can actually do — pick up every time, don't flush to storm drains, clear winter buildup now, go weekly, talk to neighbors, hire it out
+    - **Tidy Tails differentiation:** Removes waste from property entirely (not left in bags at yard edge) — matters for stormwater runoff
+    - **Pricing strip + Earth Day CTA:** "Get yard cleared before April 22 rains" — connects the content to a conversion moment
+    - **7-question FAQ with FAQPage schema**
+    - **Related articles:** Spring cleanup, is it worth it, cost guide, how service works, Easter cleanup, service areas
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + og:meta with Earth Day angle
+  - **Cross-links added:**
+    - `blog/index.html`: Added as #1 card (newest first, deep green #059669 border with glow) ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+    - `blog/spring-yard-cleanup-st-louis.html`: Added "🌍 Earth Day and Dog Waste: The Environmental Impact" as first Related Article ✅
+  - **Git commits:** tidytails-dashboard `089a9d58` ✅ · tidytails-website `8fcebcb` → Cloudflare Pages live
+  - **Why this is high-impact:** This is the only Earth Day content targeting dog waste in the St. Louis market. The EPA angle is uniquely credible — this isn't "pick up because it's gross," it's "pick up because it's a documented water quality issue affecting Gravois Creek and Deer Creek." That framing converts a segment of environmentally-conscious dog owners who don't respond to convenience pitches but will respond to civic responsibility framing. Also the highest social-share potential of any post in the library — people who care about the environment share environmental content. Earth Day coincides exactly with the April S/W/C expansion campaign where the Earth Day post was the recommended Week 3 anchor. 20 days of indexing before peak = strong ranking potential. Annual LTV from one convert: $840.
+
+---
+
 ### Thursday 3:14 AM — Labor Day Cookout Yard Cleanup Blog Post (Hourly Task)
 - **3:14 AM** 🍂 Wrote and published dedicated blog post targeting **Labor Day cookout searchers with dogs** — completing the full summer cookout series (Memorial Day → Father's Day → July 4th → Labor Day)
   - **File:** `tidy-tails/website/blog/labor-day-cookout-yard-cleanup-dogs-st-louis.html` (41KB ✅)
