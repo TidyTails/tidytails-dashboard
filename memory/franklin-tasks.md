@@ -2,6 +2,42 @@
 
 ---
 
+### Thursday 3:14 AM — Labor Day Cookout Yard Cleanup Blog Post (Hourly Task)
+- **3:14 AM** 🍂 Wrote and published dedicated blog post targeting **Labor Day cookout searchers with dogs** — completing the full summer cookout series (Memorial Day → Father's Day → July 4th → Labor Day)
+  - **File:** `tidy-tails/website/blog/labor-day-cookout-yard-cleanup-dogs-st-louis.html` (41KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/labor-day-cookout-yard-cleanup-dogs-st-louis` ✅ HTTP 200 confirmed
+  - **Blog count: 64 posts total** ✅
+  - **Why this task:** 3 AM April 2. The summer cookout blog series was 3/4 complete — Memorial Day ✅, Father's Day ✅, July 4th ✅, but **Labor Day** (September 1) had zero coverage. Labor Day is the final major backyard party of summer — the "last one before school year takes over" cookout — and by that point the yard has accumulated ALL summer (4 months since May). Zero STL competitors have this content. Building now = ~5 months of indexing before the August search peak. Same high-converting formula: holiday host realizes 2-4 days before their party that the dog-occupied yard isn't guest-ready.
+  - **Target keywords:** "Labor Day yard cleanup dogs", "Labor Day cookout dog poop St. Louis", "backyard party dogs Labor Day", "clean yard before Labor Day", "pooper scooper Labor Day weekend", "end of summer yard cleanup dogs St. Louis"
+  - **What's in the post (~2,500 words, 41KB):**
+    - **Hero:** "Labor Day Cookout With Dogs? Clean That Yard First." — amber/brown color scheme (burnt orange/autumn palette, distinct from all other posts)
+    - **Badge:** "THE LAST COOKOUT OF SUMMER" — positions the stakes immediately
+    - **Stats row:** Sept 1 / ~100 deposits/dog since May / From $75 / 5.0★ / No contracts
+    - **Labor Day Yard Math callout:** ~100 deposits per dog since May (4 months), $2.30/day math
+    - **What Makes Labor Day Harder (unique to this post):**
+      - 4 months of summer accumulation (longer than any other cookout)
+      - August heat hides deposits — breaks them down visually but pathogens remain
+      - "Back-to-school energy = everyone checking out" → the yard gets deprioritized
+      - It's the LAST one — the redemption arc from any rough July 4th
+    - **Health warning:** E. coli, salmonella, roundworm — EPA non-point source angle with specific August heat context
+    - **Two-scenario card:** Unclean vs clean — ends on "summer closes out the right way"
+    - **"The End of Summer Test":** "Walk your backyard right now the way your guests will on Labor Day — barefoot, with a toddler." — the permission-to-hire trigger
+    - **Full Summer Cookout Calendar grid:** Memorial Day ✅ / Father's Day ✅ / July 4th ✅ / Labor Day ← YOU ARE HERE — makes the case for monthly service covering all four
+    - **DIY 6-step cleanup guide:** Pick a morning (not afternoon), water the yard first to surface hidden deposits, grid walk, check dense grass twice, double-bag, same-week revisit
+    - **Pricing table:** $70/mo (most popular), $80/mo (3-4 dogs), $75+ one-time, $45/visit biweekly
+    - **Comparison table:** Tidy Tails vs National Franchise vs DIY
+    - **Service areas grid:** 18 cities across all 5 zones
+    - **7-question FAQ with FAQPage schema:** Pre-Labor Day cleanup guide, why Labor Day is hardest, summer accumulation math, booking timing, monthly vs one-time, summer heat and pathogens, service areas
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + og:meta with Labor Day angle
+  - **Cross-links added:**
+    - `blog/index.html`: Added as #1 card (newest first, burnt orange border) ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+    - `blog/fourth-of-july-cookout-yard-cleanup-dogs-st-louis.html`: Added "🍂 Labor Day Cookout With Dogs?" as first Related Article ✅
+  - **Git commits:** tidytails-dashboard `2796e80b` ✅ · tidytails-website `6ab3a5e` → Cloudflare Pages live
+  - **The series is now complete:** Memorial Day (May 25) → Father's Day (June 21) → July 4th → Labor Day (Sept 1). All four major summer backyard holidays have dedicated content. The "Full Summer Cookout Calendar" section appears in the Labor Day post with all four marked ✅ — makes the strongest possible case for monthly service converting a Labor Day one-timer into a year-round subscriber. Revenue logic: same as Memorial Day post, but with the additional advantage of targeting people ready to convert to fall/winter service before the season ends. Annual LTV from one convert: $840.
+
+---
+
 ### Thursday 2:06 AM — July 4th Cookout Yard Cleanup Blog Post (Hourly Task)
 - **2:06 AM** 🎆 Wrote and published dedicated blog post targeting **July 4th cookout searchers with dogs** — the biggest backyard party of the year and the last major seasonal conversion window without dedicated content
   - **File:** `tidy-tails/website/blog/fourth-of-july-cookout-yard-cleanup-dogs-st-louis.html` (43.3KB ✅)
