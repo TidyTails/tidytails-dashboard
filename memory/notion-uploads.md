@@ -425,3 +425,4 @@ Chief uses this to verify sync with dashboard.
 | Time | File | Notion Folder | Dashboard Path | Status |
 |------|------|---------------|----------------|--------|
 | 00:01 | Morning Briefing — April 2, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-04-02.pdf | ✅ |
+| 12:02 | Shed Ads — April 2, 2026 | 🏠 Shed Sales | pdfs/SHED_ADS_2026-04-02.pdf | ✅ |
