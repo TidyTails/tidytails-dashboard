@@ -36,7 +36,16 @@
 - If missing: add footer block `📱 Text or call (314) 850-7140 — Jamie` before `</body>` and commit
 - **Why:** Chief catches this every 2 hours. We should catch it immediately.
 
-### 7. Blog/SEO Auto-Deploy (EVERY HEARTBEAT)
+### 7. 48-Hour Activation Rule (EVERY HEARTBEAT)
+- Read `memory/activation-tracker.json`
+- For each tool where: `status != "COMPLETED"` AND current time > `deadline_48h` AND `sends_logged` or `calls_logged` = 0 AND `alert_sent = false`:
+  - Send TJ a direct message: "⚠️ **[TOOL NAME]** has been live for 48+ hours with zero sends/calls. Revenue at risk: [revenue_at_risk]. Open it now: [url]"
+  - Set `alert_sent: true` in the tracker
+  - This fires ONCE per tool — not every heartbeat
+- If a tool gets its first send/call: update `sends_logged`/`calls_logged` and set `status: "ACTIVE"`
+- **Why:** Easter missed (16 checks). Commercial blast at check #20. Tools built but unused = wasted build time. This rule closes the loop automatically.
+
+### 8. Blog/SEO Auto-Deploy (EVERY HEARTBEAT)
 - Check for any untracked .html files in `tidy-tails/website/blog/` or `tidy-tails/website/`
 - Run: `cd ~/tidy-tails && git status --short | grep "^??" | grep ".html"`
 - If any untracked HTML files found: `git add <file> && git commit -m "deploy: <filename> SEO page" && git push origin main`
