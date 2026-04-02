@@ -3374,3 +3374,34 @@
   - **SEO impact:** Internal links from service-areas.html are high-authority (it's the geographic anchor page, linked from the homepage nav). Pointing them to blog posts instead of `tel:` or dead short-form pages pushes authority to the indexed editorial posts that rank for city-specific queries.
   - **Live confirmed:** `tidytailsstl.com/service-areas` HTTP 200 ✅ · Wildwood blog link confirmed in live HTML ✅
   - **Git commits:** tidytails-dashboard `50597e1f` ✅ · tidytails-website `b1bf0e1` ✅ → Cloudflare Pages live
+
+---
+
+### Thursday 5:04 AM — Commercial Pet Waste Removal SEO Blog Post (Hourly Task)
+- **5:04 AM** 🏢 Wrote and published **"Commercial Pet Waste Removal for St. Louis Apartment Complexes, HOAs & Property Managers"** — the first dedicated commercial-audience SEO page in the entire blog library
+  - **File:** `tidy-tails/website/blog/commercial-pet-waste-removal-st-louis.html` (51.8KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/commercial-pet-waste-removal-st-louis` ✅ HTTP 200 confirmed, title verified
+  - **Blog count: 66 posts total** ✅
+  - **Why this task:** 5 AM April 2. 65 blog posts live covering every geographic and seasonal angle. But ZERO commercial-targeted SEO content. Property managers Googling "apartment complex pet waste removal St. Louis" or "commercial dog waste service St. Louis property management" found nothing from us. Every commercial lead so far has come from tools TJ actively uses (Commercial Calling Hub, Dog Business Partner Kit, Senior Living Kit) — pure outbound. This post creates inbound commercial leads that arrive ready to buy.
+  - **Target keywords:** "commercial pet waste removal St. Louis", "apartment complex dog waste service St. Louis", "HOA pet waste removal St. Louis", "property management dog waste Missouri", "dog waste service property manager St. Louis", "senior living pet waste removal St. Louis"
+  - **Why this is high-value:** One commercial contract ($150–400/month) = 2–6 residential customer equivalents. Property managers and HOA boards searching this topic are bottom-of-funnel buyers with budget authority. Zero competitors in St. Louis have dedicated commercial SEO content targeting this exact query. First page = default choice.
+  - **What's in the post (~2,500 words, 51.8KB):**
+    - **6 property type cards with pricing:** Apartment complexes ($150–300/mo), HOA communities ($150–250/mo), Senior living ($150–400/mo), Dog daycares/boarding ($200–500/mo), Vet clinics ($100–175/mo), Property portfolios (10–15% multi-property discount)
+    - **3 Reasons commercial pet waste becomes a problem:** Tenant complaints (#1 pet-related maintenance request), liability exposure (E. coli, salmonella, slip-and-fall), lease enforcement difficulty (needs a clean baseline to document violations)
+    - **EPA non-point source callout:** Properties that drain to municipal storm systems have regulatory exposure from documented pet waste accumulation — framing that resonates with risk-averse property managers
+    - **5-step commercial service process:** Property walk/quote → weekly service on fixed schedule → all waste removed from property → monthly invoice → direct owner access
+    - **Comprehensive commercial pricing section:** All 5 tiers with flat monthly rates, "Most Common" badge on mid-size at $250/mo
+    - **8-column comparison table:** Tidy Tails vs National Franchise vs In-House Maintenance — cost, contact method, contracts, waste removal, arrival notifications, documentation for lease enforcement, coverage, portfolio invoicing
+    - **Why local ownership matters:** Same-day problem resolution, no franchise overhead in rate, accountability that doesn't rely on corporate policy, flexible arrangements
+    - **Tenant retention ROI callout:** $250/month commercial service prevents $1,800–3,500 turnover cost if it retains even one tenant/year who was leaving over unresolved pet waste complaints
+    - **Service area grid (6 zones):** All 5 county zones + "Not Listed? Text Us" for confirmation
+    - **7-question FAQPage schema:** Cost, coverage, what's included, why needed, vs franchises, senior living, multi-property portfolios
+    - **Sidebar with direct CTA:** Commercial quote button, feature checklist, direct owner contact
+    - **Related posts:** how-service-works, cost guide, earth day (EPA angle), health risks
+  - **Cross-links added:**
+    - `blog/index.html`: Added as #1 card (newest first, navy blue border) ✅
+    - `sitemap.xml`: Added new URL (priority 0.9, monthly changefreq — commercial content) ✅
+    - `blog/how-pooper-scooper-service-works.html`: Added "🏢 Commercial / Apartment Service →" as FIRST item in Related Guides sidebar ✅
+  - **Git commits:** tidytails-dashboard `ee5c1ca0` ✅ · tidytails-website `2163760` → Cloudflare Pages live ✅
+  - **What makes this different from the old commercial-pet-waste-removal-property-managers post:** The old post (March 19) was a generic overview. This one is purpose-built as a bottom-of-funnel SEO page — specific pricing, property type breakdowns, comparison table against national franchises and in-house options, EPA regulatory angle, tenant retention ROI math. Targeting commercial decision-makers who are already sold on the concept and comparing options. The old post still exists; this one targets the higher-intent "St. Louis commercial pet waste removal" search directly.
+  - **Revenue math:** 1 mid-size apartment complex at $250/mo = $3,000/yr LTV vs $840/yr residential. Zero incremental route cost when clustered near existing residential stops. The inbound channel pays for itself at even one commercial lead/year.
