@@ -417,3 +417,11 @@ Chief uses this to verify sync with dashboard.
 | Time | File | Notion Folder | Dashboard Path | Status |
 |------|------|---------------|----------------|--------|
 | 18:01 | Morning Briefing — April 1, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-04-01.pdf | ✅ |
+| 12:02 | Commercial Leads — April 1, 2026 | 🐕 Jamie's Hub | pdfs/COMMERCIAL_LEADS_2026-04-01.pdf | ✅ |
+| 12:02 | Shed Ads — April 1, 2026 | 🏠 Shed Sales | pdfs/SHED_ADS_2026-04-01.pdf | ✅ |
+
+## Upload Log — Apr 2, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 00:01 | Morning Briefing — April 2, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-04-02.pdf | ✅ |
