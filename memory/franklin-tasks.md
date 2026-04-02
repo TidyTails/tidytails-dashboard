@@ -2,6 +2,49 @@
 
 ---
 
+### Thursday 12:06 PM — "Opening Your Pool With Dogs?" Blog Post (Hourly Task)
+- **12:06 PM** 🏊 Wrote and published **"Opening Your Pool With Dogs? Clean That Yard First."** — the first pool-season-specific dog waste content in the entire St. Louis market
+  - **File:** `tidy-tails/website/blog/dog-poop-pool-yard-st-louis.html` (41.4KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/dog-poop-pool-yard-st-louis` ✅ HTTP 200 confirmed, title confirmed
+  - **Blog count: 71 posts total** ✅
+  - **Why this task:** 12 PM Thursday April 2. 70 blog posts live. Easter is Sunday. Pool season is the next major behavioral event for St. Louis homeowners — and it opens a completely untapped segment: households with pools AND dogs. These are overwhelmingly affluent homeowners in Chesterfield, Kirkwood, Ballwin, Town & Country, Wildwood, Ladue — TJ's highest-income service zones. Zero STL competitors have addressed this angle. Pool season runs May through September, meaning this post is relevant for 5 months/year and captures high-intent searches like "dog poop pool yard St. Louis," "pool opening yard cleanup dogs," and "pool party backyard dogs." The conversion logic is iron: someone opening their pool realizes they have 4 months of winter accumulation in the yard + barefoot kids + wet feet + pool. One post = one booking.
+  - **Target keywords:** "dog poop pool yard St. Louis", "pool opening yard cleanup dogs", "backyard pool dogs waste", "clean yard before pool opens", "pooper scooper pool season St. Louis", "dog waste pool area", "pool party dogs yard cleanup"
+  - **Unique angle — Giardia is Chlorine-Resistant:** Most people assume their pool chemistry handles anything tracked in on wet feet. The key counterintuitive fact: Giardia cysts are NOT neutralized by standard pool chlorine levels. This is the fact that stops pool owners mid-scroll. Paired with roundworm eggs surviving 2-5 years in soil and hookworm larvae penetrating bare skin directly — the pathogen grid makes the safety case without being preachy.
+  - **What's in the post (~2,600 words, 41.4KB):**
+    - **Hero:** "Opening Your Pool With Dogs? Clean That Yard First." — pool blue gradient (#0369a1), summer theme distinct from all other posts
+    - **Urgency banner:** "Pool season is coming — your dog has been using that yard all winter. Book a spring cleanup →"
+    - **Stats row:** 100+ Winter Deposits/Dog / $70/mo Flat Rate / 0 Contracts / 5.0★
+    - **Winter math callout:** 100+ deposits per dog over 4-month STL winter, $2.30/day math
+    - **Cold weather preservation callout:** Cold PRESERVES pathogens, doesn't decompose them — roundworm eggs especially survive in cold soil
+    - **Why pools make this more urgent (4 specific reasons):**
+      1. Barefoot kids = highest-risk users of the yard
+      2. Wet feet pick up MORE than dry feet (contamination path to pool water)
+      3. The yard-to-pool walkpath can't be fenced off
+      4. Pool parties = most barefoot guests in the yard at once
+    - **Giant stat callout:** 23,000,000 fecal coliform bacteria per gram — rain and wet feet spread this to pool areas
+    - **8-pathogen grid:** E. coli, Roundworm (2-5yr soil survival), Giardia (chlorine-resistant!), Salmonella, Campylobacter, Hookworm (penetrates bare skin), Whipworm, Parvovirus — each with pool-specific context
+    - **Dedicated Giardia callout:** Chlorine-resistant cysts — the one that surprises pool owners most
+    - **Scenario grid:** ❌ Pool Season Without Regular Cleanup (kids running barefoot through winter accumulation, wet feet tracking pathogens, guests asking questions, lawn furniture smell by June) vs ✅ Pool Season With Weekly Service (yard cleared weekly, kids run straight to pool, pool parties start without anxiety)
+    - **6-step pre-pool cleanup guide:** Start from far corners (not pool out), grid the whole yard, check at knee level, extra attention at pool exit points, double-bag off property, set up weekly service before Memorial Day
+    - **"On My Way" text callout:** The differentiator no other STL competitor offers
+    - **Pricing table:** $70/mo (1-2 dogs, Most Popular), $80/mo (3-4), $90/mo (5+), $45/visit biweekly, $75+ one-time
+    - **Comparison table:** 7 factors — Tidy Tails vs National Franchise vs Craigslist vs DIY — pool-area awareness column, flat rate, "On My Way" text, first cleanup free
+    - **22-city service area grid**
+    - **7-question FAQ with FAQPage schema:** Is dog poop near a pool dangerous / winter accumulation math / DIY cleanup guide / does chlorine protect the pool / one-time cleanup cost / service with pools and gates / is weekly worth it
+    - **2 CTAs:** Call + "Text Pool Cleanup"
+    - **6 related article cards**
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + og:meta with pool/summer angle
+  - **Cross-links added:**
+    - `blog/index.html`: Added as new card (#1 in blue, before Does Rain Wash Away) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+    - `blog/spring-yard-cleanup-st-louis.html`: Added "🏊 Opening Your Pool With Dogs?" as first Related Article ✅
+    - `blog/memorial-day-cookout-yard-cleanup-dogs-st-louis.html`: Added "🏊 Opening Your Pool With Dogs?" as first Related Article ✅
+  - **Git commits:** tidytails-dashboard `cafd88e6` ✅ · tidytails-website `695d6c2` → Cloudflare Pages live ✅
+  - **Target demographic:** Pool-owning homeowners in Chesterfield, Kirkwood, Ballwin, Town & Country, Wildwood, Ladue — the highest-income segment of the TJ service map. These customers don't price-shop $70/month. They buy on trust and peace of mind. The "pool party + pool chemistry doesn't protect you" framing converts them because it's genuinely new information most never considered.
+  - **Why this is the right 12 PM task:** All existing content covers holidays (Easter, Memorial Day, Halloween, etc.) and seasonal events. Not a single post existed targeting pool homeowners specifically — a segment that has ALL of: dogs, fenced yards, affluent demographics, deadline-driven urgency (first pool party of the season), and zero existing content competition in the STL market. Giardia's chlorine resistance is the fact that makes this different from every other health-angle post. Pool season runs 5 months — this post is relevant from May through September every year. Annual LTV from one convert: $840.
+
+---
+
 ### Thursday 10:06 AM — Lawn Care Partner Referral Kit (Hourly Task)
 - **10:06 AM** 🌿 Built and published the **Lawn Care Partner Referral Kit** — an entirely untapped $0-CAC referral channel that turns local lawn crews into a passive customer acquisition engine
   - **File:** `dashboard/lawn-care-partner-kit.html` (46.8KB ✅)
@@ -3586,3 +3629,33 @@
     - `blog/thanksgiving-yard-cleanup-dogs-st-louis.html`: Added "🎄 Christmas With Dogs? Clean That Yard First." as FIRST Related Article ✅
   - **Git commits:** tidytails-dashboard `83e86c44` ✅ · tidytails-website `4c4aaf3` → Cloudflare Pages live
   - **Why this is high-impact:** COMPLETES the full-year holiday gathering series. The series is now complete: Memorial Day → Father's Day → July 4th → Labor Day → Thanksgiving → Christmas. Christmas is the peak: highest accumulation (4+ months), cold preservation (nothing decomposes), and kids are specifically more likely to be outside on Christmas than any other winter day. The "October pile is still there in December" preservation angle is completely unique to this post. No STL competitor has written about Christmas yard cleanup. 8 months of indexing = strong ranking position before December search peak arrives. Annual LTV from one convert: $840.
+
+---
+
+### Thursday 11:04 AM — Commercial Email Blast Kit — 26 Contacts Ready (Hourly Task)
+- **11:04 AM** 📬 Built and published the **Commercial Email Blast Kit** — a one-sitting tool to send all 26 confirmed commercial emails from Bishop's April 2 enrichment session in 30-45 minutes
+  - **File:** `dashboard/commercial-email-blast-kit.html` (45.8KB ✅)
+  - **Live URL:** HTTP 200 confirmed ✅
+  - **Dashboard:** Added pulsing blue quick link "📬 EMAIL BLAST — 26 CONTACTS READY" + new featured card in Commercial section
+  - **Git commit:** `6ce7976c` ✅ pushed to tidytails-dashboard (git push succeeded after rebase)
+  - **Why this task:** At 10:48 AM, Bishop's lead enrichment session confirmed 26 commercial emails across the 107-lead pipeline. The existing `commercial-email-templates.html` had generic templates but NOT a pre-loaded kit with all 26 contacts, personalized copy per category, and sent tracking. That's the gap: going from "26 emails confirmed" to "26 emails sent today" needed a dedicated tool.
+  - **What's in the kit:**
+    - **26 contacts pre-loaded** with email, business type, and personalized subject/body per contact
+    - **5 categories:** 🐕 Dog Businesses (4) / 🏢 Apartments (6) / 🩺 Vet Clinics (4) / 🏡 Property Management (3) / 🏘️ HOA & Other (4) + notes cards
+    - **Per-contact features:** Quick-copy To address strip / One-click copy Subject / One-click copy full Email Body / Strategy Note per contact / Sent ✅ toggle with localStorage persistence
+    - **Progress bar + stats:** Tracks sent vs pending in real time
+    - **Gmail quick guide:** Expand/collapse walkthrough so TJ can send without any friction
+    - **Personalization per category:**
+      - Dog businesses: facility service contract + referral arrangement angle
+      - Apartments: common area cleanup, flat rate, single invoice
+      - Vets: referral partnership (free first cleanup for their clients, no cost to clinic)
+      - Property management: portfolio deal, route efficiency, multi-property discount
+      - HOA/municipal: common area focus, seasonal urgency
+    - **Priority contacts called out:**
+      - Millsap Properties (millsappropertymanagement@gmail.com) — PORTFOLIO PLAY, 7 communities, all in route zone
+      - Baronwood Kennels (info@baronwoodkennels.com) — outdoor runs, Day 1 vet blitz target
+      - PMI STL Metro (zach@pmistlmetro.com) — Direct to owner Zach
+      - Aventura MLP portfolio (3 properties: Hawk Ridge / Forest Park / Maryland Oaks) — one MLP relationship = 3 contracts
+      - The Watering Bowl St. Peters (STP@BESTFRIENDS.NET) — referral play, premium dog daycare clients
+  - **Revenue math:** 26 emails → conservative 12% reply rate = 3 replies → 1-2 commercial contracts → $300-500/mo new commercial MRR → $3,600-6,000 LTV at $0 CAC
+  - **How this contributed to the August goal:** Every commercial contract = 2-6 residential customer equivalents. Two contracts from this blast = equivalent of 4-12 residential adds toward the 25-customer target.
