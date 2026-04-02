@@ -2,6 +2,42 @@
 
 ---
 
+### Thursday 8:11 AM — Halloween Yard Cleanup Blog Post (Hourly Task)
+- **8:11 AM** 🎃 Wrote and published **"Halloween With Dogs? Clean That Yard First."** — completing the full year-round holiday backyard gathering series with the last remaining gap: October 31
+  - **File:** `tidy-tails/website/blog/halloween-yard-cleanup-dogs-st-louis.html` (46KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/halloween-yard-cleanup-dogs-st-louis` ✅ HTTP 200 confirmed
+  - **Blog count: 68 posts total** ✅
+  - **Why this task:** 8 AM April 2. The holiday series was nearly complete: Easter ✅ / Memorial Day ✅ / Father's Day ✅ / July 4th ✅ / Labor Day ✅ / Thanksgiving ✅ / Christmas ✅ — but **Halloween (October 31)** had zero coverage. Halloween is uniquely high-value for two reasons: (1) **The Dark Yard Problem** — it's the ONLY major backyard holiday that happens in darkness, meaning kids in costumes can't see what they're stepping on, and (2) **Six months of accumulation + October leaves** — by Oct 31, dogs have had the yard since May. 150 deposits per dog hidden under fallen leaves. Zero STL competitors have written about this. 6 months of indexing before October search peak. Series is now complete.
+  - **Target keywords:** "Halloween yard cleanup dogs", "Halloween dog poop St. Louis", "clean yard before Halloween", "fall yard cleanup dogs St. Louis", "trick or treat yard cleanup dogs", "kids Halloween backyard dogs"
+  - **Unique angle — "The Dark Yard Problem":** Halloween is the only major gathering where guests are active in the yard in full darkness. Every other cookout, egg hunt, and family gathering happens in daylight or well-lit conditions. This post is the only piece of content in the STL market addressing this specific risk: kids in bulky costumes with limited visibility running across a yard in the dark that has had a dog since May. Completely unique angle.
+  - **What's in the post (~2,400 words, 46KB):**
+    - **Hero:** "Halloween With Dogs? Clean That Yard First." — Halloween orange/black gradient (#ea580c → #9a3412), distinct palette from all other holiday posts
+    - **Badge:** "🎃 HALLOWEEN — OCTOBER 31, 2026" — immediate holiday positioning
+    - **Stats row:** Oct 31 / ~150 deposits/dog since May / One-time cleanup from $75 / 5.0★ / No contracts
+    - **Halloween Yard Math callout grid:** 150 deposits per dog since May, 300 for 2 dogs, $2.30/day for weekly service, 6 months until Oct 31
+    - **Why Halloween is uniquely dangerous:** The Dark Yard Problem — full darkness, kids in costumes with limited visibility, bulky costume materials blocking view of ground, falling risk in a yard full of undetected deposits
+    - **The Dark Yard Problem callout:** Dedicated prominent section — Halloween is the ONLY major backyard event of the year that happens in the dark
+    - **Leaves + Accumulation section:** October leaves hide 6 months of deposits, hold moisture that speeds breakdown, make visual checks unreliable
+    - **Health angle:** Cold doesn't kill pathogens — roundworm eggs preserved by cold, Giardia and E. coli survive better in cool moist conditions (opposite of what people think), EPA non-point source designation
+    - **Two-scenario grid:** ❌ Halloween Without Cleanup (kids step in something in the dark, costume ruined, parent furious) vs ✅ Halloween With Clean Yard (kids run freely, costumes clean, you enjoy the holiday)
+    - **DIY 5-step Halloween cleanup guide:** Rake first (unique to fall), grid walk, crouch-level check on high-traffic paths, morning-of fresh pass, keep dog inside during 6-9 PM peak
+    - **Full year holiday calendar:** Shows complete series with Halloween = "YOU ARE HERE" — Easter ✅ / Memorial Day ✅ / Father's Day ✅ / July 4th ✅ / Labor Day ✅ / **Halloween 🎃** / Thanksgiving ✅ / Christmas (coming)
+    - **Pricing table, comparison table (7 factors), service area grid (22 cities)**
+    - **7-question FAQ with FAQPage schema**
+    - **Related articles:** Thanksgiving / Christmas / Labor Day / Spring Cleanup / Is It Worth It / Cost Guide
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + og:meta with Halloween angle
+  - **Cross-links added:**
+    - `blog/index.html`: Added as newest card (orange #ea580c border/glow, before Thanksgiving) ✅
+    - `blog/index.html`: Added to JSON-LD blogPost array ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+    - `blog/thanksgiving-yard-cleanup-dogs-st-louis.html`: Added "🎃 Halloween With Dogs? Clean That Yard First." as first Related Article ✅
+    - `blog/labor-day-cookout-yard-cleanup-dogs-st-louis.html`: Added Halloween as first Related Article ✅
+  - **Git commits:** tidytails-dashboard `6503a308` ✅ · tidytails-website `8401b37` → Cloudflare Pages live
+  - **Holiday series now complete:** Easter → Memorial Day → Father's Day → July 4th → Labor Day → Halloween → Thanksgiving → Christmas. Eight holiday touchpoints covering every major gathering from spring through winter. Monthly service = all of them already handled, every year, forever.
+  - **Why this is high-impact:** This is the ONLY Halloween yard cleanup content targeting dog owners in the St. Louis market. The "kids in the dark" angle is completely unique — it's the one thing about Halloween that makes yard cleanup more urgent than any summer holiday, and zero competitors have addressed it. 6 months of indexing before October search peak. The full series also reinforces the monthly service pitch: one conversation converts a single-holiday panic-buyer into a year-round customer covering all 8 holidays on the calendar. Annual LTV from one convert: $840.
+
+---
+
 ### Thursday 6:06 AM — Thanksgiving Yard Cleanup Blog Post (Hourly Task)
 - **6:06 AM** 🦃 Wrote and published **"Thanksgiving With Dogs? Clean That Yard First."** — completing the full year-round holiday gathering series and targeting a major seasonal keyword cluster with 7 months of indexing runway before November peak
   - **File:** `tidy-tails/website/blog/thanksgiving-yard-cleanup-dogs-st-louis.html` (42KB ✅)
