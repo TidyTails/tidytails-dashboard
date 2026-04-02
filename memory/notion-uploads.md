@@ -426,3 +426,4 @@ Chief uses this to verify sync with dashboard.
 |------|------|---------------|----------------|--------|
 | 00:01 | Morning Briefing — April 2, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-04-02.pdf | ✅ |
 | 12:02 | Shed Ads — April 2, 2026 | 🏠 Shed Sales | pdfs/SHED_ADS_2026-04-02.pdf | ✅ |
+| 18:01 | Shed Phone Scripts — April 2026 | 🏠 Shed Sales | pdfs/SHED_PHONE_SCRIPTS_2026-04-02.pdf | ✅ |
