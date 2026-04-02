@@ -2,6 +2,33 @@
 
 ---
 
+### Wednesday 7:04 PM — /pricing Page — Dedicated Pricing Guide (Hourly Task)
+- **7:04 PM** 💰 Built and deployed the **`/pricing` page** — a standalone, schema-rich pricing guide for `tidytailsstl.com` that captures "how much does dog poop pickup cost" queries
+  - **File:** `tidy-tails/website/pricing.html` (47KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/pricing` ✅ HTTP 200 confirmed, title = "Dog Poop Pickup Cost St. Louis — Tidy Tails Pricing | Pooper Scooper Rates"
+  - **Why this task:** 57 blog posts, a service areas hub, a spring landing page, and a calculator — but ZERO dedicated `/pricing` URL. Every "how much does dog poop pickup cost in St. Louis" query (high-intent buyer comparing services) had no specific destination. These users were landing on blog posts or the homepage, neither of which is purpose-built for conversion at the pricing consideration stage. A dedicated `/pricing` page: (1) captures price-comparison queries, (2) gives TJ a clean shareable URL ("go to tidytailsstl.com/pricing"), (3) passes PageRank to every related page via internal links, (4) provides Service schema with Offers markup that Google can parse for rich results.
+  - **What's on the page:**
+    - **Hero section:** Flat "Honest Pricing. No Surprises. No Contracts." headline, two CTAs (call + text)
+    - **Stats row:** $70 starting/month · $2.30/day · 0 contracts · FREE first cleanup · 5.0★
+    - **New customer notice box:** "First cleanup free — no credit card required"
+    - **3 pricing cards:** 1-2 dogs $70/mo (MOST POPULAR badge) · 3-4 dogs $80/mo · 5+ dogs $90/mo. Each shows per-day math.
+    - **Alt services section:** Bi-weekly ($45/visit) · One-Time Spring Cleanup (from $75) · Commercial (from $150/mo)
+    - **8-item "What's Included" grid:** Same day weekly · "On My Way" text · "All Done" text · Full-yard sweep · Waste removed off-site · Gate access handled · No yard-size surcharge · No contracts
+    - **Dog Math callout:** 300 deposits/year · 200+ piles in March from 2 dogs · $17.50 per cleanup on a $70/mo plan
+    - **Comparison table (5 cols):** Tidy Tails vs National Franchise vs Per-Visit Competitor vs DIY — annual cost, flat rate, yard surcharge, "On My Way" text, "All Done" text, contracts, North County coverage, local owner, first cleanup free
+    - **Savings banner:** "$96–$460 saved per year vs per-visit/franchise pricing"
+    - **3 testimonials:** Shannon Z. (Florissant, 2 dogs), Amanda H. (Florissant, 1 dog), Chastity D. (STL County, 3 dogs)
+    - **8-question FAQ:** accordion with schema-ready answers covering cost, yard size, contracts, what's included, comparison, free first cleanup, one-time cleanup, multi-dog pricing
+    - **Related links grid:** Service Areas · Spring Special · Calculator · Blog · Compare Services · Commercial
+    - **Bottom CTA:** "First Cleanup Is Free" with call + text buttons
+  - **Schema markup:** `Service` with `Offers` array (5 service tiers with `UnitPriceSpecification`) + `FAQPage` (8 questions) + `BreadcrumbList`
+  - **Sitemap:** Added `/pricing` (priority 0.85, monthly changefreq) ✅
+  - **Homepage nav:** Added "Pricing" link between "Service Areas" and "Commercial" ✅
+  - **Why this is the right 7 PM task:** Easter tools are maxed. Commercial hub is built. 57 blog posts published. The recurring gap that kept showing up in competitor comparisons and high-intent user journeys: no `/pricing` URL. A buyer who saw a Nextdoor post, Googled us, checked reviews, and then wants to know "ok so what does this actually cost" — previously had to scroll a blog post or parse the homepage. Now they land on a purpose-built page that answers every pricing question, handles every objection, and shows them why we're cheaper than competitors annually. The Service+Offers schema also gives Google the structured data to potentially show pricing directly in search results.
+  - **Git commits:** tidytails-dashboard `63db2884` ✅ · tidytails-website `234bd37` ✅ → Cloudflare Pages live
+
+---
+
 ### Wednesday 4:07 PM — Easter FB Ad Burst Kit (Hourly Task)
 - **4:07 PM** 🐣 Built and published the **Easter FB Ad Burst Kit** — a time-limited $7-10/day Facebook campaign designed to run separately from the learning-phase campaign, April 2–4 only
   - **File:** `dashboard/easter-fb-ad-burst.html` (40KB, 6-tab app)
