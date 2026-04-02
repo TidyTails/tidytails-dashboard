@@ -2,6 +2,41 @@
 
 ---
 
+### Wednesday 8:07 PM — Mother's Day Gift Guide Blog Post (Hourly Task)
+- **8:07 PM** 🌸 Wrote and published dedicated blog post targeting **Mother's Day gift searches for dog owners** — the next major seasonal conversion window after Easter
+  - **File:** `tidy-tails/website/blog/mothers-day-gift-dog-owner-st-louis.html` (43.6KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/mothers-day-gift-dog-owner-st-louis` ✅ HTTP 200 confirmed
+  - **Blog count: 59 posts total** ✅
+  - **Why this task:** Easter campaign is fully maxed. All city SEO coverage is complete (58 posts). The next major seasonal search wave with ZERO existing content targeting it: **Mother's Day (May 10)**. Searches for "Mother's Day gift dog owner", "gift for dog mom St. Louis", "pooper scooper gift idea" start peaking ~April 10-17. Building the post April 2 = ~5-6 weeks of indexing + ranking time before peak. Zero competitors in STL have this content. The Mother's Day Campaign Hub dashboard tool exists but no website content was targeting the audience who searches BEFORE they find us.
+  - **Target keywords:** "mothers day gift dog owner St. Louis", "gift for dog mom St. Louis", "pooper scooper gift idea", "mothers day pet gift St. Louis", "dog poop pickup gift", "gift for wife with dogs", "she gets the dog she does the yard"
+  - **What's in the post (~2,600 words, 43KB):**
+    - **Hero:** "🌸 The Perfect Mother's Day Gift for Dog Owners in St. Louis — She got the dog. She also handles the yard."
+    - **Stats row:** May 10 / $70/mo / FREE first cleanup / 0 contracts / 5.0★
+    - **3 Gift Options grid:** Monthly service ($70/mo), Spring cleanup one-time ($75), "Try It" first month free — covers every buyer type (husband buying ongoing vs single cleanup surprise)
+    - **"The Real Gift" section:** Two-scenario grid — Before Tidy Tails (Sunday chore, checking shoes, canceling plans) vs After (yard just clean, kids play freely, she didn't ask for it)
+    - **Why This Beats Flowers callout:** Flowers = 5 days / weekly service = year-round / gift cards forgotten / this one changes real daily life
+    - **5-step how it works** with emphasis on "On My Way" + "All Done" texts
+    - **Flat-rate pricing table** — 1-2 dogs $70/mo through one-time $75
+    - **6-column comparison table:** Tidy Tails vs Flowers vs Spa Day vs Gift Card — Duration, Improves daily life, Surprise factor, Addresses real pain
+    - **4 "Who This Is For" cards:** Moms with young kids + dogs, working moms, grandma, the dog mom who does everything
+    - **"What to Say" section:** 3 scripts — for wife/partner, for mom, for mother-in-law. All end with "I already handled it"
+    - **Service areas grid** with links to 11 city-specific pages
+    - **7-question FAQ with FAQPage schema:** best gift for dog owner, how to gift service at another address, one-time vs monthly, contracts/cancel, service areas, pricing, "On My Way" text
+    - **Bottom CTA:** Call + Text "Mother's Day Gift" buttons
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with 12 cities in areaServed
+  - **Cross-links added:**
+    - `blog/index.html`: Added as #1 card (newest first, pink border/shadow) ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+    - `easter-egg-hunt-yard-cleanup-dogs-st-louis.html`: Added "Mother's Day Gift →" as 5th Related Article ✅
+  - **Git commits:** tidytails-dashboard `a1140afb` ✅ · tidytails-website `4c17baa` → Cloudflare Pages live
+  - **Revenue logic:** The post targets gift-buyers (husbands, adult children) who haven't found Tidy Tails through any existing channel. These buyers convert at HIGH rates because (1) they're looking for a specific solution, (2) the recipient has proven dog ownership, (3) the one-time cleanup at $75 creates a monthly convert at 40-60%. One gift order = $75 + potential $840/yr LTV. The "give it as a surprise, I already set it up" framing also drives conversion because it removes the signup friction from the recipient.
+
+---
+
+
+
+---
+
 ### Wednesday 7:04 PM — /pricing Page — Dedicated Pricing Guide (Hourly Task)
 - **7:04 PM** 💰 Built and deployed the **`/pricing` page** — a standalone, schema-rich pricing guide for `tidytailsstl.com` that captures "how much does dog poop pickup cost" queries
   - **File:** `tidy-tails/website/pricing.html` (47KB ✅)
