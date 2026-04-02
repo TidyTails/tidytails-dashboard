@@ -2,6 +2,46 @@
 
 ---
 
+### Thursday 5:04 PM — "Dog Poop and Ticks" Blog Post (Hourly Task)
+- **5:04 PM** 🕷️ Wrote and published **"Dog Poop and Ticks in Your Yard — The Hidden Connection"** — completing the pest series trifecta (flies → mosquitoes → ticks) with the highest disease-severity angle in the entire blog
+  - **File:** `tidy-tails/website/blog/dog-poop-ticks-yard-st-louis.html` (53KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/dog-poop-ticks-yard-st-louis` ✅ HTTP 200 confirmed, title confirmed
+  - **Blog count: 76 posts total** ✅
+  - **Why this task:** 5 PM Thursday April 2. 75 blog posts live. Flies post at 3 PM, mosquitoes post at 4 PM — the pest series was two-thirds complete. Ticks are the logical completion: April is Missouri's peak tick nymph emergence window, Missouri is one of the highest-reporting states nationally for ehrlichiosis and Rocky Mountain spotted fever, and ZERO competitors anywhere in the St. Louis market have written about the dog waste–tick connection. The connection is real: dog waste attracts mice, voles, and rabbits (primary tick hosts) into residential yards; decomposing waste also creates moist ground-level microhabitats that larval/nymph ticks prefer. Eliminating the attractant = reducing the tick vector introduction rate.
+  - **Target keywords:** "dog poop ticks yard", "dog waste ticks St. Louis", "ticks backyard dogs", "Rocky Mountain spotted fever Missouri", "Lyme disease St. Louis dogs", "tick prevention yard", "dog waste tick habitat", "ticks in yard with dogs"
+  - **Unique angle — The Wildlife Vector Nobody Mentions:** Most tick prevention content says "keep grass short" and "use acaricide." None of it addresses why tick-carrying wildlife (white-footed mice, voles, rabbits) enter residential yards in the first place. Dog waste is a primary attractant — especially in early spring when overwintered rodents are hungriest and natural food is scarce. This post explains the complete chain: waste → wildlife → ticks → family exposure, and shows why the 48-hour pickup rule reduces tick introduction at the source.
+  - **Missouri disease stakes (highest severity in the blog series):** Rocky Mountain spotted fever (up to 20% fatality if untreated — can kill within days), ehrlichiosis (Missouri is one of the nation's highest-reporting states — lone star tick dominant), Lyme disease (cases increasing in Missouri, deer tick), alpha-gal syndrome (lone star tick — permanent red meat allergy, no cure). Missouri DHSS tracks all of these annually.
+  - **What's in the post (~2,900 words, 53KB):**
+    - **Hero:** "Dog Poop and Ticks in Your Yard — The Connection Nobody Talks About" — deep forest green gradient (#1a2e05 → #365314), distinct from all other posts
+    - **Urgency banner:** "🌿 April is Missouri's peak tick emergence month — the year's first wave starts NOW. First cleanup FREE →"
+    - **Stats row:** April (peak tick emergence) / 3 (tick-borne diseases endemic to Missouri) / $70/mo (eliminate the wildlife attractant) / Nymph (size of a poppy seed — easiest to miss)
+    - **The chain of five steps:** (1) Waste sits → emits volatile attractant compounds / (2) White-footed mice, voles, rabbits enter yard / (3) Ticks ride in on mammals / (4) Waste creates moist tick microhabitats / (5) Family and pets become the next hosts. Each step explained mechanistically.
+    - **Big stat callout:** 3–7 days (how long a tick must be attached before transmitting Lyme disease — making early detection critical)
+    - **Disease severity table:** 5 tick-borne diseases with tick species, Missouri risk level badges (HIGH / MODERATE-HIGH / LOWER), and key facts per disease. RMSF, ehrlichiosis, Lyme, alpha-gal, tularemia.
+    - **Lone star tick callout:** All three life stages bite humans — Missouri's dominant species, responsible for ehrlichiosis and alpha-gal. This species is more aggressive and abundant than deer ticks in the St. Louis area.
+    - **Missouri seasonal timeline grid:** ❄️ Winter (ticks dormant, waste accumulates) → 🌱 April CRITICAL (nymph emergence + winter waste thaws + rodents hungry = all three converge) → ☀️ May–June (peak nymph transmission) → 🌡️ July–August (lone star adult peak) → 🍂 September–October (second adult wave)
+    - **Wildlife vector section:** Per-species breakdown — White-Footed Mouse (primary Lyme reservoir in North America, attracted to organic matter), Prairie Vole (lone star larvae host, fence-line runner), Cottontail Rabbit (lone star transport, yard visitor), Virginia Opossum (transports ticks despite killing most of them). 4 species cards.
+    - **Scenario grid:** ❌ Yard with winter accumulation (100+ deposits → wildlife routes established → tick nymphs arrive in April → moist waste microhabitats at ground level → peak exposure April–October) vs ✅ Yard with weekly pickup (no persistent attractant → wildlife frequency reduced → fewer tick introduction events → no microhabitats → maintained yard as part of integrated strategy)
+    - **Big stat callout:** 96% — percentage of Lyme disease cases where the tick went unnoticed. Nymphs are poppy-seed sized and most active April–July.
+    - **Spring cleanup timing section:** Week-by-week timeline from winter accumulation → April pickup → the branching consequences through June. "Removing attractant in April breaks the cycle before it's established."
+    - **What doesn't work alone:** Acaricide sprays (work on present ticks, not new introduction events — removing attractant makes them more effective), Tick tubes (highly effective rodent-targeted approach, but best when combined with source reduction).
+    - **Integrated 5-step guide:** Remove winter accumulation NOW / 48-hour pickup rule / Keep grass under 3 inches / Create dry mulch border at yard edges / Apply acaricide AFTER source reduction.
+    - **Tick check guide:** Per-audience cards (children, dogs, adults) + what to do if you find an attached tick (fine-tipped tweezers, steady pull, no petroleum jelly). When to see a doctor (expanding rash, fever/headache/muscle aches, allergic reaction to red meat).
+    - **The Compounding Effect callout:** Rodents have spatial memory — wildlife trails established in February persist for weeks even after spring cleanup. Consistent winter pickup prevents trail establishment; spring-only cleanup addresses the symptom, not the cause.
+    - **Pricing strip + CTA:** $70/mo flat, first cleanup free, no contracts
+    - **7-question FAQ with FAQPage schema:** Does dog poop attract ticks / When is tick season in St. Louis / What diseases are common in Missouri / How to reduce yard ticks / Is April really the most dangerous month / How much does waste removal cost / Does removal actually help with ticks
+    - **Service area grid (22 cities) + Related Articles (6)**
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + og:meta with tick/wildlife/disease angle
+  - **Cross-links added:**
+    - `blog/dog-poop-mosquitoes-yard-st-louis.html`: Added "🕷️ Dog Poop and Ticks — The Hidden Connection" as first Related Article ✅
+    - `blog/dog-poop-flies-yard-st-louis.html`: Added "🕷️ Dog Poop and Ticks" as first Related Article ✅
+    - `blog/index.html`: Added ticks card (#1 position, forest green #166534 border/glow, before mosquito post) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+  - **Git commits:** tidytails-dashboard `7deacb11` ✅ · tidytails-website `6ccf5bc` → Cloudflare Pages live ✅
+  - **Why this completes the pest series:** The flies–mosquitoes–ticks trifecta now covers every major yard pest with a dog waste connection. Each post stands alone on distinct keyword clusters. Together they create a pest-series content hub that cross-links and builds topical authority in the "yard pests + dog waste" niche — a cluster zero STL competitors have addressed. The ticks post has the highest disease severity angle of the three (potential fatality, permanent dietary restriction) and therefore the strongest urgency for conversion. Missouri's documented RMSF and ehrlichiosis history makes the health framing genuinely credible, not manufactured. Annual LTV from one convert: $840.
+
+---
+
 ### Thursday 4:06 PM — "Dog Poop and Mosquitoes" Blog Post (Hourly Task)
 - **4:06 PM** 🦟 Wrote and published **"Dog Poop and Mosquitoes: The Backyard Connection St. Louis Dog Owners Miss"** — the first mosquito-angle dog waste content in the entire St. Louis market
   - **File:** `tidy-tails/website/blog/dog-poop-mosquitoes-yard-st-louis.html` (52.6KB ✅)
