@@ -200,3 +200,15 @@
 - Last day / tonight urgency (12mo same as cash + 50% off financing combo)
 - April math / pricing breakdown (350/mo for 12mo = zero interest)
 - Honest DM script targeting warm pipeline leads by name
+
+## April 2, 2026 — Tariff Season Opens (4 Ads)
+- **Shed-Apr02-01** — "April Is Here. Prices Changed." — Tariff hike April 1, pre-tariff lot inventory, honest no-pressure
+- **Shed-Apr02-02** — "Spring Math" — Storage unit vs shed math ($150/mo forever vs own it), tariff demand spike
+- **Shed-Apr02-03** — Short Form — Spring + tariffs hit, 23 buildings, Instagram/FB quick post
+- **Shed-Apr02-04** — "The Garage Confession" — Humor hook, 2022 garage joke, tariff pricing urgency
+
+## Hooks Used (April 2 — don't repeat 2 weeks)
+- Tariff went up April 1 / pre-tariff lot inventory angle
+- Spring math: storage unit rent forever vs own a shed
+- Garage you haven't parked in since 2022 (humor)
+- 23 buildings on lot, current pricing won't last
