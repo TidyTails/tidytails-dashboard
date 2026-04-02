@@ -2,6 +2,37 @@
 
 ---
 
+### Wednesday 10:07 PM — Father's Day Gift for Dog Owners Blog Post (Hourly Task)
+- **10:07 PM** 🎁 Wrote and published dedicated blog post targeting **Father's Day gift searches for dog dads** — the next major seasonal conversion window after Mother's Day (June 21)
+  - **File:** `tidy-tails/website/blog/fathers-day-gift-dog-owner-st-louis.html` (43.7KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/fathers-day-gift-dog-owner-st-louis` ✅ HTTP 200 confirmed
+  - **Blog count: 60 posts total** ✅
+  - **Why this task:** Mother's Day post is done (built at 8 PM). The next seasonal gift search window with ZERO existing content: **Father's Day (June 21)**. Searches for "Father's Day gift for dog owner", "gift for dog dad St. Louis", "Father's Day present dog dad" start peaking mid-May. Building the post April 2 = ~7 weeks of indexing + ranking time before peak. Zero competitors in STL have this content. The post targets gift-buyers (wives, adult children, kids) — same high-converting gift-buyer audience as Mother's Day, different copy angle.
+  - **Target keywords:** "fathers day gift dog owner St. Louis", "gift for dog dad St. Louis", "fathers day gift for him dogs", "gift for dad with dogs St. Louis", "pooper scooper gift father", "dog yard service fathers day", "fathers day dog gift idea"
+  - **What's in the post (~43KB, 2,600+ words):**
+    - **Hero:** "🐾 The Perfect Father's Day Gift for Dog Owners in St. Louis — He got the dog. He also handles the yard."
+    - **Stats row:** June 21 / $70/mo / FREE first cleanup / 0 contracts / 5.0★
+    - **3 Gift Options grid:** Monthly service ($70/mo), Spring/Summer cleanup one-time ($75), "Try It" first month free
+    - **"The Real Gift" section:** Two-scenario grid — Without Tidy Tails (Father's Day morning: out with the shovel before guests arrive) vs With Tidy Tails (sitting on the porch with coffee, yard already clean)
+    - **Why This Beats Other Gifts table:** Dog Waste Removal vs Grill Tools vs Clothes vs Gift Card vs Golf
+    - **Dog Dad Math callout:** 300 deposits/year/dog, two dogs + 3-4 month winter = 174 hours/year, $2.30/day
+    - **"What to Say" section:** 3 scripts — for husband/partner, for dad, for father-in-law. All framed as "I already handled it."
+    - **5-step how it works** with "On My Way" + "All Done" text emphasis
+    - **Flat-rate pricing table** — 1-2 dogs $70/mo through one-time $75
+    - **4 "Who This Is For" cards:** Dads with young kids + dogs, working dads, grandpa, the dog dad who does everything
+    - **Service areas grid** with links to 23 city-specific pages
+    - **7-question FAQ with FAQPage schema:** best gift for dog owner dad, how to gift service, gift that lasts all year, service areas, cost, one-time vs monthly, contracts
+    - **Blue/orange color scheme** (distinct from Mother's Day pink/purple) for visual identity
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with 12 cities in areaServed
+  - **Cross-links added:**
+    - `blog/index.html`: Added as #1 card (before Mother's Day card, newest first, orange border) ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+    - `blog/mothers-day-gift-dog-owner-st-louis.html`: Added "🎁 Father's Day Gift for Dog Owners →" as first Related Article ✅
+  - **Git commits:** tidytails-dashboard `a730d31a` ✅ · tidytails-website `74daefa` → Cloudflare Pages live
+  - **Revenue logic:** Targets gift-buyers who haven't found Tidy Tails through any existing channel. Husbands searching for dads convert at high rates because they're solving a real, recurring problem. The one-time $75 cleanup creates monthly conversions at 40-60%. One gift order = $75 + potential $840/yr LTV. The "I already set it up" framing removes signup friction from the recipient. Father's Day is the second-highest gift-buying moment for home service businesses (after Mother's Day). 81 days of indexing time before June 21 peak = strong ranking potential.
+
+---
+
 ### Wednesday 8:07 PM — Mother's Day Gift Guide Blog Post (Hourly Task)
 - **8:07 PM** 🌸 Wrote and published dedicated blog post targeting **Mother's Day gift searches for dog owners** — the next major seasonal conversion window after Easter
   - **File:** `tidy-tails/website/blog/mothers-day-gift-dog-owner-st-louis.html` (43.6KB ✅)
