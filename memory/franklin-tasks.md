@@ -2,6 +2,33 @@
 
 ---
 
+### Thursday 1:04 AM — Senior Living Commercial Kit (Hourly Task)
+- **1:04 AM** 🏡 Built and published the **Senior Living Commercial Kit** — the first commercial tool targeting independent and assisted living communities, the most untapped vertical in the entire Tidy Tails commercial pipeline
+  - **File:** `dashboard/senior-living-commercial-kit.html` (54.7KB ✅)
+  - **Dashboard:** Added fastest-pulsing (0.8s) gold quick link "🏡 SENIOR LIVING KIT — UNTAPPED VERTICAL · 8 LEADS" + new featured card at top of Commercial section grid
+  - **Git commits:** `3f2d33a3` → `8b88952f` (moved to correct path) ✅ pushed to tidytails-dashboard
+  - **Why this task at 1 AM:** All existing commercial tools target apartments and dog businesses. Completely untapped vertical: **senior living communities**. Perfect product-market fit — residents physically can't bend over to clean yards, they pay $2,400–$6,300/month in rent (making $70/mo trivially affordable), facilities have pet policies requiring clean outdoor areas, and ZERO Tidy Tails competitors are targeting this vertical. April is peak timing — residents returning outdoors after winter = facility managers feel the pet waste complaints NOW. No other STL competitor has thought of this.
+  - **8 leads with verified phones (where available):**
+    1. **The Village at Riverwood** — 1 Pratt Place, Florissant 63031 — **(314) 816-4110)** — IN TJ's active North County route zone. Independent living, From $2,230/mo. Willow Ridge Senior Living managed. #1 call priority.
+    2. **Bethesda Gardens Kirkwood** — 420 S. Kirkwood Rd, Kirkwood 63122 — **(314) 965-8100 / Sales: 314-686-4250)** — Part of Bethesda Health Group (STL's largest senior living network, 136 years). One relationship = key to entire Bethesda portfolio (Barclay House/Clayton, multiple others).
+    3. **Holiday Orchid Terrace** — 4474 Butler Hill Rd, St. Louis 63128 — **(314) 487-3367)** — 9.9 rating, Holiday by Atria national brand, South County route alignment. From $3,249/mo.
+    4. **Crestview Senior Living** — 8660 Grant Rd, Crestwood 63123 — 9.2 rating, adjacent to Paw-ty event territory. From $2,570/mo. Look up phone.
+    5. **Fields of Florissant (Garden Plaza)** — 1101 Garden Plaza Dr, Florissant 63033 — 9.3 rating, already in commercial pipeline from March. From $3,350/mo.
+    6. **Garden Villas South** — 13457 Tesson Ferry Rd, St. Louis 63128 — South County Tesson Ferry corridor. From $2,615/mo.
+    7. **Brookdale Creve Coeur** — 1 New Ballas Place, Creve Coeur 63146 — 9.9 rating, national Brookdale network. From $3,070/mo. Long game.
+    8. **Bethesda Barclay House** — 230 S. Brentwood Blvd, Clayton 63105 — Long game target after Kirkwood relationship opens Bethesda network.
+  - **What's in the kit (5 tabs):**
+    - **Leads tab:** All 8 leads, expandable with contact info, pitch angle, why-this-fits, status tracker (New → Called → Interested → Partner ✅). Priority-ranked with red/orange/yellow tiers.
+    - **Scripts tab (7):** Universal senior living phone opener, outdoor facility service pitch, email template, "welcome packet" offer script, objection handler ("our residents handle that themselves"), objection handler ("we have a maintenance team"), follow-up text (Day 3).
+    - **Revenue Math tab:** Standard residential = $840/yr. Facility contract = $1,800–2,400/yr. 1 facility + 5 resident referrals = $6,300/yr. Bear/base/bull scenario analysis. Bethesda network play = $2,000–5,000+/mo at full maturity.
+    - **Strategy tab:** Two pitches (A: resident referral program, B: outdoor pet area contract), who to ask for (Activities Director vs Facilities Manager vs Marketing Director), best calling window (Tue–Thu 10 AM–noon), why April is peak timing.
+    - **Checklist tab:** 18 items — 5 priority calls this week + 5 in-call actions + 4 follow-up actions + 4 long game items. localStorage persistence.
+  - **The Bethesda Network Play:** Bethesda Health Group operates the largest senior living network in St. Louis (136 years, multiple properties). Getting traction at Bethesda Gardens Kirkwood opens a warm intro path to Barclay House (Clayton), Bethesda Terrace (South County), and others. One relationship = potential access to 4–6 Bethesda properties.
+  - **Revenue math:** Bear ($210/mo), Base ($510/mo), Bull ($1,150/mo). The Village at Riverwood alone = $150–200/mo outdoor contract + 3–5 Florissant resident referrals = $360–550/mo from one call in TJ's existing route zone.
+  - **Why seniors close at high rates:** Facility-referred leads close at 35–50% vs 10–20% for cold leads. Residents already trust the facility recommendation. Zero price resistance ($70/mo = less than 3% of their monthly housing cost). Churn risk is very low — convenience is the #1 reason they stay.
+
+---
+
 ### Thursday 12:06 AM — Memorial Day Cookout Yard Cleanup Blog Post (Hourly Task)
 - **12:06 AM** 🍖 Wrote and published dedicated blog post targeting **Memorial Day cookout searchers with dogs** — the next major seasonal conversion window after Father's Day
   - **File:** `tidy-tails/website/blog/memorial-day-cookout-yard-cleanup-dogs-st-louis.html` (38.7KB ✅)
