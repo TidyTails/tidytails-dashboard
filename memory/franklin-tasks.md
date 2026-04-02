@@ -3441,3 +3441,39 @@
   - **Git commits:** tidytails-dashboard `ee5c1ca0` ✅ · tidytails-website `2163760` → Cloudflare Pages live ✅
   - **What makes this different from the old commercial-pet-waste-removal-property-managers post:** The old post (March 19) was a generic overview. This one is purpose-built as a bottom-of-funnel SEO page — specific pricing, property type breakdowns, comparison table against national franchises and in-house options, EPA regulatory angle, tenant retention ROI math. Targeting commercial decision-makers who are already sold on the concept and comparing options. The old post still exists; this one targets the higher-intent "St. Louis commercial pet waste removal" search directly.
   - **Revenue math:** 1 mid-size apartment complex at $250/mo = $3,000/yr LTV vs $840/yr residential. Zero incremental route cost when clustered near existing residential stops. The inbound channel pays for itself at even one commercial lead/year.
+
+---
+
+### Thursday 7:04 AM — Christmas Yard Cleanup Blog Post (Hourly Task)
+- **7:04 AM** 🎄 Wrote and published **"Christmas With Dogs? Clean That Yard First."** — completing the full-year holiday gathering series and targeting the highest-accumulation holiday on the calendar with 8 months of indexing runway before December searches peak
+  - **File:** `tidy-tails/website/blog/christmas-yard-cleanup-dogs-st-louis.html` (43.9KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/christmas-yard-cleanup-dogs-st-louis` ✅ HTTP 200 confirmed
+  - **Blog count: 67 posts total** ✅
+  - **Why this task:** 7 AM April 2. The full-year holiday gathering series was 5/6 complete — Memorial Day ✅, Father's Day ✅, July 4th ✅, Labor Day ✅, Thanksgiving ✅. The only remaining holiday in the "backyard gathering + dogs" arc: **Christmas**. Christmas is uniquely powerful for two reasons: (1) **Maximum accumulation** — by December 25, one dog has deposited ~100-115 times since September (more than any other holiday), and (2) **Cold preservation** — unlike summer where heat aids decomposition, winter cold preserves every deposit exactly where it landed. The "October pile is still there in December" angle is completely unique to this post and to this season. Zero STL competitors have this content. Building now = 8 months of indexing before December searches peak.
+  - **Target keywords:** "Christmas yard cleanup dogs", "Christmas dog poop St. Louis", "clean yard before Christmas", "winter dog waste St. Louis", "holiday yard cleanup dogs", "pooper scooper before Christmas"
+  - **What's in the post (~2,600 words, 43.9KB):**
+    - **Hero:** "Christmas With Dogs? Clean That Yard First." — deep crimson gradient (#7f1d1d → #b91c1c), distinct from all other posts in the series
+    - **Badge:** "🎄 Christmas — December 25, 2026" — immediate holiday positioning
+    - **Stats row:** Dec 25 / ~115 deposits/dog since Sept / One-time cleanup from $75 / 5.0★ / No contracts
+    - **Christmas Yard Math callout:** 115 deposits/dog, 230 for 2 dogs, 4 months accumulation, 57 lbs/dog, $2.30/day
+    - **Why December is uniquely hard (2-factor analysis):**
+      - Maximum accumulation reality (4 months vs Thanksgiving's 3 months — Christmas is the hardest)
+      - **The Cold Preservation Problem** — dedicated callout: cold weather is the OPPOSITE of decomposition. E. coli/Salmonella survive. Roundworm eggs are more durable in cold. The October deposit is preserved in place through December. This is the angle that makes Christmas categorically different from summer holidays.
+    - **Accumulation timeline:** Month-by-month from September → October (leaves start) → November (Thanksgiving crunch) → December (peak accumulation — cold + max deposits)
+    - **Math callout grid:** 115 deposits/dog, 230 for 2 dogs, ~57 lbs/dog since fall, $2.30/day for weekly service
+    - **Scenario grid:** ❌ Skipped Yard Christmas (new bike abandoned, nephew finds something, shoe-check moment, kids sent inside) vs ✅ Actually Clean Christmas (bike ridden 2 hours, kids and dogs running together, grandma sits on porch)
+    - **DIY 5-step guide:** Clear leaves first (before grid sweep), full grid sweep, check fence lines twice, do cleanup 2-3 days BEFORE (not Christmas Eve), morning-of check on Christmas Day
+    - **Full year holiday calendar:** Memorial Day → Father's Day → July 4th → Labor Day → Thanksgiving → Christmas ← YOU ARE HERE → New Year's → Easter — monthly service = all 8 covered
+    - **Monthly vs reactive math:** 4 reactive cleanups ($225-300/yr, stress, booking pressure) vs $70/mo (always clean, no planning)
+    - **The gift angle callout:** Monthly service as Christmas gift for dog-owning spouse/parent — "Christmas gift that actually changes someone's life. Not flowers-dead-in-5-days change."
+    - **Pricing table, comparison table (7 factors), service area grid (20 cities)**
+    - **7-question FAQ with FAQPage schema**
+    - **Related articles:** Labor Day / Winter Cleanup / How Service Works / Thanksgiving
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + og:meta with Christmas angle
+  - **Cross-links added:**
+    - `blog/index.html`: Added as #1 card (newest first, deep crimson #991b1b border/glow) ✅
+    - `blog/index.html`: Added to JSON-LD blogPost array ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+    - `blog/thanksgiving-yard-cleanup-dogs-st-louis.html`: Added "🎄 Christmas With Dogs? Clean That Yard First." as FIRST Related Article ✅
+  - **Git commits:** tidytails-dashboard `83e86c44` ✅ · tidytails-website `4c4aaf3` → Cloudflare Pages live
+  - **Why this is high-impact:** COMPLETES the full-year holiday gathering series. The series is now complete: Memorial Day → Father's Day → July 4th → Labor Day → Thanksgiving → Christmas. Christmas is the peak: highest accumulation (4+ months), cold preservation (nothing decomposes), and kids are specifically more likely to be outside on Christmas than any other winter day. The "October pile is still there in December" preservation angle is completely unique to this post. No STL competitor has written about Christmas yard cleanup. 8 months of indexing = strong ranking position before December search peak arrives. Annual LTV from one convert: $840.
