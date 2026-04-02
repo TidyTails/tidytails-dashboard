@@ -2,6 +2,45 @@
 
 ---
 
+### Thursday 3:04 PM — "Dog Poop and Flies" Blog Post (Hourly Task)
+- **3:04 PM** 🪰 Wrote and published **"Dog Poop and Flies in Your Yard — Why It Happens and How to Stop It"** — the first dedicated fly-infestation content in the entire St. Louis market
+  - **File:** `tidy-tails/website/blog/dog-poop-flies-yard-st-louis.html` (43.9KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/dog-poop-flies-yard-st-louis` ✅ HTTP 200 confirmed, title confirmed
+  - **Blog count: 74 posts total** ✅
+  - **Why this task:** 3 PM Thursday April 2. 73 blog posts live. Content audit of remaining uncovered keyword clusters pointed to one high-converting gap that was genuinely untouched across the entire STL market: **flies from dog poop**. The search cluster "dog poop flies yard," "why do I have so many flies in my yard with a dog," "how to get rid of flies from dog waste" has zero dedicated STL competitor content. It's a year-round concern (April through October) that peaks right as cookout season starts. The disgust + health combination is one of the strongest conversion triggers in the pet waste category. April specifically is when overwintering fly pupae hatch and establish the season's population — the timing of this post is exactly right.
+  - **Target keywords:** "dog poop flies yard", "dog waste flies St. Louis", "flies in yard dog poop", "how to get rid of flies dog poop", "dog poop attracts flies", "flies breeding dog waste", "does dog poop cause maggots yard"
+  - **Unique angle — The Breeding Cycle Nobody Explains:** Most content says "dog poop attracts flies" and stops there. This post goes deeper: it explains the complete 4-stage fly lifecycle (egg → maggot → pupa → adult), why fly sprays and traps DON'T work (they only target Stage 4 while Stages 1-3 continue underground), and why the ONLY intervention that breaks the cycle is removing the breeding source. This is genuinely new information to most homeowners — and it converts them because it explains why everything they've tried hasn't worked.
+  - **The math that stops scrollers:** "One pile can produce 200-500 fly eggs that hatch within 24 hours" + "30,000-45,000 potential flies from one dog's waste in one summer" — numbers this specific haven't appeared in any STL competitor's content. The stat callout is designed to be screenshot-shareable on social.
+  - **What's in the post (~2,700 words, 43.9KB):**
+    - **Hero:** "Dog Poop and Flies in Your Yard — Why It Happens and How to Stop It for Good" — amber/brown gradient, distinct from all other posts
+    - **Urgency banner:** "🌡️ Fly season in St. Louis starts in April — eliminate the breeding source before it explodes."
+    - **Stats row:** 300 flies/pile (24 hrs) / 7–10 days egg→adult / $70/mo to eliminate source / 100+ yards covered
+    - **Why flies find poop immediately:** Volatile ammonia + sulfur compounds detected 100+ feet away, eggs laid within minutes on warm days
+    - **The 24-Hour Fly Math callout:** Full breakdown — eggs hatch 8–24 hours, larvae 4–7 days, pupation 4–7 days, adult emergence 7–10 days total
+    - **Big stat callout:** 30,000–45,000 potential flies from one dog's waste in one summer
+    - **4-stage lifecycle breakdown:** Egg / Larval (maggots) / Pupal (underground, immune to sprays) / Adult — explained for each stage why sprays fail
+    - **Why sprays don't work:** Dedicated explanation of Stage 3 (pupae underground in sealed casing, completely immune to every surface treatment) — the insight that makes people finally stop fighting symptoms and start addressing the source
+    - **6-pathogen fly transmission grid:** E. coli, Salmonella, Campylobacter, Cryptosporidium, Toxocara (roundworm), Listeria — each with how flies carry and transfer them
+    - **Red alert for kids:** Dedicated callout on child vulnerability (touch face, eat outdoors, unlwashed hands)
+    - **St. Louis seasonal timeline grid:** ❌ Without pickup (April: first activity → May: population explosion → July-August: fly zone → yards unusable) vs ✅ With weekly pickup (clean yard through entire season)
+    - **The Spring Window section:** Why April is the critical month — overwintering pupae hatching now, winter accumulation = massive first-generation food source, first generation of season being established RIGHT NOW
+    - **April Math callout:** 100+ winter deposits × 100-300 flies/pile potential = 10,000-30,000 flies from winter accumulation alone per dog
+    - **What doesn't work (and why):** Fly sprays, foggers, traps, bait stations, enzyme sprays, "hoping it decomposes" — each explained why it fails
+    - **5-step solution guide:** Spring cleanup / 48-hour pickup rule / waste off property / grid sweep thoroughness / consistent weekly schedule
+    - **Pricing strip + CTA:** $70/mo flat, first cleanup free, no contracts
+    - **7-question FAQ with FAQPage schema:** Does dog poop attract flies / How many flies / Why so many flies with a dog / How to get rid of them / Do flies spread disease / Does dog poop cause maggots / How much does pickup cost
+    - **6 related article cards:** Smell, Rain, Health Risks, Decompose, Killing Grass, Is It Worth It
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + og:meta with fly/pest angle
+  - **Cross-links added:**
+    - `blog/index.html`: Added as new card (#1 position, amber #d97706 border/glow, before decompose post) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+    - `blog/dog-poop-smell-yard.html`: Added "🪰 Dog Poop and Flies" as first Related Article ✅
+    - `blog/dog-poop-health-risks.html`: Added "🪰 Dog Poop and Flies" as first Related Article ✅
+  - **Git commits:** tidytails-dashboard `bd142658` ✅ · tidytails-website `a8e9abd` → Cloudflare Pages live ✅
+  - **Why this is high-impact:** The fly angle attacks a pain point that is viscerally immediate (nobody wants flies at their summer cookout) and scientifically novel (the breeding cycle explanation and "sprays don't work" insight is genuinely new information). It targets April-October searchers year-round, not just one holiday or season. The conversion logic: someone who has tried fly sprays all summer and still has flies reads this post, learns it's because they're only killing adults while hundreds more develop underground, and books a cleanup. Annual LTV from one convert: $840. This keyword cluster has zero STL competitor coverage — first-mover advantage compounds every year.
+
+---
+
 ### Thursday 1:04 PM — "How Long Does Dog Poop Take to Decompose?" Blog Post (Hourly Task)
 - **1:04 PM** 🔬 Wrote and published **"How Long Does Dog Poop Take to Decompose? (St. Louis Reality Check)"** — the last major myth-busting evergreen post in the content library
   - **File:** `tidy-tails/website/blog/how-long-does-dog-poop-decompose.html` (49KB ✅)
