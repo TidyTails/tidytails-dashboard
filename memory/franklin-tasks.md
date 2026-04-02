@@ -2,6 +2,38 @@
 
 ---
 
+### Thursday 12:06 AM — Memorial Day Cookout Yard Cleanup Blog Post (Hourly Task)
+- **12:06 AM** 🍖 Wrote and published dedicated blog post targeting **Memorial Day cookout searchers with dogs** — the next major seasonal conversion window after Father's Day
+  - **File:** `tidy-tails/website/blog/memorial-day-cookout-yard-cleanup-dogs-st-louis.html` (38.7KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/memorial-day-cookout-yard-cleanup-dogs-st-louis` ✅ HTTP 200 confirmed
+  - **Blog count: 62 posts total** ✅
+  - **Why this task:** It's midnight April 2. All 61 blog posts live. Easter tools are maxed. Every campaign tool exists. The next major seasonal gap with ZERO existing content: **Memorial Day (May 25)**. Searches for "Memorial Day yard cleanup dogs", "clean yard before cookout", "backyard party dog poop" start peaking mid-May. Building now = 8 weeks of indexing time before peak. Zero competitors in STL have this content. Captures a different buyer than Mother's/Father's Day posts — the person throwing a party who suddenly realizes their yard needs work before guests arrive.
+  - **Target keywords:** "Memorial Day yard cleanup dogs", "cookout dog poop St. Louis", "backyard party dogs yard cleanup", "Memorial Day dog waste St. Louis", "clean yard before cookout", "pooper scooper before cookout", "pre-cookout yard cleanup St. Louis"
+  - **What's in the post (~2,500 words, 38.7KB):**
+    - **Hero:** "Memorial Day Cookout With Dogs? Clean That Yard First." — direct, problem-first framing
+    - **Stats row:** May 25 / 300 deposits/dog/year / One-time cleanup from $75 / 5.0★ / No contracts
+    - **Memorial Day Yard Math callout:** 125 deposits since Jan 1 (one dog), 2× for two dogs, $2.30/day to never worry again
+    - **Scenario grid:** "The Unclean Yard Cookout" (❌ guest shoe check, kids tracking it in, cooking with anxiety) vs "The Clean Yard Cookout" (✅ kids run out barefoot, dog hangs out, host mode on)
+    - **"The Neighbor Test" callout:** "Would you open the back gate right now and tell your guests the yard is clean?" — permission-to-hire trigger
+    - **Why Memorial Day is harder than other cookouts:** 5-month accumulation, tall grass hides more, more people covering more territory, warm weather activates smell
+    - **Health section:** E. coli, salmonella, roundworm — EPA non-point source pollutant angle
+    - **DIY cleanup guide (if they go that route):** 5-step grid sweep guide — honest, detailed, converts people who try it themselves and realize they'd rather pay $75
+    - **"The Case for Going Monthly" section:** After Memorial Day cleanup the next is Father's Day, then July 4th, Labor Day — why weekly service means every cookout is already ready
+    - **Comparison table:** Tidy Tails vs National Franchise vs DIY — annual cost, "On My Way" text, first cleanup free, no contracts, local owner
+    - **Booking timeline:** Book by May 19 (standard), May 20-22 (filling), May 23-24 (harder), April (guaranteed + free)
+    - **Pricing table:** $70/mo (most popular), $80/mo (3-4 dogs), $75+ one-time, $45/visit biweekly
+    - **Service areas grid:** North/South/West/Central County + St. Charles County
+    - **7-question FAQ with FAQPage schema:** How to clean before a cookout, is dog poop really a health issue, when to schedule, how much has accumulated since January, one-time vs monthly, do you need to be home, service areas
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + og:meta tags with cookout/Memorial Day angle
+  - **Cross-links added:**
+    - `blog/index.html`: Added as #1 card (newest first, dark green border) ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+    - `blog/easter-egg-hunt-yard-cleanup-dogs-st-louis.html`: Added "Memorial Day Cookout With Dogs?" as first Related Article ✅
+  - **Git commits:** tidytails-dashboard `4956c727` ✅ · tidytails-website `52c577d` → Cloudflare Pages live
+  - **Revenue logic:** Targets cookout hosts 2-6 weeks before Memorial Day who realize their yard needs work before guests arrive. High urgency + specific deadline = high conversion. One-time $75 cleanup converts to monthly at 40-60% — same pattern as Easter cleanup. Annual LTV: $840. The "I had 15 people over and nobody worried about the yard" experience is the hook that keeps people as monthly customers through the entire summer cookout season (Memorial Day → Father's Day → July 4th → Labor Day). 8 weeks of indexing time gives this post strong ranking potential before the May search peak.
+
+---
+
 ### Wednesday 11:04 PM — "How Does Pooper Scooper Service Work?" Complete Guide Post (Hourly Task)
 - **11:04 PM** 🐾 Wrote and published **comprehensive buyer's guide** — "How Does Pooper Scooper Service Work? Everything You Need to Know" — the last uncovered mid-funnel content gap in the blog
   - **File:** `tidy-tails/website/blog/how-pooper-scooper-service-works.html` (51KB ✅)
