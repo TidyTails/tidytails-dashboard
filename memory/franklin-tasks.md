@@ -2,6 +2,34 @@
 
 ---
 
+### Wednesday 11:04 PM — "How Does Pooper Scooper Service Work?" Complete Guide Post (Hourly Task)
+- **11:04 PM** 🐾 Wrote and published **comprehensive buyer's guide** — "How Does Pooper Scooper Service Work? Everything You Need to Know" — the last uncovered mid-funnel content gap in the blog
+  - **File:** `tidy-tails/website/blog/how-pooper-scooper-service-works.html` (51KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/how-pooper-scooper-service-works` ✅ HTTP 200 confirmed
+  - **Blog count: 61 posts total** ✅
+  - **Why this task:** 60 blog posts existed. Geographic coverage is complete (60 city/county posts). Seasonal posts done (Easter, Mother's Day, Father's Day, winter thaw). But one critical mid-funnel gap was uncovered: **no explainer post** answering the most common pre-signup questions — "do I need to be home?", "what do you do with the waste?", "what is this 'On My Way' text?", "is there a contract?". This post is the page TJ can send after Nextdoor inquiries, FB comments, and commercial calls. It captures mid-funnel searches like "how does pooper scooper service work", "what to expect pet waste removal", "do I need to be home for pooper scooper service". High search intent = decision-phase buyer who needs one more piece of information before signing up.
+  - **What's in the post (~3,000 words, 51KB):**
+    - **Complete 5-step service walkthrough:** Text/call to sign up → Added to weekly route → "On My Way" text → Visit (grid sweep, double-bag, remove from property) → "All Done" text
+    - **"On My Way" text demo:** Visual text message mockup showing exactly what the text looks like — the #1 differentiator that no other STL service does
+    - **What happens to the waste:** Double-bagged, leaves property, landfill-approved disposal — answers the #1 question that people are embarrassed to ask
+    - **Do I need to be home:** Definitive "no" with the two things that are actually needed (gate access + phone for texts)
+    - **Pricing table:** $70/$80/$90 monthly flat rates with per-day math — no yard-size surcharge, no hidden fees
+    - **Comparison table (Tidy Tails vs National Franchise):** 8 factors — pricing model, annual cost, "On My Way" text, "All Done" text, who you deal with, contract, North County coverage, owner does the work
+    - **Common first-timer Q&A:** Two-column grid — "Things That Always Work Fine" (combo locks, friendly dogs, large yards, customers away all day) vs "Things Worth Mentioning at Signup" (aggressive dogs, unusual gate situations, multi-dog households)
+    - **Winter service section:** What happens with snow, how to pause for winter, spring catch-up visits
+    - **8-question FAQ with FAQPage schema:** All the questions TJ gets in every Nextdoor thread and FB comment, answered definitively
+    - **Service area links:** All 5 county regions with links to every city-specific post
+  - **Schema markup:** BlogPosting + FAQPage (8Q) + LocalBusiness with 12 cities in areaServed
+  - **Cross-links added:**
+    - `blog/is-pooper-scooper-service-worth-it.html`: Added "How Does Pooper Scooper Service Work?" as first Related Article ✅
+    - `blog/pet-waste-removal-cost-st-louis.html`: Added as first Related Article ✅
+    - `blog/index.html`: Added as #1 card (newest first, green border) + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, monthly changefreq) ✅
+  - **Git commits:** tidytails-dashboard `3c11a587` ✅ · tidytails-website `637a010` → Cloudflare Pages live
+  - **Why this was the right task at 11 PM:** Geographic blog coverage is fully saturated — 60 posts covering every city, county, and season. Campaign tools are all maxed. The uncovered gap was the mid-funnel explainer that converts people who are 80% sold but have one nagging logistical question ("do I have to be there?", "what do you do with the bags?"). This is also the post TJ can link in every social media exchange where someone asks "how does this work?" — it replaces the need to type out the explanation every time. Permanent content that compounds forever.
+
+---
+
 ### Wednesday 10:07 PM — Father's Day Gift for Dog Owners Blog Post (Hourly Task)
 - **10:07 PM** 🎁 Wrote and published dedicated blog post targeting **Father's Day gift searches for dog dads** — the next major seasonal conversion window after Mother's Day (June 21)
   - **File:** `tidy-tails/website/blog/fathers-day-gift-dog-owner-st-louis.html` (43.7KB ✅)
