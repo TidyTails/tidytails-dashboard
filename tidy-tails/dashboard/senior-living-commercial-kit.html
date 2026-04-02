@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏡 Senior Living Commercial Kit — Tidy Tails</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --card: #1a1d26;
+    --card2: #222536;
+    --border: #2d3148;
+    --gold: #f5a623;
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --purple: #a855f7;
+    --red: #ef4444;
+    --teal: #14b8a6;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --warm: #fb923c;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Segoe UI',sans-serif; min-height:100vh; }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #1a1d26 0%, #2d1b4e 100%);
+    border-bottom: 2px solid var(--purple);
+    padding: 20px 24px;
+    text-align: center;
+  }
+  .header h1 { font-size: 1.6rem; font-weight: 800; color: #fff; }
+  .header .sub { color: var(--muted); font-size: 0.9rem; margin-top: 4px; }
+  .header .badges { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-top: 12px; }
+  .badge { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+  .badge.purple { background: rgba(168,85,247,0.2); color: var(--purple); border: 1px solid rgba(168,85,247,0.4); }
+  .badge.gold { background: rgba(245,166,35,0.2); color: var(--gold); border: 1px solid rgba(245,166,35,0.4); }
+  .badge.green { background: rgba(34,197,94,0.2); color: var(--green); border: 1px solid rgba(34,197,94,0.4); }
+
+  /* WHY BOX */
+  .why-box {
+    background: linear-gradient(135deg, rgba(168,85,247,0.1), rgba(59,130,246,0.08));
+    border: 1px solid rgba(168,85,247,0.3);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin: 20px 16px;
+  }
+  .why-box h2 { font-size: 1.1rem; color: var(--purple); margin-bottom: 12px; }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .why-item { display: flex; align-items: flex-start; gap: 8px; font-size: 0.88rem; line-height: 1.4; }
+  .why-icon { font-size: 1.1rem; flex-shrink: 0; margin-top: 1px; }
+
+  /* TABS */
+  .tabs { display: flex; overflow-x: auto; gap: 0; border-bottom: 2px solid var(--border); margin: 0 16px; padding-bottom: 0; }
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 10px 16px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn.active { color: var(--purple); border-bottom-color: var(--purple); }
+  .tab-content { display: none; padding: 16px; }
+  .tab-content.active { display: block; }
+
+  /* LEADS */
+  .lead-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .lead-card:hover { border-color: rgba(168,85,247,0.4); }
+  .lead-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 16px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .lead-priority {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .p1 { background: #ef4444; box-shadow: 0 0 6px rgba(239,68,68,0.5); }
+  .p2 { background: #fb923c; }
+  .p3 { background: #eab308; }
+  .p4 { background: #6b7280; }
+  .lead-name { font-weight: 700; font-size: 0.95rem; flex: 1; }
+  .lead-meta { font-size: 0.78rem; color: var(--muted); }
+  .lead-tier { font-size: 0.75rem; font-weight: 700; padding: 3px 10px; border-radius: 10px; }
+  .tier-1 { background: rgba(239,68,68,0.15); color: #f87171; }
+  .tier-2 { background: rgba(251,146,60,0.15); color: var(--warm); }
+  .tier-3 { background: rgba(234,179,8,0.15); color: #fbbf24; }
+  .tier-4 { background: rgba(107,114,128,0.15); color: #9ca3af; }
+  .lead-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border); }
+  .lead-body.open { display: block; }
+
+  .info-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; margin-top: 12px; }
+  .info-chip { background: var(--card2); border: 1px solid var(--border); border-radius: 8px; padding: 4px 10px; font-size: 0.78rem; display: flex; align-items: center; gap: 5px; }
+  .info-chip a { color: var(--blue); text-decoration: none; }
+  .info-chip a:hover { text-decoration: underline; }
+
+  .pitch-box { background: rgba(168,85,247,0.08); border: 1px solid rgba(168,85,247,0.2); border-radius: 8px; padding: 12px; margin-top: 10px; }
+  .pitch-box h4 { font-size: 0.78rem; color: var(--purple); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .pitch-box p { font-size: 0.85rem; line-height: 1.5; color: #c4b5fd; }
+
+  .why-good-box { background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.2); border-radius: 8px; padding: 10px 12px; margin-top: 8px; font-size: 0.82rem; color: #86efac; }
+  .why-good-box strong { color: var(--green); }
+
+  .status-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .status-btn {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--border);
+    background: var(--card2);
+    color: var(--muted);
+    transition: all 0.2s;
+  }
+  .status-btn:hover { border-color: var(--purple); color: var(--purple); }
+  .status-btn.active-status { background: rgba(168,85,247,0.2); border-color: var(--purple); color: var(--purple); }
+  .status-btn.called { background: rgba(59,130,246,0.15); border-color: var(--blue); color: #93c5fd; }
+  .status-btn.interested { background: rgba(34,197,94,0.15); border-color: var(--green); color: #86efac; }
+  .status-btn.partner { background: rgba(245,166,35,0.15); border-color: var(--gold); color: var(--gold); }
+
+  /* SCRIPTS */
+  .script-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .script-header {
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+  }
+  .script-header h3 { font-size: 0.9rem; font-weight: 700; }
+  .script-tag { font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 8px; }
+  .tag-phone { background: rgba(59,130,246,0.15); color: #93c5fd; }
+  .tag-email { background: rgba(34,197,94,0.15); color: #86efac; }
+  .tag-text { background: rgba(168,85,247,0.15); color: #c4b5fd; }
+  .tag-objection { background: rgba(251,146,60,0.15); color: var(--warm); }
+  .script-body { display: none; padding: 0 16px 16px; border-top: 1px solid var(--border); }
+  .script-body.open { display: block; }
+  .script-text {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: #cbd5e1;
+    margin-top: 12px;
+    white-space: pre-wrap;
+  }
+  .copy-btn {
+    width: 100%;
+    margin-top: 8px;
+    padding: 8px;
+    background: rgba(168,85,247,0.15);
+    border: 1px solid rgba(168,85,247,0.3);
+    border-radius: 8px;
+    color: var(--purple);
+    font-weight: 700;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { background: rgba(168,85,247,0.25); }
+
+  /* MATH */
+  .math-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 14px;
+  }
+  .math-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--gold); margin-bottom: 14px; }
+  .math-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.85rem; }
+  .math-row:last-child { border-bottom: none; }
+  .math-row .label { color: var(--muted); }
+  .math-row .value { font-weight: 700; color: var(--green); }
+  .scenario-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 14px; }
+  .scenario { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 14px; text-align: center; }
+  .scenario .label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 6px; }
+  .scenario .mrr { font-size: 1.3rem; font-weight: 800; }
+  .scenario .detail { font-size: 0.75rem; color: var(--muted); margin-top: 4px; }
+  .bear .mrr { color: #94a3b8; }
+  .base .mrr { color: var(--gold); }
+  .bull .mrr { color: var(--green); }
+
+  /* CHECKLIST */
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(45,49,72,0.5);
+    cursor: pointer;
+    font-size: 0.88rem;
+    line-height: 1.4;
+    user-select: none;
+  }
+  .check-item:last-child { border-bottom: none; }
+  .check-box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--border);
+    border-radius: 5px;
+    flex-shrink: 0;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    font-size: 0.8rem;
+  }
+  .check-item.done .check-box { background: var(--purple); border-color: var(--purple); }
+  .check-item.done .check-text { text-decoration: line-through; color: var(--muted); }
+  .phase-title { font-size: 0.8rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; padding: 14px 0 6px; }
+
+  /* STATS BAR */
+  .stats-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(15,17,23,0.97);
+    border-top: 1px solid var(--border);
+    padding: 10px 16px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    z-index: 100;
+    font-size: 0.8rem;
+  }
+  .stat { text-align: center; }
+  .stat .num { font-size: 1.1rem; font-weight: 800; color: var(--purple); }
+  .stat .lbl { color: var(--muted); font-size: 0.7rem; }
+  .stats-bar .spacer { flex: 1; }
+  .progress-bar-wrap { height: 6px; background: var(--border); border-radius: 3px; overflow: hidden; width: 100px; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--purple), var(--blue)); border-radius: 3px; transition: width 0.4s; }
+
+  /* LTV CALLOUT */
+  .ltv-callout {
+    background: linear-gradient(135deg, rgba(245,166,35,0.12), rgba(245,166,35,0.05));
+    border: 1px solid rgba(245,166,35,0.3);
+    border-radius: 12px;
+    padding: 18px;
+    margin: 16px 16px 6px;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+  .ltv-callout .icon { font-size: 2.5rem; }
+  .ltv-callout .text h3 { color: var(--gold); font-size: 1rem; font-weight: 800; }
+  .ltv-callout .text p { font-size: 0.83rem; color: #fcd34d; margin-top: 4px; line-height: 1.4; }
+
+  .section-title { font-size: 0.85rem; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; padding: 16px 0 8px; border-bottom: 1px solid var(--border); margin-bottom: 12px; }
+
+  @media (max-width: 480px) {
+    .why-grid { grid-template-columns: 1fr; }
+    .scenario-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏡 Senior Living Commercial Kit</h1>
+  <div class="sub">The highest-need, highest-ability-to-pay dog owners in St. Louis</div>
+  <div class="badges">
+    <span class="badge purple">8 Verified Leads</span>
+    <span class="badge gold">$150–350/mo Per Facility</span>
+    <span class="badge green">Untapped Vertical</span>
+  </div>
+</div>
+
+<div class="ltv-callout">
+  <div class="icon">🏆</div>
+  <div class="text">
+    <h3>The Best Commercial Niche TJ Hasn't Called Yet</h3>
+    <p>Senior living residents WANT yard cleanup, NEED help, and can easily afford $70/mo. Every facility = dozens of potential individual customers + a facility service contract. Zero Tidy Tails competitors are targeting this vertical.</p>
+  </div>
+</div>
+
+<div class="why-box">
+  <h2>Why Senior Living = Perfect Fit</h2>
+  <div class="why-grid">
+    <div class="why-item"><span class="why-icon">🦴</span><span>Seniors with dogs physically <strong>can't bend over</strong> to clean yards. This is the hardest category to DIY.</span></div>
+    <div class="why-item"><span class="why-icon">💰</span><span>Residents pay <strong>$2,400–$6,300/mo</strong> in rent. $70/mo for yard cleanup = less than 3% of their housing cost.</span></div>
+    <div class="why-item"><span class="why-icon">📋</span><span>Facilities have <strong>pet policies</strong> requiring clean outdoor areas. We solve a compliance problem, not just a convenience.</span></div>
+    <div class="why-item"><span class="why-icon">🏠</span><span>Every 8-unit pet-friendly building = <strong>4–6 individual customers</strong> + a facility outdoor contract. Stacked revenue.</span></div>
+    <div class="why-item"><span class="why-icon">📞</span><span>One call to management = <strong>direct intro to all residents</strong> via newsletter or bulletin board. Warm referral multiplier.</span></div>
+    <div class="why-item"><span class="why-icon">🌱</span><span><strong>Zero competitors</strong> are pitching this verticial in St. Louis. TJ would be first to get these relationships.</span></div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="showTab('leads')">📋 Leads (8)</button>
+  <button class="tab-btn" onclick="showTab('scripts')">📞 Scripts (7)</button>
+  <button class="tab-btn" onclick="showTab('math')">💰 Revenue Math</button>
+  <button class="tab-btn" onclick="showTab('strategy')">🎯 Strategy</button>
+  <button class="tab-btn" onclick="showTab('checklist')">✅ Checklist</button>
+</div>
+
+<!-- TAB: LEADS -->
+<div id="tab-leads" class="tab-content active">
+
+  <p style="font-size:0.82rem; color:var(--muted); margin-bottom:14px;">Sorted by priority. 🔴 Call first. Tap any card to expand full pitch + contact info.</p>
+
+  <!-- LEAD 1 -->
+  <div class="lead-card" id="lc-1">
+    <div class="lead-header" onclick="toggleLead('1')">
+      <span class="lead-priority p1"></span>
+      <div style="flex:1;">
+        <div class="lead-name">The Village at Riverwood</div>
+        <div class="lead-meta">1 Pratt Place, Florissant, MO 63031 · Independent Living · From $2,230/mo</div>
+      </div>
+      <span class="lead-tier tier-1">🔴 #1 CALL</span>
+    </div>
+    <div class="lead-body" id="lb-1">
+      <div class="info-row">
+        <span class="info-chip">📞 <a href="tel:3148164110">(314) 816-4110</a></span>
+        <span class="info-chip">📍 Florissant 63031</span>
+        <span class="info-chip">🐾 Pet Friendly ✓</span>
+        <span class="info-chip">🏠 Independent Living</span>
+      </div>
+      <div class="why-good-box"><strong>Why this is #1:</strong> In TJ's active North County territory. Already servicing yards in Florissant — this facility is minutes from existing routes. Independent living residents are mobile enough to enjoy a clean yard but many have mobility limitations. The "On My Way" text resonates with seniors who like knowing what's happening. Willow Ridge Senior Living manages this property.</div>
+      <div class="pitch-box">
+        <h4>Pitch Angle</h4>
+        <p>"Hi, I'm Jamie Dabrowski with Tidy Tails — we're actually already servicing several yards in Florissant right down the street from you. I wanted to reach out because a lot of your residents with dogs may be struggling to keep up with yard cleanup, and we'd love to offer them a local, affordable option. Do you have a way to share info with residents in your newsletter or bulletin board?"</p>
+      </div>
+      <div class="why-good-box"><strong>Two pitches at once:</strong> (1) Facility outdoor common area cleaning contract — walking paths, dog relief areas. (2) Resident referral program — get info to residents, offer $60/mo "senior rate" for individuals.</div>
+      <div class="status-row" id="sr-1">
+        <button class="status-btn" onclick="setStatus('1','new')">New</button>
+        <button class="status-btn" onclick="setStatus('1','called')">Called</button>
+        <button class="status-btn" onclick="setStatus('1','interested')">Interested</button>
+        <button class="status-btn" onclick="setStatus('1','partner')">Partner ✅</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEAD 2 -->
+  <div class="lead-card" id="lc-2">
+    <div class="lead-header" onclick="toggleLead('2')">
+      <span class="lead-priority p1"></span>
+      <div style="flex:1;">
+        <div class="lead-name">Bethesda Gardens Kirkwood</div>
+        <div class="lead-meta">420 S. Kirkwood Rd, Kirkwood, MO 63122 · Independent Living · From $2,265/mo</div>
+      </div>
+      <span class="lead-tier tier-1">🔴 CALL TODAY</span>
+    </div>
+    <div class="lead-body" id="lb-2">
+      <div class="info-row">
+        <span class="info-chip">📞 <a href="tel:3149658100">(314) 965-8100</a></span>
+        <span class="info-chip">📞 Sales: <a href="tel:3146864250">(314) 686-4250</a></span>
+        <span class="info-chip">📍 Kirkwood 63122</span>
+        <span class="info-chip">🐾 Pet Friendly ✓</span>
+        <span class="info-chip">🏠 Bethesda Health Group</span>
+      </div>
+      <div class="why-good-box"><strong>Why this matters:</strong> Part of Bethesda Health Group — St. Louis's largest and most respected senior living network (136 years operating). Getting a relationship with Bethesda Gardens Kirkwood opens a door into multiple Bethesda properties. Ask to speak with the "Sales Counselor" — that's the right title per their website.</div>
+      <div class="pitch-box">
+        <h4>Pitch Angle</h4>
+        <p>"Hi, I'd love to speak with the Sales Counselor about a local pet waste removal service we offer — we work with several Kirkwood residents and I'd love to find a way to make Bethesda Gardens residents aware of what we do. We offer a discounted senior rate and can work with your outdoor pet areas too."</p>
+      </div>
+      <div class="why-good-box"><strong>Bethesda network play:</strong> Bethesda also operates Bethesda Barclay House (Clayton), Bethesda Terrace (South County), and several other STL properties. One strong relationship here = introduction to entire Bethesda portfolio.</div>
+      <div class="status-row" id="sr-2">
+        <button class="status-btn" onclick="setStatus('2','new')">New</button>
+        <button class="status-btn" onclick="setStatus('2','called')">Called</button>
+        <button class="status-btn" onclick="setStatus('2','interested')">Interested</button>
+        <button class="status-btn" onclick="setStatus('2','partner')">Partner ✅</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEAD 3 -->
+  <div class="lead-card" id="lc-3">
+    <div class="lead-header" onclick="toggleLead('3')">
+      <span class="lead-priority p1"></span>
+      <div style="flex:1;">
+        <div class="lead-name">Holiday Orchid Terrace</div>
+        <div class="lead-meta">4474 Butler Hill Rd, St. Louis, MO 63128 · Independent Living · From $3,249/mo</div>
+      </div>
+      <span class="lead-tier tier-1">🔴 CALL TODAY</span>
+    </div>
+    <div class="lead-body" id="lb-3">
+      <div class="info-row">
+        <span class="info-chip">📞 <a href="tel:3144873367">(314) 487-3367</a></span>
+        <span class="info-chip">📍 South County 63128</span>
+        <span class="info-chip">🐾 Pet Friendly ✓</span>
+        <span class="info-chip">🏠 Holiday by Atria</span>
+        <span class="info-chip">⭐ 9.9 Rating</span>
+      </div>
+      <div class="why-good-box"><strong>Why this is excellent:</strong> 9.9 rating = well-managed, cares deeply about resident experience. Holiday by Atria is a large national brand — getting a relationship here means potential referral to other Holiday properties in the metro. Located 63128 = South County route alignment (Mehlville/Affton/Crestwood area).</div>
+      <div class="pitch-box">
+        <h4>Pitch Angle</h4>
+        <p>"Hi, my name is Jamie with Tidy Tails — I'm a local pet waste removal service in South St. Louis County. I know you're pet-friendly, and I thought some of your residents might appreciate knowing there's a local, affordable service that picks up for them weekly. I wanted to see if there's a way to get information to your residents."</p>
+      </div>
+      <div class="status-row" id="sr-3">
+        <button class="status-btn" onclick="setStatus('3','new')">New</button>
+        <button class="status-btn" onclick="setStatus('3','called')">Called</button>
+        <button class="status-btn" onclick="setStatus('3','interested')">Interested</button>
+        <button class="status-btn" onclick="setStatus('3','partner')">Partner ✅</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEAD 4 -->
+  <div class="lead-card" id="lc-4">
+    <div class="lead-header" onclick="toggleLead('4')">
+      <span class="lead-priority p2"></span>
+      <div style="flex:1;">
+        <div class="lead-name">Crestview Senior Living</div>
+        <div class="lead-meta">8660 Grant Rd, Crestwood, MO 63123 · Independent Living · From $2,570/mo</div>
+      </div>
+      <span class="lead-tier tier-2">🟠 CALL THIS WEEK</span>
+    </div>
+    <div class="lead-body" id="lb-4">
+      <div class="info-row">
+        <span class="info-chip">📍 Crestwood 63123</span>
+        <span class="info-chip">🐾 Pet Friendly ✓</span>
+        <span class="info-chip">⭐ 9.2 Rating</span>
+        <span class="info-chip">🔍 Look up phone</span>
+      </div>
+      <div class="why-good-box"><strong>Why good:</strong> TJ had a Paw-ty event right near Crestwood. This facility is in the exact South County territory where brand awareness exists. 9.2 rating = quality operation. Crestwood residents paying $2,570+/mo have strong ability to pay $70/mo.</div>
+      <div class="pitch-box">
+        <h4>Pitch Angle</h4>
+        <p>"Hi, I'm Jamie with Tidy Tails — I actually just did an event at the Crestwood Vet in March and met a lot of South County dog owners. I'd love to see if there's a way to get information about our service to any of your residents with dogs."</p>
+      </div>
+      <div class="status-row" id="sr-4">
+        <button class="status-btn" onclick="setStatus('4','new')">New</button>
+        <button class="status-btn" onclick="setStatus('4','called')">Called</button>
+        <button class="status-btn" onclick="setStatus('4','interested')">Interested</button>
+        <button class="status-btn" onclick="setStatus('4','partner')">Partner ✅</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEAD 5 -->
+  <div class="lead-card" id="lc-5">
+    <div class="lead-header" onclick="toggleLead('5')">
+      <span class="lead-priority p2"></span>
+      <div style="flex:1;">
+        <div class="lead-name">Fields of Florissant (Garden Plaza)</div>
+        <div class="lead-meta">1101 Garden Plaza Dr, Florissant, MO 63033 · Independent + Assisted Living · From $3,350/mo</div>
+      </div>
+      <span class="lead-tier tier-2">🟠 CALL THIS WEEK</span>
+    </div>
+    <div class="lead-body" id="lb-5">
+      <div class="info-row">
+        <span class="info-chip">📍 Florissant 63033</span>
+        <span class="info-chip">🐾 Pet Friendly ✓</span>
+        <span class="info-chip">⭐ 9.3 Rating</span>
+        <span class="info-chip">🔍 Look up phone (was in pipeline as lead)</span>
+      </div>
+      <div class="why-good-box"><strong>Already in our commercial pipeline</strong> from the earlier lead research (lead #3 added March 17). Has independent + assisted + memory care. Florissant 63033 = North County territory where TJ is actively running campaigns. Strong name recognition from NC posting. 9.3 rating = quality operator. $3,350+/mo residents → zero price resistance at $70/mo.</div>
+      <div class="pitch-box">
+        <h4>Pitch Angle</h4>
+        <p>"Hi, I'm Jamie with Tidy Tails — we actually service several yards in Florissant right now and I know there's a lot of dog owners in the area who struggle to keep up with yard cleanup. I'd love to see if your residents with dogs could benefit. We have a discounted senior rate and can clean common outdoor pet areas too."</p>
+      </div>
+      <div class="status-row" id="sr-5">
+        <button class="status-btn" onclick="setStatus('5','new')">New</button>
+        <button class="status-btn" onclick="setStatus('5','called')">Called</button>
+        <button class="status-btn" onclick="setStatus('5','interested')">Interested</button>
+        <button class="status-btn" onclick="setStatus('5','partner')">Partner ✅</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEAD 6 -->
+  <div class="lead-card" id="lc-6">
+    <div class="lead-header" onclick="toggleLead('6')">
+      <span class="lead-priority p2"></span>
+      <div style="flex:1;">
+        <div class="lead-name">Garden Villas South</div>
+        <div class="lead-meta">13457 Tesson Ferry Rd, St. Louis, MO 63128 · Assisted + Independent · From $2,615/mo</div>
+      </div>
+      <span class="lead-tier tier-2">🟠 CALL THIS WEEK</span>
+    </div>
+    <div class="lead-body" id="lb-6">
+      <div class="info-row">
+        <span class="info-chip">📍 South County 63128</span>
+        <span class="info-chip">🐾 Pet Friendly ✓</span>
+        <span class="info-chip">⭐ 8.4 Rating</span>
+        <span class="info-chip">🔍 Look up phone</span>
+      </div>
+      <div class="why-good-box">South St. Louis County = Tidy Tails active service area. Tesson Ferry corridor = South County route. Assisted + independent residents = higher assistance needs. "New standard of excellence and care" marketing = cares about premium positioning. Yard cleanup = on-brand for their mission.</div>
+      <div class="pitch-box">
+        <h4>Pitch Angle</h4>
+        <p>"I serve several South County residents near Tesson Ferry already. I'd love to see if Garden Villas could either use our outdoor area service or help connect residents with dogs to what we do."</p>
+      </div>
+      <div class="status-row" id="sr-6">
+        <button class="status-btn" onclick="setStatus('6','new')">New</button>
+        <button class="status-btn" onclick="setStatus('6','called')">Called</button>
+        <button class="status-btn" onclick="setStatus('6','interested')">Interested</button>
+        <button class="status-btn" onclick="setStatus('6','partner')">Partner ✅</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEAD 7 -->
+  <div class="lead-card" id="lc-7">
+    <div class="lead-header" onclick="toggleLead('7')">
+      <span class="lead-priority p3"></span>
+      <div style="flex:1;">
+        <div class="lead-name">Brookdale Creve Coeur</div>
+        <div class="lead-meta">1 New Ballas Place, Creve Coeur, MO 63146 · Assisted + Independent · From $3,070/mo</div>
+      </div>
+      <span class="lead-tier tier-3">🟡 RESEARCH</span>
+    </div>
+    <div class="lead-body" id="lb-7">
+      <div class="info-row">
+        <span class="info-chip">📍 Creve Coeur 63146</span>
+        <span class="info-chip">🐾 Pet Friendly ✓</span>
+        <span class="info-chip">⭐ 9.9 Rating</span>
+        <span class="info-chip">🏢 Brookdale Senior Living (National)</span>
+      </div>
+      <div class="why-good-box">9.9 rating = best in class management. Brookdale is a national network — getting in here means potential referral to other Brookdale STL properties. $3,070+/mo residents = zero price sensitivity. Creve Coeur is a premium West County market perfectly aligned with TJ's routes.</div>
+      <div class="pitch-box">
+        <h4>Pitch Angle</h4>
+        <p>"Brookdale's commitment to resident experience is why I'm calling — many of your residents with dogs may not have a reliable way to keep their outdoor areas clean, and we specialize in making that completely hands-off for them."</p>
+      </div>
+      <div class="status-row" id="sr-7">
+        <button class="status-btn" onclick="setStatus('7','new')">New</button>
+        <button class="status-btn" onclick="setStatus('7','called')">Called</button>
+        <button class="status-btn" onclick="setStatus('7','interested')">Interested</button>
+        <button class="status-btn" onclick="setStatus('7','partner')">Partner ✅</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEAD 8 -->
+  <div class="lead-card" id="lc-8">
+    <div class="lead-header" onclick="toggleLead('8')">
+      <span class="lead-priority p3"></span>
+      <div style="flex:1;">
+        <div class="lead-name">Bethesda Barclay House</div>
+        <div class="lead-meta">230 S. Brentwood Blvd, Clayton, MO 63105 · Independent Living · Clayton prestige</div>
+      </div>
+      <span class="lead-tier tier-3">🟡 RESEARCH + LONG GAME</span>
+    </div>
+    <div class="lead-body" id="lb-8">
+      <div class="info-row">
+        <span class="info-chip">📍 Clayton 63105</span>
+        <span class="info-chip">🐾 Pet Friendly ✓</span>
+        <span class="info-chip">🏠 Bethesda Health Group</span>
+        <span class="info-chip">💎 Premium Market</span>
+      </div>
+      <div class="why-good-box"><strong>The Bethesda Network Play:</strong> After building the relationship at Bethesda Gardens Kirkwood, ask to be introduced to the management at Barclay House. Clayton residents are among the highest-income in Missouri. One Bethesda relationship = key to multiple Bethesda properties. This is the long game target.</div>
+      <div class="pitch-box">
+        <h4>Pitch Angle (after Kirkwood relationship)</h4>
+        <p>"I've been working with the team at Bethesda Gardens in Kirkwood and they mentioned you might be the right contact for Barclay House. I'd love to offer the same program to your residents."</p>
+      </div>
+      <div class="status-row" id="sr-8">
+        <button class="status-btn" onclick="setStatus('8','new')">New</button>
+        <button class="status-btn" onclick="setStatus('8','called')">Called</button>
+        <button class="status-btn" onclick="setStatus('8','interested')">Interested</button>
+        <button class="status-btn" onclick="setStatus('8','partner')">Partner ✅</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end tab-leads -->
+
+<!-- TAB: SCRIPTS -->
+<div id="tab-scripts" class="tab-content">
+
+  <!-- SCRIPT 1 -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('s1')">
+      <h3>📞 Universal Senior Living Opener (Phone)</h3>
+      <span class="script-tag tag-phone">PHONE</span>
+    </div>
+    <div class="script-body" id="ss1">
+      <div class="script-text">Hi, my name is Jamie Dabrowski — I run Tidy Tails, a local pet waste removal service in [Florissant / South County / Kirkwood].
+
+I was hoping to speak with whoever handles resident services or amenities — I wanted to introduce our service because a lot of seniors with dogs find yard cleanup really difficult to keep up with, and we make it completely hands-off.
+
+[PAUSE — let them connect you]
+
+Great. I'll be quick — we come weekly, pick up everything, text before we arrive and when we're done. Flat $70/month for most households. No contracts.
+
+We'd love to either set up a way to let your residents know about us — like a flyer on the bulletin board or a mention in your newsletter — or we can also talk about cleaning any outdoor dog relief areas you have on the property.
+
+Would either of those be something you'd be open to?</div>
+      <button class="copy-btn" onclick="copyScript('s1')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT 2 -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('s2')">
+      <h3>🏠 Facility Outdoor Service Pitch (for properties with pet areas)</h3>
+      <span class="script-tag tag-phone">PHONE</span>
+    </div>
+    <div class="script-body" id="ss2">
+      <div class="script-text">Hi, this is Jamie with Tidy Tails — we're a local pet waste removal service.
+
+I know many independent living communities have designated outdoor pet areas or walking paths where dogs are allowed, and those areas can be really difficult to keep consistently clean — especially in spring and summer.
+
+We provide weekly commercial cleaning for outdoor pet areas starting around $150/month for most properties — we come on a set day, do a thorough cleanup, and you don't have to think about it.
+
+We're already servicing several properties in [Florissant / South County / Kirkwood] so we're already routing through your area.
+
+Is that something your team has looked into, or would it be worth having a quick conversation about?</div>
+      <button class="copy-btn" onclick="copyScript('s2')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT 3 -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('s3')">
+      <h3>📧 Email Outreach Template</h3>
+      <span class="script-tag tag-email">EMAIL</span>
+    </div>
+    <div class="script-body" id="ss3">
+      <div class="script-text">Subject: Local Pet Waste Service for [Facility Name] Residents
+
+Hi [Name],
+
+My name is Jamie Dabrowski and I run Tidy Tails — a local weekly pet waste removal service serving [Florissant / South County / Kirkwood area].
+
+I'm reaching out because I've noticed that many of your residents who have dogs may appreciate knowing about our service. A lot of seniors find it hard to keep up with yard cleanup — whether it's mobility, scheduling, or just not wanting to deal with it — and we make it completely hands-off.
+
+Here's what we offer residents:
+• Weekly pickup, flat $70/month (most households)
+• "On My Way" text before every visit + "All Done" when finished
+• No contracts, cancel any time
+• Local owner and operator (not a franchise)
+
+We're also happy to discuss cleaning any outdoor pet areas on your property if that would be helpful.
+
+If there's a way to share this with your residents — a flyer on the bulletin board, a mention in the newsletter, or a link in a welcome packet — I'd love to make that easy for you.
+
+Happy to send a one-page info sheet or drop off flyers.
+
+Thank you,
+Jamie Dabrowski
+Tidy Tails Pet Waste Removal
+(314) 850-7140 | tidytailsstl.com</div>
+      <button class="copy-btn" onclick="copyScript('s3')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT 4 -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('s4')">
+      <h3>🎁 The "Resident Welcome Packet" Offer</h3>
+      <span class="script-tag tag-phone">PHONE</span>
+    </div>
+    <div class="script-body" id="ss4">
+      <div class="script-text">One more thing I wanted to mention — if you have new residents moving in with pets, we'd love to offer them a free first cleanup as a welcome-to-the-community gift.
+
+It's a completely free visit, no commitment required, and it's our way of introducing ourselves. A lot of times people just need to experience the service once to realize how much easier it makes things.
+
+If you ever want to include our info in a welcome packet for new residents who have dogs, we can put together a simple one-page card you can just tuck in there.
+
+No work on your end — just hand them the card.</div>
+      <button class="copy-btn" onclick="copyScript('s4')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT 5 -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('s5')">
+      <h3>🔄 Objection: "Our residents handle that themselves"</h3>
+      <span class="script-tag tag-objection">OBJECTION</span>
+    </div>
+    <div class="script-body" id="ss5">
+      <div class="script-text">I understand — and some definitely do. But I've found that a lot of seniors with dogs really want to keep their yards clean, but physically it's hard to do consistently. The bending, the weekly schedule, the disposal — it adds up.
+
+That's kind of who we're most useful for. It doesn't cost them anything to know we exist — and if one or two residents find it helpful, that's a win.
+
+All I'm asking for is a way to let them know we're available — a flyer, a newsletter mention, anything you're comfortable with. You're just giving them an option.</div>
+      <button class="copy-btn" onclick="copyScript('s5')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT 6 -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('s6')">
+      <h3>🔄 Objection: "We use a maintenance team for that"</h3>
+      <span class="script-tag tag-objection">OBJECTION</span>
+    </div>
+    <div class="script-body" id="ss6">
+      <div class="script-text">That's great — and this would be in addition to that, not a replacement.
+
+Maintenance teams typically do grounds maintenance but not detailed weekly pet waste pickup for individual residents' yards or patio areas. We specialize in that specific thing — showing up weekly for consistent cleanup.
+
+We could work alongside your maintenance team — they handle everything else, we handle the pet waste piece. That way the grounds stay clean without adding to your team's workload.
+
+Is that something worth having a quick conversation about?</div>
+      <button class="copy-btn" onclick="copyScript('s6')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT 7 -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('s7')">
+      <h3>💬 Follow-Up Text (2–3 Days After Call)</h3>
+      <span class="script-tag tag-text">TEXT</span>
+    </div>
+    <div class="script-body" id="ss7">
+      <div class="script-text">Hi [Name], this is Jamie from Tidy Tails — I called earlier this week about our pet waste removal service for senior residents with dogs. Just wanted to follow up and see if there's a simple way to share our info with your residents. Happy to drop off flyers or send a one-pager by email — whatever's easiest for you. (314) 850-7140</div>
+      <button class="copy-btn" onclick="copyScript('s7')">📋 Copy Script</button>
+    </div>
+  </div>
+
+</div><!-- end tab-scripts -->
+
+<!-- TAB: MATH -->
+<div id="tab-math" class="tab-content">
+
+  <div class="math-card">
+    <h3>💰 Revenue Math: Senior Living vs. Standard Residential</h3>
+    <div class="math-row">
+      <span class="label">Standard residential customer</span>
+      <span class="value">$70/mo × 12 = $840/yr LTV</span>
+    </div>
+    <div class="math-row">
+      <span class="label">Senior living facility (outdoor contract)</span>
+      <span class="value">$150–200/mo = $1,800–2,400/yr</span>
+    </div>
+    <div class="math-row">
+      <span class="label">Senior with 2 dogs referred through facility</span>
+      <span class="value">$80/mo = $960/yr</span>
+    </div>
+    <div class="math-row">
+      <span class="label">1 facility referral program (5 residents)</span>
+      <span class="value">5 × $70 = $350/mo = $4,200/yr</span>
+    </div>
+    <div class="math-row">
+      <span class="label">Combined: facility contract + 5 resident referrals</span>
+      <span class="value">$525/mo = $6,300/yr from 1 relationship</span>
+    </div>
+    <div class="math-row">
+      <span class="label">Effective residential equivalent</span>
+      <span class="value">7.5 customers from 1 phone call</span>
+    </div>
+  </div>
+
+  <div class="math-card">
+    <h3>📊 Three Scenarios</h3>
+    <div class="scenario-grid">
+      <div class="scenario bear">
+        <div class="label">Bear Case</div>
+        <div class="mrr">$210/mo</div>
+        <div class="detail">1 facility outdoor contract ($150/mo) + 1 resident referral</div>
+      </div>
+      <div class="scenario base">
+        <div class="label">Base Case</div>
+        <div class="mrr">$510/mo</div>
+        <div class="detail">2 facility contracts + 3 resident referrals ($70/mo each)</div>
+      </div>
+      <div class="scenario bull">
+        <div class="label">Bull Case</div>
+        <div class="mrr">$1,150/mo</div>
+        <div class="detail">4 contracts + 8 resident referrals + Bethesda network intro</div>
+      </div>
+    </div>
+    <div style="margin-top:16px; padding:14px; background:rgba(245,166,35,0.08); border:1px solid rgba(245,166,35,0.2); border-radius:8px; font-size:0.83rem; color:#fcd34d; line-height:1.5;">
+      <strong>The Bethesda play:</strong> Bethesda Health Group operates multiple senior communities across STL. One strong relationship at Bethesda Gardens Kirkwood = warm intro to Bethesda Barclay House (Clayton), Bethesda Terrace (South County), and others. That single network relationship could be worth $2,000–5,000+/mo in contracted + resident revenue at full maturity.
+    </div>
+  </div>
+
+  <div class="math-card">
+    <h3>🎯 Why Seniors Close at High Rates</h3>
+    <div class="math-row">
+      <span class="label">Standard cold lead close rate</span>
+      <span class="value">10–20%</span>
+    </div>
+    <div class="math-row">
+      <span class="label">Facility-referred resident close rate (est.)</span>
+      <span class="value">35–50%</span>
+    </div>
+    <div class="math-row">
+      <span class="label">Why so high?</span>
+      <span class="value">They already trust the facility recommendation</span>
+    </div>
+    <div class="math-row">
+      <span class="label">Price resistance at $70/mo vs. $2,400–6,300 rent</span>
+      <span class="value">Very low (&lt;3% of housing cost)</span>
+    </div>
+    <div class="math-row">
+      <span class="label">Churn risk</span>
+      <span class="value">Very low — convenience is the #1 reason they stay</span>
+    </div>
+  </div>
+
+</div><!-- end tab-math -->
+
+<!-- TAB: STRATEGY -->
+<div id="tab-strategy" class="tab-content">
+
+  <div class="math-card">
+    <h3>🎯 The Two Pitches to Run Simultaneously</h3>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:12px;">
+      <div style="background:rgba(59,130,246,0.08); border:1px solid rgba(59,130,246,0.2); border-radius:10px; padding:14px;">
+        <div style="color:#93c5fd; font-weight:700; font-size:0.85rem; margin-bottom:8px;">PITCH A: Resident Referral</div>
+        <div style="font-size:0.82rem; line-height:1.5; color:#cbd5e1;">Ask facility to connect you with residents via bulletin board, newsletter, welcome packet. Offer $60/mo "senior discount" for individual residents. Zero cost to the facility, easy yes.</div>
+      </div>
+      <div style="background:rgba(34,197,94,0.08); border:1px solid rgba(34,197,94,0.2); border-radius:10px; padding:14px;">
+        <div style="color:#86efac; font-weight:700; font-size:0.85rem; margin-bottom:8px;">PITCH B: Outdoor Service Contract</div>
+        <div style="font-size:0.82rem; line-height:1.5; color:#cbd5e1;">Weekly cleanup of designated dog relief areas, walking paths, outdoor patios. $150–350/mo depending on size. Decision made by activities director or facilities manager. Higher LTV, slower close.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="math-card">
+    <h3>📞 Who to Ask For</h3>
+    <div class="math-row"><span class="label">Resident referral program</span><span class="value">Activities Director, Resident Services</span></div>
+    <div class="math-row"><span class="label">Facility outdoor service contract</span><span class="value">Facilities Manager, Executive Director</span></div>
+    <div class="math-row"><span class="label">New resident welcome packet</span><span class="value">Marketing/Admissions Director</span></div>
+    <div class="math-row"><span class="label">Never call</span><span class="value">Front desk receptionist (they block, not connect)</span></div>
+  </div>
+
+  <div class="math-card">
+    <h3>📅 Best Time to Call</h3>
+    <div class="math-row"><span class="label">Best window</span><span class="value">Tue–Thu, 10 AM–noon CT</span></div>
+    <div class="math-row"><span class="label">Avoid</span><span class="value">Mondays (busy), Fridays (checked out), afternoons</span></div>
+    <div class="math-row"><span class="label">Best time of year to pitch</span><span class="value">April (spring = outdoor season begins, residents going outside)</span></div>
+    <div class="math-row"><span class="label">Why April is peak timing</span><span class="value">Residents just came back outdoors after winter — complaints about pet waste PEAK now</span></div>
+  </div>
+
+  <div class="math-card">
+    <h3>🏆 Priority Call Order This Week</h3>
+    <div class="math-row"><span class="label">1st call</span><span class="value">The Village at Riverwood — (314) 816-4110</span></div>
+    <div class="math-row"><span class="label">2nd call</span><span class="value">Bethesda Gardens Kirkwood — (314) 965-8100 / Sales: (314) 686-4250</span></div>
+    <div class="math-row"><span class="label">3rd call</span><span class="value">Holiday Orchid Terrace — (314) 487-3367</span></div>
+    <div class="math-row"><span class="label">4th call</span><span class="value">Fields of Florissant — look up phone (in pipeline)</span></div>
+    <div class="math-row"><span class="label">5th call</span><span class="value">Crestview Senior Living — look up phone</span></div>
+    <p style="font-size:0.78rem; color:var(--muted); margin-top:10px;">Send follow-up email within 2 hours of any call that goes to voicemail. If someone answers and sounds interested, offer to drop by with a one-page flyer — in-person follow-through closes at 2–3× rate.</p>
+  </div>
+
+</div><!-- end tab-strategy -->
+
+<!-- TAB: CHECKLIST -->
+<div id="tab-checklist" class="tab-content">
+
+  <div style="background:var(--card); border-radius:12px; padding:16px; margin-bottom:16px;">
+    <div id="progress-display" style="margin-bottom:12px;">
+      <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--muted); margin-bottom:4px;">
+        <span id="done-count">0 of 18 done</span>
+        <span id="done-pct">0%</span>
+      </div>
+      <div class="progress-bar-wrap" style="width:100%;">
+        <div class="progress-bar-fill" id="main-progress" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="phase-title">🔴 This Week (Highest Priority)</div>
+    <div class="check-item" id="ci-1" onclick="toggleCheck('1')"><div class="check-box" id="cb-1"></div><span class="check-text">Call The Village at Riverwood — (314) 816-4110 — Florissant, in your active route zone</span></div>
+    <div class="check-item" id="ci-2" onclick="toggleCheck('2')"><div class="check-box" id="cb-2"></div><span class="check-text">Call Bethesda Gardens Kirkwood — (314) 965-8100 — ask for Sales Counselor first, then Activities Director</span></div>
+    <div class="check-item" id="ci-3" onclick="toggleCheck('3')"><div class="check-box" id="cb-3"></div><span class="check-text">Call Holiday Orchid Terrace — (314) 487-3367 — South County, route alignment</span></div>
+    <div class="check-item" id="ci-4" onclick="toggleCheck('4')"><div class="check-box" id="cb-4"></div><span class="check-text">Look up phone numbers for Crestview Senior Living (Crestwood) and Fields of Florissant</span></div>
+    <div class="check-item" id="ci-5" onclick="toggleCheck('5')"><div class="check-box" id="cb-5"></div><span class="check-text">Call Fields of Florissant (already in commercial pipeline from March)</span></div>
+
+    <div class="phase-title">📋 During Calls</div>
+    <div class="check-item" id="ci-6" onclick="toggleCheck('6')"><div class="check-box" id="cb-6"></div><span class="check-text">Ask for Activities Director or Resident Services, not receptionist</span></div>
+    <div class="check-item" id="ci-7" onclick="toggleCheck('7')"><div class="check-box" id="cb-7"></div><span class="check-text">Pitch BOTH angles: (A) resident referral program + (B) outdoor pet area cleaning contract</span></div>
+    <div class="check-item" id="ci-8" onclick="toggleCheck('8')"><div class="check-box" id="cb-8"></div><span class="check-text">Offer "free first cleanup" for new residents as welcome gift — low-friction ask</span></div>
+    <div class="check-item" id="ci-9" onclick="toggleCheck('9')"><div class="check-box" id="cb-9"></div><span class="check-text">Ask about outdoor dog relief areas or pet-friendly walking paths — potential facility contract</span></div>
+    <div class="check-item" id="ci-10" onclick="toggleCheck('10')"><div class="check-box" id="cb-10"></div><span class="check-text">For voicemails: send follow-up email within 2 hours (use email template in Scripts tab)</span></div>
+
+    <div class="phase-title">📬 Follow-Up Actions</div>
+    <div class="check-item" id="ci-11" onclick="toggleCheck('11')"><div class="check-box" id="cb-11"></div><span class="check-text">Print a one-page service flyer specifically for senior living audiences (different from door hanger)</span></div>
+    <div class="check-item" id="ci-12" onclick="toggleCheck('12')"><div class="check-box" id="cb-12"></div><span class="check-text">Offer to drop off flyers in person for any interested facility — in-person seals deals</span></div>
+    <div class="check-item" id="ci-13" onclick="toggleCheck('13')"><div class="check-box" id="cb-13"></div><span class="check-text">Ask Bethesda Gardens Kirkwood for intro to other Bethesda properties if relationship goes well</span></div>
+    <div class="check-item" id="ci-14" onclick="toggleCheck('14')"><div class="check-box" id="cb-14"></div><span class="check-text">Send Day 3 follow-up text to any facilities that didn't reply to voicemail/email</span></div>
+
+    <div class="phase-title">🌱 Long Game</div>
+    <div class="check-item" id="ci-15" onclick="toggleCheck('15')"><div class="check-box" id="cb-15"></div><span class="check-text">Look up Brookdale Creve Coeur phone number — premium market, $3,070/mo residents</span></div>
+    <div class="check-item" id="ci-16" onclick="toggleCheck('16')"><div class="check-box" id="cb-16"></div><span class="check-text">Research Garden Villas South (South County) phone number — route alignment with Tesson Ferry</span></div>
+    <div class="check-item" id="ci-17" onclick="toggleCheck('17')"><div class="check-box" id="cb-17"></div><span class="check-text">After Bethesda Gardens Kirkwood relationship: request warm intro to Bethesda Barclay House (Clayton)</span></div>
+    <div class="check-item" id="ci-18" onclick="toggleCheck('18')"><div class="check-box" id="cb-18"></div><span class="check-text">Add any new senior living leads found via search to this doc for future outreach cycles</span></div>
+
+  </div>
+
+</div><!-- end tab-checklist -->
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat"><div class="num" id="stat-leads">8</div><div class="lbl">Leads</div></div>
+  <div class="stat"><div class="num" id="stat-called">0</div><div class="lbl">Called</div></div>
+  <div class="stat"><div class="num" id="stat-interested">0</div><div class="lbl">Interested</div></div>
+  <div class="stat"><div class="num" id="stat-partners">0</div><div class="lbl">Partners</div></div>
+  <div class="spacer"></div>
+  <div style="text-align:right;">
+    <div style="font-size:0.7rem; color:var(--muted);">Pipeline MRR</div>
+    <div id="stat-mrr" style="font-size:1rem; font-weight:800; color:var(--gold);">$0/mo</div>
+  </div>
+  <div style="padding-bottom:10px;"></div>
+</div>
+<div style="height:60px;"></div><!-- spacer for fixed bar -->
+
+<script>
+const MRR_MAP = { new:0, called:0, interested:150, partner:300 };
+const statuses = JSON.parse(localStorage.getItem('sl-statuses')||'{}');
+const checks = JSON.parse(localStorage.getItem('sl-checks')||'{}');
+const openLeads = JSON.parse(localStorage.getItem('sl-open-leads')||'{}');
+const openScripts = JSON.parse(localStorage.getItem('sl-open-scripts')||'{}');
+
+function showTab(t) {
+  document.querySelectorAll('.tab-content').forEach(e=>e.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(e=>e.classList.remove('active'));
+  document.getElementById('tab-'+t).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleLead(id) {
+  const body = document.getElementById('lb-'+id);
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open', !isOpen);
+  openLeads[id] = !isOpen;
+  localStorage.setItem('sl-open-leads', JSON.stringify(openLeads));
+}
+
+function toggleScript(id) {
+  const body = document.getElementById('s'+id);
+  body.classList.toggle('open');
+}
+
+function setStatus(id, status) {
+  statuses[id] = status;
+  localStorage.setItem('sl-statuses', JSON.stringify(statuses));
+  document.querySelectorAll(`#sr-${id} .status-btn`).forEach(b=>b.classList.remove('active-status','called','interested','partner'));
+  const btn = document.querySelector(`#sr-${id} .status-btn[onclick="setStatus('${id}','${status}')"]`);
+  if(btn) btn.classList.add('active-status', status==='called'?'called':status==='interested'?'interested':status==='partner'?'partner':'');
+  updateStats();
+}
+
+function updateStats() {
+  let called=0, interested=0, partners=0, mrr=0;
+  for(let i=1;i<=8;i++){
+    const s=statuses[i]||'new';
+    if(s==='called') called++;
+    if(s==='interested'){interested++;mrr+=MRR_MAP.interested;}
+    if(s==='partner'){partners++;mrr+=MRR_MAP.partner;}
+  }
+  document.getElementById('stat-called').textContent=called;
+  document.getElementById('stat-interested').textContent=interested;
+  document.getElementById('stat-partners').textContent=partners;
+  document.getElementById('stat-mrr').textContent='$'+mrr+'/mo';
+}
+
+function toggleCheck(id) {
+  const item = document.getElementById('ci-'+id);
+  const cb = document.getElementById('cb-'+id);
+  const done = !item.classList.contains('done');
+  item.classList.toggle('done', done);
+  if(done) cb.textContent='✓';
+  else cb.textContent='';
+  checks[id] = done;
+  localStorage.setItem('sl-checks', JSON.stringify(checks));
+  updateProgress();
+}
+
+function updateProgress() {
+  const total=18;
+  const done=Object.values(checks).filter(Boolean).length;
+  document.getElementById('done-count').textContent=done+' of '+total+' done';
+  document.getElementById('done-pct').textContent=Math.round(done/total*100)+'%';
+  document.getElementById('main-progress').style.width=(done/total*100)+'%';
+}
+
+function copyScript(id) {
+  const text = document.querySelector('#s'+id+' .script-text').textContent.trim();
+  navigator.clipboard.writeText(text).then(()=>{
+    const btn = document.querySelector('#s'+id+' .copy-btn');
+    btn.textContent='✅ Copied!';
+    setTimeout(()=>btn.textContent='📋 Copy Script',2000);
+  });
+}
+
+// Init
+(function init(){
+  for(let i=1;i<=8;i++){
+    const s=statuses[i];
+    if(s) setStatus(i,s);
+    if(openLeads[i]) document.getElementById('lb-'+i)?.classList.add('open');
+  }
+  for(let i=1;i<=18;i++){
+    if(checks[i]) {
+      document.getElementById('ci-'+i)?.classList.add('done');
+      const cb=document.getElementById('cb-'+i);
+      if(cb)cb.textContent='✓';
+    }
+  }
+  updateStats();
+  updateProgress();
+})();
+</script>
+</body>
+</html>
