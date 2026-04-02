@@ -3131,3 +3131,28 @@
   - **Live confirmed:** HTTP 200 ✅ at tidytails.github.io/tidytails-dashboard/dashboard/easter-video-ad-launch.html
   - **Git commit:** `9605ab57` ✅ pushed to tidytails-dashboard
 
+
+---
+
+### Wednesday 9:04 PM — Service-Areas Full Link Audit & Fix (Hourly Task)
+- **9:04 PM** 🔗 Audited and fixed **all remaining broken city links** in `service-areas.html` — the last internal linking gap on the Tidy Tails website
+  - **Why this task:** It's 9 PM April 1. The website has 59 blog posts covering every named city in the service area. But `service-areas.html` still had 13 city-row entries pointing to either `tel:+13148507140` (dead-end for SEO) or old short-form city pages that nobody updates. This is a PageRank leak — every link to a blog post passes authority to a rich, indexed, schema-heavy page. Every link to `tel:` passes nothing. With 59 dedicated posts already live, there was no excuse for named cities to still point to phone numbers.
+  - **What was fixed:**
+    - `Wildwood` city-row → `/blog/pooper-scooper-wildwood-mo` (was `tel:`)
+    - `Town & Country` city-row → `/blog/pooper-scooper-town-and-country-mo` (was `tel:`)
+    - `Ellisville` city-row → `/blog/pooper-scooper-ellisville-manchester-mo` (was `tel:`)
+    - `University City` city-row → `/blog/pooper-scooper-university-city-mo` (was old `/university-city` short-form page)
+    - `Maplewood` city-row → `/blog/pooper-scooper-maplewood-mo` (was old `/maplewood`)
+    - `Brentwood` city-row → `/blog/pooper-scooper-brentwood-mo` (was old `/brentwood`)
+    - `Olivette` city-row → `/blog/pooper-scooper-olivette-mo` (was old `/olivette`)
+    - `Clayton` city-row → `/blog/pooper-scooper-clayton-mo` (was `tel:`)
+    - `Ladue` city-row → `/blog/pooper-scooper-ladue-mo` (was `tel:`)
+    - `O'Fallon` city-row → `/blog/pooper-scooper-ofallon-mo` (was old `/ofallon`)
+    - `St. Peters` city-row → `/blog/pooper-scooper-st-peters-mo` (was old `/st-peters`)
+    - `St. Charles` city-row → `/blog/pooper-scooper-st-charles-mo` (was old `/st-charles`)
+    - `St. Louis City` city-row → `/blog/pooper-scooper-south-city-st-louis` (was old `/south-city`)
+    - `Dardenne Prairie` city pill → `/blog/pooper-scooper-cottleville-lake-st-louis-mo` (was `tel:`) — confirmed the Cottleville/Lake St. Louis post explicitly covers 63368/Dardenne Prairie
+  - **Result:** `service-areas.html` now has **zero orphaned `tel:` links for named served cities**. Every city card and pill points to either a dedicated blog post or the appropriate county-level blog. The hub page passes PageRank to 40+ dedicated posts, strengthening every city's SEO ranking.
+  - **SEO impact:** Internal links from service-areas.html are high-authority (it's the geographic anchor page, linked from the homepage nav). Pointing them to blog posts instead of `tel:` or dead short-form pages pushes authority to the indexed editorial posts that rank for city-specific queries.
+  - **Live confirmed:** `tidytailsstl.com/service-areas` HTTP 200 ✅ · Wildwood blog link confirmed in live HTML ✅
+  - **Git commits:** tidytails-dashboard `50597e1f` ✅ · tidytails-website `b1bf0e1` ✅ → Cloudflare Pages live
