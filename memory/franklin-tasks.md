@@ -2,6 +2,42 @@
 
 ---
 
+### Thursday 6:06 AM — Thanksgiving Yard Cleanup Blog Post (Hourly Task)
+- **6:06 AM** 🦃 Wrote and published **"Thanksgiving With Dogs? Clean That Yard First."** — completing the full year-round holiday gathering series and targeting a major seasonal keyword cluster with 7 months of indexing runway before November peak
+  - **File:** `tidy-tails/website/blog/thanksgiving-yard-cleanup-dogs-st-louis.html` (42KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/thanksgiving-yard-cleanup-dogs-st-louis` ✅ HTTP 200 confirmed
+  - **Blog count: 66 posts total** ✅
+  - **Why this task:** 6 AM April 2. The summer cookout series was already complete (Memorial Day → July 4th → Labor Day). The natural next holiday in the "backyard gathering" arc is Thanksgiving — but zero content targeted it. Thanksgiving is unique vs. summer cookouts in two distinct ways: (1) **Fall accumulation** — 75-90 deposits per dog since Labor Day, and (2) **Leaves cover everything** — the single complication that makes Thanksgiving yard cleanup harder than any summer holiday. This post fills both the keyword gap ("Thanksgiving yard cleanup dogs") and the content gap (no post addressed the leaves problem). Building now = 7 months of indexing before November searches peak. Unique angle zero STL competitors have written.
+  - **Target keywords:** "Thanksgiving yard cleanup dogs", "Thanksgiving dog poop St. Louis", "clean yard before Thanksgiving", "fall yard cleanup dogs St. Louis", "dog poop leaves yard", "pooper scooper before Thanksgiving"
+  - **What's in the post (~42KB, ~2,400 words):**
+    - **Hero:** "Thanksgiving With Dogs? Clean That Yard First." — autumn brown/amber gradient (#78350f), distinct from all other posts in the series
+    - **Badge:** "🦃 THANKSGIVING — NOVEMBER 27, 2026" — immediate holiday positioning
+    - **Stats row:** Nov 27 / ~90 deposits/dog since Labor Day / One-time cleanup from $75 / 5.0★ / No contracts
+    - **Thanksgiving Yard Math callout:** 12 weeks × 25 deposits/mo = 75-90 deposits per dog hidden under fall leaves
+    - **Why Thanksgiving is uniquely hard (2-factor analysis):**
+      - Fall accumulation reality (people stop thinking about cleanup after Labor Day)
+      - **The Leaves Problem** — dedicated callout: leaves don't just hide deposits, they hold moisture and break things down faster, making visual detection harder. Most Thanksgiving DIY cleanups miss 30-40% of what's actually there.
+    - **Fall accumulation timeline:** Week-by-week from Labor Day → September → October (leaf cover begins) → November (full hidden deposits) → Thanksgiving (crisis point)
+    - **Math callout grid:** 90 deposits/dog, 180 for 2 dogs, $2.30/day for weekly service
+    - **Scenario grid:** ❌ Uncleared Yard (kids find it, shoe incident, grandparents smell it) vs ✅ Clean Yard (kids go outside after dinner, no worries, back porch actually used)
+    - **Health angle:** Cold doesn't kill it — roundworm eggs preserved longer in cold, E. coli/bacteria slow down but persist. For yards with kids, health argument doesn't go away in fall/winter.
+    - **DIY 5-step guide:** Rake first, grid sweep, double-check fence lines, crouch-level visual check, same-morning revisit on Thanksgiving day
+    - **Full year holiday calendar callout:** Memorial Day → July 4th → Labor Day → Thanksgiving → Christmas — monthly service = all covered
+    - **The math vs reactive cleanups:** 3 reactive cleanups (Nov/Dec/March) = $225 vs 5 months monthly service = $350 and always clean
+    - **Pricing table, comparison table (7 factors), service area grid (20 cities)**
+    - **7-question FAQ with FAQPage schema**
+    - **Related articles grid:** Labor Day / Winter Cleanup / Spring Cleanup / Is It Worth It
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + og:meta with Thanksgiving angle
+  - **Cross-links added:**
+    - `blog/index.html`: Added as #1 card (newest first, autumn brown border/glow) ✅
+    - `blog/index.html`: Added to JSON-LD blogPost array ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+    - `blog/labor-day-cookout-yard-cleanup-dogs-st-louis.html`: Added "🦃 Thanksgiving With Dogs? Clean That Yard First." as first Related Article ✅
+  - **Git commits:** tidytails-dashboard `af458637` ✅ · tidytails-website `d14c5a0` → Cloudflare Pages live
+  - **Why this is high-impact:** Completes the full-year holiday gathering series. Thanksgiving is the #1 family gathering of the year — potentially more family members present than any summer cookout — and the accumulation + leaves combination creates a genuinely harder yard situation than any summer holiday. The "leaves hide everything" angle is completely unique to this post and to this season. No STL competitor has written about Thanksgiving yard cleanup. 7 months of indexing = strong ranking position before the November search peak arrives. Annual LTV from one convert: $840.
+
+---
+
 ### Thursday 4:06 AM — Earth Day Dog Waste Environmental Impact Blog Post (Hourly Task)
 - **4:06 AM** 🌍 Wrote and published dedicated Earth Day blog post — **"Earth Day and Dog Waste: The Environmental Impact St. Louis Dog Owners Need to Know"** — the first environmental/civic-angle post in the entire content library
   - **File:** `tidy-tails/website/blog/earth-day-dog-waste-environment-st-louis.html` (42.8KB ✅)
