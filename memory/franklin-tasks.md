@@ -2,6 +2,42 @@
 
 ---
 
+### Thursday 7:04 PM — "Dog Poop Dead Spots in Your Lawn" Blog Post (Hourly Task)
+- **7:04 PM** 🌿 Wrote and published **"Dog Poop Dead Spots in Your Lawn — Why Your Grass Is Dying (And How to Fix It)"** — the first dedicated lawn damage content in the entire St. Louis pet waste market
+  - **File:** `tidy-tails/website/blog/dog-poop-dead-spots-lawn-st-louis.html` (44KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/dog-poop-dead-spots-lawn-st-louis` ✅ HTTP 200 confirmed, Cloudflare Pages deploying
+  - **Blog count: 78 posts total** ✅
+  - **Why this task:** 7 PM Thursday April 2. 77 blog posts live. The pest series is complete (flies → mosquitoes → ticks → parasites/worms). The rain post and decomposition post cover pathogen mechanics. The next completely untouched high-converting keyword cluster: **lawn damage from dog poop** — specifically the "dead spots" and "brown circles" angle. Target queries: "dog poop dead spots lawn", "does dog poop kill grass", "brown spots lawn dog poop", "how to fix dog poop dead spots". Zero St. Louis competitor coverage. High spring intent — homeowners seeing damage from winter accumulation RIGHT NOW. A different buyer profile than health-angle posts: this captures the homeowner who is lawn-focused, not health-focused.
+  - **Unique angle — The Chemistry of Nitrogen Burn:** Most content just says "dog poop damages lawns." This post explains both mechanisms: (1) nitrogen toxicity — dog food is high-protein, producing concentrated nitrogen that burns grass roots just like over-fertilizing, and (2) acid damage — dog waste pH 4–5 drives soil pH below what turf can survive. Both mechanisms combined explain why the same 6–18 inch circles die repeatedly in the same spots even after repair. The "fertilizer myth" section is the most share-worthy element: the persistent belief that dog poop is natural lawn fertilizer is responsible for more dead lawns than any other single misunderstanding.
+  - **Target keywords:** "dog poop dead spots lawn", "does dog poop kill grass", "brown spots lawn dog poop", "dog poop lawn damage St. Louis", "dog waste kills grass", "how to fix dog poop dead spots lawn", "dog poop fertilizer myth"
+  - **What's in the post (~2,800 words, 44KB):**
+    - **Hero:** "Dog Poop Dead Spots in Your Lawn — Why Your Grass Is Dying (And How to Fix It)" — deep forest green gradient (#052e16 → #047857), lawn damage angle distinct from all pest series posts
+    - **Stats row:** pH 4–5 (dog waste acidity) / 2–4 wks (until visible burn) / 300+ deposits/dog/year / $70/mo
+    - **Two burn mechanisms:** (1) Nitrogen toxicity — high-protein diet → concentrated nitrogen → burn identical to over-fertilizing in a small spot. (2) Acidity damage — pH 4–5 vs healthy soil pH 6–7 → root death and soil hostility that persists after visible waste is gone.
+    - **Fertilizer myth callout (CRITICAL):** Livestock manure works because herbivores eat plant material → organic nitrogen grass can absorb. Dog food is high-protein meat → acidic, pathogen-loaded, nitrogen-concentrated in a form that burns. "If you've been letting it decompose as fertilizer, you've been damaging your lawn every time."
+    - **6 visible damage characteristics:** Circular pattern (6–18 inches), consistent locations (same spots every year), brown-to-dead center, recurring after repair (because source never removed), worse after rain (nitrogen activates), worst in summer heat (accelerated uptake).
+    - **Dog waste burn vs. fungal disease:** How to distinguish — burn spots are circular, location-consistent, don't spread irregularly. Fungus expands outward in irregular patterns, associated with weather events. "If your brown spots are in the same corners every spring — that's not a fungus."
+    - **The Spring Accumulation Problem:** Big stat callout: 100+ deposits sitting in yard now (one dog, average STL winter) — all thawing simultaneously in April, releasing concentrated acid and nitrogen into spring soil at the exact moment grass roots are most vulnerable to nitrogen toxicity.
+    - **Winter preservation math:** Cold preserves nitrogen (doesn't break it down), freezing prevents leaching temporarily, accumulation continues 3–4 months, all damage releases when temp reaches 40°F+.
+    - **Dead spot math:** Dogs have 3–6 preferred elimination spots returning repeatedly. Each receives 20–40 winter deposits concentrated in a small area = 3–6 severely burned zones releasing simultaneously in April.
+    - **7-step repair sequence (IN ORDER):** (1) Remove all existing waste completely; (2) Establish weekly pickup (non-negotiable — repair fails without this); (3) Rake out dead grass and thatch; (4) Lightly amend soil with lime for severe/multi-year spots; (5) Overseed with appropriate turf (tall fescue for STL); (6) Water consistently 3–4 weeks; (7) Maintain weekly pickup permanently.
+    - **"Repair Without Source Removal = Wasted Time" danger callout:** New grass germinates, begins to establish, gets burned again by new deposits before rooting. Most homeowners have reseeded the same spots 2–3 times. This is why.
+    - **What doesn't work:** Enzyme sprays (don't address nitrogen burn chemistry), lime without waste removal (pH returns to damaging levels within weeks), seeding without stopping deposits (the #1 failure), waiting for decomposition (damage happens within days, decomposition takes weeks).
+    - **Compounding damage warning:** First-year spots 6–12 inches. Year 2 without cleanup: 24–36 inch dead zones where standard seeding can't establish. Requires tilling + lime + topsoil + premium seed — $80–200 per zone. Compare to $2.30/day prevention.
+    - **St. Louis-specific lawn notes:** Cool-season turf (tall fescue/Kentucky bluegrass) — spring and fall are active growing windows. April = best repair window. Summer burns harder to repair (dormant grass doesn't establish seed well in July heat). Worst mistake: waiting until fall to address spring damage.
+    - **Scenario grid:** ❌ Without cleanup (spring repairs fail, same dead zones by June, another summer of brown patches, repair cycle repeats every fall) vs ✅ With weekly pickup (spring cleanup clears winter accumulation, seeding has a chance to establish, actual green lawn by August).
+    - **7-question FAQ with FAQPage schema:** Why does poop create dead spots / Is dog poop fertilizer / How long to kill grass / How to fix dead spots / Does frequent pickup prevent spots / How much does service cost / How to distinguish burn from lawn disease
+    - **Pricing strip + CTA + service area grid (22 cities) + Related Articles (4)**
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with 12 cities + og:meta with lawn damage angle
+  - **Cross-links added:**
+    - `blog/how-long-does-dog-poop-decompose.html`: Added "🌿 Dog Poop Dead Spots in Your Lawn" as first Related Article ✅
+    - `blog/index.html`: Added lawn damage card (#1 position, forest green #065f46 border/glow, before worms post) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+  - **Git commits:** tidytails-dashboard `4307f69c` ✅ · tidytails-website `ab7757d` → Cloudflare Pages deploying ✅
+  - **Why this completes a critical content cluster:** The pest/health series (flies → mosquitoes → ticks → parasites) converts parents worried about child safety and health. The lawn damage cluster converts a completely different buyer: the homeowner who notices dead circles in their lawn, Googles "brown spots dog poop," and discovers for the first time why every repair attempt has failed. The fertilizer myth section is uniquely shareable — it corrects a belief most dog owners have held for years. The 7-step repair sequence (with "source removal first" emphasized) is genuinely useful information that earns trust before converting. This keyword cluster is year-round relevant (not just spring), zero STL competitor coverage, and targets buyers at a different emotional state (frustrated with lawn damage, not worried about health risks) — expanding the Tidy Tails conversion funnel to a new segment.
+
+---
+
 ### Thursday 6:06 PM — "Dog Poop and Worms" Blog Post (Hourly Task)
 - **6:06 PM** 🪱 Wrote and published **"Dog Poop and Worms in Your Yard — What St. Louis Families Need to Know"** — the first parasite-focused blog post in the content library, targeting the highest-severity child health search cluster with zero STL competitor coverage
   - **File:** `tidy-tails/website/blog/dog-poop-worms-yard-st-louis.html` (45.4KB ✅)
