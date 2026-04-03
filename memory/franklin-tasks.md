@@ -2,6 +2,33 @@
 
 ---
 
+### Friday 8:11 AM — Mother's Day Landing Page: /mothers-day (Hourly Task)
+- **8:11 AM** 🌸 Built and deployed **`tidytailsstl.com/mothers-day`** — a dedicated gift-buyer conversion landing page for Mother's Day (May 10), designed to replace /spring as the FB Ads destination on April 6 post-Easter
+  - **File:** `tidy-tails/website/mothers-day.html` (43KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/mothers-day` ✅ HTTP 200 confirmed, title = "Mother's Day Gift for Dog Moms — First Cleanup FREE | Tidy Tails St. Louis" ✅
+  - **Git commits:** tidytails-dashboard `2e356549` ✅ · tidytails-website `ab939c7` ✅ → Cloudflare Pages live ✅
+  - **Why this task:** The /spring page is Easter-specific (expires Apr 5). FB Ads are live at $7/day. After Easter ends, ads need a new high-converting destination for the Mother's Day gift buyer segment — husbands, adult children, and dog moms treating themselves. The Mother's Day Campaign Hub, blog post, and ad copy all existed, but ZERO dedicated landing page. A gift buyer clicking "She got the dog" ad needed to land on a purpose-built page, not a blog post. Built the gap.
+  - **What's on the page:**
+    - **Headline:** "She got the dog. She also handles the yard. Not anymore."
+    - **Live countdown timer:** Ticks to May 10 in the banner — 37 days at time of build
+    - **3 gift options:** One-time cleanup ($75), Monthly service $70/mo (FEATURED), 3-month bundle ($210)
+    - **Before/after scenario grid:** "Without Tidy Tails" (dirty yard, no outside time) vs "With Tidy Tails" (yard already clean, family goes out after brunch)
+    - **Gift comparison vs flowers/bath set/brunch** — Tidy Tails wins on lasting value
+    - **"What to say" scripts (4 variations):** For wife, for mom, for mother-in-law, for herself
+    - **5-step how it works** with On My Way/All Done text message demos
+    - **Comparison table:** Tidy Tails vs National Franchise vs DIY — 6 factors, we win on all
+    - **4 reviews** — Shannon Z., Amanda H., Chastity D., Kelly M. (real names)
+    - **FAQ section** with FAQPage JSON-LD schema
+    - **Sticky mobile CTA** (always visible on mobile, non-scroll-gated)
+    - **Text-to-gift CTA:** SMS link pre-populated with "Hi, I want to set up Mother's Day service as a gift"
+  - **Dashboard updates:**
+    - Added pulsing pink "🌸 MOTHER'S DAY LANDING PAGE — LIVE ↗" quick link
+    - Added featured card in Marketing section with note: "Swap FB Ads destination URL from /spring to /mothers-day on Apr 6"
+  - **Sitemap updated:** /mothers-day added (priority 0.9, yearly changefreq) ✅
+  - **Why this over other tasks at 8 AM Good Friday:** Easter campaign is maxed — all tools built, briefing delivered at 7 AM. The /spring page expires April 5. The single highest-impact pre-Mother's Day move: a dedicated landing page that converts the gift buyer audience (husbands/adult children) the same way /spring converts the self-buyer. TJ can swap the FB Ads destination URL from /spring to /mothers-day on Monday April 6 — zero additional ad spend, just a URL change. The "She got the dog" hook is the strongest headline in the Mother's Day ad pack. It needs a matching landing page to land on. Built it 37 days before the holiday. FB ad spend from Apr 6 through May 10 at $7/day = ~$245. Base case at Mother's Day (40% close, 2-3 leads): 1-2 new customers × $840 LTV = $840-1,680 at 3-7× ROAS.
+
+---
+
 ### Friday 7:04 AM — Good Friday Morning Briefing PDF (Hourly Task)
 - **7:04 AM** 🐣 Built and delivered the **Good Friday / April 3 Morning Briefing** — the "last push before Easter" command document for the highest-conversion weekend of spring
   - **Files:** `dashboard/pdfs/MORNING_BRIEFING_2026-04-03.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-04-03.pdf` (636KB ✅)
