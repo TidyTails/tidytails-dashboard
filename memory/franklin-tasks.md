@@ -4087,3 +4087,38 @@
     - Christmas: anyone buying for a dog owner in the family
   - **Why this is high-impact:** Zero competitors have Valentine's Day content. The February gift search window (Jan 20 – Feb 12) is completely unoccupied by any St. Louis pet waste company. The post also captures a unique angle no other gift-buyer post hits: February is specifically the worst month for dog owners in St. Louis because 3+ months of cold-preserved winter buildup is in the yard. That "The February Yard Situation" section converts people who came to buy a gift but stayed to understand why February is actually the most impactful time to start service. 9 months of indexing runway before Valentine's 2027. Annual LTV from one convert: $840.
 
+
+---
+
+### Friday 2:06 AM — "Does Dog Poop Hurt Your Home's Value?" Blog Post (Hourly Task)
+- **2:06 AM** 🏡 Wrote and published **"Does Dog Poop Hurt Your Home's Value? What St. Louis Home Sellers Need to Know"** — the first realtor-channel SEO content in the entire blog library. **80 posts total.**
+  - **File:** `tidy-tails/website/blog/dog-poop-home-value-selling-house-st-louis.html` (37.6KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/dog-poop-home-value-selling-house-st-louis` ✅ HTTP 200 confirmed
+  - **Git commits:** tidytails-dashboard `15d9008b` ✅ · tidytails-website `dc9efe5` → Cloudflare Pages live ✅
+  - **Why this task:** The entire blog library (79 posts) covered spring safety threats, geographic cities, seasonal holidays, FAQ content, and ad packs — but ZERO content existed for home sellers. The realtor partner kit dashboard tool exists but had no SEO content driving pre-sale searchers to it. Queries like "does dog poop hurt home value," "yard cleanup before selling house," "dog poop lawn damage home sale St. Louis" are high-intent (person has a deadline: listing date) and completely uncovered. The realtor referral channel is also the highest-trust referral funnel Tidy Tails hasn't fully activated — one realtor relationship = 5-10 referrals/year.
+  - **Target keywords:** "does dog poop hurt home value", "yard cleanup before selling house", "dog poop lawn damage home sale St. Louis", "pre-listing yard cleanup dog", "should I disclose dog waste damage Missouri", "dog poop dead spots selling house"
+  - **What's in the post (~2,800 words, 37.6KB):**
+    - **Hero:** "Does Dog Poop Hurt Your Home's Value? What St. Louis Home Sellers Need to Know" — dark walnut/amber gradient (distinct from all spring/pest series posts)
+    - **Urgency banner:** "Listing soon? Dog waste damage costs sellers — we fix yards before listing day."
+    - **Stats row:** 90 sec (buyers decide) / 300+ deposits/dog/year / $75 one-time cleanup / 4–6 wks grass repair
+    - **4 issue cards (what buyers see):** Dead Grass Circles (pH 4–5 acid burn, nitrogen toxicity), Persistent Odor (ammonia/sulfur penetrate soil/mulch/concrete, activates in warm/wet weather), Flies and Insects (200–500 per pile per 24hrs, reads as "infestation"), Deferred Maintenance Signal (buyers use backyard as proxy for entire property maintenance history)
+    - **Realtor quote callout:** "I've walked buyers through houses where the inside was perfectly staged and they were ready to write an offer — until they saw the backyard."
+    - **Big stat:** 6–18" first-year burn circles → 24–36" dead zones by year 2 without cleanup
+    - **Compounding Year Problem:** How the same spots get worse every year because damaged soil zone expands. By year 3: tilling + lime + topsoil required at $80–200 per zone.
+    - **5-step repair timeline grid:** Week 0 (cleanup) → Wks 1–2 (lime treatment) → Wks 2–3 (overseed) → Wks 4–6 (visible recovery) → Wk 6+ (photo-ready)
+    - **April window callout:** Cool-season turf (tall fescue) most active in April/May — best establishment window in St. Louis. Waiting until summer = seeding in heat with poor establishment rates.
+    - **6-step pre-listing protocol:** Full removal → stop new deposits during repair → lime treatment → overseed with tall fescue → weekly service during listing → address residual odor with enzymatic sprays
+    - **Showing checklist:** ❌ common seller mistakes (reseeding without stopping deposits, skipping yard in pre-showing prep, leaving waste bags visible) vs ✅ show-ready (freshly cleaned day of showing, repaired grass, dogs inside during showings, consistent weekly service)
+    - **Photo problem callout:** Listing photos are taken once and used for entire listing duration. Clean before photos, not after.
+    - **Realtor referral section:** Invites realtors to refer pre-listing clients directly to Tidy Tails
+    - **Missouri disclosure note:** Material defects disclosure, why fixing is always cheaper than disclosing
+    - **Pricing strip:** $75+ one-time / $70/mo weekly during listing / $45/visit biweekly + "On My Way" + "All Done" text differentiator
+    - **7-question FAQ with FAQPage schema:** Does dog poop hurt home value / How to clean yard before selling / How long to fix dead spots / Do realtors recommend cleanup / Can odor affect home sale / How much does cleanup cost / Should I disclose in Missouri
+  - **Schema markup:** BlogPosting + FAQPage (7Q) + LocalBusiness with 10 cities in areaServed
+  - **Cross-links added:**
+    - `blog/dog-poop-dead-spots-lawn-st-louis.html`: Added "🏡 Does Dog Poop Hurt Your Home's Value?" as FIRST Related Article (amber #d97706 border) ✅
+    - `blog/index.html`: Added home value card as #1 (newest first, amber border/glow) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+  - **New acquisition channel this post activates:** Realtor referrals. Every realtor who Googles "dog waste home value" or "yard cleanup before listing St. Louis" now finds this post. It's written for both direct conversions (sellers Googling before listing) AND realtor referrals (realtors looking for a resource to send their clients). The realtor partnership kit dashboard tool already exists — this is the SEO layer that drives realtors into that funnel organically.
+  - **Win math:** Pre-listing customer converts to monthly at high rates because the urgency that brought them in (listing deadline) converts to "I want the yard maintained through the sale" → then "I'm staying, the new owners might want this too." One realtor referral source = potentially 5–10 clients/year. LTV from one convert: $840.
+
