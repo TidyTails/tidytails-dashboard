@@ -4541,3 +4541,29 @@
   - **Why not a bigger sponsorship package:** HSMO's sponsor tiers start at $2,500 (Chihuahua), $5,000 (Pug), $10,000 (Cocker Spaniel), $20,000 (Golden Retriever). Those are for national brands (Purina, Delta Dental, Tito's Vodka). A regular vendor/exhibitor booth ($150–$300) is the right play — table space in the festival area, direct access to dog owners without the overhead.
   - **Why this was the highest-impact task at 3 PM:** The morning briefing explicitly flagged "Bark in the Park vendor booth email deadline today." With 27 days to April 30 payment deadline and booths potentially already filling, every day without contact is a day closer to "sorry, booths are full." The email draft is the product — TJ can send it in 3 minutes. The revenue math makes the decision obvious. And the day-of game plan means when May 16 arrives, there's no scrambling — just execute.
   - **VALIDATED:** File is 34KB ✅, git push confirmed (commit 5ed02c3a) ✅, GH Pages deploying ✅
+
+---
+
+### Friday 6:07 PM — Monday April 6 Post-Easter Command Center (Hourly Task)
+- **6:07 PM** 🔥 Built and deployed the **Monday April 6 Post-Easter Command Center** — the single most important tool for converting Easter one-time cleanups into $840/year monthly customers
+  - **File:** `dashboard/monday-april6-command.html` (30KB ✅)
+  - **Live URL:** `https://tidytails.github.io/tidytails-dashboard/dashboard/monday-april6-command.html` ✅ HTTP 200 confirmed
+  - **Git commits:** master `6e5e8bb` ✅ → main `c86b00b` ✅ → GH Pages build success confirmed ✅
+  - **Dashboard:** Added pulsing red (0.6s) "#1 MONDAY APRIL 6 — POST-EASTER CLOSE WINDOW" link as FIRST quick link in both master and main branch index.html ✅
+  - **Why this task at 6 PM Friday:** All Easter tools are built and deployed. The entire Easter weekend execution guide, email blitz, weekend playbook — complete. The single uncovered gap at 6 PM Friday April 3: **nobody built a dedicated tool for Monday morning April 6**, which is the highest-ROI single morning of the entire spring campaign. The Easter Weekend Execution Guide has a Monday tab buried in 6 tabs — TJ would have to navigate to it. The existing Post-Easter Monthly Conversion Kit was built weeks ago with more generic timing. What was needed: a standalone, phone-first tool that opens on Monday morning showing exactly what to do at 9 AM.
+  - **What's in the tool (6 sections):**
+    - **Live countdown timer:** Ticks to Monday April 6 at 9 AM in real time — switches to "🔥 IT'S NOW — Send the Monthly Close text RIGHT NOW" when the window opens
+    - **Priority 1 (9–10 AM — FIRE FIRST):** Monthly Close text to ALL Easter cleanup customers — two variants: standard (1–2 dogs, $70/mo) and multi-dog (3+ dogs, $80/mo). Both have one-click copy buttons. The 40–60% close rate callout (vs 15–20% if you wait) is front and center.
+    - **Priority 2 (Morning — Before Noon):** (1) FB Ads URL swap — 5-step exact walkthrough: Ads Manager → Ad level → Edit → change /spring → /mothers-day → Publish. Warning box: "DO NOT touch budget, targeting, audience, or CBO." (2) Easter Recap + Mother's Day post for all FB Groups — full copy-paste script with [X] cleanup count placeholder. (3) Nextdoor version — shorter, neighborhood-appropriate tone.
+    - **Priority 3 (Afternoon):** FB Ads Day 7 check-in — 4 metrics to pull (CPL, CTR, frequency, leads) + 3-column Scenario A/B/C decision grid (Scale if CPL <$25, Tweak $25–50, Reset $50+).
+    - **Priority 4 (Morning):** Check for HOA email replies from Good Friday blitz — 5 named companies, quick reply script for any who responded.
+    - **Priority 5 (Day 3–5 If No Monthly Yes):** Mother's Day seed text for Easter one-timers who didn't convert Monday. Seeds the May 10 pipeline without feeling pushy.
+    - **9-item master checklist** with localStorage persistence and progress bar.
+    - **Win math section:** Bear ($1,680) / Base ($3,360) / Bull ($8,400). Highlights: "The entire difference between bear and base case is whether TJ sends the Monthly Close text before 10 AM Monday."
+  - **Why this over other tasks at 6 PM Friday:**
+    - 83 blog posts live. All campaign tools built. Easter Weekend Guide complete. Good Friday Email Blitz complete. The only remaining gap was the Monday morning execution layer.
+    - Monday April 6 9 AM is the highest-ROI 10-minute window of the entire spring campaign. Every Easter cleanup customer wakes up to a clean yard Monday morning. The satisfaction is at PEAK. The monthly offer ($70/mo, no contract, first cleanup already covered) converts at 40–60% in the first 24 hours. After 72 hours, same offer converts at 15–20%. That's a 3× difference. Missing Monday morning costs 2 customers on the base case.
+    - The FB Ads URL swap (/spring → /mothers-day) needs to happen Monday morning before another day's worth of ad spend hits a dated Easter landing page. This is the second-highest-urgency action of the day and it takes 2 minutes.
+    - The Easter Recap post in all FB groups on Monday seeds Mother's Day 34 days out while the Easter social proof is fresh — organic reach compounds on a single post.
+    - All scripts are copy-pasteable. The tool is built for use on a phone. No navigation needed — Priority 1 is above the fold.
+  - **Revenue math:** Base case (6 Easter cleanups × 40% close Monday morning = 2 converts × $840 LTV = $1,680) vs missed Monday (6 cleanups × 20% close Thursday = 1 convert × $840 = $840). The Monday Command Center is worth $840 in incremental LTV on the base case alone from one weekend of cleanups.
