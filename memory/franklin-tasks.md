@@ -2,6 +2,43 @@
 
 ---
 
+### Friday 3:09 AM — Spring Pest Series Completion + 4 Missing Posts Deployed (Hourly Task)
+- **3:09 AM** 🦟 Two-part task: (1) Synced 4 blog posts missing from live site, (2) Wrote and published the **"Dog Poop and Fleas in Your Yard"** post — completing the Spring Pest Series (flies ✅ mosquitoes ✅ ticks ✅ worms ✅ fleas ✅)
+  - **File:** `tidy-tails/website/blog/dog-poop-fleas-yard-st-louis.html` (46KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/dog-poop-fleas-yard-st-louis` ✅ HTTP 200 confirmed
+  - **Blog count: 81 posts total** ✅
+  - **Part 1 — Deployment Sync:** Found that 4 blog posts existed locally but not on the live Cloudflare Pages site (local=80, remote=76). Synced the 4 missing posts: `best-dog-parks-st-louis-spring-2026.html`, `pooper-scooper-cottleville-lake-st-louis-mo.html`, `pooper-scooper-crestwood-mo.html`, `pooper-scooper-south-city-st-louis.html`. Git commit `3b160b5` ✅
+  - **Part 2 — Flea Blog Post:**
+    - **Why this task:** The Spring Pest Series (flies → mosquitoes → ticks → worms) was 4/5 complete. Fleas are the obvious 5th pest in the series — directly connected to dog waste environments because: flea larvae require moist, shaded organic debris to survive, and dog waste creates exactly those microhabitats in yard zones where dogs repeatedly eliminate. No competitor in STL has flea-specific content. Unique angle: flea PUPAE are impervious to insecticides for up to 6 months — most people don't know this and can't figure out why flea treatments keep failing. That's the conversion hook.
+    - **Target keywords:** "dog poop fleas yard", "dog waste fleas St. Louis", "fleas in yard dog poop", "why do fleas keep coming back", "flea habitat dog waste", "dog poop attracts fleas"
+    - **What's in the post (~46KB, ~2,800 words):**
+      - **Hero:** "Dog Poop and Fleas in Your Yard — The Connection St. Louis Dog Owners Miss" — deep amber/brown gradient (#1c0a00 → #7c2d12 → #b45309), completing the pest series color palette
+      - **Badge:** "🦟 SPRING PEST SERIES — PART 5 OF 5"
+      - **Urgency banner:** "April is when St. Louis flea populations begin building — the breeding cycle starts NOW in your yard"
+      - **Stats row:** 50°F (soil temp fleas activate) / 6 mo (pupae survival) / 48 hrs (waste pickup window) / $70/mo
+      - **Core mechanism explained:** Why flea treatments keep failing — pupae sealed in cocoons that are COMPLETELY impervious to insecticides for up to 6 months. Dog waste creates moist, shaded organic debris microhabitats in the exact yard zones dogs repeatedly use. Those zones become hot spots where flea larvae develop and pupae accumulate.
+      - **Big stat callout:** 50,000 flea eggs from a single infested dog in 100 days (40–50 eggs/day × 100 days)
+      - **Flea lifecycle (4-card grid):** Egg (2–14 days, falls into yard soil) / Larva (5–18 days, feeds on organic debris including decomposing waste) / Pupa (7 days to 6 months, IMPERVIOUS to insecticides — the key insight) / Adult (picks up on dog in yard, begins 40–50 eggs/day cycle)
+      - **St. Louis Seasonal Calendar (4 cards):** Winter (lower — cold slows development but waste accumulates) / April CRITICAL (soil hits 50°F, winter pupae emerge, waste thaws, first generation establishes NOW) / May–August (peak season) / September–October (adults seek indoor hosts ahead of cold)
+      - **Winter accumulation section:** April-specific — 100+ waste deposits thaw simultaneously at the exact moment pupae are activating. Three converging factors: moist habitat creation + pupal activation + more outdoor dog time.
+      - **Scenario grid:** ❌ Yard with winter accumulation (100+ deposits create habitat zones → pupae emerge into ideal conditions → dog picks up fleas every visit → home infestation → flea treatment fighting continuously-refreshed yard reservoir) vs ✅ Yard with weekly pickup (waste removed within 48 hrs → yard dry and unfavorable for larvae → flea preventative works as intended → no yard reservoir re-seeding the home)
+      - **5-step protocol:** (1) Remove waste — Step 1, not Step 5; (2) Mow short — eliminate ground-level shade; (3) Apply IGR (insect growth regulator) — prevents larvae from developing, persists 60–90 days; (4) Monthly flea prevention on dog; (5) Home treatment simultaneously
+      - **What doesn't work alone:** Yard sprays, foggers, diatomaceous earth, OTC flea drops — each explained mechanistically
+      - **Cost math:** Flea season total without prevention = $530–2,110+/year (yard spray × 4 + fogging × 2 + vet visits + carpet treatment). Tidy Tails = $840/year. Frame: weekly waste removal eliminates the primary habitat supporting the entire lifecycle.
+      - **Pricing table + 7-question FAQ + FAQPage schema + 6 related article cards + 22-city service area**
+    - **Cross-links added:**
+      - `blog/dog-poop-flies-yard-st-louis.html`: Added "🦟 Dog Poop and Fleas in Your Yard" as NEW FIRST Related Article ✅
+      - `blog/index.html`: Added flea card as #1 card (orange-brown #b45309 border, "Spring Pest Series · Part 5 of 5" badge) + JSON-LD blogPost entry ✅
+      - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+    - **Git commits:** tidytails-dashboard `612300ac` ✅ · tidytails-website `66a8776` → Cloudflare Pages live ✅
+    - **Why the flea post completes a high-value content cluster:**
+      - The Spring Pest Series is now a 5-post hub: flies → mosquitoes → ticks → worms → fleas. Each cross-links to the others and all link to the Spring Pillar Guide. Google sees a complete topical cluster on "yard pests + dog waste" — the topical authority that pushes all posts up in ranking together.
+      - The flea post hits a different conversion trigger than the others: persistent re-infestation frustration. Someone who has spent $300+ on flea treatments all summer and can't figure out why they keep coming back reads this and finally understands — the pupae in the yard organic debris are the missing link. The post answers a question they've been asking all season.
+      - The "pupae are impervious to insecticides" fact is the most actionable and surprising stat in the pest series. It explains a maddening real-world experience (why spraying doesn't work) and gives a clear alternative (remove the habitat). This converts people who are ready to try something different.
+      - Zero STL competitors have this content. Annual LTV from one convert: $840.
+
+---
+
 ### Friday 12:07 AM — St. Charles County Facebook Group Conquest Kit (Hourly Task)
 - **12:07 AM** 🏗️ Built and published the **St. Charles County Facebook Group Conquest Kit** — the first organic social conquest strategy targeting Missouri's fastest-growing county (400k+ residents), which had dedicated blog posts for every city but ZERO Facebook group playbook
   - **File:** `dashboard/st-charles-county-fb-conquest.html` (50.8KB ✅)
