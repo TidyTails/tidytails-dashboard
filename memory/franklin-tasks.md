@@ -2,6 +2,45 @@
 
 ---
 
+### Friday 12:07 AM — St. Charles County Facebook Group Conquest Kit (Hourly Task)
+- **12:07 AM** 🏗️ Built and published the **St. Charles County Facebook Group Conquest Kit** — the first organic social conquest strategy targeting Missouri's fastest-growing county (400k+ residents), which had dedicated blog posts for every city but ZERO Facebook group playbook
+  - **File:** `dashboard/st-charles-county-fb-conquest.html` (50.8KB ✅)
+  - **Dashboard:** Added pulsing indigo "🏗️ ST. CHARLES COUNTY FB CONQUEST — 20 GROUPS · 15 POSTS" quick link + featured card at top of Marketing & Growth section ✅
+  - **Git commit:** `d7bee383` — tidytails-dashboard ✅
+  - **Why this task:** It's 12:07 AM Friday April 3. Every major Tidy Tails Facebook group campaign targets St. Louis County — North County conquest (Florissant/Hazelwood/Ferguson/Bridgeton), South/West/Central expansion (24 groups, 18 posts). St. Charles County — Missouri's fastest-growing county, 400k+ residents, O'Fallon is the state's 3rd largest city — had dedicated blog posts for O'Fallon, Wentzville, St. Peters, St. Charles City, and Cottleville, BUT zero organic social strategy for the Facebook groups serving those communities. The only competitor is POOP 911 (charges $20/visit = ~$87/month weekly vs. our $70/month flat — we're cheaper). First-mover advantage in those groups = years of compounding recommendations.
+  - **What was built:**
+    - **20 Facebook groups** across 4 priority tiers:
+      - 🔴 Priority 1 (O'Fallon): O'Fallon Missouri Community, O'Fallon MO Residents & Neighbors, O'Fallon BST, Dogs of O'Fallon/St. Charles County Dog Owners
+      - 🟠 Priority 2 (Wentzville + St. Peters): Wentzville MO Community, Wentzville/Lake St. Louis Neighbors, St. Peters MO Community/Residents, St. Peters/St. Charles BST
+      - 🟡 Priority 3 (St. Charles City + Cottleville): St. Charles MO Community, Cottleville/Dardenne Prairie Residents, St. Charles County BST
+      - Plus additional discovery search terms for groups not yet named
+      - Each group has "Search FB" button (auto-opens Facebook search) + "Joined" toggle with localStorage persistence
+    - **5 copy-paste posts (SCC-1 through SCC-5):**
+      - **SCC-1 "O'Fallon Spring Hook"** — Spring thaw angle, orphaned customer "SWITCHING" hook, all zips (63366/63368), first cleanup free. Fire Week 1 (Apr 7) in O'Fallon Community + Residents. Links to `/blog/pooper-scooper-ofallon-mo`
+      - **SCC-2 "Wentzville New Subdivision"** — HOA and new build framing. "We set up new subdivision accounts all the time — gate codes, HOA-friendly scheduling." Fire Wed Apr 9 in Wentzville groups. Links to `/blog/pooper-scooper-wentzville-mo`
+      - **SCC-3 "St. Peters Kids Safety / Parasite"** — CDC 14% Toxocara exposure stat, barefoot kids, April being peak risk month. Fire Week 2 (Apr 14) in St. Peters Community. Links to `/blog/pooper-scooper-st-peters-mo`
+      - **SCC-4 "$2.30/Day Flat Rate Math"** — Universal flat rate math post for Buy/Sell/Trade groups. 300 deposits/dog/year, 17-26 hours Sunday labor, vs $70/month flat. Use in any county-wide or BST group. Two scheduled runs (Apr 11 + Apr 16).
+      - **SCC-5 "Earth Day EPA County-Wide Blitz"** — EPA non-point source pollutant classification, Missouri River waterways, waste removed off property (key differentiator). Fire ALL St. Charles County groups simultaneously on April 22 (Earth Day). Coordinates with S/W/C Earth Day push same day for maximum April 22 market saturation.
+    - **7 reply scripts:**
+      - First reply ("how much? / interested") — includes full coverage confirmation
+      - "Do you really come out to St. Charles County?" — removes the #1 county-distance objection
+      - "We're in a new subdivision" — gate codes, HOA, standard setup flow
+      - POOP 911 price comparison — honest math showing we're same price or cheaper
+      - Orphaned customer ("my old service stopped") — "SWITCHING" text + match old schedule
+      - Soft close ("let me think") — first cleanup free, no contract, nothing to lose
+      - Recommendation thread tag — short, one-line rapid-response version
+    - **3-week conquest calendar:**
+      - **Week 1 (Apr 7-11):** SCC-1 in O'Fallon (Mon) → SCC-2 in Wentzville (Wed) → SCC-4 flat rate math in BST groups (Fri)
+      - **Week 2 (Apr 14-18):** SCC-3 kids safety in St. Peters (Mon) → SCC-4 2nd run in Wentzville BST (Wed) → Join St. Charles City + Cottleville groups (Thu-Fri, need 24-48h before Earth Day)
+      - **Week 3 (Apr 20-22):** SCC-1 in St. Charles City (Mon) → SCC-2 in Cottleville (Tue) → SCC-5 Earth Day EPA blitz in ALL groups (Wed Apr 22)
+    - **18-item checklist** with localStorage persistence + progress bar
+    - **Bottom stats bar:** Live tracking of Joined/Posted/Checked items
+  - **Win math:** NC conquest model applied to SCC — base case: 3-5 new customers × $840 LTV = **$2,520-$4,200 at $0 ad spend**. Compounding: St. Charles County FB groups are under-seeded by any pet waste service, meaning future organic recommendations from early customers continue building the pipeline for years. The POOP 911 price differential (their $87/month weekly vs. our $70/month flat) is the comparison closer — one question about competitors and the math closes itself.
+  - **Earth Day coordination advantage:** Firing SCC-5 across all St. Charles County groups on April 22 simultaneously with the S/W/C Earth Day push means every major St. Louis metro geography gets an EPA-angle post on the same day — maximum April 22 market saturation from a single coordinated blitz.
+  - **Why this beats other midnight tasks:** All blog content is saturated (79 posts). All ad packs written (Spring, Mother's Day, Father's Day). St. Charles County was the single remaining geographic market with dedicated website coverage but zero Facebook group organic strategy. The North County conquest proved the model works (leads in Week 1). St. Charles County is actually less saturated — only POOP 911 operates there and they charge more. Building the conquest kit now means TJ can start joining groups this weekend and fire SCC-1 on Monday April 7.
+
+---
+
 ### Thursday 11:04 PM — Father's Day Ad Pack (Hourly Task)
 - **11:04 PM** 🎁 Wrote and committed the **Father's Day Ad Pack** — a complete ready-to-deploy Facebook ad pack targeting the June 21 Father's Day window for Tidy Tails
   - **File:** `tidy-tails/marketing/2026-06-21-FATHERS-DAY-AD-PACK.md` (15.5KB ✅)
