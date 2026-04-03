@@ -427,3 +427,5 @@ Chief uses this to verify sync with dashboard.
 | 00:01 | Morning Briefing — April 2, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-04-02.pdf | ✅ |
 | 12:02 | Shed Ads — April 2, 2026 | 🏠 Shed Sales | pdfs/SHED_ADS_2026-04-02.pdf | ✅ |
 | 18:01 | Shed Phone Scripts — April 2026 | 🏠 Shed Sales | pdfs/SHED_PHONE_SCRIPTS_2026-04-02.pdf | ✅ |
+| 00:25 | Father's Day Ad Pack — June 21, 2026 | 🐕 Tidy Tails | pdfs/FATHERS_DAY_AD_PACK_2026-06-21.pdf | ⏳ pending next sync |
+| 00:25 | St. Charles County FB Conquest Kit | 🐕 Tidy Tails | (dashboard tool — no PDF yet) | pending |
