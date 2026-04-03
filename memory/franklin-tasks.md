@@ -2,6 +2,32 @@
 
 ---
 
+### Thursday 10:07 PM — Mother's Day Ad Pack (Hourly Task)
+- **10:07 PM** 🌸 Wrote and committed the **Mother's Day Ad Pack** — a complete ready-to-deploy Facebook ad pack targeting the May 10 Mother's Day window for both Tidy Tails and TuffShed she sheds
+  - **File:** `tidy-tails/marketing/2026-05-10-MOTHERS-DAY-AD-PACK.md` (19.8KB ✅)
+  - **Git commit:** `68c8bf93` — tidytails-dashboard ✅
+  - **Why this task:** 10 PM Thursday April 2. Spring Conversion Ad Pack (built at 8 PM) covered the April immediate conversion window. The next major seasonal sales moment with NO dedicated paid ad copy: Mother's Day (May 10). The campaign hub (`mothers-day-campaign-hub.html`) had organic post ideas but zero ready-to-run Facebook ad copy in the same ready-to-deploy format as tonight's Spring pack. Written now = 38 days of runway to deploy, test, and optimize before the close window.
+  - **What was written:**
+    - **4 Facebook paid ad variations (Tidy Tails):**
+      - **Ad #1 "She Got the Dog"** — Core gift buyer (husband targeting). "She got the dog. She also gets the cleanup. Not anymore." Strongest headline in the pack. Empathy-first framing. Launch April 14.
+      - **Ad #2 "Flowers/Brunch"** — Duration contrast. "Flowers are gone in 5 days. Brunch is a two-hour window. This lasts all year." Runs when Ad #1 hits frequency >1.5.
+      - **Ad #3 "The Kid Buying for Mom"** — Adult child segment. Different emotional register (more sentimental, less practical). Separate ad set. "Her yard will be clean on Mother's Day morning. She'll ask how you knew."
+      - **Ad #4 "You Handle Everything"** — Retargeting only. Women who visited the site but didn't convert. Self-permission framing. "You've handled it long enough."
+    - **2 Facebook paid ads (TuffShed she sheds):**
+      - **She Shed Ad #1** — Husband gift angle. "She's been wanting a she shed for three years." Validates procrastination pattern, gives clean path to action. Launch April 21.
+      - **She Shed Ad #2 "Finally"** — Women self-permission angle. "You've been saying someday. Someday is in two weeks." Direct-to-women targeting.
+    - **5 organic Facebook group posts** — Husband prompt, women's permission post, short Saturday version, she shed gift angle, direct she shed appeal
+    - **2 Nextdoor posts** — April 21 intro + May 4-7 last-week urgency
+    - **2 Instagram captions** — Reel format gift hook + last call (May 6-8)
+    - **Customer referral text scripts** — 2 versions for existing Tidy Tails customers to refer husbands/partners
+    - **Full deployment schedule** — Day-by-day calendar April 14-May 9 across all channels
+    - **Budget recommendation** — $5-7/day per ad; total campaign estimated $100-200; expected 2-3 new customers at $1,680-2,520 LTV
+    - **A/B test plan** — 3 specific tests with rationale
+  - **Why this beats most campaigns:** This is a NEW buyer segment — husbands and adult kids who've never seen a Tidy Tails ad and have ZERO ad fatigue. The gift framing converts at higher rates because (1) buyer doesn't do the chore so $70/mo feels cheap, (2) no convincing needed on the problem, (3) gift deadline creates urgency that organic posts can't manufacture. The "She got the dog" headline is the tightest in the entire library — it mirrors a domestic dynamic most dog-owning households recognize instantly. The addition of the she shed layer makes this pack cover two revenue streams simultaneously.
+  - **Mandatory standards applied:** No dashes in sentences, phone numbers on every CTA, 4 ad variations, A/B test suggestions, platform-appropriate format.
+
+---
+
 ### Thursday 9:04 PM — "Complete Spring Yard Safety Guide" Pillar Post (Hourly Task)
 - **9:04 PM** 🌿 Wrote and published **"The Complete Spring Yard Safety Guide for St. Louis Dog Owners (2026)"** — a 51KB pillar post that ties together all 8 deep-dive posts from today into one definitive, checklist-driven resource
   - **File:** `tidy-tails/website/blog/complete-spring-yard-safety-guide-st-louis-dog-owners.html` (51KB ✅)
