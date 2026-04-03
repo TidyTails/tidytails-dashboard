@@ -2,6 +2,52 @@
 
 ---
 
+### Thursday 9:04 PM — "Complete Spring Yard Safety Guide" Pillar Post (Hourly Task)
+- **9:04 PM** 🌿 Wrote and published **"The Complete Spring Yard Safety Guide for St. Louis Dog Owners (2026)"** — a 51KB pillar post that ties together all 8 deep-dive posts from today into one definitive, checklist-driven resource
+  - **File:** `tidy-tails/website/blog/complete-spring-yard-safety-guide-st-louis-dog-owners.html` (51KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/complete-spring-yard-safety-guide-st-louis-dog-owners` ✅ HTTP 200 confirmed
+  - **Blog count: 79 posts total** ✅
+  - **Why this task:** 9 PM Thursday April 2. By 8 PM, 8 deep-dive posts existed covering every specific spring threat: flies, mosquitoes, ticks, worms/parasites, decomposition, rain, dead spots, and pool safety. But no single page tied them all together as a hub. The "Complete Spring Yard Safety Guide" captures:
+    - **SEO cluster:** "spring yard prep dogs St. Louis," "spring yard safety dog owners," "complete guide spring dog yard cleanup" — queries that reference all threats together rather than one specific pest
+    - **Hub/pillar function:** Links out to all 8 deep-dive posts, pulling them into a content cluster that builds topical authority for the entire spring keyword group
+    - **Shareable checklist format:** Four-phase interactive checklist (winter cleanup → weekly pickup → lawn repair → parasite prevention + pest reduction) with per-item checkboxes. Checklists get shared and bookmarked; walls of text don't.
+    - **High social share potential:** The kind of resource that gets shared in Facebook dog owner groups — "everything you need to know this spring." Zero of 8 competitors has anything comparable.
+  - **What's in the post (~3,000 words, 51KB):**
+    - **Hero:** Dark forest green gradient, "The Complete Spring Yard Safety Guide for St. Louis Dog Owners (2026)"
+    - **Stats row:** 100+ deposits per dog since December / 5 yrs roundworm egg soil survival / 8 spring threats covered / $2.30/day
+    - **The Winter Math:** Quantifies what April thaw actually means — 100 deposits per dog, cold preserving rather than decomposing, the 48-hour rule
+    - **8 Threat Sections with Deep-Dive Links:**
+      1. **Flies** — breeding cycle, 30,000-45,000 potential flies from one summer, why sprays fail → links to fly post
+      2. **Mosquitoes** — April multiplier effect, West Nile context, the organic breeding site mechanism → links to mosquito post
+      3. **Ticks** — wildlife vector mechanism, Missouri endemic diseases (RMSF, ehrlichiosis, alpha-gal), April nymph peak → links to tick post
+      4. **Parasites** — the 48-hour rule explained, Toxocara survival timeline, 14% US exposure rate → links to worms post
+      5. **Rain Spreading Everything** — 23M bacteria per gram, April 4.2" average, EPA NPS designation, St. Louis waterways → links to rain post
+      6. **Decomposition Myth** — 9 weeks minimum, pathogens surviving after visible waste is gone → links to decomposition post
+      7. **Lawn Dead Spots** — nitrogen burn + acid damage mechanisms, fertilizer myth, year-over-year expansion → links to dead spots post
+      8. **Pool Season** — Giardia chlorine resistance, wet-feet path, barefoot kids → links to pool post
+    - **Interactive 4-Phase Checklist:**
+      - Phase 1 (Winter Cleanup): 4 items — grid search, crouch-level check, off-property removal, do it before rain
+      - Phase 2 (Weekly Pickup): 3 items — 48-hour commitment, weekly frequency requirement, off-site removal
+      - Phase 3 (Lawn Repair): 4 items — waste removal first, weekly service before seeding, multi-year spot protocol, April repair window
+      - Phase 4 (Parasite Prevention + Pest Reduction): 7 items — fecal testing, monthly prevention meds, tick checks, Bti dunks, mosquito spray timing, grass height, hand hygiene for kids
+    - **What Doesn't Work:** 5 interventions that address symptoms not sources (decomposition, lime/enzyme sprays, mosquito spray before cleanup, reseeding without stopping deposits, occasional pickup)
+    - **Two-Scenario Grid:** ❌ Without spring cleanup vs ✅ with spring cleanup + weekly service — 7 outcomes per column
+    - **7-question FAQ with FAQPage schema** + BlogPosting schema + LocalBusiness schema
+    - **Related articles grid:** All 8 deep-dive posts with emoji, title, and hook text
+    - **Full service area grid (22 cities)** + pricing strip with CTAs
+  - **Cross-links added:**
+    - `blog/dog-poop-flies-yard-st-louis.html`: Added "🌿 The Complete Spring Yard Safety Guide" as first Related Article ✅
+    - `blog/dog-poop-dead-spots-lawn-st-louis.html`: Added "🌿 The Complete Spring Yard Safety Guide" as first Related Article (green highlighted card) ✅
+    - `blog/dog-poop-worms-yard-st-louis.html`: Added "🌿 The Complete Spring Yard Safety Guide" as first Related Article ✅
+    - `blog/index.html`: Added pillar guide as #1 card (⭐ COMPLETE GUIDE badge, bright green border/glow) + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.90, yearly changefreq — higher than standard 0.85 for deep-dives) ✅
+  - **Git commits:** tidytails-dashboard `b56c33ab` ✅ · tidytails-website `c1d4f9c` → Cloudflare Pages live ✅
+  - **Why this is the right 9 PM task:** The 8 deep-dive posts written today (flies → mosquitoes → ticks → worms → rain → decomposition → dead spots → pool) are each excellent standalone resources. But they're isolated. Without a pillar guide, Google sees 8 individual posts that each partially cover spring dog yard safety. With the pillar guide linking all 8, Google sees a complete topical cluster — which triggers the topical authority signals that push all related posts up in ranking together. This is the SEO layer above the individual posts. Additionally, the interactive checklist format is the most shareable format in the pet owner content category — Facebook groups respond better to "here's your complete April checklist" than to "here's one specific fact about flies." Single post, but multiplies the value of all 8 others. Annual LTV from one convert: $840.
+
+---
+
+---
+
 ### Thursday 8:06 PM — April Spring Conversion Ad Pack (Hourly Task)
 - **8:06 PM** 📣 Wrote and committed **April Spring Conversion Ad Pack** — 4 Facebook ads + 3 organic FB group posts + 2 Nextdoor posts + 2 Instagram captions, all built for the April conversion window
   - **File:** `tidy-tails/marketing/2026-04-02-SPRING-CONVERSION-AD-PACK.md` (12.9KB ✅)
