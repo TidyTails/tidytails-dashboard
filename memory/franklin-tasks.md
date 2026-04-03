@@ -4407,3 +4407,54 @@
     - **9-tool quick reference grid**
     - **Mindset closer:** "Send the texts. Swap the ads. Start the week right."
   - **Why this beats other 12 PM Friday tasks:** Every tool for every campaign is built. 83 posts live. All ad packs written. The gap at noon Friday is execution clarity for Monday morning — the day the post-Easter convert window opens and the Mother's Day campaign window begins simultaneously. The FB Ads URL swap specifically is a time-critical action that loses real money every hour it isn't done on Monday. Without this briefing, TJ opens Monday with a dead /spring destination eating $7/day in ad spend. With it, he opens the briefing, sees "FIRST THING" in red at the top, and swaps the URL before doing anything else.
+
+---
+
+### Friday 2:09 PM — May Master Campaign Hub (Hourly Task)
+- **2:09 PM** 🌸 Built and published the **May Master Campaign Hub** — the post-Easter execution engine that ties together every campaign from April 6 through May 31 into one unified playbook
+  - **File:** `dashboard/may-master-campaign-hub.html` (66KB ✅)
+  - **Dashboard:** Added fastest-pulsing (0.85s) pink quick link "🌸 MAY MASTER HUB — POST-EASTER · MOTHER'S DAY · MEMORIAL DAY" + new featured card at top of Sales & CRM section ✅
+  - **Git commit:** `adeee885` ✅ pushed to tidytails-dashboard
+  - **Why this task:** It's 2:09 PM Good Friday April 3. Easter is Sunday April 5. All the individual tools exist (Post-Easter Convert Kit, Mother's Day Campaign Hub, Mother's Day Landing Page, Memorial Day blog post, Referral Engine, Senior Living Kit, HOA Kit). But nothing synthesized them into a unified May execution calendar. The April Master Calendar covered March 30–April 28. Nothing covered the post-Easter phase. Every year, businesses sprint to Easter and then lose momentum in May. This hub prevents that by giving TJ a single "open this on April 6" document that maps every campaign, script, and action for the entire month of May.
+  - **What's built (5 tabs):**
+    - **Timeline tab:** Week-by-week day-by-day execution plan Apr 6 → May 31. 7 weeks, 25+ specific dated actions with channel chips (FB, TEXT, IG, NEXTDOOR, CALLS, GBP, MARKETPLACE). Every action links to context, not just a task name.
+      - Week 1 (Apr 6–12): Post-Easter convert window, NC Week 2, Mother's Day seed, commercial follow-ups
+      - Week 2 (Apr 13–19): Mother's Day main push, "She Got the Dog" post in ALL groups, adult children Nextdoor angle, Earth Day prep
+      - Week 3 (Apr 20–26): Earth Day EPA blitz ALL groups simultaneously (Apr 22), customer referral batch (Apr 22), senior living calls (Apr 23–24), "Last 2 Weeks" urgency posts
+      - Week 4 (Apr 27–May 10): GBP April close, Mother's Day last call (May 4–6), same-day gift booking (May 9 evening), Mother's Day victory + convert window
+      - Weeks 5–7 (May 11–31): Post-Mother's Day converts, GBP summer ramp, Memorial Day cookout posts (May 18–22), Memorial Day one-timer convert texts, Father's Day seed (May 25)
+    - **Campaigns tab:** 6 campaign cards with status chips, LTV projections, and execution dates:
+      1. Post-Easter Convert Window — 🔥 LIVE NOW — 40–60% close rate
+      2. Mother's Day Campaign — ✅ READY — landing page live at /mothers-day
+      3. Customer Referral Engine — 📅 Apr 22 — 42× ROAS
+      4. Memorial Day Cookout Campaign — 📅 May 18
+      5. Commercial + Senior Living Pipeline — 📅 Apr 23
+      6. Summer FB Group Ramp — 📅 May 11
+      + May Goal Tracker: 11 current → 24 by May 31 projection (August goal 2 months early in base case)
+    - **Scripts tab (8 copy-paste):**
+      - Easter Victory Text (same day, before leaving driveway) — highest open rate of the year
+      - Monthly Close — Direct (Days 3–5, Apr 8–10 peak window)
+      - Last Call Convert Text (Day 6–7, Apr 11–12)
+      - "She Got the Dog" FB post for ALL groups (Apr 14)
+      - Customer Referral Text — Mother's Day edition (Apr 14–21)
+      - Nextdoor "Adult Children Buying for Mom" post (Apr 15–17)
+      - Memorial Day Cookout post (May 19–22)
+      - Customer Referral Ask — Spring Batch (Apr 22)
+    - **Win Math tab:**
+      - Post-Easter Convert: Bear $840 / Base $1,680 / Bull $4,200
+      - Mother's Day: Bear $840 / Base $2,520 / Bull $5,040
+      - Referral Engine: Bear $840 / Base $2,520 / Bull $5,040
+      - Full May combined: Bear $5,880 / Base $10,920 / Bull $18,480
+      - **Key insight:** Base case = ~24 customers by May 31 = August goal hit before summer starts
+    - **Checklist tab (24 items, 5 phases):**
+      - RIGHT NOW (Apr 5–7): Easter victory texts, victory recap post, reviews, swap FB Ads to /mothers-day
+      - Week 1 (Apr 6–12): Monthly close texts, Mother's Day seed, NC Week 2, commercial callbacks
+      - Week 2–3 (Apr 13–26): "She Got the Dog" post all groups, Earth Day blitz, referral batch, senior living calls, she shed Marketplace listings, "Last 2 Weeks" urgency
+      - Week 4 (Apr 27–May 10): GBP close post, last call posts, same-day booking post, victory + convert texts
+      - Week 5–7 (May 11–31): GBP summer ramp, Memorial Day posts, Memorial Day convert texts, Father's Day seed
+      - localStorage persistence + live progress bar
+  - **Why this was the right 2 PM task on Good Friday:**
+    - The toolkit for May is 100% complete — the gap was synthesis. Every individual tool (Post-Easter Kit, Mother's Day Hub, Referral Engine, Senior Living Kit, HOA Kit, Memorial Day blog, Father's Day Ad Pack) exists. But TJ would open April 6 with 8 tools and no sequence. The May Master Hub collapses everything into one ordered playbook.
+    - The post-Easter convert window opens in approximately 48 hours (Easter is Sunday). That's the highest-leverage 7-day conversion window until Thanksgiving — 40–60% close rate on people who've already experienced the service. Without a dedicated hub telling TJ exactly what to text and when, that window closes at 20% conversion instead of 50%.
+    - May base case: 6–9 new converts from all campaigns = 17–20 customers = 68–80% of the August goal by June 1. The August goal is within reach if May executes. This hub is the execution map.
+    - **Revenue potential if base case executes:** $10,920 in May LTV at approximately $165 in total ad spend (FB Ads $5–7/day Apr 6–May 10) = 66× ROAS.
