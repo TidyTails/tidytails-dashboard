@@ -2,6 +2,26 @@
 
 ---
 
+### Thursday 8:06 PM — April Spring Conversion Ad Pack (Hourly Task)
+- **8:06 PM** 📣 Wrote and committed **April Spring Conversion Ad Pack** — 4 Facebook ads + 3 organic FB group posts + 2 Nextdoor posts + 2 Instagram captions, all built for the April conversion window
+  - **File:** `tidy-tails/marketing/2026-04-02-SPRING-CONVERSION-AD-PACK.md` (12.9KB ✅)
+  - **Git commit:** `70a85289` — tidytails-dashboard ✅
+  - **Why this task:** April is the single highest-conversion window of the year for Tidy Tails. Winter thaw hitting now, dead spots appearing, Easter just passed, kids going barefoot. The two blog posts from earlier tonight (worms + lawn dead spots) gave us fresh, specific technical angles to weaponize in ads. Used those insights directly as copy hooks.
+  - **What was written:**
+    - **Ad #1 "The Dead Spots Closer"** — Lawn damage angle. Targets frustrated homeowners who keep reseeding the same spots. Hook: "same corners every spring." Uses nitrogen burn science from tonight's blog post. Predicted highest converter.
+    - **Ad #2 "The Cookout Ad"** — Easter/social occasion angle. "You just hosted Easter. How was the yard?" Timely — runs April 3-7 while memory of awkward Easter yard is fresh.
+    - **Ad #3 "The Barefoot Warning"** — Parent/child safety angle. Hookworm skin penetration. Targets families with young kids. Uses biology from the worms blog post.
+    - **Ad #4 "The Math Ad"** — Rational/price justification. "$2.30 a day to never scoop poop again." For analytical buyers who need the math to make sense.
+    - **3 organic FB group posts** — Different hooks: winter accumulation honest opener, lawn damage education, short/direct for busy mom groups
+    - **1 Nextdoor post** — Local owner intro for neighborhood trust
+    - **2 Instagram captions** — April reality check + lawn dead spots education reel
+  - **Deployment plan included:** Day-by-day posting schedule April 3-7, budget reco ($5/day per ad), A/B test recommendation (Ad #1 vs Ad #2)
+  - **Mandatory phone footers:** All ads include `📱 Text or call (314) 850-7140 — Jamie, local owner` ✅
+  - **No dashes in sentences:** Applied throughout ✅
+  - **Why these hooks work:** All four ads leverage information the buyer is ALREADY encountering right now (dead spots, Easter cookouts, barefoot season, winter accumulation). Hopkins principle: meet them where they are, in their language, with their problem. The dead spots angle is especially strong because the blog post gives us the credibility layer — we know the mechanism, we can explain it, and that expertise converts to trust.
+
+---
+
 ### Thursday 7:04 PM — "Dog Poop Dead Spots in Your Lawn" Blog Post (Hourly Task)
 - **7:04 PM** 🌿 Wrote and published **"Dog Poop Dead Spots in Your Lawn — Why Your Grass Is Dying (And How to Fix It)"** — the first dedicated lawn damage content in the entire St. Louis pet waste market
   - **File:** `tidy-tails/website/blog/dog-poop-dead-spots-lawn-st-louis.html` (44KB ✅)
