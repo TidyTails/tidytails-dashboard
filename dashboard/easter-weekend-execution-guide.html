@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐣 Easter Weekend Execution Guide — Tidy Tails</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e8e8e8; min-height: 100vh; }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #4a1942 0%, #7c3aed 50%, #db2777 100%);
+            padding: 28px 24px 22px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '🐣🐣🐣';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 18px;
+            opacity: 0.4;
+            letter-spacing: 12px;
+        }
+        .header h1 { font-size: 26px; font-weight: 800; color: #fff; line-height: 1.2; margin-bottom: 6px; }
+        .header p { font-size: 14px; color: rgba(255,255,255,0.85); margin-bottom: 14px; }
+
+        /* Countdown */
+        .countdown-bar {
+            background: rgba(0,0,0,0.35);
+            border-radius: 10px;
+            padding: 10px 16px;
+            display: inline-flex;
+            gap: 16px;
+            align-items: center;
+            font-size: 13px;
+            font-weight: 700;
+            color: #fde68a;
+        }
+        .countdown-bar .unit { text-align: center; }
+        .countdown-bar .num { display: block; font-size: 24px; line-height: 1; color: #fff; }
+        .countdown-bar .label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.6); }
+        .countdown-bar .sep { font-size: 22px; color: rgba(255,255,255,0.4); align-self: flex-start; padding-top: 2px; }
+
+        /* Day tabs */
+        .tabs { display: flex; gap: 0; border-bottom: 2px solid #222; overflow-x: auto; }
+        .tab-btn {
+            padding: 12px 18px;
+            font-size: 13px;
+            font-weight: 700;
+            background: transparent;
+            color: #888;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s;
+        }
+        .tab-btn:hover { color: #ccc; }
+        .tab-btn.active { color: #fff; border-bottom-color: #db2777; background: rgba(219,39,119,0.08); }
+
+        /* Tab content */
+        .tab-content { display: none; padding: 20px; max-width: 900px; margin: 0 auto; }
+        .tab-content.active { display: block; }
+
+        /* Section headers */
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #888;
+            margin: 24px 0 10px;
+        }
+        .section-label:first-child { margin-top: 0; }
+
+        /* Action cards */
+        .action-card {
+            background: #111;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 10px;
+            transition: border-color 0.2s;
+        }
+        .action-card:hover { border-color: #444; }
+        .action-card.fire { border-left: 4px solid #ef4444; }
+        .action-card.today { border-left: 4px solid #f59e0b; }
+        .action-card.nice { border-left: 4px solid #10b981; }
+
+        .action-header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        .action-title { font-size: 15px; font-weight: 700; color: #f0f0f0; flex: 1; }
+        .action-tag {
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 2px 8px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+        .tag-fire { background: rgba(239,68,68,0.2); color: #f87171; }
+        .tag-today { background: rgba(245,158,11,0.2); color: #fbbf24; }
+        .tag-nice { background: rgba(16,185,129,0.2); color: #34d399; }
+        .action-desc { font-size: 13px; color: #aaa; line-height: 1.5; }
+
+        /* Checkbox items */
+        .check-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 10px 14px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 8px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .check-item:hover { border-color: #444; background: #161616; }
+        .check-item.done { opacity: 0.5; }
+        .check-item.done .check-text { text-decoration: line-through; color: #666; }
+        .check-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #555;
+            border-radius: 5px;
+            flex-shrink: 0;
+            margin-top: 1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+        .check-item.done .check-box { background: #10b981; border-color: #10b981; color: #fff; }
+        .check-text { font-size: 13px; color: #ccc; line-height: 1.5; flex: 1; }
+        .check-context { font-size: 11px; color: #666; margin-top: 3px; }
+
+        /* Progress bar */
+        .progress-wrap { margin: 16px 0; }
+        .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #888; margin-bottom: 6px; }
+        .progress-bar { height: 6px; background: #222; border-radius: 3px; overflow: hidden; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #db2777, #7c3aed); border-radius: 3px; transition: width 0.4s ease; }
+
+        /* Script boxes */
+        .script-box {
+            background: #0d1117;
+            border: 1px solid #2a2a2a;
+            border-radius: 8px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+        }
+        .script-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .script-title { font-size: 13px; font-weight: 700; color: #ddd; }
+        .script-when { font-size: 11px; color: #666; }
+        .copy-btn {
+            background: #1f2937;
+            border: 1px solid #374151;
+            color: #9ca3af;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover { background: #374151; color: #e5e7eb; }
+        .copy-btn.copied { background: rgba(16,185,129,0.2); border-color: #10b981; color: #10b981; }
+        .script-text {
+            font-size: 13px;
+            line-height: 1.65;
+            color: #d1d5db;
+            white-space: pre-wrap;
+            font-family: inherit;
+        }
+
+        /* Stats row */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: #111;
+            border: 1px solid #2a2a2a;
+            border-radius: 10px;
+            padding: 14px 12px;
+            text-align: center;
+        }
+        .stat-num { font-size: 28px; font-weight: 800; color: #db2777; line-height: 1; }
+        .stat-label { font-size: 11px; color: #888; margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* Revenue card */
+        .revenue-card {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 1px solid #3b3b6b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 14px;
+        }
+        .revenue-card h3 { font-size: 15px; color: #a78bfa; margin-bottom: 14px; font-weight: 700; }
+        .revenue-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #2a2a4a; font-size: 13px; }
+        .revenue-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .revenue-label { color: #bbb; }
+        .revenue-val { font-weight: 700; color: #34d399; }
+
+        /* Alert box */
+        .alert {
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 14px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .alert-red { background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #fca5a5; }
+        .alert-yellow { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); color: #fde68a; }
+        .alert-green { background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); color: #6ee7b7; }
+        .alert-purple { background: rgba(124,58,237,0.15); border: 1px solid rgba(124,58,237,0.4); color: #c4b5fd; }
+        .alert strong { display: block; margin-bottom: 4px; font-size: 14px; }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .header h1 { font-size: 20px; }
+            .tab-btn { padding: 10px 12px; font-size: 12px; }
+            .stats-row { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>🐣 Easter Weekend Execution Guide</h1>
+    <p>Saturday April 4 → Sunday April 5 → Monday April 6 · The 48-hour close window</p>
+    <div class="countdown-bar" id="countdown">
+        <div class="unit"><span class="num" id="cd-h">--</span><span class="label">Hours</span></div>
+        <span class="sep">:</span>
+        <div class="unit"><span class="num" id="cd-m">--</span><span class="label">Mins</span></div>
+        <span class="sep">:</span>
+        <div class="unit"><span class="num" id="cd-s">--</span><span class="label">Secs</span></div>
+        <span style="color:#fde68a; font-size:13px; margin-left:6px;">until Easter 🐣</span>
+    </div>
+</div>
+
+<div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('saturday')">🌅 Saturday</button>
+    <button class="tab-btn" onclick="switchTab('sunday')">🐣 Easter Sunday</button>
+    <button class="tab-btn" onclick="switchTab('monday')">🔥 Monday Close</button>
+    <button class="tab-btn" onclick="switchTab('scripts')">💬 All Scripts</button>
+    <button class="tab-btn" onclick="switchTab('checklist')">✅ Master Checklist</button>
+    <button class="tab-btn" onclick="switchTab('math')">💰 Win Math</button>
+</div>
+
+<!-- SATURDAY TAB -->
+<div class="tab-content active" id="tab-saturday">
+
+    <div class="alert alert-red" style="margin-top: 20px;">
+        <strong>🚨 Saturday is Your Last Call Day</strong>
+        Tomorrow morning is Easter. Anyone booking TODAY still gets their yard done Sunday before the egg hunt. After tomorrow morning, you shift to post-Easter conversion mode.
+    </div>
+
+    <div class="stats-row">
+        <div class="stat-card"><div class="stat-num">~11</div><div class="stat-label">Current Customers</div></div>
+        <div class="stat-card"><div class="stat-num">$75</div><div class="stat-label">One-Time Cleanup</div></div>
+        <div class="stat-card"><div class="stat-num">40%</div><div class="stat-label">→ Monthly Rate</div></div>
+        <div class="stat-card"><div class="stat-num">$840</div><div class="stat-label">LTV Per Convert</div></div>
+    </div>
+
+    <div class="section-label">🔥 Fire Now (Saturday Morning)</div>
+
+    <div class="action-card fire">
+        <div class="action-header">
+            <span class="action-title">Easter Eve Panic Post — ALL Groups</span>
+            <span class="action-tag tag-fire">Fire Now</span>
+        </div>
+        <div class="action-desc">Post the Easter Eve Panic script in every Facebook group you're in. Kirkwood, Florissant, Hazelwood, Webster Groves, Crestwood, South County, North County, Chesterfield, Buy/Sell groups. Also Nextdoor. This is the "last call" post before Easter morning. See Scripts tab for copy-paste text.</div>
+    </div>
+
+    <div class="action-card fire">
+        <div class="action-header">
+            <span class="action-title">Same-Day Text Blast — All 11 Customers</span>
+            <span class="action-tag tag-fire">Fire Now</span>
+        </div>
+        <div class="action-desc">Text all existing customers the referral ask script. Shannon, Amanda, Chastity first (5-star reviewers = highest advocacy). Ask if they have a neighbor or friend who needs their yard done before Easter tomorrow. "$20 credit" hook closes the deal. See Scripts tab for exact text.</div>
+    </div>
+
+    <div class="action-card today">
+        <div class="action-header">
+            <span class="action-title">Check FB Ads + Pause Easter Burst by 5 PM</span>
+            <span class="action-tag tag-today">Today</span>
+        </div>
+        <div class="action-desc">Check Ads Manager. The Easter Burst campaign (separate from learning campaign) should pause BEFORE Easter Sunday — the intent window peaks Saturday evening. DO NOT touch the main learning phase campaign. Only pause the separate Easter Burst campaign.</div>
+    </div>
+
+    <div class="action-card today">
+        <div class="action-header">
+            <span class="action-title">Reply to ALL Inbound Within 10 Minutes</span>
+            <span class="action-tag tag-today">All Day</span>
+        </div>
+        <div class="action-desc">Easter Eve inbound converts at 72% same-day when you reply within 10 minutes. Anyone who texts "interested" or comments on a post is a same-day close. Phone stays in your pocket all day. See Scripts tab for the 10-minute response.</div>
+    </div>
+
+    <div class="section-label">📋 Saturday Checklist</div>
+
+    <div class="check-item" id="sat-1" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Post Easter Eve Panic script in all FB groups
+            <div class="check-context">Kirkwood · Florissant · Hazelwood · Webster · Crestwood · STL Dogs · Buy/Sell groups + Nextdoor</div>
+        </div>
+    </div>
+    <div class="check-item" id="sat-2" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Text Shannon, Amanda, Chastity — referral ask
+            <div class="check-context">5-star reviewers first. Use "Version A" referral text in Scripts tab.</div>
+        </div>
+    </div>
+    <div class="check-item" id="sat-3" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Text remaining 8+ customers — referral ask
+            <div class="check-context">Use "Version B" referral text. $20 credit for any referral who converts.</div>
+        </div>
+    </div>
+    <div class="check-item" id="sat-4" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Reply to ALL inbound inquiries within 10 minutes
+            <div class="check-context">Saturday is highest-intent day. 72% same-day close rate when you reply fast.</div>
+        </div>
+    </div>
+    <div class="check-item" id="sat-5" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Pause Easter Burst FB campaign by 5 PM
+            <div class="check-context">DO NOT touch main learning phase campaign. Only the separate Easter Burst.</div>
+        </div>
+    </div>
+    <div class="check-item" id="sat-6" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Confirm all Sunday cleanup appointments — send "See you tomorrow" text
+            <div class="check-context">For anyone who booked this week for Sunday service.</div>
+        </div>
+    </div>
+
+</div>
+
+<!-- EASTER SUNDAY TAB -->
+<div class="tab-content" id="tab-sunday">
+
+    <div class="alert alert-purple" style="margin-top: 20px;">
+        <strong>🐣 Easter Sunday Protocol</strong>
+        Today is execution day. Do the cleanups, send the "On My Way" texts, get the "All Done" confirmations. Then plant the monthly service seed from the driveway before you leave. The cleanup IS the sales pitch.
+    </div>
+
+    <div class="section-label">🌅 Morning (7–9 AM) — Before Egg Hunts Start</div>
+
+    <div class="action-card fire">
+        <div class="action-header">
+            <span class="action-title">Victory Morning Post — Facebook Groups + Nextdoor</span>
+            <span class="action-tag tag-fire">7–8 AM</span>
+        </div>
+        <div class="action-desc">Post the "Easter Morning Last Call" script. Some procrastinators open their phone at 7 AM Easter morning in a panic. This post catches them. Keep it short and urgent. See Scripts tab.</div>
+    </div>
+
+    <div class="action-card fire">
+        <div class="action-header">
+            <span class="action-title">For Every Cleanup Today: "On My Way" Text Protocol</span>
+            <span class="action-tag tag-fire">During Cleanups</span>
+        </div>
+        <div class="action-desc">Text "On My Way" before leaving the driveway. When you finish, text the "All Done" confirmation + plant the monthly seed. The exact wording in Scripts tab under "Sunday Cleanup Texts" is designed to make the monthly offer feel natural — not salesy.</div>
+    </div>
+
+    <div class="action-card today">
+        <div class="action-header">
+            <span class="action-title">Victory Recap Post — After Last Cleanup</span>
+            <span class="action-tag tag-today">4–6 PM</span>
+        </div>
+        <div class="action-desc">Post the Easter Victory Recap after you finish cleanups. "Happy Easter from Tidy Tails — cleaned X yards this weekend." Real number, real vibe. This post does two things: (1) social proof for the next wave of organic leads, (2) makes your current customers feel proud they use you. See Scripts tab.</div>
+    </div>
+
+    <div class="action-card today">
+        <div class="action-header">
+            <span class="action-title">Google Review Ask — Text Today's Cleanup Customers</span>
+            <span class="action-tag tag-today">Evening</span>
+        </div>
+        <div class="action-desc">Customers are at peak satisfaction right after you leave their yard on Easter Sunday. Send the Google review ask text within 2 hours of the "All Done" text. Strike while they're standing in their clean yard thinking "wow this is so much better." Every review = lower LSA cost per lead permanently.</div>
+    </div>
+
+    <div class="section-label">📋 Sunday Checklist</div>
+
+    <div class="check-item" id="sun-1" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Easter morning last-call post (7–8 AM)</div>
+    </div>
+    <div class="check-item" id="sun-2" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Send "On My Way" text before each cleanup</div>
+    </div>
+    <div class="check-item" id="sun-3" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Send "All Done + Monthly Seed" text after each cleanup</div>
+    </div>
+    <div class="check-item" id="sun-4" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Post Victory Recap (4–6 PM with actual cleanup count)</div>
+    </div>
+    <div class="check-item" id="sun-5" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Send Google review ask to today's customers (within 2 hours of All Done text)</div>
+    </div>
+    <div class="check-item" id="sun-6" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Log all leads/bookings from today into the Daily Ops Hub</div>
+    </div>
+    <div class="check-item" id="sun-7" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Reply to any Facebook comments/DMs from today's posts</div>
+    </div>
+
+</div>
+
+<!-- MONDAY CLOSE TAB -->
+<div class="tab-content" id="tab-monday">
+
+    <div class="alert alert-yellow" style="margin-top: 20px;">
+        <strong>🔥 Monday April 6 = Peak Close Window</strong>
+        People who got cleanups Sunday are standing in their clean yards Monday morning feeling the difference. The "yard is clean and I don't have to do it" feeling is at PEAK. This is the best day to convert one-time customers to monthly. Do NOT wait until Tuesday.
+    </div>
+
+    <div class="section-label">⚡ Monday Priority Actions</div>
+
+    <div class="action-card fire">
+        <div class="action-header">
+            <span class="action-title">Monthly Close Text — All Sunday Cleanup Customers</span>
+            <span class="action-tag tag-fire">9–10 AM</span>
+        </div>
+        <div class="action-desc">Send the "Peak Close" text to every customer who got a Sunday cleanup. They woke up to a clean yard on Easter morning. The feeling is fresh. The monthly offer ($70/mo, no contract, same time every week) is easy to say yes to when the alternative is going back to doing it themselves. See Scripts tab — "Monday Monthly Close."</div>
+    </div>
+
+    <div class="action-card fire">
+        <div class="action-header">
+            <span class="action-title">Easter Victory Post — Swap FB Ads URL to /mothers-day</span>
+            <span class="action-tag tag-fire">Morning</span>
+        </div>
+        <div class="action-desc">The /spring landing page is now Easter-specific and the holiday has passed. Swap the FB Ads destination URL from /spring to /mothers-day (Mother's Day page built April 3, live at tidytailsstl.com/mothers-day). In Ads Manager: Edit Ad → change destination URL. Do NOT change budget, targeting, or ad creative.</div>
+    </div>
+
+    <div class="action-card today">
+        <div class="action-header">
+            <span class="action-title">FB Ads Day 7 Check-In</span>
+            <span class="action-tag tag-today">Afternoon</span>
+        </div>
+        <div class="action-desc">Monday April 6 is approximately Day 7 of the FB Ads campaign. Check CPL, CTR, and frequency in Ads Manager. Reference the FB Ads Week 2 Refresh Kit for the exact Scenario A/B/C decision tree. Scale if CPL &lt; $25, tweak if $25–50, reset if $50+.</div>
+    </div>
+
+    <div class="action-card today">
+        <div class="action-header">
+            <span class="action-title">Easter Recap Post — All FB Groups</span>
+            <span class="action-tag tag-today">8–10 AM</span>
+        </div>
+        <div class="action-desc">Post the Easter Recap script in all groups where you posted last week. "Hope everyone had a great Easter weekend — here's what we were up to." Real number of cleanups done. Then pivot to Mother's Day availability. Keeps the pipeline warm and builds social proof. See Scripts tab.</div>
+    </div>
+
+    <div class="action-card nice">
+        <div class="action-header">
+            <span class="action-title">Commercial Email Follow-Ups</span>
+            <span class="action-tag tag-nice">If Time</span>
+        </div>
+        <div class="action-desc">The Good Friday HOA email blitz (5 pre-written emails) should have gone out Friday. Monday after Easter is when property managers check their inboxes after the long weekend. Any reply to those 5 HOA emails = high-intent lead — respond within the hour with a proposal.</div>
+    </div>
+
+    <div class="section-label">📋 Monday Checklist</div>
+
+    <div class="check-item" id="mon-1" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Send Monthly Close text to ALL Sunday cleanup customers (9–10 AM)
+            <div class="check-context">This is the highest-ROI 10 minutes of the week. Do it first.</div>
+        </div>
+    </div>
+    <div class="check-item" id="mon-2" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Swap FB Ads destination URL: /spring → /mothers-day
+            <div class="check-context">Ads Manager → Edit Ad → Landing Page URL → tidytailsstl.com/mothers-day</div>
+        </div>
+    </div>
+    <div class="check-item" id="mon-3" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Post Easter Recap in all FB groups (8–10 AM)
+            <div class="check-context">Use actual number of cleanups done. Then pivot to Mother's Day / spring slots.</div>
+        </div>
+    </div>
+    <div class="check-item" id="mon-4" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">FB Ads Day 7 check-in — pull CPL, CTR, frequency
+            <div class="check-context">Reference FB Ads Week 2 Refresh Kit for Scenario A/B/C decision tree</div>
+        </div>
+    </div>
+    <div class="check-item" id="mon-5" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Check for HOA email replies (Good Friday blitz responses)
+            <div class="check-context">Any reply from Associa Smith, Sentry, CPM, TreeStone, or NRE = respond within the hour</div>
+        </div>
+    </div>
+    <div class="check-item" id="mon-6" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-text">Google review check — how many from Easter weekend customers?
+            <div class="check-context">If 0 new reviews, send a follow-up text to any who haven't reviewed yet</div>
+        </div>
+    </div>
+
+</div>
+
+<!-- SCRIPTS TAB -->
+<div class="tab-content" id="tab-scripts">
+
+    <div style="margin-top: 20px;"></div>
+
+    <div class="section-label">📢 Saturday — Last Call Posts</div>
+
+    <div class="script-box">
+        <div class="script-header">
+            <div>
+                <div class="script-title">Easter Eve Panic Post — Facebook Groups</div>
+                <div class="script-when">Saturday morning · All FB Groups + Nextdoor</div>
+            </div>
+            <button class="copy-btn" onclick="copyScript(this, 'script-1')">Copy</button>
+        </div>
+        <pre class="script-text" id="script-1">🐣 Tomorrow is Easter. Does your yard pass the egg hunt test?
+
+If you have dogs, you know what's been building up out there since December. Kids are going to be on the ground tomorrow — crawling, touching grass, dropping candy.
+
+We're still taking same-day and morning cleanups for Sunday.
+
+📱 Text (314) 850-7140 — Jamie, local owner
+✅ One-time cleanup from $75
+✅ First cleanup FREE with monthly service ($70/mo flat)
+✅ No contracts, no franchise fees
+
+Reply here or text — I'll get you on the schedule today.</pre>
+    </div>
+
+    <div class="script-box">
+        <div class="script-header">
+            <div>
+                <div class="script-title">Referral Text — Version A (Shannon/Amanda/Chastity first)</div>
+                <div class="script-when">Saturday AM · 5-star customers only</div>
+            </div>
+            <button class="copy-btn" onclick="copyScript(this, 'script-2')">Copy</button>
+        </div>
+        <pre class="script-text" id="script-2">Hey [Name]! Happy almost-Easter 🐣
+
+Quick favor — do you know anyone whose yard needs a cleanup before the egg hunt tomorrow? I have a few Sunday morning slots left.
+
+If you send me someone who signs up, I'll give you $20 off your next month. Takes about 10 seconds to forward my number.
+
+Thanks either way — enjoy the weekend! 🙌</pre>
+    </div>
+
+    <div class="script-box">
+        <div class="script-header">
+            <div>
+                <div class="script-title">Referral Text — Version B (All other customers)</div>
+                <div class="script-when">Saturday AM · Remaining customers</div>
+            </div>
+            <button class="copy-btn" onclick="copyScript(this, 'script-3')">Copy</button>
+        </div>
+        <pre class="script-text" id="script-3">Hey [Name] — hope Easter weekend is treating you well!
+
+Do you have any neighbors or friends with dogs who might want their yard done before the egg hunt tomorrow? I'm still taking Sunday morning slots.
+
+I give a $20 credit for every referral that becomes a regular customer — zero effort on your part, just pass along my number if it feels right.
+
+(314) 850-7140 — Jamie, Tidy Tails
+
+No pressure either way — have a great Easter! 🐣</pre>
+    </div>
+
+    <div class="section-label">🐣 Sunday — Cleanup Day Texts</div>
+
+    <div class="script-box">
+        <div class="script-header">
+            <div>
+                <div class="script-title">Easter Morning Last-Call Post (7–8 AM Sunday)</div>
+                <div class="script-when">Sunday morning · FB Groups + Nextdoor · SHORT version</div>
+            </div>
+            <button class="copy-btn" onclick="copyScript(this, 'script-4')">Copy</button>
+        </div>
+        <pre class="script-text" id="script-4">🐣 Happy Easter! If you're staring at the yard this morning and thinking "uh oh"…
+
+I have a couple morning slots left. Text me — (314) 850-7140
+
+Jamie · Tidy Tails · First cleanup FREE with monthly service</pre>
+    </div>
+
+    <div class="script-box">
+        <div class="script-header">
+            <div>
+                <div class="script-title">Sunday "On My Way" Text</div>
+                <div class="script-when">Send before leaving for EACH cleanup</div>
+            </div>
+            <button class="copy-btn" onclick="copyScript(this, 'script-5')">Copy</button>
+        </div>
+        <pre class="script-text" id="script-5">Hey [Name], it's Jamie from Tidy Tails — On My Way! 🐾 Will have your yard done in about [X] minutes. Happy Easter!</pre>
+    </div>
+
+    <div class="script-box">
+        <div class="script-header">
+            <div>
+                <div class="script-title">Sunday "All Done + Monthly Seed" Text</div>
+                <div class="script-when">Send immediately after EACH cleanup — from the driveway</div>
+            </div>
+            <button class="copy-btn" onclick="copyScript(this, 'script-6')">Copy</button>
+        </div>
+        <pre class="script-text" id="script-6">All Done! 🐾 Your yard is clean and ready for Easter. 
+
+Happy to set you up on a weekly schedule if you want this feeling every week — $70/month flat, same day every week, no contract. Just text back "yes" if you're interested and I'll get you added to the route.
+
+Happy Easter! 🐣 — Jamie</pre>
+    </div>
+
+    <div class="script-box">
+        <div class="script-header">
+            <div>
+                <div class="script-title">Google Review Ask Text</div>
+                <div class="script-when">Within 2 hours of "All Done" text for each Sunday customer</div>
+            </div>
+            <button class="copy-btn" onclick="copyScript(this, 'script-7')">Copy</button>
+        </div>
+        <pre class="script-text" id="script-7">Hey [Name]! One more thing — if you have 30 seconds, a Google review would mean a ton to a small local business. 
+
+Here's the link: https://g.page/r/[YOUR-GOOGLE-REVIEW-LINK]/review
+
+No pressure at all, and happy Easter! 🐣 — Jamie</pre>
+    </div>
+
+    <div class="script-box">
+        <div class="script-header">
+            <div>
+                <div class="script-title">Easter Victory Recap Post</div>
+                <div class="script-when">Sunday 4–6 PM · All FB groups after cleanups</div>
+            </div>
+            <button class="copy-btn" onclick="copyScript(this, 'script-8')">Copy</button>
+        </div>
+        <pre class="script-text" id="script-8">Happy Easter from Tidy Tails! 🐣🐾
+
+Spent this morning doing what I love — getting yards clean so families could actually enjoy the holiday. Cleaned [X] yards today before the egg hunts started.
+
+If you missed out this weekend, Mother's Day is May 10 and we're already booking. First cleanup is always FREE with monthly service ($70/month flat, no contracts).
+
+📱 Text (314) 850-7140 — Jamie, local owner. Not a franchise. Just me and my truck.
+
+Hope everyone had a great Easter! 🌸</pre>
+    </div>
+
+    <div class="section-label">🔥 Monday — Post-Easter Close Scripts</div>
+
+    <div class="script-box">
+        <div class="script-header">
+            <div>
+                <div class="script-title">Monday Monthly Close Text</div>
+                <div class="script-when">Monday 9–10 AM · All Sunday cleanup customers</div>
+            </div>
+            <button class="copy-btn" onclick="copyScript(this, 'script-9')">Copy</button>
+        </div>
+        <pre class="script-text" id="script-9">Hey [Name]! Hope Easter was great 🐣 
+
+How's the yard looking this morning? 
+
+I'd love to keep that going for you — weekly service is $70/month flat, same day every week, no contract, and first cleanup is FREE if you start this month. Just reply "yes" and I'll add you to the route starting this week.
+
+— Jamie, Tidy Tails (314) 850-7140</pre>
+    </div>
+
+    <div class="script-box">
+        <div class="script-header">
+            <div>
+                <div class="script-title">Easter Recap + Mother's Day Pivot — FB Groups</div>
+                <div class="script-when">Monday 8–10 AM · All groups you posted in last week</div>
+            </div>
+            <button class="copy-btn" onclick="copyScript(this, 'script-10')">Copy</button>
+        </div>
+        <pre class="script-text" id="script-10">Hope everyone had an amazing Easter weekend! 🐣
+
+We cleaned [X] yards over the past few days so families could actually enjoy their outdoor space — it never gets old seeing the before and after.
+
+Now we're looking ahead to Mother's Day (May 10). If you've been thinking about setting up weekly service as a gift for your wife or mom — or just for yourself — this is the best time to start. First cleanup is FREE, $70/month flat, no contracts.
+
+📱 Text or call: (314) 850-7140
+🌐 More info: tidytailsstl.com/mothers-day
+
+— Jamie, Tidy Tails · Local St. Louis owner · Not a franchise</pre>
+    </div>
+
+    <div class="script-box">
+        <div class="script-header">
+            <div>
+                <div class="script-title">Inbound Reply — 10-Minute Response (Any Day)</div>
+                <div class="script-when">Any time someone comments/texts "interested" or "how much"</div>
+            </div>
+            <button class="copy-btn" onclick="copyScript(this, 'script-11')">Copy</button>
+        </div>
+        <pre class="script-text" id="script-11">Hey! Thanks for reaching out 🐾
+
+Super quick — how many dogs do you have, and are you looking for a one-time cleanup or ongoing weekly service?
+
+Weekly service: $70/month flat for 1–2 dogs (no contracts, first cleanup FREE)
+One-time: starts at $75
+
+I'm local, not a franchise — I text you before I come and after I'm done. Happy to answer any questions!
+
+— Jamie, Tidy Tails
+📱 (314) 850-7140</pre>
+    </div>
+
+</div>
+
+<!-- MASTER CHECKLIST TAB -->
+<div class="tab-content" id="tab-checklist">
+
+    <div style="margin-top: 20px;">
+        <div class="progress-wrap">
+            <div class="progress-label">
+                <span>Weekend Progress</span>
+                <span id="prog-text">0 / 19 complete</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width: 0%"></div></div>
+        </div>
+    </div>
+
+    <div class="section-label">🌅 Saturday April 4</div>
+    <div class="check-item" id="cl-1" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Easter Eve Panic Post — all FB groups + Nextdoor<div class="check-context">Use script in Scripts tab</div></div></div>
+    <div class="check-item" id="cl-2" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Referral texts — Shannon, Amanda, Chastity first (Version A)<div class="check-context">5-star reviewers = highest convert rate</div></div></div>
+    <div class="check-item" id="cl-3" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Referral texts — remaining 8+ customers (Version B)</div></div>
+    <div class="check-item" id="cl-4" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Reply to all inbound within 10 minutes all day</div></div>
+    <div class="check-item" id="cl-5" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Pause Easter Burst FB campaign by 5 PM<div class="check-context">DO NOT touch main learning phase campaign</div></div></div>
+    <div class="check-item" id="cl-6" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Confirm all Sunday cleanup appointments</div></div>
+
+    <div class="section-label">🐣 Easter Sunday April 5</div>
+    <div class="check-item" id="cl-7" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Easter morning last-call post 7–8 AM</div></div>
+    <div class="check-item" id="cl-8" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">"On My Way" text before EACH cleanup</div></div>
+    <div class="check-item" id="cl-9" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">"All Done + Monthly Seed" text after EACH cleanup</div></div>
+    <div class="check-item" id="cl-10" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Google review ask within 2 hours of "All Done" for each customer</div></div>
+    <div class="check-item" id="cl-11" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Easter Victory Recap post (4–6 PM) with actual cleanup count</div></div>
+    <div class="check-item" id="cl-12" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Reply to all FB/Nextdoor comments from today's posts</div></div>
+
+    <div class="section-label">🔥 Monday April 6</div>
+    <div class="check-item" id="cl-13" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Monthly Close text — all Sunday cleanup customers (9–10 AM)<div class="check-context">Highest-ROI 10 minutes of the week. Do this FIRST.</div></div></div>
+    <div class="check-item" id="cl-14" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Swap FB Ads URL: /spring → /mothers-day<div class="check-context">Ads Manager → Edit Ad → Landing Page URL</div></div></div>
+    <div class="check-item" id="cl-15" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Easter Recap + Mother's Day post in all FB groups (8–10 AM)</div></div>
+    <div class="check-item" id="cl-16" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">FB Ads Day 7 check-in — pull CPL/CTR/frequency</div></div>
+    <div class="check-item" id="cl-17" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Check for HOA email replies from Good Friday blitz</div></div>
+    <div class="check-item" id="cl-18" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Google review count check — any new reviews from Easter?</div></div>
+    <div class="check-item" id="cl-19" onclick="toggleCheck(this)"><div class="check-box">✓</div><div class="check-text">Log all new customers/leads from the weekend into Daily Ops Hub</div></div>
+
+</div>
+
+<!-- WIN MATH TAB -->
+<div class="tab-content" id="tab-math">
+
+    <div style="margin-top: 20px;"></div>
+
+    <div class="alert alert-green">
+        <strong>💰 The Easter Weekend Math</strong>
+        Every one-time cleanup is a $840/year opportunity. The conversion rate from Easter one-time → monthly is 40–60% when you send the Monday close text within 24 hours of the cleanup.
+    </div>
+
+    <div class="revenue-card">
+        <h3>🐻 Bear Case — 3 Easter Cleanups</h3>
+        <div class="revenue-row"><span class="revenue-label">Immediate revenue (3 × $75)</span><span class="revenue-val">$225</span></div>
+        <div class="revenue-row"><span class="revenue-label">Monthly converts (40% × 3 = 1)</span><span class="revenue-val">1 new customer</span></div>
+        <div class="revenue-row"><span class="revenue-label">LTV from that 1 (24mo avg)</span><span class="revenue-val">$1,680</span></div>
+        <div class="revenue-row"><span class="revenue-label">Total Easter weekend LTV</span><span class="revenue-val" style="color:#fde68a;">$1,905</span></div>
+    </div>
+
+    <div class="revenue-card">
+        <h3>📊 Base Case — 6 Easter Cleanups</h3>
+        <div class="revenue-row"><span class="revenue-label">Immediate revenue (6 × $75)</span><span class="revenue-val">$450</span></div>
+        <div class="revenue-row"><span class="revenue-label">Monthly converts (40% × 6 = 2)</span><span class="revenue-val">2 new customers</span></div>
+        <div class="revenue-row"><span class="revenue-label">LTV from those 2 (24mo avg)</span><span class="revenue-val">$3,360</span></div>
+        <div class="revenue-row"><span class="revenue-label">Referral converts (1 from 11 customer texts)</span><span class="revenue-val">+$1,680</span></div>
+        <div class="revenue-row"><span class="revenue-label">Total Easter weekend LTV</span><span class="revenue-val" style="color:#fde68a;">$5,490</span></div>
+    </div>
+
+    <div class="revenue-card">
+        <h3>🚀 Bull Case — 10 Easter Cleanups + 2 Referrals</h3>
+        <div class="revenue-row"><span class="revenue-label">Immediate revenue (10 × $75)</span><span class="revenue-val">$750</span></div>
+        <div class="revenue-row"><span class="revenue-label">Monthly converts (50% × 10 = 5)</span><span class="revenue-val">5 new customers</span></div>
+        <div class="revenue-row"><span class="revenue-label">LTV from those 5 (24mo avg)</span><span class="revenue-val">$8,400</span></div>
+        <div class="revenue-row"><span class="revenue-label">Referral converts (2)</span><span class="revenue-val">+$3,360</span></div>
+        <div class="revenue-row"><span class="revenue-label">Total Easter weekend LTV</span><span class="revenue-val" style="color:#fde68a;">$12,510</span></div>
+    </div>
+
+    <div class="action-card nice" style="margin-top: 20px;">
+        <div class="action-header">
+            <span class="action-title">🎯 The Key Lever: Monday Morning Text</span>
+            <span class="action-tag tag-nice">Most Important</span>
+        </div>
+        <div class="action-desc">The difference between bear and base case is almost entirely whether TJ sends the Monday Close text within 24 hours of the Sunday cleanup. Customers at peak satisfaction → 40–60% close. Same customers 72 hours later → 15–20% close. Monday morning is not optional. It's the most valuable 10 minutes of the week.</div>
+    </div>
+
+    <div class="action-card today">
+        <div class="action-header">
+            <span class="action-title">📈 Path to 25 Customers</span>
+            <span class="action-tag tag-today">Goal Tracker</span>
+        </div>
+        <div class="action-desc">Current: ~11 customers. Need 14 more by August. Easter weekend base case: +2–3 converts = 13–14 total. Base case: halfway there from one weekend. Then Mother's Day, Father's Day, and ongoing FB Ads fill the rest. This is the most important weekend between now and August.</div>
+    </div>
+
+    <div style="margin-top: 20px; padding: 16px; background: #111; border-radius: 10px; border: 1px solid #2a2a2a; font-size: 13px; color: #888; line-height: 1.7;">
+        <strong style="color: #ddd; display: block; margin-bottom: 8px;">Quick Reference Numbers</strong>
+        One-time cleanup → $75<br>
+        Monthly service (1–2 dogs) → $70/month<br>
+        Average customer LTV (24 months) → $1,680<br>
+        Average close rate one-time → monthly → 40–60%<br>
+        Cost per referral convert → $20 credit<br>
+        ROAS on referral program → 42× ($20 cost / $840 LTV)
+    </div>
+
+</div>
+
+<!-- Dashboard link -->
+<div style="text-align: center; padding: 24px; color: #555; font-size: 12px;">
+    <a href="index.html" style="color: #7c3aed; text-decoration: none;">← Back to Dashboard</a>
+    &nbsp;·&nbsp;
+    <a href="post-easter-monthly-conversion-kit.html" style="color: #10b981; text-decoration: none;">Post-Easter Conversion Kit →</a>
+    &nbsp;·&nbsp;
+    <a href="mothers-day-campaign-hub.html" style="color: #ec4899; text-decoration: none;">Mother's Day Hub →</a>
+</div>
+
+<script>
+// Tab switching
+function switchTab(id) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    event.target.classList.add('active');
+}
+
+// Checkbox toggle with localStorage
+function toggleCheck(el) {
+    el.classList.toggle('done');
+    const id = el.id;
+    const done = el.classList.contains('done');
+    localStorage.setItem('easter-guide-' + id, done ? '1' : '0');
+    updateProgress();
+}
+
+function updateProgress() {
+    const items = document.querySelectorAll('#tab-checklist .check-item');
+    let done = 0;
+    items.forEach(i => { if (i.classList.contains('done')) done++; });
+    const pct = Math.round((done / items.length) * 100);
+    document.getElementById('prog-fill').style.width = pct + '%';
+    document.getElementById('prog-text').textContent = done + ' / ' + items.length + ' complete';
+}
+
+// Restore checkboxes
+document.querySelectorAll('.check-item').forEach(el => {
+    if (localStorage.getItem('easter-guide-' + el.id) === '1') {
+        el.classList.add('done');
+    }
+});
+updateProgress();
+
+// Copy script buttons
+function copyScript(btn, id) {
+    const text = document.getElementById(id).textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = '✓ Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+    });
+}
+
+// Easter countdown (April 5, 2026 10:00 AM)
+function updateCountdown() {
+    const easter = new Date('2026-04-05T10:00:00-05:00').getTime();
+    const now = new Date().getTime();
+    const diff = easter - now;
+    if (diff <= 0) {
+        document.getElementById('cd-h').textContent = '🐣';
+        document.getElementById('cd-m').textContent = 'IT\'S';
+        document.getElementById('cd-s').textContent = 'HERE';
+        return;
+    }
+    const h = Math.floor(diff / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('cd-h').textContent = String(h).padStart(2, '0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2, '0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2, '0');
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+</script>
+</body>
+</html>
