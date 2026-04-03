@@ -2,6 +2,44 @@
 
 ---
 
+### Friday 5:04 PM — Easter Weekend Execution Guide + Cottleville SEO Fix (Hourly Task)
+- **5:04 PM** 🐣 Built the **Easter Weekend Execution Guide** — the definitive 48-hour playbook for Saturday April 4 → Sunday April 5 (Easter) → Monday April 6 (peak close window). Also fixed the Cottleville/Lake St. Louis SEO gap (post was live but missing from sitemap and blog index).
+  - **Dashboard tool:** `dashboard/easter-weekend-execution-guide.html` (46KB ✅)
+  - **Live URL:** `https://tidytails.github.io/tidytails-dashboard/dashboard/easter-weekend-execution-guide.html` ✅ HTTP 200 confirmed
+  - **Git commits:** tidytails-dashboard `3e4bdad4` → `11ea96cd` → `cf0233a4` (master merge) ✅ → GH Pages deployed ✅
+  - **Cottleville/Lake St. Louis SEO fix:**
+    - Added to `sitemap.xml` (priority 0.9, monthly changefreq) — was missing entirely ✅
+    - Added blog card to `blog/index.html` visual grid (teal border) ✅
+    - Added JSON-LD blogPost entry to `blog/index.html` schema ✅
+    - Website repo pushed: tidytails-website commit `fcf1001` ✅ → Cloudflare Pages live ✅
+  - **Why Easter Weekend Guide over other tasks at 5 PM Friday:**
+    - It's the last working hour before Easter weekend. Everything is built (83 posts, all ad packs, all tools). The single gap that kills conversions: TJ wakes up Saturday without a tight 48-hour game plan and improvises instead of executing.
+    - The Monday morning close text is the single highest-ROI action of the weekend — converts one-time Easter customers to $840/yr monthly subscribers. If he sends it at 9 AM Monday = 40–60% close. Same text at Wednesday = 15–20% close. The guide makes sure he doesn't forget it.
+  - **What's in the guide (6 tabs):**
+    - **Saturday tab:** Easter Eve Panic Post script (all FB groups), referral texts (Version A for 5-star customers, Version B for all others), 10-minute reply protocol, Easter Burst campaign pause reminder. 6-item checklist with localStorage.
+    - **Easter Sunday tab:** Morning last-call post (7–8 AM panic window), "On My Way" text protocol for each cleanup, "All Done + Monthly Seed" text (plants the monthly offer from the driveway), Victory Recap post (4–6 PM with actual cleanup count), Google review ask within 2 hours. 7-item checklist.
+    - **Monday Close tab:** Monthly Close text blast (9–10 AM, highest-ROI 10 minutes of the week), FB Ads URL swap /spring → /mothers-day, Easter Recap + Mother's Day pivot post for all groups, Day 7 FB Ads check-in, HOA email follow-up check. 6-item checklist.
+    - **All Scripts tab (11 scripts, all copy-paste):**
+      1. Easter Eve Panic Post — FB Groups/Nextdoor
+      2. Referral Text Version A — 5-star customers (Shannon/Amanda/Chastity)
+      3. Referral Text Version B — all other customers
+      4. Easter Morning Last-Call Post (7–8 AM, short)
+      5. Sunday "On My Way" text
+      6. Sunday "All Done + Monthly Seed" text
+      7. Google Review Ask text
+      8. Easter Victory Recap post (with placeholder for cleanup count)
+      9. Monday Monthly Close text
+      10. Monday Easter Recap + Mother's Day Pivot FB post
+      11. Universal Inbound Reply (10-minute response script)
+    - **Master Checklist tab:** All 19 items across Sat/Sun/Mon with progress bar and localStorage persistence
+    - **Win Math tab:** Bear ($1,905 LTV, 3 cleanups), Base ($5,490 LTV, 6 cleanups + 1 referral), Bull ($12,510 LTV, 10 cleanups + 2 referrals). Monday Morning Text call-out as the key lever. Path to 25-customer goal from Easter weekend results.
+  - **Live countdown timer:** Ticks to Easter Sunday April 5 at 10 AM in real time
+  - **Dashboard placement:** Fastest-pulsing (0.65s) pink/magenta quick link at top of quick links, above the Good Friday Email Blitz link — impossible to miss
+  - **Cottleville fix rationale:** The `pooper-scooper-cottleville-lake-st-louis-mo.html` post (46KB, published April 1) was live at HTTP 200 and linked from `service-areas.html` (3 pills: Cottleville, Lake St. Louis, Dardenne Prairie) but Google had no way to discover it — not in sitemap, no blog index card, no JSON-LD schema reference. Fixed all three. This matters because the St. Charles County FB conquest kit fires Week 3 content specifically in Cottleville/Dardenne Prairie groups — anyone who Googles after seeing TJ's post will now find the dedicated page and convert at higher rates than the umbrella county post.
+  - **Revenue math:** Easter weekend base case = $5,490 LTV at near-zero cost. Monday morning close text alone = the difference between 2 converts and 0 converts from the same cleanups. The guide makes the sequence idiot-proof.
+
+---
+
 ### Friday 4:06 PM — Good Friday Email Blitz: 5 HOA Commercial Emails Pre-Written (Hourly Task)
 - **4:06 PM** 🚨 Built and deployed the **Good Friday Email Blitz** — 5 pre-written, pre-addressed commercial emails targeting HOA management companies, closing the 17-day/0-email gap before Easter weekend
   - **File:** `dashboard/good-friday-email-blitz.html` (36KB ✅)
