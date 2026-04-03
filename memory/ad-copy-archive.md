@@ -1,6 +1,18 @@
 # Ad Copy Archive — Shed Ads
 *Tracks previously written ads to avoid repeats*
 
+## April 3, 2026 (9 AM Daily)
+- **Shed-Apr194** — "The Setup's Done" — zero effort / done-for-you angle, delivered and assembled, no weekend lost
+- **Shed-Apr195** — "The Friday Scroll" — meta Marketplace scroll awareness, "you've scrolled past a shed twice this spring", next weekend IS this weekend
+- **Shed-Apr196** — "The Daily Clutter Tax" — cost of waiting = stress not money, daily parking/garage frustration math, clutter tax concept
+- **Shed-Apr197** — "One Text Away" — aspirational ease, 1 text to Darius, "what would YOU use it for?" engagement CTA
+
+## Hooks Used (April 3 — don't repeat 2 weeks)
+- Zero effort / done-for-you / "you don't build it, you don't hire a crew" delivery angle
+- Meta Marketplace scroll awareness / "you've scrolled past this twice this spring"
+- Clutter tax = stress cost not dollar cost / daily parking/garage frustration
+- "One text away" aspirational ease with engagement question CTA
+
 ## April 1, 2026 (9 AM Daily)
 - **Shed-Apr190** — "The April Fools Truth" — April Fools Day angle, "this one isn't a prank", truth-bomb about still not having space
 - **Shed-Apr191** — "The New Month Move" — New month/new chapter, January-through-March procrastination timeline, social proof FOMO (people who bought in Jan already have their garages back)

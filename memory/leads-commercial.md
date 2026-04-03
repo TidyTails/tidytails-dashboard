@@ -1,5 +1,5 @@
 # Commercial Leads — Tidy Tails Pet Waste Removal
-*Last updated: April 1, 2026 3:04 PM*
+*Last updated: April 3, 2026 9:00 AM*
 *Status legend: New | Contacted | Quoted | Won | Lost*
 
 ---
@@ -1521,4 +1521,74 @@ Commercial pricing is different from residential. Here's what competitors charge
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated April 1, 2026 — 107 total leads)
+---
+
+## 🐕 NEW LEADS BATCH — April 3, 2026 (9:00 AM) — Total: 112 leads
+
+### Tribeca STL Apartments ⭐⭐ HIGH VALUE — CENTRAL WEST END
+- **Type:** Luxury Apartment Complex — Dog Park + Pet Spa
+- **Address:** Central West End, St. Louis, MO 63108
+- **Contact:** Leasing Office / Mission Rock Residential corporate
+- **Phone:** (314) 405-1800
+- **Website:** tribeca-stl.com | missionrockresidential.com
+- **Why Good Fit:** Luxury CWE apartments with spacious dog park AND pet spa. Same Mission Rock Residential brand that manages Emerald Crossing and Steelyard (already in pipeline). Landing Tribeca opens a 3-property bundle pitch to Mission Rock corporate. CWE is STL's most dog-dense walkable neighborhood.
+- **Est. Monthly Value:** $300–$500/mo
+- **Found:** April 3, 2026
+- **Status:** New
+- **Pitch angle:** "We service several Mission Rock properties across St. Louis. Your dog park and outdoor areas see a lot of traffic — we'd love to keep them clean. Weekly professional service, one flat monthly rate. Same vendor your other MR communities use."
+
+---
+
+### Mission Rock Residential Bundle (Tribeca + Emerald Crossing + Steelyard) ⭐⭐ STRATEGIC
+- **Type:** Multi-Property Bundle — Corporate Vendor Relationship
+- **Contact:** Mission Rock Residential corporate vendor/facilities team
+- **Website:** missionrockresidential.com
+- **Properties:** Tribeca STL (CWE) + Emerald Crossing (Overland) + Steelyard (South City)
+- **Why Good Fit:** Three STL Mission Rock properties all with dog parks/pet amenities. One corporate relationship = 3 contracts. Same bundle strategy that works for Aventura (3 properties, one pitch).
+- **Est. Monthly Value:** $600–$1,200/mo across 3 properties
+- **Found:** April 3, 2026
+- **Status:** New
+- **Pitch angle:** "We noticed Mission Rock manages several dog-friendly communities in STL. We'd love to offer a volume discount across all your properties — one vendor, one invoice, consistent service."
+
+---
+
+### K9 Garden STL ⭐⭐ BRAND NEW — FOREST PARK SE
+- **Type:** Indoor + Outdoor Dog Park / Café & Bar
+- **Address:** 4565 McRee Ave, St. Louis, MO 63110
+- **Contact:** Walk in or call
+- **Phone:** (314) 530-9990
+- **Website:** k9garden.com
+- **Hours:** Mon–Fri 6AM–9PM · Sun 8AM–6PM
+- **Why Good Fit:** Opened January 2026 at former Bar K location. Indoor AND outdoor dog park, full café/bar. Brand new = no vendor relationships locked in. Dogs running all day outdoors. Right next to The Rail Apartments (268 units, ~80% dog ownership). Pairs with The Rail + Cortona for tight South City 3-stop route.
+- **Est. Monthly Value:** $250–$500/mo + referral pipeline
+- **Found:** April 3, 2026
+- **Status:** New
+- **Pitch angle:** "You just opened — congrats! With dogs running all day in your outdoor areas, we handle professional cleanup so your staff focuses on the experience. Flat monthly rate."
+
+---
+
+### Canopy at Midtown — MIDTOWN STL (NEW BUILDS)
+- **Type:** New Luxury Apartment Complex(es) — Midtown Corridor
+- **Address:** Midtown St. Louis, MO 63108 (Grand Blvd / Chouteau corridor)
+- **Contact:** Search Google for current Midtown 2025/2026 apartment builds with dog parks
+- **Why Good Fit:** Midtown corridor is experiencing apartment building boom 2025–2026. Multiple new luxury builds opening with dog parks as standard amenity. New builds = no vendor contracts yet. First-mover wins the relationship.
+- **Est. Monthly Value:** $250–$450/mo
+- **Found:** April 3, 2026
+- **Status:** New (research needed — search "Midtown St. Louis apartments 2026 dog park")
+- **Pitch angle:** "Just opened? We'd love to be your first pet waste vendor — keeping that new dog park pristine from day one. Local service, flat monthly rate, no contract."
+
+---
+
+### Webster Groves / Maplewood Vet Clinic Blitz ⭐ SOUTH COUNTY REFERRAL
+- **Type:** Vet Referral Partnership — 3 Clinics in Afternoon Walk-In Blitz
+- **Target Clinics:** Webster Groves Animal Hospital · Animal Hospital of Maplewood · Brentwood Animal Hospital
+- **Approach:** Walk-in with Tidy Tails cards + flyers. Ask for office manager. 30 min each.
+- **Why Good Fit:** Webster Groves / Maplewood / Brentwood = one of STL's most dog-devoted corridors. Fills South County vet referral gap — all 6 current vet leads are North County. Pairs with The Rockwood and Pacific Place senior living leads (same corridor = one afternoon route). Even 1% conversion = 6–12 new residential clients.
+- **Est. Monthly Value:** $400–$800/mo in referrals
+- **Found:** April 3, 2026
+- **Status:** New
+- **Pitch angle:** "We're Tidy Tails — local pet waste removal. Your clients love their dogs — we keep their yards clean. Can we leave cards here? 10% off first month for your clients."
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated April 3, 2026 — 112 total leads)
