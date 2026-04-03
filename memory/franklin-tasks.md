@@ -2,6 +2,29 @@
 
 ---
 
+### Friday 7:04 AM — Good Friday Morning Briefing PDF (Hourly Task)
+- **7:04 AM** 🐣 Built and delivered the **Good Friday / April 3 Morning Briefing** — the "last push before Easter" command document for the highest-conversion weekend of spring
+  - **Files:** `dashboard/pdfs/MORNING_BRIEFING_2026-04-03.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-04-03.pdf` (636KB ✅)
+  - **Git commit:** `36bd44d2` ✅ pushed to tidytails-dashboard
+  - **Dashboard:** Updated quick link → pulsing purple (0.9s) "🐣 APR 3 GOOD FRIDAY BRIEFING — LAST PUSH BEFORE EASTER"
+  - **PDF validated:** 636KB ✅ (>50KB), starts `%PDF-` ✅, generated via md-to-pdf CLI
+  - **Why this task:** It's 7:04 AM Friday April 3 — Good Friday, 48 hours before Easter. All tools are built (81 posts, all ad packs, all conquest kits, referral engine). The single highest-impact gap at this moment: no synthesis briefing telling TJ the exact execution sequence for the last 2 days before Easter. NC-5 (Bridgeton) fires this morning. Easter Last Call posts go in every FB group. Referral texts go to all 11+ customers. WC-1 West County fires today. FB Ads Easter Burst needs creative swap check. Without a single "do this first" document, TJ opens 8 tabs at 7 AM and loses the most valuable conversion window of the year.
+  - **What's in the briefing:**
+    - **Header:** "Good Friday Last Push" — stats: 11 customers / 25 goal / 82 posts / 48h to Easter
+    - **Priority 1 (8 AM):** NC-5 Bridgeton post — full copy-paste script for Bridgeton MO Community + North County STL + Bridgeton Buy/Sell. Orphaned customer hook ("Did your dog poop service disappear?")
+    - **Priority 2 (9–11 AM):** Easter Last Call posts for ALL Facebook groups + Nextdoor — two versions (FB full + Nextdoor shorter). "Easter egg hunt is Sunday 🐣" hook.
+    - **Priority 3:** FB Ads Easter Burst — swap to Ad #3 "48-Hour Warning" if frequency ≥ 1.5. Full ad copy included. RULE: DO NOT touch main campaign.
+    - **Priority 4:** Referral texts to all 11+ customers — Version A (Shannon/Amanda/Chastity with $20 incentive) + Version B (remaining 8+). All copy-paste.
+    - **Priority 5:** WC-1 West County Flat Rate post (Chesterfield/Ballwin groups) + same-day blog URL amplification (post #82 live at 6 AM)
+    - **Full timeline:** 7–8 AM (NC-5 + FB Ads check) → 8–9 AM (Easter Last Call everywhere) → 9–11 AM (referral texts) → 11 AM–1 PM (WC-1 + commercial callbacks) → 1–5 PM (inbound 10-min SLA) → Evening (Instagram story) → Saturday (Easter Eve close + pause Easter Burst)
+    - **Win math:** Bear ($1,680) / Base ($3,780) / Bull ($7,560). Key stats: $0 CAC for referral converts, 72% same-day close rate, 40% one-time → monthly convert rate, $840 LTV per customer.
+    - **15-item master checklist** with AM/PM/Evening/Saturday sections
+    - **9-tool reference grid**
+    - **Mindset closer:** "Today is Good Friday — the highest-anxiety yard cleanup window of the year. The only thing between you and $3–7K in new LTV this weekend is execution."
+  - **Why this beats other tasks at 7 AM:** Everything is built. 82 posts live. All ad packs, conquest kits, referral engine completed in overnight sprint. The gap at 7 AM is pure execution clarity for the 48-hour window that determines how many Easter cleanups TJ does — and how many of those convert to $840/yr monthly customers. A Good Friday briefing with all scripts copy-pasted closes the gap between "tools exist" and "Jamie's texting leads before 9 AM." Revenue potential: $3,780 base case at $0 additional build cost.
+
+---
+
 ### Friday 4:09 AM — Customer Referral Engine (Hourly Task)
 - **4:09 AM** 🤝 Built and published the **Customer Referral Engine** — a complete referral program toolkit filling the last major untapped growth channel with zero ad spend
   - **File:** `dashboard/customer-referral-engine.html` (44KB ✅)
