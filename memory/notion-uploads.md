@@ -429,3 +429,10 @@ Chief uses this to verify sync with dashboard.
 | 18:01 | Shed Phone Scripts — April 2026 | 🏠 Shed Sales | pdfs/SHED_PHONE_SCRIPTS_2026-04-02.pdf | ✅ |
 | 00:25 | Father's Day Ad Pack — June 21, 2026 | 🐕 Tidy Tails | pdfs/FATHERS_DAY_AD_PACK_2026-06-21.pdf | ⏳ pending next sync |
 | 00:25 | St. Charles County FB Conquest Kit | 🐕 Tidy Tails | (dashboard tool — no PDF yet) | pending |
+
+## Upload Log — Apr 3, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 04:47 | Blog #80 — Does Dog Poop Hurt Your Home Value? (St. Louis) | 🐕 Tidy Tails | tidytailsstl.com/blog/dog-poop-home-value-selling-house-st-louis | ✅ |
+| 04:47 | Blog #81 — Dog Poop and Fleas: The Yard Connection St. Louis Dog Owners Miss | 🐕 Tidy Tails | tidytailsstl.com/blog/dog-poop-fleas-yard-st-louis | ✅ |
