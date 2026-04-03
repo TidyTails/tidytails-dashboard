@@ -1,6 +1,30 @@
 # Ad Copy Archive — Shed Ads
 *Tracks previously written ads to avoid repeats*
 
+## April 3, 2026 (9 AM Daily)
+- **Shed-Apr194** — "The Setup's Done" — zero effort / done-for-you angle, delivered and assembled, no weekend lost
+- **Shed-Apr195** — "The Friday Scroll" — meta Marketplace scroll awareness, "you've scrolled past a shed twice this spring", next weekend IS this weekend
+- **Shed-Apr196** — "The Daily Clutter Tax" — cost of waiting = stress not money, daily parking/garage frustration math, clutter tax concept
+- **Shed-Apr197** — "One Text Away" — aspirational ease, 1 text to Darius, "what would YOU use it for?" engagement CTA
+
+## Hooks Used (April 3 — don't repeat 2 weeks)
+- Zero effort / done-for-you / "you don't build it, you don't hire a crew" delivery angle
+- Meta Marketplace scroll awareness / "you've scrolled past this twice this spring"
+- Clutter tax = stress cost not dollar cost / daily parking/garage frustration
+- "One text away" aspirational ease with engagement question CTA
+
+## April 1, 2026 (9 AM Daily)
+- **Shed-Apr190** — "The April Fools Truth" — April Fools Day angle, "this one isn't a prank", truth-bomb about still not having space
+- **Shed-Apr191** — "The New Month Move" — New month/new chapter, January-through-March procrastination timeline, social proof FOMO (people who bought in Jan already have their garages back)
+- **Shed-Apr192** — "The Wednesday Decision" — Mid-week action urgency, "by Friday you could have this ordered", fast turnaround timeline visualization
+- **Shed-Apr193** — "Zero Credit, Zero Excuses" — No credit check / financing barrier removal, storage unit rent math vs own it forever
+
+## Hooks Used (April 1 — don't repeat 2 weeks)
+- April Fools Day / "this one isn't a prank" truth angle
+- January→February→March procrastination timeline / new month social proof
+- Wednesday mid-week action urgency / fast delivery timeline
+- Zero credit / "no credit check standing in your way" barrier removal
+
 ## March 26, 2026 (9 AM Daily)
 - **Shed-Mar174** — "The Quiet Spot" — Mental health/escape, need a spot, peace and quiet angle
 - **Shed-Mar175** — "The 10-Minute Walk" — Storage unit vs backyard convenience, stop driving across town
@@ -114,6 +138,18 @@
 - Spring project checklist humor / cross it off
 - Dog owner stuff accumulation / pet gear overload
 
+## March 30, 2026 — 9 AM Daily (4 Ads)
+- **Shed-Mar186** — "The Tax Refund Sequel" — Tax refund reinvestment angle, adds home value, pays for itself in storage savings
+- **Shed-Mar187** — "The Carpool Lane" — Morning commute habit / car in driveway every day / garage has lost its identity
+- **Shed-Mar188** — "The Monday Upgrade" — "What it really becomes" use-case reframe with workshop/gym/office/man cave specifics
+- **Shed-Mar189** — "The Spring Monday PSA" — PSA format with 3-weekend transformation timeline (delivery → organized → park inside)
+
+## Hooks Used (March 30 9AM — don't repeat 2 weeks)
+- Tax refund reinvestment (new framing — not "spend your refund" but "invest it in home value")
+- Morning commute / car in driveway habit / garage identity loss
+- "What it really becomes" use-case reframe with specific examples per persona
+- 3-weekend transformation timeline (Weekend 1: delivered, Weekend 2: organized, Weekend 3: car inside)
+
 ## March 29, 2026 — 9 AM Daily (4 Ads)
 - **Shed-Mar182** — "The Sunday Visitor" — Easter/family gathering angle, garage disaster with company coming, no-pressure soft close
 - **Shed-Mar183** — "The April Price Check" — Tariff follow-up, lumber/steel prices, window closing, just math angle
@@ -165,3 +201,26 @@
 - "Last 2 days" Instagram short form with soft CTA
 - Free upgrade dollar math ($250–$750 you'd pay next week)
 - PSA / "honest nudge" format for warm leads and DMs
+
+## March 31, 2026 — Last Day Promo (4 Ads)
+- **Shed-Mar31-01** — "Last Day" — 12mo same as cash + 50% off financing ends tonight, honest no-pressure close
+- **Shed-Mar31-02** — "The April Math" — Price breakdown, 12mo = $350/mo zero interest, April = standard pricing
+- **Shed-Mar31-03** — Short & Punchy — Instagram/quick post, bullet checklist, ends tonight
+- **Shed-Mar31-04** — "The Honest One" — DM/text warm lead script referencing specific shed they looked at
+
+## Hooks Used (March 31 — don't repeat 2 weeks)
+- Last day / tonight urgency (12mo same as cash + 50% off financing combo)
+- April math / pricing breakdown (350/mo for 12mo = zero interest)
+- Honest DM script targeting warm pipeline leads by name
+
+## April 2, 2026 — Tariff Season Opens (4 Ads)
+- **Shed-Apr02-01** — "April Is Here. Prices Changed." — Tariff hike April 1, pre-tariff lot inventory, honest no-pressure
+- **Shed-Apr02-02** — "Spring Math" — Storage unit vs shed math ($150/mo forever vs own it), tariff demand spike
+- **Shed-Apr02-03** — Short Form — Spring + tariffs hit, 23 buildings, Instagram/FB quick post
+- **Shed-Apr02-04** — "The Garage Confession" — Humor hook, 2022 garage joke, tariff pricing urgency
+
+## Hooks Used (April 2 — don't repeat 2 weeks)
+- Tariff went up April 1 / pre-tariff lot inventory angle
+- Spring math: storage unit rent forever vs own a shed
+- Garage you haven't parked in since 2022 (humor)
+- 23 buildings on lot, current pricing won't last

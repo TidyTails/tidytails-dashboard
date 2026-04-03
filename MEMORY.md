@@ -55,15 +55,15 @@
 - Average customer value: ~$100/month
 - **$70/month flat rate = UNIQUE** — no competitor offers this
 
-### Current State (Mar 26, 2026)
-- **10 recurring customers** ✅ (TJ confirmed Mar 26 — up from ~8!)
+### Current State (Mar 29, 2026)
+- **11 recurring customers** ✅ (TJ confirmed Mar 29 — up from 10!)
 - Solo operation, wife does scheduling
 - Revenue: ~$750/month at peak, likely lower now
 - **Monday scooping day** (changed from Sunday, Mar 20)
 - **SSL RENEWED ✅** — Certificate valid Feb 16 → May 17, 2026. Site loads fast on Cloudflare.
 - **GBP NEAR-COMPLETE ✅** (TJ confirmed Mar 25) — was 7%, now almost done. Should start showing in Maps.
 - **⚠️ TJ POSTED IN FB GROUPS for the first time (Mar 24)** — first confirmed execution of marketing playbook!
-- **🐾 SATURDAY MAR 28: Crestwood Vet Adoption Paw-ty** — Event prep materials + follow-up system built. TJ needs to PRINT materials tonight/Friday.
+- **🐾 Crestwood Vet Paw-ty (Mar 28)** — TJ did NOT attend (family wedding). Disregard all follow-up materials. TJ likes events idea — keep flagging spring events.
 
 ### Online Presence (Mar 22)
 - **GBP:** NEAR-COMPLETE ✅ (TJ confirmed Mar 25). Was 7%, now almost done. Should show in Maps now.
@@ -101,6 +101,7 @@
 | 7 | Chastity | Florissant 63033 | Biweekly | $90 |
 | 8 | Preshus | Saint Charles 63303 | Weekly | $100 |
 | 9-10 | *(2 new — need names from TJ)* | — | — | — |
+| 11 | *(new Mar 29)* | — | Biweekly | $45 |
 
 📋 **10 total confirmed Mar 26.** Need details on customers 9 & 10 next time TJ's active.
 
@@ -393,3 +394,9 @@ Path: Tidy Tails → document the AI journey → build marketing agency for smal
 - `memory/notion-uploads.md` — Notion sync tracking
 
 **Archived Mar 22:** 5 duplicate competitor files, 6 pre-Mar-19 daily files, 10 guide/kit files superseded by dashboard tools, Sat night task overflow
+
+## 🚨 CRITICAL: GitHub Pages Branch Fix (March 29, 2026 8:28 PM)
+**Root cause of ALL broken link complaints:** GitHub Pages served from `main` branch. We pushed to `master`. They diverged months ago — main was 150 files behind.
+**Fix:** Merged master → main, pushed. All 150 files now live. Switched default working branch to `main`.
+**Rule going forward:** ALWAYS work on `main` branch. Never commit to master. `git push origin main` only.
+**Lesson #25:** Always verify which branch GitHub Pages is configured to serve BEFORE assuming pushes are live.

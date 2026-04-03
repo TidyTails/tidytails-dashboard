@@ -386,18 +386,58 @@ Chief uses this to verify sync with dashboard.
 | 12:01 | Shed Ads Mar 29 | 🏠 Shed Sales | SHED_ADS_2026-03-29.pdf | ✅ |
 | 12:01 | Commercial Leads Mar 29 | 🐕 Jamie's Hub | COMMERCIAL_LEADS_2026-03-29.pdf | ✅ |
 
-## Upload Log — Mar 31, 2026
+## Upload Log — Mar 29, 2026 (late sync)
 
 | Time | File | Notion Folder | Dashboard Path | Status |
 |------|------|---------------|----------------|--------|
-| 00:01 | Morning Briefing Mar 31 | 📋 Operations | MORNING_BRIEFING_2026-03-31.pdf | ✅ |
+| 00:01 | Commercial Outreach Kit Mar 29 | 🐕 Jamie's Hub | COMMERCIAL-OUTREACH-KIT-2026-03-29.pdf | ✅ |
+| 00:01 | North County Commercial Blitz Mar 29 | 🐕 Jamie's Hub | NORTH_COUNTY_COMMERCIAL_BLITZ_2026-03-29.pdf | ✅ |
+| 00:01 | Shed Ads EOM Mar 29 | 🏠 Shed Sales | SHED_ADS_EOM_2026-03-29.pdf | ✅ |
 
 ## Upload Log — Mar 30, 2026
 
 | Time | File | Notion Folder | Dashboard Path | Status |
 |------|------|---------------|----------------|--------|
 | 18:01 | Morning Briefing Mar 30 | 📋 Operations | MORNING_BRIEFING_2026-03-30.pdf | ✅ |
-| 18:01 | Shed Ads Mar 30 | 🏠 Shed Sales | SHED_ADS_2026-03-30.pdf | ✅ |
+| 18:02 | Shed Ads Mar 30 | 🏠 Shed Sales | SHED_ADS_2026-03-30.pdf | ✅ |
+| 18:02 | Commercial Leads Mar 30 | 🐕 Jamie's Hub | COMMERCIAL_LEADS_2026-03-30.pdf | ✅ |
 | 18:02 | Shed Commercial Leads Mar 30 | 🐕 Jamie's Hub | SHED_COMMERCIAL_LEADS_2026-03-30.pdf | ✅ |
-| 18:02 | Shed Video Scripts Mar 30 | 🏠 Shed Sales | SHED_VIDEO_SCRIPTS_2026-03-30.pdf | ✅ |
-| 18:02 | Shed Video Content Mar 30 | 🏠 Shed Sales | SHED_VIDEO_CONTENT_2026-03-30.pdf | ✅ |
+
+## Upload Log — Mar 31, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 12:01 | Shed Ads Mar 31 | 🏠 Shed Sales | SHED_ADS_2026-03-31.pdf | ✅ |
+| 14:17 | Morning Briefing — March 31, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-03-31.pdf | ✅ |
+| 14:17 | Easter Sprint Kit — April 1-5, 2026 | 🐕 Tidy Tails | pdfs/EASTER_SPRINT_KIT_2026-03-31.pdf | ✅ |
+| 14:17 | Mother's Day Campaign Hub — May 10, 2026 | 🐕 Tidy Tails | pdfs/MOTHERS_DAY_CAMPAIGN_HUB_2026-03-31.pdf | ✅ |
+
+## Upload Log — Apr 1, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 18:01 | Morning Briefing — April 1, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-04-01.pdf | ✅ |
+| 12:02 | Commercial Leads — April 1, 2026 | 🐕 Jamie's Hub | pdfs/COMMERCIAL_LEADS_2026-04-01.pdf | ✅ |
+| 12:02 | Shed Ads — April 1, 2026 | 🏠 Shed Sales | pdfs/SHED_ADS_2026-04-01.pdf | ✅ |
+
+## Upload Log — Apr 2, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 00:01 | Morning Briefing — April 2, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-04-02.pdf | ✅ |
+| 12:02 | Shed Ads — April 2, 2026 | 🏠 Shed Sales | pdfs/SHED_ADS_2026-04-02.pdf | ✅ |
+| 18:01 | Shed Phone Scripts — April 2026 | 🏠 Shed Sales | pdfs/SHED_PHONE_SCRIPTS_2026-04-02.pdf | ✅ |
+| 00:25 | Father's Day Ad Pack — June 21, 2026 | 🐕 Tidy Tails | pdfs/FATHERS_DAY_AD_PACK_2026-06-21.pdf | ✅ (Notion ID: 337ccdb3-7d1f-8159-a0a9-f889b790f290) |
+| 00:25 | St. Charles County FB Conquest Kit | 🐕 Tidy Tails | (dashboard tool — no PDF yet) | pending |
+
+## Upload Log — Apr 3, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 04:47 | Blog #80 — Does Dog Poop Hurt Your Home Value? (St. Louis) | 🐕 Tidy Tails | tidytailsstl.com/blog/dog-poop-home-value-selling-house-st-louis | ✅ |
+| 04:47 | Blog #81 — Dog Poop and Fleas: The Yard Connection St. Louis Dog Owners Miss | 🐕 Tidy Tails | tidytailsstl.com/blog/dog-poop-fleas-yard-st-louis | ✅ |
+| 16:14 | HOA Management Commercial Kit — Apr 3, 2026 | 🐕 Jamie's Hub | dashboard/hoa-management-commercial-kit.html | ✅ |
+| 16:14 | Blog #83 — HOA Pet Waste Rules in St. Louis (Avoid Fines) | 🐕 Tidy Tails | tidytailsstl.com/blog/hoa-pet-waste-rules-st-louis | ✅ (logged) |
+| 08:48 | Morning Briefing — Good Friday, April 3, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-04-03.pdf | ✅ |
+| 12:02 | Shed Ads — April 3, 2026 (Good Friday) | 🏠 Shed Sales | pdfs/SHED_ADS_2026-04-03.pdf | ✅ (Notion ID: 337ccdb3-7d1f-81fc-ab4e-d593c585d0f8) |
+| 12:02 | Commercial Leads — April 3, 2026 | 🐕 Jamie's Hub | pdfs/COMMERCIAL_LEADS_2026-04-03.pdf | ✅ (Notion ID: 337ccdb3-7d1f-8131-aaaf-e663cf0d1b2d) |

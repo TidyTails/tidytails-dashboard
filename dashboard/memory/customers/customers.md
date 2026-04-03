@@ -1,87 +1,72 @@
 # Tidy Tails Customer Database
 
-*Human-readable backup of database.json*
+*Updated: April 2, 2026 (reconciled from MEMORY.md — TJ confirmed 11 on Mar 29)*
 
 ## Quick Stats
 
 | Metric | Value |
 |--------|-------|
-| Active Customers | ~5 |
-| Commercial Leads | 68 |
-| Goal | 25-30 by Aug 2025 |
-| Current Progress | ~17% |
-
-## ⚡ Quick Customer Add (30 seconds)
-
-**TJ:** Just message me: "Add customer: [Name], [Area], [dogs], [frequency]"
-Example: "Add customer: Sarah M, Florissant, 2 dogs (Max & Bella), weekly"
-
-I'll handle the rest. Don't need perfect info — just basics.
+| **Active Customers** | **11** |
+| **Weekly Revenue** | **~$200+** |
+| **Monthly Revenue** | **~$900+** |
+| **Goal** | 25-30 (revised target Q2 2026) |
+| **Current Progress** | **44%** (11/25) |
 
 ---
 
 ## Active Customers
 
-> **Status:** Waiting for TJ to share customer basics
-> 
-> **What we know:**
-> - 4-5 recurring (all Sundays)
-> - 11 yards total on route
-> - Zero service-related churn
-> - All love TJ as a person first
-
-### Current Route (Feb 22, 2026)
-| # | Customer | Area | Dogs | Freq | Notes |
-|---|----------|------|------|------|-------|
-| 1 | TBD | | | | |
-| 2 | TBD | | | | |
-| 3 | TBD | | | | |
-| 4 | TBD | | | | |
-| 5 | TBD | | | | |
-| 6-11 | (additional yards?) | | | | |
+| # | Customer | Address | City/Zip | Frequency | Price | Monthly Value |
+|---|----------|---------|----------|-----------|-------|---------------|
+| 1 | Mrs. Candee | 10220 Pannell Dr | Saint Louis, 63136 | Weekly | $15 | $60 |
+| 2 | Jody | 9110 Leenora Ave | Saint Louis, 63114 | Biweekly | $45 | $90 |
+| 3 | Shannon Zamarripa | St Anthony Ln | Florissant, 63031 | Weekly | $35 | $140 |
+| 4 | Amanda Harris | 2280 Mullanphy Rd | Florissant, 63031 | Weekly | $30 | $120 |
+| 5 | Lawrence | 4365 W Belle Pl | Saint Louis, 63108 | Biweekly | $50 | $100 |
+| 6 | Greg | 4 Glenmill Ct | O'Fallon, 63366 | Monthly | $50 | $50 |
+| 7 | Chastity | 2580 Guildford Dr | Florissant, 63033 | Biweekly | $45 | $90 |
+| 8 | Preshus | 1785 Sun Drop Dr | Saint Charles, 63303 | Weekly | $25 | $100 |
+| 9 | *(name needed)* | — | — | — | — | — |
+| 10 | *(name needed)* | — | — | — | — | — |
+| 11 | *(new Mar 29)* | — | — | Biweekly | $45 | $45 |
 
 ---
 
-### Template for Adding Customers
+## Revenue Breakdown
 
-```
-### [Name]
-- **Phone:** 
-- **Address:** 
-- **Service:** Weekly/Biweekly/Monthly, $XX
-- **Dogs:** X ([names])
-- **Access:** [gate code, key location, etc.]
-- **Hot Spots:** [where to focus]
-- **Health Score:** X/10
-- **Notes:** 
-```
+| Frequency | Customers | Weekly Rev | Monthly Rev |
+|-----------|-----------|------------|-------------|
+| Weekly (4) | Mrs. Candee, Shannon, Amanda, Preshus | $105 | $420 |
+| Biweekly (4+) | Jody, Lawrence, Chastity, #11 + more | $90+ (per visit) | $325+ |
+| Monthly (1) | Greg | $50 (per visit) | $50 |
+| Unknown (2) | Customers 9 & 10 — details needed | — | ~$100 est |
+| **TOTAL** | **11** | **~$200+** | **~$895+** |
 
-## Leads Pipeline
+## Service Areas
 
-| Stage | Count |
-|-------|-------|
-| Commercial Leads | 43 |
-| Contacted | 0 |
-| Interested | 0 |
-| Proposal Sent | 0 |
-| Closed | 0 |
+| Area | Customers | Zip |
+|------|-----------|-----|
+| Saint Louis (City/County) | Mrs. Candee, Jody, Lawrence | 63136, 63114, 63108 |
+| Florissant | Shannon, Amanda, Chastity | 63031, 63033 |
+| O'Fallon | Greg | 63366 |
+| Saint Charles | Preshus | 63303 |
 
-See `memory/leads-commercial.md` for full lead list.
+## Goal Tracker
 
-## Service Schedule
+**Target:** 25 recurring customers by Q2 2026 (June target)
+**Current:** 11 customers (44%)
+**Need:** 14 more customers
+**Monthly revenue target:** ~$2,500/mo
+**Current monthly:** ~$895/mo (est.)
+**Gap:** ~$1,605/mo
 
-| Day | Customers |
-|-----|-----------|
-| Sunday | All current (~5) |
-| Weekday | None yet |
+### Growth Needed (Q2 2026 Roadmap)
+- April: +4 customers (reach 15) ← NOW
+- May: +3 customers (reach 18)
+- June: +2 customers (reach 20) ← Q2 goal
+- July–Aug: +5 customers (reach 25) ← stretch
 
-**Capacity:** ~15 yards/week comfortable
-
-## Health Leaderboard
-
-*Champions (8+):* TBD
-*Healthy (5-7):* TBD  
-*At Risk (<5):* TBD
+**That's roughly 1 new customer per week from now through summer.**
 
 ---
 
@@ -89,8 +74,7 @@ See `memory/leads-commercial.md` for full lead list.
 
 | Date | Change |
 |------|--------|
+| 2026-04-02 | Reconciled to 11 — TJ confirmed Mar 29. Customers 9, 10, 11 names still needed. |
+| 2026-03-29 | TJ confirmed 11th customer (biweekly $45) |
+| 2026-03-06 | Full customer list loaded — 8 active customers |
 | 2026-02-18 | Database initialized |
-
----
-
-*Update this file whenever customer info changes. Primary source is database.json.*

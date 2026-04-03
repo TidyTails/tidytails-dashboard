@@ -1,5 +1,5 @@
 # Commercial Leads — Tidy Tails Pet Waste Removal
-*Last updated: March 28, 2026 9:00 AM*
+*Last updated: April 3, 2026 9:00 AM*
 *Status legend: New | Contacted | Quoted | Won | Lost*
 
 ---
@@ -1320,4 +1320,275 @@ Commercial pricing is different from residential. Here's what competitors charge
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated March 28, 2026 — 85 total leads)
+## 🏙️ NEW LEADS BATCH — March 30, 2026 (9:00 AM) — Total: 95 leads
+
+### The Sanctuary Pet Resort ⭐ WEST COUNTY — BALLWIN
+- **Type:** Dog Boarding / Daycare / Grooming
+- **Address:** Ballwin / Ellisville area, MO 63011
+- **Phone:** Verify via Google listing
+- **Why Good Fit:** Independent luxury boarding/daycare in Ballwin — upscale West County clientele. Outdoor play yards generate daily waste. Client demographic = West County homeowners. Pairs with Parq at Chesterfield, ReNew Chesterfield, and Rover Oaks for a full West County route.
+- **Est. Monthly Value:** $200–$400 + referrals
+- **Found:** March 30, 2026
+- **Status:** New
+- **Pitch angle:** "Your dogs play outside all day — we handle outdoor waste removal so your staff can focus on the animals. Plus referral deal: boarding clients get 10% off their first month of yard cleanup at home."
+
+### Monarch at the Lakes ⭐⭐ LUXURY — ST. PETERS
+- **Type:** Luxury Apartment Complex with Dog Park + Walking Trails
+- **Address:** Mid Rivers area, St. Peters, MO 63376
+- **Contact:** Leasing Office
+- **Phone:** (636) 441-3200 (verify)
+- **Why Good Fit:** Large luxury apartment community in St. Peters with dedicated dog park and walking trails around lake. TJ already has customer (Preshus) in St. Peters. Luxury market = premium pricing accepted.
+- **Est. Monthly Value:** $250–$450/mo
+- **Found:** March 30, 2026
+- **Status:** New
+- **Pitch angle:** "We already service yards in St. Peters — your dog park and trail areas would fit right into our route. Professional weekly cleanup, one flat monthly rate, no contract."
+
+### Greater St. Louis Dog Show Club ⭐ STRATEGIC — EVENTS/SPONSORSHIP
+- **Type:** AKC-affiliated Dog Show / Events Organization
+- **Contact:** Via stlouiskennelclub.com or AKC affiliate network
+- **Website:** stlouiskennelclub.com
+- **Why Good Fit:** STL metro AKC dog shows draw hundreds of the most dedicated dog owners. Vendor booth or sponsorship = 50–100 leads per event. Zero local pooper scooper competitors attending. First mover wins the referral network.
+- **Est. Monthly Value:** Brand exposure → $500–$1,000 in residential leads per event
+- **Found:** March 30, 2026
+- **Status:** New
+- **Pitch angle:** "We'd love to sponsor or vendor at your upcoming events. Branded waste bags, special rate for attendees. Dog show folks talk — one great impression snowballs."
+
+### Waterford Crossing Apartments ⭐⭐ DOG PARK — O'FALLON
+- **Type:** Apartment Complex with Dog Park
+- **Address:** O'Fallon, MO 63366
+- **Contact:** Leasing Office
+- **Phone:** (636) 695-1200 (verify)
+- **Why Good Fit:** Large pet-friendly apartment community in O'Fallon with dedicated dog park. O'Fallon = St. Charles County's largest, fastest-growing suburb. Pairs with Westchester Village (O'Fallon) for dual-stop routing efficiency.
+- **Est. Monthly Value:** $250–$400/mo
+- **Found:** March 30, 2026
+- **Status:** New
+- **Pitch angle:** "We're building our O'Fallon route now. Professional dog park cleanup weekly — one flat monthly rate, zero contracts."
+
+### Midwest Veterinary Referral Center ⭐ VET REFERRAL — CHESTERFIELD
+- **Type:** Veterinary Specialist / Referral Center
+- **Address:** Chesterfield, MO 63017
+- **Contact:** Main Office
+- **Phone:** (636) 227-2600 (verify)
+- **Website:** mvrc-stl.com
+- **Why Good Fit:** Specialist vet in Chesterfield — serves the most dedicated dog owners in the metro. People who drive to a specialist WILL pay for yard cleanup. Fills remaining gap in West County vet referral network. Referral center clients come from all over STL metro.
+- **Est. Monthly Value:** Referral → $200–$400/mo in leads
+- **Found:** March 30, 2026
+- **Status:** New
+- **Pitch angle:** "Your clients love their dogs more than most — they drove across town to see a specialist. Cards at your front desk, 10% off first month for your patients' owners."
+
+---
+
+---
+
+## 🎪 DOG PARK VENUES & ENTERTAINMENT — NEW BATCH (April 1, 2026 — 9:00 AM)
+
+### K9 Garden ⭐⭐ BRAND NEW — FOREST PARK SOUTHEAST
+- **Type:** Indoor + Outdoor Dog Park / Bar / Restaurant
+- **Address:** 4565 McRee Ave, St. Louis, MO 63110
+- **Contact:** Main Office (walk in or call)
+- **Phone:** (314) 530-9990
+- **Website:** k9garden.com
+- **Hours:** Mon–Fri 6AM–9PM · Sun 8AM–6PM
+- **Why Good Fit:** Opened January 2026 in the former Bar-K location. Indoor AND outdoor dog park, full-service café and bar. Brand new = no vendor relationships locked in. High daily dog traffic. The Rail apartments (268 units, 80% projected dog owners) is literally next door — the whole block is a dog district. Bundle K9 Garden + The Rail + Cortona at Forest Park for a tight South City route.
+- **Est. Monthly Value:** $250–$500/mo + referral pipeline from daily dog traffic
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "You just opened and you've got dogs running all day indoors and out. We keep your outdoor areas clean so your staff focuses on the experience, not the cleanup. Flat monthly rate — we handle everything."
+
+---
+
+### The Rail Apartments ⭐⭐ NEW BUILD — FOREST PARK SOUTHEAST
+- **Type:** 268-Unit Apartment Complex
+- **Address:** Forest Park Southeast, St. Louis, MO 63110 (adjacent to K9 Garden)
+- **Contact:** Search Google for leasing office
+- **Why Good Fit:** Brand new 268-unit apartment building built specifically next to Bar-K/K9 Garden to attract dog lovers. Projected 80% pet ownership = approximately 200+ dogs in one building. New = still building vendor relationships. Bundle with K9 Garden for two-stop route efficiency.
+- **Est. Monthly Value:** $300–$500/mo
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "You built around the dog park crowd — that means a lot of dogs on your grounds. We keep common areas clean. Bundle with K9 Garden next door for a volume discount."
+
+---
+
+## 🤝 REFERRAL PARTNERS — NEW (April 1, 2026)
+
+### Stray Rescue of St. Louis ⭐⭐ MASSIVE REFERRAL SOURCE
+- **Type:** Animal Rescue / Adoption Organization
+- **Address:** 2320 Pine St, St. Louis, MO 63103
+- **Contact:** Community Outreach / Adoption Coordinator
+- **Phone:** (314) 771-6121
+- **Website:** strayrescue.org
+- **Social:** 200,000+ Facebook followers
+- **Why Good Fit:** One of the most-followed rescue organizations in STL. Every dog placed = new dog owner with a yard. Their adopters are engaged, dog-devoted people who would pay for professional yard cleanup. Complements Humane Society of Missouri lead — different demographic (rescue advocates, often younger, more urban, but span all of STL metro). Welcome packet placement = zero-cost mass reach.
+- **Est. Monthly Value:** Referral source → $500–$1,000/mo in residential leads
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "We'd love to be in your new adopter packet. Every dog going to a new home deserves a clean yard. We offer 15% off first month for Stray Rescue adopters. Cards, flyers, or a quick social post — whatever works for you."
+
+### Gateway Pet Guardians ⭐ NORTH COUNTY RESCUE REFERRAL
+- **Type:** Animal Rescue / Adoption — North County Focus
+- **Address:** East St. Louis IL / serves North County STL
+- **Website:** gatewaypetguardians.com
+- **Why Good Fit:** High-volume rescue placing dogs across North St. Louis County — TJ's primary service area. Their adopters are exactly the demographic: dog-devoted North County residents, many in homes with yards. Fills the rescue referral gap for the North County territory specifically. No competitor is doing rescue referral partnerships here.
+- **Est. Monthly Value:** Referral source → $300–$700/mo in residential leads
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "We're a local North County pooper scooper company. Your adopters go home to yards — we keep those yards clean. Cards at your events, 15% off for adopters. Win-win for the dogs."
+
+---
+
+## 🏠 TIER 1: Apartment Communities — FOLLOW-UP BUNDLE (April 1, 2026)
+
+### Forest Park Southeast Bundle: K9 Garden + The Rail + Cortona
+- **Bundle Strategy:** All three are within 1.5 miles of each other in the Forest Park / South City dog district. One efficient route. Pitch as a bundle to make Tidy Tails the official pet waste service of the Forest Park dog corridor.
+- **Bundle Value:** $850–$1,500/mo total
+- **Action:** Call K9 Garden first (newest, easiest entry). Then The Rail. Then re-pitch Cortona with the "we're already on your block" angle.
+
+---
+
+---
+
+## 🐕 NEW LEADS BATCH — April 1, 2026 (3:04 PM) — Total: 107 leads
+
+### Treecourt Unleashed Dog Adventure Park ⭐⭐ PRIVATE MEMBERSHIP DOG PARK — KIRKWOOD/VALLEY PARK
+- **Type:** Private Membership Dog Park (11 acres)
+- **Address:** 2499 Marshall Rd, St. Louis, MO (Valley Park/Kirkwood area)
+- **Contact:** Main Office
+- **Phone:** (314) 930-5753
+- **Website:** treecourtunleasheddogadventureparks.com
+- **Why Good Fit:** One of the most unique dog businesses in the STL metro — a private, membership-based 11-acre dog adventure park. Shallow mineral water ponds, walking trails, large open green space. Members pay monthly dues to use it. TWO pitch angles: (1) Service contract — 11 acres needs professional waste management, (2) Referral partnership — members are verified dog owners who invest monthly in their dogs. All members are paying pet care devotees = ideal Tidy Tails residential customers. Located in Kirkwood/Valley Park = South County route.
+- **Unique feature:** Members "socialize" via a community platform = TJ can sponsor a member spotlight or offer a member-exclusive rate.
+- **Est. Monthly Value:** $250–$500 service + referral pipeline from 100+ active members
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "We'd love to talk about two things — professional waste cleanup for your grounds, AND a referral deal for your members. They're already invested in their dogs. We keep their yards clean at home. Walk-in or call — happy to meet on-site."
+
+---
+
+### Howling Good Dog Boarding ⭐ BOARDING — MARYLAND HEIGHTS
+- **Type:** Dog Boarding
+- **Address:** 2854 Broadview Ave, Maryland Heights, MO 63043
+- **Contact:** Main Office
+- **Phone:** (618) 310-6357
+- **Website:** Yelp/Google listing
+- **Why Good Fit:** Dog boarding in Maryland Heights — TJ's active service territory. Established business with strong reviews on Yelp (54 photos, appears in O'Fallon + Florissant searches). High dog volume for outdoor areas. Referral potential to boarding clients who need yard cleanup at home. Maryland Heights = immediate route efficiency.
+- **Est. Monthly Value:** $150–$300 service + referrals
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "We're already servicing yards in Maryland Heights. We'd love to handle your boarding yard cleanup AND set up a referral deal — your clients get 10% off their first month at home. One call, two wins."
+
+---
+
+### Bark'N Good Time — REFERRAL PARTNER — FLORISSANT/HAZELWOOD
+- **Type:** Dog Walking / Pet Sitting Company (NOT a competitor — no yard cleanup)
+- **Address:** Florissant, MO 63031 (serves Florissant + Hazelwood)
+- **Contact:** Via barkngoodtime.com
+- **Phone:** See website (contact form)
+- **Website:** barkngoodtime.com
+- **Why Good Fit:** 15+ year local pet service company serving Florissant and Hazelwood — TJ's EXACT North County territory. They do dog walking and pet sitting but NOT yard cleanup. Potential referral PARTNERSHIP: they walk dogs in yards we clean, their clients overlap with ours perfectly. They could recommend TJ to their clients when clients ask about yard cleanup. Cross-promotional opportunity (they recommend us, we recommend them for walks/sitting). NO competitive overlap.
+- **Note:** This is a complementary partner pitch, not a service contract. Approach as a peer business owner.
+- **Est. Monthly Value:** Referral stream → $200–$500/mo in leads
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "Hey! We're Tidy Tails — local pooper scooper service also in Florissant and Hazelwood. No competition whatsoever — you walk dogs, we clean yards. Bet our clients overlap a lot. Want to swap referrals? You recommend us to people asking about yard cleanup, we recommend you to people asking about walks."
+
+---
+
+### The Rockwood Senior Living ⭐ INDEPENDENT LIVING — WEBSTER GROVES
+- **Type:** Independent Senior Living Community
+- **Address:** 100 Dunn Rd (Old Webster Groves area), Webster Groves, MO 63119
+- **Contact:** Front Desk / Activities Director
+- **Phone:** (314) 963-0029
+- **Website:** therockwood.com
+- **Why Good Fit:** Pet-friendly independent living in Old Webster Groves. Residents bring their dogs/cats. Independent living = residents often have their own patios or small yard areas. Seniors with dogs physically CANNOT always manage yard cleanup themselves. This is the highest-need demographic for pet waste removal. Premium community ($3,500–$6,195/mo) = residents who can afford $70/mo without blinking. TWO angles: (1) Resident referral — activities director endorses to dog-owning residents, (2) Common outdoor area cleanup contract.
+- **Est. Monthly Value:** $200–$400 contract + resident referrals
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "We help senior dog owners in Webster Groves keep their yards clean — without them having to bend over or spend a weekend on cleanup. Would love to leave cards with your activities director, or discuss a common area service agreement. Even 3-4 resident referrals would be worth a quick conversation."
+
+---
+
+### Pacific Place Senior Living (Bethesda Health) ⭐ INDEPENDENT LIVING — WEBSTER GROVES
+- **Type:** Boutique Independent Senior Living
+- **Address:** Webster Groves, MO 63119 (Lockwood Ave area)
+- **Contact:** Community Director
+- **Phone:** (314) 961-3041
+- **Website:** bethesdahealth.org/living-options/independent-living/pacific-place/
+- **Why Good Fit:** Boutique independent living in walkable Old Webster neighborhood. Explicitly pet-friendly. Active social seniors who value neighborhood walkability = dog owners. Bethesda Health is a major STL senior care organization — landing Pacific Place could open doors to other Bethesda communities. Small, personal community = faster decision-making than big corporate senior facilities.
+- **Est. Monthly Value:** $150–$300 service + resident referrals
+- **Found:** April 1, 2026
+- **Status:** New
+- **Pitch angle:** "You're in one of Webster Groves' most walkable neighborhoods — and your residents clearly love that, dogs included. We help dog-owning seniors keep their yards clean. Can we leave cards with your community director? Or discuss a small common area service agreement?"
+
+---
+
+---
+
+## 🐕 NEW LEADS BATCH — April 3, 2026 (9:00 AM) — Total: 112 leads
+
+### Tribeca STL Apartments ⭐⭐ HIGH VALUE — CENTRAL WEST END
+- **Type:** Luxury Apartment Complex — Dog Park + Pet Spa
+- **Address:** Central West End, St. Louis, MO 63108
+- **Contact:** Leasing Office / Mission Rock Residential corporate
+- **Phone:** (314) 405-1800
+- **Website:** tribeca-stl.com | missionrockresidential.com
+- **Why Good Fit:** Luxury CWE apartments with spacious dog park AND pet spa. Same Mission Rock Residential brand that manages Emerald Crossing and Steelyard (already in pipeline). Landing Tribeca opens a 3-property bundle pitch to Mission Rock corporate. CWE is STL's most dog-dense walkable neighborhood.
+- **Est. Monthly Value:** $300–$500/mo
+- **Found:** April 3, 2026
+- **Status:** New
+- **Pitch angle:** "We service several Mission Rock properties across St. Louis. Your dog park and outdoor areas see a lot of traffic — we'd love to keep them clean. Weekly professional service, one flat monthly rate. Same vendor your other MR communities use."
+
+---
+
+### Mission Rock Residential Bundle (Tribeca + Emerald Crossing + Steelyard) ⭐⭐ STRATEGIC
+- **Type:** Multi-Property Bundle — Corporate Vendor Relationship
+- **Contact:** Mission Rock Residential corporate vendor/facilities team
+- **Website:** missionrockresidential.com
+- **Properties:** Tribeca STL (CWE) + Emerald Crossing (Overland) + Steelyard (South City)
+- **Why Good Fit:** Three STL Mission Rock properties all with dog parks/pet amenities. One corporate relationship = 3 contracts. Same bundle strategy that works for Aventura (3 properties, one pitch).
+- **Est. Monthly Value:** $600–$1,200/mo across 3 properties
+- **Found:** April 3, 2026
+- **Status:** New
+- **Pitch angle:** "We noticed Mission Rock manages several dog-friendly communities in STL. We'd love to offer a volume discount across all your properties — one vendor, one invoice, consistent service."
+
+---
+
+### K9 Garden STL ⭐⭐ BRAND NEW — FOREST PARK SE
+- **Type:** Indoor + Outdoor Dog Park / Café & Bar
+- **Address:** 4565 McRee Ave, St. Louis, MO 63110
+- **Contact:** Walk in or call
+- **Phone:** (314) 530-9990
+- **Website:** k9garden.com
+- **Hours:** Mon–Fri 6AM–9PM · Sun 8AM–6PM
+- **Why Good Fit:** Opened January 2026 at former Bar K location. Indoor AND outdoor dog park, full café/bar. Brand new = no vendor relationships locked in. Dogs running all day outdoors. Right next to The Rail Apartments (268 units, ~80% dog ownership). Pairs with The Rail + Cortona for tight South City 3-stop route.
+- **Est. Monthly Value:** $250–$500/mo + referral pipeline
+- **Found:** April 3, 2026
+- **Status:** New
+- **Pitch angle:** "You just opened — congrats! With dogs running all day in your outdoor areas, we handle professional cleanup so your staff focuses on the experience. Flat monthly rate."
+
+---
+
+### Canopy at Midtown — MIDTOWN STL (NEW BUILDS)
+- **Type:** New Luxury Apartment Complex(es) — Midtown Corridor
+- **Address:** Midtown St. Louis, MO 63108 (Grand Blvd / Chouteau corridor)
+- **Contact:** Search Google for current Midtown 2025/2026 apartment builds with dog parks
+- **Why Good Fit:** Midtown corridor is experiencing apartment building boom 2025–2026. Multiple new luxury builds opening with dog parks as standard amenity. New builds = no vendor contracts yet. First-mover wins the relationship.
+- **Est. Monthly Value:** $250–$450/mo
+- **Found:** April 3, 2026
+- **Status:** New (research needed — search "Midtown St. Louis apartments 2026 dog park")
+- **Pitch angle:** "Just opened? We'd love to be your first pet waste vendor — keeping that new dog park pristine from day one. Local service, flat monthly rate, no contract."
+
+---
+
+### Webster Groves / Maplewood Vet Clinic Blitz ⭐ SOUTH COUNTY REFERRAL
+- **Type:** Vet Referral Partnership — 3 Clinics in Afternoon Walk-In Blitz
+- **Target Clinics:** Webster Groves Animal Hospital · Animal Hospital of Maplewood · Brentwood Animal Hospital
+- **Approach:** Walk-in with Tidy Tails cards + flyers. Ask for office manager. 30 min each.
+- **Why Good Fit:** Webster Groves / Maplewood / Brentwood = one of STL's most dog-devoted corridors. Fills South County vet referral gap — all 6 current vet leads are North County. Pairs with The Rockwood and Pacific Place senior living leads (same corridor = one afternoon route). Even 1% conversion = 6–12 new residential clients.
+- **Est. Monthly Value:** $400–$800/mo in referrals
+- **Found:** April 3, 2026
+- **Status:** New
+- **Pitch angle:** "We're Tidy Tails — local pet waste removal. Your clients love their dogs — we keep their yards clean. Can we leave cards here? 10% off first month for your clients."
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated April 3, 2026 — 112 total leads)

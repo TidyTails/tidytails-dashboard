@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🤝 Customer Referral Engine — Tidy Tails</title>
+<style>
+  :root {
+    --green: #16a34a;
+    --green-dark: #15803d;
+    --green-light: #dcfce7;
+    --amber: #d97706;
+    --amber-light: #fef3c7;
+    --red: #dc2626;
+    --blue: #2563eb;
+    --blue-light: #dbeafe;
+    --purple: #7c3aed;
+    --purple-light: #ede9fe;
+    --gray: #6b7280;
+    --gray-light: #f9fafb;
+    --border: #e5e7eb;
+    --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0fdf4; color: #111; }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #14532d 0%, #16a34a 60%, #22c55e 100%);
+    color: white; padding: 24px 20px 20px; text-align: center;
+  }
+  .header-badge { display: inline-block; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.4); border-radius: 20px; padding: 4px 14px; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 10px; }
+  .header h1 { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+  .header p { font-size: 14px; opacity: 0.9; max-width: 540px; margin: 0 auto; }
+
+  .stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 14px 16px; background: white; border-bottom: 2px solid var(--green-light); }
+  .stat { text-align: center; }
+  .stat-num { font-size: 22px; font-weight: 800; color: var(--green); }
+  .stat-label { font-size: 11px; color: var(--gray); font-weight: 600; }
+
+  /* TABS */
+  .tabs { display: flex; background: white; border-bottom: 2px solid var(--border); overflow-x: auto; }
+  .tab { flex-shrink: 0; padding: 12px 16px; font-size: 13px; font-weight: 600; cursor: pointer; border-bottom: 3px solid transparent; color: var(--gray); white-space: nowrap; }
+  .tab.active { border-bottom-color: var(--green); color: var(--green); }
+
+  .pane { display: none; padding: 16px; }
+  .pane.active { display: block; }
+
+  /* CARDS */
+  .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 14px; box-shadow: var(--shadow); border: 1px solid var(--border); }
+  .card-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .card-title .icon { font-size: 18px; }
+
+  .callout { border-radius: 10px; padding: 14px; margin-bottom: 14px; }
+  .callout-green { background: var(--green-light); border-left: 4px solid var(--green); }
+  .callout-amber { background: var(--amber-light); border-left: 4px solid var(--amber); }
+  .callout-blue { background: var(--blue-light); border-left: 4px solid var(--blue); }
+  .callout-purple { background: var(--purple-light); border-left: 4px solid var(--purple); }
+  .callout-title { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .callout-body { font-size: 13px; line-height: 1.5; color: #374151; }
+
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+
+  .metric-card { background: var(--gray-light); border-radius: 10px; padding: 14px; text-align: center; border: 1px solid var(--border); }
+  .metric-num { font-size: 28px; font-weight: 800; color: var(--green); line-height: 1; }
+  .metric-label { font-size: 12px; color: var(--gray); margin-top: 4px; font-weight: 600; }
+  .metric-sub { font-size: 11px; color: var(--gray); margin-top: 2px; }
+
+  /* BUTTONS */
+  .btn { display: inline-block; padding: 10px 16px; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; text-align: center; }
+  .btn-green { background: var(--green); color: white; }
+  .btn-green:hover { background: var(--green-dark); }
+  .btn-outline { background: white; color: var(--green); border: 2px solid var(--green); }
+  .btn-copy { background: #f3f4f6; color: #374151; border: 1px solid var(--border); width: 100%; margin-top: 8px; display: block; }
+  .btn-copy:hover { background: var(--green-light); }
+  .btn-copy.copied { background: var(--green-light); color: var(--green); }
+
+  /* SCRIPT BOXES */
+  .script-box { background: #f8fafc; border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+  .script-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+  .script-text { font-size: 13px; line-height: 1.6; color: #1f2937; white-space: pre-wrap; }
+  .script-timing { font-size: 11px; color: var(--amber); font-weight: 700; }
+  .script-timing-green { font-size: 11px; color: var(--green); font-weight: 700; }
+
+  /* CUSTOMER TABLE */
+  .customer-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .customer-table th { background: #f3f4f6; padding: 8px 10px; text-align: left; font-weight: 700; font-size: 12px; color: var(--gray); }
+  .customer-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .customer-table tr:last-child td { border-bottom: none; }
+
+  .status-badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+  .status-new { background: #e0f2fe; color: #0369a1; }
+  .status-asked { background: #fef3c7; color: #92400e; }
+  .status-referred { background: #dcfce7; color: #15803d; }
+  .status-converted { background: #166534; color: white; }
+
+  select, input, textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; font-size: 13px; font-family: inherit; }
+  label { font-size: 12px; font-weight: 700; color: #374151; display: block; margin-bottom: 4px; margin-top: 10px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* CHECKLIST */
+  .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+  .check-item:last-child { border-bottom: none; }
+  .check-item input[type="checkbox"] { width: auto; margin-top: 2px; flex-shrink: 0; width: 18px; height: 18px; cursor: pointer; }
+  .check-label { font-size: 13px; line-height: 1.4; flex: 1; }
+  .check-label.done { text-decoration: line-through; color: var(--gray); }
+  .check-phase { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray); margin: 14px 0 6px; }
+
+  /* REWARD CARD */
+  .reward-card { background: linear-gradient(135deg, #14532d, #16a34a); color: white; border-radius: 12px; padding: 18px; text-align: center; margin-bottom: 14px; }
+  .reward-card h3 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+  .reward-card p { font-size: 13px; opacity: 0.9; }
+  .reward-highlight { background: rgba(255,255,255,0.2); border-radius: 8px; padding: 10px; margin: 10px 0; }
+  .reward-highlight strong { font-size: 18px; }
+
+  /* REFERRAL CARD PRINT */
+  .referral-card-preview { background: linear-gradient(135deg, #14532d 0%, #16a34a 100%); color: white; border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 12px; position: relative; overflow: hidden; }
+  .referral-card-preview::after { content: '🐾'; position: absolute; top: -10px; right: -10px; font-size: 60px; opacity: 0.15; }
+  .ref-card-name { font-size: 13px; opacity: 0.8; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 1px; }
+  .ref-card-title { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+  .ref-card-offer { background: rgba(255,255,255,0.2); border-radius: 8px; padding: 10px; margin: 8px 0; }
+  .ref-card-offer strong { font-size: 16px; }
+  .ref-card-details { font-size: 12px; opacity: 0.85; line-height: 1.5; }
+  .ref-card-phone { font-size: 18px; font-weight: 700; margin-top: 8px; }
+
+  /* PIPELINE */
+  .pipeline-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 14px; }
+  .pipe-stat { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 12px; text-align: center; }
+  .pipe-num { font-size: 24px; font-weight: 800; color: var(--green); }
+  .pipe-label { font-size: 11px; color: var(--gray); font-weight: 600; }
+
+  .tag-fire { color: var(--red); font-size: 11px; font-weight: 700; }
+  .tag-green { color: var(--green); font-size: 11px; font-weight: 700; }
+  .tag-amber { color: var(--amber); font-size: 11px; font-weight: 700; }
+
+  @media (max-width: 480px) {
+    .grid-2, .grid-3 { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .stats-row { grid-template-columns: repeat(2, 1fr); }
+    .pipeline-stats { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-badge">🤝 Referral Engine — April 2026</div>
+  <h1>Customer Referral Engine</h1>
+  <p>Turn every happy customer into a pipeline. 35–50% referral close rate at $0 CAC. The most efficient channel you're not using.</p>
+</div>
+
+<div class="stats-row">
+  <div class="stat">
+    <div class="stat-num">35–50%</div>
+    <div class="stat-label">Referral Close Rate</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">$0</div>
+    <div class="stat-label">Acquisition Cost</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">$840</div>
+    <div class="stat-label">LTV Per Convert</div>
+  </div>
+  <div class="stat">
+    <div class="stat-num">11+</div>
+    <div class="stat-label">Current Customers</div>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('why')">📊 Why It Works</div>
+  <div class="tab" onclick="showTab('scripts')">💬 Ask Scripts</div>
+  <div class="tab" onclick="showTab('program')">🎁 The Program</div>
+  <div class="tab" onclick="showTab('card')">📇 Referral Card</div>
+  <div class="tab" onclick="showTab('tracker')">👥 Track It</div>
+  <div class="tab" onclick="showTab('checklist')">✅ Checklist</div>
+</div>
+
+<!-- WHY TAB -->
+<div id="tab-why" class="pane active">
+  <div class="callout callout-green">
+    <div class="callout-title">💡 The Math Is Insane</div>
+    <div class="callout-body">11 customers × 1 referral ask each = 11 warm leads. At 40% close = <strong>4 new customers</strong>. Revenue: $3,360 LTV. Cost: $0 and 20 minutes of texting. This is the highest-ROI activity in the entire playbook.</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🔬</span> Why Referrals Convert So Much Better</div>
+    <div class="grid-2">
+      <div class="metric-card">
+        <div class="metric-num">40%</div>
+        <div class="metric-label">Referral Close Rate</div>
+        <div class="metric-sub">vs 5–15% cold leads</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">3×</div>
+        <div class="metric-label">Higher Trust</div>
+        <div class="metric-sub">Pre-sold by neighbor</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">22mo</div>
+        <div class="metric-label">Avg Retention</div>
+        <div class="metric-sub">vs 14–16mo cold</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">$0</div>
+        <div class="metric-label">Zero Spend</div>
+        <div class="metric-sub">No ads. No budget.</div>
+      </div>
+    </div>
+    <div style="margin-top: 12px; font-size: 13px; color: #374151; line-height: 1.6;">
+      <strong>Why it works:</strong> The person being referred has already heard about Tidy Tails from someone they trust — a neighbor, friend, or family member who literally uses the service. They're not a skeptic searching Google. They're a pre-qualified buyer who needs one thing: someone to reach out.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📈</span> Revenue Scenarios</div>
+    <div class="grid-3">
+      <div class="metric-card">
+        <div class="metric-num" style="color: #6b7280;">Bear</div>
+        <div style="font-size: 13px; margin-top: 6px;"><strong>11 asks → 2 converts</strong></div>
+        <div class="metric-sub">$1,680 LTV at $0 cost</div>
+      </div>
+      <div class="metric-card" style="border: 2px solid var(--green);">
+        <div class="metric-num">Base</div>
+        <div style="font-size: 13px; margin-top: 6px;"><strong>11 asks → 4 converts</strong></div>
+        <div class="metric-sub">$3,360 LTV at $0 cost</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num" style="color: var(--amber);">Bull</div>
+        <div style="font-size: 13px; margin-top: 6px;"><strong>11 asks → 6 converts</strong></div>
+        <div class="metric-sub">$5,040 LTV at $0 cost</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">⚡</span> When to Ask — The 4 Magic Moments</div>
+    <div style="font-size: 13px; line-height: 1.7; color: #374151;">
+      <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+        <strong>🐣 Right after Easter cleanup (THIS WEEKEND)</strong> — Customer just saw the clean yard for the first time. Peak satisfaction. Send the ask text while they're still excited.
+      </div>
+      <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+        <strong>📅 After Month 1 service</strong> — They've had the experience. The routine is set. They know it works. This is when they naturally talk about it to neighbors.
+      </div>
+      <div style="padding: 8px 0; border-bottom: 1px solid var(--border);">
+        <strong>⭐ Right after leaving a review</strong> — Someone who just reviewed you on Google is in peak "brand advocate" mode. Hit them while they're warm.
+      </div>
+      <div style="padding: 8px 0;">
+        <strong>🌞 First warm weekend of spring/summer</strong> — Neighbors talk when they're outside. If TJ's customer mentions the service at a BBQ, the neighbor who hears about it needs to be reachable.
+      </div>
+    </div>
+  </div>
+
+  <div class="callout callout-amber">
+    <div class="callout-title">⚠️ The Most Common Mistake</div>
+    <div class="callout-body">Most service businesses wait until customers "spontaneously refer." They don't. You have to ASK. Not push — just ask once, clearly, with an easy path. The script below does this in 2 sentences. That's all it takes.</div>
+  </div>
+</div>
+
+<!-- SCRIPTS TAB -->
+<div id="tab-scripts" class="pane">
+  <div class="callout callout-green">
+    <div class="callout-title">🎯 When to Send Each Script</div>
+    <div class="callout-body">All scripts are text-message format. Short, direct, in TJ's voice. No corporate fluff. The goal is one reply: "Oh yeah, [neighbor] was actually asking about dog cleanup." That's the handoff.</div>
+  </div>
+
+  <!-- Script 1 -->
+  <div class="script-box">
+    <div class="script-label">
+      <span>SCRIPT 1 — POST-CLEANUP ASK (Best Timing)</span>
+      <span class="tag-fire">🔥 Use THIS WEEK</span>
+    </div>
+    <div class="script-text">Hey [Name]! Hope the yard is looking good after that cleanup 🐾 If any of your neighbors have been dealing with the same thing, send them my way — [Friend/Neighbor] gets a free cleanup just for the intro. Appreciate you!</div>
+    <button class="btn btn-copy" onclick="copyScript(this, 'Hey [Name]! Hope the yard is looking good after that cleanup 🐾 If any of your neighbors have been dealing with the same thing, send them my way — [Friend/Neighbor] gets a free cleanup just for the intro. Appreciate you!')">📋 Copy Script</button>
+  </div>
+
+  <!-- Script 2 -->
+  <div class="script-box">
+    <div class="script-label">
+      <span>SCRIPT 2 — AFTER FIRST MONTH</span>
+      <span class="tag-green">Send Day 30</span>
+    </div>
+    <div class="script-text">Hey [Name]! Hope the first month has been solid 🙌 Quick favor — if you know anyone in your neighborhood with dogs who'd appreciate not scooping anymore, I'd love a quick intro. I'll take care of their first cleanup free. You know how much work it is before the service — easy referral 😄</div>
+    <button class="btn btn-copy" onclick="copyScript(this, 'Hey [Name]! Hope the first month has been solid 🙌 Quick favor — if you know anyone in your neighborhood with dogs who\'d appreciate not scooping anymore, I\'d love a quick intro. I\'ll take care of their first cleanup free. You know how much work it is before the service — easy referral 😄')">📋 Copy Script</button>
+  </div>
+
+  <!-- Script 3 -->
+  <div class="script-box">
+    <div class="script-label">
+      <span>SCRIPT 3 — AFTER GOOGLE REVIEW</span>
+      <span class="tag-green">Send immediately after review</span>
+    </div>
+    <div class="script-text">Hey [Name]! Thank you SO much for the review — that means everything for a local business 🙏 One quick ask — if you ever mention it to a neighbor or friend with dogs, just give them my number: (314) 850-7140. First cleanup is on me for anyone you send my way. Really appreciate your support!</div>
+    <button class="btn btn-copy" onclick="copyScript(this, 'Hey [Name]! Thank you SO much for the review — that means everything for a local business 🙏 One quick ask — if you ever mention it to a neighbor or friend with dogs, just give them my number: (314) 850-7140. First cleanup is on me for anyone you send my way. Really appreciate your support!')">📋 Copy Script</button>
+  </div>
+
+  <!-- Script 4 -->
+  <div class="script-box">
+    <div class="script-label">
+      <span>SCRIPT 4 — SPRING NEIGHBOR MENTION</span>
+      <span class="tag-amber">April–May seasonal</span>
+    </div>
+    <div class="script-text">Hey [Name]! Spring is officially here — if any of your neighbors have been putting off dealing with their yards, now's the time. I'm booking spring cleanups this week and still have some open slots nearby. Happy to take care of first cleanup free for anyone you send over. You're the best! 🌿</div>
+    <button class="btn btn-copy" onclick="copyScript(this, 'Hey [Name]! Spring is officially here — if any of your neighbors have been putting off dealing with their yards, now\'s the time. I\'m booking spring cleanups this week and still have some open slots nearby. Happy to take care of first cleanup free for anyone you send over. You\'re the best! 🌿')">📋 Copy Script</button>
+  </div>
+
+  <!-- Script 5 -->
+  <div class="script-box">
+    <div class="script-label">
+      <span>SCRIPT 5 — REFERRAL FOLLOW-THROUGH (When They Name Someone)</span>
+      <span class="tag-green">Use when referral name given</span>
+    </div>
+    <div class="script-text">That's awesome, thanks [Name]! I'll reach out to [Referral Name] now. Just so you know, I'll mention [Your Name] sent me — keeps it warm. Really appreciate it!</div>
+    <button class="btn btn-copy" onclick="copyScript(this, 'That\'s awesome, thanks [Name]! I\'ll reach out to [Referral Name] now. Just so you know, I\'ll mention [Your Name] sent me — keeps it warm. Really appreciate it!')">📋 Copy Script</button>
+  </div>
+
+  <!-- Script 6 -->
+  <div class="script-box">
+    <div class="script-label">
+      <span>SCRIPT 6 — WARM OUTREACH (To the Referral Themselves)</span>
+      <span class="tag-green">Text to the new prospect</span>
+    </div>
+    <div class="script-text">Hey [Referral Name]! This is Jamie from Tidy Tails — [Customer Name] mentioned you might be interested in dog waste pickup. We do weekly cleanups in your area, flat $70/mo, no contracts. First one's on me. Happy to answer any questions! 🐾 — (314) 850-7140</div>
+    <button class="btn btn-copy" onclick="copyScript(this, 'Hey [Referral Name]! This is Jamie from Tidy Tails — [Customer Name] mentioned you might be interested in dog waste pickup. We do weekly cleanups in your area, flat $70/mo, no contracts. First one\'s on me. Happy to answer any questions! 🐾 — (314) 850-7140')">📋 Copy Script</button>
+  </div>
+
+  <!-- Script 7 -->
+  <div class="script-box">
+    <div class="script-label">
+      <span>SCRIPT 7 — THANK YOU WHEN REFERRAL CONVERTS</span>
+      <span class="tag-green">Close the loop</span>
+    </div>
+    <div class="script-text">Hey [Name]! [Referral Name] just signed up — that's because of you! Thank you so much 🙏 Your referral credit ($20 off next month) is already noted. You're an MVP.</div>
+    <button class="btn btn-copy" onclick="copyScript(this, 'Hey [Name]! [Referral Name] just signed up — that\'s because of you! Thank you so much 🙏 Your referral credit ($20 off next month) is already noted. You\'re an MVP.')">📋 Copy Script</button>
+  </div>
+
+  <div class="callout callout-blue">
+    <div class="callout-title">💡 Pro Tip: Personalize ONE Detail</div>
+    <div class="callout-body">Add one personal detail to any script — their dog's name, their neighborhood, the specific cleanup you did. "Hope the yard looks good after the Easter cleanup" lands 3x better than "Hope the service has been great." Customers notice when you actually know who they are.</div>
+  </div>
+</div>
+
+<!-- PROGRAM TAB -->
+<div id="tab-program" class="pane">
+  <div class="reward-card">
+    <h3>🎁 The Tidy Tails Referral Reward</h3>
+    <p>Simple enough to remember. Good enough to mention.</p>
+    <div class="reward-highlight">
+      <strong>You refer → They get: First cleanup FREE</strong><br>
+      <strong>You get: $20 off your next month</strong>
+    </div>
+    <p style="font-size: 12px; opacity: 0.8;">No forms. No codes. Just text Jamie. He handles it.</p>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🤔</span> Why This Specific Reward Structure</div>
+    <div style="font-size: 13px; line-height: 1.7; color: #374151;">
+      <strong>For the new customer (First Cleanup Free):</strong>
+      <ul style="padding-left: 18px; margin-top: 6px;">
+        <li>Zero-risk trial — same offer TJ already gives cold leads</li>
+        <li>Removes the "let me try it first" objection entirely</li>
+        <li>They experience the service before paying anything</li>
+        <li>Once the yard is clean, 80%+ convert to monthly</li>
+      </ul>
+      <br>
+      <strong>For the referrer ($20 credit):</strong>
+      <ul style="padding-left: 18px; margin-top: 6px;">
+        <li>Real cash value — nearly a free weekly visit</li>
+        <li>Applied automatically — no hoops</li>
+        <li>Generous enough to mention without feeling cheap</li>
+        <li>Keeps existing customers feeling valued</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📋</span> How It Works (3 Steps)</div>
+    <div style="font-size: 13px; line-height: 1.8; color: #374151;">
+      <strong>Step 1: Customer shares your number</strong> (or you text the referral directly)<br>
+      <strong>Step 2: New customer texts Jamie, mentions who referred them</strong><br>
+      <strong>Step 3: First cleanup is free, $20 applied to referrer's next invoice</strong><br>
+      <br>
+      <em>That's it. No portal. No code. Just a text.</em>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📊</span> Revenue Math Per Referral</div>
+    <div class="grid-2">
+      <div>
+        <div style="font-size: 12px; font-weight: 700; color: var(--gray); margin-bottom: 6px;">YOUR COST</div>
+        <div style="font-size: 13px; line-height: 1.7;">
+          Free cleanup: <strong>$35–45 (labor)</strong><br>
+          Referral credit: <strong>$20</strong><br>
+          Total: <strong>$55–65 per convert</strong>
+        </div>
+      </div>
+      <div>
+        <div style="font-size: 12px; font-weight: 700; color: var(--gray); margin-bottom: 6px;">YOUR REVENUE</div>
+        <div style="font-size: 13px; line-height: 1.7;">
+          Monthly service: <strong>$70/mo</strong><br>
+          Avg retention: <strong>18–22 months</strong><br>
+          LTV: <strong>$1,260–$1,540</strong>
+        </div>
+      </div>
+    </div>
+    <div style="background: var(--green-light); border-radius: 8px; padding: 12px; margin-top: 12px; text-align: center;">
+      <div style="font-size: 20px; font-weight: 800; color: var(--green);">19–24× ROAS</div>
+      <div style="font-size: 12px; color: #374151; margin-top: 2px;">Every $60 in referral costs returns $1,260–$1,540 in revenue</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📅</span> Monthly Referral Cadence</div>
+    <div style="font-size: 13px; line-height: 1.8; color: #374151;">
+      <strong>Every new customer after onboarding (Day 30):</strong> Send Script 2<br>
+      <strong>Every review received:</strong> Send Script 3 immediately<br>
+      <strong>April–May spring season:</strong> Send Script 4 to ALL customers<br>
+      <strong>After major cleanups (Easter, spring):</strong> Send Script 1<br>
+      <strong>Monthly: one batch ask</strong> to your 3–5 happiest customers<br>
+      <br>
+      <em style="color: var(--gray);">Total time: ~15 minutes per month. Expected return: 1–3 new customers.</em>
+    </div>
+  </div>
+</div>
+
+<!-- REFERRAL CARD TAB -->
+<div id="tab-card" class="pane">
+  <div class="callout callout-green">
+    <div class="callout-title">📇 Print This Card — Leave It With Every Customer</div>
+    <div class="callout-body">After every cleanup, leave a card at the door or hand it off. Existing customers pass them to neighbors. Works especially well after events (Paw-ty) and Easter cleanups when TJ is already on-site.</div>
+  </div>
+
+  <div class="referral-card-preview">
+    <div class="ref-card-name">TIDY TAILS — St. Louis Pet Waste Removal</div>
+    <div class="ref-card-title">Share the Love 🐾</div>
+    <div class="ref-card-offer">
+      <strong>Give a neighbor their FIRST CLEANUP FREE</strong><br>
+      <span style="font-size: 12px;">Just have them mention your name when they text</span>
+    </div>
+    <div class="ref-card-details">
+      ✅ $70/month flat — weekly service<br>
+      ✅ No contracts — cancel anytime<br>
+      ✅ "On My Way" + "All Done" texts every visit<br>
+      ✅ Florissant, Kirkwood, Chesterfield + all of STL
+    </div>
+    <div class="ref-card-phone">📱 Text: (314) 850-7140</div>
+    <div style="font-size: 11px; margin-top: 8px; opacity: 0.7;">YOU get $20 off your next month when they sign up 💚</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">🖨️</span> Print Instructions</div>
+    <div style="font-size: 13px; line-height: 1.7; color: #374151;">
+      <strong>Best size:</strong> 3.5" × 2" (standard business card) or 4" × 6" postcard<br>
+      <strong>Where to print:</strong> Canva (free) → export as PDF → local FedEx/Office Depot<br>
+      <strong>Cost:</strong> 100 business cards = ~$12 at Vistaprint, $8 at FedEx<br>
+      <strong>Quantity:</strong> Print 50–100 to start. Leave 2–3 per customer.<br>
+      <br>
+      <strong>Use the card design above as your template — copy the exact text into Canva.</strong><br>
+      Green background (#16a34a), white text, dog paw emoji, keep it clean.
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">📍</span> Where to Leave Cards</div>
+    <div style="font-size: 13px; line-height: 1.7; color: #374151;">
+      <div style="padding: 6px 0; border-bottom: 1px solid var(--border);"><strong>Front door:</strong> After every cleanup — leave 2 cards by the door with a sticky note: "Hey [Name]! Yard is clean ✅ If a neighbor asks, here's a card for them"</div>
+      <div style="padding: 6px 0; border-bottom: 1px solid var(--border);"><strong>Events (Paw-ty, etc.):</strong> Have a small stack at your table. "Free first cleanup for anyone you refer"</div>
+      <div style="padding: 6px 0; border-bottom: 1px solid var(--border);"><strong>Dog daycares/boarding:</strong> Ask if you can leave a small stack at their counter with a "Partner business" note</div>
+      <div style="padding: 6px 0;"><strong>Vet clinics:</strong> Same as daycares — great place for customers to find</div>
+    </div>
+  </div>
+
+  <div class="callout callout-blue">
+    <div class="callout-title">💡 The Sticky Note Trick</div>
+    <div class="callout-body">A physical sticky note on the door with "Hey [Name]! All done 🐾 Left 2 cards in case your neighbors want to try us — they get first one free" is 10× more effective than a text asking them to refer. It's tangible, it's there when they walk in, and they pick up the card and keep it.</div>
+  </div>
+</div>
+
+<!-- TRACKER TAB -->
+<div id="tab-tracker" class="pane">
+  <div id="pipeline-stats" class="pipeline-stats">
+    <div class="pipe-stat">
+      <div class="pipe-num" id="stat-total">0</div>
+      <div class="pipe-label">Customers Asked</div>
+    </div>
+    <div class="pipe-stat">
+      <div class="pipe-num" id="stat-referred" style="color: var(--amber);">0</div>
+      <div class="pipe-label">Active Referrals</div>
+    </div>
+    <div class="pipe-stat">
+      <div class="pipe-num" id="stat-converted" style="color: var(--green);">0</div>
+      <div class="pipe-label">Converted</div>
+    </div>
+    <div class="pipe-stat">
+      <div class="pipe-num" id="stat-ltv" style="color: var(--green);">$0</div>
+      <div class="pipe-label">LTV Generated</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><span class="icon">➕</span> Add Customer / Referral</div>
+    <div class="form-row">
+      <div>
+        <label>Customer Name</label>
+        <input type="text" id="new-name" placeholder="Shannon Z.">
+      </div>
+      <div>
+        <label>Phone / Area</label>
+        <input type="text" id="new-phone" placeholder="Florissant / (314) 555-0000">
+      </div>
+    </div>
+    <label>Referral Given (if any)</label>
+    <input type="text" id="new-referral" placeholder="Neighbor on Oak St / Jane D.">
+    <div class="form-row" style="margin-top: 8px;">
+      <div>
+        <label>Status</label>
+        <select id="new-status">
+          <option value="new">New — Not Asked Yet</option>
+          <option value="asked">Asked — Waiting for Response</option>
+          <option value="referred">Referred — Lead in Pipeline</option>
+          <option value="converted">Converted — Referral Signed Up</option>
+        </select>
+      </div>
+      <div>
+        <label>Notes</label>
+        <input type="text" id="new-notes" placeholder="Loves the service, will def refer">
+      </div>
+    </div>
+    <button class="btn btn-green" style="margin-top: 10px; width: 100%;" onclick="addCustomer()">➕ Add to Pipeline</button>
+  </div>
+
+  <div id="customer-list">
+    <!-- Populated by JS -->
+    <div style="text-align: center; padding: 30px; color: var(--gray); font-size: 13px;">
+      Add your existing customers above to start tracking referrals.
+    </div>
+  </div>
+
+  <div class="callout callout-amber" style="margin-top: 14px;">
+    <div class="callout-title">🚀 Start Here — Your Priority Ask List</div>
+    <div class="callout-body">
+      Add these first — they're your most likely referrers:<br>
+      <strong>Shannon Z.</strong> (5★ reviewer, Florissant) — Script 3 already applies<br>
+      <strong>Amanda H.</strong> (5★ reviewer, Florissant) — Same<br>
+      <strong>Chastity D.</strong> (5★ reviewer, STL County) — Same<br>
+      Any Easter cleanup customer from THIS weekend → Script 1 by Sunday evening
+    </div>
+  </div>
+</div>
+
+<!-- CHECKLIST TAB -->
+<div id="tab-checklist" class="pane">
+  <div id="checklist-progress-bar" style="background: var(--border); border-radius: 8px; height: 8px; margin-bottom: 4px;">
+    <div id="checklist-fill" style="background: var(--green); height: 8px; border-radius: 8px; width: 0%; transition: width 0.3s;"></div>
+  </div>
+  <div id="checklist-progress-label" style="font-size: 12px; color: var(--gray); margin-bottom: 14px;">0 of 18 complete</div>
+
+  <div class="card">
+    <div class="check-phase">🔥 DO NOW (Before Easter Sunday)</div>
+
+    <div class="check-item">
+      <input type="checkbox" id="c1" onchange="updateChecklist()">
+      <label class="check-label" for="c1"><strong>Send Script 3 to Shannon Z., Amanda H., and Chastity D.</strong> — All three left 5★ reviews. They're in peak brand advocate mode. Ask now, before Easter. Takes 3 minutes.</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c2" onchange="updateChecklist()">
+      <label class="check-label" for="c2"><strong>Print or screenshot the Referral Card above</strong> — You don't need to order physical cards immediately. A photo on your phone you can text customers works as a starter.</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c3" onchange="updateChecklist()">
+      <label class="check-label" for="c3"><strong>Add all 11+ current customers to the Tracker tab</strong> — Takes 5 minutes. Reveals which ones you've never asked.</label>
+    </div>
+
+    <div class="check-phase">🐣 EASTER WEEKEND (April 5–6)</div>
+
+    <div class="check-item">
+      <input type="checkbox" id="c4" onchange="updateChecklist()">
+      <label class="check-label" for="c4"><strong>Leave 2 referral cards at every Easter cleanup door</strong> — With a sticky note: "Yard is clean ✅ If a neighbor wants us, here's a card — first one's free for anyone you send."</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c5" onchange="updateChecklist()">
+      <label class="check-label" for="c5"><strong>Send Script 1 to ALL Easter customers by Sunday evening</strong> — While the yard is still fresh in their minds. Don't wait until Monday.</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c6" onchange="updateChecklist()">
+      <label class="check-label" for="c6"><strong>Text Script 6 to any referral names you receive</strong> — If a customer says "my neighbor [Name] was asking about this" — text that person SAME DAY.</label>
+    </div>
+
+    <div class="check-phase">📅 THIS WEEK (April 7–11)</div>
+
+    <div class="check-item">
+      <input type="checkbox" id="c7" onchange="updateChecklist()">
+      <label class="check-label" for="c7"><strong>Send Script 4 to your entire customer list</strong> — Spring seasonal ask. Best timing of the year. All neighbors are outside this week talking about their yards.</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c8" onchange="updateChecklist()">
+      <label class="check-label" for="c8"><strong>Order 100 business card referral cards from Vistaprint or FedEx</strong> — ~$12. Green + white. Use card design from Card tab. Leave at every customer door going forward.</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c9" onchange="updateChecklist()">
+      <label class="check-label" for="c9"><strong>Add referral program info to the "All Done" text</strong> — After every future cleanup: "All done! 🐾 P.S. — if a neighbor wants a free first cleanup, just text me their name."</label>
+    </div>
+
+    <div class="check-phase">🌱 ONGOING HABITS</div>
+
+    <div class="check-item">
+      <input type="checkbox" id="c10" onchange="updateChecklist()">
+      <label class="check-label" for="c10"><strong>After every new customer's first month — send Script 2</strong> — Day 30 ask. Put a reminder in your phone calendar for every new signup.</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c11" onchange="updateChecklist()">
+      <label class="check-label" for="c11"><strong>After every Google review — send Script 3 within 24 hours</strong> — They're in peak advocacy mode. Strike while hot.</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c12" onchange="updateChecklist()">
+      <label class="check-label" for="c12"><strong>Monthly batch ask to 3–5 happiest customers</strong> — Pick whoever has been with you longest or given you a compliment recently. Takes 10 minutes once a month.</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c13" onchange="updateChecklist()">
+      <label class="check-label" for="c13"><strong>When referral converts — send Script 7 thank you immediately</strong> — Confirm the $20 credit. Make the referrer feel like a hero. They'll do it again.</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c14" onchange="updateChecklist()">
+      <label class="check-label" for="c14"><strong>Ask lawn care partners to pass referral cards to dog-owner clients</strong> — Dunn's Lawn Service, Complete Lawn Care, etc. Cross-promotion at zero cost.</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c15" onchange="updateChecklist()">
+      <label class="check-label" for="c15"><strong>Drop referral cards at Treecourt Unleashed Dog Park, Happy Tails, Williamsburg Pet Hotel</strong> — High-density dog owner locations. Leave small stacks with the front desk.</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c16" onchange="updateChecklist()">
+      <label class="check-label" for="c16"><strong>Track all referrals in the Tracker tab</strong> — Know where your customers are coming from. Which customers refer most? Double down on those relationships.</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c17" onchange="updateChecklist()">
+      <label class="check-label" for="c17"><strong>Review referral pipeline monthly</strong> — How many asked? How many referred? How many converted? Adjust cadence if close rate drops.</label>
+    </div>
+    <div class="check-item">
+      <input type="checkbox" id="c18" onchange="updateChecklist()">
+      <label class="check-label" for="c18"><strong>By May: target 3 converts from referrals</strong> — At 40% close rate with 11 customers, this is the base case. If not hitting it, ask more frequently and personalize scripts more.</label>
+    </div>
+  </div>
+
+  <div class="callout callout-green">
+    <div class="callout-title">🎯 The Single Most Important Habit</div>
+    <div class="callout-body">Ask <strong>every customer</strong> after their <strong>first month</strong>. Not every customer will refer. But every customer should be asked once. You're leaving $3,000+ on the table by not asking.</div>
+  </div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyScript(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '📋 Copy Script';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// Customer tracker
+let customers = JSON.parse(localStorage.getItem('referral-customers') || '[]');
+
+function addCustomer() {
+  const name = document.getElementById('new-name').value.trim();
+  const phone = document.getElementById('new-phone').value.trim();
+  const referral = document.getElementById('new-referral').value.trim();
+  const status = document.getElementById('new-status').value;
+  const notes = document.getElementById('new-notes').value.trim();
+  if (!name) return;
+
+  customers.push({ id: Date.now(), name, phone, referral, status, notes, date: new Date().toLocaleDateString() });
+  localStorage.setItem('referral-customers', JSON.stringify(customers));
+  document.getElementById('new-name').value = '';
+  document.getElementById('new-phone').value = '';
+  document.getElementById('new-referral').value = '';
+  document.getElementById('new-status').value = 'new';
+  document.getElementById('new-notes').value = '';
+  renderCustomers();
+}
+
+function updateStatus(id, newStatus) {
+  const c = customers.find(x => x.id === id);
+  if (c) { c.status = newStatus; localStorage.setItem('referral-customers', JSON.stringify(customers)); renderCustomers(); }
+}
+
+function deleteCustomer(id) {
+  customers = customers.filter(x => x.id !== id);
+  localStorage.setItem('referral-customers', JSON.stringify(customers));
+  renderCustomers();
+}
+
+function renderCustomers() {
+  const list = document.getElementById('customer-list');
+  if (!customers.length) {
+    list.innerHTML = '<div style="text-align:center;padding:30px;color:var(--gray);font-size:13px;">Add your existing customers above to start tracking referrals.</div>';
+    updateStats();
+    return;
+  }
+  const statusMap = { new: 'new', asked: 'asked', referred: 'referred', converted: 'converted' };
+  const labels = { new: 'Not Asked', asked: 'Asked', referred: 'Referred', converted: 'Converted 🎉' };
+  const order = { new: 0, asked: 1, referred: 2, converted: 3 };
+  const sorted = [...customers].sort((a,b) => order[a.status] - order[b.status]);
+
+  list.innerHTML = '<div class="card" style="padding:0;overflow:hidden;"><table class="customer-table"><thead><tr><th>Customer</th><th>Referral Given</th><th>Status</th><th>Action</th></tr></thead><tbody>' +
+    sorted.map(c => `
+      <tr>
+        <td>
+          <div style="font-weight:700;font-size:13px;">${c.name}</div>
+          <div style="font-size:11px;color:var(--gray);">${c.phone || '—'}</div>
+          ${c.notes ? `<div style="font-size:11px;color:var(--gray);font-style:italic;">${c.notes}</div>` : ''}
+        </td>
+        <td style="font-size:12px;color:#374151;">${c.referral || '—'}</td>
+        <td>
+          <select style="font-size:11px;padding:4px 6px;width:auto;" onchange="updateStatus(${c.id}, this.value)">
+            <option value="new" ${c.status==='new'?'selected':''}>Not Asked</option>
+            <option value="asked" ${c.status==='asked'?'selected':''}>Asked</option>
+            <option value="referred" ${c.status==='referred'?'selected':''}>Referred</option>
+            <option value="converted" ${c.status==='converted'?'selected':''}>Converted 🎉</option>
+          </select>
+        </td>
+        <td><button onclick="deleteCustomer(${c.id})" style="background:none;border:none;color:var(--gray);cursor:pointer;font-size:14px;">🗑</button></td>
+      </tr>
+    `).join('') +
+  '</tbody></table></div>';
+  updateStats();
+}
+
+function updateStats() {
+  const asked = customers.filter(c => c.status !== 'new').length;
+  const referred = customers.filter(c => c.status === 'referred').length;
+  const converted = customers.filter(c => c.status === 'converted').length;
+  const ltv = converted * 840;
+  document.getElementById('stat-total').textContent = asked;
+  document.getElementById('stat-referred').textContent = referred;
+  document.getElementById('stat-converted').textContent = converted;
+  document.getElementById('stat-ltv').textContent = '$' + ltv.toLocaleString();
+}
+
+// Checklist
+function updateChecklist() {
+  const boxes = document.querySelectorAll('#tab-checklist input[type="checkbox"]');
+  let done = 0;
+  boxes.forEach((box, i) => {
+    const label = box.nextElementSibling;
+    if (box.checked) { done++; label.classList.add('done'); } else { label.classList.remove('done'); }
+    localStorage.setItem('ref-check-' + i, box.checked ? '1' : '0');
+  });
+  const pct = Math.round((done / boxes.length) * 100);
+  document.getElementById('checklist-fill').style.width = pct + '%';
+  document.getElementById('checklist-progress-label').textContent = done + ' of ' + boxes.length + ' complete';
+}
+
+function loadChecklist() {
+  const boxes = document.querySelectorAll('#tab-checklist input[type="checkbox"]');
+  boxes.forEach((box, i) => {
+    box.checked = localStorage.getItem('ref-check-' + i) === '1';
+    if (box.checked) box.nextElementSibling.classList.add('done');
+  });
+  updateChecklist();
+}
+
+// Init
+renderCustomers();
+loadChecklist();
+</script>
+
+</body>
+</html>

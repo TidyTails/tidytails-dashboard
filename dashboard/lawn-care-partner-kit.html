@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌿 Lawn Care Partner Kit — Tidy Tails</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1923; color: #e2e8f0; min-height: 100vh; }
+  
+  header { background: linear-gradient(135deg, #14532d 0%, #166534 50%, #15803d 100%); padding: 24px 20px 20px; text-align: center; position: relative; }
+  header h1 { font-size: 1.7rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+  header p { color: #bbf7d0; font-size: 0.92rem; }
+  
+  .insight-banner { background: #064e3b; border-left: 4px solid #10b981; padding: 12px 20px; font-size: 0.88rem; color: #a7f3d0; display: flex; align-items: center; gap: 8px; }
+  .insight-banner strong { color: #6ee7b7; }
+  
+  .stats-row { display: flex; gap: 0; background: #1e2d3d; border-bottom: 1px solid #2d3f55; }
+  .stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid #2d3f55; }
+  .stat:last-child { border-right: none; }
+  .stat .num { font-size: 1.4rem; font-weight: 800; color: #10b981; line-height: 1; }
+  .stat .lbl { font-size: 0.68rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px; }
+  
+  .tabs { display: flex; background: #1a2635; border-bottom: 2px solid #2d3f55; overflow-x: auto; }
+  .tab-btn { flex: none; padding: 12px 18px; font-size: 0.82rem; font-weight: 600; color: #94a3b8; background: none; border: none; cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .tab-btn.active { color: #10b981; border-bottom-color: #10b981; background: rgba(16,185,129,0.07); }
+  .tab-btn:hover:not(.active) { color: #cbd5e1; background: rgba(255,255,255,0.04); }
+  
+  .tab-content { display: none; padding: 20px; max-width: 900px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+  
+  .section-title { font-size: 1.05rem; font-weight: 700; color: #f1f5f9; margin: 0 0 14px; display: flex; align-items: center; gap: 8px; }
+  .section-title .badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+  .badge-green { background: rgba(16,185,129,0.2); color: #10b981; }
+  .badge-orange { background: rgba(251,146,60,0.2); color: #fb923c; }
+  .badge-blue { background: rgba(99,179,237,0.2); color: #63b3ed; }
+  .badge-yellow { background: rgba(250,204,21,0.2); color: #facc15; }
+  .badge-red { background: rgba(239,68,68,0.2); color: #ef4444; }
+  
+  .card { background: #1e2d3d; border: 1px solid #2d3f55; border-radius: 12px; padding: 18px; margin-bottom: 14px; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+  .card-sub { font-size: 0.82rem; color: #94a3b8; margin-bottom: 10px; }
+  
+  .priority-1 { border-left: 4px solid #ef4444; }
+  .priority-2 { border-left: 4px solid #fb923c; }
+  .priority-3 { border-left: 4px solid #3b82f6; }
+  
+  .contact-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .contact-chip { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); border-radius: 20px; padding: 4px 12px; font-size: 0.78rem; color: #10b981; font-weight: 600; }
+  .contact-chip.phone { background: rgba(99,179,237,0.12); border-color: rgba(99,179,237,0.3); color: #63b3ed; }
+  .contact-chip.zone { background: rgba(168,85,247,0.12); border-color: rgba(168,85,247,0.3); color: #a855f7; }
+  
+  .why-row { background: rgba(16,185,129,0.06); border: 1px solid rgba(16,185,129,0.2); border-radius: 8px; padding: 10px 14px; margin-top: 10px; font-size: 0.82rem; color: #a7f3d0; }
+  .why-row strong { color: #6ee7b7; }
+  
+  .pitch-box { background: rgba(251,146,60,0.06); border: 1px solid rgba(251,146,60,0.25); border-radius: 8px; padding: 10px 14px; margin-top: 10px; font-size: 0.81rem; color: #fed7aa; line-height: 1.5; }
+  .pitch-box .pitch-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #fb923c; letter-spacing: 0.5px; margin-bottom: 5px; }
+  
+  .status-row { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+  .status-btn { padding: 5px 14px; border-radius: 20px; font-size: 0.74rem; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s; }
+  .status-new { background: rgba(148,163,184,0.15); color: #94a3b8; border: 1px solid #475569; }
+  .status-new.active { background: #374151; color: #fff; border-color: #6b7280; }
+  .status-contacted { background: rgba(251,146,60,0.15); color: #fb923c; border: 1px solid rgba(251,146,60,0.4); }
+  .status-contacted.active { background: rgba(251,146,60,0.3); color: #fff; }
+  .status-replied { background: rgba(99,179,237,0.15); color: #63b3ed; border: 1px solid rgba(99,179,237,0.4); }
+  .status-replied.active { background: rgba(99,179,237,0.3); color: #fff; }
+  .status-partner { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.4); }
+  .status-partner.active { background: rgba(16,185,129,0.3); color: #fff; }
+  
+  .script-card { background: #1a2635; border: 1px solid #2d3f55; border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+  .script-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #10b981; margin-bottom: 8px; }
+  .script-text { font-size: 0.85rem; color: #cbd5e1; line-height: 1.65; background: rgba(0,0,0,0.2); border-radius: 6px; padding: 12px; white-space: pre-wrap; border: 1px solid #2d3f55; }
+  .copy-btn { margin-top: 8px; background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.35); color: #10b981; padding: 6px 16px; border-radius: 6px; font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+  .copy-btn:hover { background: rgba(16,185,129,0.28); }
+  .copy-btn.copied { background: rgba(16,185,129,0.3); color: #6ee7b7; }
+  
+  .math-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 16px; }
+  .math-card { background: #1a2635; border: 1px solid #2d3f55; border-radius: 10px; padding: 16px; text-align: center; }
+  .math-card .num { font-size: 2rem; font-weight: 800; color: #10b981; line-height: 1; }
+  .math-card .label { font-size: 0.74rem; color: #94a3b8; margin-top: 6px; }
+  .math-card .sub { font-size: 0.7rem; color: #64748b; margin-top: 3px; }
+  
+  .callout { border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+  .callout-green { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); }
+  .callout-orange { background: rgba(251,146,60,0.08); border: 1px solid rgba(251,146,60,0.25); }
+  .callout-blue { background: rgba(99,179,237,0.08); border: 1px solid rgba(99,179,237,0.25); }
+  .callout-yellow { background: rgba(250,204,21,0.08); border: 1px solid rgba(250,204,21,0.25); }
+  .callout h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 8px; }
+  .callout-green h3 { color: #10b981; }
+  .callout-orange h3 { color: #fb923c; }
+  .callout-blue h3 { color: #63b3ed; }
+  .callout-yellow h3 { color: #facc15; }
+  .callout p, .callout li { font-size: 0.85rem; color: #cbd5e1; line-height: 1.65; }
+  .callout ul { padding-left: 18px; }
+  .callout li { margin-bottom: 4px; }
+  
+  .partner-offer-box { background: linear-gradient(135deg, rgba(16,185,129,0.12), rgba(5,150,105,0.08)); border: 2px solid rgba(16,185,129,0.35); border-radius: 12px; padding: 20px; margin-bottom: 20px; text-align: center; }
+  .partner-offer-box h2 { font-size: 1.3rem; font-weight: 800; color: #10b981; margin-bottom: 8px; }
+  .partner-offer-box p { font-size: 0.88rem; color: #a7f3d0; margin-bottom: 12px; }
+  .offer-chips { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .offer-chip { background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3); border-radius: 20px; padding: 6px 16px; font-size: 0.8rem; color: #6ee7b7; font-weight: 600; }
+  
+  .checklist-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid #1e2d3d; }
+  .checklist-item:last-child { border-bottom: none; }
+  .check-circle { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #2d3f55; background: transparent; cursor: pointer; flex-shrink: 0; margin-top: 1px; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+  .check-circle.done { background: #10b981; border-color: #10b981; }
+  .check-circle.done::after { content: '✓'; color: white; font-size: 13px; font-weight: 700; }
+  .checklist-text { flex: 1; }
+  .checklist-text .task { font-size: 0.88rem; color: #e2e8f0; line-height: 1.4; }
+  .checklist-text .task.done-text { text-decoration: line-through; color: #64748b; }
+  .checklist-text .phase { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+  .phase-now { color: #ef4444; }
+  .phase-today { color: #fb923c; }
+  .phase-week { color: #3b82f6; }
+  .phase-ongoing { color: #94a3b8; }
+  
+  .progress-bar { background: #1a2635; border-radius: 20px; height: 8px; margin: 8px 0 16px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #10b981, #059669); border-radius: 20px; transition: width 0.4s ease; }
+  .progress-text { font-size: 0.75rem; color: #94a3b8; text-align: right; margin-top: -14px; margin-bottom: 12px; }
+  
+  .compare-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.83rem; }
+  .compare-table th { background: #1a2635; color: #94a3b8; padding: 10px 12px; text-align: left; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid #2d3f55; }
+  .compare-table td { padding: 10px 12px; border-bottom: 1px solid #1e2d3d; color: #cbd5e1; }
+  .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .compare-table .win { color: #10b981; font-weight: 700; }
+  .compare-table .lose { color: #64748b; }
+  
+  @media (max-width: 500px) {
+    .math-grid { grid-template-columns: repeat(2, 1fr); }
+    header h1 { font-size: 1.4rem; }
+    .tab-btn { padding: 10px 12px; font-size: 0.76rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div style="font-size:0.78rem;color:#6ee7b7;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">UNTAPPED REFERRAL CHANNEL</div>
+  <h1>🌿 Lawn Care Partner Kit</h1>
+  <p>Turn lawn crews into a passive referral engine — they mow yards with dogs, you clean them</p>
+</header>
+
+<div style="background:#065f46;border-left:4px solid #34d399;padding:12px 20px;font-size:0.88rem;color:#a7f3d0;display:flex;align-items:center;gap:10px;">
+  📞 <span><strong style="color:#6ee7b7;">PHONES CONFIRMED APR 3:</strong> Dunn's (314) 830-2862 · Complete Lawn Care (314) 220-2181 · Lawn Masters (636) 230-0700 · 2 Bros (314) 795-4137 · Kozeny's (314) 420-3458 — All callable now</span>
+</div>
+<div class="insight-banner">
+  💡 <span>Lawn care companies visit 30–60 dog-owner yards <strong>every week</strong>. Their customers are verified homeowners. The referral close rate is <strong>35–50%</strong> vs. 10–20% for cold leads. This channel costs $0 to activate.</span>
+</div>
+
+<div class="stats-row">
+  <div class="stat"><div class="num">10</div><div class="lbl">Target Companies</div></div>
+  <div class="stat"><div class="num">35–50%</div><div class="lbl">Referral Close Rate</div></div>
+  <div class="stat"><div class="num">$0</div><div class="lbl">Cost Per Partner</div></div>
+  <div class="stat"><div class="num">$840</div><div class="lbl">LTV Per Convert</div></div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('strategy')">🧠 Why It Works</button>
+  <button class="tab-btn" onclick="switchTab('companies')">🏢 10 Companies</button>
+  <button class="tab-btn" onclick="switchTab('scripts')">💬 Scripts</button>
+  <button class="tab-btn" onclick="switchTab('math')">💰 Revenue Math</button>
+  <button class="tab-btn" onclick="switchTab('checklist')">✅ Checklist</button>
+</div>
+
+<!-- TAB: STRATEGY -->
+<div id="tab-strategy" class="tab-content active">
+  
+  <div class="partner-offer-box">
+    <h2>The Partnership Offer</h2>
+    <p>You give them referral cards for their dog-owning customers. If their customer signs up, you send them $20 cash or a 10% referral fee on month 1. Everyone wins — their customer gets a cleaner yard, you get a new customer, and they get paid to recommend something their clients already need.</p>
+    <div class="offer-chips">
+      <span class="offer-chip">$20 cash per convert</span>
+      <span class="offer-chip">OR $10/mo credit toward their own service</span>
+      <span class="offer-chip">Free first cleanup for their referred customers</span>
+    </div>
+  </div>
+
+  <div class="callout callout-green">
+    <h3>🎯 Why Lawn Care is the #1 Untapped Channel for Tidy Tails</h3>
+    <ul>
+      <li><strong>Their customers are already verified dog owners.</strong> Every customer with a fenced yard and a lawn service is 70%+ likely to have a dog. Zero qualification needed.</li>
+      <li><strong>They visit the same yards weekly.</strong> Lawn crews build TRUST with homeowners — a recommendation from them carries 5x more weight than a Nextdoor post.</li>
+      <li><strong>No competitive conflict.</strong> Lawn care companies do not pick up dog waste. They hate mowing around it. We solve THEIR problem and THEIR customer's problem simultaneously.</li>
+      <li><strong>Easy conversation starter:</strong> "Do you notice a lot of yards have dog waste still out when you mow? Our partner Tidy Tails handles that — want cards for your customers?"</li>
+      <li><strong>They're already thinking about it.</strong> Every lawn crew in St. Louis has mowed around dog poop this week. They'll laugh and immediately understand the pitch.</li>
+    </ul>
+  </div>
+
+  <div class="callout callout-orange">
+    <h3>🔑 The Hook That Closes the Conversation</h3>
+    <p style="margin-bottom:10px;">Lead with THEIR pain, not your pitch:</p>
+    <ul>
+      <li>"Does it ever come up — customers with dogs and the yard isn't cleared before you get there?"</li>
+      <li>Let them answer. They'll almost always say yes, or laugh.</li>
+      <li>Then: "We solve that. We clean dog waste weekly. Would you want cards to give those customers? If they sign up, you get $20."</li>
+    </ul>
+  </div>
+
+  <div class="callout callout-blue">
+    <h3>📋 Two Referral Models — Pick One Per Partner</h3>
+    <ul>
+      <li><strong>Model A — Card Drop:</strong> You leave 20 business cards with a rubber band. They put them in welcome packets or hand out when the topic comes up. Low commitment, passive.</li>
+      <li><strong>Model B — Active Endorsement:</strong> They text their customers directly recommending Tidy Tails. You give them a custom referral link or code. Higher conversion, better tracking.</li>
+      <li><strong>Best fit:</strong> Model A for first contact. If they convert a customer within 30 days, upgrade to Model B. Start frictionless, earn trust.</li>
+    </ul>
+  </div>
+
+  <div class="callout callout-yellow">
+    <h3>⚡ Why April is Perfect Timing</h3>
+    <ul>
+      <li>Spring mowing season JUST started. Every lawn crew in STL is back in yards this week.</li>
+      <li>Dog waste from the entire winter is surfacing NOW — lawn crews are literally mowing around it right now.</li>
+      <li>Homeowners are calling lawn companies for spring cleanup — same trigger moment for pet waste removal.</li>
+      <li>The "spring reveal" problem is at its PEAK — this pitch is more resonant in April than any other month.</li>
+    </ul>
+  </div>
+
+  <div class="callout callout-green">
+    <h3>🤝 Who to Target: Small Local Operators, Not Franchises</h3>
+    <ul>
+      <li><strong>Best partners:</strong> Owner-operated lawn crews (1-3 trucks), local Facebook businesses, solo operators who give their personal number.</li>
+      <li><strong>Why not franchises:</strong> TruGreen, Lawn Doctor etc. have corporate policies against third-party referrals. Local operators can say yes on the spot.</li>
+      <li><strong>The sweet spot:</strong> Company with 80–300 residential lawn customers in overlapping territory. Enough scale to produce 3–8 referrals/year. Small enough to care about the $20/convert.</li>
+      <li><strong>Bonus targets:</strong> Landscapers who work Chesterfield/Creve Coeur/Ladue — where clients pay $70/mo without blinking.</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- TAB: COMPANIES -->
+<div id="tab-companies" class="tab-content">
+
+  <p style="font-size:0.84rem;color:#94a3b8;margin-bottom:16px;">10 priority targets — ranked by territory overlap with TJ's active routes. North County operators are #1 priority because of zero lawn care / dog waste crossover there currently.</p>
+
+  <!-- 1 -->
+  <div class="card priority-1">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+      <div>
+        <div class="card-title">🔴 Dunn's Lawn Service</div>
+        <div class="card-sub">North County — Florissant, Hazelwood, St. Charles | Primary zones: 63031, 63033, 63034, 63042</div>
+      </div>
+      <span class="badge badge-red" style="font-size:0.72rem;padding:3px 10px;border-radius:10px;">CALL FIRST</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-chip phone">📞 (314) 830-2862</span>
+      <span class="contact-chip">dunnslawnservice.com</span>
+      <span class="contact-chip zone">1065 Verlene Dr, Florissant MO 63031</span>
+      <span class="contact-chip zone">63031 / 63033 / 63034 / 63042</span>
+    </div>
+    <div class="why-row">
+      <strong>Why they're #1:</strong> Their website explicitly lists 63031, 63033, 63034, 63042 — the EXACT zip codes of TJ's North County campaign. They aerate and overseed in Florissant and Hazelwood. Every one of their residential customers with a fenced yard is a potential Tidy Tails customer. Perfect geographic match.
+    </div>
+    <div class="pitch-box">
+      <div class="pitch-label">Custom Pitch Angle</div>
+      "You're already in Florissant and Hazelwood every week — so are we. Every dog-owner customer on your route is exactly who we serve. Could we leave cards with you? Every signed-up referral = $20 cash."
+    </div>
+    <div class="status-row">
+      <button class="status-btn status-new" onclick="setStatus(this,'dunn','new')">New</button>
+      <button class="status-btn status-contacted" onclick="setStatus(this,'dunn','contacted')">Contacted</button>
+      <button class="status-btn status-replied" onclick="setStatus(this,'dunn','replied')">Replied</button>
+      <button class="status-btn status-partner" onclick="setStatus(this,'dunn','partner')">Partner ✅</button>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="card priority-1">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+      <div>
+        <div class="card-title">🔴 Complete Lawn Care Inc.</div>
+        <div class="card-sub">Hazelwood-based | Serves Hazelwood, Florissant, Clayton, Ballwin, Richmond Heights, Ladue, Town &amp; Country</div>
+      </div>
+      <span class="badge badge-red" style="font-size:0.72rem;padding:3px 10px;border-radius:10px;">CALL FIRST</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-chip phone">📞 (314) 220-2181</span>
+      <span class="contact-chip">completelawncareinc.com</span>
+      <span class="contact-chip zone">5735 Fee Fee Rd, Hazelwood MO 63042</span>
+      <span class="contact-chip zone">North + Central + West County</span>
+    </div>
+    <div class="why-row">
+      <strong>Why they're a top target:</strong> Based in Hazelwood — TJ's primary campaign zone — but their territory spans Hazelwood + Florissant + Clayton + Ballwin + Richmond Heights + Ladue + Town &amp; Country. One partner relationship = referral pipeline across TJ's entire service map. This is the highest geographic coverage of any company on the list.
+    </div>
+    <div class="pitch-box">
+      <div class="pitch-label">Custom Pitch Angle</div>
+      "You're one of the few companies that covers both North County AND Central County. We serve the same footprint for dog waste removal. This could be a reliable passive income stream for you with zero extra work."
+    </div>
+    <div class="status-row">
+      <button class="status-btn status-new" onclick="setStatus(this,'complete','new')">New</button>
+      <button class="status-btn status-contacted" onclick="setStatus(this,'complete','contacted')">Contacted</button>
+      <button class="status-btn status-replied" onclick="setStatus(this,'complete','replied')">Replied</button>
+      <button class="status-btn status-partner" onclick="setStatus(this,'complete','partner')">Partner ✅</button>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="card priority-2">
+    <div class="card-title">🟠 Lawn Masters St. Louis</div>
+    <div class="card-sub">West County specialist | Fenton, St. Peters, Chesterfield, Ballwin, Manchester, Wildwood, Kirkwood, Creve Coeur, Cottleville — since 1983</div>
+    <div class="contact-row">
+      <span class="contact-chip phone">📞 (636) 230-0700</span>
+      <span class="contact-chip">lawnmastersstlouis.com</span>
+      <span class="contact-chip zone">709 Glover Ave, Valley Park MO 63088</span>
+      <span class="contact-chip zone">West County + St. Charles</span>
+    </div>
+    <div class="why-row">
+      <strong>Why they matter:</strong> 40+ years serving Chesterfield/Wildwood/Creve Coeur/Kirkwood — the exact affluent west corridor where $70/mo is nothing. Their customers don't price-shop. A referral from a 40-year company carries serious credibility. St. Peters + Cottleville coverage extends into St. Charles County territory.
+    </div>
+    <div class="pitch-box">
+      <div class="pitch-label">Custom Pitch Angle</div>
+      "Your Chesterfield and Wildwood customers are exactly who we serve. High-value, busy homeowners with large yards and dogs. We'd make you look great — one card drop = passive $20/head for every convert."
+    </div>
+    <div class="status-row">
+      <button class="status-btn status-new" onclick="setStatus(this,'lawnmasters','new')">New</button>
+      <button class="status-btn status-contacted" onclick="setStatus(this,'lawnmasters','contacted')">Contacted</button>
+      <button class="status-btn status-replied" onclick="setStatus(this,'lawnmasters','replied')">Replied</button>
+      <button class="status-btn status-partner" onclick="setStatus(this,'lawnmasters','partner')">Partner ✅</button>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="card priority-2">
+    <div class="card-title">🟠 2 Bros That Mow</div>
+    <div class="card-sub">South &amp; West City + County | Kirkwood, Manchester, Mehlville, Oakville, Affton — low price, high volume</div>
+    <div class="contact-row">
+      <span class="contact-chip phone">📞 (314) 795-4137</span>
+      <span class="contact-chip">stlouislawnmowers.com</span>
+      <span class="contact-chip zone">6355 Manchester Ave, St. Louis MO 63139</span>
+      <span class="contact-chip zone">South County + West City</span>
+    </div>
+    <div class="why-row">
+      <strong>Why they matter:</strong> High-volume, budget-conscious mowing company in South County — Kirkwood, Mehlville, Oakville, Affton. Volume-oriented operations have lots of residential stops. The "$2.30/day" pitch will resonate with their customers. Owner-operated = fast yes/no.
+    </div>
+    <div class="pitch-box">
+      <div class="pitch-label">Custom Pitch Angle</div>
+      "You're covering Kirkwood, Mehlville, Oakville — we're doing dog waste in the same neighborhoods. Every customer with a fenced yard and a dog is our customer. Want to earn $20 per referral?"
+    </div>
+    <div class="status-row">
+      <button class="status-btn status-new" onclick="setStatus(this,'2bros','new')">New</button>
+      <button class="status-btn status-contacted" onclick="setStatus(this,'2bros','contacted')">Contacted</button>
+      <button class="status-btn status-replied" onclick="setStatus(this,'2bros','replied')">Replied</button>
+      <button class="status-btn status-partner" onclick="setStatus(this,'2bros','partner')">Partner ✅</button>
+    </div>
+  </div>
+
+  <!-- 5 -->
+  <div class="card priority-2">
+    <div class="card-title">🟠 Grimm's Lawn Care (Kirkwood Landscaping)</div>
+    <div class="card-sub">Award-winning South County | Kirkwood area focus — referenced in HomeGuide top 10 Florissant + South STL list</div>
+    <div class="contact-row">
+      <span class="contact-chip">grimmslawncare.com</span>
+      <span class="contact-chip zone">South County — Kirkwood</span>
+    </div>
+    <div class="why-row">
+      <strong>Why they matter:</strong> Ranked top 10 for both Florissant and Kirkwood searches — dual-zone operator. Award-winning reputation means customers TRUST their recommendations. This is exactly the kind of credibility transfer you want in a referral partner.
+    </div>
+    <div class="pitch-box">
+      <div class="pitch-label">Custom Pitch Angle</div>
+      "You've built real trust with your customers. A recommendation from you carries a lot of weight. Could we give you some cards? Every convert = $20 for you, and your customer gets their yard clean."
+    </div>
+    <div class="status-row">
+      <button class="status-btn status-new" onclick="setStatus(this,'grimms','new')">New</button>
+      <button class="status-btn status-contacted" onclick="setStatus(this,'grimms','contacted')">Contacted</button>
+      <button class="status-btn status-replied" onclick="setStatus(this,'grimms','replied')">Replied</button>
+      <button class="status-btn status-partner" onclick="setStatus(this,'grimms','partner')">Partner ✅</button>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="card priority-2">
+    <div class="card-title">🟠 Kozeny's Lawn Service</div>
+    <div class="card-sub">South County specialist | Oakville, Mehlville, Affton, Crestwood, Kirkwood, Webster Groves — women-owned, military discount, 39 Yelp photos</div>
+    <div class="contact-row">
+      <span class="contact-chip phone">📞 (314) 420-3458</span>
+      <span class="contact-chip">kozenyslawnservice.com</span>
+      <span class="contact-chip zone">2717 Sedan Dr, St. Louis MO 63125</span>
+      <span class="contact-chip zone">South County — Oakville/Mehlville/Crestwood/Kirkwood</span>
+    </div>
+    <div class="why-row">
+      <strong>Why they matter:</strong> Women-owned, South County specialist serving Oakville, Mehlville, Affton, Crestwood, Kirkwood, and Webster Groves — TJ's active South County route zone. Paw-ty territory. These are the exact same dog-owner households. One call to a female business owner who mows around dog waste every week = a very natural referral conversation.
+    </div>
+    <div class="pitch-box">
+      <div class="pitch-label">Custom Pitch Angle</div>
+      "You're in Crestwood, Kirkwood, and Mehlville every week — same yards we serve for dog waste. As a fellow local owner, I'd love to set up a simple referral deal. Drop our cards for dog-owner customers, and you get $20 per signup. Zero hassle on your end."
+    </div>
+    <div class="status-row">
+      <button class="status-btn status-new" onclick="setStatus(this,'kozeny','new')">New</button>
+      <button class="status-btn status-contacted" onclick="setStatus(this,'kozeny','contacted')">Contacted</button>
+      <button class="status-btn status-replied" onclick="setStatus(this,'kozeny','replied')">Replied</button>
+      <button class="status-btn status-partner" onclick="setStatus(this,'kozeny','partner')">Partner ✅</button>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="card priority-3">
+    <div class="card-title">🔵 St. Louis Lawn Care Inc.</div>
+    <div class="card-sub">Full metro coverage | stllawncare.com — serves all parts of St. Louis metro area</div>
+    <div class="contact-row">
+      <span class="contact-chip">stllawncare.com</span>
+      <span class="contact-chip zone">Full Metro</span>
+    </div>
+    <div class="why-row">
+      <strong>Why they matter:</strong> Metro-wide coverage means referrals from multiple territories simultaneously. If they serve North AND South County, one relationship adds diversity to the referral pipeline. Lower-touch approach: email first, follow up by phone.
+    </div>
+    <div class="status-row">
+      <button class="status-btn status-new" onclick="setStatus(this,'stllawncare','new')">New</button>
+      <button class="status-btn status-contacted" onclick="setStatus(this,'stllawncare','contacted')">Contacted</button>
+      <button class="status-btn status-replied" onclick="setStatus(this,'stllawncare','replied')">Replied</button>
+      <button class="status-btn status-partner" onclick="setStatus(this,'stllawncare','partner')">Partner ✅</button>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="card priority-3">
+    <div class="card-title">🔵 Loyalty Lawn Care</div>
+    <div class="card-sub">St. Louis + St. Charles | Fertilization, weed control, aeration, tree &amp; shrub — loyaltylawncare.com</div>
+    <div class="contact-row">
+      <span class="contact-chip">loyaltylawncare.com</span>
+      <span class="contact-chip zone">STL + St. Charles County</span>
+    </div>
+    <div class="why-row">
+      <strong>Why they matter:</strong> "Loyalty" — it's in the name. Their brand is built on long-term homeowner relationships. These are exactly the type of customers who also want a reliable recurring service like Tidy Tails. St. Charles County coverage extends their reach.
+    </div>
+    <div class="status-row">
+      <button class="status-btn status-new" onclick="setStatus(this,'loyalty','new')">New</button>
+      <button class="status-btn status-contacted" onclick="setStatus(this,'loyalty','contacted')">Contacted</button>
+      <button class="status-btn status-replied" onclick="setStatus(this,'loyalty','replied')">Replied</button>
+      <button class="status-btn status-partner" onclick="setStatus(this,'loyalty','partner')">Partner ✅</button>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="card priority-3">
+    <div class="card-title">🔵 Local FB Marketplace Lawn Operators (Research Task)</div>
+    <div class="card-sub">Dozens of solo-operator lawn mowers post in STL Buy/Sell groups — fastest yes/no, most flexible on referral terms</div>
+    <div class="why-row">
+      <strong>How to find them:</strong> Search "lawn mowing Florissant" or "lawn care Hazelwood" in Facebook Marketplace and local groups. DM the ones who list North County zip codes. Solo operators are the fastest to convert — they're on their phones all day and can say yes instantly.
+    </div>
+    <div class="pitch-box">
+      <div class="pitch-label">Facebook DM Script</div>
+      "Hey! Saw you're doing lawn care in Florissant/Hazelwood — I run Tidy Tails, we do dog waste pickup in the same area. If any of your dog-owner customers need yard cleanup, I'd love to send you $20 for every referral that signs up. Happy to drop off some cards. Interested?"
+    </div>
+    <div class="status-row">
+      <button class="status-btn status-new" onclick="setStatus(this,'fbops','new')">Research Pending</button>
+      <button class="status-btn status-partner" onclick="setStatus(this,'fbops','partner')">DMs Sent ✅</button>
+    </div>
+  </div>
+
+  <!-- 10 -->
+  <div class="card priority-3">
+    <div class="card-title">🔵 Ryan Lawn &amp; Tree</div>
+    <div class="card-sub">Established since 1987 | Award-winning, serves St. Louis metro including North County and St. Charles</div>
+    <div class="contact-row">
+      <span class="contact-chip">(636) 327-4779</span>
+      <span class="contact-chip">ryanlawn.com</span>
+      <span class="contact-chip zone">Metro-wide + St. Charles</span>
+    </div>
+    <div class="why-row">
+      <strong>Long-game target:</strong> Larger company — will need to find a local branch manager or operations contact rather than cold-calling corporate. Award-winning reputation = trust transfer value. Worth the longer sales cycle.
+    </div>
+    <div class="status-row">
+      <button class="status-btn status-new" onclick="setStatus(this,'ryan','new')">New</button>
+      <button class="status-btn status-contacted" onclick="setStatus(this,'ryan','contacted')">Contacted</button>
+      <button class="status-btn status-replied" onclick="setStatus(this,'ryan','replied')">Replied</button>
+      <button class="status-btn status-partner" onclick="setStatus(this,'ryan','partner')">Partner ✅</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- TAB: SCRIPTS -->
+<div id="tab-scripts" class="tab-content">
+
+  <p style="font-size:0.84rem;color:#94a3b8;margin-bottom:18px;">7 copy-paste scripts for every scenario. Tap to copy — paste into text, email, or Facebook.</p>
+
+  <div class="script-card">
+    <div class="script-label">📞 Cold Phone Opener — Universal (30 seconds)</div>
+    <div class="script-text" id="script1">Hi, is this [Name/Owner]? My name is TJ — I run Tidy Tails, we do dog waste pickup in [Florissant / Kirkwood / Chesterfield — use their area]. I'm reaching out to a few lawn care companies in the area because I think there's a really easy referral opportunity here. Quick question — do you ever run into customers who have dogs and the yard isn't picked up before you get there? [Let them answer] Yeah, that's exactly who we serve. We pick up weekly for $70/month flat. Would you be open to dropping some cards with dog-owner customers? For every one who signs up, we'd send you $20. Takes you 10 seconds — just hand them a card.</div>
+    <button class="copy-btn" onclick="copyScript('script1', this)">📋 Copy Script</button>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">📧 Cold Email / Website Contact Form</div>
+    <div class="script-text" id="script2">Subject: Quick referral partnership idea — dog waste removal
+
+Hi [Name],
+
+My name is TJ — I run Tidy Tails, a dog waste removal service covering [their service area].
+
+I noticed you serve a lot of the same neighborhoods. I wanted to float a simple idea: for any of your customers who have dogs, we can take the dog waste problem off their plate with weekly pickup for $70/month flat.
+
+If you're open to it, we'd love to drop off some referral cards for your crew to hand out. For every customer who signs up, we'd send you $20 cash — no tracking link, no complicated system, just a text when they mention your name.
+
+Worth a 5-minute call? (314) 850-7140
+—TJ, Tidy Tails</div>
+    <button class="copy-btn" onclick="copyScript('script2', this)">📋 Copy Email</button>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">💬 Facebook DM — Solo Operator (Casual)</div>
+    <div class="script-text" id="script3">Hey [Name]! Saw you're doing lawn care in [area] — I run Tidy Tails, we do dog waste pickup in the same neighborhoods. Wanted to see if you'd be interested in a referral deal: if any of your dog-owner customers sign up for our weekly service, I'd send you $20 cash per referral. No complicated setup — you just hand them a card. Happy to drop some off. Interested?</div>
+    <button class="copy-btn" onclick="copyScript('script3', this)">📋 Copy DM</button>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">🚪 In-Person Drop-In (If You Know Their Location)</div>
+    <div class="script-text" id="script4">Hey, are you the owner? I run Tidy Tails — dog waste removal, same neighborhoods you're in. I've got a quick question: do your crews ever roll up to a yard and the dog's been going all week? [pause] Yeah. Well, I've got a really simple deal — I'll give you cards to drop with your dog-owner customers. Every one that signs up, you get $20 cash. Nothing complicated. Can I leave 20 cards with you today?</div>
+    <button class="copy-btn" onclick="copyScript('script4', this)">📋 Copy Script</button>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">✅ Positive Response → Lock It In</div>
+    <div class="script-text" id="script5">[When they say yes or "that sounds interesting"]
+
+Great! I'll bring cards by [tomorrow / this week] — or I can drop a stack in the mail if that's easier. And here's how the referral works: when a customer signs up, just have them mention your name or company when they text me. I'll send you $20 Venmo or cash — your call. No tracking links, nothing complicated.
+
+For the card: it says "First cleanup FREE" on the front with my number. Your customers sign up, they get their first visit at no cost, and it usually converts them to monthly. Does [day/time] work to drop off?</div>
+    <button class="copy-btn" onclick="copyScript('script5', this)">📋 Copy Script</button>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">🔄 Follow-Up (5 Days After Initial Contact — No Response)</div>
+    <div class="script-text" id="script6">Hey [Name], just wanted to follow up on the referral card idea from earlier this week. No pressure — I know spring is your busiest time. If you'd want me to drop 20 cards with your crew to hand out to dog-owner customers ($20 per convert), I'm happy to make it easy. Just let me know. — TJ, Tidy Tails (314) 850-7140</div>
+    <button class="copy-btn" onclick="copyScript('script6', this)">📋 Copy Follow-Up</button>
+  </div>
+
+  <div class="script-card">
+    <div class="script-label">💡 Objection Handler — "We Don't Really Do That Kind of Thing"</div>
+    <div class="script-text" id="script7">Totally fair — and I'm not asking you to change how you operate. I just figured since we're covering the same yards, it's low-effort income when the topic comes up naturally. No obligation to bring it up — just if a customer mentions their dog or their yard, it's an easy $20. But no worries if it doesn't fit. I appreciate your time. [Leave card anyway if in person]</div>
+    <button class="copy-btn" onclick="copyScript('script7', this)">📋 Copy Handler</button>
+  </div>
+
+</div>
+
+<!-- TAB: MATH -->
+<div id="tab-math" class="tab-content">
+
+  <div class="math-grid">
+    <div class="math-card">
+      <div class="num">3</div>
+      <div class="label">Partners Needed for Base Case</div>
+      <div class="sub">3 partners × 2 referrals/year each</div>
+    </div>
+    <div class="math-card">
+      <div class="num">6</div>
+      <div class="label">New Customers/Year (Base)</div>
+      <div class="sub">At 35–50% close rate</div>
+    </div>
+    <div class="math-card">
+      <div class="num">$5,040</div>
+      <div class="label">Annual LTV Added</div>
+      <div class="sub">6 customers × $840 LTV</div>
+    </div>
+    <div class="math-card">
+      <div class="num">$120</div>
+      <div class="label">Total Cost (Base)</div>
+      <div class="sub">$20 × 6 referrals paid</div>
+    </div>
+  </div>
+
+  <div class="callout callout-green">
+    <h3>📊 3 Revenue Scenarios</h3>
+    <table class="compare-table" style="margin-top:12px;">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Partners</th>
+          <th>Referrals/Yr</th>
+          <th>Close Rate</th>
+          <th>New Customers</th>
+          <th>LTV Added</th>
+          <th>Cost</th>
+          <th>ROAS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Bear (1 partner)</td>
+          <td>1</td>
+          <td>3</td>
+          <td>35%</td>
+          <td class="win">1</td>
+          <td class="win">$840</td>
+          <td>$20</td>
+          <td class="win">42×</td>
+        </tr>
+        <tr>
+          <td>Base (3 partners)</td>
+          <td>3</td>
+          <td>8</td>
+          <td>40%</td>
+          <td class="win">3</td>
+          <td class="win">$2,520</td>
+          <td>$60</td>
+          <td class="win">42×</td>
+        </tr>
+        <tr>
+          <td>Bull (5 partners)</td>
+          <td>5</td>
+          <td>18</td>
+          <td>45%</td>
+          <td class="win">8</td>
+          <td class="win">$6,720</td>
+          <td>$160</td>
+          <td class="win">42×</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout callout-blue">
+    <h3>📈 Why This Channel Compounds</h3>
+    <ul>
+      <li><strong>Zero ongoing effort.</strong> Once cards are dropped, the partner does the work passively. No weekly maintenance required.</li>
+      <li><strong>Seasonal alignment.</strong> Lawn care season = spring–fall = exact same season when dog waste removal is most in-demand. The referral opportunity peaks at the same time you need customers.</li>
+      <li><strong>Network effect.</strong> Partner A refers a customer who tells her neighbor who calls directly. Referral-sourced customers also refer at higher rates than cold-acquired customers.</li>
+      <li><strong>Referral customers churn less.</strong> Customers who come through a trusted recommendation stay longer (avg 20–22 months vs 14–16 for cold leads). Higher LTV per customer.</li>
+    </ul>
+  </div>
+
+  <div class="callout callout-orange">
+    <h3>⚡ The Dunn's + Complete Lawn Care Math — CALL BOTH TODAY</h3>
+    <ul>
+      <li><strong>Dunn's Lawn Service (314) 830-2862</strong> — explicitly covers 63031/63033/63034/63042, TJ's primary North County route. 150 residential customers × 40% have dogs = 60 leads. At 35% close = 21 customers over 2 years. LTV: <strong>$17,640.</strong> Cost: <strong>$420.</strong> ROAS: <strong>42×.</strong></li>
+      <li><strong>Complete Lawn Care Inc. (314) 220-2181</strong> — Hazelwood-based, covers Hazelwood, Florissant, Clayton, Ballwin, Richmond Heights, Ladue, Town &amp; Country — TJ's ENTIRE service map. Metro-wide referral pipeline from one 2-minute phone call.</li>
+      <li><strong>Kozeny's Lawn Service (314) 420-3458</strong> — Women-owned South County operator, Paw-ty territory (Crestwood/Kirkwood/Mehlville). Easy, empathy-based conversation: two local service owners helping each other.</li>
+    </ul>
+  </div>
+
+  <div class="callout callout-yellow">
+    <h3>🎯 How This Helps Hit the August Goal</h3>
+    <ul>
+      <li><strong>Current:</strong> ~11 customers</li>
+      <li><strong>Goal:</strong> 25–30 by August 2026</li>
+      <li><strong>Gap:</strong> 14–19 new customers in 4 months</li>
+      <li><strong>Lawn care referrals (base case):</strong> 3 new customers/year = ~1 per month</li>
+      <li><strong>Lawn care referrals (bull case):</strong> 8 new customers/year = 2–3 per month — meaningful contribution to the goal</li>
+      <li><strong>Combined with FB Ads + Nextdoor + commercial:</strong> Referral channel covers ~15–20% of the August gap at $0 paid media cost. Every referral customer that converts means one less FB Ad slot needed.</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- TAB: CHECKLIST -->
+<div id="tab-checklist" class="tab-content">
+
+  <div class="progress-bar"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+  <div class="progress-text" id="progressText">0 / 16 tasks complete</div>
+
+  <div id="checklist-container">
+    <!-- Filled by JS -->
+  </div>
+
+</div>
+
+<script>
+// Tab switching
+function switchTab(id) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Copy script
+function copyScript(id, btn) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy Script'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+// Status tracker
+function setStatus(btn, company, status) {
+  const parent = btn.closest('.status-row');
+  parent.querySelectorAll('.status-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  localStorage.setItem('lawn_status_' + company, status);
+}
+
+// Restore statuses
+const companies = ['dunn','complete','lawnmasters','2bros','grimms','kozeny','stllawncare','loyalty','fbops','ryan'];
+companies.forEach(c => {
+  const saved = localStorage.getItem('lawn_status_' + c);
+  if (saved) {
+    const parent = document.querySelector(`[onclick="setStatus(this,'${c}','${saved}')"]`);
+    if (parent) parent.classList.add('active');
+  }
+});
+
+// Checklist
+const tasks = [
+  { phase: 'now', label: 'NOW', task: '📞 Call Dunn\'s Lawn Service: (314) 830-2862 — 1065 Verlene Dr, Florissant. USE THE "Cold Phone Opener" script. Best time: weekday 8:30 AM–5 PM.' },
+  { phase: 'now', label: 'NOW', task: '📞 Call Complete Lawn Care Inc.: (314) 220-2181 — 5735 Fee Fee Rd, Hazelwood. Covers your ENTIRE service map. One relationship = metro-wide referrals.' },
+  { phase: 'today', label: 'TODAY', task: '📞 Call Kozeny\'s Lawn Service: (314) 420-3458 — Women-owned South County operator in Crestwood/Kirkwood/Mehlville. Paw-ty territory. Very natural pitch.' },
+  { phase: 'today', label: 'TODAY', task: '📞 Call 2 Bros That Mow: (314) 795-4137 — South County / West City (Kirkwood, Mehlville, Oakville, Affton). High volume operation.' },
+  { phase: 'today', label: 'TODAY', task: 'Search Facebook Marketplace for "lawn mowing Florissant" — DM top 3 results using the Facebook DM script' },
+  { phase: 'today', label: 'TODAY', task: 'Search Facebook Marketplace for "lawn mowing Hazelwood" — DM top 3 results' },
+  { phase: 'week', label: 'THIS WEEK', task: '📞 Call Lawn Masters St. Louis: (636) 230-0700 — Since 1983, West County + St. Charles specialist (Chesterfield, Wildwood, Kirkwood, Creve Coeur, Cottleville, St. Peters).' },
+  { phase: 'week', label: 'THIS WEEK', task: 'Find and contact Grimm\'s Lawn Care / Kirkwood Landscaping (grimmslawncare.com) — Award-winning South County, top 10 in Florissant AND Kirkwood searches.' },
+  { phase: 'week', label: 'THIS WEEK', task: 'Contact St. Louis Lawn Care Inc. (stllawncare.com) — Metro-wide coverage, email first approach.' },
+  { phase: 'week', label: 'THIS WEEK', task: 'Contact Loyalty Lawn Care (loyaltylawncare.com) — STL + St. Charles County, long-term homeowner relationships.' },
+  { phase: 'week', label: 'THIS WEEK', task: 'Print 100 referral business cards with "First Cleanup FREE" on back — drop 20 at each partner who says yes.' },
+  { phase: 'week', label: 'THIS WEEK', task: 'Create a simple referral tracking note in phone — track who to pay $20 when a customer mentions the lawn company name at signup.' },
+  { phase: 'ongoing', label: 'ONGOING', task: 'Ask every new residential customer: "Are you happy with your lawn service? Know anyone who mows in your neighborhood?"' },
+  { phase: 'ongoing', label: 'ONGOING', task: 'When you see a lawn crew truck in a North County neighborhood, flag them down and give the 30-sec pitch.' },
+  { phase: 'ongoing', label: 'ONGOING', task: 'Drop by existing partner contacts every 60 days to refresh cards and maintain relationship.' },
+  { phase: 'ongoing', label: 'ONGOING', task: 'Track referral-sourced customers separately to measure channel ROI over 6 months.' }
+];
+
+const phaseColors = { now: 'phase-now', today: 'phase-today', week: 'phase-week', ongoing: 'phase-ongoing' };
+const phaseLabels = { now: '🔥 DO NOW', today: '📅 TODAY', week: '📌 THIS WEEK', ongoing: '♾️ ONGOING' };
+
+function renderChecklist() {
+  const container = document.getElementById('checklist-container');
+  let html = '';
+  tasks.forEach((t, i) => {
+    const done = localStorage.getItem('lawn_check_' + i) === '1';
+    html += `<div class="checklist-item">
+      <div class="check-circle ${done ? 'done' : ''}" onclick="toggleCheck(${i}, this)"></div>
+      <div class="checklist-text">
+        <div class="phase ${phaseColors[t.phase]}">${phaseLabels[t.phase]}</div>
+        <div class="task ${done ? 'done-text' : ''}">${t.task}</div>
+      </div>
+    </div>`;
+  });
+  container.innerHTML = html;
+  updateProgress();
+}
+
+function toggleCheck(i, el) {
+  const done = el.classList.contains('done');
+  if (done) {
+    el.classList.remove('done');
+    localStorage.setItem('lawn_check_' + i, '0');
+    el.nextElementSibling.querySelector('.task').classList.remove('done-text');
+  } else {
+    el.classList.add('done');
+    localStorage.setItem('lawn_check_' + i, '1');
+    el.nextElementSibling.querySelector('.task').classList.add('done-text');
+  }
+  updateProgress();
+}
+
+function updateProgress() {
+  const total = tasks.length;
+  const done = tasks.filter((_, i) => localStorage.getItem('lawn_check_' + i) === '1').length;
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = done + ' / ' + total + ' tasks complete';
+}
+
+renderChecklist();
+</script>
+
+</body>
+</html>

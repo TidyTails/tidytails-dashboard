@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Content Studio — Soe Banks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:     #050608;
+      --bg2:    #0d0f14;
+      --bg3:    #131720;
+      --bg4:    #1a1f2e;
+      --border: #1e2535;
+      --text:   #e8eaf0;
+      --text2:  #7a84a0;
+      --text3:  #3a4060;
+
+      --cyan:   #00d4ff;
+      --coral:  #ff4757;
+      --amber:  #ffc542;
+      --lime:   #39ff87;
+      --violet: #a855f7;
+
+      --glow-cyan:  0 0 20px rgba(0,212,255,0.3);
+      --glow-coral: 0 0 20px rgba(255,71,87,0.3);
+      --glow-amber: 0 0 20px rgba(255,197,66,0.25);
+
+      --radius: 10px;
+      --mono: 'Space Mono', monospace;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── SCANLINE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,212,255,0.012) 2px,
+        rgba(0,212,255,0.012) 4px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    .studio-header {
+      position: relative;
+      background: linear-gradient(135deg, var(--bg2) 0%, #08101f 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 2rem 2rem 1.75rem;
+      overflow: hidden;
+    }
+
+    .studio-header::after {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      background: radial-gradient(circle, rgba(0,212,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .studio-header::before {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 10%;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(168,85,247,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: var(--glow-cyan);
+      flex-shrink: 0;
+    }
+
+    .brand-text h1 {
+      font-family: var(--mono);
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .brand-text h1 span { color: var(--cyan); }
+
+    .brand-text p {
+      font-size: 0.75rem;
+      color: var(--text2);
+      font-family: var(--mono);
+      margin-top: 2px;
+    }
+
+    .live-badge {
+      display: flex; align-items: center; gap: 0.5rem;
+      padding: 0.4rem 0.9rem;
+      background: rgba(57,255,135,0.1);
+      border: 1px solid rgba(57,255,135,0.25);
+      border-radius: 100px;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--lime);
+    }
+
+    .live-dot {
+      width: 7px; height: 7px;
+      background: var(--lime);
+      border-radius: 50%;
+      animation: pulse-dot 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.7); }
+    }
+
+    /* ── KPI ROW ── */
+    .kpi-row {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+      position: relative; z-index: 1;
+    }
+
+    .kpi {
+      flex: 1;
+      min-width: 120px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.85rem 1rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .kpi:hover {
+      transform: translateY(-2px);
+      border-color: var(--text3);
+    }
+
+    .kpi-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text2);
+      font-family: var(--mono);
+    }
+
+    .kpi-value {
+      font-family: var(--mono);
+      font-size: 1.6rem;
+      font-weight: 700;
+      line-height: 1.1;
+      margin: 0.3rem 0 0.1rem;
+    }
+
+    .kpi-sub {
+      font-size: 0.68rem;
+      color: var(--text2);
+    }
+
+    .kpi-cyan .kpi-value  { color: var(--cyan);   text-shadow: var(--glow-cyan); }
+    .kpi-coral .kpi-value { color: var(--coral);  text-shadow: var(--glow-coral); }
+    .kpi-amber .kpi-value { color: var(--amber);  text-shadow: var(--glow-amber); }
+    .kpi-lime  .kpi-value { color: var(--lime); }
+    .kpi-violet .kpi-value { color: var(--violet); }
+
+    /* ── NAV TABS ── */
+    .nav-tabs {
+      display: flex;
+      gap: 0;
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      overflow-x: auto;
+    }
+
+    .tab {
+      padding: 0.85rem 1.25rem;
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      color: var(--text2);
+      white-space: nowrap;
+      transition: all 0.2s;
+      background: none; border-left: none; border-right: none; border-top: none;
+    }
+
+    .tab:hover { color: var(--text); }
+    .tab.active { color: var(--cyan); border-bottom-color: var(--cyan); }
+
+    /* ── MAIN LAYOUT ── */
+    .main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    /* ── GRID UTILITIES ── */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .grid-auto { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .card-title {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text2);
+    }
+
+    .card-title span {
+      margin-right: 0.4rem;
+    }
+
+    .badge {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 100px;
+    }
+
+    .badge-cyan   { background: rgba(0,212,255,0.12); color: var(--cyan); border: 1px solid rgba(0,212,255,0.2); }
+    .badge-coral  { background: rgba(255,71,87,0.12); color: var(--coral); border: 1px solid rgba(255,71,87,0.2); }
+    .badge-amber  { background: rgba(255,197,66,0.12); color: var(--amber); border: 1px solid rgba(255,197,66,0.2); }
+    .badge-lime   { background: rgba(57,255,135,0.12); color: var(--lime); border: 1px solid rgba(57,255,135,0.2); }
+    .badge-violet { background: rgba(168,85,247,0.12); color: var(--violet); border: 1px solid rgba(168,85,247,0.2); }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text3);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── CONTENT CALENDAR ── */
+    .week-nav {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .week-nav .week-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text2);
+      flex: 1;
+      text-align: center;
+    }
+
+    .icon-btn {
+      width: 32px; height: 32px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: var(--text2);
+      transition: all 0.15s;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .icon-btn:hover { background: var(--bg4); color: var(--text); }
+
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0.5rem;
+    }
+
+    .cal-day-header {
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text3);
+      padding-bottom: 0.4rem;
+    }
+
+    .cal-day {
+      min-height: 90px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.5rem;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      position: relative;
+    }
+
+    .cal-day:hover { border-color: var(--text3); }
+    .cal-day.today { border-color: rgba(0,212,255,0.4); }
+    .cal-day.today::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--cyan);
+      border-radius: 8px 8px 0 0;
+    }
+
+    .cal-date {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--text2);
+      margin-bottom: 0.35rem;
+    }
+
+    .cal-day.today .cal-date { color: var(--cyan); }
+
+    .cal-item {
+      font-size: 0.62rem;
+      padding: 0.2rem 0.4rem;
+      border-radius: 4px;
+      margin-bottom: 0.2rem;
+      line-height: 1.3;
+      cursor: default;
+    }
+
+    .cal-item-yt  { background: rgba(255,71,87,0.15);  color: #ff6b7a; }
+    .cal-item-tt  { background: rgba(0,212,255,0.12);  color: var(--cyan); }
+    .cal-item-ig  { background: rgba(168,85,247,0.15); color: #c084fc; }
+    .cal-item-script { background: rgba(255,197,66,0.12); color: var(--amber); }
+
+    .cal-add {
+      font-size: 0.55rem;
+      color: var(--text3);
+      margin-top: 0.25rem;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .cal-add:hover { color: var(--text2); }
+
+    /* ── SCRIPTS ── */
+    .script-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1rem;
+      transition: all 0.2s;
+    }
+
+    .script-card:hover { border-color: var(--text3); transform: translateY(-1px); }
+
+    .script-meta {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.6rem;
+    }
+
+    .script-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      line-height: 1.35;
+    }
+
+    .script-hook {
+      font-size: 0.78rem;
+      color: var(--text2);
+      font-style: italic;
+      line-height: 1.5;
+      border-left: 2px solid var(--cyan);
+      padding-left: 0.6rem;
+      margin: 0.5rem 0;
+    }
+
+    .script-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .btn {
+      padding: 0.35rem 0.8rem;
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      border: 1px solid;
+      transition: all 0.15s;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .btn-cyan   { background: rgba(0,212,255,0.1); color: var(--cyan); border-color: rgba(0,212,255,0.25); }
+    .btn-coral  { background: rgba(255,71,87,0.1); color: var(--coral); border-color: rgba(255,71,87,0.25); }
+    .btn-amber  { background: rgba(255,197,66,0.1); color: var(--amber); border-color: rgba(255,197,66,0.25); }
+    .btn-lime   { background: rgba(57,255,135,0.1); color: var(--lime); border-color: rgba(57,255,135,0.25); }
+    .btn-ghost  { background: transparent; color: var(--text2); border-color: var(--border); }
+
+    .btn:hover { filter: brightness(1.25); transform: translateY(-1px); }
+
+    /* ── THUMBNAILS GALLERY ── */
+    .thumb-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .thumb-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .thumb-item:hover { border-color: var(--cyan); transform: translateY(-2px); }
+
+    .thumb-preview {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--bg4) 0%, #0d1426 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .thumb-preview::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,212,255,0.08) 0%, rgba(168,85,247,0.08) 100%);
+    }
+
+    .thumb-label {
+      padding: 0.6rem 0.75rem;
+    }
+
+    .thumb-label h4 {
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+      line-height: 1.3;
+    }
+
+    .thumb-label p {
+      font-size: 0.65rem;
+      color: var(--text2);
+      font-family: var(--mono);
+    }
+
+    .thumb-placeholder {
+      border: 1px dashed var(--border);
+      border-radius: 10px;
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      color: var(--text3);
+      font-size: 0.7rem;
+      font-family: var(--mono);
+      transition: all 0.2s;
+    }
+
+    .thumb-placeholder:hover { border-color: var(--text2); color: var(--text2); }
+
+    /* ── METRICS ── */
+    .metric-row {
+      display: flex;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+
+    .metric-row:last-child { border-bottom: none; }
+
+    .metric-platform {
+      width: 28px; height: 28px;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .metric-name {
+      flex: 1;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .metric-sub {
+      font-size: 0.65rem;
+      color: var(--text2);
+    }
+
+    .metric-bar-wrap {
+      flex: 2;
+      height: 5px;
+      background: var(--bg4);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .metric-bar {
+      height: 100%;
+      border-radius: 100px;
+      transition: width 1s ease;
+    }
+
+    .metric-val {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      min-width: 50px;
+      text-align: right;
+    }
+
+    .metric-change {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      min-width: 40px;
+      text-align: right;
+    }
+
+    .up   { color: var(--lime); }
+    .down { color: var(--coral); }
+    .flat { color: var(--text2); }
+
+    /* ── RESEARCH FEED ── */
+    .research-item {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      align-items: flex-start;
+    }
+
+    .research-item:last-child { border-bottom: none; }
+
+    .research-num {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text3);
+      padding-top: 0.1rem;
+      min-width: 20px;
+    }
+
+    .research-content h4 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .research-content p {
+      font-size: 0.72rem;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    .research-tags {
+      display: flex;
+      gap: 0.35rem;
+      flex-wrap: wrap;
+      margin-top: 0.4rem;
+    }
+
+    .tag {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 100px;
+      background: var(--bg4);
+      color: var(--text2);
+    }
+
+    /* ── WORKFLOW PIPELINE ── */
+    .pipeline {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+
+    .pipeline-col {
+      min-width: 220px;
+      flex-shrink: 0;
+    }
+
+    .pipeline-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      border-radius: 8px 8px 0 0;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+
+    .ph-idea     { background: rgba(0,212,255,0.1); color: var(--cyan); }
+    .ph-script   { background: rgba(255,197,66,0.1); color: var(--amber); }
+    .ph-visual   { background: rgba(168,85,247,0.1); color: var(--violet); }
+    .ph-edit     { background: rgba(57,255,135,0.1); color: var(--lime); }
+    .ph-live     { background: rgba(255,71,87,0.1); color: var(--coral); }
+
+    .pipeline-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      cursor: grab;
+      font-size: 0.78rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+
+    .pipeline-card:hover { border-color: var(--text3); }
+
+    .pipeline-card .pc-meta {
+      font-size: 0.63rem;
+      color: var(--text2);
+      margin-top: 0.3rem;
+      font-family: var(--mono);
+    }
+
+    .pipeline-add {
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      padding: 0.65rem;
+      text-align: center;
+      font-size: 0.65rem;
+      color: var(--text3);
+      cursor: pointer;
+      font-family: var(--mono);
+      transition: all 0.2s;
+    }
+
+    .pipeline-add:hover { border-color: var(--text2); color: var(--text2); }
+
+    /* ── AGENT TASKS ── */
+    .agent-task {
+      display: flex;
+      gap: 0.75rem;
+      padding: 0.85rem;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
+      align-items: flex-start;
+      transition: all 0.2s;
+    }
+
+    .agent-task:hover { border-color: var(--text3); }
+
+    .agent-avatar {
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .av-doeboy   { background: rgba(255,197,66,0.15); }
+    .av-basquiat { background: rgba(168,85,247,0.15); }
+    .av-franklin { background: rgba(0,212,255,0.15);  }
+    .av-bishop   { background: rgba(57,255,135,0.15); }
+
+    .agent-task-body { flex: 1; }
+
+    .agent-task-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .agent-task-desc {
+      font-size: 0.7rem;
+      color: var(--text2);
+      line-height: 1.4;
+    }
+
+    .task-status {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      padding: 0.2rem 0.5rem;
+      border-radius: 100px;
+      margin-top: 0.35rem;
+      display: inline-block;
+    }
+
+    .ts-ready   { background: rgba(57,255,135,0.1); color: var(--lime); }
+    .ts-queued  { background: rgba(255,197,66,0.1); color: var(--amber); }
+    .ts-pending { background: rgba(0,212,255,0.1); color: var(--cyan); }
+    .ts-done    { background: rgba(255,255,255,0.05); color: var(--text2); }
+
+    /* ── VIDEO LOG TABLE ── */
+    .video-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.78rem;
+    }
+
+    .video-table th {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text2);
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .video-table td {
+      padding: 0.7rem 0.75rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .video-table tr:last-child td { border-bottom: none; }
+    .video-table tr:hover td { background: rgba(255,255,255,0.015); }
+
+    .platform-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+    }
+
+    .vi-tt { color: var(--cyan); }
+    .vi-yt { color: var(--coral); }
+    .vi-ig { color: var(--violet); }
+
+    /* ── ADD / EDIT MODAL (minimal) ── */
+    .modal-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.7);
+      backdrop-filter: blur(4px);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000;
+      display: none;
+    }
+
+    .modal-overlay.open { display: flex; }
+
+    .modal {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .modal h3 {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--cyan);
+      margin-bottom: 1rem;
+    }
+
+    .form-group { margin-bottom: 0.85rem; }
+
+    .form-group label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text2);
+      margin-bottom: 0.35rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 0.6rem 0.8rem;
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(0,212,255,0.4);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 80px; }
+
+    .modal-actions {
+      display: flex; gap: 0.5rem; justify-content: flex-end; margin-top: 1rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .grid-2, .grid-3 { grid-template-columns: 1fr; }
+      .cal-grid { grid-template-columns: repeat(7, minmax(0, 1fr)); }
+      .kpi { min-width: 100px; }
+    }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 5px; height: 5px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 100px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+    /* ── INPUT ANIMATION ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel.active > * {
+      animation: fadeUp 0.3s ease both;
+    }
+
+    .panel.active > *:nth-child(2) { animation-delay: 0.05s; }
+    .panel.active > *:nth-child(3) { animation-delay: 0.1s;  }
+    .panel.active > *:nth-child(4) { animation-delay: 0.15s; }
+
+    /* ── LAST UPDATED ── */
+    .last-updated {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--text3);
+      text-align: right;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 2.5rem;
+      color: var(--text3);
+    }
+
+    .empty-state .es-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .empty-state p { font-size: 0.78rem; font-family: var(--mono); }
+
+    /* persist data indicator */
+    .data-note {
+      background: rgba(0,212,255,0.05);
+      border: 1px solid rgba(0,212,255,0.12);
+      border-radius: 8px;
+      padding: 0.65rem 1rem;
+      font-size: 0.72rem;
+      color: var(--text2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .data-note span { color: var(--cyan); }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<div class="studio-header">
+  <div class="header-top">
+    <div class="brand">
+      <div class="brand-icon">🎬</div>
+      <div class="brand-text">
+        <h1>AI CONTENT <span>STUDIO</span></h1>
+        <p>// soe banks — blue collar × artificial intelligence</p>
+      </div>
+    </div>
+    <div class="live-badge">
+      <div class="live-dot"></div>
+      <span>STUDIO ACTIVE</span>
+    </div>
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-row">
+    <div class="kpi kpi-cyan" onclick="openEditKPI(this,'Videos Published','0')">
+      <div class="kpi-label">Videos</div>
+      <div class="kpi-value" id="kpi-videos">0</div>
+      <div class="kpi-sub">published</div>
+    </div>
+    <div class="kpi kpi-coral" onclick="openEditKPI(this,'Total Views','0')">
+      <div class="kpi-label">Total Views</div>
+      <div class="kpi-value" id="kpi-views">0</div>
+      <div class="kpi-sub">all platforms</div>
+    </div>
+    <div class="kpi kpi-amber" onclick="openEditKPI(this,'Followers','0')">
+      <div class="kpi-label">Followers</div>
+      <div class="kpi-value" id="kpi-followers">0</div>
+      <div class="kpi-sub">combined</div>
+    </div>
+    <div class="kpi kpi-lime" onclick="openEditKPI(this,'Scripts Ready','3')">
+      <div class="kpi-label">Scripts</div>
+      <div class="kpi-value" id="kpi-scripts">3</div>
+      <div class="kpi-sub">ready to film</div>
+    </div>
+    <div class="kpi kpi-violet" onclick="openEditKPI(this,'Est. Revenue','$0')">
+      <div class="kpi-label">Revenue</div>
+      <div class="kpi-value" id="kpi-revenue">$0</div>
+      <div class="kpi-sub">affiliate / products</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TABS ── -->
+<div class="nav-tabs">
+  <button class="tab active" onclick="switchTab('calendar', this)">📅 Calendar</button>
+  <button class="tab" onclick="switchTab('pipeline', this)">🎬 Pipeline</button>
+  <button class="tab" onclick="switchTab('scripts', this)">✍️ Scripts & Hooks</button>
+  <button class="tab" onclick="switchTab('assets', this)">🖼️ Thumbnails</button>
+  <button class="tab" onclick="switchTab('metrics', this)">📊 Metrics</button>
+  <button class="tab" onclick="switchTab('research', this)">🔍 Research</button>
+  <button class="tab" onclick="switchTab('log', this)">📋 Video Log</button>
+</div>
+
+<!-- ── MAIN ── -->
+<div class="main">
+
+  <!-- ────────── CALENDAR ────────── -->
+  <div id="panel-calendar" class="panel active">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><span>📅</span>CONTENT CALENDAR</div>
+        <button class="btn btn-cyan" onclick="addCalItem()">+ Add Post</button>
+      </div>
+
+      <div class="week-nav">
+        <button class="icon-btn" onclick="changeWeek(-1)">‹</button>
+        <div class="week-label" id="week-label">Loading...</div>
+        <button class="icon-btn" onclick="changeWeek(1)">›</button>
+      </div>
+
+      <div class="cal-grid" id="cal-headers">
+        <div class="cal-day-header">Sun</div>
+        <div class="cal-day-header">Mon</div>
+        <div class="cal-day-header">Tue</div>
+        <div class="cal-day-header">Wed</div>
+        <div class="cal-day-header">Thu</div>
+        <div class="cal-day-header">Fri</div>
+        <div class="cal-day-header">Sat</div>
+      </div>
+
+      <div class="cal-grid" id="cal-days" style="margin-top:0.25rem;">
+        <!-- Generated by JS -->
+      </div>
+
+      <div style="display:flex;gap:0.75rem;flex-wrap:wrap;margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--border);">
+        <div style="display:flex;align-items:center;gap:0.35rem;font-size:0.65rem;color:var(--text2);">
+          <span class="cal-item cal-item-yt" style="margin:0">▎</span> YouTube
+        </div>
+        <div style="display:flex;align-items:center;gap:0.35rem;font-size:0.65rem;color:var(--text2);">
+          <span class="cal-item cal-item-tt" style="margin:0">▎</span> TikTok
+        </div>
+        <div style="display:flex;align-items:center;gap:0.35rem;font-size:0.65rem;color:var(--text2);">
+          <span class="cal-item cal-item-ig" style="margin:0">▎</span> Instagram
+        </div>
+        <div style="display:flex;align-items:center;gap:0.35rem;font-size:0.65rem;color:var(--text2);">
+          <span class="cal-item cal-item-script" style="margin:0">▎</span> Script Due
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────── PIPELINE ────────── -->
+  <div id="panel-pipeline" class="panel">
+    <div class="data-note">
+      <span>ℹ</span>
+      Drag cards between columns to track content status from idea → live.
+    </div>
+
+    <div class="pipeline" id="pipeline-board">
+      <!-- Idea -->
+      <div class="pipeline-col">
+        <div class="pipeline-header ph-idea">💡 Ideas <span id="pc-idea-count" style="margin-left:auto;opacity:0.6">0</span></div>
+        <div id="col-idea" ondrop="drop(event,'idea')" ondragover="allowDrop(event)">
+          <div class="pipeline-add" onclick="addPipelineCard('idea')">+ Add Idea</div>
+        </div>
+      </div>
+      <!-- Script -->
+      <div class="pipeline-col">
+        <div class="pipeline-header ph-script">✍️ Scripting <span id="pc-script-count" style="margin-left:auto;opacity:0.6">0</span></div>
+        <div id="col-script" ondrop="drop(event,'script')" ondragover="allowDrop(event)">
+          <div class="pipeline-add" onclick="addPipelineCard('script')">+ Add</div>
+        </div>
+      </div>
+      <!-- Visual -->
+      <div class="pipeline-col">
+        <div class="pipeline-header ph-visual">🖼️ Visuals <span id="pc-visual-count" style="margin-left:auto;opacity:0.6">0</span></div>
+        <div id="col-visual" ondrop="drop(event,'visual')" ondragover="allowDrop(event)">
+          <div class="pipeline-add" onclick="addPipelineCard('visual')">+ Add</div>
+        </div>
+      </div>
+      <!-- Edit -->
+      <div class="pipeline-col">
+        <div class="pipeline-header ph-edit">✂️ Editing <span id="pc-edit-count" style="margin-left:auto;opacity:0.6">0</span></div>
+        <div id="col-edit" ondrop="drop(event,'edit')" ondragover="allowDrop(event)">
+          <div class="pipeline-add" onclick="addPipelineCard('edit')">+ Add</div>
+        </div>
+      </div>
+      <!-- Live -->
+      <div class="pipeline-col">
+        <div class="pipeline-header ph-live">🔴 Live <span id="pc-live-count" style="margin-left:auto;opacity:0.6">0</span></div>
+        <div id="col-live" ondrop="drop(event,'live')" ondragover="allowDrop(event)">
+          <div class="pipeline-add" onclick="addPipelineCard('live')">+ Add</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────── SCRIPTS ────────── -->
+  <div id="panel-scripts" class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
+      <div class="section-label" style="margin:0;flex:1">✍️ Scripts & Hooks Queue</div>
+      <button class="btn btn-amber" onclick="addScript()" style="margin-left:1rem;">+ Add Script</button>
+    </div>
+
+    <div id="scripts-list">
+      <!-- Pre-seeded by Franklin / Doeboy -->
+      <div class="script-card" data-id="s1">
+        <div class="script-meta">
+          <span class="badge badge-coral">YouTube Short</span>
+          <span class="badge badge-lime">Ready to Film</span>
+          <span class="badge badge-amber">Doeboy</span>
+        </div>
+        <div class="script-title">How I Run 3 Businesses With an AI Team (And I'm Not a Tech Guy)</div>
+        <div class="script-hook">"Most people think AI is for Silicon Valley. I'm using it to scoop dog poop and sell sheds — and I'm making more money than I ever did alone."</div>
+        <div style="font-size:0.72rem;color:var(--text2);line-height:1.6;margin-top:0.5rem;">
+          <strong style="color:var(--text)">Script:</strong> Open on phone screen showing Franklin chat. "This is my AI project manager. He writes my ads, tracks my leads, runs my calendar." Cut to dog yard. "I own a pet waste removal business." Cut to shed lot. "And I sell sheds." Back to face. "And I work a 9-5. AI agents handle the business while I sleep."
+        </div>
+        <div class="script-actions">
+          <button class="btn btn-lime">▶ Film This</button>
+          <button class="btn btn-cyan">📋 Copy Hook</button>
+          <button class="btn btn-ghost">Edit</button>
+        </div>
+      </div>
+
+      <div class="script-card" data-id="s2" style="margin-top:0.75rem;">
+        <div class="script-meta">
+          <span class="badge badge-cyan">TikTok</span>
+          <span class="badge badge-lime">Ready to Film</span>
+          <span class="badge badge-amber">Doeboy</span>
+        </div>
+        <div class="script-title">I Gave AI My Entire Business. Here's What Happened in 30 Days.</div>
+        <div class="script-hook">"I let an AI run my marketing for a month. No agency. No ad guy. Just me and a chat window at midnight."</div>
+        <div style="font-size:0.72rem;color:var(--text2);line-height:1.6;margin-top:0.5rem;">
+          <strong style="color:var(--text)">Script:</strong> Screen record of Telegram conversation with Franklin. Walk through real tasks: "write me an ad," "find me 10 leads," "what should I post today?" Show actual results. Real numbers. No hype.
+        </div>
+        <div class="script-actions">
+          <button class="btn btn-lime">▶ Film This</button>
+          <button class="btn btn-cyan">📋 Copy Hook</button>
+          <button class="btn btn-ghost">Edit</button>
+        </div>
+      </div>
+
+      <div class="script-card" data-id="s3" style="margin-top:0.75rem;">
+        <div class="script-meta">
+          <span class="badge badge-violet">Instagram Reel</span>
+          <span class="badge badge-lime">Ready to Film</span>
+          <span class="badge badge-amber">Doeboy</span>
+        </div>
+        <div class="script-title">Blue Collar vs. White Collar AI (The Part Nobody Talks About)</div>
+        <div class="script-hook">"Everybody shows AI writing essays and coding apps. Nobody shows AI writing $1,200/month in recurring revenue for a dog waste company."</div>
+        <div style="font-size:0.72rem;color:var(--text2);line-height:1.6;margin-top:0.5rem;">
+          <strong style="color:var(--text)">Script:</strong> Contrast shots. "AI influencer: writes a blog post." Cut to TJ: "AI for me: writes 23 city landing pages for my $25/week service." Walk through real tangible results. End with CTA to follow for the real AI journey.
+        </div>
+        <div class="script-actions">
+          <button class="btn btn-lime">▶ Film This</button>
+          <button class="btn btn-cyan">📋 Copy Hook</button>
+          <button class="btn btn-ghost">Edit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────── ASSETS / THUMBNAILS ────────── -->
+  <div id="panel-assets" class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
+      <div class="section-label" style="margin:0;flex:1">🖼️ Thumbnails & Visual Assets</div>
+      <button class="btn btn-violet" onclick="requestThumbnail()">+ Request from Basquiat</button>
+    </div>
+
+    <div class="data-note">
+      <span>🎨</span> Basquiat generates thumbnails. Drop the file paths or URLs here as assets come in.
+    </div>
+
+    <div class="thumb-grid" id="assets-grid">
+      <!-- Basquiat delivers here -->
+      <div class="thumb-item" onclick="alert('Add thumbnail URL or file path')">
+        <div class="thumb-preview" style="background:linear-gradient(135deg,#0a1628 0%,#1a0a28 100%);">
+          <span style="position:relative;z-index:1">🤖</span>
+        </div>
+        <div class="thumb-label">
+          <h4>AI Team Reveal Thumbnail</h4>
+          <p style="color:var(--amber)">⏳ Pending Basquiat</p>
+        </div>
+      </div>
+      <div class="thumb-item" onclick="alert('Add thumbnail URL or file path')">
+        <div class="thumb-preview" style="background:linear-gradient(135deg,#0a1c0a 0%,#1a280a 100%);">
+          <span style="position:relative;z-index:1">💰</span>
+        </div>
+        <div class="thumb-label">
+          <h4>Blue Collar AI Money Thumbnail</h4>
+          <p style="color:var(--amber)">⏳ Pending Basquiat</p>
+        </div>
+      </div>
+      <div style="grid-column: span 1;">
+        <div class="thumb-placeholder" onclick="addAsset()">
+          <span style="font-size:1.5rem">+</span>
+          <span>Add Asset</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;">
+      <div class="section-label">B-Roll Ideas</div>
+      <div style="display:flex;flex-direction:column;gap:0.4rem;" id="broll-list">
+        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;padding:0.5rem;background:var(--bg3);border-radius:6px;">
+          <span>📱</span> Screen recording — Telegram chat with Franklin
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;padding:0.5rem;background:var(--bg3);border-radius:6px;">
+          <span>🏡</span> Time-lapse — clean yard vs dirty yard
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;padding:0.5rem;background:var(--bg3);border-radius:6px;">
+          <span>🏠</span> Shed lot walk-through with voiceover
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;padding:0.5rem;background:var(--bg3);border-radius:6px;">
+          <span>💻</span> Dashboard overview — "this is what AI built me"
+        </div>
+        <div style="display:flex;align-items:center;gap:0.5rem;font-size:0.78rem;padding:0.5rem;background:var(--bg3);border-radius:6px;">
+          <span>🌅</span> Morning routine — checking AI updates before work
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────── METRICS ────────── -->
+  <div id="panel-metrics" class="panel">
+    <div class="grid-2">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span>📊</span>PLATFORM BREAKDOWN</div>
+          <button class="btn btn-ghost" onclick="editMetrics()" style="font-size:0.6rem;">✏ Update</button>
+        </div>
+
+        <div class="metric-row">
+          <div class="metric-platform" style="background:rgba(0,212,255,0.1)">📱</div>
+          <div class="metric-name">TikTok <div class="metric-sub" id="tt-handle">@yourusername</div></div>
+          <div class="metric-bar-wrap"><div class="metric-bar" id="tt-bar" style="width:0%;background:var(--cyan)"></div></div>
+          <div class="metric-val vi-tt" id="tt-followers">0</div>
+          <div class="metric-change flat" id="tt-change">—</div>
+        </div>
+
+        <div class="metric-row">
+          <div class="metric-platform" style="background:rgba(255,71,87,0.1)">▶️</div>
+          <div class="metric-name">YouTube <div class="metric-sub" id="yt-handle">@yourusername</div></div>
+          <div class="metric-bar-wrap"><div class="metric-bar" id="yt-bar" style="width:0%;background:var(--coral)"></div></div>
+          <div class="metric-val vi-yt" id="yt-followers">0</div>
+          <div class="metric-change flat" id="yt-change">—</div>
+        </div>
+
+        <div class="metric-row">
+          <div class="metric-platform" style="background:rgba(168,85,247,0.1)">📸</div>
+          <div class="metric-name">Instagram <div class="metric-sub" id="ig-handle">@yourusername</div></div>
+          <div class="metric-bar-wrap"><div class="metric-bar" id="ig-bar" style="width:0%;background:var(--violet)"></div></div>
+          <div class="metric-val vi-ig" id="ig-followers">0</div>
+          <div class="metric-change flat" id="ig-change">—</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span>🎯</span>MILESTONES</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:0.65rem;" id="milestones-list">
+          <!-- milestone items -->
+          <div class="milestone-item" style="padding:0.65rem;background:var(--bg3);border-radius:8px;border:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
+              <div style="font-size:0.8rem;font-weight:600;">First 100 Followers</div>
+              <span class="badge badge-amber">IN PROGRESS</span>
+            </div>
+            <div style="height:5px;background:var(--bg4);border-radius:100px;overflow:hidden;">
+              <div style="height:100%;width:0%;background:var(--amber);border-radius:100px;transition:width 1s;"></div>
+            </div>
+            <div style="font-family:var(--mono);font-size:0.6rem;color:var(--text2);margin-top:0.3rem;">0 / 100</div>
+          </div>
+
+          <div class="milestone-item" style="padding:0.65rem;background:var(--bg3);border-radius:8px;border:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
+              <div style="font-size:0.8rem;font-weight:600;">First Video Published</div>
+              <span class="badge badge-coral">NOT STARTED</span>
+            </div>
+            <div style="font-family:var(--mono);font-size:0.6rem;color:var(--text2);">Film one of the 3 scripts above</div>
+          </div>
+
+          <div class="milestone-item" style="padding:0.65rem;background:var(--bg3);border-radius:8px;border:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
+              <div style="font-size:0.8rem;font-weight:600;">First Affiliate Link</div>
+              <span class="badge badge-coral">NOT STARTED</span>
+            </div>
+            <div style="font-family:var(--mono);font-size:0.6rem;color:var(--text2);">Sign up for fal.ai, Claude, or Make.com affiliates</div>
+          </div>
+
+          <div class="milestone-item" style="padding:0.65rem;background:var(--bg3);border-radius:8px;border:1px solid var(--border);">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.35rem;">
+              <div style="font-size:0.8rem;font-weight:600;">1K Followers</div>
+              <span class="badge badge-cyan">LONG TERM</span>
+            </div>
+            <div style="font-family:var(--mono);font-size:0.6rem;color:var(--text2);">Unlocks TikTok monetization</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="grid-column: 1 / -1;">
+        <div class="card-header">
+          <div class="card-title"><span>💰</span>REVENUE TRACKER</div>
+          <button class="btn btn-lime" onclick="addRevenue()">+ Log Income</button>
+        </div>
+
+        <div id="revenue-log" style="font-family:var(--mono);font-size:0.75rem;color:var(--text2);text-align:center;padding:1.5rem;">
+          No revenue logged yet. First dollar hits different. 💰
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────── RESEARCH ────────── -->
+  <div id="panel-research" class="panel">
+    <div class="grid-2">
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span>🔥</span>TRENDING TOPICS — AI CREATORS</div>
+          <button class="btn btn-ghost" onclick="refreshResearch()" style="font-size:0.6rem;">↻ Refresh</button>
+        </div>
+
+        <div id="research-feed">
+          <div class="research-item">
+            <div class="research-num">01</div>
+            <div class="research-content">
+              <h4>"My AI business partner" format</h4>
+              <p>Show the actual conversation/workflow with an AI tool doing real tasks. People want to see behind the curtain, not polished explainers.</p>
+              <div class="research-tags">
+                <span class="tag">trending</span><span class="tag">TikTok</span><span class="tag">authenticity</span>
+              </div>
+            </div>
+          </div>
+          <div class="research-item">
+            <div class="research-num">02</div>
+            <div class="research-content">
+              <h4>"Blue collar meets AI" gap is wide open</h4>
+              <p>Almost no content from tradespeople, service business owners, or working-class operators using AI. This is your lane.</p>
+              <div class="research-tags">
+                <span class="tag">blue ocean</span><span class="tag">positioning</span>
+              </div>
+            </div>
+          </div>
+          <div class="research-item">
+            <div class="research-num">03</div>
+            <div class="research-content">
+              <h4>"Real results, no fluff" gets 3x engagement</h4>
+              <p>Show actual revenue, customer counts, ad results. The audience is exhausted by theory. Numbers > motivation.</p>
+              <div class="research-tags">
+                <span class="tag">content strategy</span><span class="tag">proof</span>
+              </div>
+            </div>
+          </div>
+          <div class="research-item">
+            <div class="research-num">04</div>
+            <div class="research-content">
+              <h4>"AI tools that actually make money" series</h4>
+              <p>Tool-specific content (fal.ai, Claude, Make.com) drives affiliate revenue. Walkthrough format converts well.</p>
+              <div class="research-tags">
+                <span class="tag">affiliate potential</span><span class="tag">series</span>
+              </div>
+            </div>
+          </div>
+          <div class="research-item">
+            <div class="research-num">05</div>
+            <div class="research-content">
+              <h4>Documentary-style "Day in the life" with AI</h4>
+              <p>Follow a full day from morning briefing through evening recap. What did AI do for you today? Low effort, high relatability.</p>
+              <div class="research-tags">
+                <span class="tag">low effort</span><span class="tag">YouTube</span><span class="tag">recurring</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><span>🎯</span>CONTENT PILLARS</div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:0.75rem;">
+          <div style="background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.15);border-radius:9px;padding:0.9rem;">
+            <div style="font-family:var(--mono);font-size:0.65rem;color:var(--cyan);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.35rem;">PILLAR 1 — BUILD WITH ME</div>
+            <div style="font-size:0.78rem;font-weight:500;margin-bottom:0.25rem;">Setting up AI tools & workflows</div>
+            <div style="font-size:0.7rem;color:var(--text2);">Prompt tutorials, tool walkthroughs, automation setups. Drives affiliate income.</div>
+          </div>
+          <div style="background:rgba(57,255,135,0.07);border:1px solid rgba(57,255,135,0.15);border-radius:9px;padding:0.9rem;">
+            <div style="font-family:var(--mono);font-size:0.65rem;color:var(--lime);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.35rem;">PILLAR 2 — RESULTS</div>
+            <div style="font-size:0.78rem;font-weight:500;margin-bottom:0.25rem;">Real numbers, real outcomes</div>
+            <div style="font-size:0.7rem;color:var(--text2);">Customer gains, ad performance, revenue updates. This is what builds trust.</div>
+          </div>
+          <div style="background:rgba(255,71,87,0.07);border:1px solid rgba(255,71,87,0.15);border-radius:9px;padding:0.9rem;">
+            <div style="font-family:var(--mono);font-size:0.65rem;color:var(--coral);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.35rem;">PILLAR 3 — LESSONS LEARNED</div>
+            <div style="font-size:0.78rem;font-weight:500;margin-bottom:0.25rem;">What worked, what flopped</div>
+            <div style="font-size:0.7rem;color:var(--text2);">Honest takes. When AI helped and when it didn't. This is what gets shared.</div>
+          </div>
+          <div style="background:rgba(255,197,66,0.07);border:1px solid rgba(255,197,66,0.15);border-radius:9px;padding:0.9rem;">
+            <div style="font-family:var(--mono);font-size:0.65rem;color:var(--amber);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:0.35rem;">PILLAR 4 — ORIGIN STORY</div>
+            <div style="font-size:0.78rem;font-weight:500;margin-bottom:0.25rem;">Why I started using AI</div>
+            <div style="font-size:0.7rem;color:var(--text2);">The 9-5 + 3 businesses story. Document the turning point. Film this first.</div>
+          </div>
+        </div>
+
+        <div style="margin-top:1rem;padding-top:0.75rem;border-top:1px solid var(--border);">
+          <div class="section-label">AFFILIATE OPPORTUNITIES</div>
+          <div style="display:flex;flex-direction:column;gap:0.35rem;">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;padding:0.4rem 0;">
+              <span>Claude / Anthropic</span>
+              <span class="badge badge-amber">Apply</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;padding:0.4rem 0;border-top:1px solid var(--border);">
+              <span>fal.ai (AI video)</span>
+              <span class="badge badge-amber">Apply</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;padding:0.4rem 0;border-top:1px solid var(--border);">
+              <span>Make.com (automation)</span>
+              <span class="badge badge-cyan">Available</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:0.75rem;padding:0.4rem 0;border-top:1px solid var(--border);">
+              <span>Notion AI</span>
+              <span class="badge badge-cyan">Available</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ────────── VIDEO LOG ────────── -->
+  <div id="panel-log" class="panel">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;">
+      <div class="section-label" style="margin:0;flex:1">📋 Published Video Log</div>
+      <button class="btn btn-coral" onclick="logVideo()">+ Log Video</button>
+    </div>
+
+    <div class="card">
+      <table class="video-table" id="video-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Platform</th>
+            <th>Published</th>
+            <th>Views</th>
+            <th>Likes</th>
+            <th>Comments</th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody id="video-log-body">
+          <tr>
+            <td colspan="8" style="text-align:center;color:var(--text3);font-family:var(--mono);font-size:0.7rem;padding:2rem;">
+              No videos published yet. First one hits different. 🎬
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal-box">
+    <h3 id="modal-title">ADD ITEM</h3>
+    <div id="modal-body"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal()">Cancel</button>
+      <button class="btn btn-cyan" id="modal-save" onclick="saveModal()">Save</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── STORAGE ──
+function save(key, val) { try { localStorage.setItem('acs_' + key, JSON.stringify(val)); } catch(e){} }
+function load(key, def)  { try { const v = localStorage.getItem('acs_' + key); return v ? JSON.parse(v) : def; } catch(e){ return def; } }
+
+// ── STATE ──
+let calendarOffset = 0;
+let currentModalAction = null;
+let scripts   = load('scripts',   []);
+let pipeline  = load('pipeline',  {idea:[],script:[],visual:[],edit:[],live:[]});
+let videoLog  = load('videoLog',  []);
+let calItems  = load('calItems',  {});
+let kpiData   = load('kpiData',   {videos:'0',views:'0',followers:'0',scripts:'3',revenue:'$0'});
+let metrics   = load('metrics',   {tt:{followers:'0',change:'—',handle:'@yourusername'},yt:{followers:'0',change:'—',handle:'@yourusername'},ig:{followers:'0',change:'—',handle:'@yourusername'}});
+
+// ── TABS ──
+function switchTab(id, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  const panel = document.getElementById('panel-' + id);
+  panel.classList.add('active');
+}
+
+// ── CALENDAR ──
+function renderCalendar() {
+  const now = new Date();
+  now.setDate(now.getDate() + calendarOffset * 7);
+  const startOfWeek = new Date(now);
+  startOfWeek.setDate(now.getDate() - now.getDay());
+
+  const days = [];
+  for (let i = 0; i < 7; i++) {
+    const d = new Date(startOfWeek);
+    d.setDate(startOfWeek.getDate() + i);
+    days.push(d);
+  }
+
+  const startStr = days[0].toLocaleDateString('en-US', {month:'short', day:'numeric'});
+  const endStr   = days[6].toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+  document.getElementById('week-label').textContent = `${startStr} – ${endStr}`;
+
+  const container = document.getElementById('cal-days');
+  container.innerHTML = '';
+
+  const todayStr = new Date().toDateString();
+
+  days.forEach(d => {
+    const isToday = d.toDateString() === todayStr;
+    const dateKey = d.toISOString().split('T')[0];
+    const items   = calItems[dateKey] || [];
+
+    const cell = document.createElement('div');
+    cell.className = 'cal-day' + (isToday ? ' today' : '');
+    cell.dataset.date = dateKey;
+
+    let html = `<div class="cal-date">${d.getDate()}</div>`;
+    items.forEach(item => {
+      html += `<div class="cal-item cal-item-${item.type}" title="${item.title}">${item.title.substring(0,18)}${item.title.length>18?'…':''}</div>`;
+    });
+    html += `<div class="cal-add" onclick="addCalItemOnDay('${dateKey}')">+</div>`;
+
+    cell.innerHTML = html;
+    container.appendChild(cell);
+  });
+}
+
+function changeWeek(dir) {
+  calendarOffset += dir;
+  renderCalendar();
+}
+
+function addCalItem()       { addCalItemOnDay(null); }
+
+function addCalItemOnDay(dateKey) {
+  currentModalAction = 'cal';
+  document.getElementById('modal-title').textContent = 'ADD CALENDAR ITEM';
+  document.getElementById('modal-body').innerHTML = `
+    <div class="form-group">
+      <label>Date</label>
+      <input type="date" id="mi-date" value="${dateKey || new Date().toISOString().split('T')[0]}">
+    </div>
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" id="mi-title" placeholder="e.g. TikTok — AI team reveal">
+    </div>
+    <div class="form-group">
+      <label>Platform</label>
+      <select id="mi-type">
+        <option value="tt">TikTok</option>
+        <option value="yt">YouTube</option>
+        <option value="ig">Instagram</option>
+        <option value="script">Script Due</option>
+      </select>
+    </div>
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+// ── PIPELINE ──
+function renderPipeline() {
+  const cols = ['idea','script','visual','edit','live'];
+  cols.forEach(col => {
+    const container = document.getElementById('col-' + col);
+    const addBtn    = container.querySelector('.pipeline-add');
+    container.querySelectorAll('.pipeline-card').forEach(c => c.remove());
+    (pipeline[col] || []).forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'pipeline-card';
+      card.draggable = true;
+      card.dataset.id  = item.id;
+      card.dataset.col = col;
+      card.innerHTML = `
+        <div>${item.title}</div>
+        <div class="pc-meta">${item.meta || ''}</div>
+      `;
+      card.addEventListener('dragstart', e => e.dataTransfer.setData('text/plain', JSON.stringify({id:item.id,col})));
+      container.insertBefore(card, addBtn);
+    });
+    document.getElementById('pc-' + col + '-count').textContent = (pipeline[col]||[]).length;
+  });
+}
+
+function allowDrop(e) { e.preventDefault(); }
+function drop(e, targetCol) {
+  e.preventDefault();
+  const {id, col: fromCol} = JSON.parse(e.dataTransfer.getData('text/plain'));
+  if (fromCol === targetCol) return;
+  const item = (pipeline[fromCol]||[]).find(i => i.id === id);
+  if (!item) return;
+  pipeline[fromCol] = (pipeline[fromCol]||[]).filter(i => i.id !== id);
+  pipeline[targetCol] = [...(pipeline[targetCol]||[]), item];
+  save('pipeline', pipeline);
+  renderPipeline();
+}
+
+function addPipelineCard(col) {
+  currentModalAction = 'pipeline-' + col;
+  document.getElementById('modal-title').textContent = 'ADD TO ' + col.toUpperCase();
+  document.getElementById('modal-body').innerHTML = `
+    <div class="form-group">
+      <label>Video / Content Title</label>
+      <input type="text" id="mi-title" placeholder="e.g. How I got 10 customers with AI">
+    </div>
+    <div class="form-group">
+      <label>Notes</label>
+      <input type="text" id="mi-meta" placeholder="e.g. Script ready, film Mon">
+    </div>
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+// ── SCRIPTS ──
+function addScript() {
+  currentModalAction = 'script';
+  document.getElementById('modal-title').textContent = 'ADD SCRIPT';
+  document.getElementById('modal-body').innerHTML = `
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" id="mi-title" placeholder="Video concept title">
+    </div>
+    <div class="form-group">
+      <label>Opening Hook</label>
+      <textarea id="mi-hook" placeholder="The first sentence that stops the scroll..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Script Notes</label>
+      <textarea id="mi-script" placeholder="Outline or full script..."></textarea>
+    </div>
+    <div class="form-group">
+      <label>Platform</label>
+      <select id="mi-platform">
+        <option value="TikTok">TikTok</option>
+        <option value="YouTube Short">YouTube Short</option>
+        <option value="Instagram Reel">Instagram Reel</option>
+        <option value="YouTube Long">YouTube Long-form</option>
+      </select>
+    </div>
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+// ── VIDEO LOG ──
+function logVideo() {
+  currentModalAction = 'video';
+  document.getElementById('modal-title').textContent = 'LOG PUBLISHED VIDEO';
+  document.getElementById('modal-body').innerHTML = `
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" id="mi-title" placeholder="Video title">
+    </div>
+    <div class="form-group">
+      <label>Platform</label>
+      <select id="mi-platform">
+        <option value="tt">TikTok</option>
+        <option value="yt">YouTube</option>
+        <option value="ig">Instagram</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Published Date</label>
+      <input type="date" id="mi-date" value="${new Date().toISOString().split('T')[0]}">
+    </div>
+    <div class="form-group">
+      <label>URL</label>
+      <input type="url" id="mi-url" placeholder="https://...">
+    </div>
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function renderVideoLog() {
+  const body = document.getElementById('video-log-body');
+  if (!videoLog.length) {
+    body.innerHTML = '<tr><td colspan="8" style="text-align:center;color:var(--text3);font-family:var(--mono);font-size:0.7rem;padding:2rem;">No videos published yet. First one hits different. 🎬</td></tr>';
+    return;
+  }
+  body.innerHTML = videoLog.map((v, i) => {
+    const plat = {tt:'<span class="vi-tt">📱 TikTok</span>',yt:'<span class="vi-yt">▶️ YouTube</span>',ig:'<span class="vi-ig">📸 Instagram</span>'}[v.platform] || v.platform;
+    return `<tr>
+      <td style="color:var(--text2);font-family:var(--mono)">${i+1}</td>
+      <td style="font-weight:500">${v.title}</td>
+      <td>${plat}</td>
+      <td style="font-family:var(--mono);font-size:0.7rem;color:var(--text2)">${v.date}</td>
+      <td style="font-family:var(--mono);color:var(--cyan)">${v.views||'—'}</td>
+      <td style="font-family:var(--mono);color:var(--lime)">${v.likes||'—'}</td>
+      <td style="font-family:var(--mono)">${v.comments||'—'}</td>
+      <td>${v.url ? `<a href="${v.url}" target="_blank" style="color:var(--cyan);font-size:0.65rem;font-family:var(--mono);">Open ↗</a>` : '—'}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── KPI EDITING ──
+function openEditKPI(el, label, current) {
+  currentModalAction = 'kpi-' + label;
+  document.getElementById('modal-title').textContent = 'UPDATE ' + label.toUpperCase();
+  document.getElementById('modal-body').innerHTML = `
+    <div class="form-group">
+      <label>${label}</label>
+      <input type="text" id="mi-kpi-val" value="${current}" placeholder="Enter value...">
+    </div>
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+// ── METRICS ──
+function editMetrics() {
+  currentModalAction = 'metrics';
+  document.getElementById('modal-title').textContent = 'UPDATE PLATFORM METRICS';
+  document.getElementById('modal-body').innerHTML = `
+    <div class="form-group"><label>TikTok Handle</label><input type="text" id="mi-tt-handle" value="${metrics.tt.handle}" placeholder="@handle"></div>
+    <div class="form-group"><label>TikTok Followers</label><input type="text" id="mi-tt-followers" value="${metrics.tt.followers}"></div>
+    <div class="form-group"><label>TikTok Change (e.g. +45)</label><input type="text" id="mi-tt-change" value="${metrics.tt.change}"></div>
+    <div class="form-group"><label>YouTube Handle</label><input type="text" id="mi-yt-handle" value="${metrics.yt.handle}"></div>
+    <div class="form-group"><label>YouTube Subscribers</label><input type="text" id="mi-yt-followers" value="${metrics.yt.followers}"></div>
+    <div class="form-group"><label>YouTube Change</label><input type="text" id="mi-yt-change" value="${metrics.yt.change}"></div>
+    <div class="form-group"><label>Instagram Handle</label><input type="text" id="mi-ig-handle" value="${metrics.ig.handle}"></div>
+    <div class="form-group"><label>Instagram Followers</label><input type="text" id="mi-ig-followers" value="${metrics.ig.followers}"></div>
+    <div class="form-group"><label>Instagram Change</label><input type="text" id="mi-ig-change" value="${metrics.ig.change}"></div>
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+
+function applyMetrics() {
+  const maxF = Math.max(parseInt(metrics.tt.followers)||0, parseInt(metrics.yt.followers)||0, parseInt(metrics.ig.followers)||0, 1);
+  const setM = (pref, color) => {
+    const fol = parseInt(metrics[pref].followers)||0;
+    document.getElementById(pref+'-handle').textContent = metrics[pref].handle;
+    document.getElementById(pref+'-followers').textContent = (parseInt(metrics[pref].followers)||0).toLocaleString();
+    document.getElementById(pref+'-bar').style.width = (fol/maxF*100)+'%';
+    const chg = metrics[pref].change;
+    const el  = document.getElementById(pref+'-change');
+    el.textContent = chg;
+    el.className = 'metric-change ' + (chg.startsWith('+') ? 'up' : chg.startsWith('-') ? 'down' : 'flat');
+  };
+  setM('tt'); setM('yt'); setM('ig');
+}
+
+// ── MODAL SAVE ──
+function saveModal() {
+  if (!currentModalAction) return;
+  const act = currentModalAction;
+
+  if (act === 'cal') {
+    const dateKey = document.getElementById('mi-date').value;
+    const title   = document.getElementById('mi-title').value.trim();
+    const type    = document.getElementById('mi-type').value;
+    if (!title) return;
+    if (!calItems[dateKey]) calItems[dateKey] = [];
+    calItems[dateKey].push({title, type});
+    save('calItems', calItems);
+    renderCalendar();
+  }
+
+  if (act.startsWith('pipeline-')) {
+    const col   = act.replace('pipeline-','');
+    const title = document.getElementById('mi-title').value.trim();
+    const meta  = document.getElementById('mi-meta').value.trim();
+    if (!title) return;
+    if (!pipeline[col]) pipeline[col] = [];
+    pipeline[col].push({id: Date.now().toString(), title, meta});
+    save('pipeline', pipeline);
+    renderPipeline();
+  }
+
+  if (act === 'script') {
+    const title    = document.getElementById('mi-title').value.trim();
+    const hook     = document.getElementById('mi-hook').value.trim();
+    const script   = document.getElementById('mi-script').value.trim();
+    const platform = document.getElementById('mi-platform').value;
+    if (!title) return;
+    const id = 'sc-' + Date.now();
+    scripts.push({id, title, hook, script, platform, status:'Ready'});
+    save('scripts', scripts);
+    renderScripts();
+  }
+
+  if (act === 'video') {
+    const title    = document.getElementById('mi-title').value.trim();
+    const platform = document.getElementById('mi-platform').value;
+    const date     = document.getElementById('mi-date').value;
+    const url      = document.getElementById('mi-url').value.trim();
+    if (!title) return;
+    videoLog.unshift({id:Date.now().toString(), title, platform, date, url, views:0, likes:0, comments:0});
+    save('videoLog', videoLog);
+    renderVideoLog();
+    // bump KPI
+    kpiData.videos = String(parseInt(kpiData.videos||0)+1);
+    save('kpiData', kpiData);
+    applyKPIs();
+  }
+
+  if (act.startsWith('kpi-')) {
+    const label = act.replace('kpi-','');
+    const val   = document.getElementById('mi-kpi-val').value.trim();
+    const map   = {'Videos Published':'videos','Total Views':'views','Followers':'followers','Scripts Ready':'scripts','Est. Revenue':'revenue'};
+    const key   = map[label];
+    if (key) {
+      kpiData[key] = val;
+      save('kpiData', kpiData);
+      applyKPIs();
+    }
+  }
+
+  if (act === 'metrics') {
+    metrics.tt = {handle:document.getElementById('mi-tt-handle').value, followers:document.getElementById('mi-tt-followers').value, change:document.getElementById('mi-tt-change').value};
+    metrics.yt = {handle:document.getElementById('mi-yt-handle').value, followers:document.getElementById('mi-yt-followers').value, change:document.getElementById('mi-yt-change').value};
+    metrics.ig = {handle:document.getElementById('mi-ig-handle').value, followers:document.getElementById('mi-ig-followers').value, change:document.getElementById('mi-ig-change').value};
+    save('metrics', metrics);
+    applyMetrics();
+  }
+
+  closeModal();
+}
+
+function closeModal(e) {
+  if (e && e.target !== document.getElementById('modal-overlay')) return;
+  document.getElementById('modal-overlay').classList.remove('open');
+  currentModalAction = null;
+}
+
+// ── APPLY KPIs ──
+function applyKPIs() {
+  document.getElementById('kpi-videos').textContent    = kpiData.videos;
+  document.getElementById('kpi-views').textContent     = kpiData.views;
+  document.getElementById('kpi-followers').textContent = kpiData.followers;
+  document.getElementById('kpi-scripts').textContent   = kpiData.scripts;
+  document.getElementById('kpi-revenue').textContent   = kpiData.revenue;
+}
+
+// ── SCRIPTS RENDER ──
+function renderScripts() {
+  // Only renders user-added scripts (pre-seeded are in HTML)
+  // Append after existing
+  const existing = ['s1','s2','s3'];
+  const container = document.getElementById('scripts-list');
+  container.querySelectorAll('[data-id^="sc-"]').forEach(el => el.remove());
+  scripts.forEach(s => {
+    const el = document.createElement('div');
+    el.className = 'script-card';
+    el.dataset.id = s.id;
+    el.style.marginTop = '0.75rem';
+    el.innerHTML = `
+      <div class="script-meta">
+        <span class="badge badge-violet">${s.platform}</span>
+        <span class="badge badge-lime">${s.status}</span>
+      </div>
+      <div class="script-title">${s.title}</div>
+      ${s.hook ? `<div class="script-hook">${s.hook}</div>` : ''}
+      ${s.script ? `<div style="font-size:0.72rem;color:var(--text2);line-height:1.6;margin-top:0.5rem;">${s.script}</div>` : ''}
+      <div class="script-actions">
+        <button class="btn btn-lime">▶ Film This</button>
+        <button class="btn btn-ghost" onclick="removeScript('${s.id}')">Remove</button>
+      </div>
+    `;
+    container.appendChild(el);
+  });
+}
+
+function removeScript(id) {
+  scripts = scripts.filter(s => s.id !== id);
+  save('scripts', scripts);
+  renderScripts();
+}
+
+function addAsset()        { alert('Drop image file path or URL — Basquiat delivers here'); }
+function requestThumbnail(){ alert('Ping Franklin to spawn Basquiat for a new thumbnail batch!'); }
+function addRevenue()      { alert('Revenue logging coming — tell Franklin to add it!'); }
+function refreshResearch() { alert('Ask Bishop (research agent) to pull fresh trending topics. Tell Franklin!'); }
+
+// ── INIT ──
+renderCalendar();
+renderPipeline();
+renderScripts();
+renderVideoLog();
+applyKPIs();
+applyMetrics();
+</script>
+</body>
+</html>
+<!-- AI Content Studio deployed Sun Mar 29 20:47:09 CDT 2026 -->

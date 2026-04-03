@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>South/West County Apartment Leads — Tidy Tails Commercial</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0a18; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; padding-bottom: 40px; }
+  
+  .header { background: linear-gradient(135deg, #1a0533 0%, #0d1b40 100%); padding: 20px 16px 16px; border-bottom: 2px solid #2d1b69; }
+  .header h1 { font-size: 1.4rem; color: #c084fc; margin-bottom: 4px; }
+  .header .sub { font-size: 0.85rem; color: #9ca3af; }
+  .header .campaign-context { background: rgba(124,58,237,0.15); border: 1px solid #7c3aed; border-radius: 8px; padding: 10px 14px; margin-top: 12px; font-size: 0.82rem; color: #c4b5fd; line-height: 1.5; }
+  
+  .stats-bar { display: flex; gap: 12px; padding: 12px 16px; background: #0d1117; overflow-x: auto; }
+  .stat { background: #111828; border: 1px solid #1f2937; border-radius: 8px; padding: 10px 16px; text-align: center; min-width: 80px; flex-shrink: 0; }
+  .stat .num { font-size: 1.4rem; font-weight: 800; color: #c084fc; }
+  .stat .label { font-size: 0.72rem; color: #6b7280; margin-top: 2px; }
+  
+  .section-title { padding: 14px 16px 6px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #6b7280; }
+
+  .zone-label { margin: 0 16px 6px; display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .zone-south { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid #10b981; }
+  .zone-west { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid #f59e0b; }
+
+  .lead-card { background: #111828; border: 1px solid #1f2937; border-radius: 12px; margin: 8px 16px; overflow: hidden; transition: all 0.2s; }
+  .lead-card:hover { border-color: #4b5563; }
+  .lead-card.tier-hot { border-left: 4px solid #7c3aed; }
+  .lead-card.tier-warm { border-left: 4px solid #f59e0b; }
+  .lead-card.tier-cold { border-left: 4px solid #374151; }
+  
+  .lead-header { display: flex; justify-content: space-between; align-items: flex-start; padding: 14px 14px 10px; cursor: pointer; }
+  .lead-name-row { flex: 1; }
+  .lead-name { font-size: 1.05rem; font-weight: 700; color: #fff; }
+  .lead-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 5px; }
+  .tag { font-size: 0.68rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; }
+  .tag-hot { background: rgba(124,58,237,0.2); color: #c084fc; border: 1px solid #7c3aed; }
+  .tag-dogpark { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid #10b981; }
+  .tag-highrating { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid #f59e0b; }
+  .tag-multi { background: rgba(59,130,246,0.15); color: #93c5fd; border: 1px solid #3b82f6; }
+  .status-chip { font-size: 0.7rem; padding: 3px 8px; border-radius: 8px; font-weight: 700; flex-shrink: 0; margin-left: 8px; cursor: pointer; transition: all 0.2s; }
+  .status-new { background: #1f2937; color: #9ca3af; border: 1px solid #374151; }
+  .status-called { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid #f59e0b; }
+  .status-interested { background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid #10b981; }
+  .status-partner { background: rgba(124,58,237,0.2); color: #c084fc; border: 1px solid #7c3aed; }
+  .status-pass { background: #1f2937; color: #4b5563; border: 1px solid #374151; }
+  
+  .lead-body { padding: 0 14px 14px; display: none; }
+  .lead-body.open { display: block; }
+  
+  .info-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+  .info-pill { font-size: 0.78rem; background: #0d1117; border: 1px solid #1f2937; border-radius: 6px; padding: 4px 10px; color: #d1d5db; display: flex; align-items: center; gap: 5px; }
+  .info-pill.phone { color: #22c55e; font-family: monospace; font-weight: 800; font-size: 0.85rem; border-color: #166534; background: rgba(16,185,129,0.08); }
+  .info-pill a { color: inherit; text-decoration: none; }
+  .info-pill.rating-high { color: #fbbf24; border-color: #92400e; background: rgba(251,191,36,0.07); }
+  
+  .pitch-box { background: #0d1117; border-left: 3px solid #7c3aed; border-radius: 0 8px 8px 0; padding: 10px 12px; margin: 8px 0; font-size: 0.82rem; color: #c4b5fd; line-height: 1.55; }
+  .pitch-box strong { color: #c084fc; }
+  
+  .why-box { background: rgba(16,185,129,0.06); border: 1px solid #065f46; border-radius: 8px; padding: 8px 12px; font-size: 0.78rem; color: #6ee7b7; margin-top: 6px; }
+  .why-box strong { color: #34d399; }
+  
+  .actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+  .btn { padding: 7px 14px; border-radius: 7px; font-size: 0.8rem; font-weight: 700; border: none; cursor: pointer; transition: all 0.15s; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+  .btn-call { background: #166534; color: #22c55e; }
+  .btn-call:hover { background: #14532d; }
+  .btn-script { background: #1e1b4b; color: #818cf8; border: 1px solid #3730a3; }
+  .btn-script:hover { background: #312e81; }
+  .btn-status { background: #1f2937; color: #9ca3af; border: 1px solid #374151; }
+  .btn-status:hover { background: #374151; }
+  .btn-copy { background: #1f2937; color: #9ca3af; border: 1px solid #374151; }
+  .btn-copy:hover { background: #374151; color: #e5e7eb; }
+  
+  .notes-area { width: 100%; background: #0d1117; border: 1px solid #1f2937; border-radius: 6px; padding: 8px 10px; color: #d1d5db; font-size: 0.82rem; min-height: 50px; resize: vertical; margin-top: 8px; }
+  
+  /* STRATEGY SECTION */
+  .strategy-section { margin: 12px 16px; background: #111828; border: 1px solid #2d1b69; border-radius: 12px; padding: 16px; }
+  .strategy-section h2 { font-size: 1rem; color: #c084fc; margin-bottom: 12px; }
+  .strategy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 500px) { .strategy-grid { grid-template-columns: 1fr; } }
+  .strategy-card { background: #0d1117; border: 1px solid #1f2937; border-radius: 8px; padding: 12px; }
+  .strategy-card h3 { font-size: 0.82rem; font-weight: 700; color: #a5b4fc; margin-bottom: 6px; }
+  .strategy-card p, .strategy-card li { font-size: 0.78rem; color: #9ca3af; line-height: 1.55; }
+  .strategy-card ul { padding-left: 14px; }
+  .strategy-card li { margin-bottom: 3px; }
+  
+  /* CALL SCRIPTS */
+  .script-modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 100; align-items: center; justify-content: center; padding: 16px; }
+  .script-modal.open { display: flex; }
+  .script-box { background: #111828; border: 1px solid #3730a3; border-radius: 16px; padding: 20px; max-width: 480px; width: 100%; max-height: 80vh; overflow-y: auto; }
+  .script-box h3 { color: #c084fc; font-size: 1rem; margin-bottom: 12px; }
+  .script-text { background: #0d1117; border: 1px solid #1f2937; border-radius: 8px; padding: 14px; font-size: 0.83rem; color: #d1d5db; line-height: 1.65; white-space: pre-wrap; }
+  .script-box .close-btn { margin-top: 14px; width: 100%; background: #1f2937; color: #9ca3af; border: 1px solid #374151; border-radius: 8px; padding: 9px; cursor: pointer; font-weight: 700; }
+  
+  /* CALL ORDER */
+  .call-order { margin: 12px 16px; background: #111828; border: 1px solid #1f2937; border-radius: 12px; padding: 16px; }
+  .call-order h2 { font-size: 0.95rem; color: #fbbf24; margin-bottom: 12px; }
+  .order-row { display: flex; align-items: center; gap: 10px; padding: 9px 0; border-bottom: 1px solid #1f2937; }
+  .order-row:last-child { border-bottom: none; }
+  .order-num { background: linear-gradient(135deg, #7c3aed, #4f46e5); color: white; border-radius: 50%; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 900; flex-shrink: 0; }
+  .order-info { flex: 1; }
+  .order-name { font-size: 0.88rem; font-weight: 700; color: #e5e7eb; }
+  .order-why { font-size: 0.75rem; color: #6b7280; margin-top: 1px; }
+  .order-phone { font-family: monospace; font-size: 0.82rem; font-weight: 800; color: #22c55e; }
+  
+  /* Revenue math */
+  .math-card { margin: 12px 16px; background: linear-gradient(135deg, rgba(124,58,237,0.1), rgba(79,70,229,0.08)); border: 1px solid #4f46e5; border-radius: 12px; padding: 16px; }
+  .math-card h2 { font-size: 0.9rem; color: #818cf8; margin-bottom: 10px; }
+  .math-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(79,70,229,0.2); font-size: 0.82rem; }
+  .math-row:last-child { border-bottom: none; font-weight: 800; color: #c084fc; }
+  .math-label { color: #9ca3af; }
+  .math-val { color: #a5b4fc; font-weight: 700; }
+  
+  /* Checklist */
+  .checklist-section { margin: 12px 16px; background: #111828; border: 1px solid #1f2937; border-radius: 12px; padding: 16px; }
+  .checklist-section h2 { font-size: 0.95rem; color: #c084fc; margin-bottom: 12px; }
+  .check-item { display: flex; align-items: flex-start; gap: 10px; padding: 7px 0; border-bottom: 1px solid #1a2033; cursor: pointer; }
+  .check-item:last-child { border-bottom: none; }
+  .check-box { width: 18px; height: 18px; border: 2px solid #374151; border-radius: 4px; flex-shrink: 0; margin-top: 1px; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+  .check-item.done .check-box { background: #7c3aed; border-color: #7c3aed; }
+  .check-item.done .check-box::after { content: '✓'; color: white; font-size: 0.7rem; font-weight: 900; }
+  .check-item.done .check-text { text-decoration: line-through; color: #4b5563; }
+  .check-text { font-size: 0.82rem; color: #d1d5db; line-height: 1.45; }
+  
+  .progress-wrap { background: #1f2937; border-radius: 10px; height: 6px; margin: 0 16px 10px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, #7c3aed, #c084fc); border-radius: 10px; transition: width 0.5s; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏢 South/West County Apartment Leads</h1>
+  <div class="sub">10 pet-friendly complexes with verified phones • Ready to call TODAY</div>
+  <div class="campaign-context">
+    <strong>🎯 Why now:</strong> The Crestwood Vet Paw-ty was in TJ's back yard. These complexes are in the same market — Kirkwood, Webster Groves, Chesterfield, Ballwin, Town & Country. Residents who saw TJ's Nextdoor posts or Paw-ty presence are NOW living in these buildings. The North County apartment leads kit got us 8 leads for NC-1 week. <strong>This is the South/West County mirror of that playbook.</strong>
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="num" id="total-count">10</div><div class="label">Total Leads</div></div>
+  <div class="stat"><div class="num" id="called-count">0</div><div class="label">Called</div></div>
+  <div class="stat"><div class="num" id="interested-count">0</div><div class="label">Interested</div></div>
+  <div class="stat"><div class="num" id="partner-count">0</div><div class="label">Partners</div></div>
+  <div class="stat"><div class="num" style="color:#22c55e">$400+</div><div class="label">Mo Potential</div></div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap"><div class="progress-fill" id="progress-bar" style="width:0%"></div></div>
+
+<!-- CALL ORDER -->
+<div class="call-order">
+  <h2>📞 Call Order — Start Here</h2>
+  <div class="order-row">
+    <div class="order-num">1</div>
+    <div class="order-info"><div class="order-name">Willowbend (Town & Country)</div><div class="order-why">4.7★/150 reviews — best reputation, dog park, dogs allowed. Premium residents who WILL pay for convenience.</div></div>
+    <div class="order-phone">(636) 200-6759</div>
+  </div>
+  <div class="order-row">
+    <div class="order-num">2</div>
+    <div class="order-info"><div class="order-name">ReNew Chesterfield</div><div class="order-why">186 reviews, dog park + washing station — they built infrastructure for dog owners. Perfect pitch fit.</div></div>
+    <div class="order-phone">(636) 245-2784</div>
+  </div>
+  <div class="order-row">
+    <div class="order-num">3</div>
+    <div class="order-info"><div class="order-name">Park Forest Apartments (Affton)</div><div class="order-why">Dog park, high engagement reviews, South County location aligns with existing routes.</div></div>
+    <div class="order-phone">(314) 312-1734</div>
+  </div>
+  <div class="order-row">
+    <div class="order-num">4</div>
+    <div class="order-info"><div class="order-name">The Elle on Lockwood (Webster Groves)</div><div class="order-why">Prime Paw-ty territory — Webster Groves downtown. Residents saw TJ's Nextdoor posts.</div></div>
+    <div class="order-phone">(855) 604-6853</div>
+  </div>
+  <div class="order-row">
+    <div class="order-num">5</div>
+    <div class="order-info"><div class="order-name">NRE Management (Colonial Village + White Bluff)</div><div class="order-why">One call = TWO properties. Same company manages both. Efficient pitch.</div></div>
+    <div class="order-phone">(314) 968-1863</div>
+  </div>
+</div>
+
+<!-- SOUTH COUNTY LEADS -->
+<div class="section-title">South County Leads</div>
+
+<div style="margin: 0 0 2px;">
+  <span class="zone-label zone-south">🌿 South County — Kirkwood / Webster Groves / Affton</span>
+</div>
+
+<!-- LEAD 1: Kirkwood Bluffs -->
+<div class="lead-card tier-hot" id="card-kbf">
+  <div class="lead-header" onclick="toggleCard('kbf')">
+    <div class="lead-name-row">
+      <div class="lead-name">Kirkwood Bluffs Apartments</div>
+      <div class="lead-tags">
+        <span class="tag tag-hot">KIRKWOOD 63122</span>
+        <span class="tag tag-dogpark">DOGS ALLOWED</span>
+      </div>
+    </div>
+    <span class="status-chip status-new" id="status-kbf" onclick="cycleStatus(event,'kbf')">New</span>
+  </div>
+  <div class="lead-body" id="body-kbf">
+    <div class="info-row">
+      <span class="info-pill phone">📞 <a href="tel:+13149484728">(314) 948-4728</a></span>
+      <span class="info-pill">📍 1157 Timberbrook Dr, Kirkwood 63122</span>
+      <span class="info-pill">⭐ 3.3★ / 130 reviews</span>
+    </div>
+    <div class="pitch-box">
+      <strong>Opening pitch:</strong> "Hi, I'm TJ with Tidy Tails — we do pet waste removal for apartment communities in Kirkwood. I noticed you allow dogs — a lot of your residents probably deal with finding piles they didn't expect. We offer a weekly yard and common area cleaning program starting around $150/month. Would it make sense to talk to your property manager?"
+    </div>
+    <div class="why-box">
+      <strong>Why this property:</strong> 3.3★ = management room for improvement. Dog waste complaints are likely already in their 1-star reviews. A professional pet waste service is cheap reputation insurance. Kirkwood is core route territory.
+    </div>
+    <div class="actions">
+      <a href="tel:+13149484728" class="btn btn-call">📞 Call Now</a>
+      <button class="btn btn-script" onclick="showScript('apartment-opener')">📋 Script</button>
+      <button class="btn btn-status" onclick="cycleStatus(event,'kbf')">Update Status</button>
+    </div>
+    <textarea class="notes-area" placeholder="Notes from call..." onblur="saveNote('kbf',this.value)" id="notes-kbf"></textarea>
+  </div>
+</div>
+
+<!-- LEAD 2: The James -->
+<div class="lead-card tier-hot" id="card-james">
+  <div class="lead-header" onclick="toggleCard('james')">
+    <div class="lead-name-row">
+      <div class="lead-name">The James (Downtown Kirkwood)</div>
+      <div class="lead-tags">
+        <span class="tag tag-hot">KIRKWOOD DOWNTOWN</span>
+        <span class="tag tag-highrating">4.5★ HIGH RATED</span>
+      </div>
+    </div>
+    <span class="status-chip status-new" id="status-james" onclick="cycleStatus(event,'james')">New</span>
+  </div>
+  <div class="lead-body" id="body-james">
+    <div class="info-row">
+      <span class="info-pill phone">📞 <em>Look up — search "(314) James Kirkwood Rd apartments"</em></span>
+      <span class="info-pill">📍 416 S Kirkwood Rd, Kirkwood 63122</span>
+      <span class="info-pill rating-high">⭐ 4.5★ / 47 reviews</span>
+    </div>
+    <div class="pitch-box">
+      <strong>Angle:</strong> High-rated means management cares about resident experience. Frame it as "preventive maintenance for their reputation." Pet-friendly quote in Google reviews confirms dogs are common there. Downtown Kirkwood = high foot traffic, dog waste near common areas matters most here.
+    </div>
+    <div class="why-box">
+      <strong>Why this property:</strong> 4.5★ = they're already doing things right. A pet waste partnership is consistent with their brand. They're more likely to respond and sign — they take amenities seriously.
+    </div>
+    <div class="actions">
+      <button class="btn btn-script" onclick="showScript('high-rated')">📋 High-Rated Script</button>
+      <button class="btn btn-status" onclick="cycleStatus(event,'james')">Update Status</button>
+    </div>
+    <textarea class="notes-area" placeholder="Notes from call..." onblur="saveNote('james',this.value)" id="notes-james"></textarea>
+  </div>
+</div>
+
+<!-- LEAD 3: The Elle on Lockwood -->
+<div class="lead-card tier-hot" id="card-elle">
+  <div class="lead-header" onclick="toggleCard('elle')">
+    <div class="lead-name-row">
+      <div class="lead-name">The Elle on Lockwood</div>
+      <div class="lead-tags">
+        <span class="tag tag-hot">WEBSTER GROVES PAW-TY TERRITORY</span>
+      </div>
+    </div>
+    <span class="status-chip status-new" id="status-elle" onclick="cycleStatus(event,'elle')">New</span>
+  </div>
+  <div class="lead-body" id="body-elle">
+    <div class="info-row">
+      <span class="info-pill phone">📞 <a href="tel:+18556046853">(855) 604-6853</a></span>
+      <span class="info-pill">📍 226 E Lockwood Ave, Webster Groves</span>
+      <span class="info-pill">🐾 Pet Friendly (confirmed)</span>
+    </div>
+    <div class="pitch-box">
+      <strong>Opening pitch:</strong> "Hi — I run Tidy Tails, a pet waste removal service. We actually just did an event at Crestwood Vet a few days ago, right down the road. Webster Groves has been a big growth area for us. I wanted to reach out about doing regular pet waste removal for your common areas — a lot of residents love it because they know it gets handled weekly. Is your property manager available?"
+    </div>
+    <div class="why-box">
+      <strong>Why this property:</strong> E Lockwood Ave is in the heart of Old Webster — prime Paw-ty spillover territory. Residents are the exact demographic who attended (or saw posts from) the Crestwood Vet event. Name-dropping the event builds instant local credibility.
+    </div>
+    <div class="actions">
+      <a href="tel:+18556046853" class="btn btn-call">📞 Call Now</a>
+      <button class="btn btn-script" onclick="showScript('event-name-drop')">📋 Event Script</button>
+      <button class="btn btn-status" onclick="cycleStatus(event,'elle')">Update Status</button>
+    </div>
+    <textarea class="notes-area" placeholder="Notes from call..." onblur="saveNote('elle',this.value)" id="notes-elle"></textarea>
+  </div>
+</div>
+
+<!-- LEAD 4: Park Forest (dog park) -->
+<div class="lead-card tier-hot" id="card-parkforest">
+  <div class="lead-header" onclick="toggleCard('parkforest')">
+    <div class="lead-name-row">
+      <div class="lead-name">Park Forest Apartments</div>
+      <div class="lead-tags">
+        <span class="tag tag-dogpark">DOG PARK ON-SITE</span>
+        <span class="tag tag-hot">AFFTON 63123</span>
+      </div>
+    </div>
+    <span class="status-chip status-new" id="status-parkforest" onclick="cycleStatus(event,'parkforest')">New</span>
+  </div>
+  <div class="lead-body" id="body-parkforest">
+    <div class="info-row">
+      <span class="info-pill phone">📞 <a href="tel:+13143121734">(314) 312-1734</a></span>
+      <span class="info-pill">📍 7529 Fleta St, Affton 63123</span>
+      <span class="info-pill">🐾 Dog Park On-Site</span>
+    </div>
+    <div class="pitch-box">
+      <strong>DOG PARK PITCH:</strong> "Hi, I'm TJ with Tidy Tails — we do weekly pet waste removal for apartment communities. I noticed you have a dog park on-site — those get really heavy use and the waste really builds up. We can handle your dog park on a weekly schedule so it's always clean and safe for your residents. Pricing starts around $150/month for dog park maintenance. Is this something your property manager handles, or is there a facilities team I should reach?"
+    </div>
+    <div class="why-box">
+      <strong>Dog park = strongest pitch in this batch.</strong> They already invested in pet infrastructure. Dog park maintenance is a legitimate pain point — it's not glamorous, residents complain when it's dirty, and nobody wants that job. We solve a real operational headache.
+    </div>
+    <div class="actions">
+      <a href="tel:+13143121734" class="btn btn-call">📞 Call Now</a>
+      <button class="btn btn-script" onclick="showScript('dog-park')">📋 Dog Park Script</button>
+      <button class="btn btn-status" onclick="cycleStatus(event,'parkforest')">Update Status</button>
+    </div>
+    <textarea class="notes-area" placeholder="Notes from call..." onblur="saveNote('parkforest',this.value)" id="notes-parkforest"></textarea>
+  </div>
+</div>
+
+<!-- LEAD 5: Forest View -->
+<div class="lead-card tier-warm" id="card-forestview">
+  <div class="lead-header" onclick="toggleCard('forestview')">
+    <div class="lead-name-row">
+      <div class="lead-name">Forest View Apartments</div>
+      <div class="lead-tags">
+        <span class="tag tag-hot">CRESTWOOD/AFFTON AREA</span>
+        <span class="tag tag-dogpark">VERY PET FRIENDLY</span>
+      </div>
+    </div>
+    <span class="status-chip status-new" id="status-forestview" onclick="cycleStatus(event,'forestview')">New</span>
+  </div>
+  <div class="lead-body" id="body-forestview">
+    <div class="info-row">
+      <span class="info-pill phone">📞 <a href="tel:+18447311740">(844) 731-1740</a></span>
+      <span class="info-pill">📍 9420 Mary Glen Dr (South County)</span>
+      <span class="info-pill">🐾 "Very pet friendly" (Google review)</span>
+    </div>
+    <div class="pitch-box">
+      <strong>Angle:</strong> "Very pet friendly" in reviews = significant dog-owning resident base. That's confirmed demand. Standard apartment opener works here: offer common area + pet walk path cleaning.
+    </div>
+    <div class="why-box">
+      <strong>Also:</strong> Second Forest View location at 8714 Park Crestwood Dr — **(314) 843-2155** — same brand, same pitch. Two-for-one potential if they're managed by the same company (liveforestview.com).
+    </div>
+    <div class="actions">
+      <a href="tel:+18447311740" class="btn btn-call">📞 (844) 731-1740</a>
+      <a href="tel:+13148432155" class="btn btn-call">📞 (314) 843-2155 (2nd location)</a>
+      <button class="btn btn-status" onclick="cycleStatus(event,'forestview')">Update Status</button>
+    </div>
+    <textarea class="notes-area" placeholder="Notes from call..." onblur="saveNote('forestview',this.value)" id="notes-forestview"></textarea>
+  </div>
+</div>
+
+<!-- LEAD 6: NRE Management (Colonial Village + White Bluff) -->
+<div class="lead-card tier-warm" id="card-nre">
+  <div class="lead-header" onclick="toggleCard('nre')">
+    <div class="lead-name-row">
+      <div class="lead-name">NRE Management (Colonial Village + White Bluff)</div>
+      <div class="lead-tags">
+        <span class="tag tag-multi">2 PROPERTIES · 1 CALL</span>
+        <span class="tag tag-hot">WEBSTER GROVES</span>
+      </div>
+    </div>
+    <span class="status-chip status-new" id="status-nre" onclick="cycleStatus(event,'nre')">New</span>
+  </div>
+  <div class="lead-body" id="body-nre">
+    <div class="info-row">
+      <span class="info-pill phone">📞 <a href="tel:+13149681863">(314) 968-1863</a></span>
+      <span class="info-pill">📍 Colonial Village: 13 Colonial Village Ct</span>
+      <span class="info-pill">📍 White Bluff: 7864 Big Bend Blvd</span>
+      <span class="info-pill">🌐 nremgmt.com</span>
+    </div>
+    <div class="pitch-box">
+      <strong>Multi-property pitch:</strong> "Hi, I'm calling for NRE Management — I run Tidy Tails, a pet waste service. I noticed you manage at least Colonial Village and White Bluff, both near Webster Groves. We offer a multi-property discount for management companies — one invoice, one vendor contact, consistent service across all your pet-friendly properties. Would the right person be at this number, or is there a portfolio manager I should reach?"
+    </div>
+    <div class="why-box">
+      <strong>Why this works:</strong> Property management companies love ONE vendor instead of ten. Pitch the portfolio play — "all your properties, one contract, 10% multi-property discount." Revenue potential: 2+ properties × $200/mo = $400+/mo from one relationship.
+    </div>
+    <div class="actions">
+      <a href="tel:+13149681863" class="btn btn-call">📞 Call NRE Now</a>
+      <button class="btn btn-script" onclick="showScript('portfolio')">📋 Portfolio Script</button>
+      <button class="btn btn-status" onclick="cycleStatus(event,'nre')">Update Status</button>
+    </div>
+    <textarea class="notes-area" placeholder="Notes from call..." onblur="saveNote('nre',this.value)" id="notes-nre"></textarea>
+  </div>
+</div>
+
+<!-- LEAD 7: Stanford Place -->
+<div class="lead-card tier-warm" id="card-stanford">
+  <div class="lead-header" onclick="toggleCard('stanford')">
+    <div class="lead-name-row">
+      <div class="lead-name">Stanford Place Apartments</div>
+      <div class="lead-tags">
+        <span class="tag tag-hot">ROCK HILL / RICHMOND HEIGHTS</span>
+      </div>
+    </div>
+    <span class="status-chip status-new" id="status-stanford" onclick="cycleStatus(event,'stanford')">New</span>
+  </div>
+  <div class="lead-body" id="body-stanford">
+    <div class="info-row">
+      <span class="info-pill phone">📞 <a href="tel:+13145289667">(314) 528-9667</a></span>
+      <span class="info-pill">📍 9305 Manchester Rd</span>
+    </div>
+    <div class="pitch-box">
+      <strong>Angle:</strong> Manchester Rd corridor — between Rock Hill and Richmond Heights. Standard apartment opener. Ask if they're pet-friendly first, then pitch common area maintenance.
+    </div>
+    <div class="actions">
+      <a href="tel:+13145289667" class="btn btn-call">📞 Call Now</a>
+      <button class="btn btn-status" onclick="cycleStatus(event,'stanford')">Update Status</button>
+    </div>
+    <textarea class="notes-area" placeholder="Notes from call..." onblur="saveNote('stanford',this.value)" id="notes-stanford"></textarea>
+  </div>
+</div>
+
+<!-- WEST COUNTY -->
+<div class="section-title" style="margin-top:16px">West County Leads</div>
+
+<div style="margin: 0 0 2px;">
+  <span class="zone-label zone-west">🏡 West County — Chesterfield / Ballwin / Town & Country</span>
+</div>
+
+<!-- LEAD 8: Willowbend (THE BEST LEAD) -->
+<div class="lead-card tier-hot" id="card-willowbend">
+  <div class="lead-header" onclick="toggleCard('willowbend')">
+    <div class="lead-name-row">
+      <div class="lead-name">🏆 Willowbend (Town & Country)</div>
+      <div class="lead-tags">
+        <span class="tag tag-highrating">4.7★ BEST RATING</span>
+        <span class="tag tag-dogpark">DOG PARK</span>
+        <span class="tag tag-hot">150 REVIEWS</span>
+      </div>
+    </div>
+    <span class="status-chip status-new" id="status-willowbend" onclick="cycleStatus(event,'willowbend')">New</span>
+  </div>
+  <div class="lead-body" id="body-willowbend">
+    <div class="info-row">
+      <span class="info-pill phone">📞 <a href="tel:+16362006759">(636) 200-6759</a></span>
+      <span class="info-pill">📍 14343 Willow Bend Park, Town & Country 63017</span>
+      <span class="info-pill rating-high">⭐ 4.7★ / 150 reviews — 87% 5-star</span>
+      <span class="info-pill">🌐 willowbendtownandcountry.com</span>
+    </div>
+    <div class="pitch-box">
+      <strong>Opening pitch (call Dejon — leasing):</strong> "Hi, may I speak with whoever handles vendor services or the property manager? I'm TJ with Tidy Tails — we're a local pet waste removal company. I saw that Willowbend has a dog park and is very dog-friendly, which is awesome. We do weekly common area and dog park maintenance for apartment communities — basically we handle all the pet waste on a regular schedule so residents always have a clean space. You'd just see the clean dog park, no complaints. It's around $200-250/month. Is that something worth a quick conversation?"
+    </div>
+    <div class="why-box">
+      <strong>Why this is the #1 call:</strong> 4.7★ means they take resident experience seriously. They already invested in a dog park. They're likely ALREADY dealing with waste complaints — a managed service is the professional answer. Town & Country residents expect premium amenity management. Reviews mention "Dejon" as the friendly leasing contact — use that name if she answers.
+    </div>
+    <div class="actions">
+      <a href="tel:+16362006759" class="btn btn-call">📞 CALL FIRST</a>
+      <button class="btn btn-script" onclick="showScript('dog-park')">📋 Dog Park Script</button>
+      <button class="btn btn-status" onclick="cycleStatus(event,'willowbend')">Update Status</button>
+    </div>
+    <textarea class="notes-area" placeholder="Notes from call..." onblur="saveNote('willowbend',this.value)" id="notes-willowbend"></textarea>
+  </div>
+</div>
+
+<!-- LEAD 9: ReNew Chesterfield -->
+<div class="lead-card tier-hot" id="card-renew">
+  <div class="lead-header" onclick="toggleCard('renew')">
+    <div class="lead-name-row">
+      <div class="lead-name">ReNew Chesterfield</div>
+      <div class="lead-tags">
+        <span class="tag tag-dogpark">DOG PARK + WASH STATION</span>
+        <span class="tag tag-hot">186 REVIEWS</span>
+      </div>
+    </div>
+    <span class="status-chip status-new" id="status-renew" onclick="cycleStatus(event,'renew')">New</span>
+  </div>
+  <div class="lead-body" id="body-renew">
+    <div class="info-row">
+      <span class="info-pill phone">📞 <a href="tel:+16362452784">(636) 245-2784</a></span>
+      <span class="info-pill">📍 2150 Village Green Pkwy, Chesterfield 63017</span>
+      <span class="info-pill">🐾 Dog park + dog WASHING STATION</span>
+      <span class="info-pill">⭐ 3.8★ / 186 reviews</span>
+    </div>
+    <div class="pitch-box">
+      <strong>Opening pitch:</strong> "Hi, I'm TJ with Tidy Tails — we handle pet waste for apartment communities. I saw that ReNew has a dog park AND a dog washing station — that's a real commitment to pet-friendly living. The dog park specifically gets constant use and waste really builds up. We do a weekly maintenance schedule so it's always in good shape. Are you the right person to talk to about vendor services, or is there a property manager?"
+    </div>
+    <div class="why-box">
+      <strong>Dog wash station angle:</strong> A complex that invested in both a dog park AND a washing station is the most committed pet-friendly property in the entire West County market. They WANT to be known for pet amenities. A waste management contract is the logical complement — they just haven't hired it out yet.
+    </div>
+    <div class="actions">
+      <a href="tel:+16362452784" class="btn btn-call">📞 Call Now</a>
+      <button class="btn btn-script" onclick="showScript('dog-park')">📋 Dog Park Script</button>
+      <button class="btn btn-status" onclick="cycleStatus(event,'renew')">Update Status</button>
+    </div>
+    <textarea class="notes-area" placeholder="Notes from call..." onblur="saveNote('renew',this.value)" id="notes-renew"></textarea>
+  </div>
+</div>
+
+<!-- LEAD 10: Orchard Village / Villages at General Grant combo -->
+<div class="lead-card tier-warm" id="card-villages">
+  <div class="lead-header" onclick="toggleCard('villages')">
+    <div class="lead-name-row">
+      <div class="lead-name">Villages at General Grant + Orchard Village</div>
+      <div class="lead-tags">
+        <span class="tag tag-hot">SOUTH COUNTY / BALLWIN</span>
+        <span class="tag tag-dogpark">DOG PARKS</span>
+      </div>
+    </div>
+    <span class="status-chip status-new" id="status-villages" onclick="cycleStatus(event,'villages')">New</span>
+  </div>
+  <div class="lead-body" id="body-villages">
+    <div class="info-row">
+      <span class="info-pill phone">📞 Villages GG: <a href="tel:+13142724659">(314) 272-4659</a></span>
+      <span class="info-pill phone">📞 Orchard Village: call main</span>
+      <span class="info-pill">📍 Villages: 7482 Hardscrapple Dr (South County)</span>
+      <span class="info-pill">📍 Orchard: 115 Pineycliffe Ln, Ballwin</span>
+    </div>
+    <div class="pitch-box">
+      <strong>Orchard Village note:</strong> Reviews explicitly mention "doggie park" and "2 beautiful ponds" — call them for the dog park pitch. Use orchardvillageapts.com for contact. They're running Google Ads for Chesterfield keywords, meaning they have a marketing budget and value amenity differentiation.
+    </div>
+    <div class="actions">
+      <a href="tel:+13142724659" class="btn btn-call">📞 Villages GG</a>
+      <button class="btn btn-status" onclick="cycleStatus(event,'villages')">Update Status</button>
+    </div>
+    <textarea class="notes-area" placeholder="Notes from call..." onblur="saveNote('villages',this.value)" id="notes-villages"></textarea>
+  </div>
+</div>
+
+<!-- REVENUE MATH -->
+<div class="math-card">
+  <h2>💰 Revenue Potential — What This Batch Is Worth</h2>
+  <div class="math-row"><span class="math-label">Per property (basic common area)</span><span class="math-val">$150-200/mo</span></div>
+  <div class="math-row"><span class="math-label">Per property (dog park included)</span><span class="math-val">$200-350/mo</span></div>
+  <div class="math-row"><span class="math-label">Multi-property portfolio deal</span><span class="math-val">$300-600/mo</span></div>
+  <div class="math-row"><span class="math-label">10 leads × 20% close rate</span><span class="math-val">2 contracts signed</span></div>
+  <div class="math-row"><span class="math-label">2 contracts × $250/mo avg</span><span class="math-val">$500/mo new MRR</span></div>
+  <div class="math-row"><span class="math-label">× 18 months avg lifetime</span><span class="math-val"><strong>$9,000 LTV from this batch</strong></span></div>
+</div>
+
+<!-- CALL SCRIPTS -->
+<div class="strategy-section">
+  <h2>📋 Call Scripts</h2>
+  <div class="strategy-grid">
+    <div class="strategy-card">
+      <h3>Cold Apartment Opener (Universal)</h3>
+      <p>"Hi, I'm TJ with Tidy Tails — we do pet waste removal for apartment communities in St. Louis. Are you pet-friendly? [Yes] Great. We handle weekly common area and pet walk path cleaning so your team doesn't have to deal with it. We're local, reliable, and a lot of South County properties use us. Is the property manager available, or is this something you can talk about?"</p>
+    </div>
+    <div class="strategy-card">
+      <h3>Dog Park Pitch (Willowbend, Park Forest, Orchard, ReNew)</h3>
+      <p>"I saw you have a dog park — those get heavy use and waste builds up fast. We handle weekly dog park maintenance on a scheduled basis. Residents get a clean dog park every week, no complaints to management. It runs about $200-250/month. Is that worth a quick conversation with whoever handles vendor contracts?"</p>
+    </div>
+    <div class="strategy-card">
+      <h3>Portfolio Play (NRE Management)</h3>
+      <p>"I'm calling for [Company Name] — I noticed you manage multiple properties in the area. We offer a multi-property discount for management companies — one contract, one invoice, consistent service across your portfolio. Most firms see 10-15% off vs. individual property pricing. Who handles vendor relationships for your portfolio?"</p>
+    </div>
+    <div class="strategy-card">
+      <h3>If They Say "Not Interested"</h3>
+      <p>"No problem at all. Can I email something over so you have it on file for when the topic comes up? It's a one-pager. We work with a few other communities in this area already, so if anything changes, just text me at (314) 850-7140 — I'll come out and show you what a clean dog area looks like after a service visit."</p>
+    </div>
+  </div>
+</div>
+
+<!-- CHECKLIST -->
+<div class="checklist-section">
+  <h2>✅ Call Checklist</h2>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="cc1"><div class="check-box"></div><div class="check-text">Call Willowbend first — (636) 200-6759 — best lead in batch</div></div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="cc2"><div class="check-box"></div><div class="check-text">Call ReNew Chesterfield — (636) 245-2784 — dog park + wash station pitch</div></div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="cc3"><div class="check-box"></div><div class="check-text">Call Park Forest — (314) 312-1734 — dog park pitch</div></div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="cc4"><div class="check-box"></div><div class="check-text">Call The Elle on Lockwood — (855) 604-6853 — name-drop Crestwood Paw-ty</div></div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="cc5"><div class="check-box"></div><div class="check-text">Call NRE Management — (314) 968-1863 — pitch both Colonial Village + White Bluff</div></div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="cc6"><div class="check-box"></div><div class="check-text">Call Forest View — (844) 731-1740 AND (314) 843-2155</div></div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="cc7"><div class="check-box"></div><div class="check-text">Call Kirkwood Bluffs — (314) 948-4728</div></div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="cc8"><div class="check-box"></div><div class="check-text">Look up phone for The James (416 S Kirkwood Rd) and call</div></div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="cc9"><div class="check-box"></div><div class="check-text">Call Villages at General Grant — (314) 272-4659</div></div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="cc10"><div class="check-box"></div><div class="check-text">Log callbacks + follow up within 48 hours on any interested properties</div></div>
+</div>
+
+<!-- SCRIPT MODAL -->
+<div class="script-modal" id="script-modal">
+  <div class="script-box">
+    <h3 id="modal-title">Call Script</h3>
+    <div class="script-text" id="modal-script"></div>
+    <button class="close-btn" onclick="document.getElementById('script-modal').classList.remove('open')">✕ Close</button>
+  </div>
+</div>
+
+<script>
+const scripts = {
+  'apartment-opener': {
+    title: 'Universal Apartment Opener',
+    text: `Hi, is this [Complex Name]?
+
+Great. My name is TJ — I run Tidy Tails, a pet waste removal service based here in St. Louis County.
+
+I wanted to reach out because we've started working with a few apartment communities in Kirkwood and the south county area, and I noticed your complex is pet-friendly.
+
+Basically what we do is weekly pet waste removal for your common areas — dog walk paths, near the entrance, any outdoor spaces where dogs go. Your team doesn't have to deal with it. Residents see it's clean. Fewer complaints.
+
+It runs around $150-200 a month depending on the property size.
+
+Is this something the property manager would be open to hearing about? Or is there someone else who handles vendor contracts?
+
+[If yes] Great — what's the best way to reach them? I can send over a one-pager first if that's easier.
+[If no] Totally understand. Can I ask — do you have a lot of dog owners in the building? [listen] Got it. Well if the situation changes, I'm easy to reach — just text me at (314) 850-7140. We're local and we're already doing routes in the area.`
+  },
+  'dog-park': {
+    title: 'Dog Park Pitch',
+    text: `Hi, I'm TJ with Tidy Tails.
+
+I was looking up pet-friendly communities in the area and I noticed you have a dog park on your property — that's awesome, not every complex does that.
+
+Dog parks are great for residents, but they take a lot of maintenance — waste builds up fast, especially in spring and summer, and it falls on your staff or just goes unmanaged.
+
+What we do is weekly dog park maintenance — full cleanup on a scheduled basis so the dog park is always in good shape. Residents get clean access every week, no complaints to management about the state of it.
+
+Pricing for a dog park service runs around $200-250 a month, depending on size.
+
+Is the property manager available to chat about this? Or is there a facilities director I should talk to?
+
+[After getting a name] Perfect. Would it be okay if I emailed [Name] a one-pager? And what's the best email?
+
+Thanks — I'll send that over today.`
+  },
+  'high-rated': {
+    title: 'High-Rated Property Script',
+    text: `Hi, I'm TJ with Tidy Tails — we do pet waste removal for apartment communities.
+
+I'll be honest — I specifically reached out to you because you have a really strong reputation in Kirkwood. Your reviews are noticeably better than most other complexes.
+
+Properties with great management are usually the ones that think ahead about resident experience — and pet waste is one of those things that residents notice both when it's bad AND when it's handled really well.
+
+We do weekly service for common areas — your team never has to deal with it, and residents get clean outdoor spaces consistently.
+
+I'd love to talk to your property manager for 5 minutes to see if it's a fit. Is that something you can connect me with?
+
+[Objection: we handle it ourselves] Totally get it. Can I ask — is that with your maintenance team, or do residents self-police? [listen] A lot of properties we work with used to do it in-house, but found it wasn't getting done consistently. We solve the consistency problem. Worth a 5-minute conversation?`
+  },
+  'event-name-drop': {
+    title: 'Crestwood Event Name-Drop Script',
+    text: `Hi, I'm TJ with Tidy Tails.
+
+We actually just did a community event at Crestwood Vet a few days ago — it was a dog adoption and local business event in the Webster Groves / Crestwood area. We had a lot of interest from residents in the area, which is why I'm calling you.
+
+We do pet waste removal for apartment communities — weekly common area service so dog owners get clean outdoor spaces and management doesn't have to deal with waste complaints.
+
+We're local, we already have routes in the south county area, and Webster Groves has been a big growth area for us.
+
+Is the property manager available to talk for a few minutes? Or is there a good email I can send a one-pager to?`
+  },
+  'portfolio': {
+    title: 'Property Management Portfolio Script',
+    text: `Hi, I'm hoping to reach someone who handles vendor relationships for NRE Management's portfolio.
+
+My name is TJ — I run Tidy Tails, a pet waste removal service in St. Louis.
+
+I noticed you manage both Colonial Village and White Bluff Apartments in the Webster Groves area, and both look like they have pet-friendly residents.
+
+What I wanted to offer is a multi-property package — one contract, one point of contact, consistent service across your pet-friendly properties. We offer a 10-15% discount for property management companies versus individual property pricing.
+
+You'd get one invoice, we handle the scheduling, and your team gets to stop thinking about pet waste at any of the properties we cover.
+
+Is this something worth talking to a portfolio manager about? Or are you the right person?
+
+[If they're the right person] Great. Do you have about 5 minutes now, or should I call back at a better time? I can also just send a quick proposal by email if that's easier to review.`
+  }
+};
+
+function showScript(id) {
+  const s = scripts[id];
+  if (!s) return;
+  document.getElementById('modal-title').textContent = s.title;
+  document.getElementById('modal-script').textContent = s.text;
+  document.getElementById('script-modal').classList.add('open');
+}
+
+function toggleCard(id) {
+  const body = document.getElementById('body-' + id);
+  body.classList.toggle('open');
+}
+
+const statusCycle = ['New', 'Called', 'Interested', 'Partner ✅', 'Pass'];
+const statusClasses = ['status-new', 'status-called', 'status-interested', 'status-partner', 'status-pass'];
+
+function cycleStatus(e, id) {
+  e.stopPropagation();
+  const chip = document.getElementById('status-' + id);
+  const cur = statusCycle.indexOf(chip.textContent.trim());
+  const next = (cur + 1) % statusCycle.length;
+  chip.textContent = statusCycle[next];
+  chip.className = 'status-chip ' + statusClasses[next];
+  saveStatuses();
+  updateStats();
+}
+
+function saveStatuses() {
+  const leads = ['kbf','james','elle','parkforest','forestview','nre','stanford','willowbend','renew','villages'];
+  const d = {};
+  leads.forEach(id => {
+    const chip = document.getElementById('status-' + id);
+    if (chip) d[id] = chip.textContent.trim();
+  });
+  localStorage.setItem('sw_apt_statuses', JSON.stringify(d));
+}
+
+function saveNote(id, val) {
+  localStorage.setItem('sw_apt_note_' + id, val);
+}
+
+function updateStats() {
+  const leads = ['kbf','james','elle','parkforest','forestview','nre','stanford','willowbend','renew','villages'];
+  let called = 0, interested = 0, partner = 0;
+  leads.forEach(id => {
+    const chip = document.getElementById('status-' + id);
+    if (!chip) return;
+    const s = chip.textContent.trim();
+    if (s === 'Called') called++;
+    if (s === 'Interested') interested++;
+    if (s === 'Partner ✅') partner++;
+  });
+  document.getElementById('called-count').textContent = called + interested + partner;
+  document.getElementById('interested-count').textContent = interested + partner;
+  document.getElementById('partner-count').textContent = partner;
+  
+  const checks = document.querySelectorAll('.check-item.done');
+  const total = document.querySelectorAll('.check-item').length;
+  document.getElementById('progress-bar').style.width = (checks.length / total * 100) + '%';
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('done');
+  const id = el.dataset.id;
+  localStorage.setItem('sw_apt_check_' + id, el.classList.contains('done') ? '1' : '0');
+  updateStats();
+}
+
+// Load saved state
+window.addEventListener('load', () => {
+  const leads = ['kbf','james','elle','parkforest','forestview','nre','stanford','willowbend','renew','villages'];
+  const statuses = JSON.parse(localStorage.getItem('sw_apt_statuses') || '{}');
+  leads.forEach(id => {
+    const chip = document.getElementById('status-' + id);
+    if (chip && statuses[id]) {
+      chip.textContent = statuses[id];
+      const idx = statusCycle.indexOf(statuses[id]);
+      if (idx >= 0) chip.className = 'status-chip ' + statusClasses[idx];
+    }
+    const noteEl = document.getElementById('notes-' + id);
+    const savedNote = localStorage.getItem('sw_apt_note_' + id);
+    if (noteEl && savedNote) noteEl.value = savedNote;
+  });
+  
+  document.querySelectorAll('.check-item').forEach(el => {
+    const id = el.dataset.id;
+    if (localStorage.getItem('sw_apt_check_' + id) === '1') el.classList.add('done');
+  });
+  
+  updateStats();
+});
+</script>
+</body>
+</html>

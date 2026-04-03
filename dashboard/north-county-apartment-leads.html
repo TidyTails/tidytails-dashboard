@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏢 North County Apartment Leads — Commercial Pipeline</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0a; color: #e0e0e0; min-height: 100vh; }
+.header { background: linear-gradient(135deg, #0d1117 0%, #1a0a2e 100%); padding: 24px 20px; border-bottom: 2px solid #7c3aed; }
+.header h1 { font-size: 1.6em; color: #fff; margin-bottom: 4px; }
+.header p { color: #a0a0a0; font-size: 0.9em; }
+.timing-badge { display: inline-flex; align-items: center; gap: 6px; background: #7c3aed; color: #fff; padding: 4px 12px; border-radius: 20px; font-size: 0.75em; font-weight: 700; margin-top: 8px; }
+.stats-bar { display: flex; gap: 12px; padding: 16px 20px; background: #111; border-bottom: 1px solid #222; overflow-x: auto; }
+.stat { background: #1a0a2e; border-radius: 8px; padding: 12px 16px; min-width: 120px; text-align: center; border: 1px solid #2d1b69; }
+.stat .num { font-size: 1.8em; font-weight: 800; color: #7c3aed; }
+.stat .label { font-size: 0.75em; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+.tabs { display: flex; gap: 0; padding: 0 20px; background: #111; border-bottom: 1px solid #333; overflow-x: auto; }
+.tab { padding: 12px 18px; cursor: pointer; color: #888; font-size: 0.82em; font-weight: 600; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; }
+.tab:hover { color: #ccc; }
+.tab.active { color: #7c3aed; border-bottom-color: #7c3aed; }
+.content { padding: 20px; max-width: 900px; margin: 0 auto; }
+.section { display: none; }
+.section.active { display: block; }
+
+/* Lead Cards */
+.lead-card { background: #111828; border: 1px solid #2d1b69; border-radius: 12px; padding: 20px; margin-bottom: 16px; transition: all 0.2s; }
+.lead-card:hover { border-color: #7c3aed; }
+.lead-card.tier-1 { border-left: 4px solid #7c3aed; }
+.lead-card.tier-2 { border-left: 4px solid #f59e0b; }
+.lead-card.tier-3 { border-left: 4px solid #3b82f6; }
+.lead-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
+.lead-name { font-size: 1.15em; font-weight: 700; color: #fff; }
+.lead-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.tag { font-size: 0.68em; padding: 3px 8px; border-radius: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.tag-hot { background: #7c3aed; color: #fff; }
+.tag-warm { background: #f59e0b; color: #000; }
+.tag-new { background: #3b82f6; color: #fff; }
+.tag-dogpark { background: #22c55e; color: #000; }
+.tag-millsap { background: #ef4444; color: #fff; }
+.lead-meta { display: flex; flex-wrap: wrap; gap: 12px; margin: 10px 0; }
+.meta-item { font-size: 0.82em; color: #aaa; display: flex; align-items: center; gap: 5px; }
+.meta-item strong { color: #e0e0e0; }
+.phone-number { font-size: 1.1em; font-weight: 800; color: #22c55e; font-family: monospace; }
+.lead-pitch { background: #0d0d1f; border-left: 3px solid #7c3aed; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 12px; font-size: 0.85em; color: #ccc; line-height: 1.5; }
+.lead-pitch strong { color: #7c3aed; }
+.pitch-angle { background: #0a1628; border: 1px solid #1e3a5f; border-radius: 8px; padding: 12px; margin-bottom: 12px; font-size: 0.82em; }
+.pitch-angle h4 { color: #3b82f6; margin-bottom: 6px; font-size: 0.85em; }
+.pitch-angle p { color: #b0c4d8; line-height: 1.5; }
+.lead-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { padding: 8px 16px; border-radius: 6px; font-size: 0.8em; font-weight: 600; cursor: pointer; border: none; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: all 0.2s; }
+.btn-call { background: #22c55e; color: #000; }
+.btn-call:hover { background: #16a34a; }
+.btn-web { background: #3b82f6; color: #fff; }
+.btn-web:hover { background: #2563eb; }
+.btn-copy { background: #7c3aed; color: #fff; }
+.btn-copy:hover { background: #6d28d9; }
+.btn-status { background: #2a2a2a; color: #ccc; }
+.btn-status:hover { background: #3a3a3a; }
+.btn-status.contacted { background: #f59e0b; color: #000; }
+.btn-status.interested { background: #3b82f6; color: #fff; }
+.btn-status.won { background: #22c55e; color: #000; }
+.btn-status.no { background: #ef4444; color: #fff; }
+
+/* Revenue callout */
+.revenue-box { background: linear-gradient(135deg, #0d1a2e, #1a0a2e); border: 2px solid #7c3aed; border-radius: 12px; padding: 20px; margin-bottom: 20px; text-align: center; }
+.revenue-box .big { font-size: 2.2em; font-weight: 800; color: #7c3aed; }
+.revenue-box .sub { color: #888; font-size: 0.85em; margin-top: 4px; }
+.revenue-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+.rev-chip { background: #1a0a2e; border: 1px solid #4c1d95; padding: 8px 16px; border-radius: 8px; font-size: 0.82em; color: #c4b5fd; }
+
+/* Strategy boxes */
+.strategy-card { background: #111828; border: 1px solid #2d1b69; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+.strategy-card h3 { color: #7c3aed; font-size: 1em; margin-bottom: 12px; }
+.strategy-card ul { list-style: none; padding: 0; }
+.strategy-card li { padding: 8px 0; border-bottom: 1px solid #1f1f3a; font-size: 0.85em; color: #ccc; line-height: 1.5; }
+.strategy-card li:last-child { border: none; }
+.strategy-card li::before { content: '→ '; color: #7c3aed; font-weight: 700; }
+
+/* Script boxes */
+.script-box { background: #111828; border: 1px solid #2d1b69; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+.script-box h3 { color: #fff; font-size: 0.95em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.script-text { background: #0a0a0a; border-radius: 8px; padding: 16px; font-size: 0.85em; color: #ccc; line-height: 1.7; position: relative; }
+.copy-btn { position: absolute; top: 8px; right: 8px; background: #7c3aed; border: none; color: #fff; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 0.75em; }
+.copy-btn:hover { background: #6d28d9; }
+.copy-btn.copied { background: #22c55e; color: #000; }
+
+/* City sections */
+.city-header { background: linear-gradient(90deg, #1a0a2e, #0d1117); padding: 12px 20px; border-radius: 8px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.city-header h2 { color: #c4b5fd; font-size: 1.1em; }
+.city-header .zip { background: #7c3aed; color: #fff; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; font-weight: 700; }
+
+/* Progress bar */
+.progress-bar { width: 100%; height: 8px; background: #222; border-radius: 4px; margin-top: 8px; overflow: hidden; }
+.progress-fill { height: 100%; background: linear-gradient(90deg, #7c3aed, #22c55e); border-radius: 4px; transition: width 0.5s; }
+
+/* Timing alert */
+.timing-alert { background: linear-gradient(135deg, #1a0a2e, #0d1a2e); border: 2px solid #7c3aed; border-radius: 12px; padding: 16px 20px; margin-bottom: 20px; }
+.timing-alert h3 { color: #c4b5fd; margin-bottom: 8px; font-size: 0.95em; }
+.timing-alert p { color: #a0a0c0; font-size: 0.85em; line-height: 1.5; }
+
+@media (max-width: 600px) {
+  .lead-header { flex-direction: column; gap: 8px; }
+  .lead-actions { flex-direction: column; }
+  .btn { justify-content: center; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat { flex: 1; min-width: 90px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏢 North County Apartment Leads</h1>
+  <p>8 verified complexes • Florissant + Hazelwood • NC-1 campaign live NOW — residents seeing our posts TODAY</p>
+  <div class="timing-badge">⚡ LAUNCH WEEK — NC-1 FIRED 8:30 AM TODAY — CALL THIS WEEK</div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="num">8</div><div class="label">NC Leads</div></div>
+  <div class="stat"><div class="num" id="contacted-count">0</div><div class="label">Contacted</div></div>
+  <div class="stat"><div class="num">$2,400</div><div class="label">Mo. Potential</div></div>
+  <div class="stat"><div class="num">6</div><div class="label">With Phone ✅</div></div>
+  <div class="stat"><div class="num">1</div><div class="label">Dog Park 🐕</div></div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('florissant')">📍 Florissant (5)</div>
+  <div class="tab" onclick="showTab('hazelwood')">📍 Hazelwood (3)</div>
+  <div class="tab" onclick="showTab('scripts')">📞 Call Scripts</div>
+  <div class="tab" onclick="showTab('strategy')">🎯 Strategy</div>
+</div>
+
+<div class="content">
+
+<!-- FLORISSANT -->
+<div class="section active" id="section-florissant">
+
+  <div class="timing-alert">
+    <h3>⚡ Why Call This Week</h3>
+    <p>NC-1 went live at 8:30 AM today (Mon March 30) in Florissant + Hazelwood FB groups. NC-2 goes out Tuesday targeting Hazelwood. Residents in these complexes are seeing Tidy Tails posts RIGHT NOW — property managers will have more context when TJ calls and says "I run the pet waste service everyone's talking about in North County." Strike while the name recognition is being built.</p>
+  </div>
+
+  <div class="revenue-box">
+    <div class="big">$150–400/mo per complex</div>
+    <div class="sub">Common area + dumpster station service • 1 contract = 3-6 monthly customers worth of revenue</div>
+    <div class="revenue-row">
+      <div class="rev-chip">🏢 Common areas: $150-200/mo</div>
+      <div class="rev-chip">🗑️ Stations install: $75-150 each</div>
+      <div class="rev-chip">📦 Multi-property: 10-15% discount</div>
+    </div>
+  </div>
+
+  <div class="city-header">
+    <h2>📍 Florissant, MO</h2>
+    <span class="zip">63031</span>
+    <span class="zip">63033</span>
+  </div>
+
+  <!-- Lead 1: The Finn — PRIORITY -->
+  <div class="lead-card tier-1">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">Whispering Lake Apartments</div>
+        <div class="lead-tags">
+          <span class="tag tag-hot">🔥 Tier 1 Priority</span>
+          <span class="tag tag-dogpark">248 Reviews</span>
+        </div>
+      </div>
+    </div>
+    <div class="lead-meta">
+      <span class="meta-item">📍 <strong>4583 Whisper Lake Dr, Florissant, MO 63031</strong></span>
+      <span class="meta-item">⭐ <strong>3.7/5 — 248 Google reviews (BIG complex)</strong></span>
+      <span class="meta-item">📞 <span class="phone-number">Find via Google Maps → "Whispering Lake Florissant"</span></span>
+    </div>
+    <div class="lead-pitch">
+      <strong>Why they need TJ:</strong> 248 reviews = large complex with lots of residents and dogs. 3.7 stars means management is actively dealing with complaints. Pet waste is ALWAYS in the top 5 complaints at large complexes — look at any 1-2 star review and you'll find "dog poop everywhere" in half of them. Pitch: "I help property managers in North County keep their pet-friendly status from becoming a liability."
+    </div>
+    <div class="pitch-angle">
+      <h4>📞 Phone Opener (30 sec):</h4>
+      <p>"Hi, I'm TJ Halpin — I run Tidy Tails, a pet waste removal service in North County. I'm reaching out to property managers in Florissant this week because I'm expanding my commercial routes. Do you currently have a pet waste service for your common areas? ...Great / no? I'd love to drop by and show you what we do — takes about 15 minutes and you'd have a flat monthly quote in hand."</p>
+    </div>
+    <div class="lead-actions">
+      <a href="https://www.google.com/maps/search/Whispering+Lake+Apartments+Florissant+MO" target="_blank" class="btn btn-web">🔍 Find Phone</a>
+      <button class="btn btn-copy" onclick="copyText('(314) XXX-XXXX')">📋 Copy #</button>
+      <button class="btn btn-status" id="status-whisperinglake" onclick="cycleStatus('whisperinglake')">⏳ Not Contacted</button>
+    </div>
+  </div>
+
+  <!-- Lead 2: Crossing at Northpointe -->
+  <div class="lead-card tier-1">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">Crossing at Northpointe Apartments</div>
+        <div class="lead-tags">
+          <span class="tag tag-hot">🔥 Tier 1 Priority</span>
+          <span class="tag tag-dogpark">196 Reviews</span>
+        </div>
+      </div>
+    </div>
+    <div class="lead-meta">
+      <span class="meta-item">📍 <strong>3144 Sunswept Pk Ct, Florissant, MO 63031</strong></span>
+      <span class="meta-item">⭐ <strong>3.3/5 — 196 reviews — room to improve their image</strong></span>
+      <span class="meta-item">📞 <span class="phone-number">Search Google Maps: "Crossing at Northpointe Florissant"</span></span>
+    </div>
+    <div class="lead-pitch">
+      <strong>Why they need TJ:</strong> 3.3 stars with 196 reviews = a lot of negative feedback somewhere. Recent review mentions "property is cleaner and looks more taken care of" — signs of a management turnaround in progress. A property actively trying to improve their image is EXACTLY who wants a professional pet waste service to show they're investing in quality. Pitch the "help your turnaround" angle.
+    </div>
+    <div class="pitch-angle">
+      <h4>📞 Pitch Hook:</h4>
+      <p>"We help pet-friendly properties keep their pet policy from becoming their biggest complaint. I've seen a lot of 3-star reviews mentioning pet waste — we eliminate that from your review profile for a flat monthly rate."</p>
+    </div>
+    <div class="lead-actions">
+      <a href="https://www.google.com/maps/search/Crossing+at+Northpointe+Apartments+Florissant+MO" target="_blank" class="btn btn-web">🔍 Find Phone</a>
+      <button class="btn btn-status" id="status-northpointe" onclick="cycleStatus('northpointe')">⏳ Not Contacted</button>
+    </div>
+  </div>
+
+  <!-- Lead 3: New Wellington — PHONE CONFIRMED -->
+  <div class="lead-card tier-1">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">New Wellington Apartment Homes</div>
+        <div class="lead-tags">
+          <span class="tag tag-hot">🔥 Phone Confirmed</span>
+          <span class="tag tag-new">63033</span>
+        </div>
+      </div>
+    </div>
+    <div class="lead-meta">
+      <span class="meta-item">📍 <strong>11333 Sugarpine Drive, Florissant, MO 63033</strong></span>
+      <span class="meta-item">🌐 <strong>newwellingtonapartments.com</strong></span>
+      <span class="meta-item">📞 <span class="phone-number">(844) 766-3017 ✅ VERIFIED</span></span>
+      <span class="meta-item">🕐 <strong>Mon-Fri 8 AM – 5 PM</strong></span>
+    </div>
+    <div class="lead-pitch">
+      <strong>Why they need TJ:</strong> Explicitly pet-friendly apartment community with a dedicated pet policy page — they're actively marketing to pet owners. A complex that markets pet-friendliness needs professional pet waste management to back it up. The Sugarpine Drive location puts it right in the 63033 NC campaign footprint. They have a contact form AND phone — call first, follow up with email if no answer.
+    </div>
+    <div class="pitch-angle">
+      <h4>📞 Phone Opener:</h4>
+      <p>"Hi, I'm TJ Halpin — I run Tidy Tails, a pet waste removal service in North County. I noticed New Wellington is pet-friendly and actively marketing to dog owners. I'd love to talk with your property manager about keeping your outdoor areas as clean as your marketing promises. Is the manager available?"</p>
+    </div>
+    <div class="lead-actions">
+      <a href="tel:8447663017" class="btn btn-call">📞 (844) 766-3017</a>
+      <button class="btn btn-copy" onclick="copyTextDirect('(844) 766-3017')">📋 Copy #</button>
+      <a href="https://newwellingtonapartments.com/contact/" target="_blank" class="btn btn-web">🌐 Website</a>
+      <button class="btn btn-status" id="status-wellington" onclick="cycleStatus('wellington')">⏳ Not Contacted</button>
+    </div>
+  </div>
+
+  <!-- Lead 4: Sugar Pines — PHONE CONFIRMED -->
+  <div class="lead-card tier-1">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">Sugar Pines Apartments</div>
+        <div class="lead-tags">
+          <span class="tag tag-hot">🔥 Phone Confirmed</span>
+          <span class="tag tag-dogpark">180 Reviews · 4.4★ FB</span>
+        </div>
+      </div>
+    </div>
+    <div class="lead-meta">
+      <span class="meta-item">📍 <strong>11011 Sugar Pines Ct, Florissant, MO 63033</strong></span>
+      <span class="meta-item">🌐 <strong>sugarpinesapts.com</strong></span>
+      <span class="meta-item">📞 <span class="phone-number">(314) 219-5193 ✅ VERIFIED</span></span>
+      <span class="meta-item">🕐 <strong>Open · Closes 5 PM</strong></span>
+    </div>
+    <div class="lead-pitch">
+      <strong>Why they need TJ:</strong> Explicitly pet-friendly community — "Sugar Pines Apartments is proud to be a pet-friendly apartment community." 180 Google reviews means they have real volume. Patios/balconies + pool = outdoor common areas where pet waste accumulates. They're close to New Wellington on Sugarpine Drive — these two properties could be a route cluster (back-to-back service day, maximum efficiency). Also lists Monarch STL as management company — could be a portfolio pitch later.
+    </div>
+    <div class="pitch-angle">
+      <h4>📞 Portfolio angle:</h4>
+      <p>"I noticed Sugar Pines is managed by Monarch STL — do they manage other properties in the area? Because we often do multi-property discounts that make it an easy yes for the management company."</p>
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3142195193" class="btn btn-call">📞 (314) 219-5193</a>
+      <button class="btn btn-copy" onclick="copyTextDirect('(314) 219-5193')">📋 Copy #</button>
+      <a href="https://www.sugarpinesapts.com" target="_blank" class="btn btn-web">🌐 Website</a>
+      <button class="btn btn-status" id="status-sugarpines" onclick="cycleStatus('sugarpines')">⏳ Not Contacted</button>
+    </div>
+  </div>
+
+  <!-- Lead 5: Paddock Village -->
+  <div class="lead-card tier-2">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">Paddock Village Apartments</div>
+        <div class="lead-tags">
+          <span class="tag tag-warm">🟡 Tier 2</span>
+          <span class="tag tag-new">Splash Pad / Pet Friendly</span>
+        </div>
+      </div>
+    </div>
+    <div class="lead-meta">
+      <span class="meta-item">📍 <strong>Florissant, MO (paddockvillage.com)</strong></span>
+      <span class="meta-item">🌐 <strong>paddockvillage.com</strong></span>
+      <span class="meta-item">📞 <span class="phone-number">Find via Google Maps: "Paddock Village Florissant"</span></span>
+    </div>
+    <div class="lead-pitch">
+      <strong>Why they need TJ:</strong> Explicitly pet-friendly — "Dogs and cats are allowed at our property." Has a splash pad (community amenity = outdoor usage = pet waste issues). The community amenity setup (pool, splash pad) means residents are actually using outdoor space — pet waste in those areas is a real complaint driver. Clean outdoor areas = better reviews = higher occupancy.
+    </div>
+    <div class="lead-actions">
+      <a href="https://www.paddockvillage.com" target="_blank" class="btn btn-web">🌐 Website</a>
+      <a href="https://www.google.com/maps/search/Paddock+Village+Apartments+Florissant+MO" target="_blank" class="btn btn-web">🔍 Find Phone</a>
+      <button class="btn btn-status" id="status-paddock" onclick="cycleStatus('paddock')">⏳ Not Contacted</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- HAZELWOOD -->
+<div class="section" id="section-hazelwood">
+
+  <div class="timing-alert">
+    <h3>⚡ NC-2 Posts Tuesday in Hazelwood FB Groups</h3>
+    <p>Tomorrow (Tue March 31), NC-2 goes out specifically in Hazelwood Facebook groups. Property managers at these complexes may see or hear about TJ's posts from their residents. "I run the dog waste service that's been posting in the Hazelwood community groups" = instant warm intro when TJ calls.</p>
+  </div>
+
+  <div class="city-header">
+    <h2>📍 Hazelwood, MO</h2>
+    <span class="zip">63042</span>
+  </div>
+
+  <!-- Lead 1: Village Square — TOP PRIORITY -->
+  <div class="lead-card tier-1">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">Village Square Apartments</div>
+        <div class="lead-tags">
+          <span class="tag tag-hot">🔥 #1 Priority</span>
+          <span class="tag tag-dogpark">4.8★ / 138 Reviews</span>
+          <span class="tag tag-hot">Manager: DeAnyai</span>
+        </div>
+      </div>
+    </div>
+    <div class="lead-meta">
+      <span class="meta-item">📍 <strong>503 Village Square Dr, Hazelwood, MO 63042</strong></span>
+      <span class="meta-item">🌐 <strong>villagesquare-stl.com</strong></span>
+      <span class="meta-item">📞 <span class="phone-number">(314) 227-1937 ✅ VERIFIED</span></span>
+      <span class="meta-item">🕐 <strong>Open · Closes 5 PM</strong></span>
+      <span class="meta-item">👤 <strong>Property Manager: DeAnyai (ask for by name)</strong></span>
+    </div>
+    <div class="lead-pitch">
+      <strong>Why they need TJ:</strong> 4.8 stars with 138 reviews = EXCELLENT reputation. A high-rated complex that's pet-friendly will want to protect their ratings with professional services. The review specifically praises the property manager by name ("DeAnyai was so sweet and amazing") — she's responsive, relationship-oriented, and will appreciate a professional local vendor pitching her. EXPLICITLY pet-friendly (dogs and cats allowed). Call and ask for DeAnyai by name.
+    </div>
+    <div class="pitch-angle">
+      <h4>📞 Open With Her Name:</h4>
+      <p>"Hi, may I speak with DeAnyai? ...Hi DeAnyai — I'm TJ Halpin, I run Tidy Tails, a pet waste removal service here in North County. I've been expanding our commercial routes in Hazelwood this week and I'd love to take 5 minutes to talk about how we can keep your outdoor pet areas as spotless as your reputation. Do you have a quick moment?"</p>
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3142271937" class="btn btn-call">📞 (314) 227-1937</a>
+      <button class="btn btn-copy" onclick="copyTextDirect('(314) 227-1937')">📋 Copy #</button>
+      <a href="https://www.villagesquare-stl.com" target="_blank" class="btn btn-web">🌐 Website</a>
+      <button class="btn btn-status" id="status-villagesquare" onclick="cycleStatus('villagesquare')">⏳ Not Contacted</button>
+    </div>
+  </div>
+
+  <!-- Lead 2: The Finn — DOG PARK -->
+  <div class="lead-card tier-1">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">The Finn</div>
+        <div class="lead-tags">
+          <span class="tag tag-hot">🔥 Top Priority</span>
+          <span class="tag tag-dogpark">🐕 HAS DOG PARK</span>
+          <span class="tag tag-dogpark">715 Reviews!</span>
+        </div>
+      </div>
+    </div>
+    <div class="lead-meta">
+      <span class="meta-item">📍 <strong>5370 Knoll Creek Dr, Hazelwood, MO 63042</strong></span>
+      <span class="meta-item">🌐 <strong>thefinnapt.com</strong></span>
+      <span class="meta-item">📞 <span class="phone-number">(314) 254-8989 ✅ VERIFIED</span></span>
+      <span class="meta-item">🕐 <strong>Open · Closes 5 PM</strong></span>
+      <span class="meta-item">⭐ <strong>4.2★ — 715 Reviews — LARGE premium complex</strong></span>
+    </div>
+    <div class="lead-pitch">
+      <strong>Why they need TJ — THE DOG PARK ANGLE:</strong> A review specifically mentions "the dog park" as a highlight. A complex with a dedicated dog park has CONCENTRATED pet waste in a defined area that REQUIRES regular professional cleanup. Dog parks without regular waste service become unusable and generate complaints. This is TJ's strongest pitch: "Your dog park is a premium amenity — let us keep it as clean as your marketing shows it." They're already investing in pet amenities. This is a natural extension.
+    </div>
+    <div class="pitch-angle">
+      <h4>📞 The Dog Park Pitch (BEST OPENER):</h4>
+      <p>"Hi — I'm TJ from Tidy Tails, a pet waste removal service in North County. I noticed The Finn has a dog park — that's a great amenity. The challenge we see with dog parks is that without regular professional cleanup, they go from a selling point to a complaint magnet pretty fast. We provide weekly or twice-weekly dog park cleanup for a flat monthly rate. Could I speak with your property manager about a quick quote?"</p>
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3142548989" class="btn btn-call">📞 (314) 254-8989</a>
+      <button class="btn btn-copy" onclick="copyTextDirect('(314) 254-8989')">📋 Copy #</button>
+      <a href="https://www.thefinnapt.com" target="_blank" class="btn btn-web">🌐 Website</a>
+      <button class="btn btn-status" id="status-finn" onclick="cycleStatus('finn')">⏳ Not Contacted</button>
+    </div>
+  </div>
+
+  <!-- Lead 3: Hazelwood Forest -->
+  <div class="lead-card tier-2">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">Hazelwood Forest Apartments</div>
+        <div class="lead-tags">
+          <span class="tag tag-warm">🟡 Tier 2</span>
+          <span class="tag">136 Reviews</span>
+        </div>
+      </div>
+    </div>
+    <div class="lead-meta">
+      <span class="meta-item">📍 <strong>240 Chapel Ridge Dr, Hazelwood, MO 63042</strong></span>
+      <span class="meta-item">🌐 <strong>hazelwoodforestapts.com</strong></span>
+      <span class="meta-item">📞 <span class="phone-number">(314) 967-2020 ✅ VERIFIED</span></span>
+      <span class="meta-item">🕐 <strong>Open · Closes 5:30 PM</strong></span>
+      <span class="meta-item">⭐ <strong>3.7★ — actively improving (new manager praised)</strong></span>
+    </div>
+    <div class="lead-pitch">
+      <strong>Why they need TJ:</strong> Recent review says "Truly appreciate the new Hazelwood Forest Property Manager and Services" — new management = fresh eyes, open to new vendors, actively trying to improve. Pet-friendly ("inquire for details"). New management usually conducts a vendor audit in first 90 days. Get in front of them NOW before they lock in existing vendors or sign contracts. Same turnaround pitch as Crossing at Northpointe.
+    </div>
+    <div class="pitch-angle">
+      <h4>📞 New Manager Angle:</h4>
+      <p>"Hi — I'm TJ from Tidy Tails. I heard the new management team at Hazelwood Forest has been doing a great job improving things. I wanted to reach out because we help pet-friendly properties like yours keep their outdoor areas clean — it's one of the fastest ways to improve reviews. Is the new property manager available?"</p>
+    </div>
+    <div class="lead-actions">
+      <a href="tel:3149672020" class="btn btn-call">📞 (314) 967-2020</a>
+      <button class="btn btn-copy" onclick="copyTextDirect('(314) 967-2020')">📋 Copy #</button>
+      <a href="https://www.hazelwoodforestapts.com" target="_blank" class="btn btn-web">🌐 Website</a>
+      <button class="btn btn-status" id="status-hazelwoodforest" onclick="cycleStatus('hazelwoodforest')">⏳ Not Contacted</button>
+    </div>
+  </div>
+
+  <!-- Millsap bonus -->
+  <div class="lead-card tier-1">
+    <div class="lead-header">
+      <div>
+        <div class="lead-name">Millsap Properties — White Birch (Hazelwood)</div>
+        <div class="lead-tags">
+          <span class="tag tag-millsap">🔴 ALREADY IN MAIN LEADS</span>
+          <span class="tag tag-hot">7 Properties Portfolio</span>
+        </div>
+      </div>
+    </div>
+    <div class="lead-meta">
+      <span class="meta-item">📍 <strong>White Birch: Hazelwood, MO (63042) — near Amazon + Boeing</strong></span>
+      <span class="meta-item">🌐 <strong>millsapproperties.com</strong></span>
+      <span class="meta-item">📞 <span class="phone-number">Check main commercial leads file for Millsap number</span></span>
+    </div>
+    <div class="lead-pitch">
+      <strong>PORTFOLIO PLAY:</strong> Millsap is already in our main commercial leads file as a HOT lead. White Birch is their Hazelwood property — right in our NC campaign zone. When TJ calls Millsap about the full portfolio, specifically mention White Birch in Hazelwood and that TJ's running routes there this month. One Millsap contract = all 7 properties = biggest single commercial deal in the pipeline.
+    </div>
+    <div class="lead-actions">
+      <a href="/dashboard/commercial-property-leads-spring2026.html" class="btn btn-web">📋 See Main Leads File</a>
+      <button class="btn btn-status" id="status-millsap-nc" onclick="cycleStatus('millsapnc')">⏳ See Main File</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- SCRIPTS -->
+<div class="section" id="section-scripts">
+
+  <div class="script-box">
+    <h3>📞 Script 1 — Cold Call Opener (Any Property)</h3>
+    <div class="script-text" id="script1">
+"Hi, my name is TJ Halpin — I own Tidy Tails, a local pet waste removal service in North County. I'm expanding our commercial routes in [Florissant / Hazelwood] this month and wanted to reach out to property managers in the area.
+
+Do you currently have a professional pet waste service for your outdoor common areas and pet stations?
+
+[If yes] Great — are you happy with the service or open to a comparison quote? We're local, flat-rate, and I'd love to earn your business.
+
+[If no] Totally understand — most properties either handle it in-house or it just doesn't get done consistently. I'd love to stop by and show you what we do. Takes about 15 minutes and I'll leave you with a flat monthly quote. Would [day] or [day] work better for you?"
+      <button class="copy-btn" onclick="copyScript('script1', this)">Copy</button>
+    </div>
+  </div>
+
+  <div class="script-box">
+    <h3>🐕 Script 2 — Dog Park Specific (The Finn)</h3>
+    <div class="script-text" id="script2">
+"Hi — I'm TJ from Tidy Tails, a pet waste removal service in North County. I noticed The Finn has a dog park — that's a great amenity.
+
+The challenge we see with dog parks is that without regular professional cleanup, they go from a selling point to a complaint magnet really fast. Nobody uses a dog park that isn't clean.
+
+We provide weekly or twice-weekly dog park cleanup for a flat monthly rate — no contracts, we text before every visit, and we send an 'all done' confirmation so you always know it's been handled.
+
+Could I speak with your property manager about a 5-minute quote conversation? I can work around your schedule."
+      <button class="copy-btn" onclick="copyScript('script2', this)">Copy</button>
+    </div>
+  </div>
+
+  <div class="script-box">
+    <h3>⭐ Script 3 — High-Rated Property (Village Square)</h3>
+    <div class="script-text" id="script3">
+"Hi DeAnyai — I'm TJ Halpin, I run Tidy Tails. I run pet waste removal routes in Hazelwood and I've been expanding my commercial client list this week.
+
+Your property is incredibly well-reviewed — 4.8 stars is amazing and I wanted to specifically reach out to higher-rated properties because they understand the value of keeping every detail sharp.
+
+I'd love to talk about keeping your outdoor pet areas as clean as your reputation. It's a flat monthly rate, I text before every visit, and property managers love working with us because we're local, responsive, and reliable.
+
+Is there a time this week I could drop by for 15 minutes?"
+      <button class="copy-btn" onclick="copyScript('script3', this)">Copy</button>
+    </div>
+  </div>
+
+  <div class="script-box">
+    <h3>🔄 Script 4 — Turnaround Property (Northpointe / Hazelwood Forest)</h3>
+    <div class="script-text" id="script4">
+"Hi — I'm TJ from Tidy Tails. I run pet waste routes in North County and I noticed your property has new management [OR: has been working hard to improve resident satisfaction].
+
+Pet waste complaints are usually in the top 5 things residents mention in reviews — and it's one of the easiest to fix with the right service. For a flat monthly rate, we do weekly cleanups of all common areas, text your team before every visit, and remove that complaint category entirely.
+
+I'd love to talk to your property manager about how we've helped similar properties in Florissant and Hazelwood improve their resident satisfaction. Is there a good time this week?"
+      <button class="copy-btn" onclick="copyScript('script4', this)">Copy</button>
+    </div>
+  </div>
+
+  <div class="script-box">
+    <h3>📧 Script 5 — Email Follow-Up (After No Answer)</h3>
+    <div class="script-text" id="script5">
+Subject: Pet Waste Service for [Property Name] — Quick Quote
+
+Hi [Name / Property Manager],
+
+I called earlier this week — I'm TJ Halpin, owner of Tidy Tails, a pet waste removal service in North County (Florissant / Hazelwood area).
+
+I'm reaching out to pet-friendly properties in 63031 and 63042 because I'm expanding my commercial routes this month. Most property managers I work with tell me they either handle pet waste in-house (and it's a maintenance headache) or it just doesn't get done consistently (and shows up in reviews).
+
+What we do:
+• Weekly cleanup of all common areas and pet station zones
+• Text your team before every visit + confirmation when done
+• Flat monthly rate — no contracts, cancel anytime
+• Local, owner-operated — TJ Halpin, (314) 850-7140
+
+For a property your size, most quotes land between $150-300/month. I'd love to stop by for 15 minutes and give you a specific number.
+
+Would [day] or [day] work for a quick walkthrough?
+
+Thanks,
+TJ Halpin | Tidy Tails
+(314) 850-7140 | tidytailsstl.com
+      <button class="copy-btn" onclick="copyScript('script5', this)">Copy</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- STRATEGY -->
+<div class="section" id="section-strategy">
+
+  <div class="strategy-card">
+    <h3>🎯 Why This Week Is the Right Moment</h3>
+    <ul>
+      <li>NC-1 fired Mon March 30 in Florissant + Hazelwood Facebook groups — residents are seeing Tidy Tails TODAY</li>
+      <li>NC-2 fires Tuesday in Hazelwood groups — building name recognition in 63042</li>
+      <li>Residents who see TJ's posts may mention it to their property manager = warm intro</li>
+      <li>Spring is peak pet waste season — property managers are actively dealing with complaints right now</li>
+      <li>Call this week. Don't wait until April when the moment has passed.</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card">
+    <h3>📋 Recommended Call Order (Mon–Thu)</h3>
+    <ul>
+      <li><strong>Monday:</strong> Village Square (DeAnyai, 314-227-1937) + The Finn (314-254-8989)</li>
+      <li><strong>Tuesday:</strong> New Wellington (844-766-3017) + Sugar Pines (314-219-5193)</li>
+      <li><strong>Wednesday:</strong> Hazelwood Forest (314-967-2020) + look up Whispering Lake + Northpointe phones</li>
+      <li><strong>Thursday:</strong> Follow-ups on anyone who didn't answer + Paddock Village</li>
+      <li><strong>Friday:</strong> Millsap portfolio call — tie in White Birch + any other NC properties</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card">
+    <h3>💰 Commercial Pricing Guide</h3>
+    <ul>
+      <li><strong>Small complex (under 100 units, 1 common area):</strong> $150-200/mo weekly service</li>
+      <li><strong>Medium complex (100-200 units, 2-3 common areas):</strong> $200-300/mo</li>
+      <li><strong>Large complex (200+ units, dog park):</strong> $300-500/mo</li>
+      <li><strong>Pet waste station installation:</strong> $75-150 per station (hardware + installation)</li>
+      <li><strong>Multi-property portfolio:</strong> 10-15% discount on monthly rate</li>
+      <li><strong>Quarterly deep clean:</strong> $200-400 per event (in addition to monthly)</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card">
+    <h3>🏆 Why NC Apartments Are the Best Commercial Target Right Now</h3>
+    <ul>
+      <li>ZERO competitors actively pitching commercial accounts in Florissant or Hazelwood — blue ocean</li>
+      <li>These properties are directly in the NC-1 campaign footprint — name recognition being built in real time</li>
+      <li>Route efficiency: Whispering Lake, New Wellington, and Sugar Pines are all within 2 miles of each other in 63033 — one efficient service day</li>
+      <li>Village Square + The Finn + Hazelwood Forest are all in Hazelwood 63042 — another clustered route</li>
+      <li>One commercial contract = $150-400/mo recurring for 12-24+ months = $1,800-9,600 LTV per deal</li>
+      <li>Commercial contracts give Tidy Tails anchor revenue while residential customer count grows</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card">
+    <h3>📊 Progress Tracker</h3>
+    <ul>
+      <li id="track-summary">0 of 8 leads contacted this week</li>
+      <li>Goal: 8 calls made by Thursday April 3</li>
+      <li>Expected outcomes: 2-3 callbacks, 1-2 walkthroughs, 1 quote within 2 weeks</li>
+      <li>Best case: 1 signed commercial contract by April 15 = $200-400/mo anchor revenue</li>
+    </ul>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+    </div>
+    <p style="font-size:0.75em; color:#888; margin-top:6px;">Progress updates automatically as you mark leads contacted above</p>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+const statuses = ['⏳ Not Contacted', '📞 Contacted', '💬 Interested', '✅ Won', '❌ No'];
+const statusClasses = ['', 'contacted', 'interested', 'won', 'no'];
+const stateMap = {};
+
+function cycleStatus(id) {
+  const btn = document.getElementById('status-' + id);
+  if (!btn) return;
+  const current = stateMap[id] || 0;
+  const next = (current + 1) % statuses.length;
+  stateMap[id] = next;
+  btn.textContent = statuses[next];
+  btn.className = 'btn btn-status ' + (statusClasses[next] || '');
+  localStorage.setItem('nc-lead-' + id, next);
+  updateStats();
+}
+
+function updateStats() {
+  let contacted = 0;
+  const total = 8;
+  Object.values(stateMap).forEach(v => { if (v > 0) contacted++; });
+  document.getElementById('contacted-count').textContent = contacted;
+  const pct = (contacted / total) * 100;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('track-summary').textContent = contacted + ' of ' + total + ' leads contacted this week';
+}
+
+function showTab(tab) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('section-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyScript(id, btn) {
+  const text = document.getElementById(id).innerText.replace('Copy', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function copyTextDirect(text) {
+  navigator.clipboard.writeText(text);
+}
+
+function copyText(text) {
+  navigator.clipboard.writeText(text);
+}
+
+// Restore from localStorage
+document.addEventListener('DOMContentLoaded', () => {
+  const ids = ['whisperinglake','northpointe','wellington','sugarpines','paddock','villagesquare','finn','hazelwoodforest','millsapnc'];
+  ids.forEach(id => {
+    const saved = localStorage.getItem('nc-lead-' + id);
+    if (saved !== null) {
+      stateMap[id] = parseInt(saved);
+      const btn = document.getElementById('status-' + id);
+      if (btn) {
+        const v = parseInt(saved);
+        btn.textContent = statuses[v];
+        btn.className = 'btn btn-status ' + (statusClasses[v] || '');
+      }
+    }
+  });
+  updateStats();
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏢 Property Management Portfolio Kit — Tidy Tails</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0a0a0f; color: #e0e0e0; min-height: 100vh; }
+.header { background: linear-gradient(135deg, #0d1117 0%, #1a0a2e 50%, #0d1117 100%); padding: 24px 20px 20px; border-bottom: 2px solid #7c3aed; }
+.header h1 { font-size: 1.65em; color: #fff; margin-bottom: 4px; font-weight: 800; }
+.header p { color: #a0a0c0; font-size: 0.88em; margin-bottom: 12px; }
+.why-banner { background: #1a0a2e; border: 1px solid #7c3aed; border-radius: 10px; padding: 14px 18px; font-size: 0.85em; color: #d4b8ff; line-height: 1.5; }
+.why-banner strong { color: #c084fc; }
+.stats-bar { display: flex; gap: 10px; padding: 14px 20px; background: #0d0d1a; border-bottom: 1px solid #1e1e30; overflow-x: auto; flex-wrap: wrap; }
+.stat { background: #13131f; border: 1px solid #2a2a40; border-radius: 8px; padding: 10px 16px; min-width: 100px; text-align: center; }
+.stat .num { font-size: 1.6em; font-weight: 800; color: #7c3aed; }
+.stat .label { font-size: 0.72em; color: #888; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 2px; }
+.tabs { display: flex; gap: 0; padding: 0 20px; background: #0d0d1a; border-bottom: 1px solid #222; overflow-x: auto; }
+.tab { padding: 12px 18px; cursor: pointer; color: #888; font-size: 0.83em; font-weight: 600; border-bottom: 2px solid transparent; white-space: nowrap; transition: all 0.2s; }
+.tab:hover { color: #ccc; }
+.tab.active { color: #c084fc; border-bottom-color: #7c3aed; }
+.content { padding: 20px; max-width: 960px; margin: 0 auto; }
+.section { display: none; }
+.section.active { display: block; }
+
+/* Company Cards */
+.company-card { background: #13131f; border: 1px solid #2a2a40; border-radius: 14px; padding: 22px; margin-bottom: 20px; transition: all 0.2s; }
+.company-card:hover { border-color: #7c3aed; box-shadow: 0 0 20px rgba(124,58,237,0.1); }
+.company-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; flex-wrap: wrap; gap: 8px; }
+.company-name { font-size: 1.2em; font-weight: 800; color: #fff; }
+.company-badge { display: flex; gap: 6px; flex-wrap: wrap; }
+.badge { font-size: 0.7em; padding: 3px 10px; border-radius: 20px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+.badge-tier1 { background: #7c3aed; color: #fff; }
+.badge-tier2 { background: #f59e0b; color: #000; }
+.badge-tier3 { background: #3b82f6; color: #fff; }
+.badge-hot { background: #ef4444; color: #fff; }
+.company-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.meta-item { font-size: 0.8em; color: #888; background: #1a1a2e; padding: 4px 10px; border-radius: 6px; display: flex; align-items: center; gap: 5px; }
+.meta-item a { color: #818cf8; text-decoration: none; }
+.meta-item a:hover { color: #c084fc; }
+.properties-list { background: #1a1a2e; border-left: 3px solid #7c3aed; border-radius: 0 8px 8px 0; padding: 14px 16px; margin-bottom: 14px; }
+.properties-list h4 { font-size: 0.8em; color: #888; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px; }
+.property-item { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border-bottom: 1px solid #2a2a3a; font-size: 0.85em; color: #ccc; }
+.property-item:last-child { border-bottom: none; }
+.property-zone { font-size: 0.72em; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+.zone-active { background: #22c55e22; color: #4ade80; border: 1px solid #22c55e44; }
+.zone-expand { background: #f59e0b22; color: #fbbf24; border: 1px solid #f59e0b44; }
+.pitch-box { background: #0d1117; border: 1px solid #7c3aed; border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; }
+.pitch-box h4 { font-size: 0.78em; color: #9ca3af; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+.pitch-box p { font-size: 0.88em; color: #d1d5db; line-height: 1.55; }
+.pitch-box strong { color: #c084fc; }
+.action-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { padding: 9px 18px; border-radius: 8px; font-size: 0.82em; font-weight: 700; cursor: pointer; border: none; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: all 0.2s; }
+.btn:hover { transform: translateY(-1px); opacity: 0.9; }
+.btn-call { background: #22c55e; color: #000; }
+.btn-email { background: #3b82f6; color: #fff; }
+.btn-copy { background: #7c3aed; color: #fff; }
+.btn-status { background: #374151; color: #d1d5db; }
+.btn-status.contacted { background: #f59e0b; color: #000; }
+.btn-status.interested { background: #22c55e; color: #000; }
+.btn-status.partner { background: #7c3aed; color: #fff; }
+.btn-status.pass { background: #6b7280; color: #fff; }
+
+/* Revenue Math */
+.math-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 24px; }
+.math-card { background: #13131f; border: 1px solid #2a2a40; border-radius: 12px; padding: 18px; }
+.math-card .scenario { font-size: 0.75em; color: #888; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+.math-card .value { font-size: 2em; font-weight: 800; margin-bottom: 4px; }
+.math-card.bear .value { color: #6b7280; }
+.math-card.base .value { color: #f59e0b; }
+.math-card.bull .value { color: #7c3aed; }
+.math-card .desc { font-size: 0.8em; color: #9ca3af; line-height: 1.4; }
+.multiplier-box { background: #1a0a2e; border: 2px solid #7c3aed; border-radius: 12px; padding: 18px; margin-bottom: 20px; }
+.multiplier-box h3 { font-size: 0.95em; font-weight: 700; color: #c084fc; margin-bottom: 12px; }
+.multiplier-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid #2a2a3a; font-size: 0.85em; }
+.multiplier-row:last-child { border-bottom: none; }
+.multiplier-row .label { color: #9ca3af; }
+.multiplier-row .val { color: #c084fc; font-weight: 700; }
+
+/* Scripts */
+.script-card { background: #13131f; border: 1px solid #2a2a40; border-radius: 12px; padding: 18px; margin-bottom: 16px; }
+.script-title { font-size: 0.95em; font-weight: 700; color: #fff; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.script-title span { font-size: 0.75em; color: #888; font-weight: 400; }
+.script-context { font-size: 0.8em; color: #9ca3af; margin-bottom: 10px; padding: 8px 12px; background: #0d0d1a; border-radius: 6px; }
+.script-body { font-size: 0.87em; color: #d1d5db; line-height: 1.6; background: #1a1a2e; padding: 14px 16px; border-radius: 8px; border-left: 3px solid #7c3aed; white-space: pre-wrap; margin-bottom: 10px; }
+.script-body em { color: #9ca3af; font-style: italic; }
+.copy-btn { background: #7c3aed; color: #fff; padding: 6px 14px; border-radius: 6px; border: none; font-size: 0.78em; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+.copy-btn:hover { background: #6d28d9; }
+.copy-btn.copied { background: #22c55e; color: #000; }
+
+/* Checklist */
+.checklist { list-style: none; }
+.checklist li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid #1a1a2e; font-size: 0.88em; color: #ccc; }
+.checklist li:last-child { border-bottom: none; }
+.checklist input[type="checkbox"] { width: 18px; height: 18px; margin-top: 1px; accent-color: #7c3aed; cursor: pointer; flex-shrink: 0; }
+.checklist label { cursor: pointer; line-height: 1.4; }
+.checklist input:checked + label { color: #6b7280; text-decoration: line-through; }
+.phase-title { font-size: 0.75em; color: #7c3aed; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; margin: 18px 0 8px; padding: 0 4px; border-left: 3px solid #7c3aed; padding-left: 10px; }
+.progress-bar-wrap { background: #1a1a2e; border-radius: 10px; height: 8px; margin: 16px 0; overflow: hidden; }
+.progress-bar-fill { background: linear-gradient(90deg, #7c3aed, #c084fc); height: 100%; border-radius: 10px; transition: width 0.4s; }
+.checklist-stats { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.cstat { background: #13131f; border: 1px solid #2a2a40; border-radius: 8px; padding: 8px 14px; font-size: 0.82em; }
+.cstat strong { color: #c084fc; }
+
+/* Strategy */
+.strategy-section { margin-bottom: 24px; }
+.strategy-section h3 { font-size: 0.95em; font-weight: 700; color: #c084fc; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #2a2a40; }
+.insight-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.insight-card { background: #13131f; border: 1px solid #2a2a40; border-radius: 10px; padding: 16px; }
+.insight-card .icon { font-size: 1.4em; margin-bottom: 8px; }
+.insight-card h4 { font-size: 0.88em; font-weight: 700; color: #fff; margin-bottom: 6px; }
+.insight-card p { font-size: 0.82em; color: #9ca3af; line-height: 1.45; }
+.why-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+.why-table th { background: #1a1a2e; color: #888; text-align: left; padding: 8px 12px; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.5px; }
+.why-table td { padding: 10px 12px; border-bottom: 1px solid #1a1a2e; color: #d1d5db; }
+.why-table tr:last-child td { border-bottom: none; }
+.why-table .win { color: #4ade80; font-weight: 600; }
+
+/* Status bar */
+.status-bar { position: fixed; bottom: 0; left: 0; right: 0; background: #0d0d1a; border-top: 1px solid #2a2a40; padding: 10px 20px; display: flex; gap: 16px; overflow-x: auto; z-index: 100; }
+.sbar-item { font-size: 0.8em; white-space: nowrap; }
+.sbar-item span { color: #c084fc; font-weight: 700; }
+
+@media (max-width: 600px) {
+  .header h1 { font-size: 1.3em; }
+  .content { padding: 14px; }
+  .company-name { font-size: 1.05em; }
+  .script-body { font-size: 0.82em; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏢 Property Management Portfolio Kit</h1>
+  <p>One call to a management company = multiple properties at once. The multiplier play.</p>
+  <div class="why-banner">
+    ⚡ <strong>Why this matters:</strong> Millsap Properties manages <strong>7 pet-friendly properties</strong> across Florissant, Ballwin, Hazelwood, and St. Charles — all inside TJ's route zone. One conversation with their portfolio manager = potential for 7 service contracts vs. 7 separate calls. This is the commercial play that turns $250/mo into $1,500+/mo from a single relationship.
+  </div>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="num">6</div><div class="label">Portfolio Targets</div></div>
+  <div class="stat"><div class="num">30+</div><div class="label">Properties in Scope</div></div>
+  <div class="stat"><div class="num">$4.5K</div><div class="label">Base MRR Potential</div></div>
+  <div class="stat"><div class="num">1</div><div class="label">Call = Multi Contracts</div></div>
+  <div class="stat"><div class="num">10:09</div><div class="label">Peak Calling Now</div></div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('companies')">🏢 Companies</div>
+  <div class="tab" onclick="showTab('scripts')">📞 Scripts</div>
+  <div class="tab" onclick="showTab('strategy')">🎯 Strategy</div>
+  <div class="tab" onclick="showTab('revenue')">💰 Revenue</div>
+  <div class="tab" onclick="showTab('checklist')">✅ Checklist</div>
+</div>
+
+<!-- COMPANIES TAB -->
+<div class="section active content" id="tab-companies">
+
+  <!-- Millsap -->
+  <div class="company-card" id="co-millsap">
+    <div class="company-header">
+      <div class="company-name">Millsap Properties</div>
+      <div class="company-badge">
+        <span class="badge badge-tier1">🔴 CALL FIRST</span>
+        <span class="badge badge-hot">7 Properties</span>
+      </div>
+    </div>
+    <div class="company-meta">
+      <div class="meta-item">📍 Grover, MO 63040 (HQ — P.O. Box 67)</div>
+      <div class="meta-item">🌐 <a href="https://www.millsapproperties.com" target="_blank">millsapproperties.com</a></div>
+      <div class="meta-item">📱 Phone hidden on site — ask via contact form OR call individual property first, ask for portfolio manager</div>
+    </div>
+    <div class="properties-list">
+      <h4>🏘️ Their 7 Properties (All Pet-Friendly)</h4>
+      <div class="property-item"><span>Charbonier Apartments</span><span style="color:#888;font-size:0.85em;">1975 Charbonier Rd, Florissant 63031</span><span class="property-zone zone-active">Active Route</span></div>
+      <div class="property-item"><span>Cunningham Apartments</span><span style="color:#888;font-size:0.85em;">Florissant area</span><span class="property-zone zone-active">Active Route</span></div>
+      <div class="property-item"><span>Leslie Apartments</span><span style="color:#888;font-size:0.85em;">St. Louis area</span><span class="property-zone zone-active">Active Route</span></div>
+      <div class="property-item"><span>Teson Garden Apartments</span><span style="color:#888;font-size:0.85em;">Hazelwood/Florissant area</span><span class="property-zone zone-active">Active Route</span></div>
+      <div class="property-item"><span>White Birch Apartments</span><span style="color:#888;font-size:0.85em;">Ballwin/West County area</span><span class="property-zone zone-active">Active Route</span></div>
+      <div class="property-item"><span>Villa Roma Apartments</span><span style="color:#888;font-size:0.85em;">St. Louis/St. Charles area</span><span class="property-zone zone-expand">Expand Route</span></div>
+      <div class="property-item"><span>+ 1 more community</span><span style="color:#888;font-size:0.85em;">St. Charles area</span><span class="property-zone zone-expand">Expand Route</span></div>
+    </div>
+    <div class="pitch-box">
+      <h4>🎯 Your Pitch Angle</h4>
+      <p><strong>"Hi, I'm Jamie with Tidy Tails — I wanted to reach the person who oversees your pet policy compliance across your portfolio. We do weekly pet waste removal for several apartment communities in Florissant and Hazelwood, and I noticed all 7 of your properties are pet-friendly. I'd love to put together a multi-property rate for you that solves the waste station overflow problem and pet-waste complaints across all your sites at once. Who would I speak to about property services?"</strong></p>
+      <p style="margin-top:8px;font-size:0.82em;color:#9ca3af;">Key angle: Pet waste complaints are the #1 tenant complaint at pet-friendly apartments. You're not just selling cleanup — you're selling a complaint resolution service that makes their job easier and protects their 5-star ratings.</p>
+    </div>
+    <div class="action-row">
+      <a href="https://www.millsapproperties.com/contact" target="_blank" class="btn btn-email">🌐 Contact Form</a>
+      <button class="btn btn-copy" onclick="copyScript('millsap-opener')">📋 Copy Opener</button>
+      <button class="btn btn-status" id="status-millsap" onclick="cycleStatus('millsap')">⚪ New</button>
+    </div>
+  </div>
+
+  <!-- UE Management -->
+  <div class="company-card" id="co-uem">
+    <div class="company-header">
+      <div class="company-name">UE Management</div>
+      <div class="company-badge">
+        <span class="badge badge-tier1">🔴 CALL FIRST</span>
+        <span class="badge" style="background:#0f4c2a;color:#4ade80;">9 Communities</span>
+      </div>
+    </div>
+    <div class="company-meta">
+      <div class="meta-item">📍 St. Louis, MO (HQ)</div>
+      <div class="meta-item">🌐 <a href="https://uemstl.com/contact/" target="_blank">uemstl.com/contact</a></div>
+      <div class="meta-item">📋 Full-service multi-family + St. Charles portfolio</div>
+    </div>
+    <div class="properties-list">
+      <h4>🏘️ Their 9 Communities</h4>
+      <div class="property-item"><span>The Square on Delmar</span><span style="color:#888;font-size:0.85em;">University City — 63130</span><span class="property-zone zone-active">Active Zone</span></div>
+      <div class="property-item"><span>South City Spaces</span><span style="color:#888;font-size:0.85em;">South City STL</span><span class="property-zone zone-active">Active Zone</span></div>
+      <div class="property-item"><span>The Square at McKnight</span><span style="color:#888;font-size:0.85em;">Richmond Heights area</span><span class="property-zone zone-active">Active Zone</span></div>
+      <div class="property-item"><span>Titchfield Court</span><span style="color:#888;font-size:0.85em;">St. Louis area</span><span class="property-zone zone-active">Active Zone</span></div>
+      <div class="property-item"><span>The Renaissance Apartments</span><span style="color:#888;font-size:0.85em;">St. Charles, MO</span><span class="property-zone zone-expand">Expand Route</span></div>
+      <div class="property-item"><span>Emerald Ridge</span><span style="color:#888;font-size:0.85em;">St. Louis area</span><span class="property-zone zone-active">Active Zone</span></div>
+      <div class="property-item"><span>The Envoy</span><span style="color:#888;font-size:0.85em;">St. Louis area</span><span class="property-zone zone-active">Active Zone</span></div>
+      <div class="property-item"><span>Soulard Spaces</span><span style="color:#888;font-size:0.85em;">Soulard / South City</span><span class="property-zone zone-active">Active Zone</span></div>
+      <div class="property-item"><span>1001 Russell</span><span style="color:#888;font-size:0.85em;">South City STL</span><span class="property-zone zone-active">Active Zone</span></div>
+    </div>
+    <div class="pitch-box">
+      <h4>🎯 Your Pitch Angle</h4>
+      <p><strong>"I saw UE Management is doing something really smart with your portfolio — all dog-friendly, urban, boutique properties. That's exactly the profile where pet waste becomes a problem fast because the outdoor spaces are smaller and shared. We do weekly cleanup for multi-unit communities in Soulard, South City, and Central County. I'd like to talk about a portfolio rate that covers your outdoor areas across all of your STL communities at once."</strong></p>
+      <p style="margin-top:8px;font-size:0.82em;color:#9ca3af;">Key angle: UE manages boutique urban properties — their tenants are higher-income, pay premium rent, and will leave reviews about pet waste. Pitch this as a tenant retention + review protection service.</p>
+    </div>
+    <div class="action-row">
+      <a href="https://uemstl.com/contact/" target="_blank" class="btn btn-email">🌐 Contact Form</a>
+      <button class="btn btn-copy" onclick="copyScript('uem-opener')">📋 Copy Opener</button>
+      <button class="btn btn-status" id="status-uem" onclick="cycleStatus('uem')">⚪ New</button>
+    </div>
+  </div>
+
+  <!-- Mills Properties -->
+  <div class="company-card" id="co-mills">
+    <div class="company-header">
+      <div class="company-name">Mills Properties Inc.</div>
+      <div class="company-badge">
+        <span class="badge badge-tier2">🟠 CALL TODAY</span>
+        <span class="badge" style="background:#1a2a4a;color:#60a5fa;">40+ Years in STL</span>
+      </div>
+    </div>
+    <div class="company-meta">
+      <div class="meta-item">📍 2650 S Hanley Rd, St. Louis, MO 63144</div>
+      <div class="meta-item">🌐 <a href="https://www.millsapartments.com/" target="_blank">millsapartments.com</a></div>
+      <div class="meta-item">📋 Multi-family in STL, Columbia, KC — 40+ years operating</div>
+    </div>
+    <div class="properties-list">
+      <h4>🏘️ Properties</h4>
+      <div class="property-item"><span>Multiple STL metro communities</span><span style="color:#888;font-size:0.85em;">Mid-size portfolio, STL focus</span><span class="property-zone zone-active">Research Exact</span></div>
+      <div class="property-item"><span>Columbia + KC locations</span><span style="color:#888;font-size:0.85em;">Out of zone</span><span class="property-zone zone-expand">Skip</span></div>
+    </div>
+    <div class="pitch-box">
+      <h4>🎯 Your Pitch Angle</h4>
+      <p><strong>"Hi, I'm Jamie with Tidy Tails. We provide weekly pet waste removal for apartment communities across St. Louis. I know Mills has been in the business 40+ years, so you know that pet waste complaints are one of the top issues at pet-friendly properties. We do portfolio-wide service agreements — one invoice, one point of contact across all your STL communities. Can I speak with whoever handles property services and vendor relationships?"</strong></p>
+      <p style="margin-top:8px;font-size:0.82em;color:#9ca3af;">Key angle: 40-year operator = someone who values reliability and local consistency. They've seen vendors come and go. Pitch reliability + single point of contact for the portfolio.</p>
+    </div>
+    <div class="action-row">
+      <a href="tel:+13149680000" class="btn btn-call">📞 Look Up Number</a>
+      <button class="btn btn-copy" onclick="copyScript('mills-opener')">📋 Copy Opener</button>
+      <button class="btn btn-status" id="status-mills" onclick="cycleStatus('mills')">⚪ New</button>
+    </div>
+  </div>
+
+  <!-- NRE Management -->
+  <div class="company-card" id="co-nre">
+    <div class="company-header">
+      <div class="company-name">NRE Management</div>
+      <div class="company-badge">
+        <span class="badge badge-tier2">🟠 CALL TODAY</span>
+        <span class="badge" style="background:#1a2a1a;color:#4ade80;">Already in Calling Hub</span>
+      </div>
+    </div>
+    <div class="company-meta">
+      <div class="meta-item">📞 <a href="tel:3149681863" style="color:#4ade80;">(314) 968-1863</a></div>
+      <div class="meta-item">📍 Webster Groves area (South County)</div>
+      <div class="meta-item">📋 Manages Colonial Village + White Bluff (2 properties, 1 call)</div>
+    </div>
+    <div class="properties-list">
+      <h4>🏘️ Known Properties</h4>
+      <div class="property-item"><span>Colonial Village Apartments</span><span style="color:#888;font-size:0.85em;">Webster Groves area</span><span class="property-zone zone-active">Active Route</span></div>
+      <div class="property-item"><span>White Bluff Apartments</span><span style="color:#888;font-size:0.85em;">Webster Groves area</span><span class="property-zone zone-active">Active Route</span></div>
+    </div>
+    <div class="pitch-box">
+      <h4>🎯 Your Pitch Angle</h4>
+      <p><strong>"Hi, I'm reaching out about pet waste service for Colonial Village and White Bluff. I know NRE manages both — if you can get me to whoever handles vendor services, I'd love to put together a combined rate for both communities. It's one invoice, one relationship, and I can be on-site weekly across both. Is now a good time?"</strong></p>
+    </div>
+    <div class="action-row">
+      <a href="tel:3149681863" class="btn btn-call">📞 (314) 968-1863</a>
+      <button class="btn btn-copy" onclick="copyScript('nre-opener')">📋 Copy Opener</button>
+      <button class="btn btn-status" id="status-nre" onclick="cycleStatus('nre')">⚪ New</button>
+    </div>
+  </div>
+
+  <!-- West End Management -->
+  <div class="company-card" id="co-wend">
+    <div class="company-header">
+      <div class="company-name">West End Management & Leasing</div>
+      <div class="company-badge">
+        <span class="badge badge-tier3">🔵 THIS WEEK</span>
+      </div>
+    </div>
+    <div class="company-meta">
+      <div class="meta-item">🌐 <a href="https://www.westendmgt.com/" target="_blank">westendmgt.com</a></div>
+      <div class="meta-item">📍 St. Louis (Central/West area)</div>
+      <div class="meta-item">📋 Residential + multi-family portfolio</div>
+    </div>
+    <div class="pitch-box">
+      <h4>🎯 Your Pitch Angle</h4>
+      <p><strong>Central County residential portfolio manager — pitch the tenant retention / review protection angle. Dog-owning tenants in University City and Maplewood are high-churn risk if pet waste isn't managed. We keep the common areas clean so they stay.</strong></p>
+    </div>
+    <div class="action-row">
+      <a href="https://www.westendmgt.com/" target="_blank" class="btn btn-email">🌐 Website</a>
+      <button class="btn btn-status" id="status-wend" onclick="cycleStatus('wend')">⚪ New</button>
+    </div>
+  </div>
+
+  <!-- Deca / Associa -->
+  <div class="company-card" id="co-deca">
+    <div class="company-header">
+      <div class="company-name">Deca Property Management / Associa Smith</div>
+      <div class="company-badge">
+        <span class="badge badge-tier3">🔵 THIS WEEK</span>
+        <span class="badge" style="background:#2a1a1a;color:#f87171;">HOA Focus</span>
+      </div>
+    </div>
+    <div class="company-meta">
+      <div class="meta-item">🌐 <a href="https://www.decarealty.com/" target="_blank">decarealty.com</a></div>
+      <div class="meta-item">📋 HOAs + residential in Greater STL area</div>
+    </div>
+    <div class="pitch-box">
+      <h4>🎯 Your Pitch Angle</h4>
+      <p><strong>HOA management companies deal with pet waste complaints from homeowners constantly. Pitch this as the "silent complaint solver" — we can service common green areas, dog park zones, and walkways for your HOA clients on a monthly retainer. One HOA contract = $200-500/month, residual for years.</strong></p>
+    </div>
+    <div class="action-row">
+      <a href="https://www.decarealty.com/" target="_blank" class="btn btn-email">🌐 Website</a>
+      <button class="btn btn-status" id="status-deca" onclick="cycleStatus('deca')">⚪ New</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- SCRIPTS TAB -->
+<div class="section content" id="tab-scripts">
+
+  <div class="script-card">
+    <div class="script-title">
+      Portfolio Cold Opener — Phone
+      <span>Use for any management company's main line</span>
+    </div>
+    <div class="script-context">🎯 Goal: Get transferred to whoever handles vendor/service relationships across the portfolio. Don't pitch the receptionist — just navigate to the right person.</div>
+    <div class="script-body" id="script-portfolio-cold">Hi, my name is Jamie with Tidy Tails — we provide weekly pet waste removal for apartment communities across St. Louis.
+
+I'm reaching out to [COMPANY NAME] specifically because I saw you manage several pet-friendly communities in the area, and I'd like to talk with whoever handles property services or vendor relationships across your portfolio.
+
+Is that something you handle, or would you be able to point me to the right person?
+
+<em>[If asked what it's about:]</em>
+Sure — we do weekly pet waste cleanup for common areas, dog run zones, and outdoor green spaces. I'd like to put together a multi-property rate for your communities so it's one relationship and one invoice across all your sites.
+
+Who would be the best person to speak with?</div>
+    <button class="copy-btn" onclick="copyText('script-portfolio-cold', this)">📋 Copy Script</button>
+  </div>
+
+  <div class="script-card" id="millsap-opener">
+    <div class="script-title">
+      Millsap Properties — Opener
+      <span>7 pet-friendly properties, Florissant/Ballwin/Hazelwood/St. Charles</span>
+    </div>
+    <div class="script-context">🎯 Millsap has phone hidden online. Best approach: (1) call Charbonier Apartments (their Florissant property, which IS in the commercial calling hub), ask to speak to the portfolio or regional manager. OR (2) use their contact form online.</div>
+    <div class="script-body" id="script-millsap">Hi, I'm Jamie — I run Tidy Tails, a local pet waste removal service in St. Louis.
+
+I noticed Millsap manages seven pet-friendly apartment communities, and several of them are right in my route zone — Florissant, Hazelwood, and Ballwin specifically.
+
+Pet waste is consistently the top complaint at pet-friendly properties. What I'd like to offer is a portfolio-wide service agreement — one vendor, one weekly visit to each property, one invoice. You solve the problem across all your sites without managing 7 separate calls.
+
+Is there someone on your team who handles property services across the portfolio? Even five minutes to talk through what we could do for Charbonier and Teson Garden would be worth it.</div>
+    <button class="copy-btn" onclick="copyText('script-millsap', this)">📋 Copy Script</button>
+  </div>
+
+  <div class="script-card" id="uem-opener">
+    <div class="script-title">
+      UE Management — Opener
+      <span>9 boutique communities, South City + U City + St. Charles</span>
+    </div>
+    <div class="script-context">🎯 UE manages premium urban properties with pet-friendly policies. Their tenants leave detailed reviews. Pet waste in shared spaces = public reputation risk.</div>
+    <div class="script-body" id="script-uem">Hi — I'm Jamie with Tidy Tails. I do weekly pet waste removal for apartment communities across St. Louis.
+
+I came across UE Management because of your Soulard Spaces and South City communities — really nice urban properties. I know that with shared outdoor spaces in those neighborhoods, pet waste becomes visible fast and it ends up in reviews.
+
+We work with multi-property management companies on a portfolio rate — one point of contact, consistent weekly service across all of your STL communities. For your boutique properties where tenant experience matters, it's a small line item that removes a real friction point.
+
+I'd love 10 minutes with whoever handles property services for your portfolio — is that you, or would you point me to the right person?</div>
+    <button class="copy-btn" onclick="copyText('script-uem', this)">📋 Copy Script</button>
+  </div>
+
+  <div class="script-card" id="mills-opener">
+    <div class="script-title">
+      Mills Properties — Opener
+      <span>40+ year operator, major STL portfolio</span>
+    </div>
+    <div class="script-context">🎯 Long-tenured operator = they value stability, consistency, and reducing operational friction. Don't oversell — be matter-of-fact about the value.</div>
+    <div class="script-body" id="script-mills">Hi, I'm Jamie — I run Tidy Tails, a St. Louis pet waste removal service that works with apartment communities across the metro.
+
+I know Mills has been in this market for 40+ years, so you understand that pet waste management is one of those ongoing friction points at any pet-friendly community — resident complaints, maintenance callbacks, waste station overflows.
+
+We do weekly service at pet-friendly properties throughout St. Louis County and North County. I'd like to talk about what a portfolio rate would look like for your STL communities — one service agreement covering all your sites, single invoice, consistent weekly cadence.
+
+Who handles vendor relationships or property services on your team?</div>
+    <button class="copy-btn" onclick="copyText('script-mills', this)">📋 Copy Script</button>
+  </div>
+
+  <div class="script-card" id="nre-opener">
+    <div class="script-title">
+      NRE Management — Opener
+      <span>(314) 968-1863 — already in calling hub, 2 properties</span>
+    </div>
+    <div class="script-context">🎯 You have the number. NRE manages Colonial Village + White Bluff both near Webster Groves. One call covers two properties.</div>
+    <div class="script-body" id="script-nre">Hi, I'm trying to reach whoever handles property services for Colonial Village and White Bluff Apartments.
+
+My name's Jamie — I run Tidy Tails, and we provide weekly pet waste removal for apartment communities in South and West County.
+
+I know NRE manages both communities, so I wanted to reach out about a combined service agreement rather than calling each property separately. It would be one relationship, one invoice, weekly service at both sites.
+
+Is this something you'd be open to discussing?</div>
+    <button class="copy-btn" onclick="copyText('script-nre', this)">📋 Copy Script</button>
+  </div>
+
+  <div class="script-card">
+    <div class="script-title">
+      Objection — "We Have a Maintenance Team"
+      <span>Most common objection from management companies</span>
+    </div>
+    <div class="script-context">🎯 In-house maintenance crews don't specialize in pet waste and typically don't do it systematically. Here's how to handle it.</div>
+    <div class="script-body" id="script-maint-obj">I totally get that — most properties do. But what we find is that maintenance teams are usually stretched thin, and pet waste pickup ends up being inconsistent or reactive rather than scheduled.
+
+We come every week, same day, regardless of what else is going on. Your team doesn't have to think about it.
+
+For most property managers I talk to, the real value is that pet waste complaints stop coming to you. That alone is worth a $150-$250/month line item — especially compared to the staff time and tenant turnover risk those complaints create.
+
+Would it be worth a 5-minute conversation to see if the math works for your portfolio?</div>
+    <button class="copy-btn" onclick="copyText('script-maint-obj', this)">📋 Copy Script</button>
+  </div>
+
+  <div class="script-card">
+    <div class="script-title">
+      Pricing Conversation — Multi-Property Rate
+      <span>When they ask "how much?"</span>
+    </div>
+    <div class="script-context">🎯 Don't quote individual property rates. Lead with portfolio math and anchor to complaint reduction value.</div>
+    <div class="script-body" id="script-pricing">Great question — pricing depends on the size of the outdoor areas and how many stops, but for reference:
+
+For a single mid-size property, we're typically in the $150-$300/month range for weekly service.
+
+For a portfolio of multiple communities, we build a combined rate that's meaningfully cheaper per property than booking each one individually — usually 10-15% off the individual rate, and you get a single invoice and single point of contact.
+
+For your portfolio, I'd want to visit each site briefly to give you an accurate quote — but ballpark, if we're talking 3-4 properties, you're looking at $500-$800/month total, which is typically less than the cost of one maintenance callback related to pet waste per month.
+
+Can I set up a quick site visit at your two largest properties to give you a real number?</div>
+    <button class="copy-btn" onclick="copyText('script-pricing', this)">📋 Copy Script</button>
+  </div>
+
+  <div class="script-card">
+    <div class="script-title">
+      Follow-Up Email — After Call
+      <span>Send within 2 hours of a positive conversation</span>
+    </div>
+    <div class="script-context">🎯 Property managers make decisions slowly. A professional email the same day keeps momentum and gives them something to forward to their boss.</div>
+    <div class="script-body" id="script-email">Subject: Pet Waste Service for [COMPANY NAME] Portfolio — Tidy Tails
+
+Hi [NAME],
+
+Thanks for taking a few minutes today — I appreciate it.
+
+As promised, here's a quick summary of what we talked about:
+
+— WHAT WE DO: Weekly pet waste removal for apartment communities across St. Louis County, North County, and St. Charles.
+
+— THE PROBLEM WE SOLVE: Pet waste complaints are consistently the #1 maintenance friction at pet-friendly properties. We make it systematic — weekly, same day, confirmed — so it stops showing up in your inbox and in online reviews.
+
+— PORTFOLIO APPROACH: We'd put together a single service agreement covering all of [COMPANY NAME]'s STL communities, one invoice monthly, one contact (me, Jamie, directly).
+
+— NEXT STEP: I'd like to schedule a quick walkthrough at your largest property so I can give you an accurate quote. 30 minutes, no obligation.
+
+You can reach me directly at (314) 850-7140 or just reply here.
+
+Thanks again,
+Jamie Dabrowski
+Tidy Tails — St. Louis
+(314) 850-7140
+tidytailsstl.com</div>
+    <button class="copy-btn" onclick="copyText('script-email', this)">📋 Copy Script</button>
+  </div>
+
+</div>
+
+<!-- STRATEGY TAB -->
+<div class="section content" id="tab-strategy">
+
+  <div class="strategy-section">
+    <h3>Why the Portfolio Play Changes the Math</h3>
+    <div class="insight-grid">
+      <div class="insight-card">
+        <div class="icon">🎯</div>
+        <h4>1 Call = Multiple Contracts</h4>
+        <p>Cold-calling individual properties = 18 calls for 18 leads. Calling Millsap = 1 call for potentially 7 contracts. The effort/reward ratio is 7× better on the portfolio approach.</p>
+      </div>
+      <div class="insight-card">
+        <div class="icon">🔒</div>
+        <h4>Portfolio Contracts Are Sticky</h4>
+        <p>A management company that signs a portfolio agreement doesn't cancel casually. Switching costs are high — they'd have to re-evaluate vendors across all properties. Churn risk is dramatically lower than individual accounts.</p>
+      </div>
+      <div class="insight-card">
+        <div class="icon">📣</div>
+        <h4>Complaints Are Their Pain</h4>
+        <p>Property managers receive pet waste complaints constantly. You're not selling a cleaning service — you're selling a complaint elimination service. Frame the ROI as saved staff time and protected reviews.</p>
+      </div>
+      <div class="insight-card">
+        <div class="icon">🌐</div>
+        <h4>Referrals Compound</h4>
+        <p>One management company recommends you to other PM companies they know. The commercial referral network is tight in STL. One portfolio relationship can cascade into 3-4 companies over a year.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="strategy-section">
+    <h3>Who to Reach at a Management Company</h3>
+    <table class="why-table">
+      <tr>
+        <th>Title</th>
+        <th>Role</th>
+        <th>Approach</th>
+        <th>Priority</th>
+      </tr>
+      <tr>
+        <td>Portfolio Manager / Regional Manager</td>
+        <td>Oversees all properties</td>
+        <td>Best decision-maker, budget authority</td>
+        <td class="win">✅ Primary Target</td>
+      </tr>
+      <tr>
+        <td>Property Manager (individual site)</td>
+        <td>Runs day-to-day at one complex</td>
+        <td>Can approve if under $500/mo, good internal champion</td>
+        <td class="win">✅ Backup Path</td>
+      </tr>
+      <tr>
+        <td>Maintenance Director</td>
+        <td>Coordinates vendors</td>
+        <td>Can introduce you to PM, but doesn't sign contracts</td>
+        <td style="color:#f59e0b;">⚠️ Useful Intro</td>
+      </tr>
+      <tr>
+        <td>Receptionist</td>
+        <td>Answers phones</td>
+        <td>Navigate through, not to — don't pitch receptionist</td>
+        <td style="color:#6b7280;">❌ Just Navigate</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="strategy-section">
+    <h3>Best Time to Call (Right Now Is Good)</h3>
+    <div class="insight-grid">
+      <div class="insight-card">
+        <div class="icon">⏰</div>
+        <h4>10 AM–12 PM Wednesday</h4>
+        <p>You're in the peak window RIGHT NOW. Property managers are at desks mid-week, not in showings or maintenance calls. Wednesday AM is historically the best commercial cold-call window.</p>
+      </div>
+      <div class="insight-card">
+        <div class="icon">🌸</div>
+        <h4>April = Best Month of Year</h4>
+        <p>Spring = outdoor areas come back into use = pet waste becomes visible = managers FEEL the pain acutely. You're calling at the exact moment their pet waste problem peaks. This isn't just any month — it's the month.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- REVENUE TAB -->
+<div class="section content" id="tab-revenue">
+
+  <div class="multiplier-box">
+    <h3>💰 The Multiplier Math — Why This Changes August</h3>
+    <div class="multiplier-row"><span class="label">Residential customer (avg)</span><span class="val">$70/mo × 18 months = $1,260 LTV</span></div>
+    <div class="multiplier-row"><span class="label">Single apartment complex</span><span class="val">$250/mo × 24 months = $6,000 LTV</span></div>
+    <div class="multiplier-row"><span class="label">Portfolio of 3 properties (same call)</span><span class="val">$600/mo × 24 months = $14,400 LTV</span></div>
+    <div class="multiplier-row"><span class="label">Millsap Portfolio (7 properties)</span><span class="val">$1,200/mo × 24 months = $28,800 LTV</span></div>
+    <div class="multiplier-row"><span class="label">2 management company relationships</span><span class="val">$2,500/mo × 24 months = $60,000 LTV</span></div>
+    <div class="multiplier-row"><span class="label">Commercial MRR needed to hit Aug goal without 25 residentials</span><span class="val" style="color:#4ade80;">$800/mo commercial = 11.4 residential equivalents</span></div>
+  </div>
+
+  <div class="math-grid">
+    <div class="math-card bear">
+      <div class="scenario">Bear Case</div>
+      <div class="value">$900/mo</div>
+      <div class="desc">1 management company, 3 properties at avg $300/mo each. +13 residential customer equivalents.</div>
+    </div>
+    <div class="math-card base">
+      <div class="scenario">Base Case</div>
+      <div class="value">$2,400/mo</div>
+      <div class="desc">2 companies (Millsap + NRE). 8 properties total. $300/mo avg across portfolio contracts. +34 residential equivalents.</div>
+    </div>
+    <div class="math-card bull">
+      <div class="scenario">Bull Case</div>
+      <div class="value">$5,000/mo</div>
+      <div class="desc">3 companies + HOA. Millsap 7 props, UE 5 props, 2 HOAs. Commercial MRR alone exceeds August residential goal.</div>
+    </div>
+  </div>
+
+  <div class="strategy-section">
+    <h3>Portfolio Pricing Guide</h3>
+    <table class="why-table">
+      <tr>
+        <th>Property Type</th>
+        <th>Typical Rate</th>
+        <th>Multi-Property Discount</th>
+        <th>Notes</th>
+      </tr>
+      <tr>
+        <td>Small complex (&lt;50 units, 1 dog area)</td>
+        <td>$150–$200/mo</td>
+        <td>$125–175/mo in portfolio</td>
+        <td>Weekly visits, waste station check</td>
+      </tr>
+      <tr>
+        <td>Mid-size (50–150 units, dog park)</td>
+        <td>$250–$375/mo</td>
+        <td>$200–325/mo in portfolio</td>
+        <td>Most common in STL suburbs</td>
+      </tr>
+      <tr>
+        <td>Large complex (150+ units, multiple areas)</td>
+        <td>$400–$700/mo</td>
+        <td>$350–600/mo in portfolio</td>
+        <td>Could require 2× weekly service</td>
+      </tr>
+      <tr>
+        <td>HOA common area</td>
+        <td>$200–$400/mo</td>
+        <td>$175–350/mo in portfolio</td>
+        <td>Walking trails + dog stations</td>
+      </tr>
+      <tr>
+        <td>Portfolio discount (3+ properties)</td>
+        <td colspan="2" class="win">10–15% off per-property rate</td>
+        <td>Earns the relationship lock-in</td>
+      </tr>
+    </table>
+  </div>
+
+</div>
+
+<!-- CHECKLIST TAB -->
+<div class="section content" id="tab-checklist">
+
+  <div class="checklist-stats" id="cl-stats">
+    <div class="cstat">Total: <strong id="cl-total">0</strong></div>
+    <div class="cstat">Done: <strong id="cl-done">0</strong></div>
+    <div class="cstat">Progress: <strong id="cl-pct">0%</strong></div>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="cl-bar" style="width:0%"></div></div>
+
+  <p class="phase-title">🔴 RIGHT NOW (10–11 AM Wednesday)</p>
+  <ul class="checklist" id="main-checklist">
+    <li><input type="checkbox" id="cl1" onchange="updateProgress()"><label for="cl1">Open Millsap's website and submit contact form (takes 3 min) — ask for "whoever handles property services across your portfolio"</label></li>
+    <li><input type="checkbox" id="cl2" onchange="updateProgress()"><label for="cl2">Call NRE Management at (314) 968-1863 — use the NRE opener script (they're already in your calling hub)</label></li>
+    <li><input type="checkbox" id="cl3" onchange="updateProgress()"><label for="cl3">Call Charbonier Apartments directly (Millsap's Florissant property) — ask to speak to the regional/portfolio manager</label></li>
+
+    <p class="phase-title" style="margin-top:4px;">🟠 TODAY (Before 5 PM)</p>
+    <li><input type="checkbox" id="cl4" onchange="updateProgress()"><label for="cl4">Submit UE Management contact form at uemstl.com/contact — use the UE opener script as the message body</label></li>
+    <li><input type="checkbox" id="cl5" onchange="updateProgress()"><label for="cl5">Look up Mills Properties main number (2650 S Hanley Rd) — call and use the Mills opener</label></li>
+    <li><input type="checkbox" id="cl6" onchange="updateProgress()"><label for="cl6">For any property manager who says "yes" — send follow-up email within 2 hours (use email script)</label></li>
+    <li><input type="checkbox" id="cl7" onchange="updateProgress()"><label for="cl7">Log call outcomes in the Companies tab status tracker</label></li>
+
+    <p class="phase-title" style="margin-top:4px;">🔵 THIS WEEK</p>
+    <li><input type="checkbox" id="cl8" onchange="updateProgress()"><label for="cl8">Visit West End Management website and find contact info — submit inquiry or call</label></li>
+    <li><input type="checkbox" id="cl9" onchange="updateProgress()"><label for="cl9">Research Deca Realty HOA management portfolio — best for HOA common area contracts</label></li>
+    <li><input type="checkbox" id="cl10" onchange="updateProgress()"><label for="cl10">For interested companies: schedule site walkthrough at their largest property</label></li>
+    <li><input type="checkbox" id="cl11" onchange="updateProgress()"><label for="cl11">Build out pricing proposal for first interested portfolio (use Commercial Proposal Builder)</label></li>
+    <li><input type="checkbox" id="cl12" onchange="updateProgress()"><label for="cl12">Day 5-7 follow-up: call back any "call me next week" or voicemail-only contacts</label></li>
+
+    <p class="phase-title" style="margin-top:4px;">📈 LONG GAME</p>
+    <li><input type="checkbox" id="cl13" onchange="updateProgress()"><label for="cl13">Ask every signed residential customer: "Does your building or HOA have shared outdoor areas?" — uncover hidden portfolio leads</label></li>
+    <li><input type="checkbox" id="cl14" onchange="updateProgress()"><label for="cl14">Ask residential customers who work in property management (or mention their building) — they can make warm intros</label></li>
+    <li><input type="checkbox" id="cl15" onchange="updateProgress()"><label for="cl15">When Millsap/UE relationship is active, ask for referral to other management companies in their network</label></li>
+  </ul>
+
+</div>
+
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <div class="sbar-item">🏢 Companies: <span id="sb-new">6 new</span></div>
+  <div class="sbar-item">📞 Contacted: <span id="sb-contacted">0</span></div>
+  <div class="sbar-item">🔥 Interested: <span id="sb-interested">0</span></div>
+  <div class="sbar-item">💰 Base MRR: <span>$2,400/mo potential</span></div>
+  <div class="sbar-item" style="color:#4ade80;">⏰ Peak Calling Window: NOW</div>
+</div>
+
+<script>
+// Tab switching
+function showTab(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  document.querySelectorAll('.tab').forEach(t => { if(t.textContent.toLowerCase().includes(id.substring(0,4))) t.classList.add('active'); });
+}
+
+// Copy text
+function copyText(id, btn) {
+  const el = document.getElementById(id);
+  const text = el ? el.innerText : '';
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy Script'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function copyScript(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const scriptBody = el.querySelector('.script-body');
+  if (scriptBody) {
+    navigator.clipboard.writeText(scriptBody.innerText).then(() => alert('Script copied!'));
+  }
+}
+
+// Status cycling
+const statuses = ['⚪ New', '📞 Contacted', '🔥 Interested', '🤝 Partner ✅', '❌ Pass'];
+const statusKeys = ['new', 'contacted', 'interested', 'partner', 'pass'];
+const statusClasses = ['', 'contacted', 'interested', 'partner', 'pass'];
+
+function cycleStatus(id) {
+  const key = 'pm-status-' + id;
+  let idx = parseInt(localStorage.getItem(key) || '0');
+  idx = (idx + 1) % statuses.length;
+  localStorage.setItem(key, idx);
+  const btn = document.getElementById('status-' + id);
+  if (btn) {
+    btn.textContent = statuses[idx];
+    btn.className = 'btn btn-status ' + statusClasses[idx];
+  }
+  updateStatusBar();
+}
+
+function loadStatuses() {
+  ['millsap','uem','mills','nre','wend','deca'].forEach(id => {
+    const key = 'pm-status-' + id;
+    const idx = parseInt(localStorage.getItem(key) || '0');
+    const btn = document.getElementById('status-' + id);
+    if (btn) {
+      btn.textContent = statuses[idx];
+      btn.className = 'btn btn-status ' + statusClasses[idx];
+    }
+  });
+  updateStatusBar();
+}
+
+function updateStatusBar() {
+  const ids = ['millsap','uem','mills','nre','wend','deca'];
+  let contacted = 0, interested = 0, newCount = 0;
+  ids.forEach(id => {
+    const idx = parseInt(localStorage.getItem('pm-status-' + id) || '0');
+    if (idx === 0) newCount++;
+    if (idx === 1) contacted++;
+    if (idx === 2 || idx === 3) interested++;
+  });
+  document.getElementById('sb-new').textContent = newCount + ' new';
+  document.getElementById('sb-contacted').textContent = contacted;
+  document.getElementById('sb-interested').textContent = interested;
+}
+
+// Checklist progress
+function updateProgress() {
+  const checkboxes = document.querySelectorAll('#main-checklist input[type="checkbox"]');
+  const total = checkboxes.length;
+  let done = 0;
+  checkboxes.forEach((cb, i) => {
+    localStorage.setItem('pm-cl-' + i, cb.checked);
+    if (cb.checked) done++;
+  });
+  const pct = total ? Math.round((done/total)*100) : 0;
+  document.getElementById('cl-total').textContent = total;
+  document.getElementById('cl-done').textContent = done;
+  document.getElementById('cl-pct').textContent = pct + '%';
+  document.getElementById('cl-bar').style.width = pct + '%';
+}
+
+function loadChecklist() {
+  const checkboxes = document.querySelectorAll('#main-checklist input[type="checkbox"]');
+  checkboxes.forEach((cb, i) => {
+    cb.checked = localStorage.getItem('pm-cl-' + i) === 'true';
+  });
+  updateProgress();
+}
+
+// Fix tab switching for dynamic tab titles
+document.querySelectorAll('.tab').forEach((tab, i) => {
+  tab.addEventListener('click', function() {
+    const ids = ['companies','scripts','strategy','revenue','checklist'];
+    showTab(ids[i]);
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// Init
+window.addEventListener('load', () => {
+  loadStatuses();
+  loadChecklist();
+});
+</script>
+
+<div style="height:60px;"></div>
+</body>
+</html>

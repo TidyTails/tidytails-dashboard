@@ -1,20 +1,21 @@
 # 📋 Tidy Tails Task Board
 
-*Last updated: 2026-03-26 08:00 CST — Franklin*
+*Last updated: 2026-04-01 08:00 CST — Franklin*
 
 ---
 
 ## 🐕 DOG WASTE (Tidy Tails)
 
 ### Current State
-- **Customers:** 10 recurring ✅ (TJ confirmed Mar 26)
-- **Revenue:** ~$850-900/month estimated
+- **Customers:** 11 recurring ✅ (TJ confirmed Mar 29 — up from 10!)
+- **Revenue:** ~$900-950/month estimated
 - **Goal:** 25-30 recurring (original Aug 2025, now targeting 20 by June 2026)
 - **GBP:** Near-complete ✅ (Mar 25) — TJ confirmed
 - **Google Reviews:** 6 at 5.0★ — Map Pack eligible ✅
 - **Google Indexed:** ✅ (since Mar 18)
-- **Website:** 22 city pages + 11 blog posts live, SSL valid until May 17
-- **Competitors:** Only 3 active local competitors remain (market collapse)
+- **Website:** 25+ city pages + 18 blog posts live, SSL valid until May 17
+- **Competitors:** Only 3-4 active local competitors remain (market collapse)
+- **Monday Mar 30:** North County week begins — zero competitors in Florissant/Hazelwood/Ferguson
 
 ### 🔥 #1 Priority: GET MORE CUSTOMERS
 Everything else is noise until customer count moves.
@@ -38,15 +39,15 @@ Everything else is noise until customer count moves.
 - [x] 4 county SEO blog posts deployed live (N/S/W/Central — Mar 28)
 - [x] 18 blog posts total indexed
 
-### 📝 TJ/Jamie Action Items (ranked by ROI)
-1. **🔥🔥 SATURDAY MAR 28: Crestwood Vet Paw-ty** — Print materials, bring lead tracker, follow up aggressively
-2. **🔥 Post in 2-3 FB groups this week** — Fresh posts ready: `ready-to-post/spring-2026-week-of-mar26.md` (5 min each)
-3. **🔥 Post on Nextdoor** — TJ already posting ✅ — keep consistent cadence
-4. **Submit to 5 directories** (45 min) — Bing Places, Apple Business Connect, MapQuest, Petworks, BringFido
-5. **Get 2 more Google reviews** (5 min) — Goal: 8+ reviews. Scripts ready.
-6. **Launch $7/day Facebook Ads** — Foundation is now ready (GBP done, reviews done, site indexed)
-7. **Make 3 commercial calls** — Jamie's Hot 10 playbook ready
-8. **Start referral asks** — Referral engine dashboard ready, 10 customers to ask
+### 📝 TJ/Jamie Action Items — Week of Apr 1 (ranked by ROI)
+1. **🔥🔥 APRIL FOOLS POST — POST NOW** — IG + Facebook already written. `dashboard/april1-fire-now.html` has everything. 5 min, algorithm loves humor content.
+2. **🐣 EASTER REFERRAL TEXTS — TODAY** — Text all 11 customers asking for referrals before Easter. Scripts ready. `dashboard/easter-deep-clean-blitz.html`. 10 min.
+3. **🚨 TARIFF LAST DAY — SHED EMAILS** — April 2 lumber tariffs = once-a-year urgency. Email church + school leads TODAY. `dashboard/shed-tariff-dday-emails.html`. All written.
+4. **📋 Nextdoor post** — Spring reminder, already written. `ready-to-post/tidy-tails-mar31-apr6/mon-nextdoor-spring-reminder.txt` — 3 min copy-paste.
+5. **Submit to 5 directories** (45 min) — Bing Places, Apple Business Connect, MapQuest, Petworks, BringFido. Still zero beyond GBP/Yelp.
+6. **Get 2 more Google reviews** (5 min) — Goal: 8+. Scripts ready. Ask your best 3 existing customers.
+7. **Make 3 commercial calls** — Vet Blitz Kit ready. 85 leads, minimal outreach yet.
+8. **Easter daily posts through Sunday** — 1 post/day on FB + IG. All written in `dashboard/easter-deep-clean-blitz.html`.
 
 ### ✅ Website Issues (ALL RESOLVED)
 - ~~5 city pages generic titles~~ → FIXED ✅ (deployed Mar 26, GSC indexing requested)

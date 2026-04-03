@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Daily Ops Hub — Tidy Tails</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0a;--bg2:#141414;--bg3:#1c1c1c;--bg4:#242424;
+  --text:#f5f5f5;--text2:#888;--text3:#444;
+  --green:#10b981;--orange:#f97316;--blue:#3b82f6;
+  --yellow:#fbbf24;--red:#ef4444;--purple:#8b5cf6;
+  --teal:#14b8a6;--pink:#ec4899;
+  --border:#222;--r:10px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:5rem;}
+
+/* HEADER */
+.header{background:var(--bg2);border-bottom:1px solid var(--border);padding:1rem 1.25rem;position:sticky;top:0;z-index:200;}
+.header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:0.75rem;flex-wrap:wrap;}
+.header-left h1{font-size:1.1rem;font-weight:800;letter-spacing:-0.5px;}
+.header-left h1 span{color:var(--green);}
+.header-left .sub{font-size:0.7rem;color:var(--text2);margin-top:2px;}
+.header-right{display:flex;align-items:center;gap:0.5rem;}
+.goal-badge{background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.3);color:var(--green);font-size:0.75rem;font-weight:700;padding:0.4rem 0.8rem;border-radius:20px;display:flex;align-items:center;gap:0.4rem;}
+.goal-num{font-family:'JetBrains Mono',monospace;font-size:1rem;font-weight:900;}
+
+/* MAIN GRID */
+.container{max-width:900px;margin:0 auto;padding:1.25rem;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:640px){.grid-2{grid-template-columns:1fr;}}
+
+/* CARDS */
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.25rem;}
+.card-title{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--text2);margin-bottom:0.75rem;display:flex;align-items:center;gap:0.4rem;}
+.card-title .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.dot-green{background:var(--green);}
+.dot-orange{background:var(--orange);}
+.dot-blue{background:var(--blue);}
+.dot-yellow{background:var(--yellow);}
+.dot-red{background:var(--red);}
+.dot-purple{background:var(--purple);}
+
+/* MISSION CLOCK */
+.mission-bar{background:linear-gradient(135deg,rgba(16,185,129,0.15),rgba(59,130,246,0.1));border:1px solid rgba(16,185,129,0.25);border-radius:var(--r);padding:1rem 1.25rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;gap:0.75rem;flex-wrap:wrap;}
+.mission-text{font-size:1.15rem;font-weight:800;letter-spacing:-0.3px;}
+.mission-meta{font-size:0.7rem;color:var(--text2);margin-top:3px;}
+.mission-right{display:flex;flex-direction:column;align-items:flex-end;gap:0.25rem;}
+.countdown-label{font-size:0.65rem;color:var(--text2);text-transform:uppercase;letter-spacing:0.06em;}
+.countdown-val{font-family:'JetBrains Mono',monospace;font-size:1.05rem;font-weight:700;color:var(--yellow);}
+
+/* TODAY'S ACTIONS */
+.actions-list{display:flex;flex-direction:column;gap:0.5rem;}
+.action-item{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.85rem 1rem;cursor:pointer;transition:all 0.2s;display:flex;align-items:flex-start;gap:0.75rem;text-decoration:none;color:inherit;}
+.action-item:hover{border-color:var(--green);background:rgba(16,185,129,0.05);transform:translateX(2px);}
+.action-item.done{opacity:0.4;text-decoration:line-through;}
+.action-check{width:18px;height:18px;border-radius:4px;border:2px solid var(--border);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:0.6rem;transition:all 0.15s;}
+.action-check.checked{background:var(--green);border-color:var(--green);color:#000;}
+.action-body{}
+.action-title{font-size:0.875rem;font-weight:700;line-height:1.3;}
+.action-sub{font-size:0.7rem;color:var(--text2);margin-top:2px;}
+.action-tag{display:inline-flex;align-items:center;gap:3px;font-size:0.6rem;font-weight:700;padding:2px 6px;border-radius:4px;margin-top:4px;text-transform:uppercase;letter-spacing:0.05em;}
+.tag-fire{background:rgba(239,68,68,0.15);color:var(--red);}
+.tag-today{background:rgba(251,191,36,0.15);color:var(--yellow);}
+.tag-week{background:rgba(59,130,246,0.12);color:var(--blue);}
+.tag-rev{background:rgba(16,185,129,0.12);color:var(--green);}
+
+/* PIPELINE */
+.pipeline{display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;margin-bottom:0.75rem;}
+.pipe-col{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.75rem;text-align:center;}
+.pipe-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.07em;color:var(--text2);font-weight:600;margin-bottom:0.35rem;}
+.pipe-num{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:900;}
+.pipe-val{font-size:0.65rem;color:var(--text2);}
+.pipe-new .pipe-num{color:var(--blue);}
+.pipe-hot .pipe-num{color:var(--orange);}
+.pipe-warm .pipe-num{color:var(--yellow);}
+.pipe-won .pipe-num{color:var(--green);}
+
+/* LEAD CAPTURE */
+.lead-form{display:flex;flex-direction:column;gap:0.5rem;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;}
+@media(max-width:480px){.form-row{grid-template-columns:1fr;}}
+.form-input{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.6rem 0.8rem;font-family:'Inter',sans-serif;font-size:0.8rem;color:var(--text);outline:none;transition:border-color 0.15s;width:100%;}
+.form-input:focus{border-color:var(--green);}
+.form-input::placeholder{color:var(--text3);}
+.form-select{appearance:none;background:var(--bg3) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 10px center;padding-right:2rem;}
+.btn{padding:0.65rem 1rem;border-radius:8px;font-family:'Inter',sans-serif;font-weight:700;font-size:0.8rem;cursor:pointer;border:none;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:0.4rem;}
+.btn-green{background:var(--green);color:#000;width:100%;}
+.btn-green:hover{filter:brightness(1.1);transform:translateY(-1px);}
+.btn-sm{padding:0.4rem 0.75rem;font-size:0.75rem;}
+.btn-ghost{background:transparent;color:var(--text2);border:1px solid var(--border);}
+.btn-ghost:hover{border-color:var(--text2);color:var(--text);}
+
+/* LEAD LIST */
+.lead-list{display:flex;flex-direction:column;gap:0.4rem;max-height:280px;overflow-y:auto;}
+.lead-row{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.65rem 0.85rem;display:flex;align-items:center;justify-content:space-between;gap:0.5rem;}
+.lead-row:hover{border-color:var(--border);background:var(--bg4);}
+.lead-info{}
+.lead-name{font-size:0.8rem;font-weight:700;}
+.lead-meta{font-size:0.65rem;color:var(--text2);margin-top:1px;}
+.lead-actions{display:flex;align-items:center;gap:0.4rem;flex-shrink:0;}
+.status-badge{font-size:0.6rem;font-weight:700;padding:2px 7px;border-radius:4px;text-transform:uppercase;cursor:pointer;border:none;font-family:'Inter',sans-serif;}
+.s-new{background:rgba(59,130,246,0.15);color:var(--blue);}
+.s-hot{background:rgba(249,115,22,0.15);color:var(--orange);}
+.s-warm{background:rgba(251,191,36,0.12);color:var(--yellow);}
+.s-won{background:rgba(16,185,129,0.15);color:var(--green);}
+.s-dead{background:rgba(100,100,100,0.15);color:var(--text2);}
+.del-btn{background:transparent;border:none;color:var(--text3);cursor:pointer;font-size:0.8rem;padding:2px 4px;transition:color 0.15s;}
+.del-btn:hover{color:var(--red);}
+
+/* TOOL LINKS */
+.tool-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0.4rem;}
+.tool-link{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:0.65rem 0.85rem;text-decoration:none;color:var(--text);font-size:0.78rem;font-weight:600;transition:all 0.15s;display:flex;align-items:center;gap:0.5rem;}
+.tool-link:hover{border-color:var(--green);color:var(--green);transform:translateX(2px);}
+.tool-link .icon{font-size:1rem;flex-shrink:0;}
+.tool-link .tlabel{line-height:1.2;}
+.tool-link .tdesc{font-size:0.62rem;color:var(--text2);font-weight:400;margin-top:1px;}
+.tool-hot{border-color:rgba(249,115,22,0.4);}
+.tool-hot:hover{border-color:var(--orange);color:var(--orange);}
+
+/* CAMPAIGN STATUS */
+.camp-list{display:flex;flex-direction:column;gap:0.4rem;}
+.camp-row{display:flex;align-items:center;justify-content:space-between;gap:0.5rem;padding:0.6rem 0.75rem;background:var(--bg3);border:1px solid var(--border);border-radius:8px;}
+.camp-name{font-size:0.8rem;font-weight:600;flex:1;}
+.camp-meta{font-size:0.65rem;color:var(--text2);margin-top:1px;}
+.camp-status{font-size:0.62rem;font-weight:700;padding:2px 8px;border-radius:4px;text-transform:uppercase;flex-shrink:0;}
+.cs-live{background:rgba(16,185,129,0.15);color:var(--green);}
+.cs-today{background:rgba(249,115,22,0.15);color:var(--orange);}
+.cs-prep{background:rgba(59,130,246,0.12);color:var(--blue);}
+.cs-watch{background:rgba(251,191,36,0.12);color:var(--yellow);}
+
+/* MRR BAR */
+.mrr-section{margin-bottom:0.75rem;}
+.mrr-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:0.4rem;}
+.mrr-label{font-size:0.7rem;color:var(--text2);}
+.mrr-val{font-family:'JetBrains Mono',monospace;font-size:1.1rem;font-weight:800;color:var(--green);}
+.mrr-bar{width:100%;height:6px;background:var(--bg4);border-radius:3px;overflow:hidden;}
+.mrr-fill{height:100%;background:linear-gradient(90deg,var(--green),#34d399);border-radius:3px;transition:width 0.6s ease;}
+.mrr-goal-text{font-size:0.62rem;color:var(--text2);text-align:right;margin-top:3px;}
+
+/* EMPTY STATE */
+.empty-state{text-align:center;padding:1.5rem;color:var(--text2);font-size:0.8rem;}
+.empty-icon{font-size:1.75rem;margin-bottom:0.4rem;}
+
+/* TOAST */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%);background:var(--green);color:#000;padding:0.6rem 1.2rem;border-radius:8px;font-size:0.8rem;font-weight:700;opacity:0;transition:opacity 0.25s;z-index:999;pointer-events:none;}
+.toast.show{opacity:1;}
+
+/* SECTION DIVIDER */
+.section-gap{margin-bottom:1rem;}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <div class="header-left">
+      <h1>🐕 <span>Tidy Tails</span> Daily Ops</h1>
+      <div class="sub" id="date-line">Loading...</div>
+    </div>
+    <div class="header-right">
+      <div class="goal-badge">
+        <span id="cust-count" class="goal-num">11</span>
+        <span style="color:var(--text2)">/</span>
+        <span>25</span>
+        <span style="font-size:0.65rem;color:var(--text2)">goal</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- MISSION BAR -->
+  <div class="mission-bar">
+    <div>
+      <div class="mission-text" id="mission-title">⚡ Today's Mission</div>
+      <div class="mission-meta" id="mission-meta">Loading...</div>
+    </div>
+    <div class="mission-right">
+      <div class="countdown-label" id="countdown-label">Easter in</div>
+      <div class="countdown-val" id="countdown-val">--d --h --m</div>
+    </div>
+  </div>
+
+  <!-- MRR PROGRESS -->
+  <div class="card section-gap">
+    <div class="card-title"><span class="dot dot-green"></span>Revenue Progress</div>
+    <div class="mrr-section">
+      <div class="mrr-row">
+        <div class="mrr-label">Current MRR <span style="cursor:pointer;color:var(--text3);" onclick="editMRR()" title="tap to update">✏️</span></div>
+        <div class="mrr-val" id="mrr-display">$770/mo</div>
+      </div>
+      <div class="mrr-bar"><div class="mrr-fill" id="mrr-bar" style="width:0%"></div></div>
+      <div class="mrr-goal-text" id="mrr-goal-text">$770 of $1,750 goal (11 → 25 customers)</div>
+    </div>
+    <div class="pipeline">
+      <div class="pipe-col pipe-new">
+        <div class="pipe-label">New Leads</div>
+        <div class="pipe-num" id="stat-new">0</div>
+        <div class="pipe-val">this week</div>
+      </div>
+      <div class="pipe-col pipe-hot">
+        <div class="pipe-label">Hot</div>
+        <div class="pipe-num" id="stat-hot">0</div>
+        <div class="pipe-val">replies needed</div>
+      </div>
+      <div class="pipe-col pipe-warm">
+        <div class="pipe-label">Warm</div>
+        <div class="pipe-num" id="stat-warm">0</div>
+        <div class="pipe-val">follow up</div>
+      </div>
+      <div class="pipe-col pipe-won">
+        <div class="pipe-label">Won</div>
+        <div class="pipe-num" id="stat-won">0</div>
+        <div class="pipe-val">this month</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TODAY'S ACTIONS + CAMPAIGNS -->
+  <div class="grid-2 section-gap">
+
+    <!-- TODAY'S ACTIONS -->
+    <div class="card">
+      <div class="card-title"><span class="dot dot-orange"></span>Today's Top Actions</div>
+      <div class="actions-list" id="actions-list">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- CAMPAIGN STATUS -->
+    <div class="card">
+      <div class="card-title"><span class="dot dot-blue"></span>Active Campaigns</div>
+      <div class="camp-list">
+        <div class="camp-row">
+          <div>
+            <div class="camp-name">🐣 Easter Sprint</div>
+            <div class="camp-meta">Apr 1–5 · Close window</div>
+          </div>
+          <div class="camp-status cs-today">🔥 NOW</div>
+        </div>
+        <div class="camp-row">
+          <div>
+            <div class="camp-name">📣 North County Week 1</div>
+            <div class="camp-meta">NC-3 today (Bridgeton)</div>
+          </div>
+          <div class="camp-status cs-live">Live</div>
+        </div>
+        <div class="camp-row">
+          <div>
+            <div class="camp-name">📱 Facebook Ads</div>
+            <div class="camp-meta">Day 3 · Learning phase</div>
+          </div>
+          <div class="camp-status cs-watch">Watch</div>
+        </div>
+        <div class="camp-row">
+          <div>
+            <div class="camp-name">🌍 S/W/C FB Expansion</div>
+            <div class="camp-meta">24 groups · Week 1</div>
+          </div>
+          <div class="camp-status cs-live">Live</div>
+        </div>
+        <div class="camp-row">
+          <div>
+            <div class="camp-name">🏆 Google LSA</div>
+            <div class="camp-meta">Application pending</div>
+          </div>
+          <div class="camp-status cs-prep">Pending</div>
+        </div>
+        <div class="camp-row">
+          <div>
+            <div class="camp-name">📞 Commercial Calls</div>
+            <div class="camp-meta">18 leads · Call 2-5 PM</div>
+          </div>
+          <div class="camp-status cs-today">Today</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LEAD CAPTURE + LIST -->
+  <div class="grid-2 section-gap">
+
+    <!-- QUICK ADD LEAD -->
+    <div class="card">
+      <div class="card-title"><span class="dot dot-yellow"></span>Log a New Lead</div>
+      <div class="lead-form">
+        <div class="form-row">
+          <input class="form-input" id="f-name" placeholder="Name or handle" autocomplete="off">
+          <input class="form-input" id="f-phone" placeholder="Phone / @username" autocomplete="off">
+        </div>
+        <div class="form-row">
+          <select class="form-input form-select" id="f-source">
+            <option value="">Source...</option>
+            <option>Facebook Group</option>
+            <option>Nextdoor</option>
+            <option>FB Ad (form fill)</option>
+            <option>Text / Direct</option>
+            <option>Referral</option>
+            <option>GBP / Google</option>
+            <option>Marketplace</option>
+            <option>Vet Clinic</option>
+            <option>Door Hanger</option>
+            <option>Paw-ty / Event</option>
+            <option>Other</option>
+          </select>
+          <select class="form-input form-select" id="f-heat">
+            <option value="new">🆕 New</option>
+            <option value="hot">🔥 Hot (said yes)</option>
+            <option value="warm">🌡️ Warm (interested)</option>
+          </select>
+        </div>
+        <input class="form-input" id="f-notes" placeholder="Notes (dogs, area, what they said)" autocomplete="off">
+        <button class="btn btn-green" onclick="addLead()">+ Add Lead</button>
+      </div>
+    </div>
+
+    <!-- LEAD LIST -->
+    <div class="card">
+      <div class="card-title" style="justify-content:space-between;">
+        <span><span class="dot dot-yellow"></span>Lead Pipeline</span>
+        <button class="btn btn-sm btn-ghost" onclick="clearWon()">Archive Won</button>
+      </div>
+      <div class="lead-list" id="lead-list">
+        <div class="empty-state">
+          <div class="empty-icon">📋</div>
+          <div>No leads yet.<br>Add your first one above.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TOOL SHORTCUTS -->
+  <div class="card section-gap">
+    <div class="card-title"><span class="dot dot-purple"></span>Jump to Tool</div>
+    <div class="tool-grid">
+      <a href="easter-weekend-closer.html" class="tool-link tool-hot">
+        <span class="icon">🐣</span>
+        <div class="tlabel">Easter Closer<div class="tdesc">Apr 2–5 close scripts</div></div>
+      </a>
+      <a href="north-county-launch-command.html" class="tool-link tool-hot">
+        <span class="icon">📣</span>
+        <div class="tlabel">NC Week 1 Posts<div class="tdesc">NC-3 today (Bridgeton)</div></div>
+      </a>
+      <a href="commercial-calling-hub.html" class="tool-link">
+        <span class="icon">📞</span>
+        <div class="tlabel">Commercial Hub<div class="tdesc">18 leads · scripts</div></div>
+      </a>
+      <a href="south-west-central-fb-expansion.html" class="tool-link">
+        <span class="icon">🌍</span>
+        <div class="tlabel">S/W/C FB Expansion<div class="tdesc">24 groups · 18 posts</div></div>
+      </a>
+      <a href="april1-referral-surge.html" class="tool-link">
+        <span class="icon">🎯</span>
+        <div class="tlabel">Referral Surge<div class="tdesc">Text all 11 customers</div></div>
+      </a>
+      <a href="google-lsa-launch-kit.html" class="tool-link">
+        <span class="icon">🏆</span>
+        <div class="tlabel">Google LSA Kit<div class="tdesc">Apply · 15 min</div></div>
+      </a>
+      <a href="gbp-spring-domination-kit.html" class="tool-link">
+        <span class="icon">🗺️</span>
+        <div class="tlabel">GBP Domination<div class="tdesc">Post · Q&A · Reviews</div></div>
+      </a>
+      <a href="fb-ads-week2-refresh.html" class="tool-link">
+        <span class="icon">📈</span>
+        <div class="tlabel">FB Ads Week 2<div class="tdesc">Day 7 decisions</div></div>
+      </a>
+      <a href="tidy-tails-crm.html" class="tool-link">
+        <span class="icon">📋</span>
+        <div class="tlabel">Full CRM<div class="tdesc">All customers + history</div></div>
+      </a>
+      <a href="april-master-calendar.html" class="tool-link">
+        <span class="icon">🗓️</span>
+        <div class="tlabel">April Master Calendar<div class="tdesc">All campaigns unified</div></div>
+      </a>
+      <a href="dog-business-partner-kit.html" class="tool-link">
+        <span class="icon">🐾</span>
+        <div class="tlabel">Dog Biz Partners<div class="tdesc">Daycares · groomers</div></div>
+      </a>
+      <a href="index.html" class="tool-link">
+        <span class="icon">🏠</span>
+        <div class="tlabel">Full Dashboard<div class="tdesc">All tools</div></div>
+      </a>
+    </div>
+  </div>
+
+  <!-- QUICK SETTINGS ROW -->
+  <div class="card">
+    <div class="card-title"><span class="dot dot-green"></span>Update Your Numbers</div>
+    <div style="display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center;">
+      <div style="display:flex;align-items:center;gap:0.4rem;">
+        <span style="font-size:0.75rem;color:var(--text2);">Customers:</span>
+        <input class="form-input" id="s-customers" style="width:60px;text-align:center;padding:0.4rem;" type="number" min="0" max="100" value="11" onchange="saveSettings()">
+      </div>
+      <div style="display:flex;align-items:center;gap:0.4rem;">
+        <span style="font-size:0.75rem;color:var(--text2);">MRR $:</span>
+        <input class="form-input" id="s-mrr" style="width:80px;text-align:center;padding:0.4rem;" type="number" min="0" value="770" onchange="saveSettings()">
+      </div>
+      <div style="display:flex;align-items:center;gap:0.4rem;">
+        <span style="font-size:0.75rem;color:var(--text2);">Reviews:</span>
+        <input class="form-input" id="s-reviews" style="width:60px;text-align:center;padding:0.4rem;" type="number" min="0" value="6" onchange="saveSettings()">
+      </div>
+      <button class="btn btn-sm btn-green" style="width:auto;" onclick="saveSettings();showToast('✅ Updated!')">Save</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ========================
+// CONSTANTS & INIT
+// ========================
+const EASTER = new Date('2026-04-05T10:00:00');
+const GOAL_CUSTOMERS = 25;
+const GOAL_MRR = 1750;
+const STATUS_ORDER = ['new','hot','warm','won','dead'];
+
+let state = JSON.parse(localStorage.getItem('doh_state') || '{}');
+state.leads = state.leads || [];
+state.actions = state.actions || {};
+state.customers = state.customers || 11;
+state.mrr = state.mrr || 770;
+state.reviews = state.reviews || 6;
+
+// ========================
+// DATE & MISSION
+// ========================
+function initDate(){
+  const now = new Date();
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('date-line').textContent = 
+    `${days[now.getDay()]}, ${months[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()} · ${formatTime(now)}`;
+}
+
+function formatTime(d){
+  let h = d.getHours(), m = d.getMinutes();
+  const ampm = h >= 12 ? 'PM' : 'AM';
+  h = h % 12 || 12;
+  return `${h}:${m.toString().padStart(2,'0')} ${ampm}`;
+}
+
+function initCountdown(){
+  function tick(){
+    const now = new Date();
+    const diff = EASTER - now;
+    if(diff <= 0){
+      document.getElementById('countdown-label').textContent = '🐣 Easter!';
+      document.getElementById('countdown-val').textContent = 'GO TIME';
+      return;
+    }
+    const d = Math.floor(diff/86400000);
+    const h = Math.floor((diff%86400000)/3600000);
+    const m = Math.floor((diff%3600000)/60000);
+    document.getElementById('countdown-val').textContent = `${d}d ${h}h ${m}m`;
+  }
+  tick();
+  setInterval(tick, 30000);
+}
+
+function initMission(){
+  const now = new Date();
+  const hour = now.getHours();
+  const day = now.getDay(); // 0=Sun, 3=Wed
+  
+  let title, meta;
+  
+  // Easter week (Apr 1-5, 2026)
+  if(now >= new Date('2026-04-01') && now < new Date('2026-04-06')){
+    const daysLeft = Math.ceil((EASTER - now) / 86400000);
+    if(daysLeft <= 0){
+      title = '🐣 Easter is HERE — Victory Lap Mode';
+      meta = 'Post win recap · Convert same-day cleanups → monthly · Ask for Google reviews';
+    } else if(hour < 10){
+      title = `🐣 Easter in ${daysLeft}d — Morning Launch`;
+      meta = 'Log any overnight leads · Post NC-3 Bridgeton · Fire referral texts before 9 AM';
+    } else if(hour < 14){
+      title = `🐣 ${daysLeft} Days to Easter — Peak Calling Window`;
+      meta = 'Commercial calls 10 AM–2 PM · Reply to every comment within 5 min · Close the warm leads';
+    } else {
+      title = `🐣 ${daysLeft} Days to Easter — Afternoon Push`;
+      meta = 'Shed Marketplace listing · Follow up on morning leads · Check FB Ads (Day 3)';
+    }
+  } else if(hour < 9){
+    title = '☀️ Morning Action Window';
+    meta = 'Send referral texts before 9 AM · Post NC content · Prep the day';
+  } else if(hour < 14){
+    title = '📞 Peak Calling Hours — 9 AM–2 PM';
+    meta = 'Commercial property managers are at their desks RIGHT NOW';
+  } else if(hour < 18){
+    title = '💬 Afternoon Close Window';
+    meta = 'Reply to all leads from today · Post evening content · Shed Marketplace refresh';
+  } else {
+    title = '🌙 Evening Wind-Down';
+    meta = 'Log the day · Plan tomorrow · Queue morning texts';
+  }
+  
+  document.getElementById('mission-title').textContent = title;
+  document.getElementById('mission-meta').textContent = meta;
+}
+
+// ========================
+// TODAY'S ACTIONS (Dynamic)
+// ========================
+const ACTION_SETS = {
+  // Keyed by day string YYYY-MM-DD, fallback 'default'
+  '2026-04-01': [
+    {id:'a1',title:'🚀 Post NC-3 Bridgeton on Facebook groups',sub:'Orphaned customer hook · 63044 · "Did your poop scoop service disappear?"',tag:'fire',link:'north-county-launch-command.html'},
+    {id:'a2',title:'🎯 Send April 1 referral texts to all 11 customers',sub:'April Fools hook · "Not a joke 😂" · Easter urgency',tag:'fire',link:'april1-referral-surge.html'},
+    {id:'a3',title:'🏆 Apply for Google LSA (15 min)',sub:'Live by Easter weekend · Google Guaranteed badge · #1 above all ads',tag:'fire',link:'google-lsa-launch-kit.html'},
+    {id:'a4',title:'📞 Make top 5 commercial calls (10 AM–2 PM)',sub:'Willowbend · The Finn · Village Square · ReNew Chesterfield · NRE Portfolio',tag:'today',link:'commercial-calling-hub.html'},
+    {id:'a5',title:'🗺️ Post Easter GBP update',sub:'Google Business Profile · "Easter egg hunt this Sunday?" · Max Map Pack signal',tag:'today',link:'gbp-spring-domination-kit.html'},
+  ],
+  '2026-04-02': [
+    {id:'b1',title:'🐣 Easter close: follow up on ALL Apr 1 leads',sub:'2-hr window for yesterday\'s inquiries · Scripts in Easter Closer Kit',tag:'fire',link:'easter-weekend-closer.html'},
+    {id:'b2',title:'📣 Post SC-1 South County Spring Hook',sub:'Kirkwood + Webster Groves groups · "Your dog\'s work all winter..."',tag:'fire',link:'south-west-central-fb-expansion.html'},
+    {id:'b3',title:'🏠 Post Spring Project shed listing',sub:'Tariff chapter over · Spring season hook · New language',tag:'today',link:'shed-post-tariff-playbook.html'},
+    {id:'b4',title:'🤝 Send follow-up to interested commercial leads',sub:'2-hr proposal rule: any interest from yesterday → proposal email today',tag:'today',link:'commercial-close-onboarding-kit.html'},
+    {id:'b5',title:'📱 Check FB Ads Day 3 metrics',sub:'Impressions / CPM / any leads? · Healthy = 300+ impressions, <$3 CPM',tag:'week',link:'fb-ads-week2-refresh.html'},
+  ],
+  '2026-04-03': [
+    {id:'c1',title:'🐣 Easter Eve prep — post "Last 2 Days" urgency',sub:'ALL neighborhoods · Nextdoor + Facebook · Panic-booker hook',tag:'fire',link:'easter-weekend-closer.html'},
+    {id:'c2',title:'📣 Post NC-5 Bridgeton final orphaned customer',sub:'63044 last call · "Did your service disappear?" · Specific street areas',tag:'fire',link:'north-county-launch-command.html'},
+    {id:'c3',title:'🖨️ Print + drop Easter door hangers',sub:'Crestwood / Kirkwood / Florissant zones · 50 hangers targeted',tag:'today',link:'easter-physical-blitz.html'},
+    {id:'c4',title:'📞 Call mid-tier commercial leads',sub:'Hazelwood Forest · New Wellington · Park Forest · Sugar Pines · The Elle',tag:'today',link:'commercial-calling-hub.html'},
+    {id:'c5',title:'⭐ Ask Shannon, Amanda, Chastity for Google review',sub:'3 Florissant customers · Map Pack signal · "Would you mind leaving a quick review?"',tag:'week',link:'gbp-spring-domination-kit.html'},
+  ],
+  '2026-04-04': [
+    {id:'d1',title:'🐣 Good Friday — "Last Chance" Easter close',sub:'Personal DM to every undecided lead · Warm + hot pipeline · Close by Sat night',tag:'fire',link:'easter-weekend-closer.html'},
+    {id:'d2',title:'📱 Check FB Ads day 5 — first leads appearing?',sub:'Should see 1–3 form fills by now · CPL target <$40',tag:'today',link:'fb-ads-week2-refresh.html'},
+    {id:'d3',title:'🌍 Post WC-1 West County FB groups',sub:'Chesterfield + West County Dog Owners · Flat rate + big yards angle',tag:'today',link:'south-west-central-fb-expansion.html'},
+    {id:'d4',title:'🏠 Post she shed / pre-Mother\'s Day listing',sub:'Apr 7 start · "She got the dog. She also got the yard cleanup."',tag:'week',link:'shed-post-tariff-playbook.html'},
+    {id:'d5',title:'📋 Update customer count + MRR below',sub:'Keep the goal tracker accurate · Every won lead = update numbers',tag:'week',link:'#settings'},
+  ],
+  '2026-04-05': [
+    {id:'e1',title:'🐣 Easter Sunday — Execute same-day cleanups',sub:'Text "On My Way" + "All Done" + yard photo to every Easter customer',tag:'fire',link:'easter-weekend-closer.html'},
+    {id:'e2',title:'📸 Post victory Easter recap (9–11 AM)',sub:'Best timing for max reach · Before + after yard if possible',tag:'fire',link:'easter-weekend-closer.html'},
+    {id:'e3',title:'💬 One-time → monthly pivot text (this week)',sub:'Text every Easter one-time customer 3 days after their job',tag:'today',link:'new-customer-onboarding.html'},
+    {id:'e4',title:'⭐ Ask all Easter customers for Google review',sub:'Strike while satisfaction is peak · Direct review link',tag:'today',link:'gbp-spring-domination-kit.html'},
+    {id:'e5',title:'📊 Log Easter week results in War Room',sub:'Leads · converts · MRR delta · What worked / didn\'t',tag:'week',link:'april-war-room.html'},
+  ],
+};
+
+const DEFAULT_ACTIONS = [
+  {id:'z1',title:'📣 Post today\'s NC / S/W/C campaign content',sub:'Check April Master Calendar for today\'s specific post',tag:'fire',link:'april-master-calendar.html'},
+  {id:'z2',title:'📞 Commercial calls: 10 AM–2 PM window',sub:'Call the next 5 on the priority list',tag:'today',link:'commercial-calling-hub.html'},
+  {id:'z3',title:'💬 Reply to ALL open leads within 1 hour',sub:'New leads from yesterday that haven\'t been followed up',tag:'fire',link:'#leads'},
+  {id:'z4',title:'📱 Check FB Ads metrics',sub:'CPL · Leads · Spend · Frequency',tag:'week',link:'fb-ads-week2-refresh.html'},
+  {id:'z5',title:'⭐ Ask a customer for a Google review',sub:'Target: 6 → 10 reviews for Map Pack eligibility',tag:'week',link:'gbp-spring-domination-kit.html'},
+];
+
+function getTodayStr(){
+  const d = new Date();
+  return `${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')}`;
+}
+
+function renderActions(){
+  const today = getTodayStr();
+  const actions = ACTION_SETS[today] || DEFAULT_ACTIONS;
+  const doneSet = new Set(state.actions[today] || []);
+  
+  const list = document.getElementById('actions-list');
+  list.innerHTML = '';
+  
+  actions.forEach(a => {
+    const done = doneSet.has(a.id);
+    const tagClass = {fire:'tag-fire',today:'tag-today',week:'tag-week',rev:'tag-rev'}[a.tag]||'tag-week';
+    const tagText = {fire:'🔥 Do Now',today:'📅 Today',week:'📌 This Week',rev:'💰 Revenue'}[a.tag]||'📌 This Week';
+    
+    const item = document.createElement('div');
+    item.className = 'action-item' + (done?' done':'');
+    item.innerHTML = `
+      <div class="action-check ${done?'checked':''}" onclick="toggleAction('${today}','${a.id}',this)">${done?'✓':''}</div>
+      <div class="action-body">
+        <div class="action-title">${a.title}</div>
+        <div class="action-sub">${a.sub}</div>
+        <span class="action-tag ${tagClass}">${tagText}</span>
+      </div>
+    `;
+    if(a.link && a.link !== '#settings' && a.link !== '#leads'){
+      item.style.cursor = 'pointer';
+      item.addEventListener('click', function(e){
+        if(e.target.classList.contains('action-check')) return;
+        window.open(a.link, '_blank');
+      });
+    } else if(a.link === '#settings'){
+      item.addEventListener('click', function(e){
+        if(e.target.classList.contains('action-check')) return;
+        document.getElementById('s-customers').focus();
+        document.getElementById('s-customers').scrollIntoView({behavior:'smooth'});
+      });
+    }
+    list.appendChild(item);
+  });
+}
+
+function toggleAction(day, id, el){
+  state.actions[day] = state.actions[day] || [];
+  const set = new Set(state.actions[day]);
+  if(set.has(id)){set.delete(id);}else{set.add(id);}
+  state.actions[day] = [...set];
+  saveState();
+  renderActions();
+}
+
+// ========================
+// SETTINGS & MRR
+// ========================
+function loadSettings(){
+  document.getElementById('s-customers').value = state.customers;
+  document.getElementById('s-mrr').value = state.mrr;
+  document.getElementById('s-reviews').value = state.reviews;
+  updateMRRDisplay();
+  updateCustomerDisplay();
+}
+
+function saveSettings(){
+  state.customers = parseInt(document.getElementById('s-customers').value) || 0;
+  state.mrr = parseInt(document.getElementById('s-mrr').value) || 0;
+  state.reviews = parseInt(document.getElementById('s-reviews').value) || 0;
+  saveState();
+  updateMRRDisplay();
+  updateCustomerDisplay();
+}
+
+function updateMRRDisplay(){
+  const pct = Math.min((state.mrr / GOAL_MRR) * 100, 100);
+  document.getElementById('mrr-display').textContent = `$${state.mrr.toLocaleString()}/mo`;
+  document.getElementById('mrr-bar').style.width = pct + '%';
+  document.getElementById('mrr-goal-text').textContent = `$${state.mrr.toLocaleString()} of $${GOAL_MRR.toLocaleString()} goal (${state.customers} → ${GOAL_CUSTOMERS} customers)`;
+}
+
+function updateCustomerDisplay(){
+  document.getElementById('cust-count').textContent = state.customers;
+}
+
+function editMRR(){
+  document.getElementById('s-mrr').focus();
+  document.getElementById('s-mrr').scrollIntoView({behavior:'smooth'});
+}
+
+// ========================
+// LEADS
+// ========================
+function addLead(){
+  const name = document.getElementById('f-name').value.trim();
+  if(!name){showToast('Enter a name!');return;}
+  
+  const lead = {
+    id: Date.now(),
+    name,
+    phone: document.getElementById('f-phone').value.trim(),
+    source: document.getElementById('f-source').value || 'Unknown',
+    heat: document.getElementById('f-heat').value || 'new',
+    notes: document.getElementById('f-notes').value.trim(),
+    added: new Date().toLocaleDateString('en-US',{month:'short',day:'numeric'}),
+  };
+  
+  state.leads.unshift(lead);
+  saveState();
+  renderLeads();
+  updateStats();
+  
+  // Clear form
+  ['f-name','f-phone','f-notes'].forEach(id => document.getElementById(id).value='');
+  document.getElementById('f-heat').value = 'new';
+  document.getElementById('f-source').value = '';
+  
+  showToast('✅ Lead added!');
+}
+
+function cycleStatus(leadId){
+  const lead = state.leads.find(l => l.id === leadId);
+  if(!lead) return;
+  const idx = STATUS_ORDER.indexOf(lead.heat);
+  lead.heat = STATUS_ORDER[(idx + 1) % STATUS_ORDER.length];
+  saveState();
+  renderLeads();
+  updateStats();
+}
+
+function deleteLead(leadId){
+  state.leads = state.leads.filter(l => l.id !== leadId);
+  saveState();
+  renderLeads();
+  updateStats();
+}
+
+function clearWon(){
+  const count = state.leads.filter(l => l.heat === 'won').length;
+  if(!count){showToast('No won leads to archive');return;}
+  state.leads = state.leads.filter(l => l.heat !== 'won');
+  saveState();
+  renderLeads();
+  updateStats();
+  showToast(`Archived ${count} won leads`);
+}
+
+function renderLeads(){
+  const list = document.getElementById('lead-list');
+  if(!state.leads.length){
+    list.innerHTML = '<div class="empty-state"><div class="empty-icon">📋</div><div>No leads yet.<br>Add your first one above.</div></div>';
+    return;
+  }
+  
+  // Sort: hot > new > warm > won > dead
+  const order = {hot:0,new:1,warm:2,won:3,dead:4};
+  const sorted = [...state.leads].sort((a,b) => (order[a.heat]||1) - (order[b.heat]||1));
+  
+  list.innerHTML = sorted.map(l => {
+    const badgeClass = {new:'s-new',hot:'s-hot',warm:'s-warm',won:'s-won',dead:'s-dead'}[l.heat]||'s-new';
+    const badgeText = {new:'New',hot:'🔥 Hot',warm:'Warm',won:'✅ Won',dead:'Dead'}[l.heat]||'New';
+    return `
+      <div class="lead-row">
+        <div class="lead-info" style="flex:1;min-width:0;">
+          <div class="lead-name" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${l.name}</div>
+          <div class="lead-meta">${l.source} · ${l.added}${l.notes ? ' · '+l.notes.substring(0,30)+(l.notes.length>30?'...':'') : ''}</div>
+        </div>
+        <div class="lead-actions">
+          <button class="status-badge ${badgeClass}" onclick="cycleStatus(${l.id})">${badgeText}</button>
+          <button class="del-btn" onclick="deleteLead(${l.id})">✕</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function updateStats(){
+  const leads = state.leads;
+  const now = new Date();
+  const weekAgo = new Date(now - 7*24*60*60*1000);
+  const monthStart = new Date(now.getFullYear(), now.getMonth(), 1);
+  
+  document.getElementById('stat-new').textContent = leads.filter(l => new Date(l.id) > weekAgo && l.heat === 'new').length;
+  document.getElementById('stat-hot').textContent = leads.filter(l => l.heat === 'hot').length;
+  document.getElementById('stat-warm').textContent = leads.filter(l => l.heat === 'warm').length;
+  document.getElementById('stat-won').textContent = leads.filter(l => l.heat === 'won' && new Date(l.id) > monthStart).length;
+}
+
+// ========================
+// STATE & UTILS
+// ========================
+function saveState(){
+  localStorage.setItem('doh_state', JSON.stringify(state));
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ========================
+// INIT
+// ========================
+document.addEventListener('DOMContentLoaded', () => {
+  initDate();
+  initCountdown();
+  initMission();
+  loadSettings();
+  renderActions();
+  renderLeads();
+  updateStats();
+  
+  // Refresh time every minute
+  setInterval(initDate, 60000);
+  setInterval(initMission, 300000); // refresh mission every 5 min
+});
+</script>
+
+<div style="text-align:center;padding:1.5rem;color:#94a3b8;font-size:0.75rem;border-top:1px solid #1e293b;margin-top:2rem;">
+  Built by Franklin 🐕💩 &nbsp;·&nbsp;
+  📱 Tidy Tails: <a href="tel:3148507140" style="color:#4ade80;">(314) 850-7140</a> &nbsp;·&nbsp;
+  📞 Sheds: <a href="tel:6363547406" style="color:#fbbf24;">(636) 354-7406</a>
+</div>
+</body>
+</html>
