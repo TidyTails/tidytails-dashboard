@@ -4381,3 +4381,29 @@
   - **The Sentry Math:** Danette Dietz controls 32+ communities. 10 communities at $300/mo avg = $3,000/mo recurring · $36,000/yr · $72,000 over 24 months. From one phone call.
   - **Why this over other 11 AM tasks:** The HOA blog post was the 10 AM task — the first HOA-specific content in the entire library. The natural next step at 11 AM: build the commercial outreach tool that leverages that blog post as credibility. The blog post calls out Associa Smith and Sentry by name. An HOA community manager Googling Tidy Tails before returning a call now finds content specifically about HOA compliance — written for their audience. That loop is the conversion engine. Without the outreach kit, there's no mechanism to call the companies the blog post is designed to impress.
   - **Revenue potential:** $3,200/mo base case × 24 months = $76,800 LTV from two management company relationships. That's 90+ residential customers worth of revenue from 2 phone calls and a follow-up email.
+
+---
+
+### Friday 12:06 PM — Easter Monday Morning Briefing PDF (Hourly Task)
+- **12:06 PM** 🐣 Built and delivered the **Easter Monday / April 6 Morning Briefing** — the "first thing Monday morning" command document for the highest-ROI 7-day convert window of the spring
+  - **Files:** `dashboard/pdfs/MORNING_BRIEFING_2026-04-06.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-04-06.pdf` (1.25MB ✅)
+  - **Git commit:** `c9a1b6bf` ✅ pushed to tidytails-dashboard
+  - **Dashboard:** Updated quick link → pulsing pink (0.85s) "🐣 APR 6 EASTER MONDAY BRIEFING — CONVERT + SWAP ADS"
+  - **PDF validated:** 1,253,754 bytes ✅ (>50KB), starts `%PDF-` ✅, generated via browser PDF from localhost:55201
+  - **Why this task:** It's 12:06 PM Good Friday April 3 — Easter is Sunday April 5, two days away. All tools are maxed out (83 blog posts, all ad packs, all campaign kits, referral engine, conversion kit, etc.). The critical gap at noon Friday: when TJ wakes up Monday April 6 with Easter behind him and cleanup customers in hand, what does he do FIRST? Without a synthesis document, he opens 8 tools and loses the peak convert window. The Easter Monday briefing collapses everything into a 12-item ordered checklist for the highest-ROI morning of Q2.
+  - **What's in the briefing:**
+    - **CRITICAL ALERT BANNER:** Swap FB Ads from /spring → /mothers-day TODAY (the /spring Easter page expires April 6 — every click landing there after Easter is dead conversion)
+    - **Header:** "Easter Monday. Now Convert." — dual green/purple gradient, April 6 date, "34 Days to Mother's Day"
+    - **Stats bar:** 11 customers / $770 MRR / 83 posts / FB Ads: Swap to /mothers-day TODAY
+    - **Priority 1 (FIRST THING):** FB Ads URL Swap — 4-step walkthrough: Open Ads Manager → find website URL field → change from tidytailsstl.com/spring → tidytailsstl.com/mothers-day → save. Why it matters: /spring has Easter countdown timers and "Easter Sunday" copy — now 1 day ago. Kills conversion rate immediately. /mothers-day has 34-day countdown to May 10 + "She got the dog" gift buyer copy. Live and validated.
+    - **Priority 2 (PEAK WINDOW — TODAY):** Post-Easter conversion texts. Two scripts — Script A "Victory Text" for same-day (send by noon), Script B "Direct Monthly Close" for Wed Apr 8 if no reply. Bear/base/bull math: 1-5 converts at $840-$4,200 LTV at $0 CAC. Note to open Post-Easter Monthly Conversion Kit.
+    - **Priority 3 (9-11 AM):** Easter Victory Recap posts — full copy-paste script for all FB groups + Nextdoor + STL Buy/Sell/Trade. Short version included. Plus Google review ask scripts for Shannon/Amanda/Chastity.
+    - **Priority 4 (PREP TODAY):** NC Week 2 starts TOMORROW (April 7). Review schedule so you're ready: NC-W2-1 Social Proof Close (Mon Apr 7) → NC-W2-2 Jennings/Normandy (Tue Apr 8) → NC-W2-3 Berkeley (Wed Apr 9) → NC-W2-4 Earth Month EPA (Thu Apr 10). Callout: The Monday Social Proof Close is the highest-converting post in Week 2 — it closes fence-sitters who bookmarked Week 1 posts.
+    - **Priority 5 (APR 7-14):** Mother's Day ramp — organic layer starts this week. Apr 7: "She Got the Dog" Nextdoor seed. Apr 10-12: FB Page/Instagram lifestyle post. Apr 14: Husband Angle FB post (highest MD engagement post). Confirmation that the full Mother's Day funnel is complete: blog ✅ + landing page ✅ + ad pack ✅ + FB Ads swapped ✅ + Campaign Hub ✅.
+    - **Priority 6 (AFTERNOON):** Commercial calls restart — top 5 calls: Willowbend (Dejon, 636-200-6759) / The Finn (314-254-8989) / NRE Management (314-968-1863) / Bethesda Gardens Kirkwood (314-965-8100) / Dunn's Lawn Service (314-830-2862).
+    - **Win math:** Bear $1,680 / Base $4,620 / Bull $7,200 + $200/mo MRR / Mother's Day adds $2,520-$3,360 on top.
+    - **12-item master checklist:** AM (FB swap, Easter texts, victory recap, review asks, pause Easter Burst) + Afternoon (2 commercial calls, NC Week 2 review, Mother's Day prep, NRE call, confirm routes, log Easter leads)
+    - **Week of April 6-12 preview:** 6-card day-by-day grid showing what fires each day through Apr 14 GBP post
+    - **9-tool quick reference grid**
+    - **Mindset closer:** "Send the texts. Swap the ads. Start the week right."
+  - **Why this beats other 12 PM Friday tasks:** Every tool for every campaign is built. 83 posts live. All ad packs written. The gap at noon Friday is execution clarity for Monday morning — the day the post-Easter convert window opens and the Mother's Day campaign window begins simultaneously. The FB Ads URL swap specifically is a time-critical action that loses real money every hour it isn't done on Monday. Without this briefing, TJ opens Monday with a dead /spring destination eating $7/day in ad spend. With it, he opens the briefing, sees "FIRST THING" in red at the top, and swaps the URL before doing anything else.
