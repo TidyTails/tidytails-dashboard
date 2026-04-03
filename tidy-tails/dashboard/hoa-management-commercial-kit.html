@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏘️ HOA Management Commercial Kit — Tidy Tails</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; min-height: 100vh; }
+
+  .header { background: linear-gradient(135deg, #1e3a5f 0%, #0f2744 50%, #1a3a2a 100%); padding: 28px 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .header h1 { font-size: 1.6rem; font-weight: 800; color: #fff; }
+  .header p { color: #94a3b8; margin-top: 6px; font-size: 0.95rem; }
+
+  .blog-link { background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); border-radius: 8px; padding: 10px 16px; margin: 12px 24px 0; display: flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #86efac; }
+  .blog-link a { color: #4ade80; font-weight: 600; text-decoration: none; }
+
+  .stats-row { display: flex; gap: 12px; padding: 16px 24px; flex-wrap: wrap; }
+  .stat-chip { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 6px 14px; font-size: 0.8rem; color: #94a3b8; }
+  .stat-chip strong { color: #e2e8f0; }
+
+  .tab-nav { display: flex; gap: 4px; padding: 0 24px; flex-wrap: wrap; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .tab-btn { padding: 10px 16px; background: transparent; border: none; color: #64748b; cursor: pointer; font-size: 0.85rem; font-weight: 600; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .tab-btn.active { color: #4ade80; border-bottom-color: #4ade80; }
+  .tab-btn:hover { color: #e2e8f0; }
+
+  .tab-pane { display: none; padding: 24px; }
+  .tab-pane.active { display: block; }
+
+  .section-title { font-size: 1.1rem; font-weight: 700; color: #f1f5f9; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+
+  /* Lead Cards */
+  .lead-grid { display: flex; flex-direction: column; gap: 16px; }
+  .lead-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; overflow: hidden; }
+  .lead-card.priority-1 { border-left: 4px solid #ef4444; }
+  .lead-card.priority-2 { border-left: 4px solid #f97316; }
+  .lead-card.priority-3 { border-left: 4px solid #eab308; }
+
+  .lead-header { padding: 16px 18px 12px; cursor: pointer; display: flex; justify-content: space-between; align-items: flex-start; }
+  .lead-name { font-size: 1.05rem; font-weight: 700; color: #f1f5f9; }
+  .lead-subtitle { font-size: 0.8rem; color: #94a3b8; margin-top: 2px; }
+  .lead-badges { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+  .badge { padding: 2px 8px; border-radius: 10px; font-size: 0.72rem; font-weight: 700; }
+  .badge-red { background: rgba(239,68,68,0.2); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+  .badge-orange { background: rgba(249,115,22,0.2); color: #fdba74; border: 1px solid rgba(249,115,22,0.3); }
+  .badge-yellow { background: rgba(234,179,8,0.2); color: #fde047; border: 1px solid rgba(234,179,8,0.3); }
+  .badge-green { background: rgba(34,197,94,0.2); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+  .badge-blue { background: rgba(59,130,246,0.2); color: #93c5fd; border: 1px solid rgba(59,130,246,0.3); }
+
+  .lead-body { padding: 0 18px 16px; display: none; }
+  .lead-body.open { display: block; }
+
+  .contact-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+  .contact-chip { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 4px 12px; font-size: 0.78rem; color: #94a3b8; }
+  .contact-chip a { color: #60a5fa; text-decoration: none; }
+
+  .pitch-box { background: rgba(74,222,128,0.06); border: 1px solid rgba(74,222,128,0.2); border-radius: 8px; padding: 10px 14px; font-size: 0.82rem; color: #bbf7d0; margin-bottom: 10px; }
+  .pitch-box strong { color: #4ade80; display: block; font-size: 0.72rem; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .why-box { background: rgba(255,255,255,0.03); border-radius: 8px; padding: 10px 14px; font-size: 0.8rem; color: #94a3b8; margin-bottom: 10px; }
+  .why-box strong { color: #cbd5e1; display: block; font-size: 0.72rem; margin-bottom: 4px; }
+
+  .status-row { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .status-btn { padding: 4px 10px; border-radius: 6px; font-size: 0.72rem; font-weight: 700; border: none; cursor: pointer; transition: all 0.2s; }
+  .status-new { background: rgba(100,116,139,0.3); color: #94a3b8; }
+  .status-called { background: rgba(234,179,8,0.2); color: #fde047; }
+  .status-interested { background: rgba(59,130,246,0.2); color: #93c5fd; }
+  .status-partner { background: rgba(34,197,94,0.2); color: #86efac; }
+  .status-pass { background: rgba(239,68,68,0.2); color: #fca5a5; }
+
+  /* Scripts */
+  .script-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; margin-bottom: 14px; overflow: hidden; }
+  .script-header { padding: 12px 16px; background: rgba(255,255,255,0.04); cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .script-title { font-size: 0.9rem; font-weight: 700; color: #f1f5f9; }
+  .script-tag { font-size: 0.72rem; padding: 2px 8px; border-radius: 10px; }
+  .script-body { padding: 14px 16px; display: none; }
+  .script-body.open { display: block; }
+  .script-text { background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.06); border-radius: 8px; padding: 12px; font-size: 0.82rem; color: #cbd5e1; line-height: 1.65; font-family: monospace; white-space: pre-wrap; }
+  .copy-btn { margin-top: 8px; background: rgba(74,222,128,0.1); border: 1px solid rgba(74,222,128,0.3); color: #4ade80; padding: 6px 14px; border-radius: 6px; font-size: 0.78rem; cursor: pointer; transition: all 0.2s; }
+  .copy-btn:hover { background: rgba(74,222,128,0.2); }
+
+  /* Revenue */
+  .revenue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-bottom: 20px; }
+  .revenue-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px; }
+  .revenue-card h3 { font-size: 0.85rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .revenue-card .big-num { font-size: 2rem; font-weight: 800; color: #4ade80; }
+  .revenue-card .sub { font-size: 0.78rem; color: #64748b; margin-top: 4px; }
+
+  .math-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .math-table th { background: rgba(255,255,255,0.06); padding: 8px 12px; text-align: left; color: #94a3b8; font-weight: 600; }
+  .math-table td { padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); color: #cbd5e1; }
+  .math-table tr:last-child td { border-bottom: none; }
+  .math-table .highlight { color: #4ade80; font-weight: 700; }
+
+  /* Checklist */
+  .checklist-section { margin-bottom: 20px; }
+  .checklist-section h3 { font-size: 0.9rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .checklist-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  .checklist-item:last-child { border-bottom: none; }
+  .checklist-item input[type=checkbox] { width: 16px; height: 16px; margin-top: 2px; flex-shrink: 0; cursor: pointer; accent-color: #4ade80; }
+  .checklist-item label { font-size: 0.82rem; color: #94a3b8; cursor: pointer; line-height: 1.5; }
+  .checklist-item input:checked + label { color: #475569; text-decoration: line-through; }
+  .urgency-tag { font-size: 0.68rem; padding: 1px 6px; border-radius: 8px; font-weight: 700; margin-left: 6px; }
+  .urgent { background: rgba(239,68,68,0.2); color: #fca5a5; }
+  .today { background: rgba(234,179,8,0.2); color: #fde047; }
+  .week { background: rgba(59,130,246,0.2); color: #93c5fd; }
+
+  .progress-bar { background: rgba(255,255,255,0.06); border-radius: 10px; height: 8px; margin-bottom: 20px; overflow: hidden; }
+  .progress-fill { background: linear-gradient(90deg, #4ade80, #22c55e); height: 100%; border-radius: 10px; transition: width 0.3s; }
+  .progress-label { font-size: 0.78rem; color: #64748b; margin-bottom: 6px; display: flex; justify-content: space-between; }
+
+  /* Strategy */
+  .strategy-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 16px 18px; margin-bottom: 14px; }
+  .strategy-card h3 { font-size: 0.95rem; font-weight: 700; color: #f1f5f9; margin-bottom: 10px; }
+  .strategy-card p, .strategy-card li { font-size: 0.82rem; color: #94a3b8; line-height: 1.6; }
+  .strategy-card ul { padding-left: 18px; }
+  .strategy-card li { margin-bottom: 4px; }
+
+  .callout-box { border-radius: 10px; padding: 14px 16px; margin-bottom: 14px; font-size: 0.82rem; line-height: 1.6; }
+  .callout-green { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25); color: #bbf7d0; }
+  .callout-blue { background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.25); color: #bfdbfe; }
+  .callout-red { background: rgba(239,68,68,0.08); border: 1px solid rgba(239,68,68,0.25); color: #fecaca; }
+  .callout-yellow { background: rgba(234,179,8,0.08); border: 1px solid rgba(234,179,8,0.25); color: #fef08a; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 600px) { .two-col { grid-template-columns: 1fr; } }
+
+  .stat-bar { display: flex; gap: 12px; flex-wrap: wrap; background: rgba(255,255,255,0.04); border-radius: 10px; padding: 12px 16px; margin-bottom: 16px; }
+  .stat-item { font-size: 0.8rem; color: #64748b; }
+  .stat-item strong { color: #4ade80; font-size: 1rem; display: block; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🏘️ HOA Management Commercial Kit</h1>
+  <p>One relationship = dozens of HOA communities. The highest-LTV commercial channel in the entire pipeline.</p>
+</div>
+
+<div class="blog-link">
+  📰 NEW: HOA pet waste blog post live → 
+  <a href="https://tidytailsstl.com/blog/hoa-pet-waste-rules-st-louis" target="_blank">tidytailsstl.com/blog/hoa-pet-waste-rules-st-louis</a>
+  — Use this URL as your credibility link when calling.
+</div>
+
+<div class="stats-row">
+  <div class="stat-chip">🏘️ <strong>4 HOA Management Targets</strong></div>
+  <div class="stat-chip">🏢 <strong>100+ Communities Controlled</strong></div>
+  <div class="stat-chip">📞 <strong>All Phones Confirmed</strong></div>
+  <div class="stat-chip">💰 <strong>$300–$2,000+/mo per company</strong></div>
+  <div class="stat-chip">🔄 <strong>1 Call = Multiple Contracts</strong></div>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('leads')">🎯 Leads (4)</button>
+  <button class="tab-btn" onclick="switchTab('scripts')">📝 Scripts (8)</button>
+  <button class="tab-btn" onclick="switchTab('strategy')">🧠 Strategy</button>
+  <button class="tab-btn" onclick="switchTab('revenue')">💰 Revenue Math</button>
+  <button class="tab-btn" onclick="switchTab('checklist')">✅ Checklist</button>
+</div>
+
+<!-- LEADS TAB -->
+<div id="tab-leads" class="tab-pane active">
+  <div class="callout-green" style="margin-bottom:16px;">
+    <strong>🔑 The Multiplier Play:</strong> Each company controls MULTIPLE communities. Associa Smith = dozens of HOA communities in STL metro. One "yes" from their vendor services team = a pipeline of recurring contracts. This is the highest leverage-per-call ratio in the entire commercial pipeline.
+  </div>
+
+  <div class="lead-grid">
+
+    <!-- Lead 1: Associa Smith -->
+    <div class="lead-card priority-1">
+      <div class="lead-header" onclick="toggleLead('lead1')">
+        <div>
+          <div class="lead-name">🔴 Associa Smith Management Group</div>
+          <div class="lead-subtitle">HOA Management — STL Metro's Largest · Dozens of Communities</div>
+          <div class="lead-badges">
+            <span class="badge badge-red">PRIORITY 1</span>
+            <span class="badge badge-blue">HOA Management</span>
+            <span class="badge badge-green">Call First</span>
+          </div>
+        </div>
+        <span style="color:#64748b;font-size:1.2rem;" id="lead1-arrow">▼</span>
+      </div>
+      <div class="lead-body" id="lead1">
+        <div class="contact-row">
+          <div class="contact-chip">📞 <a href="tel:3143944200">(314) 394-4200</a></div>
+          <div class="contact-chip">📍 1630 Des Peres Rd, Suite 210, St. Louis, MO 63131</div>
+          <div class="contact-chip">🌐 <a href="https://smithmgmt.com" target="_blank">smithmgmt.com</a></div>
+          <div class="contact-chip">🗓️ Best: Tue–Thu, 9–11 AM</div>
+        </div>
+        <div class="pitch-box">
+          <strong>Your Pitch Angle</strong>
+          "Pet waste is the #1 complaint in HOA common areas. We handle it professionally on a weekly schedule — board gets clean common areas, residents stop complaining, you stop fielding calls about it. One vendor, one invoice, flat monthly rate. We already have an HOA-specific blog post at tidytailsstl.com/blog/hoa-pet-waste-rules-st-louis — your boards are searching this."
+        </div>
+        <div class="why-box">
+          <strong>Why Associa Smith is #1 Target</strong>
+          They are the LARGEST HOA management company in the STL metro. Part of the national Associa network (largest in North America). One relationship with their vendor services team could open access to dozens of HOA communities across STL County and St. Charles. Pet waste is universally the #1 HOA complaint — they field calls about it constantly. Ask for: <strong>"Vendor Services" or "Community Manager"</strong>
+        </div>
+        <div class="two-col">
+          <div class="strategy-card" style="margin-bottom:0;">
+            <h3>Service Angle A: Common Areas</h3>
+            <p>Dog parks, walking paths, pet relief stations — weekly cleanup on a flat monthly contract. The board presents it as a community amenity enhancement. $150–500/mo per community depending on acreage.</p>
+          </div>
+          <div class="strategy-card" style="margin-bottom:0;">
+            <h3>Service Angle B: Resident Program</h3>
+            <p>Preferred vendor arrangement — we offer residents a discounted rate ($60/mo vs $70 standard) and the HOA advertises it in their newsletter. Zero cost to HOA, huge goodwill win, referral pipeline for us.</p>
+          </div>
+        </div>
+        <div class="status-row">
+          <span style="font-size:0.75rem;color:#64748b;">Status:</span>
+          <button class="status-btn status-new" onclick="setStatus('s1','new',this)">New</button>
+          <button class="status-btn status-called" onclick="setStatus('s1','called',this)">Called</button>
+          <button class="status-btn status-interested" onclick="setStatus('s1','interested',this)">Interested</button>
+          <button class="status-btn status-partner" onclick="setStatus('s1','partner',this)">Partner ✅</button>
+          <button class="status-btn status-pass" onclick="setStatus('s1','pass',this)">Pass</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lead 2: Sentry Management -->
+    <div class="lead-card priority-1">
+      <div class="lead-header" onclick="toggleLead('lead2')">
+        <div>
+          <div class="lead-name">🔴 Sentry Management — St. Louis Office</div>
+          <div class="lead-subtitle">HOA Management — 32+ Communities · St. Louis + St. Charles County</div>
+          <div class="lead-badges">
+            <span class="badge badge-red">PRIORITY 1</span>
+            <span class="badge badge-blue">HOA Management</span>
+            <span class="badge badge-green">Danette Dietz — Division President</span>
+          </div>
+        </div>
+        <span style="color:#64748b;font-size:1.2rem;" id="lead2-arrow">▼</span>
+      </div>
+      <div class="lead-body" id="lead2">
+        <div class="contact-row">
+          <div class="contact-chip">📞 <a href="tel:3149947440">(314) 994-7440</a></div>
+          <div class="contact-chip">👤 Danette Dietz, Division President</div>
+          <div class="contact-chip">📍 9666 Olive Blvd, Ste 116, Saint Louis, MO 63132</div>
+          <div class="contact-chip">🌐 <a href="https://sentrymgt.com/offices/st-louis" target="_blank">sentrymgt.com</a></div>
+        </div>
+        <div class="pitch-box">
+          <strong>Your Pitch Angle — Name-Drop Danette</strong>
+          "Hi, may I speak with Danette Dietz? ... Danette, I'm Jamie with Tidy Tails — we're a local pet waste removal company serving St. Louis and St. Charles County. I know Sentry manages 32+ communities with pet policies, and pet waste in common areas is something I know you hear about constantly from boards. I'd love to put together a simple vendor proposal for your communities — could I email you something?"
+        </div>
+        <div class="why-box">
+          <strong>Why Sentry is #1 Priority (Tied with Associa)</strong>
+          We have a named contact: Danette Dietz, Division President. Their STL office recently ADDED 32 communities — fast growth = more problems to solve. They serve both STL County AND St. Charles County (O'Fallon, St. Peters, Wentzville) — exact same footprint as Tidy Tails. 32 communities × average $300/mo = $9,600/mo potential from one relationship.
+        </div>
+        <div class="strategy-card" style="margin-bottom:10px;">
+          <h3>The "32 Communities" Opener</h3>
+          <p>Reference the 32-community portfolio specifically. "I know you've recently expanded to 32 communities — that's a lot of pet waste complaints to manage. We can solve it for all of them with one vendor agreement." Shows you did your homework. Danette will respect that.</p>
+        </div>
+        <div class="status-row">
+          <span style="font-size:0.75rem;color:#64748b;">Status:</span>
+          <button class="status-btn status-new" onclick="setStatus('s2','new',this)">New</button>
+          <button class="status-btn status-called" onclick="setStatus('s2','called',this)">Called</button>
+          <button class="status-btn status-interested" onclick="setStatus('s2','interested',this)">Interested</button>
+          <button class="status-btn status-partner" onclick="setStatus('s2','partner',this)">Partner ✅</button>
+          <button class="status-btn status-pass" onclick="setStatus('s2','pass',this)">Pass</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lead 3: CPM Gateway -->
+    <div class="lead-card priority-2">
+      <div class="lead-header" onclick="toggleLead('lead3')">
+        <div>
+          <div class="lead-name">🟠 Community Property Management (CPM Gateway)</div>
+          <div class="lead-subtitle">HOA/Condo Management — 35+ Years · STL + St. Charles + Jefferson County</div>
+          <div class="lead-badges">
+            <span class="badge badge-orange">PRIORITY 2</span>
+            <span class="badge badge-blue">HOA Management</span>
+            <span class="badge badge-yellow">Manchester-Based</span>
+          </div>
+        </div>
+        <span style="color:#64748b;font-size:1.2rem;" id="lead3-arrow">▼</span>
+      </div>
+      <div class="lead-body" id="lead3">
+        <div class="contact-row">
+          <div class="contact-chip">📞 <a href="tel:6362278688">(636) 227-8688</a></div>
+          <div class="contact-chip">📍 242 Old Sulphur Spring Rd, Manchester, MO 63021</div>
+          <div class="contact-chip">🌐 <a href="https://cpmgateway.com" target="_blank">cpmgateway.com</a></div>
+        </div>
+        <div class="pitch-box">
+          <strong>Your Pitch Angle — 35-Year Trust Play</strong>
+          "Hi, I'm Jamie with Tidy Tails — we're a local pet waste removal company serving the entire St. Louis metro. I know CPM has been managing communities here for 35+ years, so you've seen how consistently pet waste complaints top HOA boards' lists. We offer professional common area cleanup on a weekly schedule — one vendor, flat monthly rate, no contracts. Could I send you a simple one-page proposal for a few of your communities?"
+        </div>
+        <div class="why-box">
+          <strong>Why CPM Gateway</strong>
+          35 years of managing STL-area HOAs = long-term relationships with boards = when they recommend a vendor, boards listen. Manchester-based = covers West County, South County, St. Charles, Jefferson County — full Tidy Tails service area. A trusted 35-year operator recommending us to their boards is worth 10 cold calls.
+        </div>
+        <div class="status-row">
+          <span style="font-size:0.75rem;color:#64748b;">Status:</span>
+          <button class="status-btn status-new" onclick="setStatus('s3','new',this)">New</button>
+          <button class="status-btn status-called" onclick="setStatus('s3','called',this)">Called</button>
+          <button class="status-btn status-interested" onclick="setStatus('s3','interested',this)">Interested</button>
+          <button class="status-btn status-partner" onclick="setStatus('s3','partner',this)">Partner ✅</button>
+          <button class="status-btn status-pass" onclick="setStatus('s3','pass',this)">Pass</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lead 4: TreeStone -->
+    <div class="lead-card priority-3">
+      <div class="lead-header" onclick="toggleLead('lead4')">
+        <div>
+          <div class="lead-name">🟡 TreeStone Properties — Boutique HOA Specialist</div>
+          <div class="lead-subtitle">Boutique HOA/Condo Management · Chesterfield-Based · Melanie (Owner Contact)</div>
+          <div class="lead-badges">
+            <span class="badge badge-yellow">PRIORITY 3</span>
+            <span class="badge badge-blue">Boutique HOA</span>
+            <span class="badge badge-green">Named Contact: Melanie</span>
+          </div>
+        </div>
+        <span style="color:#64748b;font-size:1.2rem;" id="lead4-arrow">▼</span>
+      </div>
+      <div class="lead-body" id="lead4">
+        <div class="contact-row">
+          <div class="contact-chip">📞 <a href="tel:6367339021">(636) 733-9021</a></div>
+          <div class="contact-chip">✉️ melanie@treestoneproperties.com</div>
+          <div class="contact-chip">📍 400 Chesterfield Center #400, Chesterfield, MO 63017</div>
+          <div class="contact-chip">🌐 <a href="https://treestoneproperties.com" target="_blank">treestoneproperties.com</a></div>
+        </div>
+        <div class="pitch-box">
+          <strong>Your Pitch Angle — Boutique-to-Boutique</strong>
+          "Hi Melanie, I'm Jamie with Tidy Tails — we're a small, local pet waste removal company here in St. Louis. I love that TreeStone is boutique and relationship-focused, same as us. For your HOA communities with pet-friendly policies, we offer professional weekly common area cleanup — one vendor, flat monthly rate, no hassle. As a fellow local small business, I'd love to put together something simple for a few of your communities."
+        </div>
+        <div class="why-box">
+          <strong>Why TreeStone</strong>
+          Boutique firm = faster yes/no (no corporate approval chains). Melanie is the owner/decision-maker — one call gets to the decision. Focus on "improving efficiency" for communities = pet waste solution fits perfectly. Chesterfield location = covers West County, St. Charles, the wealthiest Tidy Tails zip codes. Email Melanie directly if no answer — she responds to email.
+        </div>
+        <div class="status-row">
+          <span style="font-size:0.75rem;color:#64748b;">Status:</span>
+          <button class="status-btn status-new" onclick="setStatus('s4','new',this)">New</button>
+          <button class="status-btn status-called" onclick="setStatus('s4','called',this)">Called</button>
+          <button class="status-btn status-interested" onclick="setStatus('s4','interested',this)">Interested</button>
+          <button class="status-btn status-partner" onclick="setStatus('s4','partner',this)">Partner ✅</button>
+          <button class="status-btn status-pass" onclick="setStatus('s4','pass',this)">Pass</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SCRIPTS TAB -->
+<div id="tab-scripts" class="tab-pane">
+  <div class="callout-yellow" style="margin-bottom:16px;">
+    ⚡ <strong>Golden window:</strong> Best HOA management call time is <strong>Tue–Thu, 9–11 AM</strong>. Community managers are desk-based, mid-morning is their email/vendor window before afternoon site visits.
+  </div>
+
+  <!-- Script 1: Universal Opener -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('sc1')">
+      <div>
+        <div class="script-title">📞 Universal HOA Management Opener (Phone)</div>
+        <div style="font-size:0.75rem;color:#64748b;margin-top:2px;">Use for any management company — 30 seconds to get to the right person</div>
+      </div>
+      <span class="script-tag badge-green">FIRE FIRST</span>
+    </div>
+    <div class="script-body" id="sc1">
+      <div class="script-text">Hi, I'm looking for whoever handles vendor relationships or community amenity services. 
+
+My name is Jamie — I run Tidy Tails, a local pet waste removal company serving St. Louis and St. Charles County. 
+
+We're reaching out to HOA management companies because pet waste in common areas and walking paths is consistently one of the top board complaints — and we offer weekly professional cleanup at a flat monthly rate. 
+
+[IF TRANSFERRED OR CONNECTED:]
+
+Hi [Name], I'm Jamie with Tidy Tails. We handle pet waste removal for HOA communities — dog parks, walking paths, pet relief stations, common areas. Weekly service, flat monthly rate, one vendor relationship that covers all your pet-friendly communities. 
+
+I'd love to email you a one-page overview and rate sheet — takes about 2 minutes to read and there's no commitment. What's the best email for you?</div>
+      <button class="copy-btn" onclick="copyText('sc1-text')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- Script 2: Sentry / Named Contact -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('sc2')">
+      <div>
+        <div class="script-title">📞 Sentry Management — Danette Dietz (Named Contact)</div>
+        <div style="font-size:0.75rem;color:#64748b;margin-top:2px;">Lead with her name — the only HOA lead with a verified decision-maker</div>
+      </div>
+      <span class="script-tag badge-red">PRIORITY</span>
+    </div>
+    <div class="script-body" id="sc2">
+      <div class="script-text">Hi, may I speak with Danette Dietz?
+
+[IF CONNECTED:]
+
+Danette, hi — my name's Jamie, I run a local company called Tidy Tails. We handle professional pet waste removal for HOA communities here in St. Louis.
+
+I know Sentry has grown to 32+ communities and you serve both St. Louis and St. Charles County — which is exactly our service footprint. Pet waste in common areas is something HOA boards bring up constantly, and we've built a specific program for management companies.
+
+We do weekly common area cleanup — dog parks, walking paths, pet relief stations — on a flat monthly contract. One vendor relationship, one invoice, covers all your pet-friendly communities.
+
+I'd love to email you a one-page overview. Takes two minutes, no commitment. Can I grab your email?
+
+[AFTER EMAIL CONFIRMED:]
+
+Perfect. I'll send it over today. I'll also include a link to a blog post we just published specifically about HOA pet waste rules in St. Louis — your community managers might find it useful when boards ask about enforcement options.
+
+Thanks Danette — I'll follow up in a few days if I don't hear back.</div>
+      <button class="copy-btn" onclick="copyScript('sc2')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- Script 3: Email Template -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('sc3')">
+      <div>
+        <div class="script-title">✉️ Post-Call Email Proposal Template</div>
+        <div style="font-size:0.75rem;color:#64748b;margin-top:2px;">Send within 2 hours of positive phone call — same-day proposals close 3× faster</div>
+      </div>
+      <span class="script-tag badge-blue">EMAIL</span>
+    </div>
+    <div class="script-body" id="sc3">
+      <div class="script-text">Subject: Pet Waste Service for [Company Name] Communities — Tidy Tails
+
+Hi [Name],
+
+Great talking with you. As promised, here's a quick overview of what we offer HOA management companies.
+
+WHO WE ARE: Tidy Tails is a local, owner-operated pet waste removal company serving the St. Louis metro. We're not a franchise. Jamie (the owner) does the work and manages every account directly.
+
+WHAT WE DO FOR HOA COMMUNITIES:
+• Weekly cleanup of dog parks, walking paths, and pet relief station areas
+• Flat monthly rate per community — no per-visit billing, no surprises
+• Photo documentation available on request
+• "On My Way" and "All Done" notifications for community managers
+• No minimum contract length — month-to-month
+
+PRICING (General Range):
+• Small common area / single dog park: $150–200/month
+• Mid-size complex with multiple pet areas: $250–375/month  
+• Large community (multiple buildings + walking paths): $400–600/month
+• Multi-community discount: 10% off when managing 3+ communities through one agreement
+
+WHY BOARDS LOVE THIS:
+Pet waste is consistently the #1 HOA complaint. This gives the board a professional solution they can announce — it reduces neighbor-to-neighbor conflicts and removes the liability of unmanaged waste near common areas.
+
+RESIDENT PROGRAM (Optional Add-On):
+We can also offer your residents a preferred vendor rate ($60/mo vs. standard $70) if the community wants to promote us in their newsletter. Zero cost to the HOA.
+
+RESOURCE: We just published a guide specifically about HOA pet waste rules in St. Louis: tidytailsstl.com/blog/hoa-pet-waste-rules-st-louis — your community managers can share it with boards who are drafting or enforcing pet policies.
+
+I'd love to schedule a 15-minute call to talk through a few specific communities. I can also do a free site walk to give you a firm quote.
+
+Jamie Dabrowski
+Tidy Tails
+(314) 850-7140
+tidytailsstl.com</div>
+      <button class="copy-btn" onclick="copyScript('sc3')">📋 Copy Email</button>
+    </div>
+  </div>
+
+  <!-- Script 4: TreeStone Direct Email -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('sc4')">
+      <div>
+        <div class="script-title">✉️ TreeStone — Direct Email to Melanie</div>
+        <div style="font-size:0.75rem;color:#64748b;margin-top:2px;">melanie@treestoneproperties.com — boutique-to-boutique tone</div>
+      </div>
+      <span class="script-tag badge-yellow">EMAIL FIRST</span>
+    </div>
+    <div class="script-body" id="sc4">
+      <div class="script-text">Subject: Pet Waste Solution for Your HOA Communities — Local St. Louis Company
+
+Hi Melanie,
+
+My name's Jamie — I run Tidy Tails, a small local pet waste removal company here in St. Louis. I noticed TreeStone specializes in boutique HOA and condo management, and I wanted to reach out about a simple solution to one of the more consistent community complaints: pet waste in common areas.
+
+We offer weekly professional cleanup of dog parks, walking paths, and pet relief stations for HOA communities — flat monthly rate, no contracts, one vendor relationship.
+
+I'd love to put together a simple proposal for a couple of your pet-friendly communities to show you what this looks like in practice.
+
+We just published a guide specifically for HOA managers and boards: tidytailsstl.com/blog/hoa-pet-waste-rules-st-louis — might be useful when your boards are updating pet policies.
+
+Would 15 minutes this week work to talk through it?
+
+Thanks,
+Jamie Dabrowski | Tidy Tails
+(314) 850-7140 | tidytailsstl.com</div>
+      <button class="copy-btn" onclick="copyScript('sc4')">📋 Copy Email</button>
+    </div>
+  </div>
+
+  <!-- Script 5: Objection — We Handle It Internally -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('sc5')">
+      <div>
+        <div class="script-title">🛡️ Objection: "Maintenance handles that"</div>
+        <div style="font-size:0.75rem;color:#64748b;margin-top:2px;">Most common objection — have this ready</div>
+      </div>
+      <span class="script-tag badge-orange">OBJECTION</span>
+    </div>
+    <div class="script-body" id="sc5">
+      <div class="script-text">"Totally understand — and I'd bet your maintenance team appreciates every minute they're NOT spending on pet waste and can focus on things they're actually there for.
+
+The communities we work with found that dedicated weekly pet waste service actually freed up maintenance for higher-value work. And it gives the board a cleaner answer for residents — instead of 'maintenance will get to it,' it's 'our professional waste service handles it every [day].'
+
+I'm not trying to replace your team — just solve one specific problem they probably don't love dealing with. Would it be worth a 10-minute call to see what the numbers look like for one or two communities?"</div>
+      <button class="copy-btn" onclick="copyScript('sc5')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- Script 6: Objection — Budget -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('sc6')">
+      <div>
+        <div class="script-title">🛡️ Objection: "Not in the budget"</div>
+        <div style="font-size:0.75rem;color:#64748b;margin-top:2px;">Reframe with resident cost allocation</div>
+      </div>
+      <span class="script-tag badge-orange">OBJECTION</span>
+    </div>
+    <div class="script-body" id="sc6">
+      <div class="script-text">"That's fair — and most boards feel the same way until they look at the math.
+
+A 100-unit community at $200/month is $2 per household per month. That's less than a cup of coffee. When boards frame it that way — and especially when they can point to a reduction in pet waste complaints in the next quarterly meeting — it usually gets approved.
+
+We can also structure a resident program instead where residents opt in at a discounted rate and the HOA pays nothing. No budget impact, residents get the service, common areas stay clean.
+
+Would either of those angles work for your communities?"</div>
+      <button class="copy-btn" onclick="copyScript('sc6')">📋 Copy Script</button>
+    </div>
+  </div>
+
+  <!-- Script 7: Day 3 Follow-Up -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('sc7')">
+      <div>
+        <div class="script-title">📱 Day 3 Follow-Up Text</div>
+        <div style="font-size:0.75rem;color:#64748b;margin-top:2px;">If no reply to email — short, non-pushy nudge</div>
+      </div>
+      <span class="script-tag badge-blue">FOLLOW-UP</span>
+    </div>
+    <div class="script-body" id="sc7">
+      <div class="script-text">Hi [Name] — Jamie with Tidy Tails. Just checking in on the email I sent about HOA pet waste service. Happy to jump on a quick call this week or answer any questions by text. No rush — just wanted to make sure it didn't get buried. (314) 850-7140</div>
+      <button class="copy-btn" onclick="copyScript('sc7')">📋 Copy Text</button>
+    </div>
+  </div>
+
+  <!-- Script 8: Closing a Verbal Yes -->
+  <div class="script-card">
+    <div class="script-header" onclick="toggleScript('sc8')">
+      <div>
+        <div class="script-title">🤝 Verbal Yes → Lock It In</div>
+        <div style="font-size:0.75rem;color:#64748b;margin-top:2px;">When they say "let's do it" — nail down the specifics immediately</div>
+      </div>
+      <span class="script-tag badge-green">CLOSE</span>
+    </div>
+    <div class="script-body" id="sc8">
+      <div class="script-text">"Great — let's nail down the details while we're talking.
+
+Which communities do you want to start with? [GET NAMES/ADDRESSES]
+
+And for service access — do the communities have gate codes or do I just need to check in with the on-site contact?
+
+I'll put together a simple one-page service agreement — nothing scary, just service scope, rate, monthly cancel terms — and send it over today. You can sign it digitally or we can keep it informal if you prefer.
+
+When's a good start date? I can usually have a new account on the schedule within a week."</div>
+      <button class="copy-btn" onclick="copyScript('sc8')">📋 Copy Script</button>
+    </div>
+  </div>
+</div>
+
+<!-- STRATEGY TAB -->
+<div id="tab-strategy" class="tab-pane">
+
+  <div class="callout-green" style="margin-bottom:16px;">
+    <strong>🎯 The Core Insight:</strong> HOA management companies control the DECISION for dozens of communities. One "approved vendor" relationship = a continuous pipeline of contracts. This is fundamentally different from calling individual apartment complexes. The multiplier effect is 10–50× vs. one-at-a-time outreach.
+  </div>
+
+  <div class="two-col">
+    <div class="strategy-card">
+      <h3>🏘️ Service Angle A: Common Area Contracts</h3>
+      <ul>
+        <li>Dog parks, walking paths, pet relief stations</li>
+        <li>Weekly cleanup on flat monthly contract</li>
+        <li>Board presents as community enhancement</li>
+        <li>$150–600/mo per community depending on size</li>
+        <li>Best for: large communities with dedicated outdoor pet areas</li>
+      </ul>
+    </div>
+    <div class="strategy-card">
+      <h3>👥 Service Angle B: Resident Program</h3>
+      <ul>
+        <li>HOA becomes a "preferred vendor" partner</li>
+        <li>Residents get $60/mo (vs. standard $70)</li>
+        <li>HOA advertises in newsletter, no cost to community</li>
+        <li>Our referral pipeline activates from 100+ resident base</li>
+        <li>Best for: communities where board budget is tight</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="strategy-card">
+    <h3>📞 Who to Ask For</h3>
+    <ul>
+      <li><strong>Associa Smith:</strong> "Vendor Services" or "Community Manager supervisor"</li>
+      <li><strong>Sentry Management:</strong> Danette Dietz, Division President — ask by name</li>
+      <li><strong>CPM Gateway:</strong> "Community Association Manager" or main office</li>
+      <li><strong>TreeStone:</strong> Melanie (owner) — email directly: melanie@treestoneproperties.com</li>
+    </ul>
+  </div>
+
+  <div class="strategy-card">
+    <h3>🗓️ Timing: Why Good Friday Is Actually Good</h3>
+    <ul>
+      <li><strong>HOA boards just had their Q1 meeting</strong> — pet waste complaints from winter thaw are fresh on the agenda</li>
+      <li><strong>Spring = outdoor area season is starting</strong> — dog parks are being used again, the mess is visible RIGHT NOW</li>
+      <li><strong>Our HOA blog post just went live</strong> — citing it when calling gives instant credibility</li>
+      <li><strong>Tue–Thu calls are best</strong> — Mon and Fri are lowest-engagement days for B2B calls</li>
+      <li>Holiday week = lighter call volume = you'll actually get through</li>
+    </ul>
+  </div>
+
+  <div class="callout-blue" style="margin-bottom:14px;">
+    <strong>🔑 The Blog Post Credibility Play:</strong> Lead every call with a mention of the HOA blog post — "We just published a guide about HOA pet waste rules in St. Louis that your community managers might find useful when boards ask about enforcement." This tells them: (1) we understand their world, (2) we invest in education, (3) we're not just cold-calling for money. It's the fastest credibility builder in the pitch.
+    <br><br>URL: <a href="https://tidytailsstl.com/blog/hoa-pet-waste-rules-st-louis" target="_blank" style="color:#93c5fd;">tidytailsstl.com/blog/hoa-pet-waste-rules-st-louis</a>
+  </div>
+
+  <div class="strategy-card">
+    <h3>💡 The 2-Hour Proposal Rule</h3>
+    <p>Same-day proposals close at 3× the rate of next-day. If a community manager expresses interest, send the email proposal within 2 hours. The template is in the Scripts tab — copy it, fill in their name, send it.</p>
+  </div>
+
+  <div class="strategy-card">
+    <h3>🏆 The Sentry Network Play</h3>
+    <p>Sentry Management is a national company (not just local). Their STL Division President Danette Dietz can introduce us to the national network. Getting into one Sentry market can mean introductions to Sentry operations in other Missouri markets (Kansas City, Springfield, etc.). This is a long game, but the upside is massive.</p>
+  </div>
+
+</div>
+
+<!-- REVENUE TAB -->
+<div id="tab-revenue" class="tab-pane">
+
+  <div class="revenue-grid">
+    <div class="revenue-card">
+      <h3>Bear Case</h3>
+      <div class="big-num">$900<span style="font-size:1rem;color:#64748b;">/mo</span></div>
+      <div class="sub">1 management company · 3 communities at $300/mo avg</div>
+    </div>
+    <div class="revenue-card">
+      <h3>Base Case</h3>
+      <div class="big-num">$3,200<span style="font-size:1rem;color:#64748b;">/mo</span></div>
+      <div class="sub">2 companies · Sentry (5 communities) + Smith (3 communities)</div>
+    </div>
+    <div class="revenue-card">
+      <h3>Bull Case</h3>
+      <div class="big-num">$8,000<span style="font-size:1rem;color:#64748b;">/mo</span></div>
+      <div class="sub">All 4 companies · 20+ communities at avg $400/mo</div>
+    </div>
+    <div class="revenue-card">
+      <h3>Sentry Alone (32 Communities)</h3>
+      <div class="big-num">$9,600<span style="font-size:1rem;color:#64748b;">/mo</span></div>
+      <div class="sub">32 communities × $300/mo avg · One relationship</div>
+    </div>
+  </div>
+
+  <div class="section-title">📊 Revenue Math vs. Residential</div>
+  <table class="math-table" style="margin-bottom:20px;">
+    <tr>
+      <th>Channel</th>
+      <th>Revenue Per Unit</th>
+      <th>Effort Per Unit</th>
+      <th>LTV (24 mo)</th>
+      <th>Notes</th>
+    </tr>
+    <tr>
+      <td>Residential (weekly)</td>
+      <td>$70–90/mo</td>
+      <td>1 customer call</td>
+      <td>$1,680–2,160</td>
+      <td>Single household</td>
+    </tr>
+    <tr>
+      <td>HOA Common Area Contract</td>
+      <td>$150–600/mo</td>
+      <td>1 manager call</td>
+      <td>$3,600–14,400</td>
+      <td>1 community = 2–8× residential</td>
+    </tr>
+    <tr>
+      <td class="highlight">HOA Management Co. (Sentry)</td>
+      <td class="highlight">$300–600/mo × 32 communities</td>
+      <td class="highlight">1 relationship</td>
+      <td class="highlight">$230,400–460,800</td>
+      <td class="highlight">Full portfolio</td>
+    </tr>
+  </table>
+
+  <div class="callout-green">
+    <strong>🔢 The Sentry Math That Should Make Your Eyes Water:</strong><br>
+    Danette Dietz controls 32+ communities. If just 10 adopt our service at $300/mo average:<br>
+    10 × $300 = <strong>$3,000/mo recurring · $36,000/yr · $72,000 over 24 months</strong><br>
+    From one phone call. One relationship. No Facebook ads. No door-to-door.
+  </div>
+
+  <div class="section-title" style="margin-top:20px;">📈 Path to August Goal Through HOA Channel</div>
+  <div class="strategy-card">
+    <h3>Current: 11 residential customers → 25 target</h3>
+    <ul>
+      <li>Need 14 more customers by August 2025</li>
+      <li>Bear HOA case (1 management company, 3 communities): Community contracts = $900/mo = equivalent of <strong>10–12 residential accounts</strong> in revenue terms</li>
+      <li>Base HOA case: $3,200/mo = equivalent of <strong>35–45 residential accounts</strong> — EXCEEDS August goal from commercial alone</li>
+      <li>HOA channel is not a replacement for residential acquisition — it's the multiplier layer that makes the goal trivial</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- CHECKLIST TAB -->
+<div id="tab-checklist" class="tab-pane">
+
+  <div class="progress-label">
+    <span>HOA Kit Progress</span>
+    <span id="hoa-progress-text">0 / 16 done</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="hoa-progress-fill" style="width:0%"></div>
+  </div>
+
+  <div class="checklist-section">
+    <h3>🔥 DO NOW (Today — Good Friday)</h3>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="hc1" onchange="updateProgress()">
+      <label for="hc1">Call Sentry Management (314) 994-7440 — ask for Danette Dietz by name <span class="urgency-tag urgent">🔥 NOW</span></label>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" id="hc2" onchange="updateProgress()">
+      <label for="hc2">If no answer at Sentry: Leave voicemail with blog post URL, email proposal to general contact <span class="urgency-tag urgent">🔥 NOW</span></label>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" id="hc3" onchange="updateProgress()">
+      <label for="hc3">Email Melanie at TreeStone: melanie@treestoneproperties.com — use email template from Scripts tab <span class="urgency-tag today">📅 TODAY</span></label>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" id="hc4" onchange="updateProgress()">
+      <label for="hc4">Bookmark HOA blog post URL: tidytailsstl.com/blog/hoa-pet-waste-rules-st-louis — use in every call and email <span class="urgency-tag today">📅 TODAY</span></label>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <h3>📅 THIS WEEK (Apr 7–11 — Back from Easter)</h3>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="hc5" onchange="updateProgress()">
+      <label for="hc5">Call Associa Smith (314) 394-4200 — ask for "Vendor Services" <span class="urgency-tag week">📌 WEEK</span></label>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" id="hc6" onchange="updateProgress()">
+      <label for="hc6">Call CPM Gateway (636) 227-8688 — ask for Community Association Manager <span class="urgency-tag week">📌 WEEK</span></label>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" id="hc7" onchange="updateProgress()">
+      <label for="hc7">Follow up with Sentry if no callback from Friday call <span class="urgency-tag week">📌 WEEK</span></label>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" id="hc8" onchange="updateProgress()">
+      <label for="hc8">Follow up with TreeStone Melanie if no email reply by Tuesday <span class="urgency-tag week">📌 WEEK</span></label>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" id="hc9" onchange="updateProgress()">
+      <label for="hc9">For any "send me something" responses: Send email proposal WITHIN 2 HOURS of call <span class="urgency-tag week">📌 WEEK</span></label>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <h3>🗺️ IN-CALL ACTIONS (During Each Call)</h3>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="hc10" onchange="updateProgress()">
+      <label for="hc10">Mention the HOA blog post within first 60 seconds — gives instant credibility</label>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" id="hc11" onchange="updateProgress()">
+      <label for="hc11">Offer BOTH service angles (common area contract + resident program) — let them pick</label>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" id="hc12" onchange="updateProgress()">
+      <label for="hc12">Ask for their email before hanging up — even if they say "not interested right now"</label>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" id="hc13" onchange="updateProgress()">
+      <label for="hc13">Ask: "Which communities have the most pet waste complaints?" — gets them talking and identifies best-fit properties</label>
+    </div>
+  </div>
+
+  <div class="checklist-section">
+    <h3>📈 LONG GAME</h3>
+
+    <div class="checklist-item">
+      <input type="checkbox" id="hc14" onchange="updateProgress()">
+      <label for="hc14">Register as vendor with St. Louis Apartment Association (stlaa.org) — puts Tidy Tails in front of all STL property managers</label>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" id="hc15" onchange="updateProgress()">
+      <label for="hc15">Do a FREE site walk for the first HOA community that says yes — build the relationship in person</label>
+    </div>
+    <div class="checklist-item">
+      <input type="checkbox" id="hc16" onchange="updateProgress()">
+      <label for="hc16">After first community contract: Ask management company for referral to other communities in their portfolio</label>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Tab switching
+function switchTab(name) {
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Lead toggle
+function toggleLead(id) {
+  const body = document.getElementById(id);
+  const arrow = document.getElementById(id + '-arrow');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open');
+  arrow.textContent = isOpen ? '▼' : '▲';
+}
+
+// Script toggle
+function toggleScript(id) {
+  const body = document.getElementById(id);
+  body.classList.toggle('open');
+}
+
+// Status management
+function setStatus(key, status, btn) {
+  localStorage.setItem('hoa_status_' + key, status);
+  const row = btn.parentElement;
+  row.querySelectorAll('.status-btn').forEach(b => {
+    b.style.transform = 'scale(1)';
+    b.style.opacity = '0.6';
+  });
+  btn.style.transform = 'scale(1.05)';
+  btn.style.opacity = '1';
+}
+
+// Copy functions
+function copyScript(id) {
+  const el = document.querySelector('#' + id + ' .script-text');
+  navigator.clipboard.writeText(el.textContent.trim()).then(() => {
+    const btn = document.querySelector('#' + id + ' .copy-btn');
+    btn.textContent = '✅ Copied!';
+    setTimeout(() => btn.textContent = '📋 Copy Script', 2000);
+  });
+}
+
+function copyText(id) {
+  const el = document.getElementById(id);
+  navigator.clipboard.writeText(el.textContent.trim());
+}
+
+// Checklist progress
+function updateProgress() {
+  const all = document.querySelectorAll('#tab-checklist input[type=checkbox]');
+  const checked = document.querySelectorAll('#tab-checklist input[type=checkbox]:checked');
+  const pct = Math.round((checked.length / all.length) * 100);
+  document.getElementById('hoa-progress-fill').style.width = pct + '%';
+  document.getElementById('hoa-progress-text').textContent = checked.length + ' / ' + all.length + ' done';
+  // Save to localStorage
+  all.forEach((cb, i) => {
+    localStorage.setItem('hoa_check_' + i, cb.checked);
+  });
+}
+
+// Load saved state
+window.addEventListener('DOMContentLoaded', () => {
+  const checks = document.querySelectorAll('#tab-checklist input[type=checkbox]');
+  checks.forEach((cb, i) => {
+    if (localStorage.getItem('hoa_check_' + i) === 'true') {
+      cb.checked = true;
+    }
+  });
+  updateProgress();
+
+  // Load statuses
+  ['s1','s2','s3','s4'].forEach(key => {
+    const status = localStorage.getItem('hoa_status_' + key);
+    if (status) {
+      const btn = document.querySelector(`[onclick="setStatus('${key}','${status}',this)"]`);
+      if (btn) {
+        btn.style.transform = 'scale(1.05)';
+        btn.style.opacity = '1';
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>
