@@ -4210,3 +4210,36 @@
   - **Revenue math:** 15 warm leads texted → 6 expected replies (40%) → 2–3 converts (40% close) → $1,680–$2,520 LTV from one 45-minute texting session at $0 cost. Warm lead ROAS: ∞. This is the highest-efficiency channel in the entire playbook — TJ already did the hard work of getting them interested, this kit just closes the loop.
   - **Why this beats other 5 AM tasks:** The content library is complete (81 posts). Ad packs written for every season. FB conquest kits built for every geographic market. Referral Engine built (Customer Referral Engine). The specific gap that remained: **nobody had ever texted the March warm leads back.** That's the follow-up gap this kit closes. The Easter window expires Saturday — this is a genuinely time-sensitive task that loses value with every hour before Sunday. Script 1 sent this morning converts at a fundamentally different rate than Script 5 sent next Tuesday. The urgency is real and the script acknowledges it honestly.
 
+
+---
+
+### Friday 6:07 AM — Same-Day Emergency Yard Cleanup Blog Post (Hourly Task)
+- **6:07 AM** 🚨 Wrote and published **"Same-Day Dog Poop Pickup in St. Louis — Emergency Yard Cleanup"** — the first dedicated same-day/emergency service page in the entire content library, timed for Good Friday with Easter 48 hours out
+  - **File:** `tidy-tails/website/blog/same-day-dog-poop-cleanup-st-louis.html` (43KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/same-day-dog-poop-cleanup-st-louis` ✅ HTTP 200 confirmed
+  - **Blog count: 82 posts total** ✅
+  - **Why this task:** It's Good Friday, April 3 at 6 AM. Easter is 48 hours away. Hundreds of St. Louis parents are waking up today, walking into their backyards, seeing a winter's worth of accumulation, and Googling "same day dog poop pickup St. Louis" or "emergency yard cleanup before Easter." Existing library: 81 posts covering every city, every season, every pest, every holiday — but ZERO dedicated page capturing the "I need it done TODAY" query. This is the highest-urgency purchase intent in the entire category. "Same day dog poop pickup near me" is searched by someone who is ready to pay right now. They're not in the research phase. They need a yes or a no in the next 10 minutes.
+  - **Target keywords:** "same day dog poop pickup St. Louis", "emergency yard cleanup dogs St. Louis", "last minute pooper scooper St. Louis", "dog poop pickup today St. Louis", "yard cleanup before Easter St. Louis", "same day pet waste removal St. Louis"
+  - **What's in the post (~43KB, ~2,400 words):**
+    - **Hero:** "Need Your Yard Cleaned Today? We Can Make It Happen." — deep indigo gradient, red "🚨 SAME-DAY AVAILABLE" badge
+    - **Urgency banner:** Animated pulse — "Easter is Sunday — same-day slots are limited. Text Jamie NOW"
+    - **Stats row:** $75+ one-time / 20-45 minutes on-site / 2 texts (On My Way + All Done) / 0 contracts
+    - **6 Occasion Cards:** Easter Egg Hunt / Last-Minute Cookout / Real Estate Showing / Kids Home for Break / Family Visiting / First Nice Day — covers every reason someone calls same-day without making them feel judged
+    - **No Judgment callout:** "We've cleaned yards with 6 months of accumulation. There's nothing you can describe that we haven't handled. Just tell us your address."
+    - **5-Step Same-Day Process:** Text address + urgency → We confirm availability in minutes → "On My Way" text → Full grid sweep (every inch, double-bagged, removed off property) → "All Done" text
+    - **Timing Guide (6 windows):** 6-8 AM (best, high chance) → 8-11 AM (very good) → 11 AM-1 PM (good) → 1-3 PM (possible) → 3-5 PM (tighter) → After 5 PM (next morning likely). Sets honest expectations upfront.
+    - **"What to Text" callout:** Exact copy-paste message — "Hi Jamie, I need a same-day cleanup at [address]. Gate code is [code]. Have guests coming at [time]."
+    - **Winter Math callout:** 300 deposits per dog per year / 75-100 accumulate during a St. Louis winter / two dogs = 150-200 in yard right now
+    - **Scenario Grid:** ❌ The DIY Easter Scramble (45 minutes hunting scooper, 1.5 hours in yard, still missed stuff, guests notice anyway, kids find the spot, stressed instead of present) vs ✅ The "We Called Jamie" Easter (Friday morning text, slot confirmed in 10 min, "On My Way" midday, "All Done" same afternoon, Easter morning yard clean, in the photos this year)
+    - **Pricing strip:** $75+ one-time / $70/mo weekly (first visit FREE) / $80/mo 3-4 dogs / $45/visit biweekly
+    - **Upgrade callout:** "Most same-day customers decide to start weekly service after seeing the difference. First weekly visit FREE. No contracts."
+    - **Comparison table:** Tidy Tails vs DIY vs National Franchise vs Craigslist — same-day availability, cost, "you touch anything?", On My Way text, waste off property
+    - **7-question FAQ with FAQPage schema:** Can I get same-day? / How much? / Do I need to be home? / What do you do with the waste? / What if same-day isn't available? / Is this just for emergencies? / What areas?
+    - **27-city service area grid** with links to every dedicated city blog post
+    - **6 Related Article cards** — Easter egg hunt, spring safety guide, how service works, cost guide, winter cleanup, is it worth it
+  - **Cross-links added:**
+    - `blog/easter-egg-hunt-yard-cleanup-dogs-st-louis.html`: Added "🚨 Same-Day Dog Poop Pickup in St. Louis" as NEW FIRST Related Article (highest urgency for Easter week) ✅
+    - `blog/index.html`: Added same-day card as #1 post (red #ef4444 border with 0.4 glow — emergency visual priority) + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.90, monthly changefreq — higher than standard 0.85 because it's year-round and time-sensitive) ✅
+  - **Git commits:** tidytails-dashboard `2a35dd90` ✅ · tidytails-website `ebe98c3` → Cloudflare Pages live ✅
+  - **Why this beats other Good Friday tasks:** The content library is maxed at 81 posts. Every city has coverage. Every season has posts. Every pest has a blog post. Every holiday has multiple posts. The St. Charles County conquest kit was built at midnight. The referral engine was built at 4 AM. The one gap that remained specifically for TODAY — Good Friday, April 3, 48 hours before Easter — was the "I need it done NOW" search query. Someone who is already bought in, just needs a yes/no/price/address to confirm. This post meets them exactly there. The timing guide (earliest text = best chance) is the feature that will drive the most calls today — it gives specific, actionable urgency without manufactured scarcity. Year-round evergreen: same-day intent exists before every holiday, every cookout, every real estate showing, every "first nice day" of spring. Annual LTV from one convert: $840.
