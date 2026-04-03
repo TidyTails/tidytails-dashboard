@@ -2,6 +2,32 @@
 
 ---
 
+### Thursday 11:04 PM — Father's Day Ad Pack (Hourly Task)
+- **11:04 PM** 🎁 Wrote and committed the **Father's Day Ad Pack** — a complete ready-to-deploy Facebook ad pack targeting the June 21 Father's Day window for Tidy Tails
+  - **File:** `tidy-tails/marketing/2026-06-21-FATHERS-DAY-AD-PACK.md` (15.5KB ✅)
+  - **Git commit:** `462e7fa2` — tidytails-dashboard ✅
+  - **Why this task:** 11 PM Thursday April 2. Tonight's hourly tasks built the Spring Conversion Ad Pack (8 PM) and Mother's Day Ad Pack (10 PM). The Mother's Day pack covered the May 10 window. The next major seasonal paid ad gap with NO dedicated copy: Father's Day (June 21). The blog post at `/blog/fathers-day-gift-dog-owner-st-louis.html` exists and is live. Zero Facebook ad creative existed for it. Built now = 79 days of runway to deploy, test, and optimize before June 21.
+  - **What was written:**
+    - **4 Facebook paid ad variations (Tidy Tails):**
+      - **Ad #1 "He Got the Dog"** — Wife/partner buyer. "He got the dog. He also got volunteered for every cleanup." Mirror to Mother's Day "She got the dog" — strongest likely performer. Launch June 1.
+      - **Ad #2 "Sunday Morning"** — Situational/visual hook. "The coffee's on. The yard is waiting." Swap in June 8 when Ad #1 hits frequency > 1.5. Also works as A/B test.
+      - **Ad #3 "He Mows, He Fixes, He Does the Dog"** — Labor acknowledgment angle for last-call June 14–17. "He never once asked for anything." Broadens beyond "dog cleanup" to "all the stuff he handles."
+      - **Ad #4 "The Retargeting Close"** — Website visitors who didn't convert. "You were already thinking about it." Runs always-on at $3/day from June 10 forward.
+    - **4 organic Facebook/Nextdoor/Instagram posts:**
+      - Testimonial-style Facebook group post (wife telling the story — highest-converting format for groups)
+      - Nextdoor version (slightly shorter, neighborhood-specific tone)
+      - Short "last call" version for June 14–18 push
+      - Instagram caption with hashtag bank
+    - **2 customer referral text scripts** — Version A (casual) + Version B (with referral incentive)
+    - **TuffShed/WoodMaster tie-in note** — Father's Day workshop/garage angle (blog post already covers this; Marketplace listings handled by Post-Tariff Playbook Father's Day tab)
+    - **Full deployment schedule** — Day-by-day June 1–22 with specific actions, budget recommendations, and pause timing
+    - **Budget estimate:** $161–221 total. Base case return: $990+ (2 one-time + 1 monthly convert) = 4.5× ROAS in month 1, compounding over 12 months
+    - **3 A/B test plan** — Ad #1 vs Ad #2, blog landing page vs homepage, "first cleanup free" vs "$70/month" hook
+    - **Post-Father's Day conversion window** — June 22–28 one-time → monthly convert protocol using same Post-Easter kit as template
+  - **Why this beats other tasks at 11 PM:** The night's blog content (9 posts + pillar guide) saturated the content library. Both ad packs written tonight (Spring + Mother's Day) covered April and May windows. Father's Day at June 21 was the last major seasonal paid ad gap with NO dedicated copy. Blog post exists at fathers-day-gift-dog-owner. Ad creative didn't. The "He Got the Dog" hook is the masculine parallel to the Mother's Day "She Got the Dog" — the strongest ad in that pack. Written now = 79 days of runway for testing.
+
+---
+
 ### Thursday 10:07 PM — Mother's Day Ad Pack (Hourly Task)
 - **10:07 PM** 🌸 Wrote and committed the **Mother's Day Ad Pack** — a complete ready-to-deploy Facebook ad pack targeting the May 10 Mother's Day window for both Tidy Tails and TuffShed she sheds
   - **File:** `tidy-tails/marketing/2026-05-10-MOTHERS-DAY-AD-PACK.md` (19.8KB ✅)
