@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🐾 Bark in the Park Booth Kit — Tidy Tails</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0a0a0a; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; }
+
+  .header {
+    background: linear-gradient(135deg, #0a1a0a, #1a2e08, #0a1a0a);
+    border-bottom: 3px solid #4ade80;
+    padding: 1.5rem;
+    text-align: center;
+    position: relative;
+  }
+  .header h1 { font-size: 1.8rem; color: #fff; }
+  .header .sub { color: #86efac; font-size: 0.9rem; margin-top: 0.3rem; }
+  .urgency-band {
+    background: #7f1d1d;
+    border: 2px solid #ef4444;
+    border-radius: 8px;
+    padding: 0.8rem 1.2rem;
+    margin: 1rem auto;
+    max-width: 700px;
+    font-weight: 700;
+    color: #fca5a5;
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    background: #111;
+    border-bottom: 1px solid #222;
+    overflow-x: auto;
+    flex-wrap: wrap;
+  }
+  .stat { text-align: center; min-width: 120px; flex: 1; }
+  .stat .val { font-size: 1.5rem; font-weight: 800; color: #4ade80; }
+  .stat .lbl { font-size: 0.72rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  nav.tabs {
+    display: flex;
+    background: #111;
+    border-bottom: 1px solid #333;
+    overflow-x: auto;
+    padding: 0 1rem;
+  }
+  .tab-btn {
+    padding: 0.9rem 1.2rem;
+    background: transparent;
+    border: none;
+    border-bottom: 3px solid transparent;
+    color: #888;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .tab-btn.active { border-bottom-color: #4ade80; color: #4ade80; }
+  .tab-btn:hover:not(.active) { color: #e0e0e0; }
+
+  .panel { display: none; padding: 1.5rem; max-width: 900px; margin: 0 auto; }
+  .panel.active { display: block; }
+
+  .card {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .card h3 { font-size: 1rem; margin-bottom: 0.8rem; }
+  .card.green { border-color: #16a34a; }
+  .card.green h3 { color: #4ade80; }
+  .card.red { border-color: #dc2626; }
+  .card.red h3 { color: #f87171; }
+  .card.blue { border-color: #2563eb; }
+  .card.blue h3 { color: #60a5fa; }
+  .card.amber { border-color: #d97706; }
+  .card.amber h3 { color: #fbbf24; }
+
+  .email-box {
+    background: #0d1a0d;
+    border: 2px solid #16a34a;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+    line-height: 1.7;
+    color: #d1fae5;
+  }
+  .email-header {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  .email-header div { margin-bottom: 0.4rem; font-size: 0.85rem; }
+  .email-header strong { color: #4ade80; }
+
+  .copy-btn {
+    background: #16a34a;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.4rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: background 0.2s;
+  }
+  .copy-btn:hover { background: #15803d; }
+  .copy-btn:active { background: #166534; }
+  .copy-btn.copied { background: #065f46; }
+
+  .section-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #64748b;
+    margin-bottom: 0.5rem;
+  }
+
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .checklist-item input[type="checkbox"] { margin-top: 0.2rem; accent-color: #4ade80; width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; }
+  .checklist-item label { cursor: pointer; font-size: 0.9rem; }
+  .checklist-item label strong { color: #e0e0e0; }
+  .checklist-item label .sub { color: #64748b; font-size: 0.8rem; }
+  .checklist-item.done label { text-decoration: line-through; color: #555; }
+
+  .progress-bar-wrap { background: #1a1a1a; border-radius: 999px; height: 8px; margin-bottom: 1rem; }
+  .progress-bar-fill { background: #4ade80; height: 8px; border-radius: 999px; transition: width 0.3s; }
+
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.6rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #222;
+  }
+  .tl-item {
+    position: relative;
+    padding: 0.8rem 0 0.8rem 1.2rem;
+    border-bottom: 1px solid #1a1a1a;
+  }
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -1.35rem;
+    top: 1.1rem;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #4ade80;
+  }
+  .tl-item.urgent::before { background: #ef4444; }
+  .tl-item.amber::before { background: #f59e0b; }
+  .tl-date { font-size: 0.75rem; color: #64748b; font-weight: 700; text-transform: uppercase; }
+  .tl-title { font-weight: 700; color: #e0e0e0; margin: 0.2rem 0; }
+  .tl-body { font-size: 0.85rem; color: #94a3b8; }
+
+  .revenue-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  .rev-card {
+    background: #0d1a0d;
+    border: 1px solid #16a34a;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+  }
+  .rev-card .scenario { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #64748b; }
+  .rev-card .converts { font-size: 2rem; font-weight: 800; color: #4ade80; }
+  .rev-card .ltv { font-size: 1.1rem; font-weight: 700; color: #86efac; }
+  .rev-card .detail { font-size: 0.75rem; color: #64748b; margin-top: 0.4rem; }
+
+  .script-block {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    white-space: pre-wrap;
+    color: #c9d1d9;
+    margin: 0.8rem 0;
+  }
+
+  .contact-card {
+    background: #0d1a2a;
+    border: 2px solid #3b82f6;
+    border-radius: 12px;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .contact-card h3 { color: #60a5fa; margin-bottom: 0.6rem; }
+  .contact-field { display: flex; gap: 0.5rem; align-items: center; margin-bottom: 0.4rem; font-size: 0.9rem; }
+  .contact-label { color: #64748b; min-width: 80px; }
+  .contact-value { color: #e0e0e0; font-weight: 600; }
+
+  .call-btn {
+    display: inline-block;
+    background: #1d4ed8;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+  }
+  .call-btn:hover { background: #1e40af; }
+
+  .badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  .badge.red { background: #7f1d1d; color: #fca5a5; }
+  .badge.green { background: #14532d; color: #86efac; }
+  .badge.amber { background: #78350f; color: #fde68a; }
+
+  .callout {
+    background: #0d1a0d;
+    border-left: 4px solid #4ade80;
+    border-radius: 0 8px 8px 0;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+  }
+  .callout.red { background: #1a0505; border-color: #ef4444; }
+  .callout.amber { background: #1a1005; border-color: #f59e0b; }
+  .callout.blue { background: #0a0f1a; border-color: #3b82f6; }
+
+  .stat-big {
+    font-size: 3rem;
+    font-weight: 900;
+    color: #4ade80;
+    text-align: center;
+    margin: 1rem 0 0.3rem;
+  }
+  .stat-big-label { text-align: center; color: #64748b; font-size: 0.85rem; margin-bottom: 1rem; }
+
+  @media(max-width: 600px) {
+    .revenue-grid { grid-template-columns: 1fr; }
+    .rev-card .converts { font-size: 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div style="font-size: 0.8rem; color: #86efac; margin-bottom: 0.4rem;">🐾 TIDY TAILS — BARK IN THE PARK 2026</div>
+  <h1>🎪 Bark in the Park Vendor Booth Kit</h1>
+  <div class="sub">May 16, 2026 · Tower Grove Park · 8 AM–2 PM · 5,000+ Dog Owners in One Place</div>
+  <div class="urgency-band">
+    🚨 CONTACT COLE IMBS TODAY — Booth Registration Open NOW · Payment Deadline ~April 30
+  </div>
+</div>
+
+<div class="stats-row">
+  <div class="stat"><div class="val" id="daysLeft">43</div><div class="lbl">Days to Event</div></div>
+  <div class="stat"><div class="val">5,000+</div><div class="lbl">Dog Owners Attending</div></div>
+  <div class="stat"><div class="val">$840</div><div class="lbl">LTV Per Convert</div></div>
+  <div class="stat"><div class="val">~Apr 30</div><div class="lbl">Booth Pay Deadline</div></div>
+  <div class="stat"><div class="val">30th</div><div class="lbl">Annual Event</div></div>
+</div>
+
+<nav class="tabs">
+  <button class="tab-btn active" onclick="showTab('contact')">📞 Contact Cole NOW</button>
+  <button class="tab-btn" onclick="showTab('email')">📧 Email Draft</button>
+  <button class="tab-btn" onclick="showTab('timeline')">📅 Timeline</button>
+  <button class="tab-btn" onclick="showTab('dayof')">🎪 Day-Of Plan</button>
+  <button class="tab-btn" onclick="showTab('math')">💰 Revenue Math</button>
+  <button class="tab-btn" onclick="showTab('checklist')">✅ Checklist</button>
+</nav>
+
+<!-- ======= TAB 1: CONTACT COLE NOW ======= -->
+<div class="panel active" id="panel-contact">
+
+  <div class="callout red">
+    <strong>⏰ WHY TODAY MATTERS:</strong> Based on past years, HSMO requires booth payment by April 30. That's 27 days away. Vendor spots fill in the first week of registration. You're already late in the window — email TODAY, then call Monday morning at 9 AM if no response.
+  </div>
+
+  <div class="contact-card">
+    <h3>📞 Cole Imbs — Bark in the Park Vendor Contact</h3>
+    <div class="contact-field"><span class="contact-label">Phone:</span><span class="contact-value">314.951.1567</span></div>
+    <div class="contact-field"><span class="contact-label">Email:</span><span class="contact-value">cimbs@hsmo.org</span></div>
+    <div class="contact-field"><span class="contact-label">Title:</span><span class="contact-value">HSMO Event/Sponsorship Contact</span></div>
+    <div class="contact-field"><span class="contact-label">Event:</span><span class="contact-value">Bark in the Park — May 16, 2026 · Tower Grove Park</span></div>
+    <div style="margin-top: 0.8rem; display: flex; gap: 0.8rem; flex-wrap: wrap;">
+      <a href="tel:3149511567" class="call-btn">📞 Call Cole</a>
+      <a href="mailto:cimbs@hsmo.org?subject=Vendor%20Booth%20Inquiry%20%E2%80%94%20Bark%20in%20the%20Park%202026&body=Hi%20Cole%2C%0A%0AMy%20name%20is%20TJ%20with%20Tidy%20Tails%20%E2%80%94%20we're%20a%20pet%20waste%20removal%20service%20based%20in%20the%20St.%20Louis%20area." class="call-btn" style="background:#16a34a;">📧 Email Cole</a>
+    </div>
+  </div>
+
+  <div class="card green">
+    <h3>🎯 What You're Asking For</h3>
+    <p style="font-size:0.9rem; color:#94a3b8; margin-bottom:0.8rem;">When you reach Cole, you want a <strong>vendor/exhibitor booth</strong> (not a major sponsor package). The sponsorship tiers start at $2,500 — that's NOT what you need. A regular vendor booth typically runs $150–$300 for non-food vendors and gets you a table/tent spot in the festival area.</p>
+    <div class="script-block">Phone opener (if calling):
+
+"Hi, is this Cole Imbs? Great. My name is TJ — I'm the owner of Tidy Tails, 
+a dog waste removal service here in St. Louis. I'm calling about a vendor 
+booth for Bark in the Park on May 16. We're a local, dog-owner-focused service 
+and this feels like exactly the right event for us. Is vendor booth 
+registration still open?"</div>
+  </div>
+
+  <div class="card blue">
+    <h3>🔁 What If Vendor Booths Are Sold Out?</h3>
+    <ul style="font-size:0.9rem; color:#94a3b8; padding-left:1.2rem;">
+      <li style="margin-bottom:0.5rem;"><strong>Option A — Attend as a guest anyway.</strong> Bring a dog (or borrow one). Walk the crowd. Hand out 200 business cards. You don't need a booth to work a crowd of 5,000 dog owners. You just need a stack of cards and "Hey, how many dogs do you have?"</li>
+      <li style="margin-bottom:0.5rem;"><strong>Option B — Ask about the waitlist.</strong> Tell Cole you want to be first on the list if any spots open. Booths sometimes cancel.</li>
+      <li style="margin-bottom:0.5rem;"><strong>Option C — Ask about 2027 planning.</strong> "Can I get on the vendor mailing list for next year?" Gets you early access before booths sell out next time.</li>
+      <li><strong>Option D — Sponsor at the Chihuahua tier ($2,500).</strong> Gets you a booth + event logo presence. Only if TJ has budget and wants the brand play.</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ======= TAB 2: EMAIL DRAFT ======= -->
+<div class="panel" id="panel-email">
+
+  <div class="callout amber">
+    <strong>📧 SEND THIS TODAY (APRIL 3):</strong> Copy this email, paste into Gmail, and send to <strong>cimbs@hsmo.org</strong>. Subject line included. Takes 3 minutes.
+  </div>
+
+  <div class="email-header">
+    <div><strong>To:</strong> cimbs@hsmo.org</div>
+    <div><strong>Subject:</strong> Vendor Booth Inquiry — Bark in the Park 2026 (Tidy Tails Pet Waste Removal)</div>
+    <div><strong>From:</strong> cartervhomes@gmail.com (or your Tidy Tails email)</div>
+  </div>
+
+  <div class="email-box" id="emailBody">Hi Cole,
+
+My name is TJ Carter — I'm the owner of Tidy Tails, a local pet waste removal service serving St. Louis County and St. Charles County. We do weekly yard cleanups for dog owners, and Bark in the Park is exactly the kind of event our customers come from.
+
+I'm reaching out to ask about vendor booth availability for Bark in the Park 2026 on May 16. I'd love to set up a booth in the festival area where I can connect with dog owners directly.
+
+A little about us:
+- We serve 20+ communities across St. Louis and St. Charles County
+- Local, owner-operated — not a franchise
+- We've been growing year over year and are looking to expand our presence at community events like this
+
+If vendor booth registration is still open, I'd love to get on the list. If it's already full, I'd appreciate being added to any waitlist or vendor mailing list for future events.
+
+Happy to call if that's easier — my number is (314) 850-7140. Looking forward to hearing from you.
+
+Thanks,
+TJ Carter
+Owner, Tidy Tails
+(314) 850-7140
+tidytailsstl.com</div>
+
+  <div style="display:flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 0.8rem;">
+    <button class="copy-btn" onclick="copyEmail()">📋 Copy Email Body</button>
+    <a href="mailto:cimbs@hsmo.org?subject=Vendor%20Booth%20Inquiry%20%E2%80%94%20Bark%20in%20the%20Park%202026%20(Tidy%20Tails%20Pet%20Waste%20Removal)" class="call-btn">📧 Open in Gmail</a>
+  </div>
+
+  <div class="card green" style="margin-top:1.5rem;">
+    <h3>📞 Follow-Up Plan If No Response by Monday</h3>
+    <div class="checklist-item" style="border:none; padding:0.4rem 0;">
+      <label>📧 <strong>Today (Apr 3):</strong> Send the email above</label>
+    </div>
+    <div class="checklist-item" style="border:none; padding:0.4rem 0;">
+      <label>📞 <strong>Monday April 7 (9 AM):</strong> Call Cole at 314.951.1567 if no email reply by Friday EOD</label>
+    </div>
+    <div class="checklist-item" style="border:none; padding:0.4rem 0;">
+      <label>📧 <strong>Wednesday April 9:</strong> Follow-up email if still no response ("Following up on my email from April 3...")</label>
+    </div>
+    <p style="font-size:0.85rem; color:#64748b; margin-top:0.8rem;">🎯 Goal: Confirm booth status and get invoice by April 15. Pay by April 30 deadline.</p>
+  </div>
+
+  <div class="card amber">
+    <h3>💰 Booth Cost Estimate</h3>
+    <p style="font-size:0.9rem; color:#94a3b8; margin-bottom:0.6rem;">Based on prior year HSMO vendor info (2020 data: payment deadline April 30):</p>
+    <ul style="font-size:0.9rem; color:#94a3b8; padding-left:1.2rem;">
+      <li style="margin-bottom:0.3rem;"><strong>Non-food vendor booth:</strong> Estimated $150–$300</li>
+      <li style="margin-bottom:0.3rem;"><strong>Standard 10x10 tent space</strong> — bring your own table, chairs, tent</li>
+      <li style="margin-bottom:0.3rem;"><strong>HSMO member discount</strong> may apply (Cole can confirm)</li>
+      <li><strong>Full sponsorship tiers:</strong> $2,500 / $5,000 / $10,000 / $20,000 (NOT what we need)</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- ======= TAB 3: TIMELINE ======= -->
+<div class="panel" id="panel-timeline">
+
+  <div class="timeline">
+    <div class="tl-item urgent">
+      <div class="tl-date">🔴 Today — April 3</div>
+      <div class="tl-title">Send vendor booth email to Cole Imbs</div>
+      <div class="tl-body">Email to cimbs@hsmo.org. 3 minutes. Most important task on this list.</div>
+    </div>
+    <div class="tl-item urgent">
+      <div class="tl-date">🔴 April 7 (Monday)</div>
+      <div class="tl-title">Call Cole if no email reply</div>
+      <div class="tl-body">314.951.1567. 9 AM. Say you sent an email last week. Ask if vendor registration is still open. Confirm booth cost and process.</div>
+    </div>
+    <div class="tl-item amber">
+      <div class="tl-date">🟡 April 9–15</div>
+      <div class="tl-title">Confirm booth + get invoice</div>
+      <div class="tl-body">Target: have booth confirmed by April 15. Gives 15 days buffer before April 30 payment deadline.</div>
+    </div>
+    <div class="tl-item amber">
+      <div class="tl-date">🟡 April 30</div>
+      <div class="tl-title">Booth payment deadline (est.)</div>
+      <div class="tl-body">Pay invoice. Confirm your spot is locked. Based on prior year deadline — Cole will confirm exact date.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">✅ May 1–9</div>
+      <div class="tl-title">Order print materials + prep supplies</div>
+      <div class="tl-body">500 business cards, 200 flyers, dog treats bag, small banner or sign, lead capture sheet, phone charger. Order by May 7.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">✅ May 12–15</div>
+      <div class="tl-title">Prep run + pack everything</div>
+      <div class="tl-body">Test your tent setup. Pack box the night before. Print the day-of script and check-in checklist. Set alarm for 6:30 AM.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">✅ May 16 — EVENT DAY</div>
+      <div class="tl-title">🐾 Bark in the Park — GO TIME</div>
+      <div class="tl-body">Arrive by 7 AM. Setup done by 7:30. Event runs 8 AM–2 PM. Target: 50+ conversations, 20+ cards with phone numbers collected, 5+ same-day bookings.</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">✅ May 16–18 (Follow-Up Window)</div>
+      <div class="tl-title">Text every lead within 24 hours</div>
+      <div class="tl-body">Don't wait. The conversion rate drops ~40% after 48 hours. Use the post-event follow-up scripts. Strike while the memory is fresh.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ======= TAB 4: DAY-OF PLAN ======= -->
+<div class="panel" id="panel-dayof">
+
+  <div class="card amber">
+    <h3>📦 What to Bring</h3>
+    <ul style="font-size:0.9rem; color:#94a3b8; padding-left:1.2rem; line-height:2;">
+      <li><strong>500 business cards</strong> (minimum — you can run out at this event)</li>
+      <li><strong>200 flyers</strong> (simple: pricing, QR code to website, phone number)</li>
+      <li><strong>Bag of small dog treats</strong> — give one to every dog that visits your booth. Dogs bring owners.</li>
+      <li><strong>Lead capture sheet</strong> — name, phone, neighborhood, # dogs. Collect 30+ numbers.</li>
+      <li><strong>Small table sign</strong> or banner: "FREE First Yard Cleanup — Tidy Tails St. Louis"</li>
+      <li><strong>QR code printout</strong> → tidytailsstl.com or the spring.html landing page</li>
+      <li><strong>Portable phone charger</strong> — your phone will die from taking photos and texting</li>
+      <li><strong>Water + snacks</strong> — 6 hours on your feet</li>
+      <li><strong>A dog (if possible)</strong> — seriously, borrow one if needed. You'll get more traffic.</li>
+    </ul>
+  </div>
+
+  <div class="card green">
+    <h3>💬 The Conversation Script — 30 Seconds</h3>
+    <div class="script-block">When someone stops at your booth or walks by with a dog:
+
+"Hey! Great dog — how many do you have? [Listen]
+
+Cool. I'm TJ — I run Tidy Tails. We come out once a week and 
+clean the whole yard for $70 flat a month. No contracts.
+
+Most people are spending their whole Sunday doing what we do 
+in 20 minutes. I've got a card for you — first cleanup is 
+completely free so you can see how it works.
+
+[Hand card and treat to the dog]
+
+What part of St. Louis are you in? [Confirm you serve their area]
+
+Awesome — just text that card when you're ready and I'll set 
+you up for next week."</div>
+    <p style="font-size:0.8rem; color:#64748b; margin-top:0.6rem;">🎯 Don't ask "are you interested?" — just have the conversation. Interest reveals itself.</p>
+  </div>
+
+  <div class="card blue">
+    <h3>📱 Same-Day Booking Script</h3>
+    <div class="script-block">When someone says "I want to sign up":
+
+"Perfect. What's your address? I'll add you to my route.
+
+[Get address and # of dogs]
+
+Are you good with [day of week]? I'll text you when I'm 
+on my way and again when I'm done. First cleanup is on me.
+
+[Text them from your phone right there: 
+'Hey [name], it's TJ from Tidy Tails! First cleanup is 
+scheduled — I'll text you the day before to confirm.']"</div>
+  </div>
+
+  <div class="card red">
+    <h3>🎯 Event-Day Goals</h3>
+    <ul style="font-size:0.9rem; color:#94a3b8; padding-left:1.2rem; line-height:2;">
+      <li><strong>50+ conversations</strong> — keep it moving, talk to everyone with a dog</li>
+      <li><strong>30+ lead captures</strong> — name + phone number on your sheet</li>
+      <li><strong>5–10 same-day bookings</strong> — close on the spot when they're ready</li>
+      <li><strong>200 cards distributed</strong> — every card has dog treats attached</li>
+      <li><strong>3–5 photos for Instagram</strong> — booth setup, dogs visiting, you working the crowd</li>
+    </ul>
+  </div>
+
+  <div class="card amber">
+    <h3>📸 Content You Can Create at the Event</h3>
+    <ul style="font-size:0.9rem; color:#94a3b8; padding-left:1.2rem; line-height:2;">
+      <li><strong>Booth setup photo</strong> — post before the event starts</li>
+      <li><strong>Dog visitors</strong> — with owner permission, photo of each dog that comes by</li>
+      <li><strong>Tower Grove Park background</strong> — Arch in background = premium STL content</li>
+      <li><strong>Instagram Stories</strong> — "We're at Bark in the Park — come find us!" throughout the day</li>
+      <li><strong>Post-event recap</strong> — "Met 200+ dog owners today at Bark in the Park. Welcome to the fam."</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>📲 Post-Event Follow-Up (May 16–17)</h3>
+    <div class="script-block">Text to everyone who gave their number (send within 24 hours):
+
+"Hey [name]! It was great meeting you at Bark in the Park 
+today. I'm TJ from Tidy Tails — the dog waste cleanup service.
+
+Ready to try that free first cleanup? Just reply with your 
+address and I'll get you on the schedule.
+
+If timing isn't right yet, no pressure — I'll be here. 😄
+
+— TJ, Tidy Tails · (314) 850-7140"</div>
+  </div>
+
+</div>
+
+<!-- ======= TAB 5: REVENUE MATH ======= -->
+<div class="panel" id="panel-math">
+
+  <div class="stat-big">5,000+</div>
+  <div class="stat-big-label">Dog owners in Tower Grove Park on May 16</div>
+
+  <div class="callout">
+    <strong>The math:</strong> If you talk to 50 people, collect 30 phone numbers, and convert 20% of those to customers over the next 30 days — that's <strong>6 new monthly customers = $5,040 LTV</strong>. The booth pays for itself in the first month from a single customer. Every additional convert is pure profit.
+  </div>
+
+  <div class="revenue-grid">
+    <div class="rev-card">
+      <div class="scenario">🐻 Bear</div>
+      <div class="converts">4</div>
+      <div class="ltv">$3,360</div>
+      <div class="detail">40 conversations<br>15 numbers<br>27% close rate</div>
+    </div>
+    <div class="rev-card">
+      <div class="scenario">📊 Base</div>
+      <div class="converts">8</div>
+      <div class="ltv">$6,720</div>
+      <div class="detail">60 conversations<br>25 numbers<br>32% close rate</div>
+    </div>
+    <div class="rev-card">
+      <div class="scenario">🚀 Bull</div>
+      <div class="converts">15</div>
+      <div class="ltv">$12,600</div>
+      <div class="detail">80+ conversations<br>40 numbers<br>38% close rate</div>
+    </div>
+  </div>
+
+  <div class="card green">
+    <h3>📐 The Break-Even Math</h3>
+    <ul style="font-size:0.9rem; color:#94a3b8; padding-left:1.2rem; line-height:2.2;">
+      <li>Booth cost (estimated): <strong>$200</strong></li>
+      <li>Materials (cards + flyers + treats): <strong>$75</strong></li>
+      <li>Total investment: <strong>~$275</strong></li>
+      <li>LTV per customer: <strong>$840 (12 months avg)</strong></li>
+      <li><strong style="color:#4ade80;">Break-even: 1 customer</strong> — everything after that is gravy</li>
+      <li>ROAS at base case (8 converts): <strong style="color:#4ade80;">24×</strong></li>
+    </ul>
+  </div>
+
+  <div class="card amber">
+    <h3>📅 August Goal Impact</h3>
+    <p style="font-size:0.9rem; color:#94a3b8; margin-bottom:0.8rem;">Current: ~11 customers. Goal: 25–30 by August 2025.</p>
+    <ul style="font-size:0.9rem; color:#94a3b8; padding-left:1.2rem; line-height:2;">
+      <li>After Easter conversions + FB Ads + NC/SWC campaigns: projected ~16-18 customers by May</li>
+      <li>Bark in the Park base case: <strong>+8 customers by June</strong></li>
+      <li>Combined: <strong>24–26 customers by June</strong> — hits August goal 2 months early</li>
+      <li>Bull case: <strong>31–33 customers</strong> — blows past the goal</li>
+    </ul>
+  </div>
+
+  <div class="callout blue">
+    <strong>🏆 Why this is the highest-ROI single-day event of the year:</strong><br><br>
+    Every other acquisition channel (FB Ads, Nextdoor, blog SEO) requires the customer to find you. At Bark in the Park, you find them — in person, while they're holding their dog, in a mindset of celebrating dog ownership. The conversion environment is better than anything digital can create. The "first cleanup free" offer closes on the spot in a way no ad can match. And the event compounds: customers you meet here refer their neighbors, and those neighbors have dogs too.
+  </div>
+
+</div>
+
+<!-- ======= TAB 6: CHECKLIST ======= -->
+<div class="panel" id="panel-checklist">
+
+  <div style="margin-bottom:1rem;">
+    <div class="section-label">Progress</div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressFill" style="width:0%"></div></div>
+    <div id="progressText" style="font-size:0.8rem; color:#64748b;">0 of 20 complete</div>
+  </div>
+
+  <div class="card red">
+    <h3>🔴 DO TODAY (April 3)</h3>
+    <div class="checklist-item"><input type="checkbox" id="c1" onchange="saveChecklist()"><label for="c1"><strong>Send email to Cole Imbs at cimbs@hsmo.org</strong><br><span class="sub">Use the email template in the Email Draft tab. 3 minutes.</span></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c2" onchange="saveChecklist()"><label for="c2"><strong>Mark April 7 on calendar: CALL COLE if no reply</strong><br><span class="sub">314.951.1567 · 9 AM Monday</span></label></div>
+  </div>
+
+  <div class="card amber">
+    <h3>🟡 THIS WEEK (April 3–9)</h3>
+    <div class="checklist-item"><input type="checkbox" id="c3" onchange="saveChecklist()"><label for="c3"><strong>Call Cole at 314.951.1567 (Monday April 7)</strong><br><span class="sub">If no email reply by Friday. Ask: Is booth registration open? What's the cost? How do I register?</span></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c4" onchange="saveChecklist()"><label for="c4"><strong>Confirm vendor booth is available</strong><br><span class="sub">Get the registration link or invoice from Cole</span></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c5" onchange="saveChecklist()"><label for="c5"><strong>Ask Cole for exact payment deadline</strong><br><span class="sub">Historically April 30 — but confirm the 2026 date</span></label></div>
+  </div>
+
+  <div class="card">
+    <h3>📅 BY APRIL 15</h3>
+    <div class="checklist-item"><input type="checkbox" id="c6" onchange="saveChecklist()"><label for="c6"><strong>Booth confirmed and registered</strong></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c7" onchange="saveChecklist()"><label for="c7"><strong>Know the exact booth location and load-in time</strong></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c8" onchange="saveChecklist()"><label for="c8"><strong>Know what equipment is provided vs. what you bring</strong><br><span class="sub">(tent? table? chairs? power access?)</span></label></div>
+  </div>
+
+  <div class="card">
+    <h3>📅 BY APRIL 30</h3>
+    <div class="checklist-item"><input type="checkbox" id="c9" onchange="saveChecklist()"><label for="c9"><strong>Booth invoice paid</strong></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c10" onchange="saveChecklist()"><label for="c10"><strong>Confirmation email from HSMO received</strong></label></div>
+  </div>
+
+  <div class="card">
+    <h3>📅 BY MAY 9 (1 WEEK OUT)</h3>
+    <div class="checklist-item"><input type="checkbox" id="c11" onchange="saveChecklist()"><label for="c11"><strong>500 business cards ordered and received</strong><br><span class="sub">Vistaprint or local printer — order by May 2</span></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c12" onchange="saveChecklist()"><label for="c12"><strong>200 flyers printed</strong><br><span class="sub">Pricing, QR code, "First cleanup FREE," phone number</span></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c13" onchange="saveChecklist()"><label for="c13"><strong>Dog treat bag purchased</strong><br><span class="sub">Small training treats — 1 per dog that visits</span></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c14" onchange="saveChecklist()"><label for="c14"><strong>Tent + table + chairs confirmed</strong><br><span class="sub">10x10 popup tent is standard</span></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c15" onchange="saveChecklist()"><label for="c15"><strong>Lead capture sheet printed (30+ rows)</strong><br><span class="sub">Name / Phone / Neighborhood / # Dogs / Notes</span></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c16" onchange="saveChecklist()"><label for="c16"><strong>Table sign or banner ready</strong><br><span class="sub">"FREE First Yard Cleanup · Tidy Tails" visible from 20 feet</span></label></div>
+  </div>
+
+  <div class="card">
+    <h3>📅 MAY 15 NIGHT — PRE-EVENT PACK</h3>
+    <div class="checklist-item"><input type="checkbox" id="c17" onchange="saveChecklist()"><label for="c17"><strong>Everything packed in one box</strong><br><span class="sub">Cards, flyers, treats, sheet, sign, phone charger, water, snacks</span></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c18" onchange="saveChecklist()"><label for="c18"><strong>Alarm set for 6:30 AM</strong><br><span class="sub">Load-in typically 7 AM, event starts 8 AM</span></label></div>
+  </div>
+
+  <div class="card green">
+    <h3>✅ POST-EVENT — MAY 16–18</h3>
+    <div class="checklist-item"><input type="checkbox" id="c19" onchange="saveChecklist()"><label for="c19"><strong>Text every lead within 24 hours</strong><br><span class="sub">Use the follow-up script in the Day-Of Plan tab. Don't wait.</span></label></div>
+    <div class="checklist-item"><input type="checkbox" id="c20" onchange="saveChecklist()"><label for="c20"><strong>Log event results in Event ROI Tracker</strong><br><span class="sub">Conversations, leads, same-day bookings, conversions within 30 days</span></label></div>
+  </div>
+
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyEmail() {
+  const text = document.getElementById('emailBody').innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    btn.textContent = '✅ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = '📋 Copy Email Body'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function saveChecklist() {
+  const state = {};
+  let done = 0;
+  const total = 20;
+  for (let i = 1; i <= total; i++) {
+    const el = document.getElementById('c' + i);
+    if (el) {
+      state['c' + i] = el.checked;
+      if (el.checked) {
+        done++;
+        el.closest('.checklist-item').classList.add('done');
+      } else {
+        el.closest('.checklist-item').classList.remove('done');
+      }
+    }
+  }
+  localStorage.setItem('bark_checklist', JSON.stringify(state));
+  const pct = Math.round((done / total) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressText').textContent = done + ' of ' + total + ' complete';
+}
+
+function loadChecklist() {
+  const saved = localStorage.getItem('bark_checklist');
+  if (saved) {
+    const state = JSON.parse(saved);
+    Object.entries(state).forEach(([key, val]) => {
+      const el = document.getElementById(key);
+      if (el) el.checked = val;
+    });
+  }
+  saveChecklist();
+}
+
+// Days to event
+function updateDays() {
+  const event = new Date('2026-05-16T08:00:00-05:00');
+  const now = new Date();
+  const diff = Math.ceil((event - now) / (1000 * 60 * 60 * 24));
+  document.getElementById('daysLeft').textContent = diff > 0 ? diff : '🎪 TODAY';
+}
+
+updateDays();
+loadChecklist();
+</script>
+</body>
+</html>
