@@ -436,6 +436,8 @@ Chief uses this to verify sync with dashboard.
 |------|------|---------------|----------------|--------|
 | 04:47 | Blog #80 — Does Dog Poop Hurt Your Home Value? (St. Louis) | 🐕 Tidy Tails | tidytailsstl.com/blog/dog-poop-home-value-selling-house-st-louis | ✅ |
 | 04:47 | Blog #81 — Dog Poop and Fleas: The Yard Connection St. Louis Dog Owners Miss | 🐕 Tidy Tails | tidytailsstl.com/blog/dog-poop-fleas-yard-st-louis | ✅ |
+| 16:14 | HOA Management Commercial Kit — Apr 3, 2026 | 🐕 Jamie's Hub | dashboard/hoa-management-commercial-kit.html | ✅ |
+| 16:14 | Blog #83 — HOA Pet Waste Rules in St. Louis (Avoid Fines) | 🐕 Tidy Tails | tidytailsstl.com/blog/hoa-pet-waste-rules-st-louis | ✅ (logged) |
 | 08:48 | Morning Briefing — Good Friday, April 3, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-04-03.pdf | ✅ |
 | 12:02 | Shed Ads — April 3, 2026 (Good Friday) | 🏠 Shed Sales | pdfs/SHED_ADS_2026-04-03.pdf | ✅ (Notion ID: 337ccdb3-7d1f-81fc-ab4e-d593c585d0f8) |
 | 12:02 | Commercial Leads — April 3, 2026 | 🐕 Jamie's Hub | pdfs/COMMERCIAL_LEADS_2026-04-03.pdf | ✅ (Notion ID: 337ccdb3-7d1f-8131-aaaf-e663cf0d1b2d) |
