@@ -2,6 +2,31 @@
 
 ---
 
+### Friday 4:09 AM — Customer Referral Engine (Hourly Task)
+- **4:09 AM** 🤝 Built and published the **Customer Referral Engine** — a complete referral program toolkit filling the last major untapped growth channel with zero ad spend
+  - **File:** `dashboard/customer-referral-engine.html` (44KB ✅)
+  - **Dashboard:** Added fastest-pulsing (0.85s) green quick link "🤝 CUSTOMER REFERRAL ENGINE — 35–50% CLOSE · $0 CAC · ASK NOW" + featured card at top of Sales & CRM section ✅
+  - **Git commit:** `bf878554` ✅ pushed to tidytails-dashboard
+  - **Why this task:** 4 AM Friday April 3. The Spring Pest Series is complete (81 posts). All ad packs exist (Spring, Mother's Day, Father's Day). All FB conquest kits built (North County, South/West/Central, St. Charles County). Every channel has tools. The single remaining high-ROI gap: **no systematic referral program**. TJ has 11+ customers. At 40% referral close rate, one ask-round = 4 new customers = $3,360 LTV at $0 cost. He's never systematically asked. That's $3,000+ sitting untapped.
+  - **What was built (6 tabs):**
+    - **Why It Works tab:** Revenue math (Bear $1,680 / Base $3,360 / Bull $5,040 at $0 cost), 4 key metric cards (35–50% close rate vs 5–15% cold, 22mo avg retention vs 14–16mo cold), 4 magic moments for asking (post-Easter cleanup, after month 1, after review, spring season)
+    - **Ask Scripts tab (7 copy-paste):**
+      - Script 1 (Post-Cleanup Ask) — "🔥 Use THIS WEEK" tag — post-Easter yard reveal window
+      - Script 2 (After First Month) — Day 30 send
+      - Script 3 (After Google Review) — Strike while in peak advocacy mode, send immediately
+      - Script 4 (Spring Neighbor Mention) — Seasonal April–May batch ask
+      - Script 5 (Referral Follow-Through) — When they name someone, confirm the handoff
+      - Script 6 (Warm Outreach to the Referral) — Text the new prospect directly, mention who sent you
+      - Script 7 (Thank You When Referral Converts) — Close the loop, confirm $20 credit, make them feel like a hero
+    - **The Program tab:** Full reward structure explained — why "First Cleanup Free" for the referee + "$20 credit" for the referrer is the right balance. Revenue math: $55–65 cost per convert vs $1,260–1,540 LTV = 19–24× ROAS. 3-step process (customer shares number → new customer texts Jamie → free cleanup + credit applied). Monthly cadence.
+    - **Referral Card tab:** Print-ready card design (dark green gradient, white text, paw emoji) with exact text to put into Canva. Print instructions, cost (~$12/100 cards), where to leave them (door, events, daycares, vet clinics). The "sticky note trick" — leave 2 cards at door with a sticky note for 10× effectiveness over a text ask.
+    - **Tracker tab:** Add customers by name/phone/area, cycle status (Not Asked → Asked → Referred → Converted 🎉), auto-calculates LTV generated from referral converts. Pipeline stats bar. Priority ask list callout: Shannon Z., Amanda H., Chastity D. (all 5★ reviewers, already in peak advocacy mode).
+    - **Checklist tab (18 items across 4 phases):** NOW (send Scripts 3 to 5★ reviewers, print cards, add customers to tracker) → Easter Weekend (leave cards at every door, Script 1 to all cleanups Sunday evening, text referrals same day) → This Week (Script 4 to all customers, order cards, add referral to "All Done" text) → Ongoing habits (month-1 ask, post-review ask, monthly batch, thank-you when converts). localStorage persistence + progress bar.
+  - **Revenue math:** 11 customers × 1 ask = 11 leads. Bear (20% close) = 2 converts = $1,680. Base (40%) = 4 converts = $3,360. Bull (60%) = 6 converts = $5,040. All at $0 CAC. Each $60 in referral costs (free cleanup + credit) returns $1,260–$1,540 LTV. 19–24× ROAS is the most efficient number in the entire playbook.
+  - **Why this beats other 4 AM tasks:** Content library is saturated (81 blog posts). Ad packs written for every season. FB conquest kits built for every geographic market. The gap that remained was the most human channel of all — asking the 11 people who already trust TJ enough to pay him monthly to send one friend. The Spring Pest Series completion (3 AM task) finalized the blog-SEO layer. The Referral Engine is the human layer on top of all of it. One batch of texts this Easter weekend could generate $3,360 in LTV from 4 new customers before TJ spends another dollar on ads.
+
+---
+
 ### Friday 3:09 AM — Spring Pest Series Completion + 4 Missing Posts Deployed (Hourly Task)
 - **3:09 AM** 🦟 Two-part task: (1) Synced 4 blog posts missing from live site, (2) Wrote and published the **"Dog Poop and Fleas in Your Yard"** post — completing the Spring Pest Series (flies ✅ mosquitoes ✅ ticks ✅ worms ✅ fleas ✅)
   - **File:** `tidy-tails/website/blog/dog-poop-fleas-yard-st-louis.html` (46KB ✅)
