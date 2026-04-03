@@ -2,6 +2,29 @@
 
 ---
 
+### Friday 9:11 AM — Lawn Care Partner Kit: 5 Verified Phone Numbers Added (Hourly Task)
+- **9:11 AM** 📞 Enriched the **Lawn Care Partner Kit** with verified callable phone numbers for all 5 priority partner targets — turning a "research first" tool into a "dial now" tool
+  - **File:** `dashboard/lawn-care-partner-kit.html` ✅ (updated)
+  - **Git commit:** `9246927c` ✅ → pushed to tidytails-dashboard
+  - **Live URL:** `https://tidytails.github.io/tidytails-dashboard/dashboard/lawn-care-partner-kit.html` ✅ HTTP 200 confirmed
+  - **Why this task:** The Lawn Care Partner Kit was built at 10 AM Thursday with 10 target companies — but the two #1 priority targets (Dunn's and Complete Lawn Care) had NO phone numbers. TJ couldn't call them without hunting for the number first. At 9 AM Good Friday morning, with Easter Sunday 2 days away and TJ running through a full execution checklist, removing every possible friction point matters. Phone numbers were the gap between "read this tool" and "make the call right now."
+  - **What was found and added:**
+    1. **Dunn's Lawn Service** — **(314) 830-2862** — 1065 Verlene Dr, Florissant MO 63031 — PRIORITY #1: serves 63031/63033/63034/63042, exact NC campaign zip codes
+    2. **Complete Lawn Care Inc.** — **(314) 220-2181** — 5735 Fee Fee Rd, Hazelwood MO 63042 — PRIORITY #1: covers TJ's ENTIRE service map (Hazelwood, Florissant, Clayton, Ballwin, Richmond Heights, Ladue, Town & Country) from one Hazelwood base
+    3. **Lawn Masters St. Louis** — **(636) 230-0700)** — 709 Glover Ave, Valley Park MO 63088 — West County + St. Charles specialist since 1983 (Chesterfield, Wildwood, Kirkwood, Creve Coeur, Cottleville, St. Peters)
+    4. **2 Bros That Mow** — **(314) 795-4137** — 6355 Manchester Ave, St. Louis MO 63139 — South County + West City (Kirkwood, Mehlville, Oakville, Affton, South City), high-volume operation
+    5. **Kozeny's Lawn Service** — **(314) 420-3458)** — 2717 Sedan Dr, St. Louis MO 63125 — Women-owned South County specialist, serves exact Paw-ty territory (Crestwood, Kirkwood, Mehlville, Affton, Webster Groves). Special pitch angle: two local female/small business owners helping each other
+  - **Kit improvements made:**
+    - Added "PHONES NOW CONFIRMED APR 3" green banner at top with all 5 numbers visible on load
+    - Each company card now shows phone chip + address chip prominently
+    - Kozeny's description updated from "Chesterfield specialist" to correct South County / Paw-ty territory (more accurate and more directly actionable)
+    - Checklist rewritten: NOW items changed from "look up phone" → "📞 Call [NAME]: (XXX) XXX-XXXX" with exact best time to call
+    - Revenue math callout updated to include Kozeny's as third priority target
+  - **Why this is high-impact at 9 AM Good Friday:** The kit already had the strategy, scripts, and revenue math. The only thing between TJ and a first referral partner conversation was having a number to dial. The Dunn's math alone: 150 residential customers × 40% have dogs = 60 leads at 35% close = 21 customers over 2 years = $17,640 LTV at $420 cost = 42× ROAS. That math is sitting idle until TJ picks up the phone. The phone numbers make it actionable before Easter weekend. Lawn crews are IN YARDS right now during spring mow season — this is peak timing to reach operators who've been mowing around dog waste all week.
+  - **ROAS reminder:** $20 referral cost per convert vs. $840 LTV = 42× ROAS consistently. Every partner activated costs $0 upfront, only $20 when a lead converts. Best CAC math in the entire toolkit.
+
+---
+
 ### Friday 8:11 AM — Mother's Day Landing Page: /mothers-day (Hourly Task)
 - **8:11 AM** 🌸 Built and deployed **`tidytailsstl.com/mothers-day`** — a dedicated gift-buyer conversion landing page for Mother's Day (May 10), designed to replace /spring as the FB Ads destination on April 6 post-Easter
   - **File:** `tidy-tails/website/mothers-day.html` (43KB ✅)
