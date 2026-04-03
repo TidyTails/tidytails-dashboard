@@ -436,3 +436,4 @@ Chief uses this to verify sync with dashboard.
 |------|------|---------------|----------------|--------|
 | 04:47 | Blog #80 — Does Dog Poop Hurt Your Home Value? (St. Louis) | 🐕 Tidy Tails | tidytailsstl.com/blog/dog-poop-home-value-selling-house-st-louis | ✅ |
 | 04:47 | Blog #81 — Dog Poop and Fleas: The Yard Connection St. Louis Dog Owners Miss | 🐕 Tidy Tails | tidytailsstl.com/blog/dog-poop-fleas-yard-st-louis | ✅ |
+| 08:48 | Morning Briefing — Good Friday, April 3, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-04-03.pdf | ✅ |
