@@ -2,6 +2,29 @@
 
 ---
 
+### Friday 10:07 PM — Spring Cleaning Checklist Full Rebuild + Blog #85 Dashboard Link (Hourly Task)
+- **10:07 PM** 🌿 **Rewrote `spring-cleaning-checklist-st-louis-dog-owners.html` from scratch** — the old post was an 8.6KB stub with wrong pricing ($25/visit, $100 one-time) that was live and indexed on the real site. New post: 55.4KB, correct pricing ($70/month flat, $75 one-time), 6-phase interactive checklist, FAQPage schema, full threat grid, scenario comparisons, and proper conversion architecture. Also fixed Chief-flagged issue: Blog #85 (can-you-compost) was missing from the dashboard SEO section — added it.
+  - **File rebuilt:** `tidy-tails/website/blog/spring-cleaning-checklist-st-louis-dog-owners.html` — 55KB ✅ (was 8.6KB)
+  - **Live URL:** `https://tidytailsstl.com/blog/spring-cleaning-checklist-st-louis-dog-owners` ✅ HTTP 200 confirmed
+  - **Git commits:** tidytails-website `173625a` ✅ · tidytails-dashboard `16829085` ✅
+  - **Dashboard fix:** Blog #85 (Can You Compost Dog Poop?) added to SEO section with green featured card + SEO section count updated from 4 → 5 ✅
+  - **Why this task:** The spring-cleaning-checklist post was the most dangerous content gap in the entire library — it was a REAL indexed page appearing in Google for spring-related searches, serving wrong pricing. Anyone searching "spring cleaning checklist dog St. Louis" and landing on this page saw "$25/visit" instead of "$70/month" and "$100 one-time" instead of "$75". At 10 PM Friday in peak spring season, this is a live conversion killer. Blog content is saturated at 85 posts — the highest-impact remaining work was fixing broken existing content, not writing new posts.
+  - **What's in the rebuilt post (55KB, 6 phases):**
+    - **6-phase interactive checklist with click-to-check boxes:** Phase 1 (full waste removal — must be done first), Phase 2 (lawn damage assessment & repair — April window), Phase 3 (parasite prevention — 48-hour rule, fecal test, monthly prevention), Phase 4 (pest reduction — flies, mosquitoes, ticks — all connected to waste management), Phase 5 (ongoing weekly maintenance), Phase 6 (the skip it option — professional service)
+    - **Threat grid (6 cards):** Roundworm/hookworm (HIGH), Flies/mosquitoes (HIGH), Lawn dead spots (HIGH), Tick habitat (MEDIUM), Rain runoff (MEDIUM), Giardia/E. coli (MEDIUM) — all with specific spring-timing context
+    - **Big stat callout:** 100+ deposits per dog since December
+    - **The common mistake callout:** Why overseeding without waste removal always fails (the most common spring mistake)
+    - **What doesn't work section:** 4 callouts — lime as substitute, waiting for decomposition, fly sprays before cleanup, fertilizing before addressing dead spots
+    - **Scenario grid:** The Cycle Without a Plan (❌ 8 outcomes) vs The Spring Reset Plan (✅ 8 outcomes)
+    - **Correct pricing strip:** $70/mo (1-2 dogs, MOST POPULAR), $80/mo (3-4 dogs), $90/mo (5+), $75+ one-time. No contracts. First cleanup FREE.
+    - **7-question FAQPage schema** covering all high-intent queries
+    - **6 related article cards** linking to the deep-dive pest/lawn series
+    - **22-city service area grid**
+  - **Revenue math:** The old page was serving wrong pricing to every spring search visitor — anyone who called expecting "$25/visit" and heard "$70/month" had a jarring expectation mismatch. Now the pricing on the page matches what TJ quotes on the phone. The 6-phase checklist with correct conversion architecture also makes the "skip it → professional service" path far more natural than the old 3-paragraph stub.
+  - **SEO improvement:** 55KB vs 8.6KB. FAQPage schema added (was missing). Proper BlogPosting schema with author, publisher, geo data. All 6 related deep-dive posts cross-linked. Canonical URL maintained.
+
+---
+
 ### Friday 8:06 PM — Realtor Referral Engine (Hourly Task)
 - **8:06 PM** 🏠 Built and deployed the **Realtor Referral Engine** — a 5-tab dashboard tool that turns St. Louis real estate agents into a recurring pre-listing cleanup pipeline at $0 CAC
   - **File:** `tidy-tails/dashboard/realtor-referral-engine.html` (55KB ✅)
