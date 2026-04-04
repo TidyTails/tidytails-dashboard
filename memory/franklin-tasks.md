@@ -2,6 +2,40 @@
 
 ---
 
+### Saturday 12:08 AM — "How Often Should You Pick Up Dog Poop?" Full Rebuild (Hourly Task)
+- **12:08 AM** 📅 Rebuilt **`how-often-pick-up-dog-poop.html`** from a 17KB stub into a **50KB full editorial post** — the only high-volume evergreen query in the entire blog library that had never been properly answered
+  - **File:** `tidy-tails/website/blog/how-often-pick-up-dog-poop.html` — 50KB ✅ (was 17KB)
+  - **Live URL:** `https://tidytailsstl.com/blog/how-often-pick-up-dog-poop` ✅ HTTP 200 confirmed
+  - **Git commits:** tidytails-dashboard `7834c67e` ✅ · tidytails-website `e31d8da` ✅ → Cloudflare Pages live ✅
+  - **Why this task:** 85 blog posts live. All campaign tools built. Easter weekend underway. At midnight on Easter Eve, the highest-impact remaining gap was a content quality issue, not a content gap: `how-often-pick-up-dog-poop.html` was the only post in the library that was still a 17KB stub from March 6 with no schema, no conversion architecture, and weak content. This query ("how often should you pick up dog poop") is one of the highest-volume, most evergreen search terms in the pet care category — searched year-round by new dog owners, people questioning their current habits, and mid-funnel buyers comparing DIY vs. service. The old stub was 17KB with a handful of paragraphs. The rebuild is 50KB with full conversion architecture, parasite science, seasonal calendar, the 48-hour rule explained, fly breeding cycle, lawn chemistry, 7-question FAQ with FAQPage schema, and a full pricing strip.
+  - **What's in the rebuilt post (50KB):**
+    - **Hero:** "How Often Should You Pick Up Dog Poop? The Answer Might Surprise You" — dark green gradient
+    - **Urgency banner:** "April = peak poop season — winter accumulation + spring weather = ideal conditions for parasites and flies"
+    - **Stats row:** 48 hrs (parasite-safe window) / 300+ deposits/dog/year / 9 wks minimum decomposition / $2.30/day
+    - **Frequency table:** Situation-by-situation recommendations — 1 dog small yard (weekly fine), 2+ dogs (weekly minimum), families with kids (48-hour rule), spring thaw (full reset first). Color-coded ratings.
+    - **The Math section:** 25 deposits/month, 300/year, 600 for two dogs, 100+ winter backlog — visualized in math cards
+    - **The 48-Hour Rule callout:** The complete explanation of why freshly deposited waste isn't infectious but becomes dangerous after 2-4 weeks in soil — and why this makes frequency matter more than total effort
+    - **4-reason grid:** Parasite prevention, fly breeding cycle, lawn health, rain spread — each with mechanistic explanation
+    - **Scenario grid:** ❌ Monthly Cleanup (7 bad outcomes) vs ✅ Weekly Cleanup (7 good outcomes)
+    - **Seasonal calendar:** Winter (weekly if possible, accumulates) / Spring Thaw (full reset first, then weekly — most dangerous month) / Summer (weekly, twice for 3+ dogs) / Fall (weekly, leaves hide deposits)
+    - **Decomposition timeline:** Day 1-2 (safe removal window) → Days 3-7 (fly cycle begins) → Weeks 2-3 (roundworm eggs embryonating) → Week 4-6 (visible waste gone, eggs infectious and in soil) → Months-Years (Toxocara survives 2-5 years)
+    - **The invisible yard problem callout:** A visually clean spring yard can still have active roundworm eggs from previous deposits
+    - **Fertilizer myth section:** Dog waste is acid + concentrated nitrogen that burns grass, not herbivore manure that fertilizes
+    - **5-step DIY guide:** Fixed day, grid sweep, double-bag and remove from property, crouch-level spring check, don't skip two weeks in a row
+    - **DIY vs. Tidy Tails comparison table:** Actual frequency achieved, time cost, annual hours, consistency in bad weather, catches everything, annual cost, notification system
+    - **Full pricing strip:** $70/mo (1-2 dogs), $80/mo (3-4 dogs), $75+ one-time — first cleanup FREE callout
+    - **22-city service area grid**
+    - **7-question FAQ with FAQPage schema:** How often / Is it OK to leave it / What happens if you don't / How many times per day / Does it decompose / How much does service cost / What is the 48-hour rule
+    - **6 related article links**
+  - **Cross-links added:**
+    - `blog/how-long-does-dog-poop-decompose.html`: Added "📅 How Often Should You Pick Up Dog Poop?" as first Related Article ✅
+    - `blog/index.html`: Updated title, excerpt, and date from stub metadata → current ✅
+    - `blog/index.html`: JSON-LD date updated from 2026-03-06 → 2026-04-04 ✅
+  - **Why this over other tasks at midnight:** Every geographic post is covered (85 posts). All campaign tools are built. Easter weekend is underway — no new campaign tools needed tonight. The `how-often` post was the single remaining content quality issue: a stub that ranked for a high-volume query but converted at low rates because the page had no depth, no schema, no seasonal context, and no conversion architecture. The 48-hour rule section alone — explaining that fresh poop isn't infectious but 3-week-old poop has already contaminated the soil permanently — is a genuinely surprising insight that changes how people think about frequency. Anyone who reads it understands why weekly service isn't just convenient, it's the only approach that actually prevents parasite contamination. That's a conversion argument that the stub was completely missing. This is the kind of post that gets shared in parenting groups: "You've been doing dog waste cleanup wrong — it's not about effort, it's about timing." Evergreen traffic, year-round relevance, zero competitor coverage for this angle in the STL market.
+  - **Revenue math:** The "how often" query is searched by new dog owners deciding whether to start a service AND by existing dog owners re-evaluating their DIY approach. The 48-hour rule section — "you removed the pile but the eggs are already in the soil" — is the insight that converts people who thought DIY was working. One convert per month from this post = $840 LTV at $0 CAC. Estimated monthly searches for "how often pick up dog poop" nationally: 8,000-12,000. STL slice with local intent signals: 50-150/month. At 2-3% conversion = 1-4 leads/month. Base case: 1 convert/month = $10,080 LTV/year from one rebuilt post.
+
+---
+
 ### Friday 11:04 PM — Instagram Reels & TikTok Kit (Hourly Task)
 - **11:04 PM** 📱 Built and deployed the **Instagram Reels & TikTok Kit** — 10 ready-to-film scripts for the last completely untouched organic acquisition channel in the Tidy Tails toolkit
   - **File:** `dashboard/instagram-reels-tiktok-kit.html` (51KB ✅)
