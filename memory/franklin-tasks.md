@@ -4818,3 +4818,29 @@
     - Parent anxiety + specific event deadline = highest-urgency conversion context of the year. A parent who reads this 24 hours before Easter and has an unscooped yard has one option: call Tidy Tails for a pre-Easter cleanup
     - No competitor in St. Louis has any content targeting this keyword cluster. We own it.
   - **Revenue math:** Base case (3 Easter parents find this post via Google → 1.5 convert to monthly service × $840 LTV = $1,260) from a post that compounds forever. Plus: parents who can't get service this Easter become Mother's Day converts.
+
+---
+
+### Saturday 3:07 AM — Dog Poop Smell Yard: Full Rebuild from 19KB Stub to 60KB Editorial Post (Hourly Task)
+- **3:07 AM** 👃 Rebuilt **`dog-poop-smell-yard.html`** from a 19KB stub with wrong pricing into a **60KB full editorial post** — the only high-volume odor query in the library that had never been properly answered
+  - **File:** `tidy-tails/website/blog/dog-poop-smell-yard.html` — 60KB ✅ (was 19KB stub)
+  - **Live URL:** `https://tidytailsstl.com/blog/dog-poop-smell-yard` ✅ HTTP 200 confirmed
+  - **Git commits:** tidytails-dashboard `d076c166` ✅ · tidytails-website `5fbfb75` ✅ → Cloudflare Pages live ✅
+  - **Critical fix included:** Old stub had **wrong pricing** ($25/week in the CTA) — actively misdirecting callers. Fixed to correct $70/month flat rate.
+  - **Why this task:** 87 blog posts live. The smell post was the single most-indexed stub remaining — "dog poop smell yard" is searched year-round (not seasonal) and was the #1 quality gap in the library. The old 19KB page had thin content, wrong pricing, no schema, and was actively converting callers incorrectly.
+  - **What's in the rebuilt post (60KB):**
+    - **Chemistry section (5 compound cards):** Hydrogen sulfide, ammonia, indole/skatole, volatile fatty acids, mercaptans — each with how they're produced, how they leach into soil, why masking agents don't work
+    - **The 48-Hour Window callout:** Fresh waste contains the compounds but they haven't migrated into soil yet. Remove within 48 hours = prevent soil contamination. Wait 3-4 days = compounds already leached, pile removal doesn't fix the smell
+    - **St. Louis humidity factor:** Hot humid air holds more scent molecules than dry air. STL summer (65-75% humidity) is measurably worse than Phoenix (25%). Clay-heavy soil doesn't drain quickly, keeping compounds near the surface longer
+    - **Why rain makes it worse (not better):** Rain activates dormant compounds, disperses them across wider soil area, evaporation releases them in higher concentrations — the most counterintuitive insight in the post
+    - **Spring thaw callout:** 100+ deposits per dog frozen and preserved through winter, all releasing simultaneously in March-April
+    - **Seasonal smell calendar (4 cards):** Spring CRITICAL, Summer HIGH (peak complaints), Fall MODERATE, Winter LOWER (frozen, not gone)
+    - **What actually works (5 methods with effectiveness ratings):** (1) Source removal within 48hrs — the only permanent fix; (2) Enzyme-based treatments — works on existing soil contamination; (3) Agricultural lime — soil pH reset for problem areas; (4) Baking soda — LIMITED, short-term relief only; (5) Strategic watering after cleanup
+    - **What doesn't work (6 fail cards with mechanistic explanations):** Air fresheners, just hosing down, bleach, waiting for rain, activated charcoal, occasional deep cleanups
+    - **Scenario grid:** ❌ Without consistent pickup (cycle of products, guests comment on smell, dog avoids yard) vs ✅ With weekly professional service (soil clears over 2 months, yard smells like grass by summer)
+    - **FAQPage schema (7 questions):** Why it still smells after cleanup / does rain help / what actually works / why worse in summer / does baking soda help / how much is service / why worse in spring
+    - **Full pricing strip:** $70/mo, $80/mo, $90/mo, one-time from $75, first cleanup FREE
+    - **22-city service area grid with links**
+    - **3 real customer reviews**
+  - **Why this over a new post at 3 AM:** 87 posts live. Content is fully saturated for new topics. The highest-impact remaining work was fixing broken existing content — and the smell stub was the worst offender: high search volume, actively wrong pricing, thin content, no schema. At 3 AM after Easter Eve, the right move is a quality fix on an indexed page rather than another new post. The wrong pricing alone was a live conversion killer.
+  - **Revenue math:** "Dog poop smell yard" is searched by people already dealing with the problem — highest-intent buyers in the category. Someone who Googles this, reads the chemistry section ("you removed the pile but the compounds are already in the soil"), and understands why their spray products don't work is primed to book immediately. No competitor in STL has this level of depth on the odor angle. One convert/month from this post = $840 LTV at $0 CAC.
