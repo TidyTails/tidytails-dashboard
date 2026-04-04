@@ -2,6 +2,52 @@
 
 ---
 
+### Saturday 6:07 AM — Blog Post #89: Dog Poop and Vegetable Gardens — Food Safety Risk (Hourly Task)
+- **6:07 AM** 🥕 Wrote and published **"Dog Poop and Vegetable Gardens — The Food Safety Risk Nobody Talks About"** — the first dedicated garden safety post in the entire Tidy Tails library, targeting April's planting season with a zero-competition keyword cluster
+  - **File:** `tidy-tails/website/blog/dog-poop-vegetable-garden-st-louis.html` — 50KB ✅
+  - **Live URL:** `https://tidytailsstl.com/blog/dog-poop-vegetable-garden-st-louis` ✅ HTTP 200 confirmed
+  - **Git commits:** tidytails-dashboard master `0c702a74` ✅ · tidytails-website master `1f14444` ✅ → Cloudflare Pages live ✅
+  - **Blog count: 89 posts total** ✅
+  - **Why this task:** 88 posts live, game-day briefing delivered at 5 AM. The overnight sprint covered new dog owner guide (4 AM), pregnancy guide (2 AM), how-often rebuild (midnight). At 6 AM the highest-impact remaining gap: **vegetable garden food safety**. April is peak planting season in St. Louis — gardeners are going out RIGHT NOW to start cool-season crops (spinach, lettuce, radishes) in the same soil their dog has been using all winter. "Is dog poop safe near vegetable gardens?" and "dog poop vegetable garden" are year-round queries with ZERO competition in the STL market. The conversion path is uniquely direct: gardener searches → finds post → learns roundworm eggs survive in soil 2–5 years and can contaminate root vegetables → books weekly service before planting season starts.
+  - **Target keywords:** "dog poop vegetable garden", "is dog poop safe near vegetable garden", "dog waste garden food safety", "roundworm vegetable garden soil", "dog poop garden contamination St. Louis", "is dog poop dangerous near food garden"
+  - **Why April specifically:** St. Louis gardeners plant cool-season crops in April — spinach, lettuce, radishes, kale, peas. These are the exact high-risk produce types (low-growing, eaten raw, soil splash contamination). And April is when winter deposits thaw simultaneously AND roundworm eggs begin embryonating as soil warms. You're planting the most vulnerable crops at the highest-risk moment of the year.
+  - **Key insights in the post:**
+    - Roundworm (Toxocara canis) eggs survive 2–5 years in soil after the visible waste is gone — any soil with years of dog access is potentially contaminated even if you can't see any waste
+    - Root vegetables (carrots, radishes, beets) grow through contaminated soil — their edible portions physically pass through the contaminated zone
+    - Low-growing greens (lettuce, spinach, strawberries) get splash contamination from rain and irrigation hitting contaminated soil
+    - Standard produce washing doesn't reliably remove roundworm eggs — they have a sticky lipid-coated outer surface
+    - Garden conditions (moist, organic-rich, moderate temps) are IDEAL for pathogen survival — you've accidentally optimized your soil for pathogen persistence
+    - The USDA and most extension services advise against using dog waste compost on vegetable gardens
+    - Cooking kills pathogens — but raw salads, garden snacking, fresh herbs remain at risk
+  - **What's in the post (50KB):**
+    - **Hero:** Dark forest green gradient — "Dog Poop and Vegetable Gardens — The Food Safety Risk Nobody Talks About"
+    - **Urgency banner:** "April is peak garden planting season in St. Louis — if your dog uses your yard, your soil may not be safe to grow food in yet"
+    - **Stats row:** 2–5 yrs (roundworm soil survival) / 48 hrs (safe pickup window) / April (critical planting window) / $70/mo
+    - **6-pathogen risk grid:** Toxocara (HIGH), E. coli (HIGH), Salmonella (HIGH), Giardia (MODERATE), Campylobacter (MODERATE), Hookworm (MODERATE) — each with garden-specific context
+    - **Big stat callout:** 23M fecal coliform bacteria per gram — spreads via water/irrigation toward beds
+    - **"Why vegetable gardens are a specific risk category"** — 5-step pathway: root vegetables grow through contaminated soil, splash contamination reaches low-growing greens, garden conditions are ideal for pathogen survival, gardeners work with hands directly in soil, washing doesn't remove all pathogens
+    - **Produce risk table (9 items):** Carrots/lettuce/strawberries/spinach/herbs = HIGH RISK. Tomatoes/peppers/cucumbers/corn = LOWER RISK. Color-coded by ground proximity and raw consumption likelihood.
+    - **April planting window callout:** Cool-season crops (spinach, lettuce, radishes, peas) = the highest-risk produce types, planted at the highest-risk soil moment of the year
+    - **Winter accumulation problem:** 100+ deposits per dog since November, thawing in April simultaneously as roundworm eggs begin embryonating
+    - **What doesn't work:** Raised beds with perimeter (water still moves), washing produce (eggs persist), composting (standard piles don't reach 145°F+), keeping dog out of bed only (adjacent deposits still contribute)
+    - **The 48-Hour Rule for gardeners:** If you remove waste within 48 hours, eggs never become infectious, soil never gets contaminated
+    - **Spring garden prep protocol (5 steps):** Remove winter accumulation BEFORE tilling / assess dog's access pattern vs beds / establish weekly pickup before planting / use fresh soil for new raised beds / maintain through growing season
+    - **Seasonal calendar:** Nov–Mar (accumulation), April CRITICAL (thaw + embryonation + planting), May–Aug (growing season), Sept–Oct (fall crops)
+    - **Produce risk callout:** 9 produce types rated HIGH vs LOWER based on soil proximity and raw consumption likelihood
+    - **Comparison callout:** Why this is more direct a risk than open lawn — you eat what grows there
+    - **Pricing strip:** $70/mo, $80/mo, $75+ one-time, first cleanup FREE
+    - **22-city service area grid**
+    - **7-question FAQ with FAQPage schema:** Is dog poop dangerous near vegetable garden / my dog doesn't go in the raised bed / does washing eliminate risk / can I compost dog poop for vegetables / when is riskiest time in St. Louis / service areas / pricing
+    - **Cross-links added:**
+      - `dog-poop-worms-yard-st-louis.html`: Added "🥕 Dog Poop and Vegetable Gardens" as FIRST Related Article ✅
+      - `can-you-compost-dog-poop-st-louis.html`: Added "🥕 Dog Poop and Vegetable Gardens" as FIRST Related Article ✅
+      - `blog/index.html`: Added as #1 card (forest green #16a34a border, "Garden Safety" tag, April 4 date) ✅ + JSON-LD blogPost entry ✅
+      - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+  - **Why this at 6 AM Easter Saturday:** The Easter briefing is done, the overnight blog sprint has been writing parasite and health posts (pregnancy, new dog owner, how-often). The garden safety angle is the natural extension of the parasite content but targets a completely different buyer profile: health-conscious gardeners who've never thought about dog waste as a food safety issue. These are mid-to-high income homeowners with established gardens — the same demographic as TJ's West County and Central County routes. They're not motivated by "it's gross," they're motivated by "it can contaminate what I feed my family." Zero STL competitor has this angle. The produce risk table and the "your washing doesn't remove roundworm eggs" section are genuinely new information that earns trust and closes people who were on the fence. Year-round relevance (spring AND fall garden seasons). Permanent SEO asset.
+  - **Revenue math:** One gardener who converts = $840/yr at $0 CAC. The April planting window is the urgency hook — "start service before you put seeds in the ground, not after you've been eating from contaminated soil all summer." At 2–3 garden-searcher converts/season, this post generates $1,680–$2,520 LTV/year. The compost post already ranks well — adding the vegetable garden as a hub creates a topical cluster (compost ↔ garden safety ↔ parasite risk) that strengthens all three in Google's ranking.
+
+---
+
 ### Saturday 5:04 AM — Easter Saturday Morning Briefing PDF (Hourly Task)
 - **5:04 AM** 🐣 Built and delivered the **Easter Saturday Morning Briefing** — the "open this at 7 AM" game-day document for the last close window before Easter Sunday
   - **Files:** `dashboard/pdfs/MORNING_BRIEFING_2026-04-04.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-04-04.pdf` (990KB ✅)
