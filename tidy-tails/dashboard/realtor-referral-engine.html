@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏠 Realtor Referral Engine — Tidy Tails</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f1923; color: #e2e8f0; min-height: 100vh; }
+
+  header { background: linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 50%, #2563eb 100%); padding: 24px 20px 20px; text-align: center; position: relative; }
+  header h1 { font-size: 1.7rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+  header p { color: #bfdbfe; font-size: 0.92rem; }
+
+  .insight-banner { background: #1e3a5f; border-left: 4px solid #3b82f6; padding: 12px 20px; font-size: 0.88rem; color: #93c5fd; display: flex; align-items: center; gap: 8px; }
+  .insight-banner strong { color: #60a5fa; }
+
+  .stats-row { display: flex; gap: 0; background: #1e2d3d; border-bottom: 1px solid #2d3f55; }
+  .stat { flex: 1; text-align: center; padding: 14px 8px; border-right: 1px solid #2d3f55; }
+  .stat:last-child { border-right: none; }
+  .stat .num { font-size: 1.4rem; font-weight: 800; color: #60a5fa; line-height: 1; }
+  .stat .lbl { font-size: 0.68rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px; }
+
+  .tabs { display: flex; background: #1a2635; border-bottom: 2px solid #2d3f55; overflow-x: auto; }
+  .tab-btn { flex: none; padding: 12px 18px; font-size: 0.82rem; font-weight: 600; color: #94a3b8; background: none; border: none; cursor: pointer; white-space: nowrap; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .tab-btn.active { color: #60a5fa; border-bottom-color: #60a5fa; background: rgba(96,165,250,0.07); }
+  .tab-btn:hover:not(.active) { color: #cbd5e1; background: rgba(255,255,255,0.04); }
+
+  .tab-content { display: none; padding: 20px; max-width: 900px; margin: 0 auto; }
+  .tab-content.active { display: block; }
+
+  .section-title { font-size: 1.05rem; font-weight: 700; color: #f1f5f9; margin: 0 0 14px; display: flex; align-items: center; gap: 8px; }
+  .badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+  .badge-blue { background: rgba(96,165,250,0.2); color: #60a5fa; }
+  .badge-green { background: rgba(16,185,129,0.2); color: #10b981; }
+  .badge-orange { background: rgba(251,146,60,0.2); color: #fb923c; }
+  .badge-red { background: rgba(239,68,68,0.2); color: #ef4444; }
+  .badge-yellow { background: rgba(250,204,21,0.2); color: #facc15; }
+  .badge-purple { background: rgba(167,139,250,0.2); color: #a78bfa; }
+
+  .card { background: #1e2d3d; border: 1px solid #2d3f55; border-radius: 12px; padding: 18px; margin-bottom: 14px; }
+  .card-title { font-size: 1rem; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+  .card-sub { font-size: 0.82rem; color: #94a3b8; margin-bottom: 10px; }
+
+  .priority-1 { border-left: 4px solid #ef4444; }
+  .priority-2 { border-left: 4px solid #fb923c; }
+  .priority-3 { border-left: 4px solid #3b82f6; }
+
+  .contact-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+  .contact-chip { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.3); border-radius: 20px; padding: 4px 12px; font-size: 0.78rem; color: #10b981; font-weight: 600; }
+  .contact-chip.phone { background: rgba(99,179,237,0.12); border-color: rgba(99,179,237,0.3); color: #63b3ed; }
+  .contact-chip.email { background: rgba(167,139,250,0.12); border-color: rgba(167,139,250,0.3); color: #a78bfa; }
+
+  .status-row { display: flex; gap: 8px; margin-top: 12px; align-items: center; flex-wrap: wrap; }
+  .status-btn { font-size: 0.72rem; font-weight: 700; padding: 5px 12px; border-radius: 16px; border: 1.5px solid #2d3f55; background: #0f1923; color: #94a3b8; cursor: pointer; transition: all 0.15s; }
+  .status-btn.active-new { border-color: #64748b; color: #cbd5e1; background: rgba(100,116,139,0.15); }
+  .status-btn.active-called { border-color: #f59e0b; color: #fbbf24; background: rgba(245,158,11,0.12); }
+  .status-btn.active-interested { border-color: #3b82f6; color: #93c5fd; background: rgba(59,130,246,0.12); }
+  .status-btn.active-partner { border-color: #10b981; color: #6ee7b7; background: rgba(16,185,129,0.12); }
+
+  .script-card { background: #0f1923; border: 1px solid #2d3f55; border-radius: 10px; padding: 16px; margin-bottom: 14px; }
+  .script-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 8px; }
+  .script-label { font-size: 0.9rem; font-weight: 700; color: #f1f5f9; }
+  .copy-btn { background: #1d4ed8; color: #bfdbfe; border: none; border-radius: 8px; padding: 6px 14px; font-size: 0.78rem; font-weight: 700; cursor: pointer; transition: all 0.15s; }
+  .copy-btn:hover { background: #2563eb; }
+  .copy-btn.copied { background: #065f46; color: #6ee7b7; }
+  .script-text { background: #1a2635; border-radius: 8px; padding: 12px 14px; font-size: 0.83rem; color: #cbd5e1; line-height: 1.65; white-space: pre-wrap; border-left: 3px solid #1d4ed8; }
+
+  .math-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 18px; }
+  @media (max-width: 600px) { .math-grid { grid-template-columns: 1fr 1fr; } }
+  .math-card { background: #1e2d3d; border-radius: 10px; padding: 14px; text-align: center; border: 1px solid #2d3f55; }
+  .math-card .big { font-size: 1.6rem; font-weight: 900; color: #60a5fa; }
+  .math-card .lbl { font-size: 0.73rem; color: #94a3b8; margin-top: 4px; }
+
+  .checklist-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 14px; background: #1e2d3d; border-radius: 10px; margin-bottom: 8px; border: 1px solid #2d3f55; cursor: pointer; transition: all 0.15s; }
+  .checklist-item.done { opacity: 0.55; background: #12202e; }
+  .checklist-item.done .ci-text { text-decoration: line-through; color: #64748b; }
+  .ci-check { width: 20px; height: 20px; border-radius: 5px; border: 2px solid #3b82f6; flex-shrink: 0; display: flex; align-items: center; justify-content: center; transition: all 0.15s; margin-top: 1px; }
+  .checklist-item.done .ci-check { background: #1d4ed8; border-color: #1d4ed8; }
+  .ci-text { font-size: 0.87rem; color: #cbd5e1; line-height: 1.45; }
+  .ci-tag { font-size: 0.7rem; font-weight: 700; padding: 1px 7px; border-radius: 10px; display: inline-block; margin-top: 4px; }
+  .tag-now { background: rgba(239,68,68,0.18); color: #f87171; }
+  .tag-week { background: rgba(245,158,11,0.18); color: #fbbf24; }
+  .tag-ongoing { background: rgba(16,185,129,0.18); color: #34d399; }
+
+  .progress-bar-wrap { background: #1a2635; border-radius: 10px; height: 10px; overflow: hidden; margin: 14px 0 6px; }
+  .progress-bar { height: 100%; background: linear-gradient(90deg, #1d4ed8, #3b82f6); border-radius: 10px; transition: width 0.4s ease; }
+  .progress-label { font-size: 0.78rem; color: #94a3b8; margin-bottom: 16px; }
+
+  .scenario-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+  @media (max-width: 600px) { .scenario-row { grid-template-columns: 1fr; } }
+  .scenario-card { border-radius: 10px; padding: 14px; text-align: center; }
+  .scenario-bear { background: rgba(100,116,139,0.15); border: 1px solid rgba(100,116,139,0.3); }
+  .scenario-base { background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.35); }
+  .scenario-bull { background: rgba(16,185,129,0.12); border: 1px solid rgba(16,185,129,0.35); }
+  .scenario-title { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+  .scenario-bear .scenario-title { color: #94a3b8; }
+  .scenario-base .scenario-title { color: #60a5fa; }
+  .scenario-bull .scenario-title { color: #10b981; }
+  .scenario-num { font-size: 1.5rem; font-weight: 900; margin-bottom: 4px; }
+  .scenario-bear .scenario-num { color: #cbd5e1; }
+  .scenario-base .scenario-num { color: #93c5fd; }
+  .scenario-bull .scenario-num { color: #6ee7b7; }
+  .scenario-detail { font-size: 0.74rem; color: #94a3b8; }
+
+  .why-card { background: #1e2d3d; border-radius: 10px; padding: 16px; margin-bottom: 12px; border-left: 4px solid #1d4ed8; }
+  .why-card h4 { font-size: 0.95rem; font-weight: 700; color: #f1f5f9; margin-bottom: 6px; }
+  .why-card p { font-size: 0.84rem; color: #94a3b8; line-height: 1.55; }
+
+  .callout { background: rgba(59,130,246,0.1); border: 1px solid rgba(59,130,246,0.35); border-radius: 10px; padding: 14px 16px; margin: 14px 0; }
+  .callout strong { color: #93c5fd; }
+  .callout p { font-size: 0.86rem; color: #bfdbfe; line-height: 1.55; }
+
+  .big-stat-callout { background: linear-gradient(135deg, #1e3a5f 0%, #1d4ed8 100%); border-radius: 12px; padding: 20px; text-align: center; margin: 16px 0; }
+  .big-stat-callout .big-num { font-size: 2.8rem; font-weight: 900; color: #fff; line-height: 1; }
+  .big-stat-callout .big-label { font-size: 0.9rem; color: #bfdbfe; margin-top: 6px; }
+
+  .urgency-banner { background: linear-gradient(135deg, #1e3a5f 0%, #1a2e57 100%); border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 0 8px 8px 0; margin-bottom: 16px; }
+  .urgency-banner p { font-size: 0.87rem; color: #fbbf24; }
+  .urgency-banner strong { color: #fde68a; }
+
+  .phase-header { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: #60a5fa; padding: 8px 0 4px; margin-top: 6px; border-bottom: 1px solid #2d3f55; margin-bottom: 10px; }
+
+  .target-count { display: inline-flex; align-items: center; gap: 5px; background: rgba(96,165,250,0.12); border: 1px solid rgba(96,165,250,0.3); border-radius: 20px; padding: 4px 12px; font-size: 0.78rem; color: #60a5fa; font-weight: 600; margin: 4px 0; }
+
+  .bottom-stats { position: sticky; bottom: 0; background: #1a2635; border-top: 2px solid #2d3f55; padding: 10px 20px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+  .bottom-stat { text-align: center; }
+  .bottom-stat .val { font-size: 1.3rem; font-weight: 800; color: #60a5fa; }
+  .bottom-stat .lbl { font-size: 0.68rem; color: #64748b; text-transform: uppercase; }
+
+  .divider { height: 1px; background: #2d3f55; margin: 18px 0; }
+  .highlight-box { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.25); border-radius: 8px; padding: 12px 14px; font-size: 0.84rem; color: #a7f3d0; margin: 12px 0; }
+  .warning-box { background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.3); border-radius: 8px; padding: 12px 14px; font-size: 0.84rem; color: #fde68a; margin: 12px 0; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🏠 Realtor Referral Engine</h1>
+  <p>Turn St. Louis real estate agents into a pre-listing cleanup pipeline — $0 CAC, recurring bookings</p>
+</header>
+
+<div class="insight-banner">
+  <strong>💡 The Play:</strong> Every realtor who lists a dog-owner home needs a pre-listing yard cleanup. One brokerage relationship = 12+ referrals per year at $0 cost. Pre-listing converts to monthly at 50-60% — higher than any other channel.
+</div>
+
+<div class="stats-row">
+  <div class="stat"><div class="num">$75</div><div class="lbl">Pre-Listing Price</div></div>
+  <div class="stat"><div class="num">50–60%</div><div class="lbl">→ Monthly Convert</div></div>
+  <div class="stat"><div class="num">$840</div><div class="lbl">Annual LTV</div></div>
+  <div class="stat"><div class="num">$0</div><div class="lbl">CAC per Referral</div></div>
+  <div class="stat"><div class="num">10</div><div class="lbl">Target Agents</div></div>
+</div>
+
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('why', this)">Why Realtors</button>
+  <button class="tab-btn" onclick="switchTab('targets', this)">10 Targets</button>
+  <button class="tab-btn" onclick="switchTab('scripts', this)">Scripts</button>
+  <button class="tab-btn" onclick="switchTab('math', this)">Revenue Math</button>
+  <button class="tab-btn" onclick="switchTab('checklist', this)">Checklist</button>
+</div>
+
+<!-- TAB 1: WHY REALTORS -->
+<div id="tab-why" class="tab-content active">
+  <div class="section-title">Why Realtors Are the Best Referral Partner You Haven't Activated</div>
+
+  <div class="urgency-banner">
+    <p><strong>Spring = Peak Listing Season.</strong> April through June is the busiest listing window of the year in St. Louis. Every dog-owner seller needs pre-listing yard cleanup. Realtors are looking for vendors to recommend RIGHT NOW.</p>
+  </div>
+
+  <div class="why-card">
+    <h4>🐕 Every Dog-Owner Listing = Automatic Referral Need</h4>
+    <p>Approximately 38% of American households own a dog. In suburban St. Louis (Kirkwood, Webster Groves, Chesterfield, Florissant), it runs 45-55%. Every listing from a dog-owner needs: staging, carpet cleaning, and yard cleanup. Realtors are already recommending vendor lists. You just need to be on them.</p>
+  </div>
+
+  <div class="why-card">
+    <h4>📈 Pre-Listing Converts to Monthly at 50-60%</h4>
+    <p>The pre-listing customer is the easiest monthly convert in the business. Here's why: they just discovered the "before" photo is embarrassing, they see the "after" in 20 minutes, and they're moving into a home where they'll have a yard again. The monthly upsell is natural — "want us to maintain it after you move in?" converts at 50-60% vs. 20-25% for cold inbound.</p>
+  </div>
+
+  <div class="why-card">
+    <h4>🔄 One Agent = 12+ Referrals Per Year</h4>
+    <p>A mid-level STL agent closes 20-30 transactions/year. Half are listings. 40-50% of those sellers have dogs. That's 4-8 potential referrals per agent per year — at $0 cost to you. Three active referral agents = 12-24 bookings/year from one outreach push.</p>
+  </div>
+
+  <div class="why-card">
+    <h4>💰 The Math Nobody Notices</h4>
+    <p>A $75 pre-listing cleanup referred by an agent costs $0 to acquire. If that customer moves into a home with a yard and converts to $70/month, their LTV is $840-1,680 depending on retention. The agent spends nothing. You spend nothing. The customer converts because they experienced the service at their old house and already trust you. This is the cleanest referral math in the business.</p>
+  </div>
+
+  <div class="why-card">
+    <h4>🏡 April = Peak Outreach Window</h4>
+    <p>The spring listing surge begins in March and peaks in May-June. Agents are actively building their preferred vendor lists right now. A realtor who adds Tidy Tails to their recommended vendors list in April will refer listings all spring and summer. Calling in October = you missed 80% of the listing season. Call now.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-title">What Makes This Different from Apartment Commercial</div>
+
+  <div class="callout">
+    <strong>Apartments:</strong> property manager signs a recurring contract. One call, one contract, $150-400/mo.
+    <p style="margin-top:8px"><strong>Realtors:</strong> each referral is a new customer. Lower per-referral revenue, but each one becomes a monthly subscriber. A realtor who sends 8 customers/year becomes a passive $6,720/yr LTV engine at $0 ongoing cost.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-title">The Two Pitches</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+    <div class="card">
+      <div class="card-title" style="color:#60a5fa">Pitch A — Recommended Vendor</div>
+      <div class="card-sub">Add Tidy Tails to your preferred vendor list. When you list a dog-owner home, refer them for pre-listing cleanup. Your clients get a cleaner showing. You look more thorough.</div>
+    </div>
+    <div class="card">
+      <div class="card-title" style="color:#10b981">Pitch B — Buyer's Welcome Gift</div>
+      <div class="card-sub">When your buyer closes on a dog-friendly home, offer one free cleanup as a closing gift (TJ covers it, you look like a hero). Converts 60%+ to monthly. Costs you nothing.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 2: TARGETS -->
+<div id="tab-targets" class="tab-content">
+  <div class="section-title">10 Priority Realtor Targets <span class="badge badge-blue">STL Metro</span></div>
+
+  <div class="callout">
+    <strong>Strategy:</strong> Start with individual agents at brokerages with heavy suburban listings (Kirkwood, Chesterfield, Florissant, Webster Groves, Ballwin). Then pitch the brokerage office manager to get on the vendor recommendation list shared with ALL agents in the office.
+  </div>
+
+  <div class="phase-header">🔴 Priority 1 — Call This Week</div>
+
+  <!-- Target 1 -->
+  <div class="card priority-1" id="t1">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+      <div>
+        <div class="card-title">RE/MAX Results — Kirkwood/Sunset Hills Office</div>
+        <div class="card-sub">One of the highest-volume RE/MAX offices in St. Louis County. Kirkwood and Sunset Hills are their core territory — exact Tidy Tails service area. Office serves Kirkwood, Crestwood, Affton, Webster Groves. Heavy dog-owner homeowner demographic.</div>
+      </div>
+      <span class="badge badge-red">PRIORITY 1</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-chip phone">📞 (314) 965-0808</span>
+      <span class="contact-chip">Kirkwood/Sunset Hills</span>
+      <span class="contact-chip">Pitch: Preferred Vendor List</span>
+    </div>
+    <div class="card-sub" style="margin-top:10px"><strong style="color:#f1f5f9">Pitch angle:</strong> Ask for the office manager. "I run a local dog waste removal service in Kirkwood and I'd love to be on your preferred vendor list for listings with dogs. I offer a pre-listing cleanup rate and can turn around fast." One call = access to all 30+ agents in that office.</div>
+    <div class="status-row">
+      <span style="font-size:0.75rem;color:#64748b">Status:</span>
+      <button class="status-btn" onclick="setStatus('t1','new',this)">New</button>
+      <button class="status-btn" onclick="setStatus('t1','called',this)">Called</button>
+      <button class="status-btn" onclick="setStatus('t1','interested',this)">Interested</button>
+      <button class="status-btn" onclick="setStatus('t1','partner',this)">✅ On Vendor List</button>
+    </div>
+  </div>
+
+  <!-- Target 2 -->
+  <div class="card priority-1" id="t2">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+      <div>
+        <div class="card-title">Dielmann Sotheby's International Realty</div>
+        <div class="card-sub">Chesterfield-based luxury brokerage covering Town and Country, Ladue, Wildwood, Chesterfield Valley. Their listings are $400K-$1.5M homes with large fenced yards and multiple dogs. Sellers in this bracket don't hesitate at $75. Office manager pitchable for vendor list placement.</div>
+      </div>
+      <span class="badge badge-red">PRIORITY 1</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-chip phone">📞 (636) 530-1100</span>
+      <span class="contact-chip">15 S. Meramec Ave, Clayton</span>
+      <span class="contact-chip">Luxury listings</span>
+    </div>
+    <div class="card-sub" style="margin-top:10px"><strong style="color:#f1f5f9">Pitch angle:</strong> "Pre-listing yard cleanup for dog owners — we make the yard look and smell clean for showings. Works in Chesterfield, Wildwood, Town and Country. Quick turnaround, professional." Luxury sellers are highly motivated — a bad yard smell costs them $10K+ at showing.</div>
+    <div class="status-row">
+      <span style="font-size:0.75rem;color:#64748b">Status:</span>
+      <button class="status-btn" onclick="setStatus('t2','new',this)">New</button>
+      <button class="status-btn" onclick="setStatus('t2','called',this)">Called</button>
+      <button class="status-btn" onclick="setStatus('t2','interested',this)">Interested</button>
+      <button class="status-btn" onclick="setStatus('t2','partner',this)">✅ On Vendor List</button>
+    </div>
+  </div>
+
+  <!-- Target 3 -->
+  <div class="card priority-1" id="t3">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+      <div>
+        <div class="card-title">Keller Williams Realty STL — Chesterfield</div>
+        <div class="card-sub">Largest brokerage by agent count in St. Louis. Chesterfield office covers West County, St. Charles County, and North County. Getting on the KW Chesterfield preferred vendor list = exposure to 100+ agents. KW agents actively build vendor relationships for their clients.</div>
+      </div>
+      <span class="badge badge-red">PRIORITY 1</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-chip phone">📞 (636) 532-4444</span>
+      <span class="contact-chip">16690 Swingley Ridge Rd, Chesterfield</span>
+    </div>
+    <div class="card-sub" style="margin-top:10px"><strong style="color:#f1f5f9">Pitch angle:</strong> Ask for the office manager or Team Leader. "I run a pet waste removal service for dog owners in the suburbs — pre-listing cleanup, quick turnaround. I'd love to be your recommended vendor for listings with dogs." KW offices often have formal preferred vendor registration.</div>
+    <div class="status-row">
+      <span style="font-size:0.75rem;color:#64748b">Status:</span>
+      <button class="status-btn" onclick="setStatus('t3','new',this)">New</button>
+      <button class="status-btn" onclick="setStatus('t3','called',this)">Called</button>
+      <button class="status-btn" onclick="setStatus('t3','interested',this)">Interested</button>
+      <button class="status-btn" onclick="setStatus('t3','partner',this)">✅ On Vendor List</button>
+    </div>
+  </div>
+
+  <div class="phase-header">🟠 Priority 2 — Call This Week or Next</div>
+
+  <!-- Target 4 -->
+  <div class="card priority-2" id="t4">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+      <div>
+        <div class="card-title">Coldwell Banker Realty — Kirkwood/Webster Groves</div>
+        <div class="card-sub">Major STL presence, Kirkwood and Webster Groves offices. Their agents handle a disproportionate share of South County listings — exactly TJ's core market. Agent relationships are the play here: call the office, ask if they have a preferred vendor registration, and ask to speak with 2-3 of their top listing agents.</div>
+      </div>
+      <span class="badge badge-orange">PRIORITY 2</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-chip phone">📞 (314) 965-5400</span>
+      <span class="contact-chip">Kirkwood office</span>
+    </div>
+    <div class="status-row">
+      <span style="font-size:0.75rem;color:#64748b">Status:</span>
+      <button class="status-btn" onclick="setStatus('t4','new',this)">New</button>
+      <button class="status-btn" onclick="setStatus('t4','called',this)">Called</button>
+      <button class="status-btn" onclick="setStatus('t4','interested',this)">Interested</button>
+      <button class="status-btn" onclick="setStatus('t4','partner',this)">✅ On Vendor List</button>
+    </div>
+  </div>
+
+  <!-- Target 5 -->
+  <div class="card priority-2" id="t5">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+      <div>
+        <div class="card-title">Janet McAfee Real Estate</div>
+        <div class="card-sub">Boutique STL luxury brokerage focused on Ladue, Clayton, Frontenac, Town and Country. High-end sellers with large properties and multiple dogs — $75 is a rounding error for them. Janet McAfee agents are relationship-driven and known for vendor referrals. One agent relationship here = repeated luxury listings.</div>
+      </div>
+      <span class="badge badge-orange">PRIORITY 2</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-chip phone">📞 (314) 997-4800</span>
+      <span class="contact-chip">7730 Forsyth Blvd, Clayton</span>
+    </div>
+    <div class="status-row">
+      <span style="font-size:0.75rem;color:#64748b">Status:</span>
+      <button class="status-btn" onclick="setStatus('t5','new',this)">New</button>
+      <button class="status-btn" onclick="setStatus('t5','called',this)">Called</button>
+      <button class="status-btn" onclick="setStatus('t5','interested',this)">Interested</button>
+      <button class="status-btn" onclick="setStatus('t5','partner',this)">✅ On Vendor List</button>
+    </div>
+  </div>
+
+  <!-- Target 6 -->
+  <div class="card priority-2" id="t6">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+      <div>
+        <div class="card-title">Berkshire Hathaway HomeServices Alliance — Florissant</div>
+        <div class="card-sub">Strong North County presence covering Florissant, Hazelwood, Ferguson, St. Charles County. Their Florissant office handles listings in TJ's active campaign territory. North County dog-owner listings are exactly the pre-listing opportunity — many are mid-range homes where $75 cleanup + professional listing photos makes a real difference.</div>
+      </div>
+      <span class="badge badge-orange">PRIORITY 2</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-chip phone">📞 (314) 837-7300</span>
+      <span class="contact-chip">Florissant area</span>
+    </div>
+    <div class="status-row">
+      <span style="font-size:0.75rem;color:#64748b">Status:</span>
+      <button class="status-btn" onclick="setStatus('t6','new',this)">New</button>
+      <button class="status-btn" onclick="setStatus('t6','called',this)">Called</button>
+      <button class="status-btn" onclick="setStatus('t6','interested',this)">Interested</button>
+      <button class="status-btn" onclick="setStatus('t6','partner',this)">✅ On Vendor List</button>
+    </div>
+  </div>
+
+  <div class="phase-header">🔵 Priority 3 — Long Game</div>
+
+  <!-- Target 7 -->
+  <div class="card priority-3" id="t7">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+      <div>
+        <div class="card-title">RE/MAX Precision — St. Charles County</div>
+        <div class="card-sub">Serves O'Fallon, Wentzville, St. Peters — TJ's active St. Charles County expansion market. Agent relationships here build the SCC pipeline organically. Pre-listing buyers in these newer subdivisions often buy into monthly service when they see the clean yard.</div>
+      </div>
+      <span class="badge badge-blue">PRIORITY 3</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-chip phone">📞 (636) 332-9300</span>
+      <span class="contact-chip">St. Charles County</span>
+    </div>
+    <div class="status-row">
+      <span style="font-size:0.75rem;color:#64748b">Status:</span>
+      <button class="status-btn" onclick="setStatus('t7','new',this)">New</button>
+      <button class="status-btn" onclick="setStatus('t7','called',this)">Called</button>
+      <button class="status-btn" onclick="setStatus('t7','interested',this)">Interested</button>
+      <button class="status-btn" onclick="setStatus('t7','partner',this)">✅ On Vendor List</button>
+    </div>
+  </div>
+
+  <!-- Target 8 -->
+  <div class="card priority-3" id="t8">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+      <div>
+        <div class="card-title">Coldwell Banker Realty — Ballwin/Manchester</div>
+        <div class="card-sub">West County office covering Ballwin, Ellisville, Manchester, Wildwood. Large family homes with fenced yards and dogs. Pre-listing cleanup is a frequent ask from listing agents here — there's no established vendor. First caller wins.</div>
+      </div>
+      <span class="badge badge-blue">PRIORITY 3</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-chip phone">📞 (636) 230-2600</span>
+      <span class="contact-chip">West County / Ballwin</span>
+    </div>
+    <div class="status-row">
+      <span style="font-size:0.75rem;color:#64748b">Status:</span>
+      <button class="status-btn" onclick="setStatus('t8','new',this)">New</button>
+      <button class="status-btn" onclick="setStatus('t8','called',this)">Called</button>
+      <button class="status-btn" onclick="setStatus('t8','interested',this)">Interested</button>
+      <button class="status-btn" onclick="setStatus('t8','partner',this)">✅ On Vendor List</button>
+    </div>
+  </div>
+
+  <!-- Target 9 -->
+  <div class="card priority-3" id="t9">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+      <div>
+        <div class="card-title">Exit Realty — South County</div>
+        <div class="card-sub">Affordable South County listings — Affton, Mehlville, Crestwood. These sellers are cost-conscious but highly motivated for the $75 cleanup to get better listing photos. Referral relationship builds repeat bookings in TJ's active South County route zone.</div>
+      </div>
+      <span class="badge badge-blue">PRIORITY 3</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-chip">South County focus</span>
+      <span class="contact-chip">Look up local office phone</span>
+    </div>
+    <div class="status-row">
+      <span style="font-size:0.75rem;color:#64748b">Status:</span>
+      <button class="status-btn" onclick="setStatus('t9','new',this)">New</button>
+      <button class="status-btn" onclick="setStatus('t9','called',this)">Called</button>
+      <button class="status-btn" onclick="setStatus('t9','interested',this)">Interested</button>
+      <button class="status-btn" onclick="setStatus('t9','partner',this)">✅ On Vendor List</button>
+    </div>
+  </div>
+
+  <!-- Target 10 -->
+  <div class="card priority-3" id="t10">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px">
+      <div>
+        <div class="card-title">Zillow/Realtor.com — Direct Agent Outreach via Platform</div>
+        <div class="card-sub">Search Zillow Premier Agents in Kirkwood, Florissant, Chesterfield. Find the top 5 agents by listing count. Go to their profile, get their contact email or phone. These are high-volume listers who handle 20+ dog-owner homes per year. Direct outreach to 5 specific agents = higher conversion than brokerage office calls.</div>
+      </div>
+      <span class="badge badge-blue">PRIORITY 3</span>
+    </div>
+    <div class="contact-row">
+      <span class="contact-chip">Search: Zillow Premier Agents STL</span>
+      <span class="contact-chip">Top listers in 63122, 63031, 63005</span>
+    </div>
+    <div class="status-row">
+      <span style="font-size:0.75rem;color:#64748b">Status:</span>
+      <button class="status-btn" onclick="setStatus('t10','new',this)">New</button>
+      <button class="status-btn" onclick="setStatus('t10','called',this)">Called</button>
+      <button class="status-btn" onclick="setStatus('t10','interested',this)">Interested</button>
+      <button class="status-btn" onclick="setStatus('t10','partner',this)">✅ On Vendor List</button>
+    </div>
+  </div>
+</div>
+
+<!-- TAB 3: SCRIPTS -->
+<div id="tab-scripts" class="tab-content">
+  <div class="section-title">Scripts — Copy and Use <span class="badge badge-blue">7 Scripts</span></div>
+
+  <!-- Script 1 -->
+  <div class="script-card">
+    <div class="script-header">
+      <span class="script-label">📞 Script 1 — Cold Call Opener (30 sec)</span>
+      <button class="copy-btn" onclick="copyScript('s1')">Copy</button>
+    </div>
+    <div id="s1" class="script-text">Hi, I was hoping to speak with whoever manages your preferred vendor list — or your office manager.
+
+[If connected to right person:]
+
+Hey, I run a local pet waste removal service in St. Louis County — Tidy Tails. I do pre-listing cleanups for dog owners, and I wanted to see if I could get on your recommended vendor list.
+
+When you list a home with dogs, the yard cleanup usually falls through the cracks until photos day. I can turn around same-week for $75, remove everything, and the yard looks and smells clean for showings.
+
+No contracts on my end, obviously — it's just a one-time service or we can set them up on monthly if they want it continued after closing.
+
+Would it make sense to add us to your list for situations like that?</div>
+  </div>
+
+  <!-- Script 2 -->
+  <div class="script-card">
+    <div class="script-header">
+      <span class="script-label">📧 Script 2 — Cold Email to Agent</span>
+      <button class="copy-btn" onclick="copyScript('s2')">Copy</button>
+    </div>
+    <div id="s2" class="script-text">Subject: Pre-Listing Yard Cleanup for Your Dog-Owner Sellers
+
+Hi [Agent Name],
+
+I run Tidy Tails — a local dog waste removal service in St. Louis County.
+
+Quick ask: when you list a home with dogs, the backyard is often the one thing that doesn't get taken care of before photos or showings. I do same-week pre-listing cleanups for $75 — no contracts, we remove everything and the yard looks and smells clean for buyers.
+
+If you'd ever like to refer a seller, you can have them text or call (314) 850-7140 and mention your name. Takes about 20-30 minutes, done same week.
+
+Happy to add you to our referral network — there's nothing formal or complicated about it.
+
+— Jamie Dabrowski
+Tidy Tails
+(314) 850-7140
+tidytailsstl.com</div>
+  </div>
+
+  <!-- Script 3 -->
+  <div class="script-card">
+    <div class="script-header">
+      <span class="script-label">🤝 Script 3 — Office Manager Pitch (Vendor List Placement)</span>
+      <button class="copy-btn" onclick="copyScript('s3')">Copy</button>
+    </div>
+    <div id="s3" class="script-text">Hi, I run a local pet waste removal company and I'm calling because I'd love to be on your agency's preferred vendor list for pre-listing cleanups.
+
+We specialize in dog waste removal — a lot of listings have dogs and the yard is always the last thing sellers think about before photos. We do same-week turnarounds, remove waste from the property, and the seller saves the embarrassment of it showing up in listing photos or at a showing.
+
+It's $75 for a one-time cleanup, no contracts. If the seller wants us to continue after closing, we do monthly service at $70/month flat.
+
+Would I be able to send you a one-paragraph blurb you could add to your vendor list or share with agents when it comes up?</div>
+  </div>
+
+  <!-- Script 4 -->
+  <div class="script-card">
+    <div class="script-header">
+      <span class="script-label">🎁 Script 4 — Buyer's Closing Gift Pitch</span>
+      <button class="copy-btn" onclick="copyScript('s4')">Copy</button>
+    </div>
+    <div id="s4" class="script-text">Different angle — this one's for buyers:
+
+When your buyer closes on a home that had dogs, the yard might have months of buildup from the previous owner. I'll do a free first cleanup as a closing welcome gift — you tell them it's from their agent, they arrive at their new home to a clean yard.
+
+All I ask is that you let them know about the service. No obligation on their part. If they want to continue monthly, great — if not, no problem.
+
+It converts to monthly about 50-60% of the time because the clean yard experience sells itself. But there's zero pressure on you or your buyer.
+
+Want to try it on your next dog-friendly closing? Just text me the address and closing date.
+(314) 850-7140 — Jamie</div>
+  </div>
+
+  <!-- Script 5 -->
+  <div class="script-card">
+    <div class="script-header">
+      <span class="script-label">📲 Script 5 — DM/Text to Agent Found on Zillow</span>
+      <button class="copy-btn" onclick="copyScript('s5')">Copy</button>
+    </div>
+    <div id="s5" class="script-text">Hey [Agent Name] — I run Tidy Tails, a local dog waste removal service in St. Louis. I noticed you do a lot of listings in [Kirkwood/Florissant/Chesterfield].
+
+Quick pitch: when you list a dog-owner home, I do pre-listing yard cleanups for $75 — same week, waste removed from property, yard looks and smells clean for photos and showings.
+
+No formal arrangement needed. If it ever comes up and you want to refer a seller, they can text (314) 850-7140 and mention your name. Just wanted to be on your radar.
+
+— Jamie</div>
+  </div>
+
+  <!-- Script 6 -->
+  <div class="script-card">
+    <div class="script-header">
+      <span class="script-label">🔁 Script 6 — Objection: "We already have someone for that"</span>
+      <button class="copy-btn" onclick="copyScript('s6')">Copy</button>
+    </div>
+    <div id="s6" class="script-text">Totally understand — if it ever comes up that they can't get there in time or want a second option, I'm happy to be the backup.
+
+I can usually do same-week and I'm in most of St. Louis County already on weekly routes, so it doesn't take extra setup.
+
+[Leave your contact info and move on. The "we have someone" objection often means "someone mentioned they can do this" — not a locked relationship. Second-call agents are common.]</div>
+  </div>
+
+  <!-- Script 7 -->
+  <div class="script-card">
+    <div class="script-header">
+      <span class="script-label">💬 Script 7 — Follow-Up Text (Day 5, No Response)</span>
+      <button class="copy-btn" onclick="copyScript('s7')">Copy</button>
+    </div>
+    <div id="s7" class="script-text">Hey [Agent Name] — Jamie at Tidy Tails. Sent an email last week about pre-listing yard cleanups for dog-owner sellers.
+
+Just wanted to make it easy: if you ever have a seller with dogs and need a quick yard cleanup before photos, text me the address and I'll get it scheduled. (314) 850-7140
+
+No commitment needed from you — just wanted to be on your radar for spring listings.</div>
+  </div>
+</div>
+
+<!-- TAB 4: REVENUE MATH -->
+<div id="tab-math" class="tab-content">
+  <div class="section-title">Revenue Math — Why Realtors Are Worth Building</div>
+
+  <div class="big-stat-callout">
+    <div class="big-num">42×</div>
+    <div class="big-label">ROAS per realtor-sourced customer — $75 cleanup → $840/yr recurring at $0 CAC</div>
+  </div>
+
+  <div class="section-title" style="margin-top:20px">3 Scenarios — What 1 Realtor Relationship Returns</div>
+
+  <div class="scenario-row">
+    <div class="scenario-card scenario-bear">
+      <div class="scenario-title">🐻 Bear Case</div>
+      <div class="scenario-num">$1,680</div>
+      <div class="scenario-detail">1 agent / 4 referrals/yr / 50% monthly convert<br>= 2 new monthly customers × $840 LTV</div>
+    </div>
+    <div class="scenario-card scenario-base">
+      <div class="scenario-title">📊 Base Case</div>
+      <div class="scenario-num">$5,040</div>
+      <div class="scenario-detail">2 agents / 6 referrals/yr / 50% monthly convert<br>= 6 new monthly customers × $840 LTV</div>
+    </div>
+    <div class="scenario-card scenario-bull">
+      <div class="scenario-title">🚀 Bull Case</div>
+      <div class="scenario-num">$12,600</div>
+      <div class="scenario-detail">4 agents / 15 referrals/yr / 50% monthly convert<br>= 15 new customers × $840 LTV per year</div>
+    </div>
+  </div>
+
+  <div class="math-grid">
+    <div class="math-card"><div class="big">$0</div><div class="lbl">CAC per referral customer</div></div>
+    <div class="math-card"><div class="big">50-60%</div><div class="lbl">Pre-listing → monthly convert rate</div></div>
+    <div class="math-card"><div class="big">20-30</div><div class="lbl">Avg transactions/yr per active STL agent</div></div>
+    <div class="math-card"><div class="big">45-55%</div><div class="lbl">Dog ownership in suburban STL</div></div>
+    <div class="math-card"><div class="big">4-8</div><div class="lbl">Potential referrals per agent per year</div></div>
+    <div class="math-card"><div class="big">$840</div><div class="lbl">Annual LTV per converted monthly customer</div></div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="section-title">The Pre-Listing Conversion Advantage</div>
+
+  <div class="callout">
+    <strong>Why pre-listing converts at 50-60% vs 20-25% for cold inbound:</strong>
+    <p style="margin-top:8px">The seller just hired movers, staged the house, and paid for professional photos. They're already in "maximum preparation" mode. When an agent recommends "get the yard cleaned before photos," it feels like one more professional checkbox — not a luxury purchase. The bar to say yes is very low. And when they see the clean yard before photos, 50-60% want it maintained at the new house or continue at their current address until the sale closes.</p>
+  </div>
+
+  <div class="highlight-box">
+    <strong>The Closing Gift Angle (Pitch B):</strong> TJ absorbs one free cleanup ($75) as a marketing cost. The buyer moves into their new home, TJ texts "On My Way" and "All Done." The buyer calls to ask about continuing monthly. This $75 marketing cost returns $840/yr at 55% close rate — that's a $462 expected LTV from a $75 investment = 6× ROI in the first year alone.
+  </div>
+
+  <div class="divider"></div>
+  <div class="section-title">Toward the 25-Customer Goal</div>
+
+  <div class="card">
+    <div class="card-title">Current: 11 customers → Goal: 25 customers by August</div>
+    <div class="card-sub" style="margin-top:8px">14 more customers needed.</div>
+    <div style="font-size:0.86rem;color:#cbd5e1;margin-top:10px;line-height:1.65">
+      • <strong style="color:#60a5fa">FB Ads + Organic (already running):</strong> Base case 4-6 new customers by August<br>
+      • <strong style="color:#10b981">Realtor Referrals (new channel, starting now):</strong> Base case 3-6 new customers by August<br>
+      • <strong style="color:#a78bfa">Commercial (apartment/senior living):</strong> 1-2 contracts<br>
+      • <strong style="color:#f59e0b">Lawn Care Partners (already building):</strong> 2-4 new customers<br><br>
+      <strong style="color:#f1f5f9">With all 4 channels active:</strong> 10-18 new customers by August = goal achievable from base case.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="section-title">Comparison: Realtor vs Other Referral Channels</div>
+
+  <div style="overflow-x:auto">
+    <table style="width:100%;border-collapse:collapse;font-size:0.82rem">
+      <thead>
+        <tr style="border-bottom:2px solid #2d3f55">
+          <th style="text-align:left;padding:10px 12px;color:#94a3b8">Channel</th>
+          <th style="text-align:center;padding:10px 12px;color:#94a3b8">CAC</th>
+          <th style="text-align:center;padding:10px 12px;color:#94a3b8">Close Rate</th>
+          <th style="text-align:center;padding:10px 12px;color:#94a3b8">LTV</th>
+          <th style="text-align:center;padding:10px 12px;color:#94a3b8">Setup Effort</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid #1e2d3d;background:rgba(96,165,250,0.06)">
+          <td style="padding:10px 12px;color:#93c5fd;font-weight:700">🏠 Realtor Referral</td>
+          <td style="text-align:center;padding:10px 12px;color:#10b981;font-weight:700">$0</td>
+          <td style="text-align:center;padding:10px 12px;color:#f1f5f9">50-60%</td>
+          <td style="text-align:center;padding:10px 12px;color:#f1f5f9">$840</td>
+          <td style="text-align:center;padding:10px 12px;color:#f1f5f9">5 calls</td>
+        </tr>
+        <tr style="border-bottom:1px solid #1e2d3d">
+          <td style="padding:10px 12px;color:#f1f5f9">🌿 Lawn Care Partner</td>
+          <td style="text-align:center;padding:10px 12px;color:#10b981">$20</td>
+          <td style="text-align:center;padding:10px 12px;color:#94a3b8">35-50%</td>
+          <td style="text-align:center;padding:10px 12px;color:#94a3b8">$840</td>
+          <td style="text-align:center;padding:10px 12px;color:#94a3b8">5 calls</td>
+        </tr>
+        <tr style="border-bottom:1px solid #1e2d3d">
+          <td style="padding:10px 12px;color:#f1f5f9">🐾 Dog Daycare Partner</td>
+          <td style="text-align:center;padding:10px 12px;color:#10b981">$0</td>
+          <td style="text-align:center;padding:10px 12px;color:#94a3b8">30-45%</td>
+          <td style="text-align:center;padding:10px 12px;color:#94a3b8">$840</td>
+          <td style="text-align:center;padding:10px 12px;color:#94a3b8">5 visits</td>
+        </tr>
+        <tr style="border-bottom:1px solid #1e2d3d">
+          <td style="padding:10px 12px;color:#f1f5f9">📣 FB Ads</td>
+          <td style="text-align:center;padding:10px 12px;color:#94a3b8">$40-80</td>
+          <td style="text-align:center;padding:10px 12px;color:#94a3b8">20-30%</td>
+          <td style="text-align:center;padding:10px 12px;color:#94a3b8">$840</td>
+          <td style="text-align:center;padding:10px 12px;color:#94a3b8">Already live</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;color:#f1f5f9">❄️ Cold Nextdoor</td>
+          <td style="text-align:center;padding:10px 12px;color:#94a3b8">$0</td>
+          <td style="text-align:center;padding:10px 12px;color:#94a3b8">10-20%</td>
+          <td style="text-align:center;padding:10px 12px;color:#94a3b8">$840</td>
+          <td style="text-align:center;padding:10px 12px;color:#94a3b8">Low</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- TAB 5: CHECKLIST -->
+<div id="tab-checklist" class="tab-content">
+  <div class="section-title">Realtor Referral Checklist</div>
+  <div class="progress-bar-wrap"><div class="progress-bar" id="prog-bar" style="width:0%"></div></div>
+  <div class="progress-label" id="prog-label">0 of 18 items complete</div>
+
+  <div class="phase-header">🔥 NOW — This Week (Spring listing season is open)</div>
+
+  <div class="checklist-item" id="c1" onclick="toggleCheck('c1')">
+    <div class="ci-check" id="c1-check">✓</div>
+    <div class="ci-text">Call RE/MAX Results Kirkwood: (314) 965-0808 — ask for office manager, pitch preferred vendor placement<span class="ci-tag tag-now">Do Now</span></div>
+  </div>
+  <div class="checklist-item" id="c2" onclick="toggleCheck('c2')">
+    <div class="ci-check" id="c2-check">✓</div>
+    <div class="ci-text">Call Keller Williams Chesterfield: (636) 532-4444 — ask if they have preferred vendor registration<span class="ci-tag tag-now">Do Now</span></div>
+  </div>
+  <div class="checklist-item" id="c3" onclick="toggleCheck('c3')">
+    <div class="ci-check" id="c3-check">✓</div>
+    <div class="ci-text">Call Dielmann Sotheby's: (636) 530-1100 — luxury listings in Chesterfield/Ladue/Town and Country<span class="ci-tag tag-now">Do Now</span></div>
+  </div>
+  <div class="checklist-item" id="c4" onclick="toggleCheck('c4')">
+    <div class="ci-check" id="c4-check">✓</div>
+    <div class="ci-text">Go to Zillow, search top agents in 63122 (Kirkwood) and 63031 (Florissant) — find 3 top listers each, get their contact<span class="ci-tag tag-now">Do Now</span></div>
+  </div>
+  <div class="checklist-item" id="c5" onclick="toggleCheck('c5')">
+    <div class="ci-check" id="c5-check">✓</div>
+    <div class="ci-text">Send cold email to 3 specific agents from Zillow using Script 2<span class="ci-tag tag-now">Do Now</span></div>
+  </div>
+
+  <div class="phase-header">📅 This Week</div>
+
+  <div class="checklist-item" id="c6" onclick="toggleCheck('c6')">
+    <div class="ci-check" id="c6-check">✓</div>
+    <div class="ci-text">Call Coldwell Banker Kirkwood: (314) 965-5400 — ask for agent referral list placement<span class="ci-tag tag-week">This Week</span></div>
+  </div>
+  <div class="checklist-item" id="c7" onclick="toggleCheck('c7')">
+    <div class="ci-check" id="c7-check">✓</div>
+    <div class="ci-text">Call Berkshire Hathaway Florissant: (314) 837-7300 — North County focus, pre-listing pitch<span class="ci-tag tag-week">This Week</span></div>
+  </div>
+  <div class="checklist-item" id="c8" onclick="toggleCheck('c8')">
+    <div class="ci-check" id="c8-check">✓</div>
+    <div class="ci-text">Draft a 1-paragraph vendor blurb about Tidy Tails for agents to share with sellers (send it after every call as a follow-up email)<span class="ci-tag tag-week">This Week</span></div>
+  </div>
+  <div class="checklist-item" id="c9" onclick="toggleCheck('c9')">
+    <div class="ci-check" id="c9-check">✓</div>
+    <div class="ci-text">Call Janet McAfee: (314) 997-4800 — luxury Ladue/Clayton listings<span class="ci-tag tag-week">This Week</span></div>
+  </div>
+  <div class="checklist-item" id="c10" onclick="toggleCheck('c10')">
+    <div class="ci-check" id="c10-check">✓</div>
+    <div class="ci-text">Follow up with any agents from the first round of emails (use Script 7)<span class="ci-tag tag-week">Day 5</span></div>
+  </div>
+
+  <div class="phase-header">📌 In-Person (When You're Out on Routes)</div>
+
+  <div class="checklist-item" id="c11" onclick="toggleCheck('c11')">
+    <div class="ci-check" id="c11-check">✓</div>
+    <div class="ci-text">Visit an open house in Kirkwood or Webster Groves — talk to the listing agent, leave your number for pre-listing cleanups<span class="ci-tag tag-week">Weekend</span></div>
+  </div>
+  <div class="checklist-item" id="c12" onclick="toggleCheck('c12')">
+    <div class="ci-check" id="c12-check">✓</div>
+    <div class="ci-text">If you see a RE/MAX, Coldwell Banker, or KW sign in a yard with a dog visible — text that agent's number from the sign<span class="ci-tag tag-week">Ongoing</span></div>
+  </div>
+
+  <div class="phase-header">🔄 Ongoing Habits</div>
+
+  <div class="checklist-item" id="c13" onclick="toggleCheck('c13')">
+    <div class="ci-check" id="c13-check">✓</div>
+    <div class="ci-text">After every pre-listing cleanup, ask "Do you want us to continue this monthly? We do flat-rate $70/month, no contracts." — 50-60% say yes<span class="ci-tag tag-ongoing">Every Job</span></div>
+  </div>
+  <div class="checklist-item" id="c14" onclick="toggleCheck('c14')">
+    <div class="ci-check" id="c14-check">✓</div>
+    <div class="ci-text">After completing a pre-listing cleanup, text the referring agent: "Done! Yard looks great for photos. Happy to be your go-to for listings with dogs." — they'll remember you next time<span class="ci-tag tag-ongoing">Every Referral Job</span></div>
+  </div>
+  <div class="checklist-item" id="c15" onclick="toggleCheck('c15')">
+    <div class="ci-check" id="c15-check">✓</div>
+    <div class="ci-text">Ask every active customer: "Do you know any neighbors who are selling? I do pre-listing cleanups too." — existing customers as real estate referral finders<span class="ci-tag tag-ongoing">Monthly</span></div>
+  </div>
+  <div class="checklist-item" id="c16" onclick="toggleCheck('c16')">
+    <div class="ci-check" id="c16-check">✓</div>
+    <div class="ci-text">Try the Closing Gift Pitch (Script 4) with at least one active agent — offer 1 free cleanup on their next dog-friendly buyer closing<span class="ci-tag tag-week">Once</span></div>
+  </div>
+  <div class="checklist-item" id="c17" onclick="toggleCheck('c17')">
+    <div class="ci-check" id="c17-check">✓</div>
+    <div class="ci-text">Add a brief mention to the Tidy Tails website: "Pre-listing yard cleanup for realtors — quick turnaround, professional service" — helps when agents search you<span class="ci-tag tag-week">This Week</span></div>
+  </div>
+  <div class="checklist-item" id="c18" onclick="toggleCheck('c18')">
+    <div class="ci-check" id="c18-check">✓</div>
+    <div class="ci-text">Check in with active realtor partners every 60 days — send a text: "Still happy to help with any listings with dogs. (314) 850-7140"<span class="ci-tag tag-ongoing">Every 60 Days</span></div>
+  </div>
+</div>
+
+<div class="bottom-stats" id="bottom-stats">
+  <div class="bottom-stat"><div class="val" id="bs-called">0</div><div class="lbl">Called</div></div>
+  <div class="bottom-stat"><div class="val" id="bs-interested">0</div><div class="lbl">Interested</div></div>
+  <div class="bottom-stat"><div class="val" id="bs-partner">0</div><div class="lbl">Partner ✅</div></div>
+  <div class="bottom-stat"><div class="val" id="bs-checklist">0/18</div><div class="lbl">Checklist</div></div>
+</div>
+
+<script>
+const TOTAL_CHECKS = 18;
+
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function copyScript(id) {
+  const el = document.getElementById(id);
+  const btn = el.previousElementSibling.querySelector('.copy-btn');
+  navigator.clipboard.writeText(el.textContent.trim()).then(() => {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+const statusMap = {};
+function setStatus(id, status, btn) {
+  const card = document.getElementById(id);
+  const allBtns = card.querySelectorAll('.status-btn');
+  allBtns.forEach(b => b.className = 'status-btn');
+  btn.className = 'status-btn active-' + status;
+  statusMap[id] = status;
+  localStorage.setItem('realtor_status', JSON.stringify(statusMap));
+  updateBottomStats();
+}
+
+function updateBottomStats() {
+  const vals = Object.values(statusMap);
+  document.getElementById('bs-called').textContent = vals.filter(v => v === 'called').length;
+  document.getElementById('bs-interested').textContent = vals.filter(v => v === 'interested').length;
+  document.getElementById('bs-partner').textContent = vals.filter(v => v === 'partner').length;
+}
+
+const checkState = {};
+function toggleCheck(id) {
+  checkState[id] = !checkState[id];
+  const item = document.getElementById(id);
+  item.classList.toggle('done', checkState[id]);
+  localStorage.setItem('realtor_checks', JSON.stringify(checkState));
+  updateProgress();
+}
+
+function updateProgress() {
+  const done = Object.values(checkState).filter(Boolean).length;
+  const pct = Math.round((done / TOTAL_CHECKS) * 100);
+  document.getElementById('prog-bar').style.width = pct + '%';
+  document.getElementById('prog-label').textContent = done + ' of ' + TOTAL_CHECKS + ' items complete';
+  document.getElementById('bs-checklist').textContent = done + '/' + TOTAL_CHECKS;
+}
+
+// Restore state
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('realtor_status');
+  if (saved) {
+    const data = JSON.parse(saved);
+    Object.keys(data).forEach(id => {
+      const card = document.getElementById(id);
+      if (!card) return;
+      Object.assign(statusMap, data);
+      const btns = card.querySelectorAll('.status-btn');
+      btns.forEach(b => b.className = 'status-btn');
+      const targetBtn = [...btns].find(b => b.getAttribute('onclick') && b.getAttribute('onclick').includes(data[id]));
+      if (targetBtn) targetBtn.className = 'status-btn active-' + data[id];
+    });
+    updateBottomStats();
+  }
+
+  const savedChecks = localStorage.getItem('realtor_checks');
+  if (savedChecks) {
+    const data = JSON.parse(savedChecks);
+    Object.keys(data).forEach(id => {
+      checkState[id] = data[id];
+      if (data[id]) document.getElementById(id)?.classList.add('done');
+    });
+    updateProgress();
+  }
+});
+</script>
+</body>
+</html>
