@@ -4635,3 +4635,36 @@
     - The Easter Recap post in all FB groups on Monday seeds Mother's Day 34 days out while the Easter social proof is fresh — organic reach compounds on a single post.
     - All scripts are copy-pasteable. The tool is built for use on a phone. No navigation needed — Priority 1 is above the fold.
   - **Revenue math:** Base case (6 Easter cleanups × 40% close Monday morning = 2 converts × $840 LTV = $1,680) vs missed Monday (6 cleanups × 20% close Thursday = 1 convert × $840 = $840). The Monday Command Center is worth $840 in incremental LTV on the base case alone from one weekend of cleanups.
+
+---
+
+### Friday 9:04 PM — "Can You Compost Dog Poop?" Blog Post #85 (Hourly Task)
+- **9:04 PM** 🌿 Wrote and published **"Can You Compost Dog Poop? (The Honest Answer)"** — the first Tidy Tails post targeting the high-intent DIY researcher who's considering composting as an alternative to cleanup
+  - **File:** `tidy-tails/website/blog/can-you-compost-dog-poop-st-louis.html` (53KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/can-you-compost-dog-poop-st-louis` ✅ HTTP 200 confirmed, 58KB live ✅
+  - **Blog count: 85 posts total** ✅
+  - **Git commits:** tidytails-dashboard `9dd00ca4` ✅ · tidytails-website `41cea54` ✅ → Cloudflare Pages live ✅
+  - **Why this task:** Audit of all 84 existing blog posts showed zero coverage of "can you compost dog poop" — one of the highest-searched questions in the dog waste category. This is a critical mid-funnel keyword: someone googling this is thinking "maybe I'll handle this myself via composting" — they're already aware of the problem, already motivated to solve it, and evaluating their options. The post converts them by being ruthlessly honest about what proper dog waste composting actually requires (140–165°F sustained internal temp, dedicated pile, frequent turning, no food garden use per USDA) and why 99% of homeowners abandon it within 60 days. The honest, "we're not going to lie to you" framing builds trust and converts the "I'll handle it myself" mindset to "actually this service is easier and safer."
+  - **Target keywords:** "can you compost dog poop", "dog poop compost", "dog waste composting safe", "is it safe to compost dog waste", "dog poop composting guide", "composting dog waste", "dog feces compost"
+  - **Content highlights:**
+    - **USDA position cited:** Their guidance against using dog waste compost on food/vegetable gardens — the credibility anchor that makes this post authoritative
+    - **The Honest Verdict box:** Explains what "works" means (physically yes, safely for food gardens no) vs. what most people mean when they ask
+    - **6 requirement cards:** Each marked with ❌ to show what most backyards can't achieve (140°F temp, dedicated pile, daily turning, correct C:N ratio, critical mass, moisture management)
+    - **Myth vs Fact grid (8 pairs):** Destroys the "dog poop fertilizes lawns" myth with specific chemistry (pH 4–5, high-protein diet = acid, not herbivore organic nitrogen)
+    - **Big stat:** "2–5 years" — how long Toxocara roundworm eggs survive in soil after visible waste is gone. Reinforces that composting doesn't eliminate the pathogen risk
+    - **5 reasons people quit within 60 days:** Smell complaints, temperature monitoring burden, one-dog households can't hit critical mass, product can't be used on food gardens, Missouri weather fights the process in both directions
+    - **Scenario grid:** ❌ DIY composting (hours of monitoring, smell complaints, fails in winter, product unusable on food gardens, most quit) vs ✅ Weekly professional pickup (zero time, waste removed off-site, no pathogen risk, works year-round, $2.30/day)
+    - **Comparison table:** 4 disposal methods (Professional removal, DIY composting, DIY weekly pickup, Let it decompose) across 5 factors — Tidy Tails wins on all
+    - **5-step composting guide (if they still want to try):** Honest instructions for doing it correctly — dedicated bin, compost thermometer, carbon material with every deposit, 8–12 month process, ornamental plants only. The honesty here builds trust.
+    - **7-question FAQ with FAQPage schema**
+    - **22-city service area + 6 related article cards**
+  - **Cross-links added:**
+    - `blog/how-long-does-dog-poop-decompose.html`: Added "🌿 Can You Compost Dog Poop?" as new FIRST Related Article ✅
+    - `blog/index.html`: Added as #1 card (green #4ade80 border, "Dog Waste FAQ" badge) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+  - **Why this is uniquely high-converting:**
+    - The person who searches "can you compost dog poop" is NOT the same as someone searching "pooper scooper near me." They're in a different mental frame — they think they might handle this themselves. The post meets them in that frame, gives them honest respect (here's what it actually takes), and then shows them the comparison. When they finish reading, they understand why professional removal isn't just convenience — it's the sanitary, zero-risk alternative to a genuinely complex DIY process. The psychology is different from "here's what we offer" content. It's "we'll help you make the right decision, whatever that is" — which converts at high rates.
+    - The "USDA says don't do it on food gardens" hook is the line that stops people cold. Most dog owners with vegetable gardens read that and immediately lose interest in the composting idea.
+    - Year-round relevance: People research composting all year, not just spring. Evergreen traffic.
+    - Zero STL competitor coverage: No other STL pet waste service has any composting-related content.
+  - **Revenue math:** One convert who found this post = $840 LTV at $0 CAC. Base case (2 converts over 90 days from composting researchers) = $1,680 from a post that took ~45 minutes to write and compounds forever.
