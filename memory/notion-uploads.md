@@ -456,6 +456,12 @@ Chief uses this to verify sync with dashboard.
 | 00:02 | 🤖 AI Consulting One-Pager — 2026 | 🤖 AI Consulting | pdfs/AI-CONSULTING-ONE-PAGER-2026.pdf | ✅ (Notion ID: 338ccdb3-7d1f-8100-aae2-d3f948d10c87) |
 | 00:02 | 🎬 Shed Video Content Pack — Mar 30, 2026 | 🏠 Shed Sales | pdfs/SHED_VIDEO_CONTENT_2026-03-30.pdf | ✅ (Notion ID: 338ccdb3-7d1f-8121-b443-dc0ed4906e82) |
 
+## Upload Log — Apr 4, 2026 (6 AM sync)
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 06:01 | Morning Briefing — Saturday, April 4, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-04-04.pdf | ✅ (Notion ID: 338ccdb3-7d1f-812b-827c-ea2fed49b99b) |
+
 ## Upload Log — Apr 3, 2026 (6 PM sync)
 
 | Time | File | Notion Folder | Dashboard Path | Status |
