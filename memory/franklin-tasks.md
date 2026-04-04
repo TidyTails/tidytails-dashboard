@@ -2,6 +2,61 @@
 
 ---
 
+### Saturday 4:07 AM — Blog Post #88: New Dog Owner's Guide to Yard Cleanup (Hourly Task)
+- **4:07 AM** 🐶 Wrote and published **"New Dog Owner's Guide to Yard Cleanup in St. Louis — What Nobody Tells You"** — the first post in the entire library targeting new and first-time dog owners, the highest-LTV customer segment (no entrenched habits = easiest monthly conversion)
+  - **File:** `tidy-tails/website/blog/new-dog-owner-yard-cleanup-st-louis.html` — 47KB ✅ (comparable to other blog posts: flies=45KB, worms=46KB)
+  - **Live URL:** `https://tidytailsstl.com/blog/new-dog-owner-yard-cleanup-st-louis` ✅ HTTP 200 confirmed
+  - **Git commits:** tidytails-dashboard `95d457dc` ✅ · tidytails-website `7667788` ✅ → Cloudflare Pages live ✅
+  - **Blog count: 88 posts total** ✅
+  - **Why this task:** 87 blog posts live. Library has posts for every city, season, pest, holiday, and lifecycle moment — but ZERO content targeting the very start of dog ownership. "New dog owner yard cleanup," "puppy poop yard cleanup," and "what to do when you first get a dog" are year-round high-intent queries from people who are in discovery mode and have no ingrained habits. This is the easiest conversion in the entire playbook: a first-time dog owner who sets up service in month one never develops the "I'll deal with it when it gets bad" habit. Maximum LTV, zero habit disruption.
+  - **Target keywords:** "new dog owner yard cleanup St. Louis", "puppy poop yard cleanup", "first dog owner tips St. Louis", "new puppy yard maintenance", "dog poop yard new dog", "new dog owner poop yard", "what to do about dog poop in yard new dog"
+  - **Why new dog owners are the best conversion segment:**
+    - No existing habits to break (unlike established dog owners who have a "system" already)
+    - Maximum curiosity — they're Googling everything about dog ownership right now
+    - No sticker shock: $70/month sounds reasonable when you don't know what you're doing yet
+    - Maximum lifetime value: start in month 1 = potentially 5–10 year customer relationship
+    - They ask their vet, their neighbors, their Facebook groups — word-of-mouth origination point
+  - **What's in the post (~47KB, ~2,800 words):**
+    - **Hero:** "New Dog Owner's Guide to Yard Cleanup — What Nobody Tells You" — dark navy/forest gradient, "NEW DOG OWNER GUIDE — ST. LOUIS" badge
+    - **Urgency banner:** "Just got a dog in St. Louis? Set up yard cleanup from day one — first cleanup FREE"
+    - **Stats row:** 300 deposits/dog/year / 48 hrs (safe pickup window) / 2–5 yrs (roundworm egg survival) / $2.30/day
+    - **The Math Nobody Does Until Year Two:** 25 deposits/month, 300/year, 600 for two dogs, 100+ winter accumulation — visualized in math cards. The spring reveal for first-year dog owners explained: 3–4 months of winter deposits surface simultaneously in April.
+    - **The Spring Reveal callout:** "Your first April with a dog is a reckoning." Why starting service from day one prevents this entirely.
+    - **What's Actually in That Soil (4 pathogen cards):**
+      - Roundworm (Toxocara canis) — HIGH RISK — eggs survive 2–5 years, become infectious in 2–4 weeks
+      - E. coli & fecal bacteria — HIGH RISK — 23M bacteria per gram, spreads via rain before waste is gone
+      - Hookworm larvae — HIGH RISK — penetrate bare skin directly, no ingestion required
+      - Giardia — MODERATE — cyst-forming, chlorine-resistant, survives months in cool moist soil
+    - **Big stat callout:** 14% of Americans have been exposed to Toxocara (CDC) — children with dogs and barefoot yard access are highest-risk group
+    - **The 48-Hour Rule Explained (most important section):** Fresh waste is NOT immediately infectious — roundworm eggs take 2–4 weeks to embryonate. Pick up within 48 hours and the yard never gets contaminated. Wait 3 weeks and the eggs are in the soil for 2–5 years even after visible waste is gone. This is the insight that converts "when I get to it" owners into "every week" owners.
+    - **The Fertilizer Myth Busted:** Dog poop is pH 4–5, concentrated nitrogen from meat-based diet — it burns grass, it doesn't fertilize it. Those dead brown circles are nitrogen burn, not wear spots.
+    - **Decomposition reality:** 9 weeks minimum in ideal conditions, stops during St. Louis winter. Roundworm eggs survive years after visible waste is gone.
+    - **Year One Season-by-Season Timeline:** Month 1–2 (honeymoon, manageable), Month 3–6 (accumulation begins, winter skipping), First Spring (the reckoning — 100–150+ deposits visible simultaneously), Summer (fly season, each pile = 300+ flies/24hrs), Second Fall (soil already contaminated from year one).
+    - **Setting Up the Right System From Day One (3-option grid):** DIY Weekly (fixed day, grid sweep, 15–25 min), Tidy Tails Weekly ($70/month, zero habit maintenance), Hybrid Approach (start with service for baseline, decide after).
+    - **New Dog vs Established Yard:** What to do when moving into a home with a yard and unknown history. Spring/fall move-in protocols. The puppy-in-existing-yard warning (puppies more susceptible, explore with mouths).
+    - **New Puppy Parasite Note:** Puppies commonly infected with roundworms from mother. Their waste is more likely to contain Toxocara eggs than adult dog waste. Starting service from puppyhood = cleanest possible approach.
+    - **The Two-Scenario Year:** ❌ Without system (spring emergency, brown spots, fly problem, compounding soil contamination, year two worse) vs ✅ With weekly system (no accumulation, no dead spots, no fly breeding, kids safe, clean baseline forever).
+    - **How Tidy Tails Works:** 5-step process — text/call → "On My Way" text → full grid sweep → waste removed from property → "All Done" text.
+    - **Comparison table:** Tidy Tails weekly vs DIY weekly vs DIY "when I notice it" — consistency, parasite prevention, winter management, time required, lawn dead spots, annual cost.
+    - **Pricing strip:** $70/mo (1–2 dogs, MOST POPULAR), $80/mo (3–4 dogs), $75+ one-time, first cleanup FREE.
+    - **22-city service area grid**
+    - **7-question FAQ with FAQPage schema:** How often should new owner clean up / is puppy poop dangerous / how much does a dog poop per year / does dog poop fertilize / how long to decompose / what is pooper scooper service / is it worth it for new dog owners
+    - **Sidebar:** Sticky pricing card + 8-item new dog owner reading list linking to most relevant deep-dive posts + The 48-Hour Rule explainer callout
+  - **Cross-links added:**
+    - `blog/how-often-pick-up-dog-poop.html`: Added "🐶 New Dog Owner's Guide to Yard Cleanup" as FIRST Related Article ✅
+    - `blog/dog-poop-worms-yard-st-louis.html`: Added "🐶 New Dog Owner's Guide to Yard Cleanup" to sidebar related articles ✅
+    - `blog/index.html`: Added as #1 card (teal #059669 border/glow, "New Dog Owner Guide" tag, April 4 date) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+  - **Why new dog owners over other 4 AM options:**
+    - 87 posts cover cities, seasons, pests, holidays, health, and homeowner concerns — but ZERO posts target the beginning of the dog ownership journey
+    - This query cluster is year-round (unlike seasonal posts) and searched by buyers who have ZERO bad habits to overcome
+    - The conversion path is uniquely short: new dog owner Googles "dog cleanup tips" → finds post → reads the spring reckoning section → understands 300 deposits/year math → books service before their first winter
+    - The "reading list" sidebar links to 8 other deep-dive posts — this is a hub for new owners that increases time-on-site and internal linking for all connected posts
+    - At 4 AM on a Saturday in April — perfect timing as spring brings new dog adoptions (shelters are busier in spring) and Easter weekend brings impulse pet decisions
+  - **Revenue math:** One new dog owner who converts in month 1 = $840/year × however many years they own the dog. Industry average dog ownership duration: 10–12 years. A 10-year customer from a first-time dog owner = $8,400 lifetime value at $0 CAC. The Spring adoption season means this is exactly when new dog owners are Googling everything. Zero competitor in STL has this content.
+
+---
+
 ### Saturday 2:05 AM — Blog Post #87: Dog Poop Safety During Pregnancy (Hourly Task)
 - **2:05 AM** 🤰 Wrote and published **"Is Dog Poop Safe During Pregnancy?"** — the first dedicated pregnancy-safety dog waste post in the entire Tidy Tails library. Also fixed Chief issue-042 (Blog #86 not in dashboard SEO section).
   - **File:** `tidy-tails/website/blog/dog-poop-pregnancy-safe-st-louis.html` — 52KB ✅ (>50KB)
