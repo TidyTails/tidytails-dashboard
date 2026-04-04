@@ -1591,4 +1591,99 @@ Commercial pricing is different from residential. Here's what competitors charge
 
 ---
 
-## 📊 COMMERCIAL LEAD SUMMARY (Updated April 3, 2026 — 112 total leads)
+---
+
+## 🏠 NEW LEADS BATCH — April 4, 2026 (9:00 AM) — Total: 119 leads
+
+### The Victor Apartments ⭐⭐ BRAND NEW BUILD — DOWNTOWN WEST DOG PARK
+- **Type:** New Luxury Apartment Complex — Dog Park + Rooftop
+- **Address:** Near CITYPARK, Downtown West, St. Louis, MO 63101
+- **Website:** victorstl.com
+- **Contact:** Leasing office
+- **Why Good Fit:** Brand new build in the renovated Butler Brothers building — 2 acres, studios to 2BR. Has a dedicated dog park + rooftop terrace with pool. Located near CITYPARK = dog-dense neighborhood. New construction = no vendor relationships locked in. First mover gets the contract from day one. Urban core residents who don't have yards are exactly the people who love their dogs most.
+- **Est. Monthly Value:** $250–$450/mo
+- **Found:** April 4, 2026
+- **Status:** New
+- **Pitch angle:** "Just opened and already attracting dog lovers in the CITYPARK corridor. We'd love to keep your dog park pristine from the start — professional weekly cleanup, one flat monthly rate. No contract."
+
+---
+
+### Bemiston Place ⭐⭐ NEW BUILD — CLAYTON + DOG PARK + PET SPA
+- **Type:** New Luxury Apartment Complex — Private Dog Park + Pet Spa
+- **Address:** Clayton, MO 63105 (opening summer 2026)
+- **Website:** bemistonplace.com
+- **Contact:** Leasing office (pre-opening inquiries)
+- **Why Good Fit:** New Clayton apartment complex with PRIVATE DOG PARK + PET SPA opening this summer. Clayton is the highest-income suburb in STL metro. Pre-opening = get in before they finalize vendors. Boutique community with resort-style courtyard. Only the most premium dog owners live in Clayton = premium pricing accepted without question.
+- **Est. Monthly Value:** $300–$500/mo
+- **Found:** April 4, 2026
+- **Status:** New
+- **Pitch angle:** "Opening this summer — congratulations! We'd love to be your first pet waste vendor. Keep that new dog park and outdoor areas spotless from day one. We'll set it up before move-in."
+
+---
+
+### The James Kirkwood ⭐⭐ NEW LUXURY BUILD — KIRKWOOD PET WASH + EXERCISE AREA
+- **Type:** New 152-Unit Luxury Apartment — Pet Wash + Exercise Area
+- **Address:** Near downtown Kirkwood, MO 63122
+- **Website:** thejameskirkwood.com
+- **Contact:** Leasing Office
+- **Why Good Fit:** Brand new 152-unit luxury building with dedicated pet wash AND exercise area. Five-story building with outdoor terrace + pool. Kirkwood is one of STL's most dog-devoted communities — also one of the most walkable. New construction = no vendors yet. Kirkwood residents are dog-dedicated and willing to pay for premium services.
+- **Est. Monthly Value:** $200–$400/mo
+- **Found:** April 4, 2026
+- **Status:** New
+- **Pitch angle:** "152 units, brand new, and already catering to dog owners with a pet wash and exercise area — you get it. We'd love to handle the outdoor cleanup side. Professional weekly service, flat monthly rate."
+
+---
+
+### Frenchtown Dog Park (FDPA) ⭐ SOULARD — 3/4 ACRE PRIVATE DOG PARK
+- **Type:** Private Neighborhood Dog Park (membership-based)
+- **Address:** Soulard neighborhood, St. Louis, MO 63104
+- **Website:** frenchtowndogpark.com
+- **Contact:** FDPA Board (via website contact form)
+- **Why Good Fit:** 3/4-acre fully fenced community dog park in the Soulard/Frenchtown neighborhood — founded 2004, one of STL's largest green spaces in that corridor. Membership-based. The FDPA board votes on vendors/services. Landing this gets Tidy Tails in front of every Soulard dog owner who's already paying for dog park access. Also: Soulard is dense with dog owners who have NO backyard = referral gold. First South City park in pipeline.
+- **Est. Monthly Value:** $200–$400/mo service + referral pipeline to Soulard residents
+- **Found:** April 4, 2026
+- **Status:** New
+- **Pitch angle:** "We'd love to put a professional waste management contract in front of your board. Keep the park cleaner, reduce volunteer burden, one flat monthly fee. Plus — your members are exactly the Soulard dog owners we'd love to offer yard cleanup to."
+
+---
+
+### Kirkwood Bluffs Apartments — KIRKWOOD
+- **Type:** Large Apartment Complex — Multi-Floor Plans
+- **Address:** Kirkwood, MO 63122
+- **Website:** See homes.com listing
+- **Contact:** Leasing Office
+- **Why Good Fit:** 27+ floor plans in one of STL's most dog-loving suburbs. Large community. Kirkwood residents are active, dog-dedicated homeowners and renters. Pairs with The James Kirkwood for a same-day Kirkwood sales blitz. Establishes Tidy Tails in the Kirkwood/South County corridor.
+- **Est. Monthly Value:** $200–$400/mo
+- **Found:** April 4, 2026
+- **Status:** New
+- **Pitch angle:** "Building our Kirkwood route — professional pet waste cleanup for your grounds. Weekly service, flat monthly rate, no contract."
+
+---
+
+### Riverpointe St. Charles ⭐⭐ MASSIVE DEVELOPMENT — 500 APARTMENTS COMING
+- **Type:** Mixed-Use Development — 500 Apartments (under construction)
+- **Address:** Along Missouri River, St. Charles, MO 63301
+- **Website:** riverpointe-stc.com
+- **Contact:** Development team / leasing pre-launch
+- **Why Good Fit:** $350 MILLION development project transforming 120 acres along the Missouri River — plans include 500 apartments, rooftop patios, green spaces, 150 hotel units, and 100k sq ft of restaurants. Early-stage = get in NOW before they sign vendor contracts. This is the largest single development in TJ's service area. Landing even a maintenance contract here is a game-changer. St. Charles is already TJ's territory.
+- **Est. Monthly Value:** $500–$1,500/mo (when complete)
+- **Found:** April 4, 2026
+- **Status:** New (early contact — development phase)
+- **Pitch angle:** "500 apartments + rooftop patios + outdoor spaces. We're a local St. Charles pet waste company. Would love to be your go-to pet waste vendor when residents move in. Let's talk now while vendor slots are open."
+
+---
+
+### 1400 Russell Apartments — SOULARD
+- **Type:** Apartment Community — Dog-Friendly
+- **Address:** 1400 Russell Blvd, Soulard, St. Louis, MO 63104
+- **Website:** 1400russell.com
+- **Contact:** Leasing Office
+- **Why Good Fit:** Established Soulard apartment community explicitly marketing pet-friendly amenities. Soulard has 12+ years of community density of dog owners. Residents praise the amenities and community feel. Pairs with Frenchtown Dog Park (same neighborhood) for a Soulard double-stop. Opens the entire Soulard/South City corridor for TJ.
+- **Est. Monthly Value:** $200–$350/mo
+- **Found:** April 4, 2026
+- **Status:** New
+- **Pitch angle:** "We're building our Soulard route — you've got great pet-friendly amenities, we keep the outdoor areas matching. Weekly professional cleanup, flat monthly rate."
+
+---
+
+## 📊 COMMERCIAL LEAD SUMMARY (Updated April 4, 2026 — 119 total leads)
