@@ -462,6 +462,13 @@ Chief uses this to verify sync with dashboard.
 |------|------|---------------|----------------|--------|
 | 06:01 | Morning Briefing — Saturday, April 4, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-04-04.pdf | ✅ (Notion ID: 338ccdb3-7d1f-812b-827c-ea2fed49b99b) |
 
+## Upload Log — Apr 4, 2026 (12 PM sync)
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 12:02 | Shed Ads — Saturday, April 4, 2026 | 🏠 Shed Sales | pdfs/SHED_ADS_2026-04-04.pdf | ✅ (Notion ID: 338ccdb3-7d1f-816d-afdf-cd8966f37003) |
+| 12:02 | Commercial Leads — Saturday, April 4, 2026 | 🐕 Jamie's Hub | pdfs/COMMERCIAL_LEADS_2026-04-04.pdf | ✅ (Notion ID: 338ccdb3-7d1f-8145-a936-f66e73aa4663) |
+
 ## Upload Log — Apr 3, 2026 (6 PM sync)
 
 | Time | File | Notion Folder | Dashboard Path | Status |
