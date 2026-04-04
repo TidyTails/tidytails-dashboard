@@ -4975,3 +4975,45 @@
     - **3 real customer reviews**
   - **Why this over a new post at 3 AM:** 87 posts live. Content is fully saturated for new topics. The highest-impact remaining work was fixing broken existing content — and the smell stub was the worst offender: high search volume, actively wrong pricing, thin content, no schema. At 3 AM after Easter Eve, the right move is a quality fix on an indexed page rather than another new post. The wrong pricing alone was a live conversion killer.
   - **Revenue math:** "Dog poop smell yard" is searched by people already dealing with the problem — highest-intent buyers in the category. Someone who Googles this, reads the chemistry section ("you removed the pile but the compounds are already in the soil"), and understands why their spray products don't work is primed to book immediately. No competitor in STL has this level of depth on the odor angle. One convert/month from this post = $840 LTV at $0 CAC.
+
+---
+
+### Saturday 7:04 AM — Blog Post #90: Dog Poop and Sandboxes — Sandbox Contamination Guide (Hourly Task)
+- **7:04 AM** 🏖️ Wrote and published **"Dog Poop and Sandboxes — The Contamination Risk St. Louis Parents Need to Know"** — the first dedicated sandbox contamination guide in the entire Tidy Tails library, targeting April's sandbox opener season with zero STL competitor coverage
+  - **File:** `tidy-tails/website/blog/dog-poop-sandbox-contamination-st-louis.html` — 49KB ✅
+  - **Live URL:** `https://tidytailsstl.com/blog/dog-poop-sandbox-contamination-st-louis` ✅ HTTP 200 confirmed
+  - **Git commits:** tidytails-dashboard master `2f31d54e` ✅ · tidytails-website master `aff3e57` ✅ → Cloudflare Pages live ✅
+  - **Blog count: 90 posts total** ✅
+  - **Why this task:** 89 posts live. The overnight sprint covered vegetable garden safety (6 AM), Easter Saturday morning briefing (5 AM), new dog owner guide (4 AM), pregnancy guide (2 AM). At 7 AM the highest-impact remaining gap: **sandbox contamination**. April is when St. Louis parents bring sandboxes out of storage — right at the same moment winter's 100+ deposits per dog thaw and Toxocara eggs begin embryonating. Cat poop in sandboxes is widely covered; dog poop contamination of sandboxes is almost never addressed in any pet waste service content. Zero STL competitors have written about this. The existing kids safety post mentioned sandboxes once in an FAQ answer — not a dedicated resource. A parent Googling "dog poop sandbox contamination" or "is sandbox safe with dogs" now finds a dedicated 49KB Tidy Tails guide.
+  - **Target keywords:** "dog poop sandbox contamination", "sandbox dog feces", "dog waste sandbox St. Louis", "sandbox roundworm risk", "is sandbox safe with dogs", "dog poop near sandbox", "Toxocara sandbox", "sandbox contamination kids"
+  - **Key insights in the post:**
+    - Roundworm eggs survive 2–5 years in sandbox sand — the CDC specifically calls out sandboxes and soil play areas in yards with dogs
+    - You don't need visible dog poop IN the sandbox — rain splash from contaminated adjacent soil deposits eggs with every storm
+    - Sand retains moisture differently than grass, creating a favorable persistence environment for Toxocara eggs
+    - Hookworm larvae penetrate bare skin directly — children sitting in contaminated sand are at risk without any ingestion
+    - The 48-hour pickup rule prevents egg embryonation in the surrounding yard soil, which prevents the sandbox contamination pathway
+    - April = maximum risk convergence: winter accumulation thaws + eggs begin embryonating + sandbox season opens simultaneously
+  - **What's in the post (49KB):**
+    - **Hero:** "Dog Poop and Sandboxes — The Contamination Risk Nobody Tells You About" — navy/green gradient, "SANDBOX SAFETY" badge
+    - **Urgency banner:** "April is when St. Louis parents bring sandboxes back outside — read this before your child plays in it"
+    - **Stats row:** 2–5 yrs (roundworm egg survival in sand) / 48 hrs (safe pickup window) / April (peak risk) / $70/mo
+    - **4 contamination pathways:** Direct deposit (HIGH), Rain splash (HIGH), Wind transport (MODERATE), Foot/paw traffic (MODERATE) — each explained mechanistically
+    - **4-pathogen grid:** Toxocara canis (HIGH, 2–5 yr survival, vision damage risk), E. coli (HIGH, 23M bacteria/gram, mouthing toys), Giardia (MODERATE, months in moist sand), Hookworm (MODERATE, bare skin penetration)
+    - **Big stat callout:** 2–5 years — how long Toxocara eggs survive in sandbox sand. "A sandbox next to 'cleaned' yard soil from last year may still be contaminated."
+    - **Why sandboxes are uniquely high-risk (6 reasons):** Hands go directly in sand, sand retains moisture differently, low to ground (rain splash zone), extended skin contact, covers left off frequently, sand replaced infrequently
+    - **Invisible contamination callout:** A visually clean sandbox can contain active eggs from deposits made months or years ago
+    - **April risk convergence section:** Winter thaw + embryonation + rain + sandbox opener = maximum risk moment
+    - **Scenario grid:** ❌ Sandbox opens into contaminated yard (100+ deposits thawing, eggs embryonating, April rain into open sandbox, daily hand-to-mouth play, invisible contamination) vs ✅ Sandbox opens into clean yard (winter cleared, 48-hr rule, eggs never embryonate, no rain splash pathway, kids play freely)
+    - **7-step what to do:** Clear winter accumulation NOW before first rain / Establish 48-hr pickup rule / Create separation zone / Use cover when not in use / Consider replacing top sand layer / Confirm dog on monthly prevention / Handwashing after sandbox play
+    - **What doesn't work:** Raking (redistributes not removes), covering after contamination, occasional visible-only cleanup, "my dog doesn't go there" assumption
+    - **How Tidy Tails works:** 5-step process with "On My Way" + "All Done" texts
+    - **Pricing strip:** $70/mo (1–2 dogs), $80/mo (3–4 dogs), $75+ one-time, first cleanup FREE
+    - **22-city service area grid**
+    - **7-question FAQ with FAQPage schema:** Can dog poop contaminate sandbox / How long do eggs survive / Does a cover protect it / Should I replace sandbox sand / What pathogens / How much does service cost / Do I need to be home
+  - **Cross-links added:**
+    - `blog/is-dog-poop-dangerous-kids-children-st-louis.html`: Added "🏖️ Dog Poop and Sandboxes" as FIRST Related Article ✅
+    - `blog/index.html`: Added as #1 card (amber #f59e0b border/glow, "Sandbox Safety" tag, April 4 date) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+  - **Why sandboxes at 7 AM Easter Saturday:** The blog library at 89 posts covers health risks from every angle: kids safety (general), pregnancy, new dog owners, garden food safety, worms/parasites, flies, mosquitoes, ticks, flea habitat. The remaining uncovered angle that is uniquely high-urgency in April: **sandboxes**. It's a specific, well-defined high-risk category that parents with young children will search by itself — not "is dog poop dangerous for kids" but "dog poop sandbox" or "is sandbox safe with dogs." This is a parent who has already made the conceptual connection between their dog's yard and their child's sandbox and wants specific information. The conversion path is direct: parent realizes sandbox has been adjacent to dog deposits all winter, reads about 2–5 year egg survival, books service. Easter Saturday at 7 AM is exactly when parents are setting up Easter egg hunts in the yard and may also be thinking about bringing out sandbox toys. Both use cases on the same day.
+  - **Revenue math:** A parent who converts from a sandbox safety concern = $840/yr at $0 CAC. Likely to stay for years (kids grow through sandbox age into general yard play age). "Sandbox safety" is a Google query that comes from parents of children ages 1–6 — the demographic with the longest service tenure ahead of them. One sandbox-motivated convert = potentially 5+ years of service = $4,200+ LTV. The vegetable garden post targets health-conscious gardeners (also high LTV); the sandbox post targets parents of young children (also very high LTV). Both April-timed, both zero competition in STL.
+
