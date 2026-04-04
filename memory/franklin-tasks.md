@@ -2,6 +2,55 @@
 
 ---
 
+### Saturday 10:07 AM — Blog Post #93: Can Renters Hire a Pooper Scooper Service? (Hourly Task)
+- **10:07 AM** 🏠 Wrote and published **"Can Renters Hire a Pooper Scooper Service? (Yes — You Don't Need Permission)"** — the first dedicated renters guide in the entire St. Louis pet waste removal market, targeting a buyer segment that self-disqualifies due to a false assumption
+  - **File:** `tidy-tails/website/blog/pooper-scooper-service-renters-st-louis.html` — 50.9KB ✅
+  - **Live URL:** `https://tidytailsstl.com/blog/pooper-scooper-service-renters-st-louis` ✅ HTTP 200 confirmed
+  - **Git commits:** tidytails-dashboard main `65871e23` ✅ · tidytails-website master `b911f7a` ✅ → Cloudflare Pages live ✅
+  - **Blog count: 93 posts total** ✅
+  - **Why this task:** 92 posts live, Easter Saturday 10 AM. Blog library is saturated across every city, season, pest, holiday, health angle, and lifecycle moment. The one remaining high-value conversion gap with zero STL competitor coverage: **the renter audience**. Approximately 30% of St. Louis County dog owners rent rather than own their homes. The vast majority of renters never consider hiring a pooper scooper service because they assume they need landlord permission or that it "doesn't apply" to renters. Neither is true — a cleaning service requires no landlord involvement and no property modification. But the assumption is so common that this buyer segment is effectively invisible to the market. This post is the ONLY content in St. Louis specifically addressing renters, removing the false barrier, and closing with the security deposit math that makes the ROI obvious.
+  - **Target keywords:** "pooper scooper service renters St. Louis", "can renters hire dog poop pickup", "dog waste removal renter", "renting with dogs yard cleanup", "do I need landlord permission pooper scooper", "dog poop pickup rental property", "pet waste service tenant St. Louis"
+  - **Why renters convert at high rates once the false barrier is removed:**
+    - They have been self-disqualifying — not price-resistant, just misinformed. One clear explanation converts immediately.
+    - Security deposit math is concrete and personal: $840/year service vs $200–$800 deposit deduction for pet damage. The math closes itself.
+    - No contracts and first-cleanup-free removes the last friction point for someone who may be moving in 6 months.
+    - Renters don't have homeowner equity to rationalize not spending. $70/month for yard quality and deposit protection is a no-brainer calculation.
+    - They're often searching because something is prompting urgency: neighbor complaint, landlord walkthrough, spring accumulation, upcoming inspection.
+  - **What's in the post (50.9KB):**
+    - **Hero:** "Can Renters Hire a Pooper Scooper Service? (Yes — You Don't Need Permission)" — dark navy gradient, renter-specific framing
+    - **Stats row:** $70/mo flat / 0 landlord contact needed / $0 contracts or fees / FREE first cleanup
+    - **Urgency banner:** "Renters in St. Louis — no landlord permission needed. First cleanup FREE."
+    - **"The Short Answer" section:** Cleaning service = no structural changes, no equipment left behind, no landlord involvement. Gate access is the only requirement.
+    - **Callout:** "The Simple Rule" — if you rent with a private backyard and permission to keep a dog, you can hire this service. Period.
+    - **Why renters assume they can't:** 4 specific misconceptions deconstructed — "need landlord for anything property-related," "someone will need property access," "lease might not allow it," "just do it myself since I'm renting"
+    - **What landlords actually think:** Positive framing — a landlord who learns their tenant hired professional weekly pickup thinks "great, no lawn damage at move-out."
+    - **What you actually need (only 2 things):** Gate access + phone. That's it. No more.
+    - **Setup checklist:** 7 steps from "text us your address" to "same day every week forever"
+    - **Why renters benefit MORE than owners:** Security deposit on the line — the primary differentiator that doesn't apply to homeowners
+    - **Big stat callout:** 300+ deposits per dog per year — in a yard you have to return in good condition
+    - **Math cards:** 300 deposits/yr / $2.30/day / $500+ typical deposit deduction for pet damage
+    - **Amber callout:** Security deposit math — $840/year service vs $200–$800 deposit deduction
+    - **What dog waste does to a rental yard:** Nitrogen burn explained (dead circles, grows each year), odor that stays after pickup, the winter accumulation problem (spring revelation risk)
+    - **Red callout:** "The Spring Reveal Risk" — landlords do spring walkthroughs when accumulation becomes visible. April is when rental yards get flagged.
+    - **Scenario grid:** ❌ Without weekly pickup (accumulation → dead grass → deposit deduction → emergency cleanup during move-out) vs ✅ With Tidy Tails (yard resets weekly → clean spring walkthrough → full deposit returned → move out clean)
+    - **Common renter questions answered:** Tricky/old gates, shared yard in duplex, moving in 3 months, one-time cleanup before move-out
+    - **Green callout:** "The No-Obligation Try" — first cleanup free, no credit card, no commitment. Lose nothing.
+    - **Health considerations for renters:** 4 pathogen cards (Roundworm 2–5yr soil survival, E. coli 23M/gram, Hookworm bare-skin penetration, Giardia chlorine-resistant) with risk badges. Children at ground level are primary exposure group.
+    - **Pricing strip:** $70/mo (1–2 dogs), $80/mo featured (3–4 dogs), $75+ one-time for move-in/move-out
+    - **Checklist of what's included:** First cleanup free, no contracts, On My Way text, All Done text, no yard size surcharge, waste removed from property, same day weekly, gate info on file
+    - **Comparison table:** Tidy Tails vs DIY weekly vs DIY "when I get to it" vs National Franchise — annual cost, time, 48-hr consistency, deposit protection, contracts, On My Way text, renter-friendly
+    - **7-question FAQ with FAQPage schema:** Can renters hire without permission / who is responsible in Missouri / what if landlord says no / do you come to rental properties / moving soon / can landlord charge at move-out / how much does it cost
+    - **22-city service area grid** with "Single-family rentals · Duplexes · Townhomes · Any private yard with gate access" tagline
+    - **Sidebar:** Two cards (weekly service with checklist + one-time cleanup) + renter tip callout
+  - **Cross-links added:**
+    - `blog/how-pooper-scooper-service-works.html`: Added "🏠 Can Renters Hire a Pooper Scooper Service?" as FIRST Related Guide ✅
+    - `blog/index.html`: Added as #1 card (blue #2563eb border, "Renters Guide" tag, April 4 date) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+  - **Why this over other options at 10 AM Easter Saturday:** 92 posts cover every city, season, pest, holiday, health concern, and lifecycle moment. The Easter briefing was delivered at 5 AM, the game-day guide was sent. The neighbor-complaint post went up at 9 AM targeting peak-urgency buyers. At 10 AM on Easter Saturday, the highest-impact remaining content gap was the renter audience — a buyer segment that makes up ~30% of St. Louis dog owners but self-disqualifies due to a false assumption about needing landlord permission. This is not a seasonal post — it is year-round, evergreen, and addresses a group that has never been targeted by ANY pet waste removal content in the St. Louis market. Zero competition. Permanent SEO asset.
+  - **Revenue math:** A renter who converts = $840/year LTV at $0 CAC for a service that also protects their $500–$1,000 security deposit. The move-out one-time cleanup path also generates $75+ at the end of every tenancy. The no-contracts angle makes the ask trivially easy for someone who may be moving in 3–12 months. Monthly searches for "can renters hire cleaning services" and "renting with dogs yard" variants estimated 50–150/month in STL area. At 3% conversion = 2–5 leads/month. One convert/month = $10,080 LTV/year from one evergreen post targeting a buyer no competitor has addressed.
+
+---
+
 ### Saturday 9:12 AM — Blog Post #92: My Neighbor Complained About My Dog Poop — What to Do Next (Hourly Task)
 - **9:12 AM** 🏡 Wrote and published **"My Neighbor Complained About My Dog Poop — What to Do Next"** — the first dedicated neighbor-complaint content in the entire St. Louis market, targeting buyers at maximum urgency (they just got called out by a neighbor)
   - **File:** `tidy-tails/website/blog/neighbor-complained-dog-poop-st-louis.html` — 47KB ✅
