@@ -438,9 +438,23 @@ Chief uses this to verify sync with dashboard.
 | 04:47 | Blog #81 — Dog Poop and Fleas: The Yard Connection St. Louis Dog Owners Miss | 🐕 Tidy Tails | tidytailsstl.com/blog/dog-poop-fleas-yard-st-louis | ✅ |
 | 16:14 | HOA Management Commercial Kit — Apr 3, 2026 | 🐕 Jamie's Hub | dashboard/hoa-management-commercial-kit.html | ✅ |
 | 16:14 | Blog #83 — HOA Pet Waste Rules in St. Louis (Avoid Fines) | 🐕 Tidy Tails | tidytailsstl.com/blog/hoa-pet-waste-rules-st-louis | ✅ (logged) |
+| 22:36 | AI Consulting One-Pager 2026 | 🤖 AI Consulting | dashboard/pdfs/AI-CONSULTING-ONE-PAGER-2026.pdf | ✅ |
+
+## Upload Log — Apr 4, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 02:13 | Blog #86 — Is Dog Poop Dangerous for Kids? (St. Louis) | 🐕 Tidy Tails | tidytailsstl.com/blog/is-dog-poop-dangerous-kids-children-st-louis | ✅ |
 | 08:48 | Morning Briefing — Good Friday, April 3, 2026 | 📋 Operations | pdfs/MORNING_BRIEFING_2026-04-03.pdf | ✅ |
 | 12:02 | Shed Ads — April 3, 2026 (Good Friday) | 🏠 Shed Sales | pdfs/SHED_ADS_2026-04-03.pdf | ✅ (Notion ID: 337ccdb3-7d1f-81fc-ab4e-d593c585d0f8) |
 | 12:02 | Commercial Leads — April 3, 2026 | 🐕 Jamie's Hub | pdfs/COMMERCIAL_LEADS_2026-04-03.pdf | ✅ (Notion ID: 337ccdb3-7d1f-8131-aaaf-e663cf0d1b2d) |
+
+## Upload Log — Apr 4, 2026
+
+| Time | File | Notion Folder | Dashboard Path | Status |
+|------|------|---------------|----------------|--------|
+| 00:02 | 🤖 AI Consulting One-Pager — 2026 | 🤖 AI Consulting | pdfs/AI-CONSULTING-ONE-PAGER-2026.pdf | ✅ (Notion ID: 338ccdb3-7d1f-8100-aae2-d3f948d10c87) |
+| 00:02 | 🎬 Shed Video Content Pack — Mar 30, 2026 | 🏠 Shed Sales | pdfs/SHED_VIDEO_CONTENT_2026-03-30.pdf | ✅ (Notion ID: 338ccdb3-7d1f-8121-b443-dc0ed4906e82) |
 
 ## Upload Log — Apr 3, 2026 (6 PM sync)
 
