@@ -2,6 +2,46 @@
 
 ---
 
+### Saturday 1:04 PM — Blog Post #94: Can't Pick Up Dog Poop? Arthritis, Back Pain, or Disability Guide (Hourly Task)
+- **1:04 PM** 💙 Wrote and published **"Can't Pick Up Dog Poop? When Arthritis, Back Pain, or Disability Gets in the Way"** — the first dedicated post in the entire St. Louis market targeting elderly and mobility-limited dog owners, adult children of elderly parents, and people with physical conditions that make yard cleanup genuinely impossible
+  - **File:** `tidy-tails/website/blog/dog-poop-pickup-disabled-elderly-st-louis.html` — 46.7KB ✅
+  - **Live URL:** `https://tidytailsstl.com/blog/dog-poop-pickup-disabled-elderly-st-louis` ✅ HTTP 200 confirmed
+  - **Git commits:** tidytails-dashboard main `b1b9329b` ✅ · tidytails-website master `249051f` ✅ → Cloudflare Pages live ✅
+  - **Blog count: 94 posts total** ✅
+  - **Why this task:** 93 blog posts live, covering every city, season, pest, holiday, health angle, lifecycle moment, renter angle, pregnancy angle, and new dog owner angle. The single remaining high-converting audience that had zero dedicated coverage anywhere in the St. Louis market: **people who physically cannot pick up dog poop**. Arthritis, back surgery, hip/knee replacement recovery, COPD, fibromyalgia, mobility devices, elderly seniors living alone — these are real physiological barriers, not excuses. This audience is fundamentally different from "busy" customers because they can't catch up on a weekend, can't push through when they have time, and can't depend on irregular family help sustainably. The conversion path is unusually direct: someone with severe arthritis searching "dog poop pickup service near me" or an adult child searching "dog waste removal for elderly parent St. Louis" finds this post, reads it, and books because it speaks directly to their specific situation. Zero STL competitors have addressed this audience.
+  - **Target keywords:** "dog poop pickup disabled St. Louis", "pooper scooper service elderly St. Louis", "can't pick up dog poop arthritis", "dog waste removal seniors St. Louis", "pooper scooper service mobility issues", "dog poop service bad back St. Louis", "pet waste removal elderly dog owner", "can't bend over pick up dog poop"
+  - **What's in the post (46.7KB):**
+    - **Hero:** "Can't Pick Up Dog Poop? You're Not Alone — and There's a Simple Fix" — dark navy/slate blue, compassionate framing
+    - **Badge:** "🦽 MOBILITY & PHYSICAL LIMITATIONS GUIDE — ST. LOUIS"
+    - **Stats row:** $70/mo flat / $0 contracts / FREE first cleanup / 0 bending required / 5.0★
+    - **"Who This Is For" section:** Direct, non-patronizing framing — your body told you something real, and it deserves a real solution
+    - **6-audience cards with risk badges:**
+      - Back Surgery, Disc Injuries, Spinal Stenosis (HIGH RISK label — medical-grade language)
+      - Hip, Knee, and Joint Replacement Recovery (HIGH RISK — 6-week to 3-month restriction window)
+      - Osteoarthritis, Rheumatoid Arthritis (HIGH RISK — explains specific joint mechanics involved)
+      - Seniors Living Alone with Dogs (MODERATE — fall risk framing, companion dog value)
+      - Wheelchair, Walker, Crutch, Cane Users (HIGH RISK — terrain and balance mechanics)
+      - Chronic Conditions: COPD, Heart Conditions, Chronic Fatigue, Fibromyalgia (MODERATE — endurance/pain cost analysis)
+    - **What Happens If the Yard Goes Unmanaged:** 300+ deposits per dog per year stat, 4-pathogen grid (E. coli 23M/gram, Roundworm 2-5yr soil survival, Flies 300/pile/day, Lawn Damage)
+    - **⚠️ "The Hidden Danger for Elderly Dog Owners" callout:** Fall risk from accumulation in outdoor spaces — falls are the leading cause of injury-related death for adults over 65
+    - **Why Physical Limitations Are Different From Being Busy:** 4 specific reasons why the standard "catch up on weekends" approach fails for this audience
+    - **Dedicated section for Adult Children:** How to set it up for a parent, why it's better than other kinds of help, relationship dynamics of the recurring family ask
+    - **Scenario grid:** ❌ Without service (accumulation, re-injury risk, family burden, the "maybe you shouldn't have a dog" conversation) vs ✅ With Tidy Tails (weekly reset, zero bending, no asks, keep the dog indefinitely)
+    - **How It Works (5 steps):** Text address → confirm day → "On My Way" text → full grid sweep → "All Done" text. "You don't need to be home. Ever."
+    - **Pricing strip:** $70/mo (1-2 dogs, MOST POPULAR) / $80/mo (3-4 dogs) / $90/mo (5+) / $75+ one-time
+    - **The Real Cost Comparison (4 cards):** One ER visit ($1,500-3,000) / Irregular DIY pain cost / Weekly family asks (relationship cost) / Dog rehoming (companion value) — each compared to $70/month
+    - **7-question FAQ with FAQPage schema:** Service for elderly/disabled / Cost / Don't need to be home / Setting up for parent / Complicated gate / Cost and contracts / Service areas
+    - **22-city service area grid**
+    - **Related articles grid:** How pooper scooper service works, Renters guide, Worms/parasites, Is it worth it, Cost guide, New dog owner guide
+  - **Cross-links added:**
+    - `blog/how-pooper-scooper-service-works.html`: Added "💙 Can't Pick Up Dog Poop? Arthritis, Back Pain, or Disability Guide" as FIRST Related Article ✅
+    - `blog/index.html`: Added as #1 card (navy #1d4ed8 border, "Mobility & Disability Guide" tag, April 4 date) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+  - **Why this over other options at 1 PM Saturday:** 93 posts saturate every city, season, pest, holiday, health angle, and lifecycle moment. The audit of remaining conversion audiences revealed this gap: senior and mobility-limited dog owners who search for this service are among the highest-converting segments in the playbook — they have real, urgent need, zero ability to solve it themselves, and typically very low price resistance ($70/month is nothing compared to the alternatives). Adult children searching for help for a parent are also high-intent: they've already decided they need to do something, they just need to find who to call. Zero competitors in the St. Louis market have written for this audience. The "you shouldn't have to choose between your health and your dog" framing speaks to a real emotional reality — many of these customers have been struggling with guilt or worrying about whether they can keep their pet. That's a powerful conversion context. Permanent evergreen post — this audience exists year-round, every year.
+  - **Revenue math:** A senior customer who converts = $840/year LTV with among the lowest churn rates of any segment (they don't cancel services that solve a genuine problem, they don't have seasonal variance, and they're unlikely to switch providers once trust is established). An adult child who sets it up as ongoing support for a parent = multi-year contract with automatic retention. Estimated 20-40 monthly searches in STL area for variations of "dog waste elderly" / "can't pick up dog poop" / "pooper scooper disabled." At 5% conversion (higher than average due to high intent) = 1-2 leads/month. One senior convert at minimum = $840/yr at $0 CAC. The "set it up for a parent" angle also opens a gift-buyer segment similar to Mother's Day, but with higher LTV expectations because the service is intended to be ongoing indefinitely.
+
+---
+
 ### Saturday 10:07 AM — Blog Post #93: Can Renters Hire a Pooper Scooper Service? (Hourly Task)
 - **10:07 AM** 🏠 Wrote and published **"Can Renters Hire a Pooper Scooper Service? (Yes — You Don't Need Permission)"** — the first dedicated renters guide in the entire St. Louis pet waste removal market, targeting a buyer segment that self-disqualifies due to a false assumption
   - **File:** `tidy-tails/website/blog/pooper-scooper-service-renters-st-louis.html` — 50.9KB ✅
