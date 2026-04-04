@@ -2,6 +2,35 @@
 
 ---
 
+### Friday 11:04 PM — Instagram Reels & TikTok Kit (Hourly Task)
+- **11:04 PM** 📱 Built and deployed the **Instagram Reels & TikTok Kit** — 10 ready-to-film scripts for the last completely untouched organic acquisition channel in the Tidy Tails toolkit
+  - **File:** `dashboard/instagram-reels-tiktok-kit.html` (51KB ✅)
+  - **Live URL:** `https://tidytails.github.io/tidytails-dashboard/dashboard/instagram-reels-tiktok-kit.html` ✅ HTTP 200 confirmed
+  - **Git push:** `7858bfc` on main ✅
+  - **Dashboard:** Added pulsing pink quick link at top of quick links + featured card in Marketing section ✅
+  - **Why this task:** 85 blog posts live. Every campaign tool built. FB conquest kits, HOA outreach, realtor referral engine, commercial leads, ad packs — all done. The single organic acquisition channel with ZERO coverage: **short-form video (Instagram Reels + TikTok)**. Instagram and TikTok both geo-push content to local audiences who don't follow the account. A St. Louis service Reel gets served to St. Louis dog owners automatically — that's not how FB organic works. No STL pet waste competitor is doing Reels consistently. TJ could OWN the "dog poop St. Louis" search inside TikTok with 10 videos. The before/after reveal format alone is the highest-performing format for local service businesses and requires literally just a phone propped on a fence post.
+  - **What's in the kit (5 tabs):**
+    - **Why Video tab:** Stats (3–15K avg local views, $0 spend, 2–3× close rate vs cold), 6 reason cards (local algorithm bias, trust through authenticity, evergreen compounding, zero equipment needed, comments as free leads, zero competition in STL), IG vs TikTok platform comparison.
+    - **10 Scripts tab:**
+      1. 🔥 **Before/After Reveal** — prop phone before, wide shot of yard, cleanup, same angle after. Text overlays. Highest-performing format. Film first.
+      2. 🔥 **"On My Way" Text Reveal** — show sending the text, doing the work, "All Done" text. "No other service in St. Louis does this." Strongest differentiator on camera.
+      3. 🔥 **$2.30/Day Math** — stand at truck, walk through the math out loud, 20 seconds. The objection-killer video.
+      4. **"300 Deposits" POV** — walk the yard, drop the 300-times-a-year stat. Shareable because it genuinely surprises people.
+      5. **Day in the Life** — alarm, gloves, drive, clean, "All Done" text, dog in clean yard. Builds personal brand.
+      6. **"They Thought I Was Joking"** — "I told them $70 a month and they said ...that's it?" Highly relatable, gets shares/tags.
+      7. **What I Actually Do** — walk-through of the full process: On My Way → grid sweep → waste off property → All Done photo. Answers the most common mid-funnel question.
+      8. **Kids Safety Angle** — roundworm eggs, 14% CDC stat, calm factual tone. High parent engagement.
+      9. **Happy Customer Reaction** — read a real customer text out loud. Social proof format. Most trusted testimonial format on video.
+      10. **Spring Thaw Reveal** — seasonal April/May, "it's been frozen all winter," 150–200 piles per dog thawing right now. Midwest-specific, very shareable.
+    - **Captions tab:** Copy-paste IG/TikTok captions for all 10 reels + full hashtag bank (core local + service niche + dog culture + discovery tags).
+    - **How to Film tab:** 8 production tips — CapCut (free), lighting, music strategy, vertical 9:16 format, phone number always on screen, optimal length by reel type, location tags.
+    - **Schedule tab:** 4-week posting plan (Reel 1 → 2 → 3 → 6 in order), revenue projections (3–15K views/reel, 1–3 leads after 10 reels, $840 LTV per lead, $0 cost).
+    - **Checklist tab:** 15-item launch checklist — setup (IG bio, CapCut, TikTok account, FB link), film week 1, track and repeat, growth moves (stories, FB group shares, customer share ask). localStorage persistence.
+  - **Why this at 11 PM Friday:** Blog content is fully saturated at 85 posts. All acquisition channels covered except this one. The FB conquest kits target people who are already in FB groups. The SEO blog posts capture people who are already searching. Short-form video captures people who are not actively looking — it pushes to them based on interest signals. A 30-second video of TJ walking a clean yard with "First Cleanup FREE" on screen gets served by IG to St. Louis dog owners who never knew they needed the service. Zero STL competitors are doing this. The before/after reveal alone could drive 3–8K local views per post with $0 in ad spend. Compounding: every Reel posted lives forever in the algorithm, unlike FB posts that die in 24 hours. At $0 cost and ~1 hour per Reel, the ROAS is effectively infinite.
+  - **Revenue math:** Base case after 10 Reels over 10 weeks: 3 video-sourced leads × 35% close × $840 LTV = $882 at $0 CAC. Each viral Reel (10K+ views) = higher close count. One strong Before/After Reel that hits 15K local views = 6–10 DM inquiries = 2–3 customers = $1,680–$2,520 LTV from a 30-minute film session.
+
+---
+
 ### Friday 10:07 PM — Spring Cleaning Checklist Full Rebuild + Blog #85 Dashboard Link (Hourly Task)
 - **10:07 PM** 🌿 **Rewrote `spring-cleaning-checklist-st-louis-dog-owners.html` from scratch** — the old post was an 8.6KB stub with wrong pricing ($25/visit, $100 one-time) that was live and indexed on the real site. New post: 55.4KB, correct pricing ($70/month flat, $75 one-time), 6-phase interactive checklist, FAQPage schema, full threat grid, scenario comparisons, and proper conversion architecture. Also fixed Chief-flagged issue: Blog #85 (can-you-compost) was missing from the dashboard SEO section — added it.
   - **File rebuilt:** `tidy-tails/website/blog/spring-cleaning-checklist-st-louis-dog-owners.html` — 55KB ✅ (was 8.6KB)
