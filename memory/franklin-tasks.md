@@ -2,6 +2,36 @@
 
 ---
 
+### Saturday 2:05 AM — Blog Post #87: Dog Poop Safety During Pregnancy (Hourly Task)
+- **2:05 AM** 🤰 Wrote and published **"Is Dog Poop Safe During Pregnancy?"** — the first dedicated pregnancy-safety dog waste post in the entire Tidy Tails library. Also fixed Chief issue-042 (Blog #86 not in dashboard SEO section).
+  - **File:** `tidy-tails/website/blog/dog-poop-pregnancy-safe-st-louis.html` — 52KB ✅ (>50KB)
+  - **Live URL:** `https://tidytailsstl.com/blog/dog-poop-pregnancy-safe-st-louis` ✅ HTTP 200 confirmed
+  - **Git commits:** tidytails-dashboard `7caa77ba`, `aed15319`, `d0d13c7f` ✅ · tidytails-website `dcbb967a`, `18626f40`, `4f8ad35f` ✅ → Cloudflare Pages live ✅
+  - **issue-042 fixed:** Blog #86 + #87 added to `tidytails-dashboard/tidytails-dashboard/index.html` SEO section with 4-card grid — pregnancy post (featured, purple), kids post, compost post, full library link. Dashboard now shows "87 Blog Posts Live" count.
+  - **Blog #87 — what's in the post:**
+    - **Target keywords:** "dog poop pregnancy safe", "is it safe to pick up dog poop when pregnant", "cleaning dog poop while pregnant", "dog waste pregnancy risk", "toxoplasmosis dog poop pregnant", "husband clean dog poop pregnant wife"
+    - **Purple gradient design** — distinct from all other posts
+    - **Stats row:** 2–5 yrs (roundworm soil survival) / 9 months (window to fix) / 48 hrs (safe pickup window) / $70/mo
+    - **The OB-GYN angle:** Most OBs recommend avoiding dog waste during pregnancy. Immune modulation during pregnancy makes roundworm (Toxocara canis), Giardia, Campylobacter, Salmonella, and hookworm more dangerous.
+    - **The toxoplasmosis clarification:** Toxoplasma is the CAT feces concern, not dogs. The dog-specific risks are different. This is a key credibility move — correcting the common confusion.
+    - **6-pathogen risk grid:** Toxocara canis (HIGH), Giardia (HIGH), Campylobacter (MEDIUM), Salmonella (MEDIUM), E. coli (MEDIUM), Hookworm (MEDIUM) — each with pregnancy-specific context
+    - **Big stat callout:** Roundworm eggs survive 2–5 years in soil AFTER the visible waste is gone
+    - **The invisible yard problem:** A visually clean yard from this season is still contaminated from last year
+    - **Missouri winter complication:** Cold slows egg development but doesn't kill them; spring thaw = mass release
+    - **Trimester breakdown:** First (most critical — delegate NOW), Second (maintain the habit), Third (practical + prep for infant in yard)
+    - **6-step what to do:** Delegate immediately → no barefoot yard time → spring thaw reset → handwashing → dog on monthly prevention → tell OB
+    - **The partner/husband section:** Dedicated section pitching the "set it and forget it" argument. "You won't have 'did you clean after the dog?' be a conversation at any point during the pregnancy."
+    - **Scenario grid:** ❌ Without pickup (partner forgets, pregnant mom risks barefoot contact, spring thaw crisis, baby comes home to contaminated yard) vs ✅ With Tidy Tails (auto "On My Way" texts, 48-hour threshold maintained, no weather excuses, baby gets safe yard)
+    - **Trimester calendar** showing all 3 trimesters with specific risk guidance
+    - **7-question FAQ with FAQPage schema:** Is it safe / toxoplasmosis question / what parasites / walking barefoot / husband setting up service / how long eggs last / OB said to avoid it
+    - **Cross-link:** Kids safety post → "🤰 Pregnancy Safety" added as first Related Article ✅
+    - **Blog index:** Pregnancy post added as #1 card (purple border, "Pregnancy Safety" tag, April 4 date) ✅
+    - **Sitemap:** Added (priority 0.85, yearly changefreq) ✅
+  - **Why this task:** 86 posts live. Blog #86 (kids safety) covered child-safety. The adjacent uncovered cluster with ZERO STL competitor coverage: pregnancy safety. The conversion path is unusually direct: (1) Expecting parent/partner Googles "is dog poop safe pregnant" → (2) Lands on post → (3) Reads OB-GYN recommendation to avoid it + complete parasite science → (4) Converts to $70/mo service for the 9-month pregnancy window. The husband/partner section is specifically written as a gift-giver conversion path — the same "I already set it up" framing as the Mother's Day and Father's Day posts, but for a 9-month window instead of one holiday. Zero competition for these keywords in STL.
+  - **Revenue math:** Expecting parent who converts = $840 LTV for the pregnancy + likely stays postpartum (yard still has a crawling infant). The 2–5 year roundworm egg soil survival fact = "the yard has been building up a hazard since the dog arrived" → "we need to start now, not just during pregnancy." At $0 CAC for organic search, one convert/month from this post = $10,080 LTV/year. The husband gift angle: same as Father's Day post but for a 9-month commitment = highest LTV of any gift-buyer segment.
+
+---
+
 ### Saturday 12:08 AM — "How Often Should You Pick Up Dog Poop?" Full Rebuild (Hourly Task)
 - **12:08 AM** 📅 Rebuilt **`how-often-pick-up-dog-poop.html`** from a 17KB stub into a **50KB full editorial post** — the only high-volume evergreen query in the entire blog library that had never been properly answered
   - **File:** `tidy-tails/website/blog/how-often-pick-up-dog-poop.html` — 50KB ✅ (was 17KB)
