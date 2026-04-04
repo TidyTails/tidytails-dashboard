@@ -4754,3 +4754,37 @@
     - Year-round relevance: People research composting all year, not just spring. Evergreen traffic.
     - Zero STL competitor coverage: No other STL pet waste service has any composting-related content.
   - **Revenue math:** One convert who found this post = $840 LTV at $0 CAC. Base case (2 converts over 90 days from composting researchers) = $1,680 from a post that took ~45 minutes to write and compounds forever.
+
+---
+
+### Saturday 1:04 AM (April 4, 2026) — Blog Post #86: "Is Dog Poop Dangerous for Kids?" (Hourly Task)
+- **1:04 AM** 👶 Wrote and published **"Is Dog Poop Dangerous for Kids? What St. Louis Parents Need to Know"** — timed for Easter weekend, highest-intent parent safety content the site has ever had
+  - **File:** `tidy-tails/website/blog/is-dog-poop-dangerous-kids-children-st-louis.html` (50KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/is-dog-poop-dangerous-kids-children-st-louis` ✅ HTTP 200 confirmed, 58KB live ✅
+  - **Blog count: 86 posts total** ✅
+  - **Git commit:** `1067d946` ✅ → Cloudflare Pages live ✅
+  - **Why this task:** Easter is April 6 (2 days away). Kids will crawl through grass doing egg hunts. No dedicated "dog poop dangerous for children" post existed. Parent anxiety about child safety = highest-converting emotional trigger for the service. The post covers Toxocara roundworm (2–5 year soil survival, 14% CDC infection rate), Giardia, Campylobacter, E. coli, Cryptosporidium, Salmonella — all through the lens of why children are uniquely vulnerable vs adults.
+  - **Target keywords:** "is dog poop dangerous for kids", "dog poop children health risks", "dog poop roundworm kids", "dog waste children illness", "kids playing in yard dog poop", "pet waste children danger"
+  - **Content highlights:**
+    - **Easter hero alert** — "🥚 Easter Weekend Warning: Egg hunts mean kids crawl through grass at ground level..."
+    - **3 key stats:** 14% of Americans infected with Toxocara (CDC), roundworm eggs survive 2–5 years in soil, 70% of puppies born with roundworm
+    - **6 pathogen cards** (red-themed): Toxocara, Giardia, Campylobacter, Cryptosporidium, E. coli, Salmonella — each with child-specific impact
+    - **Age risk grid:** 0–2 (highest/red), 3–7 (high/orange), 8–12 (moderate/yellow)
+    - **Decomposition trap section:** explains why "it decomposed so it's fine" is wrong — eggs release into soil
+    - **Scenario comparison:** Unscooped yard + kids crawling ❌ vs Recently scooped + handwashing ✅
+    - **Deworming myths:** explains what deworming does/doesn't do — doesn't decontaminate the yard
+    - **6-item parent checklist:** with the twice-weekly recommendation prominently featured
+    - **Cost comparison table:** professional removal ($70) vs DIY weekly vs sporadic vs "let it decompose" — risk levels clearly labeled
+    - **7-question FAQ with FAQPage schema** including "Is it safe to do an Easter egg hunt in a yard with dogs?" and "What symptoms should I watch for?"
+    - **Easter deadline sidebar CTA** (red) + sticky pricing sidebar
+  - **Cross-links added:**
+    - `blog/dog-poop-health-risks.html`: Added new child safety article as FIRST related card ✅
+    - `blog/easter-egg-hunt-yard-cleanup-dogs-st-louis.html`: Added as FIRST related card ✅
+    - `blog/index.html`: Added as #1 card (red #ef4444 border, "Child Safety" badge) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.85, yearly changefreq) ✅
+  - **Why this timing matters:**
+    - Easter egg hunts are 2 days away — April 6. This post will catch families searching "is my yard safe for egg hunt" and "dog poop kids" in the next 48 hours
+    - The "Easter Weekend Warning" hero banner makes the post feel urgent and timely without being clickbait
+    - Parent anxiety + specific event deadline = highest-urgency conversion context of the year. A parent who reads this 24 hours before Easter and has an unscooped yard has one option: call Tidy Tails for a pre-Easter cleanup
+    - No competitor in St. Louis has any content targeting this keyword cluster. We own it.
+  - **Revenue math:** Base case (3 Easter parents find this post via Google → 1.5 convert to monthly service × $840 LTV = $1,260) from a post that compounds forever. Plus: parents who can't get service this Easter become Mother's Day converts.
