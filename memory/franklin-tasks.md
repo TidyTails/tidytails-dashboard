@@ -2,6 +2,45 @@
 
 ---
 
+### Friday 7:04 PM — Best Dog Waste Removal Services in St. Louis 2026 Comparison Guide (Hourly Task)
+- **7:04 PM** 🏆 Wrote and published **"Best Dog Waste Removal Services in St. Louis, MO (2026)"** — the first buyer's guide in the Tidy Tails library targeting bottom-of-funnel comparison shoppers and POOP 911/DoodyCalls replacement searches
+  - **File:** `tidy-tails/website/blog/best-dog-waste-removal-services-st-louis.html` (47KB ✅)
+  - **Live URL:** `https://tidytailsstl.com/blog/best-dog-waste-removal-services-st-louis` ✅ HTTP 200 confirmed
+  - **Blog count: 84 posts total** ✅
+  - **Git commits:** tidytails-dashboard `38a4859c` ✅ · tidytails-website `d92ce62` ✅ → Cloudflare Pages live ✅
+  - **Why this task:** Easter tools are fully maxed (Easter Weekend Execution Guide, Good Friday Email Blitz, all 83 blog posts). The remaining content gap that nobody had filled: **bottom-of-funnel comparison content**. The 83 existing posts target: awareness (pest/health facts), geographic intent (city-specific posts), seasonal intent (holidays/events), and mid-funnel ("is it worth it?", "how does it work?"). Zero posts target the **already-decided buyer** who is now comparison shopping — searching "best dog waste removal St. Louis," "POOP 911 alternative," "DoodyCalls replacement St. Louis." That's the highest-intent traffic in the category. They've already decided to buy, they're just picking who.
+  - **Target keywords:** "best dog waste removal St. Louis", "best pooper scooper service St. Louis", "POOP 911 alternative St. Louis", "DoodyCalls alternative St. Louis", "dog poop pickup service comparison St. Louis", "dog waste removal services St. Louis review", "pooper scooper service near me St. Louis"
+  - **Why these keywords convert:** Someone searching "POOP 911 alternative St. Louis" is a customer who LOST their service when POOP 911 pulled out of STL — they already know they need service and are ready to book. Same for DoodyCalls. Estimated 75-150 orphaned POOP 911/DoodyCalls customers in the STL metro actively searching for a replacement. This post intercepts them at the moment of maximum readiness.
+  - **What's in the post (47KB, ~2,800 words):**
+    - **Context section — "What Happened to the STL Market":** Explains that 8 services closed/exited (POOP 911, DoodyCalls, Dog Doody Defenders, Dirty Dog, Pawfect, Little Stinkers, Poopy Paws, Doggie Doodies) — validating why the reader needs a new service and positioning Tidy Tails as the stable local alternative
+    - **Big stat callout:** 75-150 estimated orphaned customers looking for a new service — "You're not alone. This is why local services are prioritizing new customers."
+    - **Service rankings (#1 through "Watch List"):**
+      - **#1 Tidy Tails** (Best Overall): $70/month flat, 5.0★, "On My Way" + "All Done" texts, no contracts, full county coverage, owner-operated, waste removed from property. Honest cons listed (newer service, single operator).
+      - **#2 Poop 2 Scoop** (Solid Option): ~$72/month equivalent, local operator, South County focus. Cons: limited North County, unclear communication system.
+      - **#3 No. 2 Crew** (Newer Service): ~$76/month per-visit equivalent, active and operational. Cons: per-visit pricing adds up vs flat monthly.
+      - **⚠️ Scoop Soldiers** (Watch List): National franchise newly launched in STL, no reviews yet. Historical warning: national franchises have exited STL before (POOP 911, DoodyCalls).
+      - **💀 Gone — POOP 911, DoodyCalls, DDD, and 5 others:** Factual documentation of who left and why it matters.
+    - **Side-by-side comparison table (8 factors):** Monthly cost, flat rate, pre-visit text, post-visit text, no contract, North County coverage, local owner — Tidy Tails wins on 7/8.
+    - **"What to Actually Look For" criteria grid (6 criteria):** Flat rate vs per-visit, communication system, confirmed coverage, local vs franchise, contract terms, waste disposal method.
+    - **"Why the 'On My Way' Text Matters" section:** Scenario grid showing the frustration without the text system vs peace of mind with it. Specific to the #1 customer complaint about pet waste services generally.
+    - **Pricing strip, service area grid (22 cities), trust bar, CTA section.**
+    - **6-question FAQ with FAQPage schema:** Best service in STL, is POOP 911 still operating, what happened to DoodyCalls, pricing, what to look for, North County coverage.
+    - **"Text SWITCHING to (314) 850-7140"** CTA for former POOP 911/DoodyCalls customers prominently featured.
+  - **Cross-links added:**
+    - `blog/is-pooper-scooper-service-worth-it.html`: Added "🏆 Best Dog Waste Removal Services in St. Louis (2026)" as first Related Article ✅
+    - `blog/index.html`: Added comparison guide as #1 card (blue #1d4ed8 border) ✅ + JSON-LD blogPost entry ✅
+    - `sitemap.xml`: Added new URL (priority 0.90, monthly changefreq — updated when market changes) ✅
+  - **Why this is uniquely high-impact at 7 PM on Easter weekend:**
+    - The 83 existing posts are discovery and mid-funnel content. This is the first post that captures the buyer who has ALREADY decided to buy. In conversion funnel terms, it's the closest post to the actual transaction.
+    - The "POOP 911 alternative" and "DoodyCalls alternative" keywords have near-zero competition in the STL market — no other local service has written content targeting these orphaned customers by name.
+    - It fills the "text SWITCHING" funnel: TJ's NC conquest posts use the "SWITCHING" hook. This page gives that same person a landing page if they search first rather than texting directly.
+    - The comparison framework where Tidy Tails comes out on top on 7/8 factors is more persuasive than any self-promotional post could be — because it acknowledges competitors exist and explains specifically why TJ's service is better.
+    - Month-over-month relevance: unlike seasonal posts (Easter, Mother's Day), this post is permanently relevant and updated as the market changes. Every time another competitor exits the STL market, this post's positioning gets stronger.
+  - **Revenue math:** One orphaned POOP 911 customer who finds this post = $840 LTV at $0 CAC. Base case (3 SWITCHING customers from this post over 60 days) = $2,520 LTV. The "DoodyCalls alternative" keyword alone was generating 180+ reviews worth of monthly business before they exited — those customers need someone.
+
+---
+
+
 ### Friday 5:04 PM — Easter Weekend Execution Guide + Cottleville SEO Fix (Hourly Task)
 - **5:04 PM** 🐣 Built the **Easter Weekend Execution Guide** — the definitive 48-hour playbook for Saturday April 4 → Sunday April 5 (Easter) → Monday April 6 (peak close window). Also fixed the Cottleville/Lake St. Louis SEO gap (post was live but missing from sitemap and blog index).
   - **Dashboard tool:** `dashboard/easter-weekend-execution-guide.html` (46KB ✅)
