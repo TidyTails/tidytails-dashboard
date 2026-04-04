@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📱 Instagram Reels & TikTok Kit — Tidy Tails</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0f0f0f; color: #f1f1f1; min-height: 100vh; }
+
+  .header {
+    background: linear-gradient(135deg, #7c3aed 0%, #db2777 50%, #f59e0b 100%);
+    padding: 20px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(124,58,237,0.4);
+  }
+  .header h1 { font-size: 1.3rem; font-weight: 800; color: white; text-shadow: 0 1px 3px rgba(0,0,0,0.3); }
+  .header p { font-size: 0.8rem; color: rgba(255,255,255,0.85); margin-top: 2px; }
+  .header-meta { display: flex; gap: 12px; margin-top: 8px; flex-wrap: wrap; }
+  .meta-badge { background: rgba(255,255,255,0.2); border-radius: 12px; padding: 3px 10px; font-size: 0.72rem; color: white; font-weight: 600; }
+
+  .tabs { display: flex; gap: 0; overflow-x: auto; background: #1a1a1a; border-bottom: 2px solid #2a2a2a; }
+  .tab { padding: 14px 20px; font-size: 0.82rem; font-weight: 600; cursor: pointer; color: #888; white-space: nowrap; border-bottom: 3px solid transparent; transition: all 0.2s; }
+  .tab:hover { color: #db2777; background: #222; }
+  .tab.active { color: #db2777; border-bottom-color: #db2777; background: #1f1f1f; }
+
+  .content { display: none; padding: 24px; max-width: 900px; margin: 0 auto; }
+  .content.active { display: block; }
+
+  .section-title { font-size: 1.1rem; font-weight: 800; color: #f1f1f1; margin-bottom: 4px; }
+  .section-sub { font-size: 0.8rem; color: #888; margin-bottom: 20px; }
+
+  /* Reel Cards */
+  .reel-card {
+    background: #1a1a1a;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 4px solid #db2777;
+    position: relative;
+  }
+  .reel-card.priority-now { border-left-color: #ef4444; }
+  .reel-card.priority-week { border-left-color: #f59e0b; }
+  .reel-card.priority-month { border-left-color: #10b981; }
+  .reel-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+  .reel-num { background: #db2777; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; font-weight: 800; flex-shrink: 0; }
+  .reel-num.fire { background: #ef4444; }
+  .reel-num.gold { background: #f59e0b; }
+  .reel-num.green { background: #10b981; }
+  .reel-title { font-size: 1rem; font-weight: 700; color: #f1f1f1; }
+  .tag-row { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .tag { font-size: 0.68rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; }
+  .tag-now { background: #7f1d1d; color: #fca5a5; }
+  .tag-ig { background: #5b21b6; color: #ddd6fe; }
+  .tag-tk { background: #0e1111; color: #81e6d9; border: 1px solid #2d6a6a; }
+  .tag-hook { background: #1e3a5f; color: #93c5fd; }
+  .tag-easy { background: #14532d; color: #86efac; }
+
+  .reel-concept { font-size: 0.85rem; color: #ccc; margin-bottom: 12px; line-height: 1.6; }
+
+  .script-block {
+    background: #111;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 10px;
+    border: 1px solid #2a2a2a;
+  }
+  .script-label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 6px; }
+  .script-text { font-size: 0.85rem; color: #e0e0e0; line-height: 1.6; white-space: pre-line; font-family: 'Courier New', monospace; }
+  .script-text strong { color: #db2777; }
+
+  .copy-btn {
+    background: #2a1a3e;
+    color: #c084fc;
+    border: 1px solid #5b21b6;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 6px;
+  }
+  .copy-btn:hover { background: #5b21b6; color: white; }
+  .copy-btn.copied { background: #166534; color: #86efac; border-color: #166534; }
+
+  /* Stats */
+  .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 24px; }
+  .stat-card { background: #1a1a1a; border-radius: 12px; padding: 14px; text-align: center; }
+  .stat-num { font-size: 1.4rem; font-weight: 800; color: #db2777; }
+  .stat-label { font-size: 0.72rem; color: #888; margin-top: 2px; }
+
+  /* Why section */
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 24px; }
+  .why-card { background: #1a1a1a; border-radius: 12px; padding: 16px; }
+  .why-icon { font-size: 1.6rem; margin-bottom: 6px; }
+  .why-title { font-size: 0.9rem; font-weight: 700; color: #f1f1f1; margin-bottom: 4px; }
+  .why-text { font-size: 0.8rem; color: #999; line-height: 1.5; }
+
+  /* Caption box */
+  .caption-box {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 14px;
+    margin-bottom: 12px;
+  }
+  .caption-label { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+  .caption-text { font-size: 0.83rem; color: #e0e0e0; line-height: 1.7; white-space: pre-line; }
+
+  /* Production tips */
+  .tip-card { background: #1a1a1a; border-radius: 12px; padding: 16px; margin-bottom: 12px; border-left: 3px solid #f59e0b; }
+  .tip-title { font-size: 0.9rem; font-weight: 700; color: #fbbf24; margin-bottom: 6px; }
+  .tip-text { font-size: 0.82rem; color: #ccc; line-height: 1.6; }
+
+  /* Checklist */
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #1a1a1a;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .check-item:hover { background: #222; }
+  .check-item.done { opacity: 0.5; text-decoration: line-through; }
+  .check-box { width: 20px; height: 20px; border: 2px solid #444; border-radius: 5px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 1px; transition: all 0.2s; }
+  .check-item.done .check-box { background: #10b981; border-color: #10b981; }
+  .check-text { font-size: 0.85rem; color: #ccc; line-height: 1.4; }
+  .check-context { font-size: 0.72rem; color: #666; margin-top: 2px; }
+  .phase-label { font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin: 20px 0 8px; }
+  .progress-bar-wrap { height: 6px; background: #2a2a2a; border-radius: 3px; margin-bottom: 20px; }
+  .progress-bar-fill { height: 100%; background: linear-gradient(90deg, #db2777, #f59e0b); border-radius: 3px; transition: width 0.3s; }
+
+  /* Schedule */
+  .schedule-card { background: #1a1a1a; border-radius: 12px; padding: 16px; margin-bottom: 12px; }
+  .schedule-day { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: #888; margin-bottom: 4px; }
+  .schedule-action { font-size: 0.9rem; font-weight: 700; color: #f1f1f1; margin-bottom: 6px; }
+  .schedule-detail { font-size: 0.8rem; color: #999; line-height: 1.5; }
+
+  /* Revenue */
+  .rev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 20px; }
+  .rev-card { background: #1a1a1a; border-radius: 12px; padding: 16px; text-align: center; }
+  .rev-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; color: #888; margin-bottom: 6px; }
+  .rev-big { font-size: 1.5rem; font-weight: 800; color: #10b981; }
+  .rev-sub { font-size: 0.75rem; color: #666; margin-top: 2px; }
+
+  .alert-box { background: #1e3a1e; border: 1px solid #166534; border-radius: 10px; padding: 14px; margin-bottom: 16px; }
+  .alert-box p { font-size: 0.83rem; color: #86efac; line-height: 1.6; }
+  .alert-title { font-weight: 700; margin-bottom: 4px; }
+
+  .platform-split { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  @media (max-width: 600px) { .platform-split { grid-template-columns: 1fr; } }
+  .platform-card { background: #1a1a1a; border-radius: 12px; padding: 16px; }
+  .platform-icon { font-size: 1.4rem; margin-bottom: 6px; }
+  .platform-name { font-size: 0.9rem; font-weight: 700; color: #f1f1f1; margin-bottom: 4px; }
+  .platform-detail { font-size: 0.78rem; color: #999; line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📱 Instagram Reels & TikTok Kit — Tidy Tails</h1>
+  <p>The last untouched organic acquisition channel. Short-form video gets local reach no ad spend can buy.</p>
+  <div class="header-meta">
+    <span class="meta-badge">📸 10 Ready-to-Film Scripts</span>
+    <span class="meta-badge">🎯 $0 Ad Spend</span>
+    <span class="meta-badge">📲 IG + TikTok + Nextdoor</span>
+    <span class="meta-badge">🔥 Local Algorithm Advantage</span>
+    <span class="meta-badge">⚡ Each reel = 1 hour to make</span>
+  </div>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="showTab('why')">Why Video</div>
+  <div class="tab" onclick="showTab('scripts')">10 Scripts</div>
+  <div class="tab" onclick="showTab('captions')">Captions</div>
+  <div class="tab" onclick="showTab('production')">How to Film</div>
+  <div class="tab" onclick="showTab('schedule')">Schedule</div>
+  <div class="tab" onclick="showTab('checklist')">Checklist</div>
+</div>
+
+<!-- TAB: WHY -->
+<div id="tab-why" class="content active">
+  <div class="section-title">Why Short-Form Video Now?</div>
+  <div class="section-sub">85 blog posts, every tool built. The one channel untouched: organic video.</div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num">3–15K</div><div class="stat-label">Views — average local service Reel, STL area</div></div>
+    <div class="stat-card"><div class="stat-num">$0</div><div class="stat-label">Ad spend to reach people who've never seen TJ</div></div>
+    <div class="stat-card"><div class="stat-num">2–3×</div><div class="stat-label">Higher close rate on video-first leads vs cold outreach</div></div>
+    <div class="stat-card"><div class="stat-num">1 hr</div><div class="stat-label">Time to film + post a Reel. No editing skills needed.</div></div>
+  </div>
+
+  <div class="alert-box">
+    <p class="alert-title">🎯 The Real Advantage</p>
+    <p>Instagram and TikTok actively PUSH local content to people in the same city. A 30-second video of a clean yard gets shown to St. Louis dog owners who don't follow TJ. That's not how Facebook works — organic Facebook posts only reach existing followers. Reels reach cold audiences for free. One viral local Reel = more reach than $100 of FB ads.</p>
+  </div>
+
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🏘️</div>
+      <div class="why-title">Local Algorithm Bias</div>
+      <div class="why-text">Both IG and TikTok geo-target Reels based on the creator's location and use of local hashtags. A St. Louis-based account posting about "dog poop St. Louis" gets served to St. Louis dog owners. Not random. Not global. LOCAL.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎬</div>
+      <div class="why-title">Trust Through Authenticity</div>
+      <div class="why-text">Jamie on camera = real person, real business. People book from people they feel like they know. A 30-second video of TJ texting "On My Way" before a cleanup builds more trust than 10 static posts.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🔁</div>
+      <div class="why-title">Evergreen Compounding</div>
+      <div class="why-text">A Reel posted today gets served to new people for months. FB posts die in 24 hours. A good Reel compounds — every week it's live, more people find it. 85 blog posts compound the same way online. Video does it on social.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📱</div>
+      <div class="why-title">Zero Equipment Needed</div>
+      <div class="why-text">iPhone on a fence post. Selfie mode walking the yard. The "Before/After" format is the most-watched format in local service businesses and requires literally just a phone. No ring light, no editing, no crew.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💬</div>
+      <div class="why-title">Comments = Free Leads</div>
+      <div class="why-text">"How much is it?" in comments = warm lead who wants you to DM them. Every Reel that gets traction turns comments into a free lead capture. The algorithm rewards engagement — every comment boosts reach further.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🚀</div>
+      <div class="why-title">Zero Competition</div>
+      <div class="why-text">Search "dog poop St. Louis" on TikTok. Almost nothing. Poop 911 is gone. DoodyCalls is gone. No local service in STL is doing Reels consistently. TJ could OWN this search category inside TikTok and IG with 10 videos.</div>
+    </div>
+  </div>
+
+  <div class="platform-split">
+    <div class="platform-card">
+      <div class="platform-icon">📸</div>
+      <div class="platform-name">Instagram Reels</div>
+      <div class="platform-detail">
+        <strong>Best format:</strong> 15–30 seconds<br>
+        <strong>Best time:</strong> Tue–Thu, 11 AM–1 PM or 7–9 PM<br>
+        <strong>Hashtags:</strong> Mix local (#stlouis #stldogs) + niche (#dogpoop #petservice)<br>
+        <strong>CTA:</strong> "Link in bio" → tidytailsstl.com<br>
+        <strong>Big win:</strong> Dog owner communities already active on IG. Mom groups share local service Reels.
+      </div>
+    </div>
+    <div class="platform-card">
+      <div class="platform-icon">🎵</div>
+      <div class="platform-name">TikTok</div>
+      <div class="platform-detail">
+        <strong>Best format:</strong> 30–60 seconds (longer allowed but short performs better)<br>
+        <strong>Best time:</strong> Evenings 6–10 PM, weekends<br>
+        <strong>Hashtags:</strong> #localservice #dogowner #cleanyard + city tags<br>
+        <strong>CTA:</strong> "Text (314) 850-7140" in video overlay<br>
+        <strong>Big win:</strong> TikTok pushes content to people based on interest, not followers. Dog owner who never heard of TJ = potential lead.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: SCRIPTS -->
+<div id="tab-scripts" class="content">
+  <div class="section-title">10 Ready-to-Film Scripts</div>
+  <div class="section-sub">Each script = concept + what to film + what to say. No editing skills needed. Just press record.</div>
+
+  <!-- REEL 1 -->
+  <div class="reel-card priority-now">
+    <div class="reel-header">
+      <div class="reel-num fire">1</div>
+      <div class="reel-title">The Before/After Reveal</div>
+    </div>
+    <div class="tag-row">
+      <span class="tag tag-now">🔥 Film First</span>
+      <span class="tag tag-ig">📸 IG</span>
+      <span class="tag tag-tk">🎵 TikTok</span>
+      <span class="tag tag-hook">Hook: Curiosity</span>
+      <span class="tag tag-easy">⚡ Easy</span>
+    </div>
+    <div class="reel-concept">Film the yard before you start cleaning — wide shot, show the situation. Do the cleanup. Film the same angle after. Overlay text: "Same yard. 45 minutes apart." This is the highest-performing format for local service businesses. No narration needed.</div>
+    <div class="script-block">
+      <div class="script-label">What to Film (30 seconds)</div>
+      <div class="script-text">0:00–0:05 — Wide shot of yard, dog visible, piles visible. Text overlay: "Client's yard. 3 dogs. Before service."
+0:05–0:20 — Time-lapse or cut of you working (gloves, bag, walking grid)
+0:20–0:25 — Same angle as the opening. Clean yard. Dog looking happy. Text overlay: "After. Same yard. 45 minutes."
+0:25–0:30 — Face to camera: "We're in St. Louis. Text us at (314) 850-7140. First cleanup is free."</div>
+    </div>
+    <div class="script-block">
+      <div class="script-label">On-Screen Text (overlay in CapCut or IG editor)</div>
+      <div class="script-text">Opening: "3 dogs. Before Tidy Tails."
+Middle: "Weekly service. $70/month flat."
+End: "First cleanup FREE. Text (314) 850-7140"</div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, '3 dogs. Before Tidy Tails.\n[cut to after]\nWeekly service. $70/month flat.\nFirst cleanup FREE. Text (314) 850-7140')">Copy Text Overlays</button>
+  </div>
+
+  <!-- REEL 2 -->
+  <div class="reel-card priority-now">
+    <div class="reel-header">
+      <div class="reel-num fire">2</div>
+      <div class="reel-title">The "On My Way" Text Reveal</div>
+    </div>
+    <div class="tag-row">
+      <span class="tag tag-now">🔥 High Closer</span>
+      <span class="tag tag-ig">📸 IG</span>
+      <span class="tag tag-tk">🎵 TikTok</span>
+      <span class="tag tag-hook">Hook: Surprise</span>
+    </div>
+    <div class="reel-concept">Film yourself opening your truck door, phone in hand. Show yourself sending the "On My Way" text. Walk to the yard, do the work, then show the "All Done" text with photo. Face to camera: "No other service in St. Louis does this." This is the single strongest differentiator — film it.</div>
+    <div class="script-block">
+      <div class="script-label">Voiceover / What to Say</div>
+      <div class="script-text"><strong>"So most dog poop services just... show up.</strong>
+Or don't. And you never know which.
+
+We do this differently.
+
+Before every single visit, I text you: 'On My Way.'
+After every visit, I text you: 'All Done' — with a photo.
+
+You know I'm coming. You know I was there.
+
+That's it. That's the whole thing.
+
+$70 a month. No contracts. First cleanup free.
+Text us at (314) 850-7140 — we're in St. Louis."</div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, 'So most dog poop services just... show up. Or don\'t. And you never know which.\n\nWe do this differently.\n\nBefore every single visit, I text you: On My Way.\nAfter every visit, I text you: All Done — with a photo.\n\nYou know I\'m coming. You know I was there.\n\nThat\'s it. That\'s the whole thing.\n\n$70 a month. No contracts. First cleanup free.\nText us at (314) 850-7140 — we\'re in St. Louis.')">Copy Script</button>
+  </div>
+
+  <!-- REEL 3 -->
+  <div class="reel-card priority-now">
+    <div class="reel-header">
+      <div class="reel-num fire">3</div>
+      <div class="reel-title">The $2.30/Day Math</div>
+    </div>
+    <div class="tag-row">
+      <span class="tag tag-now">🔥 Objection Killer</span>
+      <span class="tag tag-ig">📸 IG</span>
+      <span class="tag tag-tk">🎵 TikTok</span>
+      <span class="tag tag-hook">Hook: Math Reveal</span>
+      <span class="tag tag-easy">⚡ Easy — Just Talk</span>
+    </div>
+    <div class="reel-concept">Stand in a yard or by your truck. Walk through the math out loud. The "it's actually cheap" reframe always surprises people and gets shares. Text overlays help drive the math home visually.</div>
+    <div class="script-block">
+      <div class="script-label">Script (15–20 seconds)</div>
+      <div class="script-text"><strong>"Okay so real quick — dog poop math.
+
+$70 a month. That's our flat rate for one or two dogs.
+
+Divided by 30 days?
+
+That's two dollars and thirty cents a day.
+
+Less than a gas station coffee.
+
+And your yard is just... clean. Every week. All year.
+
+Text (314) 850-7140. First cleanup is free.
+We're in St. Louis."</strong></div>
+    </div>
+    <div class="script-block">
+      <div class="script-label">Text Overlays (show these on screen)</div>
+      <div class="script-text">$70/month ÷ 30 days = $2.30/day
+First cleanup FREE
+(314) 850-7140 — St. Louis</div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, 'Okay so real quick — dog poop math.\n\n$70 a month. That\'s our flat rate for one or two dogs.\n\nDivided by 30 days?\n\nThat\'s two dollars and thirty cents a day.\n\nLess than a gas station coffee.\n\nAnd your yard is just... clean. Every week. All year.\n\nText (314) 850-7140. First cleanup is free.\nWe\'re in St. Louis.')">Copy Script</button>
+  </div>
+
+  <!-- REEL 4 -->
+  <div class="reel-card priority-week">
+    <div class="reel-header">
+      <div class="reel-num gold">4</div>
+      <div class="reel-title">The "300 Deposits" POV</div>
+    </div>
+    <div class="tag-row">
+      <span class="tag tag-ig">📸 IG</span>
+      <span class="tag tag-tk">🎵 TikTok</span>
+      <span class="tag tag-hook">Hook: Shocking Stat</span>
+    </div>
+    <div class="reel-concept">Walk a yard while talking. Let the yard be the visual. This one works great as a "did you know" format — people share stats they didn't know. The 300 number genuinely surprises most dog owners.</div>
+    <div class="script-block">
+      <div class="script-label">Script</div>
+      <div class="script-text"><strong>"Your dog poops about 300 times a year.
+
+Three. Hundred. Times.
+
+That's not counting winter, when it all freezes and comes back in March all at once.
+
+I cleaned a yard last week that had been frozen all winter.
+Two dogs.
+It was... a lot.
+
+We do weekly service for $70 a month.
+First cleanup is always free.
+
+Text us. (314) 850-7140. Tidy Tails, St. Louis."</strong></div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, 'Your dog poops about 300 times a year.\n\nThree. Hundred. Times.\n\nThat\'s not counting winter, when it all freezes and comes back in March all at once.\n\nI cleaned a yard last week that had been frozen all winter.\nTwo dogs.\nIt was... a lot.\n\nWe do weekly service for $70 a month.\nFirst cleanup is always free.\n\nText us. (314) 850-7140. Tidy Tails, St. Louis.')">Copy Script</button>
+  </div>
+
+  <!-- REEL 5 -->
+  <div class="reel-card priority-week">
+    <div class="reel-header">
+      <div class="reel-num gold">5</div>
+      <div class="reel-title">Day in the Life (POV)</div>
+    </div>
+    <div class="tag-row">
+      <span class="tag tag-ig">📸 IG</span>
+      <span class="tag tag-tk">🎵 TikTok</span>
+      <span class="tag tag-hook">Hook: Character-Building</span>
+    </div>
+    <div class="reel-concept">Film your actual morning: loading the truck, driving to the first house, doing the cleanup, sending the "All Done" text. Music in the background. Text overlays tell the story. This builds the personal brand — people book from people they follow because they feel like they know them.</div>
+    <div class="script-block">
+      <div class="script-label">What to Film (30–60 seconds)</div>
+      <div class="script-text">0:00–0:05 — Alarm going off. Text overlay: "6 AM. Route day."
+0:05–0:10 — Gloves going on. Bags loaded. Text: "12 yards today."
+0:10–0:20 — Driving to first house. Text: "Florissant, MO"
+0:20–0:30 — Doing the cleanup (gloves, bag, grid walk)
+0:30–0:40 — Typing the "All Done" text on the phone
+0:40–0:50 — Dog in the clean yard, happy. Text: "This is why."
+0:50–0:60 — Face to cam: "Tidy Tails. $70/month. Text me." + phone number</div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, '6 AM. Route day.\n12 yards today.\n[driving clip]\n[cleanup clip]\n[sending All Done text]\nThis is why.\n\nTidy Tails. $70/month. Text (314) 850-7140.')">Copy Text Overlays</button>
+  </div>
+
+  <!-- REEL 6 -->
+  <div class="reel-card priority-week">
+    <div class="reel-header">
+      <div class="reel-num gold">6</div>
+      <div class="reel-title">"They Thought I Was Joking" Pricing Video</div>
+    </div>
+    <div class="tag-row">
+      <span class="tag tag-ig">📸 IG</span>
+      <span class="tag tag-tk">🎵 TikTok</span>
+      <span class="tag tag-hook">Hook: Relatable Surprise</span>
+    </div>
+    <div class="reel-concept">The "POI face" format — TJ reacts to what people expect vs what it actually costs. Highly shareable. People tag friends who complain about dog poop.</div>
+    <div class="script-block">
+      <div class="script-label">Script</div>
+      <div class="script-text"><strong>"Someone DM'd me last week and said —
+'Okay so how much is this gonna cost me.'
+
+And I said: $70 a month.
+
+Flat rate. One dog or two. Doesn't matter.
+
+And she said: '...that's it?'
+
+Yeah, that's it.
+
+$70 a month. We come every week. We text before and after.
+First cleanup is free so you can try it.
+
+Tidy Tails. St. Louis. (314) 850-7140."</strong></div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, 'Someone DM\'d me last week and said —\n\'Okay so how much is this gonna cost me.\'\n\nAnd I said: $70 a month.\n\nFlat rate. One dog or two. Doesn\'t matter.\n\nAnd she said: \'...that\'s it?\'\n\nYeah, that\'s it.\n\n$70 a month. We come every week. We text before and after.\nFirst cleanup is free so you can try it.\n\nTidy Tails. St. Louis. (314) 850-7140.')">Copy Script</button>
+  </div>
+
+  <!-- REEL 7 -->
+  <div class="reel-card priority-week">
+    <div class="reel-header">
+      <div class="reel-num gold">7</div>
+      <div class="reel-title">The "What I Actually Do" Explainer</div>
+    </div>
+    <div class="tag-row">
+      <span class="tag tag-ig">📸 IG</span>
+      <span class="tag tag-tk">🎵 TikTok</span>
+      <span class="tag tag-hook">Hook: Process Reveal</span>
+    </div>
+    <div class="reel-concept">People don't fully understand what the service is. This video explains it in 20 seconds while doing it. Strong for capturing mid-funnel people who are curious but haven't booked.</div>
+    <div class="script-block">
+      <div class="script-label">Script (while walking the yard)</div>
+      <div class="script-text"><strong>"So here's exactly what we do.
+
+I text you before I leave: 'On My Way.'
+I show up. I sweep the whole yard — grid pattern, every corner.
+Every single pile goes into a bag, off your property.
+
+It doesn't get composted in a corner. It leaves.
+
+Then I text you: 'All Done' — with a photo of the clean yard.
+So you know it's done even if you weren't home.
+
+That's the service. $70 a month. First one's free.
+
+Text us. (314) 850-7140."</strong></div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, 'So here\'s exactly what we do.\n\nI text you before I leave: On My Way.\nI show up. I sweep the whole yard — grid pattern, every corner.\nEvery single pile goes into a bag, off your property.\n\nIt doesn\'t get composted in a corner. It leaves.\n\nThen I text you: All Done — with a photo of the clean yard.\nSo you know it\'s done even if you weren\'t home.\n\nThat\'s the service. $70 a month. First one\'s free.\n\nText us. (314) 850-7140.')">Copy Script</button>
+  </div>
+
+  <!-- REEL 8 -->
+  <div class="reel-card priority-month">
+    <div class="reel-header">
+      <div class="reel-num green">8</div>
+      <div class="reel-title">The Kids Safety Angle</div>
+    </div>
+    <div class="tag-row">
+      <span class="tag tag-ig">📸 IG</span>
+      <span class="tag tag-hook">Hook: Parent Fear (Use Carefully)</span>
+    </div>
+    <div class="reel-concept">Sensitive topic but extremely effective with the parent audience. Keep the tone calm and factual, not alarmist. Film with a clean yard as the background — positive visual throughout. Works extremely well as a static IG post caption if video feels uncomfortable.</div>
+    <div class="script-block">
+      <div class="script-label">Script</div>
+      <div class="script-text"><strong>"Most people don't know this, but dog poop carries roundworm eggs.
+
+And those eggs can survive in your yard's soil for up to five years.
+
+Even after the poop is gone.
+
+The CDC estimates about 14% of Americans have been exposed —
+kids are the highest-risk group because they play at ground level.
+
+The fix isn't complicated.
+Pick it up within 48 hours. Every time.
+
+We do that for $70 a month.
+First cleanup free.
+
+Tidy Tails. St. Louis. (314) 850-7140."</strong></div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, 'Most people don\'t know this, but dog poop carries roundworm eggs.\n\nAnd those eggs can survive in your yard\'s soil for up to five years.\n\nEven after the poop is gone.\n\nThe CDC estimates about 14% of Americans have been exposed —\nkids are the highest-risk group because they play at ground level.\n\nThe fix isn\'t complicated.\nPick it up within 48 hours. Every time.\n\nWe do that for $70 a month.\nFirst cleanup free.\n\nTidy Tails. St. Louis. (314) 850-7140.')">Copy Script</button>
+  </div>
+
+  <!-- REEL 9 -->
+  <div class="reel-card priority-month">
+    <div class="reel-header">
+      <div class="reel-num green">9</div>
+      <div class="reel-title">The Happy Customer Reaction</div>
+    </div>
+    <div class="tag-row">
+      <span class="tag tag-ig">📸 IG</span>
+      <span class="tag tag-tk">🎵 TikTok</span>
+      <span class="tag tag-hook">Hook: Social Proof</span>
+    </div>
+    <div class="reel-concept">Read a real text or review out loud (with permission/name changed). People trust other people more than they trust the business owner. "Here's what a customer texted me yesterday" is the most authentic version of a testimonial video.</div>
+    <div class="script-block">
+      <div class="script-label">Script</div>
+      <div class="script-text"><strong>"I got this text from a customer in Florissant last week.
+
+She said: 'I literally didn't know my yard could look like this.
+Two dogs for three years and I never — thank you.'
+
+That's the whole job.
+
+We do weekly cleanup in the St. Louis area for $70 a month.
+We text you before we come and after we're done.
+First cleanup is free.
+
+(314) 850-7140. Text us."</strong></div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, 'I got this text from a customer in Florissant last week.\n\nShe said: I literally didn\'t know my yard could look like this.\nTwo dogs for three years and I never — thank you.\n\nThat\'s the whole job.\n\nWe do weekly cleanup in the St. Louis area for $70 a month.\nWe text you before we come and after we\'re done.\nFirst cleanup is free.\n\n(314) 850-7140. Text us.')">Copy Script</button>
+  </div>
+
+  <!-- REEL 10 -->
+  <div class="reel-card priority-month">
+    <div class="reel-header">
+      <div class="reel-num green">10</div>
+      <div class="reel-title">The Spring Thaw Reveal (Seasonal)</div>
+    </div>
+    <div class="tag-row">
+      <span class="tag tag-ig">📸 IG</span>
+      <span class="tag tag-tk">🎵 TikTok</span>
+      <span class="tag tag-hook">Hook: Timing / Urgency</span>
+    </div>
+    <div class="reel-concept">Spring-specific. Film a yard in April before cleanup. The "it's been frozen all winter" angle is both funny and viscerally relatable to anyone in the Midwest. Very shareable. Use for April/early May timing.</div>
+    <div class="script-block">
+      <div class="script-label">Script</div>
+      <div class="script-text"><strong>"St. Louis had a long winter.
+
+And your dog used the yard all winter.
+
+All of that is in the grass right now.
+
+I know because I've been cleaning it all week.
+Some yards — we're talking 150, 200 piles per dog.
+All of it thawed out and waiting.
+
+The good news: we can get it done before your first cookout.
+One-time cleanup from $75. Weekly service from $70 a month.
+
+First cleanup is always free.
+
+Text (314) 850-7140. Tidy Tails. St. Louis."</strong></div>
+    </div>
+    <button class="copy-btn" onclick="copyText(this, 'St. Louis had a long winter.\n\nAnd your dog used the yard all winter.\n\nAll of that is in the grass right now.\n\nI know because I\'ve been cleaning it all week.\nSome yards — we\'re talking 150, 200 piles per dog.\nAll of it thawed out and waiting.\n\nThe good news: we can get it done before your first cookout.\nOne-time cleanup from $75. Weekly service from $70 a month.\n\nFirst cleanup is always free.\n\nText (314) 850-7140. Tidy Tails. St. Louis.')">Copy Script</button>
+  </div>
+</div>
+
+<!-- TAB: CAPTIONS -->
+<div id="tab-captions" class="content">
+  <div class="section-title">Instagram & TikTok Captions</div>
+  <div class="section-sub">Copy-paste captions for each reel. Include hashtags. Always end with CTA + phone.</div>
+
+  <div class="caption-box">
+    <div class="caption-label">Caption for Reels 1–2 (Before/After + On My Way)</div>
+    <div class="caption-text">Before and after — same yard, 45 minutes. 🐾
+
+Weekly dog waste removal in St. Louis for $70/month flat. We text you before we come ("On My Way") and after we're done ("All Done" + photo).
+
+First cleanup is always free. No contracts. Local owner — not a franchise.
+
+Text us: (314) 850-7140
+📍 Serving all of St. Louis County + St. Charles County
+
+#stlouis #stldogs #dogowner #petservice #scooping #dogsofstlouis #stlouisdogs #pooperscooper #localstlouis #dogpoop #petcare #stlouispetservices #cleanyard #tydytailsstl</div>
+    <button class="copy-btn" onclick="copyText(this, 'Before and after — same yard, 45 minutes. 🐾\n\nWeekly dog waste removal in St. Louis for $70/month flat. We text you before we come (On My Way) and after we\'re done (All Done + photo).\n\nFirst cleanup is always free. No contracts. Local owner — not a franchise.\n\nText us: (314) 850-7140\n📍 Serving all of St. Louis County + St. Charles County\n\n#stlouis #stldogs #dogowner #petservice #scooping #dogsofstlouis #stlouisdogs #pooperscooper #localstlouis #dogpoop #petcare #stlouispetservices #cleanyard #tidytailsstl')">Copy Caption</button>
+  </div>
+
+  <div class="caption-box">
+    <div class="caption-label">Caption for Reel 3 (Math Video)</div>
+    <div class="caption-text">$70 ÷ 30 = $2.30/day 🧮
+
+That's what weekly dog waste removal costs in St. Louis. One or two dogs — same flat price.
+
+Less than your morning coffee. Your yard stays clean all year.
+
+Text (314) 850-7140 — first cleanup is on us.
+
+#stlouis #dogowner #pooperscooper #stlouisdogs #petservice #dogsofstlouis #smallbusiness #localstlouis #dogpoop #tidytailsstl</div>
+    <button class="copy-btn" onclick="copyText(this, '$70 ÷ 30 = $2.30/day 🧮\n\nThat\'s what weekly dog waste removal costs in St. Louis. One or two dogs — same flat price.\n\nLess than your morning coffee. Your yard stays clean all year.\n\nText (314) 850-7140 — first cleanup is on us.\n\n#stlouis #dogowner #pooperscooper #stlouisdogs #petservice #dogsofstlouis #smallbusiness #localstlouis #dogpoop #tidytailsstl')">Copy Caption</button>
+  </div>
+
+  <div class="caption-box">
+    <div class="caption-label">Caption for Reels 4–5 (300 Deposits + Day in the Life)</div>
+    <div class="caption-text">Your dog poops 300 times a year. All of it ends up somewhere. 🐕
+
+We pick it up every week — $70/month flat rate, one or two dogs. We text before every visit ("On My Way") and after ("All Done" + photo so you know we were there).
+
+First cleanup is always free. No contract. No commitment.
+
+Text us: (314) 850-7140
+📍 St. Louis County + St. Charles County
+
+#dogsofstlouis #stlouisdogs #stlouis #doglife #petcare #pooperscooper #dogpoop #localservice #stlouispets #tidytailsstl #cleanyard</div>
+    <button class="copy-btn" onclick="copyText(this, 'Your dog poops 300 times a year. All of it ends up somewhere. 🐕\n\nWe pick it up every week — $70/month flat rate, one or two dogs. We text before every visit (On My Way) and after (All Done + photo so you know we were there).\n\nFirst cleanup is always free. No contract. No commitment.\n\nText us: (314) 850-7140\n📍 St. Louis County + St. Charles County\n\n#dogsofstlouis #stlouisdogs #stlouis #doglife #petcare #pooperscooper #dogpoop #localservice #stlouispets #tidytailsstl #cleanyard')">Copy Caption</button>
+  </div>
+
+  <div class="caption-box">
+    <div class="caption-label">Hashtag Bank (paste into any caption)</div>
+    <div class="caption-text">Core local: #stlouis #stlouismo #stlouisdogs #dogsofstlouis #stlouispets #stlouislocal
+Service niche: #pooperscooper #dogpoop #petcare #dogwasteremoval #scooperservice
+Dog culture: #dogowner #doglife #dogmom #dogdad #petparent #dogsofinstagram
+Discovery: #smallbusiness #localservice #stlouissmallbusiness #supportlocal</div>
+    <button class="copy-btn" onclick="copyText(this, '#stlouis #stlouismo #stlouisdogs #dogsofstlouis #stlouispets #stlouislocal #pooperscooper #dogpoop #petcare #dogwasteremoval #scooperservice #dogowner #doglife #dogmom #dogdad #petparent #dogsofinstagram #smallbusiness #localservice #stlouissmallbusiness #supportlocal')">Copy All Hashtags</button>
+  </div>
+</div>
+
+<!-- TAB: PRODUCTION -->
+<div id="tab-production" class="content">
+  <div class="section-title">How to Film — No Experience Needed</div>
+  <div class="section-sub">Everything TJ needs to make a good Reel with just an iPhone. No editing skills, no equipment.</div>
+
+  <div class="tip-card">
+    <div class="tip-title">📱 The Only Setup You Need</div>
+    <div class="tip-text">iPhone propped against a fence post or leaned on the truck. Selfie camera for face-to-camera. Rear camera for yard shots. That's it. Don't overthink it. The most-viewed cleaning/service Reels on TikTok look like they were filmed in 3 minutes — because they were. Authenticity > production value for local service businesses.</div>
+  </div>
+
+  <div class="tip-card">
+    <div class="tip-title">🌤️ Lighting = Golden Hour or Overcast</div>
+    <div class="tip-text">Film early morning (7–9 AM) or late afternoon (4–6 PM). Midday harsh sunlight makes faces look rough. Overcast days are actually perfect — even, soft light everywhere. If it looks good on your phone screen when you press record, it's fine. Don't over-filter.</div>
+  </div>
+
+  <div class="tip-card">
+    <div class="tip-title">🎵 Music Strategy</div>
+    <div class="tip-text">Use trending audio on IG/TikTok — the algorithm boosts content using trending sounds. In TikTok: tap the "+" sound icon before recording and choose "Trending." In IG: select "Add Audio" and pick from Reels suggestions. For face-to-camera scripts, record first then add music underneath at 20% volume so voice is audible. Don't skip music — it's an algorithmic signal.</div>
+  </div>
+
+  <div class="tip-card">
+    <div class="tip-title">✂️ Editing in CapCut (Free App)</div>
+    <div class="tip-text">
+      1. Install CapCut (free, iOS/Android)<br>
+      2. Import your clips<br>
+      3. Trim to the good parts<br>
+      4. Add text overlays: tap "Text" → type → move to where you want<br>
+      5. Add captions: tap "Captions" → auto-generates them<br>
+      6. Export at 1080p<br>
+      <br>
+      Total time for a simple Before/After edit: 10–15 minutes. The "On My Way" text reveal or face-to-camera scripts don't even need editing — just post the raw clip.
+    </div>
+  </div>
+
+  <div class="tip-card">
+    <div class="tip-title">📐 Format: Vertical 9:16</div>
+    <div class="tip-text">Always film vertically. Reels and TikTok are full-screen vertical. If you film horizontal (landscape), it'll have black bars on the sides and look low-effort. Just hold the phone vertically. IG lets you trim to Reel format if you accidentally film horizontal, but vertical from the start is better.</div>
+  </div>
+
+  <div class="tip-card">
+    <div class="tip-title">📞 Always End With the Phone Number On Screen</div>
+    <div class="tip-text">Text overlay at the end of every Reel: "(314) 850-7140" + "First Cleanup FREE." People screenshot the number. People pause and write it down. If the number isn't on screen, you're losing leads who watched the whole video but won't hunt down the bio link. Make it easy. Every. Time.</div>
+  </div>
+
+  <div class="tip-card">
+    <div class="tip-title">⏱️ Optimal Length by Type</div>
+    <div class="tip-text">
+      Before/After reveal: 15–25 seconds<br>
+      Face-to-camera script: 20–30 seconds<br>
+      Day in the Life POV: 30–60 seconds<br>
+      Educational/stat video: 20–35 seconds<br>
+      <br>
+      Shorter = better for retention. IG shows "watch time %" as a metric — if people watch 90%+ of your Reel, the algorithm rewards it. A 20-second Reel with 100% watch time beats a 60-second Reel with 40% watch time every time.
+    </div>
+  </div>
+
+  <div class="tip-card">
+    <div class="tip-title">🗺️ Location Tags + Geotag</div>
+    <div class="tip-text">On IG: Add a location tag when posting (tap "Add Location" → "St. Louis, Missouri" or the specific suburb). On TikTok: mention the city in the first 3 seconds of spoken content ("We're in St. Louis...") — the algorithm reads this. Location signals matter massively for local reach. Always do it.</div>
+  </div>
+</div>
+
+<!-- TAB: SCHEDULE -->
+<div id="tab-schedule" class="content">
+  <div class="section-title">4-Week Posting Schedule</div>
+  <div class="section-sub">1 Reel per week minimum. 2 per week = fast growth. Don't try to do all 10 at once — consistency beats volume.</div>
+
+  <div class="alert-box">
+    <p class="alert-title">🎯 The Rule: One Good Reel Per Week Beats Nothing Every Day</p>
+    <p>Consistency matters more than frequency for local service accounts. One video per week for 10 weeks = a library that compounds forever. Two per week gets there faster. Three per week burns out most solo operators. Start with one and build the habit.</p>
+  </div>
+
+  <div class="schedule-card">
+    <div class="schedule-day">Week 1 (Start Here)</div>
+    <div class="schedule-action">Reel #1: The Before/After Reveal</div>
+    <div class="schedule-detail">Film during your next route day. Prop phone on the fence before you start. Do the cleanup. Same angle after. Add text overlays in CapCut or directly in IG. Post Tuesday–Thursday, 11 AM–1 PM. This is the highest-performing format to start — it doesn't require any script, just your work.</div>
+  </div>
+
+  <div class="schedule-card">
+    <div class="schedule-day">Week 2</div>
+    <div class="schedule-action">Reel #3: The $2.30/Day Math</div>
+    <div class="schedule-detail">Stand by your truck or in a clean yard. Film yourself doing the math out loud. 20 seconds. No editing needed. This is the objection-killer video — people who've been on the fence about price watch this and book. Best time: Wednesday, 7–9 PM (people scrolling after dinner).</div>
+  </div>
+
+  <div class="schedule-card">
+    <div class="schedule-day">Week 3</div>
+    <div class="schedule-action">Reel #2: The "On My Way" Text Reveal</div>
+    <div class="schedule-detail">Film yourself opening the truck door, sending the "On My Way" text, doing the work, then sending "All Done." This is the differentiator video — no other service in STL does this consistently, and showing it live is more powerful than describing it. Best time: Thursday, 11 AM.</div>
+  </div>
+
+  <div class="schedule-card">
+    <div class="schedule-day">Week 4</div>
+    <div class="schedule-action">Reel #6: "They Thought I Was Joking"</div>
+    <div class="schedule-detail">Face to camera. Script is ready in the Scripts tab. This is the most conversational, social-proof format. Works well for building the personal brand. Post alongside the caption from the Captions tab. Best time: Tuesday or Wednesday, noon.</div>
+  </div>
+
+  <div class="schedule-card">
+    <div class="schedule-day">Weeks 5–10</div>
+    <div class="schedule-action">Rotate through Reels 4, 5, 7, 8, 9, 10</div>
+    <div class="schedule-detail">After the first four are posted, work through the remaining scripts in whatever order fits the season. Reel #10 (Spring Thaw) is April/May only. Reel #8 (Kids Safety) works April–October. Reels 4, 5, 7, and 9 are evergreen — no expiration date. By week 10, you have a full content library and can start recycling the best-performing ones.</div>
+  </div>
+
+  <div class="rev-grid">
+    <div class="rev-card">
+      <div class="rev-label">Week 1 Reel (Before/After)</div>
+      <div class="rev-big">3–8K</div>
+      <div class="rev-sub">Expected local views (new account)</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-label">After 10 Reels</div>
+      <div class="rev-big">1–3</div>
+      <div class="rev-sub">Expected new leads from video channel</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-label">LTV per lead</div>
+      <div class="rev-big">$840</div>
+      <div class="rev-sub">At $70/mo × 12-month avg</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-label">Cost of 10 Reels</div>
+      <div class="rev-big">$0</div>
+      <div class="rev-sub">Just time (≈1 hr/week)</div>
+    </div>
+  </div>
+</div>
+
+<!-- TAB: CHECKLIST -->
+<div id="tab-checklist" class="content">
+  <div class="section-title">Reels Launch Checklist</div>
+  <div class="section-sub">Get the account set up and the first video posted.</div>
+
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+
+  <div class="phase-label">🛠️ Setup (One-Time)</div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck1">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Set up TidyTailsSTL IG profile (if not already done)</div><div class="check-context">Bio: "Weekly dog waste removal in St. Louis 🐾 $70/mo flat · First cleanup FREE · Text (314) 850-7140" + link to tidytailsstl.com</div></div>
+  </div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck2">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Download CapCut (free) for basic video editing</div><div class="check-context">iOS or Android — it's free and used by millions of service Reel creators</div></div>
+  </div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck3">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Create TikTok account @tidytailsstl (or similar)</div><div class="check-context">Same bio and CTA as IG. TikTok is separate reach — worth 10 minutes to set up.</div></div>
+  </div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck4">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Connect IG to Facebook Page (for cross-posting)</div><div class="check-context">IG Settings → Account → Linked Accounts. Then Reels can be shared to FB automatically.</div></div>
+  </div>
+
+  <div class="phase-label">🎬 Film Week 1</div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck5">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Film Reel #1 during next route day (Before/After)</div><div class="check-context">Prop phone before starting. Wide shot of yard → cleanup → same shot after. 30 seconds total.</div></div>
+  </div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck6">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Add text overlays in CapCut or IG editor</div><div class="check-context">"Before." → "After." → "(314) 850-7140 · First Cleanup FREE"</div></div>
+  </div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck7">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Post to IG Reels — use caption from Captions tab</div><div class="check-context">Include location tag (St. Louis) and hashtags. Best time: Tue–Thu 11 AM–1 PM.</div></div>
+  </div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck8">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Cross-post same video to TikTok</div><div class="check-context">Download from IG (without the IG watermark using SnapTik app) then upload to TikTok with same caption.</div></div>
+  </div>
+
+  <div class="phase-label">📊 Track & Repeat</div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck9">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Check Week 1 Reel views after 48 hours</div><div class="check-context">IG Insights → Views, Reach, Accounts Reached. 1K+ views on Week 1 = you're doing it right. Reply to every comment.</div></div>
+  </div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck10">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Film Reel #3 (Math Video) — face to camera, 20 seconds</div><div class="check-context">Script is ready in the Scripts tab. Just read it to camera. No editing needed.</div></div>
+  </div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck11">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Post Week 2 Reel</div><div class="check-context">Aim for same time slot as Week 1. Consistency in posting times trains the algorithm.</div></div>
+  </div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck12">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Reply to every comment on every Reel</div><div class="check-context">Engagement rate matters. Every reply = signals to algorithm = more reach. Even just "Thanks! Text us anytime 🐾" counts.</div></div>
+  </div>
+
+  <div class="phase-label">🚀 Growth Moves</div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck13">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Share best-performing Reel to IG Stories</div><div class="check-context">Stories keep Reel alive an extra 24 hours and push it to your existing followers who may have missed it.</div></div>
+  </div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck14">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Post Reel link to relevant FB groups (not as promo — as content)</div><div class="check-context">"Thought this might be useful for dog owners in [city]" — links to Reel on IG. Works best for the educational/stat videos.</div></div>
+  </div>
+  <div class="check-item" onclick="toggleCheck(this)" data-id="ck15">
+    <div class="check-box">✓</div>
+    <div><div class="check-text">Ask existing customers to share their favorite Reel</div><div class="check-context">Text: "Hey — we just posted a quick video about the yard service. If you think it's good, feel free to share it — helps us a lot!" That's it.</div></div>
+  </div>
+</div>
+
+<script>
+function showTab(id) {
+  document.querySelectorAll('.content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function copyText(btn, text) {
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = btn.textContent.includes('Caption') ? 'Copy Caption' : btn.textContent.includes('Script') ? 'Copy Script' : btn.textContent.includes('Overlay') ? 'Copy Text Overlays' : 'Copy All Hashtags';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+function toggleCheck(el) {
+  const id = el.dataset.id;
+  el.classList.toggle('done');
+  const done = JSON.parse(localStorage.getItem('reels-checks') || '{}');
+  done[id] = el.classList.contains('done');
+  localStorage.setItem('reels-checks', JSON.stringify(done));
+  updateProgress();
+}
+
+function updateProgress() {
+  const items = document.querySelectorAll('.check-item');
+  const doneCount = document.querySelectorAll('.check-item.done').length;
+  const pct = Math.round((doneCount / items.length) * 100);
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+// Load saved state
+window.addEventListener('load', () => {
+  const done = JSON.parse(localStorage.getItem('reels-checks') || '{}');
+  document.querySelectorAll('.check-item').forEach(el => {
+    if (done[el.dataset.id]) el.classList.add('done');
+  });
+  updateProgress();
+});
+</script>
+</body>
+</html>
