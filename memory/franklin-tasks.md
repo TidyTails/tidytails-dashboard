@@ -2,6 +2,36 @@
 
 ---
 
+### Saturday 5:04 AM — Easter Saturday Morning Briefing PDF (Hourly Task)
+- **5:04 AM** 🐣 Built and delivered the **Easter Saturday Morning Briefing** — the "open this at 7 AM" game-day document for the last close window before Easter Sunday
+  - **Files:** `dashboard/pdfs/MORNING_BRIEFING_2026-04-04.html` + `dashboard/pdfs/MORNING_BRIEFING_2026-04-04.pdf` (990KB ✅)
+  - **Git commits:** tidytails-dashboard `5ff1e0cc` (briefing) + `6ee818a9` (dashboard quick link) ✅
+  - **Dashboard:** Added fastest-pulsing (0.65s) hot-pink quick link "🐣 APR 4 EASTER SATURDAY BRIEFING — GAME DAY" at top of quick links ✅
+  - **PDF validated:** 990KB ✅, starts `%PDF-` ✅, generated via local server (localhost:9234) as required by standards ✅
+  - **Why this task:** It's 5:04 AM Easter Saturday. TJ wakes up in 2 hours to the single biggest organic acquisition day of the spring. All the tools, posts, scripts, and campaigns are built — but there was no Saturday-specific synthesis document. The most recent briefing was April 3 (Good Friday). Today needs its own "game plan on one page": fire the panic post in all FB groups, text all 11 customers with referral asks, maintain 10-minute reply SLA, execute same-day cleanups with the monthly seed text, pause the Easter Burst campaign by 5 PM, post the Instagram Story in the evening, and lock in Sunday morning bookings. Without a tight briefing, TJ opens his phone at 7 AM and has to remember all of this across 8 different tools while also responding to inbound.
+  - **What's in the briefing:**
+    - **Header:** "Today Is Game Day." — dark purple/magenta gradient, Easter Saturday framing
+    - **Live countdown timer:** Ticks to Easter Sunday 10 AM in hours/minutes/seconds
+    - **KPI bar:** ~11 customers / 14 gap to goal / 88 posts / $75 one-time / $840 LTV / 40% monthly rate
+    - **Situation framing alerts:** Red — "Today Is Your Last Close Window Before Easter" / Amber — "The Sequence Matters"
+    - **Full day timeline:** 7 AM (panic post) → 8 AM (referral texts) → 9 AM–12 PM (10-min SLA) → 11 AM–1 PM (FB ads check) → 1–5 PM (execute cleanups) → 5 PM (PAUSE Easter Burst) → 7–8 PM (Instagram Story) → Evening (lock in Sunday bookings)
+    - **Priority 1 — Easter Eve Panic Post:** Full Facebook Group copy-paste script + Nextdoor shorter version. Post in every group: Florissant, Hazelwood, Kirkwood, Webster Groves, Crestwood, South County, North County, Chesterfield, all BST groups, Nextdoor.
+    - **Priority 2 — Referral Text Blast:** Version A (5-star reviewers — Shannon, Amanda, Chastity — $20 credit hook) + Version B (all other customers). Send 8–9 AM.
+    - **Priority 3 — Inbound Reply Scripts:** 5 copy-paste scripts — "How much?/Interested", "Can you do it by tomorrow morning?", "Let me think", "$75 is too much", "Do you cover [area]?". 10-minute reply rule emphasized.
+    - **Priority 4 — Same-Day Cleanup Protocol:** "On My Way" text + "All Done + Monthly Seed" text. Monthly seed from the driveway = highest conversion moment in the customer journey.
+    - **Priority 5 — FB Ads:** Check Easter Burst at 11 AM → PAUSE by 5 PM. CRITICAL: Do NOT touch the main learning-phase campaign. Giant red warning included.
+    - **Saturday Master Checklist:** 11 items across Morning / Mid-Day / Afternoon-Evening sections with checkboxes
+    - **Win Math grid:** Bear ($2,100) / Base ($4,890) / Bull ($9,510) — LTV projections for the full Easter weekend including Monday close
+    - **Monday close text callout:** "Whatever cleanups you do this weekend — the Monday 9 AM close text is where 40–60% convert to $840/yr monthly subscribers. Don't skip it."
+    - **Tomorrow preview:** Easter Sunday protocol + Monday 9 AM close text reminder
+    - **Tools grid:** 6 key tools with filenames
+    - **Mindset closer:** "The tools are done. Today is pure execution."
+  - **Why Easter Saturday briefing over other options at 5 AM:** Every tool is built — 88 blog posts, Easter execution guide, FB ad burst, referral engine, door hangers, post-Easter conversion kit. The overnight sprint has been all blog posts (new dog owner guide at 4 AM, pregnancy guide at 2 AM, how-often rebuild at midnight). The gap at 5 AM is not another blog post — it's the synthesis layer that tells TJ exactly what to do in what order when he wakes up in 2 hours to the most important organic acquisition day of the spring. The panic post needs to go up at 7 AM, not 9 AM — the earlier it's up, the longer it generates replies. The referral texts need to go at 8–9 AM. The 10-minute SLA is a mindset shift that the briefing reinforces. All of this is in one document he can open and follow sequentially. Revenue potential: $4,890 base case from Easter weekend at near-zero cost.
+
+---
+
+---
+
 ### Saturday 4:07 AM — Blog Post #88: New Dog Owner's Guide to Yard Cleanup (Hourly Task)
 - **4:07 AM** 🐶 Wrote and published **"New Dog Owner's Guide to Yard Cleanup in St. Louis — What Nobody Tells You"** — the first post in the entire library targeting new and first-time dog owners, the highest-LTV customer segment (no entrenched habits = easiest monthly conversion)
   - **File:** `tidy-tails/website/blog/new-dog-owner-yard-cleanup-st-louis.html` — 47KB ✅ (comparable to other blog posts: flies=45KB, worms=46KB)
